@@ -1,0 +1,173 @@
+{
+  "source": "exact Git objects",
+  "files": [
+    {
+      "alias": "human",
+      "commit": "b62b7fb6d10e9c80e0d127d535d97a86d0b29f49",
+      "sourcePath": "experiments/cloud-lanes/human-design-contract/prototype/eyelid-candidate-v3/eyelid-candidate-v3.glb",
+      "localPath": "scratch/human/prototype/eyelid-candidate-v3/eyelid-candidate-v3.glb",
+      "bytes": 3307408,
+      "sha256": "335f463fc2013164a7b9719ab1225589289565ac0cbc81abe7456b45b7e89e76"
+    },
+    {
+      "alias": "human",
+      "commit": "b62b7fb6d10e9c80e0d127d535d97a86d0b29f49",
+      "sourcePath": "experiments/cloud-lanes/human-design-contract/prototype/eyelid-candidate-v3/eyelid-candidate-v3.blend",
+      "localPath": "scratch/human/prototype/eyelid-candidate-v3/eyelid-candidate-v3.blend",
+      "bytes": 1095330,
+      "sha256": "9ef0c9ecd882fb900701087381869fb576218f11d0ecb6ca5402ba3b152299f3"
+    },
+    {
+      "alias": "human",
+      "commit": "b62b7fb6d10e9c80e0d127d535d97a86d0b29f49",
+      "sourcePath": "experiments/cloud-lanes/human-design-contract/prototype/eyelid-candidate-v3/fit-frame-candidate-v3.json",
+      "localPath": "scratch/human/prototype/eyelid-candidate-v3/fit-frame-candidate-v3.json",
+      "bytes": 4068,
+      "sha256": "59c552e227dc4d50caebfb58f9bfe3ba34217e5fa1b39d8a3a35e8f4fa8b38a5"
+    },
+    {
+      "alias": "human",
+      "commit": "b62b7fb6d10e9c80e0d127d535d97a86d0b29f49",
+      "sourcePath": "experiments/cloud-lanes/human-design-contract/prototype/check_lid_candidate_v3.py",
+      "localPath": "scratch/human/prototype/check_lid_candidate_v3.py",
+      "bytes": 11755,
+      "sha256": "2ee47f414507ee681efad0678b29a29ff2669f33bc1e27439aeaf13e3b976e1d"
+    },
+    {
+      "alias": "master",
+      "commit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+      "sourcePath": "experiments/cloud-lanes/human-design-contract/prototype/original-human-prototype.glb",
+      "localPath": "scratch/master/prototype/original-human-prototype.glb",
+      "bytes": 1200716,
+      "sha256": "5f0f8da1f3e6b14fc4910f04f02ed1eafe6446f896f44ef2b3a23f2ca071bc07"
+    },
+    {
+      "alias": "master",
+      "commit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+      "sourcePath": "experiments/cloud-lanes/human-design-contract/prototype/fit-frame.json",
+      "localPath": "scratch/master/prototype/fit-frame.json",
+      "bytes": 3099,
+      "sha256": "51fae932279d1513e16c4d06ce633f6218a994fe6c224bc3436e105cc519083b"
+    },
+    {
+      "alias": "skin",
+      "commit": "2544b6d66bddf5431ed15bd17298a21b43bcc454",
+      "sourcePath": "experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/artifacts/fitted-human-skin-eyes-v1.glb",
+      "localPath": "scratch/skin/fitted-v1/artifacts/fitted-human-skin-eyes-v1.glb",
+      "bytes": 2125024,
+      "sha256": "03c58a092fe6a3501adb59fc17f52b1c3584fd74a032457f1564caf8761fc6d5"
+    },
+    {
+      "alias": "skin",
+      "commit": "2544b6d66bddf5431ed15bd17298a21b43bcc454",
+      "sourcePath": "experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/artifacts/fitted-human-skin-eyes-v1.blend",
+      "localPath": "scratch/skin/fitted-v1/artifacts/fitted-human-skin-eyes-v1.blend",
+      "bytes": 1659819,
+      "sha256": "709168bfec5726daf815305541718fcc4f25b917962b280a36a56654cd0a2b78"
+    },
+    {
+      "alias": "skin",
+      "commit": "2544b6d66bddf5431ed15bd17298a21b43bcc454",
+      "sourcePath": "experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/packet.json",
+      "localPath": "scratch/skin/fitted-v1/packet.json",
+      "bytes": 20167,
+      "sha256": "574a4da9b0454105cb0c18f744f5b24250fdf6e1cfbdcd123d0834bb970dd01e"
+    },
+    {
+      "alias": "skin",
+      "commit": "2544b6d66bddf5431ed15bd17298a21b43bcc454",
+      "sourcePath": "experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/input-pins.json",
+      "localPath": "scratch/skin/fitted-v1/input-pins.json",
+      "bytes": 1251,
+      "sha256": "03f25ceee821425810a98f4586ee4cdfacf062e9055c2e77dd081bf8049f1beb"
+    },
+    {
+      "alias": "skin",
+      "commit": "2544b6d66bddf5431ed15bd17298a21b43bcc454",
+      "sourcePath": "experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/cornea-fix/receipts/dense-blink.json",
+      "localPath": "scratch/skin/fitted-v1/cornea-fix/receipts/dense-blink.json",
+      "bytes": 7490,
+      "sha256": "0f2d579754d44387961c6215859e852046d1b68ccc506a3f3a58391dec3a4b2c"
+    },
+    {
+      "alias": "hair",
+      "commit": "7a9759f1c371aba39bc34b875e64797c4071ad25",
+      "sourcePath": "experiments/cloud-lanes/human-hair-art/artifacts/master-fit-v1/curl-crop-fitted.glb",
+      "localPath": "scratch/hair/artifacts/master-fit-v1/curl-crop-fitted.glb",
+      "bytes": 189416,
+      "sha256": "a9729e2dcee74f53ca4b4120fb3075860e5750961e99422e971e5a95b0691b3f"
+    },
+    {
+      "alias": "hair",
+      "commit": "7a9759f1c371aba39bc34b875e64797c4071ad25",
+      "sourcePath": "experiments/cloud-lanes/human-hair-art/artifacts/master-fit-v1/swept-bun-fitted.glb",
+      "localPath": "scratch/hair/artifacts/master-fit-v1/swept-bun-fitted.glb",
+      "bytes": 213100,
+      "sha256": "6e55e907605ec84e0ccb629af715844ad4c257fad2bdb9fd7f3591138169c776"
+    },
+    {
+      "alias": "hair",
+      "commit": "7a9759f1c371aba39bc34b875e64797c4071ad25",
+      "sourcePath": "experiments/cloud-lanes/human-hair-art/artifacts/master-fit-v1/curl-proxy-fitted.glb",
+      "localPath": "scratch/hair/artifacts/master-fit-v1/curl-proxy-fitted.glb",
+      "bytes": 13856,
+      "sha256": "38f971ea7aaf6aa08b582e2d86699ca58dc3847a913ae2f495dfbfbc0d56144e"
+    },
+    {
+      "alias": "hair",
+      "commit": "7a9759f1c371aba39bc34b875e64797c4071ad25",
+      "sourcePath": "experiments/cloud-lanes/human-hair-art/artifacts/master-fit-v1/bun-proxy-fitted.glb",
+      "localPath": "scratch/hair/artifacts/master-fit-v1/bun-proxy-fitted.glb",
+      "bytes": 18984,
+      "sha256": "f9c98a2cd208c834de0661ae92977f474c7264514a34bb6fe23f5b4fce7d35b7"
+    },
+    {
+      "alias": "hair",
+      "commit": "7a9759f1c371aba39bc34b875e64797c4071ad25",
+      "sourcePath": "experiments/cloud-lanes/human-hair-art/artifacts/master-fit-v1/fit-proposal.json",
+      "localPath": "scratch/hair/artifacts/master-fit-v1/fit-proposal.json",
+      "bytes": 9848,
+      "sha256": "11ec923792143eb980008fa3a53f8df52a36427398ff92f68eff99919143f8b2"
+    },
+    {
+      "alias": "hair",
+      "commit": "7a9759f1c371aba39bc34b875e64797c4071ad25",
+      "sourcePath": "experiments/cloud-lanes/human-hair-art/artifacts/master-fit-v1/fit-checks.json",
+      "localPath": "scratch/hair/artifacts/master-fit-v1/fit-checks.json",
+      "bytes": 190949,
+      "sha256": "77db7f869e8192e9befd5dfe6665d590b1e391bc4283c3107450457d77c19fe3"
+    },
+    {
+      "alias": "wardrobe",
+      "commit": "8f6e32102f47330239c30d45aa552ea6e17d9011",
+      "sourcePath": "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/artifacts/everyday-01-envelope-v1.glb",
+      "localPath": "scratch/wardrobe/envelope-fit-v1/artifacts/everyday-01-envelope-v1.glb",
+      "bytes": 124452,
+      "sha256": "8737a23dc58c9ac950cbfe4b42d6237756fdb02bfbe0cee37af292806d68c77c"
+    },
+    {
+      "alias": "wardrobe",
+      "commit": "8f6e32102f47330239c30d45aa552ea6e17d9011",
+      "sourcePath": "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/artifacts/everyday-01-envelope-v1-editable.blend",
+      "localPath": "scratch/wardrobe/envelope-fit-v1/artifacts/everyday-01-envelope-v1-editable.blend",
+      "bytes": 1060170,
+      "sha256": "70d1204246c026bc032880735cad9bb63f00b47a11e4378499804d787176f727"
+    },
+    {
+      "alias": "wardrobe",
+      "commit": "8f6e32102f47330239c30d45aa552ea6e17d9011",
+      "sourcePath": "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/binding-metadata.json",
+      "localPath": "scratch/wardrobe/envelope-fit-v1/binding-metadata.json",
+      "bytes": 6167,
+      "sha256": "4d36c721974773d727fce6287db4c3086c4b6084694a6662a6b371fe271c038c"
+    },
+    {
+      "alias": "wardrobe",
+      "commit": "8f6e32102f47330239c30d45aa552ea6e17d9011",
+      "sourcePath": "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/fit-checks.json",
+      "localPath": "scratch/wardrobe/envelope-fit-v1/receipts/fit-checks.json",
+      "bytes": 11163,
+      "sha256": "2fb3b035426c6c172cac97940e84e1b06c50464da3e6e7b2117138a5127c6f0c"
+    }
+  ]
+}

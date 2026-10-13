@@ -1,0 +1,244 @@
+{
+  "stage": "diagnostic-partial-binding",
+  "transferredSkinMeshes": 26,
+  "lidMaterials": "unaltered human candidate fallback; old UV maps rejected",
+  "skeleton": false,
+  "bodyMask": false,
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "views": [
+    {
+      "style": "cropProxy",
+      "label": "Full body / front",
+      "weights": {},
+      "triangles": 33846,
+      "primitives": 34,
+      "materials": 26,
+      "renderedTriangles": 67692,
+      "renderCalls": 68,
+      "geometries": 34,
+      "textures": 63,
+      "programs": 26,
+      "withinPreviewComparator": true,
+      "withinVenueCallsComparator": false
+    },
+    {
+      "style": "cropProxy",
+      "label": "Full body / three-quarter",
+      "weights": {},
+      "triangles": 33846,
+      "primitives": 34,
+      "materials": 26,
+      "renderedTriangles": 67692,
+      "renderCalls": 68,
+      "geometries": 34,
+      "textures": 63,
+      "programs": 26,
+      "withinPreviewComparator": true,
+      "withinVenueCallsComparator": false
+    },
+    {
+      "style": "cropProxy",
+      "label": "Portrait / neutral",
+      "weights": {},
+      "triangles": 33846,
+      "primitives": 34,
+      "materials": 26,
+      "renderedTriangles": 50280,
+      "renderCalls": 54,
+      "geometries": 34,
+      "textures": 63,
+      "programs": 26,
+      "withinPreviewComparator": true,
+      "withinVenueCallsComparator": true
+    },
+    {
+      "style": "cropProxy",
+      "label": "Portrait / half blink",
+      "weights": {
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "triangles": 33846,
+      "primitives": 34,
+      "materials": 26,
+      "renderedTriangles": 50280,
+      "renderCalls": 54,
+      "geometries": 34,
+      "textures": 63,
+      "programs": 26,
+      "withinPreviewComparator": true,
+      "withinVenueCallsComparator": true
+    },
+    {
+      "style": "cropProxy",
+      "label": "Portrait / full blink",
+      "weights": {
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "triangles": 33846,
+      "primitives": 34,
+      "materials": 26,
+      "renderedTriangles": 50280,
+      "renderCalls": 54,
+      "geometries": 34,
+      "textures": 63,
+      "programs": 26,
+      "withinPreviewComparator": true,
+      "withinVenueCallsComparator": true
+    },
+    {
+      "style": "cropProxy",
+      "label": "Short + broad / happy",
+      "weights": {
+        "body.height": -1,
+        "body.shoulderWidth": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "triangles": 33846,
+      "primitives": 34,
+      "materials": 26,
+      "renderedTriangles": 67692,
+      "renderCalls": 68,
+      "geometries": 34,
+      "textures": 63,
+      "programs": 26,
+      "withinPreviewComparator": true,
+      "withinVenueCallsComparator": false
+    },
+    {
+      "style": "bunProxy",
+      "label": "Full body / front",
+      "weights": {},
+      "triangles": 33990,
+      "primitives": 35,
+      "materials": 26,
+      "renderedTriangles": 67980,
+      "renderCalls": 70,
+      "geometries": 36,
+      "textures": 65,
+      "programs": 28,
+      "withinPreviewComparator": true,
+      "withinVenueCallsComparator": false
+    },
+    {
+      "style": "bunProxy",
+      "label": "Full body / three-quarter",
+      "weights": {},
+      "triangles": 33990,
+      "primitives": 35,
+      "materials": 26,
+      "renderedTriangles": 67980,
+      "renderCalls": 70,
+      "geometries": 36,
+      "textures": 65,
+      "programs": 28,
+      "withinPreviewComparator": true,
+      "withinVenueCallsComparator": false
+    },
+    {
+      "style": "bunProxy",
+      "label": "Portrait / neutral",
+      "weights": {},
+      "triangles": 33990,
+      "primitives": 35,
+      "materials": 26,
+      "renderedTriangles": 50568,
+      "renderCalls": 56,
+      "geometries": 36,
+      "textures": 65,
+      "programs": 28,
+      "withinPreviewComparator": true,
+      "withinVenueCallsComparator": true
+    },
+    {
+      "style": "bunProxy",
+      "label": "Portrait / half blink",
+      "weights": {
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "triangles": 33990,
+      "primitives": 35,
+      "materials": 26,
+      "renderedTriangles": 50568,
+      "renderCalls": 56,
+      "geometries": 36,
+      "textures": 65,
+      "programs": 28,
+      "withinPreviewComparator": true,
+      "withinVenueCallsComparator": true
+    },
+    {
+      "style": "bunProxy",
+      "label": "Portrait / full blink",
+      "weights": {
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "triangles": 33990,
+      "primitives": 35,
+      "materials": 26,
+      "renderedTriangles": 50568,
+      "renderCalls": 56,
+      "geometries": 36,
+      "textures": 65,
+      "programs": 28,
+      "withinPreviewComparator": true,
+      "withinVenueCallsComparator": true
+    },
+    {
+      "style": "bunProxy",
+      "label": "Short + broad / happy",
+      "weights": {
+        "body.height": -1,
+        "body.shoulderWidth": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "triangles": 33990,
+      "primitives": 35,
+      "materials": 26,
+      "renderedTriangles": 67980,
+      "renderCalls": 70,
+      "geometries": 36,
+      "textures": 65,
+      "programs": 28,
+      "withinPreviewComparator": true,
+      "withinVenueCallsComparator": false
+    }
+  ],
+  "budgets": {
+    "previewTriangles": 34000,
+    "venueDrawCallsComparator": 60
+  },
+  "runtimeAdopted": false,
+  "returnedToNeutral": true,
+  "withoutWardrobe": {
+    "triangles": 31522,
+    "primitives": 33,
+    "materials": 25
+  },
+  "restoredWardrobe": {
+    "triangles": 33846,
+    "primitives": 34,
+    "materials": 26
+  },
+  "cleanup": {
+    "geometriesDisposed": 68,
+    "materialsDisposed": 33,
+    "texturesDisposed": 40,
+    "geometryAfter": 0,
+    "textureAfter": 1,
+    "sceneChildren": 0,
+    "rendererDisposed": true,
+    "contextLossRequested": true
+  },
+  "browserErrors": [],
+  "failedRequests": [],
+  "seconds": 4.652922504999879,
+  "stillFrameCount": 12,
+  "videoGenerated": false,
+  "delivery": "one 12-panel screenshot; no generated replacement pixels"
+}

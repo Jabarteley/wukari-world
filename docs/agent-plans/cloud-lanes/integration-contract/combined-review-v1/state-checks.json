@@ -1,0 +1,4903 @@
+{
+  "summary": {
+    "states": 42,
+    "newCapProperCrossings": 0,
+    "hairProperCrossings": 0,
+    "wardrobeProperCrossings": 0,
+    "oppositeLidProperCrossings": 0,
+    "invalidGeometryStates": 0,
+    "orientationReversalStates": 2,
+    "hairPenetrationStates": 0,
+    "wardrobePenetrationStates": 0,
+    "minimumHairSignedSampleMetres": 0.0034047318785559444,
+    "minimumWardrobeSignedSampleMetres": 0.002808107791763288
+  },
+  "status": "SAMPLED_GEOMETRY_PASS_WITH_BINDING_VISUAL_RUNTIME_BLOCKERS",
+  "seconds": 2.78430772199863,
+  "classifierSourceSha256": "2ee47f414507ee681efad0678b29a29ff2669f33bc1e27439aeaf13e3b976e1d",
+  "properCrossingToleranceMetres": 2.5e-07,
+  "classifierFixturesPassed": 3,
+  "inputFilesUnchanged": true,
+  "resetNeutralExact": true,
+  "caseResults": [
+    {
+      "state": "neutral",
+      "weights": {},
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "neutral",
+      "weights": {},
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "nose.projection:-1",
+      "weights": {
+        "nose.projection": -1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 3,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 3,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "nose.projection:-1",
+      "weights": {
+        "nose.projection": -1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 3,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 3,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "nose.projection:1",
+      "weights": {
+        "nose.projection": 1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 3,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "nose.projection:1",
+      "weights": {
+        "nose.projection": 1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 3,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "nose.alarWidth:-1",
+      "weights": {
+        "nose.alarWidth": -1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "nose.alarWidth:-1",
+      "weights": {
+        "nose.alarWidth": -1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "nose.alarWidth:1",
+      "weights": {
+        "nose.alarWidth": 1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "nose.alarWidth:1",
+      "weights": {
+        "nose.alarWidth": 1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "earLeft.protrusion:-1",
+      "weights": {
+        "earLeft.protrusion": -1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 5,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "earLeft.protrusion:-1",
+      "weights": {
+        "earLeft.protrusion": -1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 5,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "earLeft.protrusion:1",
+      "weights": {
+        "earLeft.protrusion": 1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 2,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "earLeft.protrusion:1",
+      "weights": {
+        "earLeft.protrusion": 1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 2,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "earRight.protrusion:-1",
+      "weights": {
+        "earRight.protrusion": -1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 2,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "earRight.protrusion:-1",
+      "weights": {
+        "earRight.protrusion": -1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 2,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "earRight.protrusion:1",
+      "weights": {
+        "earRight.protrusion": 1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 3,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "earRight.protrusion:1",
+      "weights": {
+        "earRight.protrusion": 1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 3,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "body.height:-1",
+      "weights": {
+        "body.height": -1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 2,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 3,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034047318785559444,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0029295230745826593,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "body.height:-1",
+      "weights": {
+        "body.height": -1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 2,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 3,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005859348200047232,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0029295230745826593,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "body.height:1",
+      "weights": {
+        "body.height": 1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 2,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 2,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034180363781723955,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.003213432249654012,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "body.height:1",
+      "weights": {
+        "body.height": 1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 2,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 2,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.00590312356072442,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.003213432249654012,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "body.shoulderWidth:-1",
+      "weights": {
+        "body.shoulderWidth": -1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.002808107791763288,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "body.shoulderWidth:-1",
+      "weights": {
+        "body.shoulderWidth": -1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.002808107791763288,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "body.shoulderWidth:1",
+      "weights": {
+        "body.shoulderWidth": 1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.003041594586248436,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "body.shoulderWidth:1",
+      "weights": {
+        "body.shoulderWidth": 1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.003041594586248436,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "blink:0.25",
+      "weights": {
+        "expression.blinkLeft": 0.25,
+        "expression.blinkRight": 0.25
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 6,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 3,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "blink:0.25",
+      "weights": {
+        "expression.blinkLeft": 0.25,
+        "expression.blinkRight": 0.25
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 6,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 3,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "blink:0.5",
+      "weights": {
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 3,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 7,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "blink:0.5",
+      "weights": {
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 3,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 7,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "blink:0.75",
+      "weights": {
+        "expression.blinkLeft": 0.75,
+        "expression.blinkRight": 0.75
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 2,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 2,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "blink:0.75",
+      "weights": {
+        "expression.blinkLeft": 0.75,
+        "expression.blinkRight": 0.75
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 2,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 2,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "blink:1",
+      "weights": {
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 3,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 6,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": [
+        {
+          "mesh": "UpperLid_Left",
+          "count": 1,
+          "interpretation": "orientation relative to neutral, diagnostic not continuous proof"
+        },
+        {
+          "mesh": "UpperLid_Right",
+          "count": 1,
+          "interpretation": "orientation relative to neutral, diagnostic not continuous proof"
+        },
+        {
+          "mesh": "LowerLid_Right",
+          "count": 1,
+          "interpretation": "orientation relative to neutral, diagnostic not continuous proof"
+        }
+      ]
+    },
+    {
+      "state": "blink:1",
+      "weights": {
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 3,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 6,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": [
+        {
+          "mesh": "UpperLid_Left",
+          "count": 1,
+          "interpretation": "orientation relative to neutral, diagnostic not continuous proof"
+        },
+        {
+          "mesh": "UpperLid_Right",
+          "count": 1,
+          "interpretation": "orientation relative to neutral, diagnostic not continuous proof"
+        },
+        {
+          "mesh": "LowerLid_Right",
+          "count": 1,
+          "interpretation": "orientation relative to neutral, diagnostic not continuous proof"
+        }
+      ]
+    },
+    {
+      "state": "happy:0.5",
+      "weights": {
+        "expression.smileLeft": 0.5,
+        "expression.smileRight": 0.5
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 3,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "happy:0.5",
+      "weights": {
+        "expression.smileLeft": 0.5,
+        "expression.smileRight": 0.5
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 3,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "happy:1",
+      "weights": {
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "happy:1",
+      "weights": {
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 1,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.0030723270169730403,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "body.height:max/half-blink",
+      "weights": {
+        "body.height": 1,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034180363781723955,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.003213432249654012,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "body.height:max/half-blink",
+      "weights": {
+        "body.height": 1,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 1,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.00590312356072442,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.003213432249654012,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "body.shoulderWidth:max/half-blink",
+      "weights": {
+        "body.shoulderWidth": 1,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "hair": "cropProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 3,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 7,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 550,
+        "minimumSignedNearestNormalMetres": 0.0034118733308736715,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.003041594586248436,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    },
+    {
+      "state": "body.shoulderWidth:max/half-blink",
+      "weights": {
+        "body.shoulderWidth": 1,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "hair": "bunProxy",
+      "capPairs": [
+        {
+          "cap": "Left",
+          "other": "UpperLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "LowerLid_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Eye_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Iris_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Pupil_Left",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Left",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "UpperLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "LowerLid_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Eye_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Iris_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Pupil_Right",
+          "rawPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "cap": "Right",
+          "other": "Head_continuous_anatomy",
+          "rawPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "oppositeLidPairs": [
+        {
+          "side": "Left",
+          "rawPairs": 3,
+          "properCrossings": 0
+        },
+        {
+          "side": "Right",
+          "rawPairs": 7,
+          "properCrossings": 0
+        }
+      ],
+      "hairVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "wardrobeVsBody": {
+        "rawPairs": 0,
+        "properCrossings": 0
+      },
+      "hairClearance": {
+        "samples": 778,
+        "minimumSignedNearestNormalMetres": 0.005882754884138622,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "wardrobeClearance": {
+        "samples": 4246,
+        "minimumSignedNearestNormalMetres": 0.003041594586248436,
+        "negativeBeyond0_2mm": 0,
+        "negativeBeyond0_1mm": 0
+      },
+      "invalidGeometry": [],
+      "orientationReversals": []
+    }
+  ],
+  "limits": "42 finite exported-morph states; not continuous, undressed/skeletal fit, exhaustive coplanar/self-intersection or new anatomy acceptance. Cap counts repeated across two hairstyle variants."
+}

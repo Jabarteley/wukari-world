@@ -1,0 +1,137 @@
+{
+  "schema": "allworld-combined-character-review-v1",
+  "status": "BLOCKED_FOR_COMPLETE_ACCEPTANCE",
+  "productionAdmission": false,
+  "runtimeIntegrated": false,
+  "budgetCapsChanged": false,
+  "originalSealedPacketChanged": false,
+  "inputFiles": 21,
+  "inputBytes": 11274232,
+  "numericalStates": 42,
+  "renderedStillPanels": 12,
+  "videoGenerated": false,
+  "geometryPreviewChoices": {
+    "cropSilhouette": 33846,
+    "bunSilhouette": 33990
+  },
+  "detailedHairTotals": {
+    "crop": 40062,
+    "bun": 39254
+  },
+  "fullBodyCalls": {
+    "cropSilhouette": 68,
+    "bunSilhouette": 70
+  },
+  "blockers": [
+    "Four revised lid UV/material bindings incompatible; diagnostic uses candidate original material only.",
+    "Raised/stylized lid anatomy and 69 inherited neutral eye/head crossings.",
+    "Three full-blink lid faces reverse normal direction relative neutral; continuous orientation not proved.",
+    "Detailed hair exceeds 34000; silhouettes have only 154/10 triangle headroom and coarse appearance.",
+    "Optical full-body draws exceed 60-call venue comparator; no runtime or hardware proof.",
+    "No skeleton or undressed body/garment fit; current skinned-body contract cannot accept this master.",
+    "One renderer texture counter remained after disposal; browser/server subsequently closed."
+  ],
+  "geometryScope": "42 finite morph samples, no new tested cap/hair/wardrobe proper crossings; not continuous/coplanar/self-collision proof",
+  "files": [
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/RESULT.md",
+      "bytes": 12116,
+      "sha256": "e8baf5da365efcabe8f6c77d5787bdd7ed0735329518dd71332168f86889fcc6"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/browser-receipt.json",
+      "bytes": 6267,
+      "sha256": "978e700c6158029908f4fd33d6add61efb8600a2a7e197cabd7ecebd2e69302f"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/browser.log",
+      "bytes": 345,
+      "sha256": "3a0578ff81455022e506ce6a6e35968b257867ee58d09f05ba165e23954440cb"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/combined-character-diagnostic.png",
+      "bytes": 417491,
+      "sha256": "1819a35a5cec7904fdbdfc608b8b46eac5e7b0edd0e6168b0329238b5aebf96b"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/compatibility-and-budgets.json",
+      "bytes": 157972,
+      "sha256": "8621db076d686d6222757601ab6a0cc34f6a2d615009d888596937044bc20c1c"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/input-pins.json",
+      "bytes": 8304,
+      "sha256": "fa53cfd8253c80355f35918c3a6109e6fc6bd35f9cfdcfa00b7c3c44b3345f87"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/lid-diagnostic.json",
+      "bytes": 2898,
+      "sha256": "32b98c03d3c48a1fca1e4c5052fc34174322b393594520d7f16c8b96dd3c6564"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/lid-diagnostic.log",
+      "bytes": 119,
+      "sha256": "89ed5c559ea33c57ff3ca100c0a7e6a44ee330a03c5d2a66b91cde90f1f5c71b"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/state-checks-import-failed.log",
+      "bytes": 473,
+      "sha256": "27e57f7fecddcf6026c99bf1de7e2b084bbc3da8f2e41e397096ea4c058a5ef3"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/state-checks.json",
+      "bytes": 115645,
+      "sha256": "3add5aadec06c4fa30b323e8744e78e68023d223ffda192013da4dde0f21650d"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/state-checks.log",
+      "bytes": 732,
+      "sha256": "0a42aa1ef1194029490e019392e63929e5bb5402695472683b9cfe451ea3e0f4"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/combined-review-v1/.gitignore",
+      "bytes": 22,
+      "sha256": "8da0a2bb012d2887b7e09910cf39a36e23aa7991b48fa20fd3f38df76e92dc87"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/combined-review-v1/capture.py",
+      "bytes": 2319,
+      "sha256": "24421f2ebdf534b411940c8fe61aae4d6a950fd5fbd1baf37be07d62233e120f"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/combined-review-v1/check_states.py",
+      "bytes": 6545,
+      "sha256": "bcb8af72c79f3762a295f01a42bb9d01f27fac0764800fc6b80151abec9310d3"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/combined-review-v1/diagnose_lid_flags.py",
+      "bytes": 2396,
+      "sha256": "d11810b553ec74a53f115d003ac6e5abba42698ea67a86e596706069e7779b33"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/combined-review-v1/glb.py",
+      "bytes": 5752,
+      "sha256": "bbce90938e585d008f720718d9a9d230fb2963894dd1a958b591ecb15f0b363c"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/combined-review-v1/materialize.py",
+      "bytes": 2504,
+      "sha256": "ae99fcc1f240b6d43db4d4977bd5e29bb2659c48f6a135911efda30b4ad0eb90"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/combined-review-v1/preview.html",
+      "bytes": 1702,
+      "sha256": "2fa11a9788d4efedf8cda754059f7ecc11a7e5f96c80bc7a096a63c9e5b41f08"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/combined-review-v1/preview.mjs",
+      "bytes": 6117,
+      "sha256": "674c1f86a50ca6932403e5c2cdf36ab32fca3e93cce0cad1482b2affd8d8c0c3"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/combined-review-v1/review_inputs.py",
+      "bytes": 4619,
+      "sha256": "706abb848622241cb5eee4ccf2589f3c8b56674401b8be3e338613e3703d42e5"
+    }
+  ]
+}

@@ -1,0 +1,2716 @@
+{
+  "status": "PARTIAL_COMPATIBILITY_ONLY",
+  "sourcePaths": {
+    "master": "master/prototype/original-human-prototype.glb",
+    "human": "human/prototype/eyelid-candidate-v3/eyelid-candidate-v3.glb",
+    "skin": "skin/fitted-v1/artifacts/fitted-human-skin-eyes-v1.glb",
+    "crop": "hair/artifacts/master-fit-v1/curl-crop-fitted.glb",
+    "bun": "hair/artifacts/master-fit-v1/swept-bun-fitted.glb",
+    "cropProxy": "hair/artifacts/master-fit-v1/curl-proxy-fitted.glb",
+    "bunProxy": "hair/artifacts/master-fit-v1/bun-proxy-fitted.glb",
+    "wardrobe": "wardrobe/envelope-fit-v1/artifacts/everyday-01-envelope-v1.glb"
+  },
+  "assets": {
+    "master": {
+      "bytes": 1200716,
+      "sha256": "5f0f8da1f3e6b14fc4910f04f02ed1eafe6446f896f44ef2b3a23f2ca071bc07",
+      "triangles": 29186,
+      "primitives": 31,
+      "usedMaterials": 10,
+      "materialDefinitions": 10,
+      "images": 0,
+      "encodedImageBytes": 0,
+      "skins": 0,
+      "animations": 0,
+      "morphTargetsSummed": 109,
+      "decodedAttributeBytes": 504800,
+      "decodedPositionMorphBytes": 1197180
+    },
+    "human": {
+      "bytes": 3307408,
+      "sha256": "335f463fc2013164a7b9719ab1225589289565ac0cbc81abe7456b45b7e89e76",
+      "triangles": 32482,
+      "primitives": 31,
+      "usedMaterials": 10,
+      "materialDefinitions": 10,
+      "images": 0,
+      "encodedImageBytes": 0,
+      "skins": 0,
+      "animations": 0,
+      "morphTargetsSummed": 177,
+      "decodedAttributeBytes": 560928,
+      "decodedPositionMorphBytes": 1754004
+    },
+    "skin": {
+      "bytes": 2125024,
+      "sha256": "03c58a092fe6a3501adb59fc17f52b1c3584fd74a032457f1564caf8761fc6d5",
+      "triangles": 30386,
+      "primitives": 33,
+      "usedMaterials": 26,
+      "materialDefinitions": 50,
+      "images": 64,
+      "encodedImageBytes": 634338,
+      "skins": 0,
+      "animations": 0,
+      "morphTargetsSummed": 111,
+      "decodedAttributeBytes": 727936,
+      "decodedPositionMorphBytes": 1228860
+    },
+    "crop": {
+      "bytes": 189416,
+      "sha256": "a9729e2dcee74f53ca4b4120fb3075860e5750961e99422e971e5a95b0691b3f",
+      "triangles": 6574,
+      "primitives": 4,
+      "usedMaterials": 4,
+      "materialDefinitions": 4,
+      "images": 0,
+      "encodedImageBytes": 0,
+      "skins": 0,
+      "animations": 0,
+      "morphTargetsSummed": 21,
+      "decodedAttributeBytes": 84096,
+      "decodedPositionMorphBytes": 217728
+    },
+    "bun": {
+      "bytes": 213100,
+      "sha256": "6e55e907605ec84e0ccb629af715844ad4c257fad2bdb9fd7f3591138169c776",
+      "triangles": 5766,
+      "primitives": 10,
+      "usedMaterials": 4,
+      "materialDefinitions": 4,
+      "images": 0,
+      "encodedImageBytes": 0,
+      "skins": 0,
+      "animations": 0,
+      "morphTargetsSummed": 33,
+      "decodedAttributeBytes": 95424,
+      "decodedPositionMorphBytes": 252912
+    },
+    "cropProxy": {
+      "bytes": 13856,
+      "sha256": "38f971ea7aaf6aa08b582e2d86699ca58dc3847a913ae2f495dfbfbc0d56144e",
+      "triangles": 358,
+      "primitives": 1,
+      "usedMaterials": 1,
+      "materialDefinitions": 1,
+      "images": 0,
+      "encodedImageBytes": 0,
+      "skins": 0,
+      "animations": 0,
+      "morphTargetsSummed": 7,
+      "decodedAttributeBytes": 4608,
+      "decodedPositionMorphBytes": 16128
+    },
+    "bunProxy": {
+      "bytes": 18984,
+      "sha256": "f9c98a2cd208c834de0661ae92977f474c7264514a34bb6fe23f5b4fce7d35b7",
+      "triangles": 502,
+      "primitives": 2,
+      "usedMaterials": 1,
+      "materialDefinitions": 1,
+      "images": 0,
+      "encodedImageBytes": 0,
+      "skins": 0,
+      "animations": 0,
+      "morphTargetsSummed": 8,
+      "decodedAttributeBytes": 6624,
+      "decodedPositionMorphBytes": 17136
+    },
+    "wardrobe": {
+      "bytes": 124452,
+      "sha256": "8737a23dc58c9ac950cbfe4b42d6237756fdb02bfbe0cee37af292806d68c77c",
+      "triangles": 2324,
+      "primitives": 1,
+      "usedMaterials": 1,
+      "materialDefinitions": 1,
+      "images": 0,
+      "encodedImageBytes": 0,
+      "skins": 0,
+      "animations": 0,
+      "morphTargetsSummed": 2,
+      "decodedAttributeBytes": 69192,
+      "decodedPositionMorphBytes": 46128
+    }
+  },
+  "signatures": {
+    "master": {
+      "Neck": {
+        "triangleCount": 188,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "7de9d90a9a54597339b4663abfd6bbc2edf0191fd9e01e8e5456094af766ebf2",
+        "expandedUvsSha256": "b1c4c1836691dc3a883df7a8b6cc51ce3b2ac1d944a6936aacec98c7e6196e8f",
+        "orderedIndicesSha256": "7e92498204b977ebac740fd35c646de7a206e5449969dc3e5775716736564364",
+        "rawPositionSha256": "0c487d6253cb590b2ec67f1732aaceead76e940e580260b51da50920190b4af1",
+        "morphPositions": {
+          "body.height": "accf80ecf5f18d40bf5ab647201ae8c3cb51723fb01a1a15895a324335fc3655",
+          "body.shoulderWidth": "41d8107bd67a7e4611497bbb093d94f23fda66efb1a92595551c88f3f38909a9"
+        },
+        "morphNormals": {}
+      },
+      "Shirt_fused_shoulders": {
+        "triangleCount": 3798,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "e3719c6be341cda37642316fa28d0e653e03fa25da506c7bb5079bed43348368",
+        "expandedUvsSha256": "9ea62112766416c79f811dd308334e2d284245d4be31eeae2288ed2ce6ce4fa8",
+        "orderedIndicesSha256": "1bc5d887c6e3540ca17ae29a14d768bc438badbc8431835606031c89e0d3094d",
+        "rawPositionSha256": "da2194f1fea29da10a33b32a993440bff5edb08aa978267f55d838762b92e015",
+        "morphPositions": {
+          "body.height": "af228d8aee6b37173b204b00c6c2dd06924d05bc2a84e8b3fb1444a1aa01e6de",
+          "body.shoulderWidth": "bf4085ab4aaffb430df291da18400c5a625f2f4c239aa0146b2d0e354f78add8"
+        },
+        "morphNormals": {}
+      },
+      "Collar_band": {
+        "triangleCount": 80,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "1b779fa457f6e8d2c4c42d4cd36ce57c54674d7e366e8fac9dcb8a34d7abf735",
+        "expandedUvsSha256": "5ff2f66242e808eb0b045f11fc55cd273e0a0015446d555a97d9403d6d2ab09c",
+        "orderedIndicesSha256": "75a85e09d2d2a6e9b8f207035769bad92b4f74c91f1515b6fb929487e955b040",
+        "rawPositionSha256": "7a6dab014cd88a6e190f4ade68d1f02fcef4058e291cff7454ac55f66ccf6497",
+        "morphPositions": {
+          "body.height": "ec8b59f28237e415f807bf871126141c3dfd5fee6646128f2058a74755cad820",
+          "body.shoulderWidth": "fd012a984e8d9beece5b66d8e21f38b5dc049445718c1b9920fd71200c91952c"
+        },
+        "morphNormals": {}
+      },
+      "Trousers_fused_hip": {
+        "triangleCount": 3682,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "ecd66466e5f48cab8e8324a38553a6717148b3b8078b9af49289ff6186516cde",
+        "expandedUvsSha256": "0803a11e8ebe590c03df2fd11b411d97bccc1b97dea174e1c7a079698dd58661",
+        "orderedIndicesSha256": "7d41a841232dd6d69d3541d6b818fa3af635d40a0223574e032e8d88bb05ab2c",
+        "rawPositionSha256": "1bf4ce664fd04a37ad4c2294cc22ee6b7638a27e02c59b82655ad70277964c73",
+        "morphPositions": {
+          "body.height": "af72ad7b361ca685e772fde9d063b526b36b862ee9eef5af21931edb7877287d",
+          "body.shoulderWidth": "738b47d68afdef5ebdb956c247363d0855c5556cf196ec95b6f8f1e299c4d57e"
+        },
+        "morphNormals": {}
+      },
+      "Forearm_hand_-1": {
+        "triangleCount": 2008,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "3cf11798a358f99da48298debcd594521c5688fab48d23303e7166db98f57c62",
+        "expandedUvsSha256": "b559b8262680c39887f2e85dff2e0d69f20560b6ebc6f8d6666ed64fec9c464d",
+        "orderedIndicesSha256": "28aaf60ba57de3e630480b6ac1e85e57f06b1cedd6ad0c4cbcc081ae1c92aedd",
+        "rawPositionSha256": "53b398d78038e0b1ac9fec9210cd7b3831cb5c8d903ced0cb331f720c0a3d092",
+        "morphPositions": {
+          "body.height": "40702a90cdb9859d9d400b8a7cf0f4b41c33075d235ce2a2b8e1c755f2aef70e",
+          "body.shoulderWidth": "20abd3dfdb64e72db8cb192cd8dab36246795db464fce0f68eed33f18b0f0860"
+        },
+        "morphNormals": {}
+      },
+      "Shoe_-1": {
+        "triangleCount": 380,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "737b045c80694f3f4d5b0b7908b113291b1009d2d1a4e74cb3a1cc4d80f87c6b",
+        "expandedUvsSha256": "d521d6c586f1906b850398d832ebd398539af424960681771f14ba56ca5b9efd",
+        "orderedIndicesSha256": "b8abfb31f6cc8ddbbb7aa089f4020ab3977e993dfc1a8378c53479e43204c83f",
+        "rawPositionSha256": "4b07cb7f226d56896e95a32de51079e5f9bb7e4265941bddfdb9613ac5132e14",
+        "morphPositions": {
+          "body.height": "bbb30a377394957798b06b6b5c79a8d051e76430191084c09384beeec7d003a7"
+        },
+        "morphNormals": {}
+      },
+      "Sole_-1": {
+        "triangleCount": 124,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "370476cd3dd156e14c26fa1b235923205b955d9de382db92021fc67111065460",
+        "expandedUvsSha256": "42024eefca67ec2f3898b8e8a9eb3ea8aa538429aeb09ec1c9135773eb4d9885",
+        "orderedIndicesSha256": "f69e1bc70014c24b685c749a819d623d6d33446b666a53e8ca90363b94f655c8",
+        "rawPositionSha256": "6c6c347908cdcfbafcde17a83824d7d6e189516d9f642bc080d917c43ebec107",
+        "morphPositions": {
+          "body.height": "b9bf52a1d7a62c0474bdf0a8a981e0d56c1ca6165c86bf04303c24d8897a915b"
+        },
+        "morphNormals": {}
+      },
+      "Forearm_hand_1": {
+        "triangleCount": 2008,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "2809bf82fb40189b8480b999878adefa7fe4673728168235809803bb0d66fc16",
+        "expandedUvsSha256": "be223e2fb7ff2e1aaa1130e414e41ade920f3401460500bb1c6d4620f2c99d50",
+        "orderedIndicesSha256": "47a6fb36f78e9fa9d098d9bcc8aef7f5856bccb7e0f7fce1a28fc0e6652dff99",
+        "rawPositionSha256": "f1c4e5609936c4a6a38b79f25bfd54ef493b6c8b3babfc6c0294a5018204b26a",
+        "morphPositions": {
+          "body.height": "7edef892ddd213a59884de48bec60dbf78ac593aaf3933b02334d50d9bb00de7",
+          "body.shoulderWidth": "ec8825a78bca677359995a7bde0073dc81c0a3fd39ea8c859e3ed5291559987d"
+        },
+        "morphNormals": {}
+      },
+      "Shoe_1": {
+        "triangleCount": 380,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "53ff29f535e0c3477716570dee4f6bc22b63f7002082ae97126bffd6f9410fd7",
+        "expandedUvsSha256": "47d4cb59786ec9718d0b95b44db47e351e9b9f18bf062f8c403df1b2596d1048",
+        "orderedIndicesSha256": "166b4227614340308f7f471a224c2052c9646702e2ce6c2a17034aba870dacbd",
+        "rawPositionSha256": "a10e63b0646a7358ce54dbc7b912c2b33783357c7b68e01b56fd3c61dbca07cb",
+        "morphPositions": {
+          "body.height": "bbb30a377394957798b06b6b5c79a8d051e76430191084c09384beeec7d003a7"
+        },
+        "morphNormals": {}
+      },
+      "Sole_1": {
+        "triangleCount": 124,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "78874be00cd3b3567ed64710fe3ae5dbfadbf19ebc61215ea91bbfd0d6b9cfd7",
+        "expandedUvsSha256": "1137e67400ce8c28215f0dc1d1a4fd2e4d53b14bd4a68c1433aa81319731a3ef",
+        "orderedIndicesSha256": "8a43e76d77f63ac571775b97996cf28154288a93c157e378347ae0015a7dba01",
+        "rawPositionSha256": "3670c1621870e28015fbf134341ec086a21199ef412a38a8e0071566dde5b1a8",
+        "morphPositions": {
+          "body.height": "b9bf52a1d7a62c0474bdf0a8a981e0d56c1ca6165c86bf04303c24d8897a915b"
+        },
+        "morphNormals": {}
+      },
+      "Head_continuous_anatomy": {
+        "triangleCount": 8096,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "50983fa972b18c7d54320f6880185294063fc02b8f835f8ab8423933eaa9007a",
+        "expandedUvsSha256": "21c3d4712a6bf35d9ea38519ff7810e44c08d41e6f772f7f780141be1e8e95cb",
+        "orderedIndicesSha256": "b96e69944aae9530d659e9b7310e9ae3ab0ca58e80446db86584ce8fe48d8dd1",
+        "rawPositionSha256": "10f59c958c956c2044beb1809a8fd0a2d5a4b50cd866a3967ca5c1dc409c0d77",
+        "morphPositions": {
+          "nose.projection": "476c68791308b95ea4c9a969bd94b15eaec490747b77898cfd78e4d9203ab894",
+          "nose.alarWidth": "6422ca997afe96e6e219fff9f13344b4a03b68b5fa1c14cf5403c963dc88eeac",
+          "earLeft.protrusion": "cfb347365548d60945d08c0fcd337c9e37897466042c15f7e2228abfc059be97",
+          "earRight.protrusion": "0c8ba830f73a13555df060d19f88b057409640f68639728323ce73fac20293e3",
+          "body.height": "5d959386c9737eb8063347b0f5fd7fc9f19126908471a359970158886f5d7275",
+          "expression.smileLeft": "d92d4bd6de8ab6f124acf3a6b936db8a8970c725f56d1ee5198a6efa5644a560",
+          "expression.smileRight": "8787a7dc1f663bc8f533d2261918883964825cb086af9fcb425ab6a23989831a",
+          "expression.frownLeft": "27b3ba3be083901442789aa554b08b341105c55d14d59cf32dcb2ed79b219987",
+          "expression.frownRight": "884cb13b1c6a10efff55a64129b9bc50a5a2b1dcf3919cf567f6aadaee4b3435",
+          "expression.browRaiseLeft": "743dfb1620699bf8525164a5900f390aa96b9bc724e563c8fd1ff7072568a50f",
+          "expression.browRaiseRight": "1db066c03cb1cc93d2e6855dc30d6e20d724829945f566893cbed8587cef4952",
+          "corrective.height.smileLeft": "3a7eb526c11c75552a5b9e7994e391af2378ce6f4be3765b28e1fb055beba4e7",
+          "corrective.height.smileRight": "9abbde8d6d01c3fde927f92805aae9dd83954a84124a6ece2bd0808c0ae158dc",
+          "corrective.height.frownLeft": "5e113558812be11df53a8f4ac12c15a1563caf793a17a32ca419d272e585fa73",
+          "corrective.height.frownRight": "b26c8583dce183f62e6c5d4ea7c5cc35bb39bd6dd3f77fe8369eac570f8a6535",
+          "corrective.height.browRaiseLeft": "a8b06e05e884dab0e82b0db5e985fb1ebdaa8e1bcfc980d95312cb3230e2cc9c",
+          "corrective.height.browRaiseRight": "8bf934ba98c260c7bbd8a589f47be7750a6ebc59c7d4804dae7d2c7932a7e552"
+        },
+        "morphNormals": {}
+      },
+      "Eye_Left": {
+        "triangleCount": 728,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "df4b0838267979201f1d62e9db24eb98172fab0abe48751220abb41bce4ed173",
+        "expandedUvsSha256": "4c43412044208d49700a8e4f58cb246a4de41786cee519ae1cc87d3a9682ae6b",
+        "orderedIndicesSha256": "5d9a07530e861b92d7b69665955b5b984fd6663475e80de32d6679ced5a09f41",
+        "rawPositionSha256": "1ef6fbe281ed1c20c9518c6042de601e605d9280ce6f60a47a2c31958fe7af67",
+        "morphPositions": {
+          "body.height": "ad3f524bd62f897904354d5f7b4044b8cf1d1416ed5dca9182e01907d8b1d246"
+        },
+        "morphNormals": {}
+      },
+      "Iris_Left": {
+        "triangleCount": 40,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "c9395491012db1e3f96f06b5957c2324389f897f2eaaa4f6f75c08eec842771c",
+        "expandedUvsSha256": "057afc072ad4f2bdc7d2d0bce6b08c92063d475a3814bdc922826240c9b66fe3",
+        "orderedIndicesSha256": "7e55d85aa4f7a719ae13454effb209766cf6e6e7f54e3de9f2c743869ad1688f",
+        "rawPositionSha256": "5df89f3c11ac11872c12067cdda5a462f468748f0870ef4c3bdd5445d5e587bf",
+        "morphPositions": {
+          "body.height": "07c9f9a0f1079a0b095b9fddc89b8b75427fbc62269c5f0abb4db1043f96c839"
+        },
+        "morphNormals": {}
+      },
+      "Pupil_Left": {
+        "triangleCount": 40,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "bdcd10bfcaa451be5bb473fd51eb8a00bc811e5d72e24ff48997474bf902c3e4",
+        "expandedUvsSha256": "878a5459090e66ff2a8ada64c78a9ad9a174f077de3402961fd313f4ad4a20cf",
+        "orderedIndicesSha256": "7e55d85aa4f7a719ae13454effb209766cf6e6e7f54e3de9f2c743869ad1688f",
+        "rawPositionSha256": "7c790f7dfe7666b55d5b88ff1141aabfe20cc7eab4aae4f64e122bc97f883f89",
+        "morphPositions": {
+          "body.height": "5b6400a17446799cb70b32288ee4a6e715637098d7f7f67625705a79769d871b"
+        },
+        "morphNormals": {}
+      },
+      "UpperLid_Left": {
+        "triangleCount": 256,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "e3799a34f29254fb3ecd60d657c42ca4c2ff962e7b2b79ea328f9bbb79668ce4",
+        "expandedUvsSha256": "ed818a2bb435491f179581853a73338bd757b149c0eefb85626000f38a824fbb",
+        "orderedIndicesSha256": "0cbad687ff10c97d8ee3ad730cb88764157fb88f972d4d84ec3bb1f1e74ef857",
+        "rawPositionSha256": "4e9d1b11530f4b8fbab601d1b639e8cb433a50871814e0b7dd881240d4ae6796",
+        "morphPositions": {
+          "body.height": "fcb225a3af16167fb604fd72e6ca8eede52aa9c33ef64b6bbdcd4e10b0e8694a",
+          "expression.blinkLeft": "3e03abc7d1c7a88a294d4bd4895fd21035661ecdd7368f2ba8f864e64dd4c3ec",
+          "corrective.height.blinkLeft": "34a14fb0071670713acacf683e9ff61e9e4cbb645020c50dc78706a3bdfc4342"
+        },
+        "morphNormals": {}
+      },
+      "LowerLid_Left": {
+        "triangleCount": 256,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "05847d8bd83d5a1fe6e012cc12148075a8fdb598d08264be9442d9f5083197b0",
+        "expandedUvsSha256": "2876f439ea5aca8fdc31b8abb1c8f25bbbfd178af71e6b4f8c860b6c8f55151e",
+        "orderedIndicesSha256": "f88e4ba8d266274a784a84fae6c3809e1ede3e7733ce9028fc548803c70e26e3",
+        "rawPositionSha256": "58ae73ea4ef25cf214f74255970128ac34b57526ddf76466dfb657cdb67ca47b",
+        "morphPositions": {
+          "body.height": "38136f5a837c88e3b798ce644ab80be32670ca0d8296aaddce5c916081f0746f",
+          "expression.blinkLeft": "ca770eccf0c9619c32de9c0b42d5285ee7f549aa6ecfa99b05b09e67329ff763",
+          "corrective.height.blinkLeft": "e5ad9005aacfef6ad615d8bd96407ad84badba979051c1ac4ae3b2a5ba71515a"
+        },
+        "morphNormals": {}
+      },
+      "Brow_Left": {
+        "triangleCount": 48,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "4cef2e00717a26c5a44d16aa913026eaeadae2b0f17155e981a02efa84ec007c",
+        "expandedUvsSha256": "cecaa13faaa47478128fcbfe1cfbf31ea796cf20458914a9bd7c1bf3ab279631",
+        "orderedIndicesSha256": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+        "rawPositionSha256": "057dfa47461b4741429629b042315ccc0afb365f1eff38805607ce360ed99e7c",
+        "morphPositions": {
+          "body.height": "e83e7c61b56059edcc9d2a4ee1ae5fec08d00ba1af6a9eb42fd5bbf45600fc74",
+          "expression.browRaiseLeft": "69bf2ab9535684b35415ed00e5a54e48c0710091eb40115beb8782461073994c",
+          "corrective.height.browRaiseLeft": "fd2aadbd9053d98c394bb433eb5deb903d2b2561da9718c8ce3f4f8890e05851"
+        },
+        "morphNormals": {}
+      },
+      "Eye_Right": {
+        "triangleCount": 728,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "265b32b72e784da3f3e120d8a162881bb85ef9763db56b1e98880637a0a2b35f",
+        "expandedUvsSha256": "50dbf73bd18360b7c3b61e09748386ba461f6629d07bd8521b684a12aef56cc3",
+        "orderedIndicesSha256": "6b55a22f8866e294fb7ee0f7fffbf1005cd47e867dd2908748c63c0f5c14601c",
+        "rawPositionSha256": "73ee5c31162782e2c0b187ba6d8915e441b3e2c15d276b57b02389592ae0ccc1",
+        "morphPositions": {
+          "body.height": "ad3f524bd62f897904354d5f7b4044b8cf1d1416ed5dca9182e01907d8b1d246"
+        },
+        "morphNormals": {}
+      },
+      "Iris_Right": {
+        "triangleCount": 40,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "b538d51d8d87ceddc0ff9256603416006c0da6bbe83602a4005910664c28ea27",
+        "expandedUvsSha256": "1416e885f38c9a418f85caf2c272103b59001d20117db40469b59ef8cc90202e",
+        "orderedIndicesSha256": "b68a9d9c56988da137592937d7202796b40213cbe3bd22939706356711872d86",
+        "rawPositionSha256": "cd6bdbfe54220ce1b845c9d383b0096ec0bceb4a6c3001da5f747dec3b366afd",
+        "morphPositions": {
+          "body.height": "07c9f9a0f1079a0b095b9fddc89b8b75427fbc62269c5f0abb4db1043f96c839"
+        },
+        "morphNormals": {}
+      },
+      "Pupil_Right": {
+        "triangleCount": 40,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "ca7b7a17a5feb4758c331c31be99290ca4b653275dc4ac634a7feacb9164fa6c",
+        "expandedUvsSha256": "a7ba4fd37f0bff3efc024c5ab33ebcca0428b2fe6372041b2b860964f1ebc4be",
+        "orderedIndicesSha256": "b68a9d9c56988da137592937d7202796b40213cbe3bd22939706356711872d86",
+        "rawPositionSha256": "752cf3eb27c8013259e78f6547d63844d17e1c821ae42904a9bdde3a2780b4c0",
+        "morphPositions": {
+          "body.height": "5b6400a17446799cb70b32288ee4a6e715637098d7f7f67625705a79769d871b"
+        },
+        "morphNormals": {}
+      },
+      "UpperLid_Right": {
+        "triangleCount": 256,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "f05cdf1bf024d21dfc06833d1a3f06bc70a63cb3bdfbd5263ddaa3373670fd32",
+        "expandedUvsSha256": "678b7d45b8acfc01443a1f7e3e6a24899e62af2b82568c7489458679989f778d",
+        "orderedIndicesSha256": "0cbad687ff10c97d8ee3ad730cb88764157fb88f972d4d84ec3bb1f1e74ef857",
+        "rawPositionSha256": "0addb325e8eae87e6b95012462f255229d02c0f232e0a08886d4b4121d08cbec",
+        "morphPositions": {
+          "body.height": "5448cf2715793a5d8a7d00f141fb57cb78d9597977f21232bea6a1bcc87b4290",
+          "expression.blinkRight": "04d9c518b37808655639b357e34e39cb239a575c1c7c264e5db18524156b0c01",
+          "corrective.height.blinkRight": "5d6e82f457a6928268e3c6968911250c3a1320f74d40b28132674ff565734a12"
+        },
+        "morphNormals": {}
+      },
+      "LowerLid_Right": {
+        "triangleCount": 256,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "47231c83af9a8afd8c9a0111878796bbf98cb6a7752125f58a29c0e38d86227f",
+        "expandedUvsSha256": "b52e59300bababcb1c77224c553eee879a7949246a694ef85f86cd54592d8d18",
+        "orderedIndicesSha256": "7b5c09673ea15529465e57bdcae907a4a51cca6f94f29c0ce796a8bb5ecadd35",
+        "rawPositionSha256": "e371919cffe00b5ee67dbad0e82ffa40f30422bce49966c148f32df83d8bcd19",
+        "morphPositions": {
+          "body.height": "1ccd2dcc51badd82d20f844d89fb173ac032fec4487015cb59fa3cd1a03858cf",
+          "expression.blinkRight": "6cd5c918780ae6f47f0c7bfbdf5ea338942bea95f64bbeef6e830f026b07d15f",
+          "corrective.height.blinkRight": "6b105759860a46fa4ca37a3bff90899a067321d1ebd3bb8e4928f446c13b259d"
+        },
+        "morphNormals": {}
+      },
+      "Brow_Right": {
+        "triangleCount": 48,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "72684aaf54afda69e7fae8bba6364d84c1b51a86ea0dea5129fa77d6b3de68d4",
+        "expandedUvsSha256": "e5b0f835d54a8b52175f96f70e512ea1e689b256d2a36de915ed4b74421bf97c",
+        "orderedIndicesSha256": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+        "rawPositionSha256": "491b17bdc6679acef92f271e9004acf596ced45dbed0af70b5e3fdaf8086d0ee",
+        "morphPositions": {
+          "body.height": "a4fb3bb6e168746b8b106539e6d57f379209fe0090b76753bc16ee02399e28d3",
+          "expression.browRaiseRight": "a7cbaa0d623c94d62f102a41bf5f0a184ce4ae6597112af922b17470a9f990bf",
+          "corrective.height.browRaiseRight": "9441b60a37d56498d396058044a3422e3c92cae84f05d2ad8862a35ecbb9b4f8"
+        },
+        "morphNormals": {}
+      },
+      "Lip_upper": {
+        "triangleCount": 344,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "ce1665d4609f8ae486c997e1c70e07ffb956faf5344f2b71c471e282195508d6",
+        "expandedUvsSha256": "45a1fb42df0a691727c6f67cae4da6bb91ac73e52fc447d3a6b75e1f27a0c713",
+        "orderedIndicesSha256": "39e7450a29ff8ac384343808066b183281e4c49850ae1c7112bd9d901fc75dd2",
+        "rawPositionSha256": "11d44cb975d383ada7316ec2f1bccd40ee961642ce798f57f77da2412d04c071",
+        "morphPositions": {
+          "nose.projection": "31177662db8a67f696f17286372a4bb73389e24c2d559f3c988d93cc6ffaf080",
+          "nose.alarWidth": "2c84911a762b6d36930395289740462e3a7c1ca2b4b1465c7768c8e3431a846a",
+          "body.height": "8d597431e4f8c3e9f423effc98dc0d2a2aba33fc050b0f4a0369e6bed76f403b",
+          "expression.smileLeft": "dfdea8d3dac3f7432a7096ffeae220e83f6ad34bc68ceb107cbfb1a06cedbc63",
+          "expression.smileRight": "d63cfc0c4898bf0744687c0e331800c7bcf53da77929594da53c703fea8971e6",
+          "expression.frownLeft": "05d0cb9fcc09bcb1fcb2df5dd80704469ff2712b78426f66061293ae1ed1b9af",
+          "expression.frownRight": "8ac0751a68303b583f06dcce871a31d6dd5eaff5c09cfbe9cedd8b983b110a81",
+          "corrective.height.smileLeft": "a1441fc17a805d854c9bff877c23d35e7540e1329df2eaaec744ae20eba11c86",
+          "corrective.height.smileRight": "d4436ce7fccf83039915687e174e7461f494078597e871893ea3fb680ad64fdb",
+          "corrective.height.frownLeft": "0ecce6874d7ddc921de9688976abd792404eb2a534ec6e5f7fac57c44c7bc89b",
+          "corrective.height.frownRight": "6b6feb9b99464f93243d0633ec74a87d756290faef522b31e3a4ce6d662c90da"
+        },
+        "morphNormals": {}
+      },
+      "Lip_lower": {
+        "triangleCount": 344,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "7a15f41b44267c82a895903d593ceac4c751a07e075bb02b1cd971f392c123b6",
+        "expandedUvsSha256": "65f8830db09afcafdb7a49dd0f1f7698d3ff4636c45fd15cebb33820ab818837",
+        "orderedIndicesSha256": "690b648dbb82ce9c0d50d27ef59a1222edd6e77c9796f9f2fc9a20b7598f0a98",
+        "rawPositionSha256": "3c3acf6badbb6dd21eee83d0a25f1027b4332da91eb157725e12bb8e641b0c69",
+        "morphPositions": {
+          "nose.projection": "ec84d9fee5a0bd6630997c36c34642899b4d2347420dd7647fe1c260851f3961",
+          "nose.alarWidth": "88e3331b1385e87a250b510e14cd207fe1ff2593c5b25fcc4832fb64b991761a",
+          "body.height": "10fe8b2c8953ab348d5724698a51654ab908b28ef74db1498873c95d91c914a8",
+          "expression.smileLeft": "f2f1e7676c107aad9b5e8f7d62f8575d42921ad5c28992ee73e777f7987f8b52",
+          "expression.smileRight": "a062f9c1d426d4b01d77249be0b62cf8d7a28948162ad7021e460e06e5d5925f",
+          "expression.frownLeft": "80d2f372a0211ce88d0075c4fc74963fcc2c17968254404aa610eee594dd452d",
+          "expression.frownRight": "b1208b7fd8ad93478bbbb163143c744f69a4da51a11759cd64edb82f00ecb280",
+          "corrective.height.smileLeft": "62abbd5a1312b37906d5637e6f02051b4cdd51294bd611da9e7a59ef3746e0ce",
+          "corrective.height.smileRight": "3c95a57fc14940924a6944887b146f5df9fdcb9d45793d0550fa5119477f1a50",
+          "corrective.height.frownLeft": "7c01fc13b0482c24590cb9eea707da322f61572ded4914c768c63ff2cbdb53dd",
+          "corrective.height.frownRight": "8750da069495dead327bc84138f1f46c5f8587580e9dee48088d5c49de5e141e"
+        },
+        "morphNormals": {}
+      },
+      "Mouth_seam": {
+        "triangleCount": 536,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "6ed59199a21226242772daea39d9d65106e37d3b0d29575bb713b67045e42a64",
+        "expandedUvsSha256": "c245c80bd5bf05cd38ac6b7af99c0dca0cc7331c1b7cc92a800da1ac0afa85d9",
+        "orderedIndicesSha256": "d32f38d3ed5c440cb5db1cf9210b7f1820e15a6f424bbaec539c7845466ba6cd",
+        "rawPositionSha256": "b0445a4a45250a8598c93aa6631163d4bf5230801758bf17721bf3cfd8926d7d",
+        "morphPositions": {
+          "nose.projection": "d6fe7b9a003587eb438e7db44decb6bac5dbeb35147572af2a893d146ad88da8",
+          "nose.alarWidth": "06ef660347fd212d3c3dee511ab017ebe060d7785b0c95d44d4381d4a816dea8",
+          "body.height": "c44ac9bcc85d60873e856f40ce0950d790335041975d19e2a506edc80a8573ca",
+          "expression.smileLeft": "9ff5186fa04c9fe5d93634e862389b7fcc20a28541a889f439b8cb2078673067",
+          "expression.smileRight": "60d15a34c0768d7334b8d20ecc16fd94dcc95cc5f31d730db134bb9022b4c236",
+          "expression.frownLeft": "2e64601e04b8560b405e2b1b8a1dc4f5a9de9b8fa963bef6f3738151598c88cf",
+          "expression.frownRight": "c23dd7d19cef7420ca0a1d98c6218050a94f7c02b11b70ad1ffc179446d50c78",
+          "corrective.height.smileLeft": "89bfb55c9f6724e8b772aa9d6a8629d5d913381e528bf23e588e77d4fdd8eaef",
+          "corrective.height.smileRight": "633f4f771a156df91bb4ecb47162e2f8c81a5674a661ce2ee3855881d833601f",
+          "corrective.height.frownLeft": "391cbf992fcfea56c4e4eb4d35f475c412e451de7224314b1060377833d134b9",
+          "corrective.height.frownRight": "7e216ec19c10f7ddce464bf58ac73a738b3925750d516aa691d1eb02b74a6ef7"
+        },
+        "morphNormals": {}
+      },
+      "Nostril_-1": {
+        "triangleCount": 280,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "ab7a9c4371b0a9c2d6c62e2d099b7c21fbd1c32a9067d9e0208d7ac9ec23f4e3",
+        "expandedUvsSha256": "6e20d3be18ca2bba91215a0010e6ec0d0abed7e2ddd300f17bf003f2c4db2e46",
+        "orderedIndicesSha256": "172754ac848baf0197e836c175ffddf6b9e4879ce1a3a5183c7e9c83c9274173",
+        "rawPositionSha256": "1067b4f0c8b9499060d500af6dcf92838a115734833527de1866d97ce437438b",
+        "morphPositions": {
+          "nose.projection": "8231709b57029662eec41c7d1eb797bf94c179420acb5a7785d836e251b7ce68",
+          "nose.alarWidth": "aa7743bdffd124af3b689ef0cf64031c3b0a5fa253a1dad25b4e78941aa13877",
+          "body.height": "49f5470c71b771833f5538330848b85e397c30b7c2eecbd176ba15fa2ae83627",
+          "expression.smileRight": "dccd81e3f35b63addc83dde769e1945ff2e66215d19b91ce6d2c1f05711c5393",
+          "expression.frownRight": "e6d577e9cf423d973fe30c870c181bad6100acf65c7d97d119e774fa6f301fe9",
+          "corrective.height.smileRight": "c9868b2a56d243409b9abc9ceae9fe6e6243c9dc01c37667c19374f9b8f90713",
+          "corrective.height.frownRight": "a7b6e5736fba28faa53f03660ae90c589f98e67d74a41c259fd43a80aba5a254"
+        },
+        "morphNormals": {}
+      },
+      "Nostril_1": {
+        "triangleCount": 280,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "8e84928d47967bc3efe730abc88af235d279c15c8357161f80cb7db95e537216",
+        "expandedUvsSha256": "0c29019897887654a92f9a637ea50c1a05c25d176f1292bff934551d02f51a90",
+        "orderedIndicesSha256": "61e680e65674f6bc54bd87a5ab599535d1f95593d6208557d8aae0e74291cf0e",
+        "rawPositionSha256": "d595e6fdf0dfa67f90c2068aaf0b6e49b24ca2ececbd6de8cebeb313b546f77b",
+        "morphPositions": {
+          "nose.projection": "faf896b337a1e6b6a9430c2e3e47c1ee9cd4df78b59a1cd643968d89684e294c",
+          "nose.alarWidth": "b22e51601c70302bcb6427e0215e577168f3975248541e0e250518ed8abeb0c4",
+          "body.height": "49f5470c71b771833f5538330848b85e397c30b7c2eecbd176ba15fa2ae83627",
+          "expression.smileLeft": "b49c1eb496e86a45614a5f5393980412fecbd424a8dc8865bd2755ccec310604",
+          "expression.frownLeft": "0117fba1d7da39a609a6b641d4b0d9b7ad039f33a93f032806e478fb11121caf",
+          "corrective.height.smileLeft": "089738868031f9c01b414bc606d3f64e882d8a70db55be05c9a6c201c9e42752",
+          "corrective.height.frownLeft": "ec37f236d5a2270b335cdae4ad777c2315ce3de15e618fa43d74b4ec95f87304"
+        },
+        "morphNormals": {}
+      },
+      "Ear_Left": {
+        "triangleCount": 640,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "92f31939b6183a2c784e18a9265e44df6efb028e95b01144da205c61b02bcb3f",
+        "expandedUvsSha256": "672ca8fe757bac8f16ff7d5838a4fcba859c6e5494a1f74079b951d66148e612",
+        "orderedIndicesSha256": "cbf116d30d6b5d7380ec457df1ea15d2fe3a1f03a53d0a9f5ba3086baab7db0d",
+        "rawPositionSha256": "7ffd03ca5495f81e595577f62d6fbdbaa2f19acf41b3442f5ee2f47d1777197a",
+        "morphPositions": {
+          "earLeft.protrusion": "8d8107430731962f526aa0e3dcec4111ad156df5a31a97f9b5cb5a86d31dace2",
+          "body.height": "f17374ab894690b3892bf7a950a74b10f8cd7af8c67918a8548515048bc439e1"
+        },
+        "morphNormals": {}
+      },
+      "Ear_Right": {
+        "triangleCount": 640,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "5675b1668e3c98717949fada1f5afb990f022a614b6d83ade7f7bd5ebd185704",
+        "expandedUvsSha256": "a01ebc50b9b4ff4bc054692180517c694d754f546eb69e75429ab96a5dc72785",
+        "orderedIndicesSha256": "416cc6fe4a1d8ded03edcf22b9f1238aaf9a51ddc6ff51a23baed8ec4a3e5dfe",
+        "rawPositionSha256": "a7ccbfc3963f5da51d7f5ee3b26999ff94d8efa38438547e371074921921f3c7",
+        "morphPositions": {
+          "earRight.protrusion": "8eaa013756dfe41c6f6b230e2251dc236d0d33663d41031af6c5d28a298d60ce",
+          "body.height": "b740791a5e4621be4f06bd9f20015945059a96a7cd851ef458e72d793e4264e3"
+        },
+        "morphNormals": {}
+      },
+      "Hair_original_close_curl_surface": {
+        "triangleCount": 2518,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "b78e73c7541313cf6a6453e8b927896ce95c12dd76a62cce5d1bc319286e4f70",
+        "expandedUvsSha256": "9e403a89f7dadaa285fbe6044d6f3c9743457ded42bd37b867a47d458a9c95d0",
+        "orderedIndicesSha256": "07e89ef930465a6ad55c58da155a4b6c383ddcee3eec09348cebb4c89441bf6c",
+        "rawPositionSha256": "d43686b60c77c62c93b7e0cdc2ed5110d44a8eb902e5fbe9c03cd2e40a4b368d",
+        "morphPositions": {
+          "body.height": "6974a812244e9f4154a8f8f59d7a67650f024d1b7c9af392a51107b9dbfceb32"
+        },
+        "morphNormals": {}
+      }
+    },
+    "human": {
+      "Neck": {
+        "triangleCount": 188,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "7de9d90a9a54597339b4663abfd6bbc2edf0191fd9e01e8e5456094af766ebf2",
+        "expandedUvsSha256": "b1c4c1836691dc3a883df7a8b6cc51ce3b2ac1d944a6936aacec98c7e6196e8f",
+        "orderedIndicesSha256": "7e92498204b977ebac740fd35c646de7a206e5449969dc3e5775716736564364",
+        "rawPositionSha256": "0c487d6253cb590b2ec67f1732aaceead76e940e580260b51da50920190b4af1",
+        "morphPositions": {
+          "body.height": "accf80ecf5f18d40bf5ab647201ae8c3cb51723fb01a1a15895a324335fc3655",
+          "body.shoulderWidth": "41d8107bd67a7e4611497bbb093d94f23fda66efb1a92595551c88f3f38909a9"
+        },
+        "morphNormals": {
+          "body.height": "07a458a85e537cc249918de36ea2f13cb67abaf9bb9277771858efd2c5083586",
+          "body.shoulderWidth": "c0bc5f993895436f9a7d22cc8d5d054e07da05cb8c5274aa61e3a38a3fc55756"
+        }
+      },
+      "Shirt_fused_shoulders": {
+        "triangleCount": 3798,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "e3719c6be341cda37642316fa28d0e653e03fa25da506c7bb5079bed43348368",
+        "expandedUvsSha256": "9ea62112766416c79f811dd308334e2d284245d4be31eeae2288ed2ce6ce4fa8",
+        "orderedIndicesSha256": "1bc5d887c6e3540ca17ae29a14d768bc438badbc8431835606031c89e0d3094d",
+        "rawPositionSha256": "da2194f1fea29da10a33b32a993440bff5edb08aa978267f55d838762b92e015",
+        "morphPositions": {
+          "body.height": "af228d8aee6b37173b204b00c6c2dd06924d05bc2a84e8b3fb1444a1aa01e6de",
+          "body.shoulderWidth": "bf4085ab4aaffb430df291da18400c5a625f2f4c239aa0146b2d0e354f78add8"
+        },
+        "morphNormals": {
+          "body.height": "5beb43a652c9fed044e3a74afcbfe3f7b482c6541f097710dec520227102f4f4",
+          "body.shoulderWidth": "3e9a2eca57b161aba3254b83a6f671d34d3aa2d95bdc88d6f97a17a8b58527b7"
+        }
+      },
+      "Collar_band": {
+        "triangleCount": 80,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "1b779fa457f6e8d2c4c42d4cd36ce57c54674d7e366e8fac9dcb8a34d7abf735",
+        "expandedUvsSha256": "5ff2f66242e808eb0b045f11fc55cd273e0a0015446d555a97d9403d6d2ab09c",
+        "orderedIndicesSha256": "75a85e09d2d2a6e9b8f207035769bad92b4f74c91f1515b6fb929487e955b040",
+        "rawPositionSha256": "7a6dab014cd88a6e190f4ade68d1f02fcef4058e291cff7454ac55f66ccf6497",
+        "morphPositions": {
+          "body.height": "ec8b59f28237e415f807bf871126141c3dfd5fee6646128f2058a74755cad820",
+          "body.shoulderWidth": "fd012a984e8d9beece5b66d8e21f38b5dc049445718c1b9920fd71200c91952c"
+        },
+        "morphNormals": {
+          "body.height": "662ed2d351f6fba1784a9bd1d1eb56d484ba20f24febd592cb74dd8880a88906",
+          "body.shoulderWidth": "2e73342613bed3e3f444f5f925ba991f52c2da469559e1e2d0b10d01f1cec9d2"
+        }
+      },
+      "Trousers_fused_hip": {
+        "triangleCount": 3682,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "ecd66466e5f48cab8e8324a38553a6717148b3b8078b9af49289ff6186516cde",
+        "expandedUvsSha256": "0803a11e8ebe590c03df2fd11b411d97bccc1b97dea174e1c7a079698dd58661",
+        "orderedIndicesSha256": "7d41a841232dd6d69d3541d6b818fa3af635d40a0223574e032e8d88bb05ab2c",
+        "rawPositionSha256": "1bf4ce664fd04a37ad4c2294cc22ee6b7638a27e02c59b82655ad70277964c73",
+        "morphPositions": {
+          "body.height": "af72ad7b361ca685e772fde9d063b526b36b862ee9eef5af21931edb7877287d",
+          "body.shoulderWidth": "738b47d68afdef5ebdb956c247363d0855c5556cf196ec95b6f8f1e299c4d57e"
+        },
+        "morphNormals": {
+          "body.height": "10f6e7f7c34fddba040d2553b3b1f3026c933b22deadc384020a251489bf0392",
+          "body.shoulderWidth": "a8b43c549a32b122f023cc4ef67eb142e13b235a43fa4a70579912d07184e5a1"
+        }
+      },
+      "Forearm_hand_-1": {
+        "triangleCount": 2008,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "3cf11798a358f99da48298debcd594521c5688fab48d23303e7166db98f57c62",
+        "expandedUvsSha256": "b559b8262680c39887f2e85dff2e0d69f20560b6ebc6f8d6666ed64fec9c464d",
+        "orderedIndicesSha256": "28aaf60ba57de3e630480b6ac1e85e57f06b1cedd6ad0c4cbcc081ae1c92aedd",
+        "rawPositionSha256": "53b398d78038e0b1ac9fec9210cd7b3831cb5c8d903ced0cb331f720c0a3d092",
+        "morphPositions": {
+          "body.height": "40702a90cdb9859d9d400b8a7cf0f4b41c33075d235ce2a2b8e1c755f2aef70e",
+          "body.shoulderWidth": "20abd3dfdb64e72db8cb192cd8dab36246795db464fce0f68eed33f18b0f0860"
+        },
+        "morphNormals": {
+          "body.height": "b011ab265482158c224b98cf1193adde0ede5c0a72147fdfa0570480fe0cad89",
+          "body.shoulderWidth": "9f6ddc754f6530ccc9f61678f9d925ef2ad23dea1775dd7bd12d890530925ad0"
+        }
+      },
+      "Shoe_-1": {
+        "triangleCount": 380,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "737b045c80694f3f4d5b0b7908b113291b1009d2d1a4e74cb3a1cc4d80f87c6b",
+        "expandedUvsSha256": "d521d6c586f1906b850398d832ebd398539af424960681771f14ba56ca5b9efd",
+        "orderedIndicesSha256": "b8abfb31f6cc8ddbbb7aa089f4020ab3977e993dfc1a8378c53479e43204c83f",
+        "rawPositionSha256": "4b07cb7f226d56896e95a32de51079e5f9bb7e4265941bddfdb9613ac5132e14",
+        "morphPositions": {
+          "body.height": "bbb30a377394957798b06b6b5c79a8d051e76430191084c09384beeec7d003a7"
+        },
+        "morphNormals": {
+          "body.height": "ac04b71c81a04fc4897f1bd53c448ed152e51431da4d5edb1f96d49c2ef13e44"
+        }
+      },
+      "Sole_-1": {
+        "triangleCount": 124,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "370476cd3dd156e14c26fa1b235923205b955d9de382db92021fc67111065460",
+        "expandedUvsSha256": "42024eefca67ec2f3898b8e8a9eb3ea8aa538429aeb09ec1c9135773eb4d9885",
+        "orderedIndicesSha256": "f69e1bc70014c24b685c749a819d623d6d33446b666a53e8ca90363b94f655c8",
+        "rawPositionSha256": "6c6c347908cdcfbafcde17a83824d7d6e189516d9f642bc080d917c43ebec107",
+        "morphPositions": {
+          "body.height": "b9bf52a1d7a62c0474bdf0a8a981e0d56c1ca6165c86bf04303c24d8897a915b"
+        },
+        "morphNormals": {
+          "body.height": "817b2992b2f599f0ac82925e69d23c249585ee899264feeb80413b21f532dc2e"
+        }
+      },
+      "Forearm_hand_1": {
+        "triangleCount": 2008,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "2809bf82fb40189b8480b999878adefa7fe4673728168235809803bb0d66fc16",
+        "expandedUvsSha256": "be223e2fb7ff2e1aaa1130e414e41ade920f3401460500bb1c6d4620f2c99d50",
+        "orderedIndicesSha256": "47a6fb36f78e9fa9d098d9bcc8aef7f5856bccb7e0f7fce1a28fc0e6652dff99",
+        "rawPositionSha256": "f1c4e5609936c4a6a38b79f25bfd54ef493b6c8b3babfc6c0294a5018204b26a",
+        "morphPositions": {
+          "body.height": "7edef892ddd213a59884de48bec60dbf78ac593aaf3933b02334d50d9bb00de7",
+          "body.shoulderWidth": "ec8825a78bca677359995a7bde0073dc81c0a3fd39ea8c859e3ed5291559987d"
+        },
+        "morphNormals": {
+          "body.height": "e1fc336ddcf8b730528a226ea160295ad0839c798f4fce4d647ecda3379389c9",
+          "body.shoulderWidth": "43fe86b139dd34fa6bbc5da0b0d26e34bf783d37f518b328868555a431e4437b"
+        }
+      },
+      "Shoe_1": {
+        "triangleCount": 380,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "53ff29f535e0c3477716570dee4f6bc22b63f7002082ae97126bffd6f9410fd7",
+        "expandedUvsSha256": "47d4cb59786ec9718d0b95b44db47e351e9b9f18bf062f8c403df1b2596d1048",
+        "orderedIndicesSha256": "166b4227614340308f7f471a224c2052c9646702e2ce6c2a17034aba870dacbd",
+        "rawPositionSha256": "a10e63b0646a7358ce54dbc7b912c2b33783357c7b68e01b56fd3c61dbca07cb",
+        "morphPositions": {
+          "body.height": "bbb30a377394957798b06b6b5c79a8d051e76430191084c09384beeec7d003a7"
+        },
+        "morphNormals": {
+          "body.height": "ac04b71c81a04fc4897f1bd53c448ed152e51431da4d5edb1f96d49c2ef13e44"
+        }
+      },
+      "Sole_1": {
+        "triangleCount": 124,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "78874be00cd3b3567ed64710fe3ae5dbfadbf19ebc61215ea91bbfd0d6b9cfd7",
+        "expandedUvsSha256": "1137e67400ce8c28215f0dc1d1a4fd2e4d53b14bd4a68c1433aa81319731a3ef",
+        "orderedIndicesSha256": "8a43e76d77f63ac571775b97996cf28154288a93c157e378347ae0015a7dba01",
+        "rawPositionSha256": "3670c1621870e28015fbf134341ec086a21199ef412a38a8e0071566dde5b1a8",
+        "morphPositions": {
+          "body.height": "b9bf52a1d7a62c0474bdf0a8a981e0d56c1ca6165c86bf04303c24d8897a915b"
+        },
+        "morphNormals": {
+          "body.height": "817b2992b2f599f0ac82925e69d23c249585ee899264feeb80413b21f532dc2e"
+        }
+      },
+      "Head_continuous_anatomy": {
+        "triangleCount": 8096,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "50983fa972b18c7d54320f6880185294063fc02b8f835f8ab8423933eaa9007a",
+        "expandedUvsSha256": "21c3d4712a6bf35d9ea38519ff7810e44c08d41e6f772f7f780141be1e8e95cb",
+        "orderedIndicesSha256": "b96e69944aae9530d659e9b7310e9ae3ab0ca58e80446db86584ce8fe48d8dd1",
+        "rawPositionSha256": "10f59c958c956c2044beb1809a8fd0a2d5a4b50cd866a3967ca5c1dc409c0d77",
+        "morphPositions": {
+          "nose.projection": "476c68791308b95ea4c9a969bd94b15eaec490747b77898cfd78e4d9203ab894",
+          "nose.alarWidth": "6422ca997afe96e6e219fff9f13344b4a03b68b5fa1c14cf5403c963dc88eeac",
+          "earLeft.protrusion": "cfb347365548d60945d08c0fcd337c9e37897466042c15f7e2228abfc059be97",
+          "earRight.protrusion": "0c8ba830f73a13555df060d19f88b057409640f68639728323ce73fac20293e3",
+          "body.height": "5d959386c9737eb8063347b0f5fd7fc9f19126908471a359970158886f5d7275",
+          "expression.smileLeft": "d92d4bd6de8ab6f124acf3a6b936db8a8970c725f56d1ee5198a6efa5644a560",
+          "expression.smileRight": "8787a7dc1f663bc8f533d2261918883964825cb086af9fcb425ab6a23989831a",
+          "expression.frownLeft": "27b3ba3be083901442789aa554b08b341105c55d14d59cf32dcb2ed79b219987",
+          "expression.frownRight": "884cb13b1c6a10efff55a64129b9bc50a5a2b1dcf3919cf567f6aadaee4b3435",
+          "expression.browRaiseLeft": "743dfb1620699bf8525164a5900f390aa96b9bc724e563c8fd1ff7072568a50f",
+          "expression.browRaiseRight": "1db066c03cb1cc93d2e6855dc30d6e20d724829945f566893cbed8587cef4952",
+          "corrective.height.smileLeft": "3a7eb526c11c75552a5b9e7994e391af2378ce6f4be3765b28e1fb055beba4e7",
+          "corrective.height.smileRight": "9abbde8d6d01c3fde927f92805aae9dd83954a84124a6ece2bd0808c0ae158dc",
+          "corrective.height.frownLeft": "5e113558812be11df53a8f4ac12c15a1563caf793a17a32ca419d272e585fa73",
+          "corrective.height.frownRight": "b26c8583dce183f62e6c5d4ea7c5cc35bb39bd6dd3f77fe8369eac570f8a6535",
+          "corrective.height.browRaiseLeft": "a8b06e05e884dab0e82b0db5e985fb1ebdaa8e1bcfc980d95312cb3230e2cc9c",
+          "corrective.height.browRaiseRight": "8bf934ba98c260c7bbd8a589f47be7750a6ebc59c7d4804dae7d2c7932a7e552"
+        },
+        "morphNormals": {
+          "nose.projection": "151cd0998e5b77eb8818d7d455131f04a3fbb183b5acdd80582da4611c2a9708",
+          "nose.alarWidth": "abc46d88a5c13409b8f115ba1f51cb84a3d55d743ccdb46ba53959b6a7450d2c",
+          "earLeft.protrusion": "a95b6da0d2471d73d7dea8e8e3a505d3dc91d5b6abf7213515b3addab7fb20a6",
+          "earRight.protrusion": "cc143c6a0c2fc580931612504d093030de5bb42a05dbec81e3f35bf5a8880443",
+          "body.height": "c231e494d83d1df2975a20612a52feaf586993067cbd027daaf78f1c9b4fa9bf",
+          "expression.smileLeft": "7965a75596dc9216a9fef238d185ff2548fb40bf4d051ae937fee927302733d9",
+          "expression.smileRight": "af7fa5b40f7115e7f8cc7489d741ac4016b2addcefecb293c65f4a66d053a03f",
+          "expression.frownLeft": "a6586bcf455ecc25f9419807991de0804dcb26c5a1b36eaaa8a614cd39fa3016",
+          "expression.frownRight": "0e102ae77500b39ea7e5e35b2730df4149cc89d92ffe40367345dae7f6d834be",
+          "expression.browRaiseLeft": "3b4a569aa9605ffdc5dc40db67a9903eef4792a26d0cdbc58cb481075c56225e",
+          "expression.browRaiseRight": "8d32ab6fbec7ecf72058a5e90a820b40c77b0f103d740ffd028d35b2faef7a9a",
+          "corrective.height.smileLeft": "8ea3a5fd11f15f61f5db8d05cb1ab30d5aa826d7cb3e8b1faa6c61a6e15fbece",
+          "corrective.height.smileRight": "8c55d43e71c2d340bf8f22c9ceaf8603877974fb412ed4dbac423cfa186cde8e",
+          "corrective.height.frownLeft": "dba1f42fe56a06456b5cce40c2706c524177ae0680a000ec30914d7a43b027e3",
+          "corrective.height.frownRight": "0a9dac5847cfb55743cf79009e997b921d0a85ded1a741b9c08aa206e2391dce",
+          "corrective.height.browRaiseLeft": "f3c4c3009e9a17397eeec75695667aff22cc8174a9436a148b30a779a2cc0905",
+          "corrective.height.browRaiseRight": "59416db995faebb9ce698d6c0932316bd9501b03fd6fe5fe5ce8979cb3a593dc"
+        }
+      },
+      "Eye_Left": {
+        "triangleCount": 728,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "df4b0838267979201f1d62e9db24eb98172fab0abe48751220abb41bce4ed173",
+        "expandedUvsSha256": "4c43412044208d49700a8e4f58cb246a4de41786cee519ae1cc87d3a9682ae6b",
+        "orderedIndicesSha256": "5d9a07530e861b92d7b69665955b5b984fd6663475e80de32d6679ced5a09f41",
+        "rawPositionSha256": "1ef6fbe281ed1c20c9518c6042de601e605d9280ce6f60a47a2c31958fe7af67",
+        "morphPositions": {
+          "body.height": "ad3f524bd62f897904354d5f7b4044b8cf1d1416ed5dca9182e01907d8b1d246"
+        },
+        "morphNormals": {
+          "body.height": "9edda29bade7dfdf7f7d4db1bf2bc9ccffa6be422df0144baafec708b9ac6d29"
+        }
+      },
+      "Iris_Left": {
+        "triangleCount": 40,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "c9395491012db1e3f96f06b5957c2324389f897f2eaaa4f6f75c08eec842771c",
+        "expandedUvsSha256": "057afc072ad4f2bdc7d2d0bce6b08c92063d475a3814bdc922826240c9b66fe3",
+        "orderedIndicesSha256": "7e55d85aa4f7a719ae13454effb209766cf6e6e7f54e3de9f2c743869ad1688f",
+        "rawPositionSha256": "5df89f3c11ac11872c12067cdda5a462f468748f0870ef4c3bdd5445d5e587bf",
+        "morphPositions": {
+          "body.height": "07c9f9a0f1079a0b095b9fddc89b8b75427fbc62269c5f0abb4db1043f96c839"
+        },
+        "morphNormals": {
+          "body.height": "66775d7b5d391b3c316a4988a15fd22bfa69419686e86ae430b2473775849c63"
+        }
+      },
+      "Pupil_Left": {
+        "triangleCount": 40,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "bdcd10bfcaa451be5bb473fd51eb8a00bc811e5d72e24ff48997474bf902c3e4",
+        "expandedUvsSha256": "878a5459090e66ff2a8ada64c78a9ad9a174f077de3402961fd313f4ad4a20cf",
+        "orderedIndicesSha256": "7e55d85aa4f7a719ae13454effb209766cf6e6e7f54e3de9f2c743869ad1688f",
+        "rawPositionSha256": "7c790f7dfe7666b55d5b88ff1141aabfe20cc7eab4aae4f64e122bc97f883f89",
+        "morphPositions": {
+          "body.height": "5b6400a17446799cb70b32288ee4a6e715637098d7f7f67625705a79769d871b"
+        },
+        "morphNormals": {
+          "body.height": "dccd79b4b41fcf5b5ee4b4dd5246e1a39760c3a7fdfa4e2e4184c66aa71d42d4"
+        }
+      },
+      "UpperLid_Left": {
+        "triangleCount": 1080,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "2c838915ec16851a745ac6443862119d4c86ea93595aaa2a7ffe1090b3588ab0",
+        "expandedUvsSha256": "640a97c9f8953e2247e217009dc17e652de98b700833d81e86096f94f05a3dcd",
+        "orderedIndicesSha256": "c9d6927fcd00a12403f7dc23112586ca691298ca095d5fe3148066dde294a7e7",
+        "rawPositionSha256": "ad97fbe8dbb1b1ccbd87ae2e9c9b0069485b0d42a7084f2e84b639521677e9c6",
+        "morphPositions": {
+          "nose.projection": "1f6b3fcfe04165ccba3becbb9c1461f86ac47b4dd94e2e5ccbf62e8b88495abe",
+          "nose.alarWidth": "06b5d97cd44bbb577666547ea17bfd33d570b7ad37f904f82566c04d50ec9210",
+          "earLeft.protrusion": "e44fc4a1ba667822487ae80d84901e3938bccea38060ab7c5edc0d1c17cf3964",
+          "earRight.protrusion": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "body.height": "25a91f3a634a85d4cedf13f4c22be16408160b02ae8bfdd4be26be8355790412",
+          "expression.smileLeft": "157980bca337ed1921e041233e43a1a942c49227dbfd558e89862ec0535800f4",
+          "expression.smileRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "expression.frownLeft": "4a9fff487d954df3258dbb98197fb3c294c21a4da66ab79881526bef0a5fd303",
+          "expression.frownRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "expression.browRaiseLeft": "63f6241acdd74ad6d216753a30c3145edf3d88d2abb135f39c4eb38c0fe71fcd",
+          "expression.browRaiseRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.smileLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.smileRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.frownLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.frownRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.browRaiseLeft": "3598cc93d940d876f763b1c647636ccb39e9a7daff1b060618c1cc58984c66c7",
+          "corrective.height.browRaiseRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "expression.blinkLeft": "8ded140027fe6e92a1bf9c31fac083bc69fc03dcea92d3ca07b429e8ea476169",
+          "corrective.blinkArcLeft": "f1a8f2e29361d71c19bbca9e3e688c273335e0cb14eb3e3498ada2c144f21241",
+          "corrective.height.blinkLeft": "e05be3966f8afbb14973e34f70f9974b48c5a91ec32e777ea1b6650970225b08"
+        },
+        "morphNormals": {
+          "nose.projection": "7a099054ef8595a41431bae6de9bade64f696a1d87841e89c3f794a50e0d5073",
+          "nose.alarWidth": "c7dd03a6ae1128ce2fd2e604a40fc76dd7658c878eeaacb78da50f80ffc768aa",
+          "earLeft.protrusion": "5a13af59f0344b18a1199feedb6a3be40d1dba1beb4c23d3a4ddc80409a2839e",
+          "earRight.protrusion": "fa26b334462e03ec144136a471b3933f269767b846ae038694efca403fd31f9f",
+          "body.height": "45c5794ee6c3769ebc9083305f7258287554f1be549d5b677ca7db668d405318",
+          "expression.smileLeft": "58091eacf38364a3c54d9da5b0a50f2c5072fc1773dd1cc18f746d9401a18a0f",
+          "expression.smileRight": "fa26b334462e03ec144136a471b3933f269767b846ae038694efca403fd31f9f",
+          "expression.frownLeft": "6d583607552669e1c40a89a779513cd8aea1c88bf76ee11cc85a503ddcb2664e",
+          "expression.frownRight": "fa26b334462e03ec144136a471b3933f269767b846ae038694efca403fd31f9f",
+          "expression.browRaiseLeft": "865e5093bbf3bb4f03e25786890c3b9db38803ae506378e557dd4230ddbe2849",
+          "expression.browRaiseRight": "fa26b334462e03ec144136a471b3933f269767b846ae038694efca403fd31f9f",
+          "corrective.height.smileLeft": "fa26b334462e03ec144136a471b3933f269767b846ae038694efca403fd31f9f",
+          "corrective.height.smileRight": "fa26b334462e03ec144136a471b3933f269767b846ae038694efca403fd31f9f",
+          "corrective.height.frownLeft": "fa26b334462e03ec144136a471b3933f269767b846ae038694efca403fd31f9f",
+          "corrective.height.frownRight": "fa26b334462e03ec144136a471b3933f269767b846ae038694efca403fd31f9f",
+          "corrective.height.browRaiseLeft": "438df45008791b2b3ac507889f64f89518124520cf675c6f4b3877397f6047b1",
+          "corrective.height.browRaiseRight": "fa26b334462e03ec144136a471b3933f269767b846ae038694efca403fd31f9f",
+          "expression.blinkLeft": "d6f8c96fb560b9d0d17441fb65befce5c39318f7a871b3a0a91f9146c03a8650",
+          "corrective.blinkArcLeft": "788fbbf14e3cf58a8b39fa76f84f23bf4ae27e253bfb381166afd9c635347c57",
+          "corrective.height.blinkLeft": "70a865322e3847ab775c0450af74a071e0312047159959c1ab4ab4af7d39a1be"
+        }
+      },
+      "LowerLid_Left": {
+        "triangleCount": 1080,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "6a5128ed52e8a959d4758418c224045ff2234f843fe547954bef5334d1edadcc",
+        "expandedUvsSha256": "ec79bcad37ca127744c594f7e2cd15c1d38dc31eaccd11351cd3bad82edea88e",
+        "orderedIndicesSha256": "e28f687b3c5fee30eef003ad847b574600e5c55f9e0c93b5036198e6470e3d9a",
+        "rawPositionSha256": "7094459b28f8e01e8f4e2a44939407896e51b577e456ddb561f6278dc53be212",
+        "morphPositions": {
+          "nose.projection": "6661d2817006b2f68bdbc2f96d99012da16822c224d226a8260297fa506a1251",
+          "nose.alarWidth": "c1bbaca58a73eb355f0fe2114006bb733ba1b01d4fe1406887deb74355cd0b37",
+          "earLeft.protrusion": "0db6e8d431a3cadbb6b433013f52bbadbb786fdff6a1e0d6f100032c7868f2a6",
+          "earRight.protrusion": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "body.height": "06dd13552fc13a9bf98a4a136b938a50d2fc208261ac02d17cef7a4b0e2730f1",
+          "expression.smileLeft": "dbaa51a1205b4444295e9a55dd3068fbc36a74808019c147d5f88c094e05ad9b",
+          "expression.smileRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "expression.frownLeft": "7a49b045389bf344a27a14e08ce1ea9b205be1a7eadf4fb20ef4fd7730173e56",
+          "expression.frownRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "expression.browRaiseLeft": "4a8e296bc1166ca273c21322fa53a76ffe65c469d501341d7ba879f33644bcb2",
+          "expression.browRaiseRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.smileLeft": "1311a1604aa79f1d2003d945d43d67393dc88dd997635c395fe8a8ddd115a00d",
+          "corrective.height.smileRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.frownLeft": "b306986810c80b1fd00bdf771223a68efa7c42ec0ee62b2f21cb1fc65a098510",
+          "corrective.height.frownRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.browRaiseLeft": "1e9d8baacc7f2a9a0f18a0bdd6b1100566b1cd5bd8b22a7f8f727fbf18b5d3b3",
+          "corrective.height.browRaiseRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "expression.blinkLeft": "d26bb8144a009f4fb16ef401fc3e9fe6a5a72d28fbc45f5b0a817658b8c7095f",
+          "corrective.blinkArcLeft": "4c155fa5601e7348e6569fbeb3d9b8af534fc6a06d813491f66bf234cadfc9f1",
+          "corrective.height.blinkLeft": "703e53958821768804fdfa2af60a949ffa97fdd2913ebc576007f9b565589040"
+        },
+        "morphNormals": {
+          "nose.projection": "5aa6ecee7a40497e422906942deb73c198d3da84d66f3d05afbd029d53dfbf08",
+          "nose.alarWidth": "91669058978eccc9c4e7a4266a3e6871555eb9c152ec3de6158de315144348f9",
+          "earLeft.protrusion": "41f3d9ef19367330d737e16c04e0ca1cafd990d10a31e75590f06bcdfb622bfa",
+          "earRight.protrusion": "66045899714b11a080f222cacd0058689e3365cc7f62933cb5c99c58f3ede361",
+          "body.height": "41658f954bccd9df7f8ed38e2b1b57441b3bafed7fe380fba2f78d3f8ec1e128",
+          "expression.smileLeft": "f4bba67b5e5f88c507dcc99cc2e3320c45c32d231b041d9aaeda49d12e4f85b2",
+          "expression.smileRight": "66045899714b11a080f222cacd0058689e3365cc7f62933cb5c99c58f3ede361",
+          "expression.frownLeft": "50add10505ad77497253f388c0f4cd79a6fb0cdc4a343be6a24af300fd429584",
+          "expression.frownRight": "66045899714b11a080f222cacd0058689e3365cc7f62933cb5c99c58f3ede361",
+          "expression.browRaiseLeft": "cead08ff09c7212fed4a521817a09eea981e0cf261158ea5731893ab9e81f589",
+          "expression.browRaiseRight": "66045899714b11a080f222cacd0058689e3365cc7f62933cb5c99c58f3ede361",
+          "corrective.height.smileLeft": "f4fdf4ff693173c06426af68538b090751e56414a999d4e48b95d4422b1722b7",
+          "corrective.height.smileRight": "66045899714b11a080f222cacd0058689e3365cc7f62933cb5c99c58f3ede361",
+          "corrective.height.frownLeft": "a02ac964b58c712b4bb43a4f7839d12976f80d46526fc87f82e80f2d59f428f9",
+          "corrective.height.frownRight": "66045899714b11a080f222cacd0058689e3365cc7f62933cb5c99c58f3ede361",
+          "corrective.height.browRaiseLeft": "b55b615a83d58f54a0a3220b5c7ed6476ed6d049dfbefdd1ae5e1ef644d8628c",
+          "corrective.height.browRaiseRight": "66045899714b11a080f222cacd0058689e3365cc7f62933cb5c99c58f3ede361",
+          "expression.blinkLeft": "ef1adab68874bd003b46a7da7bcbc45d5c65178b9c3c595e1e8eea70b8df6e9c",
+          "corrective.blinkArcLeft": "133d8259971f59233811444b870a1a3b1b88b27499b087f18ad758d727b53954",
+          "corrective.height.blinkLeft": "3c5680c765c93e2e67ade09bf67c996428402fed3eb197c9e563bed505718de1"
+        }
+      },
+      "Brow_Left": {
+        "triangleCount": 48,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "4cef2e00717a26c5a44d16aa913026eaeadae2b0f17155e981a02efa84ec007c",
+        "expandedUvsSha256": "cecaa13faaa47478128fcbfe1cfbf31ea796cf20458914a9bd7c1bf3ab279631",
+        "orderedIndicesSha256": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+        "rawPositionSha256": "057dfa47461b4741429629b042315ccc0afb365f1eff38805607ce360ed99e7c",
+        "morphPositions": {
+          "body.height": "e83e7c61b56059edcc9d2a4ee1ae5fec08d00ba1af6a9eb42fd5bbf45600fc74",
+          "expression.browRaiseLeft": "69bf2ab9535684b35415ed00e5a54e48c0710091eb40115beb8782461073994c",
+          "corrective.height.browRaiseLeft": "fd2aadbd9053d98c394bb433eb5deb903d2b2561da9718c8ce3f4f8890e05851"
+        },
+        "morphNormals": {
+          "body.height": "ee7124ff92a30f97944d7df0a62b0a7d454f8d289683cf1d2f9162d43b9846cb",
+          "expression.browRaiseLeft": "d0c4d124c0fda17628f861cac991aedcdc58fadbb83b6fbbcd685620a6fd4ca9",
+          "corrective.height.browRaiseLeft": "a57848434081302f327eb66380eafa2f7a6eb518f293d3b7e7ec41520adaf519"
+        }
+      },
+      "Eye_Right": {
+        "triangleCount": 728,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "265b32b72e784da3f3e120d8a162881bb85ef9763db56b1e98880637a0a2b35f",
+        "expandedUvsSha256": "50dbf73bd18360b7c3b61e09748386ba461f6629d07bd8521b684a12aef56cc3",
+        "orderedIndicesSha256": "6b55a22f8866e294fb7ee0f7fffbf1005cd47e867dd2908748c63c0f5c14601c",
+        "rawPositionSha256": "73ee5c31162782e2c0b187ba6d8915e441b3e2c15d276b57b02389592ae0ccc1",
+        "morphPositions": {
+          "body.height": "ad3f524bd62f897904354d5f7b4044b8cf1d1416ed5dca9182e01907d8b1d246"
+        },
+        "morphNormals": {
+          "body.height": "9dfdc784d11c9492a7eb0fc2063734403ab00c054d06aeabe283af24ed63ccf9"
+        }
+      },
+      "Iris_Right": {
+        "triangleCount": 40,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "b538d51d8d87ceddc0ff9256603416006c0da6bbe83602a4005910664c28ea27",
+        "expandedUvsSha256": "1416e885f38c9a418f85caf2c272103b59001d20117db40469b59ef8cc90202e",
+        "orderedIndicesSha256": "b68a9d9c56988da137592937d7202796b40213cbe3bd22939706356711872d86",
+        "rawPositionSha256": "cd6bdbfe54220ce1b845c9d383b0096ec0bceb4a6c3001da5f747dec3b366afd",
+        "morphPositions": {
+          "body.height": "07c9f9a0f1079a0b095b9fddc89b8b75427fbc62269c5f0abb4db1043f96c839"
+        },
+        "morphNormals": {
+          "body.height": "66775d7b5d391b3c316a4988a15fd22bfa69419686e86ae430b2473775849c63"
+        }
+      },
+      "Pupil_Right": {
+        "triangleCount": 40,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "ca7b7a17a5feb4758c331c31be99290ca4b653275dc4ac634a7feacb9164fa6c",
+        "expandedUvsSha256": "a7ba4fd37f0bff3efc024c5ab33ebcca0428b2fe6372041b2b860964f1ebc4be",
+        "orderedIndicesSha256": "b68a9d9c56988da137592937d7202796b40213cbe3bd22939706356711872d86",
+        "rawPositionSha256": "752cf3eb27c8013259e78f6547d63844d17e1c821ae42904a9bdde3a2780b4c0",
+        "morphPositions": {
+          "body.height": "5b6400a17446799cb70b32288ee4a6e715637098d7f7f67625705a79769d871b"
+        },
+        "morphNormals": {
+          "body.height": "dccd79b4b41fcf5b5ee4b4dd5246e1a39760c3a7fdfa4e2e4184c66aa71d42d4"
+        }
+      },
+      "UpperLid_Right": {
+        "triangleCount": 1080,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "abb52fd736d1189939c4698f14f713000005067e7514f0acd34155e23fcd9405",
+        "expandedUvsSha256": "d11c0d8fc6b1e209f33af47ff8a409f1ccbccc5d40132281f6daf6f54e28587e",
+        "orderedIndicesSha256": "5d8712314772a8df150df85d764d9abcf7d246b2625b2dc94926de234c658c2a",
+        "rawPositionSha256": "3793d398791835658f85d0a85c04012c751ca1aa27c32168583bedf55b632c36",
+        "morphPositions": {
+          "nose.projection": "b2d3764f0fa929a8f94a22c33af6a5eb830e3a1a1a8f731be63c9bbc34fb6047",
+          "nose.alarWidth": "7a8d33a9b7a3107fc6c05502d3135add25aa60ebf6c99dab832e97314b2706d7",
+          "earLeft.protrusion": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "earRight.protrusion": "5d7a78eb68fa28f9662ae77636935352f4e2333a44002803aa669acc690d2f22",
+          "body.height": "9e5a7bff628a3bc895742d2cf3ebeb9d11dbe54ddb3c560c9972410866f3eb04",
+          "expression.smileLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "expression.smileRight": "8b443f484257c45b66f305574da05ee2139c5e8a47c3465660ed14cdc29dc150",
+          "expression.frownLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "expression.frownRight": "51aa27aa49183097f4dca7f04a84b27c9825e898967a6cafdbdab272180774a0",
+          "expression.browRaiseLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "expression.browRaiseRight": "7ba2ae50fab6356a7c5cc8aa048efb147c790a100734308d1862ad86ea1196e2",
+          "corrective.height.smileLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.smileRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.frownLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.frownRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.browRaiseLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.browRaiseRight": "61eac2f8d0605d7b33a430e276c3ef84bd8ae72743adb4620748a99b94497bea",
+          "expression.blinkRight": "16e8e641bee1520f0cf94ff695d91ea3ab3c28b9a851f0df8508e0039fd43da2",
+          "corrective.blinkArcRight": "d2c1e94ff266f1ce50acf214db3a9d1d5bd54a05357a00c499dadfc09dee4105",
+          "corrective.height.blinkRight": "1996b91b48d2d63034a67d18787a0da370918dd2fe022db539a7d0d761734de8"
+        },
+        "morphNormals": {
+          "nose.projection": "2fa627c630491d1e409a61f155b9aa6e1745c8488d540074146450f67b022e97",
+          "nose.alarWidth": "343cdee9b2e6b24e6080589f2f040f8d13c372ae0c0b3017365b70e593a6842d",
+          "earLeft.protrusion": "bd9b2c3c86fa95716aede326abd4636b69b12c71fd2be04f60536fb93f526a19",
+          "earRight.protrusion": "fc0544f3577b4dae1f30674493b1479b44ae4f2dfcb2d9f864f83bdd04f1fd97",
+          "body.height": "cf511c0611f87e8e2bc5b1f93798f23e6873af51be0fda35ed177593c93ee8b3",
+          "expression.smileLeft": "bd9b2c3c86fa95716aede326abd4636b69b12c71fd2be04f60536fb93f526a19",
+          "expression.smileRight": "10f74cbedea348842bdd506b5af1771bfe67fdef7ca01be4e75c4e65f724d000",
+          "expression.frownLeft": "bd9b2c3c86fa95716aede326abd4636b69b12c71fd2be04f60536fb93f526a19",
+          "expression.frownRight": "3940fa6dbaa9b03216ef2a3c54cea8b508f66ff81b8f920c9b853e38436d6a69",
+          "expression.browRaiseLeft": "bd9b2c3c86fa95716aede326abd4636b69b12c71fd2be04f60536fb93f526a19",
+          "expression.browRaiseRight": "27c6df1ad7362d26ad85e228cc6253c038af18fdf366c368833c585112e148cc",
+          "corrective.height.smileLeft": "bd9b2c3c86fa95716aede326abd4636b69b12c71fd2be04f60536fb93f526a19",
+          "corrective.height.smileRight": "bd9b2c3c86fa95716aede326abd4636b69b12c71fd2be04f60536fb93f526a19",
+          "corrective.height.frownLeft": "bd9b2c3c86fa95716aede326abd4636b69b12c71fd2be04f60536fb93f526a19",
+          "corrective.height.frownRight": "bd9b2c3c86fa95716aede326abd4636b69b12c71fd2be04f60536fb93f526a19",
+          "corrective.height.browRaiseLeft": "bd9b2c3c86fa95716aede326abd4636b69b12c71fd2be04f60536fb93f526a19",
+          "corrective.height.browRaiseRight": "97401bbfff3bf14eb8f39e77c88f30b243ef242826a252dfd7e726dae5be1f03",
+          "expression.blinkRight": "d9e10cb897a4f5518ba93379766f46a7145895bdc01803133afa538353a83234",
+          "corrective.blinkArcRight": "3586566eef31b6139232c16b0772f974fd2b03651b77471c5b59d18606fc181a",
+          "corrective.height.blinkRight": "0a0b7f5087db35b90a33552ace505d6f2313e6878576b526adce751cd99403c3"
+        }
+      },
+      "LowerLid_Right": {
+        "triangleCount": 1080,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "febfd16f6ff5b65b554a594c19751e0572621d2713058363934ba68f1152efe7",
+        "expandedUvsSha256": "f7f2aa85278fbccc85de0915936d9b035ec9a64f616d3608759c6f8aca897439",
+        "orderedIndicesSha256": "c63d26710f9b58b9fc562442b1a0f893b7059e82d476b84435944921bbff0ba2",
+        "rawPositionSha256": "41fa9b9bed85aeb0566729e3696f2b9f1579603c4a2f6e7ae3b3956f55281589",
+        "morphPositions": {
+          "nose.projection": "a451404cf4c3d1f044569cd884abb91cd786e6600cebb174d7e6a7170f9b0d97",
+          "nose.alarWidth": "824cab766314295bac4ec4f10cd4017fdb8a612366493d6618735203b278fae4",
+          "earLeft.protrusion": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "earRight.protrusion": "395ba1e904803b32731d6b69ad3e76d0affb61636a3d897e2a8a13a49172d87a",
+          "body.height": "adc63daf00a49abb66a9890411aa6d86186dd2facc900e8e9dd3ba4110f04ea5",
+          "expression.smileLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "expression.smileRight": "27b5554f5b6740965980ce41023dde2b8bf5ccce4bc53201911450d4cc15f031",
+          "expression.frownLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "expression.frownRight": "7c49b302b72b1074ac656364df6465c1fbadbb8f04ac0ebfa3875891a227940e",
+          "expression.browRaiseLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "expression.browRaiseRight": "ef4a19d194c5d9dac582691cd5c2c7a7ab33b34cd5c33d55f0b9cf28ffd86a64",
+          "corrective.height.smileLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.smileRight": "c9ab9a88413fbbb5a1e1ebcb4841394e047db32922660862ce9acd656d600b69",
+          "corrective.height.frownLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.frownRight": "7258425e2da9462f2cbfbfac7c8320087cee510a007fe54b4c5e8657e8819e36",
+          "corrective.height.browRaiseLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+          "corrective.height.browRaiseRight": "71c0e55f67cae4dae41783f1a6c59e6949544604ececee79fcfbee42fdb0492d",
+          "expression.blinkRight": "de6a158d5963c664435662032363afb3c8b156f8d1c1c89fcf72c696d45cd5d8",
+          "corrective.blinkArcRight": "3d5f787ad519d44063d0543e206e97fcf4ff5827706b681689e206d5ed651557",
+          "corrective.height.blinkRight": "4b29a82ca6d13c8b920fca5dfe69443b3eb89ee9adb4ca6cc789c360e302a188"
+        },
+        "morphNormals": {
+          "nose.projection": "e606c2acf139df53d6ebf15a47323e798ed025531883ff7c2549d0843c7868d8",
+          "nose.alarWidth": "94cdb6e46d2ab182d2a6927d8f041bb6789cefcaae0615d6433c5cb31c1dae59",
+          "earLeft.protrusion": "375998ada04fcaf6d33f6a55116354dc2bb2966368f43cf4639ae0f380d95958",
+          "earRight.protrusion": "4ea1afc318196c198c906e7de786561c5e9d3e1cf22d885442bcbf8b85af7e74",
+          "body.height": "8e94f6151feaf2911008fccabecf97bc30631a538dfd308fa269471bfd6c4d8e",
+          "expression.smileLeft": "375998ada04fcaf6d33f6a55116354dc2bb2966368f43cf4639ae0f380d95958",
+          "expression.smileRight": "99a2d9e077f89195c944e25f1d920b9750a88ee3dddfa25d867de35a63ad9e85",
+          "expression.frownLeft": "375998ada04fcaf6d33f6a55116354dc2bb2966368f43cf4639ae0f380d95958",
+          "expression.frownRight": "a88ac63fa59b2da77f72c379bd511e4de7eece62fd801c3006abef863b83575d",
+          "expression.browRaiseLeft": "375998ada04fcaf6d33f6a55116354dc2bb2966368f43cf4639ae0f380d95958",
+          "expression.browRaiseRight": "4a6c0c11073d8a0e3b52a2cb477dd6c248dc7459103e9aca393ff0d05ef2637d",
+          "corrective.height.smileLeft": "375998ada04fcaf6d33f6a55116354dc2bb2966368f43cf4639ae0f380d95958",
+          "corrective.height.smileRight": "ab0c5393981c3eb448add8565fe8d1a8de5c5cb3c12ff080f32c11176aa4d71e",
+          "corrective.height.frownLeft": "375998ada04fcaf6d33f6a55116354dc2bb2966368f43cf4639ae0f380d95958",
+          "corrective.height.frownRight": "75d7bac2c4955a9ad19c25414b6960d3d6465a2589345e080d52d1572dfbd437",
+          "corrective.height.browRaiseLeft": "375998ada04fcaf6d33f6a55116354dc2bb2966368f43cf4639ae0f380d95958",
+          "corrective.height.browRaiseRight": "46730e48d59a8b60243111c0e7094c9bb91f94d2862a348d9a87946318fd8178",
+          "expression.blinkRight": "03deca409e53b394d68b7d7206424a37b11b446ecf5a64cb7b6378138cee5196",
+          "corrective.blinkArcRight": "3e8dd735e0b6c05ded61bd1b66a6545d128ccf6207bd83afa59ea777cc54fb15",
+          "corrective.height.blinkRight": "5988dafbf85dbaa86d3db2325572bd2c76b8d0ae2af598bc0184acb3fe1c8992"
+        }
+      },
+      "Brow_Right": {
+        "triangleCount": 48,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "72684aaf54afda69e7fae8bba6364d84c1b51a86ea0dea5129fa77d6b3de68d4",
+        "expandedUvsSha256": "e5b0f835d54a8b52175f96f70e512ea1e689b256d2a36de915ed4b74421bf97c",
+        "orderedIndicesSha256": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+        "rawPositionSha256": "491b17bdc6679acef92f271e9004acf596ced45dbed0af70b5e3fdaf8086d0ee",
+        "morphPositions": {
+          "body.height": "a4fb3bb6e168746b8b106539e6d57f379209fe0090b76753bc16ee02399e28d3",
+          "expression.browRaiseRight": "a7cbaa0d623c94d62f102a41bf5f0a184ce4ae6597112af922b17470a9f990bf",
+          "corrective.height.browRaiseRight": "9441b60a37d56498d396058044a3422e3c92cae84f05d2ad8862a35ecbb9b4f8"
+        },
+        "morphNormals": {
+          "body.height": "87fd4842eb397935c33a4c28fe53e8f64e7ce44d0acadd57401b016aa10c6a31",
+          "expression.browRaiseRight": "c0e0059e37dad0bbdc5caf4414b85c41126845e7cf16d5db2c7db9dde61ea419",
+          "corrective.height.browRaiseRight": "981f1a88e1d7c48ea173c29e2c9d36c72304356564ab9bdb949d5da172a89ad6"
+        }
+      },
+      "Lip_upper": {
+        "triangleCount": 344,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "ce1665d4609f8ae486c997e1c70e07ffb956faf5344f2b71c471e282195508d6",
+        "expandedUvsSha256": "45a1fb42df0a691727c6f67cae4da6bb91ac73e52fc447d3a6b75e1f27a0c713",
+        "orderedIndicesSha256": "39e7450a29ff8ac384343808066b183281e4c49850ae1c7112bd9d901fc75dd2",
+        "rawPositionSha256": "11d44cb975d383ada7316ec2f1bccd40ee961642ce798f57f77da2412d04c071",
+        "morphPositions": {
+          "nose.projection": "31177662db8a67f696f17286372a4bb73389e24c2d559f3c988d93cc6ffaf080",
+          "nose.alarWidth": "2c84911a762b6d36930395289740462e3a7c1ca2b4b1465c7768c8e3431a846a",
+          "body.height": "8d597431e4f8c3e9f423effc98dc0d2a2aba33fc050b0f4a0369e6bed76f403b",
+          "expression.smileLeft": "dfdea8d3dac3f7432a7096ffeae220e83f6ad34bc68ceb107cbfb1a06cedbc63",
+          "expression.smileRight": "d63cfc0c4898bf0744687c0e331800c7bcf53da77929594da53c703fea8971e6",
+          "expression.frownLeft": "05d0cb9fcc09bcb1fcb2df5dd80704469ff2712b78426f66061293ae1ed1b9af",
+          "expression.frownRight": "8ac0751a68303b583f06dcce871a31d6dd5eaff5c09cfbe9cedd8b983b110a81",
+          "corrective.height.smileLeft": "a1441fc17a805d854c9bff877c23d35e7540e1329df2eaaec744ae20eba11c86",
+          "corrective.height.smileRight": "d4436ce7fccf83039915687e174e7461f494078597e871893ea3fb680ad64fdb",
+          "corrective.height.frownLeft": "0ecce6874d7ddc921de9688976abd792404eb2a534ec6e5f7fac57c44c7bc89b",
+          "corrective.height.frownRight": "6b6feb9b99464f93243d0633ec74a87d756290faef522b31e3a4ce6d662c90da"
+        },
+        "morphNormals": {
+          "nose.projection": "9c22324afc4705d28a9368f276a0b0173bfdc60326b591ce85a2fdb380cf3527",
+          "nose.alarWidth": "0201980b1f73a26d35bfeb421f0c024d882fc606d4d182a4f612875a1afde568",
+          "body.height": "ba4beb234a6f0a2600df0aebeabcdb416979b42650c9bccf2c8e6b76955ac9a5",
+          "expression.smileLeft": "645818c2543c33ec477810334c0c6255ca01b5cf589094e528b1510d76a384b7",
+          "expression.smileRight": "def5865afd2865fcef6d910a6237510799a4670f5b367291dcbcb3d91b3363d4",
+          "expression.frownLeft": "fd0fc91d967795bfb499f18d1c35c8a74944181343a4271dd3709b7240ab4eff",
+          "expression.frownRight": "81960f3e534dec097e0d734c9716c2ae5be15805f618402122a44a64fde6cd5d",
+          "corrective.height.smileLeft": "c923556bd777b020a809a343449e4d11f59bf646ed0d10e9b76d698fbe67ae2b",
+          "corrective.height.smileRight": "84370dcd6cc764721e9232459d97dc85803fe3c9144c2bc1b5446a058a83e6d6",
+          "corrective.height.frownLeft": "7489b86ac831aeb1ec35052dffeecb205e96b55361aea760436d32a733755ca0",
+          "corrective.height.frownRight": "0ea5be83a104252aee2851f618a3c77a2e12a9c817aa9498f31321b3c6e98687"
+        }
+      },
+      "Lip_lower": {
+        "triangleCount": 344,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "7a15f41b44267c82a895903d593ceac4c751a07e075bb02b1cd971f392c123b6",
+        "expandedUvsSha256": "65f8830db09afcafdb7a49dd0f1f7698d3ff4636c45fd15cebb33820ab818837",
+        "orderedIndicesSha256": "690b648dbb82ce9c0d50d27ef59a1222edd6e77c9796f9f2fc9a20b7598f0a98",
+        "rawPositionSha256": "3c3acf6badbb6dd21eee83d0a25f1027b4332da91eb157725e12bb8e641b0c69",
+        "morphPositions": {
+          "nose.projection": "ec84d9fee5a0bd6630997c36c34642899b4d2347420dd7647fe1c260851f3961",
+          "nose.alarWidth": "88e3331b1385e87a250b510e14cd207fe1ff2593c5b25fcc4832fb64b991761a",
+          "body.height": "10fe8b2c8953ab348d5724698a51654ab908b28ef74db1498873c95d91c914a8",
+          "expression.smileLeft": "f2f1e7676c107aad9b5e8f7d62f8575d42921ad5c28992ee73e777f7987f8b52",
+          "expression.smileRight": "a062f9c1d426d4b01d77249be0b62cf8d7a28948162ad7021e460e06e5d5925f",
+          "expression.frownLeft": "80d2f372a0211ce88d0075c4fc74963fcc2c17968254404aa610eee594dd452d",
+          "expression.frownRight": "b1208b7fd8ad93478bbbb163143c744f69a4da51a11759cd64edb82f00ecb280",
+          "corrective.height.smileLeft": "62abbd5a1312b37906d5637e6f02051b4cdd51294bd611da9e7a59ef3746e0ce",
+          "corrective.height.smileRight": "3c95a57fc14940924a6944887b146f5df9fdcb9d45793d0550fa5119477f1a50",
+          "corrective.height.frownLeft": "7c01fc13b0482c24590cb9eea707da322f61572ded4914c768c63ff2cbdb53dd",
+          "corrective.height.frownRight": "8750da069495dead327bc84138f1f46c5f8587580e9dee48088d5c49de5e141e"
+        },
+        "morphNormals": {
+          "nose.projection": "bb0628f6854699acc44684a941123b84ae669f28cf940eb161281eb68f74c339",
+          "nose.alarWidth": "62e1ef85bfea2d048e999f85608048cda06da2b783d90f1e7c33780bb401121a",
+          "body.height": "be29d1041bbe8fd7226e25c242c5fe9dd14e5994f68286897084fd6c7dd658c0",
+          "expression.smileLeft": "147fa2b7da36ed421d24ae4819afdf7e66b0459919027b283e6a1cb8d6f35e1b",
+          "expression.smileRight": "904b4ba39c8b125c83fcd75ca4414b557b65943c2075f5a9955f7c8a9835d217",
+          "expression.frownLeft": "ebf7c704ff3a758b9f907fb030a8b076d0734d877c6f1707c522c62d1bee08a4",
+          "expression.frownRight": "4018eee238e452ecab1bd3156f31f1a807b8fe37b09a50a64b29cffde1456ca6",
+          "corrective.height.smileLeft": "4fb9dcb3acb70cf815bfca30b9db64f683b922802e9407e418bce503e8e4e239",
+          "corrective.height.smileRight": "a4f81537a6d1a15ac7115d3e02333e3a85a29ce435ddfe84b9c1a96feccd2996",
+          "corrective.height.frownLeft": "c022e2ccb6d03e9ba6edd3a7b29de6f81c4f5154c6b4a0d3c5440183b47b2b03",
+          "corrective.height.frownRight": "a5e3c33f4f9797edb0407d20e0ca106ad444e3ee3df2a9b7dbf543f8dec68686"
+        }
+      },
+      "Mouth_seam": {
+        "triangleCount": 536,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "6ed59199a21226242772daea39d9d65106e37d3b0d29575bb713b67045e42a64",
+        "expandedUvsSha256": "c245c80bd5bf05cd38ac6b7af99c0dca0cc7331c1b7cc92a800da1ac0afa85d9",
+        "orderedIndicesSha256": "d32f38d3ed5c440cb5db1cf9210b7f1820e15a6f424bbaec539c7845466ba6cd",
+        "rawPositionSha256": "b0445a4a45250a8598c93aa6631163d4bf5230801758bf17721bf3cfd8926d7d",
+        "morphPositions": {
+          "nose.projection": "d6fe7b9a003587eb438e7db44decb6bac5dbeb35147572af2a893d146ad88da8",
+          "nose.alarWidth": "06ef660347fd212d3c3dee511ab017ebe060d7785b0c95d44d4381d4a816dea8",
+          "body.height": "c44ac9bcc85d60873e856f40ce0950d790335041975d19e2a506edc80a8573ca",
+          "expression.smileLeft": "9ff5186fa04c9fe5d93634e862389b7fcc20a28541a889f439b8cb2078673067",
+          "expression.smileRight": "60d15a34c0768d7334b8d20ecc16fd94dcc95cc5f31d730db134bb9022b4c236",
+          "expression.frownLeft": "2e64601e04b8560b405e2b1b8a1dc4f5a9de9b8fa963bef6f3738151598c88cf",
+          "expression.frownRight": "c23dd7d19cef7420ca0a1d98c6218050a94f7c02b11b70ad1ffc179446d50c78",
+          "corrective.height.smileLeft": "89bfb55c9f6724e8b772aa9d6a8629d5d913381e528bf23e588e77d4fdd8eaef",
+          "corrective.height.smileRight": "633f4f771a156df91bb4ecb47162e2f8c81a5674a661ce2ee3855881d833601f",
+          "corrective.height.frownLeft": "391cbf992fcfea56c4e4eb4d35f475c412e451de7224314b1060377833d134b9",
+          "corrective.height.frownRight": "7e216ec19c10f7ddce464bf58ac73a738b3925750d516aa691d1eb02b74a6ef7"
+        },
+        "morphNormals": {
+          "nose.projection": "23008ff9a0e2aafa9dcc1e728d5fa9873a82d9a02fb1c33daae9cdbe9736f139",
+          "nose.alarWidth": "f23205a679395399c9b9e5fbb15298a97e3834735caf49b2b68e12dc3ddd56f0",
+          "body.height": "6a1bed25941be32b913a1a5e056bfb7c797728ad20d8c911cc7f2c73ba470e69",
+          "expression.smileLeft": "7f2232298872db50ecdb70bb7083ccde082cdd583891c248294e460ee59c6779",
+          "expression.smileRight": "619d5423b695de2a997c0d88dc6377b1618db69250033bd6bb621f43c2d0d3e7",
+          "expression.frownLeft": "c649b12d25e0d2c449d1b5b5715cb416f99d2d0f1d8acac155a13f3784e1cdfb",
+          "expression.frownRight": "d6118270cda7c032aba8b9032cb2232145a73ef23bf77e6ec3768d1bde8fedeb",
+          "corrective.height.smileLeft": "4e59c82c0bbb7b9b1e3a74253d098b9a25bcd01364e0ee6c5d0daae4acc75095",
+          "corrective.height.smileRight": "359263218220a69b0c5aa3fc6e24aa558d7c253c8fd56834fcba2f8bd6b2ba00",
+          "corrective.height.frownLeft": "14c8249af43fe961afbff5193739a7e44b9f9864c41900b6c17efa3d31a0e0b1",
+          "corrective.height.frownRight": "c17f18ccaa8113f6bd9d6cdd9abf79a7e5fdc5d8baaffe73b256939afff30633"
+        }
+      },
+      "Nostril_-1": {
+        "triangleCount": 280,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "ab7a9c4371b0a9c2d6c62e2d099b7c21fbd1c32a9067d9e0208d7ac9ec23f4e3",
+        "expandedUvsSha256": "6e20d3be18ca2bba91215a0010e6ec0d0abed7e2ddd300f17bf003f2c4db2e46",
+        "orderedIndicesSha256": "172754ac848baf0197e836c175ffddf6b9e4879ce1a3a5183c7e9c83c9274173",
+        "rawPositionSha256": "1067b4f0c8b9499060d500af6dcf92838a115734833527de1866d97ce437438b",
+        "morphPositions": {
+          "nose.projection": "8231709b57029662eec41c7d1eb797bf94c179420acb5a7785d836e251b7ce68",
+          "nose.alarWidth": "aa7743bdffd124af3b689ef0cf64031c3b0a5fa253a1dad25b4e78941aa13877",
+          "body.height": "49f5470c71b771833f5538330848b85e397c30b7c2eecbd176ba15fa2ae83627",
+          "expression.smileRight": "dccd81e3f35b63addc83dde769e1945ff2e66215d19b91ce6d2c1f05711c5393",
+          "expression.frownRight": "e6d577e9cf423d973fe30c870c181bad6100acf65c7d97d119e774fa6f301fe9",
+          "corrective.height.smileRight": "c9868b2a56d243409b9abc9ceae9fe6e6243c9dc01c37667c19374f9b8f90713",
+          "corrective.height.frownRight": "a7b6e5736fba28faa53f03660ae90c589f98e67d74a41c259fd43a80aba5a254"
+        },
+        "morphNormals": {
+          "nose.projection": "38e5369ad530e6e0a511099dc6ad8eaf65767b16ab268538d908be9f89100605",
+          "nose.alarWidth": "45846de0ff28bd8bf8a60c9cf24ae32f105e558c7f6a8ca8a5316e362401f7bf",
+          "body.height": "b0ffe738f7973495dc52bf1cf3186ee5df437b4d591b8493894afd768636b8aa",
+          "expression.smileRight": "2ed0e884b6d2917d897845e1320d52be08d8e20b98a00451a32663a4aa5a06b8",
+          "expression.frownRight": "1905b30fba90c7fa2a664429e9b2ae11f6814ae1687ea4c531c0f3761216b5e3",
+          "corrective.height.smileRight": "1007da73079708100b49a34234b5338557540f15ae62af1bba67f3e8700bd833",
+          "corrective.height.frownRight": "c1e6dd7e9dfd76a8a9ebe6675fa2b95bdba220b184ef09f8f63517328855335c"
+        }
+      },
+      "Nostril_1": {
+        "triangleCount": 280,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "8e84928d47967bc3efe730abc88af235d279c15c8357161f80cb7db95e537216",
+        "expandedUvsSha256": "0c29019897887654a92f9a637ea50c1a05c25d176f1292bff934551d02f51a90",
+        "orderedIndicesSha256": "61e680e65674f6bc54bd87a5ab599535d1f95593d6208557d8aae0e74291cf0e",
+        "rawPositionSha256": "d595e6fdf0dfa67f90c2068aaf0b6e49b24ca2ececbd6de8cebeb313b546f77b",
+        "morphPositions": {
+          "nose.projection": "faf896b337a1e6b6a9430c2e3e47c1ee9cd4df78b59a1cd643968d89684e294c",
+          "nose.alarWidth": "b22e51601c70302bcb6427e0215e577168f3975248541e0e250518ed8abeb0c4",
+          "body.height": "49f5470c71b771833f5538330848b85e397c30b7c2eecbd176ba15fa2ae83627",
+          "expression.smileLeft": "b49c1eb496e86a45614a5f5393980412fecbd424a8dc8865bd2755ccec310604",
+          "expression.frownLeft": "0117fba1d7da39a609a6b641d4b0d9b7ad039f33a93f032806e478fb11121caf",
+          "corrective.height.smileLeft": "089738868031f9c01b414bc606d3f64e882d8a70db55be05c9a6c201c9e42752",
+          "corrective.height.frownLeft": "ec37f236d5a2270b335cdae4ad777c2315ce3de15e618fa43d74b4ec95f87304"
+        },
+        "morphNormals": {
+          "nose.projection": "da7c5cd1f23de1917efd4ab6cf3b874fd4981dd305f132b77221ff65728e0f8e",
+          "nose.alarWidth": "c1b7f13e0f41a1a74e36a55ece9ebdcae198d5e09b5eca5eecc62902d0213747",
+          "body.height": "473fc7f31bd166ae2c7c08ae2d10241d6c1b80f52f2cd371b510e4424771f303",
+          "expression.smileLeft": "21c1a9b3754526c2874e539d0a141e67a336e9d1785a5d94592dcfb0ec5de2ed",
+          "expression.frownLeft": "6f0ab19a8c36db2f5c9c916ed80c4bd21a294f41f468b10e0fcb125d97d87535",
+          "corrective.height.smileLeft": "2ee0e581890e692de58da911250fd28b88f9e25fc83bd44426093cea1ee0b6a4",
+          "corrective.height.frownLeft": "95bdcb48d47d1db92f1324cea3b837f54bbfaf1daeb245a5f67d52fca95f0123"
+        }
+      },
+      "Ear_Left": {
+        "triangleCount": 640,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "92f31939b6183a2c784e18a9265e44df6efb028e95b01144da205c61b02bcb3f",
+        "expandedUvsSha256": "672ca8fe757bac8f16ff7d5838a4fcba859c6e5494a1f74079b951d66148e612",
+        "orderedIndicesSha256": "cbf116d30d6b5d7380ec457df1ea15d2fe3a1f03a53d0a9f5ba3086baab7db0d",
+        "rawPositionSha256": "7ffd03ca5495f81e595577f62d6fbdbaa2f19acf41b3442f5ee2f47d1777197a",
+        "morphPositions": {
+          "earLeft.protrusion": "8d8107430731962f526aa0e3dcec4111ad156df5a31a97f9b5cb5a86d31dace2",
+          "body.height": "f17374ab894690b3892bf7a950a74b10f8cd7af8c67918a8548515048bc439e1"
+        },
+        "morphNormals": {
+          "earLeft.protrusion": "b2cf78c8d13176de7f00bf9e3cf79f3dde3b7589f54b76b10e035a03966881cf",
+          "body.height": "508ac750c0f70bb7a5f5e4598a6673ac8c592f67039da8d0704ca666ed9c74fa"
+        }
+      },
+      "Ear_Right": {
+        "triangleCount": 640,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "5675b1668e3c98717949fada1f5afb990f022a614b6d83ade7f7bd5ebd185704",
+        "expandedUvsSha256": "a01ebc50b9b4ff4bc054692180517c694d754f546eb69e75429ab96a5dc72785",
+        "orderedIndicesSha256": "416cc6fe4a1d8ded03edcf22b9f1238aaf9a51ddc6ff51a23baed8ec4a3e5dfe",
+        "rawPositionSha256": "a7ccbfc3963f5da51d7f5ee3b26999ff94d8efa38438547e371074921921f3c7",
+        "morphPositions": {
+          "earRight.protrusion": "8eaa013756dfe41c6f6b230e2251dc236d0d33663d41031af6c5d28a298d60ce",
+          "body.height": "b740791a5e4621be4f06bd9f20015945059a96a7cd851ef458e72d793e4264e3"
+        },
+        "morphNormals": {
+          "earRight.protrusion": "900655ad0a4988639cb6eafcaacba1cba40c74dd0fc00335aeb995e9ccb89168",
+          "body.height": "b6d8d606fe62c6c451be3f768cfacce5f019d2fac93296553dc97eeb74b0c73a"
+        }
+      },
+      "Hair_original_close_curl_surface": {
+        "triangleCount": 2518,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "b78e73c7541313cf6a6453e8b927896ce95c12dd76a62cce5d1bc319286e4f70",
+        "expandedUvsSha256": "9e403a89f7dadaa285fbe6044d6f3c9743457ded42bd37b867a47d458a9c95d0",
+        "orderedIndicesSha256": "07e89ef930465a6ad55c58da155a4b6c383ddcee3eec09348cebb4c89441bf6c",
+        "rawPositionSha256": "d43686b60c77c62c93b7e0cdc2ed5110d44a8eb902e5fbe9c03cd2e40a4b368d",
+        "morphPositions": {
+          "body.height": "6974a812244e9f4154a8f8f59d7a67650f024d1b7c9af392a51107b9dbfceb32"
+        },
+        "morphNormals": {
+          "body.height": "93e5216f0a941178498db7f6fb07486f7218c3a479a0750987a41b83e8cfbfc7"
+        }
+      }
+    },
+    "skin": {
+      "Neck": {
+        "triangleCount": 188,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "7de9d90a9a54597339b4663abfd6bbc2edf0191fd9e01e8e5456094af766ebf2",
+        "expandedUvsSha256": "b1c4c1836691dc3a883df7a8b6cc51ce3b2ac1d944a6936aacec98c7e6196e8f",
+        "orderedIndicesSha256": "7e92498204b977ebac740fd35c646de7a206e5449969dc3e5775716736564364",
+        "rawPositionSha256": "0c487d6253cb590b2ec67f1732aaceead76e940e580260b51da50920190b4af1",
+        "morphPositions": {
+          "body.height": "accf80ecf5f18d40bf5ab647201ae8c3cb51723fb01a1a15895a324335fc3655",
+          "body.shoulderWidth": "41d8107bd67a7e4611497bbb093d94f23fda66efb1a92595551c88f3f38909a9"
+        },
+        "morphNormals": {}
+      },
+      "Shirt_fused_shoulders": {
+        "triangleCount": 3798,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "e3719c6be341cda37642316fa28d0e653e03fa25da506c7bb5079bed43348368",
+        "expandedUvsSha256": "9ea62112766416c79f811dd308334e2d284245d4be31eeae2288ed2ce6ce4fa8",
+        "orderedIndicesSha256": "68e90f8ba3893a25643a1f2eff771349d649c50b1c8e01a1420f2868fec45f77",
+        "rawPositionSha256": "609c47eabe2e216d2170d201fd29f492bc334436ea4e178428cd2acabdbaf95d",
+        "morphPositions": {
+          "body.height": "af228d8aee6b37173b204b00c6c2dd06924d05bc2a84e8b3fb1444a1aa01e6de",
+          "body.shoulderWidth": "bf4085ab4aaffb430df291da18400c5a625f2f4c239aa0146b2d0e354f78add8"
+        },
+        "morphNormals": {}
+      },
+      "Collar_band": {
+        "triangleCount": 80,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "1b779fa457f6e8d2c4c42d4cd36ce57c54674d7e366e8fac9dcb8a34d7abf735",
+        "expandedUvsSha256": "5ff2f66242e808eb0b045f11fc55cd273e0a0015446d555a97d9403d6d2ab09c",
+        "orderedIndicesSha256": "75a85e09d2d2a6e9b8f207035769bad92b4f74c91f1515b6fb929487e955b040",
+        "rawPositionSha256": "7a6dab014cd88a6e190f4ade68d1f02fcef4058e291cff7454ac55f66ccf6497",
+        "morphPositions": {
+          "body.height": "ec8b59f28237e415f807bf871126141c3dfd5fee6646128f2058a74755cad820",
+          "body.shoulderWidth": "fd012a984e8d9beece5b66d8e21f38b5dc049445718c1b9920fd71200c91952c"
+        },
+        "morphNormals": {}
+      },
+      "Trousers_fused_hip": {
+        "triangleCount": 3682,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "ecd66466e5f48cab8e8324a38553a6717148b3b8078b9af49289ff6186516cde",
+        "expandedUvsSha256": "0803a11e8ebe590c03df2fd11b411d97bccc1b97dea174e1c7a079698dd58661",
+        "orderedIndicesSha256": "96a27e6483fb80836c93fde84fbdc9a848a0f67c228cd98366e01d21080ec940",
+        "rawPositionSha256": "da3ecc6d062369680f2fa7203b3e10cd01da740f92239bcdd7863eaea5611715",
+        "morphPositions": {
+          "body.height": "af72ad7b361ca685e772fde9d063b526b36b862ee9eef5af21931edb7877287d",
+          "body.shoulderWidth": "738b47d68afdef5ebdb956c247363d0855c5556cf196ec95b6f8f1e299c4d57e"
+        },
+        "morphNormals": {}
+      },
+      "Forearm_hand_-1": {
+        "triangleCount": 2008,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "3cf11798a358f99da48298debcd594521c5688fab48d23303e7166db98f57c62",
+        "expandedUvsSha256": "b559b8262680c39887f2e85dff2e0d69f20560b6ebc6f8d6666ed64fec9c464d",
+        "orderedIndicesSha256": "25b884cfb91f9c4846affa24af868e373ff7eed37f85cfaef0d1a807c5c1fc54",
+        "rawPositionSha256": "093bad27bdec1c561b89483d94d2fc35a8695fcdd9d95ac36629d30bd193fb0a",
+        "morphPositions": {
+          "body.height": "40702a90cdb9859d9d400b8a7cf0f4b41c33075d235ce2a2b8e1c755f2aef70e",
+          "body.shoulderWidth": "20abd3dfdb64e72db8cb192cd8dab36246795db464fce0f68eed33f18b0f0860"
+        },
+        "morphNormals": {}
+      },
+      "Shoe_-1": {
+        "triangleCount": 380,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "737b045c80694f3f4d5b0b7908b113291b1009d2d1a4e74cb3a1cc4d80f87c6b",
+        "expandedUvsSha256": "d521d6c586f1906b850398d832ebd398539af424960681771f14ba56ca5b9efd",
+        "orderedIndicesSha256": "b8abfb31f6cc8ddbbb7aa089f4020ab3977e993dfc1a8378c53479e43204c83f",
+        "rawPositionSha256": "4b07cb7f226d56896e95a32de51079e5f9bb7e4265941bddfdb9613ac5132e14",
+        "morphPositions": {
+          "body.height": "bbb30a377394957798b06b6b5c79a8d051e76430191084c09384beeec7d003a7"
+        },
+        "morphNormals": {}
+      },
+      "Sole_-1": {
+        "triangleCount": 124,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "370476cd3dd156e14c26fa1b235923205b955d9de382db92021fc67111065460",
+        "expandedUvsSha256": "42024eefca67ec2f3898b8e8a9eb3ea8aa538429aeb09ec1c9135773eb4d9885",
+        "orderedIndicesSha256": "f69e1bc70014c24b685c749a819d623d6d33446b666a53e8ca90363b94f655c8",
+        "rawPositionSha256": "6c6c347908cdcfbafcde17a83824d7d6e189516d9f642bc080d917c43ebec107",
+        "morphPositions": {
+          "body.height": "b9bf52a1d7a62c0474bdf0a8a981e0d56c1ca6165c86bf04303c24d8897a915b"
+        },
+        "morphNormals": {}
+      },
+      "Forearm_hand_1": {
+        "triangleCount": 2008,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "2809bf82fb40189b8480b999878adefa7fe4673728168235809803bb0d66fc16",
+        "expandedUvsSha256": "be223e2fb7ff2e1aaa1130e414e41ade920f3401460500bb1c6d4620f2c99d50",
+        "orderedIndicesSha256": "a2af8cc5d5d88d10db2563e42a3f16af89a0f6032bcefbc96f7bd559e035c387",
+        "rawPositionSha256": "39ee0183b1706d485dddd259c5c81f1daf7a9367ef1454ecb44142c78c0c8275",
+        "morphPositions": {
+          "body.height": "7edef892ddd213a59884de48bec60dbf78ac593aaf3933b02334d50d9bb00de7",
+          "body.shoulderWidth": "ec8825a78bca677359995a7bde0073dc81c0a3fd39ea8c859e3ed5291559987d"
+        },
+        "morphNormals": {}
+      },
+      "Shoe_1": {
+        "triangleCount": 380,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "53ff29f535e0c3477716570dee4f6bc22b63f7002082ae97126bffd6f9410fd7",
+        "expandedUvsSha256": "47d4cb59786ec9718d0b95b44db47e351e9b9f18bf062f8c403df1b2596d1048",
+        "orderedIndicesSha256": "166b4227614340308f7f471a224c2052c9646702e2ce6c2a17034aba870dacbd",
+        "rawPositionSha256": "a10e63b0646a7358ce54dbc7b912c2b33783357c7b68e01b56fd3c61dbca07cb",
+        "morphPositions": {
+          "body.height": "bbb30a377394957798b06b6b5c79a8d051e76430191084c09384beeec7d003a7"
+        },
+        "morphNormals": {}
+      },
+      "Sole_1": {
+        "triangleCount": 124,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "78874be00cd3b3567ed64710fe3ae5dbfadbf19ebc61215ea91bbfd0d6b9cfd7",
+        "expandedUvsSha256": "1137e67400ce8c28215f0dc1d1a4fd2e4d53b14bd4a68c1433aa81319731a3ef",
+        "orderedIndicesSha256": "8a43e76d77f63ac571775b97996cf28154288a93c157e378347ae0015a7dba01",
+        "rawPositionSha256": "3670c1621870e28015fbf134341ec086a21199ef412a38a8e0071566dde5b1a8",
+        "morphPositions": {
+          "body.height": "b9bf52a1d7a62c0474bdf0a8a981e0d56c1ca6165c86bf04303c24d8897a915b"
+        },
+        "morphNormals": {}
+      },
+      "Head_continuous_anatomy": {
+        "triangleCount": 8096,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "50983fa972b18c7d54320f6880185294063fc02b8f835f8ab8423933eaa9007a",
+        "expandedUvsSha256": "21c3d4712a6bf35d9ea38519ff7810e44c08d41e6f772f7f780141be1e8e95cb",
+        "orderedIndicesSha256": "b96e69944aae9530d659e9b7310e9ae3ab0ca58e80446db86584ce8fe48d8dd1",
+        "rawPositionSha256": "10f59c958c956c2044beb1809a8fd0a2d5a4b50cd866a3967ca5c1dc409c0d77",
+        "morphPositions": {
+          "nose.projection": "476c68791308b95ea4c9a969bd94b15eaec490747b77898cfd78e4d9203ab894",
+          "nose.alarWidth": "6422ca997afe96e6e219fff9f13344b4a03b68b5fa1c14cf5403c963dc88eeac",
+          "earLeft.protrusion": "cfb347365548d60945d08c0fcd337c9e37897466042c15f7e2228abfc059be97",
+          "earRight.protrusion": "0c8ba830f73a13555df060d19f88b057409640f68639728323ce73fac20293e3",
+          "body.height": "5d959386c9737eb8063347b0f5fd7fc9f19126908471a359970158886f5d7275",
+          "expression.smileLeft": "d92d4bd6de8ab6f124acf3a6b936db8a8970c725f56d1ee5198a6efa5644a560",
+          "expression.smileRight": "8787a7dc1f663bc8f533d2261918883964825cb086af9fcb425ab6a23989831a",
+          "expression.frownLeft": "27b3ba3be083901442789aa554b08b341105c55d14d59cf32dcb2ed79b219987",
+          "expression.frownRight": "884cb13b1c6a10efff55a64129b9bc50a5a2b1dcf3919cf567f6aadaee4b3435",
+          "expression.browRaiseLeft": "743dfb1620699bf8525164a5900f390aa96b9bc724e563c8fd1ff7072568a50f",
+          "expression.browRaiseRight": "1db066c03cb1cc93d2e6855dc30d6e20d724829945f566893cbed8587cef4952",
+          "corrective.height.smileLeft": "3a7eb526c11c75552a5b9e7994e391af2378ce6f4be3765b28e1fb055beba4e7",
+          "corrective.height.smileRight": "9abbde8d6d01c3fde927f92805aae9dd83954a84124a6ece2bd0808c0ae158dc",
+          "corrective.height.frownLeft": "5e113558812be11df53a8f4ac12c15a1563caf793a17a32ca419d272e585fa73",
+          "corrective.height.frownRight": "b26c8583dce183f62e6c5d4ea7c5cc35bb39bd6dd3f77fe8369eac570f8a6535",
+          "corrective.height.browRaiseLeft": "a8b06e05e884dab0e82b0db5e985fb1ebdaa8e1bcfc980d95312cb3230e2cc9c",
+          "corrective.height.browRaiseRight": "8bf934ba98c260c7bbd8a589f47be7750a6ebc59c7d4804dae7d2c7932a7e552"
+        },
+        "morphNormals": {}
+      },
+      "Eye_Left": {
+        "triangleCount": 728,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "df4b0838267979201f1d62e9db24eb98172fab0abe48751220abb41bce4ed173",
+        "expandedUvsSha256": "4c43412044208d49700a8e4f58cb246a4de41786cee519ae1cc87d3a9682ae6b",
+        "orderedIndicesSha256": "5d9a07530e861b92d7b69665955b5b984fd6663475e80de32d6679ced5a09f41",
+        "rawPositionSha256": "1ef6fbe281ed1c20c9518c6042de601e605d9280ce6f60a47a2c31958fe7af67",
+        "morphPositions": {
+          "body.height": "ad3f524bd62f897904354d5f7b4044b8cf1d1416ed5dca9182e01907d8b1d246"
+        },
+        "morphNormals": {}
+      },
+      "Iris_Left": {
+        "triangleCount": 40,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "c9395491012db1e3f96f06b5957c2324389f897f2eaaa4f6f75c08eec842771c",
+        "expandedUvsSha256": "057afc072ad4f2bdc7d2d0bce6b08c92063d475a3814bdc922826240c9b66fe3",
+        "orderedIndicesSha256": "94627d9eb0cb38b0fb25483be51643812ab2d862acf471fb105b533240da4ff4",
+        "rawPositionSha256": "3018246675a493e7a78ce36cdb4539b3d970ad8506d780dde1c4db23ffd7a121",
+        "morphPositions": {
+          "body.height": "07c9f9a0f1079a0b095b9fddc89b8b75427fbc62269c5f0abb4db1043f96c839"
+        },
+        "morphNormals": {}
+      },
+      "Pupil_Left": {
+        "triangleCount": 40,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "bdcd10bfcaa451be5bb473fd51eb8a00bc811e5d72e24ff48997474bf902c3e4",
+        "expandedUvsSha256": "878a5459090e66ff2a8ada64c78a9ad9a174f077de3402961fd313f4ad4a20cf",
+        "orderedIndicesSha256": "94627d9eb0cb38b0fb25483be51643812ab2d862acf471fb105b533240da4ff4",
+        "rawPositionSha256": "bbfe2ce98debaf7f93b03202a276e059efc767711edad039a95f83dae9ee3b7f",
+        "morphPositions": {
+          "body.height": "5b6400a17446799cb70b32288ee4a6e715637098d7f7f67625705a79769d871b"
+        },
+        "morphNormals": {}
+      },
+      "UpperLid_Left": {
+        "triangleCount": 256,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "e3799a34f29254fb3ecd60d657c42ca4c2ff962e7b2b79ea328f9bbb79668ce4",
+        "expandedUvsSha256": "ed818a2bb435491f179581853a73338bd757b149c0eefb85626000f38a824fbb",
+        "orderedIndicesSha256": "3441fd74b6a797b9cff60085983d04002b5f6f821f9598b51077b7f338763abf",
+        "rawPositionSha256": "2b508c40742f9a30b0a8fb40ca2d8bfef8afa443517cefbe3ac25bb1b5229937",
+        "morphPositions": {
+          "body.height": "fcb225a3af16167fb604fd72e6ca8eede52aa9c33ef64b6bbdcd4e10b0e8694a",
+          "expression.blinkLeft": "3e03abc7d1c7a88a294d4bd4895fd21035661ecdd7368f2ba8f864e64dd4c3ec",
+          "corrective.height.blinkLeft": "34a14fb0071670713acacf683e9ff61e9e4cbb645020c50dc78706a3bdfc4342"
+        },
+        "morphNormals": {}
+      },
+      "LowerLid_Left": {
+        "triangleCount": 256,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "05847d8bd83d5a1fe6e012cc12148075a8fdb598d08264be9442d9f5083197b0",
+        "expandedUvsSha256": "2876f439ea5aca8fdc31b8abb1c8f25bbbfd178af71e6b4f8c860b6c8f55151e",
+        "orderedIndicesSha256": "15b07af3bfdd740c6c396a4c710ab7f151a15e8f1905e3c45b42dd34b4f459ba",
+        "rawPositionSha256": "b08b3da266a5f7ee614814866af0def67e5c3187b1ade7a5fc30719e7601752e",
+        "morphPositions": {
+          "body.height": "38136f5a837c88e3b798ce644ab80be32670ca0d8296aaddce5c916081f0746f",
+          "expression.blinkLeft": "ca770eccf0c9619c32de9c0b42d5285ee7f549aa6ecfa99b05b09e67329ff763",
+          "corrective.height.blinkLeft": "e5ad9005aacfef6ad615d8bd96407ad84badba979051c1ac4ae3b2a5ba71515a"
+        },
+        "morphNormals": {}
+      },
+      "Brow_Left": {
+        "triangleCount": 48,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "4cef2e00717a26c5a44d16aa913026eaeadae2b0f17155e981a02efa84ec007c",
+        "expandedUvsSha256": "cecaa13faaa47478128fcbfe1cfbf31ea796cf20458914a9bd7c1bf3ab279631",
+        "orderedIndicesSha256": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+        "rawPositionSha256": "057dfa47461b4741429629b042315ccc0afb365f1eff38805607ce360ed99e7c",
+        "morphPositions": {
+          "body.height": "e83e7c61b56059edcc9d2a4ee1ae5fec08d00ba1af6a9eb42fd5bbf45600fc74",
+          "expression.browRaiseLeft": "69bf2ab9535684b35415ed00e5a54e48c0710091eb40115beb8782461073994c",
+          "corrective.height.browRaiseLeft": "fd2aadbd9053d98c394bb433eb5deb903d2b2561da9718c8ce3f4f8890e05851"
+        },
+        "morphNormals": {}
+      },
+      "Eye_Right": {
+        "triangleCount": 728,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "265b32b72e784da3f3e120d8a162881bb85ef9763db56b1e98880637a0a2b35f",
+        "expandedUvsSha256": "50dbf73bd18360b7c3b61e09748386ba461f6629d07bd8521b684a12aef56cc3",
+        "orderedIndicesSha256": "6b55a22f8866e294fb7ee0f7fffbf1005cd47e867dd2908748c63c0f5c14601c",
+        "rawPositionSha256": "73ee5c31162782e2c0b187ba6d8915e441b3e2c15d276b57b02389592ae0ccc1",
+        "morphPositions": {
+          "body.height": "ad3f524bd62f897904354d5f7b4044b8cf1d1416ed5dca9182e01907d8b1d246"
+        },
+        "morphNormals": {}
+      },
+      "Iris_Right": {
+        "triangleCount": 40,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "b538d51d8d87ceddc0ff9256603416006c0da6bbe83602a4005910664c28ea27",
+        "expandedUvsSha256": "1416e885f38c9a418f85caf2c272103b59001d20117db40469b59ef8cc90202e",
+        "orderedIndicesSha256": "d1b664de62b5c3badca6bd80e10543f4cef6288e1a3afe478e7f54ebccf62699",
+        "rawPositionSha256": "16344d15bef134b4ef1b3924ce20c645a9c2d56d4cb759fc4b8a3112fe323837",
+        "morphPositions": {
+          "body.height": "07c9f9a0f1079a0b095b9fddc89b8b75427fbc62269c5f0abb4db1043f96c839"
+        },
+        "morphNormals": {}
+      },
+      "Pupil_Right": {
+        "triangleCount": 40,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "ca7b7a17a5feb4758c331c31be99290ca4b653275dc4ac634a7feacb9164fa6c",
+        "expandedUvsSha256": "a7ba4fd37f0bff3efc024c5ab33ebcca0428b2fe6372041b2b860964f1ebc4be",
+        "orderedIndicesSha256": "d1b664de62b5c3badca6bd80e10543f4cef6288e1a3afe478e7f54ebccf62699",
+        "rawPositionSha256": "7f5e1b7f343d4ce3699a7a52b57ad5a1e522d1641d2a3e1cb6e8914eab0a917b",
+        "morphPositions": {
+          "body.height": "5b6400a17446799cb70b32288ee4a6e715637098d7f7f67625705a79769d871b"
+        },
+        "morphNormals": {}
+      },
+      "UpperLid_Right": {
+        "triangleCount": 256,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "f05cdf1bf024d21dfc06833d1a3f06bc70a63cb3bdfbd5263ddaa3373670fd32",
+        "expandedUvsSha256": "678b7d45b8acfc01443a1f7e3e6a24899e62af2b82568c7489458679989f778d",
+        "orderedIndicesSha256": "1823ef0a087e874f83b96bf7becc8b928f7443865dec535d0a8da730e9eb12f9",
+        "rawPositionSha256": "15ecf8983ec5ee4dbe6fffd0a625f7fbe04f0fbd38c03b65c1cc6502d071c46b",
+        "morphPositions": {
+          "body.height": "5448cf2715793a5d8a7d00f141fb57cb78d9597977f21232bea6a1bcc87b4290",
+          "expression.blinkRight": "04d9c518b37808655639b357e34e39cb239a575c1c7c264e5db18524156b0c01",
+          "corrective.height.blinkRight": "5d6e82f457a6928268e3c6968911250c3a1320f74d40b28132674ff565734a12"
+        },
+        "morphNormals": {}
+      },
+      "LowerLid_Right": {
+        "triangleCount": 256,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "47231c83af9a8afd8c9a0111878796bbf98cb6a7752125f58a29c0e38d86227f",
+        "expandedUvsSha256": "b52e59300bababcb1c77224c553eee879a7949246a694ef85f86cd54592d8d18",
+        "orderedIndicesSha256": "920f18d6895a821eb61acd6c9e06abd4b979da8b6b1798fb3fefa852b11794f2",
+        "rawPositionSha256": "a034ed2ed71c590dc9b025114a4f558e8ecdab0c8c88e445d009bbf743682f1d",
+        "morphPositions": {
+          "body.height": "1ccd2dcc51badd82d20f844d89fb173ac032fec4487015cb59fa3cd1a03858cf",
+          "expression.blinkRight": "6cd5c918780ae6f47f0c7bfbdf5ea338942bea95f64bbeef6e830f026b07d15f",
+          "corrective.height.blinkRight": "6b105759860a46fa4ca37a3bff90899a067321d1ebd3bb8e4928f446c13b259d"
+        },
+        "morphNormals": {}
+      },
+      "Brow_Right": {
+        "triangleCount": 48,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "72684aaf54afda69e7fae8bba6364d84c1b51a86ea0dea5129fa77d6b3de68d4",
+        "expandedUvsSha256": "e5b0f835d54a8b52175f96f70e512ea1e689b256d2a36de915ed4b74421bf97c",
+        "orderedIndicesSha256": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+        "rawPositionSha256": "491b17bdc6679acef92f271e9004acf596ced45dbed0af70b5e3fdaf8086d0ee",
+        "morphPositions": {
+          "body.height": "a4fb3bb6e168746b8b106539e6d57f379209fe0090b76753bc16ee02399e28d3",
+          "expression.browRaiseRight": "a7cbaa0d623c94d62f102a41bf5f0a184ce4ae6597112af922b17470a9f990bf",
+          "corrective.height.browRaiseRight": "9441b60a37d56498d396058044a3422e3c92cae84f05d2ad8862a35ecbb9b4f8"
+        },
+        "morphNormals": {}
+      },
+      "Lip_upper": {
+        "triangleCount": 344,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "ce1665d4609f8ae486c997e1c70e07ffb956faf5344f2b71c471e282195508d6",
+        "expandedUvsSha256": "45a1fb42df0a691727c6f67cae4da6bb91ac73e52fc447d3a6b75e1f27a0c713",
+        "orderedIndicesSha256": "39e7450a29ff8ac384343808066b183281e4c49850ae1c7112bd9d901fc75dd2",
+        "rawPositionSha256": "11d44cb975d383ada7316ec2f1bccd40ee961642ce798f57f77da2412d04c071",
+        "morphPositions": {
+          "nose.projection": "31177662db8a67f696f17286372a4bb73389e24c2d559f3c988d93cc6ffaf080",
+          "nose.alarWidth": "2c84911a762b6d36930395289740462e3a7c1ca2b4b1465c7768c8e3431a846a",
+          "body.height": "8d597431e4f8c3e9f423effc98dc0d2a2aba33fc050b0f4a0369e6bed76f403b",
+          "expression.smileLeft": "dfdea8d3dac3f7432a7096ffeae220e83f6ad34bc68ceb107cbfb1a06cedbc63",
+          "expression.smileRight": "d63cfc0c4898bf0744687c0e331800c7bcf53da77929594da53c703fea8971e6",
+          "expression.frownLeft": "05d0cb9fcc09bcb1fcb2df5dd80704469ff2712b78426f66061293ae1ed1b9af",
+          "expression.frownRight": "8ac0751a68303b583f06dcce871a31d6dd5eaff5c09cfbe9cedd8b983b110a81",
+          "corrective.height.smileLeft": "a1441fc17a805d854c9bff877c23d35e7540e1329df2eaaec744ae20eba11c86",
+          "corrective.height.smileRight": "d4436ce7fccf83039915687e174e7461f494078597e871893ea3fb680ad64fdb",
+          "corrective.height.frownLeft": "0ecce6874d7ddc921de9688976abd792404eb2a534ec6e5f7fac57c44c7bc89b",
+          "corrective.height.frownRight": "6b6feb9b99464f93243d0633ec74a87d756290faef522b31e3a4ce6d662c90da"
+        },
+        "morphNormals": {}
+      },
+      "Lip_lower": {
+        "triangleCount": 344,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "7a15f41b44267c82a895903d593ceac4c751a07e075bb02b1cd971f392c123b6",
+        "expandedUvsSha256": "65f8830db09afcafdb7a49dd0f1f7698d3ff4636c45fd15cebb33820ab818837",
+        "orderedIndicesSha256": "690b648dbb82ce9c0d50d27ef59a1222edd6e77c9796f9f2fc9a20b7598f0a98",
+        "rawPositionSha256": "3c3acf6badbb6dd21eee83d0a25f1027b4332da91eb157725e12bb8e641b0c69",
+        "morphPositions": {
+          "nose.projection": "ec84d9fee5a0bd6630997c36c34642899b4d2347420dd7647fe1c260851f3961",
+          "nose.alarWidth": "88e3331b1385e87a250b510e14cd207fe1ff2593c5b25fcc4832fb64b991761a",
+          "body.height": "10fe8b2c8953ab348d5724698a51654ab908b28ef74db1498873c95d91c914a8",
+          "expression.smileLeft": "f2f1e7676c107aad9b5e8f7d62f8575d42921ad5c28992ee73e777f7987f8b52",
+          "expression.smileRight": "a062f9c1d426d4b01d77249be0b62cf8d7a28948162ad7021e460e06e5d5925f",
+          "expression.frownLeft": "80d2f372a0211ce88d0075c4fc74963fcc2c17968254404aa610eee594dd452d",
+          "expression.frownRight": "b1208b7fd8ad93478bbbb163143c744f69a4da51a11759cd64edb82f00ecb280",
+          "corrective.height.smileLeft": "62abbd5a1312b37906d5637e6f02051b4cdd51294bd611da9e7a59ef3746e0ce",
+          "corrective.height.smileRight": "3c95a57fc14940924a6944887b146f5df9fdcb9d45793d0550fa5119477f1a50",
+          "corrective.height.frownLeft": "7c01fc13b0482c24590cb9eea707da322f61572ded4914c768c63ff2cbdb53dd",
+          "corrective.height.frownRight": "8750da069495dead327bc84138f1f46c5f8587580e9dee48088d5c49de5e141e"
+        },
+        "morphNormals": {}
+      },
+      "Mouth_seam": {
+        "triangleCount": 536,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "6ed59199a21226242772daea39d9d65106e37d3b0d29575bb713b67045e42a64",
+        "expandedUvsSha256": "c245c80bd5bf05cd38ac6b7af99c0dca0cc7331c1b7cc92a800da1ac0afa85d9",
+        "orderedIndicesSha256": "d32f38d3ed5c440cb5db1cf9210b7f1820e15a6f424bbaec539c7845466ba6cd",
+        "rawPositionSha256": "b0445a4a45250a8598c93aa6631163d4bf5230801758bf17721bf3cfd8926d7d",
+        "morphPositions": {
+          "nose.projection": "d6fe7b9a003587eb438e7db44decb6bac5dbeb35147572af2a893d146ad88da8",
+          "nose.alarWidth": "06ef660347fd212d3c3dee511ab017ebe060d7785b0c95d44d4381d4a816dea8",
+          "body.height": "c44ac9bcc85d60873e856f40ce0950d790335041975d19e2a506edc80a8573ca",
+          "expression.smileLeft": "9ff5186fa04c9fe5d93634e862389b7fcc20a28541a889f439b8cb2078673067",
+          "expression.smileRight": "60d15a34c0768d7334b8d20ecc16fd94dcc95cc5f31d730db134bb9022b4c236",
+          "expression.frownLeft": "2e64601e04b8560b405e2b1b8a1dc4f5a9de9b8fa963bef6f3738151598c88cf",
+          "expression.frownRight": "c23dd7d19cef7420ca0a1d98c6218050a94f7c02b11b70ad1ffc179446d50c78",
+          "corrective.height.smileLeft": "89bfb55c9f6724e8b772aa9d6a8629d5d913381e528bf23e588e77d4fdd8eaef",
+          "corrective.height.smileRight": "633f4f771a156df91bb4ecb47162e2f8c81a5674a661ce2ee3855881d833601f",
+          "corrective.height.frownLeft": "391cbf992fcfea56c4e4eb4d35f475c412e451de7224314b1060377833d134b9",
+          "corrective.height.frownRight": "7e216ec19c10f7ddce464bf58ac73a738b3925750d516aa691d1eb02b74a6ef7"
+        },
+        "morphNormals": {}
+      },
+      "Nostril_-1": {
+        "triangleCount": 280,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "ab7a9c4371b0a9c2d6c62e2d099b7c21fbd1c32a9067d9e0208d7ac9ec23f4e3",
+        "expandedUvsSha256": "6e20d3be18ca2bba91215a0010e6ec0d0abed7e2ddd300f17bf003f2c4db2e46",
+        "orderedIndicesSha256": "39090226ad5752bc332258b41c3c2b50b53198fd13c4924ba668110c48c4b4b6",
+        "rawPositionSha256": "ca00b5e29dd5e44c4347b0460987eb76a56ffae7d0af0e44edfec34683f429ef",
+        "morphPositions": {
+          "nose.projection": "8231709b57029662eec41c7d1eb797bf94c179420acb5a7785d836e251b7ce68",
+          "nose.alarWidth": "aa7743bdffd124af3b689ef0cf64031c3b0a5fa253a1dad25b4e78941aa13877",
+          "body.height": "49f5470c71b771833f5538330848b85e397c30b7c2eecbd176ba15fa2ae83627",
+          "expression.smileRight": "dccd81e3f35b63addc83dde769e1945ff2e66215d19b91ce6d2c1f05711c5393",
+          "expression.frownRight": "e6d577e9cf423d973fe30c870c181bad6100acf65c7d97d119e774fa6f301fe9",
+          "corrective.height.smileRight": "c9868b2a56d243409b9abc9ceae9fe6e6243c9dc01c37667c19374f9b8f90713",
+          "corrective.height.frownRight": "a7b6e5736fba28faa53f03660ae90c589f98e67d74a41c259fd43a80aba5a254"
+        },
+        "morphNormals": {}
+      },
+      "Nostril_1": {
+        "triangleCount": 280,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "8e84928d47967bc3efe730abc88af235d279c15c8357161f80cb7db95e537216",
+        "expandedUvsSha256": "0c29019897887654a92f9a637ea50c1a05c25d176f1292bff934551d02f51a90",
+        "orderedIndicesSha256": "4a96c7d95dce17cdee867addee03f4dcaa9cffb887d6b4f864336ee70b95d36f",
+        "rawPositionSha256": "bfd9b944bed5840e2b67951e6ea8b1f1056f16d84bc32cd735f560787f0a3033",
+        "morphPositions": {
+          "nose.projection": "faf896b337a1e6b6a9430c2e3e47c1ee9cd4df78b59a1cd643968d89684e294c",
+          "nose.alarWidth": "b22e51601c70302bcb6427e0215e577168f3975248541e0e250518ed8abeb0c4",
+          "body.height": "49f5470c71b771833f5538330848b85e397c30b7c2eecbd176ba15fa2ae83627",
+          "expression.smileLeft": "b49c1eb496e86a45614a5f5393980412fecbd424a8dc8865bd2755ccec310604",
+          "expression.frownLeft": "0117fba1d7da39a609a6b641d4b0d9b7ad039f33a93f032806e478fb11121caf",
+          "corrective.height.smileLeft": "089738868031f9c01b414bc606d3f64e882d8a70db55be05c9a6c201c9e42752",
+          "corrective.height.frownLeft": "ec37f236d5a2270b335cdae4ad777c2315ce3de15e618fa43d74b4ec95f87304"
+        },
+        "morphNormals": {}
+      },
+      "Ear_Left": {
+        "triangleCount": 640,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "92f31939b6183a2c784e18a9265e44df6efb028e95b01144da205c61b02bcb3f",
+        "expandedUvsSha256": "672ca8fe757bac8f16ff7d5838a4fcba859c6e5494a1f74079b951d66148e612",
+        "orderedIndicesSha256": "f797d9994345f39c204fd4453974a5a53710fa16cd9b1c73290e174b5887b4d5",
+        "rawPositionSha256": "b44db7d192d33ff249e8d8d12f1a3f4745d29ff8a786ccd3384f895ca64fd0bd",
+        "morphPositions": {
+          "earLeft.protrusion": "8d8107430731962f526aa0e3dcec4111ad156df5a31a97f9b5cb5a86d31dace2",
+          "body.height": "f17374ab894690b3892bf7a950a74b10f8cd7af8c67918a8548515048bc439e1"
+        },
+        "morphNormals": {}
+      },
+      "Ear_Right": {
+        "triangleCount": 640,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "5675b1668e3c98717949fada1f5afb990f022a614b6d83ade7f7bd5ebd185704",
+        "expandedUvsSha256": "a01ebc50b9b4ff4bc054692180517c694d754f546eb69e75429ab96a5dc72785",
+        "orderedIndicesSha256": "863d962580c2b257458848e88c9753bb4a55f50cd9f6dbe7e2b192f20765a0cf",
+        "rawPositionSha256": "a9303d9898e591e2e2974f772800050ad80d0ceb2235fe01edb9f11a15d44f81",
+        "morphPositions": {
+          "earRight.protrusion": "8eaa013756dfe41c6f6b230e2251dc236d0d33663d41031af6c5d28a298d60ce",
+          "body.height": "b740791a5e4621be4f06bd9f20015945059a96a7cd851ef458e72d793e4264e3"
+        },
+        "morphNormals": {}
+      },
+      "Hair_original_close_curl_surface": {
+        "triangleCount": 2518,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "b78e73c7541313cf6a6453e8b927896ce95c12dd76a62cce5d1bc319286e4f70",
+        "expandedUvsSha256": "9e403a89f7dadaa285fbe6044d6f3c9743457ded42bd37b867a47d458a9c95d0",
+        "orderedIndicesSha256": "07e89ef930465a6ad55c58da155a4b6c383ddcee3eec09348cebb4c89441bf6c",
+        "rawPositionSha256": "d43686b60c77c62c93b7e0cdc2ed5110d44a8eb902e5fbe9c03cd2e40a4b368d",
+        "morphPositions": {
+          "body.height": "6974a812244e9f4154a8f8f59d7a67650f024d1b7c9af392a51107b9dbfceb32"
+        },
+        "morphNormals": {}
+      },
+      "Fitted_Cornea_Left": {
+        "triangleCount": 600,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "6a620c72902a1f5607439bc87da8d7c2f5b6113e1ad963a05f30b51d9b365a15",
+        "expandedUvsSha256": "4bd67f989e39ec64a5dd2132f71780546733006aa9c24634ac1a8507c9423b36",
+        "orderedIndicesSha256": "6037beccfb9c3971bcd306d5d73ee9d4a25d7351388a19435b65fedbe903a40f",
+        "rawPositionSha256": "8532817498a44dba498b13b7e1db7e4bbb6cc450b05ebbbadd172809319b4d19",
+        "morphPositions": {
+          "body.height": "6c71c115c5ee348a1cd17cc6fd0a4530a01e4a7c7359338ed922fd2bd28342e2"
+        },
+        "morphNormals": {}
+      },
+      "Fitted_Cornea_Right": {
+        "triangleCount": 600,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "15ff49ab10485da5f66f8777d78f1df8364683474279cc98c2504ca2fa211ea0",
+        "expandedUvsSha256": "4bd67f989e39ec64a5dd2132f71780546733006aa9c24634ac1a8507c9423b36",
+        "orderedIndicesSha256": "6037beccfb9c3971bcd306d5d73ee9d4a25d7351388a19435b65fedbe903a40f",
+        "rawPositionSha256": "a91a0d7fbec58a35faaa9ecc123625c17d9b56e71873ceb7038514911e7b7b82",
+        "morphPositions": {
+          "body.height": "6c71c115c5ee348a1cd17cc6fd0a4530a01e4a7c7359338ed922fd2bd28342e2"
+        },
+        "morphNormals": {}
+      }
+    },
+    "crop": {
+      "FIT curl-crop / C01 tight curl crop - far#0": {
+        "triangleCount": 3808,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "cd7726e47fe2f55dab8be528e513d9859a3ab32c34bf61c7b7d12de406a48324",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "36e112999bc51c04be50dec9cbe45849345f1dcb38b4f2e3732965633b5727e9",
+        "rawPositionSha256": "0aa3744802ae10581e83701488ea2540f905e4169e7aa7101f6d2aea4db20d89",
+        "morphPositions": {
+          "earLeft.protrusion": "8f5e80498b102b52b7daff9ee323fb5915df7b20994ec478480851042508ff98",
+          "earRight.protrusion": "2af102979a37eafbcb6d2f3c2ad14466d48e3fcb0e3f1b929e3a61a295fd692e",
+          "body.height": "01a859836d3804cf8df2a3155dd6da83eeed4c74651140658df31d65115419ef",
+          "expression.browRaiseLeft": "53e620a41b22128d200076c0219e34822705a23232a0e8e1bb7aa703f23db564",
+          "expression.browRaiseRight": "bbd19b45aa63dff8d63334e7eff2667d6ab65e31dc21fec3a47f88c746187555"
+        },
+        "morphNormals": {}
+      },
+      "FIT curl-crop / C01 tight curl crop - far#1": {
+        "triangleCount": 1008,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "d095d478d74c5b7d618c8d5d0e8742d1a3203bd4a01f86d48ad2844e89177b76",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "eb75cc3d123ce70e5e89948a4d87e539fbfafc90c2f35e5401181da8d3cffc4f",
+        "rawPositionSha256": "678025f5eac3ce149879e9da78a2f60ced01ca93f6f85158c6238c8776295a73",
+        "morphPositions": {
+          "earLeft.protrusion": "90dab40c15ffb8c39803e7415e5d5b6a28922b585639bbc8e9f8b7efde6db11b",
+          "earRight.protrusion": "6a81fd6002e9ed586aa7335ac93f244114538c4aba51adaf2a11f64d87bf0f81",
+          "body.height": "1a72491d840298784304137b553a4b715953a47e70ed9faffe9e7fc074d41521",
+          "expression.browRaiseLeft": "d57bf0f2b1b071e6318c4bf691ec23799fdeea7c9fe1ef04ccb24165df55124d",
+          "expression.browRaiseRight": "d57bf0f2b1b071e6318c4bf691ec23799fdeea7c9fe1ef04ccb24165df55124d"
+        },
+        "morphNormals": {}
+      },
+      "FIT curl-crop / C01 tight curl crop - far#2": {
+        "triangleCount": 560,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "8b582c98f502c5403c1bb0104fa1147c2d3a97db63037aabc3883e9a4e1c0eca",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "0750634c9c90540ca726e817fd4376b0ec23155170a84bcbcd7e0b663dd7f7f8",
+        "rawPositionSha256": "2245c54e07cd1d9548b5f18beb78ef071e20e730d3a78bc06291a2da41542eb6",
+        "morphPositions": {
+          "earLeft.protrusion": "b41bc10f364406571d277ca03d93ed9110dff7556206990d5ea83ea154afb87f",
+          "earRight.protrusion": "bed82f70f729541318703886fc7fdbb981eae2d07724dec9d9acf08eef169ecd",
+          "body.height": "2c7997893793d6e316c49f99b7b7516f9a7e07db32c6aab502fe1b39bd463ac1",
+          "expression.browRaiseLeft": "f8fb6dec15098ddda5f580453632a91d0d1a30361a07a2671d044df7a59074f8",
+          "expression.browRaiseRight": "d4c9930eb3e33baff94d814dea65540cc7889671e10302f545c0bc6f8bd8232a"
+        },
+        "morphNormals": {}
+      },
+      "FIT curl-crop / C01 scalp foundation - far": {
+        "triangleCount": 1198,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "225d82ef8732e84472dab8e5cfeb7fd80f3e310b7cffeed7e72b734f1ac18d21",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "2251556a0bc6345af04e6166fb64cf338142b35c13dff6d3db66c4a74c5828dc",
+        "rawPositionSha256": "fa6b57077c3dbf814fd25a482e98257d7e44cbbc28f0916af2fde5135d70c223",
+        "morphPositions": {
+          "earLeft.protrusion": "b1f6f512338cb88f4667afe01c4631d04be3354311f80c25d3bc9df75e61b794",
+          "earRight.protrusion": "3211fcf090a949c46ff5ad4c61b26ab2c6e8866f7c08b11d3ed73d27be8d93cb",
+          "body.height": "ef053c252a1ca8906c3770526d5cb2a0baa3eef56fd5327d34ded18ecd5c37f0",
+          "expression.browRaiseLeft": "55ead970be6cdc35ebc63a38b2b88652beeb67b70acbd871a4617ae3f9895b79",
+          "expression.browRaiseRight": "ad0b0758be4825db34d4f160c2b5694709cf01d7e0b322a25db08cfe941acf0c",
+          "corrective.height.browRaiseRight": "7b0a188d219a3b0773e94730f87861dc03375735afc6b1a32027dc08258fca49"
+        },
+        "morphNormals": {}
+      }
+    },
+    "bun": {
+      "FIT swept-bun / S02 wound centre - far": {
+        "triangleCount": 252,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "8a2efad0240f9a77b5130c3cfe1a76d41db86927794be9e89761a4fdcef2d1b1",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "ec54f79002d62a3c1a9abe220af9df5097e5c79842b9e44d58c2a7b57352514b",
+        "rawPositionSha256": "b431c720cddcc3921f8470c1ea36e844b5db7e4b5d79f1f011df1ee5c0f5a622",
+        "morphPositions": {
+          "body.height": "46aa2cf42d27eab7977d5965981bbb606fe3d904ba77b98086b9f231b4961bc6"
+        },
+        "morphNormals": {}
+      },
+      "FIT swept-bun / S02 twist fibre ridges - far#0": {
+        "triangleCount": 448,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "970d773c1097f1b6c3ef3a8e71dbc8cd66d4c2e8aeb65d6c1d5b423ce6a26460",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "3469cc02a90a82112b401c66cb04ecf4fe7c21cfe5b701313456ff5fc646f198",
+        "rawPositionSha256": "c4321ac3bbc7d3260fce482396858f5af0e2c98feca8ccd32fbcf01170c24da9",
+        "morphPositions": {
+          "body.height": "c42736d211a8ea6aa77497cfc448a209b2bf26a4604f1e822fb6ac2cc4a1b664"
+        },
+        "morphNormals": {}
+      },
+      "FIT swept-bun / S02 twist fibre ridges - far#1": {
+        "triangleCount": 392,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "cd90740de09ce9b1674368b163019d6c949944e3e4b5e991fb002d1c7243e34a",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "d7adccf20f34f255fbce1687f3900244cb2d21952a3c8e3537ce60f3ee08a8c8",
+        "rawPositionSha256": "3bcbe4b90faf4699c881a866c17bffdafbe8b71c63dbc990aa9b3b1b45c532cb",
+        "morphPositions": {
+          "body.height": "f418bf224d23465098c23f153a5ab41408e50fdd750b5608d3b8705fa95a1c34"
+        },
+        "morphNormals": {}
+      },
+      "FIT swept-bun / S02 twist fibre ridges - far#2": {
+        "triangleCount": 392,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "231accfdfeac77b9a4e239f45e209a107d7a132497749ccf25bfe5c32048b15a",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "7a59d95a786a1fb2f9fa96a7b721790255eefe0e6ba96d97af205e8445bcad9b",
+        "rawPositionSha256": "a50069fef3dfac04f601d5f3cb01622e1e69266942831e9f586da8ab93f46e5d",
+        "morphPositions": {
+          "body.height": "29861c4f60521813dcf299c8d6a02e50755bdcc1be9a14e39412412e9f03b747"
+        },
+        "morphNormals": {}
+      },
+      "FIT swept-bun / S02 swept scalp ribbons - far#0": {
+        "triangleCount": 2200,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "f505bf9b12de2c7dbd5ec895696d7ab034ea7d3c43f76cbd4b61177a454f4e7b",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "fc16a64cfc5ae817f30b02da2decddb90de3bed433c8c5503d4ac5b758d42b83",
+        "rawPositionSha256": "a4fdfcff25189799487d43bab4f3a4563487741c1ef02c79928cfdaf28d053be",
+        "morphPositions": {
+          "earLeft.protrusion": "9181df8e50e8a623bce39276b7efff4ed6102e263c091a5588344803af9a6fd8",
+          "earRight.protrusion": "0aaa51e943d93ef7c20ca29c5263efb750b0e55ee4fd3770ff990e3934ddf76e",
+          "body.height": "bd4eeac23e3a3d3ac20581dcff17a214e2785683d51ced54554e18c8eae35880",
+          "expression.browRaiseLeft": "dac166ed0e08bab7907937a743b1454d70344d434f8fba75665b0efe454e4ca3",
+          "expression.browRaiseRight": "ae6b7f23fcd4b078787c335fe4af49b31b8c032513f7a6622d29169f7f38991f",
+          "corrective.height.browRaiseLeft": "6a05bdc4e3d1181c567a7f858c55bf83737b46a2902ff7092e0eed6cebc6a788",
+          "corrective.height.browRaiseRight": "f745297d0af48de7a8bc6473362fb6a6066ecce673aa4c756b804e6de4ae3ccf"
+        },
+        "morphNormals": {}
+      },
+      "FIT swept-bun / S02 swept scalp ribbons - far#1": {
+        "triangleCount": 704,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "d1f0a97687f4497327ed58d7b76a08a3e3d1cd0fe90b82fb25ea2c90be53a02f",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "21bce8384366c0cd19f9c35a4a3c899a6f80993a79e66afed155031f5b872f5b",
+        "rawPositionSha256": "3c085164098c112f17b94fd27f6aa661f6e3258eacaa6a0744618669f407d07b",
+        "morphPositions": {
+          "earLeft.protrusion": "5377c293628f853f1c343136a52b13ba29ba8ae371d6d5c6c3fd5dd5bc9405ba",
+          "earRight.protrusion": "8a9e8d609224751936cf6492bbaae56343e3ff70608689f9a650a83f47938584",
+          "body.height": "d925c2fd07138286746b6f07894eb3cc6f959a38a0b0c00252fdde6ccc834753",
+          "expression.browRaiseLeft": "502b505c428dc8bcbf33d4cc93bcf48ab7edaeaf645d8dcb4751d6c9fdde8fa7",
+          "expression.browRaiseRight": "750c08de7fad4099e52d308d67222680470fc26aefba1b68858de2e187787ba3",
+          "corrective.height.browRaiseLeft": "9a5188d8f67f9d446dbdf81319274da7b9b0b10e224b3c6fe176d6077858d540",
+          "corrective.height.browRaiseRight": "c7e15474412530a917a8a0d6b6fb22b71b88073dc9294ed23fdb637c618326f2"
+        },
+        "morphNormals": {}
+      },
+      "FIT swept-bun / S02 swept scalp ribbons - far#2": {
+        "triangleCount": 176,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "ebd3679b43d0142b3ff5d89108025c29679f09e4f50851d886c136692e287296",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "a5b6d33cee5278f5e96674c6882c8f14ced5f9db33c72316008480480651e5fb",
+        "rawPositionSha256": "1516e34d285631b3eed6f919017c74060be6ddfb77327b8c6267abfa8d3ed528",
+        "morphPositions": {
+          "earLeft.protrusion": "99dc7a8f4391f36c5f20b99594ac489527e66a07c65b7dd640d9dfc21655c483",
+          "earRight.protrusion": "a8d701e5b21efb1514347059a923912b10ffd6e6e5300cc1a23507b112867b02",
+          "body.height": "ff056c7cf2f79062b1682d9d37754252524ac5570d2dbf8397dfcdfe9ae70210",
+          "expression.browRaiseLeft": "ca8a3b8f71eaf98e38d65640748bd2ee7482a2ccd56ee6b004f9653d30507cf9",
+          "expression.browRaiseRight": "441d5bacdc558fdc4fde722b6bfd671658f2d06adef8d74df8cb0faf0dfd8473",
+          "corrective.height.browRaiseLeft": "afe444acaa5e26e12640d0f60ff1cbc139c85cf0efadee83a500e8fdc3c96297",
+          "corrective.height.browRaiseRight": "2e097c2f1548193459c5bf6bd4459467e3a3788ec6405018b9f8b94f76fc46d6"
+        },
+        "morphNormals": {}
+      },
+      "FIT swept-bun / S02 swept foundation - far": {
+        "triangleCount": 754,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "1ef95dad63aa483395c5dafd59b18669566b3b5754503a16423091ab966e7925",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "fbfddbdc45b9ca0baacf4706bcc05147c07a2a0160118e4f2df80a1571fad6d2",
+        "rawPositionSha256": "0f0892439128f6a598666961604d29c79ccec79efc5fd98bf9785f4e487940a1",
+        "morphPositions": {
+          "earLeft.protrusion": "70bf3baaeedc380058b993e524c6ff1a7e3567b8d1ddca19c551b4efe7ad122d",
+          "earRight.protrusion": "b3a8963c6381981199146a3a42f46e837d835817b6d3717009398b849fe0574d",
+          "body.height": "d668d9dc907549a7cc985c66a1dcc490fd848808666a1dd249be07cecc668e5a",
+          "expression.browRaiseLeft": "4bd0252380c6f11e0cef59015dd068cc4d66365df7df861f3ac320ddf598857f",
+          "expression.browRaiseRight": "20e929b6873f76462db444e6ee517900c4ae0b998b4da1dafe58d61ace704e82",
+          "corrective.height.browRaiseRight": "e6863cb6bf05150842934b93cdb46f04c2b522013d13d73a0c659465c16e2313"
+        },
+        "morphNormals": {}
+      },
+      "FIT swept-bun / S02 sculpted low twist - far#0": {
+        "triangleCount": 304,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "1072039e25c07ff4b2ccc54e81083951d66cc0062d752ddd6aa9832d3182bb3e",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "2a78254b837e9ad11958c34009f62fb41c1600c48c13b5c9b6628f8aa0150f38",
+        "rawPositionSha256": "fbbe53441c32f3506740ce2e667f01bb69202efb444870dd0fe12ba366bf2e6c",
+        "morphPositions": {
+          "body.height": "2db99fbd479fd098f8e6032f26d34013670e36caa0102e26dd7fa201f8c4b783"
+        },
+        "morphNormals": {}
+      },
+      "FIT swept-bun / S02 sculpted low twist - far#1": {
+        "triangleCount": 144,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "45cf4570df15c3f9a692e0763e4854fed69a852aafa5fe5456ed8d460e56e259",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "57b0c1e8a3b285428e5fcba0df5be911a30961d6f0099d038ba0a4cbbb638c77",
+        "rawPositionSha256": "044c7c34fa4378b043fd7eaba4e2baef7863e934bf014b27f5eba7b8e94f0192",
+        "morphPositions": {
+          "body.height": "dd9d742a476c8685fd157644fb8e70cd9a8c54d8931c5086ef658e4ddcab0f1c"
+        },
+        "morphNormals": {}
+      }
+    },
+    "cropProxy": {
+      "FIT curl-proxy / curl-crop - silhouette only": {
+        "triangleCount": 358,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "16c538dccd41c5276faa858be420048376a91b07ec2edfbe3953b9216496d724",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "1d2ae47cbbf9c41244d251694b3fdfc20baedb868d126101d0d9ca62133de49a",
+        "rawPositionSha256": "4a192a87b3e7a520bd9716f8d55677d1ab8814532c1ea3206e4f148e3590ff17",
+        "morphPositions": {
+          "earLeft.protrusion": "04aa4f18e91bb1fad1d0a29ee8a7633b2fc565e0067ed8f79c8627f44ac9f8c5",
+          "earRight.protrusion": "995919ae844d5e311e10c53905eca7e7f574b8076bc4bd93c005778e5782c585",
+          "body.height": "e65304e234b932f029fe3a4b1bc86093565f11ec0eb8259a160947880a52ebcc",
+          "expression.browRaiseLeft": "22cc24db6032934fef4e9e3906e306bfea88e31b0a81c316a4d06152ad72e7cd",
+          "expression.browRaiseRight": "e7d4d029de2659e24297e91b20be2703cc14fca0d5cc9bc3239ca2b6218a22f7",
+          "corrective.height.browRaiseLeft": "122528eb1a0dd67407b7cfd1508e809ff0b0fa5855a5311d2a10bf2d0cadcd12",
+          "corrective.height.browRaiseRight": "f857b4c42a8a98080777c62792e705e1e159ee880751ed90753fb3b4c3f2df32"
+        },
+        "morphNormals": {}
+      }
+    },
+    "bunProxy": {
+      "FIT bun-proxy / swept-bun - silhouette only": {
+        "triangleCount": 358,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "c45986fd2ee1322423cbd62813fdd89252b4c31b00d70f78e4204c7dd62404af",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "7905b103ba933658cbb41eb7ee21f40e55edbbc1e8c7030c49689e24a57f8c86",
+        "rawPositionSha256": "1dc88ab779bbdf876f1a36795788335dd95fdd6e7ab95e4256c85f3e1f0b7612",
+        "morphPositions": {
+          "earLeft.protrusion": "7138be2ef21dda2680a9ac4a2449de410220b0a0238d771d6d06e3dec59280a0",
+          "earRight.protrusion": "d0878a8eee004aba56dce94965991ea8be59c57737aadb9529d58bc5aebb828b",
+          "body.height": "120fa6305662aa32e6d1c5e12b61594cc2e3cbf4fd33592f828916bad1a95f6f",
+          "expression.browRaiseLeft": "4875d68f8f7dc1e53a255003277b42cd0defb2864b8831296a1827f9ca5661c9",
+          "expression.browRaiseRight": "b4942d4d202585f5ac96102b51ddee635c948eef3899ae9e62ebe88489dbe6b6",
+          "corrective.height.browRaiseLeft": "c1caabcf5b25d2bca56a0fd8abe7d05c96b2c5862cedd3238cd7e5a7e9b38a03",
+          "corrective.height.browRaiseRight": "f857b4c42a8a98080777c62792e705e1e159ee880751ed90753fb3b4c3f2df32"
+        },
+        "morphNormals": {}
+      },
+      "FIT bun-proxy / S02 silhouette bun": {
+        "triangleCount": 144,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "6cea779c7902a161cd0a85de36b480c5368a4c705418a133007825dc94914262",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "d071cdae4fe18bd117bd50eddaf8187c1cb9834f674a754c677a170b5bbc68ca",
+        "rawPositionSha256": "f542b85511e20922b8b7469b8743f9c0000a2785f9bba342db7edd2d6b715370",
+        "morphPositions": {
+          "body.height": "cdf99d04115e04b7e31b5d9c1555c00525a3598573a70fe8c831fb12f59c506e"
+        },
+        "morphNormals": {}
+      }
+    },
+    "wardrobe": {
+      "ENVELOPE_everyday_01_unrigged": {
+        "triangleCount": 2324,
+        "nodeTransformSha256": "5998e9d1dd9bf48af6af87a1ef8c7783b818ac8329637ada08cc5fb329042376",
+        "expandedPositionsSha256": "a8bab433b4e482e4ce6f0ea67aa2cf384709b7c31238cd582ba3c0ff102811e7",
+        "expandedUvsSha256": null,
+        "orderedIndicesSha256": "9d4412f065c95e37b2406dedfa2de8a862a8e6ecb48082bda1578f8e2b3145c8",
+        "rawPositionSha256": "99d43f4565d21a81277510c5c44e463bf7c897795486c4e08ee2b857588b3fc2",
+        "morphPositions": {
+          "body.height": "2727153fc6b76e84145934592dcd99999409a61726c25d1e35d96368ced42a7a",
+          "body.shoulderWidth": "ef2b8d4eeb8ce3917db6a253a91faab0afdfb53443b37bfeec3131381c1c44ef"
+        },
+        "morphNormals": {}
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "name": "Neck",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Shirt_fused_shoulders",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Collar_band",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Trousers_fused_hip",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Forearm_hand_-1",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Shoe_-1",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Sole_-1",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Forearm_hand_1",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Shoe_1",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Sole_1",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Head_continuous_anatomy",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Eye_Left",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Iris_Left",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Pupil_Left",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "UpperLid_Left",
+      "candidateVsMaster": {
+        "triangleCount": false,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": false,
+        "expandedUvsSha256": false,
+        "morphPositions": false
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "LowerLid_Left",
+      "candidateVsMaster": {
+        "triangleCount": false,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": false,
+        "expandedUvsSha256": false,
+        "morphPositions": false
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Brow_Left",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Eye_Right",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Iris_Right",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Pupil_Right",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "UpperLid_Right",
+      "candidateVsMaster": {
+        "triangleCount": false,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": false,
+        "expandedUvsSha256": false,
+        "morphPositions": false
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "LowerLid_Right",
+      "candidateVsMaster": {
+        "triangleCount": false,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": false,
+        "expandedUvsSha256": false,
+        "morphPositions": false
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Brow_Right",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Lip_upper",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Lip_lower",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Mouth_seam",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Nostril_-1",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Nostril_1",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Ear_Left",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Ear_Right",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    },
+    {
+      "name": "Hair_original_close_curl_surface",
+      "candidateVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      },
+      "skinVsMaster": {
+        "triangleCount": true,
+        "nodeTransformSha256": true,
+        "expandedPositionsSha256": true,
+        "expandedUvsSha256": true,
+        "morphPositions": true
+      }
+    }
+  ],
+  "unchangedCandidateMeshes": 27,
+  "skinMaterialTransfer": {
+    "eligibleUnchangedMeshes": [
+      "Neck",
+      "Shirt_fused_shoulders",
+      "Collar_band",
+      "Trousers_fused_hip",
+      "Forearm_hand_-1",
+      "Shoe_-1",
+      "Sole_-1",
+      "Forearm_hand_1",
+      "Shoe_1",
+      "Sole_1",
+      "Head_continuous_anatomy",
+      "Eye_Left",
+      "Iris_Left",
+      "Pupil_Left",
+      "Brow_Left",
+      "Eye_Right",
+      "Iris_Right",
+      "Pupil_Right",
+      "Brow_Right",
+      "Lip_upper",
+      "Lip_lower",
+      "Mouth_seam",
+      "Nostril_-1",
+      "Nostril_1",
+      "Ear_Left",
+      "Ear_Right"
+    ],
+    "blockedMeshes": [
+      "UpperLid_Left",
+      "LowerLid_Left",
+      "UpperLid_Right",
+      "LowerLid_Right"
+    ],
+    "reason": "Four candidate lid topology/UV/morph payloads changed; old skin lid maps not rebound. Keep candidate original lid material for diagnostic preview only."
+  },
+  "fitFrames": {
+    "frozenSha256": "51fae932279d1513e16c4d06ce633f6218a994fe6c224bc3436e105cc519083b",
+    "candidateSha256": "59c552e227dc4d50caebfb58f9bfe3ba34217e5fa1b39d8a3a35e8f4fa8b38a5",
+    "anchorsExact": true,
+    "controlsExact": true,
+    "skeleton": null
+  },
+  "skinAddedMeshes": [
+    "Fitted_Cornea_Left",
+    "Fitted_Cornea_Right"
+  ],
+  "variants": [
+    {
+      "hair": "crop",
+      "bodyTriangles": 32482,
+      "replacedPlaceholderTriangles": 2518,
+      "corneaTriangles": 1200,
+      "hairTriangles": 6574,
+      "wardrobeTriangles": 2324,
+      "totalTriangles": 40062,
+      "previewCap": 34000,
+      "headroom": -6062,
+      "withinPreviewComparator": false,
+      "bodyMaskAdopted": false
+    },
+    {
+      "hair": "bun",
+      "bodyTriangles": 32482,
+      "replacedPlaceholderTriangles": 2518,
+      "corneaTriangles": 1200,
+      "hairTriangles": 5766,
+      "wardrobeTriangles": 2324,
+      "totalTriangles": 39254,
+      "previewCap": 34000,
+      "headroom": -5254,
+      "withinPreviewComparator": false,
+      "bodyMaskAdopted": false
+    },
+    {
+      "hair": "cropProxy",
+      "bodyTriangles": 32482,
+      "replacedPlaceholderTriangles": 2518,
+      "corneaTriangles": 1200,
+      "hairTriangles": 358,
+      "wardrobeTriangles": 2324,
+      "totalTriangles": 33846,
+      "previewCap": 34000,
+      "headroom": 154,
+      "withinPreviewComparator": true,
+      "bodyMaskAdopted": false
+    },
+    {
+      "hair": "bunProxy",
+      "bodyTriangles": 32482,
+      "replacedPlaceholderTriangles": 2518,
+      "corneaTriangles": 1200,
+      "hairTriangles": 502,
+      "wardrobeTriangles": 2324,
+      "totalTriangles": 33990,
+      "previewCap": 34000,
+      "headroom": 10,
+      "withinPreviewComparator": true,
+      "bodyMaskAdopted": false
+    }
+  ],
+  "assembly": {
+    "base": "human",
+    "hideOnly": "Hair_original_close_curl_surface",
+    "addWholeBodies": false,
+    "retainClothedEnvelope": true,
+    "skin": "material only on 26 unchanged visible meshes; two caps separately",
+    "lidMaterials": "original candidate fallback, not remapped or rebaked",
+    "hair": "one already-produced silhouette LOD, not both styles simultaneously",
+    "wardrobe": "garment-only envelope overlay",
+    "runtimeAdopted": false
+  },
+  "readyForCompleteSkinAcceptance": false
+}

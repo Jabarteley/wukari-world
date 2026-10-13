@@ -1,4 +1,14 @@
-# Continue the completed first-wave integration review
+# Continue: combined-character review delivered, acceptance blocked
+
+Latest authorized task is complete: exact human `b62b7fb6d10e9c80e0d127d535d97a86d0b29f49` (continuation `7a8928797aea919ae92d41fe4cc15f1c2ad74da1`), corrected skin `2544b6d66bddf5431ed15bd17298a21b43bcc454`, existing hair `7a9759f1c371aba39bc34b875e64797c4071ad25` and wardrobe `8f6e32102f47330239c30d45aa552ea6e17d9011` were reviewed without production integration. Read **[combined-review-v1/RESULT.md](combined-review-v1/RESULT.md)** and inspect the **[12-panel diagnostic](combined-review-v1/combined-character-diagnostic.png)** first. Earlier handoff history below remains for traceability.
+
+Observed: 27 unchanged meshes, four incompatible lid UV/material bindings; detailed-hair totals 40,062 /39,254 fail 34,000. Existing silhouette LOD combinations measure 33,846 /33,990, with no invented body mask and only the explicit hair-placeholder replacement. The isolated preview transfers compatible skin materials and keeps original candidate lid materials, visibly labelled as partial binding. Full-body rendering costs 68 /70 calls and 67,692 /67,980 submitted triangles due to optical passes. No cap was raised.
+
+Executed 42 exported-morph states: no new proper cap/hair/wardrobe crossings or sampled hair/wardrobe penetrations. Three lid faces reverse their normal direction relative to neutral at full blink; a bounded follow-up retained this diagnostic and independently reproduced 69 inherited eye/head crossings. No continuous/rig/realism pass. Visually, raised lids, hard patch transitions, uneven skin, coarse hair and stiff garment detail remain. Zero browser errors/failed requests; geometry counter zero after disposal but texture counter one, so a zero-texture lifecycle pass is not claimed. Browser/server closed; all owned jobs terminal and slots free.
+
+**Next: parent routes the smallest existing-owner corrections listed in RESULT.md. No more work is running.** Human anatomy/eye correction comes before the affected skin-map rebind; keep immutable pins, complete-character budgets and all existing ownership. A later combined recheck requires compatible completed inputs. No worker fan-out, production edit, deployment or old-packet regeneration.
+
+User's country direction is separately recorded in **[COUNTRY-CONTEXT-PROPOSAL.md](COUNTRY-CONTEXT-PROPOSAL.md)**: Nigeria/Ghana/Kenya/Tanzania research pending from parent; optional country/region/city and clothing-context/provenance metadata only. Preserve player choices during travel, varied local NPC content, no complexion/facial-shape/ethnicity locks or unreferenced authenticity claims. No country metadata entered geometry or runtime.
 
 Parent explicitly resumed the cancelled review, authorized the immutable packet, reversible Yaba planning adoption, next 4–6 tangible assignments, and isolated branch commit/push with continuation. This bounded review is complete. Parent owns launches and further integration. No main merge, shared runtime/dependency/CI/deploy change, paid/security action or production code change is included.
 
@@ -27,11 +37,24 @@ The next combined character view must await compatible completed derivatives and
 
 Documentation only: no asset integration, new workers, test reruns, packet changes or production edits. E/F remain unlaunched. Visible human refinement and budget-compliant fitted derivatives retain priority; the recorded image delivery and sampled checks do not erase the visual or runtime gaps.
 
-## Finite review prepared; wait for corrected candidates
+## Original finite review preparation and subsequent execution
 
 [COMBINED-CHARACTER-REVIEW.md](COMBINED-CHARACTER-REVIEW.md) defines seven gates, exact compatibility-hash requirements, at most 42 targeted combined states and bounded visual output. It records current checkout limits separately: skinned base <=10,000 triangles with a skeleton; procedural high preview <=34,000; actual wardrobe generator <=4,000 per item and <=3,000 combined with one added draw/material; venue scene tests <17,000 triangles and <=60 calls. These are distinct scopes, not interchangeable allowances. [Renderer source pins](renderer-budget-source-pins.json) bind the read-only audit to production baseline `81d9f599...`; no test execution or claim about a newer remote/deployed runtime occurred.
 
-Do not execute that checklist yet. Wait idle for corrected immutable eye/skin candidates and compatible derivative receipts from the parent. Do not integrate `f504d2f...`, launch lanes, silently replace the frozen master, or take a clothed-envelope pass as skeletal/undressed-body fitting. Candidate arrival alone is not authority to alter shared runtime or budgets.
+The parent subsequently supplied corrected pins and explicitly authorized the finite isolated review. Its executed outcome is now linked at the top; it is blocked for complete acceptance. Do not integrate failed `f504d2f...`, launch lanes, silently replace the frozen master, or take a clothed-envelope pass as skeletal/undressed-body fitting. No shared runtime or budget mutation was authorized.
+
+### Reproduce the combined review only for changed inputs or a necessary fresh-environment check
+
+Scripts live under `experiments/cloud-lanes/integration-contract/combined-review-v1/`; outputs under this documentation prefix's `combined-review-v1/`. Exact Git blob materialization uses ignored `scratch/`; no producer files are overwritten. The materializer needs the six source commit objects listed in RESULT.md. Python has NumPy/Playwright; Blender 4.3.2 uses two threads; Three 0.180.0 was reused from the existing coordinator dependency installation. No install or source lock change occurred.
+
+```sh
+python3 experiments/cloud-lanes/integration-contract/combined-review-v1/materialize.py
+NODE_OPTIONS=--max-old-space-size=256 node scripts/agent-slot.ts heavy --wait-ms 1000 -- timeout 30s python3 experiments/cloud-lanes/integration-contract/combined-review-v1/review_inputs.py
+NODE_OPTIONS=--max-old-space-size=256 OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 node scripts/agent-slot.ts heavy --wait-ms 1000 -- timeout 120s blender -b -t 2 --python-exit-code 2 --python experiments/cloud-lanes/integration-contract/combined-review-v1/check_states.py
+NODE_OPTIONS=--max-old-space-size=256 node scripts/agent-slot.ts heavy --wait-ms 1000 -- node scripts/agent-slot.ts server --wait-ms 1000 -- node scripts/agent-slot.ts browser --wait-ms 1000 -- timeout 90s python3 experiments/cloud-lanes/integration-contract/combined-review-v1/capture.py
+```
+
+`diagnose_lid_flags.py` is a separate 30-second Blender job that investigates the three flagged faces at already-sampled blink weights; its result is retained, no need to repeat unchanged. The first check failed on a Python stdlib `inspect` name collision before any states ran; its log is retained and helper renamed `review_inputs.py`. No original 112/448/17/3,003-case owner suite or broad repository test was rerun. Preserve the original sealed first-wave packet and candidate pins. Do not treat the partial diagnostic HTML as a production viewer or promise that raw PBR rendering equals existing game import.
 
 ## Confirmed next-wave launches
 

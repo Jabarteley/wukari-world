@@ -1,6 +1,6 @@
-# Finite combined-character review — prepared, not executed
+# Finite combined-character review — original checklist and execution record
 
-Current action: **wait for corrected eye and skin candidate pins from the parent**. Do not assemble the failed variants, launch workers, change runtime/budgets, or overwrite the sealed first-wave packet. This document prepares one bounded review of compatible completed derivatives; it does not authorize a runtime integration task or count as review execution.
+**Executed after parent supplied corrected pins and explicitly authorized review.** Read [combined-review-v1/RESULT.md](combined-review-v1/RESULT.md) for measured outcomes and the inspectable diagnostic. Complete acceptance is blocked; four lid material bindings and visible/rig/budget limitations remain. The checklist below is the preserved preparation record; its historical pending labels are superseded by the seven outcomes in RESULT.md. No runtime integration or budget change occurred.
 
 ## Known handoffs and holds
 
@@ -48,4 +48,4 @@ Budget warning, not an assembled measurement: the two reported hair+master total
 
 ## Current stop condition
 
-The optimized wardrobe subset is recorded; the failed skin candidate is held. Wait idle for compatible corrected eye/skin handoffs. None of the seven review gates was executed while preparing this document. No test suite, browser, renderer, Blender job, asset fetch or runtime mutation was run for this documentation follow-up. Production code was read and hashed only.
+At preparation time, the optimized wardrobe subset was recorded and failed skin was held; no gates were executed then. Parent later supplied human `b62b7fb6...` and corrected skin `2544b6d6...` and authorized the finite run. That completed review now stops at the blockers in RESULT.md. The old failed skin was not integrated, no shared runtime changed, and no new worker was launched. Further correction/inputs remain with the parent and existing owners.

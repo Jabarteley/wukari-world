@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "glbBytes": 85088,
+  "sha256": "2f07d1146f0e356f7ce951e31f9df49a3ed0c0ae651774738c4527d045e00406",
+  "triangles": 2328,
+  "positionCount": 1926,
+  "primitives": 1,
+  "materials": 1,
+  "textures": 0,
+  "encodedTextureBytes": 0,
+  "decodedTextureBytes": 0,
+  "decodedGeometryBytes": 83304,
+  "triangleReductionPercent": 98.3927,
+  "triangleHeadroomUnder3000": 672,
+  "boundsGltfMetres": {
+    "min": [
+      -0.3630859851837158,
+      0.12499859929084778,
+      -0.16831110417842865
+    ],
+    "max": [
+      0.3630859851837158,
+      1.5299999713897705,
+      0.18174292147159576
+    ]
+  },
+  "zeroOrNearZeroTriangles": 0,
+  "minimumTriangleAreaM2": 1.2727973626169842e-05,
+  "aspectP50P95Max": [
+    2.5313708782196045,
+    23.734209060668945,
+    46.25221633911133
+  ],
+  "aspectCaveat": "Narrow intentional seams and edge returns are included; no collapse/decimation used. This is not proof of a production deformation topology.",
+  "skinBindings": 0,
+  "sourceHighBlendSha256": "25e1ba8e8c9b9cd271d86c4dfb229a0533eee1a192e1ba587a2dc5b3519eeecf",
+  "sourceHighGlbSha256": "be28e73cc7cd62b297bde445123b73eb1a870d1fe31fb9850ba9b26a99f419a3"
+}

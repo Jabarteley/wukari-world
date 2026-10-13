@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/validate_game.mjs"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 0.104,
+  "sampledTreePeakRssBytes": 34111488,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 30,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

@@ -1,0 +1,31 @@
+{
+  "mainReadOnlyCommit": "1e8107d1f42e2b39de6b2b4fc866679c672996f9",
+  "branchBaseUnchanged": "caaee5e1b91afc7f3cd3f2124df3547dc7f492ec",
+  "files": {
+    "src/scene/wardrobe/geometry.ts": {
+      "sha256": "57de05de1cc111ffd30a8a81ebf3be18ff8776feab47892f10d3716821120ae6",
+      "bytes": 52583,
+      "matchesIntegrationBase": true
+    },
+    "src/scene/wardrobe/renderer.ts": {
+      "sha256": "4627d0704750cea6ff7a5b531f38bd21bfc0daec75660f2bf5148dca4a54989e",
+      "bytes": 10667,
+      "matchesIntegrationBase": true
+    },
+    "src/game/wardrobe/rules.ts": {
+      "sha256": "1f8bcbd76da268032f0f33dccf8318d218086679cb4aaf384581ec1f7854780d",
+      "bytes": 4867,
+      "matchesIntegrationBase": true
+    }
+  },
+  "observedLimits": {
+    "combinationTriangles": 3000,
+    "perItemTriangles": 4000,
+    "addedDrawCalls": 1,
+    "materialCount": 1,
+    "newTextures": 0,
+    "roughness": 0.86
+  },
+  "bindingRequirements": "Indexed skinned body; original skeleton and bindMatrix; region coverage preserves boundary triangles; wardrobeUv and wardrobeCloth shader attributes",
+  "adoption": "Not authorized; frozen producer binding absent"
+}

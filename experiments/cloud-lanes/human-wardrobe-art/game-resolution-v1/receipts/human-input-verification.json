@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "humanCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "inputs": {
+    "experiments/cloud-lanes/human-design-contract/prototype/fit-frame.json": {
+      "bytes": 3099,
+      "sha256": "51fae932279d1513e16c4d06ce633f6218a994fe6c224bc3436e105cc519083b",
+      "localPath": "experiments/cloud-lanes/human-wardrobe-art/runs/frozen-human-3ee5882/fit-frame.json"
+    },
+    "experiments/cloud-lanes/human-design-contract/prototype/original-human-prototype.blend": {
+      "bytes": 969203,
+      "sha256": "36018022ff64367e7426069d7417625a3591f3a2c0684c628c11c3bd908f84d9",
+      "localPath": "experiments/cloud-lanes/human-wardrobe-art/runs/frozen-human-3ee5882/original-human-prototype.blend"
+    },
+    "experiments/cloud-lanes/human-design-contract/prototype/original-human-prototype.glb": {
+      "bytes": 1200716,
+      "sha256": "5f0f8da1f3e6b14fc4910f04f02ed1eafe6446f896f44ef2b3a23f2ca071bc07",
+      "localPath": "experiments/cloud-lanes/human-wardrobe-art/runs/frozen-human-3ee5882/original-human-prototype.glb"
+    },
+    "experiments/cloud-lanes/human-design-contract/prototype/build_character.py": {
+      "bytes": 26705,
+      "sha256": "f11df397a66266f23c31ea3d5034098c69a25b5540258e0a8a4788f12123c705",
+      "localPath": "experiments/cloud-lanes/human-wardrobe-art/runs/frozen-human-3ee5882/build_character.py"
+    },
+    "docs/agent-plans/cloud-lanes/human-design-contract/prototype/geometry-checks.json": {
+      "bytes": 46027,
+      "sha256": "7b0dd7b413bb8639ff37ea50cd14fe4a2f20b02f7fddb15c96f0dc55ee93761f",
+      "localPath": "experiments/cloud-lanes/human-wardrobe-art/runs/frozen-human-3ee5882/geometry-checks.json"
+    }
+  },
+  "limitations": {
+    "skeleton": null,
+    "bodySurfaceStatus": "Clothed torso/leg envelope plus exposed head/neck/forearm/hand. No independent undressed torso/leg master; clothing fit not accepted."
+  },
+  "inputFilesAreIgnored": true,
+  "producerMasterEdited": false
+}

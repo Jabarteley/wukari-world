@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Allworld / wardrobe geometry reduction</title>
+<style>body{margin:0;background:#17232a;color:#eee6d5;font:15px system-ui}header{padding:18px 24px 12px}h1{font-size:24px;font-weight:500;margin:0 0 6px}p{margin:0;color:#b9c8c6}.row{padding:10px 24px;background:#17232a;font-weight:500}canvas{display:block}footer{padding:14px 24px;color:#ddbc88}</style>
+<header><h1>ALLWORLD / EVERYDAY 01 — GEOMETRY COMPARISON</h1><p>Matched raw GLTFLoader views and lighting · same original tailoring fixture · no body binding</p></header>
+<div class="row">PRESERVED AUTHORING SOURCE · 144,840 garment triangles · 102 garment draws · 5 materials · 3 textures</div><canvas id="high"></canvas>
+<div class="row">GAME-RESOLUTION CANDIDATE · 2,328 garment triangles · 1 garment draw · 1 material · 0 textures</div><canvas id="low"></canvas>
+<footer>Front / profile / back. Texture-free vertex colour; fine weave and duplicate seam rows omitted. Static, unbound.</footer>
+<script type="importmap">{"imports":{"three":"../node_modules/three/build/three.module.js","three/addons/":"../node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+try{
+ const loader=new GLTFLoader();const [hi,lo]=await Promise.all([loader.loadAsync('../artifacts/everyday-01-on-form.glb'),loader.loadAsync('./artifacts/everyday-01-game-v1.glb')]);
+ const fixture=new THREE.Group();for(const o of hi.scene.children.filter(o=>o.name.startsWith('FIXTURE_')))fixture.add(o.clone());lo.scene.add(fixture);
+ const renderers=[],seenMaterials=new Set(),seenGeometries=new Set(),seenTextures=new Set();
+ function stats(root){let tris=0,draws=0,geometryBytes=0;const mats=new Set(),tex=new Set();root.traverse(o=>{if(!o.isMesh||o.name.startsWith('FIXTURE_'))return;tris+=(o.geometry.index?o.geometry.index.count:o.geometry.attributes.position.count)/3;draws++;geometryBytes+=Object.values(o.geometry.attributes).reduce((n,a)=>n+a.array.byteLength,0)+(o.geometry.index?.array.byteLength||0);for(const m of Array.isArray(o.material)?o.material:[o.material]){mats.add(m.uuid);if(m.map)tex.add(m.map.uuid);if(m.normalMap)tex.add(m.normalMap.uuid);}});return{tris,draws,materials:mats.size,textures:tex.size,geometryBytes};}
+ const high=stats(hi.scene),low=stats(lo.scene);if(high.tris!==144840||low.tris!==2328||low.draws!==1||low.materials!==1||low.textures!==0)throw Error('Mismatch in comparison geometry');
+ const detail=new URLSearchParams(location.search).has('detail');if(detail){document.querySelector('h1').textContent='ALLWORLD / SEAM AND COLLAR TRADEOFF';document.querySelector('footer').textContent='Matched garment close-ups: fine weave is removed; collar, pocket boundaries and placket remain geometry. Static, unbound.';}
+ for(const [id,root] of [['high',hi.scene],['low',lo.scene]]){
+  const renderer=new THREE.WebGLRenderer({canvas:document.getElementById(id),antialias:true,preserveDrawingBuffer:true});renderers.push(renderer);renderer.setSize(1050,detail?380:550);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  const scene=new THREE.Scene();scene.background=new THREE.Color('#24323b');scene.add(root,new THREE.HemisphereLight(0xffffff,0x746852,2));
+  for(const [pos,power] of [[[-3,4,4],3],[[3,2,-3],2]]){const l=new THREE.DirectionalLight(0xffffff,power);l.position.set(...pos);scene.add(l);}
+  const camera=new THREE.OrthographicCamera(-.55,.55,.865,-.865,.01,20);renderer.setScissorTest(true);
+  const views=detail?[[0,[.2,1.45,3],[.04,1.38,0]],[1,[3,1.38,.65],[.1,1.36,0]],[2,[0,1.34,-3],[0,1.34,0]]]:[[0,[0,.89,3],[0,.846,0]],[1,[3,.89,0],[0,.846,0]],[2,[0,.89,-3],[0,.846,0]]];
+  for(const [i,pos,target] of views){if(detail){camera.left=-.27;camera.right=.27;camera.top=.293;camera.bottom=-.293;}renderer.setViewport(i*350,0,350,detail?380:550);renderer.setScissor(i*350,0,350,detail?380:550);camera.position.set(...pos);camera.lookAt(...target);camera.updateProjectionMatrix();renderer.render(scene,camera);}
+  root.traverse(o=>{if(o.geometry)seenGeometries.add(o.geometry);for(const m of !o.material?[]:Array.isArray(o.material)?o.material:[o.material]){seenMaterials.add(m);if(m.map)seenTextures.add(m.map);if(m.normalMap)seenTextures.add(m.normalMap);}});
+ }
+ window.receipt={ready:true,high,low,views:6,detail,shader:'original high PBR versus low vertex-color PBR; matched illumination; roughness .78 -> .86',fixtureMatched:true,bodyFitAccepted:false,render:'Chromium SwiftShader; no phone or sustained performance claim'};
+ window.cleanup=()=>{for(const g of seenGeometries)g.dispose();for(const m of seenMaterials)m.dispose();for(const t of seenTextures){t.source?.data?.close?.();t.dispose();}for(const r of renderers){r.dispose();r.forceContextLoss();}window.receipt.disposed=true;};
+}catch(e){window.proofError=String(e);console.error(e);}
+</script></html>

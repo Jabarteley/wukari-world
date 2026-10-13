@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "browserVersion": "154.0.8037.57",
+  "views": [
+    {
+      "ready": true,
+      "high": {
+        "tris": 144840,
+        "draws": 102,
+        "materials": 5,
+        "textures": 3,
+        "geometryBytes": 3513968
+      },
+      "low": {
+        "tris": 2328,
+        "draws": 1,
+        "materials": 1,
+        "textures": 0,
+        "geometryBytes": 83304
+      },
+      "views": 6,
+      "detail": false,
+      "shader": "original high PBR versus low vertex-color PBR; matched illumination; roughness .78 -> .86",
+      "fixtureMatched": true,
+      "bodyFitAccepted": false,
+      "render": "Chromium SwiftShader; no phone or sustained performance claim",
+      "image": {
+        "path": "artifacts/high-vs-game-neutral.jpg",
+        "bytes": 122881,
+        "sha256": "36cdf60aaca003b06e5cfc56be317c8ac060ad5ba1bbdf28ba3608a63a559310"
+      },
+      "disposed": true
+    },
+    {
+      "ready": true,
+      "high": {
+        "tris": 144840,
+        "draws": 102,
+        "materials": 5,
+        "textures": 3,
+        "geometryBytes": 3513968
+      },
+      "low": {
+        "tris": 2328,
+        "draws": 1,
+        "materials": 1,
+        "textures": 0,
+        "geometryBytes": 83304
+      },
+      "views": 6,
+      "detail": true,
+      "shader": "original high PBR versus low vertex-color PBR; matched illumination; roughness .78 -> .86",
+      "fixtureMatched": true,
+      "bodyFitAccepted": false,
+      "render": "Chromium SwiftShader; no phone or sustained performance claim",
+      "image": {
+        "path": "artifacts/high-vs-game-detail.jpg",
+        "bytes": 119348,
+        "sha256": "cfe5024ca27712647ae6569c5b9f07a95e649130c9479b4920606377d78d3f94"
+      },
+      "disposed": true
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "serverClosed": true,
+  "browserClosed": true,
+  "elapsedSeconds": 3.984
+}

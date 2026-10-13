@@ -1,0 +1,20 @@
+{
+  "command": [
+    "blender",
+    "--background",
+    "--threads",
+    "2",
+    "--python-exit-code",
+    "1",
+    "--python",
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/build_game.py"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 1.63,
+  "sampledTreePeakRssBytes": 362090496,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

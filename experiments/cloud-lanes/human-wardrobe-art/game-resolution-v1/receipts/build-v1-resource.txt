@@ -1,0 +1,13 @@
+GAME_TRIANGLES 2328
+Info: Saved "everyday-01-game-v1-editable.blend"
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+19:06:41 | INFO: Starting glTF 2.0 export
+19:06:41 | INFO: Extracting primitive: GAME_Shirt_R_front_panel.001
+19:06:41 | INFO: Primitives created: 1
+19:06:41 | INFO: Finished glTF 2.0 export in 0.008352994918823242 s
+
+GAME_EXPORT_COMPLETE
+Blender 4.3.2
+Read blend: "/workspace/wardrobe-art/experiments/cloud-lanes/human-wardrobe-art/artifacts/everyday-01-tailoring-form.blend"
+
+Blender quit

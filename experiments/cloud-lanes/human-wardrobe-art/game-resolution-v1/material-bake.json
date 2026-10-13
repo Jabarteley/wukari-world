@@ -1,0 +1,19 @@
+{
+  "method": "Mean of actual source sRGB image pixels converted to linear RGB; no directional lighting baked",
+  "linearFabricColours": {
+    "river_sage_cotton": [
+      0.09250538291109558,
+      0.18845601419717797,
+      0.1570840071137595
+    ],
+    "warm_sand_twill": [
+      0.3320664173235042,
+      0.23200115425246454,
+      0.13004608748914184
+    ]
+  },
+  "threadColours": "Read original source material diffuse linear colours",
+  "roughness": 0.86,
+  "normalMapRemoved": true,
+  "tradeoff": "Fine twill/weave and roughness variation removed to preserve zero-new-texture runtime contract"
+}

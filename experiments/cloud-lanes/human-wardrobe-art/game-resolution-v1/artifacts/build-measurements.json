@@ -1,0 +1,705 @@
+{
+  "sourceBlendSha256": "25e1ba8e8c9b9cd271d86c4dfb229a0533eee1a192e1ba587a2dc5b3519eeecf",
+  "method": "Resampled original structured control surfaces; no decimation or collapse",
+  "garmentTriangles": 2328,
+  "sourcePieces": [
+    {
+      "piece": "GAME_Shirt_R_front_panel",
+      "source": "Shirt_R_front_panel",
+      "kind": "surface",
+      "vertices": 63,
+      "triangles": 96
+    },
+    {
+      "piece": "GAME_Shirt_R_back_panel",
+      "source": "Shirt_R_back_panel",
+      "kind": "surface",
+      "vertices": 63,
+      "triangles": 96
+    },
+    {
+      "piece": "GAME_Shirt_R_shoulder_separate_piece",
+      "source": "Shirt_R_shoulder_separate_piece",
+      "kind": "surface",
+      "vertices": 21,
+      "triangles": 24
+    },
+    {
+      "piece": "GAME_Shirt_L_front_panel",
+      "source": "Shirt_L_front_panel",
+      "kind": "surface",
+      "vertices": 63,
+      "triangles": 96
+    },
+    {
+      "piece": "GAME_Shirt_L_back_panel",
+      "source": "Shirt_L_back_panel",
+      "kind": "surface",
+      "vertices": 63,
+      "triangles": 96
+    },
+    {
+      "piece": "GAME_Shirt_L_shoulder_separate_piece",
+      "source": "Shirt_L_shoulder_separate_piece",
+      "kind": "surface",
+      "vertices": 21,
+      "triangles": 24
+    },
+    {
+      "piece": "GAME_Shirt_R_side_gusset",
+      "source": "Shirt_R_side_gusset",
+      "kind": "surface",
+      "vertices": 21,
+      "triangles": 24
+    },
+    {
+      "piece": "GAME_Shirt_L_side_gusset",
+      "source": "Shirt_L_side_gusset",
+      "kind": "surface",
+      "vertices": 21,
+      "triangles": 24
+    },
+    {
+      "piece": "GAME_Shirt_R_sleeve",
+      "source": "Shirt_R_sleeve",
+      "kind": "surface",
+      "vertices": 80,
+      "triangles": 128
+    },
+    {
+      "piece": "GAME_Shirt_R_cuff_facing",
+      "source": "Shirt_R_cuff_facing",
+      "kind": "surface",
+      "vertices": 32,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Shirt_R_cuff_facing_edge_return_0",
+      "source": "Shirt_R_cuff_facing",
+      "kind": "edge-return",
+      "vertices": 32,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Shirt_R_cuff_facing_edge_return_1",
+      "source": "Shirt_R_cuff_facing",
+      "kind": "edge-return",
+      "vertices": 32,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Shirt_L_sleeve",
+      "source": "Shirt_L_sleeve",
+      "kind": "surface",
+      "vertices": 80,
+      "triangles": 128
+    },
+    {
+      "piece": "GAME_Shirt_L_cuff_facing",
+      "source": "Shirt_L_cuff_facing",
+      "kind": "surface",
+      "vertices": 32,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Shirt_L_cuff_facing_edge_return_0",
+      "source": "Shirt_L_cuff_facing",
+      "kind": "edge-return",
+      "vertices": 32,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Shirt_L_cuff_facing_edge_return_1",
+      "source": "Shirt_L_cuff_facing",
+      "kind": "edge-return",
+      "vertices": 32,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Shirt_front_upper_placket",
+      "source": "Shirt_front_upper_placket",
+      "kind": "surface",
+      "vertices": 18,
+      "triangles": 16
+    },
+    {
+      "piece": "GAME_Shirt_front_under_placket",
+      "source": "Shirt_front_under_placket",
+      "kind": "surface",
+      "vertices": 18,
+      "triangles": 16
+    },
+    {
+      "piece": "GAME_Shirt_button_0",
+      "source": "Shirt_button_0",
+      "kind": "button-disc",
+      "vertices": 9,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Shirt_button_1",
+      "source": "Shirt_button_1",
+      "kind": "button-disc",
+      "vertices": 9,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Shirt_button_2",
+      "source": "Shirt_button_2",
+      "kind": "button-disc",
+      "vertices": 9,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Shirt_button_3",
+      "source": "Shirt_button_3",
+      "kind": "button-disc",
+      "vertices": 9,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Shirt_button_4",
+      "source": "Shirt_button_4",
+      "kind": "button-disc",
+      "vertices": 9,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Shirt_button_5",
+      "source": "Shirt_button_5",
+      "kind": "button-disc",
+      "vertices": 9,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Shirt_R_camp_collar",
+      "source": "Shirt_R_camp_collar",
+      "kind": "surface",
+      "vertices": 33,
+      "triangles": 40
+    },
+    {
+      "piece": "GAME_Shirt_R_camp_collar_edge_return_0",
+      "source": "Shirt_R_camp_collar",
+      "kind": "edge-return",
+      "vertices": 22,
+      "triangles": 20
+    },
+    {
+      "piece": "GAME_Shirt_R_camp_collar_edge_return_1",
+      "source": "Shirt_R_camp_collar",
+      "kind": "edge-return",
+      "vertices": 6,
+      "triangles": 4
+    },
+    {
+      "piece": "GAME_Shirt_R_camp_collar_edge_return_2",
+      "source": "Shirt_R_camp_collar",
+      "kind": "edge-return",
+      "vertices": 22,
+      "triangles": 20
+    },
+    {
+      "piece": "GAME_Shirt_R_camp_collar_edge_return_3",
+      "source": "Shirt_R_camp_collar",
+      "kind": "edge-return",
+      "vertices": 6,
+      "triangles": 4
+    },
+    {
+      "piece": "GAME_Shirt_L_camp_collar",
+      "source": "Shirt_L_camp_collar",
+      "kind": "surface",
+      "vertices": 33,
+      "triangles": 40
+    },
+    {
+      "piece": "GAME_Shirt_L_camp_collar_edge_return_0",
+      "source": "Shirt_L_camp_collar",
+      "kind": "edge-return",
+      "vertices": 22,
+      "triangles": 20
+    },
+    {
+      "piece": "GAME_Shirt_L_camp_collar_edge_return_1",
+      "source": "Shirt_L_camp_collar",
+      "kind": "edge-return",
+      "vertices": 6,
+      "triangles": 4
+    },
+    {
+      "piece": "GAME_Shirt_L_camp_collar_edge_return_2",
+      "source": "Shirt_L_camp_collar",
+      "kind": "edge-return",
+      "vertices": 22,
+      "triangles": 20
+    },
+    {
+      "piece": "GAME_Shirt_L_camp_collar_edge_return_3",
+      "source": "Shirt_L_camp_collar",
+      "kind": "edge-return",
+      "vertices": 6,
+      "triangles": 4
+    },
+    {
+      "piece": "GAME_Shirt_L_open_patch_pocket",
+      "source": "Shirt_L_open_patch_pocket",
+      "kind": "surface",
+      "vertices": 25,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Shirt_L_pocket_folded_lip",
+      "source": "Shirt_L_pocket_folded_lip",
+      "kind": "surface",
+      "vertices": 10,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Shirt_R_open_patch_pocket",
+      "source": "Shirt_R_open_patch_pocket",
+      "kind": "surface",
+      "vertices": 25,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Shirt_R_pocket_folded_lip",
+      "source": "Shirt_R_pocket_folded_lip",
+      "kind": "surface",
+      "vertices": 10,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Trousers_R_front_panel",
+      "source": "Trousers_R_front_panel",
+      "kind": "surface",
+      "vertices": 91,
+      "triangles": 144
+    },
+    {
+      "piece": "GAME_Trousers_R_back_panel",
+      "source": "Trousers_R_back_panel",
+      "kind": "surface",
+      "vertices": 91,
+      "triangles": 144
+    },
+    {
+      "piece": "GAME_Trousers_R_turned_hem",
+      "source": "Trousers_R_turned_hem",
+      "kind": "surface",
+      "vertices": 32,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Trousers_R_turned_hem_edge_return_0",
+      "source": "Trousers_R_turned_hem",
+      "kind": "edge-return",
+      "vertices": 32,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Trousers_R_turned_hem_edge_return_1",
+      "source": "Trousers_R_turned_hem",
+      "kind": "edge-return",
+      "vertices": 32,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Trousers_R_back_welt",
+      "source": "Trousers_R_back_welt",
+      "kind": "surface",
+      "vertices": 8,
+      "triangles": 6
+    },
+    {
+      "piece": "GAME_Trousers_L_front_panel",
+      "source": "Trousers_L_front_panel",
+      "kind": "surface",
+      "vertices": 91,
+      "triangles": 144
+    },
+    {
+      "piece": "GAME_Trousers_L_back_panel",
+      "source": "Trousers_L_back_panel",
+      "kind": "surface",
+      "vertices": 91,
+      "triangles": 144
+    },
+    {
+      "piece": "GAME_Trousers_L_turned_hem",
+      "source": "Trousers_L_turned_hem",
+      "kind": "surface",
+      "vertices": 32,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Trousers_L_turned_hem_edge_return_0",
+      "source": "Trousers_L_turned_hem",
+      "kind": "edge-return",
+      "vertices": 32,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Trousers_L_turned_hem_edge_return_1",
+      "source": "Trousers_L_turned_hem",
+      "kind": "edge-return",
+      "vertices": 32,
+      "triangles": 32
+    },
+    {
+      "piece": "GAME_Trousers_L_back_welt",
+      "source": "Trousers_L_back_welt",
+      "kind": "surface",
+      "vertices": 8,
+      "triangles": 6
+    },
+    {
+      "piece": "GAME_Trousers_continuous_waistband",
+      "source": "Trousers_continuous_waistband",
+      "kind": "surface",
+      "vertices": 40,
+      "triangles": 40
+    },
+    {
+      "piece": "GAME_Shirt_R_False_double_hem_0.01",
+      "source": "Shirt_R_False_double_hem_0.01",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 14,
+      "triangles": 12
+    },
+    {
+      "piece": "GAME_Shirt_R_True_double_hem_0.01",
+      "source": "Shirt_R_True_double_hem_0.01",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 14,
+      "triangles": 12
+    },
+    {
+      "piece": "GAME_Shirt_R_shoulder_topstitch",
+      "source": "Shirt_R_shoulder_topstitch",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 14,
+      "triangles": 12
+    },
+    {
+      "piece": "GAME_Shirt_L_False_double_hem_0.01",
+      "source": "Shirt_L_False_double_hem_0.01",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 14,
+      "triangles": 12
+    },
+    {
+      "piece": "GAME_Shirt_L_True_double_hem_0.01",
+      "source": "Shirt_L_True_double_hem_0.01",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 14,
+      "triangles": 12
+    },
+    {
+      "piece": "GAME_Shirt_L_shoulder_topstitch",
+      "source": "Shirt_L_shoulder_topstitch",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 14,
+      "triangles": 12
+    },
+    {
+      "piece": "GAME_Shirt_R_gusset_hem",
+      "source": "Shirt_R_gusset_hem",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 6,
+      "triangles": 4
+    },
+    {
+      "piece": "GAME_Shirt_L_gusset_hem",
+      "source": "Shirt_L_gusset_hem",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 6,
+      "triangles": 4
+    },
+    {
+      "piece": "GAME_Placket_upper_stitch_0.9",
+      "source": "Placket_upper_stitch_0.9",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 18,
+      "triangles": 16
+    },
+    {
+      "piece": "GAME_Placket_under_stitch_0.9",
+      "source": "Placket_under_stitch_0.9",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 18,
+      "triangles": 16
+    },
+    {
+      "piece": "GAME_Pocket_L_side_stitch_0.05",
+      "source": "Pocket_L_side_stitch_0.05",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 10,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Pocket_L_side_stitch_0.95",
+      "source": "Pocket_L_side_stitch_0.95",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 10,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Pocket_L_cross_stitch_0.045",
+      "source": "Pocket_L_cross_stitch_0.045",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 10,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Pocket_R_side_stitch_0.05",
+      "source": "Pocket_R_side_stitch_0.05",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 10,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Pocket_R_side_stitch_0.95",
+      "source": "Pocket_R_side_stitch_0.95",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 10,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Pocket_R_cross_stitch_0.045",
+      "source": "Pocket_R_cross_stitch_0.045",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 10,
+      "triangles": 8
+    },
+    {
+      "piece": "GAME_Trousers_R_outseam",
+      "source": "Trousers_R_outseam",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 26,
+      "triangles": 24
+    },
+    {
+      "piece": "GAME_Trousers_R_slant_pocket_welt",
+      "source": "Trousers_R_slant_pocket_welt",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 14,
+      "triangles": 12
+    },
+    {
+      "piece": "GAME_Trousers_R_back_welt_stitch",
+      "source": "Trousers_R_back_welt_stitch",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 8,
+      "triangles": 6
+    },
+    {
+      "piece": "GAME_Trousers_L_outseam",
+      "source": "Trousers_L_outseam",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 26,
+      "triangles": 24
+    },
+    {
+      "piece": "GAME_Trousers_L_slant_pocket_welt",
+      "source": "Trousers_L_slant_pocket_welt",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 14,
+      "triangles": 12
+    },
+    {
+      "piece": "GAME_Trousers_L_back_welt_stitch",
+      "source": "Trousers_L_back_welt_stitch",
+      "kind": "intentional-seam-ribbon",
+      "vertices": 8,
+      "triangles": 6
+    }
+  ],
+  "omittedDetails": [
+    {
+      "name": "Trousers_belt_loop_0.1",
+      "reason": "Hidden under untucked shirt; removable source detail"
+    },
+    {
+      "name": "Trousers_belt_loop_0.24",
+      "reason": "Hidden under untucked shirt; removable source detail"
+    },
+    {
+      "name": "Trousers_belt_loop_0.4",
+      "reason": "Hidden under untucked shirt; removable source detail"
+    },
+    {
+      "name": "Trousers_belt_loop_0.6",
+      "reason": "Hidden under untucked shirt; removable source detail"
+    },
+    {
+      "name": "Trousers_belt_loop_0.76",
+      "reason": "Hidden under untucked shirt; removable source detail"
+    },
+    {
+      "name": "Trousers_belt_loop_0.9",
+      "reason": "Hidden under untucked shirt; removable source detail"
+    },
+    {
+      "name": "Trousers_fly_facing",
+      "reason": "Concealed fly removed; frontal placket readability retained on shirt"
+    },
+    {
+      "name": "Shirt_R_side_seam",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_R_False_double_hem_0.023",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_R_True_double_hem_0.023",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_L_side_seam",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_L_False_double_hem_0.023",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_L_True_double_hem_0.023",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_R_sleeve_seam_0.02",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_R_sleeve_seam_0.9",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_R_sleeve_seam_0.98",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_L_sleeve_seam_0.02",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_L_sleeve_seam_0.9",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_L_sleeve_seam_0.98",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Placket_upper_stitch_0.12",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Placket_under_stitch_0.12",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_button_0_thread_-1",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_button_0_thread_1",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_button_1_thread_-1",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_button_1_thread_1",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_button_2_thread_-1",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_button_2_thread_1",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_button_3_thread_-1",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_button_3_thread_1",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_button_4_thread_-1",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_button_4_thread_1",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_button_5_thread_-1",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Shirt_button_5_thread_1",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Collar_R_edge_stitch",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Collar_L_edge_stitch",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Pocket_L_cross_stitch_0.91",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Pocket_R_cross_stitch_0.91",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Trousers_R_inseam",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Trouser_R_hem_stitch_0.012",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Trouser_R_hem_stitch_0.027",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Trousers_R_slant_pocket_stitch",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Trousers_L_inseam",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Trouser_L_hem_stitch_0.012",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Trouser_L_hem_stitch_0.027",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    },
+    {
+      "name": "Trousers_L_slant_pocket_stitch",
+      "reason": "Subpixel piping/thread or duplicate seam row omitted"
+    }
+  ],
+  "textures": 0,
+  "materials": 1,
+  "drawPrimitives": 1,
+  "skins": 0,
+  "gameFitAccepted": false
+}

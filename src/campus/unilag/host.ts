@@ -1,4 +1,6 @@
 import { tripPace } from './trip-pace.ts';
+import { tripKind, tripOptions, shuttlePlan } from './trip-decision.ts';
+import type { TripOption } from './trip-decision.ts';
 import './host.css';
 import type { Group, WebGLRenderer } from 'three';
 import { createKit } from '../../scene/kit.ts';
@@ -17,7 +19,7 @@ import { CAMPUS_MAP } from './map.generated.ts';
 import { NPC_WORD, npcAria, npcTitle } from '../../ui/npc-mark.ts';
 import type { Kit } from '../../scene/kit.ts';
 
-export interface WalkResult { ok: boolean; code?: string; reason?: string }
+export interface WalkResult { ok: boolean; code?: string; reason?: string; /** code 'shuttle': the stop the app should ride to now that the player stands at the boarding stop. */ destination?: string }
 export interface SpotRequest { id: string; open: boolean }
 /** The shuttle ride the server reports as the player's active action. */
 export interface HostAction { kind?: string; origin?: string; dest?: string; start?: number; duration: number; remaining: number }
@@ -67,7 +69,7 @@ export interface Walker {
 }
 interface PositionReporter { report(x: number, z: number, now: number): boolean; rest(x: number, z: number, now: number): boolean }
 interface ShuttleView { group: Group; dispose(): void }
-interface WalkTask { id: string; resolve: (result: WalkResult) => void; committing?: boolean }
+interface WalkTask { id: string; resolve: (result: WalkResult) => void; committing?: boolean; shuttle?: string }
 interface ShuttleClock { key: string; remaining: number; receivedAt: number }
 interface TagView extends CampusTag { text?: string }
 
@@ -168,7 +170,7 @@ export function createCampusHost(container: HTMLElement, {
   function finishTask(result: WalkResult, expected: WalkTask | null = walkTask): void {
     const task = walkTask;
     if (!task || task !== expected) return;
-    walkTask = null; restorePace();
+    walkTask = null; restorePace(); closeSheet();
     task.resolve(result);
   }
   function cancelTask(code = 'cancelled'): void {
@@ -185,7 +187,7 @@ export function createCampusHost(container: HTMLElement, {
       const result = await onSpot({ id, open: true });
       if (walkTask !== task) return;
       if (!result?.ok) placeAt(state?.spot, true);
-      finishTask(result as WalkResult, task); // an onSpot that answers nothing resolves the walk with undefined, as before
+      finishTask(task.shuttle && result?.ok ? { ...(result as WalkResult), code: 'shuttle', destination: task.shuttle } : result as WalkResult, task); // an onSpot that answers nothing resolves the walk with undefined, as before
     } catch (error) {
       if (walkTask === task) placeAt(state?.spot, true);
       finishTask({ ok: false, code: 'network', reason: (error as { message?: string } | null)?.message || 'That place could not be selected.' }, task);
@@ -448,10 +450,57 @@ export function createCampusHost(container: HTMLElement, {
 
   const basePace = { speed: walker.speed, jog: walker.jogSpeed };
   function restorePace(): void { walker.speed = basePace.speed; walker.jogSpeed = basePace.jog; }
-  /** A tapped trip across the campus is sped up so it takes at most ~40 s (see trip-pace.ts); manual walking is untouched. */
+  /** Fallback only (the choice sheet could not be shown): a far tapped trip is sped up to ~40 s (see trip-pace.ts). */
   function speedUpTrip(anchor: { x: number; z: number }): void {
     const pace = tripPace(Math.hypot(walker.x - anchor.x, walker.z - anchor.z) * 1.4, basePace.speed);
     walker.speed = pace; walker.jogSpeed = Math.max(basePace.jog, pace);
+  }
+
+  // ---- the "far away" choice sheet: lazy, built the first time a long trip is tapped ----
+  let sheet: HTMLDivElement | null = null, fade: HTMLDivElement | null = null;
+  function closeSheet(): void { if (sheet) sheet.hidden = true; }
+  function showSheet(id: string, options: TripOption[], pick: (choice: TripOption['id'] | null) => void): boolean {
+    if (!options.length) return false;
+    if (!sheet) { sheet = document.createElement('div'); sheet.className = 'campus-host-sheet'; sheet.setAttribute('role', 'dialog'); container.append(sheet); }
+    sheet.replaceChildren();
+    const title = document.createElement('p'); title.className = 'campus-host-sheet-title'; title.textContent = `${ANCHORS[id]?.label ?? 'That place'} is far from here`; sheet.append(title);
+    for (const option of options) {
+      const button = document.createElement('button'); button.type = 'button'; button.className = 'campus-host-sheet-option'; button.dataset.trip = option.id;
+      const label = document.createElement('b'); label.textContent = option.label; const note = document.createElement('small'); note.textContent = option.note;
+      button.append(label, note); button.onclick = () => { closeSheet(); pick(option.id); }; sheet.append(button);
+    }
+    const stay = document.createElement('button'); stay.type = 'button'; stay.className = 'campus-host-sheet-cancel'; stay.textContent = 'Stay here'; stay.onclick = () => { closeSheet(); pick(null); }; sheet.append(stay);
+    sheet.hidden = false; return true;
+  }
+  /** "Go there": a ~1.5 s fade to black, the avatar is placed at the destination under it, then the fade clears. Reduced motion: no fade. */
+  function goThere(id: string, task: WalkTask): void {
+    const anchor = ANCHORS[id]; if (!anchor) { finishTask({ ok: false, code: 'invalid_spot', reason: 'That campus destination is unavailable.' }, task); return; }
+    const land = (): void => {
+      if (walkTask !== task) return;
+      walker.stop(); walker.place(anchor.x, anchor.z, anchor.ry); campus.setPosition(anchor.x, anchor.z); campus.walk.move(anchor.x, 0, anchor.z, anchor.ry); campus.walk.rest(); report.rest(anchor.x, anchor.z, now()); draw();
+      void arrived(id, task);
+    };
+    if (reduced() || !loop.available) { land(); return; }
+    if (!fade) { fade = document.createElement('div'); fade.className = 'campus-host-fade'; container.append(fade); }
+    const veil = fade; veil.classList.add('is-on');
+    globalThis.setTimeout(() => { land(); globalThis.setTimeout(() => veil.classList.remove('is-on'), 250); }, 650);
+  }
+  function startWalk(id: string, task: WalkTask, pace: 'walk' | 'jog' | 'trip'): void {
+    const anchor = ANCHORS[id]!;
+    const arrive = () => void arrived(id, task);
+    const alreadyThere = Math.hypot(walker.x - anchor.x, walker.z - anchor.z) <= 0.1;
+    const started = walker.goTo(anchor.x, anchor.z, { exact: true, face: anchor.ry, arrive, jog: pace === 'jog' ? true : pace === 'walk' ? false : undefined });
+    if (started && pace === 'jog') walker.jogSpeed = basePace.jog;
+    if (started && pace === 'trip') speedUpTrip(anchor);
+    campus.walk.goal(anchor.x, anchor.z);
+    if (!started && alreadyThere) { walker.place(anchor.x, anchor.z, anchor.ry); campus.walk.move(anchor.x, 0, anchor.z, anchor.ry); draw(); arrive(); return; }
+    if (!started) {
+      campus.walk.goal();
+      finishTask({ ok: false, code: 'no_route', reason: `${anchor.label} cannot be reached from here.` }, task);
+      draw(); return;
+    }
+    if (!loop.available || reduced()) { walker.finishNow(); campus.walk.rest(); draw(); return; }
+    loop.wake();
   }
   function walkTo(id: string): Promise<WalkResult> {
     const anchor = ANCHORS[id];
@@ -460,19 +509,21 @@ export function createCampusHost(container: HTMLElement, {
     cancelTask();
     return new Promise<WalkResult>((resolve) => {
       const task: WalkTask = { id, resolve }; walkTask = task;
-      const arrive = () => void arrived(id, task);
-      const alreadyThere = Math.hypot(walker.x - anchor.x, walker.z - anchor.z) <= 0.1;
-      const started = walker.goTo(anchor.x, anchor.z, { exact: true, face: anchor.ry, arrive });
-      if (started) speedUpTrip(anchor);
-      campus.walk.goal(anchor.x, anchor.z);
-      if (!started && alreadyThere) { walker.place(anchor.x, anchor.z, anchor.ry); campus.walk.move(anchor.x, 0, anchor.z, anchor.ry); draw(); arrive(); return; }
-      if (!started) {
-        campus.walk.goal();
-        finishTask({ ok: false, code: 'no_route', reason: `${anchor.label} cannot be reached from here.` }, task);
-        draw(); return;
-      }
-      if (!loop.available || reduced()) { walker.finishNow(); campus.walk.rest(); draw(); return; }
-      loop.wake();
+      const distance = Math.hypot(walker.x - anchor.x, walker.z - anchor.z), kind = tripKind(distance);
+      if (kind !== 'choose') { startWalk(id, task, kind); return; }
+      const options = tripOptions(walker, id, basePace.speed);
+      const shown = showSheet(id, options, (choice) => {
+        if (walkTask !== task) return;
+        if (choice === null) { finishTask({ ok: false, code: 'cancelled', reason: 'Staying where you are.' }, task); return; }
+        if (choice === 'walk') { startWalk(id, task, 'walk'); return; }
+        if (choice === 'go') { goThere(id, task); return; }
+        const plan = shuttlePlan(walker, anchor); if (!plan) { goThere(id, task); return; }
+        // Ride from the nearest stop: walk to it, commit it as the spot (the server boards from the player's stop), then hand the ride to the app.
+        task.shuttle = plan.alight; task.id = plan.board;
+        if (state?.spot === plan.board) { void arrived(plan.board, task); return; }
+        startWalk(plan.board, task, 'jog');
+      });
+      if (!shown) startWalk(id, task, 'trip');
     });
   }
 

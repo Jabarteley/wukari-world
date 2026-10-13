@@ -2,15 +2,15 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-i-1",
-      "appSha": "2cb356d4020d95923007a2e2945d6909c89b4d43",
+      "id": "release-j-1",
+      "appSha": "34091b277ebe7440735f6d919f580b3b277fa65a",
       "driverSha": "474cffa14b7c548f58b44ec768e12ffd4d6cc7f5",
       "cities": [
-        "seoul",
-        "jakarta",
-        "san-marino"
+        "funafuti",
+        "shanghai"
       ],
-      "roundtrip": true
+      "roundtrip": true,
+      "browserOnly": true
     }
   ]
 }

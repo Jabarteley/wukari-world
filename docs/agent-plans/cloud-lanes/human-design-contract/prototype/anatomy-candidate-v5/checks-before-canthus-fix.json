@@ -1,0 +1,3258 @@
+{
+  "version": 5,
+  "status": "FAIL",
+  "cases": 35,
+  "failures": [
+    {
+      "type": "new UV overlap",
+      "newFaces": 3,
+      "newVsOld": 4
+    },
+    {
+      "case": "all-six:-1/blink:1",
+      "type": "geometry/orientation",
+      "minArea": 7.099183399042597e-09,
+      "minCosine": -0.9911292260965433,
+      "error": 0.0
+    },
+    {
+      "case": "all-six:1/blink:1",
+      "type": "geometry/orientation",
+      "minArea": 7.256606305896067e-09,
+      "minCosine": -0.993303094241177,
+      "error": 0.0
+    },
+    {
+      "case": "height:-1/blink:1",
+      "type": "geometry/orientation",
+      "minArea": 7.113601358824845e-09,
+      "minCosine": -0.9908810633538563,
+      "error": 0.0
+    },
+    {
+      "case": "height:0/blink:1",
+      "type": "geometry/orientation",
+      "minArea": 7.177153417428714e-09,
+      "minCosine": -0.9923030852289162,
+      "error": 0.0
+    },
+    {
+      "case": "height:0/blink:1",
+      "type": "new-head self crossing",
+      "count": 4
+    },
+    {
+      "case": "height:1/blink:1",
+      "type": "geometry/orientation",
+      "minArea": 7.2427208072634955e-09,
+      "minCosine": -0.9934986269413516,
+      "error": 0.0
+    },
+    {
+      "case": "left-blink",
+      "type": "geometry/orientation",
+      "minArea": 7.177153417428714e-09,
+      "minCosine": -0.5595535932945713,
+      "error": 0.0
+    },
+    {
+      "case": "right-blink",
+      "type": "geometry/orientation",
+      "minArea": 1.3275173350089939e-08,
+      "minCosine": -0.9923030852289162,
+      "error": 0.0
+    },
+    {
+      "type": "continuous blink orientation",
+      "triangles": [
+        7888,
+        8948,
+        8950
+      ]
+    },
+    {
+      "type": "continuous blink orientation",
+      "triangles": [
+        7888,
+        8948,
+        8950
+      ]
+    },
+    {
+      "type": "continuous blink orientation",
+      "triangles": [
+        7888,
+        8948,
+        8950
+      ]
+    },
+    {
+      "type": "continuous blink orientation",
+      "triangles": [
+        7888,
+        8948,
+        8950
+      ]
+    },
+    {
+      "type": "continuous blink orientation",
+      "triangles": [
+        7888,
+        8948,
+        8950
+      ]
+    }
+  ],
+  "properCrossingsAllTestedPairs": 0,
+  "neutralEyeHeadProperCrossings": 0,
+  "minimumNewLidTriangleAreaM2": 7.099183399042597e-09,
+  "minimumNormalCosineToNeutral": -0.9934986269413516,
+  "maximumEvaluatedMorphErrorM": 1.4901161193847656e-07,
+  "headBoundaryEdges": 128,
+  "allHeadBoundariesAreActualEyeApertures": true,
+  "nonmanifoldEdges": 0,
+  "uv": {
+    "Iris_Left": {
+      "triangles": 160,
+      "positiveAreaOverlapPairs": 0,
+      "summedOverlapArea": 0,
+      "minimumUvTriangleArea": 0.0027092888791040437,
+      "summedTriangleArea": 0.7803622019707952,
+      "uvBounds": [
+        7.326404016794186e-08,
+        1.0000001192092896,
+        -3.496805902614142e-06,
+        1.000003457069397
+      ]
+    },
+    "Iris_Right": {
+      "triangles": 160,
+      "positiveAreaOverlapPairs": 0,
+      "summedOverlapArea": 0,
+      "minimumUvTriangleArea": 0.0027092870551994608,
+      "summedTriangleArea": 0.7803621907088494,
+      "uvBounds": [
+        -8.195638656616211e-08,
+        0.9999999403953552,
+        -3.496805902614142e-06,
+        1.000003457069397
+      ]
+    },
+    "Pupil_Left": {
+      "triangles": 40,
+      "positiveAreaOverlapPairs": 0,
+      "summedOverlapArea": 0,
+      "minimumUvTriangleArea": 0.019549528289010354,
+      "summedTriangleArea": 0.7821704785746956,
+      "uvBounds": [
+        -3.8068250773903856e-07,
+        1.0,
+        -4.246549906383734e-06,
+        1.0000042915344238
+      ]
+    },
+    "Pupil_Right": {
+      "triangles": 40,
+      "positiveAreaOverlapPairs": 0,
+      "summedOverlapArea": 0,
+      "minimumUvTriangleArea": 0.019549529953758304,
+      "summedTriangleArea": 0.7821704790087992,
+      "uvBounds": [
+        -2.9240014853826324e-08,
+        1.0000003576278687,
+        -4.246549906383734e-06,
+        1.0000042915344238
+      ]
+    },
+    "headOriginalFaces": {
+      "triangles": 7888,
+      "positiveAreaOverlapPairs": 2102,
+      "summedOverlapArea": 0.006440786604267102,
+      "minimumUvTriangleArea": 0.0,
+      "summedTriangleArea": 0.9563394479445062,
+      "uvBounds": [
+        0.0,
+        1.3220329284667969,
+        0.0,
+        1.0
+      ]
+    },
+    "headNewFaces": {
+      "triangles": 2000,
+      "positiveAreaOverlapPairs": 3,
+      "summedOverlapArea": 1.088703346238673e-05,
+      "minimumUvTriangleArea": 1.3342584628261989e-06,
+      "summedTriangleArea": 0.035251547451290666,
+      "uvBounds": [
+        0.34868279099464417,
+        0.6513172388076782,
+        0.4444444477558136,
+        0.6349208354949951
+      ]
+    },
+    "separateSocketMaterialDomain": false,
+    "newVersusOldOverlapPairs": 4
+  },
+  "preservedMeshes": 20,
+  "continuousBlinkNormalCertificates": [
+    {
+      "controls": {},
+      "blinkInterval": [
+        0,
+        1
+      ],
+      "minimumDotRatio": -0.03917192737018269,
+      "nonpositiveOrNearZeroTriangles": [
+        7888,
+        8948,
+        8950
+      ]
+    },
+    {
+      "controls": {
+        "body.height": -1
+      },
+      "blinkInterval": [
+        0,
+        1
+      ],
+      "minimumDotRatio": -0.03934671039291975,
+      "nonpositiveOrNearZeroTriangles": [
+        7888,
+        8948,
+        8950
+      ]
+    },
+    {
+      "controls": {
+        "body.height": 1
+      },
+      "blinkInterval": [
+        0,
+        1
+      ],
+      "minimumDotRatio": -0.039015918270940385,
+      "nonpositiveOrNearZeroTriangles": [
+        7888,
+        8948,
+        8950
+      ]
+    },
+    {
+      "controls": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": -1,
+        "body.height": -1,
+        "body.shoulderWidth": -1
+      },
+      "blinkInterval": [
+        0,
+        1
+      ],
+      "minimumDotRatio": -0.0393381793330932,
+      "nonpositiveOrNearZeroTriangles": [
+        7888,
+        8948,
+        8950
+      ]
+    },
+    {
+      "controls": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1,
+        "body.height": 1,
+        "body.shoulderWidth": 1
+      },
+      "blinkInterval": [
+        0,
+        1
+      ],
+      "minimumDotRatio": -0.039022920631196535,
+      "nonpositiveOrNearZeroTriangles": [
+        7888,
+        8948,
+        8950
+      ]
+    }
+  ],
+  "caseResults": [
+    {
+      "case": "neutral",
+      "values": {},
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.7460725659156466e-07,
+      "minimumCosineToNeutral": 0.9999999999999998,
+      "newHeadSelfCrossings": 0
+    },
+    {
+      "case": "nose.projection:-1",
+      "values": {
+        "nose.projection": -1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.7400483887476454e-07,
+      "minimumCosineToNeutral": 0.2814179600271599,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "nose.projection:1",
+      "values": {
+        "nose.projection": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.7523065264114563e-07,
+      "minimumCosineToNeutral": 0.21893190312624436,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "values": {
+        "nose.alarWidth": -1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.7460725659156466e-07,
+      "minimumCosineToNeutral": 0.9999832759796619,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "values": {
+        "nose.alarWidth": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.7460725659156466e-07,
+      "minimumCosineToNeutral": 0.9999841571629692,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": -1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.7460725659156466e-07,
+      "minimumCosineToNeutral": 0.99999412517689,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "values": {
+        "earLeft.protrusion": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.7460725659156466e-07,
+      "minimumCosineToNeutral": 0.9999941076681388,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "values": {
+        "earRight.protrusion": -1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.7460775945978605e-07,
+      "minimumCosineToNeutral": 0.9999942684108988,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "values": {
+        "earRight.protrusion": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.7460675372358438e-07,
+      "minimumCosineToNeutral": 0.9999942517102779,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "body.height:-1",
+      "values": {
+        "body.height": -1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.678876780030071e-07,
+      "minimumCosineToNeutral": 0.9996690228582815,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "body.height:1",
+      "values": {
+        "body.height": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.8140406483636636e-07,
+      "minimumCosineToNeutral": 0.9997020154974442,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "values": {
+        "body.shoulderWidth": -1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.7460725659156466e-07,
+      "minimumCosineToNeutral": 0.9999999999999998,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "values": {
+        "body.shoulderWidth": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.7460725659156466e-07,
+      "minimumCosineToNeutral": 0.9999999999999998,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "all-six:-1/blink:0",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": -1,
+        "body.height": -1,
+        "body.shoulderWidth": -1,
+        "expression.blinkLeft": 0,
+        "expression.blinkRight": 0
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.6733656287896123e-07,
+      "minimumCosineToNeutral": 0.28934552909742245,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "all-six:-1/blink:0.5",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": -1,
+        "body.height": -1,
+        "body.shoulderWidth": -1,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.119208248186125e-07,
+      "minimumCosineToNeutral": 0.28934552909742245,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "all-six:-1/blink:1",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": -1,
+        "body.height": -1,
+        "body.shoulderWidth": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 7.099183399042597e-09,
+      "minimumCosineToNeutral": -0.9911292260965433,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "all-six:1/blink:0",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1,
+        "body.height": 1,
+        "body.shoulderWidth": 1,
+        "expression.blinkLeft": 0,
+        "expression.blinkRight": 0
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.8207838331163262e-07,
+      "minimumCosineToNeutral": 0.2109359838970007,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "all-six:1/blink:0.5",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1,
+        "body.height": 1,
+        "body.shoulderWidth": 1,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.1746969563281776e-07,
+      "minimumCosineToNeutral": 0.2109359838970007,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "all-six:1/blink:1",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1,
+        "body.height": 1,
+        "body.shoulderWidth": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 7.256606305896067e-09,
+      "minimumCosineToNeutral": -0.993303094241177,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "height:-1/blink:0.25",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 0.25,
+        "expression.blinkRight": 0.25
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.3819791320956371e-07,
+      "minimumCosineToNeutral": 0.9883767940423833,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "height:-1/blink:0.5",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.1198104458520468e-07,
+      "minimumCosineToNeutral": 0.9353165709814273,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "height:-1/blink:0.75",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 0.75,
+        "expression.blinkRight": 0.75
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 9.136252513844258e-08,
+      "minimumCosineToNeutral": 0.7672152104892832,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "height:-1/blink:1",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 7.113601358824845e-09,
+      "minimumCosineToNeutral": -0.9908810633538563,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "height:0/blink:0.25",
+      "values": {
+        "body.height": 0,
+        "expression.blinkLeft": 0.25,
+        "expression.blinkRight": 0.25
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.42898741988123e-07,
+      "minimumCosineToNeutral": 0.9901497292504602,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "height:0/blink:0.5",
+      "values": {
+        "body.height": 0,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.1462722767515948e-07,
+      "minimumCosineToNeutral": 0.9441695172349172,
+      "newHeadSelfCrossings": 0
+    },
+    {
+      "case": "height:0/blink:0.75",
+      "values": {
+        "body.height": 0,
+        "expression.blinkLeft": 0.75,
+        "expression.blinkRight": 0.75
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 9.220596461633625e-08,
+      "minimumCosineToNeutral": 0.7797245255972415,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "height:0/blink:1",
+      "values": {
+        "body.height": 0,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 7.177153417428714e-09,
+      "minimumCosineToNeutral": -0.9923030852289162,
+      "newHeadSelfCrossings": 4
+    },
+    {
+      "case": "height:1/blink:0.25",
+      "values": {
+        "body.height": 1,
+        "expression.blinkLeft": 0.25,
+        "expression.blinkRight": 0.25
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.4761902660343716e-07,
+      "minimumCosineToNeutral": 0.9884514207299718,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "height:1/blink:0.5",
+      "values": {
+        "body.height": 1,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.1734478867710363e-07,
+      "minimumCosineToNeutral": 0.9518652462790754,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "height:1/blink:0.75",
+      "values": {
+        "body.height": 1,
+        "expression.blinkLeft": 0.75,
+        "expression.blinkRight": 0.75
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 9.308466646437997e-08,
+      "minimumCosineToNeutral": 0.7917070327441693,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "height:1/blink:1",
+      "values": {
+        "body.height": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 7.2427208072634955e-09,
+      "minimumCosineToNeutral": -0.9934986269413516,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "happy",
+      "values": {
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.7460725659156466e-07,
+      "minimumCosineToNeutral": 0.9999605299920912,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "sad",
+      "values": {
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.7456536536279882e-07,
+      "minimumCosineToNeutral": 0.9779946271797142,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "left-blink",
+      "values": {
+        "expression.blinkLeft": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 7.177153417428714e-09,
+      "minimumCosineToNeutral": -0.5595535932945713,
+      "newHeadSelfCrossings": null
+    },
+    {
+      "case": "right-blink",
+      "values": {
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "Eye_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Left",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Iris_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Left",
+          "other": "Pupil_Left",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Pupil_Right",
+          "other": "Head including connected lids",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Iris_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        },
+        {
+          "surface": "Iris_Right",
+          "other": "Pupil_Right",
+          "rawBvhPairs": 0,
+          "properCrossings": 0
+        }
+      ],
+      "minimumLidAreaM2": 1.3275173350089939e-08,
+      "minimumCosineToNeutral": -0.9923030852289162,
+      "newHeadSelfCrossings": null
+    }
+  ],
+  "limits": "0.25 micrometre strict transverse intersection tolerance; raw BVH candidates retained. Finite collision tests, three self-crossing states; not exhaustive coplanar/continuous collision. Polynomial orientation proof applies only to blink with each listed fixed control packet. No rig, cap refit, production or realism acceptance."
+}

@@ -1,0 +1,25 @@
+{
+  "status": "Finite portrait checkpoint complete; parent visual review and UV repair pending",
+  "inputCommit": "2921534bdc8959a8489713f9b1652381702808a5",
+  "earlyRemoteCommit": "3a97852d41e2d0a2341e1df05c7d6d2a712b2e49",
+  "blendSha256": "4152f4deb9acf722b5327a95fbab7201c7f8f1ef87cfafb8b0b3acb19e33e09d",
+  "glbSha256": "d7d44dd281028fbe42da892866a8b149d343708748587542f14fb8884682c777",
+  "proofSha256": "ef5be52815ff959f2ae4061ace451c0eca864e11a0b95ed03f6e6ef68410a4d5",
+  "geometryGates": "35 poses, zero proper crossings, zero sampled self-crossings, zero normal flags, exact full closure",
+  "overallCheckerStatus": "FAIL",
+  "remainingFailures": [
+    {
+      "type": "new UV overlap",
+      "newFaces": 3,
+      "newVsOld": 4
+    }
+  ],
+  "exportStatus": "PASS",
+  "preservedMeshes": 20,
+  "identityControls": 6,
+  "anchors": "unchanged",
+  "triangles": 30194,
+  "meshes": 27,
+  "visualLimits": "Stylized face; corners and subtle closure crease still need art review. Not final realism.",
+  "jobsRunning": 0
+}

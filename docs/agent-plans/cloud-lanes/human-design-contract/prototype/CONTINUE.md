@@ -1,6 +1,6 @@
 # Original human prototype: active continuation
 
-**Latest completed correction:** see [anatomy-candidate-v4/CONTINUE.md](anatomy-candidate-v4/CONTINUE.md) for connected eye/socket/lid geometry, finite passing checks and the v3/v4 comparison. The separate v4 candidate does not replace frozen master 3ee5882c; skin/cornea refitting and parent review are required before adoption. Earlier v3 and original-prototype history below remain preserved.
+**Latest face review checkpoint:** see [anatomy-candidate-v5/CONTINUE.md](anatomy-candidate-v5/CONTINUE.md). Curved eye/socket topology and neutral/half/full portraits are complete; geometry/export gates pass, while the overall checker remains FAIL for seven added UV overlaps. Parent face review and UV/skin/cornea work are required. Protected v4, v3 and original master remain unchanged.
 
 Parent expanded this same lane at approximately 18:34 UTC on 13 October 2026: deliver actual original Blender character geometry, first pixels, physical subset controls, expressions and a turntable. This is an independent prototype, not adoption of the existing character task or a game-body replacement. Same branch and two owned prefixes only. Skin/eyes, hair and wardrobe task launches are parent-owned; no subworkers were launched here.
 

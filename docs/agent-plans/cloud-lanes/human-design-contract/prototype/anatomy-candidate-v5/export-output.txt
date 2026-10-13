@@ -1,0 +1,7 @@
+{"status": "PASS", "candidateSha256": "d7d44dd281028fbe42da892866a8b149d343708748587542f14fb8884682c777", "triangleCount": 30194, "meshCount": 27, "exactPreservedTriangleExpandedMeshes": 20, "retainedOriginalHeadFaceUvsPreserved": true, "allDecodedPositionsMorphsNormalsFinite": true, "sourceCompatibility": {"originalHeadVertices": 4068, "changedOriginalHeadVertices": 62, "maximumOriginalVertexMovementM": 0.008926939219236374, "oldHeadXZExact": true, "maximumRetainedHeadMorphDeltaDifferenceM": 0.0, "allSixIdentityControlsPresent": true, "note": "Reverts v4 local orbital Y displacements; new surrounding field rebuilt. No body or anchor changes.", "lastRenderedGeometryExactAfterUvOnlyReversion": true, "renderedSourceSha256": "cf76dafdda435faf49f1123bcda1e85a9550dd1e6110b33856e41fdd779d5eb0"}}
+Blender 4.3.2
+Read blend: "/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v4/anatomy-candidate-v4.blend"
+Read blend: "/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v5/anatomy-candidate-v5.blend"
+Read blend: "/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v5/anatomy-candidate-v5.blend1"
+
+Blender quit

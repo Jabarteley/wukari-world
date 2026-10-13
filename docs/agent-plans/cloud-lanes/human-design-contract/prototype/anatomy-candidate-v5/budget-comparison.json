@@ -1,0 +1,33 @@
+{
+  "candidateTriangles": 30194,
+  "candidateMeshes": 27,
+  "increaseFromV4": 656,
+  "assemblyFormula": "candidate - 2518 placeholder hair + 1200 corneas + selected hair + 2324 wardrobe",
+  "comparison": [
+    {
+      "hair": "detailed crop",
+      "hairTriangles": 6574,
+      "projectedCombinedTriangles": 37774,
+      "marginUnder34000": -3774
+    },
+    {
+      "hair": "detailed bun",
+      "hairTriangles": 5766,
+      "projectedCombinedTriangles": 36966,
+      "marginUnder34000": -2966
+    },
+    {
+      "hair": "crop silhouette",
+      "hairTriangles": 358,
+      "projectedCombinedTriangles": 31558,
+      "marginUnder34000": 2442
+    },
+    {
+      "hair": "bun silhouette",
+      "hairTriangles": 502,
+      "projectedCombinedTriangles": 31702,
+      "marginUnder34000": 2298
+    }
+  ],
+  "limits": "Pinned-count arithmetic only. No actual reassembly or device measurement; cap refit may change costs. Detailed hair remains over budget. No budget cap changes."
+}

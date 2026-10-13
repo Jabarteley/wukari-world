@@ -34,11 +34,15 @@ for change in prior['headPositionChanges']:
     i=change['vertex'];d=Vector(change['deltaMetres']);old[i]-=d
     for points in keys0.values():points[i]-=d
 oldtri=[];oldfaceuv=[];removed_old_faces=[]
-for j,t in enumerate(list(head.loop_triangles)[:prior['originalHeadTriangleCount']]):
-    centre=sum((old[i] for i in t.vertices),Vector())/3
-    inside=centre.y<0 and any(((centre.x-s*.032)/.027)**2+((centre.z-1.635)/.025)**2<1 for s in [-1,1])
-    if inside:removed_old_faces.append(j);continue
-    oldtri.append(tuple(t.vertices));oldfaceuv.append([tuple(head.uv_layers.active.data[i].uv) for i in t.loops])
+source_triangles=list(head.loop_triangles)[:prior['originalHeadTriangleCount']]
+for pair_start in range(0,len(source_triangles),2):
+    pair=source_triangles[pair_start:pair_start+2]
+    all_ids={i for t in pair for i in t.vertices}
+    centre=sum((old[i] for i in all_ids),Vector())/len(all_ids)
+    inside=centre.y<0 and any(min(old[i].x*s for i in all_ids)>.001 and ((centre.x-s*.032)/.027)**2+((centre.z-1.635)/.025)**2<1 for s in [-1,1])
+    for offset,t in enumerate(pair):
+        if inside:removed_old_faces.append(pair_start+offset);continue
+        oldtri.append(tuple(t.vertices));oldfaceuv.append([tuple(head.uv_layers.active.data[i].uv) for i in t.loops])
 vertexuv={loop.vertex_index:head.uv_layers.active.data[loop.index].uv.copy() for loop in head.loops if loop.vertex_index<nold}
 edges=Counter(tuple(sorted((t[j],t[(j+1)%3]))) for t in oldtri for j in range(3));boundary=[e for e,c in edges.items() if c==1]
 base=[p.copy() for p in old];positions={k:[p.copy() for p in v] for k,v in keys0.items()}
@@ -65,7 +69,17 @@ for side,tag in [(1,'Left'),(-1,'Right')]:
         for v,q in zip(obj.data.vertices,new):v.co=q
         obj.data.update()
     ids={i for edge in boundary for i in edge if old[i].x*side>0}
-    loop=sorted(ids,key=lambda i:math.atan2((old[i].z-cz)/.025,(old[i].x-cx)/.027)%(2*math.pi))
+    adjacency={i:[] for i in ids}
+    for a,b in boundary:
+        if a in ids and b in ids:adjacency[a].append(b);adjacency[b].append(a)
+    assert all(len(v)==2 for v in adjacency.values()),('Invalid cut boundary',tag,{i:v for i,v in adjacency.items() if len(v)!=2})
+    loop=[min(ids)];previous=None
+    while True:
+        next_id=next(i for i in adjacency[loop[-1]] if i!=previous)
+        if next_id==loop[0]:break
+        previous=loop[-1];loop.append(next_id);assert len(loop)<=len(ids)
+    assert len(loop)==len(ids),('More than one cut boundary',tag)
+    if sum(old[a].x*old[b].z-old[b].x*old[a].z for a,b in zip(loop,loop[1:]+loop[:1]))<0:loop.reverse()
     polygon=[Vector((old[i].x,old[i].z,0)) for i in loop]
     lookup={tuple(v):i for v,i in zip(polygon,loop)}
     uvtris=[tuple(loop[v] if isinstance(v,int) else lookup[tuple(v)] for v in tri) for tri in tessellate_polygon([polygon])]
@@ -82,21 +96,31 @@ for side,tag in [(1,'Left'),(-1,'Right')]:
     samples=64;fractions=[0,.065,.16,.29,.46,.65,.83,1.0];grid=[];params={};newuv={}
     startface=len(faces);startvertex=len(base)
     def point(angle,t,blink):
-        u=math.cos(angle);arc=math.sin(angle);tilt=side*.001*u
-        open_z=(.0068 if arc>=0 else .0048)*arc+tilt
-        closed_z=-.0016*(1-u*u)+tilt
-        ix=.0142*u;iz=open_z*(1-blink)+closed_z*blink
-        ox=.023*math.cos(angle);oz=.019*math.sin(angle)+tilt
-        dx=ox-ix;dz=oz-iz;x=cx+ix+dx*t;z=cz+iz+dz*t
+        u=math.cos(angle);arc=math.sin(angle)
+        seam=lambda x:-.0016*(1-(x/.0142)**2)+side*.001*x/.0142
+        slope=lambda x:2*.0016*x/.0142**2+side*.001/.0142
+        open_delta=(.0054 if arc>=0 else .0050)*arc+.0016*(1-u*u)
+        ix=.0142*u;ox=.0215*u;dx=ox-ix
+        iz=seam(ix)+open_delta*(1-blink);oz=seam(ox)+.018*arc
+        relative_x=ix+dx*t;x=cx+relative_x
+        z=cz+seam(relative_x)+(1-t)*open_delta*(1-blink)+t*.018*arc
+        dzi=slope(ix)*dx+.018*arc-open_delta*(1-blink)
+        dzo=slope(ox)*dx+.018*arc-open_delta*(1-blink)
         root=math.sqrt(max(.025,1-(ix/.0148)**2-(iz/.013)**2))
         yi=cy-.013*root-.00065
-        mi=.013*((ix/.0148**2)*dx+(iz/.013**2)*dz)/root
+        corner_y=face_y(cx+ix,cz+iz)-.0005
+        corner_weight=abs(u)**6 if corner_y<yi else 0.0
+        yi=yi*(1-corner_weight)+corner_y*corner_weight
+        mi=.013*((ix/.0148**2)*dx+(iz/.013**2)*dzi)/root
         yo=face_y(cx+ox,cz+oz)
         eps=.0001
-        mo=(face_y(cx+ox+dx*eps,cz+oz+dz*eps)-face_y(cx+ox-dx*eps,cz+oz-dz*eps))/(2*eps)
+        corner_m=(face_y(cx+ix+dx*eps,cz+iz+dzi*eps)-face_y(cx+ix-dx*eps,cz+iz-dzi*eps))/(2*eps)
+        mi=mi*(1-corner_weight)+corner_m*corner_weight
+        mo=(face_y(cx+ox+dx*eps,cz+oz+dzo*eps)-face_y(cx+ox-dx*eps,cz+oz-dzo*eps))/(2*eps)
         # C1 Hermite blend: globe tangent at the lid margin, original face
         # tangent at the orbital boundary. No rectangular intermediate sheet.
         y=(2*t**3-3*t*t+1)*yi+(t**3-2*t*t+t)*mi+(-2*t**3+3*t*t)*yo+(t**3-t*t)*mo
+        y+=.00025*blink*(1-t)**8*(1-u*u)
         return Vector((x,y,z))
     for t in fractions:
         ring=[]
@@ -115,47 +139,45 @@ for side,tag in [(1,'Left'),(-1,'Right')]:
     for row in range(len(grid)-1):
         for j in range(samples):
             a,b,c,d=grid[row][j],grid[row][(j+1)%samples],grid[row+1][(j+1)%samples],grid[row+1][j]
-            for tri in [(a,b,c),(a,c,d)]:
+            candidates=[[(a,b,c),(a,c,d)],[(a,b,d),(b,c,d)]]
+            # Choose the diagonal with the strongest minimum orientation over
+            # the three authored poses; avoids a closing canthus sliver.
+            def quality(triangles):
+                score=1.
+                for triangle in triangles:
+                    points=[base[i] for i in triangle];normal=(points[1]-points[0]).cross(points[2]-points[0])
+                    for blink in [.5,1]:
+                        p,q,r=[point(*params[i],blink) for i in triangle];n=(q-p).cross(r-p)
+                        score=min(score,normal.dot(n)/max(1e-30,normal.length*n.length))
+                return score
+            chosen=max(candidates,key=quality)
+            for tri in chosen:
                 p,q,r=[base[i] for i in tri]
                 if (q-p).cross(r-p).y>0:tri=tuple(reversed(tri))
                 faces.append(tri);faceuv.append([tuple(newuv[i]) for i in tri])
-    outer=sorted(loop,key=lambda i:math.atan2(base[i].z-cz,base[i].x-cx)%(2*math.pi))
+    outer=loop
     inner=sorted(grid[-1],key=lambda i:math.atan2(base[i].z-cz,base[i].x-cx)%(2*math.pi))
-    # A visible cut from the rightmost outer vertex to the nearest rectangle
-    # point makes a simple polygon with a hole. Angular zipper triangulation
-    # can cross the rectangular corner, so use constrained polygon tessellation.
-    oa=max(outer,key=lambda i:base[i].x)
-    candidates=inner
-    ia=min(candidates,key=lambda i:(base[i]-base[oa]).length)
-    oi=outer.index(oa);clockwise=list(reversed(inner));ii=clockwise.index(ia)
-    cut=outer[oi:]+outer[:oi]+[oa]+clockwise[ii:]+clockwise[:ii]+[ia]
-    flat=[Vector((base[i].x,base[i].z,0)) for i in cut]
-    flatlookup={tuple(p):i for p,i in zip(flat,cut)}
-    queue=[]
-    for result in tessellate_polygon([flat]):
-        triangle=tuple(cut[i] if isinstance(i,int) else flatlookup[tuple(i)] for i in result)
-        p,q,r=[base[i] for i in triangle]
-        if abs((q-p).cross(r-p).y)>1e-12:queue.append(triangle)
-    # Preserve collinear original boundary vertices: the tessellator may omit
-    # them or emit zero-projected-area ears. Split spanning triangle edges at
-    # those exact vertices instead of retaining degenerate faces/T-junctions.
-    boundaryids=set(outer+inner);steps=0
-    while queue:
-        tri=queue.pop();steps+=1;assert steps<10000
-        split=False
-        for edge in range(3):
-            a,b,c=tri[edge],tri[(edge+1)%3],tri[(edge+2)%3]
-            va=Vector((base[a].x,base[a].z));vb=Vector((base[b].x,base[b].z));direction=vb-va
-            for i in boundaryids-set(tri):
-                p=Vector((base[i].x,base[i].z));t=(p-va).dot(direction)/direction.length_squared
-                if 1e-6<t<1-1e-6 and (p-(va+direction*t)).length<1e-8:
-                    queue.extend([(a,i,c),(i,b,c)]);split=True;break
-            if split:break
-        if split:continue
-        p,q,r=[base[i] for i in tri]
-        assert abs((q-p).cross(r-p).y)>1e-12,('Degenerate socket bridge',tri)
+    # Both contours are star-shaped; merge their angular edge events. Every
+    # boundary edge is consumed exactly once, unlike hole tessellation's
+    # duplicate-cut path, which omitted a concave outer-boundary sector.
+    angle=lambda i:math.atan2(base[i].z-cz,base[i].x-cx)%(2*math.pi)
+    outer=sorted(outer,key=angle);inner=sorted(inner,key=angle)
+    # Anchor each contour immediately before angle zero (last point).
+    outer=[outer[-1]]+outer[:-1];inner=[inner[-1]]+inner[:-1]
+    oa=[angle(i) for i in outer];ia=[angle(i) for i in inner]
+    oa[0]-=2*math.pi;ia[0]-=2*math.pi
+    i=j=0
+    while i<len(outer) or j<len(inner):
+        onext=oa[(i+1)%len(outer)]+(2*math.pi if i+1==len(outer) else 0) if i<len(outer) else math.inf
+        inext=ia[(j+1)%len(inner)]+(2*math.pi if j+1==len(inner) else 0) if j<len(inner) else math.inf
+        if onext<inext:
+            tri=(outer[i%len(outer)],outer[(i+1)%len(outer)],inner[j%len(inner)]);i+=1
+        else:
+            tri=(outer[i%len(outer)],inner[(j+1)%len(inner)],inner[j%len(inner)]);j+=1
+        p,q,r=[base[k] for k in tri]
+        assert abs((q-p).cross(r-p).y)>1e-12,('Degenerate radial bridge',tri)
         if (q-p).cross(r-p).y>0:tri=tuple(reversed(tri))
-        faces.append(tri);faceuv.append([tuple(newuv[i] if i in newuv else vertexuv[i]) for i in tri])
+        faces.append(tri);faceuv.append([tuple(newuv[k] if k in newuv else vertexuv[k]) for k in tri])
     regions[tag]={'firstNewVertex':startvertex,'lastNewVertexExclusive':len(base),'firstTriangle':startface,'lastTriangleExclusive':len(faces),'ringFractions':fractions,'ringSamples':samples,'apertureLoop':grid[0],
                   'aperturePairs':[(grid[0][j],grid[0][(-j)%samples]) for j in range(samples//2+1)]}
     for index,(angle,t) in params.items():
@@ -164,6 +186,11 @@ for side,tag in [(1,'Left'),(-1,'Right')]:
         positions['corrective.blinkArc'+tag][index]=neutral+half-(neutral+closed)*.5
         positions['corrective.height.blink'+tag][index]=neutral+Vector((0,0,(closed.z-neutral.z)*.05))
 
+edge_check=Counter(tuple(sorted((t[j],t[(j+1)%3]))) for t in faces for j in range(3))
+expected={tuple(sorted((loop[j],loop[(j+1)%len(loop)]))) for region in regions.values() for loop in [region['apertureLoop']] for j in range(len(loop))}
+assert max(edge_check.values())==2,('Nonmanifold bridge',[(e,n) for e,n in edge_check.items() if n>2][:8])
+actual={e for e,n in edge_check.items() if n==1}
+assert actual==expected,('Unconnected orbital boundary',[(e,[tuple(base[i]) for i in e]) for e in actual-expected],list(expected-actual))
 mesh=bpy.data.meshes.new('Head_curved_orbital_loops_v5');mesh.from_pydata(base,[],faces);mesh.update()
 for material in head.materials:mesh.materials.append(material)
 uv=mesh.uv_layers.new(name='Head_orbital_UV_v5')
@@ -204,7 +231,7 @@ report={'version':5,'inputCommit':'2921534bdc8959a8489713f9b1652381702808a5','in
  'changedMeshes':changed,'removedSeparateLids':[],'exactPreservedMeshes':protected,'protectedHashes':{n:before[n] for n in protected},
  'originalHeadVertexCount':nold,'originalHeadTriangleCount':len(oldtri),'removedOriginalHeadFaceIndices':removed_old_faces,'lidRegions':regions,
  'eyeCentresBlender':{'Left':[.032,-.036,1.635],'Right':[-.032,-.036,1.635]},'eyeRadiiMetres':[.0148,.013,.013],
- 'nominalApertureWidthM':.0284,'centralNeutralApertureHeightM':.0116,'centralClosedSeamOffsetM':-.0016,
+ 'nominalApertureWidthM':.0284,'centralNeutralApertureHeightM':.0104,'centralClosedSeamOffsetM':-.0016,
  'sharedAnchorsBlender':fit['anchorsBlenderMetres'],'blendSha256':sha(OUT/'anatomy-candidate-v5.blend'),'glbSha256':sha(OUT/'anatomy-candidate-v5.glb'),
  'status':'First curved orbital topology build; geometry checks and parent visual review pending.'}
 (PROOF/'build-receipt.json').write_text(json.dumps(report,indent=2)+'\n')

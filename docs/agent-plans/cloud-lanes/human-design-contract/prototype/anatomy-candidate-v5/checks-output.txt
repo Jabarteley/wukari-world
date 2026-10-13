@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/check_anatomy_v5.py", line 147, in <module>
+    assert not failures,failures
+           ^^^^^^^^^^^^
+AssertionError: [{'type': 'new UV overlap', 'newFaces': 3, 'newVsOld': 4}]
+
+Error: script failed, file: 'experiments/cloud-lanes/human-design-contract/prototype/check_anatomy_v5.py', exiting.
+{"version": 5, "status": "FAIL", "cases": 35, "failures": [{"type": "new UV overlap", "newFaces": 3, "newVsOld": 4}], "properCrossingsAllTestedPairs": 0, "neutralEyeHeadProperCrossings": 0, "minimumNewLidTriangleAreaM2": 1.1764618796529679e-08, "minimumNormalCosineToNeutral": 0.2791510188914226, "maximumEvaluatedMorphErrorM": 1.4901161193847656e-07, "headBoundaryEdges": 128, "allHeadBoundariesAreActualEyeApertures": true, "nonmanifoldEdges": 0, "apertureMeasurements": [{"side": "Left", "blink": 0, "horizontalWidthM": 0.0284000001847744, "centralVerticalGapM": 0.010400056838989258, "maximumPairedGapM": 0.010401522540124797}, {"side": "Right", "blink": 0, "horizontalWidthM": 0.0284000001847744, "centralVerticalGapM": 0.010400056838989258, "maximumPairedGapM": 0.010401522540124797}, {"side": "Left", "blink": 0.5, "horizontalWidthM": 0.0284000001847744, "centralVerticalGapM": 0.0051996707916259766, "maximumPairedGapM": 0.00520754251388483}, {"side": "Right", "blink": 0.5, "horizontalWidthM": 0.0284000001847744, "centralVerticalGapM": 0.0051996707916259766, "maximumPairedGapM": 0.00520754251388483}, {"side": "Left", "blink": 1, "horizontalWidthM": 0.0284000001847744, "centralVerticalGapM": 0.0, "maximumPairedGapM": 0.0}, {"side": "Right", "blink": 1, "horizontalWidthM": 0.0284000001847744, "centralVerticalGapM": 0.0, "maximumPairedGapM": 0.0}], "preservedMeshes": 20}
+Blender 4.3.2
+Read blend: "/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v5/anatomy-candidate-v5.blend"
+
+Blender quit

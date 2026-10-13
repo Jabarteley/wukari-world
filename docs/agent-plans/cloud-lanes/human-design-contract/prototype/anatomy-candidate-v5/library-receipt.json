@@ -1,0 +1,25 @@
+{
+  "result": {
+    "operation": "create_library_file",
+    "status": "succeeded",
+    "path": "/Allworld-anatomy-v5-neutral-half-full-review.png",
+    "file_id": "file_00000000a1d881f69c366a6b6fb6e4f7",
+    "library_file_id": "libfile_eaf2a90ff35c819192aaac774c56d0ce",
+    "file_name": "Allworld-anatomy-v5-neutral-half-full-review.png",
+    "current_version_number": 0,
+    "restored_from_version_number": null,
+    "xattrs": [
+      {
+        "name": "user.library-file-version",
+        "value": "0"
+      }
+    ],
+    "directory_id": "libdir_f64b674727448191bd59b871f47ddab3",
+    "mime_type": "image/png",
+    "library_artifact_type": "image",
+    "file_size_bytes": 1841860,
+    "external_connectors_accessed": false
+  },
+  "localPath": "/workspace/joinallworld-human-design-contract/docs/agent-plans/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v5/Allworld-anatomy-v5-neutral-half-full-review.png",
+  "xattrsApplied": true
+}

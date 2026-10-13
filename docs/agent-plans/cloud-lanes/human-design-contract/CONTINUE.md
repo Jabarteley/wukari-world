@@ -1,6 +1,6 @@
 # Continue: isolated human design contract
 
-**Active visual prototype continuation:** parent subsequently authorized this same task to create original isolated Blender geometry and functional morphs. Read the latest [anatomy v4 continuation](prototype/anatomy-candidate-v4/CONTINUE.md) first for the separate connected eye/socket/lid candidate and completed finite checks, then [prototype/CONTINUE.md](prototype/CONTINUE.md) for the frozen master, controls video and fitting history. The contract-only checkpoint below is retained as history; its statements about no Blender work and unchanged executable code describe that earlier checkpoint. Shared runtime and existing character/Blender production remain untouched.
+**Active visual prototype continuation:** parent subsequently authorized this same task to create original isolated Blender geometry and functional morphs. Read the latest [anatomy v5 continuation](prototype/anatomy-candidate-v5/CONTINUE.md) first for the separate curved eye/socket/lid candidate, portrait checkpoint and explicit remaining UV failure, then [prototype/CONTINUE.md](prototype/CONTINUE.md) for the frozen master, controls video and fitting history. The contract-only checkpoint below is retained as history; its statements about no Blender work and unchanged executable code describe that earlier checkpoint. Shared runtime and existing character/Blender production remain untouched.
 
 ## Locate and verify
 

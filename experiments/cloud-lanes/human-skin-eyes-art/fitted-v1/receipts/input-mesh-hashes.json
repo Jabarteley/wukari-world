@@ -1,0 +1,353 @@
+{
+  "status": "PASS",
+  "meshes": [
+    {
+      "name": "Neck",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 2,
+      "material": "Skin | original warm umber"
+    },
+    {
+      "name": "Shirt_fused_shoulders",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 2,
+      "material": "Shirt | woven petrol blue"
+    },
+    {
+      "name": "Collar_band",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 2,
+      "material": "Shirt | woven petrol blue"
+    },
+    {
+      "name": "Trousers_fused_hip",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 2,
+      "material": "Trousers | warm charcoal"
+    },
+    {
+      "name": "Forearm_hand_-1",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 2,
+      "material": "Skin | original warm umber"
+    },
+    {
+      "name": "Shoe_-1",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 1,
+      "material": "Footwear | brown leather"
+    },
+    {
+      "name": "Sole_-1",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 1,
+      "material": "Sole | muted stone"
+    },
+    {
+      "name": "Forearm_hand_1",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 2,
+      "material": "Skin | original warm umber"
+    },
+    {
+      "name": "Shoe_1",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 1,
+      "material": "Footwear | brown leather"
+    },
+    {
+      "name": "Sole_1",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 1,
+      "material": "Sole | muted stone"
+    },
+    {
+      "name": "Head_continuous_anatomy",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 17,
+      "material": "Skin | original warm umber"
+    },
+    {
+      "name": "Eye_Left",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 1,
+      "material": "Sclera | warm ivory"
+    },
+    {
+      "name": "Iris_Left",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 1,
+      "material": "Iris | brown"
+    },
+    {
+      "name": "Pupil_Left",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 1,
+      "material": "Pupil and oral recess"
+    },
+    {
+      "name": "UpperLid_Left",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 3,
+      "material": "Skin | original warm umber"
+    },
+    {
+      "name": "LowerLid_Left",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 3,
+      "material": "Skin | original warm umber"
+    },
+    {
+      "name": "Brow_Left",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 3,
+      "material": "Hair | dark close curls"
+    },
+    {
+      "name": "Eye_Right",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 1,
+      "material": "Sclera | warm ivory"
+    },
+    {
+      "name": "Iris_Right",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 1,
+      "material": "Iris | brown"
+    },
+    {
+      "name": "Pupil_Right",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 1,
+      "material": "Pupil and oral recess"
+    },
+    {
+      "name": "UpperLid_Right",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 3,
+      "material": "Skin | original warm umber"
+    },
+    {
+      "name": "LowerLid_Right",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 3,
+      "material": "Skin | original warm umber"
+    },
+    {
+      "name": "Brow_Right",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 3,
+      "material": "Hair | dark close curls"
+    },
+    {
+      "name": "Lip_upper",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 11,
+      "material": "Lips | muted warm brown"
+    },
+    {
+      "name": "Lip_lower",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 11,
+      "material": "Lips | muted warm brown"
+    },
+    {
+      "name": "Mouth_seam",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 11,
+      "material": "Pupil and oral recess"
+    },
+    {
+      "name": "Nostril_-1",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 7,
+      "material": "Pupil and oral recess"
+    },
+    {
+      "name": "Nostril_1",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 7,
+      "material": "Pupil and oral recess"
+    },
+    {
+      "name": "Ear_Left",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 2,
+      "material": "Skin | original warm umber"
+    },
+    {
+      "name": "Ear_Right",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 2,
+      "material": "Skin | original warm umber"
+    },
+    {
+      "name": "Hair_original_close_curl_surface",
+      "uvLayer": "Prototype_UV_v1",
+      "hashesVerified": [
+        "positionSha256",
+        "triangleOrderSha256",
+        "uvSha256"
+      ],
+      "morphHashesVerified": 1,
+      "material": "Hair | dark close curls"
+    }
+  ],
+  "exportProperties": [
+    "export_materials",
+    "export_unused_images",
+    "export_unused_textures",
+    "export_active_vertex_color_when_no_material"
+  ],
+  "pillow": "11.1.0"
+}

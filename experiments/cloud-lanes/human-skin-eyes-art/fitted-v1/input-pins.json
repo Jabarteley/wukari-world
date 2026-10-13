@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "commit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "files": {
+    "experiments/cloud-lanes/human-design-contract/prototype/original-human-prototype.blend": {
+      "bytes": 969203,
+      "sha256": "36018022ff64367e7426069d7417625a3591f3a2c0684c628c11c3bd908f84d9"
+    },
+    "experiments/cloud-lanes/human-design-contract/prototype/original-human-prototype.glb": {
+      "bytes": 1200716,
+      "sha256": "5f0f8da1f3e6b14fc4910f04f02ed1eafe6446f896f44ef2b3a23f2ca071bc07"
+    },
+    "experiments/cloud-lanes/human-design-contract/prototype/fit-frame.json": {
+      "bytes": 3099,
+      "sha256": "51fae932279d1513e16c4d06ce633f6218a994fe6c224bc3436e105cc519083b"
+    },
+    "docs/agent-plans/cloud-lanes/human-design-contract/prototype/geometry-checks.json": {
+      "bytes": 46027,
+      "sha256": "7b0dd7b413bb8639ff37ea50cd14fe4a2f20b02f7fddb15c96f0dc55ee93761f"
+    },
+    "docs/agent-plans/cloud-lanes/human-design-contract/prototype/neutral-front.png": {
+      "bytes": 920760,
+      "sha256": "2dff2e3e17320476d0c2329720f73ca4c9361ffe2531f71137957b9a49f131df"
+    }
+  },
+  "frameId": "original-human-prototype-frame@1",
+  "calibrationCommit": "1efc5a280e52a0b3c432fca649d84689fe91993d",
+  "masterUnchanged": true
+}

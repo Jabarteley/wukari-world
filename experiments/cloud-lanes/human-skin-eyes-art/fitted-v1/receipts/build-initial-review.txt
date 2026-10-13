@@ -1,0 +1,634 @@
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+19:13:14 | INFO: Starting glTF 2.0 export
+19:13:14 | INFO: Extracting primitive: Neck-mesh
+Blender 4.3.2
+Read blend: "/workspace/human-skin-eyes-art/experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/inputs/original-human-prototype.blend"
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Neck-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Shirt_torso-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Collar_band-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Trouser_hip-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Forearm_-1-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Shoe_-1-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Shoe_-1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Sole_-1-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Sole_-1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Forearm_1-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Shoe_1-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Shoe_1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Sole_1-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Sole_1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Head_continuous_anatomy-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Head_continuous_anatomy-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Eye_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Iris_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Pupil_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: UpperLid_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: LowerLid_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Brow_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Eye_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Iris_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Pupil_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: UpperLid_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: LowerLid_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Brow_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Lip_upper-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Lip_lower-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Mouth_seam-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Mouth_seam-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Nostril_-1-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Nostril_1-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Ear_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Ear_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Hair_original_close_curl_surface-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Hair_original_close_curl_surface-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Fitted_Cornea_Left
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Fitted_Cornea_Right
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Finished glTF 2.0 export in 0.24906158447265625 s
+
+Warning: Neck-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Shoe_-1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Sole_-1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Shoe_1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Sole_1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Head_continuous_anatomy-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Mouth_seam-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Hair_original_close_curl_surface-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Starting glTF 2.0 export
+19:13:14 | INFO: Extracting primitive: Neck-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Neck-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Shirt_torso-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Collar_band-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Trouser_hip-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Forearm_-1-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Shoe_-1-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Shoe_-1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Sole_-1-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Sole_-1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Forearm_1-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Shoe_1-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Shoe_1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Sole_1-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Sole_1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Head_continuous_anatomy-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Head_continuous_anatomy-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Eye_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Iris_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Pupil_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: UpperLid_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: LowerLid_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Brow_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Eye_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Iris_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Pupil_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: UpperLid_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: LowerLid_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Brow_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Lip_upper-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Lip_lower-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Mouth_seam-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Mouth_seam-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Nostril_-1-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Nostril_1-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Ear_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Ear_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Hair_original_close_curl_surface-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Hair_original_close_curl_surface-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Fitted_Cornea_Left
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Fitted_Cornea_Right
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Finished glTF 2.0 export in 0.22025299072265625 s
+
+Warning: Neck-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Shoe_-1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Sole_-1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Shoe_1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Sole_1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Head_continuous_anatomy-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Mouth_seam-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Hair_original_close_curl_surface-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Starting glTF 2.0 export
+19:13:14 | INFO: Extracting primitive: Neck-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Neck-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Shirt_torso-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Collar_band-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Trouser_hip-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Forearm_-1-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Shoe_-1-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Shoe_-1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Sole_-1-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Sole_-1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Forearm_1-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Shoe_1-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Shoe_1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Sole_1-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Sole_1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Head_continuous_anatomy-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Head_continuous_anatomy-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Eye_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Iris_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Pupil_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: UpperLid_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: LowerLid_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Brow_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Eye_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Iris_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Pupil_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: UpperLid_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: LowerLid_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Brow_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Lip_upper-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Lip_lower-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Mouth_seam-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Mouth_seam-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Nostril_-1-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Nostril_1-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Ear_Left-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Ear_Right-mesh
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Hair_original_close_curl_surface-mesh
+Error: Tangent space can only be computed for tris/quads, aborting
+19:13:14 | WARNING: Hair_original_close_curl_surface-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Fitted_Cornea_Left
+19:13:14 | INFO: Primitives created: 1
+19:13:14 | INFO: Extracting primitive: Fitted_Cornea_Right
+19:13:14 | INFO: Primitives created: 1
+19:13:15 | INFO: Finished glTF 2.0 export in 0.32347798347473145 s
+Fra:1 Mem:40.84M (Peak 40.84M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Neck
+Fra:1 Mem:40.88M (Peak 40.88M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fitted_Cornea_Right
+Fra:1 Mem:40.91M (Peak 40.91M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_fused_shoulders
+Fra:1 Mem:41.12M (Peak 41.12M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fitted_Cornea_Left
+Fra:1 Mem:41.18M (Peak 41.18M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | STUDIO_floor
+Fra:1 Mem:41.18M (Peak 41.18M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hair_original_close_curl_surface
+Fra:1 Mem:41.34M (Peak 41.34M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Ear_Right
+Fra:1 Mem:41.46M (Peak 41.46M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Collar_band
+Fra:1 Mem:41.47M (Peak 41.47M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_fused_hip
+Fra:1 Mem:41.68M (Peak 41.68M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Ear_Left
+Fra:1 Mem:41.81M (Peak 41.81M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Forearm_hand_-1
+Fra:1 Mem:41.93M (Peak 41.93M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Nostril_1
+Fra:1 Mem:41.94M (Peak 41.94M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Nostril_-1
+Fra:1 Mem:41.98M (Peak 41.98M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mouth_seam
+Fra:1 Mem:42.15M (Peak 42.15M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lip_lower
+Fra:1 Mem:42.22M (Peak 42.22M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lip_upper
+Fra:1 Mem:42.27M (Peak 42.27M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Brow_Right
+Fra:1 Mem:42.28M (Peak 42.28M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LowerLid_Right
+Fra:1 Mem:42.32M (Peak 42.32M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | UpperLid_Right
+Fra:1 Mem:42.36M (Peak 42.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pupil_Right
+Fra:1 Mem:42.36M (Peak 42.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Iris_Right
+Fra:1 Mem:42.36M (Peak 42.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eye_Right
+Fra:1 Mem:42.43M (Peak 42.43M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Brow_Left
+Fra:1 Mem:42.43M (Peak 42.43M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LowerLid_Left
+Fra:1 Mem:42.47M (Peak 42.47M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | UpperLid_Left
+Fra:1 Mem:42.52M (Peak 42.52M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pupil_Left
+Fra:1 Mem:42.56M (Peak 42.56M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Iris_Left
+Fra:1 Mem:42.61M (Peak 42.61M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eye_Left
+Fra:1 Mem:42.56M (Peak 42.61M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shoe_-1
+Fra:1 Mem:42.60M (Peak 42.61M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Head_continuous_anatomy
+Fra:1 Mem:42.70M (Peak 42.70M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Sole_-1
+Fra:1 Mem:42.70M (Peak 42.70M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Forearm_hand_1
+Fra:1 Mem:44.06M (Peak 44.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shoe_1
+Fra:1 Mem:44.08M (Peak 44.08M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Sole_1
+Fra:1 Mem:44.09M (Peak 44.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:42.52M (Peak 44.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Ear_Right_normal.png
+Fra:1 Mem:42.52M (Peak 44.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Neck_01_umber_basecolor.png
+Fra:1 Mem:42.72M (Peak 44.09M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading Ear_Right_roughness.png
+Fra:1 Mem:42.78M (Peak 44.09M) | Time:00:00.01 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading Ear_Right_01_umber_basecolor.png
+Fra:1 Mem:42.78M (Peak 44.09M) | Time:00:00.01 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading Ear_Left_normal.png
+Fra:1 Mem:42.84M (Peak 44.09M) | Time:00:00.01 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading Neck_roughness.png
+Fra:1 Mem:42.84M (Peak 44.09M) | Time:00:00.01 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading Ear_Left_roughness.png
+Fra:1 Mem:43.03M (Peak 44.09M) | Time:00:00.01 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading Ear_Left_01_umber_basecolor.png
+Fra:1 Mem:42.97M (Peak 44.09M) | Time:00:00.01 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading Neck_normal.png
+Fra:1 Mem:43.16M (Peak 44.09M) | Time:00:00.01 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_minus1_01_umber_basecolor.png
+Fra:1 Mem:43.22M (Peak 44.09M) | Time:00:00.01 | Mem:0.56M, Peak:0.56M | Scene, ViewLayer | Updating Images | Loading Lip_lower_normal.png
+Fra:1 Mem:43.28M (Peak 44.09M) | Time:00:00.01 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading Lip_lower_roughness.png
+Fra:1 Mem:43.28M (Peak 44.09M) | Time:00:00.01 | Mem:0.69M, Peak:0.69M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_minus1_roughness.png
+Fra:1 Mem:43.34M (Peak 44.09M) | Time:00:00.01 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Images | Loading Lip_lower_01_umber_basecolor.png
+Fra:1 Mem:43.34M (Peak 44.09M) | Time:00:00.01 | Mem:0.81M, Peak:0.81M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_minus1_normal.png
+Fra:1 Mem:43.41M (Peak 44.09M) | Time:00:00.01 | Mem:0.88M, Peak:0.88M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_1_01_umber_basecolor.png
+Fra:1 Mem:43.53M (Peak 44.09M) | Time:00:00.01 | Mem:0.94M, Peak:0.94M | Scene, ViewLayer | Updating Images | Loading Lip_upper_normal.png
+Fra:1 Mem:43.59M (Peak 44.09M) | Time:00:00.01 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_1_roughness.png
+Fra:1 Mem:43.72M (Peak 44.09M) | Time:00:00.01 | Mem:1.06M, Peak:1.06M | Scene, ViewLayer | Updating Images | Loading Lip_upper_roughness.png
+Fra:1 Mem:43.66M (Peak 44.09M) | Time:00:00.01 | Mem:1.12M, Peak:1.12M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_1_normal.png
+Fra:1 Mem:43.78M (Peak 44.09M) | Time:00:00.01 | Mem:1.19M, Peak:1.19M | Scene, ViewLayer | Updating Images | Loading Lip_upper_01_umber_basecolor.png
+Fra:1 Mem:43.84M (Peak 44.09M) | Time:00:00.01 | Mem:1.25M, Peak:1.25M | Scene, ViewLayer | Updating Images | Loading Head_continuous_anatomy_01_umber_basecolor.png
+Fra:1 Mem:45.84M (Peak 45.91M) | Time:00:00.01 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Updating Images | Loading LowerLid_Right_normal.png
+Fra:1 Mem:45.91M (Peak 45.91M) | Time:00:00.01 | Mem:1.38M, Peak:1.38M | Scene, ViewLayer | Updating Images | Loading LowerLid_Right_roughness.png
+Fra:1 Mem:45.97M (Peak 45.97M) | Time:00:00.01 | Mem:1.44M, Peak:1.44M | Scene, ViewLayer | Updating Images | Loading LowerLid_Right_01_umber_basecolor.png
+Fra:1 Mem:46.03M (Peak 46.03M) | Time:00:00.01 | Mem:1.50M, Peak:1.50M | Scene, ViewLayer | Updating Images | Loading UpperLid_Right_normal.png
+Fra:1 Mem:46.09M (Peak 46.09M) | Time:00:00.01 | Mem:1.56M, Peak:1.56M | Scene, ViewLayer | Updating Images | Loading UpperLid_Right_roughness.png
+Fra:1 Mem:46.16M (Peak 46.16M) | Time:00:00.01 | Mem:1.62M, Peak:1.62M | Scene, ViewLayer | Updating Images | Loading UpperLid_Right_01_umber_basecolor.png
+Fra:1 Mem:46.22M (Peak 46.22M) | Time:00:00.01 | Mem:1.69M, Peak:1.69M | Scene, ViewLayer | Updating Images | Loading Iris_Right_basecolor.png
+Fra:1 Mem:46.47M (Peak 46.47M) | Time:00:00.01 | Mem:1.94M, Peak:1.94M | Scene, ViewLayer | Updating Images | Loading Eye_Right_basecolor.png
+Fra:1 Mem:46.72M (Peak 46.72M) | Time:00:00.01 | Mem:2.19M, Peak:2.19M | Scene, ViewLayer | Updating Images | Loading LowerLid_Left_normal.png
+Fra:1 Mem:46.78M (Peak 46.78M) | Time:00:00.01 | Mem:2.25M, Peak:2.25M | Scene, ViewLayer | Updating Images | Loading LowerLid_Left_roughness.png
+Fra:1 Mem:46.84M (Peak 46.84M) | Time:00:00.01 | Mem:2.31M, Peak:2.31M | Scene, ViewLayer | Updating Images | Loading LowerLid_Left_01_umber_basecolor.png
+Fra:1 Mem:46.91M (Peak 46.91M) | Time:00:00.01 | Mem:2.38M, Peak:2.38M | Scene, ViewLayer | Updating Images | Loading UpperLid_Left_normal.png
+Fra:1 Mem:46.97M (Peak 46.97M) | Time:00:00.01 | Mem:2.44M, Peak:2.44M | Scene, ViewLayer | Updating Images | Loading UpperLid_Left_roughness.png
+Fra:1 Mem:47.03M (Peak 47.03M) | Time:00:00.01 | Mem:2.50M, Peak:2.50M | Scene, ViewLayer | Updating Images | Loading UpperLid_Left_01_umber_basecolor.png
+Fra:1 Mem:47.09M (Peak 47.09M) | Time:00:00.01 | Mem:2.56M, Peak:2.56M | Scene, ViewLayer | Updating Images | Loading Iris_Left_basecolor.png
+Fra:1 Mem:47.34M (Peak 47.34M) | Time:00:00.01 | Mem:2.81M, Peak:2.81M | Scene, ViewLayer | Updating Images | Loading Eye_Left_basecolor.png
+Fra:1 Mem:47.59M (Peak 47.59M) | Time:00:00.01 | Mem:3.06M, Peak:3.06M | Scene, ViewLayer | Updating Images | Loading Head_continuous_anatomy_normal.png
+Fra:1 Mem:48.59M (Peak 49.59M) | Time:00:00.01 | Mem:4.06M, Peak:4.06M | Scene, ViewLayer | Updating Images | Loading Head_continuous_anatomy_roughness.png
+Fra:1 Mem:44.57M (Peak 50.59M) | Time:00:00.01 | Mem:6.06M, Peak:6.06M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:44.57M (Peak 50.59M) | Time:00:00.01 | Mem:6.06M, Peak:6.06M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:44.57M (Peak 50.59M) | Time:00:00.01 | Mem:6.06M, Peak:6.06M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:44.57M (Peak 50.59M) | Time:00:00.01 | Mem:6.06M, Peak:6.06M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:44.68M (Peak 50.59M) | Time:00:00.01 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:44.68M (Peak 50.59M) | Time:00:00.01 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:44.68M (Peak 50.59M) | Time:00:00.01 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:44.68M (Peak 50.59M) | Time:00:00.01 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:44.68M (Peak 50.59M) | Time:00:00.01 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:44.68M (Peak 50.59M) | Time:00:00.01 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:44.68M (Peak 50.59M) | Time:00:00.01 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:44.68M (Peak 50.59M) | Time:00:00.01 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:44.68M (Peak 50.59M) | Time:00:00.01 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:44.68M (Peak 50.59M) | Time:00:00.01 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:45.15M (Peak 50.59M) | Time:00:00.01 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:46.42M (Peak 50.59M) | Time:00:00.01 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:46.42M (Peak 50.59M) | Time:00:00.01 | Mem:7.36M, Peak:7.36M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:46.42M (Peak 50.59M) | Time:00:00.01 | Mem:7.36M, Peak:7.36M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:46.42M (Peak 50.59M) | Time:00:00.01 | Mem:8.29M, Peak:8.29M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:46.42M (Peak 50.59M) | Time:00:00.02 | Mem:9.30M, Peak:10.23M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:46.42M (Peak 50.59M) | Time:00:00.02 | Mem:9.30M, Peak:10.23M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:47.48M (Peak 50.59M) | Time:00:00.02 | Mem:9.30M, Peak:10.23M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:47.48M (Peak 50.59M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:47.48M (Peak 50.59M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:47.48M (Peak 50.59M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:47.48M (Peak 50.59M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:47.48M (Peak 50.59M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:47.48M (Peak 50.59M) | Time:00:00.02 | Mem:10.44M, Peak:10.44M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:47.48M (Peak 50.59M) | Time:00:00.02 | Mem:10.44M, Peak:10.44M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:47.48M (Peak 50.59M) | Time:00:00.02 | Mem:10.44M, Peak:10.44M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:47.48M (Peak 50.59M) | Time:00:00.02 | Mem:10.44M, Peak:10.44M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:47.48M (Peak 50.59M) | Time:00:00.02 | Mem:10.36M, Peak:10.44M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:47.48M (Peak 50.59M) | Time:00:00.02 | Mem:10.45M, Peak:10.45M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:47.48M (Peak 50.59M) | Time:00:00.02 | Mem:10.45M, Peak:10.45M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:47.49M (Peak 50.59M) | Time:00:00.02 | Mem:10.45M, Peak:10.45M | Scene, ViewLayer | Sample 0/32
+Fra:1 Mem:58.21M (Peak 58.21M) | Time:00:00.26 | Remaining:00:07.53 | Mem:21.17M, Peak:21.17M | Scene, ViewLayer | Sample 1/32
+Fra:1 Mem:62.97M (Peak 72.49M) | Time:00:06.89 | Mem:21.17M, Peak:21.17M | Scene, ViewLayer | Sample 32/32
+Fra:1 Mem:62.97M (Peak 72.49M) | Time:00:06.89 | Mem:21.17M, Peak:21.17M | Scene, ViewLayer | Finished
+Saved: '/workspace/human-skin-eyes-art/experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/proof/portrait-01_umber.png'
+Time: 00:07.06 (Saving: 00:00.16)
+
+Fra:1 Mem:40.85M (Peak 40.85M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Neck
+Fra:1 Mem:40.88M (Peak 40.88M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fitted_Cornea_Right
+Fra:1 Mem:40.88M (Peak 40.88M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_fused_shoulders
+Fra:1 Mem:41.12M (Peak 41.12M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fitted_Cornea_Left
+Fra:1 Mem:41.18M (Peak 41.18M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | STUDIO_floor
+Fra:1 Mem:41.18M (Peak 41.18M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hair_original_close_curl_surface
+Fra:1 Mem:41.34M (Peak 41.34M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Ear_Right
+Fra:1 Mem:41.43M (Peak 41.43M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Collar_band
+Fra:1 Mem:41.46M (Peak 41.46M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_fused_hip
+Fra:1 Mem:41.75M (Peak 41.75M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Forearm_hand_-1
+Fra:1 Mem:41.84M (Peak 41.84M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Ear_Left
+Fra:1 Mem:42.11M (Peak 42.11M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Nostril_1
+Fra:1 Mem:42.12M (Peak 42.12M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Nostril_-1
+Fra:1 Mem:42.14M (Peak 42.14M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mouth_seam
+Fra:1 Mem:42.17M (Peak 42.17M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lip_lower
+Fra:1 Mem:42.23M (Peak 42.23M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lip_upper
+Fra:1 Mem:42.28M (Peak 42.28M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Brow_Right
+Fra:1 Mem:42.28M (Peak 42.28M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LowerLid_Right
+Fra:1 Mem:42.32M (Peak 42.32M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | UpperLid_Right
+Fra:1 Mem:42.45M (Peak 42.45M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pupil_Right
+Fra:1 Mem:42.46M (Peak 42.46M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Iris_Right
+Fra:1 Mem:42.46M (Peak 42.46M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eye_Right
+Fra:1 Mem:42.41M (Peak 42.46M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shoe_-1
+Fra:1 Mem:42.45M (Peak 42.46M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Brow_Left
+Fra:1 Mem:42.46M (Peak 42.46M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Sole_-1
+Fra:1 Mem:42.46M (Peak 42.46M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LowerLid_Left
+Fra:1 Mem:42.48M (Peak 42.48M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Forearm_hand_1
+Fra:1 Mem:42.62M (Peak 42.62M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | UpperLid_Left
+Fra:1 Mem:42.82M (Peak 42.82M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pupil_Left
+Fra:1 Mem:42.82M (Peak 42.82M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Iris_Left
+Fra:1 Mem:42.85M (Peak 42.85M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eye_Left
+Fra:1 Mem:42.91M (Peak 42.91M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Head_continuous_anatomy
+Fra:1 Mem:44.06M (Peak 44.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shoe_1
+Fra:1 Mem:44.08M (Peak 44.08M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Sole_1
+Fra:1 Mem:44.09M (Peak 44.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:42.52M (Peak 44.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Ear_Right_normal.png
+Fra:1 Mem:42.58M (Peak 44.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Neck_02_copper_basecolor.png
+Fra:1 Mem:42.72M (Peak 44.09M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading Ear_Right_roughness.png
+Fra:1 Mem:42.79M (Peak 44.09M) | Time:00:00.01 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading Ear_Right_02_copper_basecolor.png
+Fra:1 Mem:42.85M (Peak 44.09M) | Time:00:00.01 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading Neck_roughness.png
+Fra:1 Mem:42.85M (Peak 44.09M) | Time:00:00.01 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading Neck_normal.png
+Fra:1 Mem:42.91M (Peak 44.09M) | Time:00:00.01 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading Ear_Left_normal.png
+Fra:1 Mem:43.04M (Peak 44.09M) | Time:00:00.01 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading Ear_Left_roughness.png
+Fra:1 Mem:43.04M (Peak 44.09M) | Time:00:00.01 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_minus1_02_copper_basecolor.png
+Fra:1 Mem:43.10M (Peak 44.09M) | Time:00:00.01 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading Ear_Left_02_copper_basecolor.png
+Fra:1 Mem:43.22M (Peak 44.09M) | Time:00:00.01 | Mem:0.56M, Peak:0.56M | Scene, ViewLayer | Updating Images | Loading Lip_lower_normal.png
+Fra:1 Mem:43.29M (Peak 44.09M) | Time:00:00.01 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_minus1_roughness.png
+Fra:1 Mem:43.22M (Peak 44.09M) | Time:00:00.01 | Mem:0.69M, Peak:0.69M | Scene, ViewLayer | Updating Images | Loading Lip_lower_roughness.png
+Fra:1 Mem:43.41M (Peak 44.09M) | Time:00:00.01 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Images | Loading Lip_lower_02_copper_basecolor.png
+Fra:1 Mem:43.47M (Peak 44.09M) | Time:00:00.01 | Mem:0.81M, Peak:0.81M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_minus1_normal.png
+Fra:1 Mem:43.54M (Peak 44.09M) | Time:00:00.01 | Mem:0.88M, Peak:0.88M | Scene, ViewLayer | Updating Images | Loading Lip_upper_normal.png
+Fra:1 Mem:43.47M (Peak 44.09M) | Time:00:00.01 | Mem:0.94M, Peak:0.94M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_1_02_copper_basecolor.png
+Fra:1 Mem:43.66M (Peak 44.09M) | Time:00:00.01 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading Lip_upper_roughness.png
+Fra:1 Mem:43.72M (Peak 44.09M) | Time:00:00.01 | Mem:1.06M, Peak:1.06M | Scene, ViewLayer | Updating Images | Loading Lip_upper_02_copper_basecolor.png
+Fra:1 Mem:43.79M (Peak 44.09M) | Time:00:00.01 | Mem:1.12M, Peak:1.12M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_1_roughness.png
+Fra:1 Mem:43.79M (Peak 44.09M) | Time:00:00.01 | Mem:1.19M, Peak:1.19M | Scene, ViewLayer | Updating Images | Loading LowerLid_Right_normal.png
+Fra:1 Mem:43.91M (Peak 44.09M) | Time:00:00.01 | Mem:1.25M, Peak:1.25M | Scene, ViewLayer | Updating Images | Loading LowerLid_Right_roughness.png
+Fra:1 Mem:43.91M (Peak 44.09M) | Time:00:00.01 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_1_normal.png
+Fra:1 Mem:43.97M (Peak 44.09M) | Time:00:00.01 | Mem:1.38M, Peak:1.38M | Scene, ViewLayer | Updating Images | Loading LowerLid_Right_02_copper_basecolor.png
+Fra:1 Mem:44.10M (Peak 44.10M) | Time:00:00.01 | Mem:1.44M, Peak:1.44M | Scene, ViewLayer | Updating Images | Loading Head_continuous_anatomy_02_copper_basecolor.png
+Fra:1 Mem:45.04M (Peak 45.04M) | Time:00:00.01 | Mem:1.50M, Peak:1.50M | Scene, ViewLayer | Updating Images | Loading UpperLid_Right_normal.png
+Fra:1 Mem:45.10M (Peak 45.10M) | Time:00:00.01 | Mem:1.56M, Peak:1.56M | Scene, ViewLayer | Updating Images | Loading UpperLid_Right_roughness.png
+Fra:1 Mem:45.16M (Peak 45.16M) | Time:00:00.01 | Mem:1.62M, Peak:1.62M | Scene, ViewLayer | Updating Images | Loading UpperLid_Right_02_copper_basecolor.png
+Fra:1 Mem:45.22M (Peak 45.22M) | Time:00:00.01 | Mem:1.69M, Peak:1.69M | Scene, ViewLayer | Updating Images | Loading Iris_Right_basecolor.png
+Fra:1 Mem:46.47M (Peak 46.47M) | Time:00:00.01 | Mem:1.94M, Peak:1.94M | Scene, ViewLayer | Updating Images | Loading Eye_Right_basecolor.png
+Fra:1 Mem:46.72M (Peak 46.72M) | Time:00:00.01 | Mem:2.19M, Peak:2.19M | Scene, ViewLayer | Updating Images | Loading LowerLid_Left_normal.png
+Fra:1 Mem:46.79M (Peak 46.79M) | Time:00:00.01 | Mem:2.25M, Peak:2.25M | Scene, ViewLayer | Updating Images | Loading LowerLid_Left_roughness.png
+Fra:1 Mem:46.85M (Peak 46.85M) | Time:00:00.01 | Mem:2.31M, Peak:2.31M | Scene, ViewLayer | Updating Images | Loading LowerLid_Left_02_copper_basecolor.png
+Fra:1 Mem:46.91M (Peak 46.91M) | Time:00:00.01 | Mem:2.38M, Peak:2.38M | Scene, ViewLayer | Updating Images | Loading UpperLid_Left_normal.png
+Fra:1 Mem:46.97M (Peak 46.97M) | Time:00:00.01 | Mem:2.44M, Peak:2.44M | Scene, ViewLayer | Updating Images | Loading UpperLid_Left_roughness.png
+Fra:1 Mem:47.04M (Peak 47.04M) | Time:00:00.01 | Mem:2.50M, Peak:2.50M | Scene, ViewLayer | Updating Images | Loading UpperLid_Left_02_copper_basecolor.png
+Fra:1 Mem:47.10M (Peak 47.10M) | Time:00:00.01 | Mem:2.56M, Peak:2.56M | Scene, ViewLayer | Updating Images | Loading Iris_Left_basecolor.png
+Fra:1 Mem:47.35M (Peak 47.35M) | Time:00:00.01 | Mem:2.81M, Peak:2.81M | Scene, ViewLayer | Updating Images | Loading Eye_Left_basecolor.png
+Fra:1 Mem:47.60M (Peak 47.60M) | Time:00:00.01 | Mem:3.06M, Peak:3.06M | Scene, ViewLayer | Updating Images | Loading Head_continuous_anatomy_normal.png
+Fra:1 Mem:48.60M (Peak 49.60M) | Time:00:00.01 | Mem:4.06M, Peak:4.06M | Scene, ViewLayer | Updating Images | Loading Head_continuous_anatomy_roughness.png
+Fra:1 Mem:44.58M (Peak 49.60M) | Time:00:00.01 | Mem:6.06M, Peak:6.06M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:44.58M (Peak 49.60M) | Time:00:00.01 | Mem:6.06M, Peak:6.06M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:44.58M (Peak 49.60M) | Time:00:00.01 | Mem:6.06M, Peak:6.06M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:44.58M (Peak 49.60M) | Time:00:00.01 | Mem:6.06M, Peak:6.06M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:44.68M (Peak 49.60M) | Time:00:00.01 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:44.68M (Peak 49.60M) | Time:00:00.01 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:44.68M (Peak 49.60M) | Time:00:00.01 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:44.68M (Peak 49.60M) | Time:00:00.01 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:44.68M (Peak 49.60M) | Time:00:00.01 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:44.68M (Peak 49.60M) | Time:00:00.01 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:44.69M (Peak 49.60M) | Time:00:00.01 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:44.69M (Peak 49.60M) | Time:00:00.01 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:44.69M (Peak 49.60M) | Time:00:00.01 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:44.69M (Peak 49.60M) | Time:00:00.01 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:45.15M (Peak 49.60M) | Time:00:00.01 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:46.43M (Peak 49.60M) | Time:00:00.01 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:46.42M (Peak 49.60M) | Time:00:00.01 | Mem:7.36M, Peak:7.36M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:46.42M (Peak 49.60M) | Time:00:00.01 | Mem:7.36M, Peak:7.36M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:46.42M (Peak 49.60M) | Time:00:00.01 | Mem:8.29M, Peak:8.29M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:46.42M (Peak 49.60M) | Time:00:00.02 | Mem:9.30M, Peak:10.23M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:46.42M (Peak 49.60M) | Time:00:00.02 | Mem:9.30M, Peak:10.23M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:47.48M (Peak 49.60M) | Time:00:00.02 | Mem:9.30M, Peak:10.23M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:47.48M (Peak 49.60M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:47.48M (Peak 49.60M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:47.48M (Peak 49.60M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:47.48M (Peak 49.60M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:47.48M (Peak 49.60M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:47.48M (Peak 49.60M) | Time:00:00.02 | Mem:10.44M, Peak:10.44M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:47.48M (Peak 49.60M) | Time:00:00.02 | Mem:10.44M, Peak:10.44M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:47.48M (Peak 49.60M) | Time:00:00.02 | Mem:10.44M, Peak:10.44M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:47.48M (Peak 49.60M) | Time:00:00.02 | Mem:10.44M, Peak:10.44M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:47.49M (Peak 49.60M) | Time:00:00.02 | Mem:10.36M, Peak:10.44M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:47.49M (Peak 49.60M) | Time:00:00.02 | Mem:10.45M, Peak:10.45M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:47.49M (Peak 49.60M) | Time:00:00.02 | Mem:10.45M, Peak:10.45M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:47.49M (Peak 49.60M) | Time:00:00.02 | Mem:10.45M, Peak:10.45M | Scene, ViewLayer | Sample 0/32
+Fra:1 Mem:58.21M (Peak 58.21M) | Time:00:00.23 | Remaining:00:06.63 | Mem:21.17M, Peak:21.17M | Scene, ViewLayer | Sample 1/32
+Fra:1 Mem:62.97M (Peak 72.49M) | Time:00:06.62 | Mem:21.17M, Peak:21.17M | Scene, ViewLayer | Sample 32/32
+Fra:1 Mem:62.97M (Peak 72.49M) | Time:00:06.62 | Mem:21.17M, Peak:21.17M | Scene, ViewLayer | Finished
+Saved: '/workspace/human-skin-eyes-art/experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/proof/portrait-02_copper.png'
+Time: 00:06.65 (Saving: 00:00.03)
+
+Fra:1 Mem:40.85M (Peak 40.85M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Neck
+Fra:1 Mem:40.86M (Peak 40.86M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fitted_Cornea_Right
+Fra:1 Mem:40.89M (Peak 40.89M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fitted_Cornea_Left
+Fra:1 Mem:40.93M (Peak 40.93M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | STUDIO_floor
+Fra:1 Mem:40.93M (Peak 40.93M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hair_original_close_curl_surface
+Fra:1 Mem:41.09M (Peak 41.09M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Ear_Right
+Fra:1 Mem:41.18M (Peak 41.18M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Ear_Left
+Fra:1 Mem:41.28M (Peak 41.28M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Nostril_1
+Fra:1 Mem:41.29M (Peak 41.29M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Nostril_-1
+Fra:1 Mem:41.31M (Peak 41.31M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mouth_seam
+Fra:1 Mem:41.35M (Peak 41.35M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lip_lower
+Fra:1 Mem:41.40M (Peak 41.40M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lip_upper
+Fra:1 Mem:41.45M (Peak 41.45M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Brow_Right
+Fra:1 Mem:41.45M (Peak 41.45M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LowerLid_Right
+Fra:1 Mem:41.49M (Peak 41.49M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | UpperLid_Right
+Fra:1 Mem:41.53M (Peak 41.53M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pupil_Right
+Fra:1 Mem:41.53M (Peak 41.53M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Iris_Right
+Fra:1 Mem:41.54M (Peak 41.54M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eye_Right
+Fra:1 Mem:41.60M (Peak 41.60M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Brow_Left
+Fra:1 Mem:41.61M (Peak 41.61M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LowerLid_Left
+Fra:1 Mem:41.64M (Peak 41.64M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | UpperLid_Left
+Fra:1 Mem:41.68M (Peak 41.68M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pupil_Left
+Fra:1 Mem:41.69M (Peak 41.69M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Iris_Left
+Fra:1 Mem:41.69M (Peak 41.69M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eye_Left
+Fra:1 Mem:41.75M (Peak 41.75M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Head_continuous_anatomy
+Fra:1 Mem:42.90M (Peak 42.90M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Sole_1
+Fra:1 Mem:42.91M (Peak 42.91M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shoe_1
+Fra:1 Mem:42.94M (Peak 42.94M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Forearm_hand_1
+Fra:1 Mem:43.23M (Peak 43.23M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Sole_-1
+Fra:1 Mem:43.24M (Peak 43.24M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shoe_-1
+Fra:1 Mem:43.26M (Peak 43.26M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Forearm_hand_-1
+Fra:1 Mem:43.56M (Peak 43.56M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_fused_hip
+Fra:1 Mem:43.81M (Peak 43.81M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Collar_band
+Fra:1 Mem:43.81M (Peak 43.81M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_fused_shoulders
+Fra:1 Mem:44.10M (Peak 44.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:42.52M (Peak 44.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Neck_03_rose_basecolor.png
+Fra:1 Mem:42.52M (Peak 44.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Ear_Right_normal.png
+Fra:1 Mem:42.73M (Peak 44.10M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading Ear_Right_roughness.png
+Fra:1 Mem:42.79M (Peak 44.10M) | Time:00:00.01 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading Ear_Right_03_rose_basecolor.png
+Fra:1 Mem:42.79M (Peak 44.10M) | Time:00:00.01 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading Neck_roughness.png
+Fra:1 Mem:42.91M (Peak 44.10M) | Time:00:00.01 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading Neck_normal.png
+Fra:1 Mem:42.98M (Peak 44.10M) | Time:00:00.01 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_minus1_03_rose_basecolor.png
+Fra:1 Mem:42.91M (Peak 44.10M) | Time:00:00.01 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading Ear_Left_normal.png
+Fra:1 Mem:43.10M (Peak 44.10M) | Time:00:00.01 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading Ear_Left_roughness.png
+Fra:1 Mem:43.16M (Peak 44.10M) | Time:00:00.01 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading Ear_Left_03_rose_basecolor.png
+Fra:1 Mem:43.23M (Peak 44.10M) | Time:00:00.01 | Mem:0.56M, Peak:0.56M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_minus1_roughness.png
+Fra:1 Mem:43.29M (Peak 44.10M) | Time:00:00.01 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_minus1_normal.png
+Fra:1 Mem:43.35M (Peak 44.10M) | Time:00:00.01 | Mem:0.69M, Peak:0.69M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_1_03_rose_basecolor.png
+Fra:1 Mem:43.29M (Peak 44.10M) | Time:00:00.01 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Images | Loading Lip_lower_normal.png
+Fra:1 Mem:43.48M (Peak 44.10M) | Time:00:00.01 | Mem:0.81M, Peak:0.81M | Scene, ViewLayer | Updating Images | Loading Lip_lower_roughness.png
+Fra:1 Mem:43.54M (Peak 44.10M) | Time:00:00.01 | Mem:0.88M, Peak:0.88M | Scene, ViewLayer | Updating Images | Loading Lip_lower_03_rose_basecolor.png
+Fra:1 Mem:43.60M (Peak 44.10M) | Time:00:00.01 | Mem:0.94M, Peak:0.94M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_1_roughness.png
+Fra:1 Mem:43.66M (Peak 44.10M) | Time:00:00.01 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading Forearm_hand_1_normal.png
+Fra:1 Mem:43.73M (Peak 44.10M) | Time:00:00.01 | Mem:1.06M, Peak:1.06M | Scene, ViewLayer | Updating Images | Loading Lip_upper_normal.png
+Fra:1 Mem:43.66M (Peak 44.10M) | Time:00:00.01 | Mem:1.12M, Peak:1.12M | Scene, ViewLayer | Updating Images | Loading Head_continuous_anatomy_03_rose_basecolor.png
+Fra:1 Mem:44.73M (Peak 44.73M) | Time:00:00.01 | Mem:1.19M, Peak:1.19M | Scene, ViewLayer | Updating Images | Loading Lip_upper_roughness.png
+Fra:1 Mem:45.79M (Peak 45.79M) | Time:00:00.01 | Mem:1.25M, Peak:1.25M | Scene, ViewLayer | Updating Images | Loading Lip_upper_03_rose_basecolor.png
+Fra:1 Mem:45.85M (Peak 45.85M) | Time:00:00.01 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Updating Images | Loading LowerLid_Right_normal.png
+Fra:1 Mem:45.91M (Peak 45.91M) | Time:00:00.01 | Mem:1.38M, Peak:1.38M | Scene, ViewLayer | Updating Images | Loading LowerLid_Right_roughness.png
+Fra:1 Mem:45.98M (Peak 45.98M) | Time:00:00.01 | Mem:1.44M, Peak:1.44M | Scene, ViewLayer | Updating Images | Loading LowerLid_Right_03_rose_basecolor.png
+Fra:1 Mem:46.04M (Peak 46.04M) | Time:00:00.02 | Mem:1.50M, Peak:1.50M | Scene, ViewLayer | Updating Images | Loading UpperLid_Right_normal.png
+Fra:1 Mem:46.10M (Peak 46.10M) | Time:00:00.02 | Mem:1.56M, Peak:1.56M | Scene, ViewLayer | Updating Images | Loading UpperLid_Right_roughness.png
+Fra:1 Mem:46.16M (Peak 46.16M) | Time:00:00.02 | Mem:1.62M, Peak:1.62M | Scene, ViewLayer | Updating Images | Loading UpperLid_Right_03_rose_basecolor.png
+Fra:1 Mem:46.23M (Peak 46.23M) | Time:00:00.02 | Mem:1.69M, Peak:1.69M | Scene, ViewLayer | Updating Images | Loading Iris_Right_basecolor.png
+Fra:1 Mem:46.48M (Peak 46.48M) | Time:00:00.02 | Mem:1.94M, Peak:1.94M | Scene, ViewLayer | Updating Images | Loading Eye_Right_basecolor.png
+Fra:1 Mem:46.73M (Peak 46.73M) | Time:00:00.02 | Mem:2.19M, Peak:2.19M | Scene, ViewLayer | Updating Images | Loading LowerLid_Left_normal.png
+Fra:1 Mem:46.79M (Peak 46.79M) | Time:00:00.02 | Mem:2.25M, Peak:2.25M | Scene, ViewLayer | Updating Images | Loading LowerLid_Left_roughness.png
+Fra:1 Mem:46.85M (Peak 46.85M) | Time:00:00.02 | Mem:2.31M, Peak:2.31M | Scene, ViewLayer | Updating Images | Loading LowerLid_Left_03_rose_basecolor.png
+Fra:1 Mem:46.91M (Peak 46.91M) | Time:00:00.02 | Mem:2.38M, Peak:2.38M | Scene, ViewLayer | Updating Images | Loading UpperLid_Left_normal.png
+Fra:1 Mem:46.98M (Peak 46.98M) | Time:00:00.02 | Mem:2.44M, Peak:2.44M | Scene, ViewLayer | Updating Images | Loading UpperLid_Left_roughness.png
+Fra:1 Mem:47.04M (Peak 47.04M) | Time:00:00.02 | Mem:2.50M, Peak:2.50M | Scene, ViewLayer | Updating Images | Loading UpperLid_Left_03_rose_basecolor.png
+Fra:1 Mem:47.10M (Peak 47.10M) | Time:00:00.02 | Mem:2.56M, Peak:2.56M | Scene, ViewLayer | Updating Images | Loading Iris_Left_basecolor.png
+Fra:1 Mem:46.60M (Peak 47.10M) | Time:00:00.02 | Mem:3.56M, Peak:3.56M | Scene, ViewLayer | Updating Images | Loading Head_continuous_anatomy_roughness.png
+Fra:1 Mem:48.35M (Peak 48.60M) | Time:00:00.02 | Mem:3.81M, Peak:3.81M | Scene, ViewLayer | Updating Images | Loading Eye_Left_basecolor.png
+Fra:1 Mem:47.85M (Peak 48.60M) | Time:00:00.02 | Mem:4.81M, Peak:4.81M | Scene, ViewLayer | Updating Images | Loading Head_continuous_anatomy_normal.png
+Fra:1 Mem:44.58M (Peak 49.85M) | Time:00:00.02 | Mem:6.06M, Peak:6.06M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:44.58M (Peak 49.85M) | Time:00:00.02 | Mem:6.06M, Peak:6.06M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:44.58M (Peak 49.85M) | Time:00:00.02 | Mem:6.06M, Peak:6.06M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:44.58M (Peak 49.85M) | Time:00:00.02 | Mem:6.06M, Peak:6.06M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:44.68M (Peak 49.85M) | Time:00:00.02 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:44.68M (Peak 49.85M) | Time:00:00.02 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:44.68M (Peak 49.85M) | Time:00:00.02 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:44.68M (Peak 49.85M) | Time:00:00.02 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:44.68M (Peak 49.85M) | Time:00:00.02 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:44.68M (Peak 49.85M) | Time:00:00.02 | Mem:6.08M, Peak:6.08M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:44.69M (Peak 49.85M) | Time:00:00.02 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:44.69M (Peak 49.85M) | Time:00:00.02 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:44.69M (Peak 49.85M) | Time:00:00.02 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:44.69M (Peak 49.85M) | Time:00:00.02 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:45.15M (Peak 49.85M) | Time:00:00.02 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:46.43M (Peak 49.85M) | Time:00:00.02 | Mem:6.09M, Peak:6.09M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:46.42M (Peak 49.85M) | Time:00:00.02 | Mem:7.36M, Peak:7.36M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:46.42M (Peak 49.85M) | Time:00:00.02 | Mem:7.36M, Peak:7.36M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:46.42M (Peak 49.85M) | Time:00:00.02 | Mem:8.29M, Peak:8.29M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:46.42M (Peak 49.85M) | Time:00:00.02 | Mem:9.30M, Peak:10.23M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:46.42M (Peak 49.85M) | Time:00:00.02 | Mem:9.30M, Peak:10.23M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:9.30M, Peak:10.23M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:10.36M, Peak:10.36M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:10.44M, Peak:10.44M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:10.44M, Peak:10.44M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:10.44M, Peak:10.44M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:10.44M, Peak:10.44M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:10.36M, Peak:10.44M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:10.45M, Peak:10.45M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:10.45M, Peak:10.45M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:47.49M (Peak 49.85M) | Time:00:00.02 | Mem:10.45M, Peak:10.45M | Scene, ViewLayer | Sample 0/32
+Fra:1 Mem:58.21M (Peak 58.21M) | Time:00:00.27 | Remaining:00:07.62 | Mem:21.17M, Peak:21.17M | Scene, ViewLayer | Sample 1/32
+Fra:1 Mem:62.97M (Peak 72.50M) | Time:00:06.66 | Mem:21.17M, Peak:21.17M | Scene, ViewLayer | Sample 32/32
+Fra:1 Mem:62.97M (Peak 72.50M) | Time:00:06.66 | Mem:21.17M, Peak:21.17M | Scene, ViewLayer | Finished
+Saved: '/workspace/human-skin-eyes-art/experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/proof/portrait-03_rose.png'
+Time: 00:06.70 (Saving: 00:00.03)
+
+
+Warning: Neck-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Shoe_-1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Sole_-1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Shoe_1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Sole_1-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Head_continuous_anatomy-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Mouth_seam-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Warning: Hair_original_close_curl_surface-mesh: Could not calculate tangents. Please try to triangulate the mesh first.
+Info: Saved "fitted-human-skin-eyes-v1.blend"
+FITTED_MATERIAL_BUILD_COMPLETE
+
+Blender quit

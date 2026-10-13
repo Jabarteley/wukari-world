@@ -1,0 +1,2781 @@
+{
+  "status": "FIT_INTERSECTIONS_FOUND",
+  "inputCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "originalMeshesWithExactPositionTriangleUVMorphHashes": [
+    "Neck",
+    "Shirt_fused_shoulders",
+    "Collar_band",
+    "Trousers_fused_hip",
+    "Forearm_hand_-1",
+    "Shoe_-1",
+    "Sole_-1",
+    "Forearm_hand_1",
+    "Shoe_1",
+    "Sole_1",
+    "Head_continuous_anatomy",
+    "Eye_Left",
+    "Iris_Left",
+    "Pupil_Left",
+    "UpperLid_Left",
+    "LowerLid_Left",
+    "Brow_Left",
+    "Eye_Right",
+    "Iris_Right",
+    "Pupil_Right",
+    "UpperLid_Right",
+    "LowerLid_Right",
+    "Brow_Right",
+    "Lip_upper",
+    "Lip_lower",
+    "Mouth_seam",
+    "Nostril_-1",
+    "Nostril_1",
+    "Ear_Left",
+    "Ear_Right",
+    "Hair_original_close_curl_surface"
+  ],
+  "cases": 23,
+  "triangles": 30386,
+  "meshCount": 33,
+  "addedCorneaTriangles": 1200,
+  "newCorneaLidOrHeadTriangleIntersectionPairs": 34,
+  "baselineEyeLidTriangleIntersectionPairs": 1336,
+  "minimumSampledCorneaLidDistanceM": 2.4029739051911747e-06,
+  "caseResults": [
+    {
+      "case": "neutral",
+      "values": {},
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "nose.projection:-1",
+      "values": {
+        "nose.projection": -1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "nose.projection:1",
+      "values": {
+        "nose.projection": 1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "values": {
+        "nose.alarWidth": -1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "values": {
+        "nose.alarWidth": 1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": -1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "values": {
+        "earLeft.protrusion": 1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "values": {
+        "earRight.protrusion": -1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "values": {
+        "earRight.protrusion": 1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "body.height:-1",
+      "values": {
+        "body.height": -1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006118849851191044
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004929787828586996
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006138876779004931
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0004971568705514073
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "body.height:1",
+      "values": {
+        "body.height": 1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006316667422652245
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.000503082643263042
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006339147803373635
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005073855863884091
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "values": {
+        "body.shoulderWidth": -1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "values": {
+        "body.shoulderWidth": 1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "all-six:-1",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": -1,
+        "body.height": -1,
+        "body.shoulderWidth": -1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006118849851191044
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004929787828586996
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006138876779004931
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0004971568705514073
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "all-six:1",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1,
+        "body.height": 1,
+        "body.shoulderWidth": 1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006316667422652245
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.000503082643263042
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006339147803373635
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005073855863884091
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "happy",
+      "values": {
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "sad",
+      "values": {
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "blink",
+      "values": {
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 28,
+          "sampledMinimumSurfaceDistanceM": 0.00013307812332641333
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 0,
+          "sampledMinimumSurfaceDistanceM": 0.0001625539007363841
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.00013948589912615716
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 14,
+          "sampledMinimumSurfaceDistanceM": 0.0001690886856522411
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "height:-1/blink",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 28,
+          "sampledMinimumSurfaceDistanceM": 0.00013288490299601108
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 0,
+          "sampledMinimumSurfaceDistanceM": 0.0001623398275114596
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0001392884732922539
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 14,
+          "sampledMinimumSurfaceDistanceM": 0.0001688942575128749
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "height:1/blink",
+      "values": {
+        "body.height": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 28,
+          "sampledMinimumSurfaceDistanceM": 0.0001332470856141299
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 0,
+          "sampledMinimumSurfaceDistanceM": 0.00016272219363600016
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0001397000887664035
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 14,
+          "sampledMinimumSurfaceDistanceM": 0.0001692963851382956
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "half-blink",
+      "values": {
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 18,
+          "baselineEyeLidTriangleIntersectionPairs": 20,
+          "sampledMinimumSurfaceDistanceM": 4.926276233163662e-06
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 8,
+          "sampledMinimumSurfaceDistanceM": 0.00010824228229466826
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 16,
+          "baselineEyeLidTriangleIntersectionPairs": 8,
+          "sampledMinimumSurfaceDistanceM": 2.4029739051911747e-06
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 24,
+          "sampledMinimumSurfaceDistanceM": 0.00011274072312517092
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "left-blink",
+      "values": {
+        "expression.blinkLeft": 1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 28,
+          "sampledMinimumSurfaceDistanceM": 0.00013307812332641333
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 0,
+          "sampledMinimumSurfaceDistanceM": 0.0001625539007363841
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 4,
+          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 26,
+          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    },
+    {
+      "case": "right-blink",
+      "values": {
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "UpperLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 12,
+          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "lid": "LowerLid_Left",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+        },
+        {
+          "cornea": "Fitted_Cornea_Left",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "UpperLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 16,
+          "sampledMinimumSurfaceDistanceM": 0.00013948589912615716
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "lid": "LowerLid_Right",
+          "newTriangleIntersectionPairs": 0,
+          "baselineEyeLidTriangleIntersectionPairs": 14,
+          "sampledMinimumSurfaceDistanceM": 0.0001690886856522411
+        },
+        {
+          "cornea": "Fitted_Cornea_Right",
+          "surface": "Head_continuous_anatomy",
+          "newTriangleIntersectionPairs": 0
+        }
+      ]
+    }
+  ],
+  "skinTriangleAreaRatios": [
+    {
+      "case": "neutral",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "neutral",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "neutral",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "neutral",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "neutral",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "neutral",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "neutral",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "neutral",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "neutral",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "neutral",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "neutral",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "neutral",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:-1",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:-1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:-1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:-1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.6845211986699843,
+      "maxAreaRatio": 1.212379881665024
+    },
+    {
+      "case": "nose.projection:-1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:-1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:-1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:-1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:-1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 0.9246663287391456,
+      "maxAreaRatio": 1.1204657208189737
+    },
+    {
+      "case": "nose.projection:-1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 0.9548668142759872,
+      "maxAreaRatio": 1.068240523164182
+    },
+    {
+      "case": "nose.projection:-1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:-1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:1",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.9025744962022098,
+      "maxAreaRatio": 1.4682952371883138
+    },
+    {
+      "case": "nose.projection:1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 0.8881651609926454,
+      "maxAreaRatio": 1.0880661253643613
+    },
+    {
+      "case": "nose.projection:1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 0.9373068749696456,
+      "maxAreaRatio": 1.0474083503899914
+    },
+    {
+      "case": "nose.projection:1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.projection:1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.3994040022419351,
+      "maxAreaRatio": 1.2885236870268515
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 0.9930734185138957,
+      "maxAreaRatio": 1.0023717571481163
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 0.9994876560916962,
+      "maxAreaRatio": 1.0003709724498315
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.7164290855868612,
+      "maxAreaRatio": 1.6508006197944964
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 0.9976330928407283,
+      "maxAreaRatio": 1.0069284025747707
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 0.9996291423638359,
+      "maxAreaRatio": 1.0005123475733648
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.955356843680082,
+      "maxAreaRatio": 1.0017708166983872
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 0.46376376800845426,
+      "maxAreaRatio": 0.9983303379804729
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.9997414157300922,
+      "maxAreaRatio": 1.0531074686820519
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0033675544690617,
+      "maxAreaRatio": 1.6061409736255983
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.9557793585027446,
+      "maxAreaRatio": 1.0017523888936448
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 0.4630806549437537,
+      "maxAreaRatio": 0.9983303367556497
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.9997473510148068,
+      "maxAreaRatio": 1.0523587022261878
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0033675790940595,
+      "maxAreaRatio": 1.6074008028299687
+    },
+    {
+      "case": "body.height:-1",
+      "mesh": "Neck",
+      "minAreaRatio": 0.9499999083004589,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.height:-1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 0.9499953438377636,
+      "maxAreaRatio": 0.9999999866549336
+    },
+    {
+      "case": "body.height:-1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 0.9499968730857116,
+      "maxAreaRatio": 0.9999999956838869
+    },
+    {
+      "case": "body.height:-1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.9499873421282101,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.height:-1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 0.949956449896932,
+      "maxAreaRatio": 0.9743728946816247
+    },
+    {
+      "case": "body.height:-1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 0.9499689487278334,
+      "maxAreaRatio": 0.9732145449382871
+    },
+    {
+      "case": "body.height:-1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 0.9499741132756454,
+      "maxAreaRatio": 0.9693541021199733
+    },
+    {
+      "case": "body.height:-1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 0.9499560777871247,
+      "maxAreaRatio": 0.9775109615998253
+    },
+    {
+      "case": "body.height:-1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 0.9502091509902751,
+      "maxAreaRatio": 0.9878836089053891
+    },
+    {
+      "case": "body.height:-1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 0.9501458687749006,
+      "maxAreaRatio": 0.9875856308020197
+    },
+    {
+      "case": "body.height:-1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 0.9498541229180357,
+      "maxAreaRatio": 0.9984258758593503
+    },
+    {
+      "case": "body.height:-1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 0.9498284470839037,
+      "maxAreaRatio": 0.9984258758593503
+    },
+    {
+      "case": "body.height:1",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0500000916995411
+    },
+    {
+      "case": "body.height:1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0000000140547447,
+      "maxAreaRatio": 1.0500046565790118
+    },
+    {
+      "case": "body.height:1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0000000045161905,
+      "maxAreaRatio": 1.0500031417217934
+    },
+    {
+      "case": "body.height:1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0500126578717899
+    },
+    {
+      "case": "body.height:1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.026252857079872,
+      "maxAreaRatio": 1.0500437842271928
+    },
+    {
+      "case": "body.height:1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.027406095976525,
+      "maxAreaRatio": 1.050031949091375
+    },
+    {
+      "case": "body.height:1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0312352478421698,
+      "maxAreaRatio": 1.0500260425135968
+    },
+    {
+      "case": "body.height:1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0231083331533302,
+      "maxAreaRatio": 1.050044020215422
+    },
+    {
+      "case": "body.height:1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 1.0125811195916714,
+      "maxAreaRatio": 1.0498075006676573
+    },
+    {
+      "case": "body.height:1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0128868580866175,
+      "maxAreaRatio": 1.049868439470916
+    },
+    {
+      "case": "body.height:1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0016522538084836,
+      "maxAreaRatio": 1.0501569692094184
+    },
+    {
+      "case": "body.height:1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0016522538084836,
+      "maxAreaRatio": 1.0501823891690583
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "mesh": "Neck",
+      "minAreaRatio": 0.9873901054281322,
+      "maxAreaRatio": 1.0058682420413443
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 0.8850877801458463,
+      "maxAreaRatio": 1.26564567842879
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 0.8806416951405512,
+      "maxAreaRatio": 1.1973473120552565
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "mesh": "Neck",
+      "minAreaRatio": 0.9941317579586557,
+      "maxAreaRatio": 1.0126098945718678
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 0.7548660108286424,
+      "maxAreaRatio": 1.1288232475562523
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 0.8113643830602607,
+      "maxAreaRatio": 1.1935933250845954
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "all-six:-1",
+      "mesh": "Neck",
+      "minAreaRatio": 0.9487929599259669,
+      "maxAreaRatio": 1.0058682420413443
+    },
+    {
+      "case": "all-six:-1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 0.8425425941281204,
+      "maxAreaRatio": 1.2027490183340157
+    },
+    {
+      "case": "all-six:-1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 0.836997034470958,
+      "maxAreaRatio": 1.1377574373323158
+    },
+    {
+      "case": "all-six:-1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.27684806864992056,
+      "maxAreaRatio": 1.2098012628770698
+    },
+    {
+      "case": "all-six:-1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 0.949956449896932,
+      "maxAreaRatio": 0.9743728946816247
+    },
+    {
+      "case": "all-six:-1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 0.9499689487278334,
+      "maxAreaRatio": 0.9732145449382871
+    },
+    {
+      "case": "all-six:-1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 0.9499741132756454,
+      "maxAreaRatio": 0.9693541021199733
+    },
+    {
+      "case": "all-six:-1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 0.9499560777871247,
+      "maxAreaRatio": 0.9775109615998253
+    },
+    {
+      "case": "all-six:-1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 0.889045994309804,
+      "maxAreaRatio": 1.0992280144506645
+    },
+    {
+      "case": "all-six:-1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 0.9280596446408628,
+      "maxAreaRatio": 1.0422531843910454
+    },
+    {
+      "case": "all-six:-1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 0.4413862657151357,
+      "maxAreaRatio": 0.9484925037025912
+    },
+    {
+      "case": "all-six:-1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 0.44080039863899706,
+      "maxAreaRatio": 0.9485659738635764
+    },
+    {
+      "case": "all-six:1",
+      "mesh": "Neck",
+      "minAreaRatio": 0.9941317579586557,
+      "maxAreaRatio": 1.0513891777537605
+    },
+    {
+      "case": "all-six:1",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 0.7926044843297347,
+      "maxAreaRatio": 1.1850574905042737
+    },
+    {
+      "case": "all-six:1",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 0.8519152075973765,
+      "maxAreaRatio": 1.2532102105718224
+    },
+    {
+      "case": "all-six:1",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.9445037401341593,
+      "maxAreaRatio": 2.069486882301511
+    },
+    {
+      "case": "all-six:1",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.026252857079872,
+      "maxAreaRatio": 1.0500437842271928
+    },
+    {
+      "case": "all-six:1",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.027406095976525,
+      "maxAreaRatio": 1.050031949091375
+    },
+    {
+      "case": "all-six:1",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0312352478421698,
+      "maxAreaRatio": 1.0500260425135968
+    },
+    {
+      "case": "all-six:1",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0231083331533302,
+      "maxAreaRatio": 1.050044020215422
+    },
+    {
+      "case": "all-six:1",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 0.9131395018473046,
+      "maxAreaRatio": 1.1241374431095437
+    },
+    {
+      "case": "all-six:1",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 0.9675670699646192,
+      "maxAreaRatio": 1.072580104063403
+    },
+    {
+      "case": "all-six:1",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0530027998025957,
+      "maxAreaRatio": 1.681440462688213
+    },
+    {
+      "case": "all-six:1",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0529487354100082,
+      "maxAreaRatio": 1.6800376284246226
+    },
+    {
+      "case": "happy",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "happy",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "happy",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "happy",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.7401577746386855,
+      "maxAreaRatio": 1.284698039010117
+    },
+    {
+      "case": "happy",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "happy",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "happy",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "happy",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "happy",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 0.9555680801652343,
+      "maxAreaRatio": 1.2694121608297149
+    },
+    {
+      "case": "happy",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.3000095032666628
+    },
+    {
+      "case": "happy",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "happy",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "sad",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "sad",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "sad",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "sad",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.5638331138464318,
+      "maxAreaRatio": 1.4566716235369217
+    },
+    {
+      "case": "sad",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "sad",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "sad",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "sad",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "sad",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 0.9404318239876481,
+      "maxAreaRatio": 1.2710701708111913
+    },
+    {
+      "case": "sad",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 0.9234887057710884,
+      "maxAreaRatio": 1.2006705626048753
+    },
+    {
+      "case": "sad",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "sad",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "blink",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "blink",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "blink",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "blink",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "blink",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 0.133871513938351,
+      "maxAreaRatio": 3.2136808183269387
+    },
+    {
+      "case": "blink",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 0.048507418169678324,
+      "maxAreaRatio": 3.478130285531705
+    },
+    {
+      "case": "blink",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 0.03683086663408212,
+      "maxAreaRatio": 3.813881138943677
+    },
+    {
+      "case": "blink",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 0.17448451195006845,
+      "maxAreaRatio": 2.835254347417056
+    },
+    {
+      "case": "blink",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "blink",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "blink",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "blink",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "height:-1/blink",
+      "mesh": "Neck",
+      "minAreaRatio": 0.9499999083004589,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "height:-1/blink",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 0.9499953438377636,
+      "maxAreaRatio": 0.9999999866549336
+    },
+    {
+      "case": "height:-1/blink",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 0.9499968730857116,
+      "maxAreaRatio": 0.9999999956838869
+    },
+    {
+      "case": "height:-1/blink",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 0.9499873421282101,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "height:-1/blink",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 0.13383823419515728,
+      "maxAreaRatio": 3.104195491053203
+    },
+    {
+      "case": "height:-1/blink",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 0.04849540829265573,
+      "maxAreaRatio": 3.3044583267067216
+    },
+    {
+      "case": "height:-1/blink",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 0.03682174773648663,
+      "maxAreaRatio": 3.6242502949927617
+    },
+    {
+      "case": "height:-1/blink",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 0.17444542812619343,
+      "maxAreaRatio": 2.725511896887614
+    },
+    {
+      "case": "height:-1/blink",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 0.9502091509902751,
+      "maxAreaRatio": 0.9878836089053891
+    },
+    {
+      "case": "height:-1/blink",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 0.9501458687749006,
+      "maxAreaRatio": 0.9875856308020197
+    },
+    {
+      "case": "height:-1/blink",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 0.9498541229180357,
+      "maxAreaRatio": 0.9984258758593503
+    },
+    {
+      "case": "height:-1/blink",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 0.9498284470839037,
+      "maxAreaRatio": 0.9984258758593503
+    },
+    {
+      "case": "height:1/blink",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0500000916995411
+    },
+    {
+      "case": "height:1/blink",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0000000140547447,
+      "maxAreaRatio": 1.0500046565790118
+    },
+    {
+      "case": "height:1/blink",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0000000045161905,
+      "maxAreaRatio": 1.0500031417217934
+    },
+    {
+      "case": "height:1/blink",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0500126578717899
+    },
+    {
+      "case": "height:1/blink",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 0.13390668351262566,
+      "maxAreaRatio": 3.3248966613499165
+    },
+    {
+      "case": "height:1/blink",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 0.048520112523298846,
+      "maxAreaRatio": 3.651814623998786
+    },
+    {
+      "case": "height:1/blink",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 0.03684050524324429,
+      "maxAreaRatio": 4.003561890369316
+    },
+    {
+      "case": "height:1/blink",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 0.17452558169100077,
+      "maxAreaRatio": 2.946212485806087
+    },
+    {
+      "case": "height:1/blink",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 1.0125811195916714,
+      "maxAreaRatio": 1.0498075006676573
+    },
+    {
+      "case": "height:1/blink",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0128868580866175,
+      "maxAreaRatio": 1.049868439470916
+    },
+    {
+      "case": "height:1/blink",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0016522538084836,
+      "maxAreaRatio": 1.0501569692094184
+    },
+    {
+      "case": "height:1/blink",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0016522538084836,
+      "maxAreaRatio": 1.0501823891690583
+    },
+    {
+      "case": "half-blink",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "half-blink",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "half-blink",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "half-blink",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "half-blink",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 0.5170351233876637,
+      "maxAreaRatio": 1.847255858125261
+    },
+    {
+      "case": "half-blink",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 0.5013321227676361,
+      "maxAreaRatio": 2.0489286526024206
+    },
+    {
+      "case": "half-blink",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 0.5019675657926477,
+      "maxAreaRatio": 2.2626371264290293
+    },
+    {
+      "case": "half-blink",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 0.5264199218012614,
+      "maxAreaRatio": 1.7261780145208132
+    },
+    {
+      "case": "half-blink",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "half-blink",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "half-blink",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "half-blink",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "left-blink",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "left-blink",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "left-blink",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "left-blink",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "left-blink",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 0.133871513938351,
+      "maxAreaRatio": 3.2136808183269387
+    },
+    {
+      "case": "left-blink",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 0.048507418169678324,
+      "maxAreaRatio": 3.478130285531705
+    },
+    {
+      "case": "left-blink",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "left-blink",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "left-blink",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "left-blink",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "left-blink",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "left-blink",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "right-blink",
+      "mesh": "Neck",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "right-blink",
+      "mesh": "Forearm_hand_-1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "right-blink",
+      "mesh": "Forearm_hand_1",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "right-blink",
+      "mesh": "Head_continuous_anatomy",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "right-blink",
+      "mesh": "UpperLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "right-blink",
+      "mesh": "LowerLid_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "right-blink",
+      "mesh": "UpperLid_Right",
+      "minAreaRatio": 0.03683086663408212,
+      "maxAreaRatio": 3.813881138943677
+    },
+    {
+      "case": "right-blink",
+      "mesh": "LowerLid_Right",
+      "minAreaRatio": 0.17448451195006845,
+      "maxAreaRatio": 2.835254347417056
+    },
+    {
+      "case": "right-blink",
+      "mesh": "Lip_upper",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "right-blink",
+      "mesh": "Lip_lower",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "right-blink",
+      "mesh": "Ear_Left",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    },
+    {
+      "case": "right-blink",
+      "mesh": "Ear_Right",
+      "minAreaRatio": 1.0,
+      "maxAreaRatio": 1.0
+    }
+  ],
+  "limits": "BVH sampled triangle intersections and vertex-to-surface distances only; no continuous collision, exact global minimum distance, volumetric tear film, skeleton, skinning or wearable-animation proof. Master geometry intersections outside tested eye pairs are unchanged and not tested."
+}

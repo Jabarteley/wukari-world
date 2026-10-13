@@ -1,3 +1,5 @@
+Current continuation: [pinned human material derivative](FITTED-CONTINUE.md), against master `3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a`. Calibration below remains preserved.
+
 # Skin / eyes calibration — assignment A
 
 Independent calibration delivery complete; fitted-human acceptance is pending an exact input checkpoint. Branch `codex/cloud-human-skin-eyes-art-20261013` is isolated from integration `caaee5e1b91afc7f3cd3f2124df3547dc7f492ec`. Own only this documentation prefix and `experiments/cloud-lanes/human-skin-eyes-art/`.

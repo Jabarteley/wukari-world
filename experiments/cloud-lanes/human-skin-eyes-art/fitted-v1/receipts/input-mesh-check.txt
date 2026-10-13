@@ -1,0 +1,5 @@
+VERIFIED 31 mesh position/triangle/UV + all actual morph hashes; export ['export_materials', 'export_unused_images', 'export_unused_textures', 'export_active_vertex_color_when_no_material'] PIL 11.1.0
+Blender 4.3.2
+Read blend: "/workspace/human-skin-eyes-art/experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/inputs/original-human-prototype.blend"
+
+Blender quit

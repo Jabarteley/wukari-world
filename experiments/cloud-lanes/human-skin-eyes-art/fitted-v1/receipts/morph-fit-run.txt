@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/workspace/human-skin-eyes-art/experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/check_fit.py", line 65, in <module>
+    assert not new_intersections
+           ^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Error: script failed, file: 'experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/check_fit.py', exiting.
+{
+  "status": "FIT_INTERSECTIONS_FOUND",
+  "inputCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "cases": 23,
+  "triangles": 30386,
+  "meshCount": 33,
+  "addedCorneaTriangles": 1200,
+  "newCorneaLidOrHeadTriangleIntersectionPairs": 34,
+  "baselineEyeLidTriangleIntersectionPairs": 1336,
+  "minimumSampledCorneaLidDistanceM": 2.4029739051911747e-06,
+  "limits": "BVH sampled triangle intersections and vertex-to-surface distances only; no continuous collision, exact global minimum distance, volumetric tear film, skeleton, skinning or wearable-animation proof. Master geometry intersections outside tested eye pairs are unchanged and not tested."
+}
+Blender 4.3.2
+Read blend: "/workspace/human-skin-eyes-art/experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/artifacts/fitted-human-skin-eyes-v1.blend"
+
+Blender quit

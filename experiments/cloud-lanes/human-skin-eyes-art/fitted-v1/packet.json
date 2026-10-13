@@ -1,0 +1,341 @@
+{
+  "schema": "allworld-fitted-skin-eyes-v1",
+  "masterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "calibrationCommit": "1efc5a280e52a0b3c432fca649d84689fe91993d",
+  "fitStatus": "REVIEW_REQUIRED: partial blink intersections; provisional UV overlaps",
+  "productionAdmission": false,
+  "files": {
+    ".gitignore": {
+      "bytes": 29,
+      "sha256": "8c49f85ff75454610bc93a5e6e310c546a6c27c1aacf365a078297401bb1db01"
+    },
+    "artifacts/fitted-human-skin-eyes-v1.blend": {
+      "bytes": 1669924,
+      "sha256": "2ea2ba117e510b084258699ebbed248c13d0d1bdd642bc7b896c7f1b8e496138"
+    },
+    "artifacts/fitted-human-skin-eyes-v1.glb": {
+      "bytes": 2124928,
+      "sha256": "1498ae740803a421e46d5b72fd64bd113b6b6967872a35a69f51254b21131ebb"
+    },
+    "build_fitted.py": {
+      "bytes": 11598,
+      "sha256": "cabec355f55e5a89df36a6fcd0935284978b415b41a49dcbbf4cbc2b2c95abfb"
+    },
+    "check_fit.py": {
+      "bytes": 5402,
+      "sha256": "27bdecc8098b2b5b546296ad66a7bfea96d6d92ae7e5b9a1b012ffa555af2a0f"
+    },
+    "input-pins.json": {
+      "bytes": 1251,
+      "sha256": "03f25ceee821425810a98f4586ee4cdfacf062e9055c2e77dd081bf8049f1beb"
+    },
+    "inspect_input.py": {
+      "bytes": 1558,
+      "sha256": "df0bdd8a24b12182709b422236400ae08eeb15f933aad2867bec6de7e21546af"
+    },
+    "make_sheet.py": {
+      "bytes": 1338,
+      "sha256": "b9a197838010e6ee62120b26d44f155469ecac111a4b4124bbd123cbfc150825"
+    },
+    "merge_variants.py": {
+      "bytes": 3867,
+      "sha256": "848408efbd1bf1390cc164ce7de046b5a6a4287e3bf7e0c30640fdbb6c241d33"
+    },
+    "pin_master.py": {
+      "bytes": 1455,
+      "sha256": "233c7443c6a7ebe92ef80ef7fc7a076ce35a308b7d9dc148a3db36c3fcf59ada"
+    },
+    "proof/fitted-portraits.jpg": {
+      "bytes": 101321,
+      "sha256": "b3164eb59be5977c8d424675433e9c8d2cbc4d07cc174461ba5eaf9d93d831a2"
+    },
+    "receipts/build-fitted.txt": {
+      "bytes": 61800,
+      "sha256": "a503db8d21d21f31337ef4f419e31fab8eb5daabbd74953fe97d11fb83570ee2"
+    },
+    "receipts/build-initial-review.txt": {
+      "bytes": 62026,
+      "sha256": "e97858032735c8c5dce149a129afc72e09da5d00388933f0d27f51ef447011cf"
+    },
+    "receipts/input-mesh-check.txt": {
+      "bytes": 366,
+      "sha256": "0ee62a7e15c7dd82f4086ee0dde9625512e57296a22748b22f4c92a853afe001"
+    },
+    "receipts/input-mesh-hashes.json": {
+      "bytes": 8447,
+      "sha256": "8acca2accc4a5d6ed08f46e0953f36748c9ab041c074b7f6e73c35eeb204e149"
+    },
+    "receipts/morph-fit-run.txt": {
+      "bytes": 1178,
+      "sha256": "12d95952b353bfaba934a5f9c10a10915bdb37299800802e7a2256a8f47ff5ca"
+    },
+    "receipts/morph-fit.json": {
+      "bytes": 75201,
+      "sha256": "7a3c13b3c999fff894ae684b214abaf18cdf1a6047a2aaed31387d92413b7151"
+    },
+    "receipts/uv-rasterization.json": {
+      "bytes": 3362,
+      "sha256": "f4cc068d359c61b10b574c9f18c31e1b89542f2f322a9d33779e821ba8c416f2"
+    },
+    "receipts/variant-merge.json": {
+      "bytes": 349,
+      "sha256": "a6844f9a5a3c63f676d82b3298a18533fbb582e68c488af1602aa612cdb2fc20"
+    },
+    "textures/Ear_Left_01_umber_basecolor.png": {
+      "bytes": 3318,
+      "sha256": "058f050a0294c517daff321911e74c10cf7b30b1c5f9355ad075c745c51e21c6"
+    },
+    "textures/Ear_Left_02_copper_basecolor.png": {
+      "bytes": 3329,
+      "sha256": "2e736c5dc04b64c012ec14f940a14a8e9403d6f40364861a68a40474b08890ac"
+    },
+    "textures/Ear_Left_03_rose_basecolor.png": {
+      "bytes": 3414,
+      "sha256": "25dfd879f0263a2009f862ec7d25e4d94f8a6953e9b5506d40b0bfbc92e26cfa"
+    },
+    "textures/Ear_Left_normal.png": {
+      "bytes": 4212,
+      "sha256": "b66ad64ddcfab81a1eae123ec9759a588d59db75b97225867d550ca2a852fcc4"
+    },
+    "textures/Ear_Left_roughness.png": {
+      "bytes": 2155,
+      "sha256": "b329ec58c3e72550981687e884207e5139d14f3e2e2bd95419eee21cf6096c51"
+    },
+    "textures/Ear_Right_01_umber_basecolor.png": {
+      "bytes": 3195,
+      "sha256": "3359bf7dea88bc2d1fe2352c9b22c3305be1995b8155e104b639073ab785572c"
+    },
+    "textures/Ear_Right_02_copper_basecolor.png": {
+      "bytes": 3266,
+      "sha256": "9b6de6d52bdfce6a82a6b6397b3c06b1278b9755b13398368bd0e51aba3ea94f"
+    },
+    "textures/Ear_Right_03_rose_basecolor.png": {
+      "bytes": 3301,
+      "sha256": "db029b08b65808ac533363758006a69cc192e7cdcc0eb4c493ae2a8e194941be"
+    },
+    "textures/Ear_Right_normal.png": {
+      "bytes": 4251,
+      "sha256": "b9e2f0d7b5ab9a50e85ca5bc3bcc49132bc6cbc9db5a83cce828e01ca4ca8de3"
+    },
+    "textures/Ear_Right_roughness.png": {
+      "bytes": 2122,
+      "sha256": "142e1500482ca81118dd25461c519c136d0d3c9ee914a97cff485f4407012d12"
+    },
+    "textures/Eye_Left_basecolor.png": {
+      "bytes": 25025,
+      "sha256": "fa3e99a765c35a472bf41a8629c0f38e6bbc748dbd0c05a290ba1298e3065524"
+    },
+    "textures/Eye_Right_basecolor.png": {
+      "bytes": 25033,
+      "sha256": "9951b02a4b5fc0e68c48c4f06d6ea2890692e95f36926f7a53152014346fe43b"
+    },
+    "textures/Forearm_hand_1_01_umber_basecolor.png": {
+      "bytes": 4887,
+      "sha256": "a0d0dd0cf1ca687314d51eab4904865a98342c512aca9158ee583ad38fe88e84"
+    },
+    "textures/Forearm_hand_1_02_copper_basecolor.png": {
+      "bytes": 4941,
+      "sha256": "0c7d715d7b97decebe3258547d49a4dc70b8e47b31661b8541c7fc7d785c86b3"
+    },
+    "textures/Forearm_hand_1_03_rose_basecolor.png": {
+      "bytes": 5043,
+      "sha256": "38b2db10a18619bc2c786313e98db8626329fe404762aca769e30d9c75ad9ee2"
+    },
+    "textures/Forearm_hand_1_normal.png": {
+      "bytes": 4975,
+      "sha256": "3670fc4029d949d7c21b0e21f48c63304bc898debbb5b11d447dc500e3bf00a4"
+    },
+    "textures/Forearm_hand_1_roughness.png": {
+      "bytes": 2456,
+      "sha256": "32023a55b2785845984720cbaf5bc2048af90cc4fc222dbb32acd753f7c49e4f"
+    },
+    "textures/Forearm_hand_minus1_01_umber_basecolor.png": {
+      "bytes": 4885,
+      "sha256": "29b8d54374a5206540f25e6e0074ddba6fedb0bbfbe020022db6aacfedfb4d87"
+    },
+    "textures/Forearm_hand_minus1_02_copper_basecolor.png": {
+      "bytes": 4953,
+      "sha256": "99242e5bab8883539c6b8e81685f36959dcfc23294533106ae7c67fbea7fb703"
+    },
+    "textures/Forearm_hand_minus1_03_rose_basecolor.png": {
+      "bytes": 5030,
+      "sha256": "20bc829bb1f7d34cec7856fa0a359fb8b5d3f6b7d616cf2c589d693396e7fcad"
+    },
+    "textures/Forearm_hand_minus1_normal.png": {
+      "bytes": 5012,
+      "sha256": "faf37bd7cf77b895769c563f1989cc5c2b55fa7c18a78152782a758195b4f15c"
+    },
+    "textures/Forearm_hand_minus1_roughness.png": {
+      "bytes": 2445,
+      "sha256": "58e77c8c0393c482bd5e5f75a3f631bf858d9c254f61a648435ac2ae40c92c58"
+    },
+    "textures/Head_continuous_anatomy_01_umber_basecolor.png": {
+      "bytes": 59992,
+      "sha256": "b606010726acf5aef73a8ff88b77c0387b8937e0f735dc754351f9ff40fa20e3"
+    },
+    "textures/Head_continuous_anatomy_02_copper_basecolor.png": {
+      "bytes": 61903,
+      "sha256": "a6effa492b2d5894b79524e39d4d7fdf29f64a65e871706ed47835733d4cf236"
+    },
+    "textures/Head_continuous_anatomy_03_rose_basecolor.png": {
+      "bytes": 63866,
+      "sha256": "0145c6110fdd15222acc751ccc728eca01c15aa62333e86e91b33e90694f432e"
+    },
+    "textures/Head_continuous_anatomy_normal.png": {
+      "bytes": 81806,
+      "sha256": "ffd2e5e1fe7d59ef94c8fc6fd6814507f5c2d96e82168f720864cf67cd5cd459"
+    },
+    "textures/Head_continuous_anatomy_roughness.png": {
+      "bytes": 37183,
+      "sha256": "6ffa0e60176e1844659fd2c43ed0eaa9cf3accbb843de29daa89165245f328df"
+    },
+    "textures/Iris_Left_basecolor.png": {
+      "bytes": 37431,
+      "sha256": "ae4be7b77c1435da0fae2dcc1af937fdc3d8fed213fffe0d416634600b5a9dd7"
+    },
+    "textures/Iris_Right_basecolor.png": {
+      "bytes": 37378,
+      "sha256": "46c721910563b59254958713a410a75e6811d37c756b5b72c954cead518cae2b"
+    },
+    "textures/Lip_lower_01_umber_basecolor.png": {
+      "bytes": 1695,
+      "sha256": "ab72235e34974844708b37bb949202b1191a34045eaf1579785144b7651d7922"
+    },
+    "textures/Lip_lower_02_copper_basecolor.png": {
+      "bytes": 1687,
+      "sha256": "b4756aecfaff169500c0bda034e2b9245b9ea99ced7134cad8dcde1d09e3f5a7"
+    },
+    "textures/Lip_lower_03_rose_basecolor.png": {
+      "bytes": 1750,
+      "sha256": "5b3fce18cb5d74ce0407f01f2c77119a98e4010a277301c7b96d1810a26187d0"
+    },
+    "textures/Lip_lower_normal.png": {
+      "bytes": 3174,
+      "sha256": "5df5756aeb9566768396b78ac866c4e51058ca561b83e94f5f8be208bb301181"
+    },
+    "textures/Lip_lower_roughness.png": {
+      "bytes": 1441,
+      "sha256": "4d906a847038387bfdb7473341cd7c2b9cd06c357c216a2ebd15d4e153ba3252"
+    },
+    "textures/Lip_upper_01_umber_basecolor.png": {
+      "bytes": 1624,
+      "sha256": "b5eb4bd5c3bbe9920271bd5313e228707ff9259221ee7ae78fa8e13ad6831ec5"
+    },
+    "textures/Lip_upper_02_copper_basecolor.png": {
+      "bytes": 1658,
+      "sha256": "74a5f9b071075419d799ac67080ba90116c615f87de9fed8cf807cb363d74126"
+    },
+    "textures/Lip_upper_03_rose_basecolor.png": {
+      "bytes": 1669,
+      "sha256": "c6632f8047840ce4a05c1389f0d12e9269cd2877b3ebaf31641c8a12a27f83c4"
+    },
+    "textures/Lip_upper_normal.png": {
+      "bytes": 3093,
+      "sha256": "4891e4cf6b01f6dc0af9ac647b44eafed762f73fe8e279772e368586d4d9ded3"
+    },
+    "textures/Lip_upper_roughness.png": {
+      "bytes": 1439,
+      "sha256": "59b1c43d56c463a9a5635c74183a8b5590d165d717c1f8922d91521b18e6f377"
+    },
+    "textures/LowerLid_Left_01_umber_basecolor.png": {
+      "bytes": 1906,
+      "sha256": "26b3849d1c3133bd400a67553c45938f0af269bf4484a60f3bccdfb9b42d6e59"
+    },
+    "textures/LowerLid_Left_02_copper_basecolor.png": {
+      "bytes": 1953,
+      "sha256": "8b94b1a69bc51ab19af98e74fa179aeaa61e2f5e3d03a3db7f2f13b64f899cdb"
+    },
+    "textures/LowerLid_Left_03_rose_basecolor.png": {
+      "bytes": 1991,
+      "sha256": "969cbcdd51d2a0e902e0af13f82d336dca4d2ccf7fc6a18c90c3d1d1a8a2113d"
+    },
+    "textures/LowerLid_Left_normal.png": {
+      "bytes": 2980,
+      "sha256": "db774c504d4f6b84019bfc28ad0e56bfdede60068569c7e9fca386faa7a13e83"
+    },
+    "textures/LowerLid_Left_roughness.png": {
+      "bytes": 1467,
+      "sha256": "fe6b1d28c5c866f50d46b436ea79252ae987f2036bf6f7b8fac5bed61cf825b2"
+    },
+    "textures/LowerLid_Right_01_umber_basecolor.png": {
+      "bytes": 1821,
+      "sha256": "bf9f27d223919cca4a10a41f8e6a845ffc04ef5dee15e4fd96abd30f00188a64"
+    },
+    "textures/LowerLid_Right_02_copper_basecolor.png": {
+      "bytes": 1859,
+      "sha256": "1d26719914c6bd8c49fdcbedd18f57334fc69e98fac812e67495ca8f608d8677"
+    },
+    "textures/LowerLid_Right_03_rose_basecolor.png": {
+      "bytes": 1899,
+      "sha256": "a9ea293d99f2b2d3913fce3910cc3d10df8bc2e03a96d0b96152c530542dfd48"
+    },
+    "textures/LowerLid_Right_normal.png": {
+      "bytes": 2946,
+      "sha256": "747199eb517195c13564c92eeaf09d540e37d1541a39b0ced661e2d34c7b9c43"
+    },
+    "textures/LowerLid_Right_roughness.png": {
+      "bytes": 1456,
+      "sha256": "5896f90a99e5ab1f2e927ccf28652209cfd1837c6f363bdb227f05522f41f32e"
+    },
+    "textures/Neck_01_umber_basecolor.png": {
+      "bytes": 4654,
+      "sha256": "4e53982e91ab26789ec8f098bceb46e42be2e38f238be0a56a2f25032b16ca9a"
+    },
+    "textures/Neck_02_copper_basecolor.png": {
+      "bytes": 4743,
+      "sha256": "fb99fcc47c942ef987b831d8a6faa3a3d109c51dc24ce18270d1a6c108b46c0f"
+    },
+    "textures/Neck_03_rose_basecolor.png": {
+      "bytes": 4860,
+      "sha256": "ffb4a1c1ba441dcb727056cc8597b3d5f9890227a958cd26357e9df3008fc6ac"
+    },
+    "textures/Neck_normal.png": {
+      "bytes": 5320,
+      "sha256": "16918a67d09c465f30d91e9814fa85459b31dc86012179bee78f5ea017cc2fd2"
+    },
+    "textures/Neck_roughness.png": {
+      "bytes": 2535,
+      "sha256": "7561e576204629cb3839e29271cc830eb444d2adbf58d9d89227c5588fc4b771"
+    },
+    "textures/UpperLid_Left_01_umber_basecolor.png": {
+      "bytes": 1952,
+      "sha256": "b4af9ed1e913ad912216b4a1e415c6f867ddff12da32d8affa601e671008f9fe"
+    },
+    "textures/UpperLid_Left_02_copper_basecolor.png": {
+      "bytes": 1968,
+      "sha256": "29b5e51e15a8dd9ad144097c09210b4da4df078b5a66420a62dd4597d53cc30d"
+    },
+    "textures/UpperLid_Left_03_rose_basecolor.png": {
+      "bytes": 2018,
+      "sha256": "3cf32030af098dc4cb2e87aec667a0b24da6e13a9290afa50e3c4d5e9b319652"
+    },
+    "textures/UpperLid_Left_normal.png": {
+      "bytes": 2644,
+      "sha256": "b7a7f2d1cbe69c1fa5036880d151145426ddc4de7f769896b1856421ce24c537"
+    },
+    "textures/UpperLid_Left_roughness.png": {
+      "bytes": 1368,
+      "sha256": "dcd99c8643722f109e6fb50ca8bcdc864a3b2a9a25a88b96371bc99b1267a049"
+    },
+    "textures/UpperLid_Right_01_umber_basecolor.png": {
+      "bytes": 1948,
+      "sha256": "6c7e58d3d7619c054dbd83cc735c61a6da622aa934d54b3f8a970448f2fa1df3"
+    },
+    "textures/UpperLid_Right_02_copper_basecolor.png": {
+      "bytes": 1983,
+      "sha256": "1beab22854ea666f6cfe79b2a3208547f9a87afa0a1d34a7610900e73da99abe"
+    },
+    "textures/UpperLid_Right_03_rose_basecolor.png": {
+      "bytes": 2034,
+      "sha256": "d77e1151a1c81994c8d673606b000aec3b0b457fd64c8978d165e560f3f40a54"
+    },
+    "textures/UpperLid_Right_normal.png": {
+      "bytes": 2734,
+      "sha256": "8c720885b61bb8846442b50aa23ff8ce9a3da59657111f7d0a6ae4ac96eecf76"
+    },
+    "textures/UpperLid_Right_roughness.png": {
+      "bytes": 1426,
+      "sha256": "70b65eeb397fa6832ead427395416652d3c96b0adcf2a849c02fed79f6e6ed98"
+    }
+  }
+}

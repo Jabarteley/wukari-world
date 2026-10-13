@@ -1,0 +1,134 @@
+{
+  "method": "original procedural maps analytically sampled in 3D and rasterized into exact input UVs; pigment contrast 0.45; tangent micro-normal approximation",
+  "surfaces": [
+    {
+      "object": "Neck",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 4096,
+      "multiplyCoveredPixels": 0,
+      "uncoveredAfterGutter": 0
+    },
+    {
+      "object": "Forearm_hand_-1",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 3574,
+      "multiplyCoveredPixels": 192,
+      "uncoveredAfterGutter": 0
+    },
+    {
+      "object": "Forearm_hand_1",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 3569,
+      "multiplyCoveredPixels": 186,
+      "uncoveredAfterGutter": 0
+    },
+    {
+      "object": "Head_continuous_anatomy",
+      "size": 256,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 64207,
+      "multiplyCoveredPixels": 124,
+      "uncoveredAfterGutter": 0
+    },
+    {
+      "object": "UpperLid_Left",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 1380,
+      "multiplyCoveredPixels": 29,
+      "uncoveredAfterGutter": 904
+    },
+    {
+      "object": "LowerLid_Left",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 1700,
+      "multiplyCoveredPixels": 254,
+      "uncoveredAfterGutter": 381
+    },
+    {
+      "object": "UpperLid_Right",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 1380,
+      "multiplyCoveredPixels": 29,
+      "uncoveredAfterGutter": 904
+    },
+    {
+      "object": "LowerLid_Right",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 1680,
+      "multiplyCoveredPixels": 260,
+      "uncoveredAfterGutter": 381
+    },
+    {
+      "object": "Lip_upper",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 1880,
+      "multiplyCoveredPixels": 0,
+      "uncoveredAfterGutter": 750
+    },
+    {
+      "object": "Lip_lower",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 2048,
+      "multiplyCoveredPixels": 0,
+      "uncoveredAfterGutter": 712
+    },
+    {
+      "object": "Ear_Left",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 2430,
+      "multiplyCoveredPixels": 663,
+      "uncoveredAfterGutter": 24
+    },
+    {
+      "object": "Ear_Right",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 2449,
+      "multiplyCoveredPixels": 702,
+      "uncoveredAfterGutter": 26
+    },
+    {
+      "object": "Eye_Left",
+      "size": 256,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 64718,
+      "multiplyCoveredPixels": 0,
+      "uncoveredAfterGutter": 0
+    },
+    {
+      "object": "Iris_Left",
+      "size": 256,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 23618,
+      "multiplyCoveredPixels": 4740,
+      "uncoveredAfterGutter": 30048
+    },
+    {
+      "object": "Eye_Right",
+      "size": 256,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 64718,
+      "multiplyCoveredPixels": 0,
+      "uncoveredAfterGutter": 0
+    },
+    {
+      "object": "Iris_Right",
+      "size": 256,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 23618,
+      "multiplyCoveredPixels": 4740,
+      "uncoveredAfterGutter": 30048
+    }
+  ],
+  "sourceUVsUnchanged": true
+}

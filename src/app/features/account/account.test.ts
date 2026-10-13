@@ -225,8 +225,11 @@ test('store: creating an account waits for the address to be confirmed, and only
     server: { 'POST /api/account/sign-in': SIGNED_IN('linked', { created: true }) },
   })
   const account = f.store
+  const kept = new Map<string, string>()
+  Object.defineProperty(globalThis, 'localStorage', { configurable: true, value: { getItem: (key: string) => kept.get(key) ?? null, setItem: (key: string, value: string) => { kept.set(key, value) }, removeItem: (key: string) => { kept.delete(key) } } })
   await account.load(); account.begin()
   assert.equal(await account.withPassword('new@example.com', PASSWORD, true), true)
+  assert.equal(kept.size, 0, 'nothing is offered before the account exists on the game server')
   assert.deepEqual([account.state.step, account.state.notice], ['verify', VERIFY_SENT])
   assert.deepEqual(f.provider.sent.map((request) => (request.url.split('?')[0] ?? '').split(':').at(-1)), ['signUp', 'sendOobCode'], 'the account is made and the confirmation link is sent')
   assert.deepEqual(f.posts(), [], 'nothing is handed to the game server before the address is confirmed')
@@ -240,6 +243,8 @@ test('store: creating an account waits for the address to be confirmed, and only
   assert.equal(await account.confirmed(), true)
   assert.deepEqual(f.posts().map((call) => [call.path, call.body?.idToken]), [['/api/account/sign-in', VERIFIED]])
   assert.deepEqual([account.state.step, account.state.result?.outcome], ['done', 'linked'])
+  assert.equal(kept.get('allworld-touch-offer'), 'owed', 'a sign-in that made the account leaves the one offer of Stay in touch owed')
+  Reflect.deleteProperty(globalThis, 'localStorage')
   noSecrets(account.state)
   // Starting over drops the waiting sign-in: "I have confirmed it" then has nothing to continue.
   account.begin()

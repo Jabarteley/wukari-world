@@ -17,6 +17,7 @@ import { PROVIDER_TEXT, RESET_SENT, VERIFY_PENDING, VERIFY_SENT, characterChange
 import type { ProviderRefusal } from './accountModel.ts'
 import { createAccountLite } from './accountLite.ts'
 import { track } from './accountTrack.ts'
+import { owe } from '../growth/touchOfferModel.ts'
 import type { AccountLite, ErrorField } from './accountLite.ts'
 
 export type { AccountState, AccountStep } from './accountLite.ts'
@@ -87,7 +88,7 @@ export function createAccount(deps: AccountDeps, lite: AccountLite = createAccou
     state.result = { outcome: result.outcome, character: result.character, parked: result.parked, devices: result.devices, ended: result.ended }
     state.notice = ''
     state.step = result.outcome === 'parked' && result.parked ? 'choice' : 'done'
-    if (result.created) { if (via === 'google') track('signup_created', { method: 'google' }) } else track('login_done', { method: via, outcome: result.outcome })
+    if (result.created) { owe(globalThis.localStorage); if (via === 'google') track('signup_created', { method: 'google' }) } else track('login_done', { method: via, outcome: result.outcome })
     await load(true)
   }
 

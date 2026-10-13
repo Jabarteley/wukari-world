@@ -5,6 +5,11 @@
    "id": "tv",
    "table": "scripts/geo/factory/country-tables/tv.json",
    "appSha": "d5b2bb59f7c9cb8c85169255d8bc27b49b1a3754"
+  },
+  {
+   "id": "cn",
+   "table": "scripts/geo/factory/country-tables/cn.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
   }
  ]
 }

@@ -83,6 +83,10 @@
         {
           "ref": "way/584997120",
           "reason": "McIlwaine Park: wikidata park whose centre is in the water (offline replay of the exact-coast anchor test)"
+        },
+        {
+          "ref": "way/105826280",
+          "reason": "Fitzpatrick Park: park centre (151.001645, -33.980392) falls in the generated Georges River water (the only wetPlaces of proofGround/proofCity, hosted run 38344947003)"
         }
       ],
       "metadataSources": {
@@ -814,7 +818,8 @@
           "landuse": "3c7d318671ac1e94f862d228c031ae998e7e703d797338af975dc802b70af0d7",
           "roads": "1863d237962a3d6bbb0c0851d8076745c64dfcfebb9430a436adfba6aee89d85"
         }
-      }
+      },
+      "sceneWaterExtent": "play"
     }
   ]
 }

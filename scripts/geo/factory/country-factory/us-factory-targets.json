@@ -1943,6 +1943,11 @@
             "primaryPolySha256": "5b36ffe960cba918b5b33bd998bca090ce4279828590dab382d097d4a3b7a2f3"
           }
         ]
+      },
+      "sceneWaterExtent": "play",
+      "waterBudgetLadder": true,
+      "geometry": {
+        "maxRoads": 600
       }
     }
   ]

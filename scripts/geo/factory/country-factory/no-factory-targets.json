@@ -2370,6 +2370,11 @@
           "landuse": "ce54b7c30962859151ed2b983b67fa2ad2fdf71b17220b4d683ccfdc9925971c",
           "roads": "339c2b4352e56a7283c3d4292f7282bbdd85a2fa3f47656f2b2eb689b0476d03"
         }
+      },
+      "sceneWaterExtent": "play",
+      "waterBudgetLadder": true,
+      "geometry": {
+        "maxRoads": 100
       }
     }
   ]

@@ -477,7 +477,8 @@
             "reason": "16 maritime Spratly-region ways of relation 49915 absent from the Vietnam clip (1120240923,925,927,928,930,931,932,934,941,942,947,954,955,1199677144,1319181446,1368675506); ways 941+942 are part of the main ring; all nodes inside the Philippines poly, and 942, 1368675506, 1120240932 are present in the Philippines PBF"
           }
         ]
-      }
+      },
+      "sceneWaterExtent": "play"
     }
   ]
 }

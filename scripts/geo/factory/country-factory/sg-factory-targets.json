@@ -59,7 +59,12 @@
           1.4707983899339785
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "relation/8752029",
+          "reason": "Pasir Ris Park: relation centre 128 m offshore (exact-coast Source anchors are not dry land, hosted run 38344947003)"
+        }
+      ],
       "geometry": {
         "maxRoads": 600
       },

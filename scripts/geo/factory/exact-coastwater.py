@@ -55,6 +55,10 @@ ANCHOR_CLEARANCE_METRES = 30
 BORDER_END_TOLERANCE_METRES = 10000
 BORDER_END_DIRECTION_METRES = 300
 BORDER_EXTENSION_MAX_INSIDE_METRES = 200
+# A source extract can lose the far part of a coast: the chain ends a little short of the wide box (the next way lies outside the extract), and the end is no
+# border cut either (Tel Aviv: the Gaza coast ends 1.5 km short of the south edge, 12 km from Israel's border). An unmatched end outside the pinned country within this
+# distance of the wide box edge continues in its last direction to that edge, under the same rule as a border end (it may not run through the country).
+CLIP_END_TOLERANCE_METRES = 3000
 REACH_VERTEX_BUDGET = 6000
 # The sea beyond the play box is a backdrop (the generator drew it at about 90 m): its water may differ from the source by up to 2% of its area (the play box stays within 0.01%).
 REACH_MAX_AREA_FRACTION = 0.02
@@ -205,7 +209,9 @@ def main():
                 if degree[end] % 2 == 0 or not clip.contains(Point(end)):
                     continue
                 border_distance = Point(end).distance(border_line) * 111320
-                if border_distance > BORDER_END_TOLERANCE_METRES or country.contains(Point(end)):
+                edge_distance = Point(end).distance(clip.boundary) * 111320
+                near_edge = edge_distance <= CLIP_END_TOLERANCE_METRES
+                if (border_distance > BORDER_END_TOLERANCE_METRES and not near_edge) or country.contains(Point(end)):
                     continue
                 walk = cs[::-1] if at == 0 else cs
                 # Walk back from the end to a vertex far enough away to give a steady direction.
@@ -230,7 +236,7 @@ def main():
                 # Keep the way's own direction (land on the left) for the side test: a start end continues backwards.
                 directed = ext if at == -1 else ext[::-1]
                 segments.extend((a, b) for a, b in zip(directed, directed[1:]) if a != b)
-                border_extensions.append({'ref': 'way/' + str(e['id']), 'end': 'start' if at == 0 else 'finish', 'borderDistanceMetres': border_distance, 'extensionMetres': float(parts[0].length * 111320), 'metresInsideCountry': inside_country})
+                border_extensions.append({'ref': 'way/' + str(e['id']), 'end': 'start' if at == 0 else 'finish', 'borderDistanceMetres': border_distance, 'clipEdgeDistanceMetres': edge_distance, 'viaClipEdge': border_distance > BORDER_END_TOLERANCE_METRES, 'extensionMetres': float(parts[0].length * 111320), 'metresInsideCountry': inside_country})
     report['borderCoastExtensions'] = border_extensions
     faces, cuts, dangles, invalid = polygonize_full(unary_union(lines + [clip.boundary]))
     if any(not g.is_empty for g in [cuts, dangles, invalid]) or faces.is_empty:
@@ -368,6 +374,17 @@ def main():
         report['sourceHashes'] = hashes
         report['coastCount'] = len(coast)
         report['borderCoastExtensions'] = border_extensions
+        # Target `sceneWaterExtent: play` also holds when the generator's sea is kept: the scene draws only the water inside the play box, so the generated
+        # reach layer (the backdrop beyond it) is replaced by a copy of the generated play layer, exactly as the replaced-sea path does. Nothing else changes.
+        if config.get('sceneWaterExtent') == 'play':
+            play_hits = list(re.finditer(r'(?m)^  water: (\[.*\]),$', terrain_text))
+            reach_hits = list(re.finditer(r'(?m)^  reachWater: (\[.*\]),$', terrain_text))
+            if len(play_hits) != 1 or len(reach_hits) != 1:
+                raise ValueError('Ambiguous TERRAIN.water/reachWater for sceneWaterExtent play')
+            played = terrain_text[:reach_hits[0].start(1)] + play_hits[0].group(1) + terrain_text[reach_hits[0].end(1):]
+            (args.city_directory / 'terrain.ts').write_text(played)
+            report['sceneWaterExtent'] = {'extent': 'play', 'reachWaterReplacedByPlayWater': True,
+                                         'terrainSha256Before': sha(terrain_text.encode()), 'terrainSha256After': sha(played.encode())}
         with args.report.open('x') as f:
             json.dump(report, f, indent=2)
         print(json.dumps({'status': report['status'], 'report': str(args.report), 'generatorSea': report['generatorSea']}))

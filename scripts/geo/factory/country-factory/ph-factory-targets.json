@@ -1368,7 +1368,8 @@
             "primaryPolySha256": "46790d4b133a6efb62334c54339f2196d45f4d97460a5e93b1c79cdcef7867fc"
           }
         ]
-      }
+      },
+      "sceneWaterExtent": "play"
     }
   ]
 }

@@ -287,6 +287,9 @@
             "primaryPolySha256": "55e4d85f9755035288437f4debf4612016c00279dbf67291494ad7e9e0b13dd3"
           }
         ]
+      },
+      "geometry": {
+        "minWaterKm2": 1
       }
     }
   ]

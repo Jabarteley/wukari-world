@@ -24,7 +24,7 @@ import type { ModelCache, ModelLayer } from './models/scene-models.ts';
 import { fileKey, familyOf, hasFar, WINDOW_TILES } from './street/street-kit.ts';
 import { BOUNDS, BUS_STOP, Z, planStreet, sceneryMix } from './street/street-plan.ts';
 import type { PlanHouse, StreetPlan } from './street/street-plan.ts';
-import { standInFor } from './street/street-standins.ts';
+import { standInFor, tone } from './street/street-standins.ts';
 
 const HOME_DOOR = { x: 0, z: -6.25, ry: Math.PI, direction: 'inside' as const };
 const ENTRANCE = { x: 0, y: 0, z: -3.25, ry: 0 };
@@ -140,7 +140,8 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     for (const wall of plan.walls) {
       const [x0, z0, x1, z1] = wall.rect, x = (x0 + x1) / 2, z = (z0 + z1) / 2, colour = FENCE_COLOUR[wall.fence] ?? FENCE_COLOUR[0]!;
       b.box(x, wall.height / 2, z, x1 - x0, wall.height, z1 - z0, colour);
-      if (wall.fence !== 1) b.box(x, wall.height + 0.06, z, x1 - x0 + 0.06, 0.12, z1 - z0 + 0.06, '#efe6cf');
+      // A painted band at the foot of a block wall, and a coping on top.
+      if (wall.fence !== 1) { b.box(x, 0.16, z, x1 - x0 + 0.08, 0.32, z1 - z0 + 0.08, tone(colour, 0.7)); b.box(x, wall.height + 0.06, z, x1 - x0 + 0.06, 0.12, z1 - z0 + 0.06, '#efe6cf'); }
     }
     for (const [x, y, z] of plan.lights) b.light(x, y, z, '#ffe3a0', 4, 7);
     void width; void deep;

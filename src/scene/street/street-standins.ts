@@ -7,33 +7,71 @@ import type { Batch } from '../types.ts';
 import { boxOf } from './street-kit.ts';
 import type { PlanPiece } from './street-plan.ts';
 
-/** A house as plain boxes: the front wall split around the door, two windows a floor, a flat roof slab. In the house's own frame (x centred, front at z = front). */
+/** A hex colour darkened (k < 1) or lightened towards white (k > 1), for plinths and trim cut from the wall's own paint. */
+export function tone(hex: string, k: number): string {
+  const n = Number.parseInt(hex.slice(1), 16), part = (shift: number) => { const v = (n >> shift) & 255; return Math.max(0, Math.min(255, Math.round(k <= 1 ? v * k : v + (255 - v) * (k - 1)))); };
+  return `#${((1 << 24) | (part(16) << 16) | (part(8) << 8) | part(0)).toString(16).slice(1)}`;
+}
+const TRIM = '#efe6cf', BARS = '#2f3338', LIT = '#ffe2b0', PANE = '#59707f';
+
+/**
+ * A window in the front wall (facing +z, its face at `face`): a white frame, a pane, burglar-proof bars across it, a sill.
+ * Some panes are lights-on (the glow layer, which follows the time of day), the rest dark glass.
+ */
+function drawWindow(b: Batch, x: number, y: number, face: number, lit: boolean, bars: boolean): void {
+  b.box(x, y, face + 0.03, 1.8, 1.35, 0.06, TRIM);
+  if (lit) b.quad(x, y, face + 0.07, 1.5, 1.05, LIT, { layer: 'glow' }); else b.quad(x, y, face + 0.07, 1.5, 1.05, PANE);
+  b.box(x, y - 0.72, face + 0.1, 2.0, 0.1, 0.2, TRIM);
+  if (!bars) return;
+  for (const dx of [-0.5, -0.17, 0.17, 0.5]) b.quad(x + dx, y, face + 0.09, 0.05, 1.12, BARS);
+  b.quad(x, y, face + 0.09, 1.5, 0.05, BARS);
+}
+
+/**
+ * A house as boxes: the front wall split around the door, windows with frames and bars, a painted plinth, a door with an awning,
+ * a hip roof with a fascia (a bungalow) or a flat roof behind a parapet (a storey building, with balconies and a water tank on top).
+ * In the house's own frame (x centred, front at z = front).
+ */
 export function drawHouse(b: Batch, x: number, front: number, width: number, depth: number, wall: string, roof: string, door: string, floors = 1): void {
-  const back = front - depth, half = width / 2, wallHeight = floors * 3.4;
-  const leftDoor = 0.78, doorWidth = 1.56, wallDepth = 0.24;
+  const back = front - depth, half = width / 2, wallHeight = floors * 3.4, face = front + 0.12;
+  const leftDoor = 0.78, doorWidth = 1.56, wallDepth = 0.24, mid = back + depth / 2;
   b.box(x - (half + leftDoor) / 2, wallHeight / 2, front, half - leftDoor, wallHeight, wallDepth, wall);
   b.box(x + (half + leftDoor) / 2, wallHeight / 2, front, half - leftDoor, wallHeight, wallDepth, wall);
   b.box(x, (wallHeight + 2.45) / 2, front, doorWidth, wallHeight - 2.45, wallDepth, wall);
-  b.box(x - half, wallHeight / 2, back + depth / 2, wallDepth, wallHeight, depth, wall);
-  b.box(x + half, wallHeight / 2, back + depth / 2, wallDepth, wallHeight, depth, wall);
+  b.box(x - half, wallHeight / 2, mid, wallDepth, wallHeight, depth, wall);
+  b.box(x + half, wallHeight / 2, mid, wallDepth, wallHeight, depth, wall);
   b.box(x, wallHeight / 2, back, width, wallHeight, wallDepth, wall);
+  // The painted plinth round the foot of the walls, a step at the door.
+  b.box(x, 0.22, mid, width + 0.16, 0.44, depth + 0.16, tone(wall, 0.66));
+  b.box(x, 0.08, face + 0.35, 2.2, 0.16, 0.7, '#cdbf9f');
+  // Windows: the ground floor either side of the door, then a pair on each floor above, the way a Lagos storey building has them.
+  const seed = Math.round(x * 7 + width * 3);
+  for (const side of [-1, 1]) drawWindow(b, x + side * 3.0, 2.0, face, (seed + side) % 3 !== 0, true);
   for (let floor = 1; floor < floors; floor++) {
     const y = floor * 3.4;
-    b.box(x, y, front, width, 0.16, 0.3, '#e2d6bf');
-    for (const side of [-1, 1]) {
-      b.box(x + side * 2.2, y + 1.75, front - 0.14, 1.6, 1.2, 0.08, '#805a37');
-      b.box(x + side * 2.2, y + 1.75, front - 0.085, 1.4, 1.02, 0.04, '#b8d8e7');
+    b.box(x, y, front, width + 0.1, 0.16, 0.34, TRIM);
+    for (const side of [-1, 1]) drawWindow(b, x + side * 2.2, y + 1.75, face, (seed + floor * 5 + side) % 3 !== 1, floor === 1);
+    if (floor === 1) {
+      // A balcony: a slab, a rail and balusters, in front of the middle of the floor.
+      b.box(x, y + 0.08, face + 0.55, 3.0, 0.16, 1.1, TRIM);
+      b.box(x, y + 1.1, face + 1.07, 3.0, 0.07, 0.07, TRIM);
+      for (let i = 0; i < 7; i++) b.quad(x - 1.4 + i * 0.467, y + 0.62, face + 1.07, 0.06, 0.9, BARS);
     }
   }
-  b.box(x, wallHeight + 0.28, back + depth / 2, width + 0.5, 0.56, depth + 0.5, roof);
-  b.box(x, wallHeight + 0.58, back + depth / 2, width + 0.5, 0.12, depth + 0.5, '#e2d6bf');
+  // The door, its frame and an awning over it.
+  b.box(x, 1.2, front - 0.02, 1.7, 2.4, 0.1, tone(wall, 0.8));
   b.box(x, 1.12, front - 0.14, 1.28, 2.18, 0.1, door);
   b.box(x + 0.38, 1.1, front - 0.075, 0.07, 0.12, 0.08, '#dfbd64');
-  b.box(x - 2.55, 2.35, front - 0.14, 1.6, 1.15, 0.08, '#805a37');
-  b.box(x - 2.55, 2.35, front - 0.085, 1.42, 0.94, 0.04, '#b8d8e7');
-  b.box(x + 2.55, 2.35, front - 0.14, 1.6, 1.15, 0.08, '#805a37');
-  b.box(x + 2.55, 2.35, front - 0.085, 1.42, 0.94, 0.04, '#b8d8e7');
-  b.box(x, 3.25, front - 0.18, 1.8, 0.14, 0.12, '#f0d99a');
+  b.box(x, 2.78, face + 0.5, 2.6, 0.1, 1.0, door, { rx: 0.18 });
+  // The roof. Eaves overhang the walls and end in a pale fascia board.
+  b.box(x, wallHeight + 0.1, mid, width + 0.9, 0.22, depth + 0.9, TRIM);
+  if (floors === 1) {
+    b.cone(x, wallHeight + 1.15, mid, 1, 1.9, roof, { seg: 4, ry: Math.PI / 4, sx: (width + 0.5) / Math.SQRT2, sz: (depth + 0.5) / Math.SQRT2 });
+  } else {
+    b.box(x, wallHeight + 0.4, mid, width + 0.5, 0.4, depth + 0.5, tone(roof, 0.75));
+    for (const [dx, dz, w, d] of [[0, 1, width + 0.5, 0.28], [0, -1, width + 0.5, 0.28], [1, 0, 0.28, depth + 0.5], [-1, 0, 0.28, depth + 0.5]] as const) b.box(x + dx * (width + 0.22) / 2, wallHeight + 0.95, mid + dz * (depth + 0.22) / 2, w, 0.7, d, tone(wall, 1.12));
+    if (floors > 2) { b.cyl(x - half + 1.6, wallHeight + 2.0, back + 1.6, 0.85, 1.6, '#34383e'); for (const [dx, dz] of [[-0.6, -0.6], [0.6, -0.6], [-0.6, 0.6], [0.6, 0.6]] as const) b.box(x - half + 1.6 + dx, wallHeight + 0.85, back + 1.6 + dz, 0.1, 0.9, 0.1, BARS); }
+  }
 }
 
 const SAND = '#d9c9a6', GREEN = '#3f8a57', DARK = '#3b3f46';
@@ -51,7 +89,11 @@ export function standInFor(item: PlanPiece): ((b: Batch) => void) | undefined {
     case 'shops': case 'shoprow': case 'church': case 'mosque': case 'school': case 'clinic': case 'filling': case 'bank': case 'unfinished':
       return (b) => { b.box(midX, height * 0.4, midZ, width * 0.94, height * 0.8, depth * 0.9, '#e2d3b0'); b.box(midX, height * 0.84, midZ, width, height * 0.1, depth * 1.02, '#a85c40'); b.box(0, 1.1, maxZ - 0.1, 1.5, 2.2, 0.2, '#6b4a2b'); };
     case 'fencegate':
-      return (b) => { for (const side of [-1, 1]) { b.box(side * 1.65, 0.9, 0, 0.5, 1.8, 0.5, SAND); b.box(side * 1.65, 1.85, 0, 0.64, 0.12, 0.64, '#efe6cf'); } };
+      // Two piers with caps, and the leaves of the gate swung open against the yard: dark steel with a bar rail.
+      return (b) => { for (const side of [-1, 1]) {
+        b.box(side * 1.65, 0.9, 0, 0.5, 1.8, 0.5, SAND); b.box(side * 1.65, 1.85, 0, 0.64, 0.12, 0.64, '#efe6cf'); b.box(side * 1.65, 0.12, 0, 0.6, 0.24, 0.6, tone(SAND, 0.7));
+        b.box(side * 2.0, 0.95, -0.9, 0.07, 1.5, 1.3, DARK); b.box(side * 2.0, 1.75, -0.9, 0.09, 0.1, 1.3, BARS);
+      } };
     case 'lamp':
       return (b) => { b.cyl(0, 2.6, 0, 0.12, 5.2, '#5d5142'); b.box(0.7, 5.3, 0, 1.5, 0.12, 0.2, '#5d5142'); b.cyl(1.4, 5.2, 0, 0.3, 0.3, '#e9c97c', { seg: 8 }); };
     case 'busstop':

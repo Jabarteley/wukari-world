@@ -212,7 +212,7 @@ interface Match {
 }
 interface TableResult { text: string; calledOff: boolean; winners: number[]; per: Record<string, TableResultMine> }
 /** What one player is told about the table's stake: why they cannot play for it (null: they can), and what a host could pick. Refreshed from the store (refreshEligibility); the frames are sent synchronously. */
-interface Eligibility { code: string | null; why: string | null; choices: { amount: number; why: string | null }[] }
+interface Eligibility { code: string | null; why: string | null; choices: { amount: number; why: string | null; code: string | null }[] }
 interface Table {
   key: string
   cityId: CityId
@@ -335,7 +335,7 @@ function buildService(ctx: RouteContext) {
   function eligibility(db: Db, table: Table, id: string): Eligibility {
     const t = now(), others = sitting(table).map((seat) => seat.id).filter((other) => other !== id), state = storedLife(db, id, table.cityId);
     const why = table.stake > 0 ? stakeWhy(db, id, state, others, table.stake, t) : null;
-    return { code: why?.code ?? null, why: why?.reason ?? null, choices: STAKE_CHOICES.filter((amount) => amount > 0).map((amount) => ({ amount, why: stakeWhy(db, id, state, others, amount, t)?.reason ?? null })) };
+    return { code: why?.code ?? null, why: why?.reason ?? null, choices: STAKE_CHOICES.filter((amount) => amount > 0).map((amount) => { const no = stakeWhy(db, id, state, others, amount, t); return { amount, why: no?.reason ?? null, code: no?.code ?? null }; }) };
   }
   /** Read what each player at (or watching) a table may do about its stake, and send it. Frames are built without waiting on the store, so this runs after the change that needs it. */
   async function refreshEligibility(table: Table): Promise<void> {

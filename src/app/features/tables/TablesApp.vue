@@ -71,6 +71,8 @@ const stakes = computed(() => s.value?.stakes ?? null)
 const staked = computed(() => (table.value?.stake ?? 0) > 0)
 const stakeCard = computed(() => showsStake(stakes.value, table.value?.stake ?? 0))
 const sitWhy = computed(() => sitReason(free.value, t.value.pending, stakes.value))
+/** Every stake refused for one reason (18+, work first): said on screen, since a disabled button's reason is only a tooltip. */
+const choicesWhy = computed(() => { const list = stakes.value?.choices ?? [], first = list[0]; return first?.why && list.every((choice) => choice.code === first.code) ? first : null })
 const answering = ref(false)
 /** The second player sat down for these rules and this stake: neither moves afterwards (the server refuses it too). */
 const rulesLocked = computed(() => staked.value && (table.value?.seats.length ?? 0) > 1)
@@ -192,7 +194,8 @@ function onOption(name: string, raw: string): void {
           </template>
           <p v-else-if="staked && !seated" class="gr-note">{{ acceptNote(table.stake) }}</p>
           <p v-if="stakes.why" class="ui-error" role="status">{{ stakes.why }}</p>
-          <BaseButton v-if="stakes.code === 'adults_only'" :disabled="answering" @click="sayAdult">{{ answering ? 'Saving…' : 'I am 18 or older' }}</BaseButton>
+          <p v-else-if="choicesWhy" class="ui-error" role="status">{{ choicesWhy.why }}</p>
+          <BaseButton v-if="stakes.code === 'adults_only' || choicesWhy?.code === 'adults_only'" :disabled="answering" @click="sayAdult">{{ answering ? 'Saving…' : 'I am 18 or older' }}</BaseButton>
         </div>
         <template v-if="seated">
           <div class="tb-start">

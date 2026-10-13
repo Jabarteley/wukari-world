@@ -627,7 +627,7 @@ export interface TableStakes {
   why: string | null
   code: string | null
   /** For the host, alone at an open table: every stake they could pick and why they cannot pick it (null: they can). Empty otherwise. */
-  choices: { amount: number; why: string | null }[]
+  choices: { amount: number; why: string | null; code: string | null }[]
 }
 /**
  * A table as ONE player (or a watcher) may see it; sent to every socket attached to the table,

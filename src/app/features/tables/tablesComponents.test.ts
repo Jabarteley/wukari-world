@@ -263,7 +263,7 @@ test('the HUD chip: shown in a venue with tables, opening the first; renders not
 // ---- stakes: game naira only (docs/GAMES.md, "Stakes") ----------------------------------------------------------------------
 
 const stakesOf = (patch: Partial<TableStateFrame['stakes']> = {}): TableStateFrame['stakes'] => ({ amount: 0, pot: 0, allowed: true, note: '', why: null, code: null, choices: [], ...patch })
-const PICKS = [100, 500, 1000, 2000].map((amount) => ({ amount, why: null as string | null }))
+const PICKS = [100, 500, 1000, 2000].map((amount) => ({ amount, why: null as string | null, code: null as string | null }))
 
 test('stakes, the list: every table carries a chip, free or the stake each player puts in', async () => {
   withState({ list: [summary({ id: 'a' }), summary({ id: 'b', stake: 500 }), summary({ id: 'c', venue: 'elsewhere', venueLabel: 'The Beach', stake: 2000 })] })
@@ -295,6 +295,18 @@ test('stakes, the host alone at an open table picks what each player puts in, wi
   assert.ok(chosen.includes('Starting takes ₦500 from each of you, and the winner takes ₦1,000.'))
   assert.ok(!/\+ \d bots?/.test(chosen), 'no bot buttons at a staked table')
   assert.ok(chosen.includes('Play money only — game naira, never real money.'))
+})
+
+test('stakes, the host alone at a free table who may not stake at all is told why on screen, with the 18+ answer to give', async () => {
+  const why = 'Playing for a stake is for players who are 18 or older. Say you are 18 or older in Stay in touch on your Phone. Free games are open to everyone.'
+  withState({ tableId: 'park-bench', state: frame({ you: 0, host: true, table: summary({ seats: [{ name: 'Ada', bot: false }] }), stakes: stakesOf({ choices: PICKS.map((pick) => ({ ...pick, why, code: 'adults_only' })) }) }) })
+  const words = text(await tablesApp())
+  assert.ok(words.includes(why), 'the reason is on screen, not only in a tooltip')
+  assert.ok(words.includes('I am 18 or older'))
+  // Refused for different reasons: no one sentence fits, so each stays on its own button.
+  withState({ state: frame({ you: 0, host: true, table: summary({ seats: [{ name: 'Ada', bot: false }] }), stakes: stakesOf({ choices: PICKS.map((pick) => (pick.amount > 500 ? { ...pick, why: 'Work first.', code: 'stake_exceeds_work' } : pick)) }) }) })
+  const mixed = text(await tablesApp())
+  assert.ok(!mixed.includes('I am 18 or older'))
 })
 
 test('stakes, a player who has not sat sees exactly what sitting accepts, and why they cannot when they cannot', async () => {

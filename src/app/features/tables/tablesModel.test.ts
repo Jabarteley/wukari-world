@@ -109,7 +109,7 @@ test('stakes: the chip, the sit button, why it is disabled, when the Stake card 
   const why = 'Playing for a stake is for players who are 18 or older.'
   const stakes = { amount: 500, pot: 1000, allowed: true, note: '', why, code: 'adults_only', choices: [] }
   assert.deepEqual([sitReason(0, false, stakes), sitReason(1, true, stakes), sitReason(1, false, stakes), sitReason(1, false, { why: null }), sitReason(1, false, null)], ['The table is full.', 'Waiting for the table to answer.', why, null, null])
-  assert.deepEqual([showsStake(null, 0), showsStake(stakes, 500), showsStake({ ...stakes, choices: [{ amount: 100, why: null }] }, 0), showsStake({ ...stakes, allowed: false, choices: [{ amount: 100, why: null }] }, 500), showsStake({ ...stakes, choices: [] }, 0)], [false, true, true, false, false])
+  assert.deepEqual([showsStake(null, 0), showsStake(stakes, 500), showsStake({ ...stakes, choices: [{ amount: 100, why: null, code: null }] }, 0), showsStake({ ...stakes, allowed: false, choices: [{ amount: 100, why: null, code: null }] }, 500), showsStake({ ...stakes, choices: [] }, 0)], [false, true, true, false, false])
   assert.equal(stakeLine(500), 'Play for ₦500 each — winner takes ₦1,000')
   assert.equal(PLAY_MONEY, 'Play money only — game naira, never real money.')
   assert.ok(acceptNote(500).startsWith('Play for ₦500 each — winner takes ₦1,000. Sitting down accepts it'))

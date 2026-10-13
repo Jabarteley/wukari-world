@@ -93,7 +93,7 @@ import { createOccluders, resolve as resolveCollision } from './scene/camera-col
 import { sceneMaterials } from './scene/build.ts';
 import { createMotionLoop } from './scene/motion-loop.ts';
 import { rewardChips, cheer } from './scene/reward.ts';
-import { applyRendererLook, renderTier, createSky, createGround, mixHex, matteScenery } from './scene/look.ts';
+import { applyRendererLook, renderTier, type RenderTier, createSky, createGround, mixHex, matteScenery } from './scene/look.ts';
 import { createWalker, createPositionReporter, gaitPhase, WALK_SPEED, JOG_SPEED } from './scene/movement.ts';
 import { createSceneControls } from './scene/controls.ts';
 import { buildVenueScene, DEFAULT_CAMERA, MAX_CROWD, SPOT_REACH, TABLE_REACH } from './scene/venue-scenes.ts';
@@ -305,19 +305,27 @@ const HAZE_NEAR = 58, HAZE_FAR = 200, HAZE_FROM = 1.25, HAZE_TO = 3.9;
  * defaults; aim(camera, x, y, z) puts the rim light behind the point the camera looks at (called on
  * a frame that is being drawn anyway — it never asks for one). shadowMap: the sun's map size.
  */
-export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shadowMap = 2048 }: { shadowMap?: number } = {}) {
+export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shadowMap = 2048, tier = renderTier() }: { shadowMap?: number; tier?: RenderTier } = {}) {
   const hemi = new THREE.HemisphereLight(HOST_LIGHTING.hemi[0], HOST_LIGHTING.hemi[1], HOST_LIGHTING.hemi[2]);
   const sun = new THREE.DirectionalLight(HOST_LIGHTING.sun[0], HOST_LIGHTING.sun[1]);
   sun.position.set(...HOST_LIGHTING.sun[2]);
   sun.castShadow = true;
   sun.shadow.mapSize.set(shadowMap, shadowMap);
-  Object.assign(sun.shadow.camera, { left: -22, right: 22, top: 22, bottom: -22, near: 1, far: 70 });
+  const reach = tier.shadowReach ?? 22; // the high tier tightens the sun's frustum: the same map covers fewer metres, so shadows are sharper
+  Object.assign(sun.shadow.camera, { left: -reach, right: reach, top: reach, bottom: -reach, near: 1, far: 70 });
   sun.shadow.normalBias = 0.04;
   const rim = new THREE.DirectionalLight(HOST_LIGHTING.rim[0], HOST_LIGHTING.rim[1]);
   rim.castShadow = false;
   rim.position.set(-14, 12, -18);
   scene.add(hemi, sun, rim, rim.target);
   let disposed = false;
+  // High tier: the generated environment map is made on the first draw (lazy; needs the renderer) and scaled with the daylight.
+  if (tier.env) {
+    scene.onBeforeRender = (renderer, _scene, camera) => {
+      scene.onBeforeRender = () => {};
+      void import('./scene/quality.ts').then((q) => q.ensureEnvironment(THREE, renderer, scene, camera));
+    };
+  }
   return {
     hemi, sun, rim,
     apply(preset?: Partial<LightPreset> | null) {
@@ -326,6 +334,7 @@ export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shado
       sun.color.set(use.sun[0]); sun.intensity = use.sun[1]; sun.position.set(...use.sun[2]);
       const back = Array.isArray(use.rim) ? use.rim as readonly [Colour, number] : HOST_LIGHTING.rim;
       rim.color.set(back[0]); rim.intensity = back[1];
+      if (scene.environment) scene.environmentIntensity = 0.1 * Math.min(1, hemi.intensity / 1.6);
     },
     /** Haze in the sky's horizon colour: far corners soften into it, which gives the flat colours depth. Costs one mix per pixel. */
     haze(colour: Colour) {
@@ -444,7 +453,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   let tier = applyRendererLook(THREE, renderer, renderTier());
   container.appendChild(renderer.domElement);
   const camera = new THREE.PerspectiveCamera(43, 1, 0.1, 360);
-  const lights = createHostLights(THREE, scene, { shadowMap: tier.shadowMap });
+  const lights = createHostLights(THREE, scene, { shadowMap: tier.shadowMap, tier });
   // The skinned body in place of the player's procedural figure in a venue (scene/body/stand-in.ts, fetched after the
   // first frame on a device the gate allows; home has its own). Null until then, and for good without one.
   let standIn: StandIn | null = null, gone = false;

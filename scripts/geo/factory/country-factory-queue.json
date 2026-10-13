@@ -80,6 +80,26 @@
   {
    "id": "jp",
    "table": "scripts/geo/factory/country-factory/jp-factory-targets.json"
+  },
+  {
+   "id": "ch",
+   "table": "scripts/geo/factory/country-factory/ch-factory-targets.json"
+  },
+  {
+   "id": "iq",
+   "table": "scripts/geo/factory/country-factory/iq-factory-targets.json"
+  },
+  {
+   "id": "gr",
+   "table": "scripts/geo/factory/country-factory/gr-factory-targets.json"
+  },
+  {
+   "id": "tr",
+   "table": "scripts/geo/factory/country-factory/tr-factory-targets.json"
+  },
+  {
+   "id": "be",
+   "table": "scripts/geo/factory/country-factory/be-factory-targets.json"
   }
  ]
 }

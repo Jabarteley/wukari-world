@@ -40,6 +40,21 @@
    "id": "va",
    "table": "scripts/geo/factory/country-tables/va.json",
    "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "kr",
+   "table": "scripts/geo/factory/country-tables/kr.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "id",
+   "table": "scripts/geo/factory/country-tables/id.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "ag",
+   "table": "scripts/geo/factory/country-tables/ag.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
   }
  ]
 }

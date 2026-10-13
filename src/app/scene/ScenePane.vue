@@ -38,6 +38,16 @@ const waiting = ref(true)
 const phase = ref('Preparing your world…')
 /** The city's own scenes are not here: the fetch is waiting to try again, or has stopped until the player asks. */
 const stuck = ref<ScenesState | null>(null)
+/** While the city downloads (a long wait on 3G) the card rotates through short facts about the game: text only, no extra bytes. */
+const TIPS = [
+  'Every activity runs on a timer and finishes even if you close the tab.',
+  'Tap the Map to travel anywhere in the city, bus fares and all.',
+  'Your phone holds Jobs, Bank, Messages and Missions.',
+  'Energy, food and mood fall slowly. Keep an eye on the bars.',
+  'Sign up free to keep your character on any device.',
+]
+const tip = ref(0)
+let tipTimer = 0
 let drawn = false
 let observer: ResizeObserver | null = null
 let disposed = false
@@ -58,7 +68,7 @@ function hostUp(): void {
   const box = container.value
   if (!box) return
   if (waiting.value) { box.classList.remove('is-arriving'); void box.offsetWidth; box.classList.add('is-arriving') }
-  waiting.value = false; stuck.value = null
+  waiting.value = false; stuck.value = null; clearTimeout(tipTimer)
   if (!drawn) { drawn = true; telemetry.sceneReady(true, box.querySelector('canvas')) }
 }
 function onScenes(next: ScenesState): void {
@@ -80,6 +90,9 @@ const waitLine = (): string => {
 const onResize = (): void => { if (game.mode.value !== 'map') scene.venue.value?.resize() }
 
 onMounted(() => {
+  // One slow timeout at a time, only while the card is up (the chain ends when the scene is drawn).
+  const nextTip = (): void => { if (disposed || !waiting.value) return; if (!failed.value && !stuck.value) tip.value = (tip.value + 1) % TIPS.length; tipTimer = window.setTimeout(nextTip, 4500) }
+  tipTimer = window.setTimeout(nextTip, 4500)
   // After the first paint: the scene starts downloading with the HUD already on screen and usable.
   setTimeout(async () => {
     try {
@@ -151,6 +164,7 @@ watch(scene.arrivals, () => {
 watch(() => props.hidden, (hidden) => { if (!hidden) { onResize(); layout() } }, { flush: 'post' })
 onBeforeUnmount(() => {
   disposed = true
+  clearTimeout(tipTimer)
   window.removeEventListener('resize', onResize)
   observer?.disconnect()
   scene.venue.value?.dispose()
@@ -164,7 +178,7 @@ defineExpose({ layout })
     <div v-if="waiting" class="scene-wait" :class="{ 'is-stuck': failed || stuck }" role="status">
       <img src="/icons/world-loader.webp" width="96" height="96" alt="" />
       <strong>{{ waitLine() }}</strong>
-      <small v-if="!failed && !stuck">Your next chapter is almost here.</small>
+      <small v-if="!failed && !stuck" :key="tip">{{ TIPS[tip] }}</small>
       <button v-if="stuck && !failed" type="button" class="scene-retry" @click="scene.venue.value?.retryScenes()">Try again</button>
     </div>
   </div>

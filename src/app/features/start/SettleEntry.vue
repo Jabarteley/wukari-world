@@ -4,10 +4,13 @@
 // next visit; a settled life never sees it (it draws nothing, so the HUD gives it no room).
 import { computed } from 'vue'
 import { useApp } from '../../state/app.ts'
+import { tour } from '../tour/tourState.ts'
+import { promptTurn, settleWanted } from './promptOrder.ts'
 import { SETTLE_ENTRY, settleEntry, startSettling } from './settleModel.ts'
 
 const { game, shell } = useApp()
-const shown = computed(() => { const view = game.view.value; return view.connected && view.onboarding.guest && !view.onboarding.required && !settleEntry.dismissed })
+// Second in line: after the walkthrough, before the coach's goal line (which waits while this is up and not put away).
+const shown = computed(() => promptTurn({ tour: tour.active || tour.pending, settle: settleWanted(game.view.value, settleEntry.dismissed), coach: false }) === 'settle')
 </script>
 
 <template>
@@ -27,4 +30,9 @@ const shown = computed(() => { const view = game.view.value; return view.connect
 .settle-entry .life-job { border-color: #ecc95b !important; background: #fff8df; }
 .settle-entry-away { flex: none; width: 32px; height: 32px; border: 0; border-radius: 50%; background: #ffffffcc; color: var(--c-ink, #1b1f27); font-size: 18px; line-height: 1; cursor: pointer; }
 .settle-entry-away:focus-visible { outline: 3px solid #1d6b43; outline-offset: 1px; }
+</style>
+
+<style>
+/* One prompt at a time: while the offer is up, the goal chip beside it (a second ask) waits. */
+.life-goal:has([data-settle-entry]) .goal-chip { display: none; }
 </style>

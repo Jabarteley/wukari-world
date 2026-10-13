@@ -21,6 +21,20 @@ For each exact slug above, ownership is limited to `experiments/cloud-lanes/<slu
 
 **E (buildings) and F (props/vegetation) are not launched.** Their assignments remain proposals only. No expanded fan-out is authorized. Visible customisable-character work has priority, and calibration assets must stay labelled as calibration until fit to the exact human mesh is demonstrated. This launch-ledger/continuation update is documentation only; no tests were rerun and no sealed packet or source input changed.
 
+## Immutable art checkpoints — parent-reported progress
+
+Parent supplied the following exact commits and reports having delivered actual images. These are recorded handoff pins and parent observations, not a new coordinator asset inspection, integration or quality acceptance. The original `caaee5e1` integration input and sealed contract packet remain unchanged.
+
+| Artifact | Immutable commit | Boundary and active owner |
+| --- | --- | --- |
+| Human master | `3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a` | Six identity controls, 112 sampled checks and 29,186 triangles reported; **no skeleton**. Face/eyelid proportions remain visually weak. Existing human task `01a13667-6b47-7763-b71a-7d06139ed03f` owns master refinement, face/body controls and expressions |
+| Skin calibration | `1efc5a280e52a0b3c432fca649d84689fe91993d` | Calibration checkpoint; task A `01a13693-76c2-7206-9483-50903f165026` owns the derivative against the supplied human master/fit frame. Calibration is not accepted fitted skin |
+| Wardrobe high-detail prototype | `fd569373bba6c8d7f0fb946c05e88876ca6d365b` | **144,840 triangles; explicitly not game-ready.** Task C `01a13693-ccce-70d8-b13b-f98622747023` is optimizing against actual game budgets and the supplied master/fit frame |
+
+Parent has passed the immutable human master and fit frame to skin, hair (task B `01a13693-a292-75b9-940d-ea5efd52e003`) and wardrobe for derivatives. Those owners retain their exact assigned prefixes; they must pin the master/frame used and report fitted results separately. No immutable hair result is supplied in this update. Refinements belong to the existing master owner; dependent lanes must not silently follow a moving master branch or edit its source.
+
+The six implemented identity controls are not the full 38-control design proposal. The 112 reported sampled checks do not resolve the visual weaknesses, missing skeleton, locomotion, rig/clip compatibility, or current-game acceptance. Likewise, detailed wardrobe geometry and delivered images do not establish budget compliance or game readiness. Parent coordinates revised inputs/results; E/F remain unlaunched and no new workers or integration are authorized by this update.
+
 ## Shared launch contract
 
 - Each branch below owns exactly its matching `experiments/cloud-lanes/<slug>/` and `docs/agent-plans/cloud-lanes/<slug>/`. New assets, Blender scripts, sources, exports, receipts and continuation stay there. Do not edit the active human producer's files, other imported first-wave files, `src/`, `public/`, `scripts/`, `world/`, shared dependencies/lockfiles, CI/deploy or runtime/catalogues. Derivatives of frozen inputs go in your own prefix with their input hashes.
@@ -86,6 +100,6 @@ Deliver near/far variants, texture/alpha and triangle/material costs, anchors an
 
 Preserve heavy capacity for the already active customisable-human producer. A–D are now admitted under the launch ledger above. A/D can produce independent tangible art, while B/C can author real hair/garments on labelled calibration fixtures; final human fit depends on an immutable mesh checkpoint. Keep E/F unlaunched and do not expand fan-out. Parent coordinates the exact human inputs and collects results; no new coordinator approval gate is imposed on the active human task.
 
-Obtain the human producer's next exact commit and actual geometry/render packet first. Review nose/ear/body endpoint independence, expression composition, decoded rig/morph data and visible anatomy against its declared subset. Then version a new integrated candidate without overwriting the old sealed packet. A schema count or original render alone does not establish all 38 controls, realistic anatomy or six-plus complete rendered presets.
+Use the recorded human master as the pinned derivative input; parent coordinates the master's visual refinement and subsequent immutable handoffs. A future separately assigned integration review must assess nose/ear/body endpoint independence, expression composition, actual rig/morph data and visible anatomy against the declared subset before versioning a candidate. Do not overwrite the old sealed packet. A schema count, sampled check count or original render alone does not establish all 38 controls, realistic anatomy or six-plus complete rendered presets.
 
 Shared PBR preservation, game character persistence/editor, clip retargeting, approved collisions and game placement remain named integration assignments after ownership reconciliation. The genuine Lagos block still needs admitted real-world evidence; the authored prototype does not close that gap. Current-game and named physical-device proof must precede mass production or expansion toward 100 workstreams.

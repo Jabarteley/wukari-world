@@ -6,7 +6,19 @@ Parent explicitly resumed the cancelled review, authorized the immutable packet,
 
 During final review parent resumed the **same human-design-contract task `01a13667-6b47-7763-b71a-7d06139ed03f`** to build original Blender character geometry with nose/ears/body controls and expressions, plus renders/turntable. It retains branch `codex/cloud-human-design-contract-20261013` and its existing documentation/experiment prefixes. Do not duplicate its base/face/expression scope. It can continue an original separate prototype without waiting for the unknown production-character owner. The next six complementary assignments are skin/eyes, hair, wardrobe, ground/street, buildings and props/vegetation; [NEXT-WAVE.md](NEXT-WAVE.md) prioritizes capacity for visible human delivery.
 
-This review's packet pins the earlier contract-only human commit; it does not claim to contain or evaluate that task's unseen new art. Obtain its next exact commit and actual geometry/render evidence for a new versioned integration review. Do not overwrite the sealed packet or take its files.
+This review's packet pins the earlier contract-only human commit; it does not contain or evaluate the newer art checkpoints recorded below. Any future integration review needs a separate assignment and evidence. Do not overwrite the sealed packet or take the producer's files.
+
+## Latest immutable art handoff
+
+Parent reports actual images delivered and supplied these pins; this small update records that report without fetching/importing assets or independently inspecting the new geometry:
+
+- Human master **`3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a`**: six identity controls, 112 sampled checks, 29,186 triangles, **no skeleton**. Face/eyelid proportions remain visually weak; the existing human master owner `01a13667-6b47-7763-b71a-7d06139ed03f` is refining them. This is not full-control, rig/locomotion or game acceptance.
+- Skin calibration **`1efc5a280e52a0b3c432fca649d84689fe91993d`**: retain the calibration label until the skin owner demonstrates fit to the supplied master/frame.
+- Wardrobe high-detail **`fd569373bba6c8d7f0fb946c05e88876ca6d365b`**: **144,840 triangles, explicitly not game-ready**. Its existing owner is optimizing against actual game budgets; no budget increase or acceptance is inferred.
+
+Parent passed the immutable master/fit frame to the existing skin, hair and wardrobe tasks for derivatives and continues coordinating inputs/results. Their task IDs, branches and exclusive prefixes remain as listed below; master face/body/expression ownership stays with the human task. Derivatives must pin the master/frame used and report fit separately. No immutable hair result was supplied in this update. See [the artifact ledger](NEXT-WAVE.md) for the recorded boundaries.
+
+Documentation only: no asset integration, new workers, test reruns, packet changes or production edits. E/F remain unlaunched. Visible human refinement and budget-compliant fitted derivatives retain priority; the recorded image delivery and sampled checks do not erase the visual or runtime gaps.
 
 ## Confirmed next-wave launches
 

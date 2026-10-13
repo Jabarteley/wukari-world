@@ -104,6 +104,7 @@ function sane(raw: unknown): ComebackRecord {
     nudges: list(r.nudges, (item): item is { from: string; at: number } => isRecord(item) && typeof item.from === 'string' && typeof item.at === 'number', COMEBACK.nudge.kept),
     next: num(r.next), suppressedDay: num(r.suppressedDay, -1),
     ...(r.acct === true ? { acct: true as const } : {}),
+    ...(r.auto === true ? { auto: true as const } : {}),
     // Ping mails (./ping-mail.ts) have a ledger of their own, with their own caps.
     ...(Array.isArray(r.pings) ? { pings: list(r.pings, (item): item is { at: number; from: string } => isRecord(item) && typeof item.at === 'number' && typeof item.from === 'string', PING.mail.kept) } : {}),
   };
@@ -161,10 +162,11 @@ export function comebackService(ctx: RouteContext, mailing: Mailing) {
   /** A visit: nothing is due for 12 hours. Also ends the back-off and the stop after the final away mail (the ledger compares with the visit). */
   function onVisit(db: Db, g: GrowthCollection, id: string, at: number, session?: SessionRecord): void {
     let record = recordOf(g, id, false);
-    // The first visit of a character whose account was made with "E-mail me about my character" on: its choice starts here (and only here, so it is made once).
+    // The first visit of an account's active character: "E-mail me about my character" starts on (and only here, so it is made once).
+    // An account made before the creation screen said so is switched on too, and is told once in the game, with a way to turn it off (`auto`).
     if (!record && session?.account !== undefined && g.players[id]?.consent?.age !== 'minor') {
       const account = accountOf(db, session)(id);
-      if (account?.mailOptIn === true) { record = recordOf(g, id, true, true); record.acct = true; }
+      if (account) { record = recordOf(g, id, true, true); record.acct = true; if (account.mailOptIn !== true) record.auto = true; }
     }
     // A contact confirmed before this feature has no record yet: it keeps the away mail it already had (see newRecord).
     if (!record && recipientOf(db, g, id, session)?.source === 'contact') record = recordOf(g, id, true, false, true);
@@ -176,7 +178,7 @@ export function comebackService(ctx: RouteContext, mailing: Mailing) {
     const record = recordOf(g, id, false), player = playerOf(g, id, { create: false }), t = now(), recipient = recipientOf(db, g, id, session);
     const nudged = Object.fromEntries(Object.entries(player?.nudged ?? {}).filter(([, at]) => t - at < COMEBACK.nudge.perFriendDays * DAY));
     const usable = record !== null && recipient !== null;
-    return { source: recipient?.source ?? null, ...(recipient?.source === 'account' ? { address: maskEmail(recipient.email) } : {}), on: usable && (record.on || record.legacy), pausedUntil: usable && record.pausedUntil > t ? record.pausedUntil : 0, types: record ? { ...record.types } : defaultPrefs().types, nudged, lastSent: record ? Math.max(0, ...record.sent.map((entry) => entry.at), ...(record.pings ?? []).map((entry) => entry.at)) : 0 };
+    return { source: recipient?.source ?? null, ...(recipient?.source === 'account' ? { address: maskEmail(recipient.email) } : {}), on: usable && (record.on || record.legacy), pausedUntil: usable && record.pausedUntil > t ? record.pausedUntil : 0, types: record ? { ...record.types } : defaultPrefs().types, nudged, lastSent: record ? Math.max(0, ...record.sent.map((entry) => entry.at), ...(record.pings ?? []).map((entry) => entry.at)) : 0 , ...(usable && record.auto === true && record.on ? { notice: true as const } : {}) };
   }
   /** The player's choices from Stay in touch. Switching anything on needs a confirmed address. */
   function setPrefs(db: Db, g: GrowthCollection, id: string, body: Record<string, unknown>, session?: SessionRecord) {
@@ -190,6 +192,7 @@ export function comebackService(ctx: RouteContext, mailing: Mailing) {
     if (!recipient && wantsOn) return no('no_address', 'Confirm an e-mail address first. Phone, Stay in touch.');
     const record = recordOf(g, id, true, false);
     if (recipient?.source === 'account') record.acct = true;
+    delete record.auto; // any answer is the owner's own choice from here on
     if (typeof body.on === 'boolean') { record.on = body.on; record.legacy = false; }
     for (const [key, value] of Object.entries(asked)) record.types[key as PrefKey] = value === true;
     if (body.pause === true) record.pausedUntil = t + COMEBACK.pauseDays * DAY;
@@ -203,7 +206,7 @@ export function comebackService(ctx: RouteContext, mailing: Mailing) {
     // Everything off for an account holder also ends the account's own "on from the start": nothing re-creates it later. No sign-in is needed: the signed link is the authority.
     if (type === 'all') { const account = accountOf(db)(id); if (account) { delete account.mailOptIn; record.acct = true; } }
     const was = type === 'all' ? record.on : record.types[PREF_OF[type]];
-    if (type === 'all') { record.on = false; record.legacy = false; } else record.types[PREF_OF[type]] = false;
+    if (type === 'all') { record.on = false; record.legacy = false; delete record.auto; } else record.types[PREF_OF[type]] = false;
     if (was) bump(g, type, 'unsubscribed'); // the same link twice is still one
   }
 

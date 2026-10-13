@@ -128,14 +128,25 @@ test('unsubscribing from everything works for an account holder without signing 
   assert.equal(on.ok, true); assert.equal(on.comeback.on, true); assert.equal(on.comeback.source, 'account');
 });
 
-test('an account made before this change is not switched on, and a character set aside is not written to', async (t) => {
+test('an account made before this change is switched on at its next visit and told once; any answer ends the notice', async (t) => {
   const h = await harness(t);
   h.go(0, 12);
   const ada = await h.newAccount('Ada', 'UidAda');
   await h.edit((db) => { for (const account of Object.values(db.accounts ?? {})) delete account.mailOptIn; delete db.growth?.comeback?.[ada.id]; });
-  assert.equal((await h.hello(ada.cookie)).contact.comeback.on, false, 'an older account has to switch it on itself');
+  const first = (await h.hello(ada.cookie)).contact.comeback;
+  assert.equal(first.on, true, 'an older account is on by default'); assert.equal(first.notice, true, 'and its owner is told');
+  assert.equal((await h.hello(ada.cookie)).contact.comeback.notice, true, 'until they answer');
+  // Turning it off from the notice is one request, and it is not switched on again by a later visit.
+  const off = await h.post<{ ok: boolean; comeback: ComebackView }>('/api/growth/comeback', { cityId: 'lagos', on: false }, ada.cookie);
+  assert.equal(off.ok, true); assert.equal(off.comeback.on, false); assert.equal(off.comeback.notice, undefined);
+  const later = (await h.hello(ada.cookie)).contact.comeback;
+  assert.equal(later.on, false); assert.equal(later.notice, undefined);
   const on = await h.post<{ ok: boolean; comeback: ComebackView }>('/api/growth/comeback', { cityId: 'lagos', on: true }, ada.cookie);
-  assert.equal(on.ok, true); assert.equal(on.comeback.on, true);
+  assert.equal(on.ok, true); assert.equal(on.comeback.on, true); assert.equal(on.comeback.notice, undefined, 'a choice the owner made is not announced');
+  // An account made with the sentence on its creation screen is on without a notice.
+  const bola = await h.newAccount('Bola', 'UidBola');
+  const made = (await h.hello(bola.cookie)).contact.comeback;
+  assert.equal(made.on, true); assert.equal(made.notice, undefined);
   // A guest with nothing at all has no address to switch anything on for.
   const guest = await h.f.device('Guest'); await h.f.request('/api/life?city=lagos', null, guest.cookie); await h.hello(guest.cookie);
   assert.equal((await h.post<{ ok: boolean; code: string }>('/api/growth/comeback', { cityId: 'lagos', on: true }, guest.cookie)).code, 'no_address');

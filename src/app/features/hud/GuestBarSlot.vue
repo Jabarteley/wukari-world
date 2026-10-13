@@ -13,6 +13,7 @@ import { tour } from '../tour/tourState.ts'
 
 const GuestBar = defineAsyncComponent(() => import('../account/GuestBar.vue'))
 const TouchOffer = defineAsyncComponent(() => import('../growth/TouchOffer.vue'))
+const MailNotice = defineAsyncComponent(() => import('../growth/MailNotice.vue'))
 const app = useApp()
 const { game, shell } = app
 const lite = useAccountLite()
@@ -34,13 +35,19 @@ watch(show, (on) => { if (on) signupShown('guestbar') }, { immediate: true })
 watch(() => [game.view.value.connected, game.view.value.session?.id, game.view.value.onboarding?.required, tour.active, tour.pending, Boolean(shell.sheet.value)], () => { setTimeout(() => void import('./olderPointer.ts').then((m) => m.pointToOlder(app)), 4000) }, { immediate: true })
 // Right after an account is made: one offer of Stay in touch (growth/touchOfferModel.ts), in the same place as the guest bar, never both.
 const offerOwed = ref(owed(storage()))
-const offer = computed(() => {
+const offerFacts = () => {
   const view = game.view.value
-  return offerDue({
+  return {
     owed: offerOwed.value, signedIn: lite.state.account !== null, connected: view.connected, creating: view.onboarding?.required === true, tour: tour.active || tour.pending,
     busy: Boolean(shell.sheet.value) || Boolean(game.state.value.activeAction) || callVisible(), venue: game.mode.value === 'venue',
-  })
-})
+  }
+}
+const offer = computed(() => offerDue(offerFacts()))
+// An account whose e-mails were switched on by default is told once (growth/MailNotice.vue asks the server and shows nothing otherwise).
+// It is fetched a few seconds after a signed-in player is in the game with nothing in front, and then stays until answered.
+const calm = computed(() => offerDue({ ...offerFacts(), owed: true }))
+const mailNotice = ref(false)
+watch(calm, (on) => { if (on && !mailNotice.value) setTimeout(() => { if (calm.value) mailNotice.value = true }, 6000) }, { immediate: true })
 function closeOffer(): void { settle(storage()); offerOwed.value = false }
 function openOffer(): void { closeOffer(); shell.open('touch') }
 function dismiss(): void { hidden.value = dismissBar(storage(), Date.now()) }
@@ -49,4 +56,5 @@ function dismiss(): void { hidden.value = dismissBar(storage(), Date.now()) }
 <template>
   <GuestBar v-if="show" @dismiss="dismiss" />
   <TouchOffer v-else-if="offer" @open="openOffer" @dismiss="closeOffer" />
+  <MailNotice v-else-if="mailNotice && calm" />
 </template>

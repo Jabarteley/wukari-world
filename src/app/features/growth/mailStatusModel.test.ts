@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { mailRowKind, mailStatus, sentDate } from './mailStatusModel.ts'
+import { mailNoticeDue, mailRowKind, mailStatus, sentDate } from './mailStatusModel.ts'
 import { TOUCH_OFFER_KEY, offerDue, owe, owed, settle } from './touchOfferModel.ts'
 import type { OfferFacts } from './touchOfferModel.ts'
 
@@ -13,6 +13,12 @@ test('the mail rows: on or off, the address state, and the date only; nothing un
   assert.equal(mailStatus({ email: { address: 'a***@x.com', confirmed: true, preview: null }, comeback })?.address, 'Confirmed')
   assert.equal(sentDate(Date.UTC(2026, 9, 12, 8, 30)), '12 Oct 2026')
   assert.equal(sentDate(0), 'none yet'); assert.equal(sentDate(Number.NaN), 'none yet')
+})
+
+test('the notice of e-mails switched on by default is shown only while the server says it is unanswered', () => {
+  assert.equal(mailNoticeDue(null), false)
+  assert.equal(mailNoticeDue({ comeback: { ...comeback, on: true } }), false)
+  assert.equal(mailNoticeDue({ comeback: { ...comeback, on: true, notice: true } }), true)
 })
 
 test('the rows are for a signed-in player; a guest on a server with accounts gets one line; accounts off, nothing', () => {

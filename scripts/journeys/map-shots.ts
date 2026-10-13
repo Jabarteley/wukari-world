@@ -121,7 +121,14 @@ async function chooseIkeja(b: Browser): Promise<void> {
   for (let t = 0; t < 4; t++) {
     // The capped area list hides Ikeja (display:none, so it is in the DOM but not visible): press Show all when it is offered. No-op on older apps.
     await b.click('[data-key="area:all"]', undefined, 3000).catch(() => undefined);
-    await b.click('[data-key="area:ikeja"]', undefined, 30000);
+    // A query uncaps the list too, and a late-filling list is retried: type the area name when the row is not visible yet.
+    if (!(await b.waitFor(shownNow('[data-key="area:ikeja"]'), 6000, 'the Ikeja row').catch(() => false))) {
+      await b.type('[data-key="area:search"]', 'Ikeja').catch(() => undefined);
+    }
+    await b.click('[data-key="area:ikeja"]', undefined, 30000).catch(async (error) => {
+      if (t === 3) throw error;
+      await sleep(2000);
+    });
     if (await b.waitFor(`(() => { const n = document.querySelector('[data-key="primary"], [data-key="next"]'); return !!n && !n.disabled; })()`, 4000, 'Next').catch(() => false)) return;
   }
   throw new Error('Ikeja did not unlock Next');

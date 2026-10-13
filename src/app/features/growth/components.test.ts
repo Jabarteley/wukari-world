@@ -207,3 +207,25 @@ test('Inbox chip: Messages with what is waiting, and a knock at the door as its 
     assert.ok(text(html).includes('Ada is knocking') && text(html).includes('Let them in or not now'))
   } finally { social.me = null }
 })
+
+test('Settings e-mail rows: the character mails, the address and the date of the last e-mail; a guest is told to sign in; nothing where accounts are off', async () => {
+  const lite = (await load<{ useAccountLite: () => { state: Record<string, unknown> } }>('/src/app/features/account/useAccountLite.ts')).useAccountLite()
+  const before = { ...lite.state }
+  const mine = (over: Record<string, unknown>) => ({ channel: '', email: null, push: { devices: 0 }, live: { email: false }, comeback: { source: null, on: false, pausedUntil: 0, types: {}, nudged: {}, lastSent: 0, ...over } })
+  try {
+    Object.assign(lite.state, { loaded: true, enabled: true, account: { email: 'a@x.com', provider: 'password', createdAt: 1, devices: 1 } })
+    growth.state.hello = hello({ contact: mine({}) } as Partial<HelloOk>)
+    let words = text(await render('MailStatus'))
+    assert.match(words, /E-mails about your character Off/); assert.match(words, /Stay in touch address None yet/); assert.match(words, /Last e-mail sent to you none yet/)
+    growth.state.hello = hello({ contact: { ...mine({ on: true, lastSent: Date.UTC(2026, 9, 12, 8) }), email: { address: 'a***@x.com', confirmed: true, preview: null } } } as Partial<HelloOk>)
+    const html = await render('MailStatus')
+    words = text(html)
+    assert.match(words, /E-mails about your character On/); assert.match(words, /Stay in touch address Confirmed/); assert.match(words, /Last e-mail sent to you 12 Oct 2026/)
+    assert.ok(!words.includes('a***@x.com'), 'no address is repeated here'); assert.ok(html.includes('data-mail-open'))
+    Object.assign(lite.state, { account: null })
+    words = text(await render('MailStatus'))
+    assert.equal(words, 'Sign in to get e-mails about your character.')
+    Object.assign(lite.state, { enabled: false })
+    assert.equal(text(await render('MailStatus')), '')
+  } finally { Object.assign(lite.state, before); growth.state.hello = null }
+})

@@ -15,6 +15,7 @@ import { useApp } from '../../state/app.ts'
 import { linkWords } from '../../../ui/link.ts'
 import { WALLPAPERS, getWallpaper, setWallpaper } from '../../../ui/phone/wallpapers.ts'
 import LinkButton from '../growth/LinkButton.vue'
+import MailStatus from '../growth/MailStatus.vue'
 import { useGrowth } from '../growth/useGrowth.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import HowItWorks from '../../ui/HowItWorks.vue'
@@ -167,6 +168,8 @@ onMounted(() => { void growth.load(); void loadOlderLives() })
       <!-- Opens the telemetry sheet (src/telemetry): what is collected and the Accept / Reject choice for this device. -->
       <button type="button" class="ui-row" @click="openPrivacy()"><span class="ui-row-icon" aria-hidden="true"><GameIcon inline name="id" /></span><span class="ui-row-body"><b>Analytics and error reports</b><small>What we collect, and your choice</small></span><span class="ui-row-end"><GameIcon inline name="chevron" /></span></button>
     </div>
+
+    <MailStatus />
 
     <h3 class="ui-section">Outside the game</h3>
     <div class="ui-rows">

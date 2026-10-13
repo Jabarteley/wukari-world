@@ -125,7 +125,7 @@ export interface DrawnAvatar { look: Look; top: number }
 /** The movable parts of a rigged avatar (each a Group pivoted at its joint). */
 export type AvatarParts = Record<PartName | 'body', THREE.Group>;
 interface Bend { geometry: THREE.BufferGeometry; start: number; position: Float32Array; normal: Float32Array; pivotY: number; angle: number; kind: 'calf' | 'fore'; side: 0 | 1 }
-export interface AvatarUserData { look: Look; top: number; triangles: number; dispose: () => void; parts?: AvatarParts; bends?: Bend[] }
+export interface AvatarUserData { twist?: number; lookTorso?: number; look: Look; top: number; triangles: number; dispose: () => void; parts?: AvatarParts; bends?: Bend[] }
 /** What buildAvatar returns. */
 export interface AvatarGroup extends THREE.Group { userData: AvatarUserData }
 /** An avatar built with `rig: true`: its parts are there. */
@@ -207,6 +207,8 @@ function pickAccessories(value: unknown): string[] {
 // What a passer-by with no recorded look may carry (most carry nothing).
 const SEEDED_ACCESSORIES: string[][] = [[], [], [], ['glasses'], ['cap'], [], ['backpack'], ['watch'], [], ['sunglasses'], ['handbag'], []];
 
+// What a passer-by's cloth is (indices into LOOK_OPTIONS.fabric): plain, ankara, adire, aso-oke, so a crowd shows more than one wax print.
+const SEEDED_FABRIC = [0, 1, 0, 2, 0, 3, 1, 0, 3, 2];
 // Indices into LOOK_OPTIONS.outfitColor: navy, cream, navy, teal, blue, gold (weighted to the neutrals).
 const HARMONY_BOTTOMS = [7, 8, 7, 6, 0, 8, 7, 9];
 
@@ -228,7 +230,7 @@ export function normalizeLook(look?: unknown, seed?: unknown): Look {
     body,
     hair: pickOption(source.hair ?? source.hairstyle, LOOK_OPTIONS.hair[body], pick('hair')),
     outfit: pickOption(source.outfit, outfits, outfitSeed),
-    fabric: pickOption(source.fabric, LOOK_OPTIONS.fabric, source.fabric == null && pick('fabric') % 2 ? 0 : pick('fabric')),
+    fabric: pickOption(source.fabric, LOOK_OPTIONS.fabric, source.fabric == null ? SEEDED_FABRIC[pick('fabric') % SEEDED_FABRIC.length]! : pick('fabric')),
     skin: pickColour(source.skin ?? source.skinTone, LOOK_OPTIONS.skin, pick('skin')),
     hairColor: pickColour(source.hairColor, LOOK_OPTIONS.hairColor, pick('hairColor') % 4),
     outfitColor,
@@ -249,6 +251,8 @@ interface Joints {
   arm: [[number, number], [number, number]];
   fore: [number, number]; leg: [number, number]; calf: [number, number];
   lean: number; bob?: number;
+  /** Torso turn about the vertical axis (the shoulders counter-rotate against the hips). */
+  twist?: number;
 }
 const POSE: Partial<Record<Pose, Joints>> & { stand: Joints } = {
   stand: { arm: [[0.06, 0.1], [0.06, 0.1]], fore: [-0.18, -0.18], leg: [0.03, -0.03], calf: [0, 0], lean: 0 },
@@ -271,12 +275,12 @@ const POSE: Partial<Record<Pose, Joints>> & { stand: Joints } = {
  */
 function gait(stride: number | undefined, jog: boolean): Joints {
   const p = (stride !== undefined && Number.isFinite(stride) ? stride : 0.25) * TAU, swing = Math.sin(p);
-  const reach = jog ? 0.78 : 0.5, knee = jog ? 1.25 : 0.62, elbow = jog ? -1.35 : -0.35;
+  const reach = jog ? 0.7 : 0.42, knee = jog ? 1.25 : 0.62, elbow = jog ? -1.35 : -0.35;
   // Index 0 is the right side. A leg's knee bends while that leg is travelling forwards.
   const leg: [number, number] = [-reach * swing, reach * swing];
   const calf: [number, number] = [(jog ? 0.3 : 0.08) + knee * Math.max(0, Math.cos(p)), (jog ? 0.3 : 0.08) + knee * Math.max(0, -Math.cos(p))];
-  const arm: Joints['arm'] = [[reach * 0.9 * swing, 0.1], [-reach * 0.9 * swing, 0.1]];
-  return { arm, fore: [elbow - 0.15 * Math.max(0, -swing), elbow - 0.15 * Math.max(0, swing)], leg, calf, lean: jog ? 0.17 : 0.06, bob: (jog ? 0.045 : 0.02) * Math.cos(2 * p) };
+  const arm: Joints['arm'] = [[reach * 1.15 * swing, 0.1], [-reach * 1.15 * swing, 0.1]];
+  return { arm, fore: [elbow - 0.15 * Math.max(0, -swing), elbow - 0.15 * Math.max(0, swing)], leg, calf, lean: jog ? 0.17 : 0.06, bob: (jog ? 0.045 : 0.02) * Math.cos(2 * p), twist: -(jog ? 0.1 : 0.07) * swing };
 }
 /** Joint angles for a pose (an unknown pose stands). 'walk' and 'jog' take `stride`; 'walk' without one is the classic mid-stride figure. */
 function jointsOf(pose: Pose | undefined, stride?: number): Joints {
@@ -289,7 +293,7 @@ function mixJoints(from: Joints, to: Joints, k: number): Joints {
   const pair = (a: [number, number], b: [number, number]): [number, number] => [m(a[0], b[0]), m(a[1], b[1])];
   return {
     arm: [pair(from.arm[0], to.arm[0]), pair(from.arm[1], to.arm[1])], fore: pair(from.fore, to.fore), leg: pair(from.leg, to.leg), calf: pair(from.calf, to.calf),
-    lean: m(from.lean, to.lean), bob: m(from.bob ?? 0, to.bob ?? 0),
+    lean: m(from.lean, to.lean), bob: m(from.bob ?? 0, to.bob ?? 0), twist: m(from.twist ?? 0, to.twist ?? 0),
   };
 }
 /** Draw `fn` in a frame at (x, y, z) turned by rx, rz. On a rig this is a separate, movable part with its pivot there. */
@@ -1530,6 +1534,10 @@ export function poseAvatar<T extends { userData?: unknown } | null | undefined>(
   const sway = time !== undefined && Number.isFinite(time) && (pose === 'stand' || pose === 'relax') ? Math.sin(time * 0.55) : 0;
   parts.torso.rotation.x = (joints.lean || 0) - idle * 0.006;
   parts.torso.rotation.z = sway * 0.012;
+  // A look (avatar-rig.ts lookAvatar) turns the torso a little too: the stride's twist rides on top of it.
+  const memo = avatar!.userData as { twist?: number; lookTorso?: number };
+  memo.twist = joints.twist || 0;
+  parts.torso.rotation.y = memo.twist + (memo.lookTorso || 0);
   parts.body.position.y = (joints.bob || 0) + idle * 0.004 - Math.abs(sway) * 0.004;
   parts.legR.rotation.x = joints.leg[0]; parts.legL.rotation.x = joints.leg[1];
   parts.armR.rotation.set(joints.arm[0][0], 0, -joints.arm[0][1] - idle * 0.01); parts.armL.rotation.set(joints.arm[1][0], 0, joints.arm[1][1] + idle * 0.01);

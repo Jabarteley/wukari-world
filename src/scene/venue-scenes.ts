@@ -353,7 +353,7 @@ function raisedContactTop(shapes: readonly RaisedShape[] | undefined, x: number,
 
 /** How long another player's figure takes to ease to a newly reported position (seconds), and the jump beyond which it is simply placed. */
 /** How long a walk takes to ease back to standing, and how far (scene units) the player's head turns to someone close by. */
-const STOP_EASE = 0.2, GLANCE_REACH = 4.5;
+const STOP_EASE = 0.12, GLANCE_REACH = 4.5;
 const reducedMotion = (): boolean => Boolean(globalThis.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches);
 const PEER_EASE: [number, number] = [0.16, 0.42], PEER_JUMP = 7, PEER_PACE = 6;
 

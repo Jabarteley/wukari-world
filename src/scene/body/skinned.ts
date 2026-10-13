@@ -213,6 +213,20 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
   type BoneFrame = { position: THREE.Vector3; quaternion: THREE.Quaternion; scale: THREE.Vector3 };
   let blendFrom: BoneFrame[] | null = null;
   const CROSSFADE = 0.16;
+  // Stopping a walk: the bones the stride left, eased into the standing pose over WALK_STOP seconds (a snap reads as a hitch).
+  const WALK_STOP = 0.12;
+  let walkStop: { time: number; from: BoneFrame[] } | null = null;
+  function easeStop() {
+    if (!walkStop) return;
+    const t = Math.min(1, walkStop.time / WALK_STOP), eased = t * t * (3 - 2 * t), from = walkStop.from;
+    if (t >= 1) { walkStop = null; return; }
+    skinned.skeleton.bones.forEach((bone, index) => {
+      const was = from[index];
+      if (!was) return;
+      bone.position.lerpVectors(was.position, bone.position, eased);
+      bone.quaternion.slerp(was.quaternion, 1 - eased);
+    });
+  }
   let transition: { clip: string; time: number; length: number; then: BodyPose; from: Placement } | null = null;
   const anchored = new Set([...Object.values(INTO), ...Object.values(OUT), ...Object.values(WORK_INTO), ...Object.values(WORK_OUT)]);
   const clipFor = (name: string) => key === 'female' && actions.has(`${name}-female`) ? `${name}-female` : name;
@@ -292,15 +306,19 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
       if (strideClimb) for (let pass = 0; pass < 3 && result.limited && result.maxError > 0.002; pass++) result = footContact.solve(heightAt);
       return result;
     },
-    get easing() { return transition !== null; },
+    get easing() { return transition !== null || walkStop !== null; },
     get pose() { return pose; },
     get seated() { return SEATED.has(pose) || SEATED.has(transition?.clip ?? ''); },
     show(next, animate = false) {
       if (next === pose && transition && animate) return;
       if (next === pose && !transition) return still(next);
+      const leaving = animate && (pose === 'walk' || pose === 'jog') && next !== 'walk' && next !== 'jog' && !SEATED.has(next);
+      const left = leaving ? skinned.skeleton.bones.map(bone => ({ position: bone.position.clone(), quaternion: bone.quaternion.clone(), scale: bone.scale.clone() })) : null;
       const into = next !== pose ? INTO[next] ?? WORK_INTO[next] : undefined, out = next !== pose && next !== 'walk' && next !== 'jog' ? OUT[pose] ?? WORK_OUT[pose] : undefined;
       pose = next;
+      walkStop = null;
       play(animate ? into ?? out : undefined);
+      if (left && !transition) { walkStop = { time: 0, from: left }; easeStop(); }
     },
     sampleUse(next, seconds) {
       if (transition) return;
@@ -312,7 +330,7 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
     enter(animate) { pose = 'idle'; play(animate ? DOOR : undefined); },
     stride(phase, jog, climb = 0) {
       strideClimb = climb;
-      transition = null; blendFrom = null;
+      transition = null; blendFrom = null; walkStop = null;
       pose = jog ? 'jog' : 'walk';
       const name = !climb ? pose : climb > 0 ? STAIRS.up : STAIRS.down, clip = actions.get(name)?.getClip();
       if (!clip) return;
@@ -320,6 +338,12 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
       sample(name, (turn - Math.floor(turn)) * clip.duration);
     },
     step(dt) {
+      if (walkStop && !transition) {
+        walkStop.time += Math.max(dt, 0);
+        still(pose);
+        easeStop();
+        return walkStop !== null;
+      }
       if (!transition) return false;
       transition.time += Math.max(dt, 0);
       if (transition.time >= transition.length) { finish(); return false; }
@@ -327,7 +351,7 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
       put();
       return true;
     },
-    settle: finish,
+    settle() { walkStop = null; finish(); },
     place(x, y, z, ry) { standing = { x, y, z, ry }; put(); },
     sitOn(x, top, z, ry) {
       seat = { x, top, z, ry, lying: (transition?.clip ?? pose) === 'get-up' || pose === 'lie' };

@@ -5,6 +5,9 @@ import { createHash } from 'node:crypto';
 import { validateSourceInputs, cityExtractInput } from './source-inputs.mjs';
 
 export const COUNTRY_SCOPE_KIND = 'osm-admin0-boundary-v1';
+/** Antarctica (AQ): the Antarctic Treaty area south of 60 degrees South, a fixed polygon (bootstrap/country-boundary.py TREATY_RING), never an OSM relation. */
+export const ANTARCTIC_TREATY_SCOPE = 'antarctic-treaty-area';
+export const TREATY_RING = Object.freeze([[-180, -90], [-90, -90], [0, -90], [90, -90], [180, -90], [180, -60], [90, -60], [0, -60], [-90, -60], [-180, -60], [-180, -90]]);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const hex = /^[a-f0-9]{64}$/;
 const pointValid = p => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite) && Math.abs(p[0]) <= 180 && Math.abs(p[1]) <= 90;
@@ -16,7 +19,9 @@ export function validateCountryScopePolicy(policy, country, datasetSha256) {
   assert.equal(policy.datasetSha256, datasetSha256, 'country boundary and city extract PBF differ');
   // City sub-extract: the boundary was built from the full country file; policy.datasetSha256 names the city's PBF.
   if (policy.boundaryDatasetSha256 !== undefined) assert.match(policy.boundaryDatasetSha256, hex, 'boundary dataset pin');
-  for (const key of ['receiptBytes', 'geometryBytes', 'relationId']) assert.ok(Number.isSafeInteger(policy[key]) && policy[key] > 0, `country ${key} pin required`);
+  // The treaty scope (AQ) has no relation: the policy names the scope instead of a relation id.
+  if (policy.treatyScope !== undefined) assert.ok(policy.treatyScope === ANTARCTIC_TREATY_SCOPE && policy.countryISO === 'AQ' && policy.relationId === undefined, 'treaty scope policy is only the AQ Antarctic Treaty area, without a relation');
+  for (const key of ['receiptBytes', 'geometryBytes', ...(policy.treatyScope === undefined ? ['relationId'] : [])]) assert.ok(Number.isSafeInteger(policy[key]) && policy[key] > 0, `country ${key} pin required`);
   if (policy.boundaryKey !== undefined) assert.equal(policy.boundaryKey, policy.countryISO.toLowerCase(), 'boundary artifact key must match ISO');
   if (policy.boundaryJob !== undefined) {
     const job = policy.boundaryJob;
@@ -92,6 +97,7 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
   // A city sub-extract: source is the primary file; sourceInputs ends with the city-extract input the boundary is paired with.
   if (receipt.source.sourceInputs !== undefined) validateSourceInputs(receipt.source.sourceInputs, { url: receipt.source.url, date: receipt.source.date });
   assert.equal(receipt.scriptSha256, policy.scriptSha256, 'country assembler script pin mismatch');
+  if (receipt.treatyScope !== undefined || policy.treatyScope !== undefined) return loadTreatyScope(directory, policy, receipt, iso);
   const relation = receipt.relation;
   assert.equal(relation.id, policy.relationId);
   assert.ok(Number.isSafeInteger(relation.version) && relation.version >= 0);
@@ -102,9 +108,13 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
     assert.match(override.evidenceSha256 ?? '', hex, 'relation override evidence pin required');
     assert.equal(override.relationId, relation.id, 'relation override names another relation');
     assert.ok(typeof override.reason === 'string' && override.reason.trim().length >= 20, 'relation override needs a written reason');
-    assert.ok(relation.tags.admin_level === override.expectedTags.admin_level && override.expectedTags.admin_level !== '2' && Object.entries(override.expectedTags).every(([key, value]) => relation.tags[key] === value), 'relation tags differ from the reviewed override');
+    // disputed (Siachen Glacier XG): a boundary=disputed relation, admin_level 2 allowed only here, always with userAssignedCode.
+    const disputed = override.disputed === true;
+    if (override.disputed !== undefined) assert.ok(disputed && override.userAssignedCode === true, 'disputed override is only a userAssignedCode override');
+    assert.ok(relation.tags.admin_level === override.expectedTags.admin_level && (disputed || override.expectedTags.admin_level !== '2') && Object.entries(override.expectedTags).every(([key, value]) => relation.tags[key] === value), 'relation tags differ from the reviewed override');
     // userAssignedCode (Somaliland XS, Northern Cyprus XN): a relation with NO ISO3166-1 tag under a user-assigned X? code, pinned by id, wikidata and the other expected tags.
-    if (override.userAssignedCode !== undefined) assert.ok(override.userAssignedCode === true && /^X[A-Z]$/.test(iso.toUpperCase()) && !Object.keys(override.expectedTags).some(key => key.startsWith('ISO3166-1')) && override.expectedTags.boundary === 'administrative' && /^Q[1-9][0-9]*$/.test(override.expectedTags.wikidata ?? ''), 'userAssignedCode override is malformed');
+    if (override.userAssignedCode !== undefined) assert.ok(override.userAssignedCode === true && /^X[A-Z]$/.test(iso.toUpperCase()) && !Object.keys(override.expectedTags).some(key => key.startsWith('ISO3166-1'))
+      && (disputed ? override.expectedTags.boundary === 'disputed' && Boolean(override.expectedTags.name) : override.expectedTags.boundary === 'administrative' && /^Q[1-9][0-9]*$/.test(override.expectedTags.wikidata ?? '')), 'userAssignedCode override is malformed');
   } else {
     assert.equal(relation.tags.boundary, 'administrative');
     assert.equal(relation.tags.admin_level, '2');
@@ -221,6 +231,34 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
   for (const check of receipt.fixtureResults) assert.equal(classify(check.point), check.actual, `country fixture ${check.ref} does not match geometry`);
   const proof = { kind: policy.kind, iso, source: receipt.source, relation: { id: relation.id, version: relation.version, timestamp: relation.timestamp }, receiptSha256: policy.receiptSha256, geometrySha256: policy.geometrySha256, geometryBytes: policy.geometryBytes, scriptSha256: receipt.scriptSha256, assembly: receipt.assembly, ...(absentPolicy ? { absentMemberPolicy: absentPolicy } : {}), ...(reviewedPolicy ? { reviewedNonBoundaryRelationMembers: reviewedPolicy } : {}), ...(override ? { relationOverride: override } : {}), fixtureSha256: receipt.fixtureSha256, boundaryJob: policy.boundaryJob ?? null, limitation: 'OSM mapped national boundary; not legal jurisdiction or municipal membership' };
   return { policy: { ...policy, directory }, receipt: proof, classify, assertPoint(point, label) { assert.equal(classify(point), 'inside', `${label}: outside/on OSM country boundary ${iso}; HOLD`); } };
+}
+
+/** The AQ treaty scope receipt: exactly the fixed treaty polygon, no relation, the evidence file pinned; same classify/assertPoint as an admin-0 scope. */
+function loadTreatyScope(directory, policy, receipt, iso) {
+  const scope = receipt.treatyScope;
+  assert.equal(policy.treatyScope, ANTARCTIC_TREATY_SCOPE, 'treaty receipt needs a treaty scope policy');
+  assert.ok(iso === 'AQ' && scope?.kind === ANTARCTIC_TREATY_SCOPE && scope.southOfLatitude === -60 && scope.countryISO === 'AQ', 'treaty scope is only the AQ Antarctic Treaty area');
+  assert.match(scope.evidenceSha256 ?? '', hex, 'treaty scope evidence pin required');
+  assert.ok(typeof scope.reason === 'string' && scope.reason.trim().length >= 20, 'treaty scope needs a written reason');
+  assert.equal(receipt.relation, null, 'a treaty scope has no relation');
+  assert.deepEqual(receipt.memberWays, []);
+  assert.equal(receipt.assembly.method, ANTARCTIC_TREATY_SCOPE);
+  assert.equal(receipt.assembly.completeMemberSegments, TREATY_RING.length - 1);
+  assert.equal(receipt.geometry.bytes, policy.geometryBytes);
+  assert.equal(receipt.geometry.sha256, policy.geometrySha256);
+  const rawGeometry = readFileSync(join(directory, 'boundary.geojson'));
+  assert.equal(rawGeometry.length, policy.geometryBytes);
+  assert.equal(hash(rawGeometry), policy.geometrySha256, 'country geometry bytes mismatch');
+  const geometry = JSON.parse(rawGeometry);
+  assert.deepEqual(geometry, { type: 'Polygon', coordinates: [TREATY_RING] }, 'treaty scope geometry is exactly the area south of 60 degrees South');
+  const classify = point => {
+    assert.ok(pointValid(point), 'invalid country membership point');
+    return ringState(point, TREATY_RING);
+  };
+  assert.ok(Array.isArray(receipt.fixtureResults) && receipt.fixtureResults.every(check => ['inside', 'outside'].includes(check.expected) && check.actual === check.expected), 'country receipt has failed fixture checks');
+  for (const check of receipt.fixtureResults) assert.equal(classify(check.point), check.actual, `country fixture ${check.ref} does not match geometry`);
+  const proof = { kind: policy.kind, iso, source: receipt.source, treatyScope: scope, receiptSha256: policy.receiptSha256, geometrySha256: policy.geometrySha256, geometryBytes: policy.geometryBytes, scriptSha256: receipt.scriptSha256, assembly: receipt.assembly, fixtureSha256: receipt.fixtureSha256, boundaryJob: policy.boundaryJob ?? null, limitation: 'Antarctic Treaty area south of 60 degrees South; no national boundary and no sovereignty claim' };
+  return { policy: { ...policy, directory }, receipt: proof, classify, assertPoint(point, label) { assert.equal(classify(point), 'inside', `${label}: outside/on the Antarctic Treaty area; HOLD`); } };
 }
 
 export function assertCountryFacts(scope, facts) {

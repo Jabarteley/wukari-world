@@ -19,6 +19,13 @@ from urllib.parse import urlparse
 
 HERE = Path(__file__).resolve().parent
 TAG_EXCEPTION_KEYS = {'boundary', 'admin_level'}
+# Antarctica has no admin-0 relation: its scope is the Antarctic Treaty area (Article VI: the area south of 60 degrees South
+# latitude, including all ice shelves), a fixed polygon recorded in the receipt, never an OSM relation. Vertices every 90 degrees of
+# longitude keep each edge under the 180-degree antimeridian guard of country-scope.mjs.
+ANTARCTIC_TREATY = {'kind': 'antarctic-treaty-area', 'southOfLatitude': -60, 'countryISO': 'AQ',
+                    'definition': 'Antarctic Treaty (1959), Article VI: the area south of 60 degrees South latitude, including all ice shelves',
+                    'sourceUrl': 'https://www.ats.aq/e/antarctictreaty.html'}
+TREATY_RING = [[-180, -90], [-90, -90], [0, -90], [90, -90], [180, -90], [180, -60], [90, -60], [0, -60], [-90, -60], [-180, -60], [-180, -90]]
 RING_OR_REVIEWED_ROLES = {'', 'outer', 'inner', 'subarea', 'land_area'}
 
 
@@ -180,6 +187,92 @@ def _detached_relation(relation):
     return relation.replace(members=[(m.type, m.ref, m.role) for m in relation.members], tags={tag.k: tag.v for tag in relation.tags})
 
 
+def evidence_binding_ok(evidence, args, label):
+    binding = evidence.get('dataset')
+    require(('datasetSha256' in evidence) != (binding is not None), f'{label} evidence must name its PBF by datasetSha256 or by dataset {{url, bytes, md5}}')
+    if binding is None:
+        require(evidence['datasetSha256'] == args.expected_sha256, f'{label} evidence PBF mismatch (datasetSha256)')
+    else:
+        require(isinstance(binding, dict) and set(binding) == {'url', 'bytes', 'md5'} and binding['url'] == args.dataset_url
+                and binding['bytes'] == args.expected_bytes and binding['md5'] == args.actual_md5,
+                f'{label} evidence PBF mismatch (dataset url/bytes/md5)')
+
+
+def load_treaty_scope(args):
+    """`treatyScope: {kind: 'antarctic-treaty-area', reason}` in boundary-evidence/aq.json (owner decision 13 Oct 2026: Antarctica is playable).
+
+    Only for AQ, only in an evidence file that names this PBF, never together with a relation override. The scope is the fixed treaty
+    polygon (TREATY_RING); no relation is read. Every city check downstream (centre, airport or gateway, places inside the scope) is unchanged.
+    """
+    if not args.absent_evidence:
+        return None
+    evidence = json.loads(Path(args.absent_evidence).read_text())
+    scope = evidence.get('treatyScope')
+    if scope is None:
+        return None
+    require(evidence.get('schemaVersion') == 1 and evidence.get('countryISO') == args.country == ANTARCTIC_TREATY['countryISO'],
+            'treatyScope is only for AQ (Antarctica); evidence schema/country mismatch')
+    evidence_binding_ok(evidence, args, 'treaty scope')
+    require(isinstance(scope, dict) and set(scope) == {'kind', 'reason'} and scope['kind'] == ANTARCTIC_TREATY['kind']
+            and isinstance(scope['reason'], str) and len(scope['reason'].strip()) >= 20,
+            "treatyScope needs kind 'antarctic-treaty-area' and a written reason of at least 20 characters")
+    require(not any(key in evidence for key in ('admin0RelationOverride', 'nonBoundaryRelationMembers', 'ways')),
+            'treatyScope evidence cannot also carry relation evidence')
+    return {**ANTARCTIC_TREATY, 'reason': scope['reason'].strip(), 'evidenceSha256': digest(args.absent_evidence)}
+
+
+def fixture_membership(args, geometry, Point):
+    fixture_results = []
+    if args.fixture:
+        fixture = json.loads(Path(args.fixture).read_text())
+        require(fixture.get('schemaVersion') == 1 and fixture.get('countryISO') == args.country,
+                'fixture schema/country mismatch')
+        require(fixture.get('datasetSha256') == args.expected_sha256, 'fixture PBF pin mismatch')
+        require(isinstance(fixture.get('checks'), list) and fixture['checks'], 'fixture checks required')
+        seen = set()
+        for check in fixture['checks']:
+            require(check['ref'] not in seen, 'duplicate fixture reference')
+            seen.add(check['ref'])
+            point = check['point']
+            require(isinstance(point, list) and len(point) == 2 and all(isinstance(v, (int, float)) for v in point),
+                    'invalid fixture point')
+            probe = Point(point)
+            classification = 'inside' if geometry.contains(probe) else 'boundary' if geometry.covers(probe) else 'outside'
+            require(check['expected'] in {'inside', 'outside'}, 'fixture expected membership unsupported')
+            fixture_results.append({**check, 'actual': classification})
+        require(all(check['actual'] == check['expected'] for check in fixture_results),
+                'real fixture country membership failed: ' + canonical(fixture_results))
+    return fixture_results
+
+
+def treaty_receipt(args, timestamp, scope, Point, shape):
+    """Receipt of the Antarctic Treaty scope: the same schema as an admin-0 receipt, with `treatyScope` instead of a relation."""
+    geometry = shape({'type': 'Polygon', 'coordinates': [TREATY_RING]})
+    require(geometry.is_valid and not geometry.is_empty, 'treaty polygon invalid')
+    args.diagnostic['stage'] = 'fixture-membership'
+    fixture_results = fixture_membership(args, geometry, Point)
+    output_geometry = {'type': 'Polygon', 'coordinates': [TREATY_RING]}
+    geometry_bytes = (canonical(output_geometry) + '\n').encode()
+    edges = len(TREATY_RING) - 1
+    receipt = {'schemaVersion': 1, 'status': 'OSM_COUNTRY_BOUNDARY_CANDIDATE', 'countryISO': args.country,
+               'source': {'url': args.dataset_url, 'date': args.dataset_date, 'headerTimestamp': timestamp,
+                          'bytes': args.expected_bytes, 'sha256': args.expected_sha256, 'license': 'ODbL-1.0',
+                          **({'sourceInputs': args.source_inputs_record} if args.source_inputs_record else {})},
+               'closure': None, 'relation': None, 'treatyScope': scope,
+               'memberRolePolicy': {'sourceUrl': 'https://wiki.openstreetmap.org/wiki/Relation:boundary', 'excludedNonBoundaryMembers': [], 'unsupportedMembers': []},
+               'memberWays': [],
+               'assembly': {'method': 'antarctic-treaty-area', 'completeMemberSegments': edges, 'polygonCount': 1, 'holeCount': 0,
+                            'sourceMemberEdgesSha256': value_hash(TREATY_RING)},
+               'geometry': {'path': 'boundary.geojson', 'bytes': len(geometry_bytes), 'sha256': hashlib.sha256(geometry_bytes).hexdigest()},
+               'absentMemberPolicy': None, 'scriptSha256': digest(__file__), 'fixtureSha256': digest(args.fixture) if args.fixture else None,
+               'fixtureResults': fixture_results,
+               'limitations': ['the Antarctic Treaty area (south of 60 degrees South), not a national boundary and no sovereignty claim',
+                               'the PBF is pinned and dated, but no OSM relation defines this scope',
+                               'fixture points are caller-supplied pinned source samples; their origin remains in fixture receipts',
+                               'no city limits, selection/scaffold integration, or browser acceptance proved']}
+    return geometry_bytes, receipt
+
+
 def load_relation_override(args):
     """Reviewed per-table admin-0 relation override (owner decision 2026-10-13, Palestine).
 
@@ -210,20 +303,28 @@ def load_relation_override(args):
     # The table's country code is then a user-assigned ISO 3166-1 code (X?), the relation must carry none of the ISO3166-1 keys, and the relation is
     # pinned by id, by a wikidata tag and by the other expected tags instead.
     user_assigned = isinstance(override, dict) and override.get('userAssignedCode') is True
-    require(isinstance(override, dict) and set(override) in ({'relationId', 'expectedTags', 'reason'}, {'relationId', 'expectedTags', 'reason', 'userAssignedCode'})
+    # disputed (Siachen Glacier XG, OUTPOST-PLAN 13 Oct 2026): a boundary=disputed relation (13790690 carries admin_level=2 and no ISO code) under a
+    # user-assigned X? code. Only together with userAssignedCode; pinned by id, by its name and the other expected tags; admin_level 2 is allowed
+    # only here, because a disputed area is not an administrative country and is selected by this one reviewed relation id only.
+    disputed = isinstance(override, dict) and override.get('disputed') is True
+    keys = {'relationId', 'expectedTags', 'reason'} | ({'userAssignedCode'} if 'userAssignedCode' in (override or {}) else set()) | ({'disputed'} if 'disputed' in (override or {}) else set())
+    require(isinstance(override, dict) and set(override) == keys
             and ('userAssignedCode' not in override or user_assigned)
+            and ('disputed' not in override or (disputed and user_assigned))
             and isinstance(override['relationId'], int) and override['relationId'] > 0
             and isinstance(override['expectedTags'], dict) and override['expectedTags']
             and all(isinstance(k, str) and isinstance(v, str) for k, v in override['expectedTags'].items())
-            and override['expectedTags'].get('admin_level', '0') != '2'
+            and (disputed or override['expectedTags'].get('admin_level', '0') != '2')
             and (args.country in (override['expectedTags'].get('ISO3166-1:alpha2'), override['expectedTags'].get('ISO3166-1')) if not user_assigned
                  else re.fullmatch(r'X[A-Z]', args.country) is not None and not any(key.startswith('ISO3166-1') for key in override['expectedTags'])
-                 and override['expectedTags'].get('boundary') == 'administrative' and re.fullmatch(r'Q[1-9][0-9]*', override['expectedTags'].get('wikidata', '')) is not None)
+                 and (override['expectedTags'].get('boundary') == 'disputed' and bool(override['expectedTags'].get('name')) if disputed
+                      else override['expectedTags'].get('boundary') == 'administrative' and re.fullmatch(r'Q[1-9][0-9]*', override['expectedTags'].get('wikidata', '')) is not None))
             and isinstance(override['reason'], str) and len(override['reason'].strip()) >= 20,
             'admin0RelationOverride needs relationId, expectedTags (with the country ISO code, admin_level absent or not 2) and a written reason of at least 20 characters; '
-            'a userAssignedCode override needs an X? country code and expectedTags without any ISO3166-1 key but with boundary=administrative and a wikidata id')
+            'a userAssignedCode override needs an X? country code and expectedTags without any ISO3166-1 key but with boundary=administrative and a wikidata id; '
+            'a disputed override (with userAssignedCode) needs boundary=disputed and a name instead')
     return {'relationId': override['relationId'], 'expectedTags': override['expectedTags'], 'reason': override['reason'].strip(),
-            **({'userAssignedCode': True} if user_assigned else {}), 'evidenceSha256': digest(path)}
+            **({'userAssignedCode': True} if user_assigned else {}), **({'disputed': True} if disputed else {}), 'evidenceSha256': digest(path)}
 
 
 def load_reviewed_relation_members(args, timestamp):
@@ -403,6 +504,9 @@ def extract(args):
         with osmium.io.Reader(str(path), osmium.osm.NOTHING) as reader:
             require(reader.header().get('osmosis_replication_timestamp') == timestamp,
                     f'neighbour {pin["url"]} has another replication timestamp than the primary; mixed snapshots are refused')
+    treaty = load_treaty_scope(args)
+    if treaty is not None:
+        return treaty_receipt(args, timestamp, treaty, Point, shape)
     workdir = Path(tempfile.mkdtemp(prefix='country-boundary-'))
     args.cleanup.append(workdir)
     override = load_relation_override(args)
@@ -504,7 +608,8 @@ def extract(args):
     args.diagnostic['stage'] = 'area-assembly'
     factory = osmium.geom.GeoJSONFactory()
     geometries = []
-    country_tags = (osmium.filter.TagFilter(('wikidata', override['expectedTags']['wikidata'])) if override is not None and override.get('userAssignedCode')
+    country_tags = (osmium.filter.TagFilter(('boundary', 'disputed')) if override is not None and override.get('disputed')
+                    else osmium.filter.TagFilter(('wikidata', override['expectedTags']['wikidata'])) if override is not None and override.get('userAssignedCode')
                     else osmium.filter.TagFilter(('ISO3166-1:alpha2', args.country), ('ISO3166-1', args.country)))
     processor = osmium.FileProcessor(str(area_source)).with_areas(country_tags).with_filter(osmium.filter.EntityFilter(osmium.osm.AREA))
     for area in processor:
@@ -530,26 +635,7 @@ def extract(args):
     args.diagnostic['stage'] = 'complete-segment-proof'
     require(actual_edges == expected_edges, 'assembled rings did not preserve every source member segment exactly; HOLD')
     args.diagnostic['stage'] = 'fixture-membership'
-    fixture_results = []
-    if args.fixture:
-        fixture = json.loads(Path(args.fixture).read_text())
-        require(fixture.get('schemaVersion') == 1 and fixture.get('countryISO') == args.country,
-                'fixture schema/country mismatch')
-        require(fixture.get('datasetSha256') == args.expected_sha256, 'fixture PBF pin mismatch')
-        require(isinstance(fixture.get('checks'), list) and fixture['checks'], 'fixture checks required')
-        seen = set()
-        for check in fixture['checks']:
-            require(check['ref'] not in seen, 'duplicate fixture reference')
-            seen.add(check['ref'])
-            point = check['point']
-            require(isinstance(point, list) and len(point) == 2 and all(isinstance(v, (int, float)) for v in point),
-                    'invalid fixture point')
-            probe = Point(point)
-            classification = 'inside' if geometry.contains(probe) else 'boundary' if geometry.covers(probe) else 'outside'
-            require(check['expected'] in {'inside', 'outside'}, 'fixture expected membership unsupported')
-            fixture_results.append({**check, 'actual': classification})
-        require(all(check['actual'] == check['expected'] for check in fixture_results),
-                'real fixture country membership failed: ' + canonical(fixture_results))
+    fixture_results = fixture_membership(args, geometry, Point)
     output_geometry = mapping(geometry)
     geometry_bytes = (canonical(output_geometry) + '\n').encode()
     receipt = {'schemaVersion': 1, 'status': 'OSM_COUNTRY_BOUNDARY_CANDIDATE', 'countryISO': args.country,

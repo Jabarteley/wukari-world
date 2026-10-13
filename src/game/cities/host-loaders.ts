@@ -35,4 +35,6 @@ export async function loadHostCityModule(id: string, reader: CityContentAssetRea
 export const GENERATED_CITY_INDEX: readonly CityIndexRow[] = Object.freeze(GENERATED_CITY_CATALOGUE_ROWS.map(([id, name]): CityIndexRow => [id, name]))
 export const GENERATED_CITY_FIGURES = Object.freeze({ cities: GENERATED_CITY_CATALOGUE_ROWS.length, countries: new Set(GENERATED_CITY_CATALOGUE_ROWS.map((row) => row[7] ?? 'NG')).size })
 export const GENERATED_CITY_LOADERS = Object.freeze(GENERATED_CITY_CATALOGUE_ROWS.map(([id]) => () => loadHostCityModule(id)))
+
+// The server keeps the whole index in the Worker bundle, so there is no separate world-index chunk to load.
 export const GENERATED_CITY_WORLD_INDEX: CityWorldIndexLoader | null = null

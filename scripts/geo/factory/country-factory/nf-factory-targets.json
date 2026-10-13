@@ -1,0 +1,354 @@
+{
+  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "NF",
+    "datasetSha256": "78a298bd22823a7fe502665dfc156c78c0f59a3b541440c206e106aeec3083f0",
+    "receiptSha256": "dd26b07d98ce27bef749a81b26d3a480d06216fd549565f4d653c538607b9078",
+    "receiptBytes": 10492,
+    "geometrySha256": "857ff54cf73e74e9af6d4259bafc5bcdf28bfbc1b329afcdad946c7c78104db9",
+    "geometryBytes": 5024,
+    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "relationId": 2574988,
+    "boundaryKey": "nf",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38431865880,
+      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+      "sourceArtifact": "city-bootstrap-nf-76625e88577c373598b4141ef4285f6af082419c",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "kingston",
+      "name": "Kingston",
+      "country": "nf",
+      "facts": {
+        "id": "kingston",
+        "name": "Kingston",
+        "country": {
+          "idISOlower": "nf",
+          "name": "Norfolk Island"
+        },
+        "state": {
+          "idunique": "nf-kingston",
+          "name": "Kingston"
+        },
+        "timezone": "Pacific/Norfolk",
+        "centre": {
+          "lon": 167.9595733,
+          "lat": -29.0563564
+        },
+        "airport": {
+          "id": "kingston-airport",
+          "name": "Norfolk Island International Airport",
+          "lon": 167.939474,
+          "lat": -29.041759,
+          "sourceUrl": "https://ourairports.com/airports/YSNF/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/2470797094",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          167.75368143514592,
+          -29.237237289933976,
+          168.16546516485406,
+          -28.87547551006602
+        ]
+      },
+      "profile": "microstate",
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/2470797094",
+          "sourceUrl": "https://www.openstreetmap.org/node/2470797094",
+          "sourceRecord": {
+            "ref": "node/2470797094",
+            "tags": {
+              "capital": "4",
+              "description": "2nd oldest town in Australia",
+              "name": "Kingston",
+              "name:af": "Kingston, Norfolk",
+              "name:ar": "كينغستون",
+              "name:az": "Kinqston",
+              "name:be": "Кінгстан",
+              "name:be-tarask": "Кінгстан",
+              "name:bg": "Кингстън",
+              "name:bn": "কিংসটন",
+              "name:bs": "Kingston",
+              "name:ceb": "Kingston",
+              "name:cs": "Kingston",
+              "name:de": "Kingston",
+              "name:el": "Κίνγκστον",
+              "name:en": "Kingston",
+              "name:eo": "Kingstono",
+              "name:es": "Kingston",
+              "name:fa": "کینگستون",
+              "name:fi": "Kingston",
+              "name:fr": "Kingston",
+              "name:fy": "Kingston",
+              "name:gl": "Kingston",
+              "name:he": "קינגסטון",
+              "name:hi": "किंग्स्टन",
+              "name:hr": "Kingston",
+              "name:hu": "Kingston",
+              "name:hy": "Քինգսթոն",
+              "name:id": "Kingston",
+              "name:is": "Kingston",
+              "name:it": "Kingston",
+              "name:ja": "キングストン",
+              "name:ka": "კინგსტონი",
+              "name:ko": "킹스턴",
+              "name:ky": "Кингстон",
+              "name:lb": "Kingston",
+              "name:lt": "Kingstonas",
+              "name:lv": "Kingstona",
+              "name:mk": "Кингстон",
+              "name:nl": "Kingston",
+              "name:nn": "Kingston",
+              "name:no": "Kingston",
+              "name:pih": "Kingston",
+              "name:pl": "Kingston",
+              "name:pt": "Kingston",
+              "name:ro": "Kingston",
+              "name:ru": "Кингстон",
+              "name:sco": "Kingston",
+              "name:sh": "Kingston",
+              "name:simple": "Kingston",
+              "name:sk": "Kingston",
+              "name:sr": "Кингстон",
+              "name:ta": "கிங்சுடன்",
+              "name:tg": "Кингстон",
+              "name:th": "คิงส์ตัน",
+              "name:tr": "Kingston",
+              "name:uk": "Кінгстон",
+              "name:ur": "کنگسٹن",
+              "name:vi": "Kingston",
+              "name:war": "Kingston",
+              "name:wuu": "金斯敦",
+              "name:xmf": "კინგსტონი",
+              "name:yue": "京士頓",
+              "name:zh": "金斯敦",
+              "place": "hamlet",
+              "start_date": "1788-03-06",
+              "wikidata": "Q30963",
+              "wikipedia": "en:Kingston, Norfolk Island"
+            },
+            "lon": 167.9595733,
+            "lat": -29.0563564
+          },
+          "pbfSha256": "78a298bd22823a7fe502665dfc156c78c0f59a3b541440c206e106aeec3083f0"
+        },
+        "airport": {
+          "rowNumber": 84922,
+          "row": {
+            "id": "27141",
+            "ident": "YSNF",
+            "type": "medium_airport",
+            "name": "Norfolk Island International Airport",
+            "latitude_deg": "-29.041759",
+            "longitude_deg": "167.939474",
+            "elevation_ft": "371",
+            "continent": "OC",
+            "iso_country": "NF",
+            "iso_region": "NF-U-A",
+            "municipality": "Burnt Pine",
+            "scheduled_service": "yes",
+            "icao_code": "YSNF",
+            "iata_code": "NLK",
+            "gps_code": "YSNF",
+            "local_code": "",
+            "home_link": "http://www.airport.gov.nf/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Norfolk_Island_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "f8d82bdb27dca4cec222daa74ccc3daa7cf8f978f1b5f173e0205be9af4f5d09",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "YSNF",
+            "sourceUrl": "https://ourairports.com/airports/YSNF/",
+            "matchedIdent": "YSNF",
+            "municipalityMatchesCity": false,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/YSNF/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "NF",
+              "-2903+16758",
+              "Pacific/Norfolk"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Pacific/Norfolk",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "NF",
+              "-2903+16758",
+              "Pacific/Norfolk"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/australia-oceania/australia/norfolk-island-261011.osm.pbf",
+          "bytes": 336263,
+          "sha256": "78a298bd22823a7fe502665dfc156c78c0f59a3b541440c206e106aeec3083f0",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/18584551",
+          "way/18584562",
+          "way/18584576",
+          "way/18584577",
+          "way/18584588",
+          "way/18584592",
+          "way/334831844",
+          "way/334831894",
+          "way/334831913",
+          "way/334831914",
+          "way/334831921",
+          "way/334831923",
+          "way/334831932",
+          "way/334831933",
+          "way/334831950",
+          "way/334831980",
+          "way/334831986",
+          "way/334831996",
+          "way/334831999",
+          "way/334832019",
+          "way/334832026",
+          "way/334832028",
+          "way/334832029",
+          "way/334832037",
+          "way/334832057",
+          "way/334832061",
+          "way/334832076",
+          "way/334832087",
+          "way/334833645",
+          "way/334833712",
+          "way/334837935",
+          "way/334837945",
+          "way/334837983",
+          "way/334837990",
+          "way/334838008",
+          "way/334843555",
+          "way/395683834",
+          "way/395683835",
+          "way/395683836",
+          "way/395683837",
+          "way/478217992",
+          "way/592352427",
+          "way/592352428",
+          "way/592352429",
+          "way/592352431",
+          "way/592352435",
+          "way/592352436",
+          "way/620248895",
+          "way/673599798",
+          "way/732217294",
+          "way/732217295",
+          "way/732217296",
+          "way/1457654756",
+          "way/1457654757"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -29.237237289933976,
+              167.75368143514592,
+              -28.87547551006602,
+              168.16546516485406
+            ],
+            "core": [
+              -29.101576622483492,
+              167.9081683165095,
+              -29.011136177516505,
+              168.0109782834905
+            ],
+            "outline": [
+              -29.287237289933977,
+              167.7036814351459,
+              -28.82547551006602,
+              168.21546516485407
+            ],
+            "wide": [
+              -29.837237289933977,
+              167.15368143514593,
+              -28.27547551006602,
+              168.76546516485405
+            ]
+          },
+          "airportMarginMetres": 18081.946567753723,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtSquarePlaces": [
+              "square"
+            ]
+          },
+          "cityPlaceTag": "hamlet"
+        }
+      },
+      "extractKey": "kingston",
+      "extractSha256": {
+        "places": "a19b559c160061d09c30043fb76db53446e15ac643c4bf2262b4a1efec7aacb2",
+        "extras": "9d407dfd9f038634e16f2ada0add83477b65d5114fe81615aca3215b5bc8d638",
+        "water": "3af6b169c3d776443c35cc1313b12c912373bc9f9e3a7b80733915100fba68b0",
+        "landuse": "ce970493cc68f10548a8fb0b0945523960f14a12f5af81337f64bb61cb8e24e2",
+        "roads": "65fe4ba733d50b733a20ef04b39d00adf3dbdc31fdc14d1c7f8be64f1a94e67a"
+      },
+      "sourceJob": {
+        "city": "kingston",
+        "sourceRunId": 38431865880,
+        "sourceArtifact": "city-bootstrap-nf-76625e88577c373598b4141ef4285f6af082419c",
+        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "datasetSha256": "78a298bd22823a7fe502665dfc156c78c0f59a3b541440c206e106aeec3083f0",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "a19b559c160061d09c30043fb76db53446e15ac643c4bf2262b4a1efec7aacb2",
+          "extras": "9d407dfd9f038634e16f2ada0add83477b65d5114fe81615aca3215b5bc8d638",
+          "water": "3af6b169c3d776443c35cc1313b12c912373bc9f9e3a7b80733915100fba68b0",
+          "landuse": "ce970493cc68f10548a8fb0b0945523960f14a12f5af81337f64bb61cb8e24e2",
+          "roads": "65fe4ba733d50b733a20ef04b39d00adf3dbdc31fdc14d1c7f8be64f1a94e67a"
+        }
+      }
+    }
+  ]
+}

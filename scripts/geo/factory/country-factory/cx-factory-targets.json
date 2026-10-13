@@ -1,0 +1,330 @@
+{
+  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "CX",
+    "datasetSha256": "89c297fcde59dfaa96d8a764ca24ebfc5edacad0db3eabd015cb6c7730c5578a",
+    "receiptSha256": "d19b5d57efd6274040a4764353008ea0226d6f2cba64444a5e1b9168f56d3b02",
+    "receiptBytes": 11874,
+    "geometrySha256": "d9e7d6affbf67833e4c324753e4b7335a2eaff066157d6037916aa2ba1b45302",
+    "geometryBytes": 5463,
+    "scriptSha256": "5ff4dfbbd3956af4e7502b3ff27111da8362a4ce4101a0327d3aba52b26c54cc",
+    "relationId": 2177207,
+    "boundaryKey": "cx",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38437674805,
+      "sourceSha": "ac5517527068042341162b637bfbabf0d8133ad6",
+      "sourceArtifact": "city-bootstrap-cx-ac5517527068042341162b637bfbabf0d8133ad6",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "flying-fish-cove",
+      "name": "Flying Fish Cove",
+      "country": "cx",
+      "facts": {
+        "id": "flying-fish-cove",
+        "name": "Flying Fish Cove",
+        "country": {
+          "idISOlower": "cx",
+          "name": "Christmas Island"
+        },
+        "state": {
+          "idunique": "cx-flying-fish-cove",
+          "name": "Flying Fish Cove"
+        },
+        "timezone": "Asia/Bangkok",
+        "centre": {
+          "lon": 105.674413,
+          "lat": -10.4213344
+        },
+        "airport": {
+          "id": "flying-fish-cove-airport",
+          "name": "Christmas Island International Airport",
+          "lon": 105.6911,
+          "lat": -10.450387,
+          "sourceUrl": "https://ourairports.com/airports/YPXM/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/2120280212",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          105.49163034263032,
+          -10.602215289933978,
+          105.85719565736969,
+          -10.24045351006602
+        ]
+      },
+      "profile": "microstate",
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/2120280212",
+          "sourceUrl": "https://www.openstreetmap.org/node/2120280212",
+          "sourceRecord": {
+            "ref": "node/2120280212",
+            "tags": {
+              "alt_name": "The Settlement",
+              "capital": "4",
+              "name": "Flying Fish Cove",
+              "name:af": "Flying Fish Cove",
+              "name:ar": "فلاينغ فيش كوف",
+              "name:arz": "فلاينج فيش كوف",
+              "name:ast": "Flying Fish Cove",
+              "name:az": "Flayinq Fiş Kouv",
+              "name:be": "Флаін-Фіш-Коўв",
+              "name:bg": "Флаинг Фиш Коув",
+              "name:bn": "ফ্লাইং ফিশ কোভ",
+              "name:bs": "Flying Fish Cove",
+              "name:ca": "Flying Fish Cove",
+              "name:ceb": "Flying Fish Cove",
+              "name:cs": "Flying Fish Cove",
+              "name:cy": "Flying Fish Cove",
+              "name:de": "Flying Fish Cove",
+              "name:el": "Φλάινγκ Φις Κόουβ",
+              "name:en": "Flying Fish Cove",
+              "name:eo": "Flying Fish Cove",
+              "name:es": "Flying Fish Cove",
+              "name:fa": "فلاینگ فیش کاو",
+              "name:fi": "Flying Fish Cove",
+              "name:fr": "Flying Fish Cove",
+              "name:gl": "Flying Fish Cove",
+              "name:he": "פלאיינג פיש קואוב",
+              "name:hi": "फ्लाइंग फिश कोव",
+              "name:hr": "Flying Fish Cove",
+              "name:hy": "Ֆլային Ֆիշ Քոուվ",
+              "name:id": "Flying Fish Cove",
+              "name:is": "Flying Fish Cove",
+              "name:it": "Flying Fish Cove",
+              "name:ja": "フライング・フィッシュ・コーブ",
+              "name:ka": "ფლაინგ-ფიში",
+              "name:ko": "플라잉피시코브",
+              "name:kw": "Flying Fish Cove",
+              "name:lij": "The Settlement",
+              "name:lt": "Flajing Fiš Kovas",
+              "name:lv": "Flaiingfiškova",
+              "name:mk": "Флаинг Фиш Коув",
+              "name:nan": "Pe-hû-oan",
+              "name:nan-Hant": "飛魚灣",
+              "name:nan-Latn-pehoeji": "Pe-hû-oan",
+              "name:nan-Latn-tailo": "Pe-hû-uân",
+              "name:nl": "Flying Fish Cove",
+              "name:nn": "Flying Fish Cove",
+              "name:no": "Flying Fish Cove",
+              "name:pa": "ਫ਼ਲਾਇੰਗ ਫ਼ਿਸ਼ ਕੋਵ",
+              "name:pl": "Flying Fish Cove",
+              "name:pt": "Flying Fish Cove",
+              "name:ro": "Flying Fish Cove",
+              "name:ru": "Флайинг-Фиш-Ков",
+              "name:sco": "Flying Fish Cove",
+              "name:sh": "Flying Fish Cove",
+              "name:sr": "Флајинг Фиш Коув",
+              "name:sv": "Flying Fish Cove",
+              "name:ta": "பிளையிங் பிஷ் கோவ்",
+              "name:th": "ฟลายอิงฟิชโคฟ",
+              "name:tr": "Flying Fish Cove",
+              "name:uk": "Флаїнг-Фіш-Коув",
+              "name:ur": "فلائینگ فش کوو",
+              "name:vi": "Flying Fish Cove",
+              "name:war": "Flying Fish Cove",
+              "name:wuu": "飞鱼湾",
+              "name:xmf": "ფლაინგ-ფიშ-კოვი",
+              "name:yue": "飛魚灣",
+              "name:zh": "飞鱼湾 / 飛魚灣",
+              "name:zh-Hans": "飞鱼湾",
+              "name:zh-Hant": "飛魚灣",
+              "place": "village",
+              "population": "1355",
+              "population:date": "2021",
+              "source:population": "ABS Urban Centres and Localities",
+              "wikidata": "Q30980",
+              "wikipedia": "en:Flying Fish Cove"
+            },
+            "lon": 105.674413,
+            "lat": -10.4213344
+          },
+          "pbfSha256": "89c297fcde59dfaa96d8a764ca24ebfc5edacad0db3eabd015cb6c7730c5578a",
+          "selection": {
+            "cityOsmRef": "node/2120280212",
+            "matchedOsmRef": "node/2120280212"
+          }
+        },
+        "airport": {
+          "rowNumber": 84790,
+          "row": {
+            "id": "27122",
+            "ident": "YPXM",
+            "type": "medium_airport",
+            "name": "Christmas Island International Airport",
+            "latitude_deg": "-10.450387",
+            "longitude_deg": "105.6911",
+            "elevation_ft": "916",
+            "continent": "AS",
+            "iso_country": "CX",
+            "iso_region": "CX-U-A",
+            "municipality": "Flying Fish Cove",
+            "scheduled_service": "yes",
+            "icao_code": "YPXM",
+            "iata_code": "XCH",
+            "gps_code": "YPXM",
+            "local_code": "",
+            "home_link": "http://www.christmasislandairport.com/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Christmas_Island_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "4defbff1f0e87de9ccd88a8cc46e07868f472d970d6646608764e70edd8e99c1",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "YPXM",
+            "sourceUrl": "https://ourairports.com/airports/YPXM/",
+            "matchedIdent": "YPXM",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/YPXM/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "TH,CX,KH,LA,VN",
+              "+1345+10031",
+              "Asia/Bangkok",
+              "north Vietnam"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Bangkok",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "TH,CX,KH,LA,VN",
+              "+1345+10031",
+              "Asia/Bangkok",
+              "north Vietnam"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/australia-oceania/australia/christmas-island-261011.osm.pbf",
+          "bytes": 222588,
+          "sha256": "89c297fcde59dfaa96d8a764ca24ebfc5edacad0db3eabd015cb6c7730c5578a",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/160686218",
+          "way/377476292",
+          "way/377476296",
+          "way/377476297",
+          "way/409573173",
+          "way/409573174",
+          "way/409573175",
+          "way/971569931",
+          "way/971569933",
+          "way/971569934",
+          "way/971569936",
+          "way/971569937",
+          "way/971569939",
+          "way/971569941",
+          "way/971569942",
+          "way/971569952",
+          "way/1475155288"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -10.602215289933978,
+              105.49163034263032,
+              -10.24045351006602,
+              105.85719565736969
+            ],
+            "core": [
+              -10.466554622483494,
+              105.62873745112485,
+              -10.376114177516504,
+              105.72008854887515
+            ],
+            "outline": [
+              -10.652215289933979,
+              105.44163034263032,
+              -10.19045351006602,
+              105.90719565736968
+            ],
+            "wide": [
+              -11.202215289933978,
+              104.89163034263032,
+              -9.64045351006602,
+              106.45719565736968
+            ]
+          },
+          "airportMarginMetres": 16787.65401800007,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtSquarePlaces": [
+              "square"
+            ]
+          },
+          "cityPlaceTag": "village"
+        }
+      },
+      "extractKey": "flying-fish-cove",
+      "extractSha256": {
+        "places": "6b5d7e38986421a85c26176a3ad40995c05f271d06fb36e2f28d1e5da5d0e28e",
+        "extras": "a08fdcf5abd01efd5055edf320d3b5d30e3c5f57d5f10a8d04eaab228786e5c7",
+        "water": "758eb50442f91492ffb37b514bb885cf47af9fa2b0e2be260dea760f987f79ab",
+        "landuse": "70842348dfa6c87dc040bfe68c25524d7e974bd2ade44ad7a0ca342c38e97f55",
+        "roads": "646883ea68eb9420a25353b577de097ee864b9938ad9b68a82059535e5df1a5a"
+      },
+      "sourceJob": {
+        "city": "flying-fish-cove",
+        "sourceRunId": 38437674805,
+        "sourceArtifact": "city-bootstrap-cx-ac5517527068042341162b637bfbabf0d8133ad6",
+        "sourceSha": "ac5517527068042341162b637bfbabf0d8133ad6",
+        "datasetSha256": "89c297fcde59dfaa96d8a764ca24ebfc5edacad0db3eabd015cb6c7730c5578a",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "6b5d7e38986421a85c26176a3ad40995c05f271d06fb36e2f28d1e5da5d0e28e",
+          "extras": "a08fdcf5abd01efd5055edf320d3b5d30e3c5f57d5f10a8d04eaab228786e5c7",
+          "water": "758eb50442f91492ffb37b514bb885cf47af9fa2b0e2be260dea760f987f79ab",
+          "landuse": "70842348dfa6c87dc040bfe68c25524d7e974bd2ade44ad7a0ca342c38e97f55",
+          "roads": "646883ea68eb9420a25353b577de097ee864b9938ad9b68a82059535e5df1a5a"
+        }
+      }
+    }
+  ]
+}

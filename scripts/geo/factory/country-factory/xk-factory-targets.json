@@ -1,0 +1,324 @@
+{
+  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "XK",
+    "datasetSha256": "6cfbca6ecbf1e3d47d27db2bd7e44e30e7c28d8404c04a2709fa10fb20018a5c",
+    "receiptSha256": "d33e47dd7b6a8c708fe59eb023b937e82b9154cd8e47bad270e44649478031c4",
+    "receiptBytes": 93520,
+    "geometrySha256": "2b7e427b82716e9aeb0db25c0f1640ac520f1bdb23d16960dbe00f9c5873050a",
+    "geometryBytes": 458322,
+    "scriptSha256": "5ff4dfbbd3956af4e7502b3ff27111da8362a4ce4101a0327d3aba52b26c54cc",
+    "relationId": 2088990,
+    "boundaryKey": "xk",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38437674805,
+      "sourceSha": "ac5517527068042341162b637bfbabf0d8133ad6",
+      "sourceArtifact": "city-bootstrap-xk-ac5517527068042341162b637bfbabf0d8133ad6",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "pristina",
+      "name": "Pristina",
+      "country": "xk",
+      "facts": {
+        "id": "pristina",
+        "name": "Pristina",
+        "country": {
+          "idISOlower": "xk",
+          "name": "Kosovo"
+        },
+        "state": {
+          "idunique": "xk-pristina",
+          "name": "Pristina"
+        },
+        "timezone": "Europe/Belgrade",
+        "centre": {
+          "lon": 21.1640849,
+          "lat": 42.6638771
+        },
+        "airport": {
+          "id": "pristina-airport",
+          "name": "Priština Adem Jashari International Airport",
+          "lon": 21.035801,
+          "lat": 42.5728,
+          "sourceUrl": "https://ourairports.com/airports/BKPR/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/2885136501",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          20.919046015952425,
+          42.48299621006602,
+          21.409123784047573,
+          42.84475798993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/2885136501",
+          "sourceUrl": "https://www.openstreetmap.org/node/2885136501",
+          "sourceRecord": {
+            "ref": "node/2885136501",
+            "tags": {
+              "admin_level": "2",
+              "alt_name": "Pristina",
+              "alt_name:sq": "Prishtina",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "ele": "650",
+              "name": "Prishtinë",
+              "name:af": "Pristina",
+              "name:am": "ፕርሽቲና",
+              "name:an": "Pristina",
+              "name:ar": "بريشتينا",
+              "name:az": "Priştina",
+              "name:ba": "Приштина",
+              "name:be": "Прышціна",
+              "name:be-tarask": "Прышціна",
+              "name:bg": "Прищина",
+              "name:bn": "প্রিস্টিনা",
+              "name:bo": "པི་རི་སི་ཊི་ན།",
+              "name:br": "Prishtina",
+              "name:bs": "Priština",
+              "name:ca": "Pristina",
+              "name:ce": "Приштина",
+              "name:cnr": "Priština",
+              "name:cnr-Cyrl": "Приштина",
+              "name:cs": "Priština",
+              "name:cy": "Prishtina",
+              "name:da": "Pristina",
+              "name:de": "Pristina",
+              "name:el": "Πρίστινα",
+              "name:en": "Pristina",
+              "name:eo": "Priŝtino",
+              "name:es": "Pristina",
+              "name:et": "Prishtina",
+              "name:eu": "Pristina",
+              "name:fa": "پریشتینا",
+              "name:fi": "Pristina",
+              "name:fr": "Pristina",
+              "name:fy": "Pristina",
+              "name:ga": "Pristine",
+              "name:gd": "Prishtina",
+              "name:gl": "Pristina",
+              "name:gv": "Prishtina",
+              "name:he": "פרישטינה",
+              "name:hr": "Priština",
+              "name:hu": "Pristina",
+              "name:hy": "Պրիշտինա",
+              "name:ia": "Pristina",
+              "name:id": "Pristina",
+              "name:ie": "Priština",
+              "name:io": "Prishtina",
+              "name:is": "Pristína",
+              "name:it": "Pristina",
+              "name:ja": "プリシュティナ",
+              "name:jv": "Priština",
+              "name:ka": "პრიშტინა",
+              "name:kab": "Pristina",
+              "name:kk": "Приштина",
+              "name:kn": "ಪ್ರಿಸ್ಟೀನೆ",
+              "name:ko": "프리슈티나",
+              "name:ku": "Priştîna",
+              "name:kw": "Prishtina",
+              "name:la": "Pristina",
+              "name:lb": "Pristina",
+              "name:li": "Pristina",
+              "name:lt": "Priština",
+              "name:lv": "Priština",
+              "name:mg": "Pristina",
+              "name:mk": "Приштина",
+              "name:ml": "പ്രിസ്റ്റീന",
+              "name:mn": "Приштина",
+              "name:mr": "प्रिस्टिना",
+              "name:ms": "Priština",
+              "name:mt": "Prixtina",
+              "name:nb": "Priština",
+              "name:nl": "Pristina",
+              "name:nn": "Prishtina",
+              "name:oc": "Prishtina",
+              "name:os": "Приштинæ",
+              "name:pa": "ਪ੍ਰਿਸ਼ਤੀਨਾ",
+              "name:pl": "Prisztina",
+              "name:ps": "پریشتینا",
+              "name:pt": "Pristina",
+              "name:ro": "Priștina",
+              "name:ru": "Приштина",
+              "name:sc": "Pristina",
+              "name:sk": "Priština",
+              "name:sl": "Priština",
+              "name:sm": "Pristina",
+              "name:sn": "Pristina",
+              "name:sq": "Prishtinë",
+              "name:sr": "Приштина",
+              "name:sr-Latn": "Priština",
+              "name:sv": "Pristina",
+              "name:sw": "Prishtina",
+              "name:ta": "பிரிஸ்டினா",
+              "name:th": "พริสตีนา",
+              "name:tr": "Priştine",
+              "name:tt": "Приштина",
+              "name:uk": "Приштина",
+              "name:ur": "پرسٹینا",
+              "name:uz": "Prishtina",
+              "name:vi": "Priština",
+              "name:vo": "Prijtina",
+              "name:yo": "Pristina",
+              "name:zh": "普里什蒂纳 / 普里斯提納",
+              "name:zh-Hans": "普里什蒂纳",
+              "name:zh-Hant": "普里斯提納",
+              "place": "city",
+              "population": "161751",
+              "postal_code": "10000",
+              "website": "https://kk.rks-gov.net/prishtina/",
+              "wikidata": "Q25270",
+              "wikimedia_commons": "Category:Pristina",
+              "wikipedia": "en:Pristina"
+            },
+            "lon": 21.1640849,
+            "lat": 42.6638771
+          },
+          "pbfSha256": "6cfbca6ecbf1e3d47d27db2bd7e44e30e7c28d8404c04a2709fa10fb20018a5c",
+          "selection": {
+            "cityOsmRef": "node/2885136501",
+            "matchedOsmRef": "node/2885136501"
+          }
+        },
+        "airport": {
+          "rowNumber": 13145,
+          "row": {
+            "id": "4614",
+            "ident": "BKPR",
+            "type": "large_airport",
+            "name": "Priština Adem Jashari International Airport",
+            "latitude_deg": "42.5728",
+            "longitude_deg": "21.035801",
+            "elevation_ft": "1789",
+            "continent": "EU",
+            "iso_country": "XK",
+            "iso_region": "XK-01",
+            "municipality": "Prishtina",
+            "scheduled_service": "yes",
+            "icao_code": "BKPR",
+            "iata_code": "PRN",
+            "gps_code": "BKPR",
+            "local_code": "",
+            "home_link": "http://www.airportpristina.com/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Pristina_International_Airport",
+            "keywords": "LYPR, Pristina, Slatina Air Base"
+          },
+          "rowSha256": "d2e9a045061c6ff4837206c12b6b63708d673c053c816741c64c63ce299e1eb7",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "BKPR",
+            "sourceUrl": "https://ourairports.com/airports/BKPR/",
+            "matchedIdent": "BKPR",
+            "municipalityMatchesCity": false,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/BKPR/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "XK",
+              "+4450+02030",
+              "Europe/Belgrade",
+              "user-assigned code XK (not in ISO 3166-1 or the pinned tzdb 2026e tables), game map only"
+            ]
+          ],
+          "zoneTabSha256": "7918745cf50d6ece1633d10e80829660528845cbc889d3a3cc11db62b553f5a0",
+          "countryTableSha256": "959ad9a34a32da6db8bcac2f502797e3991f97b126b60d5e6beb6c7cfab9876c",
+          "selection": {
+            "id": "Europe/Belgrade",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "XK",
+              "+4450+02030",
+              "Europe/Belgrade",
+              "user-assigned code XK (not in ISO 3166-1 or the pinned tzdb 2026e tables), game map only"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/europe/kosovo-261011.osm.pbf",
+          "bytes": 30792416,
+          "sha256": "6cfbca6ecbf1e3d47d27db2bd7e44e30e7c28d8404c04a2709fa10fb20018a5c",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              42.48299621006602,
+              20.919046015952425,
+              42.84475798993398,
+              21.409123784047573
+            ],
+            "core": [
+              42.61865687751651,
+              21.102959237998345,
+              42.709097322483494,
+              21.225210562001653
+            ],
+            "outline": [
+              42.43299621006602,
+              20.869046015952424,
+              42.89475798993398,
+              21.459123784047573
+            ],
+            "wide": [
+              41.88299621006602,
+              20.319046015952424,
+              43.44475798993398,
+              22.009123784047574
+            ]
+          },
+          "airportMarginMetres": 9571.350508006213,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "pristina",
+      "extractSha256": {
+        "places": "bf9589de9e8c74849f0db9cd9da615ce0035e5a4035d681e5e9c46aa62e57fce",
+        "extras": "d5d0c9be980955d124e0985348e0127cef34569ab1ada572eaa4a880d96f251d",
+        "water": "b560bb685be4f4cd9be4a148b44dda95d33b0f85a650200f5b3ba3d2a2fd85da",
+        "landuse": "5d3b02a79781ccafff94c47cf246cce412c1ad704fec1f8d2808971f15930674",
+        "roads": "a36acda77f2b6ef711a8e185506fbd46cb1f53ca26695484ea3080c1435c45e6"
+      },
+      "sourceJob": {
+        "city": "pristina",
+        "sourceRunId": 38437674805,
+        "sourceArtifact": "city-bootstrap-xk-ac5517527068042341162b637bfbabf0d8133ad6",
+        "sourceSha": "ac5517527068042341162b637bfbabf0d8133ad6",
+        "datasetSha256": "6cfbca6ecbf1e3d47d27db2bd7e44e30e7c28d8404c04a2709fa10fb20018a5c",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "bf9589de9e8c74849f0db9cd9da615ce0035e5a4035d681e5e9c46aa62e57fce",
+          "extras": "d5d0c9be980955d124e0985348e0127cef34569ab1ada572eaa4a880d96f251d",
+          "water": "b560bb685be4f4cd9be4a148b44dda95d33b0f85a650200f5b3ba3d2a2fd85da",
+          "landuse": "5d3b02a79781ccafff94c47cf246cce412c1ad704fec1f8d2808971f15930674",
+          "roads": "a36acda77f2b6ef711a8e185506fbd46cb1f53ca26695484ea3080c1435c45e6"
+        }
+      }
+    }
+  ]
+}

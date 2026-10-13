@@ -1,0 +1,351 @@
+{
+  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "NU",
+    "datasetSha256": "26be776b74961799ff2efc6eb3e21ff45ffce8d0e0e0501050b70115b69368d8",
+    "receiptSha256": "b64e05f970015d9c49a6b1385773baddb63b347ac43ec2001acb9df1af11c85f",
+    "receiptBytes": 4968,
+    "geometrySha256": "3b49ccd31125ab7fd9f9b23770f03b991bf7c0b1478942617b8e65db743922ce",
+    "geometryBytes": 1913,
+    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "relationId": 1558556,
+    "boundaryKey": "nu",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38431865880,
+      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+      "sourceArtifact": "city-bootstrap-nu-76625e88577c373598b4141ef4285f6af082419c",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "alofi",
+      "name": "Alofi",
+      "country": "nu",
+      "facts": {
+        "id": "alofi",
+        "name": "Alofi",
+        "country": {
+          "idISOlower": "nu",
+          "name": "Niue"
+        },
+        "state": {
+          "idunique": "nu-alofi",
+          "name": "Alofi"
+        },
+        "timezone": "Pacific/Niue",
+        "centre": {
+          "lon": -169.919199,
+          "lat": -19.0534159
+        },
+        "airport": {
+          "id": "alofi-airport",
+          "name": "Niue International Airport",
+          "lon": -169.923493,
+          "lat": -19.080109,
+          "sourceUrl": "https://ourairports.com/airports/NIUE/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/448768937",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -170.10948301342634,
+          -19.23429678993398,
+          -169.72891498657364,
+          -18.872535010066024
+        ]
+      },
+      "profile": "microstate",
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/448768937",
+          "sourceUrl": "https://www.openstreetmap.org/node/448768937",
+          "sourceRecord": {
+            "ref": "node/448768937",
+            "tags": {
+              "admin_level": "2",
+              "alt_name": "Alofi Township",
+              "capital": "yes",
+              "name": "Alofi",
+              "name:ar": "الوفي (نييوي)",
+              "name:arz": "الوفى",
+              "name:ast": "Alofi",
+              "name:az": "Alofi",
+              "name:be": "Алофі",
+              "name:be-tarask": "Алофі",
+              "name:bg": "Алофи",
+              "name:bs": "Alofi",
+              "name:ca": "Alofi",
+              "name:cdo": "Alofi",
+              "name:ceb": "Alofi",
+              "name:ckb": "ئەلۆفی",
+              "name:cs": "Alofi",
+              "name:cv": "Алофи",
+              "name:da": "Alofi",
+              "name:de": "Alofi",
+              "name:el": "Αλόφι",
+              "name:en": "Alofi",
+              "name:eo": "Alofo",
+              "name:es": "Alofi",
+              "name:et": "Alofi",
+              "name:eu": "Alofi",
+              "name:fa": "الوفی",
+              "name:fi": "Alofi",
+              "name:fr": "Alofi",
+              "name:ga": "Alofi",
+              "name:gd": "Alofi",
+              "name:gl": "Alofi",
+              "name:gsw": "Alofi",
+              "name:hak": "Alofi",
+              "name:he": "אלופי",
+              "name:hr": "Alofi",
+              "name:hu": "Alofi",
+              "name:hy": "Ալոֆի",
+              "name:id": "Alofi",
+              "name:io": "Alofi",
+              "name:is": "Alofi",
+              "name:it": "Alofi",
+              "name:ja": "アロフィ",
+              "name:ka": "ალოფი",
+              "name:ko": "알로피",
+              "name:lmo": "Alofi",
+              "name:lt": "Alofis",
+              "name:lv": "Alofi",
+              "name:mk": "Алофи",
+              "name:ml": "അലാഫി",
+              "name:mr": "अलोफी",
+              "name:ms": "Alofi",
+              "name:nan": "Alofi",
+              "name:nl": "Alofi",
+              "name:nn": "Alofi",
+              "name:no": "Alofi",
+              "name:pih": "Alofi",
+              "name:pl": "Alofi",
+              "name:pms": "Alofi",
+              "name:ps": "الوفي",
+              "name:pt": "Alofi",
+              "name:ro": "Alofi",
+              "name:ru": "Алофи",
+              "name:sk": "Alofi",
+              "name:sl": "Alofi",
+              "name:sn": "Alofi",
+              "name:so": "Alofi",
+              "name:sq": "Alofi",
+              "name:sr": "Алофи",
+              "name:sv": "Alofi",
+              "name:sw": "Alofi",
+              "name:szl": "Alofi",
+              "name:ta": "அலோஃபி",
+              "name:tg": "Алофи",
+              "name:th": "อาโลฟี",
+              "name:tr": "Alofi",
+              "name:ty": "Alofi",
+              "name:uk": "Алофі",
+              "name:ur": "الوفی",
+              "name:vi": "Alofi",
+              "name:vro": "Alofi",
+              "name:war": "Alofi",
+              "name:wuu": "阿洛菲",
+              "name:yue": "阿洛菲",
+              "name:zh": "阿洛菲",
+              "place": "town",
+              "ref:linz:topo50_id": "pacific_1svsfhq",
+              "wikidata": "Q30966",
+              "wikipedia": "en:Alofi"
+            },
+            "lon": -169.919199,
+            "lat": -19.0534159
+          },
+          "pbfSha256": "26be776b74961799ff2efc6eb3e21ff45ffce8d0e0e0501050b70115b69368d8"
+        },
+        "airport": {
+          "rowNumber": 50528,
+          "row": {
+            "id": "4974",
+            "ident": "NIUE",
+            "type": "medium_airport",
+            "name": "Niue International Airport",
+            "latitude_deg": "-19.080109",
+            "longitude_deg": "-169.923493",
+            "elevation_ft": "209",
+            "continent": "OC",
+            "iso_country": "NU",
+            "iso_region": "NU-U-A",
+            "municipality": "Alofi",
+            "scheduled_service": "yes",
+            "icao_code": "NIUE",
+            "iata_code": "IUE",
+            "gps_code": "NIUE",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Niue_International_Airport",
+            "keywords": "Hanan International Airport"
+          },
+          "rowSha256": "446c33330020b14e2cde3dd634caedd5edf87877734c09a371723aa49a1047a4",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "NIUE",
+            "sourceUrl": "https://ourairports.com/airports/NIUE/",
+            "matchedIdent": "NIUE",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/NIUE/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "NU",
+              "-1901-16955",
+              "Pacific/Niue"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Pacific/Niue",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "NU",
+              "-1901-16955",
+              "Pacific/Niue"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/australia-oceania/niue-261011.osm.pbf",
+          "bytes": 424756,
+          "sha256": "26be776b74961799ff2efc6eb3e21ff45ffce8d0e0e0501050b70115b69368d8",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/22392241",
+          "way/110287669",
+          "way/110287675",
+          "way/110287680",
+          "way/110287682",
+          "way/110287689",
+          "way/110287692",
+          "way/110287702",
+          "way/110287704",
+          "way/110287708",
+          "way/110287711",
+          "way/110287715",
+          "way/110287722",
+          "way/264104183",
+          "way/264104184",
+          "way/264104185",
+          "way/264106929",
+          "way/264109747",
+          "way/264109748",
+          "way/264113384",
+          "way/264116223",
+          "way/264127194",
+          "way/264127195",
+          "way/264127196",
+          "way/264127200",
+          "way/264129629",
+          "way/264129630",
+          "way/264131155",
+          "way/264131156",
+          "way/264131157"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -19.23429678993398,
+              -170.10948301342634,
+              -18.872535010066024,
+              -169.72891498657364
+            ],
+            "core": [
+              -19.098636122483494,
+              -169.96673086966172,
+              -19.008195677516508,
+              -169.87166713033827
+            ],
+            "outline": [
+              -19.28429678993398,
+              -170.15948301342635,
+              -18.822535010066023,
+              -169.67891498657363
+            ],
+            "wide": [
+              -19.83429678993398,
+              -170.70948301342634,
+              -18.272535010066022,
+              -169.12891498657365
+            ]
+          },
+          "airportMarginMetres": 17048.543932999957,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtSquarePlaces": [
+              "square"
+            ]
+          },
+          "cityPlaceTag": "town"
+        }
+      },
+      "extractKey": "alofi",
+      "extractSha256": {
+        "places": "84727659f1bf05d54e65c02e74c9425b1c9217fce195bc14aecc7f5504f7e249",
+        "extras": "44ef2fbfa74ec4fb7c7320c82aaed0c90463efe9bb7762511bcba6f15b9629fa",
+        "water": "5830d338c62433a6242e2d271c65a7861634d88d6991b5ae46430b1b0356b615",
+        "landuse": "dabdebaacaa773f8c6a6b8c783f2a2c390d0ad1588c5d341b4283ab0f6e17b08",
+        "roads": "ae886fb6f71414a14fb07c85023784bd1d0b7a31595e58fa982948fd3ed0c25d"
+      },
+      "sourceJob": {
+        "city": "alofi",
+        "sourceRunId": 38431865880,
+        "sourceArtifact": "city-bootstrap-nu-76625e88577c373598b4141ef4285f6af082419c",
+        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "datasetSha256": "26be776b74961799ff2efc6eb3e21ff45ffce8d0e0e0501050b70115b69368d8",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "84727659f1bf05d54e65c02e74c9425b1c9217fce195bc14aecc7f5504f7e249",
+          "extras": "44ef2fbfa74ec4fb7c7320c82aaed0c90463efe9bb7762511bcba6f15b9629fa",
+          "water": "5830d338c62433a6242e2d271c65a7861634d88d6991b5ae46430b1b0356b615",
+          "landuse": "dabdebaacaa773f8c6a6b8c783f2a2c390d0ad1588c5d341b4283ab0f6e17b08",
+          "roads": "ae886fb6f71414a14fb07c85023784bd1d0b7a31595e58fa982948fd3ed0c25d"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "WF",
+    "datasetSha256": "4d844c8629202977f062a585c8fa0a09a08d0629454d26e8b2f87a6432dbf47d",
+    "receiptSha256": "2fe5b3585c43eeff0cd5c457e3dcb1d378f896dfaec653497029b995c64f7af5",
+    "receiptBytes": 13406,
+    "geometrySha256": "93e2de4784da52dff341f62e9244a67cc0545f9b0c239c27bcf046d7fa881086",
+    "geometryBytes": 10865,
+    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "relationId": 3412448,
+    "boundaryKey": "wf",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38431865880,
+      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+      "sourceArtifact": "city-bootstrap-wf-76625e88577c373598b4141ef4285f6af082419c",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "mata-utu",
+      "name": "Mata Utu",
+      "country": "wf",
+      "facts": {
+        "id": "mata-utu",
+        "name": "Mata Utu",
+        "country": {
+          "idISOlower": "wf",
+          "name": "Wallis & Futuna"
+        },
+        "state": {
+          "idunique": "wf-mata-utu",
+          "name": "Mata Utu"
+        },
+        "timezone": "Pacific/Tarawa",
+        "centre": {
+          "lon": -176.1740224,
+          "lat": -13.2820419
+        },
+        "airport": {
+          "id": "mata-utu-airport",
+          "name": "Hihifo Airport",
+          "lon": -176.19865,
+          "lat": -13.239445,
+          "sourceUrl": "https://ourairports.com/airports/NLWW/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/678283718",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -176.35876110994698,
+          -13.462922789933979,
+          -175.98928369005304,
+          -13.10116101006602
+        ]
+      },
+      "profile": "microstate",
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/678283718",
+          "sourceUrl": "https://www.openstreetmap.org/node/678283718",
+          "sourceRecord": {
+            "ref": "node/678283718",
+            "tags": {
+              "admin_level": "3",
+              "capital": "3",
+              "int_name": "Mata-Utu",
+              "name": "Matāʻutu",
+              "name:ar": "ماتا-أوتو",
+              "name:be": "Мата-Уту",
+              "name:de": "Mata Utu",
+              "name:el": "Ματά Ουτού",
+              "name:en": "Mata Utu",
+              "name:es": "Mata-Utu",
+              "name:fr": "Mata Utu",
+              "name:gsw": "Mata Ùtù",
+              "name:hr": "Mata Utu",
+              "name:hu": "Mata-Utu",
+              "name:it": "Matāʻutu",
+              "name:ja": "マタウトゥ",
+              "name:ka": "მატა-უტუ",
+              "name:ko": "마타우투",
+              "name:nl": "Matâ'utu",
+              "name:no": "Mata Utu",
+              "name:pl": "Mata Utu",
+              "name:pt": "Mata Utu",
+              "name:ru": "Мата-Уту",
+              "name:sk": "Mata-Utu",
+              "name:sv": "Matāʻutu",
+              "name:th": "มาตา-อูตู",
+              "name:tr": "Mata-Utu",
+              "name:uk": "Мата-Уту",
+              "name:ur": "ماتا-اتو",
+              "name:wls": "Matāʻutu",
+              "name:zh": "马塔乌图",
+              "place": "town",
+              "ref:FR:SIREN": "no",
+              "source": "SERTIT;wikipedia",
+              "wikidata": "Q31002",
+              "wikipedia": "fr:Mata-Utu"
+            },
+            "lon": -176.1740224,
+            "lat": -13.2820419
+          },
+          "pbfSha256": "4d844c8629202977f062a585c8fa0a09a08d0629454d26e8b2f87a6432dbf47d"
+        },
+        "airport": {
+          "rowNumber": 50824,
+          "row": {
+            "id": "4975",
+            "ident": "NLWW",
+            "type": "large_airport",
+            "name": "Hihifo Airport",
+            "latitude_deg": "-13.239445",
+            "longitude_deg": "-176.19865",
+            "elevation_ft": "79",
+            "continent": "OC",
+            "iso_country": "WF",
+            "iso_region": "WF-U-A",
+            "municipality": "Wallis Island",
+            "scheduled_service": "yes",
+            "icao_code": "NLWW",
+            "iata_code": "WLS",
+            "gps_code": "NLWW",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Hihifo_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "529d762655f9b2a9ddcc37a49b3641467c7e510d65fde0827a4dc30433afafb5",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "NLWW",
+            "sourceUrl": "https://ourairports.com/airports/NLWW/",
+            "matchedIdent": "NLWW",
+            "municipalityMatchesCity": false,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/NLWW/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "KI,MH,TV,UM,WF",
+              "+0125+17300",
+              "Pacific/Tarawa",
+              "Gilberts, Marshalls, Wake"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Pacific/Tarawa",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "KI,MH,TV,UM,WF",
+              "+0125+17300",
+              "Pacific/Tarawa",
+              "Gilberts, Marshalls, Wake"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/australia-oceania/wallis-et-futuna-261011.osm.pbf",
+          "bytes": 619579,
+          "sha256": "4d844c8629202977f062a585c8fa0a09a08d0629454d26e8b2f87a6432dbf47d",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/22382439",
+          "way/22382453",
+          "way/22382512",
+          "way/22382597",
+          "way/22382926",
+          "way/22382957",
+          "way/22382983",
+          "way/22383084",
+          "way/22383442",
+          "way/22384394",
+          "way/22384427",
+          "way/22384450",
+          "way/22384471",
+          "way/22384497",
+          "way/22384524",
+          "way/22384550",
+          "way/22384640",
+          "way/22384666",
+          "way/303915745",
+          "way/303915749",
+          "way/303915750",
+          "way/303915751",
+          "way/303915753",
+          "way/303915754",
+          "way/1534611545"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -13.462922789933979,
+              -176.35876110994698,
+              -13.10116101006602,
+              -175.98928369005304
+            ],
+            "core": [
+              -13.327262122483495,
+              -176.22018104324098,
+              -13.236821677516504,
+              -176.12786375675904
+            ],
+            "outline": [
+              -13.51292278993398,
+              -176.408761109947,
+              -13.05116101006602,
+              -175.93928369005303
+            ],
+            "wide": [
+              -14.062922789933978,
+              -176.95876110994698,
+              -12.50116101006602,
+              -175.38928369005305
+            ]
+          },
+          "airportMarginMetres": 15290.060767000126,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtSquarePlaces": [
+              "square"
+            ]
+          },
+          "cityPlaceTag": "town"
+        }
+      },
+      "extractKey": "mata-utu",
+      "extractSha256": {
+        "places": "74c02eb43e40b665b513cff3df539cb87385c8e681c26057b6675568db63914f",
+        "extras": "320c3c65cb2880e52847bcddb9243db97fb0cea6d9a578b963e447c4d0552a6d",
+        "water": "7e394a4540eee4f13915dcca69ba9150b5754d13835a39ff97eab5ad18d954a4",
+        "landuse": "a0a4273ed7b5d7b31b8770e55643e1bc87520f5cfb4912c86b91a89377e5a422",
+        "roads": "24175212e416bb61b5e0c9654c73f29de02fba32236632239098390d3e152e36"
+      },
+      "sourceJob": {
+        "city": "mata-utu",
+        "sourceRunId": 38431865880,
+        "sourceArtifact": "city-bootstrap-wf-76625e88577c373598b4141ef4285f6af082419c",
+        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "datasetSha256": "4d844c8629202977f062a585c8fa0a09a08d0629454d26e8b2f87a6432dbf47d",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "74c02eb43e40b665b513cff3df539cb87385c8e681c26057b6675568db63914f",
+          "extras": "320c3c65cb2880e52847bcddb9243db97fb0cea6d9a578b963e447c4d0552a6d",
+          "water": "7e394a4540eee4f13915dcca69ba9150b5754d13835a39ff97eab5ad18d954a4",
+          "landuse": "a0a4273ed7b5d7b31b8770e55643e1bc87520f5cfb4912c86b91a89377e5a422",
+          "roads": "24175212e416bb61b5e0c9654c73f29de02fba32236632239098390d3e152e36"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,408 @@
+{
+  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "AS",
+    "datasetSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+    "receiptSha256": "433d7a6d3f85e2d08e59845f3e0194cc2fe903eba67b8dc59558c75b0152fc0f",
+    "receiptBytes": 30330,
+    "geometrySha256": "3075cec9dfe8efd7ee4acb266f1600fbed75b7cbf20558ca2e36dcd0c7db1fa6",
+    "geometryBytes": 12261,
+    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "relationId": 2177187,
+    "boundaryKey": "as",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38431865880,
+      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+      "sourceArtifact": "city-bootstrap-as-76625e88577c373598b4141ef4285f6af082419c",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "pago-pago",
+      "name": "Pago Pago",
+      "country": "as",
+      "facts": {
+        "id": "pago-pago",
+        "name": "Pago Pago",
+        "country": {
+          "idISOlower": "as",
+          "name": "Samoa (American)"
+        },
+        "state": {
+          "idunique": "as-pago-pago",
+          "name": "Pago Pago"
+        },
+        "timezone": "Pacific/Pago_Pago",
+        "centre": {
+          "lon": -170.7048298,
+          "lat": -14.2754786
+        },
+        "airport": {
+          "id": "pago-pago-airport",
+          "name": "Pago Pago International Airport",
+          "lon": -170.710007,
+          "lat": -14.331,
+          "sourceUrl": "https://ourairports.com/airports/NSTU/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/1974152079",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -170.89036648516475,
+          -14.456359489933979,
+          -170.51929311483525,
+          -14.09459771006602
+        ]
+      },
+      "profile": "microstate",
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/1974152079",
+          "sourceUrl": "https://www.openstreetmap.org/node/1974152079",
+          "sourceRecord": {
+            "ref": "node/1974152079",
+            "tags": {
+              "capital": "4",
+              "name": "Pago Pago",
+              "name:af": "Pago Pago",
+              "name:ar": "باغو باغو",
+              "name:arz": "باجو باجو",
+              "name:ast": "Pagu Pagu",
+              "name:az": "Paqo Paqo",
+              "name:azb": "پاقو پاقو",
+              "name:be": "Пага-Пага",
+              "name:be-tarask": "Пага-Пага",
+              "name:bg": "Паго Паго",
+              "name:br": "Pago Pago",
+              "name:bs": "Pago Pago",
+              "name:ca": "Pago Pago",
+              "name:ceb": "Pago Pago",
+              "name:ckb": "پاگۆ پاگۆ",
+              "name:cs": "Pago Pago",
+              "name:cy": "Pago Pago",
+              "name:da": "Pago Pago",
+              "name:de": "Pago Pago",
+              "name:el": "Πάγκο Πάγκο",
+              "name:en": "Pago Pago",
+              "name:eo": "Pagopago",
+              "name:es": "Pago Pago",
+              "name:et": "Pago Pago",
+              "name:eu": "Pago Pago",
+              "name:fa": "پاگو پاگو",
+              "name:fi": "Pago Pago",
+              "name:fo": "Pago Pago",
+              "name:fr": "Pago Pago",
+              "name:fy": "Pago Pago",
+              "name:gd": "Pago Pago",
+              "name:gl": "Pago Pago",
+              "name:gsw": "Pago Pago",
+              "name:he": "פאגו פאגו",
+              "name:hr": "Pago Pago",
+              "name:hu": "Pago Pago",
+              "name:hy": "Պագո Պագո",
+              "name:id": "Pago Pago",
+              "name:io": "Pago Pago",
+              "name:is": "Pago Pago",
+              "name:it": "Pago Pago",
+              "name:ja": "パゴパゴ",
+              "name:ka": "პაგო-პაგო",
+              "name:kk": "Паго-Паго",
+              "name:ko": "파고파고",
+              "name:ku": "Pago Pago",
+              "name:la": "Pagopago",
+              "name:lt": "Pago Pago",
+              "name:lv": "Pagopago",
+              "name:mk": "Паго Паго",
+              "name:mr": "पांगो पांगो",
+              "name:ms": "Pago Pago",
+              "name:nan": "Pago Pago",
+              "name:nl": "Pago Pago",
+              "name:nn": "Pago Pago",
+              "name:no": "Pago Pago",
+              "name:os": "Паго-Паго",
+              "name:pl": "Pago Pago",
+              "name:ps": "پاګو پاګو",
+              "name:pt": "Pago Pago",
+              "name:ro": "Pago Pago",
+              "name:ru": "Паго-Паго",
+              "name:sc": "Pago Pago",
+              "name:sh": "Pago Pago",
+              "name:sk": "Pago Pago",
+              "name:sm": "PagoPago",
+              "name:sn": "Pago Pago",
+              "name:sr": "Паго Паго",
+              "name:sv": "Pago Pago",
+              "name:ta": "பாகோ பாகோ",
+              "name:tg": "Паго-Паго",
+              "name:th": "ปาโกปาโก",
+              "name:tl": "Pago Pago",
+              "name:tr": "Pago Pago",
+              "name:uk": "Паґо-Паґо",
+              "name:ur": "پاگو پاگو",
+              "name:uz": "Pago-pago",
+              "name:vi": "Pago Pago",
+              "name:war": "Pago Pago",
+              "name:wuu": "帕果帕果",
+              "name:yue": "帕果帕果",
+              "name:zh": "帕果帕果",
+              "place": "village",
+              "population": "3000",
+              "population:date": "2020",
+              "source:population": "census",
+              "wikidata": "Q51678",
+              "wikipedia": "en:Pago Pago"
+            },
+            "lon": -170.7048298,
+            "lat": -14.2754786
+          },
+          "pbfSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b"
+        },
+        "airport": {
+          "rowNumber": 51089,
+          "row": {
+            "id": "4978",
+            "ident": "NSTU",
+            "type": "large_airport",
+            "name": "Pago Pago International Airport",
+            "latitude_deg": "-14.331",
+            "longitude_deg": "-170.710007",
+            "elevation_ft": "32",
+            "continent": "OC",
+            "iso_country": "AS",
+            "iso_region": "AS-WT",
+            "municipality": "Pago Pago",
+            "scheduled_service": "yes",
+            "icao_code": "NSTU",
+            "iata_code": "PPG",
+            "gps_code": "NSTU",
+            "local_code": "PPG",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Pago_Pago_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "115dc932d2af2c87972c3f559c717c0a38bf692ec29beff155f5bce98c371dfe",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "NSTU",
+            "sourceUrl": "https://ourairports.com/airports/NSTU/",
+            "matchedIdent": "NSTU",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/NSTU/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "AS,UM",
+              "-1416-17042",
+              "Pacific/Pago_Pago",
+              "Midway"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Pacific/Pago_Pago",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "AS,UM",
+              "-1416-17042",
+              "Pacific/Pago_Pago",
+              "Midway"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/australia-oceania/american-oceania-261011.osm.pbf",
+          "bytes": 5379930,
+          "sha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/836511487",
+          "way/836511488",
+          "way/836511489",
+          "way/836511490",
+          "way/836511491",
+          "way/836511492",
+          "way/836511493",
+          "way/836511495",
+          "way/836511496",
+          "way/836511497",
+          "way/836511498",
+          "way/836511500",
+          "way/836511501",
+          "way/836511503",
+          "way/836511504",
+          "way/836511505",
+          "way/836511506",
+          "way/836511507",
+          "way/836511508",
+          "way/836511509",
+          "way/836511510",
+          "way/836511511",
+          "way/836511512",
+          "way/836511513",
+          "way/836511514",
+          "way/836511515",
+          "way/836511516",
+          "way/836511517",
+          "way/836511518",
+          "way/836511519",
+          "way/836511520",
+          "way/836511521",
+          "way/836511522",
+          "way/836511523",
+          "way/836511524",
+          "way/836511525",
+          "way/836511546",
+          "way/836511567",
+          "way/836511676",
+          "way/836511678",
+          "way/836511679",
+          "way/836511687",
+          "way/836511689",
+          "way/836511690",
+          "way/836511703",
+          "way/836511707",
+          "way/836511711",
+          "way/836511712",
+          "way/836511717",
+          "way/836511723",
+          "way/836511727",
+          "way/836511737",
+          "way/836511760",
+          "way/836511773",
+          "way/836511793",
+          "way/836511819",
+          "way/836511847",
+          "way/836511852",
+          "way/836511893",
+          "way/836511961",
+          "way/836511980",
+          "way/836511983",
+          "way/836512011",
+          "way/836512045",
+          "way/836512065",
+          "way/836512081",
+          "way/836512128",
+          "way/836512140",
+          "way/836512167",
+          "way/836512202",
+          "way/836512213",
+          "way/836512223",
+          "way/836512224",
+          "way/836512253",
+          "way/836512272",
+          "way/836512299",
+          "way/836512307",
+          "way/836512326",
+          "way/836512344",
+          "way/836512366",
+          "way/837435505",
+          "way/837435506",
+          "way/1085814983",
+          "way/1236743791",
+          "way/1237146643"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -14.456359489933979,
+              -170.89036648516475,
+              -14.09459771006602,
+              -170.51929311483525
+            ],
+            "core": [
+              -14.320698822483495,
+              -170.7511858050069,
+              -14.230258377516504,
+              -170.65847379499309
+            ],
+            "outline": [
+              -14.50635948993398,
+              -170.94036648516476,
+              -14.04459771006602,
+              -170.46929311483524
+            ],
+            "wide": [
+              -15.056359489933978,
+              -171.49036648516474,
+              -13.49459771006602,
+              -169.91929311483526
+            ]
+          },
+          "airportMarginMetres": 13860.998802000076,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtSquarePlaces": [
+              "square"
+            ]
+          },
+          "cityPlaceTag": "village"
+        }
+      },
+      "extractKey": "pago-pago",
+      "extractSha256": {
+        "places": "46cd1c9f0ac20ef6bb36e815f7fceecc679ccfcf261269e8a4feec95266a4483",
+        "extras": "0fa48db60aa9b993a696e77a90dd060fe898bee96477c8938193a7805f2978a3",
+        "water": "b199270fc2f7eda9f1a58b8062dad7dad779489844ed4301bd932f2fdde6688a",
+        "landuse": "99c7a7614983db9ac778c86397038b86dd99f9197a5ea7ed0229508a19ff3130",
+        "roads": "145566c0c3dd3c674855810f6d7fc4d4ecd13a49082c05a582b74f511133b0cf"
+      },
+      "sourceJob": {
+        "city": "pago-pago",
+        "sourceRunId": 38431865880,
+        "sourceArtifact": "city-bootstrap-as-76625e88577c373598b4141ef4285f6af082419c",
+        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "datasetSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "46cd1c9f0ac20ef6bb36e815f7fceecc679ccfcf261269e8a4feec95266a4483",
+          "extras": "0fa48db60aa9b993a696e77a90dd060fe898bee96477c8938193a7805f2978a3",
+          "water": "b199270fc2f7eda9f1a58b8062dad7dad779489844ed4301bd932f2fdde6688a",
+          "landuse": "99c7a7614983db9ac778c86397038b86dd99f9197a5ea7ed0229508a19ff3130",
+          "roads": "145566c0c3dd3c674855810f6d7fc4d4ecd13a49082c05a582b74f511133b0cf"
+        }
+      }
+    }
+  ]
+}

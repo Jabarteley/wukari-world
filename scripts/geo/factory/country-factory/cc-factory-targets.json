@@ -1,0 +1,343 @@
+{
+  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "CC",
+    "datasetSha256": "b93db5ebb8059ff619c2f1d652a9270b1573cf845574645397e0bfce2260f030",
+    "receiptSha256": "86950b25683d95af529c70d6037c401b6ccdae93ee46597930b4cf93d7c743ac",
+    "receiptBytes": 11065,
+    "geometrySha256": "4d5827557a511e4d7027793ce2ee353a3b7e2aac4959f053b4954c761b4a2e91",
+    "geometryBytes": 6240,
+    "scriptSha256": "5ff4dfbbd3956af4e7502b3ff27111da8362a4ce4101a0327d3aba52b26c54cc",
+    "relationId": 82636,
+    "boundaryKey": "cc",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38437674805,
+      "sourceSha": "ac5517527068042341162b637bfbabf0d8133ad6",
+      "sourceArtifact": "city-bootstrap-cc-ac5517527068042341162b637bfbabf0d8133ad6",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "west-island",
+      "name": "West Island",
+      "country": "cc",
+      "facts": {
+        "id": "west-island",
+        "name": "West Island",
+        "country": {
+          "idISOlower": "cc",
+          "name": "Cocos (Keeling) Islands"
+        },
+        "state": {
+          "idunique": "cc-west-island",
+          "name": "West Island"
+        },
+        "timezone": "Asia/Yangon",
+        "centre": {
+          "lon": 96.8304486,
+          "lat": -12.1898479
+        },
+        "airport": {
+          "id": "west-island-airport",
+          "name": "Cocos (Keeling) Islands Airport",
+          "lon": 96.834103,
+          "lat": -12.192218,
+          "sourceUrl": "https://ourairports.com/airports/YPCC/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/1927498780",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          96.64651578619483,
+          -12.37072878993398,
+          97.01438141380517,
+          -12.008967010066021
+        ]
+      },
+      "profile": "microstate",
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/1927498780",
+          "sourceUrl": "https://www.openstreetmap.org/node/1927498780",
+          "sourceRecord": {
+            "ref": "node/1927498780",
+            "tags": {
+              "alt_name:be": "Вэст-Айлэнд",
+              "capital": "4",
+              "name": "Pulau Panjang / West Island",
+              "name:ar": "ويست آيلند",
+              "name:be": "Востраў Вэст",
+              "name:de": "West Island",
+              "name:en": "West Island",
+              "name:es": "West Island",
+              "name:fr": "West Island",
+              "name:my": "Pulau Panjang",
+              "place": "village",
+              "population": "147",
+              "population:date": "2021",
+              "source:population": "ABS Urban Centres and Localities"
+            },
+            "lon": 96.8304486,
+            "lat": -12.1898479
+          },
+          "pbfSha256": "b93db5ebb8059ff619c2f1d652a9270b1573cf845574645397e0bfce2260f030",
+          "selection": {
+            "cityOsmRef": "node/1927498780",
+            "matchedOsmRef": "node/1927498780"
+          }
+        },
+        "airport": {
+          "rowNumber": 84716,
+          "row": {
+            "id": "27100",
+            "ident": "YPCC",
+            "type": "large_airport",
+            "name": "Cocos (Keeling) Islands Airport",
+            "latitude_deg": "-12.192218",
+            "longitude_deg": "96.834103",
+            "elevation_ft": "10",
+            "continent": "AS",
+            "iso_country": "CC",
+            "iso_region": "CC-U-A",
+            "municipality": "West Island",
+            "scheduled_service": "yes",
+            "icao_code": "YPCC",
+            "iata_code": "CCK",
+            "gps_code": "YPCC",
+            "local_code": "",
+            "home_link": "http://cocosislandairport.com.au/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Cocos_(Keeling)_Island_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "17ab0cbe916e3a000238dec188e5a0d080ec0e8cae64e831dbd29c0470233def",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "YPCC",
+            "sourceUrl": "https://ourairports.com/airports/YPCC/",
+            "matchedIdent": "YPCC",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/YPCC/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "MM,CC",
+              "+1647+09610",
+              "Asia/Yangon"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Yangon",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "MM,CC",
+              "+1647+09610",
+              "Asia/Yangon"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/australia-oceania/australia/cocos-islands-261011.osm.pbf",
+          "bytes": 265121,
+          "sha256": "b93db5ebb8059ff619c2f1d652a9270b1573cf845574645397e0bfce2260f030",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/91646325",
+          "way/160030148",
+          "way/160030149",
+          "way/160030150",
+          "way/160030152",
+          "way/160030155",
+          "way/160030157",
+          "way/160030158",
+          "way/160030160",
+          "way/160030162",
+          "way/160030163",
+          "way/160030165",
+          "way/160030166",
+          "way/160030167",
+          "way/187994135",
+          "way/187995359",
+          "way/187995360",
+          "way/187995361",
+          "way/187995362",
+          "way/187995363",
+          "way/187998959",
+          "way/187998960",
+          "way/187999934",
+          "way/220328299",
+          "way/244663692",
+          "way/321779160",
+          "way/321779162",
+          "way/321779163",
+          "way/321779164",
+          "way/321779165",
+          "way/321779166",
+          "way/321779167",
+          "way/321779168",
+          "way/321779169",
+          "way/321779171",
+          "way/321779172",
+          "way/321779173",
+          "way/321779174",
+          "way/321779175",
+          "way/321779177",
+          "way/321779178",
+          "way/321783490",
+          "way/321783491",
+          "way/321783492",
+          "way/321783493",
+          "way/321783494",
+          "way/321783495",
+          "way/321783496",
+          "way/321783497",
+          "way/321783498",
+          "way/321783499",
+          "way/321783500",
+          "way/321783501",
+          "way/321783502",
+          "way/321783503",
+          "way/321783504",
+          "way/321783505",
+          "way/321783506",
+          "way/321783507",
+          "way/321783508",
+          "way/321885614",
+          "way/321885615",
+          "way/321885616",
+          "way/321885617",
+          "way/321885618",
+          "way/321885619",
+          "way/321885621",
+          "way/321885622",
+          "way/321885623",
+          "way/321885624",
+          "way/321885625",
+          "way/321885626",
+          "way/321885628",
+          "way/321885629",
+          "way/321885631",
+          "way/321885632",
+          "way/477773451",
+          "way/673105185",
+          "way/673105188",
+          "way/673105189",
+          "way/673105190",
+          "way/673105192",
+          "way/673105194",
+          "way/673105195",
+          "way/673105199",
+          "way/830742155",
+          "way/830742156",
+          "way/837345393",
+          "way/850529739",
+          "way/850529741",
+          "way/850575392",
+          "way/873100852",
+          "way/1291009296"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -12.37072878993398,
+              96.64651578619483,
+              -12.008967010066021,
+              97.01438141380517
+            ],
+            "core": [
+              -12.235068122483495,
+              96.78448913491918,
+              -12.144627677516505,
+              96.87640806508081
+            ],
+            "outline": [
+              -12.42072878993398,
+              96.59651578619483,
+              -11.95896701006602,
+              97.06438141380517
+            ],
+            "wide": [
+              -12.970728789933979,
+              96.04651578619483,
+              -11.408967010066021,
+              97.61438141380516
+            ]
+          },
+          "airportMarginMetres": 19615.93763536111,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtSquarePlaces": [
+              "square"
+            ]
+          },
+          "cityPlaceTag": "village"
+        }
+      },
+      "extractKey": "west-island",
+      "extractSha256": {
+        "places": "73bb3999c3638523c9bc3fab7cbf0452ade6a2da46ea5b2a7cb0f2d19f92d33a",
+        "extras": "a212be90ab7cc768df5e597654f7357091c6b50337ecee2623bea8daa02529ff",
+        "water": "a2159df70b70b9209184088edce64dc3eb028df580e6708fe3aa77922b4d45c0",
+        "landuse": "11f5f5d25cdda9b3073011c9b0bf2cc20814715c4839bfd444bb2b67d2494c65",
+        "roads": "5d0fb146fd40ba55f9e9ce4d077b7c341f68ab41ec85ed338e1eb61f1aaf1529"
+      },
+      "sourceJob": {
+        "city": "west-island",
+        "sourceRunId": 38437674805,
+        "sourceArtifact": "city-bootstrap-cc-ac5517527068042341162b637bfbabf0d8133ad6",
+        "sourceSha": "ac5517527068042341162b637bfbabf0d8133ad6",
+        "datasetSha256": "b93db5ebb8059ff619c2f1d652a9270b1573cf845574645397e0bfce2260f030",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "73bb3999c3638523c9bc3fab7cbf0452ade6a2da46ea5b2a7cb0f2d19f92d33a",
+          "extras": "a212be90ab7cc768df5e597654f7357091c6b50337ecee2623bea8daa02529ff",
+          "water": "a2159df70b70b9209184088edce64dc3eb028df580e6708fe3aa77922b4d45c0",
+          "landuse": "11f5f5d25cdda9b3073011c9b0bf2cc20814715c4839bfd444bb2b67d2494c65",
+          "roads": "5d0fb146fd40ba55f9e9ce4d077b7c341f68ab41ec85ed338e1eb61f1aaf1529"
+        }
+      }
+    }
+  ]
+}

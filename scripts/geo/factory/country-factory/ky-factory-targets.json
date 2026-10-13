@@ -1,0 +1,348 @@
+{
+  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "KY",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "receiptSha256": "978c188d76353281f25c115e61ac23c3e0e03b9ec9d63e594ad3865900fe9dde",
+    "receiptBytes": 11192,
+    "geometrySha256": "c16986ae911c185c0d1911f11e85b8bb642d778a59780195abcc4bfb2c7b41dc",
+    "geometryBytes": 3425,
+    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "relationId": 2185366,
+    "boundaryKey": "ky",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38431865880,
+      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+      "sourceArtifact": "city-bootstrap-ky-76625e88577c373598b4141ef4285f6af082419c",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "george-town",
+      "name": "George Town",
+      "country": "ky",
+      "facts": {
+        "id": "george-town",
+        "name": "George Town",
+        "country": {
+          "idISOlower": "ky",
+          "name": "Cayman Islands"
+        },
+        "state": {
+          "idunique": "ky-george-town",
+          "name": "George Town"
+        },
+        "timezone": "America/Panama",
+        "centre": {
+          "lon": -81.3807776,
+          "lat": 19.2953549
+        },
+        "airport": {
+          "id": "george-town-airport",
+          "name": "Owen Roberts International Airport",
+          "lon": -81.357697,
+          "lat": 19.292801,
+          "sourceUrl": "https://ourairports.com/airports/MWCR/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/776951938",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -81.57134407520206,
+          19.114474010066022,
+          -81.19021112479794,
+          19.476235789933977
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/776951938",
+          "sourceUrl": "https://www.openstreetmap.org/node/776951938",
+          "sourceRecord": {
+            "ref": "node/776951938",
+            "tags": {
+              "admin_level": "2",
+              "capital": "2",
+              "capital_ISO3166-1": "yes",
+              "is_in:country_code": "KY",
+              "name": "George Town",
+              "name:af": "Georgetown",
+              "name:an": "George Town",
+              "name:ar": "جورج تاون",
+              "name:az": "Corctaun",
+              "name:be": "Джорджтаўн",
+              "name:be-tarask": "Джордж Таўн",
+              "name:bg": "Джордж Таун",
+              "name:br": "George Town",
+              "name:bs": "George Town",
+              "name:ca": "George Town",
+              "name:ckb": "جۆرج تاون",
+              "name:cs": "George Town",
+              "name:de": "George Town",
+              "name:el": "Τζωρτζτάουν",
+              "name:en": "George Town",
+              "name:eo": "Ĝorĝtaŭno",
+              "name:es": "George Town",
+              "name:eu": "George Town",
+              "name:fa": "جرج‌تاون، جزایر کیمن",
+              "name:fi": "George Town",
+              "name:fr": "George Town",
+              "name:gl": "George Town",
+              "name:he": "ג'ורג' טאון",
+              "name:hr": "George Town",
+              "name:hu": "George Town",
+              "name:hy": "Ջորջթաուն",
+              "name:id": "George Town",
+              "name:io": "Georgetown",
+              "name:it": "George Town",
+              "name:ja": "ジョージタウン",
+              "name:ka": "ჯორჯტაუნი",
+              "name:kk": "Джорджтаун",
+              "name:ko": "조지타운",
+              "name:ku": "Corc Tawn",
+              "name:lt": "Džordžtaunas",
+              "name:lv": "Džordžtauna",
+              "name:mk": "Џорџ Таун",
+              "name:mr": "जॉर्जटाउन",
+              "name:ms": "George Town",
+              "name:nb": "George Town",
+              "name:nl": "George Town",
+              "name:nn": "George Town",
+              "name:no": "George Town",
+              "name:os": "Джорджтаун",
+              "name:pl": "George Town",
+              "name:pt": "George Town",
+              "name:ro": "George Town",
+              "name:ru": "Джорджтаун",
+              "name:si": "ජෝර්ජ් නගරය",
+              "name:sk": "George Town",
+              "name:sr": "Џорџтаун",
+              "name:sv": "George Town",
+              "name:ta": "ஜார்ஜ் டவுன்",
+              "name:th": "จอร์จทาวน์",
+              "name:tr": "George Town",
+              "name:uk": "Джорджтаун",
+              "name:ur": "جارج ٹاؤن",
+              "name:vi": "George Town",
+              "name:yo": "George Town",
+              "name:zh": "喬治敦",
+              "place": "city",
+              "population": "28089",
+              "ref:LOCODE": "KYGEC",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "wikidata": "Q172996",
+              "wikipedia": "de:George Town (Cayman Islands)"
+            },
+            "lon": -81.3807776,
+            "lat": 19.2953549
+          },
+          "pbfSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776"
+        },
+        "airport": {
+          "rowNumber": 47039,
+          "row": {
+            "id": "4862",
+            "ident": "MWCR",
+            "type": "large_airport",
+            "name": "Owen Roberts International Airport",
+            "latitude_deg": "19.292801",
+            "longitude_deg": "-81.357697",
+            "elevation_ft": "8",
+            "continent": "NA",
+            "iso_country": "KY",
+            "iso_region": "KY-GC",
+            "municipality": "George Town",
+            "scheduled_service": "yes",
+            "icao_code": "MWCR",
+            "iata_code": "GCM",
+            "gps_code": "MWCR",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Owen_Roberts_International_Airport",
+            "keywords": "Grand Cayman, George Town"
+          },
+          "rowSha256": "9d252e69873d90f2c55478fa5805d799f3bb0f9db7a54b94f72fb3c9b21300ae",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "MWCR",
+            "sourceUrl": "https://ourairports.com/airports/MWCR/",
+            "matchedIdent": "MWCR",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/MWCR/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "PA,CA,KY",
+              "+0858-07932",
+              "America/Panama",
+              "EST - ON (Atikokan), NU (Coral H)"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "America/Panama",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "PA,CA,KY",
+              "+0858-07932",
+              "America/Panama",
+              "EST - ON (Atikokan), NU (Coral H)"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+          "bytes": 791507843,
+          "sha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/25779570",
+          "way/25864373",
+          "way/45054611",
+          "way/62190041",
+          "way/62190102",
+          "way/62190111",
+          "way/62190141",
+          "way/62190142",
+          "way/62216390",
+          "way/62216393",
+          "way/62216403",
+          "way/62216411",
+          "way/62216450",
+          "way/62216457",
+          "way/62216465",
+          "way/62231951",
+          "way/62231953",
+          "way/68794380",
+          "way/80203926",
+          "way/80203929",
+          "way/80203945",
+          "way/351062523",
+          "way/372501829",
+          "way/372514641",
+          "way/373660946",
+          "way/373670381",
+          "way/375290675",
+          "way/377063859",
+          "way/377828465",
+          "way/413031667",
+          "way/413031668",
+          "way/413031669",
+          "way/413031670",
+          "way/413031671",
+          "way/413031672",
+          "way/416821135",
+          "way/416821138",
+          "way/416821143",
+          "way/416821148",
+          "way/417845916",
+          "way/417845932",
+          "way/417845976",
+          "way/417845991",
+          "way/417932897",
+          "way/550323439",
+          "way/550323441",
+          "way/619829339",
+          "way/619829340",
+          "way/678058018",
+          "way/738994741",
+          "way/738994742",
+          "way/1029551774",
+          "way/1029551775",
+          "way/1029551776",
+          "way/1029551777",
+          "way/1029551778",
+          "way/1029551788",
+          "way/1276314090",
+          "way/1276314091",
+          "way/1327372745",
+          "way/1327372748",
+          "way/1327372750",
+          "way/1327372752",
+          "way/1424854773",
+          "way/1550346420",
+          "way/1550346422",
+          "way/1550346423",
+          "way/1550346424",
+          "way/1550346425",
+          "way/1550346426"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              19.114474010066022,
+              -81.57134407520206,
+              19.476235789933977,
+              -81.19021112479794
+            ],
+            "core": [
+              19.250134677516506,
+              -81.4283794928012,
+              19.340575122483493,
+              -81.3331757071988
+            ],
+            "outline": [
+              19.06447401006602,
+              -81.62134407520206,
+              19.526235789933978,
+              -81.14021112479794
+            ],
+            "wide": [
+              18.51447401006602,
+              -82.17134407520206,
+              20.07623578993398,
+              -80.59021112479795
+            ]
+          },
+          "airportMarginMetres": 17597.497045731376,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "george-town",
+      "extractSha256": {
+        "places": "b810ac81b4eabd8a23b63f7ba590150c6c7fb6db48c9cd0c64f0ccd90db90a9b",
+        "extras": "f9195d8496a6738e18425224157cd5d441578eaff268014e9757362a0398e051",
+        "water": "61965d0e9f0cee0ef479450a15c1d40d2838e3c0e84f898a9c3451ff32d08ed5",
+        "landuse": "6fda7633bfc46ee6b5c21d8176c5ecc6fdbaac3449218b3fe732378162f58a87",
+        "roads": "335b69e56ec278a85c6d4564d6c98399f172615b676e375182ac98485a23f70c"
+      },
+      "sourceJob": {
+        "city": "george-town",
+        "sourceRunId": 38431865880,
+        "sourceArtifact": "city-bootstrap-ky-76625e88577c373598b4141ef4285f6af082419c",
+        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "b810ac81b4eabd8a23b63f7ba590150c6c7fb6db48c9cd0c64f0ccd90db90a9b",
+          "extras": "f9195d8496a6738e18425224157cd5d441578eaff268014e9757362a0398e051",
+          "water": "61965d0e9f0cee0ef479450a15c1d40d2838e3c0e84f898a9c3451ff32d08ed5",
+          "landuse": "6fda7633bfc46ee6b5c21d8176c5ecc6fdbaac3449218b3fe732378162f58a87",
+          "roads": "335b69e56ec278a85c6d4564d6c98399f172615b676e375182ac98485a23f70c"
+        }
+      }
+    }
+  ]
+}

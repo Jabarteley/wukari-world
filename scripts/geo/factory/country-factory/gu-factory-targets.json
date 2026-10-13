@@ -1,0 +1,327 @@
+{
+  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "GU",
+    "datasetSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+    "receiptSha256": "2d50ce9f54b55bb3321b8f2351decea6c14206fc0a52439801cc76f6a5be786b",
+    "receiptBytes": 6085,
+    "geometrySha256": "e03ae91e9294f0ad7902c82b2ec163ff17b640db4525131a00ebb7699711d151",
+    "geometryBytes": 13842,
+    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "relationId": 306001,
+    "boundaryKey": "gu",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38431865880,
+      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+      "sourceArtifact": "city-bootstrap-gu-76625e88577c373598b4141ef4285f6af082419c",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "hagatna",
+      "name": "Hagåtña",
+      "country": "gu",
+      "facts": {
+        "id": "hagatna",
+        "name": "Hagåtña",
+        "country": {
+          "idISOlower": "gu",
+          "name": "Guam"
+        },
+        "state": {
+          "idunique": "gu-hagatna",
+          "name": "Hagåtña"
+        },
+        "timezone": "Pacific/Guam",
+        "centre": {
+          "lon": 144.7516191,
+          "lat": 13.4748148
+        },
+        "airport": {
+          "id": "hagatna-airport",
+          "name": "Antonio B. Won Pat International Airport",
+          "lon": 144.797282,
+          "lat": 13.485,
+          "sourceUrl": "https://ourairports.com/airports/PGUM/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/5347890620",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          144.56673042568102,
+          13.293933910066022,
+          144.93650777431898,
+          13.65569568993398
+        ]
+      },
+      "profile": "microstate",
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/5347890620",
+          "sourceUrl": "https://www.openstreetmap.org/node/5347890620",
+          "sourceRecord": {
+            "ref": "node/5347890620",
+            "tags": {
+              "alt_name:be": "Аганья",
+              "capital": "4",
+              "name": "Hagåtña",
+              "name:be": "Хагатна",
+              "name:ch": "Hagåtña",
+              "name:en": "Hagåtña",
+              "name:fr": "Hagåtña",
+              "name:nan": "Hagåtña",
+              "name:uk": "Гаґатна",
+              "name:zh": "阿加尼亚;阿加尼亞",
+              "name:zh-Hans": "阿加尼亚",
+              "name:zh-Hant": "阿加尼亞",
+              "old_name:uk": "Аґанья",
+              "place": "town",
+              "population": "943",
+              "population:date": "2020",
+              "wikidata": "Q30988",
+              "wikipedia": "en:Hagåtña, Guam"
+            },
+            "lon": 144.7516191,
+            "lat": 13.4748148
+          },
+          "pbfSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b"
+        },
+        "airport": {
+          "rowNumber": 53221,
+          "row": {
+            "id": "5433",
+            "ident": "PGUM",
+            "type": "large_airport",
+            "name": "Antonio B. Won Pat International Airport",
+            "latitude_deg": "13.485",
+            "longitude_deg": "144.797282",
+            "elevation_ft": "298",
+            "continent": "OC",
+            "iso_country": "GU",
+            "iso_region": "GU-U-A",
+            "municipality": "Hagåtña",
+            "scheduled_service": "yes",
+            "icao_code": "PGUM",
+            "iata_code": "GUM",
+            "gps_code": "PGUM",
+            "local_code": "GUM",
+            "home_link": "http://www.guamairport.com/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Antonio_B._Won_Pat_International_Airport",
+            "keywords": "NGM, NAS Agana"
+          },
+          "rowSha256": "5b3082f50519317ef4fc2f9ea25d5b80dc733bb0b605f30c285acf25f293be06",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "PGUM",
+            "sourceUrl": "https://ourairports.com/airports/PGUM/",
+            "matchedIdent": "PGUM",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/PGUM/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "GU,MP",
+              "+1328+14445",
+              "Pacific/Guam"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Pacific/Guam",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "GU,MP",
+              "+1328+14445",
+              "Pacific/Guam"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/australia-oceania/american-oceania-261011.osm.pbf",
+          "bytes": 5379930,
+          "sha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/14682879",
+          "way/14682884",
+          "way/14682913",
+          "way/14682942",
+          "way/14682945",
+          "way/14682947",
+          "way/14682949",
+          "way/14682952",
+          "way/14682986",
+          "way/14682987",
+          "way/23719130",
+          "way/23719133",
+          "way/23719184",
+          "way/33969703",
+          "way/35023233",
+          "way/35023235",
+          "way/35031248",
+          "way/236780293",
+          "way/239618710",
+          "way/239618711",
+          "way/268232194",
+          "way/268232205",
+          "way/268232211",
+          "way/268232216",
+          "way/268232220",
+          "way/268232222",
+          "way/268236232",
+          "way/268236238",
+          "way/268236242",
+          "way/268239830",
+          "way/268245436",
+          "way/268249677",
+          "way/268249681",
+          "way/484467277",
+          "way/484467280",
+          "way/503791120",
+          "way/503791121",
+          "way/503791128",
+          "way/503791129",
+          "way/503791156",
+          "way/503812421",
+          "way/503816307",
+          "way/503903204",
+          "way/503905030",
+          "way/503905044",
+          "way/503905045",
+          "way/503905046",
+          "way/503905047",
+          "way/503905049",
+          "way/503905050",
+          "way/503905055",
+          "way/503905058",
+          "way/503905059",
+          "way/503905063",
+          "way/503905064",
+          "way/503905065",
+          "way/503905068",
+          "way/503906450",
+          "way/507828745",
+          "way/515001848",
+          "way/884497893",
+          "way/1138279580",
+          "way/1138279581",
+          "way/1138279582",
+          "way/1209291633",
+          "way/1209291634",
+          "way/1209291635",
+          "way/1209291636",
+          "way/1209291637",
+          "way/1209291638",
+          "way/1209291639",
+          "way/1209291640",
+          "way/1209292014",
+          "way/1242800649",
+          "way/1243029906",
+          "way/1245663752",
+          "way/1250212658"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              13.293933910066022,
+              144.56673042568102,
+              13.65569568993398,
+              144.93650777431898
+            ],
+            "core": [
+              13.429594577516506,
+              144.70542337599264,
+              13.520035022483496,
+              144.79781482400736
+            ],
+            "outline": [
+              13.243933910066021,
+              144.516730425681,
+              13.70569568993398,
+              144.986507774319
+            ],
+            "wide": [
+              12.693933910066022,
+              143.96673042568102,
+              14.25569568993398,
+              145.53650777431898
+            ]
+          },
+          "airportMarginMetres": 15071.331975332083,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtSquarePlaces": [
+              "square"
+            ]
+          },
+          "cityPlaceTag": "town"
+        }
+      },
+      "extractKey": "hagatna",
+      "extractSha256": {
+        "places": "83dd0e0861185d0ada205cd0c36b20ccb7c52ef352bbbcb236932e58220fb664",
+        "extras": "ede97268bbf26f3446849e048d6a0c02a7b46aad2f5b9eef8c2c391539e00c86",
+        "water": "5cb9990d6c3066300e115fd15548f6cfdb2f7d1b6c7838feb0b3635c456a5c01",
+        "landuse": "d00d6e984c52072d103b4fe86f6708178ab8b328b0ff8eab7ffaa53687be4cfa",
+        "roads": "f069154318885a8b2015e1f05d37f3fbdc7a17d73cfe9f89a1e2382603cf1264"
+      },
+      "sourceJob": {
+        "city": "hagatna",
+        "sourceRunId": 38431865880,
+        "sourceArtifact": "city-bootstrap-gu-76625e88577c373598b4141ef4285f6af082419c",
+        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "datasetSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "83dd0e0861185d0ada205cd0c36b20ccb7c52ef352bbbcb236932e58220fb664",
+          "extras": "ede97268bbf26f3446849e048d6a0c02a7b46aad2f5b9eef8c2c391539e00c86",
+          "water": "5cb9990d6c3066300e115fd15548f6cfdb2f7d1b6c7838feb0b3635c456a5c01",
+          "landuse": "d00d6e984c52072d103b4fe86f6708178ab8b328b0ff8eab7ffaa53687be4cfa",
+          "roads": "f069154318885a8b2015e1f05d37f3fbdc7a17d73cfe9f89a1e2382603cf1264"
+        }
+      }
+    }
+  ]
+}

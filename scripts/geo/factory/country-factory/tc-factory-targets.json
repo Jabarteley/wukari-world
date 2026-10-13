@@ -1,0 +1,418 @@
+{
+  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "TC",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "receiptSha256": "fc09273b4cd273fd15bc61e09258f9df57ef17659f292c4dd8acd8aa04c0f6c9",
+    "receiptBytes": 17544,
+    "geometrySha256": "5859cc2146fd2af0fcb81fe5ec725024fcd7a27be412b97a13700d2fbb2df922",
+    "geometryBytes": 2347,
+    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "relationId": 547479,
+    "boundaryKey": "tc",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38431865880,
+      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+      "sourceArtifact": "city-bootstrap-tc-76625e88577c373598b4141ef4285f6af082419c",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "cockburn-town",
+      "name": "Cockburn Town",
+      "country": "tc",
+      "facts": {
+        "id": "cockburn-town",
+        "name": "Cockburn Town",
+        "country": {
+          "idISOlower": "tc",
+          "name": "Turks & Caicos Is"
+        },
+        "state": {
+          "idunique": "tc-cockburn-town",
+          "name": "Cockburn Town"
+        },
+        "timezone": "America/Grand_Turk",
+        "centre": {
+          "lon": -71.1399956,
+          "lat": 21.4607723
+        },
+        "airport": {
+          "id": "cockburn-town-airport",
+          "name": "JAGS McCartney International Airport",
+          "lon": -71.142303,
+          "lat": 21.4445,
+          "sourceUrl": "https://ourairports.com/airports/MBGT/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/296255680",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -71.33328292548742,
+          21.27989141006602,
+          -70.94670827451259,
+          21.641653189933976
+        ]
+      },
+      "profile": "microstate",
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/296255680",
+          "sourceUrl": "https://www.openstreetmap.org/node/296255680",
+          "sourceRecord": {
+            "ref": "node/296255680",
+            "tags": {
+              "capital": "2",
+              "name": "Cockburn Town",
+              "name:ar": "كوكبرن تاون",
+              "name:az": "Kobərn Taun",
+              "name:be": "Коберн-Таўн",
+              "name:be-tarask": "Кокбэрн Таўн",
+              "name:bg": "Кокбърн Таун",
+              "name:br": "Cockburn Town",
+              "name:ca": "Cockburn Town",
+              "name:cv": "Коберн-Таун",
+              "name:de": "Cockburn Town",
+              "name:el": "Κόκμπερν Τάουν",
+              "name:en": "Cockburn Town",
+              "name:eo": "Kokburno",
+              "name:es": "Cockburn Town",
+              "name:fa": "کوک برن تاون",
+              "name:fr": "Cockburn Town",
+              "name:ha": "Garin Cockburn",
+              "name:he": "קוקבורן טאון",
+              "name:hu": "Cockburn Town",
+              "name:it": "Cockburn Town",
+              "name:ja": "コックバーンタウン",
+              "name:ka": "კოკბერნ-ტაუნი",
+              "name:kk": "Коберн-Таун",
+              "name:ko": "코크번타운",
+              "name:lt": "Kobern Taunas",
+              "name:lv": "Kokbērntauna",
+              "name:mk": "Коберн Таун",
+              "name:mr": "कॉकबर्न टाउन",
+              "name:nl": "Cockburn Town",
+              "name:no": "Cockburn Town",
+              "name:os": "Коберн-Таун",
+              "name:pl": "Cockburn Town",
+              "name:pt": "Cockburn Town",
+              "name:ru": "Коберн-Таун",
+              "name:sr": "Коберн Таун",
+              "name:sv": "Cockburn Town",
+              "name:ta": "காக்பேர்ண் நகரம்",
+              "name:th": "โคเบิร์นทาวน์",
+              "name:tr": "Cockburn Town",
+              "name:uk": "Коберн-Таун",
+              "name:ur": "کاک برن ٹاؤن",
+              "name:zh": "科伯恩城",
+              "place": "town",
+              "population": "3700",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "wikidata": "Q34205",
+              "wikipedia": "en:Cockburn Town"
+            },
+            "lon": -71.1399956,
+            "lat": 21.4607723
+          },
+          "pbfSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776"
+        },
+        "airport": {
+          "rowNumber": 45623,
+          "row": {
+            "id": "4626",
+            "ident": "MBGT",
+            "type": "medium_airport",
+            "name": "JAGS McCartney International Airport",
+            "latitude_deg": "21.4445",
+            "longitude_deg": "-71.142303",
+            "elevation_ft": "13",
+            "continent": "NA",
+            "iso_country": "TC",
+            "iso_region": "TC-GT",
+            "municipality": "Cockburn Town",
+            "scheduled_service": "yes",
+            "icao_code": "MBGT",
+            "iata_code": "GDT",
+            "gps_code": "MBGT",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/JAGS_McCartney_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "dfc999a86f8b38b01fec56ac4a6fdb4ccee261689147926bad03cef8c18186c4",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "MBGT",
+            "sourceUrl": "https://ourairports.com/airports/MBGT/",
+            "matchedIdent": "MBGT",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/MBGT/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "TC",
+              "+2128-07108",
+              "America/Grand_Turk"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "America/Grand_Turk",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "TC",
+              "+2128-07108",
+              "America/Grand_Turk"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+          "bytes": 791507843,
+          "sha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/23088050",
+          "way/23088055",
+          "way/23088056",
+          "way/23088058",
+          "way/23088082",
+          "way/23599947",
+          "way/25953716",
+          "way/25953717",
+          "way/25955447",
+          "way/25955448",
+          "way/25955449",
+          "way/25955450",
+          "way/25955451",
+          "way/25955452",
+          "way/25955453",
+          "way/25955454",
+          "way/25955460",
+          "way/25955464",
+          "way/25955467",
+          "way/25955471",
+          "way/25955474",
+          "way/25955478",
+          "way/25955480",
+          "way/25955485",
+          "way/25955489",
+          "way/25955490",
+          "way/25955491",
+          "way/25955492",
+          "way/25955493",
+          "way/25955495",
+          "way/25955496",
+          "way/39890243",
+          "way/39890322",
+          "way/39890352",
+          "way/39890366",
+          "way/39891059",
+          "way/39896469",
+          "way/150155035",
+          "way/171494223",
+          "way/171494912",
+          "way/178438622",
+          "way/247082933",
+          "way/266989280",
+          "way/302416192",
+          "way/302716886",
+          "way/515909752",
+          "way/515909753",
+          "way/516495617",
+          "way/571094653",
+          "way/578607366",
+          "way/581373002",
+          "way/583213758",
+          "way/583221650",
+          "way/583223950",
+          "way/583227822",
+          "way/583227830",
+          "way/583227834",
+          "way/583228824",
+          "way/583228826",
+          "way/583234854",
+          "way/693445430",
+          "way/693447888",
+          "way/693447889",
+          "way/693447890",
+          "way/693447891",
+          "way/693447892",
+          "way/693447893",
+          "way/693463842",
+          "way/693465249",
+          "way/693465916",
+          "way/693465917",
+          "way/693466557",
+          "way/693466558",
+          "way/693481762",
+          "way/693482644",
+          "way/693482645",
+          "way/693483826",
+          "way/693487639",
+          "way/693488203",
+          "way/693488204",
+          "way/693488205",
+          "way/693488206",
+          "way/693649043",
+          "way/693661635",
+          "way/693673274",
+          "way/693690283",
+          "way/694879598",
+          "way/694897901",
+          "way/694897902",
+          "way/694962331",
+          "way/1022252092",
+          "way/1022252093",
+          "way/1022252094",
+          "way/1022252095",
+          "way/1022252096",
+          "way/1022252097",
+          "way/1022252098",
+          "way/1022252099",
+          "way/1022252100",
+          "way/1022252101",
+          "way/1022252102",
+          "way/1022252103",
+          "way/1022252104",
+          "way/1022252105",
+          "way/1022252106",
+          "way/1022252107",
+          "way/1022252108",
+          "way/1022252109",
+          "way/1022252110",
+          "way/1022280975",
+          "way/1022280976",
+          "way/1022280977",
+          "way/1040186255",
+          "way/1040207903",
+          "way/1075386469",
+          "way/1349097475",
+          "way/1349097477",
+          "way/1349097478",
+          "way/1349097479",
+          "way/1349097480",
+          "way/1349097481",
+          "way/1349097487",
+          "way/1349097488",
+          "way/1349097489",
+          "way/1349097493",
+          "way/1349097495",
+          "way/1349097496",
+          "way/1349097497",
+          "way/1349097498",
+          "way/1349097499",
+          "way/1349097500",
+          "way/1349097501",
+          "way/1349097502",
+          "way/1349097503",
+          "way/1349097504",
+          "way/1349097505",
+          "way/1349097506",
+          "way/1449900282"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              21.27989141006602,
+              -71.33328292548742,
+              21.641653189933976,
+              -70.94670827451259
+            ],
+            "core": [
+              21.415552077516505,
+              -71.18827221373165,
+              21.505992522483492,
+              -71.09171898626836
+            ],
+            "outline": [
+              21.22989141006602,
+              -71.38328292548742,
+              21.691653189933977,
+              -70.89670827451259
+            ],
+            "wide": [
+              20.67989141006602,
+              -71.93328292548742,
+              22.241653189933977,
+              -70.3467082745126
+            ]
+          },
+          "airportMarginMetres": 18200.77178900019,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtSquarePlaces": [
+              "square"
+            ]
+          },
+          "cityPlaceTag": "town"
+        }
+      },
+      "extractKey": "cockburn-town",
+      "extractSha256": {
+        "places": "f5ca4d5a0d5d882ced6b9e7b970f40b2eb9ff2f2e568f9282303e01ca8739855",
+        "extras": "95b59357748f9ea02c5982e5bcf0c71c5dc12f6ce757410cccfc79a65829a66a",
+        "water": "7ac6285799fb665d7198bd56e00cbaa7042e91d927cff0b6601ce3dadc366df7",
+        "landuse": "3bd00d9d7db6465ab5f744fdaee2b3f811ec6d04b9b3786dcef3142998c8f1cb",
+        "roads": "ef6c1cf62cc4df027a4343527c0e286891e95e965c79e48edd79bd7f359d129f"
+      },
+      "sourceJob": {
+        "city": "cockburn-town",
+        "sourceRunId": 38431865880,
+        "sourceArtifact": "city-bootstrap-tc-76625e88577c373598b4141ef4285f6af082419c",
+        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "f5ca4d5a0d5d882ced6b9e7b970f40b2eb9ff2f2e568f9282303e01ca8739855",
+          "extras": "95b59357748f9ea02c5982e5bcf0c71c5dc12f6ce757410cccfc79a65829a66a",
+          "water": "7ac6285799fb665d7198bd56e00cbaa7042e91d927cff0b6601ce3dadc366df7",
+          "landuse": "3bd00d9d7db6465ab5f744fdaee2b3f811ec6d04b9b3786dcef3142998c8f1cb",
+          "roads": "ef6c1cf62cc4df027a4343527c0e286891e95e965c79e48edd79bd7f359d129f"
+        }
+      }
+    }
+  ]
+}

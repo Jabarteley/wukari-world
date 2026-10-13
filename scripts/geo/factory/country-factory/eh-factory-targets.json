@@ -1,0 +1,313 @@
+{
+  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "EH",
+    "datasetSha256": "d3db4380c2afee9644bb80daebdb16b044413f663dd45376c539c3a7ee180d33",
+    "receiptSha256": "5e33243089e87f3780b72f843867c5bde79f7d962b8c0fe678d05491e656e25d",
+    "receiptBytes": 44467,
+    "geometrySha256": "67fa8f8e44d1ca366dbeb5fc20b66bfcd6e110be7d9687943aac62bf0b6513b6",
+    "geometryBytes": 71536,
+    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "relationId": 2559126,
+    "boundaryKey": "eh",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38431865880,
+      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+      "sourceArtifact": "city-bootstrap-eh-76625e88577c373598b4141ef4285f6af082419c",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "laayoune",
+      "name": "Laayoune",
+      "country": "eh",
+      "facts": {
+        "id": "laayoune",
+        "name": "Laayoune",
+        "country": {
+          "idISOlower": "eh",
+          "name": "Western Sahara"
+        },
+        "state": {
+          "idunique": "eh-laayoune",
+          "name": "Laayoune"
+        },
+        "timezone": "Africa/El_Aaiun",
+        "centre": {
+          "lon": -13.1953921,
+          "lat": 27.154512
+        },
+        "airport": {
+          "id": "laayoune-airport",
+          "name": "Laayoune Hassan I International Airport",
+          "lon": -13.224947,
+          "lat": 27.142467,
+          "sourceUrl": "https://ourairports.com/airports/GMML/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/1888261495",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -13.39763842466019,
+          26.973631110066023,
+          -12.993145775339809,
+          27.335392889933978
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/1888261495",
+          "sourceUrl": "https://www.openstreetmap.org/node/1888261495",
+          "sourceRecord": {
+            "ref": "node/1888261495",
+            "tags": {
+              "capital": "4",
+              "check_date": "2024-12-01",
+              "name": "Laâyoune ⵍⵄⵢⵓⵏ العيون",
+              "name:af": "Laâyoune",
+              "name:an": "L'Aaiún",
+              "name:ar": "العيون",
+              "name:ast": "L'Aaiún",
+              "name:az": "Əl-Əyun",
+              "name:be": "Эль-Аюн",
+              "name:ber": "ⵍⵄⵢⵓⵏ",
+              "name:bg": "Аюн",
+              "name:bn": "লা-আয়ুন",
+              "name:br": "El Aaiún",
+              "name:ca": "Al-Aaiun",
+              "name:cs": "Al-’Ajún",
+              "name:cy": "El Aaiún",
+              "name:da": "El Aaiún",
+              "name:de": "El Aaiún",
+              "name:el": "Λααγιούν",
+              "name:en": "Laayoune",
+              "name:eo": "Ajuno",
+              "name:es": "El Aaiún",
+              "name:et": "El Aaiún",
+              "name:eu": "Aaiun",
+              "name:fa": "العیون",
+              "name:fi": "El Aaiún",
+              "name:fr": "Laâyoune",
+              "name:fy": "El-Ajûn",
+              "name:gd": "El Aaiún",
+              "name:gl": "O Aaiún",
+              "name:ha": "Laayoune",
+              "name:he": "לעיון",
+              "name:hr": "El Aaiún",
+              "name:hu": "El-Ajún",
+              "name:hy": "Էլ Այուն",
+              "name:ia": "El Aaiún",
+              "name:id": "El Aaiún",
+              "name:ie": "El Aaiún",
+              "name:io": "Laayoune",
+              "name:is": "Laâyoune",
+              "name:it": "El Aaiún",
+              "name:ja": "アイウン",
+              "name:ka": "ელ-აიუნი",
+              "name:kab": "Laɛyun",
+              "name:kk": "Эль-Аюн",
+              "name:ko": "엘아이운",
+              "name:ky": "Эль-Аюн",
+              "name:lb": "Ajun",
+              "name:lt": "Al Ajunas",
+              "name:lv": "Ajūna",
+              "name:mg": "El Aaiún",
+              "name:mk": "Ел-Ајун",
+              "name:ml": "അൽ-ആയൂൺ",
+              "name:ms": "El Aaiún",
+              "name:nb": "El Aaiún",
+              "name:nl": "Al Ajoen",
+              "name:nn": "El Aaiún",
+              "name:oc": "Al Aaiun",
+              "name:pl": "Al-Ujun",
+              "name:pt": "El Aiune",
+              "name:ro": "El Aaiún",
+              "name:ru": "Эль-Аюн",
+              "name:sc": "El Aaiún",
+              "name:sk": "El-Aaiún",
+              "name:sl": "Laayoune",
+              "name:sr": "Ел Ајун",
+              "name:sv": "Al-Ayun",
+              "name:sw": "El Aaiún",
+              "name:ta": "அல்-உயூன்",
+              "name:th": "เอลอาอายุน",
+              "name:tr": "Layun",
+              "name:uk": "Ель-Аюн",
+              "name:ur": "العیون",
+              "name:uz": "Aayyun",
+              "name:vi": "Laayoune",
+              "name:zgh": "ⵍⵄⵢⵓⵏ",
+              "name:zh": "阿尤恩",
+              "name:zh-Hant-TW": "阿尤恩",
+              "place": "city",
+              "population": "262791",
+              "population:date": "2024",
+              "source:population": "Haut-Commissariat au Plan",
+              "wikidata": "Q47837",
+              "wikimedia_commons": "Category:El Aaiún",
+              "wikipedia": "fr:Laâyoune"
+            },
+            "lon": -13.1953921,
+            "lat": 27.154512
+          },
+          "pbfSha256": "d3db4380c2afee9644bb80daebdb16b044413f663dd45376c539c3a7ee180d33"
+        },
+        "airport": {
+          "rowNumber": 30374,
+          "row": {
+            "id": "3112",
+            "ident": "GMML",
+            "type": "large_airport",
+            "name": "Laayoune Hassan I International Airport",
+            "latitude_deg": "27.142467",
+            "longitude_deg": "-13.224947",
+            "elevation_ft": "207",
+            "continent": "AF",
+            "iso_country": "EH",
+            "iso_region": "EH-U-A",
+            "municipality": "El Aaiún",
+            "scheduled_service": "yes",
+            "icao_code": "GMML",
+            "iata_code": "EUN",
+            "gps_code": "GMML",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Hassan_Airport",
+            "keywords": "GSAI, Laâyoune"
+          },
+          "rowSha256": "2d8e7d04b2945ff1ade00886ec96f7f3b5006169f4973507b33ca9ce76b89bdf",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "GMML",
+            "sourceUrl": "https://ourairports.com/airports/GMML/",
+            "matchedIdent": "GMML",
+            "municipalityMatchesCity": false,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/GMML/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "EH",
+              "+2709-01312",
+              "Africa/El_Aaiun"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Africa/El_Aaiun",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "EH",
+              "+2709-01312",
+              "Africa/El_Aaiun"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/africa/morocco-261011.osm.pbf",
+          "bytes": 243739061,
+          "sha256": "d3db4380c2afee9644bb80daebdb16b044413f663dd45376c539c3a7ee180d33",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/4108822",
+          "way/4108887",
+          "way/4108912",
+          "way/4108916",
+          "way/4108917",
+          "way/4108930",
+          "way/4108932",
+          "way/4108933",
+          "way/4108941",
+          "way/4108953",
+          "way/4108958",
+          "way/4108971",
+          "way/4108974",
+          "way/4108979",
+          "way/4108985",
+          "way/4109001",
+          "way/4109010",
+          "way/4109013",
+          "way/160459579",
+          "way/218287212",
+          "way/460181395",
+          "way/518417080",
+          "way/542791419"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              26.973631110066023,
+              -13.39763842466019,
+              27.335392889933978,
+              -12.993145775339809
+            ],
+            "core": [
+              27.109291777516507,
+              -13.245892014568964,
+              27.199732222483494,
+              -13.144892185431035
+            ],
+            "outline": [
+              26.923631110066022,
+              -13.447638424660191,
+              27.38539288993398,
+              -12.943145775339808
+            ],
+            "wide": [
+              26.37363111006602,
+              -13.99763842466019,
+              27.93539288993398,
+              -12.393145775339809
+            ]
+          },
+          "airportMarginMetres": 17106.963729625222,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "laayoune",
+      "extractSha256": {
+        "places": "8d1373b5657013bbe30ce4b33f9afbde91f9ba9727c26a81279f9773a86fdad0",
+        "extras": "e55cbdb6094946c1a51fcd17d2ff58d5fb7c3e2419f0e376b5a0a773a8b54097",
+        "water": "9b1751c1b47097ccdb273f18020e34b8508402fca2da0fbc083d592947d82a1f",
+        "landuse": "943a968bc0b6644f254948fd03439e4b823aed9bb6da6a34452e48e9fd5f337b",
+        "roads": "f7a2c26588ede5ab6d122512dad1af6aeb24492b7be60e2f3c7f53a802c4ed80"
+      },
+      "sourceJob": {
+        "city": "laayoune",
+        "sourceRunId": 38431865880,
+        "sourceArtifact": "city-bootstrap-eh-76625e88577c373598b4141ef4285f6af082419c",
+        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "datasetSha256": "d3db4380c2afee9644bb80daebdb16b044413f663dd45376c539c3a7ee180d33",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "8d1373b5657013bbe30ce4b33f9afbde91f9ba9727c26a81279f9773a86fdad0",
+          "extras": "e55cbdb6094946c1a51fcd17d2ff58d5fb7c3e2419f0e376b5a0a773a8b54097",
+          "water": "9b1751c1b47097ccdb273f18020e34b8508402fca2da0fbc083d592947d82a1f",
+          "landuse": "943a968bc0b6644f254948fd03439e4b823aed9bb6da6a34452e48e9fd5f337b",
+          "roads": "f7a2c26588ede5ab6d122512dad1af6aeb24492b7be60e2f3c7f53a802c4ed80"
+        }
+      }
+    }
+  ]
+}

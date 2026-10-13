@@ -1,0 +1,297 @@
+{
+  "expectedSourceGitSHA": "04ac8c7f0f1519c65cec56685186696a9c6fef51",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "XS",
+    "datasetSha256": "c8405db8aa5b4c3d012bfaf159cf6a55216b406da4fb53de74a2270a2e102351",
+    "receiptSha256": "660134b3b7b105aff489c56e5a7c812069aca6389c1f5c79e20eb4839abd3841",
+    "receiptBytes": 21696,
+    "geometrySha256": "a0730f7b0a7dae12ab7d7ee1cef205d3cd7717ae641a315ca19f0fd17c5d0a8e",
+    "geometryBytes": 10211,
+    "scriptSha256": "5ff4dfbbd3956af4e7502b3ff27111da8362a4ce4101a0327d3aba52b26c54cc",
+    "relationId": 3586169,
+    "boundaryKey": "xs",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38437674805,
+      "sourceSha": "ac5517527068042341162b637bfbabf0d8133ad6",
+      "sourceArtifact": "city-bootstrap-xs-ac5517527068042341162b637bfbabf0d8133ad6",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "hargeisa",
+      "name": "Hargeisa",
+      "country": "xs",
+      "facts": {
+        "id": "hargeisa",
+        "name": "Hargeisa",
+        "country": {
+          "idISOlower": "xs",
+          "name": "Somaliland"
+        },
+        "state": {
+          "idunique": "xs-hargeisa",
+          "name": "Hargeisa"
+        },
+        "timezone": "Africa/Nairobi",
+        "centre": {
+          "lon": 44.061803,
+          "lat": 9.561733
+        },
+        "airport": {
+          "id": "hargeisa-airport",
+          "name": "Egal International Airport",
+          "lon": 44.083469,
+          "lat": 9.514082,
+          "sourceUrl": "https://ourairports.com/airports/HCMH/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/4298140251",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          43.87951173893194,
+          9.380852110066021,
+          44.24409426106806,
+          9.74261388993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/4298140251",
+          "sourceUrl": "https://www.openstreetmap.org/node/4298140251",
+          "sourceRecord": {
+            "ref": "node/4298140251",
+            "tags": {
+              "alt_name": "Hargaisa",
+              "alt_name:uk": "Харґе́йса",
+              "capital": "3",
+              "name": "Hargeysa هرجيسا",
+              "name:af": "Hargeisa",
+              "name:ar": "هرجيسا",
+              "name:az": "Hargeisa",
+              "name:be": "Харгейса",
+              "name:bg": "Харгейса",
+              "name:bn": "হারগেইসা",
+              "name:br": "Hargeysa",
+              "name:ca": "Hargeisa",
+              "name:ce": "Харгейса",
+              "name:cs": "Hargeysa",
+              "name:cy": "Hargeisa",
+              "name:da": "Hargeysa",
+              "name:de": "Hargeysa",
+              "name:el": "Χαργκέισα",
+              "name:en": "Hargeisa",
+              "name:eo": "Hargejso",
+              "name:es": "Hargeisa",
+              "name:eu": "Hargeisa",
+              "name:fa": "هرجیسا",
+              "name:fi": "Hargeisa",
+              "name:fr": "Hargeisa",
+              "name:ga": "Hargeisa",
+              "name:gl": "Hargeisa",
+              "name:ha": "Hargeisa",
+              "name:hak": "Hargeysa",
+              "name:he": "הרגייסה",
+              "name:hr": "Hargeisa",
+              "name:ht": "Hargeysa",
+              "name:hu": "Hargeysa",
+              "name:hy": "Հարգեյսա",
+              "name:id": "Hargeisa",
+              "name:ie": "Hargeisa",
+              "name:is": "Hargeisa",
+              "name:it": "Hargheisa",
+              "name:ja": "ハルゲイサ",
+              "name:ka": "ჰარგეისა",
+              "name:kab": "Hargeysa",
+              "name:kk": "Харгейса",
+              "name:ko": "하르게이사",
+              "name:ku": "Hargeisa",
+              "name:la": "Hargeysa",
+              "name:lb": "Hargeysa",
+              "name:lt": "Hargeisa",
+              "name:lv": "Hargeisa",
+              "name:ml": "ഹർഗെയ്സ",
+              "name:ms": "Hargeisa",
+              "name:nan": "Hargeysa",
+              "name:nb": "Hargeisa",
+              "name:nl": "Hargeisa",
+              "name:nn": "Hargeisa",
+              "name:os": "Харгейсæ",
+              "name:pa": "ਹਰਜੀਸਾ",
+              "name:pl": "Hargejsa",
+              "name:pt": "Hargeisa",
+              "name:ro": "Hargeisa",
+              "name:ru": "Харгейса",
+              "name:sc": "Hargheisa",
+              "name:sd": "هرگيسا",
+              "name:sn": "Hargeisa",
+              "name:so": "Hargeysa",
+              "name:sr": "Hargeisa",
+              "name:sv": "Hargeisa",
+              "name:sw": "Hargeisa",
+              "name:ta": "அர்கீசொ",
+              "name:tg": "Ҳаргейса",
+              "name:th": "ฮาร์เกย์ซา",
+              "name:tr": "Hargeisa",
+              "name:uk": "Харгейса",
+              "name:ur": "ہرجيسا",
+              "name:vi": "Hargeisa",
+              "name:wal": "Harggeessa",
+              "name:zh": "哈尔格萨 / 哈爾格薩",
+              "name:zh-Hans": "哈尔格萨",
+              "name:zh-Hant": "哈爾格薩",
+              "name:zu": "Hargeisa",
+              "place": "city",
+              "population": "1960000",
+              "wikidata": "Q168652",
+              "wikipedia": "en:Hargeisa"
+            },
+            "lon": 44.061803,
+            "lat": 9.561733
+          },
+          "pbfSha256": "c8405db8aa5b4c3d012bfaf159cf6a55216b406da4fb53de74a2270a2e102351",
+          "selection": {
+            "cityOsmRef": "node/4298140251",
+            "matchedOsmRef": "node/4298140251"
+          }
+        },
+        "airport": {
+          "rowNumber": 30713,
+          "row": {
+            "id": "3171",
+            "ident": "HCMH",
+            "type": "large_airport",
+            "name": "Egal International Airport",
+            "latitude_deg": "9.514082",
+            "longitude_deg": "44.083469",
+            "elevation_ft": "4471",
+            "continent": "AF",
+            "iso_country": "SO",
+            "iso_region": "SO-WO",
+            "municipality": "Hargeisa",
+            "scheduled_service": "yes",
+            "icao_code": "HCMH",
+            "iata_code": "HGA",
+            "gps_code": "HCMH",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Hargeisa_International_Airport",
+            "keywords": "Madaarka Caalamiga a ee Cigaal, مطار هرجيسا إيغال الدولية‎)"
+          },
+          "rowSha256": "2f493380789f9b3cde456a6bd375dfa3ac5989a8758c1fdaadcb753b2e754eca",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "HCMH",
+            "sourceUrl": "https://ourairports.com/airports/HCMH/",
+            "countryOverride": {
+              "iso": "SO",
+              "reason": "OurAirports has no row country for Somaliland: Egal International Airport (HCMH, IATA HGA, Hargeisa) is filed under SO. The run requires the airport point to lie inside the exact Somaliland boundary (OSM relation 3586169), so no airport outside it can be named this way. Game venue map only, no claims; airport records do not establish current operations."
+            },
+            "matchedIdent": "HCMH",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/HCMH/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "XS",
+              "-0117+03649",
+              "Africa/Nairobi",
+              "user-assigned code XS (not in ISO 3166-1 or the pinned tzdb 2026e tables), game map only"
+            ]
+          ],
+          "zoneTabSha256": "702aadfe6390d656b42b50a1a7e62054ee80aa8884aa1b2bcf60e55fea8391f7",
+          "countryTableSha256": "5398facc53842e3d7f3f3450efe63dcf9b3a4cac691782990c6be3f4b8a80d9e",
+          "selection": {
+            "id": "Africa/Nairobi",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "XS",
+              "-0117+03649",
+              "Africa/Nairobi",
+              "user-assigned code XS (not in ISO 3166-1 or the pinned tzdb 2026e tables), game map only"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/africa/somalia-261011.osm.pbf",
+          "bytes": 164734467,
+          "sha256": "c8405db8aa5b4c3d012bfaf159cf6a55216b406da4fb53de74a2270a2e102351",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              9.380852110066021,
+              43.87951173893194,
+              9.74261388993398,
+              44.24409426106806
+            ],
+            "core": [
+              9.516512777516505,
+              44.016248576509,
+              9.606953222483495,
+              44.107357423490996
+            ],
+            "outline": [
+              9.33085211006602,
+              43.82951173893194,
+              9.79261388993398,
+              44.294094261068054
+            ],
+            "wide": [
+              8.780852110066022,
+              43.27951173893194,
+              10.342613889933979,
+              44.84409426106806
+            ]
+          },
+          "airportMarginMetres": 14731.228930000058,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "hargeisa",
+      "extractSha256": {
+        "places": "f1a37997cd892cbc440246d08f2a645149def54aaeb8299f23b27324014a8a43",
+        "extras": "343c3dd5b3c7cba3541ed283c0e02cf0e4968c24e32625cc66c5c95856af0e4e",
+        "water": "ea257d5fab6bec5bf669a26e18075cd27fc1f79c595b53c1f53bf69eeb53ddd8",
+        "landuse": "b31dcd8533b9bdb6b0ccd99a0dee66313550c278ed097ccce70403ff6a236eb2",
+        "roads": "5c005229fac996011f9efead36a62827001262e61e5d8e112d9f80e990730ffd"
+      },
+      "sourceJob": {
+        "city": "hargeisa",
+        "sourceRunId": 38437674805,
+        "sourceArtifact": "city-bootstrap-xs-ac5517527068042341162b637bfbabf0d8133ad6",
+        "sourceSha": "ac5517527068042341162b637bfbabf0d8133ad6",
+        "datasetSha256": "c8405db8aa5b4c3d012bfaf159cf6a55216b406da4fb53de74a2270a2e102351",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "f1a37997cd892cbc440246d08f2a645149def54aaeb8299f23b27324014a8a43",
+          "extras": "343c3dd5b3c7cba3541ed283c0e02cf0e4968c24e32625cc66c5c95856af0e4e",
+          "water": "ea257d5fab6bec5bf669a26e18075cd27fc1f79c595b53c1f53bf69eeb53ddd8",
+          "landuse": "b31dcd8533b9bdb6b0ccd99a0dee66313550c278ed097ccce70403ff6a236eb2",
+          "roads": "5c005229fac996011f9efead36a62827001262e61e5d8e112d9f80e990730ffd"
+        }
+      }
+    }
+  ]
+}

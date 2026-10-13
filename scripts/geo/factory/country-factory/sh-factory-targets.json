@@ -1,0 +1,358 @@
+{
+  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "SH",
+    "datasetSha256": "2a710b7af985b74d8c6dc96f2ad17cad6b2edbb51d1ec41d2f0da9b7660f4b26",
+    "receiptSha256": "b2eb6f2605987d4076095acc751492653269d44be3714d4fffdf945c11676740",
+    "receiptBytes": 14893,
+    "geometrySha256": "6d95f0c2eaf4fae0ddd1a1cf3a835f71a16b86869aef818687c0b0e13862c11c",
+    "geometryBytes": 31503,
+    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "relationId": 1964272,
+    "boundaryKey": "sh",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38431865880,
+      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+      "sourceArtifact": "city-bootstrap-sh-76625e88577c373598b4141ef4285f6af082419c",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "jamestown",
+      "name": "Jamestown",
+      "country": "sh",
+      "facts": {
+        "id": "jamestown",
+        "name": "Jamestown",
+        "country": {
+          "idISOlower": "sh",
+          "name": "St Helena"
+        },
+        "state": {
+          "idunique": "sh-jamestown",
+          "name": "Jamestown"
+        },
+        "timezone": "Africa/Abidjan",
+        "centre": {
+          "lon": -5.7160872,
+          "lat": -15.9277296
+        },
+        "airport": {
+          "id": "jamestown-airport",
+          "name": "Saint Helena International Airport",
+          "lon": -5.646066,
+          "lat": -15.958898,
+          "sourceUrl": "https://ourairports.com/airports/FHSH/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/293673697",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -5.90309170536018,
+          -16.108610489933977,
+          -5.529082694639819,
+          -15.74684871006602
+        ]
+      },
+      "profile": "microstate",
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/293673697",
+          "sourceUrl": "https://www.openstreetmap.org/node/293673697",
+          "sourceRecord": {
+            "ref": "node/293673697",
+            "tags": {
+              "capital": "yes",
+              "name": "Jamestown",
+              "name:af": "Jamestown",
+              "name:ar": "جيمز تون",
+              "name:az": "Ceymstaun",
+              "name:be": "Джэймстаўн",
+              "name:bg": "Джеймстаун",
+              "name:bn": "জেমসটাউন",
+              "name:br": "Jamestown",
+              "name:bs": "Jamestown",
+              "name:ca": "Jamestown",
+              "name:de": "Jamestown",
+              "name:el": "Τζέιμσταουν",
+              "name:en": "Jamestown",
+              "name:eo": "Ĵamestaŭno",
+              "name:es": "Jamestown",
+              "name:et": "Jamestown",
+              "name:eu": "Jamestown",
+              "name:fa": "جیمزتون",
+              "name:fi": "Jamestown",
+              "name:fr": "Jamestown",
+              "name:fy": "Jamestown",
+              "name:ga": "Jamestown",
+              "name:gl": "Jamestown",
+              "name:gv": "Jamestown",
+              "name:he": "ג'יימסטאון",
+              "name:hi": "जेम्सटाउन",
+              "name:hy": "Ջեյմսթաուն",
+              "name:id": "Jamestown",
+              "name:is": "Jamestown",
+              "name:it": "Jamestown",
+              "name:ja": "ジェームズタウン",
+              "name:ka": "ჯეიმზტაუნი",
+              "name:kk": "Джеймстаун",
+              "name:ko": "제임스타운",
+              "name:ky": "Жеймстаун",
+              "name:la": "Iacobopolis",
+              "name:lt": "Džeimstaunas",
+              "name:lv": "Džeimstauna",
+              "name:mk": "Џејмстаун",
+              "name:mr": "जेम्सटाउन",
+              "name:nb": "Jamestown",
+              "name:nl": "Jamestown",
+              "name:os": "Джеймстаун",
+              "name:pl": "Jamestown",
+              "name:pt": "Jamestown",
+              "name:ro": "Jamestown",
+              "name:ru": "Джеймстаун",
+              "name:sk": "Jamestown",
+              "name:sr": "Џејмстаун",
+              "name:sv": "Jamestown",
+              "name:sw": "Jamestown",
+              "name:ta": "ஜேம்ஸ்டவுன்",
+              "name:th": "เจมส์ทาวน์",
+              "name:tr": "Jamestown",
+              "name:uk": "Джеймстаун",
+              "name:ur": "جیمز ٹاون",
+              "name:vi": "Jamestown",
+              "name:yi": "דזשיימסטאן",
+              "name:yo": "Jamestown",
+              "official_name": "City of James Town",
+              "official_name:es": "Ciudad de Jamestown",
+              "place": "city",
+              "population": "629",
+              "wikidata": "Q30970",
+              "wikipedia": "en:Jamestown, Saint Helena"
+            },
+            "lon": -5.7160872,
+            "lat": -15.9277296
+          },
+          "pbfSha256": "2a710b7af985b74d8c6dc96f2ad17cad6b2edbb51d1ec41d2f0da9b7660f4b26"
+        },
+        "airport": {
+          "rowNumber": 26338,
+          "row": {
+            "id": "318444",
+            "ident": "FHSH",
+            "type": "medium_airport",
+            "name": "Saint Helena International Airport",
+            "latitude_deg": "-15.958898",
+            "longitude_deg": "-5.646066",
+            "elevation_ft": "1017",
+            "continent": "AF",
+            "iso_country": "SH",
+            "iso_region": "SH-SH",
+            "municipality": "Jamestown",
+            "scheduled_service": "yes",
+            "icao_code": "FHSH",
+            "iata_code": "HLE",
+            "gps_code": "FHSH",
+            "local_code": "",
+            "home_link": "http://sthelenaairport.com/",
+            "wikipedia_link": "https://en.m.wikipedia.org/wiki/Saint_Helena_Airport#",
+            "keywords": ""
+          },
+          "rowSha256": "98e659b9ba663e8e39d4fd50b047357c6910470fee97f7be2ce685f4dec3d752",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "FHSH",
+            "sourceUrl": "https://ourairports.com/airports/FHSH/",
+            "matchedIdent": "FHSH",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/FHSH/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "CI,BF,GH,GM,GN,IS,ML,MR,SH,SL,SN,TG",
+              "+0519-00402",
+              "Africa/Abidjan"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Africa/Abidjan",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "CI,BF,GH,GM,GN,IS,ML,MR,SH,SL,SN,TG",
+              "+0519-00402",
+              "Africa/Abidjan"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/africa/saint-helena-ascension-and-tristan-da-cunha-261011.osm.pbf",
+          "bytes": 900569,
+          "sha256": "2a710b7af985b74d8c6dc96f2ad17cad6b2edbb51d1ec41d2f0da9b7660f4b26",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/27931396",
+          "way/27931397",
+          "way/29033743",
+          "way/29033744",
+          "way/29033745",
+          "way/29033746",
+          "way/29035421",
+          "way/29035422",
+          "way/29035423",
+          "way/29035424",
+          "way/29035425",
+          "way/29035427",
+          "way/29037031",
+          "way/29037034",
+          "way/29037035",
+          "way/29037037",
+          "way/29037136",
+          "way/29037138",
+          "way/29038912",
+          "way/185746612",
+          "way/185746614",
+          "way/247009941",
+          "way/247009942",
+          "way/252435841",
+          "way/252435842",
+          "way/255707506",
+          "way/255707515",
+          "way/377178754",
+          "way/377178755",
+          "way/669500228",
+          "way/669500229",
+          "way/881173037",
+          "way/881173038",
+          "way/881173039",
+          "way/881173040",
+          "way/881173041",
+          "way/881173042",
+          "way/881173043",
+          "way/881173044",
+          "way/881173045",
+          "way/881173046",
+          "way/881173047",
+          "way/969613572",
+          "way/969613573",
+          "way/969613574",
+          "way/969613575",
+          "way/1189336165",
+          "way/1189543715",
+          "way/1499651792",
+          "way/1499651793",
+          "way/1499651794",
+          "way/1499651795",
+          "way/1499651796",
+          "way/1499651797",
+          "way/1499651798",
+          "way/1499651799",
+          "way/1499651800",
+          "way/1499651801",
+          "way/1499651802",
+          "way/1499651803"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -16.108610489933977,
+              -5.90309170536018,
+              -15.74684871006602,
+              -5.529082694639819
+            ],
+            "core": [
+              -15.972949822483494,
+              -5.7628065109293205,
+              -15.882509377516504,
+              -5.669367889070679
+            ],
+            "outline": [
+              -16.158610489933977,
+              -5.95309170536018,
+              -15.69684871006602,
+              -5.4790826946398195
+            ],
+            "wide": [
+              -16.708610489933978,
+              -6.5030917053601796,
+              -15.14684871006602,
+              -4.92908269463982
+            ]
+          },
+          "airportMarginMetres": 12520.680597252629,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtSquarePlaces": [
+              "square"
+            ]
+          },
+          "cityPlaceTag": "city"
+        }
+      },
+      "extractKey": "jamestown",
+      "extractSha256": {
+        "places": "e2241193395d41866d9d27222c80db67c76e2804737c3d2f69364f4d04deb459",
+        "extras": "0521687084ac8d738e4f56109b878403c3cbec996eb8c8f7341ccdf5920ea5b6",
+        "water": "9d1e185da115bc4baa7092feb42ec4dff234fb0bb01a49f026c1720223d581bd",
+        "landuse": "b47b1dff628a525fac8ddc7d4f0e46bb59f43b7229d7b99144fb4df40877c078",
+        "roads": "88d05998d27839eac05a9b8ad9df3c6018ad63fcc9dcaa8a4c66b36c851068db"
+      },
+      "sourceJob": {
+        "city": "jamestown",
+        "sourceRunId": 38431865880,
+        "sourceArtifact": "city-bootstrap-sh-76625e88577c373598b4141ef4285f6af082419c",
+        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "datasetSha256": "2a710b7af985b74d8c6dc96f2ad17cad6b2edbb51d1ec41d2f0da9b7660f4b26",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "e2241193395d41866d9d27222c80db67c76e2804737c3d2f69364f4d04deb459",
+          "extras": "0521687084ac8d738e4f56109b878403c3cbec996eb8c8f7341ccdf5920ea5b6",
+          "water": "9d1e185da115bc4baa7092feb42ec4dff234fb0bb01a49f026c1720223d581bd",
+          "landuse": "b47b1dff628a525fac8ddc7d4f0e46bb59f43b7229d7b99144fb4df40877c078",
+          "roads": "88d05998d27839eac05a9b8ad9df3c6018ad63fcc9dcaa8a4c66b36c851068db"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,330 @@
+{
+  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "MP",
+    "datasetSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+    "receiptSha256": "c520abf07f2d42ffe1d036c00bcf7b3bdb45af2ebcd3854e7c3436221b3cbfe4",
+    "receiptBytes": 11970,
+    "geometrySha256": "37e81a601a62e89908c7b72670363bd37fd0f65613a6bfe690ea6e8c27e62d60",
+    "geometryBytes": 17332,
+    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "relationId": 306004,
+    "boundaryKey": "mp",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38431865880,
+      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+      "sourceArtifact": "city-bootstrap-mp-76625e88577c373598b4141ef4285f6af082419c",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "garapan",
+      "name": "Garapan",
+      "country": "mp",
+      "facts": {
+        "id": "garapan",
+        "name": "Garapan",
+        "country": {
+          "idISOlower": "mp",
+          "name": "Northern Mariana Islands"
+        },
+        "state": {
+          "idunique": "mp-garapan",
+          "name": "Garapan"
+        },
+        "timezone": "Pacific/Guam",
+        "centre": {
+          "lon": 145.7208608,
+          "lat": 15.2070851
+        },
+        "airport": {
+          "id": "garapan-airport",
+          "name": "Saipan International Airport",
+          "lon": 145.728848,
+          "lat": 15.119384,
+          "sourceUrl": "https://ourairports.com/airports/PGSN/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/9429871410",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          145.53451840606485,
+          15.026204210066021,
+          145.90720319393515,
+          15.38796598993398
+        ]
+      },
+      "profile": "microstate",
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/9429871410",
+          "sourceUrl": "https://www.openstreetmap.org/node/9429871410",
+          "sourceRecord": {
+            "ref": "node/9429871410",
+            "tags": {
+              "name": "Garapan",
+              "place": "city",
+              "population": "3588",
+              "source": "Wikipedia",
+              "wikidata": "Q3272415",
+              "wikipedia": "en:Garapan, Saipan"
+            },
+            "lon": 145.7208608,
+            "lat": 15.2070851
+          },
+          "pbfSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b"
+        },
+        "airport": {
+          "rowNumber": 53219,
+          "row": {
+            "id": "5431",
+            "ident": "PGSN",
+            "type": "medium_airport",
+            "name": "Saipan International Airport",
+            "latitude_deg": "15.119384",
+            "longitude_deg": "145.728848",
+            "elevation_ft": "215",
+            "continent": "OC",
+            "iso_country": "MP",
+            "iso_region": "MP-U-A",
+            "municipality": "I Fadang, Saipan",
+            "scheduled_service": "yes",
+            "icao_code": "PGSN",
+            "iata_code": "SPN",
+            "gps_code": "PGSN",
+            "local_code": "GSN",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Saipan_International_Airport",
+            "keywords": "Francisco C. Ada"
+          },
+          "rowSha256": "2c34b407640f85c0589a78ee6bcbd97b1ec1e8dc6bd251b79aeebea9c6bcf5b1",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "PGSN",
+            "sourceUrl": "https://ourairports.com/airports/PGSN/",
+            "matchedIdent": "PGSN",
+            "municipalityMatchesCity": false,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/PGSN/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "GU,MP",
+              "+1328+14445",
+              "Pacific/Guam"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Pacific/Guam",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "GU,MP",
+              "+1328+14445",
+              "Pacific/Guam"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/australia-oceania/american-oceania-261011.osm.pbf",
+          "bytes": 5379930,
+          "sha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/23719116",
+          "way/23719117",
+          "way/23719118",
+          "way/23719131",
+          "way/23719137",
+          "way/23719196",
+          "way/239268243",
+          "way/296062699",
+          "way/461390681",
+          "way/683621763",
+          "way/832678236",
+          "way/832678237",
+          "way/832678238",
+          "way/832678239",
+          "way/832678240",
+          "way/832678242",
+          "way/832678244",
+          "way/832678245",
+          "way/832678248",
+          "way/832678249",
+          "way/832678250",
+          "way/832678254",
+          "way/832678255",
+          "way/832678268",
+          "way/832678289",
+          "way/832678290",
+          "way/832678306",
+          "way/832678307",
+          "way/832678308",
+          "way/832678330",
+          "way/832678335",
+          "way/832678381",
+          "way/832678384",
+          "way/832678386",
+          "way/832678391",
+          "way/832678401",
+          "way/832678402",
+          "way/832678421",
+          "way/832678450",
+          "way/832678468",
+          "way/832678469",
+          "way/832678510",
+          "way/832678517",
+          "way/832678535",
+          "way/832678552",
+          "way/832678553",
+          "way/832678555",
+          "way/832678561",
+          "way/832678562",
+          "way/832678563",
+          "way/832678566",
+          "way/832678575",
+          "way/832678591",
+          "way/832678595",
+          "way/832678599",
+          "way/832678602",
+          "way/832678628",
+          "way/832678629",
+          "way/832678671",
+          "way/832678672",
+          "way/832678673",
+          "way/832678680",
+          "way/832678697",
+          "way/832678698",
+          "way/832678700",
+          "way/832678701",
+          "way/832678702",
+          "way/832678728",
+          "way/832678756",
+          "way/832678757",
+          "way/832678768",
+          "way/832678770",
+          "way/832678783",
+          "way/832678785",
+          "way/832678794",
+          "way/832678812",
+          "way/832678813",
+          "way/832678814",
+          "way/832678815",
+          "way/832678816",
+          "way/832678817",
+          "way/832683126",
+          "way/832683127",
+          "way/832683129",
+          "way/832683130",
+          "way/832683132",
+          "way/832683134",
+          "way/832683137",
+          "way/832684712",
+          "way/832684713",
+          "way/877374696",
+          "way/877374697"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              15.026204210066021,
+              145.53451840606485,
+              15.38796598993398,
+              145.90720319393515
+            ],
+            "core": [
+              15.161864877516505,
+              145.674305408588,
+              15.252305322483496,
+              145.767416191412
+            ],
+            "outline": [
+              14.97620421006602,
+              145.48451840606484,
+              15.43796598993398,
+              145.95720319393516
+            ],
+            "wide": [
+              14.426204210066022,
+              144.93451840606485,
+              15.98796598993398,
+              146.50720319393514
+            ]
+          },
+          "airportMarginMetres": 10302.889373000036,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtSquarePlaces": [
+              "square"
+            ]
+          },
+          "cityPlaceTag": "city"
+        }
+      },
+      "extractKey": "garapan",
+      "extractSha256": {
+        "places": "6bc88daed4ca17f017e669014688469951efa25d67b5cb4ed53110ef880a518c",
+        "extras": "320ddb671f7068361055401f5edbccd628a15232a97ae5f2f1a22b6892f115fa",
+        "water": "854c2af3e96e6e27df1e58fab0bcf4dcdd6345a2bbb6c491314aa77c0d9a4336",
+        "landuse": "ea0046652a7b0b7160ad98f98c67b68085d1d4bc59cc88d6914dc585f6846b7a",
+        "roads": "590871f2adc8ff261895ed30b45992c0d4c159dfdc79d707686cfa91c32acfad"
+      },
+      "sourceJob": {
+        "city": "garapan",
+        "sourceRunId": 38431865880,
+        "sourceArtifact": "city-bootstrap-mp-76625e88577c373598b4141ef4285f6af082419c",
+        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "datasetSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "6bc88daed4ca17f017e669014688469951efa25d67b5cb4ed53110ef880a518c",
+          "extras": "320ddb671f7068361055401f5edbccd628a15232a97ae5f2f1a22b6892f115fa",
+          "water": "854c2af3e96e6e27df1e58fab0bcf4dcdd6345a2bbb6c491314aa77c0d9a4336",
+          "landuse": "ea0046652a7b0b7160ad98f98c67b68085d1d4bc59cc88d6914dc585f6846b7a",
+          "roads": "590871f2adc8ff261895ed30b45992c0d4c159dfdc79d707686cfa91c32acfad"
+        }
+      }
+    }
+  ]
+}

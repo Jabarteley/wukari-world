@@ -2,16 +2,12 @@
  "schemaVersion": 1,
  "queue": [
   {
-   "id": "kr",
-   "table": "scripts/geo/factory/country-factory/kr-factory-targets.json"
+   "id": "mc",
+   "table": "scripts/geo/factory/country-factory/mc-factory-targets.json"
   },
   {
-   "id": "id",
-   "table": "scripts/geo/factory/country-factory/id-factory-targets.json"
-  },
-  {
-   "id": "sm",
-   "table": "scripts/geo/factory/country-factory/sm-factory-targets.json"
+   "id": "va",
+   "table": "scripts/geo/factory/country-factory/va-factory-targets.json"
   }
  ]
 }

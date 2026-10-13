@@ -1,0 +1,295 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "AD",
+    "datasetSha256": "47e9c208eb833fe777ef3d7021adb63d64a490c8cbd089cb9711e85414a63b17",
+    "receiptSha256": "876f0f07a687b43b4dcf1c26205137d4cf50ad219d904d35b5f5466e0972ab41",
+    "receiptBytes": 42742,
+    "geometrySha256": "da587267d8b7e18dea93ed34dd72e96e35786f3bc37bf4ccd429b640b1f340b4",
+    "geometryBytes": 56930,
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "relationId": 9407,
+    "boundaryKey": "ad",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38313119499,
+      "sourceSha": "3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+      "sourceArtifact": "city-bootstrap-ad-3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "andorra-la-vella",
+      "name": "Andorra la Vella",
+      "country": "ad",
+      "facts": {
+        "id": "andorra-la-vella",
+        "name": "Andorra la Vella",
+        "country": {
+          "idISOlower": "ad",
+          "name": "Andorra"
+        },
+        "state": {
+          "idunique": "ad-andorra-la-vella",
+          "name": "Andorra la Vella"
+        },
+        "timezone": "Europe/Andorra",
+        "centre": {
+          "lon": 1.5212467,
+          "lat": 42.5069391
+        },
+        "airport": {
+          "id": "andorra-la-vella-airport",
+          "name": "Andorra la Vella Heliport",
+          "lon": 1.53365,
+          "lat": 42.511227,
+          "sourceUrl": "https://ourairports.com/airports/AD-ALV/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/58957648",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          1.276827819456585,
+          42.326058210066016,
+          1.7656655805434152,
+          42.68781998993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/58957648",
+          "sourceUrl": "https://www.openstreetmap.org/node/58957648",
+          "sourceRecord": {
+            "ref": "node/58957648",
+            "tags": {
+              "ISO3166-1:alpha2": "AD",
+              "admin_level": "2",
+              "alt_name:gl": "Andorra la Vella",
+              "capital": "yes",
+              "coat_of_arms": "File:Emblem of Andorra la Vella.svg",
+              "ele": "1011",
+              "name": "Andorra la Vella",
+              "name:am": "አንዶራ ላ ቬላ",
+              "name:an": "Andorra la Biella",
+              "name:ar": "أندورا لا فيلا",
+              "name:arz": "أندورا لا فيلا",
+              "name:az-Arab": "آندورا لا ویخا",
+              "name:azb": "آندورا لا ویخا",
+              "name:be": "Андора-ла-Велья",
+              "name:be-tarask": "Андора ля Вэльля",
+              "name:bg": "Андора ла Веля",
+              "name:bn": "আন্দরা লা ভেলিয়া",
+              "name:bo": "ཨན་ཌོར་ར་གྲོང་ཁྱེར།",
+              "name:br": "Andorra la Vella",
+              "name:ca": "Andorra la Vella",
+              "name:ce": "Андорра-ла-Велья",
+              "name:ckb": "ئەندۆرا لا ڤێلا",
+              "name:cv": "Андорра-ла-Вьеха",
+              "name:de": "Andorra la Vella",
+              "name:el": "Ανδόρρα λα Βέγια",
+              "name:en": "Andorra la Vella",
+              "name:eo": "Andoro Malnova",
+              "name:es": "Andorra la Vieja",
+              "name:fa": "آندورا لاولا",
+              "name:fr": "Andorre-la-Vieille",
+              "name:frp": "Andorra-la-Vielye",
+              "name:gl": "Andorra a Vella",
+              "name:he": "אנדורה לה ולה",
+              "name:ht": "Andò-la-Vyèy",
+              "name:hu": "Andorra la Vella",
+              "name:hy": "Անդորա լա Վելյա",
+              "name:hyw": "Անտորրա Լէ Վալէ",
+              "name:is": "Andorra la Vella",
+              "name:it": "Andorra la Vella",
+              "name:ja": "アンドラ・ラ・ベリャ",
+              "name:ka": "ანდორა-ლა-ველა",
+              "name:kk": "Андорра-ла-Велья",
+              "name:kk-Arab": "اندوررا-لا-ۆەليا",
+              "name:ko": "안도라라벨랴",
+              "name:ks": "انڈورا لا ویخا",
+              "name:ku": "Andorra la Vella",
+              "name:kv": "Андорра-ла-Велья",
+              "name:la": "Andorra Vetus",
+              "name:lij": "A Vella",
+              "name:lt": "Andorra la Vella",
+              "name:lv": "Andora la Velja",
+              "name:mk": "Андора ла Велја",
+              "name:ml": "അൻഡോറ ല വെല്ല",
+              "name:mr": "अँडोरा ला व्हेल्या",
+              "name:nah": "Andorra in Huehcāuh",
+              "name:nl": "Andorra la Vella",
+              "name:oc": "Andòrra la Vièlha",
+              "name:os": "Андоррæ-ла-Велья",
+              "name:ota": "آندورا لا ویخا",
+              "name:pl": "Andora",
+              "name:pnb": "انڈورا لا ویلا",
+              "name:pt": "Andorra-a-Velha",
+              "name:ro": "Andorra la Vella",
+              "name:ru": "Андорра-ла-Велья",
+              "name:sah": "Андорра ла Велья",
+              "name:sgs": "Anduora",
+              "name:sk": "Andorra",
+              "name:sr": "Андора ла Веља",
+              "name:sv": "Andorra la Vella",
+              "name:ta": "அன்டோரா லா வெல்லா",
+              "name:tet": "Andorra Tuan",
+              "name:tg": "Андорра-ла-Веля",
+              "name:th": "อันดอร์ราลาเบยา",
+              "name:tl": "Lungsod ng Andorra la Vella",
+              "name:tr": "Andorra la Vella",
+              "name:udm": "Андорра-ла-Велья",
+              "name:ug": "ئاندوررا كەنتى",
+              "name:uk": "Андорра-ла-Велья",
+              "name:ur": "انڈورا لا ویلا",
+              "name:vep": "Andorr la Vel'j",
+              "name:zh": "安道爾城",
+              "name:zh-Hans": "安道尔城",
+              "name:zh-Hant": "安道爾城",
+              "place": "town",
+              "population": "24678",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "source:name:oc": "ieo-bdtopoc",
+              "website": "https://www.andorralavella.ad",
+              "wikidata": "Q1863",
+              "wikipedia": "ca:Andorra la Vella"
+            },
+            "lon": 1.5212467,
+            "lat": 42.5069391
+          },
+          "pbfSha256": "47e9c208eb833fe777ef3d7021adb63d64a490c8cbd089cb9711e85414a63b17"
+        },
+        "airport": {
+          "rowNumber": 9571,
+          "row": {
+            "id": "41841",
+            "ident": "AD-ALV",
+            "type": "heliport",
+            "name": "Andorra la Vella Heliport",
+            "latitude_deg": "42.511227",
+            "longitude_deg": "1.53365",
+            "elevation_ft": "3450",
+            "continent": "EU",
+            "iso_country": "AD",
+            "iso_region": "AD-08",
+            "municipality": "Escaldes-Engordany",
+            "scheduled_service": "no",
+            "icao_code": "",
+            "iata_code": "ALV",
+            "gps_code": "",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Andorra_la_Vella_Heliport",
+            "keywords": "Our Lady of Meritxell Hospital"
+          },
+          "rowSha256": "e2c6e7c008b257b362227f7468ca83ee9ffe0da282e1e3acb5d6042ef22bd3b7",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "AD-ALV",
+            "sourceUrl": "https://ourairports.com/airports/AD-ALV/",
+            "hubWaiver": "Andorra has no airport with scheduled service in the pinned OurAirports CSV; its own named Andorra la Vella Heliport (AD-ALV, IATA ALV) is the game air hub. Airport records do not establish current operations.",
+            "matchedIdent": "AD-ALV",
+            "municipalityMatchesCity": false,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/AD-ALV/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "AD",
+              "+4230+00131",
+              "Europe/Andorra"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Europe/Andorra",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "AD",
+              "+4230+00131",
+              "Europe/Andorra"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/europe/andorra-261011.osm.pbf",
+          "bytes": 3488807,
+          "sha256": "47e9c208eb833fe777ef3d7021adb63d64a490c8cbd089cb9711e85414a63b17",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              42.326058210066016,
+              1.276827819456585,
+              42.68781998993398,
+              1.7656655805434152
+            ],
+            "core": [
+              42.4617188775165,
+              1.4602749675771234,
+              42.55215932248349,
+              1.5822184324228767
+            ],
+            "outline": [
+              42.27605821006602,
+              1.226827819456585,
+              42.737819989933975,
+              1.8156655805434152
+            ],
+            "wide": [
+              41.726058210066014,
+              0.676827819456585,
+              43.28781998993398,
+              2.365665580543415
+            ]
+          },
+          "airportMarginMetres": 19038.960711050568,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "andorra-la-vella",
+      "extractSha256": {
+        "places": "012e1acf646932c219dddadb3a01124e3827849127fab1bdc0775a06eb8e4371",
+        "extras": "2f2ba65533657576476bb964c602f55f42be97ec027ebe286fde4f2f50e53a0e",
+        "water": "0818e65fc1795bcda52da6cfece0cc8c0e403e4b5abc059eb2f0df455e26c230",
+        "landuse": "fc28a3dac1dc6186a50d6e6015b3c0bf5dce7a9e497cf33325fc45257591cc79",
+        "roads": "dfa9c445d04da9ca229d0200a071c439e559e40a899262549684d55150709f38"
+      },
+      "sourceJob": {
+        "city": "andorra-la-vella",
+        "sourceRunId": 38313119499,
+        "sourceArtifact": "city-bootstrap-ad-3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+        "sourceSha": "3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+        "datasetSha256": "47e9c208eb833fe777ef3d7021adb63d64a490c8cbd089cb9711e85414a63b17",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "012e1acf646932c219dddadb3a01124e3827849127fab1bdc0775a06eb8e4371",
+          "extras": "2f2ba65533657576476bb964c602f55f42be97ec027ebe286fde4f2f50e53a0e",
+          "water": "0818e65fc1795bcda52da6cfece0cc8c0e403e4b5abc059eb2f0df455e26c230",
+          "landuse": "fc28a3dac1dc6186a50d6e6015b3c0bf5dce7a9e497cf33325fc45257591cc79",
+          "roads": "dfa9c445d04da9ca229d0200a071c439e559e40a899262549684d55150709f38"
+        }
+      }
+    }
+  ]
+}

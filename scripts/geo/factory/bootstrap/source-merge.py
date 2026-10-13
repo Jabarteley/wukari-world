@@ -9,6 +9,10 @@ merged object by object; every later stage runs unchanged on the merged file (se
 Merge rule: a sorted union by (type, id). An object present in several inputs is written once and must be the same
 version in every input (one snapshot, so identical); a version or content difference is a HOLD, never a choice.
 Uses pyosmium (the workflow's pinned osmium 4.3.1), streaming, so memory does not grow with the inputs.
+
+Also here: the city sub-extract rule for very large countries (countrySource.cityExtract; validate_city_extract,
+city_extract_headers, city_extract_scope): boundary from the full country file, city metadata and layers from a
+same-snapshot regional sub-extract that wholly contains the city (README-batch.md, City sub-extract).
 """
 import argparse
 import json
@@ -191,6 +195,139 @@ def primary_scope(city_id, centre, boxes, boundary_geojson, primary_box):
         raise MergeError(f'{city_id}: extraction boxes {outside} reach beyond the primary extract box {primary_box}; HOLD')
     return {'city': city_id, 'centreInsideAdmin0': True, 'boxesInsidePrimaryExtract': ['play', 'core', 'outline'],
             'primaryHeaderBox': primary_box}
+
+
+CITY_EXTRACT_KEYS = {'url', 'bytes', 'md5', 'snapshotDate', 'reason', 'polyUrl', 'polySha256', 'primaryPolyUrl', 'primaryPolySha256'}
+CITY_BOXES = ('play', 'core', 'outline')
+# Area (square degrees, about 1 m2 at the equator) below which a box part outside the sub-extract .poly counts as no area:
+# Geofabrik draws a region's .poly and its country's .poly from shared vertices, and their difference leaves float slivers.
+POLY_SLIVER_DEGREES2 = 1e-10
+
+
+def poly_url(pbf_url):
+    """The Geofabrik clip polygon published beside a dated extract: <region>-YYMMDD.osm.pbf -> <region>.poly."""
+    match = GEOFABRIK.fullmatch(pbf_url)
+    return pbf_url[:match.start(2) - 1] + '.poly'
+
+
+def validate_city_extract(source):
+    """Table field countrySource.cityExtract (README-batch.md, City sub-extract). None when absent.
+
+    For very large countries: the admin-0 boundary comes from the full country file (countrySource.url, plus neighbours),
+    the city metadata and five layers from a same-snapshot official regional sub-extract that contains the city.
+    """
+    if 'cityExtract' not in source:
+        return None
+    extract = source['cityExtract']
+    if not isinstance(extract, dict) or set(extract) != CITY_EXTRACT_KEYS:
+        raise ValueError('countrySource.cityExtract must contain exactly ' + ', '.join(sorted(CITY_EXTRACT_KEYS)))
+    primary = GEOFABRIK.fullmatch(source.get('url', ''))
+    if not primary:
+        raise ValueError('a city sub-extract needs a dated Geofabrik primary URL')
+    url = extract['url']
+    match = GEOFABRIK.fullmatch(url) if isinstance(url, str) else None
+    if not match:
+        raise ValueError(f'city extract URL must be a dated official Geofabrik .osm.pbf: {url}')
+    if url == source['url'] or url in {item.get('url') for item in source.get('neighbours', []) if isinstance(item, dict)}:
+        raise ValueError('city extract URL repeats the primary or a neighbour')
+    if extract['snapshotDate'] != source['snapshotDate'] or match[2] != primary[2] or match[2] != snapshot_compact(source['snapshotDate']):
+        raise ValueError(f'city extract {url} is not the same snapshot as the primary ({source["snapshotDate"]}); mixed snapshots are refused')
+    if type(extract['bytes']) is not int or not 0 < extract['bytes'] < source['bytes']:
+        raise ValueError('city extract needs a positive integer byte pin smaller than the full country file')
+    if not isinstance(extract['md5'], str) or not re.fullmatch(r'[0-9a-f]{32}', extract['md5']):
+        raise ValueError('city extract needs a 32-hex MD5 pin')
+    if extract['polyUrl'] != poly_url(url) or extract['primaryPolyUrl'] != poly_url(source['url']):
+        raise ValueError('polyUrl/primaryPolyUrl must be the Geofabrik .poly published beside the city extract / the primary')
+    for key in ('polySha256', 'primaryPolySha256'):
+        if not isinstance(extract[key], str) or not re.fullmatch(r'[0-9a-f]{64}', extract[key]):
+            raise ValueError(f'city extract needs a 64-hex {key} pin')
+    if not isinstance(extract['reason'], str) or not extract['reason'].strip() or extract['reason'] != extract['reason'].strip():
+        raise ValueError('city extract needs a non-empty reason (why the full country file is not scanned for the city)')
+    return extract
+
+
+def city_extract_headers(primary, neighbours, city, snapshot_date):
+    """Every input of a sub-extract run carries the SAME replication timestamp, on the snapshot date."""
+    records = {'primary': header_record(primary), 'neighbours': [header_record(path) for path in neighbours], 'cityExtract': header_record(city)}
+    stamps = [records['primary'], *records['neighbours'], records['cityExtract']]
+    timestamps = {record['osmosis_replication_timestamp'] for record in stamps}
+    if len(timestamps) != 1 or not next(iter(timestamps)).startswith(snapshot_date + 'T'):
+        raise MergeError('full country file, neighbours and city extract do not share one replication timestamp on the snapshot date '
+                         f'{snapshot_date}: {[record["osmosis_replication_timestamp"] for record in stamps]}; HOLD')
+    if records['cityExtract']['box'] is None:
+        raise MergeError('city extract header has no bounding box; HOLD')
+    return {'headerTimestamp': next(iter(timestamps)), 'primaryBox': records['primary']['box'], 'cityExtractBox': records['cityExtract']['box'],
+            'inputHeaders': records}
+
+
+def parse_poly(text):
+    """Osmosis .poly: a name line, then sections (name line, 'lon lat' lines, END; a '!' name is a hole), then END."""
+    from shapely.geometry import Polygon
+    from shapely.ops import unary_union
+    lines = [line.strip() for line in text.splitlines()]
+    outers, holes, index = [], [], 1
+    while index < len(lines):
+        name = lines[index]
+        index += 1
+        if not name:
+            continue
+        if name == 'END':
+            break
+        points = []
+        while index < len(lines) and lines[index] != 'END':
+            parts = lines[index].split()
+            if len(parts) != 2:
+                raise MergeError(f'.poly line {index + 1} is not "lon lat"')
+            points.append((float(parts[0]), float(parts[1])))
+            index += 1
+        if index >= len(lines) or len(points) < 3:
+            raise MergeError('.poly section is unterminated or has fewer than three points')
+        index += 1
+        polygon = Polygon(points)
+        if not polygon.is_valid or polygon.is_empty:
+            raise MergeError(f'.poly section {name!r} is not a valid polygon')
+        (holes if name.startswith('!') else outers).append(polygon)
+    if not outers:
+        raise MergeError('.poly has no outer section')
+    area = unary_union(outers)
+    return area.difference(unary_union(holes)) if holes else area
+
+
+def city_extract_scope(city_id, centre, boxes, boundary_geojson, city_box, city_poly_text, primary_poly_text):
+    """Owner rule (13 Oct): a city read from a regional sub-extract must lie wholly inside it.
+
+    - centre inside the exact admin-0 polygon (assembled from the full country file) and inside the sub-extract .poly;
+    - play, core and outline boxes inside the sub-extract header box and inside its .poly. One allowance, recorded per box:
+      a box part outside the sub-extract .poly that is also outside the FULL country file's .poly (open water beyond the
+      national clip, e.g. Lake Ontario south of Toronto) holds no data in either file, so the sub-extract loses nothing there.
+    Venue containment later still uses the exact admin-0 polygon (country-scope.mjs), unchanged.
+    """
+    from shapely.geometry import Point, box, shape
+    country = shape(json.loads(Path(boundary_geojson).read_text()))
+    point = Point(centre['lon'], centre['lat'])
+    if not country.contains(point):
+        raise MergeError(f'{city_id}: city centre lies outside the exact admin-0 boundary of the country; HOLD')
+    sub, primary = parse_poly(city_poly_text), parse_poly(primary_poly_text)
+    if not sub.contains(point):
+        raise MergeError(f'{city_id}: city centre lies outside the city extract .poly; HOLD')
+    outside_header = [label for label in CITY_BOXES if not box_inside(boxes[label], city_box)]
+    if outside_header:
+        raise MergeError(f'{city_id}: boxes {outside_header} reach beyond the city extract header box {city_box}; HOLD')
+    rows, failed = {}, []
+    for label in CITY_BOXES:
+        south, west, north, east = boxes[label]
+        rectangle = box(west, south, east, north)
+        rest = rectangle.difference(sub)
+        inside_primary = 0.0 if rest.is_empty else rest.intersection(primary).area
+        rows[label] = {'outsideCityExtractPolyFraction': round(rest.area / rectangle.area, 6),
+                       'outsideCityExtractPolyInsidePrimaryPolyDegrees2': inside_primary}
+        if inside_primary > POLY_SLIVER_DEGREES2:
+            failed.append(label)
+    if failed:
+        raise MergeError(f'{city_id}: boxes {failed} reach outside the city extract .poly into the area of the full country file; HOLD')
+    return {'city': city_id, 'centreInsideAdmin0': True, 'centreInsideCityExtractPoly': True,
+            'boxesInsideCityExtractHeaderBox': list(CITY_BOXES), 'cityExtractHeaderBox': city_box, 'boxes': rows,
+            'rule': 'play/core/outline inside the city extract header box and .poly; a part outside that .poly must also lie outside the full country file .poly'}
 
 
 def main():

@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
-import { validateSourceInputs } from './source-inputs.mjs';
+import { validateSourceInputs, cityExtractInput } from './source-inputs.mjs';
 import { profileFor } from './profile.mjs';
 const [rootArg, manifestArg, receiptRootArg = 'world/playable-africa-rollout'] = process.argv.slice(2);
 if (!rootArg || !manifestArg || !/^world\/playable-[a-z-]+-rollout$/.test(receiptRootArg)) throw Error('Usage: node --experimental-strip-types integrate-city-receipts.mjs <worktree> <private manifest> [world/playable-<region>-rollout]');
@@ -29,7 +29,12 @@ for (const { id, extract, sourceInputs } of manifest.cities) {
   const profile = profileFor(CONFIG.profile), emptySlots = CONFIG.emptySlots ?? [];
   if (provenance.cityId !== id || PLACES.length < profile.minimumPlaces) throw Error(`${id}: source identity or place minimum failed`);
   // Merged primary+neighbour source: datasetSha256 is the merged file's; the dated inputs are recorded beside it.
-  if (sourceInputs !== undefined) validateSourceInputs(sourceInputs, { url: provenance.datasetUrl });
+  // City sub-extract: datasetUrl/datasetSha256 are the city-extract input's; the primary (boundary) file is listed first.
+  if (sourceInputs !== undefined) {
+    validateSourceInputs(sourceInputs, { datasetUrl: provenance.datasetUrl });
+    const cityExtract = cityExtractInput(sourceInputs);
+    if (cityExtract && cityExtract.sha256 !== provenance.datasetSha256) throw Error(`${id}: extract datasetSha256 differs from the city-extract source input`);
+  }
   const generatedAssets = Object.fromEntries(['facts.ts', 'geometry.ts', 'places.ts', 'terrain.ts', 'index.ts', 'content.ts', 'map.ts'].map(name => {
     const raw = readFileSync(join(root, directory, name)); return [name, { bytes: raw.length, sha256: hash(raw) }];
   }));

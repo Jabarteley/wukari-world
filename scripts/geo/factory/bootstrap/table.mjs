@@ -1,11 +1,22 @@
 import { validateCountryScopePolicy, loadCountryScope, assertCountryFacts } from '../country-scope.mjs';
-import { validateSourceInputs } from '../source-inputs.mjs';
+import { validateSourceInputs, cityExtractInput } from '../source-inputs.mjs';
 import { PROFILE_NAMES } from '../profile.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 
+const KNOBS = JSON.parse(readFileSync(join(fileURLToPath(new URL('.', import.meta.url)), 'geometry-knobs.json'), 'utf8'));
+// seed.geometry knobs (bootstrap/geometry-knobs.json) reach the factory target unchanged; the same ranges as batch-run.py, batch.mjs.
+function assertGeometryKnobs(id, knobs) {
+  assert.ok(knobs && typeof knobs === 'object' && !Array.isArray(knobs) && Object.keys(knobs).length, `${id}: geometry must be a non-empty object`);
+  for (const [key, value] of Object.entries(knobs)) {
+    const spec = KNOBS.geometry[key];
+    assert.ok(spec, `${id}: unsupported geometry knob ${key}`);
+    assert.ok(typeof value === 'number' && Number.isFinite(value) && value >= spec.min && value <= spec.max && (!spec.integer || Number.isInteger(value)), `${id}: geometry.${key} out of range`);
+  }
+}
 const [input, output, boundaryPolicyFile, generationSourceSHA] = process.argv.slice(2);
 if (!input || !output || !generationSourceSHA) throw Error('Usage: table.mjs BOOTSTRAP_ARTIFACT TARGET_TABLE BOUNDARY_POLICY_JSON_OR_DASH GENERATION_SOURCE_SHA');
 assert.match(generationSourceSHA, /^[0-9a-f]{40}$/, 'explicit generation baseline required');
@@ -28,6 +39,7 @@ if (batch) {
     if (city.sceneWaterExtent !== undefined) assert.ok(['play', 'reach'].includes(city.sceneWaterExtent), `${city.id}: invalid sceneWaterExtent`);
     if (city.profile !== undefined) assert.ok(PROFILE_NAMES.includes(city.profile), `${city.id}: invalid profile`);
     if (city.namesUnit !== undefined) assert.ok(typeof city.namesUnit === 'string' && city.namesUnit.trim(), `${city.id}: namesUnit must be a non-empty string`);
+    if (city.geometry !== undefined) assertGeometryKnobs(city.id, city.geometry);
     if (city.selectionExclusions !== undefined) {
       assert.ok(Array.isArray(city.selectionExclusions), `${city.id}: selectionExclusions must be an array`);
       const refs = new Set();
@@ -59,7 +71,7 @@ if (batch) {
 }
 
 const downloads = batch ? read('receipts/downloads.json') : null;
-let countryScope;
+let countryScope, cityExtract = null;
 if (batch) {
   assert.equal(read('country-boundary/result.json').status, 'OSM_COUNTRY_BOUNDARY_CANDIDATE', 'country boundary result missing/held');
   const summary = result.countryBoundary;
@@ -70,18 +82,23 @@ if (batch) {
   const receipt = JSON.parse(rawReceipt);
   assert.equal(hash(rawReceipt), summary.receiptSha256);
   assert.equal(receipt.countryISO, summary.countryISO);
-  assert.equal(receipt.source.sha256, downloads.pbf.sha256);
-  assert.equal(receipt.source.bytes, downloads.pbf.bytes);
-  assert.equal(receipt.source.url, downloads.pbf.url);
-  assert.equal(receipt.source.date, downloads.pbf.snapshotDate);
+  // City sub-extract: downloads.pbf is the city extract (what metadata and layers read); the boundary read the primary input.
+  cityExtract = cityExtractInput(downloads.pbf.sourceInputs);
+  const boundarySource = cityExtract ? downloads.pbf.sourceInputs[0] : downloads.pbf;
+  if (cityExtract) for (const key of ['url', 'bytes', 'md5', 'sha256', 'snapshotDate']) assert.equal(downloads.pbf[key], cityExtract[key], `downloads.pbf ${key} must be the city extract's`);
+  assert.equal(receipt.source.sha256, boundarySource.sha256);
+  assert.equal(receipt.source.bytes, boundarySource.bytes);
+  assert.equal(receipt.source.url, boundarySource.url);
+  assert.equal(receipt.source.date, boundarySource.snapshotDate);
   // Neighbour merge: one dataset hash (the merged file) everywhere; the inputs must agree between downloads and boundary receipts.
-  if (downloads.pbf.sourceInputs !== undefined) validateSourceInputs(downloads.pbf.sourceInputs, { url: downloads.pbf.url, date: downloads.pbf.snapshotDate });
+  if (downloads.pbf.sourceInputs !== undefined) validateSourceInputs(downloads.pbf.sourceInputs, { url: boundarySource.url, date: downloads.pbf.snapshotDate, datasetUrl: downloads.pbf.url });
   assert.deepEqual(receipt.source.sourceInputs, downloads.pbf.sourceInputs, 'boundary and download source inputs differ');
   assert.equal(receipt.geometry.sha256, summary.sha256);
   const job = candidates[0].sourceJob;
   countryScope = {
     kind: 'osm-admin0-boundary-v1', countryISO: receipt.countryISO,
-    datasetSha256: receipt.source.sha256, receiptSha256: hash(rawReceipt), receiptBytes: rawReceipt.length,
+    datasetSha256: cityExtract ? cityExtract.sha256 : receipt.source.sha256, ...(cityExtract ? { boundaryDatasetSha256: receipt.source.sha256 } : {}),
+    receiptSha256: hash(rawReceipt), receiptBytes: rawReceipt.length,
     geometrySha256: receipt.geometry.sha256, geometryBytes: receipt.geometry.bytes,
     scriptSha256: receipt.scriptSha256, relationId: receipt.relation.id,
     boundaryKey: receipt.countryISO.toLowerCase(), directory: 'country-boundary',
@@ -129,6 +146,15 @@ for (const city of candidates) {
     assert.equal(sources.airport.csvSha256, downloads.airports.sha256);
     assert.equal(sources.airport.snapshotDate, downloads.airports.snapshotDate);
     assert.equal(sources.bounds.geometrySourceGitSHA, downloads.geometrySourceSha);
+    if (cityExtract) {
+      // Owner rule (13 Oct): each city read from the sub-extract carries its passed containment receipt (source-merge.py city_extract_scope).
+      const scope = read(`receipts/${city.id}-city-extract-scope.json`);
+      assert.equal(scope.city, city.id);
+      assert.ok(scope.centreInsideAdmin0 === true && scope.centreInsideCityExtractPoly === true, `${city.id}: city extract scope not proved`);
+      assert.deepEqual(scope.boxesInsideCityExtractHeaderBox, ['play', 'core', 'outline']);
+      for (const key of ['url', 'sha256', 'polyUrl', 'polySha256', 'primaryPolyUrl', 'primaryPolySha256']) assert.equal(scope.cityExtract?.[key], cityExtract[key], `${city.id}: city extract scope ${key}`);
+      assert.equal(scope.boundaryReceiptSha256, hash(readFileSync(join(root, 'country-boundary/receipt.json'))));
+    }
     assert.deepEqual({ sourceRunId: job.sourceRunId, sourceSha: job.sourceSha, sourceArtifact: job.sourceArtifact }, { sourceRunId: countryScope.boundaryJob.sourceRunId, sourceSha: countryScope.boundaryJob.sourceSha, sourceArtifact: countryScope.boundaryJob.sourceArtifact }, 'shared source/boundary producer identity differs');
     const canonicalRow = JSON.stringify(Object.fromEntries(Object.entries(sources.airport.row).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)));
     assert.equal(hash(canonicalRow.replace(/[\u0080-\uffff]/g, char => '\\u' + char.charCodeAt(0).toString(16).padStart(4, '0'))), sources.airport.rowSha256);
@@ -159,6 +185,7 @@ for (const city of candidates) {
     ...(batch && city.namesUnit !== undefined ? { namesUnit: city.namesUnit } : {}),
     ...(batch && city.profile !== undefined ? { profile: city.profile } : {}),
     ...(batch && city.selectionExclusions !== undefined ? { selectionExclusions: city.selectionExclusions } : {}),
+    ...(batch && city.geometry !== undefined ? { geometry: city.geometry } : {}),
     metadataSources: { ...sources, airport: { ...sources.airport, sourceUrl: facts.airport.sourceUrl } },
     extractKey: metadata.id, extractSha256: job.extractSha256, sourceJob: job });
 }

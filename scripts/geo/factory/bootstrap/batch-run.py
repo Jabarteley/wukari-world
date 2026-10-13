@@ -23,7 +23,8 @@ _merge_spec = importlib.util.spec_from_file_location('source_merge', HERE / 'sou
 _merge = importlib.util.module_from_spec(_merge_spec)
 _merge_spec.loader.exec_module(_merge)
 
-SEED_KEYS = {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'sceneWaterExtent', 'namesUnit', 'selectionExclusions', 'profile'}
+SEED_KEYS = {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'sceneWaterExtent', 'namesUnit', 'selectionExclusions', 'geometry', 'playBox', 'profile'}
+KNOBS = json.loads((HERE / 'geometry-knobs.json').read_text())
 
 def digest_many(path, *algorithms):
     if not algorithms or len(set(algorithms)) != len(algorithms):
@@ -82,6 +83,8 @@ def validate(table):
             raise ValueError(f"{seed.get('id', 'seed')}: namesUnit must be a non-empty string")
         selection_exclusions(seed)
         _shared._metadata.profile_rules(seed)
+        geometry_knobs(seed)
+        play_box(seed)
         shared_seed = {key: seed[key] for key in ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile')
                        if key in seed}
         _shared.validate({'schemaVersion': 1, 'geometrySourceSha': table.get('geometrySourceSha'),
@@ -92,10 +95,11 @@ def validate(table):
         date.fromisoformat(snapshot)
     if source['url'].rsplit('/', 1)[1][-14:-8] != source['snapshotDate'][2:].replace('-', ''):
         raise ValueError('dated PBF URL and snapshot date disagree')
-    unknown_source = set(source) - {'url', 'bytes', 'md5', 'snapshotDate', 'neighbours'}
+    unknown_source = set(source) - {'url', 'bytes', 'md5', 'snapshotDate', 'neighbours', 'cityExtract'}
     if unknown_source:
         raise ValueError(f'unsupported countrySource fields: {sorted(unknown_source)}')
     _merge.validate_neighbours(source)
+    _merge.validate_city_extract(source)
     return seeds, source, airports
 
 def scene_water_policy(seed):
@@ -121,6 +125,44 @@ def selection_exclusions(seed):
             raise ValueError(f"{seed.get('id', 'seed')}: selection exclusion {ref} requires a non-empty reason")
         seen.add(ref)
     return exclusions
+
+def number_in_range(label, value, spec):
+    if isinstance(value, bool) or not isinstance(value, (int, float)) or value != value or not spec['min'] <= value <= spec['max']:
+        raise ValueError(f"{label} must be a number from {spec['min']} to {spec['max']}")
+    if spec.get('integer') and (isinstance(value, float) and not value.is_integer()):
+        raise ValueError(f"{label} must be an integer")
+    return value
+
+def geometry_knobs(seed):
+    """seed.geometry: recipe geometry knobs for the factory stage (bootstrap/geometry-knobs.json); only the named knobs change."""
+    knobs = seed.get('geometry', {})
+    if not isinstance(knobs, dict) or (seed.get('geometry') is not None and not knobs):
+        raise ValueError(f"{seed.get('id', 'seed')}: geometry must be a non-empty object")
+    unknown = sorted(set(knobs) - set(KNOBS['geometry']))
+    if unknown:
+        raise ValueError(f"{seed.get('id', 'seed')}: unsupported geometry knobs {unknown}; allowed {sorted(KNOBS['geometry'])}")
+    for key, value in knobs.items():
+        number_in_range(f"{seed.get('id', 'seed')}: geometry.{key}", value, KNOBS['geometry'][key])
+    return knobs
+
+def play_box(seed):
+    """seed.playBox: half-widths in km for the source-stage bounds (bounds-policy.mjs defaults 20 and 5); the airport box still joins the play box."""
+    box = seed.get('playBox', {})
+    if not isinstance(box, dict) or (seed.get('playBox') is not None and not box):
+        raise ValueError(f"{seed.get('id', 'seed')}: playBox must be a non-empty object")
+    unknown = sorted(set(box) - set(KNOBS['playBox']))
+    if unknown:
+        raise ValueError(f"{seed.get('id', 'seed')}: unsupported playBox fields {unknown}")
+    for key, value in box.items():
+        number_in_range(f"{seed.get('id', 'seed')}: playBox.{key}", value, KNOBS['playBox'][key])
+    play, core = box.get('playKm', 20), box.get('coreKm', 5)
+    if core > play:
+        raise ValueError(f"{seed.get('id', 'seed')}: playBox.coreKm must not exceed playKm")
+    return box
+
+def geometry_policy(seed):
+    return {**({'geometry': geometry_knobs(seed)} if seed.get('geometry') is not None else {}),
+            **({'playBox': play_box(seed)} if seed.get('playBox') is not None else {})}
 
 def selection_exclusions_policy(seed):
     return {'selectionExclusions': selection_exclusions(seed)}
@@ -276,10 +318,14 @@ def validate_only(table_path):
         manifest, files = timezone_source_files()
         seed_report = check_seeds_offline(seeds, files['zone1970'][0], files['iso3166'][0])
         neighbours = _merge.validate_neighbours(source)
+        city_extract = _merge.validate_city_extract(source)
         report.update(ids=[seed['id'] for seed in seeds], countryISO=seeds[0]['countryISO'],
                       source={'url': source['url'], 'bytes': source['bytes'], 'md5': source['md5'], 'snapshotDate': source['snapshotDate'],
-                              **({'neighbours': [{key: item[key] for key in ('url', 'bytes', 'md5', 'snapshotDate')} for item in neighbours],
-                                  'downloadBytesTotal': source['bytes'] + sum(item['bytes'] for item in neighbours)} if neighbours else {})},
+                              **({'neighbours': [{key: item[key] for key in ('url', 'bytes', 'md5', 'snapshotDate')} for item in neighbours]} if neighbours else {}),
+                              **({'cityExtract': {key: city_extract[key] for key in ('url', 'bytes', 'md5', 'snapshotDate', 'polyUrl', 'primaryPolyUrl')}} if city_extract else {}),
+                              **({'downloadBytesTotal': source['bytes'] + sum(item['bytes'] for item in neighbours) + (city_extract['bytes'] if city_extract else 0),
+                                  'mode': 'city sub-extract: boundary from the full file (+ neighbour closures), city metadata and layers from cityExtract' if city_extract else 'neighbour merge'}
+                                 if neighbours or city_extract else {})},
                       timezoneRelease=manifest['release'], seeds=seed_report)
         held = [row for row in seed_report if row['status'] != 'OK']
         report['status'] = 'HOLD' if held else 'VALID'
@@ -336,10 +382,41 @@ def main():
         pbf_sha = pbf_hashes['sha256']
         csv_sha = observed('airport-sha256', digest, csv)
         neighbours = _merge.validate_neighbours(source)
-        # dataset: the one PBF every later stage reads. Without neighbours it is the primary file, unchanged.
+        city_extract = _merge.validate_city_extract(source)
+        # dataset: the PBF the city metadata and extraction read. Without neighbours or a city extract it is the primary file,
+        # unchanged; with neighbours the merged file; with a city extract the regional sub-extract. The boundary reads
+        # boundary_pbf: the same file, except in the city sub-extract mode (full country file plus neighbour closures).
         dataset = {'url': source['url'], 'bytes': source['bytes'], 'md5': source['md5'], 'snapshotDate': source['snapshotDate']}
-        source_inputs, primary_box = None, None
-        if neighbours:
+        source_inputs, primary_box, city_headers, neighbour_paths = None, None, None, []
+        if city_extract:
+            # City sub-extract (README-batch.md): no full merge. The primary and neighbours feed only the admin-0 closure.
+            source_inputs = [{'role': 'primary', 'url': source['url'], 'snapshotDate': source['snapshotDate'], 'bytes': source['bytes'], 'md5': source['md5'], 'sha256': pbf_sha}]
+            input_http = [source_http]
+            for index, neighbour in enumerate(neighbours, 1):
+                path = out / 'downloads' / f'neighbour-{index}.osm.pbf'
+                input_http.append(observed(f'neighbour-{index}-download', download, neighbour['url'], path))
+                hashes = observed(f'neighbour-{index}-checksums', verify_country_checksums, path, neighbour['bytes'], neighbour['md5'])
+                source_inputs.append({'role': 'neighbour', 'url': neighbour['url'], 'snapshotDate': neighbour['snapshotDate'], 'bytes': neighbour['bytes'], 'md5': neighbour['md5'], 'sha256': hashes['sha256'], 'reason': neighbour['reason']})
+                neighbour_paths.append(path)
+            city_pbf = out / 'downloads/city-extract.osm.pbf'
+            city_http = observed('city-extract-download', download, city_extract['url'], city_pbf)
+            input_http.append(city_http)
+            city_hashes = observed('city-extract-checksums', verify_country_checksums, city_pbf, city_extract['bytes'], city_extract['md5'])
+            for name, url_key, sha_key in (('city-extract', 'polyUrl', 'polySha256'), ('primary', 'primaryPolyUrl', 'primaryPolySha256')):
+                poly = out / 'downloads' / f'{name}.poly'
+                observed(f'{name}-poly-download', download, city_extract[url_key], poly)
+                if digest(poly) != city_extract[sha_key]:
+                    raise ValueError(f'{name} .poly SHA-256 differs from the table pin {city_extract[url_key]}')
+            city_headers = observed('city-extract-headers', _merge.city_extract_headers, pbf, neighbour_paths, city_pbf, source['snapshotDate'])
+            source_inputs.append({'role': 'city-extract', 'url': city_extract['url'], 'snapshotDate': city_extract['snapshotDate'], 'bytes': city_extract['bytes'], 'md5': city_extract['md5'], 'sha256': city_hashes['sha256'], 'reason': city_extract['reason'],
+                                  'polyUrl': city_extract['polyUrl'], 'polySha256': city_extract['polySha256'], 'primaryPolyUrl': city_extract['primaryPolyUrl'], 'primaryPolySha256': city_extract['primaryPolySha256']})
+            boundary_pbf, boundary_sha, boundary_bytes = pbf, pbf_sha, source['bytes']
+            dataset = {'url': city_extract['url'], 'bytes': city_extract['bytes'], 'md5': city_extract['md5'], 'snapshotDate': city_extract['snapshotDate']}
+            pbf, pbf_sha, pbf_hashes = city_pbf, city_hashes['sha256'], city_hashes
+            (out / 'receipts/source-inputs.json').write_text(json.dumps(source_inputs, indent=2))
+            pbf_receipt = {**dataset, 'sha256': pbf_sha, 'http': city_http, 'sourceInputs': source_inputs, 'inputHttp': input_http,
+                           'cityExtract': {**city_headers, 'boundarySource': {'url': source['url'], 'bytes': source['bytes'], 'md5': source['md5'], 'sha256': boundary_sha}}}
+        elif neighbours:
             # Same-snapshot neighbour extracts complete what the primary clip omits (README-batch.md, Neighbour extracts).
             source_inputs = [{'role': 'primary', 'url': source['url'], 'snapshotDate': source['snapshotDate'], 'bytes': source['bytes'], 'md5': source['md5'], 'sha256': pbf_sha}]
             input_http, input_paths = [source_http], [pbf]
@@ -362,6 +439,8 @@ def main():
                            'inputHttp': input_http, 'merge': {**merge_record, 'scriptSha256': digest(HERE / 'source-merge.py')}}
         else:
             pbf_receipt = {**source, 'sha256': pbf_sha, 'http': source_http}
+        if not city_extract:
+            boundary_pbf, boundary_sha, boundary_bytes = pbf, pbf_sha, dataset['bytes']
         receipts = {'pbf': pbf_receipt, 'airports': {**airports, 'sha256': csv_sha, 'http': csv_http}, 'geometrySourceSha': sha, 'extractorSha256': digest(EXTRACTOR)}
         (out / 'receipts/downloads.json').write_text(json.dumps(receipts, indent=2))
         timezone_manifest, timezone_files = timezone_source_files()
@@ -378,17 +457,21 @@ def main():
         boundary_error = None
         evidence = HERE / 'boundary-evidence' / (seeds[0]['countryISO'].lower() + '.json')
         try:
-            stage([sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(pbf), '--country', seeds[0]['countryISO'], '--expected-sha256', pbf_sha, '--expected-bytes', str(dataset['bytes']), '--dataset-url', source['url'], '--dataset-date', source['snapshotDate'], '--out', str(boundary), *(['--absent-evidence', str(evidence)] if evidence.is_file() else []), *(['--source-inputs', str(out / 'receipts/source-inputs.json')] if source_inputs else [])], out / 'logs/country-boundary.log')
+            stage([sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(boundary_pbf), '--country', seeds[0]['countryISO'], '--expected-sha256', boundary_sha, '--expected-bytes', str(boundary_bytes), '--dataset-url', source['url'], '--dataset-date', source['snapshotDate'], '--out', str(boundary), *(['--absent-evidence', str(evidence)] if evidence.is_file() else []), *(['--source-inputs', str(out / 'receipts/source-inputs.json')] if source_inputs else []), *[argument for path in neighbour_paths for argument in ('--neighbour-pbf', str(path))]], out / 'logs/country-boundary.log')
             boundary_receipt = {'countryISO': seeds[0]['countryISO'], 'path': 'country-boundary/boundary.geojson', 'sha256': digest(boundary / 'boundary.geojson'), 'receiptPath': 'country-boundary/receipt.json', 'receiptSha256': digest(boundary / 'receipt.json')}
             result['countryBoundary'] = boundary_receipt
         except Exception as error:
             boundary_error = str(error)
             result['countryBoundary'] = {'status': 'HOLD', 'diagnosticPath': 'country-boundary/result.json', 'reason': boundary_error}
+        if city_extract:
+            # The full country file and the neighbours served the boundary only; free the runner disk before the city scans.
+            for path in (boundary_pbf, *neighbour_paths):
+                path.unlink(missing_ok=True)
         producers, city_results, candidates = [], [], {}
         if boundary_error:
             for seed in seeds:
                 reason = 'city metadata and extraction skipped because the exact same-source country boundary is HOLD: ' + boundary_error
-                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **profile_policy(seed), 'reason': reason}
+                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), **profile_policy(seed), 'reason': reason}
                 city_results.append(city_result)
                 (out / 'receipts' / (seed['id'] + '-result.json')).write_text(json.dumps(city_result, indent=2))
                 (out / 'logs' / (seed['id'] + '-metadata.log')).write_text('SKIPPED: ' + reason + '\n')
@@ -405,7 +488,7 @@ def main():
             seed_manifest.parent.mkdir(parents=True, exist_ok=True)
             seed_manifest.write_text(json.dumps(seed_files))
             metadata_arguments = [sys.executable, str(HERE / 'metadata-batch.py'), '--seed-files', str(seed_manifest), '--out-root', str(out / 'metadata'),
-                                  '--pbf', str(pbf), '--airports-csv', str(csv), '--airports-date', airports['snapshotDate'], '--zone-tab', str(zone), '--countries-tab', str(countries), '--dataset-url', source['url'], '--dataset-date', source['snapshotDate'], '--expected-pbf-sha256', pbf_sha, '--dataset-bytes', str(dataset['bytes']), '--source-verified', '--geometry-source', str(geometry), '--adapter', str(EXTRACTOR)]
+                                  '--pbf', str(pbf), '--airports-csv', str(csv), '--airports-date', airports['snapshotDate'], '--zone-tab', str(zone), '--countries-tab', str(countries), '--dataset-url', dataset['url'], '--dataset-date', source['snapshotDate'], '--expected-pbf-sha256', pbf_sha, '--dataset-bytes', str(dataset['bytes']), '--source-verified', '--geometry-source', str(geometry), '--adapter', str(EXTRACTOR)]
             metadata_batch_error = None
             try:
                 stage(metadata_arguments, out / 'logs/batch-metadata.log')
@@ -426,7 +509,19 @@ def main():
                     metadata_file.write_text(json.dumps(metadata_result, indent=2))
                 if metadata_batch_error and metadata_result.get('status') == 'METADATA_CANDIDATE':
                     metadata_result = {'status': 'HOLD', 'reason': metadata_batch_error}
-                if metadata_result.get('status') == 'METADATA_CANDIDATE' and source_inputs:
+                if metadata_result.get('status') == 'METADATA_CANDIDATE' and city_extract:
+                    # Owner rule (13 Oct): the city lies wholly inside the sub-extract it is read from (README-batch.md).
+                    try:
+                        scope = _merge.city_extract_scope(seed['id'], metadata_result['facts']['centre'],
+                                                          json.loads((candidate / 'source-input.json').read_text())['boxes'],
+                                                          boundary / 'boundary.geojson', city_headers['cityExtractBox'],
+                                                          (out / 'downloads/city-extract.poly').read_text(), (out / 'downloads/primary.poly').read_text())
+                        scope.update(cityExtract={key: source_inputs[-1][key] for key in ('url', 'sha256', 'polyUrl', 'polySha256', 'primaryPolyUrl', 'primaryPolySha256')},
+                                     boundaryReceiptSha256=digest(boundary / 'receipt.json'))
+                        (out / 'receipts' / (seed['id'] + '-city-extract-scope.json')).write_text(json.dumps(scope, indent=2))
+                    except Exception as error:
+                        metadata_result = {'status': 'HOLD', 'reason': str(error)}
+                elif metadata_result.get('status') == 'METADATA_CANDIDATE' and source_inputs:
                     # The merged file reaches into the neighbour: the city itself must stay in the primary country.
                     try:
                         scope = _merge.primary_scope(seed['id'], metadata_result['facts']['centre'],
@@ -443,7 +538,7 @@ def main():
                     metadata_log = out / 'logs' / (seed['id'] + '-metadata.log')
                     if not metadata_log.exists():
                         metadata_log.write_text(json.dumps({'status': 'HOLD', 'reason': reason}) + '\nshared log: batch-metadata.log\n')
-                    city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **profile_policy(seed), 'reason': reason}
+                    city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), **profile_policy(seed), 'reason': reason}
                     city_results.append(city_result)
                     (out / 'receipts' / (seed['id'] + '-result.json')).write_text(json.dumps(city_result, indent=2))
         extraction_errors = {}
@@ -465,9 +560,9 @@ def main():
                 job_file = out / 'receipts' / (seed['id'] + '-source-job.json')
                 job_file.write_text(json.dumps(producer, indent=2))
                 producers.append(producer)
-                city_results.append({'id': seed['id'], 'status': 'SOURCE_CANDIDATE', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **profile_policy(seed), 'sourceJob': producer})
+                city_results.append({'id': seed['id'], 'status': 'SOURCE_CANDIDATE', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), **profile_policy(seed), 'sourceJob': producer})
             except Exception as error:
-                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **profile_policy(seed), 'reason': str(error)}
+                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), **profile_policy(seed), 'reason': str(error)}
                 city_results.append(city_result)
                 (out / 'receipts' / (seed['id'] + '-result.json')).write_text(json.dumps(city_result, indent=2))
         city_results.sort(key=lambda city: [seed['id'] for seed in seeds].index(city['id']))

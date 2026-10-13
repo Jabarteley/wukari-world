@@ -2,118 +2,13 @@
  "schemaVersion": 1,
  "queue": [
   {
-   "id": "ag",
-   "table": "scripts/geo/factory/country-tables/ag.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "bb",
-   "table": "scripts/geo/factory/country-tables/bb.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "dm",
-   "table": "scripts/geo/factory/country-tables/dm.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "gd",
-   "table": "scripts/geo/factory/country-tables/gd.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "kn",
-   "table": "scripts/geo/factory/country-tables/kn.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "lc",
-   "table": "scripts/geo/factory/country-tables/lc.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "vc",
-   "table": "scripts/geo/factory/country-tables/vc.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "tt",
-   "table": "scripts/geo/factory/country-tables/tt.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "bt",
-   "table": "scripts/geo/factory/country-tables/bt.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "pg",
-   "table": "scripts/geo/factory/country-tables/pg.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "au",
-   "table": "scripts/geo/factory/country-tables/au.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
    "id": "sg",
    "table": "scripts/geo/factory/country-tables/sg.json",
    "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
   },
   {
-   "id": "pk",
-   "table": "scripts/geo/factory/country-tables/pk.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "br",
-   "table": "scripts/geo/factory/country-tables/br.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "es",
-   "table": "scripts/geo/factory/country-tables/es.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "nl",
-   "table": "scripts/geo/factory/country-tables/nl.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "in",
-   "table": "scripts/geo/factory/country-tables/in.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "gb",
-   "table": "scripts/geo/factory/country-tables/gb.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "jp",
-   "table": "scripts/geo/factory/country-tables/jp.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "pl",
-   "table": "scripts/geo/factory/country-tables/pl.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "id",
-   "table": "scripts/geo/factory/country-tables/id.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "ad",
-   "table": "scripts/geo/factory/country-tables/ad.json",
-   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
-  },
-  {
-   "id": "li",
-   "table": "scripts/geo/factory/country-tables/li.json",
+   "id": "fr",
+   "table": "scripts/geo/factory/country-tables/fr.json",
    "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
   },
   {
@@ -139,6 +34,31 @@
   {
    "id": "vn",
    "table": "scripts/geo/factory/country-tables/vn.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "de",
+   "table": "scripts/geo/factory/country-tables/de.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "ph",
+   "table": "scripts/geo/factory/country-tables/ph.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "ru",
+   "table": "scripts/geo/factory/country-tables/ru.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "ca",
+   "table": "scripts/geo/factory/country-tables/ca.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "us",
+   "table": "scripts/geo/factory/country-tables/us.json",
    "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
   }
  ]

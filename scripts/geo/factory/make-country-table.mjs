@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 // Emits a complete schemaVersion 2 country table (see README-batch.md) from a small spec.
 // No dependencies; Node 18+ fetch only. Pins are resolved from the live sources, never typed from memory:
-//   - Geofabrik: <path>-latest.osm.pbf redirect -> dated file; bytes from HEAD content-length; md5 from the .md5 sidecar.
+//   - Geofabrik: <path>-latest.osm.pbf redirect -> dated file (or spec 'geofabrikDate' YYMMDD: that dated file directly, e.g.
+//     when -latest redirects to a mirror); bytes from HEAD content-length; md5 from the .md5 sidecar. Optional spec
+//     'neighbours' [{geofabrik, reason}] and 'cityExtract' {geofabrik, reason} are pinned at the SAME date; the city
+//     extract also pins the sha256 of both .poly files (README-batch.md, City sub-extract).
 //   - OurAirports: airports.csv pinned by commit of davidmegginson/ourairports-data (GitHub API), raw URL by commit.
 //   - Timezone: pinned bootstrap/timezone-data (zone1970.tab / iso3166.tab, hash-verified against timezone-source.json).
 // City lat/lon are NEVER guessed: the spec must carry them with a 'centreSource' note.
@@ -9,14 +12,13 @@
 //   node make-country-table.mjs --spec <spec.json | inline-json> --out <dir> [--airports-commit <40hex>] [--max-km 60]
 //
 // Spec: one object or an array (or {"countries":[...]}):
-//   {iso:'LR', country:'Liberia', geofabrik:'africa/liberia',
+//   {iso:'LR', country:'Liberia', geofabrik:'africa/liberia', geofabrikDate:'261011' /* optional */,
+//    neighbours:[{geofabrik:'africa/guinea', reason}] /* optional */, cityExtract:{geofabrik:'europe/germany/brandenburg', reason} /* optional */,
 //    cities:[{id:'monrovia', name:'Monrovia', lat:6.3, lon:-10.8, centreSource:'GeoNames 2274895', airportIdent:'GLRB',
 //             timezone:'Africa/Monrovia' /* required only for multi-zone countries */,
-//             airportSourceUrl, cityOsmRef, sceneWaterExtent, namesUnit, selectionExclusions, profile /* passed through */,
+//             airportSourceUrl, cityOsmRef, sceneWaterExtent, namesUnit, selectionExclusions, geometry, playBox, profile /* passed through */,
 //             hubWaiver /* written reason (>= 20 chars): only for a country with NO scheduled-service large/medium/small airport; the
-//                          named airport may then be a heliport, seaplane base or small field with any scheduled_service */}],
-//    snapshot:'261011' /* optional YYMMDD: pin this dated Geofabrik file instead of whatever -latest points to today */,
-//    neighbours:[{geofabrik:'europe/italy/nord-ovest', reason:'...'}] /* optional, 1-3: same-snapshot neighbour extracts (README-batch.md 'Neighbour extracts') */}
+//                          named airport may then be a heliport, seaplane base or small field with any scheduled_service */}]}
 // Writes <out>/<iso-lower>.json (the table) and <out>/<iso-lower>-notes.json (proposals, checks, sources, retrieval times).
 // Exit code 1 if any country fails; the failure reason is printed and no table is written for it.
 import { createHash } from 'node:crypto';
@@ -30,7 +32,7 @@ const GEOMETRY_SHA = '7a57e756a10b35a0eec9ec5928f083580fb9e7a9';
 const AIRPORTS_REPO = 'davidmegginson/ourairports-data';
 const MAX_KM_DEFAULT = 60;
 const ELIGIBLE_TYPES = new Set(['large_airport', 'medium_airport']);
-const SEED_PASSTHROUGH = ['cityOsmRef', 'sceneWaterExtent', 'namesUnit', 'selectionExclusions', 'profile'];
+const SEED_PASSTHROUGH = ['cityOsmRef', 'sceneWaterExtent', 'namesUnit', 'selectionExclusions', 'geometry', 'playBox', 'profile'];
 const WAIVER_TYPES = new Set(['large_airport', 'medium_airport', 'small_airport', 'heliport', 'seaplane_base']);
 const SCHEDULED_TYPES = new Set(['large_airport', 'medium_airport', 'small_airport']);
 const UA = { 'user-agent': 'allworld-make-country-table' };
@@ -47,18 +49,22 @@ async function http(url, options = {}) {
 }
 
 // ---- Geofabrik ---------------------------------------------------------------------------------------------
-async function resolveGeofabrik(path, snapshot) {
-  if (!/^[a-z0-9-]+(?:\/[a-z0-9-]+)+$/.test(path)) refuse(`geofabrik path must look like 'africa/liberia': ${path}`);
-  if (snapshot !== undefined && !/^\d{6}$/.test(snapshot)) refuse(`snapshot must be YYMMDD, got ${JSON.stringify(snapshot)}`);
+async function resolveGeofabrik(path, pinnedDate) {
+  if (!/^[a-z0-9-]+(?:\/[a-z0-9-]+)*$/.test(path)) refuse(`geofabrik path must look like 'africa/liberia' or 'russia': ${path}`);
   const slug = path.split('/').pop();
   const latest = `https://download.geofabrik.de/${path}-latest.osm.pbf`;
-  // With a snapshot the dated file is named directly (HEAD below must still return its size); without one the -latest redirect decides.
-  const head = snapshot === undefined ? await http(latest, { method: 'HEAD', redirect: 'manual' }) : { status: 307, headers: new Headers({ location: `https://download.geofabrik.de/${path}-${snapshot}.osm.pbf` }) };
-  const location = head.headers.get('location');
-  if (head.status < 300 || head.status >= 400 || !location) refuse(`${latest} did not redirect to a dated file (HTTP ${head.status}); check the Geofabrik path`);
-  const url = new URL(location, latest).href;
-  const match = /^https:\/\/download\.geofabrik\.de\/(.+)\/([a-z0-9-]+)-(\d{6})\.osm\.pbf$/.exec(url);
-  if (!match || `${match[1]}/${match[2]}` !== path) refuse(`redirect target is not the dated file for ${path}: ${url}`);
+  let url, head = { status: null };
+  if (pinnedDate !== undefined) {
+    if (!/^\d{6}$/.test(pinnedDate)) refuse(`geofabrikDate must be YYMMDD: ${pinnedDate}`);
+    url = `https://download.geofabrik.de/${path}-${pinnedDate}.osm.pbf`;
+  } else {
+    head = await http(latest, { method: 'HEAD', redirect: 'manual' });
+    const location = head.headers.get('location');
+    if (head.status < 300 || head.status >= 400 || !location) refuse(`${latest} did not redirect to a dated file (HTTP ${head.status}); check the Geofabrik path`);
+    url = new URL(location, latest).href;
+  }
+  const match = /^https:\/\/download\.geofabrik\.de\/(?:(.+)\/)?([a-z0-9-]+)-(\d{6})\.osm\.pbf$/.exec(url);
+  if (!match || [match[1], match[2]].filter(Boolean).join('/') !== path) refuse(`redirect target is not the dated file for ${path} (pass geofabrikDate to pin the dated file directly): ${url}`);
   const [, , , yymmdd] = match;
   const snapshotDate = `20${yymmdd.slice(0, 2)}-${yymmdd.slice(2, 4)}-${yymmdd.slice(4, 6)}`;
   if (Number.isNaN(Date.parse(snapshotDate)) || new Date(snapshotDate).toISOString().slice(0, 10) !== snapshotDate) refuse(`bad snapshot date in ${url}`);
@@ -73,8 +79,41 @@ async function resolveGeofabrik(path, snapshot) {
   if (!md || md[2] !== `${slug}-${yymmdd}.osm.pbf`) refuse(`unexpected .md5 sidecar content for ${url}`);
   return {
     countrySource: { url, bytes, md5: md[1], snapshotDate },
-    notes: { latestUrl: latest, redirectStatus: head.status, datedUrl: url, md5Sidecar: sidecarUrl, lastModified: dated.headers.get('last-modified'), retrievedAt: new Date().toISOString() },
+    notes: { ...(pinnedDate === undefined ? { latestUrl: latest, redirectStatus: head.status } : { pinnedDate }), datedUrl: url, md5Sidecar: sidecarUrl, lastModified: dated.headers.get('last-modified'), retrievedAt: new Date().toISOString() },
   };
+}
+
+async function pinPoly(path) {
+  const url = `https://download.geofabrik.de/${path}.poly`;
+  const response = await http(url);
+  if (!response.ok) refuse(`${url} gave HTTP ${response.status}`);
+  const buffer = Buffer.from(await response.arrayBuffer());
+  if (!/^\S.*\n/.test(buffer.toString('utf8', 0, 200)) || !buffer.toString('utf8').trimEnd().endsWith('END')) refuse(`${url} is not an osmosis .poly file`);
+  return { url, sha256: sha256(buffer), bytes: buffer.length };
+}
+
+// Same-snapshot extras: neighbour extracts and the city sub-extract are pinned at the primary's date (never -latest).
+async function resolveExtras(spec, primary) {
+  const yymmdd = primary.countrySource.url.match(/-(\d{6})\.osm\.pbf$/)[1];
+  const reasonOf = (item, label) => (typeof item?.reason === 'string' && item.reason.trim() === item.reason && item.reason) || refuse(`${spec.iso}: ${label} needs a trimmed non-empty reason`);
+  const extras = { notes: {} };
+  if (spec.neighbours !== undefined) {
+    if (!Array.isArray(spec.neighbours) || spec.neighbours.length < 1 || spec.neighbours.length > 3) refuse(`${spec.iso}: neighbours must list 1 to 3 {geofabrik, reason}`);
+    extras.neighbours = [];
+    extras.notes.neighbours = [];
+    for (const item of spec.neighbours) {
+      const pinned = await resolveGeofabrik(item.geofabrik, yymmdd);
+      extras.neighbours.push({ ...pinned.countrySource, reason: reasonOf(item, 'neighbour') });
+      extras.notes.neighbours.push(pinned.notes);
+    }
+  }
+  if (spec.cityExtract !== undefined) {
+    const pinned = await resolveGeofabrik(spec.cityExtract.geofabrik, yymmdd);
+    const [poly, primaryPoly] = [await pinPoly(spec.cityExtract.geofabrik), await pinPoly(spec.geofabrik)];
+    extras.cityExtract = { ...pinned.countrySource, reason: reasonOf(spec.cityExtract, 'cityExtract'), polyUrl: poly.url, polySha256: poly.sha256, primaryPolyUrl: primaryPoly.url, primaryPolySha256: primaryPoly.sha256 };
+    extras.notes.cityExtract = { ...pinned.notes, poly, primaryPoly };
+  }
+  return extras;
 }
 
 // ---- OurAirports -------------------------------------------------------------------------------------------
@@ -241,20 +280,8 @@ async function buildCountry(spec, shared, options) {
   const tz = shared.tz;
   const isoName = isoCountryName(tz, iso);
   if (!isoName) refuse(`${iso} is not in the pinned iso3166.tab`);
-  const geofabrik = await resolveGeofabrik(spec.geofabrik, spec.snapshot);
-  if (spec.neighbours !== undefined) {
-    if (!Array.isArray(spec.neighbours) || spec.neighbours.length < 1 || spec.neighbours.length > 3) refuse(`${iso}: neighbours must be 1 to 3 entries`);
-    const yymmdd = geofabrik.countrySource.url.match(/-(\d{6})\.osm\.pbf$/)[1];
-    geofabrik.countrySource.neighbours = [];
-    geofabrik.notes.neighbours = [];
-    for (const item of spec.neighbours) {
-      if (!item || typeof item.geofabrik !== 'string' || typeof item.reason !== 'string' || item.reason.trim().length < 20) refuse(`${iso}: each neighbour needs a geofabrik path and a written reason (>= 20 characters)`);
-      // The neighbour must be the SAME snapshot as the primary (Geofabrik keeps dated files for a while); resolving it by name, never by -latest.
-      const resolved = await resolveGeofabrik(item.geofabrik, yymmdd);
-      geofabrik.countrySource.neighbours.push({ ...resolved.countrySource, reason: item.reason.trim() });
-      geofabrik.notes.neighbours.push(resolved.notes);
-    }
-  }
+  const geofabrik = await resolveGeofabrik(spec.geofabrik, spec.geofabrikDate);
+  const extras = await resolveExtras(spec, geofabrik);
   const airports = await shared.airports();
   const seeds = [];
   const cityNotes = [];
@@ -273,7 +300,8 @@ async function buildCountry(spec, shared, options) {
       timezone: { id: zone.id, explicit: zone.explicit, zoneRowsForCountry: zone.ids, release: tz.release },
     });
   }
-  const table = { schemaVersion: 2, geometrySourceSha: GEOMETRY_SHA, countrySource: geofabrik.countrySource, airports: airports.pin, seeds };
+  const countrySource = { ...geofabrik.countrySource, ...(extras.neighbours ? { neighbours: extras.neighbours } : {}), ...(extras.cityExtract ? { cityExtract: extras.cityExtract } : {}) };
+  const table = { schemaVersion: 2, geometrySourceSha: GEOMETRY_SHA, countrySource, airports: airports.pin, seeds };
   const notes = {
     generator: 'scripts/geo/factory/make-country-table.mjs',
     generatedAt: new Date().toISOString(),
@@ -281,7 +309,7 @@ async function buildCountry(spec, shared, options) {
     countryNameNote: spec.country && spec.country !== isoName ? `spec country '${spec.country}' differs from pinned iso3166.tab '${isoName}' (informational; the table derives the name from iso3166.tab)` : null,
     anyAirportProposed: cityNotes.some((c) => c.airport.proposal),
     maxAirportKm: options.maxKm,
-    sources: { geofabrik: geofabrik.notes, ourairports: airports.notes, timezone: { release: tz.release, zone1970: tz.zone.record, iso3166: tz.countries.record } },
+    sources: { geofabrik: { ...geofabrik.notes, ...extras.notes }, ourairports: airports.notes, timezone: { release: tz.release, zone1970: tz.zone.record, iso3166: tz.countries.record } },
     cities: cityNotes,
   };
   return { table, notes };

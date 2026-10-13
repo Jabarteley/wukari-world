@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/europe/germany-261011.osm.pbf",
+    "bytes": 4858789747,
+    "md5": "e3cbcd4f3d4684df81584946650e3e95",
+    "snapshotDate": "2026-10-11",
+    "cityExtract": {
+      "url": "https://download.geofabrik.de/europe/germany/brandenburg-261011.osm.pbf",
+      "bytes": 296021045,
+      "md5": "8657ed03a6c033bccc6dd25f1fa43ddc",
+      "snapshotDate": "2026-10-11",
+      "reason": "Germany (4.86 GB) is read only for the admin-0 boundary. Berlin's play/core/outline boxes (with BER airport, 19 km south) reach past berlin.poly into Brandenburg; Geofabrik's brandenburg extract (Brandenburg with Berlin, 296 MB) holds all three boxes and the centre",
+      "polyUrl": "https://download.geofabrik.de/europe/germany/brandenburg.poly",
+      "polySha256": "bb5e8fc925ecc40e15f7c61f8c7aba8c9e13aacae56d45ba45ac07cc6487150f",
+      "primaryPolyUrl": "https://download.geofabrik.de/europe/germany.poly",
+      "primaryPolySha256": "95a1710cb613629c6cf2875c852a9af09935b6e9ee7b873c5d604a56a7e5e0bd"
+    }
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "berlin",
+      "name": "Berlin",
+      "countryISO": "DE",
+      "cityOsmRef": "node/240109189",
+      "airport": {
+        "ident": "EDDB",
+        "sourceUrl": "https://ourairports.com/airports/EDDB/"
+      },
+      "timezone": {
+        "id": "Europe/Berlin",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

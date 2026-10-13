@@ -1,0 +1,255 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "PK",
+    "datasetSha256": "7bbddf4d217408bd7b610f00bb8d9bbbd328f5bfaf50a55b3a59e794c5c3c0dc",
+    "receiptSha256": "0d08f812207a006198c83afadd94f05ac78c04b286bda0f52e1ae90308f5f8f6",
+    "receiptBytes": 212831,
+    "geometrySha256": "d31246fb5a2ccfb1e24f1facc720960cd56064dfc5691ff7a20dcb8354a5e2df",
+    "geometryBytes": 1854545,
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "relationId": 307573,
+    "boundaryKey": "pk",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38313119499,
+      "sourceSha": "3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+      "sourceArtifact": "city-bootstrap-pk-3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "lahore",
+      "name": "Lahore",
+      "country": "pk",
+      "facts": {
+        "id": "lahore",
+        "name": "Lahore",
+        "country": {
+          "idISOlower": "pk",
+          "name": "Pakistan"
+        },
+        "state": {
+          "idunique": "pk-lahore",
+          "name": "Lahore"
+        },
+        "timezone": "Asia/Karachi",
+        "centre": {
+          "lon": 74.3141829,
+          "lat": 31.5656822
+        },
+        "airport": {
+          "id": "lahore-airport",
+          "name": "Allama Iqbal International Airport",
+          "lon": 74.403603,
+          "lat": 31.521601,
+          "sourceUrl": "https://ourairports.com/airports/OPLA/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/1886594378",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          74.10291095737459,
+          31.384801310066024,
+          74.52545484262542,
+          31.74656308993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/1886594378",
+          "sourceUrl": "https://www.openstreetmap.org/node/1886594378",
+          "sourceRecord": {
+            "ref": "node/1886594378",
+            "tags": {
+              "capital": "4",
+              "name": "لاہور",
+              "name:af": "Lahore",
+              "name:ar": "لاهور",
+              "name:arz": "لاهور",
+              "name:az-Arab": "لاهور",
+              "name:azb": "لاهور",
+              "name:bn": "লাহোর",
+              "name:bs": "Lahor",
+              "name:cs": "Láhaur",
+              "name:de": "Lahore",
+              "name:el": "Λαχόρη",
+              "name:en": "Lahore",
+              "name:eo": "Lahoro",
+              "name:es": "Lahore",
+              "name:et": "Lahore",
+              "name:fa": "لاهور",
+              "name:fr": "Lahore",
+              "name:he": "להורה",
+              "name:hi": "लाहौर",
+              "name:hr": "Lahore",
+              "name:hy": "Լահոր",
+              "name:it": "Lahore",
+              "name:ja": "ラホール",
+              "name:kn": "ಲಾಹೋರ್",
+              "name:ko": "라호르",
+              "name:ks": "لوہوٗر",
+              "name:ml": "ലാഹോർ",
+              "name:mzn": "لاهور",
+              "name:ne": "लाहोर",
+              "name:nl": "Lahore",
+              "name:oc": "Lahaur",
+              "name:pa": "ਲਹੌਰ",
+              "name:pl": "Lahaur",
+              "name:pnb": "لہور",
+              "name:ps": "لاهور",
+              "name:pt": "Laore",
+              "name:ru": "Лахор",
+              "name:sk": "Láhaur",
+              "name:sr-Latn": "Lahor",
+              "name:ta": "லாகூர்",
+              "name:tr": "Lahor",
+              "name:uk": "Лахор",
+              "name:ur": "لاہور",
+              "name:zh": "拉合尔",
+              "place": "city",
+              "population": "11126285",
+              "short_name:en": "LHR",
+              "wikidata": "Q11739",
+              "wikimedia_commons": "Category:Lahore",
+              "wikipedia": "ur:لاہور"
+            },
+            "lon": 74.3141829,
+            "lat": 31.5656822
+          },
+          "pbfSha256": "7bbddf4d217408bd7b610f00bb8d9bbbd328f5bfaf50a55b3a59e794c5c3c0dc"
+        },
+        "airport": {
+          "rowNumber": 52428,
+          "row": {
+            "id": "5257",
+            "ident": "OPLA",
+            "type": "large_airport",
+            "name": "Allama Iqbal International Airport",
+            "latitude_deg": "31.521601",
+            "longitude_deg": "74.403603",
+            "elevation_ft": "712",
+            "continent": "AS",
+            "iso_country": "PK",
+            "iso_region": "PK-PB",
+            "municipality": "Lahore",
+            "scheduled_service": "yes",
+            "icao_code": "OPLA",
+            "iata_code": "LHE",
+            "gps_code": "OPLA",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Allama_Iqbal_International_Airport",
+            "keywords": "OPLR"
+          },
+          "rowSha256": "cdae49ccbd9eda6cfc8fac8abd5dca80b9a9013dff97a1a0a237338cc2c2be1c",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "OPLA",
+            "sourceUrl": "https://ourairports.com/airports/OPLA/",
+            "matchedIdent": "OPLA",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/OPLA/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "PK",
+              "+2452+06703",
+              "Asia/Karachi"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Karachi",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "PK",
+              "+2452+06703",
+              "Asia/Karachi"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/asia/pakistan-261011.osm.pbf",
+          "bytes": 156812827,
+          "sha256": "7bbddf4d217408bd7b610f00bb8d9bbbd328f5bfaf50a55b3a59e794c5c3c0dc",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              31.384801310066024,
+              74.10291095737459,
+              31.74656308993398,
+              74.52545484262542
+            ],
+            "core": [
+              31.520461977516508,
+              74.26144203162171,
+              31.610902422483495,
+              74.3669237683783
+            ],
+            "outline": [
+              31.334801310066023,
+              74.05291095737459,
+              31.79656308993398,
+              74.57545484262542
+            ],
+            "wide": [
+              30.784801310066022,
+              73.5029109573746,
+              32.34656308993398,
+              75.12545484262542
+            ]
+          },
+          "airportMarginMetres": 11563.004832992361,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "lahore",
+      "extractSha256": {
+        "places": "feb60ee048dded3419b9101d704f4a51e4c3cc9c887be4d51d30471c8f2829bf",
+        "extras": "1042a54806a83dbbcc782a903f02da801cf596e4650ecc748ef7a994e47e97aa",
+        "water": "19c3178a37f4b2be18b4c2677cd7d47787b1e2ec6f67d82bc99593bc3acdc0f2",
+        "landuse": "3061407495cbda1eca9e58a93fe1986918a361d661c806387d890e7ca0da3032",
+        "roads": "b554dab8a9aaf1bfe0bcc00657a240f4051303ae46ca5e63b50c18749f7a7c66"
+      },
+      "sourceJob": {
+        "city": "lahore",
+        "sourceRunId": 38313119499,
+        "sourceArtifact": "city-bootstrap-pk-3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+        "sourceSha": "3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+        "datasetSha256": "7bbddf4d217408bd7b610f00bb8d9bbbd328f5bfaf50a55b3a59e794c5c3c0dc",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "feb60ee048dded3419b9101d704f4a51e4c3cc9c887be4d51d30471c8f2829bf",
+          "extras": "1042a54806a83dbbcc782a903f02da801cf596e4650ecc748ef7a994e47e97aa",
+          "water": "19c3178a37f4b2be18b4c2677cd7d47787b1e2ec6f67d82bc99593bc3acdc0f2",
+          "landuse": "3061407495cbda1eca9e58a93fe1986918a361d661c806387d890e7ca0da3032",
+          "roads": "b554dab8a9aaf1bfe0bcc00657a240f4051303ae46ca5e63b50c18749f7a7c66"
+        }
+      }
+    }
+  ]
+}

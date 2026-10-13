@@ -2,7 +2,7 @@
  "iso": "SM",
  "country": "San Marino",
  "geofabrik": "europe/italy",
- "snapshot": "261011",
+ "geofabrikDate": "261011",
  "cities": [
   {
    "id": "san-marino",

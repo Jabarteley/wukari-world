@@ -1,0 +1,594 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "US",
+  "dataset": {
+    "url": "https://download.geofabrik.de/north-america/us-261011.osm.pbf",
+    "bytes": 12199919524,
+    "md5": "f9a56ae3ef76583cf892e5bfe23a18d4"
+  },
+  "source": "https://api.openstreetmap.org/api/0.6/ways.json?ways=<ids below>",
+  "retrievedAt": "2026-10-12",
+  "note": "Reviewed 2026-10-13 from the 2026-10-12 draft (world ledger evidence-drafts-heavy/us.json). Maritime=yes territorial-water rings of US territories (Puerto Rico, USVI, Guam, CNMI, American Samoa, minor outlying islands): whole rings of their own with no node inside the us or canada/yukon clips (hosted run 38229664701 found 39 absent for the us file alone). Way 1232724301 is not listed: it comes from the Yukon neighbour closure. Bound to the pinned us-261011 file by url, bytes and MD5 (its SHA-256 is not published in advance); valid for that file only.",
+  "ways": [
+    {
+      "id": 42294763,
+      "version": 8,
+      "timestamp": "2024-04-22T19:41:07Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "claimed_by": "US;MH",
+        "controlled_by": "US",
+        "maritime": "yes",
+        "name": "United States of America (Minor Outlying Islands), Wake Island (Disputed area USA-MARSHALL ISLANDS)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 527746262,
+      "lastNode": 527746262
+    },
+    {
+      "id": 42296437,
+      "version": 8,
+      "timestamp": "2022-10-25T20:57:40Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Minor Outlying Islands), Baker Island",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 527784134,
+      "lastNode": 527784134
+    },
+    {
+      "id": 42296438,
+      "version": 7,
+      "timestamp": "2022-10-25T20:57:40Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Minor Outlying Islands), Howland Island",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 527784429,
+      "lastNode": 527784429
+    },
+    {
+      "id": 42296542,
+      "version": 4,
+      "timestamp": "2018-08-20T21:46:19Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Isla de Mona)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 527785930,
+      "lastNode": 527785930
+    },
+    {
+      "id": 42296558,
+      "version": 9,
+      "timestamp": "2022-10-25T20:57:40Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Minor Outlying Islands), Jarvis Island",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 527786063,
+      "lastNode": 527786063
+    },
+    {
+      "id": 42296616,
+      "version": 6,
+      "timestamp": "2026-02-11T14:06:09Z",
+      "tags": {
+        "border_type": "territorial",
+        "maritime": "yes",
+        "name": "United States of America (USVI Saint Croix)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 527787878,
+      "lastNode": 527787878,
+      "tagException": {
+        "missingKeys": [
+          "admin_level",
+          "boundary"
+        ],
+        "reason": "OSM way 42296616 (USVI Saint Croix territorial-sea ring, v6 2026-02-11) carries maritime=yes and border_type=territorial but no boundary/admin_level tags; it is a member of relation/148838 and a closed ring of its own"
+      }
+    },
+    {
+      "id": 42297367,
+      "version": 11,
+      "timestamp": "2021-01-29T14:37:14Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "The Virgin Islands (Territorial Sea) Order 2007"
+      },
+      "firstNode": 2292194197,
+      "lastNode": 527801259
+    },
+    {
+      "id": 42297368,
+      "version": 6,
+      "timestamp": "2018-08-20T21:46:23Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "The Virgin Islands (Territorial Sea) Order 2007"
+      },
+      "firstNode": 653577579,
+      "lastNode": 3054531748
+    },
+    {
+      "id": 42297370,
+      "version": 10,
+      "timestamp": "2021-01-29T14:37:14Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "The Virgin Islands (Territorial Sea) Order 2007"
+      },
+      "firstNode": 527801259,
+      "lastNode": 653577579
+    },
+    {
+      "id": 42298259,
+      "version": 4,
+      "timestamp": "2023-01-08T04:40:30Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 527799217,
+      "lastNode": 527799978
+    },
+    {
+      "id": 42298262,
+      "version": 3,
+      "timestamp": "2018-08-20T21:46:28Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 527801520,
+      "lastNode": 527801513
+    },
+    {
+      "id": 43356821,
+      "version": 4,
+      "timestamp": "2019-08-07T20:02:36Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (CNMI)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 545414247,
+      "lastNode": 545414247
+    },
+    {
+      "id": 43356822,
+      "version": 4,
+      "timestamp": "2019-08-07T20:02:36Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (CNMI)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 545415424,
+      "lastNode": 545415424
+    },
+    {
+      "id": 43356823,
+      "version": 6,
+      "timestamp": "2019-08-07T20:02:36Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (CNMI)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 545411227,
+      "lastNode": 545411227
+    },
+    {
+      "id": 43356824,
+      "version": 8,
+      "timestamp": "2026-07-18T20:03:23Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Guam)",
+        "name:be": "Злучаныя Штаты Амерыкі (Гуам)",
+        "name:en": "United States of America (Guam)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 545409406,
+      "lastNode": 545409406
+    },
+    {
+      "id": 43356825,
+      "version": 5,
+      "timestamp": "2019-08-07T20:02:36Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (CNMI)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 545413361,
+      "lastNode": 545413361
+    },
+    {
+      "id": 43356826,
+      "version": 4,
+      "timestamp": "2019-08-07T20:02:36Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (CNMI)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 545422959,
+      "lastNode": 545422959
+    },
+    {
+      "id": 43356827,
+      "version": 4,
+      "timestamp": "2019-08-07T20:02:36Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (CNMI)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 545420630,
+      "lastNode": 545420630
+    },
+    {
+      "id": 43356828,
+      "version": 4,
+      "timestamp": "2019-08-07T20:02:36Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (CNMI)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 545419332,
+      "lastNode": 545419332
+    },
+    {
+      "id": 43356830,
+      "version": 4,
+      "timestamp": "2019-08-07T20:02:36Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (CNMI)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 545417712,
+      "lastNode": 545417712
+    },
+    {
+      "id": 43356832,
+      "version": 4,
+      "timestamp": "2019-08-07T20:02:36Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (CNMI)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 545422497,
+      "lastNode": 545422497
+    },
+    {
+      "id": 163763449,
+      "version": 11,
+      "timestamp": "2026-04-08T17:50:20Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Minor Outlying Islands), Palmyra Atoll",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 1787841567,
+      "lastNode": 1787841567
+    },
+    {
+      "id": 220098083,
+      "version": 5,
+      "timestamp": "2021-01-29T14:37:14Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "The Virgin Islands (Territorial Sea) Order 2007"
+      },
+      "firstNode": 527801538,
+      "lastNode": 2292194197
+    },
+    {
+      "id": 220098084,
+      "version": 5,
+      "timestamp": "2021-01-29T14:37:14Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "The Virgin Islands (Territorial Sea) Order 2007"
+      },
+      "firstNode": 2292193982,
+      "lastNode": 527801538
+    },
+    {
+      "id": 220098085,
+      "version": 4,
+      "timestamp": "2021-01-29T14:37:14Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "county",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "U.S. Census Bureau 2009 TIGER/Line"
+      },
+      "firstNode": 2292193982,
+      "lastNode": 527801513
+    },
+    {
+      "id": 296770514,
+      "version": 7,
+      "timestamp": "2022-10-25T20:57:40Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "description": "12 nautical mile buffer around reef",
+        "maritime": "yes",
+        "name": "United States of America (Minor Outlying Islands), Kingman Reef"
+      },
+      "firstNode": 3005764867,
+      "lastNode": 3005764867
+    },
+    {
+      "id": 296777074,
+      "version": 6,
+      "timestamp": "2026-04-08T18:24:14Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "disputed": "yes",
+        "maritime": "yes",
+        "name": "United States of America (Minor Outlying Islands), Navassa Island (Disputed area USA-HAITI)",
+        "source": "12 nm buffer around coastline"
+      },
+      "firstNode": 3005876536,
+      "lastNode": 3005876536
+    },
+    {
+      "id": 298809966,
+      "version": 8,
+      "timestamp": "2026-04-08T18:24:14Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Minor Outlying Islands), Johnston Atoll",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 527786933,
+      "lastNode": 527786933
+    },
+    {
+      "id": 301405308,
+      "version": 2,
+      "timestamp": "2018-08-20T21:47:49Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 3054531748,
+      "lastNode": 527801414
+    },
+    {
+      "id": 302885425,
+      "version": 4,
+      "timestamp": "2019-08-07T20:02:36Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (American Samoa)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 3071685567,
+      "lastNode": 3071685567
+    },
+    {
+      "id": 302885445,
+      "version": 4,
+      "timestamp": "2019-08-07T20:02:36Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (American Samoa)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 3071684170,
+      "lastNode": 3071684170
+    },
+    {
+      "id": 302885455,
+      "version": 6,
+      "timestamp": "2019-08-07T20:02:36Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (American Samoa)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 3071685207,
+      "lastNode": 3071685207
+    },
+    {
+      "id": 302885456,
+      "version": 4,
+      "timestamp": "2019-08-07T20:02:36Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (American Samoa)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 3071686058,
+      "lastNode": 3071686058
+    },
+    {
+      "id": 694011782,
+      "version": 5,
+      "timestamp": "2023-11-16T00:49:14Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 527801122,
+      "lastNode": 9675886448
+    },
+    {
+      "id": 1128122740,
+      "version": 1,
+      "timestamp": "2023-01-08T04:40:30Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 527799978,
+      "lastNode": 527801520
+    },
+    {
+      "id": 1128122741,
+      "version": 1,
+      "timestamp": "2023-01-08T04:40:30Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 527801414,
+      "lastNode": 527801122
+    },
+    {
+      "id": 1223979575,
+      "version": 1,
+      "timestamp": "2023-11-16T00:49:14Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 9675886448,
+      "lastNode": 9675886447
+    },
+    {
+      "id": 1223979576,
+      "version": 1,
+      "timestamp": "2023-11-16T00:49:14Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "name": "United States of America (Carribean Sea territorial waters)",
+        "source": "NOAA U.S. Maritime Zones/Boundaries"
+      },
+      "firstNode": 9675886447,
+      "lastNode": 527799217
+    }
+  ]
+}

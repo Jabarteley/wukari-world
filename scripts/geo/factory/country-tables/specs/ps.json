@@ -2,7 +2,7 @@
  "iso": "PS",
  "country": "Palestine",
  "geofabrik": "asia/israel-and-palestine",
- "snapshot": "261011",
+ "geofabrikDate": "261011",
  "cities": [
   {
    "id": "ramallah",

@@ -1,0 +1,38 @@
+<!doctype html><meta charset="utf-8"><link rel="icon" href="data:,">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#151c23;color:#f3ebe0;font:14px Arial,sans-serif}header{padding:22px 28px 16px;border-bottom:1px solid #3c454d}h1{margin:5px 0 8px;font-size:26px;font-weight:500;letter-spacing:.4px}.sub{color:#b8c2c7;font-size:13px}.tag{font:11px monospace;color:#d8b987;letter-spacing:2px}.grid{display:grid;grid-template-columns:repeat(3,1fr);padding:12px;gap:10px}.panel{background:#283139;border:1px solid #3b454d;position:relative}.panel canvas{display:block;width:100%}.label{padding:10px 14px;color:#e9e0d4;font-size:12px;border-top:1px solid #414b51}.label b{color:#d9b886;font-weight:500}.foot{padding:8px 26px 20px;color:#aebbc0;font-size:12px}
+</style>
+<header><span class="tag">ALLWORLD / ORIGINAL HAIR STUDIES / C01</span><h1>Tightly curled crop</h1><div class="sub">Bounded curl-bundle geometry · opaque PBR · authored metre scale</div></header><main class="grid" id="grid"></main><div class="foot">TEMPORARY CALIBRATION HEAD — actual fit pending master · no external textures · software WebGL evidence, not phone performance</div>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/":"./node_modules/three/","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const loader=new GLTFLoader(), params=new URLSearchParams(location.search), folder=params.get('folder')||'c01-v1', style=params.get('style')||'curl-crop';
+const assets={};const receipt={ready:false,panels:[],renderer:null};window.receipt=receipt;
+const renderers=[],scenes=[];
+async function asset(name){if(!assets[name])assets[name]=(await loader.loadAsync(`./artifacts/${folder}/${name}.glb`)).scene;return assets[name].clone(true)}
+function light(scene,color,power,pos){const l=new THREE.DirectionalLight(color,power);l.position.set(...pos);scene.add(l)}
+try{
+const settings=[
+ ['near','Front / hairline', [0,1.71,.63],[0,1.69,0],.30],
+ ['near','Three-quarter / silhouette', [.39,1.80,.53],[0,1.69,0],.32],
+ ['near','Profile / temple boundary', [.67,1.70,.005],[0,1.685,0],.30],
+ ['near','Rear / nape edge', [.28,1.78,-.57],[0,1.68,0],.32],
+ ['near','Boundary close-up', [.12,1.775,.43],[0,1.725,.05],.165],
+ ['far','Distance / reduced LOD', [.34,1.84,.64],[0,1.62,0],.65]
+];
+for(const [tier,label,pos,target,scale] of settings){
+ const panel=document.createElement('div');panel.className='panel';document.querySelector('#grid').append(panel);
+ const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setSize(380,360);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
+ panel.append(renderer.domElement);const caption=document.createElement('div');caption.className='label';caption.innerHTML=`<b>${tier.toUpperCase()}</b> &nbsp; ${label}`;panel.append(caption);renderers.push(renderer);
+ const scene=new THREE.Scene();scene.background=new THREE.Color('#283139');scenes.push(scene);
+ scene.add(new THREE.HemisphereLight(0xd6e8ff,0x594f42,1.55));light(scene,0xffddba,4,[.35,2.3,.6]);light(scene,0xa2b8df,2,[-.5,1.8,.2]);light(scene,0xffffff,3,[.2,2,-.5]);
+ scene.add(await asset(style+'-'+tier));scene.add(await asset('temporary-calibration'));
+ const camera=new THREE.OrthographicCamera(-scale*380/360/2,scale*380/360/2,scale/2,-scale/2,.01,10);camera.position.set(...pos);camera.lookAt(...target);renderer.render(scene,camera);
+ const gl=renderer.getContext();const info=gl.getExtension('WEBGL_debug_renderer_info');receipt.renderer=info?gl.getParameter(info.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER);
+ receipt.panels.push({tier,label,calls:renderer.info.render.calls,trianglesWithFixture:renderer.info.render.triangles});
+}
+window.cleanup=()=>{for(const scene of scenes)scene.traverse(o=>{o.geometry?.dispose();if(o.material)for(const m of (Array.isArray(o.material)?o.material:[o.material]))m.dispose()});for(const r of renderers){r.dispose();r.forceContextLoss()}receipt.disposed=true};
+receipt.ready=true;
+}catch(e){window.proofError=String(e);console.error(e)}
+</script>

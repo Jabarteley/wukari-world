@@ -1,0 +1,15 @@
+{
+  "command": [
+    "node",
+    "experiments/cloud-lanes/human-hair-art/validate.mjs",
+    "experiments/cloud-lanes/human-hair-art/artifacts/c01-v3"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 0.258,
+  "sampledTreePeakRssBytes": 51273728,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

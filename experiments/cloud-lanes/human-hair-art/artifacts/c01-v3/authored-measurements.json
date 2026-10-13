@@ -1,0 +1,88 @@
+{
+  "blender": "4.3.2",
+  "style": "C01 tight curl crop",
+  "actualFit": "pending-master",
+  "sourceFrame": "metres Z-up -Y-forward",
+  "exportFrame": "metres Y-up +Z-forward",
+  "sourceOrigin": "body datum at zero; head centre Z=1.65 authored, temporary",
+  "geometry": {
+    "near": {
+      "C01 scalp foundation - near": {
+        "vertices": 2592,
+        "triangles": 5086,
+        "materials": 1,
+        "boundsBlenderMetres": [
+          [
+            -0.08535433560609818,
+            -0.08826760202646255,
+            1.620732069015503
+          ],
+          [
+            0.08668256551027298,
+            0.10682026296854019,
+            1.78174889087677
+          ]
+        ]
+      },
+      "C01 tight curl crop - near": {
+        "vertices": 48640,
+        "triangles": 94720,
+        "materials": 3,
+        "boundsBlenderMetres": [
+          [
+            -0.104365773499012,
+            -0.09924594312906265,
+            1.6244573593139648
+          ],
+          [
+            0.10210072249174118,
+            0.12403428554534912,
+            1.799741268157959
+          ]
+        ]
+      }
+    },
+    "far": {
+      "C01 scalp foundation - far": {
+        "vertices": 624,
+        "triangles": 1198,
+        "materials": 1,
+        "boundsBlenderMetres": [
+          [
+            -0.08528029173612595,
+            -0.08679339289665222,
+            1.620732069015503
+          ],
+          [
+            0.08457610756158829,
+            0.10505993664264679,
+            1.781044363975525
+          ]
+        ]
+      },
+      "C01 tight curl crop - far": {
+        "vertices": 6900,
+        "triangles": 12880,
+        "materials": 3,
+        "boundsBlenderMetres": [
+          [
+            -0.10176997631788254,
+            -0.10220050811767578,
+            1.6199572086334229
+          ],
+          [
+            0.10237593203783035,
+            0.12341910600662231,
+            1.7988122701644897
+          ]
+        ]
+      }
+    }
+  },
+  "textures": [],
+  "rigs": 0,
+  "morphs": 0,
+  "curves": "bounded polyline tube recipe; converted editable mesh",
+  "authorship": "Original recipe and original geometry; AGPL-3.0-or-later, following repository",
+  "seed": 41029
+}

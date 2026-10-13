@@ -1,0 +1,27 @@
+Extensions: writing cache failed ([Errno 30] Read-only file system: '/home/agent/.config/blender/4.3/extensions').
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+18:51:12 | INFO: Starting glTF 2.0 export
+18:51:12 | INFO: Extracting primitive: C01 scalp foundation - near
+18:51:12 | INFO: Primitives created: 1
+18:51:12 | INFO: Extracting primitive: C01 tight curl crop - near
+18:51:12 | INFO: Primitives created: 3
+18:51:12 | INFO: Finished glTF 2.0 export in 0.09223604202270508 s
+
+18:51:12 | INFO: Starting glTF 2.0 export
+18:51:12 | INFO: Extracting primitive: C01 scalp foundation - far
+18:51:12 | INFO: Primitives created: 1
+18:51:12 | INFO: Extracting primitive: C01 tight curl crop - far
+18:51:12 | INFO: Primitives created: 3
+18:51:12 | INFO: Finished glTF 2.0 export in 0.023822307586669922 s
+
+18:51:12 | INFO: Starting glTF 2.0 export
+18:51:12 | INFO: Extracting primitive: TEMPORARY calibration head - actual fit pending master
+18:51:12 | INFO: Primitives created: 1
+18:51:12 | INFO: Extracting primitive: TEMPORARY display neck
+18:51:12 | INFO: Primitives created: 1
+18:51:12 | INFO: Finished glTF 2.0 export in 0.01057124137878418 s
+
+Info: Saved "curl-crop-editable.blend"
+Blender 4.3.2
+
+Blender quit

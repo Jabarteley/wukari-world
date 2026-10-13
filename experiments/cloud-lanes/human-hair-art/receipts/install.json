@@ -1,0 +1,21 @@
+{
+  "command": [
+    "npm",
+    "--prefix",
+    "experiments/cloud-lanes/human-hair-art",
+    "install",
+    "--cache",
+    "/tmp/aw-hair-npm-cache",
+    "--ignore-scripts",
+    "--no-audit",
+    "--no-fund"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 2.079,
+  "sampledTreePeakRssBytes": 115961856,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 120,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

@@ -1,0 +1,179 @@
+{
+  "status": "PASS",
+  "files": {
+    "curl-crop-far.glb": {
+      "bytes": 268984,
+      "sha256": "56b73a3f3c2c378bb1599c692dc8a4f8ad90a7b890a6f4c48c120177b39fdac2",
+      "triangles": 14078,
+      "vertices": 7524,
+      "primitives": 4,
+      "materialSlots": 4,
+      "materials": [
+        {
+          "name": "C01 root shadow",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.007000000216066837,
+              0.004000000189989805,
+              0.0020000000949949026,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8199999928474426
+          }
+        },
+        {
+          "name": "C01 espresso",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.008999999612569809,
+              0.004999999888241291,
+              0.003000000026077032,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6600000262260437
+          }
+        },
+        {
+          "name": "C01 warm variation",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.01600000075995922,
+              0.00800000037997961,
+              0.004000000189989805,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6899999976158142
+          }
+        },
+        {
+          "name": "C01 soft glints",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.024000000208616257,
+              0.012000000104308128,
+              0.006000000052154064,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6299999952316284
+          }
+        }
+      ],
+      "skins": 0,
+      "morphTargets": 0,
+      "textures": 0,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    },
+    "curl-crop-near.glb": {
+      "bytes": 1832376,
+      "sha256": "0471b3840a94976cd5844985918ae310767035d8ecc453fc238db0879ec2bbd5",
+      "triangles": 99806,
+      "vertices": 51232,
+      "primitives": 4,
+      "materialSlots": 4,
+      "materials": [
+        {
+          "name": "C01 root shadow",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.007000000216066837,
+              0.004000000189989805,
+              0.0020000000949949026,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8199999928474426
+          }
+        },
+        {
+          "name": "C01 espresso",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.008999999612569809,
+              0.004999999888241291,
+              0.003000000026077032,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6600000262260437
+          }
+        },
+        {
+          "name": "C01 warm variation",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.01600000075995922,
+              0.00800000037997961,
+              0.004000000189989805,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6899999976158142
+          }
+        },
+        {
+          "name": "C01 soft glints",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.024000000208616257,
+              0.012000000104308128,
+              0.006000000052154064,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6299999952316284
+          }
+        }
+      ],
+      "skins": 0,
+      "morphTargets": 0,
+      "textures": 0,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    },
+    "temporary-calibration.glb": {
+      "bytes": 162380,
+      "sha256": "945d175c02283a8edf255a00636855852853dd6ba2f28752785c93feb57738ff",
+      "triangles": 8704,
+      "vertices": 4496,
+      "primitives": 2,
+      "materialSlots": 1,
+      "materials": [
+        {
+          "name": "TEMP ceramic calibration only",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.23499999940395355,
+              0.26499998569488525,
+              0.27000001072883606,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.7200000286102295
+          }
+        }
+      ],
+      "skins": 0,
+      "morphTargets": 0,
+      "textures": 0,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    }
+  }
+}

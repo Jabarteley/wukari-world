@@ -134,4 +134,7 @@ export function standalones(): readonly Standalone[] {
 }
 
 /** Walk-grid obstacles ([x0, z0, x1, z1]) for the standalone buildings. */
-export const standaloneBlocks = (): Rect[] => standalones().map((s) => boundsOf(s.building.ring) as Rect);
+/** The Senate rotunda at the tower's foot (drawn by architecture.ts) also blocks walking. */
+let rotunda: Rect | null = null;
+const extraBlocks = (): Rect[] => { const a = ANCHORS.senate; if (!a) return []; return [rotunda ||= [a.x - 3.9, a.z + 2.6, a.x + 3.9, a.z + 10.4]]; };
+export const standaloneBlocks = (): Rect[] => [...standalones().map((s) => boundsOf(s.building.ring) as Rect), ...extraBlocks()];

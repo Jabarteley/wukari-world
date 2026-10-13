@@ -161,15 +161,17 @@ export function createCampusHost(container: HTMLElement, {
   let insets = { top: 0, bottom: 0 }, size = { width: 0, height: 0 };
   // The first frame says UNILAG: a pulled-back 3/4 view of the whole gate arch, its lettering, the road and the palms.
   // It settles into the ordinary follow camera on the first move or drag.
-  let yaw = 0.95, tilt = 0.42, distance = 74, phase = 0, renderCount = 0, intro = true;
+  // Seen from outside the gate, low enough for the whole banner and both outer pylons; the follow camera blends in from here.
+  let yaw = -1.3, tilt = 0.34, distance = 34, phase = 0, renderCount = 0, intro = true, introBlend = 1, armNow = 1;
+  const INTRO_VIEW = 112, INTRO_TILT = 0.3, INTRO_SHIFT_Z = -5;
   function settleIntro(): void {
     if (!intro) return;
     intro = false;
-    const from = { tilt, distance }, start = globalThis.performance?.now?.() ?? 0, ms = reduced() ? 0 : 1300;
+    const start = globalThis.performance?.now?.() ?? 0, ms = reduced() ? 0 : 1300;
     const step = (): void => {
       if (disposed) return;
       const k = ms ? Math.min(1, ((globalThis.performance?.now?.() ?? 0) - start) / ms) : 1, e = k * k * (3 - 2 * k);
-      tilt = from.tilt + (0.34 - from.tilt) * e; distance = from.distance + (34 - from.distance) * e; draw();
+      introBlend = 1 - e; draw();
       if (k < 1) globalThis.requestAnimationFrame?.(step);
     };
     step();
@@ -214,17 +216,20 @@ export function createCampusHost(container: HTMLElement, {
     const target = shuttleActive && shuttleAt ? shuttleAt : walker;
     const available = Math.max(180, size.height - insets.top - insets.bottom);
     const phone = size.width <= 720;
-    const viewDistance = distance * (phone ? 0.88 : 1) * clamp(560 / available, 0.9, 1.42);
-    // The camera arm stops before the first building or tree on its ray, so it never ends up inside or behind a wall.
-    const wantX = target.x + Math.sin(yaw) * Math.cos(tilt) * viewDistance, wantY = Math.sin(tilt) * viewDistance + 2, wantZ = target.z + Math.cos(yaw) * Math.cos(tilt) * viewDistance;
+    const followDistance = distance * (phone ? 0.88 : 1) * clamp(560 / available, 0.9, 1.42);
+    const viewDistance = followDistance * (1 - introBlend) + INTRO_VIEW * introBlend, lens = tilt * (1 - introBlend) + INTRO_TILT * introBlend;
+    const tx = target.x, tz = target.z + INTRO_SHIFT_Z * introBlend * (target === walker ? 1 : 0);
+    // The camera arm stops before the first building, gate or booth on its ray and keeps 3 m off solids; it cuts in at once but eases back out.
+    const wantX = tx + Math.sin(yaw) * Math.cos(lens) * viewDistance, wantY = Math.sin(lens) * viewDistance + 2, wantZ = tz + Math.cos(yaw) * Math.cos(lens) * viewDistance;
     let arm = 1;
-    if (!intro && viewDistance < 140) for (let t = 0.1; t <= 1; t += 0.03) if (occluded(target.x + (wantX - target.x) * t, 2 + (wantY - 2) * t, target.z + (wantZ - target.z) * t, t > 0.8 ? 1.5 : 0.3) === 'building') { arm = Math.max(0.15, t - 0.08); break; }
-    camera.position.set(target.x + (wantX - target.x) * arm, Math.max(1.4, 2 + (wantY - 2) * arm), target.z + (wantZ - target.z) * arm);
-    camera.lookAt(target.x, 2, target.z);
+    if (introBlend < 0.5 && viewDistance < 140) for (let t = 0.1; t <= 1; t += 0.03) { const hit = occluded(tx + (wantX - tx) * t, 2 + (wantY - 2) * t, tz + (wantZ - tz) * t, t > 0.8 ? 3 : 0.5); if (hit && hit !== 'tree') { arm = Math.max(0.15, t - 0.1); break; } }
+    armNow = arm < armNow ? arm : Math.min(arm, armNow + 0.05);
+    camera.position.set(tx + (wantX - tx) * armNow, Math.max(1.4, 2 + (wantY - 2) * armNow), tz + (wantZ - tz) * armNow);
+    camera.lookAt(tx, 2, tz);
     const shift = Math.round((insets.bottom - insets.top) / 2);
     if (shift && size.width && size.height) camera.setViewOffset(size.width, size.height, 0, shift, size.width, size.height);
     else camera.clearViewOffset();
-    applyDepthRange(viewDistance * arm);
+    applyDepthRange(viewDistance * armNow);
     camera.updateProjectionMatrix();
   }
 

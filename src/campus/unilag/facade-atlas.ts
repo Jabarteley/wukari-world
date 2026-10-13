@@ -108,16 +108,16 @@ export function facadeMaterial<M extends MeshLambertMaterial | MeshStandardMater
       float hh = fract(sin(dot(tileId + vCell * 3.1, vec2(12.9898, 78.233))) * 43758.5453);
       float cellId = vCell;
       bool windowed = (vCell < 3.5 || (vCell > 4.5 && vCell < 7.5) || vCell > 10.5);
-      if (windowed && tileId.y > .5) { if (hh > .94) cellId = 8.; else if (hh > .88) cellId = 9.; else if (hh > .83 && vCell != 11.) cellId = 11.; }
+      if (windowed && tileId.y > .5) { if (hh > .86) cellId = 8.; else if (hh > .78) cellId = 9.; else if (hh > .72 && vCell != 11.) cellId = 11.; }
       vec2 atlasSize = vec2(4., 3.);
       vec2 cellOrigin = vec2(mod(cellId + .5, 4.), atlasSize.y - 1. - floor((cellId + .5) / 4.));
       vec2 tile = fract(vMapUv) * .9375 + .03125;
       // Distance fade: past ~70 m the cell is sampled from ever blurrier mips, then eased toward storey bands of wall tone, so far blocks read as banded facades.
-      float far = smoothstep(70., 260., length(vViewPosition));
-      float blur = 1. + 7. * far;
+      float far = smoothstep(30., 150., length(vViewPosition));
+      float blur = 1. + 9. * far;
       vec4 facade = textureGrad(map, (cellOrigin + tile) / atlasSize, dFdx(vMapUv) * blur * .9375 / atlasSize, dFdy(vMapUv) * blur * .9375 / atlasSize);
       float band = mix(.74, .93, step(.36, fract(vMapUv.y)));
-      facade = mix(facade, vec4(vec3(band), 1.), far * .62);
+      facade = mix(facade, vec4(vec3(band), 1.), far * .72);
       facade.rgb *= .95 + .05 * fract(sin(tileId.y * 91.7 + vCell) * 437.58) + .03 * hh;
       facade.rgb *= mix(.76, 1., smoothstep(0., .45, vMapUv.y)); // base-of-wall occlusion on the ground storey
       diffuseColor *= facade;`);
@@ -127,12 +127,13 @@ export function facadeMaterial<M extends MeshLambertMaterial | MeshStandardMater
 }
 
 /** Add tile-space UVs and the cell index to an extruded body (non-indexed, y up). Caps and short walls get the plain cell. */
-export function addWallUvs(geometry: BufferGeometry, ring: MetreRing, height: number, cell: number): void {
+export function addWallUvs(geometry: BufferGeometry, ring: MetreRing, height: number, cell: number, seed = 0): void {
+  const seedU = Math.abs(Math.imul(seed | 0, 2654435761) >>> 8) % 61; // integer tile offset: adjacent buildings never share a pattern
   const pos = geometry.attributes.position!, n = pos.count, uv = new Float32Array(n * 2), cells = new Float32Array(n).fill(PLAIN);
   const segs = [] as Array<{ ax: number; az: number; dx: number; dz: number; len: number; step: number }>;
   for (let i = 1; i < ring.length; i++) {
     const [ax, az] = ring[i - 1]!, [bx, bz] = ring[i]!, len = Math.hypot(bx - ax, bz - az);
-    if (len > .01) segs.push({ ax, az, dx: (bx - ax) / len, dz: (bz - az) / len, len, step: len / baysOf(len) });
+    if (len > .01) segs.push({ ax, az, dx: (bx - ax) / len, dz: (bz - az) / len, len, step: len / baysOf(len, height) });
   }
   const fh = height / floorsOf(height);
   for (let t = 0; t < n; t += 3) {
@@ -148,7 +149,7 @@ export function addWallUvs(geometry: BufferGeometry, ring: MetreRing, height: nu
     if (!best) continue;
     for (let k = 0; k < 3; k++) {
       const along = (p[k]![0] - best.ax) * best.dx + (p[k]![2] - best.az) * best.dz;
-      uv[(t + k) * 2] = along / best.step; uv[(t + k) * 2 + 1] = p[k]![1] / fh; cells[t + k] = cell;
+      uv[(t + k) * 2] = along / best.step + seedU; uv[(t + k) * 2 + 1] = p[k]![1] / fh; cells[t + k] = cell;
     }
   }
   geometry.setAttribute('uv', new Float32BufferAttribute(uv, 2));

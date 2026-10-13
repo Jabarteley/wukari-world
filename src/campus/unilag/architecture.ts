@@ -15,7 +15,7 @@
 import type { Batch } from '../../scene/types.ts';
 import type { CampusMapBuilding, MetrePoint } from './geo.ts';
 import { boundsOf, pointInRing } from './geo.ts';
-import { LANDMARK_MAPPINGS } from './layout.ts';
+import { ANCHORS, LANDMARK_MAPPINGS } from './layout.ts';
 import { landmarkBuildingIds, standalones } from './standalone.ts';
 import { landmarkLabel } from './spot-names.ts';
 import { signLetters } from '../shared/signs.ts';
@@ -34,12 +34,12 @@ const STYLE_BY_LANDMARK: Record<string, FacadeStyle> = { senate: 'podium', libra
  * 0 full balconies, 1 staggered balconies + louvres, 2 louvre ribbons + sun-shade slabs, 3 stair towers, 4 ground arcade.
  */
 const PALETTE: Record<string, { wall: string; accent: string; roof?: string; variant?: number }> = {
-  'moremi-hall': { wall: '#f1e4de', accent: '#c66a88', roof: '#8b4a4a', variant: 1 },
-  'jaja-hall': { wall: '#e6e4cf', accent: '#2f78a0', roof: '#5f6f78', variant: 2 },
-  'mariere-hall': { wall: '#eee9d8', accent: '#3d8a5a', roof: '#6b7a62', variant: 3 },
-  'kofo-hall': { wall: '#f3e3bd', accent: '#d39a22', roof: '#a5654a', variant: 0 },
-  'makama-hall': { wall: '#e4e4de', accent: '#7b52a4', roof: '#5d6366', variant: 4 },
-  'eni-njoku-hall': { wall: '#ecd6c2', accent: '#b8512c', roof: '#98503f', variant: 0 },
+  'moremi-hall': { wall: '#f4d9dd', accent: '#c2467a', roof: '#7a2f45', variant: 1 },
+  'jaja-hall': { wall: '#d8e3f0', accent: '#2a6fb0', roof: '#46586b', variant: 2 },
+  'mariere-hall': { wall: '#dcebd2', accent: '#2f8a4c', roof: '#4f6b4a', variant: 3 },
+  'kofo-hall': { wall: '#f6e3a6', accent: '#d08a14', roof: '#b4562f', variant: 0 },
+  'makama-hall': { wall: '#e4dced', accent: '#6d3fa0', roof: '#3f4448', variant: 4 },
+  'eni-njoku-hall': { wall: '#f0c8aa', accent: '#b8432a', roof: '#9a3f2f', variant: 0 },
   'queen-amina-hall': { wall: '#efe0e4', accent: '#933a58', roof: '#7a5560', variant: 1 },
   'biobaku-hall': { wall: '#dfe8e4', accent: '#2a8a86', roof: '#5f716f', variant: 2 },
   'honours-hall': { wall: '#e6e8ee', accent: '#2c4c8c', roof: '#59606e', variant: 3 },
@@ -104,8 +104,9 @@ export function landmarkHeight(b: CampusMapBuilding): number {
 }
 
 /** Floor and bay grid shared by the facade atlas and the window painters, so geometric panes cover texture windows exactly. */
-export const floorsOf = (height: number): number => Math.max(1, Math.floor(height / 3.6));
-export const baysOf = (length: number): number => Math.max(1, Math.floor((length - 1.5) / 4.4));
+export const floorsOf = (height: number): number => Math.max(1, Math.min(5, Math.round(height / 4.2)));
+/** Bay width follows floor height (1.2x) so windows keep their proportions and stay large at any storey count. */
+export const baysOf = (length: number, height: number): number => Math.max(1, Math.floor((length - 1.5) / (1.2 * (height / floorsOf(height)))));
 export interface Budget { left: number }
 let texturedWalls = false;
 /** When the facade atlas is active, plain OSM buildings take their windows and piers from the texture. */
@@ -198,7 +199,7 @@ const podium: Painter = (batch, L, H, info, seed) => {
 /** Halls: five layouts, each with its own accent so they read apart at a glance. */
 const hall: Painter = (batch, L, H, info, seed) => {
   const floors = floorsOf(H), fh = H / floors, v = info.variant;
-  const rooms = baysOf(L), rw = L / rooms, acc = info.accent;
+  const rooms = baysOf(L, H), rw = L / rooms, acc = info.accent;
   for (let f = 0; f < floors; f++) {
     const y = f * fh;
     if (f && v !== 2) {
@@ -216,6 +217,17 @@ const hall: Painter = (batch, L, H, info, seed) => {
   if (v === 3) for (const s of [-1, 1]) batch.box(s * (L / 2 - 1.1), H / 2 + .6, 1.1, 2.2, H + 1.2, 2.2, acc);
   else if (v === 4) { for (let i = 0; i <= rooms; i += 1) batch.box(-L / 2 + i * rw, 1.7, 1.5, .5, 3.4, .5, '#f3eddc'); batch.box(0, 3.5, 1.2, L, .5, 2.4, acc); }
   else for (let i = 0; i <= rooms; i += 2) batch.box(-L / 2 + i * rw, H / 2, .35, .3, H, .7, acc);
+  // Yard life: laundry on balcony lines and wall-mounted AC boxes (verified nowhere: plausible hostel detail).
+  const LAUNDRY = ['#f2f2f2', '#e8c24a', '#3f78c4', '#d9534f', '#6fb06f'];
+  for (let f = 1; f < floors; f++) {
+    const y = f * fh;
+    if (v === 0 || v === 3 || v === 4) for (let r = (seed + f) % 3; r < rooms; r += 3) {
+      const x = -L / 2 + rw * (r + .5);
+      batch.quad(x, y + 1.6, 1.34, rw * .8, .05, '#777');
+      for (let k = 0; k < 3; k++) batch.quad(x + (k - 1) * rw * .24, y + 1.15, 1.35, .5, .8, LAUNDRY[(r + k + f) % 5]!);
+    }
+    for (let r = (seed + f * 2) % 4; r < rooms; r += 4) batch.box(-L / 2 + rw * (r + .5) + rw * .36, y + fh * .3, .3, .85, .55, .5, '#d9ddd9');
+  }
   batch.box(0, H + .22, .2, L, .5, .5, '#d8cfb6');
 };
 
@@ -231,8 +243,8 @@ const library: Painter = (batch, L, H, _info, seed) => {
 };
 
 const institutional: Painter = (batch, L, H, info, seed) => {
-  const floors = Math.max(1, Math.floor(H / 3.4)), fh = H / floors;
-  const n = Math.max(1, Math.floor((L - 1.5) / 3.8)), step = L / n;
+  const floors = floorsOf(H), fh = H / floors;
+  const n = baysOf(L, H), step = L / n;
   if (texturedWalls && !info.id) {
     // Windows are in the atlas texture; geometry adds only the floor ledges and a parapet, on the same floor grid.
     for (let f = 0; f < floors; f++) batch.box(0, f * fh + fh - .25, .5, L, .4, 1, SHADE);
@@ -290,27 +302,27 @@ const CONC = ['#aaa79c', '#9b988d', '#b9b6ab', '#a3a095'];
 
 /** Engineering: heavy interlocking concrete louvres at first-floor level, deep slabs, and Y-beams projecting past the roof line (sourced: Jan 2024 TAG visit; colour inferred raw concrete). */
 const engineering: Painter = (batch, L, H, _info, seed) => {
-  const floors = floorsOf(H), fh = H / floors, n = baysOf(L), step = L / n;
+  const floors = floorsOf(H), fh = H / floors, n = baysOf(L, H), step = L / n;
   batch.box(0, .6, .7, L, 1.2, 1.4, '#8f8c82');
+  // The louvres are the facade: two heavy blades per bay on every floor above the ground, over deep slabs.
   for (let f = 1; f < floors; f++) {
     const y = f * fh;
-    if (f === 1) {
-      for (let i = 0; i < n; i++) for (let k = 0; k < 3; k++) batch.box(-L / 2 + step * (i + .5), y + .5 + k * .95, .95, step * .94, .36, 1.9, CONC[(i + k) % 4]!);
-    } else batch.box(0, y, .8, L, .55, 1.6, CONC[1]!);
+    batch.box(0, y, .8, L, .6, 1.8, CONC[1]!);
+    for (let i = 0; i < n; i++) for (let k = 0; k < 2; k++) batch.box(-L / 2 + step * (i + .5), y + fh * (.3 + k * .38), 1.0, step * .94, .42, 2.0, CONC[(i + k + f) % 4]!);
   }
-  for (let i = 0; i <= n; i++) batch.box(-L / 2 + step * i, H / 2, .55, .8, H, 1.1, CONC[(i + seed) % 3 + (i % 2 ? 0 : 0)]!);
+  for (let i = 0; i <= n; i++) batch.box(-L / 2 + step * i, H / 2, .6, .9, H, 1.3, CONC[(i + seed) % 3]!);
   batch.box(0, H + .25, .6, L + .4, .6, 1.4, CONC[1]!);
-  for (let i = 0; i < n; i += 2) {
+  for (let i = 0; i < n; i++) {
     const x = -L / 2 + step * (i + .5);
-    batch.box(x, H + 1.5, 1.2, .45, 2.4, .6, CONC[0]!);
-    batch.box(x - .85, H + 3.3, 1.2, .4, 2.5, .6, CONC[2]!, { rz: .52 });
-    batch.box(x + .85, H + 3.3, 1.2, .4, 2.5, .6, CONC[2]!, { rz: -.52 });
+    batch.box(x, H + 1.5, 1.2, .5, 2.6, .7, CONC[0]!);
+    batch.box(x - .95, H + 3.5, 1.2, .45, 2.7, .7, CONC[2]!, { rz: .52 });
+    batch.box(x + .95, H + 3.5, 1.2, .45, 2.7, .7, CONC[2]!, { rz: -.52 });
   }
 };
 
 /** Arts: a quadrangle arcade: pointed arches over a deep ground-floor gallery, balustraded gallery above, finialled cornice. */
 const arts: Painter = (batch, L, H, info, seed) => {
-  const floors = floorsOf(H), fh = H / floors, n = baysOf(L), step = L / n, g = Math.min(4.2, fh + .3);
+  const floors = floorsOf(H), fh = H / floors, n = baysOf(L, H), step = L / n, g = Math.min(4.2, fh + .3);
   batch.box(0, .35, .9, L, .7, 1.8, '#b99d7e');
   for (let i = 0; i < n; i++) {
     const x = -L / 2 + step * (i + .5), w = step * .62;
@@ -329,9 +341,11 @@ const arts: Painter = (batch, L, H, info, seed) => {
 
 /** Law: a courtyard colonnade of giant columns carrying a plain entablature and a central pediment. */
 const law: Painter = (batch, L, H, info, seed) => {
-  const floors = floorsOf(H), fh = H / floors, n = baysOf(L), step = L / n, ch = Math.min(H - .8, fh * 2);
+  const floors = floorsOf(H), fh = H / floors, n = baysOf(L, H), step = L / n, ch = Math.min(H - .8, fh * 2);
   batch.box(0, .3, 1.2, L, .6, 2.4, '#bfc0b8');
-  batch.quad(0, ch / 2 + .5, .1, L - .3, ch - .4, '#2b3a46');
+  batch.quad(0, ch / 2 + .5, .1, L - .3, ch - .4, '#6a5c44');
+  batch.quad(0, ch / 2 + .2, .14, L - 1, ch * .7, '#ffe2a0', { layer: 'glow' });
+  for (let s = 0; s < 3; s++) batch.box(0, .08 + s * .16, 3.4 - s * .75, L + 1, .16, 1, '#d4d4cc');
   for (let i = 0; i <= n; i++) batch.cyl(-L / 2 + step * i, ch / 2 + .6, 1.7, .42, ch, '#ecece4', { seg: 8 });
   batch.box(0, ch + .95, 1.5, L + .5, .9, 2.2, '#e4e4dc');
   batch.box(0, ch + 1.65, 1.5, L + .8, .35, 2.5, info.accent);
@@ -342,7 +356,7 @@ const law: Painter = (batch, L, H, info, seed) => {
 
 /** Social Sciences: a block raised on pilotis, a deep-shaded upper volume with accent panels and framed ribbon windows. */
 const social: Painter = (batch, L, H, info, seed) => {
-  const floors = floorsOf(H), fh = H / floors, n = baysOf(L), step = L / n;
+  const floors = floorsOf(H), fh = H / floors, n = baysOf(L, H), step = L / n;
   batch.quad(0, fh * .5, .1, L, fh - .2, '#33464a');
   for (let i = 0; i <= n; i++) batch.cyl(-L / 2 + step * i, fh / 2, 1.4, .26, fh, '#e9e5d6', { seg: 6 });
   batch.box(0, fh + (H - fh) / 2, .9, L + .4, H - fh, 1.8, '#e3dfcf');
@@ -360,7 +374,7 @@ const social: Painter = (batch, L, H, info, seed) => {
 
 /** Science: framed ribbon glazing per floor with mullions, a glazed stair tower at one end and lab vent stacks on the roof. */
 const science: Painter = (batch, L, H, info, seed) => {
-  const floors = floorsOf(H), fh = H / floors, n = baysOf(L), step = L / n;
+  const floors = floorsOf(H), fh = H / floors, n = baysOf(L, H), step = L / n;
   for (let f = 0; f < floors; f++) {
     const y = f * fh;
     batch.box(0, y + fh - .2, .55, L, .4, 1.1, '#cfd3cb');
@@ -408,21 +422,20 @@ function entrance(batch: Batch, L: number, H: number, info: ArchitectureInfo, bu
   const bayH = Math.max(info.style === 'hall' ? H + 1.2 : Math.min(H + .5, 9), signY0 + labelH + .6);
   const bayColour = info.style === 'hall' ? info.accent : info.style === 'auditorium' ? '#c9a13e' : info.style === 'library' ? '#d3c8ad' : '#e6dcc4';
   if (info.style === 'podium') {
-    // Circular stone plaza in concentric steps (distinct from the road) and a curved glazed rotunda lobby under the name plate.
-    const R = Math.min(22, L * .45);
-    for (let s = 0; s < 3; s++) batch.cyl(0, .06 + s * .09, 8.5, R - s * 2.6, .12, s % 2 ? '#d9cfb4' : '#cbbf9f', { seg: 28 });
-    for (let k = 0; k < 8; k++) batch.quad(Math.sin(k * .785) * R * .55, .36, 8.5 + Math.cos(k * .785) * R * .55, 1.6, R * .5, k % 2 ? '#b9ad92' : '#e2d8bd', { rx: -Math.PI / 2, ry: k * .785 });
-    batch.cyl(0, 2.3, 7.5, 5, 4.6, '#e8dec4', { seg: 20 });
-    batch.cyl(0, 1.7, 7.5, 5.08, 2.6, '#2f4c56', { seg: 20 });
-    batch.cyl(0, 4.75, 7.5, 5.4, .35, '#cfc4a8', { seg: 20 });
-    signBoard(batch, info.label, 7.2, Math.min(L - 2, 16), 1.9, 1, bud);
+    // The circular plaza and glazed rotunda stand at the tower's foot (drawSenateTower); the podium keeps its plate and a canopy.
+    batch.box(0, 4.4, 2.6, Math.min(L - 2, 18), .4, 2.6, '#e6dcc4');
+    signBoard(batch, info.label, 6.4, Math.min(L - 2, 16), 2.0, 1, bud);
     return;
   }
-  batch.box(0, bayH / 2, .85, w, bayH, 1.7, bayColour);
+  batch.box(0, bayH / 2, 1.25, w, bayH, 2.5, bayColour);
   if (info.style === 'auditorium') {
-    for (let r = 0; r < Math.floor(bayH / 1.8); r++) for (let c = 0; c < Math.floor(w / 1.8); c++) batch.quad(-w / 2 + .9 + c * 1.8, .9 + r * 1.8, 1.72, 1.7, 1.7, (r + c + seed) % 2 ? '#d7b04e' : '#b88f33');
+    for (let r = 0; r < Math.floor(bayH / 1.8); r++) for (let c = 0; c < Math.floor(w / 1.8); c++) batch.quad(-w / 2 + .9 + c * 1.8, .9 + r * 1.8, 2.52, 1.7, 1.7, (r + c + seed) % 2 ? '#d7b04e' : '#b88f33');
   }
-  batch.quad(0, 1.35, 1.74, 3.4, 2.5, '#2b464c');
+  // Door with a warm lit interior (glow at night) rather than a black void, and a landing.
+  batch.quad(0, 1.35, 2.54, 3.4, 2.5, '#5b4a36');
+  batch.quad(0, 1.35, 2.56, 3.0, 2.2, '#8a7350');
+  batch.quad(0, 1.45, 2.58, 2.6, 1.9, '#ffe2a0', { layer: 'glow' });
+  batch.box(0, 1.35, 2.58, .1, 2.4, .08, '#3a2f22');
   batch.box(0, 3.55, 3.0, w + 1.4, .35, 4.6, '#dcd2ba');
   for (const s of [-1, 1]) batch.cyl(s * (w / 2 - .3), 1.75, 4.9, .26, 3.5, '#eadfc7', { seg: 6 });
   if (info.style === 'library') {
@@ -430,7 +443,13 @@ function entrance(batch: Batch, L: number, H: number, info: ArchitectureInfo, bu
     batch.box(0, .08, 12.5, w + 12, .16, 9, '#d0c7ae');
     for (let i = -2; i <= 2; i++) batch.quad(i * 5, .18, 12.5, 1.2, 8.5, i % 2 ? '#bfb49b' : '#c9bea5', { rx: -Math.PI / 2 });
   } else for (let s = 0; s < 3; s++) batch.box(0, .08 + s * .15, 5.5 + (2 - s) * .8, w + 1, .15, .9, '#d4cab1');
-  signBoard(batch, info.label, signY0 + 2 + labelH / 2, w - .6, 1.85, design, bud);
+  signBoard(batch, info.label, signY0 + 2 + labelH / 2, w - .6, 2.65, design, bud);
+  if (info.style === 'hall') {
+    // Hostel notice board beside the door.
+    batch.box(w / 2 + 1.6, 1.7, 2.7, 2.2, 1.5, .12, '#6b4a2f');
+    batch.quad(w / 2 + 1.6, 1.7, 2.78, 2, 1.3, '#efe8cf');
+    for (let k = 0; k < 4; k++) batch.quad(w / 2 + 1.0 + (k % 2) * .9, 1.35 + Math.floor(k / 2) * .6, 2.8, .6, .45, ['#e8c24a', '#8fc3e8', '#e89a9a', '#a8d8a0'][k]!);
+  }
 }
 
 /** Roof furniture near the camera: water tank, AC units, plant box and a ridge strip on tone-varied roofs. */
@@ -487,6 +506,17 @@ export function drawSenateTower(batch: Batch, b: CampusMapBuilding, rich: boolea
     if (L < 3) continue;
     const nx = winding * dz / L, nz = -winding * dx / L;
     batch.at((ax + bx) / 2 + nx * .03, 0, (az + bz) / 2 + nz * .03, Math.atan2(nx, nz), () => paint(batch, L, b.height, TOWER, b.osm.id + i));
+  }
+  const an = ANCHORS.senate;
+  if (an) {
+    // Circular paved plaza in front of the tower and a glazed rotunda lobby: shallow so props stand on it.
+    const px = an.x, pz = an.z + 14, R = 15;
+    batch.cyl(px, .07, pz, R, .12, '#c9bc9a', { seg: 32 });
+    batch.cyl(px, .12, pz, R - 3, .12, '#dcd2b6', { seg: 32 });
+    for (let k = 0; k < 8; k++) batch.quad(px + Math.sin(k * .785) * R * .5, .2, pz + Math.cos(k * .785) * R * .5, 1.4, R * .55, k % 2 ? '#b3a688' : '#e8dfc6', { rx: -Math.PI / 2, ry: k * .785 });
+    batch.cyl(px, 2.4, an.z + 6.5, 3.6, 4.8, '#e8dec4', { seg: 20 });
+    batch.cyl(px, 1.9, an.z + 6.5, 3.66, 2.8, '#2f4c56', { seg: 20 });
+    batch.cyl(px, 4.95, an.z + 6.5, 3.9, .35, '#cfc4a8', { seg: 20 });
   }
   const [x0, z0, x1, z1] = boundsOf(b.ring), cx = (x0 + x1) / 2, cz = (z0 + z1) / 2, H = b.height;
   batch.box(cx, H + 1.8, cz, 7, 3.4, 5.5, '#cfc4a8');

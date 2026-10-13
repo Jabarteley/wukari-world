@@ -8,6 +8,7 @@ import { buildUnilag } from './scene.ts';
 import { SHUTTLE_STOPS, shuttleRoute, shuttlePose } from './shuttle.ts';
 import { buildShuttle } from './shuttle-scene.ts';
 import { CAMPUS_NPCS } from './content.ts';
+import { NPC_LOOKS } from './npc-looks.ts';
 import { BUILDINGS, ZONES, ROADS, ANCHORS, ENTRANCE } from './layout.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
 import { pointInRing, boundsOf } from './geo.ts';
@@ -27,7 +28,7 @@ renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=
 renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;
 const world=new THREE.Scene(),camera=new THREE.PerspectiveCamera(48,1,.1,1800),kit: Kit=createKit(),campus=buildUnilag(kit);
 world.add(campus.group);
-campus.setCrowd(Object.values(CAMPUS_NPCS).flatMap(npc=>{const a=ANCHORS[npc.at];if(!a)return [];const at=campus.walk.grid.nearest(a.x+3,a.z+3);return at?[{...npc,name:npc.name+' · '+npc.role,...at}]:[];}));
+campus.setCrowd(Object.values(CAMPUS_NPCS).flatMap(npc=>{const a=ANCHORS[npc.at];if(!a)return [];const at=campus.walk.grid.nearest(a.x+3,a.z+3);return at?[{...npc,look:NPC_LOOKS[npc.id],name:npc.name+' · '+npc.role,...at}]:[];}));
 const hemi=new THREE.HemisphereLight('#c6e0e6','#68765a',2),sun=new THREE.DirectionalLight('#fff0d2',2.4);
 sun.position.set(80,140,50);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-120,right:120,top:120,bottom:-120,near:1,far:420});sun.shadow.normalBias=.3;sun.shadow.bias=-.0006;world.add(hemi,sun,sun.target);
 const bus: ShuttleView=buildShuttle(kit);bus.group.visible=false;world.add(bus.group);
@@ -133,5 +134,5 @@ $<HTMLCanvasElement>('world').addEventListener('wheel',e=>{e.preventDefault();di
 for(const button of document.querySelectorAll<HTMLElement>('[data-move]')){const key={up:'w',left:'a',right:'d',down:'s'}[button.dataset.move as 'up'|'left'|'right'|'down']; button.onpointerdown=(e: PointerEvent)=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys.add(key);loop.wake();};button.onpointerup=button.onpointercancel=()=>keys.delete(key);}
 map.onclick=e=>{const r=map.getBoundingClientRect(),x=CAMPUS_MAP.bounds[0]+(e.clientX-r.left)/r.width*(CAMPUS_MAP.bounds[2]-CAMPUS_MAP.bounds[0]),z=CAMPUS_MAP.bounds[1]+(e.clientY-r.top)/r.height*(CAMPUS_MAP.bounds[3]-CAMPUS_MAP.bounds[1]);const at=campus.walk.grid.nearest(x,z);if(at&&walker.goTo(at.x,at.z))loop.wake();else $('status').textContent='Choose a walkable part of campus.';};
 // Inspection interface exists only on the dev page, with no game-server writes.
-(globalThis as typeof globalThis & { campusPreview?: object }).campusPreview={campus,walker,renderer,jump,go,draw,ridePreview,setTime(value: string){campus.setTime(value);$<HTMLSelectElement>('time').value=value;draw();},get frames(){return frameCount;},get idle(){return !loop.running;},setView(values: { yaw?: number; tilt?: number; distance?: number }){if(finite(values.yaw))yaw=values.yaw;if(finite(values.tilt))tilt=values.tilt;if(finite(values.distance))distance=values.distance;draw();},dispose(){loop.dispose();campus.dispose();bus.dispose();kit.dispose();renderer.dispose();}};
+(globalThis as typeof globalThis & { campusPreview?: object }).campusPreview={campus,walker,renderer,jump,go,draw,ridePreview,setTime(value: string){campus.setTime(value);$<HTMLSelectElement>('time').value=value;draw();},get frames(){return frameCount;},get idle(){return !loop.running;},setFocus(dx: number,dz: number,look: number){focus.dx=dx;focus.dz=dz;lookHeight=look;draw();},setView(values: { yaw?: number; tilt?: number; distance?: number }){if(finite(values.yaw))yaw=values.yaw;if(finite(values.tilt))tilt=values.tilt;if(finite(values.distance))distance=values.distance;draw();},dispose(){loop.dispose();campus.dispose();bus.dispose();kit.dispose();renderer.dispose();}};
 resize();

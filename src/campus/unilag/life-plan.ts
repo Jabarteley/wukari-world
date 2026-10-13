@@ -6,7 +6,7 @@ import { CAMPUS_TREES } from './landscape.ts';
 
 export type PropKind = 'palm' | 'flame' | 'almond' | 'lamp' | 'bench' | 'sign' | 'kiosk' | 'car' | 'keke' | 'bus' | 'goal' | 'hoop' | 'net'
   | 'student' | 'gen' | 'hedge' | 'bump' | 'zebra' | 'guard' | 'pier' | 'canoe' | 'board' | 'bin'
-  | 'shuttle' | 'boat' | 'mast' | 'roadsign' | 'mapboard' | 'guardman' | 'mango' | 'coconut' | 'frangi' | 'shrub' | 'bed' | 'paving' | 'fountain' | 'terrace' | 'wall' | 'booth' | 'stall';
+  | 'patch' | 'shuttle' | 'boat' | 'mast' | 'roadsign' | 'mapboard' | 'guardman' | 'mango' | 'coconut' | 'frangi' | 'shrub' | 'bed' | 'paving' | 'fountain' | 'terrace' | 'wall' | 'booth' | 'stall';
 export interface Prop { t: PropKind; x: number; z: number; ry: number; v: number; label?: string; w?: number; d?: number }
 
 export const hash = (n: number) => Math.abs(Math.sin(n * 12.9898 + 4.1414) * 43758.5453) % 1;
@@ -15,7 +15,7 @@ export const WATERFRONT_MIN_X = 450;
 
 /* ---------- decorative plan (computed once) ---------- */
 let planCache: Prop[] | null = null;
-export const segs = CAMPUS_MAP.roads.flatMap(r => r.points.slice(1).map((b, i) => ({ a: r.points[i]!, b, w: r.width, hw: r.highway })));
+export const segs = CAMPUS_MAP.roads.flatMap(r => r.points.slice(1).map((b, i) => ({ a: r.points[i]!, b, w: r.width, hw: r.highway, name: r.name })));
 const footprints = CAMPUS_MAP.buildings.map(b => boundsOf(b.ring));
 const CELL = 48;
 const grid = new Map<string, typeof segs>();
@@ -88,7 +88,7 @@ export function campusPlan(): Prop[] {
         const side = n % 2 ? 1 : -1, off = r.width / 2 + 3.4, x = ax + ux * d - uz * side * off, z = az + uz * d + ux * side * off;
         if (!offRoadAndBuilding(x, z, 3)) continue;
         const h = hash(n * 3.7);
-        const kind = h < .2 ? 'palm' : h < .3 ? 'coconut' : h < .5 ? 'mango' : h < .66 ? 'almond' : h < .78 ? 'flame' : 'frangi';
+        const kind = h < .15 ? 'palm' : h < .22 ? 'coconut' : h < .38 ? 'mango' : h < .5 ? 'almond' : h < .73 ? 'flame' : 'frangi';
         p.push({ t: kind, x, z, ry: h * 6.28, v: hash(n * 9.1) });
       }
       carry = (carry + Math.ceil(Math.max(0, len - carry) / 24) * 24) - len;
@@ -142,7 +142,7 @@ export function campusPlan(): Prop[] {
     if (id === 'main-gate') continue;
     const built = kind === 'faculty' || kind === 'academic' || kind === 'administration' || kind === 'hall' || kind === 'services' || kind === 'worship';
     if (built) {
-      const side = r2 < .5 ? -1 : 1, kinds: Array<'plaza' | 'garden' | 'shade' | 'carpark' | 'palms'> = ['plaza', 'garden', 'shade', 'carpark', 'palms'], style = kinds[Math.floor(r * 5)]!;
+      const side = r2 < .5 ? -1 : 1, kinds: Array<'plaza' | 'garden' | 'shade' | 'carpark' | 'palms'> = ['plaza', 'garden', 'shade', 'carpark', 'palms'], style = id === 'senate' ? 'shade' : id === 'library' || id === 'auditorium' ? 'plaza' : kinds[Math.floor(r * 5)]!;
       if (r3 < .8) p.push({ t: 'sign', x: x + side * (5 + r2 * 4), z: z + 2.4 + r3, ry: 0, v: a, label: anchor.label });
       if (style === 'plaza') {
         p.push({ t: 'paving', x, z: z + 6, ry: 0, v: a, w: 18, d: 9 }, { t: 'bench', x: x - 5, z: z + 7, ry: Math.PI, v: 0 }, { t: 'bench', x: x + 5, z: z + 7, ry: Math.PI, v: 0 }, { t: 'lamp', x: x - 9, z: z + 4, ry: 0, v: 0 }, { t: 'mango', x: x + 12, z: z + 7, ry: r2 * 6, v: r });
@@ -211,6 +211,7 @@ export function campusPlan(): Prop[] {
       const h = hash(g * 1.31 + gx * .013), x = gx + (hash(g * 2.7) - .5) * STEP * .8, z = gz + (hash(g * 4.1) - .5) * STEP * .8;
       if (h > .9 || !offRoadAndBuilding(x, z, 4)) continue;
       if (nearTree(x, z)) continue;
+      if (hash(g * 8.8) < .55) p.push({ t: 'patch', x: x + (hash(g * 2.2) - .5) * 8, z: z + (hash(g * 3.9) - .5) * 8, ry: h * 30, v: Math.floor(hash(g * 5.5) * 12), w: 9 + hash(g * 1.9) * 13, d: 8 + hash(g * 7.3) * 10 });
       const kind = h < .4 ? 'shrub' : h < .55 ? 'frangi' : h < .65 ? 'bed' : h < .76 ? 'mango' : h < .81 ? 'coconut' : 'almond';
       p.push({ t: kind, x, z, ry: h * 40, v: hash(g * 6.7) });
       if (kind === 'shrub') p.push({ t: 'shrub', x: x + 1.8, z: z + .8, ry: 0, v: hash(g * 9.1) });
@@ -223,11 +224,19 @@ export function campusPlan(): Prop[] {
       pi++;
       if (id === 'main-gate' || !(kindOf.get(id) && kindOf.get(id) !== 'gate')) continue;
       const { x, z } = anchor;
-      let best: { px: number; pz: number; d: number } | null = null;
+      let best: { px: number; pz: number; d: number; w: number; name?: string; ry: number } | null = null;
       for (let i = -2; i <= 2; i++) for (let j = -2; j <= 2; j++) for (const sg of grid.get(`${Math.floor(x / CELL) + i}:${Math.floor(z / CELL) + j}`) ?? []) {
         const { a: [ax, az], b: [bx, bz] } = sg, dx = bx - ax, dz = bz - az, t = Math.max(0, Math.min(1, ((x - ax) * dx + (z - az) * dz) / (dx * dx + dz * dz || 1)));
         const px = ax + dx * t, pz = az + dz * t, d = Math.hypot(px - x, pz - z);
-        if (d > sg.w / 2 + 3 && (!best || d < best.d)) best = { px, pz, d };
+        if (d > sg.w / 2 + 3 && (!best || d < best.d)) best = { px, pz, d, w: sg.w, name: sg.name, ry: Math.atan2(dx, dz) };
+      }
+      if (best && best.d <= 70 && best.w >= 6) {
+        const dirx = (x - best.px) / best.d, dirz = (z - best.pz) / best.d, ox = best.pz === 0 ? 0 : 0, side = hash(pi * 3.3) < .5 ? -1 : 1;
+        void ox;
+        p.push({ t: 'zebra', x: best.px, z: best.pz, ry: best.ry, v: 0, w: best.w });
+        const off = best.w / 2 + 2.2, ux = Math.sin(best.ry), uz = Math.cos(best.ry);
+        const sx = best.px + dirx * off + ux * 5 * side, sz = best.pz + dirz * off + uz * 5 * side;
+        p.push({ t: 'roadsign', x: sx, z: sz, ry: Math.atan2(-dirx, -dirz), v: 0, label: best.name ?? 'UNILAG ROAD' });
       }
       if (!best || best.d > 90) continue;
       const dx = best.px - x, dz = best.pz - z, len = Math.hypot(dx, dz) - 4, ux = dx / (len + 4), uz = dz / (len + 4);
@@ -242,9 +251,22 @@ export function campusPlan(): Prop[] {
       }
     }
   }
+  // Worn dirt desire lines between neighbouring landmarks wherever no building is in the way.
+  {
+    const ids = Object.keys(ANCHORS).filter(id => id !== 'main-gate' && kindOf.get(id) && kindOf.get(id) !== 'gate'), seen = new Set<string>();
+    for (const id of ids) {
+      const A = ANCHORS[id]!, near = ids.filter(o => o !== id).map(o => ({ o, d: Math.hypot(ANCHORS[o]!.x - A.x, ANCHORS[o]!.z - A.z) })).filter(i => i.d > 25 && i.d < 140).sort((a, b) => a.d - b.d).slice(0, 2);
+      for (const { o, d } of near) {
+        const k = [id, o].sort().join('|'); if (seen.has(k)) continue; seen.add(k);
+        const B = ANCHORS[o]!, ux = (B.x - A.x) / d, uz = (B.z - A.z) / d;
+        let clear = true; for (let t = 5; t < d - 5 && clear; t += 3) if (onBuilding(A.x + ux * t, A.z + uz * t, 1.2)) clear = false;
+        if (clear) p.push({ t: 'paving', x: (A.x + B.x) / 2, z: (A.z + B.z) / 2, ry: Math.atan2(ux, uz), v: 1000 + (seen.size % 3), w: 1.5, d: d - 10 });
+      }
+    }
+  }
   // Benches sit on paving and never on tarmac: drop landmark furniture that landed on a road and lay a paving pad under each bench.
   {
-    const keep = new Set<PropKind>(['paving', 'car', 'keke', 'bus', 'shuttle', 'bump', 'zebra', 'guard', 'lamp', 'palm', 'coconut']);
+    const keep = new Set<PropKind>(['paving', 'roadsign', 'car', 'keke', 'bus', 'shuttle', 'bump', 'zebra', 'guard', 'lamp', 'palm', 'coconut']);
     const tail = p.splice(lmStart), out: Prop[] = [];
     for (const q of tail) {
       if (!keep.has(q.t) && onRoad(q.x, q.z, .4)) continue;
@@ -282,7 +304,7 @@ export function campusPlan(): Prop[] {
       if (len < 25) continue;
       q++;
       const ux = (bx - ax) / len, uz = (bz - az) / len, ry = Math.atan2(ux, uz);
-      if (r.highway !== 'service' && len > 55 && q % 3 === 0) p.push({ t: 'bump', x: ax + ux * len * .5, z: az + uz * len * .5, ry: ry + Math.PI / 2, v: 0, w: r.width });
+      if (r.highway !== 'service' && len > 55 && q % 3 === 0) p.push({ t: 'bump', x: ax + ux * len * .5, z: az + uz * len * .5, ry, v: 0, w: r.width });
       if (q % 4 === 0) {
         const side = q % 8 === 0 ? 1 : -1, off = r.width / 2 + 1.2, d = len * (.3 + hash(q) * .4), x = ax + ux * d - uz * side * off, z = az + uz * d + ux * side * off;
         if (offRoadAndBuilding(x, z, 1) || true) {
@@ -308,8 +330,8 @@ export function campusPlan(): Prop[] {
   // Moored boats off the Lagoon Front pier.
   if (lf) {
     const pier = p.find(q => q.t === 'pier');
-    if (pier) for (let i = 0; i < 3; i++) {
-      const ux = Math.cos(pier.ry), uz = -Math.sin(pier.ry), fx = Math.sin(pier.ry), fz = Math.cos(pier.ry), side = i === 1 ? -1 : 1, along = (i + 1) * 6.5 * side, out = 6 + i * 3;
+    if (pier) for (let i = 0; i < 6; i++) {
+      const ux = Math.cos(pier.ry), uz = -Math.sin(pier.ry), fx = Math.sin(pier.ry), fz = Math.cos(pier.ry), side = i === 1 ? -1 : 1, along = (Math.floor(i / 2) + 1) * 8 * (i % 2 ? -1 : 1), out = 8 + (i % 3) * 7 + Math.floor(i / 3) * 14;
       p.push({ t: 'boat', x: pier.x + ux * along + fx * out, z: pier.z + uz * along + fz * out, ry: pier.ry + (i - 1) * .12, v: i });
     }
   }

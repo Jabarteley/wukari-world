@@ -38,7 +38,7 @@ export function createMappedGeometry(kit: Kit) {
     const list = tiles.get(key) ?? []; list.push(b); tiles.set(key,list);
   }
   const shapeOf = (ring: MetreRing) => new THREE.Shape(ring.map(([x,z]) => new THREE.Vector2(x,-z)));
-  function polygon(ring: MetreRing, height: number, color: string, cell?: number): BufferGeometry {
+  function polygon(ring: MetreRing, height: number, color: string, cell?: number, seed = 0): BufferGeometry {
     const geometry = height > 0
       ? new THREE.ExtrudeGeometry(shapeOf(ring), { depth: height, bevelEnabled: false, curveSegments: 1 })
       : new THREE.ShapeGeometry(shapeOf(ring));
@@ -46,8 +46,9 @@ export function createMappedGeometry(kit: Kit) {
     const c = new THREE.Color(color), colors = new Float32Array(geometry.attributes.position!.count*3);
     for(let i=0;i<colors.length;i+=3){colors[i]=c.r;colors[i+1]=c.g;colors[i+2]=c.b;}
     geometry.setAttribute('color',new THREE.BufferAttribute(colors,3));
-    if(!geometry.index)return geometry;
-    const expanded=geometry.toNonIndexed();geometry.dispose();if(cell!==undefined&&height>0)addWallUvs(expanded,ring,height,cell);return expanded;
+    // ExtrudeGeometry is already non-indexed in this three version: the wall UVs and cell index must be added on that path too.
+    if(!geometry.index){if(cell!==undefined&&height>0)addWallUvs(geometry,ring,height,cell,seed);return geometry;}
+    const expanded=geometry.toNonIndexed();geometry.dispose();if(cell!==undefined&&height>0)addWallUvs(expanded,ring,height,cell,seed);return expanded;
   }
   /** Per-layer polygon offset keeps coplanar layers (ground, marshes, roofs, roads) from z-fighting at any distance. */
   const offsetMaterials: Material[] = [];
@@ -81,7 +82,7 @@ export function createMappedGeometry(kit: Kit) {
   for (const b of parts) {
     const color=bodyColour(b);
     const tower=isSenateTower(b);
-    (tower?towerBodies:bodies).push(polygon(b.ring,b.height,color,atlas&&!tower?wallCell(b):undefined));
+    (tower?towerBodies:bodies).push(polygon(b.ring,b.height,color,atlas&&!tower?wallCell(b):undefined,b.osm.id));
     const roof=polygon(b.ring,0,roofColour(b));roof.translate(0,b.height+.035,0);(tower?towerBodies:roofs).push(roof);
   }
   const mass=new THREE.Group();mass.name='All mapped footprints and roofs';mass.userData.footprints=CAMPUS_MAP.buildings.length;mass.userData.parts=parts.length;merged(bodies,mass,wallMaterial);merged(roofs,mass,layerMaterial(-2,-2));merged(towerBodies,mass,doubleSolid);group.add(mass);
@@ -111,9 +112,23 @@ export function createMappedGeometry(kit: Kit) {
     b.ico(.5,8.0,.4,2.0,1.5,1.9,'#6d9358');b.ico(-1.2,7.6,-1.6,1.5,1.2,1.5,'#628a52');
   });
 
-  const farTreeGeometry=primitiveGeometry(kit,b=>{
-    b.cone(0,4.6,0,4.4,8.4,'#56764f',{seg:3,open:true});
-  });
+  // Far trees are a bare 3-face pyramid (3 triangles) with a darker base and lighter tip; they are only a tint on the horizon.
+  const farTreeGeometry=(()=>{
+    const R=4.4,top=[0,8.8,0],pts=[0,1,2].map(i=>[Math.cos(i*Math.PI*2/3)*R,.4,Math.sin(i*Math.PI*2/3)*R]);
+    const pos:number[]=[],nor:number[]=[],col:number[]=[],dark=new THREE.Color('#4a6a45'),light=new THREE.Color('#6a8a5a');
+    for(let i=0;i<3;i++){
+      const a=pts[i]!,c=pts[(i+1)%3]!,u=[c[0]!-a[0]!,c[1]!-a[1]!,c[2]!-a[2]!],v=[top[0]!-a[0]!,top[1]!-a[1]!,top[2]!-a[2]!];
+      let n=[u[1]!*v[2]!-u[2]!*v[1]!,u[2]!*v[0]!-u[0]!*v[2]!,u[0]!*v[1]!-u[1]!*v[0]!];const l=Math.hypot(n[0]!,n[1]!,n[2]!)||1;n=n.map(x=>x/l);
+      // wind so the face points away from the axis
+      const mx=(a[0]!+c[0]!)/2,mz=(a[2]!+c[2]!)/2,flip=n[0]!*mx+n[2]!*mz<0;
+      const tri=flip?[c,a,top]:[a,c,top],nn=flip?n.map(x=>-x):n;
+      for(const q of tri){pos.push(q[0]!,q[1]!,q[2]!);nor.push(nn[0]!,nn[1]!,nn[2]!);const k=q[1]!>5?light:dark;col.push(k.r,k.g,k.b);}
+    }
+    const g=new THREE.BufferGeometry();
+    g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(pos),3));g.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(nor),3));g.setAttribute('color',new THREE.BufferAttribute(new Float32Array(col),3));
+    return g;
+  })();
+
   const TREE_TONES=['#ffffff','#e4efcc','#f4f2dc','#cfe3d2','#fff0c0','#d9e8c0'];
   function treeDetail(x:number,z:number){
     const near=CAMPUS_TREES.map((tree,index)=>({tree,index,distance:Math.hypot(tree.x-x,tree.z-z)})).filter(item=>item.distance<140).sort((a,b)=>a.distance-b.distance).slice(0,HIGH_TREES), indices=new Set(near.map(item=>item.index)),key=[...indices].sort((a,b)=>a-b).join(',');

@@ -16,22 +16,24 @@ import { CAMPUS_MAP } from './map.generated.ts';
 import type { Prop, PropKind } from './life-plan.ts';
 import { campusPlan, hash, shoreEdges, segs } from './life-plan.ts';
 import { buildLagoon } from './lagoon.ts';
-const RADIUS = 100, CAP_TRIS = 4200, LINE_TRIS = 900;
+/** Signs are drawn first (they matter more than a tree at the same distance). */
+const WAYFIND = new Set<PropKind>(['sign', 'roadsign', 'mapboard']);
+const RADIUS = 100, CAP_TRIS = 2500, LINE_TRIS = 500;
 
 /* ---------- draw routines (local coordinates, +z forward) ---------- */
 const CAR_COLOURS = ['#e8e8e4', '#2f3338', '#9aa3a8', '#a33a35', '#2f5f8a', '#d9d4c6', '#4a5a4c', '#c8c8c8'];
 const SHIRTS = ['#f4f1e8', '#3f72c4', '#d6a83a', '#3f9a5a', '#c9423a', '#243a66', '#dd6fa0', '#ece2c6', '#8055c2', '#2f9d98'];
 const SKINS = ['#8a5a3c', '#6e422c', '#573323', '#9a6341', '#40261b', '#b0764d'];
 const UMBRELLAS = ['#f5c400', '#e3262f', '#2c9f3e', '#1c6fb8'];
-const COST: Record<PropKind, number> = { palm: 200, flame: 150, almond: 150, lamp: 62, bench: 50, sign: 60, kiosk: 120, car: 90, keke: 110, bus: 150, goal: 70, hoop: 50, net: 60, student: 90, gen: 80, hedge: 40, bump: 30, zebra: 60, guard: 100, pier: 400, canoe: 40, board: 60, bin: 30,
-  mango: 190, coconut: 190, frangi: 110, shuttle: 140, boat: 90, mast: 40, roadsign: 40, mapboard: 70, guardman: 70, shrub: 26, bed: 55, paving: 4, fountain: 170, terrace: 36, wall: 36, booth: 50, stall: 130 };
+const COST: Record<PropKind, number> = { palm: 200, flame: 200, almond: 190, lamp: 62, bench: 50, sign: 60, kiosk: 120, car: 90, keke: 110, bus: 150, goal: 70, hoop: 50, net: 60, student: 90, gen: 80, hedge: 40, bump: 30, zebra: 60, guard: 100, pier: 400, canoe: 40, board: 60, bin: 30,
+  mango: 230, coconut: 190, frangi: 110, shuttle: 140, patch: 2, boat: 90, mast: 40, roadsign: 40, mapboard: 70, guardman: 70, shrub: 26, bed: 55, paving: 4, fountain: 170, terrace: 36, wall: 36, booth: 50, stall: 130 };
 /** How far each kind is drawn: low understorey and flat decals vanish sooner than trees and landmarks. */
-const REACH: Partial<Record<PropKind, number>> = { roadsign: 60, mast: 110, sign: 70, shrub: 85, bed: 95, frangi: 90, student: 70, bin: 50, board: 70, hedge: 80, bump: 70, canoe: 90 };
+const REACH: Partial<Record<PropKind, number>> = { patch: 130, boat: 160, canoe: 160, roadsign: 60, mast: 110, sign: 70, shrub: 85, bed: 95, frangi: 90, student: 70, bin: 50, board: 70, hedge: 80, bump: 70 };
 
 /** Foliage as clustered sub-blobs, two-tone: the lower blobs take the dark colour, the upper ones the light. */
 function blobs(b: Batch, list: number[][], dark: string, light: string, far: boolean): void {
-  const n = far ? Math.min(3, list.length) : list.length;
-  for (let i = 0; i < n; i++) { const [x, y, z, r] = list[i]!; b.ico(x!, y!, z!, r!, r! * .72, r! * .95, y! > 5 ? light : dark); }
+  const n = far ? Math.min(4, list.length) : list.length;
+  for (let i = 0; i < n; i++) { const [x, y, z, r] = list[i]!; b.ico(x!, y!, z!, r!, r! * .74, r! * .95, y! > 5.2 ? light : dark); }
 }
 const TREES = new Set<PropKind>(['palm', 'coconut', 'mango', 'frangi', 'almond', 'flame']);
 function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void {
@@ -61,7 +63,7 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void 
       }
       case 'mango': { // broad spreading mango: dome of clustered sub-blobs, dark below and lighter above
         b.cyl(0, 1.5, 0, .38, 3, '#5e4a38', { seg: 6, top: .65 }); b.cone(0, .35, 0, .75, .7, '#5e4a38', { seg: 6, top: .5 });
-        blobs(b, [[0, 4.5, 0, 2.0], [-2.1, 4.0, .9, 1.6], [2.0, 4.1, -.8, 1.7], [-.5, 5.8, .4, 1.5], [1.2, 5.3, 1.7, 1.3], [-1.7, 4.7, -1.5, 1.4]], '#2f5a30', '#5f9150', far);
+        blobs(b, [[0, 4.4, 0, 1.5], [-1.6, 4.0, .8, 1.2], [1.6, 4.1, -.6, 1.3], [0, 5.7, 0, 1.3], [-.9, 5.3, 1.4, 1.1], [1.1, 5.2, 1.2, 1.1], [-1.9, 4.8, -1.0, 1.2], [1.9, 4.9, .9, 1.0], [0, 6.6, -.3, 1.0]], '#2f5a30', '#5f9150', far);
         break;
       }
       case 'frangi': { // frangipani: gnarled grey branches, sparse leaves, white and pink flowers
@@ -81,8 +83,14 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void 
         for (let i = 0; i < 4; i++) b.box(-w / 2 + .6 + i * .75, .2 + hash(p.v + i * 2) * .15, (i % 2 - .5) * .5, .42, .3, .5, cols[Math.floor(hash(p.v + i) * 5)]!);
         break;
       }
+      case 'patch': { // lawn colour variation: light, dark and sun-dried patches at three heights
+        const tone = ['#86a26a', '#6b8657', '#9ba26c', '#7a9660'][p.v % 4]!;
+        b.quad(0, .02 + (Math.floor(p.v / 4) % 3) * .012, 0, p.w ?? 12, p.d ?? 10, tone, { rx: -Math.PI / 2 });
+        break;
+      }
       case 'paving': { // paved forecourt / plaza with a lighter border
         const w = p.w ?? 12, d = p.d ?? 8, tone = ['#cfc7b2', '#c4bcaa', '#d6cdb8', '#b9b3a4'][Math.floor(p.v) % 4]!;
+        if (p.v >= 1000) { b.quad(0, .075, 0, w, d, ['#a58f68', '#9a8560', '#b09a74'][p.v % 3]!, { rx: -Math.PI / 2 }); break; } // worn dirt path
         b.quad(0, .085, 0, w + .6, d + .6, '#a9a393', { rx: -Math.PI / 2 }); b.quad(0, .09, 0, w, d, tone, { rx: -Math.PI / 2 });
         break;
       }
@@ -116,19 +124,20 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void 
       }
       case 'flame': { // flame-of-the-forest: wide flat crown of red-orange sub-blobs on a flared trunk
         b.cyl(0, 2, 0, .3, 4, '#6f5c46', { seg: 6, top: .65 }); b.cone(0, .35, 0, .62, .7, '#6f5c46', { seg: 6, top: .5 });
-        blobs(b, [[0, 5.2, 0, 2.1], [-2.3, 4.7, .8, 1.6], [2.3, 4.9, -.7, 1.7], [.6, 5.8, 1.6, 1.4], [-.9, 5.5, -1.8, 1.5]], '#c9362a', '#ef6a30', far);
+        blobs(b, [[0, 5.0, 0, 1.5], [-1.8, 4.6, .6, 1.2], [1.8, 4.8, -.5, 1.25], [.5, 5.7, 1.3, 1.1], [-.8, 5.4, -1.5, 1.15], [2.6, 4.5, 1.2, 1.0], [-2.6, 4.4, -.8, 1.0], [.2, 6.1, -.2, 1.0]], '#c9362a', '#ef6a30', far);
         break;
       }
       case 'almond': { // tropical almond: layered flat tiers of sub-blobs
         b.cyl(0, 2.3, 0, .3, 4.6, '#6a5a45', { seg: 6, top: .65 }); b.cone(0, .35, 0, .6, .7, '#6a5a45', { seg: 6, top: .5 });
-        blobs(b, [[0, 4.6, 0, 1.9], [-2.1, 4.4, .6, 1.5], [2.0, 4.5, -.4, 1.5], [.4, 5.9, -.2, 1.5], [-.3, 5.3, 1.7, 1.3]], '#4a7a3a', '#74a14e', far);
+        blobs(b, [[0, 4.5, 0, 1.4], [-1.7, 4.3, .5, 1.15], [1.7, 4.4, -.4, 1.2], [.3, 5.5, -.2, 1.1], [-.4, 5.1, 1.5, 1.0], [2.5, 4.2, .9, .95], [-2.4, 4.1, -1.0, .95]], '#4a7a3a', '#74a14e', far);
         break;
       }
       case 'lamp': {
         b.cyl(0, 3.2, 0, .1, 6.4, '#4a5254', { seg: 4 });
         b.box(0, 6.35, .7, .14, .14, 1.5, '#4a5254');
         b.box(0, 6.22, 1.4, lit ? .5 : .32, .12, lit ? .7 : .5, lit ? '#fff0b0' : '#9a9a90', lit ? { layer: 'glow' } : undefined);
-        if (lit) { b.quad(0, .13, 1.4, 9, 9, '#8f7436', { layer: 'glow', rx: -Math.PI / 2 }); b.quad(0, .14, 1.4, 5, 5, '#c9a24c', { layer: 'glow', rx: -Math.PI / 2 }); b.quad(0, .15, 1.4, 2.2, 2.2, '#f0cf7a', { layer: 'glow', rx: -Math.PI / 2 }); }
+        // soft pool: four stacked discs stepping from the dim ground tone up to warm gold, so there is no hard-edged square
+        if (lit) for (const [r, y, c] of [[4.8, .13, '#5a5530'], [3.5, .14, '#85723a'], [2.3, .15, '#b8963f'], [1.2, .16, '#ecca74']] as const) b.disc(0, y, 1.4, r, c, { layer: 'glow', seg: 14 });
         break;
       }
       case 'bench': {
@@ -139,7 +148,7 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void 
       case 'sign': { // ground sign board: bold two-line lettering on the nearest boards, a plain painted board otherwise
         const hd = ['#1c5fa8', '#7a2430', '#1f3f6e'][p.v % 3]!, ft = ['#2d8a4a', '#d6a83a', '#2d8a4a'][p.v % 3]!;
         b.box(-2.4, 1.3, 0, .14, 2.6, .14, '#3a4042'); b.box(2.4, 1.3, 0, .14, 2.6, .14, '#3a4042');
-        b.box(0, 2.0, 0, 5.2, 1.9, .1, p.v % 3 === 2 ? '#e8ecef' : '#f4f4ee'); b.box(0, 2.9, .06, 5.2, .22, .05, hd); b.box(0, 1.15, .06, 5.2, .18, .05, ft);
+        b.box(0, 2.0, 0, 5.2, 1.9, .1, lit ? '#d9d6c4' : p.v % 3 === 2 ? '#e8ecef' : '#f4f4ee', lit ? { layer: 'glow' } : undefined); // backlit after dusk so the lettering stays readable b.box(0, 2.9, .06, 5.2, .22, .05, hd); b.box(0, 1.15, .06, 5.2, .18, .05, ft);
         if (text && p.label) {
           const words = p.label.toUpperCase().replace(/[^A-Z0-3 ]/g, '').split(' '), lines: string[] = [''];
           for (const w of words) { const last = lines.length - 1; if ((lines[last] + ' ' + w).trim().length <= 12) lines[last] = (lines[last] + ' ' + w).trim(); else lines.push(w); }
@@ -169,8 +178,8 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void 
         break;
       }
       case 'roadsign': { // street-name blade (lettering only on the nearest)
-        b.cyl(0, 1.5, 0, .05, 3, '#4a5254', { seg: 4 }); b.box(0, 3.0, 0, 2.6, .5, .06, '#1f6a4a');
-        if (text && p.label) signLetters(b, p.label.toUpperCase().replace(/[^A-Z0-3 ]/g, '').slice(0, 14), 0, 3.12, .05, 2.5, '#f4f4ee');
+        b.cyl(-1.9, 1.8, 0, .06, 3.6, '#4a5254', { seg: 4 }); b.cyl(1.9, 1.8, 0, .06, 3.6, '#4a5254', { seg: 4 }); b.box(0, 3.4, 0, 4.6, .95, .08, '#1f6a4a'); b.box(0, 3.4, -.01, 4.7, 1.05, .05, '#f4f4ee');
+        if (text && p.label) signLetters(b, p.label.toUpperCase().replace(/[^A-Z0-3 ]/g, '').slice(0, 14), 0, 3.5, .06, 4.3, '#f4f4ee');
         break;
       }
       case 'mapboard': { // campus map board at the gate
@@ -238,7 +247,7 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void 
         break;
       }
       case 'bump': { const w = p.w ?? 8; for (let i = 0; i < 6; i++) b.quad(0, .105, -1 + i * .4, w, .38, i % 2 ? '#e8c820' : '#222527', { rx: -Math.PI / 2 }); break; }
-      case 'zebra': { const w = p.w ?? 8; for (let i = 0; i < 10; i++) b.quad(-w / 2 + .5 + i * (w - 1) / 9, .106, 0, .55, 3.2, '#ece9da', { rx: -Math.PI / 2, ry: Math.PI / 2 }); break; }
+      case 'zebra': { const w = p.w ?? 8; for (let i = 0; i < 10; i++) b.quad(-w / 2 + .5 + i * (w - 1) / 9, .106, 0, .6, 3.4, '#ece9da', { rx: -Math.PI / 2 }); break; }
       case 'guard': { // gate house
         b.box(0, 1.4, 0, 3.2, 2.8, 2.6, '#d6bd86'); b.box(0, 2.9, 0, 3.8, .2, 3.2, '#87443f'); b.box(0, 1.5, 1.32, 1.6, 1.0, .05, lit ? '#f5d78a' : '#27343b', lit ? { layer: 'glow' } : undefined);
         break;
@@ -289,10 +298,10 @@ export function createCampusLife(kit: Kit) {
     const g = new THREE.PlaneGeometry(1, 1); g.rotateX(-Math.PI / 2);
     g.setAttribute('color', new THREE.BufferAttribute(new Float32Array(Array.from({ length: 4 }, () => [.8, .93, .96]).flat()), 3));
     sparkles = new THREE.InstancedMesh(g, materials.glow, SPARKLES); sparkles.name = 'Lagoon glints'; sparkles.frustumCulled = false; sparkles.visible = false; group.add(sparkles);
-    const bb = createBatch(THREE), dirx = .6, dirz = -.8, bx = pier.x + 1300, bz = pier.z - 260, L = 1900;
+    const bb = createBatch(THREE), dirx = .6, dirz = -.8, bx = pier.x + 950, bz = pier.z - 540, L = 2000;
     bb.at(bx, 0, bz, Math.atan2(dirx, dirz), () => {
-      bb.box(0, 15, 0, 14, 2.4, L, '#8a9aa0'); bb.box(0, 16.4, 0, 14.4, .5, L, '#9aa8ad');
-      for (let i = -8; i <= 8; i++) bb.box(0, 7, i * 110, 5, 14, 6, '#7d8e94');
+      bb.box(0, 18, 0, 18, 3.4, L, '#8a9aa0'); bb.box(0, 20, 0, 18.4, .7, L, '#a0adb2');
+      for (let i = -10; i <= 10; i++) bb.box(0, 8.5, i * 95, 6, 17, 7, '#7d8e94');
     });
     bridge = new THREE.Group(); bridge.name = 'Third Mainland Bridge (stylised)'; bridge.visible = false;
     for (const m of bb.build(materials).meshes) { m.castShadow = false; m.receiveShadow = false; bridge.add(m); }
@@ -317,16 +326,16 @@ export function createCampusLife(kit: Kit) {
     live.traverse(o => { const m = o as Mesh; if (m.isMesh) m.geometry.dispose(); });
     live.clear();
     const batch = createBatch(THREE);
-    const near = plan.map(p => ({ p, d: Math.hypot(p.x - px, p.z - pz) })).filter(i => i.d < RADIUS).sort((a, b) => a.d - b.d);
+    const near = plan.map(p => ({ p, d: Math.hypot(p.x - px, p.z - pz) })).filter(i => i.d < RADIUS).sort((a, b) => (a.d - (WAYFIND.has(a.p.t) ? 30 : 0)) - (b.d - (WAYFIND.has(b.p.t) ? 30 : 0)));
     let budget = CAP_TRIS, signText = 2, roadText = 1;
     for (const { p, d } of near) {
       if (d > (REACH[p.t] ?? RADIUS)) continue;
       const far = d > 45 && (p.t === 'palm' || p.t === 'coconut' || p.t === 'mango' || p.t === 'frangi');
       if (p.t === 'sign' && d > 50) continue;
       const wantsText = (p.t === 'sign' && signText > 0 && d < 45) || (p.t === 'mapboard' && d < 40) || (p.t === 'roadsign' && roadText > 0 && d < 30);
-      const cost = (far ? COST[p.t] * .55 : COST[p.t]) + (wantsText ? (p.t === 'roadsign' ? 450 : p.t === 'mapboard' ? 150 : 650) : 0);
+      let cost = (far ? COST[p.t] * .55 : COST[p.t]) + (wantsText ? (p.t === 'roadsign' ? 450 : p.t === 'mapboard' ? 150 : 650) : 0), text = wantsText;
+      if (cost > budget && text) { text = false; cost = COST[p.t]; } // no room for lettering: draw the plain board rather than nothing
       if (cost > budget) continue;
-      const text = wantsText;
       if (text && p.t === 'sign') signText--; else if (text && p.t === 'roadsign') roadText--;
       draw(batch, p, text, lit, far); budget -= cost;
     }
@@ -373,7 +382,7 @@ export function createCampusLife(kit: Kit) {
     const cell = `${Math.round(x / 30)}:${Math.round(z / 30)}:${time !== 'day'}`;
     if (cell === key) return;
     key = cell; lit = time !== 'day'; rebuild(x, z);
-    if (pier) { const dist = Math.hypot(x - pier.x, z - pier.z); if (sparkles) sparkles.visible = dist < 330; if (bridge) bridge.visible = dist < 900; }
+    if (pier) { const dist = Math.hypot(x - pier.x, z - pier.z); if (sparkles) sparkles.visible = dist < 330; if (bridge) bridge.visible = dist < 1300; }
   }
   return {
     group, update, get rebuilds() { return rebuilds; },

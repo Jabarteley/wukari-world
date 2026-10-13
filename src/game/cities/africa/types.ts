@@ -21,6 +21,36 @@ export interface DestinationFacts {
   readonly coverageNote: string
   /** Real names for what the compact rules show before any map loads. Absent for a bare starter zone. */
   readonly names?: DestinationNames
+  /**
+   * An outpost without a scheduled-service airport is reached through a mapped OpenStreetMap gateway: a landing, a heliport or a
+   * track end. `airport` then describes that gateway (its id, name and point) so the air hub and its venue keep their ids.
+   */
+  readonly gateway?: DestinationGateway
+  /**
+   * Travel restricted to authored links (outposts): no generated bus or flight reaches the city. Requires `links`; the Lagos
+   * connection is always added by the rules.
+   */
+  readonly generatedLinkPolicy?: 'authored-only'
+  /** Authored charter flights and ships of an outpost; fares and seconds follow the outpost fare rule (generatedLinks.ts). */
+  readonly links?: readonly DestinationLink[]
+}
+
+/** The mapped gateway of an outpost. `mode` says how it is used: a heliport or airstrip (air), a landing or harbour (sea), a road or track end (land). */
+export interface DestinationGateway {
+  readonly mode: 'air' | 'sea' | 'land'
+  /** The OpenStreetMap node of the gateway, such as `node/9392374700`. */
+  readonly osmRef: string
+}
+
+/** One authored link of an outpost. `km` is the whole great-circle distance between the two atlas points. */
+export interface DestinationLink {
+  /** The open city at the other end. */
+  readonly to: string
+  /** Its display name, for the link label. */
+  readonly name: string
+  /** A charter flight (air), a ship (a road link with a ship label) or an overland trip (a road link: a track or a mountain road). */
+  readonly kind: 'charter' | 'ship' | 'overland'
+  readonly km: number
 }
 
 /** Real names for the parts of a destination that load first. */
@@ -125,6 +155,26 @@ export function validateDestinationFacts(facts: DestinationFacts): ValidatedDest
   const [west, south, east, north] = facts.bounds
   if (![west, south, east, north].every(Number.isFinite) || west < -180 || east > 180 || south < -90 || north > 90 || west >= east || south >= north) {
     throw new RangeError('destination bounds must be an ordered WGS84 [west, south, east, north] box')
+  }
+  if (facts.gateway !== undefined) {
+    if (!['air', 'sea', 'land'].includes(facts.gateway.mode)) throw new TypeError('destination gateway mode must be air, sea or land')
+    if (!/^node\/[1-9][0-9]*$/u.test(facts.gateway.osmRef)) throw new TypeError('destination gateway must name an OpenStreetMap node')
+  }
+  if (facts.generatedLinkPolicy !== undefined && facts.generatedLinkPolicy !== 'authored-only') throw new TypeError('generatedLinkPolicy must be authored-only')
+  if ((facts.generatedLinkPolicy === 'authored-only') !== (facts.links !== undefined)) throw new TypeError('authored links and the authored-only link policy go together')
+  if (facts.links !== undefined) {
+    // With the Lagos connection the rules add, two authored links give the three round trips every open city needs.
+    if (!Array.isArray(facts.links) || facts.links.length < 2) throw new TypeError('an authored-only destination needs at least two authored links')
+    const seen = new Set<string>()
+    for (const link of facts.links) {
+      if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/u.test(link.to) || link.to === facts.id || link.to === 'lagos') throw new TypeError(`authored link ${link.to} must name another open city than Lagos`)
+      text(link.name, 'authored link name')
+      if (link.kind !== 'charter' && link.kind !== 'ship' && link.kind !== 'overland') throw new TypeError('authored link kind must be charter, ship or overland')
+      if (!Number.isSafeInteger(link.km) || link.km < 1 || link.km > 20_100) throw new RangeError('authored link km must be a whole great-circle distance')
+      const key = `${link.to}|${link.kind}`
+      if (seen.has(key)) throw new TypeError(`authored link ${key} is listed twice`)
+      seen.add(key)
+    }
   }
   const mapOrigin = originAt(facts.centre.lon, facts.centre.lat)
   return Object.freeze({ ...facts, mapOrigin })

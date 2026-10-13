@@ -19,7 +19,7 @@ const known = Object.keys(SLOTS);
 test('standard is the default and unchanged; microstate relaxes exactly the documented numbers', () => {
   assert.deepEqual({ ...profileFor(undefined) }, { name: 'standard', minimumPlaces: 20, minimumNeighbourhoodLabels: 5, maximumEmptySlots: 0, cityPlaceTags: ['city', 'town'], capitalPlaceTags: [], districtIslandPlaces: [] });
   const micro = profileFor('microstate');
-  assert.deepEqual([micro.minimumPlaces, micro.minimumNeighbourhoodLabels, micro.maximumEmptySlots], [12, 3, 4]);
+  assert.deepEqual([micro.minimumPlaces, micro.minimumNeighbourhoodLabels, micro.maximumEmptySlots], [12, 3, 5]);
   assert.deepEqual(micro.cityPlaceTags, ['city', 'town', 'village', 'hamlet', 'locality']);
   assert.deepEqual(micro.districtIslandPlaces, ['island', 'islet']);
   assert.deepEqual(micro.districtSquarePlaces, ['square']);
@@ -66,8 +66,8 @@ test('emptySlots must match the missing slots exactly, carry written reasons and
   assert.match(emptySlotProblems({ profile: 'microstate', emptySlots: ok, missingSlots: [], knownSlots: known }).join(), /documented empty but has a source/);
   assert.match(emptySlotProblems({ profile: 'microstate', emptySlots: [{ slot: 'transit', reason: 'short' }], missingSlots: ['transit'], knownSlots: known }).join(), /written reason/);
   assert.match(emptySlotProblems({ profile: 'microstate', emptySlots: [{ slot: 'airport', reason: 'x'.repeat(30) }], missingSlots: [], knownSlots: known }).join(), /unknown slot airport/);
-  const five = known.slice(0, 5);
-  assert.match(emptySlotProblems({ profile: 'microstate', emptySlots: five.map(slot => ({ slot, reason: emptySlotReason(slot) })), missingSlots: five, knownSlots: known }).join(), /exceed the microstate maximum of 4/);
+  const six = known.slice(0, 6);
+  assert.match(emptySlotProblems({ profile: 'microstate', emptySlots: six.map(slot => ({ slot, reason: emptySlotReason(slot) })), missingSlots: six, knownSlots: known }).join(), /exceed the microstate maximum of 5/);
   assert.match(emptySlotProblems({ profile: undefined, emptySlots: ok, missingSlots: ['transit'], knownSlots: known }).join(), /only allowed with a profile/);
 });
 

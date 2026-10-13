@@ -1,5 +1,5 @@
 {
-  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "expectedSourceGitSHA": "5b8fd5b9e0683c3d7b5880c2d46fba3e81710fcb",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
@@ -59,6 +59,7 @@
           -21.026592710066023
         ]
       },
+      "profile": "microstate",
       "selectionExclusions": [],
       "metadataSources": {
         "centre": {

@@ -35,7 +35,17 @@
       "timezone": {
         "id": "Europe/Helsinki",
         "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
-      }
+      },
+      "selectionExclusions": [
+        {
+          "ref": "node/12965289293",
+          "reason": "Plus: reported as a wet source anchor by the exact-coast stage; the wet-places auto-retry excluded it and the run then passed. Persisted so the table reproduces that result."
+        },
+        {
+          "ref": "way/369246774",
+          "reason": "Sjofararkapellet: reported as a wet source anchor by the exact-coast stage; the wet-places auto-retry excluded it and the run then passed. Persisted so the table reproduces that result."
+        }
+      ]
     }
   ]
 }

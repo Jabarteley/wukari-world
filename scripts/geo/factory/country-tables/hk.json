@@ -26,6 +26,10 @@
       "timezone": {
         "id": "Asia/Hong_Kong",
         "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      },
+      "sceneWaterExtent": "play",
+      "geometry": {
+        "maxRoads": 500
       }
     }
   ]

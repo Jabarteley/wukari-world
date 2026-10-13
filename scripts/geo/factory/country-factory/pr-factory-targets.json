@@ -1,5 +1,5 @@
 {
-  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "expectedSourceGitSHA": "5b8fd5b9e0683c3d7b5880c2d46fba3e81710fcb",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
@@ -59,7 +59,13 @@
           18.64617988993398
         ]
       },
-      "selectionExclusions": [],
+      "sceneWaterExtent": "play",
+      "selectionExclusions": [
+        {
+          "ref": "node/6760336586",
+          "reason": "Antonio Lopez: a wreck 683 m from the exact coast; its mapped point lies in water (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/53200527",

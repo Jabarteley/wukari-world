@@ -1,5 +1,5 @@
 {
-  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "expectedSourceGitSHA": "5b8fd5b9e0683c3d7b5880c2d46fba3e81710fcb",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
@@ -59,7 +59,20 @@
           32.47514878993398
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "node/1987095906",
+          "reason": "Montana: 7,036 m offshore; its mapped point lies in water (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        },
+        {
+          "ref": "way/1303547568",
+          "reason": "HMS Vixen: a wreck 220 m from the exact coast; its mapped point lies in water (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        },
+        {
+          "ref": "relation/3259496",
+          "reason": "Bermuda Railway: its relation centre lies 1,094 m in the water; its mapped point lies in water (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/1811574522",

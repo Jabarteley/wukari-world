@@ -16,7 +16,7 @@
     "microstate": {
       "minimumPlaces": 12,
       "minimumNeighbourhoodLabels": 3,
-      "maximumEmptySlots": 4,
+      "maximumEmptySlots": 5,
       "cityPlaceTags": [
         "city",
         "town",

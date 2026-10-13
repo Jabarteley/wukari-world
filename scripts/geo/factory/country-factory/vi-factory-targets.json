@@ -1,5 +1,5 @@
 {
-  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "expectedSourceGitSHA": "5b8fd5b9e0683c3d7b5880c2d46fba3e81710fcb",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
@@ -59,7 +59,20 @@
           18.522338389933978
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "node/280357941",
+          "reason": "Crown Bay Marina: a ferry-terminal point 35.7 m from the exact coast (beyond the 30 m anchor clearance); its mapped point lies in water (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        },
+        {
+          "ref": "way/38485625",
+          "reason": "Magen's Bay Beach: its mapped point lies 94.9 m from the exact coast; its mapped point lies in water (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        },
+        {
+          "ref": "node/12468160701",
+          "reason": "Honeymoon Beach Snorkeling: a snorkel site; pre-empted from the source extract: a named wreck, reef, pier or snorkel point at the water edge that the exact-coast stage is likely to report next; not a place a player can stand."
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/280978108",

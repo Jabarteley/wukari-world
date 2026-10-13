@@ -25,7 +25,21 @@
       "timezone": {
         "id": "Atlantic/Bermuda",
         "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
-      }
+      },
+      "selectionExclusions": [
+        {
+          "ref": "node/1987095906",
+          "reason": "Montana: 7,036 m offshore; its mapped point lies in water (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        },
+        {
+          "ref": "way/1303547568",
+          "reason": "HMS Vixen: a wreck 220 m from the exact coast; its mapped point lies in water (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        },
+        {
+          "ref": "relation/3259496",
+          "reason": "Bermuda Railway: its relation centre lies 1,094 m in the water; its mapped point lies in water (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        }
+      ]
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "expectedSourceGitSHA": "5b8fd5b9e0683c3d7b5880c2d46fba3e81710fcb",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
@@ -61,7 +61,16 @@
       },
       "sceneWaterExtent": "play",
       "waterBudgetLadder": true,
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "node/12965289293",
+          "reason": "Plus: reported as a wet source anchor by the exact-coast stage; the wet-places auto-retry excluded it and the run then passed. Persisted so the table reproduces that result."
+        },
+        {
+          "ref": "way/369246774",
+          "reason": "Sjofararkapellet: reported as a wet source anchor by the exact-coast stage; the wet-places auto-retry excluded it and the run then passed. Persisted so the table reproduces that result."
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/249423791",

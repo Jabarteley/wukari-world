@@ -64,7 +64,7 @@ class ProfileCityNodeTests(unittest.TestCase):
         self.assertEqual(data['standard'], {'minimumPlaces': 20, 'minimumNeighbourhoodLabels': 5, 'maximumEmptySlots': 0, 'cityPlaceTags': ['city', 'town'], 'capitalPlaceTags': [], 'districtIslandPlaces': []})
         self.assertEqual(data['microstate']['minimumPlaces'], 12)
         self.assertEqual(data['microstate']['minimumNeighbourhoodLabels'], 3)
-        self.assertEqual(data['microstate']['maximumEmptySlots'], 4)
+        self.assertEqual(data['microstate']['maximumEmptySlots'], 5)
         self.assertEqual(data['microstate']['districtSquarePlaces'], ['square'])
         self.assertNotIn('districtSquarePlaces', data['standard'])
 

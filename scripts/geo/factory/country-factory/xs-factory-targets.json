@@ -1,5 +1,5 @@
 {
-  "expectedSourceGitSHA": "04ac8c7f0f1519c65cec56685186696a9c6fef51",
+  "expectedSourceGitSHA": "5b8fd5b9e0683c3d7b5880c2d46fba3e81710fcb",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
@@ -60,6 +60,9 @@
         ]
       },
       "selectionExclusions": [],
+      "geometry": {
+        "minWaterKm2": 1
+      },
       "metadataSources": {
         "centre": {
           "osmRef": "node/4298140251",

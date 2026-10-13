@@ -6,7 +6,7 @@
  *  - city node: place=city|town as always, and also village|hamlet|locality (metadata.py reads the same list; a capital or a unique name still decides);
  *  - minimum sourced places 12 (standard 20); the 24-place target and the per-kind cap steps are unchanged;
  *  - minimum 3 source-backed neighbourhood labels (standard 5), from the same place tags in the same order;
- *  - up to 4 of the 9 non-airport slots may stay EMPTY: the slot keeps the game's own fictional venue ("... (game venue)", already built by
+ *  - up to 5 of the 9 non-airport slots may stay EMPTY: the slot keeps the game's own fictional venue ("... (game venue)", already built by
  *    buildDestinationContent for every slot and described there as not a mapped place). The selection records the slot and the reason, the recipe carries
  *    `emptySlots`, preflight demands that the missing slots and the documented ones are the same set, and the receipts repeat it.
  * It never invents a place, never maps a feature to a kind it is not (no "any named place" fallback), and never lowers a source, country or water rule.

@@ -4,18 +4,6 @@
   {
    "id": "cn",
    "table": "scripts/geo/factory/country-factory/cn-factory-targets.json"
-  },
-  {
-   "id": "tv",
-   "table": "scripts/geo/factory/country-factory/tv-factory-targets.json"
-  },
-  {
-   "id": "fi",
-   "table": "scripts/geo/factory/country-factory/fi-factory-targets.json"
-  },
-  {
-   "id": "se",
-   "table": "scripts/geo/factory/country-factory/se-factory-targets.json"
   }
  ]
 }

@@ -29,6 +29,10 @@ class CoarserWater(Exception):
 
 class FinerWater(ValueError):
     pass
+
+
+class ClipTooWide(Exception):
+    pass
 MAX_RING_VERTICES = 6000
 MAX_SERIALIZATION_AREA_FRACTION = 1e-12
 MAX_GAP_SLIVER_M2 = 5000
@@ -48,6 +52,12 @@ MAX_WATER_AREA_FRACTION = MAX_SIMPLIFICATION_AREA_FRACTION
 # A rung is a single attempt: it never steps coarser or finer by itself, and a guard it misses exits with RUNG_INFEASIBLE_EXIT instead of retrying.
 RUNG_INFEASIBLE_EXIT = 3
 LADDER_RUNG = None
+# A sub-extract (Geofabrik region) ends along its own polygon, so a coast chain in the wide box (play +/- 0.6 degrees) can end where the next way lies in a neighbouring region that the
+# extract does not hold (Shanghai: six ends 0.4 to 11 km outside the extract, Jiangsu and Zhejiang; a country-border extension does not apply, the ends lie inside China). When the target draws
+# only the play box (`sceneWaterExtent: play`) the coast beyond the outline box is never drawn, so the stage then repeats ONCE with the coast clipped to the outline box (play +/- 0.05, the
+# generator's outline margin) instead of the wide box. Only a run that would have failed 'Unclosed coastline topology' ever reaches this; no passing city changes.
+CLIP_FALLBACK_MARGIN_DEGREES = 0.05
+CLIP_MARGIN = None
 SCHEMA = 'exact-coastwater-report-v2'
 LIMIT = 5 * 1024 * 1024
 # A ferry terminal, jetty or promenade is often mapped on a pier a few tens of metres off the shore (Nassau: 24 m, 15 m): the shore is cleared around such an anchor.
@@ -124,7 +134,10 @@ def main():
         if len(b) != 4 or not all(math.isfinite(v) for v in b) or not (-90 < b[0] < b[2] < 90 and -180 <= b[1] < b[3] <= 180 and b[3] - b[1] < 180):
             raise ValueError('Invalid/unsupported bounds')
         return box(b[1], b[0], b[3], b[2])
-    clip = bounds(wide)
+    clip_bounds = wide if CLIP_MARGIN is None else [play[0] - CLIP_MARGIN, play[1] - CLIP_MARGIN, play[2] + CLIP_MARGIN, play[3] + CLIP_MARGIN]
+    clip = bounds(clip_bounds)
+    if CLIP_MARGIN is not None:
+        report['coastClip'] = {'kind': 'outline-box-fallback', 'marginDegrees': CLIP_MARGIN, 'box': clip_bounds, 'reason': 'the coast chain in the wide box was not closed by the extract (a neighbouring region holds the next way) and the scene draws the play box only'}
     coast = [e for e in extracts['water']['elements'] if e.get('tags', {}).get('natural') == 'coastline' and e['type'] == 'way']
     if not coast:
         raise ValueError('No source coast')
@@ -248,6 +261,8 @@ def main():
     report['borderCoastExtensions'] = border_extensions
     faces, cuts, dangles, invalid = polygonize_full(unary_union(lines + [clip.boundary]))
     if any(not g.is_empty for g in [cuts, dangles, invalid]) or faces.is_empty:
+        if CLIP_MARGIN is None and config.get('sceneWaterExtent') == 'play':
+            raise ClipTooWide()
         def endpoints(g):
             return [[round(c, 6) for c in pt] for part in (g.geoms if hasattr(g, 'geoms') else [g]) if not part.is_empty for pt in (part.coords[0], part.coords[-1])]
         raise ValueError('Unclosed coastline topology (cuts/dangles/invalid rings): ' + json.dumps({'cutEnds': endpoints(cuts), 'dangleEnds': endpoints(dangles), 'invalid': len(invalid.geoms) if hasattr(invalid, 'geoms') else int(not invalid.is_empty), 'borderExtensions': len(border_extensions), 'rejectedBorderExtensions': rejected_extensions}))
@@ -860,6 +875,15 @@ def main():
     print(json.dumps({'status': report['status'], 'report': str(args.report), 'outputFiles': report['outputFiles'], 'geometry': stats}))
 
 
+def main_with_clip_fallback():
+    global CLIP_MARGIN
+    try:
+        return main()
+    except ClipTooWide:
+        CLIP_MARGIN = CLIP_FALLBACK_MARGIN_DEGREES
+        return main()
+
+
 def drive():
     # Shore simplification: 1 m first; 2 m when the water is too big for the scene budget; finer (0.5, 0.2, 0.1 m) when a guard rejects the simplified shore.
     global WATER_TOLERANCE_DEGREES, MAX_WATER_AREA_FRACTION, LADDER_RUNG
@@ -876,7 +900,7 @@ def drive():
         WATER_TOLERANCE_DEGREES, MAX_WATER_AREA_FRACTION, LADDER_RUNG = named.ladder_tolerance_degrees, named.ladder_area_cap, True
         COARSE_STEPS.clear()
         try:
-            return main()
+            return main_with_clip_fallback()
         except FinerWater as error:
             print(json.dumps({'status': 'rung-infeasible', 'toleranceDegrees': WATER_TOLERANCE_DEGREES, 'cap': MAX_WATER_AREA_FRACTION, 'error': str(error)[:1500]}))
             sys.exit(RUNG_INFEASIBLE_EXIT)
@@ -886,7 +910,7 @@ def drive():
     while True:
         WATER_TOLERANCE_DEGREES = tolerance
         try:
-            return main()
+            return main_with_clip_fallback()
         except CoarserWater:
             tolerance = coarse.pop(0)
             COARSE_STEPS[:] = coarse

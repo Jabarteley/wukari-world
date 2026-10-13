@@ -87,7 +87,7 @@ def validate(table):
         _shared._metadata.profile_rules(seed)
         geometry_knobs(seed)
         play_box(seed)
-        shared_seed = {key: seed[key] for key in ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile')
+        shared_seed = {key: seed[key] for key in ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile', 'playBox')
                        if key in seed}
         _shared.validate({'schemaVersion': 1, 'geometrySourceSha': table.get('geometrySourceSha'),
                           'seed': shared_seed, 'countrySource': source, 'airports': airports})
@@ -486,8 +486,8 @@ def main():
                 city_metadata = out / 'metadata' / seed['id']
                 city_metadata.mkdir(parents=True, exist_ok=True)
                 seed_file = city_metadata / 'seed.json'
-                # Only the shared source-selection keys reach metadata; map/selection policy stays in batch results.
-                seed_file.write_text(json.dumps({key: seed[key] for key in ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile') if key in seed}))
+                # Only the shared source-selection keys and the play box size reach metadata (metadata-batch.py passes playBox to bounds.mjs); map/selection policy stays in batch results.
+                seed_file.write_text(json.dumps({key: seed[key] for key in ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile', 'playBox') if key in seed}))
                 seed_files.append(str(seed_file))
             seed_manifest = out / 'inputs' / 'metadata-seeds.json'
             seed_manifest.parent.mkdir(parents=True, exist_ok=True)

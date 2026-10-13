@@ -68,8 +68,11 @@ def city_node_tag_ok(tags, seed):
     return place in rules['cityPlaceTags'] or (place in rules['capitalPlaceTags'] and tags.get('capital') in {'yes', '2'})
 
 def validate_seed(seed):
-    if not isinstance(seed, dict) or set(seed) - {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile'}:
+    if not isinstance(seed, dict) or set(seed) - {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile', 'playBox'}:
         raise Hold('unsupported seed fields')
+    if 'playBox' in seed and (not isinstance(seed['playBox'], dict) or not seed['playBox'] or set(seed['playBox']) - {'playKm', 'coreKm'}
+                              or any(type(value) not in (int, float) or not 0 < value <= 40 for value in seed['playBox'].values())):
+        raise Hold('playBox needs playKm and/or coreKm half-widths in km (0 to 40)')
     if not isinstance(seed.get('id'), str) or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', seed['id']) or not isinstance(seed.get('name'), str) or not normalized(seed['name']) or not isinstance(seed.get('countryISO'), str) or not re.fullmatch(r'[A-Z]{2}', seed['countryISO']):
         raise Hold('seed needs city id/name and uppercase country ISO')
     profile_rules(seed)

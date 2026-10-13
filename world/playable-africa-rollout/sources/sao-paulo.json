@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "sao-paulo",
+  "countryIso2": "BR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "São Paulo",
+    "coordinatesWgs84": [
+      -46.6333824,
+      -23.5506507
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/south-america/brazil-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "sao-paulo-airport",
+    "name": "São Paulo/Guarulhos–Governor André Franco Montoro International Airport",
+    "lon": -46.469954,
+    "lat": -23.431274,
+    "sourceUrl": "https://ourairports.com/airports/SBGR/"
+  },
+  "boxes": {
+    "play": [
+      -23.731531589933976,
+      -46.82963992592198,
+      -23.36976981006602,
+      -46.43712487407802
+    ],
+    "core": [
+      -23.595870922483492,
+      -46.68239590011482,
+      -23.505430477516505,
+      -46.584368899885185
+    ],
+    "outline": [
+      -23.781531589933977,
+      -46.87963992592198,
+      -23.31976981006602,
+      -46.387124874078026
+    ],
+    "wide": [
+      -24.331531589933977,
+      -47.42963992592198,
+      -22.76976981006602,
+      -45.83712487407802
+    ],
+    "water": [
+      -24.331531589933977,
+      -47.42963992592198,
+      -22.76976981006602,
+      -45.83712487407802
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/south-america/brazil-261011.osm.pbf",
+    "datasetSha256": "00f599575e5aae5b1a02c4feeca820bf4c33f3e3473e5d18a2e9d159cfb81bd6",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "883c87baa417da81ac52fd558262ccc126259d64b4e50258522d2e46f668b1b9",
+        "elements": 6533
+      },
+      {
+        "file": "extras.json",
+        "sha256": "fda13f914afa9ca26c4b20ca504820f4b51353d6816d2d4d4c2c251729c6b750",
+        "elements": 5775
+      },
+      {
+        "file": "water.json",
+        "sha256": "6153a5c129182c8e85da6db909307b87df9e3b25e87ca56d8793accf3695da18",
+        "elements": 3632
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "cfd83a2389079db203eef939f37443a6bc6316f3f3374fad5ee9492aa822b522",
+        "elements": 13681
+      },
+      {
+        "file": "roads.json",
+        "sha256": "d2010a9a6c11db3de1fd4abbd7bab4130557611c4b573e7278b6079eae3f8ee7",
+        "elements": 14846
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Vila Madalena",
+      "osm": "node/605663613",
+      "coordinatesWgs84": [
+        -46.691124,
+        -23.546496
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ragazzo",
+      "osm": "node/3190899581",
+      "coordinatesWgs84": [
+        -46.513784,
+        -23.646389
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Instituto Martius-Staden",
+      "osm": "node/5140286031",
+      "coordinatesWgs84": [
+        -46.726972,
+        -23.633934
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hospital e Maternidade São Cristóvão",
+      "osm": "way/198297951",
+      "coordinatesWgs84": [
+        -46.58553,
+        -23.56928
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Recanto Municipal da Árvore - Bosque Maia",
+      "osm": "way/5110800",
+      "coordinatesWgs84": [
+        -46.5296,
+        -23.458218
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mercado Central de Osasco Walter Edson de Abreu",
+      "osm": "way/425971603",
+      "coordinatesWgs84": [
+        -46.778927,
+        -23.527662
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Basílica Menor Nossa Senhora do Rosário",
+      "osm": "way/1499108656",
+      "coordinatesWgs84": [
+        -46.671167,
+        -23.409458
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Subprefeitura Jabaquara",
+      "osm": "way/299599250",
+      "coordinatesWgs84": [
+        -46.640478,
+        -23.647869
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Prefeitura Regional de Perus",
+      "osm": "way/486885422",
+      "coordinatesWgs84": [
+        -46.752994,
+        -23.407511
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "UNINOVE - Campus São Bernardo do Campo",
+      "osm": "way/1082441931",
+      "coordinatesWgs84": [
+        -46.563771,
+        -23.706585
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Neo Química Arena",
+      "osm": "way/218678632",
+      "coordinatesWgs84": [
+        -46.474335,
+        -23.545314
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museum of Sacred Art of São Paulo",
+      "osm": "relation/6711205",
+      "coordinatesWgs84": [
+        -46.631203,
+        -23.530311
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Ecológico Guapituba",
+      "osm": "way/547462224",
+      "coordinatesWgs84": [
+        -46.451214,
+        -23.696256
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Rodrigo de Gasperi",
+      "osm": "way/243738993",
+      "coordinatesWgs84": [
+        -46.720654,
+        -23.480931
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Capela de São Miguel Paulista",
+      "osm": "node/5890753625",
+      "coordinatesWgs84": [
+        -46.445689,
+        -23.491362
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Museu Florestal Octávio Vecchi",
+      "osm": "node/5602604506",
+      "coordinatesWgs84": [
+        -46.636392,
+        -23.457116
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Escola Superior de Propaganda e Marketing ESPM",
+      "osm": "way/276636672",
+      "coordinatesWgs84": [
+        -46.64007,
+        -23.589952
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Igreja de Nossa Senhora da Penha",
+      "osm": "node/6732845827",
+      "coordinatesWgs84": [
+        -46.548025,
+        -23.527857
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Faculdade de Medicina Veterinária e Zootecnia",
+      "osm": "way/158967597",
+      "coordinatesWgs84": [
+        -46.739508,
+        -23.56997
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque da Mônica",
+      "osm": "node/4732250495",
+      "coordinatesWgs84": [
+        -46.699081,
+        -23.677141
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Estádio Municipal Anacleto Campanella",
+      "osm": "way/196866078",
+      "coordinatesWgs84": [
+        -46.559834,
+        -23.629934
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Casa VilaNova Artigas",
+      "osm": "way/1251674385",
+      "coordinatesWgs84": [
+        -46.675201,
+        -23.620484
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Heliópolis",
+      "osm": "way/455336051",
+      "coordinatesWgs84": [
+        -46.59338,
+        -23.608722
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Albert Einstein Israelite Hospital",
+      "osm": "way/75490092",
+      "coordinatesWgs84": [
+        -46.71535,
+        -23.599832
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1292,
+      "sha256": "e876566094cc7396ab70783f74d0fabf5930311a3e4b865734bf7a59b963f586"
+    },
+    "geometry.ts": {
+      "bytes": 237687,
+      "sha256": "a2913473c82e4f376f96f201fdb3b81a898b73557f638cb1a32f2ee8a4b5b912"
+    },
+    "places.ts": {
+      "bytes": 10424,
+      "sha256": "c835de92fd0af87c80bdaf4a560eca0343237b8ecbc4da9f17b078935957f357"
+    },
+    "terrain.ts": {
+      "bytes": 639059,
+      "sha256": "b061f9f1f744c047e77131a914d9c9422823c0db3cade046b2255f845de319cc"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "3db59414419894c601ee8aa6f17edb2f43966967fba02d219dff4f7e983206d0"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

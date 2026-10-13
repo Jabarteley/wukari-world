@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "london",
+  "countryIso2": "GB",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "London",
+    "coordinatesWgs84": [
+      -0.1277653,
+      51.5074456
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/united-kingdom-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "london-airport",
+    "name": "London Heathrow Airport",
+    "lon": -0.459909,
+    "lat": 51.470748,
+    "sourceUrl": "https://ourairports.com/airports/EGLL/"
+  },
+  "boxes": {
+    "play": [
+      51.326564710066016,
+      -0.4743329676367383,
+      51.68832648993398,
+      0.16204105356569867
+    ],
+    "core": [
+      51.4622253775165,
+      -0.20000061593753005,
+      51.55266582248349,
+      -0.055529984062469964
+    ],
+    "outline": [
+      51.27656471006602,
+      -0.5243329676367383,
+      51.738326489933975,
+      0.2120410535656987
+    ],
+    "wide": [
+      50.726564710066015,
+      -1.0743329676367384,
+      52.28832648993398,
+      0.7620410535656986
+    ],
+    "water": [
+      50.726564710066015,
+      -1.0743329676367384,
+      52.28832648993398,
+      0.7620410535656986
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/united-kingdom-261011.osm.pbf",
+    "datasetSha256": "1aa0be524f45c60270f96cdd898c34f3d7ad06b3a5b110191ae2ce600c7adbe0",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "802ecbb52a55e63c9e51fd47302e8c28fb8923ee3979e1c282de5d14aee26d1b",
+        "elements": 22378
+      },
+      {
+        "file": "extras.json",
+        "sha256": "8c7c83f6adc91653a4d27fd4d48438388e1795302467f84513509c016b13e9d9",
+        "elements": 4213
+      },
+      {
+        "file": "water.json",
+        "sha256": "73530095e9beea93b7d42bef249145a21c6b4284722b5e9959fe47028e24c35b",
+        "elements": 4761
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "0c67a7140558da5ac65fb5c3193a236f8ce8b38ff15e21990b3dea1dd6fd115f",
+        "elements": 35396
+      },
+      {
+        "file": "roads.json",
+        "sha256": "066fa2c5a3f933501be8bf520202e6e0219c881c9dcf59512dc7f5b3cd96c085",
+        "elements": 36160
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Walton-on-Thames",
+      "osm": "node/638645",
+      "coordinatesWgs84": [
+        -0.414308,
+        51.372876
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ace Cafe",
+      "osm": "node/304687805",
+      "coordinatesWgs84": [
+        -0.277686,
+        51.541273
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Christ the King Sixth Form College",
+      "osm": "node/245097360",
+      "coordinatesWgs84": [
+        -0.002506,
+        51.464553
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "London Clinic",
+      "osm": "relation/10286924",
+      "coordinatesWgs84": [
+        -0.149974,
+        51.522904
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wimbledon Common",
+      "osm": "relation/4285108",
+      "coordinatesWgs84": [
+        -0.238937,
+        51.427066
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Walthamstow Market",
+      "osm": "relation/11370057",
+      "coordinatesWgs84": [
+        -0.027218,
+        51.583144
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Mary the Virgin",
+      "osm": "way/61111910",
+      "coordinatesWgs84": [
+        0.054435,
+        51.335907
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bexley Civic Offices",
+      "osm": "way/332400834",
+      "coordinatesWgs84": [
+        0.153851,
+        51.455658
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Croydon Law Courts",
+      "osm": "way/193799556",
+      "coordinatesWgs84": [
+        -0.092125,
+        51.372879
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Richmond-upon-Thames College",
+      "osm": "way/7848020",
+      "coordinatesWgs84": [
+        -0.342307,
+        51.451492
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vicarage Road Stadium",
+      "osm": "way/7989344",
+      "coordinatesWgs84": [
+        -0.401472,
+        51.649819
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Polish War Memorial",
+      "osm": "node/266577545",
+      "coordinatesWgs84": [
+        -0.400278,
+        51.548834
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Barnet Museum",
+      "osm": "node/5656298167",
+      "coordinatesWgs84": [
+        -0.202459,
+        51.652819
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hill Hall",
+      "osm": "relation/6617493",
+      "coordinatesWgs84": [
+        0.152364,
+        51.674321
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Barking Park",
+      "osm": "way/18934744",
+      "coordinatesWgs84": [
+        0.085274,
+        51.545695
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chase Farm Hospital",
+      "osm": "way/24437604",
+      "coordinatesWgs84": [
+        -0.10256,
+        51.667077
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "North East Surrey College of Technology",
+      "osm": "way/35597911",
+      "coordinatesWgs84": [
+        -0.24333,
+        51.34147
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Edgwarebury Park",
+      "osm": "way/35279471",
+      "coordinatesWgs84": [
+        -0.28249,
+        51.626105
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Champion Hill",
+      "osm": "way/663055373",
+      "coordinatesWgs84": [
+        -0.083975,
+        51.461316
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St Nicholas Church",
+      "osm": "way/707957524",
+      "coordinatesWgs84": [
+        -0.162035,
+        51.424753
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "London Islamic Cultural Society",
+      "osm": "way/81349520",
+      "coordinatesWgs84": [
+        -0.10925,
+        51.587303
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Anns Centre",
+      "osm": "way/24663862",
+      "coordinatesWgs84": [
+        -0.336694,
+        51.580785
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Columbia Road Flower Market",
+      "osm": "way/350349593",
+      "coordinatesWgs84": [
+        -0.069428,
+        51.529354
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "London Academy of Music and Dramatic Art",
+      "osm": "way/147775425",
+      "coordinatesWgs84": [
+        -0.215684,
+        51.490509
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1221,
+      "sha256": "8cfd66e5c31cc033aec01237e6d574a35d376b20309ab995dcd29af5ede988af"
+    },
+    "geometry.ts": {
+      "bytes": 34618,
+      "sha256": "9e53a2c295f6708e1236cdbf8fdeeacba8cf9f52d0363ebb7e1effcd2720d715"
+    },
+    "places.ts": {
+      "bytes": 9793,
+      "sha256": "09d519aec2e51affe2a4af2ff26cab9c03292f226f19807f5bb5e8ca7abe5253"
+    },
+    "terrain.ts": {
+      "bytes": 177638,
+      "sha256": "c959efac20c2d5cdf0df85c5939ed01db0cee252fb041e8f2b73206545c9b27b"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "8ca007e26816b065817fe0add35ed2861500a3dc589683532ab448460d856f26"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

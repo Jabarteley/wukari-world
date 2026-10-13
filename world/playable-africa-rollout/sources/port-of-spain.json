@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "port-of-spain",
+  "countryIso2": "TT",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Port of Spain",
+    "coordinatesWgs84": [
+      -61.5180173,
+      10.6572678
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "port-of-spain-airport",
+    "name": "Piarco International Airport",
+    "lon": -61.337568,
+    "lat": 10.59535,
+    "sourceUrl": "https://ourairports.com/airports/TTPP/"
+  },
+  "boxes": {
+    "play": [
+      10.47638691006602,
+      -61.70094250528619,
+      10.838148689933979,
+      -61.32842880207231
+    ],
+    "core": [
+      10.612047577516504,
+      -61.5637280087236,
+      10.702488022483495,
+      -61.47230659127639
+    ],
+    "outline": [
+      10.42638691006602,
+      -61.75094250528619,
+      10.88814868993398,
+      -61.27842880207231
+    ],
+    "wide": [
+      9.87638691006602,
+      -62.300942505286194,
+      11.438148689933978,
+      -60.72842880207231
+    ],
+    "water": [
+      9.87638691006602,
+      -62.300942505286194,
+      11.438148689933978,
+      -60.72842880207231
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "9e6f7bd8a33b7a362fec5e7d8877988bb85f1364645a4a9bde4d2f193fd861d4",
+        "elements": 737
+      },
+      {
+        "file": "extras.json",
+        "sha256": "0e8d38b20898c27a3ab8cf55aefacd53e8baecf89452921fc5e5ffc3db57666a",
+        "elements": 225
+      },
+      {
+        "file": "water.json",
+        "sha256": "0d9a5627da2b40c36e141ff00a1735f72ef846dcf36bf099cc27ca94d0194d0b",
+        "elements": 414
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "1fc0b9716792042cfcc440545df8f25defcbdb47e600be335306c6c571f440c8",
+        "elements": 371
+      },
+      {
+        "file": "roads.json",
+        "sha256": "7c693d5eb79605b2f3875ab03c8f96f86cfadd42b646c167f6ea6e1837c297f6",
+        "elements": 1158
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "San Juan Bus Station",
+      "osm": "node/1327402735",
+      "coordinatesWgs84": [
+        -61.450949,
+        10.650003
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Starbucks",
+      "osm": "way/1525792589",
+      "coordinatesWgs84": [
+        -61.554155,
+        10.68754
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Alma Jordan Library",
+      "osm": "node/6943346288",
+      "coordinatesWgs84": [
+        -61.399095,
+        10.639748
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Port of Spain General Hospital",
+      "osm": "way/131559736",
+      "coordinatesWgs84": [
+        -61.507676,
+        10.661851
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Queen's Park Savannah",
+      "osm": "way/96579810",
+      "coordinatesWgs84": [
+        -61.514064,
+        10.668863
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Center City Shopping Complex",
+      "osm": "way/165665763",
+      "coordinatesWgs84": [
+        -61.41059,
+        10.516448
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mount Saint Benedict",
+      "osm": "node/1049048345",
+      "coordinatesWgs84": [
+        -61.395061,
+        10.661626
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ministry of Works and Transport, Maintenance Division, District of Caroni",
+      "osm": "node/1269970359",
+      "coordinatesWgs84": [
+        -61.414855,
+        10.518048
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "The Red House",
+      "osm": "way/138155533",
+      "coordinatesWgs84": [
+        -61.511711,
+        10.653163
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fatima College",
+      "osm": "way/100822158",
+      "coordinatesWgs84": [
+        -61.53048,
+        10.666963
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Queen's Park Oval",
+      "osm": "relation/11925862",
+      "coordinatesWgs84": [
+        -61.523752,
+        10.666817
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Archbishop's House",
+      "osm": "way/117872639",
+      "coordinatesWgs84": [
+        -61.519148,
+        10.671423
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Joseph Roman Catholic Church",
+      "osm": "node/1049039374",
+      "coordinatesWgs84": [
+        -61.413761,
+        10.653807
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hugh Wooding Law School",
+      "osm": "node/2366018981",
+      "coordinatesWgs84": [
+        -61.399728,
+        10.651656
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hasely Crawford Stadium",
+      "osm": "way/100764338",
+      "coordinatesWgs84": [
+        -61.533031,
+        10.661526
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Mary's College",
+      "osm": "way/389725165",
+      "coordinatesWgs84": [
+        -61.510237,
+        10.658267
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Museum & Art Gallery",
+      "osm": "way/388729737",
+      "coordinatesWgs84": [
+        -61.510318,
+        10.662861
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Queen's Royal College",
+      "osm": "way/117671749",
+      "coordinatesWgs84": [
+        -61.519276,
+        10.668685
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Memorial Park",
+      "osm": "way/100866002",
+      "coordinatesWgs84": [
+        -61.509511,
+        10.663594
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nelson Mandela Park",
+      "osm": "way/100764513",
+      "coordinatesWgs84": [
+        -61.525216,
+        10.66903
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Holy Name",
+      "osm": "way/386980356",
+      "coordinatesWgs84": [
+        -61.508646,
+        10.663445
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lookout",
+      "osm": "node/1530642487",
+      "coordinatesWgs84": [
+        -61.468486,
+        10.762713
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Chinese restaurant",
+      "osm": "node/4254280290",
+      "coordinatesWgs84": [
+        -61.33868,
+        10.581809
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Patches",
+      "osm": "way/1058026060",
+      "coordinatesWgs84": [
+        -61.637263,
+        10.68093
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1262,
+      "sha256": "8c61079f6a5ecdc4b2217f87aaafb2e816692b87f49bfbf19600141343cf259f"
+    },
+    "geometry.ts": {
+      "bytes": 179126,
+      "sha256": "0d0efcecff53266d55efda11066f9423360128ad4aae1b66a5ef4ca003d93ea7"
+    },
+    "places.ts": {
+      "bytes": 9758,
+      "sha256": "cee85be701c8294f50c24330f898de774689ad18700d01b6e65eb88815cf9439"
+    },
+    "terrain.ts": {
+      "bytes": 360885,
+      "sha256": "7d3e5082f865ab12685f1b5e21457b1388b26c7ed9d3aaa9503603bbfda38815"
+    },
+    "index.ts": {
+      "bytes": 264,
+      "sha256": "513de1098dff9d8d0329811fc7165f3fb9dd00d6d815032772a588edb8e6bc3d"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

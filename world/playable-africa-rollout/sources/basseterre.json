@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "basseterre",
+  "countryIso2": "KN",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Basseterre",
+    "coordinatesWgs84": [
+      -62.722301,
+      17.2960919
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "basseterre-airport",
+    "name": "Robert L. Bradshaw International Airport",
+    "lon": -62.719117,
+    "lat": 17.310845,
+    "sourceUrl": "https://ourairports.com/airports/TKPK/"
+  },
+  "boxes": {
+    "play": [
+      17.115211010066023,
+      -62.91065823289697,
+      17.476972789933978,
+      -62.53394376710303
+    ],
+    "core": [
+      17.250871677516507,
+      -62.76935536136846,
+      17.341312122483494,
+      -62.67524663863154
+    ],
+    "outline": [
+      17.065211010066022,
+      -62.96065823289697,
+      17.52697278993398,
+      -62.483943767103035
+    ],
+    "wide": [
+      16.51521101006602,
+      -63.51065823289697,
+      18.07697278993398,
+      -61.93394376710303
+    ],
+    "water": [
+      16.51521101006602,
+      -63.51065823289697,
+      18.07697278993398,
+      -61.93394376710303
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "05e841ca1bd3c1180c03af52ab21fd02b0d8adcd5fe922756292135bdf118807",
+        "elements": 233
+      },
+      {
+        "file": "extras.json",
+        "sha256": "d365edd16a581a990e306add3cc6e40f3b4535ac81893df1ebc1015f567e6a51",
+        "elements": 59
+      },
+      {
+        "file": "water.json",
+        "sha256": "11594e3cc2d4719694a9a364f4af7bb9abcaccd4adb8e1e3112b00991aa4c350",
+        "elements": 336
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "30b49edd979c978926ad846801f0c570f93c1bd6f036751c09e9141de5a3068c",
+        "elements": 951
+      },
+      {
+        "file": "roads.json",
+        "sha256": "35ec9f24fbf26bd2b70290fd896819cad905a4ea1e759c28f0d3bde2b742b2f0",
+        "elements": 227
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Seabridge",
+      "osm": "node/2888852904",
+      "coordinatesWgs84": [
+        -62.646746,
+        17.226932
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ballahoo Restaurant",
+      "osm": "node/3842977495",
+      "coordinatesWgs84": [
+        -62.723668,
+        17.29537
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Windsor University School of Medicine",
+      "osm": "way/396994425",
+      "coordinatesWgs84": [
+        -62.736721,
+        17.359681
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Pogson Medical Centre",
+      "osm": "way/398068042",
+      "coordinatesWgs84": [
+        -62.849158,
+        17.359709
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Independence Square",
+      "osm": "way/24800627",
+      "coordinatesWgs84": [
+        -62.722318,
+        17.296063
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grace Green Produce",
+      "osm": "node/5413227192",
+      "coordinatesWgs84": [
+        -62.57652,
+        17.131412
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St. Theresa Roman Catholic Church",
+      "osm": "way/400006986",
+      "coordinatesWgs84": [
+        -62.628825,
+        17.143148
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bakers Corner",
+      "osm": "way/670954622",
+      "coordinatesWgs84": [
+        -62.721624,
+        17.297021
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Government House",
+      "osm": "way/398547811",
+      "coordinatesWgs84": [
+        -62.732215,
+        17.298997
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Medical University of the Americas",
+      "osm": "way/398772697",
+      "coordinatesWgs84": [
+        -62.560727,
+        17.19351
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Warner Park Cricket Stadium",
+      "osm": "way/576357921",
+      "coordinatesWgs84": [
+        -62.722068,
+        17.298564
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Brimstone Hill Fortress National Park",
+      "osm": "way/60261200",
+      "coordinatesWgs84": [
+        -62.836725,
+        17.346712
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fort Charles",
+      "osm": "way/60260592",
+      "coordinatesWgs84": [
+        -62.632584,
+        17.132417
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Museum",
+      "osm": "way/398248819",
+      "coordinatesWgs84": [
+        -62.723688,
+        17.294553
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ross University School of Veterinary Medicine",
+      "osm": "way/397170032",
+      "coordinatesWgs84": [
+        -62.75915,
+        17.294723
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Medicine and Health Sciences",
+      "osm": "way/397170029",
+      "coordinatesWgs84": [
+        -62.751489,
+        17.294569
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gingerland Methodist Church",
+      "osm": "way/399489244",
+      "coordinatesWgs84": [
+        -62.5745,
+        17.131556
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Arthur's",
+      "osm": "node/11112555606",
+      "coordinatesWgs84": [
+        -62.810566,
+        17.417827
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Carambola",
+      "osm": "way/298302151",
+      "coordinatesWgs84": [
+        -62.672626,
+        17.272956
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. James Drag Raceway",
+      "osm": "way/682274447",
+      "coordinatesWgs84": [
+        -62.543875,
+        17.159086
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Black Rocks",
+      "osm": "node/3448719953",
+      "coordinatesWgs84": [
+        -62.780131,
+        17.403423
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Shopping Plaza",
+      "osm": "node/6288064624",
+      "coordinatesWgs84": [
+        -62.685475,
+        17.292745
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National Heroes Park",
+      "osm": "way/545067913",
+      "coordinatesWgs84": [
+        -62.70939,
+        17.309752
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Kitts Eco-Park",
+      "osm": "way/397539300",
+      "coordinatesWgs84": [
+        -62.851071,
+        17.376294
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1259,
+      "sha256": "a0c4cd80f707e03cb6847c2b9506e1c355b05969efcf8e3dafabccb93ae12f5f"
+    },
+    "geometry.ts": {
+      "bytes": 78564,
+      "sha256": "16022d5424276ad85525b630986538ac47b89da706ca4521df0263863ad343b7"
+    },
+    "places.ts": {
+      "bytes": 9680,
+      "sha256": "7775e4de5476f3674929f02a4a9dfceab4e588cd6dc6b49aaf40a090ce325fa3"
+    },
+    "terrain.ts": {
+      "bytes": 191314,
+      "sha256": "ea42428c1b5610ba7c6caaae69cd5f85d547ee06b9acc99e177b8d0deab4486a"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "7015e9add38927eafa6ddd104420268877ae24d07d0e122d49d0fa874882f4f4"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

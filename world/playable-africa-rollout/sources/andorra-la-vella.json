@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "andorra-la-vella",
+  "countryIso2": "AD",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Andorra la Vella",
+    "coordinatesWgs84": [
+      1.5212467,
+      42.5069391
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/andorra-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "andorra-la-vella-airport",
+    "name": "Andorra la Vella Heliport",
+    "lon": 1.53365,
+    "lat": 42.511227,
+    "sourceUrl": "https://ourairports.com/airports/AD-ALV/"
+  },
+  "boxes": {
+    "play": [
+      42.326058210066016,
+      1.276827819456585,
+      42.68781998993398,
+      1.7656655805434152
+    ],
+    "core": [
+      42.4617188775165,
+      1.4602749675771234,
+      42.55215932248349,
+      1.5822184324228767
+    ],
+    "outline": [
+      42.27605821006602,
+      1.226827819456585,
+      42.737819989933975,
+      1.8156655805434152
+    ],
+    "wide": [
+      41.726058210066014,
+      0.676827819456585,
+      43.28781998993398,
+      2.365665580543415
+    ],
+    "water": [
+      42.326058210066016,
+      1.276827819456585,
+      42.68781998993398,
+      1.7656655805434152
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/andorra-261011.osm.pbf",
+    "datasetSha256": "47e9c208eb833fe777ef3d7021adb63d64a490c8cbd089cb9711e85414a63b17",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "012e1acf646932c219dddadb3a01124e3827849127fab1bdc0775a06eb8e4371",
+        "elements": 569
+      },
+      {
+        "file": "extras.json",
+        "sha256": "2f2ba65533657576476bb964c602f55f42be97ec027ebe286fde4f2f50e53a0e",
+        "elements": 90
+      },
+      {
+        "file": "water.json",
+        "sha256": "0818e65fc1795bcda52da6cfece0cc8c0e403e4b5abc059eb2f0df455e26c230",
+        "elements": 288
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "fc28a3dac1dc6186a50d6e6015b3c0bf5dce7a9e497cf33325fc45257591cc79",
+        "elements": 287
+      },
+      {
+        "file": "roads.json",
+        "sha256": "dfa9c445d04da9ca229d0200a071c439e559e40a899262549684d55150709f38",
+        "elements": 1332
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "National Bus Station",
+      "osm": "way/604030704",
+      "coordinatesWgs84": [
+        1.521022,
+        42.504558
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Refugi de Sorteny",
+      "osm": "node/5736767209",
+      "coordinatesWgs84": [
+        1.564168,
+        42.62255
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universitat d'Andorra",
+      "osm": "way/270902310",
+      "coordinatesWgs84": [
+        1.490301,
+        42.465162
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital of Our Lady of Meritxell",
+      "osm": "way/194554955",
+      "coordinatesWgs84": [
+        1.533933,
+        42.511468
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc Central",
+      "osm": "way/6275507",
+      "coordinatesWgs84": [
+        1.525839,
+        42.505965
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pyrénées Hyper-Centre",
+      "osm": "way/54858984",
+      "coordinatesWgs84": [
+        1.731887,
+        42.543632
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sant Pere del Tarter",
+      "osm": "way/202636510",
+      "coordinatesWgs84": [
+        1.653176,
+        42.578701
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "De Sant Serni De Canillo",
+      "osm": "way/545322380",
+      "coordinatesWgs84": [
+        1.597895,
+        42.567471
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Govern d'Andorra",
+      "osm": "node/4456947592",
+      "coordinatesWgs84": [
+        1.522112,
+        42.506611
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cadran solaire de Tristaina",
+      "osm": "way/968544460",
+      "coordinatesWgs84": [
+        1.47731,
+        42.640702
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Madriu-Perafita-Claror Valley",
+      "osm": "node/4516461789",
+      "coordinatesWgs84": [
+        1.602945,
+        42.489646
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sant Andreu d’Arinsal",
+      "osm": "way/202616749",
+      "coordinatesWgs84": [
+        1.484028,
+        42.572125
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Església de Sant Corneli i Sant Cebrià d'Ordino",
+      "osm": "way/202640608",
+      "coordinatesWgs84": [
+        1.532874,
+        42.556864
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museu Etnogràfic Casa Cristo",
+      "osm": "way/202617257",
+      "coordinatesWgs84": [
+        1.582377,
+        42.535144
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museu Casa Rull",
+      "osm": "way/202614660",
+      "coordinatesWgs84": [
+        1.514213,
+        42.532358
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mirador Roc del Quer",
+      "osm": "way/908107551",
+      "coordinatesWgs84": [
+        1.591038,
+        42.567153
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre Comercial Pyrénées Andorra",
+      "osm": "way/352338250",
+      "coordinatesWgs84": [
+        1.524108,
+        42.508284
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Plaça del Poble",
+      "osm": "way/361846817",
+      "coordinatesWgs84": [
+        1.522262,
+        42.506648
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "la Rabassa",
+      "osm": "node/321679777",
+      "coordinatesWgs84": [
+        1.52072,
+        42.435343
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Port de Cabús",
+      "osm": "node/10089764818",
+      "coordinatesWgs84": [
+        1.419953,
+        42.546523
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Restaurant Refugi del Llac de Pessons",
+      "osm": "node/1894423912",
+      "coordinatesWgs84": [
+        1.687885,
+        42.526001
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jardins de Juberri",
+      "osm": "node/6698440905",
+      "coordinatesWgs84": [
+        1.491446,
+        42.437477
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Epizen",
+      "osm": "way/194556039",
+      "coordinatesWgs84": [
+        1.481502,
+        42.447404
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre Mèdic Grau",
+      "osm": "way/385230804",
+      "coordinatesWgs84": [
+        1.696549,
+        42.53161
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1255,
+      "sha256": "92d42e75fde74c0c56d43334d0190752acffbcb65647f5042ca0f2554014860c"
+    },
+    "geometry.ts": {
+      "bytes": 19405,
+      "sha256": "e48c945db9935576b6e6826a59c5523a5eb518b31dd674d20eafbd0141c4f5a1"
+    },
+    "places.ts": {
+      "bytes": 9911,
+      "sha256": "f9b56082443d446033fcee37476f32ec40d995f3beadb7e4a5cc960b27f1208c"
+    },
+    "terrain.ts": {
+      "bytes": 28357,
+      "sha256": "d1440c438cab2bfce023a9b79360d363235aba0461381ec0de16f98374066ffd"
+    },
+    "index.ts": {
+      "bytes": 267,
+      "sha256": "1e726628e1c19a65a1064a154afb1971b813d09ac6902d6924675ff624febd97"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "cityId": "madrid",
+  "countryIso2": "ES",
+  "generationIdentity": {
+    "cityId": "madrid",
+    "stateId": "es-madrid",
+    "stateName": "Madrid"
+  },
+  "inventorySha256": "f9dc8ac7b39003b3fb89025ab25b643092a2c5ac7db4eacdc64c7efc03bd9ccf",
+  "inventoryPath": "world/playable-africa-rollout/sources/madrid.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "madrid-airport",
+    "name": "Adolfo Suárez Madrid–Barajas Airport",
+    "lon": -3.572249,
+    "lat": 40.493407,
+    "sourceUrl": "https://ourairports.com/airports/LEMD/"
+  },
+  "bounds": [
+    40.23590111006602,
+    -3.940123282444742,
+    40.59766288993398,
+    -3.466890717555258
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/spain-261011.osm.pbf",
+      "datasetSha256": "4c8a93158d9c49654e71f28b2292b73cc43bbcb96cb159eef43be0157b248636",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/europe/spain-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 1490515895,
+          "md5": "5cb20c71ee07266b290bb91a573d468d",
+          "sha256": "8707ab589c1c5d418055d55c1087cc63a8668ebdfeae9e79d97e4cd4ebe75c3d"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/africa/morocco-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 243739061,
+          "md5": "b59943161d2e4d27262105d20f70c27a",
+          "sha256": "d3db4380c2afee9644bb80daebdb16b044413f663dd45376c539c3a7ee180d33",
+          "reason": "admin-0 relation/1311341 (Spain) member ways absent from the Spain clip: Perejil island ways 8692572, 32257984, 1532330547, 1551133098 and the Penon de Velez / Alhucemas / Chafarinas rings 1435939762, 1435939763, 1486838834, 1461500180; all their nodes lie inside the Morocco clip"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/africa/canary-islands-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 59920240,
+          "md5": "fcc1b239d7a896e1b7dfdab1ad5cca6a",
+          "sha256": "9d4cdc267e65de605d08e138f0fb9040696841331535e54561b56bba4d40587d",
+          "reason": "admin-0 relation/1311341 (Spain) maritime=yes territorial rings 46419267, 46419269, 46419270, 46419271, 46419272 (Canary Islands, 12 nm) are absent from the Spain clip; all their nodes lie inside the Canary Islands clip; with Morocco and Canary Islands all 640 way members are present"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "02a74aadd87ce557f32801dcd52491c1d6ab5c92eda0c7fc2bcb07f4465cfa6d",
+          "elements": 11923
+        },
+        {
+          "file": "extras.json",
+          "sha256": "f039387388e796f4c90788a42226e07994a49c8193788144630d7270291fa3ab",
+          "elements": 2726
+        },
+        {
+          "file": "water.json",
+          "sha256": "566aaff102931ca9da81ec6893ef709dab44b5fcfd3689719e7e515f8378cecd",
+          "elements": 262
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "00a8f8a1874aeaa56f3db0751243717d91e40cf2a129fbdcd6166cf0168bc43b",
+          "elements": 7642
+        },
+        {
+          "file": "roads.json",
+          "sha256": "3b3de3d16c1f32105425b2aec086d14923d8a779d6e4d69c9b515d671977d3f8",
+          "elements": 10778
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 23,
+    "waterPolygons": 3,
+    "reachWaterPolygons": 1
+  },
+  "observed": {
+    "places": 11923,
+    "extras": 2726,
+    "water": 262,
+    "landuse": 7642,
+    "roads": 10778
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1210,
+      "sha256": "d330005101bb4fb9ac0c9e8f8a09885f472700a762e883d3d16a32cd91938e7e"
+    },
+    "geometry.ts": {
+      "bytes": 140122,
+      "sha256": "5d9fabd43b0a008db40fbda6de9a4c3a6b3fc670b7d499b02087621eb6d951a0"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "0c4add46b2c14334d6d2d37f4dfcd928ed610032d34e21613c1ae5ed1106f601"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/madrid.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

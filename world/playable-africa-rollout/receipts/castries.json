@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "castries",
+  "countryIso2": "LC",
+  "generationIdentity": {
+    "cityId": "castries",
+    "stateId": "lc-castries",
+    "stateName": "Castries"
+  },
+  "inventorySha256": "235299580a2ce3aa85563076f6abb95500e216414bb0cd03a02def76fda12e5e",
+  "inventoryPath": "world/playable-africa-rollout/sources/castries.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "castries-airport",
+    "name": "Hewanorra International Airport",
+    "lon": -60.952599,
+    "lat": 13.7332,
+    "sourceUrl": "https://ourairports.com/airports/TLPL/"
+  },
+  "bounds": [
+    13.724155955503301,
+    -61.17555287753564,
+    14.19047748993398,
+    -60.80491892246437
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "40a2068358e36800c50679d1087da2e3069100e33bb0581c6c204a861c88875b",
+          "elements": 868
+        },
+        {
+          "file": "extras.json",
+          "sha256": "138684e337675a9075dfd6b07dac54d835d618107b554a693f32dbdb361f4493",
+          "elements": 161
+        },
+        {
+          "file": "water.json",
+          "sha256": "7405e90f6fc7b04bb3020f01322dc8f58f57a5ed41b9debe3d79fb5a78e8e95c",
+          "elements": 760
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "c3bc87c16498e5b3e274725e9c050501a6c70d24a7ec7631a41cf3c109e17370",
+          "elements": 529
+        },
+        {
+          "file": "roads.json",
+          "sha256": "0ab9c34aae974d3176fa6dedc194a91fd44f00b535ed307962d6fad932e9be20",
+          "elements": 184
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 48,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 13,
+    "waterPolygons": 3,
+    "reachWaterPolygons": 8
+  },
+  "observed": {
+    "places": 868,
+    "extras": 161,
+    "water": 760,
+    "landuse": 529,
+    "roads": 184
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1242,
+      "sha256": "fe731fbc707e98f9a726e52b3fe5291a4aaa2e5be49a361f310de2bb761cdf7b"
+    },
+    "geometry.ts": {
+      "bytes": 545797,
+      "sha256": "0bd16d582b87aa683459b1ad277b1b4206da9ffc5e0a6b179b86fc144e5211ad"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "2537dd1447276379993e4f4f5940af3f90607f0da3907153690c101677577b21"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/castries.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

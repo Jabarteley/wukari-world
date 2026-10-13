@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "lahore",
+  "countryIso2": "PK",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Lahore",
+    "coordinatesWgs84": [
+      74.3141829,
+      31.5656822
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/pakistan-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "lahore-airport",
+    "name": "Allama Iqbal International Airport",
+    "lon": 74.403603,
+    "lat": 31.521601,
+    "sourceUrl": "https://ourairports.com/airports/OPLA/"
+  },
+  "boxes": {
+    "play": [
+      31.384801310066024,
+      74.10291095737459,
+      31.74656308993398,
+      74.52545484262542
+    ],
+    "core": [
+      31.520461977516508,
+      74.26144203162171,
+      31.610902422483495,
+      74.3669237683783
+    ],
+    "outline": [
+      31.334801310066023,
+      74.05291095737459,
+      31.79656308993398,
+      74.57545484262542
+    ],
+    "wide": [
+      30.784801310066022,
+      73.5029109573746,
+      32.34656308993398,
+      75.12545484262542
+    ],
+    "water": [
+      31.384801310066024,
+      74.10291095737459,
+      31.74656308993398,
+      74.52545484262542
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/pakistan-261011.osm.pbf",
+    "datasetSha256": "7bbddf4d217408bd7b610f00bb8d9bbbd328f5bfaf50a55b3a59e794c5c3c0dc",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "feb60ee048dded3419b9101d704f4a51e4c3cc9c887be4d51d30471c8f2829bf",
+        "elements": 2414
+      },
+      {
+        "file": "extras.json",
+        "sha256": "1042a54806a83dbbcc782a903f02da801cf596e4650ecc748ef7a994e47e97aa",
+        "elements": 626
+      },
+      {
+        "file": "water.json",
+        "sha256": "19c3178a37f4b2be18b4c2677cd7d47787b1e2ec6f67d82bc99593bc3acdc0f2",
+        "elements": 29
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "3061407495cbda1eca9e58a93fe1986918a361d661c806387d890e7ca0da3032",
+        "elements": 934
+      },
+      {
+        "file": "roads.json",
+        "sha256": "b554dab8a9aaf1bfe0bcc00657a240f4051303ae46ca5e63b50c18749f7a7c66",
+        "elements": 1529
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Jallo Manhala",
+      "osm": "node/2406886912",
+      "coordinatesWgs84": [
+        74.494868,
+        31.577711
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Services Club",
+      "osm": "node/272344518",
+      "coordinatesWgs84": [
+        74.377732,
+        31.518528
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University College Lahore",
+      "osm": "way/726040761",
+      "coordinatesWgs84": [
+        74.244152,
+        31.456069
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lahore General Hospital",
+      "osm": "way/151735321",
+      "coordinatesWgs84": [
+        74.350102,
+        31.455435
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hazuri Bagh",
+      "osm": "way/291782544",
+      "coordinatesWgs84": [
+        74.311806,
+        31.588399
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Anarkali Bazar",
+      "osm": "node/5265759531",
+      "coordinatesWgs84": [
+        74.311475,
+        31.570704
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Shrine of Mian Mir",
+      "osm": "way/621947796",
+      "coordinatesWgs84": [
+        74.360095,
+        31.548365
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gulshan Marriage Hall",
+      "osm": "node/4907505343",
+      "coordinatesWgs84": [
+        74.284093,
+        31.649597
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pakistan Cricket Board",
+      "osm": "way/1530891047",
+      "coordinatesWgs84": [
+        74.333712,
+        31.512194
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Millennium Universal College",
+      "osm": "way/772249714",
+      "coordinatesWgs84": [
+        74.459175,
+        31.470193
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Punjab Stadium",
+      "osm": "way/27736338",
+      "coordinatesWgs84": [
+        74.331959,
+        31.510786
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shalimar Gardens",
+      "osm": "node/7116277007",
+      "coordinatesWgs84": [
+        74.382118,
+        31.587031
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Engineering and Technology, New Campus",
+      "osm": "way/855746276",
+      "coordinatesWgs84": [
+        74.246299,
+        31.695569
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lahore University of Management Sciences",
+      "osm": "way/70017485",
+      "coordinatesWgs84": [
+        74.410599,
+        31.47032
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Social Security Hospital",
+      "osm": "node/674141730",
+      "coordinatesWgs84": [
+        74.263181,
+        31.49678
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gulshan-e-Iqbal Park",
+      "osm": "way/291684963",
+      "coordinatesWgs84": [
+        74.288992,
+        31.513628
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Model Town Central Park",
+      "osm": "node/1374726049",
+      "coordinatesWgs84": [
+        74.326152,
+        31.484563
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bibi Pak Daman",
+      "osm": "way/611956194",
+      "coordinatesWgs84": [
+        74.339925,
+        31.564444
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fauji Foundation Hospital",
+      "osm": "node/3228646369",
+      "coordinatesWgs84": [
+        74.394925,
+        31.500104
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "S-60",
+      "osm": "node/9922988888",
+      "coordinatesWgs84": [
+        74.398315,
+        31.531585
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Krishna Temple",
+      "osm": "node/8955079625",
+      "coordinatesWgs84": [
+        74.297745,
+        31.59957
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Packages Mall",
+      "osm": "way/778472693",
+      "coordinatesWgs84": [
+        74.35593,
+        31.471244
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shuhada",
+      "osm": "way/291807527",
+      "coordinatesWgs84": [
+        74.31999,
+        31.561237
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Hockey Stadium",
+      "osm": "way/172700972",
+      "coordinatesWgs84": [
+        74.33515,
+        31.510986
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1212,
+      "sha256": "6b4346e9dae74cf46b51012024e6f42b7206db3a6f50a8ef0f6e169643fff5e8"
+    },
+    "geometry.ts": {
+      "bytes": 79503,
+      "sha256": "050a72f8138555ad6c79250b5775440662df138e38a7419c135e7bbd3a246466"
+    },
+    "places.ts": {
+      "bytes": 9762,
+      "sha256": "255946c823846d6163857b3f23d40847790669646164bffc4d27867bfac0f2bd"
+    },
+    "terrain.ts": {
+      "bytes": 112987,
+      "sha256": "a4458dc8f68108aa07dad186aa90cfe2847e6ae76afa8e0a50075f12e4c4a5b1"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "c7d75de2e6c35b78cd55038e80d332b7d54c047e3f67795f4b7cc0666f369dfa"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

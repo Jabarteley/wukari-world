@@ -215,7 +215,8 @@ test('open versus coming soon is derived from the additive city catalogue', () =
   assert.equal(regionInfo({ kind: 'state', id: 'oyo' }, { ...context, routes: mine, feature: nigeria.byId.get('oyo') }).routes[0]!.live, true);
   assert.equal(regionInfo({ kind: 'state', id: 'oyo' }, { held: ['lagos', 'ibadan'], feature: nigeria.byId.get('oyo') }).action!.label, 'Go to Ibadan');
   // Statuses are data: planned countries are the "Later" list, each with a hub and so a planned route.
-  assert.deepEqual(plannedRoutes('lagos').map((route) => route.to.name), ['London']);
+  assert.equal(regionStatus('country', 'gb'), 'open', 'London opens the United Kingdom, so it leaves the planned Later list');
+  assert.deepEqual(plannedRoutes('lagos').map((route) => route.to.name), []);
   assert.equal(regionStatus('country', 'za'), 'open', 'Cape Town opens South Africa without leaving its old planned hub in Later');
   assert.equal(regionEntry('country', 'za').city, 'cape-town');
   assert.equal(isOpenCityId('johannesburg'), false, 'country admission does not open an unregistered city');

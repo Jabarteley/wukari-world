@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "warsaw",
+  "countryIso2": "PL",
+  "generationIdentity": {
+    "cityId": "warsaw",
+    "stateId": "pl-warsaw",
+    "stateName": "Warsaw"
+  },
+  "inventorySha256": "7c223bc73ce62239a06fd4db4021542ded46fda55a7b9ba138126872920be030",
+  "inventoryPath": "world/playable-africa-rollout/sources/warsaw.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "warsaw-airport",
+    "name": "Warsaw Chopin Airport",
+    "lon": 20.9671,
+    "lat": 52.165699,
+    "sourceUrl": "https://ourairports.com/airports/EPWA/"
+  },
+  "bounds": [
+    52.05107721006602,
+    20.712181006214685,
+    52.41283898993398,
+    21.30126879378531
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/poland-261011.osm.pbf",
+      "datasetSha256": "f74cd09957bf8188fff8e7629087a11b575bac4c3ff192346d36f8ee98e46342",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "76c55a44941fc7344e9c783d64a97aa8db34891fc26a3628eb6193c2857f66cb",
+          "elements": 6375
+        },
+        {
+          "file": "extras.json",
+          "sha256": "62208261c0b643383764949f79c2a8aa8f4c8fbbea765a156a5963274e83341f",
+          "elements": 1728
+        },
+        {
+          "file": "water.json",
+          "sha256": "eeeab0a09412fbbbb61de273953747321ba5f07333ed5f0bcd0cdcacb4babed8",
+          "elements": 1341
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "8f03e80ca824ecc8a5c90ca33b5d7b3e34fda573cf286e51b8b4a66f78fc5528",
+          "elements": 58041
+        },
+        {
+          "file": "roads.json",
+          "sha256": "248668249fd40aee875d0fffb9741cc7c957042ca2ebbad3f6e9e67902775f4d",
+          "elements": 5096
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 22,
+    "waterPolygons": 11,
+    "reachWaterPolygons": 12
+  },
+  "observed": {
+    "places": 6375,
+    "extras": 1728,
+    "water": 1341,
+    "landuse": 58041,
+    "roads": 5096
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1194,
+      "sha256": "e65baa7730d3f0f5971f09f8eb4eaa0a44818cb015784f98b5f8b299b57993ff"
+    },
+    "geometry.ts": {
+      "bytes": 196510,
+      "sha256": "854bb803ca4f223cd5d0be3e3ce827c6c2f098de287ac8691ca4a91a31003f1c"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "f0cb2982eb5a30623b9650a330f9223dfb8164570c5f424ab2c4cb78e829f3a8"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/warsaw.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

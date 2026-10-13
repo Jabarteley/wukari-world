@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "port-moresby",
+  "countryIso2": "PG",
+  "generationIdentity": {
+    "cityId": "port-moresby",
+    "stateId": "pg",
+    "stateName": "Port Moresby"
+  },
+  "inventorySha256": "245b9eebc05a6bb8ef06b56fd231c2337d804deaba9f02df0f6d86cb8c3bdcce",
+  "inventoryPath": "world/playable-africa-rollout/sources/port-moresby.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "port-moresby-airport",
+    "name": "Port Moresby Jacksons International Airport",
+    "lon": 147.22000122070312,
+    "lat": -9.443380355834961,
+    "sourceUrl": "https://ourairports.com/airports/AYPY/"
+  },
+  "bounds": [
+    -9.655210989933979,
+    146.97770666032244,
+    -9.29344921006602,
+    147.3421941396776
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/papua-new-guinea-261011.osm.pbf",
+      "datasetSha256": "27fa4ed1b51b13ec2ab3fe944a9d0f501f23e0711106c0a2304344c37c7f021f",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/australia-oceania/papua-new-guinea-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 54368277,
+          "md5": "1c33cb31283cef0ebdc230e44b52c654",
+          "sha256": "4b49e49b008819e9affdcb4e7a1bfba80e32adfa5971a87894e85ff377e31046"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/australia-oceania/australia/queensland-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 198626406,
+          "md5": "6dabcc6cb419e080720ff8060b2a5e23",
+          "sha256": "62a5954d7a5b5419ad53c44732c34896c1f6f401a1b7bf9c4e23a67689d423b4",
+          "reason": "ways 623239245, 623239249, 934762256, 934762261 (Torres Strait PNG-Australia maritime border, relation 307866 members) lie in the Geofabrik queensland polygon and not in indonesia or solomon-islands"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "4c10d28122f91f6f82c73731e391ce67b3c280c701447efe1e9bfd28bcc85f1a",
+          "elements": 265
+        },
+        {
+          "file": "extras.json",
+          "sha256": "6a32eebd686bef35a01f7e079e81f5d4d8d357bf688ae15b6cf566f2f45e6019",
+          "elements": 72
+        },
+        {
+          "file": "water.json",
+          "sha256": "3fe3294e95342d865492829b85ed0793d5c4076ce599edf3fe4c90479debba4a",
+          "elements": 178
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "57874a232106d0cfcdda73d01d059f524e3a69f85b98dfae0e8a52e5eb3218a9",
+          "elements": 343
+        },
+        {
+          "file": "roads.json",
+          "sha256": "cfc0f5f8213b40ef1e7dec0d34dafc721e89f484d91a741f7f68172ef17269d3",
+          "elements": 554
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 334,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 9,
+    "waterPolygons": 2,
+    "reachWaterPolygons": 3
+  },
+  "observed": {
+    "places": 265,
+    "extras": 72,
+    "water": 178,
+    "landuse": 343,
+    "roads": 554
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1294,
+      "sha256": "24a988d1cf31dfd9f3174665d2fc64f9056d56068acb38f634848ab20f41e6c9"
+    },
+    "geometry.ts": {
+      "bytes": 122660,
+      "sha256": "a250717dc0913674ec9fa0d94cdec2e86565286062ab1e29046d39875f27d310"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "60538697b760d4b08493eda522ee2c87eb173f8402657b70a24d48b89b8b7d0b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/port-moresby.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -352,8 +352,8 @@ function raisedContactTop(shapes: readonly RaisedShape[] | undefined, x: number,
 
 
 /** How long another player's figure takes to ease to a newly reported position (seconds), and the jump beyond which it is simply placed. */
-/** How long a walk takes to ease back to standing, and how far (scene units) the player's head turns to someone close by. */
-const STOP_EASE = 0.12, GLANCE_REACH = 4.5;
+/** How long a walk takes to ease back to standing. */
+const STOP_EASE = 0.12;
 const reducedMotion = (): boolean => Boolean(globalThis.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches);
 const PEER_EASE: [number, number] = [0.16, 0.42], PEER_JUMP = 7, PEER_PACE = 6;
 
@@ -431,7 +431,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   avatar.name = 'avatar';
   const figures = new Map<string, AvatarGroup>();
   let shownFigure: AvatarGroup | null = null, standFigure: AvatarGroup | null = null, strideFigure: AvatarGroup | null = null, driven = false;
-  let walking = false, stopLeft = 0, strideAt = 0, strideJog = false, headTurn = 0; // the player's rig between strides (stepPlayerLife)
+  let walking = false, stopLeft = 0, strideAt = 0, strideJog = false; // the player's rig between strides (stepPlayerLife)
   const marks: Record<'ring' | 'near' | 'goal', THREE.Mesh | null> = { ring: null, near: null, goal: null };
   /** The game tables that stand here: [{ id, kind: 'table', table, game, x, z, top, r, label }] (see TABLE_PLACES). */
   const tableList: SceneThing[] = [];
@@ -653,13 +653,13 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   function clearFigures() {
     for (const entry of figures.values()) entry.userData.dispose();
     figures.clear();
-    shownFigure = null; standFigure = null; strideFigure = null; walking = false; stopLeft = 0; headTurn = 0;
+    shownFigure = null; standFigure = null; strideFigure = null; walking = false; stopLeft = 0;
   }
   /** The two figures of the walk cycle, built ahead so that a step only switches which one is visible. */
   /**
    * The player's figure between strides, on frames the host draws anyway (nothing here asks for one): a walk eases back to standing
-   * (STOP_EASE), a standing figure breathes and shifts its weight by the clock (so any frame rate looks the same), and its head
-   * turns to someone close by (smoothed), or back to the front while walking. True while the stop is still easing.
+   * (STOP_EASE), and a standing figure breathes and shifts its weight by the clock (so any frame rate looks the same). True while
+   * the stop is still easing.
    */
   function stepPlayerLife(dt: number): boolean {
     const rig = rigOf(standFigure);
@@ -669,20 +669,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
       stopLeft = Math.max(0, stopLeft - dt);
       if (stopLeft > 0) rig.fade?.(strideAt, stopLeft / STOP_EASE, strideJog); else rig.rest();
     } else if (!walking) rig.idle?.(seconds);
-    let want = 0;
-    if (!walking && stopLeft === 0) {
-      let near = GLANCE_REACH * GLANCE_REACH;
-      for (const peer of peers.values()) {
-        const dx = peer.x - avatar.position.x, dz = peer.z - avatar.position.z, d2 = dx * dx + dz * dz;
-        if (d2 >= near) continue;
-        const turn = turnTowards(avatar.rotation.y, Math.atan2(dx, dz));
-        if (Math.abs(turn) < 1.5) { near = d2; want = turn; }
-      }
-    }
-    headTurn += (want - headTurn) * (1 - Math.exp(-6 * dt));
-    if (Math.abs(headTurn) < 0.002 && want === 0) headTurn = 0;
-    lookAvatar(standFigure, headTurn);
-    return stopLeft > 0 || Math.abs(headTurn - want) > 0.01;
+    return stopLeft > 0;
   }
   function prebuild() { standFigure = figure('stand'); strideFigure = rigOf(standFigure) ? null : figure('walk'); }
   /** Move the avatar (transform only) and its name tag. */

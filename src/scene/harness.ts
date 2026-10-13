@@ -60,7 +60,6 @@ function draw() {
   lights.apply(entry.lighting());
   lights.aim(camera);
   sky.set(...entry.sky);
-  lights.haze(entry.sky[0]);
   renderer.setClearColor(entry.background);
   renderer.render(scene, camera);
   renderCount += 1;

@@ -93,7 +93,7 @@ import { createOccluders, resolve as resolveCollision } from './scene/camera-col
 import { sceneMaterials } from './scene/build.ts';
 import { createMotionLoop } from './scene/motion-loop.ts';
 import { rewardChips, cheer } from './scene/reward.ts';
-import { applyRendererLook, renderTier, lazyEnvironment, type RenderTier, createSky, createGround, mixHex, matteScenery } from './scene/look.ts';
+import { applyRendererLook, renderTier, createSky, createGround, mixHex, matteScenery } from './scene/look.ts';
 import { createWalker, createPositionReporter, gaitPhase, WALK_SPEED, JOG_SPEED } from './scene/movement.ts';
 import { createSceneControls } from './scene/controls.ts';
 import { buildVenueScene, DEFAULT_CAMERA, MAX_CROWD, SPOT_REACH, TABLE_REACH } from './scene/venue-scenes.ts';
@@ -300,32 +300,25 @@ export interface VenueWorld {
  */
 export const HOST_LIGHTING = Object.freeze<Required<LightPreset>>({ hemi: ['#bdd4e7', '#8a8474', 1.6], sun: ['#c7dbec', 1.4, [-12, 25, 8]], rim: ['#cfe2ff', 0.7], glow: 1 });
 const DEFAULT_BACKGROUND = '#182a25';
-/** Haze range from the camera in world units (before the first aim), then as multiples of the camera's distance from its subject: zoomed in or out, the same share of the view is hazed. */
-const HAZE_NEAR = 58, HAZE_FAR = 200, HAZE_FROM = 1.25, HAZE_TO = 3.9;
 
 /**
  * The host's three lights. apply(preset) sets them from a scene's lighting(), or back to the
  * defaults; aim(camera, x, y, z) puts the rim light behind the point the camera looks at (called on
  * a frame that is being drawn anyway — it never asks for one). shadowMap: the sun's map size.
  */
-export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shadowMap = 2048, tier = renderTier(), redraw }: { shadowMap?: number; tier?: RenderTier; redraw?: () => void } = {}) {
+export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shadowMap = 2048 }: { shadowMap?: number } = {}) {
   const hemi = new THREE.HemisphereLight(HOST_LIGHTING.hemi[0], HOST_LIGHTING.hemi[1], HOST_LIGHTING.hemi[2]);
   const sun = new THREE.DirectionalLight(HOST_LIGHTING.sun[0], HOST_LIGHTING.sun[1]);
   sun.position.set(...HOST_LIGHTING.sun[2]);
   sun.castShadow = true;
   sun.shadow.mapSize.set(shadowMap, shadowMap);
-  const reach = tier.shadowReach ?? 22; // the high tier tightens the sun's frustum: the same map covers fewer metres, so shadows are sharper
-  Object.assign(sun.shadow.camera, { left: -reach, right: reach, top: reach, bottom: -reach, near: 1, far: 70 });
-  sun.shadow.normalBias = tier.shadowReach ? 0.03 : 0.04; // the tighter high-tier frustum has finer texels: less normal offset, a hair of depth bias against acne
-  if (tier.shadowReach) sun.shadow.bias = -0.0004;
+  Object.assign(sun.shadow.camera, { left: -22, right: 22, top: 22, bottom: -22, near: 1, far: 70 });
+  sun.shadow.normalBias = 0.04;
   const rim = new THREE.DirectionalLight(HOST_LIGHTING.rim[0], HOST_LIGHTING.rim[1]);
   rim.castShadow = false;
   rim.position.set(-14, 12, -18);
   scene.add(hemi, sun, rim, rim.target);
   let disposed = false;
-  // High tier: the generated environment map is made on the first draw (lazy; needs the renderer) and scaled with the daylight.
-  // Without a redraw callback (the harnesses) the view that asked is drawn again once the map lands.
-  if (tier.env) lazyEnvironment(THREE, scene, (renderer, camera) => (redraw ? redraw() : renderer.render(scene, camera)));
   return {
     hemi, sun, rim,
     apply(preset?: Partial<LightPreset> | null) {
@@ -334,12 +327,6 @@ export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shado
       sun.color.set(use.sun[0]); sun.intensity = use.sun[1]; sun.position.set(...use.sun[2]);
       const back = Array.isArray(use.rim) ? use.rim as readonly [Colour, number] : HOST_LIGHTING.rim;
       rim.color.set(back[0]); rim.intensity = back[1];
-      if (scene.environment) scene.environmentIntensity = 0.1 * Math.min(1, hemi.intensity / 1.6);
-    },
-    /** Haze in the sky's horizon colour: far corners soften into it, which gives the flat colours depth. Costs one mix per pixel. */
-    haze(colour: Colour) {
-      if (scene.fog) (scene.fog as THREE.Fog).color.set(colour);
-      else scene.fog = new THREE.Fog(colour, HAZE_NEAR, HAZE_FAR);
     },
     aim(camera: THREE.Camera, x = 0, y = 0.7, z = 0) {
       // Behind the subject and a little to the camera's right, above head height.
@@ -348,7 +335,6 @@ export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shado
       rim.position.set(x + ux * 16 - uz * 7, y + 11, z + uz * 16 + ux * 7);
       rim.target.position.set(x, y, z);
       rim.target.updateMatrixWorld?.();
-      if (scene.fog) { const away = Math.hypot(dx, camera.position.y - y, dz); (scene.fog as THREE.Fog).near = away * HAZE_FROM; (scene.fog as THREE.Fog).far = away * HAZE_TO; }
     },
     dispose() {
       if (disposed) return;
@@ -357,7 +343,6 @@ export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shado
       // render-target dispose listeners can still free the GPU allocations.
       sun.dispose(); rim.dispose();
       scene.remove(hemi, sun, rim, rim.target);
-      scene.fog = null;
     },
   };
 }
@@ -453,7 +438,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   let tier = applyRendererLook(THREE, renderer, renderTier());
   container.appendChild(renderer.domElement);
   const camera = new THREE.PerspectiveCamera(43, 1, 0.1, 360);
-  const lights = createHostLights(THREE, scene, { shadowMap: tier.shadowMap, tier, redraw: () => { if (!gone) renderScene(); } });
+  const lights = createHostLights(THREE, scene, { shadowMap: tier.shadowMap });
   // The skinned body in place of the player's procedural figure in a venue (scene/body/stand-in.ts, fetched after the
   // first frame on a device the gate allows; home has its own). Null until then, and for good without one.
   let standIn: StandIn | null = null, gone = false;
@@ -1325,8 +1310,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     if (container.hidden === true) return;
     lookIn(); aimGhost();
     lights.aim(camera, orbit.now.x + orbit.now.px, orbit.now.y, orbit.now.z + orbit.now.pz);
-    if (bloom && bloomOn) bloom.render(scene, camera); else renderer.render(scene, camera);
-    renderCount += 1; projectTags();
+    renderer.render(scene, camera); renderCount += 1; projectTags();
     if (standIn) standIn.start(renderer); else fetchStandIn();
     // The scene owns its own device/WebGL eligibility guard. Do not make venue NPC loading wait
     // for the local body import: one failed or delayed player-body request must not freeze the crowd.
@@ -1376,23 +1360,10 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     }
     return built.get(id)!;
   }
-  // Night bloom, high tier only: the composer (EffectComposer + UnrealBloomPass, scene/quality.ts) is fetched the first night a scene is shown.
-  let bloom: import('./scene/quality.ts').Bloom | null = null, bloomOn = false, bloomLoading = false;
-  function wantBloom(glow: number) {
-    bloomOn = !!tier.env && glow >= 1.15;
-    if (!bloomOn || bloom || bloomLoading) return;
-    bloomLoading = true;
-    void import('./scene/quality.ts').then((q) => q.createBloom(THREE, renderer, 1, 1)).then((made) => {
-      if (gone) { made.dispose(); return; }
-      bloom = made; bloom.setSize(container.clientWidth || 1, container.clientHeight || 1, renderer.getPixelRatio());
-      renderScene();
-    }).catch(() => { bloomLoading = false; });
-  }
   /** Take the lighting and clear colour the current scene asks for. */
   function applyLook() {
     const preset = current?.lighting?.();
     lights.apply(preset);
-    wantBloom(typeof preset?.glow === 'number' ? preset.glow : 1);
     // Shared meshes take the active scene's glow, including Home and the street.
     // No private material or extra rendering pass is needed for a clock change.
     sceneMaterials(kit).glow.color.setScalar(typeof preset?.glow === 'number' && Number.isFinite(preset.glow) && preset.glow >= 0 ? preset.glow : HOST_LIGHTING.glow);
@@ -1401,7 +1372,6 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     // sky: [horizon, zenith]. A scene that names only a background gets a gentle rise from it.
     const pair = Array.isArray(current?.sky) ? current.sky : [background, mixHex(background, '#ffffff', 0.18)];
     sky.set(pair[0], pair[1]);
-    lights.haze(pair[0]);
     // The ground takes the horizon's colour, a little deeper, so the slab sits on something and the rim melts into the sky.
     ground.tint(mixHex(pair[0], current?.ground || '#6f7f6a', 0.34));
     placeGround();
@@ -1445,7 +1415,6 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     if (shift && width > 0 && height > 0) camera.setViewOffset(width, height, 0, shift, width, height); else camera.clearViewOffset();
     camera.updateProjectionMatrix();
     renderer.setSize(width, height, false);
-    bloom?.setSize(width, height, renderer.getPixelRatio());
     controls?.place({ top: insets.top, bottom: insets.bottom, wide: width > 1000, hintTop });
     setPivot();
     if (!loop.running) settleView();
@@ -1669,7 +1638,6 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       sky.dispose(); ground.dispose();
       kit.dispose();
       lights.dispose();
-      bloom?.dispose();
       renderer.dispose();
       // dispose() frees what the renderer made but keeps the WebGL context: a browser holds only so many, and takes the oldest away
       // (which may be one still on screen) when a scene too many has been opened. A renderer made here gives its context back.

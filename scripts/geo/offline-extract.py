@@ -39,6 +39,19 @@ LANDUSE_WAYS = {"residential", "commercial", "industrial", "retail", "institutio
 LANDUSE_RELATIONS = {"residential", "commercial", "industrial", "retail"}
 INLAND_WATER = {"lake", "reservoir", "river", "lagoon", "basin"}
 MAJOR_ROADS = {"motorway", "trunk", "primary"}
+# Profile-only extraction rules (factory profiles.json `extraction`, written into results/<id>.source.json as `profileExtraction` by
+# metadata-batch.py for the outpost and wilderness profiles only). A city without them is extracted exactly as before: same
+# predicates, same filter text, same elements. Every value a profile may name is listed here; anything else is refused.
+PROFILE_PLACE_FILTERS = {
+    "post_office": lambda tags: tags.get("amenity") == "post_office",
+    "hut": lambda tags: tags.get("tourism") in {"wilderness_hut", "alpine_hut"},
+    "research": lambda tags: tags.get("office") == "research" or tags.get("amenity") == "research_institute",
+    "historic": lambda tags: "historic" in tags,
+    "ferry": lambda tags: tags.get("amenity") == "ferry_terminal",
+    "natural": lambda tags: tags.get("natural") in NATURAL_LABELS or tags.get("mountain_pass") == "yes",
+}
+NATURAL_LABELS = {"peak", "saddle", "glacier", "ridge", "valley", "volcano", "cape", "bay", "reef", "beach"}
+ROAD_LADDER = ("secondary", "tertiary", "unclassified", "residential", "service", "track")
 TYPE_NAME = {"n": "node", "w": "way", "r": "relation"}
 MAX_RELATION_DEPTH = 32
 
@@ -84,6 +97,52 @@ def matches_places(tags: dict[str, str]) -> bool:
     return tags.get("man_made") == "tower" and has(tags, "wikidata")
 
 
+def validate_profile_extraction(value: Any) -> dict[str, Any] | None:
+    """The profile rules of one city, or None (standard and microstate cities). Refuses any key or value outside the lists above."""
+    if value is None:
+        return None
+    if not isinstance(value, dict) or set(value) != {"profile", "extraPlaces", "roadLadder", "allowNoRoads", "excludeSensitive"}:
+        raise ExtractionError("profileExtraction needs exactly profile, extraPlaces, roadLadder, allowNoRoads and excludeSensitive")
+    if not isinstance(value["profile"], str) or not re.fullmatch(r"[a-z]+", value["profile"]):
+        raise ExtractionError("profileExtraction.profile must name the profile")
+    places, ladder = value["extraPlaces"], value["roadLadder"]
+    if not isinstance(places, list) or len(set(places)) != len(places) or not set(places) <= set(PROFILE_PLACE_FILTERS):
+        raise ExtractionError(f"profileExtraction.extraPlaces must be unique values of {sorted(PROFILE_PLACE_FILTERS)}")
+    if not isinstance(ladder, list) or len(set(ladder)) != len(ladder) or not set(ladder) <= set(ROAD_LADDER):
+        raise ExtractionError(f"profileExtraction.roadLadder must be unique values of {list(ROAD_LADDER)}")
+    if value["allowNoRoads"] is not True or value["excludeSensitive"] is not True:
+        raise ExtractionError("profileExtraction is only for profiles that allow no roads and exclude sensitive features")
+    return value
+
+
+def sensitive(tags: dict[str, str]) -> bool:
+    """Military and aviation features are never selected, labelled or drawn for a profile city (outposts): military=*, landuse=military, aeroway=*."""
+    return "military" in tags or tags.get("landuse") == "military" or "aeroway" in tags
+
+
+def matches_profile_places(tags: dict[str, str], rules: dict[str, Any] | None) -> bool:
+    """The standard places predicate, plus the profile's named extra filters; never a sensitive feature for a profile city."""
+    if rules is None:
+        return matches_places(tags)
+    if sensitive(tags):
+        return False
+    return matches_places(tags) or (has(tags, "name") and any(PROFILE_PLACE_FILTERS[key](tags) for key in rules["extraPlaces"]))
+
+
+def matches_profile_extras(tags: dict[str, str], rules: dict[str, Any] | None) -> bool:
+    return matches_extras(tags) and (rules is None or not sensitive(tags))
+
+
+def matches_profile_road(tags: dict[str, str], rules: dict[str, Any] | None) -> bool:
+    if rules is None:
+        return tags.get("highway") in MAJOR_ROADS or (tags.get("highway") == "secondary" and has(tags, "name"))
+    return not sensitive(tags) and (tags.get("highway") in MAJOR_ROADS or tags.get("highway") in rules["roadLadder"])
+
+
+def landuse_ways(rules: dict[str, Any] | None) -> set[str]:
+    return LANDUSE_WAYS if rules is None else LANDUSE_WAYS - {"military"}
+
+
 def matches_extras(tags: dict[str, str]) -> bool:
     if not has(tags, "name"):
         return False
@@ -104,9 +163,11 @@ def matches_water(tags: dict[str, str], obj_type: str, coast: bool) -> bool:
     return (tags.get("natural") == "water" and tags.get("water") in INLAND_WATER) or tags.get("waterway") == "riverbank"
 
 
-def relation_categories(tags: dict[str, str], coast: bool) -> set[str]:
+def relation_categories(tags: dict[str, str], coast: bool, extra_places: list[dict[str, Any]] | None = None) -> set[str]:
     categories: set[str] = set()
-    if matches_places(tags):
+    # extra_places: the profile rules of the cities in this scan; a relation that only a profile city wants is a candidate, and
+    # add_relations keeps it only for the cities whose own rules match (a standard city never sees it).
+    if matches_places(tags) or any(matches_profile_places(tags, rules) for rules in extra_places or []):
         categories.add("places")
     if matches_extras(tags):
         categories.add("extras")
@@ -117,17 +178,17 @@ def relation_categories(tags: dict[str, str], coast: bool) -> set[str]:
     return categories
 
 
-def way_categories(tags: dict[str, str], coast: bool) -> set[str]:
+def way_categories(tags: dict[str, str], coast: bool, rules: dict[str, Any] | None = None) -> set[str]:
     categories: set[str] = set()
-    if matches_places(tags):
+    if matches_profile_places(tags, rules):
         categories.add("places")
-    if matches_extras(tags):
+    if matches_profile_extras(tags, rules):
         categories.add("extras")
     if matches_water(tags, "way", coast):
         categories.add("water")
-    if tags.get("landuse") in LANDUSE_WAYS:
+    if tags.get("landuse") in landuse_ways(rules):
         categories.add("landuse")
-    if tags.get("highway") in MAJOR_ROADS or (tags.get("highway") == "secondary" and has(tags, "name")):
+    if matches_profile_road(tags, rules):
         categories.add("roads")
     return categories
 
@@ -203,9 +264,10 @@ def way_element(way_id: int, tags: dict[str, str], geometry: list[dict[str, floa
 
 
 class RelationPass(osmium.SimpleHandler):
-    def __init__(self, coast: bool) -> None:
+    def __init__(self, coast: bool, extra_places: list[dict[str, Any]] | None = None) -> None:
         super().__init__()
         self.coast = coast
+        self.extra_places = extra_places
         self.candidates: dict[int, dict[str, Any]] = {}
         self.dependencies: dict[int, dict[str, Any]] = {}
         self.needed_ways: set[int] = set()
@@ -213,7 +275,7 @@ class RelationPass(osmium.SimpleHandler):
 
     def relation(self, relation: Any) -> None:
         tags = tags_of(relation)
-        categories = relation_categories(tags, self.coast)
+        categories = relation_categories(tags, self.coast, self.extra_places)
         if not categories:
             return
         members = [{"type": member.type, "ref": member.ref, "role": member.role} for member in relation.members]
@@ -269,11 +331,12 @@ class RelationDependencyPass(osmium.SimpleHandler):
 
 
 class GeometryPass(osmium.SimpleHandler):
-    def __init__(self, relations: RelationPass, boxes: dict[str, list[float]], coast: bool) -> None:
+    def __init__(self, relations: RelationPass, boxes: dict[str, list[float]], coast: bool, rules: dict[str, Any] | None = None) -> None:
         super().__init__()
         self.relations = relations
         self.boxes = boxes
         self.coast = coast
+        self.rules = rules
         self.member_ways: dict[int, list[dict[str, float]]] = {}
         self.member_nodes: dict[int, dict[str, float]] = {}
         self.output: dict[str, list[dict[str, Any]]] = {label: [] for label in ("places", "extras", "water", "landuse", "roads")}
@@ -286,15 +349,15 @@ class GeometryPass(osmium.SimpleHandler):
         if not inside((node.location.lon, node.location.lat), self.boxes["play"]):
             return
         element = None
-        if matches_places(tags):
+        if matches_profile_places(tags, self.rules):
             element = node_element(node, tags)
             self.output["places"].append(element)
-        if matches_extras(tags):
+        if matches_profile_extras(tags, self.rules):
             self.output["extras"].append(element if element is not None else node_element(node, tags))
 
     def way(self, way: Any) -> None:
         tags = tags_of(way)
-        categories = way_categories(tags, self.coast)
+        categories = way_categories(tags, self.coast, self.rules)
         needed = way.id in self.relations.needed_ways
         if not categories and not needed:
             return
@@ -310,7 +373,8 @@ class GeometryPass(osmium.SimpleHandler):
                 if geometry_intersects_box(geometry, self.boxes["play"]):
                     self.output[category].append(way_element(way.id, tags, geometry, center_only=True))
             elif category == "roads":
-                road_box = self.boxes["core"] if tags.get("highway") == "secondary" else self.boxes["play"]
+                # A profile city takes its whole road ladder over the play box; the standard rule keeps named secondary roads to the core.
+                road_box = self.boxes["core"] if tags.get("highway") == "secondary" and self.rules is None else self.boxes["play"]
                 if geometry_intersects_box(geometry, road_box):
                     self.output[category].append(way_element(way.id, tags, geometry, center_only=False))
             elif geometry_intersects_box(geometry, self.boxes["water"] if category == "water" else self.boxes["outline"]):
@@ -401,6 +465,10 @@ def raw_relation(candidate: dict[str, Any], geometry: GeometryPass) -> dict[str,
 
 
 def add_relation_category(candidate: dict[str, Any], category: str, geometry: GeometryPass, boxes: dict[str, list[float]]) -> None:
+    if category == "places" and not matches_profile_places(candidate["tags"], geometry.rules):
+        return  # a candidate of another city's profile rules, or a sensitive feature of this profile city
+    if category == "extras" and not matches_profile_extras(candidate["tags"], geometry.rules):
+        return
     if category in {"places", "extras"}:
         parts = relation_parts(candidate, geometry, allow_nested=True)
         if any(geometry_intersects_box(part, boxes["play"]) for part in parts):
@@ -454,7 +522,12 @@ def load_city(path: Path) -> tuple[dict[str, Any], dict[str, list[float]], dict[
         raise ExtractionError("city metadata has no boxes")
     boxes = {label: validate_box(raw_boxes.get(label), f"boxes.{label}") for label in ("play", "core", "outline", "wide")}
     boxes["water"] = boxes["wide"] if recipe["kind"] == "coast" or recipe["wideWater"] else boxes["play"]
+    validate_profile_extraction(metadata.get("profileExtraction"))
     return metadata, boxes, recipe
+
+
+def profile_extraction(metadata: dict[str, Any]) -> dict[str, Any] | None:
+    return validate_profile_extraction(metadata.get("profileExtraction"))
 
 
 def sha256_file(path: Path) -> str:
@@ -509,6 +582,7 @@ def source_record(
     relations: RelationPass,
     elements: list[dict[str, Any]],
     skipped: list[dict[str, Any]] | None = None,
+    rules: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     water_kind = recipe["kind"]
     filters = {
@@ -531,6 +605,19 @@ def source_record(
         "adapter": "offline-extract.py/v3-nested-centres",
         "adapterSha256": adapter_sha256,
     }
+    if rules is not None:
+        # Profile cities only (outpost, wilderness): the record names the extra predicates; standard records are unchanged.
+        profile_filters = {
+            "places": f"queries.ts profilePlacesQuery: placesQuery predicates plus named {', '.join(rules['extraPlaces'])}; never military=*, landuse=military or aeroway=*",
+            "extras": "queries.ts extrasQuery tag predicates; never military=*, landuse=military or aeroway=*",
+            "landuse": "queries.ts civilLanduseQuery: landuseQuery predicates without landuse=military",
+            "roads": f"queries.ts ladderRoadsQuery: motorway, trunk, primary and {', '.join(rules['roadLadder'])} geometry intersecting play; never military=* or aeroway=*; no road is required",
+        }
+        if label in profile_filters:
+            source["filter"] = profile_filters[label] + " (" + filters[label] + ")"
+        if label == "roads":
+            source["selectionBounds"] = boxes["play"]
+        source["profileExtraction"] = rules
     if label in {"places", "extras"}:
         nested_sources = []
         for element in elements:
@@ -594,12 +681,13 @@ def main() -> int:
     adapter_sha256 = sha256_file(Path(__file__))
     progress("source-ready", timestamp=pbf_timestamp, adapterSha256=adapter_sha256)
 
-    relations = RelationPass(recipe["kind"] == "coast")
+    rules = profile_extraction(metadata)
+    relations = RelationPass(recipe["kind"] == "coast", [rules] if rules else None)
     progress("relation-scan")
     relations.apply_file(str(pbf))
     relations.collect_center_dependencies(pbf)
     progress("relation-candidates", relations=len(relations.candidates), memberWays=len(relations.needed_ways), memberNodes=len(relations.needed_nodes))
-    geometry = GeometryPass(relations, boxes, recipe["kind"] == "coast")
+    geometry = GeometryPass(relations, boxes, recipe["kind"] == "coast", rules)
     progress("geometry-scan")
     geometry.apply_file(str(pbf), locations=True, idx="flex_mem")
     progress("geometry-ready", memberWays=len(geometry.member_ways), memberNodes=len(geometry.member_nodes), directElements=sum(len(items) for items in geometry.output.values()))
@@ -613,7 +701,7 @@ def main() -> int:
         atomic_json(destination / f"{label}.json", {
             "version": 1,
             "generator": "Allworld offline PBF adapter prototype",
-            "source": source_record(args, metadata_path, city_id, label, boxes, pbf_timestamp, adapter_sha256, recipe, relations, elements, geometry.skipped_relations),
+            "source": source_record(args, metadata_path, city_id, label, boxes, pbf_timestamp, adapter_sha256, recipe, relations, elements, geometry.skipped_relations, rules),
             "elements": elements,
         })
     counts = {label: len(elements) for label, elements in geometry.output.items()}

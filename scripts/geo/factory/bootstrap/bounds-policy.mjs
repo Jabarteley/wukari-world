@@ -4,6 +4,8 @@ function checkFacts(facts) {
   if (!facts || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(facts.id ?? '')) throw Error('Invalid city id');
   if (!/^[a-z]{2}$/.test(facts.country?.idISOlower ?? '') || !facts.country?.name?.trim()) throw Error('Invalid country');
   if (!facts.name?.trim() || !facts.airport?.name?.trim() || !facts.airport?.id?.trim()) throw Error('City/airport metadata missing');
+  // An outpost gateway (metadata-batch.py): `airport` is the mapped gateway node, so the same clearance and polar rules apply to it.
+  if (facts.gateway !== undefined && (!['air', 'sea', 'land'].includes(facts.gateway?.mode) || !/^node\/[1-9][0-9]*$/.test(facts.gateway?.osmRef ?? '') || !facts.airport.sourceUrl?.endsWith(facts.gateway.osmRef))) throw Error('Invalid gateway');
   try { new Intl.DateTimeFormat('en', { timeZone: facts.timezone }); } catch { throw Error('Invalid IANA timezone'); }
   if (typeof facts.timezone !== 'string' || !facts.timezone.trim()) throw Error('Timezone required');
   for (const [label, point] of [['centre', facts.centre], ['airport', facts.airport]]) {

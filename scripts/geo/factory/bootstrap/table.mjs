@@ -39,6 +39,11 @@ if (batch) {
     if (city.sceneWaterExtent !== undefined) assert.ok(['play', 'reach'].includes(city.sceneWaterExtent), `${city.id}: invalid sceneWaterExtent`);
     if (city.waterBudgetLadder !== undefined) assert.equal(typeof city.waterBudgetLadder, 'boolean', `${city.id}: waterBudgetLadder must be true or false`);
     if (city.profile !== undefined) assert.ok(PROFILE_NAMES.includes(city.profile), `${city.id}: invalid profile`);
+    if (city.links !== undefined) {
+      // Authored outpost links (batch-run.py authored_links): 2 to 4 {to, kind} entries; the scaffold adds km and names from the app catalogue.
+      assert.ok(Array.isArray(city.links) && city.links.length >= 2 && city.links.length <= 4, `${city.id}: links needs 2 to 4 entries`);
+      assert.ok(city.links.every(link => link && Object.keys(link).sort().join(',') === 'kind,to' && ['charter', 'ship', 'overland'].includes(link.kind) && cityId.test(link.to) && link.to !== 'lagos' && link.to !== city.id), `${city.id}: invalid authored link`);
+    }
     if (city.namesUnit !== undefined) assert.ok(typeof city.namesUnit === 'string' && city.namesUnit.trim(), `${city.id}: namesUnit must be a non-empty string`);
     if (city.geometry !== undefined) assertGeometryKnobs(city.id, city.geometry);
     if (city.selectionExclusions !== undefined) {
@@ -101,7 +106,8 @@ if (batch) {
     datasetSha256: cityExtract ? cityExtract.sha256 : receipt.source.sha256, ...(cityExtract ? { boundaryDatasetSha256: receipt.source.sha256 } : {}),
     receiptSha256: hash(rawReceipt), receiptBytes: rawReceipt.length,
     geometrySha256: receipt.geometry.sha256, geometryBytes: receipt.geometry.bytes,
-    scriptSha256: receipt.scriptSha256, relationId: receipt.relation.id,
+    // The AQ treaty scope (country-boundary.py treatyScope) has no relation; every other scope is pinned by its admin-0 relation id.
+    scriptSha256: receipt.scriptSha256, ...(receipt.treatyScope ? { treatyScope: receipt.treatyScope.kind } : { relationId: receipt.relation.id }),
     boundaryKey: receipt.countryISO.toLowerCase(), directory: 'country-boundary',
     boundaryJob: { sourceRunId: job.sourceRunId, sourceSha: job.sourceSha, sourceArtifact: job.sourceArtifact, artifactSubdirectory: 'country-boundary' },
   };
@@ -133,11 +139,24 @@ for (const city of candidates) {
   assert.equal(sources.centre.pbfSha256, job.datasetSha256);
   assert.equal(facts.centre.lon, sources.centre.sourceRecord.lon);
   assert.equal(facts.centre.lat, sources.centre.sourceRecord.lat);
-  assert.equal(facts.airport.lon, Number(sources.airport.row.longitude_deg));
-  assert.equal(facts.airport.lat, Number(sources.airport.row.latitude_deg));
+  // An outpost gateway (metadata-batch.py): the airport record is the mapped gateway node of the same PBF; no OurAirports row.
+  const gateway = sources.gateway;
+  if (gateway !== undefined) {
+    assert.equal(sources.airport, undefined, 'a gateway city has no airport row');
+    assert.deepEqual(facts.gateway, { mode: gateway.mode, osmRef: gateway.osmRef }, 'facts gateway differs from its source');
+    assert.equal(gateway.sourceRecord.ref, gateway.osmRef);
+    assert.equal(gateway.pbfSha256, job.datasetSha256);
+    assert.equal(facts.airport.lon, gateway.sourceRecord.lon);
+    assert.equal(facts.airport.lat, gateway.sourceRecord.lat);
+    assert.equal(facts.airport.sourceUrl, `https://www.openstreetmap.org/${gateway.osmRef}`);
+    assert.ok(!('military' in gateway.sourceRecord.tags) && gateway.sourceRecord.tags.landuse !== 'military', 'a military node is never a gateway');
+  } else assert.equal(facts.gateway, undefined, 'facts gateway without a gateway source');
+  if (gateway === undefined) assert.equal(facts.airport.lon, Number(sources.airport.row.longitude_deg));
+  if (gateway === undefined) assert.equal(facts.airport.lat, Number(sources.airport.row.latitude_deg));
   // airport.countryOverride (reviewed, written reason): the territory's airport may be filed under another OurAirports country (Aland AX: EFMA under FI).
-  const airportOverride = sources.airport.selection?.countryOverride;
-  if (airportOverride === undefined) assert.equal(facts.country.idISOlower.toUpperCase(), sources.airport.row.iso_country);
+  const airportOverride = sources.airport?.selection?.countryOverride;
+  if (gateway !== undefined) { /* no airport row */ }
+  else if (airportOverride === undefined) assert.equal(facts.country.idISOlower.toUpperCase(), sources.airport.row.iso_country);
   else assert.ok(airportOverride.iso === sources.airport.row.iso_country && airportOverride.iso !== facts.country.idISOlower.toUpperCase() && typeof airportOverride.reason === 'string' && airportOverride.reason.trim().length >= 20, 'airport countryOverride must name the airport row country, differ from the seed country and carry a written reason');
   for (const point of [facts.centre, facts.airport]) assert.ok(Number.isFinite(point.lon) && Number.isFinite(point.lat) && Math.abs(point.lon) <= 180 && Math.abs(point.lat) <= 90);
   if (batch) {
@@ -147,8 +166,8 @@ for (const city of candidates) {
     assert.equal(sources.adapterSha256, job.adapterSha256);
     assert.equal(sources.pbf.url, downloads.pbf.url);
     assert.equal(sources.pbf.bytes, downloads.pbf.bytes);
-    assert.equal(sources.airport.csvSha256, downloads.airports.sha256);
-    assert.equal(sources.airport.snapshotDate, downloads.airports.snapshotDate);
+    if (gateway === undefined) assert.equal(sources.airport.csvSha256, downloads.airports.sha256);
+    if (gateway === undefined) assert.equal(sources.airport.snapshotDate, downloads.airports.snapshotDate);
     assert.equal(sources.bounds.geometrySourceGitSHA, downloads.geometrySourceSha);
     if (cityExtract) {
       // Owner rule (13 Oct): each city read from the sub-extract carries its passed containment receipt (source-merge.py city_extract_scope).
@@ -160,12 +179,21 @@ for (const city of candidates) {
       assert.equal(scope.boundaryReceiptSha256, hash(readFileSync(join(root, 'country-boundary/receipt.json'))));
     }
     assert.deepEqual({ sourceRunId: job.sourceRunId, sourceSha: job.sourceSha, sourceArtifact: job.sourceArtifact }, { sourceRunId: countryScope.boundaryJob.sourceRunId, sourceSha: countryScope.boundaryJob.sourceSha, sourceArtifact: countryScope.boundaryJob.sourceArtifact }, 'shared source/boundary producer identity differs');
-    const canonicalRow = JSON.stringify(Object.fromEntries(Object.entries(sources.airport.row).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)));
-    assert.equal(hash(canonicalRow.replace(/[\u0080-\uffff]/g, char => '\\u' + char.charCodeAt(0).toString(16).padStart(4, '0'))), sources.airport.rowSha256);
-    assert.ok(Number.isSafeInteger(sources.airport.rowNumber) && sources.airport.rowNumber > 1);
-    assert.ok(Array.isArray(sources.timezone.rows) && sources.timezone.rows.length === 1);
-    assert.ok(sources.timezone.rows[0][0].split(',').includes(countryScope.countryISO));
-    assert.equal(sources.timezone.rows[0][2], facts.timezone);
+    if (gateway === undefined) {
+      const canonicalRow = JSON.stringify(Object.fromEntries(Object.entries(sources.airport.row).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)));
+      assert.equal(hash(canonicalRow.replace(/[\u0080-\uffff]/g, char => '\\u' + char.charCodeAt(0).toString(16).padStart(4, '0'))), sources.airport.rowSha256);
+      assert.ok(Number.isSafeInteger(sources.airport.rowNumber) && sources.airport.rowNumber > 1);
+    }
+    if (sources.timezone.override !== undefined) {
+      // Reviewed timezoneOverride (metadata.py choose_seed_timezone): no country row; the override names the zone and its reason.
+      assert.deepEqual(sources.timezone.rows, []);
+      assert.equal(sources.timezone.override.id, facts.timezone);
+      assert.ok(typeof sources.timezone.override.reason === 'string' && sources.timezone.override.reason.trim().length >= 20, 'timezoneOverride needs its written reason');
+    } else {
+      assert.ok(Array.isArray(sources.timezone.rows) && sources.timezone.rows.length === 1);
+      assert.ok(sources.timezone.rows[0][0].split(',').includes(countryScope.countryISO));
+      assert.equal(sources.timezone.rows[0][2], facts.timezone);
+    }
   }
   for (const layer of layers) {
     const bytes = readFileSync(join(root, metadata.id, layer + '.json'));
@@ -191,7 +219,8 @@ for (const city of candidates) {
     ...(batch && city.profile !== undefined ? { profile: city.profile } : {}),
     ...(batch && city.selectionExclusions !== undefined ? { selectionExclusions: city.selectionExclusions } : {}),
     ...(batch && city.geometry !== undefined ? { geometry: city.geometry } : {}),
-    metadataSources: { ...sources, airport: { ...sources.airport, sourceUrl: facts.airport.sourceUrl } },
+    ...(batch && city.links !== undefined ? { links: city.links } : {}),
+    metadataSources: gateway !== undefined ? sources : { ...sources, airport: { ...sources.airport, sourceUrl: facts.airport.sourceUrl } },
     extractKey: metadata.id, extractSha256: job.extractSha256, sourceJob: job });
 }
 assert.match(boundsSourceGitSHA, /^[0-9a-f]{40}$/);

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/antarctica-261013.osm.pbf",
+    "bytes": 33094189,
+    "md5": "a9a412b8b54ebff8ca948f8ae184d362",
+    "snapshotDate": "2026-10-13"
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "villa-las-estrellas",
+      "name": "Villa Las Estrellas",
+      "countryISO": "AQ",
+      "cityOsmRef": "node/446987858",
+      "selectionExclusions": [
+        {
+          "ref": "way/277045539",
+          "reason": "Chilean Air Force Hospital: named for a national air force; the Medical Unit way/277056528 fills the clinic slot instead (OUTPOST-PLAN sensitivity)."
+        }
+      ],
+      "profile": "outpost",
+      "links": [
+        {
+          "to": "santiago",
+          "kind": "charter"
+        },
+        {
+          "to": "buenos-aires",
+          "kind": "ship"
+        }
+      ],
+      "airport": {
+        "ident": "SCRM",
+        "sourceUrl": "https://ourairports.com/airports/SCRM/",
+        "hubWaiver": "Antarctica (AQ) has no scheduled-service airport; Teniente Rodolfo Marsh Martin Airport (SCRM, small_airport row) is the only airfield at Villa Las Estrellas, about 5 km away. NEEDS-OWNER: it is a Chilean Air Force aerodrome, and the plan says never a military airfield as a hub."
+      },
+      "timezone": {
+        "id": "Antarctica/Palmer",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

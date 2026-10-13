@@ -61,21 +61,46 @@ def profile_rules(seed):
 def city_place_tags(seed):
     return set(profile_rules(seed)['cityPlaceTags']) | set(profile_rules(seed)['capitalPlaceTags'])
 
+def city_natural_tags(seed):
+    """Wilderness only (profiles.json `cityNaturalTags`): a named glacier, peak, saddle, reef node or a mountain_pass=yes node may name the place."""
+    return set(profile_rules(seed).get('cityNaturalTags', []))
+
+def natural_node_ok(tags, natural):
+    return bool(natural) and (tags.get('natural') in natural or ('mountain_pass' in natural and tags.get('mountain_pass') == 'yes'))
+
 def city_node_tag_ok(tags, seed):
-    """place=city|town (standard); a profile adds more tags (microstate: village, hamlet, locality) and, for a capital=yes|2 node only, `capitalPlaceTags` (the Holy See's capital node is mapped place=suburb)."""
+    """place=city|town (standard); a profile adds more tags (microstate: village, hamlet, locality) and, for a capital=yes|2 node only, `capitalPlaceTags` (the Holy See's capital node is mapped place=suburb).
+    The wilderness profile also accepts its natural tags; a military node is never a city node of a profile that excludes sensitive features."""
     rules = profile_rules(seed)
     place = tags.get('place')
-    return place in rules['cityPlaceTags'] or (place in rules['capitalPlaceTags'] and tags.get('capital') in {'yes', '2'})
+    if rules.get('extraction', {}).get('excludeSensitive') and sensitive_tags(tags):
+        return False
+    return (place in rules['cityPlaceTags'] or (place in rules['capitalPlaceTags'] and tags.get('capital') in {'yes', '2'})
+            or natural_node_ok(tags, city_natural_tags(seed)))
+
+def sensitive_tags(tags):
+    """Never a city node, gateway or venue of an outpost: military=*, landuse=military, aeroway=* (an aeroway is allowed only as an air gateway)."""
+    return 'military' in tags or tags.get('landuse') == 'military'
+
+GATEWAY_TAGS = {
+    # How a mapped node may serve as the hub of an outpost without an OurAirports row. Never a military feature.
+    'air': lambda tags: tags.get('aeroway') in {'heliport', 'helipad', 'aerodrome', 'airstrip'},
+    'sea': lambda tags: tags.get('amenity') == 'ferry_terminal' or tags.get('harbour') == 'yes' or tags.get('man_made') == 'pier' or tags.get('leisure') in {'slipway', 'marina'},
+    'land': lambda tags: tags.get('highway') == 'trailhead' or tags.get('mountain_pass') == 'yes' or tags.get('natural') == 'saddle' or tags.get('tourism') in {'alpine_hut', 'wilderness_hut'} or tags.get('amenity') == 'shelter',
+}
+GATEWAY_MAX_KM = 40
+ETC_ZONE = re.compile(r'Etc/GMT(?:[+-](?:[1-9]|1[0-4]))?')
 
 def validate_seed(seed):
-    if not isinstance(seed, dict) or set(seed) - {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile', 'playBox'}:
+    if not isinstance(seed, dict) or set(seed) - {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile', 'playBox', 'gateway', 'timezoneOverride', 'countryName'}:
         raise Hold('unsupported seed fields')
     if 'playBox' in seed and (not isinstance(seed['playBox'], dict) or not seed['playBox'] or set(seed['playBox']) - {'playKm', 'coreKm'}
                               or any(type(value) not in (int, float) or not 0 < value <= 40 for value in seed['playBox'].values())):
         raise Hold('playBox needs playKm and/or coreKm half-widths in km (0 to 40)')
     if not isinstance(seed.get('id'), str) or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', seed['id']) or not isinstance(seed.get('name'), str) or not normalized(seed['name']) or not isinstance(seed.get('countryISO'), str) or not re.fullmatch(r'[A-Z]{2}', seed['countryISO']):
         raise Hold('seed needs city id/name and uppercase country ISO')
-    profile_rules(seed)
+    rules = profile_rules(seed)
+    validate_outpost_fields(seed, rules)
     if 'cityOsmRef' in seed and (not isinstance(seed['cityOsmRef'], str) or not re.fullmatch(r'node/[1-9][0-9]*', seed['cityOsmRef'])):
         raise Hold('cityOsmRef needs a positive OSM node reference')
     for key, field in (('airport', 'ident'), ('timezone', 'id')):
@@ -95,6 +120,77 @@ def validate_seed(seed):
                 raise Hold('airport countryOverride needs {iso, reason}: another two-letter OurAirports country than the seed (reason of at least 20 characters), and cannot be combined with hubWaiver')
         validate_source_url(selector['sourceUrl'])
     return seed
+
+def validate_outpost_fields(seed, rules):
+    """gateway, timezoneOverride and countryName (OUTPOST-PLAN 13 Oct 2026). Absent from every existing seed, so nothing else changes."""
+    if 'gateway' in seed:
+        gateway = seed['gateway']
+        if not rules.get('hubGateway'):
+            raise Hold('a gateway needs a profile that allows one (outpost, wilderness)')
+        if 'airport' in seed:
+            raise Hold('a seed names an airport or a gateway, not both')
+        if (not isinstance(gateway, dict) or set(gateway) != {'osmRef', 'mode', 'sourceUrl'} or gateway['mode'] not in GATEWAY_TAGS
+                or not isinstance(gateway['osmRef'], str) or not re.fullmatch(r'node/[1-9][0-9]*', gateway['osmRef'])):
+            raise Hold('gateway needs exactly osmRef (node/<id>), mode (air, sea or land) and sourceUrl')
+        validate_source_url(gateway['sourceUrl'])
+    if rules.get('requiresCityOsmRef') and 'cityOsmRef' not in seed:
+        raise Hold('this profile names its place by cityOsmRef only')
+    if 'timezoneOverride' in seed:
+        override = seed['timezoneOverride']
+        if 'timezone' in seed:
+            raise Hold('a seed names a timezone or a timezoneOverride, not both')
+        if (not isinstance(override, dict) or set(override) != {'id', 'reason', 'sourceUrl'} or not isinstance(override['id'], str)
+                or not isinstance(override['reason'], str) or len(override['reason'].strip()) < 20):
+            raise Hold('timezoneOverride needs id, sourceUrl and a written reason of at least 20 characters')
+        validate_source_url(override['sourceUrl'])
+    if 'countryName' in seed:
+        name = seed['countryName']
+        if (not re.fullmatch(r'X[A-Z]', str(seed.get('countryISO'))) or not isinstance(name, dict) or set(name) != {'name', 'reason'}
+                or not isinstance(name['name'], str) or not name['name'].strip() or name['name'] != name['name'].strip()
+                or not isinstance(name['reason'], str) or len(name['reason'].strip()) < 20):
+            raise Hold('countryName {name, reason} is only for a user-assigned X? code, with a written reason of at least 20 characters')
+
+def choose_seed_timezone(lines, seed):
+    """The seed's zone: the pinned zone1970 row of its country (choose_timezone), or a reviewed timezoneOverride. An override must be a
+    zone of the pinned zone1970.tab (any country's row: Antarctica/Palmer, Indian/Chagos) or a fixed Etc/GMT offset (Heard Island has no
+    row of its own), and it returns no country rows: the receipt records the override and its reason instead."""
+    override = seed.get('timezoneOverride')
+    if override is None:
+        return choose_timezone(lines, seed['countryISO'], seed.get('timezone'))
+    zones = {entry[2] for entry in (line.rstrip('\n').split('\t') for line in lines if line.strip() and not line.startswith('#')) if len(entry) >= 3}
+    if override['id'] not in zones and not ETC_ZONE.fullmatch(override['id']):
+        raise Hold('timezoneOverride must be a zone of the pinned zone1970.tab or Etc/GMT[+-]N')
+    return override['id'], []
+
+def seed_country_name(lines, seed):
+    """iso3166.tab name; a user-assigned code absent from the pinned table (XG Siachen Glacier, XA Ashmore and Cartier Islands) takes the seed's reviewed countryName."""
+    if 'countryName' not in seed:
+        return country_name(lines, seed['countryISO'])
+    try:
+        country_name(lines, seed['countryISO'])
+    except Hold:
+        return seed['countryName']['name']
+    raise Hold('countryName is only for a code the pinned country table does not carry')
+
+def gateway_record(node, seed):
+    """The OSM node a seed names as its gateway, checked: named, inside GATEWAY_MAX_KM of nothing yet (see gateway_facts), tagged for its mode, never military."""
+    tags, mode = node['tags'], seed['gateway']['mode']
+    name = tags.get('name:en') or tags.get('name')
+    if not name:
+        raise Hold('gateway node has no name')
+    if sensitive_tags(tags):
+        raise Hold('gateway node is a military feature; never a hub')
+    if not GATEWAY_TAGS[mode](tags):
+        raise Hold(f'gateway node is not tagged as a {mode} gateway')
+    return {**node, 'name': name}
+
+def gateway_facts(seed, gateway, city):
+    km = 2 * 6371 * math.asin(math.sqrt(math.sin(math.radians(gateway['lat'] - city['lat']) / 2) ** 2
+         + math.cos(math.radians(city['lat'])) * math.cos(math.radians(gateway['lat'])) * math.sin(math.radians(gateway['lon'] - city['lon']) / 2) ** 2))
+    if km > GATEWAY_MAX_KM:
+        raise Hold(f'gateway lies {km:.1f} km from the place; at most {GATEWAY_MAX_KM} km')
+    return {'id': seed['id'] + '-airport', 'name': gateway['name'], **coordinate(gateway['lon'], gateway['lat']),
+            'sourceUrl': 'https://www.openstreetmap.org/' + seed['gateway']['osmRef']}
 
 def validate_dataset_url(value):
     if not isinstance(value, str) or not re.fullmatch(r'https://download\.geofabrik\.de/(?:[a-z0-9-]+/)*[a-z0-9-]+-[0-9]{6}\.osm\.pbf', value):
@@ -194,6 +290,8 @@ def main():
     try:
         seed = json.loads(Path(args.seed).read_text())
         validate_seed(seed)
+        if {'gateway', 'timezoneOverride', 'countryName'} & set(seed):
+            raise Hold('gateway, timezoneOverride and countryName seeds run through metadata-batch.py (batch-run.py)')
         if not args.source_verified:
             raise Hold('official dated PBF URL, byte size and hash need verification before metadata scanning')
         validate_dataset_url(args.dataset_url)

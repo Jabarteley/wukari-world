@@ -18,8 +18,9 @@ export async function factsForTarget(table, target) {
             || target.facts.country.idISOlower !== target.country) {
             throw Error('Embedded facts disagree with target identity');
         }
-        if (!target.metadataSources?.centre || !target.metadataSources?.airport) {
-            throw Error('Embedded metadata needs explicit source references for centre and airport');
+        // An outpost names its mapped gateway node instead of an airport row (bootstrap/metadata-batch.py).
+        if (!target.metadataSources?.centre || !(target.metadataSources?.airport || target.metadataSources?.gateway)) {
+            throw Error('Embedded metadata needs explicit source references for centre and airport (or gateway)');
         }
         return structuredClone(target.facts);
     }

@@ -12,7 +12,9 @@ export function catalogueRowBytes(facts) {
     const nigeria = facts.country.idISOlower === 'ng' || facts.country.idISOlower === 'nigeria';
     const country = nigeria ? '' : `,${quote(facts.country.idISOlower)},${quote(facts.country.name)}`;
     const stateName = facts.state.name === facts.name ? '' : facts.state.name;
-    const row = `[${quote(facts.id)},${quote(facts.name)},${quote(facts.state.idunique)},${quote(stateName)},${facts.centre.lon},${facts.centre.lat},1${country}],`;
+    // An outpost (generatedLinkPolicy 'authored-only') adds `,1` (app catalogue.ts CityCatalogueRow authoredOnly).
+    const policy = facts.generatedLinkPolicy === 'authored-only' ? ',1' : '';
+    const row = `[${quote(facts.id)},${quote(facts.name)},${quote(facts.state.idunique)},${quote(stateName)},${facts.centre.lon},${facts.centre.lat},1${country}${policy}],`;
     const loader = `()=>import(${quote(`./${facts.id}/index.ts`)}).then(m=>m.city),`;
     return Buffer.byteLength(row) + Buffer.byteLength(loader);
 }

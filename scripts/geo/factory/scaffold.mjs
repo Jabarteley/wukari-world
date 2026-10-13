@@ -5,6 +5,7 @@ import { readFileSync, mkdirSync, writeFileSync, existsSync, rmSync } from 'node
 import { resolve, join, dirname } from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { preflight } from './preflight.mjs';
+import { profileFor } from './profile.mjs';
 const args = process.argv.slice(2), value = flag => args[args.indexOf(flag) + 1];
 if (!args.includes('--manifest') || !args.includes('--out'))
     throw Error('Usage: scaffold.mjs --manifest JSON --out NEW_PRIVATE_STAGE');
@@ -24,9 +25,12 @@ if (f.names) f.names = destinationNames(f, f.names.area, f.names.roadHub);
 const policy = m.queryPolicy.kind, waterName = policy === 'coast' ? 'coastWaterQuery' : policy === 'lake' ? 'lakeWaterQuery' : 'inlandWaterQuery';
 if (policy === 'coast' && config.sea?.kind !== 'coast' || policy === 'lake' && config.sea?.kind !== 'lake' || policy === 'inland' && config.sea)
     throw Error('Water query policy must match reviewed sea metadata');
-config.discovery = bbox => ({ places: q.placesQuery(bbox), extras: q.extrasQuery(bbox) });
-config.landuse = q.landuseQuery;
-config.roads = q.roadsQuery;
+// Outpost and wilderness (profiles.json `extraction`): the recipe names the profile queries of the app's queries.ts, which mirror the extractor's
+// profile-only filters (extra places, road ladder, no military or aviation feature). Every other city keeps the standard queries.
+const extraction = config.profile === undefined ? undefined : profileFor(config.profile).extraction;
+config.discovery = extraction ? bbox => ({ places: q.profilePlacesQuery(bbox, extraction.extraPlaces), extras: q.profileExtrasQuery(bbox) }) : bbox => ({ places: q.placesQuery(bbox), extras: q.extrasQuery(bbox) });
+config.landuse = extraction ? q.civilLanduseQuery : q.landuseQuery;
+config.roads = extraction ? q.ladderRoadsQuery : q.roadsQuery;
 config.water = policy === 'lake' ? bbox => q.lakeWaterQuery(bbox, m.queryPolicy.lakeName) : q[waterName];
 assertDestinationOutput(f, config.places);
 const report = await preflight(root, id, m.extract.directory, config, f, false, m.countryScope);
@@ -43,7 +47,9 @@ else {
     const serial = { ...config };
     for (const key of ['discovery', 'landuse', 'roads', 'water'])
         delete serial[key];
-    const recipe = `import type { DetailConfig } from './config.ts'\nimport { placesQuery, extrasQuery, landuseQuery, roadsQuery, ${waterName} } from './queries.ts'\n\nexport const CONFIG = {\n...${JSON.stringify(serial, null, 2)},\ndiscovery: (bbox: string) => ({ places: placesQuery(bbox), extras: extrasQuery(bbox) }),\nlanduse: landuseQuery, roads: roadsQuery,\nwater: ${policy === 'lake' ? `(bbox: string) => lakeWaterQuery(bbox, ${JSON.stringify(m.queryPolicy.lakeName)})` : waterName},\n} satisfies DetailConfig\n`;
+    const recipe = extraction
+        ? `import type { DetailConfig } from './config.ts'\nimport { profilePlacesQuery, profileExtrasQuery, civilLanduseQuery, ladderRoadsQuery, ${waterName} } from './queries.ts'\n\nexport const CONFIG = {\n...${JSON.stringify(serial, null, 2)},\ndiscovery: (bbox: string) => ({ places: profilePlacesQuery(bbox, ${JSON.stringify(extraction.extraPlaces)}), extras: profileExtrasQuery(bbox) }),\nlanduse: civilLanduseQuery, roads: ladderRoadsQuery,\nwater: ${policy === 'lake' ? `(bbox: string) => lakeWaterQuery(bbox, ${JSON.stringify(m.queryPolicy.lakeName)})` : waterName},\n} satisfies DetailConfig\n`
+        : `import type { DetailConfig } from './config.ts'\nimport { placesQuery, extrasQuery, landuseQuery, roadsQuery, ${waterName} } from './queries.ts'\n\nexport const CONFIG = {\n...${JSON.stringify(serial, null, 2)},\ndiscovery: (bbox: string) => ({ places: placesQuery(bbox), extras: extrasQuery(bbox) }),\nlanduse: landuseQuery, roads: roadsQuery,\nwater: ${policy === 'lake' ? `(bbox: string) => lakeWaterQuery(bbox, ${JSON.stringify(m.queryPolicy.lakeName)})` : waterName},\n} satisfies DetailConfig\n`;
     const files = new Map([
         [`scripts/geo/destination-detail/${id}.ts`, recipe],
         [`src/game/cities/${id}/facts.ts`, `import type { DestinationFacts } from '../africa/types.ts'\n\nexport const FACTS = ${JSON.stringify(f, null, 2)} satisfies DestinationFacts\n`],

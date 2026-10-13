@@ -24,7 +24,11 @@ _merge_spec = importlib.util.spec_from_file_location('source_merge', HERE / 'sou
 _merge = importlib.util.module_from_spec(_merge_spec)
 _merge_spec.loader.exec_module(_merge)
 
-SEED_KEYS = {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'sceneWaterExtent', 'waterBudgetLadder', 'namesUnit', 'selectionExclusions', 'geometry', 'playBox', 'profile'}
+SEED_KEYS = {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'sceneWaterExtent', 'waterBudgetLadder', 'namesUnit', 'selectionExclusions', 'geometry', 'playBox', 'profile',
+             'gateway', 'timezoneOverride', 'countryName', 'links'}
+# The seed keys metadata-batch.py reads (city node, hub, timezone, country name, profile, play box); map and selection policy stays in the batch results.
+METADATA_SEED_KEYS = ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile', 'playBox', 'gateway', 'timezoneOverride', 'countryName')
+LINK_KINDS = {'charter', 'ship', 'overland'}
 KNOBS = json.loads((HERE / 'geometry-knobs.json').read_text())
 
 def digest_many(path, *algorithms):
@@ -138,10 +142,10 @@ def validate(table):
             raise ValueError(f"{seed.get('id', 'seed')}: namesUnit must be a non-empty string")
         selection_exclusions(seed)
         _shared._metadata.profile_rules(seed)
+        authored_links(seed)
         geometry_knobs(seed)
         play_box(seed)
-        shared_seed = {key: seed[key] for key in ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile', 'playBox')
-                       if key in seed}
+        shared_seed = {key: seed[key] for key in METADATA_SEED_KEYS if key in seed}
         _shared.validate({'schemaVersion': 1, 'geometrySourceSha': table.get('geometrySourceSha'),
                           'seed': shared_seed, 'countrySource': source, 'airports': airports})
     if len({seed['id'] for seed in seeds}) != len(seeds) or len({seed['countryISO'] for seed in seeds}) != 1:
@@ -218,6 +222,36 @@ def play_box(seed):
         raise ValueError(f"{seed.get('id', 'seed')}: playBox.coreKm must not exceed playKm")
     return box
 
+def authored_links(seed):
+    """seed.links (outpost and wilderness profiles only, which must have them): 2 to 4 authored links {to, kind} to open cities.
+    The factory scaffold (batch.mjs) adds the great-circle km and the city name from the app catalogue; the app applies the fare rule."""
+    rules = _shared._metadata.profile_rules(seed)
+    links = seed.get('links')
+    if not rules.get('authoredLinks'):
+        if links is not None:
+            raise ValueError(f"{seed.get('id', 'seed')}: links are only for a profile with authored links (outpost, wilderness)")
+        return None
+    if not isinstance(links, list) or not 2 <= len(links) <= 4:
+        raise ValueError(f"{seed.get('id', 'seed')}: the {seed['profile']} profile needs 2 to 4 authored links (the Lagos connection is added by the app)")
+    seen = set()
+    for link in links:
+        if (not isinstance(link, dict) or set(link) != {'to', 'kind'} or link['kind'] not in LINK_KINDS
+                or not isinstance(link['to'], str) or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', link['to']) or link['to'] in {'lagos', seed.get('id')}):
+            raise ValueError(f"{seed.get('id', 'seed')}: each link needs exactly to (an open city id other than Lagos) and kind (charter, ship or overland)")
+        if (link['to'], link['kind']) in seen:
+            raise ValueError(f"{seed.get('id', 'seed')}: link {link['to']} {link['kind']} listed twice")
+        seen.add((link['to'], link['kind']))
+    if not any(link['kind'] != 'charter' for link in links):
+        # A surface leg (ship or overland) plus one generated flight keeps a homeward quote to every home under the ticket cap; the app checks its fare.
+        raise ValueError(f"{seed.get('id', 'seed')}: an outpost needs at least one ship or overland link")
+    if 'gateway' not in seed and 'airport' not in seed:
+        raise ValueError(f"{seed.get('id', 'seed')}: an outpost names its hub: an airport (OurAirports row, usually with hubWaiver) or a gateway node")
+    return links
+
+def links_policy(seed):
+    links = authored_links(seed)
+    return {} if links is None else {'links': links}
+
 def geometry_policy(seed):
     return {**({'geometry': geometry_knobs(seed)} if seed.get('geometry') is not None else {}),
             **({'playBox': play_box(seed)} if seed.get('playBox') is not None else {})}
@@ -235,9 +269,11 @@ def check_seeds_offline(seeds, zone, countries):
     for seed in seeds:
         row = {'id': seed['id']}
         try:
-            zone_id, _ = _shared._metadata.choose_timezone(zone_lines, seed['countryISO'], seed.get('timezone'))
-            row.update(status='OK', timezone=zone_id, country=_shared._metadata.country_name(country_lines, seed['countryISO']),
-                       airportSelector='ident ' + seed['airport']['ident'] if 'airport' in seed else 'municipality match (HOLDs when ambiguous)',
+            zone_id, _ = _shared._metadata.choose_seed_timezone(zone_lines, seed)
+            row.update(status='OK', timezone=zone_id, country=_shared._metadata.seed_country_name(country_lines, seed),
+                       airportSelector=('ident ' + seed['airport']['ident'] if 'airport' in seed
+                                        else seed['gateway']['mode'] + ' gateway ' + seed['gateway']['osmRef'] if 'gateway' in seed
+                                        else 'municipality match (HOLDs when ambiguous)'),
                        cityNode=seed.get('cityOsmRef', 'name match among place=city|town (HOLDs when ambiguous)'))
         except Exception as error:
             row.update(status='HOLD', reason=str(error))
@@ -278,19 +314,22 @@ def extract_batch(pbf, candidates, source, pbf_sha, verified_md5, output_root, l
                 metadata, boxes, recipe = adapter.load_city(metadata_path)
                 if metadata['city']['id'] != city_id:
                     raise adapter.ExtractionError('candidate city id does not match seed')
-                contexts[city_id] = (metadata_path, boxes, recipe)
+                # Profile-only extraction rules (outpost, wilderness); None for every other city, whose extraction is unchanged.
+                contexts[city_id] = (metadata_path, boxes, recipe, adapter.profile_extraction(metadata))
             except Exception as error:
                 errors[city_id] = str(error)
         if contexts:
-            # Relation predicates do not depend on coast. Only way predicates do.
-            relations = adapter.RelationPass(False)
+            # Relation predicates do not depend on coast. Only way predicates do. Profile rules only widen the candidate set;
+            # add_relations keeps a profile candidate only for the city whose own rules match it.
+            profile_rules = [rules for *_, rules in contexts.values() if rules is not None]
+            relations = adapter.RelationPass(False, profile_rules or None)
             adapter.progress('relation-scan')
             relations.apply_file(str(pbf))
             relations.collect_center_dependencies(pbf)
             adapter.progress('relation-candidates', relations=len(relations.candidates),
                              memberWays=len(relations.needed_ways), memberNodes=len(relations.needed_nodes))
-            geometries = {city_id: adapter.GeometryPass(relations, boxes, recipe['kind'] == 'coast')
-                          for city_id, (_, boxes, recipe) in contexts.items()}
+            geometries = {city_id: adapter.GeometryPass(relations, boxes, recipe['kind'] == 'coast', rules)
+                          for city_id, (_, boxes, recipe, rules) in contexts.items()}
 
             needed_ways, needed_nodes = relations.needed_ways, relations.needed_nodes
             member_ways, member_nodes = {}, {}
@@ -344,7 +383,7 @@ def extract_batch(pbf, candidates, source, pbf_sha, verified_md5, output_root, l
             for city_id, geometry in geometries.items():
                 if city_id in errors:
                     continue
-                metadata_path, boxes, recipe = contexts[city_id]
+                metadata_path, boxes, recipe, rules = contexts[city_id]
                 try:
                     adapter.add_relations(relations, geometry, boxes)
                     destination = output_root / city_id
@@ -354,7 +393,7 @@ def extract_batch(pbf, candidates, source, pbf_sha, verified_md5, output_root, l
                             'version': 1,
                             'generator': 'Allworld offline PBF adapter prototype',
                             'source': adapter.source_record(args, metadata_path, city_id, label, boxes,
-                                                            timestamp, adapter_sha, recipe, relations, elements, geometry.skipped_relations),
+                                                            timestamp, adapter_sha, recipe, relations, elements, geometry.skipped_relations, rules),
                             'elements': elements,
                         })
                     counts = {label: len(elements) for label, elements in geometry.output.items()}
@@ -535,7 +574,7 @@ def main():
         if boundary_error:
             for seed in seeds:
                 reason = 'city metadata and extraction skipped because the exact same-source country boundary is HOLD: ' + boundary_error
-                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **water_ladder_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), **profile_policy(seed), 'reason': reason}
+                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **water_ladder_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), **profile_policy(seed), **links_policy(seed), 'reason': reason}
                 city_results.append(city_result)
                 (out / 'receipts' / (seed['id'] + '-result.json')).write_text(json.dumps(city_result, indent=2))
                 (out / 'logs' / (seed['id'] + '-metadata.log')).write_text('SKIPPED: ' + reason + '\n')
@@ -546,7 +585,7 @@ def main():
                 city_metadata.mkdir(parents=True, exist_ok=True)
                 seed_file = city_metadata / 'seed.json'
                 # Only the shared source-selection keys and the play box size reach metadata (metadata-batch.py passes playBox to bounds.mjs); map/selection policy stays in batch results.
-                seed_file.write_text(json.dumps({key: seed[key] for key in ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile', 'playBox') if key in seed}))
+                seed_file.write_text(json.dumps({key: seed[key] for key in METADATA_SEED_KEYS if key in seed}))
                 seed_files.append(str(seed_file))
             seed_manifest = out / 'inputs' / 'metadata-seeds.json'
             seed_manifest.parent.mkdir(parents=True, exist_ok=True)
@@ -610,7 +649,7 @@ def main():
                     metadata_log = out / 'logs' / (seed['id'] + '-metadata.log')
                     if not metadata_log.exists():
                         metadata_log.write_text(json.dumps({'status': 'HOLD', 'reason': reason}) + '\nshared log: batch-metadata.log\n')
-                    city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **water_ladder_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), **profile_policy(seed), 'reason': reason}
+                    city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **water_ladder_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), **profile_policy(seed), **links_policy(seed), 'reason': reason}
                     city_results.append(city_result)
                     (out / 'receipts' / (seed['id'] + '-result.json')).write_text(json.dumps(city_result, indent=2))
         extraction_errors = {}
@@ -632,9 +671,9 @@ def main():
                 job_file = out / 'receipts' / (seed['id'] + '-source-job.json')
                 job_file.write_text(json.dumps(producer, indent=2))
                 producers.append(producer)
-                city_results.append({'id': seed['id'], 'status': 'SOURCE_CANDIDATE', **scene_water_policy(seed), **water_ladder_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), **profile_policy(seed), 'sourceJob': producer})
+                city_results.append({'id': seed['id'], 'status': 'SOURCE_CANDIDATE', **scene_water_policy(seed), **water_ladder_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), **profile_policy(seed), **links_policy(seed), 'sourceJob': producer})
             except Exception as error:
-                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **water_ladder_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), **profile_policy(seed), 'reason': str(error)}
+                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **water_ladder_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), **profile_policy(seed), **links_policy(seed), 'reason': str(error)}
                 city_results.append(city_result)
                 (out / 'receipts' / (seed['id'] + '-result.json')).write_text(json.dumps(city_result, indent=2))
         city_results.sort(key=lambda city: [seed['id'] for seed in seeds].index(city['id']))

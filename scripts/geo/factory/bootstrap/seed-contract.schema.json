@@ -40,6 +40,22 @@
     }
   },
   "$defs": {
+    "countrySourceCityExtract": {
+      "description": "Not a seed field: the country table's countrySource.cityExtract (validated by batch-run.py --validate-only via source-merge.py validate_city_extract; README-batch.md 'City sub-extract'). The admin-0 boundary is built from countrySource.url (plus neighbours); the city metadata and five layers are read from this same-snapshot regional sub-extract.",
+      "type": "object", "additionalProperties": false,
+      "required": ["url", "bytes", "md5", "snapshotDate", "reason", "polyUrl", "polySha256", "primaryPolyUrl", "primaryPolySha256"],
+      "properties": {
+        "url": {"type": "string", "pattern": "^https://download\\.geofabrik\\.de/(?:[a-z0-9-]+/)*[a-z0-9-]+-[0-9]{6}\\.osm\\.pbf$", "description": "Dated official Geofabrik file of the same YYMMDD as countrySource.url; not the primary or a neighbour."},
+        "bytes": {"type": "integer", "minimum": 1, "description": "Content-Length; smaller than countrySource.bytes."},
+        "md5": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+        "snapshotDate": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "Equal to countrySource.snapshotDate."},
+        "reason": {"type": "string", "minLength": 1, "pattern": "^\\S(?:.*\\S)?$"},
+        "polyUrl": {"type": "string", "description": "The .poly beside url (<region>.poly)."},
+        "polySha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "primaryPolyUrl": {"type": "string", "description": "The .poly beside countrySource.url."},
+        "primaryPolySha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
     "provenanceUrl": {"type": "string", "format": "uri", "pattern": "^https://[^\\s/?#@]+(?:[/?#][^\\s]*)?$", "description": "Runtime additionally requires a hostname and rejects embedded credentials."}
   }
 }

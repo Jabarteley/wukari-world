@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/north-america/canada-261011.osm.pbf",
+    "bytes": 6524280859,
+    "md5": "6294f9930c1e8e2aaf1aed16cf1cc5d1",
+    "snapshotDate": "2026-10-11",
+    "cityExtract": {
+      "url": "https://download.geofabrik.de/north-america/canada/ontario-261011.osm.pbf",
+      "bytes": 1032522521,
+      "md5": "0f003eb450a5d76de312331dd0c38542",
+      "snapshotDate": "2026-10-11",
+      "reason": "Canada (6.52 GB) is read only for the admin-0 boundary; Toronto's metadata and layers come from ontario (1.03 GB). 1.5% of the outline box (Lake Ontario, US waters, 43.42-43.49N 79.19-79.09W) lies outside ontario.poly and also outside canada.poly, so neither file holds data there",
+      "polyUrl": "https://download.geofabrik.de/north-america/canada/ontario.poly",
+      "polySha256": "fa7d70729c3b5cdf4b9b32485444b2ac2df86dc56c52435e39e14c6e61d7bdea",
+      "primaryPolyUrl": "https://download.geofabrik.de/north-america/canada.poly",
+      "primaryPolySha256": "55e4d85f9755035288437f4debf4612016c00279dbf67291494ad7e9e0b13dd3"
+    }
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "toronto",
+      "name": "Toronto",
+      "countryISO": "CA",
+      "cityOsmRef": "node/18063533",
+      "airport": {
+        "ident": "CYYZ",
+        "sourceUrl": "https://ourairports.com/airports/CYYZ/"
+      },
+      "timezone": {
+        "id": "America/Toronto",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

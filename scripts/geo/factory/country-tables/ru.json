@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/russia-261011.osm.pbf",
+    "bytes": 4177162962,
+    "md5": "0686cfd0421551d55d9cb077dc7c1008",
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/asia/kazakhstan-261011.osm.pbf",
+        "bytes": 224167699,
+        "md5": "7ba3914ae712a63ab97e92adbefa4cf4",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/60189 (Russia) member ways 1491044267 and 1491046685 (Caspian Sea, 52.5E 45.9N, one ring together) are absent from the Russia clip; their nodes lie inside the Kazakhstan clip"
+      }
+    ],
+    "cityExtract": {
+      "url": "https://download.geofabrik.de/russia/central-fed-district-261011.osm.pbf",
+      "bytes": 880557310,
+      "md5": "248628020800fdc3c3e736add07c237f",
+      "snapshotDate": "2026-10-11",
+      "reason": "Russia (4.18 GB) is read only for the admin-0 boundary; Moscow's metadata and layers come from central-fed-district (881 MB), which holds the centre, Sheremetyevo and all three boxes",
+      "polyUrl": "https://download.geofabrik.de/russia/central-fed-district.poly",
+      "polySha256": "2757e10f1c016c4343469309460ebeae248ff713b28908a142174eb377f01bd1",
+      "primaryPolyUrl": "https://download.geofabrik.de/russia.poly",
+      "primaryPolySha256": "94313a5b13fd2afef4d12998e36488f10100162f48e2df06758317ce27972c46"
+    }
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "moscow",
+      "name": "Moscow",
+      "countryISO": "RU",
+      "cityOsmRef": "node/1686293227",
+      "airport": {
+        "ident": "UUEE",
+        "sourceUrl": "https://ourairports.com/airports/UUEE/"
+      },
+      "timezone": {
+        "id": "Europe/Moscow",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

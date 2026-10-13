@@ -2,10 +2,21 @@
   "schemaVersion": 2,
   "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
   "countrySource": {
-    "url": "https://download.geofabrik.de/asia/philippines-261011.osm.pbf",
-    "bytes": 609760908,
-    "md5": "89aea1627157097ce61c3234dc63b001",
-    "snapshotDate": "2026-10-11"
+    "url": "https://download.geofabrik.de/asia/sea-261011.osm.pbf",
+    "bytes": 3674081750,
+    "md5": "dd6f4ce32d6270ffd97e18fca760a24b",
+    "snapshotDate": "2026-10-11",
+    "cityExtract": {
+      "url": "https://download.geofabrik.de/asia/philippines-261011.osm.pbf",
+      "bytes": 609760908,
+      "md5": "89aea1627157097ce61c3234dc63b001",
+      "snapshotDate": "2026-10-11",
+      "reason": "asia/sea (3.67 GB) is the only same-snapshot Geofabrik file holding way 1149528892 (Malaysia-Philippines closing line of relation/443174), so it is the admin-0 boundary source; Manila's metadata and layers come from philippines (610 MB) instead of a 4.3 GB merge",
+      "polyUrl": "https://download.geofabrik.de/asia/philippines.poly",
+      "polySha256": "616ec9c77bbfbdef08f091d3e67d4379bbc7d26e8d959294200f838d8a20f991",
+      "primaryPolyUrl": "https://download.geofabrik.de/asia/sea.poly",
+      "primaryPolySha256": "46790d4b133a6efb62334c54339f2196d45f4d97460a5e93b1c79cdcef7867fc"
+    }
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
@@ -18,6 +29,7 @@
       "id": "manila",
       "name": "Manila",
       "countryISO": "PH",
+      "cityOsmRef": "node/198493613",
       "airport": {
         "ident": "RPLL",
         "sourceUrl": "https://ourairports.com/airports/RPLL/"

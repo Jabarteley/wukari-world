@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/north-america/us-261011.osm.pbf",
+    "bytes": 12199919524,
+    "md5": "f9a56ae3ef76583cf892e5bfe23a18d4",
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/north-america/canada/yukon-261011.osm.pbf",
+        "bytes": 83641633,
+        "md5": "8993af0c9518defcea8ff46cc9d4e985",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/148838 (United States) member way 1232724301 (Bering Sea territorial waters, 3 nodes, 140.75W 69.83N) is absent from the US clip and ends on present boundary ways; all 3 nodes lie inside the Canada/Yukon clip. The other 38 absent ways are maritime=yes territorial rings of US territories, covered by bootstrap/boundary-evidence/us.json"
+      }
+    ],
+    "cityExtract": {
+      "url": "https://download.geofabrik.de/north-america/us-northeast-261011.osm.pbf",
+      "bytes": 1803685482,
+      "md5": "0629f2fe95ee55f48d961b2cd33611d3",
+      "snapshotDate": "2026-10-11",
+      "reason": "The US file (12.2 GB) is read only for the admin-0 boundary. New York's play/core/outline boxes include the New Jersey side (Jersey City, Newark, Elizabeth), outside new-york.poly; us-northeast (1.80 GB, NY NJ PA and New England) holds all three boxes and the centre",
+      "polyUrl": "https://download.geofabrik.de/north-america/us-northeast.poly",
+      "polySha256": "d78f03a533f3bb0bb4a98319b1b2083dc28a1e30f29f46fb164d40f2fee40e30",
+      "primaryPolyUrl": "https://download.geofabrik.de/north-america/us.poly",
+      "primaryPolySha256": "5b36ffe960cba918b5b33bd998bca090ce4279828590dab382d097d4a3b7a2f3"
+    }
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "new-york",
+      "name": "New York",
+      "countryISO": "US",
+      "cityOsmRef": "node/61785451",
+      "airport": {
+        "ident": "KJFK",
+        "sourceUrl": "https://ourairports.com/airports/KJFK/"
+      },
+      "timezone": {
+        "id": "America/New_York",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

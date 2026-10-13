@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { createHash } from 'node:crypto';
-import { validateSourceInputs } from './source-inputs.mjs';
+import { validateSourceInputs, cityExtractInput } from './source-inputs.mjs';
 
 export const COUNTRY_SCOPE_KIND = 'osm-admin0-boundary-v1';
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -14,6 +14,8 @@ export function validateCountryScopePolicy(policy, country, datasetSha256) {
   assert.equal(policy.countryISO, country.toUpperCase(), 'country policy identity mismatch');
   for (const key of ['datasetSha256', 'receiptSha256', 'geometrySha256', 'scriptSha256']) assert.match(policy[key] ?? '', hex, `country ${key} pin required`);
   assert.equal(policy.datasetSha256, datasetSha256, 'country boundary and city extract PBF differ');
+  // City sub-extract: the boundary was built from the full country file; policy.datasetSha256 names the city's PBF.
+  if (policy.boundaryDatasetSha256 !== undefined) assert.match(policy.boundaryDatasetSha256, hex, 'boundary dataset pin');
   for (const key of ['receiptBytes', 'geometryBytes', 'relationId']) assert.ok(Number.isSafeInteger(policy[key]) && policy[key] > 0, `country ${key} pin required`);
   if (policy.boundaryKey !== undefined) assert.equal(policy.boundaryKey, policy.countryISO.toLowerCase(), 'boundary artifact key must match ISO');
   if (policy.boundaryJob !== undefined) {
@@ -71,13 +73,23 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
   assert.equal(receipt.schemaVersion, 1);
   assert.equal(receipt.status, 'OSM_COUNTRY_BOUNDARY_CANDIDATE');
   assert.equal(receipt.countryISO, iso);
-  assert.equal(receipt.source.sha256, datasetSha256);
+  // City sub-extract: the receipt's source is the full country file (primary input); the city's PBF is the city-extract input.
+  const cityExtract = cityExtractInput(receipt.source.sourceInputs);
+  if (cityExtract) {
+    assert.equal(cityExtract.sha256, datasetSha256, 'city extract PBF differs from the one paired with this boundary');
+    assert.equal(receipt.source.sha256, receipt.source.sourceInputs[0].sha256, 'sub-extract boundary must be built from the primary file itself');
+    assert.equal(policy.boundaryDatasetSha256, receipt.source.sha256, 'boundary dataset pin mismatch');
+  } else {
+    assert.equal(receipt.source.sha256, datasetSha256);
+    assert.equal(policy.boundaryDatasetSha256, undefined, 'boundaryDatasetSha256 is only for a city sub-extract');
+  }
   assert.ok(Number.isSafeInteger(receipt.source.bytes) && receipt.source.bytes > 0);
   assert.match(receipt.source.date, /^\d{4}-\d{2}-\d{2}$/);
   assert.ok(receipt.source.headerTimestamp.startsWith(receipt.source.date));
   const url = new URL(receipt.source.url);
   assert.ok(url.protocol === 'https:' && url.hostname === 'download.geofabrik.de' && url.pathname.endsWith('.osm.pbf') && !url.search && !url.hash);
   // A merged primary+neighbour PBF (source-merge.py): source.sha256/bytes are the merged file's, sourceInputs names the dated files.
+  // A city sub-extract: source is the primary file; sourceInputs ends with the city-extract input the boundary is paired with.
   if (receipt.source.sourceInputs !== undefined) validateSourceInputs(receipt.source.sourceInputs, { url: receipt.source.url, date: receipt.source.date });
   assert.equal(receipt.scriptSha256, policy.scriptSha256, 'country assembler script pin mismatch');
   const relation = receipt.relation;
@@ -102,8 +114,15 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
       // Only an evidence file that declared wholeSeparateRings (with its written reason) may omit non-maritime ways (overseas rings, France).
       if (absentPolicy.wholeSeparateRings === true) assert.ok(typeof absentPolicy.reason === 'string' && absentPolicy.reason.trim().length >= 20, 'wholeSeparateRings needs its written reason');
       else assert.equal(way.tags?.maritime, 'yes', 'only maritime=yes ways may be omitted');
-      assert.equal(way.tags.boundary, 'administrative');
-      assert.equal(way.tags.admin_level, '2');
+      // A reviewed tagException excuses only ABSENT boundary/admin_level keys (US way 42296616), with a written reason.
+      const excused = new Set(way.tagException?.missingKeys ?? []);
+      if (way.tagException !== undefined) {
+        assert.deepEqual(Object.keys(way.tagException).sort(), ['missingKeys', 'reason'], 'tagException keys');
+        assert.ok(excused.size > 0 && excused.size === way.tagException.missingKeys.length && [...excused].every(key => ['boundary', 'admin_level'].includes(key) && !(key in way.tags)), 'tagException may excuse only absent boundary/admin_level keys');
+        assert.ok(typeof way.tagException.reason === 'string' && way.tagException.reason.trim().length >= 20, 'tagException needs a written reason');
+      }
+      if (!excused.has('boundary')) assert.equal(way.tags.boundary, 'administrative');
+      if (!excused.has('admin_level')) assert.equal(way.tags.admin_level, '2');
       assert.ok(relationMembers.some(member => member.type === 'w' && member.ref === way.id), 'omitted way is not a member of the country relation');
       omitted.set(way.id, way);
     }

@@ -1,0 +1,367 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "ES",
+    "datasetSha256": "4c8a93158d9c49654e71f28b2292b73cc43bbcb96cb159eef43be0157b248636",
+    "receiptSha256": "5600facca48664575504f5b631ccbbea56b7d441fa4db6a92eb8e1e4564ca66c",
+    "receiptBytes": 288308,
+    "geometrySha256": "09dc4694ccb776a59ff4de4afecb332faf6603975772c4908a94754b190b1544",
+    "geometryBytes": 728976,
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "relationId": 1311341,
+    "boundaryKey": "es",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38313119499,
+      "sourceSha": "3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+      "sourceArtifact": "city-bootstrap-es-3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "madrid",
+      "name": "Madrid",
+      "country": "es",
+      "facts": {
+        "id": "madrid",
+        "name": "Madrid",
+        "country": {
+          "idISOlower": "es",
+          "name": "Spain"
+        },
+        "state": {
+          "idunique": "es-madrid",
+          "name": "Madrid"
+        },
+        "timezone": "Europe/Madrid",
+        "centre": {
+          "lon": -3.703507,
+          "lat": 40.416782
+        },
+        "airport": {
+          "id": "madrid-airport",
+          "name": "Adolfo Suárez Madrid–Barajas Airport",
+          "lon": -3.572249,
+          "lat": 40.493407,
+          "sourceUrl": "https://ourairports.com/airports/LEMD/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/21068295",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -3.940123282444742,
+          40.23590111006602,
+          -3.466890717555258,
+          40.59766288993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/21068295",
+          "sourceUrl": "https://www.openstreetmap.org/node/21068295",
+          "sourceRecord": {
+            "ref": "node/21068295",
+            "tags": {
+              "admin_level": "2",
+              "alt_name:ar": "مجريط",
+              "capital": "yes",
+              "ele": "655",
+              "is_capital": "country",
+              "name": "Madrid",
+              "name:ab": "Мaдрид",
+              "name:am": "ማድሪድ",
+              "name:an": "Madrit",
+              "name:ar": "مدريد",
+              "name:arc": "ܡܕܪܝܕ",
+              "name:arz": "مدريد",
+              "name:as": "মাদ্ৰিদ",
+              "name:ba": "Мадрид",
+              "name:bat-smg": "Madrids",
+              "name:be": "Мадрыд",
+              "name:be-tarask": "Мадрыд",
+              "name:ber": "ⵎⴰⴷⵔⵉⴷ",
+              "name:bg": "Мадрид",
+              "name:bh": "मैड्रिड",
+              "name:bn": "মাদ্রিদ",
+              "name:bo": "མ་ད་རིད།",
+              "name:br": "Madrid",
+              "name:ca": "Madrid",
+              "name:ce": "Мадрид",
+              "name:ckb": "مادرید",
+              "name:co": "Madridi",
+              "name:cs": "Madrid",
+              "name:cu": "Мадридъ",
+              "name:cv": "Мадрид",
+              "name:de": "Madrid",
+              "name:el": "Μαδρίτη",
+              "name:en": "Madrid",
+              "name:eo": "Madrido",
+              "name:es": "Madrid",
+              "name:eu": "Madril",
+              "name:ext": "Mairil",
+              "name:fa": "مادرید",
+              "name:fr": "Madrid",
+              "name:ga": "Maidrid",
+              "name:haw": "Makelika",
+              "name:he": "מדריד",
+              "name:hi": "मद्रिद",
+              "name:hu": "Madrid",
+              "name:hy": "Մադրիդ",
+              "name:is": "Madrid",
+              "name:it": "Madrid",
+              "name:ja": "マドリード",
+              "name:ka": "მადრიდი",
+              "name:kab": "Madrid",
+              "name:kbd": "Мадрид",
+              "name:kk": "Мадрид",
+              "name:kn": "ಮಾದ್ರಿದ್",
+              "name:ko": "마드리드",
+              "name:koi": "Мадрид",
+              "name:ks": "مدرِد",
+              "name:ku": "Madrîd",
+              "name:kv": "Мадрид",
+              "name:ky": "Мадрид",
+              "name:la": "Matritum",
+              "name:lez": "Мадрид",
+              "name:li": "Madrid",
+              "name:lo": "ມາດິດ",
+              "name:lt": "Madridas",
+              "name:lv": "Madride",
+              "name:mhr": "Мадрид",
+              "name:mk": "Мадрид",
+              "name:ml": "മാദ്രിദ്",
+              "name:mn": "Мадрид",
+              "name:mr": "माद्रिद",
+              "name:mrj": "Мадрид",
+              "name:my": "မာဒရစ်မြို့",
+              "name:myv": "Мадрид",
+              "name:mzn": "مادرید",
+              "name:nds-nl": "Medrid",
+              "name:ne": "म्याड्रिड",
+              "name:nl": "Madrid",
+              "name:no": "Madrid",
+              "name:nv": "Tó Háálį́",
+              "name:oc": "Madrid",
+              "name:or": "ମାଡ୍ରିଦ",
+              "name:os": "Мадрид",
+              "name:pa": "ਮਾਦਰੀਦ",
+              "name:pl": "Madryt",
+              "name:pnb": "میڈرڈ",
+              "name:ps": "مادرید",
+              "name:ro": "Madrid",
+              "name:ru": "Мадрид",
+              "name:rue": "Мадрід",
+              "name:sa": "मद्रिद्",
+              "name:sah": "Мадрид",
+              "name:sd": "ميڊرڊ",
+              "name:si": "මැඩ්රිඩ්",
+              "name:sk": "Madrid",
+              "name:sl": "Madrid",
+              "name:sm": "Matariti",
+              "name:sq": "Madridi",
+              "name:sr": "Мадрид",
+              "name:sv": "Madrid",
+              "name:szl": "Madryt",
+              "name:ta": "மத்ரித்",
+              "name:te": "మాడ్రిడ్",
+              "name:tet": "Madríd",
+              "name:tg": "Мадрид",
+              "name:th": "มาดริด",
+              "name:ti": "ማድሪድ",
+              "name:tr": "Madrid",
+              "name:udm": "Мадрид",
+              "name:uk": "Мадрид",
+              "name:ur": "میڈرڈ",
+              "name:wal": "Maadiride",
+              "name:xmf": "მადრიდი",
+              "name:yi": "מאדריד",
+              "name:yue": "馬德里",
+              "name:zh": "馬德里/马德里",
+              "name:zh-Hans": "马德里",
+              "name:zh-Hant": "馬德里",
+              "name:zh-Latn-pinyin": "Mǎdélǐ",
+              "old_name:ar": "مجريط",
+              "place": "city",
+              "population": "3477497",
+              "population:date": "2025",
+              "rank": "10",
+              "ref:ine": "28079000101",
+              "source": "Instituto Geográfico Nacional",
+              "source:date": "2011-06",
+              "source:ele": "MDT5",
+              "source:name": "Nomenclátor Geográfico de Municipios y Entidades de Población",
+              "source:name:br": "same as name",
+              "source:name:oc": "Lo Congrès",
+              "wikidata": "Q2807",
+              "wikimedia_commons": "Category:Madrid",
+              "wikipedia": "es:Madrid"
+            },
+            "lon": -3.703507,
+            "lat": 40.416782
+          },
+          "pbfSha256": "4c8a93158d9c49654e71f28b2292b73cc43bbcb96cb159eef43be0157b248636"
+        },
+        "airport": {
+          "rowNumber": 43759,
+          "row": {
+            "id": "4019",
+            "ident": "LEMD",
+            "type": "large_airport",
+            "name": "Adolfo Suárez Madrid–Barajas Airport",
+            "latitude_deg": "40.493407",
+            "longitude_deg": "-3.572249",
+            "elevation_ft": "1998",
+            "continent": "EU",
+            "iso_country": "ES",
+            "iso_region": "ES-MD",
+            "municipality": "Madrid",
+            "scheduled_service": "yes",
+            "icao_code": "LEMD",
+            "iata_code": "MAD",
+            "gps_code": "LEMD",
+            "local_code": "",
+            "home_link": "https://www.aena.es/en/adolfo-suarez-madrid-barajas.html",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Adolfo_Su%C3%A1rez_Madrid%E2%80%93Barajas_Airport",
+            "keywords": "Leganés, Madrid Barajas International Airport"
+          },
+          "rowSha256": "c1ac5e07e8a76006a95e3b0e66f7080c511ae80d3cfbfbf750465f5590764508",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "LEMD",
+            "sourceUrl": "https://ourairports.com/airports/LEMD/",
+            "matchedIdent": "LEMD",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/LEMD/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "ES",
+              "+4024-00341",
+              "Europe/Madrid",
+              "Spain (mainland)"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Europe/Madrid",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "ES",
+              "+4024-00341",
+              "Europe/Madrid",
+              "Spain (mainland)"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/europe/spain-261011.osm.pbf",
+          "bytes": 1800562854,
+          "sha256": "4c8a93158d9c49654e71f28b2292b73cc43bbcb96cb159eef43be0157b248636",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              40.23590111006602,
+              -3.940123282444742,
+              40.59766288993398,
+              -3.466890717555258
+            ],
+            "core": [
+              40.371561777516504,
+              -3.762541442416989,
+              40.46200222248349,
+              -3.6444725575830113
+            ],
+            "outline": [
+              40.18590111006602,
+              -3.990123282444742,
+              40.647662889933976,
+              -3.4168907175552583
+            ],
+            "wide": [
+              39.635901110066015,
+              -4.540123282444742,
+              41.19766288993398,
+              -2.866890717555258
+            ]
+          },
+          "airportMarginMetres": 8919.28563287104,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "madrid",
+      "extractSha256": {
+        "places": "02a74aadd87ce557f32801dcd52491c1d6ab5c92eda0c7fc2bcb07f4465cfa6d",
+        "extras": "f039387388e796f4c90788a42226e07994a49c8193788144630d7270291fa3ab",
+        "water": "566aaff102931ca9da81ec6893ef709dab44b5fcfd3689719e7e515f8378cecd",
+        "landuse": "00a8f8a1874aeaa56f3db0751243717d91e40cf2a129fbdcd6166cf0168bc43b",
+        "roads": "3b3de3d16c1f32105425b2aec086d14923d8a779d6e4d69c9b515d671977d3f8"
+      },
+      "sourceJob": {
+        "city": "madrid",
+        "sourceRunId": 38313119499,
+        "sourceArtifact": "city-bootstrap-es-3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+        "sourceSha": "3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+        "datasetSha256": "4c8a93158d9c49654e71f28b2292b73cc43bbcb96cb159eef43be0157b248636",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "02a74aadd87ce557f32801dcd52491c1d6ab5c92eda0c7fc2bcb07f4465cfa6d",
+          "extras": "f039387388e796f4c90788a42226e07994a49c8193788144630d7270291fa3ab",
+          "water": "566aaff102931ca9da81ec6893ef709dab44b5fcfd3689719e7e515f8378cecd",
+          "landuse": "00a8f8a1874aeaa56f3db0751243717d91e40cf2a129fbdcd6166cf0168bc43b",
+          "roads": "3b3de3d16c1f32105425b2aec086d14923d8a779d6e4d69c9b515d671977d3f8"
+        },
+        "sourceInputs": [
+          {
+            "role": "primary",
+            "url": "https://download.geofabrik.de/europe/spain-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 1490515895,
+            "md5": "5cb20c71ee07266b290bb91a573d468d",
+            "sha256": "8707ab589c1c5d418055d55c1087cc63a8668ebdfeae9e79d97e4cd4ebe75c3d"
+          },
+          {
+            "role": "neighbour",
+            "url": "https://download.geofabrik.de/africa/morocco-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 243739061,
+            "md5": "b59943161d2e4d27262105d20f70c27a",
+            "sha256": "d3db4380c2afee9644bb80daebdb16b044413f663dd45376c539c3a7ee180d33",
+            "reason": "admin-0 relation/1311341 (Spain) member ways absent from the Spain clip: Perejil island ways 8692572, 32257984, 1532330547, 1551133098 and the Penon de Velez / Alhucemas / Chafarinas rings 1435939762, 1435939763, 1486838834, 1461500180; all their nodes lie inside the Morocco clip"
+          },
+          {
+            "role": "neighbour",
+            "url": "https://download.geofabrik.de/africa/canary-islands-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 59920240,
+            "md5": "fcc1b239d7a896e1b7dfdab1ad5cca6a",
+            "sha256": "9d4cdc267e65de605d08e138f0fb9040696841331535e54561b56bba4d40587d",
+            "reason": "admin-0 relation/1311341 (Spain) maritime=yes territorial rings 46419267, 46419269, 46419270, 46419271, 46419272 (Canary Islands, 12 nm) are absent from the Spain clip; all their nodes lie inside the Canary Islands clip; with Morocco and Canary Islands all 640 way members are present"
+          }
+        ]
+      }
+    }
+  ]
+}

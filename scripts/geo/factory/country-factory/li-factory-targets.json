@@ -1,0 +1,287 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "LI",
+    "datasetSha256": "1553f7ae4a04687861946b19ef2e6e32df92e6062d954cd34297787f692deb52",
+    "receiptSha256": "66aa5e644c2a67d86b7268f3dded0f44e20209105b994e42c2655f8a60019767",
+    "receiptBytes": 25106,
+    "geometrySha256": "86a3641a923f2a31cfe16113fb382f552152d1873458edf15627e3e7be276c51",
+    "geometryBytes": 58179,
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "relationId": 1155955,
+    "boundaryKey": "li",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38313119499,
+      "sourceSha": "3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+      "sourceArtifact": "city-bootstrap-li-3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "vaduz",
+      "name": "Vaduz",
+      "country": "li",
+      "facts": {
+        "id": "vaduz",
+        "name": "Vaduz",
+        "country": {
+          "idISOlower": "li",
+          "name": "Liechtenstein"
+        },
+        "state": {
+          "idunique": "li-vaduz",
+          "name": "Vaduz"
+        },
+        "timezone": "Europe/Zurich",
+        "centre": {
+          "lon": 9.5227962,
+          "lat": 47.1392862
+        },
+        "airport": {
+          "id": "vaduz-airport",
+          "name": "Balzers Heliport",
+          "lon": 9.480774,
+          "lat": 47.067908,
+          "sourceUrl": "https://ourairports.com/airports/LSXB/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/1932181216",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          9.257768935005949,
+          46.95840531006602,
+          9.787823464994052,
+          47.32016708993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/1932181216",
+          "sourceUrl": "https://www.openstreetmap.org/node/1932181216",
+          "sourceRecord": {
+            "ref": "node/1932181216",
+            "tags": {
+              "admin_level": "2",
+              "capital": "yes",
+              "ele": "455",
+              "name": "Vaduz",
+              "name:am": "ፋዱጽ",
+              "name:ar": "فادوز",
+              "name:az": "Vaduts",
+              "name:be": "Вадуц",
+              "name:be-tarask": "Вадуц",
+              "name:bg": "Вадуц",
+              "name:bn": "ফাডুৎস",
+              "name:bo": "བ་དུ་ཛི།",
+              "name:ca": "Vaduz",
+              "name:ce": "Вадуц",
+              "name:ckb": "ڤادوز",
+              "name:cu": "Вадоуць",
+              "name:cv": "Вадуц",
+              "name:de": "Vaduz",
+              "name:el": "Βαντούζ",
+              "name:en": "Vaduz",
+              "name:eo": "Vaduzo",
+              "name:es": "Vaduz",
+              "name:fa": "فادوتس",
+              "name:fr": "Vaduz",
+              "name:ga": "Vadús",
+              "name:grc": "Ἡδεῖα Κοιλάς",
+              "name:he": "ואדוץ",
+              "name:hi": "वादुज़",
+              "name:ht": "Vadouz",
+              "name:hu": "Vaduz",
+              "name:hy": "Վադուց",
+              "name:it": "Vaduz",
+              "name:ja": "ファドゥーツ",
+              "name:ka": "ვადუცი",
+              "name:kk": "Вадус",
+              "name:ko": "파두츠",
+              "name:ky": "Вадуц",
+              "name:la": "Dulcis Vallis",
+              "name:lij": "Vadus",
+              "name:lt": "Vaducas",
+              "name:lv": "Vaduca",
+              "name:mk": "Вадуц",
+              "name:ml": "വാടുസ്",
+              "name:mn": "Вадуц",
+              "name:mr": "फाडुट्स",
+              "name:my": "ဖာဒုစ်",
+              "name:nds": "Vaduz",
+              "name:nl": "Vaduz",
+              "name:no": "Vaduz",
+              "name:os": "Вадуц",
+              "name:pa": "ਫ਼ਾਦੁਤਸ",
+              "name:pl": "Vaduz",
+              "name:pnb": "وادوس",
+              "name:ps": "وادوڅ",
+              "name:ro": "Vaduz",
+              "name:ru": "Вадуц",
+              "name:sah": "Вадуц",
+              "name:sd": "فادوتس",
+              "name:sq": "Vaduzi",
+              "name:sr": "Вадуц",
+              "name:ta": "வாதூசு",
+              "name:tg": "Вадутс",
+              "name:th": "วาดุซ",
+              "name:tr": "Vaduz",
+              "name:tt": "Vaduts",
+              "name:udm": "Вадуц",
+              "name:ug": "ۋادۇز",
+              "name:uk": "Вадуц",
+              "name:ur": "فادوتس",
+              "name:uz": "Vaduts",
+              "name:vep": "Vaduc",
+              "name:wo": "Wadus",
+              "name:zh": "瓦杜茲",
+              "place": "town",
+              "population": "5229",
+              "postal_code": "9490",
+              "website": "https://www.vaduz.li/",
+              "wikidata": "Q1844",
+              "wikimedia_commons": "Category:Vaduz",
+              "wikipedia": "de:Vaduz"
+            },
+            "lon": 9.5227962,
+            "lat": 47.1392862
+          },
+          "pbfSha256": "1553f7ae4a04687861946b19ef2e6e32df92e6062d954cd34297787f692deb52"
+        },
+        "airport": {
+          "rowNumber": 45142,
+          "row": {
+            "id": "43075",
+            "ident": "LSXB",
+            "type": "heliport",
+            "name": "Balzers Heliport",
+            "latitude_deg": "47.067908",
+            "longitude_deg": "9.480774",
+            "elevation_ft": "1585",
+            "continent": "EU",
+            "iso_country": "LI",
+            "iso_region": "LI-01",
+            "municipality": "Balzers",
+            "scheduled_service": "no",
+            "icao_code": "LSXB",
+            "iata_code": "",
+            "gps_code": "LSXB",
+            "local_code": "",
+            "home_link": "http://www.heli.li/sites/heliports-balzers-lsxb.php",
+            "wikipedia_link": "https://de.wikipedia.org/wiki/Heliport_Balzers",
+            "keywords": ""
+          },
+          "rowSha256": "450c5e079a574a72faaf0e2e165bf6e8e929545e6ed39622f9299800d0c57f8e",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "LSXB",
+            "sourceUrl": "https://ourairports.com/airports/LSXB/",
+            "hubWaiver": "Liechtenstein has no airport with scheduled service in the pinned OurAirports CSV; its own named Balzers Heliport (LSXB) is the game air hub. Airport records do not establish current operations.",
+            "matchedIdent": "LSXB",
+            "municipalityMatchesCity": false,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/LSXB/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "CH,DE,LI",
+              "+4723+00832",
+              "Europe/Zurich",
+              "Büsingen"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Europe/Zurich",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "CH,DE,LI",
+              "+4723+00832",
+              "Europe/Zurich",
+              "Büsingen"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/europe/liechtenstein-261011.osm.pbf",
+          "bytes": 3465592,
+          "sha256": "1553f7ae4a04687861946b19ef2e6e32df92e6062d954cd34297787f692deb52",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              46.95840531006602,
+              9.257768935005949,
+              47.32016708993398,
+              9.787823464994052
+            ],
+            "core": [
+              47.09406597751651,
+              9.45670889021349,
+              47.184506422483494,
+              9.58888350978651
+            ],
+            "outline": [
+              46.90840531006602,
+              9.207768935005948,
+              47.37016708993398,
+              9.837823464994052
+            ],
+            "wide": [
+              46.35840531006602,
+              8.657768935005949,
+              47.92016708993398,
+              10.387823464994051
+            ]
+          },
+          "airportMarginMetres": 12107.71242600048,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "vaduz",
+      "extractSha256": {
+        "places": "7dcb684efb993f89b2182610d94b6b55587a2187de2303b9bf504de5d3709f89",
+        "extras": "eafe3f602e986ada76d7ed4bfbaff45c6627af184730186e876fd2240864e5bc",
+        "water": "8f06c194748739a711ba727afa063c0bdcd355d4446a6986d85cfa169d31f6aa",
+        "landuse": "cf4cf8cd0db8377f77919b2dd4028349911935d585bfdd5e5eeecf92c6de4459",
+        "roads": "33866bf3ced304f9dff57fd6d7f8bd6208c486711d2c887d60cd595d727bb66a"
+      },
+      "sourceJob": {
+        "city": "vaduz",
+        "sourceRunId": 38313119499,
+        "sourceArtifact": "city-bootstrap-li-3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+        "sourceSha": "3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+        "datasetSha256": "1553f7ae4a04687861946b19ef2e6e32df92e6062d954cd34297787f692deb52",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "7dcb684efb993f89b2182610d94b6b55587a2187de2303b9bf504de5d3709f89",
+          "extras": "eafe3f602e986ada76d7ed4bfbaff45c6627af184730186e876fd2240864e5bc",
+          "water": "8f06c194748739a711ba727afa063c0bdcd355d4446a6986d85cfa169d31f6aa",
+          "landuse": "cf4cf8cd0db8377f77919b2dd4028349911935d585bfdd5e5eeecf92c6de4459",
+          "roads": "33866bf3ced304f9dff57fd6d7f8bd6208c486711d2c887d60cd595d727bb66a"
+        }
+      }
+    }
+  ]
+}

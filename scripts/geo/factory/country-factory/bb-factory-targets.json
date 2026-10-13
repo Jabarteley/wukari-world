@@ -1,0 +1,340 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "BB",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "receiptSha256": "c0cd7c832da654036900911bc99ce2a2ae89c66ab4dbd48cca0ef55de8ddc4e2",
+    "receiptBytes": 14660,
+    "geometrySha256": "daff925627bd4bf574c4597eca072634ecb21196449d3d90b1011eda5d9ec07f",
+    "geometryBytes": 8494,
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "relationId": 547511,
+    "boundaryKey": "bb",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38313119499,
+      "sourceSha": "3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+      "sourceArtifact": "city-bootstrap-bb-3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "bridgetown",
+      "name": "Bridgetown",
+      "country": "bb",
+      "facts": {
+        "id": "bridgetown",
+        "name": "Bridgetown",
+        "country": {
+          "idISOlower": "bb",
+          "name": "Barbados"
+        },
+        "state": {
+          "idunique": "bb-bridgetown",
+          "name": "Bridgetown"
+        },
+        "timezone": "America/Barbados",
+        "centre": {
+          "lon": -59.6184184,
+          "lat": 13.0977832
+        },
+        "airport": {
+          "id": "bridgetown-airport",
+          "name": "Grantley Adams International Airport",
+          "lon": -59.491034,
+          "lat": 13.074667,
+          "sourceUrl": "https://ourairports.com/airports/TBPB/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/246518890",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -59.803015947974664,
+          12.916902310066021,
+          -59.43382085202534,
+          13.27866408993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/246518890",
+          "sourceUrl": "https://www.openstreetmap.org/node/246518890",
+          "sourceRecord": {
+            "ref": "node/246518890",
+            "tags": {
+              "admin_level": "2",
+              "capital": "yes",
+              "is_capital": "country",
+              "name": "Bridgetown",
+              "name:af": "Bridgetown",
+              "name:am": "ብርጅታውን",
+              "name:ar": "بريدج تاون",
+              "name:az": "Brictaun",
+              "name:be": "Брыджтаўн",
+              "name:be-tarask": "Брыджтаўн",
+              "name:bg": "Бриджтаун",
+              "name:bn": "ব্রিজটাউন",
+              "name:bo": "པུ་རུའི་ཀྲི་ཐོན།",
+              "name:br": "Bridgetown",
+              "name:ca": "Bridgetown",
+              "name:ce": "Бриджтаун",
+              "name:ckb": "بریج تاون",
+              "name:da": "Bridgetown",
+              "name:de": "Bridgetown",
+              "name:el": "Μπριτζτάουν",
+              "name:en": "Bridgetown",
+              "name:eo": "Briĝurbo",
+              "name:es": "Bridgetown",
+              "name:fa": "بریج‌تاون",
+              "name:fr": "Bridgetown",
+              "name:gcf": "Brijtòn",
+              "name:he": "ברידג'טאון",
+              "name:hi": "ब्रिजटाउन",
+              "name:ht": "Brijtòn",
+              "name:hu": "Bridgetown",
+              "name:hy": "Բրիջթաուն",
+              "name:ja": "ブリッジタウン",
+              "name:ka": "ბრიჯტაუნი",
+              "name:kk": "Бриджтаун",
+              "name:ko": "브리지타운",
+              "name:ku": "Brîc tawn",
+              "name:ky": "Бриджтаун",
+              "name:la": "Pontipolis",
+              "name:lt": "Bridžtaunas",
+              "name:lv": "Bridžtauna",
+              "name:mk": "Бриџтаун",
+              "name:ml": "ബ്രിഡ്ജ്ടൗൺ",
+              "name:mr": "ब्रिजटाउन",
+              "name:nb": "Bridgetown",
+              "name:nl": "Bridgetown",
+              "name:os": "Бриджтаун",
+              "name:pa": "ਬ੍ਰਿੱਜਟਾਊਨ",
+              "name:pl": "Bridgetown",
+              "name:ru": "Бриджтаун",
+              "name:sah": "Бридьтаун",
+              "name:sq": "Brixhtaun",
+              "name:sr": "Бриџтаун",
+              "name:sv": "Bridgetown",
+              "name:ta": "பிரிஜ்டவுண்",
+              "name:tg": "Бриҷтаун",
+              "name:th": "บริดจ์ทาวน์",
+              "name:tr": "Bridgetown",
+              "name:uk": "Бриджтаун",
+              "name:ur": "برج ٹاؤن",
+              "name:uz": "Brijtaun",
+              "name:zh": "布里奇敦",
+              "place": "city",
+              "population": "110000",
+              "ref:LOCODE": "BBBGI",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "wikidata": "Q36168",
+              "wikipedia": "en:Bridgetown"
+            },
+            "lon": -59.6184184,
+            "lat": 13.0977832
+          },
+          "pbfSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+          "selection": {
+            "cityOsmRef": "node/246518890",
+            "matchedOsmRef": "node/246518890"
+          }
+        },
+        "airport": {
+          "rowNumber": 65378,
+          "row": {
+            "id": "6360",
+            "ident": "TBPB",
+            "type": "large_airport",
+            "name": "Grantley Adams International Airport",
+            "latitude_deg": "13.074667",
+            "longitude_deg": "-59.491034",
+            "elevation_ft": "169",
+            "continent": "NA",
+            "iso_country": "BB",
+            "iso_region": "BB-01",
+            "municipality": "Bridgetown",
+            "scheduled_service": "yes",
+            "icao_code": "TBPB",
+            "iata_code": "BGI",
+            "gps_code": "TBPB",
+            "local_code": "",
+            "home_link": "http://www.gaia.bb/content/about-gaia-inc",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Grantley_Adams_International_Airport",
+            "keywords": "Seawell"
+          },
+          "rowSha256": "7440d4761036509ae3f5327c9e61ededfebc7074884a49ccefe32c6fd9e7854a",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "TBPB",
+            "sourceUrl": "https://ourairports.com/airports/TBPB/",
+            "matchedIdent": "TBPB",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/TBPB/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "BB",
+              "+1306-05937",
+              "America/Barbados"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "America/Barbados",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "BB",
+              "+1306-05937",
+              "America/Barbados"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+          "bytes": 791507843,
+          "sha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/26271839",
+          "way/28517388",
+          "way/28517392",
+          "way/28517396",
+          "way/28517398",
+          "way/28517402",
+          "way/28517403",
+          "way/28517404",
+          "way/28517405",
+          "way/28517406",
+          "way/28517408",
+          "way/28517411",
+          "way/28517414",
+          "way/28684423",
+          "way/94320739",
+          "way/94320754",
+          "way/297820703",
+          "way/297820711",
+          "way/297820720",
+          "way/297820721",
+          "way/297820726",
+          "way/297820727",
+          "way/297820729",
+          "way/297820732",
+          "way/297820733",
+          "way/542173718",
+          "way/542180631",
+          "way/542180669",
+          "way/553644439",
+          "way/553644442",
+          "way/680535267",
+          "way/680535278",
+          "way/680535279",
+          "way/680535280",
+          "way/680535281",
+          "way/680535282",
+          "way/680535283",
+          "way/680535284",
+          "way/680535285",
+          "way/680535286",
+          "way/680536006",
+          "way/680536008",
+          "way/680994423",
+          "way/729512531",
+          "way/816865299",
+          "way/848068970",
+          "way/848068971",
+          "way/848171818",
+          "way/1054112866",
+          "way/1054112867",
+          "way/1054112869",
+          "way/1054112875",
+          "way/1054112877",
+          "way/1054112878",
+          "way/1064467332",
+          "way/1064467335",
+          "way/1064472559",
+          "way/1064472560",
+          "way/1064472574",
+          "way/1064477561",
+          "way/1064477566",
+          "way/1069722815",
+          "way/1069722824",
+          "way/1069783869"
+        ],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              12.916902310066021,
+              -59.803015947974664,
+              13.27866408993398,
+              -59.43382085202534
+            ],
+            "core": [
+              13.052562977516505,
+              -59.66454214348014,
+              13.143003422483496,
+              -59.572294656519865
+            ],
+            "outline": [
+              12.86690231006602,
+              -59.85301594797466,
+              13.32866408993398,
+              -59.383820852025345
+            ],
+            "wide": [
+              12.316902310066022,
+              -60.403015947974666,
+              13.878664089933979,
+              -58.83382085202534
+            ]
+          },
+          "airportMarginMetres": 6203.859054754725,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "bridgetown",
+      "extractSha256": {
+        "places": "ab4433225c4f70c97516716e071360d130d1faaa3351e3ccf152296b68fb2db3",
+        "extras": "92e3b8a5d276e7e24d3a99d738f6db98b5e161896929c75274a187ebc1f84695",
+        "water": "2bd1e65713dc5c4e4aa0903cbf37ee2b2b352dca6d49d02e82214f9dc0ac4a6c",
+        "landuse": "fe74361795ea2dc10d02386995b90d00b46245fb7f7df91d35e1cb7b64f54e0b",
+        "roads": "7bec8e31980b86e14232969296f79e73eeded03c898c11a34d943cf6f37824c0"
+      },
+      "sourceJob": {
+        "city": "bridgetown",
+        "sourceRunId": 38313119499,
+        "sourceArtifact": "city-bootstrap-bb-3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+        "sourceSha": "3d0c96887646d7f4d4a5ea9a99a8efdfc699f01d",
+        "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "ab4433225c4f70c97516716e071360d130d1faaa3351e3ccf152296b68fb2db3",
+          "extras": "92e3b8a5d276e7e24d3a99d738f6db98b5e161896929c75274a187ebc1f84695",
+          "water": "2bd1e65713dc5c4e4aa0903cbf37ee2b2b352dca6d49d02e82214f9dc0ac4a6c",
+          "landuse": "fe74361795ea2dc10d02386995b90d00b46245fb7f7df91d35e1cb7b64f54e0b",
+          "roads": "7bec8e31980b86e14232969296f79e73eeded03c898c11a34d943cf6f37824c0"
+        }
+      }
+    }
+  ]
+}

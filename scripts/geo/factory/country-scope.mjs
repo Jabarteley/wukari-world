@@ -102,7 +102,7 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
     assert.match(override.evidenceSha256 ?? '', hex, 'relation override evidence pin required');
     assert.equal(override.relationId, relation.id, 'relation override names another relation');
     assert.ok(typeof override.reason === 'string' && override.reason.trim().length >= 20, 'relation override needs a written reason');
-    assert.ok(!('admin_level' in relation.tags) && Object.entries(override.expectedTags).every(([key, value]) => relation.tags[key] === value), 'relation tags differ from the reviewed override');
+    assert.ok(relation.tags.admin_level === override.expectedTags.admin_level && override.expectedTags.admin_level !== '2' && Object.entries(override.expectedTags).every(([key, value]) => relation.tags[key] === value), 'relation tags differ from the reviewed override');
   } else {
     assert.equal(relation.tags.boundary, 'administrative');
     assert.equal(relation.tags.admin_level, '2');

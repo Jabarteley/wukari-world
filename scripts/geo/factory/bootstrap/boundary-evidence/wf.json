@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "WF",
+  "dataset": {
+    "url": "https://download.geofabrik.de/australia-oceania/wallis-et-futuna-261011.osm.pbf",
+    "bytes": 619579,
+    "md5": "265abaec1ee03bcbf0b57686b2c081ae"
+  },
+  "admin0RelationOverride": {
+    "relationId": 3412448,
+    "expectedTags": {
+      "ISO3166-1": "WF",
+      "ISO3166-1:alpha2": "WF",
+      "boundary": "administrative",
+      "admin_level": "3",
+      "type": "boundary"
+    },
+    "reason": "Owner decision 2026-10-13: non-sovereign territories and disputed places are in scope. Wallis and Futuna (WF) is a territory, not a sovereign state (a French overseas collectivity). In OpenStreetMap the only relation carrying ISO3166-1=WF is relation 3412448 (admin_level 3); it is boundary=administrative with admin_level 3, not 2, because the territory sits below or beside a sovereign state, so the default admin-0 rule (boundary=administrative, admin_level=2) finds none. Game venue map only: no claims about real operations, borders or sovereignty; OSM mapped boundary, not legal-border authority. Every other proof (member ways, area assembly, segment match) still applies."
+  }
+}

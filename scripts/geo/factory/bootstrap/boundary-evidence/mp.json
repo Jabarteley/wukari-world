@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "MP",
+  "dataset": {
+    "url": "https://download.geofabrik.de/australia-oceania/american-oceania-261011.osm.pbf",
+    "bytes": 5379930,
+    "md5": "44a08328df2207adb4cb5a757c4212fb"
+  },
+  "admin0RelationOverride": {
+    "relationId": 306004,
+    "expectedTags": {
+      "ISO3166-1": "MP",
+      "ISO3166-1:alpha2": "MP",
+      "boundary": "administrative",
+      "admin_level": "4",
+      "type": "boundary"
+    },
+    "reason": "Owner decision 2026-10-13: non-sovereign territories and disputed places are in scope. Northern Mariana Islands (MP) is a territory, not a sovereign state (a US commonwealth). In OpenStreetMap the only relation carrying ISO3166-1=MP is relation 306004 (admin_level 4); it is boundary=administrative with admin_level 4, not 2, because the territory sits below or beside a sovereign state, so the default admin-0 rule (boundary=administrative, admin_level=2) finds none. Game venue map only: no claims about real operations, borders or sovereignty; OSM mapped boundary, not legal-border authority. Every other proof (member ways, area assembly, segment match) still applies."
+  }
+}

@@ -202,10 +202,10 @@ def load_relation_override(args):
             and isinstance(override['relationId'], int) and override['relationId'] > 0
             and isinstance(override['expectedTags'], dict) and override['expectedTags']
             and all(isinstance(k, str) and isinstance(v, str) for k, v in override['expectedTags'].items())
-            and 'admin_level' not in override['expectedTags']
+            and override['expectedTags'].get('admin_level', '0') != '2'
             and args.country in (override['expectedTags'].get('ISO3166-1:alpha2'), override['expectedTags'].get('ISO3166-1'))
             and isinstance(override['reason'], str) and len(override['reason'].strip()) >= 20,
-            'admin0RelationOverride needs relationId, expectedTags (with the country ISO code, no admin_level) and a written reason of at least 20 characters')
+            'admin0RelationOverride needs relationId, expectedTags (with the country ISO code, admin_level absent or not 2) and a written reason of at least 20 characters')
     return {'relationId': override['relationId'], 'expectedTags': override['expectedTags'], 'reason': override['reason'].strip(),
             'evidenceSha256': digest(path)}
 
@@ -281,7 +281,7 @@ def is_admin0(tags, relation_id, country, override):
     """boundary=administrative admin_level=2 with the ISO code, or the one reviewed override relation with exactly its expected tags."""
     if tags.get('boundary') == 'administrative' and tags.get('admin_level') == '2':
         return country in [tags.get(key) for key in ('ISO3166-1:alpha2', 'ISO3166-1') if key in tags]
-    return (override is not None and relation_id == override['relationId'] and 'admin_level' not in tags
+    return (override is not None and relation_id == override['relationId'] and tags.get('admin_level') == override['expectedTags'].get('admin_level')
             and all(tags.get(key) == value for key, value in override['expectedTags'].items()))
 
 

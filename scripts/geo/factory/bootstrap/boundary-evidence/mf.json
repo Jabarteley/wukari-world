@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "MF",
+  "dataset": {
+    "url": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "bytes": 791507843,
+    "md5": "22475549b5596a792a479757da5f1d9e"
+  },
+  "admin0RelationOverride": {
+    "relationId": 1891583,
+    "expectedTags": {
+      "ISO3166-1": "MF",
+      "ISO3166-1:alpha2": "MF",
+      "admin_level": "3",
+      "boundary": "administrative",
+      "type": "boundary"
+    },
+    "reason": "Owner decision 2026-10-13: non-sovereign territories and disputed places are in scope. Saint-Martin (MF) is a territory, not a sovereign state (a French overseas collectivity). In OpenStreetMap the only relation carrying ISO3166-1=MF is relation 1891583 (admin_level 3); it is boundary=administrative with admin_level 3, not 2, because the territory sits below or beside a sovereign state, so the default admin-0 rule (boundary=administrative, admin_level=2) finds none. Game venue map only: no claims about real operations, borders or sovereignty; OSM mapped boundary, not legal-border authority. Every other proof (member ways, area assembly, segment match) still applies."
+  }
+}

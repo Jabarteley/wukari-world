@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "EH",
+  "dataset": {
+    "url": "https://download.geofabrik.de/africa/morocco-261011.osm.pbf",
+    "bytes": 243739061,
+    "md5": "b59943161d2e4d27262105d20f70c27a"
+  },
+  "admin0RelationOverride": {
+    "relationId": 2559126,
+    "expectedTags": {
+      "ISO3166-1": "EH",
+      "ISO3166-1:alpha2": "EH",
+      "boundary": "administrative",
+      "type": "boundary"
+    },
+    "reason": "Owner decision 2026-10-13: non-sovereign territories and disputed places are in scope. Western Sahara (EH) is a territory, not a sovereign state (a disputed Non-Self-Governing Territory). In OpenStreetMap the only relation carrying ISO3166-1=EH is relation 2559126 (no admin_level tag); it is boundary=administrative with no admin_level tag, so the default admin-0 rule (boundary=administrative, admin_level=2) finds none. Game venue map only: no claims about real operations, borders or sovereignty; OSM mapped boundary, not legal-border authority. Every other proof (member ways, area assembly, segment match) still applies."
+  }
+}

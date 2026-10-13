@@ -225,6 +225,106 @@ class RelationOverride(unittest.TestCase):
         self.assertNotEqual(done.returncode, 0)
 
 
+TERRITORY = {'type': 'boundary', 'boundary': 'administrative', 'admin_level': '4', 'ISO3166-1:alpha2': 'AA', 'ISO3166-1': 'AA', 'name': 'Aaland (territory)'}
+TERRITORY_OVERRIDE = {'relationId': 100, 'expectedTags': TERRITORY,
+                      'reason': 'Territory, admin_level 4: game venue map only, no claims about real operations or sovereignty.'}
+
+
+@unittest.skipIf(osmium is None, 'osmium/shapely not installed')
+class TerritoryAdminLevelOverride(unittest.TestCase):
+    """Non-sovereign territories (as, gu, mp: admin_level 4; pf, nc, wf: admin_level 3): the override may pin an admin_level other than 2."""
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix='boundary-territory-test-')
+        self.dir = Path(self.tmp.name)
+        self.pbf = self.dir / 'aa.osm.pbf'
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def run_boundary(self, name, override=TERRITORY_OVERRIDE, relation_tags=TERRITORY, **document):
+        objects_ = [helpers.node(1, 0, 0), helpers.node(2, 2, 0), helpers.node(3, 2, 2), helpers.node(4, 0, 2),
+                    helpers.way(1, [1, 2, 3], tags=BORDER), helpers.way(2, [3, 4, 1], tags=BORDER),
+                    helpers.relation(100, [('w', 1, 'outer'), ('w', 2, 'outer')], relation_tags)]
+        helpers.write(self.pbf, objects_, box=(-0.1, -0.1, 2.1, 2.1))
+        self.sha = helpers.merge_sha(self.pbf)
+        command = [sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(self.pbf), '--country', 'AA', '--expected-sha256', self.sha,
+                   '--expected-bytes', str(self.pbf.stat().st_size), '--dataset-url', PRIMARY, '--dataset-date', '2026-10-11', '--out', str(self.dir / name)]
+        if override is not None:
+            path = self.dir / (name + '-evidence.json')
+            path.write_text(json.dumps({'schemaVersion': 1, 'countryISO': 'AA', 'datasetSha256': document.pop('datasetSha256', self.sha),
+                                        'admin0RelationOverride': override, **document}))
+            command += ['--absent-evidence', str(path)]
+        done = subprocess.run(command, capture_output=True, text=True)
+        return done, json.loads((self.dir / name / 'result.json').read_text())
+
+    def node_check(self, name):
+        return subprocess.run(['node', '--input-type=module', '-e', NODE_CHECK, str(self.dir / name), self.sha], capture_output=True, text=True, cwd=HERE.parent)
+
+    def test_default_rule_still_finds_no_territory_relation(self):
+        done, result = self.run_boundary('none', override=None)
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('found 0', result['reason'])
+
+    def test_override_with_matching_admin_level_is_accepted_and_recorded(self):
+        for level in ('3', '4'):
+            tags = {**TERRITORY, 'admin_level': level}
+            name = 'ok' + level
+            done, _ = self.run_boundary(name, override={**TERRITORY_OVERRIDE, 'expectedTags': tags}, relation_tags=tags)
+            self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+            receipt = json.loads((self.dir / name / 'receipt.json').read_text())
+            self.assertEqual(receipt['relationOverride']['expectedTags']['admin_level'], level)
+            check = self.node_check(name)
+            self.assertEqual(check.returncode, 0, check.stdout + check.stderr)
+
+    def test_relation_admin_level_must_equal_the_pinned_one(self):
+        # Relation admin_level 3, override pins 4: the relation is not found.
+        done, result = self.run_boundary('differs', relation_tags={**TERRITORY, 'admin_level': '3'})
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('found 0', result['reason'])
+        # Relation has an admin_level, override pins none (the Palestine form): not found either.
+        done, result = self.run_boundary('unpinned', override={**TERRITORY_OVERRIDE, 'expectedTags': {k: v for k, v in TERRITORY.items() if k != 'admin_level'}})
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('found 0', result['reason'])
+        # Override pins admin_level 4, relation has none: not found.
+        done, result = self.run_boundary('absent', relation_tags={k: v for k, v in TERRITORY.items() if k != 'admin_level'})
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('found 0', result['reason'])
+
+    def test_override_may_never_pin_admin_level_2_or_skip_the_pin_and_reason(self):
+        for name, override, extra in (('level2', {**TERRITORY_OVERRIDE, 'expectedTags': {**TERRITORY, 'admin_level': '2'}}, {}),
+                                      ('reason', {**TERRITORY_OVERRIDE, 'reason': 'short'}, {}),
+                                      ('pin', TERRITORY_OVERRIDE, {'datasetSha256': 'f' * 64})):
+            done, result = self.run_boundary(name, override=override, relation_tags={**TERRITORY, 'admin_level': '2'} if name == 'level2' else TERRITORY, **extra)
+            self.assertNotEqual(done.returncode, 0, name)
+            self.assertTrue('verride' in result['reason'] or 'PBF mismatch' in result['reason'], result['reason'])
+
+    def test_override_with_other_country_code_is_refused(self):
+        tags = {**TERRITORY, 'ISO3166-1': 'BB', 'ISO3166-1:alpha2': 'BB'}
+        done, result = self.run_boundary('iso', override={**TERRITORY_OVERRIDE, 'expectedTags': tags}, relation_tags=tags)
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('verride', result['reason'])
+
+    def test_node_checker_refuses_a_tampered_admin_level(self):
+        done, _ = self.run_boundary('tamper')
+        self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+        path = self.dir / 'tamper/receipt.json'
+        receipt = json.loads(path.read_text())
+        for level in ('2', '3', None):
+            changed = json.loads(json.dumps(receipt))
+            if level is None:
+                changed['relation']['tags'].pop('admin_level')
+            else:
+                changed['relation']['tags']['admin_level'] = level
+            path.write_text(json.dumps(changed, indent=2) + '\n')
+            self.assertNotEqual(self.node_check('tamper').returncode, 0, level)
+        # An override pinning admin_level 2 is refused by the node checker even when the relation says 2.
+        changed = json.loads(json.dumps(receipt))
+        changed['relation']['tags']['admin_level'] = '2'
+        changed['relationOverride']['expectedTags']['admin_level'] = '2'
+        path.write_text(json.dumps(changed, indent=2) + '\n')
+        self.assertNotEqual(self.node_check('tamper').returncode, 0)
+
+
 PART_TAGS = {'boundary': 'administrative', 'type': 'boundary', 'name': 'Extraterritorial properties (test)'}
 PART_REASON = 'Extraterritorial properties of the country outside its own ring (test fixture, like relation 6474878).'
 

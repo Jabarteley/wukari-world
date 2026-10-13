@@ -1,0 +1,26 @@
+3 schemas match
+11 fixtures match
+✔ actual pinned GLB and source audit is reproducible; no independent facial rig is present (6.477904ms)
+✔ legacy migration preserves exact categories, colours, expression, omissions and wearables (1.036839ms)
+✔ prototype v1 migrates bilateral ears to independent copies and round trips idempotently (1.695466ms)
+✔ future, corrupted and ambiguous versions are refused without producing a replacement save (0.829641ms)
+✔ all 38 scalar controls support both endpoints independently; no preset/gender/skin coupling (52.790737ms)
+✔ UI reports finite-value clamping; persisted writes still reject the same out-of-range value (1.23955ms)
+✔ serialization is stable across key insertion order and hair/clothing swaps preserve design (0.809912ms)
+✔ reject invalid numbers, unknown controls, inherited prototype keys and missing groups (4.704102ms)
+✔ seven inclusive fictional fixtures round trip without imposing demographic relationships (4.720145ms)
+✔ inherit maps the normalized legacy expression, neutral restores every channel exactly (0.68723ms)
+✔ expression composition bounds channels, preserves unilateral blink, resolves seal and sleep (0.668602ms)
+✔ gaze and basic speech shapes compose without accumulating and leave identity intact (0.674641ms)
+✔ schema covers all current wardrobe slots with explicit surface anchors (1.959599ms)
+✔ bindings reject stale mesh/rig/topology/anchor revisions, missing sides and bad frames (1.165069ms)
+✔ bindings reject invalid triangle, barycentric sum, offset, joint, slot and duplicate anchors (1.337185ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 150.094806
+{"validator": "jsonschema 4.26.0", "draft": "2020-12", "validSchemas": 3, "validFixtures": 9, "rejectedInvalidFixtures": 10, "note": "Cross-check only; barycentric sums and mesh identity are semantic Node checks."}

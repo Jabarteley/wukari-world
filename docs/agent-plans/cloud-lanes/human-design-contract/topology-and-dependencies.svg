@@ -25,10 +25,10 @@
 <text x="82" y="231" fill="#edb56f">earRight</text><path class="line" d="M138 239L178 282"/>
 <text x="398" y="231">earLeft</text><path class="line" d="M425 239L398 282"/>
 <text x="99" y="486" class="small">Character left/right; independent values stored</text>
-<text x="77" y="528">Teal loops: lids, lip seal, brow and cheek flow</text>
-<text x="77" y="558">Amber regions: ear-root / nasal-wall continuity</text>
-<text x="77" y="588">Shared seam must preserve position + normals + UV</text>
-<text x="77" y="619">Identity edits must retain the expression sample</text>
+<text x="77" y="528">Teal: expression loops</text>
+<text x="77" y="558">Amber: ear-root / nasal-wall continuity</text>
+<text x="77" y="588">Seam: positions + normals + UV</text>
+<text x="77" y="619">Identity keeps current expression</text>
 <!-- Profile scaffold shows dependency rather than an anatomical claim. -->
 <path class="face" d="M614 222Q663 197 703 224Q722 244 718 274L718 294L744 333L723 344L729 365L720 377L727 389Q715 424 678 429L671 469L624 467L619 404Q582 364 579 309Q575 250 614 222Z"/>
 <path class="loop" d="M698 285Q713 281 719 294M704 290Q710 298 716 295M701 367Q718 360 729 365M700 380Q713 376 720 377"/>

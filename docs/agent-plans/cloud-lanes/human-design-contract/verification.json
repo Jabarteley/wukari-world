@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+  "testedImplementationCommit": "fe25d2bc241369354aa8ea720a8344eb9f244fa1",
+  "coordinatorInitial": "6c2885d15d38b9d64501f14d467db9d5c01573b2",
+  "coordinatorReconciled": "844da27a549d30c5148c1cb5b5927b7d0f5bfde6",
+  "runtime": {
+    "node": "24.19.0",
+    "python": "3.12.14",
+    "jsonschema": "4.26.0",
+    "inkscape": "1.4"
+  },
+  "checks": {
+    "nodePassed": 15,
+    "nodeFailed": 0,
+    "nodeSkipped": 0,
+    "nodeDurationMs": 150.094806,
+    "schemasRegeneratedMatch": 3,
+    "fixturesRegeneratedMatch": 11,
+    "independentValidSchemas": 3,
+    "independentValidFixtures": 9,
+    "independentRejectedCases": 10
+  },
+  "resources": {
+    "heavySlot": 1,
+    "nodeHeapMiB": 128,
+    "checkTimeoutSeconds": 30,
+    "diagramTimeoutSeconds": 20,
+    "finalSlotStatus": "heavy 0/1, server 0/1, browser 0/1"
+  },
+  "diagram": {
+    "originalSource": "topology-and-dependencies.svg",
+    "reviewedImage": "topology-and-dependencies.png",
+    "width": 1400,
+    "height": 1080,
+    "review": "Inspected rendered image, shortened overlapping annotations, rerendered and inspected final image. Conceptual diagram only.",
+    "attempts": [
+      {
+        "tool": "ImageMagick convert",
+        "exit": 1,
+        "reason": "Missing rsvg-convert delegate; no PNG generated."
+      },
+      {
+        "tool": "Inkscape 1.4",
+        "exit": 0,
+        "reason": "PNG exported; nonfatal PangoFT2FontMap/GtkRecentManager and unwritable Fontconfig cache warnings. Profile isolated in /tmp/allworld-human-design-inkscape."
+      }
+    ]
+  },
+  "limitations": [
+    "No new mesh, Blender source, morph deltas, bind matrices or production anchor packet.",
+    "No geometry deformation, real-time skinning, PBR, gameplay, hardware performance or realism acceptance.",
+    "No existing character task access or ownership transfer.",
+    "No full build/typecheck/test rerun; coordinator compiler OOM remains outside this task.",
+    "No runtime/main/assets/shared pipeline/caps/credentials/deployment changes."
+  ],
+  "checkOutput": "checks.txt"
+}

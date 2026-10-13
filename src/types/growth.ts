@@ -140,6 +140,10 @@ export interface ComebackView {
   types: Record<PrefKey, boolean>
   /** Friends the caller nudged (public id → server ms), kept 7 days: the card shows when it can be done again. */
   nudged: Record<string, number>
+  /** Server ms of the last e-mail kept in the caller's own ledger (welcome, comeback, digest or a friend's ping), or 0 for none. */
+  lastSent: number
+  /** The e-mails were switched on by default for an account that was never asked: the game says so once and offers to turn them off. */
+  notice?: true
 }
 export interface ComebackBody { cityId: CityId; on?: boolean; types?: Partial<Record<PrefKey, boolean>>; pause?: boolean }
 export interface NudgeBody { cityId: CityId; to: string }

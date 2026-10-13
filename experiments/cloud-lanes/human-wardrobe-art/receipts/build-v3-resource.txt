@@ -1,0 +1,670 @@
+Info: Saved "everyday-01-tailoring-form.blend"
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+18:50:37 | INFO: Starting glTF 2.0 export
+18:50:37 | INFO: Extracting primitive: Shirt_R_front_panel.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_side_seam
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_False_double_hem_0.01
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_False_double_hem_0.023
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_back_panel.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_True_double_hem_0.01
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_True_double_hem_0.023
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_shoulder_separate_piece.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_shoulder_topstitch
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_front_panel.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_side_seam
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_False_double_hem_0.01
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_False_double_hem_0.023
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_back_panel.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_True_double_hem_0.01
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_True_double_hem_0.023
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_shoulder_separate_piece.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_shoulder_topstitch
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_sleeve.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_cuff_facing.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_sleeve_seam_0.02
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_sleeve_seam_0.9
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_sleeve_seam_0.98
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_sleeve.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_cuff_facing.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_sleeve_seam_0.02
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_sleeve_seam_0.9
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_sleeve_seam_0.98
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_front_upper_placket.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Placket_upper_stitch_0.12
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Placket_upper_stitch_0.9
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_front_under_placket.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Placket_under_stitch_0.12
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Placket_under_stitch_0.9
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Cylinder.007
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_button_0_thread_-1
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_button_0_thread_1
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Cylinder.008
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_button_1_thread_-1
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_button_1_thread_1
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Cylinder.009
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_button_2_thread_-1
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_button_2_thread_1
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Cylinder.010
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_button_3_thread_-1
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_button_3_thread_1
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Cylinder.011
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_button_4_thread_-1
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_button_4_thread_1
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Cylinder.012
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_button_5_thread_-1
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_button_5_thread_1
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_camp_collar.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Collar_R_edge_stitch
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_camp_collar.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Collar_L_edge_stitch
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_open_patch_pocket.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_L_pocket_folded_lip.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Pocket_L_side_stitch_0.05
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Pocket_L_side_stitch_0.95
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Pocket_L_cross_stitch_0.045
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Pocket_L_cross_stitch_0.91
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_open_patch_pocket.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Shirt_R_pocket_folded_lip.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Pocket_R_side_stitch_0.05
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Pocket_R_side_stitch_0.95
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Pocket_R_cross_stitch_0.045
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Pocket_R_cross_stitch_0.91
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_R_front_panel.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_R_back_panel.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_R_outseam
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_R_inseam
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_R_turned_hem.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trouser_R_hem_stitch_0.012
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trouser_R_hem_stitch_0.027
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_R_slant_pocket_welt
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_R_slant_pocket_stitch
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_R_back_welt.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_R_back_welt_stitch
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_L_front_panel.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_L_back_panel.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_L_outseam
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_L_inseam
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_L_turned_hem.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trouser_L_hem_stitch_0.012
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trouser_L_hem_stitch_0.027
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_L_slant_pocket_welt
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_L_slant_pocket_stitch
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_L_back_welt.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_L_back_welt_stitch
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_continuous_waistband.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_belt_loop_0.002
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_belt_loop_0.003
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_belt_loop_0.005
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_belt_loop_0.007
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_belt_loop_0.008
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_belt_loop_0.010
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: Trousers_fly_facing.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: FIXTURE_original_torso_not_producer_body.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: FIXTURE_neck_no_head.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: FIXTURE_R_upper_arm_stub.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: FIXTURE_R_leg_form.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: FIXTURE_L_upper_arm_stub.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Extracting primitive: FIXTURE_L_leg_form.001
+18:50:37 | INFO: Primitives created: 1
+18:50:37 | INFO: Finished glTF 2.0 export in 0.2565586566925049 s
+Blender 4.3.2
+Fra:1 Mem:55.49M (Peak 55.74M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | STUDIO_fixture_plinth
+Fra:1 Mem:55.50M (Peak 55.74M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_side_seam
+Fra:1 Mem:55.60M (Peak 55.74M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_False_double_hem_0.01
+Fra:1 Mem:55.59M (Peak 55.74M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | STUDIO_ground
+Fra:1 Mem:55.61M (Peak 55.74M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_front_panel
+Fra:1 Mem:55.76M (Peak 55.76M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_False_double_hem_0.023
+Fra:1 Mem:56.00M (Peak 56.00M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_True_double_hem_0.01
+Fra:1 Mem:56.11M (Peak 56.11M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_True_double_hem_0.023
+Fra:1 Mem:56.13M (Peak 56.13M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_shoulder_topstitch
+Fra:1 Mem:56.18M (Peak 56.18M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_side_seam
+Fra:1 Mem:56.21M (Peak 56.21M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_False_double_hem_0.01
+Fra:1 Mem:56.23M (Peak 56.23M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_False_double_hem_0.023
+Fra:1 Mem:56.26M (Peak 56.26M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_True_double_hem_0.01
+Fra:1 Mem:56.29M (Peak 56.29M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_True_double_hem_0.023
+Fra:1 Mem:56.37M (Peak 56.37M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_shoulder_topstitch
+Fra:1 Mem:56.58M (Peak 56.58M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_sleeve_seam_0.02
+Fra:1 Mem:56.62M (Peak 56.62M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_sleeve_seam_0.9
+Fra:1 Mem:56.99M (Peak 56.99M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_sleeve_seam_0.98
+Fra:1 Mem:57.11M (Peak 57.11M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_sleeve_seam_0.02
+Fra:1 Mem:57.15M (Peak 57.15M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_sleeve_seam_0.9
+Fra:1 Mem:57.19M (Peak 57.19M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_sleeve_seam_0.98
+Fra:1 Mem:57.23M (Peak 57.23M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Placket_upper_stitch_0.12
+Fra:1 Mem:57.26M (Peak 57.26M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Placket_upper_stitch_0.9
+Fra:1 Mem:57.29M (Peak 57.29M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Placket_under_stitch_0.12
+Fra:1 Mem:57.32M (Peak 57.32M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Placket_under_stitch_0.9
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_0_thread_-1
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_0_thread_1
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_1_thread_-1
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_1_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_2_thread_-1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_2_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_3_thread_-1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_3_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_4_thread_-1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_4_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_5_thread_-1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_5_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Collar_R_edge_stitch
+Fra:1 Mem:57.40M (Peak 57.40M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Collar_L_edge_stitch
+Fra:1 Mem:57.44M (Peak 57.44M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_L_side_stitch_0.05
+Fra:1 Mem:57.46M (Peak 57.46M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_L_side_stitch_0.95
+Fra:1 Mem:57.48M (Peak 57.48M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_L_cross_stitch_0.045
+Fra:1 Mem:57.50M (Peak 57.50M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_L_cross_stitch_0.91
+Fra:1 Mem:57.52M (Peak 57.52M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_R_side_stitch_0.05
+Fra:1 Mem:57.54M (Peak 57.54M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_R_side_stitch_0.95
+Fra:1 Mem:57.56M (Peak 57.56M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_R_cross_stitch_0.045
+Fra:1 Mem:57.58M (Peak 57.58M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_R_cross_stitch_0.91
+Fra:1 Mem:57.60M (Peak 57.60M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_outseam
+Fra:1 Mem:57.65M (Peak 57.65M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_inseam
+Fra:1 Mem:57.71M (Peak 57.71M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trouser_R_hem_stitch_0.012
+Fra:1 Mem:57.75M (Peak 57.75M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trouser_R_hem_stitch_0.027
+Fra:1 Mem:57.80M (Peak 57.80M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_slant_pocket_welt
+Fra:1 Mem:57.85M (Peak 57.85M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_slant_pocket_stitch
+Fra:1 Mem:57.88M (Peak 57.88M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_back_welt_stitch
+Fra:1 Mem:57.90M (Peak 57.90M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_outseam
+Fra:1 Mem:57.95M (Peak 57.95M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_inseam
+Fra:1 Mem:58.01M (Peak 58.01M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trouser_L_hem_stitch_0.012
+Fra:1 Mem:58.05M (Peak 58.05M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trouser_L_hem_stitch_0.027
+Fra:1 Mem:58.10M (Peak 58.10M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_slant_pocket_welt
+Fra:1 Mem:58.15M (Peak 58.15M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_slant_pocket_stitch
+Fra:1 Mem:58.17M (Peak 58.17M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_back_welt_stitch
+Fra:1 Mem:58.20M (Peak 58.20M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_L_leg_form
+Fra:1 Mem:58.43M (Peak 58.43M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_L_upper_arm_stub
+Fra:1 Mem:58.88M (Peak 58.88M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_R_leg_form
+Fra:1 Mem:58.74M (Peak 58.88M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_back_panel
+Fra:1 Mem:59.22M (Peak 59.22M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_R_upper_arm_stub
+Fra:1 Mem:59.37M (Peak 59.37M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_neck_no_head
+Fra:1 Mem:59.49M (Peak 59.49M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_original_torso_not_producer_body
+Fra:1 Mem:60.51M (Peak 60.51M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_fly_facing
+Fra:1 Mem:60.64M (Peak 60.64M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.9
+Fra:1 Mem:60.68M (Peak 60.68M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.76
+Fra:1 Mem:60.72M (Peak 60.72M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.6
+Fra:1 Mem:60.76M (Peak 60.76M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.4
+Fra:1 Mem:60.80M (Peak 60.80M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.24
+Fra:1 Mem:60.84M (Peak 60.84M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.1
+Fra:1 Mem:60.88M (Peak 60.88M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_continuous_waistband
+Fra:1 Mem:61.37M (Peak 61.37M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_shoulder_separate_piece
+Fra:1 Mem:61.67M (Peak 61.67M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_back_welt
+Fra:1 Mem:61.74M (Peak 61.74M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_turned_hem
+Fra:1 Mem:62.00M (Peak 62.00M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_front_panel
+Fra:1 Mem:63.28M (Peak 63.28M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_back_panel
+Fra:1 Mem:65.14M (Peak 65.14M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_back_panel
+Fra:1 Mem:66.27M (Peak 66.27M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_shoulder_separate_piece
+Fra:1 Mem:66.57M (Peak 66.57M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_sleeve
+Fra:1 Mem:67.56M (Peak 67.56M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_front_panel
+Fra:1 Mem:69.42M (Peak 69.42M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_cuff_facing
+Fra:1 Mem:69.70M (Peak 69.70M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_sleeve
+Fra:1 Mem:70.97M (Peak 70.97M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_cuff_facing
+Fra:1 Mem:70.97M (Peak 70.97M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_back_welt
+Fra:1 Mem:71.04M (Peak 71.04M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_turned_hem
+Fra:1 Mem:71.46M (Peak 71.46M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_front_upper_placket
+Fra:1 Mem:71.73M (Peak 71.73M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_front_under_placket
+Fra:1 Mem:72.00M (Peak 72.00M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_back_panel
+Fra:1 Mem:72.77M (Peak 72.77M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_0
+Fra:1 Mem:72.78M (Peak 72.78M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_1
+Fra:1 Mem:72.80M (Peak 72.80M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_2
+Fra:1 Mem:72.81M (Peak 72.81M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_3
+Fra:1 Mem:72.82M (Peak 72.82M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_4
+Fra:1 Mem:72.84M (Peak 72.84M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_5
+Fra:1 Mem:72.94M (Peak 72.94M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_camp_collar
+Fra:1 Mem:74.34M (Peak 74.34M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_camp_collar
+Fra:1 Mem:74.74M (Peak 74.74M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_open_patch_pocket
+Fra:1 Mem:75.01M (Peak 75.01M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_pocket_folded_lip
+Fra:1 Mem:75.08M (Peak 75.08M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_open_patch_pocket
+Fra:1 Mem:75.35M (Peak 75.35M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_pocket_folded_lip
+Fra:1 Mem:75.42M (Peak 75.42M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_front_panel
+Fra:1 Mem:77.28M (Peak 77.82M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:62.45M (Peak 77.82M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading warm_sand_twill_original_woven_256
+Fra:1 Mem:62.45M (Peak 77.82M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading river_sage_cotton_original_woven_256
+Fra:1 Mem:62.97M (Peak 77.82M) | Time:00:00.11 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading original_thread_normal_256
+Fra:1 Mem:60.12M (Peak 77.82M) | Time:00:00.12 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:60.12M (Peak 77.82M) | Time:00:00.12 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:60.12M (Peak 77.82M) | Time:00:00.12 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:60.12M (Peak 77.82M) | Time:00:00.12 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:60.21M (Peak 77.82M) | Time:00:00.12 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:60.21M (Peak 77.82M) | Time:00:00.12 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:60.21M (Peak 77.82M) | Time:00:00.12 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:60.21M (Peak 77.82M) | Time:00:00.12 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:60.21M (Peak 77.82M) | Time:00:00.12 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:60.21M (Peak 77.82M) | Time:00:00.12 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:60.23M (Peak 77.82M) | Time:00:00.12 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:60.23M (Peak 77.82M) | Time:00:00.12 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:60.23M (Peak 77.82M) | Time:00:00.12 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:60.23M (Peak 77.82M) | Time:00:00.12 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:62.65M (Peak 77.82M) | Time:00:00.12 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:72.00M (Peak 77.82M) | Time:00:00.12 | Mem:0.79M, Peak:0.79M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:71.98M (Peak 77.82M) | Time:00:00.12 | Mem:10.11M, Peak:10.11M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:71.98M (Peak 77.82M) | Time:00:00.12 | Mem:10.11M, Peak:10.11M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:71.98M (Peak 77.82M) | Time:00:00.12 | Mem:14.94M, Peak:14.94M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:71.98M (Peak 77.82M) | Time:00:00.15 | Mem:19.69M, Peak:24.52M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:71.98M (Peak 77.82M) | Time:00:00.15 | Mem:19.69M, Peak:24.52M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:77.43M (Peak 77.82M) | Time:00:00.15 | Mem:19.69M, Peak:24.52M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:77.43M (Peak 77.82M) | Time:00:00.15 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:77.43M (Peak 77.82M) | Time:00:00.15 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:77.43M (Peak 77.82M) | Time:00:00.15 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:77.43M (Peak 77.82M) | Time:00:00.15 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:77.43M (Peak 77.82M) | Time:00:00.15 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:77.43M (Peak 77.82M) | Time:00:00.15 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:77.44M (Peak 77.82M) | Time:00:00.15 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:77.44M (Peak 77.82M) | Time:00:00.15 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:77.44M (Peak 77.82M) | Time:00:00.15 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:77.44M (Peak 77.82M) | Time:00:00.15 | Mem:25.15M, Peak:25.23M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:77.44M (Peak 77.82M) | Time:00:00.15 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:77.44M (Peak 77.82M) | Time:00:00.15 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:77.44M (Peak 77.82M) | Time:00:00.15 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Sample 0/32
+Fra:1 Mem:86.82M (Peak 86.82M) | Time:00:00.44 | Remaining:00:08.84 | Mem:34.61M, Peak:34.61M | Scene, ViewLayer | Sample 1/32
+Fra:1 Mem:90.98M (Peak 99.31M) | Time:00:08.86 | Mem:34.61M, Peak:34.61M | Scene, ViewLayer | Sample 32/32
+Fra:1 Mem:90.98M (Peak 99.31M) | Time:00:08.86 | Mem:34.61M, Peak:34.61M | Scene, ViewLayer | Finished
+Saved: '/workspace/wardrobe-art/experiments/cloud-lanes/human-wardrobe-art/artifacts/front.png'
+Time: 00:09.02 (Saving: 00:00.16)
+
+Fra:1 Mem:55.49M (Peak 55.49M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | STUDIO_fixture_plinth
+Fra:1 Mem:55.52M (Peak 55.52M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_side_seam
+Fra:1 Mem:55.58M (Peak 55.58M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_False_double_hem_0.01
+Fra:1 Mem:55.61M (Peak 55.61M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | STUDIO_ground
+Fra:1 Mem:55.62M (Peak 55.62M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_front_panel
+Fra:1 Mem:55.70M (Peak 55.70M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_False_double_hem_0.023
+Fra:1 Mem:55.96M (Peak 55.96M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_True_double_hem_0.01
+Fra:1 Mem:56.02M (Peak 56.02M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_True_double_hem_0.023
+Fra:1 Mem:56.13M (Peak 56.13M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_shoulder_topstitch
+Fra:1 Mem:56.15M (Peak 56.15M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_side_seam
+Fra:1 Mem:56.21M (Peak 56.21M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_False_double_hem_0.01
+Fra:1 Mem:56.23M (Peak 56.23M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_False_double_hem_0.023
+Fra:1 Mem:56.26M (Peak 56.26M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_True_double_hem_0.01
+Fra:1 Mem:56.29M (Peak 56.29M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_True_double_hem_0.023
+Fra:1 Mem:56.31M (Peak 56.31M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_shoulder_topstitch
+Fra:1 Mem:56.33M (Peak 56.33M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_sleeve_seam_0.02
+Fra:1 Mem:56.43M (Peak 56.43M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_sleeve_seam_0.9
+Fra:1 Mem:56.66M (Peak 56.66M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_sleeve_seam_0.98
+Fra:1 Mem:56.70M (Peak 56.70M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_sleeve_seam_0.02
+Fra:1 Mem:57.07M (Peak 57.07M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_sleeve_seam_0.9
+Fra:1 Mem:57.11M (Peak 57.11M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_sleeve_seam_0.98
+Fra:1 Mem:57.15M (Peak 57.15M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Placket_upper_stitch_0.12
+Fra:1 Mem:57.18M (Peak 57.18M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Placket_upper_stitch_0.9
+Fra:1 Mem:57.29M (Peak 57.29M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Placket_under_stitch_0.12
+Fra:1 Mem:57.32M (Peak 57.32M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Placket_under_stitch_0.9
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_0_thread_-1
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_0_thread_1
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_1_thread_-1
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_1_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_2_thread_-1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_2_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_3_thread_-1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_3_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_4_thread_-1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_4_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_5_thread_-1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_5_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Collar_R_edge_stitch
+Fra:1 Mem:57.40M (Peak 57.40M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Collar_L_edge_stitch
+Fra:1 Mem:57.44M (Peak 57.44M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_L_side_stitch_0.05
+Fra:1 Mem:57.46M (Peak 57.46M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_L_side_stitch_0.95
+Fra:1 Mem:57.48M (Peak 57.48M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_L_cross_stitch_0.045
+Fra:1 Mem:57.50M (Peak 57.50M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_L_cross_stitch_0.91
+Fra:1 Mem:57.52M (Peak 57.52M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_R_side_stitch_0.05
+Fra:1 Mem:57.54M (Peak 57.54M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_R_side_stitch_0.95
+Fra:1 Mem:57.56M (Peak 57.56M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_R_cross_stitch_0.045
+Fra:1 Mem:57.58M (Peak 57.58M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_R_cross_stitch_0.91
+Fra:1 Mem:57.60M (Peak 57.60M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_outseam
+Fra:1 Mem:57.65M (Peak 57.65M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_inseam
+Fra:1 Mem:57.71M (Peak 57.71M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trouser_R_hem_stitch_0.012
+Fra:1 Mem:57.75M (Peak 57.75M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trouser_R_hem_stitch_0.027
+Fra:1 Mem:57.80M (Peak 57.80M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_slant_pocket_welt
+Fra:1 Mem:57.85M (Peak 57.85M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_slant_pocket_stitch
+Fra:1 Mem:57.88M (Peak 57.88M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_back_welt_stitch
+Fra:1 Mem:57.90M (Peak 57.90M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_outseam
+Fra:1 Mem:57.95M (Peak 57.95M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_inseam
+Fra:1 Mem:58.01M (Peak 58.01M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trouser_L_hem_stitch_0.012
+Fra:1 Mem:58.05M (Peak 58.05M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trouser_L_hem_stitch_0.027
+Fra:1 Mem:58.10M (Peak 58.10M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_slant_pocket_welt
+Fra:1 Mem:58.15M (Peak 58.15M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_slant_pocket_stitch
+Fra:1 Mem:58.17M (Peak 58.17M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_back_welt_stitch
+Fra:1 Mem:58.20M (Peak 58.20M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_L_leg_form
+Fra:1 Mem:58.43M (Peak 58.43M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_L_upper_arm_stub
+Fra:1 Mem:58.55M (Peak 58.55M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_R_leg_form
+Fra:1 Mem:58.79M (Peak 58.79M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_R_upper_arm_stub
+Fra:1 Mem:58.91M (Peak 58.91M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_neck_no_head
+Fra:1 Mem:59.36M (Peak 59.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_original_torso_not_producer_body
+Fra:1 Mem:59.25M (Peak 59.36M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_back_panel
+Fra:1 Mem:59.84M (Peak 59.84M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_fly_facing
+Fra:1 Mem:60.64M (Peak 60.64M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.9
+Fra:1 Mem:60.68M (Peak 60.68M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.76
+Fra:1 Mem:60.72M (Peak 60.72M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.6
+Fra:1 Mem:60.76M (Peak 60.76M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.4
+Fra:1 Mem:60.80M (Peak 60.80M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.24
+Fra:1 Mem:60.84M (Peak 60.84M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.1
+Fra:1 Mem:60.88M (Peak 60.88M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_continuous_waistband
+Fra:1 Mem:61.70M (Peak 61.70M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_back_welt
+Fra:1 Mem:61.44M (Peak 61.70M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_shoulder_separate_piece
+Fra:1 Mem:61.57M (Peak 61.70M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_turned_hem
+Fra:1 Mem:62.15M (Peak 62.15M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_front_panel
+Fra:1 Mem:63.20M (Peak 63.20M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_back_panel
+Fra:1 Mem:65.14M (Peak 65.14M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_back_panel
+Fra:1 Mem:66.27M (Peak 66.27M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_front_panel
+Fra:1 Mem:67.99M (Peak 67.99M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_shoulder_separate_piece
+Fra:1 Mem:68.43M (Peak 68.43M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_sleeve
+Fra:1 Mem:69.42M (Peak 69.47M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_cuff_facing
+Fra:1 Mem:69.70M (Peak 69.70M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_sleeve
+Fra:1 Mem:70.62M (Peak 70.62M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_back_welt
+Fra:1 Mem:70.76M (Peak 70.76M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_turned_hem
+Fra:1 Mem:71.18M (Peak 71.18M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_back_panel
+Fra:1 Mem:73.04M (Peak 73.04M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_cuff_facing
+Fra:1 Mem:73.32M (Peak 73.32M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_front_upper_placket
+Fra:1 Mem:73.59M (Peak 73.59M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_front_under_placket
+Fra:1 Mem:73.86M (Peak 73.86M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_0
+Fra:1 Mem:73.88M (Peak 73.88M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_1
+Fra:1 Mem:73.89M (Peak 73.89M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_2
+Fra:1 Mem:73.91M (Peak 73.91M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_3
+Fra:1 Mem:73.92M (Peak 73.92M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_4
+Fra:1 Mem:73.93M (Peak 73.93M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_5
+Fra:1 Mem:73.95M (Peak 73.95M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_camp_collar
+Fra:1 Mem:74.34M (Peak 74.34M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_camp_collar
+Fra:1 Mem:74.74M (Peak 74.74M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_front_panel
+Fra:1 Mem:75.64M (Peak 75.64M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_open_patch_pocket
+Fra:1 Mem:76.87M (Peak 76.87M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_pocket_folded_lip
+Fra:1 Mem:76.94M (Peak 76.94M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_open_patch_pocket
+Fra:1 Mem:77.21M (Peak 77.21M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_pocket_folded_lip
+Fra:1 Mem:77.28M (Peak 77.28M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:62.45M (Peak 77.28M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading warm_sand_twill_original_woven_256
+Fra:1 Mem:62.45M (Peak 77.28M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading river_sage_cotton_original_woven_256
+Fra:1 Mem:63.22M (Peak 77.28M) | Time:00:00.12 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading original_thread_normal_256
+Fra:1 Mem:60.12M (Peak 77.28M) | Time:00:00.13 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:60.12M (Peak 77.28M) | Time:00:00.13 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:60.12M (Peak 77.28M) | Time:00:00.13 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:60.12M (Peak 77.28M) | Time:00:00.13 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:60.21M (Peak 77.28M) | Time:00:00.13 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:60.21M (Peak 77.28M) | Time:00:00.13 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:60.21M (Peak 77.28M) | Time:00:00.13 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:60.21M (Peak 77.28M) | Time:00:00.13 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:60.21M (Peak 77.28M) | Time:00:00.13 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:60.21M (Peak 77.28M) | Time:00:00.13 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:60.23M (Peak 77.28M) | Time:00:00.13 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:60.23M (Peak 77.28M) | Time:00:00.13 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:60.23M (Peak 77.28M) | Time:00:00.13 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:60.23M (Peak 77.28M) | Time:00:00.13 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:62.65M (Peak 77.28M) | Time:00:00.13 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:72.00M (Peak 77.28M) | Time:00:00.13 | Mem:0.79M, Peak:0.79M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:71.98M (Peak 77.28M) | Time:00:00.13 | Mem:10.11M, Peak:10.11M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:71.98M (Peak 77.28M) | Time:00:00.13 | Mem:10.11M, Peak:10.11M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:71.98M (Peak 77.28M) | Time:00:00.13 | Mem:14.94M, Peak:14.94M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:71.98M (Peak 77.28M) | Time:00:00.16 | Mem:19.69M, Peak:24.52M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:71.98M (Peak 77.28M) | Time:00:00.16 | Mem:19.69M, Peak:24.52M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:77.43M (Peak 77.43M) | Time:00:00.16 | Mem:19.69M, Peak:24.52M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:77.43M (Peak 77.43M) | Time:00:00.16 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:77.43M (Peak 77.43M) | Time:00:00.16 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.16 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.16 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.16 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.16 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.16 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.16 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.16 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.16 | Mem:25.15M, Peak:25.23M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.16 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.16 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.16 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Sample 0/32
+Fra:1 Mem:86.82M (Peak 86.82M) | Time:00:00.42 | Remaining:00:08.26 | Mem:34.61M, Peak:34.61M | Scene, ViewLayer | Sample 1/32
+Fra:1 Mem:90.98M (Peak 99.31M) | Time:00:08.53 | Mem:34.61M, Peak:34.61M | Scene, ViewLayer | Sample 32/32
+Fra:1 Mem:90.98M (Peak 99.31M) | Time:00:08.53 | Mem:34.61M, Peak:34.61M | Scene, ViewLayer | Finished
+Saved: '/workspace/wardrobe-art/experiments/cloud-lanes/human-wardrobe-art/artifacts/profile.png'
+Time: 00:08.57 (Saving: 00:00.03)
+
+Fra:1 Mem:55.49M (Peak 55.99M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_side_seam
+Fra:1 Mem:55.50M (Peak 55.99M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | STUDIO_fixture_plinth
+Fra:1 Mem:55.58M (Peak 55.99M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_False_double_hem_0.01
+Fra:1 Mem:55.63M (Peak 55.99M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_False_double_hem_0.023
+Fra:1 Mem:55.62M (Peak 55.99M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | STUDIO_ground
+Fra:1 Mem:55.64M (Peak 55.99M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_front_panel
+Fra:1 Mem:55.73M (Peak 55.99M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_True_double_hem_0.01
+Fra:1 Mem:56.02M (Peak 56.02M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_True_double_hem_0.023
+Fra:1 Mem:56.07M (Peak 56.07M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_shoulder_topstitch
+Fra:1 Mem:56.15M (Peak 56.15M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_side_seam
+Fra:1 Mem:56.21M (Peak 56.21M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_False_double_hem_0.01
+Fra:1 Mem:56.23M (Peak 56.23M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_False_double_hem_0.023
+Fra:1 Mem:56.26M (Peak 56.26M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_True_double_hem_0.01
+Fra:1 Mem:56.29M (Peak 56.29M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_True_double_hem_0.023
+Fra:1 Mem:56.31M (Peak 56.31M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_shoulder_topstitch
+Fra:1 Mem:56.33M (Peak 56.33M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_sleeve_seam_0.02
+Fra:1 Mem:56.43M (Peak 56.43M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_sleeve_seam_0.9
+Fra:1 Mem:56.66M (Peak 56.66M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_sleeve_seam_0.98
+Fra:1 Mem:56.70M (Peak 56.70M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_sleeve_seam_0.02
+Fra:1 Mem:57.07M (Peak 57.07M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_sleeve_seam_0.9
+Fra:1 Mem:57.11M (Peak 57.11M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_sleeve_seam_0.98
+Fra:1 Mem:57.15M (Peak 57.15M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Placket_upper_stitch_0.12
+Fra:1 Mem:57.26M (Peak 57.26M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Placket_upper_stitch_0.9
+Fra:1 Mem:57.29M (Peak 57.29M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Placket_under_stitch_0.12
+Fra:1 Mem:57.32M (Peak 57.32M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Placket_under_stitch_0.9
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_0_thread_-1
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_0_thread_1
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_1_thread_-1
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_1_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_2_thread_-1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_2_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_3_thread_-1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_3_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_4_thread_-1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_4_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_5_thread_-1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_5_thread_1
+Fra:1 Mem:57.36M (Peak 57.36M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Collar_R_edge_stitch
+Fra:1 Mem:57.40M (Peak 57.40M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Collar_L_edge_stitch
+Fra:1 Mem:57.44M (Peak 57.44M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_L_side_stitch_0.05
+Fra:1 Mem:57.46M (Peak 57.46M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_L_side_stitch_0.95
+Fra:1 Mem:57.48M (Peak 57.48M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_L_cross_stitch_0.045
+Fra:1 Mem:57.50M (Peak 57.50M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_L_cross_stitch_0.91
+Fra:1 Mem:57.52M (Peak 57.52M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_R_side_stitch_0.05
+Fra:1 Mem:57.54M (Peak 57.54M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_R_side_stitch_0.95
+Fra:1 Mem:57.56M (Peak 57.56M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_R_cross_stitch_0.045
+Fra:1 Mem:57.58M (Peak 57.58M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pocket_R_cross_stitch_0.91
+Fra:1 Mem:57.60M (Peak 57.60M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_outseam
+Fra:1 Mem:57.65M (Peak 57.65M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_inseam
+Fra:1 Mem:57.71M (Peak 57.71M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trouser_R_hem_stitch_0.012
+Fra:1 Mem:57.75M (Peak 57.75M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trouser_R_hem_stitch_0.027
+Fra:1 Mem:57.80M (Peak 57.80M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_slant_pocket_welt
+Fra:1 Mem:57.85M (Peak 57.85M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_slant_pocket_stitch
+Fra:1 Mem:57.88M (Peak 57.88M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_back_welt_stitch
+Fra:1 Mem:57.90M (Peak 57.90M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_outseam
+Fra:1 Mem:57.95M (Peak 57.95M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_inseam
+Fra:1 Mem:58.01M (Peak 58.01M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trouser_L_hem_stitch_0.012
+Fra:1 Mem:58.05M (Peak 58.05M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trouser_L_hem_stitch_0.027
+Fra:1 Mem:58.10M (Peak 58.10M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_slant_pocket_welt
+Fra:1 Mem:58.15M (Peak 58.15M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_slant_pocket_stitch
+Fra:1 Mem:58.17M (Peak 58.17M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_back_welt_stitch
+Fra:1 Mem:58.20M (Peak 58.20M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_L_leg_form
+Fra:1 Mem:58.43M (Peak 58.43M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_L_upper_arm_stub
+Fra:1 Mem:58.55M (Peak 58.55M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_R_leg_form
+Fra:1 Mem:58.79M (Peak 58.79M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_R_upper_arm_stub
+Fra:1 Mem:58.91M (Peak 58.91M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_neck_no_head
+Fra:1 Mem:59.03M (Peak 59.03M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FIXTURE_original_torso_not_producer_body
+Fra:1 Mem:59.32M (Peak 59.32M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_back_panel
+Fra:1 Mem:59.81M (Peak 59.81M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_fly_facing
+Fra:1 Mem:60.23M (Peak 60.23M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.9
+Fra:1 Mem:60.68M (Peak 60.68M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.76
+Fra:1 Mem:60.72M (Peak 60.72M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.6
+Fra:1 Mem:60.76M (Peak 60.76M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.4
+Fra:1 Mem:60.80M (Peak 60.80M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.24
+Fra:1 Mem:60.84M (Peak 60.84M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_belt_loop_0.1
+Fra:1 Mem:60.88M (Peak 60.88M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_continuous_waistband
+Fra:1 Mem:61.54M (Peak 61.54M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_back_welt
+Fra:1 Mem:61.44M (Peak 61.54M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_shoulder_separate_piece
+Fra:1 Mem:61.55M (Peak 61.55M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_turned_hem
+Fra:1 Mem:62.15M (Peak 62.15M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_front_panel
+Fra:1 Mem:62.62M (Peak 62.62M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_back_panel
+Fra:1 Mem:65.14M (Peak 65.14M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_back_panel
+Fra:1 Mem:66.60M (Peak 66.60M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_L_front_panel
+Fra:1 Mem:66.40M (Peak 66.60M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_shoulder_separate_piece
+Fra:1 Mem:67.74M (Peak 67.74M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_sleeve
+Fra:1 Mem:69.42M (Peak 69.47M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_cuff_facing
+Fra:1 Mem:69.70M (Peak 69.70M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_sleeve
+Fra:1 Mem:70.69M (Peak 70.69M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_back_welt
+Fra:1 Mem:70.76M (Peak 70.76M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_turned_hem
+Fra:1 Mem:71.18M (Peak 71.18M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_back_panel
+Fra:1 Mem:71.94M (Peak 71.94M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_cuff_facing
+Fra:1 Mem:73.32M (Peak 73.32M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_front_upper_placket
+Fra:1 Mem:73.59M (Peak 73.59M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_front_under_placket
+Fra:1 Mem:73.86M (Peak 73.86M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_0
+Fra:1 Mem:73.88M (Peak 73.88M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_1
+Fra:1 Mem:73.89M (Peak 73.89M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_2
+Fra:1 Mem:73.91M (Peak 73.91M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_3
+Fra:1 Mem:73.92M (Peak 73.92M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_4
+Fra:1 Mem:73.93M (Peak 73.93M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_button_5
+Fra:1 Mem:73.95M (Peak 73.95M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_camp_collar
+Fra:1 Mem:74.34M (Peak 74.34M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_camp_collar
+Fra:1 Mem:74.74M (Peak 74.74M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_open_patch_pocket
+Fra:1 Mem:75.01M (Peak 75.01M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Trousers_R_front_panel
+Fra:1 Mem:75.53M (Peak 75.53M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_L_pocket_folded_lip
+Fra:1 Mem:75.80M (Peak 75.80M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_open_patch_pocket
+Fra:1 Mem:77.08M (Peak 77.08M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Shirt_R_pocket_folded_lip
+Fra:1 Mem:77.28M (Peak 77.28M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:62.45M (Peak 77.28M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading warm_sand_twill_original_woven_256
+Fra:1 Mem:62.45M (Peak 77.28M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading river_sage_cotton_original_woven_256
+Fra:1 Mem:62.97M (Peak 77.28M) | Time:00:00.13 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading original_thread_normal_256
+Fra:1 Mem:60.12M (Peak 77.28M) | Time:00:00.14 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:60.12M (Peak 77.28M) | Time:00:00.14 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:60.12M (Peak 77.28M) | Time:00:00.14 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:60.12M (Peak 77.28M) | Time:00:00.14 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:60.21M (Peak 77.28M) | Time:00:00.14 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:60.21M (Peak 77.28M) | Time:00:00.14 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:60.21M (Peak 77.28M) | Time:00:00.14 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:60.21M (Peak 77.28M) | Time:00:00.14 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:60.21M (Peak 77.28M) | Time:00:00.14 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:60.21M (Peak 77.28M) | Time:00:00.14 | Mem:0.76M, Peak:0.76M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:60.23M (Peak 77.28M) | Time:00:00.14 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:60.23M (Peak 77.28M) | Time:00:00.14 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:60.23M (Peak 77.28M) | Time:00:00.14 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:60.23M (Peak 77.28M) | Time:00:00.14 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:62.65M (Peak 77.28M) | Time:00:00.14 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:72.00M (Peak 77.28M) | Time:00:00.14 | Mem:0.79M, Peak:0.79M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:71.98M (Peak 77.28M) | Time:00:00.14 | Mem:10.11M, Peak:10.11M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:71.98M (Peak 77.28M) | Time:00:00.14 | Mem:10.11M, Peak:10.11M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:71.98M (Peak 77.28M) | Time:00:00.14 | Mem:14.94M, Peak:14.94M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:71.98M (Peak 77.28M) | Time:00:00.17 | Mem:19.69M, Peak:24.52M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:71.98M (Peak 77.28M) | Time:00:00.17 | Mem:19.69M, Peak:24.52M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:77.43M (Peak 77.43M) | Time:00:00.17 | Mem:19.69M, Peak:24.52M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:77.43M (Peak 77.43M) | Time:00:00.17 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:77.43M (Peak 77.43M) | Time:00:00.17 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.17 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.17 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.17 | Mem:25.15M, Peak:25.15M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.17 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.17 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.17 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.17 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.17 | Mem:25.15M, Peak:25.23M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.17 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.17 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:77.44M (Peak 77.44M) | Time:00:00.17 | Mem:25.23M, Peak:25.23M | Scene, ViewLayer | Sample 0/32
+Fra:1 Mem:86.82M (Peak 86.82M) | Time:00:00.48 | Remaining:00:09.45 | Mem:34.61M, Peak:34.61M | Scene, ViewLayer | Sample 1/32
+Fra:1 Mem:90.98M (Peak 99.31M) | Time:00:09.32 | Mem:34.61M, Peak:34.61M | Scene, ViewLayer | Sample 32/32
+Fra:1 Mem:90.98M (Peak 99.31M) | Time:00:09.32 | Mem:34.61M, Peak:34.61M | Scene, ViewLayer | Finished
+Saved: '/workspace/wardrobe-art/experiments/cloud-lanes/human-wardrobe-art/artifacts/back.png'
+Time: 00:09.36 (Saving: 00:00.03)
+
+
+WARDROBE_EXPORT_COMPLETE
+
+Blender quit

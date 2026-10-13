@@ -1,0 +1,1689 @@
+{
+  "units": "metres",
+  "axes": "Blender Z up / -Y forward",
+  "sourceObjects": [
+    {
+      "name": "Shirt_R_front_panel",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 475,
+      "evaluatedVertices": 3626,
+      "evaluatedTriangles": 7248,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_R_side_seam",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 164,
+      "evaluatedTriangles": 320,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_R_False_double_hem_0.01",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 180,
+      "evaluatedTriangles": 352,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_R_False_double_hem_0.023",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 180,
+      "evaluatedTriangles": 352,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_R_back_panel",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 475,
+      "evaluatedVertices": 3626,
+      "evaluatedTriangles": 7248,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_R_True_double_hem_0.01",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 180,
+      "evaluatedTriangles": 352,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_R_True_double_hem_0.023",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 180,
+      "evaluatedTriangles": 352,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_R_shoulder_separate_piece",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 133,
+      "evaluatedVertices": 962,
+      "evaluatedTriangles": 1920,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_R_shoulder_topstitch",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 124,
+      "evaluatedTriangles": 240,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_L_front_panel",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 475,
+      "evaluatedVertices": 3626,
+      "evaluatedTriangles": 7248,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_L_side_seam",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 164,
+      "evaluatedTriangles": 320,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_L_False_double_hem_0.01",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 180,
+      "evaluatedTriangles": 352,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_L_False_double_hem_0.023",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 180,
+      "evaluatedTriangles": 352,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_L_back_panel",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 475,
+      "evaluatedVertices": 3626,
+      "evaluatedTriangles": 7248,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_L_True_double_hem_0.01",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 180,
+      "evaluatedTriangles": 352,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_L_True_double_hem_0.023",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 180,
+      "evaluatedTriangles": 352,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_L_shoulder_separate_piece",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 133,
+      "evaluatedVertices": 962,
+      "evaluatedTriangles": 1920,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_L_shoulder_topstitch",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 124,
+      "evaluatedTriangles": 240,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_R_side_gusset",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 95,
+      "evaluatedVertices": 666,
+      "evaluatedTriangles": 1328,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_R_gusset_hem",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 84,
+      "evaluatedTriangles": 160,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_L_side_gusset",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 95,
+      "evaluatedVertices": 666,
+      "evaluatedTriangles": 1328,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_L_gusset_hem",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 84,
+      "evaluatedTriangles": 160,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_R_sleeve",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 416,
+      "evaluatedVertices": 3200,
+      "evaluatedTriangles": 6400,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_R_cuff_facing",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 128,
+      "evaluatedVertices": 896,
+      "evaluatedTriangles": 1792,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_R_sleeve_seam_0.02",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 256,
+      "evaluatedTriangles": 512,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_R_sleeve_seam_0.9",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 256,
+      "evaluatedTriangles": 512,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_R_sleeve_seam_0.98",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 256,
+      "evaluatedTriangles": 512,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_L_sleeve",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 416,
+      "evaluatedVertices": 3200,
+      "evaluatedTriangles": 6400,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_L_cuff_facing",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 128,
+      "evaluatedVertices": 896,
+      "evaluatedTriangles": 1792,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_L_sleeve_seam_0.02",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 256,
+      "evaluatedTriangles": 512,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_L_sleeve_seam_0.9",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 256,
+      "evaluatedTriangles": 512,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_L_sleeve_seam_0.98",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 256,
+      "evaluatedTriangles": 512,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_front_upper_placket",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 125,
+      "evaluatedVertices": 882,
+      "evaluatedTriangles": 1760,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Placket_upper_stitch_0.12",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 204,
+      "evaluatedTriangles": 400,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Placket_upper_stitch_0.9",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 204,
+      "evaluatedTriangles": 400,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_front_under_placket",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 125,
+      "evaluatedVertices": 882,
+      "evaluatedTriangles": 1760,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Placket_under_stitch_0.12",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 204,
+      "evaluatedTriangles": 400,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Placket_under_stitch_0.9",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 204,
+      "evaluatedTriangles": 400,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_button_0",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 32,
+      "evaluatedVertices": 96,
+      "evaluatedTriangles": 188,
+      "materials": [
+        "dark_corozo_buttons"
+      ],
+      "modifiers": [
+        {
+          "type": "BEVEL",
+          "name": "Button rounded rim"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_button_0_thread_-1",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 8,
+      "evaluatedTriangles": 8,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_button_0_thread_1",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 8,
+      "evaluatedTriangles": 8,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_button_1",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 32,
+      "evaluatedVertices": 96,
+      "evaluatedTriangles": 188,
+      "materials": [
+        "dark_corozo_buttons"
+      ],
+      "modifiers": [
+        {
+          "type": "BEVEL",
+          "name": "Button rounded rim"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_button_1_thread_-1",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 8,
+      "evaluatedTriangles": 8,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_button_1_thread_1",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 8,
+      "evaluatedTriangles": 8,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_button_2",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 32,
+      "evaluatedVertices": 96,
+      "evaluatedTriangles": 188,
+      "materials": [
+        "dark_corozo_buttons"
+      ],
+      "modifiers": [
+        {
+          "type": "BEVEL",
+          "name": "Button rounded rim"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_button_2_thread_-1",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 8,
+      "evaluatedTriangles": 8,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_button_2_thread_1",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 8,
+      "evaluatedTriangles": 8,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_button_3",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 32,
+      "evaluatedVertices": 96,
+      "evaluatedTriangles": 188,
+      "materials": [
+        "dark_corozo_buttons"
+      ],
+      "modifiers": [
+        {
+          "type": "BEVEL",
+          "name": "Button rounded rim"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_button_3_thread_-1",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 8,
+      "evaluatedTriangles": 8,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_button_3_thread_1",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 8,
+      "evaluatedTriangles": 8,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_button_4",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 32,
+      "evaluatedVertices": 96,
+      "evaluatedTriangles": 188,
+      "materials": [
+        "dark_corozo_buttons"
+      ],
+      "modifiers": [
+        {
+          "type": "BEVEL",
+          "name": "Button rounded rim"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_button_4_thread_-1",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 8,
+      "evaluatedTriangles": 8,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_button_4_thread_1",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 8,
+      "evaluatedTriangles": 8,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_button_5",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 32,
+      "evaluatedVertices": 96,
+      "evaluatedTriangles": 188,
+      "materials": [
+        "dark_corozo_buttons"
+      ],
+      "modifiers": [
+        {
+          "type": "BEVEL",
+          "name": "Button rounded rim"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_button_5_thread_-1",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 8,
+      "evaluatedTriangles": 8,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_button_5_thread_1",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 8,
+      "evaluatedTriangles": 8,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_R_camp_collar",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 175,
+      "evaluatedVertices": 1274,
+      "evaluatedTriangles": 2544,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Collar_R_edge_stitch",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 244,
+      "evaluatedTriangles": 480,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_L_camp_collar",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 175,
+      "evaluatedVertices": 1274,
+      "evaluatedTriangles": 2544,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Collar_L_edge_stitch",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 244,
+      "evaluatedTriangles": 480,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_L_open_patch_pocket",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 121,
+      "evaluatedVertices": 882,
+      "evaluatedTriangles": 1760,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_L_pocket_folded_lip",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 33,
+      "evaluatedVertices": 210,
+      "evaluatedTriangles": 416,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Pocket_L_side_stitch_0.05",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 132,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Pocket_L_side_stitch_0.95",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 132,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Pocket_L_cross_stitch_0.045",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 132,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Pocket_L_cross_stitch_0.91",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 132,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Shirt_R_open_patch_pocket",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 121,
+      "evaluatedVertices": 882,
+      "evaluatedTriangles": 1760,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Shirt_R_pocket_folded_lip",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 33,
+      "evaluatedVertices": 210,
+      "evaluatedTriangles": 416,
+      "materials": [
+        "river_sage_cotton"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Pocket_R_side_stitch_0.05",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 132,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Pocket_R_side_stitch_0.95",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 132,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Pocket_R_cross_stitch_0.045",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 132,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Pocket_R_cross_stitch_0.91",
+      "collection": "01_OVERSHIRT_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 132,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "sage_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trousers_R_front_panel",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 777,
+      "evaluatedVertices": 5986,
+      "evaluatedTriangles": 11968,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trousers_R_back_panel",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 777,
+      "evaluatedVertices": 5986,
+      "evaluatedTriangles": 11968,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trousers_R_outseam",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 364,
+      "evaluatedTriangles": 720,
+      "materials": [
+        "sand_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trousers_R_inseam",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 364,
+      "evaluatedTriangles": 720,
+      "materials": [
+        "sand_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trousers_R_turned_hem",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 192,
+      "evaluatedVertices": 1344,
+      "evaluatedTriangles": 2688,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trouser_R_hem_stitch_0.012",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 320,
+      "evaluatedTriangles": 640,
+      "materials": [
+        "sand_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trouser_R_hem_stitch_0.027",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 320,
+      "evaluatedTriangles": 640,
+      "materials": [
+        "sand_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trousers_R_slant_pocket_welt",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 160,
+      "evaluatedTriangles": 312,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trousers_R_slant_pocket_stitch",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 160,
+      "evaluatedTriangles": 312,
+      "materials": [
+        "sand_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trousers_R_back_welt",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 33,
+      "evaluatedVertices": 210,
+      "evaluatedTriangles": 416,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trousers_R_back_welt_stitch",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 132,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "sand_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trousers_L_front_panel",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 777,
+      "evaluatedVertices": 5986,
+      "evaluatedTriangles": 11968,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trousers_L_back_panel",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 777,
+      "evaluatedVertices": 5986,
+      "evaluatedTriangles": 11968,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trousers_L_outseam",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 364,
+      "evaluatedTriangles": 720,
+      "materials": [
+        "sand_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trousers_L_inseam",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 364,
+      "evaluatedTriangles": 720,
+      "materials": [
+        "sand_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trousers_L_turned_hem",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 192,
+      "evaluatedVertices": 1344,
+      "evaluatedTriangles": 2688,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trouser_L_hem_stitch_0.012",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 320,
+      "evaluatedTriangles": 640,
+      "materials": [
+        "sand_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trouser_L_hem_stitch_0.027",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 320,
+      "evaluatedTriangles": 640,
+      "materials": [
+        "sand_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trousers_L_slant_pocket_welt",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 160,
+      "evaluatedTriangles": 312,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trousers_L_slant_pocket_stitch",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 160,
+      "evaluatedTriangles": 312,
+      "materials": [
+        "sand_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trousers_L_back_welt",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 33,
+      "evaluatedVertices": 210,
+      "evaluatedTriangles": 416,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trousers_L_back_welt_stitch",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "CURVE",
+      "sourceVertices": null,
+      "evaluatedVertices": 132,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "sand_topstitch"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Trousers_continuous_waistband",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 224,
+      "evaluatedVertices": 1568,
+      "evaluatedTriangles": 3136,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trousers_belt_loop_0.1",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 21,
+      "evaluatedVertices": 130,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trousers_belt_loop_0.24",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 21,
+      "evaluatedVertices": 130,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trousers_belt_loop_0.4",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 21,
+      "evaluatedVertices": 130,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trousers_belt_loop_0.6",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 21,
+      "evaluatedVertices": 130,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trousers_belt_loop_0.76",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 21,
+      "evaluatedVertices": 130,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trousers_belt_loop_0.9",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 21,
+      "evaluatedVertices": 130,
+      "evaluatedTriangles": 256,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "Trousers_fly_facing",
+      "collection": "02_TROUSERS_editable_panels",
+      "sourceType": "MESH",
+      "sourceVertices": 65,
+      "evaluatedVertices": 450,
+      "evaluatedTriangles": 896,
+      "materials": [
+        "warm_sand_twill"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Real cloth thickness metres"
+        }
+      ]
+    },
+    {
+      "name": "FIXTURE_original_torso_not_producer_body",
+      "collection": "90_ORIGINAL_TAILORING_FORM_NOT_HUMAN_MASTER",
+      "sourceType": "MESH",
+      "sourceVertices": 624,
+      "evaluatedVertices": 2400,
+      "evaluatedTriangles": 4608,
+      "materials": [
+        "FIXTURE_clay_no_skin_claim"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        }
+      ]
+    },
+    {
+      "name": "FIXTURE_neck_no_head",
+      "collection": "90_ORIGINAL_TAILORING_FORM_NOT_HUMAN_MASTER",
+      "sourceType": "MESH",
+      "sourceVertices": 224,
+      "evaluatedVertices": 832,
+      "evaluatedTriangles": 1536,
+      "materials": [
+        "FIXTURE_clay_no_skin_claim"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        }
+      ]
+    },
+    {
+      "name": "FIXTURE_R_upper_arm_stub",
+      "collection": "90_ORIGINAL_TAILORING_FORM_NOT_HUMAN_MASTER",
+      "sourceType": "MESH",
+      "sourceVertices": 224,
+      "evaluatedVertices": 832,
+      "evaluatedTriangles": 1536,
+      "materials": [
+        "FIXTURE_clay_no_skin_claim"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        }
+      ]
+    },
+    {
+      "name": "FIXTURE_R_leg_form",
+      "collection": "90_ORIGINAL_TAILORING_FORM_NOT_HUMAN_MASTER",
+      "sourceType": "MESH",
+      "sourceVertices": 416,
+      "evaluatedVertices": 1600,
+      "evaluatedTriangles": 3072,
+      "materials": [
+        "FIXTURE_clay_no_skin_claim"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        }
+      ]
+    },
+    {
+      "name": "FIXTURE_L_upper_arm_stub",
+      "collection": "90_ORIGINAL_TAILORING_FORM_NOT_HUMAN_MASTER",
+      "sourceType": "MESH",
+      "sourceVertices": 224,
+      "evaluatedVertices": 832,
+      "evaluatedTriangles": 1536,
+      "materials": [
+        "FIXTURE_clay_no_skin_claim"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        }
+      ]
+    },
+    {
+      "name": "FIXTURE_L_leg_form",
+      "collection": "90_ORIGINAL_TAILORING_FORM_NOT_HUMAN_MASTER",
+      "sourceType": "MESH",
+      "sourceVertices": 416,
+      "evaluatedVertices": 1600,
+      "evaluatedTriangles": 3072,
+      "materials": [
+        "FIXTURE_clay_no_skin_claim"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Editable cloth surface smoothing"
+        }
+      ]
+    }
+  ],
+  "rigs": 0,
+  "morphTargets": 0,
+  "fitStatus": "form-only-unbound"
+}

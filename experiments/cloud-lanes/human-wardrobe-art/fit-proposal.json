@@ -1,0 +1,124 @@
+{
+  "schema": "allworld-wardrobe-form-proposal-v0.1",
+  "assetFamily": "allworld-original-everyday-01",
+  "version": "0.1.0",
+  "eligibleForProduction": false,
+  "fitStatus": "original-tailoring-form-only-unbound",
+  "bodyInput": {
+    "task": "01a13667-6b47-7763-b71a-7d06139ed03f",
+    "contractCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+    "meshCommit": null,
+    "meshSha256": null,
+    "topologySha256": null,
+    "rigSha256": null
+  },
+  "frame": {
+    "units": "metres",
+    "source": "Blender Z up / -Y forward",
+    "export": "glTF Y up / +Z forward",
+    "origin": [
+      0,
+      0,
+      0
+    ]
+  },
+  "authoredDimensionsNotFitMeasurements": {
+    "shirtHemHeight": 0.965,
+    "shirtShoulderNominalHeight": 1.52,
+    "trouserHemHeight": 0.125,
+    "trouserWaistHeight": 1.045,
+    "shellThicknessRangeMetres": [
+      0.0016,
+      0.0028
+    ],
+    "torsoAllowanceIntent": "Approx. 20\u201345 mm radial in selected torso sections; not a measured clearance certificate"
+  },
+  "regionMasks": [
+    {
+      "garment": "overshirt",
+      "proposedRegions": [
+        "torso",
+        "proximal-left-upper-arm",
+        "proximal-right-upper-arm"
+      ],
+      "leaveVisible": [
+        "neckline",
+        "distal-arm-outside-cuff"
+      ],
+      "bodyFaceIndices": null
+    },
+    {
+      "garment": "trousers",
+      "proposedRegions": [
+        "pelvis",
+        "left-leg-above-hem",
+        "right-leg-above-hem"
+      ],
+      "leaveVisible": [
+        "feet",
+        "ankles-below-hem"
+      ],
+      "bodyFaceIndices": null
+    }
+  ],
+  "anchorsBlenderMetres": {
+    "waist_reference": [
+      0,
+      0,
+      1.024
+    ],
+    "neck_reference": [
+      0,
+      0,
+      1.52
+    ],
+    "ground_reference": [
+      0,
+      0,
+      0
+    ],
+    "left_cuff": [
+      0.329,
+      0,
+      1.242
+    ],
+    "right_cuff": [
+      -0.329,
+      0,
+      1.242
+    ]
+  },
+  "binding": {
+    "status": "proposed-unbound",
+    "skeleton": null,
+    "boneWeights": null,
+    "inverseBindMatrices": null,
+    "topologyCorrespondence": null
+  },
+  "fitAcceptance": {
+    "actual-body-neutral": {
+      "status": "NOT_RUN",
+      "reason": "Frozen producer mesh, rig and supported endpoints not supplied"
+    },
+    "changed-proportion-endpoints": {
+      "status": "NOT_RUN",
+      "reason": "Frozen producer mesh, rig and supported endpoints not supplied"
+    },
+    "arm-bend": {
+      "status": "NOT_RUN",
+      "reason": "Frozen producer mesh, rig and supported endpoints not supplied"
+    },
+    "knee-bend": {
+      "status": "NOT_RUN",
+      "reason": "Frozen producer mesh, rig and supported endpoints not supplied"
+    },
+    "penetration-clearance": {
+      "status": "NOT_RUN",
+      "reason": "Frozen producer mesh, rig and supported endpoints not supplied"
+    },
+    "stretched-seam-detail": {
+      "status": "NOT_RUN",
+      "reason": "Frozen producer mesh, rig and supported endpoints not supplied"
+    }
+  }
+}

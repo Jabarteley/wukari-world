@@ -1,0 +1,2554 @@
+{
+  "status": "PASS",
+  "path": "artifacts/everyday-01-on-form.glb",
+  "bytes": 3808680,
+  "sha256": "be28e73cc7cd62b297bde445123b73eb1a870d1fe31fb9850ba9b26a99f419a3",
+  "axes": "glTF Y up / +Z forward; metres",
+  "worldOrigin": [
+    0,
+    0,
+    0
+  ],
+  "boundsMetres": {
+    "min": [
+      -0.36325588822364807,
+      0.09600001573562622,
+      -0.1675487905740738
+    ],
+    "max": [
+      0.36325588822364807,
+      1.5950002670288086,
+      0.1822929084300995
+    ],
+    "size": [
+      0.7265117764472961,
+      1.4990002512931824,
+      0.3498416990041733
+    ]
+  },
+  "totalTriangles": 160200,
+  "garmentTriangles": 144840,
+  "fixtureTriangles": 15360,
+  "meshNodes": 108,
+  "garmentMeshNodes": 102,
+  "materialCount": 6,
+  "materials": [
+    {
+      "name": "river_sage_cotton",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.7799999713897705
+      },
+      "normalTexture": {
+        "index": 0,
+        "scale": 0.3499999940395355
+      },
+      "alphaMode": "OPAQUE",
+      "doubleSided": true
+    },
+    {
+      "name": "sage_topstitch",
+      "pbr": {
+        "baseColorFactor": [
+          0.20999999344348907,
+          0.3199999928474426,
+          0.25999999046325684,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.8799999952316284
+      },
+      "normalTexture": null,
+      "alphaMode": "OPAQUE",
+      "doubleSided": true
+    },
+    {
+      "name": "dark_corozo_buttons",
+      "pbr": {
+        "baseColorFactor": [
+          0.052000001072883606,
+          0.0430000014603138,
+          0.03099999949336052,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.5
+      },
+      "normalTexture": null,
+      "alphaMode": "OPAQUE",
+      "doubleSided": true
+    },
+    {
+      "name": "warm_sand_twill",
+      "pbr": {
+        "baseColorTexture": {
+          "index": 3
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.7799999713897705
+      },
+      "normalTexture": {
+        "index": 2,
+        "scale": 0.3499999940395355
+      },
+      "alphaMode": "OPAQUE",
+      "doubleSided": true
+    },
+    {
+      "name": "sand_topstitch",
+      "pbr": {
+        "baseColorFactor": [
+          0.47999998927116394,
+          0.3499999940395355,
+          0.2150000035762787,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.8999999761581421
+      },
+      "normalTexture": null,
+      "alphaMode": "OPAQUE",
+      "doubleSided": true
+    },
+    {
+      "name": "FIXTURE_clay_no_skin_claim",
+      "pbr": {
+        "baseColorFactor": [
+          0.30000001192092896,
+          0.23999999463558197,
+          0.20000000298023224,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.8700000047683716
+      },
+      "normalTexture": null,
+      "alphaMode": "OPAQUE",
+      "doubleSided": true
+    }
+  ],
+  "images": [
+    {
+      "name": "thread-normal",
+      "mimeType": "image/png",
+      "bytes": 2348,
+      "sha256": "d27e62173cbd6fc183a2987321826f065371312c46525e1d34dc5ca36e1e5211",
+      "dimensions": [
+        256,
+        256
+      ],
+      "decodedRGBABytes": 262144
+    },
+    {
+      "name": "river_sage_cotton",
+      "mimeType": "image/png",
+      "bytes": 86284,
+      "sha256": "22e134d2a431f6efc73d03b36186d525b8b2eb6d341c86e82b09abb6dfa91ebc",
+      "dimensions": [
+        256,
+        256
+      ],
+      "decodedRGBABytes": 262144
+    },
+    {
+      "name": "warm_sand_twill",
+      "mimeType": "image/png",
+      "bytes": 88579,
+      "sha256": "c54b9ad23137e2a077c91533fb6b8e200a9c45a2b25de22f687844cc9b200cc6",
+      "dimensions": [
+        256,
+        256
+      ],
+      "decodedRGBABytes": 262144
+    }
+  ],
+  "embeddedImageBytes": 177211,
+  "decodedTextureRGBABytes": 786432,
+  "skins": 0,
+  "animations": 0,
+  "morphTargets": 0,
+  "extensionsUsed": [],
+  "nearZeroAreaTriangles": 0,
+  "objects": [
+    {
+      "name": "Shirt_R_front_panel.001",
+      "fixture": false,
+      "triangles": 7248,
+      "positionCount": 3892,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.23543788492679596,
+          0.964907705783844,
+          0.025534136220812798
+        ],
+        "max": [
+          0.0004603348206728697,
+          1.4971808195114136,
+          0.17422759532928467
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_side_seam.001",
+      "fixture": false,
+      "triangles": 320,
+      "positionCount": 205,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.23679473996162415,
+          0.9649502635002136,
+          0.02234824374318123
+        ],
+        "max": [
+          -0.22665585577487946,
+          1.3646259307861328,
+          0.03333102911710739
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_False_double_hem_0.002",
+      "fixture": false,
+      "triangles": 352,
+      "positionCount": 225,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.23626701533794403,
+          0.9699500203132629,
+          0.033446304500103
+        ],
+        "max": [
+          1.622734998818487e-05,
+          0.9711499810218811,
+          0.17624083161354065
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_False_double_hem_0.003",
+      "fixture": false,
+      "triangles": 352,
+      "positionCount": 225,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.23587214946746826,
+          0.9771650433540344,
+          0.03334137424826622
+        ],
+        "max": [
+          3.654755710158497e-05,
+          0.9783650040626526,
+          0.1760272979736328
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_back_panel.001",
+      "fixture": false,
+      "triangles": 7248,
+      "positionCount": 3848,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.23543524742126465,
+          0.9649119973182678,
+          -0.16553623974323273
+        ],
+        "max": [
+          0.000440732081187889,
+          1.522342324256897,
+          -0.02421654388308525
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_True_double_hem_0.002",
+      "fixture": false,
+      "triangles": 352,
+      "positionCount": 225,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.236264169216156,
+          0.9699500203132629,
+          -0.1675487905740738
+        ],
+        "max": [
+          1.5417084796354175e-05,
+          0.9711499810218811,
+          -0.03184615820646286
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_True_double_hem_0.003",
+      "fixture": false,
+      "triangles": 352,
+      "positionCount": 225,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.235869362950325,
+          0.9771650433540344,
+          -0.16734594106674194
+        ],
+        "max": [
+          3.472823300398886e-05,
+          0.9783650040626526,
+          -0.03174668550491333
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_shoulder_separate_piece.001",
+      "fixture": false,
+      "triangles": 1920,
+      "positionCount": 1100,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.2320978343486786,
+          1.4815517663955688,
+          -0.06592432409524918
+        ],
+        "max": [
+          -0.07285486161708832,
+          1.523302674293518,
+          0.06936024874448776
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_shoulder_topstitch.001",
+      "fixture": false,
+      "triangles": 240,
+      "positionCount": 155,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.2321482002735138,
+          1.4844735860824585,
+          0.04214770346879959
+        ],
+        "max": [
+          -0.07265886664390564,
+          1.5015381574630737,
+          0.05436829850077629
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_front_panel.001",
+      "fixture": false,
+      "triangles": 7248,
+      "positionCount": 3848,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.0004603358684107661,
+          0.964907705783844,
+          0.025534138083457947
+        ],
+        "max": [
+          0.23543788492679596,
+          1.4971808195114136,
+          0.17422758042812347
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_side_seam.001",
+      "fixture": false,
+      "triangles": 320,
+      "positionCount": 205,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.22665585577487946,
+          0.9649502635002136,
+          0.02234824374318123
+        ],
+        "max": [
+          0.23679473996162415,
+          1.3646259307861328,
+          0.03333102911710739
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_False_double_hem_0.002",
+      "fixture": false,
+      "triangles": 352,
+      "positionCount": 225,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -1.622734998818487e-05,
+          0.9699500203132629,
+          0.033446304500103
+        ],
+        "max": [
+          0.23626701533794403,
+          0.9711499810218811,
+          0.17624083161354065
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_False_double_hem_0.003",
+      "fixture": false,
+      "triangles": 352,
+      "positionCount": 225,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -3.654755710158497e-05,
+          0.9771650433540344,
+          0.03334137424826622
+        ],
+        "max": [
+          0.23587214946746826,
+          0.9783650040626526,
+          0.1760272979736328
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_back_panel.001",
+      "fixture": false,
+      "triangles": 7248,
+      "positionCount": 3892,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.00044073190656490624,
+          0.9649119973182678,
+          -0.16553623974323273
+        ],
+        "max": [
+          0.23543524742126465,
+          1.522342324256897,
+          -0.0242165457457304
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_True_double_hem_0.002",
+      "fixture": false,
+      "triangles": 352,
+      "positionCount": 225,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -1.5417084796354175e-05,
+          0.9699500203132629,
+          -0.1675487905740738
+        ],
+        "max": [
+          0.236264169216156,
+          0.9711499810218811,
+          -0.03184615820646286
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_True_double_hem_0.003",
+      "fixture": false,
+      "triangles": 352,
+      "positionCount": 225,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -3.472823300398886e-05,
+          0.9771650433540344,
+          -0.16734594106674194
+        ],
+        "max": [
+          0.235869362950325,
+          0.9783650040626526,
+          -0.03174668550491333
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_shoulder_separate_piece.001",
+      "fixture": false,
+      "triangles": 1920,
+      "positionCount": 1102,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          0.07285486161708832,
+          1.4815517663955688,
+          -0.06592431664466858
+        ],
+        "max": [
+          0.2320978343486786,
+          1.523302674293518,
+          0.06936024874448776
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_shoulder_topstitch.001",
+      "fixture": false,
+      "triangles": 240,
+      "positionCount": 155,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.07265886664390564,
+          1.4844735860824585,
+          0.04214770346879959
+        ],
+        "max": [
+          0.2321482002735138,
+          1.5015381574630737,
+          0.05436829850077629
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_side_gusset.001",
+      "fixture": false,
+      "triangles": 1328,
+      "positionCount": 796,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.239106684923172,
+          0.964931070804596,
+          -0.029174722731113434
+        ],
+        "max": [
+          -0.22676658630371094,
+          1.3590612411499023,
+          0.030724283307790756
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_gusset_hem.001",
+      "fixture": false,
+      "triangles": 160,
+      "positionCount": 105,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.23934748768806458,
+          0.9698666930198669,
+          -0.030334368348121643
+        ],
+        "max": [
+          -0.23505479097366333,
+          0.9711666703224182,
+          0.03192580118775368
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_side_gusset.001",
+      "fixture": false,
+      "triangles": 1328,
+      "positionCount": 786,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          0.22676658630371094,
+          0.964931070804596,
+          -0.029174726456403732
+        ],
+        "max": [
+          0.239106684923172,
+          1.3590612411499023,
+          0.030724283307790756
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_gusset_hem.001",
+      "fixture": false,
+      "triangles": 160,
+      "positionCount": 105,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.23505479097366333,
+          0.9698666930198669,
+          -0.030334368348121643
+        ],
+        "max": [
+          0.23934748768806458,
+          0.9711666703224182,
+          0.03192580118775368
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_sleeve.001",
+      "fixture": false,
+      "triangles": 6400,
+      "positionCount": 3488,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.3620665669441223,
+          1.1805952787399292,
+          -0.07625076919794083
+        ],
+        "max": [
+          -0.21504178643226624,
+          1.5026136636734009,
+          0.07572279870510101
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_cuff_facing.001",
+      "fixture": false,
+      "triangles": 1792,
+      "positionCount": 1114,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.36325588822364807,
+          1.180484414100647,
+          -0.0775100514292717
+        ],
+        "max": [
+          -0.28521645069122314,
+          1.3257695436477661,
+          0.07702542096376419
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_sleeve_seam_0.001",
+      "fixture": false,
+      "triangles": 512,
+      "positionCount": 325,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.2196200042963028,
+          1.3037699460983276,
+          -0.07361800968647003
+        ],
+        "max": [
+          -0.21686005592346191,
+          1.4997698068618774,
+          0.07386195659637451
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_sleeve_seam_0.003",
+      "fixture": false,
+      "triangles": 512,
+      "positionCount": 325,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.3481000065803528,
+          1.1878373622894287,
+          -0.07508846372365952
+        ],
+        "max": [
+          -0.28566768765449524,
+          1.3220696449279785,
+          0.07577104866504669
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_sleeve_seam_0.004",
+      "fixture": false,
+      "triangles": 512,
+      "positionCount": 325,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.3597799837589264,
+          1.1816352605819702,
+          -0.07754311710596085
+        ],
+        "max": [
+          -0.29186388850212097,
+          1.3103107213974,
+          0.07361800223588943
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_sleeve.001",
+      "fixture": false,
+      "triangles": 6400,
+      "positionCount": 3470,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          0.21504178643226624,
+          1.1805952787399292,
+          -0.07625076919794083
+        ],
+        "max": [
+          0.3620665669441223,
+          1.5026136636734009,
+          0.07572280615568161
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_cuff_facing.001",
+      "fixture": false,
+      "triangles": 1792,
+      "positionCount": 1088,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          0.28521648049354553,
+          1.180484414100647,
+          -0.0775100514292717
+        ],
+        "max": [
+          0.36325588822364807,
+          1.3257695436477661,
+          0.07702542096376419
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_sleeve_seam_0.001",
+      "fixture": false,
+      "triangles": 512,
+      "positionCount": 325,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.21686005592346191,
+          1.3037699460983276,
+          -0.07361800968647003
+        ],
+        "max": [
+          0.2196200042963028,
+          1.4997698068618774,
+          0.07386195659637451
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_sleeve_seam_0.003",
+      "fixture": false,
+      "triangles": 512,
+      "positionCount": 325,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.28566768765449524,
+          1.1878373622894287,
+          -0.07508846372365952
+        ],
+        "max": [
+          0.3481000065803528,
+          1.3220696449279785,
+          0.07577104866504669
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_sleeve_seam_0.004",
+      "fixture": false,
+      "triangles": 512,
+      "positionCount": 325,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.29186388850212097,
+          1.1816352605819702,
+          -0.07754311710596085
+        ],
+        "max": [
+          0.3597799837589264,
+          1.3103107213974,
+          0.07361800223588943
+        ]
+      }
+    },
+    {
+      "name": "Shirt_front_upper_placket.001",
+      "fixture": false,
+      "triangles": 1760,
+      "positionCount": 1030,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          0.00022434757556766272,
+          0.9689257740974426,
+          0.09044493734836578
+        ],
+        "max": [
+          0.023547107353806496,
+          1.4612815380096436,
+          0.17783167958259583
+        ]
+      }
+    },
+    {
+      "name": "Placket_upper_stitch_0.001",
+      "fixture": false,
+      "triangles": 400,
+      "positionCount": 255,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.0029899999499320984,
+          0.9689774513244629,
+          0.09260568022727966
+        ],
+        "max": [
+          0.004290000069886446,
+          1.4613598585128784,
+          0.17802096903324127
+        ]
+      }
+    },
+    {
+      "name": "Placket_upper_stitch_0.002",
+      "fixture": false,
+      "triangles": 400,
+      "positionCount": 255,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.020150000229477882,
+          0.9689587950706482,
+          0.09158539772033691
+        ],
+        "max": [
+          0.021449999883770943,
+          1.4613595008850098,
+          0.17710834741592407
+        ]
+      }
+    },
+    {
+      "name": "Shirt_front_under_placket.001",
+      "fixture": false,
+      "triangles": 1760,
+      "positionCount": 1052,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.023547101765871048,
+          0.9689257740974426,
+          0.09044494479894638
+        ],
+        "max": [
+          -0.00022434873972088099,
+          1.4612815380096436,
+          0.17783169448375702
+        ]
+      }
+    },
+    {
+      "name": "Placket_under_stitch_0.001",
+      "fixture": false,
+      "triangles": 400,
+      "positionCount": 255,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.004290000069886446,
+          0.9689774513244629,
+          0.09260568022727966
+        ],
+        "max": [
+          -0.0029899999499320984,
+          1.4613598585128784,
+          0.17802096903324127
+        ]
+      }
+    },
+    {
+      "name": "Placket_under_stitch_0.002",
+      "fixture": false,
+      "triangles": 400,
+      "positionCount": 255,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.021449999883770943,
+          0.9689587950706482,
+          0.09158539772033691
+        ],
+        "max": [
+          -0.020150000229477882,
+          1.4613595008850098,
+          0.17710834741592407
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_0.001",
+      "fixture": false,
+      "triangles": 188,
+      "positionCount": 352,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        2
+      ],
+      "boundsMetres": {
+        "min": [
+          0.003999999724328518,
+          1.0029999428077288,
+          0.17824291653474106
+        ],
+        "max": [
+          0.015999999828636646,
+          1.014999944658702,
+          0.18124291830221878
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_0_thread_-1.001",
+      "fixture": false,
+      "triangles": 8,
+      "positionCount": 10,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.0076500000432133675,
+          1.007200002670288,
+          0.18119290471076965
+        ],
+        "max": [
+          0.008750000037252903,
+          1.0108000040054321,
+          0.1822929084300995
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_0_thread_1.001",
+      "fixture": false,
+      "triangles": 8,
+      "positionCount": 10,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.011250000447034836,
+          1.007200002670288,
+          0.18119290471076965
+        ],
+        "max": [
+          0.012350000441074371,
+          1.0108000040054321,
+          0.1822929084300995
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_1.001",
+      "fixture": false,
+      "triangles": 188,
+      "positionCount": 352,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        2
+      ],
+      "boundsMetres": {
+        "min": [
+          0.003999999724328518,
+          1.0840000324531145,
+          0.1747647917970015
+        ],
+        "max": [
+          0.015999999828636646,
+          1.0960000343040877,
+          0.17776479356447922
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_1_thread_-1.001",
+      "fixture": false,
+      "triangles": 8,
+      "positionCount": 10,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.0076500000432133675,
+          1.0881999731063843,
+          0.1777147799730301
+        ],
+        "max": [
+          0.008750000037252903,
+          1.0917999744415283,
+          0.17881478369235992
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_1_thread_1.001",
+      "fixture": false,
+      "triangles": 8,
+      "positionCount": 10,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.011250000447034836,
+          1.0881999731063843,
+          0.1777147799730301
+        ],
+        "max": [
+          0.012350000441074371,
+          1.0917999744415283,
+          0.17881478369235992
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_2.001",
+      "fixture": false,
+      "triangles": 188,
+      "positionCount": 352,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        2
+      ],
+      "boundsMetres": {
+        "min": [
+          0.003999999724328518,
+          1.1650000028892107,
+          0.16738111741383804
+        ],
+        "max": [
+          0.015999999828636646,
+          1.1770000047401838,
+          0.17038111918131577
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_2_thread_-1.001",
+      "fixture": false,
+      "triangles": 8,
+      "positionCount": 10,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.0076500000432133675,
+          1.1691999435424805,
+          0.17033112049102783
+        ],
+        "max": [
+          0.008750000037252903,
+          1.1727999448776245,
+          0.17143112421035767
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_2_thread_1.001",
+      "fixture": false,
+      "triangles": 8,
+      "positionCount": 10,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.011250000447034836,
+          1.1691999435424805,
+          0.17033112049102783
+        ],
+        "max": [
+          0.012350000441074371,
+          1.1727999448776245,
+          0.17143112421035767
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_3.001",
+      "fixture": false,
+      "triangles": 188,
+      "positionCount": 352,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        2
+      ],
+      "boundsMetres": {
+        "min": [
+          0.003999999724328518,
+          1.2459999733253069,
+          0.1588600075944258
+        ],
+        "max": [
+          0.015999999828636646,
+          1.25799997517628,
+          0.16186000936190353
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_3_thread_-1.001",
+      "fixture": false,
+      "triangles": 8,
+      "positionCount": 10,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.0076500000432133675,
+          1.2502000331878662,
+          0.1618099957704544
+        ],
+        "max": [
+          0.008750000037252903,
+          1.2538000345230103,
+          0.16290999948978424
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_3_thread_1.001",
+      "fixture": false,
+      "triangles": 8,
+      "positionCount": 10,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.011250000447034836,
+          1.2502000331878662,
+          0.1618099957704544
+        ],
+        "max": [
+          0.012350000441074371,
+          1.2538000345230103,
+          0.16290999948978424
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_4.001",
+      "fixture": false,
+      "triangles": 188,
+      "positionCount": 352,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        2
+      ],
+      "boundsMetres": {
+        "min": [
+          0.003999999724328518,
+          1.326999943761403,
+          0.14953670866330399
+        ],
+        "max": [
+          0.015999999828636646,
+          1.3389999456123762,
+          0.1525367104307817
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_4_thread_-1.001",
+      "fixture": false,
+      "triangles": 8,
+      "positionCount": 10,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.0076500000432133675,
+          1.3312000036239624,
+          0.15248671174049377
+        ],
+        "max": [
+          0.008750000037252903,
+          1.3348000049591064,
+          0.1535867154598236
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_4_thread_1.001",
+      "fixture": false,
+      "triangles": 8,
+      "positionCount": 10,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.011250000447034836,
+          1.3312000036239624,
+          0.15248671174049377
+        ],
+        "max": [
+          0.012350000441074371,
+          1.3348000049591064,
+          0.1535867154598236
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_5.001",
+      "fixture": false,
+      "triangles": 188,
+      "positionCount": 352,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        2
+      ],
+      "boundsMetres": {
+        "min": [
+          0.003999999724328518,
+          1.4019999914451189,
+          0.13088792033036484
+        ],
+        "max": [
+          0.015999999828636646,
+          1.413999993296092,
+          0.13388792209784256
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_5_thread_-1.001",
+      "fixture": false,
+      "triangles": 8,
+      "positionCount": 10,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.0076500000432133675,
+          1.4062000513076782,
+          0.13383790850639343
+        ],
+        "max": [
+          0.008750000037252903,
+          1.4098000526428223,
+          0.13493791222572327
+        ]
+      }
+    },
+    {
+      "name": "Shirt_button_5_thread_1.001",
+      "fixture": false,
+      "triangles": 8,
+      "positionCount": 10,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.011250000447034836,
+          1.4062000513076782,
+          0.13383790850639343
+        ],
+        "max": [
+          0.012350000441074371,
+          1.4098000526428223,
+          0.13493791222572327
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_camp_collar.001",
+      "fixture": false,
+      "triangles": 2544,
+      "positionCount": 1458,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.11626517027616501,
+          1.4299181699752808,
+          -0.12486575543880463
+        ],
+        "max": [
+          0.0001165780849987641,
+          1.5305860042572021,
+          0.11936363577842712
+        ]
+      }
+    },
+    {
+      "name": "Collar_R_edge_stitch.001",
+      "fixture": false,
+      "triangles": 480,
+      "positionCount": 305,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.11260382831096649,
+          1.4384570121765137,
+          -0.12098762392997742
+        ],
+        "max": [
+          1.588536542840302e-05,
+          1.4947230815887451,
+          0.11697353422641754
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_camp_collar.001",
+      "fixture": false,
+      "triangles": 2544,
+      "positionCount": 1440,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.0001166034271591343,
+          1.4299180507659912,
+          -0.12486575543880463
+        ],
+        "max": [
+          0.11626517027616501,
+          1.5305860042572021,
+          0.11936364322900772
+        ]
+      }
+    },
+    {
+      "name": "Collar_L_edge_stitch.001",
+      "fixture": false,
+      "triangles": 480,
+      "positionCount": 305,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -1.588536542840302e-05,
+          1.4384570121765137,
+          -0.12098762392997742
+        ],
+        "max": [
+          0.11260382831096649,
+          1.4947230815887451,
+          0.11697353422641754
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_open_patch_pocket.001",
+      "fixture": false,
+      "triangles": 1760,
+      "positionCount": 1000,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          0.07957372069358826,
+          1.2349884510040283,
+          0.09841024875640869
+        ],
+        "max": [
+          0.17230552434921265,
+          1.346074104309082,
+          0.1519889235496521
+        ]
+      }
+    },
+    {
+      "name": "Shirt_L_pocket_folded_lip.001",
+      "fixture": false,
+      "triangles": 416,
+      "positionCount": 210,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          0.07951731979846954,
+          1.3302170038223267,
+          0.09820827096700668
+        ],
+        "max": [
+          0.17224706709384918,
+          1.3460828065872192,
+          0.14532896876335144
+        ]
+      }
+    },
+    {
+      "name": "Pocket_L_side_stitch_0.001",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 165,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.0839499980211258,
+          1.2403010129928589,
+          0.14257346093654633
+        ],
+        "max": [
+          0.08525000512599945,
+          1.346071720123291,
+          0.15131458640098572
+        ]
+      }
+    },
+    {
+      "name": "Pocket_L_side_stitch_0.002",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 165,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.1667499989271164,
+          1.2403063774108887,
+          0.10168531537055969
+        ],
+        "max": [
+          0.16805000603199005,
+          1.3460452556610107,
+          0.10741489380598068
+        ]
+      }
+    },
+    {
+      "name": "Pocket_L_cross_stitch_0.001",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 165,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.07959819585084915,
+          1.2393462657928467,
+          0.1019202247262001
+        ],
+        "max": [
+          0.1724478006362915,
+          1.2491445541381836,
+          0.15228460729122162
+        ]
+      }
+    },
+    {
+      "name": "Pocket_L_cross_stitch_0.002",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 165,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          0.07994966953992844,
+          1.3353601694107056,
+          0.09913527220487595
+        ],
+        "max": [
+          0.17239871621131897,
+          1.3374686241149902,
+          0.14542968571186066
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_open_patch_pocket.001",
+      "fixture": false,
+      "triangles": 1760,
+      "positionCount": 994,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.17230553925037384,
+          1.2349884510040283,
+          0.09841024875640869
+        ],
+        "max": [
+          -0.07957372069358826,
+          1.346074104309082,
+          0.1519889235496521
+        ]
+      }
+    },
+    {
+      "name": "Shirt_R_pocket_folded_lip.001",
+      "fixture": false,
+      "triangles": 416,
+      "positionCount": 210,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        0
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.17224706709384918,
+          1.3302171230316162,
+          0.09820826351642609
+        ],
+        "max": [
+          -0.07951731979846954,
+          1.3460828065872192,
+          0.14532895386219025
+        ]
+      }
+    },
+    {
+      "name": "Pocket_R_side_stitch_0.001",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 165,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.08525000512599945,
+          1.2403010129928589,
+          0.14257346093654633
+        ],
+        "max": [
+          -0.0839499980211258,
+          1.346071720123291,
+          0.15131458640098572
+        ]
+      }
+    },
+    {
+      "name": "Pocket_R_side_stitch_0.002",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 165,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.16805000603199005,
+          1.2403063774108887,
+          0.10168531537055969
+        ],
+        "max": [
+          -0.1667499989271164,
+          1.3460452556610107,
+          0.10741489380598068
+        ]
+      }
+    },
+    {
+      "name": "Pocket_R_cross_stitch_0.001",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 165,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.1724478006362915,
+          1.2393462657928467,
+          0.1019202247262001
+        ],
+        "max": [
+          -0.07959819585084915,
+          1.2491445541381836,
+          0.15228460729122162
+        ]
+      }
+    },
+    {
+      "name": "Pocket_R_cross_stitch_0.002",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 165,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        1
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.17239871621131897,
+          1.3353601694107056,
+          0.09913527220487595
+        ],
+        "max": [
+          -0.07994966953992844,
+          1.3374686241149902,
+          0.14542968571186066
+        ]
+      }
+    },
+    {
+      "name": "Trousers_R_front_panel.001",
+      "fixture": false,
+      "triangles": 11968,
+      "positionCount": 6376,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.2178516834974289,
+          0.12480024248361588,
+          -0.006262358743697405
+        ],
+        "max": [
+          0.008211980573832989,
+          1.045006275177002,
+          0.12367989867925644
+        ]
+      }
+    },
+    {
+      "name": "Trousers_R_back_panel.001",
+      "fixture": false,
+      "triangles": 11968,
+      "positionCount": 6376,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.2178570181131363,
+          0.12484057247638702,
+          -0.1275818943977356
+        ],
+        "max": [
+          0.008207341656088829,
+          1.045006275177002,
+          0.004549629986286163
+        ]
+      }
+    },
+    {
+      "name": "Trousers_R_outseam.001",
+      "fixture": false,
+      "triangles": 720,
+      "positionCount": 455,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        4
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.21853284537792206,
+          0.12495598196983337,
+          -0.006700000260025263
+        ],
+        "max": [
+          -0.19529999792575836,
+          1.0450021028518677,
+          0.005601948592811823
+        ]
+      }
+    },
+    {
+      "name": "Trousers_R_inseam.001",
+      "fixture": false,
+      "triangles": 720,
+      "positionCount": 455,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        4
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.017947861924767494,
+          0.12489618360996246,
+          -0.12569908797740936
+        ],
+        "max": [
+          0.008876938372850418,
+          1.0449999570846558,
+          0.005601951852440834
+        ]
+      }
+    },
+    {
+      "name": "Trousers_R_turned_hem.001",
+      "fixture": false,
+      "triangles": 2688,
+      "positionCount": 1638,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.1982797384262085,
+          0.12655337154865265,
+          -0.07820253074169159
+        ],
+        "max": [
+          -0.009886123239994049,
+          0.15934160351753235,
+          0.06620244681835175
+        ]
+      }
+    },
+    {
+      "name": "Trouser_R_hem_stitch_0.001",
+      "fixture": false,
+      "triangles": 640,
+      "positionCount": 405,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        4
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.1980026811361313,
+          0.13534000515937805,
+          -0.07701133191585541
+        ],
+        "max": [
+          -0.010957309044897556,
+          0.13673999905586243,
+          0.06501132994890213
+        ]
+      }
+    },
+    {
+      "name": "Trouser_R_hem_stitch_0.002",
+      "fixture": false,
+      "triangles": 640,
+      "positionCount": 405,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        4
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.1975143849849701,
+          0.14914000034332275,
+          -0.07830888032913208
+        ],
+        "max": [
+          -0.012645615264773369,
+          0.15053999423980713,
+          0.0663088783621788
+        ]
+      }
+    },
+    {
+      "name": "Trousers_R_slant_pocket_welt.001",
+      "fixture": false,
+      "triangles": 312,
+      "positionCount": 200,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.17905060946941376,
+          0.8780924081802368,
+          0.04792231693863869
+        ],
+        "max": [
+          -0.11813726276159286,
+          1.0276068449020386,
+          0.11065734177827835
+        ]
+      }
+    },
+    {
+      "name": "Trousers_R_slant_pocket_stitch.001",
+      "fixture": false,
+      "triangles": 312,
+      "positionCount": 200,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        4
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.17774322628974915,
+          0.876030445098877,
+          0.05009777098894119
+        ],
+        "max": [
+          -0.11944709718227386,
+          1.0238845348358154,
+          0.11057418584823608
+        ]
+      }
+    },
+    {
+      "name": "Trousers_R_back_welt.001",
+      "fixture": false,
+      "triangles": 416,
+      "positionCount": 210,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.15223270654678345,
+          0.9369539618492126,
+          -0.12117946147918701
+        ],
+        "max": [
+          -0.06473089754581451,
+          0.9490070939064026,
+          -0.08931582421064377
+        ]
+      }
+    },
+    {
+      "name": "Trousers_R_back_welt_stitch.001",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 165,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        4
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.15230731666088104,
+          0.9423500299453735,
+          -0.12131670862436295
+        ],
+        "max": [
+          -0.06488297879695892,
+          0.9436500072479248,
+          -0.0900355651974678
+        ]
+      }
+    },
+    {
+      "name": "Trousers_L_front_panel.001",
+      "fixture": false,
+      "triangles": 11968,
+      "positionCount": 6338,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.008211980573832989,
+          0.12480024248361588,
+          -0.006262349430471659
+        ],
+        "max": [
+          0.2178516834974289,
+          1.045006275177002,
+          0.12367988377809525
+        ]
+      }
+    },
+    {
+      "name": "Trousers_L_back_panel.001",
+      "fixture": false,
+      "triangles": 11968,
+      "positionCount": 6338,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.008207341656088829,
+          0.12484057247638702,
+          -0.1275818943977356
+        ],
+        "max": [
+          0.2178570181131363,
+          1.045006275177002,
+          0.004549628123641014
+        ]
+      }
+    },
+    {
+      "name": "Trousers_L_outseam.001",
+      "fixture": false,
+      "triangles": 720,
+      "positionCount": 455,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        4
+      ],
+      "boundsMetres": {
+        "min": [
+          0.19529999792575836,
+          0.12495598196983337,
+          -0.006700000260025263
+        ],
+        "max": [
+          0.21853284537792206,
+          1.0450021028518677,
+          0.005601948592811823
+        ]
+      }
+    },
+    {
+      "name": "Trousers_L_inseam.001",
+      "fixture": false,
+      "triangles": 720,
+      "positionCount": 455,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        4
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.008876938372850418,
+          0.12489618360996246,
+          -0.12569908797740936
+        ],
+        "max": [
+          0.017947861924767494,
+          1.0449999570846558,
+          0.005601951852440834
+        ]
+      }
+    },
+    {
+      "name": "Trousers_L_turned_hem.001",
+      "fixture": false,
+      "triangles": 2688,
+      "positionCount": 1664,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          0.009886123239994049,
+          0.12655337154865265,
+          -0.07820253074169159
+        ],
+        "max": [
+          0.1982797384262085,
+          0.15934160351753235,
+          0.06620244681835175
+        ]
+      }
+    },
+    {
+      "name": "Trouser_L_hem_stitch_0.001",
+      "fixture": false,
+      "triangles": 640,
+      "positionCount": 405,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        4
+      ],
+      "boundsMetres": {
+        "min": [
+          0.010957309044897556,
+          0.13534000515937805,
+          -0.07701133191585541
+        ],
+        "max": [
+          0.1980026811361313,
+          0.13673999905586243,
+          0.06501132994890213
+        ]
+      }
+    },
+    {
+      "name": "Trouser_L_hem_stitch_0.002",
+      "fixture": false,
+      "triangles": 640,
+      "positionCount": 405,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        4
+      ],
+      "boundsMetres": {
+        "min": [
+          0.012645615264773369,
+          0.14914000034332275,
+          -0.07830888032913208
+        ],
+        "max": [
+          0.1975143849849701,
+          0.15053999423980713,
+          0.0663088783621788
+        ]
+      }
+    },
+    {
+      "name": "Trousers_L_slant_pocket_welt.001",
+      "fixture": false,
+      "triangles": 312,
+      "positionCount": 200,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          0.11813726276159286,
+          0.8780924081802368,
+          0.04792231693863869
+        ],
+        "max": [
+          0.17905060946941376,
+          1.0276068449020386,
+          0.11065734177827835
+        ]
+      }
+    },
+    {
+      "name": "Trousers_L_slant_pocket_stitch.001",
+      "fixture": false,
+      "triangles": 312,
+      "positionCount": 200,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        4
+      ],
+      "boundsMetres": {
+        "min": [
+          0.11944709718227386,
+          0.876030445098877,
+          0.05009777098894119
+        ],
+        "max": [
+          0.17774322628974915,
+          1.0238845348358154,
+          0.11057418584823608
+        ]
+      }
+    },
+    {
+      "name": "Trousers_L_back_welt.001",
+      "fixture": false,
+      "triangles": 416,
+      "positionCount": 210,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          0.06473089754581451,
+          0.9369539618492126,
+          -0.12117946147918701
+        ],
+        "max": [
+          0.15223270654678345,
+          0.9490070939064026,
+          -0.08931582421064377
+        ]
+      }
+    },
+    {
+      "name": "Trousers_L_back_welt_stitch.001",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 165,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        4
+      ],
+      "boundsMetres": {
+        "min": [
+          0.06488297879695892,
+          0.9423500299453735,
+          -0.12131670862436295
+        ],
+        "max": [
+          0.15230731666088104,
+          0.9436500072479248,
+          -0.0900355651974678
+        ]
+      }
+    },
+    {
+      "name": "Trousers_continuous_waistband.001",
+      "fixture": false,
+      "triangles": 3136,
+      "positionCount": 1956,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.1952419877052307,
+          1.002000093460083,
+          -0.1253965049982071
+        ],
+        "max": [
+          0.1952419877052307,
+          1.0460001230239868,
+          0.1173965111374855
+        ]
+      }
+    },
+    {
+      "name": "Trousers_belt_loop_0.002",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 130,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          0.11021940410137177,
+          1.001999855041504,
+          0.09166684746742249
+        ],
+        "max": [
+          0.12245747447013855,
+          1.046000361442566,
+          0.0992419421672821
+        ]
+      }
+    },
+    {
+      "name": "Trousers_belt_loop_0.003",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 130,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          0.195485919713974,
+          1.0019997358322144,
+          -0.0007510094437748194
+        ],
+        "max": [
+          0.19912870228290558,
+          1.0460004806518555,
+          0.00803957600146532
+        ]
+      }
+    },
+    {
+      "name": "Trousers_belt_loop_0.005",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 130,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          0.11021939665079117,
+          1.001999855041504,
+          -0.10743394494056702
+        ],
+        "max": [
+          0.12245747447013855,
+          1.046000361442566,
+          -0.099858857691288
+        ]
+      }
+    },
+    {
+      "name": "Trousers_belt_loop_0.007",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 130,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.12245747447013855,
+          1.001999855041504,
+          -0.10743394494056702
+        ],
+        "max": [
+          -0.11021939665079117,
+          1.046000361442566,
+          -0.09985886514186859
+        ]
+      }
+    },
+    {
+      "name": "Trousers_belt_loop_0.008",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 130,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.19912870228290558,
+          1.0019997358322144,
+          -0.0007510094437748194
+        ],
+        "max": [
+          -0.195485919713974,
+          1.0460004806518555,
+          0.008039578795433044
+        ]
+      }
+    },
+    {
+      "name": "Trousers_belt_loop_0.010",
+      "fixture": false,
+      "triangles": 256,
+      "positionCount": 130,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.12245747447013855,
+          1.001999855041504,
+          0.09166685491800308
+        ],
+        "max": [
+          -0.11021939665079117,
+          1.046000361442566,
+          0.0992419421672821
+        ]
+      }
+    },
+    {
+      "name": "Trousers_fly_facing.001",
+      "fixture": false,
+      "triangles": 896,
+      "positionCount": 518,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        3
+      ],
+      "boundsMetres": {
+        "min": [
+          0.003999930340796709,
+          0.9499062299728394,
+          0.12252668291330338
+        ],
+        "max": [
+          0.028000066056847572,
+          1.0310940742492676,
+          0.12944325804710388
+        ]
+      }
+    },
+    {
+      "name": "FIXTURE_original_torso_not_producer_body.001",
+      "fixture": true,
+      "triangles": 4608,
+      "positionCount": 2596,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        5
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.2037341594696045,
+          0.9000001549720764,
+          -0.11149414628744125
+        ],
+        "max": [
+          0.2037341594696045,
+          1.4900001287460327,
+          0.11149415373802185
+        ]
+      }
+    },
+    {
+      "name": "FIXTURE_neck_no_head.001",
+      "fixture": true,
+      "triangles": 1536,
+      "positionCount": 953,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        5
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.05663493275642395,
+          1.4600001573562622,
+          -0.054647739976644516
+        ],
+        "max": [
+          0.05663493275642395,
+          1.5950002670288086,
+          0.054647739976644516
+        ]
+      }
+    },
+    {
+      "name": "FIXTURE_R_upper_arm_stub.001",
+      "fixture": true,
+      "triangles": 1536,
+      "positionCount": 953,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        5
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.34787192940711975,
+          1.202256202697754,
+          -0.055641334503889084
+        ],
+        "max": [
+          -0.20912811160087585,
+          1.4217439889907837,
+          0.055641334503889084
+        ]
+      }
+    },
+    {
+      "name": "FIXTURE_R_leg_form.001",
+      "fixture": true,
+      "triangles": 3072,
+      "positionCount": 1735,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        5
+      ],
+      "boundsMetres": {
+        "min": [
+          -0.18545562028884888,
+          0.09600001573562622,
+          -0.08544918894767761
+        ],
+        "max": [
+          -0.016544420272111893,
+          1.0210001468658447,
+          0.08544918894767761
+        ]
+      }
+    },
+    {
+      "name": "FIXTURE_L_upper_arm_stub.001",
+      "fixture": true,
+      "triangles": 1536,
+      "positionCount": 932,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        5
+      ],
+      "boundsMetres": {
+        "min": [
+          0.20912811160087585,
+          1.202256202697754,
+          -0.055641334503889084
+        ],
+        "max": [
+          0.34787192940711975,
+          1.4217439889907837,
+          0.055641334503889084
+        ]
+      }
+    },
+    {
+      "name": "FIXTURE_L_leg_form.001",
+      "fixture": true,
+      "triangles": 3072,
+      "positionCount": 1744,
+      "nearZeroAreaTriangles": 0,
+      "materialSlots": [
+        5
+      ],
+      "boundsMetres": {
+        "min": [
+          0.016544420272111893,
+          0.09600001573562622,
+          -0.08544918894767761
+        ],
+        "max": [
+          0.18545562028884888,
+          1.0210001468658447,
+          0.08544918894767761
+        ]
+      }
+    }
+  ],
+  "scope": "Static form-only garment. No body fit, collision, pose, animation or runtime admission."
+}

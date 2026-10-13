@@ -1,0 +1,6 @@
+node_modules/
+runs/
+artifacts/*.blend1
+artifacts/front.png
+artifacts/profile.png
+artifacts/back.png

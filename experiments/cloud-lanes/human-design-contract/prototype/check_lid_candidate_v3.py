@@ -1,7 +1,8 @@
 """Actual evaluated pose, BVH intersection, UV overlap and preservation checks.
 
 Raw BVH pairs include touching boundaries. Strict crossings require vertices of
-both triangles on both sides of the other's plane (10 nm signed tolerance).
+both triangles on both sides of the other's plane (0.25 micrometre tolerance,
+about two float32 ULPs at this model's 1.635 m height). Raw BVH pairs remain.
 No global clearance or continuous collision guarantee is inferred.
 """
 import bpy, json, hashlib, sys, math
@@ -73,15 +74,39 @@ for name in ['happy','sad']:cases.append((name,fit['expressionPresets'][name]))
 cases.extend([('left-blink',{'expression.blinkLeft':1}),('right-blink',{'expression.blinkRight':1})])
 if '--quick' in sys.argv:cases=[c for c in cases if c[0] in ['neutral','height:0/blink:0.5','height:0/blink:1']]
 
-def strict_hits(a,b,raw):
+def strict_hits(a,b,raw,tolerance=2.5e-7):
     va,ta,_=a;vb,tb,_=b;hits=[]
     for ia,ib in raw:
         aa=va[ta[ia]];bb=vb[tb[ib]]
         na=np.cross(aa[1]-aa[0],aa[2]-aa[0]);nb=np.cross(bb[1]-bb[0],bb[2]-bb[0])
         na/=max(np.linalg.norm(na),1e-30);nb/=max(np.linalg.norm(nb),1e-30)
         da=(aa-bb[0])@nb;db=(bb-aa[0])@na
-        if da.min()<-1e-8 and da.max()>1e-8 and db.min()<-1e-8 and db.max()>1e-8:hits.append((ia,ib))
+        if not (da.min()<-tolerance and da.max()>tolerance and db.min()<-tolerance and db.max()>tolerance):continue
+        # Straddling both planes is necessary but insufficient: each triangle's
+        # segment on their shared line must actually overlap the other segment.
+        direction=np.cross(na,nb);length=np.linalg.norm(direction)
+        if length<1e-12:continue
+        direction/=length
+        def interval(points,distances):
+            intersections=[]
+            for i,p in enumerate(points):
+                j=(i+1)%3
+                if abs(distances[i])<=1e-12:intersections.append(p)
+                if distances[i]*distances[j]<0:
+                    intersections.append(p+(points[j]-p)*distances[i]/(distances[i]-distances[j]))
+            projected=[float(p@direction) for p in intersections]
+            return min(projected),max(projected)
+        amin,amax=interval(aa,da);bmin,bmax=interval(bb,db)
+        if min(amax,bmax)-max(amin,bmin)>tolerance:hits.append((ia,ib))
     return hits
+
+# Known positive crossing, disjoint line intervals despite AABB/plane overlap,
+# and endpoint-only contact. These exercise the independent geometric filter.
+test_a=(np.array([[0.,-1,0],[0,1,0],[1,0,0]]),np.array([[0,1,2]]),None)
+for vertices,expected in [([[-.5,0,-1],[.5,0,1],[1.5,0,-1]],True),
+                          ([[-1.,0,1],[.5,0,1],[2,0,-.1]],False),
+                          ([[1.,0,-1],[1,0,1],[2,0,0]],False)]:
+    assert bool(strict_hits(test_a,(np.array(vertices),np.array([[0,1,2]]),None),[(0,0)]))==expected
 
 rows=[];geometry_failures=[];max_error=0
 for label,values in cases:
@@ -114,9 +139,16 @@ for label,values in cases:
                 b=data(other);raw=a[2].overlap(b[2]);strict=strict_hits(a,b,raw)
                 radial=build['bindings'][lid]['radialSegments'];count=build['bindings'][lid]['angularSamples']
                 visible=sum(all(int(i)//count>=radial//2 for i in tri[t]) for t,u in strict)
-                pairs.append({'surface':lid,'other':other,'rawBvhTrianglePairs':len(raw),'strictCrossingPairs':len(strict),'apertureHalfStrictPairs':visible})
+                item={'surface':lid,'other':other,'rawBvhTrianglePairs':len(raw),'strictCrossingPairs':len(strict),'apertureHalfStrictPairs':visible}
+                if strict and other.startswith('Head'):
+                    item['firstWitness']={'lidTriangle':a[0][a[1][strict[0][0]]].tolist(),'headTriangle':b[0][b[1][strict[0][1]]].tolist(),
+                                          'lidRadialRows':[int(i)//count for i in tri[strict[0][0]]]}
+                pairs.append(item)
         a=data(names[0]);b=data(names[1]);raw=a[2].overlap(b[2]);strict=strict_hits(a,b,raw)
-        pairs.append({'surface':names[0],'other':names[1],'rawBvhTrianglePairs':len(raw),'strictCrossingPairs':len(strict)})
+        item={'surface':names[0],'other':names[1],'rawBvhTrianglePairs':len(raw),'strictCrossingPairs':len(strict),
+              'atTenNanometreTolerancePairs':len(strict_hits(a,b,raw,1e-8))}
+        if strict:item['firstWitness']={'upper':a[0][a[1][strict[0][0]]].tolist(),'lower':b[0][b[1][strict[0][1]]].tolist()}
+        pairs.append(item)
         a=data('Eye_'+side);b=data('Head_continuous_anatomy');raw=a[2].overlap(b[2]);strict=strict_hits(a,b,raw)
         pairs.append({'surface':'Eye_'+side,'other':'Head_continuous_anatomy','rawBvhTrianglePairs':len(raw),'strictCrossingPairs':len(strict),'unchangedInheritedInterface':True})
     rows.append({'case':label,'values':values,'pairs':pairs})
@@ -127,9 +159,13 @@ report={'schemaVersion':3,'cases':len(cases),'uv':uv_results,'exactProtectedMesh
  'lidVsEyeStrictPairs':count(lambda p:p['surface'] in lids and p['other'].startswith('Eye_'),'strictCrossingPairs'),
  'lidVsHeadStrictPairs':count(lambda p:p['surface'] in lids and p['other'].startswith('Head_'),'strictCrossingPairs'),
  'lidVsIrisPupilStrictPairs':count(lambda p:p['surface'] in lids and p['other'].startswith(('Iris_','Pupil_')),'strictCrossingPairs'),
+ 'upperVsLowerLidStrictPairs':count(lambda p:p['surface'] in lids and p['other'] in lids,'strictCrossingPairs'),
+ 'strictPlaneToleranceMetres':2.5e-7,
+ 'intersectionMethod':'BVH candidates, both-plane straddling and intersecting intervals along the planes intersection line; three independent classifier fixtures pass.',
  'caseResults':rows,'limits':'Discrete actual evaluated samples, not continuous collision or global clearance. Positive-area UV overlaps checked within each separate lid map, not a shared atlas. Raw boundary touches are retained alongside strict transverse crossings. Unchanged eye/head penetration remains outside this four-lid correction.'}
-report['status']='FAIL' if geometry_failures or report['lidVsEyeStrictPairs'] or report['lidVsHeadStrictPairs'] or report['lidVsIrisPupilStrictPairs'] else 'LID_CHECKS_PASS_WITH_INHERITED_EYE_HEAD_BLOCKER'
+report['status']='FAIL' if geometry_failures or report['lidVsEyeStrictPairs'] or report['lidVsHeadStrictPairs'] or report['lidVsIrisPupilStrictPairs'] or report['upperVsLowerLidStrictPairs'] else 'LID_CHECKS_PASS_WITH_INHERITED_EYE_HEAD_BLOCKER'
 (OUT/'geometry-uv-checks.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({k:v for k,v in report.items() if k not in ['caseResults','uv','limits']}))
 print('UV',json.dumps(uv_results))
 assert not geometry_failures
+assert report['status']!='FAIL',report['status']

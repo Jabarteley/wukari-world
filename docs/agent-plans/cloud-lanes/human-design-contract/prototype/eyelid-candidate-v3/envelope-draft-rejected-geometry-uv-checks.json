@@ -1,0 +1,5302 @@
+{
+  "schemaVersion": 3,
+  "cases": 35,
+  "uv": {
+    "frozen": {
+      "UpperLid_Left": {
+        "triangles": 256,
+        "positiveAreaOverlapPairs": 708,
+        "summedOverlapArea": 0.011768676818934842,
+        "minimumUvTriangleArea": 2.0154486874979227e-06,
+        "summedTriangleArea": 0.34579334511281123,
+        "uvBounds": [
+          0.27008405327796936,
+          0.84434974193573,
+          0.0,
+          1.0
+        ]
+      },
+      "LowerLid_Left": {
+        "triangles": 256,
+        "positiveAreaOverlapPairs": 964,
+        "summedOverlapArea": 0.13316416589035757,
+        "minimumUvTriangleArea": 8.482950946131496e-07,
+        "summedTriangleArea": 0.5123804179574534,
+        "uvBounds": [
+          0.20743653178215027,
+          1.4095752239227295,
+          0.0,
+          1.0
+        ]
+      },
+      "UpperLid_Right": {
+        "triangles": 256,
+        "positiveAreaOverlapPairs": 524,
+        "summedOverlapArea": 0.008387356852357662,
+        "minimumUvTriangleArea": 2.0309936001883244e-06,
+        "summedTriangleArea": 0.3441696380853777,
+        "uvBounds": [
+          0.15565024316310883,
+          0.7299159169197083,
+          0.0,
+          1.0
+        ]
+      },
+      "LowerLid_Right": {
+        "triangles": 256,
+        "positiveAreaOverlapPairs": 1010,
+        "summedOverlapArea": 0.08307809736639812,
+        "minimumUvTriangleArea": 6.484974329978854e-06,
+        "summedTriangleArea": 0.5067934112688102,
+        "uvBounds": [
+          2.649537407251046e-07,
+          1.4999998807907104,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    "candidate": {
+      "UpperLid_Left": {
+        "triangles": 1024,
+        "positiveAreaOverlapPairs": 0,
+        "summedOverlapArea": 0,
+        "minimumUvTriangleArea": 0.0009765625,
+        "summedTriangleArea": 1.0,
+        "uvBounds": [
+          0.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "LowerLid_Left": {
+        "triangles": 1024,
+        "positiveAreaOverlapPairs": 0,
+        "summedOverlapArea": 0,
+        "minimumUvTriangleArea": 0.0009765625,
+        "summedTriangleArea": 1.0,
+        "uvBounds": [
+          0.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "UpperLid_Right": {
+        "triangles": 1024,
+        "positiveAreaOverlapPairs": 0,
+        "summedOverlapArea": 0,
+        "minimumUvTriangleArea": 0.0009765625,
+        "summedTriangleArea": 1.0,
+        "uvBounds": [
+          0.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "LowerLid_Right": {
+        "triangles": 1024,
+        "positiveAreaOverlapPairs": 0,
+        "summedOverlapArea": 0,
+        "minimumUvTriangleArea": 0.0009765625,
+        "summedTriangleArea": 1.0,
+        "uvBounds": [
+          0.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      }
+    }
+  },
+  "exactProtectedMeshes": 27,
+  "maximumEvaluatedMorphErrorMetres": 1.4901161193847656e-07,
+  "geometryFailures": [],
+  "lidVsEyeStrictPairs": 1788,
+  "lidVsHeadStrictPairs": 719,
+  "lidVsIrisPupilStrictPairs": 0,
+  "caseResults": [
+    {
+      "case": "neutral",
+      "values": {},
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 7,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "nose.projection:-1",
+      "values": {
+        "nose.projection": -1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 88,
+          "strictCrossingPairs": 88,
+          "apertureHalfStrictPairs": 17
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 38,
+          "strictCrossingPairs": 38,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 74,
+          "strictCrossingPairs": 74,
+          "apertureHalfStrictPairs": 11
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 6,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 39,
+          "strictCrossingPairs": 39,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "nose.projection:1",
+      "values": {
+        "nose.projection": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 14,
+          "strictCrossingPairs": 14,
+          "apertureHalfStrictPairs": 14
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 35,
+          "strictCrossingPairs": 35,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "values": {
+        "nose.alarWidth": -1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 6,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 2,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "values": {
+        "nose.alarWidth": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": -1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "values": {
+        "earLeft.protrusion": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "values": {
+        "earRight.protrusion": -1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 7,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "values": {
+        "earRight.protrusion": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 7,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "body.height:-1",
+      "values": {
+        "body.height": -1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "body.height:1",
+      "values": {
+        "body.height": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "values": {
+        "body.shoulderWidth": -1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 7,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "values": {
+        "body.shoulderWidth": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 7,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "all-six:-1/blink:0",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": -1,
+        "body.height": -1,
+        "body.shoulderWidth": -1,
+        "expression.blinkLeft": 0,
+        "expression.blinkRight": 0
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 88,
+          "strictCrossingPairs": 88,
+          "apertureHalfStrictPairs": 17
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 38,
+          "strictCrossingPairs": 38,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 76,
+          "strictCrossingPairs": 76,
+          "apertureHalfStrictPairs": 13
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 2,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 39,
+          "strictCrossingPairs": 39,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "all-six:-1/blink:0.5",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": -1,
+        "body.height": -1,
+        "body.shoulderWidth": -1,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 22,
+          "strictCrossingPairs": 22,
+          "apertureHalfStrictPairs": 22
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 82,
+          "strictCrossingPairs": 82,
+          "apertureHalfStrictPairs": 11
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 2,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 38,
+          "strictCrossingPairs": 38,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 4,
+          "apertureHalfStrictPairs": 4
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 24,
+          "strictCrossingPairs": 24,
+          "apertureHalfStrictPairs": 24
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 74,
+          "strictCrossingPairs": 74,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 39,
+          "strictCrossingPairs": 39,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "all-six:-1/blink:1",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": -1,
+        "body.height": -1,
+        "body.shoulderWidth": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 14,
+          "strictCrossingPairs": 14,
+          "apertureHalfStrictPairs": 14
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 18,
+          "strictCrossingPairs": 18,
+          "apertureHalfStrictPairs": 18
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 81,
+          "strictCrossingPairs": 81,
+          "apertureHalfStrictPairs": 9
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 23,
+          "strictCrossingPairs": 2
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 38,
+          "strictCrossingPairs": 38,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 26,
+          "strictCrossingPairs": 26,
+          "apertureHalfStrictPairs": 26
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 72,
+          "strictCrossingPairs": 72,
+          "apertureHalfStrictPairs": 5
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 25,
+          "strictCrossingPairs": 3
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 39,
+          "strictCrossingPairs": 39,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "all-six:1/blink:0",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1,
+        "body.height": 1,
+        "body.shoulderWidth": 1,
+        "expression.blinkLeft": 0,
+        "expression.blinkRight": 0
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 14,
+          "strictCrossingPairs": 14,
+          "apertureHalfStrictPairs": 14
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 7,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 7,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 35,
+          "strictCrossingPairs": 35,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "all-six:1/blink:0.5",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1,
+        "body.height": 1,
+        "body.shoulderWidth": 1,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 18,
+          "strictCrossingPairs": 18,
+          "apertureHalfStrictPairs": 18
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 4,
+          "apertureHalfStrictPairs": 4
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 4,
+          "apertureHalfStrictPairs": 4
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 22,
+          "strictCrossingPairs": 22,
+          "apertureHalfStrictPairs": 22
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 35,
+          "strictCrossingPairs": 35,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "all-six:1/blink:1",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1,
+        "body.height": 1,
+        "body.shoulderWidth": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 14,
+          "strictCrossingPairs": 14,
+          "apertureHalfStrictPairs": 14
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 18,
+          "strictCrossingPairs": 18,
+          "apertureHalfStrictPairs": 18
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 4,
+          "apertureHalfStrictPairs": 4
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 11,
+          "strictCrossingPairs": 1
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 4,
+          "apertureHalfStrictPairs": 4
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 26,
+          "strictCrossingPairs": 26,
+          "apertureHalfStrictPairs": 26
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 27,
+          "strictCrossingPairs": 3
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 35,
+          "strictCrossingPairs": 35,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "height:-1/blink:0.25",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 0.25,
+        "expression.blinkRight": 0.25
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 5,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 6,
+          "strictCrossingPairs": 6,
+          "apertureHalfStrictPairs": 6
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 20,
+          "strictCrossingPairs": 20,
+          "apertureHalfStrictPairs": 20
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "height:-1/blink:0.5",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 18,
+          "strictCrossingPairs": 18,
+          "apertureHalfStrictPairs": 18
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 4,
+          "apertureHalfStrictPairs": 4
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 22,
+          "strictCrossingPairs": 22,
+          "apertureHalfStrictPairs": 22
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "height:-1/blink:0.75",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 0.75,
+        "expression.blinkRight": 0.75
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 20,
+          "strictCrossingPairs": 20,
+          "apertureHalfStrictPairs": 20
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 18,
+          "strictCrossingPairs": 18,
+          "apertureHalfStrictPairs": 18
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 26,
+          "strictCrossingPairs": 26,
+          "apertureHalfStrictPairs": 26
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "height:-1/blink:1",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 14,
+          "strictCrossingPairs": 14,
+          "apertureHalfStrictPairs": 14
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 18,
+          "strictCrossingPairs": 18,
+          "apertureHalfStrictPairs": 18
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 27,
+          "strictCrossingPairs": 2
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 26,
+          "strictCrossingPairs": 26,
+          "apertureHalfStrictPairs": 26
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 27,
+          "strictCrossingPairs": 3
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "height:0/blink:0.25",
+      "values": {
+        "body.height": 0,
+        "expression.blinkLeft": 0.25,
+        "expression.blinkRight": 0.25
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 6,
+          "strictCrossingPairs": 6,
+          "apertureHalfStrictPairs": 6
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 20,
+          "strictCrossingPairs": 20,
+          "apertureHalfStrictPairs": 20
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "height:0/blink:0.5",
+      "values": {
+        "body.height": 0,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 18,
+          "strictCrossingPairs": 18,
+          "apertureHalfStrictPairs": 18
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 4,
+          "apertureHalfStrictPairs": 4
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 22,
+          "strictCrossingPairs": 22,
+          "apertureHalfStrictPairs": 22
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 1,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "height:0/blink:0.75",
+      "values": {
+        "body.height": 0,
+        "expression.blinkLeft": 0.75,
+        "expression.blinkRight": 0.75
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 20,
+          "strictCrossingPairs": 20,
+          "apertureHalfStrictPairs": 20
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 18,
+          "strictCrossingPairs": 18,
+          "apertureHalfStrictPairs": 18
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 26,
+          "strictCrossingPairs": 26,
+          "apertureHalfStrictPairs": 26
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "height:0/blink:1",
+      "values": {
+        "body.height": 0,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 14,
+          "strictCrossingPairs": 14,
+          "apertureHalfStrictPairs": 14
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 18,
+          "strictCrossingPairs": 18,
+          "apertureHalfStrictPairs": 18
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 26,
+          "strictCrossingPairs": 26,
+          "apertureHalfStrictPairs": 26
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 5,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "height:1/blink:0.25",
+      "values": {
+        "body.height": 1,
+        "expression.blinkLeft": 0.25,
+        "expression.blinkRight": 0.25
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 6,
+          "strictCrossingPairs": 6,
+          "apertureHalfStrictPairs": 6
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 20,
+          "strictCrossingPairs": 20,
+          "apertureHalfStrictPairs": 20
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 1,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "height:1/blink:0.5",
+      "values": {
+        "body.height": 1,
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 18,
+          "strictCrossingPairs": 18,
+          "apertureHalfStrictPairs": 18
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 4,
+          "strictCrossingPairs": 4,
+          "apertureHalfStrictPairs": 4
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 22,
+          "strictCrossingPairs": 22,
+          "apertureHalfStrictPairs": 22
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 5,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "height:1/blink:0.75",
+      "values": {
+        "body.height": 1,
+        "expression.blinkLeft": 0.75,
+        "expression.blinkRight": 0.75
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 20,
+          "strictCrossingPairs": 20,
+          "apertureHalfStrictPairs": 20
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 18,
+          "strictCrossingPairs": 18,
+          "apertureHalfStrictPairs": 18
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 26,
+          "strictCrossingPairs": 26,
+          "apertureHalfStrictPairs": 26
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 5,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "height:1/blink:1",
+      "values": {
+        "body.height": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 14,
+          "strictCrossingPairs": 14,
+          "apertureHalfStrictPairs": 14
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 18,
+          "strictCrossingPairs": 18,
+          "apertureHalfStrictPairs": 18
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 6,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 26,
+          "strictCrossingPairs": 26,
+          "apertureHalfStrictPairs": 26
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 26,
+          "strictCrossingPairs": 2
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "happy",
+      "values": {
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 7,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 2,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "sad",
+      "values": {
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 16,
+          "strictCrossingPairs": 16,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 35,
+          "strictCrossingPairs": 32,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 5,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "left-blink",
+      "values": {
+        "expression.blinkLeft": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 14,
+          "strictCrossingPairs": 14,
+          "apertureHalfStrictPairs": 14
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 18,
+          "strictCrossingPairs": 18,
+          "apertureHalfStrictPairs": 18
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 3,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    },
+    {
+      "case": "right-blink",
+      "values": {
+        "expression.blinkRight": 1
+      },
+      "pairs": [
+        {
+          "surface": "UpperLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 12,
+          "strictCrossingPairs": 12,
+          "apertureHalfStrictPairs": 12
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Eye_Left",
+          "rawBvhTrianglePairs": 10,
+          "strictCrossingPairs": 10,
+          "apertureHalfStrictPairs": 10
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Iris_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Left",
+          "other": "LowerLid_Left",
+          "rawBvhTrianglePairs": 7,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 33,
+          "strictCrossingPairs": 33,
+          "unchangedInheritedInterface": true
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 8,
+          "strictCrossingPairs": 8,
+          "apertureHalfStrictPairs": 8
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Eye_Right",
+          "rawBvhTrianglePairs": 26,
+          "strictCrossingPairs": 26,
+          "apertureHalfStrictPairs": 26
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Iris_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 0,
+          "strictCrossingPairs": 0,
+          "apertureHalfStrictPairs": 0
+        },
+        {
+          "surface": "UpperLid_Right",
+          "other": "LowerLid_Right",
+          "rawBvhTrianglePairs": 5,
+          "strictCrossingPairs": 0
+        },
+        {
+          "surface": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "rawBvhTrianglePairs": 37,
+          "strictCrossingPairs": 37,
+          "unchangedInheritedInterface": true
+        }
+      ]
+    }
+  ],
+  "limits": "Discrete actual evaluated samples, not continuous collision or global clearance. Positive-area UV overlaps checked within each separate lid map, not a shared atlas. Raw boundary touches are retained alongside strict transverse crossings. Unchanged eye/head penetration remains outside this four-lid correction.",
+  "status": "FAIL"
+}

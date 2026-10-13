@@ -1,0 +1,1649 @@
+{
+  "schemaVersion": 3,
+  "frozenMasterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "changedMeshes": [
+    "UpperLid_Left",
+    "LowerLid_Left",
+    "UpperLid_Right",
+    "LowerLid_Right"
+  ],
+  "exactPreservedMeshes": [
+    "Neck",
+    "Shirt_fused_shoulders",
+    "Collar_band",
+    "Trousers_fused_hip",
+    "Forearm_hand_-1",
+    "Shoe_-1",
+    "Sole_-1",
+    "Forearm_hand_1",
+    "Shoe_1",
+    "Sole_1",
+    "Head_continuous_anatomy",
+    "Eye_Left",
+    "Iris_Left",
+    "Pupil_Left",
+    "Brow_Left",
+    "Eye_Right",
+    "Iris_Right",
+    "Pupil_Right",
+    "Brow_Right",
+    "Lip_upper",
+    "Lip_lower",
+    "Mouth_seam",
+    "Nostril_-1",
+    "Nostril_1",
+    "Ear_Left",
+    "Ear_Right",
+    "Hair_original_close_curl_surface"
+  ],
+  "protectedHashes": {
+    "Neck": {
+      "positions": "7eaff140ca3bebcff4347668f10c406e0c74414377076e2f60b7d92a608c894d",
+      "triangles": "02c243c5e69a2b843d145468f169b416ced9bebec7ced6bc29bc75e04c804dd8",
+      "uv": {
+        "Prototype_UV_v1": "dd716cb2ea0d9054f6d89b99a384c7d84e34162b082811215f03302e4321b1b1"
+      },
+      "shapeKeys": {
+        "Basis": "7eaff140ca3bebcff4347668f10c406e0c74414377076e2f60b7d92a608c894d",
+        "body.height": "94352d6c5272b730e1a1f439040398aae579043a449aee5405bfef1f4d492f63",
+        "body.shoulderWidth": "6c543cdf9754273f8ed28aab88e7a48fafd85d2b41f696764ed4f4fd4ef5326c"
+      },
+      "materialNames": [
+        "Skin | original warm umber"
+      ]
+    },
+    "Shirt_fused_shoulders": {
+      "positions": "687cc7eff62c2a8248efc7bf08d8e44647d72aaa4114a9cdefe00387dfbbc8d3",
+      "triangles": "6f9168f8b6565c98f8125004506aa48571badc93031b7c855583d1f78befcacf",
+      "uv": {
+        "Prototype_UV_v1": "3052b449f01e4e547a9f5ee95830f7561fcbaa38274859026434525ef4d7c9aa"
+      },
+      "shapeKeys": {
+        "Basis": "687cc7eff62c2a8248efc7bf08d8e44647d72aaa4114a9cdefe00387dfbbc8d3",
+        "body.height": "088e9f3c09ab7ab72ebbbe939640018746735c21f349c7cc5173da74e21a0bf3",
+        "body.shoulderWidth": "6ce9bd36a02b343e71c35d1430b4ba88e5911804e766308247cc96c8b6faf63a"
+      },
+      "materialNames": [
+        "Shirt | woven petrol blue"
+      ]
+    },
+    "Collar_band": {
+      "positions": "8e5de169f7e0832997aba93d5c1d8fceef72d2d8852da2c95a3b9040f9fa3f58",
+      "triangles": "83319e132267ea9f3fc3c8b0b18fa46a03bf4d7be8f5d3c715bb3b9345f6553b",
+      "uv": {
+        "Prototype_UV_v1": "fafa7e38c26608e02f343963c1927f6b492944ebfb4aee32c6c7922cda7810de"
+      },
+      "shapeKeys": {
+        "Basis": "8e5de169f7e0832997aba93d5c1d8fceef72d2d8852da2c95a3b9040f9fa3f58",
+        "body.height": "35363a32b72afecc2acb26e241c219dbabbf1c19d573f6d0c8d3921e67e245a5",
+        "body.shoulderWidth": "cd6146371d8f3614331cbc4f57b4b7b077c626a9d76fd708bead968c16114333"
+      },
+      "materialNames": [
+        "Shirt | woven petrol blue"
+      ]
+    },
+    "Trousers_fused_hip": {
+      "positions": "71b1388c8726808b5848670bee40388bf349ddb680633aa89504d6ac35977aa4",
+      "triangles": "6881abdafca4ba26f95a3a59739a1f6bfc626b80ae1a8044a3c3b4e1d7cca04c",
+      "uv": {
+        "Prototype_UV_v1": "2e933a7747e3d79e9859e1bccbdda2c67357690fd93b66e0105a59d9c42aa003"
+      },
+      "shapeKeys": {
+        "Basis": "71b1388c8726808b5848670bee40388bf349ddb680633aa89504d6ac35977aa4",
+        "body.height": "8fc1ceea26ba6d483dcc944b503b8260ad5a32f1f19eaccb9a1e7a5ddb594b97",
+        "body.shoulderWidth": "6d602f2bd666ea19be29a855193ed8fac905cb7475c479c6afd0893ee8dd5048"
+      },
+      "materialNames": [
+        "Trousers | warm charcoal"
+      ]
+    },
+    "Forearm_hand_-1": {
+      "positions": "e1cdca29c553d5b1f46aa40516a7a72c3a70593dc5113064eb913a53155fe4e7",
+      "triangles": "c0bd67def3896920cc91f7f2a63cc3431c3848ed7bdfe4d0998d389055f34b79",
+      "uv": {
+        "Prototype_UV_v1": "6e27b81b07f05ae2d0ec1c2d1576a22c527cf81eaa87a5e7eeca574a12648160"
+      },
+      "shapeKeys": {
+        "Basis": "e1cdca29c553d5b1f46aa40516a7a72c3a70593dc5113064eb913a53155fe4e7",
+        "body.height": "c794a7ea9aa30a5f1279d1550a59dfb586f4b800bd4832a12390f67be8cd7974",
+        "body.shoulderWidth": "762be3a82ca193217ca79a64714b31f57b1822aa9b8ee50b6a191e8bb1339061"
+      },
+      "materialNames": [
+        "Skin | original warm umber"
+      ]
+    },
+    "Shoe_-1": {
+      "positions": "b44007246c83845330c954e4b00f2d0a172dfab30c632f4f0f0458f2026b55f2",
+      "triangles": "d7aac2c1f0e583a27bdcf11ccbd99455369ff2caa910bd93b2956fa1fbad8761",
+      "uv": {
+        "Prototype_UV_v1": "f29b2ef8d0f71d3663b527cc6525eb4941360063975ce428adb19f464cd9db11"
+      },
+      "shapeKeys": {
+        "Basis": "b44007246c83845330c954e4b00f2d0a172dfab30c632f4f0f0458f2026b55f2",
+        "body.height": "ae644285f8bbfc3d35159dfafadea0e2768f8ad74dc5fb398cab077b95b5eaae"
+      },
+      "materialNames": [
+        "Footwear | brown leather"
+      ]
+    },
+    "Sole_-1": {
+      "positions": "4d277ecb2b392f2f4f1e3c9d60ec31671be0b1cebad4b2d53624169b9d6f556e",
+      "triangles": "b30bfe699ec376f07e62311b595fa8e5f19300c2084cb82d30b0fd0a0363ffd3",
+      "uv": {
+        "Prototype_UV_v1": "e565c382dbd50d8ecd8c18903498a1423156555d4dfb377e739be028ad45301e"
+      },
+      "shapeKeys": {
+        "Basis": "4d277ecb2b392f2f4f1e3c9d60ec31671be0b1cebad4b2d53624169b9d6f556e",
+        "body.height": "69443a8b0eb5a92f62eeaf8c4a5bfe0aa8269952561dce886312d5a518f7df5d"
+      },
+      "materialNames": [
+        "Sole | muted stone"
+      ]
+    },
+    "Forearm_hand_1": {
+      "positions": "c6eb6dd8ed3746316d0f758c3d2f182a040e6dfd2cd077070163935aebc5504b",
+      "triangles": "d51d622f76087b86f1236c1585a1592b4a64f775636986965f8b359c43a218d7",
+      "uv": {
+        "Prototype_UV_v1": "cd0014f90762b61830723f06704fa7d66b2de087a189cb9b6f534e9c9d6151ed"
+      },
+      "shapeKeys": {
+        "Basis": "c6eb6dd8ed3746316d0f758c3d2f182a040e6dfd2cd077070163935aebc5504b",
+        "body.height": "ad49f4269902ca7ba32c6d40b1609ae82c0b01c7129a1a9ada38966f1aec5e45",
+        "body.shoulderWidth": "dd4fd957ecbb26ecc7e9d8deaec0507fb664787e17706a6089615ce988820bd9"
+      },
+      "materialNames": [
+        "Skin | original warm umber"
+      ]
+    },
+    "Shoe_1": {
+      "positions": "4e042ca955ed8e6e18b6f8b87fe4b69e7dff57a0980b9e8ad2ee32075f681d37",
+      "triangles": "d7aac2c1f0e583a27bdcf11ccbd99455369ff2caa910bd93b2956fa1fbad8761",
+      "uv": {
+        "Prototype_UV_v1": "c1a7348a3a0fd08a1a30fda178a9aff486e717ab8a4cb8e23dfb60ef82379f0d"
+      },
+      "shapeKeys": {
+        "Basis": "4e042ca955ed8e6e18b6f8b87fe4b69e7dff57a0980b9e8ad2ee32075f681d37",
+        "body.height": "2963987ba93ed23a506ccd4c132630684abdac80131c4b127351084df982b1f8"
+      },
+      "materialNames": [
+        "Footwear | brown leather"
+      ]
+    },
+    "Sole_1": {
+      "positions": "36627c01382355f39358696e82fbf341fe4e93cc0d2d1ed7d639e326d13be06c",
+      "triangles": "b30bfe699ec376f07e62311b595fa8e5f19300c2084cb82d30b0fd0a0363ffd3",
+      "uv": {
+        "Prototype_UV_v1": "bb93eb17316ef63f1fee383188fdc9121e5c443570704b9d894ca1940ccfd07e"
+      },
+      "shapeKeys": {
+        "Basis": "36627c01382355f39358696e82fbf341fe4e93cc0d2d1ed7d639e326d13be06c",
+        "body.height": "e80331835d8b057ea6e3e456a7746371d47717f3fd61c1478ef093caf3628f0f"
+      },
+      "materialNames": [
+        "Sole | muted stone"
+      ]
+    },
+    "Head_continuous_anatomy": {
+      "positions": "50fb1df341bfd1026436b5e73544f7587f646aeca63ae7cff638f6eb9c294a60",
+      "triangles": "c84be0818b32b048a752600db20ed82416c0b627c6801fe11ea0145ed2f3f695",
+      "uv": {
+        "Prototype_UV_v1": "23be2a017a917bdda88a2bea722c2db80d9f40e29369dd4c8bfdae7beaf4dc28"
+      },
+      "shapeKeys": {
+        "Basis": "50fb1df341bfd1026436b5e73544f7587f646aeca63ae7cff638f6eb9c294a60",
+        "nose.projection": "58cd597b9497b628efaa2d836e54996f060692f1baf3dd2f2b002487fbd7499f",
+        "nose.alarWidth": "51ea9e6af9f2fc54eba7003c2ad956f5c1f124809db8282b962baad0a7d06d1c",
+        "earLeft.protrusion": "d84647a289d345dc8d5d2498f0603685a293fb1d6ca5ee46185a49f118c6fdac",
+        "earRight.protrusion": "45720c6b411d5e219f5cf6525f87a9e309d2fc5e5ec98f8bc4aebc78c7e66c6c",
+        "body.height": "f17353e842b320344cc4da46d7e156c5c95f0ae3a0694d9147d660ff0b5649e6",
+        "expression.smileLeft": "c318401aa0d5219a0016fdb9ad91d4fa541afaae90c9f15daba690b64d4a47e1",
+        "expression.smileRight": "470fbc4df58f190a92e404b520f2b3d209afd51ed60e11522d67433c3d8472e4",
+        "expression.frownLeft": "29c020f9bba8e829ec90e7d614973f9e358af7674eeba0e01a8ae741c2590840",
+        "expression.frownRight": "072dabddb6671b0d7ba93650af4dd76ffb732d0923cb1d5d116b6dbbb41d6293",
+        "expression.browRaiseLeft": "b402bc73214d5c7a6ed7ea711e3e1b2f2dc7ff1f3c8e5477a01d66ff8c5fc63e",
+        "expression.browRaiseRight": "5998b0f077e03a3130940340b6b1d1b6961862ac3fa813899ff4f6ce9e57bd3b",
+        "corrective.height.smileLeft": "c909e76ff47f50989188d41247ded37ee94d3453af1890b940da923f9d8e34a0",
+        "corrective.height.smileRight": "7782f2bb7a5cf2729147381969681ef2de62a80acf283fc597b6031c80231e42",
+        "corrective.height.frownLeft": "73fae31bec7cfbf7abac5a68d21a8c7d0de51f36d5dd1d1ccb77515a0a71b1af",
+        "corrective.height.frownRight": "f8214011e09930cddcb322645b2b310c873ad87f69925173f09d90a3878e66e1",
+        "corrective.height.browRaiseLeft": "846f44d38344bd3621b8c126794fb394e4baf7d0b4c34f70590bfe3f47555a5d",
+        "corrective.height.browRaiseRight": "ec9e25bfa251561fbc3da70321ca8733cc5158f6b6295a47e6402fb4998f25a2"
+      },
+      "materialNames": [
+        "Skin | original warm umber"
+      ]
+    },
+    "Eye_Left": {
+      "positions": "1d901cf5aa1db2c6fcc8d8417670fd79f421f897031accdba6a3eab4ac12de0d",
+      "triangles": "927b12d86106658d63382f2e008aa38c1264408a974cfee1883b9d53c114b731",
+      "uv": {
+        "Prototype_UV_v1": "bb58c65f74936ed8cf205b36305978dfc9592ababfc9838a6ee4391f9f78432f"
+      },
+      "shapeKeys": {
+        "Basis": "1d901cf5aa1db2c6fcc8d8417670fd79f421f897031accdba6a3eab4ac12de0d",
+        "body.height": "d4d9f927b95677493675e176a273e53930f3327dd4faaafd9c7665f777b9149e"
+      },
+      "materialNames": [
+        "Sclera | warm ivory"
+      ]
+    },
+    "Iris_Left": {
+      "positions": "554dc0fe9c55c9ca81c132e2de82c51da33c6c9210e554f8803f6d56c638d59a",
+      "triangles": "035d1586827c34112108192e4305c67f7a83eda0399b8b227128bc2b8e6a4b13",
+      "uv": {
+        "Prototype_UV_v1": "431aea82a18845018561a7c8faf8bdba36bfdc33c73f6a2ea63d01124045e709"
+      },
+      "shapeKeys": {
+        "Basis": "554dc0fe9c55c9ca81c132e2de82c51da33c6c9210e554f8803f6d56c638d59a",
+        "body.height": "874f6522c800e5507b816bd5cc8c06991337299421838b50c61bee0c07c212fe"
+      },
+      "materialNames": [
+        "Iris | brown"
+      ]
+    },
+    "Pupil_Left": {
+      "positions": "5ee5e54e2d0225f2173d2e2896590cc45d2a12f04e99e59aedd162c7087c6c58",
+      "triangles": "035d1586827c34112108192e4305c67f7a83eda0399b8b227128bc2b8e6a4b13",
+      "uv": {
+        "Prototype_UV_v1": "a47de0f6e321da9770194d05c4fcd0d2b7e758349766c74892e280a055746664"
+      },
+      "shapeKeys": {
+        "Basis": "5ee5e54e2d0225f2173d2e2896590cc45d2a12f04e99e59aedd162c7087c6c58",
+        "body.height": "d23ac83a9842f0565c13494ceb978276b1b7a672944489b2a71e106c8223903e"
+      },
+      "materialNames": [
+        "Pupil and oral recess"
+      ]
+    },
+    "Brow_Left": {
+      "positions": "4b23e55840b1a2e2afd9e8a4dc4389ab3530256badef8492c48381a970665e37",
+      "triangles": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+      "uv": {
+        "Prototype_UV_v1": "151d1213c6e6f42f98eafed45bcebfbcbd0fe221b4a621d6b247f19e89686418"
+      },
+      "shapeKeys": {
+        "Basis": "4b23e55840b1a2e2afd9e8a4dc4389ab3530256badef8492c48381a970665e37",
+        "body.height": "c7f514b0a4fd0e65265f790772a8a0cecc10e47eaa3664cf6bad223a5b3286fc",
+        "expression.browRaiseLeft": "bbd2803d38291bf85375bb7d518e10871c35d576030f81df9931ba56d91bdf78",
+        "corrective.height.browRaiseLeft": "3542d25a7ebd2971c01bb1e6bc97c769e52063278a1f793facf443ae71f238f7"
+      },
+      "materialNames": [
+        "Hair | dark close curls"
+      ]
+    },
+    "Eye_Right": {
+      "positions": "21ee6b184c15672d59120b0fde1cea5158b594fb8ea20a9f414d3c97938e0ccc",
+      "triangles": "927b12d86106658d63382f2e008aa38c1264408a974cfee1883b9d53c114b731",
+      "uv": {
+        "Prototype_UV_v1": "f04f82af529b4d0a7ec0683afc83cd88d6ae7eca9f4492d43b0b868dfb0f3e46"
+      },
+      "shapeKeys": {
+        "Basis": "21ee6b184c15672d59120b0fde1cea5158b594fb8ea20a9f414d3c97938e0ccc",
+        "body.height": "db425ac944d1f7677c27f2ef6db636f7a2f9adfb571e020c0e8fc2b042188a0e"
+      },
+      "materialNames": [
+        "Sclera | warm ivory"
+      ]
+    },
+    "Iris_Right": {
+      "positions": "82068746526654358fb68c90340aa29365d9f96abd70e6e8a408e30383590180",
+      "triangles": "035d1586827c34112108192e4305c67f7a83eda0399b8b227128bc2b8e6a4b13",
+      "uv": {
+        "Prototype_UV_v1": "cf77bf07849f85fae583fa5beb7bd2a7c9a1e9783c596355afba37cdc3bf96bf"
+      },
+      "shapeKeys": {
+        "Basis": "82068746526654358fb68c90340aa29365d9f96abd70e6e8a408e30383590180",
+        "body.height": "3c700d54d304722f3f1cd68592f6755f3af3cf0ab3a6a724d0fb9031e22df8cb"
+      },
+      "materialNames": [
+        "Iris | brown"
+      ]
+    },
+    "Pupil_Right": {
+      "positions": "67e3be9436c9294d8034bdd294ab0a24f585dbf031f187f94ed440651aa52ea1",
+      "triangles": "035d1586827c34112108192e4305c67f7a83eda0399b8b227128bc2b8e6a4b13",
+      "uv": {
+        "Prototype_UV_v1": "481159002d37c360c1cea74956cb0b26bffc2414fc35e8167fb204a1758adcc8"
+      },
+      "shapeKeys": {
+        "Basis": "67e3be9436c9294d8034bdd294ab0a24f585dbf031f187f94ed440651aa52ea1",
+        "body.height": "d5c905e92f33f5887dd2fceb60353604cbe74938b59cc785ed4a07454be7fc30"
+      },
+      "materialNames": [
+        "Pupil and oral recess"
+      ]
+    },
+    "Brow_Right": {
+      "positions": "8583e7b5dae6574657ccc5a7df5a6983fa7ad2daf5697ffb404c41df531cd9e7",
+      "triangles": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+      "uv": {
+        "Prototype_UV_v1": "5351ffc64eabe2cba1b6d1c1537ff44f725dde5edf6c2e5a9488cc38ca6ded22"
+      },
+      "shapeKeys": {
+        "Basis": "8583e7b5dae6574657ccc5a7df5a6983fa7ad2daf5697ffb404c41df531cd9e7",
+        "body.height": "8386440cb1a6cb1355b373b52d9b3cf40400205b4b2168a762c42f9e01cb42fe",
+        "expression.browRaiseRight": "cfb68b3423c99bd853d016b1d329ae2545e901191f02674aaaf76b7d7230c5f0",
+        "corrective.height.browRaiseRight": "4385bd55e5751cb1f98f443ac3de4df7261da1ee381e3a6e25398e21bc7c7e54"
+      },
+      "materialNames": [
+        "Hair | dark close curls"
+      ]
+    },
+    "Lip_upper": {
+      "positions": "f286f473bcf45d06494f0ad4d24674fc329c8a1c6920b9c94602c1e663f8f4d8",
+      "triangles": "39e7450a29ff8ac384343808066b183281e4c49850ae1c7112bd9d901fc75dd2",
+      "uv": {
+        "Prototype_UV_v1": "eb10d60fd26cb73c0ee9951a271d8209c5d87fca0223fd8019eae3ddbc0828a6"
+      },
+      "shapeKeys": {
+        "Basis": "f286f473bcf45d06494f0ad4d24674fc329c8a1c6920b9c94602c1e663f8f4d8",
+        "nose.projection": "fb69c78de7da172fbb99fd7b55f964ae96f561ef32fc08f830b3ebc632eb289f",
+        "nose.alarWidth": "7c23bbd1acce490ef9f38fcd4ecfe0346fd6ceffdce3b56e019823e1d3dae5d3",
+        "body.height": "7f2371a99a56e78620e20ba7018a9e60facccc7ab76cdf1d04d231975cd2d2c3",
+        "expression.smileLeft": "3961bb42b23d548521c3bc32293710260f943df0aa649ba15aa25efe0737f6b1",
+        "expression.smileRight": "93a976ae07ee761d6c657e8153c4c62c389a6249937d0f88cf45e49dd4ea1210",
+        "expression.frownLeft": "769ed3c31c9373b9331cbfd4680992801a1a9362b783eb8ae8f2f926a7a64d9a",
+        "expression.frownRight": "f72887f5150e849e1ae29c54cd7c27276bbcd3c3df2c4e0787ac55c073b13149",
+        "corrective.height.smileLeft": "a29c66a0cb9492a24e22188128a3507b129db58ca565aed1aa893ea48c8ab44d",
+        "corrective.height.smileRight": "f9fb439deecf6b88a663f280cdb85df3e591d410ebc096940f90274aaad38171",
+        "corrective.height.frownLeft": "d5410933a373d807dbcca6037bd125c365f70c2c592e85e9b179169763afe4dc",
+        "corrective.height.frownRight": "b559e05006607473b54f11fd17b4e935fddef56f2c5c08d7ead87d45596edaa8"
+      },
+      "materialNames": [
+        "Lips | muted warm brown"
+      ]
+    },
+    "Lip_lower": {
+      "positions": "ced272e40bb0d00f651500d39cbc3a0d812f55fa9b772e9d73101e4590b9bb88",
+      "triangles": "690b648dbb82ce9c0d50d27ef59a1222edd6e77c9796f9f2fc9a20b7598f0a98",
+      "uv": {
+        "Prototype_UV_v1": "7d3c51f014eeb9639cf77735fb0d98a5605af21449f6696def7a16316d656e52"
+      },
+      "shapeKeys": {
+        "Basis": "ced272e40bb0d00f651500d39cbc3a0d812f55fa9b772e9d73101e4590b9bb88",
+        "nose.projection": "57798311574b3c45e6f4dc494cefda2c977fb6e95ad6c63aa57c4b1ac2834a97",
+        "nose.alarWidth": "c9f7885d561fbdbc2d29fb20dc8c058b5181dba1ff6ad5cb425d7ccabf856c84",
+        "body.height": "9dcf685c2decb63dd9562025975f8454ca99455e1ffc21ab20f15d3252ebbf99",
+        "expression.smileLeft": "7548e8b6d8a73425a11d9bd7ac628d047edece2699df2daaed36ab58d9a182e2",
+        "expression.smileRight": "9225f48c0b268be98cff9e24c0afd7b145c24d4c383954addd423f296cdba725",
+        "expression.frownLeft": "f395dd58c36db6c476cdd7c39caf69eb432a595ba3b993fa16c6b1b2c98d5b6d",
+        "expression.frownRight": "910a0e963abe9547234b40a8f82a341bac96b930e0f73a39652127d027994fc0",
+        "corrective.height.smileLeft": "95a006abb60f3fdce51666df15b124e3c7b1b7ecc6a0fdcd55d6f5035366d18f",
+        "corrective.height.smileRight": "e6ff3e610c5167d9138bf5aee2b10ddc6c5f94348a884eeb1af975a3d68971ea",
+        "corrective.height.frownLeft": "a8b8f9448285f6d8fe1e163d59d95c1c29c267fd7e11e813607bb8ce6418a191",
+        "corrective.height.frownRight": "7526e58a10ff053182fe3abb530fd80a3ac4e5a8da8a4eeb250f22835d4a51f1"
+      },
+      "materialNames": [
+        "Lips | muted warm brown"
+      ]
+    },
+    "Mouth_seam": {
+      "positions": "ef69a4d7e2a526f2e630bccb5695a33e18ee5fafe296c8514c61497a58852b07",
+      "triangles": "d32f38d3ed5c440cb5db1cf9210b7f1820e15a6f424bbaec539c7845466ba6cd",
+      "uv": {
+        "Prototype_UV_v1": "8433aa86336f3c1b49c44f5ed9cd27c043643b5bea3a7aeeacb45be2d2954f59"
+      },
+      "shapeKeys": {
+        "Basis": "ef69a4d7e2a526f2e630bccb5695a33e18ee5fafe296c8514c61497a58852b07",
+        "nose.projection": "b08420af08897d7a0feed50bb41e5cea328664b5a2a239d961448023b945534c",
+        "nose.alarWidth": "07faa3ec1a09a5b063e1670ec2fafdb9142cc5fd6603a1270c453c9b03a0f63f",
+        "body.height": "d147a0a3945396d533067bd5e7cbcb6ea7d4806cfc3e854421f65bb22aea9234",
+        "expression.smileLeft": "7a85b31e2370e21aff76540d806adf45974a433690360b76483865e097b0efbf",
+        "expression.smileRight": "6627e3f95cf9b8ad91fea71f3e2b30e2a309cd18696124c98df583b8f4272df9",
+        "expression.frownLeft": "363a0fbf1abbeb20bd9cd7723fc96dfb116f8dc341f17fa7aa04a7a568d2e430",
+        "expression.frownRight": "e79d3f384fd1fcbf17e21dacc68f76a471721adfacb825c188740446e806499d",
+        "corrective.height.smileLeft": "1ed000833c783cf1397351d60550ef973ba6404e670713c04e98b9c2959132d4",
+        "corrective.height.smileRight": "6c0513b072ca1d2ebd63a6a4f49fe72e4dae8f677729c4d88695d38413114a9d",
+        "corrective.height.frownLeft": "6f7f9dca4bf0008495abab1364b50b8c90ecfa8edfbdb558d02c021bccc7d040",
+        "corrective.height.frownRight": "730af7d3ad5c6439aa555342d147eaf1a974aca14857ce96cbb0424c4231e583"
+      },
+      "materialNames": [
+        "Pupil and oral recess"
+      ]
+    },
+    "Nostril_-1": {
+      "positions": "3fb72a9a1f97da2229dc4099662c0e6829a0038c7d8d158fea3a7fafe5338024",
+      "triangles": "586c86939aae11d2f6044387322b5fa77327ce2c963971dac1a3cf1d469ed5b5",
+      "uv": {
+        "Prototype_UV_v1": "a84a2360dbef5b2f456f7feaef81cf0e930132aa991d760d35de3787b1afe313"
+      },
+      "shapeKeys": {
+        "Basis": "3fb72a9a1f97da2229dc4099662c0e6829a0038c7d8d158fea3a7fafe5338024",
+        "nose.projection": "bffb4e27778e3c79f0788a2cf6dc08273cd2268c9d97227963a30b9afdd1c6ef",
+        "nose.alarWidth": "58955e1143aa118bed484ceb867f923729e757f82d0a7c2f34a47febfc411d4d",
+        "body.height": "28aa9db225e5634e081a0ab748157e0b438a9a25e211aadb7827c99b6d442670",
+        "expression.smileRight": "ed71be3da80e2250b40911170194747a91f0465fc21460c261ab52966371804d",
+        "expression.frownRight": "7a45aed4683aeaf2081c71fce2ec50cb2997705bfff0c9443f86d295df309b89",
+        "corrective.height.smileRight": "fb05c754b17895a32d4341357876aa12b5343297933cf772eea3e2edc5d7e52c",
+        "corrective.height.frownRight": "8cdccd73900b21d8146ff05e0254acee3135c4c5e067e17f8d07c258b645a788"
+      },
+      "materialNames": [
+        "Pupil and oral recess"
+      ]
+    },
+    "Nostril_1": {
+      "positions": "fdd8d3b3eaf26729c19da0c751753d86475459bd99d6710a873d8693a7ee74fe",
+      "triangles": "586c86939aae11d2f6044387322b5fa77327ce2c963971dac1a3cf1d469ed5b5",
+      "uv": {
+        "Prototype_UV_v1": "2de93c3b71ed6f753f4eba493ff469e0cb2569508e8afbf7bc2303b6dc3195ef"
+      },
+      "shapeKeys": {
+        "Basis": "fdd8d3b3eaf26729c19da0c751753d86475459bd99d6710a873d8693a7ee74fe",
+        "nose.projection": "ef9b6cf397fbe235064b31f48f3052648eafcedc97c3af3ff5f795364fda438f",
+        "nose.alarWidth": "02ca27bcd309f0794e9e5ec78bf019091aec3aa802f987a7c4b83b165872ddd1",
+        "body.height": "28c4f00db16fea3cbce218a353ae333794bf2821c348e65e3116cad1cc579d37",
+        "expression.smileLeft": "5ed5fffe2f16b3addc0e55773d99ac6ad7ad1153a9790c132ac1e3a45fd3502e",
+        "expression.frownLeft": "e554936d03ddc3f41287c412d66091a560f0e37eb9c411da0bc7b823c5239354",
+        "corrective.height.smileLeft": "f37e7710026643356dfc10e8a6282e2922eb5287043fa98a7d51408689ac8ecb",
+        "corrective.height.frownLeft": "dd8e1b993e9e7bd52ffdf043b071312eb1d0e5e90c4fd689c5cc3c5618887a5c"
+      },
+      "materialNames": [
+        "Pupil and oral recess"
+      ]
+    },
+    "Ear_Left": {
+      "positions": "7905313821da5fd2b9d0e3354d66bb9c4bb4f578f3b31cafa7e8d5b1159cdec4",
+      "triangles": "749a0e51c6d1dcf42e7db0bcf1de1fc8aafe0a95f00f8588ff0e3c670874e083",
+      "uv": {
+        "Prototype_UV_v1": "8699e219061240a59a60448558392c3bde3784d1bbdf63bc4576ba2051fd7d41"
+      },
+      "shapeKeys": {
+        "Basis": "7905313821da5fd2b9d0e3354d66bb9c4bb4f578f3b31cafa7e8d5b1159cdec4",
+        "earLeft.protrusion": "86f10ba17ff1a37a796012113eccb4c9056552054bb8f211fc425b89a9a5e231",
+        "body.height": "25f1f3942fb05d5dac8f7f5d9886494420ef0c1ded823b69651ed5729b8dc5a9"
+      },
+      "materialNames": [
+        "Skin | original warm umber"
+      ]
+    },
+    "Ear_Right": {
+      "positions": "3c5cd574da9206908e5b3c2eb8e50d1a757408ffc25498047ff418b94eb0d4e0",
+      "triangles": "51612b267cf6f0c8e22a5c33a455e8a9003e8c11a11fb17a69c1d19179b7de69",
+      "uv": {
+        "Prototype_UV_v1": "6d70727a93c771052ddaa18220fa22f14ce43ea6042b6d109202a00aa589366b"
+      },
+      "shapeKeys": {
+        "Basis": "3c5cd574da9206908e5b3c2eb8e50d1a757408ffc25498047ff418b94eb0d4e0",
+        "earRight.protrusion": "881c77863f829c8e90d0853b19856bee50cfab61d34ffec7cb651d420fc54eb4",
+        "body.height": "060b6ae5c9b100858d0a0cdbd472b8c626fdd94c9b61b0b6e36cc02bc9fde3cb"
+      },
+      "materialNames": [
+        "Skin | original warm umber"
+      ]
+    },
+    "Hair_original_close_curl_surface": {
+      "positions": "ebbc45d3e91ce75f892fa97b6e4b101ba71e3d0540da7db3bed9102e6303bde1",
+      "triangles": "3596a505357ee93d378d5bd5359f9f611ee54ed676eb718d27cf10dc176c694e",
+      "uv": {
+        "Prototype_UV_v1": "871f1adea1cd051755f207510b49bfccc04774c644f41b197d44d2101d91fc52"
+      },
+      "shapeKeys": {
+        "Basis": "ebbc45d3e91ce75f892fa97b6e4b101ba71e3d0540da7db3bed9102e6303bde1",
+        "body.height": "55201ce73f204460943dc4a9064db1f391f0dcb1bfaef90f3a0e34e702e16dc2"
+      },
+      "materialNames": [
+        "Hair | dark close curls"
+      ]
+    }
+  },
+  "meshCount": 31,
+  "triangles": 30850,
+  "bindings": {
+    "UpperLid_Left": {
+      "radialSegments": 8,
+      "angularSamples": 43,
+      "headRimBindings": [
+        {
+          "vertex": 0,
+          "headA": 2171,
+          "headB": 2227,
+          "fraction": 0.21349235143240886
+        },
+        {
+          "vertex": 1,
+          "headA": 2171,
+          "headB": 2227,
+          "fraction": 0.6140074414395769
+        },
+        {
+          "vertex": 2,
+          "headA": 2227,
+          "headB": 2285,
+          "fraction": 3.0406490319449276e-08
+        },
+        {
+          "vertex": 3,
+          "headA": 2227,
+          "headB": 2285,
+          "fraction": 0.018119630511480144
+        },
+        {
+          "vertex": 4,
+          "headA": 2227,
+          "headB": 2285,
+          "fraction": 0.4339025333319152
+        },
+        {
+          "vertex": 5,
+          "headA": 2227,
+          "headB": 2285,
+          "fraction": 0.8703791798273754
+        },
+        {
+          "vertex": 6,
+          "headA": 2227,
+          "headB": 2285,
+          "fraction": 0.9999999948841148
+        },
+        {
+          "vertex": 7,
+          "headA": 2285,
+          "headB": 2284,
+          "fraction": 0.4538131108222591
+        },
+        {
+          "vertex": 8,
+          "headA": 2285,
+          "headB": 2284,
+          "fraction": 0.919979346489507
+        },
+        {
+          "vertex": 9,
+          "headA": 2285,
+          "headB": 2284,
+          "fraction": 0.9999999373327159
+        },
+        {
+          "vertex": 10,
+          "headA": 2284,
+          "headB": 2346,
+          "fraction": 0.3020695741396909
+        },
+        {
+          "vertex": 11,
+          "headA": 2284,
+          "headB": 2346,
+          "fraction": 0.7382375549740199
+        },
+        {
+          "vertex": 12,
+          "headA": 2284,
+          "headB": 2346,
+          "fraction": 1
+        },
+        {
+          "vertex": 13,
+          "headA": 2346,
+          "headB": 2345,
+          "fraction": 0.148098879317884
+        },
+        {
+          "vertex": 14,
+          "headA": 2346,
+          "headB": 2345,
+          "fraction": 0.42681441283674
+        },
+        {
+          "vertex": 15,
+          "headA": 2346,
+          "headB": 2345,
+          "fraction": 0.6711107150602097
+        },
+        {
+          "vertex": 16,
+          "headA": 2346,
+          "headB": 2345,
+          "fraction": 0.8909714944015005
+        },
+        {
+          "vertex": 17,
+          "headA": 2346,
+          "headB": 2345,
+          "fraction": 1
+        },
+        {
+          "vertex": 18,
+          "headA": 2345,
+          "headB": 2344,
+          "fraction": 0.08880662383121571
+        },
+        {
+          "vertex": 19,
+          "headA": 2345,
+          "headB": 2344,
+          "fraction": 0.2699074852469283
+        },
+        {
+          "vertex": 20,
+          "headA": 2345,
+          "headB": 2344,
+          "fraction": 0.4440487988113707
+        },
+        {
+          "vertex": 21,
+          "headA": 2345,
+          "headB": 2344,
+          "fraction": 0.6148440282109111
+        },
+        {
+          "vertex": 22,
+          "headA": 2345,
+          "headB": 2344,
+          "fraction": 0.7856392576104516
+        },
+        {
+          "vertex": 23,
+          "headA": 2345,
+          "headB": 2344,
+          "fraction": 0.959780571174894
+        },
+        {
+          "vertex": 24,
+          "headA": 2345,
+          "headB": 2344,
+          "fraction": 1
+        },
+        {
+          "vertex": 25,
+          "headA": 2344,
+          "headB": 2343,
+          "fraction": 0.13526221090835888
+        },
+        {
+          "vertex": 26,
+          "headA": 2344,
+          "headB": 2343,
+          "fraction": 0.31984956423358374
+        },
+        {
+          "vertex": 27,
+          "headA": 2344,
+          "headB": 2343,
+          "fraction": 0.5201384442290488
+        },
+        {
+          "vertex": 28,
+          "headA": 2344,
+          "headB": 2343,
+          "fraction": 0.742687608777485
+        },
+        {
+          "vertex": 29,
+          "headA": 2344,
+          "headB": 2343,
+          "fraction": 0.9965920214384394
+        },
+        {
+          "vertex": 30,
+          "headA": 2344,
+          "headB": 2343,
+          "fraction": 1
+        },
+        {
+          "vertex": 31,
+          "headA": 2343,
+          "headB": 2283,
+          "fraction": 0.506221943379392
+        },
+        {
+          "vertex": 32,
+          "headA": 2343,
+          "headB": 2283,
+          "fraction": 0.9234077072165321
+        },
+        {
+          "vertex": 33,
+          "headA": 2343,
+          "headB": 2283,
+          "fraction": 1
+        },
+        {
+          "vertex": 34,
+          "headA": 2283,
+          "headB": 2282,
+          "fraction": 0.234012163382108
+        },
+        {
+          "vertex": 35,
+          "headA": 2283,
+          "headB": 2282,
+          "fraction": 0.6200081171408457
+        },
+        {
+          "vertex": 36,
+          "headA": 2283,
+          "headB": 2282,
+          "fraction": 1
+        },
+        {
+          "vertex": 37,
+          "headA": 2282,
+          "headB": 2226,
+          "fraction": 0.13030554179908904
+        },
+        {
+          "vertex": 38,
+          "headA": 2282,
+          "headB": 2226,
+          "fraction": 0.5757956146332512
+        },
+        {
+          "vertex": 39,
+          "headA": 2282,
+          "headB": 2226,
+          "fraction": 0.9939642622108543
+        },
+        {
+          "vertex": 40,
+          "headA": 2282,
+          "headB": 2226,
+          "fraction": 1
+        },
+        {
+          "vertex": 41,
+          "headA": 2226,
+          "headB": 2170,
+          "fraction": 0.3947216843803867
+        },
+        {
+          "vertex": 42,
+          "headA": 2226,
+          "headB": 2170,
+          "fraction": 0.7865076485675906
+        }
+      ],
+      "uvLayer": "Eyelid_UV_v3",
+      "shapeKeys": [
+        "Basis",
+        "nose.projection",
+        "nose.alarWidth",
+        "earLeft.protrusion",
+        "earRight.protrusion",
+        "body.height",
+        "expression.smileLeft",
+        "expression.smileRight",
+        "expression.frownLeft",
+        "expression.frownRight",
+        "expression.browRaiseLeft",
+        "expression.browRaiseRight",
+        "corrective.height.smileLeft",
+        "corrective.height.smileRight",
+        "corrective.height.frownLeft",
+        "corrective.height.frownRight",
+        "corrective.height.browRaiseLeft",
+        "corrective.height.browRaiseRight",
+        "expression.blinkLeft",
+        "corrective.blinkArcLeft",
+        "corrective.height.blinkLeft"
+      ]
+    },
+    "LowerLid_Left": {
+      "radialSegments": 8,
+      "angularSamples": 43,
+      "headRimBindings": [
+        {
+          "vertex": 0,
+          "headA": 2226,
+          "headB": 2170,
+          "fraction": 0.7865076485675906
+        },
+        {
+          "vertex": 1,
+          "headA": 2226,
+          "headB": 2170,
+          "fraction": 1
+        },
+        {
+          "vertex": 2,
+          "headA": 2170,
+          "headB": 2114,
+          "fraction": 0.17718913809202166
+        },
+        {
+          "vertex": 3,
+          "headA": 2170,
+          "headB": 2114,
+          "fraction": 0.5748948163451688
+        },
+        {
+          "vertex": 4,
+          "headA": 2170,
+          "headB": 2114,
+          "fraction": 0.987815412834819
+        },
+        {
+          "vertex": 5,
+          "headA": 2170,
+          "headB": 2114,
+          "fraction": 0.9999999475719036
+        },
+        {
+          "vertex": 6,
+          "headA": 2114,
+          "headB": 2050,
+          "fraction": 0.42681812487611753
+        },
+        {
+          "vertex": 7,
+          "headA": 2114,
+          "headB": 2050,
+          "fraction": 0.9031954629992187
+        },
+        {
+          "vertex": 8,
+          "headA": 2114,
+          "headB": 2050,
+          "fraction": 1
+        },
+        {
+          "vertex": 9,
+          "headA": 2050,
+          "headB": 2051,
+          "fraction": 0.36947048418433603
+        },
+        {
+          "vertex": 10,
+          "headA": 2050,
+          "headB": 2051,
+          "fraction": 0.7208247822884677
+        },
+        {
+          "vertex": 11,
+          "headA": 2050,
+          "headB": 2051,
+          "fraction": 0.9968821117653434
+        },
+        {
+          "vertex": 12,
+          "headA": 2050,
+          "headB": 2051,
+          "fraction": 0.9999999984866191
+        },
+        {
+          "vertex": 13,
+          "headA": 2051,
+          "headB": 2052,
+          "fraction": 0.2301967438405819
+        },
+        {
+          "vertex": 14,
+          "headA": 2051,
+          "headB": 2052,
+          "fraction": 0.4286947404470758
+        },
+        {
+          "vertex": 15,
+          "headA": 2051,
+          "headB": 2052,
+          "fraction": 0.6026797564865662
+        },
+        {
+          "vertex": 16,
+          "headA": 2051,
+          "headB": 2052,
+          "fraction": 0.759262074237565
+        },
+        {
+          "vertex": 17,
+          "headA": 2051,
+          "headB": 2052,
+          "fraction": 0.9035692150625607
+        },
+        {
+          "vertex": 18,
+          "headA": 2051,
+          "headB": 2052,
+          "fraction": 0.9999999599710228
+        },
+        {
+          "vertex": 19,
+          "headA": 2052,
+          "headB": 2053,
+          "fraction": 0.04114463687871187
+        },
+        {
+          "vertex": 20,
+          "headA": 2052,
+          "headB": 2053,
+          "fraction": 0.17728521685129706
+        },
+        {
+          "vertex": 21,
+          "headA": 2052,
+          "headB": 2053,
+          "fraction": 0.31080988776977775
+        },
+        {
+          "vertex": 22,
+          "headA": 2052,
+          "headB": 2053,
+          "fraction": 0.4443345586882589
+        },
+        {
+          "vertex": 23,
+          "headA": 2052,
+          "headB": 2053,
+          "fraction": 0.5804751386608441
+        },
+        {
+          "vertex": 24,
+          "headA": 2052,
+          "headB": 2053,
+          "fraction": 0.722056569293306
+        },
+        {
+          "vertex": 25,
+          "headA": 2052,
+          "headB": 2053,
+          "fraction": 0.872358689153208
+        },
+        {
+          "vertex": 26,
+          "headA": 2052,
+          "headB": 2053,
+          "fraction": 0.9999999559387286
+        },
+        {
+          "vertex": 27,
+          "headA": 2053,
+          "headB": 2054,
+          "fraction": 0.03735773436160626
+        },
+        {
+          "vertex": 28,
+          "headA": 2053,
+          "headB": 2054,
+          "fraction": 0.22834429171689874
+        },
+        {
+          "vertex": 29,
+          "headA": 2053,
+          "headB": 2054,
+          "fraction": 0.44623919943235413
+        },
+        {
+          "vertex": 30,
+          "headA": 2053,
+          "headB": 2054,
+          "fraction": 0.7024565214554298
+        },
+        {
+          "vertex": 31,
+          "headA": 2053,
+          "headB": 2054,
+          "fraction": 1
+        },
+        {
+          "vertex": 32,
+          "headA": 2054,
+          "headB": 2055,
+          "fraction": 0.015653127728453595
+        },
+        {
+          "vertex": 33,
+          "headA": 2054,
+          "headB": 2055,
+          "fraction": 0.4399824273676313
+        },
+        {
+          "vertex": 34,
+          "headA": 2054,
+          "headB": 2055,
+          "fraction": 0.9999999005140011
+        },
+        {
+          "vertex": 35,
+          "headA": 2055,
+          "headB": 2115,
+          "fraction": 0.008555728540091578
+        },
+        {
+          "vertex": 36,
+          "headA": 2055,
+          "headB": 2115,
+          "fraction": 0.5047944236040051
+        },
+        {
+          "vertex": 37,
+          "headA": 2055,
+          "headB": 2115,
+          "fraction": 0.9621307836729472
+        },
+        {
+          "vertex": 38,
+          "headA": 2055,
+          "headB": 2115,
+          "fraction": 0.9999999333030305
+        },
+        {
+          "vertex": 39,
+          "headA": 2115,
+          "headB": 2171,
+          "fraction": 0.39499660995403174
+        },
+        {
+          "vertex": 40,
+          "headA": 2115,
+          "headB": 2171,
+          "fraction": 0.8092839029556509
+        },
+        {
+          "vertex": 41,
+          "headA": 2115,
+          "headB": 2171,
+          "fraction": 0.9999999417630577
+        },
+        {
+          "vertex": 42,
+          "headA": 2171,
+          "headB": 2227,
+          "fraction": 0.21349235143240786
+        }
+      ],
+      "uvLayer": "Eyelid_UV_v3",
+      "shapeKeys": [
+        "Basis",
+        "nose.projection",
+        "nose.alarWidth",
+        "earLeft.protrusion",
+        "earRight.protrusion",
+        "body.height",
+        "expression.smileLeft",
+        "expression.smileRight",
+        "expression.frownLeft",
+        "expression.frownRight",
+        "expression.browRaiseLeft",
+        "expression.browRaiseRight",
+        "corrective.height.smileLeft",
+        "corrective.height.smileRight",
+        "corrective.height.frownLeft",
+        "corrective.height.frownRight",
+        "corrective.height.browRaiseLeft",
+        "corrective.height.browRaiseRight",
+        "expression.blinkLeft",
+        "corrective.blinkArcLeft",
+        "corrective.height.blinkLeft"
+      ]
+    },
+    "UpperLid_Right": {
+      "radialSegments": 8,
+      "angularSamples": 43,
+      "headRimBindings": [
+        {
+          "vertex": 0,
+          "headA": 2222,
+          "headB": 2278,
+          "fraction": 0.21349235143240886
+        },
+        {
+          "vertex": 1,
+          "headA": 2222,
+          "headB": 2278,
+          "fraction": 0.6052782939415603
+        },
+        {
+          "vertex": 2,
+          "headA": 2278,
+          "headB": 2338,
+          "fraction": 2.031787661280786e-08
+        },
+        {
+          "vertex": 3,
+          "headA": 2278,
+          "headB": 2338,
+          "fraction": 0.006035792904512326
+        },
+        {
+          "vertex": 4,
+          "headA": 2278,
+          "headB": 2338,
+          "fraction": 0.42420444057615597
+        },
+        {
+          "vertex": 5,
+          "headA": 2278,
+          "headB": 2338,
+          "fraction": 0.8696945135105029
+        },
+        {
+          "vertex": 6,
+          "headA": 2278,
+          "headB": 2338,
+          "fraction": 1
+        },
+        {
+          "vertex": 7,
+          "headA": 2338,
+          "headB": 2337,
+          "fraction": 0.37999200971990016
+        },
+        {
+          "vertex": 8,
+          "headA": 2338,
+          "headB": 2337,
+          "fraction": 0.7659879634786378
+        },
+        {
+          "vertex": 9,
+          "headA": 2338,
+          "headB": 2337,
+          "fraction": 1
+        },
+        {
+          "vertex": 10,
+          "headA": 2337,
+          "headB": 2401,
+          "fraction": 0.07659229278346788
+        },
+        {
+          "vertex": 11,
+          "headA": 2337,
+          "headB": 2401,
+          "fraction": 0.49377805662060803
+        },
+        {
+          "vertex": 12,
+          "headA": 2337,
+          "headB": 2401,
+          "fraction": 0.9999997717668369
+        },
+        {
+          "vertex": 13,
+          "headA": 2401,
+          "headB": 2400,
+          "fraction": 0.0034079457364819877
+        },
+        {
+          "vertex": 14,
+          "headA": 2401,
+          "headB": 2400,
+          "fraction": 0.25731235839743644
+        },
+        {
+          "vertex": 15,
+          "headA": 2401,
+          "headB": 2400,
+          "fraction": 0.4798615229458727
+        },
+        {
+          "vertex": 16,
+          "headA": 2401,
+          "headB": 2400,
+          "fraction": 0.6801504029413377
+        },
+        {
+          "vertex": 17,
+          "headA": 2401,
+          "headB": 2400,
+          "fraction": 0.8647377562665626
+        },
+        {
+          "vertex": 18,
+          "headA": 2401,
+          "headB": 2400,
+          "fraction": 0.9999999341155954
+        },
+        {
+          "vertex": 19,
+          "headA": 2400,
+          "headB": 2399,
+          "fraction": 0.040219394636361115
+        },
+        {
+          "vertex": 20,
+          "headA": 2400,
+          "headB": 2399,
+          "fraction": 0.2143607082008035
+        },
+        {
+          "vertex": 21,
+          "headA": 2400,
+          "headB": 2399,
+          "fraction": 0.38515593760034383
+        },
+        {
+          "vertex": 22,
+          "headA": 2400,
+          "headB": 2399,
+          "fraction": 0.5559511669998844
+        },
+        {
+          "vertex": 23,
+          "headA": 2400,
+          "headB": 2399,
+          "fraction": 0.7300924805643269
+        },
+        {
+          "vertex": 24,
+          "headA": 2400,
+          "headB": 2399,
+          "fraction": 0.9111933419800394
+        },
+        {
+          "vertex": 25,
+          "headA": 2400,
+          "headB": 2399,
+          "fraction": 1
+        },
+        {
+          "vertex": 26,
+          "headA": 2399,
+          "headB": 2398,
+          "fraction": 0.10902857766388184
+        },
+        {
+          "vertex": 27,
+          "headA": 2399,
+          "headB": 2398,
+          "fraction": 0.32888935700517263
+        },
+        {
+          "vertex": 28,
+          "headA": 2399,
+          "headB": 2398,
+          "fraction": 0.5731856592286423
+        },
+        {
+          "vertex": 29,
+          "headA": 2399,
+          "headB": 2398,
+          "fraction": 0.8519011927474983
+        },
+        {
+          "vertex": 30,
+          "headA": 2399,
+          "headB": 2398,
+          "fraction": 1
+        },
+        {
+          "vertex": 31,
+          "headA": 2398,
+          "headB": 2336,
+          "fraction": 0.26176244502598006
+        },
+        {
+          "vertex": 32,
+          "headA": 2398,
+          "headB": 2336,
+          "fraction": 0.6979304258603092
+        },
+        {
+          "vertex": 33,
+          "headA": 2398,
+          "headB": 2336,
+          "fraction": 1
+        },
+        {
+          "vertex": 34,
+          "headA": 2336,
+          "headB": 2335,
+          "fraction": 0.080020653510493
+        },
+        {
+          "vertex": 35,
+          "headA": 2336,
+          "headB": 2335,
+          "fraction": 0.5461868891777409
+        },
+        {
+          "vertex": 36,
+          "headA": 2336,
+          "headB": 2335,
+          "fraction": 1
+        },
+        {
+          "vertex": 37,
+          "headA": 2335,
+          "headB": 2277,
+          "fraction": 0.12962087393252947
+        },
+        {
+          "vertex": 38,
+          "headA": 2335,
+          "headB": 2277,
+          "fraction": 0.5660975207381094
+        },
+        {
+          "vertex": 39,
+          "headA": 2335,
+          "headB": 2277,
+          "fraction": 0.981880423853961
+        },
+        {
+          "vertex": 40,
+          "headA": 2335,
+          "headB": 2277,
+          "fraction": 1
+        },
+        {
+          "vertex": 41,
+          "headA": 2277,
+          "headB": 2221,
+          "fraction": 0.38599255856042314
+        },
+        {
+          "vertex": 42,
+          "headA": 2277,
+          "headB": 2221,
+          "fraction": 0.7865076485675906
+        }
+      ],
+      "uvLayer": "Eyelid_UV_v3",
+      "shapeKeys": [
+        "Basis",
+        "nose.projection",
+        "nose.alarWidth",
+        "earLeft.protrusion",
+        "earRight.protrusion",
+        "body.height",
+        "expression.smileLeft",
+        "expression.smileRight",
+        "expression.frownLeft",
+        "expression.frownRight",
+        "expression.browRaiseLeft",
+        "expression.browRaiseRight",
+        "corrective.height.smileLeft",
+        "corrective.height.smileRight",
+        "corrective.height.frownLeft",
+        "corrective.height.frownRight",
+        "corrective.height.browRaiseLeft",
+        "corrective.height.browRaiseRight",
+        "expression.blinkRight",
+        "corrective.blinkArcRight",
+        "corrective.height.blinkRight"
+      ]
+    },
+    "LowerLid_Right": {
+      "radialSegments": 8,
+      "angularSamples": 43,
+      "headRimBindings": [
+        {
+          "vertex": 0,
+          "headA": 2277,
+          "headB": 2221,
+          "fraction": 0.7865076485675906
+        },
+        {
+          "vertex": 1,
+          "headA": 2277,
+          "headB": 2221,
+          "fraction": 1
+        },
+        {
+          "vertex": 2,
+          "headA": 2221,
+          "headB": 2165,
+          "fraction": 0.19071604196387884
+        },
+        {
+          "vertex": 3,
+          "headA": 2221,
+          "headB": 2165,
+          "fraction": 0.605003334820174
+        },
+        {
+          "vertex": 4,
+          "headA": 2221,
+          "headB": 2165,
+          "fraction": 1
+        },
+        {
+          "vertex": 5,
+          "headA": 2165,
+          "headB": 2105,
+          "fraction": 0.037869216327052785
+        },
+        {
+          "vertex": 6,
+          "headA": 2165,
+          "headB": 2105,
+          "fraction": 0.495205576395995
+        },
+        {
+          "vertex": 7,
+          "headA": 2165,
+          "headB": 2105,
+          "fraction": 0.9914442714599084
+        },
+        {
+          "vertex": 8,
+          "headA": 2165,
+          "headB": 2105,
+          "fraction": 1
+        },
+        {
+          "vertex": 9,
+          "headA": 2105,
+          "headB": 2106,
+          "fraction": 0.5600175726323687
+        },
+        {
+          "vertex": 10,
+          "headA": 2105,
+          "headB": 2106,
+          "fraction": 0.9843468722715464
+        },
+        {
+          "vertex": 11,
+          "headA": 2105,
+          "headB": 2106,
+          "fraction": 1
+        },
+        {
+          "vertex": 12,
+          "headA": 2106,
+          "headB": 2107,
+          "fraction": 0.2975435494697351
+        },
+        {
+          "vertex": 13,
+          "headA": 2106,
+          "headB": 2107,
+          "fraction": 0.5537608714928107
+        },
+        {
+          "vertex": 14,
+          "headA": 2106,
+          "headB": 2107,
+          "fraction": 0.7716557792082661
+        },
+        {
+          "vertex": 15,
+          "headA": 2106,
+          "headB": 2107,
+          "fraction": 0.9626423365635586
+        },
+        {
+          "vertex": 16,
+          "headA": 2106,
+          "headB": 2107,
+          "fraction": 1
+        },
+        {
+          "vertex": 17,
+          "headA": 2107,
+          "headB": 2108,
+          "fraction": 0.1276412771989908
+        },
+        {
+          "vertex": 18,
+          "headA": 2107,
+          "headB": 2108,
+          "fraction": 0.27794339705889287
+        },
+        {
+          "vertex": 19,
+          "headA": 2107,
+          "headB": 2108,
+          "fraction": 0.41952482769135474
+        },
+        {
+          "vertex": 20,
+          "headA": 2107,
+          "headB": 2108,
+          "fraction": 0.5556654076639399
+        },
+        {
+          "vertex": 21,
+          "headA": 2107,
+          "headB": 2108,
+          "fraction": 0.6891900785824205
+        },
+        {
+          "vertex": 22,
+          "headA": 2107,
+          "headB": 2108,
+          "fraction": 0.8227147495009017
+        },
+        {
+          "vertex": 23,
+          "headA": 2107,
+          "headB": 2108,
+          "fraction": 0.958855329473487
+        },
+        {
+          "vertex": 24,
+          "headA": 2107,
+          "headB": 2108,
+          "fraction": 0.9999999743963063
+        },
+        {
+          "vertex": 25,
+          "headA": 2108,
+          "headB": 2109,
+          "fraction": 0.0964307526317207
+        },
+        {
+          "vertex": 26,
+          "headA": 2108,
+          "headB": 2109,
+          "fraction": 0.24073789345671642
+        },
+        {
+          "vertex": 27,
+          "headA": 2108,
+          "headB": 2109,
+          "fraction": 0.39732021120771516
+        },
+        {
+          "vertex": 28,
+          "headA": 2108,
+          "headB": 2109,
+          "fraction": 0.5713052272472057
+        },
+        {
+          "vertex": 29,
+          "headA": 2108,
+          "headB": 2109,
+          "fraction": 0.7698032238536995
+        },
+        {
+          "vertex": 30,
+          "headA": 2108,
+          "headB": 2109,
+          "fraction": 0.9999999692534507
+        },
+        {
+          "vertex": 31,
+          "headA": 2109,
+          "headB": 2110,
+          "fraction": 0.0031178882346566484
+        },
+        {
+          "vertex": 32,
+          "headA": 2109,
+          "headB": 2110,
+          "fraction": 0.2791752177115323
+        },
+        {
+          "vertex": 33,
+          "headA": 2109,
+          "headB": 2110,
+          "fraction": 0.630529515815664
+        },
+        {
+          "vertex": 34,
+          "headA": 2109,
+          "headB": 2110,
+          "fraction": 0.9999999915029603
+        },
+        {
+          "vertex": 35,
+          "headA": 2110,
+          "headB": 2166,
+          "fraction": 0.09680453700078132
+        },
+        {
+          "vertex": 36,
+          "headA": 2110,
+          "headB": 2166,
+          "fraction": 0.5731818751238824
+        },
+        {
+          "vertex": 37,
+          "headA": 2110,
+          "headB": 2166,
+          "fraction": 0.9999999976186149
+        },
+        {
+          "vertex": 38,
+          "headA": 2166,
+          "headB": 2222,
+          "fraction": 0.012184532360128371
+        },
+        {
+          "vertex": 39,
+          "headA": 2166,
+          "headB": 2222,
+          "fraction": 0.4251051288038477
+        },
+        {
+          "vertex": 40,
+          "headA": 2166,
+          "headB": 2222,
+          "fraction": 0.8228108070127564
+        },
+        {
+          "vertex": 41,
+          "headA": 2166,
+          "headB": 2222,
+          "fraction": 0.9999999409689232
+        },
+        {
+          "vertex": 42,
+          "headA": 2222,
+          "headB": 2278,
+          "fraction": 0.21349235143240788
+        }
+      ],
+      "uvLayer": "Eyelid_UV_v3",
+      "shapeKeys": [
+        "Basis",
+        "nose.projection",
+        "nose.alarWidth",
+        "earLeft.protrusion",
+        "earRight.protrusion",
+        "body.height",
+        "expression.smileLeft",
+        "expression.smileRight",
+        "expression.frownLeft",
+        "expression.frownRight",
+        "expression.browRaiseLeft",
+        "expression.browRaiseRight",
+        "corrective.height.smileLeft",
+        "corrective.height.smileRight",
+        "corrective.height.frownLeft",
+        "corrective.height.frownRight",
+        "corrective.height.browRaiseLeft",
+        "corrective.height.browRaiseRight",
+        "expression.blinkRight",
+        "corrective.blinkArcRight",
+        "corrective.height.blinkRight"
+      ]
+    }
+  },
+  "blendSha256": "44e3f78518ecc35b947f30f02118f8c515dbd65bc1a9c546e50aeeab2094bac1",
+  "glbSha256": "c6000898b73cb0a8002ba8ac4e5b7f85c67ea1e07c01aee0bab5c7ee9aabc7be",
+  "compatibility": "All 27 other mesh positions, ordered triangles, UVs, all shape keys and material bindings are exact. Four lid topology/UVs change and need new lid textures only if parent adopts. Six identity control semantics retained. New blink-arc corrective rule is required by glTF consumers. No receiving lane should rebind until review.",
+  "status": "UNREVIEWED_CANDIDATE; boundary and collision/visual checks follow; inherited eye/head crossing not repaired."
+}

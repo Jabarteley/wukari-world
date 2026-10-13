@@ -45,6 +45,7 @@ changed=[];bindings={}
 
 for side,tag in [(1,'Left'),(-1,'Right')]:
     cx=side*.032;cy=-.036;cz=1.635
+    closure_slope=side*.0012/.0132
     selected=[]
     for polygon in head.polygons:
         center=sum((head.vertices[i].co for i in polygon.vertices),Vector())/len(polygon.vertices)
@@ -52,8 +53,10 @@ for side,tag in [(1,'Left'),(-1,'Right')]:
     selected_edges=Counter(tuple(sorted((p.vertices[i],p.vertices[(i+1)%len(p.vertices)]))) for p in selected for i in range(len(p.vertices)))
     outer_edges=[e for e,n in selected_edges.items() if n==1 and e not in boundary]
     outer_ids={i for edge in outer_edges for i in edge}
-    rim=sorted((math.atan2(head.vertices[i].co.z-cz,head.vertices[i].co.x-cx)%(2*math.pi),i) for i in outer_ids)
-    angles=sorted(set([a for a,i in rim]+[2*math.pi*i/64 for i in range(65)]))
+    rim=sorted((math.atan2(head.vertices[i].co.z-cz-closure_slope*(head.vertices[i].co.x-cx),head.vertices[i].co.x-cx)%(2*math.pi),i) for i in outer_ids)
+    # Both lids need exactly the same closed-edge segmentation; independently
+    # sampled curves can cross by micrometres even when their analytic seam agrees.
+    angles=sorted(set([a for a,i in rim]+[2*math.pi-a for a,i in rim]+[2*math.pi*i/32 for i in range(33)]))
     def head_sample(x,z):
         hit,normal,index,distance=head_tree.ray_cast(Vector((x,-.2,z)),Vector((0,1,0)))
         if hit is None or hit.y>=0:return None
@@ -61,7 +64,7 @@ for side,tag in [(1,'Left'),(-1,'Right')]:
         weights=barycentric_transform(hit,*(head.vertices[i].co for i in tri),Vector((1,0,0)),Vector((0,1,0)),Vector((0,0,1)))
         return hit,tri,weights
     def outer(angle):
-        direction=Vector((math.cos(angle),math.sin(angle)))
+        direction=Vector((math.cos(angle),math.sin(angle)+closure_slope*math.cos(angle)))
         cross=lambda p,q:p.x*q.y-p.y*q.x
         for index,(a,ia) in enumerate(rim):
             b,ib=rim[(index+1)%len(rim)];b=b if b>a else b+2*math.pi
@@ -76,7 +79,7 @@ for side,tag in [(1,'Left'),(-1,'Right')]:
         name=('UpperLid_' if upper else 'LowerLid_')+tag
         changed.append(name);obj=bpy.data.objects[name]
         half=[a for a in angles if (0-1e-9<=a<=math.pi+1e-9 if upper else math.pi-1e-9<=a<=2*math.pi+1e-9)]
-        samples=[outer(a) for a in half];count=len(half);radial=12
+        samples=[outer(a) for a in half];count=len(half);radial=10
         def position(angle,t,o,blink):
             inner=.0132
             ix=cx+inner*math.cos(angle)
@@ -86,7 +89,7 @@ for side,tag in [(1,'Left'),(-1,'Right')]:
             # The frozen rim is partly inside the globe. This separate skin patch
             # covers that rim without editing the head. It is not a welded repair.
             sample=head_sample(x,z)
-            face=(o.y if t==0 else sample[0].y if sample is not None else face_y(x,z))-(.000002+.000498*smooth(0,.07,t))
+            face=(o.y if t==0 else sample[0].y if sample is not None else face_y(x,z))-(.000002+.001198*smooth(0,.07,t))
             globe=1-((x-cx)/.0195)**2-((z-cz)/.0155)**2
             y=face
             if globe>0:
@@ -127,6 +130,7 @@ for side,tag in [(1,'Left'),(-1,'Right')]:
                     if sample is not None:_,tri,weights=sample
                     delta=sum(((source[i]-head_keys['Basis'][i])*w for i,w in zip(tri,weights)),Vector())
                     if sample is None:delta*=1-smooth(0,1,t)
+                    delta*=1-smooth(.75,1,t)
                 block.data[index].co=p+delta
         blink_name='expression.blink'+tag
         for key,values in [(blink_name,closed),('corrective.blinkArc'+tag,[p+h-(p+c)*.5 for p,c,h in zip(base,closed,halfway)]),

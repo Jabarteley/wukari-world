@@ -1,0 +1,2 @@
+Fontconfig error: No writable cache directories
+{"status": "PASS", "exactTriangleExpandedProtectedMeshes": 27, "originalSha256": "5f0f8da1f3e6b14fc4910f04f02ed1eafe6446f896f44ef2b3a23f2ca071bc07", "candidateSha256": "335f463fc2013164a7b9719ab1225589289565ac0cbc81abe7456b45b7e89e76", "triangles": 32482, "meshCount": 31}

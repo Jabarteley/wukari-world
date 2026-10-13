@@ -1,0 +1,436 @@
+{
+  "status": "PASS",
+  "exactTriangleExpandedProtectedMeshes": 27,
+  "originalSha256": "5f0f8da1f3e6b14fc4910f04f02ed1eafe6446f896f44ef2b3a23f2ca071bc07",
+  "candidateSha256": "335f463fc2013164a7b9719ab1225589289565ac0cbc81abe7456b45b7e89e76",
+  "triangles": 32482,
+  "meshCount": 31,
+  "candidateObjects": {
+    "Neck": {
+      "triangles": 188,
+      "position": "7de9d90a9a54597339b4663abfd6bbc2edf0191fd9e01e8e5456094af766ebf2",
+      "uv": "b1c4c1836691dc3a883df7a8b6cc51ce3b2ac1d944a6936aacec98c7e6196e8f",
+      "morphPositions": {
+        "body.height": "accf80ecf5f18d40bf5ab647201ae8c3cb51723fb01a1a15895a324335fc3655",
+        "body.shoulderWidth": "41d8107bd67a7e4611497bbb093d94f23fda66efb1a92595551c88f3f38909a9"
+      },
+      "normalTargets": 2
+    },
+    "Shirt_fused_shoulders": {
+      "triangles": 3798,
+      "position": "e3719c6be341cda37642316fa28d0e653e03fa25da506c7bb5079bed43348368",
+      "uv": "9ea62112766416c79f811dd308334e2d284245d4be31eeae2288ed2ce6ce4fa8",
+      "morphPositions": {
+        "body.height": "af228d8aee6b37173b204b00c6c2dd06924d05bc2a84e8b3fb1444a1aa01e6de",
+        "body.shoulderWidth": "bf4085ab4aaffb430df291da18400c5a625f2f4c239aa0146b2d0e354f78add8"
+      },
+      "normalTargets": 2
+    },
+    "Collar_band": {
+      "triangles": 80,
+      "position": "1b779fa457f6e8d2c4c42d4cd36ce57c54674d7e366e8fac9dcb8a34d7abf735",
+      "uv": "5ff2f66242e808eb0b045f11fc55cd273e0a0015446d555a97d9403d6d2ab09c",
+      "morphPositions": {
+        "body.height": "ec8b59f28237e415f807bf871126141c3dfd5fee6646128f2058a74755cad820",
+        "body.shoulderWidth": "fd012a984e8d9beece5b66d8e21f38b5dc049445718c1b9920fd71200c91952c"
+      },
+      "normalTargets": 2
+    },
+    "Trousers_fused_hip": {
+      "triangles": 3682,
+      "position": "ecd66466e5f48cab8e8324a38553a6717148b3b8078b9af49289ff6186516cde",
+      "uv": "0803a11e8ebe590c03df2fd11b411d97bccc1b97dea174e1c7a079698dd58661",
+      "morphPositions": {
+        "body.height": "af72ad7b361ca685e772fde9d063b526b36b862ee9eef5af21931edb7877287d",
+        "body.shoulderWidth": "738b47d68afdef5ebdb956c247363d0855c5556cf196ec95b6f8f1e299c4d57e"
+      },
+      "normalTargets": 2
+    },
+    "Forearm_hand_-1": {
+      "triangles": 2008,
+      "position": "3cf11798a358f99da48298debcd594521c5688fab48d23303e7166db98f57c62",
+      "uv": "b559b8262680c39887f2e85dff2e0d69f20560b6ebc6f8d6666ed64fec9c464d",
+      "morphPositions": {
+        "body.height": "40702a90cdb9859d9d400b8a7cf0f4b41c33075d235ce2a2b8e1c755f2aef70e",
+        "body.shoulderWidth": "20abd3dfdb64e72db8cb192cd8dab36246795db464fce0f68eed33f18b0f0860"
+      },
+      "normalTargets": 2
+    },
+    "Shoe_-1": {
+      "triangles": 380,
+      "position": "737b045c80694f3f4d5b0b7908b113291b1009d2d1a4e74cb3a1cc4d80f87c6b",
+      "uv": "d521d6c586f1906b850398d832ebd398539af424960681771f14ba56ca5b9efd",
+      "morphPositions": {
+        "body.height": "bbb30a377394957798b06b6b5c79a8d051e76430191084c09384beeec7d003a7"
+      },
+      "normalTargets": 1
+    },
+    "Sole_-1": {
+      "triangles": 124,
+      "position": "370476cd3dd156e14c26fa1b235923205b955d9de382db92021fc67111065460",
+      "uv": "42024eefca67ec2f3898b8e8a9eb3ea8aa538429aeb09ec1c9135773eb4d9885",
+      "morphPositions": {
+        "body.height": "b9bf52a1d7a62c0474bdf0a8a981e0d56c1ca6165c86bf04303c24d8897a915b"
+      },
+      "normalTargets": 1
+    },
+    "Forearm_hand_1": {
+      "triangles": 2008,
+      "position": "2809bf82fb40189b8480b999878adefa7fe4673728168235809803bb0d66fc16",
+      "uv": "be223e2fb7ff2e1aaa1130e414e41ade920f3401460500bb1c6d4620f2c99d50",
+      "morphPositions": {
+        "body.height": "7edef892ddd213a59884de48bec60dbf78ac593aaf3933b02334d50d9bb00de7",
+        "body.shoulderWidth": "ec8825a78bca677359995a7bde0073dc81c0a3fd39ea8c859e3ed5291559987d"
+      },
+      "normalTargets": 2
+    },
+    "Shoe_1": {
+      "triangles": 380,
+      "position": "53ff29f535e0c3477716570dee4f6bc22b63f7002082ae97126bffd6f9410fd7",
+      "uv": "47d4cb59786ec9718d0b95b44db47e351e9b9f18bf062f8c403df1b2596d1048",
+      "morphPositions": {
+        "body.height": "bbb30a377394957798b06b6b5c79a8d051e76430191084c09384beeec7d003a7"
+      },
+      "normalTargets": 1
+    },
+    "Sole_1": {
+      "triangles": 124,
+      "position": "78874be00cd3b3567ed64710fe3ae5dbfadbf19ebc61215ea91bbfd0d6b9cfd7",
+      "uv": "1137e67400ce8c28215f0dc1d1a4fd2e4d53b14bd4a68c1433aa81319731a3ef",
+      "morphPositions": {
+        "body.height": "b9bf52a1d7a62c0474bdf0a8a981e0d56c1ca6165c86bf04303c24d8897a915b"
+      },
+      "normalTargets": 1
+    },
+    "Head_continuous_anatomy": {
+      "triangles": 8096,
+      "position": "50983fa972b18c7d54320f6880185294063fc02b8f835f8ab8423933eaa9007a",
+      "uv": "21c3d4712a6bf35d9ea38519ff7810e44c08d41e6f772f7f780141be1e8e95cb",
+      "morphPositions": {
+        "nose.projection": "476c68791308b95ea4c9a969bd94b15eaec490747b77898cfd78e4d9203ab894",
+        "nose.alarWidth": "6422ca997afe96e6e219fff9f13344b4a03b68b5fa1c14cf5403c963dc88eeac",
+        "earLeft.protrusion": "cfb347365548d60945d08c0fcd337c9e37897466042c15f7e2228abfc059be97",
+        "earRight.protrusion": "0c8ba830f73a13555df060d19f88b057409640f68639728323ce73fac20293e3",
+        "body.height": "5d959386c9737eb8063347b0f5fd7fc9f19126908471a359970158886f5d7275",
+        "expression.smileLeft": "d92d4bd6de8ab6f124acf3a6b936db8a8970c725f56d1ee5198a6efa5644a560",
+        "expression.smileRight": "8787a7dc1f663bc8f533d2261918883964825cb086af9fcb425ab6a23989831a",
+        "expression.frownLeft": "27b3ba3be083901442789aa554b08b341105c55d14d59cf32dcb2ed79b219987",
+        "expression.frownRight": "884cb13b1c6a10efff55a64129b9bc50a5a2b1dcf3919cf567f6aadaee4b3435",
+        "expression.browRaiseLeft": "743dfb1620699bf8525164a5900f390aa96b9bc724e563c8fd1ff7072568a50f",
+        "expression.browRaiseRight": "1db066c03cb1cc93d2e6855dc30d6e20d724829945f566893cbed8587cef4952",
+        "corrective.height.smileLeft": "3a7eb526c11c75552a5b9e7994e391af2378ce6f4be3765b28e1fb055beba4e7",
+        "corrective.height.smileRight": "9abbde8d6d01c3fde927f92805aae9dd83954a84124a6ece2bd0808c0ae158dc",
+        "corrective.height.frownLeft": "5e113558812be11df53a8f4ac12c15a1563caf793a17a32ca419d272e585fa73",
+        "corrective.height.frownRight": "b26c8583dce183f62e6c5d4ea7c5cc35bb39bd6dd3f77fe8369eac570f8a6535",
+        "corrective.height.browRaiseLeft": "a8b06e05e884dab0e82b0db5e985fb1ebdaa8e1bcfc980d95312cb3230e2cc9c",
+        "corrective.height.browRaiseRight": "8bf934ba98c260c7bbd8a589f47be7750a6ebc59c7d4804dae7d2c7932a7e552"
+      },
+      "normalTargets": 17
+    },
+    "Eye_Left": {
+      "triangles": 728,
+      "position": "df4b0838267979201f1d62e9db24eb98172fab0abe48751220abb41bce4ed173",
+      "uv": "4c43412044208d49700a8e4f58cb246a4de41786cee519ae1cc87d3a9682ae6b",
+      "morphPositions": {
+        "body.height": "ad3f524bd62f897904354d5f7b4044b8cf1d1416ed5dca9182e01907d8b1d246"
+      },
+      "normalTargets": 1
+    },
+    "Iris_Left": {
+      "triangles": 40,
+      "position": "c9395491012db1e3f96f06b5957c2324389f897f2eaaa4f6f75c08eec842771c",
+      "uv": "057afc072ad4f2bdc7d2d0bce6b08c92063d475a3814bdc922826240c9b66fe3",
+      "morphPositions": {
+        "body.height": "07c9f9a0f1079a0b095b9fddc89b8b75427fbc62269c5f0abb4db1043f96c839"
+      },
+      "normalTargets": 1
+    },
+    "Pupil_Left": {
+      "triangles": 40,
+      "position": "bdcd10bfcaa451be5bb473fd51eb8a00bc811e5d72e24ff48997474bf902c3e4",
+      "uv": "878a5459090e66ff2a8ada64c78a9ad9a174f077de3402961fd313f4ad4a20cf",
+      "morphPositions": {
+        "body.height": "5b6400a17446799cb70b32288ee4a6e715637098d7f7f67625705a79769d871b"
+      },
+      "normalTargets": 1
+    },
+    "UpperLid_Left": {
+      "triangles": 1080,
+      "position": "2c838915ec16851a745ac6443862119d4c86ea93595aaa2a7ffe1090b3588ab0",
+      "uv": "640a97c9f8953e2247e217009dc17e652de98b700833d81e86096f94f05a3dcd",
+      "morphPositions": {
+        "nose.projection": "1f6b3fcfe04165ccba3becbb9c1461f86ac47b4dd94e2e5ccbf62e8b88495abe",
+        "nose.alarWidth": "06b5d97cd44bbb577666547ea17bfd33d570b7ad37f904f82566c04d50ec9210",
+        "earLeft.protrusion": "e44fc4a1ba667822487ae80d84901e3938bccea38060ab7c5edc0d1c17cf3964",
+        "earRight.protrusion": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "body.height": "25a91f3a634a85d4cedf13f4c22be16408160b02ae8bfdd4be26be8355790412",
+        "expression.smileLeft": "157980bca337ed1921e041233e43a1a942c49227dbfd558e89862ec0535800f4",
+        "expression.smileRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "expression.frownLeft": "4a9fff487d954df3258dbb98197fb3c294c21a4da66ab79881526bef0a5fd303",
+        "expression.frownRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "expression.browRaiseLeft": "63f6241acdd74ad6d216753a30c3145edf3d88d2abb135f39c4eb38c0fe71fcd",
+        "expression.browRaiseRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.smileLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.smileRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.frownLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.frownRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.browRaiseLeft": "3598cc93d940d876f763b1c647636ccb39e9a7daff1b060618c1cc58984c66c7",
+        "corrective.height.browRaiseRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "expression.blinkLeft": "8ded140027fe6e92a1bf9c31fac083bc69fc03dcea92d3ca07b429e8ea476169",
+        "corrective.blinkArcLeft": "f1a8f2e29361d71c19bbca9e3e688c273335e0cb14eb3e3498ada2c144f21241",
+        "corrective.height.blinkLeft": "e05be3966f8afbb14973e34f70f9974b48c5a91ec32e777ea1b6650970225b08"
+      },
+      "normalTargets": 20
+    },
+    "LowerLid_Left": {
+      "triangles": 1080,
+      "position": "6a5128ed52e8a959d4758418c224045ff2234f843fe547954bef5334d1edadcc",
+      "uv": "ec79bcad37ca127744c594f7e2cd15c1d38dc31eaccd11351cd3bad82edea88e",
+      "morphPositions": {
+        "nose.projection": "6661d2817006b2f68bdbc2f96d99012da16822c224d226a8260297fa506a1251",
+        "nose.alarWidth": "c1bbaca58a73eb355f0fe2114006bb733ba1b01d4fe1406887deb74355cd0b37",
+        "earLeft.protrusion": "0db6e8d431a3cadbb6b433013f52bbadbb786fdff6a1e0d6f100032c7868f2a6",
+        "earRight.protrusion": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "body.height": "06dd13552fc13a9bf98a4a136b938a50d2fc208261ac02d17cef7a4b0e2730f1",
+        "expression.smileLeft": "dbaa51a1205b4444295e9a55dd3068fbc36a74808019c147d5f88c094e05ad9b",
+        "expression.smileRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "expression.frownLeft": "7a49b045389bf344a27a14e08ce1ea9b205be1a7eadf4fb20ef4fd7730173e56",
+        "expression.frownRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "expression.browRaiseLeft": "4a8e296bc1166ca273c21322fa53a76ffe65c469d501341d7ba879f33644bcb2",
+        "expression.browRaiseRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.smileLeft": "1311a1604aa79f1d2003d945d43d67393dc88dd997635c395fe8a8ddd115a00d",
+        "corrective.height.smileRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.frownLeft": "b306986810c80b1fd00bdf771223a68efa7c42ec0ee62b2f21cb1fc65a098510",
+        "corrective.height.frownRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.browRaiseLeft": "1e9d8baacc7f2a9a0f18a0bdd6b1100566b1cd5bd8b22a7f8f727fbf18b5d3b3",
+        "corrective.height.browRaiseRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "expression.blinkLeft": "d26bb8144a009f4fb16ef401fc3e9fe6a5a72d28fbc45f5b0a817658b8c7095f",
+        "corrective.blinkArcLeft": "4c155fa5601e7348e6569fbeb3d9b8af534fc6a06d813491f66bf234cadfc9f1",
+        "corrective.height.blinkLeft": "703e53958821768804fdfa2af60a949ffa97fdd2913ebc576007f9b565589040"
+      },
+      "normalTargets": 20
+    },
+    "Brow_Left": {
+      "triangles": 48,
+      "position": "4cef2e00717a26c5a44d16aa913026eaeadae2b0f17155e981a02efa84ec007c",
+      "uv": "cecaa13faaa47478128fcbfe1cfbf31ea796cf20458914a9bd7c1bf3ab279631",
+      "morphPositions": {
+        "body.height": "e83e7c61b56059edcc9d2a4ee1ae5fec08d00ba1af6a9eb42fd5bbf45600fc74",
+        "expression.browRaiseLeft": "69bf2ab9535684b35415ed00e5a54e48c0710091eb40115beb8782461073994c",
+        "corrective.height.browRaiseLeft": "fd2aadbd9053d98c394bb433eb5deb903d2b2561da9718c8ce3f4f8890e05851"
+      },
+      "normalTargets": 3
+    },
+    "Eye_Right": {
+      "triangles": 728,
+      "position": "265b32b72e784da3f3e120d8a162881bb85ef9763db56b1e98880637a0a2b35f",
+      "uv": "50dbf73bd18360b7c3b61e09748386ba461f6629d07bd8521b684a12aef56cc3",
+      "morphPositions": {
+        "body.height": "ad3f524bd62f897904354d5f7b4044b8cf1d1416ed5dca9182e01907d8b1d246"
+      },
+      "normalTargets": 1
+    },
+    "Iris_Right": {
+      "triangles": 40,
+      "position": "b538d51d8d87ceddc0ff9256603416006c0da6bbe83602a4005910664c28ea27",
+      "uv": "1416e885f38c9a418f85caf2c272103b59001d20117db40469b59ef8cc90202e",
+      "morphPositions": {
+        "body.height": "07c9f9a0f1079a0b095b9fddc89b8b75427fbc62269c5f0abb4db1043f96c839"
+      },
+      "normalTargets": 1
+    },
+    "Pupil_Right": {
+      "triangles": 40,
+      "position": "ca7b7a17a5feb4758c331c31be99290ca4b653275dc4ac634a7feacb9164fa6c",
+      "uv": "a7ba4fd37f0bff3efc024c5ab33ebcca0428b2fe6372041b2b860964f1ebc4be",
+      "morphPositions": {
+        "body.height": "5b6400a17446799cb70b32288ee4a6e715637098d7f7f67625705a79769d871b"
+      },
+      "normalTargets": 1
+    },
+    "UpperLid_Right": {
+      "triangles": 1080,
+      "position": "abb52fd736d1189939c4698f14f713000005067e7514f0acd34155e23fcd9405",
+      "uv": "d11c0d8fc6b1e209f33af47ff8a409f1ccbccc5d40132281f6daf6f54e28587e",
+      "morphPositions": {
+        "nose.projection": "b2d3764f0fa929a8f94a22c33af6a5eb830e3a1a1a8f731be63c9bbc34fb6047",
+        "nose.alarWidth": "7a8d33a9b7a3107fc6c05502d3135add25aa60ebf6c99dab832e97314b2706d7",
+        "earLeft.protrusion": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "earRight.protrusion": "5d7a78eb68fa28f9662ae77636935352f4e2333a44002803aa669acc690d2f22",
+        "body.height": "9e5a7bff628a3bc895742d2cf3ebeb9d11dbe54ddb3c560c9972410866f3eb04",
+        "expression.smileLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "expression.smileRight": "8b443f484257c45b66f305574da05ee2139c5e8a47c3465660ed14cdc29dc150",
+        "expression.frownLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "expression.frownRight": "51aa27aa49183097f4dca7f04a84b27c9825e898967a6cafdbdab272180774a0",
+        "expression.browRaiseLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "expression.browRaiseRight": "7ba2ae50fab6356a7c5cc8aa048efb147c790a100734308d1862ad86ea1196e2",
+        "corrective.height.smileLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.smileRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.frownLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.frownRight": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.browRaiseLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.browRaiseRight": "61eac2f8d0605d7b33a430e276c3ef84bd8ae72743adb4620748a99b94497bea",
+        "expression.blinkRight": "16e8e641bee1520f0cf94ff695d91ea3ab3c28b9a851f0df8508e0039fd43da2",
+        "corrective.blinkArcRight": "d2c1e94ff266f1ce50acf214db3a9d1d5bd54a05357a00c499dadfc09dee4105",
+        "corrective.height.blinkRight": "1996b91b48d2d63034a67d18787a0da370918dd2fe022db539a7d0d761734de8"
+      },
+      "normalTargets": 20
+    },
+    "LowerLid_Right": {
+      "triangles": 1080,
+      "position": "febfd16f6ff5b65b554a594c19751e0572621d2713058363934ba68f1152efe7",
+      "uv": "f7f2aa85278fbccc85de0915936d9b035ec9a64f616d3608759c6f8aca897439",
+      "morphPositions": {
+        "nose.projection": "a451404cf4c3d1f044569cd884abb91cd786e6600cebb174d7e6a7170f9b0d97",
+        "nose.alarWidth": "824cab766314295bac4ec4f10cd4017fdb8a612366493d6618735203b278fae4",
+        "earLeft.protrusion": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "earRight.protrusion": "395ba1e904803b32731d6b69ad3e76d0affb61636a3d897e2a8a13a49172d87a",
+        "body.height": "adc63daf00a49abb66a9890411aa6d86186dd2facc900e8e9dd3ba4110f04ea5",
+        "expression.smileLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "expression.smileRight": "27b5554f5b6740965980ce41023dde2b8bf5ccce4bc53201911450d4cc15f031",
+        "expression.frownLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "expression.frownRight": "7c49b302b72b1074ac656364df6465c1fbadbb8f04ac0ebfa3875891a227940e",
+        "expression.browRaiseLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "expression.browRaiseRight": "ef4a19d194c5d9dac582691cd5c2c7a7ab33b34cd5c33d55f0b9cf28ffd86a64",
+        "corrective.height.smileLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.smileRight": "c9ab9a88413fbbb5a1e1ebcb4841394e047db32922660862ce9acd656d600b69",
+        "corrective.height.frownLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.frownRight": "7258425e2da9462f2cbfbfac7c8320087cee510a007fe54b4c5e8657e8819e36",
+        "corrective.height.browRaiseLeft": "97f76e2ec4ea2a6105149db025f85d182ec13156fa2f2830da38bf25644e69dd",
+        "corrective.height.browRaiseRight": "71c0e55f67cae4dae41783f1a6c59e6949544604ececee79fcfbee42fdb0492d",
+        "expression.blinkRight": "de6a158d5963c664435662032363afb3c8b156f8d1c1c89fcf72c696d45cd5d8",
+        "corrective.blinkArcRight": "3d5f787ad519d44063d0543e206e97fcf4ff5827706b681689e206d5ed651557",
+        "corrective.height.blinkRight": "4b29a82ca6d13c8b920fca5dfe69443b3eb89ee9adb4ca6cc789c360e302a188"
+      },
+      "normalTargets": 20
+    },
+    "Brow_Right": {
+      "triangles": 48,
+      "position": "72684aaf54afda69e7fae8bba6364d84c1b51a86ea0dea5129fa77d6b3de68d4",
+      "uv": "e5b0f835d54a8b52175f96f70e512ea1e689b256d2a36de915ed4b74421bf97c",
+      "morphPositions": {
+        "body.height": "a4fb3bb6e168746b8b106539e6d57f379209fe0090b76753bc16ee02399e28d3",
+        "expression.browRaiseRight": "a7cbaa0d623c94d62f102a41bf5f0a184ce4ae6597112af922b17470a9f990bf",
+        "corrective.height.browRaiseRight": "9441b60a37d56498d396058044a3422e3c92cae84f05d2ad8862a35ecbb9b4f8"
+      },
+      "normalTargets": 3
+    },
+    "Lip_upper": {
+      "triangles": 344,
+      "position": "ce1665d4609f8ae486c997e1c70e07ffb956faf5344f2b71c471e282195508d6",
+      "uv": "45a1fb42df0a691727c6f67cae4da6bb91ac73e52fc447d3a6b75e1f27a0c713",
+      "morphPositions": {
+        "nose.projection": "31177662db8a67f696f17286372a4bb73389e24c2d559f3c988d93cc6ffaf080",
+        "nose.alarWidth": "2c84911a762b6d36930395289740462e3a7c1ca2b4b1465c7768c8e3431a846a",
+        "body.height": "8d597431e4f8c3e9f423effc98dc0d2a2aba33fc050b0f4a0369e6bed76f403b",
+        "expression.smileLeft": "dfdea8d3dac3f7432a7096ffeae220e83f6ad34bc68ceb107cbfb1a06cedbc63",
+        "expression.smileRight": "d63cfc0c4898bf0744687c0e331800c7bcf53da77929594da53c703fea8971e6",
+        "expression.frownLeft": "05d0cb9fcc09bcb1fcb2df5dd80704469ff2712b78426f66061293ae1ed1b9af",
+        "expression.frownRight": "8ac0751a68303b583f06dcce871a31d6dd5eaff5c09cfbe9cedd8b983b110a81",
+        "corrective.height.smileLeft": "a1441fc17a805d854c9bff877c23d35e7540e1329df2eaaec744ae20eba11c86",
+        "corrective.height.smileRight": "d4436ce7fccf83039915687e174e7461f494078597e871893ea3fb680ad64fdb",
+        "corrective.height.frownLeft": "0ecce6874d7ddc921de9688976abd792404eb2a534ec6e5f7fac57c44c7bc89b",
+        "corrective.height.frownRight": "6b6feb9b99464f93243d0633ec74a87d756290faef522b31e3a4ce6d662c90da"
+      },
+      "normalTargets": 11
+    },
+    "Lip_lower": {
+      "triangles": 344,
+      "position": "7a15f41b44267c82a895903d593ceac4c751a07e075bb02b1cd971f392c123b6",
+      "uv": "65f8830db09afcafdb7a49dd0f1f7698d3ff4636c45fd15cebb33820ab818837",
+      "morphPositions": {
+        "nose.projection": "ec84d9fee5a0bd6630997c36c34642899b4d2347420dd7647fe1c260851f3961",
+        "nose.alarWidth": "88e3331b1385e87a250b510e14cd207fe1ff2593c5b25fcc4832fb64b991761a",
+        "body.height": "10fe8b2c8953ab348d5724698a51654ab908b28ef74db1498873c95d91c914a8",
+        "expression.smileLeft": "f2f1e7676c107aad9b5e8f7d62f8575d42921ad5c28992ee73e777f7987f8b52",
+        "expression.smileRight": "a062f9c1d426d4b01d77249be0b62cf8d7a28948162ad7021e460e06e5d5925f",
+        "expression.frownLeft": "80d2f372a0211ce88d0075c4fc74963fcc2c17968254404aa610eee594dd452d",
+        "expression.frownRight": "b1208b7fd8ad93478bbbb163143c744f69a4da51a11759cd64edb82f00ecb280",
+        "corrective.height.smileLeft": "62abbd5a1312b37906d5637e6f02051b4cdd51294bd611da9e7a59ef3746e0ce",
+        "corrective.height.smileRight": "3c95a57fc14940924a6944887b146f5df9fdcb9d45793d0550fa5119477f1a50",
+        "corrective.height.frownLeft": "7c01fc13b0482c24590cb9eea707da322f61572ded4914c768c63ff2cbdb53dd",
+        "corrective.height.frownRight": "8750da069495dead327bc84138f1f46c5f8587580e9dee48088d5c49de5e141e"
+      },
+      "normalTargets": 11
+    },
+    "Mouth_seam": {
+      "triangles": 536,
+      "position": "6ed59199a21226242772daea39d9d65106e37d3b0d29575bb713b67045e42a64",
+      "uv": "c245c80bd5bf05cd38ac6b7af99c0dca0cc7331c1b7cc92a800da1ac0afa85d9",
+      "morphPositions": {
+        "nose.projection": "d6fe7b9a003587eb438e7db44decb6bac5dbeb35147572af2a893d146ad88da8",
+        "nose.alarWidth": "06ef660347fd212d3c3dee511ab017ebe060d7785b0c95d44d4381d4a816dea8",
+        "body.height": "c44ac9bcc85d60873e856f40ce0950d790335041975d19e2a506edc80a8573ca",
+        "expression.smileLeft": "9ff5186fa04c9fe5d93634e862389b7fcc20a28541a889f439b8cb2078673067",
+        "expression.smileRight": "60d15a34c0768d7334b8d20ecc16fd94dcc95cc5f31d730db134bb9022b4c236",
+        "expression.frownLeft": "2e64601e04b8560b405e2b1b8a1dc4f5a9de9b8fa963bef6f3738151598c88cf",
+        "expression.frownRight": "c23dd7d19cef7420ca0a1d98c6218050a94f7c02b11b70ad1ffc179446d50c78",
+        "corrective.height.smileLeft": "89bfb55c9f6724e8b772aa9d6a8629d5d913381e528bf23e588e77d4fdd8eaef",
+        "corrective.height.smileRight": "633f4f771a156df91bb4ecb47162e2f8c81a5674a661ce2ee3855881d833601f",
+        "corrective.height.frownLeft": "391cbf992fcfea56c4e4eb4d35f475c412e451de7224314b1060377833d134b9",
+        "corrective.height.frownRight": "7e216ec19c10f7ddce464bf58ac73a738b3925750d516aa691d1eb02b74a6ef7"
+      },
+      "normalTargets": 11
+    },
+    "Nostril_-1": {
+      "triangles": 280,
+      "position": "ab7a9c4371b0a9c2d6c62e2d099b7c21fbd1c32a9067d9e0208d7ac9ec23f4e3",
+      "uv": "6e20d3be18ca2bba91215a0010e6ec0d0abed7e2ddd300f17bf003f2c4db2e46",
+      "morphPositions": {
+        "nose.projection": "8231709b57029662eec41c7d1eb797bf94c179420acb5a7785d836e251b7ce68",
+        "nose.alarWidth": "aa7743bdffd124af3b689ef0cf64031c3b0a5fa253a1dad25b4e78941aa13877",
+        "body.height": "49f5470c71b771833f5538330848b85e397c30b7c2eecbd176ba15fa2ae83627",
+        "expression.smileRight": "dccd81e3f35b63addc83dde769e1945ff2e66215d19b91ce6d2c1f05711c5393",
+        "expression.frownRight": "e6d577e9cf423d973fe30c870c181bad6100acf65c7d97d119e774fa6f301fe9",
+        "corrective.height.smileRight": "c9868b2a56d243409b9abc9ceae9fe6e6243c9dc01c37667c19374f9b8f90713",
+        "corrective.height.frownRight": "a7b6e5736fba28faa53f03660ae90c589f98e67d74a41c259fd43a80aba5a254"
+      },
+      "normalTargets": 7
+    },
+    "Nostril_1": {
+      "triangles": 280,
+      "position": "8e84928d47967bc3efe730abc88af235d279c15c8357161f80cb7db95e537216",
+      "uv": "0c29019897887654a92f9a637ea50c1a05c25d176f1292bff934551d02f51a90",
+      "morphPositions": {
+        "nose.projection": "faf896b337a1e6b6a9430c2e3e47c1ee9cd4df78b59a1cd643968d89684e294c",
+        "nose.alarWidth": "b22e51601c70302bcb6427e0215e577168f3975248541e0e250518ed8abeb0c4",
+        "body.height": "49f5470c71b771833f5538330848b85e397c30b7c2eecbd176ba15fa2ae83627",
+        "expression.smileLeft": "b49c1eb496e86a45614a5f5393980412fecbd424a8dc8865bd2755ccec310604",
+        "expression.frownLeft": "0117fba1d7da39a609a6b641d4b0d9b7ad039f33a93f032806e478fb11121caf",
+        "corrective.height.smileLeft": "089738868031f9c01b414bc606d3f64e882d8a70db55be05c9a6c201c9e42752",
+        "corrective.height.frownLeft": "ec37f236d5a2270b335cdae4ad777c2315ce3de15e618fa43d74b4ec95f87304"
+      },
+      "normalTargets": 7
+    },
+    "Ear_Left": {
+      "triangles": 640,
+      "position": "92f31939b6183a2c784e18a9265e44df6efb028e95b01144da205c61b02bcb3f",
+      "uv": "672ca8fe757bac8f16ff7d5838a4fcba859c6e5494a1f74079b951d66148e612",
+      "morphPositions": {
+        "earLeft.protrusion": "8d8107430731962f526aa0e3dcec4111ad156df5a31a97f9b5cb5a86d31dace2",
+        "body.height": "f17374ab894690b3892bf7a950a74b10f8cd7af8c67918a8548515048bc439e1"
+      },
+      "normalTargets": 2
+    },
+    "Ear_Right": {
+      "triangles": 640,
+      "position": "5675b1668e3c98717949fada1f5afb990f022a614b6d83ade7f7bd5ebd185704",
+      "uv": "a01ebc50b9b4ff4bc054692180517c694d754f546eb69e75429ab96a5dc72785",
+      "morphPositions": {
+        "earRight.protrusion": "8eaa013756dfe41c6f6b230e2251dc236d0d33663d41031af6c5d28a298d60ce",
+        "body.height": "b740791a5e4621be4f06bd9f20015945059a96a7cd851ef458e72d793e4264e3"
+      },
+      "normalTargets": 2
+    },
+    "Hair_original_close_curl_surface": {
+      "triangles": 2518,
+      "position": "b78e73c7541313cf6a6453e8b927896ce95c12dd76a62cce5d1bc319286e4f70",
+      "uv": "9e403a89f7dadaa285fbe6044d6f3c9743457ded42bd37b867a47d458a9c95d0",
+      "morphPositions": {
+        "body.height": "6974a812244e9f4154a8f8f59d7a67650f024d1b7c9af392a51107b9dbfceb32"
+      },
+      "normalTargets": 1
+    }
+  },
+  "limits": "Actual exported bytes checked. No real-time viewer, skeletal rig, material derivative adoption or realism acceptance."
+}

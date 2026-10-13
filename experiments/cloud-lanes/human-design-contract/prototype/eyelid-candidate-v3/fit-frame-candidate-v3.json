@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 2,
+  "frameId": "original-human-eyelid-candidate-frame@3",
+  "units": "metres",
+  "blenderAxes": {
+    "up": "+Z",
+    "front": "-Y",
+    "characterLeft": "+X"
+  },
+  "gltfAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "characterLeft": "+X"
+  },
+  "blenderToGltf": "[x, y, z] -> [x, z, -y]",
+  "sourceBlendSha256": "9ef0c9ecd882fb900701087381869fb576218f11d0ecb6ca5402ba3b152299f3",
+  "sourceGlbSha256": "335f463fc2013164a7b9719ab1225589289565ac0cbc81abe7456b45b7e89e76",
+  "skeleton": null,
+  "rigStatus": "No skeleton/skin weights or locomotion yet; real exported shape keys only.",
+  "topologyStatus": "Only four lids have revised topology/UVs. Other 27 meshes retain exact positions, topology, UVs, morph coordinates and materials. Review candidate; no rebind or adoption authorized.",
+  "bodySurfaceStatus": "Clothed torso/leg envelope plus exposed head/neck/forearm/hand. No independent undressed torso/leg master; clothing fit not accepted.",
+  "anchorsBlenderMetres": {
+    "scalp.crown": [
+      0,
+      0.025,
+      1.759
+    ],
+    "scalp.templeLeft": [
+      0.072,
+      -0.01,
+      1.67
+    ],
+    "scalp.templeRight": [
+      -0.072,
+      -0.01,
+      1.67
+    ],
+    "eye.left": [
+      0.032,
+      -0.036,
+      1.635
+    ],
+    "eye.right": [
+      -0.032,
+      -0.036,
+      1.635
+    ],
+    "ear.lobeLeft": [
+      0.08,
+      0.01,
+      1.583
+    ],
+    "ear.lobeRight": [
+      -0.08,
+      0.01,
+      1.583
+    ],
+    "nose.bridge": [
+      0,
+      -0.074,
+      1.622
+    ],
+    "neck.collar": [
+      0,
+      0.013,
+      1.443
+    ],
+    "shoulder.left": [
+      0.176,
+      0.012,
+      1.367
+    ],
+    "shoulder.right": [
+      -0.176,
+      0.012,
+      1.367
+    ],
+    "waist.center": [
+      0,
+      0.015,
+      1.039
+    ],
+    "wrist.left": [
+      0.293,
+      -0.011,
+      0.925
+    ],
+    "wrist.right": [
+      -0.293,
+      -0.011,
+      0.925
+    ],
+    "foot.left": [
+      0.09,
+      -0.026,
+      0.027
+    ],
+    "foot.right": [
+      -0.09,
+      -0.026,
+      0.027
+    ]
+  },
+  "anchorStatus": "Authored rest-frame fitting landmarks from construction parameters, not fitted production surface bindings. Measured actual bounds accompany each mesh.",
+  "implementedIdentityControls": [
+    "nose.projection",
+    "nose.alarWidth",
+    "earLeft.protrusion",
+    "earRight.protrusion",
+    "body.height",
+    "body.shoulderWidth"
+  ],
+  "expressionPresets": {
+    "neutral": {},
+    "happy": {
+      "expression.smileLeft": 1,
+      "expression.smileRight": 1
+    },
+    "sad": {
+      "expression.frownLeft": 1,
+      "expression.frownRight": 1,
+      "expression.browRaiseLeft": 0.8,
+      "expression.browRaiseRight": 0.8
+    },
+    "blink": {
+      "expression.blinkLeft": 1,
+      "expression.blinkRight": 1
+    }
+  },
+  "correctiveRule": "For every exported corrective.height.CHANNEL, weight = body.height * expression.CHANNEL. Blender source includes drivers; glTF consumer must compute this product explicitly.",
+  "unimplementedIdentityCount": 32,
+  "provenance": "Original scripted geometry by this lane; no downloaded assets, personal photos, scans or third-party models.",
+  "inheritedFrameCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "correctiveRules": {
+    "height": "corrective.height.CHANNEL = body.height * expression.CHANNEL",
+    "blinkArc": "corrective.blinkArcLeft/Right = 4 * expression.blinkLeft/Right * (1 - expression.blinkLeft/Right)"
+  },
+  "uvStatus": {
+    "changedMeshes": [
+      "UpperLid_Left",
+      "LowerLid_Left",
+      "UpperLid_Right",
+      "LowerLid_Right"
+    ],
+    "layerName": "Eyelid_UV_v3",
+    "overlapPairs": 0,
+    "independentMaps": true,
+    "rebake": "Only four lid material maps and any lid-specific vertex/barycentric bindings need new versions if parent adopts; other 27 UVs exact."
+  },
+  "triangleCount": 32482,
+  "acceptance": "Sampled lid intersections/UV checks pass, but inherited eye/head penetration and raised full-blink anatomy remain unresolved. No realism, skin-cap compatibility or production acceptance."
+}

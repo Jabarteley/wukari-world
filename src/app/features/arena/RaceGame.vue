@@ -13,7 +13,7 @@ import { useArenaRoom } from '../../../arena/room.ts'
 import type { ArenaScreenProps } from '../../../arena/catalog.ts'
 import ArenaRoomPanels from './ArenaRoomPanels.vue'
 import ArenaStage from './ArenaStage.vue'
-import { drive, headingFrom256, INPUT, lapOf, standings } from '../../../arena/race.ts'
+import { drive, headingFrom256, hudPlace, INPUT, lapOf, standings } from '../../../arena/race.ts'
 import type { Car, CarSnap, RaceSnap } from '../../../arena/race.ts'
 import { buildTrack, nearestIndex, TRACK_IDS, WORLD_H, WORLD_W } from '../../../arena/race-track.ts'
 import { Confetti, defaultLook, drawRace, Skids } from '../../../arena/race-draw.ts'
@@ -114,7 +114,7 @@ function buildBoard(snap: RaceSnap): Row[] {
   const L = buildTrack(trackId.value).length
   return order.map((seat, index) => {
     const c = snap.r[seat] as CarSnap
-    const gap = c[6] & 4 ? 'left' : c[5] ? timeText(c[5]) : index === 0 || !leader ? (snap.p === 0 ? '' : 'leader') : '+' + (Math.max(0, leader[4] - c[4]) / 150).toFixed(1) + 's'
+    const gap = c[6] & 4 ? 'left' : c[5] ? timeText(c[5]) : snap.p === 2 ? 'DNF' : index === 0 || !leader ? (snap.p === 0 ? '' : 'leader') : '+' + (Math.max(0, leader[4] - c[4]) / 150).toFixed(1) + 's'
     return { seat, place: index + 1, name: st?.seats[seat]?.name ?? 'Racer ' + (seat + 1), color: defaultLook(seat).body, lap: Math.min(laps.value, Math.max(1, lapOf(c[4], L) + 1)), gap, fin: c[5] > 0, you: seat === st?.you }
   })
 }
@@ -175,6 +175,7 @@ function frame(now: number): void {
   const focus = you ?? target
   const fc = b.r[focus] as CarSnap
   const hud: HudInfo = {
+    dnf: (() => { const h = hudPlace(b, focus); return h.kind === 'dnf' ? 'DNF' : h.kind === 'left' ? 'Left' : '' })(),
     done: fc[5] ? order.indexOf(focus) + 1 : 0, place: order.indexOf(focus) + 1, of: cars.length, lap: Math.min(laps.value, Math.max(1, lapOf(fc[4], track.length) + 1)), laps: laps.value,
     time: timeText(fc[5] || b.t), speed: fc[3] / 4, go: b.p === 1 && b.t < HZ ? 1 : 0, count: b.p === 0 ? b.c : 0, you: you != null,
   }
@@ -234,7 +235,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <ArenaStage title="Race" :chip="conn === 'open' ? (state?.practice ? 'Practice' : playing ? (seated ? 'Live' : 'Watching') : status) : 'Connecting…'" :off="conn !== 'open'" @leave="leave">
+  <ArenaStage title="Race" :play="status === 'playing'" :chip="conn === 'open' ? (state?.practice ? 'Practice' : playing ? (seated ? 'Live' : 'Watching') : status) : 'Connecting…'" :off="conn !== 'open'" @leave="leave">
   <div class="rg" data-testid="race">
     <div v-if="gone" class="rg-card"><p>{{ note || 'That game is not on any more.' }}</p><BaseButton variant="primary" @click="leave">Back to games</BaseButton></div>
     <template v-else>

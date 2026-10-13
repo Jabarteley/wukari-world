@@ -12,7 +12,7 @@ export interface FighterColors { skin: string; hair: string; top: string; bottom
 export interface Spark { x: number; y: number; vx: number; vy: number; life: number; max: number; color: string; size: number }
 export interface Ring { x: number; y: number; life: number; strong: boolean }
 export interface Fx { rings: Ring[]; sparks: Spark[]; shake: number; flash: [number, number]; lastTick: number; /** white KO flash 0..1 and zoom 0..1 */ ko: number }
-export interface Meta { names: [string, string]; colors: [FighterColors, FighterColors]; you: number | null; rounds: number; reduced: boolean; /** performance.now() */ time: number; /** the seat that won the match once it is over, 2 for a draw, else -1 */ winner: number; /** the fighter to draw for `you` instead of the blended snapshot (client prediction) */ own?: FighterSnap | null }
+export interface Meta { names: [string, string]; colors: [FighterColors, FighterColors]; you: number | null; rounds: number; reduced: boolean; /** performance.now() */ time: number; /** the seat that won the match once it is over, 2 for a draw, else -1 */ winner: number; /** the fighter to draw for `you` instead of the blended snapshot (client prediction) */ own?: FighterSnap | null; /** ground line in px (default 84% of the height) */ ground?: number; /** px kept free at the top for floating buttons */ hudTop?: number }
 
 export const newFx = (): Fx => ({ rings: [], sparks: [], shake: 0, flash: [0, 0], lastTick: -1, ko: 0 })
 
@@ -114,7 +114,7 @@ export function drawFight(ctx: CanvasRenderingContext2D, w: number, h: number, a
   const viewW = Math.max(380, Math.min(ARENA_W, gap + 280)) * (1 - 0.22 * zoom)
   const mid = loser !== null && zoom > 0 ? lerp((f0[0] + f1[0]) / 2, loser, zoom) : (f0[0] + f1[0]) / 2
   const camX = Math.max(0, Math.min(ARENA_W - viewW, mid - viewW / 2))
-  const scale = w / viewW, ground = h * 0.84
+  const scale = w / viewW, ground = meta.ground ?? h * 0.84
   const hudH = 54
   ctx.save()
   if (fx.shake > 0.3) ctx.translate((Math.random() - 0.5) * fx.shake, (Math.random() - 0.5) * fx.shake)
@@ -158,7 +158,9 @@ export function drawFight(ctx: CanvasRenderingContext2D, w: number, h: number, a
   fx.flash[0] = Math.max(0, fx.flash[0] - dtFrames); fx.flash[1] = Math.max(0, fx.flash[1] - dtFrames)
 
   // HUD
-  const pad = 10, half = w / 2 - 34, bh = 14
+  // `hudTop`: room the screen keeps for its floating buttons (Leave, sound, full screen) over the top of the canvas.
+  const pad = 10, half = w / 2 - 34, bh = 14, T = meta.hudTop ?? 0
+  ctx.save(); ctx.translate(0, T)
   bar(ctx, pad, 22, half - pad, bh, b.f[0][5], false)
   bar(ctx, w - half, 22, half - pad, bh, b.f[1][5], true)
   ctx.font = '700 12px system-ui, sans-serif'; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = '#fff'
@@ -175,6 +177,7 @@ export function drawFight(ctx: CanvasRenderingContext2D, w: number, h: number, a
     }
   }
   void hudH
+  ctx.restore()
   const s = Math.max(28, Math.min(52, w / 8))
   if (b.p === PHASE.intro) {
     if (b.c < 30) banner(ctx, w, h, `ROUND ${b.r}`, s)

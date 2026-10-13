@@ -268,6 +268,19 @@ function outcome(s: RaceState): ArenaOutcome | null {
   }
 }
 
+/**
+ * What the position box shows for a seat in a snapshot: its live place while racing, its finishing place once across the line,
+ * and "dnf" / "left" (never a rank) once the race is over and it did not finish, or its player left.
+ */
+export function hudPlace(snap: RaceSnap, seat: number): { kind: 'place' | 'dnf' | 'left'; place: number } {
+  const c = snap.r[seat]
+  if (!c) return { kind: 'place', place: 0 }
+  if (c[6] & FLAG.out) return { kind: 'left', place: 0 }
+  if (!c[5] && snap.p === PHASE.over) return { kind: 'dnf', place: 0 }
+  const order = standings(snap.r.map((x) => x[4]), snap.r.map((x) => x[5]), snap.r.map((x) => (x[6] & FLAG.out) !== 0))
+  return { kind: 'place', place: order.indexOf(seat) + 1 }
+}
+
 const heading256 = (h: number): number => (((Math.round((h / (2 * Math.PI)) * 256) % 256) + 256) % 256)
 export const headingFrom256 = (a: number): number => (a / 256) * 2 * Math.PI
 

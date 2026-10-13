@@ -12,7 +12,7 @@ export interface CarLook { kind: CarKind; body: string; accent: string }
 /** One car as drawn this frame: world position, heading (radians), speed, flags (race.ts FLAG), and its name. */
 export interface DrawCar { x: number; y: number; a: number; v: number; fl: number; name: string; look: CarLook; /** place 1.. or 0 */ place: number; fin: boolean }
 export interface Camera { x: number; y: number; zoom: number }
-export interface HudInfo { done: number; place: number; of: number; lap: number; laps: number; time: string; speed: number; go: number; count: number; you: boolean }
+export interface HudInfo { /** '' while ranked, else 'DNF' or 'Left': shown instead of a place. */ dnf: string; done: number; place: number; of: number; lap: number; laps: number; time: string; speed: number; go: number; count: number; you: boolean }
 
 /** Cars are drawn this much bigger than their physical circle so they read on a phone. */
 export const CAR_SCALE = 1.7
@@ -325,16 +325,21 @@ export function drawRace(ctx: CanvasRenderingContext2D, w: number, h: number, o:
   })
   ctx.globalAlpha = 1
   const mw = o.spectator ? Math.min(150, w * 0.4) : Math.min(104, w * 0.28)
-  if (o.mini !== false) minimap(ctx, o.trackId, o.cars, w - mw - 10, 10, mw, o.you, o.follow, o.spectator)
+  // TOP: room kept at the top of the canvas for the stage's floating buttons (Leave, sound, full screen), see ArenaStage.vue.
+  const TOP = 52
+  if (o.mini !== false) minimap(ctx, o.trackId, o.cars, w - mw - 10, 10 + TOP, mw, o.you, o.follow, o.spectator)
   const hud = o.hud
   if (hud) {
+    ctx.save(); ctx.translate(0, TOP)
     ctx.textAlign = 'left'
     ctx.fillStyle = 'rgba(8,12,24,.62)'; roundRect(ctx, 8, 8, 112, 64, 10); ctx.fill()
     ctx.fillStyle = '#fff'
-    if (hud.you) { ctx.font = '800 26px system-ui'; ctx.fillText(ordinal(hud.place), 16, 36); ctx.font = '600 11px system-ui'; ctx.fillStyle = '#c9d2ea'; ctx.fillText('of ' + hud.of, 70, 36) }
+    if (hud.you && hud.dnf) { ctx.font = '800 26px system-ui'; ctx.fillStyle = '#ff9d8a'; ctx.fillText(hud.dnf, 16, 36); ctx.fillStyle = '#fff' }
+    else if (hud.you) { ctx.font = '800 26px system-ui'; ctx.fillText(ordinal(hud.place), 16, 36); ctx.font = '600 11px system-ui'; ctx.fillStyle = '#c9d2ea'; ctx.fillText('of ' + hud.of, 70, 36) }
     else { ctx.font = '800 17px system-ui'; ctx.fillText('LIVE', 16, 31) }
     ctx.fillStyle = '#fff'; ctx.font = '700 13px system-ui'; ctx.fillText('Lap ' + hud.lap + '/' + hud.laps, 16, 52)
     ctx.font = '600 12px ui-monospace, monospace'; ctx.fillStyle = '#c9d2ea'; ctx.fillText(hud.time, 16, 66)
+    ctx.restore()
   }
   o.confetti?.draw(ctx, h, o.dtMs ?? 16)
   if (hud && hud.done > 0 && hud.you) {

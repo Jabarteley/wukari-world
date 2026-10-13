@@ -2,7 +2,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { makeRng } from '../game/util.ts'
-import race, { COUNTDOWN_TICKS, drive, FLAG, INPUT, lapOf, newCar, PHASE, sectorOf, standings, trackOf } from './race.ts'
+import race, { COUNTDOWN_TICKS, drive, hudPlace, FLAG, INPUT, lapOf, newCar, PHASE, sectorOf, standings, trackOf } from './race.ts'
 import type { RaceState } from './race.ts'
 import { buildTrack, pointAt, project, ROAD_HALF, TRACK_IDS, WALL_HALF } from './race-track.ts'
 import { ArenaInputError } from './rules.ts'
@@ -304,4 +304,17 @@ test('a car off the road for 2 s, or stuck with the pedal down, is put back on t
   let back = false
   for (let i = 0; i < 120 && !back; i++) { drive(w, GO, t); back = w.spawn > 0 }
   assert.ok(back, 'a stuck car is reset')
+})
+
+test('HUD position: live place while racing, finishing place once across, DNF or left (never a rank) once over', () => {
+  const snap = (p: number, cars: [number, number, number][]) => ({ p, c: 0, t: 0, r: cars.map(([g, f, fl]) => [0, 0, 0, 0, g, f, fl]) }) as never
+  const racing = snap(1, [[300, 0, 0], [900, 0, 0], [100, 0, 0]])
+  assert.deepEqual(hudPlace(racing, 0), { kind: 'place', place: 2 })
+  assert.deepEqual(hudPlace(racing, 2), { kind: 'place', place: 3 }, 'last but still ranked while the race is on')
+  const over = snap(2, [[300, 0, 0], [5300, 700, 0], [100, 0, FLAG.out], [5250, 720, 0]])
+  assert.deepEqual(hudPlace(over, 1), { kind: 'place', place: 1 })
+  assert.deepEqual(hudPlace(over, 3), { kind: 'place', place: 2 })
+  assert.deepEqual(hudPlace(over, 0), { kind: 'dnf', place: 0 }, 'did not finish: no rank')
+  assert.deepEqual(hudPlace(over, 2), { kind: 'left', place: 0 })
+  assert.deepEqual(hudPlace(snap(1, [[300, 0, FLAG.out], [900, 0, 0]]), 0), { kind: 'left', place: 0 })
 })

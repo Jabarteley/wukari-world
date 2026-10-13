@@ -238,16 +238,16 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <ArenaStage title="Football" :chip="conn === 'open' ? (state?.practice ? 'Practice' : status === 'playing' ? (seated ? 'Live' : 'Watching') : status) : 'Connecting…'" :off="conn !== 'open'" @leave="leave">
+  <ArenaStage title="Football" :play="live" :chip="conn === 'open' ? (state?.practice ? 'Practice' : status === 'playing' ? (seated ? 'Live' : 'Watching') : status) : 'Connecting…'" :off="conn !== 'open'" @leave="leave">
     <template #bar>
       <span class="fb-sbar" data-testid="football-score"><b class="a">{{ sb.a }}</b><span class="fb-sc"><strong>{{ sb.ga }} - {{ sb.gb }}</strong><small>{{ sb.clock }}</small></span><b class="b">{{ sb.b }}</b></span>
     </template>
     <div class="fb" :class="{ idle: !live }" data-testid="football">
       <div v-if="gone" class="fb-card"><p>{{ note || 'That game is not on any more.' }}</p><button type="button" class="fb-go" @click="leave">Back to games</button></div>
       <template v-else>
-        <div class="fb-play" :class="{ idle: !live }">
+        <div class="fb-play arena-fill" :class="{ idle: !live }">
           <div class="fb-teams" aria-hidden="true"><span class="a"><i />{{ sb.a }}</span><span class="b">{{ sb.b }}<i /></span></div>
-          <div ref="box" class="fb-stage arena-fill"><canvas ref="canvas" aria-label="Football pitch" role="img" /></div>
+          <div ref="box" class="fb-stage"><canvas ref="canvas" aria-label="Football pitch" role="img" /></div>
           <section v-if="live" class="fb-pad" aria-label="Controls" data-testid="football-pad">
             <div class="fb-joy" aria-label="Move" data-testid="football-joy" @pointerdown.prevent="joyStart" @pointermove.prevent="joyId >= 0 && joyMove($event)" @pointerup.prevent="joyStop" @pointercancel="joyStop">
               <div class="fb-knob" :style="{ transform: `translate(${knob.x}px, ${knob.y}px)` }" />
@@ -280,10 +280,10 @@ onBeforeUnmount(() => {
 .fb-play.idle { flex: none; }
 .fb-stage { position: relative; flex: 1 1 auto; min-height: 150px; background: #12301d; border-radius: 12px; overflow: hidden; }
 .fb-play.idle .fb-stage { flex: none; height: min(112vw, 46vh); }
-.fb-teams { display: none; justify-content: space-between; font-size: 13px; font-weight: 700; color: #1a1d24; padding: 0 4px; }
+.fb-teams { display: none; justify-content: space-between; font-size: 13px; font-weight: 700; color: #fff; padding: 0 4px; }
 .fb-teams span { display: flex; align-items: center; gap: 6px; } .fb-teams i { width: 10px; height: 16px; border-radius: 3px; background: #0a8f3c; } .fb-teams .b i { background: #f3c20f; }
 .fb-side { flex: none; }
-@media (orientation: portrait) { .fb-sbar b { display: none; } .fb-teams { display: flex; } }
+@media (orientation: portrait) { .fb-sbar b { display: none; } .fb-teams { display: flex; position: absolute; z-index: 3; left: 12px; right: 12px; top: calc(env(safe-area-inset-top) + 54px); color: #fff; pointer-events: none; text-shadow: 0 1px 3px rgba(0, 0, 0, .7); } }
 .fb-stage canvas { position: absolute; left: 0; top: 0; display: block; touch-action: none; }
 .fb-card { display: grid; gap: 10px; padding: 14px; background: #f3efe8; border-radius: 14px; }
 .fb-go { min-height: 44px; border-radius: 10px; border: 0; background: #0a8f3c; color: #fff; font: 700 15px system-ui; }

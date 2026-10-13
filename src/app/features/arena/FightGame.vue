@@ -108,6 +108,11 @@ function size(): void {
   el.style.width = width + 'px'; el.style.height = height + 'px'
   el.getContext('2d')?.setTransform(ratio, 0, 0, ratio, 0, 0)
 }
+/** The ground line: in portrait while playing the thumbs float over the bottom of the screen, so the fighters stand above them. */
+function groundPx(): number | undefined {
+  const portrait = window.innerHeight > window.innerWidth
+  return portrait && room.status.value === 'playing' && seated.value ? Math.max(height * 0.5, height - 224) : undefined
+}
 function frame(now: number): void {
   raf = requestAnimationFrame(frame)
   pipe.flush()
@@ -145,6 +150,7 @@ function frame(now: number): void {
   const winner = st?.status === 'over' && result ? (result.draw ? 2 : (result.winners[0] ?? -1)) : -1
   drawFight(ctx, width, height, a, b, pick?.t ?? 0, {
     names: [st?.seats[0]?.name ?? 'You', st?.seats[1]?.name ?? 'Waiting…'], colors: [c0, c1], you, rounds: Number(st?.options.rounds ?? 3), reduced, time: now, winner, own,
+    hudTop: 52, ground: groundPx(),
   }, fx, dt)
 }
 
@@ -169,7 +175,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <ArenaStage title="Fight" :chip="conn === 'open' ? (state?.practice ? 'Practice' : status === 'playing' ? (seated ? 'Live' : 'Watching') : status) : 'Connecting…'" :off="conn !== 'open'" @leave="leave">
+  <ArenaStage title="Fight" :play="status === 'playing'" :chip="conn === 'open' ? (state?.practice ? 'Practice' : status === 'playing' ? (seated ? 'Live' : 'Watching') : status) : 'Connecting…'" :off="conn !== 'open'" @leave="leave">
     <div class="fg" data-testid="fight">
     <div v-if="gone" class="fg-card"><p>{{ note || 'That game is not on any more.' }}</p><BaseButton variant="primary" @click="leave">Back to games</BaseButton></div>
     <template v-else>

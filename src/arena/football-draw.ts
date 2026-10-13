@@ -317,7 +317,7 @@ export function drawFootball(ctx: CanvasRenderingContext2D, width: number, heigh
     const long = Math.max(84, Math.min(130, Math.min(width, height) * 0.3)), k = long / W
     const rw = rotated ? H * k : W * k, rh = rotated ? W * k : H * k
     ctx.save()
-    ctx.translate(width - rw / 2 - 8, rh / 2 + 8)
+    ctx.translate(width - rw / 2 - 8, rh / 2 + 8 + 52) // +52: below the stage's floating buttons (ArenaStage.vue)
     ctx.fillStyle = 'rgba(8,24,15,0.62)'; ctx.fillRect(-rw / 2 - 3, -rh / 2 - 3, rw + 6, rh + 6)
     ctx.rotate(rot); ctx.scale(k, k); ctx.translate(-W / 2, -H / 2)
     ctx.fillStyle = '#2f8f46'; ctx.fillRect(0, 0, W, H)

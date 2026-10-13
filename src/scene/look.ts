@@ -113,8 +113,8 @@ const SKY_ROWS = 32;
  * zenith colour at the top. One 1×32 texture, re-used and re-filled when the colours change.
  * → { texture, set(horizon, zenith) → boolean (changed), dispose() }
  */
-export function createSky(THREE: ThreeModule) {
-  const data = new Uint8Array(SKY_ROWS * 4);
+export function createSky(THREE: ThreeModule, high: boolean = renderTier().name === 'high') {
+  const highTier = high, data = new Uint8Array(SKY_ROWS * 4);
   const texture = new THREE.DataTexture(data, 1, SKY_ROWS, THREE.RGBAFormat);
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.magFilter = THREE.LinearFilter; texture.minFilter = THREE.LinearFilter;
@@ -126,11 +126,17 @@ export function createSky(THREE: ThreeModule) {
       const next = `${horizon}:${zenith}`;
       if (next === key) return false;
       key = next;
-      const low = channels(horizon), high = channels(zenith);
+      const low = channels(horizon), top = channels(zenith);
       for (let row = 0; row < SKY_ROWS; row += 1) {
         // The lower third stays near the horizon colour (that is where the ground meets it), then it rises.
         const t = Math.max(0, (row / (SKY_ROWS - 1) - 0.3) / 0.7), ease = t * t * (3 - 2 * t);
-        for (let c = 0; c < 3; c += 1) data[row * 4 + c] = Math.round(low[c]! * (1 - ease) + high[c]! * ease);
+        // High tier: a soft lighter band just above the horizon (the haze the far corners melt into), and a deeper zenith.
+        const band = highTier ? 0.1 * Math.exp(-(((row / (SKY_ROWS - 1)) - 0.34) ** 2) / 0.012) : 0;
+        const deep = highTier ? ease * ease * 0.1 : 0;
+        for (let c = 0; c < 3; c += 1) {
+          const base = low[c]! * (1 - ease) + top[c]! * ease;
+          data[row * 4 + c] = Math.round(Math.max(0, Math.min(255, base * (1 - deep) + (255 - base) * band)));
+        }
         data[row * 4 + 3] = 255;
       }
       texture.needsUpdate = true;
@@ -183,3 +189,17 @@ export function createGround(THREE: ThreeModule) {
 export function bakedAO(win: LookWindow = globalThis): boolean {
   try { return new URLSearchParams(win.location?.search || '').get('ao') !== '0'; } catch { return true; }
 }
+
+/**
+ * High tier only (the caller checks tier.env): on the scene's first draw, fetch quality.ts (lazy, so a phone never loads it)
+ * and give the scene the generated environment map, then call `redraw` once (a demand-driven host has no next frame coming).
+ */
+export function lazyEnvironment(THREE: ThreeModule, scene: THREE.Scene, redraw: (renderer: THREE.WebGLRenderer, camera: THREE.Camera) => void, intensity = 0.1): void {
+  scene.onBeforeRender = (renderer, _scene, camera) => {
+    scene.onBeforeRender = () => {};
+    void import('./quality.ts').then((q) => q.ensureEnvironment(THREE, renderer, scene, () => redraw(renderer, camera), intensity));
+  };
+}
+
+/** Per-tier strength of the baked ambient occlusion: the phone is as it was, high is deeper. */
+export const aoStrength = (tier: RenderTier = renderTier()): number => (tier.name === 'high' ? 1.55 : 1);

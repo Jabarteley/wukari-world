@@ -43,6 +43,7 @@ import { avatarProportions } from '../types/avatar.ts';
 import { buildAvatar, normalizeLook } from './characters.ts';
 import type { AvatarGroup } from './characters.ts';
 import type { ThreeModule } from './types.ts';
+import { lazyEnvironment, renderTier } from './look.ts';
 import { bodyAllowed, bodyImports, drawsWebGL2, importBody } from './body/gate.ts';
 import type { SkinnedBody } from './body/skinned.ts';
 
@@ -197,6 +198,8 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(FOV, 1, 0.1, 60);
   lightStage(THREE, scene);
+  // High tier: the generated environment map gives skin and cloth a softer response; one redraw when it lands, no idle loop.
+  if (renderTier().env) lazyEnvironment(THREE, scene, () => render(), 0.15);
   const ground = buildGround(THREE);
   const turntable = new THREE.Group();
   scene.add(ground.group, turntable);

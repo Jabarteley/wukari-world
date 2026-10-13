@@ -29,7 +29,7 @@ import type * as THREE from 'three';
 import type { Batch, BatchLayer, BatchOptions, BatchResult, Colour, LightSpec, SceneMaterials, ThreeModule } from './types.ts';
 import type { Kit } from './kit.ts';
 import { bakeVertexAO, createOccluders, type AoPrim } from './ao-bake.ts';
-import { bakedAO, renderTier } from './look.ts';
+import { aoStrength, bakedAO, renderTier } from './look.ts';
 
 interface Template { pos: Float32Array; nor: Float32Array; idx: number[]; lo: number[]; hi: number[]; shrink: number }
 interface LayerData { pos: number[]; nor: number[]; col: number[]; idx: number[]; prims: AoPrim[] }
@@ -159,8 +159,8 @@ export function createBatch(THREE: ThreeModule): Batch {
       if (ao) {
         const solids = Object.keys(layers).filter((key) => key === 'solid' || key.startsWith('solid@'));
         const occluders = createOccluders(solids.flatMap((key) => layers[key]!.prims));
-        let budget = 30000;
-        for (const key of solids) { const d = layers[key]!; budget -= bakeVertexAO(d.pos, d.nor, d.col, d.prims, occluders, { probeBudget: budget }); }
+        let budget = 30000; const strength = aoStrength();
+        for (const key of solids) { const d = layers[key]!; budget -= bakeVertexAO(d.pos, d.nor, d.col, d.prims, occluders, { probeBudget: budget, strength }); }
       }
       const keys = [...BASE, ...Object.keys(layers).filter((key) => !BASE.includes(key)).sort()];
       for (const key of keys) {

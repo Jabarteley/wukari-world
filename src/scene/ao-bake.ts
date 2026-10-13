@@ -71,7 +71,7 @@ export function bakeVertexAO(pos: ArrayLike<number>, nor: ArrayLike<number>, col
         f *= 1 - 0.34 * (occ / DIRS.length) * scale;
         probed++;
       }
-      f = 1 - (1 - Math.max(AO_FLOOR, f)) * strength;
+      f = Math.max(strength > 1 ? 0.42 : AO_FLOOR, 1 - (1 - Math.max(AO_FLOOR, f)) * strength);
       col[v * 3] = col[v * 3]! * f; col[v * 3 + 1] = col[v * 3 + 1]! * f; col[v * 3 + 2] = col[v * 3 + 2]! * f;
     }
   }

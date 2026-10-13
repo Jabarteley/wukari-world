@@ -1,0 +1,483 @@
+{
+  "acceptance": {
+    "hardwarePerformance": false,
+    "humanSerialization": true,
+    "inGamePilot": false,
+    "realisticHuman": false,
+    "sourceHashes": true,
+    "staticDecodeAndMetricPlacement": true,
+    "surveyedBlock": false
+  },
+  "componentCommits": {
+    "asset-export-portability": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+    "human-design-contract": "71d6b5ad391754b0f30fc5364e993208299640ed",
+    "lagos-geography": "21b0850a996b4444d2e0c16626771671e191ddcd",
+    "source-provenance": "1f89cdd91e8300a341ca65f17030a22f929eb5dd"
+  },
+  "coordinateContract": {
+    "asset": "metresPerModelUnit converts model units; groundAnchorModel is placed at the requested local ground point",
+    "atlas": "Equal Earth atlas is deliberately excluded",
+    "city": "nigeria-equirectangular-v1; x east, z south; rounded Lagos origin (-5052,2835); 10 units/km",
+    "eastScaleRelativeToProjectedStreet": 0.9940932547076073,
+    "geographic": "longitude, latitude in decimal degrees; repository anchor treated as WGS84-like, datum unverified",
+    "heading": "degrees clockwise from local north, model forward +z; ry = sceneYaw + pi - headingRadians",
+    "local": "spherical equirectangular at anchor latitude; east/north/up metres; max radius 500 m; not ellipsoidal ENU",
+    "localToScene": {
+      "anchor": {
+        "frame": "lonlat-degrees",
+        "lat": 6.5075,
+        "lon": 3.382
+      },
+      "scene": {
+        "translation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "unitsPerMetre": 1,
+        "yawRadians": 0
+      }
+    },
+    "mapEastScaleRelativeToLocal": 0.9940932547076073,
+    "scene": {
+      "axesAtZeroYaw": "x east, y up, z south",
+      "status": "Standalone proposal frame; not wired to city-street or procedural neighbourhood",
+      "translation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "unitsPerMetre": 1,
+      "yawRadians": 0
+    },
+    "street": "city-local map x/z times 100; projected metres inherit 9 degree standard-parallel scale",
+    "tile": "128 projected metres, centimetre quantization before tile selection, half-open local [0,128)",
+    "vertical": "Arbitrary local zero, not sea level or ellipsoidal altitude; ground elevations synthetic; no DEM"
+  },
+  "eligibleForProduction": false,
+  "human": {
+    "controlSpace": "legacy-relative-v1",
+    "controls": 38,
+    "expressionChannels": 16,
+    "meshReady": false,
+    "newGeometryPolicy": "Original isolated prototype family; never claim compatibility or replace baseline mesh without evidence",
+    "presets": [
+      {
+        "canonicalSaveSha256": "20248a28da96bb0a73b5d4b6e97f2877e8b9b9e10ac3e0844a217bd0a1297903",
+        "id": "fictional-01",
+        "rendered": false,
+        "schemaVersion": 2
+      },
+      {
+        "canonicalSaveSha256": "e029ef93b0b8ed22efedd1c9a323100490d5d740e5ef5e3200935ae1e88a0906",
+        "id": "fictional-02",
+        "rendered": false,
+        "schemaVersion": 2
+      },
+      {
+        "canonicalSaveSha256": "98b232d45902271b028fd3585ae6aafc479ef6b52bd50158aa77db9189633512",
+        "id": "fictional-03",
+        "rendered": false,
+        "schemaVersion": 2
+      },
+      {
+        "canonicalSaveSha256": "ba0e1a4df78b442b9f50ba31c608893eec8ed1f2eb8245deb3eb654844362b2d",
+        "id": "fictional-04",
+        "rendered": false,
+        "schemaVersion": 2
+      },
+      {
+        "canonicalSaveSha256": "fdb1cf0c4e5f2e5777e487a35d526fb22c97f61879dfd2522279f9d7cfd855a6",
+        "id": "fictional-05",
+        "rendered": false,
+        "schemaVersion": 2
+      },
+      {
+        "canonicalSaveSha256": "240ed4e764689c4084ac4e9f131761bf8534178334ed681899f0a3fb93ec96b9",
+        "id": "fictional-06",
+        "rendered": false,
+        "schemaVersion": 2
+      },
+      {
+        "canonicalSaveSha256": "8a1c1ad205129f46aae821d11ad576abbfdae498ed8b2d3f0dc6bb0ddd79638b",
+        "id": "fictional-07",
+        "rendered": false,
+        "schemaVersion": 2
+      }
+    ],
+    "profile": "human-design-v2-proposal",
+    "runtimeInstalled": false,
+    "topologyAuthority": "existing-character-owner-unresolved"
+  },
+  "inputIndexSha256": "28dbae6ea0f2074897cc63e9a1ca59b4463141ef0f2a4ed488b321d95f038e34",
+  "integrationSources": {
+    "bridge.mjs": {
+      "bytes": 13200,
+      "sha256": "ef6cd195d07365112a5b89c14270b82c0b934ad3f4682f309d9c9f7e97e7abd0"
+    },
+    "bridge.test.mjs": {
+      "bytes": 5645,
+      "sha256": "cf24b8521fa833c4111726d38cb88ae56377d8e864934df5921f2fd4faf2447e"
+    },
+    "pin_inputs.py": {
+      "bytes": 2862,
+      "sha256": "3fa034ba957bf16f8dd8f657ee8285516c71f229e6c9ebc7c93c103c9dc631d0"
+    },
+    "seal.mjs": {
+      "bytes": 1373,
+      "sha256": "eeb5de9d6b315d59189c0535abd908372e5d17b9bfc6f7c5cd2df24d793cce9c"
+    }
+  },
+  "pilot": {
+    "anchor": {
+      "frame": "lonlat-degrees",
+      "lat": 6.5075,
+      "lon": 3.382
+    },
+    "beta": true,
+    "extentMetres": [
+      200,
+      200
+    ],
+    "geographicBoundary": {
+      "coordinates": [
+        [
+          [
+            3.381094847766593,
+            6.506600679636276
+          ],
+          [
+            3.3829051522334073,
+            6.506600679636276
+          ],
+          [
+            3.3829051522334073,
+            6.508399320363725
+          ],
+          [
+            3.381094847766593,
+            6.508399320363725
+          ],
+          [
+            3.381094847766593,
+            6.506600679636276
+          ]
+        ]
+      ],
+      "type": "Polygon"
+    },
+    "horizontalErrorMetres": null,
+    "id": "yaba-game-anchor-200m-planning-v1",
+    "localBoundary": [
+      {
+        "east": -100,
+        "frame": "block-local-metres",
+        "north": -100,
+        "up": 0
+      },
+      {
+        "east": 100,
+        "frame": "block-local-metres",
+        "north": -100,
+        "up": 0
+      },
+      {
+        "east": 100,
+        "frame": "block-local-metres",
+        "north": 100,
+        "up": 0
+      },
+      {
+        "east": -100,
+        "frame": "block-local-metres",
+        "north": 100,
+        "up": 0
+      },
+      {
+        "east": -100,
+        "frame": "block-local-metres",
+        "north": -100,
+        "up": 0
+      }
+    ],
+    "sourceClassification": "approximate-repository-anchor-plus-original-synthetic-AOI",
+    "sourceProposalId": "yaba-game-anchor-200m-proposal-v1",
+    "status": "adopted-reversible-planning-assumption",
+    "surveyed": false,
+    "use": "Original authored prototype layout only; no claim of actual road, parcel, business or building positions",
+    "verticalDatum": "arbitrary-local-zero-unverified",
+    "verticalErrorMetres": null
+  },
+  "placements": [
+    {
+      "assetId": "original-meter-beacon@1.0.0",
+      "basis": "authored-synthetic",
+      "groundAnchor": {
+        "frame": "pilot-scene-units",
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "id": "original-beacon-demo-1",
+      "routeAuthorized": false,
+      "transform": {
+        "far": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-far.glb",
+        "frame": "pilot-scene-units",
+        "near": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-near.glb",
+        "routeAuthorized": false,
+        "ry": -3.141592653589793,
+        "scale": 1,
+        "status": "proposal",
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "assetId": "original-meter-beacon@1.0.0",
+      "basis": "authored-synthetic",
+      "groundAnchor": {
+        "frame": "pilot-scene-units",
+        "x": -90,
+        "y": 0,
+        "z": -90
+      },
+      "id": "original-beacon-demo-2",
+      "routeAuthorized": false,
+      "transform": {
+        "far": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-far.glb",
+        "frame": "pilot-scene-units",
+        "near": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-near.glb",
+        "routeAuthorized": false,
+        "ry": 1.5707963267948966,
+        "scale": 1,
+        "status": "proposal",
+        "x": -90,
+        "y": 0,
+        "z": -90
+      }
+    },
+    {
+      "assetId": "original-meter-beacon@1.0.0",
+      "basis": "authored-synthetic",
+      "groundAnchor": {
+        "frame": "pilot-scene-units",
+        "x": 90,
+        "y": 0,
+        "z": 90
+      },
+      "id": "original-beacon-demo-3",
+      "routeAuthorized": false,
+      "transform": {
+        "far": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-far.glb",
+        "frame": "pilot-scene-units",
+        "near": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-near.glb",
+        "routeAuthorized": false,
+        "ry": 0,
+        "scale": 1,
+        "status": "proposal",
+        "x": 90,
+        "y": 0,
+        "z": 90
+      }
+    }
+  ],
+  "provenance": {
+    "exportFixture": "Original geometry/source declared by export lane; distinct from source registry original-synthetic fixture ID",
+    "googleDerivedInputs": false,
+    "humanFixtures": "Original fictional parameter data only; no human mesh or texture rights inferred",
+    "realSourceAdmission": false,
+    "syntheticSourceValidation": {
+      "checkedBytes": 35342,
+      "checkedFiles": 3,
+      "eligibleForProduction": false,
+      "errors": [],
+      "ok": true
+    }
+  },
+  "routeAuthorized": false,
+  "schema": "allworld-cloud-pilot-contract-v1",
+  "schemas": {
+    "exportAsset": "original-meter-beacon@1.0.0",
+    "geography": "allworld-lagos-geography-proposal-v1",
+    "humanAnchors": 1,
+    "humanSave": 2,
+    "provenancePacket": "allworld-source-packet@1"
+  },
+  "sourceBaseline": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+  "stage": "isolated-cross-contract-review",
+  "staticAsset": {
+    "far": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-far.glb",
+    "forward": "+z",
+    "groundAnchorModel": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "id": "original-meter-beacon@1.0.0",
+    "metresPerModelUnit": 1,
+    "near": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-near.glb",
+    "provenanceClass": "original-export-lane-fixture",
+    "receipts": [
+      {
+        "anchors": {
+          "anchor_front": [
+            0,
+            0.07999999821186066,
+            0.2199999988079071
+          ],
+          "anchor_top": [
+            0,
+            1,
+            0
+          ]
+        },
+        "bounds": {
+          "max": [
+            0.2199999988079071,
+            1,
+            0.2199999988079071
+          ],
+          "min": [
+            -0.2199999988079071,
+            0,
+            -0.2199999988079071
+          ]
+        },
+        "path": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-near.glb",
+        "rawMaterial": {
+          "metalness": 0.18000000715255737,
+          "roughness": 0.36000001430511475
+        },
+        "sha256": "a59f64c71190393516a52267ad730c9c811557b5c75d8d1a32e4e9cc765a282a",
+        "staticAdapter": {
+          "acceptedForPbrRuntime": false,
+          "pbrPreserved": false,
+          "triangles": 332
+        },
+        "triangles": 332
+      },
+      {
+        "anchors": {
+          "anchor_front": [
+            0,
+            0.07999999821186066,
+            0.2199999988079071
+          ],
+          "anchor_top": [
+            0,
+            1,
+            0
+          ]
+        },
+        "bounds": {
+          "max": [
+            0.2199999988079071,
+            1,
+            0.2199999988079071
+          ],
+          "min": [
+            -0.2199999988079071,
+            0,
+            -0.2199999988079071
+          ]
+        },
+        "path": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-far.glb",
+        "rawMaterial": {
+          "metalness": 0.18000000715255737,
+          "roughness": 0.36000001430511475
+        },
+        "sha256": "a5d662b96efacd654b4cd2d6a20bad2e3ae0460720a2cf75edb46f8b14b3f678",
+        "staticAdapter": {
+          "acceptedForPbrRuntime": false,
+          "pbrPreserved": false,
+          "triangles": 108
+        },
+        "triangles": 108
+      },
+      {
+        "anchors": {
+          "anchor_front": [
+            0,
+            0.0799999982,
+            0.219999999
+          ],
+          "anchor_top": [
+            0,
+            1,
+            0
+          ]
+        },
+        "bounds": {
+          "max": [
+            0.2199938974865,
+            1.0000000002165,
+            0.2199938974865
+          ],
+          "min": [
+            -0.219999999,
+            0,
+            -0.219999999
+          ]
+        },
+        "path": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-near-meshopt.glb",
+        "rawMaterial": {
+          "metalness": 0.180000007,
+          "roughness": 0.360000014
+        },
+        "sha256": "8a0680361a8c8654c8ee3eaf7f69ec89a8c3694fbd2faeac9f640e5b94548508",
+        "staticAdapter": {
+          "acceptedForPbrRuntime": false,
+          "pbrPreserved": false,
+          "triangles": 332
+        },
+        "triangles": 332
+      },
+      {
+        "anchors": {
+          "anchor_front": [
+            0,
+            0.0799999982,
+            0.219999999
+          ],
+          "anchor_top": [
+            0,
+            1,
+            0
+          ]
+        },
+        "bounds": {
+          "max": [
+            0.2199938974865,
+            1.0000000002165,
+            0.2199938974865
+          ],
+          "min": [
+            -0.219999999,
+            0,
+            -0.219999999
+          ]
+        },
+        "path": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-far-meshopt.glb",
+        "rawMaterial": {
+          "metalness": 0.180000007,
+          "roughness": 0.360000014
+        },
+        "sha256": "d6d335973441808343d8c7fbbefd764680c5a2a6ad1ede824ada651e79758975",
+        "staticAdapter": {
+          "acceptedForPbrRuntime": false,
+          "pbrPreserved": false,
+          "triangles": 108
+        },
+        "triangles": 108
+      }
+    ],
+    "route": "static",
+    "sourceRegistryAdmission": false
+  },
+  "verifiedInputs": {
+    "bytes": 2746358,
+    "files": 155
+  },
+  "version": "0.1.0"
+}

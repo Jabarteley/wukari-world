@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspace/joinallworld-cloud-integration/experiments/cloud-lanes/asset-export-portability/bounded_run.py", line 114, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/joinallworld-cloud-integration/experiments/cloud-lanes/asset-export-portability/bounded_run.py", line 61, in main
+    raise ValueError('Receipt must stay inside lane')
+ValueError: Receipt must stay inside lane

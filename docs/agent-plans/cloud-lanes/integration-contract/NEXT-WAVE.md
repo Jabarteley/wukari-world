@@ -1,0 +1,76 @@
+# Next tangible art/world lanes — parent launch packet
+
+**Priority: the existing human task is already resumed for visible customisable character art.** Parent resumed task `01a13667-6b47-7763-b71a-7d06139ed03f` on its existing `codex/cloud-human-design-contract-20261013` branch and `human-design-contract` documentation/experiment prefixes. Its first physical subset covers nose, independent ears, body proportions and expressions, with original Blender/GLB geometry and renders/turntable. Do not launch another human foundation, facial morphology or expression worker against that scope. It may build a separate original prototype without waiting for the unknown existing production-character owner.
+
+The six assignments below complement that active producer. They require actual editable art, not another planning-only cycle. Parent alone launches them. Consume the exact final integration commit supplied with this document, verify [packet-lock.json](../../../../experiments/cloud-lanes/integration-contract/packet-lock.json), and record that SHA plus any newer human art checkpoint in each continuation file. The sealed integration packet covers the old contract-only human commit; it does not follow that moving branch automatically.
+
+These six workstreams expand canonical lanes 08/09/10/12/13/14/15/16 within [the full 20-lane parent plan](../../cloud-production-20261013/Allworld-production-plan.md). They are not a claim of 20 or 100 running workers. The next human checkpoint is the priority tangible delivery; supporting work must not consume all capacity needed to produce it.
+
+## Shared launch contract
+
+- Each branch below owns exactly its matching `experiments/cloud-lanes/<slug>/` and `docs/agent-plans/cloud-lanes/<slug>/`. New assets, Blender scripts, sources, exports, receipts and continuation stay there. Do not edit the active human producer's files, other imported first-wave files, `src/`, `public/`, `scripts/`, `world/`, shared dependencies/lockfiles, CI/deploy or runtime/catalogues. Derivatives of frozen inputs go in your own prefix with their input hashes.
+- Production character task `01a13520-8d89-70f1-a722-786459524996` remains unknown, never superseded. GRAPHICS owns later body/material/wardrobe adoption. The active cloud human producer owns its original prototype master mesh/rig/control binding. Other lanes consume exact versions, never edit that master `.blend`. Original Blender background/mobile production continues untouched. No worker launches, unknown-process stops, main merge, deployment, credentials or paid acquisition.
+- Preserve heavy=1, Node heap <=1,536 MiB and minifier=1. Use bounded repository slots for Blender/export/test/browser work, one small asset/job first. Separate tasks are not separate resource pools. Defer a busy slot and keep doing light work. Use uncompressed GLB when Draco is unavailable; Meshopt derivatives require a decoder proof.
+- Commit/push an early `CONTINUE.md` with exact input pins, assigned paths, one tangible checkpoint and observed blockers. Parent should include authorization to push only the task's branch without force. Aim for <=5 MiB in the first committed packet. Larger convincing art needs a measured immutable artifact handoff proposal before bloating Git or using new storage.
+- Deliver at least one actual editable `.blend`, GLB and visually inspected contact sheet per lane. A diagram, schema or generic primitive is not completed character/building art. Report unfinished quality plainly.
+- Packets record bytes/SHA-256, source/authorship/notices, version/family, units/axes, pivots/anchors, bounds, triangles, material slots, texture sizes/bytes and relevant rig/morph counts. Distinguish authored dimensions from exported-artifact measurements and verified real-world measurements. No Google imagery/3D-tile tracing/extraction for geometry, textures, collision or navigation. Original prototypes are not faithful real-world reconstructions without separately admitted evidence.
+- Use isolated raw GLTFLoader for PBR visual proof; the current static ModelPart importer drops material factors. Humans require the skinned route. No shared importer repair or production registration belongs to these lanes. Record unsupported export/runtime features rather than claiming game parity.
+- Check changed outputs only; no unchanged full-suite/45-test reruns. Record actual bounded commands, results and cleanup. Cloud software WebGL is not physical-device performance evidence.
+
+## Six complementary assignments
+
+### A. Original skin and eyes — canonical 08
+
+Branch `codex/cloud-human-skin-eyes-art-20261013`; slug `human-skin-eyes-art`.
+
+Build original procedural skin/eye materials, editable nodes and generated textures, first on an original curved calibration patch and eye mesh. Produce three authored skin appearance variations and one plausible iris/sclera/cornea setup under neutral/day/night lighting. Control roughness, fine surface variation and eye highlights; a flat uniform colour does not meet the visual target. Bake GLTF-supported outputs, record colour-space/normal conventions and show any loss from Blender shaders. These are artistic variations, not ethnicity classifiers or scanned individuals.
+
+Deliver `.blend`, calibration GLB, textures and material packet. Check texture dimensions, decoded factors and alpha behaviour. Once the active human producer supplies an exact UV/material checkpoint, create an independently owned fitted derivative and a portrait view, without editing its base. Calibration is an early tangible checkpoint, not final skin-on-human acceptance.
+
+### B. Original hair attachments — canonical 09
+
+Branch `codex/cloud-human-hair-art-20261013`; slug `human-hair-art`.
+
+Build two original hairstyles, including a tightly curled short style and a visibly different second style, with editable sources, real geometry/texture inputs, GLBs and a practical LOD. Render close/distant views showing the scalp boundary. Start an actual original scalp fixture while awaiting the active human producer's mesh; fit against its exact scalp/head attachment packet as soon as available.
+
+Use the v1 anchor proposal with actual mesh/topology/rig hashes and explicit body-relative transforms. Demonstrate the producer's available head/ear/body endpoints and poses; record penetration/clearance instead of hiding it. Do not claim fitted hair until the exact base is tested. Disclose unsupported alpha/material behaviour and cost. No external texture acquisition or unbounded strand counts by default.
+
+### C. Original wardrobe prototype — canonical 10
+
+Branch `codex/cloud-human-wardrobe-art-20261013`; slug `human-wardrobe-art`.
+
+Build one original everyday outfit as separately editable garment meshes with an actual `.blend`/GLB and neutral front/profile/back views. Keep it useful for the active human prototype: clear garment boundaries, authored seam detail, sensible thickness and fit allowances. Start an original tailoring form if needed, then consume the producer's exact rest mesh, rig and available body endpoints. Do not change body topology, add competing identity controls or edit wardrobe runtime IDs/inventory rules.
+
+Deliver neutral and changed-proportion fit/pose renders, garment/body-region masks as proposals, attachment/bind metadata and measured geometry/texture costs. Test available body controls and arm/knee bends, reporting clipping and stretched detail. A garment on a temporary form is an early asset checkpoint; only the actual frozen body binding can pass fitting. Existing production wardrobe/inventory admission remains separate.
+
+### D. Authored Yaba ground and street slice — canonical 12/13
+
+Branch `codex/cloud-yaba-ground-art-20261013`; slug `yaba-ground-art`.
+
+Build an original editable 200 × 200 m layout using `yaba-game-anchor-200m-planning-v1`. Make one detailed authored street segment with pavement/sidewalk, kerb, gutter, road wear and a crossing or driveway connection, plus a small slope/drain detail to exercise vertical placement. Label every chosen road width/elevation/alignment authored-synthetic; none is a surveyed Lagos claim.
+
+Deliver `.blend`, near/far GLBs for the detailed segment, a local-metric placement manifest, matching seam anchors and plan/eye-level images. Version frontage zones for E. Provide separate proposed collision volumes/walkable annotations marked `routeAuthorized=false`; no nav-grid or movement edits. Check seam/pivot placement through the pinned geography adapter. Rendering a road does not authorize walking.
+
+### E. Original building exteriors and mock interior — canonical 14
+
+Branch `codex/cloud-yaba-building-art-20261013`; slug `yaba-building-art`.
+
+Build two distinct original urban exteriors, one with a simple enterable mock shell. Start with one convincing building before multiplying. Aim for credible human scale, openings, wall thickness, facade material variation and street detail; generic boxes counted as finished exteriors are insufficient. Use fictional signage and authored dimensions. No named real building reconstruction without separately admitted source evidence.
+
+Deliver editable sources, near/far GLBs, material/texture data, metre bounds, ground pivots and door-threshold/entrance/roof anchors, plus street-eye-level/detail views. Use an independent local frontage fixture until D's layout is pinned, then propose placements against that exact version. Enterability is geometry only; WORLD/LIVING retain interactions/collisions/routes. Preserve semantic door/window/roof anchors across LODs and report omitted detail. Leave standalone props/vegetation to F.
+
+### F. Original street props and vegetation samples — canonical 15/16
+
+Branch `codex/cloud-yaba-detail-art-20261013`; slug `yaba-detail-art`.
+
+Build a small original reusable kit: a stall or kiosk, freestanding sign frame, planter, and one convincing vegetation sample suitable for the authored street composition. Each is a separate versioned asset with a ground pivot and meaningful dimensions. No tracing a specific vendor's premises or copying branded signage. Create actual Blender/GLB art and close/distant contact sheets, with useful material variation rather than primitive placeholders.
+
+Deliver near/far variants, texture/alpha and triangle/material costs, anchors and a placement proposal against D's exact layout once available. Keep collision volumes separate and unapproved. Report foliage alpha/overdraw limitations and software-render evidence honestly; no measured phone-performance claim. One convincing asset is the first checkpoint, then expand the small kit.
+
+## Parent sequencing and next integration
+
+Preserve heavy capacity for the already active customisable-human producer. A/D/E/F can produce independent tangible art immediately as capacity allows. B/C can author real hair/garments on labelled calibration fixtures, but their final fit depends on an immutable human mesh checkpoint. Parent may launch four first and release the remaining two once those inputs are ready; no new coordinator approval gate is imposed on the active human task.
+
+Obtain the human producer's next exact commit and actual geometry/render packet first. Review nose/ear/body endpoint independence, expression composition, decoded rig/morph data and visible anatomy against its declared subset. Then version a new integrated candidate without overwriting the old sealed packet. A schema count or original render alone does not establish all 38 controls, realistic anatomy or six-plus complete rendered presets.
+
+Shared PBR preservation, game character persistence/editor, clip retargeting, approved collisions and game placement remain named integration assignments after ownership reconciliation. The genuine Lagos block still needs admitted real-world evidence; the authored prototype does not close that gap. Current-game and named physical-device proof must precede mass production or expansion toward 100 workstreams.

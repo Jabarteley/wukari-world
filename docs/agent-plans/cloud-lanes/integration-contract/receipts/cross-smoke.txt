@@ -1,0 +1,82 @@
+TAP version 13
+# Subtest: all four immutable commit snapshots and baseline dependencies retain exact bytes
+ok 1 - all four immutable commit snapshots and baseline dependencies retain exact bytes
+  ---
+  duration_ms: 15.103066
+  type: 'test'
+  ...
+# Subtest: packet is deterministic across real GLB decodes without changing source files
+ok 2 - packet is deterministic across real GLB decodes without changing source files
+  ---
+  duration_ms: 22.657599
+  type: 'test'
+  ...
+# Subtest: a one-byte input tamper and an escaping path fail before adoption
+ok 3 - a one-byte input tamper and an escaping path fail before adoption
+  ---
+  duration_ms: 1.974808
+  type: 'test'
+  ...
+# Subtest: Yaba adoption keeps approximate anchor, synthetic AOI and unknown surveyed errors
+ok 4 - Yaba adoption keeps approximate anchor, synthetic AOI and unknown surveyed errors
+  ---
+  duration_ms: 0.197321
+  type: 'test'
+  ...
+# Subtest: canonical and Meshopt static exports keep measured height and matching near/far anchors
+ok 5 - canonical and Meshopt static exports keep measured height and matching near/far anchors
+  ---
+  duration_ms: 0.19635
+  type: 'test'
+  ...
+# Subtest: geography consumes actual exporter paths, metres, pivot and headings including rotated scene
+ok 6 - geography consumes actual exporter paths, metres, pivot and headings including rotated scene
+  ---
+  duration_ms: 0.182019
+  type: 'test'
+  ...
+# Subtest: local metric geometry is not silently equated with projected street metres
+ok 7 - local metric geometry is not silently equated with projected street metres
+  ---
+  duration_ms: 0.572737
+  type: 'test'
+  ...
+# Subtest: human v2 identity edits retain expressions and legacy wardrobe through serialization
+ok 8 - human v2 identity edits retain expressions and legacy wardrobe through serialization
+  ---
+  duration_ms: 1.987146
+  type: 'test'
+  ...
+# Subtest: human schema packet cannot enter static GLB placement route
+ok 9 - human schema packet cannot enter static GLB placement route
+  ---
+  duration_ms: 0.456044
+  type: 'test'
+  ...
+# Subtest: synthetic rights cannot be promoted to real-source or export registry admission
+ok 10 - synthetic rights cannot be promoted to real-source or export registry admission
+  ---
+  duration_ms: 1.126435
+  type: 'test'
+  ...
+# Subtest: stale schema/source identity and false runtime/route/quality claims fail
+ok 11 - stale schema/source identity and false runtime/route/quality claims fail
+  ---
+  duration_ms: 1.538563
+  type: 'test'
+  ...
+# Subtest: unsupported PBR promotion and unresolved placement IDs fail
+ok 12 - unsupported PBR promotion and unresolved placement IDs fail
+  ---
+  duration_ms: 5.186042
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 293.304089

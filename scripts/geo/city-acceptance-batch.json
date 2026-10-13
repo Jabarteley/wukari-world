@@ -2,15 +2,16 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-l-1b",
+      "id": "release-l-2b",
       "appSha": "3e119adcc9fe5ed03716400a10104512aea54dd9",
       "driverSha": "3523613e9a220e2d588cdeef6de57a4eb3d1b948",
       "cities": [
-        "pago-pago",
-        "mariehamn",
-        "st-peter-port",
-        "torshavn",
-        "willemstad"
+        "garapan",
+        "taipei",
+        "kyrenia",
+        "macau",
+        "philipsburg",
+        "noumea"
       ],
       "roundtrip": true,
       "browserOnly": true

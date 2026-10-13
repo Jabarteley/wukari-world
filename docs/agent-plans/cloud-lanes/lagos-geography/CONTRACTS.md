@@ -2,6 +2,8 @@
 
 Source baseline: `81d9f599d87dfb34adf49cd9337a0b05678e5e0d`. Coordinator documents read at `6c2885d15d38b9d64501f14d467db9d5c01573b2`. Read-only fetch of main on 2026-10-13 returned the same baseline. Branch: `codex/cloud-lagos-geography-20261013`.
 
+Continued without restarting after reading `FIRST-WAVE.md` at `844da27a549d30c5148c1cb5b5927b7d0f5bfde6`, plus the archived plan's scope, world integration contract, geospatial lane 03, placement lane 17, release safeguards and acceptance gates. Parent's canonical lane is **03**; its actual first-wave ledger confirms this branch and these two prefixes. Proposed directories/budgets do not override the assigned scope or game caps. The full plan is now available; the earlier Library-transfer blocker no longer blocks this lane.
+
 Anthony's delegated scope owns only `experiments/cloud-lanes/lagos-geography/` and this documentation directory. Parent owns integration and further launches. WORLD retains geography and production upload; neighbourhood/scenes retain street/model placement; GRAPHICS retains body fitting; LIVING retains movement/route authority. No launch, runtime integration, deployment or Blender pipeline change is part of this lane.
 
 | Existing source | Observed contract | Consequence |

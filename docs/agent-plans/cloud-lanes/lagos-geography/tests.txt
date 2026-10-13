@@ -1,0 +1,113 @@
+TAP version 13
+# Subtest: pinned anchor independently agrees with rounded Lagos origin and existing frame functions
+ok 1 - pinned anchor independently agrees with rounded Lagos origin and existing frame functions
+  ---
+  duration_ms: 1.411494
+  type: 'test'
+  ...
+# Subtest: independent geographic steps establish axis signs and scale, not just inverse agreement
+ok 2 - independent geographic steps establish axis signs and scale, not just inverse agreement
+  ---
+  duration_ms: 0.293393
+  type: 'test'
+  ...
+# Subtest: one-metre cube has expected east/up/north axes and unit edges in the proposed scene
+ok 3 - one-metre cube has expected east/up/north axes and unit edges in the proposed scene
+  ---
+  duration_ms: 0.301977
+  type: 'test'
+  ...
+# Subtest: 486 grid samples round-trip geographic/city/street and translated rotated scaled scene within 1 cm
+ok 4 - 486 grid samples round-trip geographic/city/street and translated rotated scaled scene within 1 cm
+  ---
+  duration_ms: 3.888218
+  type: 'test'
+  ...
+# {"samples":486,"maxCoordinateErrorMetres":7.789168533229508e-11,"maxSceneErrorMetres":3.182604911552452e-14,"maxQuantizedErrorMetres":0.005503984662381194}
+# Subtest: declared 500 m domain has edge witnesses and rejects beyond it
+ok 5 - declared 500 m domain has edge witnesses and rejects beyond it
+  ---
+  duration_ms: 0.511934
+  type: 'test'
+  ...
+# Subtest: proposal sides are approximately 200 spherical ground metres by independent haversine witness
+ok 6 - proposal sides are approximately 200 spherical ground metres by independent haversine witness
+  ---
+  duration_ms: 0.192871
+  type: 'test'
+  ...
+# Subtest: headings independently orient model +z north/east/south/west and wrap
+ok 7 - headings independently orient model +z north/east/south/west and wrap
+  ---
+  duration_ms: 0.30469
+  type: 'test'
+  ...
+# Subtest: centimetre asset scale, nonzero pivot and local ground height are preserved
+ok 8 - centimetre asset scale, nonzero pivot and local ground height are preserved
+  ---
+  duration_ms: 0.132591
+  type: 'test'
+  ...
+# Subtest: negative tiles and rounded seam ownership use half-open centimetre coordinates
+ok 9 - negative tiles and rounded seam ownership use half-open centimetre coordinates
+  ---
+  duration_ms: 0.305101
+  type: 'test'
+  ...
+# Subtest: invalid numbers, swapped coordinate order, foreign frames and bad scales fail clearly
+ok 10 - invalid numbers, swapped coordinate order, foreign frames and bad scales fail clearly
+  ---
+  duration_ms: 0.45659
+  type: 'test'
+  ...
+# Subtest: caller mutation cannot change a created adapter and altitude is never silently inferred
+ok 11 - caller mutation cannot change a created adapter and altitude is never silently inferred
+  ---
+  duration_ms: 0.249608
+  type: 'test'
+  ...
+# Subtest: committed sample is byte-deterministic and independent of input feature order
+ok 12 - committed sample is byte-deterministic and independent of input feature order
+  ---
+  duration_ms: 4.450868
+  type: 'test'
+  ...
+# Subtest: source pins verify all 14 read-only contracts against current bytes
+ok 13 - source pins verify all 14 read-only contracts against current bytes
+  ---
+  duration_ms: 1.06515
+  type: 'test'
+  ...
+# Subtest: proposed area is closed, counter-clockwise and 200 x 200 local metres; geography is lon/lat
+ok 14 - proposed area is closed, counter-clockwise and 200 x 200 local metres; geography is lon/lat
+  ---
+  duration_ms: 0.781351
+  type: 'test'
+  ...
+# Subtest: provenance, unknown real heights/datum and non-admission status survive serialization
+ok 15 - provenance, unknown real heights/datum and non-admission status survive serialization
+  ---
+  duration_ms: 0.341736
+  type: 'test'
+  ...
+# Subtest: malformed synthetic manifests reject duplicate IDs, false certainty and out-of-bound footprints
+ok 16 - malformed synthetic manifests reject duplicate IDs, false certainty and out-of-bound footprints
+  ---
+  duration_ms: 0.629231
+  type: 'test'
+  ...
+# Subtest: building output does not mutate inputs or retain writable references to them
+ok 17 - building output does not mutate inputs or retain writable references to them
+  ---
+  duration_ms: 0.446365
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 183.951315

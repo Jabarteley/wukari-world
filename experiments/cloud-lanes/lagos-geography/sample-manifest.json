@@ -1,0 +1,706 @@
+{
+  "beta": true,
+  "boundaryProposal": {
+    "anchor": {
+      "frame": "lonlat-degrees",
+      "lat": 6.5075,
+      "lon": 3.382
+    },
+    "anchorSourceId": "repository-game-anchor",
+    "areaLocalSquareMetres": 40000,
+    "dimensionsLocalMetres": [
+      200,
+      200
+    ],
+    "geojson": {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              3.381094847766593,
+              6.506600679636276
+            ],
+            [
+              3.3829051522334073,
+              6.506600679636276
+            ],
+            [
+              3.3829051522334073,
+              6.508399320363725
+            ],
+            [
+              3.381094847766593,
+              6.508399320363725
+            ],
+            [
+              3.381094847766593,
+              6.506600679636276
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "proposalId": "yaba-game-anchor-200m-proposal-v1",
+        "status": "proposal",
+        "surveyed": false
+      },
+      "type": "Feature"
+    },
+    "label": "PROPOSAL: 200 m × 200 m around existing approximate Sabo Yaba game anchor",
+    "realWorldBoundaryErrorBoundMetres": null,
+    "ring": [
+      {
+        "city": {
+          "frame": "lagos-map-units",
+          "x": -20.762665222045143,
+          "z": -62.4626251791924
+        },
+        "geographic": {
+          "frame": "lonlat-degrees",
+          "lat": 6.506600679636276,
+          "lon": 3.381094847766593
+        },
+        "local": {
+          "east": -100,
+          "frame": "block-local-metres",
+          "north": -100,
+          "up": 0
+        },
+        "scene": {
+          "frame": "pilot-scene-units",
+          "x": -100,
+          "y": 0,
+          "z": 100
+        },
+        "street": {
+          "frame": "lagos-street-projected-metres",
+          "x": -2076.2665222045143,
+          "z": -6246.26251791924
+        },
+        "tile": {
+          "centimetres": {
+            "x": 9973,
+            "z": 2574
+          },
+          "frame": "lagos-street-centimetres",
+          "tile": {
+            "x": -17,
+            "z": -49
+          }
+        }
+      },
+      {
+        "city": {
+          "frame": "lagos-map-units",
+          "x": -18.77447871262939,
+          "z": -62.4626251791924
+        },
+        "geographic": {
+          "frame": "lonlat-degrees",
+          "lat": 6.506600679636276,
+          "lon": 3.3829051522334073
+        },
+        "local": {
+          "east": 100,
+          "frame": "block-local-metres",
+          "north": -100,
+          "up": 0
+        },
+        "scene": {
+          "frame": "pilot-scene-units",
+          "x": 100,
+          "y": 0,
+          "z": 100
+        },
+        "street": {
+          "frame": "lagos-street-projected-metres",
+          "x": -1877.4478712629389,
+          "z": -6246.26251791924
+        },
+        "tile": {
+          "centimetres": {
+            "x": 4255,
+            "z": 2574
+          },
+          "frame": "lagos-street-centimetres",
+          "tile": {
+            "x": -15,
+            "z": -49
+          }
+        }
+      },
+      {
+        "city": {
+          "frame": "lagos-map-units",
+          "x": -18.77447871262939,
+          "z": -64.4626251791924
+        },
+        "geographic": {
+          "frame": "lonlat-degrees",
+          "lat": 6.508399320363725,
+          "lon": 3.3829051522334073
+        },
+        "local": {
+          "east": 100,
+          "frame": "block-local-metres",
+          "north": 100,
+          "up": 0
+        },
+        "scene": {
+          "frame": "pilot-scene-units",
+          "x": 100,
+          "y": 0,
+          "z": -100
+        },
+        "street": {
+          "frame": "lagos-street-projected-metres",
+          "x": -1877.4478712629389,
+          "z": -6446.26251791924
+        },
+        "tile": {
+          "centimetres": {
+            "x": 4255,
+            "z": 8174
+          },
+          "frame": "lagos-street-centimetres",
+          "tile": {
+            "x": -15,
+            "z": -51
+          }
+        }
+      },
+      {
+        "city": {
+          "frame": "lagos-map-units",
+          "x": -20.762665222045143,
+          "z": -64.4626251791924
+        },
+        "geographic": {
+          "frame": "lonlat-degrees",
+          "lat": 6.508399320363725,
+          "lon": 3.381094847766593
+        },
+        "local": {
+          "east": -100,
+          "frame": "block-local-metres",
+          "north": 100,
+          "up": 0
+        },
+        "scene": {
+          "frame": "pilot-scene-units",
+          "x": -100,
+          "y": 0,
+          "z": -100
+        },
+        "street": {
+          "frame": "lagos-street-projected-metres",
+          "x": -2076.2665222045143,
+          "z": -6446.26251791924
+        },
+        "tile": {
+          "centimetres": {
+            "x": 9973,
+            "z": 8174
+          },
+          "frame": "lagos-street-centimetres",
+          "tile": {
+            "x": -17,
+            "z": -51
+          }
+        }
+      },
+      {
+        "city": {
+          "frame": "lagos-map-units",
+          "x": -20.762665222045143,
+          "z": -62.4626251791924
+        },
+        "geographic": {
+          "frame": "lonlat-degrees",
+          "lat": 6.506600679636276,
+          "lon": 3.381094847766593
+        },
+        "local": {
+          "east": -100,
+          "frame": "block-local-metres",
+          "north": -100,
+          "up": 0
+        },
+        "scene": {
+          "frame": "pilot-scene-units",
+          "x": -100,
+          "y": 0,
+          "z": 100
+        },
+        "street": {
+          "frame": "lagos-street-projected-metres",
+          "x": -2076.2665222045143,
+          "z": -6246.26251791924
+        },
+        "tile": {
+          "centimetres": {
+            "x": 9973,
+            "z": 2574
+          },
+          "frame": "lagos-street-centimetres",
+          "tile": {
+            "x": -17,
+            "z": -49
+          }
+        }
+      }
+    ],
+    "ringOrder": "closed counter-clockwise east/north; GeoJSON coordinates are [longitude,latitude]",
+    "sourceId": "original-synthetic-fixtures",
+    "status": "proposed-area-of-interest-not-surveyed-block"
+  },
+  "coordinateContract": {
+    "asset": "metresPerModelUnit converts model units; groundAnchorModel is placed at the requested local ground point",
+    "atlas": "Equal Earth atlas is deliberately excluded",
+    "city": "nigeria-equirectangular-v1; x east, z south; rounded Lagos origin (-5052,2835); 10 units/km",
+    "geographic": "longitude, latitude in decimal degrees; repository anchor treated as WGS84-like, datum unverified",
+    "heading": "degrees clockwise from local north, model forward +z; ry = sceneYaw + pi - headingRadians",
+    "local": "spherical equirectangular at anchor latitude; east/north/up metres; max radius 500 m; not ellipsoidal ENU",
+    "mapEastScaleRelativeToLocal": 0.9940932547076073,
+    "scene": {
+      "axesAtZeroYaw": "x east, y up, z south",
+      "status": "Standalone proposal frame; not wired to city-street or procedural neighbourhood",
+      "translation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "unitsPerMetre": 1,
+      "yawRadians": 0
+    },
+    "street": "city-local map x/z times 100; projected metres inherit 9 degree standard-parallel scale",
+    "tile": "128 projected metres, centimetre quantization before tile selection, half-open local [0,128)",
+    "vertical": "Arbitrary local zero, not sea level or ellipsoidal altitude; ground elevations synthetic; no DEM"
+  },
+  "coordinatorCommit": "844da27a549d30c5148c1cb5b5927b7d0f5bfde6",
+  "features": [
+    {
+      "beta": true,
+      "footprint": [
+        {
+          "east": -41,
+          "frame": "block-local-metres",
+          "north": 17,
+          "up": 0
+        },
+        {
+          "east": -23,
+          "frame": "block-local-metres",
+          "north": 17,
+          "up": 0
+        },
+        {
+          "east": -23,
+          "frame": "block-local-metres",
+          "north": 31,
+          "up": 0
+        },
+        {
+          "east": -41,
+          "frame": "block-local-metres",
+          "north": 31,
+          "up": 0
+        },
+        {
+          "east": -41,
+          "frame": "block-local-metres",
+          "north": 17,
+          "up": 0
+        }
+      ],
+      "footprintMetres": {
+        "depth": 18,
+        "width": 14
+      },
+      "geometryStatus": "synthetic",
+      "ground": {
+        "city": {
+          "frame": "lagos-map-units",
+          "x": -20.086681808843423,
+          "z": -63.70262517919218
+        },
+        "geographic": {
+          "frame": "lonlat-degrees",
+          "lat": 6.507715836887294,
+          "lon": 3.3817103512853097
+        },
+        "local": {
+          "east": -32,
+          "frame": "block-local-metres",
+          "north": 24,
+          "up": 0
+        },
+        "scene": {
+          "frame": "pilot-scene-units",
+          "x": -32,
+          "y": 0,
+          "z": -24
+        },
+        "street": {
+          "frame": "lagos-street-projected-metres",
+          "x": -2008.6681808843423,
+          "z": -6370.262517919218
+        },
+        "tile": {
+          "centimetres": {
+            "x": 3933,
+            "z": 2974
+          },
+          "frame": "lagos-street-centimetres",
+          "tile": {
+            "x": -16,
+            "z": -50
+          }
+        }
+      },
+      "groundElevationErrorBoundMetres": null,
+      "headingDegrees": 90,
+      "headingErrorBoundDegrees": null,
+      "height": {
+        "confidence": "not-measured",
+        "method": "synthetic-assumption",
+        "nominalMetres": 8,
+        "realWorldErrorBoundMetres": null,
+        "scenarioRangeMetres": [
+          5,
+          12
+        ]
+      },
+      "horizontalErrorBoundMetres": null,
+      "id": "synthetic-building-a",
+      "label": "Synthetic massing A",
+      "model": {
+        "far": "synthetic:massing-a-far",
+        "filesExist": false,
+        "forward": "+z",
+        "groundAnchorModel": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "metresPerModelUnit": 1,
+        "near": "synthetic:massing-a"
+      },
+      "placedGroundAnchor": {
+        "frame": "pilot-scene-units",
+        "x": -32,
+        "y": 0,
+        "z": -24
+      },
+      "placement": {
+        "far": "synthetic:massing-a-far",
+        "frame": "pilot-scene-units",
+        "near": "synthetic:massing-a",
+        "routeAuthorized": false,
+        "ry": 1.5707963267948966,
+        "scale": 1,
+        "status": "proposal",
+        "x": -32,
+        "y": 0,
+        "z": -24
+      },
+      "sourceId": "original-synthetic-fixtures"
+    },
+    {
+      "beta": true,
+      "footprint": [
+        {
+          "east": 33.80384757729337,
+          "frame": "block-local-metres",
+          "north": -18.071796769724493,
+          "up": 0.4
+        },
+        {
+          "east": 25.803847577293368,
+          "frame": "block-local-metres",
+          "north": -31.928203230275507,
+          "up": 0.4
+        },
+        {
+          "east": 36.19615242270663,
+          "frame": "block-local-metres",
+          "north": -37.92820323027551,
+          "up": 0.4
+        },
+        {
+          "east": 44.19615242270663,
+          "frame": "block-local-metres",
+          "north": -24.071796769724493,
+          "up": 0.4
+        },
+        {
+          "east": 33.80384757729337,
+          "frame": "block-local-metres",
+          "north": -18.071796769724493,
+          "up": 0.4
+        }
+      ],
+      "footprintMetres": {
+        "depth": 16,
+        "width": 12
+      },
+      "geometryStatus": "synthetic",
+      "ground": {
+        "city": {
+          "frame": "lagos-map-units",
+          "x": -19.42063932818928,
+          "z": -63.1826251791922
+        },
+        "geographic": {
+          "frame": "lonlat-degrees",
+          "lat": 6.507248190298157,
+          "lon": 3.3823168032816926
+        },
+        "local": {
+          "east": 35,
+          "frame": "block-local-metres",
+          "north": -28,
+          "up": 0.4
+        },
+        "scene": {
+          "frame": "pilot-scene-units",
+          "x": 35,
+          "y": 0.4,
+          "z": 28
+        },
+        "street": {
+          "frame": "lagos-street-projected-metres",
+          "x": -1942.0639328189282,
+          "z": -6318.26251791922
+        },
+        "tile": {
+          "centimetres": {
+            "x": 10594,
+            "z": 8174
+          },
+          "frame": "lagos-street-centimetres",
+          "tile": {
+            "x": -16,
+            "z": -50
+          }
+        }
+      },
+      "groundElevationErrorBoundMetres": null,
+      "headingDegrees": 210,
+      "headingErrorBoundDegrees": null,
+      "height": {
+        "confidence": "not-measured",
+        "method": "synthetic-assumption",
+        "nominalMetres": 5,
+        "realWorldErrorBoundMetres": null,
+        "scenarioRangeMetres": [
+          3,
+          9
+        ]
+      },
+      "horizontalErrorBoundMetres": null,
+      "id": "synthetic-building-b",
+      "label": "Synthetic massing B with nonzero pivot",
+      "model": {
+        "far": "synthetic:massing-b-far",
+        "filesExist": false,
+        "forward": "+z",
+        "groundAnchorModel": {
+          "x": 50,
+          "y": -100,
+          "z": 75
+        },
+        "metresPerModelUnit": 0.01,
+        "near": "synthetic:massing-b"
+      },
+      "placedGroundAnchor": {
+        "frame": "pilot-scene-units",
+        "x": 35,
+        "y": 0.3999999999999999,
+        "z": 28
+      },
+      "placement": {
+        "far": "synthetic:massing-b-far",
+        "frame": "pilot-scene-units",
+        "near": "synthetic:massing-b",
+        "routeAuthorized": false,
+        "ry": -0.5235987755982983,
+        "scale": 0.01,
+        "status": "proposal",
+        "x": 34.94198729810778,
+        "y": 1.4,
+        "z": 27.10048094716167
+      },
+      "sourceId": "original-synthetic-fixtures"
+    },
+    {
+      "beta": true,
+      "footprint": [
+        {
+          "east": 4.3,
+          "frame": "block-local-metres",
+          "north": 61.7,
+          "up": 0.15
+        },
+        {
+          "east": 4.3,
+          "frame": "block-local-metres",
+          "north": 62.3,
+          "up": 0.15
+        },
+        {
+          "east": 3.7,
+          "frame": "block-local-metres",
+          "north": 62.3,
+          "up": 0.15
+        },
+        {
+          "east": 3.7,
+          "frame": "block-local-metres",
+          "north": 61.7,
+          "up": 0.15
+        },
+        {
+          "east": 4.3,
+          "frame": "block-local-metres",
+          "north": 61.7,
+          "up": 0.15
+        }
+      ],
+      "footprintMetres": {
+        "depth": 0.6,
+        "width": 0.6
+      },
+      "geometryStatus": "synthetic",
+      "ground": {
+        "city": {
+          "frame": "lagos-map-units",
+          "x": -19.72880823714786,
+          "z": -64.08262517919229
+        },
+        "geographic": {
+          "frame": "lonlat-degrees",
+          "lat": 6.508057578625509,
+          "lon": 3.3820362060893365
+        },
+        "local": {
+          "east": 4,
+          "frame": "block-local-metres",
+          "north": 62,
+          "up": 0.15
+        },
+        "scene": {
+          "frame": "pilot-scene-units",
+          "x": 4,
+          "y": 0.15,
+          "z": -62
+        },
+        "street": {
+          "frame": "lagos-street-projected-metres",
+          "x": -1972.880823714786,
+          "z": -6408.262517919229
+        },
+        "tile": {
+          "centimetres": {
+            "x": 7512,
+            "z": 11974
+          },
+          "frame": "lagos-street-centimetres",
+          "tile": {
+            "x": -16,
+            "z": -51
+          }
+        }
+      },
+      "groundElevationErrorBoundMetres": null,
+      "headingDegrees": 0,
+      "headingErrorBoundDegrees": null,
+      "height": {
+        "confidence": "not-measured",
+        "method": "synthetic-assumption",
+        "nominalMetres": 4,
+        "realWorldErrorBoundMetres": null,
+        "scenarioRangeMetres": [
+          2,
+          6
+        ]
+      },
+      "horizontalErrorBoundMetres": null,
+      "id": "synthetic-prop-a",
+      "label": "Synthetic placement marker",
+      "model": {
+        "filesExist": false,
+        "forward": "+z",
+        "groundAnchorModel": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "metresPerModelUnit": 1,
+        "near": "synthetic:marker-a"
+      },
+      "placedGroundAnchor": {
+        "frame": "pilot-scene-units",
+        "x": 4,
+        "y": 0.15,
+        "z": -62
+      },
+      "placement": {
+        "frame": "pilot-scene-units",
+        "near": "synthetic:marker-a",
+        "routeAuthorized": false,
+        "ry": -3.141592653589793,
+        "scale": 1,
+        "status": "proposal",
+        "x": 4,
+        "y": 0.15,
+        "z": -62
+      },
+      "sourceId": "original-synthetic-fixtures"
+    }
+  ],
+  "integrationReady": false,
+  "observationDate": "2026-10-13",
+  "promotionBlockers": [
+    "Parent must select the actual block and target runtime scene",
+    "Licensed surveyed or mapped geometry with per-input provenance is absent",
+    "Horizontal datum, anchor accuracy, heights, ground datum, road alignment and entrances are unverified",
+    "Synthetic asset keys have no model files, collider, support or navigation semantics",
+    "Runtime owner must decide how local metric geometry maps to existing projected street coordinates",
+    "No current-game, visual, Blender export, phone or performance acceptance is claimed"
+  ],
+  "proposalId": "yaba-game-anchor-200m-proposal-v1",
+  "provenance": [
+    {
+      "accuracy": "Source describes tens to hundreds of metres; no certified error bound",
+      "author": "Allworld repository contributors",
+      "externalSurvey": false,
+      "horizontalErrorBoundMetres": null,
+      "id": "repository-game-anchor",
+      "imageryUsed": false,
+      "kind": "repository-authored-approximation",
+      "licence": "AGPL-3.0-or-later (repository LICENSE)",
+      "url": "https://github.com/kromate/joinallworld/blob/81d9f599d87dfb34adf49cd9337a0b05678e5e0d/src/map3d/cities/lagos.ts",
+      "usedFor": "Naming and centring a proposed Sabo Yaba area only; PLACES.cchub coordinate"
+    },
+    {
+      "accuracy": "No correspondence to real objects asserted; scenario ranges are not confidence intervals",
+      "author": "Allworld Lagos geography cloud lane, 2026-10-13",
+      "externalSurvey": false,
+      "horizontalErrorBoundMetres": null,
+      "id": "original-synthetic-fixtures",
+      "imageryUsed": false,
+      "kind": "synthetic",
+      "licence": "AGPL-3.0-or-later",
+      "sourceFile": "fixture.ts",
+      "usedFor": "AOI dimensions, feature IDs, footprints, headings, pivots, elevations, heights and scenario ranges",
+      "verticalErrorBoundMetres": null
+    }
+  ],
+  "routeAuthorized": false,
+  "schema": "allworld-lagos-geography-proposal-v1",
+  "sourceBaseline": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+  "sourcePinsFile": "source-pins.json",
+  "status": "proposal-synthetic-only"
+}

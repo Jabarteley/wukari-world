@@ -10,7 +10,8 @@
         "city",
         "town"
       ],
-      "capitalPlaceTags": []
+      "capitalPlaceTags": [],
+      "districtIslandPlaces": []
     },
     "microstate": {
       "minimumPlaces": 12,
@@ -25,6 +26,10 @@
       ],
       "capitalPlaceTags": [
         "suburb"
+      ],
+      "districtIslandPlaces": [
+        "island",
+        "islet"
       ]
     }
   }

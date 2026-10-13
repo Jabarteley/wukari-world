@@ -170,10 +170,10 @@ for (const target of table.targets) {
         row.unavailableSemanticKinds = unavailableSemanticKinds;
         if (choices.length < profile.minimumPlaces)
             row.errors.push(`only ${choices.length} eligible unique named venues (the ${profile.name} profile needs ${profile.minimumPlaces})`);
-        const districts = districtLabels({ pool, name, ref, normal, centre: facts.centre, minimumLabels: profile.minimumNeighbourhoodLabels }), names = [...districts.labels];
+        const districts = districtLabels({ pool, name, ref, normal, centre: facts.centre, minimumLabels: profile.minimumNeighbourhoodLabels, islandPlaces: profile.districtIslandPlaces }), names = [...districts.labels];
         row.districtLabelPlaceTags = districts.placeTags;
         if (districts.areaRefs.length) row.districtLabelAreaRefs = districts.areaRefs;
-        if (districts.fallback) row.districtLabelFallback = 'fewer than five suburb|neighbourhood|quarter nodes: village|hamlet|locality|subdivision nodes appended' + (districts.areaRefs.length ? `; still short of five nodes, so place areas at their centre points: ${districts.areaRefs.join(', ')}` : '');
+        if (districts.fallback) row.districtLabelFallback = 'fewer than the minimum suburb|neighbourhood|quarter nodes: village|hamlet|locality|subdivision nodes appended' + (profile.districtIslandPlaces?.length ? '; then named island|islet places (profile ' + profile.name + ')' : '') + (districts.areaRefs.length ? `; still short of five nodes, so place areas at their centre points: ${districts.areaRefs.join(', ')}` : '');
         // A coast is a shore a city can stand beside, not one mis-tagged ring: Asuncion's extract holds a single closed natural=coastline way of 976 m (the creek
         // "Zanja Soro" in landlocked Paraguay), which made the recipe a sea city and sent every dry place to the wrong side of the exact-coast stage.
         const coastlineMetres = el => (el.geometry ?? []).slice(1).reduce((sum, p, i) => sum + Math.hypot((p.lon - el.geometry[i].lon) * 111320 * Math.cos(p.lat * Math.PI / 180), (p.lat - el.geometry[i].lat) * 111320), 0);

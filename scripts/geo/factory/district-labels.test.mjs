@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { districtLabels, FALLBACK_DISTRICT_PLACES, PRIMARY_DISTRICT_PLACES } from './district-labels.mjs';
+import { districtLabels, FALLBACK_DISTRICT_PLACES, PRIMARY_DISTRICT_PLACES, ISLAND_PLACES } from './district-labels.mjs';
 
 const ref = el => `${el.type}/${el.id}`, name = el => el.tags.name, normal = text => text.normalize('NFKC').toLowerCase();
 const node = (id, place, extra = {}, lon = 100 + id / 1000, lat = 10) => ({ type: 'node', id, lon, lat, tags: { name: `P${id}`, place, ...extra } });
@@ -35,7 +35,7 @@ test('fallback ranks wikidata first, then nearest to the city; islets and duplic
 test('the tag lists match the extractor', async () => {
   const { readFileSync } = await import('node:fs');
   const source = readFileSync(new URL('../offline-extract.py', import.meta.url), 'utf8');
-  for (const [constant, values] of [['PLACE_DISTRICTS', PRIMARY_DISTRICT_PLACES], ['PLACE_DISTRICT_FALLBACKS', FALLBACK_DISTRICT_PLACES]]) {
+  for (const [constant, values] of [['PLACE_DISTRICTS', PRIMARY_DISTRICT_PLACES], ['PLACE_DISTRICT_FALLBACKS', FALLBACK_DISTRICT_PLACES], ['PLACE_ISLANDS', ISLAND_PLACES]]) {
     const match = new RegExp(`^${constant} = \\{([^}]*)\\}`, 'm').exec(source);
     assert.ok(match, constant);
     assert.deepEqual([...match[1].matchAll(/"([a-z]+)"/g)].map(item => item[1]).sort(), [...values].sort());
@@ -53,4 +53,18 @@ test('areas top the list up to five only when nodes are not enough: primary tags
   assert.equal(enough.labels.length, 5);
   assert.ok(enough.labels.every(label => label.ref.startsWith('node/')));
   assert.deepEqual(enough.areaRefs, []);
+});
+
+test('islands (microstate profile only): after every node tier and still short, named islands nearest first; never for a standard city; the islet of a node-less atoll counts', () => {
+  const island = (id, lon, extra = {}) => ({ type: 'node', id, lon, lat: 10, tags: { name: `I${id}`, place: 'island', ...extra } });
+  const way = { type: 'way', id: 40, center: { lon: 100.002, lat: 10 }, tags: { name: 'W40', place: 'islet' } };
+  const pool = [node(1, 'quarter'), island(2, 100.5), island(3, 100.01), island(4, 100.9, { wikidata: 'Q9' }), way, node(5, 'locality')];
+  const micro = districtLabels({ pool, name, ref, normal, centre, minimumLabels: 3, islandPlaces: ISLAND_PLACES });
+  assert.deepEqual(micro.labels.map(label => label.ref), ['node/1', 'node/5', 'node/4', 'way/40', 'node/3', 'node/2']);
+  assert.deepEqual(micro.areaRefs, ['way/40']);
+  assert.equal(micro.fallback, true);
+  const standard = districtLabels({ pool, name, ref, normal, centre, minimumLabels: 3 });
+  assert.deepEqual(standard.labels.map(label => label.ref), ['node/1', 'node/5'], 'no island is read without the profile list');
+  const enough = districtLabels({ pool: [1, 2, 3].map(id => node(id, 'quarter')).concat(island(9, 100.001)), name, ref, normal, centre, minimumLabels: 3, islandPlaces: ISLAND_PLACES });
+  assert.deepEqual(enough.labels.map(label => label.ref), ['node/1', 'node/2', 'node/3'], 'islands are not read when the ordinary tags already reach the minimum');
 });

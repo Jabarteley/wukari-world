@@ -60,7 +60,7 @@ for (const { id, extract, sourceInputs } of manifest.cities) {
   const placeElements = new Map(layers[0].parsed.elements.map(element => [`${element.type}/${element.id}`, element]));
   const labelTags = CONFIG.names.filter(label => label.kind === 'neighbourhood').map(label => placeElements.get(label.ref)?.tags?.place);
   const areaLabels = CONFIG.names.filter(label => label.kind === 'neighbourhood' && !label.ref.startsWith('node/')).map(label => ({ ref: label.ref, place: placeElements.get(label.ref)?.tags?.place, name: placeElements.get(label.ref)?.tags?.name }));
-  const fallbackLabels = labelTags.some(tag => ['village', 'hamlet', 'locality', 'subdivision'].includes(tag)) || areaLabels.length > 0;
+  const fallbackLabels = labelTags.some(tag => ['village', 'hamlet', 'locality', 'subdivision', 'island', 'islet'].includes(tag)) || areaLabels.length > 0;
   const slotFallbacks = CONFIG.places.filter(place => place.slotFallback).map(place => place.slotFallback);
   const selection = slotFallbacks.length || fallbackLabels || CONFIG.profile !== undefined ? {
     ...(CONFIG.profile === undefined ? {} : { profile: CONFIG.profile, emptySlots }),

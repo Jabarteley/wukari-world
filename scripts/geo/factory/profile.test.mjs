@@ -17,10 +17,11 @@ const SLOTS = { transit: t => t.railway === 'station' || t.amenity === 'bus_stat
 const known = Object.keys(SLOTS);
 
 test('standard is the default and unchanged; microstate relaxes exactly the documented numbers', () => {
-  assert.deepEqual({ ...profileFor(undefined) }, { name: 'standard', minimumPlaces: 20, minimumNeighbourhoodLabels: 5, maximumEmptySlots: 0, cityPlaceTags: ['city', 'town'], capitalPlaceTags: [] });
+  assert.deepEqual({ ...profileFor(undefined) }, { name: 'standard', minimumPlaces: 20, minimumNeighbourhoodLabels: 5, maximumEmptySlots: 0, cityPlaceTags: ['city', 'town'], capitalPlaceTags: [], districtIslandPlaces: [] });
   const micro = profileFor('microstate');
   assert.deepEqual([micro.minimumPlaces, micro.minimumNeighbourhoodLabels, micro.maximumEmptySlots], [12, 3, 4]);
   assert.deepEqual(micro.cityPlaceTags, ['city', 'town', 'village', 'hamlet', 'locality']);
+  assert.deepEqual(micro.districtIslandPlaces, ['island', 'islet']);
   assert.deepEqual(PROFILE_NAMES, ['microstate']);
   assert.throws(() => profileFor('standard'), /default/);
   assert.throws(() => profileFor('tiny'), /unknown profile/);

@@ -61,7 +61,7 @@ class ProfileCityNodeTests(unittest.TestCase):
 
     def test_profile_file_is_the_single_source(self):
         data = json.loads((HERE / 'profiles.json').read_text())['profiles']
-        self.assertEqual(data['standard'], {'minimumPlaces': 20, 'minimumNeighbourhoodLabels': 5, 'maximumEmptySlots': 0, 'cityPlaceTags': ['city', 'town'], 'capitalPlaceTags': []})
+        self.assertEqual(data['standard'], {'minimumPlaces': 20, 'minimumNeighbourhoodLabels': 5, 'maximumEmptySlots': 0, 'cityPlaceTags': ['city', 'town'], 'capitalPlaceTags': [], 'districtIslandPlaces': []})
         self.assertEqual(data['microstate']['minimumPlaces'], 12)
         self.assertEqual(data['microstate']['minimumNeighbourhoodLabels'], 3)
         self.assertEqual(data['microstate']['maximumEmptySlots'], 4)

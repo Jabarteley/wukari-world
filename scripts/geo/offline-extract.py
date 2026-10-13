@@ -29,6 +29,9 @@ PLACE_TOURISM = {"museum", "attraction", "zoo", "theme_park", "viewpoint"}
 PLACE_DISTRICTS = {"suburb", "neighbourhood", "quarter"}
 # Lower-priority district labels, used by the factory only when a city has fewer than five PLACE_DISTRICTS nodes (district-labels.mjs keeps both lists equal).
 PLACE_DISTRICT_FALLBACKS = {"village", "hamlet", "locality", "subdivision"}
+# Named islands and islets: kept in the places layer only so that the factory `microstate` profile may use them as district labels when a coral atoll city has no
+# suburb/quarter/village nodes (profiles.json `districtIslandPlaces`, district-labels.mjs). A standard city never reads them.
+PLACE_ISLANDS = {"island", "islet"}
 EXTRA_RAIL = {"station", "halt"}
 EXTRA_WORSHIP_BUILDINGS = {"cathedral", "mosque", "basilica", "temple", "synagogue"}
 EXTRA_AMENITIES = {"parliament", "conference_centre", "library", "theatre"}
@@ -68,7 +71,7 @@ def matches_places(tags: dict[str, str]) -> bool:
         return True
     if tags.get("leisure") == "stadium" or tags.get("railway") == "station" or tags.get("shop") == "mall":
         return True
-    if tags.get("tourism") == "museum" or tags.get("place") in PLACE_DISTRICTS or tags.get("place") in PLACE_DISTRICT_FALLBACKS:
+    if tags.get("tourism") == "museum" or tags.get("place") in PLACE_DISTRICTS or tags.get("place") in PLACE_DISTRICT_FALLBACKS or tags.get("place") in PLACE_ISLANDS:
         return True
     if tags.get("amenity") == "place_of_worship" and has(tags, "wikidata"):
         return True

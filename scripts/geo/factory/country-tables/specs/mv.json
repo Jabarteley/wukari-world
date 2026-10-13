@@ -11,7 +11,41 @@
    "lon": 73.508333,
    "centreSource": "Wikidata P625 Q9347",
    "airportIdent": "VRMM",
-   "profile": "microstate"
+   "profile": "microstate",
+   "selectionExclusions": [
+    {
+     "ref": "node/663869940",
+     "reason": "Black Coral Faru: a scuba-diving reef point (natural=reef, tourism=attraction) 942 m offshore in the lagoon; the exact-coast stage reports it as a wet source anchor, and it is not a place a player can stand."
+    },
+    {
+     "ref": "node/663869943",
+     "reason": "Bolifushi: its mapped point lies in water, 130 m from the exact coast (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+    },
+    {
+     "ref": "node/663869951",
+     "reason": "Embudu Kandu: its mapped point lies in water, 572 m from the exact coast (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+    },
+    {
+     "ref": "node/3314137175",
+     "reason": "Coral garden: its mapped point lies in water, 129 m from the exact coast (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+    },
+    {
+     "ref": "node/663869950",
+     "reason": "Embudu Channel / Embudu Express: its mapped point lies in water, 1001 m from the exact coast (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+    },
+    {
+     "ref": "node/4584554104",
+     "reason": "Embudu Finolhu Outside: its mapped point lies in water, 852 m from the exact coast (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+    },
+    {
+     "ref": "node/663869941",
+     "reason": "Velassaru Caves: a scuba-diving or reef point (sport=scuba_diving / natural=reef) mapped in the lagoon or open sea, not on dry land (the exact-coast stage reports such points as wet source anchors); not a place a player can stand."
+    },
+    {
+     "ref": "node/663869942",
+     "reason": "Vaadho Caves: a scuba-diving or reef point (sport=scuba_diving / natural=reef) mapped in the lagoon or open sea, not on dry land (the exact-coast stage reports such points as wet source anchors); not a place a player can stand."
+    }
+   ]
   }
  ]
 }

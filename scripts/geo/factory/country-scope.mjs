@@ -95,8 +95,18 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
   const relation = receipt.relation;
   assert.equal(relation.id, policy.relationId);
   assert.ok(Number.isSafeInteger(relation.version) && relation.version >= 0);
-  assert.equal(relation.tags.boundary, 'administrative');
-  assert.equal(relation.tags.admin_level, '2');
+  // Reviewed per-table override (bootstrap/country-boundary.py load_relation_override; Palestine, relation 1703814 boundary=disputed without admin_level):
+  // only this relation id with exactly its recorded expected tags and a written reason, pinned by the evidence file SHA-256. Every other receipt must be admin_level=2.
+  const override = receipt.relationOverride ?? null;
+  if (override) {
+    assert.match(override.evidenceSha256 ?? '', hex, 'relation override evidence pin required');
+    assert.equal(override.relationId, relation.id, 'relation override names another relation');
+    assert.ok(typeof override.reason === 'string' && override.reason.trim().length >= 20, 'relation override needs a written reason');
+    assert.ok(!('admin_level' in relation.tags) && Object.entries(override.expectedTags).every(([key, value]) => relation.tags[key] === value), 'relation tags differ from the reviewed override');
+  } else {
+    assert.equal(relation.tags.boundary, 'administrative');
+    assert.equal(relation.tags.admin_level, '2');
+  }
   assert.ok(['boundary', 'multipolygon'].includes(relation.tags.type));
   const codes = ['ISO3166-1:alpha2', 'ISO3166-1'].filter(key => key in relation.tags).map(key => relation.tags[key]);
   assert.ok(codes.length && codes.every(code => code === iso), 'missing/conflicting country ISO tags');
@@ -183,7 +193,7 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
     return inside ? 'inside' : 'outside';
   };
   for (const check of receipt.fixtureResults) assert.equal(classify(check.point), check.actual, `country fixture ${check.ref} does not match geometry`);
-  const proof = { kind: policy.kind, iso, source: receipt.source, relation: { id: relation.id, version: relation.version, timestamp: relation.timestamp }, receiptSha256: policy.receiptSha256, geometrySha256: policy.geometrySha256, geometryBytes: policy.geometryBytes, scriptSha256: receipt.scriptSha256, assembly: receipt.assembly, ...(absentPolicy ? { absentMemberPolicy: absentPolicy } : {}), fixtureSha256: receipt.fixtureSha256, boundaryJob: policy.boundaryJob ?? null, limitation: 'OSM mapped national boundary; not legal jurisdiction or municipal membership' };
+  const proof = { kind: policy.kind, iso, source: receipt.source, relation: { id: relation.id, version: relation.version, timestamp: relation.timestamp }, receiptSha256: policy.receiptSha256, geometrySha256: policy.geometrySha256, geometryBytes: policy.geometryBytes, scriptSha256: receipt.scriptSha256, assembly: receipt.assembly, ...(absentPolicy ? { absentMemberPolicy: absentPolicy } : {}), ...(override ? { relationOverride: override } : {}), fixtureSha256: receipt.fixtureSha256, boundaryJob: policy.boundaryJob ?? null, limitation: 'OSM mapped national boundary; not legal jurisdiction or municipal membership' };
   return { policy: { ...policy, directory }, receipt: proof, classify, assertPoint(point, label) { assert.equal(classify(point), 'inside', `${label}: outside/on OSM country boundary ${iso}; HOLD`); } };
 }
 

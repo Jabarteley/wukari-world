@@ -115,5 +115,77 @@ class WholeSeparateRings(unittest.TestCase):
         self.assertIn('PBF mismatch', result['reason'])
 
 
+DISPUTED = {'type': 'boundary', 'boundary': 'disputed', 'ISO3166-1:alpha2': 'AA', 'ISO3166-1': 'AA', 'name': 'Aaland (disputed)'}
+OVERRIDE = {'relationId': 100, 'expectedTags': DISPUTED, 'reason': 'Owner-approved test override: the only relation of the country is boundary=disputed.'}
+
+
+@unittest.skipIf(osmium is None, 'osmium/shapely not installed')
+class RelationOverride(unittest.TestCase):
+    """Reviewed admin-0 relation override (Palestine, relation 1703814: boundary=disputed, no admin_level)."""
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix='boundary-override-test-')
+        self.dir = Path(self.tmp.name)
+        self.pbf = self.dir / 'aa.osm.pbf'
+        objects_ = [helpers.node(1, 0, 0), helpers.node(2, 2, 0), helpers.node(3, 2, 2), helpers.node(4, 0, 2),
+                    helpers.way(1, [1, 2, 3], tags=BORDER), helpers.way(2, [3, 4, 1], tags=BORDER),
+                    helpers.relation(100, [('w', 1, 'outer'), ('w', 2, 'outer')], DISPUTED)]
+        helpers.write(self.pbf, objects_, box=(-0.1, -0.1, 2.1, 2.1))
+        self.sha = helpers.merge_sha(self.pbf)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def run_boundary(self, name, override=OVERRIDE, **document):
+        command = [sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(self.pbf), '--country', 'AA', '--expected-sha256', self.sha,
+                   '--expected-bytes', str(self.pbf.stat().st_size), '--dataset-url', PRIMARY, '--dataset-date', '2026-10-11', '--out', str(self.dir / name)]
+        if override is not None:
+            path = self.dir / (name + '-evidence.json')
+            path.write_text(json.dumps({'schemaVersion': 1, 'countryISO': 'AA', 'datasetSha256': self.sha, 'admin0RelationOverride': override, **document}))
+            command += ['--absent-evidence', str(path)]
+        done = subprocess.run(command, capture_output=True, text=True)
+        return done, json.loads((self.dir / name / 'result.json').read_text())
+
+    def test_default_rule_finds_no_relation(self):
+        done, result = self.run_boundary('none', override=None)
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('found 0', result['reason'])
+
+    def test_override_accepts_exactly_that_relation_and_records_it(self):
+        done, _ = self.run_boundary('ok')
+        self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+        receipt = json.loads((self.dir / 'ok/receipt.json').read_text())
+        self.assertEqual(receipt['relationOverride']['relationId'], 100)
+        self.assertEqual(receipt['relationOverride']['expectedTags'], DISPUTED)
+        self.assertRegex(receipt['relationOverride']['evidenceSha256'], r'^[0-9a-f]{64}$')
+        check = subprocess.run(['node', '--input-type=module', '-e', NODE_CHECK, str(self.dir / 'ok'), self.sha], capture_output=True, text=True, cwd=HERE.parent)
+        self.assertEqual(check.returncode, 0, check.stdout + check.stderr)
+        # The node-only checker refuses the same receipt once the override record is removed (no weakening without the pinned override).
+        receipt.pop('relationOverride')
+        (self.dir / 'ok/receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
+        refused = subprocess.run(['node', '--input-type=module', '-e', NODE_CHECK, str(self.dir / 'ok'), self.sha], capture_output=True, text=True, cwd=HERE.parent)
+        self.assertNotEqual(refused.returncode, 0)
+
+    def test_other_relation_id_or_tags_hold(self):
+        done, result = self.run_boundary('id', override={**OVERRIDE, 'relationId': 101})
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('found 0', result['reason'])
+        done, result = self.run_boundary('tags', override={**OVERRIDE, 'expectedTags': {**DISPUTED, 'name': 'Another name'}})
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('found 0', result['reason'])
+
+    def test_override_needs_reason_pin_and_no_admin_level(self):
+        for name, override, extra in (('reason', {**OVERRIDE, 'reason': 'short'}, {}),
+                                      ('level', {**OVERRIDE, 'expectedTags': {**DISPUTED, 'admin_level': '2'}}, {}),
+                                      ('pin', OVERRIDE, {'datasetSha256': 'f' * 64})):
+            done, result = self.run_boundary(name, override=override, **extra)
+            self.assertNotEqual(done.returncode, 0, name)
+            self.assertTrue('Override' in result['reason'] or 'override' in result['reason'] or 'PBF mismatch' in result['reason'], result['reason'])
+
+    def test_an_administrative_country_ignores_the_override_file_entirely(self):
+        # A country whose relation is a normal admin_level=2 boundary never reads the override: its receipt carries none.
+        done, _ = self.run_boundary('plain', override=None)
+        self.assertNotEqual(done.returncode, 0)
+
+
 if __name__ == '__main__':
     unittest.main()

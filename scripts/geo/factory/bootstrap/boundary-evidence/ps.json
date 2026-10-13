@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "PS",
+  "dataset": {
+    "url": "https://download.geofabrik.de/asia/israel-and-palestine-261011.osm.pbf",
+    "bytes": 120257516,
+    "md5": "885b0a7b47c9fb8fedf5c3e3250306f7"
+  },
+  "admin0RelationOverride": {
+    "relationId": 1703814,
+    "expectedTags": {
+      "ISO3166-1": "PS",
+      "ISO3166-1:alpha2": "PS",
+      "boundary": "disputed",
+      "type": "boundary"
+    },
+    "reason": "Owner decision 2026-10-13: Palestine is included. In OpenStreetMap the only relation carrying ISO3166-1=PS is relation 1703814 (Palestinian Territories), tagged boundary=disputed with no admin_level because its border is disputed; the default admin-0 rule (boundary=administrative, admin_level=2) therefore finds none. Every other proof (member ways, area assembly, segment match) still applies. OSM mapped boundary, not legal-border authority."
+  }
+}

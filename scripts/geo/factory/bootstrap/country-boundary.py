@@ -171,19 +171,64 @@ def _detached_relation(relation):
     return relation.replace(members=[(m.type, m.ref, m.role) for m in relation.members], tags={tag.k: tag.v for tag in relation.tags})
 
 
-def admin0_candidates(osmium, path, country):
-    """Relations-only pass: every boundary=administrative admin_level=2 relation carrying the ISO code."""
+def load_relation_override(args):
+    """Reviewed per-table admin-0 relation override (owner decision 2026-10-13, Palestine).
+
+    The only OSM relation carrying ISO3166-1=PS is 1703814, `boundary=disputed` with no admin_level, so the default selection
+    (boundary=administrative, admin_level=2) finds none. The evidence file `boundary-evidence/<cc>.json` may carry
+    `admin0RelationOverride: {relationId, expectedTags, reason}`: exactly that relation, with exactly those tags and the country
+    ISO code, is then accepted as the admin-0 relation. The file must name this PBF (datasetSha256, or dataset {url, bytes, md5}),
+    the reason is at least 20 characters, and the override is recorded in the receipt with the evidence file's SHA-256. Without
+    it nothing changes; a relation id or tag set that differs HOLDs. Every later proof (members, assembly, segment match) is unchanged.
+    """
+    if not args.absent_evidence:
+        return None
+    path = Path(args.absent_evidence)
+    evidence = json.loads(path.read_text())
+    override = evidence.get('admin0RelationOverride')
+    if override is None:
+        return None
+    require(evidence.get('schemaVersion') == 1 and evidence.get('countryISO') == args.country, 'relation override evidence schema/country mismatch')
+    binding = evidence.get('dataset')
+    require(('datasetSha256' in evidence) != (binding is not None), 'relation override evidence must name its PBF by datasetSha256 or by dataset {url, bytes, md5}')
+    if binding is None:
+        require(evidence['datasetSha256'] == args.expected_sha256, 'relation override evidence PBF mismatch (datasetSha256)')
+    else:
+        require(isinstance(binding, dict) and set(binding) == {'url', 'bytes', 'md5'} and binding['url'] == args.dataset_url
+                and binding['bytes'] == args.expected_bytes and binding['md5'] == args.actual_md5,
+                'relation override evidence PBF mismatch (dataset url/bytes/md5)')
+    require(isinstance(override, dict) and set(override) == {'relationId', 'expectedTags', 'reason'}
+            and isinstance(override['relationId'], int) and override['relationId'] > 0
+            and isinstance(override['expectedTags'], dict) and override['expectedTags']
+            and all(isinstance(k, str) and isinstance(v, str) for k, v in override['expectedTags'].items())
+            and 'admin_level' not in override['expectedTags']
+            and args.country in (override['expectedTags'].get('ISO3166-1:alpha2'), override['expectedTags'].get('ISO3166-1'))
+            and isinstance(override['reason'], str) and len(override['reason'].strip()) >= 20,
+            'admin0RelationOverride needs relationId, expectedTags (with the country ISO code, no admin_level) and a written reason of at least 20 characters')
+    return {'relationId': override['relationId'], 'expectedTags': override['expectedTags'], 'reason': override['reason'].strip(),
+            'evidenceSha256': digest(path)}
+
+
+def is_admin0(tags, relation_id, country, override):
+    """boundary=administrative admin_level=2 with the ISO code, or the one reviewed override relation with exactly its expected tags."""
+    if tags.get('boundary') == 'administrative' and tags.get('admin_level') == '2':
+        return country in [tags.get(key) for key in ('ISO3166-1:alpha2', 'ISO3166-1') if key in tags]
+    return (override is not None and relation_id == override['relationId'] and 'admin_level' not in tags
+            and all(tags.get(key) == value for key, value in override['expectedTags'].items()))
+
+
+def admin0_candidates(osmium, path, country, override=None):
+    """Relations-only pass: every boundary=administrative admin_level=2 relation carrying the ISO code (plus the reviewed override relation)."""
     found = {}
     for relation in osmium.FileProcessor(str(path), osmium.osm.RELATION):
         tags = relation.tags
-        if tags.get('boundary') != 'administrative' or tags.get('admin_level') != '2':
+        if not is_admin0(tags, relation.id, country, override):
             continue
-        if country in [tags.get(key) for key in ('ISO3166-1:alpha2', 'ISO3166-1') if key in tags]:
-            found[relation.id] = _detached_relation(relation)
+        found[relation.id] = _detached_relation(relation)
     return found
 
 
-def stream_closure(osmium, paths, country, timestamp, workdir, diagnostic):
+def stream_closure(osmium, paths, country, timestamp, workdir, diagnostic, override=None):
     """Memory-bounded admin-0 closure: the relation, its member ways and their nodes, streamed out of each input.
 
     Three passes per input with the pinned pyosmium, each reading one object type and filtering ids in C++ (osmium getid
@@ -195,7 +240,7 @@ def stream_closure(osmium, paths, country, timestamp, workdir, diagnostic):
     """
     started = time.monotonic()
     diagnostic['stage'] = 'admin0-closure-stream'
-    per_input = [admin0_candidates(osmium, path, country) for path in paths]
+    per_input = [admin0_candidates(osmium, path, country, override) for path in paths]
     ids = sorted(set().union(*per_input))
     diagnostic['candidateRelationIds'] = ids
     require(len(ids) == 1, f'expected one ISO admin-0 relation, found {len(ids)}; HOLD')
@@ -276,14 +321,15 @@ def extract(args):
                     f'neighbour {pin["url"]} has another replication timestamp than the primary; mixed snapshots are refused')
     workdir = Path(tempfile.mkdtemp(prefix='country-boundary-'))
     args.cleanup.append(workdir)
-    scan, closure_record = stream_closure(osmium, [pbf, *neighbour_paths], args.country, timestamp, workdir, args.diagnostic)
+    override = load_relation_override(args)
+    scan, closure_record = stream_closure(osmium, [pbf, *neighbour_paths], args.country, timestamp, workdir, args.diagnostic, override)
     candidates = []
     args.diagnostic['stage'] = 'admin0-relation-selection'
 
     class Relations(osmium.SimpleHandler):
         def relation(self, relation):
             tags = dict(relation.tags)
-            if tags.get('boundary') != 'administrative' or tags.get('admin_level') != '2':
+            if not is_admin0(tags, relation.id, args.country, override):
                 return
             codes = [tags[key] for key in ('ISO3166-1:alpha2', 'ISO3166-1') if key in tags]
             if args.country not in codes:
@@ -418,7 +464,7 @@ def extract(args):
                             'sourceMemberEdgesSha256': value_hash(sorted(expected_edges.items()))},
                'geometry': {'path': 'boundary.geojson', 'bytes': len(geometry_bytes),
                             'sha256': hashlib.sha256(geometry_bytes).hexdigest()},
-               'absentMemberPolicy': absent_policy, 'scriptSha256': digest(__file__), 'fixtureSha256': digest(args.fixture) if args.fixture else None,
+               **({'relationOverride': override} if override else {}), 'absentMemberPolicy': absent_policy, 'scriptSha256': digest(__file__), 'fixtureSha256': digest(args.fixture) if args.fixture else None,
                'fixtureResults': fixture_results,
                'limitations': ['OSM mapped administrative boundary, not legal-border authority',
                                'fixture points are caller-supplied pinned source samples; their origin remains in fixture receipts',

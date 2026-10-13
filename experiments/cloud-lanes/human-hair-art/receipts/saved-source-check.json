@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "files": [
+    {
+      "file": "artifacts/c01-v3/curl-crop-near.glb",
+      "savedBlendReexportByteIdentical": true,
+      "sha256": "0471b3840a94976cd5844985918ae310767035d8ecc453fc238db0879ec2bbd5"
+    },
+    {
+      "file": "artifacts/c01-v3/curl-crop-far.glb",
+      "savedBlendReexportByteIdentical": true,
+      "sha256": "56b73a3f3c2c378bb1599c692dc8a4f8ad90a7b890a6f4c48c120177b39fdac2"
+    },
+    {
+      "file": "artifacts/s02-v3/swept-bun-near.glb",
+      "savedBlendReexportByteIdentical": true,
+      "sha256": "f5ad5212f80d4ca0fa0a2ad8e98676a6d12301e92194ea672e15e461fc57dcd3"
+    },
+    {
+      "file": "artifacts/s02-v3/swept-bun-far.glb",
+      "savedBlendReexportByteIdentical": true,
+      "sha256": "ab591eb589b1381bc23f80ffd4566fcaaebe45b8e02ef8a75f0f49f83c5aad63"
+    }
+  ]
+}

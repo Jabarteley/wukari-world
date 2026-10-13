@@ -1,0 +1,26 @@
+{
+  "command": [
+    "blender",
+    "-b",
+    "experiments/cloud-lanes/human-hair-art/artifacts/s02-v3/swept-bun-editable.blend",
+    "-t",
+    "2",
+    "--python-exit-code",
+    "1",
+    "--python",
+    "experiments/cloud-lanes/human-hair-art/reexport.py",
+    "--",
+    "--style",
+    "swept-bun",
+    "--out",
+    "experiments/cloud-lanes/human-hair-art/runs/reexport-s02"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 1.899,
+  "sampledTreePeakRssBytes": 252542976,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

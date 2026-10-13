@@ -1,0 +1,18 @@
+Extensions: writing cache failed ([Errno 30] Read-only file system: '/home/agent/.config/blender/4.3/extensions').
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+19:01:53 | INFO: Starting glTF 2.0 export
+19:01:53 | INFO: Extracting primitive: curl-crop - silhouette only
+19:01:53 | INFO: Primitives created: 1
+19:01:53 | INFO: Finished glTF 2.0 export in 0.008351564407348633 s
+
+19:01:53 | INFO: Starting glTF 2.0 export
+19:01:53 | INFO: Extracting primitive: swept-bun - silhouette only
+19:01:53 | INFO: Primitives created: 1
+19:01:53 | INFO: Extracting primitive: S02 silhouette bun
+19:01:53 | INFO: Primitives created: 1
+19:01:53 | INFO: Finished glTF 2.0 export in 0.009422779083251953 s
+
+Info: Saved "silhouette-lods-editable.blend"
+Blender 4.3.2
+
+Blender quit

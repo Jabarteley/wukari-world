@@ -1,0 +1,23 @@
+{
+  "command": [
+    "blender",
+    "-b",
+    "-t",
+    "2",
+    "--python-exit-code",
+    "1",
+    "--python",
+    "experiments/cloud-lanes/human-hair-art/build_lod.py",
+    "--",
+    "--out",
+    "experiments/cloud-lanes/human-hair-art/artifacts/lod-v1"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 2.787,
+  "sampledTreePeakRssBytes": 262131712,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

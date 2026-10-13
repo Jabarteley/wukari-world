@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python3",
+    "experiments/cloud-lanes/human-hair-art/render.py",
+    "--folder",
+    "../runs/s02-v1",
+    "--style",
+    "swept-bun",
+    "--out",
+    "runs/s02-v1"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 3.525,
+  "sampledTreePeakRssBytes": 879521792,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

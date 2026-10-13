@@ -1,0 +1,246 @@
+{
+  "measurement": "float32 positions decoded from uncompressed GLB BIN; not surveyed human measurements",
+  "frame": "body metres Y-up +Z-forward",
+  "files": {
+    "artifacts/c01-v3/curl-crop-far.glb": {
+      "bytes": 268984,
+      "sha256": "56b73a3f3c2c378bb1599c692dc8a4f8ad90a7b890a6f4c48c120177b39fdac2",
+      "triangles": 14078,
+      "exportedVertices": 7524,
+      "decodedBoundsYUpMetres": [
+        [
+          -0.10176997631788254,
+          1.6199572086334229,
+          -0.12341910600662231
+        ],
+        [
+          0.10237593203783035,
+          1.7988122701644897,
+          0.10220050811767578
+        ]
+      ],
+      "dimensionsMetres": [
+        0.2041459083557129,
+        0.1788550615310669,
+        0.2256196141242981
+      ],
+      "identityNodeTransforms": true,
+      "meshPrimitives": 4,
+      "materialSlots": 4,
+      "textureBytes": 0,
+      "textureDimensions": [],
+      "skins": 0,
+      "morphTargets": 0
+    },
+    "artifacts/c01-v3/curl-crop-near.glb": {
+      "bytes": 1832376,
+      "sha256": "0471b3840a94976cd5844985918ae310767035d8ecc453fc238db0879ec2bbd5",
+      "triangles": 99806,
+      "exportedVertices": 51232,
+      "decodedBoundsYUpMetres": [
+        [
+          -0.104365773499012,
+          1.620732069015503,
+          -0.12403428554534912
+        ],
+        [
+          0.10210072249174118,
+          1.799741268157959,
+          0.09924594312906265
+        ]
+      ],
+      "dimensionsMetres": [
+        0.20646649599075317,
+        0.17900919914245605,
+        0.22328022867441177
+      ],
+      "identityNodeTransforms": true,
+      "meshPrimitives": 4,
+      "materialSlots": 4,
+      "textureBytes": 0,
+      "textureDimensions": [],
+      "skins": 0,
+      "morphTargets": 0
+    },
+    "artifacts/c01-v3/temporary-calibration.glb": {
+      "bytes": 162380,
+      "sha256": "945d175c02283a8edf255a00636855852853dd6ba2f28752785c93feb57738ff",
+      "triangles": 8704,
+      "exportedVertices": 4496,
+      "decodedBoundsYUpMetres": [
+        [
+          -0.08299999684095383,
+          1.399999976158142,
+          -0.10000000149011612
+        ],
+        [
+          0.08299999684095383,
+          1.774999737739563,
+          0.11816403269767761
+        ]
+      ],
+      "dimensionsMetres": [
+        0.16599999368190765,
+        0.3749997615814209,
+        0.21816403418779373
+      ],
+      "identityNodeTransforms": true,
+      "meshPrimitives": 2,
+      "materialSlots": 1,
+      "textureBytes": 0,
+      "textureDimensions": [],
+      "skins": 0,
+      "morphTargets": 0
+    },
+    "artifacts/lod-v2/curl-crop-proxy.glb": {
+      "bytes": 7992,
+      "sha256": "60096c5d2a5fdd72cd46991cbcf88d6497363065f7728bf4115574649f18471f",
+      "triangles": 358,
+      "exportedVertices": 192,
+      "decodedBoundsYUpMetres": [
+        [
+          -0.09569039940834045,
+          1.6225404739379883,
+          -0.11142153292894363
+        ],
+        [
+          0.09505138546228409,
+          1.7944964170455933,
+          0.10112057626247406
+        ]
+      ],
+      "dimensionsMetres": [
+        0.19074178487062454,
+        0.17195594310760498,
+        0.2125421091914177
+      ],
+      "identityNodeTransforms": true,
+      "meshPrimitives": 1,
+      "materialSlots": 1,
+      "textureBytes": 0,
+      "textureDimensions": [],
+      "skins": 0,
+      "morphTargets": 0
+    },
+    "artifacts/lod-v2/swept-bun-proxy.glb": {
+      "bytes": 11636,
+      "sha256": "66ccdea2dab4968358945f47e1cda9cafc3bd0f89e5d02a8904de800530c6879",
+      "triangles": 502,
+      "exportedVertices": 276,
+      "decodedBoundsYUpMetres": [
+        [
+          -0.0876341164112091,
+          1.568000078201294,
+          -0.14000000059604645
+        ],
+        [
+          0.08786719292402267,
+          1.7809990644454956,
+          0.09059584140777588
+        ]
+      ],
+      "dimensionsMetres": [
+        0.17550130933523178,
+        0.21299898624420166,
+        0.23059584200382233
+      ],
+      "identityNodeTransforms": true,
+      "meshPrimitives": 2,
+      "materialSlots": 1,
+      "textureBytes": 0,
+      "textureDimensions": [],
+      "skins": 0,
+      "morphTargets": 0
+    },
+    "artifacts/s02-v3/swept-bun-far.glb": {
+      "bytes": 138088,
+      "sha256": "ab591eb589b1381bc23f80ffd4566fcaaebe45b8e02ef8a75f0f49f83c5aad63",
+      "triangles": 5766,
+      "exportedVertices": 3976,
+      "decodedBoundsYUpMetres": [
+        [
+          -0.08435234427452087,
+          1.5678988695144653,
+          -0.13239611685276031
+        ],
+        [
+          0.08461667597293854,
+          1.7779169082641602,
+          0.08789066970348358
+        ]
+      ],
+      "dimensionsMetres": [
+        0.1689690202474594,
+        0.21001803874969482,
+        0.2202867865562439
+      ],
+      "identityNodeTransforms": true,
+      "meshPrimitives": 10,
+      "materialSlots": 4,
+      "textureBytes": 0,
+      "textureDimensions": [],
+      "skins": 0,
+      "morphTargets": 0
+    },
+    "artifacts/s02-v3/swept-bun-near.glb": {
+      "bytes": 875828,
+      "sha256": "f5ad5212f80d4ca0fa0a2ad8e98676a6d12301e92194ea672e15e461fc57dcd3",
+      "triangles": 38670,
+      "exportedVertices": 26486,
+      "decodedBoundsYUpMetres": [
+        [
+          -0.08415012061595917,
+          1.568013310432434,
+          -0.13239921629428864
+        ],
+        [
+          0.08451421558856964,
+          1.777709722518921,
+          0.08789028972387314
+        ]
+      ],
+      "dimensionsMetres": [
+        0.1686643362045288,
+        0.20969641208648682,
+        0.22028950601816177
+      ],
+      "identityNodeTransforms": true,
+      "meshPrimitives": 10,
+      "materialSlots": 4,
+      "textureBytes": 0,
+      "textureDimensions": [],
+      "skins": 0,
+      "morphTargets": 0
+    },
+    "artifacts/s02-v3/temporary-calibration.glb": {
+      "bytes": 162352,
+      "sha256": "c3b072de59771a630aba1fcf93c800128556bd2abc061b4b1fccca6b5b537b0f",
+      "triangles": 8704,
+      "exportedVertices": 4496,
+      "decodedBoundsYUpMetres": [
+        [
+          -0.08299999684095383,
+          1.399999976158142,
+          -0.10000000149011612
+        ],
+        [
+          0.08299999684095383,
+          1.774999737739563,
+          0.11816403269767761
+        ]
+      ],
+      "dimensionsMetres": [
+        0.16599999368190765,
+        0.3749997615814209,
+        0.21816403418779373
+      ],
+      "identityNodeTransforms": true,
+      "meshPrimitives": 2,
+      "materialSlots": 1,
+      "textureBytes": 0,
+      "textureDimensions": [],
+      "skins": 0,
+      "morphTargets": 0
+    }
+  }
+}

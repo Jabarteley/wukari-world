@@ -14,7 +14,7 @@ class Handler(SimpleHTTPRequestHandler):
         out=Path(super().translate_path(path)).resolve()
         return str(out if LANE in out.parents else LANE/'missing')
 
-p=argparse.ArgumentParser();p.add_argument('--folder',default='c01-v1');p.add_argument('--style',default='curl-crop');p.add_argument('--out',required=True);args=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--folder',default='c01-v3');p.add_argument('--style',default='curl-crop');p.add_argument('--page',default='render.html');p.add_argument('--responses',type=int,default=3);p.add_argument('--out',required=True);args=p.parse_args()
 out=(LANE/args.out).resolve();assert LANE in out.parents;out.mkdir(parents=True,exist_ok=True)
 server=ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler,directory=str(LANE)));t=threading.Thread(target=server.serve_forever,daemon=True);t.start()
 errors=[];responses=[];receipt={'status':'failed'}
@@ -28,11 +28,11 @@ try:
             page.on('response',lambda r:responses.append({'path':r.url.split('/')[-1],'status':r.status}) if r.url.endswith('.glb') else None)
             url=f'http://127.0.0.1:{server.server_address[1]}/'
             page.route('**/*',lambda r:r.continue_() if r.request.url.startswith(url) else r.abort())
-            page.goto(url+f'render.html?folder={args.folder}&style={args.style}',wait_until='networkidle',timeout=25000)
+            page.goto(url+f'{args.page}?folder={args.folder}&style={args.style}',wait_until='networkidle',timeout=25000)
             page.wait_for_function('window.receipt?.ready || window.proofError',timeout=25000)
             assert not page.evaluate('window.proofError'),page.evaluate('window.proofError')
             assert not errors,errors
-            assert all(r['status']==200 for r in responses) and len(responses)==3,responses
+            assert all(r['status']==200 for r in responses) and len(responses)==args.responses,responses
             page.screenshot(path=str(out/'contact-sheet.png'),full_page=True)
             page.evaluate('window.cleanup()');receipt=page.evaluate('window.receipt');receipt['status']='passed';receipt['browserVersion']=browser.version
         finally:browser.close()

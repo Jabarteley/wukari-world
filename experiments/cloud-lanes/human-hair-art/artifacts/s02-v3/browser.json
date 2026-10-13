@@ -1,0 +1,61 @@
+{
+  "ready": true,
+  "panels": [
+    {
+      "tier": "near",
+      "label": "Front / hairline",
+      "calls": 12,
+      "trianglesWithFixture": 47374
+    },
+    {
+      "tier": "near",
+      "label": "Three-quarter / silhouette",
+      "calls": 12,
+      "trianglesWithFixture": 47374
+    },
+    {
+      "tier": "near",
+      "label": "Profile / temple boundary",
+      "calls": 12,
+      "trianglesWithFixture": 47374
+    },
+    {
+      "tier": "near",
+      "label": "Rear / nape edge",
+      "calls": 12,
+      "trianglesWithFixture": 47374
+    },
+    {
+      "tier": "near",
+      "label": "Boundary close-up",
+      "calls": 11,
+      "trianglesWithFixture": 46990
+    },
+    {
+      "tier": "far",
+      "label": "Distance / reduced LOD",
+      "calls": 12,
+      "trianglesWithFixture": 14470
+    }
+  ],
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "disposed": true,
+  "status": "passed",
+  "browserVersion": "154.0.8037.57",
+  "errors": [],
+  "responses": [
+    {
+      "path": "swept-bun-near.glb",
+      "status": 200
+    },
+    {
+      "path": "temporary-calibration.glb",
+      "status": 200
+    },
+    {
+      "path": "swept-bun-far.glb",
+      "status": 200
+    }
+  ],
+  "serverClosed": true
+}

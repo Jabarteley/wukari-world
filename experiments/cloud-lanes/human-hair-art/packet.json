@@ -1,152 +1,407 @@
 {
-  "version": "early-c01-v3",
+  "schema": "allworld-original-hair-art-packet-v1",
+  "version": "c01-v3+s02-v3+lod-v2",
   "integrationCommit": "caaee5e1b91afc7f3cd3f2124df3547dc7f492ec",
+  "humanContractCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+  "earlyPushedCommit": "97af70f08d30371f6b786af8d3cd15fd474654e2",
+  "actualMasterCheckpoint": null,
   "actualFit": "pending-master",
   "productionAdmission": false,
+  "originalAuthorship": true,
+  "license": "AGPL-3.0-or-later",
+  "totalBytesExcludingManifest": 7610570,
   "files": {
-    ".gitignore": {
+    "experiments/cloud-lanes/human-hair-art/.gitignore": {
       "bytes": 42,
       "sha256": "e2ca42c4b5263d28ed00d2542c1f91702daf68336cfd5bc5bc2f2718ae073242"
     },
-    "artifacts/c01-v3/authored-measurements.json": {
+    "experiments/cloud-lanes/human-hair-art/README.md": {
+      "bytes": 6945,
+      "sha256": "f3cd3d263a3973eef4be2e0e8756a1be535e15a90addb2bbd2f3f5d0b250dc93"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/c01-v3/attachment-proposal.json": {
+      "bytes": 6842,
+      "sha256": "ae029ccd380f94b1bf29c4e8bfa3e9f4b55611a2c15d9de61a48df335bfdfd80"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/c01-v3/authored-measurements.json": {
       "bytes": 2189,
       "sha256": "58a70ee80d8bcc019ab6190e9e5845eb60ffd9d9fe107ad26cc6df3c6e73be49"
     },
-    "artifacts/c01-v3/browser.json": {
+    "experiments/cloud-lanes/human-hair-art/artifacts/c01-v3/browser.json": {
       "bytes": 1275,
       "sha256": "cbc7c9953749c02ffae0eb1d49304b519717d815ab27e0f71ff4131d191086ea"
     },
-    "artifacts/c01-v3/contact-sheet.png": {
+    "experiments/cloud-lanes/human-hair-art/artifacts/c01-v3/contact-sheet.png": {
       "bytes": 523172,
       "sha256": "3fe7fedfea9b0aa90a2ab46d29e4d5e0f2f0d2ade10dec34dfb4ab5bfd82b52d"
     },
-    "artifacts/c01-v3/curl-crop-editable.blend": {
+    "experiments/cloud-lanes/human-hair-art/artifacts/c01-v3/curl-crop-editable.blend": {
       "bytes": 1841013,
       "sha256": "c64dfe2d664aed00b59fbff58a4dfab9fbca8204145b733cdfae9cd7a5cd170b"
     },
-    "artifacts/c01-v3/curl-crop-far.glb": {
+    "experiments/cloud-lanes/human-hair-art/artifacts/c01-v3/curl-crop-far.glb": {
       "bytes": 268984,
       "sha256": "56b73a3f3c2c378bb1599c692dc8a4f8ad90a7b890a6f4c48c120177b39fdac2"
     },
-    "artifacts/c01-v3/curl-crop-near.glb": {
+    "experiments/cloud-lanes/human-hair-art/artifacts/c01-v3/curl-crop-near.glb": {
       "bytes": 1832376,
       "sha256": "0471b3840a94976cd5844985918ae310767035d8ecc453fc238db0879ec2bbd5"
     },
-    "artifacts/c01-v3/decoded-validation.json": {
+    "experiments/cloud-lanes/human-hair-art/artifacts/c01-v3/decoded-validation.json": {
       "bytes": 4655,
       "sha256": "b5056b94f5db763f72180e40e36c6078f278da2ae7b5cad35bac6ed6cbbb9c5b"
     },
-    "artifacts/c01-v3/temporary-calibration.glb": {
+    "experiments/cloud-lanes/human-hair-art/artifacts/c01-v3/temporary-calibration.glb": {
       "bytes": 162380,
       "sha256": "945d175c02283a8edf255a00636855852853dd6ba2f28752785c93feb57738ff"
     },
-    "bounded_run.py": {
+    "experiments/cloud-lanes/human-hair-art/artifacts/lod-v2/authored-measurements.json": {
+      "bytes": 1558,
+      "sha256": "3cdb7227edcc777119b5651b232256c84e6d7a9884a9ce7e62463ac51b808573"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/lod-v2/browser.json": {
+      "bytes": 1448,
+      "sha256": "740a9dd0dbbe2193ee236bafc2bf4b781177c19077e665a26c6610b325e44403"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/lod-v2/contact-sheet.png": {
+      "bytes": 190927,
+      "sha256": "d8dd2eaf0d50ddf9c20f2f3063afbfe30fd5039b36629a904473510922ca23fb"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/lod-v2/curl-crop-proxy.glb": {
+      "bytes": 7992,
+      "sha256": "60096c5d2a5fdd72cd46991cbcf88d6497363065f7728bf4115574649f18471f"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/lod-v2/decoded-validation.json": {
+      "bytes": 1670,
+      "sha256": "2b558b3a08b38f9cc3ef057362fe189846eabb864f9be77815b23097ccdcb418"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/lod-v2/silhouette-lods-editable.blend": {
+      "bytes": 95857,
+      "sha256": "0ecd8a21cb51714a98e8d9b6db9693e6b62e6d05ade3a3d20f4d0f784d9ab49c"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/lod-v2/swept-bun-proxy.glb": {
+      "bytes": 11636,
+      "sha256": "66ccdea2dab4968358945f47e1cda9cafc3bd0f89e5d02a8904de800530c6879"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/s02-v3/attachment-proposal.json": {
+      "bytes": 9143,
+      "sha256": "464189bd4e48c8acf3d274886d22aac5b2b850c86a6119cda941cc47c4dbdf4d"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/s02-v3/authored-measurements.json": {
+      "bytes": 4484,
+      "sha256": "60cc019835818ed11cbb20fb170b04a696e096290028ffc001df02ee452e6b85"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/s02-v3/browser.json": {
+      "bytes": 1276,
+      "sha256": "b2c4ec3de0627f7d33757c62b0923a15e34c6594481de4845f2a0bbd60f9e4a3"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/s02-v3/contact-sheet.png": {
+      "bytes": 428868,
+      "sha256": "54d1a94b5352f408ac5bcc1041e45a0a478d767496f59e05132fd79e5ff8e1f5"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/s02-v3/decoded-validation.json": {
+      "bytes": 4659,
+      "sha256": "b61413491220991575f68484b69ad894e6929ec43a183dec47aa547f180eabd4"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/s02-v3/swept-bun-editable.blend": {
+      "bytes": 917079,
+      "sha256": "63ba5ec663d261ce0461671d1a4d25257fb784101c6bb96803d4ceaf77f8b671"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/s02-v3/swept-bun-far.glb": {
+      "bytes": 138088,
+      "sha256": "ab591eb589b1381bc23f80ffd4566fcaaebe45b8e02ef8a75f0f49f83c5aad63"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/s02-v3/swept-bun-near.glb": {
+      "bytes": 875828,
+      "sha256": "f5ad5212f80d4ca0fa0a2ad8e98676a6d12301e92194ea672e15e461fc57dcd3"
+    },
+    "experiments/cloud-lanes/human-hair-art/artifacts/s02-v3/temporary-calibration.glb": {
+      "bytes": 162352,
+      "sha256": "c3b072de59771a630aba1fcf93c800128556bd2abc061b4b1fccca6b5b537b0f"
+    },
+    "experiments/cloud-lanes/human-hair-art/bounded_run.py": {
       "bytes": 4407,
       "sha256": "afd47e98a211eab91a49dea57ee7c5957bd5d03f48b89f7d674e157011f9fddd"
     },
-    "build_hair.py": {
+    "experiments/cloud-lanes/human-hair-art/build_bun.py": {
+      "bytes": 7015,
+      "sha256": "514ce731e61fdc78dbac97fa7822a1ff5d2860d4b735010603b0915d9d00b731"
+    },
+    "experiments/cloud-lanes/human-hair-art/build_hair.py": {
       "bytes": 10342,
       "sha256": "aa2a5965c1afede167b191ac331cd5d79e3f9fe28fd3d7d9617774508567e8e8"
     },
-    "package-lock.json": {
+    "experiments/cloud-lanes/human-hair-art/build_lod.py": {
+      "bytes": 2665,
+      "sha256": "84bb9983c5d43346a0e8b430913aab924945fe56699fe2f64d51a6c0a9400b5d"
+    },
+    "experiments/cloud-lanes/human-hair-art/export-metrics.json": {
+      "bytes": 6529,
+      "sha256": "450bdf77757761d54938c162f413f2f732bc6cf536dcf65cbcab6bdf04dc0ec3"
+    },
+    "experiments/cloud-lanes/human-hair-art/export_metrics.py": {
+      "bytes": 2020,
+      "sha256": "0145af59525a96019f0acf38154620c08734a1d6e8b1fc44db57d4b1d762c2ca"
+    },
+    "experiments/cloud-lanes/human-hair-art/lod.html": {
+      "bytes": 3794,
+      "sha256": "ddbeb4b6403caee398e3943e2a1604eeae4f9767c6a87b7bc85e0f189fa3c7b0"
+    },
+    "experiments/cloud-lanes/human-hair-art/measure_attachment.py": {
+      "bytes": 5124,
+      "sha256": "d7a32494351c4684459b7dc862a1f5990af0ae9559f3121f9677701564466ae9"
+    },
+    "experiments/cloud-lanes/human-hair-art/package-lock.json": {
       "bytes": 913,
       "sha256": "db53067c440537b03325747877c9ff3f2e3736652e5a6daecb0f171c214128b7"
     },
-    "package.json": {
+    "experiments/cloud-lanes/human-hair-art/package.json": {
       "bytes": 192,
       "sha256": "024fca7741074624b4d69afcb6ae5c4743facd5e0ec71e0551c6637a79f402a5"
     },
-    "receipts/build-c01-v2.json": {
+    "experiments/cloud-lanes/human-hair-art/receipts/attach-c01.json": {
+      "bytes": 607,
+      "sha256": "16db4e285fd31943d9d1ce4244bd0a55a632c24e2f1de8de45e574a318ea32b6"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/attach-c01.txt": {
+      "bytes": 1663,
+      "sha256": "a56ae50c0d15673e09d7c94869a3a757826d755be8a85a66512db0bad5e7f847"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/attach-s02.json": {
+      "bytes": 608,
+      "sha256": "24dfe7f70d7ae4b04348aad0e4dfe4d32e1c534da0981308d4567ffceee8a261"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/attach-s02.txt": {
+      "bytes": 3688,
+      "sha256": "0d77f98dcf01b8a4dece223eac744f88d679234083a35daf968401f857bae37b"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/build-c01-v2.json": {
       "bytes": 486,
       "sha256": "d5c3bed90bf1809c51854ee686b44cfde2dd05181e895ddd5f25e6992df0e721"
     },
-    "receipts/build-c01-v2.txt": {
+    "experiments/cloud-lanes/human-hair-art/receipts/build-c01-v2.txt": {
       "bytes": 1319,
       "sha256": "f3c5422e6f665da5c7835613570fbd189d997f6579f50a0ebca4116a813a1f40"
     },
-    "receipts/build-c01-v3.json": {
+    "experiments/cloud-lanes/human-hair-art/receipts/build-c01-v3.json": {
       "bytes": 487,
       "sha256": "b609f142ac8646ca049ff4218a09c280b16f30e09a0a7ffa4c4fe11533c183f1"
     },
-    "receipts/build-c01-v3.txt": {
+    "experiments/cloud-lanes/human-hair-art/receipts/build-c01-v3.txt": {
       "bytes": 1316,
       "sha256": "3ce110a8aac0288fc4078ec177b177c6c61eb198c41a75a5d736acea3a472c10"
     },
-    "receipts/build-c01.json": {
+    "experiments/cloud-lanes/human-hair-art/receipts/build-c01.json": {
       "bytes": 488,
       "sha256": "c4b30d0b17548baacdb1e8055245553b17c9c91bb4d698cbd24cf2e105cac6d6"
     },
-    "receipts/build-c01.txt": {
+    "experiments/cloud-lanes/human-hair-art/receipts/build-c01.txt": {
       "bytes": 1319,
       "sha256": "87dfd8d8ac5fc5cad501b16968733d3bec116a336d2c74865b451e2716143807"
     },
-    "receipts/input-hashes.json": {
+    "experiments/cloud-lanes/human-hair-art/receipts/build-lods-v2.json": {
+      "bytes": 486,
+      "sha256": "c61769af70c1f8d85bdd913b08744e9229489f7c3b7f5848e556d85e2c43bf4d"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/build-lods-v2.txt": {
+      "bytes": 871,
+      "sha256": "80db68441d2c7faef66a6e92916413b4fc8ec50d0bfea688feba9be971fcefee"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/build-lods.json": {
+      "bytes": 486,
+      "sha256": "bc68e31cca40e841d3ec9e25a5cd03b2ad91460e275cd1a7dc6c0023b2f6cb3c"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/build-lods.txt": {
+      "bytes": 871,
+      "sha256": "02ab4973806761852e23b254f99fb655032dcf7a04eb355dc164353647164e24"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/build-s02-v2.json": {
+      "bytes": 486,
+      "sha256": "579d024cfe8d294d2d248591b8ff4045c010f78f8e8c1e8d78b7d3348b9f4465"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/build-s02-v2.txt": {
+      "bytes": 1758,
+      "sha256": "9756f3b5d6ab49cfde59d6643d90791cea0127414abd35b177d27fca84bf2a51"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/build-s02-v3.json": {
+      "bytes": 486,
+      "sha256": "b4d15a16c9ffac5f33a15a981eec818492e50ad6cd549c23d1913a1c11d01d02"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/build-s02-v3.txt": {
+      "bytes": 1960,
+      "sha256": "2f510a7b29a570f649406469b4628ff6529c5eacecbde463e9450169301c1aa5"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/build-s02.json": {
+      "bytes": 481,
+      "sha256": "962c2a7b30c6909086c8e330a34540514b179a9769bbc8c2ce9ed756f6ec0616"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/build-s02.txt": {
+      "bytes": 1758,
+      "sha256": "ccf12a0b601ccd34163ac5762f312c3da0339bbfccf909e45268f6c4a55a62e7"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/input-hashes.json": {
       "bytes": 332,
       "sha256": "f1aa484fe26109e5607d842ebff2cf88a97ead77aa4e43b4d9e6e40df8491210"
     },
-    "receipts/install.json": {
+    "experiments/cloud-lanes/human-hair-art/receipts/install.json": {
       "bytes": 439,
       "sha256": "5a737e0304be47941876290e430084bb782bed4cbc4224cc40bb35e74a4a4034"
     },
-    "receipts/install.txt": {
+    "experiments/cloud-lanes/human-hair-art/receipts/install.txt": {
       "bytes": 232,
       "sha256": "74b7c5096c2254b26bc7b7c69713c1420400c85197b8543d7deb27c9f9bc144b"
     },
-    "receipts/render-c01-v2.json": {
+    "experiments/cloud-lanes/human-hair-art/receipts/reexport-c01.json": {
+      "bytes": 606,
+      "sha256": "8a6d92e0f2c902d92533c28ca7c63c125ff322ed9b7bcf0f9f0d0e2e66aaebdc"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/reexport-c01.txt": {
+      "bytes": 1040,
+      "sha256": "1a342b98d1aca63d9fab109aecdabae9ced8ce42172751dd90b5f1ff99056e93"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/reexport-s02.json": {
+      "bytes": 606,
+      "sha256": "ab4f4d5e98f657c1058957a2ce3cd96b5ecd8f31598b69d79010049d70754364"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/reexport-s02.txt": {
+      "bytes": 1683,
+      "sha256": "b04f60f9555848b117cf1ea7a9e722ff0365f60adeefc47a301277ddfdec3add"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/render-c01-v2.json": {
       "bytes": 384,
       "sha256": "03215b177dbe249f34570ebfe6d6030ef939ede63ff5086567232b9ebf60b3ea"
     },
-    "receipts/render-c01-v2.txt": {
+    "experiments/cloud-lanes/human-hair-art/receipts/render-c01-v2.txt": {
       "bytes": 977,
       "sha256": "b4b6390784802385eb238a92d0cb728ca6e3b04cc942ff1c446c6a9f5ffb4754"
     },
-    "receipts/render-c01-v3.json": {
+    "experiments/cloud-lanes/human-hair-art/receipts/render-c01-v3.json": {
       "bytes": 384,
       "sha256": "1dc17ac79d60f049071641598b1f20e077350eabedea1ec96ca28429fc0cc793"
     },
-    "receipts/render-c01-v3.txt": {
+    "experiments/cloud-lanes/human-hair-art/receipts/render-c01-v3.txt": {
       "bytes": 977,
       "sha256": "b4b6390784802385eb238a92d0cb728ca6e3b04cc942ff1c446c6a9f5ffb4754"
     },
-    "receipts/render-c01.json": {
+    "experiments/cloud-lanes/human-hair-art/receipts/render-c01.json": {
       "bytes": 355,
       "sha256": "48603a000174540075b18e93fd503877f69f7705c36a8400084cd436fae7e5ce"
     },
-    "receipts/render-c01.txt": {
+    "experiments/cloud-lanes/human-hair-art/receipts/render-c01.txt": {
       "bytes": 1740,
       "sha256": "9b60bc4884b5ebc621c7a3248d03e30de805a56f411397e0757bb295617c6f5e"
     },
-    "receipts/validate-c01-v3.json": {
+    "experiments/cloud-lanes/human-hair-art/receipts/render-lods-v2.json": {
+      "bytes": 412,
+      "sha256": "325daf86ecbb817112ae636e2f0fc3f58a00383af8a5c127b527b3965d591426"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/render-lods-v2.txt": {
+      "bytes": 1106,
+      "sha256": "bcf0baaa19539a53d7f60f35f1a6b9a7d84aa4b1bc2db869a37f1c54bd00f5ed"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/render-lods.json": {
+      "bytes": 411,
+      "sha256": "882c000ddfedb0cfe8673afda197e3d4d2d60fe9a944f4f91f0f9ac68b7e685c"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/render-lods.txt": {
+      "bytes": 1106,
+      "sha256": "bcf0baaa19539a53d7f60f35f1a6b9a7d84aa4b1bc2db869a37f1c54bd00f5ed"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/render-s02-v2.json": {
+      "bytes": 416,
+      "sha256": "85719d1ff5e4ad5fb3f633bd1e5ef326574c9b6d56d60d519f34964e8ddfc7ae"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/render-s02-v2.txt": {
+      "bytes": 978,
+      "sha256": "41985356a6fef735009b714297cc7bc9192ee5136ad47e369b9333b21e00108a"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/render-s02-v3.json": {
+      "bytes": 416,
+      "sha256": "74abdaf442fb84c8c7a4c7e70552364b214e61508120d263695034266089b06c"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/render-s02-v3.txt": {
+      "bytes": 978,
+      "sha256": "02a99ac3367d67005f9c528d36409403e5e122c30e930e6aad6a9079a0cbc8ec"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/render-s02.json": {
+      "bytes": 419,
+      "sha256": "088d96daa630445f814a923ef53cddbb41eb7dcb5eaf62c64f01e8ca72775920"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/render-s02.txt": {
+      "bytes": 978,
+      "sha256": "1f4b3cc8355232f950b4850345e838ed4724619418d954320e4c49939497f5f8"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/saved-source-check.json": {
+      "bytes": 822,
+      "sha256": "6c6b507be4c130f334d72c5e8590f971cbdca7044857c0efb876718ffb08d0da"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/validate-c01-v3.json": {
       "bytes": 379,
       "sha256": "8076b416340b1efd1010dea6eb4d350a1c208423ead996b39655496def13831c"
     },
-    "receipts/validate-c01-v3.txt": {
+    "experiments/cloud-lanes/human-hair-art/receipts/validate-c01-v3.txt": {
       "bytes": 407,
       "sha256": "c14a03d3d5a5d9bf19034cd69b7c13dc36aa1270954e2b8eb20775f83f82cfb1"
     },
-    "receipts/validate-c01.json": {
+    "experiments/cloud-lanes/human-hair-art/receipts/validate-c01.json": {
       "bytes": 379,
       "sha256": "4fabfd9310f9fde6b41a69c595780d8c7322eebccc7b0271fb3ba2d1e26b703e"
     },
-    "receipts/validate-c01.txt": {
+    "experiments/cloud-lanes/human-hair-art/receipts/validate-c01.txt": {
       "bytes": 407,
       "sha256": "1bd5af9b5519c669dee15f3f38489ccef6aa2a93cb4f3a985705aca3995372d6"
     },
-    "render.html": {
-      "bytes": 4300,
-      "sha256": "584166cab34cc96feddb4ed585c0c7c2879f33bdba2bce8ee8083ba81795350a"
+    "experiments/cloud-lanes/human-hair-art/receipts/validate-lods.json": {
+      "bytes": 379,
+      "sha256": "25a1cb72fb330ab82a94cf9ce3b2b086210ad64dbf796b46649d5655848351e2"
     },
-    "render.py": {
-      "bytes": 2780,
-      "sha256": "317c0a406f7d341b94ad0adb8541c19deb88eb4e15caaebeb9978c16c379c4e2"
+    "experiments/cloud-lanes/human-hair-art/receipts/validate-lods.txt": {
+      "bytes": 263,
+      "sha256": "91e062f3fb98d1c0f08511ed30dd673d6557d66829bd03a140e866086a206dd3"
     },
-    "validate.mjs": {
+    "experiments/cloud-lanes/human-hair-art/receipts/validate-s02.json": {
+      "bytes": 379,
+      "sha256": "765dc432e517fd2a30c273e68f90a507a2d0406f699cca80bc4adece8ac4f719"
+    },
+    "experiments/cloud-lanes/human-hair-art/receipts/validate-s02.txt": {
+      "bytes": 407,
+      "sha256": "7d6cb246a47f9e8772ca307a781d561127e2c4f4b86825e05e9a303abff9e5de"
+    },
+    "experiments/cloud-lanes/human-hair-art/reexport.py": {
+      "bytes": 769,
+      "sha256": "465f700315b77cc8e9b057b9bdf5dbbd5f2eb319bc5d37339d7d34443a69a1b8"
+    },
+    "experiments/cloud-lanes/human-hair-art/render.html": {
+      "bytes": 4575,
+      "sha256": "766043eb2e6a8143ee1a8edfb059f74e312d535fa7671f563ee0451f943660ae"
+    },
+    "experiments/cloud-lanes/human-hair-art/render.py": {
+      "bytes": 2889,
+      "sha256": "ae353bcb002c00ab67b86648ca3f2e8cba9bacce6c049b3a6fab9e9d08761947"
+    },
+    "experiments/cloud-lanes/human-hair-art/seal_packet.py": {
+      "bytes": 1505,
+      "sha256": "97367f0233a8ae8e563be6b1418771410d525dad1c448970b4898b30562fc4eb"
+    },
+    "experiments/cloud-lanes/human-hair-art/usage-summary.json": {
+      "bytes": 244,
+      "sha256": "a3e03d3263e57ecedca241c0386a7ac75b40b372f9e15c72201cb180a9708da1"
+    },
+    "experiments/cloud-lanes/human-hair-art/validate.mjs": {
       "bytes": 2037,
       "sha256": "17552954e92a50ab684fe94b34df57fe9c3c2a37e59ccbed6f82596ad7cd5fa4"
     },
-    "verify_inputs.py": {
+    "experiments/cloud-lanes/human-hair-art/verify_inputs.py": {
       "bytes": 1191,
       "sha256": "610f3491a0eec768cf9d7febb997e2f5dacf8ae1db418325ab026a402187b9da"
+    },
+    "docs/agent-plans/cloud-lanes/human-hair-art/CONTINUE.md": {
+      "bytes": 7580,
+      "sha256": "2133a7877f06a313137e279a3c3c1a0589d19a79912846a5e51ecebdd53e9f46"
+    },
+    "docs/agent-plans/cloud-lanes/human-hair-art/HANDOFF.md": {
+      "bytes": 1620,
+      "sha256": "c90c6b95f827c75b9e4b959ac638a84d8857f0f4769b9697ab9c31f4b6b65570"
     }
   }
 }

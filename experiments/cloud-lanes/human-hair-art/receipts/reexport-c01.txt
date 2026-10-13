@@ -1,0 +1,20 @@
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+19:02:06 | INFO: Starting glTF 2.0 export
+19:02:06 | INFO: Extracting primitive: C01 scalp foundation - near
+19:02:06 | INFO: Primitives created: 1
+19:02:06 | INFO: Extracting primitive: C01 tight curl crop - near
+19:02:06 | INFO: Primitives created: 3
+19:02:06 | INFO: Finished glTF 2.0 export in 0.10649704933166504 s
+
+19:02:06 | INFO: Starting glTF 2.0 export
+19:02:06 | INFO: Extracting primitive: C01 scalp foundation - far
+19:02:06 | INFO: Primitives created: 1
+19:02:06 | INFO: Extracting primitive: C01 tight curl crop - far
+19:02:06 | INFO: Primitives created: 3
+19:02:06 | INFO: Finished glTF 2.0 export in 0.03255724906921387 s
+
+Exported actual saved meshes; compare decoded geometry and material values, node order may differ.
+Blender 4.3.2
+Read blend: "/workspace/human-hair-art/experiments/cloud-lanes/human-hair-art/artifacts/c01-v3/curl-crop-editable.blend"
+
+Blender quit

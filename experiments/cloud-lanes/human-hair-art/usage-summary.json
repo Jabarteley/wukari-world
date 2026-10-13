@@ -1,0 +1,11 @@
+{
+  "boundedJobs": 25,
+  "sumElapsedSeconds": 86.474,
+  "maximumSampledTreeRssBytes": 933076992,
+  "failedJobs": 1,
+  "allNoRemainingOwnedProcesses": true,
+  "heavyLimit": 1,
+  "nodeHeapMiB": 1536,
+  "blenderThreads": 2,
+  "minifiersUsed": 0
+}

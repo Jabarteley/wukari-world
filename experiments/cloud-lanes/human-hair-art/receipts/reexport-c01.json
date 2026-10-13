@@ -1,0 +1,26 @@
+{
+  "command": [
+    "blender",
+    "-b",
+    "experiments/cloud-lanes/human-hair-art/artifacts/c01-v3/curl-crop-editable.blend",
+    "-t",
+    "2",
+    "--python-exit-code",
+    "1",
+    "--python",
+    "experiments/cloud-lanes/human-hair-art/reexport.py",
+    "--",
+    "--style",
+    "curl-crop",
+    "--out",
+    "experiments/cloud-lanes/human-hair-art/runs/reexport-c01"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 2.068,
+  "sampledTreePeakRssBytes": 270295040,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

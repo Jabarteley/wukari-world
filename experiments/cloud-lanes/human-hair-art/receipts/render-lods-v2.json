@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python3",
+    "experiments/cloud-lanes/human-hair-art/render.py",
+    "--page",
+    "lod.html",
+    "--responses",
+    "5",
+    "--out",
+    "artifacts/lod-v2"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 2.973,
+  "sampledTreePeakRssBytes": 846360576,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

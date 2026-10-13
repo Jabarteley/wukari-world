@@ -1,0 +1,1 @@
+{"curl-crop-proxy.glb":{"bytes":7992,"triangles":358,"primitives":1,"validator":{"errors":0,"warnings":0,"infos":0,"messages":[]}},"swept-bun-proxy.glb":{"bytes":11636,"triangles":502,"primitives":2,"validator":{"errors":0,"warnings":0,"infos":0,"messages":[]}}}

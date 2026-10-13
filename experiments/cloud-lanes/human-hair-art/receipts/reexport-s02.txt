@@ -1,0 +1,32 @@
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+19:02:28 | INFO: Starting glTF 2.0 export
+19:02:28 | INFO: Extracting primitive: S02 swept foundation - near
+19:02:28 | INFO: Primitives created: 1
+19:02:28 | INFO: Extracting primitive: S02 swept scalp ribbons - near
+19:02:28 | INFO: Primitives created: 3
+19:02:28 | INFO: Extracting primitive: S02 sculpted low twist - near
+19:02:28 | INFO: Primitives created: 2
+19:02:28 | INFO: Extracting primitive: S02 twist fibre ridges - near
+19:02:28 | INFO: Primitives created: 3
+19:02:28 | INFO: Extracting primitive: S02 wound centre - near
+19:02:28 | INFO: Primitives created: 1
+19:02:28 | INFO: Finished glTF 2.0 export in 0.050069332122802734 s
+
+19:02:28 | INFO: Starting glTF 2.0 export
+19:02:28 | INFO: Extracting primitive: S02 swept foundation - far
+19:02:28 | INFO: Primitives created: 1
+19:02:28 | INFO: Extracting primitive: S02 swept scalp ribbons - far
+19:02:28 | INFO: Primitives created: 3
+19:02:28 | INFO: Extracting primitive: S02 sculpted low twist - far
+19:02:28 | INFO: Primitives created: 2
+19:02:28 | INFO: Extracting primitive: S02 twist fibre ridges - far
+19:02:28 | INFO: Primitives created: 3
+19:02:28 | INFO: Extracting primitive: S02 wound centre - far
+19:02:28 | INFO: Primitives created: 1
+19:02:28 | INFO: Finished glTF 2.0 export in 0.030540943145751953 s
+
+Exported actual saved meshes; compare decoded geometry and material values, node order may differ.
+Blender 4.3.2
+Read blend: "/workspace/human-hair-art/experiments/cloud-lanes/human-hair-art/artifacts/s02-v3/swept-bun-editable.blend"
+
+Blender quit

@@ -8,6 +8,7 @@
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 const loader=new GLTFLoader(), params=new URLSearchParams(location.search), folder=params.get('folder')||'c01-v1', style=params.get('style')||'curl-crop';
+if(style==='swept-bun'){document.querySelector('h1').textContent='Swept low twist';document.querySelector('.tag').textContent='ALLWORLD / ORIGINAL HAIR STUDIES / S02';document.querySelector('.sub').textContent='Swept scalp ribbons · grooved low bun · opaque chestnut PBR'}
 const assets={};const receipt={ready:false,panels:[],renderer:null};window.receipt=receipt;
 const renderers=[],scenes=[];
 async function asset(name){if(!assets[name])assets[name]=(await loader.loadAsync(`./artifacts/${folder}/${name}.glb`)).scene;return assets[name].clone(true)}

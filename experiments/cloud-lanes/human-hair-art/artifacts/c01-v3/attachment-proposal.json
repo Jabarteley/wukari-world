@@ -1,0 +1,207 @@
+{
+  "schema": "allworld-hair-attachment-proposal-v1",
+  "actualFit": "pending-master",
+  "productionAdmission": false,
+  "humanProducerTask": "01a13667-6b47-7763-b71a-7d06139ed03f",
+  "humanContractCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+  "actualMaster": {
+    "commit": null,
+    "meshSha256": null,
+    "topologySha256": null,
+    "rigSha256": null,
+    "skeletonId": null
+  },
+  "calibrationTarget": {
+    "temporary": true,
+    "meshName": "TEMPORARY calibration head - actual fit pending master",
+    "blendSha256": "c64dfe2d664aed00b59fbff58a4dfab9fbca8204145b733cdfae9cd7a5cd170b",
+    "bodyGlbSha256": "945d175c02283a8edf255a00636855852853dd6ba2f28752785c93feb57738ff",
+    "meshVertexSha256": "b588c01c5f1cfed06fc61b67f4f2505ebfcb58a3c34345f3a519b8d72c983c46",
+    "topologySha256": "9b7654919d29303844414bbfa953ff84633bf21e0fa7b8c52fc0fbe6330377ab",
+    "topologyHashEncoding": "UTF-8 compact JSON of Blender loop_triangle vertex index triplets; vertex hash compact JSON float coordinates Z-up",
+    "triangleCount": 8320,
+    "vertices": 4240,
+    "rigSha256": null,
+    "rigCount": 0,
+    "morphCount": 0
+  },
+  "v1BindingProposal": {
+    "frame": "body-metres-bind-y-up-z-forward",
+    "slot": "hair",
+    "anchorRevision": 1,
+    "bindings": [
+      {
+        "anchorId": "scalp.crown",
+        "joint": "Head",
+        "jointStatus": "requested name only; fixture unrigged",
+        "triangle": 41,
+        "barycentric": [
+          0.6553777579637753,
+          -3.48143666885214e-11,
+          0.3446222420710391
+        ],
+        "normalOffsetMetres": 0.002,
+        "positionBodyYUp": [
+          0.00016582354146521538,
+          1.774999737739563,
+          -5.4077463573776186e-06
+        ],
+        "normalBodyYUp": [
+          0.048415325582027435,
+          0.9988260269165039,
+          -0.0015789520693942904
+        ],
+        "lookupDistanceMetres": 0.00016591187159065157
+      },
+      {
+        "anchorId": "scalp.templeLeft",
+        "joint": "Head",
+        "jointStatus": "requested name only; fixture unrigged",
+        "triangle": 3396,
+        "barycentric": [
+          0.019083776254324003,
+          0.2971941602623459,
+          0.6837220634833301
+        ],
+        "normalOffsetMetres": 0.002,
+        "positionBodyYUp": [
+          0.08008527010679245,
+          1.6800158023834229,
+          0.010008376091718674
+        ],
+        "normalBodyYUp": [
+          0.9785841703414917,
+          0.18202058970928192,
+          0.09613248705863953
+        ],
+        "lookupDistanceMetres": 8.713687566341832e-05
+      },
+      {
+        "anchorId": "scalp.templeRight",
+        "joint": "Head",
+        "jointStatus": "requested name only; fixture unrigged",
+        "triangle": 3482,
+        "barycentric": [
+          0.019083780615457124,
+          0.6649562640032814,
+          0.3159599553812614
+        ],
+        "normalOffsetMetres": 0.002,
+        "positionBodyYUp": [
+          -0.08008527010679245,
+          1.6800158023834229,
+          0.010008376091718674
+        ],
+        "normalBodyYUp": [
+          -0.9785842895507812,
+          0.18202011287212372,
+          0.09613249450922012
+        ],
+        "lookupDistanceMetres": 8.713687566341832e-05
+      }
+    ],
+    "admission": "Binding fields mirror v1. Not submitted as anchor-bindings-v1 because required allworld-body-23@1 would falsely identify this unrigged fixture."
+  },
+  "bodyRelativeTransform": {
+    "assetNodeTransform": "identity; positions already in body metres",
+    "proposedHeadBindPositionYUp": [
+      0,
+      1.65,
+      0
+    ],
+    "bodyFromHeadColumnMajor": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1.65,
+      0,
+      1
+    ],
+    "headFromBodyColumnMajor": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      -1.65,
+      0,
+      1
+    ],
+    "formula": "p_head = inverse(T_head_bind) * p_asset_body; p_world = T_head_pose * p_head",
+    "status": "authored fixture datum only; replace with immutable producer inverse-bind transform"
+  },
+  "clearanceAgainstTemporaryHead": {
+    "C01 scalp foundation - far": {
+      "samples": 624,
+      "minimumSignedMetres": -0.0021339193917810917,
+      "medianSignedMetres": 0.005893740803003311,
+      "maximumSignedMetres": 0.010380878113210201,
+      "verticesInsideBeyond02mm": 7,
+      "method": "nearest triangle signed by normal; all mesh vertices; not full triangle intersection or continuous pose test"
+    },
+    "C01 scalp foundation - near": {
+      "samples": 2592,
+      "minimumSignedMetres": -0.002161365933716297,
+      "medianSignedMetres": 0.005968334153294563,
+      "maximumSignedMetres": 0.010538396425545216,
+      "verticesInsideBeyond02mm": 20,
+      "method": "nearest triangle signed by normal; all mesh vertices; not full triangle intersection or continuous pose test"
+    },
+    "C01 tight curl crop - far": {
+      "samples": 6900,
+      "minimumSignedMetres": 0.0006720708915963769,
+      "medianSignedMetres": 0.010770217515528202,
+      "maximumSignedMetres": 0.02574041858315468,
+      "verticesInsideBeyond02mm": 0,
+      "method": "nearest triangle signed by normal; all mesh vertices; not full triangle intersection or continuous pose test"
+    },
+    "C01 tight curl crop - near": {
+      "samples": 48640,
+      "minimumSignedMetres": 0.0007930868305265903,
+      "medianSignedMetres": 0.010813451372087002,
+      "maximumSignedMetres": 0.025774164125323296,
+      "verticesInsideBeyond02mm": 0,
+      "method": "nearest triangle signed by normal; all mesh vertices; not full triangle intersection or continuous pose test"
+    }
+  },
+  "endpointCoverage": {
+    "headWidth": "blocked: no producer checkpoint",
+    "earSizeAndPosition": "blocked: no actual ear mesh or endpoints",
+    "bodyProportions": "blocked: no producer body endpoints",
+    "headYawPitchRoll": "blocked: no producer rig or poses",
+    "expressions": "blocked: no producer expressions",
+    "fixtureOnly": "neutral authored head; zero available morph or skeletal endpoints"
+  },
+  "unsupported": [
+    "skin binding",
+    "morph-driven scalp deformation",
+    "anisotropic hair BRDF",
+    "alpha cards",
+    "production static ModelPart PBR preservation"
+  ],
+  "nextFitProcedure": [
+    "Parent supplies exact master/scalp/rest rig + endpoint/pose checkpoint. Hash before reading.",
+    "Build lane-owned derivative only; never save master.",
+    "Recompute triangle/barycentric anchors on producer topology and verify inverse-bind axes.",
+    "Fit to every available head/ear/body endpoint and supplied poses; measure triangle collisions plus clearance and render hairline.",
+    "Human skinned route owns attachment adoption; do not register through static ModelPart."
+  ]
+}

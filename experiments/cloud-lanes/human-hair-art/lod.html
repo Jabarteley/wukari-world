@@ -1,0 +1,31 @@
+<!doctype html><meta charset="utf-8"><link rel="icon" href="data:,">
+<style>*{box-sizing:border-box}body{margin:0;background:#182027;color:#eee8dd;font:14px Arial}header{padding:24px}h1{font-size:24px;margin:8px 0}.sub{font-size:12px;color:#b9c4ca}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:12px}.panel{border:1px solid #48525a;background:#283139}.panel img{display:block;width:100%}.label{padding:12px;font-size:12px}footer{padding:18px 24px;color:#bcc5c9;font-size:12px}</style>
+<header><div class="sub">ALLWORLD / ORIGINAL HAIR / LOD PROPOSAL</div><h1>Detail and silhouette at equal screen sizes</h1><div class="sub">Close comparison exposes detail loss. Small comparison: authored 56 px head height. Switching thresholds remain unapproved.</div></header>
+<main class="grid" id="grid"></main><footer>Temporary calibration only · actual fit pending master · opaque uncompressed GLBs · SwiftShader visual proof, no physical-device performance claim</footer>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+window.receipt={ready:false,panels:[]};const loader=new GLTFLoader();const cache={};
+async function load(path){return cache[path]??=(await loader.loadAsync('./artifacts/'+path)).scene}
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(380,330);renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
+try{
+const fixture=await load('c01-v3/temporary-calibration.glb');
+for(const [style,folder,label] of [['curl-crop','c01-v3','C01 curls'],['swept-bun','s02-v3','S02 swept bun']]){
+ const near=await load(`${folder}/${style}-near.glb`),proxy=await load(`lod-v2/${style}-proxy.glb`);
+ for(const [mode,scale] of [['Near / detail',.33],['Proxy / close diagnostic',.33],['56 px pair: detail | proxy',1.47]]){
+  const s=new THREE.Scene();s.background=new THREE.Color('#283139');s.add(new THREE.HemisphereLight(0xd6e8ff,0x594f42,1.55));
+  for(const [color,intensity,p] of [[0xffddba,4,[.35,2.3,.6]],[0xa2b8df,2,[-.5,1.8,.2]],[0xffffff,3,[.2,2,-.5]]]){const l=new THREE.DirectionalLight(color,intensity);l.position.set(...p);s.add(l)}
+  const multiple=mode.startsWith('56');
+  for(const [obj,x] of (multiple?[[near,-.31],[proxy,.31]]:[[mode.startsWith('Near')?near:proxy,0]])){
+   const g=new THREE.Group();g.add(obj.clone(true),fixture.clone(true));g.position.x=x;s.add(g)
+  }
+  const camera=new THREE.OrthographicCamera(-scale*380/330/2,scale*380/330/2,scale/2,-scale/2,.01,10);camera.position.set(.33,1.79,.7);camera.lookAt(0,multiple?1.63:1.69,0);
+  renderer.render(s,camera);
+  const panel=document.createElement('div');panel.className='panel';const img=document.createElement('img');img.src=renderer.domElement.toDataURL();panel.append(img);const text=document.createElement('div');text.className='label';text.textContent=`${label} · ${mode}`;panel.append(text);document.querySelector('#grid').append(panel);
+  window.receipt.panels.push({style,mode,trianglesWithFixture:renderer.info.render.triangles,calls:renderer.info.render.calls});
+ }
+}
+const gl=renderer.getContext();const ext=gl.getExtension('WEBGL_debug_renderer_info');window.receipt.renderer=gl.getParameter(ext.UNMASKED_RENDERER_WEBGL);
+window.cleanup=()=>{for(const s of Object.values(cache))s.traverse(o=>{o.geometry?.dispose();if(o.material)for(const m of (Array.isArray(o.material)?o.material:[o.material]))m.dispose()});renderer.dispose();renderer.forceContextLoss();window.receipt.disposed=true};window.receipt.ready=true;
+}catch(e){window.proofError=String(e);console.error(e)}
+</script>

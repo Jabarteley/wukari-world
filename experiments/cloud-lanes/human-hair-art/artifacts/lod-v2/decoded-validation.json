@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "files": {
+    "curl-crop-proxy.glb": {
+      "bytes": 7992,
+      "sha256": "60096c5d2a5fdd72cd46991cbcf88d6497363065f7728bf4115574649f18471f",
+      "triangles": 358,
+      "vertices": 192,
+      "primitives": 1,
+      "materialSlots": 1,
+      "materials": [
+        {
+          "name": "C01 silhouette espresso",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.009999999776482582,
+              0.004999999888241291,
+              0.003000000026077032,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.7799999713897705
+          }
+        }
+      ],
+      "skins": 0,
+      "morphTargets": 0,
+      "textures": 0,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    },
+    "swept-bun-proxy.glb": {
+      "bytes": 11636,
+      "sha256": "66ccdea2dab4968358945f47e1cda9cafc3bd0f89e5d02a8904de800530c6879",
+      "triangles": 502,
+      "vertices": 276,
+      "primitives": 2,
+      "materialSlots": 1,
+      "materials": [
+        {
+          "name": "S02 silhouette chestnut",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.03200000151991844,
+              0.012000000104308128,
+              0.004999999888241291,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5799999833106995
+          }
+        }
+      ],
+      "skins": 0,
+      "morphTargets": 0,
+      "textures": 0,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "blender": "4.3.2",
+  "style": "S02 swept low twist bun",
+  "actualFit": "pending-master",
+  "sourceFrame": "metres Z-up -Y-forward",
+  "exportFrame": "metres Y-up +Z-forward",
+  "geometry": {
+    "near": {
+      "S02 swept foundation - near": {
+        "vertices": 1368,
+        "triangles": 2662,
+        "materials": 1,
+        "boundsBlenderMetres": [
+          [
+            -0.08275321871042252,
+            -0.08692485094070435,
+            1.620898723602295
+          ],
+          [
+            0.08302495628595352,
+            0.10099311172962189,
+            1.775999903678894
+          ]
+        ]
+      },
+      "S02 swept scalp ribbons - near": {
+        "vertices": 18480,
+        "triangles": 23520,
+        "materials": 3,
+        "boundsBlenderMetres": [
+          [
+            -0.08415012061595917,
+            -0.08789028972387314,
+            1.6144102811813354
+          ],
+          [
+            0.08451421558856964,
+            0.10256774723529816,
+            1.777709722518921
+          ]
+        ]
+      },
+      "S02 sculpted low twist - near": {
+        "vertices": 1024,
+        "triangles": 2048,
+        "materials": 3,
+        "boundsBlenderMetres": [
+          [
+            -0.04465951398015022,
+            0.09234829246997833,
+            1.5680400133132935
+          ],
+          [
+            0.04465951398015022,
+            0.13165171444416046,
+            1.6468682289123535
+          ]
+        ]
+      },
+      "S02 twist fibre ridges - near": {
+        "vertices": 5040,
+        "triangles": 9744,
+        "materials": 3,
+        "boundsBlenderMetres": [
+          [
+            -0.0448300875723362,
+            0.09198950231075287,
+            1.568013310432434
+          ],
+          [
+            0.04506063461303711,
+            0.13201050460338593,
+            1.6479867696762085
+          ]
+        ]
+      },
+      "S02 wound centre - near": {
+        "vertices": 350,
+        "triangles": 696,
+        "materials": 3,
+        "boundsBlenderMetres": [
+          [
+            -0.027725566178560257,
+            0.12462131679058075,
+            1.5895086526870728
+          ],
+          [
+            0.023230483755469322,
+            0.13239921629428864,
+            1.6302675008773804
+          ]
+        ]
+      }
+    },
+    "far": {
+      "S02 swept foundation - far": {
+        "vertices": 396,
+        "triangles": 754,
+        "materials": 1,
+        "boundsBlenderMetres": [
+          [
+            -0.08266973495483398,
+            -0.08659850060939789,
+            1.620898723602295
+          ],
+          [
+            0.08289667218923569,
+            0.10094960778951645,
+            1.775999665260315
+          ]
+        ]
+      },
+      "S02 swept scalp ribbons - far": {
+        "vertices": 2520,
+        "triangles": 3080,
+        "materials": 3,
+        "boundsBlenderMetres": [
+          [
+            -0.08435234427452087,
+            -0.08789066970348358,
+            1.613683819770813
+          ],
+          [
+            0.08461667597293854,
+            0.10253345221281052,
+            1.7779169082641602
+          ]
+        ]
+      },
+      "S02 sculpted low twist - far": {
+        "vertices": 224,
+        "triangles": 448,
+        "materials": 3,
+        "boundsBlenderMetres": [
+          [
+            -0.0436435230076313,
+            0.09218943119049072,
+            1.5680400133132935
+          ],
+          [
+            0.0436435230076313,
+            0.13181057572364807,
+            1.645876407623291
+          ]
+        ]
+      },
+      "S02 twist fibre ridges - far": {
+        "vertices": 660,
+        "triangles": 1232,
+        "materials": 3,
+        "boundsBlenderMetres": [
+          [
+            -0.045250602066516876,
+            0.09164652973413467,
+            1.5678988695144653
+          ],
+          [
+            0.0456186905503273,
+            0.13235348463058472,
+            1.6481012105941772
+          ]
+        ]
+      },
+      "S02 wound centre - far": {
+        "vertices": 128,
+        "triangles": 252,
+        "materials": 3,
+        "boundsBlenderMetres": [
+          [
+            -0.028307583183050156,
+            0.12462035566568375,
+            1.5893265008926392
+          ],
+          [
+            0.023904360830783844,
+            0.13239611685276031,
+            1.6303935050964355
+          ]
+        ]
+      }
+    }
+  },
+  "textures": [],
+  "rigs": 0,
+  "morphs": 0,
+  "source": "Original geometric scalp ribbons and grooved twist; no acquired assets"
+}

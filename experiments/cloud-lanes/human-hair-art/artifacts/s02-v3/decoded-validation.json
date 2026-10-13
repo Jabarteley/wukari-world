@@ -1,0 +1,179 @@
+{
+  "status": "PASS",
+  "files": {
+    "swept-bun-far.glb": {
+      "bytes": 138088,
+      "sha256": "ab591eb589b1381bc23f80ffd4566fcaaebe45b8e02ef8a75f0f49f83c5aad63",
+      "triangles": 5766,
+      "vertices": 3976,
+      "primitives": 10,
+      "materialSlots": 4,
+      "materials": [
+        {
+          "name": "S02 roots",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.017000000923871994,
+              0.006000000052154064,
+              0.0020000000949949026,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6399999856948853
+          }
+        },
+        {
+          "name": "S02 chestnut",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.03200000151991844,
+              0.012000000104308128,
+              0.004999999888241291,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.47999998927116394
+          }
+        },
+        {
+          "name": "S02 copper undertone",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.050999999046325684,
+              0.019999999552965164,
+              0.008999999612569809,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5299999713897705
+          }
+        },
+        {
+          "name": "S02 dark lowlights",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.017999999225139618,
+              0.006000000052154064,
+              0.0020000000949949026,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5600000023841858
+          }
+        }
+      ],
+      "skins": 0,
+      "morphTargets": 0,
+      "textures": 0,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    },
+    "swept-bun-near.glb": {
+      "bytes": 875828,
+      "sha256": "f5ad5212f80d4ca0fa0a2ad8e98676a6d12301e92194ea672e15e461fc57dcd3",
+      "triangles": 38670,
+      "vertices": 26486,
+      "primitives": 10,
+      "materialSlots": 4,
+      "materials": [
+        {
+          "name": "S02 roots",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.017000000923871994,
+              0.006000000052154064,
+              0.0020000000949949026,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6399999856948853
+          }
+        },
+        {
+          "name": "S02 chestnut",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.03200000151991844,
+              0.012000000104308128,
+              0.004999999888241291,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.47999998927116394
+          }
+        },
+        {
+          "name": "S02 copper undertone",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.050999999046325684,
+              0.019999999552965164,
+              0.008999999612569809,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5299999713897705
+          }
+        },
+        {
+          "name": "S02 dark lowlights",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.017999999225139618,
+              0.006000000052154064,
+              0.0020000000949949026,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5600000023841858
+          }
+        }
+      ],
+      "skins": 0,
+      "morphTargets": 0,
+      "textures": 0,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    },
+    "temporary-calibration.glb": {
+      "bytes": 162352,
+      "sha256": "c3b072de59771a630aba1fcf93c800128556bd2abc061b4b1fccca6b5b537b0f",
+      "triangles": 8704,
+      "vertices": 4496,
+      "primitives": 2,
+      "materialSlots": 1,
+      "materials": [
+        {
+          "name": "TEMP ceramic calibration only",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.23499999940395355,
+              0.26499998569488525,
+              0.27000001072883606,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.7200000286102295
+          }
+        }
+      ],
+      "skins": 0,
+      "morphTargets": 0,
+      "textures": 0,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    }
+  }
+}

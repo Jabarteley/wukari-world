@@ -1,0 +1,63 @@
+{
+  "actualFit": "pending-master",
+  "proposedUse": "less than 60 pixel head height; no tested switch threshold",
+  "geometry": {
+    "curl-crop": {
+      "curl-crop - silhouette only": {
+        "vertices": 192,
+        "triangles": 358,
+        "materials": 1,
+        "boundsBlenderMetres": [
+          [
+            -0.09569039940834045,
+            -0.10112057626247406,
+            1.6225404739379883
+          ],
+          [
+            0.09505138546228409,
+            0.11142153292894363,
+            1.7944964170455933
+          ]
+        ]
+      }
+    },
+    "swept-bun": {
+      "swept-bun - silhouette only": {
+        "vertices": 192,
+        "triangles": 358,
+        "materials": 1,
+        "boundsBlenderMetres": [
+          [
+            -0.0876341164112091,
+            -0.09059584140777588,
+            1.6215367317199707
+          ],
+          [
+            0.08786719292402267,
+            0.10589868575334549,
+            1.7809990644454956
+          ]
+        ]
+      },
+      "S02 silhouette bun": {
+        "vertices": 84,
+        "triangles": 144,
+        "materials": 1,
+        "boundsBlenderMetres": [
+          [
+            -0.04399999976158142,
+            0.09999999403953552,
+            1.568000078201294
+          ],
+          [
+            0.04399999976158142,
+            0.14000000059604645,
+            1.6480000019073486
+          ]
+        ]
+      }
+    }
+  },
+  "materials": "one opaque slot per style",
+  "omitted": "all curls/ribbons/fibre ridges; both open scalp patches intentionally attach to covered head"
+}

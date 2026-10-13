@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "CN",
+  "dataset": {
+    "url": "https://download.geofabrik.de/asia/china-261011.osm.pbf",
+    "bytes": 1606894482,
+    "md5": "d8ea2e9d574773bd57f20b9b7b0d9adf"
+  },
+  "source": "https://api.openstreetmap.org/api/0.6/ways.json?ways=159002396,1120240923,1120240924,1120240926,1120240927,1120240929,1120240930,1120240931,1120240937,1120240939,1120240948,1120240949,1120240957,1120240958,1319181445,1319181446",
+  "retrievedAt": "2026-10-13",
+  "note": "Reviewed 2026-10-13 from the 2026-10-12 draft (world ledger evidence-drafts-heavy/cn.json), re-verified 2026-10-13 with boundary_probe.py against OSM relation 270056 (v1579, 1663 way members) and the published china, taiwan and bhutan .poly files: exactly these 16 maritime=yes admin_level=2 ways (South China Sea, Spratly region; 3 closed rings, 13 open ways whose endpoints pair up among themselves) have no node inside the china, taiwan or bhutan clips and none ends on a node of a present way. Bound to the pinned china-261011 file by url, bytes and MD5 (its SHA-256 is not published in advance); valid for that file only. Owner decision 2026-10-13: China proceeds as a game venue map (no real-operation claims).",
+  "ways": [
+    {
+      "id": 159002396,
+      "version": 41,
+      "timestamp": "2026-04-17T05:38:30Z",
+      "tags": {
+        "admin_level": "2",
+        "boundary": "administrative",
+        "disputed": "yes",
+        "maritime": "yes"
+      },
+      "firstNode": 9283762025,
+      "lastNode": 9283762025
+    },
+    {
+      "id": 1120240923,
+      "version": 1,
+      "timestamp": "2022-12-08T02:39:35Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 10245887137,
+      "lastNode": 10245887138
+    },
+    {
+      "id": 1120240924,
+      "version": 2,
+      "timestamp": "2023-08-19T05:20:43Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 6132742653,
+      "lastNode": 10245882975
+    },
+    {
+      "id": 1120240926,
+      "version": 1,
+      "timestamp": "2022-12-08T02:39:35Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 10245887137,
+      "lastNode": 10245882958
+    },
+    {
+      "id": 1120240927,
+      "version": 2,
+      "timestamp": "2023-08-19T05:20:43Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 6132742653,
+      "lastNode": 10245882958
+    },
+    {
+      "id": 1120240929,
+      "version": 1,
+      "timestamp": "2022-12-08T02:39:35Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 10245882965,
+      "lastNode": 10245882961
+    },
+    {
+      "id": 1120240930,
+      "version": 1,
+      "timestamp": "2022-12-08T02:39:35Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 10245882961,
+      "lastNode": 10245882965
+    },
+    {
+      "id": 1120240931,
+      "version": 2,
+      "timestamp": "2023-08-02T08:11:12Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 10245882963,
+      "lastNode": 10245882963
+    },
+    {
+      "id": 1120240937,
+      "version": 1,
+      "timestamp": "2022-12-08T02:39:35Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 10245882975,
+      "lastNode": 10245887138
+    },
+    {
+      "id": 1120240939,
+      "version": 1,
+      "timestamp": "2022-12-08T02:39:35Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 10245883348,
+      "lastNode": 10245883350
+    },
+    {
+      "id": 1120240948,
+      "version": 2,
+      "timestamp": "2025-12-14T08:22:24Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 10245889595,
+      "lastNode": 10245889595
+    },
+    {
+      "id": 1120240949,
+      "version": 2,
+      "timestamp": "2025-07-17T05:03:00Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 10245883348,
+      "lastNode": 10245883350
+    },
+    {
+      "id": 1120240957,
+      "version": 1,
+      "timestamp": "2022-12-08T02:39:35Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 10245896394,
+      "lastNode": 10245896393
+    },
+    {
+      "id": 1120240958,
+      "version": 1,
+      "timestamp": "2022-12-08T02:39:35Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 10245896394,
+      "lastNode": 10245896393
+    },
+    {
+      "id": 1319181445,
+      "version": 1,
+      "timestamp": "2024-09-29T05:06:50Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 10245883110,
+      "lastNode": 10245883111
+    },
+    {
+      "id": 1319181446,
+      "version": 1,
+      "timestamp": "2024-09-29T05:06:50Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 10245883111,
+      "lastNode": 10245883110
+    }
+  ]
+}

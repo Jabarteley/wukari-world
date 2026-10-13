@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/asia/china-261011.osm.pbf",
+    "bytes": 1606894482,
+    "md5": "d8ea2e9d574773bd57f20b9b7b0d9adf",
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/asia/taiwan-261011.osm.pbf",
+        "bytes": 327517851,
+        "md5": "7bb79f0c8bc05d2d67497eb62734735b",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/270056 (China) member ways around Kinmen, Matsu and the Taiwan Strait islets (e.g. 9411252, 151689648, 277652512, 884030133) are absent from the China clip; their nodes lie inside the Taiwan clip. Owner decision 2026-10-13: China proceeds as a game venue map (no real-operation claims); the neighbour extract only supplies the nodes of these ways for the admin-0 boundary."
+      },
+      {
+        "url": "https://download.geofabrik.de/asia/bhutan-261011.osm.pbf",
+        "bytes": 23618779,
+        "md5": "1ca3f314308ebc51d36febcf5b074943",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/270056 (China) 'China's claimed border' / Bhutan - China ways at 89.1E 27.4N (e.g. 298158655, 589204000, 1337681673) are absent from the China clip; their nodes lie inside the Bhutan clip. Owner decision 2026-10-13: China proceeds as a game venue map (no real-operation claims); the neighbour extract only supplies the nodes of these ways for the admin-0 boundary."
+      }
+    ],
+    "cityExtract": {
+      "url": "https://download.geofabrik.de/asia/china/shanghai-261011.osm.pbf",
+      "bytes": 25946863,
+      "md5": "e8be5994618ca23e53eabda64c309e57",
+      "snapshotDate": "2026-10-11",
+      "reason": "China (1.61 GB) is read only for the admin-0 boundary; Shanghai's metadata and layers come from the official Geofabrik Shanghai extract (26 MB, same 2026-10-11T20:21:06Z replication timestamp). ZSPD (31.14N 121.81E) and the city centre lie inside shanghai.poly (120.85-123.68E, 30.64-31.89N)",
+      "polyUrl": "https://download.geofabrik.de/asia/china/shanghai.poly",
+      "polySha256": "c34d551f02a2d42f327e2f123fd2f28399fd914b36ab46f0c099e15b68ae0f59",
+      "primaryPolyUrl": "https://download.geofabrik.de/asia/china.poly",
+      "primaryPolySha256": "c8b52c737100026700c6503c0a09169f455d83db565e341af9ac0e8e073cf8eb"
+    }
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "shanghai",
+      "name": "Shanghai",
+      "countryISO": "CN",
+      "cityOsmRef": "node/778910398",
+      "airport": {
+        "ident": "ZSPD",
+        "sourceUrl": "https://ourairports.com/airports/ZSPD/"
+      },
+      "timezone": {
+        "id": "Asia/Shanghai",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

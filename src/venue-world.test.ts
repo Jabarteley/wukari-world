@@ -68,7 +68,7 @@ test('an idle venue with a crowd renders zero frames; the crowd, the player and 
     const world = makeWorld(container, { location: 'park', renderer });
     const count = () => world.diagnostics().renderCount;
     assert.equal(count(), 1);
-    assert.deepEqual(world.diagnostics().lighting, { hemi: LIGHTING.outdoor.day.hemi[2], sun: LIGHTING.outdoor.day.sun[1], sky: '#eaf4ff' }, 'the host applied the scene’s own lighting preset');
+    assert.deepEqual(world.diagnostics().lighting, { hemi: LIGHTING.outdoor.day.hemi[2], sun: LIGHTING.outdoor.day.sun[1], sky: LIGHTING.outdoor.day.hemi[0] }, 'the host applied the scene’s own lighting preset');
     world.setPlayer({ look: { body: 'woman', hair: 'afro' }, seed: PLAYER, name: 'Ada' });
     assert.equal(count(), 2, 'the avatar changed: one frame');
     world.setPlayer({ look: { body: 'woman', hair: 'afro' }, seed: PLAYER, name: 'Ada' });

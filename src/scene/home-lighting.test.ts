@@ -83,7 +83,7 @@ test('actual venue host applies Home and neighbourhood night presets and remains
     const night = { ...state, t: now(20) };
     world.setState(night);
     assert.equal(world.diagnostics().renderCount, dayFrames + 1, 'nightfall draws the changed light once');
-    assert.deepEqual(world.diagnostics().lighting, { hemi: 1.6, sun: 0.9, sky: '#ecdfc9' });
+    assert.deepEqual(world.diagnostics().lighting, { hemi: LIGHTING.indoor.night.hemi[2], sun: LIGHTING.indoor.night.sun[1], sky: LIGHTING.indoor.night.hemi[0] });
     assert.equal(glow, LIGHTING.indoor.night.glow, 'active Home applies its emissive brightness to the shared material');
     world.setState({ ...night, t: now(20, 1) });
     assert.equal(world.diagnostics().renderCount, dayFrames + 1);
@@ -92,12 +92,12 @@ test('actual venue host applies Home and neighbourhood night presets and remains
       assert.equal(world.prepare(destination), true);
       assert.equal(activeGlowMaterial.color.r, LIGHTING.indoor.night.glow, 'preparing a future day-lit venue cannot dim the visible Home');
       assert.equal(world.diagnostics().renderCount, dayFrames + 1, 'preparation restores materials without drawing a frame');
-      assert.deepEqual(world.diagnostics().lighting, { hemi: 1.6, sun: 0.9, sky: '#ecdfc9' });
+      assert.deepEqual(world.diagnostics().lighting, { hemi: LIGHTING.indoor.night.hemi[2], sun: LIGHTING.indoor.night.sun[1], sky: LIGHTING.indoor.night.hemi[0] });
       assert.equal(world.diagnostics().scenes, 2, 'only the current and one prepared destination remain');
     }
     const outside = { ...night, location: 'neighbourhood' as const };
     world.setState(outside); world.setLocation('neighbourhood');
-    assert.deepEqual(world.diagnostics().lighting, { hemi: 1.05, sun: 0.8, sky: '#9fb4e6' }, 'transition applies outdoor night instead of default day');
+    assert.deepEqual(world.diagnostics().lighting, { hemi: LIGHTING.outdoor.night.hemi[2], sun: LIGHTING.outdoor.night.sun[1], sky: LIGHTING.outdoor.night.hemi[0] }, 'transition applies outdoor night instead of default day');
     assert.equal(glow, LIGHTING.outdoor.night.glow, 'street transition reapplies its own emissive brightness');
     const outsideFrames = world.diagnostics().renderCount;
     world.setState({ ...outside, t: now(20, 2) });

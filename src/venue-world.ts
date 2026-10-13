@@ -297,6 +297,8 @@ export interface VenueWorld {
  */
 export const HOST_LIGHTING = Object.freeze<Required<LightPreset>>({ hemi: ['#bdd4e7', '#8a8474', 1.6], sun: ['#c7dbec', 1.4, [-12, 25, 8]], rim: ['#cfe2ff', 0.7], glow: 1 });
 const DEFAULT_BACKGROUND = '#182a25';
+/** Haze range from the camera in world units (before the first aim), then as multiples of the camera's distance from its subject: zoomed in or out, the same share of the view is hazed. */
+const HAZE_NEAR = 58, HAZE_FAR = 200, HAZE_FROM = 1.25, HAZE_TO = 3.9;
 
 /**
  * The host's three lights. apply(preset) sets them from a scene's lighting(), or back to the
@@ -325,6 +327,11 @@ export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shado
       const back = Array.isArray(use.rim) ? use.rim as readonly [Colour, number] : HOST_LIGHTING.rim;
       rim.color.set(back[0]); rim.intensity = back[1];
     },
+    /** Haze in the sky's horizon colour: far corners soften into it, which gives the flat colours depth. Costs one mix per pixel. */
+    haze(colour: Colour) {
+      if (scene.fog) (scene.fog as THREE.Fog).color.set(colour);
+      else scene.fog = new THREE.Fog(colour, HAZE_NEAR, HAZE_FAR);
+    },
     aim(camera: THREE.Camera, x = 0, y = 0.7, z = 0) {
       // Behind the subject and a little to the camera's right, above head height.
       const dx = x - camera.position.x, dz = z - camera.position.z, flat = Math.hypot(dx, dz) || 1;
@@ -332,6 +339,7 @@ export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shado
       rim.position.set(x + ux * 16 - uz * 7, y + 11, z + uz * 16 + ux * 7);
       rim.target.position.set(x, y, z);
       rim.target.updateMatrixWorld?.();
+      if (scene.fog) { const away = Math.hypot(dx, camera.position.y - y, dz); (scene.fog as THREE.Fog).near = away * HAZE_FROM; (scene.fog as THREE.Fog).far = away * HAZE_TO; }
     },
     dispose() {
       if (disposed) return;
@@ -340,6 +348,7 @@ export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shado
       // render-target dispose listeners can still free the GPU allocations.
       sun.dispose(); rim.dispose();
       scene.remove(hemi, sun, rim, rim.target);
+      scene.fog = null;
     },
   };
 }
@@ -1354,6 +1363,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     // sky: [horizon, zenith]. A scene that names only a background gets a gentle rise from it.
     const pair = Array.isArray(current?.sky) ? current.sky : [background, mixHex(background, '#ffffff', 0.18)];
     sky.set(pair[0], pair[1]);
+    lights.haze(pair[0]);
     // The ground takes the horizon's colour, a little deeper, so the slab sits on something and the rim melts into the sky.
     ground.tint(mixHex(pair[0], current?.ground || '#6f7f6a', 0.34));
     placeGround();

@@ -18,14 +18,14 @@ export const isTimeOfDay = (value: unknown): value is TimeOfDay => TIMES.include
  */
 export const LIGHTING: Readonly<Record<Mood, Readonly<Record<TimeOfDay, Lighting>>>> = Object.freeze({
   outdoor: {
-    day: { sky: ['#cfe9f3', '#6fb4e6'], hemi: ['#eaf4ff', '#c9b08a', 1.9], sun: ['#fff0d2', 2.4, [-10, 26, 12]], rim: ['#cfe2ff', 0.7], glow: 0.6, lamps: 0.1 },
-    dusk: { sky: ['#f0b48c', '#5d528f'], hemi: ['#f3cdb6', '#8a6f6a', 1.5], sun: ['#ff9a5c', 1.9, [-22, 11, 7]], rim: ['#c9b6f0', 0.9], glow: 1.05, lamps: 0.8 },
-    night: { sky: ['#243152', '#0b1020'], hemi: ['#9fb4e6', '#3a3550', 1.05], sun: ['#9fb9ea', 0.8, [-12, 25, 8]], rim: ['#bcd0ff', 0.95], glow: 1.3, lamps: 1.6 },
+    day: { sky: ['#e6efe6', '#5fa8e4'], hemi: ['#e4f0ff', '#c4a678', 1.6], sun: ['#ffe6b8', 2.9, [-16, 22, 9]], rim: ['#cfe2ff', 0.7], glow: 0.6, lamps: 0.1 },
+    dusk: { sky: ['#ffa77a', '#4f4a8c'], hemi: ['#f6bfa8', '#7d6270', 1.4], sun: ['#ff8a4a', 2.3, [-24, 9, 6]], rim: ['#d6a8f0', 1], glow: 1.1, lamps: 0.9 },
+    night: { sky: ['#2c3c6a', '#0c1226'], hemi: ['#a4b8f2', '#46405e', 1.2], sun: ['#a6c0f4', 1, [-12, 25, 8]], rim: ['#bcd0ff', 1], glow: 1.3, lamps: 1.7 },
   },
   indoor: {
-    day: { sky: ['#d6e9ef', '#8cc0e2'], hemi: ['#fff6ea', '#cdbba6', 2.2], sun: ['#fff1d8', 1.9, [-8, 26, 14]], rim: ['#dfeaff', 0.5], glow: 0.85, lamps: 0.45 },
-    dusk: { sky: ['#e3a37c', '#6f5f95'], hemi: ['#ffe4c7', '#a8937f', 1.9], sun: ['#ffb57c', 1.4, [-18, 14, 10]], rim: ['#d9c8f2', 0.6], glow: 1.05, lamps: 0.85 },
-    night: { sky: ['#232e4a', '#0e1324'], hemi: ['#ecdfc9', '#7a6f78', 1.6], sun: ['#c9d3ee', 0.9, [-12, 25, 8]], rim: ['#c6d4ff', 0.7], glow: 1.2, lamps: 1.1 },
+    day: { sky: ['#e4eee8', '#7fb8e6'], hemi: ['#fff4e2', '#c9ae92', 1.85], sun: ['#ffe8c4', 2.5, [-12, 24, 12]], rim: ['#dfeaff', 0.5], glow: 0.85, lamps: 0.5 },
+    dusk: { sky: ['#f0a07a', '#5f5590'], hemi: ['#ffdcba', '#9a806f', 1.65], sun: ['#ffa468', 1.8, [-20, 12, 9]], rim: ['#dcb8f0', 0.7], glow: 1.1, lamps: 1 },
+    night: { sky: ['#232e4a', '#0e1324'], hemi: ['#f2dcbc', '#826c70', 1.5], sun: ['#b4c6f0', 1.1, [-12, 25, 8]], rim: ['#c6d4ff', 0.75], glow: 1.25, lamps: 1.4 },
   },
   club: {
     day: { sky: ['#241d3a', '#120f1f'], hemi: ['#b3a2ea', '#4a3550', 1.1], sun: ['#c0b0ff', 0.7, [-10, 26, 10]], rim: ['#ffd9b0', 0.8], glow: 1.2, lamps: 1.05 },

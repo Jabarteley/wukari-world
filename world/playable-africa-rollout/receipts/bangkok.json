@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bangkok",
+  "countryIso2": "TH",
+  "generationIdentity": {
+    "cityId": "bangkok",
+    "stateId": "th-bangkok",
+    "stateName": "Bangkok"
+  },
+  "inventorySha256": "3407eaf021964bc975d2d49f0c51442693d705043ebe3eb2a49925baf280bbbc",
+  "inventoryPath": "world/playable-africa-rollout/sources/bangkok.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "bangkok-airport",
+    "name": "Suvarnabhumi Airport",
+    "lon": 100.747002,
+    "lat": 13.6811,
+    "sourceUrl": "https://ourairports.com/airports/VTBS/"
+  },
+  "bounds": [
+    13.57161291006602,
+    100.30840009468739,
+    13.933374689933979,
+    100.75624778595025
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/thailand-261011.osm.pbf",
+      "datasetSha256": "a807751a1cbb8740b13254a4a240bfa539a1b61fae590521ba79c8fdc22f5cb6",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "0505a67dbe70c8aef73e5f6f51f589aa4ed78ffc9f4eb27756de400f56b8866c",
+          "elements": 9182
+        },
+        {
+          "file": "extras.json",
+          "sha256": "ad33de983339620b8729f808c3626ad6af1d5194b4f00900d9729a9fd5859ca4",
+          "elements": 1788
+        },
+        {
+          "file": "water.json",
+          "sha256": "b10cf1a656b3d819e218c373ee8d266681a0d34b9ded0ae1a724fa9cab0c0225",
+          "elements": 1399
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "3b1c6df7ba69355521fa2b5a36857f0ec441b18ad5e29224871e5592fb140861",
+          "elements": 12045
+        },
+        {
+          "file": "roads.json",
+          "sha256": "3cd5fb61cd49bb77e38e3359382693284aa7d135d2c163fc26dbf0d53fc75341",
+          "elements": 7570
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 26,
+    "waterPolygons": 37,
+    "reachWaterPolygons": 82
+  },
+  "observed": {
+    "places": 9182,
+    "extras": 1788,
+    "water": 1399,
+    "landuse": 12045,
+    "roads": 7570
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1200,
+      "sha256": "36a1ee2cf09076960c3d5d026b354186af2c0f57bbbdab80e522690face16acd"
+    },
+    "geometry.ts": {
+      "bytes": 226381,
+      "sha256": "c8a8cbe29228de0f1ef0c7df08be46a2937b81b8b9898dc94da026b51ff62b06"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "7719aad9d86ec417935c4dbe2a0c6661fab177f2418647e31c34279e1d1b9222"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/bangkok.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

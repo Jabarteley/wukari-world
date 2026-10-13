@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "lisbon",
+  "countryIso2": "PT",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Lisbon",
+    "coordinatesWgs84": [
+      -9.1365919,
+      38.7077507
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/portugal-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "lisbon-airport",
+    "name": "Lisbon Humberto Delgado Airport",
+    "lon": -9.13592,
+    "lat": 38.7813,
+    "sourceUrl": "https://ourairports.com/airports/LPPT/"
+  },
+  "boxes": {
+    "play": [
+      38.52686981006602,
+      -9.36741112308337,
+      38.88863158993398,
+      -8.905772676916632
+    ],
+    "core": [
+      38.662530477516505,
+      -9.194186876005324,
+      38.75297092248349,
+      -9.078996923994678
+    ],
+    "outline": [
+      38.47686981006602,
+      -9.41741112308337,
+      38.938631589933976,
+      -8.855772676916631
+    ],
+    "wide": [
+      37.926869810066016,
+      -9.96741112308337,
+      39.48863158993398,
+      -8.305772676916632
+    ],
+    "water": [
+      37.926869810066016,
+      -9.96741112308337,
+      39.48863158993398,
+      -8.305772676916632
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/portugal-261011.osm.pbf",
+    "datasetSha256": "c105550a3ffaa9969639284f6fea638f4bc74b0108d597703dbfe5038276ed34",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "ead1f54b0d7c3d946dc4b6055013f093b4fd5f6f47158eb0e97edcf070409f76",
+        "elements": 10349
+      },
+      {
+        "file": "extras.json",
+        "sha256": "bc41850a2e755a8c4a2ccde9b5d04762ba323549422b35e10b5883d4dcd2c02c",
+        "elements": 1388
+      },
+      {
+        "file": "water.json",
+        "sha256": "46cdc7da2fa85febb5179856d017be9a570c2e234b776c3d8e2897987564c152",
+        "elements": 5885
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "4d190a485d9d47a8559d88fbec4388e7762fdd7a09ed6b6f4c81641456568e71",
+        "elements": 6380
+      },
+      {
+        "file": "roads.json",
+        "sha256": "02e27739391d225a3142b7e746f71f63696fc44f08342087e396bf2eecd2e0ed",
+        "elements": 8319
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Praça de Espanha",
+      "osm": "node/256976574",
+      "coordinatesWgs84": [
+        -9.159247,
+        38.737684
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Casa da Dizima",
+      "osm": "node/5111823023",
+      "coordinatesWgs84": [
+        -9.289946,
+        38.695531
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universidade Politécnica de Setúbal",
+      "osm": "way/108278582",
+      "coordinatesWgs84": [
+        -9.048687,
+        38.652327
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Beatriz Ângelo",
+      "osm": "way/510427026",
+      "coordinatesWgs84": [
+        -9.176448,
+        38.821518
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Quinta do Bonjardim",
+      "osm": "relation/18307787",
+      "coordinatesWgs84": [
+        -9.273482,
+        38.78967
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Freeport Lisboa Fashion Outlet",
+      "osm": "way/110230559",
+      "coordinatesWgs84": [
+        -8.940843,
+        38.752148
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Igreja de Montelavar",
+      "osm": "way/558658121",
+      "coordinatesWgs84": [
+        -9.334767,
+        38.860911
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Praça Afonso de Albuquerque",
+      "osm": "relation/15475187",
+      "coordinatesWgs84": [
+        -9.200415,
+        38.696687
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tribunal Central de Instrução Criminal",
+      "osm": "node/9280307466",
+      "coordinatesWgs84": [
+        -9.096942,
+        38.772662
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Escola Superior de Teatro e Cinema",
+      "osm": "way/100443688",
+      "coordinatesWgs84": [
+        -9.235147,
+        38.76357
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Praça de Toiros Amadeu Augusto dos Santos",
+      "osm": "relation/8198208",
+      "coordinatesWgs84": [
+        -8.964767,
+        38.708064
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grutas da Quinta do Anjo",
+      "osm": "node/1191138578",
+      "coordinatesWgs84": [
+        -8.938582,
+        38.564201
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Forte da Casa",
+      "osm": "way/364773455",
+      "coordinatesWgs84": [
+        -9.056599,
+        38.874368
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Minicomboio da Caparica",
+      "osm": "way/722649425",
+      "coordinatesWgs84": [
+        -9.198154,
+        38.576666
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque da Vila",
+      "osm": "way/243295693",
+      "coordinatesWgs84": [
+        -9.036772,
+        38.565452
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Igreja de São Pedro",
+      "osm": "way/558565533",
+      "coordinatesWgs84": [
+        -9.273008,
+        38.848445
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Convento de Santos-o-Novo",
+      "osm": "relation/3174204",
+      "coordinatesWgs84": [
+        -9.117772,
+        38.721084
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Almada Forum",
+      "osm": "way/254561957",
+      "coordinatesWgs84": [
+        -9.175206,
+        38.659996
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jardim da Quinta de Santa Clara",
+      "osm": "way/812621314",
+      "coordinatesWgs84": [
+        -9.161624,
+        38.780195
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nova School of Business and Economics",
+      "osm": "way/179419205",
+      "coordinatesWgs84": [
+        -9.325831,
+        38.678476
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital de Santa Cruz",
+      "osm": "way/144001459",
+      "coordinatesWgs84": [
+        -9.232907,
+        38.726747
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro Comercial Colombo",
+      "osm": "way/42645796",
+      "coordinatesWgs84": [
+        -9.188668,
+        38.754758
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Stadium",
+      "osm": "way/36615985",
+      "coordinatesWgs84": [
+        -9.260589,
+        38.70881
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "NOVA School of Science and Technology",
+      "osm": "way/52430141",
+      "coordinatesWgs84": [
+        -9.205814,
+        38.660252
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1213,
+      "sha256": "8b7727efda48ae0bc842329728f753dc4a931024340a6557e5c347485996ab8f"
+    },
+    "geometry.ts": {
+      "bytes": 144178,
+      "sha256": "bf8ad671cb2706396a3bfe5951d29a00c5431c810bb194acd5989a05f4c34bef"
+    },
+    "places.ts": {
+      "bytes": 10094,
+      "sha256": "26e5f84d160f093b7457ad25f885f9675310db07c7c5c64288f442ac08451cd4"
+    },
+    "terrain.ts": {
+      "bytes": 149163,
+      "sha256": "df7bfa4c87b8908386d9125cfa6650c1a3299481bfa2bc5115b2e2ae2381449a"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "df7861c19d7fe32b2552bcf6d620a516a462369bd6f7dcc49993ad0f51858eaf"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

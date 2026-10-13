@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "prague",
+  "countryIso2": "CZ",
+  "generationIdentity": {
+    "cityId": "prague",
+    "stateId": "cz-prague",
+    "stateName": "Prague"
+  },
+  "inventorySha256": "a1b8cd1d7becff9390888b85286ae999946f655a78f4b9354fdc1ab171203132",
+  "inventoryPath": "world/playable-africa-rollout/sources/prague.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "prague-airport",
+    "name": "Václav Havel Airport Prague",
+    "lon": 14.259911,
+    "lat": 50.100874,
+    "sourceUrl": "https://ourairports.com/airports/LKPR/"
+  },
+  "bounds": [
+    49.90658451006602,
+    14.140176742559426,
+    50.26834628993398,
+    14.702330257440575
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/czech-republic-261011.osm.pbf",
+      "datasetSha256": "a49bce7e0e2c863ed298281068318c3d77ce1c5d396fc7522ac7ed387b4d7193",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "f82459a1897155699b39e4a9eff5966991c0bb43467fab81b8c1516a2f5e0ec0",
+          "elements": 7468
+        },
+        {
+          "file": "extras.json",
+          "sha256": "77d9a3df92d03c4aa827cfcfc6aad0f5839e89194922dedfb039e8d1ea6279aa",
+          "elements": 1230
+        },
+        {
+          "file": "water.json",
+          "sha256": "cf1e515398a4959e4197564858ba591d320d74c10bd4a22f9edc4280a25cff8a",
+          "elements": 1220
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "397abf4d97d6b14cffb9005f5131af901e150d387ea9223e9542f56c6f93ffad",
+          "elements": 7261
+        },
+        {
+          "file": "roads.json",
+          "sha256": "c11547e4888e4254393a0ece3fc0affe4146693a6c02a20b448558d5ef5ff88d",
+          "elements": 4951
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 109,
+    "waterPolygons": 15,
+    "reachWaterPolygons": 8
+  },
+  "observed": {
+    "places": 7468,
+    "extras": 1230,
+    "water": 1220,
+    "landuse": 7261,
+    "roads": 4951
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1222,
+      "sha256": "66ea7c63105ed42f6ea9a9ac9dceacb26613cfefbecbfb0143991d6d54d72b3b"
+    },
+    "geometry.ts": {
+      "bytes": 248920,
+      "sha256": "3025f1466b6079963c4586a4d925dc40a23e40f4c760c6e12d0d82108c59eb08"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "6e7c29d0cdd6261acef005101272f7c22712f67706833975e0527535fcc0a883"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/prague.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

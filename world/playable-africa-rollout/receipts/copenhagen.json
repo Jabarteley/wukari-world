@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "copenhagen",
+  "countryIso2": "DK",
+  "generationIdentity": {
+    "cityId": "copenhagen",
+    "stateId": "dk-copenhagen",
+    "stateName": "Copenhagen"
+  },
+  "inventorySha256": "9daab5bcecfce8b125aed87656e15299c5485c58bef6d35b4786881903e88afb",
+  "inventoryPath": "world/playable-africa-rollout/sources/copenhagen.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "copenhagen-airport",
+    "name": "Copenhagen Kastrup Airport",
+    "lon": 12.656000137329,
+    "lat": 55.617900848389,
+    "sourceUrl": "https://ourairports.com/airports/EKCH/"
+  },
+  "bounds": [
+    55.50584341006602,
+    12.249879981907252,
+    55.86760518993398,
+    12.89026481809275
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/denmark-261011.osm.pbf",
+      "datasetSha256": "463d4e1b4ecb60c3689bfbf2bb31e8d5bbd40047160cd7634abfde1b499a22b1",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "fa36dfa2fdeae0d5f27b65667b9002d59359d4d079e64ea6ce67c4194fa594ad",
+          "elements": 3659
+        },
+        {
+          "file": "extras.json",
+          "sha256": "83c39f19dd35ff8226e3dd6eec573680316c38b704312d62501c29eb5a3764c8",
+          "elements": 1173
+        },
+        {
+          "file": "water.json",
+          "sha256": "08c23dddbaf2375364c7120851cc6f7226ee15420c4f3c7179707d128568c9ae",
+          "elements": 6240
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "1954d18ede7e98e6fa680a28d5076435779320d0a025ee8d33aed7dbe4df2449",
+          "elements": 1392
+        },
+        {
+          "file": "roads.json",
+          "sha256": "956edf5ca5609f1b3923389cbe256d83e96ae57d352dbfaec9901429fb7adce0",
+          "elements": 1548
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 514,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 17,
+    "waterPolygons": 34,
+    "reachWaterPolygons": 52
+  },
+  "observed": {
+    "places": 3659,
+    "extras": 1173,
+    "water": 6240,
+    "landuse": 1392,
+    "roads": 1548
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1239,
+      "sha256": "d75422e95ee0cbf3c0719f9927280c74761ac4fe0c96ca40f7aea8442c9ddc9b"
+    },
+    "geometry.ts": {
+      "bytes": 831919,
+      "sha256": "8f834303ac11c6c99d1099bdb8029678623dbdb30988b105215c5c00ebc3d3e0"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "621ec90cdf56dc7940d56c16377b94c42d5f6e84e916a00b185d36ad6ebd1012"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/copenhagen.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

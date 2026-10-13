@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kabul",
+  "countryIso2": "AF",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Kabul",
+    "coordinatesWgs84": [
+      69.1850584,
+      34.5269503
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/afghanistan-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "kabul-airport",
+    "name": "Kabul International Airport",
+    "lon": 69.212303,
+    "lat": 34.565899,
+    "sourceUrl": "https://ourairports.com/airports/OAKB/"
+  },
+  "boxes": {
+    "play": [
+      34.34606941006602,
+      68.9665088115245,
+      34.707831189933984,
+      69.4036079884755
+    ],
+    "core": [
+      34.48173007751651,
+      69.13051030710811,
+      34.572170522483496,
+      69.2396064928919
+    ],
+    "outline": [
+      34.296069410066025,
+      68.91650881152451,
+      34.75783118993398,
+      69.4536079884755
+    ],
+    "wide": [
+      33.74606941006602,
+      68.36650881152451,
+      35.307831189933985,
+      70.0036079884755
+    ],
+    "water": [
+      34.34606941006602,
+      68.9665088115245,
+      34.707831189933984,
+      69.4036079884755
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/afghanistan-261011.osm.pbf",
+    "datasetSha256": "e76b44ea1520b09112ec6e45c80906f48d4494850fc1f1247b30a9e757a5a05e",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "454ebad30199f340b3c0b0b64c052d176f4cab37c79d3e09b53ba0c9c07fc57c",
+        "elements": 380
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f4d0c9a867d141279716c457f6db34ae8f6ff7cd28cf79e0e77584ad76da2206",
+        "elements": 154
+      },
+      {
+        "file": "water.json",
+        "sha256": "5481df87a99bfe5aac9e9aba2e39f572020b630ebdf1286ab12e571e7706bce2",
+        "elements": 31
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "1a78f9433d652067bbfb9fed92c94c040b830ca04e6bdcdd26c4886adb595685",
+        "elements": 2132
+      },
+      {
+        "file": "roads.json",
+        "sha256": "5e50caf0159a673b74fc78489c760d574f363e6d66fbf7e44312f5626ab64a7d",
+        "elements": 477
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Minibuses to Bamyan",
+      "osm": "node/11137703487",
+      "coordinatesWgs84": [
+        69.022284,
+        34.493494
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "China Lanzhou Beef Noodles",
+      "osm": "node/13472526480",
+      "coordinatesWgs84": [
+        69.173649,
+        34.531896
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dawat University",
+      "osm": "way/706056301",
+      "coordinatesWgs84": [
+        69.08866,
+        34.532084
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "French Medical Institute for Children",
+      "osm": "way/991171093",
+      "coordinatesWgs84": [
+        69.13345,
+        34.520253
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chihilsitoon Garden",
+      "osm": "way/387447673",
+      "coordinatesWgs84": [
+        69.152186,
+        34.468506
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kabul City Centre",
+      "osm": "node/1392109020",
+      "coordinatesWgs84": [
+        69.165664,
+        34.532444
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Puli Khishti Jamia Masjid",
+      "osm": "way/199569685",
+      "coordinatesWgs84": [
+        69.180533,
+        34.515565
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mamoriat Square",
+      "osm": "node/8037609484",
+      "coordinatesWgs84": [
+        69.320675,
+        34.509045
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National Assembly of Afghanistan",
+      "osm": "relation/5307575",
+      "coordinatesWgs84": [
+        69.120286,
+        34.461943
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kabul Polytechnic University",
+      "osm": "way/991169055",
+      "coordinatesWgs84": [
+        69.119847,
+        34.535355
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ghazi Stadium",
+      "osm": "way/1494767421",
+      "coordinatesWgs84": [
+        69.193992,
+        34.518499
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Guldara Stupa",
+      "osm": "way/772243563",
+      "coordinatesWgs84": [
+        69.278645,
+        34.392765
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Minar-i Chakri",
+      "osm": "node/2551955816",
+      "coordinatesWgs84": [
+        69.283167,
+        34.583313
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "شفاخانه جناح",
+      "osm": "way/710563825",
+      "coordinatesWgs84": [
+        69.098587,
+        34.50237
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gardens of Babur",
+      "osm": "way/199353387",
+      "coordinatesWgs84": [
+        69.158478,
+        34.502607
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "د داود خان نظامي روغتون",
+      "osm": "way/200364379",
+      "coordinatesWgs84": [
+        69.188832,
+        34.541071
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bala Hissar",
+      "osm": "way/1339181429",
+      "coordinatesWgs84": [
+        69.191166,
+        34.505391
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sakhi Shrine",
+      "osm": "way/793260749",
+      "coordinatesWgs84": [
+        69.146585,
+        34.519952
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shah-i du Shamshira",
+      "osm": "way/864540700",
+      "coordinatesWgs84": [
+        69.171494,
+        34.515721
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zarnergar Park",
+      "osm": "way/201198534",
+      "coordinatesWgs84": [
+        69.175261,
+        34.52126
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kabul University",
+      "osm": "way/199999770",
+      "coordinatesWgs84": [
+        69.134523,
+        34.51517
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Alokozay International Cricket Stadium",
+      "osm": "way/560456603",
+      "coordinatesWgs84": [
+        69.198277,
+        34.514888
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Aqcha Restaurant",
+      "osm": "node/13597152438",
+      "coordinatesWgs84": [
+        69.249816,
+        34.544525
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Restaurant Gharb Kabul",
+      "osm": "node/7965537558",
+      "coordinatesWgs84": [
+        69.061167,
+        34.49929
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1207,
+      "sha256": "e300cd63f6affbe1f7f79d6b269875ae43009f1ddea61a5bf929b7ab5cf6a783"
+    },
+    "geometry.ts": {
+      "bytes": 50055,
+      "sha256": "ae0c8ba533b684349ea6ff5e52d66d754fab0c3cb54b5c3f37595c9e1abad701"
+    },
+    "places.ts": {
+      "bytes": 9838,
+      "sha256": "b09b9218ce1560ed9c7558838ff9f2a6dc90e204280310f655cd55dba1d8f670"
+    },
+    "terrain.ts": {
+      "bytes": 24467,
+      "sha256": "1ee430bacce5081e04590ef3530d91546eda3d69a62d4147ed56283a54720428"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "09299f39ba7667ee06bae3fbe2b5816922b63105b9d6601e369f4f28631c3296"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

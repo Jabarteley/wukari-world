@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "paramaribo",
+  "countryIso2": "SR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Paramaribo",
+    "coordinatesWgs84": [
+      -55.1703941,
+      5.8247628
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/south-america/suriname-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "paramaribo-airport",
+    "name": "Johan Adolf Pengel International Airport",
+    "lon": -55.187801,
+    "lat": 5.45283,
+    "sourceUrl": "https://ourairports.com/airports/SMJP/"
+  },
+  "boxes": {
+    "play": [
+      5.443785955503301,
+      -55.35104783597648,
+      6.0056436899339785,
+      -54.989740364023525
+    ],
+    "core": [
+      5.779542577516506,
+      -55.21554641340975,
+      5.869983022483495,
+      -55.12524178659026
+    ],
+    "outline": [
+      5.393785955503301,
+      -55.40104783597648,
+      6.055643689933978,
+      -54.93974036402353
+    ],
+    "wide": [
+      4.843785955503301,
+      -55.95104783597648,
+      6.605643689933978,
+      -54.389740364023524
+    ],
+    "water": [
+      4.843785955503301,
+      -55.95104783597648,
+      6.605643689933978,
+      -54.389740364023524
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/south-america/suriname-261011.osm.pbf",
+    "datasetSha256": "1acfd87f06b3a5fa908365c06983919404fd70e12b673ba6a2bd22d1a8e87af3",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/south-america/suriname-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 21402790,
+        "md5": "3751335c967af8cb914986acd0b85782",
+        "sha256": "d47d39a5ba954a5a5bbf645be41e5c074e512b4c23f21a24b5d5738b2d6c019a"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/south-america/guyana-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 15554318,
+        "md5": "73aca8d8e775563d49a971ed9dd79c20",
+        "sha256": "2d89476a2cfed68506b3c759c898b54afd0c9996269c7dd8b73f4c2b7f45e8d4",
+        "reason": "admin-0 relation/287082 member way/143451568 (Guyana - Suriname, Corantijn mouth, 60 nodes) is absent from the Suriname clip; all its nodes lie inside the Guyana clip"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "898b33b32c6f7a005682115a43fba4569e01f89cfb37ad3c7218db5f7c547a19",
+        "elements": 546
+      },
+      {
+        "file": "extras.json",
+        "sha256": "ee422f2e5d7d00b3fa879cf4e87b6a9c37874c465cc958ba67697a365640710d",
+        "elements": 84
+      },
+      {
+        "file": "water.json",
+        "sha256": "6a8822fd119dab0602f7d6d83f846de0d3b2206dae57d9417ae8051ca03d9b69",
+        "elements": 86
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "7ce8a91b83f38d63cbd03809a43a21d2f18ec215565df0f9e8232c235fc0056b",
+        "elements": 291
+      },
+      {
+        "file": "roads.json",
+        "sha256": "2987108beb8a2c2f82ba3f5c7a65be27a16d5bd3e6b9ba98482f3081ce6a49a7",
+        "elements": 218
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Line 5 bus station",
+      "osm": "node/1660255196",
+      "coordinatesWgs84": [
+        -55.157662,
+        5.823951
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Naskip Lelydorp",
+      "osm": "node/4069840558",
+      "coordinatesWgs84": [
+        -55.216926,
+        5.692549
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Anton de Kom University ADEK",
+      "osm": "way/135518480",
+      "coordinatesWgs84": [
+        -55.215876,
+        5.813773
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Academisch Ziekenhuis Paramaribo",
+      "osm": "way/211387613",
+      "coordinatesWgs84": [
+        -55.183343,
+        5.836336
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palmentuin",
+      "osm": "way/155987984",
+      "coordinatesWgs84": [
+        -55.150156,
+        5.828031
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maretraite Mall",
+      "osm": "way/315858388",
+      "coordinatesWgs84": [
+        -55.137629,
+        5.846414
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Arya Dewaker Temple",
+      "osm": "way/315124289",
+      "coordinatesWgs84": [
+        -55.174799,
+        5.819529
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "William Kraanplein",
+      "osm": "way/962356518",
+      "coordinatesWgs84": [
+        -55.176148,
+        5.815243
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "De Nationale Assemblée",
+      "osm": "way/135982001",
+      "coordinatesWgs84": [
+        -55.150689,
+        5.825335
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "CELOS",
+      "osm": "way/229384907",
+      "coordinatesWgs84": [
+        -55.220288,
+        5.810759
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Clarence Seedorf stadion",
+      "osm": "way/229263516",
+      "coordinatesWgs84": [
+        -55.101829,
+        5.663773
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fort Nieuw Amsterdam",
+      "osm": "way/135643181",
+      "coordinatesWgs84": [
+        -55.091729,
+        5.888017
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Paramaribo Zoo",
+      "osm": "way/397593588",
+      "coordinatesWgs84": [
+        -55.159765,
+        5.847535
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Butterfly Plantation",
+      "osm": "node/4462598425",
+      "coordinatesWgs84": [
+        -55.201836,
+        5.68712
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Andre Kamperveen Stadion",
+      "osm": "way/156303014",
+      "coordinatesWgs84": [
+        -55.160519,
+        5.837339
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Diakonessenhuis",
+      "osm": "way/955279180",
+      "coordinatesWgs84": [
+        -55.183807,
+        5.821961
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dr. Ir. F. Essed Stadion",
+      "osm": "way/718195852",
+      "coordinatesWgs84": [
+        -55.20744,
+        5.811527
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sint Vincentius Ziekenhuis",
+      "osm": "way/968232803",
+      "coordinatesWgs84": [
+        -55.152547,
+        5.832366
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Synagoge Neve Shalom",
+      "osm": "way/191965515",
+      "coordinatesWgs84": [
+        -55.159206,
+        5.82845
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sint-Petrus-en-Pauluskathedraal",
+      "osm": "way/191965158",
+      "coordinatesWgs84": [
+        -55.15394,
+        5.828726
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Onafhankelijkheidsplein",
+      "osm": "way/155987982",
+      "coordinatesWgs84": [
+        -55.151423,
+        5.826341
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hermitage Mall",
+      "osm": "way/170813028",
+      "coordinatesWgs84": [
+        -55.204941,
+        5.819035
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vriendschapspark",
+      "osm": "way/444063650",
+      "coordinatesWgs84": [
+        -55.181612,
+        5.814827
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centrale Markt",
+      "osm": "way/193176151",
+      "coordinatesWgs84": [
+        -55.158972,
+        5.823328
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1264,
+      "sha256": "6c5ca6f0a62b2df1a210e3f49bd3ca070cc7dc96b7ee0de178f3da8b4da68318"
+    },
+    "geometry.ts": {
+      "bytes": 42584,
+      "sha256": "533c33435b8f3230f33299c1bfb2a0b24583e45cc5e975cbd8eac03b73806a59"
+    },
+    "places.ts": {
+      "bytes": 9815,
+      "sha256": "ef5696c886d635d0ad5678e8c0549e1f4bd5812c6b2b9771e282d1c259b06bee"
+    },
+    "terrain.ts": {
+      "bytes": 74467,
+      "sha256": "86e8be467b0457aa8101c102efb09d379ea93b54076d5c7f1f0c7b611f0b5b7d"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "a497601247969bffdc6880676de3f92664b5474e77737900ee63285b9de12f05"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

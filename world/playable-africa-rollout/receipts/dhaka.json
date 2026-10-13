@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "dhaka",
+  "countryIso2": "BD",
+  "generationIdentity": {
+    "cityId": "dhaka",
+    "stateId": "bd-dhaka",
+    "stateName": "Dhaka"
+  },
+  "inventorySha256": "35b8d4e8433c2b33c080dc8e632c595d81c72d71ca4acc353bed2594d91d80dc",
+  "inventoryPath": "world/playable-africa-rollout/sources/dhaka.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "dhaka-airport",
+    "name": "Hazrat Shahjalal International Airport",
+    "lon": 90.397783,
+    "lat": 23.843347,
+    "sourceUrl": "https://ourairports.com/airports/VGHS/"
+  },
+  "bounds": [
+    23.583505410066024,
+    90.19243311848332,
+    23.94526718993398,
+    90.58559568151666
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/bangladesh-261011.osm.pbf",
+      "datasetSha256": "18ec3897a3de21d4623ab6963e1a71a71a8453fd45679ef7dd8c463795c7363e",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "712778ba06fee13671343f4f7af60ae199149c12f305bb97d50265ba8f68a015",
+          "elements": 4657
+        },
+        {
+          "file": "extras.json",
+          "sha256": "36f9612c52cd0284c5fd27c3354d16f9d5eef8714f94ab2dcb21131441d4fa95",
+          "elements": 977
+        },
+        {
+          "file": "water.json",
+          "sha256": "c9774d46f7cfa4390faaf8fa8a79e411c04a77bb4e1208a33ce609016ad7d71e",
+          "elements": 304
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "56f367e4f6dcea5a1b6bef676c5adc066d09aaa4824338665a04d1cbf183c895",
+          "elements": 1770
+        },
+        {
+          "file": "roads.json",
+          "sha256": "6a189ac6ae8d078981fb97441dfe5304d60214354fbfb37490512c3439a9494d",
+          "elements": 1683
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 661,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 38,
+    "waterPolygons": 81,
+    "reachWaterPolygons": 26
+  },
+  "observed": {
+    "places": 4657,
+    "extras": 977,
+    "water": 304,
+    "landuse": 1770,
+    "roads": 1683
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1228,
+      "sha256": "61a74d85e87de4d3aaa3309c95d7a8ef32a15a46059ac2593ebd77333e48a447"
+    },
+    "geometry.ts": {
+      "bytes": 133094,
+      "sha256": "81d6bd072f299096f8acb4177c7df3daa9c0da64e5785565d9a106405003b9fc"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "3e590f3878cb0f3dc727dc0bc527b83f8772b3dd7f7ad8fcd58522e2895e4c13"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/dhaka.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

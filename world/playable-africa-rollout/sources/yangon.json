@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "yangon",
+  "countryIso2": "MM",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Yangon",
+    "coordinatesWgs84": [
+      96.1609916,
+      16.7967129
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/myanmar-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "yangon-airport",
+    "name": "Yangon International Airport",
+    "lon": 96.1332015991,
+    "lat": 16.907300949099998,
+    "sourceUrl": "https://ourairports.com/airports/VYYY/"
+  },
+  "boxes": {
+    "play": [
+      16.615832010066022,
+      95.97314272669976,
+      16.977593789933977,
+      96.34884047330024
+    ],
+    "core": [
+      16.751492677516506,
+      96.11406317343565,
+      16.841933122483493,
+      96.20792002656435
+    ],
+    "outline": [
+      16.56583201006602,
+      95.92314272669977,
+      17.027593789933977,
+      96.39884047330024
+    ],
+    "wide": [
+      16.01583201006602,
+      95.37314272669977,
+      17.577593789933978,
+      96.94884047330024
+    ],
+    "water": [
+      16.01583201006602,
+      95.37314272669977,
+      17.577593789933978,
+      96.94884047330024
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/myanmar-261011.osm.pbf",
+    "datasetSha256": "9ff926b35db2209c43b162dabcc50fb6d133341ed2f34a629e6cc31e598dbfa9",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "6a3b9d7da80ff74626e86322efe8f9c5f77b40956b83475978758d1732c8203e",
+        "elements": 3419
+      },
+      {
+        "file": "extras.json",
+        "sha256": "6c19ba22c0defe4eea87708f4115c01dd702d76c7f32afc29c712f6bc92f4d3e",
+        "elements": 460
+      },
+      {
+        "file": "water.json",
+        "sha256": "9ea0df45d793e0023da8f1d8d6bdcf1e053b5dceddcbfbfb4fa56102bb3bc727",
+        "elements": 583
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "524d2a2e78f53982bd2ee71a62eccde8ee77f5297c6a489da8114ee243ccd655",
+        "elements": 2198
+      },
+      {
+        "file": "roads.json",
+        "sha256": "518bcf97802f91023c5d622c168ebe5bb43748a7feceb6b9a1f92cf3afb9f54d",
+        "elements": 2997
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Paywetseikkon",
+      "osm": "node/3077717862",
+      "coordinatesWgs84": [
+        96.150219,
+        16.900563
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Black Canyon",
+      "osm": "node/419882997",
+      "coordinatesWgs84": [
+        96.141799,
+        16.793188
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Yangon Institute of Economics",
+      "osm": "way/289005750",
+      "coordinatesWgs84": [
+        96.27032,
+        16.927036
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "South Okkalapa Maternal and Child Hospital",
+      "osm": "way/396441640",
+      "coordinatesWgs84": [
+        96.187076,
+        16.845866
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maha Bandula Park",
+      "osm": "way/129485365",
+      "coordinatesWgs84": [
+        96.159467,
+        16.772905
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bogyoke Aung San Market",
+      "osm": "way/23395611",
+      "coordinatesWgs84": [
+        96.155593,
+        16.780341
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kyaik Khauk Pagoda",
+      "osm": "node/4631857843",
+      "coordinatesWgs84": [
+        96.270821,
+        16.730276
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Shwe Pyi Thar Town Hall",
+      "osm": "node/8115481444",
+      "coordinatesWgs84": [
+        96.077675,
+        16.958657
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hlaing Thar Yar Town Hall",
+      "osm": "node/7765767185",
+      "coordinatesWgs84": [
+        96.063201,
+        16.878135
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dagon University",
+      "osm": "way/378356321",
+      "coordinatesWgs84": [
+        96.208978,
+        16.911429
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Thuwunna Stadium",
+      "osm": "way/15059554",
+      "coordinatesWgs84": [
+        96.186803,
+        16.821355
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Myanmar Gems Museum",
+      "osm": "node/2107705043",
+      "coordinatesWgs84": [
+        96.156504,
+        16.855152
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Technological University, Thanlyin",
+      "osm": "way/383504429",
+      "coordinatesWgs84": [
+        96.301633,
+        16.69033
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Karen Baptisit Seminary Insein",
+      "osm": "way/220311909",
+      "coordinatesWgs84": [
+        96.111926,
+        16.882026
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Yangon Mental Health Hospital",
+      "osm": "relation/5805151",
+      "coordinatesWgs84": [
+        96.26079,
+        16.963471
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lim Chin Tsong Palace",
+      "osm": "way/407771515",
+      "coordinatesWgs84": [
+        96.152684,
+        16.821522
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bogyoke Aung San Museum",
+      "osm": "node/3546535083",
+      "coordinatesWgs84": [
+        96.163353,
+        16.803833
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Botahtaung Pagoda",
+      "osm": "way/180605242",
+      "coordinatesWgs84": [
+        96.171999,
+        16.76846
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "New Yangon General Hospital",
+      "osm": "way/480039800",
+      "coordinatesWgs84": [
+        96.144961,
+        16.781097
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maha Wizaya Pagoda",
+      "osm": "relation/2409874",
+      "coordinatesWgs84": [
+        96.152216,
+        16.794919
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "People's Park",
+      "osm": "way/374243908",
+      "coordinatesWgs84": [
+        96.142379,
+        16.798809
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sa Lin Stadium",
+      "osm": "way/463340150",
+      "coordinatesWgs84": [
+        96.125368,
+        16.812544
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sakura Tower",
+      "osm": "way/129485357",
+      "coordinatesWgs84": [
+        96.159381,
+        16.779045
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "City Myanmar Cafe",
+      "osm": "node/5442063565",
+      "coordinatesWgs84": [
+        96.279077,
+        16.842307
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1225,
+      "sha256": "2723e7e1ee075a0640da0a2bd145f163a04eea6f4bb798c882008f3e27c1dd62"
+    },
+    "geometry.ts": {
+      "bytes": 137251,
+      "sha256": "642435de99adeab4246084cefdcfa39186ced42425534160e25d3d2209d3beff"
+    },
+    "places.ts": {
+      "bytes": 9780,
+      "sha256": "b3aaa2bf5567c81787d5c1c331d50c0316aa16f49078eb0f4e85e7f20e0293a6"
+    },
+    "terrain.ts": {
+      "bytes": 273789,
+      "sha256": "a86986a90beaa92db04abd273b3989641e50f5fc80c48c4f02d8e5c4be1a8f6e"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "718b7300f9a03b44b8150ce8bba14edf6e43f2bd1d2bab978048cba85b6808dd"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

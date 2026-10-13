@@ -396,5 +396,22 @@ export const AUTHORED_CITY_LINKS = Object.freeze([
     compactLagosFlight("zagreb","Zagreb",4541,383000,20),
     compactLagosFlight("freetown","Freetown",1851,168000,20),
     compactLagosFlight("juba","Juba",3125,270000,20),
-    compactLagosFlight("serekunda","Serrekunda",2330,206000,20)
+    compactLagosFlight("serekunda","Serrekunda",2330,206000,20),
+    compactLagosFlight("almaty","Almaty",8186,675000,20),
+    compactLagosFlight("bangkok","Bangkok",10598,868000,20),
+    compactLagosFlight("belize-city","Belize City",9961,817000,20),
+    compactLagosFlight("copenhagen","Copenhagen",5535,463000,20),
+    compactLagosFlight("damascus","Damascus",4531,382000,20),
+    compactLagosFlight("dhaka","Dhaka",9414,773000,20),
+    compactLagosFlight("kabul","Kabul",7390,611000,20),
+    compactLagosFlight("kingston","Kingston",8753,720000,20),
+    compactLagosFlight("lisbon","Lisbon",3802,324000,20),
+    compactLagosFlight("nassau","Nassau",8774,722000,20),
+    compactLagosFlight("panama-city","Panama City",9124,750000,20),
+    compactLagosFlight("paramaribo","Paramaribo",6472,538000,20),
+    compactLagosFlight("port-vila","Port Vila",17952,900000,20),
+    compactLagosFlight("prague","Prague",4960,417000,20),
+    compactLagosFlight("sanaa","Sana'a",4556,384000,20),
+    compactLagosFlight("vienna","Vienna",4803,404000,20),
+    compactLagosFlight("yangon","Yangon",10093,827000,20)
   ] satisfies readonly CityLink[])

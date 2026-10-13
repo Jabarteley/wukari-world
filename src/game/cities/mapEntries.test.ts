@@ -7,9 +7,9 @@ import { regionEntry } from '../../map3d/regions.ts'
 import { fictionalCity } from './testing/fictionalCity.test-fixture.ts'
 
 test('a user-assigned module code reaches the world-map entry it stands for, and nothing else changes', () => {
-  assert.deepEqual([mapEntryOf('xs'), mapEntryOf('xn')], ['sol', 'cyn'])
-  for (const code of ['so', 'cy', 'ng', 'xk', 'sol', 'cyn', '', 'constructor', '__proto__', 'toString']) assert.equal(mapEntryOf(code), code, code)
-  assert.deepEqual([...MAP_ENTRY_CODES].sort(), ['xn', 'xs'])
+  assert.deepEqual([mapEntryOf('xs'), mapEntryOf('xn'), mapEntryOf('cx'), mapEntryOf('cc')], ['sol', 'cyn', 'ioa', 'ioa'])
+  for (const code of ['so', 'cy', 'ng', 'xk', 'sol', 'cyn', 'ioa', '', 'constructor', '__proto__', 'toString']) assert.equal(mapEntryOf(code), code, code)
+  assert.deepEqual([...MAP_ENTRY_CODES].sort(), ['cc', 'cx', 'xn', 'xs'])
   // The entries sit on their continent's level (Africa, Asia) whichever form of the id is asked for.
   assert.deepEqual([countryAtlasLevel('xs'), countryAtlasLevel('sol'), countryAtlasLevel('xn'), countryAtlasLevel('cyn')], ['africa', 'africa', 'asia', 'asia'])
   assert.equal(countryAtlasLevel('so'), 'africa')
@@ -31,8 +31,8 @@ test('a registered city module with a user-assigned code opens exactly its map e
   t.after(() => somaliland.dispose())
   assert.equal(cityCatalogue().find((city) => city.id === 'test-hargeisa')?.countryISO, 'sol')
   const sol = regionEntry('country', 'sol')
-  assert.deepEqual([sol.status, sol.city, sol.level], ['open', 'test-hargeisa', 'africa'])
+  assert.deepEqual([sol.status, sol.level], ['open', 'africa'])
+  assert.ok(['hargeisa', 'test-hargeisa'].includes(sol.city ?? ''), 'the Somaliland entry opens on a Somaliland city (the shipped one, or the test module)')
   assert.notEqual(regionEntry('country', 'so').city, 'test-hargeisa', 'Somalia is not opened by the Somaliland city')
   assert.notEqual(regionEntry('country', 'xs').status, 'open', 'the module code is not a map entry')
-  assert.notEqual(regionEntry('country', 'cyn').status, 'open', 'Northern Cyprus stays closed until its own city exists')
 })

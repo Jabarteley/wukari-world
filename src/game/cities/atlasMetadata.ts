@@ -36,7 +36,7 @@ const continentCountries: Readonly<Record<ContinentId, ReadonlySet<string>>> = {
  * a user-assigned code (`xs`, `xn`, like Kosovo's `xk`) and every catalogue reader turns it into the map entry's id here, once.
  * Without a city module the map entries stay "coming soon"; nothing here opens an entry by itself.
  */
-const MAP_ENTRY_OF_CODE: Readonly<Record<string, string>> = Object.freeze({ xs: 'sol', xn: 'cyn' })
+const MAP_ENTRY_OF_CODE: Readonly<Record<string, string>> = Object.freeze({ xs: 'sol', xn: 'cyn', cx: 'ioa', cc: 'ioa' })
 export const mapEntryOf = (code: string): string => Object.hasOwn(MAP_ENTRY_OF_CODE, code) ? MAP_ENTRY_OF_CODE[code]! : code
 export const MAP_ENTRY_CODES: readonly string[] = Object.freeze(Object.keys(MAP_ENTRY_OF_CODE))
 

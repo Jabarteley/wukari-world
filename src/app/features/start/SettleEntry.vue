@@ -29,7 +29,9 @@ const shown = computed(() => promptTurn({ tour: tour.active || tour.pending, set
 .settle-entry { width: fit-content; }
 .settle-entry .life-job strong { max-width: none; white-space: nowrap; }
 .settle-entry .life-job { border-color: #ecc95b !important; background: #fff8df; }
-.settle-entry-away { flex: none; width: 32px; height: 32px; border: 0; border-radius: 50%; background: #ffffffcc; color: var(--c-ink, #1b1f27); font-size: 18px; line-height: 1; cursor: pointer; }
+/* The circle stays small; the hit area is 44 px. */
+.settle-entry-away { position: relative; isolation: isolate; flex: none; width: var(--tap, 44px); height: var(--tap, 44px); margin: 0 -6px; border: 0; background: none; color: var(--c-ink, #1b1f27); font-size: 18px; line-height: 1; cursor: pointer; }
+.settle-entry-away::before { content: ''; position: absolute; inset: 6px; z-index: -1; border-radius: 50%; background: #ffffffcc; }
 .settle-entry-away:focus-visible { outline: 3px solid #1d6b43; outline-offset: 1px; }
 </style>
 

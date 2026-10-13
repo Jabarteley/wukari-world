@@ -6,7 +6,7 @@
 //
 // The layout still comes from the existing stylesheet (src/ui/shell.css, .life-venue-panel and
 // below), so this panel is the same size as the one the scene's camera is framed around.
-import { computed, nextTick, ref, shallowRef, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import type { Component, ShallowRef } from 'vue'
 import type { ActivityCard } from '../../../types/view.ts'
 import { cachedCityContent } from '../../../game/cities/registry.ts'
@@ -17,6 +17,7 @@ import { useApp } from '../../state/app.ts'
 import { momentText, noticeText } from '../../state/momentText.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import { linkWording } from '../hud/hudModel.ts'
+import { tour } from '../tour/tourState.ts'
 
 const { game, shell, command, community } = useApp()
 const ui = shell.ui
@@ -74,6 +75,17 @@ async function start(card: ActivityCard, choice?: string): Promise<void> {
   try { await command('activity', choice ? { id: card.id, choice } : { id: card.id }) } finally { pending.value = null }
 }
 
+// On a phone the card rests as one line (the place and its buttons) once the player has been still for a few seconds: the scene gets the
+// screen back, and the next tap anywhere brings the spots back. The open activities rest with it (they come back with the tap). CSS only draws it on a narrow screen; see compact.css.
+const peek = ref(false)
+const PEEK_AFTER_MS = 6000
+let peekTimer = 0
+const rest = (): void => { clearTimeout(peekTimer); peekTimer = window.setTimeout(() => { peek.value = !state.value.activeAction && !tour.active && !shell.sheet.value && ui.coaching === false }, PEEK_AFTER_MS) }
+const stir = (): void => { if (peek.value) peek.value = false; rest() }
+onMounted(() => { for (const name of ['pointerdown', 'keydown']) window.addEventListener(name, stir, { capture: true, passive: true }); rest() })
+onBeforeUnmount(() => { clearTimeout(peekTimer); for (const name of ['pointerdown', 'keydown']) window.removeEventListener(name, stir, { capture: true }) })
+watch([() => ui.expanded, () => Boolean(state.value.activeAction), () => tour.active], () => { peek.value = false; rest() })
+
 // A newly selected spot is brought into view in the rail.
 const rail = ref<HTMLElement | null>(null)
 watch(() => `${state.value.location}:${state.value.spot}`, () => {
@@ -89,7 +101,7 @@ watch(() => `${state.value.location}:${state.value.spot}`, () => {
 </script>
 
 <template>
-  <section class="life-venue-panel" data-tour="place" aria-label="Current venue">
+  <section class="life-venue-panel" :class="{ 'is-peek': peek }" data-tour="place" aria-label="Current venue">
     <header class="life-venue-header">
       <button class="life-avatar" type="button" aria-label="Open your character: profile, needs, goals and skills" @click="shell.open('sim')"><GameIcon inline name="person" /></button>
       <div class="life-venue-heading"><h1><GameIcon inline kind="venue" :id="visiting ? 'home' : venue.id" :emoji="venue.icon" /> {{ title }} <span>· {{ district }}</span></h1><p :title="line"><GameIcon v-if="privateHome && view.connected" inline name="lock" />{{ line }}</p></div>

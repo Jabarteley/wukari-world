@@ -18,7 +18,7 @@
   /* ---- the top row: the other small targets of the HUD -------------------------------------------------------------------- */
   body .life-ui .hud-bar .pulse-pill,body .life-ui .hud-bar .inv-button{position:relative}
   body .life-ui .hud-bar .pulse-pill::after{content:'';position:absolute;inset:-8px -5px}
-  body .life-ui .hud-bar .inv-button::after{content:'';position:absolute;inset:-5px}
+  body .life-ui .hud-bar .inv-button::after{content:'';position:absolute;inset:-6px}
   body .life-ui .hud-bar .acct-signup::after{content:'';position:absolute;inset:-7px -3px}
 
   /* ---- the Map: view buttons, one stack at the right edge -------------------------------------------------------------- */
@@ -82,7 +82,7 @@
   .life-ui .life-quick{gap:6px}
   .life-ui .needs-strip{height:32px;padding:0 10px;gap:4px}
   .life-ui .life-round{position:relative;width:36px;height:36px}
-  body .life-round::after{content:'';position:absolute;inset:-5px}
+  body .life-round::after{content:'';position:absolute;inset:-6px}
   .life-ui .life-round svg{width:18px;height:18px}
   body .life-badge{top:-5px;right:-5px}
   body .life-ui .life-goal .life-job{position:relative;min-height:36px;min-width:var(--tap);padding:2px 12px 2px 4px}
@@ -97,9 +97,14 @@
   .life-ui .life-venue-header{gap:6px;margin-bottom:2px}
   .life-ui .life-venue-header .life-avatar{position:relative;width:36px;height:36px;font-size:20px!important}
   body .life-venue-header .life-avatar::after{content:'';position:absolute;inset:-7px}
-  body .life-venue-header .life-icon-button::after{content:'';position:absolute;inset:-5px}
+  body .life-venue-header .life-icon-button::after{content:'';position:absolute;inset:-6px}
   .life-ui .life-venue-header .life-icon-button{position:relative;width:36px;height:36px}
-  .life-ui .life-spots{min-height:46px;gap:6px}
+  /* The spot chips' hit areas (the ::after below) were clipped by the rail's own scrolling: room for them inside, taken back outside. */
+  .life-ui .life-spots{min-height:46px;gap:6px;padding:5px 1px;margin:-5px 0}
+  /* At rest the card is one line: the place and its buttons. A tap anywhere brings the spots back (VenuePanel.vue). */
+  .life-venue-panel.is-peek>:not(.life-venue-header){display:none}
+  .life-venue-panel.is-peek{padding-bottom:9px;position:relative}
+  .life-venue-panel.is-peek::after{content:'';position:absolute;left:50%;bottom:3px;width:32px;height:3px;margin-left:-16px;border-radius:2px;background:var(--c-line,#d5dad7)}
   .life-ui .life-spots button{min-height:36px;position:relative;padding:0 14px}
   body .life-spots button::after{content:'';position:absolute;inset:-5px -2px}
   .life-ui .life-spots .life-expand{position:sticky;width:36px;padding:0}

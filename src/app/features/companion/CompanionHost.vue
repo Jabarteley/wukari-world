@@ -7,6 +7,7 @@ import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, r
 import { useApp } from '../../state/app.ts'
 import { callStore } from '../calls/callState.ts'
 import { tour } from '../tour/tourState.ts'
+import { tourSeen } from '../tour/tourSeen.ts'
 import { social } from '../social/useSocial.ts'
 import { announceUi } from '../announce/announceStore.ts'
 import { coachHints } from '../hud/coachModel.ts'
@@ -293,7 +294,9 @@ function intro(ctx: CompanionContext): boolean {
   const note = ctx.friends.some((friend) => friend.founder)
   const text = `Hi ${first()}! I am ${COMPANION_NAME}, the world’s guide. ${note ? 'The founder left you a welcome note in Messages, and I am here whenever you need a hand.' : 'I am here whenever you need a hand.'}`
   const actions: CompanionAction[] = [...(note ? [{ kind: 'open', id: 'messages', label: 'Read the note' } as CompanionAction] : []), { kind: 'tour', tour: 'basics', label: 'Show me around' }]
-  if (effective.value === 'lively') show({ id: 'intro', kind: 'moment', text, actions, mood: 'wave' }); else log('lumo', text, actions, false)
+  // A player who has just taken (or skipped) the walkthrough is not offered a second one: the line waits in the thread, no bubble.
+  const toured = tourSeen((() => { try { return window.localStorage } catch { return null } })(), game.view.value.session?.id ?? '')
+  if (effective.value === 'lively' && !toured) show({ id: 'intro', kind: 'moment', text, actions, mood: 'wave' }); else log('lumo', text, actions, false)
   return true
 }
 /** The founder is away and the player wrote to them: one gentle line here, in this thread, never in theirs. */

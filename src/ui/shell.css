@@ -500,6 +500,8 @@ button.ui-row:hover{background:#f7f9f8}
   .life-goal .life-job{width:fit-content;max-width:100%}
   /* A guest's standing "Settle in" entry gets the width of its own row, below the top row, so it is never squeezed to its icon. */
   .life-goal:has([data-settle-entry]){grid-column:1/-1;grid-row:2}
+  /* With no need low the strip is gone and the top row has the room: the entry shares it with More and Clean screen, so it costs no row. */
+  @media(min-width:360px){.life-sidebar:has(.needs-strip.is-calm) .life-goal:has([data-settle-entry]){grid-column:1;grid-row:1}.life-sidebar:has(.needs-strip.is-calm):has([data-settle-entry]) .life-alerts{grid-row:2}.life-sidebar:has(.needs-strip.is-calm):has([data-settle-entry]) .life-tray{grid-row:3}}
   .life-sidebar:has([data-settle-entry]) .life-alerts{grid-row:3}
   .life-sidebar:has([data-settle-entry]) .life-tray{grid-row:4}
   .life-goal .life-job>div{display:flex;align-items:baseline;gap:6px;min-width:0;overflow:hidden}

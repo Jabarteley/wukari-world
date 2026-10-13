@@ -9,9 +9,12 @@ import BaseMeter from '../../ui/BaseMeter.vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import { cap } from '../../ui/format.ts'
 import { needFlash } from './hudModel.ts'
+import { tour } from '../tour/tourState.ts'
 
 const { game } = useApp()
 const needs = computed(() => game.view.value.needs.order.map((id) => ({ id, label: cap(id), value: Math.round(game.state.value.needs[id]) })))
+/** On a phone the strip is for when a need is low (the mood in the top bar opens all six): a calm life keeps the room for the scene. The walkthrough still shows it, for its step. */
+const calm = computed(() => !needs.value.some((need) => need.value < 35) && !tour.active && !tour.pending)
 /** Per need: which way it last jumped, and a counter that restarts the highlight. */
 const flashes = ref<Partial<Record<NeedId, { way: 'up' | 'down'; run: number }>>>({})
 let last: Partial<Record<NeedId, number>> | null = null
@@ -30,7 +33,7 @@ watch(needs, (now) => {
 </script>
 
 <template>
-  <div class="needs-strip" data-tour="needs" role="group" aria-label="Your needs">
+  <div class="needs-strip" :class="{ 'is-calm': calm }" data-tour="needs" role="group" aria-label="Your needs">
     <div v-for="need in needs" :key="`${need.id}:${flashes[need.id]?.run ?? 0}`" class="need" :class="[flashes[need.id] ? `is-${flashes[need.id]?.way}` : undefined, { 'is-low': need.value < 35 }]" :title="need.label">
       <GameIcon :name="need.id" :size="15" />
       <BaseMeter compact :label="need.label" :value="need.value" />
@@ -49,5 +52,6 @@ watch(needs, (now) => {
 @media (max-width: 720px) {
   .needs-strip { grid-template-columns: repeat(6, 1fr); gap: 6px; height: 38px; align-items: center; padding: 0 12px; border-radius: var(--r-pill); }
 }
+@media (max-width: 720px) { .needs-strip.is-calm { display: none; } }
 @media (prefers-reduced-motion: reduce) { .need.is-up, .need.is-down { animation: none; } }
 </style>

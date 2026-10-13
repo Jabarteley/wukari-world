@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python3",
+    "experiments/cloud-lanes/human-hair-art/render.py",
+    "--page",
+    "fit-body.html",
+    "--responses",
+    "5",
+    "--out",
+    "artifacts/master-fit-v1/body-lod-views"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 4.439,
+  "sampledTreePeakRssBytes": 864317440,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

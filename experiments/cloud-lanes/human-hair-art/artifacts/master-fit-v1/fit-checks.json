@@ -1,0 +1,6516 @@
+{
+  "masterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "identityControls": [
+    "nose.projection",
+    "nose.alarWidth",
+    "earLeft.protrusion",
+    "earRight.protrusion",
+    "body.height",
+    "body.shoulderWidth"
+  ],
+  "sampledCases": 112,
+  "styleCaseChecks": 448,
+  "summary": {
+    "curl-crop": {
+      "minimumSignedMetres": 0.003046448342502117,
+      "maximumConfirmedIntersectionPairs": 0,
+      "maximumCandidatePairs": 0,
+      "maximumVerticesInside02mm": 0,
+      "worstClearanceCase": "body.height:-1"
+    },
+    "swept-bun": {
+      "minimumSignedMetres": 0.0031928406096994877,
+      "maximumConfirmedIntersectionPairs": 0,
+      "maximumCandidatePairs": 0,
+      "maximumVerticesInside02mm": 0,
+      "worstClearanceCase": "body.height:-1"
+    },
+    "curl-proxy": {
+      "minimumSignedMetres": 0.003404731396585703,
+      "maximumConfirmedIntersectionPairs": 0,
+      "maximumCandidatePairs": 0,
+      "maximumVerticesInside02mm": 0,
+      "worstClearanceCase": "body.height:-1"
+    },
+    "bun-proxy": {
+      "minimumSignedMetres": 0.006762180011719465,
+      "maximumConfirmedIntersectionPairs": 0,
+      "maximumCandidatePairs": 0,
+      "maximumVerticesInside02mm": 0,
+      "worstClearanceCase": "body.height:-1"
+    }
+  },
+  "rows": [
+    {
+      "case": "neutral",
+      "values": {},
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "neutral",
+      "values": {},
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "neutral",
+      "values": {},
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "neutral",
+      "values": {},
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1",
+      "values": {
+        "nose.projection": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1",
+      "values": {
+        "nose.projection": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1",
+      "values": {
+        "nose.projection": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1",
+      "values": {
+        "nose.projection": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1",
+      "values": {
+        "nose.projection": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1",
+      "values": {
+        "nose.projection": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1",
+      "values": {
+        "nose.projection": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1",
+      "values": {
+        "nose.projection": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "values": {
+        "nose.alarWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "values": {
+        "nose.alarWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "values": {
+        "nose.alarWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1",
+      "values": {
+        "nose.alarWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "values": {
+        "nose.alarWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "values": {
+        "nose.alarWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "values": {
+        "nose.alarWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1",
+      "values": {
+        "nose.alarWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031982497312128544,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "values": {
+        "earLeft.protrusion": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003198286285623908,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "values": {
+        "earLeft.protrusion": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "values": {
+        "earLeft.protrusion": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1",
+      "values": {
+        "earLeft.protrusion": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "values": {
+        "earRight.protrusion": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197442041710019,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "values": {
+        "earRight.protrusion": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "values": {
+        "earRight.protrusion": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1",
+      "values": {
+        "earRight.protrusion": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "values": {
+        "earRight.protrusion": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197603626176715,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "values": {
+        "earRight.protrusion": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "values": {
+        "earRight.protrusion": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1",
+      "values": {
+        "earRight.protrusion": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1",
+      "values": {
+        "body.height": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1",
+      "values": {
+        "body.height": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1",
+      "values": {
+        "body.height": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1",
+      "values": {
+        "body.height": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1",
+      "values": {
+        "body.height": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003200033213943243,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1",
+      "values": {
+        "body.height": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1",
+      "values": {
+        "body.height": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1",
+      "values": {
+        "body.height": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "values": {
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "values": {
+        "body.shoulderWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "values": {
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1",
+      "values": {
+        "body.shoulderWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "values": {
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "values": {
+        "body.shoulderWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "values": {
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1",
+      "values": {
+        "body.shoulderWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/nose.alarWidth:-1",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/nose.alarWidth:-1",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/nose.alarWidth:-1",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/nose.alarWidth:-1",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/nose.alarWidth:1",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/nose.alarWidth:1",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/nose.alarWidth:1",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/nose.alarWidth:1",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/nose.alarWidth:-1",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/nose.alarWidth:-1",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/nose.alarWidth:-1",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/nose.alarWidth:-1",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/nose.alarWidth:1",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/nose.alarWidth:1",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/nose.alarWidth:1",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/nose.alarWidth:1",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earLeft.protrusion:-1",
+      "values": {
+        "nose.projection": -1,
+        "earLeft.protrusion": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031982497312128544,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earLeft.protrusion:-1",
+      "values": {
+        "nose.projection": -1,
+        "earLeft.protrusion": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earLeft.protrusion:-1",
+      "values": {
+        "nose.projection": -1,
+        "earLeft.protrusion": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earLeft.protrusion:-1",
+      "values": {
+        "nose.projection": -1,
+        "earLeft.protrusion": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earLeft.protrusion:1",
+      "values": {
+        "nose.projection": -1,
+        "earLeft.protrusion": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003198286285623908,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earLeft.protrusion:1",
+      "values": {
+        "nose.projection": -1,
+        "earLeft.protrusion": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earLeft.protrusion:1",
+      "values": {
+        "nose.projection": -1,
+        "earLeft.protrusion": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earLeft.protrusion:1",
+      "values": {
+        "nose.projection": -1,
+        "earLeft.protrusion": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earLeft.protrusion:-1",
+      "values": {
+        "nose.projection": 1,
+        "earLeft.protrusion": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031982497312128544,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earLeft.protrusion:-1",
+      "values": {
+        "nose.projection": 1,
+        "earLeft.protrusion": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earLeft.protrusion:-1",
+      "values": {
+        "nose.projection": 1,
+        "earLeft.protrusion": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earLeft.protrusion:-1",
+      "values": {
+        "nose.projection": 1,
+        "earLeft.protrusion": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earLeft.protrusion:1",
+      "values": {
+        "nose.projection": 1,
+        "earLeft.protrusion": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003198286285623908,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earLeft.protrusion:1",
+      "values": {
+        "nose.projection": 1,
+        "earLeft.protrusion": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earLeft.protrusion:1",
+      "values": {
+        "nose.projection": 1,
+        "earLeft.protrusion": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earLeft.protrusion:1",
+      "values": {
+        "nose.projection": 1,
+        "earLeft.protrusion": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earRight.protrusion:-1",
+      "values": {
+        "nose.projection": -1,
+        "earRight.protrusion": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197442041710019,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earRight.protrusion:-1",
+      "values": {
+        "nose.projection": -1,
+        "earRight.protrusion": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earRight.protrusion:-1",
+      "values": {
+        "nose.projection": -1,
+        "earRight.protrusion": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earRight.protrusion:-1",
+      "values": {
+        "nose.projection": -1,
+        "earRight.protrusion": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earRight.protrusion:1",
+      "values": {
+        "nose.projection": -1,
+        "earRight.protrusion": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197603626176715,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earRight.protrusion:1",
+      "values": {
+        "nose.projection": -1,
+        "earRight.protrusion": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earRight.protrusion:1",
+      "values": {
+        "nose.projection": -1,
+        "earRight.protrusion": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/earRight.protrusion:1",
+      "values": {
+        "nose.projection": -1,
+        "earRight.protrusion": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earRight.protrusion:-1",
+      "values": {
+        "nose.projection": 1,
+        "earRight.protrusion": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197442041710019,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earRight.protrusion:-1",
+      "values": {
+        "nose.projection": 1,
+        "earRight.protrusion": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earRight.protrusion:-1",
+      "values": {
+        "nose.projection": 1,
+        "earRight.protrusion": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earRight.protrusion:-1",
+      "values": {
+        "nose.projection": 1,
+        "earRight.protrusion": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earRight.protrusion:1",
+      "values": {
+        "nose.projection": 1,
+        "earRight.protrusion": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197603626176715,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earRight.protrusion:1",
+      "values": {
+        "nose.projection": 1,
+        "earRight.protrusion": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earRight.protrusion:1",
+      "values": {
+        "nose.projection": 1,
+        "earRight.protrusion": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/earRight.protrusion:1",
+      "values": {
+        "nose.projection": 1,
+        "earRight.protrusion": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.height:-1",
+      "values": {
+        "nose.projection": -1,
+        "body.height": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.height:-1",
+      "values": {
+        "nose.projection": -1,
+        "body.height": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.height:-1",
+      "values": {
+        "nose.projection": -1,
+        "body.height": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.height:-1",
+      "values": {
+        "nose.projection": -1,
+        "body.height": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.height:1",
+      "values": {
+        "nose.projection": -1,
+        "body.height": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003200033213943243,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.height:1",
+      "values": {
+        "nose.projection": -1,
+        "body.height": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.height:1",
+      "values": {
+        "nose.projection": -1,
+        "body.height": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.height:1",
+      "values": {
+        "nose.projection": -1,
+        "body.height": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.height:-1",
+      "values": {
+        "nose.projection": 1,
+        "body.height": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.height:-1",
+      "values": {
+        "nose.projection": 1,
+        "body.height": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.height:-1",
+      "values": {
+        "nose.projection": 1,
+        "body.height": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.height:-1",
+      "values": {
+        "nose.projection": 1,
+        "body.height": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.height:1",
+      "values": {
+        "nose.projection": 1,
+        "body.height": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003200033213943243,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.height:1",
+      "values": {
+        "nose.projection": 1,
+        "body.height": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.height:1",
+      "values": {
+        "nose.projection": 1,
+        "body.height": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.height:1",
+      "values": {
+        "nose.projection": 1,
+        "body.height": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.shoulderWidth:-1",
+      "values": {
+        "nose.projection": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.shoulderWidth:-1",
+      "values": {
+        "nose.projection": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.shoulderWidth:-1",
+      "values": {
+        "nose.projection": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.shoulderWidth:-1",
+      "values": {
+        "nose.projection": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.shoulderWidth:1",
+      "values": {
+        "nose.projection": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.shoulderWidth:1",
+      "values": {
+        "nose.projection": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.shoulderWidth:1",
+      "values": {
+        "nose.projection": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/body.shoulderWidth:1",
+      "values": {
+        "nose.projection": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.shoulderWidth:-1",
+      "values": {
+        "nose.projection": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.shoulderWidth:-1",
+      "values": {
+        "nose.projection": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.shoulderWidth:-1",
+      "values": {
+        "nose.projection": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.shoulderWidth:-1",
+      "values": {
+        "nose.projection": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.shoulderWidth:1",
+      "values": {
+        "nose.projection": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.shoulderWidth:1",
+      "values": {
+        "nose.projection": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.shoulderWidth:1",
+      "values": {
+        "nose.projection": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/body.shoulderWidth:1",
+      "values": {
+        "nose.projection": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earLeft.protrusion:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031982497312128544,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earLeft.protrusion:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earLeft.protrusion:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earLeft.protrusion:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earLeft.protrusion:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003198286285623908,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earLeft.protrusion:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earLeft.protrusion:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earLeft.protrusion:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earLeft.protrusion:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031982497312128544,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earLeft.protrusion:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earLeft.protrusion:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earLeft.protrusion:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earLeft.protrusion:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003198286285623908,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earLeft.protrusion:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earLeft.protrusion:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earLeft.protrusion:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earRight.protrusion:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earRight.protrusion": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197442041710019,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earRight.protrusion:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earRight.protrusion": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earRight.protrusion:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earRight.protrusion": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earRight.protrusion:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earRight.protrusion": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earRight.protrusion:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earRight.protrusion": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197603626176715,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earRight.protrusion:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earRight.protrusion": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earRight.protrusion:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earRight.protrusion": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/earRight.protrusion:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "earRight.protrusion": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earRight.protrusion:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earRight.protrusion": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197442041710019,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earRight.protrusion:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earRight.protrusion": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earRight.protrusion:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earRight.protrusion": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earRight.protrusion:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earRight.protrusion": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earRight.protrusion:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earRight.protrusion": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197603626176715,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earRight.protrusion:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earRight.protrusion": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earRight.protrusion:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earRight.protrusion": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/earRight.protrusion:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "earRight.protrusion": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.height:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.height": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.height:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.height": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.height:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.height": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.height:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.height": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.height:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.height": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003200033213943243,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.height:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.height": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.height:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.height": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.height:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.height": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.height:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.height": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.height:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.height": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.height:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.height": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.height:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.height": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.height:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.height": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003200033213943243,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.height:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.height": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.height:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.height": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.height:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.height": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.shoulderWidth:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.shoulderWidth:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.shoulderWidth:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.shoulderWidth:-1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.shoulderWidth:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.shoulderWidth:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.shoulderWidth:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/body.shoulderWidth:1",
+      "values": {
+        "nose.alarWidth": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.shoulderWidth:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.shoulderWidth:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.shoulderWidth:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.shoulderWidth:-1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.shoulderWidth:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.shoulderWidth:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.shoulderWidth:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/body.shoulderWidth:1",
+      "values": {
+        "nose.alarWidth": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/earRight.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197442041710019,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/earRight.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/earRight.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/earRight.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/earRight.protrusion:1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197603626176715,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/earRight.protrusion:1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/earRight.protrusion:1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/earRight.protrusion:1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/earRight.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197442041710019,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/earRight.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/earRight.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/earRight.protrusion:-1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/earRight.protrusion:1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197603626176715,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/earRight.protrusion:1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/earRight.protrusion:1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/earRight.protrusion:1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.height:-1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.height": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.height:-1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.height": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.height:-1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.height": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.height:-1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.height": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.height:1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.height": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031983780208975077,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.height:1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.height": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.height:1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.height": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.height:1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.height": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.height:-1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.height": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.height:-1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.height": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.height:-1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.height": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.height:-1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.height": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.height:1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.height": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031995924655348063,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.height:1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.height": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.height:1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.height": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.height:1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.height": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.shoulderWidth:-1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031982497312128544,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.shoulderWidth:-1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.shoulderWidth:-1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.shoulderWidth:-1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.shoulderWidth:1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031982497312128544,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.shoulderWidth:1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.shoulderWidth:1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/body.shoulderWidth:1",
+      "values": {
+        "earLeft.protrusion": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.shoulderWidth:-1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003198286285623908,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.shoulderWidth:-1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.shoulderWidth:-1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.shoulderWidth:-1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.shoulderWidth:1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003198286285623908,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.shoulderWidth:1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.shoulderWidth:1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/body.shoulderWidth:1",
+      "values": {
+        "earLeft.protrusion": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.height:-1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.height": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.height:-1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.height": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.height:-1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.height": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.height:-1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.height": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.height:1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.height": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031976071186363697,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.height:1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.height": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.height:1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.height": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.height:1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.height": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.height:-1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.height": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.height:-1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.height": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.height:-1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.height": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.height:-1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.height": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.height:1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.height": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031976080499589443,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.height:1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.height": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.height:1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.height": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.height:1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.height": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.shoulderWidth:-1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197442041710019,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.shoulderWidth:-1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.shoulderWidth:-1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.shoulderWidth:-1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.shoulderWidth:1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197442041710019,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.shoulderWidth:1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.shoulderWidth:1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/body.shoulderWidth:1",
+      "values": {
+        "earRight.protrusion": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.shoulderWidth:-1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197603626176715,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.shoulderWidth:-1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.shoulderWidth:-1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.shoulderWidth:-1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.shoulderWidth:1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197603626176715,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.shoulderWidth:1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.shoulderWidth:1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/body.shoulderWidth:1",
+      "values": {
+        "earRight.protrusion": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/body.shoulderWidth:-1",
+      "values": {
+        "body.height": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/body.shoulderWidth:-1",
+      "values": {
+        "body.height": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/body.shoulderWidth:-1",
+      "values": {
+        "body.height": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/body.shoulderWidth:-1",
+      "values": {
+        "body.height": -1,
+        "body.shoulderWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/body.shoulderWidth:1",
+      "values": {
+        "body.height": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/body.shoulderWidth:1",
+      "values": {
+        "body.height": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/body.shoulderWidth:1",
+      "values": {
+        "body.height": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/body.shoulderWidth:1",
+      "values": {
+        "body.height": -1,
+        "body.shoulderWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/body.shoulderWidth:-1",
+      "values": {
+        "body.height": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003200033213943243,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/body.shoulderWidth:-1",
+      "values": {
+        "body.height": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/body.shoulderWidth:-1",
+      "values": {
+        "body.height": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/body.shoulderWidth:-1",
+      "values": {
+        "body.height": 1,
+        "body.shoulderWidth": -1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/body.shoulderWidth:1",
+      "values": {
+        "body.height": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003200033213943243,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/body.shoulderWidth:1",
+      "values": {
+        "body.height": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/body.shoulderWidth:1",
+      "values": {
+        "body.height": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/body.shoulderWidth:1",
+      "values": {
+        "body.height": 1,
+        "body.shoulderWidth": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "happy",
+      "values": {
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "happy",
+      "values": {
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "happy",
+      "values": {
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "happy",
+      "values": {
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/happy",
+      "values": {
+        "nose.projection": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/happy",
+      "values": {
+        "nose.projection": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/happy",
+      "values": {
+        "nose.projection": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/happy",
+      "values": {
+        "nose.projection": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/happy",
+      "values": {
+        "nose.projection": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/happy",
+      "values": {
+        "nose.projection": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/happy",
+      "values": {
+        "nose.projection": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/happy",
+      "values": {
+        "nose.projection": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/happy",
+      "values": {
+        "nose.alarWidth": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/happy",
+      "values": {
+        "nose.alarWidth": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/happy",
+      "values": {
+        "nose.alarWidth": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/happy",
+      "values": {
+        "nose.alarWidth": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/happy",
+      "values": {
+        "nose.alarWidth": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/happy",
+      "values": {
+        "nose.alarWidth": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/happy",
+      "values": {
+        "nose.alarWidth": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/happy",
+      "values": {
+        "nose.alarWidth": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/happy",
+      "values": {
+        "earLeft.protrusion": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031982497312128544,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/happy",
+      "values": {
+        "earLeft.protrusion": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/happy",
+      "values": {
+        "earLeft.protrusion": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/happy",
+      "values": {
+        "earLeft.protrusion": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/happy",
+      "values": {
+        "earLeft.protrusion": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003198286285623908,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/happy",
+      "values": {
+        "earLeft.protrusion": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/happy",
+      "values": {
+        "earLeft.protrusion": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/happy",
+      "values": {
+        "earLeft.protrusion": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/happy",
+      "values": {
+        "earRight.protrusion": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197442041710019,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/happy",
+      "values": {
+        "earRight.protrusion": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/happy",
+      "values": {
+        "earRight.protrusion": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/happy",
+      "values": {
+        "earRight.protrusion": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/happy",
+      "values": {
+        "earRight.protrusion": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197603626176715,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/happy",
+      "values": {
+        "earRight.protrusion": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/happy",
+      "values": {
+        "earRight.protrusion": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/happy",
+      "values": {
+        "earRight.protrusion": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/happy",
+      "values": {
+        "body.height": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/happy",
+      "values": {
+        "body.height": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/happy",
+      "values": {
+        "body.height": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/happy",
+      "values": {
+        "body.height": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/happy",
+      "values": {
+        "body.height": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003200033213943243,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/happy",
+      "values": {
+        "body.height": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/happy",
+      "values": {
+        "body.height": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/happy",
+      "values": {
+        "body.height": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1/happy",
+      "values": {
+        "body.shoulderWidth": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1/happy",
+      "values": {
+        "body.shoulderWidth": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1/happy",
+      "values": {
+        "body.shoulderWidth": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1/happy",
+      "values": {
+        "body.shoulderWidth": -1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1/happy",
+      "values": {
+        "body.shoulderWidth": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1/happy",
+      "values": {
+        "body.shoulderWidth": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1/happy",
+      "values": {
+        "body.shoulderWidth": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1/happy",
+      "values": {
+        "body.shoulderWidth": 1,
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "sad",
+      "values": {
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031999617349356413,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "sad",
+      "values": {
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "sad",
+      "values": {
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "sad",
+      "values": {
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/sad",
+      "values": {
+        "nose.projection": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031999617349356413,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/sad",
+      "values": {
+        "nose.projection": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/sad",
+      "values": {
+        "nose.projection": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/sad",
+      "values": {
+        "nose.projection": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/sad",
+      "values": {
+        "nose.projection": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031999617349356413,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/sad",
+      "values": {
+        "nose.projection": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/sad",
+      "values": {
+        "nose.projection": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/sad",
+      "values": {
+        "nose.projection": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/sad",
+      "values": {
+        "nose.alarWidth": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031999617349356413,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/sad",
+      "values": {
+        "nose.alarWidth": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/sad",
+      "values": {
+        "nose.alarWidth": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/sad",
+      "values": {
+        "nose.alarWidth": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/sad",
+      "values": {
+        "nose.alarWidth": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031999617349356413,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/sad",
+      "values": {
+        "nose.alarWidth": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/sad",
+      "values": {
+        "nose.alarWidth": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/sad",
+      "values": {
+        "nose.alarWidth": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/sad",
+      "values": {
+        "earLeft.protrusion": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031982497312128544,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/sad",
+      "values": {
+        "earLeft.protrusion": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/sad",
+      "values": {
+        "earLeft.protrusion": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/sad",
+      "values": {
+        "earLeft.protrusion": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/sad",
+      "values": {
+        "earLeft.protrusion": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003198286285623908,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/sad",
+      "values": {
+        "earLeft.protrusion": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/sad",
+      "values": {
+        "earLeft.protrusion": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/sad",
+      "values": {
+        "earLeft.protrusion": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/sad",
+      "values": {
+        "earRight.protrusion": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197442041710019,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/sad",
+      "values": {
+        "earRight.protrusion": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/sad",
+      "values": {
+        "earRight.protrusion": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/sad",
+      "values": {
+        "earRight.protrusion": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/sad",
+      "values": {
+        "earRight.protrusion": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197603626176715,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/sad",
+      "values": {
+        "earRight.protrusion": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/sad",
+      "values": {
+        "earRight.protrusion": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/sad",
+      "values": {
+        "earRight.protrusion": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/sad",
+      "values": {
+        "body.height": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/sad",
+      "values": {
+        "body.height": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/sad",
+      "values": {
+        "body.height": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/sad",
+      "values": {
+        "body.height": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/sad",
+      "values": {
+        "body.height": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003200033213943243,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/sad",
+      "values": {
+        "body.height": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/sad",
+      "values": {
+        "body.height": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/sad",
+      "values": {
+        "body.height": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1/sad",
+      "values": {
+        "body.shoulderWidth": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031999617349356413,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1/sad",
+      "values": {
+        "body.shoulderWidth": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1/sad",
+      "values": {
+        "body.shoulderWidth": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1/sad",
+      "values": {
+        "body.shoulderWidth": -1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1/sad",
+      "values": {
+        "body.shoulderWidth": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031999617349356413,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1/sad",
+      "values": {
+        "body.shoulderWidth": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1/sad",
+      "values": {
+        "body.shoulderWidth": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1/sad",
+      "values": {
+        "body.shoulderWidth": 1,
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "blink",
+      "values": {
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "blink",
+      "values": {
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "blink",
+      "values": {
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "blink",
+      "values": {
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/blink",
+      "values": {
+        "nose.projection": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/blink",
+      "values": {
+        "nose.projection": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/blink",
+      "values": {
+        "nose.projection": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:-1/blink",
+      "values": {
+        "nose.projection": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/blink",
+      "values": {
+        "nose.projection": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/blink",
+      "values": {
+        "nose.projection": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/blink",
+      "values": {
+        "nose.projection": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.projection:1/blink",
+      "values": {
+        "nose.projection": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/blink",
+      "values": {
+        "nose.alarWidth": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/blink",
+      "values": {
+        "nose.alarWidth": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/blink",
+      "values": {
+        "nose.alarWidth": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:-1/blink",
+      "values": {
+        "nose.alarWidth": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/blink",
+      "values": {
+        "nose.alarWidth": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/blink",
+      "values": {
+        "nose.alarWidth": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/blink",
+      "values": {
+        "nose.alarWidth": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "nose.alarWidth:1/blink",
+      "values": {
+        "nose.alarWidth": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/blink",
+      "values": {
+        "earLeft.protrusion": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.0031982497312128544,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/blink",
+      "values": {
+        "earLeft.protrusion": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/blink",
+      "values": {
+        "earLeft.protrusion": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:-1/blink",
+      "values": {
+        "earLeft.protrusion": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/blink",
+      "values": {
+        "earLeft.protrusion": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003198286285623908,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/blink",
+      "values": {
+        "earLeft.protrusion": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/blink",
+      "values": {
+        "earLeft.protrusion": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earLeft.protrusion:1/blink",
+      "values": {
+        "earLeft.protrusion": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/blink",
+      "values": {
+        "earRight.protrusion": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197442041710019,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/blink",
+      "values": {
+        "earRight.protrusion": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/blink",
+      "values": {
+        "earRight.protrusion": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:-1/blink",
+      "values": {
+        "earRight.protrusion": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/blink",
+      "values": {
+        "earRight.protrusion": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003197603626176715,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/blink",
+      "values": {
+        "earRight.protrusion": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/blink",
+      "values": {
+        "earRight.protrusion": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "earRight.protrusion:1/blink",
+      "values": {
+        "earRight.protrusion": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/blink",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003046448342502117,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/blink",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031928406096994877,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/blink",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.003404731396585703,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:-1/blink",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006762180011719465,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/blink",
+      "values": {
+        "body.height": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003200033213943243,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/blink",
+      "values": {
+        "body.height": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0032057680655270815,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/blink",
+      "values": {
+        "body.height": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034180365037173033,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.height:1/blink",
+      "values": {
+        "body.height": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006790466606616974,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1/blink",
+      "values": {
+        "body.shoulderWidth": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1/blink",
+      "values": {
+        "body.shoulderWidth": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1/blink",
+      "values": {
+        "body.shoulderWidth": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:-1/blink",
+      "values": {
+        "body.shoulderWidth": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1/blink",
+      "values": {
+        "body.shoulderWidth": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-crop",
+      "hairTriangles": 6574,
+      "minimumSignedMetres": 0.003199959872290492,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1/blink",
+      "values": {
+        "body.shoulderWidth": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "swept-bun",
+      "hairTriangles": 5766,
+      "minimumSignedMetres": 0.0031999789644032717,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1/blink",
+      "values": {
+        "body.shoulderWidth": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "curl-proxy",
+      "hairTriangles": 358,
+      "minimumSignedMetres": 0.0034118732437491417,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    },
+    {
+      "case": "body.shoulderWidth:1/blink",
+      "values": {
+        "body.shoulderWidth": 1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "style": "bun-proxy",
+      "hairTriangles": 502,
+      "minimumSignedMetres": 0.006777346134185791,
+      "verticesInside02mm": 0,
+      "bvhCandidatePairs": 0,
+      "confirmedNonCoplanarIntersectionPairs": 0,
+      "intersectionWitnesses": []
+    }
+  ],
+  "method": "Actual saved Blender float32 morph deltas, neutral + signed identity endpoints + all identity endpoint pairs + expression/identity pairs. All master body meshes except replaced Hair placeholder; only triangles wholly below every hair bound spatially excluded. BVH candidate pairs followed by finite segment/triangle intersections. All hair vertices signed nearest triangle.",
+  "limits": "Coplanar contacts are retained as BVH candidate counts rather than certified separation. Not continuous controls, self-intersections within hair, animation, skeletal fitting, physics, or production device performance.",
+  "skeletalPosesTested": 0,
+  "skeleton": null,
+  "sourceUvHashesVerified": true,
+  "totalCharacterTriangles": {
+    "curl-crop": 33242,
+    "swept-bun": 32434,
+    "curl-proxy": 27026,
+    "bun-proxy": 27170
+  }
+}

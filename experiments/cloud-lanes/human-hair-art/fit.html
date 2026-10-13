@@ -1,0 +1,35 @@
+<!doctype html><meta charset="utf-8"><link rel="icon" href="data:,">
+<style>*{box-sizing:border-box}body{margin:0;background:#161e25;color:#f1e8d8;font:14px Arial}header{padding:20px 26px;border-bottom:1px solid #414b54}h1{font-size:25px;margin:8px 0}.sub{font-size:12px;color:#b6c4ca}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:12px}.panel{border:1px solid #444e55;background:#283139}.panel img{width:100%;display:block}.label{padding:10px 12px;font-size:12px}footer{padding:14px 24px;font-size:12px;color:#bac6cc}</style>
+<header><div class="sub">ALLWORLD / ACTUAL MASTER FIT / 3ee5882</div><h1 id="title"></h1><div class="sub">Exact original human prototype with transferred surface morphs · original placeholder hair hidden in this preview only</div></header><main class="grid" id="grid"></main><footer>No skeleton or wearable animation proof. Sampled morph fit only. Original detailed/calibration sources preserved.</footer>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const q=new URLSearchParams(location.search),style=q.get('style')||'curl-crop',folder=q.get('folder')||'master-fit-v1';document.querySelector('#title').textContent=style==='curl-crop'?'Curl crop / reduced fitting derivative':'Swept bun / fitted to master';
+window.receipt={ready:false,masterCommit:'3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a',panels:[]};const loader=new GLTFLoader();
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(380,350);renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;
+try{
+const master=(await loader.loadAsync('./runs/master-3ee5882/original-human-prototype.glb')).scene;
+const hair=(await loader.loadAsync(`./artifacts/${folder}/${style}-fitted.glb`)).scene;
+master.traverse(o=>{if(o.name.startsWith('Hair_original'))o.visible=false});
+const cases=[
+ ['Neutral / front hairline',{},[0,1.70,.60],.30],
+ ['Neutral / three-quarter',{},[.36,1.75,.56],.32],
+ ['Neutral / temple and ear',{},[.62,1.68,.015],.31],
+ ['Neutral / rear and nape',{},[.20,1.72,-.59],.33],
+ ['Short / ears +1 / nose +1',{'body.height':-1,'earLeft.protrusion':1,'earRight.protrusion':1,'nose.projection':1,'body.shoulderWidth':1},[-.36,1.74,.56],.32],
+ ['Tall / L ear −1 / R +1 / blink',{'body.height':1,'earLeft.protrusion':-1,'earRight.protrusion':1,'nose.alarWidth':-1,'body.shoulderWidth':-1,'expression.blinkLeft':1,'expression.blinkRight':1},[.36,1.74,.56],.32]
+];
+for(const [label,values,pos,scale] of cases){
+ const scene=new THREE.Scene();scene.background=new THREE.Color('#283139');scene.add(new THREE.HemisphereLight(0xcde3fc,0x594f42,1.35));
+ for(const [color,power,p] of [[0xffe1c2,3,[.4,2.2,.6]],[0xa5bce1,1.5,[-.5,1.8,.2]],[0xffffff,2,[.2,2,-.5]]]){const l=new THREE.DirectionalLight(color,power);l.position.set(...p);scene.add(l)}
+ const h=hair.clone(true),body=master.clone(true);
+ for(const model of [h,body])model.traverse(o=>{if(o.morphTargetDictionary){for(const [name,index] of Object.entries(o.morphTargetDictionary))o.morphTargetInfluences[index]=name.startsWith('corrective.height.')?(values['body.height']||0)*(values['expression.'+name.split('.').at(-1)]||0):(values[name]||0)}});
+ scene.add(body,h);const rise=(values['body.height']||0)*.0825;
+ const camera=new THREE.OrthographicCamera(-scale*380/350/2,scale*380/350/2,scale/2,-scale/2,.01,10);camera.position.set(pos[0],pos[1]+rise,pos[2]);camera.lookAt(0,1.662+rise,0);renderer.render(scene,camera);
+ const panel=document.createElement('div');panel.className='panel';const img=document.createElement('img');img.src=renderer.domElement.toDataURL();panel.append(img);const caption=document.createElement('div');caption.className='label';caption.textContent=label;panel.append(caption);document.querySelector('#grid').append(panel);
+ window.receipt.panels.push({label,weights:values,trianglesDrawn:renderer.info.render.triangles,calls:renderer.info.render.calls});
+}
+const gl=renderer.getContext();window.receipt.renderer=gl.getParameter(gl.getExtension('WEBGL_debug_renderer_info').UNMASKED_RENDERER_WEBGL);
+window.cleanup=()=>{for(const model of [hair,master])model.traverse(o=>{o.geometry?.dispose();if(o.material)for(const m of (Array.isArray(o.material)?o.material:[o.material]))m.dispose()});renderer.dispose();renderer.forceContextLoss();window.receipt.disposed=true};window.receipt.ready=true;
+}catch(e){window.proofError=String(e);console.error(e)}
+</script>

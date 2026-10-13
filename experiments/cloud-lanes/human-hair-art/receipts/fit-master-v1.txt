@@ -1,0 +1,39 @@
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+19:11:14 | INFO: Starting glTF 2.0 export
+19:11:14 | INFO: Extracting primitive: C01 96 complete reduced curl bundles
+19:11:14 | INFO: Primitives created: 3
+19:11:14 | INFO: Extracting primitive: C01 scalp foundation - far
+19:11:14 | INFO: Primitives created: 1
+19:11:14 | INFO: Finished glTF 2.0 export in 0.053774118423461914 s
+
+19:11:14 | INFO: Starting glTF 2.0 export
+19:11:14 | INFO: Extracting primitive: S02 wound centre - far
+19:11:14 | INFO: Primitives created: 1
+19:11:14 | INFO: Extracting primitive: S02 twist fibre ridges - far
+19:11:14 | INFO: Primitives created: 3
+19:11:14 | INFO: Extracting primitive: S02 swept scalp ribbons - far
+19:11:14 | INFO: Primitives created: 3
+19:11:14 | INFO: Extracting primitive: S02 swept foundation - far
+19:11:14 | INFO: Primitives created: 1
+19:11:14 | INFO: Extracting primitive: S02 sculpted low twist - far
+19:11:14 | INFO: Primitives created: 2
+19:11:14 | INFO: Finished glTF 2.0 export in 0.03452467918395996 s
+
+19:11:14 | INFO: Starting glTF 2.0 export
+19:11:14 | INFO: Extracting primitive: curl-crop - silhouette only
+19:11:14 | INFO: Primitives created: 1
+19:11:14 | INFO: Finished glTF 2.0 export in 0.0075016021728515625 s
+
+19:11:14 | INFO: Starting glTF 2.0 export
+19:11:14 | INFO: Extracting primitive: swept-bun - silhouette only
+19:11:14 | INFO: Primitives created: 1
+19:11:14 | INFO: Extracting primitive: S02 silhouette bun
+19:11:14 | INFO: Primitives created: 1
+19:11:14 | INFO: Finished glTF 2.0 export in 0.009745597839355469 s
+
+Info: Saved "master-fitted-hair-editable.blend"
+{"styles": {"curl-crop": {"triangles": 6574, "objects": ["FIT curl-crop / C01 tight curl crop - far", "FIT curl-crop / C01 scalp foundation - far"], "morphs": {"FIT curl-crop / C01 tight curl crop - far": ["earLeft.protrusion", "earRight.protrusion", "body.height", "expression.browRaiseLeft", "expression.browRaiseRight"], "FIT curl-crop / C01 scalp foundation - far": ["earLeft.protrusion", "earRight.protrusion", "body.height", "expression.browRaiseLeft", "expression.browRaiseRight", "corrective.height.browRaiseRight"]}}, "swept-bun": {"triangles": 5766, "objects": ["FIT swept-bun / S02 wound centre - far", "FIT swept-bun / S02 twist fibre ridges - far", "FIT swept-bun / S02 swept scalp ribbons - far", "FIT swept-bun / S02 swept foundation - far", "FIT swept-bun / S02 sculpted low twist - far"], "morphs": {"FIT swept-bun / S02 wound centre - far": ["body.height"], "FIT swept-bun / S02 twist fibre ridges - far": ["body.height"], "FIT swept-bun / S02 swept scalp ribbons - far": ["earLeft.protrusion", "earRight.protrusion", "body.height", "expression.browRaiseLeft", "expression.browRaiseRight", "corrective.height.browRaiseLeft", "corrective.height.browRaiseRight"], "FIT swept-bun / S02 swept foundation - far": ["earLeft.protrusion", "earRight.protrusion", "body.height", "expression.browRaiseLeft", "expression.browRaiseRight", "corrective.height.browRaiseRight"], "FIT swept-bun / S02 sculpted low twist - far": ["body.height"]}}, "curl-proxy": {"triangles": 358, "objects": ["FIT curl-proxy / curl-crop - silhouette only"], "morphs": {"FIT curl-proxy / curl-crop - silhouette only": ["earLeft.protrusion", "earRight.protrusion", "body.height", "expression.browRaiseLeft", "expression.browRaiseRight", "corrective.height.browRaiseLeft", "corrective.height.browRaiseRight"]}}, "bun-proxy": {"triangles": 502, "objects": ["FIT bun-proxy / swept-bun - silhouette only", "FIT bun-proxy / S02 silhouette bun"], "morphs": {"FIT bun-proxy / swept-bun - silhouette only": ["earLeft.protrusion", "earRight.protrusion", "body.height", "expression.browRaiseLeft", "expression.browRaiseRight", "corrective.height.browRaiseLeft", "corrective.height.browRaiseRight"], "FIT bun-proxy / S02 silhouette bun": ["body.height"]}}}, "totalCharacterTriangles": {"curl-crop": 33242, "swept-bun": 32434, "curl-proxy": 27026, "bun-proxy": 27170}, "verifiedSourceMeshes": 31}
+Blender 4.3.2
+Read blend: "/workspace/human-hair-art/experiments/cloud-lanes/human-hair-art/runs/master-3ee5882/original-human-prototype.blend"
+
+Blender quit

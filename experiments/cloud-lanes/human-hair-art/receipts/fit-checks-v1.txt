@@ -1,0 +1,5 @@
+{"cases": 112, "summary": {"curl-crop": {"minimumSignedMetres": 0.003046448342502117, "maximumConfirmedIntersectionPairs": 0, "maximumCandidatePairs": 0, "maximumVerticesInside02mm": 0, "worstClearanceCase": "body.height:-1"}, "swept-bun": {"minimumSignedMetres": 0.0031928406096994877, "maximumConfirmedIntersectionPairs": 0, "maximumCandidatePairs": 0, "maximumVerticesInside02mm": 0, "worstClearanceCase": "body.height:-1"}, "curl-proxy": {"minimumSignedMetres": 0.003404731396585703, "maximumConfirmedIntersectionPairs": 0, "maximumCandidatePairs": 0, "maximumVerticesInside02mm": 0, "worstClearanceCase": "body.height:-1"}, "bun-proxy": {"minimumSignedMetres": 0.006762180011719465, "maximumConfirmedIntersectionPairs": 0, "maximumCandidatePairs": 0, "maximumVerticesInside02mm": 0, "worstClearanceCase": "body.height:-1"}}, "totalCharacterTriangles": {"curl-crop": 33242, "swept-bun": 32434, "curl-proxy": 27026, "bun-proxy": 27170}}
+Blender 4.3.2
+Read blend: "/workspace/human-hair-art/experiments/cloud-lanes/human-hair-art/artifacts/master-fit-v1/master-fitted-hair-editable.blend"
+
+Blender quit

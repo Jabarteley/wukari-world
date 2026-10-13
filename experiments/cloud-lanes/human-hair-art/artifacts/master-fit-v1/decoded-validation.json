@@ -1,0 +1,348 @@
+{
+  "status": "PASS",
+  "files": {
+    "bun-proxy-fitted.glb": {
+      "bytes": 18984,
+      "sha256": "f9c98a2cd208c834de0661ae92977f474c7264514a34bb6fe23f5b4fce7d35b7",
+      "triangles": 502,
+      "vertices": 276,
+      "primitives": 2,
+      "materialSlots": 1,
+      "materials": [
+        {
+          "name": "S02 silhouette chestnut",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.03200000151991844,
+              0.012000000104308128,
+              0.004999999888241291,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5799999833106995
+          }
+        }
+      ],
+      "skins": 0,
+      "morphTargets": 8,
+      "morphs": [
+        {
+          "mesh": "swept-bun - silhouette only",
+          "targetNames": [
+            "earLeft.protrusion",
+            "earRight.protrusion",
+            "body.height",
+            "expression.browRaiseLeft",
+            "expression.browRaiseRight",
+            "corrective.height.browRaiseLeft",
+            "corrective.height.browRaiseRight"
+          ],
+          "targetsPerPrimitive": [
+            7
+          ]
+        },
+        {
+          "mesh": "S02 silhouette bun",
+          "targetNames": [
+            "body.height"
+          ],
+          "targetsPerPrimitive": [
+            1
+          ]
+        }
+      ],
+      "textures": 0,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    },
+    "curl-crop-fitted.glb": {
+      "bytes": 189416,
+      "sha256": "a9729e2dcee74f53ca4b4120fb3075860e5750961e99422e971e5a95b0691b3f",
+      "triangles": 6574,
+      "vertices": 3504,
+      "primitives": 4,
+      "materialSlots": 4,
+      "materials": [
+        {
+          "name": "C01 espresso",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.008999999612569809,
+              0.004999999888241291,
+              0.003000000026077032,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6600000262260437
+          }
+        },
+        {
+          "name": "C01 warm variation",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.01600000075995922,
+              0.00800000037997961,
+              0.004000000189989805,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6899999976158142
+          }
+        },
+        {
+          "name": "C01 soft glints",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.024000000208616257,
+              0.012000000104308128,
+              0.006000000052154064,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6299999952316284
+          }
+        },
+        {
+          "name": "C01 root shadow",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.007000000216066837,
+              0.004000000189989805,
+              0.0020000000949949026,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.8199999928474426
+          }
+        }
+      ],
+      "skins": 0,
+      "morphTargets": 11,
+      "morphs": [
+        {
+          "mesh": "C01 96 complete reduced curl bundles",
+          "targetNames": [
+            "earLeft.protrusion",
+            "earRight.protrusion",
+            "body.height",
+            "expression.browRaiseLeft",
+            "expression.browRaiseRight"
+          ],
+          "targetsPerPrimitive": [
+            5,
+            5,
+            5
+          ]
+        },
+        {
+          "mesh": "C01 scalp foundation - far",
+          "targetNames": [
+            "earLeft.protrusion",
+            "earRight.protrusion",
+            "body.height",
+            "expression.browRaiseLeft",
+            "expression.browRaiseRight",
+            "corrective.height.browRaiseRight"
+          ],
+          "targetsPerPrimitive": [
+            6
+          ]
+        }
+      ],
+      "textures": 0,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    },
+    "curl-proxy-fitted.glb": {
+      "bytes": 13856,
+      "sha256": "38f971ea7aaf6aa08b582e2d86699ca58dc3847a913ae2f495dfbfbc0d56144e",
+      "triangles": 358,
+      "vertices": 192,
+      "primitives": 1,
+      "materialSlots": 1,
+      "materials": [
+        {
+          "name": "C01 silhouette espresso",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.009999999776482582,
+              0.004999999888241291,
+              0.003000000026077032,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.7799999713897705
+          }
+        }
+      ],
+      "skins": 0,
+      "morphTargets": 7,
+      "morphs": [
+        {
+          "mesh": "curl-crop - silhouette only",
+          "targetNames": [
+            "earLeft.protrusion",
+            "earRight.protrusion",
+            "body.height",
+            "expression.browRaiseLeft",
+            "expression.browRaiseRight",
+            "corrective.height.browRaiseLeft",
+            "corrective.height.browRaiseRight"
+          ],
+          "targetsPerPrimitive": [
+            7
+          ]
+        }
+      ],
+      "textures": 0,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    },
+    "swept-bun-fitted.glb": {
+      "bytes": 213100,
+      "sha256": "6e55e907605ec84e0ccb629af715844ad4c257fad2bdb9fd7f3591138169c776",
+      "triangles": 5766,
+      "vertices": 3976,
+      "primitives": 10,
+      "materialSlots": 4,
+      "materials": [
+        {
+          "name": "S02 chestnut",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.03200000151991844,
+              0.012000000104308128,
+              0.004999999888241291,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.47999998927116394
+          }
+        },
+        {
+          "name": "S02 copper undertone",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.050999999046325684,
+              0.019999999552965164,
+              0.008999999612569809,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5299999713897705
+          }
+        },
+        {
+          "name": "S02 dark lowlights",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.017999999225139618,
+              0.006000000052154064,
+              0.0020000000949949026,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5600000023841858
+          }
+        },
+        {
+          "name": "S02 roots",
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.017000000923871994,
+              0.006000000052154064,
+              0.0020000000949949026,
+              1
+            ],
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6399999856948853
+          }
+        }
+      ],
+      "skins": 0,
+      "morphTargets": 16,
+      "morphs": [
+        {
+          "mesh": "S02 wound centre - far",
+          "targetNames": [
+            "body.height"
+          ],
+          "targetsPerPrimitive": [
+            1
+          ]
+        },
+        {
+          "mesh": "S02 twist fibre ridges - far",
+          "targetNames": [
+            "body.height"
+          ],
+          "targetsPerPrimitive": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "mesh": "S02 swept scalp ribbons - far",
+          "targetNames": [
+            "earLeft.protrusion",
+            "earRight.protrusion",
+            "body.height",
+            "expression.browRaiseLeft",
+            "expression.browRaiseRight",
+            "corrective.height.browRaiseLeft",
+            "corrective.height.browRaiseRight"
+          ],
+          "targetsPerPrimitive": [
+            7,
+            7,
+            7
+          ]
+        },
+        {
+          "mesh": "S02 swept foundation - far",
+          "targetNames": [
+            "earLeft.protrusion",
+            "earRight.protrusion",
+            "body.height",
+            "expression.browRaiseLeft",
+            "expression.browRaiseRight",
+            "corrective.height.browRaiseRight"
+          ],
+          "targetsPerPrimitive": [
+            6
+          ]
+        },
+        {
+          "mesh": "S02 sculpted low twist - far",
+          "targetNames": [
+            "body.height"
+          ],
+          "targetsPerPrimitive": [
+            1,
+            1
+          ]
+        }
+      ],
+      "textures": 0,
+      "validator": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    }
+  }
+}

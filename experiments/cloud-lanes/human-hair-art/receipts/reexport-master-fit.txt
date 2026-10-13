@@ -1,0 +1,37 @@
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+19:19:01 | INFO: Starting glTF 2.0 export
+19:19:01 | INFO: Extracting primitive: C01 96 complete reduced curl bundles
+19:19:01 | INFO: Primitives created: 3
+19:19:01 | INFO: Extracting primitive: C01 scalp foundation - far
+19:19:01 | INFO: Primitives created: 1
+19:19:01 | INFO: Finished glTF 2.0 export in 0.03439831733703613 s
+
+19:19:01 | INFO: Starting glTF 2.0 export
+19:19:01 | INFO: Extracting primitive: S02 wound centre - far
+19:19:01 | INFO: Primitives created: 1
+19:19:01 | INFO: Extracting primitive: S02 twist fibre ridges - far
+19:19:01 | INFO: Primitives created: 3
+19:19:01 | INFO: Extracting primitive: S02 swept scalp ribbons - far
+19:19:01 | INFO: Primitives created: 3
+19:19:01 | INFO: Extracting primitive: S02 swept foundation - far
+19:19:01 | INFO: Primitives created: 1
+19:19:01 | INFO: Extracting primitive: S02 sculpted low twist - far
+19:19:01 | INFO: Primitives created: 2
+19:19:01 | INFO: Finished glTF 2.0 export in 0.04068493843078613 s
+
+19:19:01 | INFO: Starting glTF 2.0 export
+19:19:01 | INFO: Extracting primitive: curl-crop - silhouette only
+19:19:01 | INFO: Primitives created: 1
+19:19:01 | INFO: Finished glTF 2.0 export in 0.010524272918701172 s
+
+19:19:01 | INFO: Starting glTF 2.0 export
+19:19:01 | INFO: Extracting primitive: swept-bun - silhouette only
+19:19:01 | INFO: Primitives created: 1
+19:19:01 | INFO: Extracting primitive: S02 silhouette bun
+19:19:01 | INFO: Primitives created: 1
+19:19:01 | INFO: Finished glTF 2.0 export in 0.008386611938476562 s
+
+Blender 4.3.2
+Read blend: "/workspace/human-hair-art/experiments/cloud-lanes/human-hair-art/artifacts/master-fit-v1/master-fitted-hair-editable.blend"
+
+Blender quit

@@ -1,0 +1,302 @@
+{
+  "masterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "masterBlendSha256": "36018022ff64367e7426069d7417625a3591f3a2c0684c628c11c3bd908f84d9",
+  "masterGlbSha256": "5f0f8da1f3e6b14fc4910f04f02ed1eafe6446f896f44ef2b3a23f2ca071bc07",
+  "fitFrameSha256": "51fae932279d1513e16c4d06ce633f6218a994fe6c224bc3436e105cc519083b",
+  "verifiedSourceMeshes": 31,
+  "headMesh": {
+    "name": "Head_continuous_anatomy",
+    "vertices": 4068,
+    "triangles": 8096,
+    "positionSha256": "50fb1df341bfd1026436b5e73544f7587f646aeca63ae7cff638f6eb9c294a60",
+    "triangleOrderSha256": "c84be0818b32b048a752600db20ed82416c0b627c6801fe11ea0145ed2f3f695",
+    "uvSha256": "23be2a017a917bdda88a2bea722c2db80d9f40e29369dd4c8bfdae7beaf4dc28",
+    "boundsBlenderMetres": {
+      "min": [
+        -0.07800000160932541,
+        -0.08029482513666153,
+        1.4900000095367432
+      ],
+      "max": [
+        0.07800000160932541,
+        0.09799999743700027,
+        1.7569999694824219
+      ]
+    },
+    "morphs": {
+      "nose.projection": {
+        "movedVertices": 857,
+        "maxDeltaMetres": 0.01791556179523468,
+        "sha256": "c67d3fca800017635f5d39f44c2f4cd530939221583c10944025d4db87f4925e"
+      },
+      "nose.alarWidth": {
+        "movedVertices": 288,
+        "maxDeltaMetres": 0.005622490309178829,
+        "sha256": "4fb6da12078e300c4349f68c2977b9030cf99b01ebb2b0127d0df70bc6630722"
+      },
+      "earLeft.protrusion": {
+        "movedVertices": 623,
+        "maxDeltaMetres": 0.0019884631037712097,
+        "sha256": "aa8723e0399b070461e100703569838735c04b59554f61d01015ab2c5a749cd6"
+      },
+      "earRight.protrusion": {
+        "movedVertices": 623,
+        "maxDeltaMetres": 0.0019884631037712097,
+        "sha256": "8d5ad2cb3d258f79ca47f9b771627bc580f78afb571ea32ceebe4ca83b0aa23b"
+      },
+      "body.height": {
+        "movedVertices": 4068,
+        "maxDeltaMetres": 0.08735001087188721,
+        "sha256": "7877cab28e5e61c0c1861aad62bb17b0c314a878129c4080991f78f2c90a00f0"
+      },
+      "expression.smileLeft": {
+        "movedVertices": 535,
+        "maxDeltaMetres": 0.00757543430096438,
+        "sha256": "85f8afa67001621b7ec0991bfd12e92cfffdaaa6671c628664b3a67f414e0363"
+      },
+      "expression.smileRight": {
+        "movedVertices": 535,
+        "maxDeltaMetres": 0.00757543430096438,
+        "sha256": "7fcd6081cb128bf9695bb15afed21b61f4f6ab64b560b83a9106c975d9aaf303"
+      },
+      "expression.frownLeft": {
+        "movedVertices": 534,
+        "maxDeltaMetres": 0.006060347223928612,
+        "sha256": "875a4aaeea29e862afba753f564d6f796357c4d9e50dbf22813d08854f6d8bd9"
+      },
+      "expression.frownRight": {
+        "movedVertices": 534,
+        "maxDeltaMetres": 0.006060347223928612,
+        "sha256": "74ebc48de58be1977e902e55f35891afd3eb6c2cded1e92ed12166af62880483"
+      },
+      "expression.browRaiseLeft": {
+        "movedVertices": 219,
+        "maxDeltaMetres": 0.008724093437194824,
+        "sha256": "3c8132a080958cfff91a5e77b26a872f52b24102d0b02fa3af57bc36ba72d249"
+      },
+      "expression.browRaiseRight": {
+        "movedVertices": 219,
+        "maxDeltaMetres": 0.008724093437194824,
+        "sha256": "66a3aa3106ab0994176287e12a03018678b21bfd29e366b487f339527f63201c"
+      },
+      "corrective.height.smileLeft": {
+        "movedVertices": 484,
+        "maxDeltaMetres": 0.0003674030303955078,
+        "sha256": "1d5a2009ef2c35d19268ed830f64884744b3aeab2138d56862d0f2ad94285888"
+      },
+      "corrective.height.smileRight": {
+        "movedVertices": 484,
+        "maxDeltaMetres": 0.0003674030303955078,
+        "sha256": "3fee38bfbab2906f422aef32c42541d8fcd39997dbaf23d236f189c0c2863196"
+      },
+      "corrective.height.frownLeft": {
+        "movedVertices": 481,
+        "maxDeltaMetres": 0.00029397010803222656,
+        "sha256": "ee6a6f449f7dfe60118c4352d18ebc6cf9cbf6acb999378d8f8507b83c63abd2"
+      },
+      "corrective.height.frownRight": {
+        "movedVertices": 481,
+        "maxDeltaMetres": 0.00029397010803222656,
+        "sha256": "10ac41ca193b69f582c5bd6e30be12298380e93ad69b9f29a6b0c3f995541624"
+      },
+      "corrective.height.browRaiseLeft": {
+        "movedVertices": 163,
+        "maxDeltaMetres": 0.0004361867904663086,
+        "sha256": "a687d9e433786e21cdd372f8db7599c664e6d4fd5101b41d5e12138006c1fee5"
+      },
+      "corrective.height.browRaiseRight": {
+        "movedVertices": 163,
+        "maxDeltaMetres": 0.0004361867904663086,
+        "sha256": "8035a39f4475005880bd0abb0699c005d61726c861bdc3a436b49baf488f6845"
+      }
+    },
+    "zeroAreaTriangles": 0
+  },
+  "rigSha256": null,
+  "skeleton": null,
+  "units": "metres",
+  "frame": "body Y-up +Z-forward",
+  "nodeTransform": "identity; geometry in body bind coordinates",
+  "bodyRelativeMatrixColumnMajor": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "anchorRevision": 1,
+  "surfaceAnchors": [
+    {
+      "anchorId": "scalp.crown",
+      "triangle": 8094,
+      "barycentric": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "normalOffsetMetres": 0.0032,
+      "bodyPositionYUp": [
+        0.0,
+        1.7569999694824219,
+        -0.02500000037252903
+      ],
+      "joint": null
+    },
+    {
+      "anchorId": "scalp.templeLeft",
+      "triangle": 5306,
+      "barycentric": [
+        0.0719808780686284,
+        0.6080371411589057,
+        0.31998198077246587
+      ],
+      "normalOffsetMetres": 0.0032,
+      "bodyPositionYUp": [
+        0.06830760091543198,
+        1.669356107711792,
+        0.00832492858171463
+      ],
+      "joint": null
+    },
+    {
+      "anchorId": "scalp.templeRight",
+      "triangle": 5389,
+      "barycentric": [
+        0.6801303324215888,
+        0.07186438993797001,
+        0.24800527764044117
+      ],
+      "normalOffsetMetres": 0.0032,
+      "bodyPositionYUp": [
+        -0.06830976158380508,
+        1.6693556308746338,
+        0.008318038657307625
+      ],
+      "joint": null
+    }
+  ],
+  "jointBinding": "pending producer skeleton; never label allworld-body-23@1",
+  "construction": "Affine-direction ray projection onto actual Head mesh; surface-normal offset preserves bounded source hair depth with 3.2 mm margin. Per-vertex morph deltas barycentrically transferred; body.height applies exact producer z rule.",
+  "derivatives": {
+    "curl-crop": {
+      "triangles": 6574,
+      "objects": [
+        "FIT curl-crop / C01 tight curl crop - far",
+        "FIT curl-crop / C01 scalp foundation - far"
+      ],
+      "morphs": {
+        "FIT curl-crop / C01 tight curl crop - far": [
+          "earLeft.protrusion",
+          "earRight.protrusion",
+          "body.height",
+          "expression.browRaiseLeft",
+          "expression.browRaiseRight"
+        ],
+        "FIT curl-crop / C01 scalp foundation - far": [
+          "earLeft.protrusion",
+          "earRight.protrusion",
+          "body.height",
+          "expression.browRaiseLeft",
+          "expression.browRaiseRight",
+          "corrective.height.browRaiseRight"
+        ]
+      }
+    },
+    "swept-bun": {
+      "triangles": 5766,
+      "objects": [
+        "FIT swept-bun / S02 wound centre - far",
+        "FIT swept-bun / S02 twist fibre ridges - far",
+        "FIT swept-bun / S02 swept scalp ribbons - far",
+        "FIT swept-bun / S02 swept foundation - far",
+        "FIT swept-bun / S02 sculpted low twist - far"
+      ],
+      "morphs": {
+        "FIT swept-bun / S02 wound centre - far": [
+          "body.height"
+        ],
+        "FIT swept-bun / S02 twist fibre ridges - far": [
+          "body.height"
+        ],
+        "FIT swept-bun / S02 swept scalp ribbons - far": [
+          "earLeft.protrusion",
+          "earRight.protrusion",
+          "body.height",
+          "expression.browRaiseLeft",
+          "expression.browRaiseRight",
+          "corrective.height.browRaiseLeft",
+          "corrective.height.browRaiseRight"
+        ],
+        "FIT swept-bun / S02 swept foundation - far": [
+          "earLeft.protrusion",
+          "earRight.protrusion",
+          "body.height",
+          "expression.browRaiseLeft",
+          "expression.browRaiseRight",
+          "corrective.height.browRaiseRight"
+        ],
+        "FIT swept-bun / S02 sculpted low twist - far": [
+          "body.height"
+        ]
+      }
+    },
+    "curl-proxy": {
+      "triangles": 358,
+      "objects": [
+        "FIT curl-proxy / curl-crop - silhouette only"
+      ],
+      "morphs": {
+        "FIT curl-proxy / curl-crop - silhouette only": [
+          "earLeft.protrusion",
+          "earRight.protrusion",
+          "body.height",
+          "expression.browRaiseLeft",
+          "expression.browRaiseRight",
+          "corrective.height.browRaiseLeft",
+          "corrective.height.browRaiseRight"
+        ]
+      }
+    },
+    "bun-proxy": {
+      "triangles": 502,
+      "objects": [
+        "FIT bun-proxy / swept-bun - silhouette only",
+        "FIT bun-proxy / S02 silhouette bun"
+      ],
+      "morphs": {
+        "FIT bun-proxy / swept-bun - silhouette only": [
+          "earLeft.protrusion",
+          "earRight.protrusion",
+          "body.height",
+          "expression.browRaiseLeft",
+          "expression.browRaiseRight",
+          "corrective.height.browRaiseLeft",
+          "corrective.height.browRaiseRight"
+        ],
+        "FIT bun-proxy / S02 silhouette bun": [
+          "body.height"
+        ]
+      }
+    }
+  },
+  "masterWithoutPlaceholderTriangles": 26668,
+  "totalCharacterTriangles": {
+    "curl-crop": 33242,
+    "swept-bun": 32434,
+    "curl-proxy": 27026,
+    "bun-proxy": 27170
+  },
+  "sourcePreservation": "Original calibration/high-detail sources unchanged; source master opened from verified bytes and never overwritten.",
+  "admission": "Unrigged separately owned fitting prototype. Run fit_checks.py; no locomotion, game loader or physical-device acceptance."
+}

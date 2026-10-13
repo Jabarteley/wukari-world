@@ -1,0 +1,29 @@
+<!doctype html><meta charset="utf-8"><link rel="icon" href="data:,">
+<style>*{box-sizing:border-box}body{margin:0;background:#161e25;color:#eee4d8;font:14px Arial}header{padding:22px 26px}h1{font-size:24px;margin:8px 0}.sub,footer{font-size:12px;color:#b8c5cb}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:12px}.panel{border:1px solid #424e57;background:#283139}.panel img{display:block;width:100%}.label{padding:10px 12px;font-size:12px}footer{padding:14px 26px}</style>
+<header><div class="sub">ALLWORLD / ACTUAL MASTER 3ee5882 / FIT EXTREMES & LOD</div><h1>Body endpoints and fitted silhouettes</h1><div class="sub">Same camera for short/wide and tall/narrow figures · exact original master geometry and live GLB morph targets</div></header><main class="grid" id="grid"></main><footer>Unrigged prototype. No animation or phone-performance claim. Reduced curl detail remains visibly sparse; silhouette LOD deliberately omits strands.</footer>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+window.receipt={ready:false,masterCommit:'3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a',panels:[]};const loader=new GLTFLoader(),renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(380,350);renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;const resources=[];
+function morph(model,values){model.traverse(o=>{if(o.name.startsWith('Hair_original'))o.visible=false;if(o.morphTargetDictionary)for(const [k,i] of Object.entries(o.morphTargetDictionary))o.morphTargetInfluences[i]=k.startsWith('corrective.height.')?(values['body.height']||0)*(values['expression.'+k.split('.').at(-1)]||0):(values[k]||0)})}
+try{
+ const body=(await loader.loadAsync('./runs/master-3ee5882/original-human-prototype.glb')).scene;resources.push(body);
+ const short={'body.height':-1,'body.shoulderWidth':1,'earLeft.protrusion':1,'earRight.protrusion':1,'nose.projection':1,'nose.alarWidth':1},tall={'body.height':1,'body.shoulderWidth':-1,'earLeft.protrusion':-1,'earRight.protrusion':1,'nose.projection':-1,'nose.alarWidth':-1};
+ for(const [style,proxy,label] of [['curl-crop','curl-proxy','C01 curl crop'],['swept-bun','bun-proxy','S02 swept bun']]){
+  const hair=(await loader.loadAsync(`./artifacts/master-fit-v1/${style}-fitted.glb`)).scene,low=(await loader.loadAsync(`./artifacts/master-fit-v1/${proxy}-fitted.glb`)).scene;resources.push(hair,low);
+  for(const mode of ['Neutral full figure','Short/wide | Tall/narrow','56 px heads: detail | silhouette']){
+   const scene=new THREE.Scene();scene.background=new THREE.Color('#283139');scene.add(new THREE.HemisphereLight(0xcde3fc,0x594f42,1.35));
+   for(const [power,p] of [[3,[.4,2.2,.6]],[1.5,[-.5,1.8,.2]],[2,[.2,2,-.5]]]){const l=new THREE.DirectionalLight(0xffe6ce,power);l.position.set(...p);scene.add(l)}
+   const small=mode.startsWith('56'),pair=mode.includes('|');
+   const configs=small?[[hair,{},-.32],[low,{},.32]]:pair?[[hair,short,-.42],[hair,tall,.42]]:[[hair,{},0]];
+   for(const [asset,values,x] of configs){const g=new THREE.Group();const b=body.clone(true),h=asset.clone(true);morph(b,values);morph(h,values);g.add(b,h);g.position.x=x;scene.add(g)}
+   const scale=small?1.65:2.04;const camera=new THREE.OrthographicCamera(-scale*380/350/2,scale*380/350/2,scale/2,-scale/2,.01,10);
+   camera.position.set(small?.35:0,small?1.76:.95,small?.7:3);camera.lookAt(0,small?1.665:.9,0);renderer.render(scene,camera);
+   const panel=document.createElement('div');panel.className='panel';const img=document.createElement('img');img.src=renderer.domElement.toDataURL();panel.append(img);const cap=document.createElement('div');cap.className='label';cap.textContent=`${label} · ${mode}`;panel.append(cap);document.querySelector('#grid').append(panel);
+   window.receipt.panels.push({style,mode,values:configs.map(x=>x[1]),triangles:renderer.info.render.triangles,calls:renderer.info.render.calls});
+  }
+ }
+ const gl=renderer.getContext();window.receipt.renderer=gl.getParameter(gl.getExtension('WEBGL_debug_renderer_info').UNMASKED_RENDERER_WEBGL);
+ window.cleanup=()=>{for(const r of resources)r.traverse(o=>{o.geometry?.dispose();if(o.material)for(const m of (Array.isArray(o.material)?o.material:[o.material]))m.dispose()});renderer.dispose();renderer.forceContextLoss();window.receipt.disposed=true};window.receipt.ready=true;
+}catch(e){window.proofError=String(e);console.error(e)}
+</script>

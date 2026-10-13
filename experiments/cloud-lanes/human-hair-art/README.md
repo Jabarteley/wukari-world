@@ -1,6 +1,8 @@
 # Allworld original hair art
 
-Two original **art prototypes**, not production-admitted or master-fitted hair:
+Two original **art prototypes**, plus separately owned surface-morph fitting derivatives on the exact actual master. No production admission.
+
+**Current handoff:** see [MASTER-FIT.md](../../../docs/agent-plans/cloud-lanes/human-hair-art/MASTER-FIT.md) and `artifacts/master-fit-v1/`: fitted editable Blender source, four GLBs, 112 sampled cases per variant, and three inspected actual-master contact sheets. The original calibration folders below remain immutable and retain their historical `pending-master` labels.
 
 - `artifacts/c01-v3/`: tight curl crop, 640 finite geometric curl bundles in the near source.
 - `artifacts/s02-v3/`: swept low twist bun, 280 scalp ribbons, 84 wrap ridges and a wound centre in the near source.
@@ -8,7 +10,7 @@ Two original **art prototypes**, not production-admitted or master-fitted hair:
 
 Open each `*-editable.blend` in Blender 4.3.2. Near objects and grey temporary calibration are visible; far objects are hidden. Every hair component is a mesh with original editable vertices; no particles, external linked libraries, acquired textures or infinite procedural strands. To show far, hide near objects and unhide the named far objects for both viewport and render. The LOD `.blend` intentionally contains both style options overlapping; hide the other style before editing/exporting.
 
-The temporary head is **not** a human foundation asset or anatomically accepted character. It exists to expose hair/scalp boundaries. Actual human task `01a13667-6b47-7763-b71a-7d06139ed03f` owns the independent face/body/expression master. No geometry/rig checkpoint was supplied; all artifacts are `actualFit=pending-master`.
+The temporary head is **not** a human foundation asset or anatomically accepted character. It exists to expose hair/scalp boundaries. Actual human task `01a13667-6b47-7763-b71a-7d06139ed03f` owns the independent face/body/expression master. These calibration files predate the actual geometry checkpoint. The new `master-fit-v1` derivatives consume `3ee5882c`; the producer still has no skeleton. See the current fitting handoff rather than treating historical calibration status as current.
 
 ## Measured export cost
 

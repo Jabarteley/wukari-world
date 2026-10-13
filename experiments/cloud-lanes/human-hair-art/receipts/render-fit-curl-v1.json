@@ -1,0 +1,24 @@
+{
+  "command": [
+    "python3",
+    "experiments/cloud-lanes/human-hair-art/render.py",
+    "--page",
+    "fit.html",
+    "--folder",
+    "master-fit-v1",
+    "--style",
+    "curl-crop",
+    "--responses",
+    "2",
+    "--out",
+    "artifacts/master-fit-v1/curl-views"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 3.342,
+  "sampledTreePeakRssBytes": 865456128,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

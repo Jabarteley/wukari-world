@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "initialMismatch": "Source fit metadata was set after first export; final canonical GLBs taken from actual saved-source re-export. Only two scene extras changed; all other JSON and BIN bytes identical.",
+  "files": [
+    {
+      "path": "artifacts/master-fit-v1/bun-proxy-fitted.glb",
+      "initialBytes": 18904,
+      "initialSha256": "357d50e01a49a6c935c7482595a3e0deb724e2ec008185468c0829ae26b601b4",
+      "finalBytes": 18984,
+      "sha256": "f9c98a2cd208c834de0661ae92977f474c7264514a34bb6fe23f5b4fce7d35b7",
+      "binaryGeometryAndMorphChunkIdentical": true,
+      "jsonDifferenceOnlyAddedSceneExtras": {
+        "hairFitMaster": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+        "hairFitNoRig": true
+      },
+      "finalSavedBlendReexportByteIdentical": true
+    },
+    {
+      "path": "artifacts/master-fit-v1/curl-crop-fitted.glb",
+      "initialBytes": 189336,
+      "initialSha256": "3761fb32c6ccf5b797b7b98b94a911504bbac76eb11b8c97b2f2135dfde4ae07",
+      "finalBytes": 189416,
+      "sha256": "a9729e2dcee74f53ca4b4120fb3075860e5750961e99422e971e5a95b0691b3f",
+      "binaryGeometryAndMorphChunkIdentical": true,
+      "jsonDifferenceOnlyAddedSceneExtras": {
+        "hairFitMaster": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+        "hairFitNoRig": true
+      },
+      "finalSavedBlendReexportByteIdentical": true
+    },
+    {
+      "path": "artifacts/master-fit-v1/curl-proxy-fitted.glb",
+      "initialBytes": 13776,
+      "initialSha256": "0fcbb1d9305011f5c9ccecf06dd7defec1034053892396d53b421a3c8327d3f3",
+      "finalBytes": 13856,
+      "sha256": "38f971ea7aaf6aa08b582e2d86699ca58dc3847a913ae2f495dfbfbc0d56144e",
+      "binaryGeometryAndMorphChunkIdentical": true,
+      "jsonDifferenceOnlyAddedSceneExtras": {
+        "hairFitMaster": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+        "hairFitNoRig": true
+      },
+      "finalSavedBlendReexportByteIdentical": true
+    },
+    {
+      "path": "artifacts/master-fit-v1/swept-bun-fitted.glb",
+      "initialBytes": 213020,
+      "initialSha256": "45d4182af716a39fabc6a0903b9f3c1e432c60f91fbeb03dd6d3a89af84a5c91",
+      "finalBytes": 213100,
+      "sha256": "6e55e907605ec84e0ccb629af715844ad4c257fad2bdb9fd7f3591138169c776",
+      "binaryGeometryAndMorphChunkIdentical": true,
+      "jsonDifferenceOnlyAddedSceneExtras": {
+        "hairFitMaster": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+        "hairFitNoRig": true
+      },
+      "finalSavedBlendReexportByteIdentical": true
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "ready": true,
+  "masterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "panels": [
+    {
+      "label": "Neutral / front hairline",
+      "weights": {},
+      "trianglesDrawn": 24536,
+      "calls": 27
+    },
+    {
+      "label": "Neutral / three-quarter",
+      "weights": {},
+      "trianglesDrawn": 24536,
+      "calls": 27
+    },
+    {
+      "label": "Neutral / temple and ear",
+      "weights": {},
+      "trianglesDrawn": 24536,
+      "calls": 27
+    },
+    {
+      "label": "Neutral / rear and nape",
+      "weights": {},
+      "trianglesDrawn": 24536,
+      "calls": 27
+    },
+    {
+      "label": "Short / ears +1 / nose +1",
+      "weights": {
+        "body.height": -1,
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1,
+        "nose.projection": 1,
+        "body.shoulderWidth": 1
+      },
+      "trianglesDrawn": 24536,
+      "calls": 27
+    },
+    {
+      "label": "Tall / L ear \u22121 / R +1 / blink",
+      "weights": {
+        "body.height": 1,
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": 1,
+        "nose.alarWidth": -1,
+        "body.shoulderWidth": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "trianglesDrawn": 24456,
+      "calls": 26
+    }
+  ],
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "disposed": true,
+  "status": "passed",
+  "browserVersion": "154.0.8037.57",
+  "errors": [],
+  "responses": [
+    {
+      "path": "original-human-prototype.glb",
+      "status": 200
+    },
+    {
+      "path": "curl-crop-fitted.glb",
+      "status": 200
+    }
+  ],
+  "serverClosed": true
+}

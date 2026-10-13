@@ -1,0 +1,23 @@
+{
+  "command": [
+    "blender",
+    "-b",
+    "-t",
+    "2",
+    "--python-exit-code",
+    "1",
+    "--python",
+    "experiments/cloud-lanes/human-hair-art/fit_master.py",
+    "--",
+    "--out",
+    "experiments/cloud-lanes/human-hair-art/artifacts/master-fit-v1"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 2.809,
+  "sampledTreePeakRssBytes": 265973760,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 120,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

@@ -21,7 +21,9 @@ for(const file of fs.readdirSync(dir).filter(x=>x.endsWith('.glb'))){
  }
  assert(!doc.skins?.length && !doc.animations?.length);assert(!doc.images?.length);
  for(const m of doc.materials){assert.equal(m.alphaMode??'OPAQUE','OPAQUE');assert.equal(m.doubleSided??false,false)}
- result.files[file]={bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex'),triangles,vertices,primitives,materialSlots:doc.materials.length,materials:doc.materials,skins:doc.skins?.length??0,morphTargets:0,textures:0,validator:{errors:validation.issues.numErrors,warnings:validation.issues.numWarnings,infos:validation.issues.numInfos,messages:validation.issues.messages}};
+ const morphs=doc.meshes.map(m=>({mesh:m.name,targetNames:m.extras?.targetNames??[],targetsPerPrimitive:m.primitives.map(p=>p.targets?.length??0)}));
+ for(const m of doc.meshes)for(const p of m.primitives)for(const t of p.targets??[])assert.equal(doc.accessors[t.POSITION].count,doc.accessors[p.attributes.POSITION].count);
+ result.files[file]={bytes:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex'),triangles,vertices,primitives,materialSlots:doc.materials.length,materials:doc.materials,skins:doc.skins?.length??0,morphTargets:morphs.reduce((s,m)=>s+Math.max(...m.targetsPerPrimitive),0),morphs,textures:0,validator:{errors:validation.issues.numErrors,warnings:validation.issues.numWarnings,infos:validation.issues.numInfos,messages:validation.issues.messages}};
 }
 fs.writeFileSync(path.join(dir,'decoded-validation.json'),JSON.stringify(result,null,2)+'\n');
 console.log(JSON.stringify(Object.fromEntries(Object.entries(result.files).map(([name,v])=>[name,{bytes:v.bytes,triangles:v.triangles,primitives:v.primitives,validator:v.validator}]))));

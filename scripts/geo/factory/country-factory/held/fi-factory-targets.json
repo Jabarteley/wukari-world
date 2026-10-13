@@ -6676,7 +6676,11 @@
           "roads": "f3312580791503b7d2edb6dc48d57ea5fc5c6c17f65ef896f889d770204659bb"
         }
       },
-      "sceneWaterExtent": "play"
+      "sceneWaterExtent": "play",
+      "waterBudgetLadder": true,
+      "geometry": {
+        "maxRoads": 350
+      }
     }
   ]
 }

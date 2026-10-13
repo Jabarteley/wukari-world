@@ -1,0 +1,205 @@
+{
+  "schema": "allworld-wardrobe-delivery-sha256-v1",
+  "files": {
+    "docs/agent-plans/cloud-lanes/human-wardrobe-art/CONTINUE.md": {
+      "bytes": 10611,
+      "sha256": "ce5dfa45c6cc65aaa6290b362b1dcc6e16ef7474e1fc13a5702ab53778b16448"
+    },
+    "docs/agent-plans/cloud-lanes/human-wardrobe-art/README.md": {
+      "bytes": 1948,
+      "sha256": "a1945beb833bb727165fc01a1397ca80f58a612bd77f527247f348d9709b09e2"
+    },
+    "docs/agent-plans/cloud-lanes/human-wardrobe-art/SOURCE-NOTICE.md": {
+      "bytes": 1948,
+      "sha256": "43237405f18915c4a389619cfb2500cdebc3b3d17e1d9445e81eb297d4daca73"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/.gitignore": {
+      "bytes": 100,
+      "sha256": "c22380a5dc75cd4a0794c0074a8a3fae9483d34f552f7f4b9d9e12af385fe6e8"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/artifacts/back.jpg": {
+      "bytes": 38957,
+      "sha256": "322fcee064a27a8fa172d04d828426b04b6a231625af9281b66e536cc2c638d5"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/artifacts/contact-sheet.jpg": {
+      "bytes": 158156,
+      "sha256": "0843aacc33b6f0f6ceee484b7d2c78de1bc8c1c87f7f985f4c9bd3ca216ea4b3"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/artifacts/everyday-01-on-form.glb": {
+      "bytes": 3808680,
+      "sha256": "be28e73cc7cd62b297bde445123b73eb1a870d1fe31fb9850ba9b26a99f419a3"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/artifacts/everyday-01-tailoring-form.blend": {
+      "bytes": 450790,
+      "sha256": "25e1ba8e8c9b9cd271d86c4dfb229a0533eee1a192e1ba587a2dc5b3519eeecf"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/artifacts/front.jpg": {
+      "bytes": 37714,
+      "sha256": "070c75538e6182ebd0beff7544615f039c38e67162be381ea3795255e2e5a628"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/artifacts/profile.jpg": {
+      "bytes": 36792,
+      "sha256": "77563b8c6286f878e12bb68c95436bd93cde7bd8c68c36273b60e378c5f06ea2"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/artifacts/raw-gltfloader-proof.jpg": {
+      "bytes": 65793,
+      "sha256": "85ded2557650508ff76023114e902c0960b1e9f6edbe7032f13aca96a4f4b450"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/artifacts/river_sage_cotton.png": {
+      "bytes": 86284,
+      "sha256": "22e134d2a431f6efc73d03b36186d525b8b2eb6d341c86e82b09abb6dfa91ebc"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/artifacts/source-measurements.json": {
+      "bytes": 42124,
+      "sha256": "fd632c17ded6b096ac6e2f7023885cb9192905f6b270425b65e345da5355b583"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/artifacts/thread-normal.png": {
+      "bytes": 2348,
+      "sha256": "d27e62173cbd6fc183a2987321826f065371312c46525e1d34dc5ca36e1e5211"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/artifacts/warm_sand_twill.png": {
+      "bytes": 88579,
+      "sha256": "c54b9ad23137e2a077c91533fb6b8e200a9c45a2b25de22f687844cc9b200cc6"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/bounded_run.py": {
+      "bytes": 4407,
+      "sha256": "afd47e98a211eab91a49dea57ee7c5957bd5d03f48b89f7d674e157011f9fddd"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/build_outfit.py": {
+      "bytes": 21348,
+      "sha256": "a2be063f9c804dd397105523e65e684d4122f7975855324bb06cf65c59677f1b"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/check_blend.py": {
+      "bytes": 1514,
+      "sha256": "4cefa0eddea09973f122f89bc49942b6d50356473d953931db863bad80b0e0d7"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/fit-proposal.json": {
+      "bytes": 2954,
+      "sha256": "009c36783749e90a81f181b2f753dbb407f6e65a9eed0dcacebbf283d7107d89"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/inspect_glb.py": {
+      "bytes": 4635,
+      "sha256": "811c7539a4ac129bb19fe144979fee416a295caef4b0cdc74862cda221a28b8e"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/make_contact.py": {
+      "bytes": 1182,
+      "sha256": "5a2bf7e35b24f5b052993caac2209da27b6af209ed370bee7d00f691bc2f5bc3"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/package-lock.json": {
+      "bytes": 927,
+      "sha256": "f600ce0ce4f212d828c23110506ad4fc22acded4a6791b237662c62df4c62323"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/package.json": {
+      "bytes": 211,
+      "sha256": "29bab0cc4ce34dc380045d36bb90fadc984729cde85268571cc2607a6d0ed6b3"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/packet.json": {
+      "bytes": 3501,
+      "sha256": "060466bb37f80eec2e8a7f2de1d428fbbde615daa9cde2059399289f15714732"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/proof.html": {
+      "bytes": 4387,
+      "sha256": "e750f03518a7b2c4133686ca54957b8a5ca4c6d5858c0666adfc1da953390a69"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/prove_export.py": {
+      "bytes": 2884,
+      "sha256": "7d870025d59b6eeab2bdf2b8855aab1fb31319321054245f24cc6d159e85b8df"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/blend-reopen-resource.json": {
+      "bytes": 423,
+      "sha256": "dfdff78339ccbe30a99481241fce295e3e72c828469a287e197d1f76355b0211"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/blend-reopen-resource.txt": {
+      "bytes": 694,
+      "sha256": "f3843889a6c943289dabfb58485f5fa2cf7c1d7392324b3c53e29b6cc126bcd9"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/blend-reopen.json": {
+      "bytes": 724,
+      "sha256": "1c8c996dfde1efe094c3c25eaa19db32913d2455a1fae60c3151ce7da90b17f1"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/browser-proof.json": {
+      "bytes": 3529,
+      "sha256": "9edd781cad4cefb0db95caf063c09053c34a35d9a2ef3f14a6e30210c09d13f2"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/browser-resource.json": {
+      "bytes": 326,
+      "sha256": "a36e0d9a91c5ef2a4e0b3493c6c9925f780aa55c1510c75601d574be760e7dfb"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/browser-resource.txt": {
+      "bytes": 3529,
+      "sha256": "9edd781cad4cefb0db95caf063c09053c34a35d9a2ef3f14a6e30210c09d13f2"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/build-v1-failed.txt": {
+      "bytes": 38322,
+      "sha256": "6e9a6cafb8f8c8d8dd07cda15b75343ed1b3068f40dae7d07e881901af70d82f"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/build-v2-resource.json": {
+      "bytes": 426,
+      "sha256": "7a34c40a2e7f19c9a78cd058f4309251ccc0e4aa3581b541247068544e640902"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/build-v2-resource.txt": {
+      "bytes": 71024,
+      "sha256": "e600d543cb53fdec823f5e124c9f014f96032560b70dc7a45865f0017d23ceea"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/build-v3-resource.json": {
+      "bytes": 426,
+      "sha256": "c669d37426291d235f25cd099d188216f3f11e9d16c5b81c9a918e8b6ee9772d"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/build-v3-resource.txt": {
+      "bytes": 71170,
+      "sha256": "87dc829228585d337b973ef6be44c029663327ba61720e17d5b7708da814f647"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/build-v4-resource.json": {
+      "bytes": 426,
+      "sha256": "39b13f93b14952683fbcc564aecb8014f2efb3f05d1ad0b4ab58c92c9afcafbf"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/build-v4-resource.txt": {
+      "bytes": 73189,
+      "sha256": "bc54c2591a2767bc60d2195ad945c1c0870da9a646b395a9f17f3fcdd87bd94f"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/export-measurements.json": {
+      "bytes": 56117,
+      "sha256": "05528974cc29b5dfc2116518e8de68befe1bebe5e320a524faecfd844fd05923"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/gltf-validator.json": {
+      "bytes": 27486,
+      "sha256": "9d47bc36fe525e3de31ab95ea8aa9ec5d4d02bb08de9eaa84e3931613f61f72d"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/input-verification.json": {
+      "bytes": 449,
+      "sha256": "3fa68efbe1dbf1e3a84fd8e2bd81e57460375bc47e385d8c469abb9d6bbfb555"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/proof-dependencies-resource.json": {
+      "bytes": 452,
+      "sha256": "7d5343c476dadff8ca1e0f28fc57cbc7c9b6639266b15780ad58f2585a33a693"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/proof-dependencies-resource.txt": {
+      "bytes": 232,
+      "sha256": "35cc88bfe69297132346d651b286b8835c7c806958455a4fc23488e4cf417d9e"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/validation-complete-resource.json": {
+      "bytes": 320,
+      "sha256": "68603212bb968443c585aeb1aa9f49fb30fd6027564e5bcc9296020837d80ee6"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/validation-complete-resource.txt": {
+      "bytes": 78,
+      "sha256": "6de74e33699eb41564aa9b42b1da11446829ae5186cac1cdcba3901f9ff4f119"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/validation-resource.json": {
+      "bytes": 320,
+      "sha256": "d35334f07f9a2855bd477126eab5fe8a9106a31335af96380bc784f18779fe90"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/receipts/validation-resource.txt": {
+      "bytes": 18584,
+      "sha256": "c2568f825d9706149c09b9cc3880ab693d335927c0e920231ca5a0843c484491"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/validate.mjs": {
+      "bytes": 518,
+      "sha256": "50ec7277bf63b34bf9007e4883b19dfe8cc7521a784d000f9b88529cb67a5bea"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/verify_packet.py": {
+      "bytes": 485,
+      "sha256": "11eba396b463b1f24dd6382d8e770196ee1673fa2c150c58cb7a4cb3a4fc1dd1"
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "ready": true,
+  "threeRevision": "180",
+  "loader": "Raw GLTFLoader; no production ModelPart importer",
+  "renderViews": 3,
+  "triangles": 160200,
+  "meshNodes": 108,
+  "materials": [
+    {
+      "name": "river_sage_cotton",
+      "roughness": 0.7799999713897705,
+      "metalness": 0,
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "opacity": 1,
+      "transparent": false,
+      "map": {
+        "width": 256,
+        "height": 256,
+        "colorSpace": "srgb"
+      },
+      "normalMap": {
+        "width": 256,
+        "height": 256,
+        "colorSpace": ""
+      },
+      "normalScale": [
+        0.3499999940395355,
+        -0.3499999940395355
+      ]
+    },
+    {
+      "name": "sage_topstitch",
+      "roughness": 0.8799999952316284,
+      "metalness": 0,
+      "color": [
+        0.20999999344348907,
+        0.3199999928474426,
+        0.25999999046325684
+      ],
+      "opacity": 1,
+      "transparent": false,
+      "map": null,
+      "normalMap": null,
+      "normalScale": [
+        1,
+        -1
+      ]
+    },
+    {
+      "name": "dark_corozo_buttons",
+      "roughness": 0.5,
+      "metalness": 0,
+      "color": [
+        0.052000001072883606,
+        0.0430000014603138,
+        0.03099999949336052
+      ],
+      "opacity": 1,
+      "transparent": false,
+      "map": null,
+      "normalMap": null,
+      "normalScale": [
+        1,
+        -1
+      ]
+    },
+    {
+      "name": "warm_sand_twill",
+      "roughness": 0.7799999713897705,
+      "metalness": 0,
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "opacity": 1,
+      "transparent": false,
+      "map": {
+        "width": 256,
+        "height": 256,
+        "colorSpace": "srgb"
+      },
+      "normalMap": {
+        "width": 256,
+        "height": 256,
+        "colorSpace": ""
+      },
+      "normalScale": [
+        0.3499999940395355,
+        -0.3499999940395355
+      ]
+    },
+    {
+      "name": "sand_topstitch",
+      "roughness": 0.8999999761581421,
+      "metalness": 0,
+      "color": [
+        0.47999998927116394,
+        0.3499999940395355,
+        0.2150000035762787
+      ],
+      "opacity": 1,
+      "transparent": false,
+      "map": null,
+      "normalMap": null,
+      "normalScale": [
+        1,
+        -1
+      ]
+    },
+    {
+      "name": "FIXTURE_clay_no_skin_claim",
+      "roughness": 0.8700000047683716,
+      "metalness": 0,
+      "color": [
+        0.30000001192092896,
+        0.23999999463558197,
+        0.20000000298023224
+      ],
+      "opacity": 1,
+      "transparent": false,
+      "map": null,
+      "normalMap": null,
+      "normalScale": [
+        1,
+        -1
+      ]
+    }
+  ],
+  "skins": 0,
+  "morphs": 0,
+  "bounds": {
+    "min": [
+      -0.36325588822364807,
+      0.09600001573562622,
+      -0.1675487905740738
+    ],
+    "max": [
+      0.36325588822364807,
+      1.5950002670288086,
+      0.1822929084300995
+    ]
+  },
+  "webglRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "hardwarePerformance": false,
+  "fitAccepted": false,
+  "status": "PASS",
+  "browserVersion": "154.0.8037.57",
+  "screenshot": {
+    "path": "artifacts/raw-gltfloader-proof.jpg",
+    "bytes": 65793,
+    "sha256": "85ded2557650508ff76023114e902c0960b1e9f6edbe7032f13aca96a4f4b450"
+  },
+  "disposed": true,
+  "pageErrors": [],
+  "failedRequests": [],
+  "glbResponses": [
+    {
+      "name": "everyday-01-on-form.glb",
+      "status": 200
+    }
+  ],
+  "serverClosed": true,
+  "browserClosed": true,
+  "elapsedSeconds": 2.455
+}

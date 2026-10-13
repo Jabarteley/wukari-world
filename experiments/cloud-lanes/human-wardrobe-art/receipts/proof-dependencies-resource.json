@@ -1,0 +1,21 @@
+{
+  "command": [
+    "npm",
+    "install",
+    "--prefix",
+    "experiments/cloud-lanes/human-wardrobe-art",
+    "--ignore-scripts",
+    "--no-audit",
+    "--no-fund",
+    "--cache",
+    "/tmp/allworld-wardrobe-npm-cache"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 1.332,
+  "sampledTreePeakRssBytes": 126492672,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

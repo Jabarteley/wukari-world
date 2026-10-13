@@ -1,0 +1,119 @@
+{
+  "schema": "allworld-original-wardrobe-art-packet-v0.1",
+  "assetFamily": "allworld-original-everyday-01",
+  "version": "0.1.0",
+  "stage": "original-tailoring-form-checkpoint",
+  "sourceArtCommit": "9c8e65962f7cb2cb245ae66f37e5b6ec3cdaafbc",
+  "integrationCommit": "caaee5e1b91afc7f3cd3f2124df3547dc7f492ec",
+  "humanContractCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+  "humanMeshCheckpoint": null,
+  "originalArt": true,
+  "license": "AGPL-3.0-or-later",
+  "sourceNotice": "docs/agent-plans/cloud-lanes/human-wardrobe-art/SOURCE-NOTICE.md",
+  "editableSource": {
+    "path": "artifacts/everyday-01-tailoring-form.blend",
+    "bytes": 450790,
+    "sha256": "25e1ba8e8c9b9cd271d86c4dfb229a0533eee1a192e1ba587a2dc5b3519eeecf"
+  },
+  "export": {
+    "path": "artifacts/everyday-01-on-form.glb",
+    "bytes": 3808680,
+    "sha256": "be28e73cc7cd62b297bde445123b73eb1a870d1fe31fb9850ba9b26a99f419a3",
+    "axes": "glTF Y up / +Z forward; metres",
+    "worldOrigin": [
+      0,
+      0,
+      0
+    ],
+    "boundsMetres": {
+      "min": [
+        -0.36325588822364807,
+        0.09600001573562622,
+        -0.1675487905740738
+      ],
+      "max": [
+        0.36325588822364807,
+        1.5950002670288086,
+        0.1822929084300995
+      ],
+      "size": [
+        0.7265117764472961,
+        1.4990002512931824,
+        0.3498416990041733
+      ]
+    },
+    "totalTriangles": 160200,
+    "garmentTriangles": 144840,
+    "fixtureTriangles": 15360,
+    "meshNodes": 108,
+    "garmentMeshNodes": 102,
+    "materialCount": 6,
+    "embeddedImageBytes": 177211,
+    "decodedTextureRGBABytes": 786432,
+    "skins": 0,
+    "animations": 0,
+    "morphTargets": 0,
+    "extensionsUsed": []
+  },
+  "textureImages": [
+    {
+      "name": "thread-normal",
+      "mimeType": "image/png",
+      "bytes": 2348,
+      "sha256": "d27e62173cbd6fc183a2987321826f065371312c46525e1d34dc5ca36e1e5211",
+      "dimensions": [
+        256,
+        256
+      ],
+      "decodedRGBABytes": 262144
+    },
+    {
+      "name": "river_sage_cotton",
+      "mimeType": "image/png",
+      "bytes": 86284,
+      "sha256": "22e134d2a431f6efc73d03b36186d525b8b2eb6d341c86e82b09abb6dfa91ebc",
+      "dimensions": [
+        256,
+        256
+      ],
+      "decodedRGBABytes": 262144
+    },
+    {
+      "name": "warm_sand_twill",
+      "mimeType": "image/png",
+      "bytes": 88579,
+      "sha256": "c54b9ad23137e2a077c91533fb6b8e200a9c45a2b25de22f687844cc9b200cc6",
+      "dimensions": [
+        256,
+        256
+      ],
+      "decodedRGBABytes": 262144
+    }
+  ],
+  "masksAndBindings": "fit-proposal.json",
+  "acceptance": {
+    "inputPins": true,
+    "editableBlendReopened": true,
+    "blenderNeutralViewsInspected": true,
+    "rawGLTFLoaderNeutralViewsInspected": true,
+    "glTFValidatorErrors": 0,
+    "glTFValidatorWarnings": 38,
+    "fixtureOnly": true,
+    "frozenBodyFit": false,
+    "changedProportionFit": false,
+    "poseClippingTest": false,
+    "realismFinal": false,
+    "runtimeInstalled": false,
+    "physicalDevicePerformance": false,
+    "eligibleForProduction": false
+  },
+  "portabilityLimits": [
+    "38 primitives require generated tangent space; normal appearance may differ by runtime",
+    "70 unneeded UV attributes informational",
+    "Cycles vs browser tone mapping/lighting differ",
+    "Expensive evaluated authoring geometry: no mobile-ready claim",
+    "No skin binding, morph targets, LOD or animation",
+    "Known collar/armhole surface refinements remain"
+  ],
+  "firstPacketBytes": 5068661
+}

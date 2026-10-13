@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python",
+    "experiments/cloud-lanes/human-wardrobe-art/prove_export.py"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 2.625,
+  "sampledTreePeakRssBytes": 851030016,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

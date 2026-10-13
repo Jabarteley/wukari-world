@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "experiments/cloud-lanes/human-wardrobe-art/validate.mjs"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 0.206,
+  "sampledTreePeakRssBytes": 68321280,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 30,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

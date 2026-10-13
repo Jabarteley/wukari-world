@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "blendBytes": 450790,
+  "blendSha256": "25e1ba8e8c9b9cd271d86c4dfb229a0533eee1a192e1ba587a2dc5b3519eeecf",
+  "garmentObjects": 102,
+  "editableMeshObjects": 42,
+  "editableCurveObjects": 60,
+  "fixtureObjects": 6,
+  "packedImages": [
+    {
+      "name": "original_thread_normal_256",
+      "size": [
+        256,
+        256
+      ],
+      "packedBytes": 2348
+    },
+    {
+      "name": "river_sage_cotton_original_woven_256",
+      "size": [
+        256,
+        256
+      ],
+      "packedBytes": 86284
+    },
+    {
+      "name": "warm_sand_twill_original_woven_256",
+      "size": [
+        256,
+        256
+      ],
+      "packedBytes": 88579
+    }
+  ],
+  "armatures": 0,
+  "fitAccepted": false
+}

@@ -6,6 +6,7 @@ One original sage cotton overshirt and sand twill trouser set on a **labelled or
 
 - [Editable Blender source](../../../../experiments/cloud-lanes/human-wardrobe-art/artifacts/everyday-01-tailoring-form.blend)
 - [Uncompressed GLB](../../../../experiments/cloud-lanes/human-wardrobe-art/artifacts/everyday-01-on-form.glb)
+- [Inspected raw GLTFLoader PBR proof](../../../../experiments/cloud-lanes/human-wardrobe-art/artifacts/raw-gltfloader-proof.jpg)
 - [Exported measurements](../../../../experiments/cloud-lanes/human-wardrobe-art/receipts/export-measurements.json)
 - [Mask/binding proposal and blocked fit tests](../../../../experiments/cloud-lanes/human-wardrobe-art/fit-proposal.json)
 

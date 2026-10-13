@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Allworld wardrobe / raw GLTFLoader proof</title>
+<style>body{margin:0;background:#17232a;color:#e8e2cd;font:15px system-ui}header{padding:18px 24px 8px}h1{font-size:24px;font-weight:500;margin:0 0 6px}p{margin:0;color:#b8c9c6}.views{display:flex;padding:14px 0 0}.views span{width:33.3%;padding-left:24px;font-size:12px}canvas{display:block}footer{padding:14px 24px;color:#d7b381}</style>
+<header><h1>ALLWORLD / EVERYDAY 01</h1><p>Actual exported GLB · isolated Three.js GLTFLoader · original tailoring fixture</p></header>
+<div class="views"><span>FRONT</span><span>PROFILE</span><span>BACK</span></div><canvas></canvas><footer>Static, unbound garments. Producer body + rig pending. No wearable-fit or game-performance claim.</footer>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+try {
+ const renderer=new THREE.WebGLRenderer({canvas:document.querySelector('canvas'),antialias:true,preserveDrawingBuffer:true});
+ renderer.setSize(1050,575);renderer.setPixelRatio(1);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1;
+ const scene=new THREE.Scene();scene.background=new THREE.Color('#24323b');
+ scene.add(new THREE.HemisphereLight(0xffffff,0x746852,2));
+ for (const [pos,power] of [[[ -3,4,4],3],[[3,2,-3],2]]) { const l=new THREE.DirectionalLight(0xffffff,power);l.position.set(...pos);scene.add(l); }
+ const gltf=await new GLTFLoader().loadAsync('./artifacts/everyday-01-on-form.glb');scene.add(gltf.scene);gltf.scene.updateMatrixWorld(true);
+ const ms=new Map();let triangles=0,meshNodes=0,skins=0,morphs=0;
+ gltf.scene.traverse(o=>{if(!o.isMesh)return;meshNodes++;triangles+=(o.geometry.index?o.geometry.index.count:o.geometry.attributes.position.count)/3;if(o.isSkinnedMesh)skins++;morphs+=o.morphTargetInfluences?.length||0;for(const m of (Array.isArray(o.material)?o.material:[o.material]))ms.set(m.uuid,m);});
+ const decoded=[...ms.values()].map(m=>({name:m.name,roughness:m.roughness,metalness:m.metalness,color:m.color.toArray(),opacity:m.opacity,transparent:m.transparent,map:m.map?{width:m.map.image.width,height:m.map.image.height,colorSpace:m.map.colorSpace}:null,normalMap:m.normalMap?{width:m.normalMap.image.width,height:m.normalMap.image.height,colorSpace:m.normalMap.colorSpace}:null,normalScale:m.normalScale.toArray()}));
+ if (triangles!==160200 || meshNodes!==108 || ms.size!==6 || skins || morphs)throw Error('Decoded geometry differs from frozen export');
+ const fabrics=decoded.filter(m=>m.map);if(fabrics.length!==2||fabrics.some(m=>m.map.width!==256||!m.normalMap||Math.abs(m.roughness-.78)>1e-6))throw Error('PBR cloth fields lost');
+ if(decoded.some(m=>m.transparent||m.opacity!==1))throw Error('Unexpected alpha');
+ const bounds=new THREE.Box3().setFromObject(gltf.scene);
+ const camera=new THREE.OrthographicCamera(-.53,.53,.87,-.87,.01,20);
+ renderer.setScissorTest(true);
+ for(const [i,p] of [[0,[0,.89,3]],[1,[3,.89,0]],[2,[0,.89,-3]]]){renderer.setViewport(i*350,0,350,575);renderer.setScissor(i*350,0,350,575);camera.position.set(...p);camera.lookAt(0,.846,0);camera.updateProjectionMatrix();renderer.render(scene,camera);}
+ const gl=renderer.getContext();const ext=gl.getExtension('WEBGL_debug_renderer_info');
+ window.receipt={ready:true,threeRevision:THREE.REVISION,loader:'Raw GLTFLoader; no production ModelPart importer',renderViews:3,triangles,meshNodes,materials:decoded,skins,morphs,bounds:{min:bounds.min.toArray(),max:bounds.max.toArray()},webglRenderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),hardwarePerformance:false,fitAccepted:false};
+ window.cleanup=()=>{const geometries=new Set(),textures=new Set();scene.traverse(o=>{if(o.geometry)geometries.add(o.geometry)});for(const g of geometries)g.dispose();for(const m of ms.values()){if(m.map)textures.add(m.map);if(m.normalMap)textures.add(m.normalMap);m.dispose();}for(const t of textures){t.source?.data?.close?.();t.dispose();}renderer.dispose();renderer.forceContextLoss();window.receipt.disposed=true;};
+} catch(e){window.proofError=String(e);console.error(e);}
+</script></html>

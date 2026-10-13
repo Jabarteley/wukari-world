@@ -1,15 +1,15 @@
 # Allworld cloud coordinator: verified setup and provisional lanes
 
-Status: setup executed; production changes and specialist launches held for the parent plan and ownership reconciliation. Observations made on 13 October 2026, approximately 17:38–17:46 UTC.
+Status: setup executed; parent plan fully recovered/read and archived; four first-wave tasks reported launched by the parent. This coordinator edits documentation only. Initial setup observations were made on 13 October 2026, approximately 17:38–17:46 UTC; later reconciliation is in FIRST-WAVE.md.
 
 ## Authority and isolation
 
-Anthony authorized this cloud environment for verification and coordination. Parent thread `01a0f3c2-c8f1-7692-bb60-ba891cf350fe` owns cloud task launch. This coordinator may write this plan and the accompanying acceptance checklist, but may not change production code, main, CI, deployment, credentials, or paid resources. The parent relayed a later user instruction at 17:45 UTC authorizing an isolated-branch commit and push of completed work with continuation instructions; that supersedes the initial no-push restriction only for this handoff.
+Anthony authorized this cloud environment for verification and coordination. Parent thread `01a0f3c2-c8f1-7692-bb60-ba891cf350fe` owns cloud task launch. This coordinator may write its coordination documents and the requested parent-plan archive, but may not change production code, main, CI, deployment, credentials, or paid resources. The parent relayed a later user instruction at 17:45 UTC authorizing an isolated-branch commit and push of completed work with continuation instructions; that supersedes the initial no-push restriction only for this handoff.
 
 - Original checkout: `/workspace/joinallworld`, branch `work`, clean on arrival and after verification.
 - Pinned source: `81d9f599d87dfb34adf49cd9337a0b05678e5e0d` (`Update the unpack test for the 20,000-file bound`).
 - Coordinator worktree: `/workspace/joinallworld-cloud-coordinator`.
-- Coordinator branch: `codex/cloud-coordinator-20261013`, created from that exact pin. Only the three Markdown files in this directory are coordinator source changes.
+- Coordinator branch: `codex/cloud-coordinator-20261013`, created from that exact pin. Only the five Markdown files in this directory are coordinator source changes.
 - Configured origin identifies `github.com/kromate/joinallworld.git`. No fetch was performed. This pin is the supplied checkout, not a claim about current remote main. The later authorized branch push is recorded in the final handoff; it does not merge or deploy anything.
 
 The original Blender production continues independently. The parent's report of 330+ bases, near/far GLBs, editable blends and staged QA is context, not an inventory independently verified here. This checkout contains 168 GLBs (3 body, 127 street, 38 vehicle) and no `.blend` sources. File count is not a count of distinct bases. Existing background/mobile assets remain a separate useful tier; the realism pilot is one convincing real Lagos block and one expressive modular human in the current game.
@@ -49,13 +49,13 @@ Available local tools include Git, gh, Blender, Chromium, Python Playwright, ffm
 
 The lockfile root metadata says MIT while `package.json` says AGPL-3.0-or-later. Record the inconsistency for the existing owner; neither label is asset provenance, and neither was edited.
 
-## Parent plan transfer: exact blocker
+## Parent plan transfer history and recovery
 
 Requested item: Library `libfile_041c7a27b9ac81919aeeec48958041cb`, `Allworld-production-plan.md`, version 0. Library resolved file `file_00000000d88081f58bf0a00cc26c9e47`, 66,182 bytes, with version 0. The current Library skill and materialization reference were read; its current transfer helper was loaded into a fresh private directory.
 
 Two supported attempts were made: initial materialization and one consumer-local retry pinned to the returned file ID. Both returned a signed transfer rather than a workspace path, and both helper executions exited 1 with exactly `library file transfer failed: download failed`. No local plan file exists in `/workspace/library-files/allworld-cloud-coordinator`. No guessed URL, raw download workaround, additional retry, or reconstructed substitute was used.
 
-**The full parent plan has not been read.** The matrix below is source-grounded preparatory mapping, not reconciliation with that researched plan and not launch approval. Parent should restore the plan handoff (for example, provide its complete contents) before launch advice is finalized. The parent retains the authoritative plan identity/version.
+**Resolved for planning in the follow-up:** the parent authorized archiving the plan text. The received message was truncated, so pinned Library text reads recovered all 480 lines at version 0. The complete 66,182-byte archive is [Allworld-production-plan.md](Allworld-production-plan.md), SHA-256 `58a52f1bc2a045ed7c79492635ac83fdfd357ad5016de107dc2c1d0da65e955f`; it was read in full and its Library metadata retained locally. This is text-read recovery, not a successful signed-file download. See [FIRST-WAVE.md](FIRST-WAVE.md) for ownership/budget reconciliation and the four parent-reported launches.
 
 ## Integration map from pinned source
 
@@ -77,40 +77,17 @@ Two supported attempts were made: initial materialization and one consumer-local
 
 `docs/ASSETS.md` attributes the existing body/animation inputs to Quaternius and records their notices. This verifies what the repository records; no new third-party asset or license was independently researched or approved in this setup pass. Current APIs allow broad cosmetic variation but do not demonstrate the full realistic modular-human target.
 
-## Provisional 20 distinct specialist lanes
+## Canonical twenty lanes and active first wave
 
-All rows are **unlaunched** and subject to the unread parent plan. Suggested branches are `codex/cloud-<slug>`. Each lane gets exclusive `docs/agent-plans/cloud-lanes/<slug>/` for research/contracts and `evidence/cloud-lanes/<slug>/` for ignored experiments and receipts. A lane owns only its directory and its own binary files; it reads frozen exports from others. No row grants ownership of existing `src`, `server`, `world`, `.github`, package, budget, or shared coordination files.
+Use the parent plan's 20-lane matrix and launch prompts in [Allworld-production-plan.md](Allworld-production-plan.md). The original coordinator's alternative lane numbering is superseded. Parent lanes are: 01 integration, 02 sources, 03 geospatial, 04 human base, 05 face morphs, 06 body morphs, 07 rig/expression, 08 skin/eyes, 09 hair, 10 wardrobe, 11 character editor, 12 terrain, 13 roads/transit, 14 buildings/interiors, 15 props/vehicles, 16 vegetation, 17 placement, 18 world interactions, 19 QA/performance, and 20 builds/streaming.
 
-| Lane / slug | Distinct responsibility | First reviewable result and handoff |
-| --- | --- | --- |
-| 01 `source-provenance` | Source and rights intake | Per-input author, URL, license text, rights/attribution, capture date and SHA-256; unresolved sources quarantined |
-| 02 `lagos-survey` | One named block boundary and geographic observations | Bounded location/feature IDs, reference coverage, observed vs estimated geometry; feeds 03–10 |
-| 03 `roads-drainage` | Road/kerb/sidewalk/drain geometry | Own road/kerb blend and measured cross-sections, seams and entrances |
-| 04 `terrain-ground` | Ground, slope and water/support surfaces | Own terrain blend and local height/support data with uncertainty |
-| 05 `building-shells` | Building massing and structural forms | Own building blends, footprint/height/orientation evidence and door anchors |
-| 06 `facades-materials` | Facades, windows, roof/detail materials | Own material/texture and facade modules linked to 05, no shared blend editing |
-| 07 `street-props` | Site-specific street furniture and signage | Own prop blends with anchors, bounds, origin and provenance |
-| 08 `vegetation` | Site-specific trees and planting | Own vegetation assets and near/far visibility/alpha-cost evidence |
-| 09 `block-navigation` | Collision/support/walkability specification | Sidecar colliders, walk surface and accessibility evidence against frozen 03–08 outputs |
-| 10 `block-placement` | Geographic/scene assembly proposal | Deterministic placement manifest and transform round-trip fixtures; never edits street runtime |
-| 11 `human-topology` | Realistic base-body topology | Owned base blend with body landmarks and modular connection boundaries; coordinate with existing character task first |
-| 12 `face-parts` | Nose, ears, eyes, mouth and facial proportions | Separately owned face modules/morph spec; frozen attachment topology from 11 |
-| 13 `expressions` | Expressive face controls and shape/pose vocabulary | Expression modules and combinations, blink/viseme plan, neutral restoration evidence |
-| 14 `body-proportions` | Custom body dimensions and deformation | Parameter ranges and deformation modules with joint/contact fit invariants |
-| 15 `skeleton-skinning` | Skeleton, skin weights and pose interchange | Versioned joint/rest-pose/weight contract and independently owned rig template |
-| 16 `motion-contact` | Locomotion, gestures and contact quality | Clip/retarget proposals, gait/foot support and transition evidence on frozen rig |
-| 17 `hair-groom` | Hair geometry, scalp fit and materials | Independently owned hair modules; eyes/ears visibility and movement/clipping checks |
-| 18 `clothing-fit` | Clothing and accessories | Owned garments with slot/body-mask data and deformation acceptance matrix |
-| 19 `asset-export-lod` | Blender-to-GLB validation and two-tier packaging | Export recipe, parser/validator receipts, near/far contracts and reproducible hashes; consumes immutable lane outputs |
-| 20 `game-pilot-qa` | Integration proposal and independent acceptance | One current-game journey using block + human; sole proposed runtime integrator only after parent/GRAPHICS/WORLD/LIVING delegation; QA must record actual results |
+Parent reported four concrete tasks launched: source-provenance, lagos-geography, asset-export-portability and human-design-contract. Their exact task IDs, branches, exclusive documentation/experiment prefixes, common baseline and bounded continuation scopes are in [FIRST-WAVE.md](FIRST-WAVE.md). This coordinator has not inspected their live execution or spawned duplicates. Human work is a standalone design contract/fixtures/prototype only while existing character ownership remains unknown.
 
-Safe first assignments after parent reconciliation are source/provenance, block selection/coordinate evidence, export-portability audit, and read-only integration/QA contract preparation. Human implementation lanes remain dependent on the existing character owner. World geometry/asset work remains dependent on the selected block and licensed evidence. Sharing tasks does not require concurrent heavy processes.
-
-Grow toward 100 distinct workstreams only after the first integrated pilot passes: split each of the 20 domains into five explicitly named non-overlapping subject/asset/test cohorts. Every cohort needs a unique owner, branch, immutable input version, output directory, dependency list, measurable acceptance and parent launch record. Do not create 100 writers to one scene, rig, catalogue, or shared `.blend`; do not equate 100 planned lanes with 100 available cloud workers.
+Grow toward 100 distinct workstreams only after the first integrated pilot passes, through explicitly owned tiles/assets/fixtures with immutable inputs and output prefixes. No many-writer shared scene/rig/catalogue/blend and no assumption that more model-agent threads provide more render capacity.
 
 ## Execution and handoff sequence
 
-1. Recover and fully read parent plan; reconcile its IDs/ownership matrix with this source map. Resolve the existing character task's claims without interrupting it.
+1. Parent plan archive/reconciliation is complete. Parent forwards this checkpoint to the four existing tasks and resolves the existing character task's claims without interrupting it; the reported `unsupportedplacementformatv2` lookup failure is not a transfer.
 2. Freeze one Lagos block, lawful source evidence, target runtime scene, human identity/controls, coordinate/rig contracts, and explicit quality/performance criteria. Parent assigns lane owners and launch scopes.
 3. Produce one block and one modular expressive human as independent original/authorized Blender sources. Preserve the original team's background/mobile production and source identities.
 4. Export and validate versioned delivery packets; integrate only through the named runtime owner on an isolated candidate branch. No mass production or production deployment on the basis of standalone renders.
@@ -134,7 +111,7 @@ Focused test command, run in this isolated worktree after dependency installatio
 NODE_OPTIONS=--max-old-space-size=1536 node scripts/agent-slot.ts heavy --wait-ms 1000 -- timeout 90s node --test --test-concurrency=1 src/scene/body/body-assets.test.ts src/scene/body/poses.test.ts src/scene/body/animation-pose.test.ts src/scene/body/gate.test.ts src/scene/body/stand-in.test.ts src/models/integration/avatar.integration.test.ts src/scene/street/street-plan.test.ts src/map3d/lagos-geo.test.ts world/game-map-contract.test.ts
 ```
 
-Full readiness remains blocked by typecheck memory failure, unresolved parent-plan transfer and current ownership, absent Linux body-rebuild prerequisites/source blends, missing Draco support, and unperformed current-game/hardware-phone pilot acceptance. No runtime build, full test suite, manually triggered CI run, production request, deployment, paid operation, or credential inspection was performed. The later authorized documentation commit/push is separate from these verification results.
+Full readiness remains blocked by typecheck memory failure, unresolved current ownership, absent Linux body-rebuild prerequisites/source blends, missing Draco support, and unperformed current-game/hardware-phone pilot acceptance. No runtime build, full test suite, manually triggered CI run, production request, deployment, paid operation, or credential inspection was performed. The later authorized documentation commit/push is separate from these verification results.
 
 ## Later parent setup report
 

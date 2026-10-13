@@ -1,10 +1,10 @@
 # Cloud production interface and pilot acceptance checklist
 
-Proposal against `81d9f599d87dfb34adf49cd9337a0b05678e5e0d`, 13 October 2026. This checklist records requirements, not completed pilot acceptance. It must be reconciled with the parent's full production plan before launch. See [COORDINATOR.md](COORDINATOR.md) for executed setup evidence and blockers.
+Proposal against `81d9f599d87dfb34adf49cd9337a0b05678e5e0d`, 13 October 2026. This checklist records requirements, not completed pilot acceptance. The full parent plan is now archived and reconciled in FIRST-WAVE.md; the parent-reported initial tasks are package-only groundwork, with existing runtime owners preserved. See [COORDINATOR.md](COORDINATOR.md) for executed setup evidence and blockers.
 
 ## Ownership and launch gate
 
-- [ ] Parent plan version 0 is available and has been fully read; changed versions are explicitly reconciled.
+- [x] Parent plan version 0 is locally archived (66,182 bytes/480 lines), fully read and reconciled; any later version requires a fresh explicit comparison.
 - [ ] Parent assigns each specialist a unique branch and exact owned paths, including a unique owner for every `.blend` and every shared manifest.
 - [ ] Existing character task `01a13520-8d89-70f1-a722-786459524996`, GRAPHICS, WORLD and LIVING claims are reconciled. Nothing is stopped or declared obsolete by this plan.
 - [ ] Original Blender background/mobile production continues independently. Its 330+ reported bases are not counted as proof of the new realism target.
@@ -28,13 +28,14 @@ For every block, building, road, terrain, human part, rig, clip, garment, hair m
 
 ## Source and geography acceptance
 
-- [ ] Select exactly one real Lagos block and a bounded pedestrian journey before mass acquisition or modelling.
+- [ ] Select exactly one approximately 200m × 200m real Lagos block and a bounded pedestrian journey before mass acquisition or modelling. Parent target: 10–20 building exteriors, 15–25 reusable prop types, and an independently documented permitted landmark where feasible.
 - [ ] Verify rights for the particular input, including derived geometry, textures and redistributable game outputs. Library/tool code licenses do not grant asset or motion rights.
 - [ ] Never extract or trace Google Maps imagery or 3D tiles into redistributable assets. No such source is used by this setup pass.
 - [ ] Missing provenance blocks promotion. Licensed open data, original photography/survey and original modelling still require per-input records; do not presume a whole source family is approved.
 - [ ] Distinguish observed geometry from estimated building height, inferred facade, authored support, or fictional detail in both packet and acceptance evidence.
 - [ ] Keep atlas Equal Earth coordinates, Lagos `nigeria-equirectangular-v1` city coordinates (10 units/km), block local metres, and neighbourhood scene units distinct. Record the complete transform chain and numerical round-trip checks at several landmarks.
 - [ ] Road width, kerbs, gutters, elevation, crossings, entrances and building footprints line up visibly and numerically; tile borders have no unexplained gaps/overlaps. Compare against authorized references.
+- [ ] Compare at least 20 independent real control points, reporting dates, horizontal/vertical errors and outliers. Parent proposal is median horizontal <=2m/p95 <=5m where source quality supports it; otherwise explicitly label approximate. Synthetic transform tests do not count.
 - [ ] Colliders and walk/support surfaces match the rendered block and declared tolerances. A road mesh, map outline or foot sample alone cannot authorize a route.
 
 ## Blender and static model interface
@@ -76,11 +77,11 @@ For every block, building, road, terrain, human part, rig, clip, garment, hair m
 
 - [ ] Pin the current integration commit plus the exact block/human/export manifests. A workshop or motion preview alone is insufficient.
 - [ ] Enter the Lagos block through the normal game flow; identify real entrances/roads/buildings against licensed references. Walk the bounded journey with the custom human in the same scene.
-- [ ] Demonstrate facial parts, proportions, expressions, hair and clothing changes on the character; verify persistence/reload, movement and scene transitions.
+- [ ] Demonstrate facial parts, proportions, expressions, hair and clothing changes on the character with at least six deliberately different fictional presets from one coherent system; verify persistence/reload, movement and scene transitions.
 - [ ] Capture independently reviewed stills and continuous motion with actual loader, lights, camera, controls, collision and runtime state. Keep failed captures/results and exact source pins.
 - [ ] Exercise keyboard and touch, slow/cold loading, reduced-motion/data/device gates and fallback. Confirm no broken controls, API authority changes or saved-state regressions.
 - [ ] Measure actual visible triangles/calls, request/download bytes, texture use, idle/moving frame behavior, input latency and repeated load/dispose stability on a named hardware target. Software SwiftShader results are labeled separately.
-- [ ] Reconcile the current vs provisional budgets in `src/budgets.ts`. The existing 300,000-byte base-body and 60,000-byte street-tile Brotli limits, 25,000 street-tile triangles and 60 phone-scene calls are marked provisional; this plan does not promote or increase them.
+- [ ] Reconcile the current vs provisional budgets in `src/budgets.ts` and the parent plan's larger proposed art/scene targets. The parent proposal does not amend current caps or confer a budget waiver. The existing 300,000-byte base-body and 60,000-byte street-tile Brotli limits, 25,000 street-tile triangles and 60 phone-scene calls are marked provisional; this plan does not promote or increase them.
 - [ ] Resolve the full compiler failure at the preserved heap cap through an owner-approved bounded plan. Run relevant compiler/tests/build/download checks on the exact integration candidate; setup's 45 focused passes are not release verification.
 - [ ] A named physical-phone pass and owner visual acceptance support the intended mobile tier. No mass-production claim from asset counts, numerical proxies, standalone renders, or smoke tests.
 - [ ] Parent signs off the integrated pilot before scaling production; WORLD separately controls any later release. This coordinator phase includes no deployment.

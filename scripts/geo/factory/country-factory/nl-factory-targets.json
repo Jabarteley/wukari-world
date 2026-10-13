@@ -494,7 +494,8 @@
             "reason": "admin-0 relation/2323309 (Netherlands, v308) lists 475 way members; 38 (Caribbean Netherlands: Bonaire, Saba, Sint Eustatius territorial and coast limits; ways 53561045 ... 1527662536, 35 maritime=yes) are absent from the Netherlands clip; all 2,449 nodes of the 38 ways lie inside the Central America clip (checked against the published .poly, 2026-10-12); with both clips all 475 ways are present and the relation closes with 0 loose endpoints"
           }
         ]
-      }
+      },
+      "sceneWaterExtent": "play"
     }
   ]
 }

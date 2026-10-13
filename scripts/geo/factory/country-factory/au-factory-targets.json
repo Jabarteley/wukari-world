@@ -59,7 +59,32 @@
           -33.68896301006602
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "way/173244595",
+          "reason": "Bondi Beach: centre 98 m offshore, the only wet source anchor of the hosted run (Source anchors are not dry land)"
+        },
+        {
+          "ref": "way/223789521",
+          "reason": "Manly Beach: wikidata/wikipedia beach polygon whose centre is in the sea (offline replay of the exact-coast anchor test on the pinned extracts)"
+        },
+        {
+          "ref": "relation/2970109",
+          "reason": "North Steyne Beach: wikidata beach relation whose centre is in the sea (offline replay of the exact-coast anchor test); a same-score replacement candidate for Bondi"
+        },
+        {
+          "ref": "relation/8238628",
+          "reason": "Queenscliff Beach: wikidata beach relation whose centre is in the sea (offline replay of the exact-coast anchor test); a same-score replacement candidate for Bondi"
+        },
+        {
+          "ref": "way/284927123",
+          "reason": "HMAS Karangi: wikidata shipwreck site whose point is in the sea (offline replay of the exact-coast anchor test)"
+        },
+        {
+          "ref": "way/584997120",
+          "reason": "McIlwaine Park: wikidata park whose centre is in the water (offline replay of the exact-coast anchor test)"
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/13766899",

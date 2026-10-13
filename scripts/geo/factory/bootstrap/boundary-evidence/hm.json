@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "HM",
+  "dataset": {
+    "url": "https://download.geofabrik.de/australia-oceania/australia/heard-mcdonald-261013.osm.pbf",
+    "bytes": 98523,
+    "md5": "96e3c8c008f35121f1fdaf532feac5d8"
+  },
+  "admin0RelationOverride": {
+    "relationId": 2177227,
+    "expectedTags": {
+      "ISO3166-1": "HM",
+      "ISO3166-1:alpha2": "HM",
+      "boundary": "administrative",
+      "admin_level": "4",
+      "type": "boundary"
+    },
+    "reason": "Owner decision 2026-10-13: non-sovereign territories are in scope. Heard Island and McDonald Islands (HM) is an Australian external territory, not a sovereign state. In OpenStreetMap the only relation carrying ISO3166-1=HM is relation 2177227 (v42, boundary=administrative, admin_level 4, 4 outer maritime ways, all present in the 261013 extract), so the default admin-0 rule (admin_level=2) finds none. Game venue map only: no claims about real operations, borders or sovereignty; OSM mapped boundary, not legal-border authority. Every other proof (member ways, area assembly, segment match) still applies."
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/south-america-261013.osm.pbf",
+    "bytes": 4140614904,
+    "md5": "67e812c6ada8c3049e7f034dbc06e850",
+    "snapshotDate": "2026-10-13"
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "grytviken",
+      "name": "Grytviken",
+      "countryISO": "GS",
+      "cityOsmRef": "node/5722989121",
+      "selectionExclusions": [
+        {
+          "ref": "node/3921049631",
+          "reason": "historic=wreck 'Moresko 1': every historic=wreck and aircraft_wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
+        },
+        {
+          "ref": "node/3921049632",
+          "reason": "historic=wreck 'Lyn': every historic=wreck and aircraft_wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
+        },
+        {
+          "ref": "node/5790020661",
+          "reason": "historic=wreck 'Fenix', a wrecked Argentine landing craft of 1982: wrecks are excluded (OUTPOST-TABLE-FIELDS gs)."
+        },
+        {
+          "ref": "node/8381200842",
+          "reason": "historic=aircraft_wreck, a helicopter shot down in 1982: aircraft wrecks are excluded (OUTPOST-TABLE-FIELDS gs)."
+        },
+        {
+          "ref": "way/611591128",
+          "reason": "historic=wreck 'Floating Dock': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
+        },
+        {
+          "ref": "way/611608981",
+          "reason": "historic=wreck 'Louise': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
+        },
+        {
+          "ref": "way/632736925",
+          "reason": "historic=wreck, unnamed: every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
+        },
+        {
+          "ref": "way/632738539",
+          "reason": "historic=wreck 'Petrel': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
+        },
+        {
+          "ref": "way/632742962",
+          "reason": "historic=wreck 'Dias': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
+        },
+        {
+          "ref": "way/632742963",
+          "reason": "historic=wreck 'Albatros': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
+        },
+        {
+          "ref": "way/856466791",
+          "reason": "historic=wreck 'Workboat': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
+        }
+      ],
+      "playBox": {
+        "playKm": 5,
+        "coreKm": 3
+      },
+      "profile": "outpost",
+      "links": [
+        {
+          "to": "buenos-aires",
+          "kind": "ship"
+        },
+        {
+          "to": "cape-town",
+          "kind": "ship"
+        }
+      ],
+      "airport": {
+        "ident": "GS-0001",
+        "sourceUrl": "https://ourairports.com/airports/GS-0001/",
+        "hubWaiver": "South Georgia and the South Sandwich Islands (GS) has no scheduled-service airport; Grytviken Emergency Helipad (GS-0001, heliport row, 0.2 km from Grytviken) is the only mapped landing place at the settlement. Game venue map only: the copy states no sovereignty."
+      },
+      "timezone": {
+        "id": "Atlantic/South_Georgia",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

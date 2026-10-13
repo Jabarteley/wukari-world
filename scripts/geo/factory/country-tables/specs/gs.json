@@ -1,0 +1,38 @@
+{
+  "iso": "GS",
+  "country": "South Georgia and the South Sandwich Islands",
+  "geofabrik": "south-america",
+  "geofabrikDate": "261013",
+  "cities": [
+    {
+      "id": "grytviken",
+      "name": "Grytviken",
+      "lat": -54.2806481,
+      "lon": -36.5098,
+      "centreSource": "OSM node 5722989121 (place=village, wikidata Q185672), retrieved 2026-10-14 from api.openstreetmap.org",
+      "airportIdent": "GS-0001",
+      "airportSourceUrl": "https://ourairports.com/airports/GS-0001/",
+      "hubWaiver": "South Georgia and the South Sandwich Islands (GS) has no scheduled-service airport; Grytviken Emergency Helipad (GS-0001, heliport row, 0.2 km from Grytviken) is the only mapped landing place at the settlement. Game venue map only: the copy states no sovereignty.",
+      "profile": "outpost",
+      "cityOsmRef": "node/5722989121",
+      "playBox": { "playKm": 5, "coreKm": 3 },
+      "links": [
+        { "to": "buenos-aires", "kind": "ship" },
+        { "to": "cape-town", "kind": "ship" }
+      ],
+      "selectionExclusions": [
+        { "ref": "node/3921049631", "reason": "historic=wreck 'Moresko 1': every historic=wreck and aircraft_wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
+        { "ref": "node/3921049632", "reason": "historic=wreck 'Lyn': every historic=wreck and aircraft_wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
+        { "ref": "node/5790020661", "reason": "historic=wreck 'Fenix', a wrecked Argentine landing craft of 1982: wrecks are excluded (OUTPOST-TABLE-FIELDS gs)." },
+        { "ref": "node/8381200842", "reason": "historic=aircraft_wreck, a helicopter shot down in 1982: aircraft wrecks are excluded (OUTPOST-TABLE-FIELDS gs)." },
+        { "ref": "way/611591128", "reason": "historic=wreck 'Floating Dock': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
+        { "ref": "way/611608981", "reason": "historic=wreck 'Louise': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
+        { "ref": "way/632736925", "reason": "historic=wreck, unnamed: every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
+        { "ref": "way/632738539", "reason": "historic=wreck 'Petrel': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
+        { "ref": "way/632742962", "reason": "historic=wreck 'Dias': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
+        { "ref": "way/632742963", "reason": "historic=wreck 'Albatros': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
+        { "ref": "way/856466791", "reason": "historic=wreck 'Workboat': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." }
+      ]
+    }
+  ]
+}

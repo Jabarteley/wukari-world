@@ -1,0 +1,30 @@
+{
+  "iso": "HM",
+  "country": "Heard Island and McDonald Islands",
+  "geofabrik": "australia-oceania/australia/heard-mcdonald",
+  "geofabrikDate": "261013",
+  "cities": [
+    {
+      "id": "atlas-cove",
+      "name": "Atlas Cove Station",
+      "lat": -53.0190019,
+      "lon": 73.3934601,
+      "centreSource": "OSM node 2855510564 (place=hamlet, amenity=research_institute), retrieved 2026-10-14 from the dated Geofabrik extract",
+      "airportIdent": "AU-0178",
+      "airportSourceUrl": "https://ourairports.com/airports/AU-0178/",
+      "hubWaiver": "Heard Island and McDonald Islands (HM) has no scheduled-service airport; Atlas Cove Station Helipad (AU-0178, heliport row filed under HM, 0.1 km from the station) is the only mapped landing place. Game venue map only.",
+      "profile": "outpost",
+      "cityOsmRef": "node/2855510564",
+      "playBox": { "playKm": 5, "coreKm": 3 },
+      "timezoneOverride": {
+        "id": "Etc/GMT-5",
+        "reason": "Heard Island and McDonald Islands has no zone1970.tab row; the territory keeps Indian/Maldives time (UTC+5) in practice, written as the fixed zone Etc/GMT-5.",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/etcetera"
+      },
+      "links": [
+        { "to": "port-louis", "kind": "ship" },
+        { "to": "cape-town", "kind": "charter" }
+      ]
+    }
+  ]
+}

@@ -2,19 +2,20 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-e-2",
-      "appSha": "f887c1d65d9ca2b15fc2812d999c5ea0c4c8892d",
+      "id": "release-f-1",
+      "appSha": "82fcf203df18b24edafb7561f05de7a01a6f78b1",
       "driverSha": "474cffa14b7c548f58b44ec768e12ffd4d6cc7f5",
       "cities": [
-        "castries",
-        "bridgetown",
-        "vaduz",
-        "st-georges",
-        "sao-paulo",
-        "brasilia",
-        "andorra-la-vella",
-        "delhi",
-        "tokyo"
+        "zurich",
+        "baghdad",
+        "athens",
+        "istanbul",
+        "brussels",
+        "tehran",
+        "pyongyang",
+        "moscow",
+        "berlin",
+        "amsterdam"
       ],
       "roundtrip": true
     }

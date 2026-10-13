@@ -72,6 +72,14 @@
   {
    "id": "ad",
    "table": "scripts/geo/factory/country-factory/ad-factory-targets.json"
+  },
+  {
+   "id": "in",
+   "table": "scripts/geo/factory/country-factory/in-factory-targets.json"
+  },
+  {
+   "id": "jp",
+   "table": "scripts/geo/factory/country-factory/jp-factory-targets.json"
   }
  ]
 }

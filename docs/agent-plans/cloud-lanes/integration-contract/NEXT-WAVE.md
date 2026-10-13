@@ -2,9 +2,24 @@
 
 **Priority: the existing human task is already resumed for visible customisable character art.** Parent resumed task `01a13667-6b47-7763-b71a-7d06139ed03f` on its existing `codex/cloud-human-design-contract-20261013` branch and `human-design-contract` documentation/experiment prefixes. Its first physical subset covers nose, independent ears, body proportions and expressions, with original Blender/GLB geometry and renders/turntable. Do not launch another human foundation, facial morphology or expression worker against that scope. It may build a separate original prototype without waiting for the unknown existing production-character owner.
 
-The six assignments below complement that active producer. They require actual editable art, not another planning-only cycle. Parent alone launches them. Consume the exact final integration commit supplied with this document, verify [packet-lock.json](../../../../experiments/cloud-lanes/integration-contract/packet-lock.json), and record that SHA plus any newer human art checkpoint in each continuation file. The sealed integration packet covers the old contract-only human commit; it does not follow that moving branch automatically.
+The six assignments below complement that active producer. They require actual editable art, not another planning-only cycle. Parent alone launches them. The four confirmed launches below consume integration commit **`caaee5e1b91afc7f3cd3f2124df3547dc7f492ec`**. Verify [packet-lock.json](../../../../experiments/cloud-lanes/integration-contract/packet-lock.json), and record that SHA plus any newer human art checkpoint in each continuation file. This documentation update does not change their input pin. The sealed integration packet covers the old contract-only human commit; it does not follow that moving branch automatically.
 
 These six workstreams expand canonical lanes 08/09/10/12/13/14/15/16 within [the full 20-lane parent plan](../../cloud-production-20261013/Allworld-production-plan.md). They are not a claim of 20 or 100 running workers. The next human checkpoint is the priority tangible delivery; supporting work must not consume all capacity needed to produce it.
+
+## Confirmed launch ledger — 13 October 2026
+
+Parent confirmed A–D as **admitted tasks**, not completed assets. These launch reports do not establish inspected geometry, rendered quality, fitted attachments or game acceptance. Parent coordinates input handoffs and results; this coordinator launched no workers.
+
+| Assignment | Task ID | Branch | Exclusive slug |
+| --- | --- | --- | --- |
+| A — skin/eyes | `01a13693-76c2-7206-9483-50903f165026` | `codex/cloud-human-skin-eyes-art-20261013` | `human-skin-eyes-art` |
+| B — hair | `01a13693-a292-75b9-940d-ea5efd52e003` | `codex/cloud-human-hair-art-20261013` | `human-hair-art` |
+| C — wardrobe | `01a13693-ccce-70d8-b13b-f98622747023` | `codex/cloud-human-wardrobe-art-20261013` | `human-wardrobe-art` |
+| D — ground/street | `01a13693-f51f-71ab-b9cc-665fc1200033` | `codex/cloud-yaba-ground-art-20261013` | `yaba-ground-art` |
+
+For each exact slug above, ownership is limited to `experiments/cloud-lanes/<slug>/` and `docs/agent-plans/cloud-lanes/<slug>/`; no other lane or shared file ownership is transferred. All four consume the same `caaee5e1b91afc7f3cd3f2124df3547dc7f492ec` checkpoint. The existing human task `01a13667-6b47-7763-b71a-7d06139ed03f` retains master face/body/expression geometry and bindings in its own `human-design-contract` prefixes.
+
+**E (buildings) and F (props/vegetation) are not launched.** Their assignments remain proposals only. No expanded fan-out is authorized. Visible customisable-character work has priority, and calibration assets must stay labelled as calibration until fit to the exact human mesh is demonstrated. This launch-ledger/continuation update is documentation only; no tests were rerun and no sealed packet or source input changed.
 
 ## Shared launch contract
 
@@ -69,7 +84,7 @@ Deliver near/far variants, texture/alpha and triangle/material costs, anchors an
 
 ## Parent sequencing and next integration
 
-Preserve heavy capacity for the already active customisable-human producer. A/D/E/F can produce independent tangible art immediately as capacity allows. B/C can author real hair/garments on labelled calibration fixtures, but their final fit depends on an immutable human mesh checkpoint. Parent may launch four first and release the remaining two once those inputs are ready; no new coordinator approval gate is imposed on the active human task.
+Preserve heavy capacity for the already active customisable-human producer. A–D are now admitted under the launch ledger above. A/D can produce independent tangible art, while B/C can author real hair/garments on labelled calibration fixtures; final human fit depends on an immutable mesh checkpoint. Keep E/F unlaunched and do not expand fan-out. Parent coordinates the exact human inputs and collects results; no new coordinator approval gate is imposed on the active human task.
 
 Obtain the human producer's next exact commit and actual geometry/render packet first. Review nose/ear/body endpoint independence, expression composition, decoded rig/morph data and visible anatomy against its declared subset. Then version a new integrated candidate without overwriting the old sealed packet. A schema count or original render alone does not establish all 38 controls, realistic anatomy or six-plus complete rendered presets.
 

@@ -8,6 +8,21 @@ During final review parent resumed the **same human-design-contract task `01a136
 
 This review's packet pins the earlier contract-only human commit; it does not claim to contain or evaluate that task's unseen new art. Obtain its next exact commit and actual geometry/render evidence for a new versioned integration review. Do not overwrite the sealed packet or take its files.
 
+## Confirmed next-wave launches
+
+Parent confirmed these four **admitted tasks**, all consuming integration commit `caaee5e1b91afc7f3cd3f2124df3547dc7f492ec`:
+
+| Assignment | Task ID | Branch | Owned slug |
+| --- | --- | --- | --- |
+| A — skin/eyes | `01a13693-76c2-7206-9483-50903f165026` | `codex/cloud-human-skin-eyes-art-20261013` | `human-skin-eyes-art` |
+| B — hair | `01a13693-a292-75b9-940d-ea5efd52e003` | `codex/cloud-human-hair-art-20261013` | `human-hair-art` |
+| C — wardrobe | `01a13693-ccce-70d8-b13b-f98622747023` | `codex/cloud-human-wardrobe-art-20261013` | `human-wardrobe-art` |
+| D — ground/street | `01a13693-f51f-71ab-b9cc-665fc1200033` | `codex/cloud-yaba-ground-art-20261013` | `yaba-ground-art` |
+
+Each slug owns exactly `experiments/cloud-lanes/<slug>/` and `docs/agent-plans/cloud-lanes/<slug>/`. The existing human task retains master face/body/expression work. **E/F are not launched; no expanded fan-out.** Parent coordinates input pins and results. Prioritize visible customisable humans, and label calibration assets until actual fit to the frozen human geometry is demonstrated. Admitted tasks are not completed or accepted assets, and this coordinator has not inspected new art from them.
+
+This follow-up changes only the launch ledger and this continuation. No tests were rerun, no sealed packet/input changed, and no worker or production action was performed. These launches retain their `caaee5e1` input despite the later documentation commit.
+
 ## Locate and verify
 
 - Repository: `kromate/joinallworld`.
@@ -16,6 +31,7 @@ This review's packet pins the earlier contract-only human commit; it does not cl
 - Production baseline: `81d9f599d87dfb34adf49cd9337a0b05678e5e0d`.
 - Coordinator planning start: `844da27a549d30c5148c1cb5b5927b7d0f5bfde6`.
 - Initial imported checkpoint: `cea28c2c7e5c684cb0ae069176ec83d51a3d3358`, pushed and remote-verified. Final commit is in the final task response; a file cannot embed its own eventual SHA.
+- Completed executable review checkpoint: `caaee5e1b91afc7f3cd3f2124df3547dc7f492ec`, pushed and remote-verified before the documentation-only launch-ledger follow-up. The follow-up's exact pushed SHA is in its final response.
 - Own only this documentation prefix and `experiments/cloud-lanes/integration-contract/` for new changes. Imported lane prefixes are immutable inputs, not transferred ownership.
 
 On another machine, inspect instructions/status and fetch into a fresh worktree without resetting anyone's checkout. Compare final-response SHA with fetched HEAD and `git ls-remote --heads origin codex/cloud-first-wave-integration-20261013`. Source commits are `1f89cdd91e8300a341ca65f17030a22f929eb5dd`, `21b0850a996b4444d2e0c16626771671e191ddcd`, `f00b42be76b3ed22f053233f0d82bd559c73810a`, `71d6b5ad391754b0f30fc5364e993208299640ed`; fetch those exact objects if absent before the Git-based index check. [REVIEW.md](REVIEW.md) maps source scope and evidence.

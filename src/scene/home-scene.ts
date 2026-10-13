@@ -245,7 +245,16 @@ const SHAPES: { fallback: Shape; [shape: string]: Shape | undefined } = {
     for (const [x, ground, panel] of [[W / 2 - 0.4, '#d9a441', '#1f5f8b'], [-W / 2 + 0.4, '#1f5f8b', '#e0702c']] as const) { soft(b, x, 0.68, -D * 0.1, 0.3, 0.3, 0.1, ground, 0.03); b.box(x, 0.68, -D * 0.1 + 0.052, 0.16, 0.16, 0.01, panel); }
   },
   beanbag(b, W, D, c) { b.ball(0, 0.26, 0, 0.38, c); b.ball(0, 0.5, -0.08, 0.24, c); },
-  rug(b, W, D, c) { b.box(0, 0.02, 0, W * 0.94, 0.03, D * 0.94, c); b.box(0, 0.04, 0, W * 0.7, 0.02, D * 0.7, '#e8d9b5'); b.box(0, 0.055, 0, W * 0.4, 0.02, D * 0.4, c); b.box(0, 0.058, 0, W * 0.16, 0.02, D * 0.16, '#d9a441'); for (const z of [-1, 1]) b.box(0, 0.012, z * D * 0.485, W * 0.9, 0.02, 0.05, '#efe3c4'); },
+  rug(b, W, D, c) {
+    // A wax-print rug: border bands, then rows of bold circles in two-tone prints.
+    b.box(0, 0.02, 0, W * 0.94, 0.03, D * 0.94, c); b.box(0, 0.04, 0, W * 0.86, 0.02, D * 0.86, '#efe3c4'); b.box(0, 0.055, 0, W * 0.8, 0.02, D * 0.8, '#1f5f8b');
+    const prints = [['#d9a441', '#c9372c'], ['#efe3c4', '#e0702c']] as const, nx = Math.max(2, Math.round(W * 1.5)), nz = Math.max(2, Math.round(D * 1.5));
+    for (let i = 0; i < nx; i++) for (let j = 0; j < nz; j++) {
+      const [outer, inner] = prints[(i + j) % 2]!, x = (i + 0.5 - nx / 2) * (W * 0.7 / nx), z = (j + 0.5 - nz / 2) * (D * 0.7 / nz), r = Math.min(W * 0.7 / nx, D * 0.7 / nz) * 0.4;
+      b.round(x, 0.075, z, r, 0.02, outer); b.round(x, 0.087, z, r * 0.5, 0.01, inner);
+    }
+    for (const z of [-1, 1]) b.box(0, 0.012, z * D * 0.485, W * 0.9, 0.02, 0.05, '#efe3c4');
+  },
   radio(b, W, D, c) {
     b.round(0, 0.4, 0, 0.26, 0.06, WOOD); legs(b, 0.3, 0.3, 0.4);
     b.box(0, 0.56, 0, 0.44, 0.26, 0.16, c); b.round(-0.1, 0.56, 0.085, 0.07, 0.02, DARK); b.box(0.18, 0.84, 0, 0.015, 0.34, 0.015, STEEL);
@@ -336,6 +345,11 @@ const SHAPES: { fallback: Shape; [shape: string]: Shape | undefined } = {
 /** Shapes that stand on a round footprint, and those that lie flat on the floor (a shadow under them would only show as a halo). */
 const ROUND_SHAPES = new Set(['plant', 'lantern', 'floorlamp', 'drum', 'beanbag', 'mic', 'bucket', 'basin', 'cage', 'stove', 'radio', 'toilet']);
 const FLAT_SHAPES = new Set(['rug', 'mat', 'gymmat']);
+/** Zones of a single-room home, as [x, y, w, h] in tiles, by tier: the kitchen corner at the back right, the sleeping corner at the front right, the entry strip by the door. */
+const zonesOf = (grid: number) => grid <= 6 ? { kitchen: [4, 0, 2, 2], bed: [4, 3, 2, 3], hall: [0, grid - 3, 2, 3] } as const
+  : grid <= 9 ? { kitchen: [grid - 3, 0, 3, 3], bed: [grid - 4, grid - 4, 4, 4], hall: [0, grid - 3, 2, 3] } as const
+  : { kitchen: [grid - 4, 0, 4, 4], bed: [grid - 4, grid - 4, 4, 4], hall: [0, grid - 3, 2, 3] } as const;
+const within = (zone: readonly number[], tx: number, ty: number) => tx >= zone[0]! && ty >= zone[1]! && tx < zone[0]! + zone[2]! && ty < zone[1]! + zone[3]!;
 const TRIM = '#8c7a62', RAIL = '#4a4038', PAINT = '#efe7d4', CURTAIN = '#b5654a', BARS = '#26282c';
 /** Curtain colours a home may have, and how its walls lean: a tint towards a harmonious colour, picked by home (deterministic). */
 const CURTAINS = ['#b5654a', '#2f7f86', '#c9a03a', '#8a3a46'] as const;
@@ -531,25 +545,33 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       if (!hole) b.quad(x0 + W / 2, y + 0.01, z0 + D / 2, W, D, mix(palette.floor[1], '#3a2c1c', 0.3), { part, rx: -Math.PI / 2 });
       const bare = (tx: number, ty: number) => !(hole && tx >= hole.x && tx < hole.x + hole.w && ty >= hole.y && ty < hole.y + hole.h);
       const noise = (tx: number, ty: number, k = 0) => (Math.imul(tx + 7, 73856093) ^ Math.imul(ty + 3, 19349663) ^ Math.imul(floor + 1, 83492791) ^ Math.imul(k + 1, 2654435761)) >>> 0;
+      // A single-room home is zoned by its floor: a glossy white kitchen corner, a wood-floored sleeping corner and a darker entry strip by the door; the rest is the tier's finish.
+      const zones = floor === 0 && plan.floors[0]?.length === 1 && plot.w === plot.grid ? zonesOf(grid) : null;
+      const kindAt = (tx: number, ty: number): string => {
+        if (finishAt(plan, floor, tx, ty)) return 'tile';
+        if (zones) for (const zone of ['kitchen', 'hall', 'bed'] as const) if (within(zones[zone], tx, ty)) return zone === 'kitchen' ? 'gloss' : zone === 'hall' ? 'hall' : finish === 'wood' ? 'terrazzo' : 'wood';
+        return finish;
+      };
       for (let ty = 0; ty < plot.d; ty++) {
         for (let tx = 0; tx < plot.w; tx++) {
           if (!bare(tx, ty)) continue;
-          const own = finishAt(plan, floor, tx, ty), tones = own ?? palette.floor, jitter = noise(tx, ty);
-          if (!own && finish === 'wood') continue;
-          if (!own && finish === 'terrazzo') {
+          const kind = kindAt(tx, ty), tones = finishAt(plan, floor, tx, ty) ?? palette.floor, jitter = noise(tx, ty);
+          if (kind === 'wood') continue;
+          if (kind === 'terrazzo') {
             // One pale slab with scattered chips (dark, white, terracotta) baked in as tiny quads.
             b.quad(along(tx), y + 0.016, along(ty), tile * 0.985, tile * 0.985, mix(mix(tones[0], '#ffffff', 0.3), jitter % 2 ? '#ffffff' : '#000000', (jitter >>> 4) % 3 * 0.015), { part, rx: -Math.PI / 2 });
             for (let k = 0; k < 4; k++) { const n = noise(tx, ty, k), size = tile * (0.03 + (n >>> 8) % 4 * 0.012); b.quad(along(tx) + ((n & 255) / 255 - 0.5) * tile * 0.86, y + 0.019, along(ty) + (((n >>> 12) & 255) / 255 - 0.5) * tile * 0.86, size, size, ['#4a4038', '#fbf8ef', '#b9714f', '#8a8478'][k]!, { part, rx: -Math.PI / 2 }); }
             continue;
           }
-          b.quad(along(tx), y + 0.016, along(ty), tile * 0.965, tile * 0.965, mix((tx + ty) % 2 ? tones[0] : tones[1], jitter % 3 ? '#ffffff' : '#000000', (jitter >>> 4) % 4 * 0.012), { part, rx: -Math.PI / 2 });
+          const base = kind === 'gloss' ? ['#f3f5f2', '#e1e7e3'] as const : kind === 'hall' ? [mix(palette.floor[1], '#4a4038', 0.4), mix(palette.floor[1], '#4a4038', 0.52)] as const : tones;
+          b.quad(along(tx), y + 0.016, along(ty), tile * 0.965, tile * 0.965, mix((tx + ty) % 2 ? base[0] : base[1], jitter % 3 ? '#ffffff' : '#000000', (jitter >>> 4) % 4 * 0.012), { part, rx: -Math.PI / 2 });
+          if (kind === 'gloss') b.quad(along(tx) - tile * 0.12, y + 0.018, along(ty) - tile * 0.12, tile * 0.42, tile * 0.42, '#ffffff', { part, rx: -Math.PI / 2 });
         }
-        if (finish !== 'wood') continue;
         // Planks: three strips to a tile row, each broken into boards about three tiles long, the joints staggered from strip to strip.
         for (let k = 0; k < 3; k++) {
           let start = -1;
           for (let tx = 0; tx <= plot.w; tx++) {
-            const live = tx < plot.w && bare(tx, ty) && !finishAt(plan, floor, tx, ty), joint = live && (tx + ty * 2 + k) % 3 === 0 && tx > start;
+            const live = tx < plot.w && bare(tx, ty) && kindAt(tx, ty) === 'wood', joint = live && (tx + ty * 2 + k) % 3 === 0 && tx > start;
             if (start >= 0 && (!live || joint)) {
               const n = noise(start, ty, k), c = mix(wood, n % 2 ? '#ffffff' : '#000000', (n >>> 5) % 4 * 0.025);
               b.quad(edge((start + tx) / 2), y + 0.016, edge(ty) + (k + 0.5) * tile / 3, (tx - start) * tile - 0.03, tile / 3 - 0.025, c, { part, rx: -Math.PI / 2 });
@@ -558,6 +580,11 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
             if (live && start < 0) start = tx;
           }
         }
+      }
+      // Thresholds: a brass strip along the open edges of the kitchen and sleeping corners (flat, walked over).
+      if (zones) for (const [zx, zy, zw, zh] of [zones.kitchen, zones.bed]) {
+        b.box(edge(zx + zw / 2), y + 0.02, edge(zy > 0 ? zy : zy + zh), zw * tile, 0.012, 0.04, '#b08d4a', { part });
+        b.box(edge(zx > 0 ? zx : zx + zw), y + 0.02, edge(zy + zh / 2), 0.04, 0.012, zh * tile, '#b08d4a', { part });
       }
       for (const wall of wallsOf(plan, floor)) {
         run(b, wall, y, INNER, 0.12, walls.left, part);
@@ -590,6 +617,14 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
         b.box(x0 + W / 2, y + high - 0.07, z0 + 0.05, W, 0.14, 0.1, paint, { part: back }); b.box(x0 + W / 2, y + high - 0.17, z0 + 0.03, W, 0.04, 0.06, cap, { part: back });
       }
       if (!open) {
+        // A split AC on the middle of the left wall (white case, vent slit, a standby light), and a lit cove under the crown: POP ceilings have both.
+        const acZ = z0 + D * 0.5;
+        b.box(x0 + 0.12, y + 2.62, acZ, 0.22, 0.34, 1.05, '#f1f1ec', { part: left }); b.box(x0 + 0.16, y + 2.52, acZ, 0.16, 0.05, 0.9, '#c9cdca', { part: left });
+        b.box(x0 + 0.24, y + 2.7, acZ + 0.4, 0.014, 0.03, 0.05, '#35d07f', { part: left, layer: 'glow' });
+        b.box(x0 + W / 2, y + high - 0.2, z0 + 0.04, W, 0.025, 0.05, '#f0cf8e', { part: back, layer: 'glow' });
+        for (const [s0, s1] of reach) b.box(x0 + 0.04, y + high - 0.2, (s0 + s1) / 2, 0.05, 0.025, s1 - s0, '#f0cf8e', { part: left, layer: 'glow' });
+      }
+      if (!open) {
         // Long walls get a cluster of family photos every few metres, in the band above the wall items (which hang about the middle), clear of the window, clock, bulb and door.
         const windowX = along(windowSlot(grid)), lampX = windowX > 0 ? -ROOM * 0.3 : ROOM * 0.3, frames = ['#d7b58a', '#9bbad4', '#c98f7a', '#a9c49a', '#e0c36a'];
         const cluster = (at: number, wall: 'back' | 'left', n: number) => {
@@ -603,7 +638,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
           place(-0.2, 0.04, 0.34, 0.26, 0); place(0.1, -0.02, 0.22, 0.3, 1); if (n % 2) place(0.34, 0.06, 0.2, 0.16, 2);
         };
         for (let at = x0 + 1.7, n = 0; at < x0 + W - 1.2; at += 3.1, n++) if (Math.abs(at - windowX) > 1.5 && Math.abs(at - lampX) > 0.7) cluster(at, 'back', n + floor * 7);
-        for (let at = z0 + 1.7, n = 0; at < z0 + D - 1.2; at += 3.1, n++) if (floor > 0 || Math.abs(at - doorZ) > 1.3) cluster(at, 'left', n + 3 + floor * 7);
+        for (let at = z0 + 1.7, n = 0; at < z0 + D - 1.2; at += 3.1, n++) if ((floor > 0 || Math.abs(at - doorZ) > 1.3) && Math.abs(at - (z0 + D * 0.5)) > 1.3) cluster(at, 'left', n + 3 + floor * 7);
       }
       for (const [s0, s1] of reach) {
         const mid = (s0 + s1) / 2, length = s1 - s0;

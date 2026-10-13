@@ -12,14 +12,19 @@ import { lightingFor } from './lighting.ts';
 const params = new URLSearchParams(location.search);
 const grid = Number(params.get('grid') ?? 8), time = (params.get('time') || 'day') as 'day' | 'dusk' | 'night';
 await (await import('../game/cities/registry.ts')).loadCityContent('lagos');
-const items = [
-  { id: 'a', itemId: 'wardrobe', x: 0, y: 0, rot: 0 }, { id: 'b', itemId: 'bookshelf', x: 2, y: 0, rot: 0 }, { id: 'c', itemId: 'laptop-desk', x: 4, y: 0, rot: 0 },
-  { id: 'd', itemId: 'foam-bed', x: 4, y: 2, rot: 0 }, { id: 'e', itemId: 'centre-rug', x: 1, y: 2, rot: 0 }, { id: 'f', itemId: 'family-sofa', x: 1, y: 4, rot: 0 },
-  { id: 'g', itemId: 'potted-plant', x: 5, y: 5, rot: 0 }, { id: 'h', itemId: 'wall-art', x: 5, y: 0, rot: 0 }, { id: 'i', itemId: 'standing-lamp', x: 0, y: 3, rot: 0 },
-  { id: 'j', itemId: 'small-tv', x: 0, y: 5, rot: 0 }, { id: 'k', itemId: 'wall-calendar', x: 2, y: 0, rot: 1 }, { id: 'l', itemId: 'fridge', x: 3, y: 5, rot: 0 },
-  { id: 'm', itemId: 'leather-sofa', x: 7, y: 4, rot: 0 }, { id: 'n', itemId: 'flat-tv', x: 6, y: 0, rot: 0 }, { id: 'o', itemId: 'gas-cooker', x: 8, y: 0, rot: 0 }, { id: 'p', itemId: 'wall-fan', x: 7, y: 0, rot: 0 },
-  { id: 'q', itemId: 'bookshelf', x: 9, y: 4, rot: 0 }, { id: 'r', itemId: 'centre-rug', x: 7, y: 2, rot: 0 }, { id: 's', itemId: 'potted-plant', x: 9, y: 9, rot: 0 }, { id: 't', itemId: 'wardrobe', x: 8, y: 7, rot: 0 },
-].filter((item) => item.x < grid * (grid > 6 ? 1.5 : 1) && item.y < grid);
+// Zoned default layouts by tier (single-room homes): kitchen kit at the back right, bed and wardrobe at the front right, the sitting area facing the TV,
+// the entry (door at x 0, y grid - 2) and the window slot (x grid / 2, y 0) left clear. [itemId, x, y, rot] (rot 2 faces the back wall).
+const LAYOUTS: Record<number, [string, number, number, number][]> = {
+  6: [['gas-cooker', 4, 0, 0], ['fridge', 5, 0, 0], ['water-drum', 5, 1, 0], ['foam-bed', 4, 3, 0], ['wardrobe', 0, 0, 1], ['small-tv', 2, 0, 0], ['velvet-sofa', 1, 3, 2], ['centre-rug', 1, 1, 0],
+    ['standing-lamp', 0, 2, 0], ['potted-plant', 3, 5, 0], ['wall-art', 1, 0, 0]],
+  8: [['gas-cooker', 6, 0, 0], ['double-fridge', 7, 0, 0], ['cooler-box', 5, 0, 0], ['foam-bed', 6, 5, 0], ['wardrobe', 4, 7, 0], ['laptop-desk', 4, 4, 0], ['flat-tv', 1, 0, 0], ['leather-sofa', 1, 3, 2],
+    ['lounge-armchair', 3, 2, 3], ['centre-rug', 1, 1, 0], ['standing-lamp', 0, 0, 0], ['bookshelf', 0, 4, 0], ['potted-plant', 3, 7, 0], ['wall-art', 1, 0, 0], ['wall-fan', 6, 0, 0]],
+  10: [['chef-range', 7, 0, 0], ['double-fridge', 9, 1, 0], ['water-drum', 6, 0, 0], ['cooler-box', 6, 3, 0], ['king-bed', 8, 6, 0], ['wardrobe', 6, 9, 0], ['laptop-desk', 6, 6, 0], ['bookshelf', 9, 5, 0],
+    ['flat-tv', 1, 0, 0], ['family-sofa', 1, 4, 2], ['leather-sofa', 0, 2, 3], ['lounge-armchair', 4, 2, 3], ['centre-rug', 1, 1, 0], ['standing-lamp', 0, 0, 0], ['aquarium', 4, 0, 0],
+    ['potted-plant', 5, 8, 0], ['potted-plant', 4, 4, 0], ['wall-art', 2, 0, 0], ['wall-fan', 7, 0, 0]],
+};
+const owned = params.get('owned') === '1';
+const items = (LAYOUTS[grid] ?? LAYOUTS[6]!).map(([itemId, x, y, rot], i) => ({ id: `i${i}`, itemId, x, y, rot }));
 const kit = createKit(), { THREE } = kit;
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
@@ -29,7 +34,7 @@ const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 360);
 const lights = createHostLights(THREE, scene);
 const sky = createSky(THREE);
 scene.background = sky.texture;
-const home = buildHomeScene(kit, { visit: { grid, owned: grid > 6, style: { shape: 0, wall: 0, roof: 0, door: 0, windows: 0, fence: 0, yard: 0, sign: 0 }, items } });
+const home = buildHomeScene(kit, { visit: { grid, owned, style: { shape: 0, wall: 0, roof: 0, door: 0, windows: 0, fence: 0, yard: 0, sign: 0 }, items } });
 home.update({ t: Date.UTC(2026, 0, 5, time === 'day' ? 12 : time === 'dusk' ? 17 : 21) } as never);
 scene.add(home.group);
 const az = Number(params.get('az') ?? 0.7), up = Number(params.get('up') ?? 21), reach = Number(params.get('reach') ?? 21);

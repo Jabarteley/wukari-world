@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kyiv",
+  "countryIso2": "UA",
+  "generationIdentity": {
+    "cityId": "kyiv",
+    "stateId": "ua-kyiv",
+    "stateName": "Kyiv"
+  },
+  "inventorySha256": "7a546796790a0ea914ffe196aa032e312d3439f5c788793d0757ab6932b62a4b",
+  "inventoryPath": "world/playable-africa-rollout/sources/kyiv.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "kyiv-airport",
+    "name": "Boryspil International Airport",
+    "lon": 30.894699,
+    "lat": 50.345001,
+    "sourceUrl": "https://ourairports.com/airports/UKBB/"
+  },
+  "bounds": [
+    50.26915271006602,
+    30.24089722954983,
+    50.63091448993398,
+    30.90877819032727
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/ukraine-261011.osm.pbf",
+      "datasetSha256": "fdfe2837ca5d211ba6c7d537b6484cbd35395107636f7397834506f4d93e54ac",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "5280f292ccdcea251803db60a2016454bc4732d12082d2ede524b3cc753ccf96",
+          "elements": 6036
+        },
+        {
+          "file": "extras.json",
+          "sha256": "db4682c1a40b7ca5d0253b6126f92fb0642e70d4f4059f81304fabc7e02a669e",
+          "elements": 1331
+        },
+        {
+          "file": "water.json",
+          "sha256": "74fd694c31180dc89235d98b74dc4aae971a6d61b4af154e710c282c72107465",
+          "elements": 559
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "9cd4886930159b2c246b19d5497aba862baba3f5cad6a81aa87ac343872103ac",
+          "elements": 7888
+        },
+        {
+          "file": "roads.json",
+          "sha256": "51cc74faed34fdfd8cf8d62cb17feb6aac416c02fc2ee33b1809c60ecdca82db",
+          "elements": 3433
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 55,
+    "waterPolygons": 57,
+    "reachWaterPolygons": 33
+  },
+  "observed": {
+    "places": 6036,
+    "extras": 1331,
+    "water": 559,
+    "landuse": 7888,
+    "roads": 3433
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1195,
+      "sha256": "03b661f6a13177606edaf9bf9cb20b6611c5b1cc4645a21e4bf8ed5f40577f91"
+    },
+    "geometry.ts": {
+      "bytes": 247168,
+      "sha256": "6cfcc7e3733f564f5dff3ac370e131ce14c2e924291ab01c8c788e802f2706b8"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "4ca2692f43e3eb60116d4b0a798f634fd61a7b3dede7362681df147ec0d7dc44"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/kyiv.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

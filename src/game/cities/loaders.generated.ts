@@ -220,8 +220,16 @@ export const GENERATED_CITY_INDEX: readonly CityIndexRow[] = Object.freeze([
   ["oslo","Oslo"],
   ["sydney","Sydney"],
   ["tel-aviv-yafo","Tel Aviv"],
+  ["kyiv","Kyiv"],
+  ["male","Malé"],
+  ["palikir","Palikir"],
+  ["ramallah","Ramallah"],
+  ["singapore","Singapore"],
+  ["st-johns","St. John's"],
+  ["toronto","Toronto"],
+  ["yaren","Yaren"],
 ])
-export const GENERATED_CITY_FIGURES = Object.freeze({ cities: 218, countries: 177 })
+export const GENERATED_CITY_FIGURES = Object.freeze({ cities: 226, countries: 185 })
 
 export const GENERATED_CITY_LOADERS = Object.freeze([
   ()=>import("./lagos/index.ts").then(m=>m.lagosCity),
@@ -442,4 +450,12 @@ export const GENERATED_CITY_LOADERS = Object.freeze([
   ()=>import("./oslo/index.ts").then(m=>m.city),
   ()=>import("./sydney/index.ts").then(m=>m.city),
   ()=>import("./tel-aviv-yafo/index.ts").then(m=>m.city),
+  ()=>import("./kyiv/index.ts").then(m=>m.city),
+  ()=>import("./male/index.ts").then(m=>m.city),
+  ()=>import("./palikir/index.ts").then(m=>m.city),
+  ()=>import("./ramallah/index.ts").then(m=>m.city),
+  ()=>import("./singapore/index.ts").then(m=>m.city),
+  ()=>import("./st-johns/index.ts").then(m=>m.city),
+  ()=>import("./toronto/index.ts").then(m=>m.city),
+  ()=>import("./yaren/index.ts").then(m=>m.city),
 ] satisfies readonly CityModuleLoader[])

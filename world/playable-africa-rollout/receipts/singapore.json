@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "singapore",
+  "countryIso2": "SG",
+  "generationIdentity": {
+    "cityId": "singapore",
+    "stateId": "sg-singapore",
+    "stateName": "Singapore"
+  },
+  "inventorySha256": "a71c33bafe53032b4f2f8c7d36201f1ae88880e73a50f03cbac1ca868b1f134c",
+  "inventoryPath": "world/playable-africa-rollout/sources/singapore.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "singapore-airport",
+    "name": "Singapore Changi Airport",
+    "lon": 103.994003,
+    "lat": 1.35019,
+    "sourceUrl": "https://ourairports.com/airports/WSSS/"
+  },
+  "bounds": [
+    1.1090366100660216,
+    103.67218575336207,
+    1.4707983899339785,
+    104.03162864663793
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261011.osm.pbf",
+      "datasetSha256": "d3a75bfb7861eeb4dc81923f022a3ebda87d6deac3d3de728ca81a8881f9099c",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "9b427ac56d5a32a3751772f8476fdf01292e65bd536221d65d63026b40936a55",
+          "elements": 9225
+        },
+        {
+          "file": "extras.json",
+          "sha256": "b17fc7b9d21d543c1530f61124ce3321879cec5a2d2232f0da10bdc7b99d97b9",
+          "elements": 1442
+        },
+        {
+          "file": "water.json",
+          "sha256": "363563d2899f479c779134933e1200240f6b99331ba17a475e240eeafe2169b9",
+          "elements": 1078
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "3d0b162169d471384752938d4901639d7517211ea794f288084fc4f7ea801902",
+          "elements": 6410
+        },
+        {
+          "file": "roads.json",
+          "sha256": "643da3f15e576fa80f071478b60ce52109ce4b5001347e84a9349a043ace10e1",
+          "elements": 18655
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 600,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 28,
+    "waterPolygons": 30,
+    "reachWaterPolygons": 30
+  },
+  "observed": {
+    "places": 9225,
+    "extras": 1442,
+    "water": 1078,
+    "landuse": 6410,
+    "roads": 18655
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1237,
+      "sha256": "867a272059d9a1611e4f2c19c052d0ebabd4775fc11ce6fddf6cf73bc199fa6a"
+    },
+    "geometry.ts": {
+      "bytes": 1106640,
+      "sha256": "6827cf503d18ae1cafaa9a3d4345431dbc750388961b4b86a91059f525ee671f"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "3490b8612f6e38c5aba17f782612082e033b4c0243206b36cd91ee2202179a99"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/singapore.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

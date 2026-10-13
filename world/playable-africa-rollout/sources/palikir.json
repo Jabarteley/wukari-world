@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 1,
+  "cityId": "palikir",
+  "countryIso2": "FM",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Palikir",
+    "coordinatesWgs84": [
+      158.1627143,
+      6.920744
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/micronesia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "palikir-airport",
+    "name": "Pohnpei International Airport",
+    "lon": 158.20992,
+    "lat": 6.985082,
+    "sourceUrl": "https://ourairports.com/airports/PTPN/"
+  },
+  "boxes": {
+    "play": [
+      6.739863110066022,
+      157.98166311858617,
+      7.101624889933978,
+      158.34376548141384
+    ],
+    "core": [
+      6.875523777516506,
+      158.11746472569575,
+      6.965964222483494,
+      158.20796387430426
+    ],
+    "outline": [
+      6.689863110066022,
+      157.93166311858616,
+      7.151624889933978,
+      158.39376548141385
+    ],
+    "wide": [
+      6.139863110066022,
+      157.38166311858618,
+      7.701624889933978,
+      158.94376548141383
+    ],
+    "water": [
+      6.139863110066022,
+      157.38166311858618,
+      7.701624889933978,
+      158.94376548141383
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/micronesia-261011.osm.pbf",
+    "datasetSha256": "2786fce7653d7ae29ada6f43138fd19a20efd35118e350aa1516642986033ea0",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "a4fd288ab35ea8eaa1384db8103dcc8e9127a5c1c3cdedb6680edaa58094101d",
+        "elements": 159
+      },
+      {
+        "file": "extras.json",
+        "sha256": "a693247c1b8908797fb889d2184edf374d0a4e5e47c24c317582d9f26668d4b7",
+        "elements": 26
+      },
+      {
+        "file": "water.json",
+        "sha256": "2b8c50c05bf85a2783664399d569b3af0b063d057b0d2008e7677819b81d94fe",
+        "elements": 293
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "3bead2332c12da62de1c153024573b5ede21550af6f0b097c82222a15f605f61",
+        "elements": 146
+      },
+      {
+        "file": "roads.json",
+        "sha256": "358b71032957a137a687056e3000491f7d351901d2bc3203898b3e4050b42eb4",
+        "elements": 9
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "worship",
+      "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Cupids Bar & Restaurant",
+      "osm": "node/2595122729",
+      "coordinatesWgs84": [
+        158.197603,
+        6.952733
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "College of Micronesia National Campus",
+      "osm": "way/316806679",
+      "coordinatesWgs84": [
+        158.158222,
+        6.909699
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "hauan",
+      "osm": "node/13282249219",
+      "coordinatesWgs84": [
+        158.26468,
+        6.967828
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Spanish Wall Park",
+      "osm": "way/316996154",
+      "coordinatesWgs84": [
+        158.211321,
+        6.96717
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Supreme Court",
+      "osm": "node/11981379972",
+      "coordinatesWgs84": [
+        158.162439,
+        6.925144
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Congress of the Federated States of Micronesia",
+      "osm": "node/11981379973",
+      "coordinatesWgs84": [
+        158.161991,
+        6.925514
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bridge over stream near sakau",
+      "osm": "node/4467670089",
+      "coordinatesWgs84": [
+        158.205564,
+        6.933681
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nan Madol",
+      "osm": "way/481854372",
+      "coordinatesWgs84": [
+        158.33115,
+        6.84311
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "German Tower",
+      "osm": "node/358689543",
+      "coordinatesWgs84": [
+        158.211438,
+        6.968409
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Historic Spanish Wall",
+      "osm": "way/316996156",
+      "coordinatesWgs84": [
+        158.211625,
+        6.96716
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "JED's Cantina",
+      "osm": "way/551942387",
+      "coordinatesWgs84": [
+        158.194631,
+        6.817605
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nett Ramen",
+      "osm": "node/3958969172",
+      "coordinatesWgs84": [
+        158.229695,
+        6.952866
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "hsaun",
+      "osm": "way/1447609575",
+      "coordinatesWgs84": [
+        158.248875,
+        6.959483
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stone Look-Out",
+      "osm": "node/3230314553",
+      "coordinatesWgs84": [
+        158.190532,
+        6.963979
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Genesis Medical Center",
+      "osm": "way/1292890855",
+      "coordinatesWgs84": [
+        158.219602,
+        6.953486
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "hsuan",
+      "osm": "way/1447609004",
+      "coordinatesWgs84": [
+        158.255757,
+        6.969595
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pohnpei State Hospital",
+      "osm": "way/585464416",
+      "coordinatesWgs84": [
+        158.219924,
+        6.955033
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1253,
+      "sha256": "ad2087486b11608ebd4e5853e217f382745711795de95a34aeea516c3b872f57"
+    },
+    "geometry.ts": {
+      "bytes": 788502,
+      "sha256": "6db05559411260947fa739b390fef484d5ec154e862ed7ad70f92f6a7bfb44d5"
+    },
+    "places.ts": {
+      "bytes": 6808,
+      "sha256": "acc15c48bb05a10cec7d457cade12b12dd5f1c1ea10c18f91bc9fc9a7514bb0c"
+    },
+    "terrain.ts": {
+      "bytes": 361088,
+      "sha256": "f352f3ef93cc4d388ae5796c9784326803aa4a2fbe70cffa9471abcd86958834"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "5d624425b4aeec4d597730e8351e91bdfc1cb0dc04c5b4b76fddf87462649f09"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

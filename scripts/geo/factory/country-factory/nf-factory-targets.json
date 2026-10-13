@@ -1,39 +1,39 @@
 {
-  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "expectedSourceGitSHA": "5b8fd5b9e0683c3d7b5880c2d46fba3e81710fcb",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "NF",
     "datasetSha256": "78a298bd22823a7fe502665dfc156c78c0f59a3b541440c206e106aeec3083f0",
-    "receiptSha256": "dd26b07d98ce27bef749a81b26d3a480d06216fd549565f4d653c538607b9078",
+    "receiptSha256": "3467b5af94c48cfb4c08ab16ce1e7f1142f4d8df87047f2005bf2c4239fa34e7",
     "receiptBytes": 10492,
     "geometrySha256": "857ff54cf73e74e9af6d4259bafc5bcdf28bfbc1b329afcdad946c7c78104db9",
     "geometryBytes": 5024,
-    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "scriptSha256": "5ff4dfbbd3956af4e7502b3ff27111da8362a4ce4101a0327d3aba52b26c54cc",
     "relationId": 2574988,
     "boundaryKey": "nf",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38431865880,
-      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
-      "sourceArtifact": "city-bootstrap-nf-76625e88577c373598b4141ef4285f6af082419c",
+      "sourceRunId": 38450108912,
+      "sourceSha": "0ccb2f983d5d3b193d4f878b9caee8d6776b7cc3",
+      "sourceArtifact": "city-bootstrap-nf-0ccb2f983d5d3b193d4f878b9caee8d6776b7cc3",
       "artifactSubdirectory": "country-boundary"
     }
   },
   "targets": [
     {
-      "id": "kingston",
+      "id": "kingston-nf",
       "name": "Kingston",
       "country": "nf",
       "facts": {
-        "id": "kingston",
+        "id": "kingston-nf",
         "name": "Kingston",
         "country": {
           "idISOlower": "nf",
           "name": "Norfolk Island"
         },
         "state": {
-          "idunique": "nf-kingston",
+          "idunique": "nf-kingston-nf",
           "name": "Kingston"
         },
         "timezone": "Pacific/Norfolk",
@@ -42,7 +42,7 @@
           "lat": -29.0563564
         },
         "airport": {
-          "id": "kingston-airport",
+          "id": "kingston-nf-airport",
           "name": "Norfolk Island International Airport",
           "lon": 167.939474,
           "lat": -29.041759,
@@ -304,7 +304,7 @@
           "rules": {
             "minimumPlaces": 12,
             "minimumNeighbourhoodLabels": 3,
-            "maximumEmptySlots": 4,
+            "maximumEmptySlots": 5,
             "cityPlaceTags": [
               "city",
               "town",
@@ -326,27 +326,27 @@
           "cityPlaceTag": "hamlet"
         }
       },
-      "extractKey": "kingston",
+      "extractKey": "kingston-nf",
       "extractSha256": {
-        "places": "a19b559c160061d09c30043fb76db53446e15ac643c4bf2262b4a1efec7aacb2",
-        "extras": "9d407dfd9f038634e16f2ada0add83477b65d5114fe81615aca3215b5bc8d638",
-        "water": "3af6b169c3d776443c35cc1313b12c912373bc9f9e3a7b80733915100fba68b0",
-        "landuse": "ce970493cc68f10548a8fb0b0945523960f14a12f5af81337f64bb61cb8e24e2",
-        "roads": "65fe4ba733d50b733a20ef04b39d00adf3dbdc31fdc14d1c7f8be64f1a94e67a"
+        "places": "ce29ca85c767f54ad6f75305ebd6eaa6ab1d7a88626740bf6acf65ad924ad71d",
+        "extras": "b86bc7385debdc48819e9aa51529a79b2b233a731f81766fbac0e4c660c6e69e",
+        "water": "c459d6ce2c932b53166cc6c80f6a6975589cc6aa7ba61873a8606d9e56d84a24",
+        "landuse": "b66216bba81658463f50cad61a529188f559d770fb8fd29bbf4abdf763f8b83e",
+        "roads": "4b3d655e2404be033d5c901d34199757737a2fcf1545d80f14722a058a9b9115"
       },
       "sourceJob": {
-        "city": "kingston",
-        "sourceRunId": 38431865880,
-        "sourceArtifact": "city-bootstrap-nf-76625e88577c373598b4141ef4285f6af082419c",
-        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "city": "kingston-nf",
+        "sourceRunId": 38450108912,
+        "sourceArtifact": "city-bootstrap-nf-0ccb2f983d5d3b193d4f878b9caee8d6776b7cc3",
+        "sourceSha": "0ccb2f983d5d3b193d4f878b9caee8d6776b7cc3",
         "datasetSha256": "78a298bd22823a7fe502665dfc156c78c0f59a3b541440c206e106aeec3083f0",
         "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "extractSha256": {
-          "places": "a19b559c160061d09c30043fb76db53446e15ac643c4bf2262b4a1efec7aacb2",
-          "extras": "9d407dfd9f038634e16f2ada0add83477b65d5114fe81615aca3215b5bc8d638",
-          "water": "3af6b169c3d776443c35cc1313b12c912373bc9f9e3a7b80733915100fba68b0",
-          "landuse": "ce970493cc68f10548a8fb0b0945523960f14a12f5af81337f64bb61cb8e24e2",
-          "roads": "65fe4ba733d50b733a20ef04b39d00adf3dbdc31fdc14d1c7f8be64f1a94e67a"
+          "places": "ce29ca85c767f54ad6f75305ebd6eaa6ab1d7a88626740bf6acf65ad924ad71d",
+          "extras": "b86bc7385debdc48819e9aa51529a79b2b233a731f81766fbac0e4c660c6e69e",
+          "water": "c459d6ce2c932b53166cc6c80f6a6975589cc6aa7ba61873a8606d9e56d84a24",
+          "landuse": "b66216bba81658463f50cad61a529188f559d770fb8fd29bbf4abdf763f8b83e",
+          "roads": "4b3d655e2404be033d5c901d34199757737a2fcf1545d80f14722a058a9b9115"
         }
       }
     }

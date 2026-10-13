@@ -26,7 +26,8 @@
         "id": "America/Nuuk",
         "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
       },
-      "profile": "microstate"
+      "profile": "microstate",
+      "sceneWaterExtent": "play"
     }
   ]
 }

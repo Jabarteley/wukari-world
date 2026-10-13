@@ -2,48 +2,12 @@
  "schemaVersion": 1,
  "queue": [
   {
-   "id": "gu",
-   "table": "scripts/geo/factory/country-factory/gu-factory-targets.json"
-  },
-  {
-   "id": "vg",
-   "table": "scripts/geo/factory/country-factory/vg-factory-targets.json"
-  },
-  {
-   "id": "bm",
-   "table": "scripts/geo/factory/country-factory/bm-factory-targets.json"
-  },
-  {
-   "id": "vi",
-   "table": "scripts/geo/factory/country-factory/vi-factory-targets.json"
-  },
-  {
-   "id": "pr",
-   "table": "scripts/geo/factory/country-factory/pr-factory-targets.json"
-  },
-  {
    "id": "gl",
    "table": "scripts/geo/factory/country-factory/gl-factory-targets.json"
   },
   {
-   "id": "ck",
-   "table": "scripts/geo/factory/country-factory/ck-factory-targets.json"
-  },
-  {
-   "id": "xs",
-   "table": "scripts/geo/factory/country-factory/xs-factory-targets.json"
-  },
-  {
-   "id": "hk",
-   "table": "scripts/geo/factory/country-factory/hk-factory-targets.json"
-  },
-  {
-   "id": "cx",
-   "table": "scripts/geo/factory/country-factory/cx-factory-targets.json"
-  },
-  {
-   "id": "nu",
-   "table": "scripts/geo/factory/country-factory/nu-factory-targets.json"
+   "id": "nf",
+   "table": "scripts/geo/factory/country-factory/nf-factory-targets.json"
   }
  ]
 }

@@ -21,13 +21,21 @@ import { useTables } from '../tables/useTables.ts'
 
 const props = defineProps<{ params?: unknown }>()
 const OroGame = defineAsyncComponent(() => import('./OroGame.vue'))
+const FightGame = defineAsyncComponent(() => import('../arena/FightGame.vue'))
 const { game, shell, goTo } = useApp()
 const tables = useTables()
 const growth = useGrowth()
 const view = game.view
 const why = computed(() => linkWords(view.value)?.why ?? '')
 const asked = (props.params && typeof props.params === 'object' ? (props.params as { play?: unknown }).play : null) === 'oro'
-const screen = ref<'hub' | 'daily' | 'practice'>(asked ? 'daily' : 'hub')
+// An invite link (/?table=g-xxxxxx) opens this app with { room }: straight into that fight.
+const roomParam = (): string => { const r = (props.params as { room?: unknown } | null | undefined)?.room; return typeof r === 'string' && /^g-[a-z0-9]{6}$/.test(r) ? r : '' }
+const screen = ref<'hub' | 'daily' | 'practice' | 'fight'>(roomParam() ? 'fight' : asked ? 'daily' : 'hub')
+const fightIntent = ref<{ kind: 'create' | 'practice' | 'join'; room?: string }>(roomParam() ? { kind: 'join', room: roomParam() } : { kind: 'create' })
+const fightKey = ref(0)
+const code = ref('')
+function openFight(kind: 'create' | 'practice' | 'join', room?: string): void { fightIntent.value = room ? { kind, room } : { kind }; fightKey.value += 1; screen.value = 'fight' }
+function joinByCode(): void { const m = /g-[a-z0-9]{6}/.exec(code.value.trim().toLowerCase()); if (m) openFight('join', m[0]); else game.toast('Paste the link or code your friend sent.', 'error') }
 const today = ref<OroView | null>(null)
 
 async function loadToday(): Promise<void> {
@@ -42,7 +50,7 @@ onMounted(() => {
 })
 // Opened for one game ({ game: 'oro' | 'chess' | 'weave' } or, from an address, { play: 'oro' }): Oro opens on today's word, the others are brought into view.
 const wanted = (): string => { const p = props.params as { game?: unknown; play?: unknown } | null | undefined; const game = p?.game ?? p?.play; return typeof game === 'string' ? game : '' }
-watch(() => props.params, () => { if (wanted() === 'oro') screen.value = 'daily' }, { immediate: true })
+watch(() => props.params, () => { if (roomParam()) openFight('join', roomParam()); else if (wanted() === 'oro') screen.value = 'daily' }, { immediate: true })
 useSection(() => (wanted() === 'chess' || wanted() === 'weave' ? { section: wanted() } : null))
 function back(): void { screen.value = 'hub'; void loadToday() }
 function onState(next: OroView): void { today.value = next }
@@ -69,6 +77,14 @@ const dailyCta = computed(() => (today.value?.status === 'playing' || !today.val
       <GameCover game="oro" />
       <div><h3 id="gm-oro">Oro</h3><p>{{ dailyLine(today) }}</p><BaseButton variant="primary" @click="screen = 'daily'">{{ dailyCta }}</BaseButton></div>
       <div class="gm-daily-links"><button type="button" @click="screen = 'practice'">Practice words</button><button type="button" @click="share('/games/oro', 'Today’s word on Allworld:')">Share today’s puzzle</button></div>
+    </section>
+    <SectionTitle>Play live</SectionTitle>
+    <section class="gm-fight" data-section="fight" aria-labelledby="gm-fight">
+      <div class="gm-fight-art" aria-hidden="true"><span>👊</span></div>
+      <div><h3 id="gm-fight">Fight</h3><p>Real-time 1v1. Send a friend a link and settle it. Others can watch.</p></div>
+      <BaseButton variant="primary" @click="openFight('create')">Play with a friend</BaseButton>
+      <BaseButton @click="openFight('practice')">Practice vs bot</BaseButton>
+      <div class="gm-code"><input v-model="code" placeholder="Paste a game link or code" aria-label="Game link or code" @keydown.enter="joinByCode"><BaseButton @click="joinByCode">Join / Watch</BaseButton></div>
     </section>
     <SectionTitle>Play your way</SectionTitle>
     <div class="gm-grid">
@@ -98,6 +114,9 @@ const dailyCta = computed(() => (today.value?.status === 'playing' || !today.val
     <BaseButton block @click="share('/games', 'Play chess, today’s word and more on Allworld:')">Share Games</BaseButton>
     <p class="gm-note">A win against a real player is paid by the game; games against the computer and Oro pay nothing, but they count for your missions.</p>
   </div>
+  <div v-else-if="screen === 'fight'" class="gm">
+    <FightGame :key="fightKey" :intent="fightIntent" @close="screen = 'hub'" />
+  </div>
   <div v-else class="gm">
     <button class="gm-back" type="button" @click="back">‹ All games</button>
     <OroGame :key="screen" :mode="screen === 'daily' ? 'daily' : 'practice'" @close="back" @state="onState" />
@@ -118,6 +137,11 @@ const dailyCta = computed(() => (today.value?.status === 'playing' || !today.val
 .gm-daily .base-button { padding: 10px; width: 100%; }
 .gm-daily-links { grid-column: 1 / -1; display: flex; gap: 12px; justify-content: space-between; border-top: 1px solid #bdd9c9; padding-top: 4px; }
 .gm-daily-links button, .gm-share { border: 0; background: none; min-height: 44px; padding: 6px 0; font: 600 13px var(--font); color: #22543d; text-align: left; cursor: pointer; }
+.gm-fight { display: grid; gap: 10px; padding: 14px; background: #2a2147; color: #fff; border-radius: 16px; }
+.gm-fight h3 { margin: 0 0 2px; font-size: 24px; letter-spacing: -.025em; }
+.gm-fight p { margin: 0; font-size: 13px; color: #d9d2f0; }
+.gm-fight-art { display: none; }
+.gm-code { display: flex; gap: 8px; } .gm-code input { flex: 1; min-width: 0; padding: 10px; border-radius: 8px; border: 0; font: 14px var(--font); }
 .gm-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; }
 .gm-game { min-width: 0; }
 .gm-launch { display: grid; gap: 6px; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; border-radius: 14px; color: var(--c-ink); }

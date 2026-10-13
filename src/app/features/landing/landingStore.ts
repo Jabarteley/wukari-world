@@ -177,10 +177,13 @@ export function createLanding(deps: LandingDeps, refs?: LandingRefs): Landing {
       if (!shown && gift) shown = linkBanner(sharer || 'a friend')
       // A table the link named: the Tables app opens on it (the banner is shown over it).
       if (table) {
-        const exists = await deps.tableExists(table)
+        // A game room's code (a live Fight a friend made, src/types/arena.ts) is not a table: it opens the Games app on that room.
+        const gameRoom = /^g-[a-z0-9]{6}$/.test(table)
+        const exists = gameRoom || await deps.tableExists(table)
         if (!isCurrent()) return
         deps.forgetTable()
-        if (exists) deps.open('tables', { table })
+        if (gameRoom) deps.open('games', { room: table })
+        else if (exists) deps.open('tables', { table })
       }
       // An e-mail's button: one panel from the fixed list, opened once. A table link, which names its own panel, wins.
       if (go) {

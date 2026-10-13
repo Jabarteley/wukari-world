@@ -26,6 +26,7 @@ import type { LandBuyRequest, LandView } from './land.ts'
 import type { GrowthHttpRoutes, GrowthModerationHttpRoutes, TableClientFrame, TableErrorCode, TableServerFrame } from './growth.ts'
 import type { CampusHttpRoutes } from './campus.ts'
 import type { CallClientFrame, CallServerFrame } from './calls.ts'
+import type { ArenaClientFrame, ArenaErrorCode, ArenaServerFrame } from './arena.ts'
 import type { NoticeFrame, NoticeHttpRoutes } from './notice.ts'
 import type { CompanionHttpRoutes } from './companion.ts'
 import type { AnnounceFrame } from './announce.ts'
@@ -447,6 +448,8 @@ export type NodeSocketErrorCode =
   | 'call_elsewhere'
   // refused table frames (server/growth/tables.ts), always with a `reason`
   | TableErrorCode
+  // refused real-time game room frames (server/growth/arena.ts), always with a `reason`
+  | ArenaErrorCode
 /** WORKER: codes only the Worker sends, in addition to every code above: a retried chat id with another body, and an expired session on an open socket. */
 export type WorkerSocketErrorCode = 'chat_id_conflict' | 'device_session_required'
 export type SocketErrorCode = NodeSocketErrorCode | WorkerSocketErrorCode
@@ -484,7 +487,7 @@ export interface HeartbeatAckFrame { type: 'heartbeat-ack' }
 /** Everything a browser may send (on the Worker also `HeartbeatAckFrame`). */
 /** Asks for the counts frames (`pulse`): answered at once with the current counts, then sent when they change. Not repeated. */
 export interface PulseWatchFrame { type: 'pulse-watch' }
-export type ClientFrame = RoomClientFrame | SocialClientFrame | TableClientFrame | CallClientFrame | LiveClientFrame | PulseWatchFrame
+export type ClientFrame = RoomClientFrame | SocialClientFrame | TableClientFrame | ArenaClientFrame | CallClientFrame | LiveClientFrame | PulseWatchFrame
 /**
  * ONE CHARACTER ON SEVERAL DEVICES (docs/DEVICES.md). Every answer that carries the life (GET /api/life, POST /api/action)
  * carries `rev`, a number that only goes up for one character: a device never replaces what it shows with an answer whose
@@ -506,7 +509,7 @@ export interface PulseFrame { type: 'pulse'; online: number; visits: number; tod
  * socket and the social client's socket both receive every frame addressed to the player.
  * WORKER: also `HeartbeatFrame`.
  */
-export type ServerFrame = RoomServerFrame | SocialServerFrame | TableServerFrame | CallServerFrame | LifeChangedFrame | LiveServerFrame | NoticeFrame | PulseFrame | AnnounceFrame
+export type ServerFrame = RoomServerFrame | SocialServerFrame | TableServerFrame | ArenaServerFrame | CallServerFrame | LifeChangedFrame | LiveServerFrame | NoticeFrame | PulseFrame | AnnounceFrame
 export type ClientFrameType = ClientFrame['type']
 export type ServerFrameType = ServerFrame['type']
 
@@ -815,6 +818,7 @@ export const CLIENT_FRAME_TYPES = [
   'join', 'move', 'voice-state', 'signal', 'chat', 'groups', 'group-join',
   'dm-send', 'dm-read', 'people-list', 'friend-request', 'friend-answer', 'invite-knock', 'invite-answer',
   'table-list', 'table-watch', 'table-unwatch', 'table-sit', 'table-options', 'table-start', 'table-move', 'table-leave', 'table-again',
+  'arena-create', 'arena-join', 'arena-watch', 'arena-start', 'arena-options', 'arena-input', 'arena-again', 'arena-leave',
   'call-invite', 'call-accept', 'call-decline', 'call-cancel', 'call-hangup', 'call-signal', 'call-settings', 'call-ice', 'call-report',
   'live-watch', 'live-unwatch', 'pulse-watch',
 ] as const satisfies readonly ClientFrameType[]
@@ -828,6 +832,7 @@ export const SERVER_FRAME_TYPES = [
   'dm', 'social-update', 'social-sync', 'friend-request', 'friend-accepted', 'people-presence', 'people-changed',
   'people-interaction', 'invite-knock', 'invite-answer', 'invite-house', 'transfer',
   'tables', 'table-state', 'tables-changed',
+  'arena-state', 'arena-snap',
   'call-incoming', 'call-state', 'call-signal', 'call-settings', 'call-ice',
   'life-changed', 'social-read', 'social-changed', 'message-changed', 'message-pins',
   'live-snapshot', 'live-move',

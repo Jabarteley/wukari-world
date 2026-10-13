@@ -1,0 +1,11 @@
+{
+  "name": "allworld-asset-export-portability-proof",
+  "private": true,
+  "type": "module",
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "gltf-validator": "2.0.0-dev.3.10",
+    "gltfpack": "1.3.0",
+    "three": "0.180.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "original-meter-beacon-v1",
+  "license": "AGPL-3.0-or-later",
+  "provenance": "Original analytic geometry authored in this lane; no downloaded, traced or shipped model inputs.",
+  "route": "static",
+  "units": "meters",
+  "blenderAxes": "Z up, -Y forward",
+  "gltfAxes": "Y up, +Z forward",
+  "pivot": "ground center at [0,0,0]",
+  "bounds": {"min": [-0.22, 0, -0.22], "max": [0.22, 1, 0.22]},
+  "anchors": {"anchor_top": [0, 1, 0], "anchor_front": [0, 0.08, 0.22]},
+  "profileZR": [[0,0.22],[0.08,0.22],[0.12,0.12],[0.78,0.12],[0.82,0.15],[0.94,0.15],[1,0.10]],
+  "sidePalette": [0,0,1,1,2,2],
+  "srgbPalette": [[0.20,0.24,0.28],[0.08,0.62,0.56],[1.0,0.55,0.08]],
+  "pbr": {"baseColorFactor": [1,1,1,1], "metallicFactor": 0.18, "roughnessFactor": 0.36, "alphaMode": "OPAQUE", "doubleSided": false},
+  "lod": {"near": {"segments": 24, "triangles": 332}, "far": {"segments": 8, "triangles": 108}},
+  "tolerances": {"positionMeters": 0.00003, "linearColor": 0.002, "material": 0.000001},
+  "limits": {"rawGlbBytes": 100000, "triangles": 400},
+  "compression": "Uncompressed canonical GLBs; optional EXT_meshopt_compression derivative, never Draco."
+}

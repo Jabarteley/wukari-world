@@ -26,10 +26,41 @@ A collection listed in `KEYED_SPECS` (`server/keyed.ts`) is stored as
 | `growth` | `players[id]`, `shares[code]`, `comeback[id]`, `push[id]`, `contacts[id]` | `salt`, `metrics`, `tables`, `outreach`, `comebackStats`, `sweptAt` |
 | `civic` | `cities.<city>.residents[id]`, `cities.<city>.gov.elections[week]` | `prefs`, `salt`, each city's counters, announcements, ads, hunt, radio |
 | `business` | `shops[owner]` | `reports`, `seq` |
+| `market` | `accounts[city]` (that city's accounts by public id), `books[city]` (that city's resting orders by commodity) | `v`, `salt`, `tape` (each city's newest 100 fills), `frozen`, `seq` |
 
 Everything else (`support`, `moderation`, `campus`, `pulse`, the five `admin*` collections, accounts, sessions, receipts,
 pictures, the limiter and the world registry) is stored exactly as before: each is bounded by a cap in the code or by a
 table of its own, and none of them grows with the number of players the way these four do.
+
+### `db.market`, in full
+
+The Allworld Market ([MARKET.md](MARKET.md)). Created by the first look at a market, which makes the salt.
+
+```
+market = {
+  v: 1,
+  salt:     "<64 hex characters>"                         the server's secret: keys the price walk and the event picks (market-model.ts)
+  accounts: { [cityId]: { [publicId]: account } }          account: cash, holdings, anon, day, deposited, traded, makerUnits, pairs, name
+  books:    { [cityId]: { [commodity]: order[] } }         resting orders: id, by (public id), side, price, units, filled, at, expiresAt, held
+  tape:     { [cityId]: fill[] }                           newest last, at most 100 a city: price, units, at, buyerId, sellerId, buyer, seller
+  frozen:   [publicId]                                     traders an operator froze
+  seq:      number                                        last order or fill id
+}
+```
+
+- **Keys.** `accounts` and `books` are keyed one **city** at a time (an entry holds that city's accounts, or that city's books), so an
+  order in Lagos writes Lagos rows and nothing of Kano's. The salt, the tape and the small lists stay in the root, so the salt needs no
+  meta key of its own and reads back the same on the Node file and on the Worker's SQLite. `deploy/market-storage.test.ts` checks both.
+- **The salt** is made once from the host's random source (`ctx.randomId()`, twice), on the first look at a market or the first write,
+  whichever comes first. A missing or malformed salt is made again (prices then start a new series). It is never in a response, an export
+  or a log. A read changes nothing except that very first one.
+- **Repair.** A write repairs what it touches: damaged orders, fills and accounts are mended or dropped, expired orders are removed and
+  give their holding back. A read ignores what is damaged.
+- **Account deletion** (`server/market/privacy.ts`, called by `deleteAccount` for every public id the account owns) removes the player's
+  account in every city and their resting orders in every book, removes their public id from other accounts' daily counters and from
+  `frozen`, and rewrites their fills on the tape: price, units and time stay, the label becomes "Former trader" and the id is cleared.
+- **Account export** (`exportAccount`) adds `market`: the player's accounts (balance, holdings, anonymity choice, today's totals), their
+  open orders and their own fills with the label of the other side. Nothing of another player, and not the salt.
 
 ### Why this grain
 

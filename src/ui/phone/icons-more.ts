@@ -26,6 +26,8 @@ registerGlyphs({
   neighbours: `<path d="M2.5 12 8 7l5.5 5v8h-11Z" ${F}/><path d="M13.5 13.5 17 10.5l4.5 4V20h-8M6.5 20v-3.5h3V20"/>`,
   // The Business app: a market stall under its awning.
   business: `<path d="M3.5 10 5 4.5h14l1.5 5.5a2.2 2.2 0 0 1-4.3 0 2.2 2.2 0 0 1-4.2 0 2.2 2.2 0 0 1-4.2 0 2.2 2.2 0 0 1-4.3 0Z" ${F}/><path d="M5 12.5V20h14v-7.5M9.5 20v-4.5h5V20"/>`,
+  // The Market app: price bars with a rising line.
+  market: `<path d="M4 20.5h16M7 20.5v-5M12 20.5V10M17 20.5v-7.5"/><path d="M4.5 10.5 9 7l3 2 7-5M15 4h4v4"/>`,
   // The Services app: a shop sign with a star, hanging from a post.
   showcase: `<rect x="9" y="7.5" width="11.5" height="8" rx="2" ${F}/><path d="M5 20.5V4h8.5M9 7.5V4M3.5 20.5h17"/><path d="M14.8 9.6l.7 1.4 1.5.2-1.1 1 .3 1.5-1.4-.8-1.4.8.3-1.5-1.1-1 1.5-.2Z" ${S}/>`,
   ads: `<rect x="3" y="4.5" width="18" height="10" rx="2" ${F}/><path d="M8 14.5V20M16 14.5V20M6 20h12M7 8.5h7M7 11h4"/>`,
@@ -43,7 +45,7 @@ export const TINTS: Record<string, string> = {
   jobs: '#2563eb', messages: '#16a34a', bank: '#0f766e', ride: '#d97706',
   statement: '#475569', invest: '#7c3aed', career: '#0284c7', richlist: '#b7791f',
   goals: '#ea580c', health: '#e11d48', groceries: '#4d9a1a', boutique: '#db2777', houses: '#b45309', cars: '#334155', settings: '#6b7280', help: '#0e8fd6',
-  contacts: '#0d9488', showcase: '#7a4bb0', people: '#4f46e5', family: '#c026d3', invite: '#d98200', community: '#0891b2',
+  contacts: '#0d9488', showcase: '#7a4bb0', market: '#7f1d1d', people: '#4f46e5', family: '#c026d3', invite: '#d98200', community: '#0891b2',
   governor: '#166534', neighbours: '#059669', ads: '#9333ea', business: '#b4541a', 'hunt-sheet': '#0aa5c2', radio: '#1e293b', support: '#dc5a0c',
 };
 /** The part of a panel the Phone reads for colour: its own `tint` or its id. */

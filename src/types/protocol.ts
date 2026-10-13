@@ -42,6 +42,7 @@ import type { PingHttpRoutes } from './ping.ts'
 import type { VisitHttpRoutes } from './visit.ts'
 import type { CommerceHttpRoutes } from './commerce.ts'
 import type { BusinessHttpRoutes } from './business.ts'
+import type { MarketHttpRoutes } from './market.ts'
 import type { PoliticsHttpRoutes } from './politics.ts'
 import type { RecordsHttpRoutes } from './records.ts'
 import type { LivingWorldHttpRoutes } from './living-world.ts'
@@ -279,7 +280,7 @@ export interface CoreHttpRoutes {
  * telemetry endpoints are added beside them by server/server.ts: growth.ts TelemetryHttpRoutes.)
  */
 export interface HttpRoutes extends CoreHttpRoutes, SocialHttpRoutes, CivicHttpRoutes, SupportHttpRoutes, ModerationHttpRoutes, WorldHttpRoutes,
-  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, BusinessHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes {
+  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes {
   'GET /api/world/land': { query: { city: CityId }; response: Ok<LandView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'invalid_city' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' }
   'POST /api/world/land/buy': { body: LandBuyRequest; response: Ok<{ ok: boolean; code: string; duplicate?: true; pending?: true }>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | JsonBodyErrorCode | OnceErrorCode | 'invalid_city' | 'invalid_land_purchase' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' | 'land_pending' | 'not_owned_home' | 'land_price_changed' | 'land_intent_changed' }
 }
@@ -751,6 +752,14 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/mod/business/reports',
   'POST /api/mod/business/rename',
   'POST /api/mod/business/close',
+  'GET /api/market/view',
+  'GET /api/market/history',
+  'POST /api/market/deposit',
+  'POST /api/market/withdraw',
+  'POST /api/market/order',
+  'POST /api/market/cancel',
+  'POST /api/market/anon',
+  'POST /api/mod/market/freeze',
   'GET /api/mod/store',
   'GET /api/mod/store/compare',
   'GET /api/mod/store/hashes',

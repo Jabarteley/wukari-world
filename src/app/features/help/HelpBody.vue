@@ -18,6 +18,7 @@ const STEPS = computed(() => [
   { icon: 'chat', title: 'Call and chat', text: 'Tap the online count, then a player, to chat or Call them; they choose whether to answer. The chat button at a place opens its community.' },
   { icon: 'bell', title: 'Ping a friend', text: 'A friend who is not in the game has Ping where Call would be: one tap tells them you are here. If they come, they land right where you are.' },
   { icon: 'career', title: 'Work and business', text: 'Jobs and Career earn your pay, and Business lets you rent a stall at any market, stock it and sell to the city and to other players. Bank and Invest look after your money, and Billboards advertise for you.' },
+  { icon: 'scales', title: 'Trade at the market', text: 'The Market in the Phone trades rice, garri, beans, palm oil, cement and petrol at prices that move through the day. Deposit game naira into your city’s market account, then place an order. It is a simulation with game naira only. Buying or selling game money, goods or accounts for real money is not allowed, and those accounts are closed.' },
 ] as const)
 const rows = shortcutRows()
 /** The walkthrough starts after this sheet closes (src/app/features/tour/TourTrigger.vue). */

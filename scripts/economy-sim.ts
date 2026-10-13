@@ -127,6 +127,8 @@ export function categoryOf(line: LedgerLine): string {
   // Player-owned shops (src/game/systems/business.ts): what a shop costs its owner, and what it pays them.
   if (/^Shop (setup|stock|rent|upgrade|goods): /.test(reason)) return 'shopCosts';
   if (reason.startsWith('Shop takings: ') || reason.startsWith('Shop closed: ') || reason === 'Shop goods returned') return 'shopIncome';
+  // The Allworld Market (src/game/systems/market.ts): naira moved into and out of a city's market account. Not income: scripts/market-sim.ts keeps its own books.
+  if (reason === 'Market deposit' || reason === 'Market withdrawal') return 'market';
   if (reason.startsWith('Groceries')) return 'food';
   if (reason.startsWith('Landlord and agent') || reason.startsWith('Bought') || reason.startsWith('Sold') || reason.startsWith('Boutique') || reason.startsWith('House upgrade') || reason === 'House styling' || reason.startsWith('Moving your ')) return 'purchases';
   if (EVENT_TITLES.has(reason)) return 'events';
@@ -860,5 +862,10 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   void import('./business-sim.ts').then(({ formatBusiness, runBusiness }) => {
     console.log(`Businesses (${days} days; "made" = cash change + cash box + what closing would return; docs/BUSINESS.md):`);
     console.log(formatBusiness(runBusiness({ days })));
+  });
+  // The Allworld Market: a trader, a colluding pair and a wash-trading bot (docs/MARKET.md).
+  void import('./market-sim.ts').then(({ formatMarket, runMarket }) => {
+    console.log(`Market (${days} days; "made" = what the market account is worth now, plus what came out, less what went in; docs/MARKET.md):`);
+    console.log(formatMarket(runMarket({ days })));
   });
 }

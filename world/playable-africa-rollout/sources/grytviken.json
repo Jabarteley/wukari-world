@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "cityId": "grytviken",
+  "countryIso2": "GS",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Grytviken",
+    "coordinatesWgs84": [
+      -36.5098,
+      -54.2806481
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-south-georgia-261013.osm.pbf"
+  },
+  "airport": {
+    "id": "grytviken-airport",
+    "name": "Grytviken Emergency Helipad",
+    "lon": -36.5095,
+    "lat": -54.2824,
+    "sourceUrl": "https://ourairports.com/airports/GS-0001/"
+  },
+  "boxes": {
+    "play": [
+      -54.325868322483494,
+      -36.5868190710594,
+      -54.23542787751651,
+      -36.432780928940595
+    ],
+    "core": [
+      -54.3077802334901,
+      -36.55599113205045,
+      -54.2535159665099,
+      -36.463608867949546
+    ],
+    "outline": [
+      -54.37586832248349,
+      -36.6368190710594,
+      -54.18542787751651,
+      -36.3827809289406
+    ],
+    "wide": [
+      -54.75692553566171,
+      -37.017876284237616,
+      -53.80437066433829,
+      -36.00172371576238
+    ],
+    "water": [
+      -54.75692553566171,
+      -37.017876284237616,
+      -53.80437066433829,
+      -36.00172371576238
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-south-georgia-261013.osm.pbf",
+    "datasetSha256": "6560f786c7e355b71415ae6c460414770ec9c4877b8990cfca224b5aec859443",
+    "pbfHeaderTimestamp": "2026-10-13T01:03:57Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "ca72299edb0b303d5e73083e3480cef4cd6e86e67e48333cb674a691b43d48e1",
+        "elements": 63
+      },
+      {
+        "file": "extras.json",
+        "sha256": "ffd86c80fbdccad9064ee72f9dc12d3e55107b2e6c622c903394092c61ed4b6e",
+        "elements": 1
+      },
+      {
+        "file": "water.json",
+        "sha256": "65517078573232e1d85c82b09626162dd514f1a4d08869052fdd67a03903c989",
+        "elements": 506
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "c85f11209626b98330a1cc005bbc61488f077add4aacc7e3f0587f26bb17e68f",
+        "elements": 18
+      },
+      {
+        "file": "roads.json",
+        "sha256": "865bebe1e557b4e0c91892c97a253fbf7f20ce12a287105e22abdb344587fbdd",
+        "elements": 9
+      }
+    ]
+  },
+  "profile": "outpost",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station (or amenity=ferry_terminal) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "meal",
+      "reason": "no unused named amenity=restaurant or amenity=cafe feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "community",
+      "reason": "no unused named amenity=university, college, library, community_centre or conference_centre (or office=research or amenity=research_institute) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "clinic",
+      "reason": "no unused named amenity=hospital or amenity=clinic feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "recreation",
+      "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "polling",
+      "reason": "no unused named place=square, amenity=townhall, or the audited fallbacks (courthouse, office=government, building=government, building=public, community_centre) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "government",
+      "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Église luthérienne norvégienne de Grytviken",
+      "osm": "way/533041734",
+      "coordinatesWgs84": [
+        -36.510474,
+        -54.279823
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shackleton's Grave",
+      "osm": "node/828768166",
+      "coordinatesWgs84": [
+        -36.507345,
+        -54.285052
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Musée de Géorgie du Sud",
+      "osm": "way/533046863",
+      "coordinatesWgs84": [
+        -36.507617,
+        -54.28009
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Frank Wild's Grave",
+      "osm": "node/6579560468",
+      "coordinatesWgs84": [
+        -36.507392,
+        -54.285039
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1603,
+      "sha256": "780d999141c23206f5ff9f83d4947cca6031e29e03777b8d797f9a7806703e07"
+    },
+    "geometry.ts": {
+      "bytes": 88277,
+      "sha256": "5e12dc10acc833e176b513f94ca8af3de2833a119e689bd7673ad266f66b6314"
+    },
+    "places.ts": {
+      "bytes": 2541,
+      "sha256": "d570c42454844e0e6fab63b4ba9c8a3e0e2f92ebd0ed7076235323bc8b2b5285"
+    },
+    "terrain.ts": {
+      "bytes": 252119,
+      "sha256": "2a9b1963d214af0e708b5c3a17f253c849d08b4cc7db5772e11daa88a553688d"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "e0304045bf445e7e844c96ef0c2f10f6859a2823ab9405103e51b54f63ee741a"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

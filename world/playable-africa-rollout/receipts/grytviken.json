@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "cityId": "grytviken",
+  "countryIso2": "GS",
+  "generationIdentity": {
+    "cityId": "grytviken",
+    "stateId": "gs",
+    "stateName": "Grytviken"
+  },
+  "inventorySha256": "bbac2a0b2ce2f363d547b26676f25d5a16d61477416faa73194a6ec9f7e02ff9",
+  "inventoryPath": "world/playable-africa-rollout/sources/grytviken.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "grytviken-airport",
+    "name": "Grytviken Emergency Helipad",
+    "lon": -36.5095,
+    "lat": -54.2824,
+    "sourceUrl": "https://ourairports.com/airports/GS-0001/"
+  },
+  "bounds": [
+    -54.325868322483494,
+    -36.5868190710594,
+    -54.23542787751651,
+    -36.432780928940595
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-south-georgia-261013.osm.pbf",
+      "datasetSha256": "6560f786c7e355b71415ae6c460414770ec9c4877b8990cfca224b5aec859443",
+      "pbfHeaderTimestamp": "2026-10-13T01:03:57Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "ca72299edb0b303d5e73083e3480cef4cd6e86e67e48333cb674a691b43d48e1",
+          "elements": 63
+        },
+        {
+          "file": "extras.json",
+          "sha256": "ffd86c80fbdccad9064ee72f9dc12d3e55107b2e6c622c903394092c61ed4b6e",
+          "elements": 1
+        },
+        {
+          "file": "water.json",
+          "sha256": "65517078573232e1d85c82b09626162dd514f1a4d08869052fdd67a03903c989",
+          "elements": 506
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "c85f11209626b98330a1cc005bbc61488f077add4aacc7e3f0587f26bb17e68f",
+          "elements": 18
+        },
+        {
+          "file": "roads.json",
+          "sha256": "865bebe1e557b4e0c91892c97a253fbf7f20ce12a287105e22abdb344587fbdd",
+          "elements": 9
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 4,
+    "roads": 1,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 3,
+    "waterPolygons": 5,
+    "reachWaterPolygons": 13
+  },
+  "selection": {
+    "profile": "outpost",
+    "emptySlots": [
+      {
+        "slot": "transit",
+        "reason": "no unused named railway=station, amenity=bus_station or public_transport=station (or amenity=ferry_terminal) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "meal",
+        "reason": "no unused named amenity=restaurant or amenity=cafe feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "community",
+        "reason": "no unused named amenity=university, college, library, community_centre or conference_centre (or office=research or amenity=research_institute) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "clinic",
+        "reason": "no unused named amenity=hospital or amenity=clinic feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "recreation",
+        "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "market",
+        "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "polling",
+        "reason": "no unused named place=square, amenity=townhall, or the audited fallbacks (courthouse, office=government, building=government, building=public, community_centre) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "government",
+        "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "locality": 16,
+      "village": 2
+    }
+  },
+  "autoRetries": [
+    {
+      "class": "catalogue-row",
+      "change": {
+        "stateId": {
+          "from": "gs-grytviken",
+          "to": "gs"
+        }
+      },
+      "before": {
+        "catalogueBytes": 170,
+        "limit": 150
+      },
+      "after": {
+        "catalogueBytes": 160,
+        "limit": 150,
+        "passed": false
+      }
+    }
+  ],
+  "observed": {
+    "places": 63,
+    "extras": 1,
+    "water": 506,
+    "landuse": 18,
+    "roads": 9
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1603,
+      "sha256": "780d999141c23206f5ff9f83d4947cca6031e29e03777b8d797f9a7806703e07"
+    },
+    "geometry.ts": {
+      "bytes": 88277,
+      "sha256": "5e12dc10acc833e176b513f94ca8af3de2833a119e689bd7673ad266f66b6314"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "e0304045bf445e7e844c96ef0c2f10f6859a2823ab9405103e51b54f63ee741a"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/grytviken.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

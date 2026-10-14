@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "cityId": "adamstown",
+  "countryIso2": "PN",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Adamstown",
+    "coordinatesWgs84": [
+      -130.100205,
+      -25.066667
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/pitcairn-islands-261013.osm.pbf"
+  },
+  "airport": {
+    "id": "adamstown-airport",
+    "name": "Pitcairn",
+    "lon": -130.096143,
+    "lat": -25.068685,
+    "sourceUrl": "https://www.openstreetmap.org/node/9392374700"
+  },
+  "boxes": {
+    "play": [
+      -25.111887222483492,
+      -130.1498091000751,
+      -25.021446777516505,
+      -130.0506008999249
+    ],
+    "core": [
+      -25.093799133490094,
+      -130.12996305843575,
+      -25.039534866509904,
+      -130.07044694156423
+    ],
+    "outline": [
+      -25.161887222483493,
+      -130.1998091000751,
+      -24.971446777516505,
+      -130.00060089992488
+    ],
+    "wide": [
+      -25.51188722248349,
+      -130.5498091000751,
+      -24.621446777516507,
+      -129.65060089992488
+    ],
+    "water": [
+      -25.51188722248349,
+      -130.5498091000751,
+      -24.621446777516507,
+      -129.65060089992488
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/pitcairn-islands-261013.osm.pbf",
+    "datasetSha256": "62399c5ceb9906d95252eb54da26ec33adcb4de50a7a2d984c3619cc5b718e25",
+    "pbfHeaderTimestamp": "2026-10-13T20:21:31Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "6e5c9106d0b15cdacb24a829c549fdf09d9356adb3ce275c1e4dcf70e29f2008",
+        "elements": 23
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f416fcd8d736c729088a49d201d787814f2f99f4ecf6eb2be388a91fc9e56982",
+        "elements": 3
+      },
+      {
+        "file": "water.json",
+        "sha256": "24c58208938446ebeb703d6f9272590fe77eeedf70cfc691fc487e0a3c3b7a46",
+        "elements": 28
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "b283e82546d6b4e0685c97e75def55e5ca0ffa48f0406c99f1df252e6e582e05",
+        "elements": 6
+      },
+      {
+        "file": "roads.json",
+        "sha256": "c405e340548614c68a984fbbb0b39c428495b634f71ed712f406f7601434d7ca",
+        "elements": 80
+      }
+    ]
+  },
+  "profile": "outpost",
+  "emptySlots": [
+    {
+      "slot": "community",
+      "reason": "no unused named amenity=university, college, library, community_centre or conference_centre (or office=research or amenity=research_institute) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "clinic",
+      "reason": "no unused named amenity=hospital or amenity=clinic feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "recreation",
+      "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "worship",
+      "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Pitcairn",
+      "osm": "node/9392374700",
+      "coordinatesWgs84": [
+        -130.096143,
+        -25.068685
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Andy's Pizzeria",
+      "osm": "node/7320730513",
+      "coordinatesWgs84": [
+        -130.101289,
+        -25.071158
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pitcairne Courthouse",
+      "osm": "node/8754381330",
+      "coordinatesWgs84": [
+        -130.100441,
+        -25.066284
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Secretary's Office",
+      "osm": "node/6060119375",
+      "coordinatesWgs84": [
+        -130.100395,
+        -25.066284
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Polynesian Petroglyphs",
+      "osm": "node/1196324630",
+      "coordinatesWgs84": [
+        -130.094636,
+        -25.074
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Longboat",
+      "osm": "node/7034086618",
+      "coordinatesWgs84": [
+        -130.098539,
+        -25.067099
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Memorial plaque HMS Bounty",
+      "osm": "node/14080325436",
+      "coordinatesWgs84": [
+        -130.097537,
+        -25.068155
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "The Whale's Tooth Tavern",
+      "osm": "node/6982653163",
+      "coordinatesWgs84": [
+        -130.098835,
+        -25.066865
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1554,
+      "sha256": "65bfe7c49705993a8830ca25ec99e545df787ac2e3e7d58695938f3a1a864bb2"
+    },
+    "geometry.ts": {
+      "bytes": 115811,
+      "sha256": "6335e751302266d42ca45999c7f995d50a284ba5ef08574b62dd8c76338705fb"
+    },
+    "places.ts": {
+      "bytes": 3701,
+      "sha256": "cd964f180cf4026b34ecb83531fb5827858d505be78231f45eb71b28a32a50f0"
+    },
+    "terrain.ts": {
+      "bytes": 59238,
+      "sha256": "0e7b2a0864d66e4bdee434e35d49f66a35b12588260aa159176add1a77a46f1a"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "7aa14ea1ba0a53527a205060c813ed53de1e9777fa4fb72600786706e8402ea8"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0",
+  "scope": "Source-sampling bounds from a mapped place node and its mapped gateway node; the grouping is not an administrative-boundary claim. A mapped landing, heliport or track does not establish current operations or access."
+}

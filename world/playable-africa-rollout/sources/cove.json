@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "cityId": "cove",
+  "countryIso2": "HM",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Atlas Cove Station",
+    "coordinatesWgs84": [
+      73.3934601,
+      -53.0190019
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/australia/heard-mcdonald-261013.osm.pbf"
+  },
+  "airport": {
+    "id": "cove-airport",
+    "name": "Atlas Cove Station Helipad",
+    "lon": 73.39349,
+    "lat": -53.01885,
+    "sourceUrl": "https://ourairports.com/airports/AU-0178/"
+  },
+  "boxes": {
+    "play": [
+      -53.109442344966986,
+      73.24381350822969,
+      -52.92856145503301,
+      73.5431066917703
+    ],
+    "core": [
+      -53.0461340334901,
+      73.34863208842818,
+      -52.9918697665099,
+      73.43828811157182
+    ],
+    "outline": [
+      -53.15944234496698,
+      73.1938135082297,
+      -52.878561455033015,
+      73.5931066917703
+    ],
+    "wide": [
+      -53.70944234496699,
+      72.6438135082297,
+      -52.32856145503301,
+      74.1431066917703
+    ],
+    "water": [
+      -53.70944234496699,
+      72.6438135082297,
+      -52.32856145503301,
+      74.1431066917703
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/australia/heard-mcdonald-261013.osm.pbf",
+    "datasetSha256": "76f15eba2b9d4bf3d5b70b2eb84e2a1e7842a8c265253bf56a11658f42d93f55",
+    "pbfHeaderTimestamp": "2026-10-13T20:21:31Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "e0fa0949f99cc0b592261a992bcf2f799373e8da850ed0ce06330f1e054ca8fa",
+        "elements": 61
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f0ab5abd6cedc8a1c7dbd88368081e491e38a5d1cefd59def212ab102ec3c8aa",
+        "elements": 0
+      },
+      {
+        "file": "water.json",
+        "sha256": "726c858de88370c32ef6a0a41e53ab15cb79c0e61115a7b267b3b0cf9d3e0ab3",
+        "elements": 30
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "0978d43b1a2ed1ea775b1986b81a25b6ff2c8b4b4e8c068ee08cb617d6be45b3",
+        "elements": 0
+      },
+      {
+        "file": "roads.json",
+        "sha256": "b981d273ad42336d5919f0f1870121c6544a83148cdf01be34aa3c6a50ffaafd",
+        "elements": 0
+      }
+    ]
+  },
+  "profile": "wilderness",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "meal",
+      "reason": "no unused named amenity=restaurant or amenity=cafe feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "community",
+      "reason": "no unused named amenity=university, college, library, community_centre or conference_centre feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "clinic",
+      "reason": "no unused named amenity=hospital or amenity=clinic feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "recreation",
+      "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "worship",
+      "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "polling",
+      "reason": "no unused named place=square, amenity=townhall, or the audited fallbacks (courthouse, office=government, building=government, building=public, community_centre) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "government",
+      "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1571,
+      "sha256": "15b3d216185711bfd2ad38911e68d6d0fea4555a902ccf643f7b9b638568d979"
+    },
+    "geometry.ts": {
+      "bytes": 21697,
+      "sha256": "078225a535673931d1be25a1c55ffc352519213d32a053a9ff697eeeb0064cbb"
+    },
+    "places.ts": {
+      "bytes": 986,
+      "sha256": "ce0fe93e095a8ad9fc2b8ff44e5c7f1c7f8b86e14abfce0377f036d8f0e0dbd0"
+    },
+    "terrain.ts": {
+      "bytes": 65460,
+      "sha256": "2074c2a7fa4c6b7f85456942303c77c2e052c3f5d185cfd55e803a8f72add82d"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "c9c9cb77cc086ae3117bb8f70e6c3e23761cefac3eb30b7ad2ddaed4737073ba"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

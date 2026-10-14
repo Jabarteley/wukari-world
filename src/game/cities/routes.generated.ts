@@ -524,5 +524,110 @@ export const AUTHORED_CITY_LINKS = Object.freeze([
       "km": 3068,
       "fare": 50500,
       "seconds": 75
+    },
+    compactLagosFlight("jamestown","Jamestown",2683,235000,20),
+    compactLagosFlight("mata-utu","Mata Utu",19254,900000,20),
+    compactLagosFlight("st-helier","St Helier",4780,402000,20),
+    {
+      "a": "lagos",
+      "b": "adamstown",
+      "mode": "air",
+      "beta": true,
+      "label": "Connecting flight between Lagos and Adamstown",
+      "icon": "✈️",
+      "km": 14661,
+      "fare": 900000,
+      "seconds": 20
+    },
+    {
+      "a": "auckland",
+      "b": "adamstown",
+      "mode": "road",
+      "beta": true,
+      "label": "Ship between Auckland and Adamstown",
+      "icon": "🚢",
+      "km": 5343,
+      "fare": 87000,
+      "seconds": 75
+    },
+    {
+      "a": "santiago",
+      "b": "adamstown",
+      "mode": "road",
+      "beta": true,
+      "label": "Ship between Santiago and Adamstown",
+      "icon": "🚢",
+      "km": 5766,
+      "fare": 94000,
+      "seconds": 75
+    },
+    compactLagosFlight("cove","Atlas Cove Station",9275,762000,20),
+    {
+      "a": "port-louis",
+      "b": "cove",
+      "mode": "road",
+      "beta": true,
+      "label": "Ship between Port Louis and Atlas Cove Station",
+      "icon": "🚢",
+      "km": 3900,
+      "fare": 64000,
+      "seconds": 75
+    },
+    {
+      "a": "cape-town",
+      "b": "cove",
+      "mode": "air",
+      "beta": true,
+      "label": "Charter flight between Cape Town and Atlas Cove Station",
+      "icon": "🛩️",
+      "km": 4772,
+      "fare": 603000,
+      "seconds": 20
+    },
+    compactLagosFlight("grytviken","Grytviken",7704,636000,20),
+    {
+      "a": "buenos-aires",
+      "b": "grytviken",
+      "mode": "road",
+      "beta": true,
+      "label": "Ship between Buenos Aires and Grytviken",
+      "icon": "🚢",
+      "km": 2769,
+      "fare": 46000,
+      "seconds": 75
+    },
+    {
+      "a": "cape-town",
+      "b": "grytviken",
+      "mode": "road",
+      "beta": true,
+      "label": "Ship between Cape Town and Grytviken",
+      "icon": "🚢",
+      "km": 4782,
+      "fare": 78000,
+      "seconds": 75
+    },
+    compactLagosFlight("port-aux-francais","Port-aux-Français",8922,734000,20),
+    {
+      "a": "port-louis",
+      "b": "port-aux-francais",
+      "mode": "road",
+      "beta": true,
+      "label": "Ship between Port Louis and Port-aux-Français",
+      "icon": "🚢",
+      "km": 3436,
+      "fare": 56500,
+      "seconds": 75
+    },
+    {
+      "a": "cape-town",
+      "b": "port-aux-francais",
+      "mode": "air",
+      "beta": true,
+      "label": "Charter flight between Cape Town and Port-aux-Français",
+      "icon": "🛩️",
+      "km": 4529,
+      "fare": 573000,
+      "seconds": 20
     }
   ] satisfies readonly CityLink[])

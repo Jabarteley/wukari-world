@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 1,
+  "cityId": "jamestown",
+  "countryIso2": "SH",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Jamestown",
+    "coordinatesWgs84": [
+      -5.7160872,
+      -15.9277296
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/saint-helena-ascension-and-tristan-da-cunha-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "jamestown-airport",
+    "name": "Saint Helena International Airport",
+    "lon": -5.646066,
+    "lat": -15.958898,
+    "sourceUrl": "https://ourairports.com/airports/FHSH/"
+  },
+  "boxes": {
+    "play": [
+      -16.108610489933977,
+      -5.90309170536018,
+      -15.74684871006602,
+      -5.529082694639819
+    ],
+    "core": [
+      -15.972949822483494,
+      -5.7628065109293205,
+      -15.882509377516504,
+      -5.669367889070679
+    ],
+    "outline": [
+      -16.158610489933977,
+      -5.95309170536018,
+      -15.69684871006602,
+      -5.4790826946398195
+    ],
+    "wide": [
+      -16.708610489933978,
+      -6.5030917053601796,
+      -15.14684871006602,
+      -4.92908269463982
+    ],
+    "water": [
+      -16.708610489933978,
+      -6.5030917053601796,
+      -15.14684871006602,
+      -4.92908269463982
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/saint-helena-ascension-and-tristan-da-cunha-261011.osm.pbf",
+    "datasetSha256": "2a710b7af985b74d8c6dc96f2ad17cad6b2edbb51d1ec41d2f0da9b7660f4b26",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "c66e9ef75771a778a929f7615307e3f153c0e5a2b4f4a861cf6054c788ba3a71",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "4de76395ce3e12becfcffc337740c043089305bba973a0e25b51d57ebc4758b2",
+        "elements": 65
+      },
+      {
+        "file": "extras.json",
+        "sha256": "ecaf7e1e71bc05216882fff9b3358f2eabd336dd22bf231f4de21af67c5a6eed",
+        "elements": 6
+      },
+      {
+        "file": "water.json",
+        "sha256": "807bfa5aa19403f233160e0f55ee117bc89fc1aaaecb8016e3bab352566b9b53",
+        "elements": 66
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "34d099c0c04d337b46d92b6bfb2f0bea9d96e76fd4ec834ffd8c6b8f0165c0c1",
+        "elements": 45
+      },
+      {
+        "file": "roads.json",
+        "sha256": "af8976956b618ee2e11049451fa9e72bd49822c16aed3903ed95248c3df37c24",
+        "elements": 39
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "community",
+      "reason": "no unused named amenity=university, college, library, community_centre or conference_centre feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Mantis St. Helena",
+      "osm": "node/10591540340",
+      "coordinatesWgs84": [
+        -5.717877,
+        -15.925423
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "General Hospital",
+      "osm": "way/1231084281",
+      "coordinatesWgs84": [
+        -5.711344,
+        -15.934116
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Domaine du Pavillon des Briars",
+      "osm": "way/455727922",
+      "coordinatesWgs84": [
+        -5.709651,
+        -15.943399
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Paul’s Cathedral",
+      "osm": "way/556912651",
+      "coordinatesWgs84": [
+        -5.720258,
+        -15.956855
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Law Courts",
+      "osm": "way/552579257",
+      "coordinatesWgs84": [
+        -5.717876,
+        -15.924815
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Castle",
+      "osm": "way/254448018",
+      "coordinatesWgs84": [
+        -5.717852,
+        -15.924344
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jacob's Ladder Viewpoint",
+      "osm": "node/13908472202",
+      "coordinatesWgs84": [
+        -5.719869,
+        -15.92613
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Longwood House",
+      "osm": "way/35798100",
+      "coordinatesWgs84": [
+        -5.683039,
+        -15.949957
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "High Knoll Fort",
+      "osm": "node/1568670948",
+      "coordinatesWgs84": [
+        -5.716695,
+        -15.943733
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Plantation House",
+      "osm": "way/550478777",
+      "coordinatesWgs84": [
+        -5.720793,
+        -15.955595
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint James' Church",
+      "osm": "way/254448055",
+      "coordinatesWgs84": [
+        -5.718073,
+        -15.925255
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Baptist Chapel",
+      "osm": "way/754718688",
+      "coordinatesWgs84": [
+        -5.715645,
+        -15.984866
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Departures Cafe",
+      "osm": "node/11755023051",
+      "coordinatesWgs84": [
+        -5.648645,
+        -15.96236
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tasty Bites",
+      "osm": "way/552579270",
+      "coordinatesWgs84": [
+        -5.721189,
+        -15.928257
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Castle Gardens",
+      "osm": "way/146163203",
+      "coordinatesWgs84": [
+        -5.717515,
+        -15.924834
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1292,
+      "sha256": "695080535acd8f225fd3e88db6fd460085fb021cf6403a554f4e17dfefce7aa8"
+    },
+    "geometry.ts": {
+      "bytes": 16703,
+      "sha256": "e1013da46e1086ecbbe221742cea3b8c21550dc0f6e8a586eead79397f933ce4"
+    },
+    "places.ts": {
+      "bytes": 6315,
+      "sha256": "065d6b32b5fb3e50e08bd79e65072a239a734ded277d29890e664bfccf3db0e2"
+    },
+    "terrain.ts": {
+      "bytes": 14115,
+      "sha256": "99218fa48044268cac5234cb7db6c2e4217a2020cb4e3ace329d4328fc64f961"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "c766d5fd042f2dc11335a1148b22d4878f01898524c1d5968a73b5dbeeedbf1a"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

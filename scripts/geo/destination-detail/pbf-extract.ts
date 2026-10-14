@@ -53,13 +53,21 @@ function element(value: unknown, label: ExtractLabel, path: string): Element {
   return { type, id, tags: elementTags, members };
 }
 
+/** Accepted dataset sources: an official Geofabrik .osm.pbf, or exactly a pinned mirror asset of an extracts-YYYYMMDD release of kromate/joinallworld (<slug>-YYMMDD.osm.pbf). */
+const MIRROR_DATASET_URL = /^https:\/\/github\.com\/kromate\/joinallworld\/releases\/download\/extracts-[0-9]{8}\/[a-z0-9]+(?:-[a-z0-9]+)*-[0-9]{6}\.osm\.pbf$/;
+export function isAcceptedDatasetUrl(datasetUrl: string): boolean {
+  let url: URL;
+  try { url = new URL(datasetUrl); } catch { return false; }
+  if (url.protocol !== 'https:' || url.username || url.password || url.search || url.hash) return false;
+  if (url.hostname === 'download.geofabrik.de') return /^https:\/\/download\.geofabrik\.de\/[A-Za-z0-9._/-]+\.osm\.pbf$/.test(datasetUrl);
+  return MIRROR_DATASET_URL.test(datasetUrl);
+}
+
 function source(value: unknown, cityId: string, boxes: Record<'play' | 'core' | 'outline' | 'wide', Box>, path: string): ExtractSource {
   if (!record(value) || value.kind !== 'geofabrik-pbf') fail(`${path}.kind must be geofabrik-pbf`);
   if (value.cityId !== cityId) fail(`${path}.cityId does not match ${cityId}`);
   const datasetUrl = text(value.datasetUrl, `${path}.datasetUrl`);
-  let url: URL;
-  try { url = new URL(datasetUrl); } catch { fail(`${path}.datasetUrl is invalid`); }
-  if (url.protocol !== 'https:' || url.hostname !== 'download.geofabrik.de' || !/^https:\/\/download\.geofabrik\.de\/[A-Za-z0-9._/-]+\.osm\.pbf$/.test(datasetUrl) || url.username || url.password || url.search || url.hash) fail(`${path}.datasetUrl must be a comment-safe official download.geofabrik.de .osm.pbf URL`);
+  if (!isAcceptedDatasetUrl(datasetUrl)) fail(`${path}.datasetUrl must be a comment-safe official download.geofabrik.de .osm.pbf URL or a pinned kromate/joinallworld extracts-YYYYMMDD release asset`);
   const pbfHeaderTimestamp = text(value.pbfHeaderTimestamp, `${path}.pbfHeaderTimestamp`);
   if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(pbfHeaderTimestamp) || !Number.isFinite(Date.parse(pbfHeaderTimestamp)) || new Date(pbfHeaderTimestamp).toISOString().replace('.000Z', 'Z') !== pbfHeaderTimestamp) fail(`${path}.pbfHeaderTimestamp must be canonical UTC ISO-8601`);
   if (!record(value.boxes)) fail(`${path}.boxes must be an object`);

@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "cityId": "mata-utu",
+  "countryIso2": "WF",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Mata Utu",
+    "coordinatesWgs84": [
+      -176.1740224,
+      -13.2820419
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/wallis-et-futuna-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "mata-utu-airport",
+    "name": "Hihifo Airport",
+    "lon": -176.19865,
+    "lat": -13.239445,
+    "sourceUrl": "https://ourairports.com/airports/NLWW/"
+  },
+  "boxes": {
+    "play": [
+      -13.462922789933979,
+      -176.35876110994698,
+      -13.10116101006602,
+      -175.98928369005304
+    ],
+    "core": [
+      -13.327262122483495,
+      -176.22018104324098,
+      -13.236821677516504,
+      -176.12786375675904
+    ],
+    "outline": [
+      -13.51292278993398,
+      -176.408761109947,
+      -13.05116101006602,
+      -175.93928369005303
+    ],
+    "wide": [
+      -14.062922789933978,
+      -176.95876110994698,
+      -12.50116101006602,
+      -175.38928369005305
+    ],
+    "water": [
+      -14.062922789933978,
+      -176.95876110994698,
+      -12.50116101006602,
+      -175.38928369005305
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/wallis-et-futuna-261011.osm.pbf",
+    "datasetSha256": "4d844c8629202977f062a585c8fa0a09a08d0629454d26e8b2f87a6432dbf47d",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "c66e9ef75771a778a929f7615307e3f153c0e5a2b4f4a861cf6054c788ba3a71",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "0f2cd35e5a904d115770d24ec724e2140e54ef2e4b42a8d1e48a5181f668b990",
+        "elements": 75
+      },
+      {
+        "file": "extras.json",
+        "sha256": "5058e2c67ac54dd31a6bae9fa56cf15ba2d8e6d93765fcd82c551e6e1f1acdc1",
+        "elements": 10
+      },
+      {
+        "file": "water.json",
+        "sha256": "edf5c3f2cea0afcece9970593759df7d3c4c3224e72552c33f058363ce2ae0fd",
+        "elements": 28
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "028c1327a714df1eeeda9c7230a0601ab9ba7025938728a4b3e45583a1f49891",
+        "elements": 433
+      },
+      {
+        "file": "roads.json",
+        "sha256": "e6bb56e9d593f949ac9b82a3d67288305d1fbe09f1ab7fcbac7f54486de21e86",
+        "elements": 82
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "recreation",
+      "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "UGATAI",
+      "osm": "node/6794553993",
+      "coordinatesWgs84": [
+        -176.186752,
+        -13.281511
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lycée Agricole (LPA)",
+      "osm": "node/6794552488",
+      "coordinatesWgs84": [
+        -176.193545,
+        -13.313545
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mua",
+      "osm": "node/5680505898",
+      "coordinatesWgs84": [
+        -176.202714,
+        -13.347176
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cathédrale Notre-Dame-de-l'Assomption",
+      "osm": "way/259503104",
+      "coordinatesWgs84": [
+        -176.17339,
+        -13.28283
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Place Sagato-Soane",
+      "osm": "way/1262088839",
+      "coordinatesWgs84": [
+        -176.172946,
+        -13.283616
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "DOUANES & CONTRIBUTIONS DIVERSES",
+      "osm": "node/13717642744",
+      "coordinatesWgs84": [
+        -176.170715,
+        -13.274129
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Académie des langues Wallisienne et Futunienne",
+      "osm": "way/1265064150",
+      "coordinatesWgs84": [
+        -176.171813,
+        -13.276287
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "View point to lake",
+      "osm": "node/4590021740",
+      "coordinatesWgs84": [
+        -176.235857,
+        -13.299265
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Talietumu",
+      "osm": "way/346277921",
+      "coordinatesWgs84": [
+        -176.208974,
+        -13.336814
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Saint-Pierre-et-Saint-Paul",
+      "osm": "way/364719752",
+      "coordinatesWgs84": [
+        -176.185498,
+        -13.230601
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chapelle Sainte Jeanne d'Arc",
+      "osm": "way/352005466",
+      "coordinatesWgs84": [
+        -176.215913,
+        -13.347767
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Point de vue",
+      "osm": "node/5688924021",
+      "coordinatesWgs84": [
+        -176.182628,
+        -13.345603
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bord de Mer",
+      "osm": "node/8169183417",
+      "coordinatesWgs84": [
+        -176.200945,
+        -13.219212
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "La Paillotte",
+      "osm": "node/8169143117",
+      "coordinatesWgs84": [
+        -176.187897,
+        -13.335164
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Club de plongée",
+      "osm": "node/11340413569",
+      "coordinatesWgs84": [
+        -176.218105,
+        -13.343539
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sia Hospital",
+      "osm": "way/1012076688",
+      "coordinatesWgs84": [
+        -176.172248,
+        -13.27924
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1262,
+      "sha256": "b0b322cddccdbdefafed1af62f10996231ae081e647e64e25891567f2e65a18c"
+    },
+    "geometry.ts": {
+      "bytes": 39501,
+      "sha256": "5d7887d65b6faa8062624ea608e21f98364c92f43a05de9a3abf60ca62d58183"
+    },
+    "places.ts": {
+      "bytes": 6591,
+      "sha256": "717773230754696a612f0566e2abef28bb2e08a481c4e09628e7d57889b51e89"
+    },
+    "terrain.ts": {
+      "bytes": 69014,
+      "sha256": "2cb56d2ddaf996677b27c2ad6a99e1268b24a60a405402e1f3942aa54a4358b6"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "bfd09a985964046bbef413f873b8d8bd0c482f99328655319eb80284709f8447"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

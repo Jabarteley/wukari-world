@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "st-helier",
+  "countryIso2": "JE",
+  "generationIdentity": {
+    "cityId": "st-helier",
+    "stateId": "je-st-helier",
+    "stateName": "St Helier"
+  },
+  "inventorySha256": "0bfa341324b29b8d4c76df10d83c709057a411afbc0c240795f0d664cf6afa18",
+  "inventoryPath": "world/playable-africa-rollout/sources/st-helier.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "st-helier-airport",
+    "name": "Jersey Airport",
+    "lon": -2.19551,
+    "lat": 49.207901,
+    "sourceUrl": "https://ourairports.com/airports/EGJJ/"
+  },
+  "bounds": [
+    49.07713516603961,
+    -2.2755166177377726,
+    49.29419223396039,
+    -1.9449387822622268
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-jersey-261013.osm.pbf",
+      "datasetSha256": "cf3de20cfdc863cc3ade74c5e484ff529591a9f9059f00b9aafa6edb001a593f",
+      "pbfHeaderTimestamp": "2026-10-13T01:40:32Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "7b153be3038af698ecfa8dbc18a7bae1cdf82e143804550893cc2e660249b56b",
+          "elements": 479
+        },
+        {
+          "file": "extras.json",
+          "sha256": "9fa6fbac1eead4a046eac44028db5cef19434074a48c581fff8c4b7ced52fa38",
+          "elements": 73
+        },
+        {
+          "file": "water.json",
+          "sha256": "e8322c59524442e85f0292cd6598c9088d7c7769c3fcf65df057e78146668eb3",
+          "elements": 319
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "f6b9c740c1dabbd2eca7256bfb193768b7d20f9cd42f1bc3c236fb365c1e1ff4",
+          "elements": 2685
+        },
+        {
+          "file": "roads.json",
+          "sha256": "56ac413166ef5ff6c09fc75a69476f129b57b53d4f919fd1fc77184045587413",
+          "elements": 533
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 113,
+    "neighbourhoodLabels": 17,
+    "landPolygons": 4,
+    "waterPolygons": 7,
+    "reachWaterPolygons": 7
+  },
+  "observed": {
+    "places": 479,
+    "extras": 73,
+    "water": 319,
+    "landuse": 2685,
+    "roads": 533
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1261,
+      "sha256": "5cf6144df7a6f47f4d0f873ab6a29eeb5c25a7446e38b01ff5de22a6f0e1c7a8"
+    },
+    "geometry.ts": {
+      "bytes": 96696,
+      "sha256": "41a30aaf78702ba8e357076f11d70b28057471347579d10a7b84af0fd6dfb733"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "7b6d83616cb16ec930709999c14fdf1edcf990f6c31813ded6cda3bf5095a176"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/st-helier.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

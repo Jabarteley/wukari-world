@@ -251,10 +251,24 @@ const WIDEST_SHARE = 0.8;
 const FADE = 0.36;
 const HEIGHT = { around: 0.02, state: 0.08, open: 0.13, country: 0.45, openCountry: 0.95 };
 const INK = {
-  base: ['#d9ddd6', '#d3d8d1', '#dee2dc'], none: '#e9ece7', around: '#d6dad3',
+  base: ['#d9ddd6', '#d3d8d1', '#dee2dc'], none: '#e9ece7',
   soon: ['#c3c9c4', '#cbd0cb', '#bcc3be'], planned: '#d6ceb0', open: '#2fa866', openCountry: '#52b679',
   border: '#ffffff', edge: '#8c9a94', coast: '#86a9b8', shore: '#eefafd', water: '#62b3d4', road: '#8b7b66', air: '#4a6a9c', route: '#e8a643', glow: '#f3ffd0', select: '#20232c',
 };
+/** The atlas inks, read-only, for the tests. */
+export const ATLAS_INK: Readonly<typeof INK> = INK;
+const mixInk = (a: string, b: string, k: number): string => `#${new THREE.Color(a).lerp(new THREE.Color(b), k).getHexString()}`;
+/**
+ * A country plate's colour from its status, the one rule for every level that draws countries: the world's flat land (`flat`),
+ * a continent's raised plates, and the neighbours around Nigeria (flat, so they meet the world's land seamlessly). An open
+ * country is always the open green; only a planned, coming or context-only country is grey.
+ */
+export function countryInk(status: RegionStatus, feature: { index: number; k?: string; sub?: AfricaGroupId }, flat = false, tint = false): string {
+  if (status === 'open') return INK.openCountry;
+  if (status === null || (feature.k && feature.k !== 'country')) return INK.none;
+  const base = status === 'planned' ? INK.planned : (flat ? INK.base : INK.soon)[feature.index % (flat ? INK.base : INK.soon).length]!;
+  return !flat && tint && AFRICA_GROUPS[feature.sub!] ? mixInk(base, AFRICA_GROUPS[feature.sub!].tint, 0.62) : flat && status === 'planned' ? mixInk(INK.base[0]!, INK.planned, 0.8) : base;
+}
 const MAJOR_CAPITALS = new Set(['Abuja', 'Cairo', 'Nairobi', 'Accra', 'Addis Ababa', 'Pretoria', 'Kinshasa', 'Dakar', 'Algiers', 'Rabat', 'Luanda', 'Khartoum', 'Dodoma', 'Kampala', 'Tunis', 'Tripoli', 'Antananarivo', 'Lusaka', 'Harare', 'Bamako', 'Niamey', "N'Djamena", 'Mogadishu', 'Windhoek', 'Maputo', 'Yaoundé', 'Abidjan', 'Yamoussoukro']);
 const NEIGHBOUR_LABELS: [string, number, number][] = [['Benin', 2.15, 9.9], ['Niger', 8.6, 14.7], ['Chad', 15.9, 11.2], ['Cameroon', 12.5, 5.6]];
 const WATER_LABELS: [string, number, number, 'sea' | 'river' | 'town'][] = [['Gulf of Guinea', 4.6, 3.55, 'sea'], ['Niger', 5.25, 9.72, 'river'], ['Benue', 9.7, 8.05, 'river'], ['Lake Chad', 14.2, 13.55, 'river'], ['Lokoja', 6.74, 7.8, 'town']];
@@ -389,20 +403,13 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
   }
   const statusOf = (kind: RegionKind, id: string): RegionStatus => entryOf(kind, id).status;
   const grey = (list: readonly string[], feature: Feature): string => list[feature.index % list.length]!;
-  const mix = (a: string, b: string, k: number): string => `#${new THREE.Color(a).lerp(new THREE.Color(b), k).getHexString()}`;
   function stateColour(feature: Feature): string {
     const entry = entryOf('state', feature.id);
     if (entry.status === 'open') return INK.open;
     const base = entry.status === 'planned' ? INK.planned : grey(INK.soon, feature);
-    return tintOn && ZONES[entry.zone!] ? mix(base, ZONES[entry.zone!].tint, 0.62) : base;
+    return tintOn && ZONES[entry.zone!] ? mixInk(base, ZONES[entry.zone!].tint, 0.62) : base;
   }
-  function countryColour(feature: Feature<CountryData>, flat = false): string {
-    const status = statusOf('country', feature.id);
-    if (status === 'open') return INK.openCountry;
-    if (status === null || (feature.k && feature.k !== 'country')) return INK.none;
-    const base = status === 'planned' ? INK.planned : grey(flat ? INK.base : INK.soon, feature);
-    return !flat && tintOn && AFRICA_GROUPS[feature.sub!] ? mix(base, AFRICA_GROUPS[feature.sub!].tint, 0.62) : flat && status === 'planned' ? mix(INK.base[0]!, INK.planned, 0.8) : base;
-  }
+  const countryColour = (feature: Feature<CountryData>, flat = false): string => countryInk(statusOf('country', feature.id), feature, flat, tintOn);
   const addLayer = <O extends LayerObject>(object: O, levels: readonly number[], { extrude = false, opacity = 1, materials = [object.material], detail = null }: { extrude?: boolean; opacity?: number; materials?: THREE.Material[]; detail?: NigeriaMarkerDetail | null } = {}): Layer<O> => {
     const alpha = levels.includes(level) ? 1 : 0;
     work.builds += 1;
@@ -483,8 +490,10 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
     const topology = decodeTopology(data.NIGERIA), around = decodeTopology(data.AROUND), country = ATLAS_LEVELS[NIGERIA]!.country;
     const heightOf = (feature: Feature) => (statusOf('state', feature.id) === 'open' ? HEIGHT.open : HEIGHT.state);
     const self = around.features.findIndex((feature) => feature.id === country);
-    // The neighbours: flat grey land, so Nigeria sits in context (Nigeria's own ground too, under its states).
-    const land = mesh.plates(around.features, { height: () => HEIGHT.around, colour: () => INK.around, walls: false });
+    // The neighbours: flat land, so Nigeria sits in context (Nigeria's own ground too, under its states). Each is coloured by its
+    // status exactly as the world's flat land is, which it lies over and meets at the window's edge: an open neighbour is green.
+    const aroundColour = (feature: Feature) => countryColour(feature, true);
+    const land = mesh.plates(around.features, { height: () => HEIGHT.around, colour: aroundColour, walls: false });
     addLayer(new THREE.Mesh(land.geometry, flatMaterial()), [NIGERIA]);
     addLayer(ribbonMesh(arcSegments(around, (users) => users.length > 1 && !users.includes(self), HEIGHT.around + 0.004, INK.border, 1.2)), [NIGERIA]);
     const made = mesh.plates(topology.features, { height: heightOf, colour: stateColour, edges: outerEdges(topology), raised: (feature) => heightOf(feature) > HEIGHT.state });
@@ -532,7 +541,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
     const cityDotsObject = new THREE.Points(mesh.dots(cityPoints), mesh.dotMaterial());
     cityDotsObject.renderOrder = 7;
     const cityDots = addLayer(cityDotsObject, [NIGERIA], { extrude: true, detail: 'cities' });
-    return { topology, picker: createPicker(topology, { slack: 0.05 }), kind: 'state', top: heightOf, paint: [() => made.paint(stateColour)], stateDots, cityDots,
+    return { topology, picker: createPicker(topology, { slack: 0.05 }), kind: 'state', top: heightOf, paint: [() => made.paint(stateColour), () => land.paint(aroundColour)], stateDots, cityDots,
       around: { topology: around, picker: createPicker(around, { cells: 24, slack: 0.12 }), kind: 'country', top: () => HEIGHT.around + 0.002, skip: country } };
   }
   /** A link's line in scene units: a road through its towns, or a flight that rises and comes down. */

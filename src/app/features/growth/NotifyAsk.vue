@@ -19,7 +19,7 @@ const storage = (): Storage | null => { try { return globalThis.localStorage } c
 const push = ref<'ready' | 'unsupported' | 'needs-install' | 'blocked' | 'unknown'>('unknown')
 const held = ref(askHeld(storage(), Date.now()))
 const moment = ref<AskMoment | null>(null)
-const facts = computed<AskFacts>(() => ({ tablesWon: game.view.value.connected ? game.view.value.tables?.won ?? null : null, friends: social.me ? social.me.friends.length : null }))
+const facts = computed<AskFacts>(() => ({ tablesWon: game.view.value.connected ? game.view.value.growth?.tables?.won ?? null : null, friends: social.me ? social.me.friends.length : null }))
 watch(facts, (now, before) => {
   // The baseline is the first complete read; a later rise in either number is the moment.
   const found = askMoment(before, now)

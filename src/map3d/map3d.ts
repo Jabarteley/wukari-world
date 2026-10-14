@@ -52,6 +52,7 @@ import type { ActorPlayer, TravelVehicleBuilder } from './actor.ts';
 import type { OverlayData, OverlayLayers, OverlayChip } from './overlays.ts';
 import type { Trip, TripPose, TripSource } from './trip.ts';
 import type { Route } from './roads.ts';
+import type { Aerial } from './aerial.ts';
 import { createKit } from '../scene/kit.ts';
 import { COMING_SOON } from '../game/content/venues.ts';
 import { contentFor } from '../game/cities/runtime.ts';
@@ -59,6 +60,7 @@ import { openingInfo, lagosTime } from '../game/clock.ts';
 import { buildNetwork, localTripRoute, pointInPolygon } from './roads.ts';
 import { buildCity, createRaw, LANDMARK_SCALE } from './city-build.ts';
 import { createRig, DEFAULT_PITCH, MIN_DISTANCE } from './camera.ts';
+import { reliefAt } from './relief.ts';
 import { CITY_KM_PER_UNIT, distanceForSpan, spanKm, swoopPlan, swoopView } from './dive.ts';
 import type { CityDive, SwoopPlan } from './dive.ts';
 import { createFlick, DOUBLE_TAP_MS, DOUBLE_TAP_PX, dragKind, isDrag, isTap, localPoint, mapHint, MAP_HINT_KEY, ROTATE_PITCH, ROTATE_YAW, twist } from '../scene/gesture.ts';
@@ -85,6 +87,8 @@ const SOON_TABLE = COMING_SOON as Record<string, VenueInfo | undefined>;
 /** How close the camera may come: near enough to tell the houses of a compact estate apart. */
 const CLOSEST = 3;
 const PICK_RADIUS = 34, PLINTH = PLINTH_UNIT * LANDMARK_SCALE;
+/** The aerial city dissolves in over this long when its chunk arrives after the dive began (ms). */
+const AERIAL_IN_MS = 350;
 /** The how-to line shows until the player first moves the map, picks a place or travels: once on each device. */
 let hintSeen = false;
 const hintKnown = (): boolean => { if (hintSeen) return true; try { hintSeen = globalThis.localStorage?.getItem(MAP_HINT_KEY) === '1'; } catch { /* shown again next visit */ } return hintSeen; };
@@ -236,6 +240,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   let trip: Trip | null = null, route: Route | null = null, returning: { p: number; rate: number } | null = null, settling = false, pendingArrive: (() => void) | null = null, dueAt = -Infinity, tripCamera = true, pose: (TripPose & { progress?: number }) | null = null;
   /** The dive (./dive.ts): the camera follows `plan` from `start` (ms) for `ms`; the city's massing is drawn all the way down. */
   let diving: { plan: SwoopPlan; start: number; ms: number } | null = null;
+  /** The aerial city of the dive (./aerial.ts, its own lazy chunk): built when a dive starts, dissolved in, gone when the dive ends. */
+  let aerial: Aerial | null = null, aerialTicket = 0, aerialFrom = 0;
   let stood: { x: number; y: number; z: number } | null = null, nearDistance = 0;             // stood: where the piece stands when it is not travelling; nearDistance: how far out the close view is
   const clock = createTripClock();
   // Other players (src/map3d/people.ts): friends where they stand or travel, and counts. Their pins move without a new picture of the city.
@@ -260,7 +266,12 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     const t = now(), dt = lastTick ? clamp((t - lastTick) / 1000, 0, 0.1) : 0;
     if (lastTick) { gaps.push(t - lastTick); if (gaps.length > 120) gaps.shift(); }
     frameCount += 1;
-    if (diving) { const k = (t - diving.start) / diving.ms; rig.jump(swoopView(diving.plan, k)); if (k >= 1) diving = null; }
+    if (diving) {
+      const k = (t - diving.start) / diving.ms;
+      rig.jump(swoopView(diving.plan, k));
+      aerial?.update(k, Boolean(diving.plan.street), (t - aerialFrom) / AERIAL_IN_MS);
+      if (k >= 1) { diving = null; endAerial(); }
+    }
     let moving = rig.step(dt) || Boolean(diving);
     moving = stepTrip(t, dt) || moving;
     if (settling && !rig.moving) finishArrival();
@@ -274,7 +285,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     actor.setSize(clamp(rig.view.distance / 62, rig.view.distance < 34 ? Math.max(0.12, rig.view.distance / 62) : 1.2, Math.max(4, rig.view.distance / 110)));
     actor.setClose(rig.view.distance < 45); // a close view of the trip vehicle uses its detailed model (turning wheels)
     // On the way down from the clouds the towers and blocks are drawn even from high up: from there the city should read as dense, not flat.
-    city.setDetail(diving ? 0 : rig.view.distance, wholeFrom * 1.35);
+    // While the aerial city (./aerial.ts) stands in for them and the two together would pass its triangle cap, the map's own fabric is left out.
+    city.setDetail(diving ? (aerial?.crowds(city.triangles) ? Infinity : 0) : rig.view.distance, wholeFrom * 1.35);
     city.coverSurround(camera);
     readBand();
     if (route && routeStep() !== routeWidth) drawRoute();
@@ -284,6 +296,25 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     placeLabels();
     frameMs.push(now() - t); if (frameMs.length > 120) frameMs.shift();
   }
+
+  // ---- the aerial city of the dive -----------------------------------------------------------------
+  const altitude = (view: { pitch: number; distance: number }) => Math.sin(view.pitch) * view.distance;
+  /** Fetch and build the aerial city for this dive (nothing on a device that gets no dive); it dissolves in on the first frame it is there. */
+  function startAerial(plan: SwoopPlan) {
+    const ticket = ++aerialTicket, end = plan.street ?? plan.aerial;
+    void import('./aerial.ts').then(({ createAerial }) => {
+      const dive = diving;
+      if (destroyed || ticket !== aerialTicket || !dive) return;
+      const parks = content.venues.filter((venue) => venue.kind === 'park').map((venue) => city.places[venue.id]).filter((place): place is CityPlace => Boolean(place));
+      const built = createAerial(THREE, pack, { reduced: reducedMotion, cityTriangles: city.triangles - city.fabricTriangles, parks, hubs: plan.street ? [plan.street] : [], ground: (x, z) => reliefAt(pack.relief, x, z) });
+      if (!built) return;
+      built.setClouds(plan.start, end, altitude(plan.start), altitude(end));
+      aerial = built; aerialFrom = now();
+      aerial.update((now() - dive.start) / dive.ms, Boolean(plan.street), 0);
+      scene.add(aerial.group); request();
+    }, () => {});
+  }
+  function endAerial() { aerialTicket += 1; if (aerial) { aerial.dispose(); aerial = null; } }
 
   // ---- the world: local governments and houses ---------------------------------------------------
   const hasWorld = Boolean(pack.lgas?.length);
@@ -1049,14 +1080,14 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     enter(edge: Edge, carry = 0, dive?: CityDive) {
       if (!opened) return;
       const target = rig.whole(), far = rig.maxDistance, distance = edge === 'in' ? entryDistance('in', { near: CLOSEST, far }, carry) : rig.view.distance;
-      userMoved = true; tripCamera = false; diving = null;
+      userMoved = true; tripCamera = false; diving = null; endAerial();
       // The dive (./dive.ts): from straight above on the ground the atlas ended on (or the wide end), down over the towers while the clouds
       // part, and then, with a destination, a swoop at its landmark.
       if (dive && dive.seconds > 0 && edge === 'in' && !reducedMotion) {
         const core = rig.core(), place = dive.venue ? city.places[dive.venue] : null;
         const start = dive.spanKm && dive.spanKm > 0 ? clamp(distanceForSpan(dive.spanKm, camera.fov, CITY_KM_PER_UNIT), core.distance, far) : far;
         diving = { plan: swoopPlan(start, core, place ? { x: place.x, z: place.z } : null), start: now(), ms: dive.seconds * 1000 };
-        rig.jump(diving.plan.start); request(); return;
+        rig.jump(diving.plan.start); startAerial(diving.plan); request(); return;
       }
       rig.jump({ x: target.x, z: target.z, yaw: 0, pitch: target.pitch, distance }); request();
     },
@@ -1075,7 +1106,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       return { kind: '3d', renderCount, frames: frameCount, loop: Boolean(rafId), time, reducedMotion, lost,
         triangles: info.triangles ?? 0, calls: info.calls ?? 0, cityTriangles: city.triangles, overlayTriangles: overlays.triangles, counts: city.counts,
         houses: { level: houses.level, ...houses.counts(), cached: world?.size?.() ?? 0 }, pixels,
-        view: { ...rig.view }, dive: Boolean(diving), frameMs: { median: mid(sorted), max: sorted.at(-1) ?? 0 }, frameGapMs: { median: mid(gap), max: gap.at(-1) ?? 0 },
+        view: { ...rig.view }, dive: Boolean(diving), aerial: aerial ? { skyline: aerial.plan.skyline, triangles: aerial.triangles, calls: aerial.calls, masses: aerial.plan.masses.length, clouds: aerial.clouds.length } : null, frameMs: { median: mid(sorted), max: sorted.at(-1) ?? 0 }, frameGapMs: { median: mid(gap), max: gap.at(-1) ?? 0 },
         trip: trip ? { ...trip, progress: clock.progress(now()), remaining: clock.remaining(now()), shown: pose?.progress ?? null, phase: pose?.phase ?? null, bridge: pose?.bridge ?? null, distance: pose?.distance ?? null, length: route?.length ?? null, bridges: route?.bridges ?? [], x: pose?.x, z: pose?.z, settling, returning: Boolean(returning) } : null,
         selected, layers: { ...layers }, people: pins.map((pin) => ({ key: pin.key, kind: pin.kind, text: pin.text, venue: pin.venue, moving: pin.moving, x: pin.x, z: pin.z })), labels: [...labels].map(([id, label]) => ({ id, text: label.name.textContent, note: label.note.textContent, hidden: label.node.hidden, compact: label.node.classList.contains('is-compact') })) };
     },
@@ -1083,7 +1114,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     screenOf(id: string) { const place = city.places[id]; if (!place) return null; const page = container.getBoundingClientRect(), at = project(place.x, place.top * 0.45, place.z); return { x: at.x + page.left, y: at.y + page.top }; },
     rig, city,
     destroy() {
-      destroyed = true; stop();
+      destroyed = true; stop(); endAerial();
       for (const remove of listeners) remove();
       if (routeLine) routeLine.geometry.dispose();
       routeMaterial.dispose();

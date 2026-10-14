@@ -25,7 +25,7 @@ import type { ScreenBox, GroundPoint } from './labels.ts';
 import { lgaAt } from './lga.ts';
 import { fromLocal, ORIGINS } from './geo/frame.ts';
 import { shimmer, createRaw, CITY_LIGHT, CITY_TRIANGLE_BUDGET } from './city-build.ts';
-import { CITY_DRAW_CALLS } from '../budgets.ts';
+import { AERIAL_DIVE_DRAW_CALLS, AERIAL_DIVE_TRIANGLES, CITY_DRAW_CALLS } from '../budgets.ts';
 import { pitchFloor, PITCH_MIN, FLAT_PITCH } from './camera.ts';
 import pack from './cities/lagos.ts';
 import { COMING_SOON, SCENE_KINDS } from '../game/content/venues.ts';
@@ -712,4 +712,65 @@ test('the dive on the city map: straight down on the agreed span, the towers dra
   still.map.enter('in', 0, { seconds: 3, spanKm: 40, venue: 'park' });
   assert.equal(still.map.diagnostics().dive, false); assert.ok(still.pump() <= 2, 'a frame to show it, not a flight');
   still.map.destroy();
+});
+
+test('the dive draws the aerial city: fetched when it starts, inside the aerial caps with the city, gone at the end, and no frames after', async () => {
+  const device = Object.getOwnPropertyDescriptor(globalThis, 'navigator');
+  Object.defineProperty(globalThis, 'navigator', { value: { hardwareConcurrency: 8, deviceMemory: 8 }, configurable: true });
+  try {
+    const h = harness({ width: 1280, height: 800 });
+    h.map.setState(h.state()); h.map.resize(); h.pump();
+    const root = h.map.city.group.parent!;
+    h.map.enter('in', 0, { seconds: 3, spanKm: 40, venue: 'park' });
+    assert.equal(h.map.diagnostics().aerial, null, 'its chunk is fetched when the dive starts');
+    for (let i = 0; i < 100 && !h.map.diagnostics().aerial; i++) await new Promise((done) => setTimeout(done, 5));
+    const aerial = h.map.diagnostics().aerial!;
+    assert.ok(aerial && aerial.masses > 500 && aerial.skyline === 'high', JSON.stringify(aerial));
+    const frame = () => {
+      let meshes = 0, triangles = 0;
+      root.traverse((object) => {
+        const mesh = object as THREE.Mesh & { isInstancedMesh?: true; count?: number };
+        if (!mesh.isMesh || !object.visible) return;
+        for (let up = object.parent; up; up = up.parent) if (!up.visible) return;
+        meshes += 1;
+        triangles += ((mesh.geometry.index ? mesh.geometry.index.count : mesh.geometry.attributes.position!.count) / 3) * (mesh.isInstancedMesh ? mesh.count! : 1);
+      });
+      return { meshes, triangles };
+    };
+    const towers = () => Boolean(h.map.city.group.getObjectByName('towers')?.visible);
+    // Every frame of the dive stays inside the aerial caps; the map's own fabric is left out while the aerial city needs the room, and back by the end.
+    let most = 0, calls = 0, massed = 0, fabricOut = 0;
+    while (h.queue.length) {
+      h.pump(1);
+      const { meshes, triangles } = frame();
+      most = Math.max(most, triangles); calls = Math.max(calls, meshes);
+      if (root.getObjectByName('aerial-massing')?.visible) massed += 1;
+      if (h.map.diagnostics().dive && !towers()) fabricOut += 1;
+    }
+    assert.ok(most <= AERIAL_DIVE_TRIANGLES.value, `${Math.round(most)} triangles at most in the aerial pass`);
+    assert.ok(calls <= AERIAL_DIVE_DRAW_CALLS.value, `${calls} draw calls at most in the aerial pass`);
+    assert.ok(massed > 60, `the massing is up for most of the dive (${massed} frames)`);
+    assert.ok(fabricOut > 0, 'the map\'s own fabric made room for it'); assert.ok(towers(), 'and is back at the end');
+    assert.equal(h.map.diagnostics().dive, false); assert.equal(h.map.diagnostics().aerial, null);
+    assert.equal(root.getObjectByName('aerial'), undefined, 'removed and disposed at the end');
+    const after = h.count();
+    assert.equal(h.queue.length, 0); h.pump(); assert.equal(h.count(), after, 'battery rule: nothing drawn after the dive');
+    // A dive cut short (another entry) drops it at once, and so does destroy.
+    h.map.enter('in', 0, { seconds: 3, spanKm: 40 });
+    for (let i = 0; i < 100 && !h.map.diagnostics().aerial; i++) await new Promise((done) => setTimeout(done, 5));
+    assert.ok(h.map.diagnostics().aerial);
+    h.map.enter('in', 0);
+    assert.equal(h.map.diagnostics().aerial, null); assert.equal(root.getObjectByName('aerial'), undefined);
+    h.map.destroy();
+    // A weak device gets the dive's camera but no aerial city.
+    Object.defineProperty(globalThis, 'navigator', { value: { hardwareConcurrency: 2 }, configurable: true });
+    const weak = harness({ width: 1280, height: 800 });
+    weak.map.setState(weak.state()); weak.map.resize(); weak.pump();
+    weak.map.enter('in', 0, { seconds: 3, spanKm: 40, venue: 'park' });
+    await new Promise((done) => setTimeout(done, 60));
+    assert.equal(weak.map.diagnostics().aerial, null);
+    weak.pump(); weak.map.destroy();
+  } finally {
+    if (device) Object.defineProperty(globalThis, 'navigator', device); else delete (globalThis as { navigator?: unknown }).navigator;
+  }
 });

@@ -34,7 +34,7 @@ test('the numbers are the ones the tests and source hard-coded before the table'
 
 test('the realism download targets are named and marked provisional', () => {
   const provisional = Object.fromEntries(entries.filter(([, budget]) => budget.status === 'provisional').map(([name, budget]) => [name, [budget.value, budget.unit]]))
-  assert.deepEqual(Object.keys(provisional).sort(), ['BASE_BODY_BROTLI', 'CLIP_PACK_BROTLI', 'FIRST_PAINT_BROTLI', 'PHONE_SCENE_DRAW_CALLS', 'STARTUP_BROTLI', 'STREET_TILE_BROTLI', 'STREET_TILE_TRIANGLES', 'WARDROBE_ITEM_BROTLI', 'WARDROBE_ITEM_TEXTURE_PX', 'WARDROBE_ITEM_TRIANGLES'])
+  assert.deepEqual(Object.keys(provisional).sort(), ['AERIAL_DIVE_DRAW_CALLS', 'AERIAL_DIVE_TRIANGLES', 'BASE_BODY_BROTLI', 'CLIP_PACK_BROTLI', 'FIRST_PAINT_BROTLI', 'PHONE_SCENE_DRAW_CALLS', 'STARTUP_BROTLI', 'STREET_TILE_BROTLI', 'STREET_TILE_TRIANGLES', 'WARDROBE_ITEM_BROTLI', 'WARDROBE_ITEM_TEXTURE_PX', 'WARDROBE_ITEM_TRIANGLES'])
   assert.deepEqual(provisional.BASE_BODY_BROTLI, [300_000, 'brotli bytes'])
   assert.deepEqual(provisional.CLIP_PACK_BROTLI, [200_000, 'brotli bytes'])
   assert.deepEqual([provisional.WARDROBE_ITEM_BROTLI, provisional.WARDROBE_ITEM_TRIANGLES, provisional.WARDROBE_ITEM_TEXTURE_PX], [[60_000, 'brotli bytes'], [4000, 'triangles'], [1024, 'px']])

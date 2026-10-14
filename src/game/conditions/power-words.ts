@@ -14,6 +14,9 @@ export const fuelWords = (code: string, litres: unknown, room: number, price: nu
   : `${litresWord(Number(litres))} of petrol in the generator. ${naira(price)} paid.`
 
 /** A cut that has begun (with when the light is due back), or the generator running dry in one. */
-export const cutWords = (district: string, until: number | null, dry: boolean): string =>
+export const cutWords = (district: string, until: number | null, dry: boolean, source: 'inverter' | 'generator' | 'none' = 'none'): string =>
   dry ? `The generator is out of petrol and the light is still off. Petrol is ${naira(LITRE_PRICE)} a litre in Phone → Groceries.`
-  : `NEPA has taken light in ${district}.${until === null ? '' : ` Light is due back around ${formatHour(lagosTime(until).minuteOfDay / 60)}.`}`
+  : `NEPA has taken light in ${district}.${until === null ? '' : ` Light is due back around ${formatHour(lagosTime(until).minuteOfDay / 60)}.`}${SOURCE_LINE[source]}`
+
+/** What the room does at the start of a cut: the inverter is quiet, the generator is loud, and a room with neither has a torch. */
+const SOURCE_LINE = { inverter: ' Your inverter takes over without a sound.', generator: ' Your generator coughs, then roars. The whole street knows you have petrol.', none: ' Phone torch on. Good time for gist.' } as const

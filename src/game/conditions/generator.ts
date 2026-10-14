@@ -31,7 +31,7 @@ export function refuel(state: LifeState, payload: Record<string, unknown>, ctx: 
 export function settlePower(state: LifeState, dt: number, ctx: LifeContext, district: string, lent: Lent): void {
   const city = state.estate.city, from = ctx.now - dt * 1000
   const before = gridAt(city, district, from).on, after = gridAt(city, district, ctx.now)
-  const cut = (dry: boolean) => lent.emit(state, 'notice.posted', { kind: 'power', text: cutWords(district, after.until, dry) }, ctx)
+  const cut = (dry: boolean) => lent.emit(state, 'notice.posted', { kind: 'power', text: cutWords(district, after.until, dry, hasPlaced(state, 'inverter') ? 'inverter' : hasPlaced(state, 'generator') && state.home.fuel > 0 ? 'generator' : 'none') }, ctx)
   if (before && !after.on) cut(false)
   if (state.home.fuel <= 0 || !hasPlaced(state, 'generator') || hasPlaced(state, 'inverter')) return
   const burned = outageSeconds(city, district, from, ctx.now)

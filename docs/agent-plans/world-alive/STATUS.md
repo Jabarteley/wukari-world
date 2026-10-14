@@ -5,9 +5,8 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 
 ## Now
 
-- **Live:** Phases 1 to 9 and 16, and the first part of 19 (release 5, see the Log).
-- **In progress:** Phase 10 (house agents, `claude/alive-p10-agents`) and the owner's answers of 14 October
-  (`claude/alive-owner-answers`: ₦5,000 friend gift, cached rates, public flirting with consent, Vercel's 429 handling).
+- **Live:** Phases 1 to 10 and 16, the first part of 19, and the owner's answers of 14 October (release 6, see the Log).
+- **Next:** a cache-first pass (show what was last seen at once, refresh in the background), then Phases 11, 12, 13a.
 - **Releases from GitHub work** since 14 October: `CLOUDFLARE_API_TOKEN` (secret) and `ALLWORLD_CF_ACCOUNT_ID` (variable) are set
   in the `production` environment, and the release workflow deployed `63e0f3d2` on its own.
 - **Where the work happens:** the repository on the owner's Desktop is synced by iCloud and `git push`/`fetch` hang there. The work
@@ -20,7 +19,7 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
   even when only lazy code imports it; a module that only the server or a lazy panel needs gets an exception there. To see what is in
   a chunk, push a throwaway branch whose `ci.yml` uploads `dist/assets/<chunk>-*.js`, download it, and compare with `main`.
   Room after release 5: about 2.7 KB raw at startup, about 1.5 KB gzip in the scene chunk.
-- **Next step:** Phase 10, the owner's answers, then a cache-first pass (show what was last seen at once, refresh in the
+- **Next step:** a cache-first pass (show what was last seen at once, refresh in the
   background: the owner asked for it on 14 October), then Phases 11, 12, 13a.
 
 ## Phases
@@ -37,7 +36,7 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 7 Data-light mode | live | `8ac05891` | | Data meter, Light mode switch (lowest tier, 30 fps cap, no background downloads, music off), no drawing under a full-screen panel, a kind message before the 3D download on browsers that cannot draw it (docs/DATA-LIGHT.md). Not yet measured on a throttled phone (docs/DATA-LIGHT.md section 6 lists what to measure). |
 | 8 Gist and the world ledger | live | `95e03aa9` | Public lines from six systems (records, stalls, arrests, busy places, events, announcements), adults named only, hidden players never; Gist app on the phone, "Gist:" line in the Square, share cards, `check_gist` agent tool (docs/GIST.md). Friendships are not a source (private). |
 | 9 Model router and budget | live | `95e03aa9` | One door for every model call, two providers, free first, paid-only for players' words, US$2 a day hard stop, per-player caps, weekly model report, companion moved onto it (docs/MODELS-ROUTER.md). Free gateway cap of 500 a day is a guess (question 7). |
-| 10 House agents and action library | not started | | |
+| 10 House agents and action library | live | REL6 | Rule-run cast in venues with hours (Lagos: a cloth seller and a guide to start; other cities 0, admin settings `houseAgents*`), action library, wake on a person's line, haggling with a floor in code (max discount 15%, never over 30%), model only phrases (paid list, 220 tokens), written lines otherwise (docs/HOUSE-AGENTS.md). No DMs to house agents yet; a deal is a held quote until Phase 11. |
 | 11 Missions from agents | not started | | |
 | 12 Talking, memory, relationships | not started | | |
 | 13a One resident in shadow | not started | | |
@@ -61,6 +60,10 @@ Ask these in your chat as well; record the answer here when you have it.
    Vercel AI Gateway, not OpenAI. If it went to OpenRouter (US$10 or more), raise the OpenRouter free daily limit setting from 50 to
    1,000. If it went to OpenAI, an `OPENAI_API_KEY` secret and a third provider in the router are needed.
 2. **MET Norway agreement.** Their terms ask heavy commercial users to agree with them; ask once the game has real traffic.
+
+3. **The friend gift needs earned money.** ₦5,000 is the most one gift may be, and a gift must come from money earned at work,
+   so a new player cannot send it yet (the card says so). Offer a smaller gift to them?
+4. **House agents to start:** two in Lagos, none elsewhere. More?
 
 Answered on 14 October 2026:
 - Releases from GitHub: the token was given and set (see Now).
@@ -94,6 +97,11 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
+- 2026-10-15, release 6 (Phase 10 and the owner's answers), REL6: house agents in Lagos; ₦5,000 friend gift; the phone keeps
+  the last rates; flirting with AI characters in public with the person's own yes; the router follows Vercel's 429s. Checks:
+  typecheck clean; 180 tests of the touched areas pass; CI build and limits ok; deployed by the GitHub release workflow.
+- 2026-10-14, release 5 (Phases 7 and 16, scene-chunk room), `8ac05891`, live: light mode and the data meter; festivals, owambe
+  parties, match nights. Deployed by the GitHub release workflow alone (the first release without this machine).
 - 2026-10-14, release 4 (Phases 8, 9, first part of 19), `95e03aa9`, live: city gist, model router with the US$2 stop, "while you
   were away", jail you can play, and 4.4 KB taken out of the first download. Checks: typecheck clean; 275 of 276 tests of the merged
   phases passed, the last (the route registry's list of namespaces) was updated; CI build and limits ok (startup 610,965 raw);

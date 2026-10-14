@@ -7,3 +7,5 @@ Create or update your own `docs/agent-work/<unique-work-id>.md` using [the templ
 Preserve other agents' work. Resolve overlapping source ownership before writing; independent work can continue. A status file is coordination evidence, not a lock or permission to commit, publish, deploy, stop another process, or change user data. Recheck source and evidence when taking over, especially on another computer.
 
 [docs/AGENT-PROMPTS.md](docs/AGENT-PROMPTS.md) contains prompts for registration, checkpoints, takeover, and integration. [docs/AGENTS.md](docs/AGENTS.md) describes AI characters playing the game; it is a separate API reference.
+
+The "world alive" programme's work in flight, and how to pick it up, is in [AGENT.md](AGENT.md).

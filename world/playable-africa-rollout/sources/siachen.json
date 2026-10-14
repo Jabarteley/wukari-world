@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "cityId": "siachen",
+  "countryIso2": "XG",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Terong Kangri",
+    "coordinatesWgs84": [
+      77.3141384,
+      35.3986779
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/india/northern-zone-261013.osm.pbf"
+  },
+  "airport": {
+    "id": "siachen-airport",
+    "name": "Col D'Italia",
+    "lon": 77.3191797,
+    "lat": 35.4672365,
+    "sourceUrl": "https://www.openstreetmap.org/node/3533480355"
+  },
+  "boxes": {
+    "play": [
+      35.32632554402641,
+      77.22589663014551,
+      35.476280544496696,
+      77.4023801698545
+    ],
+    "core": [
+      35.371545766509904,
+      77.28106632437549,
+      35.4258100334901,
+      77.34721047562452
+    ],
+    "outline": [
+      35.27632554402641,
+      77.17589663014552,
+      35.52628054449669,
+      77.4523801698545
+    ],
+    "wide": [
+      34.861600234462934,
+      76.76117132058204,
+      35.94100585406017,
+      77.86710547941797
+    ],
+    "water": [
+      35.32632554402641,
+      77.22589663014551,
+      35.476280544496696,
+      77.4023801698545
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/india/northern-zone-261013.osm.pbf",
+    "datasetSha256": "33c910272e8313cecb8d4a5e539ef5c241aacdd77a2c601a06938de31165f050",
+    "pbfHeaderTimestamp": "2026-10-13T20:21:31Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "0a7efe0f28d236987520f3758e4bf21c209ce6b523e446f3b556b382c5d934ee",
+        "elements": 10
+      },
+      {
+        "file": "extras.json",
+        "sha256": "927399ef1df7433ff9f8c574d2be7397256d6c8af4cade108b53d520bb489f63",
+        "elements": 0
+      },
+      {
+        "file": "water.json",
+        "sha256": "3dc69939cefc9b36864ab08d3704f121fbf5c20c01d23b70da2fcfd944edd20d",
+        "elements": 0
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "a912c806c029cca229dc1f9bb05dc3f5fa51d5eef6fcfa5bddbbda50dc38df68",
+        "elements": 0
+      },
+      {
+        "file": "roads.json",
+        "sha256": "5651cbee3af2d80444a14422ddaedb08c6b3052be5a168a4cebbd9bd24feafe6",
+        "elements": 0
+      }
+    ]
+  },
+  "profile": "wilderness",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "meal",
+      "reason": "no unused named amenity=restaurant or amenity=cafe feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "community",
+      "reason": "no unused named amenity=university, college, library, community_centre or conference_centre feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "clinic",
+      "reason": "no unused named amenity=hospital or amenity=clinic feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "recreation",
+      "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "worship",
+      "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "polling",
+      "reason": "no unused named place=square, amenity=townhall, or the audited fallbacks (courthouse, office=government, building=government, building=public, community_centre) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "government",
+      "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1565,
+      "sha256": "0faad9b1e7e59901a78955d4fa5f9e1fd532288cf4aa2dbdee9652a4eda2fe42"
+    },
+    "geometry.ts": {
+      "bytes": 5730,
+      "sha256": "6f0e761b0341c4055bd87e22719599f596fdcc38e71ebe5543eea9ab93ad89b9"
+    },
+    "places.ts": {
+      "bytes": 963,
+      "sha256": "d60a98776ddea4919c09c90beb78f3ec77847797b9b4debf9ae3f97ef166de60"
+    },
+    "terrain.ts": {
+      "bytes": 2643,
+      "sha256": "5e8bbbcee6bde269c7a63ea6931a5147f90584c31f9cb45f2ca8651571de1cc0"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "291d18d372a63e89a56036b0f580468521a32e04a78aa5c2807cedfe0ae5e4cc"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0",
+  "scope": "Source-sampling bounds from a mapped place node and its mapped gateway node; the grouping is not an administrative-boundary claim. A mapped landing, heliport or track does not establish current operations or access."
+}

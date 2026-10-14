@@ -629,5 +629,62 @@ export const AUTHORED_CITY_LINKS = Object.freeze([
       "km": 4529,
       "fare": 573000,
       "seconds": 20
+    },
+    compactLagosFlight("saint-pierre","Saint-Pierre",7201,596000,20),
+    {
+      "a": "lagos",
+      "b": "siachen",
+      "mode": "air",
+      "beta": true,
+      "label": "Connecting flight between Lagos and Terong Kangri",
+      "icon": "✈️",
+      "km": 8136,
+      "fare": 671000,
+      "seconds": 20
+    },
+    {
+      "a": "delhi",
+      "b": "siachen",
+      "mode": "road",
+      "beta": true,
+      "label": "Overland between Delhi and Terong Kangri",
+      "icon": "🚙",
+      "km": 749,
+      "fare": 13500,
+      "seconds": 59
+    },
+    {
+      "a": "lahore",
+      "b": "siachen",
+      "mode": "road",
+      "beta": true,
+      "label": "Overland between Lahore and Terong Kangri",
+      "icon": "🚙",
+      "km": 509,
+      "fare": 9500,
+      "seconds": 48
+    },
+    compactLagosFlight("west-island","West Island",10530,862000,20),
+    {
+      "a": "flying-fish-cove",
+      "b": "west-island",
+      "mode": "air",
+      "beta": true,
+      "label": "Charter flight between Flying Fish Cove and West Island",
+      "icon": "🛩️",
+      "km": 984,
+      "fare": 148000,
+      "seconds": 20
+    },
+    {
+      "a": "jakarta",
+      "b": "west-island",
+      "mode": "road",
+      "beta": true,
+      "label": "Ship between Jakarta and West Island",
+      "icon": "🚢",
+      "km": 1285,
+      "fare": 22000,
+      "seconds": 75
     }
   ] satisfies readonly CityLink[])

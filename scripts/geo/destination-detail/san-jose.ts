@@ -1,5 +1,5 @@
 import type { DetailConfig } from './config.ts'
-import { placesQuery, extrasQuery, landuseQuery, roadsQuery, coastWaterQuery } from './queries.ts'
+import { placesQuery, extrasQuery, landuseQuery, roadsQuery, inlandWaterQuery } from './queries.ts'
 
 export const CONFIG = {
 ...{
@@ -317,14 +317,9 @@ export const CONFIG = {
       "ref": "node/11118179304",
       "kind": "neighbourhood"
     }
-  ],
-  "wideWater": true,
-  "sea": {
-    "kind": "coast",
-    "bandMetres": 40000
-  }
+  ]
 },
 discovery: (bbox: string) => ({ places: placesQuery(bbox), extras: extrasQuery(bbox) }),
 landuse: landuseQuery, roads: roadsQuery,
-water: coastWaterQuery,
+water: inlandWaterQuery,
 } satisfies DetailConfig

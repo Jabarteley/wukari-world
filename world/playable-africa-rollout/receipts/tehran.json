@@ -7,7 +7,7 @@
     "stateId": "ir-tehran",
     "stateName": "Tehran"
   },
-  "inventorySha256": "e25a41917569dc817b5c707f9938cc1c83d2f680e8f970859046f97724e28d17",
+  "inventorySha256": "8cd02c45c66ab31d67671c260813e3613f15500a21531519aa134e52ac840dbb",
   "inventoryPath": "world/playable-africa-rollout/sources/tehran.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 344,
     "neighbourhoodLabels": 18,
     "landPolygons": 29,
     "waterPolygons": 3,

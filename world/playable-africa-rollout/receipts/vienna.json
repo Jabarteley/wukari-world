@@ -7,7 +7,7 @@
     "stateId": "at-vienna",
     "stateName": "Vienna"
   },
-  "inventorySha256": "a1fef27bdaaec1e52e62af537de18c73078f0b1d10995bf76d411e5f170cb52f",
+  "inventorySha256": "497bbc5d30795e93054aa436643c8e124c189ea7db73d4a38c62f305f5f8ca0a",
   "inventoryPath": "world/playable-africa-rollout/sources/vienna.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 362,
     "neighbourhoodLabels": 18,
     "landPolygons": 58,
     "waterPolygons": 25,

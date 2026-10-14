@@ -7,7 +7,7 @@
     "stateId": "in-delhi",
     "stateName": "Delhi"
   },
-  "inventorySha256": "f790376479abe60d6d9a322158e0b14e9963a53bbf71be2e4d963ed749cb55c2",
+  "inventorySha256": "5153ac902773c2d76fa7432d090fb5ff3123f507e3f9e5be1cd599acbd8de7e9",
   "inventoryPath": "world/playable-africa-rollout/sources/delhi.json",
   "admission": {
     "registered": true,
@@ -85,7 +85,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 437,
     "neighbourhoodLabels": 18,
     "landPolygons": 28,
     "waterPolygons": 25,

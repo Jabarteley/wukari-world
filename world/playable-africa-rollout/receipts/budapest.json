@@ -7,7 +7,7 @@
     "stateId": "hu-budapest",
     "stateName": "Budapest"
   },
-  "inventorySha256": "cc56ce5d9912c7d0fb9f370b4048705b8ddd610eace4b96f8e0a6fe7e76be2df",
+  "inventorySha256": "96db05654273e450bd27e52ea99ce5f8227dfa8710817a88d2926c8b63afe478",
   "inventoryPath": "world/playable-africa-rollout/sources/budapest.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 318,
     "neighbourhoodLabels": 18,
     "landPolygons": 45,
     "waterPolygons": 19,

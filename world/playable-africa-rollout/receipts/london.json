@@ -7,7 +7,7 @@
     "stateId": "gb-london",
     "stateName": "London"
   },
-  "inventorySha256": "e852ce48d2e3148c982aec888dfd800ce7d9d3a9bd12efb6985b0d811304cb89",
+  "inventorySha256": "904142a2a853d64600dc9e4bb1e14287c874f044e3aea491c8057353adde60eb",
   "inventoryPath": "world/playable-africa-rollout/sources/london.json",
   "admission": {
     "registered": true,
@@ -66,11 +66,11 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 192,
     "neighbourhoodLabels": 18,
     "landPolygons": 19,
     "waterPolygons": 31,
-    "reachWaterPolygons": 64
+    "reachWaterPolygons": 45
   },
   "observed": {
     "places": 22378,

@@ -7,7 +7,7 @@
     "stateId": "be-brussels",
     "stateName": "Brussels"
   },
-  "inventorySha256": "cd92c4fc5783b47f1964ea01db38cc1df41769a89f159d62b078944071170cf6",
+  "inventorySha256": "474fd1dc934da2268719f174636e3edc9f4e795fd5a4cd290b3780455fe9f43d",
   "inventoryPath": "world/playable-africa-rollout/sources/brussels.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 337,
     "neighbourhoodLabels": 18,
     "landPolygons": 30,
     "waterPolygons": 15,

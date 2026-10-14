@@ -7,7 +7,7 @@
     "stateId": "ca-toronto",
     "stateName": "Toronto"
   },
-  "inventorySha256": "58828e35d68611e944729e4bdb929ca16988fb122bb63d19b6109224ef3e7a3f",
+  "inventorySha256": "f40456b817c6805d4367649e75a3709bef1ac4e3fb638c3e2ce6f424ed9c28a1",
   "inventoryPath": "world/playable-africa-rollout/sources/toronto.json",
   "admission": {
     "registered": true,
@@ -89,7 +89,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 266,
     "neighbourhoodLabels": 18,
     "landPolygons": 3,
     "waterPolygons": 9,

@@ -7,7 +7,7 @@
     "stateId": "de-berlin",
     "stateName": "Berlin"
   },
-  "inventorySha256": "d0cf3274eac3915a027d63335972ff0115b05da11020f0c75a85a7276812609c",
+  "inventorySha256": "0c38d60dcd2c2c81e7cb7a3cb6730ea338556d4fe2a445d7f80132672f584af2",
   "inventoryPath": "world/playable-africa-rollout/sources/berlin.json",
   "admission": {
     "registered": true,
@@ -89,7 +89,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 361,
     "neighbourhoodLabels": 18,
     "landPolygons": 34,
     "waterPolygons": 12,

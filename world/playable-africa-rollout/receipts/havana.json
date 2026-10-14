@@ -7,7 +7,7 @@
     "stateId": "cu-havana",
     "stateName": "Havana"
   },
-  "inventorySha256": "c2d7a1a8b522cb8bb4e24dd433ab22db56368b392b28b9eaae6be7b3ba6bc343",
+  "inventorySha256": "49a4297f50ad94da0f96b317af18325f5fe2ab380f60a59ef2aa95a9b6605f20",
   "inventoryPath": "world/playable-africa-rollout/sources/havana.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 298,
     "neighbourhoodLabels": 18,
     "landPolygons": 17,
     "waterPolygons": 7,

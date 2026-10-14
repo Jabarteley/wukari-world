@@ -7,7 +7,7 @@
     "stateId": "pr-san-juan",
     "stateName": "San Juan"
   },
-  "inventorySha256": "dbd187bf94fcafaa604c81016d6baa270a7b973cfa3d4781a978a3f441d2ffe3",
+  "inventorySha256": "e1eaa088d786fc3930560667a6f9ec78762f32df75cff8003194c0d5b30f586a",
   "inventoryPath": "world/playable-africa-rollout/sources/san-juan.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 186,
     "neighbourhoodLabels": 18,
     "landPolygons": 10,
     "waterPolygons": 16,

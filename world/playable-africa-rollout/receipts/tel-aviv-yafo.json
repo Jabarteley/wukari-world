@@ -7,7 +7,7 @@
     "stateId": "il-tel-aviv-yafo",
     "stateName": "Tel Aviv"
   },
-  "inventorySha256": "68344f2bd916a5f2dca84d63a1f07b1a6bb589005d9bbfe0a23bb86f253cc0b2",
+  "inventorySha256": "ca9c3a4fe1ecffe7f8bb69733ccfdb4c70379ecd204b7514858342070c82a14a",
   "inventoryPath": "world/playable-africa-rollout/sources/tel-aviv-yafo.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 292,
     "neighbourhoodLabels": 18,
     "landPolygons": 5,
     "waterPolygons": 6,

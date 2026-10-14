@@ -7,7 +7,7 @@
     "stateId": "tr-istanbul",
     "stateName": "Istanbul"
   },
-  "inventorySha256": "2c657e0ef9da849300a14b677323e624ff914513a296f057149a0ef77e8a8100",
+  "inventorySha256": "a13294dd554333403c822b3395b5072691758e91aa89397eff608361435925a7",
   "inventoryPath": "world/playable-africa-rollout/sources/istanbul.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 303,
     "neighbourhoodLabels": 18,
     "landPolygons": 27,
     "waterPolygons": 16,

@@ -7,7 +7,7 @@
     "stateId": "cz-prague",
     "stateName": "Prague"
   },
-  "inventorySha256": "a1b8cd1d7becff9390888b85286ae999946f655a78f4b9354fdc1ab171203132",
+  "inventorySha256": "eab33b26e10e65ae381810a60acba6c8e630deec6dd769588ebd1bff7c5535d5",
   "inventoryPath": "world/playable-africa-rollout/sources/prague.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 347,
     "neighbourhoodLabels": 18,
     "landPolygons": 109,
     "waterPolygons": 15,

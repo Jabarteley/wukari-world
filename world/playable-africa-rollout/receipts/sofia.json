@@ -7,7 +7,7 @@
     "stateId": "bg-sofia",
     "stateName": "Sofia"
   },
-  "inventorySha256": "bde06f5bb7553b9ae87183582a1f76fa3a4584f42d16c8625d1781299e54e995",
+  "inventorySha256": "bc68aee820200b4545c4a2c6861eba3bb3bb3636894093a5849fe174b61f8f62",
   "inventoryPath": "world/playable-africa-rollout/sources/sofia.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 200,
     "neighbourhoodLabels": 18,
     "landPolygons": 55,
     "waterPolygons": 50,

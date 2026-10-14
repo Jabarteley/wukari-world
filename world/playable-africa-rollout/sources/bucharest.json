@@ -326,8 +326,8 @@
       "sha256": "b58b67d3252677a49c76a208d5afa5aed4adfa855ca6182b8d9c1a3b1430e9c1"
     },
     "terrain.ts": {
-      "bytes": 69508,
-      "sha256": "58ca8533ba37ed0433fd7a08a39c0cb5b564af26df4ad0bb9329498dde5c02d5"
+      "bytes": 54095,
+      "sha256": "6c6e1e342f372a5928eb4984a293a3cf36032a6caf2d4eb565e1dc6ff6e121de"
     },
     "index.ts": {
       "bytes": 260,

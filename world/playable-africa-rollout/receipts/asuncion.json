@@ -7,7 +7,7 @@
     "stateId": "py-asuncion",
     "stateName": "Asuncion"
   },
-  "inventorySha256": "c241b7044fa908ec46cde28a46d3bd33495a83eb636c2dd8672e666e62479e00",
+  "inventorySha256": "9a5b8cf71ae80102788323165ca961be8973a7ecab5cc5f41cec924527cc9363",
   "inventoryPath": "world/playable-africa-rollout/sources/asuncion.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 315,
     "neighbourhoodLabels": 18,
     "landPolygons": 23,
     "waterPolygons": 11,

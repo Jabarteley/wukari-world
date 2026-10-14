@@ -7,7 +7,7 @@
     "stateId": "pt-lisbon",
     "stateName": "Lisbon"
   },
-  "inventorySha256": "8b88725339ca910edc0279a9474d36445656ddd3dad1e268710033fefba381cd",
+  "inventorySha256": "5cb10d7a724f07fbcc7b917f20f3608ff9787c2dc2ef28ef5bc5873eba9f6dcd",
   "inventoryPath": "world/playable-africa-rollout/sources/lisbon.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 291,
     "neighbourhoodLabels": 18,
     "landPolygons": 16,
     "waterPolygons": 3,

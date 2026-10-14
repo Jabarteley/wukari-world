@@ -7,7 +7,7 @@
     "stateId": "qa-doha",
     "stateName": "Doha"
   },
-  "inventorySha256": "bb03577587b5f996a29f46a29498a3046933aea303cfb9aae2a44cd93d0aebd5",
+  "inventorySha256": "288942b3ae903aa08a26e5c147f9bed2bca29195e578d1006d18318633b770e8",
   "inventoryPath": "world/playable-africa-rollout/sources/doha.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 263,
     "neighbourhoodLabels": 18,
     "landPolygons": 20,
     "waterPolygons": 3,

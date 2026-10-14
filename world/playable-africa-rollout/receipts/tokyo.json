@@ -7,7 +7,7 @@
     "stateId": "jp-tokyo",
     "stateName": "Tokyo"
   },
-  "inventorySha256": "4506583e556e3221e1ed72aa3950fc4ec16c60df9a778b92a24868af1a6a12e4",
+  "inventorySha256": "b783458ce1b2edb2b98cce25bddfb0c0ac2152d2f73527cf64dbcd382e5f3912",
   "inventoryPath": "world/playable-africa-rollout/sources/tokyo.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 349,
     "neighbourhoodLabels": 18,
     "landPolygons": 44,
     "waterPolygons": 29,

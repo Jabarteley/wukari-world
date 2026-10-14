@@ -12,6 +12,7 @@
 import { execFileSync } from 'node:child_process'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
+import { roadCheck } from './factory/road-requirement.mjs'
 
 const arg = (name, fallback = undefined) => {
   const index = process.argv.indexOf(`--${name}`)
@@ -20,6 +21,7 @@ const arg = (name, fallback = undefined) => {
 const worktree = resolve(arg('worktree', process.cwd()))
 const cityId = arg('city')
 const outdir = resolve(arg('outdir'))
+const profile = arg('profile') // the target's selection profile (outpost, wilderness ...); absent means standard
 if (!cityId || !outdir) throw new Error('Usage: --worktree <checkout> --city <id> --outdir <directory>')
 const cityDir = join(worktree, 'src/game/cities', cityId)
 const importFile = file => `file://${join(cityDir, file)}`
@@ -67,7 +69,8 @@ const content = await city.loadContent()
 const venueNames = new Map(content.venues.map(venue => [venue.id, venue.name]))
 const roadPoints = pack.roads.flatMap(road => road.points)
 const ground = { minX: pack.bounds.minX, maxX: pack.bounds.maxX, minZ: pack.bounds.minZ, maxZ: pack.bounds.maxZ }
-const roadCoverage = roadPoints.length ? roadPoints.filter(([x, z]) => x >= ground.minX && x <= ground.maxX && z >= ground.minZ && z <= ground.maxZ).length / roadPoints.length : 0
+const roadsCheck = roadCheck({ profile, roadPointCount: roadPoints.length, roadPointsInGround: roadPoints.filter(([x, z]) => x >= ground.minX && x <= ground.maxX && z >= ground.minZ && z <= ground.maxZ).length, districtCount: pack.districts.length })
+const roadCoverage = roadsCheck.coverage
 const diagnostics = {
   city: { id: FACTS.id, name: FACTS.name, bounds: FACTS.bounds, airport: FACTS.airport },
   polygonProof,
@@ -84,6 +87,7 @@ const diagnostics = {
     roads: pack.roads.length,
     roadPoints: roadPoints.length,
     roadPointCoverageWithinGround: roadCoverage,
+    ...(roadsCheck.roadless ? { roadless: { profile, requirement: roadsCheck.requirement, walkableAreaLabels: roadsCheck.walkableAreaLabels, passed: roadsCheck.passed } } : {}),
     districts: pack.districts.length,
     places: Object.keys(pack.sites).length,
     placeLabels: Object.fromEntries(Object.entries(pack.sites).map(([id, point]) => [id, { name: venueNames.get(id) ?? id, ...point }])),
@@ -142,4 +146,4 @@ else execFileSync('rsvg-convert', ['--width', String(width), '--height', String(
 writeFileSync(jsonPath, `${JSON.stringify(diagnostics, null, 2)}\n`)
 console.log(JSON.stringify({ city: cityId, json: jsonPath, svg: svgPath, png: pngPath, polygonProblems: Object.values(polygonProof).filter(layer => layer.polygonProblem || layer.triangulationProblem).length, outsidePlaces: diagnostics.sourcePoints.places.outsideBounds.length, wetPlaces: diagnostics.sourcePoints.places.wet.length, roadCoverage: roadCoverage }, null, 2))
 
-process.exitCode = Object.values(polygonProof).some(layer => layer.polygonProblem || layer.triangulationProblem) || Object.entries(diagnostics.sourcePoints).some(([kind, points]) => points.outsideBounds.length || (kind !== 'waterLabels' && points.wet.length)) || roadCoverage < 1 ? 1 : 0
+process.exitCode = Object.values(polygonProof).some(layer => layer.polygonProblem || layer.triangulationProblem) || Object.entries(diagnostics.sourcePoints).some(([kind, points]) => points.outsideBounds.length || (kind !== 'waterLabels' && points.wet.length)) || !roadsCheck.passed ? 1 : 0

@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
@@ -142,4 +143,32 @@ test('bounds policy: a gateway is the airport point of an outpost, checked for i
   assert.deepEqual(proposeBounds(facts, {}, geometry).boxes, proposeBounds(standard, {}, geometry).boxes, 'the gateway point bounds the play box exactly as an airport does');
   for (const bad of [{ mode: 'boat', osmRef: 'node/9392374700' }, { mode: 'sea', osmRef: 'way/9392374700' }, { mode: 'sea', osmRef: 'node/1' }]) assert.throws(() => proposeBounds({ ...facts, gateway: bad }, {}, geometry), /Invalid gateway/);
   assert.ok(gateway);
+});
+
+test('road proof: a roadless outpost or wilderness place needs walkable area labels; every other city keeps coverage >= 1', async () => {
+  const { roadCheck } = await import('./road-requirement.mjs');
+  const roads = (profile, inGround, count = 10, districtCount = 0) => roadCheck({ profile, roadPointCount: count, roadPointsInGround: inGround, districtCount });
+  // Unchanged: no profile and the microstate profile fail without roads (even with labels), fail below full coverage and pass at full coverage.
+  for (const profile of [undefined, 'microstate']) {
+    assert.deepEqual(roads(profile, 0, 0, 9), { coverage: 0, passed: false, roadless: false });
+    assert.equal(roads(profile, 9).passed, false);
+    assert.deepEqual(roads(profile, 10), { coverage: 1, passed: true, roadless: false });
+  }
+  // Outpost and wilderness with any road or track point are judged exactly the same way.
+  for (const profile of ['outpost', 'wilderness']) {
+    assert.deepEqual(roads(profile, 9, 10, 9), { coverage: 0.9, passed: false, roadless: false });
+    assert.deepEqual(roads(profile, 10), { coverage: 1, passed: true, roadless: false });
+    // With no road at all: the profile's own minimum of walkable area labels (2) decides.
+    assert.equal(roads(profile, 0, 0, 2).passed, true);
+    assert.equal(roads(profile, 0, 0, 2).roadless, true);
+    assert.equal(roads(profile, 0, 0, 1).passed, false);
+    assert.equal(roads(profile, 0, 0, 0).passed, false);
+  }
+});
+
+test('the runner hands the profile to the city proof; a target without a profile gets the unchanged command', () => {
+  const runner = readFileSync(new URL('./runner.mjs', import.meta.url), 'utf8');
+  assert.ok(runner.includes("...(t.profile === undefined ? [] : ['--profile', t.profile])"));
+  const proof = readFileSync(new URL('../city-generation-proof.mjs', import.meta.url), 'utf8');
+  assert.ok(proof.includes("arg('profile')") && proof.includes('!roadsCheck.passed') && !proof.includes('roadCoverage < 1'));
 });

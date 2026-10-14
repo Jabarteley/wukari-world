@@ -1,0 +1,1179 @@
+{
+  "inputCommit": "c54141c1eb809f1c529e5808e46d228f3451e20f",
+  "readOnly": true,
+  "rendered": false,
+  "leftEyeProfiles": [
+    {
+      "blink": 0,
+      "verticalOuterRingChord": {
+        "upper": [
+          0.03200000151991844,
+          -0.049546968191862106,
+          1.6513999700546265
+        ],
+        "lower": [
+          0.03200000151991844,
+          -0.04853295907378197,
+          1.615399956703186
+        ]
+      },
+      "maximumAnteriorDepartureMm": 0.0,
+      "samples": [
+        {
+          "label": "upperCentre",
+          "ring": 0,
+          "t": 0,
+          "vertex": 4084,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.048475395888090134,
+            1.6404000520706177
+          ],
+          "anteriorToOuterRingChordMm": -0.761738609405517
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 0,
+          "t": 0,
+          "vertex": 4116,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.048650000244379044,
+            1.6299999952316284
+          ],
+          "anteriorToOuterRingChordMm": -0.29419679333466536
+        },
+        {
+          "label": "outerCorner",
+          "ring": 0,
+          "t": 0,
+          "vertex": 4068,
+          "xyzMetres": [
+            0.04619999974966049,
+            -0.040174905210733414,
+            1.6360000371932983
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 0,
+          "t": 0,
+          "vertex": 4100,
+          "xyzMetres": [
+            0.017799999564886093,
+            -0.05057313293218613,
+            1.6339999437332153
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 1,
+          "t": 0.065,
+          "vertex": 4148,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04817448556423187,
+            1.6411149501800537
+          ],
+          "anteriorToOuterRingChordMm": -1.0827854036142073
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 1,
+          "t": 0.065,
+          "vertex": 4180,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04828499257564545,
+            1.6290509700775146
+          ],
+          "anteriorToOuterRingChordMm": -0.6324733564388174
+        },
+        {
+          "label": "outerCorner",
+          "ring": 1,
+          "t": 0.065,
+          "vertex": 4132,
+          "xyzMetres": [
+            0.04667450115084648,
+            -0.03878484666347504,
+            1.6361421346664429
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 1,
+          "t": 0.065,
+          "vertex": 4164,
+          "xyzMetres": [
+            0.017325500026345253,
+            -0.05079472064971924,
+            1.6340752840042114
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 2,
+          "t": 0.16,
+          "vertex": 4212,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.047826848924160004,
+            1.6421600580215454
+          ],
+          "anteriorToOuterRingChordMm": -1.459859501675438
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 2,
+          "t": 0.16,
+          "vertex": 4244,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.047857727855443954,
+            1.6276639699935913
+          ],
+          "anteriorToOuterRingChordMm": -1.0206705707995132
+        },
+        {
+          "label": "outerCorner",
+          "ring": 2,
+          "t": 0.16,
+          "vertex": 4196,
+          "xyzMetres": [
+            0.04736800119280815,
+            -0.037166472524404526,
+            1.636356234550476
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 2,
+          "t": 0.16,
+          "vertex": 4228,
+          "xyzMetres": [
+            0.016631999984383583,
+            -0.05111231654882431,
+            1.6341917514801025
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 3,
+          "t": 0.29,
+          "vertex": 4276,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04752882197499275,
+            1.643589973449707
+          ],
+          "anteriorToOuterRingChordMm": -1.7981627493008219
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 3,
+          "t": 0.29,
+          "vertex": 4308,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04746624454855919,
+            1.6257660388946533
+          ],
+          "anteriorToOuterRingChordMm": -1.358695024182663
+        },
+        {
+          "label": "outerCorner",
+          "ring": 3,
+          "t": 0.29,
+          "vertex": 4260,
+          "xyzMetres": [
+            0.04831700026988983,
+            -0.035625144839286804,
+            1.6366617679595947
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 3,
+          "t": 0.29,
+          "vertex": 4292,
+          "xyzMetres": [
+            0.015683000907301903,
+            -0.05154792591929436,
+            1.6343635320663452
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 4,
+          "t": 0.46,
+          "vertex": 4340,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.047449737787246704,
+            1.6454600095748901
+          ],
+          "anteriorToOuterRingChordMm": -1.9299200753472232
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 4,
+          "t": 0.46,
+          "vertex": 4372,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04726463183760643,
+            1.6232839822769165
+          ],
+          "anteriorToOuterRingChordMm": -1.4903958710089718
+        },
+        {
+          "label": "outerCorner",
+          "ring": 4,
+          "t": 0.46,
+          "vertex": 4324,
+          "xyzMetres": [
+            0.04955799877643585,
+            -0.034493912011384964,
+            1.6370826959609985
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 4,
+          "t": 0.46,
+          "vertex": 4356,
+          "xyzMetres": [
+            0.014441999606788158,
+            -0.052150286734104156,
+            1.6346096992492676
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 5,
+          "t": 0.65,
+          "vertex": 4404,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04777934402227402,
+            1.6475499868392944
+          ],
+          "anteriorToOuterRingChordMm": -1.6591820407841005
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 5,
+          "t": 0.65,
+          "vertex": 4436,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04741135984659195,
+            1.6205099821090698
+          ],
+          "anteriorToOuterRingChordMm": -1.2655328503418524
+        },
+        {
+          "label": "outerCorner",
+          "ring": 5,
+          "t": 0.65,
+          "vertex": 4388,
+          "xyzMetres": [
+            0.05094499886035919,
+            -0.0339338593184948,
+            1.6375820636749268
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 5,
+          "t": 0.65,
+          "vertex": 4420,
+          "xyzMetres": [
+            0.013055000454187393,
+            -0.052918944507837296,
+            1.6349138021469116
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 6,
+          "t": 0.83,
+          "vertex": 4468,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04850006103515625,
+            1.649530053138733
+          ],
+          "anteriorToOuterRingChordMm": -0.9942373761627765
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 6,
+          "t": 0.83,
+          "vertex": 4500,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04786526411771774,
+            1.6178820133209229
+          ],
+          "anteriorToOuterRingChordMm": -0.737606820190674
+        },
+        {
+          "label": "outerCorner",
+          "ring": 6,
+          "t": 0.83,
+          "vertex": 4452,
+          "xyzMetres": [
+            0.05225899815559387,
+            -0.03357202187180519,
+            1.6380834579467773
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 6,
+          "t": 0.83,
+          "vertex": 4484,
+          "xyzMetres": [
+            0.011741000227630138,
+            -0.05379536747932434,
+            1.6352300643920898
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 7,
+          "t": 1.0,
+          "vertex": 4532,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.049546968191862106,
+            1.6513999700546265
+          ],
+          "anteriorToOuterRingChordMm": 0.0
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 7,
+          "t": 1.0,
+          "vertex": 4564,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04853295907378197,
+            1.615399956703186
+          ],
+          "anteriorToOuterRingChordMm": 0.0
+        },
+        {
+          "label": "outerCorner",
+          "ring": 7,
+          "t": 1.0,
+          "vertex": 4516,
+          "xyzMetres": [
+            0.05350000038743019,
+            -0.03291916102170944,
+            1.6385819911956787
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 7,
+          "t": 1.0,
+          "vertex": 4548,
+          "xyzMetres": [
+            0.010499999858438969,
+            -0.054804928600788116,
+            1.6355538368225098
+          ]
+        }
+      ],
+      "centralUpperMarginAnteriorToCanthusChordMm": 3.101377498609531
+    },
+    {
+      "blink": 0.5,
+      "verticalOuterRingChord": {
+        "upper": [
+          0.03200000151991844,
+          -0.049546968191862106,
+          1.6513999700546265
+        ],
+        "lower": [
+          0.03200000151991844,
+          -0.04853295907378197,
+          1.615399956703186
+        ]
+      },
+      "maximumAnteriorDepartureMm": 0.24685832309487288,
+      "samples": [
+        {
+          "label": "upperCentre",
+          "ring": 0,
+          "t": 0,
+          "vertex": 4084,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04938540235161781,
+            1.6368998289108276
+          ],
+          "anteriorToOuterRingChordMm": 0.24685832309487288
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 0,
+          "t": 0,
+          "vertex": 4116,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04909918084740639,
+            1.6317001581192017
+          ],
+          "anteriorToOuterRingChordMm": 0.107095475502611
+        },
+        {
+          "label": "outerCorner",
+          "ring": 0,
+          "t": 0,
+          "vertex": 4068,
+          "xyzMetres": [
+            0.04619999974966049,
+            -0.040174905210733414,
+            1.6360000371932983
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 0,
+          "t": 0,
+          "vertex": 4100,
+          "xyzMetres": [
+            0.017799999564886093,
+            -0.05057313293218613,
+            1.6339999437332153
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 1,
+          "t": 0.065,
+          "vertex": 4148,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04927857220172882,
+            1.6378424167633057
+          ],
+          "anteriorToOuterRingChordMm": 0.11347838646903752
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 1,
+          "t": 0.065,
+          "vertex": 4180,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.0488797128200531,
+            1.6306405067443848
+          ],
+          "anteriorToOuterRingChordMm": -0.08252544747432838
+        },
+        {
+          "label": "outerCorner",
+          "ring": 1,
+          "t": 0.065,
+          "vertex": 4132,
+          "xyzMetres": [
+            0.04667450115084648,
+            -0.03878484666347504,
+            1.6361421346664429
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 1,
+          "t": 0.065,
+          "vertex": 4164,
+          "xyzMetres": [
+            0.017325500026345253,
+            -0.05079472064971924,
+            1.6340752840042114
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 2,
+          "t": 0.16,
+          "vertex": 4212,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04903578758239746,
+            1.639220118522644
+          ],
+          "anteriorToOuterRingChordMm": -0.16811183363602683
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 2,
+          "t": 0.16,
+          "vertex": 4244,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04855402186512947,
+            1.6290918588638306
+          ],
+          "anteriorToOuterRingChordMm": -0.36459577769853285
+        },
+        {
+          "label": "outerCorner",
+          "ring": 2,
+          "t": 0.16,
+          "vertex": 4196,
+          "xyzMetres": [
+            0.04736800119280815,
+            -0.037166472524404526,
+            1.636356234550476
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 2,
+          "t": 0.16,
+          "vertex": 4228,
+          "xyzMetres": [
+            0.016631999984383583,
+            -0.05111231654882431,
+            1.6341917514801025
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 3,
+          "t": 0.29,
+          "vertex": 4276,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.048629339784383774,
+            1.6411051750183105
+          ],
+          "anteriorToOuterRingChordMm": -0.6276558473661333
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 3,
+          "t": 0.29,
+          "vertex": 4308,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.048147935420274734,
+            1.6269729137420654
+          ],
+          "anteriorToOuterRingChordMm": -0.7109980870723744
+        },
+        {
+          "label": "outerCorner",
+          "ring": 3,
+          "t": 0.29,
+          "vertex": 4260,
+          "xyzMetres": [
+            0.04831700026988983,
+            -0.035625144839286804,
+            1.6366617679595947
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 3,
+          "t": 0.29,
+          "vertex": 4292,
+          "xyzMetres": [
+            0.015683000907301903,
+            -0.05154792591929436,
+            1.6343635320663452
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 4,
+          "t": 0.46,
+          "vertex": 4340,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.048152707517147064,
+            1.643570065498352
+          ],
+          "anteriorToOuterRingChordMm": -1.1737164616823572
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 4,
+          "t": 0.46,
+          "vertex": 4372,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04776708409190178,
+            1.6242021322250366
+          ],
+          "anteriorToOuterRingChordMm": -1.0138050632100408
+        },
+        {
+          "label": "outerCorner",
+          "ring": 4,
+          "t": 0.46,
+          "vertex": 4324,
+          "xyzMetres": [
+            0.04955799877643585,
+            -0.034493912011384964,
+            1.6370826959609985
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 4,
+          "t": 0.46,
+          "vertex": 4356,
+          "xyzMetres": [
+            0.014441999606788158,
+            -0.052150286734104156,
+            1.6346096992492676
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 5,
+          "t": 0.65,
+          "vertex": 4404,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04796121269464493,
+            1.6463249921798706
+          ],
+          "anteriorToOuterRingChordMm": -1.442809054702829
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 5,
+          "t": 0.65,
+          "vertex": 4436,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04763884097337723,
+            1.6211048364639282
+          ],
+          "anteriorToOuterRingChordMm": -1.0548069323357416
+        },
+        {
+          "label": "outerCorner",
+          "ring": 5,
+          "t": 0.65,
+          "vertex": 4388,
+          "xyzMetres": [
+            0.05094499886035919,
+            -0.0339338593184948,
+            1.6375820636749268
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 5,
+          "t": 0.65,
+          "vertex": 4420,
+          "xyzMetres": [
+            0.013055000454187393,
+            -0.052918944507837296,
+            1.6349138021469116
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 6,
+          "t": 0.83,
+          "vertex": 4468,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04838016629219055,
+            1.6489349603652954
+          ],
+          "anteriorToOuterRingChordMm": -1.0973701948347667
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 6,
+          "t": 0.83,
+          "vertex": 4500,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.047890909016132355,
+            1.618170976638794
+          ],
+          "anteriorToOuterRingChordMm": -0.7201011253994485
+        },
+        {
+          "label": "outerCorner",
+          "ring": 6,
+          "t": 0.83,
+          "vertex": 4452,
+          "xyzMetres": [
+            0.05225899815559387,
+            -0.03357202187180519,
+            1.6380834579467773
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 6,
+          "t": 0.83,
+          "vertex": 4484,
+          "xyzMetres": [
+            0.011741000227630138,
+            -0.05379536747932434,
+            1.6352300643920898
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 7,
+          "t": 1.0,
+          "vertex": 4532,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.049546968191862106,
+            1.6513999700546265
+          ],
+          "anteriorToOuterRingChordMm": 0.0
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 7,
+          "t": 1.0,
+          "vertex": 4564,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04853295907378197,
+            1.615399956703186
+          ],
+          "anteriorToOuterRingChordMm": 0.0
+        },
+        {
+          "label": "outerCorner",
+          "ring": 7,
+          "t": 1.0,
+          "vertex": 4516,
+          "xyzMetres": [
+            0.05350000038743019,
+            -0.03291916102170944,
+            1.6385819911956787
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 7,
+          "t": 1.0,
+          "vertex": 4548,
+          "xyzMetres": [
+            0.010499999858438969,
+            -0.054804928600788116,
+            1.6355538368225098
+          ]
+        }
+      ],
+      "centralUpperMarginAnteriorToCanthusChordMm": 4.01138396213721
+    },
+    {
+      "blink": 1,
+      "verticalOuterRingChord": {
+        "upper": [
+          0.03200000151991844,
+          -0.049546968191862106,
+          1.6513999700546265
+        ],
+        "lower": [
+          0.03200000151991844,
+          -0.04853295907378197,
+          1.615399956703186
+        ]
+      },
+      "maximumAnteriorDepartureMm": 0.41242814460449445,
+      "samples": [
+        {
+          "label": "upperCentre",
+          "ring": 0,
+          "t": 0,
+          "vertex": 4084,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.049301162362098694,
+            1.6333999633789062
+          ],
+          "anteriorToOuterRingChordMm": 0.2611987292766571
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 0,
+          "t": 0,
+          "vertex": 4116,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.049301162362098694,
+            1.6333999633789062
+          ],
+          "anteriorToOuterRingChordMm": 0.2611987292766571
+        },
+        {
+          "label": "outerCorner",
+          "ring": 0,
+          "t": 0,
+          "vertex": 4068,
+          "xyzMetres": [
+            0.04619999974966049,
+            -0.040174905210733414,
+            1.6360000371932983
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 0,
+          "t": 0,
+          "vertex": 4100,
+          "xyzMetres": [
+            0.017799999564886093,
+            -0.05057313293218613,
+            1.6339999437332153
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 1,
+          "t": 0.065,
+          "vertex": 4148,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04948534816503525,
+            1.6345700025558472
+          ],
+          "anteriorToOuterRingChordMm": 0.41242814460449445
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 1,
+          "t": 0.065,
+          "vertex": 4180,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04924386367201805,
+            1.6322300434112549
+          ],
+          "anteriorToOuterRingChordMm": 0.23685306904746434
+        },
+        {
+          "label": "outerCorner",
+          "ring": 1,
+          "t": 0.065,
+          "vertex": 4132,
+          "xyzMetres": [
+            0.04667450115084648,
+            -0.03878484666347504,
+            1.6361421346664429
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 1,
+          "t": 0.065,
+          "vertex": 4164,
+          "xyzMetres": [
+            0.017325500026345253,
+            -0.05079472064971924,
+            1.6340752840042114
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 2,
+          "t": 0.16,
+          "vertex": 4212,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04948732629418373,
+            1.6362799406051636
+          ],
+          "anteriorToOuterRingChordMm": 0.36624260346673765
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 2,
+          "t": 0.16,
+          "vertex": 4244,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04904715716838837,
+            1.630519986152649
+          ],
+          "anteriorToOuterRingChordMm": 0.08831359346128664
+        },
+        {
+          "label": "outerCorner",
+          "ring": 2,
+          "t": 0.16,
+          "vertex": 4196,
+          "xyzMetres": [
+            0.04736800119280815,
+            -0.037166472524404526,
+            1.636356234550476
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 2,
+          "t": 0.16,
+          "vertex": 4228,
+          "xyzMetres": [
+            0.016631999984383583,
+            -0.05111231654882431,
+            1.6341917514801025
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 3,
+          "t": 0.29,
+          "vertex": 4276,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.0491563156247139,
+            1.6386200189590454
+          ],
+          "anteriorToOuterRingChordMm": -0.030680841220528943
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 3,
+          "t": 0.29,
+          "vertex": 4308,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04866780713200569,
+            1.6281800270080566
+          ],
+          "anteriorToOuterRingChordMm": -0.22512702546122199
+        },
+        {
+          "label": "outerCorner",
+          "ring": 3,
+          "t": 0.29,
+          "vertex": 4260,
+          "xyzMetres": [
+            0.04831700026988983,
+            -0.035625144839286804,
+            1.6366617679595947
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 3,
+          "t": 0.29,
+          "vertex": 4292,
+          "xyzMetres": [
+            0.015683000907301903,
+            -0.05154792591929436,
+            1.6343635320663452
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 4,
+          "t": 0.46,
+          "vertex": 4340,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04849938675761223,
+            1.6416800022125244
+          ],
+          "anteriorToOuterRingChordMm": -0.7737999796954207
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 4,
+          "t": 0.46,
+          "vertex": 4372,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.048163317143917084,
+            1.6251200437545776
+          ],
+          "anteriorToOuterRingChordMm": -0.6434267421766073
+        },
+        {
+          "label": "outerCorner",
+          "ring": 4,
+          "t": 0.46,
+          "vertex": 4324,
+          "xyzMetres": [
+            0.04955799877643585,
+            -0.034493912011384964,
+            1.6370826959609985
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 4,
+          "t": 0.46,
+          "vertex": 4356,
+          "xyzMetres": [
+            0.014441999606788158,
+            -0.052150286734104156,
+            1.6346096992492676
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 5,
+          "t": 0.65,
+          "vertex": 4404,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04798189550638199,
+            1.6450999975204468
+          ],
+          "anteriorToOuterRingChordMm": -1.3876219292554142
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 5,
+          "t": 0.65,
+          "vertex": 4436,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04781576991081238,
+            1.6217000484466553
+          ],
+          "anteriorToOuterRingChordMm": -0.8946432769515664
+        },
+        {
+          "label": "outerCorner",
+          "ring": 5,
+          "t": 0.65,
+          "vertex": 4388,
+          "xyzMetres": [
+            0.05094499886035919,
+            -0.0339338593184948,
+            1.6375820636749268
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 5,
+          "t": 0.65,
+          "vertex": 4420,
+          "xyzMetres": [
+            0.013055000454187393,
+            -0.052918944507837296,
+            1.6349138021469116
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 6,
+          "t": 0.83,
+          "vertex": 4468,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.048219677060842514,
+            1.6483399868011475
+          ],
+          "anteriorToOuterRingChordMm": -1.24110085964637
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 6,
+          "t": 0.83,
+          "vertex": 4500,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.047903306782245636,
+            1.6184600591659546
+          ],
+          "anteriorToOuterRingChordMm": -0.7158459206668202
+        },
+        {
+          "label": "outerCorner",
+          "ring": 6,
+          "t": 0.83,
+          "vertex": 4452,
+          "xyzMetres": [
+            0.05225899815559387,
+            -0.03357202187180519,
+            1.6380834579467773
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 6,
+          "t": 0.83,
+          "vertex": 4484,
+          "xyzMetres": [
+            0.011741000227630138,
+            -0.05379536747932434,
+            1.6352300643920898
+          ]
+        },
+        {
+          "label": "upperCentre",
+          "ring": 7,
+          "t": 1.0,
+          "vertex": 4532,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.049546968191862106,
+            1.6513999700546265
+          ],
+          "anteriorToOuterRingChordMm": 0.0
+        },
+        {
+          "label": "lowerCentre",
+          "ring": 7,
+          "t": 1.0,
+          "vertex": 4564,
+          "xyzMetres": [
+            0.03200000151991844,
+            -0.04853295907378197,
+            1.615399956703186
+          ],
+          "anteriorToOuterRingChordMm": 0.0
+        },
+        {
+          "label": "outerCorner",
+          "ring": 7,
+          "t": 1.0,
+          "vertex": 4516,
+          "xyzMetres": [
+            0.05350000038743019,
+            -0.03291916102170944,
+            1.6385819911956787
+          ]
+        },
+        {
+          "label": "innerCorner",
+          "ring": 7,
+          "t": 1.0,
+          "vertex": 4548,
+          "xyzMetres": [
+            0.010499999858438969,
+            -0.054804928600788116,
+            1.6355538368225098
+          ]
+        }
+      ],
+      "centralUpperMarginAnteriorToCanthusChordMm": 3.927143972618091
+    }
+  ],
+  "appearanceV4": {
+    "materialsSha256": "701978f65e516dc0c1bef3aad87b73e4809aa25af82fddcbb8a0ce1a1fda9c52",
+    "lightsSha256": "045b89242f01579d4a8319ca5bacb214305b929ca43abf020224c346e7b37ec1"
+  },
+  "appearanceV5": {
+    "materialsSha256": "701978f65e516dc0c1bef3aad87b73e4809aa25af82fddcbb8a0ce1a1fda9c52",
+    "lightsSha256": "045b89242f01579d4a8319ca5bacb214305b929ca43abf020224c346e7b37ec1"
+  },
+  "materialsAndLightsExact": true,
+  "interpretation": "Measured forward convexity is actual geometry. Globe-supported lid depths and the broad Hermite transition remain domed at full blink. Smooth normals and the unchanged lighting/materials shade this curvature; the finite orientation gates do not assess anatomical thinness. The chord is a local geometric reference, not an anatomical skin-thickness measurement.",
+  "nextCorrectionScope": "Preserve the v5 neutral aperture and all protected data. Change only blink path/closed-state tangents; review one close-up side/three-quarter comparison before any further expansion. No correction or appearance work is performed here."
+}

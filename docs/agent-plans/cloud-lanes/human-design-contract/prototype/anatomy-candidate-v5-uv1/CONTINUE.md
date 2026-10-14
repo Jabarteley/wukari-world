@@ -52,3 +52,19 @@ NODE_OPTIONS=--max-old-space-size=128 OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=1 n
 All three ran successfully under the existing single heavy slot. Blender4.3.2, no rendering or new dependency/service/credential/permission changes. No usage denial occurred. The original protected BLEND hash is asserted before mutation; the corrected derivative is saved separately. Use committed bytes rather than rebuilding for receiving work.
 
 Parent is reviewing the existing v5 pixels. No face-quality acceptance is claimed, and no skin/cornea fitting is started. Further anatomy, production UV cleanup and fitting remain parent-directed. No additional work or heavy job is left running.
+
+## Closed-lid explanation after parent pixel review
+
+The UV correction is published as `229155c6ac581f6666031c1b2f49ce1d4510255e`. Parent inspected v5 and accepted the larger neutral opening/removed rectangular crease as improvements, while rejecting the domed closed lids and pinched corner marks. This is not final visual acceptance.
+
+A read-only probe of the protected v5 source records [closed-lid-profile.json](closed-lid-profile.json). The closed central margin lies **3.927 mm forward of the straight line between its two canthi**, compared with3.101 mm when open; its vertical section reaches0.412 mm forward of the outer-ring chord. These are geometric reference measurements, not anatomical skin thickness. Materials and light definitions hash identically between v4 and v5.
+
+The remaining bulge is therefore present in the vertex positions. V5 places the margin on the front of the ellipsoid and interpolates a broad Hermite surface back into the orbital field. Closing the aperture retains that rounded field and the sharp depth transition at the corners. Smooth normals, material response and lighting make the curvature visible; zero normal-flip tests do not certify realistic eyelid shape. No shading-only cause is demonstrated.
+
+A future bounded correction should preserve the improved neutral aperture and change the blink trajectory and closed-state tangents so the lid moves along a believable arc with a controlled closure crease. Review one close-up side/three-quarter comparison before expanding scope. No such geometry correction, render, skin refit or unrelated feature is performed in this follow-up.
+
+Probe command (read-only, no rendering):
+
+```sh
+NODE_OPTIONS=--max-old-space-size=128 OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 node scripts/agent-slot.ts heavy --wait-ms 1000 -- timeout 25s blender -b -t 2 --python-exit-code 2 --python experiments/cloud-lanes/human-design-contract/prototype/inspect_v5_lid_profile.py
+```

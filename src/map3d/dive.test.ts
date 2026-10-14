@@ -1,8 +1,8 @@
 // The dive (./dive.ts): the timeline, the hold and its fallback, skip, refusal, reduced motion, and the camera path.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ATLAS_FOV, CAP_MS, CITY_FOV, CITY_KM_PER_UNIT, COVER_FROM_MS, DESCENT_SHARE, DIVE_MS, END_BY_MS, FALLBACK_REVEAL_MS, FLIGHT_MS, HANDOFF_KM, HAZE_MAX, HOLD_MS, LITE, MAX_LIFT, MAX_TURN, PROBE_MS, QUICK_COVER_MS, REDUCED_MS, REVEAL_MS, STALL_MS, STREET_DISTANCE, STREET_PITCH, TOP_PITCH,
-  approachYaw, arrivalDive, atlasKmPerUnit, cloudCover, cloudReveal, createDive, createFrameProbe, descentView, distanceForSpan, diveTier, diveTimings, handoffSpan, hazeAt, spanKm, swoopPlan, swoopView } from './dive.ts';
+import { ATLAS_FOV, CAP_MS, CITY_FOV, CITY_KM_PER_UNIT, COVER_FROM_MS, DESCENT_SHARE, DIVE_MS, END_BY_MS, FALLBACK_REVEAL_MS, FLIGHT_MS, HANDOFF_KM, HAZE_MAX, HOLD_MS, LITE, MAX_LIFT, MAX_TURN, PROBE_MS, QUICK_COVER_MS, WATCH_FRAMES, REDUCED_MS, REVEAL_MS, STALL_MS, STREET_DISTANCE, STREET_PITCH, TOP_PITCH,
+  approachYaw, arrivalDive, atlasKmPerUnit, cloudCover, cloudReveal, createDive, createFrameProbe, createFrameWatch, descentView, distanceForSpan, diveTier, diveTimings, handoffSpan, hazeAt, spanKm, swoopPlan, swoopView } from './dive.ts';
 import type { Dive, DiveView } from './dive.ts';
 import { project } from './geo/projection.ts';
 import { PITCH_MAX } from './camera.ts';
@@ -223,6 +223,21 @@ test('the frame probe: smooth frames pass after PROBE_MS, a slow mean or one sta
   let late = 'wait';
   for (let t = STALL_MS + 66; late === 'wait'; t += 16) late = firstLong.frame(t);
   assert.equal(late, 'slow', 'but it still counts towards the mean');
+});
+
+test('the frame watch: smooth frames and a few long ones pass, a sustained slow run fails, and it is decided once', () => {
+  const smooth = createFrameWatch();
+  for (let i = 0, t = 0; i < 300; i++, t += 16) assert.equal(smooth.frame(t), 'ok');
+  // The city map mounting under the clouds: two long frames in the window are set aside.
+  const mount = createFrameWatch();
+  let t = 0, verdict = 'ok';
+  for (let i = 0; i < 100; i++) { t += i === 40 || i === 41 ? 350 : 16; verdict = mount.frame(t); assert.equal(verdict, 'ok'); }
+  // A device that drops to about 12 frames a second: judged once a full window has been seen.
+  const slow = createFrameWatch();
+  let frames = 0; t = 0;
+  while (verdict === 'ok' && frames < 200) { t += 80; verdict = slow.frame(t); frames += 1; }
+  assert.equal(verdict, 'slow'); assert.ok(frames >= WATCH_FRAMES, `${frames}`);
+  assert.equal(slow.frame(t + 16), 'slow', 'decided once');
 });
 
 test('scale match: the city map starts at the ground width the atlas ended on', () => {

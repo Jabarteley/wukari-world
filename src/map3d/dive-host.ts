@@ -11,7 +11,7 @@
  * Fetched with the maps (src/app/scene/MapWorld.vue, which also brings ./dive-host.css, so this file stays testable in Node), never in the first download. The frame loop runs only while a dive does (at most
  * CAP_MS) and ends itself; a timer makes sure a dive the browser stopped drawing (a hidden tab) still ends and lets its waiters go.
  */
-import { CAP_MS, createDive, createFrameProbe, diveTier } from './dive.ts';
+import { CAP_MS, createDive, createFrameProbe, createFrameWatch, diveTier } from './dive.ts';
 import type { DeviceHints, DiveKind, DiveOutcome, DiveTier } from './dive.ts';
 
 export interface DiveHostOptions {
@@ -119,7 +119,7 @@ export function createDiveHost(options: DiveHostOptions): DiveHost {
 
   function start(cityId: string, name: string, { prefetch, onSkip, kind = 'atlas' }: DiveStart = {}): DiveRun {
     current?.skip();
-    const tier = diveTier({ ...device(), reduced: reduced() }), quiet = tier === 'cut', dive = createDive({ tier, kind }), box = build(), probe = createFrameProbe();
+    const tier = diveTier({ ...device(), reduced: reduced() }), quiet = tier === 'cut', dive = createDive({ tier, kind }), box = build(), probe = createFrameProbe(), watch = createFrameWatch();
     if (!quiet && painted === undefined) painted = paintClouds(doc);
     const image = !quiet && painted ? `url("${painted}")` : '';
     for (const cloud of [left!, right!]) { cloud.style.backgroundImage = image; cloud.style.opacity = '0'; cloud.style.transform = ''; }
@@ -174,7 +174,8 @@ export function createDiveHost(options: DiveHostOptions): DiveHost {
       if (over || destroyed) return;
       const at = now();
       // The first frames are timed: a device that cannot draw them smoothly gets today's cross-fade instead (the plain veil has nothing to judge).
-      if (!quiet && probe.frame(at) === 'slow') { run.bail('slow'); return; }
+      // Then the whole dive is watched: a mean far over the budget for a second (the longest gaps set aside) ends it too.
+      if (!quiet) { const first = probe.frame(at); if (first === 'slow' || (first === 'ok' && watch.frame(at) === 'slow')) { run.bail('slow'); return; } }
       const going = dive.tick(at);
       paint();
       if (dive.frame.handoff) handOff();

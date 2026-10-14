@@ -133,6 +133,23 @@ test('slow first frames bail out at once to today\'s cross-fade: the atlas lands
   host.destroy();
 });
 
+test('a dive that starts smoothly and then slows down ends as Skip does; one long frame does not end it', async () => {
+  const slowDown = harness();
+  let landed = 0;
+  const run = slowDown.host.start('lagos', 'Lagos', { prefetch: Promise.resolve(), onSkip: () => { landed += 1; } });
+  slowDown.frames(900, 16);
+  assert.equal(run.live, true, 'the probe passed');
+  slowDown.frames(4000, 90);
+  assert.equal(await run.done, 'slow'); assert.equal(landed, 1); assert.equal(slowDown.queue.length, 0);
+  slowDown.host.destroy();
+  const stall = harness();
+  const ok = stall.host.start('lagos', 'Lagos', { prefetch: Promise.resolve() });
+  stall.frames(900, 16); stall.clock.now += 330; stall.frames(FLIGHT_MS, 16); await flush();
+  ok.ready(true); stall.frames(20000, 16); await flush();
+  assert.equal(await ok.done, 'arrived');
+  stall.host.destroy();
+});
+
 test('the hard timeout at CAP_MS ends any dive still going, as Skip does', async () => {
   const { host, timers, frames } = harness();
   let landed = 0;

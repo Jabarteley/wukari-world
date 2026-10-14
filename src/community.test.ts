@@ -361,7 +361,7 @@ test('a visit that ended, or a Home room that was refused, never leaves voice on
   // The rules themselves stay in the source, so a later edit cannot drop them quietly.
   const source = await readFile(new URL('./community.ts', import.meta.url), 'utf8')
   assert.match(source, /if \(refused === 'not_a_guest'\) leaveVoice\(false\)/)
-  assert.match(source, /if \(refused === 'venue_mismatch' \|\| refused === 'visit_ended'\) \{[\s\S]{0,400}?leaveVoice\(false\)/)
+  assert.match(source, /if \(refused === 'venue_mismatch' \|\| refused === 'visit_ended' \|\| \(placeGone && Boolean\(room\.place\)\)\) \{[\s\S]{0,400}?leaveVoice\(false\)/)
 })
 
 test('the Worker host heartbeat is answered with heartbeat-ack, and nothing asks for media on its own', async (t) => {

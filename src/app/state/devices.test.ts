@@ -42,7 +42,8 @@ test('the shell keeps the screen a device has open when the place changed elsewh
   assert.match(source, /!state\.estate\.lga && !state\.estate\.home && !away\) shell\.open\('city'/)
   assert.match(source, /if \(away\) game\.toast\(CONTINUED_TEXT\)/)
   // The place itself is always followed.
-  assert.match(source, /scene\.venue\.value\?\.setLocation\(state\.location\)/)
+  // (What the scene is handed is the life, or the life as the Square shows it: sceneState.)
+  assert.match(source, /scene\.venue\.value\?\.setLocation\(sceneState\(state\)\.location\)/)
   assert.match(source, /onLifeFrame\(\(hint\) => \{ game\.lifeChanged\(hint\) \}\)/)
   assert.match(source, /onSocketOpen\(\(again\) => \{ if \(again\) void game\.wake\(\) \}\)/)
   assert.match(source, /onSocketClose\(\(code\) => \{ if \(code === SESSION_CHANGED\) void sessionMoved\(\) \}\)/)

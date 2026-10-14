@@ -18,9 +18,10 @@ import { transactWithCityContent } from '../prepared-city-transaction.ts';
 import { executeCommand, outcomeKey } from '../routes/core.ts';
 import { socialService } from '../social/service.ts';
 import { presenceOf } from '../social/presence.ts';
+import { SQUARE_ROOM } from '../../src/places/model.ts';
 import { AGENT_LIMITS, agentMark } from './policy.ts';
 import { mayRunAction } from './access.ts';
-import { refusal } from './service.ts';
+import { readService, refusal } from './service.ts';
 import type { Agent, AgentOutcome, AgentService } from './service.ts';
 
 /** JSON-schema type names (spelled through this table so that the frame scan of src/types/protocol.test.ts, which reads `{ type: '…'`, does not take them for socket frames). */
@@ -387,6 +388,16 @@ const list_people_here: ToolDefinition = {
   inputSchema: obj({}),
   async run(c) {
     const { value } = await look(c, (state, _view, db, session) => {
+      // In a place (enter_place) these are the people of the place: in the Square, those of the agent's own part of it (the group it is seated in).
+      const place = c.svc.standing(session, state, c.ctx.now(), db);
+      if (place) {
+        const players = playersOf(db), mates = place.room === SQUARE_ROOM ? c.ctx.checks?.groupPeers?.(session.publicId, place.room) ?? null : null;
+        const members = presenceOf(c.ctx).inRoom(place.room).filter((member) => member.id !== session.publicId && (mates === null || mates.includes(member.id)) && players[member.id] && !c.ctx.checks?.blocked?.(session.publicId, member.id));
+        return { here: place.room === SQUARE_ROOM ? 'square' : 'room', players: members.slice(0, 20).map((member) => {
+          const service = readService(db.social?.players[member.id]?.service);
+          return { id: member.id, name: member.name, ...agentMark(players[member.id]?.agent), friend: players[session.publicId]?.friends[member.id] !== undefined, ...(service ? { service } : {}) };
+        }), count: members.length };
+      }
       if (state.location === 'home' || state.location === 'neighbourhood') return { here: state.location, players: [] as Json[], note: 'Nobody is listed in a home or on the street.' };
       const room = venueRoomKey(c.agent.cityId, state.location, session.publicId), players = playersOf(db);
       const members = presenceOf(c.ctx).inRoom(room).filter((member) => member.id !== session.publicId && players[member.id] && !c.ctx.checks?.blocked?.(session.publicId, member.id));

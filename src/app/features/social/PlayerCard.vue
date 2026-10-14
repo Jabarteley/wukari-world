@@ -62,6 +62,9 @@ const social = computed(() => view.value.social)
 const rel = computed(() => social.value.relationships.find((item) => item.id === props.id))
 const points = computed(() => Math.floor(rel.value?.points ?? 0))
 const listing = computed(() => (state.people && !('error' in state.people) ? state.people : null))
+/** They are standing in the Square right now (a place of no city: src/places/model.ts): going there is free, from anywhere. */
+const inSquare = computed(() => Boolean(card.value && !card.value.self && !card.value.blocked && card.value.status === 'online' && card.value.cityId === 'world' && card.value.venue === 'square'))
+const joinSquare = (): void => { void import('../places/placesStore.ts').then((module) => module.enterSquare()) }
 const together = computed(() => Boolean(listing.value?.players.some((player) => player.id === props.id)) && listing.value?.venue === game.state.value.location && game.state.value.location !== 'home')
 const left = computed(() => (rel.value ? rel.value.left : social.value.dailyInteractions))
 const venueName = (id: string): string => venueNameOf(view.value.venues, id)
@@ -149,6 +152,7 @@ async function sendReport(): Promise<void> {
     <button type="button" class="ui-button is-primary is-block" :disabled="card.blocked" @click="shell.open('messages', { to: id, name: card.name })">Chat</button>
     <span v-if="card.blocked" class="social-why">Unblock this player to chat.</span>
     <VisitButton v-if="card.friend && !card.blocked" :id="id" :name="card.name" />
+    <button v-if="inSquare" type="button" class="ui-button is-primary is-block" data-join-square :disabled="!view.connected" @click="joinSquare()">Join {{ card.name.split(' ')[0] }} in the Square</button>
     <template v-if="pingInstead(card.status)">
       <PingButton :id="id" :name="card.name" :stranger="!card.friend" :blocked="card.blocked" />
       <PingStrip :id="id" :name="card.name" />

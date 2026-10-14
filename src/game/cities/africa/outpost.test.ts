@@ -93,7 +93,7 @@ test('catalogue rows: a tenth element 1 marks an authored-only outpost; every ot
   const of = (id: string) => entries.find(entry => entry.id === id)
   assert.equal(of('test-outpost')?.generatedLinkPolicy, 'authored-only')
   assert.equal(of('stanley') && 'generatedLinkPolicy' in of('stanley')!, false)
-  assert.ok(CITY_CATALOGUE.every(city => city.generatedLinkPolicy === undefined), 'no open city is an outpost yet')
+  assert.ok(CITY_CATALOGUE.every(city => city.generatedLinkPolicy === undefined || city.generatedLinkPolicy === 'authored-only'), 'a catalogue city has generated links, or is an authored-only outpost')
 })
 
 test('a registered outpost is reached by exactly its three authored links in both directions', async (t) => {

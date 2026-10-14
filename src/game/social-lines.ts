@@ -46,6 +46,8 @@ export function presenceText(person: { status?: string; seenAt?: number; venue?:
   const entry = presenceByStatus[person?.status ?? ''] || PRESENCE.offline;
   if (entry === PRESENCE.offline && typeof person?.seenAt === 'number' && Number.isFinite(person.seenAt) && typeof now === 'number' && Number.isFinite(now)) return `${entry.label} · last seen ${agoText(person.seenAt, now)}`;
   const cityName = (id: string): string => place?.cityName?.(id) ?? id;
+  // A place of no city (the pseudo-city `world`): the Square, or a group's room.
+  if (person?.cityId === 'world' && (person.status === 'online' || person.status === 'away')) return `${entry.label} · ${person.venue === 'square' ? 'in the Square' : 'in a group room'}`;
   const elsewhere = person?.cityId && place?.cityId && person.cityId !== place.cityId ? person.cityId : null;
   if (person?.status === 'away' && person.journey) return `Travelling to ${cityName(person.journey)}`;
   if (person?.status === 'away' && person.going) return elsewhere ? `On the move in ${cityName(elsewhere)}` : `On the way ${person.going === 'home' ? 'home' : `to ${venueName(person.going)}`}`;

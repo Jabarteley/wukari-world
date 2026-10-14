@@ -4,7 +4,11 @@
  */
 import type { PublicSession } from './protocol.ts'
 
-export interface CommunityRoom { cityId: string; venueId: string }
+/**
+ * The room this page stands in. A venue of a city, as ever; with `hostId`, that player's Home room as an accepted guest; with
+ * `place`, the Square or a group's room (src/places/model.ts), which no city has. `label` is what the room line says for a place.
+ */
+export interface CommunityRoom { cityId: string; venueId: string; hostId?: string; place?: 'square' | 'room'; roomId?: string; label?: string }
 export interface VoicePosition { x: number; z: number }
 
 /** One member of the room as the server lists it (src/types/protocol.ts PresenceMember, every field optional here). */
@@ -134,6 +138,8 @@ export interface CommunityController {
   /** Report where the avatar stands. True when it was sent. */
   moveTo(x: number, z: number): boolean
   join(cityId: string, venueId: string): void
+  /** Stand in any room this page may: a venue, a visited home (`hostId`) or a place (`place`). The same rules as join(). */
+  joinRoom(room: CommunityRoom): void
   /** A Walk button. */
   walk(dx: number, dz: number): void
   /** Save the device nickname and connect. Resolves true when the session exists. */

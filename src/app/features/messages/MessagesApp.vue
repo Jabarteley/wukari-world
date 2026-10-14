@@ -61,6 +61,8 @@ import { mergeMessages } from '../../../game/social-model.ts'
 import { isMessagePinsFrame } from './messagePinsFrame.ts'
 import FriendPicker from './FriendPicker.vue'
 import GroupManage from './GroupManage.vue'
+/** A group's room (features/places): its code is fetched when the button is pressed. */
+const openRoom = (id: string): void => { void import('../places/placesStore.ts').then((module) => module.enterRoom(id)) }
 import ChatSettings from './ChatSettings.vue'
 import ChatMenu from './ChatMenu.vue'
 import AttachSheet from './AttachSheet.vue'
@@ -483,6 +485,7 @@ defineExpose({
           <h3 v-if="withFounder"><button type="button" class="messages-name" :aria-label="`${title}: open profile`" @click="conv?.with && shell.open('person', { player: conv.with, name: title })">{{ title }}</button><FounderTag /><ResidentBadge v-if="conv?.kind === 'dm' && conv.with" :id="conv.with" /><small :class="presenceOf(conv?.with) ? `messages-presence is-${presenceOf(conv?.with)}` : undefined">{{ (conv?.kind === 'dm' && presenceWord(conv.with)) || threadKind(conv) }}</small></h3>
           <h3 v-else><button v-if="partner" type="button" class="messages-name" :aria-label="`${title}: open profile`" @click="shell.open('person', { player: partner, name: title })">{{ title }}</button><template v-else>{{ title }}</template><small :class="partner && presenceOf(partner) ? `messages-presence is-${presenceOf(partner)}` : undefined">{{ (partner && presenceWord(partner)) || threadKind(conv) }}</small></h3>
           <AiTag v-if="partnerRef" :who="partnerRef" />
+          <BaseButton v-if="conv?.kind === 'group'" small data-group-room title="Step into this group’s room: furnish it together and talk by voice" @click="openRoom(conv.id)">Room</BaseButton>
           <BaseButton v-if="conv?.kind === 'group'" small :aria-expanded="ui.manage" aria-haspopup="dialog" @click="ui.manage = true">Group</BaseButton>
           <template v-else-if="partner">
             <!-- A friend who is not in the game cannot be rung: Ping takes Call's place, so the header never holds a fourth control. -->

@@ -66,11 +66,13 @@ const city = computed(() => { const parts = (s.value?.roomText ?? '').split(' ·
 const tone = computed(() => (s.value?.connection === 'Connected' ? 'good' : s.value?.canReconnect || /dis|unavail|changed/i.test(s.value?.connection ?? '') ? 'bad' : 'warn'))
 const others = computed(() => (s.value?.members ?? []).filter((member) => !member.you))
 const alone = computed(() => Boolean(s.value?.hasSession && !s.value.privateHome && s.value.connection === 'Connected' && others.value.length === 0))
+/** A home or a group's room with nobody else in it: nothing to hear and nobody to hear you. With company, voice and the list are shown as anywhere. */
+const privateAlone = computed(() => Boolean(s.value?.privateHome && others.value.length === 0))
 const hereText = computed(() => { const n = s.value?.memberCount ?? 0; return n === 1 ? 'Just you' : `${n} here` })
 function caption(member: MemberRow): string {
   if (member.you) return member.voice === 'off' ? 'You' : member.voice === 'muted' ? 'You · muted' : 'You · in voice'
   if (member.voice === 'off') return ''
-  return `${member.voice === 'muted' ? 'Muted' : 'In voice'}${member.range === 'near' ? ' · near' : ' · far'}`
+  return `${member.voice === 'muted' ? 'Muted' : 'In voice'}${member.range === 'near' ? ' · near' : member.range === 'far' ? ' · far' : ''}`
 }
 const canWalk = computed(() => Boolean(s.value && !s.value.privateHome && !s.value.walkDisabled && others.value.length > 0))
 
@@ -140,7 +142,7 @@ onBeforeUnmount(() => { viewport?.removeEventListener('resize', lift); viewport?
       </div>
       <p class="community-status">
         <span class="community-connection" :class="`is-${tone}`" role="status"><i aria-hidden="true" />{{ s.connection }}</span>
-        <span v-if="s.hasSession && !s.privateHome && s.memberCount > 0" class="community-count">{{ hereText }}</span>
+        <span v-if="s.hasSession && !privateAlone && s.memberCount > 0" class="community-count">{{ hereText }}</span>
       </p>
     </header>
 
@@ -158,7 +160,7 @@ onBeforeUnmount(() => { viewport?.removeEventListener('resize', lift); viewport?
       <p>This nickname is saved on this device. It is not a verified identity.</p>
     </form>
 
-    <p v-if="s.privateHome" class="community-private-note">Your home is private to this device session. Public nearby voice and community chat are available at shared venues.</p>
+    <p v-if="privateAlone" class="community-private-note">Only you are here. This room is private: when friends come in, you can talk here by voice and chat.</p>
     <div v-if="s.hasSession" class="community-content">
       <div class="community-side">
         <div class="community-presence">
@@ -199,7 +201,7 @@ onBeforeUnmount(() => { viewport?.removeEventListener('resize', lift); viewport?
           </div>
         </div>
 
-        <div v-if="!s.privateHome" class="community-voice" :class="{ 'is-on': s.voice.on }">
+        <div v-if="!privateAlone" class="community-voice" :class="{ 'is-on': s.voice.on }">
           <div class="community-voice-top">
             <div class="community-voice-text">
               <h3>Voice</h3>
@@ -246,7 +248,7 @@ onBeforeUnmount(() => { viewport?.removeEventListener('resize', lift); viewport?
         </div>
       </div>
 
-      <template v-if="!s.privateHome">
+      <template v-if="!privateAlone">
       <div class="community-chat">
         <h3>Room chat</h3>
         <div class="community-thread">

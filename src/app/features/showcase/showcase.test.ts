@@ -291,7 +291,7 @@ test('Phone apps with no atlas picture: Services and Market draw their icon-set 
   const art = source('app', 'features', 'phone', 'AppArtwork.vue')
   const atlas = (readFileSync(join(root, 'ui', 'phone', 'appArtwork.ts'), 'utf8').match(/PHONE_ART: readonly string\[\] = \[([^\]]*)\]/)?.[1] ?? '').split(',').map((id) => id.replace(/"/g, '').trim())
   const without = NATIVE_PANELS.filter((panel) => panel.placement === 'phone' && !atlas.includes(panel.id)).map((panel) => panel.id).sort()
-  assert.deepEqual(without, ['barber-practice', 'clerk-practice', 'driving-practice', 'justice-practice', 'market', 'showcase'], 'the apps that have no atlas picture')
+  assert.deepEqual(without, ['barber-practice', 'clerk-practice', 'driving-practice', 'justice-practice', 'market', 'places', 'showcase'], 'the apps that have no atlas picture')
   const drawn = /ICON_SET_APPS: readonly string\[\] = \[([^\]]*)\]/.exec(art)?.[1]?.replace(/'/g, '').split(',').map((id) => id.trim()) ?? []
   assert.deepEqual(drawn, ['showcase', 'market'], 'only an app that declares a mark draws it')
   assert.match(art, /const drawn = computed\(\(\) => ICON_SET_APPS\.includes\(props\.app\) && !PHONE_ART\.includes\(props\.app\)\)/)

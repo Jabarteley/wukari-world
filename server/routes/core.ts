@@ -27,6 +27,7 @@ import { residenceGate } from './residence.ts';
 import { jailGate } from '../politics/gate.ts';
 import { landOf } from '../world/land.ts';
 import { characterCity } from '../character.ts';
+import { placeOfRoom } from '../../src/places/model.ts';
 import { cityRules } from '../../src/game/content/world.ts';
 
 // The receipt steps themselves live in ./once.js (core.actionOnce), shared with ctx.act.
@@ -195,7 +196,8 @@ export default function coreRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
         const current = request.requireSession(db, { renew });
         const live = core.sockets().some(ws => {
           if (ws.session.id !== current.publicId || !core.isOpen(ws) || !ws.room || ws.expiresAt <= now()) return false;
-          const city = ws.room.split(':')[0];
+          // A place (the Square, a group's room) is in no city: the life the player plays is the one settled.
+          const city = placeOfRoom(ws.room) ? characterCity(current) : ws.room.split(':')[0];
           if (!isCityId(city)) return false;
           const state = settle(current, city);
           // The player's own venue room, or a host's Home room they are still a guest of.

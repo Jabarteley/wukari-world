@@ -16,6 +16,10 @@
  *       keyboard-accessible way to move without the scene). When it is absent or returns false -- the
  *       scene could not be drawn -- the buttons move the voice position directly, as before.
  *
+ * ONE CIRCLE IN A PRIVATE ROOM. A home (your own, or one you are a guest in) and the room of a group chat are small and
+ * private: nobody walks in them and nobody reports a place, so there is no distance to measure. Everyone there who joined
+ * voice hears everyone else at full volume. A public venue and the Square keep the 12-step rule.
+ *
  * PRIVACY. Nothing here touches the microphone or an AudioContext except joinVoice(), which the panel
  * calls from the Join voice button only. The microphone is OFF by default; a joined stream starts
  * with its tracks disabled (muted); leaveVoice() is the one way out and stops every track; a room that
@@ -38,6 +42,8 @@ import type {
 export interface CommunityOptions {
   cityId?: string
   venueId?: string
+  /** The room to stand in from the start, when it is not simply a venue: a visited home or a place. Wins over cityId and venueId. */
+  room?: CommunityRoom | null
   onStatus?: (status: CommunityStatus) => void
   /** After every presence message and whenever the list empties (disconnect, room change, revocation, destroy). */
   onMembers?: (event: MembersEvent) => void
@@ -102,9 +108,16 @@ interface Browser {
 const browser = (): Browser => globalThis as unknown as Browser
 
 export async function createCommunity(options: CommunityOptions = {}): Promise<CommunityController> {
-  const { cityId = 'lagos', venueId = 'park', onStatus = () => {}, onMembers = () => {}, onNotice = () => {}, onChange = null, onStep = null, venueName = null, audioStreamFactory = null, diagnostics = false, onPeerStats = () => {}, iceTransportPolicy = 'all', createAudio = () => new Audio() } = options
+  const { cityId = 'lagos', venueId = 'park', room: firstRoom = null, onStatus = () => {}, onMembers = () => {}, onNotice = () => {}, onChange = null, onStep = null, venueName = null, audioStreamFactory = null, diagnostics = false, onPeerStats = () => {}, iceTransportPolicy = 'all', createAudio = () => new Audio() } = options
 
-  let room: CommunityRoom = { cityId, venueId }
+  let room: CommunityRoom = firstRoom ? { ...firstRoom } : { cityId, venueId }
+  /** A private room with no places in it: one voice circle, no walking (see ONE CIRCLE above). */
+  const flat = (): boolean => room.venueId === 'home' || room.place === 'room'
+  /** What the server is asked for: a place, a host's Home room, or the venue. */
+  const joinFrame = (): object => room.place
+    ? { type: 'join', place: room.place, ...(room.roomId ? { roomId: room.roomId } : {}), deltas: true }
+    : { type: 'join', cityId: room.cityId, venueId: room.venueId, ...(room.hostId ? { hostId: room.hostId } : {}), deltas: true }
+  const sameRoom = (next: CommunityRoom): boolean => room.cityId === next.cityId && room.venueId === next.venueId && (room.hostId ?? '') === (next.hostId ?? '') && (room.place ?? '') === (next.place ?? '') && (room.roomId ?? '') === (next.roomId ?? '')
   let session: PublicSession | null = null
   let socket: WebSocket | null = null
   let members: RoomMember[] = []
@@ -138,7 +151,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
 
   // ---- state out ---------------------------------------------------------------------------------------------
   function groupView(): GroupView | null {
-    if (!counts || room.venueId === 'home') return null
+    if (!counts || flat()) return null
     return { here: counts.here, total: counts.total, groups: counts.groups, cap: counts.cap, header: groupHeader(counts) }
   }
   function snapshot(): CommunityState {
@@ -178,7 +191,9 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
     return true
   }
   function labelRoom(): void {
-    privateHome = room.venueId === 'home'
+    privateHome = flat()
+    if (room.place) { roomText = room.label || (room.place === 'square' ? 'The Square' : 'Group room'); emit(); return }
+    if (room.hostId) { roomText = room.label || 'A friend’s home'; emit(); return }
     // The game names the venue (venueName(venueId, cityId) -> its label in that city); without it, the three names this panel always knew.
     let named: string | null = null
     try { named = typeof venueName === 'function' ? venueName(room.venueId, room.cityId) : null } catch { named = null }
@@ -196,14 +211,15 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
   const selfMember = (): RoomMember | undefined => members.find((person) => person.id === session?.id)
   function distanceTo(member: RoomMember | null | undefined): number {
     const self = validPosition(selfMember()), other = validPosition(member)
+    if (flat()) return member && member.id !== session?.id ? 0 : Infinity
     const distance = self && other ? Math.hypot(self.x - other.x, self.z - other.z) : Infinity
     return room.venueId === 'neighbourhood' ? distance / STREET_NETWORK_SCALE : distance
   }
   function nearby(member: RoomMember | null | undefined): boolean {
-    return room.venueId !== 'home' && Boolean(member) && !rejectedPeers.has(member?.id ?? '') && Boolean(member?.enabled) && member?.id !== session?.id && distanceTo(member) < VOICE_RADIUS
+    return Boolean(member) && !rejectedPeers.has(member?.id ?? '') && Boolean(member?.enabled) && member?.id !== session?.id && distanceTo(member) < VOICE_RADIUS
   }
   function moveTo(x: number, z: number): boolean {
-    if (!roomReady || room.venueId === 'home' || !Number.isFinite(x) || !Number.isFinite(z)) return false
+    if (!roomReady || flat() || !Number.isFinite(x) || !Number.isFinite(z)) return false
     // The UNILAG campus is walked in campus coordinates: the server checks them against its walkable ground (server/protocol.ts).
     if (room.venueId === 'unilag') return send({ type: 'move', x, z })
     const mx = Math.max(-SPACE_BOUND, Math.min(SPACE_BOUND, x)), mz = Math.max(-SPACE_BOUND, Math.min(SPACE_BOUND, z))
@@ -212,7 +228,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
   }
   /** A "Walk" button: the game walks the avatar (its new place comes back through moveTo); without a scene the voice position moves directly. */
   function walk(dx: number, dz: number): void {
-    if (!roomReady || room.venueId === 'home') return
+    if (!roomReady || flat()) return
     let walked = false
     try { walked = typeof onStep === 'function' && onStep(dx, dz) === true } catch { walked = false }
     if (walked) return
@@ -232,16 +248,18 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
     const self = validPosition(selfMember())
     const inVoice = members.filter((member) => member.enabled && member.id !== session?.id)
     const near = inVoice.filter((member) => distanceTo(member) < VOICE_RADIUS).length
-    positionText = !self ? 'Waiting for your place in the venue…'
+    positionText = flat() ? (inVoice.length ? `${inVoice.length} ${inVoice.length === 1 ? 'person is' : 'people are'} in voice. Everyone in this room hears everyone.` : 'Nobody else is in voice here yet. Everyone in this room hears everyone.')
+      : !self ? 'Waiting for your place in the venue…'
       : inVoice.length ? `${near} of ${inVoice.length} ${inVoice.length === 1 ? 'person' : 'people'} in voice ${near === 1 && inVoice.length === 1 ? 'is' : 'are'} within range of where you stand.`
         : 'Nobody else is in voice here yet.'
     // On the campus the avatar is walked in its own scene (its place arrives through moveTo): the four buttons would move the voice position alone.
-    walkDisabled = !roomReady || !self || room.venueId === 'unilag'
+    walkDisabled = !roomReady || !self || room.venueId === 'unilag' || flat()
   }
   function renderMembers(): void {
     memberRows = members.map((member) => {
       const you = member.id === session?.id
-      const range = member.enabled && !you ? (distanceTo(member) < VOICE_RADIUS ? 'near' : 'far') : null
+      // In a private room there is no near or far: everyone in voice is heard.
+      const range = member.enabled && !you && !flat() ? (distanceTo(member) < VOICE_RADIUS ? 'near' : 'far') : null
       return {
         id: member.id, name: member.name, you,
         label: `${member.name}${you ? ' (you)' : ''}`,
@@ -276,7 +294,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
     }
     const active = [...peers.values()].filter((peer) => peer.pc.connectionState === 'connected').length
     const failed = [...peers.values()].some((peer) => ['failed', 'disconnected'].includes(peer.pc.connectionState))
-    voiceText = `${sourceLabel} ${muted ? 'muted.' : 'on.'} ${failed ? 'A peer connection has been interrupted; leave and rejoin to retry.' : active ? `Connected to ${active} ${active === 1 ? 'person' : 'people'}.` : peers.size ? 'Connecting to nearby people…' : 'No one in voice is within 12 steps. Walk closer to someone in the venue.'}`
+    voiceText = `${sourceLabel} ${muted ? 'muted.' : 'on.'} ${failed ? 'A peer connection has been interrupted; leave and rejoin to retry.' : active ? `Connected to ${active} ${active === 1 ? 'person' : 'people'}.` : peers.size ? 'Connecting to nearby people…' : flat() ? 'Nobody else has joined voice in this room yet.' : 'No one in voice is within 12 steps. Walk closer to someone in the venue.'}`
     emit()
   }
   function closePeer(id: string): void {
@@ -499,19 +517,21 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
       const refused = message.error || message.code
       // The server refused a Home room this socket asked for: whatever else is true, no microphone stays open on a refusal.
       if (refused === 'not_a_guest') leaveVoice(false)
-      // The room is gone for this socket -- the life left the venue, or a house visit ended: voice stops with it.
-      if (refused === 'venue_mismatch' || refused === 'visit_ended') {
+      // The room is gone for this socket -- the life left the venue, a house visit ended, or a place can no longer be stood in: voice stops with it.
+      const placeGone = refused === 'place_ended' || refused === 'not_admitted' || refused === 'place_full'
+      if (refused === 'venue_mismatch' || refused === 'visit_ended' || (placeGone && Boolean(room.place))) {
         roomRevoked = true; roomReady = false; members = []; rejectedPeers.clear()
         if (reconnectTimer !== null) clearTimeout(reconnectTimer)
         reconnectTimer = null; canReconnect = false
         leaveVoice(false); renderMembers()
         for (const pendingMessage of pending.values()) {
-          pendingMessage.line.delivery = refused === 'visit_ended' ? 'Not sent: the visit ended' : 'Not sent: you moved to another place'
+          pendingMessage.line.delivery = refused === 'visit_ended' ? 'Not sent: the visit ended' : placeGone ? 'Not sent: you are no longer in this room' : 'Not sent: you moved to another place'
           pendingMessage.line.canRetry = false
         }
         pending.clear(); composeDisabled = true
         connection = 'Room changed'
-        feedback(refused === 'visit_ended' ? 'The visit has ended.' : 'You moved to another place. Return to the game to reconnect here.')
+        feedback(refused === 'visit_ended' ? 'The visit has ended.' : refused === 'place_full' ? (message.message || 'This room is full right now.') : placeGone ? 'You are no longer in this room.' : 'You moved to another place. Return to the game to reconnect here.')
+        if (placeGone) { try { globalThis.dispatchEvent(new CustomEvent('jaw:place-ended', { detail: { code: refused, place: room.place, roomId: room.roomId ?? null } })) } catch { /* no window: a test */ } }
         return
       }
       const rejected = message.clientId ? pending.get(message.clientId) : undefined
@@ -540,7 +560,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
     roomReady = false; joinedAt = null; canReconnect = false; report(attempts ? 'Reconnecting…' : 'Connecting…'); voiceStatus()
     const current = new WebSocket(`${location.protocol === 'https:' ? 'wss:' : 'ws:'}//${location.host}/socket`)
     socket = current
-    current.onopen = () => { if (destroyed || socket !== current) return; connected = true; report('Connected'); if (!roomRevoked) send({ type: 'join', ...room, deltas: true }) }
+    current.onopen = () => { if (destroyed || socket !== current) return; connected = true; report('Connected'); if (!roomRevoked) send(joinFrame()) }
     current.onmessage = (event) => { if (!destroyed && socket === current) { busyTries = 0; receive(event) } }
     current.onclose = (event?: { code?: number }) => {
       if (destroyed || socket !== current) return
@@ -562,7 +582,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
 
   // ---- joining voice: the only place a microphone is asked for ---------------------------------------------------
   async function joinVoice(): Promise<void> {
-    if (!roomReady || room.venueId === 'home' || joiningVoice || voice) return
+    if (!roomReady || joiningVoice || voice) return
     if ((!audioStreamFactory && !navigator.mediaDevices?.getUserMedia) || !browser().RTCPeerConnection) { feedback('Voice needs a supported browser on localhost or HTTPS.'); return }
     const generation = ++voiceGeneration
     joiningVoice = true; feedbackText = ''; voiceStatus()
@@ -696,14 +716,15 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
       return true
     } catch { feedback('Could not save your device nickname. Check the local server and try again.'); return false } finally { savingName = false; emit() }
   }
-  function join(nextCityId: string, nextVenueId: string): void {
-    if (destroyed || (!roomRevoked && room.cityId === nextCityId && room.venueId === nextVenueId)) return
+  const join = (nextCityId: string, nextVenueId: string): void => joinRoom({ cityId: nextCityId, venueId: nextVenueId })
+  function joinRoom(next: CommunityRoom): void {
+    if (destroyed || (!roomRevoked && sameRoom(next))) return
     leaveVoice(!roomRevoked); roomRevoked = false; composeDisabled = false
-    room = { cityId: nextCityId, venueId: nextVenueId }; roomReady = false; members = []; counts = null; groupList = null; apart = null; groupNote = null
+    room = { ...next }; roomReady = false; members = []; counts = null; groupList = null; apart = null; groupNote = null
     for (const message of pending.values()) { message.line.delivery = 'Not delivered: room changed'; message.line.canRetry = false }
     pending.clear(); seen.clear(); rejectedPeers.clear(); chat.length = 0; renderMembers(); labelRoom()
     feedbackText = ''
-    if (connected) send({ type: 'join', ...room, deltas: true }); else connect()
+    if (connected) send(joinFrame()); else connect()
     voiceStatus()
   }
   function destroy(): void {
@@ -727,7 +748,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
     get state() { return snapshot() },
     subscribe(listener) { listeners.add(listener); return () => { listeners.delete(listener) } },
     getSession() { return session ? { ...session } : null },
-    getDiagnostics, moveTo, join, walk, saveName, sendChat, npcLine, retryMessage, listGroups, closeGroups, joinGroup, joinFriendGroup, clearGroupNote, joinVoice, toggleMute,
+    getDiagnostics, moveTo, join, joinRoom, walk, saveName, sendChat, npcLine, retryMessage, listGroups, closeGroups, joinGroup, joinFriendGroup, clearGroupNote, joinVoice, toggleMute,
     leaveVoice: () => leaveVoice(), selectDevice, playPeer, reconnect, destroy,
   }
 }

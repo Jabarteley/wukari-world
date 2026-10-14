@@ -7,6 +7,7 @@ import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { ref, shallowRef, nextTick } from 'vue'
 import { createCommunityStore, loadStatusLine, notConnected, positionsOf, recoveryNext } from './communityStore.ts'
+import { placeNow } from '../places/placeState.ts'
 import type { CommunityDeps, CommunityStore } from './communityStore.ts'
 import { communityState, fakeController } from './communityFixtures.ts'
 import type { FakeController } from './communityFixtures.ts'
@@ -136,6 +137,13 @@ test('opening: private at home, honest when offline, a wait while the first load
   home.store.toggle()
   assert.deepEqual(home.log.toasts.at(-1), ['Your home is private. Visit a public venue to meet people.', undefined])
   assert.equal(home.store.open.value, false)
+  // with a friend inside, the home's room opens: that is where host and guests talk
+  await home.store.start()
+  const hosted = home.made[0] as FakeController
+  hosted.current = { ...hosted.current, memberCount: 2 }
+  hosted.options.onChange?.(hosted.current)
+  home.store.toggle()
+  assert.equal(home.store.open.value, true, 'a home with company has a room to open')
 
   const offline = rig({ connected: false })
   offline.game.link.value = 'offline'
@@ -185,12 +193,45 @@ test('the room follows the life: arrival, a new city, home closes the panel', as
   assert.equal(controller.calls.filter((c) => c.startsWith('join')).length, 1, 'same place: no join')
   game.cityId.value = 'ibadan'
   await nextTick()
-  assert.equal(controller.calls.at(-1), 'join ibadan,library')
+  assert.equal(controller.calls.at(-1), 'joinRoom ibadan,library')
   store.toggle(true)
   const library = game.state.value
   game.state.value = { ...library, location: 'home' } as LifeState
   game.emit('accepted', game.state.value, library)
   assert.equal(store.open.value, false, 'home is private')
+})
+
+test('standing in a place moves the same socket there and back, and the room stops following the life meanwhile', async () => {
+  const { store, game, made } = rig()
+  await store.start()
+  const controller = made[0] as FakeController
+  placeNow.value = { kind: 'square' }
+  await nextTick()
+  assert.equal(controller.calls.at(-1), 'joinRoom square')
+  assert.equal(controller.destroyed, false, 'the controller is kept: voice and chat carry on in the place')
+  // the life arrives somewhere else while the player stands in the Square: the room does not follow it
+  const before = game.state.value, joins = controller.calls.length
+  game.state.value = { ...before, location: 'library' } as LifeState
+  game.emit('accepted', game.state.value, before)
+  assert.equal(controller.calls.length, joins)
+  placeNow.value = { kind: 'room', id: 'g.7', name: 'Night shift' }
+  await nextTick()
+  assert.equal(controller.calls.at(-1), 'joinRoom room g.7')
+  placeNow.value = null
+  await nextTick()
+  assert.equal(controller.calls.at(-1), 'joinRoom lagos,library', 'stepping out goes back to where the life is now')
+})
+
+test('a place chosen while the controller is still being made is where it stands once it is up', async () => {
+  const { store, made } = rig()
+  const starting = store.start()
+  placeNow.value = { kind: 'square' } // a page opened on the Square's address steps in before the room code has arrived
+  await starting
+  await settle()
+  const controller = made[0] as FakeController
+  assert.ok(controller.calls.includes('joinRoom square') || controller.options.room?.place === 'square', 'the socket stands in the Square, not in the venue the life is in')
+  placeNow.value = null
+  await nextTick()
 })
 
 test('a session that ended destroys the controller and empties the scene crowd', async () => {

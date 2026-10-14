@@ -209,10 +209,10 @@ function buildService(ctx: RouteContext) {
     // A busy city, a packed Square.
     try {
       for (const [city, people] of Object.entries(pulseOf(ctx).pulse(null).cities)) {
-        if (people >= THRESHOLDS.busy && now - (cursor.busy[city] ?? 0) >= BUSY_EVERY_MS) { cursor.busy[city] = now; items.push({ city, kind: 'busy', text: `${cityName(city)} is buzzing: ${people} ${people === 1 ? 'person' : 'people'} out right now`, refs: { key: `busy:${city}:${Math.floor(now / BUSY_EVERY_MS)}` } }); }
+        if (people >= THRESHOLDS.busy && now - (cursor.busy[city] ?? -Infinity) >= BUSY_EVERY_MS) { cursor.busy[city] = now; items.push({ city, kind: 'busy', text: `${cityName(city)} is buzzing: ${people} ${people === 1 ? 'person' : 'people'} out right now`, refs: { key: `busy:${city}:${Math.floor(now / BUSY_EVERY_MS)}` } }); }
       }
       const square = ctx.checks?.venueCounts?.(SQUARE_ROOM)?.total ?? 0;
-      if (square >= THRESHOLDS.square && now - cursor.square >= BUSY_EVERY_MS) { cursor.square = now; items.push({ city: WORLD, kind: 'busy', text: 'The Square is packed right now', refs: { key: `square:${Math.floor(now / BUSY_EVERY_MS)}` } }); }
+      if (square >= THRESHOLDS.square && (cursor.square === 0 || now - cursor.square >= BUSY_EVERY_MS)) { cursor.square = now; items.push({ city: WORLD, kind: 'busy', text: 'The Square is packed right now', refs: { key: `square:${Math.floor(now / BUSY_EVERY_MS)}` } }); }
     } catch { /* the counts are not ready: nothing is busy */ }
     // A calendar event that has begun in a city someone is in.
     try {

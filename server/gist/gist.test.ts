@@ -114,6 +114,11 @@ test('search and read: words in any order, the city and the world only, newest f
 
 test('sources: the public record, a busy city, a live event and an announcement reach the ledger on the heartbeat; private things do not', async (t) => {
   const s = await scene(t);
+  // Set the clock to a moment when Lagos has a live calendar event (before any session is made, so none has expired).
+  let at = Date.UTC(2026, 9, 5, 0, 0);
+  while (at < Date.UTC(2026, 10, 5) && !eventsAt(at, 'lagos').length) at += 15 * 60000;
+  assert.ok(eventsAt(at, 'lagos').length, 'the calendar has a live event in the month');
+  s.f.advance(at - s.f.now());
   THRESHOLDS.busy = 1;
   t.after(() => { THRESHOLDS.busy = 8; });
   // A private message between two players, and a report: neither is anywhere near the ledger.
@@ -134,9 +139,9 @@ test('sources: the public record, a busy city, a live event and an announcement 
   });
   // A player in Lagos makes the city busy.
   const socket = await s.f.joinRoom(ada);
-  assert.equal(await s.gist.tick(), 5, `four record lines and the busy city (the ruling, the operator note and the void term are left out): ${JSON.stringify(await s.texts())}`);
+  assert.ok(await s.gist.tick() >= 5, 'four record lines, the busy city and the live event (the ruling, the operator note and the void term are left out)');
   const lines = await s.texts();
-  assert.deepEqual(lines.filter((line) => !line.includes('buzzing')).sort(), [
+  assert.deepEqual(lines.filter((line) => !line.includes('buzzing') && !line.includes(' has started at ')).sort(), [
     'Chi founded the Good Road Party', 'The City House passed a law: Market levy is 4% for the week', 'Tunde was elected governor of Lagos', 'Tunde was removed from office in Ibadan by petition',
   ]);
   assert.ok(lines.includes('Lagos is buzzing: 1 person out right now'));
@@ -144,13 +149,10 @@ test('sources: the public record, a busy city, a live event and an announcement 
   // The same things are not written twice; the throttle holds until the next look.
   s.f.advance(TICK_MS + 1);
   assert.equal(await s.gist.tick(), 0);
-  // A calendar event that has begun: move the clock to the first moment Lagos has one live.
-  let at = Date.UTC(2026, 9, 5, 0, 0);
-  while (at < Date.UTC(2026, 10, 5) && !eventsAt(at, 'lagos').length) at += 15 * 60000;
-  assert.ok(eventsAt(at, 'lagos').length, 'the calendar has a live event in the month');
-  s.f.advance(at - s.f.now());
-  assert.ok(await s.gist.tick() >= 1);
-  assert.ok((await s.texts()).some((line) => / has started at /.test(line)));
+  // The calendar event that was live when the clock was set is in the ledger, once.
+  const started = (await s.texts()).filter((line) => / has started at /.test(line));
+  assert.ok(started.length >= 1, 'an event that has begun in a city someone is in');
+  assert.equal(new Set(started).size, started.length);
   // An announcement for everyone is news; one for "online now" is not.
   const base = { title: 'Weekend market', body: 'x', action: null, city: null, at: 0, sentAt: 1, expiresAt: Infinity, by: 'admin', createdAt: 0, cancelledAt: 0, reach: { sockets: 0 }, mail: { wanted: false, push: false, email: false, state: 'none', total: 0, sent: 0, failed: 0, cursor: '' } } as const;
   await announceOf(s.ctx).went({ ...base, id: 'a1', audience: 'everyone' } as unknown as AnnouncementRecord);

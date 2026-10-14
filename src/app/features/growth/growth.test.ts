@@ -78,7 +78,8 @@ test('hello: asked when a screen is drawn, at most every five minutes, and force
   await h.growth.load()
   await h.growth.load()
   assert.equal(h.sent.length, 1, 'a second draw within five minutes reuses the answer')
-  assert.deepEqual(h.sent[0]?.options, { method: 'POST', body: { cityId: 'lagos', device: 'device-token-0000000' } })
+  // The visit's ad-source words ride with the first hello (the return split by source, docs/FRIENDSHIP.md); a visit with none is "direct".
+  assert.deepEqual(h.sent[0]?.options, { method: 'POST', body: { cityId: 'lagos', device: 'device-token-0000000', source: { source: 'direct', medium: 'direct', campaign: 'direct' } } })
   h.clock.now += HELLO_MAX_AGE - 1
   await h.growth.load()
   assert.equal(h.sent.length, 1)

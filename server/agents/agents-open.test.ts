@@ -285,9 +285,10 @@ test('analytics: AI agents are counted apart from people in the pulse, and are n
   const bot = await w.signup('Robo Count');
   await w.tool(bot.key, 'get_my_life');
   w.f.advance(5000);
-  const after = await w.json('/api/world/pulse', undefined, watcher.cookie) as unknown as { online: number; ai?: number; visits: number };
+  const after = await w.json('/api/world/pulse', undefined, watcher.cookie) as unknown as { online: number; ai?: number; aiCities?: Record<string, number>; visits: number };
   assert.equal(after.ai, 1);
   assert.equal(after.online, before.online, 'the people\'s count did not move');
+  assert.deepEqual(after.aiCities, { lagos: 1 }, 'and by city, for the online sheet');
   // An agent character is not in the growth funnel.
   assert.equal((await w.tool(bot.key, 'call_api', { method: 'POST', path: '/api/growth/hello', body: { cityId: 'lagos' } })).data.result !== undefined, true);
 });

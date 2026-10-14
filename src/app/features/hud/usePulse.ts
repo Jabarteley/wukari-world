@@ -29,11 +29,13 @@ const count = (value: unknown): number => (typeof value === 'number' && Number.i
 /** The documented answer, or null for anything else. */
 export function readPulse(value: unknown): PulseNumbers | null {
   if (typeof value !== 'object' || value === null) return null
-  const { online, visits, today, cities, ai } = value as Record<string, unknown>
+  const { online, visits, today, cities, ai, aiCities } = value as Record<string, unknown>
   if (typeof online !== 'number' || typeof visits !== 'number') return null
   const byCity: Record<string, number> = {}
   if (typeof cities === 'object' && cities !== null) for (const [id, n] of Object.entries(cities)) byCity[id] = count(n)
-  return { online: count(online), visits: count(visits), today: count(today), cities: byCity, ...(count(ai) > 0 ? { ai: count(ai) } : {}) }
+  const aiByCity: Record<string, number> = {}
+  if (typeof aiCities === 'object' && aiCities !== null) for (const [id, n] of Object.entries(aiCities)) if (count(n) > 0) aiByCity[id] = count(n)
+  return { online: count(online), visits: count(visits), today: count(today), cities: byCity, ...(count(ai) > 0 ? { ai: count(ai), ...(Object.keys(aiByCity).length ? { aiCities: aiByCity } : {}) } : {}) }
 }
 
 export function createPulse(deps: PulseDeps) {

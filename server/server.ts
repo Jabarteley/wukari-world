@@ -97,6 +97,8 @@ export interface ServerOptions {
   receiptLimits?: Parameters<typeof createOnce>[0]['limits']
   env?: Readonly<Record<string, unknown>>
   fetch?: (url: string, init: RequestInit) => Promise<Response>
+  /** Ask the outside world for exchange rates and weather (server/world-feed). Off unless given: only the real entry point turns it on, so a test never calls out. */
+  worldFeed?: boolean
   randomId?: () => string
   publicOrigin?: string | undefined
   buildId?: string
@@ -171,6 +173,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
   receiptLimits, // { perPlayer, global, lightPerPlayer, lightGlobal } for ctx.once (server/routes/once.ts); the defaults are the documented numbers
   env = process.env, // where ctx.env reads the outreach settings from (a test passes its own object)
   randomId = () => randomUUID(), // ids and match seeds modules draw (a scripted run passes a counter so every deal repeats)
+  worldFeed = false,
   fetch: outbound = globalThis.fetch, // the one way a module makes an outside request (a test passes a fake)
   publicOrigin: givenOrigin = process.env.PUBLIC_ORIGIN, // e.g. https://play.example — used for absolute links in previews
   buildId = process.env.BUILD_ID || packageVersion(),
@@ -592,6 +595,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
     callRelay: givenRelay ?? createCallRelay({ read: (name) => { const value = env?.[name]; return typeof value === 'string' ? value : undefined; }, now, ...(outbound ? { fetchImpl: outbound } : {}) }),
     // An outside request is HTTPS, bounded in time whatever the caller passed, and never follows a redirect (host-context.js).
     fetch: outboundFetch(outbound),
+    worldFeed,
     // Work that outlives the request that started it (a message being sent, a registry sync). Node needs no help to finish it;
     // the Worker host keeps itself alive for it. A module calls ctx.waitUntil?.(promise) and never relies on the answer.
     waitUntil() {},
@@ -802,7 +806,7 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   if (process.env.STORE_MODE) console.error('STORE_MODE is no longer used: there is one store. See "Storage and limits" in docs/REFERENCE.md.');
   // A refusal of open dev mode (a setting that must never apply here) is one clear line and a non-zero exit, not a stack trace.
   const refused = (error: unknown): never => { if (fieldOf(error, 'name') === 'OpenDevRefusal') { console.error(String(fieldOf(error, 'message'))); process.exit(1); } throw error; };
-  const server = await createServer().catch(refused);
+  const server = await createServer({ worldFeed: process.env.WORLD_FEED !== 'off' }).catch(refused);
   const telemetry = useTelemetry(server.telemetry);
   // Stop taking requests, then write everything in the one shutdown order (server.flush) before the process leaves. A step
   // that hangs (a provider that never answers) cannot hold the process: after the deadline it exits with what is on disk.

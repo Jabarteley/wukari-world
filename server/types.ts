@@ -1328,6 +1328,8 @@ export interface RouteContext {
   pages?: Map<string, PageHandler>
   /** Work that outlives the request that started it: a host that could stop between requests (the Worker) keeps itself up for it; Node does nothing. */
   waitUntil?(promise: Promise<unknown>): void
+  /** True on a host that should ask the outside world for rates and weather (server/world-feed). The Node host and the Worker set it; a test sets it with a fake fetch. */
+  worldFeed?: boolean
   /** One of the outreach settings on the host's allowlist (host-context.js OUTREACH_ENV), or '' — nothing else of the environment is reachable. */
   env(name: string): string
   /** An outside request for server/growth/outreach.ts: https only, never follows a redirect, cut off after 15 s. */

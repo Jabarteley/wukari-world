@@ -450,6 +450,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
       },
       // The Workers runtime cannot be told to fail on a redirect: it is not followed, and the answer is refused (host-context.js).
       fetch: outboundFetch((url: string, init?: RequestInit) => fetch(url, init), { refuseRedirect: 'manual' }),
+      worldFeed: true,
       /** A secret this host makes for itself, once: a row of `host_keys` in the object's own storage. Never logged. */
       keyFile: <T extends object>(name: string, make: () => T | Promise<T>): Promise<T> => {
         if (!/^[a-z][a-z0-9-]{0,31}$/.test(name)) return Promise.reject(new Error('Invalid key file name'));

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { FRAME_SLACK_MS, frameAction, isCovered, onCoveredChange, sceneCovered, setCovered } from './frame-gate.ts'
+import { FRAME_SLACK_MS, frameAction, gatedCancel, gatedRequest, isCovered, sceneCovered, setCovered } from './frame-gate.ts'
+import { forgetLight, setLight } from '../lightMode.ts'
 import { createMotionLoop } from './motion-loop.ts'
 
 const base = { hidden: false, covered: false, now: 1000, last: 990, capFps: 0 }
@@ -32,70 +33,75 @@ test('a sheet covers the scene when it is full-screen, or when the screen is a p
   assert.equal(sceneCovered({ sheetOpen: true, fullscreen: false, narrow: false }), false, 'on a wide screen the scene stays visible beside a sheet')
 })
 
-test('the cover switch tells listeners only when it changes', () => {
-  const told: boolean[] = []
-  const stop = onCoveredChange((covered) => told.push(covered))
-  setCovered(false); setCovered(true); setCovered(true); setCovered(false)
-  stop(); setCovered(true); setCovered(false)
-  assert.deepEqual(told, [true, false])
-  assert.equal(isCovered(), false)
-})
-
-/** A frame callback the test fires by hand. */
-function manual() {
-  let callback: ((time: number) => void) | null = null
-  return { request: (run: (time: number) => void) => { callback = run; return 1 }, cancel: () => { callback = null }, fire: (time: number) => { const run = callback; callback = null; run?.(time) }, pending: () => callback !== null }
+/** A browser frame callback the test fires by hand (installed on globalThis for the gated functions). */
+function browser() {
+  const frames = new Map<number, (time: number) => void>(); let next = 0
+  const g = globalThis as unknown as Record<string, unknown>
+  const saved = [g.requestAnimationFrame, g.cancelAnimationFrame]
+  g.requestAnimationFrame = (run: (time: number) => void) => { frames.set(++next, run); return next }
+  g.cancelAnimationFrame = (id: number) => { frames.delete(id) }
+  return { pending: () => frames.size, fire: (time: number) => { const all = [...frames.values()]; frames.clear(); for (const run of all) run(time) }, restore: () => { g.requestAnimationFrame = saved[0]; g.cancelAnimationFrame = saved[1] } }
 }
 
-test('the motion loop skips frames above the cap and still asks for the next one', () => {
-  const frames = manual(); let steps = 0
-  const loop = createMotionLoop(() => { steps += 1; return true }, { request: frames.request, cancel: frames.cancel, doc: null, clock: () => 0, capFps: () => 30, covered: () => false })
-  loop.wake()
-  for (let i = 0; i < 6; i++) frames.fire(i * (1000 / 60) + 16)
-  assert.equal(steps, 3, 'six frames at 60 fps, three at 30')
-  assert.equal(loop.frames, 3)
-  assert.equal(loop.running, true)
-  assert.equal(frames.pending(), true, 'a skipped frame still asks for the next')
-  loop.dispose()
+test('the gated frame request holds a callback while covered and gives it a frame when the cover goes', () => {
+  const b = browser(); const ran: number[] = []
+  try {
+    setCovered(true)
+    gatedRequest((time) => ran.push(time))
+    b.fire(100)
+    assert.equal(ran.length, 0, 'covered: nothing runs')
+    assert.equal(b.pending(), 0, 'and no frames are asked for meanwhile')
+    assert.equal(isCovered(), true)
+    setCovered(true)
+    setCovered(false)
+    assert.equal(b.pending(), 1)
+    b.fire(200)
+    assert.deepEqual(ran, [200])
+  } finally { setCovered(false); b.restore() }
 })
 
-test('the motion loop draws every frame with no cap (the default)', () => {
-  const frames = manual(); let steps = 0
-  const loop = createMotionLoop(() => { steps += 1; return true }, { request: frames.request, cancel: frames.cancel, doc: null, clock: () => 0, capFps: () => 0, covered: () => false })
-  loop.wake()
-  for (let i = 0; i < 6; i++) frames.fire(i * 16.7 + 16)
-  assert.equal(steps, 6)
-  loop.dispose()
+test('cancelling a gated request works, whether it is waiting for a frame or parked', () => {
+  const b = browser(); const ran: number[] = []
+  try {
+    const id = gatedRequest((time) => ran.push(time))
+    gatedCancel(id)
+    b.fire(10)
+    assert.equal(ran.length, 0)
+    setCovered(true)
+    const parked = gatedRequest((time) => ran.push(time))
+    b.fire(20); gatedCancel(parked)
+    setCovered(false)
+    assert.equal(b.pending(), 0)
+    b.fire(30)
+    assert.equal(ran.length, 0)
+  } finally { setCovered(false); b.restore() }
 })
 
-test('a full-screen panel stops the loop, and closing it resumes cleanly through onVisible', () => {
-  const frames = manual(); const events: string[] = []; let steps = 0
-  let over = false
-  const loop = createMotionLoop(() => { steps += 1; return true }, { request: frames.request, cancel: frames.cancel, doc: null, clock: () => 0, covered: () => over, onHidden: () => events.push('hidden'), onVisible: () => { events.push('visible'); loop.wake() } })
-  loop.wake()
-  frames.fire(16)
-  assert.equal(steps, 1)
-  over = true; setCovered(true)
-  assert.equal(loop.running, false)
-  assert.equal(frames.pending(), false, 'the pending frame was cancelled')
-  assert.equal(loop.wake(), false, 'nothing starts it while covered')
-  assert.equal(steps, 1)
-  over = false; setCovered(false)
-  assert.deepEqual(events, ['hidden', 'visible'])
-  assert.equal(loop.running, true)
-  frames.fire(500)
-  assert.equal(steps, 2)
-  loop.dispose()
-  setCovered(true); setCovered(false)
-  assert.deepEqual(events, ['hidden', 'visible'], 'a disposed loop hears nothing')
+test('the gated frame request skips early frames under the light-mode cap', () => {
+  const b = browser(); const ran: number[] = []
+  try {
+    setLight(true)
+    let run = () => {}
+    const again = (time: number) => { ran.push(time); run() }
+    run = () => { gatedRequest(again) }
+    run()
+    for (let i = 0; i < 6; i++) b.fire(10000 + i * (1000 / 60))
+    assert.equal(ran.length, 3, 'six frames at 60 fps, three at 30')
+    setLight(false)
+  } finally { forgetLight(); b.restore() }
 })
 
-test('a frame that arrives after the page was hidden is not drawn', () => {
-  const frames = manual(); let steps = 0; const doc = { visibilityState: 'visible' }
-  const loop = createMotionLoop(() => { steps += 1; return true }, { request: frames.request, cancel: frames.cancel, doc, clock: () => 0, covered: () => false })
-  loop.wake()
-  doc.visibilityState = 'hidden'
-  frames.fire(16)
-  assert.equal(steps, 0)
-  assert.equal(loop.running, false)
+test('the motion loop runs on the gated request when the browser has frames, and has none when it does not', () => {
+  assert.equal(createMotionLoop(() => false, { doc: null }).available, false, 'no requestAnimationFrame in node')
+  const b = browser(); let steps = 0
+  try {
+    const loop = createMotionLoop(() => { steps += 1; return true }, { doc: null, clock: () => 0 })
+    assert.equal(loop.available, true)
+    loop.wake(); b.fire(16); assert.equal(steps, 1)
+    setCovered(true); b.fire(40); b.fire(50)
+    assert.equal(steps, 1, 'parked while covered')
+    setCovered(false); b.fire(60)
+    assert.equal(steps, 2)
+    loop.stop(); assert.equal(b.pending(), 0, 'stop cancels the gated frame')
+  } finally { setCovered(false); b.restore() }
 })

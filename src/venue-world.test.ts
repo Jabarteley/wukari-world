@@ -179,7 +179,7 @@ test('HUD insets re-centre the scene with one frame per change, never by themsel
   world.dispose();
 });
 
-test('only the motion loop may name a frame callback; no scene, map or shell source holds an interval', async () => {
+test('only the motion loop and its gate (frame-gate.ts) may name a frame callback; no scene, map or shell source holds an interval', async () => {
   const files = ['src/venue-world.ts', 'src/world-map.ts', 'src/city-map.ts', 'src/app/App.vue', 'src/app/state/app.ts', 'src/app/scene/ScenePane.vue', 'src/app/scene/MapPane.vue', 'src/client.ts',
     ...(await readdir('src/scene', { recursive: true, withFileTypes: true })).filter(entry => entry.isFile()).map(entry => `${entry.parentPath}/${entry.name}`)];
   const withLoop = [];
@@ -189,7 +189,7 @@ test('only the motion loop may name a frame callback; no scene, map or shell sou
     assert.doesNotMatch(code, /setAnimationLoop|setInterval/, file);
     if (/requestAnimationFrame/.test(code)) withLoop.push(file);
   }
-  assert.deepEqual(withLoop, ['src/scene/motion-loop.ts'], 'the one frame loop lives in one file, and that file cannot idle');
+  assert.deepEqual(withLoop, ['src/scene/frame-gate.ts', 'src/scene/motion-loop.ts'], 'the one frame loop lives in motion-loop.ts (which cannot idle); frame-gate.ts only holds or skips the frames it asks for');
 });
 
 // ---- motion: frames only while something moves ------------------------------------------------

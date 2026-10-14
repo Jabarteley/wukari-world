@@ -45,8 +45,8 @@ One switch, `src/lightMode.ts` (no imports, carried by the first download, about
 - **Covered:** `src/app/App.vue` tells `src/scene/frame-gate.ts` `setCovered()` when a sheet is open and it either belongs to a full-screen
   panel (`panel.fullscreen`: the landing and the character creator) or the screen is phone-sized (width 720 px or less), where the sheet
   (88% of the height, nearly the full width, over a dimmed backdrop) is the screen. On a wide screen the scene stays live beside a sheet.
-  `motion-loop.ts` listens: covered stops the loop and drops held keys (like a hidden page); uncovered calls `onVisible`, which each
-  host already uses to resume a walk or draw the scene once. Nav panels (Buy, Map) are not "covered": they need the scene. The city map and
+  The motion loop's default frame request is `gatedRequest` in `frame-gate.ts` (startup code): while covered it parks the callback, and
+  when the cover goes it gives it a frame, so the walk or the ease carries on where it was; it also skips frames above the cap. Nav panels (Buy, Map) are not "covered": they need the scene. The city map and
   the atlas are not paused by a cover (their loops run only during a trip, a dive or an ease).
 
 ## 4. The data meter
@@ -63,9 +63,9 @@ anything fetched before the page's own timeline. It is a floor, not an invoice, 
 
 ## 5. A browser that cannot show the 3D scene
 
-`src/app/scene/sceneSupport.ts` is asked by `ScenePane` **before** the scene's code is fetched. It refuses Opera Mini (extreme mode renders
+`src/app/scene/sceneSupport.ts` (the probe only) is asked by `ScenePane` **before** the scene's code is fetched. It refuses Opera Mini (extreme mode renders
 on a server) and any browser that gives no WebGL or WebGL 2 context (the probe context is given back at once). A scene that started and then
-threw shows the same words. The pane says: "This phone's browser can't show the 3D world. Open Allworld in Chrome or your phone's own browser
+threw shows the same words. The words and the button are a lazy chunk (`SceneUnsupported.vue`, `sceneWords.ts`). The pane says: "This phone's browser can't show the 3D world. Open Allworld in Chrome or your phone's own browser
 to see it. Everything else works here: your phone, messages, jobs, money, the map list and the table games.", shows the address and a
 **Copy link** button. The HUD, the phone, the 2D city map and the games are not behind the scene, so they work.
 

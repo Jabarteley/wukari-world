@@ -13,7 +13,7 @@
 // Three.js and every scene module are fetched after the HUD is on screen. A device that cannot
 // draw the scene still gets the whole game.
 import '../../ui/scene-loading.css'
-import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
+import { defineAsyncComponent, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import { useApp } from '../state/app.ts'
 import { cityScenesHere, loadSceneWorld, warmCityScenes } from './loaders.ts'
 import type { ScenesState } from '../types/scene.ts'
@@ -21,7 +21,7 @@ import { landingCodeSettled } from '../features/start/warmLanding.ts'
 import { telemetry } from '../../telemetry/index.ts'
 import { noteChunkFailure } from '../state/updateNotice.ts'
 import { social } from '../features/social/useSocial.ts'
-import { COPIED_LABEL, COPY_LABEL, browserSceneSupport, copyGameLink, sceneHelp } from './sceneSupport.ts'
+import { browserSceneSupport } from './sceneSupport.ts'
 import { lightOn } from '../../lightMode.ts'
 import { placeNow } from '../features/places/placeState.ts'
 
@@ -37,12 +37,9 @@ const props = defineProps<{
 const { game, ready, shell, scene, command, showPlayer, showCrowd, showGoal, reportPlace, onMove, commitSpot, goTo } = useApp()
 const container = ref<HTMLElement | null>(null)
 const failed = ref(false)
-/** Why the scene is not drawn, when it is not: this browser cannot (proxy, no WebGL) or the renderer threw. The words come from sceneSupport.ts. */
+/** Why the scene is not drawn, when it is not: this browser cannot (proxy, no WebGL) or the renderer threw. The words and the Copy link button are a lazy chunk (SceneUnsupported.vue). */
 const why = ref<'proxy' | 'no-webgl' | 'failed'>('failed')
-const help = computed(() => sceneHelp(why.value))
-const address = `${globalThis.location?.origin ?? ''}/`
-const copied = ref(false)
-async function copyLink(): Promise<void> { copied.value = await copyGameLink(address) }
+const SceneUnsupported = defineAsyncComponent(() => import('./SceneUnsupported.vue'))
 const waiting = ref(true)
 const phase = ref('Preparing your world…')
 /** The city's own scenes are not here: the fetch is waiting to try again, or has stopped until the player asks. */
@@ -85,7 +82,6 @@ function sceneFailed(error: unknown): void {
   waiting.value = true; stuck.value = null; failed.value = true
 }
 const waitLine = (): string => {
-  if (failed.value) return help.value.title
   if (stuck.value?.status === 'retrying') return `This place did not load · trying again in ${Math.round((stuck.value.retryInMs ?? 0) / 1000)} s`
   if (stuck.value?.status === 'failed') return 'This place could not be loaded. Check your connection, then try again. Everything else still works.'
   return phase.value
@@ -189,12 +185,8 @@ defineExpose({ layout })
   <div id="venue-scene" ref="container"  class="life-scene" :hidden="hidden" @animationend.self="onResize">
     <div v-if="waiting" class="scene-wait" :class="{ 'is-stuck': failed || stuck }" role="status">
       <img src="/icons/world-loader.webp" width="96" height="96" alt="" />
-      <strong>{{ waitLine() }}</strong>
-      <template v-if="failed">
-        <small data-scene-help>{{ help.help }}</small>
-        <small class="scene-address" data-scene-address>{{ address }}</small>
-        <button type="button" class="scene-retry" data-scene-copy @click="copyLink">{{ copied ? COPIED_LABEL : COPY_LABEL }}</button>
-      </template>
+      <SceneUnsupported v-if="failed" :why="why" />
+      <strong v-else>{{ waitLine() }}</strong>
       <small v-if="!failed && !stuck" :key="tip">{{ tip && tips ? tips[(tip - 1) % tips.length] : 'Your next chapter is almost here.' }}</small>
       <button v-if="stuck && !failed" type="button" class="scene-retry" @click="scene.venue.value?.retryScenes()">Try again</button>
     </div>

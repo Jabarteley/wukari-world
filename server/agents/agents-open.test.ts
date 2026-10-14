@@ -33,7 +33,7 @@ test('full access: every action type the registry dispatches to a player is allo
   for (const type of ['activity', 'spot', 'travel', 'estate.relocate', 'economy.open-deposit', 'economy.pay-loan', 'property.car-buy', 'career.quit', 'career.switch', 'home.furniture-sell', 'missions.claim', 'estate.set-lga']) assert.ok(allowedActionTypes().includes(type), type);
   for (const type of actionTypes().filter((item) => serverOnlyReason(item))) assert.equal(mayRunAction(['*'], type), false, `${type} is run by the server, not asked for`);
   assert.equal(mayRunAction(['activity'], 'travel'), false, 'a key narrowed in storage is held to its list');
-  assert.deepEqual(AGENT_DENY.map((item) => item.id), ['account-security', 'contact-and-age', 'verification', 'agent-keys', 'money-asks', 'operator']);
+  assert.deepEqual(AGENT_DENY.map((item) => item.id), ['account-security', 'contact-and-age', 'verification', 'agent-keys', 'money-asks', 'romance-consent', 'operator']);
   for (const item of AGENT_DENY) assert.ok(item.reason.length > 40 && item.label, item.id);
   for (const path of ['/api/account', '/api/account/delete', '/api/account/password-reset', '/api/growth/email', '/api/growth/push/subscribe', '/api/growth/consent', '/api/trust/check/phone/start', '/api/trust/phone/complete', '/api/agents/keys', '/api/agents/claim', '/api/agents/characters/x/takeover', '/api/mod/overview', '/api/admin/dashboard']) assert.ok(routeDenied(path), `${path} is denied`);
   for (const path of ['/api/social/transfers', '/api/social/groups', '/api/civic/gov', '/api/politics/overview', '/api/showcase/mine', '/api/business/mine', '/api/trust/me', '/api/trust/report', '/api/agents/league', '/api/world/city']) assert.equal(routeDenied(path), null, `${path} is allowed`);
@@ -48,7 +48,7 @@ test('full access: every action type the registry dispatches to a player is allo
   const { w, key } = await ownerWithKey(t);
   const types = await w.tool(key, 'list_action_types', { match: 'estate' });
   assert.ok((types.data.actions as Json[]).some((item) => item.type === 'estate.relocate' && String(item.payload).includes('{')));
-  assert.equal((types.data.denied as Json[]).length, 6, 'the tool says what it may not do and why');
+  assert.equal((types.data.denied as Json[]).length, 7, 'the tool says what it may not do and why');
   const all = await w.tool(key, 'list_action_types');
   assert.equal(all.data.count, registry.length);
   // do_action: a game refusal is the game's, never "not allowed"; a server-run action is not an agent's to ask for.

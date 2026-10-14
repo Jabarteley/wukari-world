@@ -1,14 +1,14 @@
 // The model router with a fake fetch and plain objects for the host: no test here reaches a provider.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createRouter, HARD_CAP_MICRO, type Deps, type Limits, type Stored } from './router.ts';
+import { createRouter, HARD_CAP_MICRO, RATE_BACKOFF_MS, retryAfterMs, type Deps, type Limits, type Stored } from './router.ts';
 import { formatList, isFree, parseList, priceOf } from './catalog.ts';
 import { modelWordsSafe, readVerdict } from './safety.ts';
 import { reportDue, weeklyReport } from './weekly.ts';
 import { readModelList } from './report.ts';
 
 interface Call { url: string; model: string; key: string; body: Record<string, unknown> }
-type Plan = (call: Call, index: number) => { status?: number; text?: string; usage?: { prompt_tokens: number; completion_tokens: number } | null; delayMs?: number };
+type Plan = (call: Call, index: number) => { status?: number; headers?: Record<string, string>; text?: string; usage?: { prompt_tokens: number; completion_tokens: number } | null; delayMs?: number };
 const answer = (status: number, body: unknown): Response => new Response(typeof body === 'string' ? body : JSON.stringify(body), { status });
 
 function world(options: { plan?: Plan; keys?: Partial<Record<'gateway' | 'openrouter', boolean>>; settings?: Record<string, boolean | number | string>; limits?: Partial<Limits>; prices?: Deps['prices']; saved?: Stored } = {}) {
@@ -16,7 +16,7 @@ function world(options: { plan?: Plan; keys?: Partial<Record<'gateway' | 'openro
   const calls: Call[] = [], saves: Stored[] = [];
   const settings = options.settings ?? {};
   const plan: Plan = options.plan ?? ((): ReturnType<Plan> => ({}));
-  const limits: Limits = { dailyCapMicro: HARD_CAP_MICRO, playerRequests: 200, playerMicro: 50000, freePerMinute: { openrouter: 20, gateway: 20 }, freePerDay: { openrouter: 50, gateway: 500 }, ...options.limits };
+  const limits: Limits = { dailyCapMicro: HARD_CAP_MICRO, playerRequests: 200, playerMicro: 50000, freePerMinute: { openrouter: 20, gateway: 20 }, freePerDay: { openrouter: 50 }, ...options.limits };
   const fetchList: Deps['fetch'] = async (url, init) => {
     const body = JSON.parse(String((init as { body?: string }).body ?? '{}')) as Record<string, unknown>;
     const headers = (init as { headers: Record<string, string> }).headers;
@@ -25,7 +25,7 @@ function world(options: { plan?: Plan; keys?: Partial<Record<'gateway' | 'openro
     const chosen = plan(call, calls.length - 1);
     if (chosen.delayMs) await new Promise((resolve) => setTimeout(resolve, chosen.delayMs));
     const status = chosen.status ?? 200;
-    if (status >= 400) return answer(status, { error: { message: 'no' } });
+    if (status >= 400) return new Response(JSON.stringify({ error: { message: 'no' } }), { status, headers: chosen.headers });
     return answer(status, { choices: [{ message: { content: chosen.text ?? 'Hello there.' } }], ...(chosen.usage === null ? {} : { usage: chosen.usage ?? { prompt_tokens: 100, completion_tokens: 20 } }) });
   };
   const keys = { gateway: true, openrouter: true, ...options.keys };
@@ -162,7 +162,7 @@ test('per-person caps: requests a day and paid spend a day; other people are not
 });
 
 test('free provider rates: per minute and per day, each provider on its own', async () => {
-  const w = world({ limits: { freePerMinute: { openrouter: 2, gateway: 20 }, freePerDay: { openrouter: 3, gateway: 500 } }, settings: { modelsResident: 'openrouter:google/gemma-4-31b-it:free' } });
+  const w = world({ limits: { freePerMinute: { openrouter: 2, gateway: 20 }, freePerDay: { openrouter: 3 } }, settings: { modelsResident: 'openrouter:google/gemma-4-31b-it:free' } });
   assert.ok((await w.router.ask(say('resident'))).ok);
   assert.ok((await w.router.ask(say('resident'))).ok);
   const third = await w.router.ask(say('resident'));
@@ -174,7 +174,7 @@ test('free provider rates: per minute and per day, each provider on its own', as
   const fourth = await w.router.ask(say('resident'));
   assert.equal(fourth.ok ? 'ok' : fourth.why, 'rate', 'three a day');
   // Falls to the gateway's free model, which has its own room.
-  const mixed = world({ limits: { freePerMinute: { openrouter: 1, gateway: 20 }, freePerDay: { openrouter: 50, gateway: 500 } }, settings: { modelsResident: 'openrouter:google/gemma-4-31b-it:free, gateway:stealth/glyph-cluster' } });
+  const mixed = world({ limits: { freePerMinute: { openrouter: 1, gateway: 20 }, freePerDay: { openrouter: 50 } }, settings: { modelsResident: 'openrouter:google/gemma-4-31b-it:free, gateway:stealth/glyph-cluster' } });
   await mixed.router.ask(say('resident'));
   const next = await mixed.router.ask(say('resident'));
   assert.equal(next.ok && next.model, 'stealth/glyph-cluster');
@@ -287,4 +287,76 @@ test('the weekly report: both providers down is tried again only after six hours
   w.clock.now += 7 * 3600000;
   await weeklyReport(w.router, fetcher, () => w.clock.now);
   assert.equal(asked, 4);
+});
+
+// ---- the gateway has no daily cap of ours; a 429 rests that model for its retry-after ----
+
+test('the gateway free models have no daily cap of ours: many requests in a day all go out (a per-minute safety limit still applies)', async () => {
+  const w = world({ limits: { freePerMinute: { openrouter: 20, gateway: 10000 } }, settings: { modelsResident: 'gateway:stealth/glyph-cluster' } });
+  for (let i = 0; i < 700; i += 1) assert.ok((await w.router.ask(say('resident'))).ok, `request ${i}`);
+  assert.equal(w.calls.length, 700, 'past the old 500 a day');
+  const tight = world({ limits: { freePerMinute: { openrouter: 20, gateway: 2 } }, settings: { modelsResident: 'gateway:stealth/glyph-cluster' } });
+  await tight.router.ask(say('resident')); await tight.router.ask(say('resident'));
+  const third = await tight.router.ask(say('resident'));
+  assert.equal(third.ok ? 'ok' : third.why, 'rate', 'the per-minute safety limit still holds');
+  // OpenRouter keeps its daily number.
+  const open = world({ limits: { freePerDay: { openrouter: 2 } }, settings: { modelsResident: 'openrouter:google/gemma-4-31b-it:free' } });
+  await open.router.ask(say('resident')); open.clock.now += 61000; await open.router.ask(say('resident')); open.clock.now += 61000;
+  const over = await open.router.ask(say('resident'));
+  assert.equal(over.ok ? 'ok' : over.why, 'rate');
+});
+
+test('retryAfterMs reads seconds, an HTTP date, and gives null for nothing or junk', () => {
+  const now = Date.UTC(2026, 9, 14, 12, 0, 0);
+  assert.equal(retryAfterMs('30', now), 30000);
+  assert.equal(retryAfterMs(' 1.5 ', now), 1500);
+  assert.equal(retryAfterMs('Wed, 14 Oct 2026 12:02:00 GMT', now), 120000);
+  assert.equal(retryAfterMs('Wed, 14 Oct 2026 11:00:00 GMT', now), 1000, 'a date already past: a second');
+  assert.equal(retryAfterMs('0', now), 1000);
+  assert.equal(retryAfterMs('999999', now), 3600000, 'obeyed up to an hour at a time');
+  for (const bad of [undefined, null, '', 'soon', '-5', '12abc', 'banana 12', 42, 'Wed, 99 Foo 2026 99:99:99 GMT']) assert.equal(retryAfterMs(bad, now), null, String(bad));
+});
+
+const tried = (w: ReturnType<typeof world>) => { const models = w.calls.map((call) => call.model); w.calls.length = 0; return models; };
+
+test('a 429 with retry-after in seconds rests that model for that long, and only that model', async () => {
+  const w = world({ plan: (call) => (call.model === 'busy/model-y-free' ? { status: 429, headers: { 'retry-after': '90' } } : {}), settings: { modelsResident: 'gateway:busy/model-y-free, gateway:stealth/glyph-cluster' } });
+  const first = await w.router.ask(say('resident'));
+  assert.equal(first.ok && first.model, 'stealth/glyph-cluster');
+  assert.deepEqual(tried(w), ['busy/model-y-free', 'stealth/glyph-cluster']);
+  w.clock.now += 89000; await w.router.ask(say('resident'));
+  assert.deepEqual(tried(w), ['stealth/glyph-cluster'], 'still resting after 89 s');
+  w.clock.now += 2000; await w.router.ask(say('resident'));
+  assert.deepEqual(tried(w), ['busy/model-y-free', 'stealth/glyph-cluster'], 'tried again after 90 s (and the other model was never held back)');
+});
+
+test('a 429 with retry-after as an HTTP date rests the model until then', async () => {
+  const w = world({ plan: (call) => (call.model === 'busy/model-y-free' ? { status: 429, headers: { 'retry-after': 'Wed, 14 Oct 2026 12:10:00 GMT' } } : {}), settings: { modelsResident: 'gateway:busy/model-y-free, gateway:stealth/glyph-cluster' } });
+  await w.router.ask(say('resident')); w.calls.length = 0;
+  w.clock.now = Date.UTC(2026, 9, 14, 12, 9, 59); await w.router.ask(say('resident'));
+  assert.deepEqual(tried(w), ['stealth/glyph-cluster'], 'a second before the date');
+  w.clock.now = Date.UTC(2026, 9, 14, 12, 10, 1); await w.router.ask(say('resident'));
+  assert.deepEqual(tried(w), ['busy/model-y-free', 'stealth/glyph-cluster']);
+});
+
+test('a 429 with no retry-after, or an unreadable one, backs off 1, 2 then 5 minutes and starts again after a success', async () => {
+  for (const headers of [undefined, { 'retry-after': 'soon' }]) {
+    let busy = true;
+    const w = world({ plan: (call) => (call.model === 'busy/model-y-free' && busy ? { status: 429, headers } : {}), settings: { modelsResident: 'gateway:busy/model-y-free, gateway:stealth/glyph-cluster' } });
+    const rest = async (expected: number): Promise<void> => {
+      w.calls.length = 0; await w.router.ask(say('resident'));
+      assert.deepEqual(tried(w), ['busy/model-y-free', 'stealth/glyph-cluster']); // it was tried and failed again
+      w.clock.now += expected - 1000; await w.router.ask(say('resident'));
+      assert.deepEqual(tried(w), ['stealth/glyph-cluster'], `resting ${expected / 1000} s less a second`);
+      w.clock.now += 2000;
+    };
+    assert.deepEqual(RATE_BACKOFF_MS, [60000, 120000, 300000]);
+    await rest(RATE_BACKOFF_MS[0]); await rest(RATE_BACKOFF_MS[1]); await rest(RATE_BACKOFF_MS[2]); await rest(RATE_BACKOFF_MS[2]);
+    busy = false; await w.router.ask(say('resident'));
+    assert.deepEqual(tried(w), ['busy/model-y-free'], 'it answers after its rest, and the backoff starts again');
+    busy = true; w.calls.length = 0; await w.router.ask(say('resident'));
+    w.clock.now += 59000; await w.router.ask(say('resident')); tried(w);
+    w.clock.now += 2000; await w.router.ask(say('resident'));
+    assert.equal(w.calls[0]?.model, 'busy/model-y-free', 'one minute again, not five');
+  }
 });

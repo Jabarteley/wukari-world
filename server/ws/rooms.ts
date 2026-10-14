@@ -113,7 +113,7 @@ import { watchLives } from '../life-service.ts';
 import { characterCity } from '../character.ts';
 import { checkLook } from '../../src/game/systems/onboarding.ts';
 import { screenText } from '../moderation/text.ts';
-import { agentWords } from '../moderation/agent-words.ts';
+import { addressedIn, agentWords } from '../moderation/agent-words.ts';
 import { aiAnswer, asksIfAi, countryOfCity, crisisWords, helpText } from '../moderation/ai-intercept.ts';
 import { screenFee } from '../../src/game/trust/fees.ts';
 import type { CityId, ChatFrame, GroupSummary, PresenceDeltaFrame, PresenceMember, PublicSession, RoomCounts, SignalData } from '../../src/types/protocol.ts';
@@ -269,7 +269,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       roomChanged(m.room, group, null, m.id);
     },
     absent(id) { dropVirtual(id); },
-    async say(from, room, body, clientId) {
+    async say(from, room, body, clientId, replyTo) {
       const v = virtuals.get(from.id);
       if (!v || v.room !== room) return { ok: false as const, code: 'not_present', reason: 'You are not standing in that place right now. Act in the place first (list_actions_here), then speak.' };
       const text = typeof body === 'string' ? body.trim() : '';
@@ -280,7 +280,18 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       if (refusal) return { ok: false as const, code: refusal.code, reason: refusal.reason };
       // The AI rules (docs/AI-SAFETY.md): a public place is read by anyone, so an AI character may not ask for money or details, set up a meeting
       // outside the game, say anything sexual or claim to be human, and may not flirt (a stranger may be under 18). The line is dropped, never altered.
-      const words = agentWords(text, { toMinor: true });
+      let words = agentWords(text, { toMinor: true });
+      // The one exception (docs/AI-SAFETY.md): a romance line is allowed when it is addressed (named, or a reply) to people who are ALL confirmed adults that said yes to
+      // this character, or are its Bae. Every other rule is read again without the romance rule and still refuses, whatever anyone consented to.
+      if (!words.ok && words.code === 'agent_words_romance') {
+        const rest = agentWords(text, { toMinor: false });
+        if (!rest.ok) words = rest;
+        else {
+          const book = lineBooks.get(v.group ? gkey(room, v.group) : room), quoted = replyTo === undefined ? undefined : book?.lines.find(line => line.seq === replyTo)?.from;
+          const people = addressedIn(text, [...membersOf(audience(room, v.group), room, v.group).values()], quoted ?? null);
+          if (people.length && await store.read(db => ctx.checks?.publicRomance?.(db, people, from.id) === true)) words = { ok: true };
+        }
+      }
       if (!words.ok) return { ok: false as const, code: words.code, reason: words.reason };
       const chat: ChatFrame = { type: 'chat', id: core.newId(), ...(clientId ? { clientId } : {}), from: { id: from.id, name: from.name, ...from.mark }, body: text, at: now(), speaker: 'agent', voiceSeed: voiceSeedOf(from.id) };
       chatAt.set(from.id, now());

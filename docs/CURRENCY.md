@@ -26,6 +26,9 @@ stays in naira; messages that go out to other people (share cards) also stay in 
   never written as zero: it shows the smallest unit (£0.01). A symbol of two or more letters gets a space (KSh 1,200, GH₵ 45.00).
 - Frozen for the day: `setCityMoney(city, money)` keeps the first rates of a feed day and replaces them only when the day changes,
   so a price does not move while a player looks at it.
+- Remembered: the phone keeps each city's last feed answer (day, the two rates, the currency; `allworld.rates.<city>` in localStorage, written by
+  `takeFeed`). On the next visit `recall` puts those rates in at once, before the feed answers (same freezing: a new feed day replaces them). A
+  kept answer older than three days, or junk in storage, is ignored. It lives in the lazy feed module, so the first download is unchanged.
 - The holder: `src/game/money.ts` keeps each city's money. The browser fills it from `GET /api/world/feed` (`takeFeed` in
   `src/app/features/world/worldFeed.ts`, which also sets the display city to the city the player is in); the server fills it in
   `answer()` of the world-feed service. The feed answer carries `currency: { code, symbol, decimals }`, so the browser needs no table.

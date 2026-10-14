@@ -49,6 +49,8 @@
  *   POST /api/social/bae/answer          { from, accept, cityId }
  *   POST /api/social/bae/end             { cityId }
  *   POST /api/social/transfers           { to, amount, cityId, clientId }
+ *   POST /api/social/romance/answer      { with: AI character, accept }                     Yes or No to "can we flirt in public?" (docs/AI-SAFETY.md)
+ *   POST /api/social/romance/public      { with: AI character, on }                          the profile switch "Flirting in public"
  *   POST /api/social/money-requests      { to, amount, note?, clientId }                    ask a friend for money (src/moneyRequest.ts)
  *   POST /api/social/money-requests/answer { id, op: 'pay' | 'decline' | 'cancel', cityId?, clientId }   'pay' is a gift on the same path
  * The friends list is part of GET /api/social/me; only the founder's can be longer than that answer carries.
@@ -251,6 +253,8 @@ export default function socialRoutes(ctx: RouteContext): Record<RouteKey, RouteH
     'POST /api/social/bae/ask': mine((db, session, body) => service.baeAsk(db, session, body)),
     'POST /api/social/bae/answer': mine((db, session, body) => service.baeAnswer(db, session, body)),
     'POST /api/social/bae/end': mine((db, session, body) => service.baeEnd(db, session, body)),
+    'POST /api/social/romance/answer': mine((db, session, body) => service.answerPublicRomance(db, session, body)),
+    'POST /api/social/romance/public': mine((db, session, body) => service.setPublicRomance(db, session, body)),
     'POST /api/social/transfers': route((db, session, body) => service.transfer(db, session, body)),
     'POST /api/social/money-requests': route((db, session, body) => service.requestMoney(db, session, body)),
     'POST /api/social/money-requests/answer': route((db, session, body) => service.answerMoneyRequest(db, session, body)),

@@ -243,3 +243,21 @@ export function textsIn(value: unknown, depth = 0, out: string[] = []): string[]
   else if (value && typeof value === 'object') for (const item of Object.values(value).slice(0, 100)) textsIn(item, depth + 1, out);
   return out;
 }
+
+/**
+ * WHO A LINE IS ADDRESSED TO, in a public place (docs/AI-SAFETY.md, flirting in public): the people (not AI-played characters) the line names, plus the author of the
+ * line it replies to. A name counts as a whole word, with or without "@", and so does the first word of a longer name (three letters or more). Pure.
+ * Several people with the same first word are all addressed, which only makes the rule stricter (every addressed person must have said yes).
+ */
+export function addressedIn(text: string, here: readonly { id: string; name: string; agent?: unknown }[], replyTo?: { id: string; agent?: unknown } | null): string[] {
+  const fold = (value: string): string => value.normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const line = ` ${fold(text).replace(/[^\p{L}\p{N}]+/gu, ' ')} `, out = new Set<string>();
+  for (const member of here) {
+    if (member.agent) continue;
+    const words = fold(member.name).replace(/[^\p{L}\p{N}]+/gu, ' ').trim().split(' ').filter(Boolean);
+    const forms = [words.join(' '), ...(words.length > 1 && (words[0]?.length ?? 0) >= 3 ? [words[0]!] : [])].filter((form) => form.length >= 2);
+    if (forms.some((form) => line.includes(` ${form} `))) out.add(member.id);
+  }
+  if (replyTo && !replyTo.agent) out.add(replyTo.id);
+  return [...out];
+}

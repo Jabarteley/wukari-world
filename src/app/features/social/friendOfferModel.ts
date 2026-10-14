@@ -14,8 +14,8 @@ import { money } from '../../ui/format.ts'
 export const DAY_MS = 86400000
 /** How long two people are in the same voice circle before the voice offer. */
 export const VOICE_TOGETHER_MS = 5 * 60000
-/** The small gift on the card: game naira, inside the gift rule (src/game/content/npcs.ts TRANSFER_LIMITS: ₦100 to ₦5,000). */
-export const GIFT_AMOUNT = 200
+/** The gift on the card: ₦5,000 of game naira (never real money), exactly the largest single gift of the rule (src/game/content/npcs.ts TRANSFER_LIMITS.maxPerTransfer), so it is never over a limit; the daily caps (3 gifts, ₦10,000) still apply and the server refuses with its own reason. */
+export const GIFT_AMOUNT = 5000
 const KEEP = 40
 
 /** What this browser remembers (localStorage, nothing sent anywhere): games already offered, people told "not now", people offered after voice. */
@@ -72,6 +72,8 @@ export function namesOf(people: readonly Pick<FriendOffer, 'name'>[]): string {
 }
 export const cardLine = (source: 'table' | 'voice', people: readonly Pick<FriendOffer, 'name'>[]): string => (source === 'table' ? `You played with ${namesOf(people)}. Stay in touch?` : `You have been talking with ${namesOf(people)}. Stay in touch?`);
 export const LATER = 'Gifts and room invitations open once you are friends.';
+/** Said on the card, plainly, when the player holds less cash than the gift (the server still decides everything else, and its reason is shown as it is). */
+export const giftShort = (cash: number, amount: number = GIFT_AMOUNT): string | null => (cash < amount ? `You need ${money(amount)} to send this gift. You have ${money(cash)}.` : null)
 export const giftLabel = (amount: number): string => `Send ${money(amount)}`;
 /** What the row says after Add as friend. */
 export const addedLine = (code: string): string => (code === 'accepted' || code === 'already_friends' ? 'You are friends' : 'Request sent');

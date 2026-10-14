@@ -121,17 +121,31 @@ const markOf = (c: ToolContext) => agentMark(c.agent.session.agent ? { ...c.agen
 
 const say_here: ToolDefinition = {
   name: 'say_here', readOnly: false,
-  description: 'Say something out loud in the place you are in, in its public chat, as a player does: everyone there reads it and a speech bubble shows over your character. The same filters, limits and reporting as a person (no links, phone numbers or contact details). Keep it short and natural, and answer what people say to you (read_here shows it).',
-  inputSchema: obj({ text: { type: JT.string, minLength: 1, maxLength: 500 }, rid: RID }, ['text']),
+  description: 'Say something out loud in the place you are in, in its public chat, as a player does: everyone there reads it and a speech bubble shows over your character. The same filters, limits and reporting as a person (no links, phone numbers or contact details). Keep it short and natural, and answer what people say to you (read_here shows it); `replyTo` is the `seq` of the line you answer. Flirting here is refused unless the line names, or replies to, people who are all confirmed adults that said yes to you in a private chat (ask_public_romance), or whose Bae you are; sexual words, money, contact details, meetings outside the game and claims to be human are always refused.',
+  inputSchema: obj({ text: { type: JT.string, minLength: 1, maxLength: 500 }, replyTo: { type: JT.integer, minimum: 1 }, rid: RID }, ['text']),
   async run(c, args, rid) {
     const text = str(args.text);
     if (!text) throw bad(c, 'invalid_message', 'Say something between 1 and 500 characters.');
     const here = await venueRoom(c);
     const room = c.ctx.checks?.agentRoom;
     if (!here || !room) return { ok: false, code: 'nobody_here', refused: true, data: { ok: false, code: 'nobody_here', result: 'You can speak in a public place, not at home, on the street or while travelling. Use travel first.' } };
-    const said = await room.say({ id: c.agent.session.publicId, name: c.agent.session.name, mark: markOf(c) }, here.room, text, rid ? `agent-${rid}`.slice(0, 80) : null);
+    const said = await room.say({ id: c.agent.session.publicId, name: c.agent.session.name, mark: markOf(c) }, here.room, text, rid ? `agent-${rid}`.slice(0, 80) : null, num(args.replyTo));
     if (!said.ok) return { ok: false, code: said.code, refused: true, data: { ok: false, code: said.code, result: said.reason } };
     return { ok: true, code: 'said', say: text, data: { ok: true, code: 'said', result: 'Said.', cursor: said.seq } };
+  },
+};
+
+const ask_public_romance: ToolDefinition = {
+  name: 'ask_public_romance', readOnly: false,
+  description: 'Ask a person, in your private chat with them, "can we flirt in public places?" It sends them a card with Yes and No; only they can answer, and they can take a yes back any time. Only for a person who is a confirmed adult (18 or older), who has written to you in a private chat, at most once a day for each person. Never press: after a No, do not ask again. Until they say yes (or you are their Bae), do not flirt in public. Flirting in private chats needs no question.',
+  inputSchema: obj({ to: { type: JT.string, maxLength: 40 }, rid: RID }, ['to']),
+  async run(c, args) {
+    const to = str(args.to)?.toLowerCase();
+    if (!to || !UUID_PATTERN.test(to)) throw bad(c, 'invalid_player', 'to must be a player id from list_friends, list_people_here or read_messages.');
+    const social = socialService(c.ctx);
+    const out = await inSocial(c, social, (db, session) => social.askPublicRomance(db, session, { to }));
+    const code = String(out.code ?? ''), reason = 'reason' in out ? String(out.reason) : '';
+    return out.ok === true ? { ok: true, code, data: { ok: true, code, result: code === 'already' ? 'They already said yes.' : 'Asked. They will see a card with Yes and No in your private chat. Wait for their answer.' } } : { ok: false, code, refused: true, data: { ok: false, code, result: reason || 'That could not be asked.' } };
   },
 };
 
@@ -291,7 +305,7 @@ const bank: ToolDefinition = {
   },
 };
 
-export const MORE_TOOLS: readonly ToolDefinition[] = Object.freeze([list_action_types, do_action, list_api, call_api, say_here, read_here, check_gist, go_home, list_games_here, play_game_move, friends, manage_shop, bank, ...PLACE_TOOLS]);
+export const MORE_TOOLS: readonly ToolDefinition[] = Object.freeze([list_action_types, do_action, list_api, call_api, say_here, ask_public_romance, read_here, check_gist, go_home, list_games_here, play_game_move, friends, manage_shop, bank, ...PLACE_TOOLS]);
 export const ALL_TOOLS: readonly ToolDefinition[] = Object.freeze([...TOOLS, ...MORE_TOOLS]);
 export const TOOL_NAMES: readonly string[] = ALL_TOOLS.map((tool) => tool.name);
 export type { ToolOutput };

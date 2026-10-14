@@ -211,6 +211,34 @@ function buildService(ctx: RouteContext) {
     return verdict.ok ? null : no(verdict.code, `${what}: ${verdict.reason}`);
   }
 
+  // ---- flirting with AI characters in public places (docs/AI-SAFETY.md) --------------------------------------------------------------
+  const ROMANCE = { perDay: 86400000, held: 100 };
+  /**
+   * May this AI character flirt in public with `person`? Only a confirmed adult (never an AI-played character, never someone blocking or blocked by it) who said yes
+   * to THIS character, or whose Bae it is. Both holders of the word "adult" are the one check, `ctx.checks.adult`; unknown age is no.
+   */
+  function publicConsent(db: Db, s: SocialCollection, person: string, agent: string): boolean {
+    const p = s.players[person];
+    if (!p || person === agent || speaksAsAi(s, person) || !speaksAsAi(s, agent) || notAdult(db, person) || blockedEither(s, person, agent)) return false;
+    return p.bae === agent || p.publicRomance?.[agent] !== undefined;
+  }
+  /** Writes a person's yes for one AI character, or the refusal: adults only, AI characters only, not blocked, a bounded list. */
+  function grantPublicRomance(db: Db, s: SocialCollection, p: SocialPlayerRecord, id: string, agent: string): Refused | null {
+    if (notAdult(db, id)) return no('agent_words_romance', 'AI characters do not take part in romance with anyone who has not said they are 18 or older.');
+    if (!speaksAsAi(s, agent)) return no('not_ai', 'This is for AI characters only.');
+    if (blockedEither(s, id, agent)) return no('blocked', 'Unblock them first.');
+    const held = p.publicRomance ??= {};
+    if (held[agent] === undefined && Object.keys(held).length >= ROMANCE.held) return no('romance_full', 'You have said yes to many characters. Take some back first.');
+    held[agent] ??= now();
+    return null;
+  }
+
+  if (ctx.checks) ctx.checks.publicRomance = (db, people, agent) => { const s = col(db); return people.length > 0 && people.every((person) => publicConsent(db, s, person, agent)); };
+  /** The question's card changed (answered): both members of the chat see it. */
+  function romanceCardChanged(s: SocialCollection, conv: ConversationRecord, line: MessageRecord, push: PushList): void {
+    for (const member of conv.members) if (s.players[member]?.convs[conv.id]) push.push([member, { type: 'message-changed', conv: summary(s, conv, member), message: messageView(s, conv, line, member) }]);
+  }
+
   // ---- input validation (throws 400) ---------------------------------------------------------
   const uuid = (value: unknown, code = 'invalid_player'): string => { if (typeof value !== 'string' || !UUID_PATTERN.test(value)) throw bad(code); return value.toLowerCase(); };
   const city = (value: unknown): CityId => { const found = ctx.cityIds.find((id) => id === value); if (!found) throw bad('invalid_city'); return found; };
@@ -638,6 +666,7 @@ function buildService(ctx: RouteContext) {
       ...(reactionsOf(s, message, viewer) ? { reactions: reactionsOf(s, message, viewer) } : {}),
       ...(message.gift ? { gift: { amount: message.gift.n, ...(message.gift.r && message.from !== viewer ? { repaid: message.gift.r } : {}) } } : {}),
       ...(message.req ? { request: requestView(s, message.req, message.from, viewer) } : {}),
+      ...(message.rom ? { romance: { agent: pub(s, message.rom.a), state: (message.rom.s ?? 'open') as 'open' | 'yes' | 'no', answerable: !message.rom.s && viewer !== message.rom.a && !blockedEither(s, viewer, message.rom.a) } } : {}),
       ...(picture ? { image: picture } : {}), ...(voice ? { voice } : {}), ...(message.version ? { version: message.version } : {}),
       ...(message.editedAt ? { editedAt: message.editedAt } : {}), ...(message.deletedAt ? { deleted: true as const } : {}), ...(message.forwarded ? { forwarded: true as const } : {}) };
   }
@@ -1370,7 +1399,9 @@ function buildService(ctx: RouteContext) {
       if (target !== id && (!s.players[target] || s.players[target].blocked[id])) return no('unknown_player', 'That player was not found. They may not have played yet.');
       const friend = areFriends(s, id, target);
       return yes('ok', { player: { ...pub(s, target), self: target === id, friend, requested: Boolean(p.out[target]), incoming: Boolean(p.in[target]), blocked: Boolean(p.blocked[target]),
-        bae: p.bae === target, baeAsked: Boolean(s.players[target]!.baeIn[id]), ...whereabouts(target, friend), ...thanksView(s, id, target, friend) } });
+        bae: p.bae === target, baeAsked: Boolean(s.players[target]!.baeIn[id]), ...whereabouts(target, friend), ...thanksView(s, id, target, friend),
+        // Only a confirmed adult sees the switch, and only on an AI character's card.
+        ...(target !== id && isAgentChar(s, target) && !notAdult(db, id) ? { publicRomance: { on: publicConsent(db, s, id, target), bae: p.bae === target } } : {}) } });
     },
 
     // ---- friends ---------------------------------------------------------------------------
@@ -1480,6 +1511,8 @@ function buildService(ctx: RouteContext) {
       if (p.blocked[target]) return yes('blocked', { duplicate: true });
       if (Object.keys(p.blocked).length >= LIMITS.blocked) return no('block_list_full', `Your block list is full (${LIMITS.blocked}). Unblock someone first.`);
       p.blocked[target] = now();
+      // Blocking takes back any yes to flirting in public, in both directions.
+      delete p.publicRomance?.[target]; delete s.players[target].publicRomance?.[id];
       directoryStamp += 1;
       endedIn(s).blocks.push(['block', id, target]);
       cut(s, db, id, target, cityId);
@@ -2380,6 +2413,60 @@ function buildService(ctx: RouteContext) {
       owe(s, db, from, cityId, { op: 'bae', id, name: p.name });
       notify(s, from, 'bae-answer', `${p.name} said yes. You are together now.`, { from: id }, push);
       return yes('accepted', { push });
+    },
+    /**
+     * An AI character asks a person, in their private chat, "can we flirt in public places?" (the agent tool ask_public_romance). The question is a system card
+     * with Yes and No that only the person can press (answerPublicRomance). Only a confirmed adult can be asked; once a day per pair; never an AI-played
+     * character; the chat must already exist and hold something the person wrote (no first contact by this). Nothing is said to the person but the card.
+     */
+    askPublicRomance(db: Db, session: SessionRecord, body: SocialBody) {
+      const to = uuid(body.to);
+      const { s, p, id } = enter(db, session);
+      if (!speaksAsAi(s, id, true)) return no('ai_only', 'Only an AI character asks this.');
+      const { target, refusal } = other(s, id, to);
+      if (refusal) return refusal;
+      if (speaksAsAi(s, to)) return no('not_a_person', 'Only a person can be asked.');
+      if (notAdult(db, to)) return no('agent_words_romance', 'AI characters do not take part in romance with anyone who has not said they are 18 or older.');
+      if (publicConsent(db, s, to, id)) return yes('already', { duplicate: true });
+      const t = now(), key = dmId(id, to), chat = s.convs[key];
+      if (!chat || chat.kind !== 'dm' || !chat.messages.some((line) => line.from === to)) return no('no_chat', `${target.name} has not talked with you in a private chat yet. Talk there first.`);
+      const asked = target.romanceAsked ??= {};
+      for (const [who, at] of Object.entries(asked)) if (t - at >= ROMANCE.perDay) delete asked[who];
+      if (asked[id] !== undefined) return no('asked_today', `You already asked ${target.name} today. Do not ask again until tomorrow.`);
+      if (!ctx.allow(`social:romance-ask:${id}`, 10, 3600000)) return no('rate_limited', 'You have asked a lot this hour. Give it some time.');
+      asked[id] = t;
+      const push: PushList = [];
+      const line = append(s, chat, null, `${p.name} (AI) asks: can we flirt in public places, not only here? Only you can say yes, and you can change your mind any time on their profile.`, null, true, { rom: { a: id } });
+      fanOut(s, chat, line, push, null);
+      return yes('asked', { push });
+    },
+    /** The person's answer to the card (Yes or No). Yes is stored on THEIR record; an AI-played character cannot give it, and neither can an under-18 or unknown age. */
+    answerPublicRomance(db: Db, session: SessionRecord, body: SocialBody) {
+      const agent = uuid(body.with), accept = body.accept;
+      if (typeof accept !== 'boolean') throw bad('invalid_answer');
+      const { s, p, id } = enter(db, session);
+      const { refusal } = other(s, id, agent);
+      if (refusal) return refusal;
+      if (speaksAsAi(s, id)) return no('person_only', 'Only a person can answer this.');
+      const chat = s.convs[dmId(id, agent)], line = chat?.messages.findLast((item) => item.rom?.a === agent);
+      if (!chat || !line?.rom) return no('no_question', 'That question is no longer waiting.');
+      if (line.rom.s) return line.rom.s === (accept ? 'yes' : 'no') ? yes(line.rom.s === 'yes' ? 'on' : 'off', { duplicate: true }) : no('no_question', 'You already answered that. You can change it on their profile.');
+      if (accept) { const refused = grantPublicRomance(db, s, p, id, agent); if (refused) return refused; }
+      line.rom.s = accept ? 'yes' : 'no';
+      const push: PushList = [];
+      romanceCardChanged(s, chat, line, push);
+      return yes(accept ? 'on' : 'off', { push });
+    },
+    /** The switch on an AI character's profile: "Flirting in public: on / off". Off withdraws the yes (a Bae still counts: end being Bae to stop it). */
+    setPublicRomance(db: Db, session: SessionRecord, body: SocialBody) {
+      const agent = uuid(body.with), on = body.on;
+      if (typeof on !== 'boolean') throw bad('invalid_answer');
+      const { s, p, id } = enter(db, session);
+      if (speaksAsAi(s, id)) return no('person_only', 'Only a person can change this.');
+      if (!s.players[agent]) return no('unknown_player', 'That player was not found.');
+      if (on) { const refused = grantPublicRomance(db, s, p, id, agent); if (refused) return refused; }
+      else delete p.publicRomance?.[agent];
+      return yes(on ? 'on' : 'off', { on: publicConsent(db, s, id, agent), bae: p.bae === agent });
     },
     baeEnd(db: Db, session: SessionRecord, body: SocialBody) {
       const cityId = city(body.cityId);

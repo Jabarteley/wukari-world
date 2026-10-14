@@ -27,6 +27,7 @@ const PersonJustice = defineAsyncComponent(() => import('../politics/PersonJusti
 import PingStrip from '../ping/PingStrip.vue'
 import { pingInstead } from '../ping/pingModel.ts'
 import type { SocialResult } from './socialClient.ts'
+import { romanceSwitch } from '../messages/romanceCard.ts'
 import { baeReason, friendControl, interactReason, moneyCeiling, moneyReason, sendLine } from './personModel.ts'
 import { closenessText, presenceClass, reasonLabel, STRANGER_TEXT, tagLabel, venueNameOf } from './socialWords.ts'
 import { personUi } from './socialState.ts'
@@ -117,6 +118,8 @@ const actions: Record<string, () => Promise<unknown>> = {
   unblock: () => run('/api/social/unblock', { id: props.id }, 'Unblocked'),
   bae: () => run('/api/social/bae/ask', { id: props.id, cityId: cityId() }, 'Asked. They will see it in Updates.'),
   'bae-end': () => run('/api/social/bae/end', { cityId: cityId() }, 'Ended'),
+  'romance-on': () => run('/api/social/romance/public', { with: props.id, on: true }, 'Flirting in public: on'),
+  'romance-off': () => run('/api/social/romance/public', { with: props.id, on: false }, 'Flirting in public: off'),
 }
 async function doAction(key: string): Promise<void> {
   if (personUi.busy) return
@@ -184,6 +187,9 @@ async function sendReport(): Promise<void> {
       <button v-if="card.bae" type="button" class="social-act" :disabled="personUi.busy" @click="doAction('bae-end')"><strong><GameIcon name="heart-off" inline /> End things</strong><small>Stop being Bae</small></button>
       <button v-else type="button" class="social-act" :disabled="Boolean(whyBae) || personUi.busy" @click="doAction('bae')"><strong><GameIcon name="heart" inline /> Ask to be my Bae</strong><small>{{ whyBae || 'Ask them now' }}</small></button>
       <button type="button" class="social-act" :disabled="Boolean(whyMoney)" @click="openForm('money')"><strong><GameIcon name="coin" inline /> Send money</strong><small>{{ whyMoney || `Up to ${money(moneyCeiling(t, game.state.value.cash))} now` }}</small></button>
+    </div>
+    <div v-if="card.publicRomance" class="social-grid" data-public-romance>
+      <button type="button" class="social-act" :disabled="personUi.busy || (card.publicRomance.bae && card.publicRomance.on)" @click="doAction(card.publicRomance.on ? 'romance-off' : 'romance-on')"><strong><GameIcon name="heart" inline /> {{ romanceSwitch(card.publicRomance).label }}</strong><small>{{ romanceSwitch(card.publicRomance).hint }}</small></button>
     </div>
     <form v-if="personUi.form === 'money'" ref="formEl" class="ui-card" @submit.prevent="sendMoney">
       <label>Amount to send (₦{{ t.min }}–₦{{ moneyCeiling(t, game.state.value.cash) }})<input v-model="personUi.amount" class="social-field" name="amount" inputmode="numeric" pattern="[0-9]*" maxlength="13" required></label>

@@ -241,6 +241,14 @@ export interface SocialPlayerRecord {
   reports: PlayerReportReceipt[]
   baeIn: Record<string, { at: number; cityId: CityId }>
   bae: string | null
+  /**
+   * Flirting with an AI character in PUBLIC places (docs/AI-SAFETY.md): AI character id → when this player said yes. Set only by this player's own
+   * explicit yes (the card in the private chat, or the switch on the character's profile), cleared by withdrawing it and by blocking. A Bae
+   * that is an AI character counts as a yes without an entry. Only a confirmed adult can hold one. Absent on older records.
+   */
+  publicRomance?: Record<string, number>
+  /** When each AI character last asked this player that question (AI character id → at): one question a day per pair. Entries older than a day are dropped. */
+  romanceAsked?: Record<string, number>
   /** The host whose house this player is inside. */
   visiting: string | null
   /** Naira received as gifts on Lagos day `day`. */
@@ -304,6 +312,8 @@ export interface MessageRecord {
   gift?: { n: number; r?: number }
   /** A request for money (MoneyRequestRecord, kept apart in social.moneyRequests): `n` naira, `x` when it lapses, and once it ended `s` how, so the line still reads right after the record is forgotten. */
   req?: { id: string; n: number; note?: string; x: number; s?: 'paid' | 'declined' | 'cancelled' }
+  /** The AI character's question "can we flirt in public places?" with Yes and No: `a` the AI character, `s` the answer once given. Its words are in `body`. */
+  rom?: { a: string; s?: 'yes' | 'no' }
   /** Reactions: player id → the one emoji they reacted with (at most REACTION_KINDS different emoji on a message). */
   rx?: Record<string, string>
   /** A picture: the id of its bytes (kept apart from this collection), its size and what became of it. */
@@ -1106,6 +1116,8 @@ export interface ContextChecks {
   minor?: (db: Db, publicId: string) => boolean
   /** Growth: that player answered the age question with "18 or older". Neither this nor `minor`: not answered. */
   adult?: (db: Db, publicId: string) => boolean
+  /** Social: may this AI character flirt in public with ALL of these people: each a confirmed adult who said yes to that character (or has it as a Bae), none blocking? False for an empty list. */
+  publicRomance?: (db: Db, people: readonly string[], agentId: string) => boolean
   /**
    * Trust (server/trust/service.ts): may this venue chat line, refused by the text filter only for its links, go out? Only a
    * checked stall owner, in their own stall's venue room, with allow-listed links and nothing else the filter refuses.
@@ -1135,7 +1147,7 @@ export interface AgentRoom {
   /** The character is no longer present anywhere. */
   absent(id: string): void
   /** Say a line to the venue the character is in, as a player does (same filters and limits). Resolves { ok: false, code, reason } for a refusal. */
-  say(from: { id: string; name: string; mark: { agent?: true; agentUntil?: number } }, room: string, body: string, clientId: string | null): Promise<{ ok: true; seq: number } | { ok: false; code: string; reason: string }>
+  say(from: { id: string; name: string; mark: { agent?: true; agentUntil?: number } }, room: string, body: string, clientId: string | null, replyTo?: number): Promise<{ ok: true; seq: number } | { ok: false; code: string; reason: string }>
   /** The public lines of the group the character is in after `since`, oldest first. */
   lines(id: string, room: string, since: number, limit: number): { seq: number; at: number; from: { id: string; name: string; agent?: true }; body: string; mine: boolean }[]
   /** The virtual members of a room, for the people list and presence. */

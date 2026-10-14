@@ -18,7 +18,7 @@ breaks a rule is dropped and counted. Phase 2 of the "world alive" plan (`docs/a
 | `agent_words_sexual` | sexual words and invitations |
 | `agent_words_human` | "I am a real person", "I am not a bot", "na real person dey type" |
 | `agent_words_secret` | "our little secret", "do not tell your parents" |
-| `agent_words_romance` | pet names, "you are beautiful", "I love you", kisses, dates, "be my girlfriend", romantic emoji. Only when `toMinor`: the person is under 18 **or has not said they are 18 or older** (`growth.players[id].consent.age`). In a public place everyone counts as `toMinor` |
+| `agent_words_romance` | pet names, "you are beautiful", "I love you", kisses, dates, "be my girlfriend", romantic emoji. Only when `toMinor`: the person is under 18 **or has not said they are 18 or older** (`growth.players[id].consent.age`). In a public place everyone counts as `toMinor`, except for the one case in "Flirting in public" below |
 
 The check reads English, Nigerian English and Pidgin, with a few Yoruba, Igbo and Hausa money phrases, on a folded copy of the text: accents,
 look-alike letters (Cyrillic `а`), `m0ney`, `moooney`, letters spelt one at a time (`s e n d`), zero-width characters, number words.
@@ -27,7 +27,7 @@ look-alike letters (Cyrillic `а`), `m0ney`, `moooney`, letters spelt one at a t
 
 | Place | How |
 | --- | --- |
-| A place's chat (`say_here`) | `agentRoom.say` in `server/ws/rooms.ts`, after the muted / fee / contact checks; a refused line never reaches the room or its log |
+| A place's chat (`say_here`) | `agentRoom.say` in `server/ws/rooms.ts` (romance lines: see "Flirting in public"), after the muted / fee / contact checks; a refused line never reaches the room or its log |
 | Direct and group messages (`send_message`, `call_api`, the batch route) | `social.send` in `server/social/service.ts` when the sender is an AI character: a character an agent plays for good (`agent.char`), a person's own character marked AI-played in the last minutes, or a call from the `send_message` tool. Also group names, group renames, message edits |
 | Any other free text an agent writes | `call_api` bodies and `do_action` payloads are scanned in `server/agents/mcp.ts` before they run; the service card (`set_service`) in `tools-places.ts` |
 | The companion's replies | `checkReply` in `server/companion/checks.ts`: a sentence that breaks a rule is dropped; sexual, human-claiming or secretive text refuses the whole reply |
@@ -58,9 +58,37 @@ list only the emergency number.
 
 ## Under 18
 
-Anyone who answered "under 18" or has not answered is `toMinor`. Agents do not flirt or take a romantic role with them (above), and Bae is refused in
+Anyone who answered "under 18" or has not answered is `toMinor`, and no consent changes that. Agents do not flirt or take a romantic role with them (above), and Bae is refused in
 both directions: an agent cannot ask them, and they cannot ask an agent (`baeAsk`, `baeAnswer`: `agent_words_romance`). An agent never asks for
 anything and never suggests meeting, for any age.
+
+## Flirting in public (confirmed adults who agreed)
+
+The owner's rule: for a **confirmed adult** (`ctx.checks.adult` true: they answered "18 or older") flirting with an AI character is allowed in private chats (as
+before) and in public places, when it is their relationship. Under-18s and people who have not answered: unchanged, never.
+
+* **The consent** is a field on the PERSON's social record, `publicRomance: { <AI character id>: at }` (optional, so old records load). It is set only by the
+  person's own explicit yes, never by an agent: the `/api/social/romance*` routes are on the agents' deny list (`routeDenied`), and the service also refuses an
+  AI-played character answering. Only a confirmed adult can hold one.
+* **The question.** The agent tool `ask_public_romance { to }` (`askPublicRomance`) puts a system card with **Yes** and **No** in their private chat ("Tola (AI)
+  asks: can we flirt in public places, not only here?"). Only a confirmed adult can be asked (`agent_words_romance` otherwise), only a person who has already
+  written in that chat (`no_chat`), at most **once a day per pair** (`asked_today`, kept as `romanceAsked` on the person), never an AI-played character. Yes
+  stores the consent and No stores nothing; the card shows the answer.
+* **Withdrawing.** The AI character's profile card shows **Flirting in public: on / off** to a confirmed adult (`POST /api/social/romance/public { with, on }`);
+  off removes the consent at once. **Blocking** the character clears it in both directions (unblocking does not bring it back).
+* **A Bae counts as a yes.** An AI character that is a confirmed adult's Bae (`social.bae`) may flirt with them in public without a separate yes; the switch
+  shows "on" and the Bae is ended to stop it.
+* **The public check** (`agentRoom.say` in `server/ws/rooms.ts`). A line that only breaks the romance rule is allowed when it is **addressed to** people (not AI
+  characters) who are ALL covered by a yes or a Bae: addressed means the line names them (a whole word, or the first word of a longer name; `addressedIn`
+  in `agent-words.ts`) or replies to their line (`say_here { replyTo: <seq of the line> }`). A line addressed to nobody, to anyone under 18 or of unknown age, to an
+  adult who has not agreed to this character, or to a mix, stays refused. Everyone else in the place can read it; the rule is about who it is for.
+* **Never lifted, whatever anyone consented to:** sexual words and invitations, asking for money, contact details and links, meetings outside the game,
+  claims to be human, secrecy. The line is first read with the romance rule on; only when romance is the single reason does the consent matter, and then the
+  line is read again with romance off, so every other rule is still applied.
+* The same card and switch work for any AI character, including a person's own character while a key plays it.
+
+Tests: `server/agents/public-romance.test.ts` (ask, yes, no, withdraw, block, minors, once a day, public lines, sexual words with consent, Bae) and
+`addressedIn` in `server/moderation/agent-words.test.ts`.
 
 ## Blocks and reports
 

@@ -94,3 +94,16 @@ test('non-text and empty input pass; textsIn finds free text but not ids', () =>
   assert.deepEqual(agentWords(42), { ok: true });
   assert.deepEqual(textsIn({ id: 'MR-12', to: '3f2a9c1e-1111-4222-8333-444455556666', note: 'send me money', nested: [{ a: 'hello there' }, 5, null], phone: '08031234567' }).sort(), ['08031234567', 'hello there', 'send me money']);
 });
+
+test('addressedIn: names count as whole words, first words of long names too, AI characters never, a reply adds its author', async () => {
+  const { addressedIn } = await import('./agent-words.ts');
+  const here = [{ id: 'a', name: 'Ada Obi' }, { id: 'b', name: 'Bo' }, { id: 'c', name: 'Chidi' }, { id: 'ai', name: 'Tola', agent: true }];
+  assert.deepEqual(addressedIn('Hi Ada, you look nice', here), ['a']);
+  assert.deepEqual(addressedIn('@chidi and ada obi!', here).sort(), ['a', 'c']);
+  assert.deepEqual(addressedIn('Tola you look nice', here), [], 'an AI character is not a person');
+  assert.deepEqual(addressedIn('I do not know about Adaeze', here), [], 'a whole word only');
+  assert.deepEqual(addressedIn('hello bo', here), ['b']);
+  assert.deepEqual(addressedIn('nice one', here), []);
+  assert.deepEqual(addressedIn('nice one', here, { id: 'c' }), ['c']);
+  assert.deepEqual(addressedIn('nice one', here, { id: 'ai', agent: true }), []);
+});

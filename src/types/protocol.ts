@@ -607,6 +607,8 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/social/bae/ask',
   'POST /api/social/bae/answer',
   'POST /api/social/bae/end',
+  'POST /api/social/romance/answer',
+  'POST /api/social/romance/public',
   'POST /api/social/transfers',
   'POST /api/social/money-requests',
   'POST /api/social/money-requests/answer',

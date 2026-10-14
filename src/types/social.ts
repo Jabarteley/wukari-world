@@ -118,6 +118,8 @@ export interface Message {
   gift?: { amount: number; repaid?: number }
   /** A request for money (src/moneyRequest.ts): the card the chat draws instead of words. Present on both sides' copies. */
   request?: MoneyRequestView
+  /** An AI character's question "can we flirt in public places?" with Yes and No (a system line): `answerable` only for the person asked, while it is open. */
+  romance?: { agent: PlayerRef; state: 'open' | 'yes' | 'no'; answerable: boolean }
   /** Reactions, grouped: each emoji, how many reacted with it, and whether the viewer did. */
   reactions?: { emoji: string; count: number; mine?: true }[]
   /** A picture. Its bytes are at GET /api/social/images/<id>, for members of the conversation only. */
@@ -308,6 +310,8 @@ export interface PersonCard extends PlayerRef, Whereabouts {
   baeAsked: boolean
   /** Gifts they gave and got (present once there is one). */
   thanks?: ThanksView
+  /** An AI character's card, seen by a confirmed adult: whether it may flirt with them in public places, and whether that is because it is their Bae. */
+  publicRomance?: { on: boolean; bae: boolean }
 }
 
 // ---- request bodies ------------------------------------------------------------------------------
@@ -351,6 +355,9 @@ export interface HouseLeaveBody { host: string; guest?: string }
 /** `action` is an id from PLAYER_ACTIONS (src/game/content/npcs.ts): hello, gist, joke, shade. */
 export interface InteractBody { action: string; cityId: CityId; clientId: TimedId }
 export interface BaeAskBody { id: string; cityId: CityId }
+/** `with` is the AI character. */
+export interface RomanceAnswerBody { with: string; accept: boolean }
+export interface RomancePublicBody { with: string; on: boolean }
 export interface BaeAnswerBody { from: string; accept: boolean; cityId: CityId }
 export interface BaeEndBody { cityId: CityId }
 export interface TransferBody { to: string; amount: number; cityId: CityId; clientId: TimedId }
@@ -456,6 +463,7 @@ export type InteractResult =
   | Done<string, { message: string; closeness: number } & Repeat>
   | Refusal<OtherPlayerRefusal | 'rate_limited' | 'not_joined' | 'not_here' | (string & {})>
 export type BaeAskResult = Done<'asked', Repeat> | Refusal<OtherPlayerRefusal | 'friends_only' | 'already_have_bae' | 'rate_limited' | (string & {})>
+export type RomanceResult = Done<'on' | 'off', Repeat & { on?: boolean; bae?: boolean }> | Refusal<'no_question' | 'agent_words_romance' | 'person_only' | 'not_ai' | 'blocked' | 'romance_full' | (string & {})>
 export type BaeAnswerResult = Done<'accepted', Repeat> | Done<'declined'> | Refusal<'no_request' | 'already_have_bae' | (string & {})>
 export type BaeEndResult = Done<'ended', Repeat>
 export type TransferResult =
@@ -532,6 +540,8 @@ export interface SocialHttpRoutes {
   'POST /api/social/house/leave': { body: HouseLeaveBody; response: Ok<HouseLeaveResult>; errors: SocialPost | 'invalid_player' }
   'POST /api/social/bae/ask': { body: BaeAskBody; response: Ok<BaeAskResult>; errors: SocialPost | 'invalid_player' | 'invalid_city' }
   'POST /api/social/bae/answer': { body: BaeAnswerBody; response: Ok<BaeAnswerResult>; errors: SocialPost | 'invalid_player' | 'invalid_city' | 'invalid_answer' }
+  'POST /api/social/romance/answer': { body: RomanceAnswerBody; response: Ok<RomanceResult>; errors: SocialPost | 'invalid_player' | 'invalid_answer' }
+  'POST /api/social/romance/public': { body: RomancePublicBody; response: Ok<RomanceResult>; errors: SocialPost | 'invalid_player' | 'invalid_answer' }
   'POST /api/social/bae/end': { body: BaeEndBody; response: Ok<BaeEndResult>; errors: SocialPost | 'invalid_city' }
   'POST /api/social/transfers': { body: TransferBody; response: Ok<TransferResult>; errors: SocialPost | OnceErrorCode | 'invalid_player' | 'invalid_city' | 'invalid_amount' }
   'POST /api/social/money-requests': { body: MoneyRequestBody; response: Ok<MoneyRequestResult>; errors: SocialPost | OnceErrorCode | 'invalid_player' | 'invalid_amount' | 'invalid_note' }

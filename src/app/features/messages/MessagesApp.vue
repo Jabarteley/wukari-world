@@ -48,6 +48,7 @@ import { unreadChats, updatesCount } from './messagesModel.ts'
 import { announceLines, announceUi } from '../announce/announceStore.ts'
 import type { UpdateLine } from './messagesThread.ts'
 import { isOutbox, lastLine, partnerOf, provisionalKey, readOnlyReason, targetOf, threadKind, threadTitle, updateLines } from './messagesThread.ts'
+import { romanceState } from './romanceCard.ts'
 import { filterChats, friendsToStart, onlyUnread, listTime, previewOf, sortChats, threadRows } from './messagesText.ts'
 import Composer from './Composer.vue'
 import MessageAction from './MessageAction.vue'
@@ -423,6 +424,7 @@ watch([() => ui.tab, () => ui.open, me, notices], readUpdates, { immediate: true
 /** The notice that put the player in a group offers one tap to leave it. */
 async function leaveFromUpdate(key: string): Promise<void> { const turn = actorTurn; await perform(`/api/social/groups/${encodeURIComponent(key)}`, { op: 'leave' }, 'You left the group.'); if (turn === actorTurn) social.threads.delete(key) }
 const answerFriend = (from: string, accept: boolean): Promise<unknown> => perform('/api/social/friends/answer', { from, accept, cityId: socialCityId() }, accept ? 'You are now friends' : null)
+const answerRomance = (agent: string, accept: boolean): Promise<unknown> => perform('/api/social/romance/answer', { with: agent, accept }, accept ? 'Yes, saved. You can change it on their profile.' : 'No, saved.')
 const answerBae = (from: string, accept: boolean): Promise<unknown> => perform('/api/social/bae/answer', { from, accept, cityId: socialCityId() })
 
 watch(() => game.session.value?.id ?? null, () => {
@@ -553,6 +555,11 @@ defineExpose({
                   <BaseButton small variant="primary" @click="retry(row.item.clientId)">Retry</BaseButton>
                   <BaseButton small @click="discard(row.item.clientId)">Delete</BaseButton>
                 </span>
+              </div>
+              <div v-else-if="row.item.romance" class="bubble is-sys is-romance" data-romance>
+                <span>{{ row.item.body }}</span>
+                <span v-if="row.item.romance.answerable" class="bubble-actions is-start"><BaseButton small variant="primary" :disabled="!connected" @click="answerRomance(row.item.romance.agent.id, true)">Yes</BaseButton><BaseButton small :disabled="!connected" @click="answerRomance(row.item.romance.agent.id, false)">No</BaseButton></span>
+                <b v-else-if="romanceState(row.item.romance)">{{ romanceState(row.item.romance) }}</b>
               </div>
               <div v-else-if="row.item.sys" class="bubble is-sys">{{ row.item.body }}</div>
               <MessageBubble v-else @menu="menuUp = $event" :item="row.item" :me-id="me.me.id" :group="isGroup" :head="row.head" :tail="row.tail" :time="time(row.item.at)" :can-react="conv?.kind !== 'house'" :can-actions="true" :can-pin="Boolean(pins.state.view?.canManage && canPinMessage(row.item))" :pinned="isPinned(row.item)" :pin-pending="pins.state.pending" :pin-blocked="pins.state.retryable" :pin-offline="!connected" :voice-enabled="me.prefs.voiceNotes !== 'nobody'" :now="now" :partner="title" :request-busy="Boolean(row.item.request && requests.busy.has(row.item.request.id))" :request-offline="!connected" @request="(id, op) => answerCard(row.item, id, op)" @pin="(item, pinned) => pins.change({ message: item, pinned })" @reply="(line) => { replying = line; composer?.focus() }" @react="react" @player="openCard" @jump="jump" @report-voice="reportVoice" @picture="(line) => { lightbox = line }" @edit="(item) => { messageAction = { kind: 'edit', item } }" @remove="(item) => { messageAction = { kind: 'delete', item } }" @forward="(item) => { messageAction = { kind: 'forward', item } }" />
@@ -791,6 +798,7 @@ defineExpose({
 .bubble.is-failed { background: var(--c-red-soft); color: var(--c-ink); box-shadow: inset 0 0 0 1.5px #e3a995; }
 .bubble.is-failed small { color: var(--c-red-dark); font-weight: 700; font-size: 11px; }
 .bubble.is-sys { align-self: center; padding: 2px; background: none; box-shadow: none; color: var(--c-muted); font-size: 11px; }
+.bubble.is-romance { display: grid; gap: 4px; justify-items: center; max-width: 90%; padding: 8px 12px; background: var(--c-fill-2); border-radius: 14px; font-size: 13px; text-align: center; }
 .bubble-actions { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; margin-top: 6px; }
 .bubble-actions.is-start { justify-content: flex-start; }
 .messages-foot { flex: none; padding: 8px 10px calc(14px + env(safe-area-inset-bottom, 0px)); background: #fff; border-top: 1px solid var(--c-line); }

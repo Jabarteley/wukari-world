@@ -341,7 +341,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
         return Promise.all([import('./street-life/draw.ts'), import('./street-life/scenery.ts')]).then(([module, sceneryChunk]) => {
           if (disposed || streetDropped) return;
           sceneryModule = sceneryChunk; dressStreet();
-          streetLife = module.createStreetLife(kit, { parent: group, seed: lifeSeed(), lanes: STREET_LANES, roads: STREET_ROADS, crossings: STREET_CROSSINGS, country: country(), crowd: choice.crowd, vehicles: choice.vehicles, at: Date.now(), context: 'street', tier: choice.tier, ready: changed });
+          streetLife = module.createStreetLife(kit, { parent: group, seed: lifeSeed(), lanes: STREET_LANES, roads: STREET_ROADS, crossings: STREET_CROSSINGS, country: country(), crowd: choice.crowd, vehicles: choice.vehicles, at: Date.now(), context: 'street', tier: choice.tier, ready: changed, walkable: (x, z) => grid.free(x, z) });
           streetLife.step(Date.now(), avatar.position);
           streetWindow = STREET_WINDOW_S; changed();
         });

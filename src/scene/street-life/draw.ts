@@ -59,6 +59,8 @@ export interface StreetLifeOptions {
   tier?: StreetTier | null
   /** Something changed between frames (a near body came in): draw one frame. */
   ready?(): void
+  /** The scene's walkable floor: only people on it may be drawn as near bodies (none without it). */
+  walkable?: ((x: number, z: number) => boolean) | null
   /** Tests: make the near crowd's bodies without the body module. */
   bodies?: NearCrowdOptions['make']
 }
@@ -410,7 +412,7 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
   if (nearChoice) {
     void import('./near-draw.ts').then((module) => {
       if (disposed || near) return;
-      near = module.createNearCrowd(kit, { parent: group, seed: options.seed, people, choice: nearChoice, changed: () => { if (disposed) return; step(last.at, last.player); options.ready?.(); }, ...(options.bodies ? { make: options.bodies } : {}) });
+      near = module.createNearCrowd(kit, { parent: group, seed: options.seed, people, choice: nearChoice, walkable: options.walkable ?? null, changed: () => { if (disposed) return; step(last.at, last.player); options.ready?.(); }, ...(options.bodies ? { make: options.bodies } : {}) });
       near.setCap(nearCap(nearChoice, shownPeople, people.length));
       step(last.at, last.player);
     }).catch(() => undefined);

@@ -9,7 +9,7 @@ import { createKit } from '../kit.ts';
 import { createStreetLife } from './draw.ts';
 import { createNearCrowd } from './near-draw.ts';
 import type { NearFrame } from './near-draw.ts';
-import { CHILD_HEAD, NEAR_CAPS, nearCrowdFor, nearDress } from './near.ts';
+import { CHILD_HEAD, NEAR_CAPS, nearCandidates, nearCrowdFor, nearDress } from './near.ts';
 import type { NearDress } from './near.ts';
 import { personAt, planPeople } from './crowd.ts';
 import type { PersonPose } from './crowd.ts';
@@ -54,7 +54,7 @@ test('bodies come in one at a time; a person is a body only once theirs is in, t
   const people = planPeople('lagos|walk', { lanes }, 120);
   const choice = nearCrowdFor('lite')!;
   let changed = 0;
-  const near = createNearCrowd(kit, { parent, seed: 'lagos|walk', people, choice, changed: () => { changed += 1; }, make: async (dress) => { const body = fakeBody(dress); made.push(body); return body; } });
+  const near = createNearCrowd(kit, { parent, seed: 'lagos|walk', people, choice, walkable: () => true, changed: () => { changed += 1; }, make: async (dress) => { const body = fakeBody(dress); made.push(body); return body; } });
   const frame = frameAt(people, 50, { x: 0, z: 4 });
   assert.equal(near.update(frame).size, 0, 'nothing until a body is in');
   await settle();
@@ -91,7 +91,7 @@ test('a body is handed on by re-dressing it (or one of the other file is made); 
   const people = planPeople('lagos|walk', { lanes }, 120);
   // One person's worth of triangles more than one body: a second never fits.
   const tight = { tier: 'full' as const, people: 4, triangles: CROWD_LOD.bodies.male.triangles + 2_000, drawCalls: 28 };
-  const near = createNearCrowd(kit, { parent, seed: 'lagos|walk', people, choice: tight, changed: () => undefined, make: async (dress) => { const body = fakeBody(dress); made.push(body); return body; } });
+  const near = createNearCrowd(kit, { parent, seed: 'lagos|walk', people, choice: tight, walkable: () => true, changed: () => undefined, make: async (dress) => { const body = fakeBody(dress); made.push(body); return body; } });
   const first = frameAt(people, 50, { x: 0, z: 4 });
   near.update(first); await settle();
   assert.equal(near.update(first).size, 1);
@@ -114,7 +114,7 @@ test('poses: walking strides, standing idles at their own point, a coffee sips, 
   const kit = createKit(), parent = new THREE.Group(), made = new Map<number, Fake>();
   const people = planPeople('lagos|park', { lanes }, 160, { children: true });
   const dresses = people.map((person, i) => nearDress(person, i, 'lagos|park'));
-  const near = createNearCrowd(kit, { parent, seed: 'lagos|park', people, choice: { tier: 'full', people: 20, triangles: 1e9, drawCalls: 1e9 }, changed: () => undefined,
+  const near = createNearCrowd(kit, { parent, seed: 'lagos|park', people, choice: { tier: 'full', people: 20, triangles: 1e9, drawCalls: 1e9 }, walkable: () => true, changed: () => undefined,
     make: async (dress) => { const body = fakeBody(dress); made.set(Number(dress.seed.split('|').pop()), body); return body; } });
   // Hand-built poses: four people right by the camera, one of each kind.
   const pick = (test: (i: number) => boolean) => people.findIndex((_, i) => test(i));
@@ -154,7 +154,7 @@ test('poses: walking strides, standing idles at their own point, a coffee sips, 
 test('in the street: the near people\'s cut-outs collapse while they are bodies, nobody else\'s; a failed body module leaves every cut-out', async () => {
   const kit = createKit(), parent = new THREE.Group();
   let ready = 0;
-  const life = createStreetLife(kit, { parent, seed: 'lagos|street', lanes, roads: [], crowd: 120, vehicles: 0, at: TEN, context: 'street', tier: 'full', ready: () => { ready += 1; },
+  const life = createStreetLife(kit, { parent, seed: 'lagos|street', lanes, roads: [], crowd: 120, vehicles: 0, at: TEN, context: 'street', tier: 'full', ready: () => { ready += 1; }, walkable: () => true,
     bodies: async (dress) => fakeBody(dress) });
   // The near chunk is fetched, then bodies come in; the street's step hides the cut-outs of those drawn.
   for (let k = 0; k < 30 && (life.near()?.people ?? 0) < 6; k++) { await new Promise((resolve) => setTimeout(resolve, 200)); life.step(TEN, { x: 0, z: 4 }); }
@@ -171,7 +171,7 @@ test('in the street: the near people\'s cut-outs collapse while they are bodies,
   assert.equal(parent.children.length, 0);
 
   // No bodies (the module fails): every cut-out stays.
-  const failing = createStreetLife(kit, { parent, seed: 'lagos|street', lanes, roads: [], crowd: 120, vehicles: 0, at: TEN, context: 'street', tier: 'full', bodies: async () => { throw new Error('no body'); } });
+  const failing = createStreetLife(kit, { parent, seed: 'lagos|street', lanes, roads: [], crowd: 120, vehicles: 0, at: TEN, context: 'street', tier: 'full', walkable: () => true, bodies: async () => { throw new Error('no body'); } });
   const original = console.warn; console.warn = () => undefined;
   for (let k = 0; k < 5; k++) { await new Promise((resolve) => setTimeout(resolve, 50)); failing.step(TEN, { x: 0, z: 4 }); }
   console.warn = original;
@@ -187,4 +187,36 @@ test('in the street: the near people\'s cut-outs collapse while they are bodies,
   plain.dispose();
   assert.equal(NEAR_CAPS.full.people, 12);
   kit.dispose();
+});
+
+test('the floor guard: only people standing on the walkable floor become bodies; none without a floor; a family passes together', async () => {
+  const kit = createKit(), parent = new THREE.Group();
+  const people = planPeople('lagos|park', { lanes }, 160, { children: true });
+  const make = async (dress: NearDress) => fakeBody(dress);
+  const frame = frameAt(people, 50, { x: 0, z: 4 });
+  const fill = async (near: ReturnType<typeof createNearCrowd>) => { for (let k = 0; k < 30; k++) { near.update(frame); await new Promise((resolve) => setTimeout(resolve, 200)); } return near.update(frame); };
+  // No floor at all (the fallback): nobody, and no body is ever made.
+  let made = 0;
+  const none = createNearCrowd(kit, { parent, seed: 'lagos|park', people, choice: nearCrowdFor('full')!, changed: () => undefined, make: async (dress) => { made += 1; return fakeBody(dress); } });
+  assert.equal((await fill(none)).size, 0); assert.equal(made, 0);
+  none.dispose();
+  // A floor that holds only the lane at z = 0 (the venue's floor; the other lane is outside it, behind a wall).
+  const floor = (x: number, z: number) => Math.abs(z) < 1.3 && Math.abs(x) < 60;
+  const near = createNearCrowd(kit, { parent, seed: 'lagos|park', people, choice: { tier: 'full', people: 20, triangles: 1e9, drawCalls: 1e9 }, walkable: floor, changed: () => undefined, make });
+  const drawn = await fill(near);
+  assert.ok(drawn.size > 0);
+  for (const index of drawn) assert.ok(floor(frame.poses[index]!.x, frame.poses[index]!.z), `${index} is on the floor`);
+  near.dispose();
+  kit.dispose();
+});
+
+test('nearCandidates: shown, placed, on the floor; a child and parent both on it or neither', () => {
+  const people = [{ family: 0 }, { family: 0 }, {}, {}] as { family?: number }[];
+  const at = (x: number) => ({ x, z: 0, fade: 1 });
+  const floor = (x: number) => x < 5;
+  assert.deepEqual(nearCandidates(people, [at(1), at(2), at(3), at(9)], 4, floor).map((c) => c.id), [0, 1, 2]);
+  assert.deepEqual(nearCandidates(people, [at(1), at(7), at(3), at(4)], 4, floor).map((c) => c.id), [2, 3], 'the child is off the floor: the parent stays a cut-out too');
+  assert.deepEqual(nearCandidates(people, [at(1), at(2), at(3), at(4)], 2, floor).map((c) => c.id), [0, 1], 'only those shown');
+  assert.deepEqual(nearCandidates(people, [at(1), at(2), null, at(Number.NaN)], 4, floor).map((c) => c.id), [0, 1]);
+  assert.deepEqual(nearCandidates(people, [at(1), at(2), at(3), at(4)], 4, null), [], 'no floor: nobody');
 });

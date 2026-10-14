@@ -108,6 +108,27 @@ export function selectNear(candidates: readonly NearCandidate[], eye: Eye | null
   return [...members.sort(order), ...newcomers.sort(order)].slice(0, limit).sort(order).map(({ id }) => id);
 }
 
+/**
+ * Who may be a body at all this instant: shown (index < count), placed, and standing on the scene's WALKABLE floor (the host's own walk
+ * grid: a venue's floor, the home street's pavements and road), checked point by point as the final guard. A child and their parent are
+ * checked together: both on the floor, or neither is a body. No walkable test at all: nobody (the cut-outs stay where they are).
+ */
+export function nearCandidates(people: readonly Pick<Person, 'family'>[], poses: readonly ({ x: number; z: number; fade: number } | null)[], count: number,
+  walkable: ((x: number, z: number) => boolean) | null | undefined): NearCandidate[] {
+  if (!walkable) return [];
+  const n = Math.min(count, people.length, poses.length), on = (i: number): boolean => { const p = poses[i]; return Boolean(p && i < n && Number.isFinite(p.x) && Number.isFinite(p.z) && walkable(p.x, p.z)); };
+  const families = new Map<number, number[]>();
+  for (let i = 0; i < people.length; i++) { const family = people[i]!.family; if (family !== undefined) families.set(family, [...(families.get(family) ?? []), i]); }
+  const out: NearCandidate[] = [];
+  for (let i = 0; i < n; i++) {
+    const pose = poses[i], family = people[i]!.family;
+    if (!pose || !on(i)) continue;
+    if (family !== undefined && !(families.get(family) ?? []).every(on)) continue;
+    out.push({ id: i, x: pose.x, z: pose.z, fade: pose.fade });
+  }
+  return out;
+}
+
 // ---- children --------------------------------------------------------------------------------------------------------------------
 
 /**

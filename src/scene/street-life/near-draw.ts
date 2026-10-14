@@ -8,7 +8,9 @@
  *            index of about 2,430 triangles each), made one at a time and kept for the scene. A body is handed from one person to the
  *            next by re-dressing it (wear: the look's colours and the wardrobe layer), at most one re-dress a frame. A person whose body
  *            is not ready stays a cut-out, so nothing ever pops out of sight.
- *   people   each frame, near.ts selectNear picks who is near; draw.ts hides their cut-outs (the instance collapses to nothing) and this
+ *   people   each frame, near.ts nearCandidates keeps only people standing on the scene's walkable floor (a final point-in-bounds
+ *            guard: no floor given, no bodies; a child and parent pass together or not at all), selectNear picks who is near, draw.ts
+ *            hides their cut-outs (the instance collapses to nothing) and this
  *            puts the body where the cut-out was, facing the same way: walking at the stride their pace gives, standing (the idle clip,
  *            each at their own point in it), sipping a coffee, or looking at a phone; heads turn toward the player when close.
  *   props    ONE InstancedMesh of cups and ONE of phones, placed at the hands each frame: two draw calls for every prop there is.
@@ -24,7 +26,7 @@ import type { BodyKey } from '../body/manifest.ts';
 import { CROWD_LOD } from '../body/crowd-lod.ts';
 import type { CrowdBodies, SkinnedBody } from '../body/skinned.ts';
 import type { Person, PersonPose } from './crowd.ts';
-import { CHILD_HEAD, PROP_CALLS, easeGlance, glanceYaw, nearAction, nearDress, selectNear } from './near.ts';
+import { CHILD_HEAD, PROP_CALLS, easeGlance, glanceYaw, nearAction, nearCandidates, nearDress, selectNear } from './near.ts';
 import type { Eye, NearAction, NearChoice, NearDress } from './near.ts';
 
 export interface NearCrowdOptions {
@@ -33,6 +35,8 @@ export interface NearCrowdOptions {
   seed: string
   people: readonly Person[]
   choice: NearChoice
+  /** The scene's walkable floor (its walk grid): only people standing on it may be bodies. None given: no bodies at all. */
+  walkable?: ((x: number, z: number) => boolean) | null
   /** A body came in between frames: put everyone again at the last instant and draw one frame. */
   changed(): void
   /** Tests: make a body without the body module. */
@@ -217,12 +221,7 @@ export function createNearCrowd(kit: Kit, options: NearCrowdOptions): NearCrowd 
 
   function update(frame: NearFrame): ReadonlySet<number> {
     if (disposed || failed) return (drawn = new Set());
-    const candidates: { id: number; x: number; z: number; fade: number }[] = [];
-    for (let i = 0; i < Math.min(frame.count, people.length); i++) {
-      const place = frame.poses[i];
-      if (place) candidates.push({ id: i, x: place.x, z: place.z, fade: place.fade });
-    }
-    const wanted = selectNear(candidates, frame.eye, drawn, cap);
+    const wanted = selectNear(nearCandidates(people, frame.poses, frame.count, options.walkable), frame.eye, drawn, cap);
     const keep = new Set(wanted);
     for (const slot of slots) if (slot.person !== null && !keep.has(slot.person)) { slot.person = null; slot.body.object.visible = false; }
     let triangles = 0, calls = PROP_CALLS, redressed = false;

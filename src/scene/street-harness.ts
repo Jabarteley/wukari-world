@@ -6,6 +6,9 @@
  * ?x=<along the street> ?z=<camera z> ?up=<height> ?lx= ?lz= (look-at)  ?time=day|dusk|night. Nothing here runs in the game.
  * ?streetlife=on draws the street's far crowd and traffic (src/scene/street-life) and keeps them moving for one window of frames, with
  * its shopfronts and street furniture; &streetperf=1 adds the measured frame time and the counts (top left).
+ * ?city=<id> another city's street (its country's driving side, liveries and traffic mix; default lagos). ?eye=1 (with ?streetlife=on)
+ * looks from the street's start pose, where the map's dive ends on the home street (src/scene/street-life/street-scene.ts): eye height
+ * on the near pavement, looking along the street. ?at=<ms> stops the street's clock at that instant (for screenshots).
  */
 import { createKit } from './kit.ts';
 import { buildNeighbourhoodScene } from './neighbourhood-scene.ts';
@@ -15,7 +18,10 @@ import { lightingFor } from './lighting.ts';
 
 const params = new URLSearchParams(location.search), num = (key: string, fallback: number) => Number(params.get(key) ?? fallback);
 const time = (params.get('time') || 'day') as 'day' | 'dusk' | 'night';
-await (await import('../game/cities/registry.ts')).loadCityContent('lagos');
+const cityId = params.get('city') || 'lagos';
+await (await import('../game/cities/registry.ts')).loadCityContent(cityId);
+// A pinned clock: street life places everyone from Date.now(), so a fixed ?at= gives the same street every time.
+if (params.has('at')) { const pinned = num('at', 0); Date.now = () => pinned; }
 const kit = createKit(), { THREE } = kit;
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
@@ -27,11 +33,11 @@ const sky = createSky(THREE);
 scene.background = sky.texture;
 const street = buildNeighbourhoodScene(kit);
 const { createLife } = await import('../life.ts');
-street.update?.(createLife({ location: 'home' }, { cityId: 'lagos', now: Date.UTC(2026, 0, 5, time === 'day' ? 12 : time === 'dusk' ? 17 : 21) }));
+street.update?.(createLife({ location: 'home' }, { cityId, now: Date.UTC(2026, 0, 5, time === 'day' ? 12 : time === 'dusk' ? 17 : 21) }));
 if (params.get('houses') === '1') {
   const { packStyle } = await import('../game/content/world.ts'), tiers = ['starter', 'bq', 'bungalow', 'duplex', 'villa'] as const;
   const houses = [3, 4, 5, 6, 7].map((plot, i) => ({ plot, style: packStyle({ shape: i % 4, wall: (i * 3) % 8, roof: (i * 2 + 1) % 8, door: i % 4, windows: i % 4, fence: (i + 1) % 4, yard: [5, 4, 7, 1, 3][i]!, sign: 0 }, tiers[i]!), land: [], owner: { id: `n${i}`, name: `Neighbour ${i}` } }));
-  street.setStreet?.({ city: 'lagos', anchor: { lga: 'ikeja', estate: 0, plot: 5 }, land: [], houses } as never);
+  street.setStreet?.({ city: cityId, anchor: { lga: 'ikeja', estate: 0, plot: 5 }, land: [], houses } as never);
 }
 scene.add(street.group);
 const stage = document.getElementById('stage')!, { clientWidth: width, clientHeight: height } = stage;
@@ -46,7 +52,17 @@ lights.apply(lightingFor('outdoor', time));
 lights.aim(camera);
 sky.set(...street.sky!);
 renderer.setClearColor(street.background!);
-const draw = () => { street.look?.(camera.position.x, camera.position.z); renderer.render(scene, camera); document.getElementById('info')!.textContent = `street · ${time}${params.get('models') === '1' ? ' · models' : ' · stand-ins'} · ${renderer.info.render.calls} calls · ${renderer.info.render.triangles} tris`; (window as unknown as { __diag: unknown }).__diag = { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles }; };
+// ?eye=1: once the street has noted its layout, the camera takes its start pose (a person's eye on the pavement, looking along the street).
+const streets = params.get('eye') === '1' ? await import('./street-life/street-scene.ts') : null;
+let eyed = false;
+const eye = (): void => {
+  const layout = streets?.streetOf('neighbourhood');
+  if (!layout || eyed) return;
+  eyed = true;
+  camera.fov = num('fov', 62); camera.position.set(...layout.pose.eye); camera.lookAt(...layout.pose.look); camera.updateProjectionMatrix();
+  lights.aim(camera);
+};
+const draw = () => { eye(); street.look?.(camera.position.x, camera.position.z); renderer.render(scene, camera); document.getElementById('info')!.textContent = `${cityId} · ${streets ? (eyed ? 'eye pose · ' : 'waiting for the street · ') : ''}street · ${time}${params.get('models') === '1' ? ' · models' : ' · stand-ins'} · ${renderer.info.render.calls} calls · ${renderer.info.render.triangles} tris`; (window as unknown as { __diag: unknown }).__diag = { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles }; };
 draw();
 // Redraw a bounded number of times while the models arrive (a timeout chain: scene sources hold no interval).
 const redraw = (left: number): void => { draw(); if (left > 0) setTimeout(() => redraw(left - 1), 700) }

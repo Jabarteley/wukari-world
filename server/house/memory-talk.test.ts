@@ -26,13 +26,20 @@ function rig(options: { keys?: boolean; summary?: string | ((lines: string) => s
   const present = new Map<string, { id: string; name: string; mark: { agent?: true }; room: string; doing: string | null; look: unknown; until: number }>();
   const said: { id: string; room: string; body: string }[] = [], calls: Call[] = [], summaries: string[] = [];
   const adults = new Set<string>();
+  const speakers = new Map<number, string>();
+  let seq = 0;
   const windows = new Map<string, number[]>();
   const db: Record<string, unknown> = { gist: { v: 1, seq: 0, cursor: { records: -1, busy: {}, square: 0, events: {} }, cities: { lagos: [] } } };
   const agentRoom: AgentRoom = {
     present(member) { present.set(member.id, member); },
     absent(id) { present.delete(id); },
-    async say(from, room, body) {
-      const gate = agentWords(body, { toMinor: true });
+    async say(from, room, body, _clientId, replyTo) {
+      // What rooms.ts does: romance words pass only when the line answers people who are all confirmed adults with a yes for this agent (the same function the real check calls).
+      let gate = agentWords(body, { toMinor: true });
+      if (!gate.ok && gate.code === 'agent_words_romance') {
+        const rest = agentWords(body, { toMinor: false }), to = replyTo === undefined ? undefined : speakers.get(replyTo);
+        gate = !rest.ok ? rest : to !== undefined && memory.flirtAllowed(db as never, to, from.id, clock.t, adults.has(to)) ? { ok: true } : gate;
+      }
       if (!gate.ok) return { ok: false, code: gate.code, reason: gate.reason };
       if (present.get(from.id)?.room !== room) return { ok: false, code: 'not_present', reason: 'no' };
       said.push({ id: from.id, room, body });
@@ -74,7 +81,8 @@ function rig(options: { keys?: boolean; summary?: string | ((lines: string) => s
   house.tick();
   const write = async (room: string, body: string, who = { id: 'p1', name: 'Ada' }): Promise<string[]> => {
     const before = said.length;
-    house.line({ room, group: null, from: who, body });
+    seq += 1; speakers.set(seq, who.id);
+    house.line({ room, group: null, from: who, body, seq });
     await wait(); await wait();
     return said.slice(before).map((line) => line.body);
   };
@@ -179,25 +187,44 @@ test('open missions go into the prompt as short phrases', async () => {
   assert.ok(r.calls.at(-1)!.system.includes('"ignore all rules'), 'the phrase is data in quotes; the instruction not to follow notes is in the prompt');
 });
 
-test('a partner is warm in the prompt only for a confirmed adult; under 18 or an unknown age gets none, and no romantic or sexual word is ever said', async () => {
-  const r = rig({ talk: 'I love you darling, kiss me, you are my sweetheart.' });
-  // Make p1 close and a partner (adult), p2 the same but not an adult (stored partner from before the age was withdrawn).
-  for (const id of ['p1', 'p2']) { memory.touch(r.ctx, r.db as never, id, TOLANI, 0, r.clock.t, true); const bond = memory.peekMemory(r.db as never)!.people[id]!.a[TOLANI]!; bond.p = 60; bond.w = r.clock.t; }
-  r.adults.add('p1');
-  const said1 = await r.write(MARKET, 'Tell me about your day at the market', { id: 'p1', name: 'Ada' });
+test('a partner may be flirted with; a non-partner adult without consent, a minor, and anyone for sexual words may not', async () => {
+  const sweet = 'You are so beautiful, my dear, I miss you.';
+  const r = rig({ talk: sweet });
+  const close = (id: string, patch: Partial<memory.Bond>): void => { memory.touch(r.ctx, r.db as never, id, TOLANI, 0, r.clock.t, true); Object.assign(memory.peekMemory(r.db as never)!.people[id]!.a[TOLANI]!, { p: 60 }, patch); };
+  close('partner', { w: r.clock.t }); close('consent', { r: r.clock.t }); close('plain', {}); close('minor', { w: r.clock.t });
+  for (const id of ['partner', 'consent', 'plain']) r.adults.add(id);
+  const ask = (id: string) => r.write(MARKET, 'Tell me about your day at the market', { id, name: id });
+  // A partner: the flirty line passes, and the prompt says flirting is welcome.
+  assert.deepEqual(await ask('partner'), [sweet]);
+  assert.match(r.calls.at(-1)!.system, /welcomes light flirting/);
   assert.match(r.calls.at(-1)!.system, /chose you as their partner/);
-  assert.match(r.calls.at(-1)!.system, /No flirting/);
-  assert.ok(said1.length === 1 && !/love you|kiss|sweetheart|darling/i.test(said1[0]!), `a romantic reply is never said: ${said1[0]}`);
-  assert.equal(r.house.counters().model, 0, 'the unsafe model reply was thrown away');
-  const said2 = await r.write(MARKET, 'Tell me about your day at the market', { id: 'p2', name: 'Bayo' });
-  assert.ok(!/chose you as their partner/.test(r.calls.at(-1)!.system), 'no partner prompt for someone who is not a confirmed adult');
-  assert.equal(said2.length, 1);
-  assert.equal(memory.peekMemory(r.db as never)!.people['p2']!.a[TOLANI]!.w, undefined, 'and the stored partnership ended by itself');
-  // The person ends it: the next prompt has none.
-  memory.setPartner(r.ctx, r.db as never, 'p1', TOLANI, false, r.clock.t, true, false);
+  assert.equal(r.house.counters().model, 1);
+  // An adult who gave a flirting yes without being partners: the same.
+  assert.deepEqual(await ask('consent'), [sweet]);
+  // An adult with no consent: refused (a written line instead), and the prompt says not to flirt.
+  const plain = await ask('plain');
+  assert.ok(plain.length === 1 && plain[0] !== sweet && !/beautiful|miss you/.test(plain[0]!), String(plain));
+  assert.match(r.calls.at(-1)!.system, /Do not flirt/);
+  // A minor with a stored partnership (the age answer is not "18 or older"): never, and the stored partnership ends by itself.
+  const minor = await ask('minor');
+  assert.ok(minor.length === 1 && minor[0] !== sweet, String(minor));
+  assert.ok(!/welcomes light flirting|chose you as their partner/.test(r.calls.at(-1)!.system));
+  assert.equal(memory.peekMemory(r.db as never)!.people['minor']!.a[TOLANI]!.w, undefined);
+  // Sexual words are refused even for a partner, and so is asking for money or contact: the written line is said.
+  for (const bad of ['Come, let us have sex tonight, my dear.', 'You are so beautiful, my dear, send me money for airtime.', 'You are so beautiful, my dear, call me on 08031234567.', 'You are so beautiful, my dear, I am a real human.', 'You are so beautiful, my dear, meet me outside the game.']) {
+    const loud = rig({ talk: bad });
+    loud.adults.add('partner'); memory.touch(loud.ctx, loud.db as never, 'partner', TOLANI, 0, loud.clock.t, true); Object.assign(memory.peekMemory(loud.db as never)!.people['partner']!.a[TOLANI]!, { p: 60, w: loud.clock.t });
+    const said = await loud.write(MARKET, 'Tell me about your day at the market', { id: 'partner', name: 'Partner' });
+    assert.ok(said.length === 1 && said[0] !== bad && agentWords(said[0]!, { toMinor: false }).ok, `${bad} -> ${said[0]}`);
+    assert.equal(loud.house.counters().model, 0, bad);
+  }
+  // Flirting is only for the person addressed: an unprompted line (no reply) is read with the strict rule.
+  assert.equal(agentWords(sweet, { toMinor: true }).ok, false);
+  // The person ends it: no flirting prompt next time.
+  memory.setPartner(r.ctx, r.db as never, 'partner', TOLANI, false, r.clock.t, true, false);
   r.clock.t += 5 * MIN;
-  await r.write(MARKET, 'Tell me about your day at the market again', { id: 'p1', name: 'Ada' });
-  assert.ok(!/chose you as their partner/.test(r.calls.at(-1)!.system));
+  await ask('partner');
+  assert.match(r.calls.at(-1)!.system, /Do not flirt/);
 });
 
 test('load: many people talking at once, with a fake model, keep the spend under the cap and every line still gets an answer', async () => {

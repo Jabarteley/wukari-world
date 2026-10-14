@@ -30,6 +30,8 @@ export interface AgentMemoryCard {
   partner: boolean
   /** An adult, close enough, and not already someone's: the Partner button is on. */
   canPartner: boolean
+  /** This adult's yes to flirting from this agent (a partner has it already). */
+  flirt: boolean
   missions: number
 }
 export interface AgentMemoryView { remembering: boolean; adult: boolean; partnerAt: number; agents: AgentMemoryCard[] }
@@ -39,6 +41,7 @@ export interface AgentsHttpRoutes {
   'GET /api/agents/memory': { response: Ok<AgentMemoryView>; errors: ReadError }
   'POST /api/agents/memory/forget': { body: { agent?: string; fact?: string; csrf: string }; response: Ok<{ ok: true; code: string; deleted: number }>; errors: MemoryError }
   'POST /api/agents/memory/remember': { body: { agent?: string; on: boolean; csrf: string }; response: Done; errors: MemoryError }
+  'POST /api/agents/memory/flirt': { body: { agent: string; on: boolean; csrf: string }; response: Done; errors: MemoryError }
   'POST /api/agents/memory/partner': { body: { agent: string; on: boolean; csrf: string }; response: Done; errors: MemoryError }
   /** The MCP endpoint, served at /mcp by both hosts: a JSON-RPC 2.0 request with a bearer agent key, answered as bare JSON-RPC (no serverTime). */
   'POST /api/agents/mcp': { body: Record<string, unknown>; response: Ok<Record<string, unknown>>; errors: ReadError | 'origin_rejected' | 'invalid_key' | 'key_suspended' | 'agents_off' | 'account_banned' | 'character_unavailable' | 'character_changed' }

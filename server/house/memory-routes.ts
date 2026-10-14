@@ -7,6 +7,8 @@
  *   GET  /api/agents/memory                       { remembering, adult, partnerAt, agents: [{ id, name, role, city, remembering, facts, standing, partner, canPartner, missions }] }
  *   POST /api/agents/memory/forget   { agent?, fact?, csrf }   one fact of one agent (agent + fact), everything with one agent (agent), or with all (neither)
  *   POST /api/agents/memory/remember { agent?, on, csrf }      remembering for one agent, or (no agent) for all; off deletes the stored facts at once
+
+ *   POST /api/agents/memory/flirt    { agent, on, csrf }       an adult says an agent may flirt with them (without being partners), or takes it back
  *   POST /api/agents/memory/partner  { agent, on, csrf }       make an agent my partner (adults only, closeness 40, one at a time) or end it (always allowed)
  * The writes need what the other agent routes need: an Origin that names this host and the anti-forgery token of the session cookie.
  */
@@ -27,7 +29,7 @@ export function memoryRoutes(ctx: RouteContext, guard: (request: RouteRequest, b
         const view = memory.overview(db, session.publicId, now, adult);
         const agents = view.agents.flatMap((card) => {
           const who = agentInfo(card.agent);
-          return who ? [{ id: card.agent, name: who.name, role: who.role, city: who.city, remembering: card.remembering, facts: card.facts, standing: card.standing, partner: card.partner, canPartner: adult && card.standing.points >= memory.PARTNER_AT, missions: card.missions }] : [];
+          return who ? [{ id: card.agent, name: who.name, role: who.role, city: who.city, remembering: card.remembering, facts: card.facts, standing: card.standing, partner: card.partner, canPartner: adult && card.standing.points >= memory.PARTNER_AT, flirt: card.flirt, missions: card.missions }] : [];
         });
         return { remembering: view.remembering, adult, partnerAt: memory.PARTNER_AT, agents };
       });
@@ -56,6 +58,19 @@ export function memoryRoutes(ctx: RouteContext, guard: (request: RouteRequest, b
         memory.setRemembering(ctx, db, session.publicId, agent, on, ctx.now());
       });
       return { body: { ok: true, code: on ? 'remembering' : 'not_remembering' }, headers: NO_STORE, renew: true };
+    },
+    'POST /api/agents/memory/flirt': async (request) => {
+      const body = await request.json();
+      await guard(request, body);
+      const agent = agentOf(body.agent), on = flag(body.on);
+      if (!agent) throw ctx.fail(400, 'invalid_agent');
+      const done = await ctx.store.transact((db) => {
+        const session = request.requireSession(db, { renew: true });
+        limited(request, session.publicId);
+        return memory.setFlirt(ctx, db, session.publicId, agent, on, ctx.now(), adultOf(db, session.publicId));
+      });
+      if (!done) throw Object.assign(ctx.fail(403, 'adults_only'), { reason: 'AI characters only flirt with players who have said they are 18 or older.' });
+      return { body: { ok: true, code: on ? 'flirting_on' : 'flirting_off' }, headers: NO_STORE, renew: true };
     },
     'POST /api/agents/memory/partner': async (request) => {
       const body = await request.json();

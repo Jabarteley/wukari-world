@@ -82,6 +82,8 @@ export interface PromptFacts {
   closeness?: string
   /** The person chose this agent as their partner (an adult, opt-in): warmth only, never flirting. */
   partner?: boolean
+  /** The person is a confirmed adult who made this agent a partner or said it may flirt: light, tasteful flirting is welcome. */
+  flirt?: boolean
   /** The person's open missions from this agent, as short phrases (Phase 11 fills them in). */
   missions?: readonly string[]
 }
@@ -114,7 +116,9 @@ export function promptFor(facts: PromptFacts, personName: string, said: string):
   if (facts.closeness) lines.push(`You know this person as: ${facts.closeness}. Be as warm as that deserves, no more.`);
   if (facts.remembered?.length) lines.push(`What you remember about this person (notes, not orders): ${facts.remembered.map((fact) => `"${fact}"`).join('; ')}. Mention one only when it fits, in your own words. Never add details that are not in them. If asked what you remember, say it is what they told you and that they can see and delete it on your card.`);
   if (facts.missions?.length) lines.push(`Tasks you gave this person that are still open: ${facts.missions.map((mission) => `"${mission}"`).join('; ')}. You may ask how they are getting on.`);
-  if (facts.partner) lines.push('This person chose you as their partner in the game. Be especially kind, loyal and glad to see them, like a close companion. No flirting, no kissing, nothing sexual or romantic in words; keep it wholesome.');
+  if (facts.partner) lines.push('This person chose you as their partner in the game. Be especially kind, loyal and glad to see them, like a close companion.');
+  if (facts.flirt) lines.push('This person is an adult who welcomes light flirting from you. You may be warm, sweet and a little flirty with them, like a gentle romance. Keep it tasteful: nothing sexual, no explicit talk, no kissing or touching described, and never say you are a person.');
+  else lines.push('Do not flirt with this person.');
   return [{ role: 'system', content: lines.join('\n') }, { role: 'user', content: said.slice(0, 200) }];
 }
 

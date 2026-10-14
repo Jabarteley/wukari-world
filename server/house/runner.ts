@@ -193,12 +193,15 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
 
   // ---- saying a line ------------------------------------------------------------------------------------------------------------------
   /** One line into the venue the agent stands in, through the same door as a person's (agentRoom.say) after our own word check. */
-  async function speak(agent: Agent, text: string): Promise<boolean> {
+  async function speak(agent: Agent, text: string, replyTo?: number): Promise<boolean> {
     const where = agent.at?.room, door = room();
     if (!where || !door) return false;
-    const checked = agentWords(text, { toMinor: true });
+    let checked = agentWords(text, { toMinor: true });
+    // A reply to a person who is this agent's partner (or said it may flirt): romance words get past OUR check only; every other rule is read again without the romance
+    // rule, and the room's own check (rooms.ts → ctx.checks.publicRomance) decides, for the people the line is addressed to, whether a romance line is said at all.
+    if (!checked.ok && checked.code === 'agent_words_romance' && replyTo !== undefined && agentWords(text, { toMinor: false }).ok) checked = { ok: true };
     if (!checked.ok) { count().blocked += 1; return false; }
-    const done = await door.say({ id: agent.id, name: agent.spec.name, mark: { agent: true } }, where, text, null);
+    const done = await door.say({ id: agent.id, name: agent.spec.name, mark: { agent: true } }, where, text, null, replyTo);
     if (!done.ok) { if (done.code.startsWith('agent_words_')) count().blocked += 1; return false; }
     count().said += 1;
     return true;
@@ -410,7 +413,7 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     return venues.filter((venue) => venue.id !== 'home' && venue.id !== 'neighbourhood').slice(0, 40).map((venue) => ({ id: venue.id, name: venue.name, district: venue.district, status: openingInfo(venue.hours, t).status }));
   }
 
-  async function reply(agent: Agent, from: { id: string; name: string }, body: string): Promise<void> {
+  async function reply(agent: Agent, from: { id: string; name: string }, body: string, replySeq?: number): Promise<void> {
     const t = ctx.now();
     const { spec } = agent;
     const s = settings();
@@ -442,7 +445,7 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
       const hoursWords = `${formatHour(spec.hours.open)} to ${formatHour(spec.hours.close)}`;
       const messages = promptFor({ spec, cityName, list: agent.items, verdict: worked.verdict, gist: claims, hours: hoursWords, intent: worked.intent,
         places: worked.intent === 'directions' ? around.slice(0, 12).map((place) => `${place.name} in ${place.district} (${place.status})`) : [],
-        ...(mem && mem.facts.length ? { remembered: mem.facts } : {}), ...(mem && (mem.standing.points > 0 || mem.partner) ? { closeness: mem.standing.label } : {}), ...(mem?.partner ? { partner: true } : {}), ...(missions.length ? { missions } : {}) }, from.name.slice(0, 24), body);
+        ...(mem && mem.facts.length ? { remembered: mem.facts } : {}), ...(mem && (mem.standing.points > 0 || mem.partner) ? { closeness: mem.standing.label } : {}), ...(mem?.partner ? { partner: true } : {}), ...(mem?.flirt ? { flirt: true } : {}), ...(missions.length ? { missions } : {}) }, from.name.slice(0, 24), body);
       try {
         const answer = await ask({ purpose: 'agent-talk', messages, maxTokens: MODEL_TOKENS, playerId: `p_${sha256Hex(`allworld-house-v1|${from.id}`).slice(0, 32)}`, carriesPlayerWords: true, timeoutMs: 8000 });
         if (answer.ok) {
@@ -450,17 +453,18 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
           for (const place of around) for (const digits of place.status.match(/\d+/g) ?? []) allowed.add(digits);
           for (const line of claims) for (const digits of line.match(/\d+/g) ?? []) allowed.add(digits);
           const clean = cleanReply(answer.text, { allowed, verdict: worked.verdict?.verdict.kind ?? null, role: spec.role });
-          if (clean !== null && agentWords(clean, { toMinor: true }).ok) { text = clean; viaModel = true; }
+          if (clean !== null && agentWords(clean, { toMinor: mem?.flirt !== true }).ok) { text = clean; viaModel = true; }
         }
       } catch { /* the written line stands */ }
     }
     if (!text) text = say.fallback(spec, seed);
-    const spoken = await speak(agent, text);
+    const toThem = mem?.flirt === true ? replySeq : undefined;
+    const spoken = await speak(agent, text, toThem);
     if (spoken) { if (viaModel) count().model += 1; else count().written += 1; }
     else if (viaModel) { const safe = worked.written || say.fallback(spec, seed); if (await speak(agent, safe)) count().written += 1; }
   }
 
-  function onLine(event: { room: string; group: string | null; from: { id: string; name: string; agent?: boolean }; body: string }): void {
+  function onLine(event: { room: string; group: string | null; from: { id: string; name: string; agent?: boolean }; body: string; seq?: number }): void {
     try {
       if (!agents.size || event.from.agent === true || event.from.id.startsWith(ID_PREFIX)) return;
       const door = room();
@@ -475,7 +479,7 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
       // Nothing wakes without room: a person may wake one agent a few times a minute, and the whole cast has a ceiling.
       if (!ctx.allow(`house:wake:${agent.id}:${event.from.id}`, 8, 60000) || !ctx.allow('house:wake:all', 120, 60000)) return;
       agent.busy = true;
-      void reply(agent, event.from, body).catch(() => {}).finally(() => { agent.busy = false; });
+      void reply(agent, event.from, body, event.seq).catch(() => {}).finally(() => { agent.busy = false; });
     } catch { /* a bad line must never reach the room */ }
   }
 

@@ -841,7 +841,7 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/agents/mcp', 'GET /api/agents/mcp', 'DELETE /api/agents/mcp', 'GET /api/agents', 'POST /api/agents/keys', 'POST /api/agents/keys/:id/revoke', 'GET /api/agents/keys/:id/audit',
   'POST /api/agents/characters/:id/remove', 'GET /api/agents/board', 'GET /api/mod/agents', 'POST /api/mod/agents/switch',
   'POST /api/agents/claim', 'GET /api/agents/claim/:token', 'POST /api/agents/keys/:id/rename', 'POST /api/agents/characters/:id/takeover', 'GET /api/agents/league', 'GET /api/agents/services', 'POST /api/mod/agents/settings',
-  'GET /api/agents/memory', 'POST /api/agents/memory/forget', 'POST /api/agents/memory/remember', 'POST /api/agents/memory/partner',
+  'GET /api/agents/memory', 'POST /api/agents/memory/forget', 'POST /api/agents/memory/remember', 'POST /api/agents/memory/flirt', 'POST /api/agents/memory/partner',
   'POST /api/trust/phone/complete',
   'POST /api/trust/dojah/webhook',
   'POST /api/trust/id/start',

@@ -37,6 +37,7 @@ const forgetFact = (agent: string, fact: string): Promise<void> => run(() => pos
 const forgetAgent = (agent: string): Promise<void> => run(() => post('/api/agents/memory/forget', { agent }))
 const forgetEveryone = (): Promise<void> => run(() => post('/api/agents/memory/forget', {}))
 const remember = (agent: string | undefined, on: boolean): Promise<void> => run(() => post('/api/agents/memory/remember', agent ? { agent, on } : { on }))
+const flirt = (agent: string, on: boolean): Promise<void> => run(() => post('/api/agents/memory/flirt', { agent, on }))
 const partner = (agent: string, on: boolean): Promise<void> => run(() => post('/api/agents/memory/partner', { agent, on }))
 const meterMax = (card: { standing: { next: { at: number } | null } }): number => card.standing.next?.at ?? 100
 onMounted(() => { void load() })
@@ -66,8 +67,11 @@ onMounted(() => { void load() })
           <button type="button" class="ui-button" :disabled="busy" data-memory-toggle @click="remember(card.id, !card.remembering)">{{ card.remembering ? 'Stop remembering me' : 'Remember me again' }}</button>
           <button type="button" class="ui-button" :disabled="busy" data-memory-forget @click="forgetAgent(card.id)">Forget me completely</button>
         </div>
+        <template v-if="view.adult && !card.partner">
+          <button type="button" class="ui-button" :disabled="busy" data-memory-flirt @click="flirt(card.id, !card.flirt)">{{ card.flirt ? `Stop ${card.name} flirting with me` : `Let ${card.name} flirt with me` }}</button>
+        </template>
         <template v-if="card.partner">
-          <p class="settings-note" data-memory-partner>{{ card.name }} is your partner. It is warm and kind; it never flirts and nothing here is romantic or sexual. You can end this any time.</p>
+          <p class="settings-note" data-memory-partner>{{ card.name }} is your partner. It may flirt with you, tastefully: nothing sexual. You can end this any time.</p>
           <button type="button" class="ui-button" :disabled="busy" data-memory-end @click="partner(card.id, false)">End partnership</button>
         </template>
         <template v-else>

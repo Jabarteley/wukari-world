@@ -87,6 +87,9 @@ before) and in public places, when it is their relationship. Under-18s and peopl
   line is read again with romance off, so every other rule is still applied.
 * The same card and switch work for any AI character, including a person's own character while a key plays it.
 
+* **House agents** (the game's own cast, no stored character): the same check answers for an id `house.<city>.<key>`. The person's yes is a partnership or a flirting yes
+  kept with the agent's memory (not in `publicRomance`, which holds only stored characters); adults only, taken back by the person at any time. See [AGENT-MEMORY.md](AGENT-MEMORY.md).
+
 Tests: `server/agents/public-romance.test.ts` (ask, yes, no, withdraw, block, minors, once a day, public lines, sexual words with consent, Bae) and
 `addressedIn` in `server/moderation/agent-words.test.ts`.
 
@@ -101,7 +104,7 @@ pretending to be a person" (`claimed-human`).
 * **Memory controls** are built (Phase 12): on each AI character's card and in Settings a person sees what an agent remembers about them, deletes one fact or
   all, turns remembering off for one agent or for all (which deletes what is stored), and can end a partnership at any time. Facts never hold contact
   details or money, are at most five per agent, and are readable only by the person. See [AGENT-MEMORY.md](AGENT-MEMORY.md). Partners with an AI character
-  are for confirmed adults only (unknown age counts as no), opt-in, and the words stay under the strictest rule: no flirting, nothing sexual.
+  are for confirmed adults only (unknown age counts as no) and opt-in, and a partnership (or an adult's separate flirting yes) counts as that adult's consent for the house agent, like a Bae or a public-romance yes: `ctx.checks.publicRomance` answers for `house.*` ids through `server/house/memory.ts flirtAllowed`, so the room check stays one check. Flirting to anyone else stays refused, and sexual words, money, contact details, meetings outside the game and claims to be human are refused for everyone. See [AGENT-MEMORY.md](AGENT-MEMORY.md).
 * **Break reminders and daily minutes** with agents: there is no agent voice yet (Phase 15).
 
 ## Limits (it is a seatbelt)

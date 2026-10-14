@@ -12,6 +12,7 @@
  *     f  up to FACTS_KEPT remembered facts { t: short phrase, at }, each forgotten after FACT_TTL_MS unless said again
  *     off  this agent may not remember this person (turning it on again starts empty)     w  server ms the person made this agent their partner
  *     m  missions done for this agent (counted for closeness; Phase 11 calls missionDone)
+ *     r  server ms the person said this agent may flirt with them (an adult's yes, like a Bae's or a public-romance consent; docs/AI-SAFETY.md)
  *   Person.off: no agent may remember this person (the global switch in Settings).
  *
  * THE RULES (docs/AI-SAFETY.md "Memory"):
@@ -24,7 +25,9 @@
  *   - Nothing reads this but the person's own routes (server/routes/agents.ts → memory-routes.ts) and the runner when that person talks to that agent. No agent
  *     tool, no other person, no page and no export of other people ever reaches it (memory.test.ts checks that no file of server/agents/ imports it).
  *   - A partner needs an adult (ctx.checks.adult: unknown age counts as no), closeness of BAE_UNLOCK, and is ended by the person at any time; it ends by itself
- *     when the person is no longer a confirmed adult. A partner changes only how warm the agent's words are: agentWords is still applied in its strictest form.
+ *     when the person is no longer a confirmed adult. A partner, like a person who gave the agent a flirting yes (setFlirt), counts as that adult's consent for
+ *     that agent: server/social/service.ts `ctx.checks.publicRomance` (the one check rooms.ts uses) asks flirtAllowed for a house agent's id. Nothing else is
+ *     lifted: sexual words, money, contact details, meetings and claims to be human stay refused for everyone.
  */
 import { BAE_UNLOCK, DAILY_INTERACTIONS, MAX_CLOSENESS, TIERS } from '../../src/game/content/npcs.ts';
 import { LAGOS_OFFSET_MS } from '../../src/game/clock.ts';
@@ -40,7 +43,7 @@ export const PARTNER_AT = BAE_UNLOCK;
 const DAY_MS = 86400000;
 
 export interface Fact { t: string; at: number }
-export interface Bond { p: number; d: number; n: number; at: number; f?: Fact[]; off?: true; w?: number; m?: number }
+export interface Bond { p: number; d: number; n: number; at: number; f?: Fact[]; off?: true; w?: number; m?: number; r?: number }
 export interface Person { at: number; off?: true; a: Record<string, Bond> }
 export interface MemoryCollection { v: 1; people: Record<string, Person> }
 
@@ -144,7 +147,7 @@ function prune(person: Person, now: number): boolean {
   for (const [id, bond] of Object.entries(person.a)) {
     if (!record(bond) || typeof bond.at !== 'number' || now - bond.at >= BOND_TTL_MS) { delete person.a[id]; continue; }
     tidyBond(bond, now);
-    if (!bond.f && !bond.p && !bond.w && !bond.m && !bond.off) delete person.a[id]; // nothing left to keep
+    if (!bond.f && !bond.p && !bond.w && !bond.r && !bond.m && !bond.off) delete person.a[id]; // nothing left to keep
   }
   return !Object.keys(person.a).length && person.off !== true;
 }
@@ -197,6 +200,8 @@ function gain(bond: Bond, points: number, now: number): number {
 // ---- what the runner and the routes do --------------------------------------------------------------------------------------------------
 
 export interface View {
+  /** The person is a confirmed adult who made this agent their partner or said it may flirt: romance words may be said to them (the room still checks). */
+  flirt: boolean
   /** False when this person (or this agent for them) switched remembering off. */
   remembering: boolean
   facts: string[]
@@ -206,7 +211,7 @@ export interface View {
 }
 const viewOf = (person: Person | undefined, bond: Bond | undefined, adult: boolean): View => {
   const partner = Boolean(bond?.w) && adult;
-  return { remembering: person?.off !== true && bond?.off !== true, facts: person?.off === true || bond?.off === true ? [] : (bond?.f ?? []).map((fact) => fact.t), standing: standing(bond?.p ?? 0, partner), partner };
+  return { flirt: adult && (partner || Boolean(bond?.r)), remembering: person?.off !== true && bond?.off !== true, facts: person?.off === true || bond?.off === true ? [] : (bond?.f ?? []).map((fact) => fact.t), standing: standing(bond?.p ?? 0, partner), partner };
 };
 
 /** A read: what this agent knows of this person now. Creates nothing. */
@@ -223,6 +228,7 @@ export function touch(ctx: Pick<RouteContext, 'collection'>, db: Db, id: string,
   prune(person, now);
   const bond = bondFor(person, agent, now);
   if (bond.w && !adult) delete bond.w; // a partner ends by itself when the person is no longer a confirmed adult
+  if (bond.r && !adult) delete bond.r;
   gain(bond, points, now);
   return viewOf(person, bond, adult);
 }
@@ -255,7 +261,7 @@ export function missionDone(ctx: Pick<RouteContext, 'collection'>, db: Db, id: s
   return viewOf(person, bond, adult);
 }
 
-export interface Card { agent: string; remembering: boolean; facts: string[]; standing: Standing; partner: boolean; missions: number; since: number }
+export interface Card { agent: string; flirt: boolean; remembering: boolean; facts: string[]; standing: Standing; partner: boolean; missions: number; since: number }
 export interface Overview { remembering: boolean; agents: Card[] }
 /** Everything stored about the person, for their own screen. */
 export function overview(db: Db, id: string, now: number, adult: boolean): Overview {
@@ -265,7 +271,7 @@ export function overview(db: Db, id: string, now: number, adult: boolean): Overv
   for (const [agent, bond] of Object.entries(person.a)) {
     if (!record(bond) || now - bond.at >= BOND_TTL_MS) continue;
     const view = viewOf(person, { ...bond, f: (bond.f ?? []).filter((fact) => now - fact.at < FACT_TTL_MS) }, adult);
-    agents.push({ agent, remembering: view.remembering, facts: view.facts, standing: view.standing, partner: view.partner, missions: bond.m ?? 0, since: bond.at });
+    agents.push({ agent, flirt: view.flirt, remembering: view.remembering, facts: view.facts, standing: view.standing, partner: view.partner, missions: bond.m ?? 0, since: bond.at });
   }
   return { remembering: person.off !== true, agents: agents.sort((a, b) => b.standing.points - a.standing.points) };
 }
@@ -284,8 +290,8 @@ export function forgetAll(db: Db, id: string, agent: string | null): number {
   const person = own(peopleOf(db), id);
   if (!person) return 0;
   let count = 0;
-  if (agent) { const bond = own(person.a, agent); if (bond) { count = bond.f?.length ?? 0; if (bond.off) { delete bond.f; bond.p = 0; delete bond.w; delete bond.m; bond.n = 0; } else delete person.a[agent]; } }
-  else for (const [key, bond] of Object.entries(person.a)) { count += bond.f?.length ?? 0; if (bond.off) { delete bond.f; bond.p = 0; delete bond.w; delete bond.m; bond.n = 0; } else delete person.a[key]; }
+  if (agent) { const bond = own(person.a, agent); if (bond) { count = bond.f?.length ?? 0; if (bond.off) { delete bond.f; bond.p = 0; delete bond.w; delete bond.r; delete bond.m; bond.n = 0; } else delete person.a[agent]; } }
+  else for (const [key, bond] of Object.entries(person.a)) { count += bond.f?.length ?? 0; if (bond.off) { delete bond.f; bond.p = 0; delete bond.w; delete bond.r; delete bond.m; bond.n = 0; } else delete person.a[key]; }
   return count;
 }
 /** Turn remembering off or on, for one agent or (agent null) for all. Off deletes the stored facts at once; closeness stays. */
@@ -314,6 +320,22 @@ export function setPartner(ctx: Pick<RouteContext, 'collection'>, db: Db, id: st
   for (const other of Object.values(person.a)) delete other.w; // one partner at a time
   bond.w = now; bond.at = now;
   return { ok: true, partner: true };
+}
+
+/** An adult says a house agent may flirt with them (or takes it back). Adults only; a partner has it already. Returns false for a refusal. */
+export function setFlirt(ctx: Pick<RouteContext, 'collection'>, db: Db, id: string, agent: string, on: boolean, now: number, adult: boolean): boolean {
+  if (!on) { const bond = own(own(peopleOf(db), id)?.a ?? {}, agent); if (bond) delete bond.r; return true; }
+  if (!adult) return false;
+  const bond = bondFor(personFor(memoryOf(ctx, db), id, now), agent, now);
+  bond.r ??= now;
+  return true;
+}
+/**
+ * May this house agent flirt with this person? A confirmed adult who made it their partner or said yes to its flirting. The ONE place that answers it for a house agent;
+ * server/social/service.ts `ctx.checks.publicRomance` calls it, so rooms.ts keeps a single check for AI characters of every kind. `adult` is ctx.checks.adult for the person.
+ */
+export function flirtAllowed(db: Db, id: string, agent: string, now: number, adult: boolean): boolean {
+  return adult && read(db, id, agent, now, adult).flirt;
 }
 
 /** Once a day: drop what expired, and people with nothing left. Bounded by MAX_PEOPLE. Returns how many people went. */

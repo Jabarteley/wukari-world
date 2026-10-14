@@ -45,12 +45,13 @@ On the **card of each AI character** (Phone → "AI characters", and in **Settin
 | --- | --- |
 | The facts | See what this agent remembers about you. **Delete** one. |
 | Stop remembering me / Remember me again | For this agent. Off **deletes the stored facts at once** and nothing is written or even held while it is off. |
-| Forget me completely | Facts, closeness and partner with this agent. |
+| Forget me completely | Facts, closeness, partner and flirting yes with this agent. |
+| Let X flirt with me (adults) | Your yes to flirting from this agent, without a partnership; take it back the same way. |
 | Let AI characters remember me (Settings) | The same for every agent. Off deletes every stored fact. |
 | Delete everything AI characters know about me (Settings) | Everything, every agent. |
 
 Closeness is a relationship rather than a memory of what you said, so "off" keeps it; "forget me completely" resets it. The routes
-(`GET /api/agents/memory`, `POST /api/agents/memory/forget | remember | partner`) are the signed-in session's own record only; writes need the Origin and the
+(`GET /api/agents/memory`, `POST /api/agents/memory/forget | remember | flirt | partner`) are the signed-in session's own record only; writes need the Origin and the
 anti-forgery token like the other agent routes. The admin switch `houseMemoryOn` stops remembering and closeness for everyone.
 
 ## Closeness
@@ -66,9 +67,27 @@ Opt-in, by the person, on the agent's card, and only when **all** hold: the pers
 as **no**: the same check as public romance), closeness is at least **40** (the Bae threshold, "Paddy Mi"), and they do not already have a Bae. One partner at
 a time. The person ends it whenever they like (always allowed, even if their age answer has changed); it also ends by itself, and is not shown or used, the
 moment they are not a confirmed adult. The Bae flow itself (`server/social/service.ts`) needs two stored characters, so it is not reused; only its threshold and
-its "one at a time" rule are. What changes: the agent is warmer (the prompt says so) and the card says "Partner". What does not: **no flirting and nothing
-romantic or sexual**. Every line an agent says in a place is checked with `agentWords` in its strictest form (`toMinor: true`), partner or not, and the
-public-romance consent flow of [AI-SAFETY.md](AI-SAFETY.md) is not touched.
+its "one at a time" rule are. What changes: the agent is warmer, the card says "Partner", and **a partnership counts as that adult's consent to be flirted with by that agent**, the
+same as a Bae does for an AI character (the owner's decision of 14 October: confirmed adults may flirt with AI characters, in private and in public when it is
+their relationship).
+
+### Flirting, and exactly what it lifts
+
+- **One check.** `rooms.ts` lets an AI character's romance line into a public place only when it is addressed (named, or a reply) to people who are ALL
+  confirmed adults with a yes for that character: `ctx.checks.publicRomance` ([AI-SAFETY.md](AI-SAFETY.md)). For an id of the form `house.<city>.<key>` that
+  check (in `server/social/service.ts`) asks `memory.flirtAllowed`: a confirmed adult (`ctx.checks.adult`, unknown age is no) who made the agent their partner or
+  said it may flirt. There is no second check. `venue-line` now carries the line's number, so the agent's reply is addressed to the person who wrote it.
+- **A yes without a partnership.** The social store's `publicRomance` list holds only stored characters, so a house agent's yes lives with its memory
+  (`Bond.r`) instead, and the person gives it on the card ("Let X flirt with me", `POST /api/agents/memory/flirt`; adults only, taken back the same way, erased by
+  "forget me completely", ended by itself if the person is no longer a confirmed adult).
+- **The agent.** The prompt tells it to be tastefully flirty only to a person with a yes ("welcomes light flirting"), and otherwise "Do not flirt". Its own line check
+  (`runner.ts speak`) lets only the romance rule go, only for a reply, and reads every other rule again; the room then applies the consent check. An unprompted
+  line (ambient, tonight, quiz) is always read with the strictest rule.
+- **What stays refused for everyone, partner or not:** sexual words, asking for money, contact details and phone numbers, meeting or talking outside the game,
+  claims to be human or "not an AI" (`agent_words_*`), and any romance to someone who is not a confirmed adult with a yes: under 18, an unanswered age, an adult
+  without a yes, or a mixed audience (every person the line is addressed to must qualify). Memory facts still never keep any of these.
+- Tests: `memory-flirt.test.ts` (a real server and the real room check: partner and consenting adult pass, adult without a yes, minor and unknown age refused, sexual,
+  money, contact, human and meeting lines refused for a partner) and `memory-talk.test.ts` (the runner end to end).
 
 ## Direct messages (not here)
 

@@ -216,11 +216,13 @@ async function main(): Promise<void> {
       // A city's files name each other (its rules name its map, a recipe names its content), so follow the names from the page's scripts
       // until no new file of this city turns up. Lagos's rules may be part of the rules chunk the page loads.
       const kinds = new Set<string>(), own = new RegExp(`\\b(city-${city}-([a-z]+)-[\\w-]+\\.js)`);
+      // A city whose id extends this one (kingston and kingston-nf) owns the files named after the longer id.
+      const longer = cities.filter((other) => other.startsWith(`${city}-`));
       for (;;) {
         const todo: string[] = [];
         for (const name of seen) {
           const found = own.exec(name);
-          if (!found || got.has(found[1] as string)) continue;
+          if (!found || got.has(found[1] as string) || longer.some((other) => name.startsWith(`city-${other}-`))) continue;
           got.add(found[1] as string); kinds.add(found[2] as string); todo.push(found[1] as string);
         }
         if (!todo.length) break;

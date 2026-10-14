@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { LIGHT_FPS, LIGHT_KEY, lightFps, lightOn, readLight } from './lightMode.ts'
+import { LIGHT_FPS, LIGHT_KEY, LIGHT_TIER, lightFps, lightOn, readLight } from './lightMode.ts'
 import { forgetLight, lightChosen, onLightChange, setLight } from './lightControl.ts'
-import { HIGH_TIER, LIGHT_TIER, PHONE_TIER, renderTier } from './scene/look.ts'
+import { HIGH_TIER, PHONE_TIER, renderTier } from './scene/look.ts'
 
 const saved = (value: string | null) => ({ getItem: (key: string) => (key === LIGHT_KEY ? value : null) })
 /** A window with a saved choice (or none) and the browser's save-data ask. */

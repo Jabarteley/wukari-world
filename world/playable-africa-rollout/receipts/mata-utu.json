@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "cityId": "mata-utu",
+  "countryIso2": "WF",
+  "generationIdentity": {
+    "cityId": "mata-utu",
+    "stateId": "wf-mata-utu",
+    "stateName": "Mata Utu"
+  },
+  "inventorySha256": "be845b3be23e09b14f08c2aacc216f1f16c3fa9cb618565135896ee97f67b937",
+  "inventoryPath": "world/playable-africa-rollout/sources/mata-utu.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "mata-utu-airport",
+    "name": "Hihifo Airport",
+    "lon": -176.19865,
+    "lat": -13.239445,
+    "sourceUrl": "https://ourairports.com/airports/NLWW/"
+  },
+  "bounds": [
+    -13.462922789933979,
+    -176.35876110994698,
+    -13.10116101006602,
+    -175.98928369005304
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/wallis-et-futuna-261011.osm.pbf",
+      "datasetSha256": "4d844c8629202977f062a585c8fa0a09a08d0629454d26e8b2f87a6432dbf47d",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "c66e9ef75771a778a929f7615307e3f153c0e5a2b4f4a861cf6054c788ba3a71",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "0f2cd35e5a904d115770d24ec724e2140e54ef2e4b42a8d1e48a5181f668b990",
+          "elements": 75
+        },
+        {
+          "file": "extras.json",
+          "sha256": "5058e2c67ac54dd31a6bae9fa56cf15ba2d8e6d93765fcd82c551e6e1f1acdc1",
+          "elements": 10
+        },
+        {
+          "file": "water.json",
+          "sha256": "edf5c3f2cea0afcece9970593759df7d3c4c3224e72552c33f058363ce2ae0fd",
+          "elements": 28
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "028c1327a714df1eeeda9c7230a0601ab9ba7025938728a4b3e45583a1f49891",
+          "elements": 433
+        },
+        {
+          "file": "roads.json",
+          "sha256": "e6bb56e9d593f949ac9b82a3d67288305d1fbe09f1ab7fcbac7f54486de21e86",
+          "elements": 82
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 16,
+    "roads": 28,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 1,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 1
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "transit",
+        "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "recreation",
+        "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "market",
+        "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "village": 18
+    }
+  },
+  "observed": {
+    "places": 75,
+    "extras": 10,
+    "water": 28,
+    "landuse": 433,
+    "roads": 82
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1262,
+      "sha256": "b0b322cddccdbdefafed1af62f10996231ae081e647e64e25891567f2e65a18c"
+    },
+    "geometry.ts": {
+      "bytes": 39501,
+      "sha256": "5d7887d65b6faa8062624ea608e21f98364c92f43a05de9a3abf60ca62d58183"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "bfd09a985964046bbef413f873b8d8bd0c482f99328655319eb80284709f8447"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/mata-utu.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

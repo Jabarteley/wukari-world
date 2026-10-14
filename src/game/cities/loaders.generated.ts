@@ -274,8 +274,11 @@ export const GENERATED_CITY_INDEX: readonly CityIndexRow[] = Object.freeze([
   ["san-juan","San Juan"],
   ["brades","Brades"],
   ["villa-las-estrellas","Villa Las Estrellas"],
+  ["jamestown","Jamestown"],
+  ["mata-utu","Mata Utu"],
+  ["st-helier","St Helier"],
 ])
-export const GENERATED_CITY_FIGURES = Object.freeze({ cities: 272, countries: 231 })
+export const GENERATED_CITY_FIGURES = Object.freeze({ cities: 275, countries: 234 })
 export const GENERATED_CITY_WORLD_INDEX: CityWorldIndexLoader | null = null
 
 export const GENERATED_CITY_LOADERS = Object.freeze([
@@ -551,4 +554,7 @@ export const GENERATED_CITY_LOADERS = Object.freeze([
   ()=>import("./san-juan/index.ts").then(m=>m.city),
   ()=>import("./brades/index.ts").then(m=>m.city),
   ()=>import("./villa-las-estrellas/index.ts").then(m=>m.city),
+  ()=>import("./jamestown/index.ts").then(m=>m.city),
+  ()=>import("./mata-utu/index.ts").then(m=>m.city),
+  ()=>import("./st-helier/index.ts").then(m=>m.city),
 ] satisfies readonly CityModuleLoader[])

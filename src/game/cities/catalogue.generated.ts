@@ -274,4 +274,7 @@ export const GENERATED_CITY_CATALOGUE_ROWS = Object.freeze([
   ["san-juan","San Juan","pr-san-juan","",-66.116666,18.465299,1,"pr","Puerto Rico"],
   ["brades","Brades","ms-brades","",-62.2099434,16.7898749,1,"ms","Montserrat"],
   ["villa-las-estrellas","Villa Las Estrellas","aq","",-58.965369,-62.2004259,1,"aq","Antarctica",1],
+  ["jamestown","Jamestown","sh-jamestown","",-5.7160872,-15.9277296,1,"sh","St Helena"],
+  ["mata-utu","Mata Utu","wf-mata-utu","",-176.1740224,-13.2820419,1,"wf","Wallis & Futuna"],
+  ["st-helier","St Helier","je-st-helier","",-2.1102277,49.1856637,1,"je","Jersey"],
 ] satisfies readonly CityCatalogueRow[])

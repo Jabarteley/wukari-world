@@ -524,5 +524,8 @@ export const AUTHORED_CITY_LINKS = Object.freeze([
       "km": 3068,
       "fare": 50500,
       "seconds": 75
-    }
+    },
+    compactLagosFlight("jamestown","Jamestown",2683,235000,20),
+    compactLagosFlight("mata-utu","Mata Utu",19254,900000,20),
+    compactLagosFlight("st-helier","St Helier",4780,402000,20)
   ] satisfies readonly CityLink[])

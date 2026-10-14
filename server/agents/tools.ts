@@ -440,7 +440,7 @@ const send_message: ToolDefinition = {
     if (to !== undefined && !UUID_PATTERN.test(to)) throw bad(c, 'invalid_player', 'to must be a player id from list_friends, list_people_here or read_messages.');
     if (!text) throw bad(c, 'invalid_message', 'Write between 1 and 500 characters.');
     const social = socialService(c.ctx);
-    const out = await inSocial(c, social, (db, session) => social.send(db, session, { ...(to !== undefined ? { to } : { conv }), body: text, clientId: `agent-${(rid ?? c.ctx.randomId()).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 60).padEnd(8, '0')}` }));
+    const out = await inSocial(c, social, (db, session) => social.send(db, session, { ...(to !== undefined ? { to } : { conv }), body: text, clientId: `agent-${(rid ?? c.ctx.randomId()).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 60).padEnd(8, '0')}` }, undefined, { asAi: true }));
     if (out.ok === true) return { ok: true, code: 'sent', data: { ok: true, code: 'sent', result: 'Message sent.' }, say: text };
     const code = String(out.code ?? 'refused'), reason = 'reason' in out ? String(out.reason) : 'That message could not be sent.';
     return { ok: false, code, refused: true, data: { ok: false, code, result: reason } };

@@ -288,6 +288,8 @@ export interface MessageRecord {
   /** The sender's clientId. */
   cid?: string
   sys?: true
+  /** Held back from AI characters: a person's "are you an AI?" or crisis words said to one, and the game's answer to it. An agent never reads it (server/moderation/ai-intercept.ts). */
+  noAi?: true
   /** The founder's welcome note: `body` is '' and the words come from server/social/founder.ts. */
   auto?: true
   /** With `auto`: the player's start the note was written from (server/social/founder.ts welcomeNote). Absent on earlier notes. */

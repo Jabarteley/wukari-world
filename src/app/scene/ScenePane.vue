@@ -13,7 +13,7 @@
 // Three.js and every scene module are fetched after the HUD is on screen. A device that cannot
 // draw the scene still gets the whole game.
 import '../../ui/scene-loading.css'
-import { onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
+import { defineAsyncComponent, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import { useApp } from '../state/app.ts'
 import { cityScenesHere, loadSceneWorld, warmCityScenes } from './loaders.ts'
 import type { ScenesState } from '../types/scene.ts'
@@ -21,6 +21,7 @@ import { landingCodeSettled } from '../features/start/warmLanding.ts'
 import { telemetry } from '../../telemetry/index.ts'
 import { noteChunkFailure } from '../state/updateNotice.ts'
 import { social } from '../features/social/useSocial.ts'
+import { lightOn } from '../../lightMode.ts'
 import { placeNow } from '../features/places/placeState.ts'
 
 const props = defineProps<{
@@ -35,6 +36,8 @@ const props = defineProps<{
 const { game, ready, shell, scene, command, showPlayer, showCrowd, showGoal, reportPlace, onMove, commitSpot, goTo } = useApp()
 const container = ref<HTMLElement | null>(null)
 const failed = ref(false)
+/** When the scene is not drawn (this browser cannot, or the renderer threw), the words and the Copy link button are a lazy chunk (SceneUnsupported.vue). */
+const SceneUnsupported = defineAsyncComponent(() => import('./SceneUnsupported.vue'))
 const waiting = ref(true)
 const phase = ref('Preparing your world…')
 /** The city's own scenes are not here: the fetch is waiting to try again, or has stopped until the player asks. */
@@ -77,7 +80,6 @@ function sceneFailed(error: unknown): void {
   waiting.value = true; stuck.value = null; failed.value = true
 }
 const waitLine = (): string => {
-  if (failed.value) return 'The 3D scene could not be drawn on this device. Everything else still works.'
   if (stuck.value?.status === 'retrying') return `This place did not load · trying again in ${Math.round((stuck.value.retryInMs ?? 0) / 1000)} s`
   if (stuck.value?.status === 'failed') return 'This place could not be loaded. Check your connection, then try again. Everything else still works.'
   return phase.value
@@ -94,6 +96,8 @@ onMounted(() => {
   // After the first paint: the scene starts downloading with the HUD already on screen and usable.
   setTimeout(async () => {
     try {
+      // A browser that cannot draw it is told so before it downloads the scene (the biggest download in the game), with what to do instead.
+      if (!(await import('./sceneSupport.ts')).sceneCanStart(shell)) { telemetry.sceneReady(false); waiting.value = true; failed.value = true; return }
       await landingCodeSettled() // a new device is looking at the landing's 3D preview: its code goes first
       // Where the scene starts is where the server says the player is, never the copy this device kept.
       const settled = ready.value ? Promise.resolve() : new Promise<void>((resolve) => { const stop = watch(ready, (now) => { if (now) { stop(); resolve() } }) })
@@ -142,7 +146,8 @@ onMounted(() => {
       reportPlace()
       // Three.js is here now, so the map's own code is a small download: fetch it ahead, so a first trip shows without a wait.
       // (Nothing is built or drawn until the Map opens.)
-      void import('../../map3d/index.ts').catch(() => undefined)
+      // Not in light mode: that is a download the player has not asked for (the map fetches it when it is opened).
+      if (!lightOn()) void import('../../map3d/index.ts').catch(() => undefined)
       // The HUD changed size (activities opened, Clean screen, a trip): re-centre the scene. An observer, not a timer.
       observer = new ResizeObserver(layout)
       for (const node of [...props.top(), ...props.rows(), props.bottom()]) if (node) observer.observe(node)
@@ -177,7 +182,8 @@ defineExpose({ layout })
   <div id="venue-scene" ref="container"  class="life-scene" :hidden="hidden" @animationend.self="onResize">
     <div v-if="waiting" class="scene-wait" :class="{ 'is-stuck': failed || stuck }" role="status">
       <img src="/icons/world-loader.webp" width="96" height="96" alt="" />
-      <strong>{{ waitLine() }}</strong>
+      <SceneUnsupported v-if="failed" />
+      <strong v-else>{{ waitLine() }}</strong>
       <small v-if="!failed && !stuck" :key="tip">{{ tip && tips ? tips[(tip - 1) % tips.length] : 'Your next chapter is almost here.' }}</small>
       <button v-if="stuck && !failed" type="button" class="scene-retry" @click="scene.venue.value?.retryScenes()">Try again</button>
     </div>

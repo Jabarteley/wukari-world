@@ -8,8 +8,12 @@
  * otherwise: every frame asks its owner "is anything still moving?" and it ends itself on the
  * first "no". It also ends when the page is hidden. src/venue-world.test.ts proves: idle → zero
  * frames; walking → frames; arrived → flat again; hidden → stopped. This file is the single
- * place in src/scene, src/ui and the host that may name the browser's frame callback.
+ * place in src/scene, src/ui and the host that may start a frame (./frame-gate.ts holds the browser's callback for it).
+ *
+ * Its default frame callback is the gated one (./frame-gate.ts): it holds a frame while a full-screen panel covers the scene and skips
+ * frames above light mode's 30 a second. Nothing else in this file knows about either.
  */
+import { gate } from './frame-gate.ts';
 
 /**
  *   loop.wake()    start it (no-op when running, hidden, or when the platform has no frame callback)
@@ -41,7 +45,7 @@ export interface MotionLoop {
   stop(): void;
   dispose(): void;
 }
-export function createMotionLoop(tick: (dt: number) => boolean | void, { onHidden, onVisible, request = globalThis.requestAnimationFrame, cancel = globalThis.cancelAnimationFrame, doc = globalThis.document, clock = () => globalThis.performance.now() }: MotionLoopOptions = {}): MotionLoop {
+export function createMotionLoop(tick: (dt: number) => boolean | void, { onHidden, onVisible, request = ((globalThis as { requestAnimationFrame?: unknown }).requestAnimationFrame ? gate.request : undefined), cancel = gate.cancel, doc = globalThis.document, clock = () => globalThis.performance.now() }: MotionLoopOptions = {}): MotionLoop {
   let handle: number | null = null, last = 0, queued = false;
   const hidden = () => doc?.visibilityState === 'hidden';
   const loop: MotionLoop = {
@@ -55,7 +59,7 @@ export function createMotionLoop(tick: (dt: number) => boolean | void, { onHidde
       return true;
     },
     stop() {
-      if (queued && typeof cancel === 'function') { cancel(handle!); queued = false; }
+      if (queued) { cancel(handle!); queued = false; }
       handle = null; loop.running = false;
     },
     dispose() { loop.stop(); doc?.removeEventListener?.('visibilitychange', onVisibility); },

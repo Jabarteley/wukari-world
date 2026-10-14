@@ -13,6 +13,7 @@
  */
 import { CAP_MS, createDive, createFrameProbe, createFrameWatch, diveTier } from './dive.ts';
 import type { DeviceHints, DiveKind, DiveOutcome, DiveTier } from './dive.ts';
+import { lightOn } from '../lightMode.ts';
 
 export interface DiveHostOptions {
   /** Where the veil goes: the page (it must outlive the map boxes, which are hidden when the city's scene opens). */
@@ -29,7 +30,7 @@ export interface DiveHostOptions {
 /** What the browser says of the device: navigator.hardwareConcurrency, navigator.deviceMemory and the connection's save-data. */
 export function deviceHints(nav: unknown = globalThis.navigator): DeviceHints {
   const n = (nav ?? {}) as { hardwareConcurrency?: number; deviceMemory?: number; connection?: { saveData?: boolean } };
-  return { cores: n.hardwareConcurrency, memory: n.deviceMemory, saveData: n.connection?.saveData === true };
+  return { cores: n.hardwareConcurrency, memory: n.deviceMemory, saveData: n.connection?.saveData === true || lightOn() };
 }
 export interface DiveStart {
   /** The destination's chunks, fetched from the tap on: the hand-off waits for them (never longer than the hold). */

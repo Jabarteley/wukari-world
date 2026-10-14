@@ -14,6 +14,9 @@ import LinkButton from './LinkButton.vue'
 import { eventIcs, upcomingEvents } from './rulesBoundary.ts'
 import { attendedLine, nothingOn } from './eventsLines.ts'
 import { useGrowth } from './useGrowth.ts'
+import { festivalNotices, festivalRows } from './festivalEvents.ts'
+import { loadFeed } from '../../../festivals/client.ts'
+import type { Feed } from '../../../festivals/client.ts'
 
 defineProps<{ params?: unknown }>()
 const { game, shell, goTo } = useApp()
@@ -21,20 +24,28 @@ const growth = useGrowth()
 const view = game.view
 const state = game.state
 const offline = computed(() => view.value.connected ? null : 'Reconnect to travel, share an event or spray. Calendar downloads still work.')
-const events = computed(() => upcomingEvents(view.value.now, 7, view.value.cityId))
+// Festivals and match nights (src/festivals): the city's feed is fetched once; until it arrives only the city's own events show.
+const feed = ref<Feed | null>(null)
+const own = computed(() => upcomingEvents(view.value.now, 7, view.value.cityId))
+const events = computed(() => [...own.value, ...festivalRows(feed.value, view.value.now, 7, view.value.cityId)].sort((a, b) => a.start - b.start || a.id.localeCompare(b.id)))
+const notices = computed(() => festivalNotices(feed.value, view.value.now))
 const live = computed(() => events.value.filter((event) => event.live))
 const later = computed(() => events.value.filter((event) => !event.live))
 const rules = ['Events happen at a place and a time, on Nigerian time. Be there and finish any activity to count as attending.', 'An event changes no price and no pay. Being there counts for missions.',
   'Events come round again: weekly ones every week, yearly ones every year. Nothing is gone for ever.', '“Add to my calendar” makes a calendar file on your phone. The game sends no reminder by itself.']
 
-onMounted(() => { void growth.load() })
+onMounted(() => { void growth.load(); void loadFeed(view.value.cityId).then((found) => { feed.value = found }) })
 
 const hereAt = (event: CalendarOccurrence): boolean => state.value.location === event.venue && !isDeparting(state.value)
 const attended = (event: CalendarOccurrence): boolean => Boolean(view.value.events?.live?.find((item) => item.key === event.key)?.attended)
 const sprayOf = (event: CalendarOccurrence) => (event.live && hereAt(event) && event.spray ? view.value.events.spray : null)
 
 function go(event: CalendarOccurrence): void { shell.close(); void goTo(event.venue) }
-function share(event: CalendarOccurrence): void { void growth.share('event', { event: event.id }) }
+/** Sharing is for the city's own events: a festival or match night has no share card yet. */
+function share(event: CalendarOccurrence): void {
+  if (!own.value.some((item) => item.key === event.key)) { game.toast('Tell your friends about this one yourself for now.', 'info'); return }
+  void growth.share('event', { event: event.id })
+}
 const spraying = ref<number | null>(null)
 async function spray(amount: number): Promise<void> {
   if (spraying.value !== null || offline.value) return
@@ -59,6 +70,7 @@ function addToCalendar(event: CalendarOccurrence): void {
 <template>
   <div class="events">
     <p v-if="offline" class="gr-note" role="status">{{ offline }}</p>
+    <p v-for="item in notices" :key="item.id" class="gr-fest" :style="{ borderColor: item.colours[0], background: `linear-gradient(90deg, ${item.colours[0]}33, ${item.colours[1]}33)` }" data-festival="notice"><strong>{{ item.line }}</strong> {{ item.blurb }}</p>
     <template v-if="live.length">
       <EventCard v-for="event in live" :key="event.key" :event="event" :now="view.now" :cash="state.cash" :here="hereAt(event)" :attended="attended(event)" :spray="sprayOf(event)" :offline="offline" :sharing="growth.state.busy !== null" :spraying="spraying" @go="go(event)" @calendar="addToCalendar(event)" @share="share(event)" @spray="spray" />
     </template>
@@ -77,5 +89,6 @@ function addToCalendar(event: CalendarOccurrence): void {
 </template>
 
 <style scoped>
+.gr-fest { margin: var(--s-2) 0; padding: var(--s-2) var(--s-3); border: 2px solid; border-radius: var(--r-sm); font-size: 13px; line-height: 1.4; color: var(--c-ink); }
 .gr-note { font-size: 12px; line-height: 1.45; color: var(--c-muted); margin: var(--s-2) 2px; }
 </style>

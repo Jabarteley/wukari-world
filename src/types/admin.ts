@@ -34,6 +34,8 @@ export interface AdminHttpRoutes {
   'POST /api/admin/announcements/:id/cancel': Post<{ clientId: string }, AdminJson>
   'GET /api/admin/settings': Get<AdminJson>
   'POST /api/admin/settings': Post<{ clientId: string; key: string; value: boolean | number | null }, AdminJson>
+  'GET /api/admin/festivals': Get<AdminJson>
+  'POST /api/admin/festivals': Post<{ clientId: string; action: string; id?: string; item?: unknown }, AdminJson>
   'POST /api/admin/notice': Post<{ clientId: string; minutes: number }, AdminJson>
   'GET /api/admin/moderation/reports': Get<AdminJson>
   'POST /api/admin/moderation/reports/:id/act': Post<{ clientId: string; action: 'dismiss' | 'warn' | 'mute'; note?: string; minutes?: number }, AdminJson>

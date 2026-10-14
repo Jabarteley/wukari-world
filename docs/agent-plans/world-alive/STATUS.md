@@ -5,9 +5,11 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 
 ## Now
 
-- **Live:** Phases 1 to 6, 8 and 9, and the first part of 19 (release 4, see the Log).
-- **Waiting for room in the scene chunk:** Phases 7 (light mode) and 16 (festivals) are merged on `claude/world-alive` and pass
-  their tests, but together they put `SCENE_HOST_GZIP` 229 bytes over its limit; `claude/alive-scene-room` is freeing space.
+- **Live:** Phases 1 to 9 and 16, and the first part of 19 (release 5, see the Log).
+- **In progress:** Phase 10 (house agents, `claude/alive-p10-agents`) and the owner's answers of 14 October
+  (`claude/alive-owner-answers`: ₦5,000 friend gift, cached rates, public flirting with consent, Vercel's 429 handling).
+- **Releases from GitHub work** since 14 October: `CLOUDFLARE_API_TOKEN` (secret) and `ALLWORLD_CF_ACCOUNT_ID` (variable) are set
+  in the `production` environment, and the release workflow deployed `63e0f3d2` on its own.
 - **Where the work happens:** the repository on the owner's Desktop is synced by iCloud and `git push`/`fetch` hang there. The work
   is done in a clean clone outside the Desktop. Phase branches are reviewed, merged into `claude/world-alive`, checked by CI, pushed
   to `main` and released.
@@ -17,8 +19,9 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 - **The first download:** `vite.config.ts` puts every file under `src/game/` into the `engine` chunk, which is in the first download,
   even when only lazy code imports it; a module that only the server or a lazy panel needs gets an exception there. To see what is in
   a chunk, push a throwaway branch whose `ci.yml` uploads `dist/assets/<chunk>-*.js`, download it, and compare with `main`.
-  Room after release 4: about 4 KB raw at startup, 30 bytes gzip in the scene chunk.
-- **Next step:** release Phases 7 and 16 once the scene chunk has room; then Phase 10 (house agents), 11, 12, 13a.
+  Room after release 5: about 2.7 KB raw at startup, about 1.5 KB gzip in the scene chunk.
+- **Next step:** Phase 10, the owner's answers, then a cache-first pass (show what was last seen at once, refresh in the
+  background: the owner asked for it on 14 October), then Phases 11, 12, 13a.
 
 ## Phases
 
@@ -31,9 +34,9 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 4 World feed | live | `b6d2eaab` | MET Norway weather and daily rates kept by the server, `GET /api/world/feed?id=<city>`, credits in Help (docs/WORLD-FEED.md). |
 | 5 Money in the city's currency | live | `e031c6e5` | `money(amount, city)` at the day's rate, frozen per feed day; Nigerian cities unchanged byte for byte; "≈ ₦" on the main amounts (docs/CURRENCY.md). Amounts show ₦ for about 1.5 s until the feed answers; text built on the server and typed-amount inputs stay in ₦. |
 | 6 Shareable moment cards | live | `b6d2eaab` | Cards for table wins and Hall of Records entries (docs/SHARE-CARDS.md). The wedding card is ready, but the game has no marriages yet. A real WhatsApp share still needs checking by hand. |
-| 7 Data-light mode | merged, not yet live | | Data meter, Light mode switch (lowest tier, 30 fps cap, no background downloads, music off), no drawing under a full-screen panel, a kind message before the 3D download on browsers that cannot draw it (docs/DATA-LIGHT.md). Waiting for scene-chunk room. Not yet measured on a throttled phone (docs/DATA-LIGHT.md section 6 lists what to measure). |
-| 8 Gist and the world ledger | live | REL | Public lines from six systems (records, stalls, arrests, busy places, events, announcements), adults named only, hidden players never; Gist app on the phone, "Gist:" line in the Square, share cards, `check_gist` agent tool (docs/GIST.md). Friendships are not a source (private). |
-| 9 Model router and budget | live | REL | One door for every model call, two providers, free first, paid-only for players' words, US$2 a day hard stop, per-player caps, weekly model report, companion moved onto it (docs/MODELS-ROUTER.md). Free gateway cap of 500 a day is a guess (question 7). |
+| 7 Data-light mode | live | REL5 | | Data meter, Light mode switch (lowest tier, 30 fps cap, no background downloads, music off), no drawing under a full-screen panel, a kind message before the 3D download on browsers that cannot draw it (docs/DATA-LIGHT.md). Not yet measured on a throttled phone (docs/DATA-LIGHT.md section 6 lists what to measure). |
+| 8 Gist and the world ledger | live | `95e03aa9` | Public lines from six systems (records, stalls, arrests, busy places, events, announcements), adults named only, hidden players never; Gist app on the phone, "Gist:" line in the Square, share cards, `check_gist` agent tool (docs/GIST.md). Friendships are not a source (private). |
+| 9 Model router and budget | live | `95e03aa9` | One door for every model call, two providers, free first, paid-only for players' words, US$2 a day hard stop, per-player caps, weekly model report, companion moved onto it (docs/MODELS-ROUTER.md). Free gateway cap of 500 a day is a guess (question 7). |
 | 10 House agents and action library | not started | | |
 | 11 Missions from agents | not started | | |
 | 12 Talking, memory, relationships | not started | | |
@@ -42,7 +45,7 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 13c Ideas, assembly, president, letter | not started | | |
 | 14 Prayers and acts | not started | | |
 | 15 Calls with agents | not started | | |
-| 16 Festivals, owambe, match nights | merged, not yet live | | Multi-day festival calendar (NG, GH, KE, ZA, global; Eid and Ramadan dates to 2028), festive Square light, owambe parties with MC/DJ/spray (no money), match-night slots and an empty admin fixture list (docs/FESTIVALS.md). Waiting for scene-chunk room. |
+| 16 Festivals, owambe, match nights | live | REL5 | Multi-day festival calendar (NG, GH, KE, ZA, global; Eid and Ramadan dates to 2028), festive Square light, owambe parties with MC/DJ/spray (no money), match-night slots and an empty admin fixture list (docs/FESTIVALS.md). |
 | 17 City texture packs | not started | | |
 | 18 Real price levels | not started | | |
 | 19 Smaller features | in progress | REL | Live: "while you were away" sheet and the ask for notifications after a good moment; jail you can play (jobs, community service, visits, parole; docs/JAIL.md). Next: city projects, group gift packets, sticker pack, home-city pin, life stages. |
@@ -54,22 +57,19 @@ States: not started · in progress · pushed, not yet live · live · blocked (s
 
 Ask these in your chat as well; record the answer here when you have it.
 
-1. **Releases from GitHub need a Cloudflare token.** The release workflow in `kromate/joinallworld` builds, but its deploy step
-   needs `CLOUDFLARE_API_TOKEN` in the repository's `production` environment. (`CLOUDFLARE_ACCOUNT_ID` was added on 14 October
-   2026.) The owner creates a Cloudflare API token from the "Edit Cloudflare Workers" template for the account, and adds it at
-   GitHub → kromate/joinallworld → Settings → Environments → production → Add secret. Still missing on 14 October; meanwhile the
-   release workflow seals the package and it is deployed with the owner's own signed-in deploy tool, after checking the archive and
-   package digests the workflow printed.
-2. **OpenRouter credit.** The OpenRouter account was on the free tier on 14 October 2026 (50 free requests a day). A one-time
-   US$10 credit lifts free models to 1,000 a day.
-3. **MET Norway agreement.** Their terms ask heavy commercial users to agree with them; ask once the game has real traffic.
-4. **Should AI characters flirt with confirmed adults?** Phase 2 allows it in a direct chat with a player who said they are 18
-   or older, and never in public places. Say if it should wait for the opt-in partner feature of Phase 12.
-5. **The friendship card's gift** is a fixed ₦200. Is that the amount you want?
-6. **Keep the last rates on the phone?** Amounts show ₦ for about 1.5 s on load until the feed answers; caching the last rates
-   would show the local currency at once (a small first-download cost).
-7. **Free gateway cap.** Phase 9 limits free models on the Vercel AI Gateway to 500 requests a day; that is our guess, not a
-   provider limit.
+1. **OpenRouter or OpenAI?** On 14 October the owner said US$15 was sent "to my OpenAI account". The game uses OpenRouter and the
+   Vercel AI Gateway, not OpenAI. If it went to OpenRouter (US$10 or more), raise the OpenRouter free daily limit setting from 50 to
+   1,000. If it went to OpenAI, an `OPENAI_API_KEY` secret and a third provider in the router are needed.
+2. **MET Norway agreement.** Their terms ask heavy commercial users to agree with them; ask once the game has real traffic.
+
+Answered on 14 October 2026:
+- Releases from GitHub: the token was given and set (see Now).
+- AI characters and romance: confirmed adults may flirt with AI characters in private and, with the person's own yes (or a Bae),
+  in public; the agent may ask in private first. Sexual content stays blocked.
+- The friendship card's gift: ₦5,000.
+- Keep the last rates on the phone: yes, and cache much more of what the game shows, updated in the background.
+- The Vercel AI Gateway free cap: no fixed number is published (https://vercel.com/docs/ai-gateway/rate-limits); honour its 429s
+  and `retry-after` instead of a cap of our own.
 
 ## Failing on `main` before us
 
@@ -94,6 +94,11 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
+- 2026-10-14, release 4 (Phases 8, 9, first part of 19), `95e03aa9`, live: city gist, model router with the US$2 stop, "while you
+  were away", jail you can play, and 4.4 KB taken out of the first download. Checks: typecheck clean; 275 of 276 tests of the merged
+  phases passed, the last (the route registry's list of namespaces) was updated; CI build and limits ok (startup 610,965 raw);
+  release workflow checks passed; `SMOKE_CITIES=lagos` smoke PASS. The gist was empty for the first minutes (it fills from public
+  events as they happen).
 - 2026-10-14, release 3 (Phase 5), `e031c6e5`, live: money shows in the city's own currency. Checks: typecheck clean; money,
   feed and pill tests pass; CI build and limits ok (startup 614,866 of 615,000 raw); release workflow checks passed; live
   `/api/world/feed?id=accra` answers GHS; `SMOKE_CITIES=lagos` smoke PASS.

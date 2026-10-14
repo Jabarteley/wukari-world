@@ -130,3 +130,30 @@ export function selfIntersections(ring: ArrayLike<number>): number {
   }
   return count;
 }
+
+/**
+ * The Africa sheet is generated from Natural Earth's mainland and nearby islands, so it has no feature for a far-off African
+ * territory (Saint Helena, 1,900 km off the coast) that the World sheet does carry. Returns `africa` with those World features
+ * added: their arcs are re-quantised to the Africa grid and appended, and `group` names the regional group each joins (a World
+ * feature not named there is left out). The input is not changed; with nothing to add it is returned as it is.
+ */
+export function addWorldTerritories(africa: AfricaTopology, world: WorldTopology, group: Readonly<Record<string, AfricaGroupId>>): AfricaTopology {
+  const have = new Set(africa.features.map((feature) => feature.id));
+  const extra = world.features.filter((feature) => feature.c === 'af' && !have.has(feature.id) && group[feature.id]);
+  if (!extra.length) return africa;
+  const worldArcs = world.arcs.split(','), arcs = africa.arcs.split(',');
+  const scale = world.grid / africa.grid, moved = new Map<number, number>();
+  const move = (ref: number): number => {
+    const n = ref < 0 ? ~ref : ref;
+    if (!moved.has(n)) {
+      const ints = decodeInts(worldArcs[n]!), points: [number, number][] = [];
+      let x = 0, y = 0;
+      for (let i = 0; i < ints.length; i += 2) { x += ints[i]!; y += ints[i + 1]!; points.push([Math.round(x * scale), Math.round(y * scale)]); }
+      moved.set(n, arcs.push(encodeArc(points)) - 1);
+    }
+    return ref < 0 ? ~moved.get(n)! : moved.get(n)!;
+  };
+  const added = extra.map((feature): AfricaFeature => ({ id: feature.id, name: feature.name, k: 'territory', sub: group[feature.id]!, at: feature.at,
+    polys: feature.polys.map((poly) => poly.map((ring) => ring.map(move))) }));
+  return { grid: africa.grid, arcs: arcs.join(','), features: [...africa.features, ...added] };
+}

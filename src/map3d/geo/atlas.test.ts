@@ -651,7 +651,8 @@ test('the atlas stays out of the first download, and its one frame loop lives in
   assert.match(registry, /await import\('\.\/geo\/data\/world\.ts'\)/);
   assert.match(registry, /WORLD\.features\.filter\(feature => feature\.c === continent\)/);
   for (const level of ATLAS_LEVELS) {
-    if (['world', 'africa', 'nigeria'].includes(level.id)) assert.match(registry, new RegExp(`data: \\(\\) => import\\('\\./geo/data/${level.id}\\.ts'\\)`));
+    if (level.id === 'africa') { assert.match(registry, /data: loadAfrica \}/); assert.match(registry, /async function loadAfrica[^]*import\('\.\/geo\/data\/africa\.ts'\)/); }
+    else if (['world', 'nigeria'].includes(level.id)) assert.match(registry, new RegExp(`data: \\(\\) => import\\('\\./geo/data/${level.id}\\.ts'\\)`));
     else assert.match(registry, new RegExp(`id: '${level.id}'[^\\n]*data: \\(\\) => loadWorldContinent\\('${level.continent}'\\)`), `${level.id} uses the lazy source topology loader`);
   }
   for (const name of readdirSync(here('./')).filter((item) => item.endsWith('.ts') && !item.endsWith('.test.ts'))) {

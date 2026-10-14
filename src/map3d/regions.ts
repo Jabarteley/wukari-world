@@ -274,6 +274,11 @@ export function sourceGeometryFrame(rings: readonly ArrayLike<number>[]): Box4 {
   if (!(west < east && south < north)) throw new RangeError('Source geometry has no framing extent');
   return [west, south, east, north];
 }
+/** The Africa sheet plus the African territories too remote for it (Saint Helena), taken from the World sheet; the World sheet is loaded before Africa anyway. */
+async function loadAfrica(): Promise<typeof import('./geo/data/africa.ts')> {
+  const [{ AFRICA }, { WORLD }, { addWorldTerritories }] = await Promise.all([import('./geo/data/africa.ts'), import('./geo/data/world.ts'), import('./geo/topo.ts')]);
+  return { AFRICA: addWorldTerritories(AFRICA, WORLD, { sh: 'west' }) };
+}
 async function loadWorldContinent(continent: ContinentId): Promise<typeof import('./geo/data/world.ts')> {
   const { WORLD } = await import('./geo/data/world.ts');
   const { decodeTopology } = await import('./geo/topo.ts');
@@ -286,7 +291,7 @@ async function loadWorldContinent(continent: ContinentId): Promise<typeof import
 
 export const ATLAS_LEVELS: readonly AtlasLevel[] = Object.freeze<AtlasLevel[]>([
   { ...ATLAS_LEVEL_METADATA[0]!, id: 'world', pitch: 1.5, kind: 'country', frame: [-169, -58, 191, 80], data: () => import('./geo/data/world.ts') },
-  { ...ATLAS_LEVEL_METADATA[1]!, id: 'africa', pitch: 1.44, kind: 'country', continent: 'af', frame: [-18.5, -35.5, 52, 38], data: () => import('./geo/data/africa.ts') },
+  { ...ATLAS_LEVEL_METADATA[1]!, id: 'africa', pitch: 1.44, kind: 'country', continent: 'af', frame: [-18.5, -35.5, 52, 38], data: loadAfrica },
   // `around`: the neighbouring countries the level draws itself, as flat land (ISO codes; the same list as the data module's AROUND).
   { ...ATLAS_LEVEL_METADATA[2]!, id: 'nigeria', pitch: 1.04, kind: 'state', country: 'ng', frame: [2.6, 4.1, 14.8, 14], around: ['bf', 'bj', 'cf', 'cm', 'ga', 'gh', 'gq', 'ne', 'ng', 'st', 'td', 'tg'], data: () => import('./geo/data/nigeria.ts') },
   { ...ATLAS_LEVEL_METADATA[3]!, id: 'europe', pitch: 1.44, kind: 'country', continent: 'eu', frame: continentFrames.eu!, data: () => loadWorldContinent('eu') },

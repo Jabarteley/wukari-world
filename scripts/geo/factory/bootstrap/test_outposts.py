@@ -158,14 +158,24 @@ class OutpostSeeds(unittest.TestCase):
         self.assertTrue(metadata.city_node_tag_ok({'mountain_pass': 'yes'}, wilderness))
         self.assertFalse(metadata.city_node_tag_ok({'natural': 'glacier'}, outpost))
         self.assertFalse(metadata.city_node_tag_ok({'natural': 'tree'}, wilderness))
-        # 14 Oct 2026 (Ashmore and Cartier Islands, XA): a wilderness seed of a user-assigned code may name its territory label node.
-        xa = {'profile': 'wilderness', 'countryISO': 'XA'}
-        self.assertTrue(metadata.city_node_tag_ok({'place': 'territory'}, xa))
-        self.assertIn('territory', metadata.city_place_tags(xa))
-        for other in (wilderness, {'profile': 'wilderness', 'countryISO': 'IO'}, {'profile': 'outpost', 'countryISO': 'XA'}, {'countryISO': 'XA'}, {'profile': 'microstate', 'countryISO': 'XA'}):
-            with self.subTest(other):
-                self.assertFalse(metadata.city_node_tag_ok({'place': 'territory'}, other))
-                self.assertNotIn('territory', metadata.city_place_tags(other))
+        # 14 Oct 2026 (Chagos, Ashmore): a wilderness seed may name a closed island or islet way; its centre is a point inside it.
+        wild = {'id': 'w', 'name': 'East Island', 'countryISO': 'XA', 'profile': 'wilderness', 'gateway': GATEWAY, 'cityOsmRef': 'way/9'}
+        metadata.validate_seed(wild)
+        for other in ({**wild, 'profile': 'outpost'}, {**wild, 'profile': 'microstate'}, {key: value for key, value in wild.items() if key not in ('profile', 'gateway')}):
+            with self.subTest(other), self.assertRaises(metadata.Hold):
+                metadata.validate_seed(other)
+        ring = [(123.0, -12.0), (123.01, -12.0), (123.01, -12.01), (123.0, -12.01), (123.0, -12.0)]
+        record = metadata.city_way_record(9, {'name': 'East Island', 'place': 'islet'}, ring, wild)
+        self.assertEqual(record['ref'], 'way/9')
+        from shapely.geometry import Point, Polygon
+        self.assertTrue(Polygon(ring).contains(Point(record['lon'], record['lat'])))
+        self.assertEqual(metadata.choose_city([record], wild), record)
+        for label, tags, points, value in (('not an island', {'name': 'East Island', 'natural': 'reef'}, ring, wild),
+                                          ('open ring', {'name': 'East Island', 'place': 'islet'}, ring[:-1], wild),
+                                          ('military', {'name': 'East Island', 'place': 'islet', 'military': 'base'}, ring, wild),
+                                          ('outpost', {'name': 'East Island', 'place': 'islet'}, ring, {**wild, 'profile': 'outpost'})):
+            with self.subTest(label), self.assertRaises(metadata.Hold):
+                metadata.city_way_record(9, tags, points, value)
 
     def test_wilderness_sea_gateway_on_a_natural_feature(self):
         # 14 Oct 2026 (Chagos, Ashmore): no landing is mapped, so a wilderness sea gateway may be a named natural sea feature.

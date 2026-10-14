@@ -9,7 +9,7 @@
     "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
     "name": {"type": "string", "minLength": 1, "description": "Must contain a name after Unicode alphanumeric normalization and match a source city/town name or name:en."},
     "countryISO": {"type": "string", "pattern": "^[A-Z]{2}$"},
-    "cityOsmRef": {"type": "string", "pattern": "^node/[1-9][0-9]*$", "description": "Selects only among matching named city/town nodes in the verified PBF."},
+    "cityOsmRef": {"type": "string", "pattern": "^(node|way)/[1-9][0-9]*$", "description": "Selects only among matching named city/town nodes in the verified PBF. A wilderness seed only may name a closed, named place=island|islet way (14 Oct 2026); its centre is the representative point of the polygon."},
     "airport": {
       "type": "object", "additionalProperties": false, "required": ["ident", "sourceUrl"],
       "properties": {

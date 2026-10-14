@@ -16,18 +16,19 @@
   "seeds": [
     {
       "id": "chagos",
-      "name": "Île Gabrielle",
+      "name": "Île Boddam",
       "countryISO": "IO",
-      "cityOsmRef": "node/366535762",
+      "cityOsmRef": "way/32596963",
       "profile": "wilderness",
       "playBox": {
         "playKm": 8,
         "coreKm": 3
       },
       "gateway": {
-        "osmRef": "node/366535766",
+        "osmRef": "node/6436644966",
+        "featureRef": "way/32596963",
         "mode": "sea",
-        "sourceUrl": "https://www.openstreetmap.org/node/366535766"
+        "sourceUrl": "https://www.openstreetmap.org/way/32596963"
       },
       "timezone": {
         "id": "Indian/Chagos",

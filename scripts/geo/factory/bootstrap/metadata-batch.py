@@ -11,7 +11,7 @@ import subprocess
 import time
 from urllib.parse import quote
 
-from metadata import (Hold, choose_airport, choose_city, choose_seed_timezone, city_natural_tags, city_place_tags, coordinate,
+from metadata import (Hold, choose_airport, choose_city, choose_seed_timezone, city_natural_tags, city_place_tags, city_way_record, coordinate,
                       city_node_tag_ok, digest, gateway_facts, gateway_record, normalized, profile_rules, seed_country_name,
                       road_fallback_input, validate_dataset_url, validate_seed)
 
@@ -114,6 +114,24 @@ def scan_city_nodes(pbf, seeds, gateways=None, features=None):
     if gateways:
         return candidates, errors, handler.gateway_nodes
     return candidates, errors
+
+def scan_city_ways(pbf, seeds, candidates):
+    """Wilderness seeds whose cityOsmRef is a way (metadata.city_way_record): one extra pass with node locations, only when such a seed exists."""
+    wanted = {int(seed['cityOsmRef'].split('/')[1]): seed for seed in seeds if str(seed.get('cityOsmRef', '')).startswith('way/')}
+    if not wanted:
+        return
+    import osmium
+    found = {}
+    class CityWays(osmium.SimpleHandler):
+        def way(self, way):
+            if way.id in wanted:
+                found[way.id] = ({tag.k: tag.v for tag in way.tags}, [(node.lon, node.lat) for node in way.nodes])
+    CityWays().apply_file(str(pbf), locations=True)
+    for way_id, seed in wanted.items():
+        if way_id in found:
+            tags, points = found[way_id]
+            if any(normalized(tags.get(key, '')) == normalized(seed['name']) for key in ('name', 'name:en')):
+                candidates[seed['id']].append(city_way_record(way_id, tags, points, seed))
 
 def prepare_city(seed, out, candidates, args, airport_rows, zone_lines, country_lines,
                  timestamp, dataset_bytes, gateway_node=None):
@@ -339,6 +357,7 @@ def run_batch_metadata(args):
         else:
             candidates, node_errors = scan_city_nodes(pbf, seeds)
             gateway_nodes = {}
+        scan_city_ways(pbf, seeds, candidates)
         for seed in seeds:
             # Identity-review diagnostic (from the Oceania single-seed stage): every matching named city/town node, capped at 100.
             records = sorted(candidates[seed['id']], key=lambda node: int(node['ref'].split('/')[1]))

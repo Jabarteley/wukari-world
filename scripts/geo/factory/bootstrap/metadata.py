@@ -61,13 +61,13 @@ def profile_rules(seed):
     return PROFILES[name]
 
 def city_place_tags(seed):
-    return set(profile_rules(seed)['cityPlaceTags']) | set(profile_rules(seed)['capitalPlaceTags']) | ({'territory'} if territory_label_ok(seed) else set())
+    return set(profile_rules(seed)['cityPlaceTags']) | set(profile_rules(seed)['capitalPlaceTags'])
 
-def territory_label_ok(seed):
-    """Wilderness under a user-assigned X? code only (owner decision 14 Oct 2026, Ashmore and Cartier Islands XA): a territory that maps no
-    settlement, island node or natural node may name its place by the place=territory label node of its own relation (cityOsmRef still
-    required, so exactly that node). Every other profile and code is unchanged."""
-    return bool(profile_rules(seed).get('requiresCityOsmRef')) and re.fullmatch(r'X[A-Z]', str(seed.get('countryISO'))) is not None
+def city_way_allowed(seed):
+    """Wilderness only (owner decision 14 Oct 2026; Chagos and Ashmore map no place node on dry land big enough for the game's fictional
+    venues, which stand within about 200 m of the centre): `cityOsmRef` may name a closed, named place=island|islet way; the centre is the
+    representative point of that polygon (city_way_record). Every other profile keeps node references only."""
+    return bool(profile_rules(seed).get('requiresCityOsmRef'))
 
 def city_natural_tags(seed):
     """Wilderness only (profiles.json `cityNaturalTags`): a named glacier, peak, saddle, reef node or a mountain_pass=yes node may name the place."""
@@ -84,7 +84,7 @@ def city_node_tag_ok(tags, seed):
     if rules.get('extraction', {}).get('excludeSensitive') and sensitive_tags(tags):
         return False
     return (place in rules['cityPlaceTags'] or (place in rules['capitalPlaceTags'] and tags.get('capital') in {'yes', '2'})
-            or natural_node_ok(tags, city_natural_tags(seed)) or (place == 'territory' and territory_label_ok(seed)))
+            or natural_node_ok(tags, city_natural_tags(seed)))
 
 def sensitive_tags(tags):
     """Never a city node, gateway or venue of an outpost: military=*, landuse=military, aeroway=* (an aeroway is allowed only as an air gateway)."""
@@ -121,8 +121,9 @@ def validate_seed(seed):
     rules = profile_rules(seed)
     validate_outpost_fields(seed, rules)
     validate_road_ladder(seed, rules)
-    if 'cityOsmRef' in seed and (not isinstance(seed['cityOsmRef'], str) or not re.fullmatch(r'node/[1-9][0-9]*', seed['cityOsmRef'])):
-        raise Hold('cityOsmRef needs a positive OSM node reference')
+    if 'cityOsmRef' in seed and (not isinstance(seed['cityOsmRef'], str) or not (re.fullmatch(r'node/[1-9][0-9]*', seed['cityOsmRef'])
+                                 or (city_way_allowed(seed) and re.fullmatch(r'way/[1-9][0-9]*', seed['cityOsmRef'])))):
+        raise Hold('cityOsmRef needs a positive OSM node reference (a wilderness seed may name a closed island or islet way)')
     for key, field in (('airport', 'ident'), ('timezone', 'id')):
         if key not in seed:
             continue
@@ -259,6 +260,23 @@ def validate_dataset_url(value):
         raise Hold('dated official Geofabrik PBF URL or pinned kromate/joinallworld extracts-YYYYMMDD release asset required')
     # The anchored path grammar excludes traversal, encoded paths, queries and fragments.
     return value
+
+CITY_WAY_PLACES = {'island', 'islet'}
+
+def city_way_record(way_id, tags, points, seed):
+    """The centre record of a wilderness place named by a closed island or islet way: named as the seed, never military, and the
+    representative point of the polygon (Shapely; a point inside it), rounded to 7 decimals like an OSM node."""
+    from shapely.geometry import Polygon
+    if not city_way_allowed(seed) or tags.get('place') not in CITY_WAY_PLACES or sensitive_tags(tags):
+        raise Hold('a city way must be a named place=island|islet way of a wilderness seed, never military')
+    if len(points) < 4 or points[0] != points[-1]:
+        raise Hold('a city way must be a closed ring')
+    polygon = Polygon(points)
+    if not polygon.is_valid or polygon.area <= 0:
+        raise Hold('a city way must be a valid polygon')
+    point = polygon.representative_point()
+    return {'ref': f'way/{way_id}', 'tags': tags, **coordinate(round(point.x, 7), round(point.y, 7)),
+            'centreMethod': 'shapely-representative-point-of-closed-way', 'wayNodeCount': len(points)}
 
 def choose_city(nodes, seed, selector=None):
     matches = [node for node in nodes if city_node_tag_ok(node['tags'], seed) and any(normalized(node['tags'].get(key, '')) == normalized(seed['name']) for key in ('name', 'name:en'))]

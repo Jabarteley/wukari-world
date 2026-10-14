@@ -15,13 +15,13 @@
   },
   "seeds": [
     {
-      "id": "reef",
-      "name": "Ashmore and Cartier Islands",
+      "id": "ashmore",
+      "name": "East Island",
       "countryISO": "XA",
-      "cityOsmRef": "node/2294591720",
+      "cityOsmRef": "way/25763630",
       "profile": "wilderness",
       "playBox": {
-        "playKm": 14,
+        "playKm": 15,
         "coreKm": 4
       },
       "gateway": {

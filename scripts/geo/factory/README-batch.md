@@ -262,7 +262,7 @@ Code only (branch claude/outposts-factory-20261014); nothing here has run on a h
 - Natural sea gateway and territory label (owner decision 14 Oct 2026; Chagos io and Ashmore xa map no landing, pier or harbour node; metadata.py, test_outposts.py). Wilderness profile only, so no other seed changes:
   - a `mode: "sea"` gateway may be a named natural sea feature node (a `subsea=*` channel or shoal, place=island|islet, natural=reef|bay|shoal|strait, mooring=yes); no landing facility is claimed;
   - or `gateway.featureRef: "way/<id>"`: `osmRef` is then an unnamed vertex of that named natural-feature way (an islet coastline); the way gives the name and is checked (never military or aeroway), and the source records it as `featureRecord`;
-  - under a user-assigned X? code the city node may be the territory's `place=territory` label node (cityOsmRef still required).
+  - `cityOsmRef: "way/<id>"` may name a closed, named place=island|islet way (an atoll island with no place node, or whose only nodes are islets too small for the fictional venues within about 200 m of the centre); the centre is the Shapely representative point of the polygon, recorded with `centreMethod`.
 - Not done: the polar frame for |lat| >= 75 (McMurdo waits for v2). The osm.fr mirror is done (see "Pinned extract mirror" below).
 
 ## Road fallback (`roadLadder: true`, 2026-10-14; OFF unless the seed sets it)

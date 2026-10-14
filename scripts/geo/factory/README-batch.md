@@ -259,6 +259,10 @@ Code only (branch claude/outposts-factory-20261014); nothing here has run on a h
   - Disputed relations: `admin0RelationOverride {relationId, expectedTags, reason, userAssignedCode: true, disputed: true}` accepts a boundary=disputed relation (admin_level 2 allowed only here; expectedTags need boundary=disputed and a name, no ISO keys) under an X? code; the area is assembled from that one relation id. Siachen: relation 13790690 under XG.
   - Admin-level-3/4 territory relations with an ISO code (TF 2186658, HM 2177227) use the existing override; Ashmore and Cartier (2559345, wikidata, no ISO) uses the existing userAssignedCode override under XA.
 - Acceptance driver (branch claude/qa-20261012, scripts/journeys/map-shots.ts, NOT changed here): add the outpost city ids to `findMeInWholeCityAllowList` (now `['vatican-city']`) before their browser run, because a tiny outpost's fit extremum is its gateway and the "You are here" label can sit under the top bar as at Vatican City. The Lagos link keeps `<city>-air`, so the `<city>:air` travel step works unchanged. Ids: see relay/world-ledger/OUTPOST-TABLE-FIELDS.md.
+- Natural sea gateway and territory label (owner decision 14 Oct 2026; Chagos io and Ashmore xa map no landing, pier or harbour node; metadata.py, test_outposts.py). Wilderness profile only, so no other seed changes:
+  - a `mode: "sea"` gateway may be a named natural sea feature node (a `subsea=*` channel or shoal, place=island|islet, natural=reef|bay|shoal|strait, mooring=yes); no landing facility is claimed;
+  - or `gateway.featureRef: "way/<id>"`: `osmRef` is then an unnamed vertex of that named natural-feature way (an islet coastline); the way gives the name and is checked (never military or aeroway), and the source records it as `featureRecord`;
+  - under a user-assigned X? code the city node may be the territory's `place=territory` label node (cityOsmRef still required).
 - Not done: the polar frame for |lat| >= 75 (McMurdo waits for v2). The osm.fr mirror is done (see "Pinned extract mirror" below).
 
 ## Road fallback (`roadLadder: true`, 2026-10-14; OFF unless the seed sets it)

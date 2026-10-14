@@ -158,6 +158,43 @@ class OutpostSeeds(unittest.TestCase):
         self.assertTrue(metadata.city_node_tag_ok({'mountain_pass': 'yes'}, wilderness))
         self.assertFalse(metadata.city_node_tag_ok({'natural': 'glacier'}, outpost))
         self.assertFalse(metadata.city_node_tag_ok({'natural': 'tree'}, wilderness))
+        # 14 Oct 2026 (Ashmore and Cartier Islands, XA): a wilderness seed of a user-assigned code may name its territory label node.
+        xa = {'profile': 'wilderness', 'countryISO': 'XA'}
+        self.assertTrue(metadata.city_node_tag_ok({'place': 'territory'}, xa))
+        self.assertIn('territory', metadata.city_place_tags(xa))
+        for other in (wilderness, {'profile': 'wilderness', 'countryISO': 'IO'}, {'profile': 'outpost', 'countryISO': 'XA'}, {'countryISO': 'XA'}, {'profile': 'microstate', 'countryISO': 'XA'}):
+            with self.subTest(other):
+                self.assertFalse(metadata.city_node_tag_ok({'place': 'territory'}, other))
+                self.assertNotIn('territory', metadata.city_place_tags(other))
+
+    def test_wilderness_sea_gateway_on_a_natural_feature(self):
+        # 14 Oct 2026 (Chagos, Ashmore): no landing is mapped, so a wilderness sea gateway may be a named natural sea feature.
+        node = lambda ref='node/1', **tags: {'ref': ref, 'tags': tags, 'lon': 71.75, 'lat': -5.39}
+        wild = lambda **gateway: {'id': 'w', 'name': 'W', 'countryISO': 'IO', 'profile': 'wilderness', 'cityOsmRef': 'node/2', 'gateway': {**GATEWAY, **gateway}}
+        channel = node(name='Passe de Ile Poule', place='locality', subsea='channel')
+        self.assertEqual(metadata.gateway_record(channel, wild())['name'], 'Passe de Ile Poule')
+        for tags in ({'place': 'islet'}, {'natural': 'reef'}, {'mooring': 'yes'}):
+            self.assertEqual(metadata.gateway_record(node(name='X', **tags), wild())['name'], 'X')
+        for label, record, value in (('outpost keeps GATEWAY_TAGS', channel, seed()),
+                                     ('land mode', channel, wild(mode='land')), ('unnamed', node(subsea='channel'), wild()),
+                                     ('military', node(name='X', place='islet', military='base'), wild()),
+                                     ('not a sea feature', node(name='X', natural='peak'), wild())):
+            with self.subTest(label), self.assertRaises(metadata.Hold):
+                metadata.gateway_record(record, value)
+        # featureRef: an unnamed vertex of a named islet coastline way.
+        featured = wild(featureRef='way/9')
+        metadata.validate_seed(featured)
+        islet = {'ref': 'way/9', 'tags': {'name': 'East Island', 'place': 'islet', 'natural': 'coastline'}, 'nodeRefs': ['node/1', 'node/3']}
+        self.assertEqual(metadata.gateway_record({**node(), 'feature': islet}, featured)['name'], 'East Island')
+        for label, record in (('absent way', node()), ('not a vertex', {**node('node/4'), 'feature': islet}),
+                              ('unnamed way', {**node(), 'feature': {**islet, 'tags': {'place': 'islet'}}}),
+                              ('not natural', {**node(), 'feature': {**islet, 'tags': {'name': 'Road', 'highway': 'track'}}}),
+                              ('military way', {**node(), 'feature': {**islet, 'tags': {**islet['tags'], 'military': 'base'}}})):
+            with self.subTest(label), self.assertRaises(metadata.Hold):
+                metadata.gateway_record(record, featured)
+        for bad in (wild(featureRef='node/9'), wild(featureRef='way/9', mode='land'), {**seed(), 'gateway': {**GATEWAY, 'featureRef': 'way/9'}}):
+            with self.subTest(bad), self.assertRaises(metadata.Hold):
+                metadata.validate_seed(bad)
 
 
 def outpost_table(**seed_changes):

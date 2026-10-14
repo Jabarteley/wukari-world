@@ -61,7 +61,13 @@ def profile_rules(seed):
     return PROFILES[name]
 
 def city_place_tags(seed):
-    return set(profile_rules(seed)['cityPlaceTags']) | set(profile_rules(seed)['capitalPlaceTags'])
+    return set(profile_rules(seed)['cityPlaceTags']) | set(profile_rules(seed)['capitalPlaceTags']) | ({'territory'} if territory_label_ok(seed) else set())
+
+def territory_label_ok(seed):
+    """Wilderness under a user-assigned X? code only (owner decision 14 Oct 2026, Ashmore and Cartier Islands XA): a territory that maps no
+    settlement, island node or natural node may name its place by the place=territory label node of its own relation (cityOsmRef still
+    required, so exactly that node). Every other profile and code is unchanged."""
+    return bool(profile_rules(seed).get('requiresCityOsmRef')) and re.fullmatch(r'X[A-Z]', str(seed.get('countryISO'))) is not None
 
 def city_natural_tags(seed):
     """Wilderness only (profiles.json `cityNaturalTags`): a named glacier, peak, saddle, reef node or a mountain_pass=yes node may name the place."""
@@ -78,7 +84,7 @@ def city_node_tag_ok(tags, seed):
     if rules.get('extraction', {}).get('excludeSensitive') and sensitive_tags(tags):
         return False
     return (place in rules['cityPlaceTags'] or (place in rules['capitalPlaceTags'] and tags.get('capital') in {'yes', '2'})
-            or natural_node_ok(tags, city_natural_tags(seed)))
+            or natural_node_ok(tags, city_natural_tags(seed)) or (place == 'territory' and territory_label_ok(seed)))
 
 def sensitive_tags(tags):
     """Never a city node, gateway or venue of an outpost: military=*, landuse=military, aeroway=* (an aeroway is allowed only as an air gateway)."""
@@ -91,6 +97,17 @@ GATEWAY_TAGS = {
     'land': lambda tags: tags.get('highway') == 'trailhead' or tags.get('mountain_pass') == 'yes' or tags.get('natural') == 'saddle' or tags.get('tourism') in {'alpine_hut', 'wilderness_hut'} or tags.get('amenity') == 'shelter',
 }
 GATEWAY_MAX_KM = 40
+
+def natural_sea_gateway_ok(tags):
+    """Wilderness sea gateway on a natural feature (owner decision 14 Oct 2026: the Chagos and Ashmore atolls map no landing, pier or
+    harbour node): a named channel, shoal or other `subsea` feature, an island or islet, a reef, bay or shoal, or a mooring. Ships anchor
+    or moor there; the record claims no landing facility."""
+    return ('subsea' in tags or tags.get('place') in {'island', 'islet'} or tags.get('natural') in {'reef', 'bay', 'shoal', 'strait'}
+            or tags.get('mooring') == 'yes')
+
+def natural_sea_gateway_allowed(seed):
+    """Only a wilderness seed (cityNaturalTags) with a sea gateway; every outpost and other profile keeps GATEWAY_TAGS exactly."""
+    return bool(profile_rules(seed).get('cityNaturalTags')) and seed.get('gateway', {}).get('mode') == 'sea'
 ETC_ZONE = re.compile(r'Etc/GMT(?:[+-](?:[1-9]|1[0-4]))?')
 
 def validate_seed(seed):
@@ -146,9 +163,12 @@ def validate_outpost_fields(seed, rules):
             raise Hold('a gateway needs a profile that allows one (outpost, wilderness)')
         if 'airport' in seed:
             raise Hold('a seed names an airport or a gateway, not both')
-        if (not isinstance(gateway, dict) or set(gateway) != {'osmRef', 'mode', 'sourceUrl'} or gateway['mode'] not in GATEWAY_TAGS
+        if (not isinstance(gateway, dict) or set(gateway) - {'featureRef'} != {'osmRef', 'mode', 'sourceUrl'} or gateway['mode'] not in GATEWAY_TAGS
                 or not isinstance(gateway['osmRef'], str) or not re.fullmatch(r'node/[1-9][0-9]*', gateway['osmRef'])):
             raise Hold('gateway needs exactly osmRef (node/<id>), mode (air, sea or land) and sourceUrl')
+        if 'featureRef' in gateway and (not natural_sea_gateway_allowed(seed) or not isinstance(gateway['featureRef'], str)
+                                        or not re.fullmatch(r'way/[1-9][0-9]*', gateway['featureRef'])):
+            raise Hold('gateway featureRef (way/<id>) is only for a wilderness sea gateway: the node is a vertex of that named natural feature')
         validate_source_url(gateway['sourceUrl'])
     if rules.get('requiresCityOsmRef') and 'cityOsmRef' not in seed:
         raise Hold('this profile names its place by cityOsmRef only')
@@ -190,14 +210,31 @@ def seed_country_name(lines, seed):
     raise Hold('countryName is only for a code the pinned country table does not carry')
 
 def gateway_record(node, seed):
-    """The OSM node a seed names as its gateway, checked: named, inside GATEWAY_MAX_KM of nothing yet (see gateway_facts), tagged for its mode, never military."""
+    """The OSM node a seed names as its gateway, checked: named, inside GATEWAY_MAX_KM of nothing yet (see gateway_facts), tagged for its mode, never military.
+    A wilderness sea gateway may also be a natural sea feature (natural_sea_gateway_ok), either the named node itself or, with
+    `featureRef`, an unnamed vertex of a named natural-feature way (an islet coastline): the name and tags checked are then the way's."""
     tags, mode = node['tags'], seed['gateway']['mode']
+    feature_ref = seed['gateway'].get('featureRef')
+    if feature_ref is not None:
+        feature = node.get('feature')
+        if not feature or feature.get('ref') != feature_ref:
+            raise Hold('gateway featureRef ' + feature_ref + ' is absent from the PBF')
+        if node['ref'] not in feature.get('nodeRefs', []):
+            raise Hold('gateway node is not a vertex of its featureRef way')
+        if sensitive_tags(tags) or sensitive_tags(feature['tags']) or 'aeroway' in feature['tags']:
+            raise Hold('gateway node is a military feature; never a hub')
+        name = tags.get('name:en') or tags.get('name') or feature['tags'].get('name:en') or feature['tags'].get('name')
+        if not name:
+            raise Hold('gateway node has no name')
+        if not natural_sea_gateway_ok(feature['tags']):
+            raise Hold('gateway featureRef is not a natural sea feature')
+        return {**node, 'name': name}
     name = tags.get('name:en') or tags.get('name')
     if not name:
         raise Hold('gateway node has no name')
     if sensitive_tags(tags):
         raise Hold('gateway node is a military feature; never a hub')
-    if not GATEWAY_TAGS[mode](tags):
+    if not GATEWAY_TAGS[mode](tags) and not (natural_sea_gateway_allowed(seed) and natural_sea_gateway_ok(tags) and 'aeroway' not in tags):
         raise Hold(f'gateway node is not tagged as a {mode} gateway')
     return {**node, 'name': name}
 

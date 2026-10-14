@@ -45,8 +45,10 @@ def write_hold(out, error):
     (out / 'metadata.json').write_text(json.dumps(payload, indent=2))
     return payload
 
-def scan_city_nodes(pbf, seeds, gateways=None):
-    """City-node candidates per seed. `gateways` (outposts): {node id: [seed ids]} whose gateway nodes are recorded too, in the same pass."""
+def scan_city_nodes(pbf, seeds, gateways=None, features=None):
+    """City-node candidates per seed. `gateways` (outposts): {node id: [seed ids]} whose gateway nodes are recorded too, in the same pass.
+    `features` (wilderness sea gateway featureRef only): {way id: [seed ids]}; the way's tags and node refs are attached to the gateway
+    record as `feature`. Without it no way is read, exactly as before."""
     by_name = {}
     candidates = {seed['id']: [] for seed in seeds}
     errors = {}
@@ -92,8 +94,21 @@ def scan_city_nodes(pbf, seeds, gateways=None):
                     else:
                         if record is not None:
                             candidates[seed['id']].append(record)
-    handler = CityNodes()
+    feature_ways = {}
+    if features:
+        class CityNodesAndFeatures(CityNodes):
+            def way(self, way):
+                if way.id in features:
+                    feature_ways[way.id] = {'ref': f'way/{way.id}', 'tags': {tag.k: tag.v for tag in way.tags},
+                                            'nodeRefs': [f'node/{node.ref}' for node in way.nodes]}
+        handler = CityNodesAndFeatures()
+    else:
+        handler = CityNodes()
     handler.apply_file(str(pbf))
+    for way_id, seed_ids in (features or {}).items():
+        for seed_id in seed_ids:
+            if seed_id in handler.gateway_nodes and way_id in feature_ways:
+                handler.gateway_nodes[seed_id]['feature'] = feature_ways[way_id]
     _phase_complete(phase, started, nodes=handler.nodes_seen,
                    candidates=sum(map(len, candidates.values())))
     if gateways:
@@ -230,6 +245,7 @@ def finish_city(context, args, adapter):
                              'sourceRecord': city, 'pbfSha256': args.expected_pbf_sha256},
                   **({'airport': airport_source} if gateway is None else {
                       'gateway': {**seed['gateway'], 'sourceRecord': {key: gateway[key] for key in ('ref', 'tags', 'lon', 'lat')},
+                                  **({'featureRecord': {key: gateway['feature'][key] for key in ('ref', 'tags')}} if 'feature' in gateway else {}),
                                   'pbfSha256': args.expected_pbf_sha256,
                                   'claim': 'caller-supplied gateway node, checked for its mode tags and for no military tag; a mapped landing does not establish operations'}}),
                   'timezone': {'rows': zone_rows, 'zoneTabSha256': digest(args.zone_tab),
@@ -312,12 +328,14 @@ def run_batch_metadata(args):
         import osmium
         with osmium.io.Reader(str(pbf), osmium.osm.NOTHING) as reader:
             timestamp = reader.header().get('osmosis_replication_timestamp', '')
-        gateways = {}
+        gateways, features = {}, {}
         for seed in seeds:
             if 'gateway' in seed:
                 gateways.setdefault(int(seed['gateway']['osmRef'].split('/')[1]), []).append(seed['id'])
+                if 'featureRef' in seed['gateway']:
+                    features.setdefault(int(seed['gateway']['featureRef'].split('/')[1]), []).append(seed['id'])
         if gateways:
-            candidates, node_errors, gateway_nodes = scan_city_nodes(pbf, seeds, gateways)
+            candidates, node_errors, gateway_nodes = scan_city_nodes(pbf, seeds, gateways, features or None)
         else:
             candidates, node_errors = scan_city_nodes(pbf, seeds)
             gateway_nodes = {}

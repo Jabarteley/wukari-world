@@ -1,0 +1,96 @@
+✔ Missions: today, the weekly set, progress bars with their labels and the stamp card (1319.060166ms)
+✔ Events: what is on or coming up, and the channel link only when it is https (32.294041ms)
+✔ Bring a friend: loading, then the link, the friends and what each is owed; names are text (25.67625ms)
+✔ Stay in touch: the age question first; under 18 is offered nothing; adults get the e-mail form with the reason it is not ready (37.338792ms)
+✔ Stay in touch: a confirmed address is shown masked, a message preview is text, and WhatsApp is an ordinary link (0.597125ms)
+✔ Share sheet: nothing yet, then the picture, the text as text, and the links that leave the game (21.261666ms)
+✔ Away card: shown for a returning player, each line opens its app, the X is labelled; nothing when dismissed (7.156583ms)
+✔ Inbox chip: Messages with what is waiting, and a knock at the door as its own line (7.262208ms)
+✔ Settings e-mail rows: the character mails, the address and the date of the last e-mail; a guest is told to sign in; nothing where accounts are off (11.608875ms)
+✖ hello: asked when a screen is drawn, at most every five minutes, and forced when asked to (2.520834ms)
+✔ hello: not asked while offline or while the life is a guest held for the quick start (0.17375ms)
+✔ hello: a refusal keeps the reason, a transport failure says nothing changed, and a gift refreshes the missions (0.410084ms)
+✔ call: never throws; a failure is { ok: false, code, reason } (0.133625ms)
+✔ share: makes the link, prepares the card, opens the sheet, and replaces the old picture (0.359958ms)
+✔ share: one at a time, a refusal toasts its reason, and offline says why (0.193959ms)
+✔ share sheet buttons: a browser without a share sheet is told, and copy says what happened (0.148166ms)
+✔ a refused copy is reported to the sheet, not toasted as a failure (0.108166ms)
+✔ a session change drops everything loaded and releases the picture (0.180333ms)
+✔ the away card is dismissed for one hello and comes back with the next (0.432708ms)
+✔ channel: only an https link is ever drawn (0.075125ms)
+✔ hello events: an e-mail confirmed and a referral reward are reported once (0.071375ms)
+✔ track and announceAge are decoupled events (0.078625ms)
+✔ small rules: stale hello, readiness, invitations, time words (0.120667ms)
+✔ Missions: a mission has the controls its state allows (1.778333ms)
+✖ Missions: badge, notification, set lines and the stamp card (0.265417ms)
+✔ Events: the badge counts unattended live events and the notification lines name them (0.128084ms)
+✔ Events: when, presence, the empty state and why a spray amount is refused (0.15725ms)
+✔ Bring a friend: figures, titles, rewards and the friends list words (0.146125ms)
+✔ Stay in touch: the age question comes first and under 18 is offered nothing outside the game (0.059459ms)
+✔ Stay in touch: the notification card and the e-mail card follow what is true (0.078459ms)
+✔ Stay in touch: the confirmation button says why it cannot be pressed (0.048083ms)
+✔ away card: shown for a settled, connected player back after hours with something fresh (0.470667ms)
+✔ inbox chip: offline, a knock, hidden for a guest, loading, retry, counts (0.125125ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 31
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2122.500709
+
+✖ failing tests:
+
+test at src/app/features/growth/growth.test.ts:76:1
+✖ hello: asked when a screen is drawn, at most every five minutes, and forced when asked to (2.520834ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+      body: {
+        cityId: 'lagos',
+        device: 'device-token-0000000',
+  +     source: {
+  +       campaign: 'direct',
+  +       medium: 'direct',
+  +       source: 'direct'
+  +     }
+      },
+      method: 'POST'
+    }
+
+      at TestContext.<anonymous> (file:///Users/anthonyakpan/.codex/worktrees/retention-phase-zero/JoinAllworld/src/app/features/growth/growth.test.ts:81:10)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { method: 'POST', body: { cityId: 'lagos', device: 'device-token-0000000', source: [Object] } },
+    expected: { method: 'POST', body: { cityId: 'lagos', device: 'device-token-0000000' } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at src/app/features/growth/growth.test.ts:273:1
+✖ Missions: badge, notification, set lines and the stamp card (0.265417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'Complete all 3 today for +10 stars'
+  - 'Collect all 3 today for +10 stars'
+       ^
+
+      at TestContext.<anonymous> (file:///Users/anthonyakpan/.codex/worktrees/retention-phase-zero/JoinAllworld/src/app/features/growth/growth.test.ts:281:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Complete all 3 today for +10 stars',
+    expected: 'Collect all 3 today for +10 stars',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

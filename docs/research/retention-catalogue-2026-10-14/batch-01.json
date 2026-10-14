@@ -1,0 +1,505 @@
+{
+  "batch": 1,
+  "games": [
+    {
+      "name": "Clash of Clans",
+      "genre": "mobile strategy",
+      "award": {
+        "name": "Google Play Best Multi-device Game",
+        "year": 2024,
+        "category": "Best multi-device game (US)",
+        "url": "https://blog.google/products-and-platforms/platforms/google-play/google-play-best-apps-games-2024/"
+      },
+      "award_verified": true,
+      "award_evidence": "Google Play's 2024 winner page names Clash of Clans as Best multi-device game in the US.",
+      "mechanics": [
+        {
+          "name": "Clan Games tiers",
+          "detail": "Individual challenges add to shared clan points; tiers unlock for the whole clan and maxing personal points adds a reward choice.",
+          "url": "https://support.supercell.com/clash-of-clans/en/articles/clan-games-rewards.html"
+        },
+        {
+          "name": "Daily Star Bonus",
+          "detail": "Five stars complete a bonus, then a 24-hour timer starts; up to two bonuses can stack and higher leagues pay more.",
+          "url": "https://support.supercell.com/clash-of-clans/en/articles/about-multiplayer-and-trophies-2.html"
+        }
+      ],
+      "return_reason": "A short daily target feeds a social, longer-horizon clan ladder, with visible progress and a reason to return before the timer expires.",
+      "allworld_transfer": "Pair one daily activity threshold with a neighbourhood meter and a visible shared reward tier.",
+      "risk": "Timers and clan pressure can make low-value actions feel compulsory.",
+      "retention_type": "daily cadence plus social progression",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Clash Royale",
+      "genre": "mobile real-time PvP strategy",
+      "award": {
+        "name": "Google Play Best of 2016",
+        "year": 2016,
+        "category": "Best Competitive Game category honoree (Japan)",
+        "url": "https://blog.google/intl/ja-jp/products/android-chrome-play/2016_12_google-play-2016/"
+      },
+      "award_verified": true,
+      "award_evidence": "Google Play Japan lists Clash Royale among the awarded works in its 2016 Best Competitive Game category; this was a category honoree, not the later grand prize.",
+      "mechanics": [
+        {
+          "name": "Arena and card collection",
+          "detail": "Winning battles advances arenas that unlock more cards; cards are collected and upgraded into stronger decks.",
+          "url": "https://play.google.com/store/apps/details?id=com.supercell.clashroyale"
+        },
+        {
+          "name": "Seasonal events and clans",
+          "detail": "Season passes add tower skins, emotes and magic items; clans share cards and enter wars for rewards.",
+          "url": "https://play.google.com/store/apps/details?id=com.supercell.clashroyale"
+        }
+      ],
+      "return_reason": "Each match can improve both competitive standing and collection depth, so the next session has immediate and long-term value.",
+      "allworld_transfer": "Let a small activity improve a personal collection while also contributing to a civic or venue season.",
+      "risk": "Power-linked collection upgrades can become perceived pay-to-win and overshadow social play.",
+      "retention_type": "competitive mastery plus collection",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Brawl Stars",
+      "genre": "mobile multiplayer action",
+      "award": {
+        "name": "Google Play Users’ Choice Game",
+        "year": 2019,
+        "category": "Users’ Choice (US)",
+        "url": "https://blog.google/products-and-platforms/platforms/google-play/google-plays-best-2019/"
+      },
+      "award_verified": false,
+      "award_evidence": "Google Play's 2019 US winner page names Call of Duty: Mobile, not Brawl Stars, as Users' Choice Game.",
+      "mechanics": [
+        {
+          "name": "Short match modes",
+          "detail": "The official game page presents multiple modes and short team battles, making progress possible in compact sessions.",
+          "url": "https://play.google.com/store/apps/details?id=com.supercell.brawlstars"
+        },
+        {
+          "name": "Brawler progression",
+          "detail": "Players unlock and upgrade a roster of brawlers, then use distinct abilities across modes.",
+          "url": "https://play.google.com/store/apps/details?id=com.supercell.brawlstars"
+        }
+      ],
+      "return_reason": "Fast sessions reduce commitment cost while roster growth creates a persistent reason to try another mode or character.",
+      "allworld_transfer": "Offer two-minute venue activities with distinct roles and a persistent badge or skill collection.",
+      "risk": "Roster breadth can create balance and onboarding complexity.",
+      "retention_type": "low-friction sessions plus mastery",
+      "evidence_confidence": "medium"
+    },
+    {
+      "name": "Pokémon GO",
+      "genre": "location-based collection RPG",
+      "award": {
+        "name": "BAFTA Games Award",
+        "year": 2017,
+        "category": "Mobile Game",
+        "url": "https://www.bafta.org/awards/games/mobile-game/"
+      },
+      "award_verified": true,
+      "award_evidence": "BAFTA's Mobile Game archive marks Pokémon GO as the 2017 winner.",
+      "mechanics": [
+        {
+          "name": "Location discovery and collection",
+          "detail": "Niantic describes exploring the real world to find Pokémon, with PokéStops, Gyms and a growing Pokédex.",
+          "url": "https://pokemongolive.com/en/post/pokemongofest2024/"
+        },
+        {
+          "name": "Daily streak bonuses",
+          "detail": "The official support documentation describes daily catch and PokéStop streaks that build across consecutive days for increasing rewards.",
+          "url": "https://niantic.helpshift.com/hc/en/6-pokemon-go/faq/2507-what-are-daily-bonuses/"
+        }
+      ],
+      "return_reason": "Place-based novelty and collection combine with a consecutive-day bonus that makes the next outing legible.",
+      "allworld_transfer": "Tie discovery of real or simulated places to a collection book and forgiving daily activity streak.",
+      "risk": "Location mechanics can exclude players without safe, accessible routes or nearby content.",
+      "retention_type": "habitual exploration plus collection",
+      "evidence_confidence": "medium"
+    },
+    {
+      "name": "Monument Valley",
+      "genre": "perspective puzzle adventure",
+      "award": {
+        "name": "Apple Design Award",
+        "year": 2014,
+        "category": "Game design winner",
+        "url": "https://apps.apple.com/us/app/monument-valley/id728293409"
+      },
+      "award_verified": true,
+      "award_evidence": "Apple's App Store listing explicitly identifies Monument Valley as a 2014 Apple Design Award winner.",
+      "mechanics": [
+        {
+          "name": "Hand-authored puzzle chapters",
+          "detail": "The official listing describes guiding Ida through discrete monuments, uncovering hidden paths and manipulating impossible geometry.",
+          "url": "https://apps.apple.com/us/app/monument-valley/id728293409"
+        },
+        {
+          "name": "Optional chapter expansion",
+          "detail": "The listing offers additional chapters as a separate purchase, extending the authored journey without changing the core puzzle language.",
+          "url": "https://apps.apple.com/us/app/monument-valley/id728293409"
+        }
+      ],
+      "return_reason": "A new chapter is a self-contained invitation to return, with discovery and completion carrying the motivation instead of a daily timer.",
+      "allworld_transfer": "Build short, authored resident or landmark episodes with a clear reveal and optional adjacent stories.",
+      "risk": "Purely authored content is expensive to produce and can run out without a durable social loop.",
+      "retention_type": "episodic discovery",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Monument Valley 2",
+      "genre": "perspective puzzle adventure",
+      "award": {
+        "name": "The Game Awards",
+        "year": 2017,
+        "category": "Best Mobile Game",
+        "url": "https://thegameawards.com/rewind/year-2017"
+      },
+      "award_verified": true,
+      "award_evidence": "The Game Awards' 2017 edition archive names Monument Valley 2 as Best Mobile Game.",
+      "mechanics": [
+        {
+          "name": "Two-character puzzle relationship",
+          "detail": "ustwo describes guiding a mother and child through changing architecture, with new interactions built around their dynamics.",
+          "url": "https://ustwogames.co.uk/our-games/monument-valley-2/"
+        },
+        {
+          "name": "Transforming levels",
+          "detail": "Levels change through light, pathways and geometry, creating fresh state changes rather than repeated grind.",
+          "url": "https://ustwogames.co.uk/our-games/monument-valley-2/"
+        }
+      ],
+      "return_reason": "Narrative relationship and novel puzzle states give each return a specific emotional or mechanical question to resolve.",
+      "allworld_transfer": "Use paired character arcs where a player’s action changes the relationship and opens the next place or scene.",
+      "risk": "Novelty-heavy puzzles can frustrate players if the interaction grammar is not taught clearly.",
+      "retention_type": "story-led episodic discovery",
+      "evidence_confidence": "medium"
+    },
+    {
+      "name": "Alto's Adventure",
+      "genre": "endless runner",
+      "award": {
+        "name": "App Store Best of 2015",
+        "year": 2015,
+        "category": "Editorial Best of 2015 selection",
+        "url": "https://altosadventure.com/index.html"
+      },
+      "award_verified": false,
+      "award_evidence": "The developer lists App Store Best of 2015 recognition, but the cited page does not establish an award-category win.",
+      "mechanics": [
+        {
+          "name": "Endless run with goals",
+          "detail": "The official site presents a continuous snowboarding journey with changing landmarks and a run-based loop.",
+          "url": "https://altosadventure.com/index.html"
+        },
+        {
+          "name": "Character and equipment unlocks",
+          "detail": "The game’s progression is built around improving runs and unlocking additional playable characters and abilities.",
+          "url": "https://altosadventure.com/index.html"
+        }
+      ],
+      "return_reason": "Runs are immediately replayable, while goals and unlocks turn repeated failure into gradual capability.",
+      "allworld_transfer": "Create repeatable micro-routes with a score target, a forgiving retry, and unlockable movement or style options.",
+      "risk": "Score chasing can become repetitive without new route variation or social meaning.",
+      "retention_type": "replayable mastery",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Alto's Odyssey",
+      "genre": "endless runner",
+      "award": {
+        "name": "Apple Design Award",
+        "year": 2018,
+        "category": "Apple Design Award winner",
+        "url": "https://www.builtbysnowman.com/press/"
+      },
+      "award_verified": true,
+      "award_evidence": "Snowman's official press page records Alto's Odyssey as a 2018 Apple Design Award winner.",
+      "mechanics": [
+        {
+          "name": "Biome-based runs",
+          "detail": "The official game page describes an endless sandboarding journey through evolving landscapes with new movement opportunities.",
+          "url": "https://altosodyssey.com/"
+        },
+        {
+          "name": "Zen Mode",
+          "detail": "The developer documents a score-free mode focused on movement and scenery, giving the same system a lower-pressure return path.",
+          "url": "https://altosodyssey.com/"
+        }
+      ],
+      "return_reason": "The same route system supports mastery, exploration and calm play, allowing different return motives without separate products.",
+      "allworld_transfer": "Give Allworld activities both a challenge track and a relaxed exploration track with shared cosmetics.",
+      "risk": "Multiple modes can split attention and make the core reward economy harder to explain.",
+      "retention_type": "mode-flexible replay",
+      "evidence_confidence": "medium"
+    },
+    {
+      "name": "Florence",
+      "genre": "interactive narrative",
+      "award": {
+        "name": "BAFTA Games Award",
+        "year": 2019,
+        "category": "Mobile Game",
+        "url": "https://www.bafta.org/awards/games/mobile-game/"
+      },
+      "award_verified": true,
+      "award_evidence": "BAFTA's Mobile Game archive marks Florence as the 2019 winner.",
+      "mechanics": [
+        {
+          "name": "Interactive vignette chapters",
+          "detail": "The official listing describes a wordless story told through short interactive scenes and everyday interactions.",
+          "url": "https://apps.apple.com/us/app/florence/id1297430468"
+        },
+        {
+          "name": "Relationship progression",
+          "detail": "The scenes change as Florence’s relationship develops, using interaction difficulty and rhythm to express emotional state.",
+          "url": "https://apps.apple.com/us/app/florence/id1297430468"
+        }
+      ],
+      "return_reason": "Players return to complete the next emotional beat, with changing interaction language making the narrative itself the progression ladder.",
+      "allworld_transfer": "Use short resident vignettes where task form changes with trust, conflict or intimacy rather than only increasing numbers.",
+      "risk": "A highly authored emotional arc may not support indefinite daily replay.",
+      "retention_type": "episodic emotional progression",
+      "evidence_confidence": "medium"
+    },
+    {
+      "name": "Threes!",
+      "genre": "number puzzle",
+      "award": {
+        "name": "Apple Design Award",
+        "year": 2014,
+        "category": "Game design winner",
+        "url": "https://asherv.com/threes/presskit/"
+      },
+      "award_verified": true,
+      "award_evidence": "The developer press kit lists the 2014 Apple Design Award as a win for Threes!.",
+      "mechanics": [
+        {
+          "name": "Finite board with emergent combinations",
+          "detail": "The developer describes a tiny puzzle whose rules create a deep challenge that can be played repeatedly.",
+          "url": "https://asherv.com/threes/presskit/"
+        },
+        {
+          "name": "Score and best-run pursuit",
+          "detail": "Each run produces a score and tile history, making improvement and personal records the persistent reward.",
+          "url": "https://asherv.com/threes/presskit/"
+        }
+      ],
+      "return_reason": "A complete run is short enough to retry immediately, and personal bests turn failure into information rather than a dead end.",
+      "allworld_transfer": "Offer compact repeatable civic puzzles or table challenges with personal records and no mandatory timer.",
+      "risk": "A self-score loop can lack social belonging or a narrative reason to return.",
+      "retention_type": "personal mastery",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Honkai: Star Rail",
+      "genre": "turn-based RPG",
+      "award": {
+        "name": "Google Play Best Game",
+        "year": 2023,
+        "category": "Best game (US)",
+        "url": "https://blog.google/products-and-platforms/platforms/google-play/google-play-best-apps-games-2023/"
+      },
+      "award_verified": true,
+      "award_evidence": "Google Play's 2023 US winner page names Honkai: Star Rail as Best Game.",
+      "mechanics": [
+        {
+          "name": "Quest and character progression",
+          "detail": "The official listing describes story exploration, turn-based combat, character building and a growing roster.",
+          "url": "https://play.google.com/store/apps/details?id=com.HoYoverse.hkrpgoversea"
+        },
+        {
+          "name": "Live events and resource cycles",
+          "detail": "HoYoverse describes continual updates and events that add stories, characters and limited activities.",
+          "url": "https://www.hoyolab.com/article/19256380"
+        }
+      ],
+      "return_reason": "Persistent roster investment makes each session useful, while new authored content supplies periodic reasons to come back.",
+      "allworld_transfer": "Separate durable resident relationships from rotating city events, so returning players retain identity while finding novelty.",
+      "risk": "Live-service calendars and random acquisition can create fatigue and spending pressure.",
+      "retention_type": "live-service progression",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Genshin Impact",
+      "genre": "open-world action RPG",
+      "award": {
+        "name": "Apple App Store iPhone Game of the Year",
+        "year": 2020,
+        "category": "iPhone game of the year",
+        "url": "https://www.apple.com/newsroom/2020/12/apple-presents-app-store-best-of-2020-winners/"
+      },
+      "award_verified": true,
+      "award_evidence": "Apple's Best of 2020 winner release names Genshin Impact as iPhone Game of the Year.",
+      "mechanics": [
+        {
+          "name": "Open-world exploration",
+          "detail": "HoYoverse describes a large world with regions, puzzles, quests, collectibles and elemental traversal.",
+          "url": "https://genshin.hoyoverse.com/en/"
+        },
+        {
+          "name": "Original Resin cadence",
+          "detail": "HoYoWiki documents Original Resin as a resource that regenerates over time and is spent to claim rewards from repeatable activities.",
+          "url": "https://wiki.hoyolab.com/pc/genshin/entry/2970?lang=en-us"
+        }
+      ],
+      "return_reason": "A persistent world rewards both planned daily maintenance and unstructured discovery, covering short and long sessions.",
+      "allworld_transfer": "Combine daily resident errands with open-ended street discovery and a bounded resource that prevents endless grinding.",
+      "risk": "Energy gates and random character acquisition can feel extractive or make content completion costly.",
+      "retention_type": "open-world habit plus exploration",
+      "evidence_confidence": "medium"
+    },
+    {
+      "name": "Marvel Snap",
+      "genre": "digital collectible card game",
+      "award": {
+        "name": "The Game Awards: Best Mobile Game",
+        "year": 2022,
+        "category": "Best mobile game",
+        "url": "https://marvelsnap.com/goodbye-2022-hello-2023/"
+      },
+      "award_verified": true,
+      "award_evidence": "Second Dinner's official year-end post states that Marvel Snap won Best Mobile Game at The Game Awards 2022.",
+      "mechanics": [
+        {
+          "name": "Short matches",
+          "detail": "The official listing describes fast six-turn matches with simultaneous play and three locations to contest.",
+          "url": "https://play.google.com/store/apps/details?id=com.nvsgames.snap"
+        },
+        {
+          "name": "Season missions and card collection",
+          "detail": "The listing describes collecting Marvel cards, upgrading variants and progressing through seasons and missions.",
+          "url": "https://play.google.com/store/apps/details?id=com.nvsgames.snap"
+        }
+      ],
+      "return_reason": "Very short matches reduce the cost of re-entry; collection and season objectives give the next match a purpose.",
+      "allworld_transfer": "Make social games completable in a few minutes, then layer optional weekly objectives over the same action.",
+      "risk": "Collection gaps and rotating seasons can pressure players to chase content rather than inhabit the world.",
+      "retention_type": "short-session competition",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Sky: Children of the Light",
+      "genre": "social adventure MMO",
+      "award": {
+        "name": "Apple App Store iPhone Game of the Year",
+        "year": 2019,
+        "category": "iPhone game of the year",
+        "url": "https://thatgamecompany.com/sky-children-of-the-light-honored-as-apples-iphone-game-of-the-year/"
+      },
+      "award_verified": true,
+      "award_evidence": "thatgamecompany's official announcement records Sky as Apple's 2019 iPhone Game of the Year.",
+      "mechanics": [
+        {
+          "name": "Daily quests and seasonal spirits",
+          "detail": "The developer documents four daily quests for Candles and seasonal spirits with quests, expressions and cosmetics.",
+          "url": "https://thatgamecompany.com/sky-children-of-the-light-out-on-google-play-now/"
+        },
+        {
+          "name": "Friendship progression",
+          "detail": "Players spend candles to unlock hand-holding, hugs, chat and other social abilities with friends.",
+          "url": "https://thatgamecompany.com/sky-children-of-the-light-out-on-google-play-now/"
+        }
+      ],
+      "return_reason": "The daily task supplies a small reason to visit, while relationships and seasonal collectibles make return socially meaningful.",
+      "allworld_transfer": "Reward helping and repeated encounters with residents or players through relationship abilities and shared cosmetics.",
+      "risk": "Daily currency and seasonal returns can create fear of missing out for players with limited time.",
+      "retention_type": "social belonging plus seasonal cadence",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "The Room",
+      "genre": "escape-room puzzle",
+      "award": {
+        "name": "BAFTA Games Award",
+        "year": 2013,
+        "category": "British Game",
+        "url": "https://www.bafta.org/awards/games/?award-year=2013"
+      },
+      "award_verified": true,
+      "award_evidence": "BAFTA's 2013 results name The Room as the British Game winner; it was only a nominee in Mobile & Handheld.",
+      "mechanics": [
+        {
+          "name": "Layered physical puzzle boxes",
+          "detail": "Fireproof Games describes examining objects, finding hidden mechanisms and solving tactile multi-step puzzles.",
+          "url": "https://www.fireproofgames.com/games/the-room"
+        },
+        {
+          "name": "Chapter and mystery progression",
+          "detail": "Each box reveals more of the central mystery, giving the player a sequence of contained discoveries.",
+          "url": "https://www.fireproofgames.com/games/the-room"
+        }
+      ],
+      "return_reason": "Each chapter ends with a concrete unresolved mechanism or story question, making the next session self-directed.",
+      "allworld_transfer": "Create optional street mysteries with inspectable objects, layered clues and a persistent case journal.",
+      "risk": "Opaque clues can cause dead ends; hints need to preserve discovery without blocking progress.",
+      "retention_type": "mystery-led episodic discovery",
+      "evidence_confidence": "medium"
+    },
+    {
+      "name": "Lara Croft GO",
+      "genre": "turn-based puzzle adventure",
+      "award": {
+        "name": "The Game Awards",
+        "year": 2015,
+        "category": "Best Mobile/Handheld Game",
+        "url": "https://thegameawards.com/rewind/year-2015"
+      },
+      "award_verified": true,
+      "award_evidence": "The Game Awards' 2015 edition archive names Lara Croft GO as Best Mobile/Handheld Game.",
+      "mechanics": [
+        {
+          "name": "Turn-based traversal puzzles",
+          "detail": "Square Enix describes moving Lara one turn at a time through ruins while manipulating enemies, traps and paths.",
+          "url": "https://square-enix-games.com/en_GB/games/lara-croft-go"
+        },
+        {
+          "name": "Collectibles and chapter goals",
+          "detail": "The game includes relics, hidden items and chapter-based puzzles that reward thorough exploration.",
+          "url": "https://square-enix-games.com/en_GB/games/lara-croft-go"
+        }
+      ],
+      "return_reason": "A deterministic turn system makes retrying a failed solution cheap, while hidden collectibles extend each chapter beyond the exit.",
+      "allworld_transfer": "Use turn-like planning in short street puzzles and add optional discovery objects for completionists.",
+      "risk": "Completion collectibles can feel like filler if they do not reveal story or world context.",
+      "retention_type": "deterministic mastery plus completion",
+      "evidence_confidence": "medium"
+    }
+  ],
+  "unverified": [
+    {
+      "name": "Brawl Stars",
+      "reason": "The claimed 2019 Google Play US Users' Choice win is false: Google's winner page names Call of Duty: Mobile. No replacement win was asserted in this audit."
+    },
+    {
+      "name": "Alto's Adventure",
+      "reason": "The developer confirms an App Store Best of 2015 editorial selection, but the cited evidence does not establish an award-category win."
+    },
+    {
+      "name": "Candy Crush Saga",
+      "reason": "Mechanics are documented in official King Community pages, but this pass did not verify an exact award win from an organizer or developer source."
+    },
+    {
+      "name": "Whiteout Survival",
+      "reason": "Official developer pages document mechanics, but no exact award win was verified in this pass."
+    },
+    {
+      "name": "Gorogoa",
+      "reason": "Known award claims were not verified from an official organizer/developer source within this bounded pass."
+    },
+    {
+      "name": "Mini Metro",
+      "reason": "Known award claims were not verified from an official organizer/developer source within this bounded pass."
+    },
+    {
+      "name": "Mini Motorways",
+      "reason": "Known award claims were not verified from an official organizer/developer source within this bounded pass."
+    }
+  ],
+  "execution": {
+    "model": "gpt-5.6-luna",
+    "effort": "medium",
+    "retries": 0,
+    "cost": "unknown"
+  }
+}

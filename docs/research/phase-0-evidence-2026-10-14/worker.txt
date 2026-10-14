@@ -1,0 +1,43 @@
+(node:20668) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ POST /mcp through the Durable Object: a key plays the player's own character, is stored only as a hash, closed to browsers, and survives a restart (1327.361417ms)
+✔ POST /mcp: an agent that signs itself up in a city whose content is not loaded yet is read through the on-demand loader after a cold start (850.810542ms)
+✔ POST /mcp on the Worker: the two keyless tools, the claim flow, the public pages, the general tools and venue chat (771.781333ms)
+✔ POST /mcp: the operator switch ends agent access on the Worker, and back (628.6695ms)
+(node:20957) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ SQLite: atomic wallet, feature and receipt rollback; retry once; separate receipts (3.648042ms)
+✔ SQLite: wallet effects are atomic and force a lazy transaction durable, including a net-zero state cycle (1.567208ms)
+✔ SQLite: concurrent drafts serialize and failed callback leaves no state (2.298584ms)
+✔ SQLite: uncertain durability never acknowledges or continues serving cached state (1.141542ms)
+✔ SQLite: versioned schema upgrades atomically, refuses newer or incomplete versions, and keeps the deliberate receipt-index removal (1.648709ms)
+✔ SQLite: legacy entry rows gain current projection columns without changing their values (0.776583ms)
+✔ SQLite: malformed legacy shape rolls back schema metadata and every newly-created table (0.502791ms)
+✔ SQLite: retirement flushes held baseline, records the effect watermark, fences late commits, and reopens read-only (10.799042ms)
+✔ SQLite: shard append, replace and metadata writes share the main-store authority while standalone shards remain usable (1.340541ms)
+✔ SQLite: an uncertain retirement barrier fails closed and a reopen sees the persisted authority (0.898542ms)
+✔ SQLite: retirement by another instance refuses a stale held flush without changing stored rows (0.981959ms)
+✔ SQLite: legacy inline receipts migrate without erasing dedupe metadata (0.7145ms)
+✔ SQLite: commit hooks retain private symbol metadata and fire once after durability (0.571208ms)
+✔ SQLite: exactly-once receipts live in their own table, are counted by class and roll back with the write (0.899792ms)
+✔ SQLite: a collection larger than one row is split and read back whole; a scan sees the draft (1.498875ms)
+✔ SQLite: a collection that exists is an own property of the document, so the shared collection() helper never resets it (1.344625ms)
+✔ SQLite: a database made before accounts existed gains the account tables empty; no existing table or row changes (1.624417ms)
+✔ SQLite: an earlier local wallet effect table gains nullable transfer linkage without changing old rows (0.623167ms)
+✔ SQLite: account rows are read by key, change and disappear with their transaction, and a failed commit keeps none (1.226125ms)
+✔ SQLite: a lazy change to a stored session or collection is held in memory, seen by everyone, and written by a flush (1.329208ms)
+✔ SQLite: a durable transaction writes the held change of what it touches with its own; memory lost first loses only what was lazy (1.013958ms)
+✔ SQLite: a lazy transaction that makes or removes a row, or touches a receipt, is written at once (0.8055ms)
+✔ SQLite: a held change gives way to a row that was written underneath it; without lazyFlushMs every write is durable (1.18225ms)
+✔ SQLite: a write names only what changed — a session is updated by its key, a split collection rewrites only the parts that differ (1.4785ms)
+✔ SQLite: expired sessions are found by their stored expiry: no other record is read, and a held or drafted renewal is honoured (1.054167ms)
+✔ SQLite: walking a player's receipts is one statement however many there are, and what a transaction changed is kept (9.42675ms)
+✔ SQLite: counting or listing the sessions reads their keys and no record — only the one that is then asked for (2.517792ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4279.690792

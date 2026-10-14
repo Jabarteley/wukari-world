@@ -1,0 +1,95 @@
+{
+  "baseline": "d33ad45cbf2ac7c60070d4145453c0652d3152fa",
+  "date": "2026-10-14",
+  "method": "Temporary diagnostics using existing real server and Miniflare Worker harnesses. Not interactive browser acceptance. No repository test edits.",
+  "node": {
+    "ok": true,
+    "checks": [
+      "Agent-started trip retains origin after marker expiry and settlement by a normal human-origin request; no human-return day recorded.",
+      "Daily and Monday rollover retain cash and cap-blocked set rewards; saved on disk.",
+      "Agent get_goals exposes saved rewards; delegated growth/source and consent mutations are refused.",
+      "Cash cap retains entitlement; star cap recovery grants exactly 2 + 5 once.",
+      "Two signed-in devices racing distinct request ids grant one cash reward; old-week reward does not inflate new-week civic earnings.",
+      "Failed disk commit leaves cash entitlement and emits no analytics; retry + same-id replay grants once.",
+      "A subsequent qualifying human-origin HTTP action records one meaningful human day; agent completion remains separately attributed."
+    ],
+    "delivered": [
+      {
+        "name": "mission_completed_v2",
+        "origin": "delegated-agent",
+        "id": "p1-7x9qv7xjq9"
+      },
+      {
+        "name": "mission_reward_earned_v2",
+        "origin": "delegated-agent",
+        "id": "p1-24sqk6kv9tm"
+      },
+      {
+        "name": "mission_set_completed_v2",
+        "origin": "delegated-agent",
+        "id": "p1-128h9hbqvhv"
+      },
+      {
+        "name": "mission_completed_v2",
+        "origin": "delegated-agent",
+        "id": "p1-l5x447nnm0"
+      },
+      {
+        "name": "mission_reward_earned_v2",
+        "origin": "delegated-agent",
+        "id": "p1-1ia4cm7p5p4"
+      },
+      {
+        "name": "mission_set_completed_v2",
+        "origin": "delegated-agent",
+        "id": "p1-ly7830c168"
+      },
+      {
+        "name": "mission_set_reward_granted_v2",
+        "origin": "system",
+        "id": "p1-1sn3tevqqz4"
+      },
+      {
+        "name": "mission_set_reward_granted_v2",
+        "origin": "system",
+        "id": "p1-tvl5mjzusz"
+      },
+      {
+        "name": "mission_reward_granted_v2",
+        "origin": "human",
+        "id": "p1-26zivzqrjnm"
+      },
+      {
+        "name": "mission_reward_granted_v2",
+        "origin": "human",
+        "id": "p1-1hm0fvfauak"
+      },
+      {
+        "name": "human_meaningful_day_v1",
+        "origin": "human",
+        "id": "p1-14gey0tudi6"
+      }
+    ]
+  },
+  "worker": {
+    "restart": true,
+    "reward": {
+      "id": "d-meal",
+      "rewardId": "mission:v1:lagos:daily:20739:d-meal",
+      "label": "Eat a proper meal",
+      "cash": 250,
+      "scope": "daily",
+      "period": 20739,
+      "cityId": "lagos",
+      "earnedAt": 1791932399999
+    },
+    "before": 1005000,
+    "afterFirst": 1005250,
+    "afterSecond": 1005250,
+    "first": "claimed",
+    "second": "already_claimed",
+    "growth": "not_counted",
+    "source": "not_counted",
+    "consent": "not_allowed"
+  }
+}

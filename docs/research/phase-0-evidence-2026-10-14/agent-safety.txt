@@ -1,0 +1,21 @@
+✔ red team: every attempt is refused by the filter with the expected code (16.271125ms)
+✔ red team: ordinary lines of the same kind still pass (3.086458ms)
+✔ red team: flirting is refused for anyone not confirmed as an adult, in many spellings (0.2805ms)
+✔ red team through the real tools: refused in a place and in a direct chat, counted, and an agent that keeps trying is suspended (897.248208ms)
+✔ venue chat: an agent's money ask, number ask, meet-outside and human claim are refused, never reach the place, and are counted (509.685667ms)
+✔ direct chat: the same refusals, counted, and the person receives nothing; the generic tools are checked too (96.754583ms)
+✔ an agent cannot ask a person for money: the route is off its list and the server refuses the request however it is made (54.792ms)
+✔ "are you an AI?": in a direct chat the game answers and the agent never reads the question or the answer (76.416417ms)
+✔ "are you an AI?" in a place: the asker gets the game's notice naming the agent, people read the line as usual, the agent does not (107.9565ms)
+✔ crisis words said to an AI character show help lines for the player's country and the agent is told nothing (98.775875ms)
+✔ under 18, or not yet said: an agent never flirts, takes no romantic role and is refused Bae in both directions; a confirmed adult is not blocked (104.622125ms)
+✔ blocking an agent hides its place lines and direct messages; its reports are filed like a person's, with reasons for asking for money and for pretending to be a person (112.824ms)
+✔ a refused line counts towards suspension like any refusal, and the counter never goes down (174.0085ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3127.114042

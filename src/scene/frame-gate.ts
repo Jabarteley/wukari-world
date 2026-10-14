@@ -9,8 +9,9 @@
  *
  * "Covered" is set by the shell (src/app/App.vue) from what it knows: a panel that takes the whole screen, or any sheet on a phone-sized
  * screen where the sheet is the screen. The scene underneath keeps its state and is drawn once when the cover goes.
- * No imports: the first download carries this file.
+ * The first download carries this file (it imports only src/lightMode.ts).
  */
+import { lightFps } from '../lightMode.ts'
 export type FrameAction = 'draw' | 'wait' | 'stop'
 export interface FrameInput { hidden: boolean; covered: boolean; now: number; last: number; capFps: number }
 /** Browsers deliver frames a little early or late; a frame this much (ms) short of the gap still counts as on time. */
@@ -28,17 +29,28 @@ export function sceneCovered({ sheetOpen, fullscreen, narrow }: { sheetOpen: boo
   return sheetOpen && (fullscreen || narrow)
 }
 
-let covered = false
-const listeners = new Set<(covered: boolean) => void>()
+let covered = false, seq = 0, lastDrawn = -Infinity
+/** Callbacks waiting for a frame (by id), and the browser frame each one is on. */
+const waiting = new Map<number, (time: number) => void>(), asked = new Map<number, number>()
 export const isCovered = (): boolean => covered
-/** Said by the shell. Tells the listeners only when it changed. */
+function ask(id: number): void {
+  asked.set(id, globalThis.requestAnimationFrame((time) => {
+    asked.delete(id)
+    const run = waiting.get(id)
+    if (!run) return
+    // Covered: the callback is parked, not dropped; setCovered(false) asks for its frame. Over the cap: the next browser frame.
+    const action = frameAction({ hidden: false, covered, now: time, last: lastDrawn, capFps: lightFps() })
+    if (action === 'stop') return
+    if (action === 'wait') { ask(id); return }
+    lastDrawn = time; waiting.delete(id); run(time)
+  }))
+}
+/** requestAnimationFrame for the scene loops (motion-loop.ts uses it by default): held while covered, skipped above the light-mode cap. */
+export function gatedRequest(run: (time: number) => void): number { const id = ++seq; waiting.set(id, run); ask(id); return id }
+export function gatedCancel(id: number): void { waiting.delete(id); const frame = asked.get(id); if (frame !== undefined) globalThis.cancelAnimationFrame(frame); asked.delete(id) }
+/** Said by the shell. When the cover goes, every parked callback gets its frame. */
 export function setCovered(next: boolean): void {
   if (next === covered) return
   covered = next
-  for (const listener of [...listeners]) listener(next)
-}
-/** Be told when the scene is covered or uncovered. Returns the unsubscribe. */
-export function onCoveredChange(listener: (covered: boolean) => void): () => void {
-  listeners.add(listener)
-  return () => { listeners.delete(listener) }
+  if (!next) for (const id of waiting.keys()) if (!asked.has(id)) ask(id)
 }

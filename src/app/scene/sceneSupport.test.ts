@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { COPY_LABEL, NO_SCENE_HELP, NO_SCENE_PROXY, NO_SCENE_TITLE, copyGameLink, sceneHelp, sceneSupport } from './sceneSupport.ts'
+import { sceneSupport } from './sceneSupport.ts'
+import { COPY_LABEL, NO_SCENE_HELP, NO_SCENE_PROXY, NO_SCENE_TITLE, copyGameLink, sceneHelp } from './sceneWords.ts'
 
 const canvas = (kinds: Record<string, unknown>) => () => ({ getContext: (kind: string) => (kinds[kind] ?? null) as never })
 const CHROME = 'Mozilla/5.0 (Linux; Android 13; TECNO) AppleWebKit/537.36 Chrome/118 Mobile Safari/537.36'

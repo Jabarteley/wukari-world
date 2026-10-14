@@ -581,8 +581,9 @@ test('Three.js and the map stay out of the entry chunk, and only the 3D map may 
   for (const name of (await readdir('src/map3d')).filter((item) => item.endsWith('.ts') && !item.endsWith('.test.ts'))) {
     const code = (await readFile(`src/map3d/${name}`, 'utf8')).replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, '');
     assert.doesNotMatch(code, /setInterval|setAnimationLoop/, name);
-    // The one other loop is the zoom host's cross-fade between two maps: it runs only while a hand-over does (under half a second) and ends itself.
-    if (name !== 'map3d.ts' && name !== 'zoom-host.ts') assert.doesNotMatch(code, /requestAnimationFrame/, name);
+    // The other loops are the zoom host's cross-fade between two maps (under half a second) and the dive's veil of clouds (at most
+    // CAP_MS, ./dive.ts): each runs only while its hand-over does and ends itself.
+    if (!['map3d.ts', 'zoom-host.ts', 'dive-host.ts'].includes(name)) assert.doesNotMatch(code, /requestAnimationFrame/, name);
   }
   assert.doesNotMatch((await readFile('src/map3d/map3d.ts', 'utf8')), /shadowMap\.enabled = true/, 'no real-time shadow maps');
 });

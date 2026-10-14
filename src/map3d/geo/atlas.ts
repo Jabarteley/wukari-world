@@ -53,6 +53,7 @@ import type { AfricaGroupId, Box4, RegionKind, RegionStatus } from '../types.ts'
 import { createRig } from '../camera.ts';
 import { MAP_PIXELS, pixelRatioFor } from '../pixels.ts';
 import { NO_PORT, entryDistance } from '../zoom-ladder.ts';
+import { descentView } from '../dive.ts';
 import type { Edge, LadderPort } from '../zoom-ladder.ts';
 import { createFlick, isDrag, isTap } from '../../scene/gesture.ts';
 import type { RigInsets, RigView } from '../camera.ts';
@@ -139,6 +140,11 @@ export interface AtlasOptions {
   load?: (levelId: string) => Promise<LevelModule>;
   /** Optional lazy country-outline service. The default service module is imported only after Countries is opened. */
   countryDetail?: CountryDetailService;
+  /**
+   * The map-to-street dive (../dive-host.ts): told when a city is entered, before the fly-in. It answers the seconds the camera flies for
+   * (0: cut at once, as with reduced motion) or null for the plain fly-in; `land` ends the flight at once (Skip).
+   */
+  dive?: (cityId: string, own: boolean, land: () => void) => number | null;
 }
 /** A place the pointer or a reference names: what it is, which feature, and the sheet that holds it. */
 export interface Hit { kind: RegionKind; id: string; feature: Feature; sheet: Sheet }
@@ -206,8 +212,8 @@ export interface AtlasApi {
   ladderTarget(at?: readonly [number, number] | null): { id: string; name: string; own: boolean } | null;
   /** Fly over another city as close as the atlas goes and open its card: a look, never a move. */
   lookAt(cityId: string): void;
-  /** Fly in on the player's own city, then hand over to the city map (`onOpenCity`). */
-  enterCity(cityId: string): void;
+  /** Fly in on the player's own city, then hand over to the city map (`onOpenCity`). `dive: false` keeps the plain fly-in (a pinch past the limit). */
+  enterCity(cityId: string, options?: { dive?: boolean }): void;
   /** Arrive from the city map of `cityId`: start close over it, as the city map's zoom left off, and carry on out to its level. */
   arriveFrom(cityId: string, carry?: number): void;
   /** Fetch the level a city's map hands over to; resolves true when it is here. `loaded` says it is, without waiting. */
@@ -256,7 +262,7 @@ const naira = (value: unknown): string => `₦${Number(value).toLocaleString('en
 const ICON = (path: string): string => `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
 const GLYPH = { globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/>', rail: '<rect x="6" y="3" width="12" height="14" rx="3"/><path d="M6 10h12M8 17l-2 4m10-4 2 4M9 14h.1M15 14h.1"/>', bus: '<path d="M5 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10H5zM5 11h14M8 16v2M16 16v2"/><circle cx="8.5" cy="14" r=".6"/><circle cx="15.5" cy="14" r=".6"/>', plane: '<path d="M21 15.5 13.5 11V5.2a1.5 1.5 0 0 0-3 0V11L3 15.5V17l7.5-2.2V19l-2 1.5V22l3.5-1 3.5 1v-1.5l-2-1.5v-4.2L21 17z"/>' };
 
-export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend = () => {}, onOpenCity = () => {}, onEnterCity = () => {}, onInspectVenue = () => {}, onTravel = () => {}, credit = () => null, routes = () => null, debt = () => 0, onRepay = () => {}, onHelp = () => {}, onSettle = () => {}, wallet = () => null, held = () => [], countryDetail: providedCountryDetail,
+export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = () => null, onFriend = () => {}, onOpenCity = () => {}, onEnterCity = () => {}, onInspectVenue = () => {}, onTravel = () => {}, credit = () => null, routes = () => null, debt = () => 0, onRepay = () => {}, onHelp = () => {}, onSettle = () => {}, wallet = () => null, held = () => [], countryDetail: providedCountryDetail,
   renderer: providedRenderer, raf = globalThis.requestAnimationFrame?.bind(globalThis), caf = globalThis.cancelAnimationFrame?.bind(globalThis), now = () => globalThis.performance.now(),
   reducedMotion = Boolean(globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches), tabHidden, load = (levelId) => ATLAS_LEVELS.find((level) => level.id === levelId)!.data() }: AtlasOptions = {}): AtlasApi {
   const doc = typeof globalThis.document?.createElement === 'function' ? globalThis.document : null;
@@ -312,6 +318,8 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   }
   let selected: RegionRef | null = null, hovered: RegionRef | null = null;
   let routeShown: string | null = null, trip: Run | null = null, preview: Preview | null = null, entering: (() => void) | null = null, keyboard = false;
+  /** The dive's flight: the camera follows descentView from `from` to `to`, started at `start` (ms) and lasting `ms`. */
+  let diving: { from: RigView; to: RigView; start: number; ms: number } | null = null;
   let size = { width: 0, height: 0 }, insets: Insets = { left: 0, top: 0, right: 0, bottom: 0 }, cuts = [1, 1], lastLabels = 0, labelKey = '';
   /** Where each shown name is on the screen, for taps. */
   const lastPlaced = new Map<string, LabelBox>();
@@ -744,11 +752,12 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     if (!shown()) { lastTick = 0; return; }
     takeWheel();
     const t = now(), dt = lastTick ? clamp((t - lastTick) / 1000, 0, 0.1) : 0;
-    let moving = rig.step(dt);
+    if (diving) { const k = (t - diving.start) / diving.ms; rig.jump(descentView(diving.from, diving.to, k)); if (k >= 1) diving = null; }
+    let moving = rig.step(dt) || Boolean(diving);
     if (moving || entering) settleLevel();
     moving = stepFade(dt) || moving;
     moving = stepTrip(t) || moving;
-    if (entering && !rig.moving) { const done = entering; entering = null; done(); }
+    if (entering && !rig.moving && !diving) { const done = entering; entering = null; done(); }
     draw();
     if (moving || entering) { lastTick = t; request(); } else lastTick = 0;
   }
@@ -1341,14 +1350,19 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     fly(levelView(next), 0.9);
   }
   /** Fly down into the open city, then hand over to the city map. */
-  function enterCity(id: string) {
+  function enterCity(id: string, { dive: diveIn = true }: { dive?: boolean } = {}) {
     countryDetailModel?.close();
     const state = stateOfCity(id), hit = state ? find({ kind: 'state', id: state }) : null, city = cityEntry(id);
-    const done = () => { root?.classList.remove('is-entering'); resetView = true; if (id === current) onOpenCity(id); else onEnterCity(id); };
-    if (!hit || !city || reducedMotion || !raf || !shown()) { done(); return; }
-    const [x, y] = project(city.lon, city.lat);
+    // Whether it is the player's own city is decided at the tap: a dive sends the move at once, so `current` may change before the landing.
+    const own = id === current, done = () => { root?.classList.remove('is-entering'); resetView = true; if (own) onOpenCity(id); else onEnterCity(id); };
+    if (!hit || !city || !raf || !shown()) { done(); return; }
+    const [x, y] = project(city.lon, city.lat), goal: RigView = { x, z: -y, distance: minDistance() * 0.8, pitch: 0.95, yaw: 0 };
+    // Skip: wherever the flight is, it ends over the city and the hand-over goes on at once.
+    const land = () => { if (entering !== done) return; diving = null; entering = null; rig.jump(goal); done(); request(); };
+    const flight = diveIn ? dive(id, own, land) : null;
+    if (reducedMotion || flight === 0) { done(); return; }
     root?.classList.add('is-entering');
-    rig.ease({ x, z: -y, distance: minDistance() * 0.8, pitch: 0.95, yaw: 0 }, 0.85);
+    if (flight) { rig.hold(); diving = { from: { ...rig.view }, to: goal, start: now(), ms: flight * 1000 }; } else rig.ease(goal, 0.85);
     entering = done; request();
   }
   /** The open city nearest a point of the canvas (NDC, or the middle), within a good part of the screen; null where there is none. */

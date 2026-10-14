@@ -62,8 +62,8 @@ export interface MapImpl {
   restoreView?(next: never): void
   /** Back to the opening view (the city core). */
   recentre?(): void
-  /** Arrive from the map above or below, so that a zoom in carries on from the wide end of this map. */
-  enter?(edge: Edge, carry?: number): void
+  /** Arrive from the map above or below, so that a zoom in carries on from the wide end of this map; `descend` (seconds) comes down to the core from straight above (the dive). */
+  enter?(edge: Edge, carry?: number, descend?: number): void
   worldChanged?(): void
   focusPlot?(plot: { lga: string; estate: number; plot: number } | null | undefined): void
   focusEstate?(lga: string, estate: number): void
@@ -97,7 +97,7 @@ export interface CityView {
   /** Fetch what the map needs, so that coming back to it does not wait (nothing is built). */
   warm(): void
   /** Arrive from the map above (a zoom in): see MapImpl.enter. */
-  enter(edge: Edge, carry?: number): void
+  enter(edge: Edge, carry?: number, descend?: number): void
   resize(): void
   /** Show the arrival, then call `done`. With nothing to show (2D, hidden, reduced motion) it is called at once. */
   arrive(done: () => void): void
@@ -260,7 +260,7 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
         view.started = mount().then(() => { remounting = false; if (!shown && impl) { clearTimeout(releaseTimer ?? undefined); releaseTimer = setTimeout(release, RELEASE_MS); } });
       }
     },
-    enter(edge, carry) { impl?.enter?.(edge, carry); },
+    enter(edge, carry, descend) { impl?.enter?.(edge, carry, descend); },
     /** Show the arrival, then call `done`. With nothing to show (2D, hidden, reduced motion) it is called at once. */
     arrive(done) { if (impl?.arrive && shown) impl.arrive(done); else done(); },
     diagnostics() { return impl?.diagnostics ? impl.diagnostics() : { kind: kind || 'none', renderCount: 0, released, view: impl?.view?.() }; },

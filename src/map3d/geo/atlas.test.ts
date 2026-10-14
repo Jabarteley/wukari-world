@@ -348,12 +348,12 @@ test('routes: the roads pass real towns in Nigeria, every link has a line, and a
 });
 
 // ---- the view: a fake renderer and a hand-cranked frame queue, as in ../map3d.test.ts ----
-function harness({ reducedMotion = false, width = 1280, height = 800, delay = 0, waitFor, failures = new Set<string>(), countryDetail, ladder, routes }: { ladder?: LadderPort; reducedMotion?: boolean; width?: number; height?: number; delay?: number; waitFor?: (id: string) => Promise<void>; failures?: Set<string>; countryDetail?: CountryDetailService; routes?: () => null } = {}) {
+function harness({ reducedMotion = false, width = 1280, height = 800, delay = 0, waitFor, failures = new Set<string>(), countryDetail, ladder, routes, dive }: { ladder?: LadderPort; reducedMotion?: boolean; width?: number; height?: number; delay?: number; waitFor?: (id: string) => Promise<void>; failures?: Set<string>; countryDetail?: CountryDetailService; routes?: () => null; dive?: (id: string, own: boolean, land: () => void) => number | null } = {}) {
   const queue: (() => void)[] = [], env = { now: 1000, hidden: false, loads: [] as string[], opened: [] as string[], entered: [] as string[] }, calls = { render: 0, routeVisible: false };
   const renderer = { calls, domElement: {} as HTMLCanvasElement, info: { render: {} }, setPixelRatio() {}, setSize() {}, setClearColor() {}, dispose() {}, render(scene: THREE.Scene) { calls.render += 1; calls.routeVisible = scene.children.some((object) => object.renderOrder === 9 && object.visible && object instanceof THREE.Mesh && object.geometry.getAttribute('position').count > 0); } };
   const container = { hidden: false, getBoundingClientRect: () => ({ left: 0, top: 0, right: width, bottom: height, width, height }) };
   const load = async (id: string) => { env.loads.push(id); if (delay) await new Promise((done) => setTimeout(done, delay)); if (waitFor) await waitFor(id); if (failures.has(id)) throw new Error(`Unavailable test level: ${id}`); return ATLAS_LEVELS.find((level) => level.id === id)!.data(); };
-  const atlas = createAtlas(container as unknown as HTMLElement, { renderer, reducedMotion, load, countryDetail, ...(ladder ? { ladder } : {}), ...(routes ? { routes } : {}), raf: (fn) => { queue.push(fn); return queue.length; }, caf: () => { queue.length = 0; }, now: () => env.now, tabHidden: () => env.hidden,
+  const atlas = createAtlas(container as unknown as HTMLElement, { renderer, reducedMotion, load, countryDetail, ...(ladder ? { ladder } : {}), ...(routes ? { routes } : {}), ...(dive ? { dive } : {}), raf: (fn) => { queue.push(fn); return queue.length; }, caf: () => { queue.length = 0; }, now: () => env.now, tabHidden: () => env.hidden,
     onOpenCity: (id) => env.opened.push(id), onEnterCity: (id) => env.entered.push(id) });
   /** Run frames until nothing asks for another (or the limit). Returns how many ran. */
   const run = (limit = 2000, step = 16) => { let frames = 0; while (queue.length && frames < limit) { env.now += step; queue.shift()!(); frames += 1; } return frames; };
@@ -639,6 +639,39 @@ test('picking through the view, and entering: only the open city is entered, aft
   const lagos = atlas.screenOf(3.38, 6.52);
   assert.ok(lagos.x > 0 && lagos.x < 1280 && lagos.y > 0 && lagos.y < 800);
   assert.deepEqual(env.opened, []);
+  atlas.destroy();
+});
+
+test('the dive: the atlas is told at the tap, flies the descent path for as long as it is told, lands at once on Skip, then stops drawing', async () => {
+  const told: [string, boolean][] = [];
+  let land: (() => void) | null = null, seconds: number | null = 1.6;
+  const { atlas, env, run, settle, calls, queue } = harness({ dive: (id, own, landing) => { told.push([id, own]); land = landing; return seconds; } });
+  await atlas.ready; atlas.resize(); await settle();
+  atlas.goLevel(2); await settle();
+  const start = env.now;
+  atlas.enterCity('lagos');
+  assert.deepEqual(told, [['lagos', true]], 'told before the flight, with whether it is the player\'s own city');
+  run(60);                                                       // about one second of a 1.6 s flight
+  assert.deepEqual(env.opened, [], 'still flying');
+  const mid = atlas.diagnostics().view.distance;
+  run();
+  assert.deepEqual(env.opened, ['lagos']);
+  assert.ok(env.now - start >= 1600, `the hand-over came after the flight (${env.now - start} ms)`);
+  assert.ok(atlas.diagnostics().view.distance < mid, 'the camera came down');
+  assert.equal(queue.length, 0, 'no frames once it has landed (battery rule)');
+  // Skip half-way: the hand-over happens at once, over the city.
+  atlas.goLevel(2); await settle();
+  atlas.enterCity('lagos'); run(20);
+  const before = calls.render;
+  land!();
+  assert.deepEqual(env.opened, ['lagos', 'lagos']);
+  run(); assert.ok(calls.render - before <= 3, 'landing is a frame or two, not a flight');
+  // 0 cuts at once (the host's reduced motion); null keeps the plain fly-in.
+  seconds = 0; atlas.goLevel(2); await settle();
+  atlas.enterCity('lagos'); assert.deepEqual(env.opened, ['lagos', 'lagos', 'lagos']);
+  seconds = null; atlas.goLevel(2); await settle();
+  atlas.enterCity('lagos'); run();
+  assert.equal(env.opened.length, 4);
   atlas.destroy();
 });
 

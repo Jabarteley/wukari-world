@@ -58,7 +58,7 @@ import { contentFor } from '../game/cities/runtime.ts';
 import { openingInfo, lagosTime } from '../game/clock.ts';
 import { buildNetwork, localTripRoute, pointInPolygon } from './roads.ts';
 import { buildCity, createRaw, LANDMARK_SCALE } from './city-build.ts';
-import { createRig, DEFAULT_PITCH, MIN_DISTANCE } from './camera.ts';
+import { createRig, DEFAULT_PITCH, MIN_DISTANCE, PITCH_MAX } from './camera.ts';
 import { createFlick, DOUBLE_TAP_MS, DOUBLE_TAP_PX, dragKind, isDrag, isTap, localPoint, mapHint, MAP_HINT_KEY, ROTATE_PITCH, ROTATE_YAW, twist } from '../scene/gesture.ts';
 import { createActor } from './actor.ts';
 import { createOverlays } from './overlays.ts';
@@ -1040,10 +1040,13 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     /** Put the camera back where it was (a reload): at once when the map is open, otherwise when it first opens. */
     restoreView(next: RigView) { if (opened) { rig.jump(next); userMoved = true; tripCamera = false; request(); } else pendingView = next; },
     /** Arrive from the map above or below: at the wide end of the range for a zoom in, so the gesture carries on from there (null for a map that is not up yet). */
-    enter(edge: Edge, carry = 0) {
+    enter(edge: Edge, carry = 0, descend = 0) {
       if (!opened) return;
       const target = rig.whole(), far = rig.maxDistance, distance = edge === 'in' ? entryDistance('in', { near: CLOSEST, far }, carry) : rig.view.distance;
-      userMoved = true; tripCamera = false; rig.jump({ x: target.x, z: target.z, yaw: 0, pitch: target.pitch, distance }); request();
+      userMoved = true; tripCamera = false;
+      // The dive (./dive.ts): from straight above at the wide end, down to the city's core for `descend` seconds while the clouds part.
+      if (descend > 0 && edge === 'in' && !reducedMotion) { const core = rig.core(); rig.jump({ x: core.x, z: core.z, yaw: 0, pitch: PITCH_MAX, distance: far }); rig.ease(core, descend); request(); return; }
+      rig.jump({ x: target.x, z: target.z, yaw: 0, pitch: target.pitch, distance }); request();
     },
     /** Back to the opening view: the city core. */
     recentre() { if (opened) { openView(); request(); } },

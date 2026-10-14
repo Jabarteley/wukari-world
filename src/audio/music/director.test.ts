@@ -28,19 +28,46 @@ test('music starts only while running and allowed, and releases its timer when h
   r.director.dispose()
   assert.equal(r.ctx.gains[0]?.disconnected, true)
 })
-test('music ducks for interfaces, voices, games and calls, then recovers', () => {
+test('music ducks for interfaces, voices and games, then recovers', () => {
   const r = rig(); r.director.refresh()
   const bus = r.ctx.gains[0]
   assert.ok(bus instanceof FakeGain)
   const normal = bus.gain.value
   r.director.duck(2); assert.ok(bus.gain.value < normal)
   r.ctx.currentTime = 3; r.tick(); assert.equal(bus.gain.value, normal)
-  r.director.setCall(true); assert.ok(bus.gain.value <= normal * .13)
-  r.director.setCall(false); assert.equal(bus.gain.value, normal)
   r.director.game(); assert.ok(bus.gain.value < normal)
   r.ctx.currentTime = 12; r.tick(); assert.equal(bus.gain.value, normal)
   r.speak(true); r.ctx.currentTime = 40; r.tick(); assert.ok(bus.gain.value < normal)
   r.speak(false); r.tick(); assert.equal(bus.gain.value, normal)
+  r.director.dispose()
+})
+test('a voice call fades the music out, then stops it; it does not restart during the call and a new song starts after', () => {
+  const r = rig(); r.director.refresh()
+  const bus = r.ctx.gains[0]
+  assert.ok(bus instanceof FakeGain)
+  const normal = bus.gain.value
+  r.ctx.currentTime = 1; r.director.setCall(true)
+  assert.equal(bus.gain.value, 0)
+  assert.deepEqual(bus.gain.calls.at(-1), ['target', 0, 1, .4], 'a slow fade, not a cut')
+  r.ctx.currentTime = 2; r.tick()
+  assert.equal(r.stops(), 0, 'the song plays on under the fade')
+  r.ctx.currentTime = 3.1; r.tick()
+  assert.equal(r.stops(), 1, 'then it stops')
+  const quiet = r.ctx.sources.length
+  r.director.refresh(); r.director.setHidden(false); r.director.setCall(true)
+  assert.equal(r.ctx.sources.length, quiet, 'nothing starts again while the call lasts')
+  assert.equal(bus.gain.value, 0)
+  r.director.setCall(false)
+  assert.ok(r.ctx.sources.length > quiet, 'a new song after the call')
+  assert.equal(bus.gain.value, normal)
+  r.director.dispose()
+})
+test('a call that starts before any music keeps it from starting', () => {
+  const r = rig()
+  r.director.setCall(true); r.director.refresh()
+  assert.equal(r.ctx.sources.length, 0)
+  r.director.setCall(false)
+  assert.ok(r.ctx.sources.length > 0)
   r.director.dispose()
 })
 test('context transitions schedule the outgoing fade on its bar boundary, venue audio yields', () => {

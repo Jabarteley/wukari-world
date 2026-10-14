@@ -270,3 +270,25 @@ test('the words are the old shell’s', () => {
   assert.equal(loadStatusLine({ ...base, status: 'ready' }), null)
   assert.equal(notConnected('online', 'open the community'), 'You are not connected yet, so you cannot open the community. Try again in a moment.')
 })
+
+test('joining voice in a room tells the sound to step back, and leaving it, or the room ending, tells it to come back', async () => {
+  const heard: unknown[] = []
+  const before = Object.getOwnPropertyDescriptor(globalThis, 'window')
+  Object.defineProperty(globalThis, 'window', { configurable: true, value: { dispatchEvent: (event: CustomEvent) => { if (event.type === 'jaw:room-voice-active') heard.push(event.detail); return true } } })
+  try {
+    const { store, made, game } = rig()
+    await store.start()
+    const options = (made[0] as FakeController).options
+    const voice = (on: boolean) => communityState({ voice: { ...communityState().voice, on } })
+    options.onChange?.(voice(true)); await nextTick()
+    options.onChange?.(voice(true)); await nextTick()
+    assert.deepEqual(heard, [true], 'once, when voice comes on')
+    options.onChange?.(voice(false)); await nextTick()
+    assert.deepEqual(heard, [true, false])
+    options.onChange?.(voice(true)); await nextTick()
+    game.emit('expired'); await nextTick()
+    assert.deepEqual(heard, [true, false, true, false], 'a room that ends ends the quiet')
+  } finally {
+    if (before) Object.defineProperty(globalThis, 'window', before); else delete (globalThis as { window?: unknown }).window
+  }
+})

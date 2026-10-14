@@ -10,7 +10,7 @@ The scores, instruments, composer and initial lifecycle implementation were adap
 
 Ordinary ambience no longer holds a three-note chord. Environmental sounds remain, including contextual motors, rain, footsteps and sparse outdoor details. Fixed-key musical fragments were removed from the park and market so they cannot conflict with the soundtrack's changing harmony.
 
-Music has an independent switch and volume. Its default is 40%, with a 0.25 trim into the same output ceiling as effects and ambience. Calls reduce music to 12% of its normal level; speech and useful effects also duck it. Quiet softens music and effects and removes ambience. Mute fades the mixed output before closing the context. Hiding the page releases scheduled music and suspends audio. The next allowed gesture can unlock it again.
+Music has an independent switch and volume. Its default is 40%, with a 0.25 trim into the same output ceiling as effects and ambience. A voice call (a phone call that is ringing or connected, or being in voice in a room: a venue, a home, the Square or a group's room) fades the music out over about two seconds and then stops it; a new song starts when the call ends. Speech and useful effects duck it. Quiet softens music and effects and removes ambience. Mute fades the mixed output before closing the context. Hiding the page releases scheduled music and suspends audio. The next allowed gesture can unlock it again.
 
 The engine removes its listeners on disposal. Repeated navigation keeps one engine. Old stored preferences retain their values and acquire only the new music defaults.
 

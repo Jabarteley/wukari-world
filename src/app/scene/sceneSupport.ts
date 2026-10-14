@@ -4,6 +4,10 @@
 //     little script, whatever it reports;
 //   - a browser or phone with WebGL switched off, blocked, or one that fails to give a context.
 // The words to show (sceneWords.ts) and the Copy link button (SceneUnsupported.vue) are a lazy chunk, fetched only when this says no or the scene fails.
+import { watch } from 'vue'
+import { setCovered } from '../../scene/frame-gate.ts'
+import type { Shell } from '../state/shell.ts'
+
 export type SceneSupport = { ok: true } | { ok: false; reason: 'proxy' | 'no-webgl' }
 
 /** Browsers that send the page back as a picture. */
@@ -26,12 +30,18 @@ export function sceneSupport(userAgent: string | undefined, probe: () => ProbeCa
 }
 
 /**
- * Called once when the scene is about to start (ScenePane, from this lazy file): starts the data meter (Settings → Data and battery;
- * its own lazy chunk, counting what the page has downloaded so far too) and says whether this browser can draw the scene.
+ * Called once when the scene is about to start (ScenePane, from this lazy file). It starts the data meter (Settings → Data and battery;
+ * its own lazy chunk, counting what the page has downloaded so far too), says whether this browser can draw the scene, and if it can, tells the frame gate (src/scene/frame-gate.ts) when the scene is covered: a full-screen panel, or any sheet on a phone-sized screen
+ *     (a wide screen keeps the scene live beside a sheet). The gate then holds the scene's frames until the cover goes.
  */
-export function sceneCanStart(): boolean {
+export function sceneCanStart(shell: Pick<Shell, 'sheet' | 'byId'>): boolean {
   void import('../state/dataMeter.ts').then((meter) => meter.startMeter(), () => 0)
-  return browserSceneSupport().ok
+  if (!browserSceneSupport().ok) return false
+  watch(() => {
+    const open = shell.sheet.value
+    return !!open && (shell.byId.get(open.kind === 'panel' ? open.id : '')?.fullscreen === true || innerWidth < 721)
+  }, setCovered, { immediate: true, flush: 'post' })
+  return true
 }
 
 /** Ask this browser. */

@@ -178,6 +178,73 @@ the tab is hidden); the rate-limit tables; the sockets' saved state.
 Storage: a busy connected player wrote 540 rows an hour (about 113 to 141 at rest, CAPACITY.md); a stored life is about 6 kB and does
 not grow without bound. An agent call wrote 1.1 to 3 rows.
 
+## What the browser asks for, and what it keeps (cache first)
+
+The owner asked (14 October 2026) that a lot of what the system shows be kept on the device, shown at once and updated in the
+background. This is the audit of the browser side (read from `src/app` and `src/client.ts`), and what was done about it.
+
+### What is already kept
+
+- **The life**: `client.ts` keeps the player's saved life in `localStorage` (`joinallworld-life-v1`) and shows it as a snapshot while
+  the server is asked; `snapshotPhase` says whether it is `preview`, `unconfirmed`, `available` or `unavailable`, and a stale snapshot
+  never overrides the server's state or lets an action through (`src/client.test.ts`). This is the only place money, stock and actions
+  in flight are kept, and it is left alone.
+- **Rates**: `allworld.rates.<city>` (`worldFeed.ts`, three days) so amounts are right at once.
+- **The last view** (`viewMemory.ts`), the companion's memory, the landing hints, tour and coach flags, the place the player is in
+  (`sessionStorage`), audio and light settings: preferences, not data from the server.
+- **In memory only**: the civic boards (`civicClient.ts`: kept 30 s per screen, per character, dropped when the character changes),
+  the people list pages (`socialClient.ts`), the account answer (`accountLite.ts`).
+- **The service worker** (`public/sw.js`) is push-only: it has no fetch handler and caches nothing, on purpose.
+
+### What the page asks for
+
+| When | Request | Who | Kept before this change |
+| --- | --- | --- | --- |
+| Start | `GET /api/life`, `/api/session` (`client.ts`) | the player | the snapshot above |
+| Start | `GET /api/account` (account lite) | the player | memory |
+| Start | `GET /api/world/feed?id=<city>` every 30 min (loaded after the first frame) | public | rates only |
+| Start | `GET /api/world/bonus` (offer line) | the player | memory |
+| Start | `GET /api/world/pulse` every 30 s, plus `pulse` frames over the socket (online pill) | public | nothing |
+| Start | `GET /api/world/pulse/online` every 30 s (the entry page only) | public | nothing |
+| Start | `POST /api/world/badges` (map badges), `/api/social/*` over the socket and HTTP (friends, requests, threads) | the player | memory |
+| Square or Gist app | `GET /api/world/gist?id=<city>` (also every 9 s turn in the Square) | public | memory, this page only |
+| World, a local government | `GET /api/world/lga/<id>` and `/people` | public, with a "you" mark | memory, this page only |
+| Politics, Records | `GET /api/world/records` | public | nothing |
+| Politics, Civic boards, Market, Rich list | `civicClient.load` per screen | mixed (many carry the player's own standing) | memory, 30 s |
+| Statement, wallet history | `GET /api/support/history` | the player's money | never kept |
+| Trust, Support, Agents, Showcase "mine", Street journey | their own `/api/trust/me`, `/api/support/reports`, `/api/agents`, `/api/showcase/mine`, `/api/street/me` | the player | nothing |
+| Showcase directory, shop pages, Campus | `/api/showcase?...`, `/api/showcase/<id>`, `/api/campus` | public | nothing |
+
+### What is kept now (`src/app/state/cacheFirst.ts`)
+
+One small helper reads and writes records `{ v, at, d }` under `allworld.cf.<scope>/<name>` in `localStorage`. A record is dropped when
+its schema version differs, it is older than the caller's max age, it is dated in the future or it is not JSON. The whole cache is
+held under 200,000 characters (about 200 KB): the oldest records go first, and a record over 40,000 characters is not kept. A full
+or absent store (private mode) changes nothing but speed. The scope is the player's id for anything that differs by viewer. It is
+imported only by lazy chunks (and by a dynamic `import()` from the pill and from the session change), never by the first download.
+
+| Read | Key | Max age | Size | Shown stale how |
+| --- | --- | --- | --- | --- |
+| Online pill (`hud/pulseCache.ts`) | `_/pulse` | 30 min | about 1 to 5 kB (a count for each city) | the pill's dot is amber until the first answer (the kept time is older than a poll) |
+| Gist (`gist/gistStore.ts`) | `_/gist.<city>` | 12 h | up to about 8 kB per city | each line says "x h ago" |
+| Local government directory, first page only (`world/lgaCache.ts`) | `<player>/lga.<city>.<id>` | 3 days | about 4 to 8 kB | replaced when the answer comes; a search or the online filter is never cached |
+| Hall of Records, first page of each filter (`politics/recordsCache.ts`) | `_/records.<filter>` | 7 days | up to about 20 kB | still checked against its seals (`checkRecords`) like an answer |
+
+Every one of these is asked of the server again at once, and the answer replaces the kept one. Sign-out, switching character and an
+erased life call `clearCache()` (`useAccount.ts` `forgetDeviceLife`, with the saved life), as does the other-device sign-out
+(`sessionEnd.ts`) and any change of session in the running page (`app.ts` `sessionChanged`, also the expired case).
+
+### Left out on purpose
+
+- The player's own money, wallet history, stock, the rich list and anything that is acted on: the life snapshot and the server only.
+  Buying, voting, sending and paying go to the server as before and never read from this cache.
+- The civic boards, Market listings, friends and requests, threads and the phone's apps that show the player's own standing: they carry
+  the player's own numbers or are changed by actions in flight, and `civicClient` already shows its in-memory copy for 30 s. Caching
+  them across visits needs a per-board review of which fields are the player's own.
+- The entry page's online count (`/api/world/pulse/online`, in the first download: the code would not fit its budget).
+- Festivals and the phone's other list apps: the browser code does not read them through the places searched here
+  (`fetchJson` in `src/app`); a new caller should use `cacheFirst.ts` the way the four above do.
+
 ## Next, and when
 
 | What | When it becomes necessary | Design |

@@ -19,6 +19,7 @@ import LgaCard from './LgaCard.vue'
 import { addressLabel, lgaOf } from './worldContent.ts'
 import { count, createLgaDirectory, emptyPeopleText, focusMap, lgaParam, track } from './worldModel.ts'
 import type { LgaDirectory } from './worldModel.ts'
+import { keepLga, recallLga } from './lgaCache.ts'
 
 const props = defineProps<{ params?: unknown }>()
 const { game, shell } = useApp()
@@ -61,7 +62,11 @@ const addressOf = (estateNumber: number | undefined, plot: number): string => (i
 let shared: LgaDirectory | null = null
 function useDirectory(): LgaDirectory {
   const { game } = useApp()
-  shared ??= createLgaDirectory({ fetchJson: game.fetchJson, cityId: () => game.cityId.value })
+  shared ??= createLgaDirectory({
+    fetchJson: game.fetchJson, cityId: () => game.cityId.value,
+    // Cache first: kept per player (the list marks "you"), and only while there is a session to key it by.
+    kept: { recall: (city, id) => { const who = game.session.value?.id; return who ? recallLga(who, city, id) : null }, keep: (city, id, page) => { const who = game.session.value?.id; if (who) keepLga(who, city, id, page) } },
+  })
   return shared
 }
 </script>

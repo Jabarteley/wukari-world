@@ -393,3 +393,35 @@ test('tables: a match that is over (called off or finished) never blocks the nex
   assert.deepEqual([(await claim(winner)).results, (await wins(winner)).length], [[], before]);
   await all(chidi, dayo);
 });
+
+test('tables: the result of a real game carries who each player may be offered as a friend — once for that game, never a friend, never a blocked player, never a bot', async (t) => {
+  const { f, post, act, player, playOn, bothMoveTwice, all } = await harness(t);
+  const ada = await player('Ada'), bola = await player('Bola'), chidi = await player('Chidi');
+  for (const peer of [ada, bola, chidi]) await f.request('/api/social/me', null, peer.who.cookie); // a social record, as the Phone's People app makes
+  await act(ada, 'table-sit', {}); await act(bola, 'table-sit', {}, ada);
+  await act(ada, 'table-start', {}, bola);
+  const early: unknown = ada.state.result;
+  assert.equal(early, null, 'nothing is offered while the game is on');
+  await bothMoveTwice(ada, bola); await playOn([ada, bola]);
+  const first = { ada: ada.state.result.mine.offers, bola: bola.state.result.mine.offers };
+  assert.deepEqual(first.ada?.people, [{ id: bola.who.id, name: 'Bola' }]);
+  assert.deepEqual(first.bola?.people, [{ id: ada.who.id, name: 'Ada' }]);
+  assert.equal(first.ada?.match, first.bola?.match, 'one game, one match id: the card is shown once per pair per game');
+  assert.equal(JSON.stringify(ada.state.result.mine).includes('bot'), false);
+  // A watcher is offered nothing.
+  await act(chidi, 'table-watch', {}); await all(ada, bola, chidi);
+  const watching: unknown = chidi.state.result.mine;
+  assert.equal(watching, null);
+  // They become friends; the next game offers neither of them anything. Chidi sits for the next game: he is a stranger to both (blocks are covered in friendship.test.ts: a blocked pair cannot even share a table).
+  assert.equal((await post<{ code: string }>('/api/social/friends/request', { to: bola.who.id, cityId: 'lagos' }, ada.who)).code, 'requested');
+  assert.equal((await post<{ code: string }>('/api/social/friends/answer', { from: ada.who.id, accept: true, cityId: 'lagos' }, bola.who)).code, 'accepted');
+  await act(ada, 'table-again', {}, bola, chidi);
+  await act(chidi, 'table-sit', {}, ada, bola);
+  assert.deepEqual(chidi.errors, []);
+  await act(ada, 'table-start', {}, bola, chidi);
+  await playOn([ada, bola, chidi]);
+  assert.deepEqual([ada.state.table.status, ada.state.result.calledOff, ada.state.table.seats.map((seat) => seat.name)], ['over', false, ['Ada', 'Bola', 'Chidi']]);
+  const second = { ada: ada.state.result.mine.offers?.people.map((one) => one.name), bola: bola.state.result.mine.offers?.people.map((one) => one.name), chidi: chidi.state.result.mine.offers?.people.map((one) => one.name) };
+  assert.deepEqual(second, { ada: ['Chidi'], bola: ['Chidi'], chidi: ['Ada', 'Bola'] });
+  assert.notEqual(bola.state.result.mine.offers?.match, first.bola?.match, 'a new game, a new match id');
+});

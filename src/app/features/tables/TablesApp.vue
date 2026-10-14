@@ -20,11 +20,16 @@ import HeroCard from '../../ui/HeroCard.vue'
 import HowItWorks from '../../ui/HowItWorks.vue'
 import SectionTitle from '../../ui/SectionTitle.vue'
 import { useGrowth } from '../growth/useGrowth.ts'
+import type { FriendOffer } from '../../../types/growth.ts'
+import { markGameShown, markNotNow, tableCard } from '../social/friendOfferModel.ts'
+import { offerMemory, saveOfferMemory } from '../social/friendOfferStore.ts'
 import PenaltyBoard from './PenaltyBoard.vue'
 import WhotBoard from './WhotBoard.vue'
 // The board games' screens are chunks of their own, fetched when a table of that game is opened.
 const ChessBoard = defineAsyncComponent(() => import('./ChessBoard.vue'))
 const WeaveBoard = defineAsyncComponent(() => import('./WeaveBoard.vue'))
+// After a game with people: the one friendship card (add as friend, a small gift, invite), a chunk of its own.
+const FriendOfferCard = defineAsyncComponent(() => import('../social/FriendOfferCard.vue'))
 const AyoBoard = defineAsyncComponent(() => import('./AyoBoard.vue'))
 import { GAME_LABELS, ayoRules, chessRules, isAyoState, isChessState, isPenaltyState, isWeaveState, isWhotState, penaltyRules, tableById, weaveRules, whotRules } from './tablesBoundary.ts'
 import {
@@ -66,6 +71,16 @@ const weave = computed(() => (s.value && isWeaveState(s.value) ? s.value : null)
 const ayo = computed(() => (s.value && isAyoState(s.value) ? s.value : null))
 const result = computed(() => (table.value?.status === 'over' ? s.value?.result ?? null : null))
 const outcome = computed(() => (result.value ? { title: outcomeTitle(result.value), note: outcomeNote(result.value, t.value.claimed, paid.value?.win ?? 0) } : null))
+// Friendship after shared play: the server sends, with the result, who this player may be offered (not friends, not blocked either way). The card
+// is put up once for that game, and "Not now" keeps those people off the next card for a day (the rules are in friendOfferModel.ts).
+const offerPeople = ref<FriendOffer[]>([])
+watch(() => result.value?.mine?.offers, (offers) => {
+  if (!offers) { offerPeople.value = []; return }
+  const memory = offerMemory(), people = tableCard(memory, offers, Date.now())
+  if (!people.length) return
+  markGameShown(memory, offers.match); saveOfferMemory(); offerPeople.value = people
+}, { immediate: true })
+function closeOffer(unasked: string[]): void { markNotNow(offerMemory(), unasked, Date.now()); saveOfferMemory(); offerPeople.value = [] }
 // Stakes: game naira only. The server says what this player may do about the table's stake; nothing here decides it.
 const stakes = computed(() => s.value?.stakes ?? null)
 const staked = computed(() => (table.value?.stake ?? 0) > 0)
@@ -228,6 +243,7 @@ function onOption(name: string, raw: string): void {
           <BaseButton v-if="result.mine?.won" :reason="busyWhy" @click="growth.share('table')">Share the win</BaseButton>
           <BaseButton @click="back">Leave the table</BaseButton>
         </div>
+        <FriendOfferCard v-if="offerPeople.length" :people="offerPeople" source="table" @close="closeOffer" />
         <WhotBoard v-if="whot" :state="whot" :now="view.now" @play="tables.play" />
         <PenaltyBoard v-else-if="penalty" :state="penalty" :now="view.now" @play="tables.play" />
         <ChessBoard v-else-if="chess" :state="chess" :now="view.now" @play="tables.play" />

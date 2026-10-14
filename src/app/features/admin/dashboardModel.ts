@@ -30,3 +30,12 @@ export const sizeTone = (chars: number): Tone => (chars >= 8_000_000 ? 'bad' : c
 /** Players seen in the last 7 days that did not begin in them: the lives followed minus the new ones. An approximation (the new count is by the day a life was first seen). */
 export const returning = (seen7: number, new7: number): number => Math.max(0, seen7 - new7)
 export const percent = (part: number, whole: number): number => (whole > 0 ? Math.round((part / whole) * 100) : 0)
+
+/** The return split the history answer carries (server/growth/metrics.ts returnSplit), as the dashboard reads it. */
+export interface ReturnCellRow { lives: number; returned: number; rate: number | null }
+export interface ReturnRowRead { d1: ReturnCellRow; d7: ReturnCellRow; d30: ReturnCellRow }
+export interface ReturnsRead { bySource: (ReturnRowRead & { source: string; medium: string; campaign: string })[]; byFriend: { yes: ReturnRowRead; no: ReturnRowRead }; note: string }
+/** One cell: "42% (12 of 29)", or "too early" when no life is old enough yet. */
+export const returnCell = (cell: ReturnCellRow): string => (cell.rate === null ? 'too early' : `${cell.rate}% (${cell.returned} of ${cell.lives})`)
+/** "tiktok / paid / test1": a campaign as the owner wrote it. */
+export const sourceLabel = (row: { source: string; medium: string; campaign: string }): string => `${row.source} / ${row.medium} / ${row.campaign}`

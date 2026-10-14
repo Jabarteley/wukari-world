@@ -88,11 +88,13 @@ import { DIRECTORY_SCAN, PAGE_MAX, byNameOrder, cursorOf, directoryCache, firstA
 import type { Directory, DirectoryRow } from './pages.ts';
 import { playerIsAdmin } from '../admin/gate.ts';
 import { agentMark } from '../agents/policy.ts';
+import { noteFriend } from '../growth/metrics.ts';
+import { growthOf } from '../growth/data.ts';
 import { characterCity } from '../character.ts';
 import { forEachValue, scanKeys } from '../keyed.ts';
 import { FOUNDER_EMAIL_SHA256, FOUNDER_PAGE, welcomeNote, autoFriend, emailHash, friendsIn, friendsSince } from './founder.ts';
 import type { CityId, PlayerRef } from '../../src/types/protocol.ts';
-import type { MoneyRequestView, PlayerReportReceipt, ReportReason, ConversationKind, HouseView, SocialPushFrame, SocialUpdate, SocialUpdateKind, Whereabouts, PresenceStatus, Mention, PictureView, ChatPrefs } from '../../src/types/social.ts';
+import type { ThanksView, MoneyRequestView, PlayerReportReceipt, ReportReason, ConversationKind, HouseView, SocialPushFrame, SocialUpdate, SocialUpdateKind, Whereabouts, PresenceStatus, Mention, PictureView, ChatPrefs } from '../../src/types/social.ts';
 import type { LifeState } from '../../src/types/life.ts';
 import type { AccountRecord, ConversationRecord, ImageRef, MoneyRequestRecord, VoiceRef, Db, HouseRecord, MessageRecord, PendingEffect, PlayerReportRecord, RouteContext, SessionRecord, SocialCollection, SocialEffectPayload, SocialPlayerRecord, VisitRecord, WsConnection } from '../types.ts';
 import { captureProjection } from './capture.ts';
@@ -117,7 +119,7 @@ export const LIMITS = Object.freeze({
   updates: 50, reports: 2000, ownReports: 20, reportText: 300, pending: 50,
   guests: 5, knockMs: 60000, knockCooldownMs: 60000, visitMs: 30 * 60000,
   strangerMessages: 3, newChatsPerDay: 10, searchResults: 10,
-  pins: 3, reactionKinds: 6, mentions: 5, everyoneMs: 600000, groupAddsPerHour: 30, mentionMessages: 20, friendPicks: 20, quote: 80, giftLine: 40,
+  pins: 3, reactionKinds: 6, mentions: 5, everyoneMs: 600000, groupAddsPerHour: 30, mentionMessages: 20, friendPicks: 20, quote: 80, giftLine: 40, thanksRecent: 5,
   escrowMs: 7 * 86400000, playerIdleMs: 45 * 86400000, sweepMs: 3600000,
 });
 const MESSAGE_PIN_LIMIT = 3;
@@ -977,6 +979,16 @@ function buildService(ctx: RouteContext) {
    * One gift of naira, inside the caller's ctx.once: every rule a transfer has (friends, caps, daily limits, blocks, where the credit lands) lives here, so a gift
    * and the payment of a request for money are the same thing. A refusal changes nothing.
    */
+  /** Record one gift on both players' profiles: a count each and the last few, with no amount (what a gift was worth is between the two). */
+  function noteThanks(from: SocialPlayerRecord, to: SocialPlayerRecord, fromId: string, toId: string, at: number): void {
+    const add = (record: SocialPlayerRecord, key: 'given' | 'got', who: string, dir: 'gave' | 'got'): void => {
+      const book = (record.thanks ||= { given: 0, got: 0, recent: [] });
+      book[key] = Math.min(Number.MAX_SAFE_INTEGER, book[key] + 1);
+      book.recent.push({ who, dir, at });
+      if (book.recent.length > LIMITS.thanksRecent) book.recent.splice(0, book.recent.length - LIMITS.thanksRecent);
+    };
+    add(from, 'given', toId, 'gave'); add(to, 'got', fromId, 'got');
+  }
   function performTransfer(db: Db, session: SessionRecord, s: SocialCollection, p: SocialPlayerRecord, id: string, push: PushList, to: string, cityId: CityId, amount: number, cid: string) {
     const L = TRANSFER_LIMITS, t = now();
     const transferId = peerTransferId(id, cid);
@@ -1002,6 +1014,7 @@ function buildService(ctx: RouteContext) {
     const sent = act(session, cityId, 'transfer-out', { to, name: target.name, amount, transferId }, `social|transfer|${id}|${cid}`);
     if (!sent.ok) return no(sent.code, sent.reason!);
     target.recv.amount += counted;
+    noteThanks(p, target, id, to, t);
     // The gift is a line in the two players' chat: "You sent ₦1,500" for the sender, "Ada sent you ₦1,500" for the receiver.
     const gkey = dmId(id, to), chat = s.convs[gkey] ??= { id: gkey, kind: 'dm', members: [id, to].sort(), seq: 0, created: t, messages: [], pinScope: ctx.randomId() };
     index(s, id, chat, chat.seq); index(s, to, chat, chat.seq);
@@ -1011,6 +1024,13 @@ function buildService(ctx: RouteContext) {
     push.push([to, { type: 'transfer', from: pub(s, id), amount, credited }], [to, { type: 'social-sync' }]);
     notify(s, to, 'transfer', `${p.name} sent you ${naira(amount)}.`, { from: id, amount }, push);
     return yes('sent', { amount, to: pub(s, to), credited, creditedCity: creditCity, balance: sent.state.cash });
+  }
+  /** The thanks-and-gifts record of `target` as `viewer` may read it: the two counts to anyone who can see the card, the last few (who, which way, when) only to the player themselves and their friends. Nothing when there are no gifts. */
+  function thanksView(s: SocialCollection, viewer: string, target: string, friend: boolean): { thanks?: ThanksView } {
+    const book = s.players[target]?.thanks;
+    if (!book || book.given + book.got === 0) return {};
+    const open = viewer === target || friend;
+    return { thanks: { given: book.given, got: book.got, recent: open ? book.recent.filter((item) => s.players[item.who] && !blockedEither(s, viewer, item.who)).map((item) => ({ ...item, name: s.players[item.who]!.name })).reverse() : [] } };
   }
   const service = {
     LIMITS,
@@ -1324,7 +1344,7 @@ function buildService(ctx: RouteContext) {
       if (target !== id && (!s.players[target] || s.players[target].blocked[id])) return no('unknown_player', 'That player was not found. They may not have played yet.');
       const friend = areFriends(s, id, target);
       return yes('ok', { player: { ...pub(s, target), self: target === id, friend, requested: Boolean(p.out[target]), incoming: Boolean(p.in[target]), blocked: Boolean(p.blocked[target]),
-        bae: p.bae === target, baeAsked: Boolean(s.players[target]!.baeIn[id]), ...whereabouts(target, friend) } });
+        bae: p.bae === target, baeAsked: Boolean(s.players[target]!.baeIn[id]), ...whereabouts(target, friend), ...thanksView(s, id, target, friend) } });
     },
 
     // ---- friends ---------------------------------------------------------------------------
@@ -1408,6 +1428,7 @@ function buildService(ctx: RouteContext) {
       if (friendCount(s, id) >= LIMITS.friends || friendCount(s, from) >= LIMITS.friends) return no('friends_full', `One of you already has ${LIMITS.friends} friends.`);
       p.friends[from] = asker.friends[id] = now();
       directoryStamp += 1;
+      noteFriend(growthOf(ctx, db), now(), id, from);
       act(session, cityId, 'friend', { id: from, name: asker.name }, `social|friend|${id}|${from}`, 'the friendship is written to the social collection in this transaction; a repeat is answered from it');
       owe(s, db, from, cityId, { op: 'friend', id, name: p.name });
       push.push([from, { type: 'friend-accepted', by: pub(s, id) }], [from, { type: 'social-sync' }]);

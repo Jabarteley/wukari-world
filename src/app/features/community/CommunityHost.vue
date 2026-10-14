@@ -8,12 +8,15 @@ import { useCommunity } from './communityStore.ts'
 import type { CommunityStore } from './communityStore.ts'
 // The panel is drawn only once the community code has loaded (long after the first paint), so its own code is fetched with it.
 const CommunityPanel = defineAsyncComponent(() => import('./CommunityPanel.vue'))
+// Five minutes together in voice: the friendship card (only while the player is in voice; its code is fetched then).
+const VoiceFriendOffer = defineAsyncComponent(() => import('./VoiceFriendOffer.vue'))
 
 const props = defineProps<{ store?: CommunityStore }>()
 const store = props.store ?? useCommunity()
 </script>
 
 <template>
+  <VoiceFriendOffer v-if="store.state.value?.voice.on" :store="store" />
   <aside v-if="store.open.value" id="community-panel" aria-label="Community">
     <button id="community-close" type="button" aria-label="Close community" @click="store.close()">×</button>
     <div id="community-content">

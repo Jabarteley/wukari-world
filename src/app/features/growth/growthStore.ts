@@ -88,7 +88,8 @@ export function createGrowth(deps: GrowthDeps) {
     if (state.loading || !growthReady(deps.view())) return
     if (!options.force && !helloStale(state.at, deps.now())) return
     state.loading = true
-    const result = await call<HelloResult>('/api/growth/hello', { device: deps.deviceToken() })
+    const source = await import('./attribution.ts').then((module) => { const { source, medium, campaign } = module.visitSource(); return { source, medium, campaign } }, () => undefined)
+    const result = await call<HelloResult>('/api/growth/hello', { device: deps.deviceToken(), ...(source ? { source } : {}) })
     state.loading = false
     state.at = deps.now()
     if (result.ok) {

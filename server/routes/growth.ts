@@ -168,7 +168,7 @@ export default function growthRoutes(ctx: RouteContext): Record<RouteKey, RouteH
       player.seen = now;
       outreach.comeback.onVisit(db, g, id, now, session);
       if (body.device !== undefined) referral.noteDevice(g, player, body.device);
-      touch(g, now, id, state, since);
+      touch(g, now, id, state, since, body.source);
       const material = referral.settle(g, session, state, cityId);
       const actualCity = state.estate.city;
       const view = viewLife(state, { now, cityId: actualCity });

@@ -292,6 +292,9 @@ export interface PeopleListing {
 
 export interface SearchResult extends PlayerRef { friend: boolean }
 
+/** The thanks-and-gifts record on a profile. `recent` (newest first, no amounts) is empty unless the viewer is that player or their friend. */
+export interface ThanksView { given: number; got: number; recent: { who: string; name: string; dir: 'gave' | 'got'; at: number }[] }
+
 /** GET /api/social/players/:id → `player`. Where they are is only detailed for a friend. */
 export interface PersonCard extends PlayerRef, Whereabouts {
   self: boolean
@@ -303,6 +306,8 @@ export interface PersonCard extends PlayerRef, Whereabouts {
   bae: boolean
   /** The caller's Bae request to them is waiting. */
   baeAsked: boolean
+  /** Gifts they gave and got (present once there is one). */
+  thanks?: ThanksView
 }
 
 // ---- request bodies ------------------------------------------------------------------------------

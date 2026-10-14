@@ -2,15 +2,14 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-r-1",
-      "appSha": "808e094a3550834268472849ffbfd27e1df30a1c",
+      "id": "zoom-1",
+      "appSha": "beaffb80ef83c2c2f8066e2563421bb01e1a3503",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
-        "west-island",
-        "saint-pierre",
-        "siachen",
-        "chagos",
-        "ashmore"
+        "lagos",
+        "accra",
+        "kyrenia",
+        "taipei"
       ],
       "roundtrip": true,
       "browserOnly": true

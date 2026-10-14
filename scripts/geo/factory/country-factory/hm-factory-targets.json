@@ -14,9 +14,9 @@
     "boundaryKey": "hm",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38482448629,
-      "sourceSha": "d0dab056cfa8c4a263443aec1159c33405e0d72b",
-      "sourceArtifact": "city-bootstrap-hm-d0dab056cfa8c4a263443aec1159c33405e0d72b",
+      "sourceRunId": 38492378395,
+      "sourceSha": "6ce98ad243af00564d857fcd660b4f4bb79484e3",
+      "sourceArtifact": "city-bootstrap-hm-6ce98ad243af00564d857fcd660b4f4bb79484e3",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -269,9 +269,9 @@
       },
       "sourceJob": {
         "city": "atlas-cove",
-        "sourceRunId": 38482448629,
-        "sourceArtifact": "city-bootstrap-hm-d0dab056cfa8c4a263443aec1159c33405e0d72b",
-        "sourceSha": "d0dab056cfa8c4a263443aec1159c33405e0d72b",
+        "sourceRunId": 38492378395,
+        "sourceArtifact": "city-bootstrap-hm-6ce98ad243af00564d857fcd660b4f4bb79484e3",
+        "sourceSha": "6ce98ad243af00564d857fcd660b4f4bb79484e3",
         "datasetSha256": "76f15eba2b9d4bf3d5b70b2eb84e2a1e7842a8c265253bf56a11658f42d93f55",
         "adapterSha256": "4079d0a7f3520bbcbb8289d4d8b36f3c4fa8a6d866c15f0041884becbccbb1d3",
         "extractSha256": {

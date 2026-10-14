@@ -11,7 +11,7 @@ import '../ui/shell.css'
 // The compact layout of a phone (and a phone on its side), after the page layout it adjusts.
 import '../ui/compact.css'
 import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { sceneCovered, setCovered } from '../scene/frame-gate.ts'
+import { setCovered } from '../scene/frame-gate.ts'
 import { useApp } from './state/app.ts'
 import { heldActionFor, shortcutFor } from '../ui/keys.ts'
 import { social, start as startSocial, wakeSocket } from './features/social/useSocial.ts'
@@ -50,9 +50,10 @@ const snapshotAvailable = computed(() => game.snapshotPhase.value === 'available
 const navPanel = computed(() => (mode.value !== 'venue' ? shell.byId.get(mode.value) ?? null : null))
 const sheetOpen = computed(() => Boolean(shell.sheet.value))
 // A full-screen panel, or any sheet on a phone-sized screen, covers the scene: the scene stops drawing (src/scene/frame-gate.ts) and is drawn once when the cover goes.
+// (A wide screen keeps the scene live beside a sheet; only a full-screen panel covers it there.)
 watch(() => {
   const open = shell.sheet.value
-  return sceneCovered({ sheetOpen: Boolean(open), fullscreen: open?.kind === 'panel' && shell.byId.get(open.id)?.fullscreen === true, narrow: Boolean(globalThis.matchMedia?.('(max-width: 720px)').matches) })
+  return Boolean(open) && (shell.byId.get(open!.kind === 'panel' ? open!.id : '')?.fullscreen === true || globalThis.matchMedia?.('(max-width: 720px)').matches === true)
 }, setCovered, { immediate: true, flush: 'post' })
 /** A home being visited is what the screen shows, whatever place the player stood in before. */
 const visitingHome = computed(() => Boolean(social.me?.visiting))

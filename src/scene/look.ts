@@ -40,7 +40,7 @@ export interface LookRenderer {
 
 export const PHONE_TIER: RenderTier = Object.freeze({ name: 'phone', pixelRatio: 1.5, shadowMap: 1024, softShadows: false });
 /** Light mode: the phone tier at one device pixel per CSS pixel (a third of the pixels of a 1.5 screen) and a small shadow map. */
-export const LIGHT_TIER: RenderTier = Object.freeze({ name: 'phone', pixelRatio: 1, shadowMap: 512, softShadows: false });
+export const LIGHT_TIER: RenderTier = { ...PHONE_TIER, pixelRatio: 1, shadowMap: 512 };
 export const WIDE_TIER: RenderTier = Object.freeze({ name: 'wide', pixelRatio: 2, shadowMap: 2048, softShadows: true });
 /** Desktops and high-end devices: a higher pixel ratio, a generated environment map, tighter sun shadows, night bloom (src/scene/quality.ts). */
 export const HIGH_TIER: RenderTier = Object.freeze({ name: 'high', pixelRatio: 2.5, shadowMap: 2048, softShadows: true, env: true, shadowReach: 17 });

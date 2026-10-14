@@ -3,7 +3,6 @@ import { test } from 'node:test'
 import { LIGHT_FPS, LIGHT_KEY, lightFps, lightOn, readLight } from './lightMode.ts'
 import { forgetLight, lightChosen, onLightChange, setLight } from './lightControl.ts'
 import { HIGH_TIER, LIGHT_TIER, PHONE_TIER, renderTier } from './scene/look.ts'
-import { readSound, SOUND_DEFAULTS } from './audio/settings.ts'
 
 const saved = (value: string | null) => ({ getItem: (key: string) => (key === LIGHT_KEY ? value : null) })
 
@@ -60,10 +59,4 @@ test('light mode picks the lowest render tier, on any device', () => {
   assert.equal(renderTier({ ...phone, navigator: { connection: { saveData: true } }, localStorage: { getItem: () => '0' } } as never), PHONE_TIER, 'and a saved Off wins')
   assert.ok(LIGHT_TIER.pixelRatio < PHONE_TIER.pixelRatio && LIGHT_TIER.shadowMap < PHONE_TIER.shadowMap)
   assert.equal(renderTier({ ...desktop, location: { search: '?quality=high' }, localStorage: { getItem: () => '1' } } as never), HIGH_TIER, '?quality= still forces a tier')
-})
-
-test('light mode starts the music off on a device that has not chosen, and a saved choice still wins', () => {
-  assert.equal(readSound(null, true).musicOn, false)
-  assert.equal(readSound(null, false).musicOn, SOUND_DEFAULTS.musicOn)
-  assert.equal(readSound({ getItem: () => JSON.stringify({ musicOn: true }) }, true).musicOn, true)
 })

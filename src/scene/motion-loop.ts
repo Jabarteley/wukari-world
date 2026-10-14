@@ -14,7 +14,6 @@
  * frames above light mode's 30 a second. Nothing else in this file knows about either.
  */
 import { gatedCancel, gatedRequest } from './frame-gate.ts';
-const browserFrames = () => typeof globalThis.requestAnimationFrame === 'function';
 
 /**
  *   loop.wake()    start it (no-op when running, hidden, or when the platform has no frame callback)
@@ -46,7 +45,7 @@ export interface MotionLoop {
   stop(): void;
   dispose(): void;
 }
-export function createMotionLoop(tick: (dt: number) => boolean | void, { onHidden, onVisible, request = browserFrames() ? gatedRequest : undefined, cancel = browserFrames() ? gatedCancel : undefined, doc = globalThis.document, clock = () => globalThis.performance.now() }: MotionLoopOptions = {}): MotionLoop {
+export function createMotionLoop(tick: (dt: number) => boolean | void, { onHidden, onVisible, request = globalThis.requestAnimationFrame && gatedRequest, cancel = globalThis.cancelAnimationFrame && gatedCancel, doc = globalThis.document, clock = () => globalThis.performance.now() }: MotionLoopOptions = {}): MotionLoop {
   let handle: number | null = null, last = 0, queued = false;
   const hidden = () => doc?.visibilityState === 'hidden';
   const loop: MotionLoop = {

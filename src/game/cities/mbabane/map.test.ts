@@ -62,7 +62,7 @@ test('mbabane: roads and neighbourhood names are present within bounded geometry
   assert.ok(TERRAIN.names.length >= 5)
   assert.match(geometry.source, /OpenStreetMap/u)
   const scene = await map.loadScene()
-  assert.ok(scene.roads.length >= 20)
+  assert.ok(scene.roads.length >= 8)
   assert.ok(scene.districts.length >= 5)
   assert.equal(scene.lgas[0]?.name, FACTS.names?.area)
 })

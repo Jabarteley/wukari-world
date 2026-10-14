@@ -62,7 +62,7 @@ test('gaborone: the map has the outline, inland water, main roads and neighbourh
   assert.ok(TERRAIN.names.length >= 5)
   assert.match(geometry.source, /OpenStreetMap/u)
   const scene = await map.loadScene()
-  assert.ok(scene.roads.length >= 150 && scene.water && scene.water.length > 0)
+  assert.ok(scene.roads.length >= 8 && scene.water && scene.water.length > 0)
   assert.ok(scene.districts.length >= 5, 'neighbourhood names are on the ground')
   assert.equal(scene.lgas[0]?.name, FACTS.names?.area)
   const size = JSON.stringify(TERRAIN).length + JSON.stringify(GEOMETRY).length

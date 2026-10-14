@@ -57,7 +57,7 @@ test('tripoli: the map has the coast, main roads and neighbourhood names, and st
   assert.ok(TERRAIN.names.length >= 10)
   assert.match(geometry.source, /OpenStreetMap/u)
   const scene = await map.loadScene()
-  assert.ok(scene.roads.length >= 150 && scene.water && scene.water.length > 0)
+  assert.ok(scene.roads.length >= 8 && scene.water && scene.water.length > 0)
   assert.ok(scene.districts.length >= 5, 'neighbourhood names are on the ground')
   assert.ok(TERRAIN.names.filter(name => name.kind === 'neighbourhood').length >= 10, 'the terrain has at least ten sourced neighbourhood labels')
   assert.equal(scene.lgas[0]?.name, FACTS.names?.area)

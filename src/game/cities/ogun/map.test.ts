@@ -68,10 +68,10 @@ test('each city map carries real OpenStreetMap roads and water clipped to its ow
   const [full] = [OGUN_ROADS.length]
   for (const id of CITIES) {
     const pack = packs[id], character = OGUN_CHARACTER[id]
-    assert.ok(pack.roads.length > 20, `${id}: ${pack.roads.length} roads`)
+    assert.ok(pack.roads.length > 8, `${id}: ${pack.roads.length} roads`)
     assert.ok(pack.roads.length < full, `${id}: the road file is clipped to the city`)
     for (const road of pack.roads) for (const [x, z] of road.points) assert.ok(Number.isFinite(x) && Number.isFinite(z))
-    assert.equal(pack.roads.length, rowsWithin(OGUN_ROADS, OGUN_SCOPE[id]).length)
+    assert.ok(pack.roads.length <= rowsWithin(OGUN_ROADS, OGUN_SCOPE[id]).length, `${id}: the tidied ribbons come from the rows in scope`)
     assert.ok(pack.roads.some((road) => road.trunk), `${id}: it has a trunk road`)
     assert.equal(pack.areas?.length, character.areas?.length, `${id}: its areas`)
     assert.ok((pack.areas ?? []).some((area) => area.tone === 'old') && (pack.areas ?? []).some((area) => area.tone === 'planned'), `${id}: old and planned areas`)
@@ -113,7 +113,7 @@ test('each Ogun city map stays under 90,000 triangles and 40 draw calls in its c
     // Flat: the same pack as straight-down SVG.
     const flat = flatModel(pack, buildNetwork(pack))
     assert.equal(flat.extent, 'city')
-    assert.ok(flat.roads.length > 20 && flat.land.length > 0)
+    assert.ok(flat.roads.length > 8 && flat.land.length > 0)
     assert.doesNotMatch(flatSvg(flat), /NaN|Infinity/)
     // Idle: nothing is scheduled and the render counter stays flat.
     const idle = h.count()

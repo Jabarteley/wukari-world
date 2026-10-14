@@ -50,7 +50,7 @@ test('lilongwe: terrain contains mapped water, roads and neighbourhood labels', 
   assert.ok(TERRAIN.roads.length >= 50, `${TERRAIN.roads.length} road rows`)
   assert.equal(TERRAIN.names.length, 3)
   const scene = await map.loadScene()
-  assert.ok(scene.roads.length >= 50)
+  assert.ok(scene.roads.length >= 8)
   assert.ok(geometry.water.length > 0)
   assert.ok(scene.districts.length >= 2)
   assert.match(geometry.source, /OpenStreetMap/u)

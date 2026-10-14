@@ -2,13 +2,15 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "zoom-polish",
-      "appSha": "2c6d68bfc900b4457137f9dbfdd5afad5efccae2",
+      "id": "fixes-1",
+      "appSha": "7098b142a4210b5fa8ad9b8d63aa6887506db360",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
         "lagos",
         "paris",
-        "accra"
+        "port-moresby",
+        "accra",
+        "cotonou"
       ],
       "roundtrip": true,
       "browserOnly": true

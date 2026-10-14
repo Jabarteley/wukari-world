@@ -2,84 +2,84 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "us",
-      "table": "scripts/geo/factory/country-factory/us-factory-targets.json"
+      "id": "gr",
+      "table": "scripts/geo/factory/country-factory/gr-factory-targets.json"
     },
     {
-      "id": "hk",
-      "table": "scripts/geo/factory/country-factory/hk-factory-targets.json"
+      "id": "in",
+      "table": "scripts/geo/factory/country-factory/in-factory-targets.json"
     },
     {
-      "id": "sg",
-      "table": "scripts/geo/factory/country-factory/sg-factory-targets.json"
+      "id": "ca",
+      "table": "scripts/geo/factory/country-factory/ca-factory-targets.json"
     },
     {
-      "id": "id",
-      "table": "scripts/geo/factory/country-factory/id-factory-targets.json"
+      "id": "cz",
+      "table": "scripts/geo/factory/country-factory/cz-factory-targets.json"
     },
     {
-      "id": "kr",
-      "table": "scripts/geo/factory/country-factory/kr-factory-targets.json"
+      "id": "at",
+      "table": "scripts/geo/factory/country-factory/at-factory-targets.json"
     },
     {
-      "id": "br",
-      "table": "scripts/geo/factory/country-factory/br-factory-targets.json"
+      "id": "py",
+      "table": "scripts/geo/factory/country-factory/py-factory-targets.json"
     },
     {
-      "id": "no",
-      "table": "scripts/geo/factory/country-factory/no-factory-targets.json"
+      "id": "ch",
+      "table": "scripts/geo/factory/country-factory/ch-factory-targets.json"
     },
     {
-      "id": "nl",
-      "table": "scripts/geo/factory/country-factory/nl-factory-targets.json"
+      "id": "lv",
+      "table": "scripts/geo/factory/country-factory/lv-factory-targets.json"
     },
     {
-      "id": "pt",
-      "table": "scripts/geo/factory/country-factory/pt-factory-targets.json"
+      "id": "sa",
+      "table": "scripts/geo/factory/country-factory/sa-factory-targets.json"
     },
     {
-      "id": "ir",
-      "table": "scripts/geo/factory/country-factory/ir-factory-targets.json"
+      "id": "de",
+      "table": "scripts/geo/factory/country-factory/de-factory-targets.json"
     },
     {
-      "id": "jp",
-      "table": "scripts/geo/factory/country-factory/jp-factory-targets.json"
+      "id": "il",
+      "table": "scripts/geo/factory/country-factory/il-factory-targets.json"
     },
     {
-      "id": "by",
-      "table": "scripts/geo/factory/country-factory/by-factory-targets.json"
+      "id": "uz",
+      "table": "scripts/geo/factory/country-factory/uz-factory-targets.json"
     },
     {
-      "id": "vn",
-      "table": "scripts/geo/factory/country-factory/vn-factory-targets.json"
+      "id": "se",
+      "table": "scripts/geo/factory/country-factory/se-factory-targets.json"
     },
     {
-      "id": "th",
-      "table": "scripts/geo/factory/country-factory/th-factory-targets.json"
+      "id": "pr",
+      "table": "scripts/geo/factory/country-factory/pr-factory-targets.json"
     },
     {
-      "id": "ph",
-      "table": "scripts/geo/factory/country-factory/ph-factory-targets.json"
+      "id": "jo",
+      "table": "scripts/geo/factory/country-factory/jo-factory-targets.json"
     },
     {
-      "id": "tr",
-      "table": "scripts/geo/factory/country-factory/tr-factory-targets.json"
+      "id": "ro",
+      "table": "scripts/geo/factory/country-factory/ro-factory-targets.json"
     },
     {
-      "id": "be",
-      "table": "scripts/geo/factory/country-factory/be-factory-targets.json"
+      "id": "lk",
+      "table": "scripts/geo/factory/country-factory/lk-factory-targets.json"
     },
     {
-      "id": "ru",
-      "table": "scripts/geo/factory/country-factory/ru-factory-targets.json"
+      "id": "lt",
+      "table": "scripts/geo/factory/country-factory/lt-factory-targets.json"
     },
     {
-      "id": "qa",
-      "table": "scripts/geo/factory/country-factory/qa-factory-targets.json"
+      "id": "pl",
+      "table": "scripts/geo/factory/country-factory/pl-factory-targets.json"
     },
     {
-      "id": "fi",
-      "table": "scripts/geo/factory/country-factory/fi-factory-targets.json"
+      "id": "mt",
+      "table": "scripts/geo/factory/country-factory/mt-factory-targets.json"
     }
   ]
 }

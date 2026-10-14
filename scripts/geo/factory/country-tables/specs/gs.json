@@ -1,8 +1,11 @@
 {
   "iso": "GS",
   "country": "South Georgia and the South Sandwich Islands",
-  "geofabrik": "south-america",
-  "geofabrikDate": "261013",
+  "mirror": {
+    "url": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-south-georgia-261013.osm.pbf",
+    "upstream": "https://download.openstreetmap.fr/extracts/south-america/south_georgia_and_south_sandwich.osm.pbf",
+    "reason": "The Geofabrik south-america file is 4.1 GB and the hosted runner lost communication scanning it; the OpenStreetMap France South Georgia and South Sandwich extract (1.6 MB, dated 2026-10-13) holds admin relation 1983628, Grytviken node 5722989121 and the wreck refs."
+  },
   "cities": [
     {
       "id": "grytviken",

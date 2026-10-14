@@ -16,7 +16,7 @@ import type { Ident, Stage } from '../ambient/plan.ts';
 import { createWalkGrid } from '../walk-grid.ts';
 
 const TEN = Date.UTC(2026, 9, 12, 9, 0);
-const lanes = venueLanes([-14, -12, 14, 12], true);
+const lanes = venueLanes([-14, -12, 14, 12], true, () => true);
 const road: Road = { ax: -84, az: 6.875, bx: 84, bz: 6.875, speed: 5.5 };
 
 test('one instanced mesh of quads for the crowd and one for the traffic: two draw calls, two triangles a person, no shadows', () => {

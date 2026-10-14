@@ -12,8 +12,8 @@
  * BUDGET. The layer is told what the scene has left of its 17,000 triangles and 60 draw calls and builds no more figures than fit: the far
  * crowd is dropped first, then walkers and sitters. Regulars are drawn here only while there is room for them.
  *
- * STREET LIFE. An open place on a device that passes the gate (src/scene/street-life/plan.ts) also gets a busy street behind it: a few
- * hundred far cut-out people in one instanced mesh. The gate and the drawing are chunks of their own, fetched after the layer is built
+ * STREET LIFE. An open place on a device that passes the gate (src/scene/street-life/plan.ts) also gets a light crowd of cut-out people
+ * in one instanced mesh, on its own walkable floor only (never outside its boundary). The gate and the drawing are chunks of their own, fetched after the layer is built
  * (never named by the shared scene chunk). Once the gate says yes, the street's triangles and draw call are set aside and the figures are
  * counted again; it moves only inside the same window, and slow frames drop it at once (the people above stay exactly as they were).
  */
@@ -368,15 +368,17 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       if (disposed) return
       // The page must draw with WebGL2 (never so under node tests) unless the hand-testing switch says otherwise.
       streetChoice = plan.streetLifeFor({ ambientTier: ident.tier, kind: ident.kind, webgl: typeof (globalThis as { WebGL2RenderingContext?: unknown }).WebGL2RenderingContext === 'function', hints: plan.deviceHints(), forced: plan.pageForced() })
-      streetAsked = streetChoice ? plan.crowdFits(streetChoice, options.room()) : 0
-      if (!streetAsked) return
+      // Only on the venue's own walkable floor (never outside its boundary); no walk grid, no floor, no lanes: no crowd.
+      const walkable = plan.walkableFloor(stage.bounds, stage.free), lanes = plan.venueLanes(stage.bounds, stage.open, stage.free)
+      streetAsked = streetChoice && walkable ? plan.venueCrowd(streetChoice, options.room(), lanes) : 0
+      if (!streetAsked || !walkable) return
       streetGuard = plan.createFrameGuard()
       // Its room first: the figures are counted again without it (the far crowd gives way), placed where they stand now.
       budget()
       if (windowLeft <= 0) sync(current, 0, true)
       const module = await import('../street-life/draw.ts')
       if (disposed || street || streetDropped) return
-      street = module.createStreetLife(kit, { parent: group, seed: `${ident.cityId}|${ident.venueId}`, lanes: plan.venueLanes(stage.bounds, stage.open), roads: [], crowd: streetAsked, vehicles: 0, heightAt: () => plan.VENUE_GROUND, at: current })
+      street = module.createStreetLife(kit, { parent: group, seed: `${ident.cityId}|${ident.venueId}`, lanes, roads: [], crowd: streetAsked, vehicles: 0, heightAt, walkable, at: current })
       street.step(current, options.avatar())
       options.changed?.()
     }).catch(() => { streetDropped = true })

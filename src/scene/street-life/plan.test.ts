@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {
   HARD_CAP, TIER_CAPS, PERSON_TRIANGLES, ROOM_SHARE, CAR_LENGTH, GUARD_FRAMES, GUARD_SKIP, HEIGHT, PACE,
   forcedFrom, deviceHints, streetLifeFor, crowdFits, createFrameGuard, venueLanes, planCrowd, walkerAt, planTraffic, vehicleAt,
+  insideFloor, walkableFloor, venueCrowd, VENUE_MARGIN, VENUE_MIN_RUN, VENUE_CROWD, VENUE_SPACING,
 } from './plan.ts';
 import type { Lane, Road } from './plan.ts';
 import { SLOW_FRAME_MS, STALL_MS, deviceTier } from './plan.ts';
@@ -89,20 +90,47 @@ test('the frame guard: steady 60 fps is ok; a slow mean or one stall drops it fo
 
 const bounds = [-14.2, -12.2, 14.2, 12.2] as const;
 
-test('the lanes behind an open venue lie wholly outside where the player walks, and reach past both sides', () => {
-  const lanes = venueLanes(bounds, true);
-  assert.equal(lanes.length, 4);
-  assert.equal(venueLanes(bounds, false).length, 3);
-  for (const lane of lanes) {
-    const half = lane.width / 2;
-    const outside = Math.max(lane.az, lane.bz) + half < bounds[1] || Math.max(lane.ax, lane.bx) + half < bounds[0];
-    assert.ok(outside, `lane ${JSON.stringify(lane)} is outside the walk bounds`);
-  }
-  assert.ok(lanes.slice(0, 3).every((lane) => lane.ax <= bounds[0] - 16 && lane.bx >= bounds[2] + 16), "past both sides, to where the ground disc fades");
+test('a venue\'s lanes lie on its own floor: inside the walk bounds by the margin, cut round what is in the way, none without a grid', () => {
+  const open = venueLanes(bounds, true, () => true), shut = venueLanes(bounds, false, () => true);
+  assert.equal(open.length, 4);
+  assert.equal(shut.length, 2);
+  const corners = (lane: Lane) => { const h = lane.width / 2; return [[lane.ax, lane.az], [lane.bx, lane.bz]].flatMap(([x, z]) => [[x! - h, z! - h], [x! + h, z! + h]]); };
+  for (const lane of open) for (const [x, z] of corners(lane)) assert.ok(insideFloor(bounds, x!, z!, VENUE_MARGIN), `lane ${JSON.stringify(lane)} is inside the walk bounds`);
+  // Something in the way: a pond across the back row cuts it in two, and nothing of either piece stands in it.
+  const pond = (x: number, z: number) => !(Math.abs(x) < 3 && z < -6);
+  const cut = venueLanes(bounds, false, pond);
+  assert.ok(cut.length >= 2 && cut.every((lane) => Math.hypot(lane.bx - lane.ax, lane.bz - lane.az) >= VENUE_MIN_RUN));
+  for (const lane of cut) for (let t = 0; t <= 1; t += 0.05) assert.ok(pond(lane.ax + (lane.bx - lane.ax) * t, lane.az + (lane.bz - lane.az) * t), 'never through the pond');
+  // The hard fallback: no grid, a broken or tiny floor, or a floor with nowhere free gives no lanes, so no crowd.
+  assert.deepEqual(venueLanes(bounds, true), []);
+  assert.deepEqual(venueLanes(bounds, true, null), []);
+  assert.deepEqual(venueLanes([0, 0, 3, 3], true, () => true), []);
+  assert.deepEqual(venueLanes([0, 0, Number.NaN, 30], true, () => true), []);
+  assert.deepEqual(venueLanes(bounds, true, () => false), []);
+  assert.equal(walkableFloor(bounds, undefined), null);
+  const floor = walkableFloor(bounds, () => true)!;
+  assert.equal(floor(0, 0), true);
+  assert.equal(floor(bounds[0] - 1, 0), false, 'outside the boundary');
+  assert.equal(floor(0, bounds[1] - 3), false, 'behind the back edge');
+  assert.equal(floor(bounds[2] - VENUE_MARGIN / 2, 0), false, 'within the margin of the edge');
+});
+
+test('a venue gets a light crowd: its tier\'s venue cap, one person per spacing of lane, none without lanes', () => {
+  const full = streetLifeFor({ ambientTier: 'full', kind: 'park', webgl: true, hints: { cores: 8, memory: 8 } })!;
+  const lite = streetLifeFor({ ambientTier: 'full', kind: 'park', webgl: true, hints: { cores: 4, memory: 4 } })!;
+  const room = { triangles: 9_000, meshes: 40 }, lanes = venueLanes([-30, -30, 30, 30], true, () => true);
+  assert.equal(venueCrowd(full, room, lanes), VENUE_CROWD.full);
+  const small = venueLanes(bounds, true, () => true), length = small.reduce((a, l) => a + Math.hypot(l.bx - l.ax, l.bz - l.az), 0);
+  assert.equal(venueCrowd(full, room, small), Math.min(VENUE_CROWD.full, Math.floor(length / VENUE_SPACING)));
+  assert.equal(venueCrowd(lite, room, lanes), VENUE_CROWD.lite);
+  assert.equal(venueCrowd(full, room, []), 0);
+  assert.equal(venueCrowd(full, { triangles: 0, meshes: 0 }, lanes), 0);
+  const short = [{ ax: 0, az: 0, bx: 10, bz: 0, width: 1.4 }];
+  assert.equal(venueCrowd(full, room, short), Math.floor(10 / VENUE_SPACING));
 });
 
 test('the crowd: exactly the count asked for (never past the hard cap), spread by lane length, varied, and the same every time', () => {
-  const lanes = venueLanes(bounds, true);
+  const lanes = venueLanes(bounds, true, () => true);
   const crowd = planCrowd('lagos|market', lanes, 240);
   assert.equal(crowd.length, 240);
   assert.deepEqual(planCrowd('lagos|market', lanes, 240), crowd, 'deterministic');

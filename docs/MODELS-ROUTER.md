@@ -62,14 +62,23 @@ answer is `no-model`; nothing is sent. Free models see only lines with no player
 
 ## Free providers' rates
 
-`openrouterFreePerMinute` (20) and `openrouterFreePerDay` (50; set 1000 once US$10 of credit has ever been bought on the OpenRouter
-account), `gatewayFreePerMinute` (20) and `gatewayFreePerDay` (500; our own caps). A free model is tried only while its provider has room;
-otherwise the next in the list is tried.
+**OpenRouter** (official page: <https://openrouter.ai/docs/api-reference/limits>): free models are limited to 20 requests a minute, and to 50 a day
+while less than US$10 of credit has ever been bought on the account, 1,000 a day from US$10. So `openrouterFreePerMinute` is 20 and
+`openrouterFreePerDay` is 50; **set it to 1000 once the owner has bought US$10 of credit** (not yet confirmed, so the number is unchanged).
+
+**Vercel AI Gateway** (official page: <https://vercel.com/docs/ai-gateway/rate-limits>, updated 2026-09-08): it publishes **no fixed numbers**. The free tier has
+"lower per-model limits", the paid tier has none from the gateway (only the providers' own), and a 429 may carry a `retry-after` header, in seconds or as an
+HTTP date. So the router has **no daily cap of its own for the gateway** (the old guessed 500 a day is gone, and so is the `gatewayFreePerDay` setting). It keeps one
+generous safety limit, `gatewayFreePerMinute` (60), so a bug cannot flood the gateway; the gateway itself tells us when a model needs rest.
+
+A free model is tried only while its provider has room; otherwise the next in the list is tried.
 
 ## Failures
 
-A model that fails (5xx or any bad status, 429, timeout, a bad answer, 404 "model gone") falls to the next in the list and rests for 5
-minutes (30 for a gone model). A rejected key (401/403) rests the whole provider for 10 minutes. If every model is resting they are tried
+A model that fails (5xx or any bad status, timeout, a bad answer, 404 "model gone") falls to the next in the list and rests for 5
+minutes (30 for a gone model). **A 429 rests that one model for the time in its `retry-after` header** (whole or decimal seconds, or an HTTP date; at least a
+second, at most an hour at a time: `retryAfterMs` in `server/models/router.ts`); the other models go on. When the header is missing or cannot be read, the model
+backs off 1, then 2, then 5 minutes on consecutive 429s, and starts again at 1 minute after it answers once. A rejected key (401/403) rests the whole provider for 10 minutes. If every model is resting they are tried
 anyway. The total time of a request is `timeoutMs` (the guide: `COMPANION_TIMEOUT_MS`); each model but the last gets 60 percent of what is left.
 
 ## The weekly report

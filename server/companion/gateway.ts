@@ -71,7 +71,7 @@ export function companionConfig(env: (name: string) => string, anotherProvider =
 export interface ChatMessage { role: 'system' | 'user' | 'assistant'; content: string }
 export interface Usage { input: number; output: number }
 export type GatewayFailure = 'timeout' | 'status' | 'network' | 'body' | 'auth' | 'model' | 'rate';
-export type GatewayAnswer = { ok: true; text: string; model: string; usage: Usage | null } | { ok: false; why: GatewayFailure };
+export type GatewayAnswer = { ok: true; text: string; model: string; usage: Usage | null } | { ok: false; why: GatewayFailure; /** A 429's `retry-after` header as the provider wrote it (seconds, or an HTTP date); the model router reads it (server/models/router.ts retryAfterMs). */ retryAfter?: string };
 export type GatewayAttempt = GatewayAnswer & { role: 'primary' | 'fallback' };
 type Fetcher = (url: string, init?: object) => Promise<unknown>;
 
@@ -118,7 +118,7 @@ export async function once(fetcher: Fetcher, config: Target, model: string, role
     if (!isResponse(response)) return { ok: false, why: 'network' };
     if (response.status === 401 || response.status === 403) return { ok: false, why: 'auth' };
     if (response.status === 404) return { ok: false, why: 'model' };
-    if (response.status === 429) return { ok: false, why: 'rate' };
+    if (response.status === 429) { const wait = response.headers?.get?.('retry-after'); return { ok: false, why: 'rate', ...(typeof wait === 'string' && wait ? { retryAfter: wait.slice(0, 80) } : {}) }; }
     if (response.status === 400 && !plain) {
       const said = await Promise.race([response.text(), new Promise<string>((resolve) => { control.signal.addEventListener('abort', () => resolve('')); })]).catch(() => '');
       if (/temperature|max_tokens|max_completion_tokens/i.test(said.slice(0, 2000))) { clearTimeout(timer); return once(fetcher, config, model, role, messages, user, budgetMs, true); }

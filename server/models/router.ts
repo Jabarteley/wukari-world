@@ -8,10 +8,12 @@
  *
  * WHAT IT DECIDES, in this order, for each model of the purpose's list (free first, then paid):
  *   1. A provider with no key is skipped. A model that failed lately (5xx, 429, timeout, 404 "gone", a bad answer) is skipped for a few
- *      minutes (a gone model for half an hour); a provider that refused its key is skipped for ten. If every model is resting, they are tried anyway.
+ *      minutes (a 429: for its `retry-after`) (a gone model for half an hour); a provider that refused its key is skipped for ten. If every model is resting, they are tried anyway.
  *   2. THE NO-TRAINING RULE: with carriesPlayerWords true only the PAID models are tried, and an OpenRouter request also asks for
  *      providers that keep no data (`provider.data_collection: deny`). A free model only ever sees lines with no player data.
- *   3. A free model of a provider is tried only while that provider's free requests per minute and per day have room (settings).
+ *   3. A free model of a provider is tried only while that provider's free requests per minute (and, for OpenRouter, per day) have room (settings). The
+ *      Vercel AI Gateway has NO daily cap of ours: its free tier has lower per-model limits that it does not publish, so it is the provider that tells us, with a
+ *      429 and perhaps a `retry-after`; that one model then rests for the time given (see retryAfterMs), the others go on.
  *   4. THE BUDGET: a paid model is tried only when today's spend, plus what requests in flight may still cost, plus this request's worst
  *      case (every prompt token and every allowed output token) stays under the day's cap (US$2.00). The check and the reservation
  *      happen in one synchronous step, so a burst of parallel requests cannot all pass the same check. A cost is added from the answer's
@@ -31,6 +33,24 @@ export const DAY_MS = 86400000;
 /** US$ 2.00 in millionths of a dollar. The cap setting can only lower it. */
 export const HARD_CAP_MICRO = 2000000;
 export const DEFAULT_REST_MS = 5 * 60000, GONE_REST_MS = 30 * 60000, AUTH_REST_MS = 10 * 60000;
+/** A 429 without a usable `retry-after`: the model rests 1, 2, then 5 minutes on consecutive 429s (a success starts it again). */
+export const RATE_BACKOFF_MS = [60000, 120000, DEFAULT_REST_MS] as const;
+/** The longest a 429's `retry-after` is obeyed at once (a longer wait is asked again after this, and answered with a fresh `retry-after`). */
+export const RETRY_AFTER_MAX_MS = 60 * 60000;
+
+/**
+ * A 429's `retry-after` header (RFC 9110): whole or decimal SECONDS ("30"), or an HTTP DATE ("Wed, 21 Oct 2026 07:28:00 GMT"), in milliseconds from `now`.
+ * null when it is missing or not understood (junk, a negative number, a date already past counts as 1 second). Clamped to one second .. RETRY_AFTER_MAX_MS.
+ */
+export function retryAfterMs(header: unknown, now: number): number | null {
+  if (typeof header !== 'string') return null;
+  const text = header.trim();
+  let ms: number;
+  if (/^\d+(?:\.\d+)?$/.test(text)) ms = Number(text) * 1000;
+  else if (/^[A-Za-z]{3,9},? .*\d{4}|^\d{1,2} [A-Za-z]{3} \d{4}/.test(text)) { const at = Date.parse(text); if (!Number.isFinite(at)) return null; ms = at - now; }
+  else return null;
+  return Number.isFinite(ms) ? Math.min(RETRY_AFTER_MAX_MS, Math.max(1000, Math.ceil(ms))) : null;
+}
 export const PLAYERS_KEPT = 5000, DAYS_KEPT = 14;
 const PRIMARY_SHARE = 0.6;
 
@@ -53,7 +73,8 @@ export interface ModelReport { at: number; openrouter: ProviderReport; gateway: 
 export interface ProviderReport { ok: boolean; free: number; appeared: string[]; left: string[]; /** True when there was no earlier list to compare with. */ first: boolean }
 export interface Stored { days: Record<string, DayLedger>; report?: ModelReport; /** Free model ids last seen, per provider. */ freeSeen?: Partial<Record<Provider, string[]>>; reportTriedAt?: number }
 
-export interface Limits { dailyCapMicro: number; playerRequests: number; playerMicro: number; freePerMinute: Record<Provider, number>; freePerDay: Record<Provider, number> }
+/** `freePerDay`: a provider with no entry has no daily cap of ours (the Vercel AI Gateway: its free tier has "lower per-model limits" with no published number, and it answers 429 when one is reached). */
+export interface Limits { dailyCapMicro: number; playerRequests: number; playerMicro: number; freePerMinute: Record<Provider, number>; freePerDay: Partial<Record<Provider, number>> }
 export interface Deps {
   now(): number
   fetch(url: string, init?: object): Promise<unknown>
@@ -99,7 +120,7 @@ export function createRouter(deps: Deps) {
   const ready = (): Promise<void> => (loading ??= deps.load().then((found) => { if (found && typeof found.days === 'object' && found.days !== null) stored = { ...found, days: { ...found.days } }; }, () => {}));
   /** Micro-dollars promised to requests in flight. */
   let reserved = 0;
-  const resting = new Map<string, number>(), minute: Record<string, number[]> = {};
+  const resting = new Map<string, number>(), minute: Record<string, number[]> = {}, strikes = new Map<string, number>();
   let saving = false, dirty = false;
 
   const dayNumber = (): number => Math.floor(deps.now() / DAY_MS);
@@ -135,7 +156,7 @@ export function createRouter(deps: Deps) {
   function freeRoom(provider: Provider, day: DayLedger): boolean {
     const limits = deps.limits(), now = deps.now();
     const recent = (minute[provider] = (minute[provider] ?? []).filter((at) => now - at < 60000));
-    return recent.length < limits.freePerMinute[provider] && (day.free[provider] ?? 0) < limits.freePerDay[provider];
+    return recent.length < limits.freePerMinute[provider] && (day.free[provider] ?? 0) < (limits.freePerDay[provider] ?? Infinity);
   }
 
   async function ask(input: AskInput): Promise<AskResult> {
@@ -185,6 +206,7 @@ export function createRouter(deps: Deps) {
       const answer = await once((url, init) => deps.fetch(url, init), target.target, entry.id, index === 0 ? 'primary' : 'fallback', input.messages, input.playerId ?? 'anonymous', Math.floor(more ? left * PRIMARY_SHARE : left));
       reserved = Math.max(0, reserved - reserve);
       if (answer.ok) {
+        strikes.delete(entryKey(entry));
         const sentTokens = Math.ceil(charsOf(input.messages) / 4), gotTokens = Math.ceil(answer.text.length / 4);
         const usage = answer.usage, inTok = usage?.input ?? sentTokens, outTok = usage?.output ?? gotTokens;
         const micro = free ? 0 : Math.round(inTok * price.input + outTok * price.output);
@@ -201,7 +223,13 @@ export function createRouter(deps: Deps) {
       tally(day.byModel, entryKey(entry), () => ({ n: 0, micro: 0, input: 0, output: 0, failed: 0 })).failed++;
       if (player) player.n++;
       persist();
-      const rest = answer.why === 'model' ? GONE_REST_MS : DEFAULT_REST_MS;
+      // A 429 rests that model for the time the provider named (`retry-after`); without a usable one it backs off 1, 2, then 5 minutes. Other failures rest 5 minutes (30 when gone).
+      let rest = answer.why === 'model' ? GONE_REST_MS : DEFAULT_REST_MS;
+      if (answer.why === 'rate') {
+        const strike = (strikes.get(entryKey(entry)) ?? 0) + 1;
+        strikes.set(entryKey(entry), strike);
+        rest = retryAfterMs(answer.retryAfter, deps.now()) ?? RATE_BACKOFF_MS[Math.min(strike, RATE_BACKOFF_MS.length) - 1]!;
+      }
       if (answer.why === 'auth') resting.set(`provider:${entry.provider}`, deps.now() + AUTH_REST_MS);
       else resting.set(entryKey(entry), deps.now() + rest);
     }

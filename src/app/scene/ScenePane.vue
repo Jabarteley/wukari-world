@@ -21,7 +21,6 @@ import { landingCodeSettled } from '../features/start/warmLanding.ts'
 import { telemetry } from '../../telemetry/index.ts'
 import { noteChunkFailure } from '../state/updateNotice.ts'
 import { social } from '../features/social/useSocial.ts'
-import { browserSceneSupport } from './sceneSupport.ts'
 import { lightOn } from '../../lightMode.ts'
 import { placeNow } from '../features/places/placeState.ts'
 
@@ -99,7 +98,7 @@ onMounted(() => {
   setTimeout(async () => {
     try {
       // A browser that cannot draw it is told so before it downloads the scene (the biggest download in the game), with what to do instead.
-      const support = browserSceneSupport()
+      const support = (await import('./sceneSupport.ts')).browserSceneSupport()
       if (!support.ok) { why.value = support.reason; telemetry.sceneReady(false); waiting.value = true; failed.value = true; return }
       await landingCodeSettled() // a new device is looking at the landing's 3D preview: its code goes first
       // Where the scene starts is where the server says the player is, never the copy this device kept.

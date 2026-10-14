@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { FRAME_SLACK_MS, frameAction, gatedCancel, gatedRequest, isCovered, sceneCovered, setCovered } from './frame-gate.ts'
-import { forgetLight, setLight } from '../lightMode.ts'
+import { forgetLight, setLight } from '../lightControl.ts'
 import { createMotionLoop } from './motion-loop.ts'
 
 const base = { hidden: false, covered: false, now: 1000, last: 990, capFps: 0 }

@@ -4,8 +4,8 @@
  * reads as dense and tall from above and not as a flat board. Pure data and arithmetic: no three, no DOM, and no value imports at all,
  * so the lazy chunk it lives in pulls nothing new into the maps chunk, the shared scene chunk or the first download.
  *
- *   skylineOf(pack)        'low' | 'mid' | 'high': how tall the city's core may grow, from its built-up area and how many places and
- *                          neighbourhoods it has (no per-city table, no new data); peakOf(sizeScore(pack)) is the city's own peak in metres
+ *   heightClassOf(pack)    how tall the city may grow: its curated tier (./aerial-tiers.ts, hard caps 12/25/70/150/300 m) or, for an
+ *                          id not listed, the area-and-roads estimate (skylineOf, peakOf(sizeScore)) capped at tier 3
  *   downtownOf(pack, hints) the downtown core: the densest cluster of commercial and civic venues (by kind) round the catalogue point
  *                          (the pack's frame origin, the OSM city node), on land; the origin of the density and the height model
  *   densityAt(field, x, z) 0..1: how built-up a point is, from the distance to the downtown, the land use (the pack's fabric styles and
@@ -21,6 +21,7 @@
  * Everything is a function of the pack and the city id (seeded), so every device sees the same skyline.
  */
 import type { PackFabric, PackLand, PackRoad, PackWater, Point2, Rect, XZ } from './types.ts';
+import { cityTier, TIER_CAP_M } from './aerial-tiers.ts';
 
 // ---- caps ------------------------------------------------------------------------------------------------------------------
 /** The most triangles one frame of the city map may draw during the aerial pass of the dive: the city itself plus everything here. */
@@ -82,6 +83,8 @@ export interface AerialPack {
   id: string;
   /** The map's projection frame: a pack that has one is drawn round its origin, the city's catalogue point (the OSM city node). */
   frame?: { unitsPerKm: number };
+  /** The ground colour round a city drawn city-wide: its ground goes on past the built-up outline (./types.ts CityPack). */
+  surround?: string;
   rails?: readonly { stations: readonly XZ[] }[];
   land: readonly PackLand[];
   roads: readonly PackRoad[];
@@ -140,6 +143,44 @@ export function skylineOf(pack: Pick<AerialPack, 'land' | 'sites' | 'districts' 
   return score >= 2.7 ? 'high' : score >= 2 ? 'mid' : 'low';
 }
 
+/** The share of the hard cap the core's towers grow to before the log-normal spread and the landmarks (which the cap clips). */
+export const PEAK_SHARE = 0.8;
+/** The tallest a low-rise historic centre (a `~` city in ./aerial-tiers.ts: Paris, Rome, Prague) grows, in metres. */
+export const LOW_CORE_M = 35;
+/** A low-rise city's tower district grows to this share of its peak. */
+export const DISTRICT_SHARE = 0.65;
+export interface HeightClass { tier: number | null; skyline: Skyline; capM: number; peakM: number; lowCore: boolean }
+/**
+ * How tall the city may grow: its curated tier (./aerial-tiers.ts) and that tier's hard cap, or for an id not listed the pack's
+ * area-and-roads estimate (peakOf), capped at tier 3.
+ */
+export function heightClassOf(pack: Pick<AerialPack, 'id' | 'land' | 'sites' | 'districts' | 'roads'>): HeightClass {
+  const curated = cityTier(pack.id);
+  if (curated) {
+    const capM = TIER_CAP_M[curated.tier]!;
+    return { tier: curated.tier, skyline: curated.tier >= 3 ? 'high' : curated.tier === 2 ? 'mid' : 'low', capM, peakM: capM * PEAK_SHARE, lowCore: curated.lowCore };
+  }
+  const score = sizeScore(pack), capM = Math.min(TIER_CAP_M[3]!, peakOf(score) / PEAK_SHARE);
+  return { tier: null, skyline: score >= 2.7 ? 'high' : score >= 2 ? 'mid' : 'low', capM, peakM: capM * PEAK_SHARE, lowCore: false };
+}
+/**
+ * A city drawn city-wide whose mapped built-up land leaves most of its centre bare (Paris's outline is a scatter of small fragments,
+ * none downtown): the aerial city then stands on all the ground round the centre that is not water, as the real city does.
+ */
+export function sparseCentre(pack: AerialPack, at: XZ): boolean {
+  // Not an outpost (a glacier station or a reef is bare for a reason), and only where the ground goes on round the outline.
+  if (!pack.surround || cityTier(pack.id)?.tier === 0) return false;
+  const r = 30, mask = groundMask(pack, { x: at.x, z: at.z, r }, [], false);
+  let land = 0, dry = 0;
+  for (let row = 0; row < mask.size; row++) for (let col = 0; col < mask.size; col++) {
+    if (Math.hypot(mask.x0 + (col + 0.5) * mask.cell - at.x, mask.z0 + (row + 0.5) * mask.cell - at.z) > r) continue;
+    const bits = mask.bits[row * mask.size + col]!;
+    if (bits & WATER) continue;
+    dry += 1; if (bits & LAND) land += 1;
+  }
+  return dry > 0 && land / dry < 0.25;
+}
+
 // ---- the downtown ----------------------------------------------------------------------------------------------------------
 /** A venue of the city with its kind (src/types/content.ts SceneKind), when the caller knows it. */
 export interface AerialVenue extends XZ { kind?: string }
@@ -154,6 +195,8 @@ export const KIND_WEIGHT: Readonly<Record<string, number>> = Object.freeze({
 });
 /** The downtown search: how far from the catalogue point (map units), the kernel's width, the prior's scale. */
 export const DOWNTOWN_SEARCH = 100, DOWNTOWN_KERNEL = 10, DOWNTOWN_PRIOR = 12;
+/** A cluster at least this heavy (kernel-weighted venue weight) may move the downtown as far as it lies; a lighter one only part of a km. */
+export const STRONG_CLUSTER = 3;
 /** The point the city is drawn round when nothing better is known: the catalogue point (a pack's frame origin), else the middle of its places. */
 export function priorOf(pack: Pick<AerialPack, 'sites' | 'core' | 'frame'>): XZ {
   return pack.frame ? { x: 0, z: 0 } : centreOf(pack);
@@ -174,10 +217,10 @@ export function downtownOf(pack: AerialPack, hints: { prior?: XZ; venues?: reado
   for (const area of pack.fabric ?? []) if (area.style === 'towers') points.push({ x: area.circle?.[0] ?? (area.box[0] + area.box[2]) / 2, z: area.circle?.[1] ?? (area.box[1] + area.box[3]) / 2, w: 4 });
   for (const rail of pack.rails ?? []) for (const station of rail.stations) points.push({ x: station.x, z: station.z, w: 0.5 });
   for (const item of pack.districts ?? []) if (!item.water) points.push({ x: item.x, z: item.z, w: 0.3 });
-  const mask = groundMask(pack, { x: prior.x, z: prior.z, r: DOWNTOWN_SEARCH }, [], false);
+  const mask = groundMask(pack, { x: prior.x, z: prior.z, r: DOWNTOWN_SEARCH }, [], false, sparseCentre(pack, prior));
   const near = points.filter((point) => Math.hypot(point.x - prior.x, point.z - prior.z) <= DOWNTOWN_SEARCH + DOWNTOWN_KERNEL * 3);
   const step = 1.5, span = Math.floor(DOWNTOWN_SEARCH / step), k2 = 2 * DOWNTOWN_KERNEL * DOWNTOWN_KERNEL;
-  let best: XZ | null = null, bestScore = -1;
+  let best: XZ | null = null, bestScore = -1, bestSum = 0;
   for (let j = -span; j <= span; j++) for (let i = -span; i <= span; i++) {
     const x = prior.x + i * step, z = prior.z + j * step, d2 = (i * i + j * j) * step * step;
     if (d2 > DOWNTOWN_SEARCH * DOWNTOWN_SEARCH) continue;
@@ -188,9 +231,19 @@ export function downtownOf(pack: AerialPack, hints: { prior?: XZ; venues?: reado
     let sum = 0.5;
     for (const point of near) { const dx = x - point.x, dz = z - point.z, q = dx * dx + dz * dz; if (q < k2 * 4.5) sum += point.w * Math.exp(-q / k2); }
     const score = sum / (1 + d2 / (DOWNTOWN_PRIOR * DOWNTOWN_PRIOR));
-    if (score > bestScore + 1e-9) { bestScore = score; best = { x, z }; }
+    if (score > bestScore + 1e-9) { bestScore = score; best = { x, z }; bestSum = sum - 0.5; }
   }
-  return best ?? prior;
+  if (!best) return prior;
+  // A weak cluster (a couple of venues) may not drag the downtown far from the catalogue point: it is pulled back to a reach that grows
+  // with the cluster's weight (Toronto's scattered venues no longer move it up Bay Street), and kept on land.
+  const shift = Math.hypot(best.x - prior.x, best.z - prior.z), reach = bestSum >= STRONG_CLUSTER ? Infinity : DOWNTOWN_KERNEL * Math.max(0.25, bestSum / STRONG_CLUSTER);
+  if (shift <= reach) return best;
+  for (let t = reach / shift; t <= 1; t += 0.05) {
+    const x = prior.x + (best.x - prior.x) * t, z = prior.z + (best.z - prior.z) * t, col = Math.floor((x - mask.x0) / mask.cell), row = Math.floor((z - mask.z0) / mask.cell);
+    const bits = mask.bits[row * mask.size + col] ?? 0;
+    if (bits & LAND && !(bits & WATER)) return { x, z };
+  }
+  return best;
 }
 /** How far the tower core reaches from the downtown (map units): about 0.6 km in a town, 3 km in a metropolis. */
 export function coreReachOf(peakM: number): number { return 6 + 24 * clamp01((peakM - 12) / 228); }
@@ -230,6 +283,16 @@ export interface DensityField {
   peakM: number;
   /** How far the tower core reaches round the centre (map units, coreReachOf). */
   core: number;
+  /** The hard cap (metres): no modelled building is taller. */
+  capM: number;
+  /** The curated tier (./aerial-tiers.ts), null when the city is not listed. */
+  tier: number | null;
+  /** A low-rise historic centre: the core is held to LOW_CORE_M, towers stand outside it. */
+  lowCore: boolean;
+  /** The centre's built-up land is too sparse to build on: all dry ground round it counts as land (sparseCentre). */
+  fill: boolean;
+  /** A low-rise centre's tower district (towerDistrictOf): where its towers stand, outside the historic core. */
+  district: XZ | null;
   fabric: readonly PackFabric[];
   areas: readonly { x: number; z: number; r: number; tone: 'old' | 'planned' }[];
   /** Sub-centres: places and named neighbourhoods, with their pull (0..1) and reach (map units). */
@@ -238,22 +301,49 @@ export interface DensityField {
 /** What the caller knows beyond the pack: the catalogue point and the venues' kinds (./map3d.ts passes both). */
 export interface CityHints { prior?: XZ; venues?: readonly AerialVenue[] }
 export function densityField(pack: AerialPack, extra: readonly XZ[] = [], hints: CityHints = {}): DensityField {
-  const seed = seedOf(pack.id), score = sizeScore(pack), skyline: Skyline = score >= 2.7 ? 'high' : score >= 2 ? 'mid' : 'low', peakM = peakOf(score);
+  const seed = seedOf(pack.id), { skyline, peakM, capM, tier, lowCore } = heightClassOf(pack);
   const centre = downtownOf(pack, hints), radius = radiusOf(pack, centre, skyline);
   const reach = Math.max(6, radius * 0.14);
   // A venue pulls by its kind: an office block is a local peak, a park or a beach hardly one (parks stay low).
   const venues = hints.venues ?? Object.values(pack.sites);
   const pullOf = (venue: AerialVenue): number => Math.max(0.15, Math.min(0.6, 0.15 + 0.12 * (typeof venue.kind === 'string' ? KIND_WEIGHT[venue.kind] ?? 1 : 1)));
-  const hubs = [
+  const hubs: { x: number; z: number; pull: number; reach: number }[] = [
     ...venues.map((site) => ({ x: site.x, z: site.z, pull: pullOf(site), reach })),
     ...(pack.districts ?? []).filter((item) => !item.water).map((item) => ({ x: item.x, z: item.z, pull: 0.4, reach: Math.max(reach, item.size * 0.5) })),
     ...extra.map((item) => ({ x: item.x, z: item.z, pull: 0.55, reach })),
   ];
-  return { seed, centre, radius, skyline, peakM, core: coreReachOf(peakM), fabric: pack.fabric ?? [], areas: pack.areas ?? [], hubs };
+  const core = coreReachOf(peakM), district = lowCore ? towerDistrictOf(venues, centre, core, radius) : null;
+  // The tower district is a strong sub-centre, so its blocks are dense enough to rise.
+  if (district) hubs.push({ x: district.x, z: district.z, pull: 1.25, reach: core * 0.45 });
+  return { seed, centre, radius, skyline, peakM, capM, tier, lowCore, district, fill: sparseCentre(pack, centre), core, fabric: pack.fabric ?? [], areas: pack.areas ?? [], hubs };
+}
+/**
+ * Where a low-rise historic city keeps its towers (Paris's La Défense stands outside the old centre): the heaviest cluster of venues
+ * (by kind) beyond the historic core and inside the aerial city; null when there is none.
+ */
+export function towerDistrictOf(venues: readonly AerialVenue[], centre: XZ, core: number, radius: number): XZ | null {
+  const weight = (venue: AerialVenue) => (typeof venue.kind === 'string' ? KIND_WEIGHT[venue.kind] ?? 1 : 1);
+  let best: XZ | null = null, bestScore = 0;
+  for (const venue of venues) {
+    const d = Math.hypot(venue.x - centre.x, venue.z - centre.z);
+    if (d < core * 1.6 || d > radius * 0.75 || weight(venue) < 1.5) continue;
+    let score = 0;
+    for (const other of venues) score += weight(other) * Math.exp(-((other.x - venue.x) ** 2 + (other.z - venue.z) ** 2) / (2 * DOWNTOWN_KERNEL * DOWNTOWN_KERNEL));
+    score /= 1 + d / radius;
+    if (score > bestScore + 1e-9) { bestScore = score; best = { x: venue.x, z: venue.z }; }
+  }
+  return best;
 }
 /** The share of the city's peak a building may reach here: whole in the tower core round the downtown, tapering to OUTER_SHARE outside it. */
-export function tallnessAt(field: Pick<DensityField, 'centre' | 'core'>, x: number, z: number): number {
+export function tallnessAt(field: Pick<DensityField, 'centre' | 'core'> & Partial<Pick<DensityField, 'lowCore' | 'peakM' | 'district'>>, x: number, z: number): number {
   const d = Math.hypot(x - field.centre.x, z - field.centre.z) / field.core;
+  // A low-rise historic centre: held to LOW_CORE_M within the core; beyond it OUTER_SHARE of the peak, rising to a modest tower
+  // district (DISTRICT_SHARE of the peak) round its towerDistrictOf.
+  if (field.lowCore && field.peakM) {
+    if (d < 1.2) return Math.min(1, LOW_CORE_M / field.peakM);
+    const t = field.district ? Math.hypot(x - field.district.x, z - field.district.z) / (field.core * 0.5) : Infinity;
+    return OUTER_SHARE + (DISTRICT_SHARE - OUTER_SHARE) * Math.exp(-t * t);
+  }
   return OUTER_SHARE + (1 - OUTER_SHARE) * Math.exp(-d * d);
 }
 /** The land use under a point: the first fabric area that holds it (as the city builder decides), or 'none'. */
@@ -313,8 +403,14 @@ export interface Ribbon { points: readonly XZ[]; width: number; trunk: boolean }
 export interface AerialPlan {
   id: string;
   skyline: Skyline;
-  /** The city's own peak (metres, before VERTICAL): no modelled building passes 1.6 times it. */
+  /** The city's own peak (metres, before VERTICAL): what the core's towers grow to before the spread. */
   peakM: number;
+  /** The hard cap (metres): no modelled building is taller (its tier's cap, ./aerial-tiers.ts). */
+  capM: number;
+  /** The curated tier, null for a city not listed (the area-and-roads estimate, capped at tier 3). */
+  tier: number | null;
+  /** True when the centre's mapped land was too sparse and the dry ground round it was built on (sparseCentre). */
+  filled: boolean;
   /** The downtown (downtownOf): the middle of the aerial city and the origin of its height model. */
   centre: XZ;
   radius: number;
@@ -419,10 +515,11 @@ export const PARK_TONES = ['#6f9c5a', '#7aa863', '#5f8f52', '#86ad6a'];
 export const CANOPY_TONES = ['#3f7a45', '#4b8a4e', '#356b3e', '#5a9455'];
 
 /** The raster of the ground round one area of the aerial city: land, water, roads (and their directions), clearings round the places. */
-function groundMask(pack: AerialPack, area: { x: number; z: number; r: number }, clear: readonly { x: number; z: number; r: number }[], streets = true): Mask {
+function groundMask(pack: AerialPack, area: { x: number; z: number; r: number }, clear: readonly { x: number; z: number; r: number }[], streets = true, fill = false): Mask {
   const cell = Math.max(0.5, (area.r * 2) / 440), size = Math.ceil((area.r * 2) / cell) + 2;
   const mask: Mask = { x0: area.x - area.r - cell, z0: area.z - area.r - cell, cell, size, bits: new Uint8Array(size * size), angle: new Float32Array(size * size).fill(NaN) };
   for (const entry of pack.land) if (entry.kind !== 'sand') scanFill([entry.points, ...(entry.holes ?? [])], mask, (i) => { mask.bits[i]! |= LAND; });
+  if (fill) mask.bits.forEach((_, i) => { mask.bits[i]! |= LAND; });
   for (const entry of pack.water ?? []) scanFill([entry.points, ...(entry.holes ?? [])], mask, (i) => { mask.bits[i]! |= WATER; });
   for (const entry of pack.waters ?? []) {
     if (entry.kind === 'lake') scanFill([entry.points], mask, (i) => { mask.bits[i]! |= WATER; });
@@ -451,13 +548,13 @@ export function planAerial(pack: AerialPack, options: AerialOptions = {}): Aeria
   const cached = plans.get(key);
   if (cached) return cached;
   const field = densityField(pack, options.hubs ?? [], { ...(options.prior ? { prior: options.prior } : {}), ...(options.venues ? { venues: options.venues } : {}) });
-  const { centre, radius, skyline, seed, peakM } = field, rng = random(seed ^ 0x9e3779b9);
+  const { centre, radius, skyline, seed, peakM, capM } = field, rng = random(seed ^ 0x9e3779b9), capUnits = (capM / UNIT_M) * VERTICAL;
   // The peak here: the city's own in the tower core round the downtown, tapering outwards (tallnessAt).
   const peakAt = (x: number, z: number): number => peakM * tallnessAt(field, x, z);
   // Where the aerial city stands: a disc round the centre, and a smaller one round the dive's destination wherever it is (the swoop
   // comes down there). Each has its own raster of the ground, so a far destination does not coarsen the middle's.
   const quarters = (options.hubs ?? []).filter((item) => Math.hypot(item.x - centre.x, item.z - centre.z) > radius - HUB_REACH * 0.5);
-  const masks = [{ x: centre.x, z: centre.z, r: radius }, ...quarters.map((item) => ({ x: item.x, z: item.z, r: HUB_REACH }))].map((area) => groundMask(pack, area, options.clear ?? []));
+  const masks = [{ x: centre.x, z: centre.z, r: radius }, ...quarters.map((item) => ({ x: item.x, z: item.z, r: HUB_REACH }))].map((area) => groundMask(pack, area, options.clear ?? [], true, field.fill));
   const maskAt = (x: number, z: number): Mask | null => masks.find((mask) => x >= mask.x0 && z >= mask.z0 && x < mask.x0 + mask.size * mask.cell && z < mask.z0 + mask.size * mask.cell) ?? null;
   const at = (x: number, z: number): number => { const mask = maskAt(x, z); if (!mask) return 0; const col = Math.floor((x - mask.x0) / mask.cell), row = Math.floor((z - mask.z0) / mask.cell); return mask.bits[row * mask.size + col]!; };
   const angleAt = (x: number, z: number): number => { const mask = maskAt(x, z); if (!mask) return NaN; const col = Math.floor((x - mask.x0) / mask.cell), row = Math.floor((z - mask.z0) / mask.cell); return mask.angle[row * mask.size + col]!; };
@@ -550,7 +647,7 @@ export function planAerial(pack: AerialPack, options: AerialOptions = {}): Aeria
         continue;
       }
       if (roll > coverage(density)) continue;
-      const h = (heightM(density, peakAt(x, z), u, v) / UNIT_M) * VERTICAL * heightCapAt(field, x, z), tower = h >= TOWER_UNITS;
+      const h = Math.min(capUnits, (heightM(density, peakAt(x, z), u, v) / UNIT_M) * VERTICAL * heightCapAt(field, x, z)), tower = h >= TOWER_UNITS;
       // Towers are slender; low-rise fills its block.
       const fill = tower ? 0.42 + rng() * 0.2 : 0.7 + rng() * 0.22, aspect = 0.8 + rng() * 0.4;
       masses.push({ x, z, w: sub * fill * aspect, d: (sub * fill) / aspect, h, ry: item.angle, colour: colourOf(h, tint), kind: tower ? 'tower' : 'block', density });
@@ -580,7 +677,7 @@ export function planAerial(pack: AerialPack, options: AerialOptions = {}): Aeria
     ribbons.push({ points, width: roadHalf(road, roadScale) * 2 * 1.35, trunk: Boolean(road.trunk) });
   }
   const plan: AerialPlan = {
-    id: pack.id, skyline, peakM, centre, radius: reach, masses, parks, ribbons, thinned,
+    id: pack.id, skyline, peakM, capM, tier: field.tier, filled: field.fill, centre, radius: reach, masses, parks, ribbons, thinned,
     triangles: { massing: masses.length * BOX_TRIANGLES, parks: parks.length * 2, ribbons: ribbonTriangles },
   };
   if (plans.size > 6) plans.delete(plans.keys().next().value!);

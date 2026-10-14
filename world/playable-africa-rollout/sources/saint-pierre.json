@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "cityId": "saint-pierre",
+  "countryIso2": "PM",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Saint-Pierre",
+    "coordinatesWgs84": [
+      -56.1768672,
+      46.7775497
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-saint-pierre-et-miquelon-wholeways-261013.osm.pbf"
+  },
+  "airport": {
+    "id": "saint-pierre-airport",
+    "name": "Saint-Pierre Pointe-Blanche Airport",
+    "lon": -56.17499,
+    "lat": 46.762651,
+    "sourceUrl": "https://ourairports.com/airports/LFVP/"
+  },
+  "boxes": {
+    "play": [
+      46.59666881006602,
+      -56.44009746434139,
+      46.95843058993398,
+      -55.9136369356586
+    ],
+    "core": [
+      46.73232947751651,
+      -56.24250852426768,
+      46.822769922483495,
+      -56.111225875732316
+    ],
+    "outline": [
+      46.54666881006602,
+      -56.49009746434139,
+      47.00843058993398,
+      -55.863636935658604
+    ],
+    "wide": [
+      45.99666881006602,
+      -57.04009746434139,
+      47.558430589933984,
+      -55.3136369356586
+    ],
+    "water": [
+      45.99666881006602,
+      -57.04009746434139,
+      47.558430589933984,
+      -55.3136369356586
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-saint-pierre-et-miquelon-wholeways-261013.osm.pbf",
+    "datasetSha256": "1abf50de174c97cc69e6c5cae1b24eb93cab4c7587f109204dd4ce5fea07aac3",
+    "pbfHeaderTimestamp": "2026-10-13T00:16:49Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "4d00560106a0fd857f3554cfd65adc8a268f8e3143639d83b4afa3cb7ece503b",
+        "elements": 75
+      },
+      {
+        "file": "extras.json",
+        "sha256": "9430d991c297ab2883cf048fffe44d2e0c038291df1bb24e6193226b123e2fe3",
+        "elements": 17
+      },
+      {
+        "file": "water.json",
+        "sha256": "f68dd2b98fa72c9e1635a69684332a5a1440c69b1c19e794a71191d810000d2c",
+        "elements": 147
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "96dbbd6d067531e518eab84f392ae3ee6a4ff5de23d3c041ee0a93987dd3240f",
+        "elements": 62
+      },
+      {
+        "file": "roads.json",
+        "sha256": "92b634fba40decaab25a99bc4bf0763014455b4e324708dbe4c72bc6f1a407a6",
+        "elements": 60
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Maison Jézéquel",
+      "osm": "way/220423505",
+      "coordinatesWgs84": [
+        -56.150373,
+        46.786386
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bibliothèque-Médiathèque municipale",
+      "osm": "node/1930750763",
+      "coordinatesWgs84": [
+        -56.172451,
+        46.780287
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hôpital de Saint-Pierre-et-Miquelon",
+      "osm": "way/527494747",
+      "coordinatesWgs84": [
+        -56.171679,
+        46.772817
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Place Alain Savary",
+      "osm": "way/220425927",
+      "coordinatesWgs84": [
+        -56.181857,
+        46.776445
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Notre-Dame-des-Marins",
+      "osm": "way/220422999",
+      "coordinatesWgs84": [
+        -56.149661,
+        46.78405
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ancienne Mairie de l'Ile-aux-Marins",
+      "osm": "way/220423004",
+      "coordinatesWgs84": [
+        -56.149362,
+        46.784344
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mairie de Saint-Pierre",
+      "osm": "way/40654222",
+      "coordinatesWgs84": [
+        -56.174214,
+        46.781909
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Belvédère",
+      "osm": "node/5624753621",
+      "coordinatesWgs84": [
+        -56.178765,
+        46.78501
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Arche Musée",
+      "osm": "way/220420801",
+      "coordinatesWgs84": [
+        -56.177724,
+        46.777033
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathédrale Saint-Pierre",
+      "osm": "way/220421609",
+      "coordinatesWgs84": [
+        -56.172166,
+        46.781386
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Sainte-Bernadette",
+      "osm": "way/220427315",
+      "coordinatesWgs84": [
+        -56.184417,
+        46.77686
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maison et saline Morel",
+      "osm": "node/4513534690",
+      "coordinatesWgs84": [
+        -56.15136,
+        46.785698
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Musée Héritage",
+      "osm": "node/6761993666",
+      "coordinatesWgs84": [
+        -56.172956,
+        46.779659
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Café Solid'air",
+      "osm": "node/6763941639",
+      "coordinatesWgs84": [
+        -56.179594,
+        46.764882
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fort Lorraine",
+      "osm": "node/6762357225",
+      "coordinatesWgs84": [
+        -56.180004,
+        46.778315
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Crêperie du Vieux Port",
+      "osm": "node/5624754821",
+      "coordinatesWgs84": [
+        -56.174617,
+        46.778124
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Square Joffre",
+      "osm": "way/220421608",
+      "coordinatesWgs84": [
+        -56.171052,
+        46.78037
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Place du Général de Gaulle",
+      "osm": "way/1352967166",
+      "coordinatesWgs84": [
+        -56.172652,
+        46.779312
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1343,
+      "sha256": "d97686a0186d42863d9915b1cb923a4e36caa227a7c590d82761f029c4049e1d"
+    },
+    "geometry.ts": {
+      "bytes": 90773,
+      "sha256": "5b2216851d22be40c8bdda1acb8b99cc4601f005898df46cab6e43599e936173"
+    },
+    "places.ts": {
+      "bytes": 7631,
+      "sha256": "d709e25f000ea28383c4c2f67004daf326d0a41658ee98943f6e471233d7936b"
+    },
+    "terrain.ts": {
+      "bytes": 232666,
+      "sha256": "6dfcda4d844bf3c7b5c434132aebdf4870f8308f5a67edd09bede459b399b562"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "c0380eb48e74355a8fccc98008993856c48c5bd61e545dc45e8cd9b38f4bf6b7"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

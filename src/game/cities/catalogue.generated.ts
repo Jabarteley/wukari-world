@@ -281,4 +281,9 @@ export const GENERATED_CITY_CATALOGUE_ROWS = Object.freeze([
   ["cove","Atlas Cove Station","hm","",73.3934601,-53.0190019,1,"hm","Heard Island & McDonald Islands",1],
   ["grytviken","Grytviken","gs","",-36.5098,-54.2806481,1,"gs","South Georgia & the South Sandwich Islands",1],
   ["port-aux-francais","Port-aux-Français","tf","",70.2199565,-49.3497607,1,"tf","French S. Terr.",1],
+  ["saint-pierre","Saint-Pierre","pm","",-56.1768672,46.7775497,1,"pm","St Pierre & Miquelon"],
+  ["siachen","Terong Kangri","xg-siachen","",77.3141384,35.3986779,1,"xg","Siachen Glacier",1],
+  ["west-island","West Island","cc","",96.8304486,-12.1898479,1,"cc","Cocos (Keeling) Islands",1],
+  ["ashmore","East Island","xa","",123.0956541,-12.2609346,1,"xa","Ashmore and Cartier Islands",1],
+  ["chagos","Île Boddam","io","",72.2049217,-5.3574343,1,"io","British Indian Ocean Territory",1],
 ] satisfies readonly CityCatalogueRow[])

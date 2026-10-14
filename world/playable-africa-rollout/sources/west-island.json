@@ -1,0 +1,229 @@
+{
+  "schemaVersion": 1,
+  "cityId": "west-island",
+  "countryIso2": "CC",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "West Island",
+    "coordinatesWgs84": [
+      96.8304486,
+      -12.1898479
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/australia/cocos-islands-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "west-island-airport",
+    "name": "Cocos (Keeling) Islands Airport",
+    "lon": 96.834103,
+    "lat": -12.192218,
+    "sourceUrl": "https://ourairports.com/airports/YPCC/"
+  },
+  "boxes": {
+    "play": [
+      -12.37072878993398,
+      96.64651578619483,
+      -12.008967010066021,
+      97.01438141380517
+    ],
+    "core": [
+      -12.235068122483495,
+      96.78448913491918,
+      -12.144627677516505,
+      96.87640806508081
+    ],
+    "outline": [
+      -12.42072878993398,
+      96.59651578619483,
+      -11.95896701006602,
+      97.06438141380517
+    ],
+    "wide": [
+      -12.970728789933979,
+      96.04651578619483,
+      -11.408967010066021,
+      97.61438141380516
+    ],
+    "water": [
+      -12.970728789933979,
+      96.04651578619483,
+      -11.408967010066021,
+      97.61438141380516
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/australia/cocos-islands-261011.osm.pbf",
+    "datasetSha256": "b93db5ebb8059ff619c2f1d652a9270b1573cf845574645397e0bfce2260f030",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "ee1e2dc268a3948f9f9f9939e72f5224b4350320b5518565d7b61690e100741a",
+        "elements": 35
+      },
+      {
+        "file": "extras.json",
+        "sha256": "1973118a6198565782259a4602b6a4b436e6aa7c5d67d7feb39c5077c9ff9938",
+        "elements": 1
+      },
+      {
+        "file": "water.json",
+        "sha256": "414b8b8c0c66e8ed51b0f74a181e498aeab36fdbd8d962a76884cf33b11c2383",
+        "elements": 94
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "4f7d706d29b6a977962690c8c63df7ec6e2ad8a7754d1bf1bf2b05d59b2fa01a",
+        "elements": 9
+      },
+      {
+        "file": "roads.json",
+        "sha256": "54bb2bc24d9a3ddcca5bfcf11af33f62a7e11f657c083ae7b0269bc3e6d0dd13",
+        "elements": 189
+      }
+    ]
+  },
+  "profile": "outpost",
+  "emptySlots": [
+    {
+      "slot": "community",
+      "reason": "no unused named amenity=university, college, library, community_centre or conference_centre (or office=research or amenity=research_institute) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "clinic",
+      "reason": "no unused named amenity=hospital or amenity=clinic feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "recreation",
+      "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "worship",
+      "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "polling",
+      "reason": "no unused named place=square, amenity=townhall, or the audited fallbacks (courthouse, office=government, building=government, building=public, community_centre) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "government",
+      "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Ferry to Home Island",
+      "osm": "node/3024982382",
+      "coordinatesWgs84": [
+        96.884097,
+        -12.090456
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Salty's Airport Cafe",
+      "osm": "node/3024003734",
+      "coordinatesWgs84": [
+        96.829211,
+        -12.188105
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Southernmost Point of Asia",
+      "osm": "node/9200049002",
+      "coordinatesWgs84": [
+        96.895129,
+        -12.208834
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sula Sula Servery",
+      "osm": "way/1015047086",
+      "coordinatesWgs84": [
+        96.819618,
+        -12.152783
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Yacht Club",
+      "osm": "node/4547647294",
+      "coordinatesWgs84": [
+        96.860786,
+        -12.193539
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Muslim Cemetery",
+      "osm": "way/1204779092",
+      "coordinatesWgs84": [
+        96.888983,
+        -12.106913
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Surfer Girl Restaurant & Brewery",
+      "osm": "way/198316207",
+      "coordinatesWgs84": [
+        96.829837,
+        -12.189495
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1559,
+      "sha256": "ef1fd555596779709ae553e0142d0367722b09f07e42e45dce097e3b1e7b6dcf"
+    },
+    "geometry.ts": {
+      "bytes": 128478,
+      "sha256": "44c15304525e46fa87325ea807cddf959b39a1a295707feb22f8126f35869f60"
+    },
+    "places.ts": {
+      "bytes": 3401,
+      "sha256": "64571bf016f092bf39fc04fc3b365dadcad862846e2a24ccbaa7c7777a008626"
+    },
+    "terrain.ts": {
+      "bytes": 259653,
+      "sha256": "2bf5e3ef47a57f850eec05818e38dbdc5c11c7918f6939dc6fb06b957fbecabc"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "9887ea15cc0da27ed8fddcd303199d0303cb85a853d8a1478059769153fded12"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -12,9 +12,10 @@
  * THE POINTER. The left button, or one finger, grabs the ground and drags it (the point under the pointer stays under it, and a
  * quick flick glides on); the right button, or Shift, Ctrl or Alt with the left, turns and tips the view about the middle of the
  * screen (a full turn, the tilt held between the flattest the distance allows and nearly straight down); two fingers pinch to zoom,
- * twist to turn and travel to move; the wheel and a trackpad pinch zoom towards the pointer; a second tap on bare ground zooms
+ * twist to turn and travel to move, or, side by side, slide up or down together to tilt (./camera-input.ts tells which); the wheel and a trackpad pinch zoom towards the pointer; a second tap on bare ground zooms
  * in. A press that moves less than a few pixels and ends within a third of a second is a tap; anything else never selects.
- * A compass appears while the view is turned, and one tap puts north up. The land's edge gives a little while dragging and
+ * A compass appears while the view is turned or tipped (its needle points north, its dial lies back with the tilt, its label says the
+ * heading), and one tap puts north up at the resting tilt. A turn or a tilt during the dive ends the dive where it is: the player has the camera. The land's edge gives a little while dragging and
  * springs back. With reduced motion nothing glides. The arithmetic is in src/scene/gesture.ts and src/map3d/camera.ts.
  *
  * THE OPENING VIEW: every screen opens on the metropolitan core, filling the width; "Whole city" pulls back to the whole
@@ -59,11 +60,13 @@ import { contentFor } from '../game/cities/runtime.ts';
 import { openingInfo, lagosTime } from '../game/clock.ts';
 import { buildNetwork, localTripRoute, pointInPolygon } from './roads.ts';
 import { buildCity, createRaw, LANDMARK_SCALE } from './city-build.ts';
-import { createRig, DEFAULT_PITCH, MIN_DISTANCE } from './camera.ts';
+import { createRig, DEFAULT_PITCH, MIN_DISTANCE, PITCH_MAX, pitchFloor } from './camera.ts';
+import { classifyTwoFinger, compassOf, createKeyTurn, isLook, tiltOf } from './camera-input.ts';
+import type { TwoFingerKind } from './camera-input.ts';
 import { reliefAt } from './relief.ts';
 import { CITY_KM_PER_UNIT, distanceForSpan, spanKm, swoopPlan, swoopView } from './dive.ts';
 import type { CityDive, SwoopPlan } from './dive.ts';
-import { createFlick, DOUBLE_TAP_MS, DOUBLE_TAP_PX, dragKind, isDrag, isTap, localPoint, mapHint, MAP_HINT_KEY, ROTATE_PITCH, ROTATE_YAW, twist } from '../scene/gesture.ts';
+import { createFlick, DOUBLE_TAP_MS, DOUBLE_TAP_PX, dragKind, isDrag, isTap, localPoint, MAP_HINT_KEY, ROTATE_PITCH, ROTATE_YAW, twist } from '../scene/gesture.ts';
 import { createActor } from './actor.ts';
 import { createOverlays } from './overlays.ts';
 import { createHouses } from './houses.ts';
@@ -112,7 +115,8 @@ interface LabelEntry { node: HTMLButtonElement; name: HTMLElement; note: HTMLEle
 interface Insets { left: number; top: number; right: number; bottom: number }
 type Pt = { x: number; y: number };
 /** One pointer gesture in progress. */
-type Gesture = { kind: 'pan' | 'rotate'; id: number; from: Pt; last: Pt; moved: boolean; spin: number; at: number; down: number; type: string; grab: { x: number; z: number } | null; onLabel?: boolean } | { kind: 'pinch'; id?: undefined; distance: number; mid: Pt; a: Pt; b: Pt; moved: true }
+/** Two fingers: `mode` is what they turned out to do (./camera-input.ts classifyTwoFinger), told from where they went down (a0, b0). */
+type Gesture = { kind: 'pan' | 'rotate'; id: number; from: Pt; last: Pt; moved: boolean; spin: number; at: number; down: number; type: string; grab: { x: number; z: number } | null; onLabel?: boolean } | { kind: 'pinch'; id?: undefined; distance: number; mid: Pt; a: Pt; b: Pt; a0: Pt; b0: Pt; mode: TwoFingerKind; moved: true }
 /** The renderer the map draws with: a WebGLRenderer, or a stand-in under test. */
 export type MapRenderer = THREE.WebGLRenderer
 export interface Map3DOptions {
@@ -199,7 +203,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     root.className = 'm3';
     root.innerHTML = `<div class="m3-labels" role="group" aria-label="Places in ${pack.name}. Choose one to see it and travel there. The list of places in the Map panel is the same thing as a list."></div>
       <div class="m3-controls" role="group" aria-label="Map view"><button type="button" class="m3-north" data-m3="north" aria-label="Turn the map so north is up" title="North up" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3l4 9h-8z" fill="#c0392b"/><path d="M12 21l-4-9h8z" fill="#5c6670"/></svg></button><div class="m3-zoom"><button type="button" data-m3="in" aria-label="Zoom in" title="Zoom in">${ICON('<path d="M12 5v14M5 12h14"/>')}</button><button type="button" data-m3="out" aria-label="Zoom out" title="Zoom out">${ICON('<path d="M5 12h14"/>')}</button></div><div class="m3-go"><button type="button" class="m3-pill m3-fit" data-m3="fit" aria-label="Show the whole ${extentWord(pack)}" title="Show the whole ${extentWord(pack)}">${ICON('<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>')}<span>${extentWord(pack) === 'state' ? 'Whole state' : 'Whole city'}</span></button><button type="button" class="m3-pill m3-me" data-m3="me" aria-label="Find me: show where you are" title="Show where you are">${ICON('<circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>')}<span>Find me</span></button></div></div>
-      <p class="m3-hint" data-m3-hint ${hintKnown() ? 'hidden' : ''}>${mapHint(Boolean(globalThis.matchMedia?.('(pointer: coarse)').matches), false)}</p>`;
+      <p class="m3-hint" data-m3-hint ${hintKnown() ? 'hidden' : ''}>${globalThis.matchMedia?.('(pointer: coarse)').matches ? 'Drag to move · pinch to zoom · twist to turn · two fingers up or down to tilt' : 'Drag to move · right-drag or Ctrl-drag to turn and tilt · scroll to zoom'}</p>`;
     root.prepend(canvas);
     canvas.classList?.add('m3-canvas');
     canvas.setAttribute?.('aria-hidden', 'true');
@@ -225,7 +229,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   const quiet: { node: HTMLElement; x: number; z: number }[] = [];   // the names of the land and sea around a state: shown on the whole-state view only
   const plates = new Map<string, { node: HTMLButtonElement; note: HTMLElement; lga: PackLga; span: ReturnType<typeof spanOf>; scale: number }>(), tags: HTMLDivElement[] = [];
   let friends = new Set<string>(), summaryShown: ReturnType<WorldData['summary']> = null, hoverHouse: (PlotRef & { text: string }) | null = null, mine = null, pixels = 1;
-  let northDegrees = 0;
+  let northKey = '';
   let wholeFrom = WHOLE_FROM;       // beyond this camera distance the view is of the whole state (see labels.ts), judged against the opening view of this screen
   let openedWhole = false;          // "Whole city" was pressed: a resize keeps that view, not the opening one
   // Very wide screens enlarge the interface (--ui-zoom, tokens.css). The labels, plates and tags are zoomed with it by CSS, so their
@@ -244,6 +248,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   let aerial: Aerial | null = null, aerialTicket = 0, aerialFrom = 0;
   let stood: { x: number; y: number; z: number } | null = null, nearDistance = 0;             // stood: where the piece stands when it is not travelling; nearDistance: how far out the close view is
   const clock = createTripClock();
+  /** [ ] turn and PgUp PgDn tip the view, eased; a held key keeps turning (./camera-input.ts). */
+  const keyTurn = createKeyTurn();
   // Other players (src/map3d/people.ts): friends where they stand or travel, and counts. Their pins move without a new picture of the city.
   let people: MapPeople = EMPTY_PEOPLE, peopleNow: () => number = () => Date.now(), pinLayer: PinLayer | null = null, peopleMoving = false, wantDraw = false, peopleTimer: ReturnType<typeof setTimeout> | null = null, pins: PeoplePin[] = [];
   const routes = new Map<string, Route | null>();
@@ -262,7 +268,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   function stop() { if (rafId) { caf?.(rafId); rafId = 0; } if (peopleTimer) { clearTimeout(peopleTimer); peopleTimer = null; } lastTick = 0; }
   function tick() {
     rafId = 0;
-    if (!shown()) { lastTick = 0; return; }
+    if (!shown()) { lastTick = 0; keyTurn.stop(); return; }
     const t = now(), dt = lastTick ? clamp((t - lastTick) / 1000, 0, 0.1) : 0;
     if (lastTick) { gaps.push(t - lastTick); if (gaps.length > 120) gaps.shift(); }
     frameCount += 1;
@@ -272,7 +278,11 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       aerial?.update(k, Boolean(diving.plan.street), (t - aerialFrom) / AERIAL_IN_MS);
       if (k >= 1) { diving = null; endAerial(); }
     }
-    let moving = rig.step(dt) || Boolean(diving);
+    if (keyTurn.active) {
+      const turn = keyTurn.step(dt, rig.view.pitch, pitchFloor(rig.view.distance), PITCH_MAX, reducedMotion);
+      if (turn.yaw || turn.pitch) rig.orbit(turn.yaw, turn.pitch);
+    }
+    let moving = rig.step(dt) || Boolean(diving) || keyTurn.active;
     moving = stepTrip(t, dt) || moving;
     if (settling && !rig.moving) finishArrival();
     if (moving) { seconds += dt; city.animate(seconds); }
@@ -590,11 +600,17 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   function placeLabels() {
     if (!labelLayer) return;
     // The compass shows while the view is turned or tipped; its needle points to north.
+    // The dial lies back as the view tips, so it reads as the ground does; its words say the heading and the tilt.
     const north = controls.north;
     if (north) {
-      const skewed = rig.skewed(), degrees = Math.round((rig.view.yaw * 180) / Math.PI);
+      const skewed = rig.skewed();
       if (north.hidden === skewed) { north.hidden = !skewed; readLabelExclusions(); labelsDirty = true; }
-      if (skewed && northDegrees !== degrees) { northDegrees = degrees; (north.firstElementChild as SVGElement | null)?.style.setProperty('transform', `rotate(${degrees}deg)`); }
+      const dial = skewed ? compassOf(rig.view.yaw, rig.view.pitch) : null, key = dial ? `${dial.needle}|${dial.tilt}` : '';
+      if (dial && northKey !== key) {
+        northKey = key;
+        (north.firstElementChild as SVGElement | null)?.style.setProperty('transform', `rotateX(${Math.min(60, Math.max(0, dial.tilt))}deg) rotate(${dial.needle}deg)`);
+        north.setAttribute('aria-label', dial.label); north.title = `Facing ${dial.facing}: tap for north up`;
+      }
     }
     // Level of detail: a whole-state view names the local governments, and only the places that matter to the player (here, picked, on the way).
     const wholeView = rig.view.distance > wholeFrom, far = rig.view.distance > 230;
@@ -802,7 +818,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   const readBox = () => { const page = container.getBoundingClientRect(); box = { left: page.left, top: page.top, scale: 1 }; };
   const local = (event: MouseEvent) => localPoint(event.clientX, event.clientY, box);
   const toNdc = (point: { x: number; y: number }) => ({ x: (point.x / size.width) * 2 - 1, y: -(point.y / size.height) * 2 + 1 });
-  function grab() { userMoved = true; tripCamera = false; following = false; dismissHint(); }
+  /** The player has taken the camera: it stops following the trip, and a dive on its way down gives way to them (the skip button is the dive host's). */
+  function grab() { userMoved = true; tripCamera = false; following = false; dismissHint(); if (diving) { diving = null; endAerial(); } }
   function onPointerDown(event: PointerEvent) {
     if ((event.target as HTMLElement).closest?.<HTMLElement>('[data-m3],[data-neighbour]')) return;   // the view buttons and the estate's homes are not a place to start a drag
     if (event.pointerType === 'mouse' && event.button > 2) return;
@@ -818,7 +835,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       gesture = { kind, id: event.pointerId, from, last: from, moved: false, spin: 0, at: now(), down: now(), type: event.pointerType, grab: kind === 'pan' ? rig.groundAt(n.x, n.y) : null, onLabel: Boolean((event.target as HTMLElement).closest?.<HTMLElement>('.m3-label,.m3-person')) };
     } else if (pointers.size === 2) {
       const [a, b] = [...pointers.values()] as [Pt, Pt];
-      gesture = { kind: 'pinch', distance: Math.hypot(a.x - b.x, a.y - b.y) || 1, mid: { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }, a, b, moved: true }; suppressClick = true; grab(); rig.beginDrag(); root?.classList.add('is-dragging');
+      gesture = { kind: 'pinch', distance: Math.hypot(a.x - b.x, a.y - b.y) || 1, mid: { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }, a, b, a0: a, b0: b, mode: 'pending', moved: true }; suppressClick = true; grab(); rig.beginDrag(); root?.classList.add('is-dragging');
     }
   }
   function onPointerMove(event: PointerEvent) {
@@ -831,6 +848,15 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     if (gesture?.kind === 'pinch' && pointers.size >= 2) {
       // Two fingers: the pinch zooms, the twist turns, and the ground between the fingers stays between them as they travel.
       const [a, b] = [...pointers.values()] as [Pt, Pt], distance = Math.hypot(a.x - b.x, a.y - b.y) || 1, mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+      // Its first few pixels tell a pinch from a tilt (two fingers sliding up or down together); until then the view waits, and nothing is lost.
+      if (gesture.mode === 'pending') gesture.mode = classifyTwoFinger(gesture.a0, gesture.b0, a, b);
+      if (gesture.mode === 'pending') return;
+      if (gesture.mode === 'tilt') {
+        rig.orbit(0, tiltOf(mid.y - gesture.mid.y));
+        gesture.distance = distance; gesture.mid = mid; gesture.a = a; gesture.b = b;
+        request();
+        return;
+      }
       const before = toNdc(gesture.mid), held = rig.groundAt(before.x, before.y), to = toNdc(mid);
       zoomInput(gesture.distance / distance);
       rig.orbit(twist(gesture.a, gesture.b, a, b), 0);
@@ -972,11 +998,18 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     if (mode !== 'map' || layer !== 'city' || !shown()) return;
     if (action === 'move-left') rig.panScreen(90, 0); else if (action === 'move-right') rig.panScreen(-90, 0);
     else if (action === 'move-up') rig.panScreen(0, 90); else if (action === 'move-down') rig.panScreen(0, -90);
-    else if (action === 'look-left') rig.orbit(-0.16, 0); else if (action === 'look-right') rig.orbit(0.16, 0); else if (action === 'look-up') rig.orbit(0, 0.1); else if (action === 'look-down') rig.orbit(0, -0.1);
+    else if (isLook(action)) { look(action, true); return; }
     else if (action === 'zoom-in') { onControl('in'); return; } else if (action === 'zoom-out') { onControl('out'); return; } else if (action === 'zoom-fit') { onControl('fit'); return; }
     else return;
     grab(); request();
   }
+  /** A turn or tilt key went down (true) or up (false). */
+  function look(action: string, down: boolean) {
+    if (!isLook(action)) return;
+    if (!down) { keyTurn.release(action); return; }
+    grab(); keyTurn.press(action); request();
+  }
+  function onKeyUp(event: CustomEvent<unknown>) { const { action } = detailOf(event); if (isLook(action)) look(action, false); }
   function onUi(event: CustomEvent<unknown>) {
     const detail = detailOf(event);
     if (detail.layer === 'city' || detail.layer === 'world') layer = detail.layer;
@@ -998,7 +1031,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     request();
   }
   /** The tab was hidden or shown again: hidden, the loop stops at once (and a pending arrival is not left waiting for frames). */
-  function onVisibility() { if (pageHidden()) { stop(); if (settling) finishArrival(); } else request(); }
+  function onVisibility() { if (pageHidden()) { stop(); keyTurn.stop(); if (settling) finishArrival(); } else request(); }
   function onLost(event: Event) { event.preventDefault?.(); lost = true; stop(); if (settling) finishArrival(); onContextLost(); }
   const listeners: (() => void)[] = [];
   const listen = <E extends Event>(target: EventTarget | null | undefined, type: string, handler: (event: E) => void, options?: AddEventListenerOptions) => { if (!target?.addEventListener) return; target.addEventListener(type, handler as EventListener, options); listeners.push(() => target.removeEventListener(type, handler as EventListener, options)); };
@@ -1019,7 +1052,9 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     listen(doc, 'visibilitychange', onVisibility);
     listen(canvas, 'webglcontextlost', onLost);
   }
-  listen(globalThis, 'jaw:map-ui', onUi); listen(globalThis, 'jaw:key', onKey);
+  listen(globalThis, 'jaw:map-ui', onUi); listen(globalThis, 'jaw:key', onKey); listen(globalThis, 'jaw:key-up', onKeyUp);
+  // A key let go while the page had no focus is never heard: nothing keeps turning after the window loses it.
+  listen(globalThis, 'blur', () => keyTurn.stop());
 
   buildLabels();
 
@@ -1074,6 +1109,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     /** Run `done` once the arrival has been shown (at once when there is nothing to show). */
     arrive(done: () => void) { if (settling) pendingArrive = done; else done(); },
     select(id: string) { choose(id); },
+    /** A turn or tilt key, as the shell's 'jaw:key' and 'jaw:key-up' carry it (for tests and hosts that do not send the events). */
+    look,
     /** The camera as it is now, for keeping it across a reload. */
     cameraView(): RigView { return { ...rig.view }; },
     /** Put the camera back where it was (a reload): at once when the map is open, otherwise when it first opens. */

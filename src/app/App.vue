@@ -81,7 +81,8 @@ function onKey(event: KeyboardEvent): void {
     return
   }
   if (verb === 'walk' || verb === 'look') {
-    if (mode.value === 'venue' && !open) { if (arg !== 'jog') event.preventDefault(); window.dispatchEvent(new CustomEvent('jaw:key', { detail: { action: `${verb}-${arg}`, mode: mode.value, jog: event.shiftKey } })) }
+    // [ ] PgUp PgDn also turn and tip the 3D city map (src/map3d/map3d.ts), under the same rule as its other keys.
+    if ((mode.value === 'venue' || (verb === 'look' && mode.value === 'map')) && !open) { if (arg !== 'jog') event.preventDefault(); window.dispatchEvent(new CustomEvent('jaw:key', { detail: { action: `${verb}-${arg}`, mode: mode.value, jog: event.shiftKey } })) }
     return
   }
   // Esc with a sheet open: SheetHost decides what it closes (a chat goes back to its list, an app to the home screen).

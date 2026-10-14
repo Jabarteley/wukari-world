@@ -36,8 +36,7 @@ const props = defineProps<{
 const { game, ready, shell, scene, command, showPlayer, showCrowd, showGoal, reportPlace, onMove, commitSpot, goTo } = useApp()
 const container = ref<HTMLElement | null>(null)
 const failed = ref(false)
-/** Why the scene is not drawn, when it is not: this browser cannot (proxy, no WebGL) or the renderer threw. The words and the Copy link button are a lazy chunk (SceneUnsupported.vue). */
-const why = ref<'proxy' | 'no-webgl' | 'failed'>('failed')
+/** When the scene is not drawn (this browser cannot, or the renderer threw), the words and the Copy link button are a lazy chunk (SceneUnsupported.vue). */
 const SceneUnsupported = defineAsyncComponent(() => import('./SceneUnsupported.vue'))
 const waiting = ref(true)
 const phase = ref('Preparing your world…')
@@ -98,8 +97,7 @@ onMounted(() => {
   setTimeout(async () => {
     try {
       // A browser that cannot draw it is told so before it downloads the scene (the biggest download in the game), with what to do instead.
-      const support = (await import('./sceneSupport.ts')).browserSceneSupport()
-      if (!support.ok) { why.value = support.reason; telemetry.sceneReady(false); waiting.value = true; failed.value = true; return }
+      if (!(await import('./sceneSupport.ts')).browserSceneSupport().ok) { telemetry.sceneReady(false); waiting.value = true; failed.value = true; return }
       await landingCodeSettled() // a new device is looking at the landing's 3D preview: its code goes first
       // Where the scene starts is where the server says the player is, never the copy this device kept.
       const settled = ready.value ? Promise.resolve() : new Promise<void>((resolve) => { const stop = watch(ready, (now) => { if (now) { stop(); resolve() } }) })
@@ -184,7 +182,7 @@ defineExpose({ layout })
   <div id="venue-scene" ref="container"  class="life-scene" :hidden="hidden" @animationend.self="onResize">
     <div v-if="waiting" class="scene-wait" :class="{ 'is-stuck': failed || stuck }" role="status">
       <img src="/icons/world-loader.webp" width="96" height="96" alt="" />
-      <SceneUnsupported v-if="failed" :why="why" />
+      <SceneUnsupported v-if="failed" />
       <strong v-else>{{ waitLine() }}</strong>
       <small v-if="!failed && !stuck" :key="tip">{{ tip && tips ? tips[(tip - 1) % tips.length] : 'Your next chapter is almost here.' }}</small>
       <button v-if="stuck && !failed" type="button" class="scene-retry" @click="scene.venue.value?.retryScenes()">Try again</button>

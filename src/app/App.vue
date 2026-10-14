@@ -54,7 +54,7 @@ const sheetOpen = computed(() => Boolean(shell.sheet.value))
 // (A wide screen keeps the scene live beside a sheet; only a full-screen panel covers it there.)
 watch(() => {
   const open = shell.sheet.value
-  return !!open && (shell.byId.get(open!.kind === 'panel' ? open!.id : '')?.fullscreen === true || globalThis.matchMedia?.('(max-width: 720px)').matches === true)
+  return !!open && (shell.byId.get(open!.kind === 'panel' ? open!.id : '')?.fullscreen === true || innerWidth < 721)
 }, setCovered, { immediate: true, flush: 'post' })
 /** A home being visited is what the screen shows, whatever place the player stood in before. */
 const visitingHome = computed(() => Boolean(social.me?.visiting))

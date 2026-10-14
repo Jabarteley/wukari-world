@@ -44,8 +44,8 @@ export const TIER_CAPS: Readonly<Record<StreetTier, { crowd: number; vehicles: n
   full: { crowd: 240, vehicles: 8 },
   lite: { crowd: 120, vehicles: 4 },
 });
-/** Triangles a person and a vehicle cost (the draw module builds exactly these: a quad; three boxes). */
-export const PERSON_TRIANGLES = 2, VEHICLE_TRIANGLES = 36;
+/** Triangles a person and a vehicle cost (the draw module builds exactly these: a quad; five boxes: wheels, body, cabin, livery stripe, roof sign). */
+export const PERSON_TRIANGLES = 2, VEHICLE_TRIANGLES = 60;
 /** The share of a scene's spare triangles the crowd may take; the rest stays for the ambient layer's own people. */
 export const ROOM_SHARE = 0.25;
 /** The kinds of venue that stand on a street: open or covered places a city's crowd passes. Rooms, rooftops, beaches and hills have no street behind them. */

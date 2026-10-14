@@ -41,7 +41,7 @@
 .atlas-label.at-centre{translate:-50% -50%}.atlas-label.at-above{translate:-50% calc(-100% - 9px)}.atlas-label.at-right{translate:8px -50%}.atlas-label.at-left{translate:calc(-100% - 8px) -50%}.atlas-label.at-below{translate:-50% 9px}.atlas-label.at-far-above{translate:-50% calc(-100% - 55px)}.atlas-label.at-far-below{translate:-50% 55px}.atlas-label.at-far-right{translate:48px -50%}.atlas-label.at-far-left{translate:calc(-100% - 48px) -50%}
 .atlas-label.is-continent{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#52626d}
 .atlas-label.is-continent b{font-weight:700}
-.atlas-label.is-neighbour{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#8b949c;text-shadow:none}
+.atlas-label.is-neighbour{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#235c3c;text-shadow:none}
 .atlas-label.is-neighbour b{font-weight:600}
 .atlas-label.is-sea{font-size:12px;font-style:italic;letter-spacing:.12em;color:#3b7c98;text-shadow:none}
 .atlas-label.is-river{font-size:10px;font-style:italic;color:#2a7499}

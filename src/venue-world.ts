@@ -87,6 +87,7 @@ import { STREET_NETWORK_SCALE } from './game/neighbourhood-space.ts';
 import type { VisitHomeProjection } from './types/visit.ts';
 import type { PlotAddress } from './types/life.ts';
 import { createOrbit, followShare } from './scene/camera-controls.ts';
+import type { Orbit } from './scene/camera-controls.ts';
 import { dragKind, isDrag, isTap, twist } from './scene/gesture.ts';
 import type { DragKind } from './scene/gesture.ts';
 import { createOccluders, resolve as resolveCollision } from './scene/camera-collision.ts';
@@ -260,8 +261,8 @@ export interface VenueWorld {
   restorePosition(at: { x: number; z: number }): void
   readonly location: string | null
   prepare(id: string): boolean
-  /** The end of the map's dive (src/map3d/dive.ts): the camera starts high above, pulled back, and comes down to the composed view. False where it cannot be shown (reduced motion, no frame loop, no scene). */
-  arriveFromAbove?(): boolean
+  /** The camera and the frame loop, for the end of the map's dive (src/map3d/arrive-above.ts, in the maps' own chunk); null where motion cannot be shown (reduced motion, no frame loop, no scene). */
+  motion?(): { orbit: Orbit; wake(): boolean } | null
   diagnostics(): VenueDiagnostics
   resize(): void
   /** `top` / `bottom`: how many CSS pixels of the canvas the HUD covers; `hint`: where the HUD rows under the top bar end. */
@@ -1543,11 +1544,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       finally { applyLook(); }
       return true;
     },
-    arriveFromAbove() {
-      if (!current || !loop.available || reduced()) return false;
-      orbit.fromAbove(); loop.wake();
-      return true;
-    },
+    motion() { return current && loop.available && !reduced() ? { orbit, wake: loop.wake } : null; },
     diagnostics() {
       return {
         renderCount,

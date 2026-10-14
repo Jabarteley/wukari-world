@@ -1,7 +1,7 @@
 // A scene's orbit: the limits of the tilt, the turn and the zoom, sliding the view off the avatar, and when the camera goes back to following it.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ABOVE_RATE, createOrbit, FOLLOW_PAUSE, PITCH_MAX, PITCH_MIN } from './camera-controls.ts';
+import { createOrbit, FOLLOW_PAUSE, PITCH_MAX, PITCH_MIN } from './camera-controls.ts';
 
 function make() {
   const orbit = createOrbit();
@@ -93,24 +93,4 @@ test('the camera is put where the orbit says, looking at the slid pivot', () => 
   orbit.apply({ position: { set: (...p: number[]) => { calls.position = p; } }, lookAt: (...p: number[]) => { calls.look = p; } });
   near(calls.look![0]!, orbit.now.x + orbit.now.px); near(calls.look![2]!, orbit.now.z + orbit.now.pz);
   near(calls.position![0]! - calls.look![0]!, Math.sin(orbit.azimuth) * Math.cos(orbit.pitch) * orbit.distance);
-});
-
-test('arriving from above (the end of the map\'s dive): high and pulled back, then down to the composed view, gently, goal untouched', () => {
-  const orbit = make(), goal = { ...orbit.goal }, composed = { pitch: orbit.pitch, distance: orbit.distance };
-  orbit.fromAbove(0.9);
-  assert.ok(Math.abs(orbit.pitch - PITCH_MAX) < 1e-9, 'starts looking nearly straight down');
-  assert.ok(orbit.distance > composed.distance * 1.3, 'and pulled back');
-  assert.deepEqual(orbit.goal, goal, 'what the player asked for is not touched');
-  // Slower than an ordinary ease: after a tenth of a second it is still well above.
-  const dt = 1 / 60;
-  for (let i = 0; i < 6; i++) orbit.step(dt);
-  assert.ok(orbit.pitch > composed.pitch + (PITCH_MAX - composed.pitch) * 0.5, `still high at 0.1 s (${orbit.pitch})`);
-  let last = orbit.pitch, frames = 6;
-  while (orbit.step(dt) && frames < 600) { assert.ok(orbit.pitch <= last + 1e-9, 'only ever comes down'); last = orbit.pitch; frames += 1; }
-  assert.ok(frames < 180, `settles within 3 s (${frames} frames)`);
-  assert.ok(Math.abs(orbit.pitch - composed.pitch) < 1e-6 && Math.abs(orbit.distance - composed.distance) < 1e-3);
-  assert.ok(ABOVE_RATE > 0 && ABOVE_RATE < 1);
-  // snap() (reduced motion, a new venue) ends it at once.
-  orbit.fromAbove(); orbit.snap();
-  assert.ok(Math.abs(orbit.pitch - composed.pitch) < 1e-9); assert.equal(orbit.step(dt), false);
 });

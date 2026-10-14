@@ -12,6 +12,7 @@ import '../../map3d/dive-host.css'
 import { createDiveHost } from '../../map3d/dive-host.ts'
 import type { DiveRun } from '../../map3d/dive-host.ts'
 import { arrivalDive, handoffSpan } from '../../map3d/dive.ts'
+import { arriveFromAbove } from '../../map3d/arrive-above.ts'
 import type { CityDive, SpanRange } from '../../map3d/dive.ts'
 import type { LifeState } from '../../types/life.ts'
 import { cityName } from '../../game/cities/registry.ts'
@@ -126,7 +127,8 @@ function venueUp(outcome: string): void {
   void nextTick().then(() => {
     if (game.mode.value !== 'venue') return
     scene.arrivals.value += 1
-    if (outcome === 'arrived') scene.venue.value?.arriveFromAbove?.()
+    const motion = outcome === 'arrived' ? scene.venue.value?.motion?.() : null
+    if (motion) arriveFromAbove(motion.orbit, motion.wake)
   })
 }
 /**

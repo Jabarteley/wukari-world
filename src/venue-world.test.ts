@@ -1,6 +1,7 @@
 import { loadCityContent as preloadCityContent } from './game/cities/registry.ts';
 await Promise.all(['lagos', 'ibadan'].map(preloadCityContent));
 // Battery rule: a venue scene renders on demand only — an idle scene does zero renders.
+import { arriveFromAbove } from './map3d/arrive-above.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
@@ -543,7 +544,9 @@ test('arriving from above (the end of the map\'s dive): the camera starts high a
     const { world } = bench;
     world.setState(PARK);
     const composed = world.diagnostics().camera;
-    assert.equal(world.arriveFromAbove!(), true);
+    const motion = world.motion!();
+    assert.ok(motion, 'a handle while motion can be shown');
+    arriveFromAbove(motion.orbit, motion.wake);
     bench.pump(1);
     const high = world.diagnostics().camera;
     assert.ok(high.pitch > composed.pitch + 0.3 && high.distance > composed.distance, `starts above (${high.pitch} > ${composed.pitch})`);
@@ -553,7 +556,7 @@ test('arriving from above (the end of the map\'s dive): the camera starts high a
     assert.ok(Math.abs(settled.pitch - composed.pitch) < 1e-3 && Math.abs(settled.distance - composed.distance) < 0.05, 'back on the composed view');
     assert.equal(bench.queued(), 0, 'no frames once it is down (battery rule)');
     bench.reduceMotion(true);
-    assert.equal(world.arriveFromAbove!(), false, 'reduced motion: the scene is simply there');
+    assert.equal(world.motion!(), null, 'reduced motion: the scene is simply there');
     assert.equal(bench.queued(), 0);
   } finally { bench.restore(); }
 });

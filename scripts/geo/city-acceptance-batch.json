@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "zoom-2",
-      "appSha": "781894758c14f7e04f0b6bdeb4e6d6c442760e2b",
+      "id": "zoom-2c",
+      "appSha": "cab2a098db7b2dbedbf82a3b4c719361147dd05e",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
         "lagos",

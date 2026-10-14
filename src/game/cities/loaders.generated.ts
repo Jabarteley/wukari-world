@@ -284,8 +284,10 @@ export const GENERATED_CITY_INDEX: readonly CityIndexRow[] = Object.freeze([
   ["saint-pierre","Saint-Pierre"],
   ["siachen","Terong Kangri"],
   ["west-island","West Island"],
+  ["ashmore","East Island"],
+  ["chagos","Île Boddam"],
 ])
-export const GENERATED_CITY_FIGURES = Object.freeze({ cities: 282, countries: 241 })
+export const GENERATED_CITY_FIGURES = Object.freeze({ cities: 284, countries: 243 })
 export const GENERATED_CITY_WORLD_INDEX: CityWorldIndexLoader | null = null
 
 export const GENERATED_CITY_LOADERS = Object.freeze([
@@ -571,4 +573,6 @@ export const GENERATED_CITY_LOADERS = Object.freeze([
   ()=>import("./saint-pierre/index.ts").then(m=>m.city),
   ()=>import("./siachen/index.ts").then(m=>m.city),
   ()=>import("./west-island/index.ts").then(m=>m.city),
+  ()=>import("./ashmore/index.ts").then(m=>m.city),
+  ()=>import("./chagos/index.ts").then(m=>m.city),
 ] satisfies readonly CityModuleLoader[])

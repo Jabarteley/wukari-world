@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "cityId": "chagos",
+  "countryIso2": "IO",
+  "generationIdentity": {
+    "cityId": "chagos",
+    "stateId": "io",
+    "stateName": "Île Boddam"
+  },
+  "inventorySha256": "adac3b410827fd5929439338f7eb592449def59894394cdf566f7ad8383d47b9",
+  "inventoryPath": "world/playable-africa-rollout/sources/chagos.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "chagos-airport",
+    "name": "Île Boddam",
+    "lon": 72.207191,
+    "lat": -5.3556818,
+    "sourceUrl": "https://www.openstreetmap.org/node/6436644966"
+  },
+  "bounds": [
+    -5.429786655973592,
+    72.1327328879786,
+    -5.285081944026409,
+    72.2771105120214
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-british-indian-ocean-territory-261013.osm.pbf",
+      "datasetSha256": "3c4c6e276dd712800038171448c0e764ce974502f79c2928aad824ea0ce8dd56",
+      "pbfHeaderTimestamp": "2026-10-13T00:55:40Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "018793cb79deee24aac284efcbceef700d6ffbd948a2fbbd4ba8e3f0bae09674",
+          "elements": 12
+        },
+        {
+          "file": "extras.json",
+          "sha256": "830d0723b8f448436b41be9b7799251dee7901dcd6dba77ba6dcf067c6fd3168",
+          "elements": 0
+        },
+        {
+          "file": "water.json",
+          "sha256": "d5b4eabbefb221e4d43f8e2c8fab32844c4aa653156972f09d6b2a011a597e5b",
+          "elements": 48
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "55c77b7e7b0b70d97c62edc8fd1f2190bf210953ca9e53e5e78d0af66f3d41ac",
+          "elements": 0
+        },
+        {
+          "file": "roads.json",
+          "sha256": "34a53e4665d040d77e0bb1d69f600700dbe0cbad9c7e414ab4390562544bc1ad",
+          "elements": 0
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 1,
+    "roads": 0,
+    "neighbourhoodLabels": 9,
+    "landPolygons": 4,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 1
+  },
+  "selection": {
+    "profile": "wilderness",
+    "emptySlots": [
+      {
+        "slot": "transit",
+        "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "meal",
+        "reason": "no unused named amenity=restaurant or amenity=cafe feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "community",
+        "reason": "no unused named amenity=university, college, library, community_centre or conference_centre feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "clinic",
+        "reason": "no unused named amenity=hospital or amenity=clinic feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "recreation",
+        "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "market",
+        "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "worship",
+        "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "polling",
+        "reason": "no unused named place=square, amenity=townhall, or the audited fallbacks (courthouse, office=government, building=government, building=public, community_centre) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "government",
+        "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "districtLabelAreas": [
+      {
+        "ref": "way/32596963",
+        "place": "island",
+        "name": "Île Boddam"
+      },
+      {
+        "ref": "way/546485159",
+        "place": "island",
+        "name": "Île Anglaise"
+      },
+      {
+        "ref": "way/44038375",
+        "place": "islet",
+        "name": "Île Diable"
+      },
+      {
+        "ref": "way/536779324",
+        "place": "islet",
+        "name": "Île Poule"
+      },
+      {
+        "ref": "way/44038373",
+        "place": "islet",
+        "name": "Île du Sel"
+      },
+      {
+        "ref": "way/32597333",
+        "place": "islet",
+        "name": "Île Jacobin"
+      },
+      {
+        "ref": "way/545121559",
+        "place": "islet",
+        "name": "Île Sepulture"
+      },
+      {
+        "ref": "way/32597120",
+        "place": "islet",
+        "name": "Île de la Passe"
+      },
+      {
+        "ref": "way/546441956",
+        "place": "islet",
+        "name": "Île Mapou"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "island": 2,
+      "islet": 7
+    }
+  },
+  "autoRetries": [
+    {
+      "class": "catalogue-row",
+      "change": {
+        "stateId": {
+          "from": "io-chagos",
+          "to": "io"
+        }
+      },
+      "before": {
+        "catalogueBytes": 152,
+        "limit": 150
+      },
+      "after": {
+        "catalogueBytes": 145,
+        "limit": 150,
+        "passed": true
+      }
+    },
+    {
+      "class": "wet-places",
+      "change": {
+        "selectionExclusions": [
+          {
+            "ref": "way/32597335",
+            "reason": "auto: place point is water (exactCoast run 38505772937)"
+          }
+        ]
+      },
+      "before": {
+        "stage": "exactCoast",
+        "wetPlaces": [
+          {
+            "ref": "way/32597335",
+            "name": "Île Fouquet",
+            "lon": 72.2640731,
+            "lat": -5.34121725
+          }
+        ]
+      },
+      "after": {
+        "passed": true,
+        "stages": {
+          "generation": true,
+          "exactCoast": true,
+          "sourceScene": true,
+          "acceptance": true,
+          "proofGround": true,
+          "proofCity": true
+        },
+        "triangles": 7698,
+        "triangleLimit": 90000
+      }
+    }
+  ],
+  "observed": {
+    "places": 12,
+    "extras": 0,
+    "water": 48,
+    "landuse": 0,
+    "roads": 0
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1620,
+      "sha256": "cc61721114ad9706e494fba8bf3d4d272c9694a7ce39ab41afbf860756297d87"
+    },
+    "geometry.ts": {
+      "bytes": 12191,
+      "sha256": "37630013362966ea42a7fcf4495c83d580918520e3517433437c2c84eff39a45"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "0582e865f6dd1e8ef49bf4ede43531ca5c655fba632cddb1f5ee1550d891855b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/chagos.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

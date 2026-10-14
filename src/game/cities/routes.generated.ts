@@ -686,5 +686,71 @@ export const AUTHORED_CITY_LINKS = Object.freeze([
       "km": 1285,
       "fare": 22000,
       "seconds": 75
+    },
+    {
+      "a": "lagos",
+      "b": "ashmore",
+      "mode": "air",
+      "beta": true,
+      "label": "Connecting flight between Lagos and East Island",
+      "icon": "✈️",
+      "km": 13379,
+      "fare": 900000,
+      "seconds": 20
+    },
+    {
+      "a": "dili",
+      "b": "ashmore",
+      "mode": "road",
+      "beta": true,
+      "label": "Ship between Dili and East Island",
+      "icon": "🚢",
+      "km": 494,
+      "fare": 9500,
+      "seconds": 47
+    },
+    {
+      "a": "flying-fish-cove",
+      "b": "ashmore",
+      "mode": "air",
+      "beta": true,
+      "label": "Charter flight between Flying Fish Cove and East Island",
+      "icon": "🛩️",
+      "km": 1910,
+      "fare": 259000,
+      "seconds": 20
+    },
+    {
+      "a": "lagos",
+      "b": "chagos",
+      "mode": "air",
+      "beta": true,
+      "label": "Connecting flight between Lagos and Île Boddam",
+      "icon": "✈️",
+      "km": 7749,
+      "fare": 640000,
+      "seconds": 20
+    },
+    {
+      "a": "male",
+      "b": "chagos",
+      "mode": "road",
+      "beta": true,
+      "label": "Ship between Malé and Île Boddam",
+      "icon": "🚢",
+      "km": 1070,
+      "fare": 18500,
+      "seconds": 74
+    },
+    {
+      "a": "victoria",
+      "b": "chagos",
+      "mode": "road",
+      "beta": true,
+      "label": "Ship between Victoria and Île Boddam",
+      "icon": "🚢",
+      "km": 1857,
+      "fare": 31000,
+      "seconds": 75
     }
   ] satisfies readonly CityLink[])

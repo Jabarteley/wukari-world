@@ -15,12 +15,12 @@
   },
   "seeds": [
     {
-      "id": "atlas-cove",
+      "id": "cove",
       "name": "Atlas Cove Station",
       "countryISO": "HM",
       "cityOsmRef": "node/2855510564",
       "playBox": {
-        "playKm": 5,
+        "playKm": 10,
         "coreKm": 3
       },
       "profile": "wilderness",

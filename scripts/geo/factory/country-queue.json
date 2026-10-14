@@ -2,24 +2,9 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "tf",
-      "table": "scripts/geo/factory/country-tables/tf.json",
+      "id": "hm",
+      "table": "scripts/geo/factory/country-tables/hm.json",
       "appSha": "48d36a0ffa0025c6506b455220b72a8e781939b2"
-    },
-    {
-      "id": "pn",
-      "table": "scripts/geo/factory/country-tables/pn.json",
-      "appSha": "48d36a0ffa0025c6506b455220b72a8e781939b2"
-    },
-    {
-      "id": "pm",
-      "table": "scripts/geo/factory/country-tables/pm.json",
-      "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
-    },
-    {
-      "id": "je",
-      "table": "scripts/geo/factory/country-tables/je.json",
-      "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
     }
   ]
 }

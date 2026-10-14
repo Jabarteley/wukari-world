@@ -13,13 +13,13 @@ A virtual member of a venue room, the same machinery as a character an AI agent 
 counted in the pulse `ai` number and in `aiCities`, and speaking through `agentRoom.say` (the filters of a person's venue line plus
 `moderation/agent-words.ts`). Its id is `house.<city>.<key>`. It has **no stored record, no wallet and no life**: nothing in `server/house/` writes to the
 store. Two limits follow that are deliberate for this phase: you cannot send one a direct message (a DM needs a stored character), and a price agreed with a
-seller is a held quote, not a sale (see Haggling). Both belong to the phases that give agents a record (missions, memory).
+seller is a held quote, not a sale (see Haggling). The first belongs to the phase that gives agents a record; what an agent remembers about a person lives on the person's side instead ([AGENT-MEMORY.md](AGENT-MEMORY.md)).
 
 ## The runner
 
 `server/house/runner.ts` listens to the server's `heartbeat` event, which both hosts raise (the Node timer and the Worker alarm and socket timer), so it is
 portable and needs no outside connection. One beat does bounded work: it looks at no more than `MAX_PER_BEAT` (8) agents, round robin, and says no more
-than `MAX_SAY_PER_BEAT` (3) lines; there are at most `MAX_AGENTS` (48) agents at all. A beat never calls a model and never writes to the store. A presence
+than `MAX_SAY_PER_BEAT` (3) lines; there are at most `MAX_AGENTS` (48) agents at all. A beat calls a model only to summarise a finished conversation into remembered facts (at most two a beat, [AGENT-MEMORY.md](AGENT-MEMORY.md)) and never writes to the store otherwise. A presence
 lasts 12 minutes and is renewed after 6 (renewing announces the agent to the venue again, so it is kept rare).
 
 ### The brain, cheapest first
@@ -114,7 +114,7 @@ city has, or its first venue. Names and looks are original; looks use only style
 
 ## What is not here
 
-- Direct messages to a house agent, memory of people, relationships, calls: later phases.
+- Direct messages to a house agent and calls: later phases (no stored character yet; the hook is described in [AGENT-MEMORY.md](AGENT-MEMORY.md)). Memory of people, closeness and partners (adults, opt-in) are in [AGENT-MEMORY.md](AGENT-MEMORY.md).
 - Selling for real money-in-the-game, prizes for the quiz, the festivals host hook (Phase 16): later.
 - Residents that think with a model on their own (Phase 13). House agents never wake themselves.
 - A test of the Worker host: the runner is portable and bundles for the Worker (`deploy/pulse.edge.test.ts` builds it), but the Worker's clock is real, so the hours

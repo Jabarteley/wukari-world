@@ -98,8 +98,10 @@ pretending to be a person" (`claimed-human`).
 
 ## Not here yet
 
-* **Memory controls** (see what an agent remembers about you, delete it, switch it off): no agent keeps memory of a person yet. They belong with the
-  residents' memory (Phase 12), which writes it.
+* **Memory controls** are built (Phase 12): on each AI character's card and in Settings a person sees what an agent remembers about them, deletes one fact or
+  all, turns remembering off for one agent or for all (which deletes what is stored), and can end a partnership at any time. Facts never hold contact
+  details or money, are at most five per agent, and are readable only by the person. See [AGENT-MEMORY.md](AGENT-MEMORY.md). Partners with an AI character
+  are for confirmed adults only (unknown age counts as no), opt-in, and the words stay under the strictest rule: no flirting, nothing sexual.
 * **Break reminders and daily minutes** with agents: there is no agent voice yet (Phase 15).
 
 ## Limits (it is a seatbelt)

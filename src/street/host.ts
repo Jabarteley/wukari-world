@@ -7,6 +7,7 @@ import { createWalker, gaitPhase, WALK_SPEED, JOG_SPEED } from '../scene/movemen
 import { createOrbit } from '../scene/camera-controls.ts'
 import { createMotionLoop } from '../scene/motion-loop.ts'
 import { createSceneControls } from '../scene/controls.ts'
+import '../scene/controls.css'
 import { venueLabel } from '../game/content/venues.ts'
 import { avatarProportions } from '../types/avatar.ts'
 import { bodyAllowed, drawsWebGL2 } from '../scene/body/gate.ts'

@@ -68,7 +68,8 @@ def download(url, destination):
                         last_reported_bytes = downloaded
                 elapsed = time.monotonic() - started
                 print(f'[download] {destination.name} complete: {downloaded}/{total if total is not None else "unknown"} bytes; elapsed={elapsed:.0f}s; rate={downloaded / max(elapsed, 0.001) / (1024 * 1024):.2f} MiB/s', flush=True)
-                source_http = {'requestedUrl': url, 'resolvedUrl': response.url, 'lastModified': response.headers.get('Last-Modified')}
+                # A release asset resolves to a signed, short-lived CDN URL: record it without the query string.
+                source_http = {'requestedUrl': url, 'resolvedUrl': response.url.split('?', 1)[0], 'lastModified': response.headers.get('Last-Modified')}
         except Exception as error:
             print(f'[download] {destination.name} attempt {attempt + 1}/3 failed after {downloaded} bytes and {time.monotonic() - started:.0f}s: {type(error).__name__}: {error}', flush=True)
             if attempt == 2: raise

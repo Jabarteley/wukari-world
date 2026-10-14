@@ -5,6 +5,9 @@
 //     when -latest redirects to a mirror); bytes from HEAD content-length; md5 from the .md5 sidecar. Optional spec
 //     'neighbours' [{geofabrik, reason}] and 'cityExtract' {geofabrik, reason} are pinned at the SAME date; the city
 //     extract also pins the sha256 of both .poly files (README-batch.md, City sub-extract).
+//   - Mirror (spec 'mirror' {url, upstream, reason} instead of 'geofabrik'): a small extract Geofabrik does not publish, pinned as an
+//     asset of an extracts-YYYYMMDD release of kromate/joinallworld (dataset-url.mjs; README-batch.md "Pinned extract mirror"). Bytes from
+//     the downloaded body, md5 from the body and checked against the asset's .md5 sidecar; no neighbours or city extract with a mirror.
 //   - OurAirports: airports.csv pinned by commit of davidmegginson/ourairports-data (GitHub API), raw URL by commit.
 //   - Timezone: pinned bootstrap/timezone-data (zone1970.tab / iso3166.tab, hash-verified against timezone-source.json).
 // City lat/lon are NEVER guessed: the spec must carry them with a 'centreSource' note.
@@ -29,6 +32,7 @@ import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { MIRROR_DATASET_URL } from './dataset-url.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const TZ_DIR = join(HERE, 'bootstrap');
@@ -84,6 +88,35 @@ async function resolveGeofabrik(path, pinnedDate) {
   return {
     countrySource: { url, bytes, md5: md[1], snapshotDate },
     notes: { ...(pinnedDate === undefined ? { latestUrl: latest, redirectStatus: head.status } : { pinnedDate }), datedUrl: url, md5Sidecar: sidecarUrl, lastModified: dated.headers.get('last-modified'), retrievedAt: new Date().toISOString() },
+  };
+}
+
+// ---- Pinned extract mirror ---------------------------------------------------------------------------------
+const MIRROR_MAX_BYTES = 150 * 1024 * 1024;
+async function resolveMirror(mirror) {
+  if (!mirror || typeof mirror !== 'object' || Array.isArray(mirror)) refuse('mirror must be {url, upstream, reason}');
+  const { url, upstream, reason } = mirror;
+  const match = MIRROR_DATASET_URL.exec(url ?? '');
+  if (!match) refuse(`mirror url must be a kromate/joinallworld extracts-YYYYMMDD release asset named <slug>-YYMMDD.osm.pbf: ${url}`);
+  if (typeof upstream !== 'string' || !/^https:\/\/[^\s/?#@]+\/\S+\.osm\.pbf$/.test(upstream)) refuse('mirror upstream must be the https URL the copy was taken from');
+  if (typeof reason !== 'string' || reason.trim() !== reason || reason.length < 20) refuse('mirror needs a trimmed written reason of at least 20 characters');
+  const yymmdd = match[1];
+  const snapshotDate = `20${yymmdd.slice(0, 2)}-${yymmdd.slice(2, 4)}-${yymmdd.slice(4, 6)}`;
+  if (Number.isNaN(Date.parse(snapshotDate)) || new Date(snapshotDate).toISOString().slice(0, 10) !== snapshotDate) refuse(`bad snapshot date in ${url}`);
+  const sidecarUrl = `${url}.md5`;
+  const sidecar = await http(sidecarUrl);
+  if (!sidecar.ok) refuse(`${sidecarUrl} gave HTTP ${sidecar.status}`);
+  const md = /^([0-9a-f]{32})\s+\*?(\S+)$/.exec((await sidecar.text()).trim());
+  if (!md || md[2] !== url.split('/').pop()) refuse(`unexpected .md5 sidecar content for ${url}`);
+  const response = await http(url);
+  const length = Number(response.headers.get('content-length'));
+  if (!response.ok || !Number.isSafeInteger(length) || length <= 0 || length > MIRROR_MAX_BYTES) refuse(`GET ${url} gave HTTP ${response.status} and content-length ${response.headers.get('content-length')} (mirror assets are at most ${MIRROR_MAX_BYTES} bytes)`);
+  const body = Buffer.from(await response.arrayBuffer());
+  const md5 = createHash('md5').update(body).digest('hex');
+  if (body.length !== length || md5 !== md[1]) refuse(`${url}: downloaded body (${body.length} bytes, md5 ${md5}) does not match its content-length or .md5 sidecar`);
+  return {
+    countrySource: { url, bytes: body.length, md5, snapshotDate },
+    notes: { mirror: { url, upstream, reason, md5Sidecar: sidecarUrl, sha256: sha256(body), lastModified: response.headers.get('last-modified'), retrievedAt: new Date().toISOString() } },
   };
 }
 
@@ -289,7 +322,8 @@ function isoCountryName(tz, iso) {
 function checkSpec(spec) {
   if (!spec || typeof spec !== 'object') refuse('spec must be an object');
   if (!/^[A-Z]{2}$/.test(spec.iso || '')) refuse(`iso must be an upper-case ISO 3166-1 alpha-2 code, got ${JSON.stringify(spec.iso)}`);
-  if (typeof spec.geofabrik !== 'string') refuse(`${spec.iso}: geofabrik path required (e.g. 'africa/liberia')`);
+  if ((typeof spec.geofabrik === 'string') === (spec.mirror !== undefined)) refuse(`${spec.iso}: exactly one of geofabrik (a path such as 'africa/liberia') or mirror {url, upstream, reason} is required`);
+  if (spec.mirror !== undefined && (spec.geofabrikDate !== undefined || spec.neighbours !== undefined || spec.cityExtract !== undefined)) refuse(`${spec.iso}: a mirror source takes no geofabrikDate, neighbours or cityExtract`);
   if (!Array.isArray(spec.cities) || spec.cities.length < 1 || spec.cities.length > 6) refuse(`${spec.iso}: 1 to 6 cities required`);
   const seen = new Set();
   for (const c of spec.cities) {
@@ -312,8 +346,8 @@ async function buildCountry(spec, shared, options) {
   // A user-assigned code absent from the pinned tables (XG, XA) takes the seeds' reviewed countryName (metadata.py seed_country_name).
   const isoName = isoCountryName(tz, iso) ?? (spec.cities.every((city) => city.countryName?.name) ? spec.cities[0].countryName.name : null);
   if (!isoName) refuse(`${iso} is not in the pinned iso3166.tab (a user-assigned code needs countryName on every city)`);
-  const geofabrik = await resolveGeofabrik(spec.geofabrik, spec.geofabrikDate);
-  const extras = await resolveExtras(spec, geofabrik);
+  const geofabrik = spec.mirror !== undefined ? await resolveMirror(spec.mirror) : await resolveGeofabrik(spec.geofabrik, spec.geofabrikDate);
+  const extras = spec.mirror !== undefined ? { notes: {} } : await resolveExtras(spec, geofabrik);
   const airports = await shared.airports();
   const seeds = [];
   const cityNotes = [];

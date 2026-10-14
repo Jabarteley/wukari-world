@@ -1,0 +1,36 @@
+{
+  "iso": "PN",
+  "country": "Pitcairn Islands",
+  "geofabrik": "australia-oceania/pitcairn-islands",
+  "geofabrikDate": "261013",
+  "cities": [
+    {
+      "id": "adamstown",
+      "name": "Adamstown",
+      "lat": -25.066666666667,
+      "lon": -130.1,
+      "centreSource": "Wikidata Q48273 P625 (retrieved 2026-10-14); OSM node 2134592841 (place=hamlet, capital=yes) in the dated Geofabrik extract",
+      "profile": "outpost",
+      "cityOsmRef": "node/2134592841",
+      "playBox": {
+        "playKm": 5,
+        "coreKm": 3
+      },
+      "gateway": {
+        "osmRef": "node/9392374700",
+        "mode": "sea",
+        "sourceUrl": "https://www.openstreetmap.org/node/9392374700"
+      },
+      "links": [
+        {
+          "to": "auckland",
+          "kind": "ship"
+        },
+        {
+          "to": "santiago",
+          "kind": "ship"
+        }
+      ]
+    }
+  ]
+}

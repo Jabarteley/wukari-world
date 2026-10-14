@@ -298,8 +298,8 @@ def extract_batch(pbf, candidates, source, pbf_sha, verified_md5, output_root, l
     errors, contexts = {}, {}
     shared_log = logs / 'batch-extraction.log'
     with shared_log.open('w') as stream, redirect_stdout(stream), redirect_stderr(stream):
-        if not adapter.re.fullmatch(r'https://download\.geofabrik\.de/[A-Za-z0-9._/-]+\.osm\.pbf', args.dataset_url):
-            raise adapter.ExtractionError('dataset URL must be a comment-safe official Geofabrik .osm.pbf URL')
+        if not adapter.dataset_url_ok(args.dataset_url):
+            raise adapter.ExtractionError('dataset URL must be a comment-safe official Geofabrik .osm.pbf URL or a pinned extracts-YYYYMMDD release asset')
         if not pbf.is_file() or pbf.stat().st_size != args.dataset_bytes:
             raise adapter.ExtractionError('PBF byte count mismatch')
         if not adapter.re.fullmatch(r'[0-9a-f]{32}', args.dataset_md5):

@@ -259,8 +259,32 @@ Code only (branch claude/outposts-factory-20261014); nothing here has run on a h
   - Disputed relations: `admin0RelationOverride {relationId, expectedTags, reason, userAssignedCode: true, disputed: true}` accepts a boundary=disputed relation (admin_level 2 allowed only here; expectedTags need boundary=disputed and a name, no ISO keys) under an X? code; the area is assembled from that one relation id. Siachen: relation 13790690 under XG.
   - Admin-level-3/4 territory relations with an ISO code (TF 2186658, HM 2177227) use the existing override; Ashmore and Cartier (2559345, wikidata, no ISO) uses the existing userAssignedCode override under XA.
 - Acceptance driver (branch claude/qa-20261012, scripts/journeys/map-shots.ts, NOT changed here): add the outpost city ids to `findMeInWholeCityAllowList` (now `['vatican-city']`) before their browser run, because a tiny outpost's fit extremum is its gateway and the "You are here" label can sit under the top bar as at Vatican City. The Lagos link keeps `<city>-air`, so the `<city>:air` travel step works unchanged. Ids: see relay/world-ledger/OUTPOST-TABLE-FIELDS.md.
-- Not done: the osm.fr mirror as a pinned release asset (tf has no small Geofabrik file; validate_dataset_url still accepts only download.geofabrik.de); the polar frame for |lat| >= 75 (McMurdo waits for v2).
+- Not done: the polar frame for |lat| >= 75 (McMurdo waits for v2). The osm.fr mirror is done (see "Pinned extract mirror" below).
 
 ## Road fallback (`roadLadder: true`, 2026-10-14; OFF unless the seed sets it)
 Why: Wallis and Futuna (wf) and Saint Helena (sh) map no motorway, trunk, primary or secondary road at all (wf: 101 tertiary, 23 unclassified, 199 residential; sh: 61 tertiary, 77 unclassified, 356 residential), so the standard roads layer is empty and acceptance fails `TERRAIN.roads.length > 0`. No geometry knob can help (`minRoadKm` only filters what exists).
 Rule (`offline-extract.py` `roadFallback`, written into `source-input.json` by `metadata-batch.py` from the seed key; exactly `{"minWays": 3}`): after the scan, if the standard roads (motorway, trunk, primary in the play box, named secondary in the core) number fewer than 3 ways, ALL tertiary ways intersecting the play box are added; if still fewer than 3, unclassified and residential too. Never service or track, never a way with `military=*` or `aeroway=*`. Not combinable with the outpost or wilderness profile (their own ladder, `profileExtraction`). The roads layer record names the outcome (`source.roadFallback`: `minWays`, `standardWays`, `classesAdded`, `waysAdded`) and the filter text gains the fallback sentence; the other four layers are unchanged. Seed key absent or false: no key in `source-input.json`, the five layers are byte-identical to the previous extractor except `adapterSha256` (`test_outposts.py` `RoadFallbackExtraction` pins golden hashes taken with the pre-change script on two fixtures). The app side needs nothing (the recipe keeps `roadsQuery`; the fallback is an offline source rule).
+
+## Pinned extract mirror (`dataset-url.mjs`, 14 Oct 2026)
+Some territories have no small dated file on Geofabrik. For those, a table may pin a mirror copy of the small OpenStreetMap France extract (download.openstreetmap.fr/extracts/..., undated and replaced daily). The copy is held as an asset of an `extracts-YYYYMMDD` release of the public kromate/joinallworld repository.
+- Accepted dataset URLs:
+  - a dated official Geofabrik file;
+  - `https://github.com/kromate/joinallworld/releases/download/extracts-YYYYMMDD/<slug>-YYMMDD.osm.pbf`. No other host, repository, tag form, query or fragment is accepted.
+- Where the rule is checked: metadata.py `validate_dataset_url`, offline-extract.py `dataset_url_ok` (also used by batch-run.py), country-boundary.py and country-scope.mjs. All of them repeat one pattern, and `bootstrap/test_dataset_url.py` keeps the copies equal. Run it with `python3 -I -B scripts/geo/factory/bootstrap/test_dataset_url.py`; `dataset-url.test.mjs` is the Node test.
+- The `-YYMMDD` in the asset name is the date of the PBF header `osmosis_replication_timestamp`. That date must equal `snapshotDate`, and the header check of metadata.py still applies. Bytes and MD5 are pinned in the table and checked by the source job, as for Geofabrik.
+- A mirror is single-file only: no `neighbours` and no `cityExtract`, because those stay dated Geofabrik files.
+- Publishing a mirror (data only, never code; at most 150 MB per file):
+  1. Download the upstream file and check it against its `.md5`.
+  2. Name it `osmfr-<slug>-YYMMDD.osm.pbf` and write a `.md5` sidecar in the Geofabrik format (`<md5>  <name>`).
+  3. Run `gh release create extracts-YYYYMMDD --latest=false ...` with an ODbL attribution note, the upstream URL and the state timestamp in the body.
+  4. Never replace an asset. A newer snapshot goes in a new release.
+- Generator: a spec takes `mirror {url, upstream, reason}` instead of `geofabrik`. make-country-table.mjs downloads the asset, checks its bytes and MD5 against the `.md5` sidecar, and writes the upstream URL and SHA-256 to the notes.
+- First release: `extracts-20261014` holds three 261013 extracts:
+  - `osmfr-france-taaf` (merge/france_taaf; it holds all 17 ways of TF relation 2186658, while oceania/france_taaf lacks 5);
+  - `osmfr-saint-pierre-et-miquelon`;
+  - `osmfr-jersey` (it holds all 17 ways of JE relation 367988, so Jersey no longer needs the 5 GB france neighbour).
+- Tables: tf, pm and je use this release; pn uses the dated Geofabrik `pitcairn-islands-261013`.
+  - tf: `boundary-evidence/tf.json` lists the Adélie Land claim relation 3810329 (role `claim`, boundary=region, absent from the file) under `nonBoundaryRelationMembers`. Antarctica is the aq entry.
+  - pm and tf use the admin_level-3 `admin0RelationOverride`.
+  - Before queueing, country-boundary.py was run locally on the four pinned files: all four gave OSM_COUNTRY_BOUNDARY_CANDIDATE, with the city node and hub inside.
+- Factory stage: the app's `scripts/geo/destination-detail/pbf-extract.ts` (APP_SHA side) still requires `download.geofabrik.de` for an extract's `datasetUrl`. The factory runs for tf, pm and je need that check widened to the same mirror pattern on the app branch first.

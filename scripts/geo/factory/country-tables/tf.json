@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-france-taaf-261013.osm.pbf",
+    "bytes": 4066067,
+    "md5": "5aa3840ad306db2b46075447235883e4",
+    "snapshotDate": "2026-10-13"
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "port-aux-francais",
+      "name": "Port-aux-Français",
+      "countryISO": "TF",
+      "cityOsmRef": "node/416710537",
+      "playBox": {
+        "playKm": 5,
+        "coreKm": 3
+      },
+      "profile": "outpost",
+      "links": [
+        {
+          "to": "port-louis",
+          "kind": "ship"
+        },
+        {
+          "to": "cape-town",
+          "kind": "charter"
+        }
+      ],
+      "airport": {
+        "ident": "TF-0002",
+        "sourceUrl": "https://ourairports.com/airports/TF-0002/",
+        "hubWaiver": "The French Southern and Antarctic Lands (TF) have no scheduled-service airport; Port-aux-Français Heliport (TF-0002, heliport row filed under TF, 0.1 km from the station) is the landing place of the station. Game venue map only."
+      },
+      "timezone": {
+        "id": "Indian/Maldives",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

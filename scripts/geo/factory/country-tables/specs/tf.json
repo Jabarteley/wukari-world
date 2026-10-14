@@ -1,0 +1,38 @@
+{
+  "iso": "TF",
+  "country": "French Southern and Antarctic Lands",
+  "mirror": {
+    "url": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-france-taaf-261013.osm.pbf",
+    "upstream": "https://download.openstreetmap.fr/extracts/merge/france_taaf.osm.pbf",
+    "reason": "Geofabrik publishes no TAAF extract (the alternatives are 1.57 to 16.4 GB); the OpenStreetMap France merge/france_taaf file (4 MB) holds all 17 member ways of relation 2186658 and the Port-aux-Francais node."
+  },
+  "cities": [
+    {
+      "id": "port-aux-francais",
+      "name": "Port-aux-Français",
+      "lat": -49.35,
+      "lon": 70.216666666667,
+      "centreSource": "Wikidata Q839559 P625 (retrieved 2026-10-14); OSM node 416710537 (place=town) in the pinned mirror",
+      "timezone": "Indian/Maldives",
+      "airportIdent": "TF-0002",
+      "airportSourceUrl": "https://ourairports.com/airports/TF-0002/",
+      "hubWaiver": "The French Southern and Antarctic Lands (TF) have no scheduled-service airport; Port-aux-Français Heliport (TF-0002, heliport row filed under TF, 0.1 km from the station) is the landing place of the station. Game venue map only.",
+      "profile": "outpost",
+      "cityOsmRef": "node/416710537",
+      "playBox": {
+        "playKm": 5,
+        "coreKm": 3
+      },
+      "links": [
+        {
+          "to": "port-louis",
+          "kind": "ship"
+        },
+        {
+          "to": "cape-town",
+          "kind": "charter"
+        }
+      ]
+    }
+  ]
+}

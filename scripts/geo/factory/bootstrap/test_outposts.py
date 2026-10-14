@@ -209,7 +209,7 @@ class OutpostTables(unittest.TestCase):
                     self.fail(f'{path.name}: {error}')
                 for item in seeds:
                     if item.get('profile') in ('outpost', 'wilderness'):
-                        continue  # the outpost tables (aq, gs, hm) carry links, a gateway and an override by design
+                        continue  # the outpost tables themselves (aq, gs, hm, pn, tf, ...) carry links, gateways and overrides by design
                     self.assertEqual(batch.links_policy(item), {})
                     self.assertFalse({'gateway', 'timezoneOverride', 'countryName'} & set(item))
 

@@ -592,6 +592,17 @@ def md5_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+# Accepted dataset URLs: an official Geofabrik .osm.pbf, or a pinned mirror copy of a small extract that Geofabrik does not
+# publish, held as an asset of an extracts-YYYYMMDD release of the public kromate/joinallworld repository (same pattern as
+# MIRROR_DATASET_URL in factory/bootstrap/metadata.py; test_dataset_url.py keeps the copies equal). Bytes, MD5 and SHA-256 are pinned as usual.
+GEOFABRIK_URL = r"https://download\.geofabrik\.de/[A-Za-z0-9._/-]+\.osm\.pbf"
+MIRROR_DATASET_URL = r'https://github\.com/kromate/joinallworld/releases/download/extracts-[0-9]{8}/[a-z0-9]+(?:-[a-z0-9]+)*-[0-9]{6}\.osm\.pbf'
+
+
+def dataset_url_ok(url: str) -> bool:
+    return isinstance(url, str) and bool(re.fullmatch(GEOFABRIK_URL, url) or re.fullmatch(MIRROR_DATASET_URL, url))
+
+
 def pbf_header_timestamp(path: Path) -> str | None:
     with osmium.io.Reader(str(path), osmium.osm.NOTHING) as reader:
         value = reader.header().get("osmosis_replication_timestamp", "")
@@ -713,8 +724,8 @@ def main() -> int:
     pbf, metadata_path = Path(args.pbf), Path(args.city_metadata)
     if not pbf.is_file() or not metadata_path.is_file():
         raise ExtractionError("PBF and city metadata must both be existing files")
-    if not re.fullmatch(r"https://download\.geofabrik\.de/[A-Za-z0-9._/-]+\.osm\.pbf", args.dataset_url):
-        raise ExtractionError("dataset URL must be a comment-safe official Geofabrik .osm.pbf URL")
+    if not dataset_url_ok(args.dataset_url):
+        raise ExtractionError("dataset URL must be a comment-safe official Geofabrik .osm.pbf URL or a pinned extracts-YYYYMMDD release asset")
     if pbf.stat().st_size != args.dataset_bytes:
         raise ExtractionError(f"PBF byte count mismatch: expected {args.dataset_bytes}, got {pbf.stat().st_size}")
     if len(args.dataset_md5) != 32 or any(character not in "0123456789abcdef" for character in args.dataset_md5):

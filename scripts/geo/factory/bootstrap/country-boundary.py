@@ -19,6 +19,8 @@ from urllib.parse import urlparse
 
 HERE = Path(__file__).resolve().parent
 TAG_EXCEPTION_KEYS = {'boundary', 'admin_level'}
+# The pinned mirror of a small extract Geofabrik does not publish (same pattern as metadata.py MIRROR_DATASET_URL; test_dataset_url.py).
+MIRROR_DATASET_URL = r'https://github\.com/kromate/joinallworld/releases/download/extracts-[0-9]{8}/[a-z0-9]+(?:-[a-z0-9]+)*-[0-9]{6}\.osm\.pbf'
 # Antarctica has no admin-0 relation: its scope is the Antarctic Treaty area (Article VI: the area south of 60 degrees South
 # latitude, including all ice shelves), a fixed polygon recorded in the receipt, never an OSM relation. Vertices every 90 degrees of
 # longitude keep each edge under the 180-degree antimeridian guard of country-scope.mjs.
@@ -685,8 +687,9 @@ def main():
         require(args.expected_bytes > 0, 'positive PBF byte pin required')
         require(re.fullmatch(r'\d{4}-\d{2}-\d{2}', args.dataset_date), 'dated PBF required')
         url = urlparse(args.dataset_url)
-        require(url.scheme == 'https' and url.netloc == 'download.geofabrik.de' and url.path.endswith('.osm.pbf')
-                and not url.query and not url.fragment, 'official Geofabrik PBF URL required')
+        require((url.scheme == 'https' and url.netloc == 'download.geofabrik.de' and url.path.endswith('.osm.pbf')
+                 and not url.query and not url.fragment) or re.fullmatch(MIRROR_DATASET_URL, args.dataset_url),
+                'official Geofabrik PBF URL or pinned kromate/joinallworld extracts-YYYYMMDD release asset required')
         geometry, receipt = extract(args)
     except Exception as error:
         out.mkdir(parents=True)

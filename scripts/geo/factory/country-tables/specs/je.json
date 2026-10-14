@@ -1,0 +1,24 @@
+{
+  "iso": "JE",
+  "country": "Jersey",
+  "mirror": {
+    "url": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-jersey-261013.osm.pbf",
+    "upstream": "https://download.openstreetmap.fr/extracts/europe/jersey.osm.pbf",
+    "reason": "Geofabrik's guernsey-jersey file lacks 6 maritime ways of relation 367988, which only the 5 GB europe/france file holds; the OpenStreetMap France jersey file (2.5 MB) holds all 17 member ways and the St Helier node."
+  },
+  "cities": [
+    {
+      "id": "st-helier",
+      "name": "St Helier",
+      "lat": 49.185833333,
+      "lon": -2.11,
+      "centreSource": "Wikidata Q147738 P625 (retrieved 2026-10-14); OSM node 2615659256 (place=town, capital=yes) in the pinned mirror",
+      "airportIdent": "EGJJ",
+      "airportSourceUrl": "https://ourairports.com/airports/EGJJ/",
+      "cityOsmRef": "node/2615659256",
+      "playBox": {
+        "playKm": 12
+      }
+    }
+  ]
+}

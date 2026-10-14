@@ -209,9 +209,17 @@ def gateway_facts(seed, gateway, city):
     return {'id': seed['id'] + '-airport', 'name': gateway['name'], **coordinate(gateway['lon'], gateway['lat']),
             'sourceUrl': 'https://www.openstreetmap.org/' + seed['gateway']['osmRef']}
 
+# The two accepted dataset sources (README-batch.md "Pinned extract mirror"). Both name the snapshot as -YYMMDD in the file name.
+# 1. A dated official Geofabrik country or region file.
+# 2. A pinned mirror copy of a small extract that Geofabrik does not publish (an undated download.openstreetmap.fr file):
+#    an asset of an `extracts-YYYYMMDD` release of the public kromate/joinallworld repository. Nothing else.
+# offline-extract.py, country-boundary.py, batch-run.py and dataset-url.mjs repeat MIRROR_DATASET_URL; test_dataset_url.py keeps the copies equal.
+GEOFABRIK_DATASET_URL = r'https://download\.geofabrik\.de/(?:[a-z0-9-]+/)*[a-z0-9-]+-[0-9]{6}\.osm\.pbf'
+MIRROR_DATASET_URL = r'https://github\.com/kromate/joinallworld/releases/download/extracts-[0-9]{8}/[a-z0-9]+(?:-[a-z0-9]+)*-[0-9]{6}\.osm\.pbf'
+
 def validate_dataset_url(value):
-    if not isinstance(value, str) or not re.fullmatch(r'https://download\.geofabrik\.de/(?:[a-z0-9-]+/)*[a-z0-9-]+-[0-9]{6}\.osm\.pbf', value):
-        raise Hold('dated official Geofabrik country or region PBF URL required')
+    if not isinstance(value, str) or not (re.fullmatch(GEOFABRIK_DATASET_URL, value) or re.fullmatch(MIRROR_DATASET_URL, value)):
+        raise Hold('dated official Geofabrik PBF URL or pinned kromate/joinallworld extracts-YYYYMMDD release asset required')
     # The anchored path grammar excludes traversal, encoded paths, queries and fragments.
     return value
 

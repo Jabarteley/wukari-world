@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { validateSourceInputs, cityExtractInput } from './source-inputs.mjs';
+import { isMirrorDatasetUrl } from './dataset-url.mjs';
 
 export const COUNTRY_SCOPE_KIND = 'osm-admin0-boundary-v1';
 /** Antarctica (AQ): the Antarctic Treaty area south of 60 degrees South, a fixed polygon (bootstrap/country-boundary.py TREATY_RING), never an OSM relation. */
@@ -92,7 +93,9 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
   assert.match(receipt.source.date, /^\d{4}-\d{2}-\d{2}$/);
   assert.ok(receipt.source.headerTimestamp.startsWith(receipt.source.date));
   const url = new URL(receipt.source.url);
-  assert.ok(url.protocol === 'https:' && url.hostname === 'download.geofabrik.de' && url.pathname.endsWith('.osm.pbf') && !url.search && !url.hash);
+  // An official Geofabrik file, or a pinned extracts-YYYYMMDD release asset of kromate/joinallworld (dataset-url.mjs).
+  assert.ok((url.protocol === 'https:' && url.hostname === 'download.geofabrik.de' && url.pathname.endsWith('.osm.pbf') && !url.search && !url.hash)
+    || isMirrorDatasetUrl(receipt.source.url), 'boundary source must be an official Geofabrik PBF or a pinned extract mirror asset');
   // A merged primary+neighbour PBF (source-merge.py): source.sha256/bytes are the merged file's, sourceInputs names the dated files.
   // A city sub-extract: source is the primary file; sourceInputs ends with the city-extract input the boundary is paired with.
   if (receipt.source.sourceInputs !== undefined) validateSourceInputs(receipt.source.sourceInputs, { url: receipt.source.url, date: receipt.source.date });

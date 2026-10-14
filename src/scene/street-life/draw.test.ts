@@ -7,9 +7,10 @@ import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import { createKit } from '../kit.ts';
 import { createStreetLife } from './draw.ts';
-import { HARD_CAP, PERSON_TRIANGLES, VEHICLE_TRIANGLES, planTraffic, vehicleAt, venueLanes } from './plan.ts';
+import { CAR_LENGTH, HARD_CAP, PERSON_TRIANGLES, VEHICLE_TRIANGLES, planTraffic, venueLanes } from './plan.ts';
 import type { Lane, Road } from './plan.ts';
-import { clearShift, crossingSpans, driveSeconds, personAt, planPeople, walkNow } from './crowd.ts';
+import { personAt, planPeople, walkNow } from './crowd.ts';
+import { twoWayRoads } from './traffic.ts';
 import { paintTraffic } from './livery.ts';
 import { createAmbientLayer, STREET_PERSON } from '../ambient/layer.ts';
 import type { Ident, Stage } from '../ambient/plan.ts';
@@ -69,21 +70,26 @@ test('the traffic wears the city\'s livery: London\'s taxis are black, a Nigeria
   london.dispose(); lagos.dispose(); kit.dispose();
 });
 
-test('crossings: the road gets lights, the stopped traffic keeps off every crossing, and crossers are on the road only while it is stopped', () => {
+test('crossings: both lanes get one set of lights, no vehicle is ever on a crossing while people may cross, and crossers are on the road only then', () => {
   const kit = createKit();
   const crossings: Lane[] = [{ ax: 10, az: 2.65, bx: 10, bz: 11.1, width: 2.4 }, { ax: 78, az: 2.65, bx: 78, bz: 11.1, width: 2.4 }];
-  const life = createStreetLife(kit, { parent: new THREE.Group(), seed: 'x', lanes, roads: [road], crossings, crowd: 120, vehicles: 8, country: 'ng', at: TEN });
+  const roads = twoWayRoads({ ax: -84, az: 6.875, bx: 84, bz: 6.875 }, 'right', 0.78, 5.5);
+  const life = createStreetLife(kit, { parent: new THREE.Group(), seed: 'x', lanes, roads, crossings, crowd: 120, vehicles: 8, country: 'ng', at: TEN });
   assert.ok(life.signal, 'lights');
-  const vehicles = paintTraffic(planTraffic('x', [road], 8), 'ng', 'x');
   const signal = life.signal!, green = signal.period - signal.walk;
-  const shift = clearShift(vehicles, road, crossingSpans(road, crossings))!;
-  for (const k of [0, 3, 40]) {
-    const t = k * signal.period + green + 1;
-    for (const v of vehicles) {
-      const pose = vehicleAt(v, road, driveSeconds(signal, t) + shift / road.speed);
-      for (const c of crossings) assert.ok(Math.abs(pose.x - c.ax) >= v.length / 2 + c.width / 2, `vehicle clear of the crossing at ${c.ax}`);
+  const traffic = life.group.children.find((child) => child.name === 'street-traffic') as THREE.InstancedMesh;
+  const m = new THREE.Matrix4(), p = new THREE.Vector3(), q = new THREE.Quaternion(), sc = new THREE.Vector3();
+  let checked = 0;
+  for (const k of [0, 3, 40]) for (let dt = 0; dt < signal.walk; dt += 0.5) {
+    life.step((k * signal.period + green + dt) * 1000);
+    for (let i = 0; i < traffic.count; i++) {
+      traffic.getMatrixAt(i, m); m.decompose(p, q, sc);
+      for (const c of crossings) assert.ok(Math.abs(p.x - c.ax) >= (sc.z * CAR_LENGTH) / 2 + c.width / 2, `vehicle ${i} clear of the crossing at ${c.ax} (walk +${dt} s)`);
+      checked += 1;
     }
   }
+  assert.ok(checked > 100);
+  assert.ok(new Set(life.schedule.roads.map((r) => r.profile.lap.toFixed(6))).size === 1, 'one lap: one set of lights serves both ways');
   const people = planPeople('x', { lanes, crossings, signal }, 120).filter((p) => p.habit === 'cross');
   assert.ok(people.length > 0);
   let crossed = 0;
@@ -93,6 +99,26 @@ test('crossings: the road gets lights, the stopped traffic keeps off every cross
   }
   assert.ok(crossed > 0, 'and they do cross');
   life.dispose(); kit.dispose();
+});
+
+test('the final guard: given the walkable bounds, nobody and no vehicle whose place falls outside them is drawn', () => {
+  const kit = createKit(), m = new THREE.Matrix4(), p = new THREE.Vector3(), q = new THREE.Quaternion(), sc = new THREE.Vector3();
+  const roads = twoWayRoads({ ax: -84, az: 6.875, bx: 84, bz: 6.875 }, 'right', 0.78, 5.5);
+  // Bounds that cut the street in half: everyone and everything beyond x 0 must vanish, the rest stays as planned.
+  const bounds = [-90, -40, 0, 40] as const;
+  const life = createStreetLife(kit, { parent: new THREE.Group(), seed: 'g', lanes, roads, crowd: 120, vehicles: 8, bounds, at: TEN });
+  const free = createStreetLife(kit, { parent: new THREE.Group(), seed: 'g', lanes, roads, crowd: 120, vehicles: 8, at: TEN });
+  let hidden = 0, shown = 0;
+  for (const [mesh, open] of [[life.group.children[0], free.group.children[0]], [life.group.children[1], free.group.children[1]]] as [THREE.InstancedMesh, THREE.InstancedMesh][]) {
+    for (let i = 0; i < mesh.count; i++) {
+      open.getMatrixAt(i, m); m.decompose(p, q, sc);
+      const x = p.x, wanted = mesh.name === 'street-traffic' ? x + sc.z * CAR_LENGTH / 2 <= 0 && x - sc.z * CAR_LENGTH / 2 >= -90 : x <= 0;
+      mesh.getMatrixAt(i, m); m.decompose(p, q, sc);
+      if (wanted) { assert.ok(sc.y > 0, 'inside: drawn as planned'); shown += 1; } else { assert.equal(sc.y, 0, `${mesh.name} ${i} outside: drawn as nothing`); hidden += 1; }
+    }
+  }
+  assert.ok(hidden > 10 && shown > 10, `${hidden} hidden, ${shown} shown`);
+  life.dispose(); free.dispose(); kit.dispose();
 });
 
 test('adaptive caps: slow frames (a mean over 24 ms across 60) draw fewer people and vehicles; fast ones change nothing', () => {

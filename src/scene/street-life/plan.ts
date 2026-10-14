@@ -148,7 +148,9 @@ export function createFrameGuard(): FrameGuard {
 
 /** A pedestrian band: people walk from a to b and from b to a, spread across `width`. `browse`: the lane runs by shop windows, and
  * people who stop on it turn to this facing (crowd.ts). */
-export interface Lane { ax: number; az: number; bx: number; bz: number; width: number; browse?: number }
+export interface Lane { ax: number; az: number; bx: number; bz: number; width: number; browse?: number
+  /** Where along the lane (from a) its shop windows are (zoom phase 5b): a browser stops at these, and only these (crowd.ts). */
+  windows?: readonly number[] }
 /** A traffic lane: vehicles drive from a to b only (one way, all at one speed, so they never run into each other). */
 export interface Road { ax: number; az: number; bx: number; bz: number; speed: number }
 
@@ -324,8 +326,9 @@ export function stepAside(pose: { x: number; z: number }, player: { x: number; z
 
 // ---- the traffic -----------------------------------------------------------------------------------------------------------------
 
-/** A keke (a tricycle taxi: keke, auto, tuk-tuk) is never planned here; a country's livery (livery.ts) turns some cars into them. */
-export type VehicleKind = 'taxi' | 'car' | 'bus' | 'truck' | 'keke';
+/** A keke (a tricycle taxi: keke, auto, tuk-tuk) is never planned here; a country's livery (livery.ts) turns some cars into them, and its
+ * flavour (traffic.ts) some into okadas (motorbike taxis, boda-boda, ojek) and bicycles. */
+export type VehicleKind = 'taxi' | 'car' | 'bus' | 'truck' | 'keke' | 'okada' | 'bike';
 /** Length, height and width scale and colours of each kind (a car is 4.2 units long; the street's parked danfo is 5). */
 export const VEHICLE_KINDS: Readonly<Record<VehicleKind, { length: number; tall: number; wide?: number; colours: readonly string[] }>> = Object.freeze({
   taxi: { length: 1, tall: 1, colours: ['#f2c12e', '#e8b923'] },
@@ -333,6 +336,8 @@ export const VEHICLE_KINDS: Readonly<Record<VehicleKind, { length: number; tall:
   bus: { length: 1.25, tall: 1.55, colours: ['#e5b52b'] },
   truck: { length: 1.55, tall: 1.6, colours: ['#f1efe9', '#3f6f8f', '#a33a2b'] },
   keke: { length: 0.62, tall: 1.05, wide: 0.72, colours: ['#f2c12e'] },
+  okada: { length: 0.5, tall: 0.95, wide: 0.34, colours: ['#1d1f22', '#a33a2b', '#2b4a7a'] },
+  bike: { length: 0.42, tall: 0.88, wide: 0.26, colours: ['#2b4a7a', '#1d1f22', '#5c6a4a'] },
 });
 export const CAR_LENGTH = 4.2;
 export interface Vehicle { road: number; kind: VehicleKind; colour: string; offset: number; length: number }

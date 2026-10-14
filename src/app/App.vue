@@ -17,7 +17,6 @@ import { heldActionFor, shortcutFor } from '../ui/keys.ts'
 import { social, start as startSocial, wakeSocket } from './features/social/useSocial.ts'
 import GameIcon from './ui/GameIcon.vue'
 import ToastStack from './ui/ToastStack.vue'
-import LinkBanner from './features/landing/LinkBanner.vue'
 import UpdateBanner from './ui/UpdateBanner.vue'
 import NoticeHost from './features/notice/NoticeHost.vue'
 import CoachTip from './features/hud/CoachTip.vue'
@@ -37,6 +36,8 @@ import { createPageLifecycle } from './state/pageLifecycle.ts'
 // The Community aside is fetched the first time it is opened (and ahead of that when the browser is idle: state/idlePreload.ts).
 const CommunityHost = defineAsyncComponent({ loader: () => import('./features/community/CommunityHost.vue'), onError: (_error, retry, fail, attempts) => { if (attempts <= 3) setTimeout(retry, 800 * attempts); else fail() } })
 // The panel of a place (the Square, a group's room) is fetched the first time the player stands in one.
+// The link-landing banner ("You're joining Ada") exists only for a player who arrived by a link: its code is fetched then.
+const LinkBanner = defineAsyncComponent(() => import('./features/landing/LinkBanner.vue'))
 const PlacePanel = defineAsyncComponent(() => import('./features/places/PlacePanel.vue'))
 import CallsHost from './features/calls/CallsHost.vue'
 import PingHost from './features/ping/PingHost.vue'
@@ -53,7 +54,7 @@ const sheetOpen = computed(() => Boolean(shell.sheet.value))
 // (A wide screen keeps the scene live beside a sheet; only a full-screen panel covers it there.)
 watch(() => {
   const open = shell.sheet.value
-  return Boolean(open) && (shell.byId.get(open!.kind === 'panel' ? open!.id : '')?.fullscreen === true || globalThis.matchMedia?.('(max-width: 720px)').matches === true)
+  return !!open && (shell.byId.get(open!.kind === 'panel' ? open!.id : '')?.fullscreen === true || globalThis.matchMedia?.('(max-width: 720px)').matches === true)
 }, setCovered, { immediate: true, flush: 'post' })
 /** A home being visited is what the screen shows, whatever place the player stood in before. */
 const visitingHome = computed(() => Boolean(social.me?.visiting))
@@ -156,7 +157,7 @@ onMounted(() => {
   // The guide (src/app/features/companion): fetched once the first frame is up.
   setTimeout(() => { void import('./features/companion/companionLoader.ts').then((loader) => loader.startCompanion()) }, 800)
 })
-onBeforeUnmount(() => { setCovered(false); for (const [target, type, listener] of listeners) target.removeEventListener(type, listener) })
+onBeforeUnmount(() => { for (const [target, type, listener] of listeners) target.removeEventListener(type, listener) })
 // Connected (or connected again): the social client opens its socket and reads the overview.
 // The social client also waits for a life that is not still held by character creation (its connected() says so), so a quick start that
 // confirms the look a moment after connecting must start it again; otherwise the new player is not findable until a reload.
@@ -193,7 +194,7 @@ watch(game.snapshotPhase, (phase, before) => { if (phase === 'unavailable' && be
   <CommunityHost v-if="snapshotAvailable && community.open.value" />
   <CallsHost v-if="snapshotAvailable" :host="sheetOpen ? '#life-dialog' : 'body'" />
   <PingHost v-if="snapshotAvailable" :host="sheetOpen ? '#life-dialog' : 'body'" />
-  <LinkBanner :banner="landing.banner.value" :host="sheetOpen ? '#life-dialog' : 'body'" @knock="landing.knock" @close="landing.dismiss" />
+  <LinkBanner v-if="landing.banner.value" :banner="landing.banner.value" :host="sheetOpen ? '#life-dialog' : 'body'" @knock="landing.knock" @close="landing.dismiss" />
   <UpdateBanner />
   <ToastStack :host="sheetOpen ? '#life-dialog' : 'body'" />
 </template>

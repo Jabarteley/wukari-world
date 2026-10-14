@@ -59,7 +59,7 @@ export function createMotionLoop(tick: (dt: number) => boolean | void, { onHidde
       return true;
     },
     stop() {
-      if (queued && typeof cancel === 'function') { cancel(handle!); queued = false; }
+      if (queued) { cancel(handle!); queued = false; }
       handle = null; loop.running = false;
     },
     dispose() { loop.stop(); doc?.removeEventListener?.('visibilitychange', onVisibility); },

@@ -31,8 +31,9 @@ export function sceneSupport(userAgent: string | undefined, probe: () => ProbeCa
 
 /**
  * Called once when the scene is about to start (ScenePane, from this lazy file). It starts the data meter (Settings → Data and battery;
- * its own lazy chunk, counting what the page has downloaded so far too), says whether this browser can draw the scene, and if it can, tells the frame gate (src/scene/frame-gate.ts) when the scene is covered: a full-screen panel, or any sheet on a phone-sized screen
- *     (a wide screen keeps the scene live beside a sheet). The gate then holds the scene's frames until the cover goes.
+ * its own lazy chunk, counting what the page has downloaded so far too), says whether this browser can draw the scene, and if it can,
+ * tells the frame gate (src/scene/frame-gate.ts) when the scene is covered: a full-screen panel, or any sheet on a phone-sized screen
+ * (a wide screen keeps the scene live beside a sheet). The gate then holds the scene's frames until the cover goes.
  */
 export function sceneCanStart(shell: Pick<Shell, 'sheet' | 'byId'>): boolean {
   void import('../state/dataMeter.ts').then((meter) => meter.startMeter(), () => 0)

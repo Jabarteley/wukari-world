@@ -75,7 +75,7 @@ function forcedTier(win: LookWindow): RenderTier | null {
 export function renderTier(win: LookWindow = globalThis): RenderTier {
   const forced = forcedTier(win);
   if (forced) return forced;
-  if (readLight(win.localStorage, (win as { navigator?: { connection?: { saveData?: boolean } } }).navigator?.connection)) return LIGHT_TIER;
+  if (readLight(win)) return LIGHT_TIER;
   const coarse = win.matchMedia?.('(pointer: coarse)').matches === true;
   const short = Math.min(Number(win.innerWidth) || Infinity, Number(win.innerHeight) || Infinity);
   if (coarse && short <= 720) return PHONE_TIER;

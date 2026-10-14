@@ -12,28 +12,21 @@ export const LIGHT_KEY = 'joinallworld-light-v1'
 /** The frame rate light mode allows a scene or map to draw at. */
 export const LIGHT_FPS = 30
 
-export interface SaveDataConnection { saveData?: boolean }
-type Reader = Pick<Storage, 'getItem'> | null | undefined
+/** What light mode reads of a window: its storage and its connection. */
+export interface LightWindow { localStorage?: Pick<Storage, 'getItem'> | null; navigator?: { connection?: { saveData?: boolean } } }
 
 /** The saved choice ('1' on, '0' off) or, when there is none, the default: on for a browser that asks to save data. */
-export function readLight(storage: Reader, connection?: SaveDataConnection | null): boolean {
+export function readLight(win: LightWindow): boolean {
   try {
-    const saved = storage?.getItem(LIGHT_KEY)
+    const saved = win.localStorage?.getItem(LIGHT_KEY)
     if (saved === '1' || saved === '0') return saved === '1'
   } catch { /* storage is blocked: the default */ }
-  return connection?.saveData === true
+  return win.navigator?.connection?.saveData === true
 }
 
 let current: boolean | null = null
 /** Is light mode on in this tab? Read from the browser once, then kept. */
-export const lightOn = (): boolean => {
-  if (current === null) {
-    let store: Storage | null = null
-    try { store = globalThis.localStorage } catch { /* blocked */ }
-    current = readLight(store, (globalThis.navigator as { connection?: SaveDataConnection } | undefined)?.connection)
-  }
-  return current
-}
+export const lightOn = (): boolean => current ??= readLight(globalThis)
 /** The frame cap now: 30 with light mode on, 0 (none) otherwise. */
 export const lightFps = (): number => (lightOn() ? LIGHT_FPS : 0)
 /** For lightControl.ts (Settings, lazy): hold a new value for this tab, or null to read it again. */

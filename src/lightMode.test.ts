@@ -5,24 +5,27 @@ import { forgetLight, lightChosen, onLightChange, setLight } from './lightContro
 import { HIGH_TIER, LIGHT_TIER, PHONE_TIER, renderTier } from './scene/look.ts'
 
 const saved = (value: string | null) => ({ getItem: (key: string) => (key === LIGHT_KEY ? value : null) })
+/** A window with a saved choice (or none) and the browser's save-data ask. */
+const win = (value: string | null, saveData?: boolean) => ({ localStorage: saved(value), navigator: { connection: { saveData } } })
 
 test('light mode starts on only when the browser asks to save data', () => {
-  assert.equal(readLight(null, { saveData: true }), true)
-  assert.equal(readLight(saved(null), { saveData: true }), true)
-  assert.equal(readLight(saved(null), { saveData: false }), false)
-  assert.equal(readLight(saved(null), {}), false)
-  assert.equal(readLight(saved(null), null), false)
-  assert.equal(readLight(saved(null), undefined), false)
+  assert.equal(readLight({ navigator: { connection: { saveData: true } } }), true, 'no storage at all')
+  assert.equal(readLight(win(null, true)), true)
+  assert.equal(readLight(win(null, false)), false)
+  assert.equal(readLight(win(null)), false)
+  assert.equal(readLight({ navigator: {} }), false)
+  assert.equal(readLight({}), false)
 })
 
 test("the player's own choice wins over the default, either way", () => {
-  assert.equal(readLight(saved('0'), { saveData: true }), false)
-  assert.equal(readLight(saved('1'), { saveData: false }), true)
-  assert.equal(readLight(saved('garbage'), { saveData: true }), true, 'a damaged value is no choice')
+  assert.equal(readLight(win('0', true)), false)
+  assert.equal(readLight(win('1', false)), true)
+  assert.equal(readLight(win('garbage', true)), true, 'a damaged value is no choice')
   assert.equal(lightChosen(saved('1')), true)
   assert.equal(lightChosen(saved('0')), true)
   assert.equal(lightChosen(saved(null)), false)
-  assert.equal(readLight({ getItem: () => { throw new Error('blocked') } }, { saveData: true }), true, 'blocked storage falls back to the default')
+  const blocked = { localStorage: { getItem: () => { throw new Error('blocked') } }, navigator: { connection: { saveData: true } } }
+  assert.equal(readLight(blocked), true, 'blocked storage falls back to the default')
 })
 
 test('the frame cap is 30 with light mode on and none otherwise', () => {

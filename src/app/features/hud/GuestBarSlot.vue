@@ -14,6 +14,8 @@ import { tour } from '../tour/tourState.ts'
 const GuestBar = defineAsyncComponent(() => import('../account/GuestBar.vue'))
 const TouchOffer = defineAsyncComponent(() => import('../growth/TouchOffer.vue'))
 const MailNotice = defineAsyncComponent(() => import('../growth/MailNotice.vue'))
+// Offers notifications after a win at a table or a new friend, never on arrival (growth/notifyAsk.ts).
+const NotifyAsk = defineAsyncComponent(() => import('../growth/NotifyAsk.vue'))
 const app = useApp()
 const { game, shell } = app
 const lite = useAccountLite()
@@ -57,4 +59,5 @@ function dismiss(): void { hidden.value = dismissBar(storage(), Date.now()) }
   <GuestBar v-if="show" @dismiss="dismiss" />
   <TouchOffer v-else-if="offer" @open="openOffer" @dismiss="closeOffer" />
   <MailNotice v-else-if="mailNotice && calm" />
+  <NotifyAsk v-if="game.view.value.connected" />
 </template>

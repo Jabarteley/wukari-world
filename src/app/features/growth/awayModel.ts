@@ -16,9 +16,9 @@ export interface AwayInput {
   missions?: LifeView['missions'] | null
 }
 /** The card to show now, or null: not connected, not settled in, no hello yet, already dismissed, or nothing waiting. */
-export function awayCardFor(view: AwayInput, hello: HelloOk | null, dismissed: boolean, lines: readonly PhoneNotification[]): AwayCard | null {
+export function awayCardFor(view: AwayInput, hello: HelloOk | null, dismissed: boolean, lines: readonly PhoneNotification[], extra: readonly PhoneNotification[] = []): AwayCard | null {
   if (!view.connected || view.onboarding?.required || !hello || dismissed) return null
-  return awayCard({ hoursAway: hello.away.hours, lines: lines.filter((line) => line.fresh), missions: view.missions, events: upcomingEvents(view.now, 1, view.cityId) })
+  return awayCard({ hoursAway: hello.away.hours, lines: [...lines.filter((line) => line.fresh), ...extra], missions: view.missions, events: upcomingEvents(view.now, 1, view.cityId) })
 }
 /** The card is only asked for once a connected player has settled in: a guest in their first minutes has nothing to come back to. */
 export const awayWanted = (view: { connected: boolean; onboarding?: { required?: boolean; guest?: boolean } | null }): boolean =>

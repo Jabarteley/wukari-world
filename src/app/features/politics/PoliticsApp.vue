@@ -4,7 +4,7 @@
 // One screen for the three seats (city, state, nation) and the parties. The ballot of a seat is GET /api/civic/gov?tier=; the rest
 // (rules, treasury, parties) is GET /api/politics/overview. Every control that is off says why. Filing a candidacy, drawing the
 // salary and founding a party keep their request id until applied, so pressing again after a lost answer is the SAME request.
-import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, onBeforeUnmount, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import type { GovResponse } from '../../../types/civic.ts'
 import type { BillView, CaseView, JusticeResponse, LeverView, PoliticsResponse, TierId, Verdict } from '../../../types/politics.ts'
@@ -13,13 +13,14 @@ import EmptyState from '../../ui/EmptyState.vue'
 import SectionTitle from '../../ui/SectionTitle.vue'
 import AiTag from '../social/AiTag.vue'
 import CivicAction from '../civic/CivicAction.vue'
+const PrisonCard = defineAsyncComponent(() => import('./PrisonCard.vue'))
 import CivicAvatar from '../civic/CivicAvatar.vue'
 import CivicStale from '../civic/CivicStale.vue'
 import CivicStatus from '../civic/CivicStatus.vue'
 import { colourOf, sloganTooShort, until, votes, PHASES, NEXT, voteWhy, runWhy, barWidth } from '../civic/civicModel.ts'
 import { AD_COLOURS, ELECTION } from '../civic/civicContent.ts'
 import { useCivic, useLoaded, useOffline } from '../civic/useCivic.ts'
-import { appealRequest, arrestRequest, bailRequest, escalateRequest, partyRequest, politicsUi as ui, runRequest, salaryRequest } from './politicsDrafts.ts'
+import { appealRequest, arrestRequest, bailRequest, escalateRequest, paroleRequest, partyRequest, prisonWorkRequest, politicsUi as ui, runRequest, salaryRequest } from './politicsDrafts.ts'
 import { momentKind, shareMoment } from '../growth/shareMoment.ts'
 import type { RecordEntryView, RecordKind, RecordsResponse } from '../../../types/records.ts'
 import { RECORD_FILTERS, checkRecords, kindLabel, recordDate, recordsPath, shortHash } from './politicsModel.ts'
@@ -160,6 +161,17 @@ async function escalate(): Promise<void> {
   civic.requestDone(escalateRequest, result)
   doneLaw(result)
 }
+async function prisonWork(job: string): Promise<void> {
+  const result = await civic.send(job === 'service' ? 'p-prison:service' : `p-prison:${job}`, '/api/politics/justice/prison/work', { job, requestId: civic.requestId(prisonWorkRequest, [cityId.value, job]) }, { success: job === 'service' ? 'Community service done. Time off your sentence.' : 'Done. Time off your sentence.' })
+  civic.requestDone(prisonWorkRequest, result)
+  doneLaw(result)
+}
+async function askParole(): Promise<void> {
+  const result = await civic.send('p-parole', '/api/politics/justice/prison/parole', { requestId: civic.requestId(paroleRequest, [cityId.value]) }, { success: 'Parole granted. You are free.' })
+  civic.requestDone(paroleRequest, result)
+  doneLaw(result)
+}
+async function visit(id: string): Promise<void> { doneLaw(await civic.send(`p-visit:${id}`, '/api/politics/justice/prison/visit', { to: id }, { success: 'You visited. They will know you came.' })) }
 async function postBail(): Promise<void> {
   const result = await civic.send('p-bail', '/api/politics/justice/bail', { requestId: civic.requestId(bailRequest, [cityId.value]) }, { success: 'Bail paid. You are free.' })
   civic.requestDone(bailRequest, result)
@@ -368,6 +380,12 @@ const dateOf = (at: number): string => new Date(at).toLocaleDateString('en-NG', 
       <CivicStatus :item="justice.item.value" @retry="justice.reload" />
       <template v-if="law">
         <div v-if="law.you?.jail" class="politics-jail" role="alert"><strong>You are in jail</strong><p>{{ jailLine(law.you.jail, view.now) }}</p></div>
+        <PrisonCard v-if="law.you?.jail?.prison" :prison="law.you.jail.prison" :busy="civic.busy" :reason="offline('work') ?? ''" @work="prisonWork" @service="prisonWork('service')" @parole="askParole" />
+        <section v-if="law.you?.visitable?.length" class="ui-card" aria-label="Visit a friend in jail">
+          <strong>Visit a friend in jail</strong>
+          <p class="politics-note">Friends can be visited in visiting hours. A visit takes a minute off their sentence.</p>
+          <CivicAction v-for="friend in law.you.visitable" :key="friend.id" :working="civic.busy(`p-visit:${friend.id}`)" :reason="offline('visit') ?? ''" @click="visit(friend.id)">Visit {{ friend.name }}</CivicAction>
+        </section>
         <SectionTitle>Police</SectionTitle>
         <section v-for="seat in law.seats" :key="seat.scope" class="ui-card politics-force">
           <strong>{{ seat.title }} of {{ seat.name }}</strong>

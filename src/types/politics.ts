@@ -33,6 +33,18 @@ export interface OffenceRecord {
   won: boolean
   status: 'open' | 'arrested'
 }
+/** What a jailed player may do, from the server (server/politics/prison.ts). */
+export interface PrisonView {
+  jobs: { id: string; label: string; cutMin: number; waitMs: number }[]
+  /** Minutes the jobs may still take off today. */
+  capLeftMin: number
+  /** Community service is open to this sentence (short, not done yet): the minutes it would take off. */
+  service: { cutMin: number } | null
+  /** Parole: 'wait' (not yet half served; `inMs` more), 'ready', 'denied'. */
+  parole: { state: 'wait' | 'ready' | 'denied'; inMs: number }
+  /** Visiting hours in Lagos time, and whether they are open now. */
+  visiting: { fromHour: number; toHour: number; open: boolean }
+}
 export interface JailRecord {
   /** Server ms the sentence ends. */
   until: number
@@ -45,6 +57,18 @@ export interface JailRecord {
   tier: TierId
   /** That seat's scope id: its court hears an appeal. Absent on a sentence made before courts. */
   scope?: string
+  /** Jail you can play (server/politics/prison.ts, docs/JAIL.md). Every field is optional: a sentence made before this loads and ends as it always did. */
+  /** Minutes taken off by prison jobs and visits on Lagos day `cutDay`: the daily cap counts these. */
+  cutDay?: number
+  cutMin?: number
+  /** Prison job id → server ms it was last done (a short wait between two of the same). */
+  jobs?: Record<string, number>
+  /** Community service was done: once per sentence. */
+  service?: true
+  /** The parole hearing was held and refused: one hearing per sentence. */
+  parole?: 'denied'
+  /** Visitor id → server ms of their last visit. */
+  visits?: Record<string, number>
 }
 
 /** A case: a jailed player contesting the arrest before a judge. */
@@ -281,7 +305,7 @@ export interface CaseView {
 export interface JusticeResponse {
   city: CityId
   seats: JusticeSeatView[]
-  you: { jail: { until: number; minutes: number; by: PlayerRef } | null; police: { tier: TierId; scope: string } | null; wanted: OffenceView[] } | null
+  you: { jail: { until: number; minutes: number; by: PlayerRef; prison?: PrisonView } | null; police: { tier: TierId; scope: string } | null; wanted: OffenceView[]; visitable?: { id: string; name: string }[] } | null
   /** Open offences an officer may act on, newest first. Empty for everyone else. */
   offences: OffenceView[]
   court: {
@@ -325,6 +349,9 @@ export interface PoliticsHttpRoutes {
   'POST /api/politics/justice/appeal': { body: { cityId: CityId; statement: string; counsel?: string; requestId: TimedId }; response: Ok<JusticeWriteResponse>; errors: PoliticsWrite | OnceErrorCode }
   'POST /api/politics/justice/escalate': { body: { cityId: CityId; requestId: TimedId }; response: Ok<JusticeWriteResponse>; errors: PoliticsWrite | OnceErrorCode }
   'POST /api/politics/justice/bail': { body: { cityId: CityId; requestId: TimedId }; response: Ok<JusticeWriteResponse>; errors: PoliticsWrite | OnceErrorCode }
+  'POST /api/politics/justice/prison/work': { body: { cityId: CityId; job: string; requestId: TimedId }; response: Ok<JusticeWriteResponse>; errors: PoliticsWrite | OnceErrorCode }
+  'POST /api/politics/justice/prison/parole': { body: { cityId: CityId; requestId: TimedId }; response: Ok<JusticeWriteResponse>; errors: PoliticsWrite | OnceErrorCode }
+  'POST /api/politics/justice/prison/visit': { body: { cityId: CityId; to: string }; response: Ok<JusticeWriteResponse>; errors: PoliticsWrite }
   'POST /api/politics/justice/argue': { body: { cityId: CityId; offence: string; argument: string }; response: Ok<JusticeWriteResponse>; errors: PoliticsWrite }
   'POST /api/politics/justice/rule': { body: { cityId: CityId; offence: string; verdict: Verdict; note: string }; response: Ok<JusticeWriteResponse>; errors: PoliticsWrite }
   'POST /api/politics/justice/lawyer': { body: { cityId: CityId; on: boolean }; response: Ok<JusticeWriteResponse>; errors: PoliticsWrite }

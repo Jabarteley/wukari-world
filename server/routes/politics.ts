@@ -20,6 +20,9 @@
  *   POST /api/politics/justice/enrol    { cityId, tier, player }         the officeholder makes a player an officer for their term
  *   POST /api/politics/justice/dismiss  { cityId, tier, player }         the officeholder, or the officer, ends it
  *   POST /api/politics/justice/arrest   { cityId, offence, requestId }   an officer in the same place as the offender jails them for the sentence in force
+ *   POST /api/politics/justice/prison/work    { cityId, job, requestId }   a jail job (kitchen, laundry, library) or "service" (community service) takes minutes off your sentence (docs/JAIL.md)
+ *   POST /api/politics/justice/prison/parole  { cityId, requestId }        the parole hearing, once half the sentence is served
+ *   POST /api/politics/justice/prison/visit   { cityId, to }               a friend visits a prisoner, in visiting hours
  *   Every write answers { ok, code, reason?, state?, politics } with the refreshed overview.
  */
 import { cityRules } from '../../src/game/cities/index.ts';
@@ -42,6 +45,7 @@ import { sideParam } from '../politics/electorate.ts';
 import type { Side } from '../politics/data.ts';
 import { agentMark } from '../agents/policy.ts';
 import { govOfId, govOfScope, justiceOf, peekGov, peekJustice, peekPolitics, peekScope, politicsOf, scopeRecord, seatsOf } from '../politics/data.ts';
+import { doJob, doService, doVisit, jobBlock, paroleHearing, prisonView, serviceBlock, visitBlock } from '../politics/prison.ts';
 import { appealBlock, applyRuling, arrestBlock, attackerWins, bailOf, escalate, escalateBlock, fightBlock, fileAppeal, inJurisdiction, jail, jailOf, judgesOf, nextTier, officersOf, policeIsValid, recordFight, ruleBlock } from '../politics/justice.ts';
 import type { Seat } from '../politics/data.ts';
 import { archiveCity } from '../records/city.ts';
@@ -189,9 +193,17 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
       fees: { appeal: JUSTICE.appealFee, escalate: JUSTICE.escalateFee },
     };
     return { city: cityId, seats, court,
-      you: who ? { jail: sentence ? { until: sentence.until, minutes: sentence.minutes, by: sentence.by } : null, police: officer ? { tier: officer.tier, scope: officer.scope } : null, wanted: open.filter((offence) => offence.by.id === who.id).slice(0, 5).map(view) } : null,
+      you: who ? { jail: sentence ? { until: sentence.until, minutes: sentence.minutes, by: sentence.by, prison: prisonView(sentence, now, incidentsOf(db, justice, who.id, sentence)) } : null, police: officer ? { tier: officer.tier, scope: officer.scope } : null, wanted: open.filter((offence) => offence.by.id === who.id).slice(0, 5).map(view),
+        ...(sentence ? {} : { visitable: visitableOf(db, justice, who.id, now) }) } : null,
       offences: reach, rules: { minDays: JUSTICE.minDays, minEnergy: JUSTICE.minEnergy, cooldownMinutes: JUSTICE.cooldownMs / 60000, offenceHours: JUSTICE.offenceMs / 3600000, arrestsPerHour: JUSTICE.arrestsPerHour } };
   }
+  /** What a prisoner did wrong since the arrest: offences on record and reports made about them while inside. */
+  const incidentsOf = (db: Db, justice: ReturnType<typeof peekJustice>, id: string, sentence: { at: number }): number =>
+    Object.values(justice.offences).filter((offence) => offence.by.id === id && offence.at > sentence.at).length
+    + (db.social?.reports ?? []).filter((report) => report.about === id && report.at >= sentence.at && report.status !== 'dismissed').length;
+  /** Friends of `id` who are in jail now, newest sentence first: the ones a visit is offered for. */
+  const visitableOf = (db: Db, justice: ReturnType<typeof peekJustice>, id: string, now: number): { id: string; name: string }[] =>
+    Object.keys(db.social?.players?.[id]?.friends ?? {}).filter((friend) => jailOf(justice, friend, now) && db.social?.players?.[friend]?.friends?.[id]).slice(0, 10).map((friend) => ({ id: friend, name: db.social?.players?.[friend]?.name ?? friend }));
   const justiceWrite = (db: Db, cityId: CityId, who: PlayerRef, life: LifeState, outcome: { ok: boolean; code: string; reason?: string }, after?: () => void) =>
     ({ body: { ...outcome, state: life, justice: justiceOverview(db, cityId, who, life) }, renew: true, ...(after ? { after } : {}) });
   const noJustice = (code: string, reason: string) => ({ ok: false as const, code, reason });
@@ -654,6 +666,67 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
           return { ok: true as const, code: 'escalated' };
         });
         return justiceWrite(db, cityId, who, life, outcome);
+      });
+    },
+
+    // ---- jail you can play (docs/JAIL.md) ------------------------------------------------------------
+    'POST /api/politics/justice/prison/work': async (request) => {
+      const body = await request.json();
+      const cityId = cityParam(body.cityId), job = typeof body.job === 'string' ? body.job.slice(0, 20) : '';
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
+        const { session, who, life } = enter(db, request, cityId);
+        limit('prison', who.id, 60);
+        const outcome = ctx.once(db, session, { id: body.requestId, kind: 'justice.prison.work', fingerprint: [cityId, job] }, () => {
+          const justice = justiceOf(politicsOf(ctx, db)), now = ctx.now(), sentence = jailOf(justice, who.id, now);
+          if (!sentence) return noJustice('not_jailed', 'You are not in jail.');
+          const block = job === 'service' ? serviceBlock(sentence, now) : jobBlock(sentence, now, job);
+          if (block) return noJustice(block.code, block.reason);
+          const taken = job === 'service' ? doService(sentence, now) : doJob(sentence, now, job);
+          return taken > 0 ? { ok: true as const, code: job === 'service' ? 'served' : 'worked', minutes: taken } : noJustice('nearly_done', 'Your sentence is nearly over. There is nothing left to work off.');
+        });
+        return justiceWrite(db, cityId, who, life, outcome);
+      });
+    },
+
+    'POST /api/politics/justice/prison/parole': async (request) => {
+      const body = await request.json();
+      const cityId = cityParam(body.cityId);
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
+        const { session, who, life } = enter(db, request, cityId);
+        limit('prison', who.id, 20);
+        const outcome = ctx.once(db, session, { id: body.requestId, kind: 'justice.prison.parole', fingerprint: [cityId] }, () => {
+          const justice = justiceOf(politicsOf(ctx, db)), now = ctx.now(), sentence = jailOf(justice, who.id, now);
+          if (!sentence) return noJustice('not_jailed', 'You are not in jail.');
+          const hearing = paroleHearing(sentence, now, incidentsOf(db, justice, who.id, sentence));
+          if (hearing.state === 'too_early') return noJustice('parole_early', `Parole opens when half the sentence is served, in ${Math.ceil(hearing.inMs / 60000)} more minutes.`);
+          if (hearing.state === 'denied') { sentence.parole = 'denied'; return noJustice('parole_denied', hearing.reason); }
+          delete justice.jail[who.id];
+          return { ok: true as const, code: 'paroled' };
+        });
+        return justiceWrite(db, cityId, who, life, outcome);
+      });
+    },
+
+    'POST /api/politics/justice/prison/visit': async (request) => {
+      const body = await request.json();
+      const cityId = cityParam(body.cityId), to = typeof body.to === 'string' && /^[\w-]{1,64}$/.test(body.to) ? body.to : null;
+      if (!to) throw fail(400, 'invalid_player');
+      await prepareTargets(cityId, [to]);
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
+        const { who, life } = enter(db, request, cityId);
+        limit('prison', who.id, 20);
+        const justice = justiceOf(politicsOf(ctx, db)), now = ctx.now();
+        if (to === who.id) return justiceWrite(db, cityId, who, life, noJustice('self', 'You cannot visit yourself.'));
+        if (jailOf(justice, who.id, now)) return justiceWrite(db, cityId, who, life, noJustice('jailed', 'You are in jail yourself.'));
+        const sentence = jailOf(justice, to, now), mine = db.social?.players?.[who.id], theirs = db.social?.players?.[to];
+        if (!sentence || !theirs) return justiceWrite(db, cityId, who, life, noJustice('not_jailed', 'That player is not in jail.'));
+        if (!mine?.friends?.[to] || !theirs.friends?.[who.id] || mine.blocked?.[to] || theirs.blocked?.[who.id]) return justiceWrite(db, cityId, who, life, noJustice('friends_only', `Only friends can visit. Add ${theirs.name} as a friend first.`));
+        const block = visitBlock(sentence, now, who.id);
+        if (block) return justiceWrite(db, cityId, who, life, noJustice(block.code, block.reason));
+        doVisit(sentence, now, who.id);
+        const prisoner = ctx.core.sessionByPublicId(db, to);
+        if (prisoner?.cities?.[cityId]?.state) ctx.act(ctx.settle(prisoner, cityId), { type: 'civic.news', cityId, payload: { items: [{ id: `visit-${who.id.slice(0, 12)}-${Math.floor(now / 60000)}`, title: 'A visitor', text: `${who.name} came to visit you.`, at: now }] }, stateGuard: 'only notices whose id is not yet in life.civic.news are posted' });
+        return justiceWrite(db, cityId, who, life, { ok: true, code: 'visited' }, () => { ctx.push(to, { type: 'social-sync' }); });
       });
     },
 

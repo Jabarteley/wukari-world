@@ -5,6 +5,8 @@
 import { watch } from 'vue'
 import type { Ref } from 'vue'
 import { readObservedWeather, setObservedWeather } from '../../../game/weather-observed-read.ts'
+import { setCityMoney, setDisplayCity } from '../../../game/money.ts'
+import { readCityMoney } from '../../../game/money-feed.ts'
 import { takeCredits } from './feedCredits.ts'
 
 export const FEED_EVERY_MS = 30 * 60000
@@ -23,6 +25,7 @@ export function takeFeed(cityId: string, answer: unknown): void {
   if (typeof answer !== 'object' || answer === null) return
   const feed = answer as { weather?: unknown; credits?: unknown }
   takeCredits(feed.credits)
+  setCityMoney(cityId, readCityMoney(answer))
   setObservedWeather(cityId, readObservedWeather(feed.weather))
 }
 
@@ -32,6 +35,7 @@ export function startWorldFeed(deps: FeedDeps): () => void {
   let lastAt = -Infinity
   async function read(): Promise<void> {
     const city = deps.cityId.value
+    setDisplayCity(city) // amounts are written for this city from now on (naira until its rates arrive)
     lastAt = deps.now()
     try { takeFeed(city, await deps.fetchJson(`/api/world/feed?id=${encodeURIComponent(city)}`)) } catch { /* the last hours stay; the cycle covers the rest */ }
   }

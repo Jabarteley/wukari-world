@@ -2,7 +2,10 @@
 // Kept out of the startup download; the bank's ledger imports the short form from here too (it is a lazy panel).
 
 /** A short amount for tight spaces: ₦850, ₦1.2k, ₦34k, ₦3.4m, ₦1.1b. Under ₦1,000 it is the exact amount. Rounded down, never up, so a short figure never claims more than the exact one. */
+import { compactMoney as cityCompact } from '../../../game/money-feed.ts'
 export function compactMoney(value: unknown): string {
+  const own = cityCompact(value)
+  if (own !== null) return own
   const n = Math.round(Number(value) || 0), abs = Math.abs(n), sign = n < 0 ? '−' : ''
   const tier = abs >= 1e9 ? 3 : abs >= 1e6 ? 2 : abs >= 1e3 ? 1 : 0, scaled = abs / 1000 ** tier
   return `${sign}₦${tier ? (scaled < 10 ? Math.floor(scaled * 10) / 10 : Math.floor(scaled)) : abs}${'kmb'.charAt(tier - 1)}`

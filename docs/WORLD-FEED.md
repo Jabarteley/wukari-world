@@ -56,6 +56,7 @@ It is `id`, not `city`, so that the host does not load the city's content for a 
 ```
 { day: "2026-10-14" | null,
   rates: { NGN: 1328.12, GHS: 15.3, USD: 1 },            // the city's own currency, NGN and USD; units per US dollar
+  currency: { code: "GHS", symbol: "GH₵", decimals: 2 } | null,
   weather: { at, hours: [[hourStartMs, "rain", 24.5], ...] } | null,
   credits: { weather, weatherUrl, rates: null | "Rates By Exchange Rate API", ratesUrl } }
 ```
@@ -66,7 +67,7 @@ changes, and every 30 minutes while the page is visible.
 ## Money
 
 `src/game/currency.ts` maps every country the catalogue uses (241 codes, lower case; a city without one is in Nigeria) to ISO 4217
-code, symbol and decimals. Phase 5 builds its formatter on it. The server answers rates only for the currencies of this table.
+code, symbol and decimals. The formatter built on it is described in [CURRENCY.md](CURRENCY.md); the answer carries `currency: { code, symbol, decimals }` for it. The server answers rates only for the currencies of this table.
 A new country in the catalogue must be added there; `currency.test.ts` fails otherwise.
 
 ## Tests

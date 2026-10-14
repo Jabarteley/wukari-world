@@ -4,6 +4,7 @@
 import type { Conversation, Mention, Message, OutboxEntry, ThreadItem } from '../../../types/social.ts'
 import type { PlayerRef } from '../../../types/protocol.ts'
 import { SHORTCODES } from './emojiData.ts'
+import { money } from '../../ui/format.ts'
 
 const DAY = 86400000
 export const messageLength = (text: string): number => Array.from(text.trim()).length
@@ -161,7 +162,7 @@ export const composerLines = (text: string, max = 4): number => Math.min(max, Ma
 
 /** The sentence under a bubble for the money of a gift. */
 export function giftLine(message: Message, meId: string): string {
-  const amount = `₦${Math.round(message.gift?.amount ?? 0).toLocaleString('en-NG')}`
+  const amount = money(message.gift?.amount ?? 0)
   return message.from?.id === meId ? `You sent ${amount}` : `${message.from?.name ?? 'Someone'} sent you ${amount}`
 }
-export const giftDetail = (message: Message, meId: string): string | null => (message.from?.id !== meId && message.gift?.repaid ? `₦${Math.round(message.gift.repaid).toLocaleString('en-NG')} went to your ride home` : null)
+export const giftDetail = (message: Message, meId: string): string | null => (message.from?.id !== meId && message.gift?.repaid ? `${money(message.gift.repaid)} went to your ride home` : null)

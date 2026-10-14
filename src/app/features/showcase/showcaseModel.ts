@@ -6,6 +6,7 @@ import type { ShowcaseCategory, ShowcaseHours, ShowcaseIcon, ShowcaseInput, Show
 import { cachedCityContent, cityName, cityRules } from '../../../game/cities/registry.ts'
 import type { TrustBadge } from '../../../game/trust/index.ts'
 import { fitWithin, refusalFor, toBase64 } from '../messages/pictureModel.ts'
+import { money } from '../../ui/format.ts'
 
 export const CATEGORY_LABELS: Record<ShowcaseCategory, string> = SHOWCASE_CATEGORY_LABELS
 export const ICON_GLYPHS: Record<ShowcaseIcon, { glyph: string; label: string }> = {
@@ -43,7 +44,7 @@ export function directoryPath(query: DirectoryQuery): string {
   return `/api/showcase/directory${parts.length ? `?${parts.join('&')}` : ''}`
 }
 /** The seller's own price, as a number with the naira sign. Always shown beside "Seller's price, paid outside Allworld". */
-export const sellerPrice = (value: number): string => (Number.isFinite(value) && Math.round(value) > 0 ? `₦${Math.round(value).toLocaleString('en-NG')}` : 'Ask the seller')
+export const sellerPrice = (value: number): string => (Number.isFinite(value) && Math.round(value) > 0 ? money(value) : 'Ask the seller')
 export const PRICE_NOTE = 'Seller’s price, paid outside Allworld'
 
 /** One line for each day: "Monday 09:00 to 18:00" or "Sunday closed". */

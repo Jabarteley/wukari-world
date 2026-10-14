@@ -68,3 +68,20 @@ test('a failed read changes nothing', async () => {
   stop()
   clearObservedWeather()
 })
+
+test('an answer gives the city its money; the display city follows the feed and a day does not move', async () => {
+  const { money } = await import('../../../game/money.ts')
+  const { clearMoney } = await import('../../../game/money-feed.ts')
+  clearMoney()
+  const london = { day: '2026-10-14', rates: { NGN: 1500, GBP: 0.75, USD: 1 }, currency: { code: 'GBP', symbol: '£', decimals: 2 }, weather: null, credits: null }
+  takeFeed('london', london)
+  assert.equal(money(6800, 'london'), '£3.40')
+  takeFeed('london', { ...london, rates: { NGN: 1500, GBP: 0.9, USD: 1 } })
+  assert.equal(money(6800, 'london'), '£3.40', 'frozen for the day')
+  takeFeed('accra', { ...london, currency: { code: 'GHS', symbol: 'GH₵', decimals: 2 }, rates: { NGN: 1500, GHS: 15, USD: 1 } })
+  assert.equal(money(4500, 'accra'), 'GH₵ 45.00')
+  takeFeed('nairobi', { ...london, currency: { code: 'KES', symbol: 'KSh', decimals: 2 }, rates: { NGN: 1500, KES: 130, USD: 1 } })
+  assert.equal(money(138462, 'nairobi'), 'KSh 12,000')
+  assert.equal(money(6800, 'lagos'), '₦6,800', 'no money held: naira')
+  clearMoney()
+})

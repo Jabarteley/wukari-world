@@ -8,7 +8,7 @@
 import { computed, defineAsyncComponent, ref } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { formatClock } from '../../../game/clock.ts'
-import { money, signedMoney } from '../../ui/format.ts'
+import { money, moneyHint, signedMoney } from '../../ui/format.ts'
 import BaseButton from '../../ui/BaseButton.vue'
 import BaseChip from '../../ui/BaseChip.vue'
 import EmptyState from '../../ui/EmptyState.vue'
@@ -66,7 +66,7 @@ async function pay(which: 'rent' | 'week' | 'all'): Promise<void> {
     <ReliefLink />
     <section class="bank-wallet" aria-label="Your game wallet">
       <div class="bank-wallet-top"><span>Your game wallet</span><AppArtwork app="bank" /></div>
-      <strong>{{ money(state.cash) }}</strong>
+      <strong :title="moneyHint(state.cash)">{{ money(state.cash) }}</strong>
       <dl class="bank-week" aria-label="Last 7 days">
         <div><dt>In, last 7 days</dt><dd class="is-in">+{{ money(week.in) }}</dd></div>
         <div><dt>Out, last 7 days</dt><dd class="is-out">−{{ money(week.out) }}</dd></div>

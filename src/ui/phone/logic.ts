@@ -5,6 +5,7 @@
  */
 
 /** The fields of a player's report that the Phone reads. Every one is optional: the server's list is trusted no further than that. */
+import { money } from '../../game/money.ts'
 export interface ReportLike { id?: string; at?: number | null; updatedAt?: number | null; note?: string; status?: string }
 
 /** Open ids of the "How it works" disclosures after one toggle. Returns the SAME set when nothing changed. */
@@ -72,6 +73,6 @@ export function quickBuy({ quote, cash, connected, busy = false, label = 'this' 
   if (!connected) blocked = 'Not connected — ordering needs the server';
   else if (busy) blocked = 'Ordering…';
   else if (!quote || !Number.isFinite(Number(quote.price))) blocked = `No price for ${label} yet`;
-  else if (price > cash) blocked = `Need ₦${Math.round(price - cash).toLocaleString("en-NG")} more`;
+  else if (price > cash) blocked = `Need ${money(price - cash)} more`;
   return { price, blocked };
 }

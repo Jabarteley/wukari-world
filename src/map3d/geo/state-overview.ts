@@ -3,6 +3,7 @@ import { pointInPart } from '../lga.ts'
 import { cityName, cityRules } from '../../game/cities/registry.ts'
 import { cityUnit } from '../../game/cities/terminology.ts'
 import type { CityStateOverview, LonLatPolygon } from '../../types/content.ts'
+import { money } from '../../game/money.ts'
 
 /** An open city of the state: its local units, and (for the pin and the travel lines) where the atlas marks it. */
 export interface OverviewCity { id: string; name: string; units: readonly { id: string }[]; at?: { lon: number; lat: number } }
@@ -16,7 +17,7 @@ export interface OverviewExtras { current?: string | null; links?: readonly Over
 const escape = (value: string): string => value.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char] ?? char)
 const number = (value: number): string => String(Math.round(value * 100) / 100)
 const percent = (value: number): string => String(Math.round(value * 1000) / 10)
-const naira = (value: number): string => `₦${Number(value).toLocaleString('en-NG')}`
+const naira = (value: number): string => money(value)
 const MODE: Readonly<Record<string, string>> = { road: 'Bus', rail: 'Train', air: 'Flight' }
 const polygonPath = (polygons: readonly LonLatPolygon[]): string => polygons.flatMap(polygon => polygon.map(ring => ring.map(([lon, lat], index) => {
   const point = project(lon, lat)

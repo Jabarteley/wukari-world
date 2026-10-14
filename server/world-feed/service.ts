@@ -17,6 +17,8 @@
  */
 import { cityCatalogueEntry, playableCityIds } from '../../src/game/cities/registry.ts';
 import { CURRENCY_CODES, currencyOfCountry } from '../../src/game/currency.ts';
+import { setCityMoney } from '../../src/game/money.ts';
+import { readCityMoney } from '../../src/game/money-feed.ts';
 import { HOUR_MS } from '../../src/game/weather-observed.ts';
 import { readObservedWeather, setObservedWeather } from '../../src/game/weather-observed-read.ts';
 import type { ObservedHour } from '../../src/game/weather-observed.ts';
@@ -36,6 +38,8 @@ export interface FeedAnswer {
   day: string | null
   /** Units of each currency one US dollar buys: the city's own, NGN and USD. Absent codes are missing from the feed. */
   rates: Record<string, number>
+  /** The city's own money (code, symbol, decimals), for the phone's money formatter (src/game/money.ts); null for an unknown country. */
+  currency: { code: string; symbol: string; decimals: number } | null
   /** The city's observed hours, or null. */
   weather: { at: number; hours: readonly ObservedHour[] } | null
   credits: { weather: string; weatherUrl: string; rates: string | null; ratesUrl: string | null }
@@ -168,17 +172,20 @@ function build(ctx: RouteContext): WorldFeed {
     },
     answer(cityId) {
       const place = cityCatalogueEntry(cityId);
-      const own = currencyOfCountry(place?.countryISO)?.code;
+      const currency = currencyOfCountry(place?.countryISO);
+      const own = currency?.code;
       const wanted = new Set([own, 'NGN', 'USD'].filter((code): code is string => typeof code === 'string' && CURRENCY_CODES.includes(code)));
       const out: Record<string, number> = {};
       if (rates) for (const code of wanted) { const rate = code === 'USD' ? 1 : rates.rates[code]; if (rate !== undefined) out[code] = rate; }
       const entry = weather.get(cityId);
       const fallback = rates?.source === 'er-api';
-      return {
-        day: rates?.day ?? null, rates: out,
+      const result: FeedAnswer = {
+        day: rates?.day ?? null, rates: out, currency: currency ? { code: currency.code, symbol: currency.symbol, decimals: currency.decimals } : null,
         weather: entry ? { at: entry.at, hours: entry.hours.filter((h) => h[0] + HOUR_MS > now()) } : null,
         credits: { weather: 'Weather data from MET Norway', weatherUrl: 'https://www.met.no/en', rates: fallback ? 'Rates By Exchange Rate API' : null, ratesUrl: fallback ? 'https://www.exchangerate-api.com' : null },
       };
+      setCityMoney(cityId, readCityMoney(result)); // the server's own holder, so money(amount, city) works here too
+      return result;
     },
     seen: markSeen,
     rates: () => rates,

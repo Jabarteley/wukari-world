@@ -1,6 +1,7 @@
 // Shared pure helpers for the rules engine. Anyone may import this file.
 import type { ActionFailure, ActionSuccess, LifeContext, LifeContextInit, LifeState } from '../types/life.ts'
 import { isCityId } from './cities/registry.ts'
+import { money } from './money.ts'
 
 export const clamp = (value: number, min = 0, max = 100): number => Math.min(max, Math.max(min, value));
 export const isRecord = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -13,7 +14,8 @@ export const cap = (id: string): string => {
   if (first === undefined) throw new TypeError('cap() needs a non-empty id');
   return `${first.toUpperCase()}${id.slice(1)}`;
 };
-export const naira = (value: unknown): string => `₦${Math.round(Number(value) || 0).toLocaleString('en-NG')}`;
+/** An amount for display: the display city's currency in the browser (src/game/money.ts), naira everywhere else. */
+export const naira = (value: unknown): string => money(value);
 
 /** Trimmed text of bounded length with control characters removed, or the fallback. */
 export function cleanText(value: unknown, max = 80, fallback = ''): string {

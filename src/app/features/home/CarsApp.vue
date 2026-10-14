@@ -8,7 +8,7 @@ import type { CarId } from '../../../types/life.ts'
 import { useApp } from '../../state/app.ts'
 import { CAR_RESALE_RATE } from '../../../game/content/cars.ts'
 import { linkWords } from '../../../ui/link.ts'
-import { money } from '../../ui/format.ts'
+import { money, moneyHint } from '../../ui/format.ts'
 import HowItWorks from '../../ui/HowItWorks.vue'
 import { useAct } from '../kit/act.ts'
 import CarArt from './CarArt.vue'
@@ -47,7 +47,7 @@ const sell = (id: CarId): Promise<boolean> => act(`sell:${id}`, () => command('p
       <CatalogueCard v-for="(car, index) in listedCars" :key="car.id" :title="car.label" :subtitle="car.nickname" :selected="car.driving">
         <template #media><CarArt :id="car.id" :label="car.label" :index="index" /></template>
         <template #status><span v-if="car.owned" class="ui-chip is-good">{{ car.driving ? 'Driving' : 'Owned' }}</span></template>
-        <dl class="cars-specs"><div><dt>Purchase price</dt><dd><s v-if="car.price < car.listPrice">{{ money(car.listPrice) }}</s> {{ money(car.price) }}</dd></div><div><dt>Fuel per trip</dt><dd>{{ money(car.fuel) }}</dd></div><div><dt>Travel time</dt><dd>{{ quicker(car.speed) }}% quicker</dd></div></dl>
+        <dl class="cars-specs"><div><dt>Purchase price</dt><dd :title="moneyHint(car.price)"><s v-if="car.price < car.listPrice">{{ money(car.listPrice) }}</s> {{ money(car.price) }}</dd></div><div><dt>Fuel per trip</dt><dd>{{ money(car.fuel) }}</dd></div><div><dt>Travel time</dt><dd>{{ quicker(car.speed) }}% quicker</dd></div></dl>
         <template #actions>
           <template v-if="car.owned"><BaseButton v-if="!car.driving" variant="primary" :reason="owned" :disabled="pending !== null" @click="use(car.id)">{{ pending === `use:${car.id}` ? 'Selecting…' : 'Drive this' }}</BaseButton><BaseButton :reason="owned" :disabled="pending !== null" @click="sell(car.id)">{{ pending === `sell:${car.id}` ? 'Selling…' : `Sell for ${money(car.resale)}` }}</BaseButton></template>
           <BaseButton v-else variant="primary" :reason="buyReason(car, offline)" :disabled="pending !== null" @click="buy(car.id)">{{ pending === `buy:${car.id}` ? 'Buying…' : `Buy for ${money(car.price)}` }}</BaseButton>

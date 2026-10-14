@@ -4,6 +4,7 @@ import { helpOf } from './reliefHelp.ts'
 import { makeContext } from '../../../game/util.ts'
 import type { LifeState } from '../../../types/life.ts'
 import type { ReliefAction, ReliefHelp } from '../../../types/view.ts'
+import { money } from '../../ui/format.ts'
 
 const KEY = 'jaw-relief-dismissed'
 const KEPT = 20
@@ -27,8 +28,8 @@ export const shownHelp = (help: ReliefHelp | null | undefined, isDismissed: (key
 
 /** The message ready in the box when a stuck player asks a friend (a plain sentence, no request feature). */
 export function askFriendText(where: string, cash: number, home: string | null): string {
-  const money = `₦${Math.round(cash).toLocaleString('en-NG')}`
-  return `Hi! I am stuck in ${where} with ${money}.${home ? ` Could you send me a little so I can get home to ${home}?` : ' Could you send me a little to get by?'} Thank you!`
+  const cashWords = money(cash)
+  return `Hi! I am stuck in ${where} with ${cashWords}.${home ? ` Could you send me a little so I can get home to ${home}?` : ' Could you send me a little to get by?'} Thank you!`
 }
 
 /** The label of the main button of an action: what happens when it is tapped. */

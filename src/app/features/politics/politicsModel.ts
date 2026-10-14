@@ -6,6 +6,7 @@ import type { ChainEntry } from '../../../records/chain.ts'
 import type { AssemblyView, AuditFlag, BillView, CaseView, JusticeResponse, JusticeSeatView, LeverView, OffenceView, PartyView, PoliticsResponse, SeatView, TierId, Verdict } from '../../../types/politics.ts'
 import { PARTY } from '../../../game/content/politics.ts'
 import { govKey, until } from '../civic/civicModel.ts'
+import { money } from '../../ui/format.ts'
 
 export type TabId = TierId | 'parties' | 'justice' | 'records'
 export const TABS: readonly { id: TabId; label: string }[] = [
@@ -23,7 +24,7 @@ export const seatOf = (data: PoliticsResponse | null | undefined, tier: TierId, 
 export const partyName = (data: PoliticsResponse | null | undefined, id: string | null | undefined): PartyView | null => (id ? data?.parties.find((party) => party.id === id) ?? null : null)
 
 /** "5%": the value of a lever as a player reads it. */
-const naira = (value: number): string => `₦${value.toLocaleString('en-NG')}`
+const naira = (value: number): string => money(value)
 const withUnit = (value: number, unit: LeverView['unit']): string => (unit === '₦' ? naira(value) : unit === '%' ? `${value}%` : `${value} ${unit}`)
 export const leverText = (lever: Pick<LeverView, 'unit'>, value: number): string => withUnit(value, lever.unit)
 export const leverRange = (lever: Pick<LeverView, 'min' | 'max' | 'unit'>): string => (lever.unit === '₦' ? `${naira(lever.min)}–${naira(lever.max)}` : `${lever.min}–${withUnit(lever.max, lever.unit)}`)

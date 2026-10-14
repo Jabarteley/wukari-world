@@ -14,6 +14,7 @@ import { COACH_KEY, coachHints } from './coachModel.ts'
 import { settleWanted, tour } from '../tour/tourState.ts'
 import { mapUi } from '../travel/travelState.ts'
 import { social } from '../social/useSocial.ts'
+import { money } from '../../ui/format.ts'
 
 /** How many times each situational pointer has been acted on (it retires after a few: attention.ts TAPER). */
 export const SEEN_KEY = 'joinallworld-hints-seen'
@@ -90,7 +91,7 @@ export function useAttention() {
     // Money off the venue view (the map, a sheet): nothing else says it where the player is looking.
     if (lastCash !== null && state.cash !== lastCash && (game.mode.value !== 'venue' || Boolean(shell.sheet.value))) {
       const change = state.cash - lastCash
-      const text = `${change > 0 ? '+' : '−'}₦${Math.abs(change).toLocaleString('en-NG')}`
+      const text = `${change > 0 ? '+' : '−'}${money(Math.abs(change))}`
       attention.announce(text, { at: '.hud-cash', kind: change > 0 ? 'good' : 'spend' })
     }
     lastCash = state.cash

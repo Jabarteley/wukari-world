@@ -1,9 +1,10 @@
 // The launch bonus as the page says it: the offer's words, when the guest chip may show, and what the moment of being paid says.
 // Pure: the offer, the storage and the clock are passed in. The rules and the money are the server's (server/bonus/service.ts); in-game naira only.
+import { money } from '../../ui/format.ts'
 import type { BonusClaimResponse, BonusOfferResponse } from '../../../types/account.ts'
 
 export type Offer = Pick<BonusOfferResponse, 'on' | 'amount' | 'places' | 'left'>
-export const naira = (value: number): string => `₦${Math.round(value).toLocaleString('en-NG')}`
+export const naira = (value: number): string => money(value)
 const count = (value: number): string => Math.round(value).toLocaleString('en-NG')
 
 /** Is it worth saying anything: the offer is open and has places left. */

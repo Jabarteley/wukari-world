@@ -6,7 +6,7 @@
 import { computed, defineAsyncComponent, h, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import GameIcon from '../../ui/GameIcon.vue'
-import { money } from '../../ui/format.ts'
+import { money, moneyHint } from '../../ui/format.ts'
 import { cashDelta, moodOf, noteExpiry, savedPill } from './hudModel.ts'
 import InviteButton from '../growth/InviteButton.vue'
 import OnlinePill from './OnlinePill.vue'
@@ -107,7 +107,7 @@ function onSaved(): void {
       </span>
     </span>
     <InviteButton />
-    <button class="hud-cash" :class="cashFlash" type="button" @animationend="cashFlash = null" :aria-label="`Wallet ${cash}. Open the bank and your transactions`" @click="shell.open('bank')">{{ cashLabel }}</button>
+    <button class="hud-cash" :class="cashFlash" type="button" :title="moneyHint(state.cash)" @animationend="cashFlash = null" :aria-label="`Wallet ${cash}. Open the bank and your transactions`" @click="shell.open('bank')">{{ cashLabel }}</button>
     <span v-if="delta" :key="delta.run" class="hud-delta" :class="delta.up ? 'is-up' : 'is-down'" aria-hidden="true">{{ delta.text }}</span>
   </section>
 </template>

@@ -9,6 +9,7 @@
 //   once per pair per day      the voice offer, however long two people stay
 //   five minutes in voice      FriendTimer: both in the voice circle without a break
 import type { FriendOffer } from '../../../types/growth.ts'
+import { money } from '../../ui/format.ts'
 
 export const DAY_MS = 86400000
 /** How long two people are in the same voice circle before the voice offer. */
@@ -71,7 +72,7 @@ export function namesOf(people: readonly Pick<FriendOffer, 'name'>[]): string {
 }
 export const cardLine = (source: 'table' | 'voice', people: readonly Pick<FriendOffer, 'name'>[]): string => (source === 'table' ? `You played with ${namesOf(people)}. Stay in touch?` : `You have been talking with ${namesOf(people)}. Stay in touch?`);
 export const LATER = 'Gifts and room invitations open once you are friends.';
-export const giftLabel = (amount: number): string => `Send ₦${amount.toLocaleString('en-NG')}`;
+export const giftLabel = (amount: number): string => `Send ${money(amount)}`;
 /** What the row says after Add as friend. */
 export const addedLine = (code: string): string => (code === 'accepted' || code === 'already_friends' ? 'You are friends' : 'Request sent');
 /** An AI-played character may be offered like anyone, always with its mark; the card says so in words too. */

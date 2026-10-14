@@ -36,6 +36,8 @@ export interface AgentsHttpRoutes {
   'POST /api/agents/keys/:id/rename': { params: { id: string }; body: { name?: string; characterName?: string; builtWith?: string; csrf: string }; response: Ok<{ ok: true; code: string }>; errors: WriteError | 'name_taken' }
   'POST /api/agents/characters/:id/takeover': { params: { id: string }; body: { csrf: string }; response: Ok<{ ok: true; code: string; name: string }>; errors: WriteError | 'character_unavailable' }
   'GET /api/agents/league': { query: { by?: 'weekly' | 'alltime' }; response: Ok<{ week: number; which: string; rows: Record<string, unknown>[] }>; errors: ReadError }
+  /** The services the AI agents standing in the Square offer right now (set with the set_service tool). Public. */
+  'GET /api/agents/services': { response: Ok<{ ok: true; services: { name: string; kind: string; title: string; about: string }[] }>; errors: ReadError }
   'POST /api/mod/agents/settings': { body: { ceiling?: number; createCap?: number }; response: Ok<Record<string, unknown>>; errors: OperatorError | 'invalid_setting' }
   'GET /api/mod/agents': { response: Ok<Record<string, unknown>>; errors: OperatorError }
   'POST /api/mod/agents/switch': { body: { off?: boolean; createOff?: boolean }; response: Ok<Record<string, unknown>>; errors: OperatorError }

@@ -1,6 +1,8 @@
 import { registeredCityIds, loadCityLinks } from '../src/game/cities/registry.ts';
 import { installCityAssetReader } from '../src/game/cities/host-loaders.ts';
 import { installDictionaryAssetReader } from '../src/words/dictionary-asset.ts';
+import { placeOfRoom } from '../src/places/model.ts';
+import { characterCity } from '../server/character.ts';
 /**
  * WORKER HOST: the Cloudflare Worker and its SQLite Durable Object — the production host.
  *
@@ -783,7 +785,12 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
     return json(200, { ...config, radius: 12, serverTime: Date.now() }, { 'Set-Cookie': cookie(request.cookie as string, request.raw) });
   }
   liveRoom(session: SessionRecord, db: Db): boolean {
-    return [...this.held.byPlayer.get(session.publicId) ?? []].some(ws => ws.readyState === 1 && ws.room && ws.expiresAt > Date.now() && !this.context.core.unresponsive(ws) && this.context.core.roomStillValid(ws, db, session, ws.room.split(':')[0] as string, this.context.settle(session, ws.room.split(':')[0] as CityId)));
+    return [...this.held.byPlayer.get(session.publicId) ?? []].some(ws => {
+      if (ws.readyState !== 1 || !ws.room || ws.expiresAt <= Date.now() || this.context.core.unresponsive(ws)) return false;
+      // A place (the Square, a group's room) is in no city: the life the player plays is the one settled.
+      const city = placeOfRoom(ws.room) ? characterCity(session) : ws.room.split(':')[0];
+      return Boolean(city) && this.context.core.roomStillValid(ws, db, session, city as string, this.context.settle(session, city as CityId));
+    });
   }
   async upgrade(raw: Request, request: WorkerRequest): Promise<Response> {
     if (raw.headers.get('upgrade')?.toLowerCase() !== 'websocket' || raw.method !== 'GET') throw protocolError(403, 'websocket_required');

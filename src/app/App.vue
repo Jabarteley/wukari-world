@@ -13,7 +13,7 @@ import '../ui/compact.css'
 import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useApp } from './state/app.ts'
 import { heldActionFor, shortcutFor } from '../ui/keys.ts'
-import { start as startSocial, wakeSocket } from './features/social/useSocial.ts'
+import { social, start as startSocial, wakeSocket } from './features/social/useSocial.ts'
 import GameIcon from './ui/GameIcon.vue'
 import ToastStack from './ui/ToastStack.vue'
 import LinkBanner from './features/landing/LinkBanner.vue'
@@ -26,6 +26,7 @@ import GuestBarSlot from './features/hud/GuestBarSlot.vue'
 import ConnectionNotice from './features/hud/ConnectionNotice.vue'
 import TourTrigger from './features/tour/TourTrigger.vue'
 import VenuePanel from './features/venue/VenuePanel.vue'
+import { placeNow } from './features/places/placeState.ts'
 import ActionProgress from './features/venue/ActionProgress.vue'
 import BottomNav from './features/nav/BottomNav.vue'
 import PanelHost from './features/phone/PanelHost.vue'
@@ -34,6 +35,8 @@ import { startLandingHold } from './state/landingHold.ts'
 import { createPageLifecycle } from './state/pageLifecycle.ts'
 // The Community aside is fetched the first time it is opened (and ahead of that when the browser is idle: state/idlePreload.ts).
 const CommunityHost = defineAsyncComponent({ loader: () => import('./features/community/CommunityHost.vue'), onError: (_error, retry, fail, attempts) => { if (attempts <= 3) setTimeout(retry, 800 * attempts); else fail() } })
+// The panel of a place (the Square, a group's room) is fetched the first time the player stands in one.
+const PlacePanel = defineAsyncComponent(() => import('./features/places/PlacePanel.vue'))
 import CallsHost from './features/calls/CallsHost.vue'
 import PingHost from './features/ping/PingHost.vue'
 import ScenePane from './scene/ScenePane.vue'
@@ -45,6 +48,8 @@ const mode = game.mode
 const snapshotAvailable = computed(() => game.snapshotPhase.value === 'available')
 const navPanel = computed(() => (mode.value !== 'venue' ? shell.byId.get(mode.value) ?? null : null))
 const sheetOpen = computed(() => Boolean(shell.sheet.value))
+/** A home being visited is what the screen shows, whatever place the player stood in before. */
+const visitingHome = computed(() => Boolean(social.me?.visiting))
 const root = ref<HTMLElement | null>(null)
 const bottom = ref<HTMLElement | null>(null)
 const nav = ref<InstanceType<typeof BottomNav> | null>(null)
@@ -169,6 +174,7 @@ watch(game.snapshotPhase, (phase, before) => { if (phase === 'unavailable' && be
       <div data-slot="progress"><ActionProgress /></div>
       <div data-slot="main">
         <section v-if="navPanel" class="life-sheet" :aria-label="navPanel.title"><PanelHost :key="navPanel.id" :panel="navPanel" :params="shell.modeParams.value" /></section>
+        <PlacePanel v-else-if="placeNow && !visitingHome" />
         <VenuePanel v-else />
       </div>
       <div data-slot="guest"><GuestBarSlot /></div>

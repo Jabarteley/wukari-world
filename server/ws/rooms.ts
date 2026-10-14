@@ -20,6 +20,13 @@ import { venueFor } from '../../src/game/cities/runtime.ts';
  * Inside the room a guest is an ordinary member: same chat, same proximity-gated signalling,
  * same voice cap, and — as for everyone — voice off and muted on join. Nothing enables it.
  *
+ * PLACES (src/places/model.ts, server/social/places.ts). `join` with `place` puts the socket in the Square (`world:square`, grouped like
+ * any public venue) or in the room of a group chat (`world:room:<group id>`, one room, not grouped). The stored life does not move and
+ * is not read for the admission: the social module's `checks.placeUntil` says until when this player may stand there (everybody in the
+ * Square; a group's members and its link's pass holders in its room). A room socket is re-checked at least every PLACE_RECHECK_MS and
+ * at once on 'place-ended'; one that may no longer stand there is dropped with 'place_ended'. Inside a place everything is the venue
+ * rule: presence, moves, chat (filtered, never stored), blocks per recipient, and the voice circle, off and muted on join.
+ *
  * ONBOARDING GATE. A life still held for the quick start (state.onboarding.required and not done:
  * its Play has not been confirmed) cannot join any room, so it never appears in presence or chat.
  * A guest who has tapped Play joins venue rooms like anyone else; it has no Home room of its own
@@ -94,6 +101,7 @@ import { venueFor } from '../../src/game/cities/runtime.ts';
  */
 import { MAX_VOICE_MEMBERS, UUID_PATTERN, canOccupyVenue, initialVenuePosition, validatePosition, withinVoiceDistance, venueRoomKey } from '../protocol.ts';
 import { streetRoomKey, STREET_NETWORK_SCALE } from '../../src/game/neighbourhood-space.ts';
+import { PLACES, SQUARE_ROOM, isRoomId, placeOfRoom, roomKeyOf } from '../../src/places/model.ts';
 import { createStreetGateProof } from '../street/gate.ts';
 import { VOICE_RADIUS } from '../protocol.ts';
 import { ROOM_CHAT_QUIET_MS, ROOM_FRIEND_NEAR, ROOM_GROUP_LIST, ROOM_GROUP_MAX, ROOM_GROUP_MIN, ROOM_GROUP_OVERFLOW, ROOM_GROUP_TARGET, ROOM_MOVE_FLUSH_MS, groupNotice } from '../../src/game/roomGroups.ts';
@@ -114,6 +122,8 @@ import type { Db, IncomingFrame, RouteContext, ServerEvents, SessionRecord, WsCo
 export const GUEST_RECHECK_MS = 3000;
 /** How long a host may have no socket in their own Home room before their guests are sent away (a page reload fits). */
 export const HOST_ABSENCE_GRACE_MS = 60000;
+/** The longest a socket's right to stand in a group room is remembered between checks (and never past a pass's expiry). */
+export const PLACE_RECHECK_MS = 15000;
 
 /** The retry receipts of one sender in one room: the Map this module keeps, or the one a host whose memory does not last keeps (ctx.core.chatHistory). */
 interface ChatHistory {
@@ -127,6 +137,7 @@ interface ChatHistory {
 /** What re-checking one socket against the stored document found. */
 type Verdict =
   | { stay: boolean; look: WsConnection['look'] }
+  | { place: true; until: number; look: WsConnection['look'] }
   | { hostId: string; city: string; live: boolean; until: number; hostOut: boolean; open: boolean; look: WsConnection['look'] }
 /** An event that ends a visit, raised once the verdicts are in. */
 type Ended =
@@ -178,7 +189,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
   const seeking = new Map<string, { room: string; friend: string }>(); // player → the friend whose group they will be moved to when it has room
   const dirty = new Set<string>(); // venues whose total changed since it was last sent
   const pendingMoves = new Map<string, { moves: Map<string, { x: number; z: number }>; timer: unknown; last: number }>();
-  const grouped = (room: string): boolean => room.split(':')[1] !== 'home';
+  const grouped = (room: string): boolean => { const venue = room.split(':')[1]; return venue !== 'home' && !(room.startsWith(`${PLACES.city}:`) && venue === PLACES.roomVenue); };
   const gkey = (room: string, group: string): string => `${room}#${group}`;
   const NONE: ReadonlySet<WsConnection> = new Set();
   /** The sockets that share presence with ws: its group of a public venue, or a whole Home room. */
@@ -241,11 +252,15 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
         else announce(kept.room, kept.group, { joined: [kept.id], causes: [kept.id] });
         return;
       }
-      let venue = venues.get(m.room);
-      if (!venue) { venue = newVenue(); venues.set(m.room, venue); }
-      const placement = place(venue, limits, { player: m.id, friends: new Set(), follow: null, previous: null, blocked: hidden });
-      const group = seat(venue, m.id, placement.group).id;
-      dirty.add(m.room);
+      // A room that is not split into groups (a group chat's room) has no group to seat anybody in: the member is the room's.
+      let group: string | null = null;
+      if (grouped(m.room)) {
+        let venue = venues.get(m.room);
+        if (!venue) { venue = newVenue(); venues.set(m.room, venue); }
+        const placement = place(venue, limits, { player: m.id, friends: new Set(), follow: null, previous: null, blocked: hidden });
+        group = seat(venue, m.id, placement.group).id;
+        dirty.add(m.room);
+      }
       const v: Virtual = { id: m.id, name: m.name, mark: m.mark, room: m.room, group, position, doing: m.doing, look: m.look as WsConnection['look'], until: m.until };
       virtuals.set(m.id, v);
       announce(m.room, group, { joined: [m.id], causes: [m.id] });
@@ -488,7 +503,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
     const here = venue.groups.get(to)?.players.size ?? 0;
     for (const ws of movedSockets) if (deltaOf(ws)) send(ws, { type: 'group', event, here, text: groupNotice(here) });
   }
-  function drop(ws: WsConnection, code: 'venue_mismatch' | 'visit_ended'): void {
+  function drop(ws: WsConnection, code: 'venue_mismatch' | 'visit_ended' | 'place_ended'): void {
     leave(ws); ws.voice = { enabled: false, muted: true };
     send(ws, { type: 'error', code, error: code });
   }
@@ -498,6 +513,17 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
     return roomCity === city && venue === 'home' && owner && owner !== ws.session.id ? owner : null;
   };
   const cityOf = (ws: WsConnection): string => (ws.room || '').split(':')[0] ?? '';
+  /** Until when (server ms) may this player stand in the place a room key names? 0 while no module answers: nobody may. */
+  const placeUntil = (db: Db, publicId: string, room: string): number => {
+    const place = placeOfRoom(room);
+    if (!place) return 0;
+    const until = ctx.checks?.placeUntil?.(db, publicId, place.kind === 'room' ? place.id : null) ?? 0;
+    return until > now() ? until : 0;
+  };
+  /** How long an admission to a place is remembered: the Square has nothing that ends it, a room is looked at again soon. */
+  const placeMemory = (room: string, until: number): number => (room === SQUARE_ROOM ? Infinity : Math.min(now() + PLACE_RECHECK_MS, until));
+  /** The life a session plays, wherever it is: what a place reads the look and the quick-start gate from. */
+  const ownLife = (session: SessionRecord): LifeState | undefined => { const city = characterCity(session); return city ? lifeIn(session, city) : undefined; };
   /** The stored life of a session in the city a room key names, if that is one of the server's cities. */
   const lifeIn = (session: SessionRecord, city: string): LifeState | undefined => {
     const cityId = ctx.cityIds.find((item) => item === city);
@@ -554,13 +580,14 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
   function verify(list: WsConnection[]): Promise<void> {
     const items = [...new Set(list)].flatMap((ws) => (ws.room ? [{ ws, room: ws.room }] : []));
     if (!items.length) return Promise.resolve();
-    const failClosed = () => { for (const { ws, room } of items) if (ws.room === room) drop(ws, visitedHost(ws, cityOf(ws)) ? 'visit_ended' : 'venue_mismatch'); };
+    const failClosed = () => { for (const { ws, room } of items) if (ws.room === room) drop(ws, placeOfRoom(room) ? 'place_ended' : visitedHost(ws, cityOf(ws)) ? 'visit_ended' : 'venue_mismatch'); };
     let reading: Promise<(Verdict | null)[]>;
     try { reading = store.read((db) => items.map(({ ws, room }): Verdict | null => {
       if (ws.room !== room) return null;
       const city = cityOf(ws), hostId = visitedHost(ws, city);
       const session = core.sessionOf(ws, db);
       const live = Boolean(session) && (session?.expiresAt ?? 0) > now();
+      if (placeOfRoom(room)) return { place: true, until: live && session ? placeUntil(db, session.publicId, room) : 0, look: session ? checkLook(ownLife(session)?.onboarding?.look).look ?? null : null };
       const lookCity = hostId && session ? characterCity(session) ?? city : city;
       const look = session ? checkLook(lifeIn(session, lookCity)?.onboarding?.look).look ?? null : null;
       if (!hostId) return { stay: live && occupies(ws, city, session ? lifeIn(session, city) : undefined) && !(room.split(':')[1] === 'neighbourhood' && insideAnotherHome(db, ws.session.id)), look };
@@ -580,6 +607,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       items.forEach(({ ws, room }, index) => {
         const verdict = verdicts[index];
         if (!verdict || ws.room !== room) return;
+        if ('place' in verdict) { if (verdict.until) { ws.stale = false; ws.guestUntil = placeMemory(room, verdict.until); updateLook(ws, room, verdict.look); } else drop(ws, 'place_ended'); return; }
         if (!('hostId' in verdict)) { if (verdict.stay) { ws.stale = false; updateLook(ws, room, verdict.look); } else drop(ws, 'venue_mismatch'); return; }
         const { hostId, city } = verdict, guestId = ws.session.id;
         if (verdict.live && !verdict.open && hostAbsent(room, hostId)) { drop(ws, 'visit_ended'); ended.push({ event: 'host-absent', detail: { hostId, guestId, cityId: city } }); return; }
@@ -650,7 +678,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
    */
   async function admitted(ws: WsConnection): Promise<void> {
     const hostId = visitedHost(ws, cityOf(ws));
-    if (hostId ? (!(now() < ws.guestUntil) || !hostPresent(ws.room ?? '', hostId)) : ws.stale === true) await verify([ws]);
+    if (placeOfRoom(ws.room) ? (ws.stale === true || !(now() < ws.guestUntil)) : hostId ? (!(now() < ws.guestUntil) || !hostPresent(ws.room ?? '', hostId)) : ws.stale === true) await verify([ws]);
     if (!ws.room) throw Error('join_required');
   }
   const guarded = (handle: RoomHandler): { room: true; handle: (ws: WsConnection, message: IncomingFrame) => Promise<void> } => ({
@@ -667,7 +695,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
   let sweeping = false;
   async function sweep(): Promise<void> {
     if (sweeping) return;
-    const due = core.sockets().filter(ws => ws.room && (ws.stale === true || visitedHost(ws, cityOf(ws))));
+    const due = core.sockets().filter(ws => ws.room && (ws.stale === true || visitedHost(ws, cityOf(ws)) || (placeOfRoom(ws.room) !== null && !(now() < ws.guestUntil))));
     if (!due.length) return;
     sweeping = true;
     try { await verify(due); } finally { sweeping = false; }
@@ -694,6 +722,13 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
     for (const ws of [...(inRooms.get(guestId) ?? [])]) if (ws.room?.endsWith(`:home:${hostId}`)) drop(ws, 'visit_ended');
   });
 
+  // The social module ended somebody's right to stand in a group room (asked to leave, the link switched off or changed): looked at now.
+  ctx.on?.('place-ended', ({ roomId, playerId }) => {
+    const due = [...(rooms.get(roomKeyOf(roomId)) ?? [])].filter(ws => playerId === null || ws.session.id === playerId);
+    for (const ws of due) ws.stale = true;
+    verify(due).catch(() => {});
+  });
+
   /** A player's mutual friends: what was read when they joined, read again when it is older than a minute (or was lost with the host's memory). */
   async function friendsOf(ws: WsConnection): Promise<ReadonlySet<string>> {
     const id = ws.session.id, known = friendsCache.get(id);
@@ -703,8 +738,45 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
     return set;
   }
 
+  /** `join` with `place`: stand in the Square or in a group's room. The life is not moved and its location is not what admits. */
+  async function joinPlace(ws: WsConnection, message: IncomingFrame): Promise<void> {
+    const roomId = message.place === 'room' && isRoomId(message.roomId) ? message.roomId : null;
+    if (message.place !== 'square' && roomId === null) throw Error('invalid_room');
+    const room = roomId === null ? SQUARE_ROOM : roomKeyOf(roomId);
+    const { until, look, friends, follow } = await store.transact(db => {
+      const session = core.sessionOf(ws, db);
+      if (!session || session.expiresAt <= now()) throw Error('device_session_required');
+      const city = characterCity(session), state = city ? settle(session, city) : null;
+      // The same gate as a venue: a life still held for the quick start (Play not confirmed) is nowhere yet.
+      if (!state || (state.onboarding?.required === true && state.onboarding.done !== true)) throw Error('onboarding_required');
+      const friends = new Set(roomId === null ? presenceAudience(db.social?.players, session.publicId) : []);
+      return { until: placeUntil(db, session.publicId, room), look: checkLook(state.onboarding?.look).look ?? null, friends, follow: typeof message.with === 'string' && friends.has(message.with) ? message.with : null };
+    }, { durable: false, waitForObserved: true });
+    if (!until) throw Error('not_admitted');
+    if (!core.isOpen(ws)) return;
+    if (roomId !== null) {
+      const here = new Set([...(rooms.get(room) ?? [])].map(peer => peer.session.id));
+      if (!here.has(ws.session.id) && here.size >= PLACES.roomPresent) throw Object.assign(Error('place_full'), { reason: `This room is full: ${PLACES.roomPresent} people are inside.` });
+    }
+    leave(ws); ws.voice = { enabled: false, muted: true }; ws.position = initialVenuePosition(PLACES.squareVenue); ws.lastMoves = []; ws.look = look;
+    ws.deltas = message.deltas === true;
+    if (grouped(room)) friendsCache.set(ws.session.id, { at: now(), set: friends });
+    const { apart } = enter(ws, room, { friends, follow });
+    ws.stale = false; ws.guestUntil = placeMemory(room, until);
+    if (deltaOf(ws)) snapshot(ws);
+    announce(room, ws.group ?? null, { joined: [ws.session.id], causes: [ws.session.id], snapshotted: [ws] });
+    roomChanged(room, ws.group ?? null, null, ws.session.id);
+    if (apart !== null && deltaOf(ws)) {
+      const name = nameOf(apart, room) ?? 'Your friend';
+      send(ws, { type: 'group', event: 'apart', here: venues.get(room)?.groups.get(ws.group ?? '')?.players.size ?? 1, text: `${name} is in another part of the Square.`, friend: { id: apart, name } });
+    }
+    // The right to stand here may have ended between the check and this admission: look once more now that there is a socket.
+    if (roomId !== null) await verify([ws]);
+  }
+
   const messages: Record<string, WsMessageEntry> = {
     async join(ws, message) {
+      if (message.place !== undefined) return joinPlace(ws, message);
       const cityId = ctx.cityIds.find((item) => item === message.cityId), venueId = message.venueId;
       if (venueId === 'city-street') throw Error('invalid_room');
       if (cityId === undefined || typeof venueId !== 'string' || !venueFor(cityId, venueId)) throw Error('invalid_room');
@@ -936,6 +1008,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       revalidate,
       /** Is this socket's room one the server would admit it to right now? Used by the voice-config route. */
       roomStillValid(ws, db, session, city, state) {
+        if (placeOfRoom(ws.room)) return placeUntil(db, session.publicId, ws.room ?? '') > 0;
         const hostId = visitedHost(ws, city);
         if (hostId) return (openWhileOut(db, hostId) || !hostAbsent(ws.room ?? '', hostId)) && guestUntil(db, session.publicId, hostId, city) > 0;
         return occupies(ws, city, state) && !(state?.location === 'neighbourhood' && insideAnotherHome(db, session.publicId));

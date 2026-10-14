@@ -153,10 +153,19 @@ test('a joining button is disabled and says what it waits for; Walk is disabled 
   assert.doesNotMatch(html, /community-movement/, 'no pad while Walk has no place to start from')
 })
 
-test('home is private: only the note, no voice, no chat', async () => {
-  const html = await render('CommunityPanel', panel({ privateHome: true, roomText: 'Lagos · Your home (private)' }))
-  assert.match(text(html), /Your home is private to this device session\./)
+test('a private room with nobody else in it: only the note, no voice, no chat', async () => {
+  const state = communityState(), alone = state.members.filter((member) => member.you)
+  const html = await render('CommunityPanel', panel({ privateHome: true, roomText: 'Lagos · Your home (private)', members: alone, memberCount: alone.length }))
+  assert.match(text(html), /Only you are here\. This room is private/)
   assert.doesNotMatch(html, /community-voice|community-chat|community-proximity/)
+})
+
+test('a private room with company (a home with guests, a group’s room): voice and chat, and nobody walks', async () => {
+  const html = await render('CommunityPanel', panel({ privateHome: true, roomText: 'Night shift', walkDisabled: true }))
+  assert.doesNotMatch(text(html), /Only you are here/)
+  assert.match(html, /community-voice/)
+  assert.match(html, /community-chat/)
+  assert.doesNotMatch(html, /community-proximity/, 'there is no near or far in a private room')
 })
 
 test('a device without a nickname is asked for one; a refused line offers Retry', async () => {

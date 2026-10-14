@@ -29,6 +29,8 @@ const view = game.view
 const privateHome = computed(() => state.value.location === 'home')
 const outside = computed(() => state.value.location === 'neighbourhood')
 const visiting = computed(() => social.me?.visiting)
+/** At home with friends inside: the home's room has people to talk with. */
+const hosting = computed(() => privateHome.value && !visiting.value && (social.me?.house?.guests.length ?? 0) > 0)
 const venue = computed(() => view.value.venues.find((item) => item.id === state.value.location) ?? { id: state.value.location, label: venueLabel(state.value.location, view.value.cityId), district: venueDistrict(state.value.location, view.value.cityId), icon: '' })
 const activities = computed(() => view.value.activities)
 // A market rents stalls to players: its shops, and opening one, are in the Business app (fetched when opened).
@@ -105,7 +107,7 @@ watch(() => `${state.value.location}:${state.value.spot}`, () => {
     <header class="life-venue-header">
       <button class="life-avatar" type="button" aria-label="Open your character: profile, needs, goals and skills" @click="shell.open('sim')"><GameIcon inline name="person" /></button>
       <div class="life-venue-heading"><h1><GameIcon inline kind="venue" :id="visiting ? 'home' : venue.id" :emoji="venue.icon" /> {{ title }} <span>· {{ district }}</span></h1><p :title="line"><GameIcon v-if="privateHome && view.connected" inline name="lock" />{{ line }}</p></div>
-      <button v-if="!privateHome && !visiting && !cityStreet && view.connected" class="life-icon-button" data-tour="community" type="button" aria-label="Open community chat" title="Community chat" @click="community.toggle(true)"><GameIcon name="chat" /></button>
+      <button v-if="(visiting || hosting || !privateHome) && !cityStreet && view.connected" class="life-icon-button" data-tour="community" type="button" :aria-label="visiting || hosting ? 'Talk with the people in this home: voice and chat' : 'Open community chat'" :title="visiting || hosting ? 'Talk: voice and chat' : 'Community chat'" @click="community.toggle(true)"><GameIcon name="chat" /></button>
       <button class="life-icon-button" type="button" aria-label="Open map" title="Map (M)" @click="shell.open('map')"><GameIcon name="map" /></button>
     </header>
     <div ref="rail" class="life-spots">
@@ -116,6 +118,8 @@ watch(() => `${state.value.location}:${state.value.spot}`, () => {
       <button v-if="streetExit" type="button" :disabled="!view.connected || Boolean(state.activeAction)" @click="leaveStreetVenue">Leave to street</button>
       <button v-if="cityStreet" type="button" @click="shell.open('neighbourhood')">Walking help</button>
       <button v-if="!privateHome && !visiting && !cityStreet && !spots.some((item) => item.id === 'people')" type="button" @click="community.toggle(true)"><GameIcon inline name="people" /><span>People</span></button>
+      <button v-if="(visiting || hosting) && view.connected" type="button" data-talk title="Talk with the people in this home by voice and chat" @click="community.toggle(true)"><GameIcon inline name="megaphone" /><span>Talk</span></button>
+      <button v-if="!visiting && !cityStreet && view.connected && !view.onboarding?.required" type="button" data-places title="The Square and your group rooms: free from anywhere" @click="shell.open('places')"><GameIcon inline name="globe" /><span>Square</span></button>
     </div>
     <template v-if="ui.expanded">
       <component :is="activityPanel" v-if="activityPanel" :pending="pending" @start="start" />

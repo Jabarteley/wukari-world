@@ -11,7 +11,7 @@
  */
 import type { FamilyBook } from '../src/types/family.ts'
 import type { CallRelay } from './call-relay.ts';
-import type { LifeState } from '../src/types/life.ts'
+import type { LifeState, PlacedItem } from '../src/types/life.ts'
 import type { ActionType } from '../src/types/actions.ts'
 import type { ActionRequest, CityId, ClientFrameType, IceServerConfig, PlayerRef, PublicSession, ServerFrame, TimedId } from '../src/types/protocol.ts'
 import type { ConversationKind, LookIds, PlayerReportReceipt, ReportReason, SocialUpdate } from '../src/types/social.ts'
@@ -221,6 +221,8 @@ export interface SocialPlayerRecord {
   familyLinks?: FamilyBook
   /** AI agent play (server/agents/): `char` an agent character (marked for good), `at` when a key last acted for the character. Read by pub(), so chat and lists carry the mark. */
   agent?: { char?: true; at?: number }
+  /** What an AI agent says it offers where it stands (server/agents/services.ts): shown on its card in a place. Set only through an agent key. */
+  service?: { kind: 'quiz' | 'guide' | 'shop' | 'translate' | 'games' | 'help' | 'other'; title: string; about: string; at: number }
   name: string
   /** First and latest social request, server ms. */
   first: number
@@ -376,6 +378,20 @@ export interface ConversationRecord {
   messagePins?: { revision: number; entries: { seq: number; by: string; at: number }[] }
   /** Stable identity of this incarnation, especially when a house id is reused. */
   pinScope?: string
+  /** Groups: the room its members furnish together (server/social/places.ts). Absent until somebody changes it or makes its link. */
+  room?: GroupRoomRecord
+}
+/** A group's room: furniture every member may change, and the link that lets visitors stand in it. */
+export interface GroupRoomRecord {
+  items: PlacedItem[]
+  /** Grows by one with every change to the furniture. */
+  rev: number
+  /** The room's link: absent while it is off. `key` is the secret part of `/r/<number>-<key>`. */
+  link?: { key: string; at: number; by: string }
+  /** Visitors who came in by the link: public id → until when (server ms). */
+  passes?: Record<string, number>
+  /** Visitors a member asked to leave: public id → until when they cannot come back by the link. */
+  barred?: Record<string, number>
 }
 export interface KnockRecord {
   at: number
@@ -1050,6 +1066,8 @@ export interface ContextChecks {
   homeGuestUntil?: (db: Db, guestId: string, hostId: string, cityId: CityId) => number
   /** Social: this host keeps their home open to friends while they are out. */
   homeOpenOut?: (db: Db, hostId: string) => boolean
+  /** Social: until when (server ms) may this player stand in a place: `roomId` null is the Square, else a group room. 0: not at all; Infinity: no end. */
+  placeUntil?: (db: Db, publicId: string, roomId: string | null) => number
   /** Social: either has blocked the other (in memory). */
   blocked?: (a: string, b: string) => boolean
   /** Social: is anybody blocked at all? */
@@ -1155,6 +1173,8 @@ export interface ServerEvents {
   'invite-joined': { inviter: string; /** The player who joined (absent on a build that did not say). */ newcomer?: string }
   /** social: a block or unblock was committed. */
   'blocks-changed': { a: string; b: string }
+  /** social: somebody may no longer stand in a group room (asked to leave, the link was switched off or changed). `playerId` null: every visitor. */
+  'place-ended': { roomId: string; playerId: string | null }
   /** social: a message reached a player's conversation (a direct message, a group message, a mention, a reply or a gift). The phone notification is decided from the stored state a few seconds later (growth/message-push.ts). */
   'chat-notice': { to: string; from: string | null; conv: string; seq: number; kind: 'message' | 'group' | 'mention' | 'reply' | 'gift' }
   /** host: every heartbeat. */

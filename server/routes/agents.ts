@@ -10,6 +10,7 @@
  *   GET  /api/agents/keys/:id/audit         the last calls of one of my keys (bounded)
  *   POST /api/agents/characters/:id/remove  { csrf }       an agent character of mine; its keys end, its life is archived
  *   GET  /api/agents/board                  the agents board (agent characters only; they are on no other ranking)
+ *   GET  /api/agents/services               the service cards of the agents standing in the Square now (public, read only)
  *   (the operator's view and kill switch are in agents-mod.ts)
  *
  * The write routes need what the account routes need: an Origin that names this host and the anti-forgery token of the session cookie.
@@ -22,6 +23,7 @@ import { AGENT_LIMITS } from '../agents/policy.ts';
 import { SESSION_CHANGED, csrfOf } from './auth.ts';
 import { agentPageHtml, claimPageHtml, leaguePageHtml } from '../agents/pages.ts';
 import { isClaimToken } from '../agents/service.ts';
+import { SQUARE_ROOM } from '../../src/places/model.ts';
 
 const NO_STORE = { 'Cache-Control': 'no-store' };
 const sameText = (a: string, b: unknown): boolean => {
@@ -34,6 +36,8 @@ const sameText = (a: string, b: unknown): boolean => {
 export default function agentRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
   const svc = agentService(ctx);
   (ctx.checks ??= {}).agentReported = (db, aboutId) => svc.reported(db, aboutId);
+  // An agent standing in a group room loses its place at once when the room's door closes on it, as a person's socket does (server/ws/rooms.ts).
+  ctx.on?.('place-ended', ({ roomId, playerId }) => { svc.placeEnded(roomId, playerId).catch(() => {}); });
   /** The checks a write by the signed-in owner starts with: this host as the origin, and the session's anti-forgery token. */
   async function guard(request: RouteRequest, body: Record<string, unknown>): Promise<void> {
     if (request.strictOrigin !== true) throw ctx.fail(403, 'origin_required');
@@ -43,6 +47,11 @@ export default function agentRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
   const leagueRoute: RouteHandler = async (request) => {
     if (!ctx.allow(`agents:league:${request.ip}`, 60)) throw ctx.fail(429, 'rate_limited');
     return { body: await ctx.store.read((db) => svc.league(db, request.query.get('by') === 'alltime' ? 'allTime' : 'weekly')), headers: { 'Cache-Control': 'public, max-age=30' } };
+  };
+  // What the agents standing in the Square offer right now (the cards they set with set_service): public, read only, nothing about a person.
+  const servicesRoute: RouteHandler = async (request) => {
+    if (!ctx.allow(`agents:services:${request.ip}`, 60)) throw ctx.fail(429, 'rate_limited');
+    return { body: { ok: true, services: await ctx.store.read((db) => svc.servicesIn(db, SQUARE_ROOM)) }, headers: { 'Cache-Control': 'public, max-age=10' } };
   };
   // The public pages (no script, no cookie): the league, one agent, and a claim link.
   ctx.pages?.set('/agents/', async ({ path, query, origin, ip }) => {
@@ -78,6 +87,7 @@ export default function agentRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
     },
     'GET /api/agents/league': leagueRoute,
     'GET /api/agents/board': leagueRoute,
+    'GET /api/agents/services': servicesRoute,
     'GET /api/agents/claim/:token': async (request) => {
       if (!ctx.allow(`agents:claimpeek:${request.ip}`, 30)) throw ctx.fail(429, 'rate_limited');
       return { body: await ctx.store.read((db) => svc.claimStatus(db, request.params.token)), headers: NO_STORE };

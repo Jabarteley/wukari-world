@@ -21,6 +21,7 @@ import { landingCodeSettled } from '../features/start/warmLanding.ts'
 import { telemetry } from '../../telemetry/index.ts'
 import { noteChunkFailure } from '../state/updateNotice.ts'
 import { social } from '../features/social/useSocial.ts'
+import { placeNow } from '../features/places/placeState.ts'
 
 const props = defineProps<{
   /** Elements whose bottom edge marks how far the HUD covers the top of the scene. */
@@ -111,6 +112,8 @@ onMounted(() => {
       phase.value = 'Drawing the scene…'
       const venue = createVenueWorld(container.value, { location: game.state.value.location, cityId: game.state.value.estate.city, onTag(tag) {
         // A name tag opens that person's card: a regular (npc:<id>) or a real player (public id).
+        // Standing in a place (the Square): its scene's tables, regulars and goal flags belong to a venue the life is not in. People still open.
+        if (placeNow.value && tag.kind !== 'player') return
         if (tag.kind === 'goal') void goTo(game.state.value.location, tag.id.replace(/^goal:/, ''))
         // A game table in the venue (walked up to, or tapped): the Tables app opens on that table — sit, watch or invite.
         else if (tag.kind === 'table') shell.open('tables', { table: tag.id.replace(/^table:/, '') })
@@ -119,7 +122,7 @@ onMounted(() => {
       },
       // The avatar moved: that is where the player stands in the room (presence, and so proximity voice).
       onMove,
-      onHomeDoor: (direction) => { if (social.me?.visiting) void import('../features/neighbourhood/neighbourhoodStore.ts').then((module) => module.leaveNeighbour()); else void command('home.door', { direction }) },
+      onHomeDoor: (direction) => { if (placeNow.value && !social.me?.visiting) void import('../features/places/placesStore.ts').then((module) => module.stepOut()); else if (social.me?.visiting) void import('../features/neighbourhood/neighbourhoodStore.ts').then((module) => module.leaveNeighbour()); else void command('home.door', { direction }) },
       onNeighbourDoor: (door) => { void import('../features/neighbourhood/neighbourhoodStore.ts').then((module) => module.enterNeighbour(door)) },
       onStreetGate: () => { void import('../features/neighbourhood/neighbourhoodStore.ts').then(module => module.beginCityWalk()) },
       onStreetJourney: journey => { void import('../features/neighbourhood/neighbourhoodStore.ts').then(module => module.acceptCityJourney(journey)).catch(sceneFailed) },

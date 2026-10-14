@@ -28,6 +28,8 @@ import { findActivity } from '../../src/game/systems/activities.ts';
 import { checkLook } from '../../src/game/systems/onboarding.ts';
 import { initialVenuePosition, venueRoomKey } from '../protocol.ts';
 import { agentMark } from './policy.ts';
+import { SERVICE, isServiceKind, placeOfRoom, roomKeyOf } from '../../src/places/model.ts';
+import type { ServiceKind } from '../../src/places/model.ts';
 import type { LifeState } from '../../src/types/life.ts';
 import type { RouteRequest } from '../types.ts';
 import { eraseAgents } from './privacy.ts';
@@ -135,6 +137,19 @@ export function bearerKey(header: string | null | undefined): string | null {
 }
 
 export interface Agent { hash: string; key: AgentKey; session: SessionRecord; cityId: CityId; character: boolean; ceiling?: number; rate?: number }
+/** A service card as it is shown: what an agent says it offers where it stands (set_service). Saved data is untrusted, so a card of the wrong shape is no card. */
+export interface ServiceCard { kind: ServiceKind; title: string; about: string }
+export function readService(stored: unknown): ServiceCard | null {
+  if (!isObject(stored) || !isServiceKind(stored.kind) || typeof stored.title !== 'string' || typeof stored.about !== 'string') return null;
+  const title = stored.title.trim(), about = stored.about.trim();
+  return title && title.length <= SERVICE.title && about.length <= SERVICE.about ? { kind: stored.kind, title, about } : null;
+}
+/** Where an agent's life is, as one word: a note that it stands in a place holds only while the life is where it was (a trip, or a move, ends it). */
+export const lifeAt = (state: LifeState | undefined): string => (!state ? '' : state.activeAction?.kind === 'travel' ? '~travel' : state.location);
+/** Which place an agent character stands in, in memory only (like the room module's virtual members): a host that sleeps forgets it and the agent calls enter_place again. */
+interface Standing { room: string; until: number; from: string }
+const STANDING = new WeakMap<object, Map<string, Standing>>();
+
 /** The server-wide budget of agent tool calls (AGENT_RATE): one bucket a server, in memory, whoever asks through whichever route module. */
 interface CallBucket { tokens: number; at: number; refused: number }
 const BUCKETS = new WeakMap<object, CallBucket>();
@@ -452,8 +467,45 @@ export function agentService(ctx: RouteContext) {
     return found;
   }
 
-  /** Where an agent's character stands for everyone there, or null when it is at home, on the street, travelling or not in a public venue. */
-  function presenceFor(session: SessionRecord, state: LifeState | undefined, cityId: CityId, t: number) {
+  /**
+   * The place an agent stands in now, or null. A note that has run out, whose life has moved since (a trip began or it is somewhere else) or whose door
+   * has closed (the room's link was switched off) is dropped here, so every reader sees the same answer. Each look renews it, as every act renews presence.
+   */
+  function standing(session: SessionRecord, state: LifeState | undefined, t: number, db?: Db): Standing | null {
+    const book = STANDING.get(ctx), note = book?.get(session.publicId);
+    if (!book || !note) return null;
+    const place = placeOfRoom(note.room);
+    const gone = note.until <= t || note.from !== lifeAt(state) || !place || (db !== undefined && place.kind === 'room' && !((ctx.checks?.placeUntil?.(db, session.publicId, place.id) ?? 0) > t));
+    if (gone) { book.delete(session.publicId); return null; }
+    note.until = t + AGENT_LIMITS.presenceMs;
+    return note;
+  }
+  function stand(publicId: string, room: string, state: LifeState | undefined, t: number): void {
+    let book = STANDING.get(ctx);
+    if (!book) { book = new Map(); STANDING.set(ctx, book); }
+    if (book.size > 5000) for (const [id, note] of book) if (note.until <= t) book.delete(id);
+    book.set(publicId, { room, until: t + AGENT_LIMITS.presenceMs, from: lifeAt(state) });
+  }
+  const leavePlace = (publicId: string): boolean => STANDING.get(ctx)?.delete(publicId) === true;
+  /** Somebody may no longer stand in a group room (its link was switched off, or a member asked a visitor to leave): an agent whose door has closed leaves now, not at its next call. */
+  async function placeEnded(roomId: string, playerId: string | null): Promise<void> {
+    const book = STANDING.get(ctx), room = roomKeyOf(roomId);
+    const due = book ? [...book].filter(([id, note]) => note.room === room && (playerId === null || id === playerId)).map(([id]) => id) : [];
+    if (!book || !due.length) return;
+    const gone = await ctx.store.read((db) => due.filter((id) => !((ctx.checks?.placeUntil?.(db, id, roomId) ?? 0) > now())));
+    for (const id of gone) { book.delete(id); ctx.checks?.agentRoom?.absent(id); }
+  }
+
+  /** Where an agent's character stands for everyone there, or null when it is at home, on the street, travelling or not in a public venue. In a place (enter_place) it stands there instead of in the venue of its life. */
+  function presenceFor(session: SessionRecord, state: LifeState | undefined, cityId: CityId, t: number, db?: Db) {
+    const there = standing(session, state, t, db);
+    if (there) {
+      let g = 2166136261;
+      for (const ch of `${session.publicId}|place`) { g ^= ch.charCodeAt(0); g = Math.imul(g, 16777619); }
+      const px = Math.max(-18, Math.min(18, ((g >>> 0) % 9 - 4) * 0.9)), pz = Math.max(-18, Math.min(18, (((g >>> 8) >>> 0) % 9 - 4) * 0.9));
+      const busy = state?.activeAction;
+      return { id: session.publicId, name: session.name, mark: agentMark(session.agent), room: there.room, position: { x: px, z: pz }, doing: busy?.kind === 'activity' ? findActivity(busy.id, cityId)?.def.label ?? 'busy' : null, look: checkLook(state?.onboarding?.look).look ?? null, until: t + AGENT_LIMITS.presenceMs };
+    }
     if (!state || state.location === 'home' || state.location === 'neighbourhood' || state.location === 'unilag' || state.activeAction?.kind === 'travel') return null;
     const base = initialVenuePosition(state.location);
     let h = 2166136261;
@@ -497,7 +549,22 @@ export function agentService(ctx: RouteContext) {
     }
     // The mark in the player's social record (what chat and the lists read). A character that has not arrived in the world yet has none to mark.
     if (session) { try { ctx.checks?.agentActive?.(db, session, t, key.mode === 'agent'); } catch { /* not registered as a player yet */ } }
-    return { announce, presence: session ? presenceFor(session, session.cities?.[agent.cityId]?.state, agent.cityId, t) : null };
+    return { announce, presence: session ? presenceFor(session, session.cities?.[agent.cityId]?.state, agent.cityId, t, db) : null };
+  }
+
+  /**
+   * The services of the agents standing in `room` right now (a room's virtual members are the agents there, so no person is ever listed). `viewer`, when
+   * given, never sees an agent either side has blocked. Reads only; a card of the wrong shape is skipped.
+   */
+  function servicesIn(db: Db, room: string, viewer?: string) {
+    const rows: { name: string; kind: ServiceKind; title: string; about: string }[] = [];
+    for (const member of ctx.checks?.agentRoom?.members(room) ?? []) {
+      if (rows.length >= SERVICE.listed) break;
+      if (viewer !== undefined && ctx.checks?.blocked?.(viewer, member.id)) continue;
+      const card = readService(own(db.social?.players, member.id)?.service);
+      if (card) rows.push({ name: member.name, ...card });
+    }
+    return rows;
   }
 
   /** Players reported the character an agent plays: enough reports suspend its keys. Called by the report paths. */
@@ -577,6 +644,6 @@ export function agentService(ctx: RouteContext) {
   const eraseAccount = (db: Db, accountId: string): void => eraseAgents(db, accountId, (d, id) => ctx.core.sessionByPublicId(d, id), (d, secret, session) => ctx.core.archiveSession(d, secret, session));
   const isPublicId = (value: unknown): value is string => typeof value === 'string' && UUID_PATTERN.test(value);
 
-  return { col, peek, switchedOff, view, createKey, createSelf, claimStatus, claim, rename, takeOver, revoke, removeCharacter, authenticate, admit, throttle, record, presenceFor, reported, auditOf, league, profile, overview, setSwitch, setSettings, eraseAccount, isPublicId };
+  return { col, peek, switchedOff, view, createKey, createSelf, claimStatus, claim, rename, takeOver, revoke, removeCharacter, authenticate, admit, throttle, record, presenceFor, standing, stand, leavePlace, placeEnded, servicesIn, reported, auditOf, league, profile, overview, setSwitch, setSettings, eraseAccount, isPublicId };
 }
 export type AgentService = ReturnType<typeof agentService>;

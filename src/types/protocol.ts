@@ -40,6 +40,7 @@ import type { LiveClientFrame, LiveServerFrame } from './live.ts'
 import type { AccountHttpRoutes } from './account.ts'
 import type { PingHttpRoutes } from './ping.ts'
 import type { VisitHttpRoutes } from './visit.ts'
+import type { PlacesHttpRoutes } from './places.ts'
 import type { CommerceHttpRoutes } from './commerce.ts'
 import type { BusinessHttpRoutes } from './business.ts'
 import type { MarketHttpRoutes } from './market.ts'
@@ -280,7 +281,7 @@ export interface CoreHttpRoutes {
  * telemetry endpoints are added beside them by server/server.ts: growth.ts TelemetryHttpRoutes.)
  */
 export interface HttpRoutes extends CoreHttpRoutes, SocialHttpRoutes, CivicHttpRoutes, SupportHttpRoutes, ModerationHttpRoutes, WorldHttpRoutes,
-  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes {
+  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes {
   'GET /api/world/land': { query: { city: CityId }; response: Ok<LandView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'invalid_city' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' }
   'POST /api/world/land/buy': { body: LandBuyRequest; response: Ok<{ ok: boolean; code: string; duplicate?: true; pending?: true }>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | JsonBodyErrorCode | OnceErrorCode | 'invalid_city' | 'invalid_land_purchase' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' | 'land_pending' | 'not_owned_home' | 'land_price_changed' | 'land_intent_changed' }
 }
@@ -310,6 +311,18 @@ export interface JoinFrame {
   /** This page reads a public venue as its group: one `presence` snapshot, then `presence-delta` frames (see PresenceDeltaFrame). Without it every change is a whole `presence` list. */
   deltas?: true
   /** The public id of a friend to be placed with (their group), when there is room; only a mutual friend is honoured. */
+  with?: string
+}
+/**
+ * Stand in a place (src/places/model.ts): the Square, or the room of a group chat. The stored life does not move. The server
+ * admits the socket only if the social module says this player may stand there (server/social/places.ts).
+ */
+export interface PlaceJoinFrame {
+  type: 'join'
+  place: 'square' | 'room'
+  /** The group's id (`g.<number>`), for `place: 'room'`. */
+  roomId?: string
+  deltas?: true
   with?: string
 }
 /** Position in the venue's voice space; both coordinates within ±20. At most 5 a second. */
@@ -364,7 +377,7 @@ export interface ChatSendFrame {
 export interface GroupsFrame { type: 'groups' }
 /** Move to another group of the venue: by its id (`group`, refused when it is full) or to a friend's group (`friend`; when that group is full, the move waits for room). Answered with a fresh `presence` and a `group` notice. */
 export interface GroupJoinFrame { type: 'group-join'; group?: string; friend?: string }
-export type RoomClientFrame = JoinFrame | MoveFrame | VoiceStateFrame | SignalFrame | ChatSendFrame | GroupsFrame | GroupJoinFrame
+export type RoomClientFrame = JoinFrame | PlaceJoinFrame | MoveFrame | VoiceStateFrame | SignalFrame | ChatSendFrame | GroupsFrame | GroupJoinFrame
 
 export interface PresenceMember extends PublicSession {
   /** What an AI agent is doing now, in a few words (only agents carry it). */
@@ -435,7 +448,7 @@ export interface SignalRelayFrame {
 /** Codes the Node host and its socket modules answer with (`throw Error('code')`). */
 export type NodeSocketErrorCode =
   | 'rate_limited' | 'invalid_message' | 'join_required' | 'internal_error' | 'device_session_required' | 'storage_unavailable'
-  | 'invalid_room' | 'onboarding_required' | 'venue_mismatch' | 'not_a_guest' | 'visit_ended'
+  | 'invalid_room' | 'onboarding_required' | 'venue_mismatch' | 'not_a_guest' | 'visit_ended' | 'not_admitted' | 'place_full' | 'place_ended'
   | 'invalid_position' | 'move_rate_limited' | 'invalid_voice_state' | 'voice_room_full'
   | 'invalid_signal' | 'peer_not_in_room' | 'peer_out_of_range'
   | 'invalid_chat' | 'text_blocked' | 'muted' | 'links_not_allowed' | 'contact_not_allowed'
@@ -540,6 +553,8 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/street/begin', 'POST /api/street/move', 'POST /api/street/enter', 'POST /api/street/exit',
   'POST /api/social/visit/plot/enter',
   'GET /api/social/visit/home',
+  'GET /api/places', 'GET /api/places/square', 'GET /api/places/room',
+  'POST /api/places/room/edit', 'POST /api/places/room/link', 'POST /api/places/room/remove', 'POST /api/places/room/peek', 'POST /api/places/room/enter',
   'GET /api/health',
   'POST /api/session',
   'GET /api/session',
@@ -807,7 +822,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/mod/showcase', 'POST /api/mod/showcase', 'GET /api/mod/showcase/photo/:id',
   'POST /api/agents/mcp', 'GET /api/agents/mcp', 'DELETE /api/agents/mcp', 'GET /api/agents', 'POST /api/agents/keys', 'POST /api/agents/keys/:id/revoke', 'GET /api/agents/keys/:id/audit',
   'POST /api/agents/characters/:id/remove', 'GET /api/agents/board', 'GET /api/mod/agents', 'POST /api/mod/agents/switch',
-  'POST /api/agents/claim', 'GET /api/agents/claim/:token', 'POST /api/agents/keys/:id/rename', 'POST /api/agents/characters/:id/takeover', 'GET /api/agents/league', 'POST /api/mod/agents/settings',
+  'POST /api/agents/claim', 'GET /api/agents/claim/:token', 'POST /api/agents/keys/:id/rename', 'POST /api/agents/characters/:id/takeover', 'GET /api/agents/league', 'GET /api/agents/services', 'POST /api/mod/agents/settings',
   'POST /api/trust/phone/complete',
   'POST /api/trust/dojah/webhook',
   'POST /api/trust/id/start',

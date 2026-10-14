@@ -3,6 +3,7 @@ import { useApp } from '../../state/app.ts'
 import { call, social, sync, refreshLife } from '../social/useSocial.ts'
 import type { WorldStreetResponse } from '../../../types/world.ts'
 import type { EnterResult, VisitHomeProjection, VisitHomeResult } from '../../../types/visit.ts'
+import { placeNow } from '../places/placeState.ts'
 import type { NeighbourDoor } from '../../../venue-world.ts'
 import { rowX, sameStreet, STREET_NETWORK_SCALE } from '../../../game/neighbourhood-space.ts'
 import { cityWalk } from './cityWalkState.ts'
@@ -100,6 +101,8 @@ export function walkToNeighbour(id: string): void {
 async function showVisit(): Promise<void> {
   const { game, scene, shell } = useApp(), id = social.me?.visiting?.host.id, key = acceptedVisitKey(), epoch = ++visitEpoch
   if (!id || !game.connected.value) {
+    // A group's room is drawn as a home scene too (places/placesStore.ts): with no visit, that scene is not this store's to clear.
+    if (!id && placeNow.value?.kind === 'room') { shownVisit = ''; neighbourhood.home = null; neighbourhood.homeError = ''; return }
     if (!id) shownVisit = ''
     const was = neighbourhood.home
     neighbourhood.home = null; neighbourhood.homeError = ''

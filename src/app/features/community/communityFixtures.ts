@@ -38,6 +38,7 @@ export function fakeController(options: CommunityOptions, initial: CommunityStat
     getDiagnostics: () => Promise.reject(new Error('not in this fake')),
     moveTo(x, z) { calls.push(`moveTo ${x},${z}`); return true },
     join(city, venue) { calls.push(`join ${city},${venue}`) },
+    joinRoom(room) { calls.push(room.place ? `joinRoom ${room.place}${room.roomId ? ` ${room.roomId}` : ''}` : `joinRoom ${room.cityId},${room.venueId}${room.hostId ? `,${room.hostId}` : ''}`) },
     walk(dx, dz) { calls.push(`walk ${dx},${dz}`) },
     saveName: async (name) => { calls.push(`saveName ${name}`); return true },
     sendChat(body) { calls.push(`sendChat ${body}`); return true },

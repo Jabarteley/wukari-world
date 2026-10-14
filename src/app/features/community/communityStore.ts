@@ -32,11 +32,12 @@ import { computed, readonly, ref, shallowRef, watch } from 'vue'
 import type { ComputedRef, Ref, ShallowRef } from 'vue'
 import { roomJoinNeeded } from '../../../client.ts'
 import { social } from '../social/useSocial.ts'
+import { placeNow, placeRoom } from '../places/placeState.ts'
 import { createLazyLoader } from '../../../lazy-load.ts'
 import type { LazyLoader, LazyOptions, LazyState } from '../../../lazy-load.ts'
 import { linkWords } from '../../../ui/link.ts'
 import type { CommunityOptions } from '../../../community.ts'
-import type { CommunityController, CommunityState, MembersEvent, VoicePosition } from '../../../types/community.ts'
+import type { CommunityController, CommunityRoom, CommunityState, MembersEvent, VoicePosition } from '../../../types/community.ts'
 import type { Game } from '../../state/game.ts'
 import type { ToastKind } from '../../types/panel.ts'
 
@@ -136,7 +137,20 @@ export function createCommunityStore(deps: CommunityDeps): CommunityStore {
   const recovery = shallowRef<CommunityRecovery | null>(null)
   let instance: CommunityController | null = null
   let starting = false, startProblem = false, lastRefusal = 0, epoch = 0
-  const separateRoom = (location = game.state.value.location): boolean => Boolean(social.me?.visiting) || location === 'city-street'
+  /**
+   * The room this page's socket belongs in: the place the player chose to stand in, else the home they are visiting, else the
+   * venue their life is in. Null on the city street, which has its own room. Voice, chat and presence follow this one answer.
+   */
+  const wanted = (location = game.state.value.location): CommunityRoom | null => {
+    const place = placeRoom(placeNow.value)
+    if (place) return place
+    const visit = social.me?.visiting
+    if (visit?.cityId) return { cityId: visit.cityId, venueId: 'home', hostId: visit.host.id, label: `${visit.host.name}’s home` }
+    return location === 'city-street' ? null : { cityId: game.cityId.value, venueId: location }
+  }
+  /** Standing somewhere the life is not: the room does not follow the life's own moves. */
+  const elsewhere = (): boolean => placeNow.value !== null || Boolean(social.me?.visiting)
+  const separateRoom = (location = game.state.value.location): boolean => wanted(location) === null
 
   const loader: LazyLoader<CommunityModule> = createLazyLoader<CommunityModule>(
     () => (deps.loadModule ? deps.loadModule() : import('../../../community.ts')),
@@ -189,8 +203,9 @@ export function createCommunityStore(deps: CommunityDeps): CommunityStore {
     try {
       const module = await loader.load()
       if (!module || instance || !game.connected.value || mine !== epoch || separateRoom()) return
+      const first = wanted()
       const created = await module.createCommunity({
-        cityId: game.cityId.value, venueId: game.state.value.location,
+        cityId: game.cityId.value, venueId: game.state.value.location, room: first,
         onMembers: handleMembers,
         onNotice: (text) => deps.toast(text),
         venueName: (venueId, cityId) => deps.venueLabel(venueId, cityId),
@@ -201,6 +216,10 @@ export function createCommunityStore(deps: CommunityDeps): CommunityStore {
       })
       if (mine !== epoch) { created.destroy(); return }
       instance = created
+      // Where the player stands may have changed while the controller was being made (a page opened on a place's address
+      // steps into it at once): stand there now. The same room again asks nothing of the server.
+      const now = wanted()
+      if (now && JSON.stringify(now) !== JSON.stringify(first)) created.joinRoom(now)
       startProblem = false; lastRefusal = created.state.refusal?.seq ?? 0
       state.value = created.state
       updateRecovery()
@@ -215,9 +234,12 @@ export function createCommunityStore(deps: CommunityDeps): CommunityStore {
 
   function toggle(force?: boolean): void {
     if (force === false) { open.value = false; return }
-    if (social.me?.visiting) { deps.toast('Use the house chat while you are visiting.'); return }
-    if (game.state.value.location === 'city-street') { deps.toast('Use People to message friends while you walk.'); return }
-    if (game.state.value.location === 'home') { deps.toast('Your home is private. Visit a public venue to meet people.'); return }
+    // A place, or a home being visited: the room is where the player stands, so its people, chat and voice open like a venue's.
+    if (!elsewhere()) {
+      if (game.state.value.location === 'city-street') { deps.toast('Use People to message friends while you walk.'); return }
+      // Your own home is private: there is a room to open only while friends are inside it.
+      if (game.state.value.location === 'home' && (state.value?.memberCount ?? 0) < 2) { deps.toast('Your home is private. Visit a public venue to meet people.'); return }
+    }
     if (!instance) {
       if (!game.connected.value) { deps.toast(notConnected(game.link.value, 'open the community'), 'error'); return }
       // Not loaded: the panel itself says so and offers the retry. While the first attempt is still in flight there is
@@ -248,11 +270,23 @@ export function createCommunityStore(deps: CommunityDeps): CommunityStore {
   game.on('accepted', (next, previous) => {
     if (separateRoom(next.location)) { open.value = false; destroy(); return }
     if (previous.location === 'city-street') { void start(); return }
+    if (elsewhere()) return
     if (next.location === 'home') open.value = false
     if (roomJoinNeeded(previous, next)) instance?.join(game.cityId.value, next.location)
   })
-  watch(game.cityId, (city) => { if (separateRoom()) destroy(); else instance?.join(city, game.state.value.location) })
-  watch(() => social.me?.visiting?.host.id, (host) => { if (host) { open.value = false; destroy() } else void start() })
+  /** Stand where `wanted` says now: the same socket changes room (voice off, as on every join), or the controller is started. */
+  const follow = (): void => {
+    const next = wanted()
+    if (!next) { destroy(); return }
+    if (instance) instance.joinRoom(next); else void start()
+  }
+  // A new city: the room there, if the controller is up. (It is started by the game connecting, never by a change of city.)
+  watch(game.cityId, () => { const next = wanted(); if (!next) destroy(); else instance?.joinRoom(next) })
+  // Coming into a home as a guest and leaving it: the controller that is up changes room. One that is not up is started when a
+  // visit ends, as it always was (in a running game it is up already: it starts when the game connects).
+  watch(() => social.me?.visiting?.host.id ?? null, (host) => { if (instance || !host) follow() })
+  // Stepping into the Square or a group's room, and stepping out again.
+  watch(placeNow, follow)
   game.on('expired', destroy)
   game.on('session', (_session, created) => { if (created) destroy() })
 

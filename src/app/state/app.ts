@@ -17,6 +17,7 @@ import { cachedCityContent } from '../../game/cities/registry.ts'
 import { isDeparting } from '../../life.ts'
 import { roomJoinNeeded } from '../../client.ts'
 import { crowdList, playersHere } from '../../scene/crowd.ts'
+import { placeNow, placePeople, SQUARE_SCENE } from '../features/places/placeState.ts'
 import { linkWords } from '../../ui/link.ts'
 import { captureLink, cleanAddress, forgetCampusEntry, forgetDraft, forgetGo, forgetJoin, forgetRef, forgetTable, joinTarget, keepPlay, pendingCampusEntry, pendingGo, pendingPlay, pendingRef, pendingShop, pendingTable, play, track } from '../../quick-start/entry.ts'
 import { deviceToken } from '../features/growth/boundary.ts'
@@ -88,11 +89,32 @@ function createApp(game: Game, native: readonly VuePanel[]) {
 
   const playerLook = (): PlayerLook => ({ look: game.state.value.onboarding?.look, seed: game.session.value?.id ?? 'you', name: game.state.value.name || game.client.identity.name })
   const cityVenueLabel = (id: string, cityId: string): string => contentFor(cityId).venues.find((venue) => venue.id === id)?.name ?? id
+  /**
+   * WHAT THE SCENE IS SHOWN. The life, as the server has it — except in the Square (features/places), which is drawn as one venue
+   * for everybody: there the scene is handed the life as if it stood in that venue. Only the scene sees this; the life, the HUD
+   * and every action read the real state. (A group's room is drawn through the visited-home path instead.)
+   */
+  const sceneState = (state: LifeState): LifeState => (placeNow.value?.kind === 'square' && !social.me?.visiting
+    ? { ...state, estate: { ...state.estate, city: SQUARE_SCENE.city }, location: SQUARE_SCENE.venue, spot: null, activeAction: null } : state)
+  /** Hand the scene what it should show now (stepping into the Square, out of it, or a scene host that was made again). */
+  function showScene(): void {
+    const venue = scene.venue.value, shown = sceneState(game.state.value)
+    if (!venue) return
+    // The same order as an arrival: a change of city is told first (its scenes may have to be fetched), then the place, then the state.
+    if (game.state.value.estate.city !== SQUARE_SCENE.city) venue.setState(shown)
+    venue.setLocation(shown.location)
+    venue.setState(shown)
+  }
   function showPlayer(): void { scene.venue.value?.setPlayer(playerLook()); scene.city.value?.setPlayer(playerLook()) }
   /** The crowd in the scene, from real data only: the server's who-is-here listing and the venue's regulars. */
   function showCrowd(): void {
     const state = game.state.value
     const visit = social.me?.visiting
+    // Standing in a place (the Square, a group's room): the people there, never the venue the life is in. A room is a home scene,
+    // which stands people by the door; the Square is a venue scene, which draws them where presence says they stand.
+    const place = visit ? null : placeNow.value
+    if (place?.kind === 'room') { scene.venue.value?.setCrowd(placePeople.value.map((person) => ({ id: person.id, name: person.name, kind: 'player' }))); return }
+    if (place) { scene.venue.value?.setCrowd(crowdList({ players: placePeople.value.map((person) => ({ ...person, here: true })), npcs: [], selfId: game.session.value?.id ?? null, positions })); return }
     if (visit) {
       const guests = visit.guests.filter((person) => person.id !== game.session.value?.id).map((person) => ({ id: person.id, name: person.name, kind: 'player' }))
       if (visit.hostStatus === 'home') guests.push({ id: visit.host.id, name: visit.host.name, kind: 'player' })
@@ -104,6 +126,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     scene.venue.value?.setCrowd(crowdList({ players: playersHere(social.people, state, game.cityId.value), npcs, selfId: game.session.value?.id ?? null, positions }))
   }
   onPeople(showCrowd)
+  watch([placeNow, placePeople], () => { showCrowd(); showGoal() })
   // Friends' houses are named on the map (public ids only).
   const showFriends = (): void => { scene.city.value?.setFriends?.((social.me?.friends ?? []).map((friend) => friend.id)) }
   onPeople(showFriends)
@@ -119,7 +142,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
   function showGoal(): void {
     const state = game.state.value
     const chip = game.connected.value && state.onboarding?.stage === 'guest' && !state.onboarding.done ? game.view.value.goals?.chip : null
-    const at = chip?.kind === 'goal' && Array.isArray(chip.go) && chip.go.length === 2 && !state.activeAction ? chip : null
+    const at = chip?.kind === 'goal' && Array.isArray(chip.go) && chip.go.length === 2 && !state.activeAction && !placeNow.value ? chip : null
     scene.venue.value?.setGoal?.(at && at.go ? { venue: at.go[0] ?? '', spot: at.go[1] ?? '', text: at.title } : null)
   }
 
@@ -135,12 +158,15 @@ function createApp(game: Game, native: readonly VuePanel[]) {
   function reportPlace(): void {
     const at = scene.venue.value?.position?.()
     const state = game.state.value
+    // In the Square the avatar walks the Square's own scene: that is the place reported. A group's room has no places to report.
+    if (placeNow.value && !social.me?.visiting) { if (placeNow.value.kind === 'square' && at && at.location === SQUARE_SCENE.venue && community.moveTo(at.x, at.z)) placeSent = true; return }
     if (!at || at.location !== state.location || at.location === 'home' || social.me?.visiting || isDeparting(state)) return
     if (community.moveTo(at.x, at.z)) placeSent = true
   }
   /** The avatar moved: that is where the player stands in the room. */
   function onMove(at: { location: string | null; x: number; z: number }): void {
     const state = game.state.value
+    if (placeNow.value && !social.me?.visiting) { if (placeNow.value.kind === 'square' && at.location === SQUARE_SCENE.venue && community.moveTo(at.x, at.z)) placeSent = true; return }
     if (at.location === state.location && at.location !== 'home' && !social.me?.visiting && !isDeparting(state) && community.moveTo(at.x, at.z)) placeSent = true
   }
   /**
@@ -220,8 +246,8 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     const city = scene.city.value
     if (moved) {
       if (previous.location === 'unilag' && state.location !== 'unilag') { try { if (location.pathname.replace(/\/+$/, '') === '/unilag') history.replaceState(null, '', '/') } catch { /* retain address */ } }
-      if (state.estate.city !== previous.estate.city) scene.venue.value?.setState(state)
-      scene.venue.value?.setLocation(state.location)
+      if (state.estate.city !== previous.estate.city) scene.venue.value?.setState(sceneState(state))
+      scene.venue.value?.setLocation(sceneState(state).location)
       // Arrived while watching the trip: the map shows the arrival for a moment, then the venue comes up.
       if (game.mode.value === 'map' && city && isDeparting(previous)) { city.setState(state); city.arrive(showVenue) }
       else if (game.mode.value !== 'venue' && !away) shell.setMode('venue')
@@ -230,7 +256,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     // Arrival, or a cancelled trip: restore room membership. Join only — voice stays off until the player asks.
     // (The community store joins the room itself, with voice off.)
     if (roomJoinNeeded(previous, state)) placeSent = false
-    scene.venue.value?.setState(state)
+    scene.venue.value?.setState(sceneState(state))
     showPlayer()
     showCrowd()
     showGoal()
@@ -517,6 +543,8 @@ function createApp(game: Game, native: readonly VuePanel[]) {
   }
   /** The campus host calls this once the avatar has reached the landmark it was sent to: the ordinary `spot` action. */
   async function commitSpot(id: string): Promise<CommandResult<'spot'>> {
+    // A spot of a place's scene is not a spot of the venue the life is in: nothing is sent.
+    if (placeNow.value) return { ok: false, code: 'not_here', reason: 'Step out of this place to use the spots of your own venue.' } as CommandResult<'spot'>
     const result = await send('spot', { id })
     if (result.ok) shell.ui.expanded = true
     return result
@@ -566,7 +594,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     noteCity(id)
     scene.world.value?.setCity(id); scene.city.value?.setCity(id)
     placeSent = false
-    scene.venue.value?.setLocation(game.state.value.location)
+    scene.venue.value?.setLocation(sceneState(game.state.value).location)
     shell.setMode('venue')
     shell.open('city', { city: id })
   }
@@ -588,7 +616,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     view: () => shell.viewFor(),
   }
 
-  return { game, ready, panels, shell, landing, api, community, scene, command, connect, showFriends, showGoal, reportPlace, onMove, commitSpot, quickStart, goTo, menu, startLife, switchCity, showMapLayer, showPlayer, showCrowd, showLive, heldCities, playerLook }
+  return { game, ready, panels, shell, landing, api, community, scene, command, connect, showFriends, showGoal, reportPlace, onMove, commitSpot, quickStart, goTo, menu, startLife, switchCity, showMapLayer, showPlayer, showScene, showCrowd, showLive, heldCities, playerLook }
 }
 export type App = ReturnType<typeof createApp>
 

@@ -141,6 +141,13 @@ export interface WorldBadge { lga: LgaId; name: string }
 /** POST /api/world/badges: the badges of up to 40 players, only those with one. */
 export interface WorldBadgesResponse { badges: Record<string, WorldBadge> }
 export interface WorldPulseResponse { online: number; visits: number; today: number; cities: Record<string, number> }
+/** GET /api/world/feed (server/world-feed): the day's rates and a city's real weather. */
+export interface WorldFeedResponse {
+  day: string | null
+  rates: Record<string, number>
+  weather: { at: number; hours: [start: number, kind: string, tempC: number | null][] } | null
+  credits: { weather: string; weatherUrl: string; rates: string | null; ratesUrl: string | null }
+}
 export interface WorldHttpRoutes {
   'GET /api/world/street': { query: { city: CityId }; response: Ok<WorldStreetResponse>; errors: WorldCommon | StorageErrorCode | 'city_moved' | 'not_on_street' | 'plot_unavailable' }
   /** Settles (or creates) the caller's life in that city exactly as a poll would, so it can also answer 409 `city_moved` and 503 `storage_unavailable`. */
@@ -149,6 +156,8 @@ export interface WorldHttpRoutes {
   'GET /api/world/pulse': { query: Record<string, never>; response: Ok<WorldPulseResponse>; errors: HostErrorCode | SessionErrorCode | 'pulse_rate_limited' }
   /** Public: only how many players are online (at least 1), for a visitor who has no session yet. No visit is counted. */
   'GET /api/world/pulse/online': { query: Record<string, never>; response: Ok<{ online: number }>; errors: HostErrorCode | 'pulse_rate_limited' }
+  /** Public: the day's rates (the city's own currency, NGN, USD) and the city's observed weather; cached five minutes (docs/WORLD-FEED.md). */
+  'GET /api/world/feed': { query: { id: CityId }; response: Ok<WorldFeedResponse>; errors: HostErrorCode | 'invalid_city' | 'feed_rate_limited' }
   'GET /api/world/city': { query: { city: CityId; v?: string }; response: Ok<WorldCityResponse>; errors: WorldCommon }
   'GET /api/world/lga/:id': { params: { id: LgaId }; query: { city: CityId }; response: Ok<WorldLgaResponse>; errors: WorldLga }
   /** `from` 0…511, `count` 0…128 (default 128); 400 `invalid_number` otherwise. */

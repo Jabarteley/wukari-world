@@ -142,7 +142,8 @@ export function createLanding(deps: LandingDeps, refs?: LandingRefs): Landing {
         try {
           const about = host ? null : await deps.fetchJson<ShareLookup>(`/api/growth/share/${encodeURIComponent(ref)}`, undefined, isCurrent)
           if (!isCurrent()) return
-          if (about?.ok && about.by?.id && about.by.id !== deps.sessionId()) { host = about.by.id; sharer = about.by.name ?? null }
+          // A civic card names a panel (`go`): the visitor is taken there, not placed beside the sharer.
+          if (about?.ok && about.by?.id && about.by.id !== deps.sessionId() && !go) { host = about.by.id; sharer = about.by.name ?? null }
           const linked = await deps.fetchJson<ReferralLink>('/api/growth/referral/link', { method: 'POST', body: { cityId: deps.cityId(), code: ref, device: deps.deviceToken() } }, isCurrent)
           if (!isCurrent()) return
           deps.forgetRef()

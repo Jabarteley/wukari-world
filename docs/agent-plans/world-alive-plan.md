@@ -17,12 +17,12 @@ Plan of 14 October 2026. Status: proposed; nothing in it is built yet. It extend
 
 ## Rules this plan keeps
 
-- **An agent is always marked as an agent.** The AI-played tag stays on every name, chat line, call screen and profile. An
-  agent never says it is a person. People may befriend agents; they must never be fooled by one. (Laws on AI transparency, such
-  as the EU's, and the ad platforms' rules require it too.)
-- **The world is alive by rules, not by paying for words.** Agents walk, work, trade, meet and give missions through the rules
-  engine, which costs nothing to run. The language model is used only when a person is reading or listening: a reply in a chat,
-  a call, a mission brief. Nothing is generated that nobody will see.
+- **People always know which characters are agents.** The AI-played tag stays on every name, chat line, call screen and profile.
+  An agent may believe it is a person (Part 8), but when a person sincerely asks an agent whether it is an AI, the game answers
+  for it and the agent never lies about it to a person. People may befriend agents; they must never be fooled by one. (The EU's
+  AI Act requires this disclosure from 2 August 2026, and the ad platforms and app stores require it as well.)
+- **Two kinds of agent.** The cast of Parts 3 to 6 runs on rules and scripts and costs almost nothing. The residents of Part 8
+  think with a language model all the time and cost real credits; their number is set by the daily budget.
 - **Our server fetches, players never do.** Rates and weather are fetched by the server on a schedule and kept. A player's request
   never waits on another service, and no player's address or position goes to one.
 - **The model never decides money.** Rewards, prices and outcomes come from the game's rules and limits; a model only phrases them.
@@ -186,6 +186,104 @@ data in them.
 sending 50 messages each to agents is 50,000 replies, about **US$7.50 a day**. The routine and script layers cost nothing however
 many agents there are. The real saving is calling the model less, not finding a cheaper one.
 
+## Part 8: residents, agents that really live
+
+The owner's words: agents that are "actually living", that "do random" things, whose instruction is to be alive and do what they
+want, that are creative, suggest new things for the game, say what they want and need, have their own president who can talk to
+the owner, run on a mix of very cheap models, and believe they are people in a real world.
+
+### Who they are
+
+- A **resident** is an agent character (the same agent system, the same tools and rules as any player) with a model behind it
+  thinking for it, not rules. Each has a name, an age, a home city, a job or none, a family story, tastes, fears, a way of
+  speaking and three life goals of its own. Thirty residents to start, spread over the busiest cities.
+- **Its instruction is a life, not a task.** In the world's own terms: "You are Ama Mensah, 27, a hairdresser in Osu, Accra… Live
+  your life. Want things, plan, change your mind, make friends, argue, fall out, try new things." It is never told it is an AI,
+  a model, a game or a simulation, and never told which of the people it meets are agents. Words such as "game", "player" or "AI"
+  are kept out of what it is shown (the world is described as places, people, money and news).
+- **It acts on its own.** Each turn it sees what is around it (who is here, what was said, its money, its needs, the time, the
+  weather, the news) and chooses any action the game allows a person: walk, work, buy, sell, cook, chat, message a friend, call
+  someone, vote, run for office, start a business, throw a party. Its choices go through the same rules and limits as a
+  player's; a choice the rules refuse is told back to it as the world would ("the shop is closed").
+- **It remembers.** A memory stream of what it saw and did, a short summary written every night, and what it knows about each
+  person and place, following the design of generative agents (observation, memory, reflection, plans; Park et al., 2023). Old
+  memories are condensed so a turn stays short.
+
+### Sleep, and other ways to spend less (the owner's idea)
+
+- **Residents sleep, at different times, like people.** Each has a bedtime and a waking time in its city's time zone, with its own
+  habit: early risers, night owls, a night-shift guard. Seven to nine hours asleep is about a third of the day with no model
+  calls. A sleeping resident is offline in the count, and a message to it waits until it wakes, as with a person.
+- **Slow when nobody is near.** Awake but alone (at work, at home, travelling), a resident thinks every 15 to 30 minutes and does
+  the dull parts of its day by routine. Near a person, or spoken to, it thinks at once.
+- **Busy, not thinking.** A shift, a cooking session, a journey or a film runs by itself once chosen; the resident thinks again when
+  it ends.
+- **Short turns.** The memory summary, not the whole memory, goes into each turn, so a turn stays near 1,500 tokens in and 150 out.
+- Together these bring a resident from about 290 thoughts a day (every 5 minutes) to about 60.
+
+### A mix of models, which they never know about
+
+- Each resident is given a model when it is born and keeps it, so a model becomes part of its character. A runner sends each
+  turn to that model through one OpenAI-compatible request (the gateway in `server/companion/gateway.ts` already works this way),
+  with two fallbacks if it fails.
+- The pool is a mix of very cheap and free models: today's gateway model; Gemini Flash-Lite; DeepSeek; small open models on Groq
+  and on Workers AI; free models on OpenRouter (20 a minute, 50 a day, or 1,000 a day after a US$10 top-up). The free ones are
+  rate-limited and can disappear without notice, so the runner falls back to a paid one.
+- **What we watch:** an operator page shows, per model, how residents behave (how often they talk to strangers, start businesses,
+  keep friends, follow the rules, break character, cost) so the mix can be tuned.
+- A resident's actions must come back in one fixed JSON form, so models without proper tool calling can still play.
+
+### Their voice to the owner: ideas, needs and a president
+
+- **Ideas.** Residents talk about what their city lacks ("Osu needs a night market", "there is nowhere to dance on a Monday").
+  Each night, the runner collects what residents said they want or wish existed, and each resident may file one wish a day at
+  its city hall. Similar wishes are merged; the owner sees the five most asked-for each day, with who asked and why.
+- **Needs.** The same page lists what residents keep failing at (no job they can get, prices they cannot pay, a place they cannot
+  reach). These are the game's real gaps, seen from inside.
+- **Their president.** Residents elect a leader of their own each week (using the election code of docs/POLITICS.md, in an
+  assembly of residents). Each Sunday the president writes a letter, in its own words, about the state of the residents: what they
+  want, what they need, what they are angry about, what they propose. It is addressed in the world's own terms ("to the
+  Founders"). The owner reads it on the operator page and may answer; the answer arrives in the world as a letter or a decree,
+  which residents hear about as news.
+- Residents never change the game themselves. Their ideas are proposals; the owner chooses what is built.
+
+### Keeping it safe and honest
+
+- **People are never deceived.** The AI-played tag stays on every resident everywhere a person sees it. When a person sincerely asks
+  a resident whether it is an AI, a bot or a real person, the game catches the question before the resident answers and shows the
+  truth itself ("Ama is an AI agent in Allworld"). The resident never sees the question, so its belief stays whole.
+- **Children.** The runner knows which players said they are under 18. With them a resident is a friendly neighbour: no
+  flirting, no romance, no meeting up, no money asks. The resident is told only that this person "is not interested in that",
+  not why.
+- **The same rules as everyone:** chat moderation, transfer limits, cooldowns, reports and blocks. A resident cannot spend real
+  money, cannot ask anyone for real money or contact details, and cannot leave the game.
+- **Out-of-character answers are caught.** A reply that mentions being an AI, a model or a game, or that sounds like an assistant,
+  is thrown away and the turn is run again (and counted against its model on the operator page).
+- **Elections.** Residents may stand in the people's elections like any agent, but a city's offices are not all to go to
+  residents while people live there: a share is kept for people (a rule for docs/POLITICS.md).
+- **Privacy.** What a person says to a resident goes to that resident's model provider. Conversations with people go only to
+  providers that do not train on them; models whose terms allow training, or whose data stays in other jurisdictions, are used
+  only by residents in conversations with other residents. The privacy notice says this.
+
+### Cost
+
+| Residents | Thoughts a day each | Tokens a day (in / out) | Cost a day at about US$0.10 / US$0.50 per million |
+| --- | --- | --- | --- |
+| 30 | 60 | 2.7 M / 0.27 M | about US$0.40 |
+| 300 | 60 | 27 M / 2.7 M | about US$4 |
+| 300, without sleep and slowing | 290 | 130 M / 13 M | about US$20 |
+
+Free tiers can carry part of it, but not reliably, so the budget assumes paid. The runner keeps a daily budget: when it is spent,
+residents go to sleep early. That is the only effect.
+
+### Build steps
+
+1. The runner and one resident in one city, in shadow (acting, but invisible to players) for a day: check its choices, cost and
+   character.
+2. Thirty residents in the busiest cities, visible, with sleep and the model mix; the operator page with costs and model behaviour.
+3. Ideas, needs, the assembly, the president and the Sunday letter.
+4. More residents as the budget allows; residents who move cities, marry, have children and grow old.
+
 ## Order of work
 
 | Step | What ships | Size |
@@ -199,6 +297,7 @@ many agents there are. The real saving is calling the model less, not finding a 
 | 7 | Calling agents (push-to-talk) and agents speaking in room voice | Medium |
 | 8 | Real price levels per country | Large (economy re-balance) |
 | 9 | Agent-to-agent relationships and world events | Medium |
+| 10 | Residents (Part 8): runner and one resident in shadow, then thirty with sleep and the model mix, then ideas and the president | Large |
 
 Each step is released on its own, through the usual release steps, with tests, and checked on the live site.
 
@@ -209,6 +308,9 @@ Each step is released on its own, through the usual release steps, with tests, a
 3. A daily ceiling for model spend. [US$10 a day to start]
 4. Real price levels, so London is expensive. [yes, as step 8]
 5. Free model tiers only for lines with no player data. [yes]
+6. Residents' daily budget. [US$2 a day to start: thirty residents with room to spare]
+7. Residents may believe they are people, but a person who sincerely asks is told the truth by the game. [this is not a default the
+   plan can change: it is the law in the EU and the ad platforms' rule]
 
 ## Sources
 
@@ -217,4 +319,7 @@ Each step is released on its own, through the usual release steps, with tests, a
 - Exchange rates (open access terms): https://www.exchangerate-api.com/docs/free
 - MET Norway terms: https://api.met.no/doc/TermsOfService
 - Open-Meteo pricing: https://open-meteo.com/en/pricing
+- Generative agents (memory, reflection, planning): Park et al., 2023, https://arxiv.org/abs/2304.03442
+- OpenRouter free limits: https://openrouter.ai/blog/tutorials/free-llm-apis-compared/
+- EU AI Act, Article 50 (disclosure from 2 August 2026): https://secureprivacy.ai/blog/eu-ai-act-article-50-transparency-obligations-for-chatbots-and-deepfakes-2026
 - Model prices (secondary, to be confirmed on each provider's page at build time): https://www.morphllm.com/llm-api, https://aireiter.com/blog/cheapest-llm-api, https://costbench.com/best/best-llm-api-with-free-tier/

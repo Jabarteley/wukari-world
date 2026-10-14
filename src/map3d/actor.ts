@@ -28,6 +28,16 @@ import { lookOf } from './trip.ts';
 export interface ActorPlayer { look?: unknown; seed?: string }
 
 export const ACTOR_SCALE = 0.86;
+/** The tallest a drawn avatar stands (map units, before ACTOR_SCALE and the piece's size; a person of about 1.75 m is a little over 2.5 of them). */
+export const AVATAR_HEIGHT = 2.95;
+/** The piece's height at size 1: the houses of the Neighbours layer stand well above it (./estate-homes.ts). */
+export const ACTOR_HEIGHT = AVATAR_HEIGHT * ACTOR_SCALE;
+/**
+ * How big the piece is drawn at a camera distance. Close and at a middle distance it is life size beside the houses (its size is the
+ * distance over 62: a house stands above it up to a distance of about 110); from further out it grows with the distance, like a
+ * counter on a board, so a trip can still be followed on a view of the whole city (no smaller than 4 at the far end).
+ */
+export const pieceSize = (distance: number): number => Math.max(0.12, Math.min(distance / 62, Math.max(4, distance / 110)));
 const SEAT_HEIGHT = 0.6;
 /** How far an authored vehicle model stands above the ground height of the route, so its wheels rest on the road ribbon. */
 const AUTHORED_LIFT = 0.24;

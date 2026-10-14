@@ -64,7 +64,7 @@ import { reliefAt } from './relief.ts';
 import { CITY_KM_PER_UNIT, distanceForSpan, spanKm, swoopPlan, swoopView } from './dive.ts';
 import type { CityDive, SwoopPlan } from './dive.ts';
 import { createFlick, DOUBLE_TAP_MS, DOUBLE_TAP_PX, dragKind, isDrag, isTap, localPoint, mapHint, MAP_HINT_KEY, ROTATE_PITCH, ROTATE_YAW, twist } from '../scene/gesture.ts';
-import { createActor } from './actor.ts';
+import { createActor, pieceSize } from './actor.ts';
 import { createOverlays } from './overlays.ts';
 import { createHouses } from './houses.ts';
 import { estateLayout, plotAt } from './estates.ts';
@@ -282,7 +282,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   }
   function draw(t = now()) {
     // The player's piece grows as the view pulls back, so it can always be found — and a trip always followed.
-    actor.setSize(clamp(rig.view.distance / 62, rig.view.distance < 34 ? Math.max(0.12, rig.view.distance / 62) : 1.2, Math.max(4, rig.view.distance / 110)));
+    actor.setSize(pieceSize(rig.view.distance));
     actor.setClose(rig.view.distance < 45); // a close view of the trip vehicle uses its detailed model (turning wheels)
     // On the way down from the clouds the towers and blocks are drawn even from high up: from there the city should read as dense, not flat.
     // While the aerial city (./aerial.ts) stands in for them and the two together would pass its triangle cap, the map's own fabric is left out.

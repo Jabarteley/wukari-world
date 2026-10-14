@@ -6,11 +6,11 @@ import { call, newClientId, refreshLife } from '../social/useSocial.ts'
 import { loadStreet, readWorld } from './neighbourhoodStore.ts'
 import SettleNotice from '../start/SettleNotice.vue'
 import type { LandBuyRequest, LandView } from '../../../types/land.ts'
+import { money } from '../../ui/format.ts'
 const { game, shell } = useApp()
 const land = ref<LandView | null>(null), busy = ref(false), message = ref(''), code = ref(''), selected = ref<number | null>(null)
 let retry: LandBuyRequest | null = null
 const price = computed(() => land.value?.candidates.find((candidate) => candidate.plot === selected.value)?.price ?? null)
-const money = (value: number) => `₦${value.toLocaleString('en-NG')}`
 async function load(): Promise<void> {
   busy.value = true; message.value = ''; code.value = ''
   try {

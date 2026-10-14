@@ -86,6 +86,7 @@ import { arcSegments, mesher, outerEdges } from './build.ts';
 import type { RibbonLine } from './build.ts';
 import type { CountryDetailService, CountryDetailOutline } from './country-detail-types.ts';
 import { CountryDetailPanelModel, countryOutlineSvg } from './country-detail.ts';
+import { money } from '../../game/money.ts'
 
 /** What a level's data module exports (the type of ATLAS_LEVELS[i].data()'s result). */
 export type LevelModule = Awaited<ReturnType<AtlasLevel['data']>>;
@@ -263,7 +264,7 @@ const DOUBLE_MS = 340;
 const FLOOR = 0.4;
 const clamp = (value: number, low: number, high: number): number => Math.max(low, Math.min(high, value));
 const esc = (value: unknown): string => String(value ?? '').replace(/[&<>"']/g, (c) => (({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }) as Record<string, string>)[c]!);
-const naira = (value: unknown): string => `₦${Number(value).toLocaleString('en-NG')}`;
+const naira = (value: unknown): string => money(value)
 const ICON = (path: string): string => `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
 const GLYPH = { globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/>', rail: '<rect x="6" y="3" width="12" height="14" rx="3"/><path d="M6 10h12M8 17l-2 4m10-4 2 4M9 14h.1M15 14h.1"/>', bus: '<path d="M5 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10H5zM5 11h14M8 16v2M16 16v2"/><circle cx="8.5" cy="14" r=".6"/><circle cx="15.5" cy="14" r=".6"/>', plane: '<path d="M21 15.5 13.5 11V5.2a1.5 1.5 0 0 0-3 0V11L3 15.5V17l7.5-2.2V19l-2 1.5V22l3.5-1 3.5 1v-1.5l-2-1.5v-4.2L21 17z"/>' };
 

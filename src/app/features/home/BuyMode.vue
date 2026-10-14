@@ -22,7 +22,7 @@ import { FURNITURE_BLURBS } from '../../../game/content/furniture-blurbs.ts'
 import '../../../game/home-plan.ts'
 import { useApp } from '../../state/app.ts'
 import { linkWords } from '../../../ui/link.ts'
-import { money } from '../../ui/format.ts'
+import { money, moneyHint } from '../../ui/format.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import StarRating from './StarRating.vue'
 import { HINT, blockedReason, defOf, objectOf, placementReason, plotIn, refund, selectedReason, size, starsNote, startGhost, storageOf, storedReason, whyNot } from './buyModel.ts'
@@ -119,7 +119,7 @@ defineExpose({ keys: (action: string): boolean => buyKey(action) })
   <div v-else class="buy-catalogue" :class="{ 'is-hidden': H.hidden }">
     <header>
       <span class="buy-chip"><GameIcon inline name="buy" /> Buy mode</span>
-      <span class="buy-wallet">{{ money(state.cash) }}</span>
+      <span class="buy-wallet" :title="moneyHint(state.cash)">{{ money(state.cash) }}</span>
       <button type="button" :aria-expanded="!H.hidden" @click="H.hidden = !H.hidden">{{ H.hidden ? 'Show catalogue' : 'Hide' }}</button>
       <button type="button" class="buy-x" aria-label="Close Buy mode" @click="shell.close()"><GameIcon inline name="close" /></button>
     </header>
@@ -149,7 +149,7 @@ defineExpose({ keys: (action: string): boolean => buyKey(action) })
             <span class="buy-card-top"><em>{{ size(card.def) }}</em><em class="buy-stars"><StarRating :count="card.def.stars" /></em></span>
             <span class="buy-emoji" aria-hidden="true"><GameIcon inline kind="furniture" :id="card.def.id" :emoji="card.def.icon" /></span>
             <strong>{{ card.def.label }}</strong>
-            <b :class="card.price <= state.cash ? 'is-afford' : ''"><template v-if="card.price < card.def.price"><s>{{ money(card.def.price) }}</s> </template>{{ money(card.price) }}</b>
+            <b :class="card.price <= state.cash ? 'is-afford' : ''" :title="moneyHint(card.price)"><template v-if="card.price < card.def.price"><s>{{ money(card.def.price) }}</s> </template>{{ money(card.price) }}</b>
             <small v-if="card.reason" class="buy-need">{{ card.reason }}</small>
           </button>
           <div v-if="!cards.length" class="ui-empty is-inline"><p>Nothing in this category yet.</p></div>

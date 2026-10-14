@@ -1,7 +1,7 @@
 // What the screens that a ride debt blocks say about it, and whether they offer to pay it. Pure: the debt and the cash are passed in.
 // The debt is what is STILL owed (state.travel.rideDebt falls with every repayment), never the fare of the ride.
-const money = (value: number): string => `₦${Math.round(value).toLocaleString('en-NG')}`
 
+import { money } from '../../ui/format.ts'
 export interface DebtLine {
   /** The whole sentence: nothing here is cut short. */
   text: string

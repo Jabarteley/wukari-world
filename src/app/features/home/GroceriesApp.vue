@@ -18,7 +18,7 @@ import { INGREDIENTS, INGREDIENT_ORDER, RECIPES } from '../../../game/content/fo
 import { formatHour, lagosTime } from '../../../game/clock.ts'
 import { LITRE_PRICE, TANK_LITRES } from '../../../game/conditions/power.ts'
 import { linkWords } from '../../../ui/link.ts'
-import { money } from '../../ui/format.ts'
+import { money, moneyHint } from '../../ui/format.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import HowItWorks from '../../ui/HowItWorks.vue'
 import { MAX_PACKS, groceriesRules, items, lineTotal, orderReason, orderedLine, quickBuy, quoteOf } from './groceriesModel.ts'
@@ -135,7 +135,7 @@ async function orderAll(): Promise<void> {
 
 <template>
   <div class="groceries-app">
-    <p class="groceries-intro">Balance <b>{{ money(state.cash) }}</b> · delivered to your kitchen at once.</p>
+    <p class="groceries-intro">Balance <b :title="moneyHint(state.cash)">{{ money(state.cash) }}</b> · delivered to your kitchen at once.</p>
     <p v-if="offline" class="ui-why groceries-offline">{{ offline }}</p>
     <p v-if="fuelLine" class="groceries-intro groceries-fuel" :data-groceries-fuel="power?.source">{{ fuelLine }}
       <button type="button" class="ui-button is-small" :disabled="!view.connected || working || fuelOffer < 1" @click="refuel(fuelOffer)">{{ fuelling ? 'Buying…' : fuelRoom < 1 ? 'Tank full' : fuelOffer < 1 ? `Need ${money(LITRE_PRICE)} for 1 litre` : `Buy ${fuelOffer} ${fuelOffer === 1 ? 'litre' : 'litres'} · ${money(fuelOffer * LITRE_PRICE)}` }}</button>
@@ -146,7 +146,7 @@ async function orderAll(): Promise<void> {
         <span class="groceries-icon" aria-hidden="true"><GameIcon inline kind="food" :id="card.item.id" :emoji="card.item.icon" /></span>
         <strong>{{ card.item.label }}</strong>
         <small :title="card.uses">{{ card.uses }}</small>
-        <p><b><template v-if="card.one.price < card.one.list"><s>{{ money(card.one.list) }}</s> </template>{{ money(card.one.price) }}</b> for {{ card.item.pack }} · have {{ card.have }}</p>
+        <p><b :title="moneyHint(card.one.price)"><template v-if="card.one.price < card.one.list"><s>{{ money(card.one.list) }}</s> </template>{{ money(card.one.price) }}</b> for {{ card.item.pack }} · have {{ card.have }}</p>
         <button type="button" class="groceries-buy" :data-groceries-buy="card.id" :aria-label="`Buy one pack of ${card.item.label} (${card.item.pack}) now for ${money(card.quick.price)}`" :disabled="Boolean(card.quick.blocked)" :title="card.quick.blocked || undefined" @click="buyOne(card.id)">{{ buying === card.id ? 'Buying…' : `Buy 1 pack · ${money(card.quick.price)}` }}</button>
         <span v-if="card.short1" class="groceries-why">{{ card.quick.blocked }}</span>
         <div class="groceries-step" role="group" :aria-label="`${card.item.label}: packs in the basket`">

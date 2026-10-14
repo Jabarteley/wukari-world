@@ -368,6 +368,8 @@ export default defineConfig({
     if (/\/src\/(geo\/frame|campus\/unilag\/(slices|volunteer)|app\/ui\/format|app\/features\/(commerce\/connectionReturn|account\/(accountLite|accountTrack)|hud\/(usePulse|onlinePillModel|coachModel)|sim\/settingsModel|tour\/tourState|neighbourhood\/cityWalkState))\.ts$/.test(id)) return 'engine'
     // The small shared pieces the game shell itself uses (buttons, sheet, skeleton rows, glyph text, the calls loader and the growth store): one file in the first download instead of six, each of which would carry its own header and lose what the others share when compressed. Lazy panels import them from here.
     if (/\/src\/app\/(ui\/(BaseButton|BaseSheet|SkeletonRows)\.vue)(\?|$)/.test(id)) return 'shell-kit'
+    // Reading a world-feed answer into a city's money and the short money form (docs/CURRENCY.md): only the lazy feed module, the top bar's count-up and the civic boards use them; the writer (money.ts) is in the engine.
+    if (/\/src\/game\/money-feed\.ts$/.test(id)) return undefined
     if (/\/src\/(game\/|life\.ts$|campus\/unilag\/(content|spot-names)\.ts$|tables\/places\.ts$)/.test(id)) return 'engine'
     } } },
   },

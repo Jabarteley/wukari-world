@@ -156,6 +156,11 @@ test('the feed through the server: no burst, one request each, UA, route shape, 
   assert.deepEqual(body.credits, { weather: 'Weather data from MET Norway', weatherUrl: 'https://www.met.no/en', rates: null, ratesUrl: null });
   const accra = await (await f.request('/api/world/feed?id=accra')).json() as { rates: Record<string, number> };
   assert.deepEqual(Object.keys(accra.rates).sort(), ['GHS', 'NGN', 'USD']);
+  for (const [id, code, symbol] of [['lagos', 'NGN', '₦'], ['accra', 'GHS', 'GH₵'], ['nairobi', 'KES', 'KSh'], ['london', 'GBP', '£']] as const) {
+    const one = await (await f.request(`/api/world/feed?id=${id}`)).json() as { currency: { code: string; symbol: string; decimals: number } | null; rates: Record<string, number> };
+    assert.deepEqual([one.currency?.code, one.currency?.symbol, one.currency?.decimals], [code, symbol, 2], id);
+    assert.ok(Number(one.rates[code]) > 0, `${id} has its own rate`);
+  }
   assert.equal((await f.request('/api/world/feed?id=nowhere')).status, 400);
   assert.equal((await f.request('/api/world/feed')).status, 400);
 

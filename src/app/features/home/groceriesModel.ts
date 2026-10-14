@@ -2,6 +2,7 @@
 // without a browser. Every price is the amount the server will charge after discounts.
 import type { HomeView } from '../../../types/view.ts'
 import type { IngredientDefinition as IngredientContent } from '../../../types/content.ts'
+import { money } from '../../ui/format.ts'
 
 export type Quote = { price: number; list: number }
 
@@ -27,7 +28,7 @@ export function quickBuy(input: { quote: Pick<Quote, 'price'> | null | undefined
   if (!connected) blocked = 'Not connected — ordering needs the server'
   else if (busy) blocked = 'Ordering…'
   else if (!quote || !Number.isFinite(Number(quote.price))) blocked = `No price for ${label} yet`
-  else if (price > cash) blocked = `Need ₦${Math.round(price - cash).toLocaleString('en-NG')} more`
+  else if (price > cash) blocked = `Need ${money(price - cash)} more`
   return { price, blocked }
 }
 

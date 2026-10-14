@@ -2,6 +2,7 @@
 // The rules are the engine's (systems/health.js).
 import type { HealthCure } from '../../../types/content.ts'
 import type { HealthView } from '../../../types/view.ts'
+import { money } from '../../ui/format.ts'
 
 export type HealthTone = 'is-sick' | 'is-rundown' | 'is-well'
 
@@ -43,5 +44,5 @@ export function cureLine(cure: HealthCure, cash: number, venues: Readonly<Record
   const def = found?.def ?? null
   const cost = def ? def.cost || 0 : cure.cost || 0
   const place = found?.venue ?? (cure.where && venues[cure.where] ? cure.where : null)
-  return { id: cure.id, label: cure.label, price: cost ? `₦${Math.round(cost).toLocaleString('en-NG')}` : 'Free', time: def ? ` · ${def.duration}s` : '', short: cost > cash, text: cure.text, place }
+  return { id: cure.id, label: cure.label, price: cost ? money(cost) : 'Free', time: def ? ` · ${def.duration}s` : '', short: cost > cash, text: cure.text, place }
 }

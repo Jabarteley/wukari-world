@@ -9,6 +9,7 @@
  *   needsConfirm(fare, cash)                 → is this fare asked about before it is paid?
  */
 import type { RouteInfo } from './info.ts';
+import { money } from '../../game/money.ts'
 
 /** A fare above this share of the cash in hand is asked about once before it is paid. */
 export const TRAVEL_CONFIRM_SHARE = 0.5;
@@ -32,7 +33,7 @@ export const MAX_WAYS = 3;
 export interface TravelCard { shared: string | null; settle: boolean; ways: TravelWay[] }
 
 const NAMES: Readonly<Record<string, string>> = { road: 'Bus', rail: 'Train', air: 'Flight' };
-const naira = (value: number): string => `₦${value.toLocaleString('en-NG')}`;
+const naira = (value: number): string => money(value)
 
 export function travelWays(routes: readonly RouteInfo[], { cash = null, confirming = null }: { cash?: number | null; confirming?: string | null } = {}): TravelCard {
   // Cheapest first; a way that is not open yet comes after every way that is.

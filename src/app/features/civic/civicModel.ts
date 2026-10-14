@@ -8,6 +8,7 @@ import type {
 import { money } from '../../ui/format.ts'
 import { ELECTION, RADIO } from './civicContent.ts'
 import { explain, pulseKey, unseenNews } from './civicBasics.ts'
+import { compactMoney as cityCompact } from '../../../game/money-feed.ts'
 
 export { explain, pulseKey, unseenNews }
 
@@ -168,6 +169,8 @@ export function ordinal(n: number): string {
 /** ₦950, ₦1,200, ₦1.2m, ₦3.5bn: a large total in a few characters. */
 export function compactMoney(value: number): string {
   const trim = (n: number): string => String(Math.round(n * 10) / 10)
+  const own = cityCompact(value)
+  if (own !== null) return own
   return value >= 1e9 ? `₦${trim(value / 1e9)}bn` : value >= 1e6 ? `₦${trim(value / 1e6)}m` : money(value)
 }
 /** A place's figure in the measure it is ranked by. */

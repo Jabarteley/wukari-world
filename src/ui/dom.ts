@@ -1,11 +1,12 @@
 // Small string-template helpers shared by the shell and every panel.
 import { glyph } from './phone/icons.ts';
 import { iconFor, withGlyphs, stripLeadEmoji } from './icon-map.ts';
+import { money as cityMoney } from '../game/money.ts';
 
 /** Escape text for HTML content and attribute values. Use it on EVERY dynamic value. */
 const HTML_ESCAPES: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 export const esc = (value: unknown): string => String(value ?? '').replace(/[&<>"']/g, (c) => HTML_ESCAPES[c] ?? c);
-export const money = (value: unknown): string => `₦${Math.round(Number(value) || 0).toLocaleString('en-NG')}`;
+export const money = (value: unknown): string => cityMoney(value);
 // The non-null assertion keeps the original: an empty id throws a TypeError rather than returning ''.
 export const cap = (id: string): string => `${id[0]!.toUpperCase()}${id.slice(1)}`;
 /** A version-4 UUID that also works outside secure contexts (plain HTTP on a LAN), where crypto.randomUUID is missing. */

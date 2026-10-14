@@ -9,6 +9,7 @@
 import { nextStep } from './answers.ts'
 import type { CompanionMode, PlayerMemory } from './memory.ts'
 import type { CompanionAction, CompanionContext, CompanionReply, TourId } from './types.ts'
+import { money } from '../../ui/format.ts'
 
 export const MIN_GAP_MS = 3 * 60_000
 export const MAX_GAP_MS = 30 * 60_000
@@ -45,7 +46,7 @@ export function detectEvents(before: CompanionContext | null, now: CompanionCont
 }
 
 const first = (name: string): string => name.trim().split(/\s+/)[0] ?? ''
-const naira = (value: number): string => `₦${Math.round(value).toLocaleString('en-NG')}`
+const naira = (value: number): string => money(value)
 const offer = (id: TourId, label: string): CompanionAction => ({ kind: 'tour', tour: id, label })
 
 /** What an event says. `null` when it has nothing to add. */

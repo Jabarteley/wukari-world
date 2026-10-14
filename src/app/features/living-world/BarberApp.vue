@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
+import { money } from '../../ui/format.ts'
 import type { BarberClaimRequest, BarberControlPacket, BarberLifecycleRequest, BarberResponse, BarberStartRequest, BarberUpgradeRequest } from '../../../types/living-world-barber.ts'
 import type { BarberLessonId } from '../../../game/living-world/barber-catalogue.ts'
 import { barberLesson, BARBER_STARTER_TOOL_COST } from '../../../game/living-world/barber-catalogue.ts'
@@ -296,7 +297,7 @@ async function claimResult(): Promise<void> {
         feedback.value = 'The claim reply did not confirm this saved mannequin result. Reconnect to verify it before retrying.'
       } else {
         claimAttempt.value = null
-        feedback.value = `Mannequin result recorded. Gross credit: ₦${payout.value} game cash. Automatic ride-debt repayment may reduce your spendable balance.`
+        feedback.value = `Mannequin result recorded. Gross credit: ${money(payout.value)} game cash. Automatic ride-debt repayment may reduce your spendable balance.`
       }
     }
     else if (accepted && !answer.ok) { claimAttempt.value = null; feedback.value = answer.reason || claimMessage(answer.code) }
@@ -322,7 +323,7 @@ async function upgradeTool(): Promise<void> {
   if (!upgradeAttempt.value) upgradeAttempt.value = { requestId: game.newId() }
   const attempt = upgradeAttempt.value!, token = generation, key = contextKey.value, expected = currentSession.value?.sessionId ?? null
   const body: BarberUpgradeRequest = { cityId: cityId.value, requestId: attempt.requestId }
-  busy.value = true; feedback.value = `Buying the starter clipper upgrade for ₦${BARBER_STARTER_TOOL_COST} game cash…`
+  busy.value = true; feedback.value = `Buying the starter clipper upgrade for ${money(BARBER_STARTER_TOOL_COST)} game cash…`
   try {
     const raw = await game.client.api<BarberResponse>('/api/living-world/barber/upgrade', { method: 'POST', body }, () => requestCurrent(token, key))
     if (!requestCurrent(token, key)) return
@@ -415,8 +416,8 @@ onBeforeUnmount(() => {
         <button v-if="!currentSession && basicEarned && !advancedEarned" type="button" :disabled="!canStartAdvanced" @click="startLesson('advanced')">{{ reply?.starterTool ? 'Start advanced fade' : 'Advanced · unlock clippers first' }}</button>
         <button v-if="canResume" type="button" @click="resumePractice">Resume saved lesson</button>
         <button v-if="active" type="button" class="secondary" @click="pausePractice">Pause safely</button>
-        <button v-if="canClaim" type="button" :disabled="busy" @click="claimResult">{{ claimAttempt ? `Retry claim · ₦${payout}` : `Claim result · ₦${payout} game cash` }}</button>
-        <button v-if="canUpgrade" type="button" :disabled="busy" @click="upgradeTool">{{ upgradeAttempt ? `Retry upgrade · ₦${BARBER_STARTER_TOOL_COST}` : `Starter clippers · ₦${BARBER_STARTER_TOOL_COST}` }}</button>
+        <button v-if="canClaim" type="button" :disabled="busy" @click="claimResult">{{ claimAttempt ? `Retry claim · ${money(payout)}` : `Claim result · ${money(payout)} game cash` }}</button>
+        <button v-if="canUpgrade" type="button" :disabled="busy" @click="upgradeTool">{{ upgradeAttempt ? `Retry upgrade · ${money(BARBER_STARTER_TOOL_COST)}` : `Starter clippers · ${money(BARBER_STARTER_TOOL_COST)}` }}</button>
         <button v-if="!online || needsRefresh" type="button" class="secondary" :disabled="busy" @click="load">Reconnect and check saved lesson</button>
         <button type="button" class="secondary" @click="shell.close()">Close</button>
       </div>

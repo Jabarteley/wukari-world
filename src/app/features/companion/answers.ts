@@ -9,8 +9,9 @@ import { COMPANION_NAME } from './identity.ts'
 import { route } from './registry.ts'
 import type { GameId } from './registry.ts'
 import type { CompanionAction, CompanionContext, CompanionMemoryView, CompanionReply, FriendFact, PlaceFact, StepFact, TourId } from './types.ts'
+import { money } from '../../ui/format.ts'
 
-const naira = (value: number): string => `₦${Math.round(value).toLocaleString('en-NG')}`
+const naira = (value: number): string => money(value)
 const open = (id: string, label: string, params?: Record<string, unknown>): CompanionAction => ({ kind: 'open', id, label, ...(params ? { params } : {}) })
 const ask = (text: string, label = text): CompanionAction => ({ kind: 'ask', text, label })
 const tour = (id: TourId, label: string): CompanionAction => ({ kind: 'tour', tour: id, label })

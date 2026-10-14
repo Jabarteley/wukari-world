@@ -28,10 +28,12 @@
  */
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
-import { CAR_LENGTH, PERSON_TRIANGLES as PERSON_TRIS, VEHICLE_KINDS, VEHICLE_TRIANGLES as CAR_TRIS, planTraffic, stepAside } from './plan.ts';
+import { CAR_LENGTH, PERSON_TRIANGLES as PERSON_TRIS, VEHICLE_KINDS, VEHICLE_TRIANGLES as CAR_TRIS, planTraffic } from './plan.ts';
 import type { Lane, Road } from './plan.ts';
 import { BAG_TONES, personAt, planPeople } from './crowd.ts';
-import { flavourTraffic, planSchedule, vehiclePose } from './traffic.ts';
+import { createGiveWay, flavourTraffic, giveWayFrame, planSchedule, vehiclePose } from './traffic.ts';
+import { AVATAR_RADIUS, bodyRadius, giveWay, insideFigure } from './spacing.ts';
+import type { Figure, Obstacle } from './spacing.ts';
 import type { TrafficPlan } from './traffic.ts';
 import type { PeopleWorld, Person, PersonPose, Signal } from './crowd.ts';
 import { paintTraffic } from './livery.ts';
@@ -76,12 +78,24 @@ export interface StreetLifeOptions {
   bodyFloor?: ((x: number, z: number) => boolean) | null
   /** Tests: make the near crowd's bodies without the body module. */
   bodies?: NearCrowdOptions['make']
+  /** Other players' figures standing in the street (live places): the crowd gives way to them as to the player. */
+  others?(): readonly { x: number; z: number }[]
 }
 export interface StreetLife {
   readonly group: THREE.Group
-  /** Put everyone where they are at this wall-clock time (ms), stepping aside round the player when given. With the frame's gap
-   * (seconds), it is counted toward the adaptive caps. */
+  /** Put everyone where they are at this wall-clock time (ms), giving way to the player (and options.others) when given: walkers bend
+   * round and slow, standers step aside, vehicles stop short. With the frame's gap (seconds), it is counted toward the adaptive caps
+   * and the vehicles' braking. */
   step(at: number, player?: { x: number; z: number } | null, dt?: number): void
+  /** The people standing near the player as drawn (refilled each step), each with the least distance the player's centre keeps
+   * from theirs (their radius and the avatar's). */
+  readonly figures: readonly Figure[]
+  /**
+   * Is (x, z) inside one of those figures, for a player now at `player`? The host's walk grid asks this on top of its own floor
+   * (src/scene/neighbourhood-scene.ts), so the avatar is blocked by, or slides round, the people near it as by a moving circle. A figure
+   * the player already overlaps never blocks (nobody can trap the player; the people step aside anyway).
+   */
+  blocks(x: number, z: number, player: { x: number; z: number } | null | undefined): boolean
   /** Draw at most this many people and vehicles (never more than planned). */
   setCaps(caps: Caps): void
   readonly people: number
@@ -340,6 +354,9 @@ function trafficMesh(kit: Kit, vehicles: readonly PaintedVehicle[]): THREE.Insta
 }
 
 /** The readout `?streetperf=1` shows (a fixed line at the top left of the page; nothing without a document). */
+/** Who counts as near the player for its walker (scene units): the crowd's people inside this are walked round. */
+const FIGURE_RADIUS = 6;
+
 function perfReadout(): { show(text: string): void; dispose(): void } | null {
   const doc = globalThis.document;
   if (!pagePerf() || !doc?.createElement || !doc.body) return null;
@@ -360,6 +377,9 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
   // Lights on the roads when they have crossings and their stopped traffic can be kept off all of them (traffic.ts).
   const crossings = options.crossings ?? [];
   const schedule = planSchedule(vehicles, options.roads, crossings), signal = schedule.signal;
+  // The vehicles' give-way to the player (traffic.ts): the seconds of driving each has lost, braking for someone on the road.
+  const yielding = createGiveWay(vehicles.length);
+  let lastSeconds = NaN;
   const world: PeopleWorld = { lanes: options.lanes, crossings, signal };
   const people = planPeople(options.seed, world, options.crowd, { children: childrenAllowed(options.context) });
   const crowd = people.length ? crowdMesh(kit, people) : null;
@@ -381,6 +401,9 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
   const nearChoice: NearChoice | null = crowd ? nearCrowdFor(options.tier ?? null, pageNear()) : null;
   let near: NearCrowd | null = null, last: { at: number; player: { x: number; z: number } | null } = { at: options.at, player: null };
   const poses: (PersonPose | null)[] = people.map(() => null), heights = new Float32Array(people.length);
+  const radii = people.map((person) => bodyRadius(person.height, person.width)), figures: Figure[] = [];
+  // Giving way keeps people on the near bodies' floor where there is one, else inside the final guard.
+  const yieldFloor = bodyFloor ?? inside;
 
   function setCaps(caps: Caps): void {
     if (disposed) return;
@@ -401,16 +424,20 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
       if (readout && frames % 15 === 0) readout.show(`${readoutText({ average: adaptive.average, people: shownPeople, vehicles: shownVehicles, shrinks: adaptive.shrinks, triangles: shownPeople * PERSON_TRIS + shownVehicles * CAR_TRIS + (near?.triangles ?? 0) })}${near ? ` · near ${near.shown}/${near.cap}` : ''}`);
     }
     const seconds = at / 1000;
+    if (!Number.isFinite(lastSeconds) || seconds < lastSeconds) lastSeconds = seconds;
+    const obstacles: Obstacle[] = [...(player ? [{ x: player.x, z: player.z }] : []), ...(options.others?.() ?? [])].filter((o) => Number.isFinite(o.x) && Number.isFinite(o.z));
+    figures.length = 0;
     if (crowd) {
       const gait = crowd.gait.array as Float32Array;
       for (let i = 0; i < people.length; i++) {
         if (i >= shownPeople) { poses[i] = null; continue; }
-        const pose = personAt(people[i]!, world, seconds), spot = stepAside(pose, player);
-        poses[i] = spot === pose ? pose : { ...pose, x: spot.x, z: spot.z };
+        const pose = personAt(people[i]!, world, seconds);
+        const spot = obstacles.length ? giveWay({ x: pose.x, z: pose.z, ry: pose.ry, radius: radii[i]!, moving: pose.mode === 0 }, obstacles, yieldFloor) : pose;
+        poses[i] = spot.x === pose.x && spot.z === pose.z ? pose : { ...pose, x: spot.x, z: spot.z };
         heights[i] = heightAt(spot.x, spot.z);
       }
       // Who is a body this frame: their cut-outs collapse to nothing (zero size: no pixels), everyone else is drawn as before.
-      const bodies = near ? near.update({ poses, heights, count: shownPeople, eye: crowd.eye() ?? (player ? { x: player.x, z: player.z } : null), player: player ?? null, seconds, dt: dt ?? 0 }) : null;
+      const bodies = near ? near.update({ poses, heights, count: shownPeople, eye: crowd.eye() ?? (player ? { x: player.x, z: player.z } : null), player: player ?? null, obstacles, seconds, dt: dt ?? 0 }) : null;
       for (let i = 0; i < shownPeople; i++) {
         // Off the floor or outside the bounds (the final guard): nothing. A body this frame: its cut-out collapses to nothing.
         const person = people[i]!, pose = poses[i]!, shown = inside(pose.x, pose.z);
@@ -418,14 +445,23 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
         scale.set(person.height * 0.5 * person.width, person.height, 1);
         crowd.mesh.setMatrixAt(i, shown && !bodies?.has(i) ? matrix.compose(position, still, scale) : nothing);
         gait[i * 4] = pose.phase; gait[i * 4 + 1] = pose.ry; gait[i * 4 + 2] = shown ? pose.fade : 0; gait[i * 4 + 3] = pose.mode;
+        // The player's walker keeps clear of whoever stands near it, where they are drawn (a body's own spot, else the cut-out's).
+        const here = bodies?.has(i) ? near?.spot(i) ?? pose : pose;
+        if (shown && player && Math.hypot(here.x - player.x, here.z - player.z) < FIGURE_RADIUS) figures.push({ x: here.x, z: here.z, r: radii[i]! + AVATAR_RADIUS });
       }
       crowd.mesh.instanceMatrix.needsUpdate = true;
       crowd.gait.needsUpdate = true;
     }
     if (traffic) {
+      const halfOf = (i: number): number => 0.9 * (VEHICLE_KINDS[vehicles[i]!.kind].wide ?? 1) * narrow;
+      // Giving way to the player (traffic.ts createGiveWay), over the wall-clock seconds since the last step: a street that slept while the
+      // player stood on the road does not wake with a vehicle inside them.
+      if (seconds > lastSeconds && (obstacles.length || yielding.lost.some((value) => value > 0))) {
+        yielding.advance(giveWayFrame(schedule, vehicles, options.roads, lastSeconds, seconds, shownVehicles, halfOf, obstacles));
+      }
       for (let i = 0; i < shownVehicles; i++) {
         const vehicle = vehicles[i]!, spec = VEHICLE_KINDS[vehicle.kind];
-        const pose = vehiclePose(schedule, vehicles, options.roads, i, seconds);
+        const pose = vehiclePose(schedule, vehicles, options.roads, i, seconds, yielding.lost[i] ?? 0);
         position.set(pose.x, heightAt(pose.x, pose.z), pose.z);
         scale.set((spec.wide ?? 1) * narrow, spec.tall, spec.length);
         const reach = vehicle.length / 2, ends = inside(pose.x, pose.z) && inside(pose.x + Math.sin(pose.ry) * reach, pose.z + Math.cos(pose.ry) * reach) && inside(pose.x - Math.sin(pose.ry) * reach, pose.z - Math.cos(pose.ry) * reach);
@@ -433,6 +469,7 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
       }
       traffic.instanceMatrix.needsUpdate = true;
     }
+    lastSeconds = seconds;
   }
   step(options.at);
   if (nearChoice) {
@@ -445,7 +482,8 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
   }
 
   return {
-    group, step, setCaps, signal, schedule,
+    group, step, setCaps, signal, schedule, figures,
+    blocks: (x, z, player) => !disposed && insideFigure(x, z, player, figures),
     near: () => (near && nearChoice ? { tier: nearChoice.tier, cap: near.cap, people: near.shown, bodies: near.bodies, triangles: near.triangles, drawCalls: near.drawCalls, failed: near.failed } : null),
     get people() { return shownPeople; },
     get vehicles() { return shownVehicles; },

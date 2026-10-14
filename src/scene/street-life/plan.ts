@@ -5,10 +5,11 @@
  *
  * What it adds, and what it never does:
  *   - a FAR CROWD of people drawn as camera-facing cut-outs (two triangles each, one draw call for all of them), walking along pedestrian
- *     LANES: the pavements of the home street (a few hundred), or a light crowd on an open venue's own walkable floor (venueLanes: never
- *     outside its boundary, never through its walls, trees or props);
+ *     LANES: the pavements of the home street (streetCrowd: 10 to 18 for its length, in parties with gaps between), or a light crowd on
+ *     an open venue's own walkable floor (venueLanes: never outside its boundary, never through its walls, trees or props);
  *   - TRAFFIC: a few taxis, cars, buses and trucks on a scene's ROADS (one instanced mesh), only where the scene has a road;
- *   - nothing near the player: the ambient layer's own people (src/scene/ambient) are untouched, and are what is left when this is off.
+ *   - nobody walks through the player: they bend round, slow and step aside (spacing.ts giveWay), and vehicles stop short (traffic.ts
+ *     createGiveWay). The ambient layer's own people (src/scene/ambient) are untouched, and are what is left when this is off.
  *
  * Who gets it (streetLifeFor): the ambient tier must be 'full' (bodyAllowed: not save-data, not 2G, more than two cores and 2 GB), the
  * phase-1 dive tier must not be 'cut' (deviceTier, the same rule as src/map3d/dive.ts diveTier: two cores or fewer, under 2 GB, save-data),
@@ -113,6 +114,20 @@ export function streetLifeFor({ ambientTier, kind, webgl, hints = {}, forced = n
 export function crowdFits(choice: StreetChoice, room: { triangles: number; meshes: number }): number {
   if (!(room.meshes >= 2) || !(room.triangles > 0)) return 0;
   return Math.max(0, Math.min(choice.crowd, HARD_CAP.crowd, Math.floor((room.triangles * ROOM_SHARE) / PERSON_TRIANGLES)));
+}
+
+/**
+ * A street's own crowd (the home street): a believable number for its length, not what the tier could draw. One person per STREET_SPACING
+ * units of street (all its pavements together), never under STREET_PEOPLE[0] or over STREET_PEOPLE[1] on the full tier; the lite tier
+ * half that. Never more than the choice allows (crowdFits, the adaptive caps and the frame guard still shrink it while it moves).
+ * Before 14 Oct 2026 the home street took the tier's whole cap (240): a wall of people along both pavements.
+ */
+export const STREET_SPACING = 11;
+export const STREET_PEOPLE: readonly [number, number] = [10, 18];
+export function streetCrowd(choice: Pick<StreetChoice, 'tier' | 'crowd'>, length: number): number {
+  if (!(length > 0) || !(choice.crowd > 0)) return 0;
+  const full = Math.max(STREET_PEOPLE[0], Math.min(STREET_PEOPLE[1], Math.round(length / STREET_SPACING)));
+  return Math.max(0, Math.min(choice.crowd, HARD_CAP.crowd, choice.tier === 'lite' ? Math.ceil(full / 2) : full));
 }
 
 // ---- the frame guard -------------------------------------------------------------------------------------------------------------
@@ -263,6 +278,11 @@ export interface Walker {
   skirt: boolean
 }
 
+/** Walkers come in parties: one alone (PARTY[0] of them), two (to PARTY[1]) or three, walking together one behind another PARTY_STEP
+ * apart at one pace and the same way; parties start at random places along the lane, so a street shows gaps and clusters, not a file. */
+export const PARTY: readonly [number, number] = [0.55, 0.85];
+export const PARTY_STEP = 1.2;
+
 /** A lane's people, longest lanes getting the most, all from the seed. Deterministic: the same seed and lanes give the same crowd. */
 export function planCrowd(seed: string, lanes: readonly Lane[], count: number): Walker[] {
   const n = Math.max(0, Math.min(HARD_CAP.crowd, Math.floor(count)));
@@ -277,21 +297,24 @@ export function planCrowd(seed: string, lanes: readonly Lane[], count: number): 
   for (const i of shares.map((s, i) => [s - Math.floor(s), i] as const).sort((a, b) => b[0] - a[0] || a[1] - b[1]).map(([, i]) => i)) { if (left <= 0) break; whole[i]! += 1; left -= 1; }
   whole.forEach((people, lane) => {
     const length = lengths[lane]!, width = lanes[lane]!.width;
-    for (let k = 0; k < people; k++) {
-      const dir: 1 | -1 = next() < 0.5 ? 1 : -1;
-      const height = HEIGHT[0] + next() * (HEIGHT[1] - HEIGHT[0]);
-      const skirt = next() < 0.3;
-      out.push({
-        lane, dir,
-        // The two ways along the band keep to its two halves, so people mostly pass beside each other rather than through.
-        across: dir * (0.12 + next() * 0.38) * width,
-        offset: ((k + next() * 0.8) / people) * length,
-        speed: PACE[0] + next() * (PACE[1] - PACE[0]),
-        stride: height * (0.55 + next() * 0.12),
-        height, skirt,
-        shirt: pick(SHIRTS), legs: pick(LEGS), skin: pick(SKINS),
-        style: (next() < 0.22 ? 1 : next() < 0.12 ? 2 : 0) as Style,
-      });
+    for (let k = 0; k < people;) {
+      const roll = next(), size = Math.min(people - k, roll < PARTY[0] ? 1 : roll < PARTY[1] ? 2 : 3);
+      const dir: 1 | -1 = next() < 0.5 ? 1 : -1, speed = PACE[0] + next() * (PACE[1] - PACE[0]), start = next() * length;
+      for (let m = 0; m < size; m++, k++) {
+        const height = HEIGHT[0] + next() * (HEIGHT[1] - HEIGHT[0]);
+        const skirt = next() < 0.3;
+        out.push({
+          lane, dir,
+          // The two ways along the band keep to its two halves, so people mostly pass beside each other rather than through.
+          across: dir * (0.12 + next() * 0.38) * width,
+          offset: wrap(start - dir * m * PARTY_STEP, length),
+          speed,
+          stride: height * (0.55 + next() * 0.12),
+          height, skirt,
+          shirt: pick(SHIRTS), legs: pick(LEGS), skin: pick(SKINS),
+          style: (next() < 0.22 ? 1 : next() < 0.12 ? 2 : 0) as Style,
+        });
+      }
     }
   });
   return out;

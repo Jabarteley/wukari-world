@@ -12,7 +12,7 @@ import { ATLAS_SIZE, FLAG_CELL, FIRST_MANNEQUIN, MANNEQUIN_CELLS, atlasRect, atl
 import type { BoxPart, Parts } from './parts.ts';
 import { SHOP_NAMES, SIGN_COLOURS, planShopfronts, shopParts } from './shopfronts.ts';
 import type { Bay, Frontage } from './shopfronts.ts';
-export { frontagesOf } from './shopfronts.ts';
+export { frontagesOf, planShopfronts } from './shopfronts.ts';
 import { flagFor, furnitureParts, planFurniture, planters } from './furniture.ts';
 import type { FlagSpec, FurnitureInput, FurnitureItem } from './furniture.ts';
 

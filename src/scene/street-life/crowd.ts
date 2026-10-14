@@ -71,9 +71,15 @@ export interface Person extends Walker {
   spot: { x: number; z: number; ry: number } | null
   /** A crosser's wait after the lights change (seconds). */
   delay: number
+  /** A browser on a lane with shop windows (zoom phase 5b): the windows (along the lane) they stop at, each for `pause` seconds. */
+  windows?: readonly number[]
+  /** A child, walking beside the parent with the same family number (zoom phase 5c; only where near.ts childrenAllowed says so). */
+  child?: boolean
+  family?: number
 }
 type Dress = Pick<Person, 'outfit' | 'shirt' | 'legs' | 'skirt' | 'jacket' | 'bag' | 'bagTone' | 'width' | 'bob'>;
-export interface PersonPose extends WalkerPose { mode: Mode; lift: number }
+/** travelled: how far along their way they have walked by now (continuous; the near crowd's stride is taken from it). */
+export interface PersonPose extends WalkerPose { mode: Mode; lift: number; travelled?: number }
 
 // ---- the lights --------------------------------------------------------------------------------------------------------------------
 
@@ -131,6 +137,14 @@ export function clearShift(vehicles: readonly Vehicle[], road: Road, spans: read
 
 /** The share of the crowd standing in groups, and the most who wait at one crossing. */
 export const GROUP_SHARE = 0.1, CROSSERS = 5;
+/** Children (only when planPeople is asked for them): the share of the crowd that is a child walking with a parent, a child's height
+ * against ADULT_HEIGHT (about 1.1 to 1.45 m), and how far beside and behind the parent they walk. */
+export const CHILD_SHARE = 0.06, ADULT_HEIGHT = 2.6, CHILD_SIDE = 0.62, CHILD_BEHIND = 0.25;
+export const CHILD_HEIGHT: readonly [number, number] = [0.6, 0.8];
+/** A parent with a child keeps to a child's pace (scene units a second). */
+export const FAMILY_PACE = 1.35;
+/** What a child may wear (crowd.ts OUTFITS by name): everyday clothes only. */
+const CHILD_OUTFITS = ['casual', 'sport', 'summer'] as const;
 
 /**
  * Order a list so that any prefix of it is spread evenly over the whole (golden-ratio ranks): the adaptive caps draw the first n, so
@@ -148,8 +162,13 @@ export interface PeopleWorld {
   signal?: Signal | null
 }
 
-/** A crowd of `count`: walkers on the lanes, a share in groups, a few at each crossing (only with lights); spread() ordered. */
-export function planPeople(seed: string, world: PeopleWorld, count: number): Person[] {
+/**
+ * A crowd of `count`: walkers on the lanes, a share in groups, a few at each crossing (only with lights); spread() ordered. With
+ * `children` (the place allows them: near.ts childrenAllowed), CHILD_SHARE of the count are children, each beside a walking parent on
+ * the parent's own schedule (they stop and go together), and each placed right after the parent in the order, so any prefix the caps
+ * draw that holds a child holds the parent too.
+ */
+export function planPeople(seed: string, world: PeopleWorld, count: number, options: { children?: boolean } = {}): Person[] {
   const n = Math.max(0, Math.min(HARD_CAP.crowd, Math.floor(count)));
   const { lanes } = world, crossings = world.signal ? world.crossings ?? [] : [];
   if (!n || !lanes.length) return [];
@@ -159,7 +178,8 @@ export function planPeople(seed: string, world: PeopleWorld, count: number): Per
   const crossers = Math.min(Math.floor(n * 0.15), crossings.length * CROSSERS);
   const roomy = lanes.map((lane, i) => [laneLength(lane), i] as const).filter(([length]) => length > 2 * FADE_UNITS + 6);
   const grouped = roomy.length ? Math.floor(n * GROUP_SHARE) : 0;
-  const walkers = planCrowd(seed, lanes, n - crossers - grouped);
+  const kids = options.children ? Math.floor(n * CHILD_SHARE) : 0;
+  const walkers = planCrowd(seed, lanes, n - crossers - grouped - kids);
 
   const dress = (): Dress => {
     const outfit = Math.floor(next() * OUTFITS.length) % OUTFITS.length, kind = OUTFITS[outfit]!;
@@ -175,11 +195,18 @@ export function planPeople(seed: string, world: PeopleWorld, count: number): Per
   for (const walker of walkers) {
     const browse = lanes[walker.lane]!.browse !== undefined && next() < 0.4;
     const stops = browse || next() < 0.3;
-    out.push({
+    const person: Person = {
       ...walker, ...dress(), habit: browse ? 'browse' : 'walk',
       cycle: stops ? between(browse ? 18 : 28, browse ? 34 : 60) : 0, pause: stops ? between(browse ? 4 : 2, browse ? 9 : 5) : 0, shift: next() * 60,
       phone: next() < 0.3, spot: null, delay: 0,
-    });
+    };
+    // By shop windows a browser picks a few of them to stop at (never one where people fade at the lane's ends).
+    const shown = browse ? windowsOf(lanes[walker.lane]!) : [];
+    if (shown.length) {
+      const picked = shown.filter(() => next() < 0.45);
+      person.windows = picked.length ? picked : [shown[Math.floor(next() * shown.length) % shown.length]!];
+    }
+    out.push(person);
   }
   // Groups of two or three, standing a little off a roomy lane's line, turned to each other.
   for (let made = 0; made < grouped;) {
@@ -204,7 +231,64 @@ export function planPeople(seed: string, world: PeopleWorld, count: number): Per
     out.push({ ...base, ...dress(), lane, speed, across: (next() * 2 - 1) * c.width * 0.38, habit: 'cross', cycle: 0, pause: 0, shift: 0,
       phone: next() < 0.35, spot: null, delay: next() * Math.max(0, walk - length / speed) });
   }
-  return spread(out);
+  if (!kids) return spread(out);
+  return withChildren(seed, lanes, spread(out), kids);
+}
+
+/**
+ * Give `kids` walkers (habit 'walk', on lanes wide enough to walk two abreast) a child each. The parent slows to FAMILY_PACE and puts the
+ * phone away; the child walks beside them (on the lane's inner side when the outer one has no room), a little behind, at the same pace
+ * and on the same stop cycle, so the two never part. Children wear everyday clothes and carry at most a school backpack.
+ */
+function withChildren(seed: string, lanes: readonly Lane[], people: Person[], kids: number): Person[] {
+  const next = makeRng(`street-life|families|${seed}`);
+  const pick = <T>(list: readonly T[]): T => list[Math.floor(next() * list.length) % list.length] as T;
+  const parents = people.filter((person) => person.habit === 'walk' && lanes[person.lane]!.width >= 0.8 && laneLength(lanes[person.lane]!) > 2 * FADE_UNITS + 6);
+  const chosen = new Map<Person, Person>();
+  for (let family = 0; family < kids && parents.length; family++) {
+    const parent = parents.splice(Math.floor(next() * parents.length) % parents.length, 1)[0]!, lane = lanes[parent.lane]!;
+    parent.speed = Math.min(parent.speed, FAMILY_PACE); parent.phone = false; parent.family = family;
+    const room = lane.width / 2 - Math.abs(parent.across);
+    const side = room >= CHILD_SIDE ? Math.sign(parent.across || 1) : -Math.sign(parent.across || 1);
+    const wear = pick(CHILD_OUTFITS), outfit = OUTFITS.findIndex((kind) => kind.name === wear), kind = OUTFITS[outfit]!;
+    const height = ADULT_HEIGHT * (CHILD_HEIGHT[0] + next() * (CHILD_HEIGHT[1] - CHILD_HEIGHT[0]));
+    chosen.set(parent, {
+      ...parent, child: true, family, height, stride: height * (0.55 + next() * 0.12), width: 0.86 + next() * 0.12, bob: parent.bob,
+      across: parent.across + side * CHILD_SIDE, offset: parent.offset - parent.dir * CHILD_BEHIND,
+      outfit, shirt: pick(kind.shirts), legs: pick(kind.legs), skirt: next() < 0.3, jacket: null, bag: next() < 0.35 ? 2 : 0, bagTone: Math.floor(next() * BAG_TONES.length) % BAG_TONES.length,
+      style: 0, phone: false, spot: null, delay: 0,
+    });
+  }
+  return people.flatMap((person) => { const child = chosen.get(person); return child ? [person, child] : [person]; });
+}
+
+/** A lane's shop windows a browser may stop at: along it, clear of the fade at both ends. */
+export function windowsOf(lane: Lane): number[] {
+  const length = laneLength(lane);
+  return (lane.windows ?? []).filter((at) => at > FADE_UNITS + 1 && at < length - FADE_UNITS - 1);
+}
+
+/**
+ * A browser by the shop windows (zoom phase 5b): they walk the lane and stop at each of their windows for `pause` seconds, turned to it,
+ * lap after lap. `walked`: the seconds of walking done (plan.ts walkerAt places them from it); `stopped`: standing at a window now.
+ */
+export function browseAt(person: Pick<Person, 'speed' | 'offset' | 'dir' | 'pause' | 'shift' | 'windows'>, lane: Lane, seconds: number): { walked: number; stopped: boolean } {
+  const length = laneLength(lane) || 1, speed = person.speed > 0 ? person.speed : 1, pause = Math.max(0, person.pause);
+  const t = Number.isFinite(seconds) ? seconds : 0, windows = person.windows ?? [];
+  if (!windows.length || !(pause > 0)) return { walked: t, stopped: false };
+  // In the walking direction's own coordinate (0 where they start), the windows in the order they come to them.
+  const start = person.dir === 1 ? wrap(person.offset, length) : length - wrap(person.offset, length);
+  const stops = windows.map((at) => wrap((person.dir === 1 ? at : length - at) - start, length)).sort((a, b) => a - b);
+  const lap = length / speed + stops.length * pause, q = t + person.shift, k = Math.floor(q / lap);
+  let left = q - k * lap, done = 0;
+  for (const stop of stops) {
+    const walk = (stop - done) / speed;
+    if (left <= walk) return { walked: (k * length + done + left * speed) / speed, stopped: false };
+    left -= walk; done = stop;
+    if (left <= pause) return { walked: (k * length + done) / speed, stopped: true };
+    left -= pause;
+  }
+  return { walked: (k * length + Math.min(length, done + left * speed)) / speed, stopped: false };
 }
 
 /** The seconds a person has walked by this time: their stops taken out (continuous, so they never jump). */
@@ -237,6 +321,7 @@ export function personAt(person: Person, world: PeopleWorld, seconds: number): P
     const along = forward ? s * length : (1 - s) * length, dir = forward ? 1 : -1;
     const moving = s > 0 && s < 1, travelled = s * length;
     return {
+      travelled: k * length + travelled,
       x: c.ax + ux * along + uz * person.across, z: c.az + uz * along - ux * person.across,
       // Waiting, they face the far kerb; arrived, they face the way they came from (the next crossing's way).
       ry: Math.atan2(ux * (s >= 1 ? -dir : dir), uz * (s >= 1 ? -dir : dir)),
@@ -245,9 +330,14 @@ export function personAt(person: Person, world: PeopleWorld, seconds: number): P
     };
   }
   const lane = world.lanes[person.lane]!;
-  const pose = walkerAt(person, lane, walkedSeconds(person, t));
-  if (stoppedAt(person, t)) {
-    return { ...pose, ry: person.habit === 'browse' && lane.browse !== undefined ? lane.browse : pose.ry, phase: 0, mode: person.phone ? 2 : 1, lift: 0 };
+  if (person.habit === 'browse' && person.windows?.length) {
+    const at = browseAt(person, lane, t), pose = walkerAt(person, lane, at.walked), travelled = person.speed * at.walked;
+    if (at.stopped) return { ...pose, ry: lane.browse ?? pose.ry, phase: 0, mode: person.phone ? 2 : 1, lift: 0, travelled };
+    return { ...pose, mode: 0, lift: person.bob * person.height * Math.abs(Math.sin(2 * Math.PI * pose.phase)), travelled };
   }
-  return { ...pose, mode: 0, lift: person.bob * person.height * Math.abs(Math.sin(2 * Math.PI * pose.phase)) };
+  const walked = walkedSeconds(person, t), pose = walkerAt(person, lane, walked), travelled = person.speed * walked;
+  if (stoppedAt(person, t)) {
+    return { ...pose, ry: person.habit === 'browse' && lane.browse !== undefined ? lane.browse : pose.ry, phase: 0, mode: person.phone ? 2 : 1, lift: 0, travelled };
+  }
+  return { ...pose, mode: 0, lift: person.bob * person.height * Math.abs(Math.sin(2 * Math.PI * pose.phase)), travelled };
 }

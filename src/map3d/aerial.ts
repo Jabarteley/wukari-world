@@ -18,7 +18,7 @@
 import type { BufferGeometry, Group, InstancedMesh, Material, Mesh, MeshBasicMaterial, MeshStandardMaterial } from 'three';
 import type { XZ } from './types.ts';
 import { aerialFade, aerialTier, cloudFade, planAerial, planClouds, AERIAL_CAPS, AERIAL_RESERVE, AERIAL_TRIANGLES, seedOf } from './aerial-plan.ts';
-import type { AerialPack, AerialPlan, AerialTier, Cloud } from './aerial-plan.ts';
+import type { AerialPack, AerialPlan, AerialTier, AerialVenue, Cloud } from './aerial-plan.ts';
 
 type Three = typeof import('three');
 
@@ -33,6 +33,10 @@ export interface AerialDrawOptions {
   parks?: readonly XZ[];
   /** The dive's destination: a sub-centre, so the swoop comes down over a built-up quarter. */
   hubs?: readonly XZ[];
+  /** The venues with their kinds: where the downtown is (./aerial-plan.ts downtownOf). */
+  venues?: readonly AerialVenue[];
+  /** The city's catalogue point in map units; the pack's frame origin (the same point for a generated city) when not given. */
+  prior?: XZ;
   /** The height of the ground (the city's relief), 0 when not given. */
   ground?: (x: number, z: number) => number;
 }
@@ -122,7 +126,7 @@ export function cloudPixels(seed: number, size = 64): Uint8Array {
 export function createAerial(THREE: Three, pack: AerialPack, options: AerialDrawOptions = {}): Aerial | null {
   const tier = options.tier ?? readTier(Boolean(options.reduced));
   if (tier === 'cut' || options.reduced) return null;
-  const plan = planAerial(pack, { tier, cityTriangles: options.cityTriangles ?? 0, parks: options.parks ?? [], hubs: options.hubs ?? [] });
+  const plan = planAerial(pack, { tier, cityTriangles: options.cityTriangles ?? 0, parks: options.parks ?? [], hubs: options.hubs ?? [], ...(options.venues ? { venues: options.venues } : {}), ...(options.prior ? { prior: options.prior } : {}) });
   const ground = options.ground ?? (() => 0);
   const group = new THREE.Group();
   group.name = 'aerial';

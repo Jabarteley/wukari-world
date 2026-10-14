@@ -230,6 +230,36 @@ export function createFrameProbe(): FrameProbe {
   };
 }
 
+/**
+ * After the probe has passed, the dive goes on being timed: the probe looks at the first 400 ms only, and a phone that starts well but drops
+ * to a few frames a second under the load of the flight (measured with software GL, 4x throttle) would play the whole dive at 5 to 15 fps.
+ * Over the last WATCH_FRAMES gaps, the WATCH_DROP largest are set aside (the city map mounting under the clouds is one or two long frames, not
+ * a slow device); a mean of the rest over SLOW_FRAME_MS is slow, and the dive ends as Skip does. Needs a full window, so a short dive of a
+ * few frames is never judged by it.
+ */
+export const WATCH_FRAMES = 30, WATCH_DROP = 2;
+export interface FrameWatch { readonly verdict: 'ok' | 'slow'; frame(now: number): 'ok' | 'slow' }
+export function createFrameWatch(): FrameWatch {
+  let last = -1, verdict: 'ok' | 'slow' = 'ok';
+  const gaps: number[] = [];
+  return {
+    get verdict() { return verdict; },
+    frame(now) {
+      if (verdict === 'slow') return verdict;
+      if (last >= 0 && now > last) {
+        gaps.push(now - last);
+        if (gaps.length > WATCH_FRAMES) gaps.shift();
+        if (gaps.length === WATCH_FRAMES) {
+          const kept = [...gaps].sort((a, b) => a - b).slice(0, WATCH_FRAMES - WATCH_DROP);
+          if (kept.reduce((sum, gap) => sum + gap, 0) / kept.length > SLOW_FRAME_MS) verdict = 'slow';
+        }
+      }
+      last = now;
+      return verdict;
+    },
+  };
+}
+
 // ---- matching the scale across the hand-off -------------------------------------------------------------------------------------
 /** The city map draws a fixed 10 units to the kilometre (./estates.ts). */
 export const CITY_KM_PER_UNIT = 0.1;

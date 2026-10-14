@@ -306,7 +306,9 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       const dive = diving;
       if (destroyed || ticket !== aerialTicket || !dive) return;
       const parks = content.venues.filter((venue) => venue.kind === 'park').map((venue) => city.places[venue.id]).filter((place): place is CityPlace => Boolean(place));
-      const built = createAerial(THREE, pack, { reduced: reducedMotion, cityTriangles: city.triangles - city.fabricTriangles, parks, hubs: plan.street ? [plan.street] : [], ground: (x, z) => reliefAt(pack.relief, x, z) });
+      // The venues with their kinds: offices, the seat of government and malls mark the downtown the aerial city's towers stand round.
+      const venues = content.venues.flatMap((venue) => { const site = pack.sites[venue.id]; return site ? [{ x: site.x, z: site.z, kind: venue.kind }] : []; });
+      const built = createAerial(THREE, pack, { reduced: reducedMotion, cityTriangles: city.triangles - city.fabricTriangles, parks, venues, hubs: plan.street ? [plan.street] : [], ground: (x, z) => reliefAt(pack.relief, x, z) });
       if (!built) return;
       built.setClouds(plan.start, end, altitude(plan.start), altitude(end));
       aerial = built; aerialFrom = now();

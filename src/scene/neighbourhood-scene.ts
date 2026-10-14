@@ -25,10 +25,11 @@ import { boxOf, fileKey, familyOf, hasFar, WINDOW_TILES } from './street/street-
 import { BOUNDS, BUS_STOP, Z, planStreet, sceneryMix } from './street/street-plan.ts';
 import type { PlanHouse, StreetPlan } from './street/street-plan.ts';
 import { drawDanfo, drawKeke, drawLampGlow, drawPole, drawPoleAdverts, drawRoadBillboard, drawWires, standInFor, tone } from './street/street-standins.ts';
-import type { FrameGuard, Lane, Road, StreetChoice } from './street-life/plan.ts';
+import type { FrameGuard, Lane, StreetChoice } from './street-life/plan.ts';
 import type { StreetLife } from './street-life/draw.ts';
 import type { StreetScenery } from './street-life/scenery.ts';
 import type { CrossingSpec } from './street-life/furniture.ts';
+import type { StreetLayout } from './street-life/street-scene.ts';
 
 const HOME_DOOR = { x: 0, z: -6.25, ry: Math.PI, direction: 'inside' as const };
 const ENTRANCE = { x: 0, y: 0, z: -3.25, ry: 0 };
@@ -41,8 +42,9 @@ const WINDOW_GLOW: Record<TimeOfDay, number> = { day: 0, dusk: 0.8, night: 1.5 }
 const NO_MODELS: ModelCache = createModelCache({ load: () => Promise.reject(new Error('No models')), texture: () => null });
 /**
  * Street life (src/scene/street-life): people along the kerb of the near pavement (they step aside round the player), on the far pavement
- * clear of the poles' line, and one-way traffic down the middle of the road between the parked danfo and keke. Moves only inside a window
- * of frames opened by the player's own movement (the venue layer's rule).
+ * clear of the poles' line, and traffic both ways on the country's side of the road (zoom phase 5b: street-life/street-scene.ts
+ * homeStreet) between the parked danfo and keke. Moves only inside a window of frames opened by the player's own movement (the venue
+ * layer's rule).
  */
 const STREET_LANES: readonly Lane[] = Object.freeze([
   { ax: -ROW_HALF_WIDTH, az: Z.kerb - 0.7, bx: ROW_HALF_WIDTH, bz: Z.kerb - 0.7, width: 0.9 },
@@ -57,7 +59,8 @@ const STREET_LANES: readonly Lane[] = Object.freeze([
 const CROSSING_X = [78, 10] as const;
 const STREET_CROSSINGS: readonly Lane[] = Object.freeze(CROSSING_X.map(x => ({ ax: x, az: Z.kerb - 0.35, bx: x, bz: Z.farKerb + 0.35, width: 2.4 })));
 const CROSSING_SPECS: readonly CrossingSpec[] = Object.freeze(CROSSING_X.map(x => ({ x, z0: Z.kerb, z1: Z.farKerb, paint: x !== 78 })));
-const STREET_ROADS: readonly Road[] = Object.freeze([{ ax: -ROW_HALF_WIDTH, az: (Z.road0 + Z.road1) / 2, bx: ROW_HALF_WIDTH, bz: (Z.road0 + Z.road1) / 2, speed: 5.5 }]);
+/** The parked danfo and keke, pulled in to the kerbs so the two lanes of moving traffic pass between them (zoom phase 5b). */
+const PARKED = Object.freeze({ keke: Z.road0 + 0.8, danfoFar: Z.road1 - 1.1, danfoNear: Z.road0 + 1.1 });
 const STREET_WINDOW_S = 12;
 
 
@@ -87,6 +90,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
   let focusX = 0, focusZ = 0;
   let dressing: StreetScenery | null = null, sceneryModule: typeof import('./street-life/scenery.ts') | null = null;
   let streetLife: StreetLife | null = null, streetChoice: StreetChoice | null = null, streetGuard: FrameGuard | null = null, streetWindow = 0, streetDropped = false;
+  let streetLayout: StreetLayout | null = null, forget: ((layout: StreetLayout | null) => void) | null = null;
   let lit: THREE.MeshStandardMaterial[] = [];
   const masks = new Map<string, THREE.Texture | null>();
   const ownX = (): number => anchor === null ? 0 : rowX(anchor);
@@ -188,7 +192,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     poles.forEach((x, i) => { drawPole(b, x, poleZ, i % 3 === 1); if (i % 2 === 0) drawPoleAdverts(b, x, poleZ, i); if (i) drawWires(b, poles[i - 1]!, x, poleZ); });
     drawRoadBillboard(b, -ROW_HALF_WIDTH + 52, Z.farKerb + 2.2);
     // Traffic parked along the road, spread so a few are in view wherever the player's home is.
-    drawDanfo(b, -32, Z.road1 - 1.6); drawKeke(b, -9, Z.road0 + 1.4); drawDanfo(b, 22, Z.road1 - 1.6); drawKeke(b, 52, Z.road0 + 1.4); drawDanfo(b, -62, Z.road0 + 1.5);
+    drawDanfo(b, -32, PARKED.danfoFar); drawKeke(b, -9, PARKED.keke); drawDanfo(b, 22, PARKED.danfoFar); drawKeke(b, 52, PARKED.keke); drawDanfo(b, -62, PARKED.danfoNear);
     for (const [x, y, z] of plan.lights) b.light(x, y, z, '#ffe3a0', 4, 7);
     void width; void deep;
     // The lamps' heads and the pools of light under them: their own meshes, shown from dusk (the day has no use for them).
@@ -334,15 +338,27 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
       modelsStarted = true; notify = changed;
       // The gate and the drawing are chunks of their own (the shared scene chunk never names them): street life, src/scene/street-life.
       const webgl = drawsWebGL2(renderer);
-      void import('./street-life/plan.ts').then(plan => {
-        const choice = plan.streetLifeFor({ ambientTier: bodyAllowed() ? 'full' : 'light', webgl, hints: plan.deviceHints(), forced: plan.pageForced() });
-        if (!choice || disposed) return;
-        streetChoice = choice; streetGuard = plan.createFrameGuard();
+      void Promise.all([import('./street-life/plan.ts'), import('./street-life/street-scene.ts')]).then(([gate, streets]) => {
+        const choice = gate.streetLifeFor({ ambientTier: bodyAllowed() ? 'full' : 'light', webgl, hints: gate.deviceHints(), forced: gate.pageForced() });
+        forget = layout => streets.forgetStreet('neighbourhood', layout);
+        if (!choice || disposed) { if (!disposed) streets.noteStreet('neighbourhood', null); return; }
+        streetChoice = choice; streetGuard = gate.createFrameGuard();
         return Promise.all([import('./street-life/draw.ts'), import('./street-life/scenery.ts')]).then(([module, sceneryChunk]) => {
           if (disposed || streetDropped) return;
           sceneryModule = sceneryChunk; dressStreet();
-          streetLife = module.createStreetLife(kit, { parent: group, seed: lifeSeed(), lanes: STREET_LANES, roads: STREET_ROADS, crossings: STREET_CROSSINGS, country: country(), crowd: choice.crowd, vehicles: choice.vehicles, at: Date.now() });
+          // The street as a street scene (zoom phase 5b): two-way traffic on the country's side, and the shop windows the browsers stop at.
+          const browse = STREET_LANES[2]!, windows = sceneryChunk.planShopfronts(sceneryChunk.frontagesOf(plan.pieces, boxOf), lifeSeed())
+            .filter(bay => bay.facing === -1 && Math.abs(bay.z - browse.az) < 3).map(bay => bay.x - browse.ax);
+          const lanes = STREET_LANES.map(lane => lane === browse ? { ...lane, windows } : lane);
+          // The final guard: the street is used only when all of it (lanes, roads, crossings) lies inside the street's walkable bounds, and
+          // its start pose only when the eye stands on a walkable cell; otherwise none (the phase-3b lanes, no traffic, no street pose).
+          const layout = streets.fitStreet(streets.homeStreet(country(), ownX(), lanes, ROW_HALF_WIDTH, BOUNDS), (x, z) => grid.free(x, z));
+          // The near crowd's bodies only on the walk grid (bodyFloor); the far pavement's cut-outs are kept by the bounds guard alone.
+          streetLife = module.createStreetLife(kit, { parent: group, seed: lifeSeed(), lanes: layout?.lanes ?? STREET_LANES, roads: layout?.roads ?? [], crossings: layout ? STREET_CROSSINGS : [],
+            country: country(), crowd: choice.crowd, vehicles: layout ? choice.vehicles : 0, narrow: streets.HOME_NARROW, bounds: BOUNDS, at: Date.now(),
+            context: 'street', tier: choice.tier, ready: changed, bodyFloor: (x, z) => grid.free(x, z) });
           streetLife.step(Date.now(), avatar.position);
+          streetLayout = layout; streets.noteStreet('neighbourhood', layout);
           streetWindow = STREET_WINDOW_S; changed();
         });
       }).catch(() => { streetDropped = true; });
@@ -364,6 +380,6 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     wakeAmbient() { if (!streetLife) return false; if (streetWindow <= 0) streetGuard?.reset(); streetWindow = STREET_WINDOW_S; return true; },
     settleAmbient() { streetWindow = 0; streetLife?.step(Date.now(), avatar.position); },
     get ambientAwake() { return streetLife !== null && streetWindow > 0; },
-    dispose() { disposed = true; streetLife?.dispose(); streetLife = null; dressing?.dispose(); dressing = null; for (const peer of peers.values()) dropPeer(peer); releaseObjects(sceneryObjects); layer?.dispose(); layer = null; for (const mask of masks.values()) mask?.dispose(); avatarDispose(); group.parent?.remove(group); },
+    dispose() { disposed = true; forget?.(streetLayout); streetLife?.dispose(); streetLife = null; dressing?.dispose(); dressing = null; for (const peer of peers.values()) dropPeer(peer); releaseObjects(sceneryObjects); layer?.dispose(); layer = null; for (const mask of masks.values()) mask?.dispose(); avatarDispose(); group.parent?.remove(group); },
   } satisfies HostScene;
 }

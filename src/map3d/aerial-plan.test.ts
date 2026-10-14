@@ -167,15 +167,15 @@ test('device tiers: the same as the dive\'s, and a cut device gets no aerial cit
 });
 
 test('the aerial chunk imports nothing it does not own, and the map fetches it only when a dive starts', async () => {
-  for (const file of ['src/map3d/aerial-plan.ts', 'src/map3d/aerial.ts']) {
+  for (const file of ['src/map3d/aerial-plan.ts', 'src/map3d/aerial.ts', 'src/map3d/aerial-tiers.ts']) {
     const code = await readFile(file, 'utf8');
     const values = [...code.matchAll(/^import (?!type )[^;]*from '([^']+)'/gm)].map((match) => match[1]);
-    assert.deepEqual(values.filter((path) => path !== './aerial-plan.ts'), [], `${file} has no value imports but its own plan`);
+    assert.deepEqual(values.filter((path) => path !== './aerial-plan.ts' && path !== './aerial-tiers.ts'), [], `${file} has no value imports but its own plan and tier table`);
   }
   const map = await readFile('src/map3d/map3d.ts', 'utf8');
   assert.match(map, /import\('\.\/aerial\.ts'\)/, 'fetched when a dive starts');
   assert.doesNotMatch(map, /^import (?!type )[^;]*aerial/m, 'never statically');
   for (const file of ['src/app/scene/MapWorld.vue', 'src/map3d/index.ts', 'src/map3d/zoom-host.ts', 'src/map3d/dive-host.ts', 'src/map3d/dive.ts', 'src/campus/unilag/world-adapter.ts']) {
-    assert.doesNotMatch(await readFile(file, 'utf8'), /aerial\.ts|aerial-plan/, `${file} knows nothing of it`);
+    assert.doesNotMatch(await readFile(file, 'utf8'), /aerial\.ts|aerial-plan|aerial-tiers/, `${file} knows nothing of it`);
   }
 });

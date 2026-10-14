@@ -378,7 +378,9 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       if (windowLeft <= 0) sync(current, 0, true)
       const module = await import('../street-life/draw.ts')
       if (disposed || street || streetDropped) return
-      street = module.createStreetLife(kit, { parent: group, seed: `${ident.cityId}|${ident.venueId}`, lanes, roads: [], crowd: streetAsked, vehicles: 0, heightAt, walkable, at: current })
+      // `walkable` is the final guard for everyone and everything (cut-outs and near bodies alike), and the near bodies' floor too.
+      street = module.createStreetLife(kit, { parent: group, seed: `${ident.cityId}|${ident.venueId}`, lanes, roads: [], crowd: streetAsked, vehicles: 0, heightAt, walkable, at: current,
+        context: ident.kind, tier: streetChoice?.tier ?? null, ready: () => options.changed?.() })
       street.step(current, options.avatar())
       options.changed?.()
     }).catch(() => { streetDropped = true })

@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { MAP_ENTRY_CODES, countryAtlasLevel, mapEntryOf } from './atlasMetadata.ts'
-import { catalogueFromRows } from './catalogue.ts'
+import { catalogueFromRows } from './catalogueRows.ts'
 import { cityCatalogue, registerCityForTest } from './registry.ts'
 import { regionEntry } from '../../map3d/regions.ts'
 import { fictionalCity } from './testing/fictionalCity.test-fixture.ts'

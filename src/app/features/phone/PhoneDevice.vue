@@ -21,8 +21,8 @@ import GameIcon from '../../ui/GameIcon.vue'
 import AppArtwork from './AppArtwork.vue'
 import HelpBody from '../help/HelpBody.vue'
 import PanelHost from './PanelHost.vue'
-import { SHADE_MAX, badgeText, battery, dockApps, notificationsOf, phonePages } from './phoneModel.ts'
-import type { PhoneApp } from './phoneModel.ts'
+import { SHADE_MAX, badgeText, battery, dockApps, notificationsOf, phonePages } from './phoneHomeModel.ts'
+import type { PhoneApp } from './phoneHomeModel.ts'
 
 const { game, shell, api, community } = useApp()
 const state = game.state

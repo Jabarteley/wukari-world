@@ -707,7 +707,7 @@ test('the dive ends straight down on the ground the city map starts on: the atla
 });
 
 test('the atlas stays out of the first download, and its one frame loop lives in atlas.ts', () => {
-  const main = readFileSync('src/app/scene/loaders.ts', 'utf8'), door = readFileSync('src/world-map.ts', 'utf8'), registry = readFileSync('src/map3d/regions.ts', 'utf8');
+  const main = readFileSync('src/app/scene/mapLoaders.ts', 'utf8'), door = readFileSync('src/world-map.ts', 'utf8'), registry = readFileSync('src/map3d/regions.ts', 'utf8');
   assert.doesNotMatch(main, /^import (?!type ).*(geo\/|world-map)/m); assert.match(main, /import\('\.\.\/\.\.\/world-map\.ts'\)/);
   assert.doesNotMatch(door, /requestAnimationFrame/);
   // The data is reached only through dynamic imports in the registry: one chunk per level.

@@ -24,35 +24,6 @@ export function awayCardFor(view: AwayInput, hello: HelloOk | null, dismissed: b
 export const awayWanted = (view: { connected: boolean; onboarding?: { required?: boolean; guest?: boolean } | null }): boolean =>
   Boolean(view.connected) && view.onboarding?.required !== true && view.onboarding?.guest !== true
 
-// ---- the inbox chip --------------------------------------------------------------------------
-export type InboxChipView =
-  | { kind: 'offline'; short: string }
-  | { kind: 'knock'; name: string }
-  | { kind: 'hidden' }
-  | { kind: 'inbox'; active: boolean; hint: string }
-
+// ---- the inbox chip's slot (the chip itself is in ./inboxChipModel.ts, fetched with the chip) ---------
 /** A knock at the door cannot wait in the tray: it is an alert. */
 export const inboxSlot = (connected: boolean, me: Pick<SocialOverview, 'house'> | null): 'alert' | 'hud' => (connected && me?.house.knocks?.length ? 'alert' : 'hud')
-
-export function inboxChip(input: {
-  connected: boolean
-  onboardingRequired: boolean
-  me: Pick<SocialOverview, 'house' | 'requests'> | null
-  error: string | null
-  unreadChats: number
-  unreadUpdates: number
-  freshNotices: number
-  /** The connection's short words ("No internet"), or ''. */
-  short: string
-}): InboxChipView {
-  if (!input.connected) return { kind: 'offline', short: input.short || 'Not connected' }
-  const knocks = input.me?.house.knocks ?? []
-  const first = knocks[0]
-  if (first) return { kind: 'knock', name: first.from.name }
-  const chats = input.unreadChats
-  const updates = input.unreadUpdates + (input.me?.requests.in.length ?? 0) + input.freshNotices
-  if (input.onboardingRequired) return { kind: 'hidden' }
-  const hint = !input.me ? (input.error ? 'Could not load · tap to retry' : 'Loading…')
-    : chats || updates ? [chats ? `${chats} unread` : '', updates ? `${updates} update${updates === 1 ? '' : 's'}` : ''].filter(Boolean).join(' · ') : 'No new messages'
-  return { kind: 'inbox', active: Boolean(chats || updates), hint }
-}

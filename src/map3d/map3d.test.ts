@@ -575,7 +575,7 @@ test('why a trip is refused is always said with what to do about it', () => {
 
 test('Three.js and the map stay out of the entry chunk, and only the 3D map may run a frame loop', async () => {
   for (const file of ['src/app/main.ts', 'src/app/App.vue', 'src/app/state/app.ts', 'src/app/scene/ScenePane.vue', 'src/app/scene/MapPane.vue']) assert.doesNotMatch(await readFile(file, 'utf8'), /^import (?!type ).*(map3d|three|city-map|world-map)/m, `${file} imports no map code statically`);
-  const loaders = await readFile('src/app/scene/loaders.ts', 'utf8');
+  const loaders = await readFile('src/app/scene/mapLoaders.ts', 'utf8');
   assert.match(loaders, /import\('\.\.\/\.\.\/map3d\/index\.ts'\)/);
   assert.match(await readFile('src/app/scene/ScenePane.vue', 'utf8'), /import\('\.\.\/\.\.\/map3d\/index\.ts'\)/, 'the map code is fetched ahead once the scene is up');
   for (const file of ['src/app/features/travel/MapApp.vue', 'src/app/features/travel/RideApp.vue', 'src/app/features/travel/travelModel.ts']) assert.doesNotMatch(await readFile(file, 'utf8'), /^import[^;]*(map3d|'three')/m, `${file} is in the first download and must not pull the map in`);

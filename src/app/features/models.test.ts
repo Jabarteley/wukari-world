@@ -20,7 +20,7 @@ import { billsLine, loanReasons, loanRule, rentStanding } from './bank/bankLines
 import { LINKS, cashDelta, hudNotice, linkWording, moodOf, needFlash, savedPill } from './hud/hudModel.ts'
 import { createNoticeMarks, messagesBadge, notificationLines, unreadChats, unreadUpdates, updatesCount } from './messages/messagesModel.ts'
 import { lastLine, partnerOf, readOnlyReason, targetOf, threadTitle, updateLines } from './messages/messagesThread.ts'
-import { DOCK, badgeText, battery, dockApps, listedApps, notificationsOf, phonePages } from './phone/phoneModel.ts'
+import { DOCK, badgeText, battery, dockApps, listedApps, notificationsOf, phonePages } from './phone/phoneHomeModel.ts'
 import { createSupport, sendFailure, statusTone, textProblem } from './support/supportModel.ts'
 import { activityFace, effectTags } from './venue/venueModel.ts'
 

@@ -7,7 +7,8 @@
 // Like the venue scene, the maps draw on demand: hidden, the city map draws nothing.
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { tripKey, useApp } from '../state/app.ts'
-import { loadMaps, loadSceneWorld, warmCityScenes } from './loaders.ts'
+import { loadSceneWorld, warmCityScenes } from './loaders.ts'
+import { loadMaps } from './mapLoaders.ts'
 import '../../map3d/dive-host.css'
 import { createDiveHost } from '../../map3d/dive-host.ts'
 import type { DiveRun } from '../../map3d/dive-host.ts'

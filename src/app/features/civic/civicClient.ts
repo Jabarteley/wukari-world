@@ -2,7 +2,7 @@
 // state, a success, or a failure with a reason and a retry. Fetched with the civic screens.
 import type { ToastKind } from '../../types/panel.ts'
 import type { FetchJson } from '../../types/client.ts'
-import { explain } from './civicBasics.ts'
+import { explain } from './civicExplain.ts'
 import { civicActor, entryOf, newestNotice, sharedStore } from './civicCore.ts'
 import type { CivicEntry, CivicStore, RequestSlot, SendResult } from './civicCore.ts'
 

@@ -16,7 +16,6 @@ import { heldActionFor, shortcutFor } from '../ui/keys.ts'
 import { social, start as startSocial, wakeSocket } from './features/social/useSocial.ts'
 import GameIcon from './ui/GameIcon.vue'
 import ToastStack from './ui/ToastStack.vue'
-import LinkBanner from './features/landing/LinkBanner.vue'
 import UpdateBanner from './ui/UpdateBanner.vue'
 import NoticeHost from './features/notice/NoticeHost.vue'
 import CoachTip from './features/hud/CoachTip.vue'
@@ -37,6 +36,8 @@ import { createPageLifecycle } from './state/pageLifecycle.ts'
 const CommunityHost = defineAsyncComponent({ loader: () => import('./features/community/CommunityHost.vue'), onError: (_error, retry, fail, attempts) => { if (attempts <= 3) setTimeout(retry, 800 * attempts); else fail() } })
 // The panel of a place (the Square, a group's room) is fetched the first time the player stands in one.
 const PlacePanel = defineAsyncComponent(() => import('./features/places/PlacePanel.vue'))
+// The banner of a link landing ("You're joining Ada") is fetched when a landing has one to show.
+const LinkBanner = defineAsyncComponent(() => import('./features/landing/LinkBanner.vue'))
 import CallsHost from './features/calls/CallsHost.vue'
 import PingHost from './features/ping/PingHost.vue'
 import ScenePane from './scene/ScenePane.vue'
@@ -189,7 +190,7 @@ watch(game.snapshotPhase, (phase, before) => { if (phase === 'unavailable' && be
   <CommunityHost v-if="snapshotAvailable && community.open.value" />
   <CallsHost v-if="snapshotAvailable" :host="sheetOpen ? '#life-dialog' : 'body'" />
   <PingHost v-if="snapshotAvailable" :host="sheetOpen ? '#life-dialog' : 'body'" />
-  <LinkBanner :banner="landing.banner.value" :host="sheetOpen ? '#life-dialog' : 'body'" @knock="landing.knock" @close="landing.dismiss" />
+  <LinkBanner v-if="landing.banner.value" :banner="landing.banner.value" :host="sheetOpen ? '#life-dialog' : 'body'" @knock="landing.knock" @close="landing.dismiss" />
   <UpdateBanner />
   <ToastStack :host="sheetOpen ? '#life-dialog' : 'body'" />
 </template>

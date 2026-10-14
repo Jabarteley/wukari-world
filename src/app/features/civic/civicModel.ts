@@ -7,7 +7,8 @@ import type {
 } from '../../../types/civic.ts'
 import { money } from '../../ui/format.ts'
 import { ELECTION, RADIO } from './civicContent.ts'
-import { explain, pulseKey, unseenNews } from './civicBasics.ts'
+import { pulseKey, unseenNews } from './civicBasics.ts'
+import { explain } from './civicExplain.ts'
 import { compactMoney as cityCompact } from '../../../game/money-feed.ts'
 
 export { explain, pulseKey, unseenNews }

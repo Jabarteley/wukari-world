@@ -9,7 +9,7 @@ import { social, start as startSocial } from '../social/useSocial.ts'
 import { unreadChats, unreadUpdates } from '../messages/messagesModel.ts'
 import { noticeMarks } from '../messages/messageBadges.ts'
 import GameIcon from '../../ui/GameIcon.vue'
-import { inboxChip } from './awayModel.ts'
+import { inboxChip } from './inboxChipModel.ts'
 
 defineProps<{ params?: unknown }>()
 const { game, shell, api } = useApp()

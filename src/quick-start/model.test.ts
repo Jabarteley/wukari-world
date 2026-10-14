@@ -3,7 +3,8 @@ await Promise.all(['lagos', 'ibadan'].map(preloadCityContent));
 // OWNER: quick start — the pure client logic of the first minute (./model.ts).
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { joinIdFrom, joinBanner, linkParts, linkBanner, GIFT_LINE, NUDGE_CAP, NUDGE_QUIET_MS, nudgeMemory, nextNudge, nudged, funnelSnap, funnelEvents } from './model.ts';
+import { joinIdFrom, joinBanner, linkParts, linkBanner, GIFT_LINE, nudgeMemory, funnelSnap, funnelEvents } from './model.ts';
+import { NUDGE_CAP, NUDGE_QUIET_MS, nextNudge, nudged } from './nudge.ts';
 import type { JoinBanner } from './model.ts';
 import type { Look } from '../types/life.ts';
 import { DREAMS, TRAITS } from '../game/content/traits.ts';

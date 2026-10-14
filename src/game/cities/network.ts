@@ -7,7 +7,8 @@
 import { GENERATED_CITY_CATALOGUE_ROWS } from './catalogue.generated.ts'
 import { GENERATED_CITY_LAND_COMPONENTS } from './land-components.generated.ts'
 import { AUTHORED_CITY_LINKS } from './routes.generated.ts'
-import { catalogueFromRows, type CityCatalogueEntry } from './catalogue.ts'
+import { catalogueFromRows } from './catalogueRows.ts'
+import type { CityCatalogueEntry } from './catalogue.ts'
 import type { CityLandComponentRow } from './generatedLinks.ts'
 import type { CityLink } from '../../types/content.ts'
 

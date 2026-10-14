@@ -22,6 +22,7 @@ import { eventsBetween } from '../../src/game/calendar.ts';
 import { GAME_LABELS } from '../../src/tables/places.ts';
 import { withBoardGames } from '../../src/tables/derive.ts';
 import { peekRecords, keyOf } from '../records/store.ts';
+import { KEEP_MS, itemByNumber, peekGist } from '../gist/ledger.ts';
 import { LIMITS, playerOf, sweep } from './data.ts';
 import { count } from './metrics.ts';
 import type { CityId } from '../../src/types/protocol.ts';
@@ -45,8 +46,14 @@ export function publicEntry(db: Db, n: unknown): PublicEntry | null {
   return found ? { n: found.n, kind: found.kind, title: String(found.title), scopeName: String(found.scopeName) } : null;
 }
 
+/** One line of the city gist, or null: only its words, its city and its number. */
+export function publicGist(db: Db, n: unknown, now: number): { n: number; text: string; city: string } | null {
+  const found = itemByNumber(peekGist(db), n);
+  return found && found.at > now - KEEP_MS ? { n: found.n, text: found.text, city: found.city } : null;
+}
+
 /** The facts of a share, read from the sharer's settled life. Nothing comes from the request but the kind (and an event id). */
-export function factsFor(kind: ShareKind, session: Pick<SessionRecord, 'name'>, state: LifeState, cityId: CityId, now: number, player: GrowthPlayerRecord, eventId?: unknown, tableId?: unknown, publicRecord?: PublicEntry | null): Partial<ShareFacts> | null {
+export function factsFor(kind: ShareKind, session: Pick<SessionRecord, 'name'>, state: LifeState, cityId: CityId, now: number, player: GrowthPlayerRecord, eventId?: unknown, tableId?: unknown, publicRecord?: PublicEntry | null, publicLine?: { n: number; text: string; city: string } | null): Partial<ShareFacts> | null {
   const actualCity: CityId = typeof state.estate?.city === 'string' && cityRules(state.estate.city) ? state.estate.city : cityId;
   const view = viewLife(state, { now, cityId: actualCity });
   // Where the sharer lives: the local government of their own house, or the district of the home they rent. A guest (no
@@ -70,6 +77,8 @@ export function factsFor(kind: ShareKind, session: Pick<SessionRecord, 'name'>, 
   }
   // A civic card says one line of the public record (server/records/store.ts): names and counts that anyone may read in the Hall of Records, never who voted for whom.
   if (kind === 'election' || kind === 'news') return publicRecord && (kind === 'news' ? NEWS_KINDS : ELECTION_KINDS).includes(publicRecord.kind) ? { ...base, headline: publicRecord.title, record: publicRecord.n, city: publicRecord.scopeName || base.city } : null;
+  // A gist card says one public line of the city gist (server/gist/ledger.ts): words that anyone may read there, no id, no amounts.
+  if (kind === 'gist') return publicLine ? { ...base, headline: publicLine.text, record: publicLine.n, city: publicLine.city === 'world' ? base.city : cityRules(publicLine.city)?.name ?? base.city } : null;
   // A wedding needs a marriage between two players who both agreed. The game has no marriages yet, so there is nothing to share; when it has,
   // its rules supply { partner } here (the partner's public name) and nothing else.
   if (kind === 'wedding') return null;
@@ -89,8 +98,8 @@ export function createShare(ctx: Pick<RouteContext, 'now' | 'fail' | 'randomId'>
   const player = playerOf(g, session.publicId);
   if (!player) return no('server_full', 'Sharing is not available right now. Try again later.');
   if (body.table !== undefined && (typeof body.table !== 'string' || !/^[a-z0-9-]{1,40}$/.test(body.table))) throw ctx.fail(400, 'invalid_table');
-  const raw = factsFor(kind, session, state, cityId, now, player, body.event, body.table, kind === 'election' || kind === 'news' ? publicEntry(db, body.record) : null);
-  if (!raw) return no('nothing_to_share', kind === 'table' ? 'Finish a table game first, then share the result.' : kind === 'wedding' ? 'There is no wedding to share yet.' : kind === 'election' || kind === 'news' ? 'That entry of the public record could not be found.' : 'That event is not on this week.');
+  const raw = factsFor(kind, session, state, cityId, now, player, body.event, body.table, kind === 'election' || kind === 'news' ? publicEntry(db, body.record) : null, kind === 'gist' ? publicGist(db, body.record, now) : null);
+  if (!raw) return no('nothing_to_share', kind === 'table' ? 'Finish a table game first, then share the result.' : kind === 'wedding' ? 'There is no wedding to share yet.' : kind === 'election' || kind === 'news' ? 'That entry of the public record could not be found.' : kind === 'gist' ? 'That line of the gist is gone. Open the Gist again.' : 'That event is not on this week.');
   const facts = cleanFacts(raw), text = JSON.stringify(facts);
   sweep(g, now);
   // The same card twice is the same link: a second tap on Share makes nothing new.

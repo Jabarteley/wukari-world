@@ -23,6 +23,7 @@
  *   Every write answers { ok, code, reason?, state?, politics } with the refreshed overview.
  */
 import { cityRules } from '../../src/game/cities/index.ts';
+import { gistService } from '../gist/ledger.ts';
 import { AD_COLOURS, ELECTION } from '../../src/game/content/civic.ts';
 import { ASSEMBLY, BAIL_LEVER, GRANTS, IMPEACH, JUSTICE, LEVERS, PARTY, QUORUM, SEATS, SEAT_TITLES, SENTENCE_LEVER, TIER_IDS, leversOf } from '../../src/game/content/politics.ts';
 import { civicTitle } from '../../src/game/cities/terminology.ts';
@@ -535,6 +536,8 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
           const offender = ctx.core.sessionByPublicId(db, offence.by.id);
           if (offender?.cities?.[cityId]?.state) ctx.act(ctx.settle(offender, cityId), { type: 'civic.news', cityId, payload: { items: [{ id: `arrest-${offence.id}`, title: 'You were arrested', text: `${who.name} arrested you. You are in jail for ${sentence.minutes} minutes.`, at: now }] } });
           after = () => { ctx.push(offence.by.id, { type: 'social-sync' }); };
+          // The city's gist (docs/GIST.md): that someone was arrested here. Not the officer, the offence, the sentence or the court.
+          gistService(ctx).add(db, { city: cityId, kind: 'jail', text: `{0} was arrested in ${cityRules(cityId)?.name ?? cityId}`, people: [offence.by], minors: 'skip', refs: { key: `arrest:${offence.id}` } });
           return { ok: true as const, code: 'arrested' };
         });
         return justiceWrite(db, cityId, who, life, outcome, after);

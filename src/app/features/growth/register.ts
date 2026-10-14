@@ -54,7 +54,13 @@ export const shareSheet = definePanel({
   component: defineAsyncComponent(bodyLoader('growth/ShareSheet')),
 })
 
-export const GROWTH_PANELS: readonly VuePanel[] = [missions, events, refer, touch, shareSheet]
+/** The calm "While you were away" sheet; the away card's last line opens it. */
+export const awaySheet = definePanel({
+  id: 'away-sheet', title: 'While you were away', icon: 'bell', placement: 'modal', live: false,
+  component: defineAsyncComponent(() => import('./AwaySheet.vue')),
+})
+
+export const GROWTH_PANELS: readonly VuePanel[] = [missions, events, refer, touch, shareSheet, awaySheet]
 
 // ---- HUD chips -------------------------------------------------------------------------------
 

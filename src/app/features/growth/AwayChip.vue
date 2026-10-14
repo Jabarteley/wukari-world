@@ -11,6 +11,7 @@ import { social } from '../social/useSocial.ts'
 import { notificationLines } from '../messages/messagesModel.ts'
 import { noticeMarks } from '../messages/messageBadges.ts'
 import { awayCardFor, awayWanted } from './awayModel.ts'
+import { awaySheetFor, sheetLine } from './awaySheetFor.ts'
 import { useGrowth } from './useGrowth.ts'
 
 defineProps<{ params?: unknown }>()
@@ -23,7 +24,7 @@ const card = computed(() => {
   if (!wanted.value) return null
   const v = view.value
   const lines = notificationLines(social.me, { connected: v.connected, now: v.now, notices: v.social?.notices, seen: noticeMarks.seen(v.session?.id ?? null, v.cityId) })
-  return awayCardFor(v, growth.state.hello, growth.awayDismissed.value, lines)
+  return awayCardFor(v, growth.state.hello, growth.awayDismissed.value, lines, sheetLine(awaySheetFor(v, growth.state.hello, social.me)))
 })
 watch(wanted, (ready) => { if (ready) void growth.load() }, { immediate: true })
 

@@ -148,6 +148,12 @@ Counters (queued, sent, failed, suppressed, unsubscribed) per type are kept per 
 
 The e-mail "away" message that used to go to anyone away a day is replaced by the 3, 7 and 28 day steps and the reasons above; the weekly digest stays, on the shared ledger and with its own switch.
 
+## In the game: the away card, the sheet and the ask for notifications
+
+* The existing card ("While you were away", `src/game/digest.ts`, shown after 3 hours or more) now ends with one line that opens a calm sheet (`growth/AwaySheet.vue`, words and rules in `growth/awaySheet.ts`, tests `awaySheet.test.ts`). It has up to three parts: **In the city** (the player's city notices of kind governor or power, and the newest Hall of Records entries since they left), **Your people** (friend requests, who wrote, gifts received; names and counts only, never message text or amounts) and **Money** (rent or an instalment due). It ends with one suggested next step. Prayers answered join it with Phase 14.
+* Tone is fixed by the same rule as the mails: a fact and an opening; no streak, no countdown, no "we missed you", and the sub-line says "Nothing was taken from you". A test checks the words.
+* Notifications are asked for only after a **good moment** (`growth/notifyAsk.ts`, shown by `growth/NotifyAsk.vue` from `hud/GuestBarSlot.vue`): the table-win count or the friend count goes up while the player is in the game. The first read after arriving is only a baseline, so arriving never asks. The bar opens Stay in touch, where the browser's own prompt waits behind a tap (`src/ui/push-client.ts`). It needs a signed-in player, a browser that can be asked, nothing else in front. "Not now" waits 30 days, taking it up is final (kept in this browser).
+
 ## Where it lives
 
 * Rules and numbers: `src/game/comeback.ts` (pure), words: `src/game/comeback-words.ts`, switch names: `src/game/comeback-prefs.ts`, deep links: `src/game/go-links.ts`.

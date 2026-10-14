@@ -393,7 +393,7 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       windowLeft = Math.max(0, windowLeft - dt)
       sync(at, dt, false)
       // Street life moves with the window; a slow frame drops it for good (the hand-testing switch keeps it on).
-      if (street) { if (!streetChoice?.forced && streetGuard?.frame(dt) === 'slow') dropStreet(); else street.step(at, options.avatar()) }
+      if (street) { if (!streetChoice?.forced && streetGuard?.frame(dt) === 'slow') dropStreet(); else street.step(at, options.avatar(), dt) }
       if (closing) for (const entry of entries.values()) entry.motion?.settle()
       return windowLeft > 0
     },

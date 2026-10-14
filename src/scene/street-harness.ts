@@ -4,7 +4,8 @@
  * ?models=1 loads the street's model files the way the game does on a device that may fetch them (without it, the procedural stand-ins every device draws first and a low-end one keeps).
  * ?houses=1 draws a street of five neighbours (as the game does once you are settled) instead of one home.
  * ?x=<along the street> ?z=<camera z> ?up=<height> ?lx= ?lz= (look-at)  ?time=day|dusk|night. Nothing here runs in the game.
- * ?streetlife=on draws the street's far crowd and traffic (src/scene/street-life) and keeps them moving for one window of frames.
+ * ?streetlife=on draws the street's far crowd and traffic (src/scene/street-life) and keeps them moving for one window of frames, with
+ * its shopfronts and street furniture; &streetperf=1 adds the measured frame time and the counts (top left).
  */
 import { createKit } from './kit.ts';
 import { buildNeighbourhoodScene } from './neighbourhood-scene.ts';
@@ -57,7 +58,7 @@ if (params.has('streetlife')) {
     const now = performance.now();
     if (!started) started = street.wakeAmbient?.() ?? false;
     const more = street.stepAmbient?.(Math.min(0.1, (now - last) / 1000)) ?? false; last = now; draw();
-    if (left > 0 && (more || !started)) setTimeout(() => frame(left - 1), 33);
+    if (left > 0 && (more || !started)) setTimeout(() => frame(left - 1), 16);
   };
-  frame(400);
+  frame(800);
 }

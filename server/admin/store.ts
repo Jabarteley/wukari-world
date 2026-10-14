@@ -8,11 +8,14 @@
  *   adminAnnounce   { seq, items }                                          the last ANNOUNCE_KEEP announcements, stored once each
  *   adminSettings   { values: { [key]: { value, at, by } } }                runtime settings, only those that differ from the environment
  *   adminNotes      { players: { [publicId]: { at, by, text }[] } }         private notes: NOTES_PER_PLAYER each, NOTES_PLAYERS players
+ *   adminFestivals  { seq, festivals, fixtures, hidden }                    festivals added or replaced, match-night fixtures (a schedule only) and hidden festival ids (server/admin/festivals.ts)
  *   adminDaily      { first, days: { [lagosDay]: number[] } }               one row of a dozen whole numbers per Lagos day, the last DAILY_KEEP days (server/admin/history.ts)
  *
  * A collection is created by the first write to it; reading one writes nothing. On the Worker each is one row (or a few
  * rows when it passes the chunk size), rewritten only when it changed.
  */
+import type { FestivalDef } from '../../src/festivals/calendar.ts';
+import type { Fixture } from '../../src/festivals/matches.ts';
 import type { Db, RouteContext } from '../types.ts';
 
 export const AUDIT_KEEP = 5000, SANCTIONS_KEEP = 2000, ANNOUNCE_KEEP = 200, NOTES_PER_PLAYER = 20, NOTES_PLAYERS = 2000, DAILY_KEEP = 400;
@@ -69,8 +72,10 @@ export interface AnnounceCollection { seq: number; items: AnnouncementRecord[] }
 export interface SettingsCollection { values: Record<string, { value: boolean | number; at: number; by: string }> }
 export interface NotesCollection { players: Record<string, { at: number; by: string; text: string }[]> }
 
+/** Festivals and match-night fixtures an admin keeps without a release (server/admin/festivals.ts); bounded by CUSTOM_LIMITS and FIXTURE_LIMITS. */
+export interface FestivalsCollection { seq: number; festivals: FestivalDef[]; fixtures: Fixture[]; hidden: string[] }
 export interface DailyCollection { /** The Lagos day number of the first row ever written (the history starts there). */ first: number; days: Record<string, number[]> }
-export interface AdminCollections { adminAudit: AuditCollection; adminSanctions: SanctionsCollection; adminAnnounce: AnnounceCollection; adminSettings: SettingsCollection; adminNotes: NotesCollection; adminDaily: DailyCollection }
+export interface AdminCollections { adminAudit: AuditCollection; adminSanctions: SanctionsCollection; adminAnnounce: AnnounceCollection; adminSettings: SettingsCollection; adminNotes: NotesCollection; adminDaily: DailyCollection; adminFestivals: FestivalsCollection }
 const INITIAL: { [K in keyof AdminCollections]: () => AdminCollections[K] } = {
   adminAudit: () => ({ seq: 0, totals: { credit: 0, debit: 0, grant: 0 }, lines: [] }),
   adminSanctions: () => ({ players: {}, accounts: {} }),
@@ -78,6 +83,7 @@ const INITIAL: { [K in keyof AdminCollections]: () => AdminCollections[K] } = {
   adminSettings: () => ({ values: {} }),
   adminNotes: () => ({ players: {} }),
   adminDaily: () => ({ first: 0, days: {} }),
+  adminFestivals: () => ({ seq: 0, festivals: [], fixtures: [], hidden: [] }),
 };
 const isRecord = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value);
 

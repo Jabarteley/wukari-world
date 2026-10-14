@@ -67,6 +67,8 @@ export interface Ident {
   rainingAt(at: number): boolean
   /** The Lagos hour (with fraction) at this time. */
   hourAt(at: number): number
+  /** Optional: how much busier than usual the place is at this time (0 … 1), for a match night. Absent = 0. */
+  liftAt?(at: number): number
 }
 
 const key = (id: Ident, ...parts: (string | number)[]): string => ['ambient', id.cityId, id.venueId, ...parts].join('|')
@@ -204,7 +206,7 @@ function route(stage: Stage, from: Point, to: Point): Point[] | null {
 export function waveOf(at: number): number { return Math.floor((Number.isFinite(at) ? at : 0) / WAVE_MS) }
 
 /** The mix of a place at an instant (the caller's hour and sky). */
-export function mixAt(id: Ident, at: number): Mix { return densityFor(id.kind, id.hourAt(at), id.rainingAt(at), id.tier) }
+export function mixAt(id: Ident, at: number): Mix { return densityFor(id.kind, id.hourAt(at), id.rainingAt(at), id.tier, id.liftAt?.(at) ?? 0) }
 
 /** The people who cross the place in one wave. Each begins at a gate, may stop to look at something on the way, and leaves by a gate. */
 export function planWave(stage: Stage, id: Ident, wave: number, quarter: readonly Track[]): Track[] {

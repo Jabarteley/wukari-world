@@ -26,6 +26,9 @@ export interface InviteBody { to: string[] }
 export interface LinkBody { hours?: number; max?: number; open?: boolean }
 export interface LinkEndBody { id: string }
 export interface TokenBody { token: string }
+export interface PartyStartBody { title?: string; colour: string }
+export interface PartyRoleBody { role: 'mc' | 'dj'; guest: string | null }
+export interface PartySprayBody { host?: string }
 
 type Refused = Refusal<string>
 export type DoorResult = Done<'ok', { door: DoorView; closed: boolean }>
@@ -42,6 +45,7 @@ export type CaptureConsentResult = Done<'consented' | 'revoked', { house: HouseV
 /** What a link is to someone with no session: 'open' (with the host's display name and nothing else), 'ended' or 'expired'. */
 export type PeekResult = Done<'open', { host: { name: string } }> | Done<'ended' | 'expired'>
 export type LinkEnterResult = Done<'inside', { house: HouseView } & Repeat> | Done<'knocking', { expiresAt: number } & Repeat> | Refused
+export type PartyResult = Done<'started' | 'role' | 'sprayed' | 'ended', { house: HouseView } & Repeat> | Refused
 
 type Common = HostErrorCode | SessionErrorCode | StorageErrorCode | 'onboarding_required'
 type Post = Common | JsonBodyErrorCode
@@ -59,5 +63,9 @@ export interface VisitHttpRoutes {
   'GET /api/social/visit/links': { response: Ok<LinksResult>; errors: Common }
   'POST /api/social/visit/link/end': { body: LinkEndBody; response: Ok<LinkEndResult>; errors: Post }
   'POST /api/social/visit/peek': { body: TokenBody; response: Ok<PeekResult>; errors: HostErrorCode | JsonBodyErrorCode | StorageErrorCode }
+  'POST /api/social/visit/party/start': { body: PartyStartBody; response: Ok<PartyResult>; errors: Post | 'invalid_title' | 'invalid_colour' }
+  'POST /api/social/visit/party/role': { body: PartyRoleBody; response: Ok<PartyResult>; errors: Post | 'invalid_role' | 'invalid_player' }
+  'POST /api/social/visit/party/spray': { body: PartySprayBody; response: Ok<PartyResult>; errors: Post | 'invalid_player' }
+  'POST /api/social/visit/party/end': { response: Ok<PartyResult>; errors: Post }
   'POST /api/social/visit/link/enter': { body: TokenBody; response: Ok<LinkEnterResult>; errors: Post }
 }

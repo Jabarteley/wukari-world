@@ -91,9 +91,10 @@ export const TIER_CAPS: Readonly<Record<Tier, { walkers: number; sitters: number
 export interface Mix { walkers: number; sitters: number; standers: number; far: number; level: number }
 
 /** The people of a place at a Lagos hour. `hour` may carry a fraction (10.5 = half past ten). */
-export function densityFor(kind: string, hour: number, raining: boolean, tier: Tier = 'full'): Mix {
+/** `lift` (0 … 1) is added to how busy the place is: a match night fills the viewing centre (src/festivals/matches.ts). */
+export function densityFor(kind: string, hour: number, raining: boolean, tier: Tier = 'full', lift = 0): Mix {
   const profile = profileOf(kind), caps = TIER_CAPS[tier];
-  const level = Math.max(0, Math.min(1, levelAt(profile.curve, hour) * (raining ? WEATHER[profile.cover] : 1)))
+  const level = Math.max(0, Math.min(1, levelAt(profile.curve, hour) * (raining ? WEATHER[profile.cover] : 1) + (Number.isFinite(lift) ? Math.max(0, lift) : 0)))
   const count = (ceiling: number, cap: number): number => Math.min(cap, Math.round(ceiling * level))
   // A place that is open at all is never wholly empty at its busiest hours: one person at least when it is above a fifth busy.
   const least = (value: number, cap: number): number => (level >= 0.2 && cap > 0 ? Math.max(1, value) : value)

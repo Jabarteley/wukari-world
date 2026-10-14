@@ -23,6 +23,7 @@ import { prepareStoredCityContent } from '../request-city-content.ts';
  *   POST /api/admin/world/grant               { clientId, audience, city?, amount, reason, preview?, confirm? }
  *   GET/POST /api/admin/announcements[/:id/cancel]
  *   GET/POST /api/admin/settings              runtime settings (server/admin/settings.ts) and the e-mail / push switches
+ *   GET/POST /api/admin/festivals             festivals and football fixtures kept without a release (server/admin/festivals.ts): { clientId, action, item?, id? }
  *   POST /api/admin/notice                    { clientId, minutes }  the "update is coming" notice from a button (0 ends it)
  *   GET  /api/admin/moderation/reports, POST …/reports/:id/act, GET/POST …/shops, GET/POST …/content
  *   GET  /api/admin/trust/reports?status      complaints filed through /api/trust/report (server/trust/service.ts)
@@ -61,6 +62,7 @@ import { funnelOf, historyOf, recorder } from '../admin/history.ts';
 import { callService } from '../social/calls.ts';
 import { sanctionsOf } from '../admin/sanctions.ts';
 import { settingsOf } from '../admin/settings.ts';
+import { festivalsOf } from '../admin/festivals.ts';
 import { statsService } from '../admin/stats.ts';
 import { audit, peek } from '../admin/store.ts';
 import { politicsAct, politicsOverview } from '../admin/politics.ts';
@@ -77,7 +79,7 @@ const REPORT_ACTIONS = ['dismiss', 'warn', 'mute'] as const;
 const TRUST_REPORT_ACTIONS = ['uphold', 'dismiss'] as const;
 
 export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
-  const players = playersService(ctx), actions = actionsService(ctx), stats = statsService(ctx), announce = announceOf(ctx), settings = settingsOf(ctx), sanctions = sanctionsOf(ctx);
+  const players = playersService(ctx), actions = actionsService(ctx), stats = statsService(ctx), announce = announceOf(ctx), settings = settingsOf(ctx), sanctions = sanctionsOf(ctx), festivals = festivalsOf(ctx);
   const world = worldService(ctx), moderation = moderationService(ctx), social = socialService(ctx), outreach = outreachService(ctx), shops = businessService(ctx), notice = noticeOf(ctx);
   const trust = trustService(ctx);
   linkFeatures(ctx);
@@ -89,7 +91,7 @@ export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
   });
   // Only while somebody is connected: an idle server does no work (and reads nothing) on its heartbeat.
   ctx.on?.('heartbeat', () => { if (ctx.core.sockets().length > 0) void history.tick(); });
-  ctx.startup?.push(sanctions.load(), announce.load(), settings.load());
+  ctx.startup?.push(sanctions.load(), announce.load(), settings.load(), festivals.load());
   const refuse = (status: number, code: string, reason: string) => Object.assign(ctx.fail(status, code), { reason });
 
   /**
@@ -298,6 +300,13 @@ export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
     },
 
     'GET /api/admin/settings': read((db) => ({ settings: settings.list(db), switches: { email: db.growth?.outreach?.off.email === true, push: db.growth?.outreach?.off.push === true }, notice: notice.frame() })),
+    'GET /api/admin/festivals': read(() => festivals.list(ctx.now())),
+    'POST /api/admin/festivals': write('festivals', (db, admin, body, _request, effects) => ({ fingerprint: [body.action, body.id, body.item], run: () => {
+      const done = festivals.change(db, String(body.action ?? ''), body);
+      effects.after = [...(effects.after ?? []), () => festivals.sync(done.stored)];
+      const line = audit(ctx, db, { admin: admin.accountId, adminName: admin.name, action: 'festivals', target: done.target, targetName: done.target, params: { action: String(body.action) }, summary: done.summary, reason: '' });
+      return { ok: true, code: 'changed', summary: line.summary, line: line.n };
+    } })),
     'POST /api/admin/settings': write('setting', (db, admin, body, _request, effects) => {
       const key = String(body.key ?? '');
       return { fingerprint: [key, body.value], run: () => {

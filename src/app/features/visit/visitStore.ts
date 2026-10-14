@@ -4,7 +4,7 @@
 import { reactive } from 'vue'
 import { call, social, sync } from '../social/useSocial.ts'
 import type { DoorWho } from '../../../game/visit.ts'
-import type { CloseResult, DoorSetResult, EnterResult, HouseLinkView, InviteResult, LinkEndResult, LinkResult, LinksResult, PeekResult } from '../../../types/visit.ts'
+import type { PartyResult, CloseResult, DoorSetResult, EnterResult, HouseLinkView, InviteResult, LinkEndResult, LinkResult, LinksResult, PeekResult } from '../../../types/visit.ts'
 
 /** What the page can do for the store: say a line, open a screen. */
 export interface Hands { toast(text: string, tone?: 'good' | 'error'): void; open(id: string, params?: unknown): unknown }
@@ -77,3 +77,15 @@ export async function peekLink(token: string): Promise<PeekResult | null> {
   const done = await call<PeekResult>('/api/social/visit/peek', { token })
   return done.ok ? done : null
 }
+
+// ---- owambe party (src/festivals/party.ts, server/social/party.ts) --------------------------------
+async function party(path: string, body: object): Promise<string | null> {
+  const done = await call<Extract<PartyResult, { ok: true }>>(`/api/social/visit/party/${path}`, body)
+  if (!done.ok) return done.reason
+  await sync()
+  return null
+}
+export const startParty = (title: string, colour: string): Promise<string | null> => party('start', { ...(title.trim() ? { title: title.trim() } : {}), colour })
+export const nameRole = (role: 'mc' | 'dj', guest: string | null): Promise<string | null> => party('role', { role, guest })
+export const sprayFloor = (host: string): Promise<string | null> => party('spray', { host })
+export const endParty = (): Promise<string | null> => party('end', {})

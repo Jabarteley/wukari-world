@@ -194,7 +194,11 @@ export interface HouseView {
   myCapture?: GuestCaptureView
   /** The host closed the door: nobody new comes in (the guests inside stay). */
   closed?: true
+  /** An owambe party is on (src/festivals/party.ts). */
+  party?: PartyView
 }
+/** A party as the host and the guests see it. `mc` and `dj` are guests still inside. */
+export interface PartyView { title: string; colour: { id: string; label: string; hex: string }; until: number; mc: PlayerRef | null; dj: PlayerRef | null; sprays: number; /** Sprays this viewer has left. */ sprayLeft: number }
 
 export interface Friend extends PlayerRef, Whereabouts {
   /** Server ms the friendship began. */

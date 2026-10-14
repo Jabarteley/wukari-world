@@ -210,6 +210,7 @@ import growth from './growth.ts';
 import growthMod from './growth-mod.ts';
 import campus from './campus.ts';
 import pulse from './pulse.ts';
+import festivals from './festivals.ts';
 import worldFeed from './worldfeed.ts';
 import ping from './ping.ts';
 import visit from './visit.ts';
@@ -237,7 +238,7 @@ import agents from './agents.ts';
 import agentsMod from './agents-mod.ts';
 import { prepareRouteCityContent, warmCityContentFailure } from '../request-city-content.ts';
 
-export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support, moderation, world, land, growth, growthMod, campus, pulse, worldFeed, ping, visit, places, business, commerce, businessMod, market, marketMod, notice, residence, companion, admin, bonus, storageMod, politics, records, trust, realValue, street, livingWorld, showcase, showcaseMod, agents, agentsMod];
+export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support, moderation, world, land, growth, growthMod, campus, pulse, festivals, worldFeed, ping, visit, places, business, commerce, businessMod, market, marketMod, notice, residence, companion, admin, bonus, storageMod, politics, records, trust, realValue, street, livingWorld, showcase, showcaseMod, agents, agentsMod];
 const KEY = /^(GET|POST|PUT|PATCH|DELETE) (\/api\/[A-Za-z0-9\-_/:.]+)$/;
 
 /**

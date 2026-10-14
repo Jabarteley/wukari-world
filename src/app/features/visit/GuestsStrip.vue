@@ -57,7 +57,7 @@ async function setCaptureConsent(allow: boolean): Promise<void> {
     <div v-if="host ? house.guests.length : others.length" class="social-list">
       <div v-for="guest in host ? house.guests : others" :key="guest.id" class="social-row" :data-guest="guest.id">
         <PlayerAvatar :name="guest.name" :seed="guest.id" />
-        <div><strong>{{ guest.name }}</strong><small>Inside</small></div>
+        <div><strong>{{ guest.name }}</strong><small>{{ house.party?.mc?.id === guest.id ? 'MC' : house.party?.dj?.id === guest.id ? 'DJ' : 'Inside' }}</small></div>
         <span class="social-actions">
           <button type="button" class="social-btn" @click="request({ id: guest.id, name: guest.name })">Call</button>
           <button type="button" class="social-btn" @click="shell.open('messages', { conv: `h.${house.host.id}` })">Chat</button>

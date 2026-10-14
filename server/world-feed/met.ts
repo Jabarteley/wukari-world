@@ -11,7 +11,8 @@
  *          A step that covers six hours (later in the forecast) is not used: the game only needs the next few hours.
  * Pure: no imports of the host, so the same code runs on both hosts.
  */
-import { HOUR_MS, MAX_OBSERVED_HOURS, skyKindOf } from '../../src/game/weather-observed.ts';
+import { HOUR_MS, MAX_OBSERVED_HOURS } from '../../src/game/weather-observed.ts';
+import { skyKindOf } from '../../src/game/weather-observed-read.ts';
 import type { ObservedHour, ObservedWeather } from '../../src/game/weather-observed.ts';
 
 export const MET_HOST = 'https://api.met.no/weatherapi/locationforecast/2.0/compact';

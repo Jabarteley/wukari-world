@@ -7,7 +7,7 @@
     "stateId": "no-oslo",
     "stateName": "Oslo"
   },
-  "inventorySha256": "dbb2b219297d75d9a08f1032db723b75224f620f6dd421ffb83a689c8f96570a",
+  "inventorySha256": "7dd45f96a271e939c42ff0ba409e92a2b94e6cf32ca1a529cca4ad1422dad911",
   "inventoryPath": "world/playable-africa-rollout/sources/oslo.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 100,
+    "roads": 37,
     "neighbourhoodLabels": 18,
     "landPolygons": 28,
     "waterPolygons": 30,

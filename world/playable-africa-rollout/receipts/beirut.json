@@ -7,7 +7,7 @@
     "stateId": "lb-beirut",
     "stateName": "Beirut"
   },
-  "inventorySha256": "869fb754e50477071e00d84e2667aa24501ed21c8f20075ce90dc46e8eec5120",
+  "inventorySha256": "85188dae9217029496e95a4e58db8d903c68ccc8218b78c22b1683c77d15830a",
   "inventoryPath": "world/playable-africa-rollout/sources/beirut.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 330,
     "neighbourhoodLabels": 18,
     "landPolygons": 20,
     "waterPolygons": 1,

@@ -7,7 +7,7 @@
     "stateId": "vn",
     "stateName": "Ho Chi Minh City"
   },
-  "inventorySha256": "d6e4f17003f64f278775d6d2e112fba60d00b14bd520ccd4d9ac13e9e7816c67",
+  "inventorySha256": "23d0fb890879b1d51788d77dbe3902cbed799ce16d3e93bcec23b70781852bd4",
   "inventoryPath": "world/playable-africa-rollout/sources/ho-chi-minh-city.json",
   "admission": {
     "registered": true,
@@ -85,12 +85,32 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 346,
     "neighbourhoodLabels": 18,
     "landPolygons": 50,
     "waterPolygons": 210,
     "reachWaterPolygons": 210
   },
+  "autoRetries": [
+    {
+      "class": "catalogue-row",
+      "change": {
+        "stateId": {
+          "from": "vn-ho-chi-minh-city",
+          "to": "vn"
+        }
+      },
+      "before": {
+        "catalogueBytes": 163,
+        "limit": 150
+      },
+      "after": {
+        "catalogueBytes": 146,
+        "limit": 150,
+        "passed": true
+      }
+    }
+  ],
   "observed": {
     "places": 7517,
     "extras": 863,

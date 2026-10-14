@@ -7,7 +7,7 @@
     "stateId": "jo-amman",
     "stateName": "Amman"
   },
-  "inventorySha256": "6cc82be1b2d6c5a16b4c4fba0b2320f5c97b09a0cf469458f59831ad02bb0ca9",
+  "inventorySha256": "fc7efa1667342d95bbedda77523d93a60e15b3141daedf4ae4ae12c2f8b0f5e9",
   "inventoryPath": "world/playable-africa-rollout/sources/amman.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 269,
     "neighbourhoodLabels": 18,
     "landPolygons": 24,
     "waterPolygons": 0,

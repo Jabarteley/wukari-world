@@ -32,7 +32,7 @@ import { emit } from '../registry.ts';
 import { finite, isRecord, makeRng } from '../util.ts';
 import { addMoodlet, removeMoodlet, feelingsOf } from '../api.ts';
 import { HEALTH } from '../content/health.ts';
-import { observedSkyAt, skyWords } from '../weather-observed.ts';
+import type { SkyWords } from '../weather-observed.ts';
 import { isCityId, cityRules } from '../cities/registry.ts';
 import { ALL_MODES } from '../content/travel.ts';
 import type { WeatherKind } from '../../types/content.ts';
@@ -43,6 +43,14 @@ import type { HealthView } from '../../types/view.ts';
 const { feelings, illness, weather } = HEALTH;
 const CAUSES = ['neglect', 'rain'] as const satisfies readonly IllnessCause[];
 const isCause = (value: unknown): value is IllnessCause => CAUSES.some((cause) => cause === value);
+
+/**
+ * The real sky, when the world feed has one (src/game/weather-observed.ts registers its reader here when it is loaded: on the server
+ * and in the browser's lazy feed module, so none of it is in the first download). Null: the cycle decides.
+ */
+type ObservedSky = (cityId: string, at: number) => { tempC: number | null; words: SkyWords } | null;
+let observedSky: ObservedSky | null = null;
+export const useObservedSky = (read: ObservedSky | null): void => { observedSky = read; };
 
 /** The sky over a city at a moment: the real weather when the world feed has some for that hour, else the cycle. */
 export interface Sky extends WeatherKind { raining: boolean; until: number; /** True when the real weather decided it. */ observed?: true; /** Air temperature in degrees C, with observed weather. */ tempC?: number }
@@ -57,8 +65,8 @@ export function weatherAt(now: unknown, cityId: string): Sky {
   const block = Math.floor((finite(now) ? now : 0) / blockMs);
   const climate = cityRules(cityId)?.climate;
   const month = climate ? new Date(block * blockMs + 3600000).getUTCMonth() : 0;
-  const seen = observedSkyAt(cityId, block * blockMs);
-  const words = seen ? skyWords(seen.kind, seen.tempC) : null;
+  const seen = observedSky?.(cityId, block * blockMs) ?? null;
+  const words = seen ? seen.words : null;
   const raining = words ? words.raining : makeRng(`weather|${cityId}|${block}`)() < (climate?.rainChanceByMonth[month] ?? weather.rainChance);
   const kind = weather.kinds[raining ? 'rain' : 'clear'];
   const local = climate ? raining ? { text: 'It is raining. Exposed travel can leave you soaked.' } : { label: climate.harmattan?.months.includes(month + 1) ? climate.harmattan.label : climate.clearLabel } : {};

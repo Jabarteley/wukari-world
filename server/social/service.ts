@@ -87,7 +87,9 @@ import { clip, glyphs } from './clip.ts';
 import { DIRECTORY_SCAN, PAGE_MAX, byNameOrder, cursorOf, directoryCache, firstAfter, newestFirst, pageLimit, readCursor } from './pages.ts';
 import type { Directory, DirectoryRow } from './pages.ts';
 import { playerIsAdmin } from '../admin/gate.ts';
-import { agentMark } from '../agents/policy.ts';
+import { AGENT_LIMITS, agentMark } from '../agents/policy.ts';
+import { agentWords } from '../moderation/agent-words.ts';
+import { aiAnswer, asksIfAi, countryOfCity, crisisWords, helpText } from '../moderation/ai-intercept.ts';
 import { noteFriend } from '../growth/metrics.ts';
 import { growthOf } from '../growth/data.ts';
 import { characterCity } from '../character.ts';
@@ -123,7 +125,7 @@ export const LIMITS = Object.freeze({
   escrowMs: 7 * 86400000, playerIdleMs: 45 * 86400000, sweepMs: 3600000,
 });
 const MESSAGE_PIN_LIMIT = 3;
-export const REPORT_REASONS: readonly ReportReason[] = Object.freeze<ReportReason[]>(['harassment', 'scam', 'spam', 'cheating', 'offensive-name', 'other']);
+export const REPORT_REASONS: readonly ReportReason[] = Object.freeze<ReportReason[]>(['harassment', 'scam', 'spam', 'cheating', 'offensive-name', 'asked-for-money', 'claimed-human', 'other']);
 
 const CONTROL = /[\u0000-\u0008\u000b-\u001f\u007f]/;
 const CLIENT_ID = /^[A-Za-z0-9:_-]{8,80}$/;
@@ -184,6 +186,30 @@ function buildService(ctx: RouteContext) {
   /** null, or the refusal for text the filter does not accept. */
   const screened = (value: unknown, what: string, contact = false): Refused | null => { const verdict = screenText(value, { what, contact }); return verdict ? no(verdict.code, verdict.reason) : null; };
   const bad = (code: string) => ctx.fail(400, code);
+  // ---- AI characters (docs/AI-SAFETY.md) -----------------------------------------------------------------------------------------
+  /** An agent character (an AI plays it for good). */
+  const isAgentChar = (s: SocialCollection, id: string): boolean => s.players[id]?.agent?.char === true;
+  /** Are these words an AI's? An agent character always speaks as an AI; a person's own character does for the minutes after a key acted for it, or when the tool says so. */
+  const speaksAsAi = (s: SocialCollection, id: string, asAi?: boolean): boolean => asAi === true || isAgentChar(s, id) || (s.players[id]?.agent?.at !== undefined && now() - s.players[id]!.agent!.at! < AGENT_LIMITS.activeWindowMs);
+  /** Not a confirmed adult: under 18, or has not answered the age question. Absent age checks count as not confirmed. */
+  const notAdult = (db: Db, id: string): boolean => ctx.checks?.adult?.(db, id) !== true;
+  /**
+   * An AI character's words to `listeners` (player ids): refused when they break the AI rules (server/moderation/agent-words.ts). Other AI
+   * characters are not people: a line only they read is not checked. Flirting is refused unless every person who reads it said they are 18 or older.
+   */
+  /** Romance with an AI character: never with a player who is not a confirmed adult, whichever of them is the AI. */
+  function baeRefusal(db: Db, s: SocialCollection, a: string, b: string): Refused | null {
+    const aiA = isAgentChar(s, a) || speaksAsAi(s, a), aiB = isAgentChar(s, b);
+    if (!aiA && !aiB) return null;
+    const person = aiA ? b : a;
+    return isAgentChar(s, person) || !notAdult(db, person) ? null : no('agent_words_romance', 'AI characters do not take part in romance with anyone who has not said they are 18 or older.');
+  }
+  function aiWordsRefusal(db: Db, s: SocialCollection, value: string, listeners: readonly string[], what = 'Your message'): Refused | null {
+    const people = listeners.filter((member) => !isAgentChar(s, member));
+    if (!people.length || !value) return null;
+    const verdict = agentWords(value, { toMinor: people.some((member) => notAdult(db, member)) });
+    return verdict.ok ? null : no(verdict.code, `${what}: ${verdict.reason}`);
+  }
 
   // ---- input validation (throws 400) ---------------------------------------------------------
   const uuid = (value: unknown, code = 'invalid_player'): string => { if (typeof value !== 'string' || !UUID_PATTERN.test(value)) throw bad(code); return value.toLowerCase(); };
@@ -615,7 +641,7 @@ function buildService(ctx: RouteContext) {
       ...(picture ? { image: picture } : {}), ...(voice ? { voice } : {}), ...(message.version ? { version: message.version } : {}),
       ...(message.editedAt ? { editedAt: message.editedAt } : {}), ...(message.deletedAt ? { deleted: true as const } : {}), ...(message.forwarded ? { forwarded: true as const } : {}) };
   }
-  const visibleTo = (s: SocialCollection, viewer: string, message: MessageRecord): boolean => !message.from || !s.players[viewer]?.blocked[message.from];
+  const visibleTo = (s: SocialCollection, viewer: string, message: MessageRecord): boolean => !(message.noAi && s.players[viewer]?.agent?.char === true) && (!message.from || !s.players[viewer]?.blocked[message.from]);
   const scopeOf = (conv: ConversationRecord): string => {
     const legacy = `legacy.${sha256Hex(`${conv.id}:${conv.created}`).slice(0, 32)}`;
     if (conv.pinScope !== undefined && (typeof conv.pinScope !== 'string' || !UUID_PATTERN.test(conv.pinScope) && conv.pinScope !== legacy)) throw ctx.fail(500, 'invalid_message_pins');
@@ -1620,7 +1646,7 @@ function buildService(ctx: RouteContext) {
      * `clientId`: a retry returns the stored message and nothing is stored or delivered twice.
      * `picture` is set only by the upload route, which has already checked and stored the bytes.
      */
-    send(db: Db, session: SessionRecord, body: SocialBody, media?: { ref: ImageRef } | { voice: VoiceRef }) {
+    send(db: Db, session: SessionRecord, body: SocialBody, media?: { ref: ImageRef } | { voice: VoiceRef }, options: { asAi?: boolean } = {}) {
       const picture = media && 'ref' in media ? media : undefined, voice = media && 'voice' in media ? media.voice : undefined;
       const cid = clientId(body.clientId);
       const { s, p, id } = enter(db, session);
@@ -1648,6 +1674,15 @@ function buildService(ctx: RouteContext) {
       }
       const refused = mutedRefusal(id) ?? (message ? screened(message, picture ? 'Your caption' : 'Your message') : null);
       if (refused) return refused;
+      // An AI character's words pass the AI rules before anyone reads them; a person's words to an AI character may be answered by the game instead.
+      const aiVoice = speaksAsAi(s, id, options.asAi);
+      const askedOf = to ?? (conv?.kind === 'dm' ? conv.members.find((member) => member !== id) ?? null : null);
+      if (aiVoice) {
+        const blockedLine = aiWordsRefusal(db, s, message, askedOf ? [askedOf] : conv?.members.filter((member) => member !== id) ?? []);
+        if (blockedLine) return blockedLine;
+      }
+      const toAi = !aiVoice && askedOf !== null && isAgentChar(s, askedOf) && !picture && !voice && !forwarded;
+      const intercept: 'ai' | 'crisis' | null = toAi ? (asksIfAi(message) ? 'ai' : crisisWords(message) ? 'crisis' : null) : null;
       if (!ctx.allow(`social:dm:${id}`, 30)) return no('rate_limited', 'You are sending messages too quickly. Wait a moment, then retry.');
       // A direct chat named by its id belongs to its two players: anyone else is answered as for a chat that does not exist.
       if (conv?.kind === 'dm' && !conv.members.includes(id)) return no('not_a_member', 'You are not in that conversation.');
@@ -1705,11 +1740,17 @@ function buildService(ctx: RouteContext) {
         p.voiceCount = { day, count: (p.voiceCount?.day === day ? p.voiceCount.count : 0) + 1 };
       }
       const pinsChanged = reconcilePins(s, conv);
-      const stored = append(s, conv, id, message, cid, false, { ...(forwarded ? { forwarded: true as const } : {}), ...(men.length ? { men } : {}), ...(quoted ? { re: quoted } : {}), ...(picture ? { img: picture.ref } : {}), ...(voice ? { voice, voiceHash: voice.hash } : {}) });
+      const stored = append(s, conv, id, message, cid, false, { ...(intercept ? { noAi: true as const } : {}), ...(forwarded ? { forwarded: true as const } : {}), ...(men.length ? { men } : {}), ...(quoted ? { re: quoted } : {}), ...(picture ? { img: picture.ref } : {}), ...(voice ? { voice, voiceHash: voice.hash } : {}) });
       const push: PushList = [];
       fanOut(s, conv, stored, push, null);
       if (pinsChanged) push.push(...pinPushes(s, conv));
       notifyMentions(s, conv, id, stored, push);
+      // The game answers for the AI character, and the character reads neither the question nor the answer (visibleTo hides `noAi` lines from agent characters).
+      if (intercept && askedOf) {
+        const answer = intercept === 'ai' ? aiAnswer([s.players[askedOf]?.name ?? 'This character']) : helpText(countryOfCity(lifeCity(session, ctx.cityIds[0]!)));
+        const line = append(s, conv, null, answer, null, true, { noAi: true as const });
+        fanOut(s, conv, line, push, null);
+      }
       return yes('sent', { conv: summary(s, conv, id), message: messageView(s, conv, stored, id), push });
     },
 
@@ -1723,7 +1764,7 @@ function buildService(ctx: RouteContext) {
       const push: PushList = [];
       // Exactly once per client id (ctx.once): a retry never makes a second group.
       const outcome = ctx.once(db, session, { id: body.clientId, kind: 'group', fingerprint: [name, [...members].sort()] }, () => {
-        const refused = mutedRefusal(id) ?? screened(name, 'A group name', true);
+        const refused = mutedRefusal(id) ?? screened(name, 'A group name', true) ?? (speaksAsAi(s, id) ? aiWordsRefusal(db, s, name, members, 'A group name') : null);
         if (refused) return refused;
         if (!ctx.allow(`social:group:${id}`, 5, 3600000)) return no('rate_limited', 'You have created several groups this hour. Try again later.');
         if (groupsOf(s, id) >= LIMITS.groups) return no('too_many_groups', `You can be in ${LIMITS.groups} groups. Leave one first.`);
@@ -1763,7 +1804,7 @@ function buildService(ctx: RouteContext) {
       if (conv.owner !== id) return no('owner_only', `Only ${pub(s, conv.owner!).name}, who runs this group, can do that.`);
       if (body.op === 'rename') {
         const renamed = text(body.name, LIMITS.groupName, 'invalid_group_name');
-        const refused = mutedRefusal(id) ?? screened(renamed, 'A group name', true);
+        const refused = mutedRefusal(id) ?? screened(renamed, 'A group name', true) ?? (speaksAsAi(s, id) ? aiWordsRefusal(db, s, renamed, conv.members.filter((member) => member !== id), 'A group name') : null);
         if (refused) return refused;
         conv.name = renamed;
         say(`${p.name} renamed the group to “${conv.name}”.`);
@@ -1805,7 +1846,7 @@ function buildService(ctx: RouteContext) {
         if (line.deletedAt) return no('not_allowed', 'That message has been deleted.');
         if ((line.version ?? 0) !== body.version) return no('message_changed', 'That message changed. Open it again before editing.');
         if (body.op === 'edit' && (line.img || line.voice || now() - line.at > 15 * 60000)) return no('edit_expired', 'Text messages can be edited for 15 minutes after sending.');
-        if (body.op === 'edit') { const refusal = mutedRefusal(id) ?? screened(replacement, 'Your message'); if (refusal) return refusal; }
+        if (body.op === 'edit') { const refusal = mutedRefusal(id) ?? screened(replacement, 'Your message') ?? (speaksAsAi(s, id) ? aiWordsRefusal(db, s, replacement, conv.members.filter((member) => member !== id)) : null); if (refusal) return refusal; }
         if (!ctx.allow(`social:message-update:${id}`, 30)) return no('rate_limited', 'Wait a moment before changing another message.');
         line.sendHash ??= sha256Hex(line.body);
         line.body = replacement;
@@ -2306,6 +2347,8 @@ function buildService(ctx: RouteContext) {
     baeAsk(db: Db, session: SessionRecord, body: SocialBody) {
       const target = uuid(body.id), cityId = city(body.cityId);
       const { s, p, id } = enter(db, session);
+      const romance = baeRefusal(db, s, id, target);
+      if (romance) return romance;
       const { target: them, refusal } = other(s, id, target);
       if (refusal) return refusal;
       if (!areFriends(s, id, target)) return no('friends_only', `Become friends with ${them.name} before asking.`);
@@ -2324,6 +2367,7 @@ function buildService(ctx: RouteContext) {
       if (typeof body.accept !== 'boolean') throw bad('invalid_answer');
       const { s, p, id } = enter(db, session);
       const asker = s.players[from];
+      if (body.accept) { const romance = baeRefusal(db, s, id, from); if (romance) return romance; }
       if (p.bae === from && body.accept) return yes('accepted', { duplicate: true });
       if (!p.baeIn[from] || !asker) return no('no_request', 'That request is no longer waiting.');
       delete p.baeIn[from];
@@ -2377,6 +2421,8 @@ function buildService(ctx: RouteContext) {
       if (typeof amount !== 'number' || !Number.isSafeInteger(amount) || amount <= 0) throw bad('invalid_amount');
       const note = body.note === undefined || body.note === null || (typeof body.note === 'string' && !body.note.trim()) ? '' : text(body.note, MONEY_REQUEST.noteMax, 'invalid_note');
       const { s, id } = enter(db, session);
+      // An AI character never asks a person for money, whoever the person is (docs/AI-SAFETY.md). Asking another AI character is not a person's money.
+      if (speaksAsAi(s, id) && !isAgentChar(s, to)) return no('agent_words_money', 'AI characters do not ask people for money. Nothing was sent.');
       const push: PushList = [];
       const outcome = ctx.once(db, session, { id: cid, kind: 'money.request', fingerprint: [to, amount, sha256Hex(note)] }, () => {
         const L = TRANSFER_LIMITS, t = now(), DAY = 86400000;

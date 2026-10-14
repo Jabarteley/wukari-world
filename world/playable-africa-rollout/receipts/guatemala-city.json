@@ -7,7 +7,7 @@
     "stateId": "gt",
     "stateName": "Guatemala City"
   },
-  "inventorySha256": "6cc68ec6e7c8234801f9bdbbd36b726b9159dec95020e4c127b328e7cfe72e71",
+  "inventorySha256": "d7203db157edc95adef1069c20accf018b3f91904181cc8e9940932f804c06cc",
   "inventoryPath": "world/playable-africa-rollout/sources/guatemala-city.json",
   "admission": {
     "registered": true,
@@ -66,12 +66,32 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 247,
     "neighbourhoodLabels": 18,
     "landPolygons": 25,
     "waterPolygons": 2,
-    "reachWaterPolygons": 34
+    "reachWaterPolygons": 33
   },
+  "autoRetries": [
+    {
+      "class": "catalogue-row",
+      "change": {
+        "stateId": {
+          "from": "gt-guatemala-city",
+          "to": "gt"
+        }
+      },
+      "before": {
+        "catalogueBytes": 157,
+        "limit": 150
+      },
+      "after": {
+        "catalogueBytes": 142,
+        "limit": 150,
+        "passed": true
+      }
+    }
+  ],
   "observed": {
     "places": 2793,
     "extras": 577,

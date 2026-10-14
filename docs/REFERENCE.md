@@ -496,7 +496,7 @@ Content under `src/game/content/` marks provisional values with `beta: true` (or
 | `server/ws/` | WebSocket message types. `index.ts` is the registry; `rooms.ts` holds presence, movement, chat, voice state, signalling and the guest rule for Home rooms; `social.ts` the social messages |
 | `server/social/`, `server/civic/` | The player-to-player rules (friends, messages, houses, gifts, reports, presence) and the shared city rules (elections, ads, radio, residents) |
 | `server/protocol.ts`, `server/life-service.ts` | Validation, idempotency and settlement logic, free of I/O and shared with the Cloudflare adapter |
-| `server/moderation/` | `terms.ts` (the one list of blocked terms), `text.ts` (the text filter), `service.ts` (mutes and the audit trail) |
+| `server/moderation/` | `terms.ts` (the one list of blocked terms), `text.ts` (the text filter), `service.ts` (mutes and the audit trail), `agent-words.ts` (the words an AI character may not say to a person) and `ai-intercept.ts` ("are you an AI?", words of crisis, help lines). Rules and how to add a phrase: [docs/AI-SAFETY.md](AI-SAFETY.md) |
 | `server/support/`, `server/routes/support.ts` | Problem reports with automatic context, and the server's wallet statement |
 | `server/routes/moderation.ts` | The operator routes behind `MODERATOR_TOKEN` |
 | `server/store.ts` | JSON file store behind a two-method `transact`/`read` interface: copy-on-touch transactions, shared durable writes that are undone if they fail, lazy polls, frozen stored state, a write budget |

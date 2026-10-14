@@ -29,13 +29,13 @@ import type { BlockedCategory } from './terms.ts';
 export interface TextVerdict { code: 'text_blocked' | 'links_not_allowed' | 'contact_not_allowed'; category: BlockedCategory | 'link' | 'contact'; reason: string }
 
 const FOLD: Record<string, string> = { 0: 'o', 1: 'i', 3: 'e', 4: 'a', 5: 's', 7: 't', '@': 'a', $: 's' };
-const INVISIBLE = /[\u00ad\u200b-\u200f\u2028-\u202f\u2060-\u206f\ufeff]/g;
+export const INVISIBLE = /[\u00ad\u200b-\u200f\u2028-\u202f\u2060-\u206f\ufeff]/g;
 export const LINK = /(https?:\/\/|www\.|\b[a-z0-9-]+\.(com|net|org|ng|io|co|xyz|app|gg|me|ly|tv|info|biz|link|shop|site|online)\b)/i;
-const EMAIL = /[a-z0-9._%+-]+@[a-z0-9-]+\.[a-z]{2,}/i;
+export const EMAIL = /[a-z0-9._%+-]+@[a-z0-9-]+\.[a-z]{2,}/i;
 // Nine or more digits, allowing the separators people put in phone numbers (not commas: ₦1,000,000,000 is money).
-const PHONE = /(?:\+?\d[\s().-]{0,2}){9,}/;
+export const PHONE = /(?:\+?\d[\s().-]{0,2}){9,}/;
 // A platform name followed by ':' or '@' and a handle ("WhatsApp: ada", "telegram @ada"). Naming a platform alone is fine.
-const HANDLE = /\b(whats\s?app|telegram|insta(gram)?|snap(chat)?|tik\s?tok|discord|facebook|twitter|ig)\b\s*(?::\s*@?|@)[a-z0-9._]{3,}/i;
+export const HANDLE = /\b(whats\s?app|telegram|insta(gram)?|snap(chat)?|tik\s?tok|discord|facebook|twitter|ig)\b\s*(?::\s*@?|@)[a-z0-9._]{3,}/i;
 
 /** Lower-case, strip accents and invisible characters, fold look-alikes, keep letters and spaces. */
 export function normalise(text: unknown): string {

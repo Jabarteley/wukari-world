@@ -13,6 +13,7 @@
 import type { LifeState } from '../../src/types/life.ts';
 import { SERVICE, SERVICE_KINDS, SQUARE_ROOM, isServiceKind, readRoomLink, roomKeyOf } from '../../src/places/model.ts';
 import { screenText } from '../moderation/text.ts';
+import { agentWords } from '../moderation/agent-words.ts';
 import { socialService } from '../social/service.ts';
 import { placesService } from '../social/places.ts';
 import { JT, RID, bad, inSocial, look, obj, str } from './tools.ts';
@@ -88,7 +89,10 @@ function cardText(value: unknown, most: number, label: string): { text: string }
   const text = typeof value === 'string' ? value.trim() : '';
   if (!text || text.length > most || /[\u0000-\u001f\u007f<>]/.test(text)) return { code: 'invalid_service', reason: `${label} is between 1 and ${most} characters, on one line, without < or >.` };
   const verdict = screenText(text, { contact: true, what: label });
-  return verdict ? { code: verdict.code, reason: verdict.reason } : { text };
+  if (verdict) return { code: verdict.code, reason: verdict.reason };
+  // A card is read by anyone who stands there: the AI rules apply (no asking for money or details, no flirting).
+  const words = agentWords(text, { toMinor: true });
+  return words.ok ? { text } : { code: words.code, reason: words.reason };
 }
 
 const set_service: ToolDefinition = {

@@ -7,7 +7,7 @@
     "stateId": "am-yerevan",
     "stateName": "Yerevan"
   },
-  "inventorySha256": "fd5ec2c15793c5e7cbeddefa490edec0f5802b55246dd131f98f07717eeabcc4",
+  "inventorySha256": "d1ee545ae56273f647fca78c51895ccb4509bfb602fb7b19e779d2e111112655",
   "inventoryPath": "world/playable-africa-rollout/sources/yerevan.json",
   "admission": {
     "registered": true,
@@ -85,7 +85,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 360,
     "neighbourhoodLabels": 18,
     "landPolygons": 35,
     "waterPolygons": 3,

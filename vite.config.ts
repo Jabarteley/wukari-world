@@ -340,6 +340,8 @@ export default defineConfig({
     // Read only by lazy chunks, so left to the bundler (each then rides with its readers): the continent of every country and the atlas
     // levels (the Map and the travel list), and the campaign words of a visit (the growth counter, itself a dynamic import).
     if (/\/src\/game\/(cities\/atlasMetadata|attribution)\.ts$/.test(id)) return undefined
+    // The real weather of the world feed (its hours, words and reader) is read only by the lazy feed module and the server: weatherAt keeps a hook (src/game/systems/health.ts).
+    if (/\/src\/game\/weather-observed(-read)?\.ts$/.test(id)) return undefined
     // Full statement reconciliation is only read by the lazy Statement screen (and by the server build).
     if (/\/src\/game\/wallet-statement\.ts$/.test(id)) return undefined
     // The trust rules (tiers, the no-fee filter, the link allow-list): read only by the community panel, the "leaving Allworld" sheet and the trust card, all fetched on demand.

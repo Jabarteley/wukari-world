@@ -4,7 +4,7 @@
 // A failed read changes nothing: the weather keeps the last hours it was given, and when they run out the old cycle applies.
 import { watch } from 'vue'
 import type { Ref } from 'vue'
-import { readObservedWeather, setObservedWeather } from '../../../game/weather-observed.ts'
+import { readObservedWeather, setObservedWeather } from '../../../game/weather-observed-read.ts'
 import { setCityMoney, setDisplayCity } from '../../../game/money.ts'
 import { readCityMoney } from '../../../game/money-feed.ts'
 import { takeCredits } from './feedCredits.ts'

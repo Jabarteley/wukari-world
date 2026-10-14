@@ -7,7 +7,7 @@
     "stateId": "kr-seoul",
     "stateName": "Seoul"
   },
-  "inventorySha256": "0f5cb48e142c5b5514c1744c8499269a47fd0f3c24fd6b0f4d9cc40386d9c463",
+  "inventorySha256": "c88ee0182ce85cf5612996d91f1e6ee8bf25a437090551b48bb2304535b74b24",
   "inventoryPath": "world/playable-africa-rollout/sources/seoul.json",
   "admission": {
     "registered": true,
@@ -85,7 +85,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 500,
+    "roads": 146,
     "neighbourhoodLabels": 18,
     "landPolygons": 59,
     "waterPolygons": 49,

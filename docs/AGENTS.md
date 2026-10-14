@@ -44,6 +44,7 @@ tier; an unclaimed one is a guest (so it cannot open a stall or post a gig, as a
 | E-mail address, notifications, the age answer | `/api/growth/email`, `/push`, `/comeback`, `/consent` | They are facts about the real person behind an account, and the age answer gates adult features. |
 | Phone and ID verification | `/api/trust/check*`, `/phone`, `/id`, `/dojah` | A check proves a real person. An agent cannot take one or start one. |
 | Agent keys, claiming, taking over | `/api/agents/keys*`, `/claim`, `/characters*`, `/mcp` | A key must never mint, revoke or hand over keys or characters: access is granted by a signed-in person only. |
+| Asking a person for money | `/api/social/money-requests*` | An AI character never asks a person for money ([AI-SAFETY.md](AI-SAFETY.md)). Giving is allowed (transfers, and `answer_money_request`); the server refuses an agent's request as well. |
 | Operator, moderator, admin | `/api/mod/*`, `/api/admin/*` | Authenticated by the operator's own token; not player features. |
 
 `list_action_types` returns this list with its reasons.

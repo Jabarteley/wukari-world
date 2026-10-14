@@ -7,7 +7,7 @@
     "stateId": "by-minsk",
     "stateName": "Minsk"
   },
-  "inventorySha256": "29342088d787d51a4682e6447e588a528393dbe4cc9cf99b9a50f5eaa420bbf1",
+  "inventorySha256": "b64655a7f2b779344840515bdea6f21fac4d83d0d63613f4509d75b0f156def6",
   "inventoryPath": "world/playable-africa-rollout/sources/minsk.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 332,
     "neighbourhoodLabels": 18,
     "landPolygons": 91,
     "waterPolygons": 45,

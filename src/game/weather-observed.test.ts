@@ -2,7 +2,8 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { weatherAt } from './systems/health.ts'
 import { HEALTH } from './content/health.ts'
-import { HOUR_MS, clearObservedWeather, observedSkyAt, onObservedWeather, readObservedWeather, setObservedWeather, skyKindOf, skyWords } from './weather-observed.ts'
+import { HOUR_MS, clearObservedWeather, observedSkyAt, onObservedWeather } from './weather-observed.ts'
+import { readObservedWeather, setObservedWeather, skyKindOf, skyWords } from './weather-observed-read.ts'
 import type { ObservedHour } from './weather-observed.ts'
 
 const blockMs = HEALTH.weather.blockMinutes * 60000

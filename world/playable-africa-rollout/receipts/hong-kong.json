@@ -7,7 +7,7 @@
     "stateId": "hk-hong-kong",
     "stateName": "Hong Kong"
   },
-  "inventorySha256": "28a260c4b2e75c5453da39ab83c95e791868fbee70c588d1a2b4855a2ee4baad",
+  "inventorySha256": "54d48cbba475196b8d1ea16bd873475870af21884e6a2cccfd7eb3e924b7f49c",
   "inventoryPath": "world/playable-africa-rollout/sources/hong-kong.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 500,
+    "roads": 207,
     "neighbourhoodLabels": 18,
     "landPolygons": 16,
     "waterPolygons": 47,

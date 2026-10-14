@@ -7,7 +7,7 @@
     "stateId": "br-sao-paulo",
     "stateName": "São Paulo"
   },
-  "inventorySha256": "eac175e156db59576e55c4011588edab37fc5f6fc3a3d6d405bff70fbb9b1b5d",
+  "inventorySha256": "1e5ca24b0697393fee991082eb181f7e7d67ca9c000ed78d45704868ab9676fe",
   "inventoryPath": "world/playable-africa-rollout/sources/sao-paulo.json",
   "admission": {
     "registered": true,
@@ -66,11 +66,11 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 268,
     "neighbourhoodLabels": 18,
     "landPolygons": 56,
     "waterPolygons": 14,
-    "reachWaterPolygons": 87
+    "reachWaterPolygons": 86
   },
   "observed": {
     "places": 6533,

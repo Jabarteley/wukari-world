@@ -7,7 +7,7 @@
     "stateId": "iq-baghdad",
     "stateName": "Baghdad"
   },
-  "inventorySha256": "1a09bfe89c947c714c22316a916dee08722d72831d9560cb00573db14d8c6b91",
+  "inventorySha256": "fa05b41215eb12e766f4f1c26b2d2ce152e7c1b831cf9941b9ee82a034938a90",
   "inventoryPath": "world/playable-africa-rollout/sources/baghdad.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 415,
     "neighbourhoodLabels": 18,
     "landPolygons": 28,
     "waterPolygons": 13,

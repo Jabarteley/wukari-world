@@ -7,7 +7,7 @@
     "stateId": "br-brasilia",
     "stateName": "Brasília"
   },
-  "inventorySha256": "e920984578b85bc0f9a958577ee0a69f86bd140f38b475259d3800884638e72b",
+  "inventorySha256": "296c9e4ee2a84abb8b17c6306d2e9346d0db565df908e2b0140448012c0da5a3",
   "inventoryPath": "world/playable-africa-rollout/sources/brasilia.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 306,
     "neighbourhoodLabels": 18,
     "landPolygons": 22,
     "waterPolygons": 2,

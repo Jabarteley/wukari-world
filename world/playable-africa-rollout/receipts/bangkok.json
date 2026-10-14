@@ -7,7 +7,7 @@
     "stateId": "th-bangkok",
     "stateName": "Bangkok"
   },
-  "inventorySha256": "3407eaf021964bc975d2d49f0c51442693d705043ebe3eb2a49925baf280bbbc",
+  "inventorySha256": "855dbe44cf425236b5906ac3f2fe0f2e2a50c5961e222feaf66d098c2621b6e0",
   "inventoryPath": "world/playable-africa-rollout/sources/bangkok.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 223,
     "neighbourhoodLabels": 18,
     "landPolygons": 26,
     "waterPolygons": 37,

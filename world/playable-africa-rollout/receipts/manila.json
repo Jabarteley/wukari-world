@@ -7,7 +7,7 @@
     "stateId": "ph-manila",
     "stateName": "Manila"
   },
-  "inventorySha256": "5f791359aa2c6c6c9fe0b60a2cb258b20057be0a2542924c186bcbd3259f567a",
+  "inventorySha256": "fe842a11aee4ffd8157e9224aea87a8c828b064c471a11f9edd15966133e7473",
   "inventoryPath": "world/playable-africa-rollout/sources/manila.json",
   "admission": {
     "registered": true,
@@ -89,7 +89,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 240,
     "neighbourhoodLabels": 18,
     "landPolygons": 15,
     "waterPolygons": 93,

@@ -7,7 +7,7 @@
     "stateId": "mt-valletta",
     "stateName": "Valletta"
   },
-  "inventorySha256": "43f5b6527a4352c6b2a3ace3da014133b4b160692d7b9f69e4c33a881be49f46",
+  "inventorySha256": "c9a2a80e533d45e48caeccc0b225ea94bd8d57de9b2aba4641ac47bb295fabda",
   "inventoryPath": "world/playable-africa-rollout/sources/valletta.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 336,
     "neighbourhoodLabels": 18,
     "landPolygons": 3,
     "waterPolygons": 8,
@@ -85,8 +85,8 @@
       "sha256": "91a7895a17d48823fad9e5395cdb5ffb0c9c2789639c3153b1a37344e78581db"
     },
     "geometry.ts": {
-      "bytes": 177231,
-      "sha256": "4e146a95f6b9977cd0e85a1e470a09e4db613362a773c572ff2850527cbf854b"
+      "bytes": 175385,
+      "sha256": "d59fa66feb7a8a70637139813021997ebedfe9457e7b7f21d54aa0c9b3156b16"
     },
     "index.ts": {
       "bytes": 259,

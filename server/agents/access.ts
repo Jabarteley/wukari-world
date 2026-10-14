@@ -19,6 +19,8 @@ export const AGENT_DENY: readonly Denied[] = Object.freeze([
     reason: 'A phone or ID check proves a real person; an agent cannot take one, and cannot start one for the account it plays for.' },
   { id: 'agent-keys', label: 'Agent keys, claiming and taking over', prefixes: ['/api/agents/keys', '/api/agents/claim', '/api/agents/characters', '/api/agents/mcp'],
     reason: 'A key must never mint, revoke or hand over keys or characters: access is granted by a signed-in person only.' },
+  { id: 'money-asks', label: 'Asking a person for money', prefixes: ['/api/social/money-requests'],
+    reason: 'An AI character never asks a person for money (docs/AI-SAFETY.md). Giving is allowed (transfers; answer_money_request pays or declines a request a person made); asking is not, and the server refuses it as well.' },
   { id: 'operator', label: 'Operator, moderator and admin routes', prefixes: ['/api/mod/', '/api/admin/'],
     reason: 'These are authenticated by the operator\'s own token and are not player features.' },
 ]);

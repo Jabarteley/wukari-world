@@ -7,7 +7,7 @@
     "stateId": "sa-riyadh",
     "stateName": "Riyadh"
   },
-  "inventorySha256": "708b96f6e07bb783be43ef63f2c009e0cedb2a1149eac1566ae23d316f8af128",
+  "inventorySha256": "7d3bcba7648c01cd36d5762db41640adf8a233f10b59211af56eb4d30d788da9",
   "inventoryPath": "world/playable-africa-rollout/sources/riyadh.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 294,
     "neighbourhoodLabels": 18,
     "landPolygons": 20,
     "waterPolygons": 0,

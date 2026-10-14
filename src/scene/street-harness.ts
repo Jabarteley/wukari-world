@@ -9,6 +9,7 @@
  * ?city=<id> another city's street (its country's driving side, liveries and traffic mix; default lagos). ?eye=1 (with ?streetlife=on)
  * looks from the street's start pose, where the map's dive ends on the home street (src/scene/street-life/street-scene.ts): eye height
  * on the near pavement, looking along the street. ?at=<ms> stops the street's clock at that instant (for screenshots).
+ * ?px=&pz= stands the player's avatar there (the crowd gives way round it).
  */
 import { createKit } from './kit.ts';
 import { buildNeighbourhoodScene } from './neighbourhood-scene.ts';
@@ -40,6 +41,8 @@ if (params.get('houses') === '1') {
   street.setStreet?.({ city: cityId, anchor: { lga: 'ikeja', estate: 0, plot: 5 }, land: [], houses } as never);
 }
 scene.add(street.group);
+// ?px= ?pz=: where the player's avatar stands (street life gives way round it, and vehicles stop short of it on the road).
+if (params.has('px') || params.has('pz')) street.walk?.move(num('px', 0), 0, num('pz', 0), Math.PI / 2);
 const stage = document.getElementById('stage')!, { clientWidth: width, clientHeight: height } = stage;
 const x = num('x', streetView ? -18 : 74);
 camera.aspect = width / height;

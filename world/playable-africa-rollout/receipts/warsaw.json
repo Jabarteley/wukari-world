@@ -7,7 +7,7 @@
     "stateId": "pl-warsaw",
     "stateName": "Warsaw"
   },
-  "inventorySha256": "7c223bc73ce62239a06fd4db4021542ded46fda55a7b9ba138126872920be030",
+  "inventorySha256": "0ebe5d01a0b46538bf812ad01736e5cb2613530fbb22efd9dd703123ffa89ee0",
   "inventoryPath": "world/playable-africa-rollout/sources/warsaw.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 375,
     "neighbourhoodLabels": 18,
     "landPolygons": 22,
     "waterPolygons": 11,

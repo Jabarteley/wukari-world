@@ -44,6 +44,9 @@ const sky = createSky(THREE);
 scene.background = sky.texture;
 
 let entry: VenueEntry | null = null, renderCount = 0;
+// ?cam=x,y,z&at=x,y,z&fov=n: a camera of your own (a close look at the near crowd behind an open place).
+const triple = (key: string): [number, number, number] | null => { const v = params.get(key)?.split(',').map(Number); return v?.length === 3 && v.every(Number.isFinite) ? v as [number, number, number] : null; };
+const view = { cam: triple('cam'), at: triple('at'), fov: params.has('fov') ? Number(params.get('fov')) : null };
 /** The built scene; draw and the buttons only run after build(). */
 const current = (): VenueEntry => entry!;
 const names = ['Ada', 'Tunde', 'Zainab', 'Chidi', 'Bisi', 'Emeka', 'Kemi', 'Sani', 'Ngozi', 'Femi', 'Amaka', 'Yusuf'];
@@ -52,9 +55,9 @@ function draw() {
   const { clientWidth: width, clientHeight: height } = stage;
   camera.aspect = width / Math.max(1, height);
   const portrait = camera.aspect < 0.85;
-  camera.position.set(...(portrait ? entry.camera.portrait : entry.camera.landscape));
-  camera.fov = portrait ? 48 : 43;
-  camera.lookAt(0, 0.7, 0);
+  camera.position.set(...(view.cam ?? (portrait ? entry.camera.portrait : entry.camera.landscape)));
+  camera.fov = view.fov ?? (portrait ? 48 : 43);
+  camera.lookAt(...(view.at ?? [0, 0.7, 0]));
   camera.updateProjectionMatrix();
   renderer.setSize(width, height, false);
   lights.apply(entry.lighting());

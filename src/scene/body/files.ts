@@ -4,5 +4,9 @@
 import male from './assets/base-body-male.glb?url';
 import female from './assets/base-body-female.glb?url';
 import clips from './assets/clip-pack.glb?url';
+import maleLod from './assets/base-body-male-lod.bin?url';
+import femaleLod from './assets/base-body-female-lod.bin?url';
 
 export const BODY_FILES = Object.freeze({ male, female, clips });
+/** The near crowd's simplified index buffers (scripts/body/build-lod.ts), fetched only by createCrowdBodies. */
+export const CROWD_LOD_FILES = Object.freeze({ male: maleLod, female: femaleLod });

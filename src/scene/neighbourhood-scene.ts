@@ -353,8 +353,10 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
           // The final guard: the street is used only when all of it (lanes, roads, crossings) lies inside the street's walkable bounds, and
           // its start pose only when the eye stands on a walkable cell; otherwise none (the phase-3b lanes, no traffic, no street pose).
           const layout = streets.fitStreet(streets.homeStreet(country(), ownX(), lanes, ROW_HALF_WIDTH, BOUNDS), (x, z) => grid.free(x, z));
+          // The near crowd's bodies only on the walk grid (bodyFloor); the far pavement's cut-outs are kept by the bounds guard alone.
           streetLife = module.createStreetLife(kit, { parent: group, seed: lifeSeed(), lanes: layout?.lanes ?? STREET_LANES, roads: layout?.roads ?? [], crossings: layout ? STREET_CROSSINGS : [],
-            country: country(), crowd: choice.crowd, vehicles: layout ? choice.vehicles : 0, narrow: streets.HOME_NARROW, bounds: BOUNDS, at: Date.now() });
+            country: country(), crowd: choice.crowd, vehicles: layout ? choice.vehicles : 0, narrow: streets.HOME_NARROW, bounds: BOUNDS, at: Date.now(),
+            context: 'street', tier: choice.tier, ready: changed, bodyFloor: (x, z) => grid.free(x, z) });
           streetLife.step(Date.now(), avatar.position);
           streetLayout = layout; streets.noteStreet('neighbourhood', layout);
           streetWindow = STREET_WINDOW_S; changed();

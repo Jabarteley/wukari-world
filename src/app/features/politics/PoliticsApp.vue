@@ -20,6 +20,7 @@ import { colourOf, sloganTooShort, until, votes, PHASES, NEXT, voteWhy, runWhy, 
 import { AD_COLOURS, ELECTION } from '../civic/civicContent.ts'
 import { useCivic, useLoaded, useOffline } from '../civic/useCivic.ts'
 import { appealRequest, arrestRequest, bailRequest, escalateRequest, partyRequest, politicsUi as ui, runRequest, salaryRequest } from './politicsDrafts.ts'
+import { momentKind, shareMoment } from '../growth/shareMoment.ts'
 import type { RecordEntryView, RecordKind, RecordsResponse } from '../../../types/records.ts'
 import { RECORD_FILTERS, checkRecords, kindLabel, recordDate, recordsPath, shortHash } from './politicsModel.ts'
 import { BILL_STATUS, FLAG_TEXT, TABS, assemblyName, billLine, billVoteWhy, proposeWhy, tallyLine, VERDICTS, arrestWhy, auditLine, petitionWhy, canEscalate, caseLine, courtName, higherCourt, noteWhy, rulingLine, statementWhy, ballotKey, jailLine, justiceKey, justicePath, offenceLine, officerOf, ballotPath, ledgerKind, leverRange, leverText, leverWhy, officeLine, overviewKey, overviewPath, partyMottoWhy, partyName, partyNameWhy, quorumLine, seatOf } from './politicsModel.ts'
@@ -29,6 +30,7 @@ const { game } = useApp()
 const civic = useCivic()
 const offline = useOffline()
 const view = game.view
+const shareFailed = (): void => game.toast('That could not be shared. Try again.', 'error')
 const cityId = computed(() => view.value.cityId)
 const overview = useLoaded<PoliticsResponse>({ key: () => overviewKey(cityId.value), path: () => overviewPath(cityId.value), maxAge: 20000 })
 const tier = computed<TierId | null>(() => (ui.tab === 'parties' || ui.tab === 'justice' || ui.tab === 'records' ? null : ui.tab))
@@ -357,6 +359,7 @@ const dateOf = (at: number): string => new Date(at).toLocaleDateString('en-NG', 
       <section v-for="entry in hall.entries" :key="entry.n" class="ui-card politics-entry">
         <small>{{ recordDate(entry.at) }} · {{ kindLabel(entry.kind) }} · {{ entry.scopeName }}</small>
         <strong>{{ entry.title }}</strong>
+        <CivicAction v-if="momentKind(entry.kind)" @click="shareMoment(entry.kind, entry.n, shareFailed)">Share</CivicAction>
       </section>
       <CivicAction v-if="hall.before !== null" :working="hall.loading" @click="loadRecords(true)">Older entries</CivicAction>
       <p v-if="hall.entries.length" class="politics-note" :class="{ 'is-warn': !hallCheck.ok }">{{ hallCheck.line }} {{ hall.count }} entries so far; the latest seal is <code>{{ shortHash(hall.head) }}</code>.</p>

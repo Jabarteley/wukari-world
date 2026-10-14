@@ -22,6 +22,7 @@
 // share module is fetched the first time something is shared.
 import { computed, ref, shallowReactive } from 'vue'
 import type { ComputedRef } from 'vue'
+import { shareUrl } from '../../../game/share-model.ts'
 import type { HelloResult, ShareKind, ShareResult } from '../../../types/growth.ts'
 import type { FetchJson } from '../../types/client.ts'
 import type { ToastKind } from '../../types/panel.ts'
@@ -49,8 +50,8 @@ export interface GrowthState {
 }
 const fresh = (): GrowthState => ({ hello: null, at: 0, loading: false, error: null, sharing: null, busy: null, landing: null })
 
-/** What the second argument of share() may carry: the calendar event id, or a table id. */
-export interface ShareExtra { event?: string; table?: string; /** Where the share was started from (telemetry only; never sent to the server). */ surface?: string }
+/** What the second argument of share() may carry: the calendar event id, a table id, or a public record number. */
+export interface ShareExtra { event?: string; table?: string; record?: number; /** Where the share was started from (telemetry only; never sent to the server). */ surface?: string }
 
 export interface GrowthDeps {
   fetchJson: FetchJson
@@ -110,7 +111,7 @@ export function createGrowth(deps: GrowthDeps) {
     const made = await call<ShareResult>('/api/growth/share', { kind, ...asked })
     if (!made.ok) { state.busy = null; deps.toast(made.reason || 'That could not be shared.', 'error'); return }
     let prepared
-    try { prepared = await (await deps.loadShare()).prepareShare(made.share.facts, `${deps.origin()}${made.share.path}`) } catch { state.busy = null; deps.toast('That could not be shared.', 'error'); return }
+    try { prepared = await (await deps.loadShare()).prepareShare(made.share.facts, shareUrl(`${deps.origin()}${made.share.path}`, made.share.facts.kind)) } catch { state.busy = null; deps.toast('That could not be shared.', 'error'); return }
     if (state.sharing?.prepared.url) deps.revokeUrl(state.sharing.prepared.url)
     state.sharing = { facts: made.share.facts, prepared, surface: surfaceOf(surface) }
     track('share_card_created', { kind })

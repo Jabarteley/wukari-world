@@ -25,7 +25,7 @@ import type { SourceEvent } from '../game/attribution.ts'
 // ---- shares and the events calendar ---------------------------------------------------------------
 
 /** src/game/share-model.ts SHARE_KINDS. */
-export type ShareKind = 'invite' | 'house' | 'missions' | 'week' | 'table' | 'event'
+export type ShareKind = 'invite' | 'house' | 'missions' | 'week' | 'table' | 'event' | 'wedding' | 'election' | 'news'
 
 /**
  * What a share says (share-model.js cleanFacts): facts the server took from the sharer's own life.
@@ -57,6 +57,12 @@ export interface ShareFacts {
   venue: string
   /** A table to land beside: makes a 'table' share an invitation to that table. */
   tableId: string
+  /** The other person of a wedding (wedding): a name that player shows publicly. */
+  partner: string
+  /** One public sentence (election, news): a line of the public record. */
+  headline: string
+  /** The public record entry the headline came from (election, news); 0 for none. */
+  record: number
 }
 
 /** One occurrence of a calendar event (src/game/calendar.ts describe): server ms; `key` is unique per occurrence. */
@@ -196,6 +202,8 @@ export interface ShareBody {
   kind: ShareKind
   /** kind 'event': the calendar event id. */
   event?: string
+  /** kinds 'election' and 'news': the number of an entry of the public record (the Hall of Records). */
+  record?: number
   /** kind 'table': a table id — the share is then an invitation to that table instead of the last result. */
   table?: string
 }
@@ -332,7 +340,7 @@ type GrowthPost = HostErrorCode | JsonBodyErrorCode | SessionErrorCode | Storage
 
 export interface GrowthHttpRoutes {
   'POST /api/growth/hello': { body: HelloBody; response: Ok<HelloResult>; errors: GrowthPost }
-  'POST /api/growth/share': { body: ShareBody; response: Ok<ShareResult>; errors: GrowthPost | 'invalid_share_kind' | 'invalid_event' | 'invalid_table' }
+  'POST /api/growth/share': { body: ShareBody; response: Ok<ShareResult>; errors: GrowthPost | 'invalid_share_kind' | 'invalid_event' | 'invalid_table' | 'invalid_record' }
   /** No session needed. 60 a minute per address. */
   'GET /api/growth/share/:code': { params: { code: string }; response: Ok<ShareLookupResult>; errors: HostErrorCode | 'invalid_share_code' }
   'POST /api/growth/referral/link': { body: ReferralLinkBody; response: Ok<ReferralLinkResult>; errors: GrowthPost | 'invalid_share_code' | 'device_required' }
@@ -698,7 +706,7 @@ export const OUTREACH_MINE_KEYS = ['channel', 'comeback', 'email', 'live', 'push
 export const DIGEST_KEYS = ['caps', 'delivery', 'footer', 'greeting', 'lines', 'more', 'subject', 'tasks'] as const satisfies readonly (keyof (Digest & { delivery: 'dry-run' }))[]
 export const CALENDAR_OCCURRENCE_KEYS = ['blurb', 'end', 'icon', 'id', 'key', 'live', 'spray', 'start', 'table', 'title', 'venue', 'venueLabel'] as const satisfies readonly (keyof CalendarOccurrence)[]
 export const SHARE_FACTS_KEYS = [
-  'city', 'days', 'district', 'done', 'event', 'game', 'kind', 'name', 'stamps', 'tableId', 'title', 'total', 'venue', 'won',
+  'city', 'days', 'district', 'done', 'event', 'game', 'headline', 'kind', 'name', 'partner', 'record', 'stamps', 'tableId', 'title', 'total', 'venue', 'won',
 ] as const satisfies readonly (keyof ShareFacts)[]
 export const CONSENT_VIEW_KEYS = ['age', 'at', 'email', 'push'] as const satisfies readonly (keyof ConsentView)[]
 export const TABLE_SUMMARY_KEYS = [
@@ -713,6 +721,6 @@ export const GROWTH_METRICS_RESPONSE_KEYS = [
 export const OUTREACH_OPERATOR_RESPONSE_KEYS = [
   'comeback', 'email', 'log', 'previews', 'push', 'quietNow', 'rules', 'serverTime', 'whatsapp',
 ] as const satisfies readonly (keyof Ok<OutreachOperatorResponse>)[]
-export const SHARE_KINDS = ['invite', 'house', 'missions', 'week', 'table', 'event'] as const satisfies readonly ShareKind[]
+export const SHARE_KINDS = ['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news'] as const satisfies readonly ShareKind[]
 export const CLIENT_SIGNALS = ['webgl-missing', 'opera-mini', 'save-data', 'slow-start', 'installed', 'share-sheet', 'share-fallback'] as const satisfies readonly ClientSignal[]
 export const FUNNEL_STEPS = ['onboarded', 'goal-1', 'settled', 'job', 'shift', 'goals-done', 'mission', 'table', 'day-two-work'] as const satisfies readonly FunnelStep[]

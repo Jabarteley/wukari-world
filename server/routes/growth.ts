@@ -45,7 +45,7 @@ import { upcomingEvents } from '../../src/game/calendar.ts';
 import { cityRules } from '../../src/game/cities/index.ts';
 import { composeDigest } from '../../src/game/digest.ts';
 import { SOURCE_EVENTS } from '../../src/game/attribution.ts';
-import { isShareCode } from '../../src/game/share-model.ts';
+import { isShareCode, sourceQuery } from '../../src/game/share-model.ts';
 import { growthOf, playerOf, sweep, LIMITS } from '../growth/data.ts';
 import { createShare, findShare, sharePageHtml } from '../growth/share.ts';
 import { bonusConfig, claimedOf, publicOffer } from '../bonus/service.ts';
@@ -109,7 +109,7 @@ export default function growthRoutes(ctx: RouteContext): Record<RouteKey, RouteH
 
   // The link-preview page. `ctx.pages` is the host's hook for a path outside /api/ (server.js); a host
   // without it (the Worker today) serves the game's own index.html for /s/<code> instead.
-  ctx.pages?.set('/s/', async ({ path, origin, ip, method }) => {
+  ctx.pages?.set('/s/', async ({ path, query, origin, ip, method }) => {
     const code = path.slice(3).replace(/\/$/, '');
     if (!ctx.allow(`growth:page:${ip}`, LIMITS.sharePagePerMinute)) return { status: 429, html: sharePageHtml(null, '', origin) };
     if (!isShareCode(code)) return { status: 404, html: sharePageHtml(null, '', origin) };
@@ -125,7 +125,7 @@ export default function growthRoutes(ctx: RouteContext): Record<RouteKey, RouteH
     }, { durable: false }).catch(() => null);
     // While the launch offer is open the preview says so (server/bonus/service.ts).
     const offer = share ? publicOffer(bonusConfig(ctx), await ctx.store.read((db) => claimedOf(db)).catch(() => 0)) : null;
-    return { status: share ? 200 : 404, html: sharePageHtml(share, code, origin, offer) };
+    return { status: share ? 200 : 404, html: sharePageHtml(share, code, origin, offer, sourceQuery(query)) };
   });
 
   // The pages a link in an e-mail opens. A GET only ever shows a button: mail scanners follow links, so nothing is
@@ -182,7 +182,7 @@ export default function growthRoutes(ctx: RouteContext): Record<RouteKey, RouteH
         digest: { ...digest, delivery: 'dry-run' }, sharesLeft: Math.max(0, LIMITS.sharesPerDay - (player.shares.day === lagosTime(now).day ? player.shares.n : 0)) };
     }, { durable: (result) => result?.material === true }),
 
-    'POST /api/growth/share': route(({ g, session, state, cityId, body }) => createShare(ctx, g, session, state, cityId, body)),
+    'POST /api/growth/share': route(({ db, g, session, state, cityId, body }) => createShare(ctx, db, g, session, state, cityId, body)),
 
     'GET /api/growth/share/:code': async (request) => {
       if (!ctx.allow(`growth:share:${request.ip}`, 60)) throw ctx.fail(429, 'rate_limited');

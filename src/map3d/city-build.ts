@@ -32,6 +32,7 @@ import { pointInPolygon } from './roads.ts';
 import type { Network, Road } from './roads.ts';
 import { landOf, rasterLgas, scanRings } from './lga.ts';
 import { estateLayout } from './estates.ts';
+import { estateBox } from './estate-homes.ts';
 import { reliefAt, reliefNormal } from './relief.ts';
 import type { Box4, CityPack, FabricStyle, LandKind, PackDistrict, PackFabric, PackHill, Point2, Point3, XZ } from './types.ts';
 import { heritageDashes, HERITAGE_STYLE } from './heritage.ts';
@@ -720,7 +721,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   const blocked = (x: number, z: number, pad: number) => fronts.some((cell) => Math.abs(x - cell.x) < cell.size / 2 + pad + 0.6 && Math.abs(z - cell.z) < cell.size / 2 + pad + 0.6) || clear.some((circle) => Math.hypot(circle.x - x, circle.z - z) < circle.r + pad)
     || (pack.zones || []).some((zone) => inBox(x, z, [zone[0] - pad, zone[1] - pad, zone[2] + pad, zone[3] + pad]))
     || plates.some((plate) => !plate.water && inBox(x, z, [plate.box[0] - pad, plate.box[1] - pad, plate.box[2] + pad, plate.box[3] + pad]))
-    || Object.values(pack.estates || {}).some((estate) => inBox(x, z, [estate.x - 1.6 - pad, estate.z - 1.6 - pad, estate.x + (estate.cols - 1) * 2.7 + 1.6 + pad, estate.z + (Math.ceil((estate.max ?? 18) / estate.cols) - 1) * 3 + 1.6 + pad]));
+    || Object.values(pack.estates || {}).some((estate) => { const [x0, z0, x1, z1] = estateBox(estate); return inBox(x, z, [x0 - pad, z0 - pad, x1 + pad, z1 + pad]); });
   const noise = (x: number, z: number) => { const cell = (ix: number, iz: number) => (hash(`${pack.id}:${ix}:${iz}`) % 1000) / 1000, fx = x / 22, fz = z / 22, ix = Math.floor(fx), iz = Math.floor(fz), tx = fx - ix, tz = fz - iz;
     return (cell(ix, iz) * (1 - tx) + cell(ix + 1, iz) * tx) * (1 - tz) + (cell(ix, iz + 1) * (1 - tx) + cell(ix + 1, iz + 1) * tx) * tz; };
   const STYLES: Partial<Record<FabricStyle, { gap: number; keep: number; tree: number }>> = {

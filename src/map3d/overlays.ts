@@ -7,7 +7,7 @@ import { civicTitle } from '../game/cities/terminology.ts';
  *   billboards  a roadside board beside the venue each slot is `near`, in the renter's colour;
  *               a free slot is a plain "FOR RENT" board
  *   sea         the grid of sea plots floating off the coast, each rented plot in its colour
- *   neighbours  an estate of small houses in each home district; a house whose owner is online
+ *   neighbours  an estate of houses (a good deal taller than the player's piece: ./estate-homes.ts) in each home district; a house whose owner is online
  *               has its lights on
  *   gov         the State House and the Polling Unit ringed, the State House naming the Governor
  *
@@ -28,6 +28,7 @@ import { sign } from '../scene/props.ts';
 import { PLINTH as PLINTH_UNIT } from './landmarks.ts';
 import { WATER_Y, LANDMARK_SCALE, leanGeometry } from './city-build.ts';
 import { iconFor } from '../ui/icon-map.ts';
+import { HOME_SCALE, HOME_RIDGE, HOME_UNIT, homeGrid } from './estate-homes.ts';
 
 /** Which layers are on. */
 export interface OverlayLayers { billboards?: boolean; sea?: boolean; neighbours?: boolean; gov?: boolean }
@@ -52,7 +53,7 @@ export interface OverlayChip {
   more?: number
 }
 
-const HOUSES_PER_ESTATE = 18, HOMES_LISTED = 6, PLOT_CHIPS = 36;
+const HOMES_LISTED = 6, PLOT_CHIPS = 36;
 const GOV = '#6a3fa0', PLINTH = PLINTH_UNIT * LANDMARK_SCALE;
 
 export function createOverlays(kit: MapKit, city: City) {
@@ -126,33 +127,33 @@ export function createOverlays(kit: MapKit, city: City) {
 
   function neighbours(data: NeighboursResponse) {
     const unit = createBatch(THREE);
-    unit.box(0, 0.6, 0, 1.7, 1.2, 1.9, '#ffffff');
-    unit.cyl(0, 1.5, 0, 1.45, 0.75, '#b5593c', { seg: 4, top: 0.08, ry: Math.PI / 4 });
+    unit.box(0, HOME_UNIT.wall / 2, 0, HOME_UNIT.width, HOME_UNIT.wall, HOME_UNIT.depth, '#ffffff');
+    unit.cyl(0, HOME_UNIT.ridge - 0.375, 0, 1.45, 0.75, '#b5593c', { seg: 4, top: 0.08, ry: Math.PI / 4 });
     const geometry = unit.build({ solid: house, glow: house, glass: house }).meshes[0]!.geometry;
     const lit = new THREE.PlaneGeometry(0.55, 0.5);
     const homes: { x: number; z: number; colour: string }[] = [], lights: { x: number; z: number }[] = [];
     for (const district of data.districts) {
       const estate = pack.estates?.[district.id];
       if (!estate || !district.count) continue;
-      const shown = Math.min(district.count, estate.max ?? HOUSES_PER_ESTATE), online = Math.min(shown, district.online);
+      // The houses are bigger than the unit they were drawn at, so fewer fit in the estate's own ground: the grid says how many.
+      const grid = homeGrid(estate), shown = Math.min(district.count, grid.cap), online = Math.min(shown, district.online);
       for (let i = 0; i < shown; i++) {
-        const x = estate.x + (i % estate.cols) * 2.7, z = estate.z + Math.floor(i / estate.cols) * 3.0;
+        const { x, z } = grid.at(i);
         homes.push({ x, z, colour: i < online ? '#fff6dc' : '#d9d6cc' });
         if (i < online) lights.push({ x, z });
       }
-      const rows = Math.ceil(shown / estate.cols);
-      chipList.push({ key: `hood:${district.id}`, kind: 'hood', x: estate.x + (Math.min(shown, estate.cols) - 1) * 1.35, y: 3.2, z: estate.z + (rows - 1) * 1.5,
+      chipList.push({ key: `hood:${district.id}`, kind: 'hood', x: grid.centre.x, y: HOME_RIDGE + 1.3, z: grid.centre.z,
         icon: '', glyph: iconFor('house', null, 'home'), homeGlyph: iconFor('house', null, 'home'), text: `${district.label} · ${district.count} home${district.count === 1 ? '' : 's'} · ${district.online} online`,
         homes: district.homes.slice(0, HOMES_LISTED).map((home) => ({ id: home.id, name: home.name, online: Boolean(home.online), you: Boolean(home.you) })), more: Math.max(0, district.count - Math.min(district.homes.length, HOMES_LISTED)) });
     }
     if (!homes.length) { geometry.dispose(); lit.dispose(); return; }
     const mesh = new THREE.InstancedMesh(geometry, house, homes.length);
-    homes.forEach((item, i) => { dummy.position.set(item.x, 0.02, item.z); dummy.rotation.set(0, 0, 0); dummy.scale.set(1, 1, 1); dummy.updateMatrix(); mesh.setMatrixAt(i, dummy.matrix); mesh.setColorAt(i, tint.set(item.colour)); });
+    homes.forEach((item, i) => { dummy.position.set(item.x, 0.02, item.z); dummy.rotation.set(0, 0, 0); dummy.scale.set(HOME_SCALE, HOME_SCALE, HOME_SCALE); dummy.updateMatrix(); mesh.setMatrixAt(i, dummy.matrix); mesh.setColorAt(i, tint.set(item.colour)); });
     mesh.instanceMatrix.needsUpdate = true; mesh.instanceColor!.needsUpdate = true;
     push(mesh, 'estate-homes');
     if (lights.length) {
       const glow = new THREE.InstancedMesh(lit, lamp, lights.length);
-      lights.forEach((item, i) => { dummy.position.set(item.x, 0.68, item.z + 0.96); dummy.rotation.set(0, 0, 0); dummy.scale.set(1, 1, 1); dummy.updateMatrix(); glow.setMatrixAt(i, dummy.matrix); });
+      lights.forEach((item, i) => { dummy.position.set(item.x, HOME_UNIT.windowY * HOME_SCALE, item.z + HOME_UNIT.windowZ * HOME_SCALE); dummy.rotation.set(0, 0, 0); dummy.scale.set(HOME_SCALE, HOME_SCALE, HOME_SCALE); dummy.updateMatrix(); glow.setMatrixAt(i, dummy.matrix); });
       glow.instanceMatrix.needsUpdate = true;
       push(glow, 'estate-lights');
     } else lit.dispose();

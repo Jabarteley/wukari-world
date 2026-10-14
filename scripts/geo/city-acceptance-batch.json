@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-p-1",
-      "appSha": "67e0dfcc78055beff8bd5af44c2e4471b6e28e2e",
+      "id": "release-p-2",
+      "appSha": "83116903f3fbdf60090ce5d924080cbee547bbde",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
         "st-helier",

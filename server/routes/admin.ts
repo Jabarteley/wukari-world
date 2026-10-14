@@ -311,7 +311,7 @@ export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
         }
         const changed = settings.change(db, key, body.value, shortRef(admin.accountId));
         effects.after = [...(effects.after ?? []), () => settings.sync(changed.values)];
-        const line = audit(ctx, db, { admin: admin.accountId, adminName: admin.name, action: 'setting', target: key, targetName: key, params: { value: body.value === null ? 'default' : (body.value as boolean | number) }, summary: `${key}: ${String(changed.before)} → ${String(changed.after)}`, reason: '' });
+        const line = audit(ctx, db, { admin: admin.accountId, adminName: admin.name, action: 'setting', target: key, targetName: key, params: { value: body.value === null ? 'default' : typeof body.value === 'string' ? body.value.slice(0, 200) : (body.value as boolean | number) }, summary: `${key}: ${String(changed.before)} → ${String(changed.after)}`, reason: '' });
         return { ok: true, code: 'changed', summary: line.summary, line: line.n };
       } };
     }, { before: async (admin, body) => {

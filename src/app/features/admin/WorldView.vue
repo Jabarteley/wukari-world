@@ -25,12 +25,12 @@ async function give(): Promise<void> {
   recordDone(out.value.text, out.value.ok)
   preview.value = null; typed.value = ''
 }
-interface Setting { key: string; label: string; help: string; kind: 'boolean' | 'number'; confirmOn?: boolean; min: number | null; max: number | null; default: boolean | number; value: boolean | number; changed: { at: number } | null }
+interface Setting { key: string; label: string; help: string; kind: 'boolean' | 'number' | 'text'; confirmOn?: boolean; min: number | null; max: number | null; default: boolean | number | string; value: boolean | number | string; changed: { at: number } | null }
 const settings = ref<Setting[]>([]), switches = ref({ email: false, push: false }), drafts = reactive<Record<string, string>>({}), note = ref('')
 async function loadSettings(): Promise<void> { const r = await api.get<{ settings: Setting[]; switches: { email: boolean; push: boolean } }>('/api/admin/settings'); if (r.ok) { settings.value = r.data.settings; switches.value = r.data.switches } }
 onMounted(loadSettings)
 const asking = ref<{ key: string; label: string; token: string } | null>(null), word = ref('')
-async function set(key: string, value: boolean | number | null, confirm?: string): Promise<void> {
+async function set(key: string, value: boolean | number | string | null, confirm?: string): Promise<void> {
   const r = await api.post<Record<string, unknown>>('/api/admin/settings', { key, value, ...(confirm ? { confirm } : {}) }, `setting:${key}:${String(value)}`)
   if (r.ok && r.data.code === 'confirmation_required') { asking.value = { key, label: String(r.data.summary), token: String(r.data.token) }; word.value = ''; return }
   asking.value = null
@@ -110,6 +110,7 @@ async function notice(m: number): Promise<void> { const r = await api.post('/api
       <table class="adm-table"><tbody>
         <tr v-for="s in settings" :key="s.key"><td><b>{{ s.label }}</b><div class="adm-sub">{{ s.help }}</div></td>
           <td v-if="s.kind === 'boolean'"><button class="adm-btn" :class="{ primary: s.value }" @click="set(s.key, !s.value)">{{ s.value ? 'On' : 'Off' }}</button></td>
+          <td v-else-if="s.kind === 'text'"><textarea v-model="drafts[s.key]" rows="3" :maxlength="s.max ?? 2000" :placeholder="String(s.value)" style="width:320px" /> <button class="adm-btn" @click="set(s.key, drafts[s.key] ?? '')">Set</button></td>
           <td v-else><input v-model="drafts[s.key]" type="number" :min="s.min ?? undefined" :max="s.max ?? undefined" :placeholder="String(s.value)" style="width:110px"> <button class="adm-btn" @click="set(s.key, Number(drafts[s.key]))">Set</button></td>
           <td class="adm-sub">default {{ String(s.default) }}<template v-if="s.changed"> · <a href="#" @click.prevent="set(s.key, null)">reset</a></template></td></tr>
         <tr><td><b>E-mail sending</b><div class="adm-sub">The operator kill switch for all e-mail.</div></td><td><button class="adm-btn" :class="{ danger: switches.email }" @click="set('emailOff', !switches.email)">{{ switches.email ? 'Off' : 'On' }}</button></td><td /></tr>

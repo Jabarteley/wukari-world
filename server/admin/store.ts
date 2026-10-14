@@ -66,7 +66,7 @@ export interface AnnouncementRecord {
 }
 export interface AnnounceCollection { seq: number; items: AnnouncementRecord[] }
 
-export interface SettingsCollection { values: Record<string, { value: boolean | number; at: number; by: string }> }
+export interface SettingsCollection { values: Record<string, { value: boolean | number | string; at: number; by: string }> }
 export interface NotesCollection { players: Record<string, { at: number; by: string; text: string }[]> }
 
 export interface DailyCollection { /** The Lagos day number of the first row ever written (the history starts there). */ first: number; days: Record<string, number[]> }

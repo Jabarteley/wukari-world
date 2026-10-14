@@ -1096,6 +1096,8 @@ export interface ContextChecks {
   banned?: (publicId: string, accountId?: string) => { code: 'account_banned'; until: number; reason: string } | null
   /** Admin runtime settings (server/admin/settings.ts): the value in force for a key, or undefined for an unknown key. */
   setting?: (key: string) => boolean | number | undefined
+  /** The value in force for a TEXT setting (the model router's lists), or undefined for a key that is not a text setting. */
+  text?: (key: string) => string | undefined
   /** Admin: sending pictures or ringing players is suspended for this player. The features that send pictures and place calls ask it before they do. */
   suspended?: (publicId: string, kind: 'pictures' | 'calls') => { code: 'suspended'; until: number; reason: string } | null
   /** World: throws 409 `city_moved` when the session's character travelled away from `cityId` and has no life left there. */

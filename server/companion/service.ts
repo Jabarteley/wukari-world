@@ -14,7 +14,10 @@ import { matchIntent } from '../../src/app/features/companion/intents.ts';
 import { validateSuggest } from '../../src/app/features/companion/suggest.ts';
 import { characterCity } from '../character.ts';
 import { screenText } from '../moderation/text.ts';
-import { ask, companionConfig, type ChatMessage, type CompanionConfig, type Usage } from './gateway.ts';
+import { companionConfig, type ChatMessage, type CompanionConfig, type Usage } from './gateway.ts';
+import { routerOf } from '../models/service.ts';
+import { modelWordsSafe } from '../models/safety.ts';
+import type { AskResult } from '../models/router.ts';
 import { buildContext, expandContext, type Built } from './context.ts';
 import { amountsIn, checkReply, cleanInput, parseModelReply, MAX_INPUT } from './checks.ts';
 import { systemPrompt, wrapPlayerText } from './prompt.ts';
@@ -54,7 +57,8 @@ function build(ctx: RouteContext) {
   let startedAt = 0, today = blank(-1);
   const tests = { runs: 0, ok: 0, failed: 0 };
   const recent = new Map<string, { at: number; answer: Promise<AskAnswer> }>();
-  const config = (): CompanionConfig | null => companionConfig((name) => ctx.env(name));
+  const router = routerOf(ctx);
+  const config = (): CompanionConfig | null => companionConfig((name) => ctx.env(name), router.hasKey('gateway') || router.hasKey('openrouter'));
   const day = (): DayCounts => { const d = lagosTime(ctx.now()).day; if (!startedAt) startedAt = ctx.now(); if (today.day !== d) today = blank(d); return today; };
   const count = (outcome: Outcome): void => { total.outcomes[outcome]++; day().outcomes[outcome]++; };
   const tokens = (usage: Usage | null, sent: number, got: number): void => {
@@ -133,18 +137,23 @@ function build(ctx: RouteContext) {
 
     const sent = estimateTokens(messages.map((item) => item.content).join(' '));
     day().requests++;
-    const result = await ask((url, init) => ctx.fetch(url, init), settings, messages, gatewayUser(id));
-    for (const attempt of result.attempts) if (attempt.ok) tokens(attempt.usage, sent, estimateTokens(attempt.text)); else tokens(null, sent, 0);
+    // Every model call goes through the router (server/models/): it holds the model list, the no-training rule, the day's US$2 stop and the caps.
+    const result = await router.ask({ purpose: 'companion', messages, maxTokens: settings.maxOutputTokens, playerId: gatewayUser(id), carriesPlayerWords: true, timeoutMs: settings.timeoutMs });
+    for (const attempt of result.attempts) if (attempt.ok && result.ok) tokens(result.usage, sent, estimateTokens(result.text)); else tokens(null, sent, 0);
+    if (!result.ok && (result.why === 'budget' || result.why === 'player-cap')) { count('quota'); return answer('local', null, [], extra); }
     return finish(result, packed, numbers, rephrase, extra);
   }
 
-  function finish(result: Awaited<ReturnType<typeof ask>>, built: Built, numbers: ReadonlySet<string>, rephrase: boolean, extra: { turnId?: string }): AskAnswer {
-    const reply = result.answer.ok ? parseModelReply(result.answer.text) : null;
+  async function finish(result: AskResult, built: Built, numbers: ReadonlySet<string>, rephrase: boolean, extra: { turnId?: string }): Promise<AskAnswer> {
+    const reply = result.ok ? parseModelReply(result.text) : null;
     const text = reply ? checkReply(reply.text, numbers) : null;
     if (!reply || text === null) { count('local'); return answer('local', null, [], extra); }
+    // The free safety model is one more, optional input after the word rules (an admin setting, off by default).
+    if (ctx.checks?.setting?.('modelSafetyCheck') === true && (await modelWordsSafe(router, text)).safe === false) { count('filtered'); return answer('local', null, [], extra); }
     const suggest = rephrase ? [] : validateSuggest(reply.suggest, built.facts);
-    count(result.role);
-    return answer(result.role, text, suggest, { ...extra, ...(built.intent !== 'unknown' ? { topic: built.intent } : {}) });
+    const role = result.attempts.length > 1 ? 'fallback' : 'primary';
+    count(role);
+    return answer(role, text, suggest, { ...extra, ...(built.intent !== 'unknown' ? { topic: built.intent } : {}) });
   }
 
   return {
@@ -174,14 +183,15 @@ function build(ctx: RouteContext) {
       if (!settings) return { ok: false, error: 'off', ms: 0 };
       const began = performance.now();
       const messages: ChatMessage[] = [{ role: 'system', content: 'Reply with the single word ok.' }, { role: 'user', content: 'ok?' }];
-      const result = await ask((url, init) => ctx.fetch(url, init), { ...settings, maxOutputTokens: 16 }, messages, gatewayUser('self-test'));
+      const result = await router.ask({ purpose: 'companion', messages, maxTokens: 16, playerId: gatewayUser('self-test'), carriesPlayerWords: false, timeoutMs: settings.timeoutMs });
       const ms = Math.round(performance.now() - began);
       const kind = (why: string): 'auth' | 'model_not_found' | 'timeout' | 'other' => (why === 'auth' ? 'auth' : why === 'model' ? 'model_not_found' : why === 'timeout' ? 'timeout' : 'other');
       tests.runs++;
       const first = result.attempts[0];
-      if (result.answer.ok) { tests.ok++; return { ok: true, model: result.answer.model, ms, usedFallback: result.role === 'fallback', ...(first && !first.ok ? { primaryError: kind(first.why) } : {}) }; }
+      if (result.ok) { tests.ok++; return { ok: true, model: result.model, ms, usedFallback: result.attempts.length > 1, ...(first && !first.ok ? { primaryError: kind(first.why ?? '') } : {}) }; }
       tests.failed++;
-      return { ok: false, error: kind(result.answer.why), ms };
+      const last = result.attempts.at(-1);
+      return { ok: false, error: result.why === 'off' ? 'off' : kind(last?.why ?? ''), ms };
     },
     /** The `companion` object of GET /api/mod/overview. */
     overview() {
@@ -192,6 +202,7 @@ function build(ctx: RouteContext) {
         enabled: settings !== null, rephrase: settings?.rephrase ?? false,
         models: settings ? { primary: settings.model, fallback: settings.fallbackModel } : null,
         limits: settings ? { daily: settings.dailyRequests, perPlayerDaily: settings.playerDaily, perPlayerBurst: settings.playerBurst } : null,
+        budget: (() => { const t = router.today(); return { day: t.day, spentUsd: t.ledger.micro / 1e6, capUsd: t.capMicro / 1e6 }; })(),
         today: { lagosDay: d.day, requests: d.requests, outcomes: { ...d.outcomes }, tokens: { input: d.input, output: d.output, fromUsage: d.requests - d.guessed >= 0 ? Math.max(0, d.requests - d.guessed) : 0, estimatedRequests: d.guessed }, estimatedCostUsd: cost(d) },
         sinceStart: { at: startedAt, outcomes: { ...total.outcomes }, tokens: { input: total.input, output: total.output } },
         selfTests: { ...tests },

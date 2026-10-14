@@ -87,6 +87,14 @@ function glb(jsonText) {
   out.writeUInt32LE(json.length, 12); out.writeUInt32LE(0x4e4f534a, 16); json.copy(out, 20);
   return out;
 }
+test('accepts the two near-crowd body files and no other .bin', t => {
+  const f = fixture(t); mkdirSync(join(f.root, 'assets/assets'), { recursive: true });
+  writeFileSync(join(f.root, 'assets/assets/base-body-male-lod-aebd3566.bin'), Buffer.from([1, 2, 3])); f.seal();
+  assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
+  writeFileSync(join(f.root, 'assets/assets/other-lod-aebd3566.bin'), Buffer.from([1, 2, 3])); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Unexpected package file/);
+});
+
 test('accepts binary glTF models and rejects files only named .glb', t => {
   const f = fixture(t); mkdirSync(join(f.root, 'assets/models'));
   writeFileSync(join(f.root, 'assets/models/body-a1b2.glb'), glb('{"asset":{"version":"2.0"}}')); f.seal();

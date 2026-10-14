@@ -34,7 +34,9 @@ export function checkPackage(root, sourceSha, publish) {
       else {
         if (!stat.isFile() || stat.size > 5 * 1024 * 1024) throw Error('Invalid package file');
         const cityAsset = /^assets\/assets\/cities\/[a-z][a-z0-9-]*\.([a-f0-9]{64})\.json$/.exec(rel);
-        if (!['worker.js', 'wrangler.json', 'manifest.json'].includes(rel) && !cityAsset && !/^assets\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/.test(rel)) throw Error('Unexpected package file');
+        // The two reduced-detail body files of the near crowd (src/scene/body/files.ts): the only binary that is not a glTF.
+        const bodyLod = /^assets\/assets\/base-body-(?:male|female)-lod-[0-9a-f]{8}\.bin$/.test(rel) && stat.size > 0 && stat.size < 1024 * 1024;
+        if (!['worker.js', 'wrangler.json', 'manifest.json'].includes(rel) && !cityAsset && !bodyLod && !/^assets\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/.test(rel)) throw Error('Unexpected package file');
         const bytes = readFileSync(full);
         if (cityAsset && cityAsset[1] !== hash(bytes)) throw Error('City content filename hash mismatch');
         if (rel.endsWith('.glb') && !isGlb(bytes)) throw Error('Invalid model file');

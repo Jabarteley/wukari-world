@@ -29,7 +29,7 @@ import type { Person, PersonPose } from './crowd.ts';
 import { CHILD_HEAD, PROP_CALLS, easeGlance, glanceYaw, nearAction, nearCandidates, nearDress, selectNear } from './near.ts';
 import type { Eye, NearAction, NearChoice, NearDress } from './near.ts';
 import { placed, spaceNear } from './spacing.ts';
-import type { Spot } from './spacing.ts';
+import type { Obstacle, Spot } from './spacing.ts';
 
 export interface NearCrowdOptions {
   /** The street-life group: the bodies and props are drawn in its coordinates. */
@@ -51,6 +51,8 @@ export interface NearFrame {
   count: number
   eye: Eye | null
   player: { x: number; z: number } | null
+  /** Who the bodies give way to (the player, other players): fixed bodies in the spacing (spacing.ts spaceNear). */
+  obstacles?: readonly Obstacle[]
   seconds: number
   /** Seconds since the last frame; 0 when placing still (settle, reduced motion). */
   dt: number
@@ -59,6 +61,8 @@ export interface NearCrowd {
   /** Pose the near people; returns who is drawn as a body (their cut-outs are to be hidden). */
   update(frame: NearFrame): ReadonlySet<number>
   setCap(cap: number): void
+  /** Where a person drawn as a body stood at the last update (after spacing), if they are one. */
+  spot(index: number): Spot | undefined
   readonly cap: number
   readonly shown: number
   readonly bodies: number
@@ -103,7 +107,7 @@ export function createNearCrowd(kit: Kit, options: NearCrowdOptions): NearCrowd 
   const slots: Slot[] = [], dresses = new Map<number, NearDress>();
   let crowd: CrowdBodies | null = null, pending: number | null = null, made = 0, failed = false, disposed = false, cap = choice.people, rest = 0;
   const now = (): number => globalThis.performance?.now?.() ?? Date.now();
-  let drawn = new Set<number>(), short = false;
+  let drawn = new Set<number>(), short = false, spots = new Map<number, Spot>();
   const dressOf = (index: number): NearDress => {
     let dress = dresses.get(index);
     if (!dress) { dress = nearDress(people[index]!, index, options.seed); dresses.set(index, dress); }
@@ -226,8 +230,8 @@ export function createNearCrowd(kit: Kit, options: NearCrowdOptions): NearCrowd 
     const wanted = selectNear(nearCandidates(people, frame.poses, frame.count, options.walkable), frame.eye, drawn, cap);
     const keep = new Set(wanted);
     // Bodies are solid: no two stand closer than spacing.ts says (they sidestep, keeping to the floor); each is placed at its own spot.
-    const spots = new Map<number, Spot>();
-    const spaced = spaceNear(wanted.map((index) => placed(index, people[index]!, frame.poses[index]!)), options.walkable);
+    spots = new Map<number, Spot>();
+    const spaced = spaceNear(wanted.map((index) => placed(index, people[index]!, frame.poses[index]!)), options.walkable, frame.obstacles ?? []);
     wanted.forEach((index, i) => spots.set(index, spaced[i]!));
     for (const slot of slots) if (slot.person !== null && !keep.has(slot.person)) { slot.person = null; slot.body.object.visible = false; }
     let triangles = 0, calls = PROP_CALLS, redressed = false;
@@ -268,6 +272,7 @@ export function createNearCrowd(kit: Kit, options: NearCrowdOptions): NearCrowd 
   return {
     update,
     setCap(value) { cap = Math.max(0, Math.min(choice.people, Math.floor(value))); },
+    spot: (index) => (drawn.has(index) ? spots.get(index) : undefined),
     get cap() { return cap; },
     get shown() { return drawn.size; },
     get bodies() { return slots.length; },

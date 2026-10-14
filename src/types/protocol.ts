@@ -516,7 +516,7 @@ export interface LifeChangedFrame { type: 'life-changed'; rev: number; by?: stri
  * The counts of the header pill (server/pulse.ts), pushed to every open socket when a socket opens and then whenever they
  * changed (at most about every two seconds). The same numbers GET /api/world/pulse answers, which stays as the fallback.
  */
-export interface PulseFrame { type: 'pulse'; online: number; visits: number; today: number; cities: Record<string, number>; /** AI agents present now (never counted in `online`). */ ai?: number }
+export interface PulseFrame { type: 'pulse'; online: number; visits: number; today: number; cities: Record<string, number>; /** AI agents present now (never counted in `online`). */ ai?: number; /** The same agents by city (only cities with any). */ aiCities?: Record<string, number> }
 
 /**
  * Everything a server may send. Clients must ignore types they do not know: the community panel's

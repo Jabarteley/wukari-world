@@ -117,7 +117,12 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     return planStreet({ houses: frontages(), seed, mix: sceneryMix(kinds, dear) });
   }
   let plan = planNow();
-  const makeGrid = () => createWalkGrid({ bounds: BOUNDS, cell: 0.3, radius: 0.32, entrance: [ownX(), ENTRANCE.z, ENTRANCE.ry], block: plan.blocks });
+  // The walk grid, and on top of it the street life's people near the player as moving circles (draw.ts blocks): the avatar slides
+  // round them as round a wall. `floor` is the grid alone (where the street's own bodies may stand).
+  const makeGrid = () => {
+    const base = createWalkGrid({ bounds: BOUNDS, cell: 0.3, radius: 0.32, entrance: [ownX(), ENTRANCE.z, ENTRANCE.ry], block: plan.blocks });
+    return { ...base, floor: base.free, free: (x: number, z: number) => base.free(x, z) && !streetLife?.blocks(x, z, avatar.position) };
+  };
   let grid = makeGrid();
 
   /** A mask that is white over the windows of an atlas family, so they can be lit at dusk and night. */
@@ -352,11 +357,12 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
           const lanes = STREET_LANES.map(lane => lane === browse ? { ...lane, windows } : lane);
           // The final guard: the street is used only when all of it (lanes, roads, crossings) lies inside the street's walkable bounds, and
           // its start pose only when the eye stands on a walkable cell; otherwise none (the phase-3b lanes, no traffic, no street pose).
-          const layout = streets.fitStreet(streets.homeStreet(country(), ownX(), lanes, ROW_HALF_WIDTH, BOUNDS), (x, z) => grid.free(x, z));
+          const layout = streets.fitStreet(streets.homeStreet(country(), ownX(), lanes, ROW_HALF_WIDTH, BOUNDS), (x, z) => grid.floor(x, z));
           // The near crowd's bodies only on the walk grid (bodyFloor); the far pavement's cut-outs are kept by the bounds guard alone.
           streetLife = module.createStreetLife(kit, { parent: group, seed: lifeSeed(), lanes: layout?.lanes ?? STREET_LANES, roads: layout?.roads ?? [], crossings: layout ? STREET_CROSSINGS : [],
-            country: country(), crowd: choice.crowd, vehicles: layout ? choice.vehicles : 0, narrow: streets.HOME_NARROW, bounds: BOUNDS, at: Date.now(),
-            context: 'street', tier: choice.tier, ready: changed, bodyFloor: (x, z) => grid.free(x, z) });
+            // A believable crowd for the street's length (plan.ts streetCrowd: 10 to 18, half on a lite device), not the tier's whole cap.
+            country: country(), crowd: gate.streetCrowd(choice, 2 * ROW_HALF_WIDTH), vehicles: layout ? choice.vehicles : 0, narrow: streets.HOME_NARROW, bounds: BOUNDS, at: Date.now(),
+            context: 'street', tier: choice.tier, ready: changed, bodyFloor: (x, z) => grid.floor(x, z), others: () => [...peers.values()].map(peer => peer.person) });
           streetLife.step(Date.now(), avatar.position);
           streetLayout = layout; streets.noteStreet('neighbourhood', layout);
           streetWindow = STREET_WINDOW_S; changed();

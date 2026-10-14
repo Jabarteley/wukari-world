@@ -118,10 +118,12 @@ test('poses: walking strides, standing idles at their own point, a coffee sips, 
     make: async (dress) => { const body = fakeBody(dress); made.set(Number(dress.seed.split('|').pop()), body); return body; } });
   // Hand-built poses: four people right by the camera, one of each kind.
   const pick = (test: (i: number) => boolean) => people.findIndex((_, i) => test(i));
-  const walker = pick((i) => !people[i]!.child && dresses[i]!.prop === null);
-  const cupper = pick((i) => dresses[i]!.prop === 'cup');
-  const phoner = pick((i) => dresses[i]!.prop === 'phone');
-  const child = pick((i) => people[i]!.child === true);
+  // The walker is a child's parent (a child is a body only with their parent: near.ts nearCandidates), carrying nothing.
+  const parentOf = (i: number) => people.findIndex((p) => !p.child && p.family !== undefined && p.family === people[i]!.family);
+  const child = pick((i) => people[i]!.child === true && parentOf(i) >= 0 && dresses[parentOf(i)]!.prop === null);
+  const walker = parentOf(child);
+  const cupper = pick((i) => dresses[i]!.prop === 'cup' && people[i]!.family === undefined);
+  const phoner = pick((i) => dresses[i]!.prop === 'phone' && people[i]!.family === undefined);
   assert.ok(walker >= 0 && cupper >= 0 && phoner >= 0 && child >= 0);
   const base: PersonPose = { x: 0, z: 2, ry: Math.PI, phase: 0, fade: 1, mode: 1, lift: 0, travelled: 3 };
   const poses: (PersonPose | null)[] = people.map(() => null);

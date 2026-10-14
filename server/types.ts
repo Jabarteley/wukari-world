@@ -1127,6 +1127,8 @@ export interface AgentRoom {
   members(room: string): { id: string; name: string; look: unknown; mark: { agent?: true; agentUntil?: number }; doing: string | null; group: string | null }[]
   /** How many virtual members there are, for the pulse. */
   count(): number
+  /** The room key of each virtual member (one entry each), so the pulse can count them by city. */
+  rooms?(): string[]
 }
 
 export interface ServerConfig {

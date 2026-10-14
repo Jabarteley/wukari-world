@@ -39,8 +39,8 @@ import type { PulseFrame } from '../src/types/protocol.ts';
 import type { Db, RouteContext, WsConnection } from './types.ts';
 
 /** What GET /api/world/pulse answers (besides `serverTime`). */
-/** `online` and `today` count people; `ai` counts AI agents (characters an agent plays: virtual members of venues, and own characters an agent is driving now), so the two are never mixed. */
-export interface Pulse { online: number; visits: number; today: number; cities: Record<string, number>; ai?: number }
+/** `online` and `today` count people; `ai` counts AI agents (and `aiCities` the same by city) (characters an agent plays: virtual members of venues, and own characters an agent is driving now), so the two are never mixed. */
+export interface Pulse { online: number; visits: number; today: number; cities: Record<string, number>; ai?: number; /** `ai` by city: only cities with an agent in them, and only when `ai` is sent. */ aiCities?: Record<string, number> }
 /** Who is asking: always counted, in `city` when it is known. */
 export interface Viewer { id: string; city: string | null }
 export interface PulseService {
@@ -121,6 +121,16 @@ function build(ctx: RouteContext): PulseService {
 
   /** AI agents present now: the virtual members of venues, and the sockets of own characters an agent is driving. */
   const aiCount = (): number => (ctx.checks?.agentRoom?.count() ?? 0) + new Set(liveSockets().filter((ws) => ws.session?.agent === true).map((ws) => ws.session.id)).size;
+  /** The same agents by city: a virtual member in its venue's city, a driven socket in its room's city. An agent not in a city yet is in `ai` only. */
+  function aiByCity(): Record<string, number> {
+    const out: Record<string, number> = {};
+    const add = (city: string | null | undefined): void => { if (city && known.has(city)) out[city] = (out[city] ?? 0) + 1; };
+    for (const room of ctx.checks?.agentRoom?.rooms?.() ?? []) add(room.split(':')[0]);
+    const driven = new Map<string, string | null>();
+    for (const ws of liveSockets()) if (ws.session?.agent === true && ws.session.id && !driven.get(ws.session.id)) driven.set(ws.session.id, roomCity(ws));
+    for (const city of driven.values()) add(city);
+    return out;
+  }
   function base(fresh: boolean): NonNullable<typeof cached> {
     const at = ctx.now();
     if (cached && at >= cached.at && at - cached.at < CACHE_MS && !(dirty && fresh)) return cached;
@@ -130,7 +140,7 @@ function build(ctx: RouteContext): PulseService {
     for (const city of everyone.values()) if (city) cities[city] = (cities[city] ?? 0) + 1;
     dirty = false;
     const aiNow = aiCount();
-    cached = { at, members: everyone, value: { online: everyone.size, visits: 0, today: 0, cities, ...(aiNow > 0 ? { ai: aiNow } : {}) } };
+    cached = { at, members: everyone, value: { online: everyone.size, visits: 0, today: 0, cities, ...(aiNow > 0 ? { ai: aiNow, aiCities: aiByCity() } : {}) } };
     return cached;
   }
 
@@ -145,12 +155,12 @@ function build(ctx: RouteContext): PulseService {
       else if (placed === null && city) cities[city] = (cities[city] ?? 0) + 1;
     }
     // `today` is never below the players online now: they are players of today.
-    return { online, visits: visits ?? 0, today: Math.max(online, seen && seen.day === today() ? seen.count : 0), cities, ...(value.ai ? { ai: value.ai } : {}) };
+    return { online, visits: visits ?? 0, today: Math.max(online, seen && seen.day === today() ? seen.count : 0), cities, ...(value.ai ? { ai: value.ai, aiCities: { ...value.aiCities } } : {}) };
   }
 
   // ---- the counts frame -------------------------------------------------------------------------
   let sentKey = '', sentAt = -Infinity, timer: ReturnType<typeof setTimeout> | null = null;
-  const keyOf = (value: Pulse): string => `${value.online}|${value.ai ?? 0}|${value.visits}|${value.today}|${ctx.cityIds.map((id) => value.cities[id] ?? 0).join(',')}`;
+  const keyOf = (value: Pulse): string => `${value.online}|${value.ai ?? 0}|${ctx.cityIds.map((id) => value.aiCities?.[id] ?? 0).join(',')}|${value.visits}|${value.today}|${ctx.cityIds.map((id) => value.cities[id] ?? 0).join(',')}`;
   /** Something may have changed: the counts are looked at soon, and sent when they differ from what was sent, at most every PUSH_MS. */
   function changed(): void {
     dirty = true;

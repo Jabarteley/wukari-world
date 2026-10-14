@@ -1,18 +1,20 @@
 <script setup lang="ts">
-// "● 128 in Allworld · 12 here · 4.2k visits": who is in the game now and how many visits it has had. It sits in the
-// top bar, shows nothing until the first real answer (the server's first socket frame, or the first poll), and opens
-// People when pressed (the invite when they are alone). The reader is always one of the people counted, so it never says 0; when they are the only one
-// online it says something true and warmer instead of a bare "1" ("You're first here", or "N played today") and
-// pressing it offers the invite. The dot is green while the numbers are recent and amber when they are not. A number that
+// "● 37 online · 6 here · 4.2k visits": everyone in the game now, people and AI agents together, and how many visits it has
+// had. It sits in the top bar, shows nothing until the first real answer (the server's first socket frame, or the first poll),
+// and opens the online sheet when pressed: how many are people and how many are AI agents, here and in the world, with People
+// and Invite (Invite first when no other person is online). The reader is always one of the people counted, so it never says 0;
+// when nobody else at all is online it says something true and warmer instead of a bare "1" ("You're first here", or "N played
+// today"). The dot is green while the numbers are recent and amber when they are not. A number that
 // changes steps to its new value in a few timed steps (none under reduced motion); there is no animation loop.
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { onCallFrame, onSocketOpen, sendFrame, social } from '../social/useSocial.ts'
-import { shareInvite } from '../growth/shareInvite.ts'
 import { aloneLine, easeSteps, onlineView, pulseAria, pulseTitle, pulseTone, compactCount } from './onlinePillModel.ts'
 import { usePulse } from './usePulse.ts'
+// The sheet is its own chunk: fetched the first time the pill is pressed.
+const OnlineSheet = defineAsyncComponent(() => import('./OnlineSheet.vue'))
 
-const { game, shell, api } = useApp()
+const { game, api } = useApp()
 const pulse = usePulse((path) => api.fetchJson(path))
 const state = pulse.state
 const connected = game.connected
@@ -25,7 +27,7 @@ const cityId = game.cityId
 const title = computed(() => (state.numbers ? pulseTitle(state.numbers, tone.value, cityId.value) : ''))
 const aria = computed(() => (state.numbers ? pulseAria(state.numbers, tone.value, cityId.value) : ''))
 const view = computed(() => (state.numbers ? onlineView(state.numbers, cityId.value) : null))
-const alone = computed(() => view.value?.alone === true)
+const alone = computed(() => view.value?.solo === true)
 const line = computed(() => aloneLine(view.value ?? { today: 0 }))
 const hasCity = computed(() => view.value?.here != null)
 const here = ref(1)
@@ -50,7 +52,8 @@ watch([() => state.numbers, cityId], ([numbers]) => {
   first = false
 }, { immediate: true })
 
-const press = (): void => { if (alone.value) shareInvite('hud', () => game.toast('That could not be shared.', 'error')); else shell.open('people') }
+const sheet = ref(false), opened = ref(false)
+const press = (): void => { opened.value = true; sheet.value = true }
 const onVisibility = (): void => pulse.visibility()
 // The server sends the counts over the socket: asked for once per connection (the answer is the right count already), and again on its own when they change.
 const askCounts = (): void => { sendFrame({ type: 'pulse-watch' }) }
@@ -70,12 +73,12 @@ watch(connected, (on) => { if (on) pulse.start(); else { pulse.stop(); pulse.res
 <template>
   <button v-if="shown" class="pulse-pill" :class="{ 'is-alone': alone }" data-tour="online" type="button" :title="title" :aria-label="aria" @click="press">
     <i class="pulse-dot" :class="`is-${tone}`" aria-hidden="true"></i>
-    <span class="pulse-online">{{ compactCount(online) }}<span class="pulse-word"> in Allworld</span></span>
-    <span v-if="state.numbers?.ai" class="pulse-world"><span class="pulse-sep" aria-hidden="true"> · </span>{{ compactCount(state.numbers.ai) }} AI</span>
+    <span class="pulse-online">{{ compactCount(online) }}<span class="pulse-word"> online</span></span>
     <span v-if="hasCity" class="pulse-world"><span class="pulse-sep" aria-hidden="true"> · </span>{{ compactCount(here) }} here</span>
     <span class="pulse-visits"><span class="pulse-sep" aria-hidden="true"> · </span>{{ compactCount(visits) }} visits</span>
     <span v-if="alone" class="pulse-visits pulse-nudge"><span class="pulse-sep" aria-hidden="true"> · </span>{{ line.long }}: invite a friend</span>
   </button>
+  <OnlineSheet v-if="opened && state.numbers" :open="sheet" :numbers="state.numbers" :city-id="cityId" @close="sheet = false" />
 </template>
 
 <style scoped>

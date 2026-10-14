@@ -1,0 +1,310 @@
+{
+  "expectedSourceGitSHA": "83116903f3fbdf60090ce5d924080cbee547bbde",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "IO",
+    "datasetSha256": "3c4c6e276dd712800038171448c0e764ce974502f79c2928aad824ea0ce8dd56",
+    "receiptSha256": "1e2fab505820ff646ae1f189302dc25e47292a7a6abc7224cc50ba49eb926d52",
+    "receiptBytes": 18460,
+    "geometrySha256": "4229cbef091e617582ec85ba20795b95e40badca754bc400dc25920ad65fd95c",
+    "geometryBytes": 145833,
+    "scriptSha256": "a75e7ddb301ce6651f282b4ee3920097252b23bc8120907abf89487c07916b05",
+    "relationId": 1993867,
+    "boundaryKey": "io",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38504953075,
+      "sourceSha": "8942cfef575a8fefae96cac7df402e46811900d2",
+      "sourceArtifact": "city-bootstrap-io-8942cfef575a8fefae96cac7df402e46811900d2",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "chagos",
+      "name": "Île Gabrielle",
+      "country": "io",
+      "facts": {
+        "id": "chagos",
+        "name": "Île Gabrielle",
+        "country": {
+          "idISOlower": "io",
+          "name": "British Indian Ocean Territory"
+        },
+        "state": {
+          "idunique": "io-chagos",
+          "name": "Île Gabrielle"
+        },
+        "timezone": "Indian/Chagos",
+        "centre": {
+          "lon": 71.7497812,
+          "lat": -5.4221915
+        },
+        "airport": {
+          "id": "chagos-airport",
+          "name": "Passe de Île Poule",
+          "lon": 71.7552944,
+          "lat": -5.3858823,
+          "sourceUrl": "https://www.openstreetmap.org/node/366535766"
+        },
+        "sourceLabel": "OpenStreetMap country PBF",
+        "sourceUrl": "https://www.openstreetmap.org/node/366535762",
+        "licence": "OpenStreetMap ODbL-1.0",
+        "coverageNote": "Source-sampling bounds from a mapped place node and its mapped gateway node; the grouping is not an administrative-boundary claim. A mapped landing, heliport or track does not establish current operations or access.",
+        "gateway": {
+          "mode": "sea",
+          "osmRef": "node/366535766"
+        },
+        "bounds": [
+          71.67758458573489,
+          -5.494543855973592,
+          71.82197781426511,
+          -5.349839144026409
+        ]
+      },
+      "profile": "wilderness",
+      "selectionExclusions": [],
+      "links": [
+        {
+          "to": "male",
+          "kind": "ship"
+        },
+        {
+          "to": "victoria",
+          "kind": "ship"
+        }
+      ],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/366535762",
+          "sourceUrl": "https://www.openstreetmap.org/node/366535762",
+          "sourceRecord": {
+            "ref": "node/366535762",
+            "tags": {
+              "name": "Île Gabrielle",
+              "place": "islet"
+            },
+            "lon": 71.7497812,
+            "lat": -5.4221915
+          },
+          "pbfSha256": "3c4c6e276dd712800038171448c0e764ce974502f79c2928aad824ea0ce8dd56",
+          "selection": {
+            "cityOsmRef": "node/366535762",
+            "matchedOsmRef": "node/366535762"
+          }
+        },
+        "gateway": {
+          "osmRef": "node/366535766",
+          "mode": "sea",
+          "sourceUrl": "https://www.openstreetmap.org/node/366535766",
+          "sourceRecord": {
+            "ref": "node/366535766",
+            "tags": {
+              "is_in:country_code": "IO",
+              "is_in:ocean": "Indian Ocean",
+              "name": "Passe de Île Poule",
+              "old_name": "Passe Elisabeth",
+              "place": "locality",
+              "subsea": "channel"
+            },
+            "lon": 71.7552944,
+            "lat": -5.3858823
+          },
+          "pbfSha256": "3c4c6e276dd712800038171448c0e764ce974502f79c2928aad824ea0ce8dd56",
+          "claim": "caller-supplied gateway node, checked for its mode tags and for no military tag; a mapped landing does not establish operations"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "IO",
+              "-0720+07225",
+              "Indian/Chagos"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Indian/Chagos",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "IO",
+              "-0720+07225",
+              "Indian/Chagos"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-british-indian-ocean-territory-261013.osm.pbf",
+          "bytes": 513803,
+          "sha256": "3c4c6e276dd712800038171448c0e764ce974502f79c2928aad824ea0ce8dd56",
+          "headerTimestamp": "2026-10-13T00:55:40Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/32593589",
+          "way/32593603",
+          "way/32593608",
+          "way/32593717",
+          "way/32593747",
+          "way/32593752",
+          "way/32593780",
+          "way/32593783",
+          "way/32593802",
+          "way/32594428",
+          "way/32594430",
+          "way/32594610",
+          "way/32594612",
+          "way/32594744",
+          "way/32595400",
+          "way/32596963",
+          "way/32597624",
+          "way/32597625",
+          "way/32597765",
+          "way/32598193",
+          "way/32598194",
+          "way/32598625",
+          "way/32598627",
+          "way/32598628",
+          "way/32598629",
+          "way/32599305",
+          "way/32599432",
+          "way/32599497",
+          "way/32599767",
+          "way/44038373",
+          "way/44038375",
+          "way/147681820",
+          "way/536779324",
+          "way/546485159",
+          "way/687012907",
+          "way/1388960407",
+          "way/1392544323",
+          "way/1392544326"
+        ],
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "boundsPolicySha256": "6f384df7d7b374e875192057a85d6bcace4dd2d7c3b3701298a7893dc2ed67b6",
+        "bounds": {
+          "policy": {
+            "playKm": 8,
+            "coreKm": 3,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -5.494543855973592,
+              71.67758458573489,
+              -5.349839144026409,
+              71.82197781426511
+            ],
+            "core": [
+              -5.449323633490097,
+              71.72270951648714,
+              -5.395059366509903,
+              71.77685288351286
+            ],
+            "outline": [
+              -5.544543855973592,
+              71.6275845857349,
+              -5.299839144026409,
+              71.87197781426511
+            ],
+            "wide": [
+              -5.911600923894366,
+              71.26052751781411,
+              -4.932782076105634,
+              72.23903488218589
+            ]
+          },
+          "airportMarginMetres": 3985.29175599993,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "wilderness",
+          "rules": {
+            "minimumPlaces": 0,
+            "minimumNeighbourhoodLabels": 2,
+            "maximumEmptySlots": 9,
+            "cityPlaceTags": [
+              "hamlet",
+              "locality",
+              "isolated_dwelling",
+              "island",
+              "islet"
+            ],
+            "capitalPlaceTags": [],
+            "cityNaturalTags": [
+              "glacier",
+              "peak",
+              "saddle",
+              "reef",
+              "mountain_pass"
+            ],
+            "requiresCityOsmRef": true,
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtNaturalLabels": [
+              "peak",
+              "saddle",
+              "glacier",
+              "ridge",
+              "valley",
+              "volcano",
+              "cape",
+              "bay",
+              "reef",
+              "beach",
+              "mountain_pass"
+            ],
+            "hubGateway": true,
+            "authoredLinks": true,
+            "extraction": {
+              "extraPlaces": [
+                "natural",
+                "hut",
+                "historic"
+              ],
+              "roadLadder": [
+                "secondary",
+                "tertiary",
+                "unclassified",
+                "residential",
+                "service",
+                "track"
+              ],
+              "allowNoRoads": true,
+              "excludeSensitive": true
+            }
+          },
+          "cityPlaceTag": "islet"
+        }
+      },
+      "extractKey": "chagos",
+      "extractSha256": {
+        "places": "e2d8edfeacbd795af6990fbe3330ee8a7bfd2d7629f1f76e393cb2f687b3575b",
+        "extras": "bfd8fea4926e7634843bcc2dcc180da534910921ad39745c3e070bebc55948ec",
+        "water": "84dc05a2ed4026acbe333d369339bf3e127b37e9ccd927b14e59b7abf74b8360",
+        "landuse": "65a3d0a7cd32a81aecd6685fd0a942ec4481cbbb9cc0cecebdd82c495ba66df0",
+        "roads": "d1fb15d97750a36ac1ad244cd8201838f0c696eba9364d532e0f0f725e4dd21e"
+      },
+      "sourceJob": {
+        "city": "chagos",
+        "sourceRunId": 38504953075,
+        "sourceArtifact": "city-bootstrap-io-8942cfef575a8fefae96cac7df402e46811900d2",
+        "sourceSha": "8942cfef575a8fefae96cac7df402e46811900d2",
+        "datasetSha256": "3c4c6e276dd712800038171448c0e764ce974502f79c2928aad824ea0ce8dd56",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "extractSha256": {
+          "places": "e2d8edfeacbd795af6990fbe3330ee8a7bfd2d7629f1f76e393cb2f687b3575b",
+          "extras": "bfd8fea4926e7634843bcc2dcc180da534910921ad39745c3e070bebc55948ec",
+          "water": "84dc05a2ed4026acbe333d369339bf3e127b37e9ccd927b14e59b7abf74b8360",
+          "landuse": "65a3d0a7cd32a81aecd6685fd0a942ec4481cbbb9cc0cecebdd82c495ba66df0",
+          "roads": "d1fb15d97750a36ac1ad244cd8201838f0c696eba9364d532e0f0f725e4dd21e"
+        }
+      }
+    }
+  ]
+}

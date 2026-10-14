@@ -1,0 +1,296 @@
+{
+  "expectedSourceGitSHA": "83116903f3fbdf60090ce5d924080cbee547bbde",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "XA",
+    "datasetSha256": "a0f4ef9d733103ae6fe87cb25368588d14defbece9ee5bb49d95758babcf9c48",
+    "receiptSha256": "de27e1a7054303823acec0323f69e5b815d84516c392faf9cbb6875d19dfe71f",
+    "receiptBytes": 5675,
+    "geometrySha256": "77ecf46d4f01a58331715705be945c16d6141a86e724f80b3df349468bfa78a0",
+    "geometryBytes": 10214,
+    "scriptSha256": "a75e7ddb301ce6651f282b4ee3920097252b23bc8120907abf89487c07916b05",
+    "relationId": 2559345,
+    "boundaryKey": "xa",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38504953075,
+      "sourceSha": "8942cfef575a8fefae96cac7df402e46811900d2",
+      "sourceArtifact": "city-bootstrap-xa-8942cfef575a8fefae96cac7df402e46811900d2",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "reef",
+      "name": "Ashmore and Cartier Islands",
+      "country": "xa",
+      "facts": {
+        "id": "reef",
+        "name": "Ashmore and Cartier Islands",
+        "country": {
+          "idISOlower": "xa",
+          "name": "Ashmore and Cartier Islands"
+        },
+        "state": {
+          "idunique": "xa-reef",
+          "name": "Ashmore and Cartier Islands"
+        },
+        "timezone": "Australia/Perth",
+        "centre": {
+          "lon": 123.0851206,
+          "lat": -12.2354389
+        },
+        "airport": {
+          "id": "reef-airport",
+          "name": "East Island",
+          "lon": 123.0956705,
+          "lat": -12.2590366,
+          "sourceUrl": "https://www.openstreetmap.org/node/1717848188"
+        },
+        "sourceLabel": "OpenStreetMap country PBF",
+        "sourceUrl": "https://www.openstreetmap.org/node/2294591720",
+        "licence": "OpenStreetMap ODbL-1.0",
+        "coverageNote": "Source-sampling bounds from a mapped place node and its mapped gateway node; the grouping is not an administrative-boundary claim. A mapped landing, heliport or track does not establish current operations or access.",
+        "gateway": {
+          "mode": "sea",
+          "osmRef": "node/1717848188"
+        },
+        "bounds": [
+          122.9563719034907,
+          -12.362055522953785,
+          123.21386929650929,
+          -12.108822277046215
+        ]
+      },
+      "profile": "wilderness",
+      "selectionExclusions": [],
+      "links": [
+        {
+          "to": "dili",
+          "kind": "ship"
+        },
+        {
+          "to": "flying-fish-cove",
+          "kind": "charter"
+        }
+      ],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/2294591720",
+          "sourceUrl": "https://www.openstreetmap.org/node/2294591720",
+          "sourceRecord": {
+            "ref": "node/2294591720",
+            "tags": {
+              "name": "Ashmore and Cartier Islands",
+              "name:ar": "جزر أشمور وكارتيير",
+              "name:br": "Inizi Ashmore ha Cartier",
+              "name:de": "Ashmore- und Cartierinseln",
+              "name:en": "Ashmore and Cartier Islands",
+              "name:eo": "Aŝmora kaj Kartia Insuloj",
+              "name:es": "Islas Ashmore y Cartier",
+              "name:fr": "Îles Ashmore-et-Cartier",
+              "name:hu": "Ashmore- és Cartier-szigetek",
+              "name:it": "Isole Ashmore e Cartier",
+              "name:nl": "Ashmore- en Cartiereilanden",
+              "name:pt": "Ilhas Ashmore e Cartier",
+              "name:ro": "Insulele Ashmore și Cartier",
+              "name:ru": "Острова Ашмор и Картье",
+              "name:sk": "Ashmorov a Cartierov ostrov",
+              "name:vi": "Quần đảo Ashmore và Cartier",
+              "place": "territory",
+              "wikidata": "Q133888",
+              "wikipedia": "en:Ashmore and Cartier Islands"
+            },
+            "lon": 123.0851206,
+            "lat": -12.2354389
+          },
+          "pbfSha256": "a0f4ef9d733103ae6fe87cb25368588d14defbece9ee5bb49d95758babcf9c48",
+          "selection": {
+            "cityOsmRef": "node/2294591720",
+            "matchedOsmRef": "node/2294591720"
+          }
+        },
+        "gateway": {
+          "osmRef": "node/1717848188",
+          "featureRef": "way/25763630",
+          "mode": "sea",
+          "sourceUrl": "https://www.openstreetmap.org/way/25763630",
+          "sourceRecord": {
+            "ref": "node/1717848188",
+            "tags": {},
+            "lon": 123.0956705,
+            "lat": -12.2590366
+          },
+          "featureRecord": {
+            "ref": "way/25763630",
+            "tags": {
+              "alt_name": "East Islet",
+              "name": "East Island",
+              "natural": "coastline",
+              "place": "islet",
+              "wikidata": "Q5328657",
+              "wikipedia": "en:East Island (Ashmore and Cartier Islands)"
+            }
+          },
+          "pbfSha256": "a0f4ef9d733103ae6fe87cb25368588d14defbece9ee5bb49d95758babcf9c48",
+          "claim": "caller-supplied gateway node, checked for its mode tags and for no military tag; a mapped landing does not establish operations"
+        },
+        "timezone": {
+          "rows": [],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "override": {
+            "id": "Australia/Perth",
+            "reason": "Ashmore and Cartier Islands, an Australian external territory, has no zone1970.tab row of its own; the game uses Australia/Perth (UTC+8), the zone of the nearest Australian mainland coast and the one closest to local mean solar time at about 123 E (UTC+8:12). Owner review required.",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "claim": "reviewed timezone override: the pinned zone1970.tab has no row for this place, or the zone of a station differs from its country row"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/australia-oceania/australia/ashmore-cartier-261013.osm.pbf",
+          "bytes": 22624,
+          "sha256": "a0f4ef9d733103ae6fe87cb25368588d14defbece9ee5bb49d95758babcf9c48",
+          "headerTimestamp": "2026-10-13T20:21:31Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/25763451",
+          "way/25763548",
+          "way/25763630",
+          "way/27800235",
+          "way/604824124",
+          "way/620292596",
+          "way/620292599"
+        ],
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "boundsPolicySha256": "6f384df7d7b374e875192057a85d6bcace4dd2d7c3b3701298a7893dc2ed67b6",
+        "bounds": {
+          "policy": {
+            "playKm": 14,
+            "coreKm": 4,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -12.362055522953785,
+              122.9563719034907,
+              -12.108822277046215,
+              123.21386929650929
+            ],
+            "core": [
+              -12.271615077986796,
+              123.04834793406177,
+              -12.199262722013204,
+              123.12189326593823
+            ],
+            "outline": [
+              -12.412055522953786,
+              122.90637190349071,
+              -12.058822277046215,
+              123.26386929650928
+            ],
+            "wide": [
+              -12.948301612481657,
+              122.37012581396283,
+              -11.522576187518343,
+              123.80011538603716
+            ]
+          },
+          "airportMarginMetres": 11390.802311000009,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "wilderness",
+          "rules": {
+            "minimumPlaces": 0,
+            "minimumNeighbourhoodLabels": 2,
+            "maximumEmptySlots": 9,
+            "cityPlaceTags": [
+              "hamlet",
+              "locality",
+              "isolated_dwelling",
+              "island",
+              "islet"
+            ],
+            "capitalPlaceTags": [],
+            "cityNaturalTags": [
+              "glacier",
+              "peak",
+              "saddle",
+              "reef",
+              "mountain_pass"
+            ],
+            "requiresCityOsmRef": true,
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtNaturalLabels": [
+              "peak",
+              "saddle",
+              "glacier",
+              "ridge",
+              "valley",
+              "volcano",
+              "cape",
+              "bay",
+              "reef",
+              "beach",
+              "mountain_pass"
+            ],
+            "hubGateway": true,
+            "authoredLinks": true,
+            "extraction": {
+              "extraPlaces": [
+                "natural",
+                "hut",
+                "historic"
+              ],
+              "roadLadder": [
+                "secondary",
+                "tertiary",
+                "unclassified",
+                "residential",
+                "service",
+                "track"
+              ],
+              "allowNoRoads": true,
+              "excludeSensitive": true
+            }
+          },
+          "cityPlaceTag": "territory"
+        },
+        "countryName": {
+          "name": "Ashmore and Cartier Islands",
+          "reason": "XA is a user-assigned code for Ashmore and Cartier Islands, an Australian external territory with no ISO 3166-1 code of its own; the pinned iso3166.tab has no row for it. Game venue map only, uninhabited reef islets.",
+          "claim": "reviewed name of a user-assigned code absent from the pinned iso3166.tab; game map only"
+        }
+      },
+      "extractKey": "reef",
+      "extractSha256": {
+        "places": "f671bd6348fbda32fa0dcc3cd7e1fabf06a448444723ac103a52f77d60f0dfd6",
+        "extras": "ea983a7225f924591dceeaa582d0a0e45c207cf88bb74e074122b5c3e6c70eee",
+        "water": "cfd0b528c230cb5f7ab77d9b1a1785829c2b93446972da942f28e0b79a672835",
+        "landuse": "febc97547ec582afbb972c7996901163c92297f8e24219772052d468e083b27f",
+        "roads": "9fce2047073a4d40d42c1fa7609aea5e39790f245d00994f9a7ee42b9a5cddad"
+      },
+      "sourceJob": {
+        "city": "reef",
+        "sourceRunId": 38504953075,
+        "sourceArtifact": "city-bootstrap-xa-8942cfef575a8fefae96cac7df402e46811900d2",
+        "sourceSha": "8942cfef575a8fefae96cac7df402e46811900d2",
+        "datasetSha256": "a0f4ef9d733103ae6fe87cb25368588d14defbece9ee5bb49d95758babcf9c48",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "extractSha256": {
+          "places": "f671bd6348fbda32fa0dcc3cd7e1fabf06a448444723ac103a52f77d60f0dfd6",
+          "extras": "ea983a7225f924591dceeaa582d0a0e45c207cf88bb74e074122b5c3e6c70eee",
+          "water": "cfd0b528c230cb5f7ab77d9b1a1785829c2b93446972da942f28e0b79a672835",
+          "landuse": "febc97547ec582afbb972c7996901163c92297f8e24219772052d468e083b27f",
+          "roads": "9fce2047073a4d40d42c1fa7609aea5e39790f245d00994f9a7ee42b9a5cddad"
+        }
+      }
+    }
+  ]
+}

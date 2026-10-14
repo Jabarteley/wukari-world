@@ -289,6 +289,8 @@ export function createCommunityStore(deps: CommunityDeps): CommunityStore {
   watch(placeNow, follow)
   game.on('expired', destroy)
   game.on('session', (_session, created) => { if (created) destroy() })
+  // While the player is in voice here, the game's music fades out and stops (the sound engine listens for this).
+  watch(() => state.value?.voice.on === true, (on) => { globalThis.window?.dispatchEvent(new CustomEvent('jaw:room-voice-active', { detail: on })) })
 
   return {
     open: readonly(open), state, positions, load, recovery,

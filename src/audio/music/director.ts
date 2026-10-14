@@ -22,6 +22,9 @@ export interface MusicDeps {
   speaking?: () => boolean
   destination?: AudioNode
 }
+// A voice call (a phone call or room voice): the music fades out over about two seconds and then stops; a new song starts when it ends.
+const CALL_FADE = 0.4
+const CALL_STOP_AFTER = 2
 /** One bounded audio-clock scheduler for original songs. No media downloads or render-loop work. */
 export class MusicDirector {
   private readonly ctx: AudioContext
@@ -35,6 +38,7 @@ export class MusicDirector {
   private pending: { at: number } | null = null
   private hidden = false
   private call = false
+  private callQuietAt = 0
   private gameUntil = 0
   private duckUntil = 0
   private gainTarget = 0
@@ -52,6 +56,7 @@ export class MusicDirector {
   refresh(): void {
     if (!this.allowed()) { this.silence(); return }
     this.mix()
+    if (this.call) return
     this.stopTick ??= this.deps.every(() => this.tick(), 50)
     if (!this.current && this.context !== 'venue') this.begin(this.ctx.currentTime + 0.08)
   }
@@ -62,21 +67,27 @@ export class MusicDirector {
     this.pending = { at: nextBar(this.ctx.currentTime + 0.15, this.current.start, this.current.tempo) }
   }
   setHidden(hidden: boolean): void { this.hidden = hidden; this.refresh() }
-  setCall(on: boolean): void { this.call = on; this.mix() }
+  setCall(on: boolean): void {
+    if (on === this.call) return
+    this.call = on
+    this.callQuietAt = this.ctx.currentTime + CALL_STOP_AFTER
+    if (!on || !this.current) this.refresh(); else this.mix()
+  }
   duck(seconds = 0.45): void { this.duckUntil = Math.max(this.duckUntil, this.ctx.currentTime + seconds); this.mix() }
   game(): void { this.gameUntil = this.ctx.currentTime + 8; this.mix() }
   private mix(): void {
     const t = this.ctx.currentTime
-    const factor = this.call ? 0.12 : t < this.gameUntil ? 0.2 : this.deps.speaking?.() || t < this.duckUntil ? 0.25 : 1
+    const factor = this.call ? 0 : t < this.gameUntil ? 0.2 : this.deps.speaking?.() || t < this.duckUntil ? 0.25 : 1
     const target = this.allowed() ? levelFor(this.deps.settings(), 'music') * factor : 0
     if (target === this.gainTarget) return
     this.gainTarget = target
-    this.bus.gain.setTargetAtTime(target, t, 0.035)
+    this.bus.gain.setTargetAtTime(target, t, this.call && target === 0 ? CALL_FADE : 0.035)
   }
   private tick(): void {
     if (!this.allowed()) { this.silence(); return }
     const now = this.ctx.currentTime
     this.mix()
+    if (this.call) { if (now >= this.callQuietAt) this.silence(); else this.current?.fill(now + 0.18); return }
     if (this.fading && now >= this.fadeEnd) { this.fading.close(); this.fading = null }
     if (this.pending && this.pending.at <= now + 0.12) {
       const at = Math.max(now, this.pending.at)

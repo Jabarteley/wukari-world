@@ -2,14 +2,15 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "zoom-2c",
-      "appSha": "cab2a098db7b2dbedbf82a3b4c719361147dd05e",
+      "id": "zoom-3",
+      "appSha": "85423f9e67889773ea9538dfe03b9bb0c1548da1",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
         "lagos",
         "accra",
         "kyrenia",
-        "taipei"
+        "taipei",
+        "paris"
       ],
       "roundtrip": true,
       "browserOnly": true

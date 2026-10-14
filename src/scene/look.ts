@@ -23,8 +23,7 @@
  */
 import type * as THREE from 'three';
 import type { Colour, ThreeModule } from './types.ts';
-import { LIGHT_TIER, readLight } from '../lightMode.ts';
-export { LIGHT_TIER };
+import { gate } from './frame-gate.ts';
 
 /** What a device is allowed to cost. */
 export interface RenderTier { readonly name: 'phone' | 'wide' | 'high'; readonly pixelRatio: number; readonly shadowMap: number; readonly softShadows: boolean; readonly env?: boolean; readonly shadowReach?: number }
@@ -74,7 +73,8 @@ function forcedTier(win: LookWindow): RenderTier | null {
 export function renderTier(win: LookWindow = globalThis): RenderTier {
   const forced = forcedTier(win);
   if (forced) return forced;
-  if (readLight(win)) return LIGHT_TIER;
+  const light = gate.tier(win);
+  if (light) return light;
   const coarse = win.matchMedia?.('(pointer: coarse)').matches === true;
   const short = Math.min(Number(win.innerWidth) || Infinity, Number(win.innerHeight) || Infinity);
   if (coarse && short <= 720) return PHONE_TIER;

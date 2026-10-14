@@ -11,7 +11,7 @@
  * screen where the sheet is the screen. The scene underneath keeps its state and is drawn once when the cover goes.
  * The first download carries this file (it imports only src/lightMode.ts).
  */
-import { lightFps } from '../lightMode.ts'
+import { LIGHT_TIER, lightFps, readLight } from '../lightMode.ts'
 export type FrameAction = 'draw' | 'wait' | 'stop'
 /** Browsers deliver frames a little early or late; a frame this much (ms) short of the gap still counts as on time. */
 export const FRAME_SLACK_MS = 2
@@ -40,3 +40,9 @@ export function setCovered(next: boolean): void {
   covered = next
   if (!next) jobs.forEach((job, id) => { if (!job.frame) ask(job, id) })
 }
+
+/**
+ * What the scene chunk takes from this file, as ONE import (each name imported from another chunk costs bytes there): the loop's
+ * frame request and cancel, and light mode's render tier for a window (null when light mode is off there).
+ */
+export const gate = { request: gatedRequest, cancel: gatedCancel, tier: (win: Parameters<typeof readLight>[0]) => (readLight(win) ? LIGHT_TIER : null) }

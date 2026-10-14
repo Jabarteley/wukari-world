@@ -2,14 +2,14 @@
 // One compact card after shared play: for each person you are not yet friends with, "Add as friend"; once friends, "Send a small gift" and
 // "Invite to your room". Dismissible, never a modal. It is drawn after a table game's result (inline) and after five minutes together in
 // room voice (floating). Everything goes through the routes that already exist and are checked by the server as ever: the friend request
-// (POST /api/social/friends/request), the gift (POST /api/social/transfers, a small game-naira amount, friends only, under the usual
+// (POST /api/social/friends/request), the gift (POST /api/social/transfers, a ₦5,000 game-naira gift, friends only, under the usual
 // limits) and the invitation (POST /api/social/visit/invite, friends only). An AI-played character is offered like anyone, always marked.
 // Loaded lazily (defineAsyncComponent) so none of it is in the first download.
 import { computed, reactive } from 'vue'
 import type { FriendOffer } from '../../../types/growth.ts'
 import BaseButton from '../../ui/BaseButton.vue'
 import AiTag from './AiTag.vue'
-import { CARD_TITLE, GIFT_AMOUNT, LATER, addedLine, cardLine, giftLabel } from './friendOfferModel.ts'
+import { CARD_TITLE, GIFT_AMOUNT, LATER, addedLine, cardLine, giftLabel, giftShort } from './friendOfferModel.ts'
 import { useApp } from '../../state/app.ts'
 import { useSocial } from './useSocial.ts'
 
@@ -18,8 +18,8 @@ const emit = defineEmits<{ close: [asked: string[]] }>()
 const client = useSocial()
 const { game } = useApp()
 /** Per person: what has been done on this card. */
-const rows = reactive<Record<string, { friend: boolean; line: string; busy: boolean; gifted: boolean; invited: boolean }>>({})
-const row = (id: string) => (rows[id] ??= { friend: false, line: '', busy: false, gifted: false, invited: false })
+const rows = reactive<Record<string, { friend: boolean; line: string; busy: boolean; gifted: boolean; invited: boolean; note: string }>>({})
+const row = (id: string) => (rows[id] ??= { friend: false, line: '', busy: false, gifted: false, invited: false, note: '' })
 const shown = computed(() => props.people.slice(0, 3))
 const more = computed(() => props.people.length - shown.value.length)
 
@@ -36,10 +36,12 @@ async function add(person: FriendOffer): Promise<void> {
 async function gift(person: FriendOffer): Promise<void> {
   const r = row(person.id)
   if (r.busy || r.gifted) return
-  r.busy = true
-  const result = await client.perform('/api/social/transfers', { to: person.id, amount: GIFT_AMOUNT, cityId: client.cityId(), clientId: client.newClientId() }, `Sent ${person.name} a small gift`)
+  const short = giftShort(game.state.value.cash)
+  if (short) { r.note = short; return }
+  r.busy = true; r.note = ''
+  const result = await client.perform('/api/social/transfers', { to: person.id, amount: GIFT_AMOUNT, cityId: client.cityId(), clientId: client.newClientId() }, `Sent ${person.name} a gift`)
   r.busy = false
-  if (result.ok) { r.gifted = true; client.refreshLife() }
+  if (result.ok) { r.gifted = true; client.refreshLife() } else r.note = result.reason
 }
 async function invite(person: FriendOffer): Promise<void> {
   const r = row(person.id)
@@ -71,6 +73,7 @@ const close = (): void => emit('close', props.people.filter((person) => !row(per
             <BaseButton small :disabled="row(person.id).busy || row(person.id).invited" @click="invite(person)">{{ row(person.id).invited ? 'Invited' : 'Invite to your room' }}</BaseButton>
           </template>
         </span>
+        <span v-if="row(person.id).note" class="fo-note" role="alert">{{ row(person.id).note }}</span>
       </li>
     </ul>
     <p v-if="more > 0" class="gr-note">and {{ more }} more</p>
@@ -89,5 +92,6 @@ const close = (): void => emit('close', props.people.filter((person) => !row(per
 .fo-name { font-weight: 650; }
 .fo-acts { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .fo-done { color: var(--c-green-dark, #1f6f43); font-weight: 650; }
+.fo-note { color: var(--c-red-dark, #a12622); font-weight: 650; }
 .fo-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 </style>

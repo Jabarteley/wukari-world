@@ -58,3 +58,13 @@ test('words: names are joined plainly, and an AI-played person is still a person
   assert.match(cardLine('table', [ada]), /played with Ada/);
   assert.match(cardLine('voice', [ada, bola]), /talking with Ada and Bola/);
 });
+
+test('the card gift is ₦5,000: inside one gift and the daily limits, and a player short of cash is told so plainly', async () => {
+  const { GIFT_AMOUNT, giftShort, giftLabel } = await import('./friendOfferModel.ts');
+  const { TRANSFER_LIMITS: L } = await import('../../../game/content/npcs.ts');
+  assert.equal(GIFT_AMOUNT, 5000);
+  assert.ok(GIFT_AMOUNT >= L.min && GIFT_AMOUNT <= L.maxPerTransfer && GIFT_AMOUNT <= L.dailyAmount && GIFT_AMOUNT <= L.dailyReceive);
+  assert.equal(giftLabel(GIFT_AMOUNT), 'Send ₦5,000');
+  assert.equal(giftShort(5000), null);
+  assert.equal(giftShort(1200), 'You need ₦5,000 to send this gift. You have ₦1,200.');
+});

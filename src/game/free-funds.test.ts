@@ -106,3 +106,19 @@ test('what the recipient gets is ordinary money: it does not become unrestricted
   assert.equal(receiver.social.free, undefined)
   assert.equal(send(receiver, 3000).code, 'earn_first')
 })
+
+test('the friend-card gift of ₦5,000 goes through the ordinary gift rule: sent with ₦5,000 earned, refused plainly with less, and two a day fill the ₦10,000 cap', () => {
+  const rich = life({ cash: 50000, social: { earned: 12000 } })
+  assert.equal(send(rich, 5000).ok, true)
+  assert.equal(send(rich, 5000).ok, true)
+  const third = send(rich, 5000)
+  assert.equal(third.ok, false)
+  const poor = life({ cash: 50000, social: { earned: 3000 } })
+  const refused = send(poor, 5000)
+  assert.equal(refused.ok, false)
+  if (!refused.ok) { assert.equal(refused.code, 'gift_exceeds_earned'); assert.match(refused.reason, /You can only give away money you have earned from work\. You can still give ₦3,000/) }
+  const broke = life({ cash: 800, social: { earned: 12000 } })
+  const none = send(broke, 5000)
+  assert.equal(none.ok, false)
+  if (!none.ok) assert.equal(none.code, 'insufficient_funds')
+})

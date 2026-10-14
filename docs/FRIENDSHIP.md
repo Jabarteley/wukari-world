@@ -8,7 +8,7 @@ This is how the game turns a table game or a long talk in room voice into a frie
 One compact, dismissible card (`src/app/features/social/FriendOfferCard.vue`, a lazy chunk) lists up to three people:
 
 - **Add as friend** (an AI-played character may be asked like anyone, always with the AI-played mark). If they already asked you it reads "Accept".
-- Once you are friends: **Send ₦200** (a small gift of game naira, never real money) and **Invite to your room**.
+- Once you are friends: **Send ₦5,000** (a gift of game naira, never real money; it is exactly the largest single gift, so the three-a-day and ₦10,000-a-day caps allow at most two such gifts a day; a player who holds less cash is told so on the card, and any other refusal from the server is shown on the card in its own words) and **Invite to your room**.
 
 It uses the routes that already exist, so every rule still holds: `POST /api/social/friends/request`, `POST /api/social/transfers` (friends only,
 ₦100 to ₦5,000 a gift, three gifts and ₦10,000 a day, earned money only, rate limited) and `POST /api/social/visit/invite` (friends only).

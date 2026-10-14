@@ -7,7 +7,7 @@
     "stateId": "bl-gustavia",
     "stateName": "Gustavia"
   },
-  "inventorySha256": "b4fdd59a2148fe3400fec049f27c12616584a0866487fd542637fa26a1eadec2",
+  "inventorySha256": "50e8d10e9e07d0ec1b8449601e95babd741d8f52ed74fbac9d3f23f7cc255517",
   "inventoryPath": "world/playable-africa-rollout/sources/gustavia.json",
   "admission": {
     "registered": true,
@@ -23,7 +23,7 @@
   },
   "bounds": [
     17.71482341006602,
-    -63.039827502100195,
+    -62.94953618220457,
     18.076585189933976,
     -62.66184689789981
   ],
@@ -34,32 +34,32 @@
       "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
       "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
       "adapter": "offline-extract.py/v3-nested-centres",
-      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
       "extracts": [
         {
           "file": "places.json",
-          "sha256": "60c0c25a50a5452cbaef208b807c835c1ff8b21dd26fabb4388404d3205e44d1",
-          "elements": 189
+          "sha256": "7c2c012f5240177537e1b6db5604044d675266ddc44011b74a6a0ea625fd0638",
+          "elements": 145
         },
         {
           "file": "extras.json",
-          "sha256": "7311893e589070f7af96d174b0b6a0fa5b375ebf478e9d60204f3d331bd1cd2e",
-          "elements": 21
+          "sha256": "788a146657c165c2ac98fd29901f5446b67fed755b5b9b6da61a1bcbcbb347e6",
+          "elements": 19
         },
         {
           "file": "water.json",
-          "sha256": "a0e6f9b962d28822cd5c51467195aaa06f2ef2d7a7a5a7a0dc655574a3883976",
+          "sha256": "c91f02ef3908297a1fef2904260fc20decbd690bce8e7efc7a380fde65fc117b",
           "elements": 470
         },
         {
           "file": "landuse.json",
-          "sha256": "182f9828ba6ee46ff658d45328cc0125f078fdc8cd3e1bc0875b7531b8dc5856",
-          "elements": 411
+          "sha256": "2db6cfbe7f936b90409efd4623eb03d97783a630c826d4814b4ecfb3b67bd265",
+          "elements": 143
         },
         {
           "file": "roads.json",
-          "sha256": "bded167ce4569a463a9b79ba4cb0f7dcf9adb757225f2a57f371277e61b8d490",
-          "elements": 76
+          "sha256": "28bfa5844a99879bb2ab1a171817e9433898a250b7aefaa13e8edb2ead2e4118",
+          "elements": 75
         }
       ]
     }
@@ -69,8 +69,8 @@
     "roads": 8,
     "neighbourhoodLabels": 18,
     "landPolygons": 1,
-    "waterPolygons": 6,
-    "reachWaterPolygons": 10
+    "waterPolygons": 4,
+    "reachWaterPolygons": 7
   },
   "selection": {
     "profile": "microstate",
@@ -82,20 +82,20 @@
     ]
   },
   "observed": {
-    "places": 189,
-    "extras": 21,
+    "places": 145,
+    "extras": 19,
     "water": 470,
-    "landuse": 411,
-    "roads": 76
+    "landuse": 143,
+    "roads": 75
   },
   "assets": {
     "facts.ts": {
-      "bytes": 1235,
-      "sha256": "b30786242931b295599febeb60a46474e9e3ff073a3bac6bb737a3257ca55619"
+      "bytes": 1234,
+      "sha256": "9be216e25f383e0a0b2655fb8f91e934124341bd307259638ed14cf0b2ec9806"
     },
     "geometry.ts": {
-      "bytes": 102370,
-      "sha256": "e695eac11367a3e286a003f0741431585219b0d17e329cbeaa4990166d29abe8"
+      "bytes": 58999,
+      "sha256": "2db02f76006e047d186b74dbfb4cac7fb2f5eb15539cc926870d0edd50d89b63"
     },
     "index.ts": {
       "bytes": 259,

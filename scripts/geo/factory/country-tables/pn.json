@@ -24,6 +24,12 @@
         "coreKm": 3
       },
       "profile": "outpost",
+      "selectionExclusions": [
+        {
+          "ref": "node/6561291060",
+          "reason": "H.M.S. Bounty: the wreck site about 41 m off the shore of Bounty Bay; the exact source-coast stage classes this source anchor as water (factory run 38495317131, exact-coastwater.py: Source anchors are not dry land), so it cannot be a walkable place"
+        }
+      ],
       "gateway": {
         "osmRef": "node/9392374700",
         "mode": "sea",

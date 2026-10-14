@@ -60,7 +60,12 @@
         ]
       },
       "profile": "outpost",
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "node/6861394584",
+          "reason": "Port de la Flottille: a harbour point about 39 m off the shore; the exact source-coast stage classes this source anchor as water (factory run 38495317131, exact-coastwater.py: Source anchors are not dry land), so it cannot be a walkable place"
+        }
+      ],
       "links": [
         {
           "to": "port-louis",

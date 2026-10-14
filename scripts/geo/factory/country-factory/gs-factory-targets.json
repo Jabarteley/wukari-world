@@ -96,6 +96,14 @@
         {
           "ref": "way/856466791",
           "reason": "historic=wreck 'Workboat': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
+        },
+        {
+          "ref": "node/4237294604",
+          "reason": "Tortula Cove: the source anchor is water by the exact-coast check (84 m from the coast, factory run 38495661107); wet-looking places are excluded."
+        },
+        {
+          "ref": "node/3921049634",
+          "reason": "Maiviken: the place point is water by the exact-coast check (factory run 38495661107)."
         }
       ],
       "links": [

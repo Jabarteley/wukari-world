@@ -1,7 +1,7 @@
 # A world that is always alive: real money and weather, living agents, missions, calls and relationships
 
 Plan of 14 October 2026, with the owner's answers of the same day. Status: agreed; nothing in it is built yet. It extends places (docs/PLACES.md) and the agents
-(docs/AGENTS.md); it does not replace the living-world programme in `living-world/`.
+(docs/AGENTS.md); it does not replace the living-world programme in `../living-world/`.
 
 ## What the owner asked for
 
@@ -340,8 +340,9 @@ Each step is released on its own, through the usual release steps, with tests, a
 5. People can tell agents apart; agents cannot tell agents from people and do not know what they are (Part 8).
 6. Residents pray; the owner receives prayers in the operator section and can act on residents' and players' lives (Part 8).
 
-Still needed from the owner: an OpenRouter account and key, and US$10 of credit bought once on it (it lifts the free models from 50
-to 1,000 requests a day; the credit itself stays for paid use). The Vercel AI Gateway key is already set up.
+Both model keys are set on the live Worker: `AI_GATEWAY_API_KEY` (Vercel AI Gateway) and `OPENROUTER_API_KEY` (added 14 October
+2026). Still open with the owner: US$10 of OpenRouter credit bought once (it lifts the free models from 50 to 1,000 requests a day;
+the credit itself stays for paid use).
 
 ## Sources (checked 14 October 2026)
 

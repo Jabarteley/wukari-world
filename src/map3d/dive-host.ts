@@ -48,6 +48,8 @@ export interface DiveRun {
   readonly revealSeconds: number
   /** True while the dive is still going. */
   readonly live: boolean
+  /** How it ended, or is ending (null while it is still on its way: the clouds are closing or holding). */
+  readonly outcome: DiveOutcome | null
   /** Resolves when what is underneath may be swapped: the clouds are opaque and the chunks are in, or the hold ran out, or the dive was skipped or ended. Never rejects. */
   readonly covered: Promise<void>
   /** Resolves when the veil is gone, with how the dive ended. */
@@ -58,6 +60,8 @@ export interface DiveRun {
 }
 export interface DiveHost {
   start(cityId: string, name: string, options?: DiveStart): DiveRun
+  /** What a dive started now would be on this device (reduced motion, save-data, cores, memory). */
+  tier(): DiveTier
   readonly current: DiveRun | null
   destroy(): void
 }
@@ -145,6 +149,7 @@ export function createDiveHost(options: DiveHostOptions): DiveHost {
       flightSeconds: dive.flightMs / 1000,
       get revealSeconds() { return quiet ? 0 : dive.revealMsAt(now()) / 1000; },
       get live() { return !over; },
+      get outcome() { return dive.frame.outcome; },
       covered, done,
       ready(ok: boolean) { if (!over) { dive.ready(ok, now()); step(); } },
       skip() {
@@ -188,6 +193,7 @@ export function createDiveHost(options: DiveHostOptions): DiveHost {
   }
   return {
     start,
+    tier: () => diveTier({ ...device(), reduced: reduced() }),
     get current() { return current; },
     destroy() { destroyed = true; current?.finish('skipped'); stop(); veil?.remove(); veil = null; doc.removeEventListener('keydown', onKey); },
   };

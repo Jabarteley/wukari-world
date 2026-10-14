@@ -10,4 +10,4 @@
 .dv-haze{position:absolute;inset:-6%;opacity:0;background:#eef2f5 no-repeat center/cover;-webkit-mask-image:radial-gradient(ellipse at 50% 55%,rgba(0,0,0,.25) 0,#000 72%);mask-image:radial-gradient(ellipse at 50% 55%,rgba(0,0,0,.25) 0,#000 72%);will-change:opacity;pointer-events:none}
 .dv-veil.is-reduced .dv-haze{display:none}
 /* During a dive the city map is a picture: its names and buttons come back when it is over. */
-.dv-diving .m3-labels,.dv-diving .m3-controls,.dv-diving .m3-hint{visibility:hidden}
+.dv-diving .m3-labels,.dv-diving .m3-controls,.dv-diving .m3-hint,.dv-diving .map-panel{visibility:hidden}

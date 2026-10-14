@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { ATLAS_FOV, CAP_MS, CITY_FOV, CITY_KM_PER_UNIT, COVER_FROM_MS, DESCENT_SHARE, DIVE_MS, END_BY_MS, FALLBACK_REVEAL_MS, FLIGHT_MS, HANDOFF_KM, HAZE_MAX, HOLD_MS, LITE, MAX_LIFT, MAX_TURN, PROBE_MS, QUICK_COVER_MS, REDUCED_MS, REVEAL_MS, STALL_MS, STREET_DISTANCE, STREET_PITCH, TOP_PITCH,
-  approachYaw, atlasKmPerUnit, cloudCover, cloudReveal, createDive, createFrameProbe, descentView, distanceForSpan, diveTier, diveTimings, handoffSpan, hazeAt, spanKm, swoopPlan, swoopView } from './dive.ts';
+  approachYaw, arrivalDive, atlasKmPerUnit, cloudCover, cloudReveal, createDive, createFrameProbe, descentView, distanceForSpan, diveTier, diveTimings, handoffSpan, hazeAt, spanKm, swoopPlan, swoopView } from './dive.ts';
 import type { Dive, DiveView } from './dive.ts';
 import { project } from './geo/projection.ts';
 import { PITCH_MAX } from './camera.ts';
@@ -277,4 +277,16 @@ test('the swoop: straight down from the matched start, over the towers, then at 
   assert.equal(approachYaw({ x: 0, z: 0 }, { x: 0, z: -10 }), 0);
   assert.ok(Math.abs(approachYaw({ x: 0, z: 0 }, { x: 10, z: 0 })) === MAX_TURN);
   assert.equal(approachYaw({ x: 1, z: 1 }, { x: 1, z: 1 }), 0);
+});
+
+test('a trip that ends in a new city dives only when someone is watching and free: not on a first load, a weak device, a hidden page or mid-action', () => {
+  const ok = { fromTrip: true, tier: 'full' as const, hidden: false, busy: false, mode: 'map' };
+  assert.equal(arrivalDive(ok), true);
+  assert.equal(arrivalDive({ ...ok, mode: 'venue' }), true);
+  assert.equal(arrivalDive({ ...ok, tier: 'lite' }), true, 'the lite dive is still a dive');
+  assert.equal(arrivalDive({ ...ok, fromTrip: false }), false, 'a first load or a sign-in in another city is not an arrival');
+  assert.equal(arrivalDive({ ...ok, tier: 'cut' }), false, 'reduced motion and weak devices keep today\'s arrival');
+  assert.equal(arrivalDive({ ...ok, hidden: true }), false);
+  assert.equal(arrivalDive({ ...ok, busy: true }), false);
+  assert.equal(arrivalDive({ ...ok, mode: 'phone' }), false);
 });

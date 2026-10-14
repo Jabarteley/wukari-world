@@ -106,6 +106,7 @@ test('reduced motion: no flight, no clouds, a plain veil that comes and goes wit
 
 test('the device decides: a weak one gets the plain veil, a mid-range one the lite dive, and the browser is asked by default', () => {
   const weak = harness(false, { cores: 2 });
+  assert.equal(weak.host.tier(), 'cut', 'asked before starting');
   const plain = weak.host.start('lagos', 'Lagos');
   assert.equal(plain.tier, 'cut'); assert.equal(plain.flightSeconds, 0); assert.equal(plain.revealSeconds, 0);
   assert.ok(weak.veil().classList.contains('is-reduced'));
@@ -149,7 +150,9 @@ test('the haze shows over the city while the clouds part, and an arrival closes 
   const run = host.start('lagos', 'Lagos', { prefetch: Promise.resolve() });
   await new Promise((done) => setTimeout(done, 0));
   frames(FLIGHT_MS + 50); await run.covered;
+  assert.equal(run.outcome, null, 'covered and waiting for what is underneath');
   run.ready(true); frames(200);
+  assert.equal(run.outcome, 'arrived');
   assert.ok(Number(veil().find('dv-haze')!.style.opacity) > 0.3, 'thin haze over the city');
   assert.ok(run.revealSeconds > 2);
   frames(); assert.equal(await run.done, 'arrived');

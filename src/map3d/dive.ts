@@ -191,6 +191,23 @@ export function createDive({ reduced = false, tier: asked, kind = 'atlas' }: { r
   return api;
 }
 
+// ---- a trip that ends in a new city ---------------------------------------------------------------------------------------------
+export interface ArrivalCheck {
+  /** The new city came at the end of a trip between cities (not a first load, a sign-in or another device). */
+  fromTrip: boolean
+  tier: DiveTier
+  /** The page is hidden: nobody would see it. */
+  hidden: boolean
+  /** The player is in the middle of something: a timed action, or a panel or the phone open over the scene. */
+  busy: boolean
+  /** What is on screen: the map (a trip is watched there) or the venue. */
+  mode: string
+}
+/** Whether a trip's arrival in a new city plays the aerial dive (clouds, the new city from above, a swoop at the venue) before the venue. */
+export function arrivalDive({ fromTrip, tier, hidden, busy, mode }: ArrivalCheck): boolean {
+  return fromTrip && tier !== 'cut' && !hidden && !busy && (mode === 'map' || mode === 'venue');
+}
+
 // ---- the first frames: a device too slow for the dive --------------------------------------------------------------------------
 /** The first PROBE_MS of frames are timed; a mean gap over SLOW_FRAME_MS (under about 24 frames a second), or one gap over STALL_MS, is slow. */
 export const PROBE_MS = 400, SLOW_FRAME_MS = 42, STALL_MS = 300;

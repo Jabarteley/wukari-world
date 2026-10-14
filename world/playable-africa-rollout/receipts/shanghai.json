@@ -7,7 +7,7 @@
     "stateId": "cn-shanghai",
     "stateName": "Shanghai"
   },
-  "inventorySha256": "5bb9a5364288edd1049ba7b368ab0db96a156f3df6d492abff4285221aa0556c",
+  "inventorySha256": "ec33adf3c84869f3e5f06adafe3f3d139bc6ead0180eecf008eb0c3313e34065",
   "inventoryPath": "world/playable-africa-rollout/sources/shanghai.json",
   "admission": {
     "registered": true,
@@ -107,7 +107,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 206,
     "neighbourhoodLabels": 18,
     "landPolygons": 26,
     "waterPolygons": 32,

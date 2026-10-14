@@ -7,7 +7,7 @@
     "stateId": "au-sydney",
     "stateName": "Sydney"
   },
-  "inventorySha256": "ec815397206a64dee62868fbd045d2a1ea95616cb31a75f8907f4c461e7884aa",
+  "inventorySha256": "5c3ab17c186e27bba2eba522d8475edd9f9e7912ec655afd75181f091bec1274",
   "inventoryPath": "world/playable-africa-rollout/sources/sydney.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 186,
     "neighbourhoodLabels": 18,
     "landPolygons": 16,
     "waterPolygons": 32,

@@ -2,12 +2,17 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-n-1",
-      "appSha": "c0ca971847730a3489f529ac9f36d179b4fc28dc",
+      "id": "release-p-1",
+      "appSha": "67e0dfcc78055beff8bd5af44c2e4471b6e28e2e",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
-        "villa-las-estrellas",
-        "brades"
+        "st-helier",
+        "jamestown",
+        "mata-utu",
+        "grytviken",
+        "cove",
+        "adamstown",
+        "port-aux-francais"
       ],
       "roundtrip": true,
       "browserOnly": true

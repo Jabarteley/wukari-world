@@ -14,9 +14,9 @@
     "boundaryKey": "hm",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38492378395,
-      "sourceSha": "6ce98ad243af00564d857fcd660b4f4bb79484e3",
-      "sourceArtifact": "city-bootstrap-hm-6ce98ad243af00564d857fcd660b4f4bb79484e3",
+      "sourceRunId": 38493648535,
+      "sourceSha": "1f2dd3dbf419d43c29dea48e471ecd70c42263ce",
+      "sourceArtifact": "city-bootstrap-hm-1f2dd3dbf419d43c29dea48e471ecd70c42263ce",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -59,7 +59,7 @@
           -52.973781677516506
         ]
       },
-      "profile": "outpost",
+      "profile": "wilderness",
       "selectionExclusions": [],
       "links": [
         {
@@ -167,7 +167,7 @@
           "way/1208695333",
           "way/1511347380"
         ],
-        "adapterSha256": "4079d0a7f3520bbcbb8289d4d8b36f3c4fa8a6d866c15f0041884becbccbb1d3",
+        "adapterSha256": "c66e9ef75771a778a929f7615307e3f153c0e5a2b4f4a861cf6054c788ba3a71",
         "boundsPolicySha256": "6f384df7d7b374e875192057a85d6bcace4dd2d7c3b3701298a7893dc2ed67b6",
         "bounds": {
           "policy": {
@@ -207,42 +207,51 @@
           "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
         },
         "profile": {
-          "name": "outpost",
+          "name": "wilderness",
           "rules": {
-            "minimumPlaces": 3,
+            "minimumPlaces": 0,
             "minimumNeighbourhoodLabels": 2,
             "maximumEmptySlots": 9,
             "cityPlaceTags": [
-              "city",
-              "town",
-              "village",
               "hamlet",
               "locality",
-              "isolated_dwelling"
+              "isolated_dwelling",
+              "island",
+              "islet"
             ],
             "capitalPlaceTags": [],
+            "cityNaturalTags": [
+              "glacier",
+              "peak",
+              "saddle",
+              "reef",
+              "mountain_pass"
+            ],
+            "requiresCityOsmRef": true,
             "districtIslandPlaces": [
               "island",
               "islet"
             ],
+            "districtNaturalLabels": [
+              "peak",
+              "saddle",
+              "glacier",
+              "ridge",
+              "valley",
+              "volcano",
+              "cape",
+              "bay",
+              "reef",
+              "beach",
+              "mountain_pass"
+            ],
             "hubGateway": true,
             "authoredLinks": true,
-            "slotExtras": {
-              "transit": [
-                "amenity=ferry_terminal"
-              ],
-              "community": [
-                "office=research",
-                "amenity=research_institute"
-              ]
-            },
             "extraction": {
               "extraPlaces": [
-                "post_office",
+                "natural",
                 "hut",
-                "research",
-                "historic",
-                "ferry"
+                "historic"
               ],
               "roadLadder": [
                 "secondary",
@@ -261,25 +270,25 @@
       },
       "extractKey": "atlas-cove",
       "extractSha256": {
-        "places": "194bff3ff0967d7a970bebc45e805105d07b9bbe3e1ff4b68d6d9da14386b1fa",
-        "extras": "111416ed6550541af5962cb1387f09f4f7ce3d1e3f672561c97a032351a87a48",
-        "water": "733c26ff6e6e73c94ea3d13dbf640cfdcf4bff62dbe2fdc84a77b1454fd7d941",
-        "landuse": "85363eaa8a501dfb39786f7f8f54377a8df6e8d165c36561e9c43d0c74e47215",
-        "roads": "4a7eaca318a7f853abe36656faff04d448aca4918c8ca09b0ec2fbfff669a0df"
+        "places": "4dcb2d06c9d6b72ff0fd5caf1ffbdc6fcee3d3dc127bb76a7c0e6b5c28848c8f",
+        "extras": "fb77e56305352fd26cedf264004ec9df1dc7da4d3ede53da3d31024cbdf1822a",
+        "water": "1885f9958da13626d3d74700275db9c327f61b3d16c724ab5f2b9c8308e6eadf",
+        "landuse": "36367ee0f13765283c0f2e4ecd1183564fe1b934f96026190a3b1fdb151e3a13",
+        "roads": "f2ee7709592c61606c0f9b090f446fbd5e66bd765fc28052ba5bb7ff6cc5ba1e"
       },
       "sourceJob": {
         "city": "atlas-cove",
-        "sourceRunId": 38492378395,
-        "sourceArtifact": "city-bootstrap-hm-6ce98ad243af00564d857fcd660b4f4bb79484e3",
-        "sourceSha": "6ce98ad243af00564d857fcd660b4f4bb79484e3",
+        "sourceRunId": 38493648535,
+        "sourceArtifact": "city-bootstrap-hm-1f2dd3dbf419d43c29dea48e471ecd70c42263ce",
+        "sourceSha": "1f2dd3dbf419d43c29dea48e471ecd70c42263ce",
         "datasetSha256": "76f15eba2b9d4bf3d5b70b2eb84e2a1e7842a8c265253bf56a11658f42d93f55",
-        "adapterSha256": "4079d0a7f3520bbcbb8289d4d8b36f3c4fa8a6d866c15f0041884becbccbb1d3",
+        "adapterSha256": "c66e9ef75771a778a929f7615307e3f153c0e5a2b4f4a861cf6054c788ba3a71",
         "extractSha256": {
-          "places": "194bff3ff0967d7a970bebc45e805105d07b9bbe3e1ff4b68d6d9da14386b1fa",
-          "extras": "111416ed6550541af5962cb1387f09f4f7ce3d1e3f672561c97a032351a87a48",
-          "water": "733c26ff6e6e73c94ea3d13dbf640cfdcf4bff62dbe2fdc84a77b1454fd7d941",
-          "landuse": "85363eaa8a501dfb39786f7f8f54377a8df6e8d165c36561e9c43d0c74e47215",
-          "roads": "4a7eaca318a7f853abe36656faff04d448aca4918c8ca09b0ec2fbfff669a0df"
+          "places": "4dcb2d06c9d6b72ff0fd5caf1ffbdc6fcee3d3dc127bb76a7c0e6b5c28848c8f",
+          "extras": "fb77e56305352fd26cedf264004ec9df1dc7da4d3ede53da3d31024cbdf1822a",
+          "water": "1885f9958da13626d3d74700275db9c327f61b3d16c724ab5f2b9c8308e6eadf",
+          "landuse": "36367ee0f13765283c0f2e4ecd1183564fe1b934f96026190a3b1fdb151e3a13",
+          "roads": "f2ee7709592c61606c0f9b090f446fbd5e66bd765fc28052ba5bb7ff6cc5ba1e"
         }
       }
     }

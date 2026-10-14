@@ -28,6 +28,7 @@ import { jailGate } from '../politics/gate.ts';
 import { landOf } from '../world/land.ts';
 import { characterCity } from '../character.ts';
 import { placeOfRoom } from '../../src/places/model.ts';
+import { roomVoiceRelay } from '../voice-relay.ts';
 import { cityRules } from '../../src/game/content/world.ts';
 
 // The receipt steps themselves live in ./once.js (core.actionOnce), shared with ctx.act.
@@ -213,7 +214,7 @@ export default function coreRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
       if (config.voiceConfigProvider) {
         try { voice = validateVoiceConfig(await config.voiceConfigProvider(publicSession(session)), now()); }
         catch { throw fail(503, 'voice_config_unavailable'); }
-      }
+      } else voice = await roomVoiceRelay(ctx.callRelay, session.publicId, request.ip, now()) ?? voice; // the calls' relay, under its limits (server/voice-relay.ts)
       return { body: { ...voice, radius: VOICE_RADIUS }, renew: renewed };
     },
     'GET /api/characters': async (request) => ({ body: await transactWithCityContent(ctx, request, [], db => {

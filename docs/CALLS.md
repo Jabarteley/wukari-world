@@ -36,6 +36,8 @@ call. When a limit is reached the call is not refused: it carries on with STUN o
 player is told "Could not connect — your networks need a relay that is not available right now." The old
 `TURN_TEST_PUBLIC_IDS` / eight-a-day cap now belongs only to the room-voice test endpoint.
 
+**Room voice uses the same relay.** Voice in a room (a venue, a home with guests, the Square, a group's room) is peer to peer too, so on mobile data it needs the relay as much as a call does. `GET /api/voice-config` asks this relay, under these limits and this daily ceiling, for a player who stands in a room: one credential when the page joins voice, good for an hour (`server/voice-relay.ts`). A limit reached is not an error: voice goes on with STUN only, as before.
+
 On the Worker the daily count is kept in the Durable Object's own storage (table `call_relay_budget`), so the ceiling
 holds across restarts; the per-player and per-address counts are in memory. On Node everything is in memory.
 

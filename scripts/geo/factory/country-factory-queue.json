@@ -1,9 +1,6 @@
 {
   "schemaVersion": 1,
   "queue": [
-    {
-      "id": "gs",
-      "table": "scripts/geo/factory/country-factory/gs-factory-targets.json"
-    }
+    { "id": "gs", "table": "scripts/geo/factory/country-factory/gs-factory-targets.json" }
   ]
 }

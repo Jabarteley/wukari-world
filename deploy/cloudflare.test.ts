@@ -835,7 +835,9 @@ test('Combined game on the Worker: quick start, settle in with a plot, a mission
   const meta = (key: string) => new RegExp(`<meta (?:property|name)="${key}" content="([^"]*)"`).exec(html)?.[1];
   assert.match(meta('og:title') as string, /Ada/); assert.match(meta('og:title') as string, /Whot/);
   assert.deepEqual([meta('og:type'), meta('og:site_name'), meta('og:url'), meta('og:image'), meta('twitter:card'), meta('twitter:image')],
-    ['website', 'Allworld', `${ORIGIN}/s/${code}`, `${ORIGIN}/og/allworld.jpg`, 'summary_large_image', `${ORIGIN}/og/allworld.jpg`]);
+    ['website', 'Allworld', `${ORIGIN}/s/${code}`, `${ORIGIN}/og/card-table.png`, 'summary_large_image', `${ORIGIN}/og/card-table.png`]);
+  // A table win has its own picture (docs/SHARE-CARDS.md), served by the Worker like the default one.
+  const card = await f.fetch('/og/card-table.png'); assert.equal(card.status, 200); assert.match(card.headers.get('content-type') ?? '', /^image\/png/);
   const target = (/<meta http-equiv="refresh" content="0;url=([^"]+)"/.exec(html) as RegExpExecArray)[1]?.replaceAll('&amp;', '&');
   assert.equal(target, `/?join=${ada.id}&ref=${code}&table=${TABLE}`);
   assert.equal((await f.fetch(`/s/${code}`, { method: 'HEAD' })).status, 200);

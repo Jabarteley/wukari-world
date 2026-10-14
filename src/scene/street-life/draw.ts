@@ -12,6 +12,10 @@
  *            cross the road only while the lights stop the traffic.
  *   traffic  ONE InstancedMesh of a car of five boxes (wheels, body, cabin and glass, a livery stripe, a taxi's roof sign): a per-instance
  *            paint and trim in the city's livery (livery.ts), and a matrix that stretches it into a bus, a truck or a keke. One draw call.
+ *            Phase 5b (traffic.ts): roads both ways on the country's side, okadas and bicycles by the country's flavour (the cabin
+ *            becomes an upright rider), slowing at crossings and queueing at the lights.
+ *   surface  optionally (a street behind a venue, which has no road of its own): ONE mesh of the carriageway, its kerbs, centre dashes
+ *            and zebra stripes.
  *
  * It asks for no frames of its own: step() is called by whoever owns the frame loop, inside their window (the battery rule). Given the
  * frame's gap, step() also feeds the adaptive caps (adaptive.ts): a mean frame over 24 ms across 60 frames draws fewer people and
@@ -19,9 +23,11 @@
  */
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
-import { CAR_LENGTH, PERSON_TRIANGLES as PERSON_TRIS, VEHICLE_KINDS, VEHICLE_TRIANGLES as CAR_TRIS, planTraffic, stepAside, vehicleAt } from './plan.ts';
+import { CAR_LENGTH, PERSON_TRIANGLES as PERSON_TRIS, VEHICLE_KINDS, VEHICLE_TRIANGLES as CAR_TRIS, planTraffic, stepAside } from './plan.ts';
 import type { Lane, Road } from './plan.ts';
-import { BAG_TONES, clearShift, crossingSpans, driveSeconds, personAt, planPeople, signalFor } from './crowd.ts';
+import { BAG_TONES, personAt, planPeople } from './crowd.ts';
+import { flavourTraffic, planSchedule, vehiclePose } from './traffic.ts';
+import type { Axis, TrafficPlan } from './traffic.ts';
 import type { PeopleWorld, Person, Signal } from './crowd.ts';
 import { paintTraffic } from './livery.ts';
 import type { PaintedVehicle } from './livery.ts';
@@ -34,8 +40,12 @@ export interface StreetLifeOptions {
   seed: string
   lanes: readonly Lane[]
   roads: readonly Road[]
-  /** Crossings of the first road (kerb to kerb): with them, the road gets lights and people cross on them. */
+  /** Crossings of the roads (kerb to kerb): with them, the roads get lights and people cross on them. */
   crossings?: readonly Lane[]
+  /** A carriageway to draw under the traffic (a street that has no road of its own): its centre line, half width and height. */
+  surface?: { axis: Axis; half: number; y: number }
+  /** Vehicles drawn this much narrower (default 1): a narrow street's two lanes. */
+  narrow?: number
   /** The city's country id: the taxis' and buses' livery. */
   country?: string | null
   crowd: number
@@ -54,8 +64,10 @@ export interface StreetLife {
   setCaps(caps: Caps): void
   readonly people: number
   readonly vehicles: number
-  /** The lights on the first road, when it has crossings that the stopped traffic keeps clear of. */
+  /** The lights on the roads, when they have crossings that the stopped traffic keeps clear of. */
   readonly signal: Signal | null
+  /** The traffic's schedule (traffic.ts): its lights, each road's path in time, each vehicle's start and roll. */
+  readonly schedule: TrafficPlan
   readonly triangles: number
   readonly drawCalls: number
   dispose(): void
@@ -211,7 +223,8 @@ function crowdMesh(kit: Kit, people: readonly Person[]): { mesh: THREE.Instanced
 
 /**
  * The five boxes of a car, along +z, its wheels on the ground. Vertex colour is a shade; `aPart` says what takes it: 0 the paint (the
- * instance colour), 1 the trim (the livery's stripe), 2 the roof sign (its own light colour, and folded away on all but taxis).
+ * instance colour), 1 the trim (the livery's stripe), 2 the roof sign (its own light colour, and folded away on all but taxis), 3 the cabin
+ * (the paint, shaded; on a motorbike or bicycle it is drawn upright and short: the rider).
  */
 function carGeometry(kit: Kit): THREE.BufferGeometry {
   const { THREE } = kit, positions: number[] = [], normals: number[] = [], colours: number[] = [], parts: number[] = [], index: number[] = [];
@@ -235,7 +248,7 @@ function carGeometry(kit: Kit): THREE.BufferGeometry {
   const length = CAR_LENGTH;
   box(0, 0.22, 0, 1.7, 0.44, length * 0.84, 0.12, 0);               // the wheels and the shadow under the car
   box(0, 0.75, 0, 1.8, 0.62, length, 1, 0);                         // the body
-  box(0, 1.36, -0.2, 1.6, 0.6, length * 0.55, 0.3, 0);              // the cabin: its glass reads as a darker band of the paint
+  box(0, 1.36, -0.2, 1.6, 0.6, length * 0.55, 0.3, 3);              // the cabin: its glass reads as a darker band of the paint (a two-wheeler's rider)
   box(0, 0.8, 0, 1.83, 0.16, length * 1.004, 1, 1);                 // the livery's stripe round the body
   box(0, 1.76, -0.2, 0.7, 0.2, 0.32, 1, 2);                         // a taxi's roof sign
   const geometry = new THREE.BufferGeometry();
@@ -251,20 +264,26 @@ const TRAFFIC_PARS = /* glsl */`
 attribute float aPart;
 attribute vec4 aTrim;
 `;
-// After <color_vertex>: the trim takes the livery's colour, the sign its own light; a car that is no taxi folds its sign away (to a point: no pixels).
+// After <color_vertex>: the trim takes the livery's colour, the sign its own light; a car that is no taxi folds its sign away (to a point:
+// no pixels). aTrim.w: 1 a taxi's sign, 2 a two-wheeler, whose cabin becomes a rider (short, upright, in dark clothes) and whose stripe folds.
 const TRAFFIC_COLOUR = /* glsl */`
 #include <color_vertex>
-if (aPart > 1.5) vColor = vec3(0.96, 0.93, 0.78); else if (aPart > 0.5) vColor = color * aTrim.rgb;
+float sKind = floor(aTrim.w + 0.5);
+if (aPart > 2.5) { if (sKind > 1.5) vColor = vec3(0.16, 0.15, 0.17); }
+else if (aPart > 1.5) vColor = vec3(0.96, 0.93, 0.78); else if (aPart > 0.5) vColor = color * aTrim.rgb;
 `;
 const TRAFFIC_FOLD = /* glsl */`
 #include <begin_vertex>
-if (aPart > 1.5 && aTrim.w < 0.5) transformed = vec3(0.0);
+float sWheels = floor(aTrim.w + 0.5);
+if (aPart > 1.5 && aPart < 2.5 && (sWheels < 0.5 || sWheels > 1.5)) transformed = vec3(0.0);
+if (aPart > 0.5 && aPart < 1.5 && sWheels > 1.5) transformed = vec3(0.0);
+if (aPart > 2.5 && sWheels > 1.5) transformed = vec3(transformed.x * 0.8, 1.06 + (transformed.y - 1.06) * 1.9, -0.25 + (transformed.z + 0.2) * 0.3);
 `;
 
 function trafficMesh(kit: Kit, vehicles: readonly PaintedVehicle[]): THREE.InstancedMesh {
   const { THREE } = kit;
   const geometry = carGeometry(kit), trim = new Float32Array(Math.max(1, vehicles.length) * 4);
-  vehicles.forEach((vehicle, i) => trim.set([...linear(kit, vehicle.trim), vehicle.sign ? 1 : 0], i * 4));
+  vehicles.forEach((vehicle, i) => trim.set([...linear(kit, vehicle.trim), vehicle.kind === 'okada' || vehicle.kind === 'bike' ? 2 : vehicle.sign ? 1 : 0], i * 4));
   geometry.setAttribute('aTrim', new THREE.InstancedBufferAttribute(trim, 4));
   const material = new THREE.MeshLambertMaterial({ color: '#ffffff', vertexColors: true });
   material.onBeforeCompile = (shader) => {
@@ -273,7 +292,7 @@ function trafficMesh(kit: Kit, vehicles: readonly PaintedVehicle[]): THREE.Insta
       .replace('#include <color_vertex>', TRAFFIC_COLOUR)
       .replace('#include <begin_vertex>', TRAFFIC_FOLD);
   };
-  material.customProgramCacheKey = () => 'street-traffic-2';
+  material.customProgramCacheKey = () => 'street-traffic-3';
   const mesh = new THREE.InstancedMesh(geometry, material, Math.max(1, vehicles.length));
   mesh.count = vehicles.length;
   mesh.name = 'street-traffic';
@@ -283,6 +302,40 @@ function trafficMesh(kit: Kit, vehicles: readonly PaintedVehicle[]): THREE.Insta
   const colour = new THREE.Color();
   vehicles.forEach((vehicle, i) => mesh.setColorAt(i, colour.set(vehicle.colour)));
   if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+  return mesh;
+}
+
+/** A carriageway's colours: the asphalt, the kerbs, the centre dashes and the zebra stripes. */
+export const SURFACE_COLOURS = Object.freeze({ road: '#55595a', kerb: '#bdb6a6', dash: '#d9d4b8', zebra: '#e9e6d6' });
+
+/** The road under a street's traffic (one mesh, flat quads in the vertex colours): asphalt, kerbs, centre dashes, a zebra at each crossing. */
+function surfaceMesh(kit: Kit, surface: NonNullable<StreetLifeOptions['surface']>, crossings: readonly Lane[]): THREE.Mesh {
+  const { THREE } = kit, { axis, half, y } = surface;
+  const length = Math.hypot(axis.bx - axis.ax, axis.bz - axis.az) || 1, ux = (axis.bx - axis.ax) / length, uz = (axis.bz - axis.az) / length;
+  const positions: number[] = [], colours: number[] = [], index: number[] = [];
+  // A quad from `a0` to `a1` along the axis and `c0` to `c1` across it (toward (−uz, ux)), `lift` above the road.
+  const quad = (a0: number, a1: number, c0: number, c1: number, lift: number, colour: string): void => {
+    const c = new THREE.Color(colour), base = positions.length / 3;
+    for (const [a, cr] of [[a0, c0], [a1, c0], [a1, c1], [a0, c1]] as const) {
+      positions.push(axis.ax + ux * a - uz * cr, y + lift, axis.az + uz * a + ux * cr);
+      colours.push(c.r, c.g, c.b);
+    }
+    index.push(base, base + 2, base + 1, base, base + 3, base + 2);
+  };
+  quad(0, length, -half, half, 0.004, SURFACE_COLOURS.road);
+  quad(0, length, half, half + 0.35, 0.03, SURFACE_COLOURS.kerb);
+  quad(0, length, -half - 0.35, -half, 0.03, SURFACE_COLOURS.kerb);
+  const spans = crossings.map((c) => ({ at: ((c.ax + c.bx) / 2 - axis.ax) * ux + ((c.az + c.bz) / 2 - axis.az) * uz, half: c.width / 2 }));
+  for (let a = 2; a + 2.8 < length; a += 6) if (spans.every((s) => Math.abs(a + 1.4 - s.at) > s.half + 1.5)) quad(a, a + 2.8, -0.07, 0.07, 0.008, SURFACE_COLOURS.dash);
+  for (const s of spans) for (let cr = -half + 0.5; cr + 0.6 < half; cr += 1.1) quad(s.at - s.half + 0.2, s.at + s.half - 0.2, cr, cr + 0.6, 0.008, SURFACE_COLOURS.zebra);
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.Float32BufferAttribute(colours, 3));
+  geometry.setIndex(index);
+  geometry.computeVertexNormals();
+  const mesh = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: '#ffffff', vertexColors: true }));
+  mesh.name = 'street-surface';
+  mesh.castShadow = false; mesh.receiveShadow = false;
   return mesh;
 }
 
@@ -299,22 +352,21 @@ function perfReadout(): { show(text: string): void; dispose(): void } | null {
 
 export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLife {
   const { THREE } = kit;
-  const heightAt = options.heightAt ?? (() => 0);
+  const heightAt = options.heightAt ?? (() => 0), narrow = options.narrow ?? 1;
   const group = new THREE.Group();
   group.name = 'street-life';
   options.parent.add(group);
-  const vehicles = paintTraffic(planTraffic(options.seed, options.roads, options.vehicles), options.country, options.seed);
-  // Lights on the first road when it has crossings and its stopped traffic can be kept off all of them.
-  const road0 = options.roads[0], crossings = options.crossings ?? [];
-  let signal: Signal | null = null, shift = 0;
-  if (road0 && crossings.length) {
-    const lights = signalFor(road0), clear = clearShift(vehicles.filter((v) => v.road === 0), road0, crossingSpans(road0, crossings));
-    if (lights && clear !== null) { signal = lights; shift = clear; }
-  }
+  const vehicles = flavourTraffic(paintTraffic(planTraffic(options.seed, options.roads, options.vehicles), options.country, options.seed), options.country, options.seed);
+  // Lights on the roads when they have crossings and their stopped traffic can be kept off all of them (traffic.ts).
+  const crossings = options.crossings ?? [];
+  const schedule = planSchedule(vehicles, options.roads, crossings), signal = schedule.signal;
   const world: PeopleWorld = { lanes: options.lanes, crossings, signal };
   const people = planPeople(options.seed, world, options.crowd);
   const crowd = people.length ? crowdMesh(kit, people) : null;
   const traffic = vehicles.length ? trafficMesh(kit, vehicles) : null;
+  const surface = options.surface ? surfaceMesh(kit, options.surface, crossings) : null;
+  const surfaceTris = surface ? (surface.geometry.index?.count ?? 0) / 3 : 0;
+  if (surface) group.add(surface);
   if (crowd) group.add(crowd.mesh);
   if (traffic) group.add(traffic);
   const matrix = new THREE.Matrix4(), position = new THREE.Vector3(), scale = new THREE.Vector3(), turn = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0), still = new THREE.Quaternion();
@@ -353,11 +405,10 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
     }
     if (traffic) {
       for (let i = 0; i < shownVehicles; i++) {
-        const vehicle = vehicles[i]!, road = options.roads[vehicle.road]!, spec = VEHICLE_KINDS[vehicle.kind];
-        const lit = vehicle.road === 0 && signal !== null;
-        const pose = vehicleAt(vehicle, road, lit ? driveSeconds(signal, seconds) + shift / road.speed : seconds);
+        const vehicle = vehicles[i]!, spec = VEHICLE_KINDS[vehicle.kind];
+        const pose = vehiclePose(schedule, vehicles, options.roads, i, seconds);
         position.set(pose.x, heightAt(pose.x, pose.z), pose.z);
-        scale.set(spec.wide ?? 1, spec.tall, spec.length);
+        scale.set((spec.wide ?? 1) * narrow, spec.tall, spec.length);
         traffic.setMatrixAt(i, matrix.compose(position, turn.setFromAxisAngle(up, pose.ry), scale));
       }
       traffic.instanceMatrix.needsUpdate = true;
@@ -366,11 +417,11 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
   step(options.at);
 
   return {
-    group, step, setCaps, signal,
+    group, step, setCaps, signal, schedule,
     get people() { return shownPeople; },
     get vehicles() { return shownVehicles; },
-    get triangles() { return disposed ? 0 : shownPeople * PERSON_TRIS + shownVehicles * CAR_TRIS; },
-    get drawCalls() { return disposed ? 0 : (crowd && shownPeople ? 1 : 0) + (traffic && shownVehicles ? 1 : 0); },
+    get triangles() { return disposed ? 0 : shownPeople * PERSON_TRIS + shownVehicles * CAR_TRIS + surfaceTris; },
+    get drawCalls() { return disposed ? 0 : (crowd && shownPeople ? 1 : 0) + (traffic && shownVehicles ? 1 : 0) + (surface ? 1 : 0); },
     dispose() {
       if (disposed) return;
       disposed = true;
@@ -381,6 +432,7 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
         (mesh.material as THREE.Material).dispose();
         mesh.dispose();
       }
+      if (surface) { surface.geometry.dispose(); (surface.material as THREE.Material).dispose(); }
       group.parent?.remove(group);
     },
   };

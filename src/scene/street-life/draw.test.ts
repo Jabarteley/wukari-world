@@ -7,11 +7,12 @@ import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import { createKit } from '../kit.ts';
 import { createStreetLife } from './draw.ts';
-import { HARD_CAP, PERSON_TRIANGLES, VEHICLE_TRIANGLES, planTraffic, vehicleAt, venueLanes } from './plan.ts';
+import { CAR_LENGTH, HARD_CAP, PERSON_TRIANGLES, SURFACE_TRIANGLES, VEHICLE_TRIANGLES, planTraffic, venueLanes } from './plan.ts';
 import type { Lane, Road } from './plan.ts';
-import { clearShift, crossingSpans, driveSeconds, personAt, planPeople, walkNow } from './crowd.ts';
+import { personAt, planPeople, walkNow } from './crowd.ts';
+import { twoWayRoads } from './traffic.ts';
 import { paintTraffic } from './livery.ts';
-import { createAmbientLayer, STREET_PERSON } from '../ambient/layer.ts';
+import { createAmbientLayer, STREET_PERSON, STREET_SURFACE, STREET_VEHICLE } from '../ambient/layer.ts';
 import type { Ident, Stage } from '../ambient/plan.ts';
 import { createWalkGrid } from '../walk-grid.ts';
 
@@ -69,21 +70,26 @@ test('the traffic wears the city\'s livery: London\'s taxis are black, a Nigeria
   london.dispose(); lagos.dispose(); kit.dispose();
 });
 
-test('crossings: the road gets lights, the stopped traffic keeps off every crossing, and crossers are on the road only while it is stopped', () => {
+test('crossings: both lanes get one set of lights, no vehicle is ever on a crossing while people may cross, and crossers are on the road only then', () => {
   const kit = createKit();
   const crossings: Lane[] = [{ ax: 10, az: 2.65, bx: 10, bz: 11.1, width: 2.4 }, { ax: 78, az: 2.65, bx: 78, bz: 11.1, width: 2.4 }];
-  const life = createStreetLife(kit, { parent: new THREE.Group(), seed: 'x', lanes, roads: [road], crossings, crowd: 120, vehicles: 8, country: 'ng', at: TEN });
+  const roads = twoWayRoads({ ax: -84, az: 6.875, bx: 84, bz: 6.875 }, 'right', 0.78, 5.5);
+  const life = createStreetLife(kit, { parent: new THREE.Group(), seed: 'x', lanes, roads, crossings, crowd: 120, vehicles: 8, country: 'ng', at: TEN });
   assert.ok(life.signal, 'lights');
-  const vehicles = paintTraffic(planTraffic('x', [road], 8), 'ng', 'x');
   const signal = life.signal!, green = signal.period - signal.walk;
-  const shift = clearShift(vehicles, road, crossingSpans(road, crossings))!;
-  for (const k of [0, 3, 40]) {
-    const t = k * signal.period + green + 1;
-    for (const v of vehicles) {
-      const pose = vehicleAt(v, road, driveSeconds(signal, t) + shift / road.speed);
-      for (const c of crossings) assert.ok(Math.abs(pose.x - c.ax) >= v.length / 2 + c.width / 2, `vehicle clear of the crossing at ${c.ax}`);
+  const traffic = life.group.children.find((child) => child.name === 'street-traffic') as THREE.InstancedMesh;
+  const m = new THREE.Matrix4(), p = new THREE.Vector3(), q = new THREE.Quaternion(), sc = new THREE.Vector3();
+  let checked = 0;
+  for (const k of [0, 3, 40]) for (let dt = 0; dt < signal.walk; dt += 0.5) {
+    life.step((k * signal.period + green + dt) * 1000);
+    for (let i = 0; i < traffic.count; i++) {
+      traffic.getMatrixAt(i, m); m.decompose(p, q, sc);
+      for (const c of crossings) assert.ok(Math.abs(p.x - c.ax) >= (sc.z * CAR_LENGTH) / 2 + c.width / 2, `vehicle ${i} clear of the crossing at ${c.ax} (walk +${dt} s)`);
+      checked += 1;
     }
   }
+  assert.ok(checked > 100);
+  assert.ok(new Set(life.schedule.roads.map((r) => r.profile.lap.toFixed(6))).size === 1, 'one lap: one set of lights serves both ways');
   const people = planPeople('x', { lanes, crossings, signal }, 120).filter((p) => p.habit === 'cross');
   assert.ok(people.length > 0);
   let crossed = 0;
@@ -92,6 +98,19 @@ test('crossings: the road gets lights, the stopped traffic keeps off every cross
     if (pose.z > 3.3 && pose.z < 10.4) { crossed += 1; assert.ok(walkNow(signal, t), `on the road only on the walk phase (t=${t})`); }
   }
   assert.ok(crossed > 0, 'and they do cross');
+  life.dispose(); kit.dispose();
+});
+
+test('a street with no road of its own gets its carriageway: one more mesh, counted in the triangles and draw calls', () => {
+  const kit = createKit();
+  const axis = { ax: -30, az: -24, bx: 30, bz: -24 }, roads = twoWayRoads(axis, 'left', 1.3, 5);
+  const life = createStreetLife(kit, { parent: new THREE.Group(), seed: 'v', lanes, roads, crowd: 40, vehicles: 6, country: 'gb', surface: { axis, half: 2.7, y: -0.42 }, at: TEN });
+  const surface = life.group.children.find((child) => child.name === 'street-surface') as THREE.Mesh;
+  assert.ok(surface, 'the road is drawn');
+  const tris = surface.geometry.index!.count / 3;
+  assert.ok(tris > 0 && tris <= SURFACE_TRIANGLES, `${tris} triangles`);
+  assert.equal(life.drawCalls, 3);
+  assert.equal(life.triangles, 40 * PERSON_TRIANGLES + 6 * VEHICLE_TRIANGLES + tris);
   life.dispose(); kit.dispose();
 });
 
@@ -132,7 +151,11 @@ function layerFor(kind: string, room = { triangles: 9_000, meshes: 40 }) {
   return { kit, layer, changed: () => changed };
 }
 
-test('the layer sets aside what a street person really costs', () => assert.equal(STREET_PERSON, PERSON_TRIANGLES));
+test('the layer sets aside what a street person, a vehicle and the road really cost', () => {
+  assert.equal(STREET_PERSON, PERSON_TRIANGLES);
+  assert.equal(STREET_VEHICLE, VEHICLE_TRIANGLES);
+  assert.equal(STREET_SURFACE, SURFACE_TRIANGLES);
+});
 
 test('the layer: off under node (no WebGL2), so every existing scene and test is what it was', async () => {
   const { kit, layer } = layerFor('market');

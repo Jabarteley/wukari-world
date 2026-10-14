@@ -71,6 +71,8 @@ export interface Person extends Walker {
   spot: { x: number; z: number; ry: number } | null
   /** A crosser's wait after the lights change (seconds). */
   delay: number
+  /** A browser on a lane with shop windows (zoom phase 5b): the windows (along the lane) they stop at, each for `pause` seconds. */
+  windows?: readonly number[]
 }
 type Dress = Pick<Person, 'outfit' | 'shirt' | 'legs' | 'skirt' | 'jacket' | 'bag' | 'bagTone' | 'width' | 'bob'>;
 export interface PersonPose extends WalkerPose { mode: Mode; lift: number }
@@ -175,11 +177,18 @@ export function planPeople(seed: string, world: PeopleWorld, count: number): Per
   for (const walker of walkers) {
     const browse = lanes[walker.lane]!.browse !== undefined && next() < 0.4;
     const stops = browse || next() < 0.3;
-    out.push({
+    const person: Person = {
       ...walker, ...dress(), habit: browse ? 'browse' : 'walk',
       cycle: stops ? between(browse ? 18 : 28, browse ? 34 : 60) : 0, pause: stops ? between(browse ? 4 : 2, browse ? 9 : 5) : 0, shift: next() * 60,
       phone: next() < 0.3, spot: null, delay: 0,
-    });
+    };
+    // By shop windows a browser picks a few of them to stop at (never one where people fade at the lane's ends).
+    const shown = browse ? windowsOf(lanes[walker.lane]!) : [];
+    if (shown.length) {
+      const picked = shown.filter(() => next() < 0.45);
+      person.windows = picked.length ? picked : [shown[Math.floor(next() * shown.length) % shown.length]!];
+    }
+    out.push(person);
   }
   // Groups of two or three, standing a little off a roomy lane's line, turned to each other.
   for (let made = 0; made < grouped;) {
@@ -205,6 +214,35 @@ export function planPeople(seed: string, world: PeopleWorld, count: number): Per
       phone: next() < 0.35, spot: null, delay: next() * Math.max(0, walk - length / speed) });
   }
   return spread(out);
+}
+
+/** A lane's shop windows a browser may stop at: along it, clear of the fade at both ends. */
+export function windowsOf(lane: Lane): number[] {
+  const length = laneLength(lane);
+  return (lane.windows ?? []).filter((at) => at > FADE_UNITS + 1 && at < length - FADE_UNITS - 1);
+}
+
+/**
+ * A browser by the shop windows (zoom phase 5b): they walk the lane and stop at each of their windows for `pause` seconds, turned to it,
+ * lap after lap. `walked`: the seconds of walking done (plan.ts walkerAt places them from it); `stopped`: standing at a window now.
+ */
+export function browseAt(person: Pick<Person, 'speed' | 'offset' | 'dir' | 'pause' | 'shift' | 'windows'>, lane: Lane, seconds: number): { walked: number; stopped: boolean } {
+  const length = laneLength(lane) || 1, speed = person.speed > 0 ? person.speed : 1, pause = Math.max(0, person.pause);
+  const t = Number.isFinite(seconds) ? seconds : 0, windows = person.windows ?? [];
+  if (!windows.length || !(pause > 0)) return { walked: t, stopped: false };
+  // In the walking direction's own coordinate (0 where they start), the windows in the order they come to them.
+  const start = person.dir === 1 ? wrap(person.offset, length) : length - wrap(person.offset, length);
+  const stops = windows.map((at) => wrap((person.dir === 1 ? at : length - at) - start, length)).sort((a, b) => a - b);
+  const lap = length / speed + stops.length * pause, q = t + person.shift, k = Math.floor(q / lap);
+  let left = q - k * lap, done = 0;
+  for (const stop of stops) {
+    const walk = (stop - done) / speed;
+    if (left <= walk) return { walked: (k * length + done + left * speed) / speed, stopped: false };
+    left -= walk; done = stop;
+    if (left <= pause) return { walked: (k * length + done) / speed, stopped: true };
+    left -= pause;
+  }
+  return { walked: (k * length + Math.min(length, done + left * speed)) / speed, stopped: false };
 }
 
 /** The seconds a person has walked by this time: their stops taken out (continuous, so they never jump). */
@@ -245,6 +283,11 @@ export function personAt(person: Person, world: PeopleWorld, seconds: number): P
     };
   }
   const lane = world.lanes[person.lane]!;
+  if (person.habit === 'browse' && person.windows?.length) {
+    const at = browseAt(person, lane, t), pose = walkerAt(person, lane, at.walked);
+    if (at.stopped) return { ...pose, ry: lane.browse ?? pose.ry, phase: 0, mode: person.phone ? 2 : 1, lift: 0 };
+    return { ...pose, mode: 0, lift: person.bob * person.height * Math.abs(Math.sin(2 * Math.PI * pose.phase)) };
+  }
   const pose = walkerAt(person, lane, walkedSeconds(person, t));
   if (stoppedAt(person, t)) {
     return { ...pose, ry: person.habit === 'browse' && lane.browse !== undefined ? lane.browse : pose.ry, phase: 0, mode: person.phone ? 2 : 1, lift: 0 };

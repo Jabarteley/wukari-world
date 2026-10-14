@@ -7,7 +7,7 @@
     "stateId": "es-madrid",
     "stateName": "Madrid"
   },
-  "inventorySha256": "f9dc8ac7b39003b3fb89025ab25b643092a2c5ac7db4eacdc64c7efc03bd9ccf",
+  "inventorySha256": "28c712d5f82b50f7d47e755fe3546b3b3fc25caa39879a750d717e605c865684",
   "inventoryPath": "world/playable-africa-rollout/sources/madrid.json",
   "admission": {
     "registered": true,
@@ -94,7 +94,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 216,
     "neighbourhoodLabels": 18,
     "landPolygons": 23,
     "waterPolygons": 3,

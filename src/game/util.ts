@@ -17,10 +17,10 @@ export const cap = (id: string): string => {
 /** An amount for display: the display city's currency in the browser (src/game/money.ts), naira everywhere else. */
 export const naira = (value: unknown): string => money(value);
 
-/** Trimmed text of bounded length with control characters removed, or the fallback. */
+/** Trimmed text of bounded length with control characters removed, or the fallback. Idempotent: the cut is trimmed again so reloading saved text never changes it. */
 export function cleanText(value: unknown, max = 80, fallback = ''): string {
   if (typeof value !== 'string') return fallback;
-  const text = value.replace(/[\u0000-\u001f\u007f]/g, '').trim().slice(0, max);
+  const text = value.replace(/[\u0000-\u001f\u007f]/g, '').trim().slice(0, max).trimEnd();
   return text || fallback;
 }
 

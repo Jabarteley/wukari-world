@@ -20,26 +20,15 @@ jobs:
       - run: cd mine && npm ci --no-audit --no-fund && npm run build
       - name: startup closure
         run: |
-          cat > closure.mjs <<'JS'
-          import { readFileSync, existsSync, statSync } from 'node:fs'
-          const stem = (f) => f.replace(/-[0-9a-f]{8}\.js$/, '')
-          function closure(dir) {
-            const html = readFileSync(`${dir}/dist/index.html`, 'utf8')
-            const seen = new Map(); const queue = [...html.matchAll(/assets\/([\w.-]+\.js)/g)].map((m) => m[1])
-            while (queue.length) {
-              const f = queue.pop(); if (seen.has(f)) continue
-              const p = `${dir}/dist/assets/${f}`; if (!existsSync(p)) continue
-              const text = readFileSync(p, 'utf8'); seen.set(f, statSync(p).size)
-              // static imports only: from"./x.js" and import"./x.js", not import("./x.js")
-              for (const m of text.matchAll(/(?:from|^import)\s*"\.\/([\w.-]+\.js)"/gm)) queue.push(m[1])
-            }
-            return new Map([...seen].map(([f, n]) => [stem(f), n]))
-          }
-          const b = closure('base'), m = closure('mine')
-          let sb = 0, sm = 0; const rows = []
+          cat > closure.ts <<'JS'
+          import { readDist, startupFiles } from './mine/scripts/download-budget.ts'
+          const stem = (f: string) => f.replace(/-[\w-]{8}\.js$/, '')
+          const load = (dir: string) => { const dist = readDist(`${dir}/dist`); const files = startupFiles(dist, 'lagos')!; return new Map([...files].filter((f) => f.endsWith('.js')).map((f) => [stem(f), dist.get(f)!.length] as const)) }
+          const b = load('base'), m = load('mine')
+          let sb = 0, sm = 0; const rows: (string | number)[][] = []
           for (const k of new Set([...b.keys(), ...m.keys()])) { const x = b.get(k) ?? 0, y = m.get(k) ?? 0; sb += x; sm += y; rows.push([k, x, y, y - x]) }
-          rows.sort((p, q) => q[2] - p[2])
+          rows.sort((p, q) => (q[2] as number) - (p[2] as number))
           console.log('total base', sb, 'mine', sm)
           for (const r of rows) console.log(r.join('\t'))
           JS
-          node closure.mjs
+          node --experimental-strip-types closure.ts

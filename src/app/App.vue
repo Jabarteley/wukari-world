@@ -38,8 +38,6 @@ const CommunityHost = defineAsyncComponent({ loader: () => import('./features/co
 // The link-landing banner ("You're joining Ada") exists only for a player who arrived by a link: its code is fetched then.
 const LinkBanner = defineAsyncComponent(() => import('./features/landing/LinkBanner.vue'))
 const PlacePanel = defineAsyncComponent(() => import('./features/places/PlacePanel.vue'))
-// The banner of a link landing ("You're joining Ada") is fetched when a landing has one to show.
-const LinkBanner = defineAsyncComponent(() => import('./features/landing/LinkBanner.vue'))
 import CallsHost from './features/calls/CallsHost.vue'
 import PingHost from './features/ping/PingHost.vue'
 import ScenePane from './scene/ScenePane.vue'

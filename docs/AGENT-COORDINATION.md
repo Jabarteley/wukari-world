@@ -6,9 +6,9 @@ This is the shared entry point for coding agents on every computer. **Each agent
 
 | Work | Owner / chat | Current record | Coordination state |
 |---|---|---|---|
-| Retention, achievements and worldwide journey foundation | Research Allworld game retention · `01a13bea-138b-7b91-ac44-c49bc3d836ec` | [retention-20261014](agent-work/retention-20261014.md) | Research/coordination published in `899c6043`; joined runtime checks in progress. See the record for the current checkout and GitHub status. |
+| Retention, achievements and worldwide journey foundation | Research Allworld game retention · `01a13bea-138b-7b91-ac44-c49bc3d836ec` | [retention-20261014](agent-work/retention-20261014.md) | Research and Phases 0–6 source published through `376285c0`; local build/typecheck/size/smoke accepted. See record for known broad-suite findings and separate rollout gates. |
 | Character project | Continue Allworld character project · `01a13afe-a87b-7263-891d-c8c06703af7b` | Registration requested; discover its record in `docs/agent-work/` | Active chat observed 2026-10-14 23:05 UTC; file ownership must come from its owner. |
-| Agent-play / world-alive work on the other computer | Programme integration: `claude/world-alive`; per-phase branches recorded by its owner | [AGENT.md](../AGENT.md) and [world-alive status](agent-plans/world-alive/STATUS.md) | Main through `84917cdc` integrated. House-agent/public-romance compatibility passes 74 focused checks; cache-first and Phase 11 agent missions remain unpublished branch work. Recheck their owner’s record before editing shared mission contracts. |
+| Agent-play / world-alive work on the other computer | Programme integration: `claude/world-alive`; per-phase branches recorded by its owner | [AGENT.md](../AGENT.md) and [world-alive status](agent-plans/world-alive/STATUS.md) | Main through `b8e4f8f0` integrated, including cache-first reads. House-agent/public-romance compatibility passes 74 focused checks; cache checks pass 22/22 on combined source. Phase 11 agent missions remain separate branch work; recheck the owner’s record before shared mission edits. |
 
 ## Working protocol
 

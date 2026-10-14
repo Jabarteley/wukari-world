@@ -6,9 +6,9 @@
 - **Owner:** `/root/phase0_mission_rewards`
 - **Model / effort:** `GPT-6 Sol / high`
 - **Thread:** `/root/phase0_mission_rewards`
-- **UTC updated:** `2026-10-14T23:14:58Z`
-- **Status:** `build-verification-pending`
-- **Work state:** `implementation`
+- **UTC updated:** `2026-10-14T23:41:00Z`
+- **Status:** `verified-local`
+- **Work state:** `completed bounded implementation`
 
 ## Goal and boundaries
 
@@ -24,10 +24,10 @@
 
 - **Repo:** `JoinAllworld`, canonical retention-main-sync worktree.
 - **Host:** `Local`.
-- **Branch / worktree:** Detached `HEAD` at `.codex/worktrees/retention-main-sync/JoinAllworld`.
+- **Branch / worktree:** `codex/retention-main-sync` at `.codex/worktrees/retention-main-sync/JoinAllworld`.
 - **Base:** `899c60439022b2cb7082a1e88c930a3e4c41db36`.
-- **Current commit:** `899c60439022b2cb7082a1e88c930a3e4c41db36`.
-- **Dirty status:** Dirty. Owned loading changes coexist with the retention programme's many pre-existing modified and untracked files; unrelated work was preserved.
+- **Accepted retention commit:** `bcbfd549cb5d4e28b57003ae0eb741708bf81a77`; see the parent record for subsequent main integration.
+- **Source state:** Loading repair is committed with retention. This record retains the original diagnostic history; the parent record owns current integration/publication status.
 - **Port/process ownership:** None. The diagnostic exited normally; two focused Vue compiler processes exited with heap exhaustion and left no running process.
 
 ## Progress
@@ -45,21 +45,19 @@
 - Added a `progression-rules` manual chunk before the broad `src/game/* -> engine` fallback. It contains the three complete systems, registration module, authored catalogues, journey/memento helpers, and cadence/season rules; `progression-gate.ts`, `progression-slices.ts` and `registry.ts` remain eager.
 - Diff hygiene passed: `git diff --check`.
 
-### In progress / blockers
+### Accepted result and next step
 
-- Parent's serialized five-project typecheck passed before this config-only repair. Two earlier direct `vue-tsc` project attempts emitted no diagnostics before both exited `134` at the default 4 GB heap when run concurrently; they are not recorded as passes.
-- The pre-repair production build still measured `660320` raw / `234838` gzip startup JS and `205431` total Brotli because the broad manual chunk rule overrode the dynamic source boundary. The parent's next production build and download-budget run must verify the repaired chunk graph.
+The parent integrated the loader with host-only mission listener construction, a small eager atlas lookup and a lazy calendar formatter. The complete retention build passes the unchanged startup limits across 284 cities: 614255 raw JS / 221428 gzip JS / 194142 Brotli overall. Five-project typecheck and 17 smoke checks pass. Current upstream-cache integration is tracked in the parent record.
 
-### Immediate resume steps
+Earlier direct parallel Vue compiler attempts exhausted the default heap; those attempts are not passes. The subsequent serialized five-project typecheck passed. No worker remains editing source.
 
-1. Run one production build and `npm run size:download`; confirm `progression-rules` is lazy, the authored progression systems/content are absent from the startup engine closure and the startup budgets pass.
-2. If the budget still fails, inspect the new startup closure before changing the stand-in contract or budgets.
+On a future change, verify the emitted import graph before moving action constants or raising any budget. Do not replay already applied work. Parent owns publication and release decisions.
 
 ## Release state
 
-- **Local implementation:** `build-verification-pending`
+- **Local implementation:** `verified-local`
 - **Deployment:** `not-requested`
-- **Release gate:** Parent whole-tree typecheck plus production build/download-budget evidence.
+- **Release gate:** Local typecheck/build/size/smoke evidence accepted; production and rollout remain separate parent-owned gates.
 - **References:** `docs/agent-work/retention-20261014.md`, `src/game/campus-gate.ts`, `src/campus/unilag/slices.ts`, `src/game/registry.ts`.
 
 ## Checkpoint history
@@ -69,3 +67,12 @@
 | `2026-10-14T23:08:20Z` | `verified-local` | Lazy progression pack implemented with conservative state gating and retry | Host-local progression probe, source imports, `git diff --check` | Update the affected browser-profile fixture |
 | `2026-10-14T23:10:26Z` | `verified-local` | Browser fixture awaits progression before direct rebuilds; focused client and browser-profile suites pass | `src/client.test.ts` 44/44; `src/game/browser-profile.test.ts` 3/3 | Parent runs serialized typecheck, build and download budget |
 | `2026-10-14T23:14:58Z` | `build-verification-pending` | Manual chunk precedence repaired so the lazy progression pack and retention helpers no longer fall into eager engine | Source import graph review; config classifier check; `git diff --check` | Parent rebuilds once and measures startup budget |
+
+## Parent integration checkpoint — 15 October
+
+- The parent removed runtime action-type constants from `progression-rules`: `types/actions.ts` imports them eagerly, so grouping them with the pack would pull its rules into startup. They stay in a small automatically shared chunk.
+- The first corrected pack build measured 621865 raw startup JS. A source-backed audit found an unguarded mission listener table retaining the host mutation graph. Guarding construction with the existing `PLAYS` flag removes 4542 raw bytes without changing sanitize/view or host behavior; 11 focused mission/browser-profile checks pass.
+- The remaining source split moves the tiny map-entry-code lookup out of atlas metadata and calendar export formatting out of the eager calendar. Public host exports remain compatible; the lazy Events screen imports the formatter directly. A pure annotation removes unused legacy travel-option construction.
+- Current production build passes. Startup is 614255 raw JS / 221428 gzip JS / 194142 brotli overall, within unchanged limits. All-city size, five-project typecheck and 17 smoke checks pass; artifacts are in the retention evidence folder.
+- Mission/event checks pass 10/10. Atlas/registry checks pass 19/20; the sole Antarctica placeholder mismatch reproduces on clean `94bd77d4` (3/4 map-entry tests). It is not represented as a green suite.
+- All source ownership is released to the parent; no worker remains editing files.

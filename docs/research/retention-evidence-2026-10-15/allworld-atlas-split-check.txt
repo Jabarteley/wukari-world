@@ -1,0 +1,57 @@
+✔ atlas consumers read live city metadata and canonical links after module import (40.005833ms)
+✔ a user-assigned module code reaches the world-map entry it stands for, and nothing else changes (0.781ms)
+✔ a catalogue row of a disputed entry names the map entry, so the atlas opens it (0.128917ms)
+✔ a registered city module with a user-assigned code opens exactly its map entry (0.755458ms)
+✖ an outpost module opens a context-only entry (Antarctica) and a disputed territory entry, each with an open-city teaser (0.787791ms)
+✔ lagos: loaded city rules contract (34.011375ms)
+✔ lagos: lazy content contract (11.285125ms)
+✔ lagos: lazy map contract (96.781792ms)
+✔ lagos: a new guest starts at a public venue (177.42075ms)
+✔ test-fictional: loaded city rules contract (0.08575ms)
+✔ test-fictional: lazy content contract (0.118875ms)
+✔ test-fictional: lazy map contract (7.637292ms)
+✔ test-fictional: a new guest starts at a public venue (1.012125ms)
+✔ test-neighbour: loaded city rules contract (0.060625ms)
+✔ test-neighbour: lazy content contract (0.107792ms)
+✔ test-neighbour: lazy map contract (4.405041ms)
+✔ test-neighbour: a new guest starts at a public venue (0.581625ms)
+✔ test registration is scoped and catalogue reservations keep their current status (35.264792ms)
+✔ the original nine keep their registry order while additive catalogue cities are open everywhere (0.651542ms)
+✔ authored Ibadan content is open and exposes its canonical road and rail links (36.477833ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 19
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 841.121458
+
+✖ failing tests:
+
+test at src/game/cities/mapEntries.test.ts:45:1
+✖ an outpost module opens a context-only entry (Antarctica) and a disputed territory entry, each with an open-city teaser (0.787791ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+      'open',
+  +   'villa-las-estrellas',
+  -   'test-estrellas',
+      'antarctica'
+    ]
+
+      at TestContext.<anonymous> (file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/cities/mapEntries.test.ts:51:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'open', 'villa-las-estrellas', 'antarctica' ],
+    expected: [ 'open', 'test-estrellas', 'antarctica' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

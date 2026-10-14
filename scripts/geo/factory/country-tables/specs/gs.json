@@ -27,7 +27,6 @@
         { "ref": "node/3921049631", "reason": "historic=wreck 'Moresko 1': every historic=wreck and aircraft_wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
         { "ref": "node/3921049632", "reason": "historic=wreck 'Lyn': every historic=wreck and aircraft_wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
         { "ref": "node/5790020661", "reason": "historic=wreck 'Fenix', a wrecked Argentine landing craft of 1982: wrecks are excluded (OUTPOST-TABLE-FIELDS gs)." },
-        { "ref": "node/8381200842", "reason": "historic=aircraft_wreck, a helicopter shot down in 1982: aircraft wrecks are excluded (OUTPOST-TABLE-FIELDS gs)." },
         { "ref": "way/611591128", "reason": "historic=wreck 'Floating Dock': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
         { "ref": "way/611608981", "reason": "historic=wreck 'Louise': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
         { "ref": "way/632736925", "reason": "historic=wreck, unnamed: every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },

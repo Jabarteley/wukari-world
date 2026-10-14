@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "hm",
-      "table": "scripts/geo/factory/country-factory/hm-factory-targets.json"
+      "id": "gs",
+      "table": "scripts/geo/factory/country-factory/gs-factory-targets.json"
     }
   ]
 }

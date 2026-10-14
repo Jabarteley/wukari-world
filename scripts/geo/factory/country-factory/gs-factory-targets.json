@@ -74,10 +74,6 @@
           "reason": "historic=wreck 'Fenix', a wrecked Argentine landing craft of 1982: wrecks are excluded (OUTPOST-TABLE-FIELDS gs)."
         },
         {
-          "ref": "node/8381200842",
-          "reason": "historic=aircraft_wreck, a helicopter shot down in 1982: aircraft wrecks are excluded (OUTPOST-TABLE-FIELDS gs)."
-        },
-        {
           "ref": "way/611591128",
           "reason": "historic=wreck 'Floating Dock': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
         },

@@ -2,14 +2,15 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "hf-1",
-      "appSha": "1e4f08b8f690149e4e80b27498a5d6d322551cea",
+      "id": "zoom-final",
+      "appSha": "f70b5897d07b8087fcfbdb375779036f9183e6f6",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
-        "port-moresby",
         "lagos",
         "paris",
-        "accra"
+        "accra",
+        "singapore",
+        "port-moresby"
       ],
       "roundtrip": true,
       "browserOnly": true

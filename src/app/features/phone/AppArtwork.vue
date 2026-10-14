@@ -13,7 +13,8 @@ const drawn = computed(() => ICON_SET_APPS.includes(props.app) && !PHONE_ART.inc
 const mark = computed(() => glyph(glyphFor(props.app)))
 const tint = computed(() => tintOf({ id: props.app }))
 const style = computed(() => {
-  const found = PHONE_ART.indexOf(props.app === 'person' ? 'contacts' : props.app)
+  const picture = props.app === 'person' ? 'contacts' : props.app === 'passport' ? 'goals' : props.app === 'gist' ? 'community' : props.app
+  const found = PHONE_ART.indexOf(picture)
   const index = found < 0 ? PHONE_ART.indexOf('settings') : found
   const column = index % PHONE_ART_COLUMNS
   const row = Math.floor(index / PHONE_ART_COLUMNS)

@@ -1,0 +1,1 @@
+PASS HTTP enrollment and claim disk rollback/retry, meaningful-day gate, finite reminder validation, late join, archived claim, frozen window, and character travel preserves collection/season receipts. Seeded canonical project receipts isolate season eligibility; gameplay separately verified.

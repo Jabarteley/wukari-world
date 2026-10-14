@@ -56,8 +56,8 @@ export const DAILY_MISSIONS: readonly MissionDefinition[] = Object.freeze([
   { id: 'd-gem', kind: 'discovery', label: 'Find a gem', hint: 'Follow the gem hunt clues', on: 'event', event: 'gem.found', open: 'hunt-sheet' },
   { id: 'd-wish', kind: 'discovery', label: 'Make a wish come true', hint: 'Your wishes are in Goals', on: 'event', event: 'wish.granted', open: 'goals' },
 
-  { id: 'd-greet', kind: 'social', label: 'Say hello to two people', hint: 'Regulars at any venue count', on: 'event', event: 'npc.greeted', count: 2, open: 'people' },
-  { id: 'd-gist', kind: 'social', label: 'Gist with three people', hint: 'Any chat with a regular counts', on: 'tag', tags: ['social'], count: 3, open: 'people' },
+  { id: 'd-greet', kind: 'social', label: 'Say hello to two people', hint: 'Regulars at any venue count', on: 'event', event: 'npc.greeted', distinct: 'npc', count: 2, open: 'people' },
+  { id: 'd-gist', kind: 'social', label: 'Have three conversations', hint: 'Talk with regulars; you can return to someone you know', on: 'tag', tags: ['social'], count: 3, open: 'people' },
   { id: 'd-table', kind: 'social', label: 'Play a table game', hint: 'Whot at the buka, penalties at the viewing centre', on: 'event', event: 'table.played', open: 'tables' },
   { id: 'd-event', kind: 'social', label: 'Show up at an event', hint: 'See what is on in Events', on: 'event', event: 'event.attended', needs: 'event', open: 'events' },
   { id: 'd-chess', kind: 'social', label: 'Win a game of chess', hint: 'At a park or lounge table, or against the computer on your Phone', on: 'event', event: 'table.played', where: 'chessWin', open: 'tables' },
@@ -73,7 +73,7 @@ export const WEEKLY_MISSIONS: readonly MissionDefinition[] = Object.freeze([
   { id: 'w-gems', kind: 'discovery', label: 'Find nine gems', hint: 'Three days of the gem hunt', on: 'event', event: 'gem.found', count: 9, open: 'hunt-sheet' },
   { id: 'w-tables', kind: 'social', label: 'Play five table games', hint: 'Win or lose, a finished game counts', on: 'event', event: 'table.played', count: 5, open: 'tables' },
   { id: 'w-friend', kind: 'social', label: 'Make a friend', hint: 'Keep talking to someone you like', on: 'event', event: 'friend.made', open: 'people' },
-  { id: 'w-greet', kind: 'social', label: 'Say hello to ten people', hint: 'Regulars at any venue count', on: 'event', event: 'npc.greeted', count: 10, open: 'people' },
+  { id: 'w-greet', kind: 'social', label: 'Say hello to ten people', hint: 'Regulars at any venue count', on: 'event', event: 'npc.greeted', distinct: 'npc', count: 10, open: 'people' },
   { id: 'w-events', kind: 'social', label: 'Show up at two events', hint: 'See what is on in Events', on: 'event', event: 'event.attended', count: 2, open: 'events' },
 ]);
 

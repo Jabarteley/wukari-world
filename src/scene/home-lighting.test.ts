@@ -40,6 +40,16 @@ test('Home clock changes light and sky once per phase without rebuilding people 
     }
     assert.equal(home.update({ ...state, t: Number.NaN }), false, 'invalid time retains the last valid light');
     assert.deepEqual(home.lighting(), LIGHTING.indoor.night);
+    state.achievements.earned['home-maker'] = { id: 'home-maker', version: 1, earnedAt: state.t, cityId: 'lagos', origins: ['human'] };
+    state.achievements.displayed = 'home-maker';
+    assert.equal(home.update(state), true, 'changing the earned display rebuilds the home');
+    assert.ok(home.tags().some(tag => tag.kind === 'achievement' && tag.name === 'Make It Yours'));
+    const displayedGeometry = geometries(home.group);
+    assert.equal(home.update(state), false, 'an unchanged plaque keeps the renderer idle');
+    assert.deepEqual(geometries(home.group), displayedGeometry);
+    state.achievements.displayed = null;
+    assert.equal(home.update(state), true);
+    assert.ok(home.tags().every(tag => tag.kind !== 'achievement'));
   } finally { home.dispose(); kit.dispose(); }
 });
 

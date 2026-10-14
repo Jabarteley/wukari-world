@@ -22,7 +22,7 @@ export const CONFIG = {
   "name": "Gustavia",
   "box": [
     17.71482341006602,
-    -63.039827502100195,
+    -62.94953618220457,
     18.076585189933976,
     -62.66184689789981
   ],
@@ -276,11 +276,6 @@ export const CONFIG = {
       "id": "district-2610107873",
       "ref": "node/2610107873",
       "kind": "neighbourhood"
-    },
-    {
-      "id": "water-relation-9208151",
-      "ref": "relation/9208151",
-      "kind": "water"
     }
   ],
   "profile": "microstate",

@@ -1,4 +1,5 @@
 import type { Component } from 'vue'
+import { loadProgression } from '../../game/progression-gate.ts'
 
 type BodyModule = { default: Component }
 
@@ -46,6 +47,7 @@ const loaders = {
   'growth/ReferApp': () => import('../features/growth/ReferApp.vue'),
   'growth/TouchApp': () => import('../features/growth/TouchApp.vue'),
   'growth/ShareSheet': () => import('../features/growth/ShareSheet.vue'),
+  'passport/PassportApp': async () => { await loadProgression(); return import('../features/passport/PassportApp.vue') },
   'living-world/PracticeGateway': () => import('../features/living-world/PracticeGateway.vue'),
   'politics/PoliticsApp': () => import('../features/politics/PoliticsApp.vue'),
   'social/PeopleApp': () => import('../features/social/PeopleApp.vue'),

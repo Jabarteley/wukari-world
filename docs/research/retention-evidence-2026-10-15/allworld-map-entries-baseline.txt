@@ -1,0 +1,44 @@
+baseline=94bd77d4418ead6b60764b13b3cc66ad69ec1126
+worktree=/tmp/allworld-map-entries-baseline.u8hLq4
+command=node --experimental-strip-types --test --test-concurrency=1 src/game/cities/mapEntries.test.ts
+✔ a user-assigned module code reaches the world-map entry it stands for, and nothing else changes (0.632417ms)
+✔ a catalogue row of a disputed entry names the map entry, so the atlas opens it (0.084375ms)
+✔ a registered city module with a user-assigned code opens exactly its map entry (0.707375ms)
+✖ an outpost module opens a context-only entry (Antarctica) and a disputed territory entry, each with an open-city teaser (0.748666ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 85.123791
+
+✖ failing tests:
+
+test at src/game/cities/mapEntries.test.ts:45:1
+✖ an outpost module opens a context-only entry (Antarctica) and a disputed territory entry, each with an open-city teaser (0.748666ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+      'open',
+  +   'villa-las-estrellas',
+  -   'test-estrellas',
+      'antarctica'
+    ]
+
+      at TestContext.<anonymous> (file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/cities/mapEntries.test.ts:51:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'open', 'villa-las-estrellas', 'antarctica' ],
+    expected: [ 'open', 'test-estrellas', 'antarctica' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

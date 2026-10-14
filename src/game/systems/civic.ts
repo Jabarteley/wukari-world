@@ -399,6 +399,8 @@ const play = PLAYS ? {
       if (state.civic.week.week !== week) state.civic.week = { week, earned: 0 };
       const amount = data?.amount;
       if (!Number.isSafeInteger(amount) || amount <= 0 || /^(Refund|Ride home on credit:)/.test(String(data.reason ?? ''))) return;
+      // A saved mission reward belongs to the period in which it was earned, not the collection week.
+      if (Number.isSafeInteger(ctx?.earnedAt) && lagosTime(ctx.earnedAt as number).week !== week) return;
       state.civic.week.earned = Math.min(Number.MAX_SAFE_INTEGER, state.civic.week.earned + amount);
     },
   },

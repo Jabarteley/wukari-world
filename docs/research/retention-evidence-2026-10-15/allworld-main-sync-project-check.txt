@@ -1,0 +1,1 @@
+PASS real HTTP gameplay proofs, owner-role race dedup, guest uniqueness exclusion, ENOSPC rollback, quiet fallback, once-only memento and route authority.

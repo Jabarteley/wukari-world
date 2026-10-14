@@ -28,7 +28,7 @@
       17.844190410066023,
       -63.23743746692212,
       18.205952189933978,
-      -62.85917713307788
+      -62.95048133494575
     ],
     "core": [
       17.979851077516507,
@@ -40,19 +40,19 @@
       17.794190410066022,
       -63.287437466922114,
       18.25595218993398,
-      -62.80917713307788
+      -62.90048133494575
     ],
     "wide": [
       17.24419041006602,
       -63.83743746692212,
       18.80595218993398,
-      -62.25917713307788
+      -62.35048133494575
     ],
     "water": [
       17.24419041006602,
       -63.83743746692212,
       18.80595218993398,
-      -62.25917713307788
+      -62.35048133494575
     ]
   },
   "waterRecipe": {
@@ -69,31 +69,31 @@
     "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
     "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
     "adapter": "offline-extract.py/v3-nested-centres",
-    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
     "extracts": [
       {
         "file": "places.json",
-        "sha256": "8ddc50fc47b835dbca64919d60d94994ff6d13d79d6982b5c7b87c7bf217557f",
-        "elements": 586
+        "sha256": "472d7414e2a765d667ed9ea22a359c84b621acfdb078ae002aa26bf5a66a867b",
+        "elements": 568
       },
       {
         "file": "extras.json",
-        "sha256": "4393cc373c38dada864a0bea0554c8275cef485b364f8ee736d10fa8e0cf9f55",
+        "sha256": "ae03d0815aff08742e9e803902c9a4a2862a142080b025a58be29bf290ad06b8",
         "elements": 48
       },
       {
         "file": "water.json",
-        "sha256": "3c6d1ee3b09c1f38a694d067502230e499b7a5e6157b0077cf8a7f7e7688eeed",
+        "sha256": "471ea2a4ce4f54bf98393e467e98f81c35576a2ec5447097f7a78c78c803133b",
         "elements": 444
       },
       {
         "file": "landuse.json",
-        "sha256": "ce1cb091ff207fd0c129f1af830d9b90f9fb70bb496af69348738c186c8ebcf5",
-        "elements": 443
+        "sha256": "4f3ee4d81dc950e743a47c26e12583c371f908ac19aeb439501ac81d5c2cc44b",
+        "elements": 320
       },
       {
         "file": "roads.json",
-        "sha256": "418f26c0972909e9c4f7c119e506684227ab02d5959cfe434deb1150d5d9ea7e",
+        "sha256": "563cad5b5919514883fc97010974c6e967d3772608bf2b194f2889c841c87918",
         "elements": 353
       }
     ]
@@ -321,19 +321,19 @@
   "generatedAssets": {
     "facts.ts": {
       "bytes": 1277,
-      "sha256": "f44b5662dbaf38bdf23b41e29fa44bf77aa31b53aa061c10a8d7413f0ae1d1e0"
+      "sha256": "03e3ff1f2945191cf443343da050840840995b697bf664bffe00298c73679444"
     },
     "geometry.ts": {
-      "bytes": 726511,
-      "sha256": "388c49d26562417dea369900ebd0d11ab529f85ba6b1181f20ee828eb8f78a39"
+      "bytes": 611942,
+      "sha256": "a0932ba4d2868af7023a6602f73197105a3073eb269c0c4eaad3b327f7882292"
     },
     "places.ts": {
       "bytes": 9618,
-      "sha256": "796f3b6b133da500c8d837367a9c6486dc43b9cde3e16c518752f4d7cbb562ec"
+      "sha256": "fe189486014ef2782f3470de49e1c31cf2c54b753cf36e5851cbcb0e6945e836"
     },
     "terrain.ts": {
-      "bytes": 400065,
-      "sha256": "141631573d3bbb75311f14d2770273bf47cc2b8864df9132b81e64212ad30cd2"
+      "bytes": 348711,
+      "sha256": "de98566c549f3bb81b272dd27e582a4519e0bcca2cb31902024354fbe0457bbb"
     },
     "index.ts": {
       "bytes": 262,

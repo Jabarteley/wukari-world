@@ -69,6 +69,8 @@ const FEED_LIMIT = 8;
 /** Where the guide sends a player who has to meet someone and is at home: the public venue new players arrive in. */
 const BESTIE_LIMIT = 16;
 const MAX_STARS = 1000000;
+/** Whether a star grant can be applied in full without silently clipping it. */
+export const canGrantStars = (state: Pick<LifeState, 'goals'>, amount: number): boolean => safeCount(amount) && amount <= MAX_STARS - state.goals.stars;
 const PITCH_TAG = 'startup-pitch';
 const pitchVenueFor = (cityId: string) => { const workplace = jobFor(cityId, 'tech')?.workplace.venue; return (workplace ? venueFor(cityId, workplace) : undefined) ?? venuesFor(cityId).find(venue => venue.scene.kind === 'hub'); };
 /** Relationship tiers (ids used by the social system's 'relationship.changed') that count as a best friend. */

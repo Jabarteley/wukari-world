@@ -466,7 +466,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       // A drag that began on a tag turned the camera: it is not a click on the tag.
       if (suppressClick && event.detail !== 0) return;
       const node = (event.target as Element | null)?.closest?.<HTMLElement>('[data-tag]');
-      if (!node) return;
+      if (!node || node.dataset.kind === 'achievement') return;
       if (node.dataset.tag === 'home-door') { walkHomeDoor(); return; }
       if (node.dataset.kind === 'city-gate') { walkStreetGate(); return; }
       if (node.dataset.kind === 'neighbour-door') { walkNeighbourDoor((node.dataset.tag ?? '').slice(5)); return; }
@@ -1265,7 +1265,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       tagShape = shape;
       tagNodes = shownTags.map((tag): TagNode => {
         // Built with textContent only: a player's name can never become markup.
-        const node = globalThis.document.createElement(tag.kind === 'self' ? 'span' : 'button') as TagNode;
+        const node = globalThis.document.createElement(tag.kind === 'self' || tag.kind === 'achievement' ? 'span' : 'button') as TagNode;
         node.className = `scene-tag is-${tag.kind}`;
         node.dataset.tag = tag.id; node.dataset.kind = tag.kind;
         if (tag.marker === 'crown') node.innerHTML = CROWN_MARK;
@@ -1273,7 +1273,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
         else node.textContent = tag.text;
         if (tag.kind === 'bark') { node.textContent = tag.text; node.dataset.npc = NPC_WORD; node.setAttribute('aria-hidden', 'true'); node.tabIndex = -1; node.jawX = NaN; node.jawY = NaN; node.jawShown = true; return node; }
         node.title = tag.kind === 'self' ? 'You' : tag.kind === 'npc' ? npcTitle(tag.name) : tag.name;
-        node.setAttribute('aria-label', tag.kind === 'city-gate' ? 'Explore city streets. Walk to the estate gate' : tag.kind === 'home-door' || tag.kind === 'neighbour-door' ? `${tag.name}. Walk to the front door` : tag.kind === 'self' ? 'You' : tag.kind === 'goal' ? `Your goal: ${tag.name}. Walk there` : tag.kind === 'table' ? `${tag.name}. Walk up to sit, watch or invite a friend` : tag.kind === 'npc' ? npcAria(tag.name) : `${tag.name}, a player`);
+        node.setAttribute('aria-label', tag.kind === 'achievement' ? `Achievement plaque: ${tag.name}` : tag.kind === 'city-gate' ? 'Explore city streets. Walk to the estate gate' : tag.kind === 'home-door' || tag.kind === 'neighbour-door' ? `${tag.name}. Walk to the front door` : tag.kind === 'self' ? 'You' : tag.kind === 'goal' ? `Your goal: ${tag.name}. Walk there` : tag.kind === 'table' ? `${tag.name}. Walk up to sit, watch or invite a friend` : tag.kind === 'npc' ? npcAria(tag.name) : `${tag.name}, a player`);
         node.jawX = NaN; node.jawY = NaN; node.jawShown = true;
         return node;
       });

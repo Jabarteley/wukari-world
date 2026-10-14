@@ -25,3 +25,11 @@ Use these prompts with any computer or repository checkout. Replace angle-bracke
 ## Short prompt for every agent
 
 > Register your work ID and owner; inspect current source and `AGENTS.md`; own only the named repo-relative files; preserve dirty work; record current SHA, evidence, blockers, and resume steps; separate implementation from deployment; re-check copied evidence locally; finish with exact paths and status.
+
+## Start on the other computer
+
+> Continue the existing Allworld agent-play task. Fetch GitHub main through your normal safe workflow, preserving dirty work. Read root AGENTS.md, the current section of docs/AGENT-COORDINATION.md, and docs/agent-work/retention-20261014.md. Create your own docs/agent-work/agent-play-<date>-<host>.md from the template, recording your actual source revision and exact owned files. Compare your runtime changes with the documented progression and trusted-origin contracts. Coordinate overlapping paths before editing, then checkpoint completed work, checks, conflicts and the next step in your record. Keep autonomous play separate from human-return measurements. Use the user's existing authorization for commits/pushes; documentation itself grants none.
+
+## Author the next country or city journey
+
+> Create one bounded Allworld journey for <country/city/place> using docs/research/worldwide-journey-pattern-2026-10-14.md. Register ownership in docs/agent-work/<unique-work-id>.md first. Verify the city/place IDs and existing playable actions before drafting content. Use a stable, versioned definition with local identity, distinct choices, valid proof events, a solo fallback, and a permanent cosmetic keepsake. Reuse character-owned receipts and the shared progression engine. Distinguish sourced place facts from authored fiction; do not describe unimplemented activities as playable. Record content coverage, exact proof, unfinished paths and the next handoff step. Coordinate shared engine/schema changes with the integration owner.

@@ -1,3 +1,4 @@
+import { retentionPolicy } from './retention-policy.ts';
 import { registeredCityIds, loadCityLinks, installCityModuleLoader } from '../src/game/cities/registry.ts';
 import { loadHostCityModule } from '../src/game/cities/host-loaders.ts';
 import '../src/game/dilemma-pack.ts'; // installs the kit of work dilemmas and place actions: every life this server plays has them
@@ -269,7 +270,8 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
   // ctx.settle, ctx.act (server authority, always under a receipt) and what POST /api/action runs: host-context.js, shared with the Worker.
   // One character on several devices: a change a player would see is announced to every socket of that character (host-context.ts lifeAnnouncer).
   const lifeSync = lifeAnnouncer((publicId, frame) => ctx.push(publicId, frame));
-  const authority = lifeAuthority({ now, receipts, changed: lifeSync.note, interactiveTeachingStarts });
+  const retention = retentionPolicy(env);
+  const authority = lifeAuthority({ retention, now, receipts, changed: lifeSync.note, interactiveTeachingStarts });
   const { act, playerAct } = authority, settle = open ? open.settle(authority.settle) : authority.settle;
   /** True from a failed write of the data file until the next successful one. Reads still work then; saving does not. */
   const storageFailing = () => { try { return store.stats?.().failing === true; } catch { return false; } };
@@ -600,7 +602,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
     // the Worker host keeps itself alive for it. A module calls ctx.waitUntil?.(promise) and never relies on the answer.
     waitUntil() {},
     keyFile,
-    config: { accounts: accountsConfig(env), founderEmailSha256: founderEmailHash(env), publicOrigin: configuredOrigin, sessionTtlMs, actionWindowMs, maxActiveSessions, maxSockets, socketsPerAddress, socketsPerPlayer: caps.socketsPerPlayer, newSessionsPerAddress: caps.newSessionsPerAddress, roomGroupTarget: caps.roomGroupTarget, roomGroupMax: caps.roomGroupMax, roomGroupMin: caps.roomGroupMin, voiceConfigProvider, buildId: String(buildId).slice(0, 40), votesPerAddress, voteCapMode, heartbeatMs, moderation: Boolean(moderatorDigest), ...(open ? { openDev: true as const } : {}) },
+    config: { retention, accounts: accountsConfig(env), founderEmailSha256: founderEmailHash(env), publicOrigin: configuredOrigin, sessionTtlMs, actionWindowMs, maxActiveSessions, maxSockets, socketsPerAddress, socketsPerPlayer: caps.socketsPerPlayer, newSessionsPerAddress: caps.newSessionsPerAddress, roomGroupTarget: caps.roomGroupTarget, roomGroupMax: caps.roomGroupMax, roomGroupMin: caps.roomGroupMin, voiceConfigProvider, buildId: String(buildId).slice(0, 40), votesPerAddress, voteCapMode, heartbeatMs, moderation: Boolean(moderatorDigest), ...(open ? { openDev: true as const } : {}) },
     // Work a module must finish before the server takes requests (loading an in-memory index).
     startup,
     // Work a module must finish when the server stops, BEFORE the store is closed: async functions, run in order

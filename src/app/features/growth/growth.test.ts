@@ -35,7 +35,7 @@ const helloOk = (over: Partial<HelloOk> = {}): HelloOk => ({
   ok: true, channel: '', contact: { channel: '', email: null, push: { devices: 0 }, live: { email: false } }, away: { hours: 5, since: 111 },
   referral: referral(), consent: null, events: [], digest, sharesLeft: 3, ...over,
 }) as unknown as HelloOk
-const mission = (over: Partial<MissionRow> = {}): MissionRow => ({ id: 'm1', kind: 'life', label: 'Eat', hint: 'Have a meal', n: 0, count: 1, done: false, claimed: false, cash: 250, open: null, go: null, ...over }) as unknown as MissionRow
+const mission = (over: Partial<MissionRow> = {}): MissionRow => ({ id: 'm1', kind: 'life', label: 'Eat', hint: 'Have a meal', n: 0, count: 1, done: false, claimed: false, rewardId: null, rewardScope: null, rewardPeriod: null, rewardCityId: null, cash: 250, open: null, go: null, ...over })
 
 // ---- the shared client -----------------------------------------------------------------------
 
@@ -280,8 +280,8 @@ test('Missions: badge, notification, set lines and the stamp card', () => {
   assert.equal(missionsNotifications({ connected: true, now: 9, missions: { claimable: 3, day: 5 } })[0]?.text, '3 finished missions to collect')
   assert.deepEqual(missionsNotifications({ connected: false, now: 9, missions: m }), [])
   const set = (over: Partial<MissionSet>): MissionSet => ({ done: 0, claimed: 0, total: 3, stars: 10, granted: false, ...over })
-  assert.equal(setLine(set({}), 'today'), 'Collect all 3 today for +10 stars')
-  assert.equal(setLine(set({ granted: true }), 'today'), 'All 3 collected · +10 stars earned')
+  assert.equal(setLine(set({}), 'today'), 'Complete all 3 today for +10 stars')
+  assert.equal(setLine(set({ granted: true }), 'today'), 'All 3 complete · +10 stars earned')
   assert.equal(setLine(set({ total: 0 }), 'today'), '')
   assert.deepEqual(stampCells({ days: 2, need: 4 }), ['stamped', 'stamped', 'empty', 'goal', 'empty', 'empty', 'empty'])
   assert.equal(stampsNote({ days: 4, need: 4, stars: 5, paid: true }), 'Stamp card complete: +5 stars earned.')

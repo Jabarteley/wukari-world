@@ -20,6 +20,11 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { actionTypes, advanceLife, createLife, dispatch, makeContext, spotsOf, viewLife } from '../life.ts'
 import { serverOnlyReason, systems } from '../game/registry.ts'
+import { JOURNEYS } from '../game/content/journeys.ts'
+import { EPISODES, validateEpisodeCatalogue } from '../game/content/episodes.ts'
+import { PROJECTS, validateProjectCatalogue } from '../game/content/projects.ts'
+import { validateJourneyCatalogue } from './journeys.ts'
+import { cityContent, cityRules } from '../game/cities/registry.ts'
 import { COMING_SOON, SCENE_KINDS, VENUE_CATEGORIES } from '../game/content/venues.ts';
 import { HOME_SPOTS, VENUES } from '../game/cities/lagos/venues.ts';
 import { ALL_MODES, FARE_BANDS, TRAVEL_MODES } from '../game/content/travel.ts'
@@ -307,6 +312,9 @@ const readers = {
 } satisfies { [S in SystemId]?: (state: LifeState) => SliceBySystem[S] }
 
 const inner = {
+  projects: ({ projects: p }: LifeState) => ({ mementos: p.mementos, proofs: p.proofs, trackingSince: p.trackingSince, version: p.version }),
+  episodes: ({ episodes: e }: LifeState) => ({ mementos: e.mementos, runs: e.runs, trackingSince: e.trackingSince, version: e.version }),
+  achievements: ({ achievements: a }: LifeState) => ({ displayed: a.displayed, earned: a.earned, pinned: a.pinned, progress: a.progress, trackingSince: a.trackingSince, version: a.version }),
   career: ({ career: c }: LifeState) => ({ city: c.city, teachingGeneration: c.teachingGeneration, level: c.level, performance: c.performance, shifts: c.shifts, auto: c.auto, lastShiftDay: c.lastShiftDay, shiftStartDay: c.shiftStartDay, autoDay: c.autoDay, transferDay: c.transferDay, oriented: c.oriented }),
   travel: ({ travel: t }: LifeState) => ({ home: t.home, event: t.event, lastTrip: t.lastTrip, visited: t.visited, trips: t.trips, cooldowns: t.cooldowns, funded: t.funded, gigs: t.gigs, eventDays: t.eventDays, skipped: t.skipped }),
   economy: ({ economy: e }: LifeState) => ({ billedWeek: e.billedWeek, started: e.started, rent: e.rent, loan: e.loan, deposits: e.deposits, seq: e.seq, reminded: e.reminded, headsUp: e.headsUp }),
@@ -325,7 +333,7 @@ const inner = {
   social: ({ social: s }: LifeState) => ({ rel: s.rel, bae: s.bae, family: s.family, streak: s.streak, earned: s.earned, transfer: s.transfer, notices: s.notices }),
   civic: ({ civic: c }: LifeState) => ({ seed: c.seed, since: c.since, gems: c.gems, claims: c.claims, week: c.week, work: c.work, news: c.news, hunt: c.hunt }),
   missions: ({ missions: m }: LifeState) => ({
-    seed: m.seed, day: m.day, daily: m.daily, week: m.week, weekly: m.weekly, rerolls: m.rerolls, sets: m.sets, active: m.active, stamps: m.stamps, visited: m.visited,
+    seed: m.seed, day: m.day, daily: m.daily, week: m.week, weekly: m.weekly, rerolls: m.rerolls, sets: m.sets, pending: m.pending, grants: m.grants, pendingSets: m.pendingSets, active: m.active, stamps: m.stamps, visited: m.visited,
     paidDay: m.paidDay, titles: m.titles, claimed: m.claimed,
   }),
   events: ({ events: e }: LifeState) => ({ attended: e.attended, count: e.count, spray: e.spray, sprayed: e.sprayed }),
@@ -483,7 +491,7 @@ function checkView(state: LifeState, ctx: LifeContext, what: string): LifeView {
   assert.ok(estate.links && estate.links.length > 0)
   for (const link of estate.links) assert.deepEqual(keys(link), ['beta', 'blocked', 'fare', 'hub', 'icon', 'km', 'label', 'mode', 'name', 'open', 'seconds', ...(link.status ? ['status'] : []), 'to'], `${what}: city link`)
   for (const home of estate.away) assert.deepEqual(keys(home), ['city', 'living', 'name', 'tier'], `${what}: a home in another city`)
-  for (const row of [...shown.missions.daily, ...shown.missions.weekly]) assert.deepEqual(keys(row), ['cash', 'claimed', 'count', 'done', 'go', 'hint', 'id', 'kind', 'label', 'n', 'open'], `${what}: mission row`)
+  for (const row of [...shown.missions.daily, ...shown.missions.weekly]) assert.deepEqual(keys(row), ['cash', 'claimed', 'count', 'done', 'go', 'hint', 'id', 'kind', 'label', 'n', 'open', 'rewardCityId', 'rewardId', 'rewardPeriod', 'rewardScope'], `${what}: mission row`)
   for (const set of [shown.missions.dailySet, shown.missions.weeklySet]) assert.deepEqual(keys(set), ['claimed', 'done', 'granted', 'stars', 'total'], `${what}: mission set`)
   assert.deepEqual(keys(shown.missions.stamps), ['days', 'need', 'paid', 'stars'], `${what}: stamps`)
   if (shown.missions.nextTitle) assert.deepEqual(keys(shown.missions.nextTitle), ['days', 'id', 'label'], `${what}: next title`)
@@ -807,9 +815,8 @@ test('the campus lists equal what the campus systems register and emit', () => {
   const root = fileURLToPath(new URL('../campus/unilag/', import.meta.url))
   const source = (readdirSync(root) as string[]).filter((file) => file.endsWith('.ts') && !file.endsWith('.test.ts')).map((file) => readFileSync(`${root}${file}`, 'utf8')).join('\n')
   assert.deepEqual([...new Set([...source.matchAll(/\bemit\(state,\s*'([A-Za-z.-]+)'/g)].map((match) => match[1] ?? ''))].sort(), [...CAMPUS_EVENT_NAMES])
-  // None of them is an engine event, and no system listens to one.
-  const listened = new Set((systems() as { on?: Record<string, unknown> }[]).flatMap((system) => Object.keys(system.on ?? {})))
-  for (const name of CAMPUS_EVENT_NAMES) assert.ok(!(EVENT_NAMES as readonly string[]).includes(name) && !listened.has(name), name)
+  // Campus events keep their separate catalogue; shared progression systems may listen to them.
+  for (const name of CAMPUS_EVENT_NAMES) assert.ok(!(EVENT_NAMES as readonly string[]).includes(name), name)
 })
 
 test('a student life: every campus slice, timed action and view has exactly the declared fields, and survives a reload', () => {
@@ -966,7 +973,7 @@ test('EVENT_NAMES lists every event the engine emits', () => {
 
 test('every listener is for a known event, and the listened-but-never-emitted set is as recorded', () => {
   const listened = new Set((systems() as { on?: Record<string, unknown> }[]).flatMap((system) => Object.keys(system.on ?? {})))
-  const emitted = new Set<string>(EVENT_NAMES)
+  const emitted = new Set<string>([...EVENT_NAMES, ...CAMPUS_EVENT_NAMES])
   assert.deepEqual([...listened].filter((event) => !emitted.has(event)).sort(), [...UNEMITTED_LISTENED_EVENTS])
 })
 
@@ -1140,6 +1147,19 @@ test('every field used by a venue, a spot, an activity or a job is declared in c
 })
 
 test('no content entry carries a field that content.ts does not declare', () => {
+  assert.deepEqual(validateEpisodeCatalogue(EPISODES), [])
+  assert.deepEqual(validateProjectCatalogue(PROJECTS), [])
+  assert.deepEqual(validateJourneyCatalogue(JOURNEYS, { episodeIds: new Set(EPISODES.map(row => row.id)), projectIds: new Set(PROJECTS.map(row => row.id)) }), [])
+  for (const journey of JOURNEYS) {
+    const geography = journey.geography
+    assert.equal(cityRules(geography.cityId)?.country.id, geography.countryId)
+    assert.ok(cityContent(geography.cityId).venues.some(row => row.id === geography.venueId))
+    for (const member of journey.members) {
+      const source = member.source
+      if (source.kind === 'episode') assert.ok(EPISODES.some(row => row.id === source.id && row.version === source.version && row.memento.id === member.id))
+      else assert.ok(PROJECTS.some(row => row.id === source.id && row.occurrence === source.occurrence))
+    }
+  }
   /** `fields` must name every key of `T` (checked by the compiler); no entry may carry another. */
   const declared = <T>() => <const L extends readonly (keyof T)[]>(fields: L & ([keyof T] extends [L[number]] ? unknown : never)) =>
     (entries: readonly object[], what: string) => {
@@ -1176,7 +1196,7 @@ test('no content entry carries a field that content.ts does not declare', () => 
   declared<CalendarEvent>()(['id', 'title', 'blurb', 'venue', 'icon', 'when', 'spray', 'table'])(EVENTS_CALENDAR, 'calendar event')
   for (const option of Object.values(HOUSE_STYLE).flat()) assert.deepEqual(Object.keys(option).filter((key) => !['id', 'label', 'hex', 'price'].includes(key)), [], option.id)
   // Missions are a union keyed by `on`; each member's own fields are checked by name.
-  const missionFields: Record<MissionDefinition['on'], string[]> = { event: ['event', 'where'], tag: ['tags'], paid: [], venue: ['fresh'] }
+  const missionFields: Record<MissionDefinition['on'], string[]> = { event: ['event', 'where', 'distinct'], tag: ['tags'], paid: [], venue: ['fresh'] }
   const missions: readonly { id: string; on: string }[] = [...DAILY_MISSIONS, ...WEEKLY_MISSIONS]
   for (const mission of missions) {
     assert.ok(Object.hasOwn(missionFields, mission.on), mission.id)

@@ -11,16 +11,13 @@ Last updated: 15 October 2026.
 
 | Work | Branch | Where it stopped | Next step |
 | --- | --- | --- | --- |
-| Release 6: Phase 10 (house agents) and the owner's answers | `main` at `c921b8d9` | Pushed; the release workflow was running | Check `/api/health` shows `c921b8d9`, run `SMOKE_CITIES=lagos node --experimental-strip-types scripts/smoke.ts https://joinallworld.com`, mark release 6 live in STATUS.md (replace `REL6`). |
-| OpenRouter free models: 1,000 a day (US$15 credit bought, 14 Oct) | `claude/world-alive` | Committed, tests pass, not on `main` yet | Goes out with the next release. |
-| Cache-first pass (show what was last seen at once, refresh in the background; the owner asked on 14 Oct) | `claude/alive-cache-first` | Being built | Review, merge into `claude/world-alive`, CI, release. |
+| Release 7: the cache-first pass and OpenRouter 1,000 a day | `main` | Merged on `claude/world-alive`, being released | Confirm `/api/health`, run the Lagos smoke test, note release 7 in STATUS.md. |
 | Phase 11: missions from agents | `claude/alive-p11-missions` | Being built | Review, merge, CI, release. |
+| Phase 12: talking, memory (with the person's controls), closeness, partners | `claude/alive-p12-memory` | Being built | Review, merge, CI, release. |
 
 ## Still to do (in order)
 
-1. Phase 12: talking with agents, memory (with see / delete / turn off: the Phase 2 memory controls), closeness, partners
-   (adults, opt-in).
-2. Phase 13a: one resident in shadow for a day (admin page shows its day, cost, slips). Then 13b (thirty residents, measured
+1. Phase 13a: one resident in shadow for a day (admin page shows its day, cost, slips). Then 13b (thirty residents, measured
    as an experiment: decide success measures first) and 13c (ideas, assembly, president, Sunday letter).
 3. Phase 14: prayers and acts (acts appear as gist news via `gistService(ctx).add`, never as messages from the owner).
 4. Phase 15: calls with agents (push-to-talk; measure both speech-to-text ways on accents and record the numbers).
@@ -51,7 +48,8 @@ Last updated: 15 October 2026.
 - **Releasing:** `gh workflow run joinallworld-release.yml -R kromate/joinallworld --ref main -f source_sha=<40-hex sha> -f deploy=true -f publish_staging=false`,
   then `gh run watch`. Since 14 October the workflow deploys by itself (`CLOUDFLARE_API_TOKEN` secret and `ALLWORLD_CF_ACCOUNT_ID`
   variable are set in the `production` environment). The live commit is in `https://joinallworld.com/api/health`; it can take a few
-  minutes to change. Always merge `origin/main` before releasing: other agents release too, and your commit must contain what is live.
+  minutes to change. If the deploy job fails at "Refuse stale deployment policy", `main` moved during the run: release the new
+  tip. Always merge `origin/main` before releasing: other agents release too, and your commit must contain what is live.
 - **Subagents** each get: the rules of README.md, their phase, a branch and worktree, the size facts above, "commit with the
   Co-Authored-By line, push your branch, do not push to main or deploy", and a report of commits, tests, deviations and questions.
   Review what they report before merging: in this programme reviews caught a jail cap bug, a missing route module, a duplicated

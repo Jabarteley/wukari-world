@@ -6,6 +6,7 @@ import CampusBoard from './CampusBoard.vue'
 import CampusCard from './CampusCard.vue'
 import CampusControl from './CampusControl.vue'
 import CampusGo from './CampusGo.vue'
+import ProjectBoard from '../passport/ProjectBoard.vue'
 import { CAMPUS_CLUBS, CAMPUS_DISCOVERIES } from './campusContent.ts'
 import { at, clubReason, discoveryReason, onCampus, penaltyReason, quizReason, title } from './campusModel.ts'
 import { useCampus } from './useCampus.ts'
@@ -63,4 +64,10 @@ const union = computed(() => at(state.value, 'student-union'))
   </CampusCard>
 
   <CampusBoard />
+
+  <ProjectBoard v-if="union" />
+  <CampusCard v-else icon="🤝" heading="Shared project at Student Union">
+    <p>Browse the project in My Life, or meet at Student Union to contribute to the permanent welcome board.</p>
+    <template #extra><CampusGo spot="student-union" label="Go to the shared project" /></template>
+  </CampusCard>
 </template>

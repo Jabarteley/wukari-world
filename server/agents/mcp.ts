@@ -19,6 +19,7 @@ import type { ToolContext, ToolDefinition, ToolOutput } from './tools.ts';
 import { characterCity } from '../character.ts';
 import { agentWords, isBlockedLine, textsIn } from '../moderation/agent-words.ts';
 import type { RouteHandler } from '../types.ts';
+import { bindSessionOrigin } from '../execution-origin.ts';
 
 export const MCP_PATH = '/mcp';
 export const MCP_ROUTE = '/api/agents/mcp';
@@ -77,11 +78,13 @@ export function mcpRoutes(ctx: RouteContext, svc: AgentService): Record<RouteKey
   /** The request, as the agent's character: its session in place of a browser cookie. */
   function asAgent(request: RouteRequest, agent: Agent): RouteRequest {
     const wrapped: RouteRequest = Object.create(request) as RouteRequest;
+    wrapped.executionOrigin = agent.key.mode === 'own' ? 'delegated-agent' : 'agent-character';
     const find = (db: Parameters<RouteRequest['session']>[0], renew: boolean): SessionRecord | undefined => {
       const stored = db.sessions[agent.session.secret];
       if (!stored || stored.publicId !== agent.session.publicId || !(stored.expiresAt > ctx.now())) return undefined;
       // An unclaimed agent that does nothing for UNCLAIMED.idleMs expires and is archived with the other expired lives; one that plays is renewed.
       if (renew) renewSession(stored, ctx.now(), stored.agent?.unclaimed === true ? UNCLAIMED.idleMs : ctx.config.sessionTtlMs);
+      bindSessionOrigin(stored, agent.key.mode === 'own' ? 'delegated-agent' : 'agent-character');
       wrapped.publicId = request.publicId = stored.publicId;
       wrapped.secret = request.secret = stored.secret;
       return stored;

@@ -342,6 +342,8 @@ export default defineConfig({
     // Read only by lazy chunks, so left to the bundler (each then rides with its readers): the continent of every country and the atlas
     // levels (the Map and the travel list), and the campaign words of a visit (the growth counter, itself a dynamic import).
     if (/\/src\/game\/(cities\/atlasMetadata|attribution)\.ts$/.test(id)) return undefined
+    // Calendar file formatting is only used when the lazy Events screen exports an occurrence.
+    if (id.endsWith('/src/game/calendar-export.ts')) return undefined
     // The real weather of the world feed (its hours, words and reader) is read only by the lazy feed module and the server: weatherAt keeps a hook (src/game/systems/health.ts).
     if (/\/src\/game\/weather-observed(-read)?\.ts$/.test(id)) return undefined
     // Full statement reconciliation is only read by the lazy Statement screen (and by the server build).
@@ -376,6 +378,10 @@ export default defineConfig({
     if (/\/src\/game\/money-feed\.ts$/.test(id)) return undefined
     // The constitution's numbers and words (offices, quorums, levers): read only by the Politics screens, which are fetched on demand, and by the server.
     if (/\/src\/game\/content\/politics\.ts$/.test(id)) return undefined
+    // Authored character progression is fetched through progression-gate, Passport or the home scene. Keep the complete systems,
+    // catalogues and their view helpers together without pulling them into the broad eager engine chunk below. The small gate,
+    // fresh-slice stand-ins and registry deliberately do not match this rule and remain in engine.
+    if (/\/src\/game\/(systems\/(achievements|episodes|projects|progression-register)|content\/(achievements|episodes|projects|journeys)|cadence|season|journeys|mementos)\.ts$/.test(id)) return 'progression-rules'
     if (/\/src\/(game\/|life\.ts$|campus\/unilag\/(content|spot-names)\.ts$|tables\/places\.ts$)/.test(id)) return 'engine'
     } } },
   },

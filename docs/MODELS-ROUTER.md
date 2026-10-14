@@ -64,7 +64,7 @@ answer is `no-model`; nothing is sent. Free models see only lines with no player
 
 **OpenRouter** (official page: <https://openrouter.ai/docs/api-reference/limits>): free models are limited to 20 requests a minute, and to 50 a day
 while less than US$10 of credit has ever been bought on the account, 1,000 a day from US$10. So `openrouterFreePerMinute` is 20 and
-`openrouterFreePerDay` is 50; **set it to 1000 once the owner has bought US$10 of credit** (not yet confirmed, so the number is unchanged).
+`openrouterFreePerDay` is 1,000: the owner bought US$15 of OpenRouter credit on 14 October 2026. (Without credit it would be 50.)
 
 **Vercel AI Gateway** (official page: <https://vercel.com/docs/ai-gateway/rate-limits>, updated 2026-09-08): it publishes **no fixed numbers**. The free tier has
 "lower per-model limits", the paid tier has none from the gateway (only the providers' own), and a 429 may carry a `retry-after` header, in seconds or as an

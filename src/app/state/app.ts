@@ -315,6 +315,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     sessionId = id
     if (first) return // the first session of this page: nothing was held for anyone else
     resetSocial()
+    void import('./cacheFirst.ts').then((cache) => { cache.clearCache() }, () => undefined) // what was kept for cache-first reads belonged to the previous one
     forgetViews(tabStore(), deviceStore(), before ? `${before}:${game.cityId.value}` : null)
     globalThis.window?.dispatchEvent(new CustomEvent('jaw:session', { detail: { id } }))
   }

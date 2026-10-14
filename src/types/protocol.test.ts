@@ -349,7 +349,7 @@ test('core, social, civic and support answers carry exactly the typed keys', asy
   for (const key of Object.keys(growth)) assert.ok((['comeback', 'comebackStats', 'contacts', 'metrics', 'outreach', 'players', 'push', 'salt', 'shares', 'sweptAt', 'tables'] satisfies (keyof GrowthCollection)[] as string[]).includes(key), `the growth collection has an untyped key "${key}"`)
   sameKeys(record(growth.players, 'players')[efe.id], ['consent', 'counted', 'devices', 'invited', 'owed', 'ref', 'seen', 'shares', 'table', 'wins'] satisfies (keyof GrowthPlayerRecord)[], 'growth player')
   sameKeys(Object.values(record(growth.shares, 'shares'))[0], ['at', 'by', 'cityId', 'facts', 'joined', 'kind', 'opened'] satisfies (keyof ShareRecord)[], 'stored share')
-  sameKeys(record(stored.cities, 'cities').lagos, ['salt', 'state', 'updatedAt'] satisfies (keyof CityLifeRecord)[], 'stored city life')
+  sameKeys(record(stored.cities, 'cities').lagos, ['progression', 'salt', 'state', 'updatedAt'] satisfies (keyof CityLifeRecord)[], 'stored city life')
   sameKeys(Object.values(record(stored.actions, 'actions'))[0], ['actionAt', 'code', 'fingerprint', 'ok', 'type'] satisfies (keyof ActionReceipt)[], 'action receipt')
   sameKeys(Object.values(record(stored.once, 'once'))[0], ['at', 'fp', 'kind', 'result'] satisfies (keyof OnceReceipt)[], 'once receipt')
 })

@@ -19,6 +19,9 @@ import type {
 } from './life.ts'
 import { CAMPUS_ACTION_TYPES } from './campus.ts'
 import type { StoryActionMap } from './stories.ts'
+import type { ProjectActionMap } from './projects.ts'
+import { EPISODE_ACTION_TYPES, type EpisodeActionMap } from './episodes.ts'
+import { ACHIEVEMENT_ACTION_TYPES, type AchievementActionMap } from './achievements.ts'
 import type { LandPayPayload } from './land.ts'
 import type { TierId } from './politics.ts'
 import type { StakeCode } from '../game/table-stakes.ts'
@@ -150,7 +153,7 @@ export interface CivicNewsItem {
 // ---- the action table ---------------------------------------------------------------------
 
 /** The campus actions (`unilag.*` and 'campus-shuttle', registered after growth) are declared in campus.ts CampusActionMap. */
-export interface ActionMap extends CampusActionMap, StoryActionMap {
+export interface ActionMap extends CampusActionMap, StoryActionMap, AchievementActionMap, EpisodeActionMap, ProjectActionMap {
   'estate.land-pay': { payload: LandPayPayload; ok: 'land_paid'; fail: 'busy' | 'not_owned_home' | 'land_price_changed' | 'insufficient_funds'; serverOnly: true }
   'street.place': { payload: { from: string; to: string }; ok: 'street_placed'; fail: 'busy' | 'street_location_changed' | 'invalid_street_transition'; serverOnly: true }
   // -- core --
@@ -346,7 +349,7 @@ export interface ActionMap extends CampusActionMap, StoryActionMap {
 
   // -- missions --
   /** Collect a finished mission's naira, once. A guest has no missions yet ('missions_locked'). */
-  'missions.claim': { payload: { id: MissionId }; ok: 'claimed'; fail: 'missions_locked' | 'unknown_mission' | 'already_claimed' | 'not_done' | 'balance_limit' }
+  'missions.claim': { payload: { id: MissionId; rewardId?: string }; ok: 'claimed'; fail: 'missions_locked' | 'unknown_mission' | 'already_claimed' | 'not_done' | 'balance_limit' }
   /** Swap one unfinished DAILY mission (MISSION_REWARDS.rerollsPerDay a day). */
   'missions.reroll': { payload: { id: MissionId }; ok: 'rerolled'; fail: 'missions_locked' | 'unknown_mission' | 'already_done' | 'no_rerolls' | 'nothing_else' }
   /** Deal today's set if the day turned; changes nothing else and never fails. */
@@ -526,6 +529,9 @@ export const ACTION_TYPES = [
   'events.spray',
   'growth.table-result', 'growth.referral', 'tables.server',
   'business.server',
+  ...ACHIEVEMENT_ACTION_TYPES,
+  ...EPISODE_ACTION_TYPES,
+  'projects.server',
   'living-world.server', 'market.server',
   // the campus: unilagStudent, unilagCommunity, unilagShuttle (campus.ts)
   ...CAMPUS_ACTION_TYPES,
@@ -535,7 +541,7 @@ export const ACTION_TYPES = [
 export const SERVER_ONLY_ACTIONS = [
   'estate.land-pay', 'street.place',
   'wallet.admin', 'wallet.bonus', 'needs.admin', 'activity.admin', 'estate.assign', 'estate.released', 'onboarding.arrive', 'social.server', 'civic.news', 'civic.run', 'civic.vote', 'civic.rent-ad',
-  'civic.treasury', 'civic.justice', 'civic.shoutout', 'growth.table-result', 'growth.referral', 'tables.server', 'business.server', 'living-world.server', 'market.server', 'unilag.election.nominate', 'unilag.election.vote',
+  'civic.treasury', 'civic.justice', 'civic.shoutout', 'growth.table-result', 'growth.referral', 'tables.server', 'business.server', 'projects.server', 'living-world.server', 'market.server', 'unilag.election.nominate', 'unilag.election.vote',
 ] as const satisfies readonly ServerOnlyActionType[]
 
 /** The server-only deliveries that pass a held life's veto (onboarding.js INBOUND). */

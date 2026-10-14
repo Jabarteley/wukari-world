@@ -1,0 +1,30 @@
+✔ the kept lines are there before the server answers, then the answer replaces them and is kept (1.166125ms)
+✔ a failed read leaves the kept lines on screen and says it failed (0.25175ms)
+✔ another city does not show this one's lines (0.143417ms)
+✔ the kept numbers show with their old time, and the first poll replaces them (3.13925ms)
+✔ numbers older than half an hour, or junk, are not shown (0.147125ms)
+✔ numbers that already arrived are never overwritten by the kept ones (0.097625ms)
+✔ the kept directory page shows before the server answers, then the answer replaces it and is kept for this player (1.207167ms)
+✔ a search is not seeded from the cache and is not kept (0.152334ms)
+✔ the kept record page round trips, per filter (0.088958ms)
+✔ signing out (or switching character) removes the saved life and everything kept (0.093375ms)
+✔ a kept value is read back with the time it was kept (0.80775ms)
+✔ nothing kept reads null, and so does storage that is not there (0.066292ms)
+✔ older than the max age is not shown and is removed (0.070083ms)
+✔ a record from the future (a clock set back) is not trusted (0.046333ms)
+✔ another version is dropped (0.059334ms)
+✔ junk is dropped: not JSON, the wrong shape, or a value the caller refuses (0.099958ms)
+✔ each player has a record of their own; public data has none (0.099459ms)
+✔ a record that is too big is not kept, and does not leave an older copy behind (0.150792ms)
+✔ over the total cap the oldest go first, and the new one stays (0.518667ms)
+✔ a full browser store lets the oldest go and tries again; with nothing left to drop it gives up quietly (0.150166ms)
+✔ storage that throws on every call changes nothing (0.144542ms)
+✔ clearing drops every kept record and nothing else (0.058542ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 700.1475

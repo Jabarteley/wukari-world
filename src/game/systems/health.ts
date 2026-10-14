@@ -32,7 +32,7 @@ import { emit } from '../registry.ts';
 import { finite, isRecord, makeRng } from '../util.ts';
 import { addMoodlet, removeMoodlet, feelingsOf } from '../api.ts';
 import { HEALTH } from '../content/health.ts';
-import { observedSkyAt, skyWords } from '../weather-observed.ts';
+import { observedSkyAt } from '../weather-observed.ts';
 import { isCityId, cityRules } from '../cities/registry.ts';
 import { ALL_MODES } from '../content/travel.ts';
 import type { WeatherKind } from '../../types/content.ts';
@@ -58,7 +58,7 @@ export function weatherAt(now: unknown, cityId: string): Sky {
   const climate = cityRules(cityId)?.climate;
   const month = climate ? new Date(block * blockMs + 3600000).getUTCMonth() : 0;
   const seen = observedSkyAt(cityId, block * blockMs);
-  const words = seen ? skyWords(seen.kind, seen.tempC) : null;
+  const words = seen ? seen.words : null;
   const raining = words ? words.raining : makeRng(`weather|${cityId}|${block}`)() < (climate?.rainChanceByMonth[month] ?? weather.rainChance);
   const kind = weather.kinds[raining ? 'rain' : 'clear'];
   const local = climate ? raining ? { text: 'It is raining. Exposed travel can leave you soaked.' } : { label: climate.harmattan?.months.includes(month + 1) ? climate.harmattan.label : climate.clearLabel } : {};

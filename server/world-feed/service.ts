@@ -17,7 +17,8 @@
  */
 import { cityCatalogueEntry, playableCityIds } from '../../src/game/cities/registry.ts';
 import { CURRENCY_CODES, currencyOfCountry } from '../../src/game/currency.ts';
-import { HOUR_MS, readObservedWeather, setObservedWeather } from '../../src/game/weather-observed.ts';
+import { HOUR_MS } from '../../src/game/weather-observed.ts';
+import { readObservedWeather, setObservedWeather } from '../../src/game/weather-observed-read.ts';
 import type { ObservedHour } from '../../src/game/weather-observed.ts';
 import { pulseOf } from '../pulse.ts';
 import { USER_AGENT, httpDate, metUrl, readMet } from './met.ts';

@@ -19,6 +19,7 @@
       "name": "Mata Utu",
       "countryISO": "WF",
       "profile": "microstate",
+      "roadLadder": true,
       "airport": {
         "ident": "NLWW",
         "sourceUrl": "https://ourairports.com/airports/NLWW/"

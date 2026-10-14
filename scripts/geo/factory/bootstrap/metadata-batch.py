@@ -13,7 +13,7 @@ from urllib.parse import quote
 
 from metadata import (Hold, choose_airport, choose_city, choose_seed_timezone, city_natural_tags, city_place_tags, coordinate,
                       city_node_tag_ok, digest, gateway_facts, gateway_record, normalized, profile_rules, seed_country_name,
-                      validate_dataset_url, validate_seed)
+                      road_fallback_input, validate_dataset_url, validate_seed)
 
 _SCAN_PROGRESS_INTERVAL = 5_000_000
 
@@ -210,7 +210,7 @@ def finish_city(context, args, adapter):
     if coast_refs:
         water['sea'] = {'kind': 'coast', 'bandMetres': 40000}
     extraction_input = {'city': {'id': seed['id'], 'name': display_name},
-                        'boxes': bounds['boxes'], 'waterRecipe': water}
+                        'boxes': bounds['boxes'], 'waterRecipe': water, **road_fallback_input(seed)}
     extraction = profile_rules(seed).get('extraction') if 'profile' in seed else None
     if extraction is not None:
         # Outpost and wilderness only: the profile's extra place filters, road ladder and sensitive-feature exclusion (offline-extract.py).

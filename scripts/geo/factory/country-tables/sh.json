@@ -19,6 +19,7 @@
       "name": "Jamestown",
       "countryISO": "SH",
       "profile": "microstate",
+      "roadLadder": true,
       "airport": {
         "ident": "FHSH",
         "sourceUrl": "https://ourairports.com/airports/FHSH/"

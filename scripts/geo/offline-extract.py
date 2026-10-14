@@ -52,6 +52,13 @@ PROFILE_PLACE_FILTERS = {
 }
 NATURAL_LABELS = {"peak", "saddle", "glacier", "ridge", "valley", "volcano", "cape", "bay", "reef", "beach"}
 ROAD_LADDER = ("secondary", "tertiary", "unclassified", "residential", "service", "track")
+# Opt-in road fallback (seed `roadLadder: true`, written into source-input.json as `roadFallback` by metadata-batch.py): for a road-poor territory
+# (Wallis and Futuna, Saint Helena: no motorway/trunk/primary/secondary at all). Only when the standard classes give fewer than `minWays` ways inside
+# the play box does the extractor add the next tier, in this order, until `minWays` is reached or the tiers run out. Never service or track, never a
+# military or aviation way. A city without the key is extracted exactly as before.
+ROAD_FALLBACK_TIERS = (("tertiary",), ("unclassified", "residential"))
+ROAD_FALLBACK_CLASSES = frozenset(name for tier in ROAD_FALLBACK_TIERS for name in tier)
+ROAD_FALLBACK_MAX_WAYS = 10
 TYPE_NAME = {"n": "node", "w": "way", "r": "relation"}
 MAX_RELATION_DEPTH = 32
 
@@ -112,6 +119,16 @@ def validate_profile_extraction(value: Any) -> dict[str, Any] | None:
         raise ExtractionError(f"profileExtraction.roadLadder must be unique values of {list(ROAD_LADDER)}")
     if value["allowNoRoads"] is not True or value["excludeSensitive"] is not True:
         raise ExtractionError("profileExtraction is only for profiles that allow no roads and exclude sensitive features")
+    return value
+
+
+def validate_road_fallback(value: Any) -> dict[str, Any] | None:
+    """The road fallback of one city, or None (every existing city). Exactly {"minWays": 1..10}; anything else is refused."""
+    if value is None:
+        return None
+    if (not isinstance(value, dict) or set(value) != {"minWays"} or type(value["minWays"]) is not int
+            or not 1 <= value["minWays"] <= ROAD_FALLBACK_MAX_WAYS):
+        raise ExtractionError(f"roadFallback must be exactly {{\"minWays\": an integer from 1 to {ROAD_FALLBACK_MAX_WAYS}}}")
     return value
 
 
@@ -331,12 +348,15 @@ class RelationDependencyPass(osmium.SimpleHandler):
 
 
 class GeometryPass(osmium.SimpleHandler):
-    def __init__(self, relations: RelationPass, boxes: dict[str, list[float]], coast: bool, rules: dict[str, Any] | None = None) -> None:
+    def __init__(self, relations: RelationPass, boxes: dict[str, list[float]], coast: bool, rules: dict[str, Any] | None = None, road_fallback: dict[str, Any] | None = None) -> None:
         super().__init__()
         self.relations = relations
         self.boxes = boxes
         self.coast = coast
         self.rules = rules
+        self.road_fallback = road_fallback
+        self.fallback_roads: dict[str, list[dict[str, Any]]] = {}  # candidate ways of the fallback classes inside play, by highway value
+        self.road_fallback_report: dict[str, Any] | None = None
         self.member_ways: dict[int, list[dict[str, float]]] = {}
         self.member_nodes: dict[int, dict[str, float]] = {}
         self.output: dict[str, list[dict[str, Any]]] = {label: [] for label in ("places", "extras", "water", "landuse", "roads")}
@@ -359,7 +379,8 @@ class GeometryPass(osmium.SimpleHandler):
         tags = tags_of(way)
         categories = way_categories(tags, self.coast, self.rules)
         needed = way.id in self.relations.needed_ways
-        if not categories and not needed:
+        fallback = self.road_fallback is not None and "roads" not in categories and tags.get("highway") in ROAD_FALLBACK_CLASSES and not sensitive(tags)
+        if not categories and not needed and not fallback:
             return
         geometry: list[dict[str, float]] = []
         for node in way.nodes:
@@ -368,6 +389,8 @@ class GeometryPass(osmium.SimpleHandler):
             geometry.append({"lat": node.location.lat, "lon": node.location.lon})
         if needed:
             self.member_ways[way.id] = geometry
+        if fallback and geometry_intersects_box(geometry, self.boxes["play"]):
+            self.fallback_roads.setdefault(tags["highway"], []).append(way_element(way.id, tags, geometry, center_only=False))
         for category in categories:
             if category in {"places", "extras"}:
                 if geometry_intersects_box(geometry, self.boxes["play"]):
@@ -379,6 +402,23 @@ class GeometryPass(osmium.SimpleHandler):
                     self.output[category].append(way_element(way.id, tags, geometry, center_only=False))
             elif geometry_intersects_box(geometry, self.boxes["water"] if category == "water" else self.boxes["outline"]):
                 self.output[category].append(way_element(way.id, tags, geometry, center_only=False))
+
+
+def finish_roads(geometry: "GeometryPass") -> None:
+    """Apply the road fallback after the scan (no-op without it): add tiers while the roads layer has fewer than minWays ways."""
+    fallback = geometry.road_fallback
+    if fallback is None:
+        return
+    roads = geometry.output["roads"]
+    standard, added = len(roads), []
+    for tier in ROAD_FALLBACK_TIERS:
+        if len(roads) >= fallback["minWays"]:
+            break
+        for name in tier:
+            if geometry.fallback_roads.get(name):
+                roads.extend(geometry.fallback_roads[name])
+                added.append(name)
+    geometry.road_fallback_report = {"minWays": fallback["minWays"], "standardWays": standard, "classesAdded": added, "waysAdded": len(roads) - standard}
 
 
 def relation_parts(candidate: dict[str, Any], geometry: GeometryPass, *, allow_nested: bool = False) -> list[list[dict[str, float]]]:
@@ -523,11 +563,17 @@ def load_city(path: Path) -> tuple[dict[str, Any], dict[str, list[float]], dict[
     boxes = {label: validate_box(raw_boxes.get(label), f"boxes.{label}") for label in ("play", "core", "outline", "wide")}
     boxes["water"] = boxes["wide"] if recipe["kind"] == "coast" or recipe["wideWater"] else boxes["play"]
     validate_profile_extraction(metadata.get("profileExtraction"))
+    if validate_road_fallback(metadata.get("roadFallback")) is not None and metadata.get("profileExtraction") is not None:
+        raise ExtractionError("roadFallback does not combine with profileExtraction (a profile city has its own road ladder)")
     return metadata, boxes, recipe
 
 
 def profile_extraction(metadata: dict[str, Any]) -> dict[str, Any] | None:
     return validate_profile_extraction(metadata.get("profileExtraction"))
+
+
+def road_fallback_rules(metadata: dict[str, Any]) -> dict[str, Any] | None:
+    return validate_road_fallback(metadata.get("roadFallback"))
 
 
 def sha256_file(path: Path) -> str:
@@ -583,6 +629,7 @@ def source_record(
     elements: list[dict[str, Any]],
     skipped: list[dict[str, Any]] | None = None,
     rules: dict[str, Any] | None = None,
+    road_fallback_report: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     water_kind = recipe["kind"]
     filters = {
@@ -618,6 +665,10 @@ def source_record(
         if label == "roads":
             source["selectionBounds"] = boxes["play"]
         source["profileExtraction"] = rules
+    if label == "roads" and road_fallback_report is not None:
+        # Opt-in fallback (seed roadLadder): the standard filter stays in the text; the record names what was added and why.
+        source["filter"] += f" + roadFallback: tertiary, then unclassified and residential geometry intersecting play, only while fewer than {road_fallback_report['minWays']} ways; never military=* or aeroway=*"
+        source["roadFallback"] = road_fallback_report
     if label in {"places", "extras"}:
         nested_sources = []
         for element in elements:
@@ -687,9 +738,10 @@ def main() -> int:
     relations.apply_file(str(pbf))
     relations.collect_center_dependencies(pbf)
     progress("relation-candidates", relations=len(relations.candidates), memberWays=len(relations.needed_ways), memberNodes=len(relations.needed_nodes))
-    geometry = GeometryPass(relations, boxes, recipe["kind"] == "coast", rules)
+    geometry = GeometryPass(relations, boxes, recipe["kind"] == "coast", rules, road_fallback_rules(metadata))
     progress("geometry-scan")
     geometry.apply_file(str(pbf), locations=True, idx="flex_mem")
+    finish_roads(geometry)
     progress("geometry-ready", memberWays=len(geometry.member_ways), memberNodes=len(geometry.member_nodes), directElements=sum(len(items) for items in geometry.output.values()))
     add_relations(relations, geometry, boxes)
     progress("relations-resolved", elements=sum(len(items) for items in geometry.output.values()))
@@ -701,7 +753,7 @@ def main() -> int:
         atomic_json(destination / f"{label}.json", {
             "version": 1,
             "generator": "Allworld offline PBF adapter prototype",
-            "source": source_record(args, metadata_path, city_id, label, boxes, pbf_timestamp, adapter_sha256, recipe, relations, elements, geometry.skipped_relations, rules),
+            "source": source_record(args, metadata_path, city_id, label, boxes, pbf_timestamp, adapter_sha256, recipe, relations, elements, geometry.skipped_relations, rules, geometry.road_fallback_report),
             "elements": elements,
         })
     counts = {label: len(elements) for label, elements in geometry.output.items()}

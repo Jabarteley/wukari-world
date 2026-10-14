@@ -24,10 +24,10 @@ _merge_spec = importlib.util.spec_from_file_location('source_merge', HERE / 'sou
 _merge = importlib.util.module_from_spec(_merge_spec)
 _merge_spec.loader.exec_module(_merge)
 
-SEED_KEYS = {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'sceneWaterExtent', 'waterBudgetLadder', 'namesUnit', 'selectionExclusions', 'geometry', 'playBox', 'profile',
+SEED_KEYS = {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'sceneWaterExtent', 'waterBudgetLadder', 'namesUnit', 'selectionExclusions', 'geometry', 'playBox', 'profile', 'roadLadder',
              'gateway', 'timezoneOverride', 'countryName', 'links'}
 # The seed keys metadata-batch.py reads (city node, hub, timezone, country name, profile, play box); map and selection policy stays in the batch results.
-METADATA_SEED_KEYS = ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile', 'playBox', 'gateway', 'timezoneOverride', 'countryName')
+METADATA_SEED_KEYS = ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile', 'playBox', 'roadLadder', 'gateway', 'timezoneOverride', 'countryName')
 LINK_KINDS = {'charter', 'ship', 'overland'}
 KNOBS = json.loads((HERE / 'geometry-knobs.json').read_text())
 
@@ -138,6 +138,8 @@ def validate(table):
             raise ValueError(f"{seed.get('id', 'seed')}: sceneWaterExtent must be 'play' or 'reach'")
         if seed.get('waterBudgetLadder') is not None and not isinstance(seed['waterBudgetLadder'], bool):
             raise ValueError(f"{seed.get('id', 'seed')}: waterBudgetLadder must be true or false")
+        if seed.get('roadLadder') is not None and not isinstance(seed['roadLadder'], bool):
+            raise ValueError(f"{seed.get('id', 'seed')}: roadLadder must be true or false")
         if seed.get('namesUnit') is not None and (not isinstance(seed['namesUnit'], str) or not seed['namesUnit'].strip()):
             raise ValueError(f"{seed.get('id', 'seed')}: namesUnit must be a non-empty string")
         selection_exclusions(seed)
@@ -315,21 +317,21 @@ def extract_batch(pbf, candidates, source, pbf_sha, verified_md5, output_root, l
                 if metadata['city']['id'] != city_id:
                     raise adapter.ExtractionError('candidate city id does not match seed')
                 # Profile-only extraction rules (outpost, wilderness); None for every other city, whose extraction is unchanged.
-                contexts[city_id] = (metadata_path, boxes, recipe, adapter.profile_extraction(metadata))
+                contexts[city_id] = (metadata_path, boxes, recipe, adapter.profile_extraction(metadata), adapter.road_fallback_rules(metadata))
             except Exception as error:
                 errors[city_id] = str(error)
         if contexts:
             # Relation predicates do not depend on coast. Only way predicates do. Profile rules only widen the candidate set;
             # add_relations keeps a profile candidate only for the city whose own rules match it.
-            profile_rules = [rules for *_, rules in contexts.values() if rules is not None]
+            profile_rules = [rules for _, _, _, rules, _ in contexts.values() if rules is not None]
             relations = adapter.RelationPass(False, profile_rules or None)
             adapter.progress('relation-scan')
             relations.apply_file(str(pbf))
             relations.collect_center_dependencies(pbf)
             adapter.progress('relation-candidates', relations=len(relations.candidates),
                              memberWays=len(relations.needed_ways), memberNodes=len(relations.needed_nodes))
-            geometries = {city_id: adapter.GeometryPass(relations, boxes, recipe['kind'] == 'coast', rules)
-                          for city_id, (_, boxes, recipe, rules) in contexts.items()}
+            geometries = {city_id: adapter.GeometryPass(relations, boxes, recipe['kind'] == 'coast', rules, road_fallback)
+                          for city_id, (_, boxes, recipe, rules, road_fallback) in contexts.items()}
 
             needed_ways, needed_nodes = relations.needed_ways, relations.needed_nodes
             member_ways, member_nodes = {}, {}
@@ -383,8 +385,9 @@ def extract_batch(pbf, candidates, source, pbf_sha, verified_md5, output_root, l
             for city_id, geometry in geometries.items():
                 if city_id in errors:
                     continue
-                metadata_path, boxes, recipe, rules = contexts[city_id]
+                metadata_path, boxes, recipe, rules, _ = contexts[city_id]
                 try:
+                    adapter.finish_roads(geometry)
                     adapter.add_relations(relations, geometry, boxes)
                     destination = output_root / city_id
                     for label, elements in geometry.output.items():
@@ -393,7 +396,7 @@ def extract_batch(pbf, candidates, source, pbf_sha, verified_md5, output_root, l
                             'version': 1,
                             'generator': 'Allworld offline PBF adapter prototype',
                             'source': adapter.source_record(args, metadata_path, city_id, label, boxes,
-                                                            timestamp, adapter_sha, recipe, relations, elements, geometry.skipped_relations, rules),
+                                                            timestamp, adapter_sha, recipe, relations, elements, geometry.skipped_relations, rules, geometry.road_fallback_report),
                             'elements': elements,
                         })
                     counts = {label: len(elements) for label, elements in geometry.output.items()}

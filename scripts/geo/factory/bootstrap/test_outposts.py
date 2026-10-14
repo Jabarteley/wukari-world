@@ -208,6 +208,8 @@ class OutpostTables(unittest.TestCase):
                 except ValueError as error:
                     self.fail(f'{path.name}: {error}')
                 for item in seeds:
+                    if item.get('profile') in ('outpost', 'wilderness'):
+                        continue  # the outpost tables (aq, gs, hm) carry links, a gateway and an override by design
                     self.assertEqual(batch.links_policy(item), {})
                     self.assertFalse({'gateway', 'timezoneOverride', 'countryName'} & set(item))
 
@@ -249,6 +251,22 @@ def outpost_objects():
     return [*places, *road_nodes, *area_nodes, *ways, r(200, [('w', 108, 'outer')], type='multipolygon', office='research', name='Lab Area')]
 
 
+GOLDEN_KNOB_OFF = {
+    'outpost-fixture-standard': {
+        'places': '8d6ccbace4813566ebb8067e49ab23524ce9de68dbfe7c6c4e44d056255b4be8',
+        'extras': 'ca849b6d225ea884b0509cdaf9f216e0b47b7281cc549ddee211925d70497fd2',
+        'water': 'fc0d8c06e0d41096e454450e70ead3bc2f35cf3c9bd60613e24ff600f652897f',
+        'landuse': '8a865729b74ede99f37ecab89dc33202d70ee21a39755df1bce7af9d5f47ce0e',
+        'roads': '7f710fdc3755b47e148f52254ac048325b05b691b90eba0d89dd082852e355db'
+    },
+    'roadpoor-fixture-standard': {
+        'places': '3887ebe28ccc4eb57c1051620b9c0e86c44f35a9e756412ea923a7908f8d14e8',
+        'extras': '91d1db01488f62cb503e366610be5b897f9455c994583e0cf76779d5513c0292',
+        'water': '91cdfbbe5f1663fa4e91742c5683ae94abdd342b497875b5210fbb35ea06c60a',
+        'landuse': 'f0475005402e2eb3779baa730f6a392b1732597f9d3d791e6773a8c78d028aad',
+        'roads': '058ff4cbbb548ea80fafbb4105d0263b33c26f76b167a0160a6545ee59bde714'
+    }
+}
 BOXES = {'play': [-1, -1, 1, 1], 'core': [-0.2, -0.2, 0.2, 0.2], 'outline': [-1.1, -1.1, 1.1, 1.1], 'wide': [-1.5, -1.5, 1.5, 1.5]}
 
 
@@ -301,6 +319,142 @@ class ProfileExtraction(unittest.TestCase):
         _, ids = self.extract('wilderness', 'wilderness')
         self.assertEqual(ids['places'], ['n1', 'n10', 'n6', 'n7', 'n8'])
 
+
+
+def roadpoor_objects(tertiary=4, unclassified=0, residential=0, primary=0, military_tertiary=0):
+    """A village with only minor roads (Wallis and Futuna, Saint Helena): `primary` ways of class primary, `tertiary` ... inside the play box, one far outside it."""
+    nodes, ways, node_id, way_id = [n(1, 0.0, 0.0, place='village', name='Post')], [], 1000, 2001
+    for highway, count, extra in (('primary', primary, {}), ('tertiary', tertiary, {}), ('unclassified', unclassified, {}), ('residential', residential, {}),
+                                  ('tertiary', military_tertiary, {'military': 'yes'}), ('tertiary', 1, {'far': 'yes'}), ('service', 2, {}), ('track', 2, {})):
+        for index in range(count if 'far' not in extra else 1):
+            lat = 0.05 * (way_id - 2000) if 'far' not in extra else 5.0
+            nodes += [n(node_id, 0.1, lat), n(node_id + 1, 0.2, lat)]
+            tags = {'highway': highway, **{key: value for key, value in extra.items() if key != 'far'}}
+            ways.append(w(way_id, [node_id, node_id + 1], **tags))
+            node_id, way_id = node_id + 2, way_id + 1
+    return [*nodes, *ways]
+
+
+@unittest.skipIf(osmium is None, 'osmium/shapely not installed')
+class RoadFallbackExtraction(unittest.TestCase):
+    """Seed `roadLadder: true` (roadFallback in source-input.json): tertiary, then unclassified and residential, only when the standard
+    classes give fewer than minWays ways in the play box. Knob off (every existing city): the extraction is byte-identical to before."""
+    FALLBACK = {'minWays': 3}
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix='road-fallback-test-')
+        self.dir = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def extract(self, label, objects, **source_extra):
+        pbf = self.dir / f'{label}.osm.pbf'
+        write_pbf(pbf, objects)
+        data = pbf.read_bytes()
+        pins = ['--dataset-url', URL, '--dataset-bytes', str(len(data)), '--dataset-md5', hashlib.md5(data).hexdigest(), '--dataset-sha256', hashlib.sha256(data).hexdigest()]
+        source = {'city': {'id': 'post', 'name': 'Post'}, 'boxes': BOXES, 'waterRecipe': {'kind': 'inland', 'wideWater': False, 'reviewRequired': False}, **source_extra}
+        path = self.dir / f'{label}.source.json'
+        path.write_text(json.dumps(source))
+        done = subprocess.run([sys.executable, str(ADAPTER), str(pbf), str(path), *pins, '--output-root', str(self.dir / label)], capture_output=True, text=True)
+        self.assertEqual(done.returncode, 0, done.stderr)
+        return {name: json.loads((self.dir / label / 'post' / f'{name}.json').read_text()) for name in ('places', 'extras', 'water', 'landuse', 'roads')}
+
+    @staticmethod
+    def road_ids(layers):
+        return sorted(element['id'] for element in layers['roads']['elements'])
+
+    @staticmethod
+    def fingerprint(layers):
+        """sha256 of every layer, canonical JSON, minus the adapter's own file hash (the only field that follows the script text)."""
+        out = {}
+        for name, layer in layers.items():
+            body = json.loads(json.dumps(layer))
+            body['source'].pop('adapterSha256')
+            out[name] = hashlib.sha256(json.dumps(body, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        return out
+
+    def test_knob_off_is_identical_to_the_extractor_before_the_knob(self):
+        # Golden hashes taken with offline-extract.py of 6ce98ad2 (before roadFallback existed) on the two fixtures.
+        self.assertEqual(self.fingerprint(self.extract('standard', outpost_objects())), GOLDEN_KNOB_OFF['outpost-fixture-standard'])
+        poor = self.extract('poor', roadpoor_objects())
+        self.assertEqual(self.road_ids(poor), [], 'a road-poor city without the knob still gets no road')
+        self.assertEqual(self.fingerprint(poor), GOLDEN_KNOB_OFF['roadpoor-fixture-standard'])
+        self.assertNotIn('roadFallback', poor['roads']['source'])
+
+    def test_seed_knob(self):
+        base = {'id': 'mata-utu', 'name': 'Mata Utu', 'countryISO': 'WF', 'profile': 'microstate'}
+        metadata.validate_seed({**base, 'roadLadder': True})
+        metadata.validate_seed({**base, 'roadLadder': False})
+        self.assertEqual(metadata.road_fallback_input({**base, 'roadLadder': True}), {'roadFallback': {'minWays': 3}})
+        for seed_without in (base, {**base, 'roadLadder': False}):
+            self.assertEqual(metadata.road_fallback_input(seed_without), {}, 'no key in source-input.json: every existing city is unchanged')
+        for bad in ('ladder', 1, None):
+            with self.subTest(bad), self.assertRaises(metadata.Hold):
+                metadata.validate_seed({**base, 'roadLadder': bad})
+        with self.assertRaises(metadata.Hold):
+            metadata.validate_seed({**seed(), 'roadLadder': True})   # outpost profile: own ladder
+        table = json.loads((HERE.parent / 'country-tables' / 'ck.json').read_text())
+        table['seeds'][0]['roadLadder'] = True
+        batch.validate(table)
+        table['seeds'][0]['roadLadder'] = 'yes'
+        with self.assertRaises(ValueError):
+            batch.validate(table)
+
+    def test_tertiary_is_enough(self):
+        layers = self.extract('tertiary', roadpoor_objects(tertiary=4), roadFallback=self.FALLBACK)
+        self.assertEqual(self.road_ids(layers), [2001, 2002, 2003, 2004], 'tertiary only; service, track and the tertiary way outside the play box stay out')
+        report = layers['roads']['source']['roadFallback']
+        self.assertEqual((report['minWays'], report['standardWays'], report['classesAdded'], report['waysAdded']), (3, 0, ['tertiary'], 4))
+        self.assertIn('roadFallback', layers['roads']['source']['filter'])
+        for name in ('places', 'extras', 'water', 'landuse'):
+            self.assertNotIn('roadFallback', layers[name]['source'])
+
+    def test_next_class_only_when_still_short(self):
+        layers = self.extract('ladder', roadpoor_objects(tertiary=1, unclassified=1, residential=2), roadFallback=self.FALLBACK)
+        classes = {element['tags']['highway'] for element in layers['roads']['elements']}
+        self.assertEqual(classes, {'tertiary', 'unclassified', 'residential'})
+        self.assertEqual(layers['roads']['source']['roadFallback']['classesAdded'], ['tertiary', 'unclassified', 'residential'])
+        short = self.extract('short', roadpoor_objects(tertiary=1, unclassified=1), roadFallback=self.FALLBACK)
+        self.assertEqual(len(short['roads']['elements']), 2, 'what exists is taken; the ladder never reaches service or track')
+
+    def test_standard_classes_win(self):
+        poor = roadpoor_objects(tertiary=4, primary=3)
+        base = self.extract('base', poor)
+        layers = self.extract('enough', poor, roadFallback=self.FALLBACK)
+        self.assertEqual(self.road_ids(layers), self.road_ids(base))
+        self.assertEqual(len(layers['roads']['elements']), 3)
+        report = layers['roads']['source']['roadFallback']
+        self.assertEqual((report['standardWays'], report['classesAdded'], report['waysAdded']), (3, [], 0))
+        short = self.extract('two', roadpoor_objects(tertiary=4, primary=2), roadFallback=self.FALLBACK)
+        self.assertEqual(len(short['roads']['elements']), 6, 'two primaries are fewer than three: tertiary joins them')
+
+    def test_sensitive_roads_are_never_added(self):
+        layers = self.extract('military', roadpoor_objects(tertiary=3, military_tertiary=2), roadFallback=self.FALLBACK)
+        self.assertEqual(len(layers['roads']['elements']), 3)
+        self.assertFalse(any('military' in element['tags'] for element in layers['roads']['elements']))
+
+    def test_only_the_non_roads_layers_are_untouched_by_the_knob(self):
+        off = self.extract('off', roadpoor_objects())
+        on = self.extract('on', roadpoor_objects(), roadFallback=self.FALLBACK)
+        for name in ('places', 'extras', 'water', 'landuse'):
+            self.assertEqual(self.fingerprint({name: off[name]}), self.fingerprint({name: on[name]}), name)
+
+    def test_validation(self):
+        for good in ({'minWays': 3}, {'minWays': 1}, {'minWays': 10}):
+            self.assertEqual(adapter.validate_road_fallback(good), good)
+        self.assertIsNone(adapter.validate_road_fallback(None))
+        for bad in ({}, {'minWays': 0}, {'minWays': 11}, {'minWays': True}, {'minWays': 3.0}, {'minWays': 3, 'classes': ['track']}, [3], 'ladder'):
+            with self.subTest(bad), self.assertRaises(adapter.ExtractionError):
+                adapter.validate_road_fallback(bad)
+        # A profile city already has its own ladder: the two do not combine.
+        with self.assertRaises(adapter.ExtractionError):
+            adapter.load_city(self.write_source({'profileExtraction': {'profile': 'outpost', **PROFILES['outpost']['extraction']}, 'roadFallback': self.FALLBACK}))
+
+    def write_source(self, extra):
+        path = self.dir / 'combo.source.json'
+        path.write_text(json.dumps({'city': {'id': 'post', 'name': 'Post'}, 'boxes': BOXES, 'waterRecipe': {'kind': 'inland', 'wideWater': False, 'reviewRequired': False}, **extra}))
+        return path
 
 TREATY_RING = [[-180, -90], [-90, -90], [0, -90], [90, -90], [180, -90], [180, -60], [90, -60], [0, -60], [-90, -60], [-180, -60], [-180, -90]]
 NODE_CHECK = r"""

@@ -47,6 +47,8 @@ def validate_source_url(value):
     if parsed.scheme != 'https' or not parsed.hostname or parsed.username is not None or parsed.password is not None:
         raise Hold('selection sourceUrl must be an HTTPS provenance URL')
 
+ROAD_FALLBACK_MIN_WAYS = 3  # fewer standard-class ways than this inside the play box turns the fallback tiers on
+
 PROFILES = json.loads((Path(__file__).with_name('profiles.json')).read_text())['profiles']
 
 def profile_rules(seed):
@@ -92,7 +94,7 @@ GATEWAY_MAX_KM = 40
 ETC_ZONE = re.compile(r'Etc/GMT(?:[+-](?:[1-9]|1[0-4]))?')
 
 def validate_seed(seed):
-    if not isinstance(seed, dict) or set(seed) - {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile', 'playBox', 'gateway', 'timezoneOverride', 'countryName'}:
+    if not isinstance(seed, dict) or set(seed) - {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile', 'playBox', 'roadLadder', 'gateway', 'timezoneOverride', 'countryName'}:
         raise Hold('unsupported seed fields')
     if 'playBox' in seed and (not isinstance(seed['playBox'], dict) or not seed['playBox'] or set(seed['playBox']) - {'playKm', 'coreKm'}
                               or any(type(value) not in (int, float) or not 0 < value <= 40 for value in seed['playBox'].values())):
@@ -101,6 +103,7 @@ def validate_seed(seed):
         raise Hold('seed needs city id/name and uppercase country ISO')
     rules = profile_rules(seed)
     validate_outpost_fields(seed, rules)
+    validate_road_ladder(seed, rules)
     if 'cityOsmRef' in seed and (not isinstance(seed['cityOsmRef'], str) or not re.fullmatch(r'node/[1-9][0-9]*', seed['cityOsmRef'])):
         raise Hold('cityOsmRef needs a positive OSM node reference')
     for key, field in (('airport', 'ident'), ('timezone', 'id')):
@@ -120,6 +123,20 @@ def validate_seed(seed):
                 raise Hold('airport countryOverride needs {iso, reason}: another two-letter OurAirports country than the seed (reason of at least 20 characters), and cannot be combined with hubWaiver')
         validate_source_url(selector['sourceUrl'])
     return seed
+
+def validate_road_ladder(seed, rules):
+    """roadLadder (opt-in, 14 Oct 2026): true asks the extractor for the road fallback (offline-extract.py ROAD_FALLBACK_TIERS) in a road-poor territory.
+    Absent from every existing seed. An outpost or wilderness city already has its own ladder."""
+    if 'roadLadder' not in seed:
+        return
+    if type(seed['roadLadder']) is not bool:
+        raise Hold('roadLadder must be true or false')
+    if seed['roadLadder'] and 'extraction' in rules:
+        raise Hold('roadLadder does not combine with the outpost or wilderness profile (they carry their own road ladder)')
+
+def road_fallback_input(seed):
+    """The `roadFallback` key of source-input.json (empty without the knob, so every other city's input is unchanged)."""
+    return {'roadFallback': {'minWays': ROAD_FALLBACK_MIN_WAYS}} if seed.get('roadLadder') is True else {}
 
 def validate_outpost_fields(seed, rules):
     """gateway, timezoneOverride and countryName (OUTPOST-PLAN 13 Oct 2026). Absent from every existing seed, so nothing else changes."""
@@ -388,7 +405,7 @@ def main():
         phase_complete(phase, started, ways=coast_ways.ways_seen, coastlineWays=coast_ways.coastline_ways, matches=len(coast_refs))
         water = {'kind': 'coast' if coast_refs else 'inland', 'wideWater': bool(coast_refs), 'reviewRequired': False}
         if coast_refs: water['sea'] = {'kind': 'coast', 'bandMetres': 40000}
-        extraction_input = {'city': {'id': seed['id'], 'name': display_name}, 'boxes': bounds['boxes'], 'waterRecipe': water}
+        extraction_input = {'city': {'id': seed['id'], 'name': display_name}, 'boxes': bounds['boxes'], 'waterRecipe': water, **road_fallback_input(seed)}
         metadata_file = out / 'source-input.json'
         metadata_file.write_text(json.dumps(extraction_input, indent=2))
         adapter.load_city(metadata_file)

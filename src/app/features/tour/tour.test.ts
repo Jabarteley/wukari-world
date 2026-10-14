@@ -160,7 +160,8 @@ test('the travel step names only cities that are open, three at most, and promis
   const closedNames = cityCatalogue().filter((city) => !city.open).map((city) => city.name)
   for (const id of playableCityIds()) {
     const world = openWorld(id), own = cityRules(id)!.name
-    assert.deepEqual([...world.cities].sort(), openNames.filter((name) => name !== own).sort())
+    // By id, not by name: two open cities may share a name (Kingston in Jamaica, Kingston on Norfolk Island).
+    assert.deepEqual([...world.cities].sort(), playableCityIds().filter((other) => other !== id && cityRules(other)?.status === 'open').map((other) => cityRules(other)!.name).sort())
     assert.equal(world.country, cityRules(id)!.country.name)
     for (const step of STEPS) {
       const said = JSON.stringify(wordsOf(step, context(ALL, { world }), false)) + JSON.stringify(wordsOf(step, context(ALL, { world }), true))

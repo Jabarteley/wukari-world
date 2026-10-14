@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "XA",
+  "dataset": {
+    "url": "https://download.geofabrik.de/australia-oceania/australia/ashmore-cartier-261013.osm.pbf",
+    "bytes": 22624,
+    "md5": "10d3d9df53b6b692b5a37dd8ab2accbb"
+  },
+  "admin0RelationOverride": {
+    "relationId": 2559345,
+    "expectedTags": {
+      "admin_level": "4",
+      "boundary": "administrative",
+      "name": "Ashmore and Cartier Islands",
+      "type": "boundary",
+      "wikidata": "Q133888"
+    },
+    "reason": "Owner decision 2026-10-14 (outposts): Ashmore and Cartier Islands, an Australian external territory, is in scope as a wilderness game map under the user-assigned code XA because it has no ISO 3166-1 code of its own. OSM maps it as relation 2559345 (boundary=administrative, admin_level 4, wikidata Q133888, no ISO3166-1 tag) whose two outer rings, ways 623059854 and 623059853, are both present and closed in the pinned Geofabrik ashmore-cartier file. The relation is used only as the OSM-mapped extent of the game map. Every other proof (member ways, area assembly, segment match) still applies.",
+    "userAssignedCode": true
+  }
+}

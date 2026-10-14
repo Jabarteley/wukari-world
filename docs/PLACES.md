@@ -45,7 +45,7 @@ Voice is off until you press **Join voice**, and you join muted, as everywhere.
 - In the Square, proximity decides who you hear: the people within 12 steps of where your avatar stands.
 - In a group room, and in a home with guests in it, there is one circle: everyone there who joined voice hears everyone else. Nobody walks in those rooms, so there is no distance to measure. A host and their guests can talk in a home the same way.
 
-A voice circle holds 8 people.
+A voice circle holds 8 people. Joining voice asks for relay servers from the same relay as calls, under its limits ([CALLS.md](CALLS.md)), so people on mobile data, whose networks usually block direct connections, can hear each other.
 
 ## Building a room together
 

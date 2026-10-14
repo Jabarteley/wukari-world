@@ -540,10 +540,10 @@ test('Cloudflare: pre-job saves hydrate and award a completed shift once after r
 });
 
 
-test('Cloudflare: only two nominated relay testers mint, global budget survives hibernation, errors hide secrets', async t => {
-  const publicId = '11111111-1111-4111-8111-111111111111'; let calls = 0; let providerFailure;
+test('Cloudflare: the nominated relay testers mint on the test budget, everyone else in a room on the calls\' relay; the test budget survives hibernation; errors hide secrets', async t => {
+  const publicId = '11111111-1111-4111-8111-111111111111'; let calls = 0; let providerFailure; const ttls: number[] = [];
   const f = await fixture(t, { sleeps: true, bindings: { TURN_TEST_PUBLIC_IDS: publicId, TURN_KEY_ID: 'a'.repeat(32), TURN_API_TOKEN: 'synthetic-api-secret' }, outboundService: async (request: Request) => {
-    calls++; try { assert.equal(new URL(request.url).origin, 'https://rtc.live.cloudflare.com'); assert.deepEqual(await request.json(), { ttl: 600 }); } catch (error) { providerFailure = (error as Error).message; }
+    calls++; try { assert.equal(new URL(request.url).origin, 'https://rtc.live.cloudflare.com'); const asked = await request.json() as { ttl: number }; ttls.push(asked.ttl); assert.ok(asked.ttl === 600 || asked.ttl === 3600); } catch (error) { providerFailure = (error as Error).message; }
     return new Response(JSON.stringify({ iceServers: [{ urls: 'turn:turn.cloudflare.com:3478', username: 'synthetic-user', credential: 'synthetic-short-lived' }] }), { status: 201 });
   } });
   const a = await f.device('Tester'), b = await f.device('Other'); const storage = await f.storage();
@@ -551,10 +551,11 @@ test('Cloudflare: only two nominated relay testers mint, global budget survives 
   await storage.exec('UPDATE sessions SET public_id=?,value=? WHERE secret=?', publicId, JSON.stringify(session), a.cookie.slice(11));
   assert.equal((await f.request('/api/voice-config', null, a.cookie)).status, 403); assert.equal(calls, 0);
   const x = await f.socket(a), y = await f.socket(b); x.send({ type: 'join', cityId: 'lagos', venueId: 'park' }); await x.next(); y.send({ type: 'join', cityId: 'lagos', venueId: 'park' }); await x.next(); await y.next();
-  assert.equal((await (await f.request('/api/voice-config', null, b.cookie)).json()).turnConfigured, false); assert.equal(calls, 0);
-  const response = await f.request('/api/voice-config', null, a.cookie); const body = await response.json(); assert.equal(response.status, 200, body.error); assert.equal(providerFailure, undefined); assert.equal(calls, 1); assert.equal(body.turnConfigured, true); assert.equal(JSON.stringify(body).includes('synthetic-api-secret'), false); assert.equal(calls, 1);
+  // Room voice for everyone else: the calls' relay (an hour's credential, server/voice-relay.ts), under its own limits.
+  assert.equal((await (await f.request('/api/voice-config', null, b.cookie)).json()).turnConfigured, true); assert.equal(calls, 1); assert.deepEqual(ttls, [3600]);
+  const response = await f.request('/api/voice-config', null, a.cookie); const body = await response.json(); assert.equal(response.status, 200, body.error); assert.equal(providerFailure, undefined); assert.equal(calls, 2); assert.deepEqual(ttls, [3600, 600]); assert.equal(body.turnConfigured, true); assert.equal(JSON.stringify(body).includes('synthetic-api-secret'), false); assert.equal(calls, 2);
   await storage.exec('UPDATE turn_budget SET issued=8'); await f.hibernate();
-  const limited = await f.request('/api/voice-config', null, a.cookie); assert.equal(limited.status, 429); assert.equal((await limited.json()).error, 'relay_test_limit'); assert.equal(calls, 1);
+  const limited = await f.request('/api/voice-config', null, a.cookie); assert.equal(limited.status, 429); assert.equal((await limited.json()).error, 'relay_test_limit'); assert.equal(calls, 2);
 });
 
 test('Recovery parity: Node and Worker share onboarding, social, blocking, civic, paid retry and authority refusals', async t=>{

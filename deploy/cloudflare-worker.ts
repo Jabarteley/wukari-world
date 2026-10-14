@@ -3,6 +3,7 @@ import { installCityAssetReader } from '../src/game/cities/host-loaders.ts';
 import { installDictionaryAssetReader } from '../src/words/dictionary-asset.ts';
 import { placeOfRoom } from '../src/places/model.ts';
 import { characterCity } from '../server/character.ts';
+import { roomVoiceRelay } from '../server/voice-relay.ts';
 /**
  * WORKER HOST: the Cloudflare Worker and its SQLite Durable Object — the production host.
  *
@@ -781,7 +782,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
       this.ctx.storage.transactionSync(() => { const day = new Date().toISOString().slice(0, 10), used = this.sql.exec<{ issued: number }>('SELECT issued FROM turn_budget WHERE day = ?', day).toArray()[0]?.issued || 0; if (used >= TURN_DAILY_MINT_LIMIT) throw protocolError(429, 'relay_test_limit'); this.sql.exec('INSERT INTO turn_budget(day,issued) VALUES(?,?) ON CONFLICT(day) DO UPDATE SET issued=excluded.issued', day, used + 1); });
       try { config = validateVoiceConfig(await mintCloudflareIce(this.env), Date.now()); } catch { throw protocolError(503, 'voice_config_unavailable'); }
       await this.store.read(db => { const s = request.requireSession(db); if (!this.liveRoom(s, db)) throw protocolError(403, 'room_membership_required'); });
-    }
+    } else config = await roomVoiceRelay(this.context.callRelay, session.id, request.ip, Date.now()) ?? config; // the calls' relay, under its limits (server/voice-relay.ts)
     return json(200, { ...config, radius: 12, serverTime: Date.now() }, { 'Set-Cookie': cookie(request.cookie as string, request.raw) });
   }
   liveRoom(session: SessionRecord, db: Db): boolean {

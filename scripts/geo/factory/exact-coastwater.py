@@ -52,7 +52,7 @@ MAX_WATER_AREA_FRACTION = MAX_SIMPLIFICATION_AREA_FRACTION
 # A rung is a single attempt: it never steps coarser or finer by itself, and a guard it misses exits with RUNG_INFEASIBLE_EXIT instead of retrying.
 RUNG_INFEASIBLE_EXIT = 3
 LADDER_RUNG = None
-# A sub-extract (Geofabrik region) ends along its own polygon, so a coast chain in the wide box (play +/- 0.6 degrees) can end where the next way lies in a neighbouring region that the
+# A sub-extract (Geofabrik region) ends along its own polygon, so a coast chain in the wide box (play +/- the reach, see reach_for) can end where the next way lies in a neighbouring region that the
 # extract does not hold (Shanghai: six ends 0.4 to 11 km outside the extract, Jiangsu and Zhejiang; a country-border extension does not apply, the ends lie inside China). When the target draws
 # only the play box (`sceneWaterExtent: play`) the coast beyond the outline box is never drawn, so the stage then repeats ONCE with the coast clipped to the outline box (play +/- 0.05, the
 # generator's outline margin) instead of the wide box. Only a run that would have failed 'Unclosed coastline topology' ever reaches this; no passing city changes.
@@ -80,6 +80,26 @@ REACH_TOLERANCES = [0.00005, 0.0001, 0.0002, 0.0003, 0.0005, 0.0008]
 
 def sha(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def reach_for(play):
+    """Degrees the ground (wide box) reaches beyond the play box [south, west, north, east]: the app's reachFor
+    (scripts/geo/destination-detail/geometry-tools.ts), 1.5 times the larger box span plus 0.2, between 0.4 and 0.6.
+    The same double operations as the app, so the wide box compares exactly; a box of 0.27 degrees or more gives 0.6."""
+    return min(0.6, max(0.4, 1.5 * max(play[2] - play[0], play[3] - play[1]) + 0.2))
+
+
+def wide_for(play):
+    reach = reach_for(play)
+    return [play[0] - reach, play[1] - reach, play[2] + reach, play[3] + reach]
+
+
+def check_ground_bounds(config, boxes):
+    """The extract's play box must be the recipe's and its wide box the app's reach around it."""
+    play, wide = boxes['play'], boxes['wide']
+    if play != config['box'] or wide != wide_for(play):
+        raise ValueError('Recipe/extract ground bounds disagree')
+    return play, wide
 
 
 def decoded(text, pattern):
@@ -124,9 +144,7 @@ def main():
         hashes[name] = sha(raw)
         extracts[name] = json.loads(raw)
     boxes = extracts['water']['source']['boxes']
-    play, wide = boxes['play'], boxes['wide']
-    if play != config['box'] or wide != [play[0] - .6, play[1] - .6, play[2] + .6, play[3] + .6]:
-        raise ValueError('Recipe/extract ground bounds disagree')
+    play, wide = check_ground_bounds(config, boxes)
     for name, data in extracts.items():
         if data['source']['boxes'] != boxes:
             raise ValueError('Extract bounds disagree: ' + name)

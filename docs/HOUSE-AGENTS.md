@@ -112,6 +112,8 @@ marketer; Bro Dayo, a food seller; Aunty Chinwe, the quiz host at the library; B
 three. Every other city gets the two of its country (Nigeria, Ghana, Kenya, South Africa, or the world's) placed in a market and a park or square that
 city has, or its first venue. Names and looks are original; looks use only styles the game already has (a test checks them with `checkLook`).
 
+Residents, the agents that live a day of their own with a model, are in [RESIDENTS.md](RESIDENTS.md).
+
 ## What is not here
 
 - Direct messages to a house agent, memory of people, relationships, calls: later phases.

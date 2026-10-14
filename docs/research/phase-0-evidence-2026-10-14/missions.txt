@@ -1,0 +1,16 @@
+✔ missions: a set is one mission of each kind, the same for the same life and day, and only what can be done (39.653875ms)
+✔ missions: real play completes a mission exactly once, a claim pays once, and the set bonus is granted once (299.54175ms)
+✔ missions: an earned reward survives midnight and reload, weekly progress survives the night, and one swap a day is allowed (119.253792ms)
+✔ missions: the stamp card pays once at four days, the day count only goes up, and absence costs nothing (143.028834ms)
+✔ missions: hostile saved input is rebuilt to a valid slice (2.047166ms)
+✔ calendar: weekly events recur on Nigerian time, also across midnight; dated events hold their days; a closed venue never hosts (2.841917ms)
+✔ events: being there counts once per occurrence; spraying is a capped sink that needs a party (87.314042ms)
+✔ growth: table results and referral gifts are server-only, pay inside their caps and never twice over them (63.047209ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 983.76375

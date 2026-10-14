@@ -162,9 +162,12 @@ const get_goals: ToolDefinition = {
     const { value } = await look(c, (state, view) => {
       const chain = view.goals.chain.current;
       const rows = (list: typeof view.missions.daily) => list.map((m) => ({ id: m.id, label: m.label, hint: m.hint, progress: `${m.n}/${m.count}`, pays: m.cash, done: m.done, claimed: m.claimed, ...(m.go ? { goTo: m.go[0] } : {}) }));
+      const savedRewards = view.missions.pendingRewards.map(({ id, rewardId, label, cash, scope, period, cityId, earnedAt }) => ({ id, rewardId, label, cash, scope, period, cityId, earnedAt }));
       return {
         goal: chain ? { title: chain.title, hint: chain.hint, pays: chain.cash } : null, starterGoals: `${view.goals.chain.index}/${view.goals.chain.total}`,
-        missions: view.missions.locked ? { locked: view.missions.locked } : { today: rows(view.missions.daily), thisWeek: rows(view.missions.weekly), readyToClaim: view.missions.claimable },
+        missions: view.missions.locked ? { locked: view.missions.locked } : { today: rows(view.missions.daily), thisWeek: rows(view.missions.weekly), readyToClaim: view.missions.claimable, savedRewards, pendingSetRewards: view.missions.pendingSetRewards },
+        achievements: view.achievements,
+        episodes: view.episodes,
         job: view.career.step, life: brief(c, state, view),
       };
     });
@@ -321,11 +324,11 @@ const work: ToolDefinition = {
 const claim_mission: ToolDefinition = {
   name: 'claim_mission', readOnly: false,
   description: 'Collect the reward of a finished mission (an `id` from get_goals with done true and claimed false). The reward is paid into your money.',
-  inputSchema: obj({ id: { type: JT.string, maxLength: 60 }, rid: RID }, ['id']),
+  inputSchema: obj({ id: { type: JT.string, maxLength: 60 }, rewardId: { type: JT.string, maxLength: 160 }, rid: RID }, ['id']),
   async run(c, args, rid) {
     const id = str(args.id);
     if (!id) throw bad(c, 'invalid_mission', 'Give the mission id from get_goals.');
-    return answered(c, await act(c, 'missions.claim', { id }, rid));
+    return answered(c, await act(c, 'missions.claim', { id, ...(str(args.rewardId) ? { rewardId: str(args.rewardId) } : {}) }, rid));
   },
 };
 

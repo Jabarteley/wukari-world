@@ -1,0 +1,302 @@
+{
+  "batch": 8,
+  "games": [
+    {
+      "name": "Journey",
+      "genre": "wordless social adventure",
+      "award": {"name": "16th D.I.C.E. Awards", "year": 2013, "category": "Game of the Year", "url": "https://www.interactive.org/awards/2013_16th_awards.asp"},
+      "mechanics": [
+        {"name": "silent pairing", "detail": "Players can travel alone or with a fellow traveler, using movement through the shared route to assist one another.", "url": "https://store.steampowered.com/app/638230/Journey/"},
+        {"name": "pilgrimage traversal", "detail": "Explore ancient ruins, glide across sands and discover secrets along a compact authored journey.", "url": "https://store.steampowered.com/app/638230/Journey/"}
+      ],
+      "return_reason": "Attachment comes from a brief anonymous encounter and a shared, low-pressure pilgrimage that players remember as a personal story.",
+      "allworld_transfer": "Use city journeys where two residents can help, leave a small visible trace, and part without follower pressure; let companionship become a remembered civic event.",
+      "risk": "The magic depends on pacing and population; forced matchmaking, chat, or repetitive routes would turn intimacy into a service loop.",
+      "retention_type": "campaign_return; social memory, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "AIAS lists Journey as the 2013 D.I.C.E. Game of the Year winner."
+    },
+    {
+      "name": "GRIS",
+      "genre": "visual narrative platform adventure",
+      "award": {"name": "The Game Awards", "year": 2019, "category": "Games for Impact", "url": "https://thegameawards.com/rewind/year-2019"},
+      "mechanics": [
+        {"name": "restored abilities", "detail": "New movement abilities and restored colors progressively open light puzzles, platforming sequences and optional challenges.", "url": "https://www.playstation.com/en-gb/games/gris/"},
+        {"name": "nonverbal world-building", "detail": "Animation, music, color and environmental change carry the emotional arc with little conventional exposition.", "url": "https://www.playstation.com/en-gb/games/gris/"}
+      ],
+      "return_reason": "Players return to complete missed challenges or revisit a strongly authored emotional journey whose meaning is carried by sensory change.",
+      "allworld_transfer": "Tie resident growth to visible changes in a neighborhood palette, soundscape or public space, with optional expression tasks rather than grind.",
+      "risk": "A tightly authored grief arc does not automatically create repeat visits; visual transformation can become spectacle without resident agency.",
+      "retention_type": "campaign_return; completionist revisit, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "The Game Awards 2019 winner archive lists GRIS under Games for Impact."
+    },
+    {
+      "name": "Celeste",
+      "genre": "precision platformer with mental-health narrative",
+      "award": {"name": "22nd D.I.C.E. Awards", "year": 2019, "category": "Outstanding Achievement for an Independent Game", "url": "https://www.interactive.org/awards/award_category_details.asp?idAward=2019&idGameAwardType=159"},
+      "mechanics": [
+        {"name": "dash and climb", "detail": "Madeline uses a simple jump, air-dash and climb moveset across hundreds of hand-crafted platforming screens.", "url": "https://www.nintendo.com/us/store/products/celeste-switch/"},
+        {"name": "Assist Mode", "detail": "Assist Mode can be toggled from file select and includes game-speed adjustment and Dash Assist options.", "url": "https://www.celestegame.com/changelog.html"}
+      ],
+      "return_reason": "Mastery, short restartable rooms, optional B-sides and personal progress make each return purposeful rather than time-gated.",
+      "allworld_transfer": "Build resident missions with readable micro-goals, generous retry states and optional difficulty; let achievements express persistence and self-knowledge.",
+      "risk": "Precision challenge can exclude casual residents, while authored mastery is a weak fit for a broad daily social simulation.",
+      "retention_type": "campaign_return; mastery and achievement, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "AIAS lists Celeste as the 2019 Outstanding Achievement for an Independent Game winner."
+    },
+    {
+      "name": "Unpacking",
+      "genre": "environmental storytelling puzzle",
+      "award": {"name": "BAFTA Games Awards", "year": 2022, "category": "EE Game of the Year", "url": "https://www.bafta.org/media-centre/press-releases/unpacking-wins-the-ee-game-of-the-year-award-at-the-2022-bafta-games-awards/"},
+      "mechanics": [
+        {"name": "object placement", "detail": "Take possessions from boxes and decide where they belong in each new home; placement reveals the unseen character's life.", "url": "https://blog.playstation.com/2022/05/06/objects-tell-stories-in-unpacking-arriving-on-ps4-and-ps5-may-10/"},
+        {"name": "time through rooms", "detail": "Eight moves across changing homes and eras turn ordinary objects, constraints and lighting into narrative evidence.", "url": "https://www.bafta.org/media-centre/press-releases/unpacking-wins-the-ee-game-of-the-year-award-at-the-2022-bafta-games-awards/"}
+      ],
+      "return_reason": "Satisfying tactile order, self-expression and object-based inference create a calm completion loop with personal interpretation.",
+      "allworld_transfer": "Give residents homes whose objects, wear and arrangement encode life milestones; let players curate rooms and share a meaningful before/after snapshot.",
+      "risk": "Decorating alone can become a one-time story; procedural clutter without authored life changes would feel like inventory sorting.",
+      "retention_type": "campaign_return; expression and memory, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "BAFTA states that Unpacking won the public-voted EE Game of the Year in 2022."
+    },
+    {
+      "name": "Spiritfarer",
+      "genre": "cozy management narrative",
+      "award": {"name": "Canadian Game Awards", "year": 2021, "category": "Best Indie Game", "url": "https://canadiangameawards.ca/en/winners"},
+      "mechanics": [
+        {"name": "care and farewell", "detail": "As ferrymaster, build a boat, explore, care for spirit friends and eventually release them into the afterlife.", "url": "https://thunderlotusgames.com/games/spiritfarer/"},
+        {"name": "boat management", "detail": "Resource gathering, cooking, gardening, crafting and cabin upgrades make care concrete between character quests.", "url": "https://thunderlotusgames.com/games/spiritfarer/"}
+      ],
+      "return_reason": "Relationships deepen through repeated care rituals, while each farewell gives the accumulated work emotional consequence.",
+      "allworld_transfer": "Model residents with needs, memories and departure arcs; make homes, jobs and neighborhood services acts of care that change a shared city.",
+      "risk": "Death and goodbye themes require tact; chores can become repetitive and emotional attachment cannot be assumed from meter filling.",
+      "retention_type": "campaign_return; relationship progression, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "The Canadian Game Awards winners archive lists Spiritfarer as the 2021 Best Indie Game winner."
+    },
+    {
+      "name": "Night in the Woods",
+      "genre": "character-focused narrative adventure",
+      "award": {"name": "BAFTA Games Awards", "year": 2018, "category": "Narrative", "url": "https://www.bafta.org/media-centre/press-releases/winners-announced-for-the-british-academy-games-awards-in-2018/"},
+      "mechanics": [
+        {"name": "hometown exploration", "detail": "Wander Possum Springs, solve puzzles, play mini-games and chat with locals while uncovering a mystery.", "url": "https://apps.apple.com/us/iphone/story/id1586399644"},
+        {"name": "consequential decisions", "detail": "Different decisions change how the game plays out.", "url": "https://apps.apple.com/us/iphone/story/id1586399644"}
+      ],
+      "return_reason": "The town feels remembered rather than consumed: players return to compare friendship paths and notice how small choices reshape belonging.",
+      "allworld_transfer": "Give each city a recurring cast with schedules, private pressures and relationship memory; let a resident's chosen evening alter future missions.",
+      "risk": "A small authored cast is expensive to simulate at world scale; branching can also create replay value without ongoing daily demand.",
+      "retention_type": "campaign_return; relationship-path replay, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "BAFTA’s 2018 winners announcement names Night in the Woods as the Narrative winner."
+    },
+    {
+      "name": "Kentucky Route Zero: TV Edition",
+      "genre": "magical-realist episodic adventure",
+      "award": {"name": "BAFTA Games Awards", "year": 2021, "category": "Original Property", "url": "https://www.bafta.org/awards/games/original-property/"},
+      "mechanics": [
+        {"name": "episodic structure", "detail": "The game was developed as five acts with free interlude games between episodes.", "url": "https://kentuckyroutezero.com/"},
+        {"name": "secret-highway journey", "detail": "A secret highway through caves beneath Kentucky frames a journey among mysterious travelers.", "url": "https://kentuckyroutezero.com/"}
+      ],
+      "return_reason": "Players revisit to inhabit different voices and connect motifs across episodes; ambiguity becomes a memory object.",
+      "allworld_transfer": "Let residents narrate the same civic event differently, keep memories of prior interpretations and make city travel reveal social systems over time.",
+      "risk": "Ambiguity and slow pacing reward reflection but may frustrate players seeking explicit goals or frequent rewards.",
+      "retention_type": "episodic_campaign_return; interpretation, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "BAFTA lists Kentucky Route Zero: TV Edition as the 2021 Original Property winner."
+    },
+    {
+      "name": "Her Story",
+      "genre": "interactive film investigation",
+      "award": {"name": "The Game Awards", "year": 2015, "category": "Best Narrative", "url": "https://thegameawards.com/rewind/year-2015"},
+      "mechanics": [
+        {"name": "transcript search", "detail": "Search a police database for words in interview transcripts; each query reveals a limited set of video clips.", "url": "https://www.herstorygame.com/"},
+        {"name": "player inference", "detail": "The player assembles chronology, identity and truth from partial live-action answers rather than a quest marker.", "url": "https://www.herstorygame.com/"}
+      ],
+      "return_reason": "Curiosity and self-authored reconstruction drive return: players test new keywords, challenge first impressions and compare interpretations.",
+      "allworld_transfer": "Use resident archives, overheard stories and searchable city records where remembering the right detail unlocks social context or a new mission.",
+      "risk": "The finite evidence pool is excellent for a mystery but weak for indefinite retention unless new cases or resident-generated material are added.",
+      "retention_type": "finite mystery_return; inference and discussion, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "The Game Awards 2015 winner archive lists Her Story as Best Narrative."
+    },
+    {
+      "name": "What Remains of Edith Finch",
+      "genre": "first-person narrative anthology",
+      "award": {"name": "BAFTA Games Awards", "year": 2018, "category": "Best Game", "url": "https://www.bafta.org/media-centre/press-releases/winners-announced-for-the-british-academy-games-awards-in-2018/"},
+      "mechanics": [
+        {"name": "explorable family home", "detail": "As Edith, explore the Finch house and uncover stories while investigating why she is the last family member alive.", "url": "https://www.new.annapurnainteractive.com/en/games/what-remains-of-edith-finch"},
+        {"name": "vignette rule changes", "detail": "Each family story uses a distinct perspective and interaction pattern, turning memory into a sequence of playable forms.", "url": "https://blog.playstation.com/2017/03/29/whats-the-story-with-what-remains-of-edith-finch/"}
+      ],
+      "return_reason": "Players return to compare interpretations and revisit specific vignettes whose mechanics make a family memory emotionally legible.",
+      "allworld_transfer": "Give every home layered artifacts and occasional first-person memory missions so residents become people with histories, not static quest vendors.",
+      "risk": "Hand-authored vignettes are costly; tragedy-heavy framing can narrow the emotional register for a persistent social world.",
+      "retention_type": "campaign_return; memory and interpretation, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "BAFTA’s 2018 winners announcement names What Remains of Edith Finch as Best Game."
+    },
+    {
+      "name": "Life Is Strange",
+      "genre": "episodic choice-driven adventure",
+      "award": {"name": "The Game Awards", "year": 2015, "category": "Games for Impact", "url": "https://thegameawards.com/rewind/year-2015"},
+      "mechanics": [
+        {"name": "rewind", "detail": "Max can rewind time to test dialogue and actions, then commit to consequences that persist beyond the immediate scene.", "url": "https://www.feralinteractive.com/en/manuals/lifeisstrange/latest/steam/"},
+        {"name": "episodic choices", "detail": "Dialogue, exploration and moral decisions alter relationships, later scenes and the final state of the story.", "url": "https://www.feralinteractive.com/en/manuals/lifeisstrange/latest/steam/"}
+      ],
+      "return_reason": "Players return to inspect consequences, replay episodes and compare the life they authored with other possible paths.",
+      "allworld_transfer": "Make resident decisions reversible during a safe planning window, then persist the social consequences in relationships, jobs and city memory.",
+      "risk": "Choice drama can become a binary moral quiz; rewind must reveal learning without making every decision consequence-free.",
+      "retention_type": "episodic_campaign_return; choice replay, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "The Game Awards 2015 winner archive lists Life Is Strange under Games for Impact."
+    },
+    {
+      "name": "Tell Me Why",
+      "genre": "episodic narrative adventure",
+      "award": {"name": "The Game Awards", "year": 2020, "category": "Games for Impact", "url": "https://news.xbox.com/en-us/2020/12/10/the-game-awards-recap/"},
+      "mechanics": [
+        {"name": "shared memory", "detail": "Twin protagonists revisit childhood memories, compare their recollections and decide which account to trust.", "url": "https://www.tellmewhygame.com/faq/"},
+        {"name": "relationship consequences", "detail": "Choices change Tyler and Alyson's relationship, destinations after the story and other narrative outcomes.", "url": "https://www.xbox.com/en-US/games/store/tell-me-why/9NBL0XKVCN5L/0010"}
+      ],
+      "return_reason": "The same event can carry different meanings; replay exposes how identity, trust and remembered history change the relationship.",
+      "allworld_transfer": "Let residents hold conflicting memories of neighborhoods and events, then make reconciliation, trust and chosen identity affect future civic missions.",
+      "risk": "Sensitive identity themes require consultation and care; memory disagreement should not be reduced to a collectible or twist.",
+      "retention_type": "episodic_campaign_return; relational replay, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "Xbox’s official 2020 Game Awards recap identifies Tell Me Why as the Games for Impact winner."
+    },
+    {
+      "name": "Pentiment",
+      "genre": "historical narrative adventure RPG",
+      "award": {"name": "Peabody Awards", "year": 2023, "category": "Interactive", "url": "https://peabodyawards.com/award-profile/pentiment/"},
+      "mechanics": [
+        {"name": "generational consequences", "detail": "Player choices play out across decades and generations in a changing sixteenth-century community.", "url": "https://pentiment.obsidian.net/"},
+        {"name": "background-defined dialogue", "detail": "Andreas's education, travels and interests open different dialogue options and ways to investigate local conflicts.", "url": "https://pentiment.obsidian.net/"}
+      ],
+      "return_reason": "Consequences are delayed and partial, inviting players to replay with another background and ask how history might have unfolded.",
+      "allworld_transfer": "Persist resident choices across life stages and civic generations; let education, work and relationships unlock distinct ways to solve the same city problem.",
+      "risk": "Long time horizons and dense text can feel slow; persistent consequences must remain understandable to avoid perceived arbitrariness.",
+      "retention_type": "long-form campaign_return; generational replay, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "Peabody’s award profile identifies Pentiment as a 2023 Interactive winner."
+    },
+    {
+      "name": "Before Your Eyes",
+      "genre": "blink-controlled first-person narrative",
+      "award": {"name": "BAFTA Games Awards", "year": 2022, "category": "Game Beyond Entertainment", "url": "https://www.bafta.org/media-centre/press-releases/bafta-games-awards-2022-winners-announced/"},
+      "mechanics": [
+        {"name": "blink progression", "detail": "Eye tracking uses real blinks to control the story and affect its outcome.", "url": "https://media.netflix.com/en/only-on-netflix/81569955"},
+        {"name": "blink-driven choices", "detail": "Blinks and glances drive a first-person life journey and control important choices.", "url": "https://about.netflix.com/en/news/all-the-new-mobile-games-coming-to-netflix-in-july"}
+      ],
+      "return_reason": "Embodied timing makes ordinary scenes memorable; replay tests whether attention, hesitation and missed moments change the emotional reading.",
+      "allworld_transfer": "Use attention and memory as gentle resident systems: what a player notices in a home or street can become a later mission, relationship cue or keepsake.",
+      "risk": "Camera/eye-tracking dependencies reduce reach; a one-shot life story offers limited repeat play without new memories.",
+      "retention_type": "campaign_return; embodied memory, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "BAFTA’s 2022 winners announcement names Before Your Eyes as the Game Beyond Entertainment winner."
+    },
+    {
+      "name": "Chicory: A Colorful Tale",
+      "genre": "painting adventure",
+      "award": {
+        "name": "BAFTA Games Awards",
+        "year": 2022,
+        "category": "Family",
+        "url": "https://www.bafta.org/awards/games/family/"
+      },
+      "mechanics": [
+        {
+          "name": "painted world interaction",
+          "detail": "Draw on the world, manipulate the environment with paint, solve puzzles and unlock paint abilities that reach new places.",
+          "url": "https://www.chicorygame.com/"
+        },
+        {
+          "name": "expression and local co-op",
+          "detail": "Collect clothes, furniture and brush styles, or invite a local partner to paint the world together.",
+          "url": "https://www.chicorygame.com/"
+        }
+      ],
+      "return_reason": "Persistent drawing, optional exploration, collectibles and co-op make revisiting the finite campaign expressive rather than time-gated.",
+      "allworld_transfer": "Let residents paint and decorate districts, solve civic puzzles and leave persistent shared art tied to local identity.",
+      "risk": "Public drawing needs moderation, accessibility and storage limits; expression must not become a mandatory content treadmill.",
+      "retention_type": "expression_campaign; finite creative revisit, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "BAFTA lists Chicory: A Colorful Tale as the 2022 Family winner."
+    },
+    {
+      "name": "TOEM",
+      "genre": "photography adventure",
+      "award": {
+        "name": "BAFTA Games Awards",
+        "year": 2022,
+        "category": "Debut Game",
+        "url": "https://www.bafta.org/awards/games/debut-game/"
+      },
+      "mechanics": [
+        {
+          "name": "photo problem-solving",
+          "detail": "Take photos to solve puzzles and help people while uncovering the mystery of TOEM.",
+          "url": "https://www.nintendo.com/us/store/products/toem-switch/"
+        },
+        {
+          "name": "character expedition",
+          "detail": "Meet quirky characters and make a relaxed journey through hand-drawn landscapes.",
+          "url": "https://www.nintendo.com/us/store/products/toem-switch/"
+        }
+      ],
+      "return_reason": "Compact requests and photographic discovery reward careful observation across a finite, low-pressure expedition.",
+      "allworld_transfer": "Give residents camera jobs and local requests where documenting a place or person changes what the city remembers.",
+      "risk": "A short authored route has a natural endpoint; procedural photo checklists would weaken observation and character context.",
+      "retention_type": "exploration_campaign; observation and completion, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "BAFTA lists TOEM as the 2022 Debut Game winner."
+    },
+    {
+      "name": "A Short Hike",
+      "genre": "open-world exploration adventure",
+      "award": {
+        "name": "22nd Independent Games Festival Awards",
+        "year": 2020,
+        "category": "Seumas McNally Grand Prize",
+        "url": "https://gdconf.com/article/a-short-hike-wins-grand-prize-at-the-2020-independent-games-festival/"
+      },
+      "mechanics": [
+        {
+          "name": "freeform traversal",
+          "detail": "Hike, climb and soar toward the summit by following marked trails or exploring the backcountry.",
+          "url": "https://store.steampowered.com/app/1055540/AShortHike/"
+        },
+        {
+          "name": "optional encounters",
+          "detail": "Meet other hikers, discover hidden treasures, fish, swim and choose a personal route through the park.",
+          "url": "https://store.steampowered.com/app/1055540/AShortHike/"
+        }
+      ],
+      "return_reason": "Freeform routes, optional hikers, treasures and movement mastery invite relaxed revisits without a daily schedule.",
+      "allworld_transfer": "Build walkable districts with multiple routes, neighbor favors and small discoveries that reward wandering at the resident’s pace.",
+      "risk": "The charm depends on density and authored character moments; scaling the map can dilute both.",
+      "retention_type": "exploration_campaign; freeform revisit, not daily live retention",
+      "evidence_confidence": "high",
+      "award_verified": true,
+      "award_evidence": "GDC’s official IGF announcement names A Short Hike the 2020 Seumas McNally Grand Prize winner."
+    }
+  ],
+  "unverified": [],
+  "execution": {"model": "gpt-5.6-luna", "effort": "medium", "retries": 0, "cost": "unknown"}
+}

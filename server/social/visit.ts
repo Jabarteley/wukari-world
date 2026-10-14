@@ -35,6 +35,8 @@
  *   a link's first use by a new person   2  social (the knock) + nothing else; the host's answer is the 2 above
  *   close the door / end the visit       1  social
  */
+import { homeMementos } from '../../src/game/mementos.ts';
+import { ACHIEVEMENTS } from '../../src/game/content/achievements.ts';
 import { characterCity } from '../character.ts';
 import { readPlot, samePlot, sameStreet } from '../world/street.ts';
 import { hasPlace } from '../../src/game/systems/estate.ts';
@@ -180,6 +182,10 @@ function build(ctx: RouteContext) {
       if (!homeNow && !allowedWhileOut) return no('visit_ended', 'The host left home, so this visit has ended.');
       const items: VisitHomeItem[] = state.home.items.map(item => ({ id: item.id, itemId: item.itemId, x: item.x, y: item.y, rot: item.rot, ...('floor' in item && typeof item.floor === 'number' && Number.isInteger(item.floor) && item.floor >= 0 ? { floor: item.floor } : {}) }));
       const home: VisitHomeProjection = { host: { id: hostId, name: target.name }, city, plot: state.estate.plot ? { ...state.estate.plot } : null, owned: state.estate.living === 'own', grid: homeOf(state, HOUSE_DESIGNS, housesFor(city)).grid, style: { ...state.estate.style }, items };
+      const mementos = homeMementos(state);
+      if (mementos.length) home.mementos = mementos;
+      const displayed = state.achievements?.displayed;
+      if (displayed && state.achievements.earned[displayed] && ACHIEVEMENTS.some(row => row.id === displayed)) home.achievement = displayed;
       const run = state.stories?.running, moment = run?.content.moments[run.step];
       if (run && moment && state.location === 'home' && !isDeparting(state) && !layoutFailure(state, run.content.items)) {
         home.items = cloneItems(run.content.items);

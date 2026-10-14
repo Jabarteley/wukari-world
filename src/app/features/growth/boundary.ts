@@ -37,7 +37,7 @@ export interface PushModule {
 /** Fetched on the first tap on a notification control, not with the screen. */
 export const loadPushModule = (): Promise<PushModule> => import('../../../ui/push-client.ts') as unknown as Promise<PushModule>
 
-export { upcomingEvents, eventIcs, awayCard } from './rulesBoundary.ts'
+export { upcomingEvents, awayCard } from './rulesBoundary.ts'
 export type { AwayCard, AwayLine } from './rulesBoundary.ts'
 
 // ---- consent wording (src/game/outreach.ts) ------------------------------------------------

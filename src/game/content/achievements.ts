@@ -1,0 +1,11 @@
+import type { AchievementDefinition } from '../../types/achievements.ts'
+
+/** Criteria are fed by validated game outcomes. These awards never multiply economic rewards. */
+export const ACHIEVEMENTS: readonly AchievementDefinition[] = [
+  { id: 'wayfinder', version: 1, path: 'exploration', title: 'Wayfinder', description: 'Reach three different places outside home.', target: 3, icon: 'compass', reward: 'Wayfinder badge and home plaque', scope: 'character', assistance: 'allowed-and-recorded', retirement: 'earned-receipts-remain', next: { open: 'map', go: null } },
+  { id: 'familiar-face', version: 1, path: 'belonging', title: 'Familiar Face', description: 'Make a friend through a confirmed relationship milestone.', target: 1, icon: 'people', reward: 'Familiar Face badge and home plaque', scope: 'character', assistance: 'allowed-and-recorded', retirement: 'earned-receipts-remain', next: { open: 'people', go: null } },
+  { id: 'first-shift', version: 1, path: 'work', title: 'First Shift', description: 'Finish a paid job shift or campus job.', target: 1, icon: 'jobs', reward: 'First Shift badge and home plaque', scope: 'character', assistance: 'allowed-and-recorded', retirement: 'earned-receipts-remain', next: { open: 'jobs', go: null } },
+  { id: 'home-maker', version: 1, path: 'creation', title: 'Make It Yours', description: 'Buy and place a piece of furniture in your home.', target: 1, icon: 'home', reward: 'Make It Yours badge and home plaque', scope: 'character', assistance: 'allowed-and-recorded', retirement: 'earned-receipts-remain', next: { open: 'buy', go: null } },
+  { id: 'table-regular', version: 1, path: 'play', title: 'Table Regular', description: 'Finish three counted table games. Wins are not required.', target: 3, icon: 'games', reward: 'Table Regular badge and home plaque', scope: 'character', assistance: 'allowed-and-recorded', retirement: 'earned-receipts-remain', next: { open: 'tables', go: null } },
+  { id: 'curious-mind', version: 1, path: 'learning', title: 'Curious Mind', description: 'Reach level two in a skill through a recorded level-up.', target: 2, icon: 'star', reward: 'Curious Mind badge and home plaque', scope: 'character', assistance: 'allowed-and-recorded', retirement: 'earned-receipts-remain', next: { open: 'skills', go: null } },
+]

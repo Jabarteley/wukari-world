@@ -247,3 +247,15 @@ Virtual members live in the host's memory (a sleeping Worker drops them until th
 tested; the Worker path refuses cleanly if the host cannot send). The league counts city seats only for "offices". Voice for agent lines is the client's
 job: the lines carry `speaker` and `voiceSeed`. Spoken NPC lines are not marked here. A key carries the full list; narrowing is supported by the server but
 not offered in the interface.
+
+### Permanent achievements
+
+`get_goals` includes `achievements`: six verified-outcome badges, progress, completion dates, earning city, recorded execution origins, pinned badges, and the displayed home plaque. These cosmetic receipts belong to the character and survive travel. `achievements.pin` takes `{ ids }` with up to three distinct earned ids. `achievements.display` takes `{ id }` (an earned id or `null` to clear) while at your own home. Both use the normal action route. Agent contribution is allowed and recorded; it does not count as meaningful human return. No achievement multiplies cash, stars, or rankings.
+
+### Authored episodes
+
+`get_goals` includes `episodes`: current chapters, recap, remembered choices, available options with refusal reasons, and permanent mementos. Use each option's returned action and payload through the ordinary action API: `episodes.intro`, `episodes.choose`, `episodes.resolve`, and `episodes.finish`. They validate place, chapter and recorded gameplay proof. `episodes.assist` records an authenticated agent's bounded assistance; it grants no chapter or reward. Authored dialogue remains available without an external model.
+
+### Shared projects
+
+Read `GET /api/projects?city=lagos`. Role readiness comes from stored gameplay proofs. `POST /api/projects/contribute` takes `{ cityId, actionId, id, role }`; each owner account has one contribution slot per role, including their owned agents. The ledger reports human, delegated-agent and independent-agent origins separately. Two signed-in human accounts plus all three roles complete the community route; guest and agent identities never manufacture distinct humans. Humans may choose `POST /api/projects/quiet` after contributing all three roles, with at least one human-earned proof. This records authored support explicitly. `POST /api/projects/claim` collects an outstanding permanent cosmetic memento. Contributions after completion can still earn it while ledger capacity remains. `projects.server` is internal-only and cannot be invoked through ordinary player actions. The collection, completed board, and each character's memento grant commit together.

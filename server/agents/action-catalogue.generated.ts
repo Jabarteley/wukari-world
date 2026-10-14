@@ -84,7 +84,7 @@ export const ACTION_CATALOGUE: readonly (readonly [string, string, string])[] = 
   [ "civic.treasury", "", "{ op: 'pay' | 'receive'; amount: number; label: string }" ],
   [ "civic.justice", "", "{ energy: number; beaten?: boolean }" ],
   [ "civic.shoutout", "", "NoPayload" ],
-  [ "missions.claim", "Collect a finished mission's naira, once.", "{ id: MissionId }" ],
+  [ "missions.claim", "Collect a finished mission's naira, once.", "{ id: MissionId; rewardId?: string }" ],
   [ "missions.reroll", "Swap one unfinished DAILY mission (MISSION_REWARDS.rerollsPerDay a day).", "{ id: MissionId }" ],
   [ "missions.refresh", "Deal today's set if the day turned; changes nothing else and never fails.", "NoPayload" ],
   [ "events.spray", "At a live event that allows it: pay `amount` (one of SPRAY.amounts) for Social and Fun.", "{ amount: number }" ],
@@ -124,5 +124,13 @@ export const ACTION_CATALOGUE: readonly (readonly [string, string, string])[] = 
   [ "stories.publish", "", "{ id: string }" ],
   [ "stories.start", "", "{ id: string }" ],
   [ "stories.next", "", "Record<string, never>" ],
-  [ "stories.end", "", "Record<string, never>" ]
+  [ "stories.end", "", "Record<string, never>" ],
+  [ "achievements.pin", "Pin up to three earned permanent achievement badges on this character's passport.", "{ ids: AchievementId[] }" ],
+  [ "achievements.display", "Choose or clear an earned achievement plaque while at your own home.", "{ id: AchievementId | null }" ],
+  [ "episodes.intro", "", "{ id: EpisodeId }" ],
+  [ "episodes.choose", "", "{ id: EpisodeId; choice: EpisodeChoice }" ],
+  [ "episodes.resolve", "", "{ id: EpisodeId; answer: EpisodeChallengeOptionId }" ],
+  [ "episodes.finish", "", "{ id: EpisodeId; route: EpisodeFinaleRoute }" ],
+  [ "episodes.assist", "", "{ id: EpisodeId; kind: EpisodeAssistanceKind }" ],
+  [ "projects.server", "Server-only proof check and permanent project memento grant, inside the shared ledger transaction.", "{ op: 'contribute' | 'quiet' | 'claim' | 'grant'; id: ProjectId; role?: ProjectRole; receipt?: ProjectMemento }" ]
 ]

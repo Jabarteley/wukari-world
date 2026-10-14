@@ -1,3 +1,33 @@
+# Allworld agent coordination
+
+## Current work — start here
+
+This is the shared entry point for coding agents on every computer. **Each agent owns one work record; the integration owner maintains this index.** Read only the current index and the records relevant to your task. Historical entries below are context, not current ownership or permission.
+
+| Work | Owner / chat | Current record | Coordination state |
+|---|---|---|---|
+| Retention, achievements and worldwide journey foundation | Research Allworld game retention · `01a13bea-138b-7b91-ac44-c49bc3d836ec` | [retention-20261014](agent-work/retention-20261014.md) | Research and Phases 0–6 source published through `376285c0`; local build/typecheck/size/smoke accepted. See record for known broad-suite findings and separate rollout gates. |
+| Character project | Continue Allworld character project · `01a13afe-a87b-7263-891d-c8c06703af7b` | Registration requested; discover its record in `docs/agent-work/` | Active chat observed 2026-10-14 23:05 UTC; file ownership must come from its owner. |
+| Agent-play / world-alive work on the other computer | Programme integration: `claude/world-alive`; per-phase branches recorded by its owner | [AGENT.md](../AGENT.md) and [world-alive status](agent-plans/world-alive/STATUS.md) | Main through `b8e4f8f0` integrated, including cache-first reads. House-agent/public-romance compatibility passes 74 focused checks; cache checks pass 22/22 on combined source. Phase 11 agent missions remain separate branch work; recheck the owner’s record before shared mission edits. |
+
+## Working protocol
+
+1. **Register before editing.** Read root `AGENTS.md`, inspect the checkout/SHA and dirty files, then copy [TEMPLATE.md](agent-work/TEMPLATE.md) to `docs/agent-work/<unique-work-id>.md`. Record actual owned paths, goal, acceptance criteria, contracts and running resources. The new record is valid even before the index is refreshed.
+2. **Resolve overlap.** Read records touching your files. Agree one writer for shared contracts or source paths; continue independent work while resolving overlap. A stale record is not permission to overwrite work. Mark superseded ownership explicitly after agreement.
+3. **Checkpoint.** Update your record after a milestone, changed contract, blocker or scope change, and before yielding. Include exact commands/results, durable evidence paths and the next executable step. Preserve a short checkpoint history.
+4. **Hand off.** The receiving agent checks current source and evidence before continuing. Separate implemented, verified locally, merged, deployed and measured-in-production. A passing local check proves only its stated scope.
+5. **Synchronize across computers.** These are repository files, not a live cloud lock. Exchange the docs and the exact source revision or patch through the authorized Git/PR workflow. An uncommitted local record is unavailable remotely until transferred. On another computer, verify the received SHA and record timestamp. Do not infer unpublished changes from main. Use separate record files to reduce merge conflicts. When synchronization is authorized, publish checked milestones frequently and record the pushed SHA; fetch and integrate newer main before each ordinary push.
+
+Copy-ready [agent prompts](AGENT-PROMPTS.md) cover registration, checkpoints, takeover and agent-play integration. Root [AGENTS.md](../AGENTS.md) directs future agents here. [docs/AGENTS.md](AGENTS.md) is the gameplay AI API reference, not this coordination protocol.
+
+Use repo-relative links for shared artifacts and label host-specific paths. Keep credentials and private user data out of records. Permissions still come from the user; recording a plan does not authorize publication, deployment or stopping another owner's process.
+
+---
+
+## Historical coordination log
+
+Preserved unchanged below. Verify any old claim against current source and its owner's latest record before acting.
+
 ## GRAPHICS parallel acceleration — 2026-10-09 08:34 UTC
 
 Three Luna lanes reused; existing five-minute memory heartbeat ACTIVE. Last monitor message 08:31 WARNING2; remote heavy jobs only. Floor GPU actual commit8fece1fb/run37905687223 is in progress, pinned to successful CPUc305ea05/run37904211885; root verifies44 source pins and actual6 artifact outputs plus3 trace tests. Garment gated monitor commit1b0ee068 is pushed; root verifies48 source pins/91 import resolutions and9 monitor tests, including correction of undefined cap-result binding. Actual browser/domain results pending; no visual or phone acceptance claimed. Sofa Home A/B package recipe is being prepared concurrently. Separate source-only audits investigate NPC canonical startup and screenshot capture timeout/incorrect absolute elapsed clock. Initial push failures were resolved with small packed-Git windows; both publishers preserve primary HEAD/index. WORLD remains sole uploader; no graphics runtime merge/deployment.

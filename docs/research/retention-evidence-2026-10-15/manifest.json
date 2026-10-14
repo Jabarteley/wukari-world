@@ -1,0 +1,166 @@
+{
+  "sourceBase": "899c60439022b2cb7082a1e88c930a3e4c41db36",
+  "joinedRuntimeBase": "c921b8d9",
+  "sourceState": "Combined runtime published to origin/main and remote SHA verified. Final build/typecheck/smoke/cache/download checks pass. Earlier logs retain their individual source scope; known broad-suite and rollout gaps remain documented.",
+  "files": [
+    {
+      "file": "allworld-agent-play-accepted.txt",
+      "sha256": "ca9b11de93d6ca65f77029b2492703593d00b9a0cf4f9c57884266243ff7e585",
+      "bytes": 9699
+    },
+    {
+      "file": "allworld-atlas-split-check.txt",
+      "sha256": "fb7f5283b5f44a1e045921ec5815118634e11ababb6959c44315271df3d4a9f7",
+      "bytes": 2823
+    },
+    {
+      "file": "allworld-cache-merge-build.txt",
+      "sha256": "b3339088dbaa85f3847e4b0ca8df08a62a01cc4cd2664a1100bccd6eb6c9c870",
+      "bytes": 299881
+    },
+    {
+      "file": "allworld-cache-merge-focused.txt",
+      "sha256": "36b8b81e51df6cbec1d79fee38f61c1f45f60c4e143b7efac62c7346ae4c5e23",
+      "bytes": 1910
+    },
+    {
+      "file": "allworld-cache-merge-size.txt",
+      "sha256": "d9ebf8092a5e367a7617dba45c2eea843142d1994a81aeda23badd9e1401d626",
+      "bytes": 5374
+    },
+    {
+      "file": "allworld-cache-merge-smoke.txt",
+      "sha256": "893f9a9e42efb426a1a1ea509db939414111758fbfd8e70f78b4930d79f53d35",
+      "bytes": 19508
+    },
+    {
+      "file": "allworld-cache-merge-startup.txt",
+      "sha256": "5ca95066e0e7e69730bfe54dc233b0f89ca0aee160ffbfd90352982a425f6c0b",
+      "bytes": 871
+    },
+    {
+      "file": "allworld-cache-merge-typecheck.txt",
+      "sha256": "7e43be3f96bf2f31dfb3c0369323675a82437ca1e6ea12689180bc20d4e4050b",
+      "bytes": 246
+    },
+    {
+      "file": "allworld-integrated-cadence.txt",
+      "sha256": "bc41091b120447e3bfde1b86a05402e322d5caf0c8a30e920a90681c69b43b59",
+      "bytes": 181
+    },
+    {
+      "file": "allworld-integrated-project.txt",
+      "sha256": "d197dd0f060dea517f31cf6045721673afd13cefe5c44110ebc7c4424a845f3a",
+      "bytes": 155
+    },
+    {
+      "file": "allworld-integrated-season.txt",
+      "sha256": "81bf0063d1c44bd90c399db523c408cade50da8c9e0afb89b36922afc93a16dd",
+      "bytes": 294
+    },
+    {
+      "file": "allworld-lazy-readers-check.txt",
+      "sha256": "693a58a940d2448b6429dc05926df7f6af345c14beb30bab9c8c8ab6edd23364",
+      "bytes": 1258
+    },
+    {
+      "file": "allworld-main-baseline-edge.txt",
+      "sha256": "2ff6f15e0da35e7ea1d8063aec41b58c2e4af2279d719a143f7a4bc79adafe2e",
+      "bytes": 7212
+    },
+    {
+      "file": "allworld-main-baseline-regressions.txt",
+      "sha256": "4d1a318c27e57c6a10ab83fc0ee50f85eee2c661e5cdfd89b70588d1b6716edb",
+      "bytes": 2894
+    },
+    {
+      "file": "allworld-main-sync-build-final2.txt",
+      "sha256": "87223f4bbbe8601bbe2ef2edb1d92d19c809a77acd2747b14e89d22120568f11",
+      "bytes": 299662
+    },
+    {
+      "file": "allworld-main-sync-cadence-http-check.txt",
+      "sha256": "bc41091b120447e3bfde1b86a05402e322d5caf0c8a30e920a90681c69b43b59",
+      "bytes": 181
+    },
+    {
+      "file": "allworld-main-sync-focused.txt",
+      "sha256": "8ae5b73384293b01f4d90194435e55c3cb1b8cf30c13ac7ef55326aebd873896",
+      "bytes": 9049
+    },
+    {
+      "file": "allworld-main-sync-progression.txt",
+      "sha256": "ece31f9bbe23102cd4bfa8bcda73f83093e5c1495d09a3f67d588ace45d31e8c",
+      "bytes": 2420
+    },
+    {
+      "file": "allworld-main-sync-project-check.txt",
+      "sha256": "d197dd0f060dea517f31cf6045721673afd13cefe5c44110ebc7c4424a845f3a",
+      "bytes": 155
+    },
+    {
+      "file": "allworld-main-sync-season-check.txt",
+      "sha256": "81bf0063d1c44bd90c399db523c408cade50da8c9e0afb89b36922afc93a16dd",
+      "bytes": 294
+    },
+    {
+      "file": "allworld-main-sync-size-final.txt",
+      "sha256": "992d2b8eb2a4fdde7afeaf501970602d55a4ccd1696e67a225c28775c8278ce9",
+      "bytes": 5374
+    },
+    {
+      "file": "allworld-main-sync-smoke-final.txt",
+      "sha256": "81bead9e87c291349034c17ee574f518eb59f1cd870b00d59d016f2d80782b1a",
+      "bytes": 19507
+    },
+    {
+      "file": "allworld-main-sync-startup-final2.txt",
+      "sha256": "7d0ea62bb27f2e950971ff82a744d553c4013c16d797a1011066bd9902e99bc4",
+      "bytes": 871
+    },
+    {
+      "file": "allworld-main-sync-typecheck-final2.txt",
+      "sha256": "e4a2b0ad05c650003cfb21d27194315a5a00064af070512fd886693de73d48e7",
+      "bytes": 247
+    },
+    {
+      "file": "allworld-main-sync-typecheck.txt",
+      "sha256": "e4a2b0ad05c650003cfb21d27194315a5a00064af070512fd886693de73d48e7",
+      "bytes": 247
+    },
+    {
+      "file": "allworld-map-entries-baseline.txt",
+      "sha256": "68d9828825a0387489ae26e4bf1d2a0b531e5cfe8e32d024e7f1eee3c9517bb7",
+      "bytes": 1946
+    },
+    {
+      "file": "allworld-mission-host-guard.txt",
+      "sha256": "ce1a2ff16fc9e219d5fd021936ac74da7ef1d5f0e9fcd17a6f528678cdac14bc",
+      "bytes": 5613
+    },
+    {
+      "file": "allworld-phone-art-final.txt",
+      "sha256": "a7e2110ad0883c1381618c61644de70171c6922006e1e5847c5b890f275dc5a1",
+      "bytes": 271
+    },
+    {
+      "file": "allworld-poll-focused-tests.txt",
+      "sha256": "2f38e61efcea29962ece7ba018bcc3c16d385926f6e94aa8918c3b1dd02c57da",
+      "bytes": 2999
+    },
+    {
+      "file": "allworld-progression-acceptance.txt",
+      "sha256": "3adcdf394046cb1631452af7ef5fca4e2d68771fce59d695a36de238bfa07540",
+      "bytes": 2420
+    },
+    {
+      "file": "allworld-registry-final.txt",
+      "sha256": "561f2f8f50f22d8ad3deade7dfdc3274a7c0e5805576bcc4780a347524468c4c",
+      "bytes": 1559
+    }
+  ],
+  "normalization": "Archived logs are UTF-8 text with LF endings and trailing line whitespace removed. Hashes identify these portable artifacts; older evidence retains its stated source provenance.",
+  "runtimeCommit": "bcbfd549cb5d4e28b57003ae0eb741708bf81a77",
+  "finalCombinedCommit": "376285c0314dba05e0703a4e43b8666037384c8e",
+  "upstreamMain": "b8e4f8f0"
+}

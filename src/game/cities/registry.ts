@@ -1,6 +1,6 @@
 import { CITY_INDEX, CITY_LOADERS, CITY_WORLD_INDEX, RESERVED_CITIES } from './catalogue.ts'
 import { generateCityLinks } from './generatedLinks.ts'
-import { mapEntryOf } from './atlasMetadata.ts'
+import { mapEntryOf } from './mapEntry.ts'
 import { CITY_NETWORK_AT_START, fetchCityNetwork } from '#city-network'
 import type { CityCatalogueEntry, CityModuleLoader, CityWorldIndex, CityWorldIndexLoader } from './catalogue.ts'
 import type { CityLandComponentRow } from './generatedLinks.ts'

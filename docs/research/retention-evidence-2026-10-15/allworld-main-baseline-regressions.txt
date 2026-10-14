@@ -1,0 +1,80 @@
+✖ zero work: not configured, nobody opted in, switched off (185.555584ms)
+✖ the new-player journey runs to the end with every assertion holding (682.08325ms)
+✔ polls do not write unless something happened; an outcome is on disk before the poll is answered (103.954416ms)
+✖ the two-player script runs to the end with every assertion holding (633.278458ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3729.395542
+
+✖ failing tests:
+
+test at server/comeback.test.ts:340:1
+✖ zero work: not configured, nobody opted in, switched off (185.555584ms)
+  AssertionError [ERR_ASSERTION]: idle: no store access at all
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///private/tmp/allworld-main-baseline.FCmd6o/server/comeback.test.ts:368:10)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at server/new-player.test.ts:9:1
+✖ the new-player journey runs to the end with every assertion holding (682.08325ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    {
+  +   ada: 22350,
+  +   bola: 7050
+  -   ada: 22500,
+  -   bola: 6900
+    }
+
+      at TestContext.<anonymous> (file:///private/tmp/allworld-main-baseline.FCmd6o/server/new-player.test.ts:16:10)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { ada: 22350, bola: 7050 },
+    expected: { ada: 22500, bola: 6900 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at server/two-players.test.ts:8:1
+✖ the two-player script runs to the end with every assertion holding (633.278458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+      'civic',
+  +   'growth',
+      'politics',
+      'sessions',
+      'social',
+      'version',
+      'walletEffects'
+
+      at runTwoPlayers (file:///private/tmp/allworld-main-baseline.FCmd6o/scripts/two-players.ts:510:12)
+      at async TestContext.<anonymous> (file:///private/tmp/allworld-main-baseline.FCmd6o/server/two-players.test.ts:10:18)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'civic', 'growth', 'politics', 'sessions', 'social', 'version', 'walletEffects' ],
+    expected: [ 'civic', 'politics', 'sessions', 'social', 'version', 'walletEffects' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

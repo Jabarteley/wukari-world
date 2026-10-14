@@ -1,0 +1,197 @@
+{
+  "games": [
+    {
+      "name": "Pong",
+      "release_year": 1972,
+      "release_source": "https://www.worldvideogamehalloffame.org/games/pong/",
+      "recognition": {"name": "World Video Game Hall of Fame induction", "year": 2015, "type": "retrospective museum induction", "url": "https://www.worldvideogamehalloffame.org/games/pong/"},
+      "mechanics": [
+        {"name": "Two-paddle ball game", "detail": "The Strong describes Pong as a simple game involving two paddles and a ball.", "url": "https://www.worldvideogamehalloffame.org/games/pong/"},
+        {"name": "Intuitive controls", "detail": "The museum specifically identifies Pong’s intuitive controls and satisfying gameplay as part of its lasting appeal.", "url": "https://www.worldvideogamehalloffame.org/games/pong/"},
+        {"name": "Repeated challenge", "detail": "The museum describes the game as inviting people to try their hand at keeping the ball bouncing as long as possible.", "url": "https://www.worldvideogamehalloffame.org/games/pong/"}
+      ],
+      "human_desires": ["competition", "mastery", "shared play"],
+      "return_reason": "A clear rematch offers immediate feedback, social comparison, and a chance to improve a small skill.",
+      "allworld_transfer": "Short two-person street or venue challenges with transparent rules, instant replay, and cosmetic recognition for mastery.",
+      "risk": "A zero-sum score loop can exclude less-skilled or solo residents; offer cooperative and practice modes.",
+      "retention_type": "replay"
+    },
+    {
+      "name": "Space Invaders",
+      "release_year": 1978,
+      "release_source": "https://www.worldvideogamehalloffame.org/games/space-invaders/",
+      "recognition": {"name": "World Video Game Hall of Fame induction", "year": 2016, "type": "retrospective museum induction", "url": "https://www.worldvideogamehalloffame.org/games/space-invaders/"},
+      "mechanics": [
+        {"name": "Horizontal laser cannon", "detail": "The player moves a cannon along the bottom of the screen and fires upward.", "url": "https://www.worldvideogamehalloffame.org/games/space-invaders/"},
+        {"name": "Descending formation", "detail": "Five rows of aliens advance toward the player, making the available safe space shrink.", "url": "https://www.worldvideogamehalloffame.org/games/space-invaders/"},
+        {"name": "High score and saucers", "detail": "A high-score display and occasional flying saucers add comparison and bonus targets.", "url": "https://www.worldvideogamehalloffame.org/games/space-invaders/"}
+      ],
+      "human_desires": ["mastery", "tension", "status"],
+      "return_reason": "Each attempt is short and legible: survive longer, clear more rows, and beat a visible score.",
+      "allworld_transfer": "Compact escalating civic or work challenges with readable threat, score history, and optional personal bests.",
+      "risk": "Escalation can become stressful or repetitive; make difficulty adjustable and avoid punitive streaks.",
+      "retention_type": "replay"
+    },
+    {
+      "name": "Pac-Man",
+      "release_year": 1980,
+      "release_source": "https://www.worldvideogamehalloffame.org/games/pac-man/",
+      "recognition": {"name": "World Video Game Hall of Fame induction", "year": 2015, "type": "retrospective museum induction", "url": "https://www.worldvideogamehalloffame.org/games/pac-man/"},
+      "mechanics": [
+        {"name": "Maze collection", "detail": "Pac-Man navigates a maze eating pellets while routing around four ghosts.", "url": "https://www.worldvideogamehalloffame.org/games/pac-man/"},
+        {"name": "Power pellets", "detail": "Power pellets temporarily reverse the threat relationship and let Pac-Man chase ghosts.", "url": "https://www.worldvideogamehalloffame.org/games/pac-man/"},
+        {"name": "Lives and score", "detail": "The player manages limited lives while building a score through pellets, fruit, and ghosts.", "url": "https://www.worldvideogamehalloffame.org/games/pac-man/"}
+      ],
+      "human_desires": ["control", "mastery", "playful tension"],
+      "return_reason": "The same maze supports route learning, risk choices, and a quick attempt to improve the last result.",
+      "allworld_transfer": "Map-based collection routes where residents choose safe or risky errands and learn neighbourhood patterns.",
+      "risk": "A fixed optimal route can reduce exploration and make the world feel like a chore list.",
+      "retention_type": "replay"
+    },
+    {
+      "name": "Tetris",
+      "release_year": 1984,
+      "release_source": "https://www.worldvideogamehalloffame.org/games/tetris/",
+      "recognition": {"name": "World Video Game Hall of Fame induction", "year": 2015, "type": "retrospective museum induction", "url": "https://www.worldvideogamehalloffame.org/games/tetris/"},
+      "mechanics": [
+        {"name": "Rotate and place tetrominoes", "detail": "Seven four-square shapes fall into a well and can be moved and rotated before landing.", "url": "https://www.worldvideogamehalloffame.org/games/tetris/"},
+        {"name": "Line clearing", "detail": "Complete horizontal rows disappear, creating space and scoring progress.", "url": "https://www.worldvideogamehalloffame.org/games/tetris/"},
+        {"name": "Speed escalation", "detail": "Pieces fall faster as play continues, tightening the decision window.", "url": "https://www.worldvideogamehalloffame.org/games/tetris/"}
+      ],
+      "human_desires": ["order", "flow", "mastery"],
+      "return_reason": "Simple rules generate endless arrangement decisions, with each run exposing a new way to improve board management.",
+      "allworld_transfer": "Use small, combinatorial planning tasks that reward arranging limited resources without requiring a daily schedule.",
+      "risk": "Abstract optimization may feel detached from people and place; connect tasks to meaningful local outcomes.",
+      "retention_type": "replay"
+    },
+    {
+      "name": "Super Mario Bros.",
+      "release_year": 1985,
+      "release_source": "https://www.worldvideogamehalloffame.org/games/super-mario-bros/",
+      "recognition": {"name": "World Video Game Hall of Fame induction", "year": 2015, "type": "retrospective museum induction", "url": "https://www.worldvideogamehalloffame.org/games/super-mario-bros/"},
+      "mechanics": [
+        {"name": "Side-scrolling movement and jumping", "detail": "Players guide Mario through scrolling levels using running, jumping, and momentum.", "url": "https://www.worldvideogamehalloffame.org/games/super-mario-bros/"},
+        {"name": "Power-ups", "detail": "Mushrooms and other items change survivability or abilities, giving exploration and risk a visible payoff.", "url": "https://www.worldvideogamehalloffame.org/games/super-mario-bros/"},
+        {"name": "World and level progression", "detail": "A sequence of Mushroom Kingdom stages builds a longer rescue journey from short attempts.", "url": "https://www.worldvideogamehalloffame.org/games/super-mario-bros/"}
+      ],
+      "human_desires": ["progress", "adventure", "mastery"],
+      "return_reason": "A failed jump teaches a concrete correction, while the next level promises new hazards and discoveries.",
+      "allworld_transfer": "Stage neighbourhood missions as short, learnable episodes with optional discoveries and a longer resident arc.",
+      "risk": "Linear progression can punish missed sessions and overvalue reflex skill; provide checkpoints and varied abilities.",
+      "retention_type": "continuation plus replay"
+    },
+    {
+      "name": "The Legend of Zelda",
+      "release_year": 1986,
+      "release_source": "https://www.museumofplay.org/games/the-legend-of-zelda/",
+      "recognition": {"name": "World Video Game Hall of Fame induction", "year": 2016, "type": "retrospective museum induction", "url": "https://www.museumofplay.org/games/the-legend-of-zelda/"},
+      "mechanics": [
+        {"name": "Non-linear overworld exploration", "detail": "Players are free to explore Hyrule without a fixed order while gathering eight Triforce fragments.", "url": "https://www.museumofplay.org/games/the-legend-of-zelda/"},
+        {"name": "Item-gated discovery", "detail": "Dungeons and tools reveal new routes, puzzles, and combat options across the world.", "url": "https://www.museumofplay.org/games/the-legend-of-zelda/"},
+        {"name": "Battery-backed saving", "detail": "The original console release used internal battery backup so a longer adventure could continue across sessions.", "url": "https://www.museumofplay.org/games/the-legend-of-zelda/"}
+      ],
+      "human_desires": ["curiosity", "agency", "mastery"],
+      "return_reason": "Unresolved places, clues, and newly acquired tools make the next session a question the player has chosen.",
+      "allworld_transfer": "Let residents discover city opportunities in multiple orders, with persistent clues, relationships, and tool-gated access.",
+      "risk": "Opaque objectives can produce confusion or reliance on spoilers; provide optional guidance without removing agency.",
+      "retention_type": "continuation"
+    },
+    {
+      "name": "SimCity",
+      "release_year": 1989,
+      "release_source": "https://www.museumofplay.org/games/simcity/",
+      "recognition": {"name": "World Video Game Hall of Fame induction", "year": 2024, "type": "retrospective museum induction", "url": "https://www.museumofplay.org/games/simcity/"},
+      "mechanics": [
+        {"name": "Open-ended city building", "detail": "Players lay roads and construct buildings while choosing their own desirable outcome rather than pursuing one required win state.", "url": "https://www.museumofplay.org/games/simcity/"},
+        {"name": "Systemic consequences", "detail": "Population, transport, and other city conditions respond to planning decisions through an underlying simulation.", "url": "https://www.museumofplay.org/games/simcity/"},
+        {"name": "Crisis response", "detail": "Changing problems and needs, including disasters, ask the player to diagnose and respond to a living system.", "url": "https://www.museumofplay.org/games/simcity/"}
+      ],
+      "human_desires": ["creation", "stewardship", "experimentation"],
+      "return_reason": "A city remembers prior choices and produces new problems, giving players a continuing project without a single authored endpoint.",
+      "allworld_transfer": "Make neighbourhoods persistent systems where residents can build, observe consequences, and repair shared problems.",
+      "risk": "Abstract numbers can hide who bears costs; Allworld must represent residents and affected communities, not only efficiency.",
+      "retention_type": "continuation"
+    },
+    {
+      "name": "Street Fighter II",
+      "release_year": 1991,
+      "release_source": "https://www.worldvideogamehalloffame.org/games/street-fighter-ii/",
+      "recognition": {"name": "World Video Game Hall of Fame induction", "year": 2017, "type": "retrospective museum induction", "url": "https://www.worldvideogamehalloffame.org/games/street-fighter-ii/"},
+      "mechanics": [
+        {"name": "Head-to-head rounds", "detail": "Two human players compete directly in short one-on-one rounds with a clear winner.", "url": "https://www.worldvideogamehalloffame.org/games/street-fighter-ii/"},
+        {"name": "Distinct character styles", "detail": "Eight characters have different fighting styles and special moves, inviting comparative mastery.", "url": "https://www.worldvideogamehalloffame.org/games/street-fighter-ii/"},
+        {"name": "Combos and timing", "detail": "Players learn complex signature moves and multi-hit combos that reward speed, timing, and practice.", "url": "https://www.worldvideogamehalloffame.org/games/street-fighter-ii/"}
+      ],
+      "human_desires": ["competition", "identity", "mastery"],
+      "return_reason": "A rematch can test a different character, counter a known opponent, or turn practice into visible skill.",
+      "allworld_transfer": "Offer fair, short resident or venue competitions with role identity and practice queues before public ranking.",
+      "risk": "Public ranking and adversarial play can produce humiliation or toxicity; preserve private, cooperative, and unranked routes.",
+      "retention_type": "replay"
+    },
+    {
+      "name": "Civilization",
+      "release_year": 1991,
+      "release_source": "https://www.museumofplay.org/games/sid-meiers-civilization/",
+      "recognition": {"name": "World Video Game Hall of Fame induction", "year": 2022, "type": "retrospective museum induction", "url": "https://www.museumofplay.org/games/sid-meiers-civilization/"},
+      "mechanics": [
+        {"name": "Turn-based empire building", "detail": "A player grows from one settler across centuries by founding cities, roads, mines, and farms.", "url": "https://www.museumofplay.org/games/sid-meiers-civilization/"},
+        {"name": "Technology tree tradeoffs", "detail": "Only one improvement can be researched at a time, forcing choices among knowledge, units, and buildings.", "url": "https://www.museumofplay.org/games/sid-meiers-civilization/"},
+        {"name": "Multiple victory paths", "detail": "A game can be won through conquest or by developing space travel, supporting different strategic identities.", "url": "https://www.museumofplay.org/games/sid-meiers-civilization/"}
+      ],
+      "human_desires": ["agency", "long-term planning", "meaningful achievement"],
+      "return_reason": "The player returns to continue a persistent project, test another civilization plan, or pursue a different victory condition.",
+      "allworld_transfer": "Give residents long-lived city projects, transparent tradeoffs, and several legitimate ways to contribute or succeed.",
+      "risk": "Long horizons and optimization can dominate human stories; keep residents, care, and recovery visible alongside metrics.",
+      "retention_type": "continuation plus replay"
+    },
+    {
+      "name": "DOOM",
+      "release_year": 1993,
+      "release_source": "https://www.worldvideogamehalloffame.org/games/doom/",
+      "recognition": {"name": "World Video Game Hall of Fame induction", "year": 2015, "type": "retrospective museum induction", "url": "https://www.worldvideogamehalloffame.org/games/doom/"},
+      "mechanics": [
+        {"name": "First-person combat", "detail": "The player navigates maze-like levels and fights demonic monsters from an embodied first-person view.", "url": "https://www.worldvideogamehalloffame.org/games/doom/"},
+        {"name": "Episode progression", "detail": "The first of three episodes was distributed freely, with later episodes extending the campaign.", "url": "https://www.worldvideogamehalloffame.org/games/doom/"},
+        {"name": "Modular engine and multiplayer", "detail": "Separating engine functions from art supported modification, while network technology enabled multiplayer contests.", "url": "https://www.worldvideogamehalloffame.org/games/doom/"}
+      ],
+      "human_desires": ["adrenaline", "mastery", "shared competition"],
+      "return_reason": "Short combat encounters, campaign progress, and the possibility of a new challenge or player-made variation invite another session.",
+      "allworld_transfer": "Use modular missions and optional cooperative scenarios, with a safe authoring layer for community-created city challenges.",
+      "risk": "Violence and competitive intensity do not transfer directly to a social-life world; preserve agency and avoid making harm the default reward.",
+      "retention_type": "continuation plus replay"
+    },
+    {
+      "name": "Super Mario 64",
+      "release_year": 1996,
+      "release_source": "https://www.nintendo.com/jp/switch/avp3a/detail01/index.html",
+      "recognition": {"name": null, "year": null, "type": "exact-game recognition not verified in this primary-source pass", "url": null},
+      "mechanics": [
+        {"name": "3D movement", "detail": "Nintendo describes the game as the first 3D action game in the Mario series, with a freely explorable 3D sandbox world and analogue-stick play.", "url": "https://www.nintendo.com/jp/switch/avp3a/detail01/index.html"},
+        {"name": "Power Star collection", "detail": "Nintendo describes collecting Power Stars while exploring the castle and its picture worlds to rescue Peach and Toads.", "url": "https://www.nintendo.com/jp/titles/20010000013027.html"},
+        {"name": "Movement challenges", "detail": "Nintendo’s product description names acrobatics such as midair somersaults and wall kicks as part of navigating the 3D spaces.", "url": "https://www.nintendo.com/jp/titles/20010000013027.html"}
+      ],
+      "human_desires": ["exploration", "mastery", "completion"],
+      "return_reason": "A hub and star list make the next self-chosen challenge visible while 3D movement rewards repeated practice.",
+      "allworld_transfer": "Use a city hub with multiple optional objectives and visible discoveries, while preserving free movement and route choice.",
+      "risk": "Completion lists can turn exploration into checklist pressure; allow residents to stop at meaningful partial completion.",
+      "retention_type": "continuation plus replay"
+    },
+    {
+      "name": "Ultima Online",
+      "release_year": 1997,
+      "release_source": "https://uo.com/2012/09/28/press-around-the-anniversary/",
+      "recognition": {"name": null, "year": null, "type": "exact-game recognition not verified in this primary-source pass; The Strong inducted the separate Ultima title in 2024", "url": "https://www.worldvideogamehalloffame.org/games/ultima/"},
+      "mechanics": [
+        {"name": "Skills and quest objectives", "detail": "Current official UO New Legacy documentation describes skills gained through combat or quest objectives, with narrative and divergent paths.", "url": "https://uo.com/wiki/new-legacy-beta/new-legacy-beta-dev-diaries/"},
+        {"name": "Player and guild housing", "detail": "Official UO documentation describes individual housing and larger guild halls, with housing access tied to participation and progression in the current New Legacy ruleset.", "url": "https://uo.com/ultima-online-new-legacy/"},
+        {"name": "Guild social play", "detail": "The official New Legacy developer diary calls guilds the backbone of the multiplayer experience and frames grouping with friends as a goal.", "url": "https://uo.com/wiki/new-legacy-beta/new-legacy-beta-dev-diaries/"}
+      ],
+      "human_desires": ["belonging", "identity", "continuity", "agency"],
+      "return_reason": "The world and social ties continue while the player is away, making return about people, unfinished projects, and an enduring persona.",
+      "allworld_transfer": "Make residents, homes, work histories, and neighbourhood relationships persistent, with asynchronous civic participation and catch-up.",
+      "risk": "Persistent social systems can create time pressure, exclusion, and runaway incumbency; protect solo play, recovery, and new-player access.",
+      "retention_type": "continuation"
+    }
+  ],
+  "execution": {"model": "gpt-5.6-luna", "effort": "medium", "cost": "unknown", "tokens": "unknown"}
+}

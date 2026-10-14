@@ -1,3 +1,4 @@
+import { retentionPolicy } from '../server/retention-policy.ts';
 import { registeredCityIds, loadCityLinks } from '../src/game/cities/registry.ts';
 import { installCityAssetReader } from '../src/game/cities/host-loaders.ts';
 import { installDictionaryAssetReader } from '../src/words/dictionary-asset.ts';
@@ -254,6 +255,10 @@ async function adminShell(request: Request, env: WorkerEnv, url: URL): Promise<R
 /** Declared here, not in host-seam.ts: it names Workers runtime globals the Node test projects do not have. */
 /** The bindings and variables of the Worker (wrangler.jsonc, plus secrets and the outreach/voice settings the host may read). */
 export interface WorkerEnv {
+  RETENTION_DAILY_MILESTONES?: string
+  RETENTION_RHYTHM?: string
+  RETENTION_OUTAGE_DAYS?: string
+  RETENTION_SEASON_START_DAY?: string
   INTERACTIVE_TEACHING_STARTS?: string
   /** New reverse issuance only for the exact host value '1'; unset remains OFF. */
   REVERSE_GEAR_ISSUANCE?: string
@@ -395,7 +400,8 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
     const receipts = createOnce({ now, windowMs: ACTION_WINDOW_MS });
     // One character on several devices: a change a player would see is announced to every socket of that character (host-context.ts lifeAnnouncer).
     const lifeSync = lifeAnnouncer((publicId, frame) => context.push(publicId, frame));
-    const { settle, act, playerAct } = lifeAuthority({ now, receipts, changed: lifeSync.note, interactiveTeachingStarts: env.INTERACTIVE_TEACHING_STARTS === '1' });
+    const retention = retentionPolicy(env);
+    const { settle, act, playerAct } = lifeAuthority({ retention, now, receipts, changed: lifeSync.note, interactiveTeachingStarts: env.INTERACTIVE_TEACHING_STARTS === '1' });
     const keys = new Map<string, Promise<object>>();
     const unresponsive = (ws: HostSocket): boolean => ws.pingedAt > 0 && !ws.alive && now() - ws.pingedAt >= HEARTBEAT_MS / 2;
     const open = (): HostSocket[] => [...this.held.all].filter(ws => ws.readyState === 1);
@@ -466,7 +472,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
       },
       // Work that outlives the request that started it: the object stays up until it has finished.
       waitUntil: (promise) => { try { ctx.waitUntil(Promise.resolve(promise).catch(() => {})); } catch { /* not in a request */ } },
-      config: { accounts: accountsConfig(env), founderEmailSha256: founderEmailHash(env), publicOrigin: cleanOrigin(env.PUBLIC_ORIGIN), sessionTtlMs: SESSION_TTL_MS, actionWindowMs: ACTION_WINDOW_MS, ...this.caps, buildId, votesPerAddress, voteCapMode, heartbeatMs: HEARTBEAT_MS, moderation: Boolean(operatorToken) },
+      config: { retention, accounts: accountsConfig(env), founderEmailSha256: founderEmailHash(env), publicOrigin: cleanOrigin(env.PUBLIC_ORIGIN), sessionTtlMs: SESSION_TTL_MS, actionWindowMs: ACTION_WINDOW_MS, ...this.caps, buildId, votesPerAddress, voteCapMode, heartbeatMs: HEARTBEAT_MS, moderation: Boolean(operatorToken) },
       startup: [loadCityLinks()],
       // Nothing stops a Durable Object in an orderly way: every write is durable when it is acknowledged, and work in
       // flight is covered by waitUntil. The list exists so a module can register without asking which host it is on.

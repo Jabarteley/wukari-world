@@ -1,3 +1,4 @@
+import type { RetentionPolicy } from './retention-policy.ts'
 /**
  * Server-only types: what is stored, and the contracts between the host and its modules.
  *
@@ -25,6 +26,7 @@ import type { MarketCollection } from '../src/types/market.ts'
 import type { BillsRecord, DecreeRecord, GrantRecord, JusticeRecord, PartyRecord, PetitionRecord, LawsRecord, TermAccounts, TermAudit, TreasuryRecord } from '../src/types/politics.ts'
 import type { ComebackType, LedgerType, PrefKey } from '../src/game/comeback.ts'
 import type { StoredWalletEffect } from './economy/effects.ts'
+import type { CharacterProgression } from '../src/types/progression.ts'
 
 // ---- the stored document -------------------------------------------------------------------------
 //
@@ -60,6 +62,8 @@ export interface OnceReceipt {
 /** One city's life of one session (server/life-service.ts settleCity). */
 export interface CityLifeRecord {
   state: LifeState
+  /** Character-scoped progression receipts and the controller of a pending timed action. */
+  progression?: CharacterProgression
   /** Server ms this life was last settled to. */
   updatedAt: number
   /**
@@ -984,6 +988,8 @@ export interface HttpError extends Error {
 
 /** Portable request: no Node req/res, so a module can run on another host. */
 export interface RouteRequest {
+  /** Set only by the authenticated MCP wrapper; never parsed from HTTP headers or JSON. */
+  executionOrigin?: 'delegated-agent' | 'agent-character'
   method: string
   path: string
   /** `:name` segments of the route key, URI-decoded. */
@@ -1162,6 +1168,7 @@ export interface AgentRoom {
 }
 
 export interface ServerConfig {
+  retention?: RetentionPolicy
   sessionTtlMs: number
   actionWindowMs: number
   /** Stored device sessions the host takes; a new visitor beyond it is asked to wait (server/host-context.ts capacityConfig). */
@@ -1235,6 +1242,7 @@ export interface ContextTelemetry {
   publicConfig(): TelemetryConfigResponse
   /** The player's browser said Accept (true) or Reject (false); returns whether analytics is now on for them. */
   consent(publicId: string, granted: boolean): boolean
+  track?(publicId: unknown, name: unknown, props?: unknown, cityId?: unknown, occurrence?: { at: number; id: string }): void
 }
 
 /** The world's shard store (server/world/shards.ts): one append-only file per local government. Used only through server/world/service.ts. */

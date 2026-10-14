@@ -1,0 +1,509 @@
+{
+  "batch": 3,
+  "games": [
+    {
+      "name": "Animal Crossing: New Horizons",
+      "genre": "life sim / social sandbox",
+      "award": {
+        "name": "BAFTA Games Awards",
+        "year": 2021,
+        "category": "Game Beyond Entertainment",
+        "url": "https://www.bafta.org/awards/games/game-beyond-entertainment/"
+      },
+      "award_verified": true,
+      "award_evidence": "BAFTA's 2021 results name Animal Crossing: New Horizons as the Game Beyond Entertainment winner; it also won Multiplayer.",
+      "mechanics": [
+        {
+          "name": "real-time island routine",
+          "detail": "Seasons and time of day track real life; fishing, bugs, fossils, gardening and collecting rotate the daily activity set.",
+          "url": "https://animalcrossing.nintendo.com/new-horizons/explore/"
+        },
+        {
+          "name": "resident and island development",
+          "detail": "Players decorate and improve an island while meeting animal residents and using Nook Miles for goals and unlocks.",
+          "url": "https://animalcrossing.nintendo.com/new-horizons/explore/"
+        }
+      ],
+      "return_reason": "Calendar novelty, collection completion, decorating, and resident/social events create low-pressure daily return reasons. This is a loop inference, not measured retention.",
+      "allworld_transfer": "Use city calendars, resident visits, collectible/career goals, and visible home/public-space customization to make a human-life city feel alive between missions.",
+      "risk": "Daily chores can become obligation and shallow checklist play; resident simulation may be expensive to author.",
+      "retention_type": "habitual daily return + collection/decorative mastery",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Stardew Valley",
+      "genre": "country-life RPG / farming sim",
+      "award": {
+        "name": "PlayStation.Blog Game of the Year 2016 reader poll",
+        "year": 2016,
+        "category": "Best Independent Game — Bronze placement",
+        "url": "https://blog.playstation.com/2017/01/12/the-winners-playstation-blog-game-of-the-year-2016/"
+      },
+      "award_verified": false,
+      "award_evidence": "PlayStation.Blog records Stardew Valley as Bronze in its reader poll; Firewatch received the Platinum first-place award.",
+      "mechanics": [
+        {
+          "name": "farm economy",
+          "detail": "The farm and shared money drive progression; players grow, craft and reinvest over repeated in-game days.",
+          "url": "https://www.stardewvalley.net/faq/"
+        },
+        {
+          "name": "relationships and festivals",
+          "detail": "Villagers have friendship progression, gifts and scheduled festivals that alter social opportunities and rewards.",
+          "url": "https://wiki.stardewvalley.net/Friendship"
+        },
+        {
+          "name": "co-op persistence",
+          "detail": "Multiplayer shares the farm, money and world progress while inventories, skills and relationships remain player-specific.",
+          "url": "https://www.stardewvalley.net/category/news/"
+        }
+      ],
+      "return_reason": "The day/season clock, farm compounding, NPC schedules, festivals and bundles make each session feed the next. Inference only; no retention metric claimed.",
+      "allworld_transfer": "Model resident careers and businesses as seasonal projects, with festivals and relationship milestones producing shared city consequences.",
+      "risk": "Clock pressure and repetitive chores can punish casual players; authored NPC schedules require consistency.",
+      "retention_type": "seasonal progression + relationship routine + cooperative world persistence",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Minecraft",
+      "genre": "sandbox survival / building",
+      "award": {
+        "name": "Game Developers Choice Awards",
+        "year": 2011,
+        "category": "Best Debut Game",
+        "url": "https://media.gdcvault.com/GD_Mag_Archives/GDM_April_2011.pdf"
+      },
+      "award_verified": true,
+      "award_evidence": "The official 2011 Game Developers Choice Awards record names Minecraft as Best Debut Game.",
+      "mechanics": [
+        {
+          "name": "resource-to-build loop",
+          "detail": "Players gather resources, craft tools, build shelters and engineer bases in an infinite world.",
+          "url": "https://www.minecraft.net/en-us/about-minecraft"
+        },
+        {
+          "name": "mode choice",
+          "detail": "Survival adds hostile mobs and resource pressure; Creative supplies unlimited resources, flight and immunity.",
+          "url": "https://www.minecraft.net/en-us/about-minecraft"
+        },
+        {
+          "name": "persistent multiplayer",
+          "detail": "Realms and servers provide persistent shared worlds, cross-play and community-made activities.",
+          "url": "https://www.minecraft.net/en-us/play-with-friends"
+        }
+      ],
+      "return_reason": "Open-ended projects, emergent discovery and persistent shared worlds create self-directed reasons to return. This is design inference, not measured retention.",
+      "allworld_transfer": "Give residents and players persistent places to build, repair and personalize, with city-scale projects that create visible history and social coordination.",
+      "risk": "Extreme openness can weaken authored missions and overwhelm first-time players; simulation/build state can be costly to stream.",
+      "retention_type": "self-directed creation + exploration + persistent social world",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "The Sims",
+      "genre": "life simulation",
+      "award": {
+        "name": "3rd Annual Interactive Achievement Awards",
+        "year": 2000,
+        "category": "Game of the Year",
+        "url": "https://www.interactive.org/awards/award_category_details.asp?idAward=2000&idGameAwardType=65"
+      },
+      "award_verified": true,
+      "award_evidence": "AIAS's 2000 category page names The Sims as Game of the Year.",
+      "edition_note": "The award belongs to the original 2000 game. The cited 25th-anniversary Legacy Collection page is a modern re-release page that explicitly carries the original game's core design forward.",
+      "mechanics": [
+        {
+          "name": "direct life control",
+          "detail": "EA's modern Legacy Collection page describes the re-released original game as creating Sims and homes, then guiding careers, friendships and romance or allowing chaos.",
+          "url": "https://www.ea.com/games/the-sims/the-sims-25th-anniv-edition"
+        },
+        {
+          "name": "household storytelling",
+          "detail": "EA's modern Legacy Collection page preserves the original household-and-home framing through personality and skill creation, home building and open-ended life guidance.",
+          "url": "https://www.ea.com/games/the-sims/the-sims-25th-anniv-edition"
+        }
+      ],
+      "return_reason": "Stories emerge from interacting needs, relationships, work and home design; players return to continue a household narrative or test a new one. Inference, not retention measurement.",
+      "allworld_transfer": "Make each AI resident legible through needs, aspirations, work, relationships and a home that changes with choices, while allowing player-directed intervention.",
+      "risk": "Highly combinatorial simulation can produce brittle behavior and ethical discomfort if resident agency is cosmetic.",
+      "retention_type": "emergent narrative + household progression + creative authorship",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "The Sims 2",
+      "genre": "life simulation",
+      "award": {
+        "name": "8th Annual Interactive Achievement Awards",
+        "year": 2005,
+        "category": "Simulation Game of the Year",
+        "url": "https://www.interactive.org/awards/award_category_details.asp?idAward=2005&idGameAwardType=124"
+      },
+      "award_verified": true,
+      "award_evidence": "AIAS's 2005 category page names The Sims 2 as Simulation Game of the Year.",
+      "edition_note": "The award belongs to the original 2004 game. The cited 25th-anniversary Legacy Collection page is a modern re-release page that explicitly carries the original game's life-stage and generational design forward.",
+      "mechanics": [
+        {
+          "name": "life-stage simulation",
+          "detail": "EA's modern Legacy Collection page describes the re-released original game as guiding Sims across whole lives, with traits and choices carried across generations.",
+          "url": "https://www.ea.com/games/the-sims/the-sims-2-25th-anniv-edition"
+        },
+        {
+          "name": "multi-generational continuity",
+          "detail": "EA's modern Legacy Collection page explicitly describes evolving a family tree across multiple generations while building homes and neighborhoods.",
+          "url": "https://www.ea.com/games/the-sims/the-sims-2-25th-anniv-edition"
+        }
+      ],
+      "return_reason": "Generational change and household continuity create a longer arc than a single scenario; players return to see consequences and build new family stories. Inference only.",
+      "allworld_transfer": "Persist resident memories, family ties, home ownership and career effects so city stories survive beyond one mission or avatar session.",
+      "risk": "Continuity creates save-state complexity and can expose weak AI if relationships or life transitions do not make sense.",
+      "retention_type": "generational continuity + emergent household narrative",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Sid Meier's Civilization IV",
+      "genre": "4X turn-based strategy",
+      "award": {
+        "name": "9th Annual Interactive Achievement Awards",
+        "year": 2006,
+        "category": "Strategy Game of the Year",
+        "url": "https://www.interactive.org/awards/award_category_details.asp?idAward=2006&idGameAwardType=128"
+      },
+      "award_verified": true,
+      "award_evidence": "AIAS's 2006 category page names Civilization IV as Strategy Game of the Year.",
+      "mechanics": [
+        {
+          "name": "resource and state management",
+          "detail": "The award category describes strategy play as directing resources to create conditions for success through planning rather than execution.",
+          "url": "https://www.interactive.org/awards/award_category_details.asp?idAward=2006&idGameAwardType=128"
+        }
+      ],
+      "return_reason": "The turn structure makes every choice feed a longer strategic arc, while alternate civilizations and maps support replay. Inference, not measured retention.",
+      "allworld_transfer": "Represent city policy, infrastructure, careers and diplomacy as compounding systems with several viable success conditions.",
+      "risk": "Macro systems can flatten individual residents into statistics and make onboarding opaque.",
+      "retention_type": "compounding strategy + replayable alternate histories",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Sid Meier's Civilization V",
+      "genre": "4X turn-based strategy",
+      "award": {
+        "name": "BAFTA Games Awards",
+        "year": 2011,
+        "category": "Strategy",
+        "url": "https://www.bafta.org/awards/games/strategy/"
+      },
+      "award_verified": true,
+      "award_evidence": "BAFTA's Strategy archive marks Civilization V as the 2011 winner.",
+      "mechanics": [
+        {
+          "name": "resource-directed strategy",
+          "detail": "The strategy category defines the core loop as manipulating resources to create winning conditions through planning rather than execution.",
+          "url": "https://www.bafta.org/awards/games/strategy/"
+        }
+      ],
+      "return_reason": "Persistent world state, competing objectives and alternate leaders create a replayable planning loop. This is an inference, not a retention claim.",
+      "allworld_transfer": "Let city policies, residents, employers and districts create second-order effects that make each mission alter the next civic decision.",
+      "risk": "Systemic depth can obscure human-scale stories and create runaway leaders.",
+      "retention_type": "long-horizon planning + alternate-campaign replay",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Sid Meier's Civilization VI",
+      "genre": "4X turn-based strategy",
+      "award": {
+        "name": "20th D.I.C.E. Awards",
+        "year": 2017,
+        "category": "Strategy/Simulation Game of the Year",
+        "url": "https://www.interactive.org/awards/20th_annual_dice_awards_results.asp"
+      },
+      "award_verified": true,
+      "award_evidence": "AIAS's 20th D.I.C.E. results name Civilization VI as Strategy/Simulation Game of the Year.",
+      "mechanics": [
+        {
+          "name": "resource and victory planning",
+          "detail": "The award category describes strategy as directing resources to create success conditions, emphasizing planning over execution.",
+          "url": "https://www.interactive.org/awards/20th_annual_dice_awards_results.asp"
+        },
+        {
+          "name": "evolving civilization state",
+          "detail": "Cities, technologies, districts, diplomacy and culture create a changing empire state over many turns.",
+          "url": "https://www.civilization.com/"
+        }
+      ],
+      "return_reason": "District-style specialization and multiple victory routes make the same map support different strategic identities. Inference only; no retention metric.",
+      "allworld_transfer": "Give neighborhoods, employers and resident groups distinct development paths so players can shape a city through trade-offs rather than a single upgrade tree.",
+      "risk": "High systemic interdependence can be difficult to communicate and tune for a life-world audience.",
+      "retention_type": "specialization + emergent systemic replay",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Age of Empires IV",
+      "genre": "real-time strategy / historical campaign",
+      "award": {
+        "name": "25th D.I.C.E. Awards",
+        "year": 2022,
+        "category": "Strategy/Simulation Game of the Year",
+        "url": "https://www.interactive.org/awards/25th_annual_dice_awards_winners_revealed_.asp"
+      },
+      "award_verified": true,
+      "award_evidence": "AIAS's 25th D.I.C.E. winners page names Age of Empires IV as Strategy/Simulation Game of the Year.",
+      "mechanics": [
+        {
+          "name": "economy-to-army loop",
+          "detail": "Players explore, gather food/wood/gold/stone, build structures, train units and advance through Ages.",
+          "url": "https://www.ageofempires.com/news/quickstart-guide-age-of-empires-iv/"
+        },
+        {
+          "name": "multiple victory conditions",
+          "detail": "Landmark, Sacred and Wonder victories create distinct strategic goals and end states.",
+          "url": "https://www.ageofempires.com/news/quickstart-guide-age-of-empires-iv/"
+        },
+        {
+          "name": "campaign and multiplayer modes",
+          "detail": "Four historical campaigns coexist with skirmish, cooperative AI and competitive multiplayer.",
+          "url": "https://www.ageofempires.com/games/age-of-empires-iv/"
+        }
+      ],
+      "return_reason": "Fast resource decisions, civilization asymmetry and multiple victory paths generate replayable matches and campaign mastery. Inference only.",
+      "allworld_transfer": "Use districts and resident factions with different economies and missions, while offering civic, cultural and economic ways to win a city chapter.",
+      "risk": "Real-time pressure may conflict with reflective life-sim play and accessibility goals.",
+      "retention_type": "match replay + mastery + asymmetric campaign identity",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "StarCraft II: Wings of Liberty",
+      "genre": "real-time strategy / campaign",
+      "award": {
+        "name": "14th Annual Interactive Achievement Awards",
+        "year": 2011,
+        "category": "Strategy/Simulation Game of the Year",
+        "url": "https://www.interactive.org/awards/award_category_details.asp?idAward=2011&idGameAwardType=129"
+      },
+      "award_verified": true,
+      "award_evidence": "AIAS's 2011 category page names StarCraft II: Wings of Liberty as Strategy/Simulation Game of the Year.",
+      "mechanics": [
+        {
+          "name": "resource and unit production",
+          "detail": "Players use economy, tech and unit composition to create tactical answers in real-time battles.",
+          "url": "https://starcraft2.blizzard.com/en-us/"
+        },
+        {
+          "name": "persistent online competition",
+          "detail": "The title won AIAS awards for both strategy/simulation and online gameplay, reflecting ranked and social replay structure.",
+          "url": "https://www.interactive.org/games/video_game_details.asp?idAward=2011&idGame=1161"
+        }
+      ],
+      "return_reason": "A strong campaign arc pairs with repeatable competitive matches and build-order mastery. This is return-loop analysis, not measured retention.",
+      "allworld_transfer": "Offer residents and organizations distinct capabilities, readable counters and missions whose outcomes depend on preparation and adaptation.",
+      "risk": "Competitive optimization may crowd out believable social behavior and create steep onboarding.",
+      "retention_type": "skill mastery + competitive replay + campaign progression",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Warcraft III: Reign of Chaos",
+      "genre": "real-time strategy / hero campaign",
+      "award": {
+        "name": "6th Annual Interactive Achievement Awards",
+        "year": 2003,
+        "category": "Computer Strategy Game of the Year",
+        "url": "https://www.interactive.org/games/video_game_details.asp?idAward=2003&idGame=475"
+      },
+      "award_verified": true,
+      "award_evidence": "AIAS's 2003 game record identifies Warcraft III: Reign of Chaos as Computer Strategy Game of the Year.",
+      "mechanics": [
+        {
+          "name": "race-based RTS",
+          "detail": "Players command four races, build armies and seize objectives through real-time resource and combat decisions.",
+          "url": "https://news.blizzard.com/en-gb/article/23292093/warcraft-iii-reforged-is-now-live"
+        },
+        {
+          "name": "hero-led campaign",
+          "detail": "The campaign centers pivotal story events around heroes, factions and more than 60 missions in the modern re-creation.",
+          "url": "https://news.blizzard.com/en-gb/article/23292093/warcraft-iii-reforged-is-now-live"
+        }
+      ],
+      "return_reason": "Hero progression gives a personal anchor to macro strategy while faction campaigns create narrative momentum. Inference, not measured retention.",
+      "allworld_transfer": "Anchor city strategy in named resident leaders whose careers, loyalties and personal missions change how districts function.",
+      "risk": "Hero-centric design can over-centralize agency and reduce the wider resident population to backdrop.",
+      "retention_type": "character-led campaign + faction mastery",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Mario + Rabbids Kingdom Battle",
+      "genre": "turn-based tactical strategy",
+      "award": {
+        "name": "Game Critics Awards: Best of E3 2017",
+        "year": 2017,
+        "category": "Best Strategy Game — pre-release showcase",
+        "url": "https://news.ubisoft.com/en-us/article/1V6DnmphH4iHqIw3hpA4yV/mario-rabbids-kingdom-battle-wins-2-best-of-e3-honors-from-game-critics-awards"
+      },
+      "award_verified": true,
+      "award_evidence": "Ubisoft's official report says Kingdom Battle won Best Strategy Game at the Game Critics Awards' Best of E3 2017; this was pre-release recognition.",
+      "mechanics": [
+        {
+          "name": "turn-based cover tactics",
+          "detail": "Teams use movement, cover, dashes, team jumps and weapons on tactical battlefields.",
+          "url": "https://news.nintendo.com/mario-rabbids-kingdom-battle"
+        },
+        {
+          "name": "mission variety and upgrades",
+          "detail": "Campaign battles use changing objectives and unlock stronger weapons and abilities between encounters.",
+          "url": "https://news.ubisoft.com/en-us/article/1V6DnmphH4iHqIw3hpA4yV/mario-rabbids-kingdom-battle-wins-2-best-of-e3-honors-from-game-critics-awards"
+        }
+      ],
+      "return_reason": "Readable tactical rules, character synergies and changing objectives make short sessions satisfying while preserving campaign progression. Inference only.",
+      "allworld_transfer": "Translate city missions into compact tactical situations where resident skills, terrain and relationships combine to solve local problems.",
+      "risk": "Puzzle-like missions may feel disconnected from persistent residents unless outcomes carry into the city state.",
+      "retention_type": "short-session mastery + team synergy + campaign unlocks",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Mario + Rabbids Sparks of Hope",
+      "genre": "turn-based tactical RPG / exploration",
+      "award": {
+        "name": "The Game Awards",
+        "year": 2022,
+        "category": "Best Sim/Strategy Game",
+        "url": "https://staticctf.ubisoft.com/8aefmxkxpxwl/SKxU756r1QW73XZfE1DOT/e984b079befd20c9b3095647b2e29242/Ubisoft_FY23_Q3_sales_PR_English_vFinal.pdf"
+      },
+      "award_verified": true,
+      "award_evidence": "Ubisoft's FY23 Q3 release states that Sparks of Hope won Best Sim/Strategy Game at The Game Awards 2022.",
+      "mechanics": [
+        {
+          "name": "open-world planets",
+          "detail": "Players explore planets with inhabitants, puzzles, side quests and optional enemies outside self-contained battlefields.",
+          "url": "https://news.ubisoft.com/en-gb/article/5GejsL2kJa4dT6QEV120qh/how-mario--rabbids-sparks-of-hope-redefines-tactical-rpgs"
+        },
+        {
+          "name": "free-movement turn combat",
+          "detail": "Heroes move within a radius, use cover, team jumps and abilities, and combine Sparks for tactical synergies.",
+          "url": "https://news.ubisoft.com/en-gb/article/5GejsL2kJa4dT6QEV120qh/how-mario--rabbids-sparks-of-hope-redefines-tactical-rpgs"
+        },
+        {
+          "name": "skill progression",
+          "detail": "Skill trees and level-earned Skill Prisms let players specialize heroes for different team roles.",
+          "url": "https://www.ubisoft.com/en-gb/help/mario-rabbids-sparks-of-hope/gameplay/article/character-skill-trees-in-mario-rabbids-sparks-of-hope/000103236"
+        }
+      ],
+      "return_reason": "Exploration, side quests, flexible team builds and reshuffled battlefields create both discovery and mastery returns. Inference only.",
+      "allworld_transfer": "Separate city exploration from instanced missions, then carry resident relationships, skill builds and local discoveries between them.",
+      "risk": "Large authored worlds can dilute resident simulation and produce content volume pressure.",
+      "retention_type": "exploration + tactical mastery + build experimentation",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Fire Emblem: Three Houses",
+      "genre": "tactical RPG / school-life sim",
+      "award": {
+        "name": "The Game Awards",
+        "year": 2019,
+        "category": "Best Strategy Game",
+        "url": "https://thegameawards.com/rewind/year-2019"
+      },
+      "award_verified": true,
+      "award_evidence": "The Game Awards' 2019 edition archive names Fire Emblem: Three Houses as Best Strategy Game.",
+      "mechanics": [
+        {
+          "name": "academy time management",
+          "detail": "Players choose a house and spend free time exploring the monastery, teaching students, battling, taking exams, seminars or resting.",
+          "url": "https://www.nintendo.com/au/news-and-articles/fire-emblem-three-houses-101/"
+        },
+        {
+          "name": "relationship-linked tactics",
+          "detail": "Grid battles, paired units and support relationships increase combat options and Gambit effects.",
+          "url": "https://www.nintendo.com/en-gb/Games/Nintendo-Switch-games/Fire-Emblem-Three-Houses-1175482.html"
+        }
+      ],
+      "return_reason": "The monthly calendar makes social investment and combat preparation compete for scarce time, with house paths encouraging repeat campaigns. Inference, not retention data.",
+      "allworld_transfer": "Use a city calendar where residents learn, work, socialize and take missions; relationships should change team capability and narrative access.",
+      "risk": "Time-boxed social optimization can become repetitive busywork and may make residents feel like stat bundles.",
+      "retention_type": "calendar planning + relationship progression + branching replay",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "XCOM: Enemy Unknown",
+      "genre": "turn-based tactics / strategic defense",
+      "award": {
+        "name": "16th D.I.C.E. Awards",
+        "year": 2013,
+        "category": "Strategy/Simulation Game of the Year",
+        "url": "https://www.interactive.org/awards/award_category_details.asp?idAward=2013&idGameAwardType=129"
+      },
+      "award_verified": true,
+      "award_evidence": "AIAS's 2013 category page names XCOM: Enemy Unknown as Strategy/Simulation Game of the Year.",
+      "mechanics": [
+        {
+          "name": "soldier permadeath and abilities",
+          "detail": "Soldier classes have unique abilities; loss and survival alter the squad’s future strength.",
+          "url": "https://assets.2k.com/1a6ngf98576c/3MOD9PtRwZmb4wPcaxOISx/b1691373d9600f1e97539eeca8fac7c1/XCOM_EW_PS3_MANUAL_ENG.pdf"
+        },
+        {
+          "name": "base, research and engineering",
+          "detail": "The headquarters view manages facilities, research and development, turning strategic choices into tactical capability.",
+          "url": "https://assets.2k.com/1a6ngf98576c/3MOD9PtRwZmb4wPcaxOISx/b1691373d9600f1e97539eeca8fac7c1/XCOM_EW_PS3_MANUAL_ENG.pdf"
+        }
+      ],
+      "return_reason": "Permanent consequences, escalating threats and a strategic/tactical split create strong comeback and mastery loops. This is inference, not measured retention.",
+      "allworld_transfer": "Make resident injuries, career failure and city infrastructure damage persist, so mission choices create emotionally legible stakes and preparation needs.",
+      "risk": "Punishing failure can frustrate a broad life-world audience; persistent casualties need careful consent and tone.",
+      "retention_type": "high-stakes consequence + preparation mastery + campaign recovery",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Into the Breach",
+      "genre": "turn-based tactical roguelite",
+      "award": {
+        "name": "22nd D.I.C.E. Awards",
+        "year": 2019,
+        "category": "Strategy/Simulation Game of the Year",
+        "url": "https://www.interactive.org/games/video_game_details.asp?idAward=2019&idGame=1618"
+      },
+      "award_verified": true,
+      "award_evidence": "AIAS's 2019 game record identifies Into the Breach as Strategy/Simulation Game of the Year.",
+      "mechanics": [
+        {
+          "name": "telegraphed tactical puzzles",
+          "detail": "Enemy attacks are readable, and mech pushes or attacks can redirect threats away from civilian buildings.",
+          "url": "https://www.jp.subsetgames.com/"
+        },
+        {
+          "name": "island objectives and resets",
+          "detail": "Runs defend islands and objectives; failed timelines send the team back through time with selected progression.",
+          "url": "https://www.jp.subsetgames.com/"
+        }
+      ],
+      "return_reason": "Short, information-rich turns reward experimentation, while resets turn failure into another attempt with retained knowledge. Inference only.",
+      "allworld_transfer": "Design city missions around readable resident needs and preventable consequences, with safe retries that preserve learning and selected civic progress.",
+      "risk": "Puzzle determinism may feel too abstract for open-ended human stories; resets can weaken consequence if overused.",
+      "retention_type": "short-session mastery + reversible failure + roguelite replay",
+      "evidence_confidence": "high"
+    }
+  ],
+  "unverified": [
+    {
+      "name": "Stardew Valley",
+      "reason": "The cited PlayStation.Blog result is a Bronze reader-poll placement, while Firewatch received the first-place Platinum award; it is not counted as an award win."
+    },
+    {
+      "name": "XCOM 2",
+      "reason": "Reserve only for this batch; no award-win source was required for the named 16 set."
+    },
+    {
+      "name": "Pikmin 4",
+      "reason": "Reserve only for this batch; not included in the 16-title verified set."
+    },
+    {
+      "name": "Cities: Skylines",
+      "reason": "Reserve only for this batch; not included in the 16-title verified set."
+    },
+    {
+      "name": "Frostpunk",
+      "reason": "Reserve only for this batch; not included in the 16-title verified set."
+    }
+  ],
+  "execution": {
+    "model": "gpt-5.6-luna",
+    "effort": "medium",
+    "retries": 0,
+    "cost": "unknown"
+  }
+}

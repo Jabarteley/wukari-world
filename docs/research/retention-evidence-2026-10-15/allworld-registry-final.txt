@@ -1,0 +1,21 @@
+✔ route registry: a module gets storage, sessions, settlement, actions and push through the context (68.109125ms)
+✔ route registry rejects duplicate and malformed routes at start-up and lists the core routes (1.671625ms)
+✔ accounts are off unless configured: one disabled answer, every other account route a 404, device sessions unchanged (13.779417ms)
+✔ socket registry: room-free and room-only handlers, error replies, open/close hooks, core behaviour intact (39.0145ms)
+✔ socket registry rejects duplicate or malformed message types and lists the core types (1.010667ms)
+✔ everyone joins a room outside voice and muted; mute state is per identity and resets on rejoin (21.683791ms)
+✔ idempotent replay covers the payload: same request replays, a changed payload conflicts (35.219917ms)
+✔ action envelope: types come from the registry and payloads are size-limited plain objects (21.965375ms)
+✔ server-only actions: the public /api/action can never run one; a route module reaches them through ctx.act (364.598083ms)
+✔ fingerprints without a payload keep the pre-payload format, so stored receipts stay valid (0.258125ms)
+✔ collections are namespaced, created lazily and cannot shadow core data (0.222833ms)
+✔ an old-format saved life survives the refactor: state, timers, per-city entries and receipts (37.092417ms)
+✔ modules shared with the Cloudflare worker stay portable: no Node-only imports (2058.445334ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3292.292167

@@ -75,7 +75,12 @@ export interface LgaPage {
   /** The search was shorter than the server's minimum. */
   short: boolean
 }
-export interface DirectoryDeps { fetchJson: FetchJson; cityId: () => CityId }
+export interface DirectoryDeps {
+  fetchJson: FetchJson
+  cityId: () => CityId
+  /** Cache first (lgaCache.ts): the kept first page of a local government, and the way to keep one. Not given: the server only. */
+  kept?: { recall: (city: string, id: string) => { info: WorldLgaResponse; items: WorldPerson[]; next: number | null } | null; keep: (city: string, id: string, page: { info: WorldLgaResponse; items: WorldPerson[]; next: number | null }) => void }
+}
 
 export const peoplePath = (id: string, city: string, query: { q: string; online: boolean; after: number | null }): string =>
   `/api/world/lga/${id}/people?city=${city}${query.q ? `&q=${encodeURIComponent(query.q)}` : ''}${query.online ? '&online=1' : ''}${query.after !== null ? `&after=${query.after}` : ''}`
@@ -95,12 +100,18 @@ export function createLgaDirectory(deps: DirectoryDeps) {
     if (page.loading) return
     page.loading = true
     page.error = ''
+    const plain = !page.q && !page.online
+    if (!more && plain && page.info === null) { // the last first page at once; the answers below replace it
+      const kept = deps.kept?.recall(city, id)
+      if (kept) { page.info = kept.info; page.items = kept.items; page.next = kept.next }
+    }
     try {
       if (!more) page.info = await deps.fetchJson<WorldLgaResponse>(`/api/world/lga/${id}?city=${city}`)
       const body = await deps.fetchJson<WorldPeopleResponse>(peoplePath(id, city, { q: page.q, online: page.online, after: more ? page.next : null }))
       page.items = more ? [...(page.items ?? []), ...body.items] : body.items
       page.next = body.next
       page.short = 'short' in body && body.short === true
+      if (!more && plain && page.info && !page.short) deps.kept?.keep(city, id, { info: page.info, items: body.items, next: body.next })
     } catch (error) {
       page.error = (error as Partial<ApiError> | null)?.reason || 'The list could not be loaded. Try again.'
     } finally { page.loading = false }

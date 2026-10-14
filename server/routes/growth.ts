@@ -46,6 +46,7 @@ import { cityRules } from '../../src/game/cities/index.ts';
 import { composeDigest } from '../../src/game/digest.ts';
 import { SOURCE_EVENTS } from '../../src/game/attribution.ts';
 import { isShareCode, sourceQuery } from '../../src/game/share-model.ts';
+import { transactWithCityContent } from '../prepared-city-transaction.ts';
 import { growthOf, playerOf, sweep, LIMITS } from '../growth/data.ts';
 import { createShare, findShare, sharePageHtml } from '../growth/share.ts';
 import { bonusConfig, claimedOf, publicOffer } from '../bonus/service.ts';
@@ -60,6 +61,7 @@ import type { CityId } from '../../src/types/protocol.ts';
 import type { ConsentView } from '../../src/types/growth.ts';
 import type { ComebackType } from '../../src/game/comeback.ts';
 import type { Db, GrowthCollection, GrowthPlayerRecord, RouteContext, RouteHandler, RouteKey, RouteRequest, SessionRecord } from '../types.ts';
+import { isAgentOrigin, requestOrigin } from '../execution-origin.ts';
 
 /** What a growth route's `call` hands back: the JSON answer, and `material` (kept out of the answer) when the life changed. */
 type GrowthAnswer = { material?: boolean } & Record<string, unknown>;
@@ -89,11 +91,11 @@ export default function growthRoutes(ctx: RouteContext): Record<RouteKey, RouteH
   /** Authenticate, rate limit, find the caller's created life in the city (never creating one), and run `call`. */
   const route = (call: (args: GrowthCall) => GrowthAnswer, { durable = true }: { durable?: boolean | ((result: GrowthAnswer) => boolean) } = {}): RouteHandler => async (request) => {
     const body: Record<string, unknown> = request.method === 'POST' ? await request.json() : {};
-    const result = await ctx.store.transact((db): GrowthAnswer => {
+    const result = await transactWithCityContent(ctx, request, [], (db): GrowthAnswer => {
       const session = request.requireSession(db, { renew: true });
       if (!ctx.allow(`growth:http:${session.publicId}`, LIMITS.httpPerMinute)) throw ctx.fail(429, 'rate_limited');
       // The growth funnel, referrals and e-mail are about people: an AI agent character is counted apart (server/agents/, the pulse's `ai`).
-      if (session.agent?.char === true) return { ok: false, code: 'not_counted', reason: 'AI agents are not part of the growth numbers.' };
+      if (isAgentOrigin(requestOrigin(request, session))) return { ok: false, code: 'not_counted', reason: 'AI agents are not part of the growth numbers.' };
       const cityId = city(body.cityId);
       // A life is never created here: someone who has not finished character creation is simply not ready.
       const stored = session.cities?.[cityId]?.state;
@@ -250,6 +252,7 @@ export default function growthRoutes(ctx: RouteContext): Record<RouteKey, RouteH
     'POST /api/growth/push/unsubscribe': route(({ g, session, body }) => outreach.unsubscribePush(g, session.publicId, body.endpoint)),
 
     'POST /api/growth/client': async (request) => {
+      if (isAgentOrigin(requestOrigin(request))) return { body: { ok: false, code: 'not_counted', reason: 'AI agents are not part of the growth numbers.' } };
       const body = await request.json();
       if (!ctx.allow(`growth:client:${request.ip}`, 10)) throw ctx.fail(429, 'rate_limited');
       const named: unknown[] = Array.isArray(body.signals) ? body.signals.slice(0, 8) : [];
@@ -262,6 +265,7 @@ export default function growthRoutes(ctx: RouteContext): Record<RouteKey, RouteH
 
     // Where visits came from: one aggregate count per day and campaign. No session, no address and no browser detail is kept.
     'POST /api/growth/source': async (request) => {
+      if (isAgentOrigin(requestOrigin(request))) return { body: { ok: false, code: 'not_counted', reason: 'AI agents are not part of the growth numbers.' } };
       const body = await request.json();
       if (!ctx.allow(`growth:source:${request.ip}`, 30)) throw ctx.fail(429, 'rate_limited');
       const event = SOURCE_EVENTS.find((name) => name === body.event);

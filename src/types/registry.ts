@@ -14,6 +14,7 @@ import type {
 } from './life.ts'
 import type { LifeView } from './view.ts'
 import type { CampusEngineEvent, CampusEventMap } from './campus.ts'
+import type { ExecutionOrigin } from './progression.ts'
 
 // ---- events -------------------------------------------------------------------------------
 
@@ -30,11 +31,14 @@ export type NoticeKind =
 
 /**
  * Every event emitted through `emit(state, '<name>', data, ctx)` anywhere in src/game, with the
- * data its emitter passes. (The campus systems in src/campus/unilag emit seven more, which nothing
- * listens to: campus.ts CampusEventMap.) Listeners always receive an object (anything else becomes `{}`), run in
+ * data its emitter passes. (The campus systems in src/campus/unilag emit their separately catalogued events in campus.ts CampusEventMap.) Listeners always receive an object (anything else becomes `{}`), run in
  * registration order, may mutate state and may emit further events (at most 8 deep).
  */
 export interface EngineEventMap {
+  'achievement.earned': { id: import('./achievements.ts').AchievementId; version: 1; earnedAt: number; cityId: string; origins: ExecutionOrigin[]; rewardId: string }
+  'episode.chapter.completed': { id: import('./episodes.ts').EpisodeId; version: 1; chapter: import('./episodes.ts').EpisodeChapter; choice: import('./episodes.ts').EpisodeChoice | null; source: import('./episodes.ts').EpisodeProofSource; origin: ExecutionOrigin; completedAt: number }
+  'episode.completed': { id: import('./episodes.ts').EpisodeId; version: 1; choice: import('./episodes.ts').EpisodeChoice | null; outcomeTag: import('./episodes.ts').EpisodeOutcomeTag; completedAt: number; rewardId: string }
+  'episode.memento.granted': { id: import('./episodes.ts').EpisodeMementoId; version: 1; episodeId: import('./episodes.ts').EpisodeId; episodeVersion: 1; grantedAt: number; origins: ExecutionOrigin[]; rewardId: string }
   // -- foundation (activities, core, wallet, skills) --
   'activity.started': { id: ActivityId; def: ResolvedActivity }
   /** `cash` is the naira actually credited (0 when the activity had no reward or the credit was refused). */
@@ -189,8 +193,13 @@ export interface EngineEventMap {
 
   // -- missions --
   /** A mission's progress reached its count. */
-  'mission.completed': { id: MissionId; scope: 'daily' | 'weekly' }
-  'mission.claimed': { id: MissionId; scope: 'daily' | 'weekly'; cash: number }
+  'mission.completed': { rewardId: string; id: MissionId; scope: 'daily' | 'weekly'; period: number; cityId: WorldCityId; earnedOrigin: ExecutionOrigin; completedAt: number }
+  'mission.reward.earned': { rewardId: string; id: MissionId; scope: 'daily' | 'weekly'; period: number; cityId: WorldCityId; earnedOrigin: ExecutionOrigin; cash: number; earnedAt: number }
+  'mission.reward.granted': { rewardId: string; id: MissionId; scope: 'daily' | 'weekly'; period: number; cityId: WorldCityId; earnedOrigin: ExecutionOrigin; cash: number; earnedAt: number; grantedAt: number }
+  'mission.set.completed': { rewardId: string; scope: 'daily' | 'weekly'; period: number; cityId: WorldCityId; earnedOrigin: ExecutionOrigin; stars: number; completedAt: number }
+  'mission.set.reward.granted': { rewardId: string; scope: 'daily' | 'weekly'; period: number; cityId: WorldCityId; earnedOrigin: ExecutionOrigin; stars: number; earnedAt: number; grantedAt: number }
+  /** Legacy dashboard event retained while consumers migrate to mission.reward.granted. */
+  'mission.claimed': { id: MissionId; scope: 'daily' | 'weekly'; cash: number; rewardId?: string; period?: number }
   /** The first paid activity of a Lagos day (feeds the weekly "paid on four days" mission). */
   'work.day': Record<string, never>
 
@@ -407,12 +416,15 @@ export interface SystemDefinition<Id extends string = SystemId> {
 
 /** Every event name emitted anywhere in the engine, sorted. */
 export const EVENT_NAMES = [
+  'achievement.earned',
   'action.cancelled', 'activity.completed', 'activity.outcome', 'activity.started', 'activity.unpaid', 'ad.bought',
   'business.bought', 'business.opened', 'business.sale', 'candidacy.declared', 'car.bought', 'car.sold', 'city.changed', 'deposit.closed', 'deposit.opened', 'dream.completed',
+  'episode.chapter.completed', 'episode.completed', 'episode.memento.granted',
   'event.attended', 'event.sprayed', 'friend.made', 'gem.found', 'goal.completed', 'health.treat', 'home.owned', 'house.moved',
   'house.styled', 'house.upgrade-started', 'house.upgraded', 'hunt.claimed', 'illness.cured', 'illness.started', 'item.bought',
   'item.sold', 'job.applied', 'job.quit', 'lga.changed', 'life.started', 'loan.missed', 'loan.paid', 'meal.eaten',
-  'mission.claimed', 'mission.completed', 'notice.posted', 'npc.greeted', 'npc.interacted', 'perk.bought', 'promotion',
+  'mission.claimed', 'mission.completed', 'mission.reward.earned', 'mission.reward.granted', 'mission.set.completed',
+  'mission.set.reward.granted', 'notice.posted', 'npc.greeted', 'npc.interacted', 'perk.bought', 'promotion',
   'radio.shoutout', 'relationship.changed', 'rent.due', 'rent.missed', 'rent.paid', 'roadside.offered', 'roadside.resolved',
   'shift.completed', 'skill.levelup', 'stars.granted', 'startup.funded', 'table.played', 'transfer.received', 'transfer.sent',
   'travel.arrived', 'venue.visited', 'vote.cast', 'wallet.changed', 'weather.soaked', 'wish.granted', 'work.day',

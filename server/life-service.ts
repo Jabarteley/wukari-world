@@ -4,11 +4,14 @@ import { requireSessionCities } from './city-content.ts';
 import { cityRules } from '../src/game/content/world.ts';
 import { createLife, advanceLife, dispatch, hasAction } from '../src/life.ts';
 import { isPeerTransferId, walletEffectSink } from './economy/effects.ts';
+import { sessionOrigin } from './execution-origin.ts';
+import { activeFingerprint, observeProgression, pendingOrigin, progressionOf, recordHumanDay, rememberActive } from './progression.ts';
 
 import type { ActionType, ActionBody } from '../src/types/actions.ts';
 import type { LifeContextInit, LifeState } from '../src/types/life.ts';
 import type { CityId } from '../src/types/protocol.ts';
 import type { ActionOutcome, CityLifeRecord, SessionRecord } from './types.ts';
+import type { RetentionPolicy } from './retention-policy.ts';
 
 /** What a host hands the rules engine for one action: the envelope POST /api/action checks, or the body server code names. */
 export interface LifeActionBody {
@@ -23,7 +26,7 @@ export interface LifeActionBody {
 /** Called with a life that was just settled or acted on (watchLives). */
 export type LifeWatcher = (publicId: string, cityId: CityId, state: LifeState) => void
 /** The link from a settled state to its salt and owner. */
-interface LifeMeta { salt: string; publicId: string; cityId: CityId; session: SessionRecord }
+interface LifeMeta { salt: string; publicId: string; cityId: CityId; session: SessionRecord; entry: CityLifeRecord }
 
 /**
  * THE PER-LIFE SECRET SALT
@@ -123,6 +126,7 @@ export function settleCity(session: SessionRecord, cityId: CityId, now: number):
   requireCharacterCity(session, cityId);
   normalizeCharacter(session);
   let entry: CityLifeRecord | undefined = session.cities[cityId];
+  const isNew = !entry;
   const previous = entry?.updatedAt, money = walletEffectSink(session, cityId, `settle:${cityId}:${Number.isFinite(previous) ? previous : 'new'}:${now}`);
   if (!entry) {
     if (cityRules(cityId)?.status !== 'open') throw Object.assign(new Error('city_closed'), { status: 409, code: 'city_closed' });
@@ -131,10 +135,14 @@ export function settleCity(session: SessionRecord, cityId: CityId, now: number):
   }
   if (typeof entry.salt !== 'string' || !SALT_PATTERN.test(entry.salt)) entry.salt = newSalt();
   const { salt } = entry;
+  const origin = pendingOrigin(entry);
+  progressionOf(entry, now, isNew);
+  const { observe } = observeProgression(session, entry, origin);
   // trustedSave: this is the server's own stored copy, so an action that can no longer run is settled here (src/life.ts createLife).
-  entry.state = createLife(entry.state, { now, cityId, isNew: false, salt, trustedSave: true, money });
+  entry.state = createLife(entry.state, { now, cityId, isNew: false, salt, trustedSave: true, money, observe, executionOrigin: origin });
   const elapsed = Number.isFinite(entry.updatedAt) ? Math.max(0, (now - entry.updatedAt) / 1000) : 0;
-  if (elapsed > 0) advanceLife(entry.state, elapsed, { now, cityId, salt, money });
+  if (elapsed > 0) advanceLife(entry.state, elapsed, { now, cityId, salt, money, observe, executionOrigin: origin });
+  rememberActive(entry, origin);
   entry.state.t = now;
   entry.updatedAt = now;
   entry.state.name = session.name;
@@ -144,7 +152,7 @@ export function settleCity(session: SessionRecord, cityId: CityId, now: number):
   // the first settlement after that must still be later than any number a device was given — without a row written for it.
   const held = typeof session.rev === 'number' && Number.isSafeInteger(session.rev) && session.rev >= 0 ? session.rev : 0;
   session.rev = Math.max(held + 1, Number.isSafeInteger(Math.floor(now)) ? Math.floor(now) : 0);
-  const meta: LifeMeta = { salt, publicId: session.publicId, cityId: entry.state.estate.city as CityId, session };
+  const meta: LifeMeta = { salt, publicId: session.publicId, cityId: entry.state.estate.city as CityId, session, entry };
   lives.set(entry.state, meta);
   announce(meta, entry.state);
   return entry.state;
@@ -157,11 +165,14 @@ export function settleCity(session: SessionRecord, cityId: CityId, now: number):
  * cannot supply a salt of its own, and a replay of one action ID rolls the same dice. For any
  * other state the generator is the caller's `ctx.rng`, or the platform's random source.
  */
-export function applyLifeAction(state: LifeState, body: LifeActionBody, ctx?: LifeContextInit): ActionOutcome {
+export function applyLifeAction(state: LifeState, body: LifeActionBody, ctx?: LifeContextInit, retention?: RetentionPolicy): ActionOutcome {
   if (!hasAction(body?.type)) throw new Error('Invalid action type');
   const meta = lives.get(state);
   const given: LifeContextInit = ctx ?? { now: state.t, cityId: body.cityId, actionId: body.actionId };
   let context: LifeContextInit = given;
+  const origin = meta ? sessionOrigin(meta.session) : 'unknown';
+  const observations = meta ? observeProgression(meta.session, meta.entry, origin) : undefined;
+  const beforeAction = state.activeAction;
   // A state that did not come from settleCity has no salt (a direct call from a test or a script;
   // neither host does this). It must still never roll from the client-chosen action ID alone: unless
   // the caller hands in its own generator, the roll comes from the platform's random source.
@@ -172,10 +183,17 @@ export function applyLifeAction(state: LifeState, body: LifeActionBody, ctx?: Li
     const { salt: ignoredSalt, rng: ignoredRng, ...rest } = given;
     const payload = body.payload, transferId = given.internal === true && body.type === 'social.server'
       && payload && (payload.op === 'transfer-in' || payload.op === 'transfer-out') && isPeerTransferId(payload.transferId) ? payload.transferId : undefined;
-    context = { ...rest, salt: meta.salt, money: walletEffectSink(meta.session, meta.cityId, body.actionId ?? `internal:${body.type}:${state.t}`, transferId) };
+    context = { ...rest, salt: meta.salt, executionOrigin: origin, observe: observations?.observe, money: walletEffectSink(meta.session, meta.cityId, body.actionId ?? `internal:${body.type}:${state.t}`, transferId) };
   }
   // The engine reads every payload as untrusted (each system validates its own), so the envelope-checked body goes in as it is.
   const result = dispatch(state, body as ActionBody, context);
+  if (meta) {
+    // A replacement can have the same activity id. The new invocation still has a new controller.
+    if (state.activeAction !== beforeAction && meta.entry.progression) delete meta.entry.progression.active;
+    rememberActive(meta.entry, origin);
+    const began = state.activeAction !== beforeAction && activeFingerprint(state) !== null;
+    if (result.ok && body.actionId && (began || observations?.meaningful())) recordHumanDay(meta.session, meta.entry, origin, context.now ?? state.t, state.estate.city, retention);
+  }
   // An action may end a trip between cities: the life is then announced under the city it arrived in, as a settlement would.
   if (meta && cityRules(state.estate.city)) meta.cityId = state.estate.city as CityId;
   if (meta) announce(meta, state);

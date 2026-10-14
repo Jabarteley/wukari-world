@@ -1,0 +1,3 @@
+src/types/engine.test.ts:327:3 TS2322 Type '({ missions: m }: LifeState) => { seed: number; day: number; daily: MissionEntry[]; week: number; weekly: MissionEntry[]; rerolls: number; sets: { day: LagosDay; week: LagosWeek; }; ... 5 more ...; claimed: number; }' is not assignable to type '(state: LifeState) => MissionsState'.
+
+Typecheck failed. New .ts and .vue code must be clean. For existing JavaScript, fix the new errors; if they came in with a merge of untyped code, record them with `node scripts/typecheck.ts --update` and say so in the commit.

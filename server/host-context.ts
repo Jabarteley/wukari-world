@@ -6,6 +6,7 @@
  * bounded, when ctx.act may spend, which sessions are archived, which response headers a route may set —
  * are here, once, so the two hosts cannot drift apart. Portable: no Node imports.
  */
+import type { RetentionPolicy } from './retention-policy.ts';
 import { settleCity, applyLifeAction } from './life-service.ts';
 import { fileCharacter } from './character.ts';
 import { ROOM_GROUP_MAX, ROOM_GROUP_MIN, ROOM_GROUP_TARGET } from '../src/game/roomGroups.ts';
@@ -255,7 +256,7 @@ export function lifeAnnouncer(push: (publicId: string, frame: LifeChangedFrame) 
  *     returns { ok, code, state, duplicate: true } without running the action again.
  * Anything else throws, so a route cannot spend without a receipt by accident.
  */
-export function lifeAuthority({ now, receipts, changed, interactiveTeachingStarts = false }: { now: () => number; receipts: { active(): boolean; action: ContextCore['actionOnce'] }; changed?: LifeChanged; interactiveTeachingStarts?: boolean }) {
+export function lifeAuthority({ now, receipts, changed, interactiveTeachingStarts = false, retention }: { now: () => number; receipts: { active(): boolean; action: ContextCore['actionOnce'] }; changed?: LifeChanged; interactiveTeachingStarts?: boolean; retention?: RetentionPolicy }) {
   // Which stored session a settled life belongs to, so ctx.act can find that player's receipts.
   const ownerOf = new WeakMap<LifeState, SessionRecord>();
   // What a player would see of a character: the outcome of its life in this city, and which city and lives it has.
@@ -282,7 +283,7 @@ export function lifeAuthority({ now, receipts, changed, interactiveTeachingStart
   function act(state: LifeState, body: ActBody): ActionOutcome {
     const { stateGuard, ...action } = body;
     // Keep action-created records valid when the snapshot is rebuilt at its settlement time.
-    const run = () => applied(state, applyLifeAction(state, action, { now: state.t, cityId: action.cityId, actionId: action.actionId, internal: true, interactiveTeachingStarts }), action.actionId);
+    const run = () => applied(state, applyLifeAction(state, action, { now: state.t, cityId: action.cityId, actionId: action.actionId, internal: true, interactiveTeachingStarts }, retention), action.actionId);
     if (receipts.active() || (typeof stateGuard === 'string' && stateGuard.trim().length >= 12)) return run();
     const session = ownerOf.get(state);
     if (!session || action.actionId === undefined) throw new Error(`ctx.act(${action.type}) has no receipt: call it inside ctx.once, pass the request's actionId, or state its stateGuard`);
@@ -290,7 +291,7 @@ export function lifeAuthority({ now, receipts, changed, interactiveTeachingStart
     return result.duplicate ? { ...result, state } : result;
   }
   /** What POST /api/action runs: a player's own request, with no server authority. */
-  const playerAct = (state: LifeState, body: ActionRequest): ActionOutcome => applied(state, applyLifeAction(state, body, { now: state.t, cityId: body.cityId, actionId: body.actionId, interactiveTeachingStarts }), body.actionId);
+  const playerAct = (state: LifeState, body: ActionRequest): ActionOutcome => applied(state, applyLifeAction(state, body, { now: state.t, cityId: body.cityId, actionId: body.actionId, interactiveTeachingStarts }, retention), body.actionId);
   return { settle, act, playerAct };
 }
 

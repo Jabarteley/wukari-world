@@ -1,0 +1,32 @@
+✔ a departure whose write fails did not happen: 503, the life and the room are unchanged; the same action id then applies exactly once (90.159792ms)
+✔ an outcome that could not be saved is not shown, and a restart after the failure finds only what was acknowledged (66.313042ms)
+✔ a gift whose write fails moves no money; the same client id then moves it exactly once (45.220208ms)
+✔ caches follow the file: a block, a mute and a house visit that could not be saved are not in force (45.287792ms)
+✔ house visits during a write outage: letting someone in fails cleanly, and the heartbeat still ends an expired visit (35.569375ms)
+✔ the store adds no background retry: after a failed write nothing is pending, so nothing loops or floods the log (253.582375ms)
+MODERATOR_TOKEN must be 24 to 512 printable ASCII characters without spaces: the moderator routes stay disabled.
+MODERATOR_TOKEN must be 24 to 512 printable ASCII characters without spaces: the moderator routes stay disabled.
+✔ operator routes: off without a token; with one, only a bearer header opens them (93.883917ms)
+✔ text filter: refused with a reason, never altered — names, venue chat, messages, group names (129.185458ms)
+✔ reports reach an operator; a mute silences text everywhere and leaves the life untouched (107.074542ms)
+✔ operator can remove an ad and see live content; the owner is told and not refunded (18.879584ms)
+Store write failed (ENOENT): ENOENT: no such file or directory, open '/var/folders/3x/y9y7vtp934q97zk_sl810lj40000gn/T/joinallworld-test-5y3XWS/devices.json.tmp'. Unsaved changes were undone.
+Shutdown: the store failed: storage_unavailable
+✔ a blocked player is not seen, heard or signalled in a public venue — per recipient, and only for the two of them (385.169458ms)
+✔ report a problem: a receipt with automatic context and a status the player can read later; no secret, rate limited (102.014542ms)
+✔ a quarantined wallet can file and retry a bounded support report without repairing or exposing the corrupt save (27.099958ms)
+✔ statement: the server explains the balance — opening, every change, closing — and it reconciles (40.847209ms)
+✔ polls do not write unless something happened; an outcome is on disk before the poll is answered (69.596792ms)
+✔ a session that never created a life leaves nothing behind; a lived life is archived, never deleted (19.882583ms)
+✔ presence freshness: a connection that stops answering pings stops counting as online within one beat (253.452875ms)
+✔ presence registry: unresponsive sockets are ignored, and say "reconnecting" rather than "online" (0.303667ms)
+✔ heartbeat ends an expired house visit even when neither the guest nor the host sends anything (239.884833ms)
+✔ votes per address: a soft cap that refuses with a reason from a public address and only logs from a shared one (474.413375ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4143.040541

@@ -1,0 +1,32 @@
+{
+  "files": [
+    "assets/city-lagos-content-6271471e.js",
+    "assets/city-lagos-venues-7d50b0ea.js",
+    "assets/engine-db13bcc0.js",
+    "assets/preload-helper-86ad5cfe.js",
+    "assets/vue-4eb727db.js",
+    "assets/city-lagos-regulars-8a501d09.js",
+    "assets/city-lagos-rules-a9d4cd03.js",
+    "assets/startApp-3e66cb28.js",
+    "assets/shell-kit-9a5c081d.js",
+    "assets/callsLoader-b458efde.js",
+    "assets/useAccountLite-280f681c.js",
+    "assets/achievements-714c48bf.js",
+    "assets/app-5995b077.js",
+    "assets/touchOfferModel-036b913b.js",
+    "assets/shownOnce-6a809f94.js",
+    "assets/GlyphText.vue_vue_type_script_setup_true_lang-7f2cf704.js",
+    "assets/app-7a06076d.css",
+    "index.html"
+  ],
+  "js": {
+    "raw": 614596,
+    "gzip": 221567,
+    "brotli": 190420
+  },
+  "all": {
+    "raw": 625257,
+    "gzip": 226108,
+    "brotli": 194060
+  }
+}

@@ -1,0 +1,133 @@
+(node:4130) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ on the Worker: when the object is evicted mid-call, the other side is told it ended, and new calls work afterwards (31096.90625ms)
+(node:6674) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ Cloudflare messages: a group with a mention, a quoted reply, a reaction, a muted group, and two devices (31272.834542ms)
+(node:10633) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Store: social now kept per entry (0 entries, 0 ms)
+Store: growth now kept per entry (0 entries, 1 ms)
+Store: civic now kept per entry (0 entries, 0 ms)
+Store: business now kept per entry (0 entries, 0 ms)
+Store: market now kept per entry (0 entries, 0 ms)
+Store: commerce now kept per entry (0 entries, 0 ms)
+Store: records now kept per entry (0 entries, 0 ms)
+Store: realValue now kept per entry (0 entries, 0 ms)
+Store: showcase now kept per entry (0 entries, 0 ms)
+Store: trustChecks now kept per entry (0 entries, 0 ms)
+Store: street now kept per entry (0 entries, 0 ms)
+Store: livingWorld now kept per entry (0 entries, 0 ms)
+Store: agents now kept per entry (0 entries, 0 ms)
+Store: every collection has its per-entry copy (13 copied at this start, 0 characters); the stored values stay the truth
+✖ Invitations on the Worker: house link, friend request, first DM, knock and let-in — over sockets, across a sleep (36085.8555ms)
+Store: social now kept per entry (0 entries, 0 ms)
+Store: growth now kept per entry (0 entries, 0 ms)
+Store: civic now kept per entry (0 entries, 0 ms)
+Store: business now kept per entry (0 entries, 0 ms)
+Store: market now kept per entry (0 entries, 0 ms)
+Store: commerce now kept per entry (0 entries, 0 ms)
+Store: records now kept per entry (0 entries, 0 ms)
+Store: realValue now kept per entry (0 entries, 0 ms)
+Store: showcase now kept per entry (0 entries, 0 ms)
+Store: trustChecks now kept per entry (0 entries, 0 ms)
+Store: street now kept per entry (0 entries, 0 ms)
+Store: livingWorld now kept per entry (0 entries, 0 ms)
+Store: agents now kept per entry (0 entries, 0 ms)
+Store: every collection has its per-entry copy (13 copied at this start, 0 characters); the stored values stay the truth
+Account token refused: expired
+Account token refused: stale
+Account token refused: audience
+Account token refused: issuer
+Account token refused: signature
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+Account token refused: malformed
+✖ Cloudflare: accounts — fixation, CSRF, token replay, unverified address, one answer for every bad token, limits, and sockets closed on sign-out (32606.040666ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 131887.446791
+
+✖ failing tests:
+
+test at deploy/calls.edge.test.ts:198:1
+✖ on the Worker: when the object is evicted mid-call, the other side is told it ended, and new calls work afterwards (31096.90625ms)
+  Error: Timed out waiting to evict Durable Object: it still has active references.
+      at _Miniflare.unsafeEvictDurableObject (/Users/anthonyakpan/Desktop/JoinAllworld/deploy/tooling/node_modules/miniflare/dist/src/index.js:125432:19)
+      at async TestContext.<anonymous> (file:///private/tmp/allworld-main-baseline.FCmd6o/deploy/calls.edge.test.ts:209:3)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    [cause]: undefined
+  }
+
+test at deploy/chat.edge.test.ts:84:1
+✖ Cloudflare messages: a group with a mention, a quoted reply, a reaction, a muted group, and two devices (31272.834542ms)
+  Error: Timed out waiting to evict Durable Object: it still has active references.
+      at _Miniflare.unsafeEvictDurableObject (/Users/anthonyakpan/Desktop/JoinAllworld/deploy/tooling/node_modules/miniflare/dist/src/index.js:125432:19)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///private/tmp/allworld-main-baseline.FCmd6o/deploy/chat.edge.test.ts:111:3)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    [cause]: undefined
+  }
+
+test at deploy/cloudflare.test.ts:960:1
+✖ Invitations on the Worker: house link, friend request, first DM, knock and let-in — over sockets, across a sleep (36085.8555ms)
+  Error: Timed out waiting to evict Durable Object: it still has active references.
+      at _Miniflare.unsafeEvictDurableObject (/Users/anthonyakpan/Desktop/JoinAllworld/deploy/tooling/node_modules/miniflare/dist/src/index.js:125432:19)
+      at async TestContext.<anonymous> (file:///private/tmp/allworld-main-baseline.FCmd6o/deploy/cloudflare.test.ts:1003:3)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    [cause]: undefined
+  }
+
+test at deploy/cloudflare.test.ts:1405:1
+✖ Cloudflare: accounts — fixation, CSRF, token replay, unverified address, one answer for every bad token, limits, and sockets closed on sign-out (32606.040666ms)
+  Error: Timed out waiting to evict Durable Object: it still has active references.
+      at _Miniflare.unsafeEvictDurableObject (/Users/anthonyakpan/Desktop/JoinAllworld/deploy/tooling/node_modules/miniflare/dist/src/index.js:125432:19)
+      at async TestContext.<anonymous> (file:///private/tmp/allworld-main-baseline.FCmd6o/deploy/cloudflare.test.ts:1453:3)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    [cause]: undefined
+  }

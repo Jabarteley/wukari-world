@@ -1,0 +1,549 @@
+{
+  "batch": 2,
+  "games": [
+    {
+      "name": "Fortnite",
+      "genre": "battle royale / live-service sandbox",
+      "award": {
+        "name": "BAFTA Games Award",
+        "year": 2019,
+        "category": "Evolving Game",
+        "url": "https://www.bafta.org/media-centre/press-releases/winners-announced-for-the-british-academy-games-awards-in-2019/"
+      },
+      "award_verified": true,
+      "award_evidence": "BAFTA's 2019 winners release names Fortnite as the Evolving Game winner.",
+      "mechanics": [
+        {
+          "name": "Battle Pass",
+          "detail": "Pages of rewards progress through XP earned across Battle Royale, Creative, LEGO Fortnite and Festival experiences.",
+          "url": "https://www.epicgames.com/help/c-32735058/c-EpicGamesStore_About/a21682761?lang=en-US"
+        },
+        {
+          "name": "Quests",
+          "detail": "Daily, weekly and character quests provide repeatable XP bursts and direct players across modes.",
+          "url": "https://www.epicgames.com/help/c-32735058/c-EpicGamesStore_About/a21682761?lang=en-US"
+        },
+        {
+          "name": "Persistent live world",
+          "detail": "Epic continually rotates seasons, modes and creator-made experiences inside one account progression layer.",
+          "url": "https://www.epicgames.com/help/c-32735058/c-EpicGamesStore_About/a21682761?lang=en-US"
+        }
+      ],
+      "return_reason": "Documented: cross-mode XP, time-limited passes and recurring quests create a visible near-term loop; the award source also describes Fortnite as an evolving game. Inference: players may return to finish a pass, try a changed island, or meet friends in a new mode.",
+      "allworld_transfer": "Translate seasonal city festivals, creator districts and cross-job quests into one fair pass: contribution XP should work in jobs, homes, civic missions and social events, with badges for completed seasons and public achievements.",
+      "risk": "Pass expiry and heavy content cadence can create FOMO; avoid pay-to-win power and preserve catch-up routes.",
+      "retention_type": "ongoing live-service",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Apex Legends",
+      "genre": "battle royale / hero shooter",
+      "award": {
+        "name": "BAFTA Games Award",
+        "year": 2020,
+        "category": "Multiplayer",
+        "url": "https://www.bafta.org/media-centre/press-releases/winners-announced-british-academy-games-awards-2020/"
+      },
+      "award_verified": true,
+      "award_evidence": "BAFTA's 2020 winners release names Apex Legends as the Multiplayer winner.",
+      "mechanics": [
+        {
+          "name": "Seasonal Battle Pass",
+          "detail": "Each roughly three-month season brings new Legends, loot and events; Battle Passes award cosmetics, currency and packs through play.",
+          "url": "https://www.ea.com/games/apex-legends/about/frequently-asked-questions"
+        },
+        {
+          "name": "Challenges",
+          "detail": "Daily and weekly challenges award Stars toward Battle Pass levels, while a free track remains available.",
+          "url": "https://www.ea.com/games/apex-legends/about/frequently-asked-questions"
+        },
+        {
+          "name": "Ranked competition",
+          "detail": "Ranked Leagues and the ALGS provide skill progression and formal competition using the same game rules.",
+          "url": "https://media.contentapi.ea.com/content/dam/apex-legends/compete/official-rules-updated/algs-year-4/en-algs-year-4-official-rules-2023-08-21.pdf"
+        }
+      ],
+      "return_reason": "Documented: seasonal content, challenge Stars, persistent player level and ranked play supply layered progress. Inference: squads return for both social coordination and the next skill or cosmetic milestone.",
+      "allworld_transfer": "Use role-based city teams, fair matchmaking and seasonal civic leagues; let players earn a shared badge track from work, exploration and cooperative rescue missions rather than combat power.",
+      "risk": "Battle-pass split cadence can pressure completion and monetize status; keep essential city functions permanently available and make rank decay forgiving.",
+      "retention_type": "ongoing live-service",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "VALORANT",
+      "genre": "competitive tactical hero shooter",
+      "award": {
+        "name": "Esports Awards",
+        "year": 2022,
+        "category": "Esports Game of the Year",
+        "url": "https://esportsawards.com/2022-winners/"
+      },
+      "award_verified": true,
+      "award_evidence": "The Esports Awards' 2022 winners page names VALORANT as Esports Game of the Year.",
+      "mechanics": [
+        {
+          "name": "Acts and Battle Passes",
+          "detail": "Episodes contain Acts, with a new time-bounded Battle Pass each Act and free and premium progression tracks.",
+          "url": "https://playvalorant.com/en-gb/news/game-updates/what-is-the-valorant-battlepass/"
+        },
+        {
+          "name": "Missions",
+          "detail": "XP from matches and missions advances the Battle Pass and a character contract simultaneously.",
+          "url": "https://playvalorant.com/en-gb/news/game-updates/what-is-the-valorant-battlepass/"
+        },
+        {
+          "name": "Ranked rating",
+          "detail": "Competitive queues update Ranked Rating and matchmaking; official patch notes document rank and sub-tier adjustments.",
+          "url": "https://playvalorant.com/en-us/news/game-updates/valorant-patch-notes-13-00/"
+        }
+      ],
+      "return_reason": "Documented: short Acts, simultaneous mission/contract progress and visible Ranked Rating give each session a measurable target. Inference: players return to improve mastery, preserve team routines and complete an expiring Act track.",
+      "allworld_transfer": "Build fair city leagues where reputation, job mastery and team missions produce visible ratings, with seasonal badges that reward cooperation and transparent contribution rather than hidden power.",
+      "risk": "Rank anxiety and premium cosmetics can narrow participation; provide unranked social spaces, anti-smurf protections and noncompetitive progression.",
+      "retention_type": "ongoing competitive live-service",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Overwatch",
+      "genre": "team hero shooter",
+      "award": {
+        "name": "BAFTA Games Award",
+        "year": 2017,
+        "category": "Multiplayer",
+        "url": "https://www.bafta.org/media-centre/press-releases/winners-announced-for-the-british-academy-games-awards-in-2017/"
+      },
+      "award_verified": true,
+      "award_evidence": "BAFTA's 2017 winner record names Overwatch as the Multiplayer winner.",
+      "edition_note": "The award and mechanic evidence refer to the original 2016 Overwatch. Overwatch 2-era progression and live-service claims are intentionally excluded.",
+      "mechanics": [
+        {
+          "name": "Original Competitive Play placements and tiers",
+          "detail": "Blizzard's October 2017 original-Overwatch season page documents placement matches, skill rating and named competitive tiers.",
+          "url": "https://overwatch.blizzard.com/en-us/news/21173548/"
+        }
+      ],
+      "return_reason": "Historical documented pattern: the original game's placement matches and visible skill tiers gave repeat competitive sessions a legible mastery path. Inference: players could return for rank recovery and social coordination around familiar team roles.",
+      "allworld_transfer": "Historical lesson: use complementary city roles, cooperative objectives and transparent skill tiers without assuming that Overwatch 2's later progression systems belong to the 2017 award winner.",
+      "risk": "The original service was replaced by Overwatch 2, so current sequel systems cannot be used as evidence for the 2017-winning edition.",
+      "retention_type": "historical competitive service — original Overwatch",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "League of Legends",
+      "genre": "MOBA",
+      "award": {
+        "name": "The Game Awards",
+        "year": 2019,
+        "category": "Best Esports Game",
+        "url": "https://thegameawards.com/rewind/year-2019"
+      },
+      "award_verified": true,
+      "award_evidence": "The Game Awards' 2019 edition archive names League of Legends as Best Esports Game.",
+      "mechanics": [
+        {
+          "name": "Ranked seasons and rewards",
+          "detail": "Riot documents seasonal rank resets, provisional games and ranked reward missions tied to the climb.",
+          "url": "https://www.leagueoflegends.com/en-us/news/game-updates/patch-26-1-notes/"
+        },
+        {
+          "name": "Seasonal challenges",
+          "detail": "Additional in-game quests and challenges release alongside ranked splits.",
+          "url": "https://www.leagueoflegends.com/en-us/news/game-updates/patch-14-1-notes/"
+        },
+        {
+          "name": "Champion roster and patches",
+          "detail": "Frequent balance patches and a large champion roster continually change viable strategies.",
+          "url": "https://www.leagueoflegends.com/en-us/news/tags/ranked/"
+        }
+      ],
+      "return_reason": "Documented: ranked splits, missions, patches and champion variety create recurring competitive goals. Inference: players return to learn a changed meta, climb with friends and maintain identity in a long-lived roster.",
+      "allworld_transfer": "Use seasonal job ladders and city missions with role diversity, fair rating and earned badges; rotate scenarios while preserving a player’s long-term civic résumé.",
+      "risk": "Complexity, toxicity and ladder pressure can exclude newcomers; pair AI coaching with strong moderation and low-stakes onboarding.",
+      "retention_type": "ongoing competitive live-service",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Dota 2",
+      "genre": "MOBA",
+      "award": {
+        "name": "IGN People's Choice Award at gamescom",
+        "year": 2011,
+        "category": "People's Choice Award",
+        "url": "https://store.steampowered.com/app/570/Dota_2/"
+      },
+      "award_verified": true,
+      "award_evidence": "Valve's official Steam page embeds an IGN People's Choice Award gamescom 2011 badge for Dota 2; the organizer archive was unavailable.",
+      "mechanics": [
+        {
+          "name": "Skill-ranked matchmaking",
+          "detail": "Valve's Glicko update uses Rank and Rank Confidence, with calibration helping returning players regain an accurate placement.",
+          "url": "https://www.dota2.com/newfrontiers"
+        },
+        {
+          "name": "Hero drafting and mastery",
+          "detail": "Matches begin from a large hero pool and team composition choices, producing different strategic problems each game.",
+          "url": "https://www.dota2.com/newfrontiers"
+        },
+        {
+          "name": "Replays and competitive ecosystem",
+          "detail": "The official game description and client support persistent multiplayer, co-op and server-side match replays.",
+          "url": "https://store.steampowered.com/app/570/Dota_2/"
+        }
+      ],
+      "return_reason": "Documented: calibration, Rank Confidence and a large hero pool create a replayable mastery ladder. Inference: players return to test new drafts, improve decision-making and participate in a shared competitive scene.",
+      "allworld_transfer": "Model transparent confidence-based matchmaking for city jobs and missions, where players can try roles without permanent damage and earn durable mastery badges.",
+      "risk": "The award evidence is an official Valve store listing rather than an award organizer archive; onboarding and toxicity remain substantial risks.",
+      "retention_type": "ongoing competitive live-service",
+      "evidence_confidence": "medium"
+    },
+    {
+      "name": "Counter-Strike: Global Offensive",
+      "genre": "tactical competitive shooter",
+      "award": {
+        "name": "Esports Awards",
+        "year": 2016,
+        "category": "Esports Game of the Year",
+        "url": "https://esportsawards.com/previous-winners/esports-awards-2016/"
+      },
+      "award_verified": true,
+      "award_evidence": "The Esports Awards' 2016 archive names Counter-Strike: Global Offensive as Esports Game of the Year.",
+      "edition_note": "The award and mechanics refer to historical CS:GO. Steam app 730 now resolves to Counter-Strike 2 and is not used as evidence for the 2016 edition.",
+      "mechanics": [
+        {
+          "name": "Historical operations and missions",
+          "detail": "CS:GO's official Operation Shattered Web page documents weekly mission cards, Stars, reward unlocks and an upgradeable Operation Coin.",
+          "url": "https://www.counter-strike.net/shatteredweb"
+        },
+        {
+          "name": "Historical round and economy structure",
+          "detail": "Valve's archived CS:GO overview describes objective-based rounds, weapon and armor purchases, in-game economy and Competitive Skill Groups.",
+          "url": "https://blog.counter-strike.net/about/"
+        },
+        {
+          "name": "Historical cosmetic collections",
+          "detail": "Operation Shattered Web added weapon collections, agents, stickers and graffiti as operation rewards.",
+          "url": "https://www.counter-strike.net/shatteredweb"
+        }
+      ],
+      "return_reason": "Historical documented pattern: repeatable rounds, visible skill groups, weekly missions and collectible operation rewards reinforced a skill-first loop in CS:GO. The inference concerns that edition, not Counter-Strike 2.",
+      "allworld_transfer": "Historical lesson: combine short team tasks, durable mastery and non-power identity rewards while keeping the award-era product distinct from its replacement.",
+      "risk": "CS:GO was replaced by Counter-Strike 2, and market-like cosmetics plus high skill gaps remain poor defaults for broad onboarding.",
+      "retention_type": "historical competitive live-service — CS:GO",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Rocket League",
+      "genre": "vehicular sports / competitive arcade",
+      "award": {
+        "name": "BAFTA Games Award",
+        "year": 2017,
+        "category": "Evolving Game",
+        "url": "https://www.bafta.org/media-centre/press-releases/winners-announced-for-the-british-academy-games-awards-in-2017/"
+      },
+      "award_verified": true,
+      "award_evidence": "BAFTA's 2017 winner record names Rocket League as the Evolving Game winner.",
+      "mechanics": [
+        {
+          "name": "Competitive ranks and placements",
+          "detail": "Players complete placement matches, climb skill tiers and can earn rank-specific seasonal rewards and titles.",
+          "url": "https://www.rocketleague.com/news/introducing-rocket-league-season-5-rewards"
+        },
+        {
+          "name": "Seasonal tournaments",
+          "detail": "Competitive seasons, tournaments and Rocket Pass share a schedule, creating synchronized return windows.",
+          "url": "https://www.rocketleague.com/news/rocket-league-free-to-play--seasons--new-ranks--and-more"
+        },
+        {
+          "name": "Challenges and Drops",
+          "detail": "Weekly, season and event challenges award XP, customization items and Drops.",
+          "url": "https://www.rocketleague.com/news/rocket-league-challenges--a-closer-look"
+        }
+      ],
+      "return_reason": "Documented: tiny matches, clear ranks, scheduled tournaments and challenge drops make progress easy to resume. Inference: players return for mechanical practice, team chemistry and a fresh season reward target.",
+      "allworld_transfer": "Create short cooperative city games and skill trials inside a broader life simulation; reward teamwork and civic achievement with titles, badges and home décor.",
+      "risk": "Rank resets and cosmetic season gates can frustrate occasional players; keep placement fair and rewards attainable after a late start.",
+      "retention_type": "ongoing competitive live-service",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Splatoon",
+      "genre": "ink-based team shooter",
+      "award": {
+        "name": "The Game Awards",
+        "year": 2015,
+        "category": "Best Multiplayer Game",
+        "url": "https://thegameawards.com/rewind/year-2015"
+      },
+      "award_verified": true,
+      "award_evidence": "The Game Awards' 2015 edition archive names Splatoon as Best Multiplayer Game.",
+      "mechanics": [
+        {
+          "name": "Turf War",
+          "detail": "Four-versus-four teams compete to cover the arena in ink, with movement and concealment tied to painted territory.",
+          "url": "https://awards.cesa.or.jp/2016/en/prize/year/01.html"
+        },
+        {
+          "name": "Gear and ability customization",
+          "detail": "Nintendo's award description documents equipment and gear that change abilities without changing the core objective.",
+          "url": "https://awards.cesa.or.jp/2016/en/prize/year/01.html"
+        },
+        {
+          "name": "Splatfests",
+          "detail": "Limited-time themed team events ask players to choose a side and compete for a result.",
+          "url": "https://splatoon.nintendo.com/base/en/gallery/splatfests/"
+        }
+      ],
+      "return_reason": "Documented: simple Turf War rules, movement options, gear and time-bounded Splatfests combine accessibility with mastery. Inference: people return for quick social matches, event identity and the satisfaction of expressing a playstyle.",
+      "allworld_transfer": "Use approachable city competitions with multiple valid roles, seasonal neighborhood votes and cosmetic identity; keep outcomes legible and avoid pay-gated civic power.",
+      "risk": "Event timing and team imbalance can exclude players; archive past badges and offer practice or late-entry paths.",
+      "retention_type": "ongoing competitive live-service",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Splatoon 3",
+      "genre": "ink-based team shooter",
+      "award": {
+        "name": "Japan Game Awards",
+        "year": 2023,
+        "category": "Award for Excellence",
+        "url": "https://awards.cesa.or.jp/2023/en/prize/year/05.html"
+      },
+      "award_verified": true,
+      "award_evidence": "The Japan Game Awards' 2023 organizer page lists Splatoon 3 as an Award for Excellence winner.",
+      "mechanics": [
+        {
+          "name": "Splatfests and Tricolor Turf War",
+          "detail": "Players vote on one of three themes, then compete in 4v4 and three-team Tricolor battles over a limited event period.",
+          "url": "https://splatoon.nintendo.com/en/news/catch-up-on-all-the-latest-from-the-splatoon-3-direct/"
+        },
+        {
+          "name": "Seasonal catalog",
+          "detail": "Battles earn points exchanged for seasonal gear, ability chunks, titles, banners and decorations through the catalog.",
+          "url": "https://splatoon.nintendo.com/en/news/catch-up-on-all-the-latest-from-the-splatoon-3-direct/"
+        },
+        {
+          "name": "Anarchy and Salmon Run",
+          "detail": "Ranked objective modes and four-player co-op wave defense provide distinct repeatable goals.",
+          "url": "https://splatoon.nintendo.com/en/news/catch-up-on-all-the-latest-from-the-splatoon-3-direct/"
+        }
+      ],
+      "return_reason": "Documented: event voting, seasonal catalogs, ranked objectives and co-op waves serve different motivations. Inference: returning is attractive because a player can switch between competitive mastery, social events and collection progress.",
+      "allworld_transfer": "Mirror this with city elections, cooperative disaster response, job skill ladders and seasonal civic catalogs, awarding badges for contribution across modes.",
+      "risk": "Multiple currencies and event rules can overwhelm; keep the primary social loop clear and make old cosmetics and achievements recoverable.",
+      "retention_type": "ongoing competitive live-service",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Destiny",
+      "genre": "shared-world looter shooter",
+      "award": {
+        "name": "D.I.C.E. Awards",
+        "year": 2015,
+        "category": "Outstanding Achievement in Online Gameplay",
+        "url": "https://www.interactive.org/news/18th_dice_awards_winners_.asp"
+      },
+      "award_verified": true,
+      "award_evidence": "AIAS's 18th D.I.C.E. winners page names Destiny for Outstanding Achievement in Online Gameplay.",
+      "edition_note": "This is Destiny 1, now under Bungie's legacy support. It no longer receives planned game updates or content.",
+      "mechanics": [
+        {
+          "name": "Weekly reward lockouts",
+          "detail": "Bungie support documents weekly Nightfall, raid, challenge and playlist rewards, with checkpoints and character-based reset rules.",
+          "url": "https://help.bungie.net/hc/en-us/articles/360049201951-Legacy-Support-for-Destiny-1-Activities"
+        },
+        {
+          "name": "Raids and challenges",
+          "detail": "Raids are end-game co-op activities with progression checkpoints, hard modes and separate challenge rewards.",
+          "url": "https://help.bungie.net/hc/en-us/articles/360049201951-Legacy-Support-for-Destiny-1-Activities"
+        },
+        {
+          "name": "Crucible and strikes",
+          "detail": "Matchmade PvE strikes and PvP Crucible playlists provide repeatable social and competitive activities.",
+          "url": "https://help.bungie.net/hc/en-us/articles/360049201951-Legacy-Support-for-Destiny-1-Activities"
+        }
+      ],
+      "return_reason": "Historical/legacy pattern: weekly resets, raid checkpoints and shared activities created a calendar of goals. Bungie's support page documents the remaining legacy activities, not a currently evolving service.",
+      "allworld_transfer": "Historical lesson: cooperative checkpoints and durable professional badges can create team rituals, but weekly lockouts should not erase a citizen's core history or require current-service assumptions.",
+      "risk": "Bungie states that Destiny 1 receives no planned game updates or content; treat its loop as legacy evidence and avoid coercive lockouts.",
+      "retention_type": "historical/legacy live-service — Destiny 1",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Destiny 2",
+      "genre": "shared-world looter shooter",
+      "award": {
+        "name": "The Game Awards",
+        "year": 2019,
+        "category": "Best Community Support",
+        "url": "https://thegameawards.com/rewind/year-2019"
+      },
+      "award_verified": true,
+      "award_evidence": "The Game Awards' 2019 edition archive names Destiny 2 as Best Community Support.",
+      "mechanics": [
+        {
+          "name": "Seasonal challenges",
+          "detail": "Weekly challenge sets target seasonal content and rituals, award XP and rewards, and remain completable until season end.",
+          "url": "https://www.bungie.net/7/en/News/article/50040"
+        },
+        {
+          "name": "Guardian Ranks and commendations",
+          "detail": "Guardian Ranks showcase knowledge and skill; elite ranks require commendations from fellow players.",
+          "url": "https://www.bungie.net/7/en/News/Article/official-destiny-2-guide-new"
+        },
+        {
+          "name": "Weekly ritual reset",
+          "detail": "Bounties, raid challenges, Nightfalls, Trials and powerful rewards reset weekly.",
+          "url": "https://help.bungie.net/hc/en-us/articles/360049199911-Destiny-2-Ritual-Reset-Guide"
+        }
+      ],
+      "return_reason": "Documented: seasonal challenges, weekly resets, ranks and commendations combine self-improvement with community recognition. Inference: players return to keep a fireteam routine, complete a title path or chase a better build.",
+      "allworld_transfer": "Use commendations from real human teammates, explainable AI assistance and weekly civic missions that build a public trust record without letting popularity buy power.",
+      "risk": "As of 2026 Bungie says planned live-service updates ended; transfer the durable badge/rank model without copying content churn or sunset anxiety.",
+      "retention_type": "ongoing live-service / legacy transition",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Final Fantasy XIV",
+      "genre": "MMORPG",
+      "award": {
+        "name": "BAFTA Games Award",
+        "year": 2023,
+        "category": "Evolving Game",
+        "url": "https://www.bafta.org/awards/games/evolving-game/"
+      },
+      "award_verified": true,
+      "award_evidence": "BAFTA's Evolving Game archive marks Final Fantasy XIV Online as the 2023 winner.",
+      "mechanics": [
+        {
+          "name": "Weekly Challenge Log",
+          "detail": "The official manual lists challenges with progress and rewards; progress resets weekly.",
+          "url": "https://na.finalfantasyxiv.com/game_manual/view/"
+        },
+        {
+          "name": "Duty Roulette",
+          "detail": "Daily and duty roulettes match players into dungeons, trials and raids with reward bonuses and role incentives.",
+          "url": "https://na.finalfantasyxiv.com/lodestone/topics/detail/230f6e0af3536f9a40654d783c8c2f1094131070"
+        },
+        {
+          "name": "Achievements and titles",
+          "detail": "The Lodestone database exposes thousands of achievements with title, equipment and point rewards.",
+          "url": "https://na.finalfantasyxiv.com/lodestone/playguide/db/achievement/"
+        }
+      ],
+      "return_reason": "Documented: a persistent world layers weekly challenges, daily group duties, crafting and achievement titles. Inference: players return for routine social obligations, story continuation and a character identity that accumulates over years.",
+      "allworld_transfer": "Prioritize a durable civic identity: jobs, homes, clubs and city achievements should coexist with weekly cooperative duties and titles that reflect helpful human behavior.",
+      "risk": "MMO breadth and time demands can overwhelm; support catch-up, asynchronous contributions and clear onboarding for returning residents.",
+      "retention_type": "ongoing MMO",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "World of Warcraft",
+      "genre": "MMORPG",
+      "award": {
+        "name": "D.I.C.E. Awards",
+        "year": 2005,
+        "category": "Massively Multiplayer/Persistent World Game of the Year",
+        "url": "https://www.interactive.org/awards/2005_8th_awards.asp"
+      },
+      "award_verified": true,
+      "award_evidence": "AIAS's 2005 award page names World of Warcraft as Massively Multiplayer/Persistent World Game of the Year.",
+      "mechanics": [
+        {
+          "name": "Persistent character progression",
+          "detail": "AIAS describes Azeroth as a persistent online RPG built around exploration, quests and challenges.",
+          "url": "https://www.interactive.org/games/video_game_details.asp?idAward=2005&idGame=105"
+        },
+        {
+          "name": "Seasonal endgame cycles",
+          "detail": "Raids, Mythic+ and rotating seasons provide repeatable high-skill group content and achievement targets.",
+          "url": "https://worldofwarcraft.blizzard.com/en-us/news"
+        },
+        {
+          "name": "Guild social progression",
+          "detail": "Guilds coordinate players for group content, shared goals and social identity in the persistent world.",
+          "url": "https://worldofwarcraft.blizzard.com/en-us/news"
+        }
+      ],
+      "return_reason": "Documented: quests, exploration and a persistent world are the foundation; current endgame adds rotating group challenges. Inference: returning players reconnect with guilds, continue a character story and pursue mastery or prestige goals.",
+      "allworld_transfer": "Treat Allworld cities as persistent places where residents build work histories, homes, relationships and public badges, with optional guild-like crews and humane catch-up.",
+      "risk": "Long subscription-style obligation and legacy complexity can exclude people with limited time; support episodic participation and transparent AI help.",
+      "retention_type": "ongoing MMO",
+      "evidence_confidence": "medium"
+    },
+    {
+      "name": "Sea of Thieves",
+      "genre": "shared-world pirate adventure",
+      "award": {
+        "name": "BAFTA Games Award",
+        "year": 2021,
+        "category": "Evolving Game",
+        "url": "https://www.bafta.org/awards/games/evolving-game/"
+      },
+      "award_verified": true,
+      "award_evidence": "BAFTA's Evolving Game archive marks Sea of Thieves as the 2021 winner.",
+      "mechanics": [
+        {
+          "name": "Guilds",
+          "detail": "Up to 24 pirates can join a Guild, sail on friends' pledged ships while offline and raise shared Guild Reputation for rewards.",
+          "url": "https://www.seaofthieves.com/news/season-ten-preview"
+        },
+        {
+          "name": "Voyages and world events",
+          "detail": "Crews choose Trading Company voyages, Tall Tales or world events; Season 11 added direct launch and on-demand Raid Voyages.",
+          "url": "https://www.seaofthieves.com/news/season11-launch"
+        },
+        {
+          "name": "Milestones and Commendations",
+          "detail": "Captaincy tracks long-term playstyle milestones, while seasonal commendations and Renown unlock cosmetics.",
+          "url": "https://www.seaofthieves.com/news/milestones-update"
+        }
+      ],
+      "return_reason": "Documented: emergent voyages, shared Guild reputation, long-term milestones and cosmetic commendations reward both planned and improvised play. Inference: humans return for crew stories, status and a world that can surprise them.",
+      "allworld_transfer": "Make human crews, neighborhoods and guilds central, with shared reputation for reliable work, public service and memorable stories; fair AI can fill gaps without replacing human agency.",
+      "risk": "Emergent PvP and loss can feel hostile; preserve safe social spaces and explain risk/reward clearly.",
+      "retention_type": "ongoing social sandbox",
+      "evidence_confidence": "high"
+    },
+    {
+      "name": "Tom Clancy's Rainbow Six Siege",
+      "genre": "tactical competitive shooter",
+      "award": {
+        "name": "Game Critics Awards: Best of E3 2014",
+        "year": 2014,
+        "category": "Best PC Game — pre-release showcase",
+        "url": "https://www.gamecriticsawards.com/2014winners.html"
+      },
+      "award_verified": true,
+      "award_evidence": "The Game Critics Awards' Best of E3 2014 page names Rainbow Six Siege as Best PC Game; this was pre-release showcase recognition.",
+      "mechanics": [
+        {
+          "name": "Ranked seasons and rewards",
+          "detail": "Ranked 3.0 adds placement matches, rank progression and a Competitive Rewards track each season.",
+          "url": "https://www.ubisoft.com/en-us/game/rainbow-six/siege/news-updates/5fzYRZKVVHqqRkkv3m4MyF"
+        },
+        {
+          "name": "Reputation and commendations",
+          "detail": "Players can commend teammates for valor, dedication and guidance; consistent commendations activate a visible streak and pack bonus.",
+          "url": "https://www.ubisoft.com/en-ca/game/rainbow-six/siege/news-updates/2YtRrSCEi2eWoYEksA44FV/commendation-system-how-it-works"
+        },
+        {
+          "name": "Long-term badges",
+          "detail": "Ubisoft tracks rank and reputation and awards badges for challenge completion displayed on an Operator card.",
+          "url": "https://news.ubisoft.com/en-us/article/4luBBDMfipI6BDrwGGMV0L/rainbow-six-siege--operation-collision-point-operator-remaster-and-balancing-guide"
+        }
+      ],
+      "return_reason": "Documented: destructible tactical play, seasonal ranks, reputation feedback and visible badges create both team and individual progress. Inference: players return to refine map knowledge, maintain squad trust and prove improvement.",
+      "allworld_transfer": "Use explainable reputation, human commendations and role-specific city missions; reward reliable cooperation with badges while keeping AI fair, auditable and subordinate to player choice.",
+      "risk": "Toxicity, smurfing and punitive reputation systems can harm newcomers; provide appeals, practice spaces and nonzero-sum social roles.",
+      "retention_type": "ongoing competitive live-service",
+      "evidence_confidence": "high"
+    }
+  ],
+  "unverified": [],
+  "execution": {
+    "model": "gpt-5.6-luna",
+    "effort": "medium",
+    "retries": 0,
+    "cost": "unknown"
+  }
+}

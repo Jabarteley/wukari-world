@@ -1,3 +1,4 @@
+import type { RetentionHttpRoutes } from './cadence.ts'
 /**
  * Wire protocol between the browser and the game servers: every HTTP route and every `/socket`
  * frame that is not specific to the social, civic, support, world or growth features (those live
@@ -24,6 +25,7 @@ import type { ModerationHttpRoutes, SupportHttpRoutes } from './support.ts'
 import type { WorldHttpRoutes } from './world.ts'
 import type { LandBuyRequest, LandView } from './land.ts'
 import type { GrowthHttpRoutes, GrowthModerationHttpRoutes, TableClientFrame, TableErrorCode, TableServerFrame } from './growth.ts'
+import type { ProjectHttpRoutes } from './projects.ts'
 import type { CampusHttpRoutes } from './campus.ts'
 import type { CallClientFrame, CallServerFrame } from './calls.ts'
 import type { ArenaClientFrame, ArenaErrorCode, ArenaServerFrame } from './arena.ts'
@@ -281,7 +283,7 @@ export interface CoreHttpRoutes {
  * telemetry endpoints are added beside them by server/server.ts: growth.ts TelemetryHttpRoutes.)
  */
 export interface HttpRoutes extends CoreHttpRoutes, SocialHttpRoutes, CivicHttpRoutes, SupportHttpRoutes, ModerationHttpRoutes, WorldHttpRoutes,
-  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes {
+  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes {
   'GET /api/world/land': { query: { city: CityId }; response: Ok<LandView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'invalid_city' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' }
   'POST /api/world/land/buy': { body: LandBuyRequest; response: Ok<{ ok: boolean; code: string; duplicate?: true; pending?: true }>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | JsonBodyErrorCode | OnceErrorCode | 'invalid_city' | 'invalid_land_purchase' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' | 'land_pending' | 'not_owned_home' | 'land_price_changed' | 'land_intent_changed' }
 }
@@ -555,6 +557,8 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/social/visit/home',
   'GET /api/places', 'GET /api/places/square', 'GET /api/places/room',
   'POST /api/places/room/edit', 'POST /api/places/room/link', 'POST /api/places/room/remove', 'POST /api/places/room/peek', 'POST /api/places/room/enter',
+  'GET /api/retention', 'POST /api/retention/rhythm', 'POST /api/retention/season',
+  'GET /api/projects', 'POST /api/projects/contribute', 'POST /api/projects/quiet', 'POST /api/projects/claim',
   'GET /api/health',
   'POST /api/session',
   'GET /api/session',

@@ -67,6 +67,10 @@
  *   Node tests) `body` stays null and the body module is never imported.
  */
 import { FURNITURE as CATALOGUE, KINDS as KIND_TABLE, HOME_ACTIVITIES, PORTED_ACTIVITY_KIND } from '../game/content/furniture.ts';
+import { homeMementos } from '../game/mementos.ts';
+import type { HomeMemento } from '../types/mementos.ts';
+import { ACHIEVEMENTS } from '../game/content/achievements.ts';
+import type { AchievementId } from '../types/achievements.ts';
 import { RECIPES } from '../game/content/food.ts';
 import { createBatch, sceneMaterials, releaseObjects } from './build.ts';
 import { drawAvatar, buildAvatar, POSES } from './characters.ts';
@@ -98,7 +102,7 @@ import type { FurnitureDefinition } from '../types/content.ts';
 import type { HouseStyle, LifeState, PlacedItem } from '../types/life.ts';
 
 /** Public furnishings only. Visits keep the viewer's avatar and never act on these items. */
-export interface VisitHomeScene { grid: number; style: HouseStyle; items: readonly PlacedItem[]; owned: boolean }
+export interface VisitHomeScene { grid: number; style: HouseStyle; items: readonly PlacedItem[]; owned: boolean; achievement?: AchievementId; mementos?: readonly HomeMemento[] }
 
 /** The modelling tools a furniture shape draws with (the kit's primitives bound to one group, or a batch part). */
 export interface Tools {
@@ -833,6 +837,12 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     mark.userData.part = at.part;
   }
 
+  const mementosOf = (state: LifeState | null): readonly HomeMemento[] => visit ? (visit.mementos ?? []).slice(0, 8) : homeMementos(state);
+  function displayedAchievement(state: LifeState | null) {
+    const id = visit ? visit.achievement : state?.achievements?.displayed;
+    return id && (visit || state?.achievements?.earned[id]) ? ACHIEVEMENTS.find(row => row.id === id) : undefined;
+  }
+
   function rebuild(state: LifeState | null) {
     const house = visit ?? homeOf(state, HOUSE_DESIGNS, state ? housesFor(state.estate.city) : undefined);
     const colours = visitPalette ?? (state && cachedCityContent(state.estate.city)?.homePalette) ?? ROOM_PALETTE;
@@ -859,6 +869,21 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       const spot = KINDS[def.kind]?.spot;
       if (!visit && item.id === ui.selected && (ui.buy || !spot || spot === state?.spot)) marker(def, item.x, item.y, item.rot, floor, '#ffd24a', 0.035);
     }
+    const achievement = displayedAchievement(state);
+    if (achievement) {
+      const part = partOf(0, 'back'), x = -ROOM * 0.36, y = 2.65, z = -ROOM / 2 + 0.12;
+      b.box(x, y, z, 1.02, 0.82, 0.10, '#b48937', { part });
+      b.box(x, y, z + 0.06, 0.9, 0.7, 0.04, '#204b46', { part });
+      b.box(x, y + 0.06, z + 0.1, 0.3, 0.3, 0.06, '#f2d17a', { part, rz: Math.PI / 4 });
+      const count = ACHIEVEMENTS.findIndex(row => row.id === achievement.id) + 1;
+      for (let i = 0; i < count; i++) b.box(x + (i - (count - 1) / 2) * 0.1, y - 0.23, z + 0.1, 0.05, 0.05, 0.03, '#f2d17a', { part });
+    }
+    for (const [index] of mementosOf(state).entries()) {
+      const part = partOf(0, 'back'), x = -ROOM * 0.36 + (index % 4) * 0.72, y = 1.75 - Math.floor(index / 4) * 0.7, z = -ROOM / 2 + 0.12;
+      b.box(x, y, z, 0.58, 0.48, 0.08, '#925f37', { part });
+      b.box(x, y, z + 0.06, 0.46, 0.36, 0.04, index % 2 ? '#8b374c' : '#315c9b', { part });
+      b.box(x, y + 0.02, z + 0.1, 0.15, 0.15, 0.03, '#f2d17a', { part, rz: Math.PI / 4 });
+    }
     keep(b, furniture);
     const ghost = ui.ghost, ghostDef = ghost && FURNITURE[ghost.itemId];
     if (ghostDef) {
@@ -873,7 +898,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     return placed;
   }
 
-  const signature = (state: LifeState | null) => visit ? JSON.stringify(visit) : JSON.stringify([state?.property?.house, state?.estate?.living, state?.estate?.tier, itemsOf(state), state?.spot, ui]);
+  const signature = (state: LifeState | null) => visit ? JSON.stringify(visit) : JSON.stringify([state?.property?.house, state?.estate?.living, state?.estate?.tier, itemsOf(state), state?.spot, displayedAchievement(state)?.id, mementosOf(state), ui]);
 
   /** Tiles a standing figure may not use: under furniture. `taken` holds "floor:x,y" keys. */
   function freeTiles(items: ReturnType<typeof itemsOf>) {
@@ -1218,7 +1243,11 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     },
     tags: () => {
       const door = { id: 'home-door', name: 'Step outside', kind: 'home-door', text: 'Step outside', marker: 'tag', position: { x: along(0), y: 1.5, z: along(doorSlot(grid)) } };
-      return buying() ? (selfTag ? [selfTag, ...guestTags] : [...guestTags]) : [door, ...(selfTag ? [selfTag, ...guestTags] : guestTags)];
+      const achievement = displayedAchievement(lastState);
+      const plaque = achievement && !hiddenWalls.back && viewFloor() === 0 ? [{ id: `achievement-${achievement.id}`, name: achievement.title, kind: 'achievement', text: achievement.title, marker: 'tag', colour: '#f2d17a', position: { x: SHIFT - ROOM * 0.36, y: 3.17, z: SHIFT - ROOM / 2 + 0.2 } }] : [];
+      const mementos = !hiddenWalls.back && viewFloor() === 0 ? mementosOf(lastState) : [];
+      const keepsakes = mementos.length ? [{ id: 'home-mementos', name: mementos.map(row => row.title).join(' · '), kind: 'achievement', text: `${mementos.length} lasting memento${mementos.length === 1 ? '' : 's'}`, marker: 'tag', colour: '#f2d17a', position: { x: SHIFT - ROOM * 0.3, y: 1, z: SHIFT - ROOM / 2 + 0.2 } }] : [];
+      return buying() ? (selfTag ? [selfTag, ...guestTags] : [...guestTags]) : [door, ...plaque, ...keepsakes, ...(selfTag ? [selfTag, ...guestTags] : guestTags)];
     },
     look,
     // The skinned body's sit-down (always false without the body): the host steps it in its motion loop.

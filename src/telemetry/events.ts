@@ -32,7 +32,22 @@ export interface EventSpec {
   from: 'client' | 'server' | 'quick-start' | 'world' | 'growth' | 'campus';
 }
 
+const PROGRESSION_PROPS: Record<string, PropType> = { event_version: 'number', event_id: 'string', occurred_at: 'number', origin: 'string',
+  ownership: 'string', ranking_family: 'string', earned_origin: 'string', reward_id: 'string', mission: 'string', scope: 'string', period: 'number', cash: 'number', stars: 'number' };
+
 export const EVENTS: Record<string, EventSpec> = {
+  rhythm_day_v1: { from: 'server', props: { ...PROGRESSION_PROPS, day: 'number', rhythm_days: 'number', rest_used: 'boolean' }, when: 'A meaningful human action advances an enrolled rhythm in the same transaction.', why: 'Evaluate the optional rhythm separately from opening or claiming.' },
+  rhythm_recognition_v1: { from: 'server', props: { ...PROGRESSION_PROPS, day: 'number', rhythm_days: 'number' }, when: 'A permanent rhythm recognition first commits.', why: 'Track cosmetic recognition with no economic reward.' },
+  episode_completed_v1: { from: 'server', props: { ...PROGRESSION_PROPS, episode: 'string' }, when: 'A verified authored episode completion commits.', why: 'Chapter outcomes by execution origin.' },
+  episode_memento_granted_v1: { from: 'server', props: { ...PROGRESSION_PROPS, episode: 'string' }, when: 'An episode permanent memento commits exactly once.', why: 'Completion and lasting rewards remain auditable.' },
+  achievement_earned_v1: { from: 'server', props: { ...PROGRESSION_PROPS, achievement: 'string' }, when: 'A verified character achievement and its permanent cosmetic receipt commit.', why: 'Permanent accomplishments by execution origin, separate from mission cash.' },
+  mission_completed_v2: { from: 'server', props: PROGRESSION_PROPS, when: 'A verified mission criterion is reached, committed with its entitlement.', why: 'Completion independent of collection.' },
+  mission_reward_earned_v2: { from: 'server', props: PROGRESSION_PROPS, when: 'A cash entitlement is created in the same transaction as completion.', why: 'Rewards earned, even when collected later.' },
+  mission_reward_granted_v2: { from: 'server', props: PROGRESSION_PROPS, when: 'An earned cash reward is actually credited once.', why: 'Distinguish earned rights from cash granted.' },
+  mission_set_completed_v2: { from: 'server', props: PROGRESSION_PROPS, when: 'All criteria in a daily or weekly set are complete.', why: 'Set completion independent of a cap-blocked star grant.' },
+  mission_set_reward_granted_v2: { from: 'server', props: PROGRESSION_PROPS, when: 'An earned set star reward is actually added.', why: 'Account for set rewards by their original period.' },
+  human_meaningful_day_v1: { from: 'server', props: { ...PROGRESSION_PROPS, cohort: 'string', day: 'number', first_day: 'number' }, when: 'First validated human engagement on a Lagos day, excluding claims, polling and known agent execution.', why: 'Character-level meaningful return; existing characters are separate from new cohorts.' },
+  mission_reward_viewed_v2: { from: 'growth', props: { event_version: 'number', mission: 'string', scope: 'string', period: 'number', city_id: 'string' }, when: 'The Missions screen displays a successful collection result.', why: 'Presentation receipt, distinct from server completion and payout.' },
   // ---- Views and sessions ---------------------------------------------------------------------
   $pageview: { from: 'client', props: {}, when: 'Once per page load, after consent. Carries only the page origin and path.', why: 'Views are counted apart from players: a page view is not a player.' },
   screen_view: { from: 'client', props: { screen: 'string' }, when: 'The screen in front changed (venue, map), or screen(name) was called.', why: 'Which screens are used; views inside the single page.' },

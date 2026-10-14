@@ -31,9 +31,18 @@ test('old multi-city saves and receipts survive authenticated filesystem loading
   assert.ok([...reads.values()].every(count => count === 1), 'concurrent callers share each asset read')
   for (const [cityId, entry] of Object.entries(fixture.session.cities)) {
     assert.ok(entry)
+    const previous = fixture.expected[cityId]
+    assert.ok(previous)
+    const expected = {
+      ...previous,
+      missions: { ...previous.missions, pending: [], grants: [], pendingSets: [] },
+      achievements: { version: 1, trackingSince: fixture.now, progress: {}, earned: {}, pinned: [], displayed: null },
+      episodes: { version: 1, trackingSince: fixture.now, runs: {}, mementos: {} },
+      projects: { version: 2, trackingSince: fixture.now, proofs: {}, mementos: {} },
+    }
     const rebuilt = createLife(entry.state, { cityId, now: fixture.now })
-    assert.deepEqual(rebuilt, fixture.expected[cityId])
-    assert.deepEqual(createLife(rebuilt, { cityId, now: fixture.now }), fixture.expected[cityId])
+    assert.deepEqual(rebuilt, expected)
+    assert.deepEqual(createLife(rebuilt, { cityId, now: fixture.now }), expected)
   }
   const receipts = createOnce({ now: () => fixture.now, windowMs: 86400000 })
   for (let attempt = 0; attempt < 2; attempt++) {

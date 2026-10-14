@@ -20,6 +20,7 @@
  */
 import type { TelemetryConfigResponse } from '../../src/types/growth.ts';
 import type { Db, RouteContext, RouteKey, RouteHandler } from '../types.ts';
+import { isAgentOrigin, requestOrigin } from '../execution-origin.ts';
 
 export default function telemetryRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
   const telemetry = ctx.telemetry;
@@ -33,6 +34,7 @@ export default function telemetryRoutes(ctx: RouteContext): Record<RouteKey, Rou
       return { body: under18 ? { ...body, under18: true } : body };
     },
     'POST /api/telemetry/consent': async (request) => {
+      if (isAgentOrigin(requestOrigin(request))) throw Object.assign(ctx.fail(403, 'not_allowed'), { reason: 'AI agents cannot change a person\'s analytics consent.' });
       const body = await request.json();
       if (typeof body.analytics !== 'boolean') throw ctx.fail(400, 'invalid_consent');
       const { session, under18 } = await ctx.store.read(db => { const found = request.requireSession(db); return { session: found, under18: minor(db, found.publicId) }; });

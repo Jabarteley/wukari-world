@@ -10,7 +10,7 @@
  *   modelBudgetCents       the day's cap in US cents across everything (at most 200 = US$2.00; it can only be lowered)
  *   modelPlayerRequests    one person's requests a day · modelPlayerCents one person's paid spend a day in US cents
  *   openrouterFreePerMinute / openrouterFreePerDay · gatewayFreePerMinute   a free provider's room (the gateway has no daily cap of ours)
- *                          (OpenRouter's free models: 20 a minute, 50 a day, or 1,000 a day once credit has ever been bought)
+ *                          (OpenRouter's free models: 20 a minute, 1,000 a day: the account bought credit on 14 October 2026)
  *   modelSafetyCheck       ask the free safety model about model-written replies too (off: it adds a request to each reply)
  */
 import { registerAdminSetting } from '../admin/settings.ts';
@@ -61,7 +61,7 @@ export function routerOf(ctx: RouteContext): Router {
       playerMicro: num(setting('modelPlayerCents'), 5) * 10000,
       freePerMinute: { openrouter: num(setting('openrouterFreePerMinute'), 20), gateway: num(setting('gatewayFreePerMinute'), 60) },
       // The gateway has no daily cap of ours (docs/MODELS-ROUTER.md): its 429 and `retry-after` tell the router when a model needs rest.
-      freePerDay: { openrouter: num(setting('openrouterFreePerDay'), 50) },
+      freePerDay: { openrouter: num(setting('openrouterFreePerDay'), 1000) },
     }),
     load: () => ctx.store.read((db) => { const col = (db as Record<string, unknown>)['modelRouter']; return col && typeof col === 'object' ? structuredClone(col) as Stored : undefined; }),
     save: (stored) => ctx.store.transact((db) => { Object.assign(ctx.collection(db, 'modelRouter', { days: {} }), structuredClone(stored)); }, { durable: false }),
@@ -87,7 +87,7 @@ export function linkModels(ctx: RouteContext): void {
   number('modelPlayerRequests', 'Models: requests per person per day', 'Model requests one person may cause in a UTC day.', whole(env('COMPANION_PLAYER_DAILY'), 200, 1, 100000), 1, 100000);
   number('modelPlayerCents', 'Models: paid spend per person per day (US cents)', 'One person’s paid model use in a UTC day.', 5, 0, 200);
   number('openrouterFreePerMinute', 'OpenRouter free models per minute', 'Their free limit is 20.', 20, 1, 1000);
-  number('openrouterFreePerDay', 'OpenRouter free models per day', '50 until US$10 of credit has ever been bought on the account, then 1,000.', 50, 1, 100000);
+  number('openrouterFreePerDay', 'OpenRouter free models per day', '1,000 since the account bought US$15 of credit (14 October 2026); it would be 50 without credit.', 1000, 1, 100000);
   number('gatewayFreePerMinute', 'Gateway free models per minute', 'A generous safety limit of ours; the gateway publishes no number and answers 429 itself.', 60, 1, 1000);
   registerAdminSetting(ctx, { key: 'modelSafetyCheck', label: 'Free safety model on model-written replies', help: 'After the word rules, ask the free safety model about each reply a model wrote. Adds a request and some time to every reply; a failure never blocks a reply.', kind: 'boolean', default: () => false });
 

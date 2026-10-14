@@ -285,6 +285,8 @@ export const AERIAL_LEAD = 0.35, AERIAL_PITCH = 1.3;
 /** Straight down, as the map rigs allow it (./camera.ts PITCH_MAX): both maps meet at this tilt. */
 export const TOP_PITCH = 1.5;
 export interface SwoopPlan { start: DiveView; aerial: DiveView; street: DiveView | null }
+/** What the city map is told when the dive hands over to it (./index.ts CityView.enter): how long it comes down for, the ground it starts on (km), and the destination (a venue id) to swoop at, if any. */
+export interface CityDive { seconds: number; spanKm?: number; venue?: string | null }
 const wrap = (angle: number): number => { let turn = angle % (Math.PI * 2); if (turn > Math.PI) turn -= Math.PI * 2; else if (turn < -Math.PI) turn += Math.PI * 2; return turn; };
 /** The turn that has the camera fly from `from` towards `to` (it looks along the way it goes), kept within MAX_TURN; 0 when they are one point. */
 export function approachYaw(from: { x: number; z: number }, to: { x: number; z: number }): number {

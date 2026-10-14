@@ -1,4 +1,5 @@
 import { NO_PORT } from './zoom-ladder.ts';
+import { CITY_KM_PER_UNIT, TOP_PITCH, spanKm } from './dive.ts';
 import type { LadderPort } from './zoom-ladder.ts';
 import { cityCatalogue, loadCityContent as preloadCityContent, playableCityIds } from '../game/cities/registry.ts';
 await Promise.all(playableCityIds().map(preloadCityContent));
@@ -677,4 +678,38 @@ test('zoom ladder: coming in from the atlas starts at the wide end of the city m
   rig.jump({ distance: 150 }); h.map.resize(); h.pump();
   rig.jump({ distance: 40 }); h.map.resize(); h.pump();
   assert.ok(said.length <= 2 && said.every((words) => words.startsWith('Now showing')), `bands said: ${said.join(' | ')}`);
+});
+
+test('the dive on the city map: straight down on the agreed span, the towers drawn all the way, a swoop at the destination, then still', () => {
+  const h = harness({ width: 1280, height: 800 });
+  h.map.setState(h.state()); h.map.resize(); h.pump();
+  const rig = h.map.rig, core = rig.core(), range = h.map.spanRange()!;
+  assert.ok(range.nearKm > 0 && range.nearKm < range.farKm, `span range ${JSON.stringify(range)}`);
+  assert.ok(Math.abs(spanKm(rig.maxDistance, 34, CITY_KM_PER_UNIT) - range.farKm) < 1e-9);
+  const fabric = () => { let on = 0; h.map.city.group.traverse((object) => { if (object.name === 'towers' && object.visible) on += 1; }); return on; };
+  // The span the atlas ended on: matched within 10% at the first frame of the city map.
+  const span = (range.nearKm + range.farKm) / 2;
+  h.map.enter('in', 0, { seconds: 3, spanKm: span, venue: 'park' });
+  assert.ok(Math.abs(spanKm(rig.view.distance, 34, CITY_KM_PER_UNIT) - span) / span < 0.1, 'starts on the ground the atlas showed');
+  assert.ok(Math.abs(rig.view.pitch - TOP_PITCH) < 1e-9, 'straight down');
+  h.pump(20);
+  assert.equal(fabric(), 1, 'the massing is drawn from high up during the dive'); assert.equal(h.map.diagnostics().dive, true);
+  const before = h.count();
+  h.pump();
+  const place = h.map.city.places.park!;
+  assert.ok(Math.hypot(rig.view.x - place.x, rig.view.z - place.z) < 1, 'ends over the destination'); assert.ok(rig.view.pitch < 0.8, 'low, looking along the street');
+  assert.ok(h.count() - before >= 150, 'a frame loop during the 3 s'); assert.equal(h.queue.length, 0, 'and none after it (battery rule)');
+  assert.equal(h.map.diagnostics().dive, false);
+  // The player's own city: no destination, it comes down to the opening view of the core.
+  h.map.enter('in', 0, { seconds: 1, spanKm: range.farKm * 3 });
+  assert.ok(Math.abs(rig.view.distance - rig.maxDistance) < 1e-6, 'a span wider than the map starts at its wide end');
+  h.pump();
+  assert.ok(Math.abs(rig.view.distance - core.distance) / core.distance < 0.01 && Math.abs(rig.view.pitch - core.pitch) < 0.01);
+  h.map.destroy();
+  // Reduced motion: no dive, the plain entry.
+  const still = harness({ width: 1280, height: 800, reducedMotion: true });
+  still.map.setState(still.state()); still.map.resize(); still.pump();
+  still.map.enter('in', 0, { seconds: 3, spanKm: 40, venue: 'park' });
+  assert.equal(still.map.diagnostics().dive, false); assert.ok(still.pump() <= 2, 'a frame to show it, not a flight');
+  still.map.destroy();
 });

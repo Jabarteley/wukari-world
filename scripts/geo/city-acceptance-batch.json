@@ -2,13 +2,12 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "zoom-4",
-      "appSha": "61265e62e0c65de64c567db407a2c33fdd168369",
+      "id": "hf-1",
+      "appSha": "1e4f08b8f690149e4e80b27498a5d6d322551cea",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
+        "port-moresby",
         "lagos",
-        "singapore",
-        "kyrenia",
         "paris",
         "accra"
       ],

@@ -33,6 +33,7 @@ import { cityScenesReady, loadCityScenes } from '../../scene/city-scenes.ts';
 import { createLazyLoader } from '../../lazy-load.ts';
 import type { LazyLoader, LazyOptions, LazyState } from '../../lazy-load.ts';
 import './world-adapter.css';
+import '../../scene/controls.css';
 import { DEFAULT_CITY_ID } from '../../game/cities/registry.ts';
 
 export const CAMPUS_VENUE = 'unilag';

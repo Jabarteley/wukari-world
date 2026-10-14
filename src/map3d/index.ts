@@ -22,6 +22,7 @@ import type { HouseCard } from './map2d.ts';
 import type { MapPeople } from './people.ts';
 import type { MapState } from './map3d.ts';
 import type { Edge, LadderPort } from './zoom-ladder.ts';
+import type { CityDive, SpanRange } from './dive.ts';
 import type { TravelVehicleBuilder } from './actor.ts';
 import type { FetchJson, WorldData } from './world-data.ts';
 import '../city-map.css';
@@ -62,8 +63,10 @@ export interface MapImpl {
   restoreView?(next: never): void
   /** Back to the opening view (the city core). */
   recentre?(): void
-  /** Arrive from the map above or below, so that a zoom in carries on from the wide end of this map; `descend` (seconds) comes down to the core from straight above (the dive). */
-  enter?(edge: Edge, carry?: number, descend?: number): void
+  /** Arrive from the map above or below, so that a zoom in carries on from the wide end of this map; `dive` comes down from straight above (./dive.ts swoopPlan). */
+  enter?(edge: Edge, carry?: number, dive?: CityDive): void
+  /** The ground (km, top to bottom of the screen) this map shows at its core view and at its widest; null while it is not up. */
+  spanRange?(): SpanRange | null
   worldChanged?(): void
   focusPlot?(plot: { lga: string; estate: number; plot: number } | null | undefined): void
   focusEstate?(lga: string, estate: number): void
@@ -97,7 +100,11 @@ export interface CityView {
   /** Fetch what the map needs, so that coming back to it does not wait (nothing is built). */
   warm(): void
   /** Arrive from the map above (a zoom in): see MapImpl.enter. */
-  enter(edge: Edge, carry?: number, descend?: number): void
+  enter(edge: Edge, carry?: number, dive?: CityDive): void
+  /** See MapImpl.spanRange. */
+  spanRange(): SpanRange | null
+  /** The city this view shows (or is mounting). */
+  readonly cityId: string
   resize(): void
   /** Show the arrival, then call `done`. With nothing to show (2D, hidden, reduced motion) it is called at once. */
   arrive(done: () => void): void
@@ -234,7 +241,8 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
     get kind() { return kind; },
     /** Resolves once the first map or recovery view is mounted. */
     started: null,
-    setCity(id) { layer = 'city'; if (id === cityId && impl) { impl.setCity?.(id); return; } cityId = id; world?.drop(id); void mount(); },
+    setCity(id) { layer = 'city'; if (id === cityId && impl) { impl.setCity?.(id); return; } cityId = id; world?.drop(id); view.started = mount(); },
+    get cityId() { return cityId; },
     /** Public ids of the player's friends: their houses are named on the map. */
     setFriends(ids) { friends = Array.isArray(ids) ? ids : []; impl?.setFriends?.(friends); },
     setPeople(next, clock) { people = next; if (clock) peopleClock = clock; impl?.setPeople?.(people, peopleClock); },
@@ -260,7 +268,8 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
         view.started = mount().then(() => { remounting = false; if (!shown && impl) { clearTimeout(releaseTimer ?? undefined); releaseTimer = setTimeout(release, RELEASE_MS); } });
       }
     },
-    enter(edge, carry, descend) { impl?.enter?.(edge, carry, descend); },
+    enter(edge, carry, dive) { impl?.enter?.(edge, carry, dive); },
+    spanRange() { return impl?.spanRange?.() ?? null; },
     /** Show the arrival, then call `done`. With nothing to show (2D, hidden, reduced motion) it is called at once. */
     arrive(done) { if (impl?.arrive && shown) impl.arrive(done); else done(); },
     diagnostics() { return impl?.diagnostics ? impl.diagnostics() : { kind: kind || 'none', renderCount: 0, released, view: impl?.view?.() }; },

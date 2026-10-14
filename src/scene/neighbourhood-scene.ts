@@ -25,6 +25,8 @@ import { fileKey, familyOf, hasFar, WINDOW_TILES } from './street/street-kit.ts'
 import { BOUNDS, BUS_STOP, Z, planStreet, sceneryMix } from './street/street-plan.ts';
 import type { PlanHouse, StreetPlan } from './street/street-plan.ts';
 import { drawDanfo, drawKeke, drawLampGlow, drawPole, drawPoleAdverts, drawRoadBillboard, drawWires, standInFor, tone } from './street/street-standins.ts';
+import type { FrameGuard, Lane, Road, StreetChoice } from './street-life/plan.ts';
+import type { StreetLife } from './street-life/draw.ts';
 
 const HOME_DOOR = { x: 0, z: -6.25, ry: Math.PI, direction: 'inside' as const };
 const ENTRANCE = { x: 0, y: 0, z: -3.25, ry: 0 };
@@ -35,6 +37,18 @@ const FENCE_COLOUR = ['#d9c9a6', '#5d9a62', '#f6f2e6', '#c9c2b0'];
 /** How lit the windows are by the time of day. */
 const WINDOW_GLOW: Record<TimeOfDay, number> = { day: 0, dusk: 0.8, night: 1.5 };
 const NO_MODELS: ModelCache = createModelCache({ load: () => Promise.reject(new Error('No models')), texture: () => null });
+/**
+ * Street life (src/scene/street-life): people along the kerb of the near pavement (they step aside round the player), on the far pavement
+ * clear of the poles' line, and one-way traffic down the middle of the road between the parked danfo and keke. Moves only inside a window
+ * of frames opened by the player's own movement (the venue layer's rule).
+ */
+const STREET_LANES: readonly Lane[] = Object.freeze([
+  { ax: -ROW_HALF_WIDTH, az: Z.kerb - 0.7, bx: ROW_HALF_WIDTH, bz: Z.kerb - 0.7, width: 0.9 },
+  { ax: -ROW_HALF_WIDTH, az: Z.farKerb + 1.55, bx: ROW_HALF_WIDTH, bz: Z.farKerb + 1.55, width: 1.1 },
+  { ax: -ROW_HALF_WIDTH, az: Z.pavement1 - 0.55, bx: ROW_HALF_WIDTH, bz: Z.pavement1 - 0.55, width: 0.9 },
+]);
+const STREET_ROADS: readonly Road[] = Object.freeze([{ ax: -ROW_HALF_WIDTH, az: (Z.road0 + Z.road1) / 2, bx: ROW_HALF_WIDTH, bz: (Z.road0 + Z.road1) / 2, speed: 5.5 }]);
+const STREET_WINDOW_S = 12;
 
 
 interface StreetPeer {
@@ -61,6 +75,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
   // The street's models: the layer draws them (and the procedural stand-in for any that is not here yet); the cache is read once per kit.
   let models: ModelCache = NO_MODELS, layer: ModelLayer | null = null, modelsStarted = false, disposed = false, notify: (() => void) | null = null;
   let focusX = 0, focusZ = 0;
+  let streetLife: StreetLife | null = null, streetChoice: StreetChoice | null = null, streetGuard: FrameGuard | null = null, streetWindow = 0, streetDropped = false;
   let lit: THREE.MeshStandardMaterial[] = [];
   const masks = new Map<string, THREE.Texture | null>();
   const ownX = (): number => anchor === null ? 0 : rowX(anchor);
@@ -294,6 +309,20 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     startCrowd(renderer: { getContext?: () => unknown }, changed: () => void) {
       if (modelsStarted || disposed) return;
       modelsStarted = true; notify = changed;
+      // The gate and the drawing are chunks of their own (the shared scene chunk never names them): street life, src/scene/street-life.
+      const webgl = drawsWebGL2(renderer);
+      void import('./street-life/plan.ts').then(plan => {
+        const choice = plan.streetLifeFor({ ambientTier: bodyAllowed() ? 'full' : 'light', webgl, hints: plan.deviceHints(), forced: plan.pageForced() });
+        if (!choice || disposed) return;
+        streetChoice = choice; streetGuard = plan.createFrameGuard();
+        return import('./street-life/draw.ts').then(module => {
+          if (disposed || streetDropped) return;
+          const seed = street ? `${street.anchor.lga}/${street.anchor.estate}/${streetRow(street.anchor.plot)}` : `home/${anchor ?? 0}`;
+          streetLife = module.createStreetLife(kit, { parent: group, seed, lanes: STREET_LANES, roads: STREET_ROADS, crowd: choice.crowd, vehicles: choice.vehicles, at: Date.now() });
+          streetLife.step(Date.now(), avatar.position);
+          streetWindow = STREET_WINDOW_S; changed();
+        });
+      }).catch(() => { streetDropped = true; });
       if (!bodyAllowed() || !drawsWebGL2(renderer)) return;
       void import('./street/street-models.ts').then(module => {
         if (disposed) return;
@@ -301,6 +330,17 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
         render(); changed();
       }).catch(() => undefined);
     },
-    dispose() { disposed = true; for (const peer of peers.values()) dropPeer(peer); releaseObjects(sceneryObjects); layer?.dispose(); layer = null; for (const mask of masks.values()) mask?.dispose(); avatarDispose(); group.parent?.remove(group); },
+    /** Street life's window of frames (the host's ambient hooks): opened when the player moves, it keeps the people and cars going a while. */
+    stepAmbient(dt: number) {
+      if (!streetLife || streetWindow <= 0) return false;
+      streetWindow = Math.max(0, streetWindow - dt);
+      if (!streetChoice?.forced && streetGuard?.frame(dt) === 'slow') { streetLife.dispose(); streetLife = null; streetDropped = true; streetWindow = 0; return false; }
+      streetLife.step(Date.now(), avatar.position);
+      return streetWindow > 0;
+    },
+    wakeAmbient() { if (!streetLife) return false; if (streetWindow <= 0) streetGuard?.reset(); streetWindow = STREET_WINDOW_S; return true; },
+    settleAmbient() { streetWindow = 0; streetLife?.step(Date.now(), avatar.position); },
+    get ambientAwake() { return streetLife !== null && streetWindow > 0; },
+    dispose() { disposed = true; streetLife?.dispose(); streetLife = null; for (const peer of peers.values()) dropPeer(peer); releaseObjects(sceneryObjects); layer?.dispose(); layer = null; for (const mask of masks.values()) mask?.dispose(); avatarDispose(); group.parent?.remove(group); },
   } satisfies HostScene;
 }

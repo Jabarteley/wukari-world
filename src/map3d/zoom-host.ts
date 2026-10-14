@@ -18,6 +18,7 @@ import type { WorldMap } from '../world-map.ts';
 import { cityEntry } from './regions.ts';
 import { COOLDOWN_MS, RUNGS, createHandoff, createPressure, crossfade, limitHint } from './zoom-ladder.ts';
 import type { Edge, Handoff, LadderPort, Rung } from './zoom-ladder.ts';
+import type { CityDive } from './dive.ts';
 
 export type Layer = 'city' | 'world';
 export interface ZoomHostOptions {
@@ -39,10 +40,10 @@ export interface ZoomHost {
   readonly cityPort: LadderPort
   readonly worldPort: LadderPort
   /**
-   * Change which map is in front with the fade; false when a hand-over is already going or nothing needs doing. `descend` (seconds) brings
-   * the city map down from straight above (the dive, ./dive-host.ts); `after` hears which map ended in front (also when it gave up).
+   * Change which map is in front with the fade; false when a hand-over is already going or nothing needs doing. `dive` brings the city
+   * map down from straight above (the dive, ./dive-host.ts; ./dive.ts CityDive); `after` hears which map ended in front (also when it gave up).
    */
-  fadeTo(layer: Layer, options?: { carry?: number; descend?: number; after?: (front: Layer) => void }): boolean
+  fadeTo(layer: Layer, options?: { carry?: number; dive?: CityDive; after?: (front: Layer) => void }): boolean
   /** True from the start of a hand-over to its end. */
   readonly busy: boolean
   destroy(): void
@@ -230,7 +231,7 @@ export function createZoomHost(options: ZoomHostOptions): ZoomHost {
     show(`${name}: looking from afar. You are still in ${options.cityName()}.`);
     announce(`Showing ${name} from afar. You are still in ${options.cityName()}.`);
   }
-  function fadeTo(layer: Layer, { carry = entryCarry, descend = 0, after }: { carry?: number; descend?: number; after?: (front: Layer) => void } = {}): boolean {
+  function fadeTo(layer: Layer, { carry = entryCarry, dive, after }: { carry?: number; dive?: CityDive; after?: (front: Layer) => void } = {}): boolean {
     if (session || destroyed) return false;
     entryCarry = 0;
     const maps = options.maps(), from: Layer = layer === 'city' ? 'world' : 'city';
@@ -243,7 +244,7 @@ export function createZoomHost(options: ZoomHostOptions): ZoomHost {
     void Promise.resolve(maps.city?.started).then(() => {
       until(() => Boolean(maps.city?.map) && cityBox.getBoundingClientRect().width > 0, () => {
         if (mine !== token || !session) return;
-        maps.city?.resize(); maps.city?.enter('in', carry, descend);
+        maps.city?.resize(); maps.city?.enter('in', carry, dive);
         afterFrames(2, mine, () => { hide(); handoff.arrived(now()); fade(); });
       }, mine);
     });

@@ -42,7 +42,7 @@ One switch, `src/lightMode.ts` (no imports, carried by the first download, about
 ## 3. No drawing while hidden or covered
 
 - **Hidden:** already true for every loop (section 1). `frameAction` now also refuses a frame that arrives after the page was hidden.
-- **Covered:** `src/app/App.vue` tells `src/scene/frame-gate.ts` `setCovered()` when a sheet is open and it either belongs to a full-screen
+- **Covered:** `sceneCanStart()` in `src/app/scene/sceneSupport.ts` (a lazy file `ScenePane` calls as the scene starts) tells `src/scene/frame-gate.ts` `setCovered()` when a sheet is open and it either belongs to a full-screen
   panel (`panel.fullscreen`: the landing and the character creator) or the screen is phone-sized (width 720 px or less), where the sheet
   (88% of the height, nearly the full width, over a dimmed backdrop) is the screen. On a wide screen the scene stays live beside a sheet.
   The motion loop's default frame request is `gatedRequest` in `frame-gate.ts` (startup code): while covered it parks the callback, and

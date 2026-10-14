@@ -16,6 +16,7 @@ import { AIRPORTS, HIGHWAYS, TOWNS, interCityTripOf, linkId, linkPath, measure, 
 import { listOrder, regionInfo } from './info.ts';
 import { createAtlas, countryFocusFrame } from './atlas.ts';
 import { NO_PORT } from '../zoom-ladder.ts';
+import { TOP_PITCH, atlasKmPerUnit, spanKm } from '../dive.ts';
 import type { LadderPort } from '../zoom-ladder.ts';
 import { DENSITY, NAMED_FROM, atlasNamesAt, countChips, densityFor, namedCities, shorten, venueNamesAt } from './density.ts';
 import * as THREE from 'three';
@@ -348,7 +349,7 @@ test('routes: the roads pass real towns in Nigeria, every link has a line, and a
 });
 
 // ---- the view: a fake renderer and a hand-cranked frame queue, as in ../map3d.test.ts ----
-function harness({ reducedMotion = false, width = 1280, height = 800, delay = 0, waitFor, failures = new Set<string>(), countryDetail, ladder, routes, dive }: { ladder?: LadderPort; reducedMotion?: boolean; width?: number; height?: number; delay?: number; waitFor?: (id: string) => Promise<void>; failures?: Set<string>; countryDetail?: CountryDetailService; routes?: () => null; dive?: (id: string, own: boolean, land: () => void) => number | null } = {}) {
+function harness({ reducedMotion = false, width = 1280, height = 800, delay = 0, waitFor, failures = new Set<string>(), countryDetail, ladder, routes, dive }: { ladder?: LadderPort; reducedMotion?: boolean; width?: number; height?: number; delay?: number; waitFor?: (id: string) => Promise<void>; failures?: Set<string>; countryDetail?: CountryDetailService; routes?: () => null; dive?: (id: string, own: boolean, land: () => void, reach: { nearKm: number; farKm: number }) => number | { seconds: number; spanKm?: number } | null } = {}) {
   const queue: (() => void)[] = [], env = { now: 1000, hidden: false, loads: [] as string[], opened: [] as string[], entered: [] as string[] }, calls = { render: 0, routeVisible: false };
   const renderer = { calls, domElement: {} as HTMLCanvasElement, info: { render: {} }, setPixelRatio() {}, setSize() {}, setClearColor() {}, dispose() {}, render(scene: THREE.Scene) { calls.render += 1; calls.routeVisible = scene.children.some((object) => object.renderOrder === 9 && object.visible && object instanceof THREE.Mesh && object.geometry.getAttribute('position').count > 0); } };
   const container = { hidden: false, getBoundingClientRect: () => ({ left: 0, top: 0, right: width, bottom: height, width, height }) };
@@ -672,6 +673,33 @@ test('the dive: the atlas is told at the tap, flies the descent path for as long
   seconds = null; atlas.goLevel(2); await settle();
   atlas.enterCity('lagos'); run();
   assert.equal(env.opened.length, 4);
+  atlas.destroy();
+});
+
+test('the dive ends straight down on the ground the city map starts on: the atlas offers its reach and flies to the span it is given', async () => {
+  let reach: { nearKm: number; farKm: number } | null = null, answer: number | { seconds: number; spanKm?: number } | null = null;
+  const { atlas, run, settle } = harness({ dive: (_id, _own, _land, offered) => { reach = offered; return answer; } });
+  await atlas.ready; atlas.resize(); await settle();
+  atlas.goLevel(2); await settle();
+  answer = { seconds: 1.6 };
+  atlas.enterCity('lagos'); run();
+  assert.ok(reach && reach.nearKm > 0 && reach.nearKm <= reach.farKm, `reach ${JSON.stringify(reach)}`);
+  const plain = atlas.diagnostics().view;
+  assert.ok(Math.abs(plain.pitch - TOP_PITCH) < 1e-9, 'a dive ends straight down');
+  const lat = cityCatalogue().find((city) => city.id === 'lagos')!.lat, perUnit = atlasKmPerUnit(lat, project);
+  assert.ok(Math.abs(spanKm(plain.distance, 30, perUnit) - reach!.farKm) / reach!.farKm < 0.01, 'with no span asked for it ends where the fly-in does');
+  // Asked for a span within reach: it ends on that much ground, within 10%.
+  const want = (reach!.nearKm + reach!.farKm) / 2;
+  answer = { seconds: 1.6, spanKm: want };
+  atlas.goLevel(2); await settle();
+  atlas.enterCity('lagos'); run();
+  const matched = atlas.diagnostics().view;
+  assert.ok(Math.abs(spanKm(matched.distance, 30, perUnit) - want) / want < 0.1, `ended on ${spanKm(matched.distance, 30, perUnit)} km, asked ${want}`);
+  // Asked for more than it can show: it stops at its reach.
+  answer = { seconds: 1.6, spanKm: reach!.farKm * 50 };
+  atlas.goLevel(2); await settle();
+  atlas.enterCity('lagos'); run();
+  assert.ok(atlas.diagnostics().view.distance <= plain.distance + 1e-9);
   atlas.destroy();
 });
 

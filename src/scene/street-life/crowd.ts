@@ -137,6 +137,8 @@ export function clearShift(vehicles: readonly Vehicle[], road: Road, spans: read
 
 /** The share of the crowd standing in groups, and the most who wait at one crossing. */
 export const GROUP_SHARE = 0.1, CROSSERS = 5;
+/** How far from their centre a group's people stand: far enough that their bodies (near.ts) clear each other (spacing.ts) when they are near. */
+export const GROUP_RADIUS = 0.62;
 /** Children (only when planPeople is asked for them): the share of the crowd that is a child walking with a parent, a child's height
  * against ADULT_HEIGHT (about 1.1 to 1.45 m), and how far beside and behind the parent they walk. */
 export const CHILD_SHARE = 0.06, ADULT_HEIGHT = 2.6, CHILD_SIDE = 0.62, CHILD_BEHIND = 0.25;
@@ -216,7 +218,7 @@ export function planPeople(seed: string, world: PeopleWorld, count: number, opti
     const cx = l.ax + ux * along + uz * side, cz = l.az + uz * along - ux * side;
     const turn = next() * Math.PI * 2;
     for (let k = 0; k < size; k++) {
-      const a = turn + (k / size) * Math.PI * 2, x = cx + Math.sin(a) * 0.42, z = cz + Math.cos(a) * 0.42;
+      const a = turn + (k / size) * Math.PI * 2, x = cx + Math.sin(a) * GROUP_RADIUS, z = cz + Math.cos(a) * GROUP_RADIUS;
       const base = planCrowd(`${seed}|group|${made}`, [l], 1)[0]!;
       out.push({ ...base, ...dress(), lane, speed: 0, habit: 'group', cycle: between(20, 40), pause: 0, shift: next() * 40, phone: next() < 0.55,
         spot: { x, z, ry: Math.atan2(cx - x, cz - z) }, delay: 0 });

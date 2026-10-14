@@ -2,20 +2,12 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "roads-1",
-      "appSha": "0273a5363ac9749c4f9ca99c680c134b6124a635",
+      "id": "roads-an",
+      "appSha": "078fcf1ab66ff391d431f738ff2e6be8c0bedc2d",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
-        "london",
-        "berlin",
-        "hong-kong",
-        "helsinki",
-        "athens",
-        "havana",
-        "bangkok",
-        "delhi",
-        "istanbul",
-        "sao-paulo"
+        "amsterdam",
+        "new-york"
       ],
       "roundtrip": true,
       "browserOnly": true

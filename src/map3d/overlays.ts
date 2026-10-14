@@ -136,7 +136,7 @@ export function createOverlays(kit: MapKit, city: City) {
       const estate = pack.estates?.[district.id];
       if (!estate || !district.count) continue;
       // The houses are bigger than the unit they were drawn at, so fewer fit in the estate's own ground: the grid says how many.
-      const grid = homeGrid(estate), shown = Math.min(district.count, grid.cap), online = Math.min(shown, district.online);
+      const grid = homeGrid(estate, district.count), shown = Math.min(district.count, grid.cap), online = Math.min(shown, district.online);
       for (let i = 0; i < shown; i++) {
         const { x, z } = grid.at(i);
         homes.push({ x, z, colour: i < online ? '#fff6dc' : '#d9d6cc' });

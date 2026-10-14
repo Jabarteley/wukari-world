@@ -42,23 +42,28 @@ const estates: PackEstate[] = [
 ]
 
 test('an estate of bigger houses stays inside the ground it always had; fewer are drawn when they no longer fit (never fewer than one)', () => {
-  for (const estate of estates) {
-    const [x0, z0, x1, z1] = estateBox(estate), grid = homeGrid(estate), want = estate.max ?? HOUSES_PER_ESTATE
-    assert.ok(grid.cap >= 1 && grid.cap <= want, `${JSON.stringify(estate)}: cap ${grid.cap}`)
+  for (const [estate, count] of estates.flatMap((one) => [1, 2, 8, 30, 500].map((n) => [one, n] as const))) {
+    const [x0, , x1] = estateBox(estate), [, z0, , z1] = estateBox(estate, count), grid = homeGrid(estate, count), want = Math.min(count, estate.max ?? HOUSES_PER_ESTATE)
+    assert.ok(grid.cap >= 1 && grid.cap <= want && grid.cap === Math.min(want, grid.cols * grid.rows), `${JSON.stringify(estate)} (${count} homes): cap ${grid.cap}`)
     assert.ok(grid.cols <= estate.cols)
-    assert.equal(grid.cap, Math.min(want, grid.cols * grid.rows))
     for (let i = 0; i < grid.cap; i++) {
       const { x, z } = grid.at(i), halfX = (HOME_UNIT.width * HOME_SCALE) / 2, halfZ = (HOME_UNIT.depth * HOME_SCALE) / 2
-      if (x1 - x0 < 2 * halfX || z1 - z0 < 2 * halfZ) continue // ground narrower than one house: the one house (or column) is shown anyway
-      assert.ok(x - halfX >= x0 - 1e-9 && x + halfX <= x1 + 1e-9 && z - halfZ >= z0 - 1e-9 && z + halfZ <= z1 + 1e-9, `${JSON.stringify(estate)}: house ${i} at ${x.toFixed(1)}, ${z.toFixed(1)} is outside the estate's box`)
+      // Ground narrower than one house still shows the one house (or column), centred on it; otherwise the house is wholly inside.
+      const overX = Math.max(0, halfX - (x1 - x0) / 2), overZ = Math.max(0, halfZ - (z1 - z0) / 2)
+      assert.ok(x - halfX >= x0 - overX - 1e-9 && x + halfX <= x1 + overX + 1e-9 && z - halfZ >= z0 - overZ - 1e-9 && z + halfZ <= z1 + overZ + 1e-9, `${JSON.stringify(estate)} (${count} homes): house ${i} at ${x.toFixed(1)}, ${z.toFixed(1)} is outside the estate's box`)
     }
     // No two houses overlap.
     for (let i = 1; i < grid.cap; i++) { const a = grid.at(i - 1), b = grid.at(i); assert.ok(Math.abs(a.x - b.x) >= HOME_UNIT.width * HOME_SCALE - 1e-9 || Math.abs(a.z - b.z) >= HOME_UNIT.depth * HOME_SCALE - 1e-9) }
   }
 })
 
-test('the first Lagos-style estate (8 columns, 64 at most) still shows the 8 homes of a district', () => {
-  const grid = homeGrid({ x: 0, z: 0, cols: 8, max: 64 })
-  assert.ok(grid.cap >= 8, `cap ${grid.cap}`)
-  assert.ok(Math.abs(grid.centre.x - ((estateBox({ x: 0, z: 0, cols: 8, max: 64 })[0] + estateBox({ x: 0, z: 0, cols: 8, max: 64 })[2]) / 2)) < 1e-9)
+test('the first Lagos-style estate (8 columns, 64 at most) shows at least four of the 8 homes of a district in its one row, from the corner the first house always had', () => {
+  const estate = { x: 0, z: 0, cols: 8, max: 64 }, grid = homeGrid(estate, 8), [x0] = estateBox(estate), [, z0] = estateBox(estate, 8)
+  assert.ok(grid.cap >= 4 && grid.cap <= 8, `cap ${grid.cap}`)
+  const first = grid.at(0)
+  assert.ok(Math.abs(first.x - (x0 + HOME_UNIT.width * HOME_SCALE / 2)) < 1e-9, 'the first house is flush with the west edge')
+  assert.ok(Math.abs(first.z - (z0 + (estateBox(estate, 8)[3] - z0) / 2)) < 1e-9, 'a row on ground thinner than a house is centred on it')
+  assert.ok(first.x - estate.x < 1 && first.z - estate.z < 1, 'the first house is where it was (within a house of the pack\'s x, z)')
+  const last = grid.at(grid.cap - 1)
+  assert.ok(grid.centre.x > first.x - 1e-9 && grid.centre.x <= last.x + 1e-9 && grid.centre.z >= first.z - 1e-9 && grid.centre.z <= last.z + 1e-9)
 })

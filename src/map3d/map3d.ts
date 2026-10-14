@@ -83,6 +83,8 @@ import { dockOf } from './insets.ts';
 import { createPinLayer, pinsOf, EMPTY_PEOPLE } from './people.ts';
 import type { MapPeople, PinLayer, PeoplePin } from './people.ts';
 import { cityUnit } from '../game/cities/terminology.ts';
+import { lightFps } from '../lightMode.ts';
+import { frameAction } from '../scene/frame-gate.ts';
 
 /** What the map reads of a venue (src/game/content/venues.ts): its icon, filter category and opening hours. */
 interface VenueInfo { icon?: string; category?: string; hours?: OpeningHours }
@@ -269,6 +271,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   function tick() {
     rafId = 0;
     if (!shown()) { lastTick = 0; keyTurn.stop(); return; }
+    if (lastTick && frameAction({ covered: false, now: now(), last: lastTick, capFps: lightFps() }) === 'wait') { rafId = raf!(tick); return; } // light mode: 30 a second
     const t = now(), dt = lastTick ? clamp((t - lastTick) / 1000, 0, 0.1) : 0;
     if (lastTick) { gaps.push(t - lastTick); if (gaps.length > 120) gaps.shift(); }
     frameCount += 1;

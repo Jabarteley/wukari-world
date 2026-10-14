@@ -282,6 +282,8 @@ export default defineConfig({
     // The general game chunk must not pull the conditional recovery planner and ticket reader into startup.
     if (/\/src\/game\/(homeward-rules|cities\/homewardRoute)\.ts$/.test(id)) return 'homeward-rules'
     if (/\/src\/types\/avatar\.ts$/.test(id)) return 'engine'
+    // Light mode's switch and the frame gate (src/lightMode.ts, src/scene/frame-gate.ts) are read by the first page, the scene and the maps: beside the engine, so they are not two files of their own that every chunk's preload list has to name.
+    if (/\/src\/(lightMode|scene\/frame-gate)\.ts$/.test(id)) return 'engine'
     const city = id.match(/\/src\/game\/cities\/([^/]+)\/(content|map)\.ts$/)
     if (city) return `city-${city[1]}-${city[2]}`
     // The world network (every city's catalogue facts, land components and authored routes): one lazy chunk, fetched when the game is

@@ -8,7 +8,8 @@ import type { LifeState } from '../types/life.ts'
 import type { PanelView } from '../app/types/panel.ts'
 import type { CitySound } from '../types/content.ts'
 import { Director, type Seen } from './director.ts'
-import { getSound, onSoundChange, setSound } from './settings.ts'
+import { SOUND_KEY, getSound, onSoundChange, setSound } from './settings.ts'
+import { lightOn } from '../lightMode.ts'
 import { COMPANION_SOUNDS, TABLE_SOUNDS } from './data.ts'
 import { VOICE_EVENT, VOICE_SCENE_EVENT, VOICE_STOP_EVENT, type HeardLine, type SceneNote } from './voice/types.ts'
 import { MusicDirector } from './music/director.ts'
@@ -61,6 +62,8 @@ export function createEngine(): Engine | null {
   const Context = globalThis.AudioContext ?? (globalThis as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
   if (!Context) return null
   if (!getSound().on || document.hidden) return null
+  // Light mode: a device that has not chosen anything about sound yet starts with the music off (the sounds themselves are made on the phone).
+  try { if (lightOn() && localStorage.getItem(SOUND_KEY) === null) setSound({ musicOn: false }) } catch { /* storage is blocked: music stays as it is */ }
   let disposed = false
   const events = new AbortController()
   let ctx: AudioContext

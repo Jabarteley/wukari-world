@@ -13,6 +13,9 @@
  * PCF. The tier is chosen from the device, never from a frame-rate measurement: nothing shifts
  * resolution while the player is looking.
  *
+ * LIGHT MODE (src/lightMode.ts) picks LIGHT_TIER on any device: the phone tier at a pixel ratio of 1 with a 512 shadow map, the
+ * cheapest picture the scenes can draw. ?quality= still wins (testing).
+ *
  * Nothing here keeps time, draws, or needs a DOM: the sky is a small data texture.
  *
  * FOR THE CITY MAP (src/map3d, another owner): call applyRendererLook(THREE, renderer, renderTier())
@@ -20,6 +23,7 @@
  */
 import type * as THREE from 'three';
 import type { Colour, ThreeModule } from './types.ts';
+import { gate } from './frame-gate.ts';
 
 /** What a device is allowed to cost. */
 export interface RenderTier { readonly name: 'phone' | 'wide' | 'high'; readonly pixelRatio: number; readonly shadowMap: number; readonly softShadows: boolean; readonly env?: boolean; readonly shadowReach?: number }
@@ -69,6 +73,8 @@ function forcedTier(win: LookWindow): RenderTier | null {
 export function renderTier(win: LookWindow = globalThis): RenderTier {
   const forced = forcedTier(win);
   if (forced) return forced;
+  const light = gate.tier();
+  if (light) return light;
   const coarse = win.matchMedia?.('(pointer: coarse)').matches === true;
   const short = Math.min(Number(win.innerWidth) || Infinity, Number(win.innerHeight) || Infinity);
   if (coarse && short <= 720) return PHONE_TIER;

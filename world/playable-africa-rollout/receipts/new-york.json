@@ -7,7 +7,7 @@
     "stateId": "us-new-york",
     "stateName": "New York"
   },
-  "inventorySha256": "1115b0acee1e6274e827e5c220a5619dc745c60af88be959ecf3c1ef5dfe151e",
+  "inventorySha256": "22386a29dc940fc4f3df9adf85fad5d236561128a4bbe4111b71114169015101",
   "inventoryPath": "world/playable-africa-rollout/sources/new-york.json",
   "admission": {
     "registered": true,
@@ -98,7 +98,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 600,
+    "roads": 170,
     "neighbourhoodLabels": 18,
     "landPolygons": 44,
     "waterPolygons": 27,
@@ -117,8 +117,8 @@
       "sha256": "e1ec175afcc40b7d3f343dba9f2858b0910b34222e19d69bdf3ad09b52493a42"
     },
     "geometry.ts": {
-      "bytes": 2483715,
-      "sha256": "c599d42d7331b74529d9e17505d116acaa5706a6e62c7ab5f80d5aae61e71555"
+      "bytes": 2883764,
+      "sha256": "89632239cb931750cdcd1c4834921721b1699c6c651f6deeb6f8308cdb64af3a"
     },
     "index.ts": {
       "bytes": 259,

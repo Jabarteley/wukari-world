@@ -7,7 +7,7 @@
     "stateId": "nl-amsterdam",
     "stateName": "Amsterdam"
   },
-  "inventorySha256": "46e963bdaae61e973ad7b56ddce02856991854abda8bb4b75eab50089effc142",
+  "inventorySha256": "157b66c012454e5f4f2560ef5b46f5dd98f7d8d2ad366af0c0f7a4a811208dc0",
   "inventoryPath": "world/playable-africa-rollout/sources/amsterdam.json",
   "admission": {
     "registered": true,
@@ -85,7 +85,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 323,
     "neighbourhoodLabels": 18,
     "landPolygons": 53,
     "waterPolygons": 33,
@@ -104,8 +104,8 @@
       "sha256": "69b54aa344265a1ce2afd82807efcff4cd1fe61dd601b6475436f214b92b569a"
     },
     "geometry.ts": {
-      "bytes": 1882883,
-      "sha256": "502824a08e5d354f3a9ffdc310e38175abdeb5e016df93ada2684ff23a21ea41"
+      "bytes": 2676054,
+      "sha256": "ff066fd75e2f79ebabffaeea6a1c526e2d1d681957bb5dd8b64515ba4d35e3e6"
     },
     "index.ts": {
       "bytes": 260,

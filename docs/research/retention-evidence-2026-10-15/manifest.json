@@ -1,52 +1,24 @@
 {
-  "sourceBase": "8ac05891c117ed32f1629757d60893f0e543095e",
-  "sourceState": "uncommitted retention implementation; see README for individual check timing",
+  "sourceBase": "899c60439022b2cb7082a1e88c930a3e4c41db36",
+  "joinedRuntimeBase": "c921b8d9",
+  "sourceState": "joined 899c runtime with c921 agent-play integration; uncommitted retention work; build and budget gates pending",
   "files": [
-    {
-      "file": "allworld-integrated-project.txt",
-      "sha256": "d197dd0f060dea517f31cf6045721673afd13cefe5c44110ebc7c4424a845f3a",
-      "bytes": 155
-    },
-    {
-      "file": "allworld-integrated-cadence.txt",
-      "sha256": "bc41091b120447e3bfde1b86a05402e322d5caf0c8a30e920a90681c69b43b59",
-      "bytes": 181
-    },
-    {
-      "file": "allworld-integrated-season.txt",
-      "sha256": "81bf0063d1c44bd90c399db523c408cade50da8c9e0afb89b36922afc93a16dd",
-      "bytes": 294
-    },
-    {
-      "file": "allworld-progression-acceptance.txt",
-      "sha256": "3adcdf394046cb1631452af7ef5fca4e2d68771fce59d695a36de238bfa07540",
-      "bytes": 2420
-    },
-    {
-      "file": "allworld-poll-focused-tests.txt",
-      "sha256": "2f38e61efcea29962ece7ba018bcc3c16d385926f6e94aa8918c3b1dd02c57da",
-      "bytes": 2999
-    },
-    {
-      "file": "allworld-registry-final.txt",
-      "sha256": "561f2f8f50f22d8ad3deade7dfdc3274a7c0e5805576bcc4780a347524468c4c",
-      "bytes": 1559
-    },
-    {
-      "file": "allworld-phone-art-final.txt",
-      "sha256": "a7e2110ad0883c1381618c61644de70171c6922006e1e5847c5b890f275dc5a1",
-      "bytes": 271
-    },
-    {
-      "file": "allworld-main-baseline-regressions.txt",
-      "sha256": "4d1a318c27e57c6a10ab83fc0ee50f85eee2c661e5cdfd89b70588d1b6716edb",
-      "bytes": 2894
-    },
-    {
-      "file": "allworld-main-baseline-edge.txt",
-      "sha256": "2ff6f15e0da35e7ea1d8063aec41b58c2e4af2279d719a143f7a4bc79adafe2e",
-      "bytes": 7212
-    }
+    { "file": "allworld-agent-play-accepted.txt", "sha256": "ca9b11de93d6ca65f77029b2492703593d00b9a0cf4f9c57884266243ff7e585", "bytes": 9699 },
+    { "file": "allworld-integrated-cadence.txt", "sha256": "bc41091b120447e3bfde1b86a05402e322d5caf0c8a30e920a90681c69b43b59", "bytes": 181 },
+    { "file": "allworld-integrated-project.txt", "sha256": "d197dd0f060dea517f31cf6045721673afd13cefe5c44110ebc7c4424a845f3a", "bytes": 155 },
+    { "file": "allworld-integrated-season.txt", "sha256": "81bf0063d1c44bd90c399db523c408cade50da8c9e0afb89b36922afc93a16dd", "bytes": 294 },
+    { "file": "allworld-main-baseline-edge.txt", "sha256": "2ff6f15e0da35e7ea1d8063aec41b58c2e4af2279d719a143f7a4bc79adafe2e", "bytes": 7212 },
+    { "file": "allworld-main-baseline-regressions.txt", "sha256": "4d1a318c27e57c6a10ab83fc0ee50f85eee2c661e5cdfd89b70588d1b6716edb", "bytes": 2894 },
+    { "file": "allworld-main-sync-cadence-http-check.txt", "sha256": "bc41091b120447e3bfde1b86a05402e322d5caf0c8a30e920a90681c69b43b59", "bytes": 181 },
+    { "file": "allworld-main-sync-focused.txt", "sha256": "8ae5b73384293b01f4d90194435e55c3cb1b8cf30c13ac7ef55326aebd873896", "bytes": 9049 },
+    { "file": "allworld-main-sync-progression.txt", "sha256": "ece31f9bbe23102cd4bfa8bcda73f83093e5c1495d09a3f67d588ace45d31e8c", "bytes": 2420 },
+    { "file": "allworld-main-sync-project-check.txt", "sha256": "d197dd0f060dea517f31cf6045721673afd13cefe5c44110ebc7c4424a845f3a", "bytes": 155 },
+    { "file": "allworld-main-sync-season-check.txt", "sha256": "81bf0063d1c44bd90c399db523c408cade50da8c9e0afb89b36922afc93a16dd", "bytes": 294 },
+    { "file": "allworld-main-sync-typecheck.txt", "sha256": "e4a2b0ad05c650003cfb21d27194315a5a00064af070512fd886693de73d48e7", "bytes": 247 },
+    { "file": "allworld-phone-art-final.txt", "sha256": "a7e2110ad0883c1381618c61644de70171c6922006e1e5847c5b890f275dc5a1", "bytes": 271 },
+    { "file": "allworld-poll-focused-tests.txt", "sha256": "2f38e61efcea29962ece7ba018bcc3c16d385926f6e94aa8918c3b1dd02c57da", "bytes": 2999 },
+    { "file": "allworld-progression-acceptance.txt", "sha256": "3adcdf394046cb1631452af7ef5fca4e2d68771fce59d695a36de238bfa07540", "bytes": 2420 },
+    { "file": "allworld-registry-final.txt", "sha256": "561f2f8f50f22d8ad3deade7dfdc3274a7c0e5805576bcc4780a347524468c4c", "bytes": 1559 }
   ],
-  "normalization": "Archived text trims trailing whitespace and uses LF; test results are unchanged."
+  "normalization": "Archived text preserves source bytes; copied logs are ignored by the source repository. Existing older artifacts retain their original provenance."
 }

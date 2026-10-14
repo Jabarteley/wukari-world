@@ -32,3 +32,9 @@ Evidence:
 ## Takeover note
 
 Another computer should recheck the current branch/SHA and resolve the one missing research reference from its own checkout or an authorized corpus sync. Local `/tmp` artifacts and primary-machine paths are not portable evidence. This checkpoint does not claim deployment, commit, push, or runtime validation.
+
+## Joined-runtime evidence archive
+
+On 15 October 2026, the same portability owner archived the completed current-main artifacts under `docs/research/retention-evidence-2026-10-15/`. The source state is joined runtime `899c60439022b2cb7082a1e88c930a3e4c41db36` (`899c`) with the fetched agent-play integration at `c921b8d9`; retention changes remain uncommitted. `README.md` and `manifest.json` classify direct-engine fixtures, local server/Worker fixtures, and actual local HTTP probes separately, with SHA-256 and byte counts.
+
+The archived current evidence includes the 5-project typecheck, 84 focused tests, 74 agent-play tests, deterministic progression diagnostics, and project/cadence/season HTTP checks. Build, budget, browser, production, cohort, and phone gates remain open. Existing artifacts from the earlier `8ac05891` base remain explicitly older-base evidence.

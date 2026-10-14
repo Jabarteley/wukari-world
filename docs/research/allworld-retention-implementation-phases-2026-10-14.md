@@ -1,6 +1,6 @@
 **Allworld — phased implementation plan for progression and human return**
 
-Prepared 14 October 2026, Africa/Lagos. Status: Phases 0–6 have local source implementations in the shared worktree. The worktree is now detached at `8ac05891`, fetched from online `main`; local changes were preserved through a recoverable stash and reapplied, with route/panel/growth-test conflicts resolved while retaining the new festivals/Gist and retention work. Joined final checks are restarting on this base; rollout acceptance remains open. No release has been performed.
+Prepared 14 October 2026, Africa/Lagos; implementation checkpoint 15 October. Phases 0–6 have source implementations in `codex/retention-main-sync` on main base `84917cdc`. Research/coordination milestone `899c6043` is published. Current joined source passes five-project typecheck, 84 focused retention checks, 74 agent-play checks, direct-engine/HTTP diagnostics and the documented browser paths. Final startup-size repair is pending before runtime synchronization. [The handoff](retention-implementation-handoff-2026-10-14.md) records exact evidence and known broad-suite gaps. No deployment or measured retention improvement is claimed; cohort-dependent exit conditions below remain pilot gates.
 
 The intended outcome is a world where people return to improve a skill, pursue a chosen life, meet familiar people, finish stories, and see the effects of their contributions. AI participation should make those experiences more responsive and available. Human return remains the product outcome.
 

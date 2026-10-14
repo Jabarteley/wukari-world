@@ -6,9 +6,9 @@ This is the shared entry point for coding agents on every computer. **Each agent
 
 | Work | Owner / chat | Current record | Coordination state |
 |---|---|---|---|
-| Retention, achievements and worldwide journey foundation | Research Allworld game retention · `01a13bea-138b-7b91-ac44-c49bc3d836ec` | [retention-20261014](agent-work/retention-20261014.md) | Local implementation; final checks in progress. Isolated worktree; source unpublished. |
+| Retention, achievements and worldwide journey foundation | Research Allworld game retention · `01a13bea-138b-7b91-ac44-c49bc3d836ec` | [retention-20261014](agent-work/retention-20261014.md) | Research/coordination published in `899c6043`; joined runtime checks in progress. See the record for the current checkout and GitHub status. |
 | Character project | Continue Allworld character project · `01a13afe-a87b-7263-891d-c8c06703af7b` | Registration requested; discover its record in `docs/agent-work/` | Active chat observed 2026-10-14 23:05 UTC; file ownership must come from its owner. |
-| Agent-play work on the other computer | Owner / branch not yet supplied | Register using the prompt below | Compatibility checked against fetched main only; unpublished changes remain unknown. |
+| Agent-play / world-alive work on the other computer | Programme integration: `claude/world-alive`; per-phase branches recorded by its owner | [AGENT.md](../AGENT.md) and [world-alive status](agent-plans/world-alive/STATUS.md) | Main through `84917cdc` integrated. House-agent/public-romance compatibility passes 74 focused checks; cache-first and Phase 11 agent missions remain unpublished branch work. Recheck their owner’s record before editing shared mission contracts. |
 
 ## Working protocol
 
@@ -16,7 +16,7 @@ This is the shared entry point for coding agents on every computer. **Each agent
 2. **Resolve overlap.** Read records touching your files. Agree one writer for shared contracts or source paths; continue independent work while resolving overlap. A stale record is not permission to overwrite work. Mark superseded ownership explicitly after agreement.
 3. **Checkpoint.** Update your record after a milestone, changed contract, blocker or scope change, and before yielding. Include exact commands/results, durable evidence paths and the next executable step. Preserve a short checkpoint history.
 4. **Hand off.** The receiving agent checks current source and evidence before continuing. Separate implemented, verified locally, merged, deployed and measured-in-production. A passing local check proves only its stated scope.
-5. **Synchronize across computers.** These are repository files, not a live cloud lock. Exchange the docs and the exact source revision or patch through the authorized Git/PR workflow. An uncommitted local record is unavailable remotely until transferred. On another computer, verify the received SHA and record timestamp. Do not infer unpublished changes from main. Use separate record files to reduce merge conflicts.
+5. **Synchronize across computers.** These are repository files, not a live cloud lock. Exchange the docs and the exact source revision or patch through the authorized Git/PR workflow. An uncommitted local record is unavailable remotely until transferred. On another computer, verify the received SHA and record timestamp. Do not infer unpublished changes from main. Use separate record files to reduce merge conflicts. When synchronization is authorized, publish checked milestones frequently and record the pushed SHA; fetch and integrate newer main before each ordinary push.
 
 Copy-ready [agent prompts](AGENT-PROMPTS.md) cover registration, checkpoints, takeover and agent-play integration. Root [AGENTS.md](../AGENTS.md) directs future agents here. [docs/AGENTS.md](AGENTS.md) is the gameplay AI API reference, not this coordination protocol.
 

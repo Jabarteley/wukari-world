@@ -1,0 +1,80 @@
+{
+  "result": "PASS",
+  "base": "899c60439022b2cb7082a1e88c930a3e4c41db36",
+  "deterministicSeedPrefix": "progression-acceptance",
+  "probes": {
+    "help": {
+      "episodeChoices": [
+        "hostel-hustle:help",
+        "the-quiet-hours:help"
+      ],
+      "prerequisiteRefusal": true,
+      "chapterReceipts": 8,
+      "mementos": [
+        "hostel-hustle-memento",
+        "the-quiet-hours-memento"
+      ],
+      "achievement": {
+        "earned": true,
+        "pinned": [
+          "wayfinder"
+        ],
+        "displayed": "wayfinder"
+      },
+      "finalCity": "ibadan",
+      "observedPermanentEvents": [
+        {
+          "event": "episode.memento.granted",
+          "id": "hostel-hustle-memento",
+          "at": 1791972008000
+        },
+        {
+          "event": "episode.completed",
+          "id": "hostel-hustle",
+          "at": 1791972008000
+        },
+        {
+          "event": "episode.memento.granted",
+          "id": "the-quiet-hours-memento",
+          "at": 1791972015000
+        },
+        {
+          "event": "episode.completed",
+          "id": "the-quiet-hours",
+          "at": 1791972015000
+        },
+        {
+          "event": "achievement.earned",
+          "id": "wayfinder",
+          "at": 1791972019000
+        }
+      ]
+    },
+    "alternative": {
+      "episodeChoices": [
+        "hostel-hustle:work",
+        "the-quiet-hours:work"
+      ],
+      "chapterReceipts": 8,
+      "outcomeTags": [
+        "steady-hand",
+        "careful-fix"
+      ],
+      "mementos": [
+        "hostel-hustle-memento",
+        "the-quiet-hours-memento"
+      ]
+    }
+  },
+  "assertions": [
+    "Quiet Hours prerequisite refusal and pre-proof non-start",
+    "Help and work branches complete all four authored chapters in both episodes",
+    "Correct callback outcomes and solo finales",
+    "Exactly-once memento and completion events under repeated finish",
+    "Explicit-clock and no-clock createLife(saved) reconstruction",
+    "Wayfinder receipt, human origin, pin and home plaque",
+    "Cross-city Lagos-to-Ibadan travel preserves progression records",
+    "Completed episode view retains two four-row histories and two mementos"
+  ],
+  "seedCaveat": "All contexts use deterministic diagnostic seeds and direct engine calls. Authored episode branches are deterministic; this does not exercise HTTP idempotency, persistence I/O, browser rendering, or production randomness."
+}

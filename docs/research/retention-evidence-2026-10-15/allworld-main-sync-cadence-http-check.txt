@@ -1,0 +1,1 @@
+PASS HTTP flag projection, enrollment rollback/retry, no login credit, actual action stamps once, opt-out preserves history; trusted origin and 30-day/rest/lapse transition probes.

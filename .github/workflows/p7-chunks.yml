@@ -1,5 +1,8 @@
 name: p7-chunks
-on: workflow_dispatch
+on:
+  push:
+    branches: [claude/alive-p7-light]
+    paths: [".github/workflows/p7-chunks.yml"]
 jobs:
   chunks:
     runs-on: ubuntu-latest

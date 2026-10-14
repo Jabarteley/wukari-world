@@ -28,6 +28,8 @@ import type { CrowdBodies, SkinnedBody } from '../body/skinned.ts';
 import type { Person, PersonPose } from './crowd.ts';
 import { CHILD_HEAD, PROP_CALLS, easeGlance, glanceYaw, nearAction, nearCandidates, nearDress, selectNear } from './near.ts';
 import type { Eye, NearAction, NearChoice, NearDress } from './near.ts';
+import { placed, spaceNear } from './spacing.ts';
+import type { Spot } from './spacing.ts';
 
 export interface NearCrowdOptions {
   /** The street-life group: the bodies and props are drawn in its coordinates. */
@@ -172,8 +174,8 @@ export function createNearCrowd(kit: Kit, options: NearCrowdOptions): NearCrowd 
     return true;
   }
 
-  function pose(slot: Slot, index: number, frame: NearFrame, action: NearAction): void {
-    const place = frame.poses[index]!, dress = dressOf(index), body = slot.body;
+  function pose(slot: Slot, index: number, frame: NearFrame, action: NearAction, spot: Spot): void {
+    const place = { ...frame.poses[index]!, x: spot.x, z: spot.z }, dress = dressOf(index), body = slot.body;
     if (action.kind === 'walk') body.stride(action.phase, false, 0, false);
     else if (action.kind === 'phone') body.sampleUse('drink', PHONE_SECONDS[slot.key][action.call ? 'call' : 'look']);
     else body.sampleUse(action.kind === 'drink' ? 'drink' : 'idle', action.seconds);
@@ -223,6 +225,10 @@ export function createNearCrowd(kit: Kit, options: NearCrowdOptions): NearCrowd 
     if (disposed || failed) return (drawn = new Set());
     const wanted = selectNear(nearCandidates(people, frame.poses, frame.count, options.walkable), frame.eye, drawn, cap);
     const keep = new Set(wanted);
+    // Bodies are solid: no two stand closer than spacing.ts says (they sidestep, keeping to the floor); each is placed at its own spot.
+    const spots = new Map<number, Spot>();
+    const spaced = spaceNear(wanted.map((index) => placed(index, people[index]!, frame.poses[index]!)), options.walkable);
+    wanted.forEach((index, i) => spots.set(index, spaced[i]!));
     for (const slot of slots) if (slot.person !== null && !keep.has(slot.person)) { slot.person = null; slot.body.object.visible = false; }
     let triangles = 0, calls = PROP_CALLS, redressed = false;
     for (const slot of slots) if (slot.person !== null) { triangles += slot.triangles; calls += slot.calls; }
@@ -250,7 +256,7 @@ export function createNearCrowd(kit: Kit, options: NearCrowdOptions): NearCrowd 
         slot.person = index; slot.glance = 0;
       }
       const action = nearAction(people[index]!, frame.poses[index]!, dressOf(index), frame.seconds);
-      pose(slot, index, frame, action);
+      pose(slot, index, frame, action, spots.get(index)!);
       slot.body.object.visible = true;
       next.add(index);
     }

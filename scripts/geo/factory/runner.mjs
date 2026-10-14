@@ -3,13 +3,13 @@ import { writeReviewPage } from './gallery.mjs';
 import { machineFailed, contactSheetInputs } from './report.mjs';
 import { insideSandbox, remapTable } from './paths.mjs';
 /** Plan by default. Execution requires a marked disposable clone; no live approval. */
-import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync, copyFileSync, realpathSync, readdirSync, renameSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync, copyFileSync, statSync, realpathSync, readdirSync, renameSync } from 'node:fs';
 import { resolve, join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { ensureAcceptance } from './acceptance.mjs';
-import { budgetOverrunOnly, remainingRungs, rungArguments, attemptRecord, ladderRecord, validateWaterBudgetLadder } from './water-ladder.mjs';
+import { ladderNeeded, oversizedFiles, rungOutcome, walkRungs, FILE_LIMIT_BYTES, rungArguments, attemptRecord, ladderRecord, validateWaterBudgetLadder } from './water-ladder.mjs';
 import { dropWaterLabels, dropWaterLabelsById, outsideWaterLabelIds, unlabellableWaterRefs } from './water-label-skip.mjs';
 import { AUTO_RETRY_CLASSES, applyChange, planSceneBudget, planWetPlaces, wetAnchorsFromExactCoastLog, wetPlacesFromProofs, anchorGuard, afterRecord, catalogueRecord } from './auto-retry.mjs';
 const a = process.argv.slice(2), get = k => a[a.indexOf(k) + 1], home = dirname(fileURLToPath(import.meta.url));
@@ -186,47 +186,48 @@ const finishCity = (row, ctx) => {
     const selectionManifest = JSON.parse(readFileSync(join(selDir, `${row.id}-manifest.json`)));
     writeFileSync(join(out, `${row.id}-source-expected.json`), JSON.stringify({ ...(target.sourceJob ?? { extractSha256: target.extractSha256 }), countryScope: selectionManifest.countryScope, countryScopeReceipt: selectionManifest.countryScopeReceipt }));
     row.machineStages.sourceScene = run(`${row.id}/source-scene`, c.sourceScene, [join(out, row.id, 'proof', 'scene-source.json')]);
-    if (!row.machineStages.sourceScene && ladderOn) {
+    // The ladder also runs when the scene proof passed but a delivered geometry.ts or terrain.ts is at or over the per-file byte limit (assemble-release.mjs enforces it later).
+    const fileSizes = () => ({ geometry: statSync(cityFiles[1]).size, terrain: statSync(cityFiles[0]).size });
+    if (ladderOn) {
         const readJson = path => existsSync(path) ? JSON.parse(readFileSync(path)) : null, coastReport = join(out, row.id, 'coast-water.json'), scenePath = join(out, row.id, 'proof', 'scene-source.json');
-        const first = readJson(coastReport), firstScene = readJson(scenePath), attempts = [];
-        if (first?.status === 'passed' && first.simplification && budgetOverrunOnly(firstScene)) {
+        const first = readJson(coastReport), firstScene = readJson(scenePath), firstSizes = fileSizes(), attempts = [], firstPassed = row.machineStages.sourceScene === true;
+        if (first?.status === 'passed' && first.simplification && ladderNeeded({ sceneProved: firstPassed, scene: firstScene, sizes: firstSizes })) {
             copyFileSync(coastReport, join(out, row.id, 'coast-water-rung-0.json'));
             copyFileSync(scenePath, join(out, row.id, 'proof', 'scene-source-rung-0.json'));
             keep('rung-0', cityFiles);
-            attempts.push(attemptRecord({ rung: 0, toleranceDegrees: first.simplification.toleranceDegrees, report: first, scene: firstScene, outcome: 'over-budget' }));
-            let accepted = false, number = 0, lastGood = 'rung-0';
-            for (const rung of remainingRungs(first.simplification.toleranceDegrees)) {
-                number += 1;
+            attempts.push(attemptRecord({ rung: 0, toleranceDegrees: first.simplification.toleranceDegrees, report: first, scene: firstScene, sizes: firstSizes, outcome: rungOutcome({ passed: firstPassed, scene: firstScene, sizes: firstSizes }) }));
+            const { accepted, lastGood } = walkRungs({ toleranceDegrees: first.simplification.toleranceDegrees, step: (rung, number) => {
                 restore('pre-exact');
                 const reportPath = join(out, row.id, `coast-water-rung-${number}.json`), at = c.exactCoast.indexOf('--report');
                 const command = [...c.exactCoast.slice(0, at + 1), reportPath, ...c.exactCoast.slice(at + 2), ...rungArguments(rung)];
                 if (!run(`${row.id}/exact-coast-rung-${number}`, command, [cityFiles[0], reportPath])) {
                     const log = join(out, `${row.id}-exact-coast-rung-${number}.log`);
                     attempts.push(attemptRecord({ rung: number, toleranceDegrees: rung, outcome: 'infeasible', reason: (existsSync(log) ? readFileSync(log, 'utf8') : '').trim().split('\n').at(-1)?.slice(0, 600) ?? 'exact-coast stage failed' }));
-                    break;
+                    return { outcome: 'infeasible' };
                 }
-                const rungReport = readJson(reportPath);
+                const rungReport = readJson(reportPath), sizes = fileSizes();
                 keep(`rung-${number}`, cityFiles);
-                lastGood = `rung-${number}`;
                 const passed = run(`${row.id}/source-scene-rung-${number}`, c.sourceScene, [scenePath]);
-                const scene = readJson(scenePath);
+                const scene = readJson(scenePath), outcome = rungOutcome({ passed, scene, sizes });
                 copyFileSync(scenePath, join(out, row.id, 'proof', `scene-source-rung-${number}.json`));
-                attempts.push(attemptRecord({ rung: number, toleranceDegrees: rung, report: rungReport, scene, outcome: passed ? 'fits' : budgetOverrunOnly(scene) ? 'over-budget' : 'failed-other' }));
-                if (passed) { accepted = true; break; }
-                if (!budgetOverrunOnly(scene)) break;
-            }
+                attempts.push(attemptRecord({ rung: number, toleranceDegrees: rung, report: rungReport, scene, sizes, outcome }));
+                return { outcome };
+            } });
             // The accepted rung (or, when none fits, the standard attempt) is what the later stages see; the report that carries it is the canonical coast-water.json.
-            const finalName = accepted ? lastGood : 'rung-0', finalNumber = Number(finalName.split('-')[1]);
-            restore(finalName);
+            const finalNumber = accepted ? lastGood : 0;
+            restore(`rung-${finalNumber}`);
             if (!accepted) copyFileSync(join(out, row.id, 'proof', 'scene-source-rung-0.json'), scenePath);
-            const finalReport = readJson(join(out, row.id, finalNumber === 0 ? 'coast-water-rung-0.json' : `coast-water-rung-${finalNumber}.json`));
+            const finalReport = readJson(join(out, row.id, `coast-water-rung-${finalNumber}.json`));
             finalReport.toleranceLadder = { ...(finalReport.toleranceLadder ?? {}), ...ladderRecord({ attempts, accepted }) };
             writeFileSync(coastReport, JSON.stringify(finalReport, null, 2));
             row.waterBudgetLadder = finalReport.toleranceLadder;
             row.machineStages.sourceScene = accepted;
+            const over = oversizedFiles(firstSizes), why = over.length ? `${over.map(f => `${f.file} ${f.bytes} bytes`).join(', ')} at or over ${FILE_LIMIT_BYTES}` : `${attempts[0].triangles} of ${attempts[0].triangleLimit} triangles`;
             (row.warnings ??= []).push(accepted
-                ? `water budget ladder: the standard shore overflowed the scene budget (${attempts[0].triangles} of ${attempts[0].triangleLimit} triangles); accepted rung ${finalNumber} (about ${attempts.at(-1).toleranceMetresApprox} m, play-water area error ${attempts.at(-1).playWaterAreaFraction}, ${attempts.at(-1).triangles} triangles)`
-                : `water budget ladder exhausted: ${attempts.map(a => `rung ${a.rung} ${a.outcome}${a.triangles ? ` ${a.triangles} triangles` : ''}`).join(', ')}`);
+                ? `water budget ladder: the standard shore overflowed the scene budget or the file limit (${why}); accepted rung ${finalNumber} (about ${attempts.at(-1).toleranceMetresApprox} m, play-water area error ${attempts.at(-1).playWaterAreaFraction}, ${attempts.at(-1).triangles} triangles, geometry.ts ${attempts.at(-1).geometryBytes} bytes, terrain.ts ${attempts.at(-1).terrainBytes} bytes)`
+                : `water budget ladder exhausted: ${attempts.map(a => `rung ${a.rung} ${a.outcome}${a.triangles ? ` ${a.triangles} triangles` : ''}${a.geometryBytes !== undefined ? ` geometry.ts ${a.geometryBytes} terrain.ts ${a.terrainBytes} bytes` : ''}`).join(', ')}`);
+            if (!accepted && (over.length || attempts.some(a => a.outcome === 'over-bytes')))
+                row.reasons.push(`water budget ladder exhausted with geometry.ts or terrain.ts at or over ${FILE_LIMIT_BYTES} bytes: ${attempts.map(a => `rung ${a.rung} geometry.ts ${a.geometryBytes ?? 'n/a'} terrain.ts ${a.terrainBytes ?? 'n/a'}`).join('; ')}`);
         }
     }
     if (!row.machineStages.sourceScene) row.reasons.push('source/name/point/scene-kind/budget proof incomplete or failed');

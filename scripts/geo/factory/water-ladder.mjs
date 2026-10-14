@@ -19,6 +19,8 @@ export const LADDER_RUNGS_DEGREES = Object.freeze([0.00001, 0.000015, 0.00002, 0
 export const LADDER_AREA_CAP = 0.001;
 export const STANDARD_AREA_CAP = 0.0001;
 export const RUNG_INFEASIBLE_EXIT = 3;
+// Per-file byte limit for a delivered city module (the same number as FILE_LIMIT_BYTES in assemble-release.mjs, which enforces it after the factory; a file AT the limit is already over).
+export const FILE_LIMIT_BYTES = 3_000_000;
 
 export function validateWaterBudgetLadder(value, id = 'target') {
   if (value !== undefined && typeof value !== 'boolean') throw new TypeError(`${id}: waterBudgetLadder must be true or false`);
@@ -33,6 +35,38 @@ export function budgetOverrunOnly(scene) {
   return true;
 }
 
+/** The delivered files (`sizes` = { geometry, terrain } real byte sizes) that are at or over the per-file limit, as [{ file, bytes }]. Empty when every file fits. */
+export function oversizedFiles(sizes, limit = FILE_LIMIT_BYTES) {
+  return ['geometry', 'terrain'].filter(name => Number.isFinite(sizes?.[name]) && sizes[name] >= limit).map(name => ({ file: `${name}.ts`, bytes: sizes[name] }));
+}
+
+/** True when the standard attempt needs the ladder: only the triangle budget failed, or the scene proof passed but a delivered file is over the byte limit. */
+export function ladderNeeded({ sceneProved, scene, sizes }) {
+  return budgetOverrunOnly(scene) || (sceneProved === true && oversizedFiles(sizes).length > 0);
+}
+
+/** The outcome of one rung: fits (scene proof passed and both files under the limit), over-bytes, over-budget (triangles only) or failed-other. */
+export function rungOutcome({ passed, scene, sizes }) {
+  if (passed) return oversizedFiles(sizes).length ? 'over-bytes' : 'fits';
+  return budgetOverrunOnly(scene) ? 'over-budget' : 'failed-other';
+}
+
+/**
+ * Step through the rungs coarser than the attempt that overflowed, in order. `step(rung, number)` runs one rung and returns { outcome } (fits | over-budget | over-bytes | failed-other | infeasible).
+ * Stops at the first fit; continues only past over-budget and over-bytes. Returns { accepted, lastGood } (lastGood = number of the last rung whose files were kept; 0 = the standard attempt).
+ */
+export function walkRungs({ toleranceDegrees, step }) {
+  let accepted = false, lastGood = 0, number = 0;
+  for (const rung of remainingRungs(toleranceDegrees)) {
+    number += 1;
+    const { outcome } = step(rung, number);
+    if (outcome !== 'infeasible') lastGood = number;
+    if (outcome === 'fits') { accepted = true; break; }
+    if (outcome !== 'over-budget' && outcome !== 'over-bytes') break;
+  }
+  return { accepted, lastGood };
+}
+
 /** The rungs still available after a stage run at `chosenToleranceDegrees` (the shore the previous attempt used): strictly coarser, in order. */
 export function remainingRungs(chosenToleranceDegrees) {
   assert.ok(Number.isFinite(chosenToleranceDegrees) && chosenToleranceDegrees > 0, 'the tolerance of the attempt that overflowed the budget is required');
@@ -45,7 +79,7 @@ export function rungArguments(rung) {
 }
 
 /** One line of the ladder record. `report` is the coast-water report of the attempt (may be absent when the rung was infeasible). */
-export function attemptRecord({ rung, toleranceDegrees, report, scene, outcome, reason }) {
+export function attemptRecord({ rung, toleranceDegrees, report, scene, outcome, reason, sizes }) {
   const simplification = report?.simplification;
   return {
     rung, toleranceDegrees, toleranceMetresApprox: Math.round(toleranceDegrees * 111320 * 100) / 100, outcome,
@@ -53,6 +87,7 @@ export function attemptRecord({ rung, toleranceDegrees, report, scene, outcome, 
     // `playWaterAreaFraction` is the figure the cap bounds (play-box water against the exact source water); `wholeWaterAreaFraction` is the simplification of all the water in the extract.
     ...(simplification ? { playWaterAreaFraction: report.geometry?.water?.sourceSymmetricDifferenceFraction, wholeWaterAreaFraction: simplification.areaSymmetricDifferenceFraction, areaCap: simplification.maximumAreaSymmetricDifferenceFraction } : {}),
     ...(report?.waterVertices !== undefined ? { waterVertices: report.waterVertices } : {}),
+    ...(sizes ? { geometryBytes: sizes.geometry, terrainBytes: sizes.terrain } : {}),
     ...(scene ? { triangles: scene.triangles, triangleLimit: scene.triangleLimit, drawCalls: scene.drawCalls } : {}),
   };
 }
@@ -62,7 +97,7 @@ export function ladderRecord({ attempts, accepted, standardAreaCap = STANDARD_AR
   assert.ok(Array.isArray(attempts) && attempts.length >= 1);
   const last = attempts.at(-1);
   return {
-    rule: 'waterBudgetLadder: the source-scene proof failed only on the triangle budget, so the exact-coast stage was repeated with a coarser shore (fixed rungs, in order) until the scene fit',
+    rule: 'waterBudgetLadder: the source-scene proof failed only on the triangle budget, or a delivered geometry.ts or terrain.ts was at or over the per-file byte limit, so the exact-coast stage was repeated with a coarser shore (fixed rungs, in order) until the scene fit and both files were under the limit',
     standardAreaCap, rungAreaCap: areaCap, rungsDegrees: [...LADDER_RUNGS_DEGREES],
     attempts, accepted: accepted ? { rung: last.rung, toleranceDegrees: last.toleranceDegrees, triangles: last.triangles, playWaterAreaFraction: last.playWaterAreaFraction, wholeWaterAreaFraction: last.wholeWaterAreaFraction } : null,
   };

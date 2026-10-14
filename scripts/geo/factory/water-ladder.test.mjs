@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { budgetOverrunOnly, remainingRungs, rungArguments, attemptRecord, ladderRecord, validateWaterBudgetLadder, LADDER_RUNGS_DEGREES, LADDER_AREA_CAP, STANDARD_AREA_CAP } from './water-ladder.mjs';
+import { oversizedFiles, ladderNeeded, rungOutcome, walkRungs, FILE_LIMIT_BYTES, budgetOverrunOnly, remainingRungs, rungArguments, attemptRecord, ladderRecord, validateWaterBudgetLadder, LADDER_RUNGS_DEGREES, LADDER_AREA_CAP, STANDARD_AREA_CAP } from './water-ladder.mjs';
 
 const scene = (changes = {}) => ({ sourceProblems: [], unknownKinds: [], minimumPlaces: 20, places: 24, venues: 24, airportMinimumBoxMarginMetres: 1500, wetEmptySlots: [], triangles: 121181, triangleLimit: 90000, drawCalls: 120, drawCallLimit: 400, ...changes });
 
@@ -61,4 +61,54 @@ test('the python stage refuses a half-named or out-of-range rung and the standar
   assert.match(run('--ladder-tolerance-degrees', '0.000005', '--ladder-area-cap', '0.0005').stderr, /outside its documented range/);
   assert.match(run('--ladder-tolerance-degrees', '0.00002', '--ladder-area-cap', '0.002').stderr, /outside its documented range/);
   assert.match(run('--ladder-tolerance-degrees', '0.001', '--ladder-area-cap', '0.0005').stderr, /outside its documented range/);
+});
+
+// ---- byte limit (geometry.ts / terrain.ts over 3,000,000 bytes steps the ladder like a triangle overrun) ----
+const under = { geometry: 1_900_000, terrain: 1_000_000 }, over = { geometry: 3_368_553, terrain: 1_520_911 };
+
+test('the byte limit is the assemble-release limit, and a file at the limit is over', () => {
+  assert.equal(FILE_LIMIT_BYTES, 3_000_000);
+  assert.deepEqual(oversizedFiles(under), []);
+  assert.deepEqual(oversizedFiles({ geometry: 2_999_999, terrain: 3_000_000 }), [{ file: 'terrain.ts', bytes: 3_000_000 }]);
+  assert.deepEqual(oversizedFiles(over), [{ file: 'geometry.ts', bytes: 3_368_553 }]);
+  assert.deepEqual(oversizedFiles(undefined), []);
+});
+
+test('sizes under the limit never enter the ladder when the scene fits (existing runs are unchanged)', () => {
+  assert.equal(ladderNeeded({ sceneProved: true, scene: scene({ triangles: 81906 }), sizes: under }), false);
+  assert.equal(ladderNeeded({ sceneProved: false, scene: scene({ triangles: 95000 }), sizes: under }), true, 'triangle overrun still enters');
+  assert.equal(ladderNeeded({ sceneProved: false, scene: scene({ triangles: 95000, places: 3 }), sizes: over }), false, 'another failure is not a water problem, whatever the bytes');
+});
+
+test('sizes over the limit enter the ladder when the scene proof passed', () => {
+  assert.equal(ladderNeeded({ sceneProved: true, scene: scene({ triangles: 81906 }), sizes: over }), true);
+});
+
+test('rung outcome: fits only when the scene passes and both files are under the limit', () => {
+  assert.equal(rungOutcome({ passed: true, scene: scene({ triangles: 80000 }), sizes: under }), 'fits');
+  assert.equal(rungOutcome({ passed: true, scene: scene({ triangles: 80000 }), sizes: over }), 'over-bytes');
+  assert.equal(rungOutcome({ passed: false, scene: scene({ triangles: 95000 }), sizes: under }), 'over-budget');
+  assert.equal(rungOutcome({ passed: false, scene: scene({ places: 3 }), sizes: under }), 'failed-other');
+});
+
+const walk = outcomes => { const rungs = []; const r = walkRungs({ toleranceDegrees: 0.000005, step: (rung, n) => { rungs.push(rung); return { outcome: outcomes[n - 1] ?? 'over-bytes' }; } }); return { ...r, rungs }; };
+
+test('the walk steps to the next rung while a file is over, and stops at the first that fits', () => {
+  assert.deepEqual(walk(['fits']), { accepted: true, lastGood: 1, rungs: [0.00001] });
+  assert.deepEqual(walk(['over-bytes', 'over-bytes', 'fits']), { accepted: true, lastGood: 3, rungs: [0.00001, 0.000015, 0.00002] });
+  assert.deepEqual(walk(['over-budget', 'over-bytes', 'over-bytes', 'fits']).rungs.length, 4);
+});
+
+test('the walk holds when the rungs run out, and stops on another failure or an infeasible rung', () => {
+  assert.deepEqual(walk([]), { accepted: false, lastGood: 4, rungs: [0.00001, 0.000015, 0.00002, 0.00003] });
+  assert.deepEqual(walk(['over-bytes', 'failed-other']), { accepted: false, lastGood: 2, rungs: [0.00001, 0.000015] });
+  assert.deepEqual(walk(['over-bytes', 'infeasible']), { accepted: false, lastGood: 1, rungs: [0.00001, 0.000015] });
+  assert.deepEqual(walkRungs({ toleranceDegrees: 0.00003, step: () => assert.fail('no rung left') }), { accepted: false, lastGood: 0 });
+});
+
+test('the attempt record carries the file sizes only when given', () => {
+  assert.equal('geometryBytes' in attemptRecord({ rung: 0, toleranceDegrees: 0.00001, outcome: 'fits' }), false);
+  const record = attemptRecord({ rung: 1, toleranceDegrees: 0.00002, outcome: 'over-bytes', sizes: over });
+  assert.equal(record.geometryBytes, 3_368_553);
+  assert.equal(record.terrainBytes, 1_520_911);
 });

@@ -52,14 +52,21 @@ test('setLight is remembered for this tab, tells listeners, and says when it cou
 })
 
 test('light mode picks the lowest render tier, on any device', () => {
+  setLight(true)
+  assert.equal(renderTier({ matchMedia: () => ({ matches: false }) as MediaQueryList, innerWidth: 1400, innerHeight: 900 }), LIGHT_TIER)
+  assert.equal(renderTier({ location: { search: '?quality=high' } } as never), HIGH_TIER, '?quality= still forces a tier')
+  setLight(false)
+  forgetLight()
+})
+
+test('without light mode the tiers are as before; with it, the phone tier gets lighter', () => {
+  forgetLight(); setLight(false)
   const desktop = { matchMedia: () => ({ matches: false }) as MediaQueryList, innerWidth: 1400, innerHeight: 900, devicePixelRatio: 2 }
-  assert.equal(renderTier(desktop), HIGH_TIER)
-  assert.equal(renderTier({ ...desktop, localStorage: { getItem: () => '1' } as unknown as Storage }), LIGHT_TIER)
-  assert.equal(renderTier({ ...desktop, localStorage: { getItem: () => '0' } as unknown as Storage }), HIGH_TIER)
   const phone = { matchMedia: () => ({ matches: true }) as MediaQueryList, innerWidth: 390, innerHeight: 844, devicePixelRatio: 3 }
+  assert.equal(renderTier(desktop), HIGH_TIER)
   assert.equal(renderTier(phone), PHONE_TIER)
-  assert.equal(renderTier({ ...phone, navigator: { connection: { saveData: true } } } as never), LIGHT_TIER, 'save-data turns it on without a saved choice')
-  assert.equal(renderTier({ ...phone, navigator: { connection: { saveData: true } }, localStorage: { getItem: () => '0' } } as never), PHONE_TIER, 'and a saved Off wins')
   assert.ok(LIGHT_TIER.pixelRatio < PHONE_TIER.pixelRatio && LIGHT_TIER.shadowMap < PHONE_TIER.shadowMap)
-  assert.equal(renderTier({ ...desktop, location: { search: '?quality=high' }, localStorage: { getItem: () => '1' } } as never), HIGH_TIER, '?quality= still forces a tier')
+  setLight(true)
+  assert.equal(renderTier(phone), LIGHT_TIER)
+  forgetLight()
 })

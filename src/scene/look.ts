@@ -73,7 +73,7 @@ function forcedTier(win: LookWindow): RenderTier | null {
 export function renderTier(win: LookWindow = globalThis): RenderTier {
   const forced = forcedTier(win);
   if (forced) return forced;
-  const light = gate.tier(win);
+  const light = gate.tier();
   if (light) return light;
   const coarse = win.matchMedia?.('(pointer: coarse)').matches === true;
   const short = Math.min(Number(win.innerWidth) || Infinity, Number(win.innerHeight) || Infinity);

@@ -116,6 +116,16 @@ export const CITY_DRAW_CALLS: Budget = {
   enforcedIn: 'src/map3d/map3d.test.ts, src/game/cities/{ogun,ibadan}/map.test.ts',
   why: 'Merged meshes and instancing keep the city to about forty draw calls, the limit that matters.',
 }
+export const AERIAL_DIVE_TRIANGLES: Budget = {
+  value: 120000, unit: 'triangles', limit: 'max', status: 'provisional',
+  enforcedIn: 'src/map3d/aerial-plan.ts (AERIAL_TRIANGLES), src/map3d/aerial-plan.test.ts, src/map3d/aerial.test.ts',
+  why: 'One frame of the city map during the aerial pass of the dive: the city plus the aerial massing, parks, road ribbons and clouds. Not timed on a phone yet.',
+}
+export const AERIAL_DIVE_DRAW_CALLS: Budget = {
+  value: 40 + 4, unit: 'draw calls', limit: 'max', status: 'provisional',
+  enforcedIn: 'src/map3d/aerial-plan.ts (AERIAL_DRAW_CALLS), src/map3d/aerial.test.ts',
+  why: 'The city budget plus the four aerial layers (massing, parks, roads, clouds), for the few seconds of the dive only.',
+}
 export const HOUSES_DETAIL_TRIANGLES: Budget = {
   value: 10000, unit: 'triangles', limit: 'max', status: 'current',
   enforcedIn: 'src/map3d/houses.ts (DETAIL_BUDGET), src/map3d/world.test.ts',
@@ -221,7 +231,7 @@ export const PHONE_SCENE_DRAW_CALLS: Budget = {
 export const BUDGETS = {
   SCENE_CROWD_TRIANGLES, PLAYER_FIGURE_TRIANGLES, SCENE_TRIANGLES, SCENE_DRAW_CALLS, SCENE_MESHES, SCENE_MESHES_WITH_WALLS, SCENE_MESHES_NO_CROWD, SCENE_LIGHTS,
   AVATAR_LOW_TRIANGLES, AVATAR_MEDIUM_TRIANGLES_MIN, AVATAR_MEDIUM_TRIANGLES, AVATAR_HIGH_TRIANGLES_MIN, AVATAR_HIGH_TRIANGLES,
-  CITY_TRIANGLES, CITY_DRAW_CALLS, HOUSES_DETAIL_TRIANGLES, HOUSES_MAX_DETAILED, HOUSES_DRAW_CALLS,
+  CITY_TRIANGLES, CITY_DRAW_CALLS, AERIAL_DIVE_TRIANGLES, AERIAL_DIVE_DRAW_CALLS, HOUSES_DETAIL_TRIANGLES, HOUSES_MAX_DETAILED, HOUSES_DRAW_CALLS,
   STARTUP_RAW, STARTUP_GZIP, LOADING_RAW, LOADING_GZIP, SCENE_HOST_RAW, SCENE_HOST_GZIP,
   FIRST_PAINT_BROTLI, STARTUP_BROTLI, BASE_BODY_BROTLI, CLIP_PACK_BROTLI, WARDROBE_ITEM_BROTLI, WARDROBE_ITEM_TRIANGLES, WARDROBE_ITEM_TEXTURE_PX,
   STREET_TILE_BROTLI, STREET_TILE_TRIANGLES, PHONE_SCENE_DRAW_CALLS,

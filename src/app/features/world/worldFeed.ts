@@ -6,10 +6,25 @@ import { watch } from 'vue'
 import type { Ref } from 'vue'
 import { readObservedWeather, setObservedWeather } from '../../../game/weather-observed-read.ts'
 import { setCityMoney, setDisplayCity } from '../../../game/money.ts'
+import type { CityMoney } from '../../../game/money.ts'
 import { readCityMoney } from '../../../game/money-feed.ts'
 import { takeCredits } from './feedCredits.ts'
 
 export const FEED_EVERY_MS = 30 * 60000
+/** The phone keeps each city's last answer's money (day, the two rates, the currency) so amounts are right at once on the next visit; older than this it is ignored. */
+export const RATES_KEEP_MS = 3 * 86400000
+export const ratesKey = (cityId: string): string => `allworld.rates.${cityId}`
+type Store = Pick<Storage, 'getItem' | 'setItem'>
+const stored = (): Store | undefined => { try { return globalThis.localStorage } catch { return undefined } }
+/** Keeps this answer's money for the next visit (only what money needs; storage that is full or off changes nothing). */
+function remember(cityId: string, answer: unknown, at: number, store: Store | undefined = stored()): void {
+  const m = readCityMoney(answer)
+  if (m) try { store?.setItem(ratesKey(cityId), JSON.stringify({ at, day: m.day, rates: { NGN: m.ngnPerUsd, [m.code]: m.perUsd }, currency: (answer as { currency: unknown }).currency })) } catch { /* not kept */ }
+}
+/** The kept money of a city, or null: nothing kept, junk, or older than three days. It is read like a feed answer, so the same checks apply. */
+export function recall(cityId: string, now: number, store: Store | undefined = stored()): CityMoney | null {
+  try { const kept = JSON.parse(store?.getItem(ratesKey(cityId)) ?? 'null') as { at?: unknown } | null; return typeof kept?.at === 'number' && now - kept.at < RATES_KEEP_MS && now >= kept.at ? readCityMoney(kept) : null } catch { return null }
+}
 
 export interface FeedDeps {
   fetchJson: (path: string) => Promise<unknown>
@@ -18,14 +33,17 @@ export interface FeedDeps {
   now: () => number
   setTimer: (run: () => void, ms: number) => unknown
   clearTimer: (handle: unknown) => void
+  /** Where the last rates are kept (the page's localStorage when not given). */
+  storage?: Store
 }
 
 /** Applies one answer: the credits, and the city's weather (or none, so that the cycle applies). */
-export function takeFeed(cityId: string, answer: unknown): void {
+export function takeFeed(cityId: string, answer: unknown, now: number = Date.now(), store?: Store): void {
   if (typeof answer !== 'object' || answer === null) return
   const feed = answer as { weather?: unknown; credits?: unknown }
   takeCredits(feed.credits)
   setCityMoney(cityId, readCityMoney(answer))
+  remember(cityId, answer, now, store ?? stored())
   setObservedWeather(cityId, readObservedWeather(feed.weather))
 }
 
@@ -37,7 +55,8 @@ export function startWorldFeed(deps: FeedDeps): () => void {
     const city = deps.cityId.value
     setDisplayCity(city) // amounts are written for this city from now on (naira until its rates arrive)
     lastAt = deps.now()
-    try { takeFeed(city, await deps.fetchJson(`/api/world/feed?id=${encodeURIComponent(city)}`)) } catch { /* the last hours stay; the cycle covers the rest */ }
+    setCityMoney(city, recall(city, lastAt, deps.storage)) // the last answer's rates at once (frozen for their day), until the feed answers
+    try { takeFeed(city, await deps.fetchJson(`/api/world/feed?id=${encodeURIComponent(city)}`), lastAt, deps.storage) } catch { /* the last hours stay; the cycle covers the rest */ }
   }
   function schedule(): void {
     if (timer !== null) deps.clearTimer(timer)

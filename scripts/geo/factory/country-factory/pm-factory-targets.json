@@ -1,0 +1,357 @@
+{
+  "expectedSourceGitSHA": "83116903f3fbdf60090ce5d924080cbee547bbde",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "PM",
+    "datasetSha256": "1abf50de174c97cc69e6c5cae1b24eb93cab4c7587f109204dd4ce5fea07aac3",
+    "receiptSha256": "1b4b821a28dff98d10216cd41c55d8112e41c1e4d7afefcc5e7b637ea308b7ba",
+    "receiptBytes": 13067,
+    "geometrySha256": "8f2821cd63539b5e4e954ecf25407c26d010db7ec2dcec19be19539a43bc0997",
+    "geometryBytes": 8727,
+    "scriptSha256": "a75e7ddb301ce6651f282b4ee3920097252b23bc8120907abf89487c07916b05",
+    "relationId": 3406826,
+    "boundaryKey": "pm",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38502396254,
+      "sourceSha": "e7b4a8440947fc8102bda4f2f8e8b288636be2fd",
+      "sourceArtifact": "city-bootstrap-pm-e7b4a8440947fc8102bda4f2f8e8b288636be2fd",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "saint-pierre",
+      "name": "Saint-Pierre",
+      "country": "pm",
+      "facts": {
+        "id": "saint-pierre",
+        "name": "Saint-Pierre",
+        "country": {
+          "idISOlower": "pm",
+          "name": "St Pierre & Miquelon"
+        },
+        "state": {
+          "idunique": "pm-saint-pierre",
+          "name": "Saint-Pierre"
+        },
+        "timezone": "America/Miquelon",
+        "centre": {
+          "lon": -56.1768672,
+          "lat": 46.7775497
+        },
+        "airport": {
+          "id": "saint-pierre-airport",
+          "name": "Saint-Pierre Pointe-Blanche Airport",
+          "lon": -56.17499,
+          "lat": 46.762651,
+          "sourceUrl": "https://ourairports.com/airports/LFVP/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/246842649",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -56.44009746434139,
+          46.59666881006602,
+          -55.9136369356586,
+          46.95843058993398
+        ]
+      },
+      "profile": "microstate",
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/246842649",
+          "sourceUrl": "https://www.openstreetmap.org/node/246842649",
+          "sourceRecord": {
+            "ref": "node/246842649",
+            "tags": {
+              "addr:postcode": "97500",
+              "capital": "4",
+              "coat_of_arms": "File:Coat of arms of Saint Pierre and Miquelon.svg",
+              "name": "Saint-Pierre",
+              "name:az": "Sent Pyer",
+              "name:be": "Сен-П'ер",
+              "name:be-tarask": "Сэн-П’ер",
+              "name:bg": "Сен Пиер",
+              "name:br": "Sant-Pêr",
+              "name:el": "Σαιν Πιέρ",
+              "name:en": "Saint-Pierre",
+              "name:eo": "Sanktpiero",
+              "name:es": "San Pedro",
+              "name:id": "Saint-Pierre",
+              "name:io": "St Pierre",
+              "name:ja": "サン＝ピエール",
+              "name:ka": "სენ-პიერი",
+              "name:ko": "생피에르",
+              "name:lt": "Sen Pjeras",
+              "name:mk": "Свети Пјер",
+              "name:nov": "Sankte Pier",
+              "name:os": "Сен-Пьер",
+              "name:ro": "Saint-Pierre",
+              "name:ru": "Сен-Пьер",
+              "name:sr": "Сен Пјер",
+              "name:sv": "Saint-Pierre",
+              "name:tr": "Saint-Pierre",
+              "name:uk": "Сен-П'єр",
+              "name:vi": "Saint-Pierre",
+              "name:war": "Saint-Pierre",
+              "name:yo": "Saint-Pierre",
+              "name:zh": "聖皮埃爾",
+              "place": "village",
+              "population": "5340",
+              "ref:FR:SIREN": "219755022",
+              "source:population": "INSEE 2020",
+              "website": "https://www.mairie-stpierre.fr",
+              "wikidata": "Q185678",
+              "wikipedia": "fr:Saint-Pierre (Saint-Pierre-et-Miquelon)"
+            },
+            "lon": -56.1768672,
+            "lat": 46.7775497
+          },
+          "pbfSha256": "1abf50de174c97cc69e6c5cae1b24eb93cab4c7587f109204dd4ce5fea07aac3",
+          "selection": {
+            "cityOsmRef": "node/246842649",
+            "matchedOsmRef": "node/246842649"
+          }
+        },
+        "airport": {
+          "rowNumber": 44277,
+          "row": {
+            "id": "4245",
+            "ident": "LFVP",
+            "type": "medium_airport",
+            "name": "Saint-Pierre Pointe-Blanche Airport",
+            "latitude_deg": "46.762651",
+            "longitude_deg": "-56.17499",
+            "elevation_ft": "27",
+            "continent": "NA",
+            "iso_country": "PM",
+            "iso_region": "PM-SP",
+            "municipality": "Saint-Pierre",
+            "scheduled_service": "yes",
+            "icao_code": "LFVP",
+            "iata_code": "FSP",
+            "gps_code": "LFVP",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Saint-Pierre_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "70c094060104ee935c172b4f787e1932ebbeddaa8d3fd42d8beb54d7e2a8293b",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "LFVP",
+            "sourceUrl": "https://ourairports.com/airports/LFVP/",
+            "matchedIdent": "LFVP",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/LFVP/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "PM",
+              "+4703-05620",
+              "America/Miquelon"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "America/Miquelon",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "PM",
+              "+4703-05620",
+              "America/Miquelon"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-saint-pierre-et-miquelon-wholeways-261013.osm.pbf",
+          "bytes": 1545692,
+          "sha256": "1abf50de174c97cc69e6c5cae1b24eb93cab4c7587f109204dd4ce5fea07aac3",
+          "headerTimestamp": "2026-10-13T00:16:49Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/21604999",
+          "way/21605571",
+          "way/21606109",
+          "way/21606219",
+          "way/21607618",
+          "way/21607647",
+          "way/21607674",
+          "way/21607676",
+          "way/21607770",
+          "way/21607922",
+          "way/21608011",
+          "way/21608147",
+          "way/21608556",
+          "way/21608623",
+          "way/21608763",
+          "way/21609501",
+          "way/21609687",
+          "way/40197803",
+          "way/40336233",
+          "way/40413408",
+          "way/40454618",
+          "way/40477302",
+          "way/40524132",
+          "way/40546853",
+          "way/40547034",
+          "way/40547138",
+          "way/40664742",
+          "way/40664761",
+          "way/40664764",
+          "way/40664769",
+          "way/40664846",
+          "way/132925237",
+          "way/133158764",
+          "way/134463247",
+          "way/245992880",
+          "way/255161664",
+          "way/311681826",
+          "way/311681827",
+          "way/311681835",
+          "way/311681836",
+          "way/311681837",
+          "way/311681842",
+          "way/311681843",
+          "way/311681845",
+          "way/311681846",
+          "way/311681847",
+          "way/311681849",
+          "way/311681850",
+          "way/311681851",
+          "way/311681852",
+          "way/311681853",
+          "way/371215798",
+          "way/409312338",
+          "way/437765005",
+          "way/437765008",
+          "way/546679848",
+          "way/546679849",
+          "way/546679856",
+          "way/546679857",
+          "way/546679858",
+          "way/546682138",
+          "way/546682139",
+          "way/546682140",
+          "way/666695719",
+          "way/832520612",
+          "way/1179849272",
+          "way/1179850580",
+          "way/1182062397",
+          "way/1182062398",
+          "way/1182062399",
+          "way/1182062400",
+          "way/1182062401",
+          "way/1182062402",
+          "way/1190114783",
+          "way/1190115966",
+          "way/1190115967",
+          "way/1190115968",
+          "way/1190115969",
+          "way/1190115970",
+          "way/1348680250",
+          "way/1479918479",
+          "way/1552150334"
+        ],
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "boundsPolicySha256": "6f384df7d7b374e875192057a85d6bcace4dd2d7c3b3701298a7893dc2ed67b6",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              46.59666881006602,
+              -56.44009746434139,
+              46.95843058993398,
+              -55.9136369356586
+            ],
+            "core": [
+              46.73232947751651,
+              -56.24250852426768,
+              46.822769922483495,
+              -56.111225875732316
+            ],
+            "outline": [
+              46.54666881006602,
+              -56.49009746434139,
+              47.00843058993398,
+              -55.863636935658604
+            ],
+            "wide": [
+              45.99666881006602,
+              -57.04009746434139,
+              47.558430589933984,
+              -55.3136369356586
+            ]
+          },
+          "airportMarginMetres": 18352.650740999892,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 5,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtSquarePlaces": [
+              "square"
+            ]
+          },
+          "cityPlaceTag": "village"
+        }
+      },
+      "extractKey": "saint-pierre",
+      "extractSha256": {
+        "places": "4d00560106a0fd857f3554cfd65adc8a268f8e3143639d83b4afa3cb7ece503b",
+        "extras": "9430d991c297ab2883cf048fffe44d2e0c038291df1bb24e6193226b123e2fe3",
+        "water": "f68dd2b98fa72c9e1635a69684332a5a1440c69b1c19e794a71191d810000d2c",
+        "landuse": "96dbbd6d067531e518eab84f392ae3ee6a4ff5de23d3c041ee0a93987dd3240f",
+        "roads": "92b634fba40decaab25a99bc4bf0763014455b4e324708dbe4c72bc6f1a407a6"
+      },
+      "sourceJob": {
+        "city": "saint-pierre",
+        "sourceRunId": 38502396254,
+        "sourceArtifact": "city-bootstrap-pm-e7b4a8440947fc8102bda4f2f8e8b288636be2fd",
+        "sourceSha": "e7b4a8440947fc8102bda4f2f8e8b288636be2fd",
+        "datasetSha256": "1abf50de174c97cc69e6c5cae1b24eb93cab4c7587f109204dd4ce5fea07aac3",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "extractSha256": {
+          "places": "4d00560106a0fd857f3554cfd65adc8a268f8e3143639d83b4afa3cb7ece503b",
+          "extras": "9430d991c297ab2883cf048fffe44d2e0c038291df1bb24e6193226b123e2fe3",
+          "water": "f68dd2b98fa72c9e1635a69684332a5a1440c69b1c19e794a71191d810000d2c",
+          "landuse": "96dbbd6d067531e518eab84f392ae3ee6a4ff5de23d3c041ee0a93987dd3240f",
+          "roads": "92b634fba40decaab25a99bc4bf0763014455b4e324708dbe4c72bc6f1a407a6"
+        }
+      }
+    }
+  ]
+}

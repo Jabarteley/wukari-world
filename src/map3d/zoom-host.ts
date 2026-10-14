@@ -38,8 +38,11 @@ export interface ZoomHostOptions {
 export interface ZoomHost {
   readonly cityPort: LadderPort
   readonly worldPort: LadderPort
-  /** Change which map is in front with the fade; false when a hand-over is already going or nothing needs doing. */
-  fadeTo(layer: Layer, options?: { carry?: number }): boolean
+  /**
+   * Change which map is in front with the fade; false when a hand-over is already going or nothing needs doing. `descend` (seconds) brings
+   * the city map down from straight above (the dive, ./dive-host.ts); `after` hears which map ended in front (also when it gave up).
+   */
+  fadeTo(layer: Layer, options?: { carry?: number; descend?: number; after?: (front: Layer) => void }): boolean
   /** True from the start of a hand-over to its end. */
   readonly busy: boolean
   destroy(): void
@@ -58,7 +61,7 @@ export function createZoomHost(options: ZoomHostOptions): ZoomHost {
   const pressure = createPressure();
   let handoff: Handoff = createHandoff();
   let token = 0, frame = 0, pollFrame = 0, opposed = 0, destroyed = false, chipTimer: ReturnType<typeof setTimeout> | null = null, push: { box: HTMLElement } | null = null;
-  let session: { from: Layer; to: Layer; edge: Edge; carry: number } | null = null;
+  let session: { from: Layer; to: Layer; edge: Edge; carry: number; after?: (front: Layer) => void } | null = null;
 
   // ---- the chip and the screen reader's line ------------------------------------------------------------------------------
   const chip = doc.createElement('div');
@@ -127,6 +130,7 @@ export function createZoomHost(options: ZoomHostOptions): ZoomHost {
     const done = session!;
     session = null; tidy(); hide(); phase('idle');
     const front = returned ? done.from : done.to, left = returned ? done.to : done.from;
+    done.after?.(front);
     if (returned) options.setLayer(done.from);
     const maps = options.maps();
     // Let the map that is no longer in front go: its GPU memory is the largest part of what a hand-over keeps alive.
@@ -142,6 +146,7 @@ export function createZoomHost(options: ZoomHostOptions): ZoomHost {
     token += 1; stop(); hide(); phase('idle');
     const was = session; session = null;
     if (layerFlipped && was) { layerFlipped = false; tidy(); options.setLayer(was.from); }
+    was?.after?.(was.from);
     pressure.settled(now());
   }
   let layerFlipped = false, entryCarry = 0;
@@ -170,6 +175,7 @@ export function createZoomHost(options: ZoomHostOptions): ZoomHost {
   function give(): void {
     const was = session; session = null; handoff = createHandoff({ reduced: reduced() });
     if (layerFlipped && was) { layerFlipped = false; tidy(); options.setLayer(was.from); }
+    was?.after?.(was.from);
     token += 1; pressure.settled(now()); phase('idle');
     show('That map could not be loaded. Check your connection and try again.');
   }
@@ -213,7 +219,7 @@ export function createZoomHost(options: ZoomHostOptions): ZoomHost {
     if (!world || session) return;
     announce(`Zooming in on ${options.cityName()}`);
     entryCarry = carry;
-    world.enterCity(id);                        // flies down over it, then the host of the boxes calls fadeTo('city')
+    world.enterCity(id, { dive: false });       // flies down over it (a gesture: no dive), then the host of the boxes calls fadeTo('city')
   }
   function lookAt(id: string, name: string): void {
     const { world } = options.maps();
@@ -224,19 +230,20 @@ export function createZoomHost(options: ZoomHostOptions): ZoomHost {
     show(`${name}: looking from afar. You are still in ${options.cityName()}.`);
     announce(`Showing ${name} from afar. You are still in ${options.cityName()}.`);
   }
-  function fadeTo(layer: Layer, { carry = entryCarry }: { carry?: number } = {}): boolean {
+  function fadeTo(layer: Layer, { carry = entryCarry, descend = 0, after }: { carry?: number; descend?: number; after?: (front: Layer) => void } = {}): boolean {
     if (session || destroyed) return false;
     entryCarry = 0;
     const maps = options.maps(), from: Layer = layer === 'city' ? 'world' : 'city';
     if (layer === 'world') { options.setLayer('world'); return false; }
     const mine = begin(from, layer, 'in', carry);
+    if (after) session!.after = after;
     flip();
     // The city map is mounted when it is first shown (or again, if it was let go): wait for it, then come in from its wide end.
     if (!maps.city?.map) show(`Loading ${options.cityName()}…`, 0, true);
     void Promise.resolve(maps.city?.started).then(() => {
       until(() => Boolean(maps.city?.map) && cityBox.getBoundingClientRect().width > 0, () => {
         if (mine !== token || !session) return;
-        maps.city?.resize(); maps.city?.enter('in', carry);
+        maps.city?.resize(); maps.city?.enter('in', carry, descend);
         afterFrames(2, mine, () => { hide(); handoff.arrived(now()); fade(); });
       }, mine);
     });

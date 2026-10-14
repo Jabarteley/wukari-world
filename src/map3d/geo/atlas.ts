@@ -212,8 +212,8 @@ export interface AtlasApi {
   ladderTarget(at?: readonly [number, number] | null): { id: string; name: string; own: boolean } | null;
   /** Fly over another city as close as the atlas goes and open its card: a look, never a move. */
   lookAt(cityId: string): void;
-  /** Fly in on the player's own city, then hand over to the city map (`onOpenCity`). */
-  enterCity(cityId: string): void;
+  /** Fly in on the player's own city, then hand over to the city map (`onOpenCity`). `dive: false` keeps the plain fly-in (a pinch past the limit). */
+  enterCity(cityId: string, options?: { dive?: boolean }): void;
   /** Arrive from the city map of `cityId`: start close over it, as the city map's zoom left off, and carry on out to its level. */
   arriveFrom(cityId: string, carry?: number): void;
   /** Fetch the level a city's map hands over to; resolves true when it is here. `loaded` says it is, without waiting. */
@@ -1350,15 +1350,16 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
     fly(levelView(next), 0.9);
   }
   /** Fly down into the open city, then hand over to the city map. */
-  function enterCity(id: string) {
+  function enterCity(id: string, { dive: diveIn = true }: { dive?: boolean } = {}) {
     countryDetailModel?.close();
     const state = stateOfCity(id), hit = state ? find({ kind: 'state', id: state }) : null, city = cityEntry(id);
-    const done = () => { root?.classList.remove('is-entering'); resetView = true; if (id === current) onOpenCity(id); else onEnterCity(id); };
+    // Whether it is the player's own city is decided at the tap: a dive sends the move at once, so `current` may change before the landing.
+    const own = id === current, done = () => { root?.classList.remove('is-entering'); resetView = true; if (own) onOpenCity(id); else onEnterCity(id); };
     if (!hit || !city || !raf || !shown()) { done(); return; }
     const [x, y] = project(city.lon, city.lat), goal: RigView = { x, z: -y, distance: minDistance() * 0.8, pitch: 0.95, yaw: 0 };
     // Skip: wherever the flight is, it ends over the city and the hand-over goes on at once.
     const land = () => { if (entering !== done) return; diving = null; entering = null; rig.jump(goal); done(); request(); };
-    const flight = dive(id, id === current, land);
+    const flight = diveIn ? dive(id, own, land) : null;
     if (reducedMotion || flight === 0) { done(); return; }
     root?.classList.add('is-entering');
     if (flight) { rig.hold(); diving = { from: { ...rig.view }, to: goal, start: now(), ms: flight * 1000 }; } else rig.ease(goal, 0.85);

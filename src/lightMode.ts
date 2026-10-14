@@ -11,6 +11,8 @@
 export const LIGHT_KEY = 'joinallworld-light-v1'
 /** The frame rate light mode allows a scene or map to draw at. */
 export const LIGHT_FPS = 30
+/** The render tier of light mode (src/scene/look.ts): the phone tier at one device pixel per CSS pixel (a third fewer pixels than at 1.5) and a small shadow map. */
+export const LIGHT_TIER = { name: 'phone', pixelRatio: 1, shadowMap: 512, softShadows: false } as const
 
 /** What light mode reads of a window: its storage and its connection. */
 export interface LightWindow { localStorage?: Pick<Storage, 'getItem'> | null; navigator?: { connection?: { saveData?: boolean } } }

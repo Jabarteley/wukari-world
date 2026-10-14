@@ -1,18 +1,18 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { LIGHT_FPS, LIGHT_KEY, capFor, forgetLight, lightChosen, lightDefault, lightFps, lightOn, onLightChange, readLight, setLight } from './lightMode.ts'
+import { LIGHT_FPS, LIGHT_KEY, lightFps, lightOn, readLight } from './lightMode.ts'
+import { forgetLight, lightChosen, onLightChange, setLight } from './lightControl.ts'
 import { HIGH_TIER, LIGHT_TIER, PHONE_TIER, renderTier } from './scene/look.ts'
 import { readSound, SOUND_DEFAULTS } from './audio/settings.ts'
 
 const saved = (value: string | null) => ({ getItem: (key: string) => (key === LIGHT_KEY ? value : null) })
 
 test('light mode starts on only when the browser asks to save data', () => {
-  assert.equal(lightDefault({ saveData: true }), true)
-  assert.equal(lightDefault({ saveData: false }), false)
-  assert.equal(lightDefault({}), false)
-  assert.equal(lightDefault(null), false)
   assert.equal(readLight(null, { saveData: true }), true)
   assert.equal(readLight(saved(null), { saveData: true }), true)
+  assert.equal(readLight(saved(null), { saveData: false }), false)
+  assert.equal(readLight(saved(null), {}), false)
+  assert.equal(readLight(saved(null), null), false)
   assert.equal(readLight(saved(null), undefined), false)
 })
 
@@ -27,9 +27,10 @@ test("the player's own choice wins over the default, either way", () => {
 })
 
 test('the frame cap is 30 with light mode on and none otherwise', () => {
-  assert.equal(capFor(true), LIGHT_FPS)
   assert.equal(LIGHT_FPS, 30)
-  assert.equal(capFor(false), 0)
+  setLight(true); assert.equal(lightFps(), 30)
+  setLight(false); assert.equal(lightFps(), 0)
+  forgetLight()
 })
 
 test('setLight is remembered for this tab, tells listeners, and says when it could not be saved', () => {

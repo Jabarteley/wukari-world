@@ -3,7 +3,7 @@
 // Both are device-only: nothing is sent to the server. The meter is started when the game is ready; opening this section starts it too, so the
 // line is never empty, and it counts up while the section is open.
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { lightChosen, lightOn, onLightChange } from '../../../lightMode.ts'
+import { lightChosen, lightOn, onLightChange } from '../../../lightControl.ts'
 import { startMeter, usedLine } from '../../state/dataMeter.ts'
 import { DATA_NOTE, LIGHT_AUTO_HINT, LIGHT_HINT, LIGHT_LABEL, LIGHT_NOT_SAVED, applyLight } from './lightSettingsModel.ts'
 

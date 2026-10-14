@@ -1,7 +1,7 @@
 // The "Data and battery" section of the Settings tab, as plain data and one function: what the Light mode switch says, and what turning it
 // on or off does besides remembering it. Pure enough to test without a browser. The switch itself is src/lightMode.ts; the meter is
 // src/app/state/dataMeter.ts.
-import { setLight } from '../../../lightMode.ts'
+import { setLight } from '../../../lightControl.ts'
 import { setSound } from '../../../audio/settings.ts'
 
 export const LIGHT_LABEL = 'Light mode'

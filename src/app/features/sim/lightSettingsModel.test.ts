@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { forgetLight, lightOn } from '../../../lightMode.ts'
+import { forgetLight, lightOn } from '../../../lightControl.ts'
 import { getSound, setSound } from '../../../audio/settings.ts'
 import { DATA_NOTE, LIGHT_HINT, applyLight } from './lightSettingsModel.ts'
 

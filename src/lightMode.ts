@@ -6,7 +6,7 @@
 //   - a frame cap of 30 a second wherever the game runs its own frame loops (src/scene/frame-gate.ts, motion-loop.ts, the maps);
 //   - no fetching of what nobody asked for yet (src/app/state/idlePreload.ts, the map's code in ScenePane, the dive and the aerial city);
 //   - music off until the player turns it on (src/audio/settings.ts); the sounds themselves are made on the phone, not downloaded.
-// Pure data and small functions with no imports: the first download carries this file, and a test or a lazy module can read it.
+// No imports, and only what every scene needs: the first download carries this file. Changing the switch is src/lightControl.ts (lazy).
 
 export const LIGHT_KEY = 'joinallworld-light-v1'
 /** The frame rate light mode allows a scene or map to draw at. */
@@ -15,49 +15,26 @@ export const LIGHT_FPS = 30
 export interface SaveDataConnection { saveData?: boolean }
 type Reader = Pick<Storage, 'getItem'> | null | undefined
 
-/** The default when the player has not chosen: on for a browser that asks to save data. */
-export const lightDefault = (connection: SaveDataConnection | null | undefined): boolean => connection?.saveData === true
-
-/** The saved choice ('1' on, '0' off) or, when there is none, the default. */
+/** The saved choice ('1' on, '0' off) or, when there is none, the default: on for a browser that asks to save data. */
 export function readLight(storage: Reader, connection?: SaveDataConnection | null): boolean {
   try {
     const saved = storage?.getItem(LIGHT_KEY)
-    if (saved === '1') return true
-    if (saved === '0') return false
+    if (saved === '1' || saved === '0') return saved === '1'
   } catch { /* storage is blocked: the default */ }
-  return lightDefault(connection)
+  return connection?.saveData === true
 }
-
-/** Has the player made a choice on this device (as opposed to the default being in force)? */
-export function lightChosen(storage: Reader): boolean {
-  try { const saved = storage?.getItem(LIGHT_KEY); return saved === '1' || saved === '0' } catch { return false }
-}
-
-/** The frame cap in force: 30 with light mode on, 0 (none) otherwise. */
-export const capFor = (light: boolean): number => (light ? LIGHT_FPS : 0)
-
-const storeOf = (): Storage | null => { try { return globalThis.localStorage ?? null } catch { return null } }
-const connectionOf = (): SaveDataConnection | null => (globalThis.navigator as { connection?: SaveDataConnection } | undefined)?.connection ?? null
 
 let current: boolean | null = null
-const listeners = new Set<() => void>()
-
 /** Is light mode on in this tab? Read from the browser once, then kept. */
-export const lightOn = (): boolean => current ??= readLight(storeOf(), connectionOf())
-/** The frame cap now (0 = none). */
-export const lightFps = (): number => capFor(lightOn())
-/** Turn it on or off and remember the choice. Returns false when the browser would not save it (it still holds for this tab). */
-export function setLight(on: boolean): boolean {
-  current = on
-  let saved = true
-  try { const store = storeOf(); if (!store) saved = false; else store.setItem(LIGHT_KEY, on ? '1' : '0') } catch { saved = false }
-  for (const listener of [...listeners]) listener()
-  return saved
+export const lightOn = (): boolean => {
+  if (current === null) {
+    let store: Storage | null = null
+    try { store = globalThis.localStorage } catch { /* blocked */ }
+    current = readLight(store, (globalThis.navigator as { connection?: SaveDataConnection } | undefined)?.connection)
+  }
+  return current
 }
-/** Be told when it changes. Returns the unsubscribe. */
-export function onLightChange(listener: () => void): () => void {
-  listeners.add(listener)
-  return () => { listeners.delete(listener) }
-}
-/** Forget what was read (a test, or another tab changed the saved choice). */
-export function forgetLight(): void { current = null }
+/** The frame cap now: 30 with light mode on, 0 (none) otherwise. */
+export const lightFps = (): number => (lightOn() ? LIGHT_FPS : 0)
+/** For lightControl.ts (Settings, lazy): hold a new value for this tab, or null to read it again. */
+export const holdLight = (on: boolean | null): void => { current = on }

@@ -67,7 +67,8 @@ test('a window across New Year works: Detty December, 15 December to 2 January, 
 test('every time zone sees a festival: each country has it on from local midnight of the first day to the last minute of the last', () => {
   for (const [country, iso, id] of [['ng', '2026-10-01', 'ng-independence'], ['gh', '2027-03-06', 'gh-independence'], ['ke', '2026-10-20', 'ke-mashujaa'], ['za', '2026-09-24', 'za-heritage']] as const) {
     const focal = dayOfIso(iso)!;
-    for (const [from, until] of [[focal - 1, focal - 1], [focal, focal], [focal + 1, focal + 1]]) {
+    for (const from of [focal - 1, focal, focal + 1]) {
+      const until = from;
       for (const hour of [0, 6, 12, 18, 23.9]) assert.ok(activeFestivals(localAt(from, hour, country), country).some((item) => item.id === id), `${country} ${isoOfDay(until)} ${hour}`);
     }
     assert.ok(!activeFestivals(localAt(focal - 1, 0, country) - 60000, country).some((item) => item.id === id), `${country} the minute before`);

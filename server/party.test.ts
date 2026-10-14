@@ -77,8 +77,9 @@ test('guests see the dress code and the roles; the host names an MC and a DJ, on
   const ada = await w.host('Ada'), bola = await w.player('Bola'), tunde = await w.player('Tunde');
   await w.befriend(ada, bola); await w.befriend(ada, tunde);
   await w.start(ada, { colour: 'green' });
-  for (const guest of [bola, tunde]) assert.equal((await w.post('/api/social/visit/enter', { host: ada.id }, guest)).code, 'inside');
-  const seen = (await w.get('/api/social/me', bola)) as unknown as { house?: Reply['house'] };
+  const entered: Reply[] = [];
+  for (const guest of [bola, tunde]) { const done = await w.post('/api/social/visit/enter', { host: ada.id }, guest); assert.equal(done.code, 'inside'); entered.push(done); }
+  const seen = entered[0]!;
   assert.equal(seen.house?.party?.colour.id, 'green');
   assert.equal(seen.house?.role, 'guest');
   assert.equal((await w.role(ada, 'mc', bola.id)).house?.party?.mc?.id, bola.id);
@@ -94,7 +95,7 @@ test('guests see the dress code and the roles; the host names an MC and a DJ, on
   assert.equal((await w.role(ada, 'emcee', bola.id)).status, 400);
   assert.equal((await w.post('/api/social/visit/party/role', { role: 'mc', guest: 'nope' }, ada)).status, 400);
   const chat = await w.messages(ada, `h.${ada.id}`);
-  assert.ok(chat.some((line) => /throwing a party/.test(line)) || chat.length === 0, 'the house chat announces the party when anyone is inside');
+  assert.ok(chat.some((line) => /is the MC/.test(line)) && chat.some((line) => /is the DJ/.test(line)), 'the house chat says who holds a role');
 });
 
 test('spraying is a line in the house chat, limited per guest, with no money moving; only people inside can spray', async (t) => {

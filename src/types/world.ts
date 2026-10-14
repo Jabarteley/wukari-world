@@ -156,6 +156,8 @@ export interface WorldHttpRoutes {
   'GET /api/world/pulse': { query: Record<string, never>; response: Ok<WorldPulseResponse>; errors: HostErrorCode | SessionErrorCode | 'pulse_rate_limited' }
   /** Public: only how many players are online (at least 1), for a visitor who has no session yet. No visit is counted. */
   'GET /api/world/pulse/online': { query: Record<string, never>; response: Ok<{ online: number }>; errors: HostErrorCode | 'pulse_rate_limited' }
+  /** Public: the city's country and what an admin changed in the festival calendar and fixtures (server/routes/festivals.ts, docs/FESTIVALS.md). */
+  'GET /api/world/festivals': { query: { city: CityId }; response: Ok<{ now: number; city: CityId; country: string; extras: unknown; fixtures: unknown[] }>; errors: HostErrorCode | 'invalid_city' | 'rate_limited' }
   /** Public: the day's rates (the city's own currency, NGN, USD) and the city's observed weather; cached five minutes (docs/WORLD-FEED.md). */
   'GET /api/world/feed': { query: { id: CityId }; response: Ok<WorldFeedResponse>; errors: HostErrorCode | 'invalid_city' | 'feed_rate_limited' }
   'GET /api/world/city': { query: { city: CityId; v?: string }; response: Ok<WorldCityResponse>; errors: WorldCommon }

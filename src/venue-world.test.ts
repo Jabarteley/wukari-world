@@ -537,6 +537,27 @@ test('walking moves transforms only: hundreds of frames of walking, turning and 
   } finally { THREE.BufferGeometry.prototype.setIndex = setIndex; THREE.BufferGeometry.prototype.setAttribute = setAttribute; bench.restore(); }
 });
 
+test('arriving from above (the end of the map\'s dive): the camera starts high and comes down to the composed view, then the loop stops', () => {
+  const bench = motionBench();
+  try {
+    const { world } = bench;
+    world.setState(PARK);
+    const composed = world.diagnostics().camera;
+    assert.equal(world.arriveFromAbove!(), true);
+    bench.pump(1);
+    const high = world.diagnostics().camera;
+    assert.ok(high.pitch > composed.pitch + 0.3 && high.distance > composed.distance, `starts above (${high.pitch} > ${composed.pitch})`);
+    const ran = bench.pump(400);
+    assert.ok(ran > 20 && ran < 400, `comes down over frames, then stops (${ran})`);
+    const settled = world.diagnostics().camera;
+    assert.ok(Math.abs(settled.pitch - composed.pitch) < 1e-3 && Math.abs(settled.distance - composed.distance) < 0.05, 'back on the composed view');
+    assert.equal(bench.queued(), 0, 'no frames once it is down (battery rule)');
+    bench.reduceMotion(true);
+    assert.equal(world.arriveFromAbove!(), false, 'reduced motion: the scene is simply there');
+    assert.equal(bench.queued(), 0);
+  } finally { bench.restore(); }
+});
+
 test('reduced motion snaps: a tap puts the avatar there in one frame and the camera never eases', () => {
   const bench = motionBench();
   try {

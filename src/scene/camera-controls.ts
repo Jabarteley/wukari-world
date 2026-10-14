@@ -31,6 +31,10 @@
  * the offset eases away and the camera is back on the avatar. reset() clears it at once. Orbiting and zooming never
  * stop the follow: they turn and dolly about the pivot the avatar carries.
  *
+ * ARRIVING FROM ABOVE. fromAbove() puts the camera high over the scene and pulled back (where the map's dive left off,
+ * src/map3d/dive.ts) and lets it come down to the composed view more slowly than an ordinary ease (ABOVE_RATE of it, for
+ * `seconds`); the goal is not touched, so nothing the player asked for is lost.
+ *
  * `goal` is what the player asked for; `now` eases after it in step(dt). step() returns true while
  * there is still a difference, which is what keeps the host's frame loop running — and false the
  * moment the camera has arrived, so the loop stops.
@@ -42,6 +46,8 @@ export const DRAG_YAW = 0.006, DRAG_PITCH = 0.005; // radians per CSS pixel
 const EASE = { turn: 18, zoom: 11, pivot: 7, squeezeIn: 12, squeezeOut: 3.2 };
 /** How long the camera stays where the player slid it before it goes back to following the avatar (seconds). */
 export const FOLLOW_PAUSE = 4;
+/** Arriving from above: how far back the camera starts (a share of the farthest zoom), and how much slower than usual it comes down. */
+export const ABOVE_PULL = 0.7, ABOVE_RATE = 0.25;
 /** What step() eases: the two angles first (at the turning rate), then the pivot and the player's slide of it. */
 const EASED = ['yaw', 'tilt', 'x', 'y', 'z', 'px', 'pz'] as const;
 
@@ -75,6 +81,8 @@ export interface Orbit {
   follow(x: number, y: number, z: number): void;
   cap(distance: number): void;
   snap(): void;
+  /** Start high above and pulled back, and come down to the goal gently over about `seconds` (the end of the map's dive). */
+  fromAbove(seconds?: number): void;
   readonly settled: boolean;
   step(dt: number): boolean;
   readonly azimuth: number;
@@ -90,7 +98,7 @@ export function createOrbit(): Orbit {
   // squeeze: the share of the asked-for distance the camera is held at (1 = not held; see cap()).
   const goal: OrbitState = { yaw: 0, tilt: 0, zoom: 1, x: 0, y: 0.7, z: 0, px: 0, pz: 0, squeeze: 1 };
   const now: OrbitState = { yaw: 0, tilt: 0, zoom: 1, x: 0, y: 0.7, z: 0, px: 0, pz: 0, squeeze: 1 };
-  let holding = 0;
+  let holding = 0, gliding = 0;
 
   function constrain() {
     goal.tilt = clamp(base.elevation + goal.tilt, PITCH_MIN, PITCH_MAX) - base.elevation;
@@ -146,14 +154,20 @@ export function createOrbit(): Orbit {
       if (next === 1 || goal.squeeze === 1 || Math.abs(next - goal.squeeze) > 0.02) goal.squeeze = next;
     },
     /** Jump to the goal: no easing (a new venue, reduced motion, no frame loop). */
-    snap() { now.yaw = goal.yaw; now.tilt = goal.tilt; now.zoom = goal.zoom; now.x = goal.x; now.y = goal.y; now.z = goal.z; now.px = goal.px; now.pz = goal.pz; now.squeeze = goal.squeeze; },
+    fromAbove(seconds = 0.9) {
+      now.tilt = PITCH_MAX - base.elevation;
+      now.zoom = Math.min(goal.zoom, limits.zoomMin) * ABOVE_PULL;
+      gliding = Math.max(0, seconds);
+    },
+    snap() { gliding = 0; now.yaw = goal.yaw; now.tilt = goal.tilt; now.zoom = goal.zoom; now.x = goal.x; now.y = goal.y; now.z = goal.z; now.px = goal.px; now.pz = goal.pz; now.squeeze = goal.squeeze; },
     get settled() {
       return now.yaw === goal.yaw && now.tilt === goal.tilt && now.zoom === goal.zoom && now.x === goal.x && now.y === goal.y && now.z === goal.z && now.px === goal.px && now.pz === goal.pz && now.squeeze === goal.squeeze && holding === 0;
     },
     step(dt) {
       // Allocation-free: this runs every frame of the motion loop.
-      const turn = 1 - Math.exp(-EASE.turn * dt), slide = 1 - Math.exp(-EASE.pivot * dt);
+      const rate = gliding > 0 ? ABOVE_RATE : 1, turn = 1 - Math.exp(-EASE.turn * rate * dt), slide = 1 - Math.exp(-EASE.pivot * dt);
       let moving = false;
+      if (gliding > 0) gliding = Math.max(0, gliding - dt);
       // After the pause the slide is let go, and the camera eases back onto the avatar.
       if (holding > 0) { holding = Math.max(0, holding - dt); moving = true; if (holding === 0) { goal.px = 0; goal.pz = 0; } }
       for (let i = 0; i < EASED.length; i++) {
@@ -167,7 +181,7 @@ export function createOrbit(): Orbit {
       const ratio = goal.zoom / now.zoom;
       if (ratio !== 1) {
         if (Math.abs(Math.log(ratio)) < 0.002) now.zoom = goal.zoom;
-        else { now.zoom *= Math.exp(Math.log(ratio) * (1 - Math.exp(-EASE.zoom * dt))); moving = true; }
+        else { now.zoom *= Math.exp(Math.log(ratio) * (1 - Math.exp(-EASE.zoom * rate * dt))); moving = true; }
       }
       // The collision hold: in quickly, out slowly.
       const gap = goal.squeeze - now.squeeze;

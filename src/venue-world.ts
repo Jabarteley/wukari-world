@@ -260,6 +260,8 @@ export interface VenueWorld {
   restorePosition(at: { x: number; z: number }): void
   readonly location: string | null
   prepare(id: string): boolean
+  /** The end of the map's dive (src/map3d/dive.ts): the camera starts high above, pulled back, and comes down to the composed view. False where it cannot be shown (reduced motion, no frame loop, no scene). */
+  arriveFromAbove?(): boolean
   diagnostics(): VenueDiagnostics
   resize(): void
   /** `top` / `bottom`: how many CSS pixels of the canvas the HUD covers; `hint`: where the HUD rows under the top bar end. */
@@ -1539,6 +1541,11 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       // destination must not change the light of the scene the player still sees.
       try { sceneFor(id); }
       finally { applyLook(); }
+      return true;
+    },
+    arriveFromAbove() {
+      if (!current || !loop.available || reduced()) return false;
+      orbit.fromAbove(); loop.wake();
       return true;
     },
     diagnostics() {

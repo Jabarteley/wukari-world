@@ -77,4 +77,5 @@ Reported on 14 October 2026 for the full `npm test` (re-check in Phase 0; remove
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
+- 2026-10-14: brief tidied: removed a stale duplicate draft from DESIGN.md (its defaults were superseded by the owner's decisions); added voice cost, break limits and the residents experiment.
 - 2026-10-14: brief written (this folder). Nothing implemented yet.

@@ -54,6 +54,7 @@ FEATURES.md #3; README.md "Rules", AI.
     agent is only told the person "is not interested in that".
   - **Each agent can be reported and blocked** like a person.
   - **Memory controls:** people can see what an agent remembers about them, delete it, or turn it off.
+  - Break reminders after long sessions with agents, and daily voice minutes with agents per player.
 - **Done when:** tests for every ban and for the interception, a red-team test file of attempts (tricking an agent into asking
   for money, getting a number, meeting up, denying it is an AI), live.
 
@@ -210,6 +211,9 @@ DESIGN.md Part 8; FEATURES.md "Seven rules for the agents".
 - Spread over the busiest cities, with sleep, slow thinking when alone, the model mix, and agent-to-agent talk grounded in the
   ledger, with a turn limit and a repetition check.
 - The admin page compares models: talk with strangers, businesses started, friendships kept, rule slips, cost.
+- The first thirty residents are an experiment: no study measures AI residents in a shared world with people. Before launch,
+  decide what counts as success (for example, return of players who talked to a resident against those who did not, reports,
+  cost) and record it in STATUS.md.
 - **Done when:** a week live inside the budget, measures recorded in STATUS.md.
 
 **13c. Ideas, needs, the assembly, the president and the Sunday letter.**

@@ -13,7 +13,8 @@ smarter characters:
 - **Friends predict who stays.** A study of 51,104 players of an online game found the number of friends predicts who stays,
   and social features are the strongest predictor among the most engaged ([arXiv 1702.08005](https://arxiv.org/abs/1702.08005)).
   In a large social adventure game, playing with friends and receiving or seeing generosity predicted later engagement
-  ([arXiv 2207.10615](https://arxiv.org/abs/2207.10615)).
+  ([arXiv 2207.10615](https://arxiv.org/abs/2207.10615)). The most-played mobile board game in India and Africa grew after it
+  added private rooms with friends and in-game voice chat.
 - **Agents believe things they never act on.** In the best-known simulation of 25 language-model agents, an invitation spread to
   about half of them in two days, but only 5 of the 12 invited came ([arXiv 2304.03442](https://arxiv.org/abs/2304.03442)).
 - **Unchecked claims spread between agents.** In a public experiment with several agents, a made-up contact list spread to every

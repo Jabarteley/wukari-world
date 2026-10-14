@@ -7,7 +7,7 @@
     "stateId": "cr-san-jose",
     "stateName": "San José"
   },
-  "inventorySha256": "b1516295b7092e90c5be6eedf2778f64ef2ae3c06ebbba0801ad9d4e5a4a1d9c",
+  "inventorySha256": "1164682566a9534dd999a6e70ffe511c3641d89be157ae57dbf9595944e2a7c4",
   "inventoryPath": "world/playable-africa-rollout/sources/san-jose.json",
   "admission": {
     "registered": true,
@@ -66,11 +66,11 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 195,
     "neighbourhoodLabels": 18,
     "landPolygons": 26,
     "waterPolygons": 2,
-    "reachWaterPolygons": 79
+    "reachWaterPolygons": 66
   },
   "observed": {
     "places": 5021,

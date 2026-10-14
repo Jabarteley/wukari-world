@@ -7,7 +7,7 @@
     "stateId": "az-baku",
     "stateName": "Baku"
   },
-  "inventorySha256": "d9209e671b7344f9e6fad852b2d5f79a7adeb74b5b1c92e488a512826420d2cb",
+  "inventorySha256": "94f812714e1723f962d54ecd79c4eb34ad88696915205694258c2ad58d3f7028",
   "inventoryPath": "world/playable-africa-rollout/sources/baku.json",
   "admission": {
     "registered": true,
@@ -85,7 +85,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 364,
     "neighbourhoodLabels": 14,
     "landPolygons": 7,
     "waterPolygons": 9,

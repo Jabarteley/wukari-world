@@ -7,7 +7,7 @@
     "stateId": "uz-tashkent",
     "stateName": "Tashkent"
   },
-  "inventorySha256": "bc14fa3947dfcbc10b0ef4f18ab798064b69075966b81ecf94556c568a45d9f9",
+  "inventorySha256": "66b64f4b98c02bdfb69863a885acdacbe7278ac5f02c55a7432082fb745ea9bf",
   "inventoryPath": "world/playable-africa-rollout/sources/tashkent.json",
   "admission": {
     "registered": true,
@@ -85,7 +85,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 276,
     "neighbourhoodLabels": 18,
     "landPolygons": 33,
     "waterPolygons": 23,

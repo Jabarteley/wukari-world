@@ -293,11 +293,126 @@ export function drivenAt(signal: Signal | null, roll: number, seconds: number, r
 /** The progress a vehicle that does not roll on stops at, past where it was when the lights changed (half its ramp). */
 const SETTLE = RAMP / 2;
 
-/** Where vehicle `i` is at `seconds` (wall clock), which way it faces, and how far along its road. */
-export function vehiclePose(plan: TrafficPlan, vehicles: readonly Vehicle[], roads: readonly Road[], i: number, seconds: number): VehiclePose & { along: number } {
+/** Where vehicle `i` is at `seconds` (wall clock), which way it faces, and how far along its road; `lost`: seconds of driving its road
+ * has given up to the player (createGiveWay). */
+export function vehiclePose(plan: TrafficPlan, vehicles: readonly Vehicle[], roads: readonly Road[], i: number, seconds: number, lost = 0): VehiclePose & { along: number } {
   const v = vehicles[i]!, road = roads[v.road]!, rp = plan.roads[v.road]!, p = rp.profile;
   const t = Number.isFinite(seconds) ? seconds : 0;
-  const along = freePlace(p, plan.start[i]! + rp.shift + drivenAt(plan.signal, plan.roll[i] ?? 0, t));
+  const along = freePlace(p, plan.start[i]! + rp.shift + drivenAt(plan.signal, plan.roll[i] ?? 0, t) - (Number.isFinite(lost) ? lost : 0));
   const length = p.length || 1, ux = (road.bx - road.ax) / length, uz = (road.bz - road.az) / length;
   return { x: road.ax + ux * along, z: road.az + uz * along, ry: Math.atan2(ux, uz), along };
+}
+
+// ---- giving way to the player ------------------------------------------------------------------------------------------------------
+
+/** Someone a vehicle must not drive through (the player): where they stand and their radius (src/scene/walk-grid.ts AVATAR_RADIUS). */
+export interface InTheWay { x: number; z: number; radius?: number }
+/** A vehicle stops STOP_SHORT (scene units, about 1 m) short of someone in its path and starts braking BRAKE_ROOM before that; once
+ * clear, it catches up the driving it lost at CATCH_UP of its pace again (then it is back on the shared schedule). */
+export const STOP_SHORT = 1.5, BRAKE_ROOM = 4, CATCH_UP = 0.4;
+/** Behind a vehicle that has lost more than it has (it gave way), a vehicle stops FOLLOW_SHORT short of its rear, braking FOLLOW_ROOM before. */
+export const FOLLOW_SHORT = 0.6, FOLLOW_ROOM = 2.5;
+/** Someone this far either side of a vehicle's line, past half its width, is not in its path. */
+export const PATH_MARGIN = 0.35;
+const PERSON_RADIUS = 0.34;
+
+/**
+ * The room in front of a vehicle (its front to the nearest edge of someone in its path), or Infinity when nobody is. In its path: ahead of
+ * its centre, and within half its width and PATH_MARGIN of its line. Someone already against its front half gives a room under zero.
+ */
+export function roomAhead(pose: { x: number; z: number; ry: number }, length: number, half: number, people: readonly (InTheWay | null | undefined)[]): number {
+  const ux = Math.sin(pose.ry), uz = Math.cos(pose.ry);
+  let room = Infinity;
+  for (const o of people) {
+    if (!o || !Number.isFinite(o.x) || !Number.isFinite(o.z)) continue;
+    const dx = o.x - pose.x, dz = o.z - pose.z, along = dx * ux + dz * uz, r = o.radius ?? PERSON_RADIUS;
+    if (along < 0 || Math.abs(dx * uz - dz * ux) >= half + r + PATH_MARGIN) continue;
+    room = Math.min(room, along - length / 2 - r);
+  }
+  return room;
+}
+
+/** What the give-way needs to know of a frame's vehicles (giveWayFrame builds it from a schedule). */
+export interface GiveWayFrame {
+  /** The vehicles drawn: the first `count`. */
+  count: number
+  road(i: number): number
+  length(i: number): number
+  half(i: number): number
+  /** Seconds of driving vehicle i did over the frame on its own schedule (none while the lights hold it). */
+  gained(i: number): number
+  /** Where vehicle i is now, had it lost `lost` seconds of driving. */
+  poseAt(i: number, lost: number): { x: number; z: number; ry: number }
+  /** A road's lap in seconds: a whole lap lost by all its vehicles is no loss (the same places come round). */
+  lap(road: number): number
+  /** Who stands in the street (the player, other players). */
+  people: readonly (InTheWay | null | undefined)[]
+}
+export interface GiveWay {
+  /** Seconds of driving each vehicle has given up (vehiclePose's `lost`). */
+  readonly lost: readonly number[]
+  advance(frame: GiveWayFrame): void
+}
+
+/**
+ * Vehicles giving way to people on the road. Each vehicle brakes for someone in its path (STOP_SHORT, BRAKE_ROOM) and for a vehicle ahead
+ * that has lost more than it has (FOLLOW_SHORT, FOLLOW_ROOM, against where that one stood a frame ago, which it never falls behind), by
+ * giving up a share of the frame's own driving: never more, so nobody is pushed back. Inside the stopping room it gives up the whole
+ * frame (it stands where it was). Clear, it catches up at CATCH_UP faster. With nobody on the road and nothing lost, the shared schedule
+ * is untouched.
+ */
+export function createGiveWay(count: number): GiveWay {
+  const lost: number[] = Array.from({ length: Math.max(0, count) }, () => 0);
+  return {
+    lost,
+    advance(frame) {
+      const n = Math.min(frame.count, lost.length), was = lost.slice(), gain = was.map((_, i) => (i < n ? Math.max(0, frame.gained(i) || 0) : 0));
+      // Where every vehicle stood a frame ago (its old loss plus the frame's driving, at the new time): none ends up behind it.
+      const before = was.map((value, i) => (i < n ? frame.poseAt(i, value + gain[i]!) : null));
+      const rooms = (i: number, value: number): { people: number; ahead: number } => {
+        const pose = frame.poseAt(i, value), length = frame.length(i), half = frame.half(i);
+        const rears: InTheWay[] = [];
+        for (let k = 0; k < n; k++) {
+          if (k === i || frame.road(k) !== frame.road(i) || !(was[k]! > value + 1e-9)) continue;
+          const b = before[k]!, back = frame.length(k) / 2;
+          rears.push({ x: b.x - Math.sin(b.ry) * back, z: b.z - Math.cos(b.ry) * back, radius: 0 });
+        }
+        return { people: roomAhead(pose, length, half, frame.people), ahead: roomAhead(pose, length, half, rears) };
+      };
+      const rate = (r: { people: number; ahead: number }): number => Math.max(0, Math.min(1,
+        (r.people - STOP_SHORT) / BRAKE_ROOM, (r.ahead - FOLLOW_SHORT) / FOLLOW_ROOM));
+      for (let i = 0; i < n; i++) {
+        const now = was[i]!, own = gain[i]!;
+        if (!(own > 0)) continue;
+        const r = rooms(i, now), k = rate(r);
+        let next = k < 1 ? now + own * (1 - k) : now > 0 ? Math.max(0, now - own * CATCH_UP) : now;
+        if (next < now && rate(rooms(i, next)) < 1) next = now;
+        // The guarantee: never inside the stopping room after the frame (stand where it was).
+        const after = rooms(i, next);
+        if (next < now + own && (after.people < STOP_SHORT || after.ahead < FOLLOW_SHORT)) next = now + own;
+        lost[i] = next;
+      }
+      // A whole lap lost by every vehicle of a road comes round to the same places: take it off.
+      const roads = new Set(Array.from({ length: n }, (_, i) => frame.road(i)));
+      for (const road of roads) {
+        const lap = frame.lap(road), mine = Array.from({ length: n }, (_, i) => i).filter((i) => frame.road(i) === road);
+        if (!(lap > 0)) continue;
+        const least = Math.min(...mine.map((i) => lost[i]!));
+        if (least >= lap) { const off = lap * Math.floor(least / lap); for (const i of mine) lost[i]! -= off; }
+      }
+    },
+  };
+}
+
+/** A give-way frame from a schedule: vehicles `count` first of `vehicles`, from one wall-clock time to the next (seconds). */
+export function giveWayFrame(plan: TrafficPlan, vehicles: readonly Vehicle[], roads: readonly Road[], from: number, to: number, count: number,
+  half: (i: number) => number, people: readonly (InTheWay | null | undefined)[]): GiveWayFrame {
+  return {
+    count: Math.min(count, vehicles.length), people, half,
+    road: (i) => vehicles[i]!.road,
+    length: (i) => vehicles[i]!.length,
+    gained: (i) => { const roll = plan.roll[i] ?? 0; return Math.max(0, drivenAt(plan.signal, roll, to) - drivenAt(plan.signal, roll, from)); },
+    poseAt: (i, lost) => vehiclePose(plan, vehicles, roads, i, to, lost),
+    lap: (road) => plan.roads[road]?.profile.lap ?? 0,
+  };
 }

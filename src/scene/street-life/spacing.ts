@@ -13,6 +13,10 @@
  *     or anyone else.
  *   - A body that would be pushed off the scene's floor stays where it is and the other gives way (spaceNear).
  *
+ *   - THE PLAYER (and other players) is a fixed body nobody comes inside (14 Oct 2026): giveWay bends walkers round them and slows
+ *     them while passing, and steps standers aside, for every cut-out and body; spaceNear keeps them fixed while bodies are spaced;
+ *     insideFigure lets the host's walk grid treat the people near the player as moving circles the player slides round.
+ *
  * It depends only on the positions (sorted by id, so the order they come in is no matter) and is continuous in them: no one jumps as
  * a pair closes, so it is safe to run every frame, on every device, with no state.
  */
@@ -101,6 +105,96 @@ export function separate(items: readonly Placed[], fixed: ReadonlySet<number> = 
   return pos;
 }
 
+// ---- the player (and other players) ----------------------------------------------------------------------------------------------
+
+/** The avatar's footprint radius (src/scene/walk-grid.ts AVATAR_RADIUS, repeated so this chunk does not pull the walk grid in; spacing.test.ts holds them equal). */
+export const AVATAR_RADIUS = 0.34;
+/** A walker starts to steer round the player this far (about 1.2 m) before they would touch. */
+export const YIELD_REACH = 1.2 * METRE;
+/** Past this (about 12 m) nobody minds the player: far cut-outs are left alone. */
+export const IGNORE_BEYOND = 12 * METRE;
+/** How far (scene units) a walker passing the player falls behind their schedule at the closest point: they slow while they come
+ * up to the player and catch up after (never stopping dead, never walking backwards: their pace stays between 0.75 and 1.25 of it). */
+export const YIELD_LAG = 0.34;
+/** Something the crowd keeps clear of: the player, another player's figure. `radius` defaults to AVATAR_RADIUS. */
+export interface Obstacle { x: number; z: number; radius?: number }
+/** The least distance between a body's centre and an obstacle's: both radii and the room kept between strangers. */
+export const clearOf = (radius: number, obstacle: Obstacle): number => radius + (obstacle.radius ?? AVATAR_RADIUS) + BODY_GAP;
+
+/**
+ * Where a person stands once they have given way to the obstacles (the player first): a pure function of where their schedule puts them
+ * and where the obstacles are, so it runs every frame with no state.
+ *
+ *   - A WALKER (moving, facing ry) with an obstacle within reach ahead or behind (its clearance plus YIELD_REACH) bends round it: the
+ *     sideways room grows from nothing at the edge of reach to the whole clearance when level, to the side they are already on (the
+ *     other side when that one is off the floor), and they fall up to YIELD_LAG behind their schedule while they pass (a slow down).
+ *   - Anyone still too close (a stander, a walker with no room to bend) steps straight out to the clearance, on the floor if any point
+ *     of the circle round the obstacle near them is on it.
+ *   - Obstacles past IGNORE_BEYOND are ignored. With no floor test, everything is floor.
+ */
+export function giveWay(body: { x: number; z: number; ry: number; radius: number; moving: boolean }, obstacles: readonly (Obstacle | null | undefined)[],
+  walkable?: ((x: number, z: number) => boolean) | null): Spot {
+  let x = body.x, z = body.z;
+  if (!Number.isFinite(x) || !Number.isFinite(z)) return { x, z };
+  const floor = (px: number, pz: number): boolean => !walkable || walkable(px, pz) === true;
+  const ux = Math.sin(body.ry), uz = Math.cos(body.ry), nx = uz, nz = -ux;
+  const near = obstacles.filter((o): o is Obstacle => Boolean(o) && Number.isFinite(o!.x) && Number.isFinite(o!.z) && Math.hypot(o!.x - body.x, o!.z - body.z) < IGNORE_BEYOND);
+  if (!near.length) return { x, z };
+  if (body.moving) {
+    for (const o of near) {
+      const need = clearOf(body.radius, o), reach = need + YIELD_REACH;
+      const rx = o.x - x, rz = o.z - z, along = rx * ux + rz * uz;
+      if (Math.abs(along) >= reach) continue;
+      const bump = 1 - (along / reach) ** 2;
+      // The sideways room wanted, and which side: the one they are on (their right of the obstacle is +n); level and exactly in line, the right.
+      const side = -(rx * nx + rz * nz), room = need * bump, short = room - Math.abs(side);
+      let sx = x, sz = z;
+      if (short > 0) {
+        const sign = Math.abs(side) > 1e-9 ? Math.sign(side) : 1;
+        sx = x + nx * sign * short; sz = z + nz * sign * short;
+        if (!floor(sx, sz)) {
+          const other = room + Math.abs(side);
+          const ox = x - nx * sign * other, oz = z - nz * sign * other;
+          if (floor(ox, oz)) { sx = ox; sz = oz; } else { sx = x; sz = z; }
+        }
+      }
+      // The slow down: behind their schedule by up to YIELD_LAG, most when level with the obstacle.
+      const lx = sx - ux * YIELD_LAG * bump, lz = sz - uz * YIELD_LAG * bump;
+      if (floor(lx, lz)) { sx = lx; sz = lz; }
+      x = sx; z = sz;
+    }
+  }
+  // The guarantee: nobody inside an obstacle's clearance (two rounds, for two obstacles close together).
+  for (let round = 0; round < 2; round++) {
+    for (const o of near) {
+      const need = clearOf(body.radius, o);
+      let dx = x - o.x, dz = z - o.z;
+      const d = Math.hypot(dx, dz);
+      if (d >= need) continue;
+      if (d > 1e-9) { dx /= d; dz /= d; } else { dx = -ux; dz = -uz; }
+      // Straight out; else the nearest of a few other points round the circle that is on the floor; else stay (the floor wins).
+      const base = Math.atan2(dx, dz);
+      for (const turn of [0, 0.4, -0.4, 0.8, -0.8, 1.2, -1.2, 1.6, -1.6, 2.2, -2.2, Math.PI]) {
+        const px = o.x + Math.sin(base + turn) * (need + 1e-6), pz = o.z + Math.cos(base + turn) * (need + 1e-6);
+        if (floor(px, pz)) { x = px; z = pz; break; }
+      }
+    }
+  }
+  return { x, z };
+}
+
+/** A person near the player as a moving circle for the player's walker: their centre and the least distance the player's centre keeps. */
+export interface Figure { x: number; z: number; r: number }
+/**
+ * Is (x, z) inside one of `figures` for a player now at `player`? A figure the player already overlaps never blocks, so nobody can trap
+ * the player (and the people step aside anyway: giveWay).
+ */
+export function insideFigure(x: number, z: number, player: { x: number; z: number } | null | undefined, figures: readonly Figure[]): boolean {
+  if (!player) return false;
+  for (const f of figures) if (Math.hypot(x - f.x, z - f.z) < f.r && Math.hypot(player.x - f.x, player.z - f.z) >= f.r) return true;
+  return false;
+}
+
 /** The body's footprint of a person (crowd.ts Person: height and width), placed. */
 export function placed(id: number, person: { height: number; width: number; family?: number | undefined }, pose: { x: number; z: number; ry: number; mode: number }): Placed {
   return { id, x: pose.x, z: pose.z, ry: pose.ry, radius: bodyRadius(person.height, person.width), moving: pose.mode === 0, family: person.family };
@@ -108,14 +202,19 @@ export function placed(id: number, person: { height: number; width: number; fami
 
 /**
  * The same, kept on the floor: whoever the first answer would put off the walkable floor stays where they are (they are on it now:
- * near.ts nearCandidates) and the others give way; anyone still off it after that stays put too.
+ * near.ts nearCandidates) and the others give way; anyone still off it after that stays put too. `obstacles` (the player and other
+ * players) are fixed bodies everyone gives way to, so keeping two bodies apart never shoves one back into the player.
  */
-export function spaceNear(items: readonly Placed[], walkable: ((x: number, z: number) => boolean) | null | undefined): Spot[] {
-  let out = separate(items);
+export function spaceNear(items: readonly Placed[], walkable: ((x: number, z: number) => boolean) | null | undefined, obstacles: readonly (Obstacle | null | undefined)[] = []): Spot[] {
+  // The obstacles (the player, other players) are bodies that never move: everyone else gives way to them, by the same rules.
+  const solid: Placed[] = obstacles.flatMap((o, k) => (o && Number.isFinite(o.x) && Number.isFinite(o.z)
+    ? [{ id: -1 - k, x: o.x, z: o.z, ry: 0, radius: o.radius ?? AVATAR_RADIUS, moving: false }] : []));
+  const fixedSolid = new Set(solid.map((p) => p.id)), all = [...items, ...solid], n = items.length;
+  let out = separate(all, fixedSolid).slice(0, n);
   if (!walkable) return out;
   const off = (i: number): boolean => (out[i]!.x !== items[i]!.x || out[i]!.z !== items[i]!.z) && !walkable(out[i]!.x, out[i]!.z);
   const first = new Set(items.flatMap((p, i) => (off(i) ? [p.id] : [])));
   if (!first.size) return out;
-  out = separate(items, first);
+  out = separate(all, new Set([...first, ...fixedSolid])).slice(0, n);
   return out.map((spot, i) => (first.has(items[i]!.id) || (!walkable(spot.x, spot.z)) ? { x: items[i]!.x, z: items[i]!.z } : spot));
 }

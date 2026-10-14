@@ -7,7 +7,7 @@
     "stateId": "sg-singapore",
     "stateName": "Singapore"
   },
-  "inventorySha256": "a71c33bafe53032b4f2f8c7d36201f1ae88880e73a50f03cbac1ca868b1f134c",
+  "inventorySha256": "1602f0eeb615954a0017dba1b4cc4b2867f934e0dcd32380f5e9502a37adc06e",
   "inventoryPath": "world/playable-africa-rollout/sources/singapore.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 600,
+    "roads": 152,
     "neighbourhoodLabels": 18,
     "landPolygons": 28,
     "waterPolygons": 30,

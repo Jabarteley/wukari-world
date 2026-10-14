@@ -7,7 +7,7 @@
     "stateId": "ro-bucharest",
     "stateName": "Bucharest"
   },
-  "inventorySha256": "d6538e4566f0f37b3690d9ae6010d85e6ed1fcd908ee5a1fedefae114eb8254c",
+  "inventorySha256": "905ef7f5b8ab3cfe6b3074a9818405ab2b8d998ab4e7b6bb9ce6a3327e527a69",
   "inventoryPath": "world/playable-africa-rollout/sources/bucharest.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 326,
     "neighbourhoodLabels": 18,
     "landPolygons": 43,
     "waterPolygons": 15,

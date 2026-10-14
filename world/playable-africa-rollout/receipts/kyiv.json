@@ -7,7 +7,7 @@
     "stateId": "ua-kyiv",
     "stateName": "Kyiv"
   },
-  "inventorySha256": "7a546796790a0ea914ffe196aa032e312d3439f5c788793d0757ab6932b62a4b",
+  "inventorySha256": "10900727273ac108833c112b73e3ceed472fad9c2636cf9e10ec87a6d9b198e4",
   "inventoryPath": "world/playable-africa-rollout/sources/kyiv.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 381,
     "neighbourhoodLabels": 18,
     "landPolygons": 55,
     "waterPolygons": 57,

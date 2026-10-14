@@ -7,7 +7,7 @@
     "stateId": "id-jakarta",
     "stateName": "Jakarta"
   },
-  "inventorySha256": "62349037a44d5df0c583d47c7d45520e627f4936c9b0fa7ce865e5b6d7243e02",
+  "inventorySha256": "6e5a550656354785078ffff69a070bfce27d76e466d094853e14d1dbeddb4e8b",
   "inventoryPath": "world/playable-africa-rollout/sources/jakarta.json",
   "admission": {
     "registered": true,
@@ -85,7 +85,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 244,
     "neighbourhoodLabels": 18,
     "landPolygons": 6,
     "waterPolygons": 12,

@@ -7,7 +7,7 @@
     "stateId": "ni-managua",
     "stateName": "Managua"
   },
-  "inventorySha256": "5504b3d8608c732dd7d9d30ce32f5052570347cc1e595e1fe79f0457e87530dc",
+  "inventorySha256": "70b32c15a6aea44a94f3ce86ad535e66ad9699e7fa66000d508a07dc80556279",
   "inventoryPath": "world/playable-africa-rollout/sources/managua.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 176,
     "neighbourhoodLabels": 18,
     "landPolygons": 14,
     "waterPolygons": 6,

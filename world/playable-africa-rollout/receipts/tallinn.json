@@ -7,7 +7,7 @@
     "stateId": "ee-tallinn",
     "stateName": "Tallinn"
   },
-  "inventorySha256": "aa1b2223656dedcf81d348b27cb0fa85b5fc59ba70ce5fabc2aab57bcb2016f1",
+  "inventorySha256": "7e6996c37b4724f2b421f24276c8d557ab168a29d2eb753b98f700c20b48862d",
   "inventoryPath": "world/playable-africa-rollout/sources/tallinn.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 133,
     "neighbourhoodLabels": 18,
     "landPolygons": 20,
     "waterPolygons": 225,

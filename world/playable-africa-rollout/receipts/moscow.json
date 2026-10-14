@@ -7,7 +7,7 @@
     "stateId": "ru-moscow",
     "stateName": "Moscow"
   },
-  "inventorySha256": "9903b49f8d4ba0339864cab3d2d0e6bdec208d8c5373ff1da958b00239cbc826",
+  "inventorySha256": "6f3e44757b3c0d3e78b699ba43533de58da1c7e51737101af6c1daf064ea3f23",
   "inventoryPath": "world/playable-africa-rollout/sources/moscow.json",
   "admission": {
     "registered": true,
@@ -98,7 +98,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 394,
     "neighbourhoodLabels": 18,
     "landPolygons": 24,
     "waterPolygons": 7,

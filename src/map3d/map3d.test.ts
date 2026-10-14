@@ -27,6 +27,7 @@ import { fromLocal, ORIGINS } from './geo/frame.ts';
 import { shimmer, createRaw, CITY_LIGHT, CITY_TRIANGLE_BUDGET } from './city-build.ts';
 import { AERIAL_DIVE_DRAW_CALLS, AERIAL_DIVE_TRIANGLES, CITY_DRAW_CALLS } from '../budgets.ts';
 import { pitchFloor, PITCH_MIN, FLAT_PITCH } from './camera.ts';
+import { KEY_YAW_STEP } from './camera-input.ts';
 import pack from './cities/lagos.ts';
 import { COMING_SOON, SCENE_KINDS } from '../game/content/venues.ts';
 import { VENUES, HOME_SPOTS } from '../game/cities/lagos/venues.ts';
@@ -711,6 +712,35 @@ test('the dive on the city map: straight down on the agreed span, the towers dra
   still.map.setState(still.state()); still.map.resize(); still.pump();
   still.map.enter('in', 0, { seconds: 3, spanKm: 40, venue: 'park' });
   assert.equal(still.map.diagnostics().dive, false); assert.ok(still.pump() <= 2, 'a frame to show it, not a flight');
+  still.map.destroy();
+});
+
+test('the free camera: [ ] and PgUp PgDn turn and tip the map, eased then still; reduced motion steps at once; a turn ends a dive', () => {
+  const h = harness({ width: 1280, height: 800 });
+  h.map.setState(h.state()); h.map.resize(); h.pump();
+  const rig = h.map.rig, opening = { ...rig.view };
+  assert.deepEqual([opening.yaw, opening.pitch], [rig.core().yaw, rig.core().pitch], 'the opening view is unchanged: north up at the default tilt');
+  assert.equal(h.queue.length, 0);
+  h.map.look('look-right', true); h.map.look('look-right', false);
+  assert.ok(h.pump() > 3, 'the turn is eased over frames');
+  assert.ok(Math.abs(rig.view.yaw - opening.yaw - KEY_YAW_STEP) < 1e-6, `one step: ${rig.view.yaw}`);
+  assert.equal(h.queue.length, 0, 'and then the loop ends (battery rule)');
+  h.map.look('look-down', true); h.pump(400); h.map.look('look-down', false); h.pump();
+  assert.ok(Math.abs(rig.view.pitch - pitchFloor(rig.view.distance)) < 1e-6, 'held, it tips down to the flattest allowed and no further');
+  assert.equal(h.queue.length, 0);
+  // The dive gives way to the player.
+  h.map.enter('in', 0, { seconds: 3, spanKm: 40, venue: 'park' });
+  h.pump(10); assert.equal(h.map.diagnostics().dive, true);
+  h.map.look('look-left', true); h.map.look('look-left', false);
+  assert.equal(h.map.diagnostics().dive, false, 'a turn ends the dive where it is');
+  h.pump(); assert.equal(h.queue.length, 0);
+  h.map.destroy();
+  const still = harness({ width: 1280, height: 800, reducedMotion: true });
+  still.map.setState(still.state()); still.map.resize(); still.pump();
+  const yaw = still.map.rig.view.yaw;
+  still.map.look('look-left', true); still.map.look('look-left', false);
+  assert.ok(still.pump() <= 2, 'reduced motion: a frame, not an ease');
+  assert.ok(Math.abs(still.map.rig.view.yaw - yaw + KEY_YAW_STEP) < 1e-9);
   still.map.destroy();
 });
 

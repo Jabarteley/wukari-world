@@ -7,7 +7,7 @@
     "stateId": "ch-zurich",
     "stateName": "Zurich"
   },
-  "inventorySha256": "40a619eb23974718c8dd56827de4ab3db9b5b837dc186e116e474a5a694ea625",
+  "inventorySha256": "fd2996b6d414ff7060c01406258d3c81a1403b53e2d248eebfe5355d26d9af21",
   "inventoryPath": "world/playable-africa-rollout/sources/zurich.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 308,
     "neighbourhoodLabels": 18,
     "landPolygons": 63,
     "waterPolygons": 32,

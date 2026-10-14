@@ -7,7 +7,7 @@
     "stateId": "lk-colombo",
     "stateName": "Colombo"
   },
-  "inventorySha256": "f5a46d0a3f26fbe26395e67dca54f5c74e22dccdfa857af5842f383b61c31f47",
+  "inventorySha256": "f44cb74e9545dc28dd7e9a9d8ffd8b19659426ec31b1f749a17588b857a6c1d2",
   "inventoryPath": "world/playable-africa-rollout/sources/colombo.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 700,
+    "roads": 311,
     "neighbourhoodLabels": 18,
     "landPolygons": 15,
     "waterPolygons": 24,

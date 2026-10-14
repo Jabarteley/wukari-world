@@ -7,7 +7,7 @@
     "stateId": "se-stockholm",
     "stateName": "Stockholm"
   },
-  "inventorySha256": "390464df564194105f01b11af43714101070f7e9b92f1926e225995992698234",
+  "inventorySha256": "98b33388a0bacc0083c47a3e9b54f5af4d6527e0765a27b976a66ce702448d47",
   "inventoryPath": "world/playable-africa-rollout/sources/stockholm.json",
   "admission": {
     "registered": true,
@@ -66,7 +66,7 @@
   },
   "kept": {
     "places": 24,
-    "roads": 400,
+    "roads": 175,
     "neighbourhoodLabels": 18,
     "landPolygons": 32,
     "waterPolygons": 61,

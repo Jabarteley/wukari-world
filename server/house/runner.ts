@@ -1,0 +1,432 @@
+/**
+ * OWNER: agents (house agents, docs/HOUSE-AGENTS.md)
+ * THE HOUSE-AGENT RUNNER: the game's own always-alive cast, driven by the server's heartbeat. Portable (no Node imports): the Node host and the
+ * Worker run it, because both raise the in-process 'heartbeat' event.
+ *
+ * WHAT A HOUSE AGENT IS. A virtual member of a venue room (ctx.checks.agentRoom, server/ws/rooms.ts), exactly like a character an AI agent plays
+ * through the tools: seated in the venue's groups, listed in presence, counted in the pulse `ai` number, ALWAYS with the AI-played mark
+ * (`mark: { agent: true }`, no expiry), and everything it says goes through agentRoom.say (the same filters as a person's line plus
+ * moderation/agent-words.ts). It has no wallet, no life and no stored record: nothing here writes to the store.
+ *
+ * THE BRAIN, CHEAPEST FIRST (DESIGN.md Part 3, rules 2 and 3):
+ *   1. Routine: actions.ts decides where the agent is and what it is doing, by the clock and by rules. Each beat looks at a bounded number of
+ *      agents (MAX_PER_BEAT) and says at most MAX_SAY_PER_BEAT lines. A tick never calls a model.
+ *   2. Written lines: lines.ts. Greetings, prices, hours, directions, tonight's event, the quiz: free.
+ *   3. The model: ONLY when a person writes in the venue where the agent stands (the 'venue-line' event of rooms.ts), and only for a line a
+ *      written answer cannot give (an offer to phrase, directions, tonight, chat). router.ask({ purpose: 'agent-talk', carriesPlayerWords: true, maxTokens: 220 })
+ *      so only paid models see a person's words, under the router's US$2 day stop and per-person caps. No key, no budget, a failed or an unsafe
+ *      reply: the written line is said instead. The price is never the model's: haggle.ts decides it and talk.ts `cleanReply` throws a reply
+ *      away that carries any other number.
+ *
+ * SETTINGS (admin page, no release): houseAgentsOn (switch), houseAgentsBusy (agents in each busy city, 0 to 6), houseAgentsQuiet (agents in each other
+ * city while a person is in it, 0 to 2), houseMaxDiscountPct (the most a seller gives away, never above haggle.ts HAGGLE.discountCap), houseTalkModel (switch:
+ * off means written lines only).
+ */
+import { isOpen, openingInfo, formatHour } from '../../src/game/clock.ts';
+import { cachedCityContent, cityRules } from '../../src/game/cities/index.ts';
+import { sha256Hex } from '../../src/game/util.ts';
+import { agentWords } from '../moderation/agent-words.ts';
+import { gistService } from '../gist/ledger.ts';
+import { initialVenuePosition, venueRoomKey } from '../protocol.ts';
+import { registerAdminSetting } from '../admin/settings.ts';
+import { registerAdminStat } from '../admin/tools.ts';
+import { routerOf } from '../models/service.ts';
+import type { AskInput, AskResult } from '../models/router.ts';
+import type { RouteContext } from '../types.ts';
+import { ACTIONS, planAt } from './actions.ts';
+import type { ActionId } from './actions.ts';
+import { AUTHORED_CITIES, HOUSE_LOOKS, castOf, itemsOf, venueFor } from './cast.ts';
+import type { Spec } from './cast.ts';
+import { HAGGLE, decide, freshTalk, priceList, readOffer } from './haggle.ts';
+import type { PricedItem, Talk, Verdict } from './haggle.ts';
+import * as say from './lines.ts';
+import { QUIZ, allowedNumbers, cleanReply, intentOf, isRight, matchItem, matchVenue, promptFor } from './talk.ts';
+import type { Intent, Question } from './talk.ts';
+
+/** Agents looked at in one beat, and lines they may say in one beat: the runner's whole work per beat. */
+export const MAX_PER_BEAT = 8, MAX_SAY_PER_BEAT = 3;
+/** All house agents at once (a ceiling above any setting). */
+export const MAX_AGENTS = 48;
+/** How long a presence lasts, and when it is renewed. Renewing announces the agent to the venue again, so it is rare. */
+export const PRESENCE_MS = 12 * 60000, RENEW_MS = 6 * 60000;
+const CENSUS_MS = 30000, LINGER_MS = 10 * 60000, AMBIENT_MS = [7 * 60000, 11 * 60000] as const, TONIGHT_MS = 12 * 60000;
+const QUIZ_OPEN_MS = 90000, QUIZ_EVERY_MS = 8 * 60000;
+const PEOPLE_KEPT = 200;
+export const MODEL_TOKENS = 220;
+export const ID_PREFIX = 'house.';
+export const DEFAULTS = Object.freeze({ on: true, busy: 2, quiet: 0, discount: HAGGLE.discountDefault, model: true });
+
+export interface HouseDeps {
+  /** The model door; the router's by default. Tests pass one that sits on a fake fetch. */
+  ask?: (input: AskInput) => Promise<AskResult>
+}
+interface Person { item: string | null; talks: Map<string, Talk & { at: number }> }
+interface Presence { room: string; action: ActionId; until: number }
+interface Agent {
+  id: string; city: string; spec: Spec
+  /** Venues by place: the post, the market and the eatery. */
+  rooms: { post: string; market: string; eatery: string | null }
+  items: PricedItem[]
+  discount: number
+  at: Presence | null
+  nextAmbient: number; nextTonight: number; nextQuiz: number
+  quiz: { question: Question; until: number } | null
+  people: Map<string, Person>
+  busy: boolean
+}
+export interface Counters { wakes: number; model: number; written: number; blocked: number; said: number; refusedLow: number }
+const blank = (): Counters => ({ wakes: 0, model: 0, written: 0, blocked: 0, said: 0, refusedLow: 0 });
+
+const clampInt = (value: unknown, least: number, most: number, fallback: number): number => (typeof value === 'number' && Number.isFinite(value) ? Math.max(least, Math.min(most, Math.round(value))) : fallback);
+
+export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
+  const agents = new Map<string, Agent>();
+  let counters = blank(), counterDay = -1;
+  const last = { stepped: 0, said: 0 };
+  let census: { at: number; cities: Map<string, number>; rooms: Map<string, number> } = { at: -Infinity, cities: new Map(), rooms: new Map() };
+  const seen = new Map<string, number>(); // city → last time a person was there (for the quiet cast)
+  const ask = deps.ask ?? ((input: AskInput): Promise<AskResult> => routerOf(ctx).ask(input));
+  const setting = (key: string): boolean | number | string | undefined => ctx.checks?.setting?.(key) ?? ctx.checks?.text?.(key);
+  const room = () => ctx.checks?.agentRoom;
+
+  const day = (): number => Math.floor(ctx.now() / 86400000);
+  function count(): Counters { if (counterDay !== day()) { counterDay = day(); counters = blank(); } return counters; }
+
+  const settings = () => ({
+    on: setting('houseAgentsOn') !== false,
+    busy: clampInt(setting('houseAgentsBusy'), 0, 6, DEFAULTS.busy),
+    quiet: clampInt(setting('houseAgentsQuiet'), 0, 2, DEFAULTS.quiet),
+    discount: clampInt(setting('houseMaxDiscountPct'), 0, HAGGLE.discountCap, DEFAULTS.discount),
+    model: setting('houseTalkModel') !== false,
+  });
+
+  // ---- who is where: people by city and room, counted at most every CENSUS_MS -------------------------------------------------------
+  function takeCensus(t: number): typeof census {
+    if (t - census.at < CENSUS_MS && t >= census.at) return census;
+    const cities = new Map<string, number>(), rooms = new Map<string, number>();
+    for (const ws of ctx.core?.sockets?.() ?? []) {
+      const where = ws.room;
+      if (!where || ws.session?.agent === true) continue;
+      rooms.set(where, (rooms.get(where) ?? 0) + 1);
+      const city = where.split(':')[0] ?? '';
+      if (city && city !== 'world') { cities.set(city, (cities.get(city) ?? 0) + 1); seen.set(city, t); }
+    }
+    census = { at: t, cities, rooms };
+    for (const [city, at] of seen) if (t - at > LINGER_MS) seen.delete(city);
+    return census;
+  }
+  const peopleIn = (where: string): number => census.rooms.get(where) ?? 0;
+
+  // ---- the roster: which agents stand where -------------------------------------------------------------------------------------------
+  function build(city: string, spec: Spec, discount: number): Agent | null {
+    const post = venueFor(city, spec.post, spec.role);
+    if (!post) return null;
+    const market = (spec.market && venueFor(city, spec.market, 'seller')) || post;
+    const eatery = spec.eatery ? venueFor(city, spec.eatery, 'guide') : null;
+    return {
+      id: `${ID_PREFIX}${city}.${spec.key}`, city, spec,
+      rooms: { post: venueRoomKey(city, post, ''), market: venueRoomKey(city, market, ''), eatery: eatery ? venueRoomKey(city, eatery, '') : null },
+      items: priceList(itemsOf(spec), discount), discount, at: null,
+      nextAmbient: 0, nextTonight: 0, nextQuiz: 0, quiz: null, people: new Map(), busy: false,
+    };
+  }
+  function wanted(t: number, s: ReturnType<typeof settings>): { city: string; spec: Spec }[] {
+    const out: { city: string; spec: Spec }[] = [];
+    if (!s.on) return out;
+    const cities = new Set<string>();
+    for (const city of AUTHORED_CITIES) if (ctx.cityIds.includes(city)) { cities.add(city); for (const spec of castOf(city).slice(0, s.busy)) out.push({ city, spec }); }
+    if (s.quiet > 0) {
+      const populated = [...takeCensus(t).cities.keys(), ...seen.keys()];
+      for (const city of new Set(populated)) {
+        if (cities.has(city) || !ctx.cityIds.includes(city)) continue;
+        cities.add(city);
+        for (const spec of castOf(city).slice(0, s.quiet)) out.push({ city, spec });
+        if (out.length >= MAX_AGENTS) break;
+      }
+    }
+    return out.slice(0, MAX_AGENTS);
+  }
+  function drop(agent: Agent): void {
+    if (agent.at) room()?.absent(agent.id);
+    agent.at = null; agent.quiz = null;
+    agents.delete(agent.id);
+  }
+  function reconcile(t: number): ReturnType<typeof settings> {
+    const s = settings();
+    const list = wanted(t, s), keep = new Set<string>();
+    for (const { city, spec } of list) {
+      const id = `${ID_PREFIX}${city}.${spec.key}`;
+      keep.add(id);
+      const found = agents.get(id);
+      if (found && found.discount !== s.discount) { found.items = priceList(itemsOf(spec), s.discount); found.discount = s.discount; found.people.clear(); }
+      if (!found) { const made = build(city, spec, s.discount); if (made) agents.set(id, made); }
+    }
+    for (const agent of [...agents.values()]) if (!keep.has(agent.id)) drop(agent);
+    return s;
+  }
+
+  // ---- saying a line ------------------------------------------------------------------------------------------------------------------
+  /** One line into the venue the agent stands in, through the same door as a person's (agentRoom.say) after our own word check. */
+  async function speak(agent: Agent, text: string): Promise<boolean> {
+    const where = agent.at?.room, door = room();
+    if (!where || !door) return false;
+    const checked = agentWords(text, { toMinor: true });
+    if (!checked.ok) { count().blocked += 1; return false; }
+    const done = await door.say({ id: agent.id, name: agent.spec.name, mark: { agent: true } }, where, text, null);
+    if (!done.ok) { if (done.code.startsWith('agent_words_')) count().blocked += 1; return false; }
+    count().said += 1;
+    return true;
+  }
+
+  // ---- the routine: one agent, one beat -------------------------------------------------------------------------------------------------
+  const jitter = (agent: Agent, t: number, [least, most]: readonly [number, number]): number => t + least + (say.hash(`${agent.id}|${Math.floor(t / 60000)}`) % (most - least));
+  function placeFor(agent: Agent, action: ActionId): string | null {
+    const place = ACTIONS[action].place;
+    return place === 'post' ? agent.rooms.post : place === 'market' ? agent.rooms.market : place === 'eatery' ? agent.rooms.eatery : null;
+  }
+  function step(agent: Agent, t: number, saysLeft: { n: number }): void {
+    const slot = planAt(agent.spec, t);
+    const target = placeFor(agent, slot.action);
+    const door = room();
+    if (!door) return;
+    if (!target) { if (agent.at) { door.absent(agent.id); agent.at = null; agent.quiz = null; } return; }
+    const cur = agent.at;
+    if (!cur || cur.room !== target || cur.action !== slot.action || cur.until - t < PRESENCE_MS - RENEW_MS) {
+      let h = 2166136261;
+      for (const char of `${agent.id}|${target}`) { h ^= char.charCodeAt(0); h = Math.imul(h, 16777619); }
+      const base = initialVenuePosition(target.split(':')[1] ?? '');
+      const position = { x: Math.max(-18, Math.min(18, base.x + ((h >>> 0) % 9 - 4) * 0.9)), z: Math.max(-18, Math.min(18, base.z + (((h >>> 8) >>> 0) % 9 - 4) * 0.9)) };
+      door.present({ id: agent.id, name: agent.spec.name, mark: { agent: true }, room: target, position, doing: ACTIONS[slot.action].doing, look: HOUSE_LOOKS[agent.spec.look], until: t + PRESENCE_MS });
+      agent.at = { room: target, action: slot.action, until: t + PRESENCE_MS };
+      if (cur?.room !== target) agent.quiz = null;
+    }
+    if (ACTIONS[slot.action].place !== 'post' || saysLeft.n <= 0 || agent.busy || peopleIn(target) === 0) return;
+    // Unprompted lines, written and rare. A quiz round, a "tonight" call, or a line about the shop.
+    if (slot.action === 'host_quiz') {
+      if (agent.quiz && t >= agent.quiz.until) { const finished = agent.quiz.question; agent.quiz = null; agent.nextQuiz = t + QUIZ_EVERY_MS; saysLeft.n -= 1; void speak(agent, say.quizEnd(finished.a)); return; }
+      if (!agent.quiz && t >= agent.nextQuiz) { const question = QUIZ[say.hash(`${agent.id}|${Math.floor(t / QUIZ_EVERY_MS)}`) % QUIZ.length]!; agent.quiz = { question, until: t + QUIZ_OPEN_MS }; saysLeft.n -= 1; void speak(agent, say.quizAsk(question.q)); return; }
+      if (agent.quiz) return;
+    }
+    if (slot.action === 'announce' && t >= agent.nextTonight) {
+      agent.nextTonight = t + TONIGHT_MS; saysLeft.n -= 1; agent.busy = true;
+      void gistLines(agent.city, '', true).then((events) => speak(agent, say.tonight(agent.spec, events, `${agent.id}|${Math.floor(t / TONIGHT_MS)}`))).catch(() => {}).finally(() => { agent.busy = false; });
+      return;
+    }
+    if (t >= agent.nextAmbient) {
+      agent.nextAmbient = jitter(agent, t, AMBIENT_MS);
+      saysLeft.n -= 1;
+      void speak(agent, say.ambient(agent.spec, `${agent.id}|${Math.floor(t / 60000)}`));
+    }
+  }
+
+  /** One heartbeat. Bounded: at most MAX_PER_BEAT agents looked at, MAX_SAY_PER_BEAT lines said, no model, no store write. */
+  let cursor = 0;
+  function tick(): void {
+    try {
+      const t = ctx.now();
+      takeCensus(t);
+      reconcile(t);
+      const list = [...agents.values()];
+      const says = { n: MAX_SAY_PER_BEAT };
+      let stepped = 0;
+      for (let n = 0; n < Math.min(MAX_PER_BEAT, list.length); n++) { step(list[(cursor + n) % list.length]!, t, says); stepped += 1; }
+      cursor = list.length ? (cursor + MAX_PER_BEAT) % list.length : 0;
+      last.stepped = stepped; last.said = MAX_SAY_PER_BEAT - says.n;
+    } catch { /* a bad beat must never stop the host's heartbeat */ }
+  }
+
+  // ---- the gist (the check_gist tool's source) -------------------------------------------------------------------------------------
+  async function gistLines(city: string, query: string, tonight = false): Promise<string[]> {
+    try {
+      const gist = gistService(ctx);
+      const items = await ctx.store.read((db) => (query ? gist.search(db, city, query, 3) : gist.recent(db, city, { limit: tonight ? 12 : 5 })));
+      const rows = tonight ? items.filter((item) => item.kind === 'event' || item.kind === 'busy' || item.kind === 'notice') : items;
+      return rows.slice(0, 3).map((item) => item.text.replace(/[.!?]+$/, ''));
+    } catch { return []; }
+  }
+
+  // ---- wake on event: a person writes in the venue -------------------------------------------------------------------------------------
+  const FIRST_WORDS = new Set(['mama', 'aunty', 'auntie', 'bro', 'baba', 'sis', 'oga', 'madam', 'mr', 'mrs']);
+  const callNames = (agent: Agent): string[] => agent.spec.name.toLowerCase().split(/\s+/).filter((word) => word.length >= 3 && !FIRST_WORDS.has(word));
+  const ROLE_FOR: Partial<Record<Intent, Spec['role']>> = { offer: 'seller', prices: 'seller', pressure: 'seller', hours: 'seller', directions: 'guide', tonight: 'marketer', mission: 'mission' };
+
+  function chooseAgent(there: Agent[], body: string, intent: Intent): Agent | null {
+    if (!there.length) return null;
+    const said = new Set(body.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/));
+    const named = there.find((agent) => callNames(agent).some((name) => said.has(name)));
+    if (named) return named;
+    const quiz = there.find((agent) => agent.quiz);
+    if (quiz) return quiz;
+    const role = ROLE_FOR[intent];
+    const byRole = role ? there.find((agent) => agent.spec.role === role) : undefined;
+    if (byRole) return byRole;
+    if (intent === 'greet') return there[0]!;
+    return there.length === 1 ? there[0]! : null;
+  }
+
+  function personOf(agent: Agent, id: string): Person {
+    let found = agent.people.get(id);
+    if (!found) {
+      found = { item: null, talks: new Map() };
+      agent.people.set(id, found);
+      if (agent.people.size > PEOPLE_KEPT) { const oldest = agent.people.keys().next(); if (!oldest.done) agent.people.delete(oldest.value); }
+    }
+    return found;
+  }
+
+  interface Plan { intent: Intent; written: string; verdict: { item: PricedItem; verdict: Verdict } | null; prices: number[]; useModel: boolean; claimsQuery: string | null }
+
+  /** What a line means and the written answer to it. The haggle (price and verdict) is settled HERE, before any model is asked. */
+  function plan(agent: Agent, from: { id: string; name: string }, body: string, t: number): Plan {
+    const { spec } = agent;
+    const seed = `${agent.id}|${from.id}|${Math.floor(t / 60000)}|${body.length}`;
+    const item = matchItem(body, agent.items);
+    const offer = spec.role === 'seller' ? readOffer(body, (item ?? agent.items[0])?.list ?? 0, item !== null) : null;
+    const intent = intentOf(body, spec.role, offer !== null && agent.items.length > 0);
+    const open = isOpen(spec.hours, t);
+    const base: Plan = { intent, written: say.fallback(spec, seed), verdict: null, prices: agent.items.map((entry) => entry.list), useModel: false, claimsQuery: null };
+    if (intent === 'greet') return { ...base, written: say.greet(spec, from.name, seed) };
+    if (intent === 'bye') return { ...base, written: say.bye(spec, seed) };
+    if (intent === 'mission') return { ...base, written: spec.role === 'mission' ? say.mission(spec, seed) : say.fallback(spec, seed) };
+    if (intent === 'hours') return { ...base, written: say.hoursLine(spec, open) };
+    if (spec.role !== 'seller' && (intent === 'prices' || intent === 'offer' || intent === 'pressure')) return { ...base, written: say.notSeller(spec, seed) };
+    if (spec.role === 'seller' && (intent === 'prices' || intent === 'offer' || intent === 'pressure')) {
+      if (!open) return { ...base, written: say.hoursLine(spec, false) };
+      const person = personOf(agent, from.id);
+      const chosen = item ?? agent.items.find((entry) => entry.id === person.item) ?? (agent.items.length === 1 ? agent.items[0]! : null);
+      if (intent === 'prices') return { ...base, written: chosen ? say.priceLine(spec, chosen.label, chosen.list) : say.pricesLine(spec, agent.items) };
+      if (!chosen) return { ...base, written: say.which(spec, agent.items.map((entry) => entry.label), seed) };
+      person.item = chosen.id;
+      const talk = freshOrHeld(person, chosen, t);
+      if (intent === 'pressure' || offer === null) return { ...base, written: say.pressure(spec, seed) };
+      const verdict = decide(chosen, talk, readOffer(body, chosen.list, true) ?? offer);
+      if (verdict.kind === 'accept') talk.at = t;
+      if (verdict.kind === 'refuse') count().refusedLow += 1;
+      return { ...base, written: say.verdictLine(spec, chosen.label, verdict, seed), verdict: { item: chosen, verdict }, prices: [chosen.list, verdict.price], useModel: true };
+    }
+    if (intent === 'directions') return { ...base, written: '', useModel: true, claimsQuery: null };
+    if (intent === 'tonight') return { ...base, written: '', useModel: true, claimsQuery: '' };
+    return { ...base, useModel: true, claimsQuery: body.slice(0, 80) };
+  }
+
+  function freshOrHeld(person: Person, item: PricedItem, t: number): Talk & { at: number } {
+    const held = person.talks.get(item.id);
+    if (held && (held.deal === null || t - held.at <= HAGGLE.quoteMs)) return held;
+    const next = { ...freshTalk(item), at: t };
+    // A person whose quote ran out starts again, but a person who used up the rounds does not get fresh ones by waiting for nothing.
+    if (held && held.deal === null) next.rounds = held.rounds;
+    person.talks.set(item.id, next);
+    return next;
+  }
+
+  /** The venue facts a guide may give, from the city's own content: names, districts and whether each is open. */
+  function places(city: string, t: number): { id: string; name: string; district: string; status: string }[] {
+    const venues = cachedCityContent(city)?.venues ?? [];
+    return venues.filter((venue) => venue.id !== 'home' && venue.id !== 'neighbourhood').slice(0, 40).map((venue) => ({ id: venue.id, name: venue.name, district: venue.district, status: openingInfo(venue.hours, t).status }));
+  }
+
+  async function reply(agent: Agent, from: { id: string; name: string }, body: string): Promise<void> {
+    const t = ctx.now();
+    const { spec } = agent;
+    const s = settings();
+    count().wakes += 1;
+    // A running quiz takes the line first: the first right answer wins the round.
+    if (agent.quiz && t < agent.quiz.until && isRight(agent.quiz.question, body)) {
+      const won = agent.quiz.question; agent.quiz = null; agent.nextQuiz = t + QUIZ_EVERY_MS;
+      await speak(agent, say.quizWin(from.name.slice(0, 24), won.a));
+      return;
+    }
+    // While a round is running, chat that is not an answer is left alone (unless it names the host), so the host does not talk over the quiz.
+    if (agent.quiz && t < agent.quiz.until && intentOf(body, spec.role, false) === 'other' && !callNames(agent).some((name) => body.toLowerCase().includes(name))) return;
+    const worked = plan(agent, from, body, t);
+    const cityName = cityRules(agent.city)?.name ?? agent.city;
+    const around = places(agent.city, t);
+    const seed = `${agent.id}|${from.id}|${t}`;
+    // The public gist first (the check_gist tool's source): what the agent may say happened, and tonight's events.
+    const claims = worked.claimsQuery === null ? [] : await gistLines(agent.city, worked.claimsQuery, worked.claimsQuery === '');
+    let text = worked.written;
+    if (!text && worked.intent === 'directions') { const venue = matchVenue(body, around); text = say.directionsLine(spec, venue, around.slice(0, 4).map((place) => place.name)); }
+    if (!text && worked.intent === 'tonight') text = say.tonight(spec, claims, seed);
+    let viaModel = false;
+    if (worked.useModel && s.model) {
+      const hoursWords = `${formatHour(spec.hours.open)} to ${formatHour(spec.hours.close)}`;
+      const messages = promptFor({ spec, cityName, list: agent.items, verdict: worked.verdict, gist: claims, hours: hoursWords, intent: worked.intent,
+        places: worked.intent === 'directions' ? around.slice(0, 12).map((place) => `${place.name} in ${place.district} (${place.status})`) : [] }, from.name.slice(0, 24), body);
+      try {
+        const answer = await ask({ purpose: 'agent-talk', messages, maxTokens: MODEL_TOKENS, playerId: `p_${sha256Hex(`allworld-house-v1|${from.id}`).slice(0, 32)}`, carriesPlayerWords: true, timeoutMs: 8000 });
+        if (answer.ok) {
+          const allowed = allowedNumbers(worked.prices, spec);
+          for (const place of around) for (const digits of place.status.match(/\d+/g) ?? []) allowed.add(digits);
+          for (const line of claims) for (const digits of line.match(/\d+/g) ?? []) allowed.add(digits);
+          const clean = cleanReply(answer.text, { allowed, verdict: worked.verdict?.verdict.kind ?? null, role: spec.role });
+          if (clean !== null && agentWords(clean, { toMinor: true }).ok) { text = clean; viaModel = true; }
+        }
+      } catch { /* the written line stands */ }
+    }
+    if (!text) text = say.fallback(spec, seed);
+    const spoken = await speak(agent, text);
+    if (spoken) { if (viaModel) count().model += 1; else count().written += 1; }
+    else if (viaModel) { const safe = worked.written || say.fallback(spec, seed); if (await speak(agent, safe)) count().written += 1; }
+  }
+
+  function onLine(event: { room: string; group: string | null; from: { id: string; name: string; agent?: boolean }; body: string }): void {
+    try {
+      if (!agents.size || event.from.agent === true || event.from.id.startsWith(ID_PREFIX)) return;
+      const door = room();
+      if (!door) return;
+      const here = new Set(door.members(event.room).filter((member) => (member.group ?? null) === event.group).map((member) => member.id));
+      const there = [...agents.values()].filter((agent) => agent.at?.room === event.room && here.has(agent.id));
+      if (!there.length) return;
+      const body = event.body.slice(0, 300);
+      const items = there.find((entry) => entry.spec.role === 'seller')?.items ?? [];
+      const agent = chooseAgent(there, body, intentOf(body, 'seller', items.length > 0 && readOffer(body, items[0]!.list, matchItem(body, items) !== null) !== null));
+      if (!agent || agent.busy) return;
+      // Nothing wakes without room: a person may wake one agent a few times a minute, and the whole cast has a ceiling.
+      if (!ctx.allow(`house:wake:${agent.id}:${event.from.id}`, 8, 60000) || !ctx.allow('house:wake:all', 120, 60000)) return;
+      agent.busy = true;
+      void reply(agent, event.from, body).catch(() => {}).finally(() => { agent.busy = false; });
+    } catch { /* a bad line must never reach the room */ }
+  }
+
+  ctx.on?.('heartbeat', tick);
+  ctx.on?.('venue-line', onLine);
+
+  return {
+    tick,
+    /** For tests and the admin page. */
+    agents: (): { id: string; name: string; role: Spec['role']; city: string; room: string | null; action: ActionId | null }[] => [...agents.values()].map((agent) => ({ id: agent.id, name: agent.spec.name, role: agent.spec.role, city: agent.city, room: agent.at?.room ?? null, action: agent.at?.action ?? null })),
+    counters: (): Counters => ({ ...count() }),
+    lastBeat: () => ({ ...last }),
+    priceList: (id: string): PricedItem[] => agents.get(id)?.items ?? [],
+    settings,
+    /** Test hook: the same call the 'venue-line' event makes. */
+    line: onLine,
+    present: (): number => [...agents.values()].filter((agent) => agent.at !== null).length,
+  };
+}
+export type House = ReturnType<typeof houseOf>;
+
+const houses = new WeakMap<object, House>();
+/** The one runner of a host. Built on first use; the heartbeat and the venue lines drive it from then on. */
+export function houseService(ctx: RouteContext): House {
+  let found = houses.get(ctx);
+  if (!found) houses.set(ctx, found = houseOf(ctx));
+  return found;
+}
+
+/** Settings and dashboard numbers, and the runner itself. Called once per host with the other admin links (server/admin/links.ts). */
+export function linkHouse(ctx: RouteContext): void {
+  registerAdminSetting(ctx, { key: 'houseAgentsOn', label: 'House agents: on', help: 'The game\'s own AI-played cast (a seller, a guide, a marketer, a quiz host). Off removes them from every venue at once.', kind: 'boolean', default: () => DEFAULTS.on });
+  registerAdminSetting(ctx, { key: 'houseAgentsBusy', label: 'House agents in each busy city', help: 'Lagos has its own cast of six, best first: seller, guide, marketer, food seller, quiz host, mission giver. 0 to 6.', kind: 'number', min: 0, max: 6, default: () => DEFAULTS.busy });
+  registerAdminSetting(ctx, { key: 'houseAgentsQuiet', label: 'House agents in each other city', help: 'A seller and a guide stand in any other open city while a person is in it (and for ten minutes after). 0 to 2; 0 is off.', kind: 'number', min: 0, max: 2, default: () => DEFAULTS.quiet });
+  registerAdminSetting(ctx, { key: 'houseMaxDiscountPct', label: 'House sellers: most they give away (%)', help: 'Their lowest price is the list price less this share, rounded up; never more than 30. Enforced in code, not by any model.', kind: 'number', min: 0, max: HAGGLE.discountCap, default: () => DEFAULTS.discount });
+  registerAdminSetting(ctx, { key: 'houseTalkModel', label: 'House agents: use a model to talk', help: 'On: when a person writes to one, a paid model may phrase the answer (within the model budget). Off: written lines only.', kind: 'boolean', default: () => DEFAULTS.model });
+  const house = houseService(ctx);
+  const stat = (id: string, label: string, read: () => number | string): void => registerAdminStat(ctx, { id: `house-${id}`, group: 'House agents', label, cost: 'memory', read });
+  stat('present', 'Standing in a venue now', () => house.present());
+  stat('wakes', 'Lines answered today', () => house.counters().wakes);
+  stat('model', 'Answered with a model today', () => house.counters().model);
+  stat('written', 'Answered from written lines today', () => house.counters().written);
+  stat('low', 'Offers refused below the floor today', () => house.counters().refusedLow);
+  stat('blocked', 'Lines held back by the word rules today', () => house.counters().blocked);
+}

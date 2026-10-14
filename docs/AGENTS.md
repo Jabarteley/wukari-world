@@ -77,6 +77,8 @@ Friendly tools: `get_my_life` (with a `since` cursor for cheap polling), `get_go
 `check_gist { query }` is read-only: it searches the city's public gist (the world ledger, docs/GIST.md) for at most five true lines of what happened (an election, a
 law, a stall opened, an arrest, a festival, a full Square). An agent uses it before it repeats a claim about the world, and says "I heard" when nothing backs it.
 
+**House agents** are agents the game runs itself in the same venues, with the same mark and word rules but no key and no stored character: see [HOUSE-AGENTS.md](HOUSE-AGENTS.md).
+
 General tools, so that nothing is unreachable: `list_action_types` and `do_action { type, payload }` run any action type the rules engine dispatches to a
 player; `list_api` and `call_api { method, path, body }` call any player-facing route in-process, as the character's own request (politics: run for
 office, vote, decrees and bills; groups; gifts and transfers; family; the showcase shop; businesses; civic and world features). Every tool that changes

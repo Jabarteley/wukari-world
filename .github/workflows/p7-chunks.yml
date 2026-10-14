@@ -1,0 +1,45 @@
+name: p7-chunks
+on:
+  push:
+    branches: [claude/alive-p7-light]
+    paths: [".github/workflows/p7-chunks.yml"]
+jobs:
+  chunks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NODE_OPTIONS: --max-old-space-size=8192
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: claude/alive-p7-base, path: base }
+      - uses: actions/checkout@v4
+        with: { ref: claude/alive-p7-light, path: mine }
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: npm, cache-dependency-path: mine/package-lock.json }
+      - run: cd base && npm ci --no-audit --no-fund && npm run build
+      - run: cd mine && npm ci --no-audit --no-fund && npm run build
+      - name: startup closure
+        run: |
+          cat > closure.mjs <<'JS'
+          import { readFileSync, existsSync, statSync } from 'node:fs'
+          const stem = (f) => f.replace(/-[0-9a-f]{8}\.js$/, '')
+          function closure(dir) {
+            const html = readFileSync(`${dir}/dist/index.html`, 'utf8')
+            const seen = new Map(); const queue = [...html.matchAll(/assets\/([\w.-]+\.js)/g)].map((m) => m[1])
+            while (queue.length) {
+              const f = queue.pop(); if (seen.has(f)) continue
+              const p = `${dir}/dist/assets/${f}`; if (!existsSync(p)) continue
+              const text = readFileSync(p, 'utf8'); seen.set(f, statSync(p).size)
+              // static imports only: from"./x.js" and import"./x.js", not import("./x.js")
+              for (const m of text.matchAll(/(?:from|^import)\s*"\.\/([\w.-]+\.js)"/gm)) queue.push(m[1])
+            }
+            return new Map([...seen].map(([f, n]) => [stem(f), n]))
+          }
+          const b = closure('base'), m = closure('mine')
+          let sb = 0, sm = 0; const rows = []
+          for (const k of new Set([...b.keys(), ...m.keys()])) { const x = b.get(k) ?? 0, y = m.get(k) ?? 0; sb += x; sm += y; rows.push([k, x, y, y - x]) }
+          rows.sort((p, q) => q[2] - p[2])
+          console.log('total base', sb, 'mine', sm)
+          for (const r of rows) console.log(r.join('\t'))
+          JS
+          node closure.mjs

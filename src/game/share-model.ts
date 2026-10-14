@@ -17,7 +17,7 @@ import { isRecord } from './util.ts';
 import { cleanSourceWord } from './attribution.ts';
 import type { ShareFacts, ShareKind } from '../types/growth.ts';
 
-export const SHARE_KINDS: readonly ShareKind[] = Object.freeze(['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news']);
+export const SHARE_KINDS: readonly ShareKind[] = Object.freeze(['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news', 'gist']);
 const KIND_NAMES: readonly string[] = SHARE_KINDS;
 const isKind = (value: unknown): value is ShareKind => typeof value === 'string' && KIND_NAMES.includes(value);
 export const BRAND = 'Allworld';
@@ -65,6 +65,7 @@ function previewOf(facts: unknown): { title: string; description: string } {
     case 'event': return { title: `${f.event || 'Something is on'} · ${f.venue || f.city}`, description: `${f.name} is going. Meet them there in ${BRAND}.` };
     case 'wedding': return { title: f.partner ? `${f.name} and ${f.partner} just got married` : `${f.name} just got married`, description: `Come and celebrate with them in ${f.city}, in ${BRAND}. No sign-up: pick a name and walk in.` };
     case 'election': return { title: f.headline || `An election result in ${f.city}`, description: `From the public record of ${f.city}. Vote in the next election in ${BRAND}. No sign-up.` };
+    case 'gist': // a line of the city gist is shared like public news
     case 'news': return { title: f.headline || `News from ${f.city}`, description: `From the public record of ${f.city}. See what is happening in ${BRAND}. No sign-up.` };
     default: return { title: `Join ${f.name} in ${BRAND}`, description: `${f.name} lives in ${place}, in a world of real cities. Make your character, get a job, and come through. No sign-up.` };
   }
@@ -88,7 +89,7 @@ export function shareText(facts: unknown, link = '', offer?: ShareOffer | null):
   else if (f.kind === 'event') lines.push(`${f.event} · ${f.venue}`, `I am going. Meet me there in ${BRAND}.`);
   else if (f.kind === 'wedding') lines.push(`${f.partner ? `${f.name} and ${f.partner} are` : `${f.name} is`} married in ${BRAND} 💍`, 'Come and celebrate with us.');
   else if (f.kind === 'election') lines.push(`${f.headline || `The election in ${f.city} is decided`} 🗳️`, `See the result in ${BRAND}.`);
-  else if (f.kind === 'news') lines.push(`${f.headline || `News from ${f.city}`} 📰`, `Read it in ${BRAND}.`);
+  else if (f.kind === 'news' || f.kind === 'gist') lines.push(`${f.headline || `News from ${f.city}`} 📰`, `Read it in ${BRAND}.`);
   else lines.push(`I live in ${BRAND} now: a world of real cities. Find me in ${f.district || f.city}.`, 'Make your character and come through. No sign-up.');
   const line = offerSentence(offer);
   if (line) lines.push(line);
@@ -112,7 +113,7 @@ export function shareCard(facts: unknown): ShareCard {
   if (f.kind === 'table') return { ...base, headline: f.tableId ? `Come and play ${f.game}` : f.won ? `Won at ${f.game}` : `At the ${f.game} table`, lines: [f.name, f.venue || place, f.tableId ? 'A seat is open' : 'Come and play me'] };
   if (f.kind === 'wedding') return { ...base, headline: f.partner ? `${f.name} and ${f.partner}` : f.name, lines: ['Just got married', f.city, 'Come and celebrate'] };
   if (f.kind === 'election') return { ...base, headline: f.headline || 'The election is decided', lines: [f.city, 'From the public record'] };
-  if (f.kind === 'news') return { ...base, headline: f.headline || `News from ${f.city}`, lines: [f.city, 'From the public record'] };
+  if (f.kind === 'news' || f.kind === 'gist') return { ...base, headline: f.headline || `News from ${f.city}`, lines: [f.city, 'From the public record'] };
   if (f.kind === 'house') return { ...base, headline: 'Come to my house', lines: [f.name, place, 'Knock at the door'] };
   if (f.kind === 'event') return { ...base, headline: f.event, lines: [f.venue, `${f.name} is going`] };
   return { ...base, headline: `Come and live in ${BRAND}`, lines: [f.name, `Now in ${f.district || f.city}`, 'Make your character and come through'] };
@@ -133,7 +134,7 @@ export const xUrl = (text: string): string => `https://twitter.com/intent/tweet?
 
 /** The preview picture of a kind: a path on the site and its type. Kinds without their own picture keep the game's general one. Files: public/og/card-*.png (scripts/make-share-cards.ts). */
 export function cardImage(kind: unknown): { path: string; type: 'image/png' | 'image/jpeg' } {
-  return kind === 'table' || kind === 'wedding' || kind === 'election' || kind === 'news' ? { path: `/og/card-${kind}.png`, type: 'image/png' } : { path: '/og/allworld.jpg', type: 'image/jpeg' };
+  return kind === 'table' || kind === 'wedding' || kind === 'election' || kind === 'news' || kind === 'gist' ? { path: `/og/card-${kind === 'gist' ? 'news' : kind}.png`, type: 'image/png' } : { path: '/og/allworld.jpg', type: 'image/jpeg' };
 }
 
 /** The ad-source words every shared link carries (the same `utm_` words the owner's ads use, src/game/attribution.ts): the source is the share itself, the medium its channel, the campaign its kind. */

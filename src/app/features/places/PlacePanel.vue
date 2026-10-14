@@ -4,7 +4,7 @@
 // this only asks (placesStore.ts). Voice is asked for by its button alone, as everywhere (src/community.ts).
 import '../../../ui/controls.css'
 import '../../../ui/panels/social.css'
-import { computed, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useApp } from '../../state/app.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import PlayerAvatar from '../social/PlayerAvatar.vue'
@@ -13,6 +13,9 @@ import { FURNITURE } from '../../../game/content/furniture.ts'
 import { PLACES, SERVICE_WORDS } from '../../../places/model.ts'
 import { placeNow, placePeople } from './placeState.ts'
 import { addPiece, askToLeave, movePiece, places, removePiece, setLink, stepOut } from './placesStore.ts'
+import { gist, loadGist } from '../gist/gistStore.ts'
+import { squareLine } from '../gist/gistModel.ts'
+import { SQUARE_TURN_MS } from '../gist/gistConfig.ts'
 import type { FurnitureDefinition } from '../../../types/content.ts'
 
 const { game, shell, community } = useApp()
@@ -28,6 +31,15 @@ const line = computed(() => {
   return total > 1 ? `${total} people from everywhere · ${n} around you` : 'Open to everyone, from every city'
 })
 const offline = computed(() => !game.view.value.connected)
+// The Square's radio-style line: one fresh line of the city gist at a time ("Gist: ..."), at most three in turn, in the panel and never in chat.
+const gistTurn = ref(0), clock = ref(Date.now())
+const gistLine = computed(() => (now.value?.kind === 'square' ? squareLine(gist.lines, clock.value, gistTurn.value) : ''))
+let reader: ReturnType<typeof setInterval> | null = null
+onMounted(() => {
+  void loadGist((path) => game.fetchJson(path), game.view.value.cityId)
+  reader = setInterval(() => { gistTurn.value += 1; clock.value = Date.now(); void loadGist((path) => game.fetchJson(path), game.view.value.cityId, clock.value) }, SQUARE_TURN_MS)
+})
+onBeforeUnmount(() => { if (reader) clearInterval(reader) })
 const pending = ref(false), problem = ref<string | null>(null)
 async function run(operation: () => Promise<string | null>): Promise<void> {
   if (pending.value || offline.value) return
@@ -98,6 +110,7 @@ const whatsapp = computed(() => `https://wa.me/?text=${encodeURIComponent(`${now
       <button type="button" data-place="step-out" @click="stepOut()"><span>Step out</span></button>
     </div>
     <p class="social-note place-voice-note" role="status">{{ voiceNote }}</p>
+    <p v-if="gistLine" class="social-note place-gist" data-place="gist">{{ gistLine }}</p>
     <p v-if="offline" class="ui-note" role="status">Reconnect to talk, build or invite.</p>
     <p v-if="problem" class="ui-error" role="alert">{{ problem }}</p>
 

@@ -55,6 +55,9 @@ export const landPanel = phonePanel('land', 'My land', bodyLoader('neighbourhood
 /** The Square and the rooms of group chats (src/places/model.ts): the doors of each. */
 export const placesPanel = phonePanel('places', 'Places', () => import('./places/PlacesApp.vue'), { icon: 'globe', order: 11.5, group: 'people' })
 
+/** What is being talked about in the city: short public lines from the world ledger, each with a Share button (docs/GIST.md). */
+export const gistPanel = phonePanel('gist', 'Gist', () => import('./gist/GistApp.vue'), { icon: 'megaphone', order: 11.6, group: 'people' })
+
 export const neighbourhoodPanel = phonePanel('neighbourhood', 'My street', bodyLoader('neighbourhood/NeighbourhoodPanel'), { icon: 'home', order: 31, group: 'life' })
 
 export const stories = phonePanel('stories', 'Story scenes', bodyLoader('stories/StoriesApp'), { icon: 'sparkles', order: 53, group: 'life' })
@@ -104,4 +107,4 @@ export const buy = lazyPanel('buy', 'Buy', 'nav', bodyLoader('home/BuyMode'), {
   enabled: (state) => social.me?.visiting ? 'Leave the visit before rearranging your furniture' : state.stories?.running ? 'End your scene before rearranging furniture' : state.location === 'home' || 'Go home to buy furniture',
 })
 
-export const NATIVE_PANELS: readonly VuePanel[] = [captureChip, placesPanel, landPanel, stories, storyChip, neighbourhoodPanel, capture, bank, messages, support, jobs, career, statement, invest, houses, cars, groceries, health, goals, profile, needs, skills, settings, boutique, healthChip, weatherChip, goalChip, settleChip, homeChip, buy, ...CIVIC_APPS, ...CIVIC_HUD, ...GROWTH_PANELS, ...GROWTH_HUD_PANELS, ...TABLES_PANELS, ...GAMES_PANELS, ...CAMPUS_PANELS, ...WORLD_PANELS, ...SOCIAL_PANELS, ...START_PANELS, ...TRAVEL_PANELS, ...ACCOUNT_PANELS, ...BUSINESS_PANELS, ...MARKET_PANELS, ...SHOWCASE_PANELS, ...COMMERCE_PANELS, ...POLITICS_PANELS, ...ADMIN_PANELS, ...LIVING_WORLD_PANELS]
+export const NATIVE_PANELS: readonly VuePanel[] = [captureChip, placesPanel, gistPanel, landPanel, stories, storyChip, neighbourhoodPanel, capture, bank, messages, support, jobs, career, statement, invest, houses, cars, groceries, health, goals, profile, needs, skills, settings, boutique, healthChip, weatherChip, goalChip, settleChip, homeChip, buy, ...CIVIC_APPS, ...CIVIC_HUD, ...GROWTH_PANELS, ...GROWTH_HUD_PANELS, ...TABLES_PANELS, ...GAMES_PANELS, ...CAMPUS_PANELS, ...WORLD_PANELS, ...SOCIAL_PANELS, ...START_PANELS, ...TRAVEL_PANELS, ...ACCOUNT_PANELS, ...BUSINESS_PANELS, ...MARKET_PANELS, ...SHOWCASE_PANELS, ...COMMERCE_PANELS, ...POLITICS_PANELS, ...ADMIN_PANELS, ...LIVING_WORLD_PANELS]

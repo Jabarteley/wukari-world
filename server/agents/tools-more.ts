@@ -8,6 +8,7 @@ import type { WsConnection } from '../types.ts';
 import { venueRoomKey } from '../protocol.ts';
 import { UUID_PATTERN } from '../protocol.ts';
 import { socialService } from '../social/service.ts';
+import { gistService } from '../gist/ledger.ts';
 import { tablesService } from '../growth/tables.ts';
 import { AGENT_LIMITS, agentMark } from './policy.ts';
 import { AGENT_DENY, actionList, routeDenied } from './access.ts';
@@ -147,6 +148,19 @@ const read_here: ToolDefinition = {
   },
 };
 
+const check_gist: ToolDefinition = {
+  name: 'check_gist', readOnly: true,
+  description: 'Did that really happen? Search the public gist of your city (and the world\'s): the short, true lines the game wrote down when an election was decided, a law passed, a stall opened, someone was arrested, a festival began, the Square filled up. `query` is a few words ("Tunde governor", "buka Yaba"); leave it out for the latest lines. It returns at most 5 matching lines, newest first, with their number and time. USE IT BEFORE YOU REPEAT A CLAIM about something that happened in the world: say it as fact only when a line here backs it, otherwise say "I heard" or "I am not sure", and never pass on a rumour as news. Only public things are in it: no private messages, no money amounts, no one under 18 and no one who hid themselves; "not found" does not mean it did not happen, only that it is not in the public gist.',
+  inputSchema: obj({ query: { type: JT.string, maxLength: 80 } }),
+  async run(c, args) {
+    const query = str(args.query)?.slice(0, 80) ?? '';
+    const gist = gistService(c.ctx), city = c.agent.cityId;
+    const lines = await c.ctx.store.read((db) => (query ? gist.search(db, city, query, 5) : gist.recent(db, city, { limit: 5 })));
+    const items = lines.map((item) => ({ n: item.n, at: item.at, minutesAgo: Math.max(0, Math.round((c.ctx.now() - item.at) / 60000)), text: item.text, where: item.city }));
+    return { ok: true, code: 'ok', data: { ok: true, code: items.length ? 'found' : 'not_found', count: items.length, items, ...(items.length ? {} : { note: 'Nothing in the public gist matches. Do not claim it happened; say you have not heard, or ask someone who was there.' }) } };
+  },
+};
+
 const go_home: ToolDefinition = {
   name: 'go_home', readOnly: false,
   description: 'Travel to your own home (cheapest way you can afford). At night, go home to sleep: your needs recover there.',
@@ -277,7 +291,7 @@ const bank: ToolDefinition = {
   },
 };
 
-export const MORE_TOOLS: readonly ToolDefinition[] = Object.freeze([list_action_types, do_action, list_api, call_api, say_here, read_here, go_home, list_games_here, play_game_move, friends, manage_shop, bank, ...PLACE_TOOLS]);
+export const MORE_TOOLS: readonly ToolDefinition[] = Object.freeze([list_action_types, do_action, list_api, call_api, say_here, read_here, check_gist, go_home, list_games_here, play_game_move, friends, manage_shop, bank, ...PLACE_TOOLS]);
 export const ALL_TOOLS: readonly ToolDefinition[] = Object.freeze([...TOOLS, ...MORE_TOOLS]);
 export const TOOL_NAMES: readonly string[] = ALL_TOOLS.map((tool) => tool.name);
 export type { ToolOutput };

@@ -700,6 +700,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/world/pulse',
   'GET /api/world/pulse/online',
   'GET /api/world/feed',
+  'GET /api/world/gist',
   'GET /api/world/city',
   'GET /api/world/lga/:id',
   'GET /api/world/lga/:id/estates',

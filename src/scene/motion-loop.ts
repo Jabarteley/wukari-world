@@ -45,7 +45,7 @@ export interface MotionLoop {
   stop(): void;
   dispose(): void;
 }
-export function createMotionLoop(tick: (dt: number) => boolean | void, { onHidden, onVisible, request = globalThis.requestAnimationFrame && gate.request, cancel = gate.cancel, doc = globalThis.document, clock = () => globalThis.performance.now() }: MotionLoopOptions = {}): MotionLoop {
+export function createMotionLoop(tick: (dt: number) => boolean | void, { onHidden, onVisible, request = (globalThis.requestAnimationFrame ? gate.request : undefined), cancel = gate.cancel, doc = globalThis.document, clock = () => globalThis.performance.now() }: MotionLoopOptions = {}): MotionLoop {
   let handle: number | null = null, last = 0, queued = false;
   const hidden = () => doc?.visibilityState === 'hidden';
   const loop: MotionLoop = {

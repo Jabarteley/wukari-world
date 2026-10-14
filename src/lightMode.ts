@@ -28,7 +28,7 @@ export function readLight(win: LightWindow): boolean {
 
 let current: boolean | null = null
 /** Is light mode on in this tab? Read from the browser once, then kept. */
-export const lightOn = (): boolean => current ??= readLight(globalThis)
+export const lightOn = (): boolean => current ??= readLight(globalThis as LightWindow)
 /** The frame cap now: 30 with light mode on, 0 (none) otherwise. */
 export const lightFps = (): number => (lightOn() ? LIGHT_FPS : 0)
 /** For lightControl.ts (Settings, lazy): hold a new value for this tab, or null to read it again. */

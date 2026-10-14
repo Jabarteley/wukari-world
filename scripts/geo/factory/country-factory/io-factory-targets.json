@@ -14,53 +14,53 @@
     "boundaryKey": "io",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38504953075,
-      "sourceSha": "8942cfef575a8fefae96cac7df402e46811900d2",
-      "sourceArtifact": "city-bootstrap-io-8942cfef575a8fefae96cac7df402e46811900d2",
+      "sourceRunId": 38505615108,
+      "sourceSha": "325e8107224e5418b1f6988210d258e299e5a302",
+      "sourceArtifact": "city-bootstrap-io-325e8107224e5418b1f6988210d258e299e5a302",
       "artifactSubdirectory": "country-boundary"
     }
   },
   "targets": [
     {
       "id": "chagos",
-      "name": "Île Gabrielle",
+      "name": "Île Boddam",
       "country": "io",
       "facts": {
         "id": "chagos",
-        "name": "Île Gabrielle",
+        "name": "Île Boddam",
         "country": {
           "idISOlower": "io",
           "name": "British Indian Ocean Territory"
         },
         "state": {
           "idunique": "io-chagos",
-          "name": "Île Gabrielle"
+          "name": "Île Boddam"
         },
         "timezone": "Indian/Chagos",
         "centre": {
-          "lon": 71.7497812,
-          "lat": -5.4221915
+          "lon": 72.2049217,
+          "lat": -5.3574343
         },
         "airport": {
           "id": "chagos-airport",
-          "name": "Passe de Île Poule",
-          "lon": 71.7552944,
-          "lat": -5.3858823,
-          "sourceUrl": "https://www.openstreetmap.org/node/366535766"
+          "name": "Île Boddam",
+          "lon": 72.207191,
+          "lat": -5.3556818,
+          "sourceUrl": "https://www.openstreetmap.org/node/6436644966"
         },
         "sourceLabel": "OpenStreetMap country PBF",
-        "sourceUrl": "https://www.openstreetmap.org/node/366535762",
+        "sourceUrl": "https://www.openstreetmap.org/way/32596963",
         "licence": "OpenStreetMap ODbL-1.0",
         "coverageNote": "Source-sampling bounds from a mapped place node and its mapped gateway node; the grouping is not an administrative-boundary claim. A mapped landing, heliport or track does not establish current operations or access.",
         "gateway": {
           "mode": "sea",
-          "osmRef": "node/366535766"
+          "osmRef": "node/6436644966"
         },
         "bounds": [
-          71.67758458573489,
-          -5.494543855973592,
-          71.82197781426511,
-          -5.349839144026409
+          72.1327328879786,
+          -5.429786655973592,
+          72.2771105120214,
+          -5.285081944026409
         ]
       },
       "profile": "wilderness",
@@ -77,39 +77,48 @@
       ],
       "metadataSources": {
         "centre": {
-          "osmRef": "node/366535762",
-          "sourceUrl": "https://www.openstreetmap.org/node/366535762",
+          "osmRef": "way/32596963",
+          "sourceUrl": "https://www.openstreetmap.org/way/32596963",
           "sourceRecord": {
-            "ref": "node/366535762",
+            "ref": "way/32596963",
             "tags": {
-              "name": "Île Gabrielle",
-              "place": "islet"
+              "name": "Île Boddam",
+              "natural": "coastline",
+              "place": "island",
+              "population": "0",
+              "wikidata": "Q3593023"
             },
-            "lon": 71.7497812,
-            "lat": -5.4221915
+            "lon": 72.2049217,
+            "lat": -5.3574343,
+            "centreMethod": "shapely-representative-point-of-closed-way",
+            "wayNodeCount": 334
           },
           "pbfSha256": "3c4c6e276dd712800038171448c0e764ce974502f79c2928aad824ea0ce8dd56",
           "selection": {
-            "cityOsmRef": "node/366535762",
-            "matchedOsmRef": "node/366535762"
+            "cityOsmRef": "way/32596963",
+            "matchedOsmRef": "way/32596963"
           }
         },
         "gateway": {
-          "osmRef": "node/366535766",
+          "osmRef": "node/6436644966",
+          "featureRef": "way/32596963",
           "mode": "sea",
-          "sourceUrl": "https://www.openstreetmap.org/node/366535766",
+          "sourceUrl": "https://www.openstreetmap.org/way/32596963",
           "sourceRecord": {
-            "ref": "node/366535766",
+            "ref": "node/6436644966",
+            "tags": {},
+            "lon": 72.207191,
+            "lat": -5.3556818
+          },
+          "featureRecord": {
+            "ref": "way/32596963",
             "tags": {
-              "is_in:country_code": "IO",
-              "is_in:ocean": "Indian Ocean",
-              "name": "Passe de Île Poule",
-              "old_name": "Passe Elisabeth",
-              "place": "locality",
-              "subsea": "channel"
-            },
-            "lon": 71.7552944,
-            "lat": -5.3858823
+              "name": "Île Boddam",
+              "natural": "coastline",
+              "place": "island",
+              "population": "0",
+              "wikidata": "Q3593023"
+            }
           },
           "pbfSha256": "3c4c6e276dd712800038171448c0e764ce974502f79c2928aad824ea0ce8dd56",
           "claim": "caller-supplied gateway node, checked for its mode tags and for no military tag; a mapped landing does not establish operations"
@@ -158,6 +167,10 @@
           "way/32594744",
           "way/32595400",
           "way/32596963",
+          "way/32597120",
+          "way/32597333",
+          "way/32597335",
+          "way/32597376",
           "way/32597624",
           "way/32597625",
           "way/32597765",
@@ -171,13 +184,19 @@
           "way/32599432",
           "way/32599497",
           "way/32599767",
+          "way/44038371",
           "way/44038373",
           "way/44038375",
           "way/147681820",
           "way/536779324",
+          "way/545121559",
+          "way/546441956",
           "way/546485159",
           "way/687012907",
           "way/1388960407",
+          "way/1388963096",
+          "way/1388963098",
+          "way/1388963100",
           "way/1392544323",
           "way/1392544326"
         ],
@@ -192,31 +211,31 @@
           },
           "boxes": {
             "play": [
-              -5.494543855973592,
-              71.67758458573489,
-              -5.349839144026409,
-              71.82197781426511
+              -5.429786655973592,
+              72.1327328879786,
+              -5.285081944026409,
+              72.2771105120214
             ],
             "core": [
-              -5.449323633490097,
-              71.72270951648714,
-              -5.395059366509903,
-              71.77685288351286
+              -5.384566433490098,
+              72.17785291774244,
+              -5.330302166509903,
+              72.23199048225756
             ],
             "outline": [
-              -5.544543855973592,
-              71.6275845857349,
-              -5.299839144026409,
-              71.87197781426511
+              -5.479786655973592,
+              72.08273288797861,
+              -5.235081944026409,
+              72.32711051202139
             ],
             "wide": [
-              -5.911600923894366,
-              71.26052751781411,
-              -4.932782076105634,
-              72.23903488218589
+              -5.8468437238943665,
+              71.71567582005783,
+              -4.868024876105634,
+              72.69416757994217
             ]
           },
-          "airportMarginMetres": 3985.29175599993,
+          "airportMarginMetres": 7749.461154658161,
           "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
           "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
         },
@@ -279,30 +298,30 @@
               "excludeSensitive": true
             }
           },
-          "cityPlaceTag": "islet"
+          "cityPlaceTag": "island"
         }
       },
       "extractKey": "chagos",
       "extractSha256": {
-        "places": "e2d8edfeacbd795af6990fbe3330ee8a7bfd2d7629f1f76e393cb2f687b3575b",
-        "extras": "bfd8fea4926e7634843bcc2dcc180da534910921ad39745c3e070bebc55948ec",
-        "water": "84dc05a2ed4026acbe333d369339bf3e127b37e9ccd927b14e59b7abf74b8360",
-        "landuse": "65a3d0a7cd32a81aecd6685fd0a942ec4481cbbb9cc0cecebdd82c495ba66df0",
-        "roads": "d1fb15d97750a36ac1ad244cd8201838f0c696eba9364d532e0f0f725e4dd21e"
+        "places": "018793cb79deee24aac284efcbceef700d6ffbd948a2fbbd4ba8e3f0bae09674",
+        "extras": "830d0723b8f448436b41be9b7799251dee7901dcd6dba77ba6dcf067c6fd3168",
+        "water": "d5b4eabbefb221e4d43f8e2c8fab32844c4aa653156972f09d6b2a011a597e5b",
+        "landuse": "55c77b7e7b0b70d97c62edc8fd1f2190bf210953ca9e53e5e78d0af66f3d41ac",
+        "roads": "34a53e4665d040d77e0bb1d69f600700dbe0cbad9c7e414ab4390562544bc1ad"
       },
       "sourceJob": {
         "city": "chagos",
-        "sourceRunId": 38504953075,
-        "sourceArtifact": "city-bootstrap-io-8942cfef575a8fefae96cac7df402e46811900d2",
-        "sourceSha": "8942cfef575a8fefae96cac7df402e46811900d2",
+        "sourceRunId": 38505615108,
+        "sourceArtifact": "city-bootstrap-io-325e8107224e5418b1f6988210d258e299e5a302",
+        "sourceSha": "325e8107224e5418b1f6988210d258e299e5a302",
         "datasetSha256": "3c4c6e276dd712800038171448c0e764ce974502f79c2928aad824ea0ce8dd56",
         "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
         "extractSha256": {
-          "places": "e2d8edfeacbd795af6990fbe3330ee8a7bfd2d7629f1f76e393cb2f687b3575b",
-          "extras": "bfd8fea4926e7634843bcc2dcc180da534910921ad39745c3e070bebc55948ec",
-          "water": "84dc05a2ed4026acbe333d369339bf3e127b37e9ccd927b14e59b7abf74b8360",
-          "landuse": "65a3d0a7cd32a81aecd6685fd0a942ec4481cbbb9cc0cecebdd82c495ba66df0",
-          "roads": "d1fb15d97750a36ac1ad244cd8201838f0c696eba9364d532e0f0f725e4dd21e"
+          "places": "018793cb79deee24aac284efcbceef700d6ffbd948a2fbbd4ba8e3f0bae09674",
+          "extras": "830d0723b8f448436b41be9b7799251dee7901dcd6dba77ba6dcf067c6fd3168",
+          "water": "d5b4eabbefb221e4d43f8e2c8fab32844c4aa653156972f09d6b2a011a597e5b",
+          "landuse": "55c77b7e7b0b70d97c62edc8fd1f2190bf210953ca9e53e5e78d0af66f3d41ac",
+          "roads": "34a53e4665d040d77e0bb1d69f600700dbe0cbad9c7e414ab4390562544bc1ad"
         }
       }
     }

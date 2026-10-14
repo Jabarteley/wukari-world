@@ -14,42 +14,42 @@
     "boundaryKey": "xa",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38504953075,
-      "sourceSha": "8942cfef575a8fefae96cac7df402e46811900d2",
-      "sourceArtifact": "city-bootstrap-xa-8942cfef575a8fefae96cac7df402e46811900d2",
+      "sourceRunId": 38505615108,
+      "sourceSha": "325e8107224e5418b1f6988210d258e299e5a302",
+      "sourceArtifact": "city-bootstrap-xa-325e8107224e5418b1f6988210d258e299e5a302",
       "artifactSubdirectory": "country-boundary"
     }
   },
   "targets": [
     {
-      "id": "reef",
-      "name": "Ashmore and Cartier Islands",
+      "id": "ashmore",
+      "name": "East Island",
       "country": "xa",
       "facts": {
-        "id": "reef",
-        "name": "Ashmore and Cartier Islands",
+        "id": "ashmore",
+        "name": "East Island",
         "country": {
           "idISOlower": "xa",
           "name": "Ashmore and Cartier Islands"
         },
         "state": {
-          "idunique": "xa-reef",
-          "name": "Ashmore and Cartier Islands"
+          "idunique": "xa-ashmore",
+          "name": "East Island"
         },
         "timezone": "Australia/Perth",
         "centre": {
-          "lon": 123.0851206,
-          "lat": -12.2354389
+          "lon": 123.0956541,
+          "lat": -12.2609346
         },
         "airport": {
-          "id": "reef-airport",
+          "id": "ashmore-airport",
           "name": "East Island",
           "lon": 123.0956705,
           "lat": -12.2590366,
           "sourceUrl": "https://www.openstreetmap.org/node/1717848188"
         },
         "sourceLabel": "OpenStreetMap country PBF",
-        "sourceUrl": "https://www.openstreetmap.org/node/2294591720",
+        "sourceUrl": "https://www.openstreetmap.org/way/25763630",
         "licence": "OpenStreetMap ODbL-1.0",
         "coverageNote": "Source-sampling bounds from a mapped place node and its mapped gateway node; the grouping is not an administrative-boundary claim. A mapped landing, heliport or track does not establish current operations or access.",
         "gateway": {
@@ -57,10 +57,10 @@
           "osmRef": "node/1717848188"
         },
         "bounds": [
-          122.9563719034907,
-          -12.362055522953785,
-          123.21386929650929,
-          -12.108822277046215
+          122.95769081486266,
+          -12.396595267450484,
+          123.23361738513735,
+          -12.125273932549517
         ]
       },
       "profile": "wilderness",
@@ -77,38 +77,27 @@
       ],
       "metadataSources": {
         "centre": {
-          "osmRef": "node/2294591720",
-          "sourceUrl": "https://www.openstreetmap.org/node/2294591720",
+          "osmRef": "way/25763630",
+          "sourceUrl": "https://www.openstreetmap.org/way/25763630",
           "sourceRecord": {
-            "ref": "node/2294591720",
+            "ref": "way/25763630",
             "tags": {
-              "name": "Ashmore and Cartier Islands",
-              "name:ar": "جزر أشمور وكارتيير",
-              "name:br": "Inizi Ashmore ha Cartier",
-              "name:de": "Ashmore- und Cartierinseln",
-              "name:en": "Ashmore and Cartier Islands",
-              "name:eo": "Aŝmora kaj Kartia Insuloj",
-              "name:es": "Islas Ashmore y Cartier",
-              "name:fr": "Îles Ashmore-et-Cartier",
-              "name:hu": "Ashmore- és Cartier-szigetek",
-              "name:it": "Isole Ashmore e Cartier",
-              "name:nl": "Ashmore- en Cartiereilanden",
-              "name:pt": "Ilhas Ashmore e Cartier",
-              "name:ro": "Insulele Ashmore și Cartier",
-              "name:ru": "Острова Ашмор и Картье",
-              "name:sk": "Ashmorov a Cartierov ostrov",
-              "name:vi": "Quần đảo Ashmore và Cartier",
-              "place": "territory",
-              "wikidata": "Q133888",
-              "wikipedia": "en:Ashmore and Cartier Islands"
+              "alt_name": "East Islet",
+              "name": "East Island",
+              "natural": "coastline",
+              "place": "islet",
+              "wikidata": "Q5328657",
+              "wikipedia": "en:East Island (Ashmore and Cartier Islands)"
             },
-            "lon": 123.0851206,
-            "lat": -12.2354389
+            "lon": 123.0956541,
+            "lat": -12.2609346,
+            "centreMethod": "shapely-representative-point-of-closed-way",
+            "wayNodeCount": 70
           },
           "pbfSha256": "a0f4ef9d733103ae6fe87cb25368588d14defbece9ee5bb49d95758babcf9c48",
           "selection": {
-            "cityOsmRef": "node/2294591720",
-            "matchedOsmRef": "node/2294591720"
+            "cityOsmRef": "way/25763630",
+            "matchedOsmRef": "way/25763630"
           }
         },
         "gateway": {
@@ -166,38 +155,38 @@
         "boundsPolicySha256": "6f384df7d7b374e875192057a85d6bcace4dd2d7c3b3701298a7893dc2ed67b6",
         "bounds": {
           "policy": {
-            "playKm": 14,
+            "playKm": 15,
             "coreKm": 4,
             "airportClearanceMetres": 1000,
             "maximumAbsoluteLatitude": 75
           },
           "boxes": {
             "play": [
-              -12.362055522953785,
-              122.9563719034907,
-              -12.108822277046215,
-              123.21386929650929
+              -12.396595267450484,
+              122.95769081486266,
+              -12.125273932549517,
+              123.23361738513735
             ],
             "core": [
-              -12.271615077986796,
-              123.04834793406177,
-              -12.199262722013204,
-              123.12189326593823
+              -12.297110777986797,
+              123.05887787080263,
+              -12.224758422013204,
+              123.13243032919738
             ],
             "outline": [
-              -12.412055522953786,
-              122.90637190349071,
-              -12.058822277046215,
-              123.26386929650928
+              -12.446595267450485,
+              122.90769081486266,
+              -12.075273932549516,
+              123.28361738513735
             ],
             "wide": [
-              -12.948301612481657,
-              122.37012581396283,
-              -11.522576187518343,
-              123.80011538603716
+              -12.996595267450484,
+              122.35769081486266,
+              -11.525273932549517,
+              123.83361738513734
             ]
           },
-          "airportMarginMetres": 11390.802311000009,
+          "airportMarginMetres": 14790.138139999934,
           "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
           "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
         },
@@ -260,7 +249,7 @@
               "excludeSensitive": true
             }
           },
-          "cityPlaceTag": "territory"
+          "cityPlaceTag": "islet"
         },
         "countryName": {
           "name": "Ashmore and Cartier Islands",
@@ -268,27 +257,27 @@
           "claim": "reviewed name of a user-assigned code absent from the pinned iso3166.tab; game map only"
         }
       },
-      "extractKey": "reef",
+      "extractKey": "ashmore",
       "extractSha256": {
-        "places": "f671bd6348fbda32fa0dcc3cd7e1fabf06a448444723ac103a52f77d60f0dfd6",
-        "extras": "ea983a7225f924591dceeaa582d0a0e45c207cf88bb74e074122b5c3e6c70eee",
-        "water": "cfd0b528c230cb5f7ab77d9b1a1785829c2b93446972da942f28e0b79a672835",
-        "landuse": "febc97547ec582afbb972c7996901163c92297f8e24219772052d468e083b27f",
-        "roads": "9fce2047073a4d40d42c1fa7609aea5e39790f245d00994f9a7ee42b9a5cddad"
+        "places": "d98a83b6d341a601fdd56049135958e5398cebfd15ac57d066bf6fd2d2c7749c",
+        "extras": "36b32b26b304bab74ca0a49fa8ff4aaf150ad0508c3a482291d6519885bd5046",
+        "water": "5cbe209ba3ae311fd02af4e7f4e2fd17b6f306fa12c6c0886b1891174211b5da",
+        "landuse": "49b53779d32be6ca94ab4af4909cff09f7c867c7fc7668d3eff385841827a7dc",
+        "roads": "fd6331a5c1f8d71934ea3e58776c8509c6db31ec1e96e74bc735d999213d1cb1"
       },
       "sourceJob": {
-        "city": "reef",
-        "sourceRunId": 38504953075,
-        "sourceArtifact": "city-bootstrap-xa-8942cfef575a8fefae96cac7df402e46811900d2",
-        "sourceSha": "8942cfef575a8fefae96cac7df402e46811900d2",
+        "city": "ashmore",
+        "sourceRunId": 38505615108,
+        "sourceArtifact": "city-bootstrap-xa-325e8107224e5418b1f6988210d258e299e5a302",
+        "sourceSha": "325e8107224e5418b1f6988210d258e299e5a302",
         "datasetSha256": "a0f4ef9d733103ae6fe87cb25368588d14defbece9ee5bb49d95758babcf9c48",
         "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
         "extractSha256": {
-          "places": "f671bd6348fbda32fa0dcc3cd7e1fabf06a448444723ac103a52f77d60f0dfd6",
-          "extras": "ea983a7225f924591dceeaa582d0a0e45c207cf88bb74e074122b5c3e6c70eee",
-          "water": "cfd0b528c230cb5f7ab77d9b1a1785829c2b93446972da942f28e0b79a672835",
-          "landuse": "febc97547ec582afbb972c7996901163c92297f8e24219772052d468e083b27f",
-          "roads": "9fce2047073a4d40d42c1fa7609aea5e39790f245d00994f9a7ee42b9a5cddad"
+          "places": "d98a83b6d341a601fdd56049135958e5398cebfd15ac57d066bf6fd2d2c7749c",
+          "extras": "36b32b26b304bab74ca0a49fa8ff4aaf150ad0508c3a482291d6519885bd5046",
+          "water": "5cbe209ba3ae311fd02af4e7f4e2fd17b6f306fa12c6c0886b1891174211b5da",
+          "landuse": "49b53779d32be6ca94ab4af4909cff09f7c867c7fc7668d3eff385841827a7dc",
+          "roads": "fd6331a5c1f8d71934ea3e58776c8509c6db31ec1e96e74bc735d999213d1cb1"
         }
       }
     }

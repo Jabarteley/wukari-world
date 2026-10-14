@@ -2,6 +2,7 @@ import { toLocal, fromLocal } from '../geo/frame.ts'
 import { pointInPart } from '../lga.ts'
 import type { CityModule, LonLatPolygon } from '../../types/content.ts'
 import { mapContext } from '../context.ts'
+import { tidyRoads } from '../road-tidy.ts'
 import type { ContextSpec } from '../context.ts'
 import type { Box4, CityPack, PackArea, PackDistrict, PackFabric, PackHill, PackLga, PackRail, PackRoad, PackWater, Point2, Rect } from '../types.ts'
 
@@ -75,7 +76,8 @@ function roadsOf(rows: RoadRows, origin: CityModule['rules']['mapOrigin'], trunk
     for (let i = 0; i + 1 < steps.length; i += 2) { x += steps[i]!; y += steps[i + 1]!; points.push(toLocal(origin, x / 1e4, y / 1e4)) }
     if (points.length > 1) out.push({ id: `road-${index}`, name, ...(major || trunk.has(name) ? { major: true } : {}), ...(trunk.has(name) ? { trunk: true } : {}), points })
   })
-  return out
+  // The rows are single source ways: joined, snapped and cleared of stubs here, so the map draws a network and not pieces.
+  return tidyRoads(out)
 }
 
 /** How far (map units, 100 m each) the ground reaches beyond a city drawn with a surround colour. */

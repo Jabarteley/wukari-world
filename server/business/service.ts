@@ -28,6 +28,7 @@
  *   saleBlock) · buyers behind one network address share one buyer's allowance at a shop (in memory, never stored) ·
  *   the buyer's own rules — earned from work, daily spend, the need is not already full (systems/business.ts buyBlock).
  */
+import { gistService } from '../gist/ledger.ts';
 import { cityContent, cityRules } from '../../src/game/cities/index.ts';
 import { lagosTime } from '../../src/game/clock.ts';
 import { naira } from '../../src/game/util.ts';
@@ -291,6 +292,8 @@ function buildService(ctx: RouteContext) {
         const paid = act(life, cityId, { op: 'open', amount: type.setup, name: name.text, city: cityId, venue: venue.venue });
         if (!paid.ok) return refuse(paid);
         b.shops[who.id] = newShop({ by: who, city: cityId, venue: venue.venue, type: type.id, name: name.text, colour: body.colour, icon: body.icon }, now());
+        // The city's gist (docs/GIST.md): who opened what kind of stall where. No price, no stall name, no money.
+        gistService(ctx).add(db, { city: cityId, kind: 'business', text: `{0} opened a ${type.label.toLowerCase()} in ${venue.name}`, people: [who], refs: { key: `shop:${cityId}:${who.id}:${b.shops[who.id]?.at ?? 0}` } });
         return { ok: true, code: 'opened' };
       });
       return { body: { ...outcome, state: life, ...mineBody(db, cityId, who, life) }, push: [] as Push };

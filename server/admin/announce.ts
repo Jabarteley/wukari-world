@@ -26,6 +26,7 @@ import type { AnnounceFrame, AnnounceItem } from '../../src/types/announce.ts';
 import { ANNOUNCE_KEEP, collectionOf, peek } from './store.ts';
 import type { AnnounceAudience, AnnounceAction, AnnouncementRecord } from './store.ts';
 import { limitsOf } from './config.ts';
+import { WORLD, gistService } from '../gist/ledger.ts';
 import type { Admin } from './gate.ts';
 import type { Db, RouteContext, WsConnection } from '../types.ts';
 
@@ -121,7 +122,12 @@ function build(ctx: RouteContext) {
     /** After a commit: send it to the open sockets and note its reach. */
     async went(record: AnnouncementRecord): Promise<void> {
       const reach = broadcast(record);
-      await ctx.store.transact((db) => { const stored = collectionOf(ctx, db, 'adminAnnounce').items.find((item) => item.id === record.id); if (stored) stored.reach.sockets = reach; }, { durable: false });
+      await ctx.store.transact((db) => {
+        const stored = collectionOf(ctx, db, 'adminAnnounce').items.find((item) => item.id === record.id);
+        if (stored) stored.reach.sockets = reach;
+        // The city's gist (docs/GIST.md): an announcement for everyone or for one city is public news; one for "online now" is not.
+        if (record.audience !== 'online') gistService(ctx).add(db, { city: record.city ?? WORLD, kind: 'notice', text: `From the Allworld team: ${record.title}`, refs: { key: `announce:${record.id}` } });
+      }, { durable: false });
     },
 
     /** The heartbeat: send what is due, and a batch of mail for what is sending. One at a time. */

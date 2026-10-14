@@ -16,3 +16,8 @@ export function shareMoment(kind: RecordKind, n: number, failed: () => void): vo
   if (!asked) return
   void import('./useGrowth.ts').then(({ useGrowth }) => useGrowth().share(asked, { record: n, surface: 'other' })).catch(failed)
 }
+
+/** Share one line of the city gist (its ledger number); the server reads the line itself. */
+export function shareGist(n: number, failed: () => void): void {
+  void import('./useGrowth.ts').then(({ useGrowth }) => useGrowth().share('gist', { record: n, surface: 'other' })).catch(failed)
+}

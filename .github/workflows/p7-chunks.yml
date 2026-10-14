@@ -1,0 +1,28 @@
+name: p7-chunks
+on: workflow_dispatch
+jobs:
+  chunks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NODE_OPTIONS: --max-old-space-size=8192
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: claude/alive-p7-base, path: base }
+      - uses: actions/checkout@v4
+        with: { ref: claude/alive-p7-light, path: mine }
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: npm, cache-dependency-path: mine/package-lock.json }
+      - run: cd base && npm ci --no-audit --no-fund && npm run build
+      - run: cd mine && npm ci --no-audit --no-fund && npm run build
+      - name: compare
+        run: |
+          for d in base mine; do
+            echo "== $d"
+            f=$(ls $d/dist/assets/world-adapter-*.js | head -1); echo $f; wc -c $f
+            head -c 700 $f; echo
+            ls -l $d/dist/assets/*.js | awk '{print $5, $9}' | sort -rn | head -12
+            echo "markers:"; grep -l "joinallworld-light-v1" $d/dist/assets/*.js || true
+          done
+          # chunks whose size differs between base and mine (same hashed-name stem)
+          for f in base/dist/assets/*.js; do n=$(basename $f | sed -E 's/-[A-Za-z0-9_]{8}\.js$//'); b=$(wc -c < $f); m=$(cat mine/dist/assets/$n-*.js 2>/dev/null | wc -c); [ "$b" != "$m" ] && echo "$n base=$b mine=$m"; done | head -60

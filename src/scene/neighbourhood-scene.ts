@@ -5,7 +5,7 @@
  */
 import type * as THREE from 'three';
 import { ESTATE, HOUSE_STYLE, lgaOf, lgasOf } from '../game/content/world.ts';
-import { cachedCityContent } from '../game/cities/registry.ts';
+import { cachedCityContent, cityRules } from '../game/cities/registry.ts';
 import { unpackStyle } from './house-style.ts';
 import type { HouseStyle, HouseTierId, LifeState } from '../types/life.ts';
 import type { WorldStreetResponse } from '../types/world.ts';
@@ -21,12 +21,14 @@ import { ROW_HALF_WIDTH, rowX, streetRow } from '../game/neighbourhood-space.ts'
 import { bodyAllowed, drawsWebGL2 } from './body/gate.ts';
 import { createModelCache, createModelLayer } from './models/scene-models.ts';
 import type { ModelCache, ModelLayer } from './models/scene-models.ts';
-import { fileKey, familyOf, hasFar, WINDOW_TILES } from './street/street-kit.ts';
+import { boxOf, fileKey, familyOf, hasFar, WINDOW_TILES } from './street/street-kit.ts';
 import { BOUNDS, BUS_STOP, Z, planStreet, sceneryMix } from './street/street-plan.ts';
 import type { PlanHouse, StreetPlan } from './street/street-plan.ts';
 import { drawDanfo, drawKeke, drawLampGlow, drawPole, drawPoleAdverts, drawRoadBillboard, drawWires, standInFor, tone } from './street/street-standins.ts';
 import type { FrameGuard, Lane, Road, StreetChoice } from './street-life/plan.ts';
 import type { StreetLife } from './street-life/draw.ts';
+import type { StreetScenery } from './street-life/scenery.ts';
+import type { CrossingSpec } from './street-life/furniture.ts';
 
 const HOME_DOOR = { x: 0, z: -6.25, ry: Math.PI, direction: 'inside' as const };
 const ENTRANCE = { x: 0, y: 0, z: -3.25, ry: 0 };
@@ -45,8 +47,16 @@ const NO_MODELS: ModelCache = createModelCache({ load: () => Promise.reject(new 
 const STREET_LANES: readonly Lane[] = Object.freeze([
   { ax: -ROW_HALF_WIDTH, az: Z.kerb - 0.7, bx: ROW_HALF_WIDTH, bz: Z.kerb - 0.7, width: 0.9 },
   { ax: -ROW_HALF_WIDTH, az: Z.farKerb + 1.55, bx: ROW_HALF_WIDTH, bz: Z.farKerb + 1.55, width: 1.1 },
-  { ax: -ROW_HALF_WIDTH, az: Z.pavement1 - 0.55, bx: ROW_HALF_WIDTH, bz: Z.pavement1 - 0.55, width: 0.9 },
+  // The pavement by the shop windows across the road: people who stop on it turn to the windows (+z).
+  { ax: -ROW_HALF_WIDTH, az: Z.pavement1 - 0.55, bx: ROW_HALF_WIDTH, bz: Z.pavement1 - 0.55, width: 0.9, browse: 0 },
 ]);
+/**
+ * The crossings (zoom phase 3b): the junction's zebra (painted by render()) and one mid-street, whose stripes street life paints. People
+ * wait on the pavements and cross while the lights stop the traffic (street-life/crowd.ts).
+ */
+const CROSSING_X = [78, 10] as const;
+const STREET_CROSSINGS: readonly Lane[] = Object.freeze(CROSSING_X.map(x => ({ ax: x, az: Z.kerb - 0.35, bx: x, bz: Z.farKerb + 0.35, width: 2.4 })));
+const CROSSING_SPECS: readonly CrossingSpec[] = Object.freeze(CROSSING_X.map(x => ({ x, z0: Z.kerb, z1: Z.farKerb, paint: x !== 78 })));
 const STREET_ROADS: readonly Road[] = Object.freeze([{ ax: -ROW_HALF_WIDTH, az: (Z.road0 + Z.road1) / 2, bx: ROW_HALF_WIDTH, bz: (Z.road0 + Z.road1) / 2, speed: 5.5 }]);
 const STREET_WINDOW_S = 12;
 
@@ -75,6 +85,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
   // The street's models: the layer draws them (and the procedural stand-in for any that is not here yet); the cache is read once per kit.
   let models: ModelCache = NO_MODELS, layer: ModelLayer | null = null, modelsStarted = false, disposed = false, notify: (() => void) | null = null;
   let focusX = 0, focusZ = 0;
+  let dressing: StreetScenery | null = null, sceneryModule: typeof import('./street-life/scenery.ts') | null = null;
   let streetLife: StreetLife | null = null, streetChoice: StreetChoice | null = null, streetGuard: FrameGuard | null = null, streetWindow = 0, streetDropped = false;
   let lit: THREE.MeshStandardMaterial[] = [];
   const masks = new Map<string, THREE.Texture | null>();
@@ -127,7 +138,18 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     m.emissiveMap = mask; m.emissive.set('#ffd9a0'); m.emissiveIntensity = WINDOW_GLOW[streetTime];
     lit.push(m);
   };
-  const light = (): void => { for (const material of lit) material.emissiveIntensity = WINDOW_GLOW[streetTime]; for (const mesh of nightMeshes) mesh.visible = streetTime !== 'day'; };
+  const light = (): void => { for (const material of lit) material.emissiveIntensity = WINDOW_GLOW[streetTime]; for (const mesh of nightMeshes) mesh.visible = streetTime !== 'day'; dressing?.setTime(streetTime); };
+  const lifeSeed = (): string => street ? `${street.anchor.lga}/${street.anchor.estate}/${streetRow(street.anchor.plot)}` : `home/${anchor ?? 0}`;
+  const country = (): string | null => cityRules(street?.city ?? cityId)?.country.id ?? null;
+  /** Street life's scenery (phase 3b): shopfronts on the plan's shop buildings, furniture along the far kerb. Rebuilt with the plan. */
+  function dressStreet(): void {
+    dressing?.dispose(); dressing = null;
+    if (!sceneryModule || disposed) return;
+    const avoid = plan.pieces.filter(item => item.z > Z.farKerb && item.z < Z.farFront + 3).map(item => ({ x: item.x, z: item.z, r: 1.6 }));
+    for (let x = -ROW_HALF_WIDTH + 10; x <= ROW_HALF_WIDTH - 6; x += 26) avoid.push({ x, z: Z.farKerb + 0.7, r: 0.6 });
+    dressing = sceneryModule.createStreetScenery(kit, { parent: group, frontages: sceneryModule.frontagesOf(plan.pieces, boxOf), seed: lifeSeed(), country: country(), time: streetTime,
+      furniture: { half: ROW_HALF_WIDTH, lineZ: Z.farKerb + 0.45, road: -1, base: 0.05, crossings: CROSSING_SPECS, avoid, flagX: 68 } });
+  }
 
   function render(): void {
     releaseObjects(sceneryObjects); sceneryObjects = [];
@@ -183,6 +205,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     scenery.add(layer.group);
     layer.build();
     if (models !== NO_MODELS && notify) { const own = layer, changed = notify; void own.load(() => { if (layer === own) { light(); changed(); } }); }
+    dressStreet();
   }
   render();
 
@@ -315,10 +338,10 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
         const choice = plan.streetLifeFor({ ambientTier: bodyAllowed() ? 'full' : 'light', webgl, hints: plan.deviceHints(), forced: plan.pageForced() });
         if (!choice || disposed) return;
         streetChoice = choice; streetGuard = plan.createFrameGuard();
-        return import('./street-life/draw.ts').then(module => {
+        return Promise.all([import('./street-life/draw.ts'), import('./street-life/scenery.ts')]).then(([module, sceneryChunk]) => {
           if (disposed || streetDropped) return;
-          const seed = street ? `${street.anchor.lga}/${street.anchor.estate}/${streetRow(street.anchor.plot)}` : `home/${anchor ?? 0}`;
-          streetLife = module.createStreetLife(kit, { parent: group, seed, lanes: STREET_LANES, roads: STREET_ROADS, crowd: choice.crowd, vehicles: choice.vehicles, at: Date.now() });
+          sceneryModule = sceneryChunk; dressStreet();
+          streetLife = module.createStreetLife(kit, { parent: group, seed: lifeSeed(), lanes: STREET_LANES, roads: STREET_ROADS, crossings: STREET_CROSSINGS, country: country(), crowd: choice.crowd, vehicles: choice.vehicles, at: Date.now() });
           streetLife.step(Date.now(), avatar.position);
           streetWindow = STREET_WINDOW_S; changed();
         });
@@ -335,12 +358,12 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
       if (!streetLife || streetWindow <= 0) return false;
       streetWindow = Math.max(0, streetWindow - dt);
       if (!streetChoice?.forced && streetGuard?.frame(dt) === 'slow') { streetLife.dispose(); streetLife = null; streetDropped = true; streetWindow = 0; return false; }
-      streetLife.step(Date.now(), avatar.position);
+      streetLife.step(Date.now(), avatar.position, dt);
       return streetWindow > 0;
     },
     wakeAmbient() { if (!streetLife) return false; if (streetWindow <= 0) streetGuard?.reset(); streetWindow = STREET_WINDOW_S; return true; },
     settleAmbient() { streetWindow = 0; streetLife?.step(Date.now(), avatar.position); },
     get ambientAwake() { return streetLife !== null && streetWindow > 0; },
-    dispose() { disposed = true; streetLife?.dispose(); streetLife = null; for (const peer of peers.values()) dropPeer(peer); releaseObjects(sceneryObjects); layer?.dispose(); layer = null; for (const mask of masks.values()) mask?.dispose(); avatarDispose(); group.parent?.remove(group); },
+    dispose() { disposed = true; streetLife?.dispose(); streetLife = null; dressing?.dispose(); dressing = null; for (const peer of peers.values()) dropPeer(peer); releaseObjects(sceneryObjects); layer?.dispose(); layer = null; for (const mask of masks.values()) mask?.dispose(); avatarDispose(); group.parent?.remove(group); },
   } satisfies HostScene;
 }

@@ -173,7 +173,8 @@ function build(ctx: RouteContext) {
       const visit = kit.pruneHouse(s, hostId)?.guests[id];
       if (!visit || s.players[id]?.visiting !== hostId || kit.blockedEither(s, id, hostId)) return no('visit_required', 'You need an accepted visit to see this home.');
       const city = visit.cityId, target = ctx.core.sessionByPublicId(db, hostId), state = target?.cities[city]?.state;
-      if (!target || target.expiresAt <= now() || !state || state.estate.city !== city || !hasPlace(state)) return no('home_unavailable', 'This home is unavailable.');
+      // Any home the host lives in is shown, their own house or a rented one: a guest who came in sees what is in it.
+      if (!target || target.expiresAt <= now() || !state || state.estate.city !== city) return no('home_unavailable', 'This home is unavailable.');
       const homeNow = state.location === 'home' && !isDeparting(state) && kit.hostAtHome(s, hostId, city);
       const allowedWhileOut = visit.link === undefined && kit.ordinary(s, hostId, id) && s.players[hostId]?.door?.out === true && kit.doorFor(s, hostId, id) === 'walk+';
       if (!homeNow && !allowedWhileOut) return no('visit_ended', 'The host left home, so this visit has ended.');

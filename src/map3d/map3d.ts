@@ -608,7 +608,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       const dial = skewed ? compassOf(rig.view.yaw, rig.view.pitch) : null, key = dial ? `${dial.needle}|${dial.tilt}` : '';
       if (dial && northKey !== key) {
         northKey = key;
-        (north.firstElementChild as SVGElement | null)?.style.setProperty('transform', `rotateX(${Math.min(60, Math.max(0, dial.tilt))}deg) rotate(${dial.needle}deg)`);
+        (north.firstElementChild as SVGElement | null)?.style.setProperty('transform', `rotateX(${Math.min(45, Math.max(0, dial.tilt))}deg) rotate(${dial.needle}deg)`);
         north.setAttribute('aria-label', dial.label); north.title = `Facing ${dial.facing}: tap for north up`;
       }
     }

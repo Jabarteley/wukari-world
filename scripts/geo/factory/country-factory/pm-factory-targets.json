@@ -60,7 +60,16 @@
         ]
       },
       "profile": "microstate",
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "node/6768555827",
+          "reason": "Ile aux Marins ferry terminal (transit pick) lies 53 m off the dry coast: exact-coast wet source anchor (factory run 38502631953); transit becomes the documented empty slot"
+        },
+        {
+          "ref": "node/3747511537",
+          "reason": "Basse de Savoyard is a shoal (place=locality) 336 m off the coast: exact-coast wet source anchor (factory run 38502631953)"
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/246842649",

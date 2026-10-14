@@ -757,7 +757,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
   function tick() {
     rafId = 0;
     if (!shown()) { lastTick = 0; return; }
-    if (lastTick && frameAction({ hidden: false, covered: false, now: now(), last: lastTick, capFps: lightFps() }) === 'wait') { rafId = raf!(tick); return; } // light mode: 30 a second
+    if (lastTick && frameAction({ covered: false, now: now(), last: lastTick, capFps: lightFps() }) === 'wait') { rafId = raf!(tick); return; } // light mode: 30 a second
     takeWheel();
     const t = now(), dt = lastTick ? clamp((t - lastTick) / 1000, 0, 0.1) : 0;
     if (diving) { const k = (t - diving.start) / diving.ms; rig.jump(descentView(diving.from, diving.to, k)); if (k >= 1) diving = null; }

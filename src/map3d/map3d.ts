@@ -265,7 +265,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   function tick() {
     rafId = 0;
     if (!shown()) { lastTick = 0; return; }
-    if (lastTick && frameAction({ hidden: false, covered: false, now: now(), last: lastTick, capFps: lightFps() }) === 'wait') { rafId = raf!(tick); return; } // light mode: 30 a second
+    if (lastTick && frameAction({ covered: false, now: now(), last: lastTick, capFps: lightFps() }) === 'wait') { rafId = raf!(tick); return; } // light mode: 30 a second
     const t = now(), dt = lastTick ? clamp((t - lastTick) / 1000, 0, 0.1) : 0;
     if (lastTick) { gaps.push(t - lastTick); if (gaps.length > 120) gaps.shift(); }
     frameCount += 1;

@@ -1,15 +1,15 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { FRAME_SLACK_MS, frameAction, gatedCancel, gatedRequest, isCovered, sceneCovered, setCovered } from './frame-gate.ts'
+import { frameAction, gatedCancel, gatedRequest, setCovered } from './frame-gate.ts'
 import { forgetLight, setLight } from '../lightControl.ts'
 import { createMotionLoop } from './motion-loop.ts'
 
-const base = { hidden: false, covered: false, now: 1000, last: 990, capFps: 0 }
+const FRAME_SLACK_MS = 2 // as in frame-gate.ts
+const base = { covered: false, now: 1000, last: 990, capFps: 0 }
 
-test('a hidden page or a covered scene draws nothing; otherwise the cap decides', () => {
-  assert.equal(frameAction({ ...base, hidden: true }), 'stop')
+test('a covered scene draws nothing; otherwise the cap decides', () => {
   assert.equal(frameAction({ ...base, covered: true }), 'stop')
-  assert.equal(frameAction({ ...base, hidden: true, covered: true, capFps: 30 }), 'stop')
+  assert.equal(frameAction({ ...base, covered: true, capFps: 30 }), 'stop')
   assert.equal(frameAction(base), 'draw', 'no cap: every frame')
   assert.equal(frameAction({ ...base, last: -Infinity, capFps: 30 }), 'draw', 'the first frame is always drawn')
 })
@@ -24,13 +24,6 @@ test('with a 30 fps cap a 60 fps display draws every other frame, and a late fra
   let last = -Infinity, drawn = 0
   for (let i = 0; i < 60; i++) { const now = i * (1000 / 60); if (frameAction({ ...base, now, last, capFps: 30 }) === 'draw') { drawn += 1; last = now } }
   assert.equal(drawn, 30)
-})
-
-test('a sheet covers the scene when it is full-screen, or when the screen is a phone', () => {
-  assert.equal(sceneCovered({ sheetOpen: false, fullscreen: false, narrow: true }), false)
-  assert.equal(sceneCovered({ sheetOpen: true, fullscreen: true, narrow: false }), true)
-  assert.equal(sceneCovered({ sheetOpen: true, fullscreen: false, narrow: true }), true)
-  assert.equal(sceneCovered({ sheetOpen: true, fullscreen: false, narrow: false }), false, 'on a wide screen the scene stays visible beside a sheet')
 })
 
 /** A browser frame callback the test fires by hand (installed on globalThis for the gated functions). */
@@ -51,7 +44,6 @@ test('the gated frame request holds a callback while covered and gives it a fram
     b.fire(100)
     assert.equal(ran.length, 0, 'covered: nothing runs')
     assert.equal(b.pending(), 0, 'and no frames are asked for meanwhile')
-    assert.equal(isCovered(), true)
     setCovered(true)
     setCovered(false)
     assert.equal(b.pending(), 1)

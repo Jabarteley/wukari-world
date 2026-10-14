@@ -11,7 +11,8 @@
  *   COMPANION_PRICE_IN_PER_M · COMPANION_PRICE_OUT_PER_M  (US$ per million tokens; only for the operator's cost estimate)
  */
 
-export const COMPANION_ENV = Object.freeze(['AI_GATEWAY_API_KEY', 'AI_GATEWAY_BASE_URL', 'COMPANION_MODEL', 'COMPANION_FALLBACK_MODEL', 'COMPANION_AI', 'COMPANION_AI_REPHRASE', 'COMPANION_DAILY_REQUESTS', 'COMPANION_PLAYER_DAILY', 'COMPANION_PLAYER_BURST', 'COMPANION_MAX_OUTPUT_TOKENS', 'COMPANION_TIMEOUT_MS', 'COMPANION_PRICE_IN_PER_M', 'COMPANION_PRICE_OUT_PER_M']);
+import { MODELS_ENV } from '../models/catalog.ts';
+export const COMPANION_ENV = Object.freeze(['AI_GATEWAY_API_KEY', 'AI_GATEWAY_BASE_URL', 'COMPANION_MODEL', 'COMPANION_FALLBACK_MODEL', 'COMPANION_AI', 'COMPANION_AI_REPHRASE', 'COMPANION_DAILY_REQUESTS', 'COMPANION_PLAYER_DAILY', 'COMPANION_PLAYER_BURST', 'COMPANION_MAX_OUTPUT_TOKENS', 'COMPANION_TIMEOUT_MS', 'COMPANION_PRICE_IN_PER_M', 'COMPANION_PRICE_OUT_PER_M', ...MODELS_ENV]);
 export const DEFAULT_BASE_URL = 'https://ai-gateway.vercel.sh';
 export const DEFAULT_MODEL = 'openai/gpt-5.6-luna';
 export const DEFAULT_FALLBACK_MODEL = 'xai/grok-4.1-fast-non-reasoning';
@@ -48,10 +49,13 @@ const price = (raw: string, fallback: number): number => {
   return Number.isFinite(value) ? value : fallback;
 };
 
-/** The settings, or null when the feature is off: no key, or COMPANION_AI=off. A malformed value falls back to its default. */
-export function companionConfig(env: (name: string) => string): CompanionConfig | null {
+/**
+ * The settings, or null when the feature is off: no key, or COMPANION_AI=off. A malformed value falls back to its default.
+ * `anotherProvider`: the model router has some other provider's key (server/models/), so a missing gateway key is not "off".
+ */
+export function companionConfig(env: (name: string) => string, anotherProvider = false): CompanionConfig | null {
   const key = env('AI_GATEWAY_API_KEY').trim();
-  if (!key || /\s/.test(key) || env('COMPANION_AI').trim().toLowerCase() === 'off') return null;
+  if ((!key && !anotherProvider) || /\s/.test(key) || env('COMPANION_AI').trim().toLowerCase() === 'off') return null;
   let baseUrl = DEFAULT_BASE_URL;
   try { const url = new URL(env('AI_GATEWAY_BASE_URL').trim() || DEFAULT_BASE_URL); if (url.protocol === 'https:' && !url.username && !url.search && !url.hash) baseUrl = url.href.replace(/\/+$/, ''); } catch { /* the default */ }
   const model = (name: string, fallback: string): string => { const given = env(name).trim(); return MODEL_ID.test(given) ? given : fallback; };
@@ -66,18 +70,22 @@ export function companionConfig(env: (name: string) => string): CompanionConfig 
 
 export interface ChatMessage { role: 'system' | 'user' | 'assistant'; content: string }
 export interface Usage { input: number; output: number }
-export type GatewayFailure = 'timeout' | 'status' | 'network' | 'body' | 'auth' | 'model';
+export type GatewayFailure = 'timeout' | 'status' | 'network' | 'body' | 'auth' | 'model' | 'rate';
 export type GatewayAnswer = { ok: true; text: string; model: string; usage: Usage | null } | { ok: false; why: GatewayFailure };
 export type GatewayAttempt = GatewayAnswer & { role: 'primary' | 'fallback' };
 type Fetcher = (url: string, init?: object) => Promise<unknown>;
 
+/** Where one request goes. `kind` picks the dialect: the Vercel gateway's own fields, or OpenRouter's. `feature` is the spend tag (server/models/ names the purpose). */
+export interface Target { key: string; baseUrl: string; maxOutputTokens: number; kind?: 'gateway' | 'openrouter'; feature?: string; /** The request carries a person's words: ask the provider not to keep or train on it. */ private?: boolean }
+
+export interface RequestBody { model: string; messages: readonly ChatMessage[]; max_tokens?: number; temperature?: number; max_completion_tokens?: number; stream: boolean; providerOptions?: { gateway: { user: string; tags: string[] } }; user?: string; provider?: { data_collection: string } }
 /** The exact JSON body of a request. `providerOptions.gateway` carries the spend tags and the end-user id (the gateway's own fields). */
-export function requestBody(config: CompanionConfig, model: string, role: 'primary' | 'fallback', messages: readonly ChatMessage[], user: string, plain = false) {
+export function requestBody(config: Pick<Target, 'maxOutputTokens'> & Partial<Target>, model: string, role: 'primary' | 'fallback', messages: readonly ChatMessage[], user: string, plain = false): RequestBody {
   // `plain`: the second try after a 400 that named these fields (some models take no temperature and want max_completion_tokens).
-  return {
-    model, messages, ...(plain ? { max_completion_tokens: config.maxOutputTokens } : { max_tokens: config.maxOutputTokens, temperature: TEMPERATURE }), stream: false,
-    providerOptions: { gateway: { user, tags: ['product:allworld', 'feature:companion', `role:${role}`, `model:${model}`] } },
-  };
+  const base = { model, messages, ...(plain ? { max_completion_tokens: config.maxOutputTokens } : { max_tokens: config.maxOutputTokens, temperature: TEMPERATURE }), stream: false };
+  // OpenRouter: the end-user id is a plain field, and a request with a person's words may only go to providers that do not keep or train on it.
+  if (config.kind === 'openrouter') return { ...base, user, ...(config.private ? { provider: { data_collection: 'deny' } } : {}) };
+  return { ...base, providerOptions: { gateway: { user, tags: ['product:allworld', `feature:${config.feature ?? 'companion'}`, `role:${role}`, `model:${model}`] } } };
 }
 
 const isResponse = (value: unknown): value is Response => typeof value === 'object' && value !== null && typeof Reflect.get(value, 'status') === 'number' && typeof Reflect.get(value, 'text') === 'function';
@@ -95,11 +103,12 @@ export function readAnswer(raw: unknown): { text: string; usage: Usage | null } 
   return { text: text.slice(0, 8000), usage: input || output ? { input, output } : null };
 }
 
-async function once(fetcher: Fetcher, config: CompanionConfig, model: string, role: 'primary' | 'fallback', messages: readonly ChatMessage[], user: string, budgetMs: number, plain = false): Promise<GatewayAnswer> {
+/** One request to one model. Answers a short fixed reason on a failure. */
+export async function once(fetcher: Fetcher, config: Target, model: string, role: 'primary' | 'fallback', messages: readonly ChatMessage[], user: string, budgetMs: number, plain = false): Promise<GatewayAnswer> {
   const control = new AbortController();
   const timer = setTimeout(() => control.abort(), Math.max(1, budgetMs));
   try {
-    const sent = fetcher(`${config.baseUrl}/v1/chat/completions`, {
+    const sent = fetcher(config.kind === 'openrouter' ? `${config.baseUrl}/chat/completions` : `${config.baseUrl}/v1/chat/completions`, {
       method: 'POST', signal: control.signal, redirect: 'manual',
       headers: { 'Authorization': `Bearer ${config.key}`, 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(requestBody(config, model, role, messages, user, plain)),
@@ -109,6 +118,7 @@ async function once(fetcher: Fetcher, config: CompanionConfig, model: string, ro
     if (!isResponse(response)) return { ok: false, why: 'network' };
     if (response.status === 401 || response.status === 403) return { ok: false, why: 'auth' };
     if (response.status === 404) return { ok: false, why: 'model' };
+    if (response.status === 429) return { ok: false, why: 'rate' };
     if (response.status === 400 && !plain) {
       const said = await Promise.race([response.text(), new Promise<string>((resolve) => { control.signal.addEventListener('abort', () => resolve('')); })]).catch(() => '');
       if (/temperature|max_tokens|max_completion_tokens/i.test(said.slice(0, 2000))) { clearTimeout(timer); return once(fetcher, config, model, role, messages, user, budgetMs, true); }

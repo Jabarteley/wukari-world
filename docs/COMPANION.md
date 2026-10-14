@@ -121,6 +121,8 @@ All optional. Set on both hosts as environment values (Node: `.env`; Worker: sec
 
 The live host needs: the secret `AI_GATEWAY_API_KEY`. Everything else has a default.
 
+Every model call now goes through the model router (server/models/, [MODELS-ROUTER.md](MODELS-ROUTER.md)): the two models above are its default list for the guide, the day's spend stops at US$2.00 across everything, and `OPENROUTER_API_KEY` adds a second provider (it can also turn the guide on by itself once a list names an `openrouter:` model).
+
 ### Limits and storage
 
 The per-minute limit is in memory. The two daily limits are stored limiter rows (server/limiter.ts, long class): `companion:day:<player>` and `companion:day:all`. On the Worker that is one new row per player on their first request of a rolling day (at most 200 requests counted in it) plus one global row (25,000 at most); each accepted request then updates those two rows (two row writes, so at most 50,000 row writes a day across everybody, plus one new row per active player). A refused request writes nothing. On Node they are in memory. Nothing else is stored per request, no conversation, no log line. A repeated `clientId` within two minutes returns the first answer without a second call.

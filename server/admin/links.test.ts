@@ -93,3 +93,23 @@ test('a player whose calls are suspended cannot place one; lifting it lets the c
   assert.equal((await state(caller)).state, 'ringing');
   void callee;
 });
+
+test('the model router: its numbers are on the dashboard, and a model list is a text setting an admin can change and reset', async (t) => {
+  const { a, founder, ada } = await world(t);
+  const dash = (await a.admin('/api/admin/dashboard?fresh=1', founder.cookie)).body as Json;
+  const row = (id: string): Json | undefined => (dash.extra as Json[]).find((item) => item.id === id);
+  assert.equal(row('models-spend')?.group, 'Models today (UTC day)');
+  assert.match(String(row('models-spend')?.value), /US\$0\.0000 of US\$2\.0000/);
+  assert.equal(row('models-keys')?.value, 'none');
+  const setting = async (key: string): Promise<Json | undefined> => (((await a.admin('/api/admin/settings', founder.cookie)).body.settings as Json[]).find((item) => item.key === key));
+  assert.equal((await setting('modelsResident'))?.kind, 'text');
+  assert.match(String((await setting('modelsCompanion'))?.value), /^gateway:openai\/gpt-5\.6-luna, gateway:xai\//);
+  assert.equal((await setting('modelBudgetCents'))?.max, 200, 'the cap can only be lowered');
+  assert.equal((await a.admin('/api/admin/settings', founder.cookie, { key: 'modelBudgetCents', value: 300 })).body.error, 'invalid_value');
+  assert.equal((await a.admin('/api/admin/settings', founder.cookie, { key: 'modelsResident', value: 'openrouter:vendor/model-a:free, gateway:vendor/model-b' })).body.code, 'changed');
+  assert.equal((await setting('modelsResident'))?.value, 'openrouter:vendor/model-a:free, gateway:vendor/model-b');
+  assert.equal((await a.admin('/api/admin/settings', founder.cookie, { key: 'modelsResident', value: 'x'.repeat(2000) })).body.error, 'invalid_value');
+  assert.equal((await a.admin('/api/admin/settings', founder.cookie, { key: 'modelsResident', value: null })).body.code, 'changed');
+  assert.equal((await setting('modelsResident'))?.changed, null);
+  assert.equal((await a.admin('/api/admin/settings', ada.cookie, { key: 'modelsResident', value: 'a/b' })).status, 404);
+});

@@ -17,7 +17,7 @@
 import { collectionOf, peek } from './store.ts';
 import type { Db, RouteContext } from '../types.ts';
 
-export interface SettingDescriptor { key: string; label: string; help: string; kind: 'boolean' | 'number'; min?: number; max?: number; /** Turning it ON asks for the typed confirmation (a token from the first request, as the destructive actions do). */ confirmOn?: boolean; default(): boolean | number; apply?(value: boolean | number): void }
+export interface SettingDescriptor { key: string; label: string; help: string; kind: 'boolean' | 'number' | 'text'; /** For a number: its range. For text: `max` is the most characters. */ min?: number; max?: number; /** Turning it ON asks for the typed confirmation (a token from the first request, as the destructive actions do). */ confirmOn?: boolean; default(): boolean | number | string; apply?(value: boolean | number | string): void }
 const registered = new WeakMap<object, Map<string, SettingDescriptor>>();
 export function registerAdminSetting(ctx: object, descriptor: SettingDescriptor): void {
   if (!/^[a-zA-Z][a-zA-Z0-9]{0,31}$/.test(descriptor.key)) throw new Error(`Invalid setting key: ${descriptor.key}`);
@@ -33,23 +33,24 @@ export function settingsOf(ctx: RouteContext) {
 }
 
 function build(ctx: RouteContext) {
-  const live = new Map<string, boolean | number>();
+  const live = new Map<string, boolean | number | string>();
   const config = ctx.config as unknown as Record<string, number>;
   const builtIn: SettingDescriptor[] = [
     { key: 'newSessionsPerAddress', label: 'New sessions per address per hour', help: 'How many new players one network address may start in an hour.', kind: 'number', min: 1, max: 100000, default: (() => { const first = config['newSessionsPerAddress'] ?? 0; return () => first; })(), apply: (value) => { config['newSessionsPerAddress'] = Number(value); } },
     { key: 'maxActiveSessions', label: 'Stored sessions the host takes', help: 'At the cap a new visitor is asked to wait; nobody with a session is affected.', kind: 'number', min: 1, max: 5000000, default: (() => { const first = config['maxActiveSessions'] ?? 0; return () => first; })(), apply: (value) => { config['maxActiveSessions'] = Number(value); } },
   ];
   const table = (): Map<string, SettingDescriptor> => new Map([...builtIn, ...(registered.get(ctx)?.values() ?? [])].map((item) => [item.key, item]));
-  const clean = (item: SettingDescriptor, value: unknown): boolean | number | null => {
+  const clean = (item: SettingDescriptor, value: unknown): boolean | number | string | null => {
+    if (item.kind === 'text') return typeof value === 'string' && value.length <= (item.max ?? 2000) && !/[\u0000-\u0008\u000b-\u001f\u007f]/.test(value) ? value.trim() : null;
     if (item.kind === 'boolean') return typeof value === 'boolean' ? value : null;
     return typeof value === 'number' && Number.isSafeInteger(value) && value >= (item.min ?? 0) && value <= (item.max ?? 1e9) ? value : null;
   };
   const service = {
     descriptors: table,
     /** The value in force. */
-    get(key: string): boolean | number | undefined { const item = table().get(key); return item ? live.get(key) ?? item.default() : undefined; },
+    get(key: string): boolean | number | string | undefined { const item = table().get(key); return item ? live.get(key) ?? item.default() : undefined; },
     /** Apply stored values to the running host (start-up, and after a committed change). */
-    sync(values: Record<string, { value: boolean | number }>): void {
+    sync(values: Record<string, { value: boolean | number | string }>): void {
       live.clear();
       for (const [key, item] of table()) {
         const stored = Object.hasOwn(values, key) ? clean(item, values[key]?.value) : null;
@@ -74,6 +75,9 @@ function build(ctx: RouteContext) {
       return { before, after, values: { ...col.values } };
     },
   };
-  if (ctx.checks) ctx.checks.setting = (key) => service.get(key);
+  if (ctx.checks) {
+    ctx.checks.setting = (key) => { const value = service.get(key); return typeof value === 'string' ? undefined : value; };
+    ctx.checks.text = (key) => { const value = service.get(key); return typeof value === 'string' ? value : undefined; };
+  }
   return service;
 }

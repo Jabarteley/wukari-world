@@ -22,6 +22,7 @@ import type { ActionOutcome, CommandOptions, Db, MuteVerdict, RouteContext, Rout
 import { hasAction } from '../../src/game/registry.ts';
 import { validateName, validateActionPayload, publicSession, isSharedAddress, VOICE_RADIUS, STUN_ONLY_CONFIG, validateVoiceConfig } from '../protocol.ts';
 import { companionConfig } from '../companion/gateway.ts';
+import { routerOf } from '../models/service.ts';
 import { MAX_RECEIPTS, boundedFingerprint } from './once.ts';
 import { residenceGate } from './residence.ts';
 import { jailGate } from '../politics/gate.ts';
@@ -139,7 +140,7 @@ export default function coreRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
   const ownSession = (session: SessionRecord): PublicSession & { cities: CityId[] } => ({ ...publicSession(session), cities: ctx.cityIds.filter(id => Boolean(session.cities?.[id]?.state)) });
   return {
     // Which build is serving, for a local preview or a deploy check. No session is read or created. `relay`: the call relay is configured; `companionAi`: the hosted companion is configured (booleans only; nothing of any key).
-    'GET /api/health': () => ({ body: { ok: true, build: config.buildId, relay: ctx.callRelay?.configured === true, companionAi: companionConfig((name) => ctx.env(name)) !== null, ...(config.openDev ? { openDev: true } : {}) } }),
+    'GET /api/health': () => ({ body: { ok: true, build: config.buildId, relay: ctx.callRelay?.configured === true, companionAi: companionConfig((name) => ctx.env(name), routerOf(ctx).hasKey('gateway') || routerOf(ctx).hasKey('openrouter')) !== null, ...(config.openDev ? { openDev: true } : {}) } }),
     'POST /api/session': async (request) => {
       type Answer = { secret: string; session: PublicSession; own: PublicSession & { cities: CityId[] }; mute?: MuteVerdict; refused?: boolean };
       // The cookie to send back. A character that belongs to an account is filed under a key no browser may hold: its

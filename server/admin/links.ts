@@ -6,6 +6,7 @@
  * pass over stored messages inside the dashboard's own 45 second cache; nothing here writes.
  */
 import { companionService } from '../companion/service.ts';
+import { linkModels } from '../models/service.ts';
 import { callService } from '../social/calls.ts';
 import { pictureSettings } from '../social/images.ts';
 import { linkBonus } from '../bonus/service.ts';
@@ -51,6 +52,7 @@ export function linkFeatures(ctx: RouteContext): void {
   linked.add(ctx);
   const env = (name: string): string => (typeof ctx.env === 'function' ? ctx.env(name) : '');
   linkBonus(ctx);
+  linkModels(ctx);
 
   // ---- calls: today's counters (UTC day) and whether the relay is configured; no names, no ids ----------------------------------
   const calls = (): ReturnType<ReturnType<typeof callService>['stats']> => callService(ctx).stats();

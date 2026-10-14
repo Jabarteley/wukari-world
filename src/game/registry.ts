@@ -337,6 +337,7 @@ export function emit<E extends EngineEvent | CampusEngineEvent>(state: LifeState
   const payload = (data !== null && typeof data === 'object' && !Array.isArray(data) ? data : {}) as (EngineEventMap & CampusEventMap)[E];
   depth += 1;
   try {
+    ctx?.observe?.(event, payload as Readonly<Record<string, unknown>>, ctx);
     for (const def of order) {
       const on: { [K in EngineEvent | CampusEngineEvent]?: EventListener<K> } | undefined = def.on;
       const listener: EventListener<E> | undefined = on?.[event];

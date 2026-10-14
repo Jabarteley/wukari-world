@@ -1,7 +1,7 @@
 // The full catalogue from the generated rows. Read by network.ts only (the lazy world network), so the first download does not carry it.
 import { RESERVED_CITIES } from './catalogue.ts'
 import type { CityCatalogueEntry, CityCatalogueRow } from './catalogue.ts'
-import { mapEntryOf } from './atlasMetadata.ts'
+import { mapEntryOf } from './mapEntry.ts'
 
 /** The full catalogue from the generated rows (read by network.ts): the generated open cities plus the small closed-city catalogue. */
 export function catalogueFromRows(rows: readonly CityCatalogueRow[]): readonly CityCatalogueEntry[] {

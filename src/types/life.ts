@@ -12,6 +12,7 @@ import type { AvatarLookExtensions, AvatarWearableId } from './avatar.ts';
  * typed as `<System>State`.
  */
 import type { CampusActiveAction, UnilagCommunitySlice, UnilagShuttleSlice, UnilagStudentSlice } from './campus.ts'
+import type { ExecutionOrigin } from './progression.ts'
 
 // ---- closed id sets -----------------------------------------------------------------------
 
@@ -944,6 +945,34 @@ export interface MissionEntry {
   claimed: boolean
 }
 
+/** A completed mission whose cash has not been credited yet. One is kept per mission id. */
+export interface MissionRewardEntitlement {
+  rewardId: string
+  id: MissionId
+  scope: 'daily' | 'weekly'
+  period: LagosDay | LagosWeek
+  cityId: WorldCityId
+  earnedAt: Ms
+  earnedOrigin: ExecutionOrigin
+  cash: number
+}
+
+/** The latest cash grant for a mission id, retained so a retry cannot pay it again. */
+export interface MissionGrantReceipt extends MissionRewardEntitlement {
+  grantedAt: Ms
+}
+
+/** A completed set whose stars are waiting for room under the star balance limit. */
+export interface MissionSetRewardEntitlement {
+  rewardId: string
+  scope: 'daily' | 'weekly'
+  period: LagosDay | LagosWeek
+  cityId: WorldCityId
+  earnedAt: Ms
+  earnedOrigin: ExecutionOrigin
+  stars: number
+}
+
 export interface MissionsState {
   /** Unsigned 32-bit integer that fixes which missions this life is dealt each day. */
   seed: number
@@ -958,6 +987,12 @@ export interface MissionsState {
   rerolls: number
   /** The Lagos day / week whose set bonus was already granted (0 = none). */
   sets: { day: LagosDay; week: LagosWeek }
+  /** Completed mission rewards not yet credited, bounded to one per mission id. */
+  pending: MissionRewardEntitlement[]
+  /** Latest granted reward per mission id, bounded by the mission catalogue. */
+  grants: MissionGrantReceipt[]
+  /** At most one blocked set-star reward per scope. */
+  pendingSets: MissionSetRewardEntitlement[]
   /** Lagos days with any counted activity (only ever goes up) and the last such day (null exactly when days is 0). */
   active: { days: number; last: LagosDay | null }
   /** This week's stamp card: one stamp per active day, `paid` once the stars were granted. */
@@ -1041,6 +1076,9 @@ export interface LifeState extends CoreSlice, WalletSlice, InventorySlice, Needs
   TravelSlice, HealthSlice, EconomySlice, PropertySlice, EstateSlice, HomeSlice, OnboardingSlice, GoalsSlice, SocialSlice, CivicSlice,
   MissionsSlice, EventsSlice, GrowthSlice, BusinessSlice, UnilagStudentSlice, UnilagCommunitySlice, UnilagShuttleSlice {
   stories: import('./stories.ts').StoryState
+  achievements: import('./achievements.ts').AchievementState
+  episodes: import('./episodes.ts').EpisodeState
+  projects: import('./projects.ts').ProjectsState
 }
 
 /** System ids in registration order (systems/index.js). Sanitize, events and modifiers all run in this order. */
@@ -1048,13 +1086,16 @@ export type SystemId =
   | 'core' | 'wallet' | 'inventory' | 'needs' | 'skills' | 'career' | 'activities' | 'travel' | 'health'
   | 'economy' | 'property' | 'estate' | 'homeward' | 'home' | 'stories' | 'land' | 'street' | 'onboarding' | 'goals' | 'social' | 'civic' | 'missions' | 'events' | 'growth' | 'business'
   | 'unilagStudent' | 'unilagCommunity' | 'unilagShuttle'
-  | 'livingWorld' | 'market'
+  | 'livingWorld' | 'market' | 'achievements' | 'episodes' | 'projects'
 
 /** The top-level keys each system owns. */
 export interface SliceBySystem {
   land: Record<never, never>
   street: Record<never, never>
   stories: import('./stories.ts').StoriesSlice
+  achievements: { achievements: import('./achievements.ts').AchievementState }
+  episodes: { episodes: import('./episodes.ts').EpisodeState }
+  projects: { projects: import('./projects.ts').ProjectsState }
   core: CoreSlice
   wallet: WalletSlice
   inventory: InventorySlice
@@ -1122,6 +1163,12 @@ export interface LifeContext {
   interactiveTeachingStarts?: boolean
   /** Server-only collector for exact player-wallet mutations. */
   money?: (effect: MoneyEffect) => void
+  /** Original earning time when a deferred reward changes the wallet today. Server/domain authored. */
+  earnedAt?: number
+  /** Authenticated execution origin, supplied by the host; never a client payload field. */
+  executionOrigin?: ExecutionOrigin
+  /** Transaction-local observer. It may collect receipts, never publish before the host commits. */
+  observe?: (event: string, data: Readonly<Record<string, unknown>>, ctx: LifeContext) => void
 }
 
 export interface MoneyEffect { at: number; amount: number; balanceAfter: number; reason: string }
@@ -1173,9 +1220,10 @@ export interface AdvanceOutcome {
 
 /** Every top-level key of a life, sorted. Equals `Object.keys(createLife(null, ctx)).sort()`. */
 export const LIFE_STATE_KEYS = [
-  'activeAction', 'business', 'career', 'cash', 'civic', 'completedShifts', 'decay', 'economy', 'estate', 'events', 'goals', 'growth',
+  'achievements',
+  'activeAction', 'business', 'career', 'cash', 'civic', 'completedShifts', 'decay', 'economy', 'episodes', 'estate', 'events', 'goals', 'growth',
   'health', 'home', 'homeOwned', 'inventory', 'job', 'ledger', 'ledgerDays', 'location', 'message', 'missions', 'moodlets',
-  'name', 'needs', 'onboarding', 'property', 'skills', 'social', 'spot', 'stories', 't', 'travel', 'unilagCommunity', 'unilagShuttle',
+  'name', 'needs', 'onboarding', 'projects', 'property', 'skills', 'social', 'spot', 'stories', 't', 'travel', 'unilagCommunity', 'unilagShuttle',
   'unilagStudent', 'v',
 ] as const satisfies readonly (keyof LifeState)[]
 
@@ -1206,6 +1254,9 @@ export const SYSTEM_STATE_KEYS = {
   events: ['events'],
   growth: ['growth'],
   business: ['business'],
+  achievements: ['achievements'],
+  episodes: ['episodes'],
+  projects: ['projects'],
   livingWorld: [],
   market: [],
   unilagStudent: ['unilagStudent'],
@@ -1233,10 +1284,13 @@ export const SLICE_FIELD_KEYS = {
   goals: ['besties', 'chain', 'cv', 'dream', 'dreamDone', 'feed', 'granted', 'perks', 'rerolls', 'seen', 'seq', 'stars', 'started', 'stats', 'wishes'],
   social: ['bae', 'coupon', 'earned', 'family', 'followUps', 'free', 'notices', 'rel', 'rumours', 'streak', 'transfer'],
   civic: ['claims', 'gems', 'hunt', 'news', 'seed', 'since', 'week', 'work'],
-  missions: ['active', 'claimed', 'daily', 'day', 'paidDay', 'rerolls', 'seed', 'sets', 'stamps', 'titles', 'visited', 'week', 'weekly'],
+  missions: ['active', 'claimed', 'daily', 'day', 'grants', 'paidDay', 'pending', 'pendingSets', 'rerolls', 'seed', 'sets', 'stamps', 'titles', 'visited', 'week', 'weekly'],
   events: ['attended', 'count', 'spray', 'sprayed'],
   growth: ['referrals', 'tables', 'welcomed'],
   business: ['bag', 'buys', 'opened', 'sales', 'spent'],
+  projects: ['mementos', 'proofs', 'trackingSince', 'version'],
+  episodes: ['mementos', 'runs', 'trackingSince', 'version'],
+  achievements: ['displayed', 'earned', 'pinned', 'progress', 'trackingSince', 'version'],
   unilagStudent: ['admittedDay', 'applicationCount', 'hostel', 'lifetime', 'programme', 'records', 'status', 'studentId', 'term'],
   unilagCommunity: ['clubs', 'days', 'discoveries', 'elections', 'quiz', 'trail'],
   unilagShuttle: ['rides'],

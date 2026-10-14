@@ -5,6 +5,8 @@
  */
 import type { HostErrorCode, JsonBodyErrorCode, Ok, Refusal, SessionErrorCode, StorageErrorCode } from './protocol.ts'
 import type { Done, HouseView, Repeat } from './social.ts'
+import type { HomeMemento } from './mementos.ts'
+import type { AchievementId } from './achievements.ts'
 import type { DoorWho } from '../game/visit.ts'
 import type { CityId } from './protocol.ts'
 import type { HouseStyle, PlacedItem, PlotAddress } from './life.ts'
@@ -20,7 +22,7 @@ export interface PlotEnterBody { city: CityId; plot: PlotAddress; host: string }
 export interface CaptureConsentBody { host: string; visitId: string; allow: boolean }
 export type VisitHomeItem = Pick<PlacedItem, 'id' | 'itemId' | 'x' | 'y' | 'rot'> & { floor?: number }
 export interface VisitStory { title: string; description: string; moment: { title: string; prompt: string }; step: number; total: number; revision: number }
-export interface VisitHomeProjection { host: { id: string; name: string }; city: CityId; plot: PlotAddress | null; owned: boolean; grid: number; style: HouseStyle; items: VisitHomeItem[]; story?: VisitStory }
+export interface VisitHomeProjection { host: { id: string; name: string }; city: CityId; plot: PlotAddress | null; owned: boolean; grid: number; style: HouseStyle; items: VisitHomeItem[]; achievement?: AchievementId; mementos?: HomeMemento[]; story?: VisitStory }
 export type VisitHomeResult = Done<'home', { home: VisitHomeProjection }> | Refused
 export interface InviteBody { to: string[] }
 export interface LinkBody { hours?: number; max?: number; open?: boolean }

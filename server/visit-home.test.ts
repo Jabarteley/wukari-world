@@ -7,7 +7,7 @@ import { fixture } from './test-fixture.ts';
 import type { Device } from './test-fixture.ts';
 
 type Fixture = Awaited<ReturnType<typeof fixture>>;
-interface HomeReply { status: number; ok?: boolean; code?: string; reason?: string; home?: { host: { id: string }; grid: number; items: { id: string; itemId: string; x: number; y: number }[] } }
+interface HomeReply { status: number; ok?: boolean; code?: string; reason?: string; home?: { host: { id: string }; grid: number; items: { id: string; itemId: string; x: number; y: number }[]; achievement?: string } }
 const get = async (f: Fixture, path: string, who: Device): Promise<HomeReply> => { const res = await f.request(path, null, who.cookie); return { status: res.status, ...(await res.json() as object) }; };
 const post = async (f: Fixture, path: string, body: object, who: Device): Promise<{ code?: string; reason?: string }> => (await f.request(path, body, who.cookie)).json() as Promise<{ code?: string }>;
 
@@ -35,8 +35,13 @@ test('a guest sees the furniture of the home they are in, a rented one too, and 
     bought = done.ok === true;
   }
   assert.ok(bought, 'the host could place a plant');
+  assert.equal((await f.action(host.cookie, { type: 'achievements.display', payload: { id: 'home-maker' } })).code, 'displayed');
   const after = await get(f, `/api/social/visit/home?host=${host.id}`, guest);
   assert.equal(after.home?.items.length, (before.home?.items.length ?? 0) + 1);
   assert.ok(after.home?.items.some((item) => item.itemId === 'potted-plant'));
+  assert.equal(after.home?.achievement, 'home-maker', 'an accepted guest sees the chosen earned plaque');
+  assert.equal(Object.hasOwn(after.home ?? {}, 'achievements'), false, 'private progress and provenance stay out of the visit projection');
+  assert.equal((await f.action(host.cookie, { type: 'achievements.display', payload: { id: null } })).code, 'cleared');
+  assert.equal((await get(f, `/api/social/visit/home?host=${host.id}`, guest)).home?.achievement, undefined);
   assert.equal((await get(f, `/api/social/visit/home?host=${host.id}`, other)).code, 'visit_required');
 });

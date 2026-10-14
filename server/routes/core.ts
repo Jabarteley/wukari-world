@@ -42,10 +42,18 @@ export { MAX_RECEIPTS, boundedFingerprint };
  * recovering, a roadside event waiting for an answer, skills, goal progress and stars — so nothing
  * of that kind is shown from a settlement that a crash could compute differently.
  */
+function missionOutcome(state: LifeState): unknown {
+  const book = state.missions
+  if (!book) return null
+  // Dealt rows, partial counters, the active-day/stamp card and visited/paid-day indexes are
+  // bookkeeping until another durable outcome or action saves them. A completed mission creates a
+  // pending reward in the same mutation, so reward rights are still on disk before a poll answers.
+  return [book.pending, book.grants, book.pendingSets, book.sets, book.titles]
+}
 export const outcomeKey = (state: LifeState | null | undefined): string => (state ? JSON.stringify([state.cash, state.ledger?.length ?? 0, state.ledger?.at(-1)?.at ?? 0, state.location, state.activeAction?.kind ?? null,
   state.activeAction?.id ?? null, state.inventory ?? null, state.job ?? null, state.completedShifts ?? 0, state.message ?? '',
   state.health?.sick ?? false, state.health?.cause ?? null, state.travel?.event ?? null, state.skills ?? null,
-  state.goals?.chain ?? 0, state.goals?.stars ?? 0, state.goals?.granted ?? 0, state.goals?.dreamDone ?? false]) : 'none');
+  state.goals?.chain ?? 0, state.goals?.stars ?? 0, state.goals?.granted ?? 0, state.goals?.dreamDone ?? false, missionOutcome(state)]) : 'none');
 
 /**
  * ctx.command — the authenticated, saved, retry-safe boundary for a route that runs ONE game action

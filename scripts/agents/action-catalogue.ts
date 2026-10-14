@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const rows: [string, string, string][] = []
 const seen = new Set<string>()
-for (const file of ['src/types/actions.ts', 'src/types/campus.ts', 'src/types/stories.ts']) {
+for (const file of ['src/types/actions.ts', 'src/types/campus.ts', 'src/types/stories.ts', 'src/types/achievements.ts', 'src/types/episodes.ts', 'src/types/projects.ts']) {
   const lines = readFileSync(join(root, file), 'utf8').split('\n')
   let comment = '', open = false
   for (let n = 0; n < lines.length; n += 1) {

@@ -34,6 +34,7 @@ export type WalletState = LifeState
 /** What a wallet function needs from the engine context: the time of the change. */
 export interface WalletContext {
   now?: number
+  earnedAt?: number
   money?: (effect: MoneyEffect) => void
 }
 export interface WalletView {

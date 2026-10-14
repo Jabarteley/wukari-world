@@ -20,6 +20,7 @@ import type {
   SkillId, SkillMap, SpotId, StarterGoalId, StartHomeId, TierId, TraitId, TravelModeId, VenueId, Wardrobe, WardrobeKind, WishId,
 } from './life.ts'
 import type { UnilagCommunityView, UnilagShuttleView, UnilagStudentView } from './campus.ts'
+import type { ExecutionOrigin } from './progression.ts'
 
 // ---- wallet -------------------------------------------------------------------------------
 
@@ -1041,12 +1042,43 @@ export interface MissionRow {
   count: number
   done: boolean
   claimed: boolean
+  /** Exact ungranted reward for this row; null before completion and after collection. */
+  rewardId: string | null
+  /** Original earning identity, retained if the character travelled before collection. */
+  rewardScope: 'daily' | 'weekly' | null
+  rewardPeriod: LagosDay | LagosWeek | null
+  rewardCityId: WorldCityId | null
   /** Naira paid when claimed. */
   cash: number
   /** The Go button opens this panel … */
   open: string | null
   /** … or walks to `[venue]` / `[venue, spot]`. */
   go: string[] | null
+}
+
+/** A completed reward retained after its daily or weekly mission row rolled away. */
+export interface MissionRewardView {
+  rewardId: string
+  id: MissionId
+  kind: MissionKind
+  scope: 'daily' | 'weekly'
+  period: LagosDay | LagosWeek
+  cityId: WorldCityId
+  label: string
+  cash: number
+  earnedAt: Ms
+  earnedOrigin: ExecutionOrigin
+}
+
+/** A completed set bonus waiting for room under the star balance limit. */
+export interface MissionSetRewardView {
+  rewardId: string
+  scope: 'daily' | 'weekly'
+  period: LagosDay | LagosWeek
+  cityId: WorldCityId
+  stars: number
+  earnedAt: Ms
+  earnedOrigin: ExecutionOrigin
 }
 
 /** How far one set (daily or weekly) is, and whether its star bonus was granted. */
@@ -1072,6 +1104,10 @@ export interface MissionsView {
   rerollsLeft: number
   /** Finished missions not collected yet. */
   claimable: number
+  /** Ungranted cash rewards whose original rows have rolled away. */
+  pendingRewards: MissionRewardView[]
+  /** Set bonuses retained until the star balance has room. */
+  pendingSetRewards: MissionSetRewardView[]
   stamps: { days: number; need: number; stars: number; paid: boolean }
   activeDays: number
   /** The label of the title earned last, or null. */
@@ -1158,6 +1194,9 @@ export interface LifeView {
   events: EventsView
   growth: GrowthView
   business: BusinessView
+  achievements: import('./achievements.ts').AchievementsView
+  episodes: import('./episodes.ts').EpisodesView
+  projects: import('./projects.ts').ProjectsView
   unilagStudent: UnilagStudentView
   unilagCommunity: UnilagCommunityView
   unilagShuttle: UnilagShuttleView
@@ -1168,7 +1207,7 @@ export interface LifeView {
 /** The keys of `viewLife(state, ctx)`, in registration order. */
 export const VIEW_KEYS = [
   'wallet', 'inventory', 'needs', 'skills', 'career', 'activities', 'travel', 'health', 'economy', 'property', 'estate', 'home',
-  'onboarding', 'goals', 'social', 'civic', 'missions', 'events', 'growth', 'business', 'unilagStudent', 'unilagCommunity', 'unilagShuttle',
+  'onboarding', 'goals', 'social', 'civic', 'missions', 'events', 'growth', 'business', 'achievements', 'episodes', 'projects', 'unilagStudent', 'unilagCommunity', 'unilagShuttle',
 ] as const satisfies readonly (keyof LifeView)[]
 
 /** The keys of each system's view, sorted. (`skills` is keyed by SkillId.) */
@@ -1205,12 +1244,15 @@ export const VIEW_FIELD_KEYS = {
   ],
   civic: ['earnedThisWeek', 'eligibility', 'gems', 'hunt', 'workDays'],
   missions: [
-    'activeDays', 'claimable', 'claimed', 'daily', 'dailySet', 'day', 'locked', 'nextTitle', 'rerollsLeft', 'resetAt', 'stamps',
-    'title', 'titles', 'week', 'weekResetAt', 'weekly', 'weeklySet',
+    'activeDays', 'claimable', 'claimed', 'daily', 'dailySet', 'day', 'locked', 'nextTitle', 'pendingRewards', 'pendingSetRewards',
+    'rerollsLeft', 'resetAt', 'stamps', 'title', 'titles', 'week', 'weekResetAt', 'weekly', 'weeklySet',
   ],
   events: ['count', 'here', 'live', 'spray', 'sprayed'],
   growth: ['referral', 'tables'],
   business: ['bag', 'bagRoom', 'buyWhy', 'canSpend', 'opened', 'sales'],
+  projects: ['mementos', 'trackingSince'],
+  episodes: ['mementos', 'rows', 'trackingSince'],
+  achievements: ['displayed', 'earnedCount', 'pinned', 'rows', 'trackingSince'],
   unilagStudent: [
     'admittedDay', 'applicationCount', 'betaRules', 'campusJobs', 'courses', 'degree', 'hostel', 'lifetime', 'programme', 'records',
     'status', 'studentId', 'term',

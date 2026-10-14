@@ -21,7 +21,9 @@ export const missionPercent = (mission: Pick<MissionRow, 'n' | 'count'>): number
 /** "All 3 collected · +20 stars earned" or "Collect all 3 today for +20 stars"; '' for an empty set. */
 export function setLine(set: MissionSet, word: string): string {
   if (!set.total) return ''
-  return set.granted ? `All ${set.total} collected · +${set.stars} stars earned` : `Collect all ${set.total} ${word} for +${set.stars} stars`
+  if (set.granted) return `All ${set.total} complete · +${set.stars} stars earned`
+  if (set.done === set.total) return `All ${set.total} complete · +${set.stars} stars saved until you have room`
+  return `Complete all ${set.total} ${word} for +${set.stars} stars`
 }
 /** The seven cells of the week's stamp card. */
 export type StampCell = 'stamped' | 'goal' | 'empty'

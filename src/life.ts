@@ -33,7 +33,7 @@ export { STATE_VERSION, NEEDS, makeContext, actionTypes, hasAction, isDeparting,
 export { spotsOf } from './game/systems/activities.ts';
 
 /** Legacy names kept for existing callers. Fares by mode, and the flat beta trip time. */
-export const TRAVEL_OPTIONS: Readonly<Record<string, number>> = Object.freeze(Object.fromEntries(Object.values(TRAVEL_MODES).map((mode) => [mode.id, mode.fare])));
+export const TRAVEL_OPTIONS: Readonly<Record<string, number>> = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.fromEntries(/* @__PURE__ */ Object.values(TRAVEL_MODES).map((mode) => [mode.id, mode.fare])));
 export const PREVIEW_TRAVEL_DURATION = TRAVEL_DURATION;
 
 const MIGRATIONS: ((input: SavedInput) => SavedInput)[] = [

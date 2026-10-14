@@ -102,14 +102,23 @@ test('missions: real play completes a mission exactly once, a claim pays once, a
   for (const def of need(spotsOf('park', 'lagos').find((spot) => spot.id === 'people')).activities.filter((item) => item.social?.action === 'hello').slice(0, 2)) {
     assert.equal(act(game, 'spot', { id: 'people' }).ok || game.state.spot === 'people', true);
     assert.equal(act(game, 'activity', { id: def.id }).ok, true); finish(game);
+    const distinct = mission(game, 'w-greet').n;
+    assert.equal(act(game, 'activity', { id: def.id }).ok, true); finish(game);
+    assert.equal(mission(game, 'w-greet').n, distinct, 'the same regular cannot count as another person');
+    game.state = createLife(game.state, ctxAt(game.now));
+    assert.equal(mission(game, 'w-greet').n, distinct, 'distinct greeting progress survives a reload');
   }
   assert.deepEqual([mission(game, 'd-greet').done, mission(game, 'w-greet').n], [true, 2]);
+  assert.equal(game.state.goals.stars, startStars, 'an incomplete set has no bonus');
   travel(game, 'library');
   assert.deepEqual([mission(game, 'd-two-places').done, mission(game, 'w-places').n], [true, 2]);
+  assert.equal(game.state.goals.stars, startStars + MISSION_REWARDS.daily.setStars, 'completing the set earns its stars before cash collection');
+  assert.equal(view(game).missions.dailySet.claimed, 0);
+  assert.equal(view(game).missions.dailySet.granted, true);
 
   // Claims: each pays once through the wallet with its own line; a second claim changes nothing.
   for (const id of ['d-meal', 'd-two-places']) assert.equal(act(game, 'missions.claim', { id }).code, 'claimed');
-  assert.equal(game.state.goals.stars, startStars, 'no set bonus before the last one is claimed');
+  assert.equal(game.state.goals.stars, startStars + MISSION_REWARDS.daily.setStars, 'cash collection does not repeat the set bonus');
   assert.equal(act(game, 'missions.claim', { id: 'd-greet' }).code, 'claimed');
   assert.equal(game.state.goals.stars, startStars + MISSION_REWARDS.daily.setStars);
   for (const id of ['d-meal', 'd-two-places', 'd-greet']) assert.equal(act(game, 'missions.claim', { id }).code, 'already_claimed');
@@ -124,22 +133,36 @@ test('missions: real play completes a mission exactly once, a claim pays once, a
   assert.ok(game.state.cash >= startCash + 3 * MISSION_REWARDS.daily.cash - 2000);
 });
 
-test('missions: an unclaimed mission lapses at midnight, weekly progress survives the night, and one swap a day is allowed', () => {
+test('missions: an earned reward survives midnight and reload, weekly progress survives the night, and one swap a day is allowed', () => {
   const game = life({ daily: ['d-meal', 'd-two-places', 'd-greet'], weekly: ['w-meals', 'w-places', 'w-greet'] });
   run(game, 'kitchen', (def) => (def.tags ?? []).includes('food') && !def.cost && !def.choices);
   assert.equal(mission(game, 'd-meal').done, true);
+  const earned = structuredClone(need(game.state.missions.pending.find((reward) => reward.id === 'd-meal')));
   // One swap of an unfinished mission; a finished one cannot be swapped; a second swap is refused.
   assert.equal(act(game, 'missions.reroll', { id: 'd-meal' }).code, 'already_done');
   assert.equal(act(game, 'missions.reroll', { id: 'd-greet' }).code, 'rerolled');
   const swapped = need(view(game).missions.daily[2]);
   assert.ok(swapped.id !== 'd-greet' && swapped.kind === 'social' && swapped.n === 0);
   assert.equal(act(game, 'missions.reroll', { id: 'd-two-places' }).code, 'no_rerolls');
-  // Midnight: yesterday's finished-but-unclaimed mission is gone; nothing is paid for it.
+  // Midnight replaces the daily list, but the completed reward remains collectible after reload.
   pass(game, (lagosDayStart(TODAY + 1) - game.now) / 1000 + 60);
   assert.equal(game.state.missions.day, TODAY + 1);
-  const result = act(game, 'missions.claim', { id: 'd-meal' });
-  assert.ok(['unknown_mission', 'not_done'].includes(result.code), 'the old mission cannot be collected after midnight');
+  assert.equal(view(game).missions.daily.some((entry) => entry.id === 'd-meal'), false, 'a saved reward blocks another occurrence of the same mission');
+  game.state = createLife(structuredClone(game.state), ctxAt(game.now));
+  assert.deepEqual(game.state.missions.pending.find((reward) => reward.id === 'd-meal'), earned);
+  const saved = need(view(game).missions.pendingRewards.find((reward) => reward.id === 'd-meal'));
+  assert.deepEqual([saved.rewardId, saved.scope, saved.period, saved.cityId], [earned.rewardId, 'daily', TODAY, 'lagos']);
   assert.equal(ledger(game, 'Mission: ').length, 0);
+  const cashBeforeClaim = game.state.cash;
+  const payload = { id: 'd-meal', rewardId: saved.rewardId };
+  assert.equal(act(game, 'missions.claim', payload).code, 'claimed');
+  assert.equal(game.state.cash, cashBeforeClaim + MISSION_REWARDS.daily.cash);
+  assert.equal(view(game).missions.pendingRewards.some((reward) => reward.rewardId === saved.rewardId), false);
+  game.state = createLife(structuredClone(game.state), ctxAt(game.now));
+  assert.equal(act(game, 'missions.claim', payload).code, 'already_claimed');
+  assert.equal(game.state.cash, cashBeforeClaim + MISSION_REWARDS.daily.cash, 'a retry after reload cannot pay twice');
+  assert.equal(ledger(game, 'Mission: ').length, 1);
+  assert.equal(game.state.missions.grants.filter((reward) => reward.rewardId === saved.rewardId).length, 1);
   assert.equal(mission(game, 'w-meals').n, 1, 'the weekly mission keeps its progress');
   assert.equal(view(game).missions.rerollsLeft, MISSION_REWARDS.rerollsPerDay);
   // A new week deals a new weekly set.

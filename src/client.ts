@@ -14,6 +14,7 @@ import { ACTION_TYPES } from './types/actions.ts';
 import type { ActionType } from './types/actions.ts';
 import { lifeCities, loadLifeCities } from './game/cities/lifeCities.ts';
 import { campusFor } from './game/campus-gate.ts';
+import { progressionFor } from './game/progression-gate.ts';
 import { teachingFor } from './game/teaching-gate.ts';
 import { homewardFor, hasHomewardMarker, assertHomewardLiability } from './game/homeward-gate.ts';
 import type { LifeContextInit, LifeState } from './types/life.ts';
@@ -100,6 +101,8 @@ export interface ClientOptions {
   loadLifeCities?: typeof loadLifeCities
   /** Campus-rule loader seam used by tests. */
   loadCampus?: typeof campusFor
+  /** Progression-rule loader seam used by tests. */
+  loadProgression?: typeof progressionFor
   /** False when the device itself has no network (navigator.onLine). */
   isOnline?: () => boolean
 }
@@ -255,7 +258,7 @@ export function outgoing<P>(type: string, payload: P): P | Record<string, unknow
  *   'unreachable'  the device is online but the server did not answer (down, timed out, 5xx)
  */
 export function createClient({ fetch = globalThis.fetch?.bind(globalThis), storage, now = Date.now, setTimeout: later = globalThis.setTimeout, clearTimeout: cancel = globalThis.clearTimeout,
-  randomUUID = () => uuid(), isHidden = () => false, isOnline = () => globalThis.navigator?.onLine !== false, onChange = () => {}, onStatus = () => {}, onSessionExpired = () => {}, onNeedName = () => {}, onSession = () => {}, onTeachingCapabilityCleared = () => {}, loadLifeCities: loadLife = loadLifeCities, loadCampus = campusFor }: ClientOptions = {}): Client {
+  randomUUID = () => uuid(), isHidden = () => false, isOnline = () => globalThis.navigator?.onLine !== false, onChange = () => {}, onStatus = () => {}, onSessionExpired = () => {}, onNeedName = () => {}, onSession = () => {}, onTeachingCapabilityCleared = () => {}, loadLifeCities: loadLife = loadLifeCities, loadCampus = campusFor, loadProgression = progressionFor }: ClientOptions = {}): Client {
   const cancelTimer = cancel as (handle: unknown) => void;
   let saved: SavedClient | null | undefined;
   let cached: string | null = null;
@@ -272,7 +275,7 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
   type TeachingTransition = { connection: number; snapshot: number }
   let teachingTransition: TeachingTransition | null = null
   const featureRules = (snapshot: unknown) => {
-    const waiting = [loadCampus(snapshot), teachingFor(snapshot), homewardFor(snapshot)].filter(value => value !== null)
+    const waiting = [loadProgression(snapshot), loadCampus(snapshot), teachingFor(snapshot), homewardFor(snapshot)].filter(value => value !== null)
     return waiting.length > 1 ? Promise.all(waiting) : waiting[0] ?? null
   }
   const savedSnapshotGeneration = snapshotGeneration, savedWaiting = featureRules(saved?.state)

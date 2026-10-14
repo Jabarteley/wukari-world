@@ -121,6 +121,7 @@ import { dirname } from 'node:path';
 import assert from 'node:assert/strict';
 import { createLife, dispatch, viewLife } from '${url('../life.ts')}';
 import { campusFor, loadCampus } from '${url('./campus-gate.ts')}';
+import { progressionFor, loadProgression } from '${url('./progression-gate.ts')}';
 import { isStandIn } from '${url('./registry.ts')}';
 // The page fetches the rules of the city's conditions when it is idle (src/app/state/idlePreload.ts); until then it shows an open road and the light on.
 await import('${url('./conditions/pack.ts')}');
@@ -189,6 +190,8 @@ if (input.mode?.startsWith('homeward-')) {
   }
   const raw = input.snapshot;
   await loadLifeCities(raw, [raw.estate.city]);
+  const progressionWaiting = progressionFor(raw);
+  if (progressionWaiting) await progressionWaiting;
   if (input.mode === 'homeward-retry-connect' || input.mode === 'homeward-newer') {
     const { createClient } = await import('${url('../client.ts')}');
     const stored = new Map([['joinallworld-life-v1', JSON.stringify({ version: 1, state: raw, identity: { name: 'Ada' }, cityId: raw.estate.city, ownerId: 'public-A', pendingAction: { sessionId: 'public-A', actionId: '1000:11111111-1111-4111-8111-111111111111', cityId: raw.estate.city, type: 'homeward.accept', payload: { quote: input.quote } } })]]);
@@ -444,7 +447,9 @@ const { homewardFor } = await import('${url('./homeward-gate.ts')}');
 for (const { raw, ctx } of input.lives) {
   let refused = null;
   const waiting = campusFor(raw);
+  const progressionWaiting = progressionFor(raw) ?? loadProgression();
   const teachingWaiting = teachingFor(raw);
+  await progressionWaiting;
   if (waiting) { try { createLife(raw, ctx); } catch (error) { refused = error.name; } await waiting; }
   if (teachingWaiting) await teachingWaiting;
   await homewardFor(raw);

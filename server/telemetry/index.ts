@@ -82,11 +82,12 @@ export function createServerTelemetry({ env = {}, buildId, fetch: request, now =
   }
   const base = () => ({ release: config.release, environment: config.env, now: now() });
 
-  const track = safe((publicId: unknown, name: unknown, props?: unknown, cityId?: unknown): void => {
+  const track = safe((publicId: unknown, name: unknown, props?: unknown, cityId?: unknown, occurrence?: { at: number; id: string }): void => {
     if (!analyticsOn || !isUuid(publicId) || !accepted.has(publicId) || !isEventName(name)) return;
     const city = trustedCity(cityId);
-    transport.analytics({ event: name, distinct_id: publicId, timestamp: new Date(now()).toISOString(),
-      properties: { ...checkProps(name, props, scrubProps), ...(city ? { city_id: city } : {}), $geoip_disable: true, $lib: 'allworld-server', app: 'allworld', environment: config.env, release: config.release, source: 'server' } });
+    const stable = occurrence && Number.isSafeInteger(occurrence.at) && occurrence.at >= 0 && /^p1-[a-z0-9]{1,16}$/.test(occurrence.id) ? occurrence : undefined;
+    transport.analytics({ event: name, distinct_id: publicId, timestamp: new Date(stable?.at ?? now()).toISOString(),
+      properties: { ...checkProps(name, props, scrubProps), ...(city ? { city_id: city } : {}), ...(stable ? { $insert_id: stable.id } : {}), $geoip_disable: true, $lib: 'allworld-server', app: 'allworld', environment: config.env, release: config.release, source: 'server' } });
   });
   const record = (events: Recorded[], cityId?: unknown): void => { for (const event of events) { const props = event.props; track(event.to, event.name, props && 'seconds' in props ? { ...props, duration: durationBucket(Number(props.seconds)) } : props, event.cityId ?? cityId); } };
 

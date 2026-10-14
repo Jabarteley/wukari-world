@@ -90,6 +90,8 @@ export interface City {
   materials: CityMaterials;
   pack: CityPack;
   readonly triangles: number;
+  /** The part of `triangles` that is fabric (houses, towers, trees, palms, lamps and their shadows): what setDetail leaves out from afar. */
+  readonly fabricTriangles: number;
   counts: { houses: number; towers: number; trees: number; palms: number; vehicles: number; shadows: number };
   readonly time: string;
   setHome(house: string | null, own?: OwnHome | null): boolean;
@@ -994,6 +996,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   return {
     group, places, materials, pack,
     get triangles() { return triangles; },
+    get fabricTriangles() { return fabricMeshes.reduce((sum, mesh) => sum + (mesh.geometry.index ? mesh.geometry.index.count : mesh.geometry.attributes.position!.count) / 3 * mesh.count, 0); },
     counts: { houses: fabric.houses.length, towers: fabric.towers.length, trees: fabric.trees.length, palms: fabric.palms.length, vehicles: traffic.length, shadows: shadows.length },
     get time() { return time; },
     setHome, setLgas, fronts,

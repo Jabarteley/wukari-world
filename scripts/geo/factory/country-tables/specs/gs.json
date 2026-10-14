@@ -29,7 +29,6 @@
         { "ref": "node/5790020661", "reason": "historic=wreck 'Fenix', a wrecked Argentine landing craft of 1982: wrecks are excluded (OUTPOST-TABLE-FIELDS gs)." },
         { "ref": "way/611591128", "reason": "historic=wreck 'Floating Dock': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
         { "ref": "way/611608981", "reason": "historic=wreck 'Louise': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
-        { "ref": "way/632736925", "reason": "historic=wreck, unnamed: every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
         { "ref": "way/632738539", "reason": "historic=wreck 'Petrel': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
         { "ref": "way/632742962", "reason": "historic=wreck 'Dias': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },
         { "ref": "way/632742963", "reason": "historic=wreck 'Albatros': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)." },

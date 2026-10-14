@@ -41,10 +41,6 @@
           "reason": "historic=wreck 'Louise': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
         },
         {
-          "ref": "way/632736925",
-          "reason": "historic=wreck, unnamed: every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
-        },
-        {
           "ref": "way/632738539",
           "reason": "historic=wreck 'Petrel': every historic=wreck feature is excluded (OUTPOST-TABLE-FIELDS gs)."
         },

@@ -10,10 +10,14 @@
  *         same answer on the server and on every phone that holds the same list. A block no hour covers uses the old cycle.
  * KINDS   clear, cloud (cloudy, dry), fog, lrain (light rain), rain, hrain (heavy rain), storm (thunder), sleet, snow. "Hot" is not a
  *         kind: a dry hour at 33 degrees or more reads as hot (HOT_C).
- * SPLIT   what the rules need (this file) is in the first download; reading the service's codes and checking what the feed sends
- *         (weather-observed-read.ts) is not: only the server and the lazy feed module of the browser load it.
+ * LOADING none of this is in the first download: only the server and the browser's lazy feed module load it (with
+ *         weather-observed-read.ts, which reads the service's codes and checks what the feed sends). Loading it registers
+ *         observedSkyAt with weatherAt (useObservedSky), and a change is announced with systemsChanged (the views derive again).
  * RAIN    raining is true for light rain, rain, heavy rain, thunderstorm and sleet (they soak a walker); snow and the dry kinds are not.
  */
+
+import { systemsChanged } from './registry.ts'
+import { useObservedSky } from './systems/health.ts'
 
 export type SkyKind = 'clear' | 'cloud' | 'fog' | 'lrain' | 'rain' | 'hrain' | 'storm' | 'sleet' | 'snow'
 export type ObservedHour = readonly [start: number, kind: SkyKind, tempC: number | null]
@@ -39,7 +43,7 @@ const observed = new Map<string, { hours: readonly ObservedHour[]; words: readon
 export function putObservedWeather(cityId: string, clean: ObservedWeather | null, words: readonly SkyWords[] = []): void {
   const before = observed.get(cityId)?.hours ?? null
   if (clean) observed.set(cityId, { hours: clean.hours, words }); else observed.delete(cityId)
-  if (JSON.stringify(before) !== JSON.stringify(clean?.hours ?? null)) for (const listener of [...listeners]) listener(cityId)
+  if (JSON.stringify(before) !== JSON.stringify(clean?.hours ?? null)) { for (const listener of [...listeners]) listener(cityId); systemsChanged() }
 }
 const listeners = new Set<(cityId: string) => void>()
 /** Called after a city's observed weather changed (the browser derives its views again). Returns the way to stop listening. */
@@ -59,3 +63,5 @@ export function observedSkyAt(cityId: string, at: number): { kind: SkyKind; temp
   }
   return null
 }
+
+useObservedSky(observedSkyAt)

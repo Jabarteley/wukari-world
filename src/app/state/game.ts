@@ -17,7 +17,6 @@ import type { PanelView, ShellMode, ToastKind } from '../types/panel.ts'
 import { clientCity, createClient } from '../../client.ts'
 import { viewLife } from '../../life.ts'
 import { onSystemsCompleted } from '../../game/registry.ts'
-import { onObservedWeather } from '../../game/weather-observed.ts'
 import { contentFor } from '../../game/cities/runtime.ts'
 import { toast as sharedToast } from './toasts.ts'
 import type { ToastAction } from './toasts.ts'
@@ -173,8 +172,6 @@ export function createGame(options: GameOptions = {}): Game {
   // A system that was a stand-in (the campus) has been loaded: the views derived before it have to be derived again.
   const rules = ref(0)
   onSystemsCompleted(() => { rules.value += 1 })
-  // The real weather of the world feed arrived or changed: the views that show the sky are derived again.
-  onObservedWeather(() => { rules.value += 1 })
   const view = computed<PanelView>(() => {
     void rules.value
     const life = state.value, city = cityId.value

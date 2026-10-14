@@ -23,7 +23,7 @@
         "playKm": 5,
         "coreKm": 3
       },
-      "profile": "outpost",
+      "profile": "wilderness",
       "timezoneOverride": {
         "id": "Etc/GMT-5",
         "reason": "Heard Island and McDonald Islands has no zone1970.tab row; the territory keeps Indian/Maldives time (UTC+5) in practice, written as the fixed zone Etc/GMT-5.",

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test, { afterEach } from 'node:test'
-import { money, nairaHint, setCityMoney, setDisplayCity } from './money.ts'
+import { moneyHint } from '../app/ui/format.ts'
+import { money, setCityMoney, setDisplayCity } from './money.ts'
 import { clearMoney, compactMoney, readCityMoney } from './money-feed.ts'
 import { naira } from './util.ts'
 
@@ -19,8 +20,7 @@ test('Nigerian cities and cities without a rate write exactly the old naira text
     assert.equal(naira(v), legacy(v))
   }
   assert.equal(money(5000, 'lagos'), '₦5,000')
-  assert.equal(nairaHint(5000, 'lagos'), null)
-})
+  })
 
 test('a city is written in its own money at the day rate', () => {
   give('london', 'GBP', '£', 0.75, 2) // 1500 NGN = 1 USD = 0.75 GBP: 1 GBP = 2000 NGN
@@ -67,9 +67,11 @@ test('the display city decides naira() and the hint shows the naira value', () =
   assert.equal(naira(10_000), '₦10,000')
   setDisplayCity('accra')
   assert.equal(naira(10_000), 'GH₵ 100')
-  assert.equal(nairaHint(10_000), '≈ ₦10,000')
+  assert.equal(moneyHint(10_000), '≈ ₦10,000')
+  assert.equal(moneyHint(5), '≈ ₦5')
   setDisplayCity('lagos')
   assert.equal(naira(10_000), '₦10,000', 'a city with no rate falls back')
+  assert.equal(moneyHint(10_000), undefined)
 })
 
 test('a USD city needs only the naira rate; junk answers are refused', () => {

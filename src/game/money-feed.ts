@@ -19,7 +19,7 @@ export function readCityMoney(feed: unknown): CityMoney | null {
   const perUsd = code === 'USD' ? 1 : table[code]
   const ngnPerUsd = table['NGN']
   const usable = (n: unknown): n is number => typeof n === 'number' && Number.isFinite(n) && n > 0
-  return usable(perUsd) && usable(ngnPerUsd) ? { day, code, symbol, decimals, perUsd, ngnPerUsd } : null
+  return usable(perUsd) && usable(ngnPerUsd) ? { day, code, symbol: symbol + (symbol.length >= 2 && /\p{L}/u.test(symbol) && !symbol.endsWith('$') ? ' ' : ''), decimals, perUsd, ngnPerUsd } : null
 }
 
 /** A short form for tight spaces in the city's currency (£1.2k, KSh 34k, $3.4m, rounded down), or null when naira applies (the caller keeps its naira form). */
@@ -30,8 +30,7 @@ export function compactMoney(value: unknown, cityId: string | null = displayCity
   const abs = Math.abs(converted), tier = abs >= 1e9 ? 3 : abs >= 1e6 ? 2 : abs >= 1e3 ? 1 : 0
   if (!tier) return money(value, cityId)
   const scaled = abs / 1000 ** tier
-  const space = rate.symbol.length >= 2 && /\p{L}/u.test(rate.symbol) && !rate.symbol.endsWith('$') ? ' ' : ''
-  return `${converted < 0 ? '-' : ''}${rate.symbol}${space}${scaled < 10 ? Math.floor(scaled * 10) / 10 : Math.floor(scaled)}${'kmb'.charAt(tier - 1)}`
+  return `${converted < 0 ? '-' : ''}${rate.symbol}${scaled < 10 ? Math.floor(scaled * 10) / 10 : Math.floor(scaled)}${'kmb'.charAt(tier - 1)}`
 }
 
 

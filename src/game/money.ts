@@ -13,7 +13,7 @@
  */
 
 /** One city's money for one day: units of its currency and of naira per US dollar. */
-export interface CityMoney { readonly day: string; readonly code: string; readonly symbol: string; readonly decimals: number; readonly perUsd: number; readonly ngnPerUsd: number }
+export interface CityMoney { readonly day: string; readonly code: string; readonly symbol: string /* with a trailing space when it is letters ("KSh ") */; readonly decimals: number; readonly perUsd: number; readonly ngnPerUsd: number }
 
 /** Each city's money (read by money-feed.ts). */
 export const held = new Map<string, CityMoney>()
@@ -28,37 +28,22 @@ export const onMoneyChange = (run: () => void): void => { listener = run }
 export const displayCityId = (): string | null => displayCity
 export function setDisplayCity(cityId: string | null): void { if (displayCity !== cityId) { displayCity = cityId; changed() } }
 
-/** Sets a city's money. The same day keeps the first rates it was given (frozen); a new day replaces them; null forgets the city. */
+/** Sets a city's money. The same day keeps the first rates it was given (frozen); a new day replaces them. */
 export function setCityMoney(cityId: string, value: CityMoney | null): void {
-  const before = held.get(cityId)
-  if (!value) { if (before) { held.delete(cityId); changed() } return }
-  if (before && before.day === value.day) return
+  if (!value || held.get(cityId)?.day === value.day) return
   held.set(cityId, value)
   changed()
 }
 
-const naira = (value: unknown): string => `₦${Math.round(Number(value) || 0).toLocaleString('en-NG')}`
-
-/** How many decimals an amount of this size is written with. */
-const shownDecimals = (decimals: number, converted: number): number => (decimals === 0 || Math.round(Math.abs(converted) * 100) / 100 >= 100 ? 0 : 2)
+/** Naira as it has always been written: ₦5,000. */
+export const naira = (value: unknown): string => `₦${Math.round(Number(value) || 0).toLocaleString('en-NG')}`
 
 /** The amount (naira) written in the city's currency at the day's rate; ₦ when the city is Nigerian, has no rate, or is not given. */
 export function money(value: unknown, cityId: string | null = displayCity): string {
   const rate = cityId === null ? undefined : held.get(cityId)
-  const amount = Number(value) || 0
-  if (!rate || rate.code === 'NGN') return naira(amount)
-  const converted = amount / rate.ngnPerUsd * rate.perUsd
-  const places = shownDecimals(rate.decimals, converted)
-  const unit = 10 ** -places
-  let shown = Math.round(Math.abs(converted) * 10 ** places) / 10 ** places
-  if (amount !== 0 && shown === 0) shown = unit
-  const digits = shown.toLocaleString('en-NG', { minimumFractionDigits: places, maximumFractionDigits: places })
-  const space = rate.symbol.length >= 2 && /\p{L}/u.test(rate.symbol) && !rate.symbol.endsWith('$') ? ' ' : ''
-  return `${converted < 0 ? '-' : ''}${rate.symbol}${space}${digits}`
-}
-
-/** The naira value as written when pressing an amount ("≈ ₦5,000"), or null when the amount is already in naira. */
-export function nairaHint(value: unknown, cityId: string | null = displayCity): string | null {
-  const rate = cityId === null ? undefined : held.get(cityId)
-  return !rate || rate.code === 'NGN' ? null : `≈ ${naira(value)}`
+  if (!rate || rate.code === 'NGN') return naira(value)
+  const amount = Number(value) || 0, converted = amount / rate.ngnPerUsd * rate.perUsd, abs = Math.abs(converted)
+  const places = rate.decimals === 0 || Math.round(abs * 100) / 100 >= 100 ? 0 : 2 // whole units from 100 up
+  const shown = Math.max(Math.round(abs * 10 ** places) / 10 ** places, amount ? 10 ** -places : 0) // never zero for a non-zero amount
+  return `${converted < 0 ? '-' : ''}${rate.symbol}${shown.toLocaleString('en-NG', { minimumFractionDigits: places, maximumFractionDigits: places })}`
 }

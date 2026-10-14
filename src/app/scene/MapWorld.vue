@@ -16,7 +16,7 @@ import { arriveFromAbove } from '../../map3d/arrive-above.ts'
 import { arriveFromStreet, streetArrival, streetCandidate } from '../../map3d/arrive-street.ts'
 import type { CityDive, SpanRange } from '../../map3d/dive.ts'
 import type { LifeState } from '../../types/life.ts'
-import { cachedCityContent, cityName } from '../../game/cities/registry.ts'
+import { cityName } from '../../game/cities/registry.ts'
 import { viewLife } from '../../life.ts'
 import { telemetry } from '../../telemetry/index.ts'
 import { noteChunkFailure } from '../state/updateNotice.ts'
@@ -125,7 +125,7 @@ async function cityUp(): Promise<boolean> {
 }
 /**
  * The venue is in front again after a dive: it fades in as after any trip, and after a whole dive its camera comes down from above, or,
- * where the place is a street its scene has drawn (zoom phase 5b), starts at eye height looking down the street and rises.
+ * on the home street when its scene has drawn its street (zoom phase 5b), starts at eye height looking down the street and rises.
  */
 function venueUp(outcome: string): void {
   void nextTick().then(async () => {
@@ -134,8 +134,7 @@ function venueUp(outcome: string): void {
     const motion = outcome === 'arrived' ? scene.venue.value?.motion?.() : null
     if (!motion) return
     const state = game.state.value, place = scene.venue.value?.location ?? state.location
-    const kind = cachedCityContent(state.estate.city)?.venues.find((venue) => venue.id === place)?.definition.scene.kind
-    const pose = place && streetCandidate(place, kind)
+    const pose = place && streetCandidate(place)
       ? await streetArrival(place, { load: () => import('../../scene/street-life/street-scene.ts'), tick: () => new Promise((done) => requestAnimationFrame(done)) })
       : null
     const still = game.mode.value === 'venue' && (scene.venue.value?.location ?? game.state.value.location) === place ? scene.venue.value?.motion?.() : null

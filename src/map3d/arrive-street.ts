@@ -8,9 +8,9 @@
  * (venue-world.ts `motion()`): nothing in the shared scene chunk changes, and neither do the player's movement or actions. The goal is not
  * touched; a drag, a pinch or a step by the player during the hold ends it at once, and snap() (reduced motion, a new venue) ends it all.
  *
- * Who gets it: only where the dive ended as planned ('arrived'), motion() is offered (no reduced motion, a frame loop), the place is a
- * street (STREET_PLACES), and the scene noted a street there (it passed street life's own device gate, src/scene/street-life/plan.ts).
- * Everyone else gets arrive-from-above, as before.
+ * Who gets it: only where the dive ended as planned ('arrived'), motion() is offered (no reduced motion, a frame loop), the place is the
+ * home street, and its scene noted a street with a pose inside its walkable bounds (it passed street life's own device gate,
+ * src/scene/street-life/plan.ts, and street-scene.ts fitStreet). Everyone else gets arrive-from-above, as before.
  */
 import type { Orbit } from '../scene/camera-controls.ts';
 import { ABOVE_RATE, TURN_RATE, ZOOM_RATE } from './arrive-above.ts';
@@ -19,19 +19,24 @@ import { ABOVE_RATE, TURN_RATE, ZOOM_RATE } from './arrive-above.ts';
 export const PIVOT_RATE = 7, ORBIT_PITCH_MIN = 0.1;
 /** Seconds at eye height, then seconds of the rise (at ABOVE_RATE of the usual ease). */
 export const STREET_HOLD = 1.2, STREET_RISE = 1.8;
-/** The venue kinds that stand on a street (src/scene/street-life/plan.ts STREET_KINDS, repeated so the maps chunk does not import the
- * gate's chunk; the test holds them equal), and the home street. */
-export const STREET_PLACES: ReadonlySet<string> = new Set(['market', 'hub', 'walk', 'park', 'buka', 'statehouse', 'polling', 'quad', 'generic', 'shrine']);
+/** The one place that is a street scene: the home street (src/scene/street-life/street-scene.ts). Venue scenes have no street inside
+ * their floor, so their dive ends from above. */
 export const HOME_STREET = 'neighbourhood';
 /** How long the venue's arrival may wait for its scene to say where its street is (inside the venue's 0.34 s arrival fade). */
 export const STREET_WAIT_MS = 220;
 
 export interface StartPose { eye: readonly [number, number, number]; look: readonly [number, number, number] }
-type Street = { pose: StartPose } | null | undefined;
+type Street = { pose: StartPose | null; bounds: readonly [number, number, number, number] } | null | undefined;
 
-/** May the arrival at this place look down a street? (the home street, or a venue of a street kind) */
-export const streetCandidate = (location: string | null | undefined, kind: string | null | undefined): boolean =>
-  location === HOME_STREET || (typeof kind === 'string' && STREET_PLACES.has(kind));
+/** May the arrival at this place look down a street? (the home street only) */
+export const streetCandidate = (location: string | null | undefined): boolean => location === HOME_STREET;
+
+/** The last guard on a pose: every number finite, the eye and the point looked at inside the scene's walkable bounds. Else none. */
+export function poseInBounds(pose: StartPose | null | undefined, bounds: readonly [number, number, number, number] | null | undefined): StartPose | null {
+  if (!pose || !bounds || ![...pose.eye, ...pose.look].every(Number.isFinite)) return null;
+  const inside = (x: number, z: number): boolean => x >= bounds[0] && x <= bounds[2] && z >= bounds[1] && z <= bounds[3];
+  return inside(pose.eye[0], pose.eye[2]) && inside(pose.look[0], pose.look[2]) ? pose : null;
+}
 
 /** The orbit's state (yaw, tilt, zoom, pivot) that puts the camera at the pose's eye looking at its point; yaw the nearest turn to `near`. */
 export function streetOrbit(orbit: Pick<Orbit, 'base'>, pose: StartPose, near = 0): { yaw: number; tilt: number; zoom: number; x: number; y: number; z: number } {
@@ -102,7 +107,7 @@ export async function streetArrival(place: string, lookup: StreetLookup): Promis
   try { module = await lookup.load(); } catch { return null; }
   for (;;) {
     const street = module.streetOf(place);
-    if (street) return street.pose;
+    if (street) return poseInBounds(street.pose, street.bounds);
     if (street === null || now() - began >= wait) return null;
     await tick();
   }

@@ -4,7 +4,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { PITCH_MIN, createOrbit } from '../scene/camera-controls.ts';
-import { HOME_STREET, ORBIT_PITCH_MIN, PIVOT_RATE, STREET_HOLD, STREET_RISE, STREET_WAIT_MS, arriveFromStreet, streetArrival, streetCandidate, streetOrbit } from './arrive-street.ts';
+import { HOME_STREET, ORBIT_PITCH_MIN, PIVOT_RATE, STREET_HOLD, STREET_RISE, STREET_WAIT_MS, arriveFromStreet, poseInBounds, streetArrival, streetCandidate, streetOrbit } from './arrive-street.ts';
 import type { StartPose } from './arrive-street.ts';
 
 const POSE: StartPose = { eye: [-9, 2.6, 0.775], look: [9, 0.05, 3.45] };
@@ -27,12 +27,21 @@ test('the orbit\'s own pivot rate and lowest pitch are the ones copied here', ()
   assert.match(readFileSync('src/scene/camera-controls.ts', 'utf8'), new RegExp(`pivot: ${PIVOT_RATE}\\b`));
 });
 
-test('which arrivals may look down a street: the home street and the street kinds of venue, not rooms', () => {
-  assert.ok(streetCandidate(HOME_STREET, undefined));
-  assert.ok(streetCandidate('lagos-balogun', 'market'));
-  assert.ok(streetCandidate('x', 'park'));
-  assert.ok(!streetCandidate('x', 'club'));
-  assert.ok(!streetCandidate('home', undefined));
+test('which arrivals may look down a street: the home street only (venue scenes have no street inside their floor)', () => {
+  assert.ok(streetCandidate(HOME_STREET));
+  assert.ok(!streetCandidate('lagos-balogun'));
+  assert.ok(!streetCandidate('home'));
+  assert.ok(!streetCandidate(null));
+});
+
+test('the last guard on a pose: finite, the eye and the point looked at inside the walkable bounds; else none', () => {
+  const bounds = [-84, -19, 84, 14.2] as const;
+  assert.equal(poseInBounds(POSE, bounds), POSE);
+  assert.equal(poseInBounds({ eye: [-90, 2.6, 0], look: POSE.look }, bounds), null, 'eye off the floor');
+  assert.equal(poseInBounds({ eye: POSE.eye, look: [9, 0, 30] }, bounds), null, 'looking at a point off the floor');
+  assert.equal(poseInBounds({ eye: [Number.NaN, 2.6, 0], look: POSE.look }, bounds), null);
+  assert.equal(poseInBounds(null, bounds), null);
+  assert.equal(poseInBounds(POSE, null), null, 'no bounds: none');
 });
 
 test('the orbit state for a pose puts the camera exactly at the eye, looking at the point, the nearest way round', () => {
@@ -89,15 +98,20 @@ test('the player turns or walks during the hold: it ends at once; snap() ends it
 });
 
 test('streetArrival: the pose its scene noted; null when it noted none; it waits a little for the scene, then gives up', async () => {
-  const noted = new Map<string, { pose: StartPose } | null>();
+  const bounds = [-84, -19, 84, 14.2] as const;
+  const noted = new Map<string, { pose: StartPose | null; bounds: typeof bounds } | null>();
   const load = async () => ({ streetOf: (place: string) => noted.get(place) });
   const tick = () => new Promise((done) => setTimeout(done, 5));
-  noted.set('a', { pose: POSE });
+  noted.set('a', { pose: POSE, bounds });
   assert.deepEqual(await streetArrival('a', { load, tick }), POSE);
+  noted.set('off', { pose: { eye: [-200, 2.6, 0], look: POSE.look }, bounds });
+  assert.equal(await streetArrival('off', { load, tick }), null, 'a pose off the floor: from above');
+  noted.set('posed-none', { pose: null, bounds });
+  assert.equal(await streetArrival('posed-none', { load, tick }), null);
   noted.set('b', null);
   assert.equal(await streetArrival('b', { load, tick }), null);
   let clock = 0;
-  const late = streetArrival('c', { load, tick: async () => { clock += 50; if (clock === 100) noted.set('c', { pose: POSE }); }, now: () => clock });
+  const late = streetArrival('c', { load, tick: async () => { clock += 50; if (clock === 100) noted.set('c', { pose: POSE, bounds }); }, now: () => clock });
   assert.deepEqual(await late, POSE, 'noted while it waited');
   clock = 0;
   assert.equal(await streetArrival('d', { load, tick: async () => { clock += 50; }, now: () => clock }), null, 'never noted: gives up');

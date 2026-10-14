@@ -7,12 +7,12 @@ import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import { createKit } from '../kit.ts';
 import { createStreetLife } from './draw.ts';
-import { CAR_LENGTH, HARD_CAP, PERSON_TRIANGLES, SURFACE_TRIANGLES, VEHICLE_TRIANGLES, planTraffic, venueLanes } from './plan.ts';
+import { CAR_LENGTH, HARD_CAP, PERSON_TRIANGLES, VEHICLE_TRIANGLES, planTraffic, venueLanes } from './plan.ts';
 import type { Lane, Road } from './plan.ts';
 import { personAt, planPeople, walkNow } from './crowd.ts';
 import { twoWayRoads } from './traffic.ts';
 import { paintTraffic } from './livery.ts';
-import { createAmbientLayer, STREET_PERSON, STREET_SURFACE, STREET_VEHICLE } from '../ambient/layer.ts';
+import { createAmbientLayer, STREET_PERSON } from '../ambient/layer.ts';
 import type { Ident, Stage } from '../ambient/plan.ts';
 import { createWalkGrid } from '../walk-grid.ts';
 
@@ -101,17 +101,24 @@ test('crossings: both lanes get one set of lights, no vehicle is ever on a cross
   life.dispose(); kit.dispose();
 });
 
-test('a street with no road of its own gets its carriageway: one more mesh, counted in the triangles and draw calls', () => {
-  const kit = createKit();
-  const axis = { ax: -30, az: -24, bx: 30, bz: -24 }, roads = twoWayRoads(axis, 'left', 1.3, 5);
-  const life = createStreetLife(kit, { parent: new THREE.Group(), seed: 'v', lanes, roads, crowd: 40, vehicles: 6, country: 'gb', surface: { axis, half: 2.7, y: -0.42 }, at: TEN });
-  const surface = life.group.children.find((child) => child.name === 'street-surface') as THREE.Mesh;
-  assert.ok(surface, 'the road is drawn');
-  const tris = surface.geometry.index!.count / 3;
-  assert.ok(tris > 0 && tris <= SURFACE_TRIANGLES, `${tris} triangles`);
-  assert.equal(life.drawCalls, 3);
-  assert.equal(life.triangles, 40 * PERSON_TRIANGLES + 6 * VEHICLE_TRIANGLES + tris);
-  life.dispose(); kit.dispose();
+test('the final guard: given the walkable bounds, nobody and no vehicle whose place falls outside them is drawn', () => {
+  const kit = createKit(), m = new THREE.Matrix4(), p = new THREE.Vector3(), q = new THREE.Quaternion(), sc = new THREE.Vector3();
+  const roads = twoWayRoads({ ax: -84, az: 6.875, bx: 84, bz: 6.875 }, 'right', 0.78, 5.5);
+  // Bounds that cut the street in half: everyone and everything beyond x 0 must vanish, the rest stays as planned.
+  const bounds = [-90, -40, 0, 40] as const;
+  const life = createStreetLife(kit, { parent: new THREE.Group(), seed: 'g', lanes, roads, crowd: 120, vehicles: 8, bounds, at: TEN });
+  const free = createStreetLife(kit, { parent: new THREE.Group(), seed: 'g', lanes, roads, crowd: 120, vehicles: 8, at: TEN });
+  let hidden = 0, shown = 0;
+  for (const [mesh, open] of [[life.group.children[0], free.group.children[0]], [life.group.children[1], free.group.children[1]]] as [THREE.InstancedMesh, THREE.InstancedMesh][]) {
+    for (let i = 0; i < mesh.count; i++) {
+      open.getMatrixAt(i, m); m.decompose(p, q, sc);
+      const x = p.x, wanted = mesh.name === 'street-traffic' ? x + sc.z * CAR_LENGTH / 2 <= 0 && x - sc.z * CAR_LENGTH / 2 >= -90 : x <= 0;
+      mesh.getMatrixAt(i, m); m.decompose(p, q, sc);
+      if (wanted) { assert.ok(sc.y > 0, 'inside: drawn as planned'); shown += 1; } else { assert.equal(sc.y, 0, `${mesh.name} ${i} outside: drawn as nothing`); hidden += 1; }
+    }
+  }
+  assert.ok(hidden > 10 && shown > 10, `${hidden} hidden, ${shown} shown`);
+  life.dispose(); free.dispose(); kit.dispose();
 });
 
 test('adaptive caps: slow frames (a mean over 24 ms across 60) draw fewer people and vehicles; fast ones change nothing', () => {
@@ -151,11 +158,7 @@ function layerFor(kind: string, room = { triangles: 9_000, meshes: 40 }) {
   return { kit, layer, changed: () => changed };
 }
 
-test('the layer sets aside what a street person, a vehicle and the road really cost', () => {
-  assert.equal(STREET_PERSON, PERSON_TRIANGLES);
-  assert.equal(STREET_VEHICLE, VEHICLE_TRIANGLES);
-  assert.equal(STREET_SURFACE, SURFACE_TRIANGLES);
-});
+test('the layer sets aside what a street person really costs', () => assert.equal(STREET_PERSON, PERSON_TRIANGLES));
 
 test('the layer: off under node (no WebGL2), so every existing scene and test is what it was', async () => {
   const { kit, layer } = layerFor('market');

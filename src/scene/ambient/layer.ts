@@ -16,9 +16,6 @@
  * hundred far cut-out people in one instanced mesh. The gate and the drawing are chunks of their own, fetched after the layer is built
  * (never named by the shared scene chunk). Once the gate says yes, the street's triangles and draw call are set aside and the figures are
  * counted again; it moves only inside the same window, and slow frames drop it at once (the people above stay exactly as they were).
- * Zoom phase 5b: where there is room, that street is a street scene (src/scene/street-life/street-scene.ts venueStreet): a carriageway
- * beyond the pavements with traffic both ways on the country's side, a crossing with lights, and a far pavement; the scene notes it, so the
- * map's dive can end at eye height looking down it.
  */
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
@@ -49,9 +46,7 @@ const FULL_CALLS = 3, LEAN_CALLS = 2;
 /** The far crowd costs about this much a person, in triangles. */
 const FAR_TRIANGLES = 60;
 /** A street-life person's triangles (street-life/plan.ts PERSON_TRIANGLES: the test holds them equal; not imported, so the gate stays a chunk of its own). */
-export const STREET_PERSON = 2
-/** A street-life vehicle's triangles and the road's (street-life/plan.ts VEHICLE_TRIANGLES, SURFACE_TRIANGLES; the test holds them equal). */
-export const STREET_VEHICLE = 60, STREET_SURFACE = 80;
+export const STREET_PERSON = 2;
 
 export interface Room { triangles: number; meshes: number }
 export interface AmbientTag { id: string; name: string; kind: string; text: string; marker: string; colour: string; position: { x: number; y: number; z: number } }
@@ -158,8 +153,7 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
   let fullCap = 0, leanCap = 0, farCap = 0
   let residents: Resident[] = []
   // Street life: decided once for the layer, when its gate's chunk is in (only a full-tier layer asks for it).
-  let streetChoice: StreetChoice | null = null, streetAsked = 0, streetCars = 0, streetGuard: FrameGuard | null = null
-  let forgetStreet: (() => void) | null = null
+  let streetChoice: StreetChoice | null = null, streetAsked = 0, streetGuard: FrameGuard | null = null
   let street: StreetLife | null = null, streetDropped = false
 
   /**
@@ -169,8 +163,7 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
   function budget(): void {
     const room = options.room(), own = residents.length
     // The street's share is set aside first, so the figures never take its room.
-    const triangles = room.triangles - own * FIGURE_COST.full - streetAsked * STREET_PERSON - (streetCars ? streetCars * STREET_VEHICLE + STREET_SURFACE : 0)
-    const calls = room.meshes - own * FULL_CALLS - (streetAsked ? 1 : 0) - (streetCars ? 2 : 0)
+    const triangles = room.triangles - own * FIGURE_COST.full - streetAsked * STREET_PERSON, calls = room.meshes - own * FULL_CALLS - (streetAsked ? 1 : 0)
     fullCap = Math.max(0, Math.min(MAX_FULL, Math.floor(triangles / FIGURE_COST.full), Math.floor(calls / FULL_CALLS)))
     const t1 = triangles - fullCap * FIGURE_COST.full, c1 = calls - fullCap * FULL_CALLS
     leanCap = Math.max(0, Math.min(MAX_FIGURES - fullCap, Math.floor(t1 / FIGURE_COST.lean), Math.floor(c1 / LEAN_CALLS)))
@@ -369,29 +362,22 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
     return true
   }
 
-  function dropStreet(): void { street?.dispose(); street = null; streetDropped = true; forgetStreet?.(); forgetStreet = null }
+  function dropStreet(): void { street?.dispose(); street = null; streetDropped = true }
   if (ident.tier === 'full') {
-    void Promise.all([import('../street-life/plan.ts'), import('../street-life/street-scene.ts')]).then(async ([plan, streets]) => {
+    void import('../street-life/plan.ts').then(async (plan) => {
       if (disposed) return
       // The page must draw with WebGL2 (never so under node tests) unless the hand-testing switch says otherwise.
       streetChoice = plan.streetLifeFor({ ambientTier: ident.tier, kind: ident.kind, webgl: typeof (globalThis as { WebGL2RenderingContext?: unknown }).WebGL2RenderingContext === 'function', hints: plan.deviceHints(), forced: plan.pageForced() })
       streetAsked = streetChoice ? plan.crowdFits(streetChoice, options.room()) : 0
-      if (!streetAsked) { streets.noteStreet(ident.venueId, null); forgetStreet = () => streets.forgetStreet(ident.venueId, null); return }
-      // The street scene behind the place, with its road and traffic when there is room for them too.
-      const country = streets.countryOf(ident.cityId), layout = streets.venueStreet(ident.venueId, country, stage.bounds, stage.open)
-      streetCars = streetChoice ? plan.trafficFits(streetChoice, options.room(), streetAsked) : 0
+      if (!streetAsked) return
       streetGuard = plan.createFrameGuard()
       // Its room first: the figures are counted again without it (the far crowd gives way), placed where they stand now.
       budget()
       if (windowLeft <= 0) sync(current, 0, true)
       const module = await import('../street-life/draw.ts')
       if (disposed || street || streetDropped) return
-      const traffic = streetCars > 0
-      street = module.createStreetLife(kit, { parent: group, seed: `${ident.cityId}|${ident.venueId}`, lanes: traffic ? layout.lanes : plan.venueLanes(stage.bounds, stage.open), roads: traffic ? layout.roads : [], crossings: traffic ? layout.crossings : [], country,
-        crowd: streetAsked, vehicles: streetCars, heightAt: () => plan.VENUE_GROUND, at: current, ...(traffic ? { surface: { axis: layout.axis, half: layout.half, y: plan.VENUE_GROUND } } : {}) })
+      street = module.createStreetLife(kit, { parent: group, seed: `${ident.cityId}|${ident.venueId}`, lanes: plan.venueLanes(stage.bounds, stage.open), roads: [], crowd: streetAsked, vehicles: 0, heightAt: () => plan.VENUE_GROUND, at: current })
       street.step(current, options.avatar())
-      const noted = traffic ? layout : null
-      streets.noteStreet(ident.venueId, noted); forgetStreet = () => streets.forgetStreet(ident.venueId, noted)
       options.changed?.()
     }).catch(() => { streetDropped = true })
   }
@@ -482,7 +468,6 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       barks.clear()
       far?.dispose(); far = null
       street?.dispose(); street = null
-      forgetStreet?.(); forgetStreet = null
       group.parent?.remove(group)
     },
   }

@@ -56,10 +56,10 @@ renderer.setClearColor(street.background!);
 const streets = params.get('eye') === '1' ? await import('./street-life/street-scene.ts') : null;
 let eyed = false;
 const eye = (): void => {
-  const layout = streets?.streetOf('neighbourhood');
-  if (!layout || eyed) return;
+  const pose = streets?.streetOf('neighbourhood')?.pose;
+  if (!pose || eyed) return;
   eyed = true;
-  camera.fov = num('fov', 62); camera.position.set(...layout.pose.eye); camera.lookAt(...layout.pose.look); camera.updateProjectionMatrix();
+  camera.fov = num('fov', 62); camera.position.set(...pose.eye); camera.lookAt(...pose.look); camera.updateProjectionMatrix();
   lights.aim(camera);
 };
 const draw = () => { eye(); street.look?.(camera.position.x, camera.position.z); renderer.render(scene, camera); document.getElementById('info')!.textContent = `${cityId} · ${streets ? (eyed ? 'eye pose · ' : 'waiting for the street · ') : ''}street · ${time}${params.get('models') === '1' ? ' · models' : ' · stand-ins'} · ${renderer.info.render.calls} calls · ${renderer.info.render.triangles} tris`; (window as unknown as { __diag: unknown }).__diag = { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles }; };

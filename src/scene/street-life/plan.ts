@@ -114,18 +114,6 @@ export function crowdFits(choice: StreetChoice, room: { triangles: number; meshe
   return Math.max(0, Math.min(choice.crowd, HARD_CAP.crowd, Math.floor((room.triangles * ROOM_SHARE) / PERSON_TRIANGLES)));
 }
 
-/** What the carriageway under a venue's street costs at most (draw.ts surface: asphalt, kerbs, dashes, zebra; about 40 triangles). */
-export const SURFACE_TRIANGLES = 80;
-/**
- * How many vehicles fit beside `crowd` people (zoom phase 5b: the street behind a venue): within the same ROOM_SHARE of the spare
- * triangles, after the road's own; none without four spare draw calls (the crowd, the traffic, the road and one to spare).
- */
-export function trafficFits(choice: StreetChoice, room: { triangles: number; meshes: number }, crowd: number): number {
-  if (!(room.meshes >= 4) || !(room.triangles > 0)) return 0;
-  const left = room.triangles * ROOM_SHARE - crowd * PERSON_TRIANGLES - SURFACE_TRIANGLES;
-  return Math.max(0, Math.min(choice.vehicles, HARD_CAP.vehicles, Math.floor(left / VEHICLE_TRIANGLES)));
-}
-
 // ---- the frame guard -------------------------------------------------------------------------------------------------------------
 
 export type GuardVerdict = 'wait' | 'ok' | 'slow';

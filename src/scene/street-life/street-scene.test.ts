@@ -1,22 +1,22 @@
-// The street scene kind (./street-scene.ts): the home street and the street behind a venue as one layout, two-way traffic on the country's
-// side, the eye-level start pose looking along the street, the registry the map's dive reads; and browsers who stop at shop windows.
+// The street scene kind (./street-scene.ts): the home street as a street layout, two-way traffic on the country's side, the eye-level
+// start pose looking along the street, the final in-bounds guard, the registry the map's dive reads; and browsers who stop at shop windows.
 import { loadCityContent } from '../../game/cities/registry.ts';
 await loadCityContent('lagos');
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { Z } from '../street/street-plan.ts';
+import { BOUNDS, Z } from '../street/street-plan.ts';
 import { ROW_HALF_WIDTH } from '../../game/neighbourhood-space.ts';
 import { PITCH_MIN } from '../camera-controls.ts';
-import { CAR_LENGTH, STREET_KINDS, VEHICLE_KINDS, VENUE_GROUND, venueLanes } from './plan.ts';
+import { CAR_LENGTH, VEHICLE_KINDS } from './plan.ts';
 import type { Lane } from './plan.ts';
 import { browseAt, personAt, planPeople, windowsOf } from './crowd.ts';
 import { sideOf } from './traffic.ts';
 import {
-  EYE_UNITS, HOME, HOME_LANE_OFFSET, HOME_NARROW, STREET_SCENE_KIND, VENUE_ROAD, countryOf, forgetStreet, homeStreet, noteStreet, streetOf, venueStreet,
+  EYE_UNITS, HOME, HOME_LANE_OFFSET, HOME_NARROW, STREET_SCENE_KIND, fitStreet, forgetStreet, homeStreet, inBounds, noteStreet, streetOf,
 } from './street-scene.ts';
 import type { StartPose } from './street-scene.ts';
-import { HOME_STREET, STREET_PLACES } from '../../map3d/arrive-street.ts';
+import { HOME_STREET } from '../../map3d/arrive-street.ts';
 
 const HOME_LANES: Lane[] = [
   { ax: -ROW_HALF_WIDTH, az: Z.kerb - 0.7, bx: ROW_HALF_WIDTH, bz: Z.kerb - 0.7, width: 0.9 },
@@ -36,14 +36,12 @@ test('the home street\'s numbers are the street plan\'s and the neighbourhood\'s
   assert.match(source, /const CROSSING_X = \[78, 10\] as const/);
   assert.deepEqual([...HOME.crossings], [78, 10]);
   assert.match(source, /PARKED = Object\.freeze\(\{ keke: Z\.road0 \+ 0\.8, danfoFar: Z\.road1 - 1\.1, danfoNear: Z\.road0 \+ 1\.1 \}\)/);
-  // The map's dive knows the same street places as street life's gate.
-  assert.deepEqual([...STREET_PLACES].sort(), [...STREET_KINDS].sort());
-  assert.equal(HOME_STREET, 'neighbourhood');
+  assert.equal(HOME_STREET, 'neighbourhood', 'the map\'s dive knows the home street\'s place');
 });
 
 test('the home street: a street scene, traffic both ways on the country\'s side, between the parked danfo and keke without touching them', () => {
   for (const [country, side] of [['ng', 'right'], ['gb', 'left'], ['fr', 'right'], ['ke', 'left'], ['jp', 'left']] as const) {
-    const street = homeStreet(country, 0, HOME_LANES, ROW_HALF_WIDTH);
+    const street = homeStreet(country, 0, HOME_LANES, ROW_HALF_WIDTH, BOUNDS);
     assert.equal(street.kind, STREET_SCENE_KIND);
     assert.equal(street.place, 'neighbourhood');
     assert.equal(street.side, side, country);
@@ -63,7 +61,8 @@ test('the home street: a street scene, traffic both ways on the country\'s side,
 
 test('the home street\'s start pose: eye height on the near pavement, looking along the street, not too steep for the orbit', () => {
   for (const ownX of [-80, -20, 0, 35, 80]) {
-    const { pose, axis } = homeStreet('ng', ownX, HOME_LANES, ROW_HALF_WIDTH);
+    const { pose: posed, axis } = homeStreet('ng', ownX, HOME_LANES, ROW_HALF_WIDTH, BOUNDS);
+    const pose = posed!;
     assert.ok(Math.abs(pose.eye[1] - 0.05 - EYE_UNITS) < 1e-9, 'a person\'s eye, 1.7 m above the pavement');
     assert.ok(Math.abs(EYE_UNITS - 1.7 * 1.5) < 1e-9);
     assert.ok(pose.eye[2] > Z.pavement0 && pose.eye[2] < Z.kerb, `on the near pavement (z ${pose.eye[2]})`);
@@ -75,43 +74,28 @@ test('the home street\'s start pose: eye height on the near pavement, looking al
   }
 });
 
-test('the street behind a venue: beyond the pavements and the walk bounds, both ways on the country\'s side, a crossing, the eye between the lanes', () => {
-  const bounds = [-13.2, -11.2, 13.2, 11.2] as const, z0 = bounds[1];
-  for (const [country, side] of [['ng', 'right'], ['gb', 'left']] as const) {
-    const street = venueStreet('lagos-market', country, bounds, true);
-    assert.equal(street.kind, STREET_SCENE_KIND);
-    assert.equal(street.place, 'lagos-market');
-    assert.ok(street.surface, 'a venue has no road of its own: it is drawn');
-    assert.equal(street.road, VENUE_GROUND);
-    for (const road of street.roads) assert.equal(sideOf(road, street.axis), side);
-    const near = street.axis.az + VENUE_ROAD.half, far = street.axis.az - VENUE_ROAD.half;
-    assert.ok(near < z0 - 2, 'the road lies beyond the walk bounds');
-    // The phase-2 pavements are still there, and nobody walks along the road (only across it, at the crossing).
-    assert.deepEqual(street.lanes.slice(0, 4), venueLanes(bounds, true));
-    for (const lane of street.lanes) {
-      const along = Math.abs(lane.bx - lane.ax) > Math.abs(lane.bz - lane.az);
-      if (along) assert.ok(lane.az - lane.width / 2 >= near - 0.3 || lane.az + lane.width / 2 <= far, `lane at ${lane.az} off the road`);
-    }
-    for (const road of street.roads) assert.ok(road.az + 0.9 < near && road.az - 0.9 > far, 'cars on the road');
-    const crossing = street.crossings[0]!;
-    assert.ok(crossing.az > near && crossing.bz < far, 'the crossing runs kerb to kerb');
-    const { pose } = street;
-    assert.ok(Math.abs(pose.eye[1] - VENUE_GROUND - EYE_UNITS) < 1e-9);
-    assert.ok(pose.eye[2] < z0 - 4.6 - 1.1 && pose.eye[2] > z0 - 7.6 + 1.3, 'between the walkers\' lanes');
-    assert.ok(pose.eye[0] < bounds[0], 'off to the side of the place');
-    assert.ok(alongness(pose, street.axis) < 12 && pitchOf(pose) >= PITCH_MIN);
-    assert.ok(pose.look[2] < near && pose.look[2] > far, 'looking at the road');
-  }
-  assert.equal(countryOf('lagos'), 'ng');
-  assert.equal(countryOf('no-such-city'), null);
+test('the final guard: a street is used only when all of it lies inside the walkable bounds; the pose only on a walkable cell; else none', () => {
+  const street = homeStreet('ng', 0, HOME_LANES, ROW_HALF_WIDTH, BOUNDS);
+  assert.equal(fitStreet(street), street, 'the home street fits its own bounds whole');
+  assert.equal(fitStreet(street, () => true), street);
+  // Anything outside: no street at all.
+  assert.equal(fitStreet({ ...street, bounds: [-ROW_HALF_WIDTH, Z.back, ROW_HALF_WIDTH, 8] }), null, 'a far lane past the edge');
+  assert.equal(fitStreet({ ...street, lanes: [...street.lanes, { ax: -200, az: 2, bx: 0, bz: 2, width: 1 }] }), null, 'a lane running off the end');
+  assert.equal(fitStreet({ ...street, roads: [{ ...street.roads[0]!, bz: 40 }] }), null, 'a road leaving the floor');
+  assert.equal(fitStreet({ ...street, crossings: [{ ax: 10, az: 2.65, bx: 10, bz: 30, width: 2.4 }] }), null, 'a crossing past the far pavement');
+  // The eye not on a walkable cell: the street stays, the pose goes (the dive ends from above).
+  const blind = fitStreet(street, () => false)!;
+  assert.ok(blind && blind.pose === null && blind.roads === street.roads);
+  assert.equal(fitStreet({ ...street, pose: { eye: [0, 2.6, Number.NaN], look: [1, 0, 1] } })!.pose, null, 'a non-finite pose is none');
+  assert.ok(inBounds(BOUNDS, 0, 0) && !inBounds(BOUNDS, 0, Z.pavement1 + 0.01) && !inBounds(BOUNDS, Number.NaN, 0));
 });
 
 test('the registry: a scene notes its street (or none), the dive reads it, the scene forgets it when it goes', () => {
-  const street = venueStreet('reg-test', 'fr', [-10, -8, 10, 8], true);
+  const street = homeStreet('fr', 0, HOME_LANES, ROW_HALF_WIDTH, BOUNDS);
   assert.equal(streetOf('reg-test'), undefined, 'nothing noted yet');
   noteStreet('reg-test', street);
   assert.equal(streetOf('reg-test'), street);
-  forgetStreet('reg-test', venueStreet('reg-test', 'fr', [-10, -8, 10, 8], true));
+  forgetStreet('reg-test', homeStreet('fr', 0, HOME_LANES, ROW_HALF_WIDTH, BOUNDS));
   assert.equal(streetOf('reg-test'), street, 'only the one noted is forgotten');
   forgetStreet('reg-test', street);
   assert.equal(streetOf('reg-test'), undefined);

@@ -7,14 +7,13 @@
  *
  *   homeStreet()   the walkable street of the player's own row (src/scene/neighbourhood-scene.ts): the street the dive lands in when the
  *                  arrival is home. Its numbers are street/street-plan.ts Z (street-scene.test.ts holds them equal).
- *   venueStreet()  the busy street behind an open venue (src/scene/ambient/layer.ts): the three pavements the phase-2 crowd walks,
- *                  then a carriageway with its traffic and one crossing, and a far pavement.
+ *   fitStreet()    the final guard: a street is used only when every lane, road, crossing and the start pose lie inside the scene's
+ *                  walkable bounds (and the eye stands on a walkable cell); otherwise there is none (null). Venue scenes get no street
+ *                  of their own: there is no room for one inside a venue's floor, so their dive ends from above as before.
  *
  * The registry (noteStreet / streetOf) is how a scene that has drawn its street tells the map's dive where to put the camera, without
  * either importing the other: both reach this module only by dynamic import, so it is never in the shared scene chunk or the first download.
  */
-import { cityRules } from '../../game/cities/registry.ts';
-import { VENUE_GROUND, venueLanes } from './plan.ts';
 import type { Lane, Road } from './plan.ts';
 import { drivingSide, twoWayRoads } from './traffic.ts';
 import type { Axis, DrivingSide } from './traffic.ts';
@@ -28,10 +27,12 @@ export const LOOK_AHEAD = 22;
 
 /** Where the camera starts: the eye, and the point it looks at. */
 export interface StartPose { eye: readonly [number, number, number]; look: readonly [number, number, number] }
+/** A scene's walkable rectangle: [minX, minZ, maxX, maxZ] (a walk grid's bounds). */
+export type Bounds = readonly [number, number, number, number];
 
 export interface StreetLayout {
   kind: typeof STREET_SCENE_KIND
-  /** The place it belongs to: 'neighbourhood' for the home street, else the venue's id. */
+  /** The place it belongs to: 'neighbourhood' for the home street. */
   place: string
   side: DrivingSide
   /** The carriageway: its centre line (a → b), half its width, and the road's height. */
@@ -41,9 +42,10 @@ export interface StreetLayout {
   lanes: Lane[]
   roads: Road[]
   crossings: Lane[]
-  /** Draw the carriageway (a venue has no road of its own; the home street paints its own). */
-  surface: boolean
-  pose: StartPose
+  /** The walkable bounds everything above was checked against (fitStreet). */
+  bounds: Bounds
+  /** Null when the eye would not stand inside the bounds on a walkable cell: then the dive ends from above. */
+  pose: StartPose | null
 }
 
 /** The home street's numbers (src/scene/street/street-plan.ts Z and the neighbourhood's crossings; street-scene.test.ts holds them equal). */
@@ -51,6 +53,8 @@ export const HOME = Object.freeze({ kerb: 3.0, road0: 3.25, road1: 10.5, farKerb
 /** The home street's lanes are this far either side of its centre line, its vehicles HOME_NARROW as wide as elsewhere: two lanes fit
  * between the parked danfo and keke by the kerbs (neighbourhood-scene.ts PARKED). */
 export const HOME_LANE_OFFSET = 0.78, HOME_NARROW = 0.8;
+/** Half the widest vehicle on the home street (a full car is 1.8 wide), kept inside the bounds. */
+const VEHICLE_HALF = 0.9;
 
 /**
  * A pose at eye height on the line `line` (an offset across the axis toward (−uz, ux)) at `along`, looking `ahead` along the street at a
@@ -63,8 +67,8 @@ export function poseAlong(axis: Axis, along: number, line: number, onto: number,
   return { eye: [ex, ground + EYE_UNITS, ez], look: [lx, ground, lz] };
 }
 
-/** The walkable home street, its traffic on the country's side, with the player standing by their own gate at `ownX`. */
-export function homeStreet(country: string | null | undefined, ownX: number, lanes: readonly Lane[], half: number): StreetLayout {
+/** The walkable home street, its traffic on the country's side, with the player standing by their own gate at `ownX`. Not yet guarded: see fitStreet. */
+export function homeStreet(country: string | null | undefined, ownX: number, lanes: readonly Lane[], half: number, bounds: Bounds): StreetLayout {
   const side = drivingSide(country), mid = (HOME.road0 + HOME.road1) / 2;
   const axis: Axis = { ax: -half, az: mid, bx: half, bz: mid };
   const crossings = HOME.crossings.map((x) => ({ ax: x, az: HOME.kerb - 0.35, bx: x, bz: HOME.farKerb + 0.35, width: 2.4 }));
@@ -72,33 +76,35 @@ export function homeStreet(country: string | null | undefined, ownX: number, lan
   const along = Math.max(4, Math.min(2 * half - LOOK_AHEAD - 4, ownX + half - 9));
   return {
     kind: STREET_SCENE_KIND, place: 'neighbourhood', side, axis, half: (HOME.road1 - HOME.road0) / 2, road: 0,
-    lanes: [...lanes], roads: twoWayRoads(axis, side, HOME_LANE_OFFSET, HOME.speed), crossings, surface: false,
+    lanes: [...lanes], roads: twoWayRoads(axis, side, HOME_LANE_OFFSET, HOME.speed), crossings, bounds,
     pose: poseAlong(axis, along, HOME.pavement0 + 0.9 - mid, HOME.road0 + 0.2 - mid, 0.05),
   };
 }
 
-/** Behind a venue: how far beyond the walk bounds' far edge the carriageway's centre lies, half its width, and its lanes' offset. */
-export const VENUE_ROAD = Object.freeze({ centre: 11.6, half: 2.7, offset: 1.3, speed: 5, reach: 12 });
+// ---- the guard ---------------------------------------------------------------------------------------------------------------------
 
-/** The street behind an open venue (bounds: the walk grid's [minX, minZ, maxX, maxZ]): the phase-2 pavements, a road, a far pavement. */
-export function venueStreet(place: string, country: string | null | undefined, bounds: readonly [number, number, number, number], open: boolean): StreetLayout {
-  const [x0, z0, x1] = bounds, side = drivingSide(country), reach = VENUE_ROAD.reach, z = z0 - VENUE_ROAD.centre;
-  const axis: Axis = { ax: x0 - reach, az: z, bx: x1 + reach, bz: z };
-  const near = z + VENUE_ROAD.half, far = z - VENUE_ROAD.half;
-  const lanes = [...venueLanes(bounds, open), { ax: x0 - 16, az: far - 1.6, bx: x1 + 16, bz: far - 1.6, width: 1.8 }];
-  const cx = (x0 + x1) / 2 + Math.min(6, (x1 - x0) / 4);
-  const crossings: Lane[] = [{ ax: cx, az: near + 0.45, bx: cx, bz: far - 0.45, width: 2.4 }];
-  // The eye on the pavement between the phase-2 lanes at z0 − 4.6 and z0 − 7.6 (nobody walks through it), near the street's start, looking up it.
-  return {
-    kind: STREET_SCENE_KIND, place, side, axis, half: VENUE_ROAD.half, road: VENUE_GROUND,
-    lanes, roads: twoWayRoads(axis, side, VENUE_ROAD.offset, VENUE_ROAD.speed), crossings, surface: true,
-    pose: poseAlong(axis, reach - 8, (z0 - 6) - z, VENUE_ROAD.half - 0.5, VENUE_GROUND),
-  };
+/** Is (x, z) inside the bounds, `margin` in from every edge? Non-finite points never are. */
+export function inBounds(bounds: Bounds, x: number, z: number, margin = 0): boolean {
+  return Number.isFinite(x) && Number.isFinite(z) && x >= bounds[0] + margin && x <= bounds[2] - margin && z >= bounds[1] + margin && z <= bounds[3] - margin;
 }
 
-/** A city's country id (the street's driving side, liveries and flavour), or null for a city not loaded. */
-export function countryOf(cityId: string): string | null {
-  try { return cityRules(cityId)?.country.id ?? null; } catch { return null; }
+/**
+ * The final guard before a street is used: every lane (both ends, across its whole width), every road (both ends, a vehicle's half width
+ * either side), every crossing, and the pose's eye and look point inside the scene's walkable bounds. Null when anything is outside (no
+ * street: today's scene). The pose alone goes (null) when its eye is not on a walkable cell (`free`, the walk grid's test).
+ */
+export function fitStreet(layout: StreetLayout, free?: (x: number, z: number) => boolean): StreetLayout | null {
+  const b = layout.bounds, band = (l: { ax: number; az: number; bx: number; bz: number }, w: number): boolean => {
+    const length = Math.hypot(l.bx - l.ax, l.bz - l.az) || 1, cx = -(l.bz - l.az) / length * w, cz = (l.bx - l.ax) / length * w;
+    return [[l.ax, l.az], [l.bx, l.bz]].every(([x, z]) => inBounds(b, x! + cx, z! + cz) && inBounds(b, x! - cx, z! - cz));
+  };
+  if (!layout.lanes.every((lane) => band(lane, lane.width / 2))) return null;
+  if (!layout.crossings.every((lane) => band(lane, lane.width / 2))) return null;
+  if (!layout.roads.every((road) => band(road, VEHICLE_HALF))) return null;
+  const pose = layout.pose;
+  const posed = pose && inBounds(b, pose.eye[0], pose.eye[2]) && inBounds(b, pose.look[0], pose.look[2]) && Number.isFinite(pose.eye[1] + pose.look[1])
+    && (!free || free(pose.eye[0], pose.eye[2])) ? pose : null;
+  return posed === pose ? layout : { ...layout, pose: posed };
 }
 
 // ---- the registry ------------------------------------------------------------------------------------------------------------------

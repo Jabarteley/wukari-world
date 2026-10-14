@@ -14,8 +14,8 @@
  *            paint and trim in the city's livery (livery.ts), and a matrix that stretches it into a bus, a truck or a keke. One draw call.
  *            Phase 5b (traffic.ts): roads both ways on the country's side, okadas and bicycles by the country's flavour (the cabin
  *            becomes an upright rider), slowing at crossings and queueing at the lights.
- *   surface  optionally (a street behind a venue, which has no road of its own): ONE mesh of the carriageway, its kerbs, centre dashes
- *            and zebra stripes.
+ *   guard    given the scene's walkable bounds, a person or vehicle (both ends) whose place falls outside them is not drawn at all
+ *            (zoom phase 5b: nothing street life adds may stand outside the scene's floor).
  *
  * It asks for no frames of its own: step() is called by whoever owns the frame loop, inside their window (the battery rule). Given the
  * frame's gap, step() also feeds the adaptive caps (adaptive.ts): a mean frame over 24 ms across 60 frames draws fewer people and
@@ -27,7 +27,7 @@ import { CAR_LENGTH, PERSON_TRIANGLES as PERSON_TRIS, VEHICLE_KINDS, VEHICLE_TRI
 import type { Lane, Road } from './plan.ts';
 import { BAG_TONES, personAt, planPeople } from './crowd.ts';
 import { flavourTraffic, planSchedule, vehiclePose } from './traffic.ts';
-import type { Axis, TrafficPlan } from './traffic.ts';
+import type { TrafficPlan } from './traffic.ts';
 import type { PeopleWorld, Person, Signal } from './crowd.ts';
 import { paintTraffic } from './livery.ts';
 import type { PaintedVehicle } from './livery.ts';
@@ -42,8 +42,8 @@ export interface StreetLifeOptions {
   roads: readonly Road[]
   /** Crossings of the roads (kerb to kerb): with them, the roads get lights and people cross on them. */
   crossings?: readonly Lane[]
-  /** A carriageway to draw under the traffic (a street that has no road of its own): its centre line, half width and height. */
-  surface?: { axis: Axis; half: number; y: number }
+  /** The scene's walkable bounds [minX, minZ, maxX, maxZ]: anyone or anything whose place falls outside is not drawn (the final guard). */
+  bounds?: readonly [number, number, number, number]
   /** Vehicles drawn this much narrower (default 1): a narrow street's two lanes. */
   narrow?: number
   /** The city's country id: the taxis' and buses' livery. */
@@ -305,40 +305,6 @@ function trafficMesh(kit: Kit, vehicles: readonly PaintedVehicle[]): THREE.Insta
   return mesh;
 }
 
-/** A carriageway's colours: the asphalt, the kerbs, the centre dashes and the zebra stripes. */
-export const SURFACE_COLOURS = Object.freeze({ road: '#55595a', kerb: '#bdb6a6', dash: '#d9d4b8', zebra: '#e9e6d6' });
-
-/** The road under a street's traffic (one mesh, flat quads in the vertex colours): asphalt, kerbs, centre dashes, a zebra at each crossing. */
-function surfaceMesh(kit: Kit, surface: NonNullable<StreetLifeOptions['surface']>, crossings: readonly Lane[]): THREE.Mesh {
-  const { THREE } = kit, { axis, half, y } = surface;
-  const length = Math.hypot(axis.bx - axis.ax, axis.bz - axis.az) || 1, ux = (axis.bx - axis.ax) / length, uz = (axis.bz - axis.az) / length;
-  const positions: number[] = [], colours: number[] = [], index: number[] = [];
-  // A quad from `a0` to `a1` along the axis and `c0` to `c1` across it (toward (−uz, ux)), `lift` above the road.
-  const quad = (a0: number, a1: number, c0: number, c1: number, lift: number, colour: string): void => {
-    const c = new THREE.Color(colour), base = positions.length / 3;
-    for (const [a, cr] of [[a0, c0], [a1, c0], [a1, c1], [a0, c1]] as const) {
-      positions.push(axis.ax + ux * a - uz * cr, y + lift, axis.az + uz * a + ux * cr);
-      colours.push(c.r, c.g, c.b);
-    }
-    index.push(base, base + 2, base + 1, base, base + 3, base + 2);
-  };
-  quad(0, length, -half, half, 0.004, SURFACE_COLOURS.road);
-  quad(0, length, half, half + 0.35, 0.03, SURFACE_COLOURS.kerb);
-  quad(0, length, -half - 0.35, -half, 0.03, SURFACE_COLOURS.kerb);
-  const spans = crossings.map((c) => ({ at: ((c.ax + c.bx) / 2 - axis.ax) * ux + ((c.az + c.bz) / 2 - axis.az) * uz, half: c.width / 2 }));
-  for (let a = 2; a + 2.8 < length; a += 6) if (spans.every((s) => Math.abs(a + 1.4 - s.at) > s.half + 1.5)) quad(a, a + 2.8, -0.07, 0.07, 0.008, SURFACE_COLOURS.dash);
-  for (const s of spans) for (let cr = -half + 0.5; cr + 0.6 < half; cr += 1.1) quad(s.at - s.half + 0.2, s.at + s.half - 0.2, cr, cr + 0.6, 0.008, SURFACE_COLOURS.zebra);
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-  geometry.setAttribute('color', new THREE.Float32BufferAttribute(colours, 3));
-  geometry.setIndex(index);
-  geometry.computeVertexNormals();
-  const mesh = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: '#ffffff', vertexColors: true }));
-  mesh.name = 'street-surface';
-  mesh.castShadow = false; mesh.receiveShadow = false;
-  return mesh;
-}
-
 /** The readout `?streetperf=1` shows (a fixed line at the top left of the page; nothing without a document). */
 function perfReadout(): { show(text: string): void; dispose(): void } | null {
   const doc = globalThis.document;
@@ -364,11 +330,11 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
   const people = planPeople(options.seed, world, options.crowd);
   const crowd = people.length ? crowdMesh(kit, people) : null;
   const traffic = vehicles.length ? trafficMesh(kit, vehicles) : null;
-  const surface = options.surface ? surfaceMesh(kit, options.surface, crossings) : null;
-  const surfaceTris = surface ? (surface.geometry.index?.count ?? 0) / 3 : 0;
-  if (surface) group.add(surface);
   if (crowd) group.add(crowd.mesh);
   if (traffic) group.add(traffic);
+  // The final guard: a place outside the walkable bounds is drawn as nothing (a zero matrix: no pixels).
+  const bounds = options.bounds, inside = (x: number, z: number): boolean => !bounds || (Number.isFinite(x) && Number.isFinite(z) && x >= bounds[0] && x <= bounds[2] && z >= bounds[1] && z <= bounds[3]);
+  const nothing = new THREE.Matrix4().makeScale(0, 0, 0);
   const matrix = new THREE.Matrix4(), position = new THREE.Vector3(), scale = new THREE.Vector3(), turn = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0), still = new THREE.Quaternion();
   const adaptive = createAdaptiveCaps({ crowd: people.length, vehicles: vehicles.length });
   let shownPeople = people.length, shownVehicles = vehicles.length, disposed = false, frames = 0;
@@ -397,7 +363,7 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
         const person = people[i]!, pose = personAt(person, world, seconds), spot = stepAside(pose, player);
         position.set(spot.x, heightAt(spot.x, spot.z) + pose.lift, spot.z);
         scale.set(person.height * 0.5 * person.width, person.height, 1);
-        crowd.mesh.setMatrixAt(i, matrix.compose(position, still, scale));
+        crowd.mesh.setMatrixAt(i, inside(spot.x, spot.z) ? matrix.compose(position, still, scale) : nothing);
         gait[i * 4] = pose.phase; gait[i * 4 + 1] = pose.ry; gait[i * 4 + 2] = pose.fade; gait[i * 4 + 3] = pose.mode;
       }
       crowd.mesh.instanceMatrix.needsUpdate = true;
@@ -409,7 +375,8 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
         const pose = vehiclePose(schedule, vehicles, options.roads, i, seconds);
         position.set(pose.x, heightAt(pose.x, pose.z), pose.z);
         scale.set((spec.wide ?? 1) * narrow, spec.tall, spec.length);
-        traffic.setMatrixAt(i, matrix.compose(position, turn.setFromAxisAngle(up, pose.ry), scale));
+        const reach = vehicle.length / 2, ends = inside(pose.x + Math.sin(pose.ry) * reach, pose.z + Math.cos(pose.ry) * reach) && inside(pose.x - Math.sin(pose.ry) * reach, pose.z - Math.cos(pose.ry) * reach);
+        traffic.setMatrixAt(i, ends ? matrix.compose(position, turn.setFromAxisAngle(up, pose.ry), scale) : nothing);
       }
       traffic.instanceMatrix.needsUpdate = true;
     }
@@ -420,8 +387,8 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
     group, step, setCaps, signal, schedule,
     get people() { return shownPeople; },
     get vehicles() { return shownVehicles; },
-    get triangles() { return disposed ? 0 : shownPeople * PERSON_TRIS + shownVehicles * CAR_TRIS + surfaceTris; },
-    get drawCalls() { return disposed ? 0 : (crowd && shownPeople ? 1 : 0) + (traffic && shownVehicles ? 1 : 0) + (surface ? 1 : 0); },
+    get triangles() { return disposed ? 0 : shownPeople * PERSON_TRIS + shownVehicles * CAR_TRIS; },
+    get drawCalls() { return disposed ? 0 : (crowd && shownPeople ? 1 : 0) + (traffic && shownVehicles ? 1 : 0); },
     dispose() {
       if (disposed) return;
       disposed = true;
@@ -432,7 +399,6 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
         (mesh.material as THREE.Material).dispose();
         mesh.dispose();
       }
-      if (surface) { surface.geometry.dispose(); (surface.material as THREE.Material).dispose(); }
       group.parent?.remove(group);
     },
   };

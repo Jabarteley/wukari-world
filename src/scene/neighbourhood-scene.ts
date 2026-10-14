@@ -350,8 +350,11 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
           const browse = STREET_LANES[2]!, windows = sceneryChunk.planShopfronts(sceneryChunk.frontagesOf(plan.pieces, boxOf), lifeSeed())
             .filter(bay => bay.facing === -1 && Math.abs(bay.z - browse.az) < 3).map(bay => bay.x - browse.ax);
           const lanes = STREET_LANES.map(lane => lane === browse ? { ...lane, windows } : lane);
-          const layout = streets.homeStreet(country(), ownX(), lanes, ROW_HALF_WIDTH);
-          streetLife = module.createStreetLife(kit, { parent: group, seed: lifeSeed(), lanes: layout.lanes, roads: layout.roads, crossings: STREET_CROSSINGS, country: country(), crowd: choice.crowd, vehicles: choice.vehicles, narrow: streets.HOME_NARROW, at: Date.now() });
+          // The final guard: the street is used only when all of it (lanes, roads, crossings) lies inside the street's walkable bounds, and
+          // its start pose only when the eye stands on a walkable cell; otherwise none (the phase-3b lanes, no traffic, no street pose).
+          const layout = streets.fitStreet(streets.homeStreet(country(), ownX(), lanes, ROW_HALF_WIDTH, BOUNDS), (x, z) => grid.free(x, z));
+          streetLife = module.createStreetLife(kit, { parent: group, seed: lifeSeed(), lanes: layout?.lanes ?? STREET_LANES, roads: layout?.roads ?? [], crossings: layout ? STREET_CROSSINGS : [],
+            country: country(), crowd: choice.crowd, vehicles: layout ? choice.vehicles : 0, narrow: streets.HOME_NARROW, bounds: BOUNDS, at: Date.now() });
           streetLife.step(Date.now(), avatar.position);
           streetLayout = layout; streets.noteStreet('neighbourhood', layout);
           streetWindow = STREET_WINDOW_S; changed();

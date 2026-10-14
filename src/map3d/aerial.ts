@@ -19,6 +19,7 @@ import type { BufferGeometry, Group, InstancedMesh, Material, Mesh, MeshBasicMat
 import type { XZ } from './types.ts';
 import { aerialFade, aerialTier, cloudFade, planAerial, planClouds, AERIAL_CAPS, AERIAL_RESERVE, AERIAL_TRIANGLES, seedOf } from './aerial-plan.ts';
 import type { AerialPack, AerialPlan, AerialTier, AerialVenue, Cloud } from './aerial-plan.ts';
+import { lightOn } from '../lightMode.ts';
 
 type Three = typeof import('three');
 
@@ -60,7 +61,7 @@ export interface Aerial {
 /** What the browser says of the device (./dive-host.ts deviceHints, repeated: this chunk imports nothing it does not own). */
 export function readTier(reduced: boolean, nav: unknown = globalThis.navigator): AerialTier | 'cut' {
   const n = (nav ?? {}) as { hardwareConcurrency?: number; deviceMemory?: number; connection?: { saveData?: boolean } };
-  return aerialTier({ reduced, cores: n.hardwareConcurrency, memory: n.deviceMemory, saveData: n.connection?.saveData === true });
+  return aerialTier({ reduced, cores: n.hardwareConcurrency, memory: n.deviceMemory, saveData: n.connection?.saveData === true || lightOn() });
 }
 
 const DISSOLVE = `if (uAerialFade < 0.999) { float aerialNoise = fract(52.9829189 * fract(dot(gl_FragCoord.xy, vec2(0.06711056, 0.00583715)))); if (aerialNoise >= uAerialFade) discard; }`;

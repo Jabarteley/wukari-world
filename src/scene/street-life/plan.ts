@@ -23,6 +23,7 @@
  * word sent between them.
  */
 import { makeRng } from '../../game/util.ts';
+import { lightOn } from '../../lightMode.ts';
 
 /** What a browser says about itself (src/map3d/dive.ts DeviceHints). */
 export interface DeviceHints { reduced?: boolean; cores?: number; memory?: number; saveData?: boolean }
@@ -73,7 +74,7 @@ export function deviceHints(device: NavigatorLike | undefined = globalThis.navig
   return {
     ...(typeof device?.hardwareConcurrency === 'number' ? { cores: device.hardwareConcurrency } : {}),
     ...(typeof device?.deviceMemory === 'number' ? { memory: device.deviceMemory } : {}),
-    saveData: connection?.saveData === true || connection?.effectiveType === '2g' || connection?.effectiveType === 'slow-2g',
+    saveData: connection?.saveData === true || lightOn() || connection?.effectiveType === '2g' || connection?.effectiveType === 'slow-2g',
   };
 }
 

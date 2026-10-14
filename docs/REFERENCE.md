@@ -525,6 +525,7 @@ Content under `src/game/content/` marks provisional values with `beta: true` (or
 | `scripts/economy-sim.ts` | The balance simulation (`npm run economy`); its assertions are `src/game/economy.test.ts` |
 | `scripts/load.ts` | The local load test (`npm run load`) |
 | `scripts/capacity.ts`, `docs/CAPACITY.md` | The capacity test (`npm run capacity`: simulated open pages against the Node or the Worker host, with a CPU profile of the host) and what it found: every limit, what a player costs, where the single object stops and what comes after |
+| `src/lightMode.ts`, `src/scene/frame-gate.ts`, `src/app/state/dataMeter.ts`, `src/app/scene/sceneSupport.ts`, `docs/DATA-LIGHT.md` | Light mode (data saver): the switch and its default from save-data, the 30 fps cap and the pause while hidden or covered, the data meter in Settings, and the message for browsers that cannot draw the 3D scene; with the audit of what already saved data and what to measure on a low-end phone |
 | `**/*.test.ts`, `server/test-fixture.ts` | `node --test` suites (one per owner under `src/game/`, plus `integration.test.ts` for the seams between them) and the shared server fixture |
 
 No registered placeholder is left. [What works today](#what-works-today) is the list of working features.

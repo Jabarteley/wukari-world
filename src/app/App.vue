@@ -11,6 +11,7 @@ import '../ui/shell.css'
 // The compact layout of a phone (and a phone on its side), after the page layout it adjusts.
 import '../ui/compact.css'
 import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { sceneCovered, setCovered } from '../scene/frame-gate.ts'
 import { useApp } from './state/app.ts'
 import { heldActionFor, shortcutFor } from '../ui/keys.ts'
 import { social, start as startSocial, wakeSocket } from './features/social/useSocial.ts'
@@ -48,6 +49,11 @@ const mode = game.mode
 const snapshotAvailable = computed(() => game.snapshotPhase.value === 'available')
 const navPanel = computed(() => (mode.value !== 'venue' ? shell.byId.get(mode.value) ?? null : null))
 const sheetOpen = computed(() => Boolean(shell.sheet.value))
+// A full-screen panel, or any sheet on a phone-sized screen, covers the scene: the scene stops drawing (src/scene/frame-gate.ts) and is drawn once when the cover goes.
+watch(() => {
+  const open = shell.sheet.value
+  return sceneCovered({ sheetOpen: Boolean(open), fullscreen: open?.kind === 'panel' && shell.byId.get(open.id)?.fullscreen === true, narrow: Boolean(globalThis.matchMedia?.('(max-width: 720px)').matches) })
+}, setCovered, { immediate: true, flush: 'post' })
 /** A home being visited is what the screen shows, whatever place the player stood in before. */
 const visitingHome = computed(() => Boolean(social.me?.visiting))
 const root = ref<HTMLElement | null>(null)
@@ -149,7 +155,7 @@ onMounted(() => {
   // The guide (src/app/features/companion): fetched once the first frame is up.
   setTimeout(() => { void import('./features/companion/companionLoader.ts').then((loader) => loader.startCompanion()) }, 800)
 })
-onBeforeUnmount(() => { for (const [target, type, listener] of listeners) target.removeEventListener(type, listener) })
+onBeforeUnmount(() => { setCovered(false); for (const [target, type, listener] of listeners) target.removeEventListener(type, listener) })
 // Connected (or connected again): the social client opens its socket and reads the overview.
 // The social client also waits for a life that is not still held by character creation (its connected() says so), so a quick start that
 // confirms the look a moment after connecting must start it again; otherwise the new player is not findable until a reload.

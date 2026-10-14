@@ -1,5 +1,8 @@
 // Sound preferences of this device: the part the first download needs (the HUD speaker and the engine read the same values).
+// Light mode (src/lightMode.ts) starts music off on a device that has not chosen yet.
 // Stored in localStorage only; nothing here is sent to the server. The gains they mean are in levels.ts.
+
+import { lightOn } from '../lightMode.ts'
 
 export const SOUND_KEY = 'joinallworld-sound-v1'
 export interface SoundSettings {
@@ -23,10 +26,11 @@ export const SOUND_DEFAULTS: Readonly<SoundSettings> = { on: true, master: 0.8, 
 
 type Store = Pick<Storage, 'getItem'> | null | undefined
 /** The saved preferences; a value of the wrong kind or range is replaced by its default. */
-export function readSound(storage: Store): SoundSettings {
+export function readSound(storage: Store, light = false): SoundSettings {
   let saved: Record<string, unknown> = {}
   try { const parsed: unknown = JSON.parse(storage?.getItem(SOUND_KEY) ?? 'null'); if (parsed && typeof parsed === 'object') saved = parsed as Record<string, unknown> } catch { /* defaults */ }
   const out: Record<string, unknown> = { ...SOUND_DEFAULTS }
+  if (light) out.musicOn = false
   for (const key of Object.keys(SOUND_DEFAULTS) as (keyof SoundSettings)[]) {
     const value = saved[key], fallback = SOUND_DEFAULTS[key]
     if (key === 'voices') { if (value === 'off' || value === 'sounds' || value === 'speech') out[key] = value; continue }
@@ -41,7 +45,7 @@ const store = (): Storage | null => { try { return localStorage } catch { return
 const tell = (): void => { for (const listener of [...listeners]) listener() }
 
 /** The live settings of this tab (read from storage on first use). */
-export const getSound = (): SoundSettings => current ??= readSound(store())
+export const getSound = (): SoundSettings => current ??= readSound(store(), lightOn())
 /** Change some preferences, save them, tell the listeners. Returns false when the browser would not save. */
 export function setSound(patch: Partial<SoundSettings>): boolean {
   current = { ...getSound(), ...patch }
@@ -54,7 +58,7 @@ export function setSound(patch: Partial<SoundSettings>): boolean {
 export const toggleMute = (): boolean => setSound({ on: !getSound().on })
 /** Listen for changes (this tab's and, through the storage event, other tabs'). Returns the unsubscribe. */
 export function onSoundChange(listener: () => void): () => void {
-  if (!listeners.size && typeof window !== 'undefined') window.addEventListener('storage', (event) => { if (event.key === SOUND_KEY) { current = readSound(store()); tell() } })
+  if (!listeners.size && typeof window !== 'undefined') window.addEventListener('storage', (event) => { if (event.key === SOUND_KEY) { current = readSound(store(), lightOn()); tell() } })
   listeners.add(listener)
   return () => { listeners.delete(listener) }
 }

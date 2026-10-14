@@ -6,6 +6,7 @@ import { shortcutRows } from '../../../ui/keys-text.ts'
 import BaseButton from '../../ui/BaseButton.vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import { openWorld } from '../tour/tourWorld.ts'
+import { feedCredits } from '../world/feedCredits.ts'
 
 const { game, shell } = useApp()
 const country = computed(() => openWorld(game.cityId.value).country)
@@ -40,9 +41,15 @@ function showShortcuts(): void { window.dispatchEvent(new CustomEvent('jaw:short
     <h3>Keyboard</h3>
     <dl class="help-keys"><div v-for="row in rows" :key="row.label"><dt><kbd>{{ row.label }}</kbd></dt><dd>{{ row.description }}</dd></div></dl>
     <BaseButton block @click="shell.open('support')">Report a problem</BaseButton>
+    <p class="help-credits">
+      <a :href="feedCredits.weatherUrl" target="_blank" rel="noopener noreferrer">{{ feedCredits.weather }}</a>
+      <template v-if="feedCredits.rates && feedCredits.ratesUrl"> · <a :href="feedCredits.ratesUrl" target="_blank" rel="noopener noreferrer">{{ feedCredits.rates }}</a></template>
+    </p>
   </div>
 </template>
 
 <style scoped>
 .help-actions { display: grid; gap: 8px; margin: 0 0 16px; }
+.help-credits { margin: 14px 0 0; font-size: 11px; opacity: 0.7; text-align: center; }
+.help-credits a { color: inherit; }
 </style>

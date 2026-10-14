@@ -149,6 +149,8 @@ onMounted(() => {
   if (new URLSearchParams(location.search).has('venue')) scene.mapsWanted.value = true
   // The guide (src/app/features/companion): fetched once the first frame is up.
   setTimeout(() => { void import('./features/companion/companionLoader.ts').then((loader) => loader.startCompanion()) }, 800)
+  // The real weather and the day's rates (src/app/features/world): a small module, fetched after the first frame.
+  setTimeout(() => { void import('./features/world/worldFeed.ts').then((feed) => feed.startRealWorldFeed((path) => game.fetchJson(path), game.cityId)) }, 1500)
 })
 onBeforeUnmount(() => { for (const [target, type, listener] of listeners) target.removeEventListener(type, listener) })
 // Connected (or connected again): the social client opens its socket and reads the overview.

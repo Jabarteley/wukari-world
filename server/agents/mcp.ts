@@ -17,6 +17,7 @@ import { ALL_TOOLS as TOOLS } from './tools-more.ts';
 import { PUBLIC_TOOLS } from './signup.ts';
 import type { ToolContext, ToolDefinition, ToolOutput } from './tools.ts';
 import { characterCity } from '../character.ts';
+import { agentWords, isBlockedLine, textsIn } from '../moderation/agent-words.ts';
 import type { RouteHandler } from '../types.ts';
 
 export const MCP_PATH = '/mcp';
@@ -103,6 +104,14 @@ export function mcpRoutes(ctx: RouteContext, svc: AgentService): Record<RouteKey
     try {
       if (problem) throw refusal(ctx, 400, 'invalid_arguments', problem);
       svc.admit(agent);
+      // Whatever free text a generic tool carries (a route's body, an action's payload) passes the AI rules before it runs: the same words an AI
+      // character may not say in chat may not be written into a speech, a shop, an ad or a note either (docs/AI-SAFETY.md).
+      if (tool.name === 'call_api' || tool.name === 'do_action') {
+        for (const text of textsIn(tool.name === 'call_api' ? args.body : args.payload)) {
+          const verdict = agentWords(text);
+          if (!verdict.ok) throw refusal(ctx, 400, verdict.code, verdict.reason);
+        }
+      }
       output = await tool.run(context, args, rid);
     } catch (error) {
       const found = refused(error);
@@ -112,7 +121,7 @@ export function mcpRoutes(ctx: RouteContext, svc: AgentService): Record<RouteKey
       output = { ok: false, code: found.code, refused: !limit && found.status < 500, data: { ok: false, code: found.code, result: found.reason, ...(limit ? { retry: found.code === 'rate_limited' ? 'Wait a little, then carry on.' : 'Try again later.' } : {}) } };
     }
     // One write after the call: counters, the audit trail, the "AI-played" mark.
-    const done = await ctx.store.transact((db) => svc.record(db, agent, { tool: tool.name, ok: output.ok, code: output.code, ...(rid ? { rid } : {}), ...(output.aid ? { aid: output.aid } : {}), ...(output.refused ? { refused: true } : {}), ...(output.facts ? { facts: output.facts } : {}), ...(output.say ? { say: output.say } : {}) }),
+    const done = await ctx.store.transact((db) => svc.record(db, agent, { tool: tool.name, ok: output.ok, code: output.code, ...(rid ? { rid } : {}), ...(output.aid ? { aid: output.aid } : {}), ...(output.refused ? { refused: true } : {}), ...(isBlockedLine(output.code) ? { blocked: true } : {}), ...(output.facts ? { facts: output.facts } : {}), ...(output.say ? { say: output.say } : {}) }),
       { durable: tool.readOnly ? false : true });
     if (done.announce) ctx.core.refreshNames(ctx.publicSession(done.announce));
     // Present in its place for everyone there while the key is active (a virtual member of the room: no socket), or gone from it.

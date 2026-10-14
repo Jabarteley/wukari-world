@@ -10,6 +10,7 @@
  *                  characters. null means: use the deterministic reply.
  */
 import { screenText } from '../moderation/text.ts';
+import { agentWords } from '../moderation/agent-words.ts';
 import { COMPANION_NAME } from '../../src/app/features/companion/identity.ts';
 
 export const MAX_REPLY = 320;
@@ -68,6 +69,8 @@ function badSentence(sentence: string, numbers: ReadonlySet<string>): boolean {
   if (URL_LIKE.test(sentence) || EMAIL.test(sentence) || PHONE.test(sentence) || HANDLE.test(sentence) || REAL_MONEY.test(sentence)) return true;
   const verdict = screenText(sentence, { contact: true });
   if (verdict && verdict.code !== 'text_blocked') return true;
+  // The same AI rules as every AI character (docs/AI-SAFETY.md): no asking for money or details, no meeting outside the game; the guide is read by players of any age.
+  if (!agentWords(sentence, { toMinor: true }).ok) return true;
   return amountsIn(sentence).length > 0 && amountsIn(sentence).some((amount) => !numbers.has(amount));
 }
 
@@ -77,6 +80,9 @@ export function checkReply(raw: string, numbers: ReadonlySet<string>, extra: { n
   if (!text) return null;
   const name = extra.name ?? COMPANION_NAME;
   if (LEAK.test(text) || HUMAN.test(text) || OWNER.test(text) || PROMISE.test(text) || screenText(text)?.code === 'text_blocked') return null;
+  // Sexual, human-claiming, secretive or flirting words refuse the whole reply (the deterministic answer is used instead).
+  const words = agentWords(text, { toMinor: true });
+  if (!words.ok && ['agent_words_sexual', 'agent_words_human', 'agent_words_secret', 'agent_words_romance'].includes(words.code)) return null;
   for (const m of text.matchAll(NAMED)) if (m[1] !== name && !NOT_NAMES.has(m[1] ?? '')) return null;
   const sentences = text.split(/(?<=[.!?])\s+/).map((part) => part.trim()).filter(Boolean);
   const kept = sentences.filter((sentence) => !badSentence(sentence, numbers));

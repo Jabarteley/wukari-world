@@ -32,8 +32,10 @@ import { emit } from '../registry.ts';
 import { finite, isRecord, makeRng } from '../util.ts';
 import { addMoodlet, removeMoodlet, feelingsOf } from '../api.ts';
 import { HEALTH } from '../content/health.ts';
+import type { SkyWords } from '../weather-observed.ts';
 import { isCityId, cityRules } from '../cities/registry.ts';
 import { ALL_MODES } from '../content/travel.ts';
+import type { WeatherKind } from '../../types/content.ts';
 import type { SystemDefinition } from '../../types/registry.ts';
 import type { IllnessCause, LifeContext, LifeState, NeedId } from '../../types/life.ts';
 import type { HealthView } from '../../types/view.ts';
@@ -42,17 +44,33 @@ const { feelings, illness, weather } = HEALTH;
 const CAUSES = ['neglect', 'rain'] as const satisfies readonly IllnessCause[];
 const isCause = (value: unknown): value is IllnessCause => CAUSES.some((cause) => cause === value);
 
-/** The sky over a city at a moment. Deterministic; identical for every player and every caller. */
-export function weatherAt(now: unknown, cityId: string) {
+/**
+ * The real sky, when the world feed has one (src/game/weather-observed.ts registers its reader here when it is loaded: on the server
+ * and in the browser's lazy feed module, so none of it is in the first download). Null: the cycle decides.
+ */
+type ObservedSky = (cityId: string, at: number) => { tempC: number | null; words: SkyWords } | null;
+let observedSky: ObservedSky | null = null;
+export const useObservedSky = (read: ObservedSky | null): void => { observedSky = read; };
+
+/** The sky over a city at a moment: the real weather when the world feed has some for that hour, else the cycle. */
+export interface Sky extends WeatherKind { raining: boolean; until: number; /** True when the real weather decided it. */ observed?: true; /** Air temperature in degrees C, with observed weather. */ tempC?: number }
+
+/**
+ * The sky over a city at a moment. Deterministic; identical for every player and every caller that holds the same observed weather
+ * (src/game/weather-observed.ts): the observed hour that holds the block's start decides, and when none does the old cycle does.
+ */
+export function weatherAt(now: unknown, cityId: string): Sky {
   if (!isCityId(cityId)) throw new TypeError(`Unknown city weather: ${cityId}`);
   const blockMs = weather.blockMinutes * 60000;
   const block = Math.floor((finite(now) ? now : 0) / blockMs);
   const climate = cityRules(cityId)?.climate;
   const month = climate ? new Date(block * blockMs + 3600000).getUTCMonth() : 0;
-  const raining = makeRng(`weather|${cityId}|${block}`)() < (climate?.rainChanceByMonth[month] ?? weather.rainChance);
+  const seen = observedSky?.(cityId, block * blockMs) ?? null;
+  const words = seen ? seen.words : null;
+  const raining = words ? words.raining : makeRng(`weather|${cityId}|${block}`)() < (climate?.rainChanceByMonth[month] ?? weather.rainChance);
   const kind = weather.kinds[raining ? 'rain' : 'clear'];
   const local = climate ? raining ? { text: 'It is raining. Exposed travel can leave you soaked.' } : { label: climate.harmattan?.months.includes(month + 1) ? climate.harmattan.label : climate.clearLabel } : {};
-  return { ...kind, ...local, raining, until: (block + 1) * blockMs };
+  return { ...kind, ...local, ...(words?.over ?? {}), raining, until: (block + 1) * blockMs, ...(seen ? { observed: true as const, ...(seen.tempC !== null ? { tempC: seen.tempC } : {}) } : {}) };
 }
 
 const nowOf = (state: LifeState, ctx: LifeContext): number => (finite(ctx?.now) ? ctx.now : state.t);
@@ -111,7 +129,7 @@ function view(state: LifeState, ctx: LifeContext): HealthView {
     immune: immune(state, now), immuneMinutes: Math.max(0, Math.ceil((health.immuneUntil - now) / 60000)),
     healsInMinutes: health.sick ? Math.max(0, Math.ceil(((health.since ?? 0) + illness.selfHealSeconds * 1000 - now) / 60000)) : null,
     status: health.sick ? feelings.sick.label : rundown ? 'Run down' : 'Healthy',
-    weather: { id: sky.id, label: sky.label, icon: sky.icon, text: sky.text, raining: sky.raining, minutesLeft: Math.max(1, Math.ceil((sky.until - now) / 60000)) },
+    weather: { id: sky.id, label: sky.label, icon: sky.icon, text: sky.text, raining: sky.raining, minutesLeft: Math.max(1, Math.ceil((sky.until - now) / 60000)), ...(sky.observed ? { observed: true as const } : {}), ...(sky.tempC !== undefined ? { tempC: sky.tempC } : {}) },
     warning, advice, cures: HEALTH.cures,
     feelings: feelingsOf(state).filter((feeling) => [feelings.sick.id, feelings.soaked.id, feelings.recovered.id].includes(feeling.id)),
   };

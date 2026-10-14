@@ -11,6 +11,11 @@
  *            the Lagos day it began, the last day it was seen, and which funnel steps it has been
  *            counted for (a bit mask). Removed after KEEP.window days — after that nothing about an
  *            individual player is kept here at all. At most KEEP.lives records.
+ * RETURN SPLIT (added with friendship after shared play). A life also carries, all optional: `src` (the cleaned "source|medium|campaign"
+ * the browser reported at its first hello), `ret` (which of day 1, 7 and 30 it was seen on, a bit mask), `fr` (the Lagos day of its
+ * first real friend: noteFriend, called when a friend request is accepted; the founder's welcome friendship is not one) and `done`.
+ * When a life is old enough for a return day to be settled (prune, hourly) it is counted ONCE into `split[cohortDay]`, a small
+ * aggregate by arrival source and by "made a friend within the first two days", and the life then ages out as before.
  * Nothing here is ever sent to a player. It is read only through GET /api/mod/growth/metrics,
  * with the operator token.
  *
@@ -41,7 +46,7 @@
 import { lagosTime } from '../../src/game/clock.ts';
 import { STARTER_GOALS } from '../../src/game/content/goals.ts';
 import type { LifeState } from '../../src/types/life.ts';
-import type { FunnelStep, GrowthMetricsResponse, MetricsCohort, MetricsDay, RetentionCell, SourceCampaign, SourceRow } from '../../src/types/growth.ts';
+import type { FunnelStep, GrowthMetricsResponse, MetricsCohort, MetricsDay, RetentionCell, ReturnCell, ReturnRow, ReturnSplit, SourceCampaign, SourceRow } from '../../src/types/growth.ts';
 import type { CityId } from '../../src/types/protocol.ts';
 import { cleanSource, SOURCE_EVENTS } from '../../src/game/attribution.ts';
 import type { SourceEvent } from '../../src/game/attribution.ts';
@@ -49,6 +54,11 @@ import type { GrowthCollection } from '../types.ts';
 
 export const KEEP = Object.freeze({ days: 400, cohorts: 120, window: 31, lives: 50000, sourceDays: 90, sourceKeys: 200 });
 export const RETENTION_DAYS = Object.freeze([1, 3, 7, 14, 30]);
+/** The return days split by arrival source and by friend; bit i of a life's `ret` / `done` is SPLIT_DAYS[i]. */
+export const SPLIT_DAYS = Object.freeze([1, 7, 30]);
+/** A life made a friend "early" when it did so within this many days of starting (so day 1 and day 30 are judged the same way). */
+export const FRIEND_WITHIN_DAYS = 1;
+const SPLIT_GROUPS_PER_DAY = 40;
 /**
  * Funnel steps. `reached(state)` is read from the server's own copy of the life. A life's steps are kept as a bit mask BY
  * POSITION in this list, so a step is only ever ADDED AT THE END: inserting one would shift the bits of lives already
@@ -76,7 +86,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> => value !==
 interface MetricsBook {
   days: Record<string, Record<string, number>>
   cohorts: Record<string, { size: number; r: Record<string, number> }>
-  lives: Record<string, { first: number; last: number | null; steps: number }>
+  lives: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; done?: number }>
 }
 function book(g: GrowthCollection, cityId: CityId = 'lagos'): MetricsBook {
   const m = g.metrics;
@@ -117,7 +127,7 @@ export function count(g: GrowthCollection, now: number, cityOrName: CityId | str
  * `lastSeen`: when this player was last seen before now (server ms, or null) — so a life too old to be followed is still
  * counted once a day and not once per visit.
  */
-export function touch(g: GrowthCollection, now: number, publicId: string, state: LifeState, lastSeen: number | null = null): void {
+export function touch(g: GrowthCollection, now: number, publicId: string, state: LifeState, lastSeen: number | null = null, arrived?: unknown): void {
   const cityId: CityId = typeof state.estate?.city === 'string' ? state.estate.city : 'lagos';
   const m = book(g, cityId), day = lagosTime(now).day;
   const first = lagosTime(Number.isFinite(state?.civic?.since) ? state.civic.since : now).day;
@@ -125,7 +135,7 @@ export function touch(g: GrowthCollection, now: number, publicId: string, state:
   if (!found) {
     // Only a life still inside its window is followed; an old life is counted as active and nothing else.
     if (day - first > KEEP.window - 1 || Object.keys(m.lives).length >= KEEP.lives) { if (typeof lastSeen !== 'number' || !Number.isFinite(lastSeen) || lagosTime(lastSeen).day !== day) count(g, now, cityId, 'active-untracked'); return; }
-    found = m.lives[publicId] = { first, last: null, steps: 0 };
+    found = m.lives[publicId] = { first, last: null, steps: 0, src: sourceKey(arrived) };
     const cohort = (m.cohorts[first] ||= { size: 0, r: {} });
     cohort.size += 1;
     if (first === day) count(g, now, cityId, 'new');
@@ -137,12 +147,44 @@ export function touch(g: GrowthCollection, now: number, publicId: string, state:
     const offset = day - life.first;
     const cohort = m.cohorts[life.first];
     if (RETENTION_DAYS.includes(offset) && cohort) cohort.r[offset] = (cohort.r[offset] ?? 0) + 1;
+    const bit = SPLIT_DAYS.indexOf(offset);
+    if (bit >= 0) life.ret = (life.ret ?? 0) | (1 << bit);
   }
   FUNNEL.forEach((step, index) => {
     if (life.steps & (1 << index) || !step.reached(state)) return;
     life.steps |= 1 << index;
     count(g, now, cityId, `funnel.${step.id}`);
   });
+}
+
+/** "source|medium|campaign" from a hello's words, cleaned again here. */
+function sourceKey(words: unknown): string {
+  const { source, medium, campaign } = cleanSource(words);
+  return `${source}|${medium}|${campaign}`;
+}
+/** A real friend was made (a friend request was accepted): note the day on both lives that are followed. Ignored for a life not followed. */
+export function noteFriend(g: GrowthCollection, now: number, ...publicIds: string[]): void {
+  const day = lagosTime(now).day;
+  for (const [, m] of cityBooks(g)) for (const id of publicIds) { const life = Object.hasOwn(m.lives, id) ? m.lives[id] : undefined; if (life && life.fr === undefined) life.fr = day; }
+}
+/** Count every life that is old enough for a return day, once, into `split`; a life is settled for day N when it is N+1 days old (day 1: FRIEND_WITHIN_DAYS + 1). */
+function settle(g: GrowthCollection, day: number): void {
+  const split = (g.metrics.split ||= {});
+  for (const [, m] of cityBooks(g)) for (const life of Object.values(m.lives)) {
+    const age = day - life.first;
+    SPLIT_DAYS.forEach((offset, bit) => {
+      if ((life.done ?? 0) & (1 << bit) || age < Math.max(offset, FRIEND_WITHIN_DAYS) + 1) return;
+      life.done = (life.done ?? 0) | (1 << bit);
+      const returned = (life.ret ?? 0) & (1 << bit) ? 1 : 0, early = life.fr !== undefined && life.fr - life.first <= FRIEND_WITHIN_DAYS;
+      const today = (split[life.first] ||= {});
+      for (const group of [`src:${life.src ?? 'unknown|unknown|unknown'}`, `friend:${early ? 'yes' : 'no'}`]) {
+        // Only the source groups are capped (the two friend groups are always kept): a new one past the cap is counted under other.
+        const key = group.startsWith('src:') && !Object.hasOwn(today, group) && Object.keys(today).length >= SPLIT_GROUPS_PER_DAY ? 'src:other|other|other' : group;
+        const cell = ((today[key] ||= {})[offset] ||= [0, 0]);
+        cell[0] += 1; cell[1] += returned;
+      }
+    });
+  }
 }
 
 const OVERFLOW_KEY = 'other|other|other|none';
@@ -162,6 +204,9 @@ export function countSource(g: GrowthCollection, now: number, words: unknown, ev
 export function prune(g: GrowthCollection, now: number): void {
   const day = lagosTime(now).day;
   for (const key of Object.keys(g.metrics.sources ?? {})) if (day - Number(key) > KEEP.sourceDays) delete g.metrics.sources?.[key];
+  // At most once an hour: it looks at every followed life.
+  if (!(now - (g.metrics.splitAt ?? 0) < 3600000)) { g.metrics.splitAt = now; settle(g, day); }
+  for (const key of Object.keys(g.metrics.split ?? {})) if (day - Number(key) > KEEP.cohorts) delete g.metrics.split?.[key];
   for (const [, m] of cityBooks(g)) {
     for (const key of Object.keys(m.days)) if (day - Number(key) > KEEP.days) delete m.days[key];
     for (const key of Object.keys(m.cohorts)) if (day - Number(key) > KEEP.cohorts) delete m.cohorts[key];
@@ -183,6 +228,26 @@ function sourceReport(g: GrowthCollection, today: number, span: number): { sourc
   }
   const campaigns = [...sums.values()].sort((a, b) => b.landed - a.landed);
   return { sources, campaigns };
+}
+/** The return split, summed over every cohort kept. A day that is not settled yet for anyone shows no rate (null), never 0. */
+export function returnSplit(g: GrowthCollection): ReturnSplit {
+  const sum = new Map<string, Record<string, [number, number]>>();
+  for (const groups of Object.values(g.metrics.split ?? {})) for (const [group, days] of Object.entries(groups)) {
+    const into = sum.get(group) ?? {};
+    for (const [offset, [lives, returned]] of Object.entries(days)) { const cell = (into[offset] ||= [0, 0]); cell[0] += lives; cell[1] += returned; }
+    sum.set(group, into);
+  }
+  const cell = (days: Record<string, [number, number]> | undefined, offset: number): ReturnCell => {
+    const [lives, returned] = days?.[offset] ?? [0, 0];
+    return { lives, returned, rate: lives ? Math.round((returned / lives) * 1000) / 10 : null };
+  };
+  const row = (days: Record<string, [number, number]> | undefined): ReturnRow => ({ d1: cell(days, 1), d7: cell(days, 7), d30: cell(days, 30) });
+  const bySource = [...sum].filter(([group]) => group.startsWith('src:')).map(([group, days]) => {
+    const [source = '', medium = '', campaign = ''] = group.slice(4).split('|');
+    return { source, medium, campaign, ...row(days) };
+  }).sort((a, b) => b.d1.lives - a.d1.lives).slice(0, 40);
+  return { bySource, byFriend: { yes: row(sum.get('friend:yes')), no: row(sum.get('friend:no')) },
+    note: 'A life is counted once it is old enough. "Has a friend" means a real friend made in the first two days (the founder\'s welcome does not count). Lives that started before this was counted are not in it.' };
 }
 const dateOf = (day: number): string => new Date(day * 86400000).toISOString().slice(0, 10);
 /** The operator's report: totals per day and the cohort table. Carries no player id. */
@@ -212,6 +277,6 @@ export function report(g: GrowthCollection, now: number, { days = 35 }: { days?:
   const totals: Record<string, number> = {};
   for (const row of daily) for (const [name, value] of Object.entries(row)) if (name !== 'day' && name !== 'date' && typeof value === 'number') totals[name] = (totals[name] ?? 0) + value;
   const funnel = FUNNEL_ORDER.map((id) => ({ step: id, lives: totals[`funnel.${id}`] ?? 0 }));
-  return { generatedAt: now, timezone: 'Africa/Lagos', source: 'first-party', days: daily, cohorts, totals, funnel, ...sourceReport(g, today, span), tracked: Object.keys(m.lives).length,
+  return { generatedAt: now, timezone: 'Africa/Lagos', source: 'first-party', days: daily, cohorts, totals, funnel, ...sourceReport(g, today, span), returns: returnSplit(g), tracked: Object.keys(m.lives).length,
     retention: { daily: `${KEEP.days} days`, cohorts: `${KEEP.cohorts} days`, perLife: `${KEEP.window} days, then deleted` } };
 }

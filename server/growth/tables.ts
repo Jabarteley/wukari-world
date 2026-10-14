@@ -62,6 +62,7 @@ import { RulesError, RATING, cleanOptions, eloChange, withNames } from '../../sr
 import type { Outcome, TableOptionSpec, TableOptions, TableRules, TableState } from '../../src/tables/rules.ts';
 import { canOccupyVenue } from '../protocol.ts';
 import { growthOf, playerOf } from './data.ts';
+import { friendOffers } from '../social/friend-offers.ts';
 import { count } from './metrics.ts';
 import type { CityId } from '../../src/types/protocol.ts';
 import type { LifeState } from '../../src/types/life.ts';
@@ -617,6 +618,11 @@ function buildService(ctx: RouteContext) {
           if (!Array.isArray(player.wins)) player.wins = [];
           if (player.wins.length < 12) player.wins.push(entry);
         });
+        // Friendship after shared play: who each player may be offered, decided here from the social collection (server/social/friend-offers.ts).
+        for (const { seat } of humans) {
+          const mine = per[seat.id], people = friendOffers(db.social, seat.id, humans.map(({ seat: other }) => ({ id: other.id, name: other.name })));
+          if (mine && people.length) mine.offers = { match: match.id, people };
+        }
         count(g, t, table.cityId, humans.length > 1 ? 'table.human' : 'table.bot');
       });
       owned.delete(match.id);

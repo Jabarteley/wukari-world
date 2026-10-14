@@ -245,6 +245,8 @@ export interface SocialPlayerRecord {
   visiting: string | null
   /** Naira received as gifts on Lagos day `day`. */
   recv: { day: number; amount: number }
+  /** The thanks-and-gifts record shown on the profile (added later, so absent on older records): how many gifts this player gave and got, and the last few. No amounts. */
+  thanks?: { given: number; got: number; recent: { who: string; dir: 'gave' | 'got'; at: number }[] }
   /** Chats started with non-friends on Lagos day `day`. */
   chats: { day: number; count: number }
   /** Who may come into this player's home (server/social/visit.ts). Absent: knock first. */
@@ -288,6 +290,8 @@ export interface MessageRecord {
   /** The sender's clientId. */
   cid?: string
   sys?: true
+  /** Held back from AI characters: a person's "are you an AI?" or crisis words said to one, and the game's answer to it. An agent never reads it (server/moderation/ai-intercept.ts). */
+  noAi?: true
   /** The founder's welcome note: `body` is '' and the words come from server/social/founder.ts. */
   auto?: true
   /** With `auto`: the player's start the note was written from (server/social/founder.ts welcomeNote). Absent on earlier notes. */
@@ -707,7 +711,16 @@ export interface GrowthMetricsRecord {
   cities?: Partial<Record<CityId, GrowthCityMetricsRecord>>
   days?: Record<string, Record<string, number>>
   cohorts?: Record<string, { size: number; r: Record<string, number> }>
-  lives?: Record<string, { first: number; last: number | null; steps: number }>
+  /** `src` (optional, added with the return split): the cleaned "source|medium|campaign" the life arrived by; `ret` a bit mask of the retention days seen (1, 7, 30 → bits 0, 1, 2); `fr` the Lagos day of its first real friend; `done` the same mask for the days already counted into `split`. */
+  lives?: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; done?: number }>
+  /**
+   * Day-1, day-7 and day-30 return by how a life arrived and by whether it made a friend in its first two days, counted once when
+   * the life is old enough: { [cohortLagosDay]: { "src:<source|medium|campaign>" | "friend:yes" | "friend:no": { "1" | "7" | "30": [lives, returned] } } }.
+   * Aggregate only: no player id. Kept KEEP.cohorts days.
+   */
+  split?: Record<string, Record<string, Record<string, [number, number]>>>
+  /** When `split` was last settled (server ms); it is done at most once an hour. */
+  splitAt?: number
   /** Visits by campaign: { [lagosDay]: { "source|medium|campaign|content": counts } } (server/growth/metrics.ts). */
   sources?: Record<string, Record<string, SourceCounts>>
 }
@@ -1328,6 +1341,8 @@ export interface RouteContext {
   pages?: Map<string, PageHandler>
   /** Work that outlives the request that started it: a host that could stop between requests (the Worker) keeps itself up for it; Node does nothing. */
   waitUntil?(promise: Promise<unknown>): void
+  /** True on a host that should ask the outside world for rates and weather (server/world-feed). The Node host and the Worker set it; a test sets it with a fake fetch. */
+  worldFeed?: boolean
   /** One of the outreach settings on the host's allowlist (host-context.js OUTREACH_ENV), or '' — nothing else of the environment is reachable. */
   env(name: string): string
   /** An outside request for server/growth/outreach.ts: https only, never follows a redirect, cut off after 15 s. */

@@ -423,7 +423,7 @@ export interface HealthView {
   healsInMinutes: number | null
   /** 'Very Sick' | 'Run down' | 'Healthy'. */
   status: string
-  weather: { id: 'clear' | 'rain'; label: string; icon: string; text: string; raining: boolean; minutesLeft: number }
+  weather: { id: 'clear' | 'rain'; label: string; icon: string; text: string; raining: boolean; minutesLeft: number; /** True when the real weather of the world feed decided it. */ observed?: true; /** Air temperature in degrees C, with observed weather. */ tempC?: number }
   /** The HUD chip. */
   warning: { level: 'sick' | 'rundown' | 'rain'; icon: string; text: string } | null
   /** At least one sentence. */

@@ -5,8 +5,8 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useAdmin } from './useAdmin.ts'
 import { absolute, bytes, naira, relative, uptime } from './adminModel.ts'
-import { accountsPerDay, field, fillTone, lastDays, percent, returning, series, shortDate, sizeTone, tileChange } from './dashboardModel.ts'
-import type { DayRow } from './dashboardModel.ts'
+import { accountsPerDay, field, fillTone, lastDays, percent, returnCell, returning, series, shortDate, sizeTone, sourceLabel, tileChange } from './dashboardModel.ts'
+import type { DayRow, ReturnsRead } from './dashboardModel.ts'
 import Spark from './charts/Spark.vue'
 import Trend from './charts/Trend.vue'
 import Funnel from './charts/Funnel.vue'
@@ -25,7 +25,7 @@ interface Dash {
   storage: { collections: Record<string, number>; rows: unknown; writes: number | null }; build: string; uptimeMs: number
   extra: { id: string; label: string; group?: string; cost: string; value: number | string | null }[]
 }
-interface Hist { asOf: number; startedOn: string | null; kept: number; days: DayRow[]; funnel: { today: { steps: FunnelRow[]; returned: { size: number; back: number; rate: number | null } }; week: { steps: FunnelRow[]; returned: { size: number; back: number; rate: number | null } } } }
+interface Hist { returns?: ReturnsRead; asOf: number; startedOn: string | null; kept: number; days: DayRow[]; funnel: { today: { steps: FunnelRow[]; returned: { size: number; back: number; rate: number | null } }; week: { steps: FunnelRow[]; returned: { size: number; back: number; rate: number | null } } } }
 interface Eco {
   asOf: number; cashInCirculation: number; players: number; median: number; richest: { id: string; name: string; cash: number }[]; sessionsRead: number; truncated: boolean; cost: string
   faucets: { category: string; net: number }[]; sinks: { category: string; net: number }[]; adminMoney: { category: string; net: number }[]
@@ -102,6 +102,16 @@ const asOf = computed(() => (dash.value ? `as of ${absolute(dash.value.asOf)}, $
         <div class="adm-row adm-between"><h3>New-player funnel</h3><div class="adm-seg" role="group" aria-label="Funnel period"><button type="button" :aria-pressed="span === 'today'" @click="span = 'today'">Today</button><button type="button" :aria-pressed="span === 'week'" @click="span = 'week'">7 days</button></div></div>
         <Funnel v-if="funnel" :title="`New players, ${span === 'today' ? 'today' : 'last 7 days'}`" :rows="funnel.steps" />
         <p v-if="funnel" class="adm-sub">Came back the next day: <b>{{ funnel.returned.rate === null ? 'too early to say' : `${funnel.returned.back} of ${funnel.returned.size} (${funnel.returned.rate}%)` }}</b>. Steps are counted by the day they happen, so they are not strictly the same people. Hover a step for what it counts.</p>
+      </div>
+
+      <div v-if="hist?.returns" class="adm-card adm-scroll">
+        <h3>Coming back: by friends and by where they came from</h3>
+        <table class="adm-table"><thead><tr><th>Group</th><th>Day 1</th><th>Day 7</th><th>Day 30</th></tr></thead><tbody>
+          <tr><td>Made a friend early</td><td>{{ returnCell(hist.returns.byFriend.yes.d1) }}</td><td>{{ returnCell(hist.returns.byFriend.yes.d7) }}</td><td>{{ returnCell(hist.returns.byFriend.yes.d30) }}</td></tr>
+          <tr><td>No friend yet</td><td>{{ returnCell(hist.returns.byFriend.no.d1) }}</td><td>{{ returnCell(hist.returns.byFriend.no.d7) }}</td><td>{{ returnCell(hist.returns.byFriend.no.d30) }}</td></tr>
+          <tr v-for="row in hist.returns.bySource" :key="sourceLabel(row)"><td>{{ sourceLabel(row) }}</td><td>{{ returnCell(row.d1) }}</td><td>{{ returnCell(row.d7) }}</td><td>{{ returnCell(row.d30) }}</td></tr>
+        </tbody></table>
+        <p class="adm-sub">{{ hist.returns.note }}</p>
       </div>
 
       <div class="adm-two">

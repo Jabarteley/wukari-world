@@ -160,7 +160,7 @@ export interface SocialUpdate {
   // `id`, so two updates of one kind in the same millisecond share a key.
 }
 
-export type ReportReason = 'harassment' | 'scam' | 'spam' | 'cheating' | 'offensive-name' | 'other'
+export type ReportReason = 'harassment' | 'scam' | 'spam' | 'cheating' | 'offensive-name' | 'asked-for-money' | 'claimed-human' | 'other'
 /** A player's own copy of a report they filed (`R-<n>`); the status follows the moderator's. */
 export interface PlayerReportReceipt {
   id: string
@@ -292,6 +292,9 @@ export interface PeopleListing {
 
 export interface SearchResult extends PlayerRef { friend: boolean }
 
+/** The thanks-and-gifts record on a profile. `recent` (newest first, no amounts) is empty unless the viewer is that player or their friend. */
+export interface ThanksView { given: number; got: number; recent: { who: string; name: string; dir: 'gave' | 'got'; at: number }[] }
+
 /** GET /api/social/players/:id → `player`. Where they are is only detailed for a friend. */
 export interface PersonCard extends PlayerRef, Whereabouts {
   self: boolean
@@ -303,6 +306,8 @@ export interface PersonCard extends PlayerRef, Whereabouts {
   bae: boolean
   /** The caller's Bae request to them is waiting. */
   baeAsked: boolean
+  /** Gifts they gave and got (present once there is one). */
+  thanks?: ThanksView
 }
 
 // ---- request bodies ------------------------------------------------------------------------------
@@ -659,4 +664,4 @@ export const PEOPLE_LISTING_KEYS = ['cityId', 'code', 'count', 'groups', 'here',
 export const CONVERSATION_KEYS = ['id', 'kind', 'last', 'members', 'name', 'owner', 'unread', 'with'] as const satisfies readonly (keyof Conversation)[]
 /** A sender's own message; someone else's has no `clientId`, a system line adds `sys`. */
 export const OWN_MESSAGE_KEYS = ['at', 'body', 'clientId', 'conv', 'from', 'id', 'seq'] as const satisfies readonly (keyof Message)[]
-export const REPORT_REASONS = ['harassment', 'scam', 'spam', 'cheating', 'offensive-name', 'other'] as const satisfies readonly ReportReason[]
+export const REPORT_REASONS = ['harassment', 'scam', 'spam', 'cheating', 'offensive-name', 'asked-for-money', 'claimed-human', 'other'] as const satisfies readonly ReportReason[]

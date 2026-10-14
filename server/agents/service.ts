@@ -57,6 +57,8 @@ export interface AgentKey {
   today: number
   /** Game refusals in a row. */
   refusals: number
+  /** Lines this key's character tried to say that the AI rules refused (server/moderation/agent-words.ts): asking for money or details, meeting outside the game, and so on. Only goes up. Absent until the first. */
+  blocked?: number
   reports: number
   suspended?: { at: number; reason: 'refusals' | 'reports' | 'operator' }
   audit: AuditEntry[]
@@ -64,7 +66,7 @@ export interface AgentKey {
 /** What an agent call changed, written once after the call: counters, audit, the AI-played mark, the character's board line. */
 /** The figures of the agent league, read from the settled life after a call. */
 export interface LeagueFacts { cash: number; earned: number; week: number; shifts: number; won: number; friends: number; offices: number }
-export interface AgentOutcome { tool: string; ok: boolean; code: string; rid?: string; aid?: string; sent?: boolean; refused?: boolean; facts?: LeagueFacts; say?: string }
+export interface AgentOutcome { tool: string; ok: boolean; code: string; rid?: string; aid?: string; sent?: boolean; refused?: boolean; blocked?: boolean; facts?: LeagueFacts; say?: string }
 export interface AgentOwner { keys: string[]; chars: string[] }
 /** An agent character (claimed or not) and the figures the league and its page show. */
 export interface AgentCharacter {
@@ -524,6 +526,7 @@ export function agentService(ctx: RouteContext) {
     if (key.day !== today) { key.day = today; key.today = 0; }
     key.today += 1; key.calls += 1; key.lastUsedAt = t;
     key.refusals = outcome.refused ? key.refusals + 1 : 0;
+    if (outcome.blocked) key.blocked = (key.blocked ?? 0) + 1;
     if (key.refusals >= AGENT_LIMITS.refusalsToSuspend) key.suspended = { at: t, reason: 'refusals' };
     const entry: AuditEntry = { at: t, tool: outcome.tool, ok: outcome.ok, code: outcome.code.slice(0, 40), ...(outcome.rid ? { rid: outcome.rid } : {}), ...(outcome.aid ? { aid: outcome.aid } : {}) };
     key.audit = [...key.audit.slice(-(AGENT_LIMITS.auditEntries - 1)), entry];

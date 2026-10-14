@@ -10,32 +10,43 @@
  * escaped, and the only player-chosen text is the sharer's name, which the text filter has passed.
  * An unknown or expired code gives the game's general preview and leads to the game.
  */
-import { UUID_PATTERN } from '../protocol.ts';
 import { lagosTime } from '../../src/game/clock.ts';
 import { viewLife } from '../../src/life.ts';
 import { lgaOf } from '../../src/game/content/world.ts';
 import { cityContent, cityRules } from '../../src/game/cities/index.ts';
 import { hasPlace } from '../../src/game/systems/estate.ts';
 import { isGuestLife } from '../../src/game/systems/onboarding.ts';
-import { BRAND, TAGLINE, SHARE_KINDS, cleanFacts, isShareCode, sharePreview } from '../../src/game/share-model.ts';
+import { BRAND, TAGLINE, SHARE_KINDS, cardImage, cleanFacts, isShareCode, sharePreview, shareTarget } from '../../src/game/share-model.ts';
 import type { ShareOffer } from '../../src/game/share-model.ts';
 import { eventsBetween } from '../../src/game/calendar.ts';
 import { GAME_LABELS } from '../../src/tables/places.ts';
 import { withBoardGames } from '../../src/tables/derive.ts';
+import { peekRecords, keyOf } from '../records/store.ts';
 import { LIMITS, playerOf, sweep } from './data.ts';
 import { count } from './metrics.ts';
 import type { CityId } from '../../src/types/protocol.ts';
 import type { LifeState } from '../../src/types/life.ts';
 import type { ShareFacts, ShareKind } from '../../src/types/growth.ts';
-import type { GrowthCollection, GrowthPlayerRecord, RouteContext, SessionRecord, ShareRecord } from '../types.ts';
+import type { Db, GrowthCollection, GrowthPlayerRecord, RouteContext, SessionRecord, ShareRecord } from '../types.ts';
 
-export const OG_IMAGE = '/og/allworld.jpg';
+export const OG_IMAGE = cardImage('invite').path;
 const ESCAPES: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 const esc = (value: unknown): string => String(value ?? '').replace(/[&<>"']/g, (c) => ESCAPES[c] ?? c);
 const no = <Code extends string>(code: Code, reason: string): { ok: false; code: Code; reason: string } => ({ ok: false, code, reason });
 
+/** The public record entries a card may carry. A ruling can name a person who was tried, so it is left out. */
+const ELECTION_KINDS: readonly string[] = ['term'];
+const NEWS_KINDS: readonly string[] = ['term', 'law', 'party', 'impeachment'];
+type PublicEntry = { n: number; kind: string; title: string; scopeName: string };
+/** One entry of the public record, or null. Only the fields a card may say are read. */
+export function publicEntry(db: Db, n: unknown): PublicEntry | null {
+  if (typeof n !== 'number' || !Number.isSafeInteger(n) || n < 1) return null;
+  const found = peekRecords(db).entries[keyOf(n)];
+  return found ? { n: found.n, kind: found.kind, title: String(found.title), scopeName: String(found.scopeName) } : null;
+}
+
 /** The facts of a share, read from the sharer's settled life. Nothing comes from the request but the kind (and an event id). */
-export function factsFor(kind: ShareKind, session: Pick<SessionRecord, 'name'>, state: LifeState, cityId: CityId, now: number, player: GrowthPlayerRecord, eventId?: unknown, tableId?: unknown): Partial<ShareFacts> | null {
+export function factsFor(kind: ShareKind, session: Pick<SessionRecord, 'name'>, state: LifeState, cityId: CityId, now: number, player: GrowthPlayerRecord, eventId?: unknown, tableId?: unknown, publicRecord?: PublicEntry | null): Partial<ShareFacts> | null {
   const actualCity: CityId = typeof state.estate?.city === 'string' && cityRules(state.estate.city) ? state.estate.city : cityId;
   const view = viewLife(state, { now, cityId: actualCity });
   // Where the sharer lives: the local government of their own house, or the district of the home they rent. A guest (no
@@ -57,6 +68,11 @@ export function factsFor(kind: ShareKind, session: Pick<SessionRecord, 'name'>, 
     const tableCity = player.table.cityId ?? 'lagos';
     return { ...base, city: cityRules(tableCity)?.name ?? tableCity, district: tableCity === actualCity ? base.district : '', game: player.table.label, won: player.table.won };
   }
+  // A civic card says one line of the public record (server/records/store.ts): names and counts that anyone may read in the Hall of Records, never who voted for whom.
+  if (kind === 'election' || kind === 'news') return publicRecord && (kind === 'news' ? NEWS_KINDS : ELECTION_KINDS).includes(publicRecord.kind) ? { ...base, headline: publicRecord.title, record: publicRecord.n, city: publicRecord.scopeName || base.city } : null;
+  // A wedding needs a marriage between two players who both agreed. The game has no marriages yet, so there is nothing to share; when it has,
+  // its rules supply { partner } here (the partner's public name) and nothing else.
+  if (kind === 'wedding') return null;
   if (kind === 'event') {
     const event = eventsBetween(now, now + 8 * 86400000, cityId).find((item) => item.id === eventId);
     return event ? { ...base, event: event.title, venue: event.venueLabel } : null;
@@ -65,15 +81,16 @@ export function factsFor(kind: ShareKind, session: Pick<SessionRecord, 'name'>, 
 }
 
 /** Make (or find again) the caller's share link of one kind. Runs inside a store transaction. */
-export function createShare(ctx: Pick<RouteContext, 'now' | 'fail' | 'randomId'>, g: GrowthCollection, session: SessionRecord, state: LifeState, cityId: CityId, body: Record<string, unknown>) {
+export function createShare(ctx: Pick<RouteContext, 'now' | 'fail' | 'randomId'>, db: Db, g: GrowthCollection, session: SessionRecord, state: LifeState, cityId: CityId, body: Record<string, unknown>) {
   const now = ctx.now(), kind = SHARE_KINDS.find((item) => item === body.kind);
   if (!kind) throw ctx.fail(400, 'invalid_share_kind');
   if (body.event !== undefined && (typeof body.event !== 'string' || !/^[a-z0-9-]{1,40}$/.test(body.event))) throw ctx.fail(400, 'invalid_event');
+  if (body.record !== undefined && (typeof body.record !== 'number' || !Number.isSafeInteger(body.record) || body.record < 1)) throw ctx.fail(400, 'invalid_record');
   const player = playerOf(g, session.publicId);
   if (!player) return no('server_full', 'Sharing is not available right now. Try again later.');
   if (body.table !== undefined && (typeof body.table !== 'string' || !/^[a-z0-9-]{1,40}$/.test(body.table))) throw ctx.fail(400, 'invalid_table');
-  const raw = factsFor(kind, session, state, cityId, now, player, body.event, body.table);
-  if (!raw) return no('nothing_to_share', kind === 'table' ? 'Finish a table game first, then share the result.' : 'That event is not on this week.');
+  const raw = factsFor(kind, session, state, cityId, now, player, body.event, body.table, kind === 'election' || kind === 'news' ? publicEntry(db, body.record) : null);
+  if (!raw) return no('nothing_to_share', kind === 'table' ? 'Finish a table game first, then share the result.' : kind === 'wedding' ? 'There is no wedding to share yet.' : kind === 'election' || kind === 'news' ? 'That entry of the public record could not be found.' : 'That event is not on this week.');
   const facts = cleanFacts(raw), text = JSON.stringify(facts);
   sweep(g, now);
   // The same card twice is the same link: a second tap on Share makes nothing new.
@@ -108,19 +125,21 @@ export const safeOrigin = (origin: unknown): string => (typeof origin === 'strin
  * The preview page. `share` may be null (unknown code): the general preview.
  * `origin` is e.g. "https://play.example" or ''.
  */
-export function sharePageHtml(share: Pick<ShareRecord, 'by' | 'facts'> | null, code: unknown, origin: unknown = '', offer: ShareOffer | null = null): string {
+export function sharePageHtml(share: Pick<ShareRecord, 'by' | 'facts'> | null, code: unknown, origin: unknown = '', offer: ShareOffer | null = null, source = ''): string {
   const base = safeOrigin(origin);
   const preview = share ? sharePreview(share.facts, offer) : { title: `${BRAND}: a digital world you can live in`, description: TAGLINE };
-  // People are sent on to the game's own landing hook: `join` places a new visitor with the sharer (their venue, their
-  // door, or a table), `ref` is this share code, which the game attaches as a referral once the visitor's life exists.
-  const table = share?.facts?.tableId && /^[a-z0-9-]{1,40}$/.test(share.facts.tableId) ? `&table=${share.facts.tableId}` : '';
-  const target = share && isShareCode(code) && UUID_PATTERN.test(share.by ?? '') ? `/?join=${share.by}&ref=${code}${table}` : '/';
-  const url = `${base}${share && isShareCode(code) ? `/s/${code}` : '/'}`, image = `${base}${OG_IMAGE}`;
+  // People are sent on to the game's own landing hook (shareTarget, src/game/share-model.ts): `join` places a new visitor with the
+  // sharer (their venue, their door, or a table), `ref` is this share code, which the game attaches as a referral once the visitor's
+  // life exists, and `source` is the ad-source words the shared link carried, so the visit is counted under them.
+  const target = shareTarget(share, code, source);
+  const url = `${base}${share && isShareCode(code) ? `/s/${code}` : '/'}`;
+  const picture = share ? cardImage(share.facts?.kind) : cardImage('invite'), image = `${base}${picture.path}`;
   const title = esc(preview.title), description = esc(preview.description);
+  const alt = picture.path === OG_IMAGE ? `${esc(BRAND)}: friends, homes and a yellow danfo in a miniature waterfront neighbourhood` : title;
   return `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${title}</title>
 <meta name="description" content="${description}">
 <meta property="og:type" content="website"><meta property="og:site_name" content="${esc(BRAND)}"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}">
-<link rel="canonical" href="${esc(url)}"><meta property="og:locale" content="en_NG"><meta property="og:url" content="${esc(url)}"><meta property="og:image" content="${esc(image)}"><meta property="og:image:width" content="1200"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${esc(BRAND)}: friends, homes and a yellow danfo in a miniature waterfront neighbourhood">
+<link rel="canonical" href="${esc(url)}"><meta property="og:locale" content="en_NG"><meta property="og:url" content="${esc(url)}"><meta property="og:image" content="${esc(image)}"><meta property="og:image:width" content="1200"><meta property="og:image:type" content="${picture.type}"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${alt}">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${title}"><meta name="twitter:description" content="${description}"><meta name="twitter:image" content="${esc(image)}">
 <meta name="robots" content="noindex, nofollow"><meta http-equiv="refresh" content="0;url=${esc(target)}">
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#183b2a;color:#fff;font:16px/1.5 system-ui,sans-serif;text-align:center}main{padding:24px;max-width:420px}a{display:inline-block;margin-top:16px;padding:12px 22px;border-radius:999px;background:#e8a643;color:#20232c;font-weight:700;text-decoration:none}</style></head>

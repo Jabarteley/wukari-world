@@ -14,9 +14,10 @@
  * ShareKind and ShareFacts (the fields of a facts record and what each means) are in src/types/growth.ts.
  */
 import { isRecord } from './util.ts';
+import { cleanSourceWord } from './attribution.ts';
 import type { ShareFacts, ShareKind } from '../types/growth.ts';
 
-export const SHARE_KINDS: readonly ShareKind[] = Object.freeze(['invite', 'house', 'missions', 'week', 'table', 'event']);
+export const SHARE_KINDS: readonly ShareKind[] = Object.freeze(['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news']);
 const KIND_NAMES: readonly string[] = SHARE_KINDS;
 const isKind = (value: unknown): value is ShareKind => typeof value === 'string' && KIND_NAMES.includes(value);
 export const BRAND = 'Allworld';
@@ -33,7 +34,8 @@ export function cleanFacts(input: unknown): ShareFacts {
   return { kind, name: clip(facts.name, 24) || 'A resident', district: clip(facts.district, 24), city: clip(facts.city, 24) || 'Lagos',
     done: count(facts.done, 9), total: count(facts.total, 9), days: count(facts.days), stamps: count(facts.stamps, 7), title: clip(facts.title, 24),
     game: clip(facts.game, 24), won: facts.won === true, event: clip(facts.event, 48), venue: clip(facts.venue, 32),
-    tableId: typeof facts.tableId === 'string' && /^[a-z0-9-]{1,40}$/.test(facts.tableId) ? facts.tableId : '' };
+    tableId: typeof facts.tableId === 'string' && /^[a-z0-9-]{1,40}$/.test(facts.tableId) ? facts.tableId : '',
+    partner: clip(facts.partner, 24), headline: clip(facts.headline, 120), record: count(facts.record, 999999999) };
 }
 
 /** The launch offer as GET /api/world/bonus tells it (server/bonus/service.ts). */
@@ -61,6 +63,9 @@ function previewOf(facts: unknown): { title: string; description: string } {
     case 'table': return f.tableId ? { title: `Come and play ${f.game || 'a game'} with ${f.name}`, description: `${f.name} is at a table${f.venue ? ` at ${f.venue}` : ''} in ${BRAND}. Sit down or watch. No sign-up.` }
       : { title: f.won ? `${f.name} just won at ${f.game || 'the table'}` : `${f.name} is at the ${f.game || 'games'} table`, description: `Pull up a chair in ${BRAND}. Whot at the buka, with real people.` };
     case 'event': return { title: `${f.event || 'Something is on'} · ${f.venue || f.city}`, description: `${f.name} is going. Meet them there in ${BRAND}.` };
+    case 'wedding': return { title: f.partner ? `${f.name} and ${f.partner} just got married` : `${f.name} just got married`, description: `Come and celebrate with them in ${f.city}, in ${BRAND}. No sign-up: pick a name and walk in.` };
+    case 'election': return { title: f.headline || `An election result in ${f.city}`, description: `From the public record of ${f.city}. Vote in the next election in ${BRAND}. No sign-up.` };
+    case 'news': return { title: f.headline || `News from ${f.city}`, description: `From the public record of ${f.city}. See what is happening in ${BRAND}. No sign-up.` };
     default: return { title: `Join ${f.name} in ${BRAND}`, description: `${f.name} lives in ${place}, in a world of real cities. Make your character, get a job, and come through. No sign-up.` };
   }
 }
@@ -81,6 +86,9 @@ export function shareText(facts: unknown, link = '', offer?: ShareOffer | null):
   } else if (f.kind === 'table') lines.push(...(f.tableId ? [`Come and play ${f.game} with me${f.venue ? ` at ${f.venue}` : ''} 🃏`, `I am at the table in ${BRAND}. Tap to sit down.`] : [f.won ? `I just won at ${f.game} in ${BRAND} 🏆` : `I am at the ${f.game} table in ${BRAND}`, 'Come and play me.']));
   else if (f.kind === 'house') lines.push(`Come to my house in ${f.district || f.city} 🏠`, `Knock in ${BRAND}. No sign-up.`);
   else if (f.kind === 'event') lines.push(`${f.event} · ${f.venue}`, `I am going. Meet me there in ${BRAND}.`);
+  else if (f.kind === 'wedding') lines.push(`${f.partner ? `${f.name} and ${f.partner} are` : `${f.name} is`} married in ${BRAND} 💍`, 'Come and celebrate with us.');
+  else if (f.kind === 'election') lines.push(`${f.headline || `The election in ${f.city} is decided`} 🗳️`, `See the result in ${BRAND}.`);
+  else if (f.kind === 'news') lines.push(`${f.headline || `News from ${f.city}`} 📰`, `Read it in ${BRAND}.`);
   else lines.push(`I live in ${BRAND} now: a world of real cities. Find me in ${f.district || f.city}.`, 'Make your character and come through. No sign-up.');
   const line = offerSentence(offer);
   if (line) lines.push(line);
@@ -102,6 +110,9 @@ export function shareCard(facts: unknown): ShareCard {
   if (f.kind === 'missions') return { ...base, headline: `${f.done}/${f.total || 3} missions today`, lines: [f.name, `${days(f.days)} in ${f.city}`, ...(f.title ? [f.title] : [])], squares: Array.from({ length: f.total || 3 }, (_, index) => index < f.done) };
   if (f.kind === 'week') return { ...base, headline: `My week in ${f.city}`, lines: [f.name, `${f.stamps} of 7 days played`, `${days(f.days)} in the city`], squares: Array.from({ length: 7 }, (_, index) => index < f.stamps) };
   if (f.kind === 'table') return { ...base, headline: f.tableId ? `Come and play ${f.game}` : f.won ? `Won at ${f.game}` : `At the ${f.game} table`, lines: [f.name, f.venue || place, f.tableId ? 'A seat is open' : 'Come and play me'] };
+  if (f.kind === 'wedding') return { ...base, headline: f.partner ? `${f.name} and ${f.partner}` : f.name, lines: ['Just got married', f.city, 'Come and celebrate'] };
+  if (f.kind === 'election') return { ...base, headline: f.headline || 'The election is decided', lines: [f.city, 'From the public record'] };
+  if (f.kind === 'news') return { ...base, headline: f.headline || `News from ${f.city}`, lines: [f.city, 'From the public record'] };
   if (f.kind === 'house') return { ...base, headline: 'Come to my house', lines: [f.name, place, 'Knock at the door'] };
   if (f.kind === 'event') return { ...base, headline: f.event, lines: [f.venue, `${f.name} is going`] };
   return { ...base, headline: `Come and live in ${BRAND}`, lines: [f.name, `Now in ${f.district || f.city}`, 'Make your character and come through'] };
@@ -117,3 +128,38 @@ export function shareCodeFrom(text: unknown): string | null {
 /** Where a button for one channel points. `text` already ends with the link. */
 export const whatsappUrl = (text: string): string => `https://wa.me/?text=${encodeURIComponent(text)}`;
 export const xUrl = (text: string): string => `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+
+// ---- the link a share sends, its picture and where it lands ----------------------------------------
+
+/** The preview picture of a kind: a path on the site and its type. Kinds without their own picture keep the game's general one. Files: public/og/card-*.png (scripts/make-share-cards.ts). */
+export function cardImage(kind: unknown): { path: string; type: 'image/png' | 'image/jpeg' } {
+  return kind === 'table' || kind === 'wedding' || kind === 'election' || kind === 'news' ? { path: `/og/card-${kind}.png`, type: 'image/png' } : { path: '/og/allworld.jpg', type: 'image/jpeg' };
+}
+
+/** The ad-source words every shared link carries (the same `utm_` words the owner's ads use, src/game/attribution.ts): the source is the share itself, the medium its channel, the campaign its kind. */
+export function sourceWords(kind: unknown, channel = 'card'): string {
+  return `utm_source=share&utm_medium=${cleanSourceWord(channel, 'card')}&utm_campaign=${cleanSourceWord(kind, 'invite')}`;
+}
+/** A share page's link with the ad-source words added; `link` is the absolute address of `/s/<code>`. */
+export const shareUrl = (link: string, kind: unknown, channel = 'card'): string => `${link}${link.includes('?') ? '&' : '?'}${sourceWords(kind, channel)}`;
+/** The ad-source words of a share page's own address (`?utm_…`), cleaned, as a query string without its `?` ('' when there are none). */
+export function sourceQuery(query: { get(name: string): string | null } | null | undefined): string {
+  const source = query?.get('utm_source'), medium = query?.get('utm_medium'), campaign = query?.get('utm_campaign');
+  if (!source || !campaign) return '';
+  return `utm_source=${cleanSourceWord(source)}&utm_medium=${cleanSourceWord(medium)}&utm_campaign=${cleanSourceWord(campaign)}`;
+}
+
+/**
+ * Where a person who opens a share is sent: the game's own landing hook (src/quick-start/model.ts), so a new visitor is placed
+ * by the quick start and a returning player goes straight there. A civic card (election, news) opens the Governor's panel;
+ * every other kind lands the visitor beside the sharer (and at the table, when the link names one). `ref` attaches the referral.
+ */
+export function shareTarget(share: { by?: string; facts?: unknown } | null, code: unknown, query = ''): string {
+  const tail = query ? `&${query}` : '';
+  const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+  if (!share || !isShareCode(code)) return '/';
+  const f = cleanFacts(share.facts);
+  if (f.kind === 'election' || f.kind === 'news') return `/?go=governor&ref=${code}${tail}`;
+  if (!uuid.test(share.by ?? '')) return '/';
+  return `/?join=${share.by}&ref=${code}${f.tableId ? `&table=${f.tableId}` : ''}${tail}`;
+}

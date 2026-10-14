@@ -30,6 +30,7 @@ import type { SocialResult } from './socialClient.ts'
 import { baeReason, friendControl, interactReason, moneyCeiling, moneyReason, sendLine } from './personModel.ts'
 import { closenessText, presenceClass, reasonLabel, STRANGER_TEXT, tagLabel, venueNameOf } from './socialWords.ts'
 import { personUi } from './socialState.ts'
+import { ladderLine, thanksItem, thanksLine } from './friendOfferModel.ts'
 import { useSocialScreen } from './useSocialScreen.ts'
 
 const props = defineProps<{ id: string; form?: 'money' }>()
@@ -145,7 +146,11 @@ async function sendReport(): Promise<void> {
     <p class="social-note is-warn">{{ profileError }}</p>
     <button type="button" class="social-btn" @click="state.profiles.delete(id)">Retry</button>
   </template>
-  <p v-else-if="card?.self">This is you, {{ card.name }}.</p>
+  <div v-else-if="card?.self">
+    <p>This is you, {{ card.name }}.</p>
+    <p v-if="card.thanks" class="social-note" data-thanks>{{ thanksLine(card.thanks) }}</p>
+    <ul v-if="card.thanks?.recent.length" class="social-note" data-thanks-recent><li v-for="item in card.thanks.recent" :key="`${item.at}-${item.who}-${item.dir}`">{{ thanksItem(item) }}</li></ul>
+  </div>
   <div v-else-if="card" :data-c-player="id">
     <div class="social-head people-who"><PlayerAvatar :name="card.name" :seed="id" :status="card.status" /><h3>{{ card.name }}<AiTag :who="card" /><FounderTag v-if="card.founder" /><ResidentBadge :id="id" /></h3></div>
     <p>Real player · <span class="social-presence" :class="`is-${presenceClass(card.status)}`">{{ presenceText(card, venueName, view.now, place) }}</span><template v-if="together"> · here with you</template><template v-if="card.bae"> · your Bae <GameIcon name="heart" inline /></template><template v-else-if="card.friend"> · Friend</template></p>
@@ -164,6 +169,9 @@ async function sendReport(): Promise<void> {
     </template>
     <p>{{ rel ? closenessText(rel, social.maxCloseness) : STRANGER_TEXT }}</p>
     <ClosenessMeter :points="points" :max="social.baeUnlock" :label="`Closeness with ${card.name}`" />
+    <p class="social-note" data-ladder>{{ ladderLine() }}</p>
+    <p v-if="card.thanks" class="social-note" data-thanks>{{ thanksLine(card.thanks) }}</p>
+    <ul v-if="card.thanks?.recent.length" class="social-note" data-thanks-recent><li v-for="item in card.thanks.recent" :key="`${item.at}-${item.who}-${item.dir}`">{{ thanksItem(item) }}</li></ul>
     <div class="social-grid">
       <button v-for="move in social.playerActions" :key="move.id" type="button" class="social-act" :disabled="Boolean(whyAct)" @click="interact(move.id)">
         <strong><GameIcon kind="npc-action" :id="move.id" :emoji="move.icon" inline /> {{ move.label }}</strong>

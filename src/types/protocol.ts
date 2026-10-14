@@ -420,7 +420,7 @@ export interface GroupsListFrame { type: 'groups'; here: number; total: number; 
 /** A calm line about where the player is: they were moved to another group, or could not be placed with a friend. */
 export interface GroupNoticeFrame {
   type: 'group'
-  event: 'placed' | 'moved' | 'apart' | 'waiting'
+  event: 'placed' | 'moved' | 'apart' | 'waiting' | 'notice'
   here: number
   text: string
   friend?: PublicSession
@@ -699,6 +699,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/world/me',
   'GET /api/world/pulse',
   'GET /api/world/pulse/online',
+  'GET /api/world/feed',
   'GET /api/world/city',
   'GET /api/world/lga/:id',
   'GET /api/world/lga/:id/estates',

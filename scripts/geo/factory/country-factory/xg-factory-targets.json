@@ -1,0 +1,265 @@
+{
+  "expectedSourceGitSHA": "83116903f3fbdf60090ce5d924080cbee547bbde",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "XG",
+    "datasetSha256": "33c910272e8313cecb8d4a5e539ef5c241aacdd77a2c601a06938de31165f050",
+    "receiptSha256": "81fb0111cd85e5cfae727b50333e3bd04751df9b8d41606927a437e2a9780d37",
+    "receiptBytes": 6911,
+    "geometrySha256": "ad7a7f9bd08c8481c57381e6afb2f1180e0c53f991f92ef3520628faa7eae07b",
+    "geometryBytes": 40021,
+    "scriptSha256": "a75e7ddb301ce6651f282b4ee3920097252b23bc8120907abf89487c07916b05",
+    "relationId": 13559521,
+    "boundaryKey": "xg",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38502666815,
+      "sourceSha": "c9b0f0e42b91d5f4fd7b3460940a9f649f171179",
+      "sourceArtifact": "city-bootstrap-xg-c9b0f0e42b91d5f4fd7b3460940a9f649f171179",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "siachen",
+      "name": "Terong Kangri",
+      "country": "xg",
+      "facts": {
+        "id": "siachen",
+        "name": "Terong Kangri",
+        "country": {
+          "idISOlower": "xg",
+          "name": "Siachen Glacier"
+        },
+        "state": {
+          "idunique": "xg-siachen",
+          "name": "Terong Kangri"
+        },
+        "timezone": "Etc/GMT-5",
+        "centre": {
+          "lon": 77.3141384,
+          "lat": 35.3986779
+        },
+        "airport": {
+          "id": "siachen-airport",
+          "name": "Col D'Italia",
+          "lon": 77.3191797,
+          "lat": 35.4672365,
+          "sourceUrl": "https://www.openstreetmap.org/node/3533480355"
+        },
+        "sourceLabel": "OpenStreetMap country PBF",
+        "sourceUrl": "https://www.openstreetmap.org/node/5305858330",
+        "licence": "OpenStreetMap ODbL-1.0",
+        "coverageNote": "Source-sampling bounds from a mapped place node and its mapped gateway node; the grouping is not an administrative-boundary claim. A mapped landing, heliport or track does not establish current operations or access.",
+        "gateway": {
+          "mode": "land",
+          "osmRef": "node/3533480355"
+        },
+        "bounds": [
+          77.22589663014551,
+          35.32632554402641,
+          77.4023801698545,
+          35.476280544496696
+        ]
+      },
+      "profile": "wilderness",
+      "selectionExclusions": [],
+      "links": [
+        {
+          "to": "delhi",
+          "kind": "overland"
+        },
+        {
+          "to": "lahore",
+          "kind": "overland"
+        }
+      ],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/5305858330",
+          "sourceUrl": "https://www.openstreetmap.org/node/5305858330",
+          "sourceRecord": {
+            "ref": "node/5305858330",
+            "tags": {
+              "ele": "6863",
+              "name": "Terong Kangri",
+              "natural": "peak"
+            },
+            "lon": 77.3141384,
+            "lat": 35.3986779
+          },
+          "pbfSha256": "33c910272e8313cecb8d4a5e539ef5c241aacdd77a2c601a06938de31165f050",
+          "selection": {
+            "cityOsmRef": "node/5305858330",
+            "matchedOsmRef": "node/5305858330"
+          }
+        },
+        "gateway": {
+          "osmRef": "node/3533480355",
+          "mode": "land",
+          "sourceUrl": "https://www.openstreetmap.org/node/3533480355",
+          "sourceRecord": {
+            "ref": "node/3533480355",
+            "tags": {
+              "alt_name": "Col Italia",
+              "ele": "5920",
+              "name": "Col D'Italia",
+              "natural": "saddle"
+            },
+            "lon": 77.3191797,
+            "lat": 35.4672365
+          },
+          "pbfSha256": "33c910272e8313cecb8d4a5e539ef5c241aacdd77a2c601a06938de31165f050",
+          "claim": "caller-supplied gateway node, checked for its mode tags and for no military tag; a mapped landing does not establish operations"
+        },
+        "timezone": {
+          "rows": [],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "override": {
+            "id": "Etc/GMT-5",
+            "reason": "The Siachen Glacier area has no zone1970.tab row of its own and its control is disputed; the game uses the fixed offset nearest local mean solar time at about 77.3 E (UTC+5:09), written as Etc/GMT-5, and names neither country's civil zone. Owner review required.",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/etcetera",
+            "claim": "reviewed timezone override: the pinned zone1970.tab has no row for this place, or the zone of a station differs from its country row"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/asia/india/northern-zone-261013.osm.pbf",
+          "bytes": 223835719,
+          "sha256": "33c910272e8313cecb8d4a5e539ef5c241aacdd77a2c601a06938de31165f050",
+          "headerTimestamp": "2026-10-13T20:21:31Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "boundsPolicySha256": "6f384df7d7b374e875192057a85d6bcace4dd2d7c3b3701298a7893dc2ed67b6",
+        "bounds": {
+          "policy": {
+            "playKm": 8,
+            "coreKm": 3,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              35.32632554402641,
+              77.22589663014551,
+              35.476280544496696,
+              77.4023801698545
+            ],
+            "core": [
+              35.371545766509904,
+              77.28106632437549,
+              35.4258100334901,
+              77.34721047562452
+            ],
+            "outline": [
+              35.27632554402641,
+              77.17589663014552,
+              35.52628054449669,
+              77.4523801698545
+            ],
+            "wide": [
+              34.861600234462934,
+              76.76117132058204,
+              35.94100585406017,
+              77.86710547941797
+            ]
+          },
+          "airportMarginMetres": 999.9999999998169,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "wilderness",
+          "rules": {
+            "minimumPlaces": 0,
+            "minimumNeighbourhoodLabels": 2,
+            "maximumEmptySlots": 9,
+            "cityPlaceTags": [
+              "hamlet",
+              "locality",
+              "isolated_dwelling",
+              "island",
+              "islet"
+            ],
+            "capitalPlaceTags": [],
+            "cityNaturalTags": [
+              "glacier",
+              "peak",
+              "saddle",
+              "reef",
+              "mountain_pass"
+            ],
+            "requiresCityOsmRef": true,
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtNaturalLabels": [
+              "peak",
+              "saddle",
+              "glacier",
+              "ridge",
+              "valley",
+              "volcano",
+              "cape",
+              "bay",
+              "reef",
+              "beach",
+              "mountain_pass"
+            ],
+            "hubGateway": true,
+            "authoredLinks": true,
+            "extraction": {
+              "extraPlaces": [
+                "natural",
+                "hut",
+                "historic"
+              ],
+              "roadLadder": [
+                "secondary",
+                "tertiary",
+                "unclassified",
+                "residential",
+                "service",
+                "track"
+              ],
+              "allowNoRoads": true,
+              "excludeSensitive": true
+            }
+          },
+          "cityPlaceTag": null
+        },
+        "countryName": {
+          "name": "Siachen Glacier",
+          "reason": "XG is a user-assigned code for the Siachen Glacier area, a Karakoram glacier whose control is disputed between India and Pakistan; the pinned iso3166.tab has no row for it. Game venue map only, no claims.",
+          "claim": "reviewed name of a user-assigned code absent from the pinned iso3166.tab; game map only"
+        }
+      },
+      "extractKey": "siachen",
+      "extractSha256": {
+        "places": "0a7efe0f28d236987520f3758e4bf21c209ce6b523e446f3b556b382c5d934ee",
+        "extras": "927399ef1df7433ff9f8c574d2be7397256d6c8af4cade108b53d520bb489f63",
+        "water": "3dc69939cefc9b36864ab08d3704f121fbf5c20c01d23b70da2fcfd944edd20d",
+        "landuse": "a912c806c029cca229dc1f9bb05dc3f5fa51d5eef6fcfa5bddbbda50dc38df68",
+        "roads": "5651cbee3af2d80444a14422ddaedb08c6b3052be5a168a4cebbd9bd24feafe6"
+      },
+      "sourceJob": {
+        "city": "siachen",
+        "sourceRunId": 38502666815,
+        "sourceArtifact": "city-bootstrap-xg-c9b0f0e42b91d5f4fd7b3460940a9f649f171179",
+        "sourceSha": "c9b0f0e42b91d5f4fd7b3460940a9f649f171179",
+        "datasetSha256": "33c910272e8313cecb8d4a5e539ef5c241aacdd77a2c601a06938de31165f050",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "extractSha256": {
+          "places": "0a7efe0f28d236987520f3758e4bf21c209ce6b523e446f3b556b382c5d934ee",
+          "extras": "927399ef1df7433ff9f8c574d2be7397256d6c8af4cade108b53d520bb489f63",
+          "water": "3dc69939cefc9b36864ab08d3704f121fbf5c20c01d23b70da2fcfd944edd20d",
+          "landuse": "a912c806c029cca229dc1f9bb05dc3f5fa51d5eef6fcfa5bddbbda50dc38df68",
+          "roads": "5651cbee3af2d80444a14422ddaedb08c6b3052be5a168a4cebbd9bd24feafe6"
+        }
+      }
+    }
+  ]
+}

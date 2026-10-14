@@ -5,19 +5,20 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 
 ## Now
 
-- **Live:** Phases 1 to 6 (release 3, `e031c6e5`, 14 October 2026).
-- **In progress on branches** (merged into `main` only once reviewed and checked): Phase 7
-  (`claude/alive-p7-light`: built, but over the first-download limit and being trimmed), Phase 8 (`claude/alive-p8-gist`),
-  Phase 9 (`claude/alive-p9-router`).
-- **How the work is run:** each phase is built on its own branch, reviewed, merged into the integration branch
-  `claude/world-alive`, checked there, then pushed to `main` and released. The full build needs about 5 GB of memory, so builds and
-  download sizes are checked by dispatching the `CI` workflow on a branch (`gh workflow run CI --ref <branch> -f full_checks=false`).
-  The typecheck needs `NODE_OPTIONS=--max-old-space-size=3584`.
-- **The first download is nearly full.** `vite.config.ts` puts every file under `src/game/` into the `engine` chunk, which is in
-  the first download, even when only lazy code imports it. A new module under `src/game/` that only the server or a lazy panel needs
-  gets an exception there (as the weather modules have). Room after release 3: 134 bytes raw at startup (a branch `claude/alive-startup-room` is freeing space), 24 bytes gzip in the
-  scene chunk.
-- **Next step:** finish, merge and release Phases 5, 7, 8 and 9, then Phase 10.
+- **Live:** Phases 1 to 6, 8 and 9, and the first part of 19 (release 4, see the Log).
+- **Waiting for room in the scene chunk:** Phases 7 (light mode) and 16 (festivals) are merged on `claude/world-alive` and pass
+  their tests, but together they put `SCENE_HOST_GZIP` 229 bytes over its limit; `claude/alive-scene-room` is freeing space.
+- **Where the work happens:** the repository on the owner's Desktop is synced by iCloud and `git push`/`fetch` hang there. The work
+  is done in a clean clone outside the Desktop. Phase branches are reviewed, merged into `claude/world-alive`, checked by CI, pushed
+  to `main` and released.
+- **Checks:** the full build needs about 5 GB of memory, so builds and download sizes are checked with
+  `gh workflow run CI --ref <branch> -f full_checks=false`. The typecheck needs `NODE_OPTIONS=--max-old-space-size=3584`. Server
+  tests need `npm run cities:assets` and `npm run words:assets` first (no full build), or they answer 503.
+- **The first download:** `vite.config.ts` puts every file under `src/game/` into the `engine` chunk, which is in the first download,
+  even when only lazy code imports it; a module that only the server or a lazy panel needs gets an exception there. To see what is in
+  a chunk, push a throwaway branch whose `ci.yml` uploads `dist/assets/<chunk>-*.js`, download it, and compare with `main`.
+  Room after release 4: about 4 KB raw at startup, 30 bytes gzip in the scene chunk.
+- **Next step:** release Phases 7 and 16 once the scene chunk has room; then Phase 10 (house agents), 11, 12, 13a.
 
 ## Phases
 
@@ -30,9 +31,9 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 4 World feed | live | `b6d2eaab` | MET Norway weather and daily rates kept by the server, `GET /api/world/feed?id=<city>`, credits in Help (docs/WORLD-FEED.md). |
 | 5 Money in the city's currency | live | `e031c6e5` | `money(amount, city)` at the day's rate, frozen per feed day; Nigerian cities unchanged byte for byte; "≈ ₦" on the main amounts (docs/CURRENCY.md). Amounts show ₦ for about 1.5 s until the feed answers; text built on the server and typed-amount inputs stay in ₦. |
 | 6 Shareable moment cards | live | `b6d2eaab` | Cards for table wins and Hall of Records entries (docs/SHARE-CARDS.md). The wedding card is ready, but the game has no marriages yet. A real WhatsApp share still needs checking by hand. |
-| 7 Data-light mode | in progress | | Built (docs/DATA-LIGHT.md); being trimmed to fit the first download. |
-| 8 Gist and the world ledger | in progress | | |
-| 9 Model router and budget | in progress | | |
+| 7 Data-light mode | merged, not yet live | | Data meter, Light mode switch (lowest tier, 30 fps cap, no background downloads, music off), no drawing under a full-screen panel, a kind message before the 3D download on browsers that cannot draw it (docs/DATA-LIGHT.md). Waiting for scene-chunk room. Not yet measured on a throttled phone (docs/DATA-LIGHT.md section 6 lists what to measure). |
+| 8 Gist and the world ledger | live | REL | Public lines from six systems (records, stalls, arrests, busy places, events, announcements), adults named only, hidden players never; Gist app on the phone, "Gist:" line in the Square, share cards, `check_gist` agent tool (docs/GIST.md). Friendships are not a source (private). |
+| 9 Model router and budget | live | REL | One door for every model call, two providers, free first, paid-only for players' words, US$2 a day hard stop, per-player caps, weekly model report, companion moved onto it (docs/MODELS-ROUTER.md). Free gateway cap of 500 a day is a guess (question 7). |
 | 10 House agents and action library | not started | | |
 | 11 Missions from agents | not started | | |
 | 12 Talking, memory, relationships | not started | | |
@@ -41,10 +42,10 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 13c Ideas, assembly, president, letter | not started | | |
 | 14 Prayers and acts | not started | | |
 | 15 Calls with agents | not started | | |
-| 16 Festivals, owambe, match nights | not started | | |
+| 16 Festivals, owambe, match nights | merged, not yet live | | Multi-day festival calendar (NG, GH, KE, ZA, global; Eid and Ramadan dates to 2028), festive Square light, owambe parties with MC/DJ/spray (no money), match-night slots and an empty admin fixture list (docs/FESTIVALS.md). Waiting for scene-chunk room. |
 | 17 City texture packs | not started | | |
 | 18 Real price levels | not started | | |
-| 19 Smaller features | not started | | |
+| 19 Smaller features | in progress | REL | Live: "while you were away" sheet and the ask for notifications after a good moment; jail you can play (jobs, community service, visits, parole; docs/JAIL.md). Next: city projects, group gift packets, sticker pack, home-city pin, life stages. |
 | 20 Agents' relationships and world events | not started | | |
 
 States: not started · in progress · pushed, not yet live · live · blocked (say on what).
@@ -67,6 +68,8 @@ Ask these in your chat as well; record the answer here when you have it.
 5. **The friendship card's gift** is a fixed ₦200. Is that the amount you want?
 6. **Keep the last rates on the phone?** Amounts show ₦ for about 1.5 s on load until the feed answers; caching the last rates
    would show the local currency at once (a small first-download cost).
+7. **Free gateway cap.** Phase 9 limits free models on the Vercel AI Gateway to 500 requests a day; that is our guess, not a
+   provider limit.
 
 ## Failing on `main` before us
 

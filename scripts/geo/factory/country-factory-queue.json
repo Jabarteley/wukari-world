@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "nl",
-      "table": "scripts/geo/factory/country-factory/nl-factory-targets.json"
+      "id": "bl",
+      "table": "scripts/geo/factory/country-factory/bl-factory-targets.json"
     },
     {
-      "id": "us",
-      "table": "scripts/geo/factory/country-factory/us-factory-targets.json"
+      "id": "sx",
+      "table": "scripts/geo/factory/country-factory/sx-factory-targets.json"
     }
   ]
 }

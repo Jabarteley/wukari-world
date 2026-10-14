@@ -1,22 +1,22 @@
 {
-  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "expectedSourceGitSHA": "63e0f3d28a4c6cc8a182e67efd07380f1258c7cf",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "SX",
     "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
-    "receiptSha256": "f38a447d764481729f8a4508226f8bab0682b305f83e94faa9e728e705cd9df4",
+    "receiptSha256": "faf7cddd62f07ee6276497c7800d8e5119ab2dd296c76103353838a949bb7855",
     "receiptBytes": 15844,
     "geometrySha256": "1c43bc1bbb9c1835c81f858da2f323296d79b295ad69076db0881943d98318e9",
     "geometryBytes": 14600,
-    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "scriptSha256": "a75e7ddb301ce6651f282b4ee3920097252b23bc8120907abf89487c07916b05",
     "relationId": 1231790,
     "boundaryKey": "sx",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38431865880,
-      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
-      "sourceArtifact": "city-bootstrap-sx-76625e88577c373598b4141ef4285f6af082419c",
+      "sourceRunId": 38646182333,
+      "sourceSha": "d0d1d130cf86501de0abfb40544ce886ca72d340",
+      "sourceArtifact": "city-bootstrap-sx-d0d1d130cf86501de0abfb40544ce886ca72d340",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -55,7 +55,7 @@
         "bounds": [
           -63.23743746692212,
           17.844190410066023,
-          -62.85917713307788,
+          -62.95048133494575,
           18.205952189933978
         ]
       },
@@ -558,21 +558,22 @@
           "way/1558285058",
           "way/1558285062"
         ],
-        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
-        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "boundsPolicySha256": "d969197ecc36a7d7b594f934ab1ca0e8e28103c83f32720e42de3e5fc384425f",
         "bounds": {
           "policy": {
             "playKm": 20,
             "coreKm": 5,
             "airportClearanceMetres": 1000,
-            "maximumAbsoluteLatitude": 75
+            "maximumAbsoluteLatitude": 75,
+            "eastKm": 10.35
           },
           "boxes": {
             "play": [
               17.844190410066023,
               -63.23743746692212,
               18.205952189933978,
-              -62.85917713307788
+              -62.95048133494575
             ],
             "core": [
               17.979851077516507,
@@ -584,13 +585,13 @@
               17.794190410066022,
               -63.287437466922114,
               18.25595218993398,
-              -62.80917713307788
+              -62.90048133494575
             ],
             "wide": [
               17.24419041006602,
               -63.83743746692212,
               18.80595218993398,
-              -62.25917713307788
+              -62.35048133494575
             ]
           },
           "airportMarginMetres": 13605.512884355467,
@@ -602,7 +603,7 @@
           "rules": {
             "minimumPlaces": 12,
             "minimumNeighbourhoodLabels": 3,
-            "maximumEmptySlots": 4,
+            "maximumEmptySlots": 5,
             "cityPlaceTags": [
               "city",
               "town",
@@ -626,25 +627,25 @@
       },
       "extractKey": "philipsburg",
       "extractSha256": {
-        "places": "8ddc50fc47b835dbca64919d60d94994ff6d13d79d6982b5c7b87c7bf217557f",
-        "extras": "4393cc373c38dada864a0bea0554c8275cef485b364f8ee736d10fa8e0cf9f55",
-        "water": "3c6d1ee3b09c1f38a694d067502230e499b7a5e6157b0077cf8a7f7e7688eeed",
-        "landuse": "ce1cb091ff207fd0c129f1af830d9b90f9fb70bb496af69348738c186c8ebcf5",
-        "roads": "418f26c0972909e9c4f7c119e506684227ab02d5959cfe434deb1150d5d9ea7e"
+        "places": "472d7414e2a765d667ed9ea22a359c84b621acfdb078ae002aa26bf5a66a867b",
+        "extras": "ae03d0815aff08742e9e803902c9a4a2862a142080b025a58be29bf290ad06b8",
+        "water": "471ea2a4ce4f54bf98393e467e98f81c35576a2ec5447097f7a78c78c803133b",
+        "landuse": "4f3ee4d81dc950e743a47c26e12583c371f908ac19aeb439501ac81d5c2cc44b",
+        "roads": "563cad5b5919514883fc97010974c6e967d3772608bf2b194f2889c841c87918"
       },
       "sourceJob": {
         "city": "philipsburg",
-        "sourceRunId": 38431865880,
-        "sourceArtifact": "city-bootstrap-sx-76625e88577c373598b4141ef4285f6af082419c",
-        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "sourceRunId": 38646182333,
+        "sourceArtifact": "city-bootstrap-sx-d0d1d130cf86501de0abfb40544ce886ca72d340",
+        "sourceSha": "d0d1d130cf86501de0abfb40544ce886ca72d340",
         "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
-        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
         "extractSha256": {
-          "places": "8ddc50fc47b835dbca64919d60d94994ff6d13d79d6982b5c7b87c7bf217557f",
-          "extras": "4393cc373c38dada864a0bea0554c8275cef485b364f8ee736d10fa8e0cf9f55",
-          "water": "3c6d1ee3b09c1f38a694d067502230e499b7a5e6157b0077cf8a7f7e7688eeed",
-          "landuse": "ce1cb091ff207fd0c129f1af830d9b90f9fb70bb496af69348738c186c8ebcf5",
-          "roads": "418f26c0972909e9c4f7c119e506684227ab02d5959cfe434deb1150d5d9ea7e"
+          "places": "472d7414e2a765d667ed9ea22a359c84b621acfdb078ae002aa26bf5a66a867b",
+          "extras": "ae03d0815aff08742e9e803902c9a4a2862a142080b025a58be29bf290ad06b8",
+          "water": "471ea2a4ce4f54bf98393e467e98f81c35576a2ec5447097f7a78c78c803133b",
+          "landuse": "4f3ee4d81dc950e743a47c26e12583c371f908ac19aeb439501ac81d5c2cc44b",
+          "roads": "563cad5b5919514883fc97010974c6e967d3772608bf2b194f2889c841c87918"
         }
       }
     }

@@ -1,22 +1,22 @@
 {
-  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "expectedSourceGitSHA": "63e0f3d28a4c6cc8a182e67efd07380f1258c7cf",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "BL",
     "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
-    "receiptSha256": "3ea20300427ed732189a2f0e4a98168fbfea05b1c0deb72e5cbed778666964e2",
+    "receiptSha256": "2e4ea01c966b0f9f573a1f15cf2183451ef9544eb77b70dd2be0aa177687558b",
     "receiptBytes": 15593,
     "geometrySha256": "9b34472a3a74cf7f7b60cf6433efe5edb1b424cedf105ab52f095451374a8723",
     "geometryBytes": 2671,
-    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "scriptSha256": "a75e7ddb301ce6651f282b4ee3920097252b23bc8120907abf89487c07916b05",
     "relationId": 537967,
     "boundaryKey": "bl",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38431865880,
-      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
-      "sourceArtifact": "city-bootstrap-bl-76625e88577c373598b4141ef4285f6af082419c",
+      "sourceRunId": 38646182333,
+      "sourceSha": "d0d1d130cf86501de0abfb40544ce886ca72d340",
+      "sourceArtifact": "city-bootstrap-bl-d0d1d130cf86501de0abfb40544ce886ca72d340",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -53,7 +53,7 @@
         "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
         "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
         "bounds": [
-          -63.039827502100195,
+          -62.94953618220457,
           17.71482341006602,
           -62.66184689789981,
           18.076585189933976
@@ -554,19 +554,20 @@
           "way/1558285058",
           "way/1558285062"
         ],
-        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
-        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "boundsPolicySha256": "d969197ecc36a7d7b594f934ab1ca0e8e28103c83f32720e42de3e5fc384425f",
         "bounds": {
           "policy": {
             "playKm": 20,
             "coreKm": 5,
             "airportClearanceMetres": 1000,
-            "maximumAbsoluteLatitude": 75
+            "maximumAbsoluteLatitude": 75,
+            "westKm": 10.45
           },
           "boxes": {
             "play": [
               17.71482341006602,
-              -63.039827502100195,
+              -62.94953618220457,
               18.076585189933976,
               -62.66184689789981
             ],
@@ -578,18 +579,18 @@
             ],
             "outline": [
               17.66482341006602,
-              -63.08982750210019,
+              -62.999536182204565,
               18.126585189933976,
               -62.61184689789981
             ],
             "wide": [
               17.11482341006602,
-              -63.6398275021002,
+              -63.54953618220457,
               18.676585189933977,
               -62.061846897899805
             ]
           },
-          "airportMarginMetres": 19038.737590999648,
+          "airportMarginMetres": 11249.982274555521,
           "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
           "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
         },
@@ -598,7 +599,7 @@
           "rules": {
             "minimumPlaces": 12,
             "minimumNeighbourhoodLabels": 3,
-            "maximumEmptySlots": 4,
+            "maximumEmptySlots": 5,
             "cityPlaceTags": [
               "city",
               "town",
@@ -622,25 +623,25 @@
       },
       "extractKey": "gustavia",
       "extractSha256": {
-        "places": "60c0c25a50a5452cbaef208b807c835c1ff8b21dd26fabb4388404d3205e44d1",
-        "extras": "7311893e589070f7af96d174b0b6a0fa5b375ebf478e9d60204f3d331bd1cd2e",
-        "water": "a0e6f9b962d28822cd5c51467195aaa06f2ef2d7a7a5a7a0dc655574a3883976",
-        "landuse": "182f9828ba6ee46ff658d45328cc0125f078fdc8cd3e1bc0875b7531b8dc5856",
-        "roads": "bded167ce4569a463a9b79ba4cb0f7dcf9adb757225f2a57f371277e61b8d490"
+        "places": "7c2c012f5240177537e1b6db5604044d675266ddc44011b74a6a0ea625fd0638",
+        "extras": "788a146657c165c2ac98fd29901f5446b67fed755b5b9b6da61a1bcbcbb347e6",
+        "water": "c91f02ef3908297a1fef2904260fc20decbd690bce8e7efc7a380fde65fc117b",
+        "landuse": "2db6cfbe7f936b90409efd4623eb03d97783a630c826d4814b4ecfb3b67bd265",
+        "roads": "28bfa5844a99879bb2ab1a171817e9433898a250b7aefaa13e8edb2ead2e4118"
       },
       "sourceJob": {
         "city": "gustavia",
-        "sourceRunId": 38431865880,
-        "sourceArtifact": "city-bootstrap-bl-76625e88577c373598b4141ef4285f6af082419c",
-        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "sourceRunId": 38646182333,
+        "sourceArtifact": "city-bootstrap-bl-d0d1d130cf86501de0abfb40544ce886ca72d340",
+        "sourceSha": "d0d1d130cf86501de0abfb40544ce886ca72d340",
         "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
-        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
         "extractSha256": {
-          "places": "60c0c25a50a5452cbaef208b807c835c1ff8b21dd26fabb4388404d3205e44d1",
-          "extras": "7311893e589070f7af96d174b0b6a0fa5b375ebf478e9d60204f3d331bd1cd2e",
-          "water": "a0e6f9b962d28822cd5c51467195aaa06f2ef2d7a7a5a7a0dc655574a3883976",
-          "landuse": "182f9828ba6ee46ff658d45328cc0125f078fdc8cd3e1bc0875b7531b8dc5856",
-          "roads": "bded167ce4569a463a9b79ba4cb0f7dcf9adb757225f2a57f371277e61b8d490"
+          "places": "7c2c012f5240177537e1b6db5604044d675266ddc44011b74a6a0ea625fd0638",
+          "extras": "788a146657c165c2ac98fd29901f5446b67fed755b5b9b6da61a1bcbcbb347e6",
+          "water": "c91f02ef3908297a1fef2904260fc20decbd690bce8e7efc7a380fde65fc117b",
+          "landuse": "2db6cfbe7f936b90409efd4623eb03d97783a630c826d4814b4ecfb3b67bd265",
+          "roads": "28bfa5844a99879bb2ab1a171817e9433898a250b7aefaa13e8edb2ead2e4118"
         }
       }
     }

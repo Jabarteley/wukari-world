@@ -1,0 +1,332 @@
+{
+  "expectedSourceGitSHA": "6e1ad00a4d2716679294d64943e98b3298eef1ea",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "PN",
+    "datasetSha256": "62399c5ceb9906d95252eb54da26ec33adcb4de50a7a2d984c3619cc5b718e25",
+    "receiptSha256": "b21c4502d129d92249f6ae2025a0f9ffab23970591e43ecfcd987737a3e4eabd",
+    "receiptBytes": 7140,
+    "geometrySha256": "597d2c872e931555d2c07f1a79a3f840458bc465fc1472c8949119bc3c25904c",
+    "geometryBytes": 41516,
+    "scriptSha256": "a75e7ddb301ce6651f282b4ee3920097252b23bc8120907abf89487c07916b05",
+    "relationId": 2185375,
+    "boundaryKey": "pn",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38494007308,
+      "sourceSha": "f7d86372afbca92e5b74e84cefdde2310f7f020a",
+      "sourceArtifact": "city-bootstrap-pn-f7d86372afbca92e5b74e84cefdde2310f7f020a",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "adamstown",
+      "name": "Adamstown",
+      "country": "pn",
+      "facts": {
+        "id": "adamstown",
+        "name": "Adamstown",
+        "country": {
+          "idISOlower": "pn",
+          "name": "Pitcairn"
+        },
+        "state": {
+          "idunique": "pn-adamstown",
+          "name": "Adamstown"
+        },
+        "timezone": "Pacific/Pitcairn",
+        "centre": {
+          "lon": -130.100205,
+          "lat": -25.066667
+        },
+        "airport": {
+          "id": "adamstown-airport",
+          "name": "Pitcairn",
+          "lon": -130.096143,
+          "lat": -25.068685,
+          "sourceUrl": "https://www.openstreetmap.org/node/9392374700"
+        },
+        "sourceLabel": "OpenStreetMap country PBF",
+        "sourceUrl": "https://www.openstreetmap.org/node/2134592841",
+        "licence": "OpenStreetMap ODbL-1.0",
+        "coverageNote": "Source-sampling bounds from a mapped place node and its mapped gateway node; the grouping is not an administrative-boundary claim. A mapped landing, heliport or track does not establish current operations or access.",
+        "gateway": {
+          "mode": "sea",
+          "osmRef": "node/9392374700"
+        },
+        "bounds": [
+          -130.1498091000751,
+          -25.111887222483492,
+          -130.0506008999249,
+          -25.021446777516505
+        ]
+      },
+      "profile": "outpost",
+      "selectionExclusions": [],
+      "links": [
+        {
+          "to": "auckland",
+          "kind": "ship"
+        },
+        {
+          "to": "santiago",
+          "kind": "ship"
+        }
+      ],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/2134592841",
+          "sourceUrl": "https://www.openstreetmap.org/node/2134592841",
+          "sourceRecord": {
+            "ref": "node/2134592841",
+            "tags": {
+              "capital": "yes",
+              "geonames:id": "4030723",
+              "name": "Adamstown",
+              "name:ar": "آدمزتاون",
+              "name:az": "Adamstaun",
+              "name:be": "Адамстаўн",
+              "name:bg": "Адамстаун",
+              "name:ca": "Adamstown",
+              "name:da": "Adamstown",
+              "name:de": "Adamstown",
+              "name:en": "Adamstown",
+              "name:es": "Adamstown",
+              "name:et": "Adamstown",
+              "name:fr": "Adamstown",
+              "name:hr": "Adamstown",
+              "name:hu": "Adamstown",
+              "name:it": "Adamstown",
+              "name:ja": "アダムスタウン",
+              "name:ko": "애덤스타운",
+              "name:lt": "Adamstaunas",
+              "name:mk": "Адамстаун",
+              "name:nl": "Adamstown",
+              "name:no": "Adamstown",
+              "name:pih": "Adamstaun",
+              "name:pl": "Adamstown",
+              "name:pt": "Adamstown",
+              "name:ro": "Adamstown",
+              "name:ru": "Адамстаун",
+              "name:sk": "Adamstown",
+              "name:sr": "Адамстаун",
+              "name:sv": "Adamstown",
+              "name:tr": "Adamstown",
+              "name:uk": "Адамстаун",
+              "name:zh": "亚当斯敦 / 亞當斯敦",
+              "name:zh-Hans": "亚当斯敦",
+              "name:zh-Hant": "亞當斯敦",
+              "place": "hamlet",
+              "population": "50",
+              "population:date": "2020-07-01",
+              "source:population": "citypopulation.de",
+              "wikidata": "Q48273",
+              "wikipedia": "en:Adamstown, Pitcairn Islands"
+            },
+            "lon": -130.100205,
+            "lat": -25.066667
+          },
+          "pbfSha256": "62399c5ceb9906d95252eb54da26ec33adcb4de50a7a2d984c3619cc5b718e25",
+          "selection": {
+            "cityOsmRef": "node/2134592841",
+            "matchedOsmRef": "node/2134592841"
+          }
+        },
+        "gateway": {
+          "osmRef": "node/9392374700",
+          "mode": "sea",
+          "sourceUrl": "https://www.openstreetmap.org/node/9392374700",
+          "sourceRecord": {
+            "ref": "node/9392374700",
+            "tags": {
+              "amenity": "ferry_terminal",
+              "ferry": "yes",
+              "name": "Pitcairn",
+              "name:en": "Pitcairn",
+              "name:pih": "Pitkern",
+              "name:ru": "Питкерн",
+              "public_transport": "station"
+            },
+            "lon": -130.096143,
+            "lat": -25.068685
+          },
+          "pbfSha256": "62399c5ceb9906d95252eb54da26ec33adcb4de50a7a2d984c3619cc5b718e25",
+          "claim": "caller-supplied gateway node, checked for its mode tags and for no military tag; a mapped landing does not establish operations"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "PN",
+              "-2504-13005",
+              "Pacific/Pitcairn"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Pacific/Pitcairn",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "PN",
+              "-2504-13005",
+              "Pacific/Pitcairn"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/australia-oceania/pitcairn-islands-261013.osm.pbf",
+          "bytes": 115572,
+          "sha256": "62399c5ceb9906d95252eb54da26ec33adcb4de50a7a2d984c3619cc5b718e25",
+          "headerTimestamp": "2026-10-13T20:21:31Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/48345115",
+          "way/48345117",
+          "way/100277438",
+          "way/100277445",
+          "way/100278005",
+          "way/100278011",
+          "way/100278864",
+          "way/100278865",
+          "way/100278866",
+          "way/100278867",
+          "way/100278868",
+          "way/100278869",
+          "way/100278870",
+          "way/100278871",
+          "way/100278872",
+          "way/208344793",
+          "way/226065252",
+          "way/319691383",
+          "way/673309060",
+          "way/673309061",
+          "way/673309062",
+          "way/673309063",
+          "way/673309064",
+          "way/886452912",
+          "way/1267463740",
+          "way/1267463741",
+          "way/1267463742",
+          "way/1326277852"
+        ],
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "boundsPolicySha256": "6f384df7d7b374e875192057a85d6bcace4dd2d7c3b3701298a7893dc2ed67b6",
+        "bounds": {
+          "policy": {
+            "playKm": 5,
+            "coreKm": 3,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -25.111887222483492,
+              -130.1498091000751,
+              -25.021446777516505,
+              -130.0506008999249
+            ],
+            "core": [
+              -25.093799133490094,
+              -130.12996305843575,
+              -25.039534866509904,
+              -130.07044694156423
+            ],
+            "outline": [
+              -25.161887222483493,
+              -130.1998091000751,
+              -24.971446777516505,
+              -130.00060089992488
+            ],
+            "wide": [
+              -25.51188722248349,
+              -130.5498091000751,
+              -24.621446777516507,
+              -129.65060089992488
+            ]
+          },
+          "airportMarginMetres": 4592.179037447054,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "outpost",
+          "rules": {
+            "minimumPlaces": 3,
+            "minimumNeighbourhoodLabels": 2,
+            "maximumEmptySlots": 9,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality",
+              "isolated_dwelling"
+            ],
+            "capitalPlaceTags": [],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "hubGateway": true,
+            "authoredLinks": true,
+            "slotExtras": {
+              "transit": [
+                "amenity=ferry_terminal"
+              ],
+              "community": [
+                "office=research",
+                "amenity=research_institute"
+              ]
+            },
+            "extraction": {
+              "extraPlaces": [
+                "post_office",
+                "hut",
+                "research",
+                "historic",
+                "ferry"
+              ],
+              "roadLadder": [
+                "secondary",
+                "tertiary",
+                "unclassified",
+                "residential",
+                "service",
+                "track"
+              ],
+              "allowNoRoads": true,
+              "excludeSensitive": true
+            }
+          },
+          "cityPlaceTag": "hamlet"
+        }
+      },
+      "extractKey": "adamstown",
+      "extractSha256": {
+        "places": "6e5c9106d0b15cdacb24a829c549fdf09d9356adb3ce275c1e4dcf70e29f2008",
+        "extras": "f416fcd8d736c729088a49d201d787814f2f99f4ecf6eb2be388a91fc9e56982",
+        "water": "24c58208938446ebeb703d6f9272590fe77eeedf70cfc691fc487e0a3c3b7a46",
+        "landuse": "b283e82546d6b4e0685c97e75def55e5ca0ffa48f0406c99f1df252e6e582e05",
+        "roads": "c405e340548614c68a984fbbb0b39c428495b634f71ed712f406f7601434d7ca"
+      },
+      "sourceJob": {
+        "city": "adamstown",
+        "sourceRunId": 38494007308,
+        "sourceArtifact": "city-bootstrap-pn-f7d86372afbca92e5b74e84cefdde2310f7f020a",
+        "sourceSha": "f7d86372afbca92e5b74e84cefdde2310f7f020a",
+        "datasetSha256": "62399c5ceb9906d95252eb54da26ec33adcb4de50a7a2d984c3619cc5b718e25",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "extractSha256": {
+          "places": "6e5c9106d0b15cdacb24a829c549fdf09d9356adb3ce275c1e4dcf70e29f2008",
+          "extras": "f416fcd8d736c729088a49d201d787814f2f99f4ecf6eb2be388a91fc9e56982",
+          "water": "24c58208938446ebeb703d6f9272590fe77eeedf70cfc691fc487e0a3c3b7a46",
+          "landuse": "b283e82546d6b4e0685c97e75def55e5ca0ffa48f0406c99f1df252e6e582e05",
+          "roads": "c405e340548614c68a984fbbb0b39c428495b634f71ed712f406f7601434d7ca"
+        }
+      }
+    }
+  ]
+}

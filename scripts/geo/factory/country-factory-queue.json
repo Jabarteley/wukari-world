@@ -2,8 +2,16 @@
  "schemaVersion": 1,
  "queue": [
   {
-   "id": "hm",
-   "table": "scripts/geo/factory/country-factory/hm-factory-targets.json"
+   "id": "tf",
+   "table": "scripts/geo/factory/country-factory/tf-factory-targets.json"
+  },
+  {
+   "id": "pn",
+   "table": "scripts/geo/factory/country-factory/pn-factory-targets.json"
+  },
+  {
+   "id": "je",
+   "table": "scripts/geo/factory/country-factory/je-factory-targets.json"
   }
  ]
 }

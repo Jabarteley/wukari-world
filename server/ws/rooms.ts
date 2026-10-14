@@ -289,6 +289,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
     },
     members(room) { return [...virtuals.values()].filter(v => v.room === room).map(v => ({ id: v.id, name: v.name, look: v.look ?? null, mark: v.mark, doing: v.doing, group: v.group })); },
     count() { return virtuals.size; },
+    rooms() { return [...virtuals.values()].map((v) => v.room); },
   };
   ctx.on?.('heartbeat', () => { for (const v of [...virtuals.values()]) if (v.until <= now()) dropVirtual(v.id); });
   /** A stable voice seed for a player: the same for the same player, so a client can give an agent one voice. */

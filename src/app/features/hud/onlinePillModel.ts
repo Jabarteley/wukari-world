@@ -10,7 +10,7 @@ export const POLL_MS = 30000
 export type PulseTone = 'live' | 'stale'
 
 /** What GET /api/world/pulse answers (server/pulse.ts). */
-export interface PulseNumbers { online: number; visits: number; /** Distinct players seen today (0 from a server that does not say). */ today?: number; cities: Record<string, number>; /** AI agents present now, counted apart from the people. */ ai?: number }
+export interface PulseNumbers { online: number; visits: number; /** Distinct players seen today (0 from a server that does not say). */ today?: number; cities: Record<string, number>; /** AI agents present now, counted apart from the people. */ ai?: number; /** The same agents by city. */ aiCities?: Record<string, number> }
 
 const whole = (value: number): number => (Number.isFinite(value) && value > 0 ? Math.floor(value) : 0)
 const trim = (value: number): string => String(value).replace(/\.0$/, '')
@@ -41,14 +41,30 @@ export function onlineIn(numbers: PulseNumbers, cityId: string | null | undefine
 }
 
 /**
- * What the pill is built from. The reader is online themselves, so nothing here is ever 0: the world is at least 1, the city is
- * at least 1 and never more than the world. `today` is never below the world count (they have all played today).
+ * What the pill is built from. The pill counts everyone online, people and AI agents together (`world`, `here`), and keeps the
+ * split for the sheet and the label. The reader is online themselves, so no count of people is ever 0: the world's people are at
+ * least 1, the city's people at least 1 and never more than the world's. `today` is never below the people online (they have all
+ * played today). `alone` means no other person is online (agents may be); `solo` means nobody else at all, people or agents.
  */
-export interface OnlineView { world: number; here: number | null; today: number; alone: boolean }
+export interface OnlineView {
+  world: number; here: number | null; today: number; alone: boolean; solo: boolean
+  people: number; agents: number; peopleHere: number | null; agentsHere: number | null
+}
 export function onlineView(numbers: PulseNumbers, cityId: string | null | undefined): OnlineView {
-  const world = Math.max(1, whole(numbers.online))
+  const people = Math.max(1, whole(numbers.online)), agents = whole(numbers.ai ?? 0)
   const city = onlineIn(numbers, cityId)
-  return { world, here: city === null ? null : Math.min(world, Math.max(1, city)), today: Math.max(world, whole(numbers.today ?? 0)), alone: world === 1 }
+  const peopleHere = city === null ? null : Math.min(people, Math.max(1, city))
+  const agentsHere = city === null || !cityId ? null : Math.min(agents, whole(numbers.aiCities?.[cityId] ?? 0))
+  return {
+    world: people + agents, here: peopleHere === null ? null : peopleHere + (agentsHere ?? 0), today: Math.max(people, whole(numbers.today ?? 0)),
+    alone: people === 1, solo: people === 1 && agents === 0, people, agents, peopleHere, agentsHere,
+  }
+}
+
+/** "12 people · 25 AI agents", "1 person · 1 AI agent", "3 people · no AI agents". */
+export function splitLine(people: number, agents: number): string {
+  const p = whole(people), a = whole(agents)
+  return `${exactCount(p)} ${noun(p, 'person', 'people')} · ${a ? `${exactCount(a)} ${noun(a, 'AI agent', 'AI agents')}` : 'no AI agents'}`
 }
 
 /** What stands in the pill instead of a bare "1" when the reader is the only one online: a true line, and the way to change it. */
@@ -56,12 +72,12 @@ export function aloneLine(view: Pick<OnlineView, 'today'>): { long: string; shor
   return view.today >= 2 ? { long: `${compactCount(view.today)} played today`, short: `${compactCount(view.today)} today` } : { long: "You're first here", short: 'First here' }
 }
 
-/** The label read aloud: "128 people online in Allworld, 12 here. 4,210 visits in total." The reader alone hears a warmer, true line. */
+/** The label read aloud: "37 online in Allworld: 12 people · 25 AI agents, 6 here. 4,210 visits in total. Open who is online." Both numbers, always. */
 export function pulseAria(numbers: PulseNumbers, tone: PulseTone = 'live', cityId?: string | null): string {
   const view = onlineView(numbers, cityId), visits = `${exactCount(numbers.visits)} ${noun(numbers.visits, 'visit', 'visits')} in total`
   const state = tone === 'stale' ? ' These numbers may be out of date.' : ''
-  if (view.alone) return `You are the only one online right now. ${exactCount(view.today)} ${noun(view.today, 'player', 'players')} today. ${visits}.${state} Invite a friend.`
-  return `${exactCount(view.world)} people online in Allworld${view.here === null ? '' : `, ${exactCount(view.here)} here`}. ${visits}.${state} Open People.`
+  if (view.solo) return `You are the only one online right now. ${exactCount(view.today)} ${noun(view.today, 'player', 'players')} today. ${visits}.${state} Invite a friend.`
+  return `${exactCount(view.world)} online in Allworld: ${splitLine(view.people, view.agents)}${view.here === null ? '' : `, ${exactCount(view.here)} here`}. ${visits}.${state} Open who is online.`
 }
 
 /** The tooltip: the exact values. Visits are always for the whole game, and it says so. */
@@ -69,8 +85,8 @@ export function pulseTitle(numbers: PulseNumbers, tone: PulseTone = 'live', city
   const view = onlineView(numbers, cityId)
   const stale = tone === 'stale' ? ' (not up to date)' : ''
   const visits = `${exactCount(numbers.visits)} visits in total across all of Allworld`
-  if (view.alone) return `You are the only one online right now · ${exactCount(view.today)} ${noun(view.today, 'player', 'players')} today · ${visits}${stale}`
-  return `${exactCount(view.world)} in Allworld${view.here === null ? '' : ` · ${exactCount(view.here)} here`} · ${visits}${stale}`
+  if (view.solo) return `You are the only one online right now · ${exactCount(view.today)} ${noun(view.today, 'player', 'players')} today · ${visits}${stale}`
+  return `${exactCount(view.world)} online in Allworld (${splitLine(view.people, view.agents)})${view.here === null ? '' : ` · ${exactCount(view.here)} here`} · ${visits}${stale}`
 }
 
 /** Green while the last answer is recent; amber when the last request failed or nothing has come for a while. */

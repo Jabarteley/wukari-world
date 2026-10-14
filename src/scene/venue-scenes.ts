@@ -89,6 +89,7 @@ import { createAmbientHub } from './ambient/hub.ts';
 import type { Ident } from './ambient/plan.ts';
 import { tablesAt, GAME_LABELS } from '../tables/city-places.ts';
 import { CITY_RULES, DEFAULT_CITY_ID } from '../game/cities/registry.ts';
+import { publicArrivalVenue } from '../game/cities/runtime.ts';
 import { CLEAR_LOOK, adjustLighting, lookAt, lookKey } from '../game/conditions/look.ts';
 import type { LookConditions } from '../game/conditions/look.ts';
 import { isTimeOfDay as isTime, timeOfDay, lightingFor } from './lighting.ts';
@@ -412,8 +413,27 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     spot: null, look: options.look ?? null, lookKey: JSON.stringify(options.look ?? null), seed: options.seed ?? 'you', name: 'You',
     pose: 'stand', poseFixed: false, crowd: [], weather: CLEAR_LOOK,
   };
-  /** The preset in use: the mood's light for this time of day, as the city's conditions leave it. */
-  const lit = (): Lighting => adjustLighting(lightingFor(mood, view.time), view.weather);
+  // Festival dressing (src/festivals): while a festival runs, the city's gathering venue (where a new player arrives) leans toward the
+  // festival's two colours. The dates and the feed are fetched on demand; nothing is drawn, only the light moves.
+  let festive: { id: string; colour: string; second: string } | null = null, festiveLib: typeof import('../festivals/client.ts') | null = null, festiveAsked = false, festiveSlot = -1, square: boolean | null = null;
+  /** True when the dressing changed at server time `t`. A venue that is not the gathering place never asks for anything. */
+  function festiveChanged(t: number): boolean {
+    if (square === null) { try { square = Boolean(venue?.id) && publicArrivalVenue(cityId).id === venue!.id; } catch { square = false; } }
+    if (!square) return false;
+    if (!festiveLib) {
+      if (!festiveAsked) { festiveAsked = true; void import('../festivals/client.ts').then(async (lib) => { await lib.loadFeed(cityId); festiveLib = lib; festiveSlot = -1; }).catch(() => { /* no feed: no dressing */ }); }
+      return false;
+    }
+    const slot = Math.floor(t / 600000);
+    if (slot === festiveSlot) return false;
+    festiveSlot = slot;
+    const next = festiveLib.dressingNow(cityId, t);
+    if ((festive?.id ?? '') === (next?.id ?? '')) return false;
+    festive = next;
+    return true;
+  }
+  /** The preset in use: the mood's light for this time of day, as the city's conditions leave it and a festival dresses it. */
+  const lit = (): Lighting => { const base = adjustLighting(lightingFor(mood, view.time), view.weather); return festive && festiveLib ? festiveLib.festiveLighting(base, festive) : base; };
   const hints: Record<string, string> = options.anchors && typeof options.anchors === 'object' ? options.anchors : {};
   let layout: SceneLayout | null = null, resolved: Resolved | null = null, live = false, disposed = false, footprints: FootprintShapes | null = null, grid: WalkGrid | null = null, entrance: SceneEntrance | null = null;
   let renderedContactTop: ReturnType<typeof contactSurfaceIndex> | null = null;
@@ -1126,6 +1146,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
       if (Number.isFinite(state.t)) {
         const weather = lookAt(cityId, venue, CITY_RULES[cityId]?.climate, state.t!);
         if (lookKey(weather) !== lookKey(view.weather)) { view.weather = weather; changed = true; }
+        if (festiveChanged(state.t!)) changed = true;
       }
       const here = state.location == null || !venue?.id || state.location === venue.id;
       if (here && typeof state.spot === 'string' && state.spot !== view.spot) { anchorFor(state.spot); findRaised(); view.spot = state.spot; actors = true; }

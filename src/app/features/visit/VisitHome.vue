@@ -13,6 +13,7 @@ import { copyText } from '../../../ui/share.ts'
 import { VISIT, timeLeft } from '../../../game/visit.ts'
 import GuestsStrip from './GuestsStrip.vue'
 import VisitDoor from './VisitDoor.vue'
+import PartyPanel from './PartyPanel.vue'
 import { chooseDoor, closeDoor, endLink, endVisit, inviteOver, loadLinks, makeLink, visitState } from './visitStore.ts'
 
 const { game } = useApp()
@@ -143,6 +144,7 @@ const usesLine = (link: { uses: number; max?: number }): string => `${link.uses}
       <button v-if="guests" type="button" class="ui-button" data-visit="end" :disabled="pending || offline" @click="manage(endVisit)">End visit</button>
     </div>
     <p v-if="closed" class="social-note">The door is closed: nobody new comes in. Your guests stay.</p>
+    <PartyPanel :house="house" />
     <GuestsStrip :house="house" />
     <VisitDoor />
   </section>

@@ -9,6 +9,7 @@
  *
  * Nothing here is sent to a browser as it stands: a SessionRecord holds the cookie secret.
  */
+import type { PartyRecord as OwambeRecord } from '../src/festivals/party.ts';
 import type { FamilyBook } from '../src/types/family.ts'
 import type { CallRelay } from './call-relay.ts';
 import type { LifeState, PlacedItem } from '../src/types/life.ts'
@@ -419,6 +420,8 @@ export interface HouseRecord {
   closed?: number
   /** Guests the host asked to leave, until when: nothing lets them back in by itself (a knock the host answers does). */
   barred?: Record<string, number>
+  /** An owambe party the host is throwing (src/festivals/party.ts, server/social/party.ts); ends at `until`. */
+  party?: OwambeRecord
 }
 /** Who may come into a player's home (server/social/visit.ts). */
 export type DoorWho = 'walk' | 'knock' | 'invited' | 'nobody'

@@ -22,6 +22,7 @@ import { isDeparting } from '../../life.ts'
 import { useApp } from '../state/app.ts'
 import { BUBBLE_MS, say as sayAbove, tagOf } from './bubbles.ts'
 import { heard, heardScene, heardStop } from '../../audio/voice/emit.ts'
+import { liftNow, loadFeed } from '../../festivals/client.ts'
 
 /** How often the driver looks at the clock. A slot of the voice is nine seconds, so this never misses one. */
 export const AMBIENT_POLL_MS = 4_000
@@ -57,6 +58,8 @@ export function startAmbient(): void {
     cityId, venueId, kind, tier: tierNow(),
     rainingAt: (at) => raining(cityId, at),
     hourAt: (at) => lagosTime(at).minuteOfDay / 60,
+    // A match night (src/festivals/matches.ts) fills the viewing centre: the schedule comes from the festival feed, fetched once for the city.
+    ...(kind === 'viewing' ? (() => { void loadFeed(cityId); return { liftAt: (at: number) => liftNow(cityId, at) }; })() : {}),
   })
   /** Who is in which place: the host asks for every venue it builds. Nothing at home, on a trip, or in a friend's house. */
   const ambientFor = (venueId: string, kind: string): Ident | null => {

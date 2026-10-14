@@ -210,6 +210,7 @@ import growth from './growth.ts';
 import growthMod from './growth-mod.ts';
 import campus from './campus.ts';
 import pulse from './pulse.ts';
+import festivals from './festivals.ts';
 import worldFeed from './worldfeed.ts';
 import gist from './gist.ts';
 import ping from './ping.ts';

@@ -8,6 +8,10 @@
  *   POST /api/social/visit/close    { closed }       close or reopen the door: nobody new comes in; the guests inside stay
  *   POST /api/social/visit/end                       ask everyone inside to leave
  *   POST /api/social/visit/enter    { host }         Visit home: use an invitation, walk in, or knock, as the host's door says
+ *   POST /api/social/visit/party/start { title?, colour }   throw an owambe party in my home (src/festivals/party.ts)
+ *   POST /api/social/visit/party/role  { role: mc | dj, guest|null }   name a guest MC or DJ
+ *   POST /api/social/visit/party/spray { host? }   a spray moment in the house chat (no money)
+ *   POST /api/social/visit/party/end                 end the party
  *   POST /api/social/visit/invite   { to: [id] }     invite friends over (each is good for 30 minutes)
  *   POST /api/social/visit/link     { hours?, max?, open? }   make a house link
  *   GET  /api/social/visit/links                     the caller's links, with how many came in through each
@@ -22,6 +26,7 @@
 import { HTTP_PER_MINUTE } from './social.ts';
 import { socialService, MATERIAL } from '../social/service.ts';
 import { visitService } from '../social/visit.ts';
+import { partyService } from '../social/party.ts';
 import { VISIT } from '../../src/game/visit.ts';
 import { worldOf } from '../world/service.ts';
 import { readPlot } from '../world/street.ts';
@@ -29,7 +34,7 @@ import { UUID_PATTERN } from '../protocol.ts';
 import type { Db, HouseLinkRecord, RouteContext, RouteHandler, RouteKey, RouteRequest, SessionRecord } from '../types.ts';
 
 export default function visitRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
-  const social = socialService(ctx), visit = visitService(ctx), { tokens } = visit;
+  const social = socialService(ctx), visit = visitService(ctx), party = partyService(ctx), { tokens } = visit;
   async function run<R extends object>(request: RouteRequest, call: (db: Db, session: SessionRecord) => R): Promise<R> {
     const result = await ctx.store.transact((db) => {
       const session = request.requireSession(db, { renew: true });
@@ -62,6 +67,10 @@ export default function visitRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
     'POST /api/social/visit/close': async (request) => { const body = await request.json(); return { body: await run(request, (db, session) => visit.closeDoor(db, session, body)), renew: true }; },
     'POST /api/social/visit/end': async (request) => ({ body: await run(request, (db, session) => visit.endVisit(db, session)), renew: true }),
     'POST /api/social/visit/enter': async (request) => { const body = await request.json(); return { body: await run(request, (db, session) => visit.enter(db, session, body)), renew: true }; },
+    'POST /api/social/visit/party/start': async (request) => { const body = await request.json(); return { body: await run(request, (db, session) => party.start(db, session, body)), renew: true }; },
+    'POST /api/social/visit/party/role': async (request) => { const body = await request.json(); return { body: await run(request, (db, session) => party.role(db, session, body)), renew: true }; },
+    'POST /api/social/visit/party/spray': async (request) => { const body = await request.json(); return { body: await run(request, (db, session) => party.spray(db, session, body)), renew: true }; },
+    'POST /api/social/visit/party/end': async (request) => ({ body: await run(request, (db, session) => party.end(db, session)), renew: true }),
     'POST /api/social/visit/invite': async (request) => { const body = await request.json(); return { body: await run(request, (db, session) => visit.invite(db, session, body)), renew: true }; },
 
     'POST /api/social/visit/link': async (request) => {

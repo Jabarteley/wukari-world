@@ -163,7 +163,8 @@ export const ROOM_PALETTE: HomePalette = Object.freeze({ back: '#d7ccb0', left: 
 const WOOD = '#7a5c40', DARK = '#33373d', WHITE = '#f3f1ea', STEEL = '#9aa3a8';
 /** An avatar is 2.45 units tall in venue scale; furniture here is modelled one unit per tile (about a metre). */
 const AVATAR_SCALE = 0.72;
-export const MAX_GUESTS_SHOWN = 5;
+/** Others drawn in a room: a home takes five guests (src/game/visit.ts), a group's room up to fifteen (src/places/model.ts). */
+export const MAX_GUESTS_SHOWN = 15;
 /** How tall each furniture shape stands, in tiles — what can come between the camera and the avatar (camera-collision.js). Unlisted shapes are low. */
 const TALL: Record<string, number | undefined> = { bed: 1.3, fridge: 1.9, shower: SHOWER_HEAD + 0.02, speaker: 1.25, tv: 1.4, shelf: 1.5, wardrobe: 1.7, tripod: 1.25, mic: 1.3, floorlamp: 1.7, cage: 1.5, aquarium: 1.15, plant: 1.1, drum: 1, cooker: 1.1, desk: 1, bench: 1, inverter: 0.95, chair: 0.95, sofa: 0.85 };
 

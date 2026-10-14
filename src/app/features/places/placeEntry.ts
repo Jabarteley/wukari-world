@@ -21,6 +21,30 @@ function kept(): Wanted | null {
 }
 const forget = (): void => { try { store()?.removeItem(KEY) } catch { /* nothing was kept */ } }
 
+/**
+ * THE INVITATION, SAID ON ARRIVAL. A visitor who opened a place's address is told where it leads before anything else: the
+ * room's name and how many are inside (POST /api/places/room/peek needs no session and says nothing more), or the Square.
+ * The landing's own banner says it (App.vue LinkBanner), and it stays until the visitor is inside or closes it.
+ */
+let said = 0
+function say(title: string, text: string, tone: 'good' | 'info' = 'good'): void {
+  const { landing } = useApp()
+  said = Date.now()
+  landing.banner.value = { id: said, title, text, tone, knock: false, knockHost: null }
+}
+function unsay(): void { const { landing } = useApp(); if (said && landing.banner.value?.id === said) landing.banner.value = null; said = 0 }
+async function announce(wanted: Wanted): Promise<void> {
+  if ('square' in wanted) { say('You are invited to the Square', 'One place for the whole world: meet people from every city and talk. Pick a name and press Play to come in, no sign-up.'); return }
+  try {
+    const response = await fetch('/api/places/room/peek', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: wanted.token }) })
+    const answer = await response.json() as { code?: unknown; room?: { name?: unknown; here?: unknown } }
+    if (answer.code === 'open' && typeof answer.room?.name === 'string') {
+      const here = typeof answer.room.here === 'number' && answer.room.here > 0 ? `${answer.room.here} ${answer.room.here === 1 ? 'person is' : 'people are'} inside now. ` : ''
+      say(`You are invited to “${answer.room.name}”`, `${here}A group’s room in Allworld, where friends talk and build together. Pick a name and press Play to come in, no sign-up.`)
+    } else if (answer.code === 'ended') say('That room link has ended', 'Ask for a new link. You can still play Allworld.', 'info')
+  } catch { /* no answer: the landing says nothing more, and the link is still tried once there is a life */ }
+}
+
 /** Is this address a place's? (startExtras.ts asks before fetching this file's work.) */
 export const isPlaceAddress = (pathname: string): boolean => pathname === '/square' || pathname === '/square/' || roomTokenOf(pathname) !== null
 
@@ -34,6 +58,9 @@ export function startPlaceEntry(): void {
     try { globalThis.history?.replaceState(globalThis.history.state, '', '/') } catch { /* the address stays; nothing depends on it */ }
   }
   const { game } = useApp()
+  // Said at once, to a visitor still on the welcome screen and to a player who is about to be taken in alike (it goes when they are inside).
+  const first = kept()
+  if (first) void announce(first)
   let entering = false
   const stop = watch(() => game.connected.value && game.view.value.onboarding?.required !== true, async (ready) => {
     if (!ready || entering) return
@@ -49,10 +76,10 @@ export function startPlaceEntry(): void {
         stop()
         return
       }
-      if ('square' in wanted) { forget(); stop(); await enterSquare(); return }
+      if ('square' in wanted) { forget(); stop(); unsay(); await enterSquare(); return }
       const done = await enterByLink(wanted.token)
       if (!done.ok && done.retry) return // no connection or no life yet: the link is kept for the next try
-      forget(); stop()
+      forget(); stop(); unsay()
       if (!done.ok) game.toast(done.reason, 'error')
     } finally { entering = false }
   }, { immediate: true })

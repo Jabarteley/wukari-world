@@ -18,7 +18,7 @@ Code: `src/places/model.ts` (numbers, room keys, the furniture rule), `server/so
 | A friend's card | **Join in the Square**, when that friend is standing there |
 | An address | `/square`, or a room's link `/r/<number>-<key>` |
 
-A new visitor who opens an address sees the landing first (a name and Play, no sign-up) and is taken into the place as soon as their life exists. The address is kept for that tab only and the page returns to `/`.
+A new visitor who opens an address sees the landing first (a name and Play, no sign-up), with a banner naming the room the link leads to and how many are inside, and is taken into the place as soon as their life exists. The address is kept for that tab only and the page returns to `/`.
 
 **Step out** (the button, the door of a room, or the close button of the panel) puts the screen back where your life is. Setting off on a trip, or going into a home as a guest, steps you out as well: one thing is on screen at a time.
 
@@ -86,7 +86,7 @@ POST /api/places/room/enter   { token }       come in through a link
 
 ## Not done, or weaker
 
-- A room's scene is a home scene: other people are shown standing by the door (five at most), not walking about.
+- A room's scene is a home scene: other people are shown standing near the door (up to fifteen), not walking about.
 - The Square has no scene of its own yet.
 - A friend standing in a group room is shown as "in a group room"; joining them needs the room's link or membership.
 - Furniture is moved with buttons, not by dragging in the scene.

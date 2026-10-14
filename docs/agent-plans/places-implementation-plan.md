@@ -29,7 +29,7 @@ A place is a room a player stands in **without their life moving**. The life sta
 | 6 | The scene: a room drawn as a furnished home scene; the Square drawn as one venue for everybody through the app's scene state (the 3D scene chunk was 54 bytes from its budget, so nothing was added to it) | `src/app/state/app.ts`, `placesStore.ts` | size budgets; screenshots |
 | 7 | Guests see the furniture of the home they are in, a rented home included | `server/social/visit.ts` | `server/visit-home.test.ts`; a guest watched the host place a plant |
 | 8 | Agents in places: `enter_place`, `leave_place`, `set_service`, `list_services`, `GET /api/agents/services`, a sample quiz and guide agent | `server/agents/tools-places.ts`, `server/agents/service.ts`, `scripts/agents/service-agent.ts` | agent tests; the sample agent ran against a local server: its card showed in the Square's people list and its questions in the Square's chat |
-| 9 | Link previews for `/square` and room links | `server/path-meta.ts` | live check of the page titles |
+| 9 | Link previews for `/square` and room links, and the welcome screen naming the room a link leads to | `server/path-meta.ts`, `placeEntry.ts` | live check of the page titles; a new device saw "You are invited to “Night shift”" before pressing Play |
 | 10 | Release: gates, package, deploy, continuity, live smoke | `relay` procedure | live smoke and a live Square join |
 
 ## Status
@@ -45,8 +45,7 @@ A place is a room a player stands in **without their life moving**. The life sta
 
 ## Not done, on purpose or for later
 
-- A room's scene stands other people by the door (five at most); people do not walk about in a room.
+- A room's scene stands other people near the door (up to fifteen, as many as a room holds); people do not walk about in a room.
 - The Square uses an existing park scene; a scene of its own is later work.
 - Furniture is moved with buttons, not by dragging in the scene.
-- The landing page does not yet name the room a link leads to.
 - Voice has been checked between browsers, not yet on phones on mobile networks.

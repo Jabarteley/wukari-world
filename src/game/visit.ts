@@ -17,7 +17,7 @@ const MINUTE = 60000, HOUR = 3600000;
 export const VISIT = Object.freeze({
   /** A player with more friends than this is never defaulted to "walk in": a crowd could fill the house. */
   walkFriendsMax: 100,
-  /** Guests a house takes at once: the home scene stands five people by the door (src/scene/home-scene.ts MAX_GUESTS_SHOWN). */
+  /** Guests a house takes at once (the home scene stands them by the door, src/scene/home-scene.ts MAX_GUESTS_SHOWN). */
   guests: 5,
   /** An invitation to come over is good for this long, and is one permission: it bypasses the knock for that visit. */
   inviteMinutes: 30,

@@ -40,9 +40,10 @@ function cut(record: JailRecord, now: number, wanted: number): number {
   const room = Math.floor((record.until - now - PRISON.keepMs) / MIN);
   const taken = Math.max(0, Math.min(wanted, capLeft(record, now), room));
   if (!taken) return 0;
+  const before = cutToday(record, now); // read before the day is written: on a new day yesterday's minutes do not count
   record.until -= taken * MIN;
   record.cutDay = lagosTime(now).day;
-  record.cutMin = cutToday(record, now) + taken;
+  record.cutMin = before + taken;
   return taken;
 }
 

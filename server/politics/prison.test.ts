@@ -29,6 +29,10 @@ test('a job takes its minutes off, waits before a repeat, and is capped per Lago
   assert.equal(jobBlock(record, t + 10 * MIN, 'library')?.code, 'job_cap', 'capped today');
   record.until = t + 26 * 60 * MIN; // a long sentence, still running tomorrow
   assert.equal(jobBlock(record, t + 24 * 60 * MIN, 'library'), null, 'a new Lagos day starts again');
+  const tomorrow = t + 24 * 60 * MIN;
+  assert.equal(doJob(record, tomorrow, 'library'), 4);
+  assert.equal(record.cutMin, 4, 'yesterday\'s minutes are not carried into the new day');
+  assert.equal(capLeft(record, tomorrow), PRISON.dailyCapMin - 4);
 });
 
 test('a job never takes the sentence below the last minute', () => {

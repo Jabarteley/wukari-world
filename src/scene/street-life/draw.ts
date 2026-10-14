@@ -42,6 +42,8 @@ export interface StreetLifeOptions {
   vehicles: number
   /** The ground's height (default 0). */
   heightAt?(x: number, z: number): number
+  /** The final guard for a venue (plan.ts walkableFloor): a person or vehicle anywhere this says no is not drawn (scaled to nothing). */
+  walkable?(x: number, z: number): boolean
   /** Wall-clock milliseconds to place everyone at first. */
   at: number
 }
@@ -299,7 +301,7 @@ function perfReadout(): { show(text: string): void; dispose(): void } | null {
 
 export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLife {
   const { THREE } = kit;
-  const heightAt = options.heightAt ?? (() => 0);
+  const heightAt = options.heightAt ?? (() => 0), walkable = options.walkable;
   const group = new THREE.Group();
   group.name = 'street-life';
   options.parent.add(group);
@@ -343,10 +345,11 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
       const gait = crowd.gait.array as Float32Array;
       for (let i = 0; i < shownPeople; i++) {
         const person = people[i]!, pose = personAt(person, world, seconds), spot = stepAside(pose, player);
+        const shown = !walkable || walkable(spot.x, spot.z) === true;
         position.set(spot.x, heightAt(spot.x, spot.z) + pose.lift, spot.z);
-        scale.set(person.height * 0.5 * person.width, person.height, 1);
+        if (shown) scale.set(person.height * 0.5 * person.width, person.height, 1); else scale.set(0, 0, 0);
         crowd.mesh.setMatrixAt(i, matrix.compose(position, still, scale));
-        gait[i * 4] = pose.phase; gait[i * 4 + 1] = pose.ry; gait[i * 4 + 2] = pose.fade; gait[i * 4 + 3] = pose.mode;
+        gait[i * 4] = pose.phase; gait[i * 4 + 1] = pose.ry; gait[i * 4 + 2] = shown ? pose.fade : 0; gait[i * 4 + 3] = pose.mode;
       }
       crowd.mesh.instanceMatrix.needsUpdate = true;
       crowd.gait.needsUpdate = true;
@@ -357,7 +360,7 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
         const lit = vehicle.road === 0 && signal !== null;
         const pose = vehicleAt(vehicle, road, lit ? driveSeconds(signal, seconds) + shift / road.speed : seconds);
         position.set(pose.x, heightAt(pose.x, pose.z), pose.z);
-        scale.set(spec.wide ?? 1, spec.tall, spec.length);
+        if (!walkable || walkable(pose.x, pose.z) === true) scale.set(spec.wide ?? 1, spec.tall, spec.length); else scale.set(0, 0, 0);
         traffic.setMatrixAt(i, matrix.compose(position, turn.setFromAxisAngle(up, pose.ry), scale));
       }
       traffic.instanceMatrix.needsUpdate = true;

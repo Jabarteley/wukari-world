@@ -4,8 +4,9 @@
  * reads except deviceHints() and forcedFrom() (which take their inputs when given), so every rule here is a plain unit test.
  *
  * What it adds, and what it never does:
- *   - a FAR CROWD of a few hundred people drawn as camera-facing cut-outs (two triangles each, one draw call for all of them), walking
- *     along pedestrian LANES that lie beyond where the player can walk (the back of an open venue; the far pavement of the home street);
+ *   - a FAR CROWD of people drawn as camera-facing cut-outs (two triangles each, one draw call for all of them), walking along pedestrian
+ *     LANES: the pavements of the home street (a few hundred), or a light crowd on an open venue's own walkable floor (venueLanes: never
+ *     outside its boundary, never through its walls, trees or props);
  *   - TRAFFIC: a few taxis, cars, buses and trucks on a scene's ROADS (one instanced mesh), only where the scene has a road;
  *   - nothing near the player: the ambient layer's own people (src/scene/ambient) are untouched, and are what is left when this is off.
  *
@@ -151,26 +152,84 @@ export interface Lane { ax: number; az: number; bx: number; bz: number; width: n
 /** A traffic lane: vehicles drive from a to b only (one way, all at one speed, so they never run into each other). */
 export interface Road { ax: number; az: number; bx: number; bz: number; speed: number }
 
-/**
- * The lanes behind an open venue: three pavements beyond the far edge of where the player can walk (the back of the place, away from
- * the scene's camera), running past both sides to where the host's ground disc fades (people dissolve in and out there: FADE_UNITS), and
- * for an open place one down its left side. They stand on the disc, which lies VENUE_GROUND below the floor.
- */
-export function venueLanes(bounds: readonly [number, number, number, number], open: boolean): Lane[] {
-  const [x0, z0, x1, z1] = bounds, reach = 16;
-  const lanes: Lane[] = [
-    { ax: x0 - reach, az: z0 - 2.0, bx: x1 + reach, bz: z0 - 2.0, width: 1.6 },
-    { ax: x0 - reach, az: z0 - 4.6, bx: x1 + reach, bz: z0 - 4.6, width: 2.2 },
-    { ax: x0 - reach, az: z0 - 7.6, bx: x1 + reach, bz: z0 - 7.6, width: 2.6 },
-  ];
-  if (open) lanes.push({ ax: x0 - 2.4, az: z1 + 4, bx: x0 - 2.4, bz: z0 - 9, width: 1.6 });
-  return lanes;
+/** A venue's walk area: [x0, z0, x1, z1] (the walk grid's bounds). */
+export type Bounds = readonly [number, number, number, number];
+/** May a body stand here (the venue's walk grid: on its floor, clear of walls, trees and props by the avatar's radius). */
+export type Walkable = (x: number, z: number) => boolean;
+/** Inside a venue the crowd keeps this far in from the walk area's edge (walls, hedges, the slab's lip), on top of the grid's own clearance. */
+export const VENUE_MARGIN = 1.5;
+/** A lane on a venue's floor is cut where its band meets something in the way; pieces shorter than this are dropped. */
+export const VENUE_MIN_RUN = 8;
+/** The band of a lane on a venue's floor, and how finely it is checked against the floor. */
+export const VENUE_LANE_WIDTH = 1.4, VENUE_LANE_STEP = 0.5;
+/** A venue's floor carries a light crowd: at most this many per tier, and no more than one person per VENUE_SPACING units of lane. */
+export const VENUE_CROWD: Readonly<Record<StreetTier, number>> = Object.freeze({ full: 32, lite: 16 });
+export const VENUE_SPACING = 2.5;
+
+const validBounds = (bounds: Bounds | null | undefined): bounds is Bounds => Array.isArray(bounds) && bounds.length === 4 && bounds.every(Number.isFinite)
+  && bounds[2] - bounds[0] > 2 * VENUE_MARGIN + VENUE_LANE_WIDTH && bounds[3] - bounds[1] > 2 * VENUE_MARGIN + VENUE_LANE_WIDTH;
+
+/** Is (x, z) at least `margin` inside the venue's walk bounds. */
+export function insideFloor(bounds: Bounds, x: number, z: number, margin = VENUE_MARGIN): boolean {
+  const [x0, z0, x1, z1] = bounds;
+  return Number.isFinite(x) && Number.isFinite(z) && x >= x0 + margin && x <= x1 - margin && z >= z0 + margin && z <= z1 - margin;
 }
 
-/** The host's ground disc beyond a venue's slab lies this far below the floor (src/venue-world.ts ground.place). */
-export const VENUE_GROUND = -0.42;
+/** The venue floor a crowd may stand on: inside the bounds by VENUE_MARGIN and free on the walk grid. Null (no crowd) without a grid or with no real floor. */
+export function walkableFloor(bounds: Bounds | null | undefined, free: Walkable | null | undefined): Walkable | null {
+  if (typeof free !== 'function' || !validBounds(bounds)) return null;
+  return (x, z) => insideFloor(bounds, x, z) && free(x, z) === true;
+}
 
-const laneLength = (lane: { ax: number; az: number; bx: number; bz: number }): number => Math.hypot(lane.bx - lane.ax, lane.bz - lane.az);
+/** The pieces of a line whose whole band (centre and both edges) stands on the floor, each at least VENUE_MIN_RUN long. */
+function clipToFloor(line: { ax: number; az: number; bx: number; bz: number }, walkable: Walkable): Lane[] {
+  const length = laneLength(line), half = VENUE_LANE_WIDTH / 2;
+  if (!(length >= VENUE_MIN_RUN)) return [];
+  const ux = (line.bx - line.ax) / length, uz = (line.bz - line.az) / length;
+  const steps = Math.ceil(length / VENUE_LANE_STEP), out: Lane[] = [];
+  const at = (k: number): number => Math.min(length, k * VENUE_LANE_STEP);
+  const ok = (t: number): boolean => {
+    const x = line.ax + ux * t, z = line.az + uz * t;
+    return walkable(x, z) && walkable(x + uz * half, z - ux * half) && walkable(x - uz * half, z + ux * half);
+  };
+  let start = -1;
+  for (let k = 0; k <= steps + 1; k++) {
+    const good = k <= steps && ok(at(k));
+    if (good && start < 0) start = k;
+    if (!good && start >= 0) {
+      const a = at(start), b = at(k - 1);
+      if (b - a >= VENUE_MIN_RUN) out.push({ ax: line.ax + ux * a, az: line.az + uz * a, bx: line.ax + ux * b, bz: line.az + uz * b, width: VENUE_LANE_WIDTH });
+      start = -1;
+    }
+  }
+  return out;
+}
+
+/**
+ * The lanes of a venue's light crowd, ON ITS OWN FLOOR: two rows across the back of the walk area (away from the scene's camera) and, for
+ * an open place, one up each side over the back 60%, all VENUE_MARGIN inside the walk bounds and cut wherever their band meets a wall, a
+ * tree or a prop on the walk grid (`free`). No grid, or no real floor: no lanes (no crowd). Never outside the boundary: before 14 Oct
+ * these were pavements BEYOND the walk area, on the host's ground disc, and the Square showed lines of people outside its trees.
+ */
+export function venueLanes(bounds: Bounds, open: boolean, free?: Walkable | null): Lane[] {
+  const walkable = walkableFloor(bounds, free);
+  if (!walkable) return [];
+  const [x0, z0, x1, z1] = bounds, half = VENUE_LANE_WIDTH / 2, depth = z1 - z0;
+  const left = x0 + VENUE_MARGIN + half, right = x1 - VENUE_MARGIN - half, back = z0 + VENUE_MARGIN + half;
+  const lines = [{ ax: left, az: back, bx: right, bz: back }];
+  if (back + 2.6 < z0 + depth * 0.45) lines.push({ ax: left, az: back + 2.6, bx: right, bz: back + 2.6 });
+  if (open) for (const x of [left, right]) lines.push({ ax: x, az: back, bx: x, bz: z0 + depth * 0.6 });
+  return lines.flatMap((line) => clipToFloor(line, walkable));
+}
+
+/** How many people a venue's floor gets: what fits in the room (crowdFits), the venue's light cap for the tier, and the lanes' length. */
+export function venueCrowd(choice: StreetChoice, room: { triangles: number; meshes: number }, lanes: readonly Lane[]): number {
+  const length = lanes.reduce((sum, lane) => sum + laneLength(lane), 0);
+  if (!lanes.length || !(length > 0)) return 0;
+  return Math.max(0, Math.min(crowdFits(choice, room), VENUE_CROWD[choice.tier], Math.floor(length / VENUE_SPACING)));
+}
+
+function laneLength(lane: { ax: number; az: number; bx: number; bz: number }): number { return Math.hypot(lane.bx - lane.ax, lane.bz - lane.az); }
 const wrap = (value: number, length: number): number => ((value % length) + length) % length;
 
 // ---- the people ------------------------------------------------------------------------------------------------------------------

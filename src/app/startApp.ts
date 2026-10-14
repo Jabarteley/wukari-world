@@ -19,8 +19,6 @@ export function ready(): void {
     if (game.view.value.connected) openStore()
     else { const stop = watch(() => game.view.value.connected, connected => { if (connected) { stop(); openStore() } }) }
   }
-  // The data meter (Settings → Data and battery): a lazy chunk that also counts what the page has downloaded so far.
-  void import('./state/dataMeter.ts').then((meter) => meter.startMeter(), () => 0)
   // Then, when the browser is idle, what is opened next (the phone, the map, Jobs, Groceries, Buy mode, the Boutique).
   // The scene is what the first screen waits for: nothing is fetched beside it (or after ten seconds, when it never comes).
   const sceneShown = new Promise<void>((resolve) => {

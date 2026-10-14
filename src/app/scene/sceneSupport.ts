@@ -25,6 +25,15 @@ export function sceneSupport(userAgent: string | undefined, probe: () => ProbeCa
   } catch { return { ok: false, reason: 'no-webgl' } }
 }
 
+/**
+ * Called once when the scene is about to start (ScenePane, from this lazy file): starts the data meter (Settings → Data and battery;
+ * its own lazy chunk, counting what the page has downloaded so far too) and says whether this browser can draw the scene.
+ */
+export function sceneCanStart(): boolean {
+  void import('../state/dataMeter.ts').then((meter) => meter.startMeter(), () => 0)
+  return browserSceneSupport().ok
+}
+
 /** Ask this browser. */
 export function browserSceneSupport(): SceneSupport {
   const doc = globalThis.document

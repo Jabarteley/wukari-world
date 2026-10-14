@@ -97,7 +97,7 @@ onMounted(() => {
   setTimeout(async () => {
     try {
       // A browser that cannot draw it is told so before it downloads the scene (the biggest download in the game), with what to do instead.
-      if (!(await import('./sceneSupport.ts')).browserSceneSupport().ok) { telemetry.sceneReady(false); waiting.value = true; failed.value = true; return }
+      if (!(await import('./sceneSupport.ts')).sceneCanStart()) { telemetry.sceneReady(false); waiting.value = true; failed.value = true; return }
       await landingCodeSettled() // a new device is looking at the landing's 3D preview: its code goes first
       // Where the scene starts is where the server says the player is, never the copy this device kept.
       const settled = ready.value ? Promise.resolve() : new Promise<void>((resolve) => { const stop = watch(ready, (now) => { if (now) { stop(); resolve() } }) })

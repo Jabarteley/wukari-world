@@ -11,10 +11,10 @@
  * screen where the sheet is the screen. The scene underneath keeps its state and is drawn once when the cover goes.
  * The first download carries this file (it imports only src/lightMode.ts).
  */
-import { LIGHT_TIER, lightFps, readLight } from '../lightMode.ts'
+import { LIGHT_TIER, lightFps, lightOn } from '../lightMode.ts'
 export type FrameAction = 'draw' | 'wait' | 'stop'
 /** Browsers deliver frames a little early or late; a frame this much (ms) short of the gap still counts as on time. */
-export const FRAME_SLACK_MS = 2
+const FRAME_SLACK_MS = 2
 
 /** What the loop does with the frame the browser just delivered at `now`, the last drawn one being at `last` (-Infinity: none yet). */
 export const frameAction = ({ covered, now, last, capFps }: { covered: boolean; now: number; last: number; capFps: number }): FrameAction =>
@@ -43,6 +43,6 @@ export function setCovered(next: boolean): void {
 
 /**
  * What the scene chunk takes from this file, as ONE import (each name imported from another chunk costs bytes there): the loop's
- * frame request and cancel, and light mode's render tier for a window (null when light mode is off there).
+ * frame request and cancel, and light mode's render tier (null when light mode is off).
  */
-export const gate = { request: gatedRequest, cancel: gatedCancel, tier: (win: Parameters<typeof readLight>[0]) => (readLight(win) ? LIGHT_TIER : null) }
+export const gate = { request: gatedRequest, cancel: gatedCancel, tier: () => (lightOn() ? LIGHT_TIER : null) }

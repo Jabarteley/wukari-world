@@ -51,7 +51,7 @@ One switch, `src/lightMode.ts` (no imports, carried by the first download, about
 
 ## 4. The data meter
 
-`src/app/state/dataMeter.ts`, a lazy chunk started when the game is ready (`startApp.ts`) and when Settings opens. It observes
+`src/app/state/dataMeter.ts`, a lazy chunk started when the scene starts (`sceneSupport.ts`) and when Settings opens. It observes
 `PerformanceObserver` `resource` and `navigation` entries with `buffered: true` (so the first download is counted) and adds
 `transferSize`. A cache hit has `transferSize` 0, which is right for the player's bill. The running total for the local calendar day is in
 `localStorage['joinallworld-data-v1']` as `{ day, bytes }`; it is saved every 5 seconds of change and when the page is hidden or left, by

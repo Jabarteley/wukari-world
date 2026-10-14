@@ -23,6 +23,7 @@ import { useCivic, useLoaded, useOffline } from '../civic/useCivic.ts'
 import { appealRequest, arrestRequest, bailRequest, escalateRequest, paroleRequest, partyRequest, prisonWorkRequest, politicsUi as ui, runRequest, salaryRequest } from './politicsDrafts.ts'
 import { momentKind, shareMoment } from '../growth/shareMoment.ts'
 import type { RecordEntryView, RecordKind, RecordsResponse } from '../../../types/records.ts'
+import { keepRecords, recallRecords } from './recordsCache.ts'
 import { RECORD_FILTERS, checkRecords, kindLabel, recordDate, recordsPath, shortHash } from './politicsModel.ts'
 import { BILL_STATUS, FLAG_TEXT, TABS, assemblyName, billLine, billVoteWhy, proposeWhy, tallyLine, VERDICTS, arrestWhy, auditLine, petitionWhy, canEscalate, caseLine, courtName, higherCourt, noteWhy, rulingLine, statementWhy, ballotKey, jailLine, justiceKey, justicePath, offenceLine, officerOf, ballotPath, ledgerKind, leverRange, leverText, leverWhy, officeLine, overviewKey, overviewPath, partyMottoWhy, partyName, partyNameWhy, quorumLine, seatOf } from './politicsModel.ts'
 
@@ -125,10 +126,13 @@ async function loadRecords(more = false): Promise<void> {
   if (more && (hall.value.loading || hall.value.before === null)) return
   const revision = ++recordsRevision
   const path = recordsPath(filter.value, more ? hall.value.before : null)
-  hall.value = more ? { ...hall.value, loading: true, error: null } : { entries: [], before: null, head: '', count: 0, loading: true, error: null }
+  // The last first page of this filter shows at once (still checked below) and is replaced when the answer comes.
+  const kept = more ? null : recallRecords(filter.value)
+  hall.value = more ? { ...hall.value, loading: true, error: null } : { entries: kept?.entries ?? [], before: kept?.before ?? null, head: kept?.head ?? '', count: kept?.count ?? 0, loading: true, error: null }
   try {
     const answer = await game.fetchJson<RecordsResponse>(path)
     if (revision !== recordsRevision) return
+    if (!more) keepRecords(filter.value, answer)
     hall.value = { entries: more ? [...hall.value.entries, ...answer.entries] : answer.entries, before: answer.before, head: answer.head, count: answer.count, loading: false, error: null }
   } catch {
     if (revision !== recordsRevision) return

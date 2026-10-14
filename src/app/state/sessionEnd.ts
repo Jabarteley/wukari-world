@@ -1,6 +1,7 @@
 // What the page does when the server closes its social socket because the session changed under it (signed out on another
 // device, or the account now plays another character). Fetched only then: nothing here is needed before it happens.
 import { STORAGE_KEY } from '../../storage-key.ts'
+import { clearCache } from './cacheFirst.ts'
 import type { Game } from './game.ts'
 
 /** What it says before it starts again because its session changed under it (server/routes/auth.ts closes its socket with 4401). */
@@ -20,6 +21,7 @@ export async function sessionMoved(game: Game): Promise<void> {
   game.toast(now === null ? SIGNED_OUT_TEXT : CHARACTER_CHANGED_TEXT)
   globalThis.setTimeout(() => {
     try { globalThis.localStorage?.removeItem(STORAGE_KEY) } catch { /* nothing was kept */ }
+    clearCache()
     try { globalThis.location?.reload() } catch { /* the next request says so */ }
   }, 1800)
 }

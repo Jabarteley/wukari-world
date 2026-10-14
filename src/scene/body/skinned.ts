@@ -17,9 +17,10 @@
  */
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+import { clone as cloneSkinned } from 'three/examples/jsm/utils/SkeletonUtils.js';
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
-import { BODY_FILES } from './files.ts';
+import { BODY_FILES, CROWD_LOD_FILES } from './files.ts';
 import { BODY_MANIFEST } from './manifest.ts';
 import type { BodyKey } from './manifest.ts';
 import { bodyTint } from './tint.ts';
@@ -139,20 +140,37 @@ function loadClips(): Promise<THREE.AnimationClip[]> {
   return clipsOnce;
 }
 
+/** Where a body's mesh comes from: a parse of its own (the player's body), or a copy of a crowd's shared parse (createCrowdBodies). */
+interface BodySource {
+  root: THREE.Object3D;
+  skinned: THREE.SkinnedMesh;
+  map: THREE.Texture;
+  /** The vertices and the texture belong to the crowd: this body leaves them (and its own index) for the crowd's dispose(). */
+  shared: boolean;
+}
+function skinnedIn(root: THREE.Object3D, key: BodyKey): { skinned: THREE.SkinnedMesh; map: THREE.Texture } {
+  let mesh: THREE.SkinnedMesh | null = null;
+  root.traverse((node) => { if ((node as THREE.SkinnedMesh).isSkinnedMesh && !mesh) mesh = node as THREE.SkinnedMesh; });
+  if (!mesh) throw new Error(`no skinned mesh in ${BODY_FILES[key]}`);
+  const skinned: THREE.SkinnedMesh = mesh, map = (skinned.material as THREE.MeshStandardMaterial).map;
+  if (!map) throw new Error(`no base colour in ${BODY_FILES[key]}`);
+  return { skinned, map };
+}
+async function ownSource(key: BodyKey): Promise<BodySource> {
+  const gltf = await gltfLoader().loadAsync(BODY_FILES[key]);
+  const { skinned, map } = skinnedIn(gltf.scene, key);
+  (skinned.material as THREE.Material).dispose();
+  return { root: gltf.scene, skinned, map, shared: false };
+}
+
 /** Load the body a look wears, dressed in it, scaled for a scene whose avatar scale is `sceneScale`. */
-export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScale: number): Promise<SkinnedBody> {
+export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScale: number, from: (key: BodyKey) => Promise<BodySource> = ownSource): Promise<SkinnedBody> {
   const { THREE: T } = kit;
   let read = normalizeLook(look, seed), tint = bodyTint(read, seed);
   const key = tint.key, facts = BODY_MANIFEST.bodies[key];
   await MeshoptDecoder.ready;
-  const [gltf, clips] = await Promise.all([gltfLoader().loadAsync(BODY_FILES[key]), loadClips()]);
-  let mesh: THREE.SkinnedMesh | null = null;
-  gltf.scene.traverse((node) => { if ((node as THREE.SkinnedMesh).isSkinnedMesh && !mesh) mesh = node as THREE.SkinnedMesh; });
-  if (!mesh) throw new Error(`no skinned mesh in ${BODY_FILES[key]}`);
-  const skinned: THREE.SkinnedMesh = mesh;
-  const loaded = skinned.material as THREE.MeshStandardMaterial;
-  const map = loaded.map;
-  if (!map) throw new Error(`no base colour in ${BODY_FILES[key]}`);
+  const [source, clips] = await Promise.all([from(key), loadClips()]);
+  const { skinned, map, shared } = source, root = source.root;
   // The scene's own material family (Lambert when scenery is matte), with the look as uniforms.
   const material = kit.matte ? new T.MeshLambertMaterial({ map }) : new T.MeshStandardMaterial({ map, roughness: 0.82, metalness: 0 });
   const atlas = faceAtlas(key), facial = createFacialSampler(read.expression, seed);
@@ -179,7 +197,6 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>${FRAGMENT}`).replace('#include <map_fragment>', DRESS);
   };
   material.customProgramCacheKey = () => 'allworld-body-face-1';
-  loaded.dispose();
   skinned.material = material;
   // A posed body leaves its bind-pose bounds; one small mesh is cheaper to draw than to cull wrongly.
   skinned.frustumCulled = false;
@@ -187,7 +204,7 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
 
   const object = new T.Group();
   object.name = 'skinned-body';
-  object.add(gltf.scene);
+  object.add(root);
   // Garment rest fitting must see the untouched asset before age-face geometry changes.
   const wardrobe = createWardrobeRenderer(skinned, kit.matte);
   const appearanceMade = createAvatarAppearanceController(skinned);
@@ -196,7 +213,7 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
   let proportions = avatarProportions(appearance), sceneFit = sceneScale;
   wardrobe.wear({ look: read, ids: resolveAvatarWearablesForRenderer(read) });
   if (appearanceMade.ok) appearanceMade.controller.apply(appearance);
-  const mixer = new T.AnimationMixer(gltf.scene);
+  const mixer = new T.AnimationMixer(root);
   const actions = new Map(clips.map((clip) => [clip.name, mixer.clipAction(clip)]));
   let active = new Set<THREE.AnimationAction>(), scale = 1, pose: BodyPose = 'idle';
   // Restore the raw clip pose before sampling; cached mixer writes cannot undo external IK.
@@ -438,10 +455,9 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
       wardrobe.dispose();
       if (appearanceMade.ok) appearanceMade.controller.dispose();
       mixer.stopAllAction();
-      mixer.uncacheRoot(gltf.scene);
-      skinned.geometry.dispose();
+      mixer.uncacheRoot(root);
+      if (!shared) { skinned.geometry.dispose(); map.dispose(); }
       material.dispose();
-      map.dispose();
       skinned.skeleton.dispose();
       object.removeFromParent();
     },
@@ -449,4 +465,65 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
   body.fit(sceneScale);
   still('idle');
   return body;
+}
+
+/**
+ * A crowd's bodies (src/scene/street-life/near-draw.ts): each body file is fetched and parsed ONCE for the crowd, and every person is a
+ * copy of it (SkeletonUtils.clone) that shares its vertices and its texture, so a dozen people upload one texture and one set of
+ * vertex buffers. Each person draws the crowd's simplified index (assets/base-body-<key>-lod.bin, about 2,430 of the body's 9,002
+ * triangles over the same vertices: build-lod.ts in the body scripts), in an index buffer of their own (the wardrobe masks it per look).
+ * A person's dispose() leaves the shared vertices, the texture and their own geometry; the crowd's dispose() releases them all, once
+ * nobody is drawn any more (a released buffer under a person still drawn would leave that person's vertex arrays pointing at nothing).
+ */
+export interface CrowdBodies {
+  make(look: unknown, seed: unknown, sceneScale: number): Promise<SkinnedBody>;
+  /** Triangles a person's body draws before the wardrobe (the simplified index, or the whole body if it could not be read). */
+  triangles(key: BodyKey): number;
+  dispose(): void;
+}
+export function createCrowdBodies(kit: Kit): CrowdBodies {
+  const { THREE: T } = kit;
+  type Template = { root: THREE.Object3D; skinned: THREE.SkinnedMesh; map: THREE.Texture; lod: Uint16Array | null };
+  const templates = new Map<BodyKey, Promise<Template>>(), made: THREE.BufferGeometry[] = [], lods = new Map<BodyKey, number>();
+  let disposed = false;
+  function template(key: BodyKey): Promise<Template> {
+    let once = templates.get(key);
+    if (once) return once;
+    // The index is a nicety: a file that fails or does not fit the body leaves the whole body (the budget counts it as such).
+    const lod = fetch(CROWD_LOD_FILES[key]).then((response) => response.ok ? response.arrayBuffer() : null).catch(() => null);
+    once = Promise.all([gltfLoader().loadAsync(BODY_FILES[key]), lod]).then(([gltf, bytes]) => {
+      const { skinned, map } = skinnedIn(gltf.scene, key);
+      const count = skinned.geometry.getAttribute('position').count, index = bytes && bytes.byteLength % 6 === 0 ? new Uint16Array(bytes) : null;
+      const fits = Boolean(index && index.length && index.every((vertex) => vertex < count));
+      lods.set(key, fits ? index!.length / 3 : (skinned.geometry.index?.count ?? 0) / 3);
+      return { root: gltf.scene, skinned, map, lod: fits ? index : null };
+    });
+    once.catch(() => templates.delete(key));
+    templates.set(key, once);
+    return once;
+  }
+  async function source(key: BodyKey): Promise<BodySource> {
+    const shape = await template(key);
+    if (disposed) throw new Error('crowd disposed');
+    const root = cloneSkinned(shape.root), { skinned } = skinnedIn(root, key);
+    const geometry = new T.BufferGeometry(), from = shape.skinned.geometry;
+    for (const [name, attribute] of Object.entries(from.attributes)) geometry.setAttribute(name, attribute);
+    geometry.setIndex(new T.BufferAttribute(shape.lod ? shape.lod.slice() : (from.index!.array as Uint16Array).slice(), 1));
+    geometry.boundingSphere = from.boundingSphere; geometry.boundingBox = from.boundingBox;
+    skinned.geometry = geometry;
+    made.push(geometry);
+    return { root, skinned, map: shape.map, shared: true };
+  }
+  return {
+    make: (look, seed, sceneScale) => loadBody(kit, look, seed, sceneScale, source),
+    triangles: (key) => lods.get(key) ?? BODY_MANIFEST.bodies[key].triangles,
+    dispose() {
+      if (disposed) return;
+      disposed = true;
+      for (const geometry of made) geometry.dispose();
+      made.length = 0;
+      for (const once of templates.values()) void once.then((shape) => { shape.skinned.geometry.dispose(); shape.map.dispose(); (shape.skinned.material as THREE.Material).dispose(); }).catch(() => undefined);
+      templates.clear();
+    },
+  };
 }

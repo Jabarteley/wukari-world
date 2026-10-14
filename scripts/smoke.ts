@@ -151,7 +151,12 @@ async function main(): Promise<void> {
   const cities = playableCityIds();
   const loaded: string[] = [];
   const primaryCookie = cookie;
+  // SMOKE_CITIES=a,b,c limits the per-city server loads (each needs its own guest) to those cities plus the home city: a release that
+  // changed only the app's screens needs a handful, not ~285 guests, which the hourly new-player limit of one network does not allow twice.
+  // The chunk check below still covers every open city. Unset: every city, as before.
+  const onlyCities = process.env.SMOKE_CITIES ? new Set(process.env.SMOKE_CITIES.split(',').map((id) => id.trim()).filter(Boolean)) : null;
   for (const [index, city] of cities.entries()) {
+    if (onlyCities && city !== CITY && !onlyCities.has(city)) continue;
     if (city !== CITY) {
       // Session creation is limited per address before a cookie exists. Stay below sixty starts in any minute when the catalogue grows.
       await pause(1050);

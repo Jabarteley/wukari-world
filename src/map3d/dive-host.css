@@ -1,0 +1,8 @@
+/* The dive (src/map3d/dive-host.ts): the veil of clouds over the page while the atlas hands over to the city. Transform and opacity only. */
+.dv-veil{position:fixed;inset:0;z-index:1000;overflow:hidden;pointer-events:auto;touch-action:none;contain:strict}
+.dv-veil[hidden]{display:none}
+.dv-veil.is-reduced{background:#e9eef2}
+.dv-veil.is-reduced .dv-cloud{display:none}
+.dv-cloud{position:absolute;inset:-10%;opacity:0;background:#e9eef2 radial-gradient(circle at 30% 40%,#fff 0,rgba(255,255,255,0) 45%) no-repeat;background-size:cover;background-position:center;will-change:transform,opacity;transform-origin:50% 50%;pointer-events:none}
+.dv-skip{position:absolute;right:max(16px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));min-width:64px;min-height:44px;padding:10px 18px;border:0;border-radius:999px;background:rgba(24,34,28,.82);color:#fff;font:600 14px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.22)}
+.dv-skip:focus-visible{outline:3px solid #e8a643;outline-offset:2px}

@@ -56,6 +56,8 @@ const sheet = ref(false), opened = ref(false)
 const press = (): void => { opened.value = true; sheet.value = true }
 const onVisibility = (): void => pulse.visibility()
 // The server sends the counts over the socket: asked for once per connection (the answer is the right count already), and again on its own when they change.
+// The last numbers show at once (amber while old) until the first answer: loaded on its own, after the first frame.
+const warm = (): void => { if (state.numbers === null) void import('./pulseCache.ts').then((cache) => { cache.seedPulse(pulse) }, () => undefined) }
 const askCounts = (): void => { sendFrame({ type: 'pulse-watch' }) }
 let unframe: (() => void) | null = null, unopen: (() => void) | null = null
 onMounted(() => {
@@ -63,11 +65,11 @@ onMounted(() => {
   unframe = onCallFrame((frame) => { if (frame.type === 'pulse') pulse.take(frame) })
   unopen = onSocketOpen(askCounts)
   if (social.socket === 'open') askCounts()
-  if (connected.value) pulse.start()
+  if (connected.value) { warm(); pulse.start() }
 })
 onBeforeUnmount(() => { document.removeEventListener('visibilitychange', onVisibility); unframe?.(); unopen?.(); for (const timer of timers.splice(0)) clearTimeout(timer) })
 // The poll belongs to the page (never started while rendering to a string): it follows the session.
-watch(connected, (on) => { if (on) pulse.start(); else { pulse.stop(); pulse.reset() } })
+watch(connected, (on) => { if (on) { warm(); pulse.start() } else { pulse.stop(); pulse.reset() } })
 </script>
 
 <template>

@@ -15,13 +15,14 @@
 /** One city's money for one day: units of its currency and of naira per US dollar. */
 export interface CityMoney { readonly day: string; readonly code: string; readonly symbol: string; readonly decimals: number; readonly perUsd: number; readonly ngnPerUsd: number }
 
-const held = new Map<string, CityMoney>()
+/** Each city's money (read by money-feed.ts). */
+export const held = new Map<string, CityMoney>()
 let displayCity: string | null = null
-const listeners = new Set<() => void>()
-const changed = (): void => { for (const run of listeners) run() }
+let listener: (() => void) | null = null
+const changed = (): void => listener?.()
 
-/** Calls `run` whenever the display city or a city's rates change (the UI re-reads its amounts). Returns a stopper. */
-export function onMoneyChange(run: () => void): () => void { listeners.add(run); return () => { listeners.delete(run) } }
+/** Calls `run` whenever the display city or a city's rates change (the UI re-reads its amounts). One listener: the UI formatter's. */
+export const onMoneyChange = (run: () => void): void => { listener = run }
 
 /** The city the page shows amounts for (null: naira). */
 export const displayCityId = (): string | null => displayCity
@@ -35,7 +36,6 @@ export function setCityMoney(cityId: string, value: CityMoney | null): void {
   held.set(cityId, value)
   changed()
 }
-export const cityMoneyOf = (cityId: string): CityMoney | null => held.get(cityId) ?? null
 
 const naira = (value: unknown): string => `₦${Math.round(Number(value) || 0).toLocaleString('en-NG')}`
 
@@ -62,6 +62,3 @@ export function nairaHint(value: unknown, cityId: string | null = displayCity): 
   const rate = cityId === null ? undefined : held.get(cityId)
   return !rate || rate.code === 'NGN' ? null : `≈ ${naira(value)}`
 }
-
-/** Forgets every city's money and the display city (tests). */
-export function clearMoney(): void { held.clear(); displayCity = null; changed() }

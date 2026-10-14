@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test, { afterEach } from 'node:test'
-import { clearMoney, money, nairaHint, setCityMoney, setDisplayCity } from './money.ts'
-import { compactMoney, readCityMoney } from './money-feed.ts'
+import { money, nairaHint, setCityMoney, setDisplayCity } from './money.ts'
+import { clearMoney, compactMoney, readCityMoney } from './money-feed.ts'
 import { naira } from './util.ts'
 
 afterEach(() => clearMoney())

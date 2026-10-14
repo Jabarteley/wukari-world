@@ -70,7 +70,8 @@ test('a failed read changes nothing', async () => {
 })
 
 test('an answer gives the city its money; the display city follows the feed and a day does not move', async () => {
-  const { clearMoney, money } = await import('../../../game/money.ts')
+  const { money } = await import('../../../game/money.ts')
+  const { clearMoney } = await import('../../../game/money-feed.ts')
   clearMoney()
   const london = { day: '2026-10-14', rates: { NGN: 1500, GBP: 0.75, USD: 1 }, currency: { code: 'GBP', symbol: '£', decimals: 2 }, weather: null, credits: null }
   takeFeed('london', london)

@@ -5,7 +5,7 @@
  * the server's feed service call it) and the short form (£1.2k) for the top bar and boards. Kept apart so the first download carries only
  * the writer.
  */
-import { cityMoneyOf, displayCityId, money } from './money.ts'
+import { displayCityId, held, money, setDisplayCity } from './money.ts'
 import type { CityMoney } from './money.ts'
 
 /** Reads the feed answer's `day`, `rates` and `currency` into a city's money, or null when anything is missing or not a usable number. */
@@ -24,7 +24,7 @@ export function readCityMoney(feed: unknown): CityMoney | null {
 
 /** A short form for tight spaces in the city's currency (£1.2k, KSh 34k, $3.4m, rounded down), or null when naira applies (the caller keeps its naira form). */
 export function compactMoney(value: unknown, cityId: string | null = displayCityId()): string | null {
-  const rate = cityId === null ? null : cityMoneyOf(cityId)
+  const rate = cityId === null ? null : (held.get(cityId) ?? null)
   if (!rate || rate.code === 'NGN') return null
   const converted = (Number(value) || 0) / rate.ngnPerUsd * rate.perUsd
   const abs = Math.abs(converted), tier = abs >= 1e9 ? 3 : abs >= 1e6 ? 2 : abs >= 1e3 ? 1 : 0
@@ -34,3 +34,6 @@ export function compactMoney(value: unknown, cityId: string | null = displayCity
   return `${converted < 0 ? '-' : ''}${rate.symbol}${space}${scaled < 10 ? Math.floor(scaled * 10) / 10 : Math.floor(scaled)}${'kmb'.charAt(tier - 1)}`
 }
 
+
+/** Forgets every city's money and the display city (tests). */
+export function clearMoney(): void { held.clear(); setDisplayCity(null) }

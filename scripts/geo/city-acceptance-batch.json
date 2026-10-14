@@ -2,18 +2,12 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "roads-final",
-      "appSha": "1025f72d67b0fba67cf06ab5c3e70555c5342c50",
+      "id": "blsx",
+      "appSha": "bb5a74c1e0b5766e0df7fc8c62fc49711786db08",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
-        "sydney",
-        "madrid",
-        "shanghai",
-        "santiago",
-        "buenos-aires",
-        "cape-town",
-        "mexico-city",
-        "tunis"
+        "gustavia",
+        "philipsburg"
       ],
       "roundtrip": true,
       "browserOnly": true

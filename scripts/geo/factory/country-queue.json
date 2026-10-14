@@ -2,9 +2,14 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "gs",
-      "table": "scripts/geo/factory/country-tables/gs.json",
-      "appSha": "6e1ad00a4d2716679294d64943e98b3298eef1ea"
+      "id": "pm",
+      "table": "scripts/geo/factory/country-tables/pm.json",
+      "appSha": "83116903f3fbdf60090ce5d924080cbee547bbde"
+    },
+    {
+      "id": "cc",
+      "table": "scripts/geo/factory/country-tables/cc.json",
+      "appSha": "83116903f3fbdf60090ce5d924080cbee547bbde"
     }
   ]
 }

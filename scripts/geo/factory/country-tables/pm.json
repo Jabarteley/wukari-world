@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
   "countrySource": {
-    "url": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-saint-pierre-et-miquelon-261013.osm.pbf",
-    "bytes": 1545254,
-    "md5": "4be726710168ffa5f21c71fc05313beb",
+    "url": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-saint-pierre-et-miquelon-wholeways-261013.osm.pbf",
+    "bytes": 1545692,
+    "md5": "3bdf8932e96a75b9e5854fd9b42b9566",
     "snapshotDate": "2026-10-13"
   },
   "airports": {

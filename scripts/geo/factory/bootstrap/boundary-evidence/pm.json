@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "countryISO": "PM",
   "dataset": {
-    "url": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-saint-pierre-et-miquelon-261013.osm.pbf",
-    "bytes": 1545254,
-    "md5": "4be726710168ffa5f21c71fc05313beb"
+    "url": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-saint-pierre-et-miquelon-wholeways-261013.osm.pbf",
+    "bytes": 1545692,
+    "md5": "3bdf8932e96a75b9e5854fd9b42b9566"
   },
   "admin0RelationOverride": {
     "relationId": 3406826,
@@ -15,6 +15,6 @@
       "boundary": "administrative",
       "type": "boundary"
     },
-    "reason": "Owner decision 2026-10-13: non-sovereign territories are in scope. Saint Pierre and Miquelon (PM) is a French overseas collectivity, not a sovereign state. In OpenStreetMap the only relation carrying ISO3166-1=PM is relation 3406826 (boundary=administrative, admin_level 3, ISO3166-2=FR-PM, 2 member ways, both present in the pinned OpenStreetMap France saint_pierre_et_miquelon mirror of 2026-10-13), so the default admin-0 rule (admin_level=2) finds none. Game venue map only: no claims about real operations, borders or sovereignty; OSM mapped boundary, not legal-border authority. Every other proof (member ways, area assembly, segment match) still applies."
+    "reason": "Owner decision 2026-10-13: non-sovereign territories are in scope. Saint Pierre and Miquelon (PM) is a French overseas collectivity, not a sovereign state. In OpenStreetMap the only relation carrying ISO3166-1=PM is relation 3406826 (boundary=administrative, admin_level 3, ISO3166-2=FR-PM, 2 member ways, both present in the pinned OpenStreetMap France saint_pierre_et_miquelon extract of 2026-10-13 (whole-ways mirror)), so the default admin-0 rule (admin_level=2) finds none. Game venue map only: no claims about real operations, borders or sovereignty; OSM mapped boundary, not legal-border authority. Every other proof (member ways, area assembly, segment match) still applies."
   }
 }

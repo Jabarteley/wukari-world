@@ -19,7 +19,7 @@
       "name": "West Island",
       "countryISO": "CC",
       "cityOsmRef": "node/1927498780",
-      "profile": "microstate",
+      "profile": "outpost",
       "airport": {
         "ident": "YPCC",
         "sourceUrl": "https://ourairports.com/airports/YPCC/"
@@ -27,7 +27,17 @@
       "timezone": {
         "id": "Asia/Yangon",
         "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
-      }
+      },
+      "links": [
+        {
+          "to": "flying-fish-cove",
+          "kind": "charter"
+        },
+        {
+          "to": "jakarta",
+          "kind": "ship"
+        }
+      ]
     }
   ]
 }

@@ -7,7 +7,11 @@
 // Like the venue scene, the maps draw on demand: hidden, the city map draws nothing.
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useApp } from '../state/app.ts'
-import { loadMaps } from './loaders.ts'
+import { loadMaps, loadSceneWorld, warmCityScenes } from './loaders.ts'
+import '../../map3d/dive-host.css'
+import { createDiveHost } from '../../map3d/dive-host.ts'
+import type { DiveRun } from '../../map3d/dive-host.ts'
+import { cityName } from '../../game/cities/registry.ts'
 import { viewLife } from '../../life.ts'
 import { telemetry } from '../../telemetry/index.ts'
 import { noteChunkFailure } from '../state/updateNotice.ts'
@@ -54,6 +58,32 @@ if (props.initialUi) onLayer(new CustomEvent('jaw:map-ui', { detail: props.initi
 onMounted(() => emit('ready'))
 let loading: Promise<void> | null = null
 let zoom: ReturnType<Awaited<ReturnType<typeof loadMaps>>['createZoomHost']> | null = null
+
+/**
+ * The map-to-street dive (src/map3d/dive.ts): entering a city from the atlas, the camera flies down, clouds hide the hand-over to the
+ * city map (the player's own city) or the city's scene (another city they may enter), then part over it. The destination's chunks are
+ * fetched from the tap on and waited for under the clouds, never for longer than the hold; anything that fails falls back to the plain
+ * hand-over. The move itself is sent at the tap; the scene opens only once the clouds are opaque.
+ */
+const dives = createDiveHost({ root: document.body })
+let diving: { id: string; own: boolean; run: DiveRun; switching: Promise<boolean> | null } | null = null
+function startDive(cityId: string, own: boolean, land: () => void): number | null {
+  const city = scene.city.value
+  if (own) city?.warm()
+  const prefetch = own ? Promise.resolve(city?.started) : Promise.all([warmCityScenes(cityId), loadSceneWorld()])
+  const name = own ? (game.view.value.city?.name ?? 'your city') : (cityName(cityId) ?? 'the city')
+  const run = dives.start(cityId, name, { prefetch, onSkip: land })
+  const entry = { id: cityId, own, run, switching: own ? null : switchCity(cityId, run.covered) }
+  diving = entry
+  void entry.switching?.then((ok) => run.ready(ok), () => run.ready(false))
+  return run.flightSeconds
+}
+/** The dive for this city, used once: by the hand-over the atlas asks for when its flight lands. */
+function takeDive(cityId: string): typeof diving {
+  const entry = diving?.id === cityId ? diving : null
+  diving = null
+  return entry
+}
 
 /** What a row of the atlas's friends list asks for. The pieces are fetched when first wanted. */
 async function friendAction(action: 'chat' | 'call' | 'ping', id: string, name: string): Promise<void> {
@@ -110,8 +140,18 @@ function load(): Promise<void> {
     })
     scene.world.value = createWorldMap(worldBox.value, {
       ladder: zoom.worldPort,
-      onOpenCity: () => { if (!worldLayer.value || !zoom?.fadeTo('city')) { worldLayer.value = false; showMapLayer('city') } },
-      onEnterCity: (cityId) => { void switchCity(cityId) },
+      dive: startDive,
+      onOpenCity: (cityId) => {
+        const entry = takeDive(cityId)
+        const open = (): void => {
+          // Still under the clouds: the city map comes down from above while they part, and says when it is in front.
+          const run = entry && dives.current === entry.run ? entry.run : null
+          if (!worldLayer.value || !zoom?.fadeTo('city', run ? { descend: run.revealSeconds + 0.4, after: (front) => run.ready(front === 'city') } : {})) { worldLayer.value = false; showMapLayer('city'); run?.ready(true) }
+        }
+        if (entry) void entry.run.covered.then(open); else open()
+      },
+      // A dive sent the move at the tap already.
+      onEnterCity: (cityId) => { if (!takeDive(cityId)?.switching) void switchCity(cityId) },
       onInspectVenue: (cityId, venueId) => {
         if (cityId !== game.cityId.value) return
         worldLayer.value = false
@@ -174,7 +214,7 @@ watch(() => heldCities().join(), () => scene.world.value?.refresh?.())
 const onResize = (): void => { if (mapOpen()) { scene.world.value?.resize(); scene.city.value?.resize() } }
 window.addEventListener('resize', onResize)
 onBeforeUnmount(() => {
-  zoom?.destroy(); zoom = null
+  zoom?.destroy(); zoom = null; dives.destroy()
   stopFriends?.()
   window.removeEventListener('jaw:map-ui', keepMapUi); window.removeEventListener('jaw:map-ui', onLayer); window.removeEventListener('resize', onResize)
   scene.city.value?.destroy(); scene.city.value = null; scene.world.value = null

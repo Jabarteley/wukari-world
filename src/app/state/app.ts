@@ -560,15 +560,18 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     else if (id === 'city' || id === 'locate') showMapLayer('world')
   }
   function startLife(name: string | null): void { void connect(true, name) }
-  async function switchCity(id: string): Promise<void> {
+  /** Move to another city. `hold` (the map's dive) is waited for before the scene opens; true when the move was made. */
+  async function switchCity(id: string, hold?: Promise<unknown>): Promise<boolean> {
     const result = await game.switchCity(id)
-    if (!result.ok) return
+    if (!result.ok) return false
+    await hold
     noteCity(id)
     scene.world.value?.setCity(id); scene.city.value?.setCity(id)
     placeSent = false
     scene.venue.value?.setLocation(game.state.value.location)
     shell.setMode('venue')
     shell.open('city', { city: id })
+    return true
   }
   function redrawScene(): void { if (game.mode.value !== 'map') scene.venue.value?.update() }
 

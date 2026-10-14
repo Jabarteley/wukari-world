@@ -116,7 +116,7 @@ test('the friend-card gift of ₦5,000 goes through the ordinary gift rule: sent
   const poor = life({ cash: 50000, social: { earned: 3000 } })
   const refused = send(poor, 5000)
   assert.equal(refused.ok, false)
-  if (!refused.ok) { assert.equal(refused.code, 'gift_exceeds_earned'); assert.match(refused.reason, /You can only give away money you have earned from work\. You can still give ₦3,000/) }
+  if (!refused.ok) { assert.equal(refused.code, 'gift_exceeds_earned'); assert.match(String(refused.reason), /You can only give away money you have earned from work\. You can still give ₦3,000/) }
   const broke = life({ cash: 800, social: { earned: 12000 } })
   const none = send(broke, 5000)
   assert.equal(none.ok, false)

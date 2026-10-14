@@ -188,7 +188,9 @@ async function verifyDestination(cityId: string): Promise<void> {
   assert.ok(scene.core, 'opened scene declares its initial camera core')
   assert.ok(arrival.x >= scene.core.minX && arrival.x <= scene.core.maxX && arrival.z >= scene.core.minZ && arrival.z <= scene.core.maxZ,
     'the initial camera core contains the actual airport arrival point')
-  assert.ok(scene.roads.length > 0 && scene.roads.length <= 160, 'sourced roads are nonempty and stay within the rendering cap')
+  // An outpost or wilderness destination (generatedLinkPolicy 'authored-only', from its selection profile) may have no mapped road or track at all; every other destination still needs roads.
+  const roadless = facts.generatedLinkPolicy === 'authored-only'
+  assert.ok((roadless || scene.roads.length > 0) && scene.roads.length <= 160, 'sourced roads are nonempty (unless a roadless outpost) and stay within the rendering cap')
   assert.ok(scene.roads.every(road => road.id.startsWith('osm:way:') && road.points.length >= 2
     && road.points.every(point => point.every(Number.isFinite))), 'sourced road geometry is finite and identified')
 

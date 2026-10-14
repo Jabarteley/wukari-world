@@ -58,7 +58,9 @@ import { contentFor } from '../game/cities/runtime.ts';
 import { openingInfo, lagosTime } from '../game/clock.ts';
 import { buildNetwork, localTripRoute, pointInPolygon } from './roads.ts';
 import { buildCity, createRaw, LANDMARK_SCALE } from './city-build.ts';
-import { createRig, DEFAULT_PITCH, MIN_DISTANCE, PITCH_MAX } from './camera.ts';
+import { createRig, DEFAULT_PITCH, MIN_DISTANCE } from './camera.ts';
+import { CITY_KM_PER_UNIT, distanceForSpan, spanKm, swoopPlan, swoopView } from './dive.ts';
+import type { CityDive, SwoopPlan } from './dive.ts';
 import { createFlick, DOUBLE_TAP_MS, DOUBLE_TAP_PX, dragKind, isDrag, isTap, localPoint, mapHint, MAP_HINT_KEY, ROTATE_PITCH, ROTATE_YAW, twist } from '../scene/gesture.ts';
 import { createActor } from './actor.ts';
 import { createOverlays } from './overlays.ts';
@@ -232,6 +234,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   let size = { width: 0, height: 0 }, insets: Insets = { left: 0, top: 0, right: 0, bottom: 0 }, opened = false, userMoved = false, time: TimeOfDay | null = null, labelKey = '', chipKey = '', labelsDirty = true;
   let rafId = 0, renderCount = 0, frameCount = 0, lastTick = 0, seconds = 0, frameMs: number[] = [], gaps: number[] = [];
   let trip: Trip | null = null, route: Route | null = null, returning: { p: number; rate: number } | null = null, settling = false, pendingArrive: (() => void) | null = null, dueAt = -Infinity, tripCamera = true, pose: (TripPose & { progress?: number }) | null = null;
+  /** The dive (./dive.ts): the camera follows `plan` from `start` (ms) for `ms`; the city's massing is drawn all the way down. */
+  let diving: { plan: SwoopPlan; start: number; ms: number } | null = null;
   let stood: { x: number; y: number; z: number } | null = null, nearDistance = 0;             // stood: where the piece stands when it is not travelling; nearDistance: how far out the close view is
   const clock = createTripClock();
   // Other players (src/map3d/people.ts): friends where they stand or travel, and counts. Their pins move without a new picture of the city.
@@ -256,7 +260,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     const t = now(), dt = lastTick ? clamp((t - lastTick) / 1000, 0, 0.1) : 0;
     if (lastTick) { gaps.push(t - lastTick); if (gaps.length > 120) gaps.shift(); }
     frameCount += 1;
-    let moving = rig.step(dt);
+    if (diving) { const k = (t - diving.start) / diving.ms; rig.jump(swoopView(diving.plan, k)); if (k >= 1) diving = null; }
+    let moving = rig.step(dt) || Boolean(diving);
     moving = stepTrip(t, dt) || moving;
     if (settling && !rig.moving) finishArrival();
     if (moving) { seconds += dt; city.animate(seconds); }
@@ -268,7 +273,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     // The player's piece grows as the view pulls back, so it can always be found — and a trip always followed.
     actor.setSize(clamp(rig.view.distance / 62, rig.view.distance < 34 ? Math.max(0.12, rig.view.distance / 62) : 1.2, Math.max(4, rig.view.distance / 110)));
     actor.setClose(rig.view.distance < 45); // a close view of the trip vehicle uses its detailed model (turning wheels)
-    city.setDetail(rig.view.distance, wholeFrom * 1.35);
+    // On the way down from the clouds the towers and blocks are drawn even from high up: from there the city should read as dense, not flat.
+    city.setDetail(diving ? 0 : rig.view.distance, wholeFrom * 1.35);
     city.coverSurround(camera);
     readBand();
     if (route && routeStep() !== routeWidth) drawRoute();
@@ -1040,14 +1046,22 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     /** Put the camera back where it was (a reload): at once when the map is open, otherwise when it first opens. */
     restoreView(next: RigView) { if (opened) { rig.jump(next); userMoved = true; tripCamera = false; request(); } else pendingView = next; },
     /** Arrive from the map above or below: at the wide end of the range for a zoom in, so the gesture carries on from there (null for a map that is not up yet). */
-    enter(edge: Edge, carry = 0, descend = 0) {
+    enter(edge: Edge, carry = 0, dive?: CityDive) {
       if (!opened) return;
       const target = rig.whole(), far = rig.maxDistance, distance = edge === 'in' ? entryDistance('in', { near: CLOSEST, far }, carry) : rig.view.distance;
-      userMoved = true; tripCamera = false;
-      // The dive (./dive.ts): from straight above at the wide end, down to the city's core for `descend` seconds while the clouds part.
-      if (descend > 0 && edge === 'in' && !reducedMotion) { const core = rig.core(); rig.jump({ x: core.x, z: core.z, yaw: 0, pitch: PITCH_MAX, distance: far }); rig.ease(core, descend); request(); return; }
+      userMoved = true; tripCamera = false; diving = null;
+      // The dive (./dive.ts): from straight above on the ground the atlas ended on (or the wide end), down over the towers while the clouds
+      // part, and then, with a destination, a swoop at its landmark.
+      if (dive && dive.seconds > 0 && edge === 'in' && !reducedMotion) {
+        const core = rig.core(), place = dive.venue ? city.places[dive.venue] : null;
+        const start = dive.spanKm && dive.spanKm > 0 ? clamp(distanceForSpan(dive.spanKm, camera.fov, CITY_KM_PER_UNIT), core.distance, far) : far;
+        diving = { plan: swoopPlan(start, core, place ? { x: place.x, z: place.z } : null), start: now(), ms: dive.seconds * 1000 };
+        rig.jump(diving.plan.start); request(); return;
+      }
       rig.jump({ x: target.x, z: target.z, yaw: 0, pitch: target.pitch, distance }); request();
     },
+    /** The ground (km, top to bottom) this map shows at its core view and at its widest, for the atlas to end its dive on (./dive.ts handoffSpan). */
+    spanRange() { return opened ? { nearKm: spanKm(rig.core().distance, camera.fov, CITY_KM_PER_UNIT), farKm: spanKm(rig.maxDistance, camera.fov, CITY_KM_PER_UNIT) } : null; },
     /** Back to the opening view: the city core. */
     recentre() { if (opened) { openView(); request(); } },
     /** For tests and screenshots: hold the lighting at 'day' | 'dusk' | 'night' (null follows Lagos time again). */
@@ -1061,7 +1075,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       return { kind: '3d', renderCount, frames: frameCount, loop: Boolean(rafId), time, reducedMotion, lost,
         triangles: info.triangles ?? 0, calls: info.calls ?? 0, cityTriangles: city.triangles, overlayTriangles: overlays.triangles, counts: city.counts,
         houses: { level: houses.level, ...houses.counts(), cached: world?.size?.() ?? 0 }, pixels,
-        view: { ...rig.view }, frameMs: { median: mid(sorted), max: sorted.at(-1) ?? 0 }, frameGapMs: { median: mid(gap), max: gap.at(-1) ?? 0 },
+        view: { ...rig.view }, dive: Boolean(diving), frameMs: { median: mid(sorted), max: sorted.at(-1) ?? 0 }, frameGapMs: { median: mid(gap), max: gap.at(-1) ?? 0 },
         trip: trip ? { ...trip, progress: clock.progress(now()), remaining: clock.remaining(now()), shown: pose?.progress ?? null, phase: pose?.phase ?? null, bridge: pose?.bridge ?? null, distance: pose?.distance ?? null, length: route?.length ?? null, bridges: route?.bridges ?? [], x: pose?.x, z: pose?.z, settling, returning: Boolean(returning) } : null,
         selected, layers: { ...layers }, people: pins.map((pin) => ({ key: pin.key, kind: pin.kind, text: pin.text, venue: pin.venue, moving: pin.moving, x: pin.x, z: pin.z })), labels: [...labels].map(([id, label]) => ({ id, text: label.name.textContent, note: label.note.textContent, hidden: label.node.hidden, compact: label.node.classList.contains('is-compact') })) };
     },

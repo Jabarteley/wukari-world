@@ -4,6 +4,7 @@
  * ?models=1 loads the street's model files the way the game does on a device that may fetch them (without it, the procedural stand-ins every device draws first and a low-end one keeps).
  * ?houses=1 draws a street of five neighbours (as the game does once you are settled) instead of one home.
  * ?x=<along the street> ?z=<camera z> ?up=<height> ?lx= ?lz= (look-at)  ?time=day|dusk|night. Nothing here runs in the game.
+ * ?streetlife=on draws the street's far crowd and traffic (src/scene/street-life) and keeps them moving for one window of frames.
  */
 import { createKit } from './kit.ts';
 import { buildNeighbourhoodScene } from './neighbourhood-scene.ts';
@@ -48,4 +49,15 @@ const draw = () => { street.look?.(camera.position.x, camera.position.z); render
 draw();
 // Redraw a bounded number of times while the models arrive (a timeout chain: scene sources hold no interval).
 const redraw = (left: number): void => { draw(); if (left > 0) setTimeout(() => redraw(left - 1), 700) }
-if (params.get('models') === '1') { street.startCrowd?.(renderer as never, draw); redraw(30); }
+if (params.get('models') === '1' || params.has('streetlife')) { street.startCrowd?.(renderer as never, draw); redraw(30); }
+// ?streetlife=on: about twelve seconds of the street moving (a bounded timeout chain, like the redraws above), then it stands still.
+if (params.has('streetlife')) {
+  let last = performance.now(), started = false;
+  const frame = (left: number): void => {
+    const now = performance.now();
+    if (!started) started = street.wakeAmbient?.() ?? false;
+    const more = street.stepAmbient?.(Math.min(0.1, (now - last) / 1000)) ?? false; last = now; draw();
+    if (left > 0 && (more || !started)) setTimeout(() => frame(left - 1), 33);
+  };
+  frame(400);
+}

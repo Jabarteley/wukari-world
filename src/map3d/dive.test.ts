@@ -1,8 +1,11 @@
 // The dive (./dive.ts): the timeline, the hold and its fallback, skip, refusal, reduced motion, and the camera path.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { CAP_MS, COVER_FROM_MS, DIVE_MS, FALLBACK_REVEAL_MS, FLIGHT_MS, HOLD_MS, MAX_LIFT, REDUCED_MS, REVEAL_MS, cloudCover, cloudReveal, createDive, descentView } from './dive.ts';
+import { ATLAS_FOV, CAP_MS, CITY_FOV, CITY_KM_PER_UNIT, COVER_FROM_MS, DESCENT_SHARE, DIVE_MS, END_BY_MS, FALLBACK_REVEAL_MS, FLIGHT_MS, HANDOFF_KM, HAZE_MAX, HOLD_MS, LITE, MAX_LIFT, MAX_TURN, PROBE_MS, QUICK_COVER_MS, REDUCED_MS, REVEAL_MS, STALL_MS, STREET_DISTANCE, STREET_PITCH, TOP_PITCH,
+  approachYaw, arrivalDive, atlasKmPerUnit, cloudCover, cloudReveal, createDive, createFrameProbe, descentView, distanceForSpan, diveTier, diveTimings, handoffSpan, hazeAt, spanKm, swoopPlan, swoopView } from './dive.ts';
 import type { Dive, DiveView } from './dive.ts';
+import { project } from './geo/projection.ts';
+import { PITCH_MAX } from './camera.ts';
 
 /** Tick a dive every `step` ms from `from` until it ends or `limit`; returns the time it ended at and every frame's cover. */
 function run(dive: Dive, from: number, { step = 16, limit = 20000, at = new Map<number, (now: number) => void>() } = {}) {
@@ -136,4 +139,154 @@ test('the descent path: starts at the atlas view, ends exactly over the city, ne
   // The turn takes the short way round.
   const turned = descentView({ ...from, yaw: 3.0 }, { ...to, yaw: -3.0 }, 0.99);
   assert.ok(Math.abs(turned.yaw) > 3.0, 'turns through pi, not back through zero');
+});
+
+test('device tiers: reduced motion, save-data and weak devices cut the dive; mid-range devices get the lite one; silence is the full dive', () => {
+  assert.equal(diveTier(), 'full');
+  assert.equal(diveTier({ reduced: true, cores: 16, memory: 8 }), 'cut');
+  assert.equal(diveTier({ saveData: true, cores: 16 }), 'cut');
+  assert.equal(diveTier({ cores: 2 }), 'cut');
+  assert.equal(diveTier({ memory: 1 }), 'cut');
+  assert.equal(diveTier({ memory: 0.5, cores: 8 }), 'cut');
+  assert.equal(diveTier({ cores: 4, memory: 8 }), 'lite');
+  assert.equal(diveTier({ cores: 8, memory: 2 }), 'lite');
+  assert.equal(diveTier({ cores: 8, memory: 4 }), 'full');
+  assert.equal(diveTier({ cores: 0, memory: Number.NaN }), 'full', 'nonsense counts as not saying');
+  // The timings: lite is LITE of full; cut is the plain veil; an arrival has no flight and closes the clouds quickly.
+  const full = diveTimings('full'), lite = diveTimings('lite'), cut = diveTimings('cut'), arrival = diveTimings('full', 'arrival');
+  assert.deepEqual(full, { flightMs: FLIGHT_MS, coverFromMs: COVER_FROM_MS, coverMs: FLIGHT_MS, revealMs: REVEAL_MS, plain: false });
+  assert.equal(lite.flightMs, Math.round(FLIGHT_MS * LITE)); assert.equal(lite.revealMs, Math.round(REVEAL_MS * LITE)); assert.ok(lite.coverFromMs < lite.coverMs);
+  assert.equal(cut.plain, true); assert.equal(cut.flightMs, 0); assert.equal(cut.coverMs + cut.revealMs, 2 * REDUCED_MS);
+  assert.equal(arrival.flightMs, 0); assert.equal(arrival.coverMs, QUICK_COVER_MS);
+  assert.ok(diveTimings('lite', 'arrival').coverMs < QUICK_COVER_MS);
+});
+
+test('a lite dive is shorter, an arrival closes the clouds without a flight, and a cut tier is the plain veil', () => {
+  const lite = createDive({ tier: 'lite' });
+  lite.start(0); lite.loaded(0); lite.ready(true, 0);
+  const { ended } = run(lite, 0);
+  assert.equal(lite.frame.outcome, 'arrived');
+  assert.ok(Math.abs(ended - (diveTimings('lite').flightMs + diveTimings('lite').revealMs)) <= 16, `lite ended at ${ended}`);
+  const arrival = createDive({ kind: 'arrival' });
+  arrival.start(0);
+  assert.equal(arrival.flightMs, 0);
+  arrival.tick(QUICK_COVER_MS / 2); assert.equal(arrival.frame.flight, 1, 'no flight to follow'); assert.ok(arrival.frame.cover > 0.2 && arrival.frame.cover < 0.8);
+  arrival.tick(QUICK_COVER_MS); assert.equal(arrival.frame.phase, 'hold'); assert.equal(arrival.frame.cover, 1);
+  const cut = createDive({ tier: 'cut' });
+  assert.equal(cut.reduced, true); assert.equal(cut.flightMs, 0);
+});
+
+test('the reveal is planned to end by END_BY_MS, inside the hard CAP_MS, however late the hand-off was', () => {
+  assert.ok(END_BY_MS < CAP_MS);
+  const dive = createDive();
+  dive.start(0);
+  assert.equal(dive.revealMsAt(FLIGHT_MS), REVEAL_MS, 'on time: the whole reveal');
+  assert.equal(dive.revealMsAt(END_BY_MS - 1000), 1000);
+  assert.equal(dive.revealMsAt(END_BY_MS + 500), FALLBACK_REVEAL_MS, 'never shorter than the quick clear');
+  dive.loaded(10);
+  const late = FLIGHT_MS + HOLD_MS - 100;
+  const { ended } = run(dive, 0, { at: new Map([[late, (now: number) => dive.ready(true, now)]]) });
+  assert.equal(dive.frame.outcome, 'arrived'); assert.ok(ended <= END_BY_MS + 16, `ended at ${ended}`);
+});
+
+test('bail: slow first frames end the dive at once, like skip, and say why', () => {
+  const dive = createDive();
+  dive.start(0); dive.tick(200); dive.bail();
+  assert.equal(dive.frame.phase, 'done'); assert.equal(dive.frame.outcome, 'slow'); assert.equal(dive.frame.cover, 0); assert.equal(dive.frame.handoff, true);
+  dive.skip(); assert.equal(dive.frame.outcome, 'slow', 'a finished dive keeps how it ended');
+});
+
+test('the haze: there as the clouds part, lifted by the swoop, never on a fallback or a plain veil', () => {
+  assert.equal(hazeAt(0), HAZE_MAX); assert.equal(hazeAt(0.4), HAZE_MAX); assert.equal(hazeAt(0.7), 0); assert.equal(hazeAt(1), 0);
+  for (let p = 0; p < 1; p += 0.05) assert.ok(hazeAt(p + 0.05) <= hazeAt(p) + 1e-12);
+  const dive = createDive();
+  dive.start(0); dive.loaded(0); dive.ready(true, 0);
+  dive.tick(FLIGHT_MS); assert.equal(dive.frame.phase, 'reveal'); assert.equal(dive.frame.haze, HAZE_MAX);
+  dive.tick(FLIGHT_MS + REVEAL_MS * 0.55); assert.ok(dive.frame.haze > 0 && dive.frame.haze < HAZE_MAX);
+  const fallback = createDive(); fallback.start(0); run(fallback, 0, { at: new Map([[FLIGHT_MS + HOLD_MS + 50, () => assert.equal(fallback.frame.haze, 0)]]) });
+  const plain = createDive({ reduced: true }); plain.start(0); plain.loaded(0); plain.ready(true, 0); plain.tick(REDUCED_MS + 20); assert.equal(plain.frame.haze, 0);
+});
+
+test('the frame probe: smooth frames pass after PROBE_MS, a slow mean or one stall fails, the first gap is forgiven a stall', () => {
+  const smoothProbe = createFrameProbe();
+  for (let t = 0; t < PROBE_MS; t += 16) assert.equal(smoothProbe.frame(t), 'wait');
+  assert.equal(smoothProbe.frame(PROBE_MS + 5), 'ok');
+  assert.equal(smoothProbe.frame(PROBE_MS + 2000), 'ok', 'decided once');
+  const slow = createFrameProbe();
+  let verdict = 'wait';
+  for (let t = 0; verdict === 'wait'; t += 60) verdict = slow.frame(t);
+  assert.equal(verdict, 'slow');
+  const stall = createFrameProbe();
+  stall.frame(0); stall.frame(16); assert.equal(stall.frame(16 + STALL_MS + 1), 'slow');
+  const firstLong = createFrameProbe();
+  firstLong.frame(0); assert.equal(firstLong.frame(STALL_MS + 50), 'wait', 'the first gap is not a stall');
+  let late = 'wait';
+  for (let t = STALL_MS + 66; late === 'wait'; t += 16) late = firstLong.frame(t);
+  assert.equal(late, 'slow', 'but it still counts towards the mean');
+});
+
+test('scale match: the city map starts at the ground width the atlas ended on', () => {
+  // The two cameras see the same ground, km for km, at matched distances.
+  const atlasDistance = 1.2, atlasKm = atlasKmPerUnit(6.5, project);
+  const km = spanKm(atlasDistance, ATLAS_FOV, atlasKm), cityDistance = distanceForSpan(km, CITY_FOV, CITY_KM_PER_UNIT);
+  assert.ok(Math.abs(spanKm(cityDistance, CITY_FOV, CITY_KM_PER_UNIT) - km) / km < 1e-9);
+  assert.ok(Math.abs(distanceForSpan(spanKm(5, 34, 0.1), 34, 0.1) - 5) < 1e-9, 'one is the inverse of the other');
+  // The atlas sheet across: one unit is 1/0.8615 degrees of longitude at the equator (about 129 km), and fewer km towards the poles.
+  assert.ok(Math.abs(atlasKmPerUnit(0, project) - 111.195 / (project(1, 0)[0] - project(0, 0)[0])) < 0.01, `${atlasKmPerUnit(0, project)}`);
+  assert.ok(Math.abs(atlasKmPerUnit(0, project) - 129) < 1);
+  assert.ok(atlasKmPerUnit(60, project) < atlasKmPerUnit(30, project) && atlasKmPerUnit(30, project) < atlasKmPerUnit(0, project));
+  assert.ok(Number.isFinite(atlasKmPerUnit(90, project)) && atlasKmPerUnit(90, project) > 0);
+  // The hand-off width: the city's wide end when known, kept within the atlas's reach; HANDOFF_KM otherwise.
+  const atlas = { nearKm: 20, farKm: 150 };
+  assert.equal(handoffSpan(atlas, null), HANDOFF_KM);
+  assert.equal(handoffSpan(atlas, { nearKm: 5, farKm: 90 }), 90);
+  assert.equal(handoffSpan(atlas, { nearKm: 5, farKm: 400 }), 150, 'never farther out than the atlas ends');
+  assert.equal(handoffSpan(atlas, { nearKm: 0.2, farKm: 2 }), 20, 'never closer in than the atlas can go');
+  assert.equal(handoffSpan({ nearKm: 30, farKm: 30 }, null), 30);
+  // Within 10% end to end, as the plan asks: from an atlas view to the city map's start and back.
+  const span = handoffSpan(atlas, { nearKm: 3, farKm: 60 }), start = distanceForSpan(span, CITY_FOV, CITY_KM_PER_UNIT);
+  assert.ok(Math.abs(spanKm(start, CITY_FOV, CITY_KM_PER_UNIT) - 60) / 60 < 0.1);
+});
+
+test('the swoop: straight down from the matched start, over the towers, then at the destination, never climbing', () => {
+  assert.equal(TOP_PITCH, PITCH_MAX, 'both rigs meet straight down');
+  const core: DiveView = { x: 10, z: -20, yaw: 0, pitch: 0.92, distance: 300 };
+  const landmark = { x: 160, z: -140 };
+  const plan = swoopPlan(900, core, landmark);
+  assert.deepEqual(swoopView(plan, 0), plan.start); assert.equal(plan.start.pitch, TOP_PITCH); assert.equal(plan.start.distance, 900);
+  assert.equal(plan.start.x, core.x); assert.equal(plan.start.z, core.z);
+  const aerial = swoopView(plan, DESCENT_SHARE);
+  for (const key of ['x', 'z', 'pitch', 'distance'] as const) assert.ok(Math.abs(aerial[key] - plan.aerial[key]) < 1e-9, `over the towers at the half: ${key}`);
+  assert.deepEqual(swoopView(plan, 1), plan.street); assert.deepEqual(swoopView(plan, 5), plan.street);
+  assert.equal(plan.street!.x, landmark.x); assert.equal(plan.street!.pitch, STREET_PITCH); assert.equal(plan.street!.distance, STREET_DISTANCE);
+  let last = Infinity, ground = Infinity;
+  for (let k = 0; k <= 1.0001; k += 0.01) {
+    const view = swoopView(plan, k);
+    assert.ok(view.distance <= last + 1e-9, `never climbs (k=${k.toFixed(2)})`); last = view.distance;
+    assert.ok(view.pitch <= TOP_PITCH + 1e-9 && view.pitch >= STREET_PITCH - 1e-9);
+    assert.ok(Math.abs(view.yaw) <= MAX_TURN + 1e-9);
+    if (k >= DESCENT_SHARE) { const left = Math.hypot(view.x - landmark.x, view.z - landmark.z); assert.ok(left <= ground + 1e-9, 'flies at the destination'); ground = left; }
+  }
+  // Without a destination (the player's own city) it comes down to the opening view of the city.
+  const own = swoopPlan(900, core, null);
+  assert.equal(own.street, null); assert.deepEqual(swoopView(own, 1), core);
+  // A start closer in than the core view never makes it climb: it starts at the core distance.
+  const close = swoopPlan(50, core, null);
+  assert.equal(close.start.distance, core.distance);
+  // The turn: flying north (towards -z) needs no turn; east turns the camera; it is capped.
+  assert.equal(approachYaw({ x: 0, z: 0 }, { x: 0, z: -10 }), 0);
+  assert.ok(Math.abs(approachYaw({ x: 0, z: 0 }, { x: 10, z: 0 })) === MAX_TURN);
+  assert.equal(approachYaw({ x: 1, z: 1 }, { x: 1, z: 1 }), 0);
+});
+
+test('a trip that ends in a new city dives only when someone is watching and free: not on a first load, a weak device, a hidden page or mid-action', () => {
+  const ok = { fromTrip: true, tier: 'full' as const, hidden: false, busy: false, mode: 'map' };
+  assert.equal(arrivalDive(ok), true);
+  assert.equal(arrivalDive({ ...ok, mode: 'venue' }), true);
+  assert.equal(arrivalDive({ ...ok, tier: 'lite' }), true, 'the lite dive is still a dive');
+  assert.equal(arrivalDive({ ...ok, fromTrip: false }), false, 'a first load or a sign-in in another city is not an arrival');
+  assert.equal(arrivalDive({ ...ok, tier: 'cut' }), false, 'reduced motion and weak devices keep today\'s arrival');
+  assert.equal(arrivalDive({ ...ok, hidden: true }), false);
+  assert.equal(arrivalDive({ ...ok, busy: true }), false);
+  assert.equal(arrivalDive({ ...ok, mode: 'phone' }), false);
 });

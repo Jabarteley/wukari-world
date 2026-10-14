@@ -67,6 +67,8 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     arrivals: shallowRef(0),
     /** Asked for by the shell the first time the Map opens. */
     mapsWanted: shallowRef(false),
+    /** Set by the maps (MapWorld.vue): told when the life moves to another city; true when the map's dive shows the arrival, then the venue. */
+    arrive: null as ((state: LifeState, previous: LifeState) => boolean) | null,
   }
   // The link this page was opened with is read once, here, before anything rewrites the address.
   { const link = captureLink(); if (link.join || link.ref || link.table) track('invite_opened', { kind: link.table ? 'table' : link.ref ? 'share' : 'house', has_session: game.client.hasSavedIdentity === true }) }
@@ -244,12 +246,14 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     // On the way to another city: its own scenes are fetched during the trip, so the place the player arrives at is drawn at once.
     if (state.activeAction?.kind === 'intercity' && state.activeAction.id !== warmedCity) { warmedCity = state.activeAction.id; void warmCityScenes(warmedCity) }
     const city = scene.city.value
+    const dived = state.estate.city !== previous.estate.city && !away && scene.arrive?.(state, previous) === true
     if (moved) {
       if (previous.location === 'unilag' && state.location !== 'unilag') { try { if (location.pathname.replace(/\/+$/, '') === '/unilag') history.replaceState(null, '', '/') } catch { /* retain address */ } }
       if (state.estate.city !== previous.estate.city) scene.venue.value?.setState(sceneState(state))
       scene.venue.value?.setLocation(sceneState(state).location)
       // Arrived while watching the trip: the map shows the arrival for a moment, then the venue comes up.
-      if (game.mode.value === 'map' && city && isDeparting(previous)) { city.setState(state); city.arrive(showVenue) }
+      if (dived) { /* the map's dive comes down on the new city, then opens the venue */ }
+      else if (game.mode.value === 'map' && city && isDeparting(previous)) { city.setState(state); city.arrive(showVenue) }
       else if (game.mode.value !== 'venue' && !away) shell.setMode('venue')
       if (pendingRoute && pendingRoute.venue !== state.location) pendingRoute = null // went somewhere else instead
     }

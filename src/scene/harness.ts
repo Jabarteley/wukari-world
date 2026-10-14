@@ -88,6 +88,12 @@ function build() {
   entry.setCrowd(names.slice(0, settings.crowd).map((name, i) => ({ id: `p${i}`, name, kind: i % 3 === 2 ? 'npc' : 'player' })));
   if (settings.spot) entry.setSpot(settings.spot);
   if (settings.busy) entry.update({ activeAction: {} });
+  // ?ambient=1: the background people as the game asks for them (full tier, 10:00 in Lagos). With ?streetlife=on an open place also
+  // gets its street behind (src/scene/street-life). The 'Step people' button moves everyone to the present instant (this page holds no timers).
+  if (params.get('ambient') === '1') {
+    entry.onAmbient = () => draw();
+    entry.setAmbient?.({ cityId: 'lagos', venueId: settings.kind, kind: settings.kind, tier: 'full', rainingAt: () => false, hourAt: () => 10 });
+  }
   draw();
 }
 function select(key: HarnessSelect, values: readonly string[]) {
@@ -106,6 +112,10 @@ const busy = document.createElement('button');
 busy.textContent = 'Toggle busy';
 busy.onclick = () => { settings.busy = !settings.busy; if (current().update({ activeAction: settings.busy ? {} : null })) draw(); };
 bar.appendChild(busy);
+const step = document.createElement('button');
+step.textContent = 'Step people';
+step.onclick = () => { const entry = current(); entry.wakeAmbient?.(); entry.stepAmbient?.(1 / 60); draw(); };
+bar.appendChild(step);
 addEventListener('resize', draw);
 (window as HarnessWindow).__harness = { settings, build, draw, get entry() { return entry; } };
 build();

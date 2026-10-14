@@ -11,6 +11,11 @@
  *
  * BUDGET. The layer is told what the scene has left of its 17,000 triangles and 60 draw calls and builds no more figures than fit: the far
  * crowd is dropped first, then walkers and sitters. Regulars are drawn here only while there is room for them.
+ *
+ * STREET LIFE. An open place on a device that passes the gate (src/scene/street-life/plan.ts) also gets a busy street behind it: a few
+ * hundred far cut-out people in one instanced mesh. The gate and the drawing are chunks of their own, fetched after the layer is built
+ * (never named by the shared scene chunk). Once the gate says yes, the street's triangles and draw call are set aside and the figures are
+ * counted again; it moves only inside the same window, and slow frames drop it at once (the people above stay exactly as they were).
  */
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
@@ -23,6 +28,8 @@ import { createPlanner, poseOf } from './plan.ts';
 import type { AmbientPose, Ident, Planner, Role, Sample, Stage, Track } from './plan.ts';
 import { FIGURE_COST, makeFarFigures, makeFigure, makeMotionFigure } from './figure.ts';
 import type { FarFigures, MotionFigure } from './figure.ts';
+import type { FrameGuard, StreetChoice } from '../street-life/plan.ts';
+import type { StreetLife } from '../street-life/draw.ts';
 
 /** How long the layer keeps the frame loop awake after being woken. */
 export const WINDOW_MS = 12_000;
@@ -38,6 +45,8 @@ export const MAX_REACTIVE = 4;
 const FULL_CALLS = 3, LEAN_CALLS = 2;
 /** The far crowd costs about this much a person, in triangles. */
 const FAR_TRIANGLES = 60;
+/** A street-life person's triangles (street-life/plan.ts PERSON_TRIANGLES: the test holds them equal; not imported, so the gate stays a chunk of its own). */
+export const STREET_PERSON = 2;
 
 export interface Room { triangles: number; meshes: number }
 export interface AmbientTag { id: string; name: string; kind: string; text: string; marker: string; colour: string; position: { x: number; y: number; z: number } }
@@ -124,6 +133,8 @@ export interface AmbientLayer {
   stats(): { triangles: number; meshes: number }
   /** How many full figures, lean figures and far figures the budget allows (tests and diagnostics). */
   caps(): { full: number; lean: number; far: number }
+  /** The street behind the place, when this device has it: its tier, people asked for, and what is drawn now (diagnostics). */
+  street(): { tier: string; asked: number; people: number; dropped: boolean } | null
   dispose(): void
 }
 
@@ -141,6 +152,9 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
   let windowLeft = 0, frames = 0, disposed = false, current = clock()
   let fullCap = 0, leanCap = 0, farCap = 0
   let residents: Resident[] = []
+  // Street life: decided once for the layer, when its gate's chunk is in (only a full-tier layer asks for it).
+  let streetChoice: StreetChoice | null = null, streetAsked = 0, streetGuard: FrameGuard | null = null
+  let street: StreetLife | null = null, streetDropped = false
 
   /**
    * What the scene has left decides how many people there can be: first the regulars (full figures), then a few full ones, then lean ones,
@@ -148,7 +162,8 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
    */
   function budget(): void {
     const room = options.room(), own = residents.length
-    const triangles = room.triangles - own * FIGURE_COST.full, calls = room.meshes - own * FULL_CALLS
+    // The street's share is set aside first, so the figures never take its room.
+    const triangles = room.triangles - own * FIGURE_COST.full - streetAsked * STREET_PERSON, calls = room.meshes - own * FULL_CALLS - (streetAsked ? 1 : 0)
     fullCap = Math.max(0, Math.min(MAX_FULL, Math.floor(triangles / FIGURE_COST.full), Math.floor(calls / FULL_CALLS)))
     const t1 = triangles - fullCap * FIGURE_COST.full, c1 = calls - fullCap * FULL_CALLS
     leanCap = Math.max(0, Math.min(MAX_FIGURES - fullCap, Math.floor(t1 / FIGURE_COST.lean), Math.floor(c1 / LEAN_CALLS)))
@@ -347,6 +362,26 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
     return true
   }
 
+  function dropStreet(): void { street?.dispose(); street = null; streetDropped = true }
+  if (ident.tier === 'full') {
+    void import('../street-life/plan.ts').then(async (plan) => {
+      if (disposed) return
+      // The page must draw with WebGL2 (never so under node tests) unless the hand-testing switch says otherwise.
+      streetChoice = plan.streetLifeFor({ ambientTier: ident.tier, kind: ident.kind, webgl: typeof (globalThis as { WebGL2RenderingContext?: unknown }).WebGL2RenderingContext === 'function', hints: plan.deviceHints(), forced: plan.pageForced() })
+      streetAsked = streetChoice ? plan.crowdFits(streetChoice, options.room()) : 0
+      if (!streetAsked) return
+      streetGuard = plan.createFrameGuard()
+      // Its room first: the figures are counted again without it (the far crowd gives way), placed where they stand now.
+      budget()
+      if (windowLeft <= 0) sync(current, 0, true)
+      const module = await import('../street-life/draw.ts')
+      if (disposed || street || streetDropped) return
+      street = module.createStreetLife(kit, { parent: group, seed: `${ident.cityId}|${ident.venueId}`, lanes: plan.venueLanes(stage.bounds, stage.open), roads: [], crowd: streetAsked, vehicles: 0, heightAt: () => plan.VENUE_GROUND, at: current })
+      street.step(current, options.avatar())
+      options.changed?.()
+    }).catch(() => { streetDropped = true })
+  }
+
   budget()
   sync(clock(), 0, true)
 
@@ -357,13 +392,16 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       const closing = windowLeft > 0 && windowLeft - dt <= 0
       windowLeft = Math.max(0, windowLeft - dt)
       sync(at, dt, false)
+      // Street life moves with the window; a slow frame drops it for good (the hand-testing switch keeps it on).
+      if (street) { if (!streetChoice?.forced && streetGuard?.frame(dt) === 'slow') dropStreet(); else street.step(at, options.avatar()) }
       if (closing) for (const entry of entries.values()) entry.motion?.settle()
       return windowLeft > 0
     },
-    settle(at = clock()) { if (!disposed) { windowLeft = 0; sync(at, 1, true) } },
+    settle(at = clock()) { if (!disposed) { windowLeft = 0; sync(at, 1, true); street?.step(at, options.avatar()) } },
     wake() {
       if (disposed) return false
       windowLeft = WINDOW_MS / 1000
+      streetGuard?.reset()
       return true
     },
     get awake() { return windowLeft > 0 },
@@ -417,8 +455,9 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       return true
     },
     caps: () => ({ full: fullCap, lean: leanCap, far: farCap }),
+    street: () => (streetChoice ? { tier: streetChoice.tier, asked: streetAsked, people: street?.people ?? 0, dropped: streetDropped } : null),
     stats() {
-      let triangles = far?.triangles ?? 0, meshes = far ? far.group.children.length : 0
+      let triangles = (far?.triangles ?? 0) + (street?.triangles ?? 0), meshes = (far ? far.group.children.length : 0) + (street?.drawCalls ?? 0)
       for (const entry of entries.values()) if (entry.shown) { triangles += entry.shown.userData.triangles ?? 0; meshes += entry.shown.children.length }
       return { triangles, meshes }
     },
@@ -428,6 +467,7 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       for (const bark of barks.values()) clearTimeout(bark.timer)
       barks.clear()
       far?.dispose(); far = null
+      street?.dispose(); street = null
       group.parent?.remove(group)
     },
   }

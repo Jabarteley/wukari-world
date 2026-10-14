@@ -53,7 +53,8 @@ import type { AfricaGroupId, Box4, RegionKind, RegionStatus } from '../types.ts'
 import { createRig } from '../camera.ts';
 import { MAP_PIXELS, pixelRatioFor } from '../pixels.ts';
 import { NO_PORT, entryDistance } from '../zoom-ladder.ts';
-import { descentView } from '../dive.ts';
+import { TOP_PITCH, atlasKmPerUnit, descentView, distanceForSpan, spanKm } from '../dive.ts';
+import type { SpanRange } from '../dive.ts';
 import type { Edge, LadderPort } from '../zoom-ladder.ts';
 import { createFlick, isDrag, isTap } from '../../scene/gesture.ts';
 import type { RigInsets, RigView } from '../camera.ts';
@@ -142,9 +143,11 @@ export interface AtlasOptions {
   countryDetail?: CountryDetailService;
   /**
    * The map-to-street dive (../dive-host.ts): told when a city is entered, before the fly-in. It answers the seconds the camera flies for
-   * (0: cut at once, as with reduced motion) or null for the plain fly-in; `land` ends the flight at once (Skip).
+   * (0: cut at once, as with reduced motion) or null for the plain fly-in; `land` ends the flight at once (Skip). `reach` is the ground
+   * (km, top to bottom of the screen) the atlas can end its flight on over this city; an answer with `spanKm` has the flight end, straight
+   * down, on that much ground, so the city map can start on the same (../dive.ts handoffSpan).
    */
-  dive?: (cityId: string, own: boolean, land: () => void) => number | null;
+  dive?: (cityId: string, own: boolean, land: () => void, reach: SpanRange) => number | { seconds: number; spanKm?: number } | null;
 }
 /** A place the pointer or a reference names: what it is, which feature, and the sheet that holds it. */
 export interface Hit { kind: RegionKind; id: string; feature: Feature; sheet: Sheet }
@@ -256,6 +259,8 @@ const MAJOR_CAPITALS = new Set(['Abuja', 'Cairo', 'Nairobi', 'Accra', 'Addis Aba
 const NEIGHBOUR_LABELS: [string, number, number][] = [['Benin', 2.15, 9.9], ['Niger', 8.6, 14.7], ['Chad', 15.9, 11.2], ['Cameroon', 12.5, 5.6]];
 const WATER_LABELS: [string, number, number, 'sea' | 'river' | 'town'][] = [['Gulf of Guinea', 4.6, 3.55, 'sea'], ['Niger', 5.25, 9.72, 'river'], ['Benue', 9.7, 8.05, 'river'], ['Lake Chad', 14.2, 13.55, 'river'], ['Lokoja', 6.74, 7.8, 'town']];
 const DOUBLE_MS = 340;
+/** As close as the atlas camera goes (map units: degrees at the equator). */
+const FLOOR = 0.4;
 const clamp = (value: number, low: number, high: number): number => Math.max(low, Math.min(high, value));
 const esc = (value: unknown): string => String(value ?? '').replace(/[&<>"']/g, (c) => (({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }) as Record<string, string>)[c]!);
 const naira = (value: unknown): string => `₦${Number(value).toLocaleString('en-NG')}`;
@@ -279,7 +284,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
   let heading: number | null = null;
   const activePath = () => levelPath(ATLAS_LEVELS, branch);
   const pathPitches = () => activePath().map(index => PITCHES[index]!);
-  const rig = createRig(THREE, camera, { minX: EXTENT.minX, maxX: EXTENT.maxX, minZ: -EXTENT.maxY, maxZ: -EXTENT.minY, minDistance: 0.4, leash: (distance) => (fits ? leashAt(distance, Math.min(...activePath().map(index => fits![index]!.distance)), fits[WORLD]!.distance) : 1) });
+  const rig = createRig(THREE, camera, { minX: EXTENT.minX, maxX: EXTENT.maxX, minZ: -EXTENT.maxY, maxZ: -EXTENT.minY, minDistance: FLOOR, leash: (distance) => (fits ? leashAt(distance, Math.min(...activePath().map(index => fits![index]!.distance)), fits[WORLD]!.distance) : 1) });
   const mesh = mesher(THREE);
   const ribbonMaterials: THREE.ShaderMaterial[] = [], probe = new THREE.Vector3();
   const ribbonMaterial = (opacity = 1, lift = 0.0004) => { const material = mesh.ribbonMaterial(opacity); material.uniforms.lift!.value = lift; ribbonMaterials.push(material); return material; };
@@ -1359,10 +1364,19 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
     const [x, y] = project(city.lon, city.lat), goal: RigView = { x, z: -y, distance: minDistance() * 0.8, pitch: 0.95, yaw: 0 };
     // Skip: wherever the flight is, it ends over the city and the hand-over goes on at once.
     const land = () => { if (entering !== done) return; diving = null; entering = null; rig.jump(goal); done(); request(); };
-    const flight = diveIn ? dive(id, own, land) : null;
+    // The ground the flight can end on, km: from as close as the atlas goes to where the plain fly-in ends.
+    const perUnit = atlasKmPerUnit(city.lat, project), near = Math.min(FLOOR, goal.distance);
+    const answer = diveIn ? dive(id, own, land, { nearKm: spanKm(near, camera.fov, perUnit), farKm: spanKm(goal.distance, camera.fov, perUnit) }) : null;
+    const flight = answer !== null && typeof answer === 'object' ? answer.seconds : answer;
     if (reducedMotion || flight === 0) { done(); return; }
     root?.classList.add('is-entering');
-    if (flight) { rig.hold(); diving = { from: { ...rig.view }, to: goal, start: now(), ms: flight * 1000 }; } else rig.ease(goal, 0.85);
+    if (flight) {
+      // The dive ends straight down, on the ground the city map starts on.
+      const span = typeof answer === 'object' ? answer?.spanKm : undefined;
+      goal.pitch = TOP_PITCH;
+      if (span && span > 0) goal.distance = clamp(distanceForSpan(span, camera.fov, perUnit), near, goal.distance);
+      rig.hold(); diving = { from: { ...rig.view }, to: goal, start: now(), ms: flight * 1000 };
+    } else rig.ease(goal, 0.85);
     entering = done; request();
   }
   /** The open city nearest a point of the canvas (NDC, or the middle), within a good part of the screen; null where there is none. */

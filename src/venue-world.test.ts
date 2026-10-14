@@ -1,6 +1,7 @@
 import { loadCityContent as preloadCityContent } from './game/cities/registry.ts';
 await Promise.all(['lagos', 'ibadan'].map(preloadCityContent));
 // Battery rule: a venue scene renders on demand only — an idle scene does zero renders.
+import { arriveFromAbove } from './map3d/arrive-above.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
@@ -535,6 +536,29 @@ test('walking moves transforms only: hundreds of frames of walking, turning and 
     assert.ok(world.diagnostics().loop.frames > 300, `${world.diagnostics().loop.frames} frames`);
     assert.equal(built, 0, 'not one geometry or attribute was made while moving');
   } finally { THREE.BufferGeometry.prototype.setIndex = setIndex; THREE.BufferGeometry.prototype.setAttribute = setAttribute; bench.restore(); }
+});
+
+test('arriving from above (the end of the map\'s dive): the camera starts high and comes down to the composed view, then the loop stops', () => {
+  const bench = motionBench();
+  try {
+    const { world } = bench;
+    world.setState(PARK);
+    const composed = world.diagnostics().camera;
+    const motion = world.motion!();
+    assert.ok(motion, 'a handle while motion can be shown');
+    arriveFromAbove(motion.orbit, motion.wake);
+    bench.pump(1);
+    const high = world.diagnostics().camera;
+    assert.ok(high.pitch > composed.pitch + 0.3 && high.distance > composed.distance, `starts above (${high.pitch} > ${composed.pitch})`);
+    const ran = bench.pump(400);
+    assert.ok(ran > 20 && ran < 400, `comes down over frames, then stops (${ran})`);
+    const settled = world.diagnostics().camera;
+    assert.ok(Math.abs(settled.pitch - composed.pitch) < 1e-3 && Math.abs(settled.distance - composed.distance) < 0.05, 'back on the composed view');
+    assert.equal(bench.queued(), 0, 'no frames once it is down (battery rule)');
+    bench.reduceMotion(true);
+    assert.equal(world.motion!(), null, 'reduced motion: the scene is simply there');
+    assert.equal(bench.queued(), 0);
+  } finally { bench.restore(); }
 });
 
 test('reduced motion snaps: a tap puts the avatar there in one frame and the camera never eases', () => {

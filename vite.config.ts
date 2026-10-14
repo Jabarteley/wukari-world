@@ -372,6 +372,8 @@ export default defineConfig({
     if (/\/src\/app\/(ui\/(BaseButton|BaseSheet|SkeletonRows)\.vue)(\?|$)/.test(id)) return 'shell-kit'
     // Reading a world-feed answer into a city's money and the short money form (docs/CURRENCY.md): only the lazy feed module, the top bar's count-up and the civic boards use them; the writer (money.ts) is in the engine.
     if (/\/src\/game\/money-feed\.ts$/.test(id)) return undefined
+    // The constitution's numbers and words (offices, quorums, levers): read only by the Politics screens, which are fetched on demand, and by the server.
+    if (/\/src\/game\/content\/politics\.ts$/.test(id)) return undefined
     if (/\/src\/(game\/|life\.ts$|campus\/unilag\/(content|spot-names)\.ts$|tables\/places\.ts$)/.test(id)) return 'engine'
     } } },
   },

@@ -5,7 +5,7 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 
 ## Now
 
-- **Release 2 (Phases 2, 3, 4 and 6)** is going out from `main` on 14 October 2026; the Log has the commit and the checks.
+- **Live:** Phases 1, 2, 3, 4 and 6 (release 2, `b6d2eaab`, 14 October 2026).
 - **In progress on branches** (merged into `main` only once reviewed and checked): Phase 5 (`claude/alive-p5-money`), Phase 7
   (`claude/alive-p7-light`: built, but over the first-download limit and being trimmed), Phase 8 (`claude/alive-p8-gist`),
   Phase 9 (`claude/alive-p9-router`).
@@ -25,11 +25,11 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | --- | --- | --- | --- |
 | 0 Baseline | live | `5322f585` | Baseline below. |
 | 1 Online count with agents | live | `9130449f` | Count includes agents; the sheet splits people and agents, with See who's here and Invite. There is no separate list of agents yet: People marks every AI agent. |
-| 2 Safety around AI characters | pushed, not yet live | | Word filter on every AI line to a person (docs/AI-SAFETY.md), no money asks, "are you an AI?" and crisis answers by the game, under-18 rules, two new report reasons. Memory controls wait for Phase 12; break reminders and voice limits for Phase 15. Not covered yet: group chats that include an agent; a request split over two lines. |
-| 3 Friendship after shared play | pushed, not yet live | | Card after table games and after 5 minutes together in voice, thanks-and-gifts record, day 1/7/30 return split on the dashboard (docs/FRIENDSHIP.md). No gate was tightened, because that would lock people out of what they use; the ladder is shown as information. Agents do not sit at tables yet, so only voice offers can show an agent. |
-| 4 World feed | pushed, not yet live | | MET Norway weather and daily rates kept by the server, `GET /api/world/feed?id=<city>`, credits in Help (docs/WORLD-FEED.md). |
+| 2 Safety around AI characters | live | `b6d2eaab` | Word filter on every AI line to a person (docs/AI-SAFETY.md), no money asks, "are you an AI?" and crisis answers by the game, under-18 rules, two new report reasons. Memory controls wait for Phase 12; break reminders and voice limits for Phase 15. Not covered yet: group chats that include an agent; a request split over two lines. |
+| 3 Friendship after shared play | live | `b6d2eaab` | Card after table games and after 5 minutes together in voice, thanks-and-gifts record, day 1/7/30 return split on the dashboard (docs/FRIENDSHIP.md). No gate was tightened, because that would lock people out of what they use; the ladder is shown as information. Agents do not sit at tables yet, so only voice offers can show an agent. |
+| 4 World feed | live | `b6d2eaab` | MET Norway weather and daily rates kept by the server, `GET /api/world/feed?id=<city>`, credits in Help (docs/WORLD-FEED.md). |
 | 5 Money in the city's currency | in progress | | |
-| 6 Shareable moment cards | pushed, not yet live | | Cards for table wins and Hall of Records entries (docs/SHARE-CARDS.md). The wedding card is ready, but the game has no marriages yet. A real WhatsApp share still needs checking by hand. |
+| 6 Shareable moment cards | live | `b6d2eaab` | Cards for table wins and Hall of Records entries (docs/SHARE-CARDS.md). The wedding card is ready, but the game has no marriages yet. A real WhatsApp share still needs checking by hand. |
 | 7 Data-light mode | in progress | | Built (docs/DATA-LIGHT.md); being trimmed to fit the first download. |
 | 8 Gist and the world ledger | in progress | | |
 | 9 Model router and budget | in progress | | |
@@ -89,7 +89,11 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
-- 2026-10-14, release 2 (Phases 2, 3, 4, 6): see the next entry once it is live.
+- 2026-10-14, release 2 (Phases 2, 3, 4, 6), `b6d2eaab`, live: AI characters' words are checked before people see them; friend
+  offers after table games and voice; real weather and exchange rates; share cards for wins and the Hall of Records. Checks:
+  typecheck clean; CI build, download limits and smoke passed on the merged branch; the release workflow's Worker checks passed
+  after one stale expectation was updated (the table card's picture); live `/api/health` shows the commit; `SMOKE_CITIES=lagos`
+  smoke PASS; `/api/world/feed?id=lagos` answered real weather and the day's NGN rate within ten minutes of going live.
 - 2026-10-14, release 1 (Phase 1), `9130449f`, live: the top bar counts people and AI agents together and opens a sheet with the
   split. Checks: typecheck clean; CI build, download limits and smoke passed; the touched tests pass (`onlinePill`, agents);
   release workflow sealed the package; live `/api/health` shows the commit; `SMOKE_CITIES=lagos` smoke PASS (12 checks).

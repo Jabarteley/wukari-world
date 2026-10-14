@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "XG",
+  "dataset": {
+    "url": "https://download.geofabrik.de/asia/india/northern-zone-261013.osm.pbf",
+    "bytes": 223835719,
+    "md5": "c4c2b7a50753bfa8094ce878f004bbb1"
+  },
+  "admin0RelationOverride": {
+    "relationId": 13559521,
+    "expectedTags": {
+      "admin_level": "2",
+      "boundary": "disputed",
+      "name": "Siachen Glacier Disputed Area",
+      "type": "multipolygon"
+    },
+    "reason": "Owner decision 2026-10-13 (OUTPOST-PLAN): disputed places are in scope as game venue maps only. Siachen Glacier (user-assigned code XG) has no ISO code; OSM maps the area as relation 13559521 'Siachen Glacier Disputed Area' (boundary=disputed, admin_level 2, type=multipolygon, 8 outer member ways, all present in the pinned India northern-zone file). Relation 13790690 named in the plan is type=linestring with one open way and cannot form an area. The relation is used only as the OSM-mapped extent of the game map: no claim about control, borders or sovereignty. Every other proof (member ways, area assembly, segment match) still applies.",
+    "userAssignedCode": true,
+    "disputed": true
+  }
+}

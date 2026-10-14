@@ -2,17 +2,15 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-p-2",
-      "appSha": "83116903f3fbdf60090ce5d924080cbee547bbde",
+      "id": "release-r-1",
+      "appSha": "808e094a3550834268472849ffbfd27e1df30a1c",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
-        "st-helier",
-        "jamestown",
-        "mata-utu",
-        "grytviken",
-        "cove",
-        "adamstown",
-        "port-aux-francais"
+        "west-island",
+        "saint-pierre",
+        "siachen",
+        "chagos",
+        "ashmore"
       ],
       "roundtrip": true,
       "browserOnly": true

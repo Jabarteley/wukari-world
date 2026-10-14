@@ -479,6 +479,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
       const text = String(message.text ?? '')
       if (message.event === 'apart' && message.friend) { apart = { id: message.friend.id, name: message.friend.name, waiting: false }; emit() }
       else if (message.event === 'waiting' && message.friend) { apart = { id: message.friend.id, name: message.friend.name, waiting: true }; groupNote = text; emit() }
+      else if (message.event === 'notice') { groupNote = text; emit(); try { onNotice(text) } catch { /* the game's own problem */ } }
       else if (message.event === 'moved') { if (apart && members.some((member) => member.id === apart?.id)) apart = null; groupNote = text; groupList = null; emit(); try { onNotice(text) } catch { /* the game's own problem */ } }
       return
     }

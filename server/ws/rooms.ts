@@ -113,6 +113,8 @@ import { watchLives } from '../life-service.ts';
 import { characterCity } from '../character.ts';
 import { checkLook } from '../../src/game/systems/onboarding.ts';
 import { screenText } from '../moderation/text.ts';
+import { agentWords } from '../moderation/agent-words.ts';
+import { aiAnswer, asksIfAi, countryOfCity, crisisWords, helpText } from '../moderation/ai-intercept.ts';
 import { screenFee } from '../../src/game/trust/fees.ts';
 import type { CityId, ChatFrame, GroupSummary, PresenceDeltaFrame, PresenceMember, PublicSession, RoomCounts, SignalData } from '../../src/types/protocol.ts';
 import type { LifeState } from '../../src/types/life.ts';
@@ -276,6 +278,10 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       // The same refusals as a person's venue line: muted, fee requests, links and contact details.
       const refusal = ctx.checks?.muted?.(from.id) ?? screenFee(text) ?? screenText(text, { contact: true, what: 'Your message' });
       if (refusal) return { ok: false as const, code: refusal.code, reason: refusal.reason };
+      // The AI rules (docs/AI-SAFETY.md): a public place is read by anyone, so an AI character may not ask for money or details, set up a meeting
+      // outside the game, say anything sexual or claim to be human, and may not flirt (a stranger may be under 18). The line is dropped, never altered.
+      const words = agentWords(text, { toMinor: true });
+      if (!words.ok) return { ok: false as const, code: words.code, reason: words.reason };
       const chat: ChatFrame = { type: 'chat', id: core.newId(), ...(clientId ? { clientId } : {}), from: { id: from.id, name: from.name, ...from.mark }, body: text, at: now(), speaker: 'agent', voiceSeed: voiceSeedOf(from.id) };
       chatAt.set(from.id, now());
       sendAll([...audience(room, v.group)].filter(peer => !hidden(from.id, peer.session.id)), chat);
@@ -957,6 +963,15 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       }
       chatAt.set(ws.session.id, now());
       sendAll([...audience(room, ws.group)].filter(peer => !hidden(ws.session.id, peer.session.id)), chat);
+      // Where an AI character stands: "are you an AI?" and words of crisis are answered by the game, to the person, and the line is not kept for the
+      // character to read (agentRoom.lines). People in the place still read the line as usual.
+      const machines = [...virtuals.values()].filter(v => v.room === room && v.group === (ws.group ?? null));
+      const caught = machines.length > 0 && ws.session.agent !== true ? (asksIfAi(body) ? 'ai' : crisisWords(body) ? 'crisis' : null) : null;
+      if (caught) {
+        const text = caught === 'ai' ? aiAnswer(machines.map(v => v.name)) : helpText(countryOfCity(room.split(':')[0]));
+        send(ws, { type: 'group', event: 'notice', here: [...audience(room, ws.group)].length, text });
+        return;
+      }
       pushLine(room, ws.group ?? null, { at: now(), from: { id: ws.session.id, name: ws.session.name, ...(ws.session.agent === true ? { agent: true as const } : {}) }, body });
     }),
   };

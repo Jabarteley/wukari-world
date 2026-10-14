@@ -86,6 +86,8 @@ import { arcSegments, mesher, outerEdges } from './build.ts';
 import type { RibbonLine } from './build.ts';
 import type { CountryDetailService, CountryDetailOutline } from './country-detail-types.ts';
 import { CountryDetailPanelModel, countryOutlineSvg } from './country-detail.ts';
+import { lightFps } from '../../lightMode.ts';
+import { frameAction } from '../../scene/frame-gate.ts';
 
 /** What a level's data module exports (the type of ATLAS_LEVELS[i].data()'s result). */
 export type LevelModule = Awaited<ReturnType<AtlasLevel['data']>>;
@@ -755,6 +757,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
   function tick() {
     rafId = 0;
     if (!shown()) { lastTick = 0; return; }
+    if (lastTick && frameAction({ hidden: false, covered: false, now: now(), last: lastTick, capFps: lightFps() }) === 'wait') { rafId = raf!(tick); return; } // light mode: 30 a second
     takeWheel();
     const t = now(), dt = lastTick ? clamp((t - lastTick) / 1000, 0, 0.1) : 0;
     if (diving) { const k = (t - diving.start) / diving.ms; rig.jump(descentView(diving.from, diving.to, k)); if (k >= 1) diving = null; }

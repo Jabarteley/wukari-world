@@ -19,6 +19,7 @@ import MailStatus from '../growth/MailStatus.vue'
 import { useGrowth } from '../growth/useGrowth.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import HowItWorks from '../../ui/HowItWorks.vue'
+import DataLightSection from './DataLightSection.vue'
 import CallSettings from '../calls/CallSettings.vue'
 const VisitDoor = defineAsyncComponent(() => import('../visit/VisitDoor.vue'))
 import AccountSettings from '../account/AccountSettings.vue'
@@ -136,6 +137,8 @@ onMounted(() => { void growth.load(); void loadOlderLives() })
     </div>
     <p class="settings-note">Saved on this device only. Sounds are made on your phone as you play; nothing is downloaded.</p>
     <p v-if="warning" class="ui-error" role="alert">{{ warning }}</p>
+
+    <DataLightSection />
 
     <CallSettings />
     <VisitDoor />

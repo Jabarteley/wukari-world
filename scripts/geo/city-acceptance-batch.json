@@ -2,14 +2,15 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "zoom-4a",
-      "appSha": "d9466f4155b86ef0de0b75dba73a67d6af19fbaf",
+      "id": "zoom-4",
+      "appSha": "61265e62e0c65de64c567db407a2c33fdd168369",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
         "lagos",
         "singapore",
         "kyrenia",
-        "paris"
+        "paris",
+        "accra"
       ],
       "roundtrip": true,
       "browserOnly": true

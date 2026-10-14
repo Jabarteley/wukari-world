@@ -1,9 +1,9 @@
 {
- "schemaVersion": 1,
- "queue": [
-  {
-   "id": "hm",
-   "table": "scripts/geo/factory/country-factory/hm-factory-targets.json"
-  }
- ]
+  "schemaVersion": 1,
+  "queue": [
+    {
+      "id": "hm",
+      "table": "scripts/geo/factory/country-factory/hm-factory-targets.json"
+    }
+  ]
 }

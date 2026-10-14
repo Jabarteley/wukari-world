@@ -1,4 +1,5 @@
 const POLICY = { playKm: 20, coreKm: 5, airportClearanceMetres: 1000, maximumAbsoluteLatitude: 75 };
+const SIDES = ['westKm', 'eastKm', 'southKm', 'northKm'];
 
 function checkFacts(facts) {
   if (!facts || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(facts.id ?? '')) throw Error('Invalid city id');
@@ -31,9 +32,15 @@ function checkBox(box, label) {
 export function proposeBounds(facts, overrides, geometry) {
   checkFacts(facts);
   const policy = { ...POLICY, ...overrides };
-  for (const key of Object.keys(overrides ?? {})) if (!['playKm', 'coreKm'].includes(key)) throw Error(`Unsupported policy override ${key}`);
+  for (const key of Object.keys(overrides ?? {})) if (!['playKm', 'coreKm', ...SIDES].includes(key)) throw Error(`Unsupported policy override ${key}`);
   if (![policy.playKm, policy.coreKm].every(value => Number.isFinite(value) && value > 0) || policy.coreKm > policy.playKm) throw Error('coreKm/playKm must be finite positive half-widths with coreKm <= playKm');
-  const base = radiusBox(facts.centre, policy.playKm * 1000), airport = radiusBox(facts.airport, policy.airportClearanceMetres);
+  // Optional one-sided extents (westKm, eastKm, southKm, northKm; each defaults to playKm): two neighbouring cities can meet on a
+  // shared edge without shrinking their other sides. Each side is the matching side of the symmetric box of that size, so with no
+  // side given the box is exactly the playKm box.
+  const side = key => policy[key] ?? policy.playKm;
+  for (const key of SIDES) if (!(Number.isFinite(side(key)) && side(key) > 0 && policy.coreKm <= side(key))) throw Error(`${key} must be a finite positive extent no smaller than coreKm`);
+  const [south, west, north, east] = ['southKm', 'westKm', 'northKm', 'eastKm'].map((key, index) => radiusBox(facts.centre, side(key) * 1000)[index]);
+  const base = [south, west, north, east], airport = radiusBox(facts.airport, policy.airportClearanceMetres);
   const play = [Math.min(base[0], airport[0]), Math.min(base[1], airport[1]), Math.max(base[2], airport[2]), Math.max(base[3], airport[3])];
   const core = radiusBox(facts.centre, policy.coreKm * 1000), margin = geometry.OUTLINE_MARGIN, reach = geometry.reachFor(play);
   const outline = [play[0] - margin, play[1] - margin, play[2] + margin, play[3] + margin];

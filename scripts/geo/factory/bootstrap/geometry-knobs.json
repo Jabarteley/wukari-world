@@ -14,6 +14,10 @@
   },
   "playBox": {
     "playKm": {"min": 5, "max": 40},
-    "coreKm": {"min": 1, "max": 20}
+    "coreKm": {"min": 1, "max": 20},
+    "westKm": {"min": 5, "max": 40},
+    "eastKm": {"min": 5, "max": 40},
+    "southKm": {"min": 5, "max": 40},
+    "northKm": {"min": 5, "max": 40}
   }
 }

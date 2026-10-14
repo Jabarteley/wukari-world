@@ -175,7 +175,7 @@ def prepare_city(seed, out, candidates, args, airport_rows, zone_lines, country_
     subprocess.run(['node', '--experimental-strip-types', str(Path(__file__).with_name('bounds.mjs')),
                     '--facts', str(out / 'facts-input.json'), '--geometry-source', args.geometry_source,
                     '--out', str(out / 'bounds.json'),
-                    *[arg for key, flag in (('playKm', '--play-km'), ('coreKm', '--core-km')) if key in (seed.get('playBox') or {})
+                    *[arg for key, flag in (('playKm', '--play-km'), ('coreKm', '--core-km'), ('westKm', '--west-km'), ('eastKm', '--east-km'), ('southKm', '--south-km'), ('northKm', '--north-km')) if key in (seed.get('playBox') or {})
                       for arg in (flag, str(seed['playBox'][key]))]], check=True)
     _phase_record(phase, 'progress', city=seed['id'], step='bounds-command-complete')
     bounds = json.loads((out / 'bounds.json').read_text())

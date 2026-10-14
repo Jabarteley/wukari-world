@@ -19,6 +19,9 @@
       "name": "Philipsburg",
       "countryISO": "SX",
       "profile": "microstate",
+      "playBox": {
+        "eastKm": 10.35
+      },
       "airport": {
         "ident": "TNCM",
         "sourceUrl": "https://ourairports.com/airports/TNCM/"

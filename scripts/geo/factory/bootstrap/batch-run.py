@@ -222,6 +222,10 @@ def play_box(seed):
     play, core = box.get('playKm', 20), box.get('coreKm', 5)
     if core > play:
         raise ValueError(f"{seed.get('id', 'seed')}: playBox.coreKm must not exceed playKm")
+    # One-sided extents (westKm/eastKm/southKm/northKm, each defaulting to playKm) let two neighbouring cities meet on one edge.
+    for key in ('westKm', 'eastKm', 'southKm', 'northKm'):
+        if core > box.get(key, play):
+            raise ValueError(f"{seed.get('id', 'seed')}: playBox.coreKm must not exceed playBox.{key}")
     return box
 
 def authored_links(seed):

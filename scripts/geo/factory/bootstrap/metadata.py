@@ -113,9 +113,9 @@ ETC_ZONE = re.compile(r'Etc/GMT(?:[+-](?:[1-9]|1[0-4]))?')
 def validate_seed(seed):
     if not isinstance(seed, dict) or set(seed) - {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile', 'playBox', 'roadLadder', 'gateway', 'timezoneOverride', 'countryName'}:
         raise Hold('unsupported seed fields')
-    if 'playBox' in seed and (not isinstance(seed['playBox'], dict) or not seed['playBox'] or set(seed['playBox']) - {'playKm', 'coreKm'}
+    if 'playBox' in seed and (not isinstance(seed['playBox'], dict) or not seed['playBox'] or set(seed['playBox']) - {'playKm', 'coreKm', 'westKm', 'eastKm', 'southKm', 'northKm'}
                               or any(type(value) not in (int, float) or not 0 < value <= 40 for value in seed['playBox'].values())):
-        raise Hold('playBox needs playKm and/or coreKm half-widths in km (0 to 40)')
+        raise Hold('playBox needs playKm, coreKm and/or westKm/eastKm/southKm/northKm extents in km (0 to 40)')
     if not isinstance(seed.get('id'), str) or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', seed['id']) or not isinstance(seed.get('name'), str) or not normalized(seed['name']) or not isinstance(seed.get('countryISO'), str) or not re.fullmatch(r'[A-Z]{2}', seed['countryISO']):
         raise Hold('seed needs city id/name and uppercase country ISO')
     rules = profile_rules(seed)

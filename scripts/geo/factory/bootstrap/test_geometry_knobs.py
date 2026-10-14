@@ -35,8 +35,13 @@ class SeedKnobs(unittest.TestCase):
             with self.assertRaises(ValueError, msg=str(geometry)):
                 batch.validate(self.table(geometry=geometry))
 
+    def test_one_sided_play_box_passes(self):
+        batch.validate(self.table(playBox={'westKm': 10.45}))
+        batch.validate(self.table(playBox={'playKm': 14, 'eastKm': 10.35, 'northKm': 18, 'southKm': 6, 'coreKm': 5}))
+
     def test_play_box_refused(self):
-        for box in ({'playKm': 2}, {'playKm': 12, 'coreKm': 13}, {'coreKm': 30}, {'width': 3}, {}):
+        for box in ({'playKm': 2}, {'playKm': 12, 'coreKm': 13}, {'coreKm': 30}, {'width': 3}, {}, {'westKm': 2}, {'eastKm': 50},
+                    {'northKm': '10'}, {'southKm': 6, 'coreKm': 8}):
             with self.assertRaises(ValueError, msg=str(box)):
                 batch.validate(self.table(playBox=box))
 

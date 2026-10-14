@@ -19,6 +19,9 @@
       "name": "Gustavia",
       "countryISO": "BL",
       "profile": "microstate",
+      "playBox": {
+        "westKm": 10.45
+      },
       "airport": {
         "ident": "TFFJ",
         "sourceUrl": "https://ourairports.com/airports/TFFJ/"

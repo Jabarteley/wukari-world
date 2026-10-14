@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "cityId": "port-aux-francais",
+  "countryIso2": "TF",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Port-aux-Français",
+    "coordinatesWgs84": [
+      70.2199565,
+      -49.3497607
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-france-taaf-261013.osm.pbf"
+  },
+  "airport": {
+    "id": "port-aux-francais-airport",
+    "name": "Port-aux-Français Heliport",
+    "lon": 70.22033,
+    "lat": -49.35033,
+    "sourceUrl": "https://ourairports.com/airports/TF-0002/"
+  },
+  "boxes": {
+    "play": [
+      -49.39498092248349,
+      70.15094490173844,
+      -49.304540477516504,
+      70.28896809826155
+    ],
+    "core": [
+      -49.376892833490096,
+      70.17856478207537,
+      -49.3226285665099,
+      70.26134821792462
+    ],
+    "outline": [
+      -49.44498092248349,
+      70.10094490173844,
+      -49.25454047751651,
+      70.33896809826155
+    ],
+    "wide": [
+      -49.802015717268155,
+      69.74391010695378,
+      -48.89750568273184,
+      70.69600289304621
+    ],
+    "water": [
+      -49.802015717268155,
+      69.74391010695378,
+      -48.89750568273184,
+      70.69600289304621
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-france-taaf-261013.osm.pbf",
+    "datasetSha256": "916105c32cb2f21856de2fb3c7a4f619ccd4e6340bd5832d8e5eb072bb4b4f96",
+    "pbfHeaderTimestamp": "2026-10-13T01:53:00Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "bf70bf66a99b9a7dee9871dca2ac067e5545acde41421a6b9412d40372dfa4a3",
+        "elements": 34
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f8e694bc7bd63e2118392b6c975fd89a4f9baf019a35519bea029d188e7fa083",
+        "elements": 4
+      },
+      {
+        "file": "water.json",
+        "sha256": "187a082e807342e04fc90e8b7cad2e158b4830dd69845b910b33b58cb9fabca4",
+        "elements": 739
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "3744329fcb95c1eaaa04185bea93259cf6e71d05ffea3d5f548edcc3805691c0",
+        "elements": 12
+      },
+      {
+        "file": "roads.json",
+        "sha256": "f7642bf6f2698d18719bdaa58ac105269db0781558c5e4773c93cb27d0681233",
+        "elements": 143
+      }
+    ]
+  },
+  "profile": "outpost",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station (or amenity=ferry_terminal) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "recreation",
+      "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "government",
+      "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Tiker",
+      "osm": "way/187212509",
+      "coordinatesWgs84": [
+        70.219285,
+        -49.349846
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "SuperDARN Radar (Kerguelen)",
+      "osm": "way/221034172",
+      "coordinatesWgs84": [
+        70.266459,
+        -49.350332
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Samuker",
+      "osm": "way/769773554",
+      "coordinatesWgs84": [
+        70.218448,
+        -49.349917
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Notre-Dame-des-Vents",
+      "osm": "way/187212500",
+      "coordinatesWgs84": [
+        70.215102,
+        -49.352428
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Résidence",
+      "osm": "way/221069326",
+      "coordinatesWgs84": [
+        70.216305,
+        -49.348683
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre National d'Etudes Spatiales",
+      "osm": "way/187231295",
+      "coordinatesWgs84": [
+        70.256429,
+        -49.352098
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Météo France",
+      "osm": "way/187231297",
+      "coordinatesWgs84": [
+        70.242409,
+        -49.351714
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Biomar",
+      "osm": "way/187212489",
+      "coordinatesWgs84": [
+        70.217157,
+        -49.352858
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1610,
+      "sha256": "b74dece9cf58a76637e10cf37bd0e731329f2106a8c45bed120de0be9a01fb59"
+    },
+    "geometry.ts": {
+      "bytes": 45533,
+      "sha256": "a9b5ac4df599cbb2734d5ece59aab43f485d8c4e6cbfccc878e20ab6d4d7b066"
+    },
+    "places.ts": {
+      "bytes": 3838,
+      "sha256": "506948be6314cec81ee4ac53f6264f4a3af07c2fa10dc33a48fa2ebe9ac9caa0"
+    },
+    "terrain.ts": {
+      "bytes": 143507,
+      "sha256": "5804db188c0e62cf7cae934b8c2b194f27e49b241241192d5206eca3d348f5dd"
+    },
+    "index.ts": {
+      "bytes": 268,
+      "sha256": "02b4906bb48877c50f3d35b4abf5fbd9c3a74f25d9699faee0325305687c7c52"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

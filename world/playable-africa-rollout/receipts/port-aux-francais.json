@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "cityId": "port-aux-francais",
+  "countryIso2": "TF",
+  "generationIdentity": {
+    "cityId": "port-aux-francais",
+    "stateId": "tf",
+    "stateName": "Port-aux-Français"
+  },
+  "inventorySha256": "9321d75645c9dea5e27950317cb7f1db4b5b017bb6eb8bf282759810e3161079",
+  "inventoryPath": "world/playable-africa-rollout/sources/port-aux-francais.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "port-aux-francais-airport",
+    "name": "Port-aux-Français Heliport",
+    "lon": 70.22033,
+    "lat": -49.35033,
+    "sourceUrl": "https://ourairports.com/airports/TF-0002/"
+  },
+  "bounds": [
+    -49.39498092248349,
+    70.15094490173844,
+    -49.304540477516504,
+    70.28896809826155
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-france-taaf-261013.osm.pbf",
+      "datasetSha256": "916105c32cb2f21856de2fb3c7a4f619ccd4e6340bd5832d8e5eb072bb4b4f96",
+      "pbfHeaderTimestamp": "2026-10-13T01:53:00Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "bf70bf66a99b9a7dee9871dca2ac067e5545acde41421a6b9412d40372dfa4a3",
+          "elements": 34
+        },
+        {
+          "file": "extras.json",
+          "sha256": "f8e694bc7bd63e2118392b6c975fd89a4f9baf019a35519bea029d188e7fa083",
+          "elements": 4
+        },
+        {
+          "file": "water.json",
+          "sha256": "187a082e807342e04fc90e8b7cad2e158b4830dd69845b910b33b58cb9fabca4",
+          "elements": 739
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "3744329fcb95c1eaaa04185bea93259cf6e71d05ffea3d5f548edcc3805691c0",
+          "elements": 12
+        },
+        {
+          "file": "roads.json",
+          "sha256": "f7642bf6f2698d18719bdaa58ac105269db0781558c5e4773c93cb27d0681233",
+          "elements": 143
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 8,
+    "roads": 16,
+    "neighbourhoodLabels": 7,
+    "landPolygons": 2,
+    "waterPolygons": 4,
+    "reachWaterPolygons": 19
+  },
+  "selection": {
+    "profile": "outpost",
+    "emptySlots": [
+      {
+        "slot": "transit",
+        "reason": "no unused named railway=station, amenity=bus_station or public_transport=station (or amenity=ferry_terminal) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "recreation",
+        "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "market",
+        "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "government",
+        "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "hamlet": 1,
+      "locality": 5,
+      "village": 1
+    }
+  },
+  "autoRetries": [
+    {
+      "class": "catalogue-row",
+      "change": {
+        "stateId": {
+          "from": "tf-port-aux-francais",
+          "to": "tf"
+        }
+      },
+      "before": {
+        "catalogueBytes": 178,
+        "limit": 150
+      },
+      "after": {
+        "catalogueBytes": 160,
+        "limit": 150,
+        "passed": false
+      }
+    }
+  ],
+  "observed": {
+    "places": 34,
+    "extras": 4,
+    "water": 739,
+    "landuse": 12,
+    "roads": 143
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1610,
+      "sha256": "b74dece9cf58a76637e10cf37bd0e731329f2106a8c45bed120de0be9a01fb59"
+    },
+    "geometry.ts": {
+      "bytes": 45533,
+      "sha256": "a9b5ac4df599cbb2734d5ece59aab43f485d8c4e6cbfccc878e20ab6d4d7b066"
+    },
+    "index.ts": {
+      "bytes": 268,
+      "sha256": "02b4906bb48877c50f3d35b4abf5fbd9c3a74f25d9699faee0325305687c7c52"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/port-aux-francais.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

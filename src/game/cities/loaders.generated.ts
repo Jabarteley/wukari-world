@@ -277,8 +277,12 @@ export const GENERATED_CITY_INDEX: readonly CityIndexRow[] = Object.freeze([
   ["jamestown","Jamestown"],
   ["mata-utu","Mata Utu"],
   ["st-helier","St Helier"],
+  ["adamstown","Adamstown"],
+  ["cove","Atlas Cove Station"],
+  ["grytviken","Grytviken"],
+  ["port-aux-francais","Port-aux-Français"],
 ])
-export const GENERATED_CITY_FIGURES = Object.freeze({ cities: 275, countries: 234 })
+export const GENERATED_CITY_FIGURES = Object.freeze({ cities: 279, countries: 238 })
 export const GENERATED_CITY_WORLD_INDEX: CityWorldIndexLoader | null = null
 
 export const GENERATED_CITY_LOADERS = Object.freeze([
@@ -557,4 +561,8 @@ export const GENERATED_CITY_LOADERS = Object.freeze([
   ()=>import("./jamestown/index.ts").then(m=>m.city),
   ()=>import("./mata-utu/index.ts").then(m=>m.city),
   ()=>import("./st-helier/index.ts").then(m=>m.city),
+  ()=>import("./adamstown/index.ts").then(m=>m.city),
+  ()=>import("./cove/index.ts").then(m=>m.city),
+  ()=>import("./grytviken/index.ts").then(m=>m.city),
+  ()=>import("./port-aux-francais/index.ts").then(m=>m.city),
 ] satisfies readonly CityModuleLoader[])

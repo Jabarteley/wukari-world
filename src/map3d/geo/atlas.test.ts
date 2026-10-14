@@ -677,12 +677,15 @@ test('the dive: the atlas is told at the tap, flies the descent path for as long
 });
 
 test('the dive ends straight down on the ground the city map starts on: the atlas offers its reach and flies to the span it is given', async () => {
-  let reach: { nearKm: number; farKm: number } | null = null, answer: number | { seconds: number; spanKm?: number } | null = null;
-  const { atlas, run, settle } = harness({ dive: (_id, _own, _land, offered) => { reach = offered; return answer; } });
+  // Held in an object: a `let` assigned only inside the callback would be narrowed to its initial null by the checker.
+  const seen: { reach: { nearKm: number; farKm: number } | null } = { reach: null };
+  let answer = null as number | { seconds: number; spanKm?: number } | null;
+  const { atlas, run, settle } = harness({ dive: (_id, _own, _land, offered) => { seen.reach = offered; return answer; } });
   await atlas.ready; atlas.resize(); await settle();
   atlas.goLevel(2); await settle();
   answer = { seconds: 1.6 };
   atlas.enterCity('lagos'); run();
+  const reach = seen.reach;
   assert.ok(reach && reach.nearKm > 0 && reach.nearKm <= reach.farKm, `reach ${JSON.stringify(reach)}`);
   const plain = atlas.diagnostics().view;
   assert.ok(Math.abs(plain.pitch - TOP_PITCH) < 1e-9, 'a dive ends straight down');

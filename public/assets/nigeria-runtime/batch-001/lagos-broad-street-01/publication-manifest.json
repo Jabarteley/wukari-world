@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "batch": "batch-001",
+  "assetId": "lagos-broad-street-01",
+  "status": "offline-reviewed-runtime-candidate",
+  "structuralStatus": "PASS_STRUCTURAL",
+  "visualStatus": "PASS_OFFLINE_DAY_NIGHT",
+  "runtimeManifestSha256": "a0549210b773233f63ea24145d72956415e47d3c0755a85e0dd8a58735c0ad1a",
+  "validatorSha256": "eafa09aae4b5105482ab342f62e5fe3a1160149366ec2662fffe819842b2aefa",
+  "files": [
+    {
+      "file": "README.md",
+      "bytes": 2502,
+      "sha256": "f5cd8ecdb44803f300ecfbcfe795c958c7d31490e887f647a9c20a887f2ed06a"
+    },
+    {
+      "file": "THIRD-PARTY-NOTICES.md",
+      "bytes": 2095,
+      "sha256": "f5ebffae44829876550114aebe0891d5491c5a1d8e5d643df05de6bbd2c22303"
+    },
+    {
+      "file": "anchors.json",
+      "bytes": 685,
+      "sha256": "b33fc8a085431d09b50e3624cc34f3f8b2a4c12d6f44489e27cc6474037ab34b"
+    },
+    {
+      "file": "collision.json",
+      "bytes": 6321,
+      "sha256": "afcefc46d0d5cef85dc2d0677a9de6e1f1fc6bbeab417275f08857b28cd3d14f"
+    },
+    {
+      "file": "lagos_broadstreet_lod0.glb",
+      "bytes": 1182128,
+      "sha256": "1d03d5a9faadb7cc49e7595e7a43e896f4787cd6e33064c263f7267ca14bd19f"
+    },
+    {
+      "file": "lagos_broadstreet_lod1.glb",
+      "bytes": 776400,
+      "sha256": "197b7e5d4b85173ea533ada8afb3a0da6db6bbd309e9805427520195b147e0bd"
+    },
+    {
+      "file": "manifest.json",
+      "bytes": 9353,
+      "sha256": "a0549210b773233f63ea24145d72956415e47d3c0755a85e0dd8a58735c0ad1a"
+    },
+    {
+      "file": "runtime-lod0-day.png",
+      "bytes": 1380015,
+      "sha256": "1b8167286befcf5b086c86736ad8d7282df1e0c1c2b63fc5f1c81c090f24551f"
+    },
+    {
+      "file": "runtime-lod0-night.png",
+      "bytes": 1141518,
+      "sha256": "9180835cca2c9ac8b71dab794a0f01410787d792fb8467bf5ef188249c46a66c"
+    },
+    {
+      "file": "runtime-lod1-day.png",
+      "bytes": 1358699,
+      "sha256": "3773a009703737b7cc409abaf434f28026f6be77d199a60d7eee2bfd342cb232"
+    },
+    {
+      "file": "runtime-lod1-distance-day.png",
+      "bytes": 928638,
+      "sha256": "d6279cd46136b938a8b013b89d0d710cef50235483f9984b8c2b5545e7aacad8"
+    },
+    {
+      "file": "runtime-lod1-night.png",
+      "bytes": 1115479,
+      "sha256": "8ae2f7a232a897c040c7b1c17e304d92f1e0afb48c52d534b8735d5e1b78018c"
+    },
+    {
+      "file": "validation-tools/test_validator.py",
+      "bytes": 2959,
+      "sha256": "40afa58c3d59d91f3000f64a252bc2ee07bb2f845ce08dc187fa831c8e0089fa"
+    },
+    {
+      "file": "validation-tools/validate_runtime_asset.py",
+      "bytes": 13615,
+      "sha256": "eafa09aae4b5105482ab342f62e5fe3a1160149366ec2662fffe819842b2aefa"
+    },
+    {
+      "file": "validation.json",
+      "bytes": 2800,
+      "sha256": "2d18bcf6581cb93ca2ec18a98d025777b8b7546ea3cb60a0d694a80a32eda53e"
+    },
+    {
+      "file": "visual-review.json",
+      "bytes": 2444,
+      "sha256": "db18e90403c4ab2a1b11c3f6d59978d0d7d5c1462604c91020ddee8d9c4c7e5e"
+    }
+  ],
+  "excluded": [
+    "large offline Blender source archive",
+    "raw architectural research photographs",
+    "rejected earlier ferry and stylized scenes",
+    "backups and stale renders"
+  ],
+  "hostIntegration": "not certified by asset publication"
+}

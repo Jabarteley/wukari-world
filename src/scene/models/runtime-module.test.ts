@@ -143,3 +143,22 @@ test('repeated geometry groups reserve each double-sided transparent pass', asyn
   await module.select(f.request); assert.equal(module.placement!.drawCalls, 12);
   module.dispose(); f.kit.dispose();
 });
+
+test('GPU residency counts sampler and colour-space variants of one decoded image', async () => {
+  for (const variant of ['sampler', 'colour', 'source', 'shared']) {
+    const f = fixture();
+    const module = createRuntimeModule(f.kit, f.parent, { open: async () => {
+      const group = new f.THREE.Group(), first = new f.THREE.Texture({ width: 1024, height: 1024 } as ImageBitmap);
+      const second = variant === 'source' ? new f.THREE.Texture(first.image) : first.clone();
+      if (variant === 'sampler') second.wrapS = f.THREE.RepeatWrapping;
+      if (variant === 'colour') second.colorSpace = f.THREE.SRGBColorSpace;
+      group.add(new f.THREE.Mesh(new f.THREE.BoxGeometry(), new f.THREE.MeshStandardMaterial({ map: first, normalMap: second })));
+      return group;
+    } });
+    if (variant === 'shared') {
+      await module.select(f.request);
+      assert.equal(module.placement!.textureBytes, Math.ceil(1024 * 1024 * 4 * 4 / 3));
+    } else await assert.rejects(module.select(f.request), /budget/, variant);
+    module.dispose(); f.kit.dispose();
+  }
+});

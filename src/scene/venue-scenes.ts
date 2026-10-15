@@ -957,6 +957,11 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     const tier = runtime.request.indoors || distance < 30 ? 'near' : 'far';
     if (tier === runtimeSelection) return;
     runtimeSelection = tier;
+    // The hero can arrive while the cheaper far tier still fits. Re-admit crowds against
+    // the reserved near cost before measuring this request, even if the old tier is valid.
+    const wasChecking = checkingRuntimeBudget;
+    checkingRuntimeBudget = true;
+    try { buildActors(); } finally { checkingRuntimeBudget = wasChecking; }
     const spent = runtimeHostCost(true);
     const generation = runtimeGeneration;
     const loading = runtimeOwner.select({ ...runtime.request, tier, distance, budget: {

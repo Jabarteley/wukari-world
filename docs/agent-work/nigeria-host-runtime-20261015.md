@@ -44,3 +44,7 @@ Source work ready for root integration review; actual game acceptance remains in
 At root request, SceneDef.runtime now declares readonly reservation {triangles,drawCalls}. Host validates positive integer caps <=11500/20, then reserves the pinned module maximum in ambient and network crowd admission instead of the generic maximum. Root definitions pin Lagos7618/2 and Abuja4942/8. Actual placement and whole-host guards remain measured and unchanged. This preserves fitting Abuja crowd without weakening acceptance.
 
 Focused contact regressions3/3 pass after change (/tmp/nigeria-host-reservation-contact.tap); diff whitespace clean. Host source frozen at acceptance agent request during its next browser capture. No commit or running process. Parent informed of completion and freeze; acceptance receipt remains outstanding.
+
+## Late hero / far-to-near admission fix
+
+Root identified that a late canonical hero can coexist with the cheaper far module, so the measured active-tier guard returned without trimming crowd against the near reservation. selectRuntime now readmits crowd before computing each new tier request, temporarily suppressing recursive guard entry. No budget changed. Source freeze restored and browser agent notified; interrupted concurrent two-crowd capture must not be claimed as exact-source evidence. Focused contact regressions rerun in /tmp/nigeria-host-late-body-contact.tap.

@@ -123,7 +123,7 @@ export function createRuntimeModule(kit: Kit, parent: THREE.Group, options: {
     holder.position.fromArray(request.position); holder.rotation.y = request.yaw;
     holder.scale.setScalar(RUNTIME_METRE_SCALE); holder.add(root); holder.updateMatrixWorld(true);
     let triangles = 0, drawCalls = 0, textureBytes = 0;
-    const images = new Set<object>(), materials = new Set<THREE.Material>();
+    const allocations = new Map<THREE.Source, Set<string>>(), materials = new Set<THREE.Material>();
     root.traverse(object => {
       if ((object as THREE.Light).isLight || (object as THREE.Camera).isCamera) throw new Error('Runtime module must use host lighting and camera');
       const mesh = object as THREE.Mesh;
@@ -139,10 +139,18 @@ export function createRuntimeModule(kit: Kit, parent: THREE.Group, options: {
         materials.add(material);
         for (const value of Object.values(material)) {
           if (!value?.isTexture) continue;
-          const data = (value as THREE.Texture).source.data;
+          const texture = value as THREE.Texture;
+          const data = texture.source.data;
           if (!data || !Number.isFinite(data.width) || !Number.isFinite(data.height) || data.width <= 0 || data.height <= 0) throw new Error('Invalid runtime texture dimensions');
-          if (images.has(data)) continue;
-          images.add(data); textureBytes += Math.ceil(data.width * data.height * 4 * 4 / 3);
+          // Three r180 allocates by Source identity AND sampler/upload parameters, not decoded image identity.
+          if (texture.type !== THREE.UnsignedByteType || texture.format !== THREE.RGBAFormat) throw new Error('Runtime textures must be RGBA8');
+          const key = [texture.wrapS, texture.wrapT, (texture as THREE.Data3DTexture).wrapR || 0, texture.magFilter, texture.minFilter,
+            texture.anisotropy, texture.internalFormat, texture.format, texture.type, texture.generateMipmaps,
+            texture.premultiplyAlpha, texture.flipY, texture.unpackAlignment, texture.colorSpace].join();
+          let keys = allocations.get(texture.source);
+          if (!keys) { keys = new Set(); allocations.set(texture.source, keys); }
+          if (keys.has(key)) continue;
+          keys.add(key); textureBytes += Math.ceil(data.width * data.height * 4 * 4 / 3);
         }
       }
     });

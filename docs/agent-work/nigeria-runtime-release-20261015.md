@@ -27,3 +27,27 @@
 ## 03:21 UTC resumed checkpoint
 
 Executor briefly disconnected around 03:20; immediate read retry succeeded and execution resumed in the same checkout. No files lost. Pushed 2983575409c846b6d019152f18e3b3690fde61a1 and opened draft PR24. Full serial repository typecheck completed cleanly: five projects, zero errors. Final budget review corrected repeated double-sided transparent geometry groups to count every draw pass; candidate focused suite now 29/29. Repeated real Chromium diagnostic on final runtime code completed at03:20:57 UTC with eight captures, no reported errors/HTTP failures and zero final geometry/textures. The final source/evidence correction is being pushed on the same isolated branch. PR CI will check the exact head; no runtime activation or deployment occurred. Egress/Actions and host-integration gates remain unchanged.
+
+## Final receipt — 03:30 UTC
+
+- Status: blocked for production; adapter draft verified within its stated scope. Host gameplay integration remains incomplete.
+- Published final head: 60c3dff925fc9a2f5a5d995b1f6ab92997e36f7e, draft https://github.com/kromate/joinallworld/pull/24. Merged main7898ec1e without conflicts, then focused tests29/29. All diagnostic source hashes still match the merged checkout.
+- Exact-head CI https://github.com/kromate/joinallworld/actions/runs/38675857977 terminal SUCCESS: release-policy, full five-project typecheck, build, download budgets and17/17 smoke tests. Earlier PR runs were superseded/cancelled by the final source update and main merge; no pass is borrowed from them.
+- Measured startup598850 raw/217349 gzip/190827 brotli; scene host184134 raw/69584 gzip; loading90502 raw/35235 gzip. All existing limits passed unchanged. These do not certify an activated imported scene: adapter has no game caller yet.
+- Cloud-only receipt: /workspace/nigeria-release-evidence/final-receipt.json. This final work-record append is local and deliberately not another CI-triggering source update. Published source, tests and diagnostic evidence are in PR24.
+- No owned local browser/server/compiler processes remain; fixture inputs preserved outside the checkout under /workspace/nigeria-release-evidence. No deployment was dispatched. Batch001 remains unreleased;002/003 audited only.
+- Resume: implement dedicated placement/host navigation and aggregate gates on this branch, re-fetch main, restore authorized existing Actions/production HTTPS access, then exact-source CI/release and production verification. Do not treat green adapter CI as gameplay or release acceptance.
+
+## Host integration continuation
+
+Explicit parent direction: continue actual batch001 host placement and acceptance. Root owns new src/scene/nigeria-runtime-scenes.ts, public/assets/nigeria-runtime/batch-001/ immutable deployment copies and provenance, city-scenes.ts registration, venue-world.ts bound-aware light/camera updates. Delegated host_runtime owns types.ts and venue-scenes.ts; asset_contract owns new models/nigeria-navigation.ts/tests. Current coordination index reviewed; no current overlapping city scene writer found. Preserve WORLD uploader and historical branches. Production remains gated.
+
+Root additionally owns venue-world-lights.test.ts regression for bounds coverage/direction/reset.
+
+## Actual host checkpoint — 03:49 UTC
+
+- Dedicated lazy host definitions and immutable batch001 asset copies now wired to Lagos market and Abuja National Mosque; actual dimensions, shared1.4 transform, fixed supported nav/collision and fallback support, renderer shadow coverage preserved. Parametric custom designs bypass imported overrides.
+- GPU allocation accounting corrected using Three Source+upload/sampler key;14 focused adapter/navigation cases pass. Lighting4/4, host21/21,parametric4/4,contact3/3. Supported full typecheck clean5projects/0errors. Browser latest Abuja near with canonicalplayer and budgetedcrowd16564 visibletriangles; route/tier/lifecycle acceptance still running.
+- Newly proven release blockers: Lagos canonicalbody9002+wardrobe1076+near7618=17696triangles beforeoverhead. No supportedheroLODswitch exists; retainplayer andfallback instead of violating17k. Need reviewed lowergeometry Lagosnear candidate, targetbudget determined with actualhost allowance.
+- Broad Worker gate fails identically beforeintegration:4680353bytes vs<3500000, noNigeriaimports. Exactcleanbaseline60c3dff9 reproduction saved; progression/map architecture ownedelsewhere requirescoordinatedrepair, notlimitrelaxation. Combinedcity-scenes lifecycle suite also reproducesbaselinependingpromise timeout; changedreadiness subsets andhostfixturespass. Fullnpmsuite stillrunningandnotclaimedgreen.
+- ExistingActionsAPI stillForbidden andproductionHTTPS CONNECT403 at03:45:41UTC. Read-onlyrechecks recorded. No release dispatch,merge orproductionclaim. Batch002/003 remaingated.

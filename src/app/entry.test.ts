@@ -84,7 +84,7 @@ test('the shared shell does not statically import a city venue or regular catalo
 })
 
 test('the shared shell does not statically import the world city network (catalogue rows, land components, routes)', () => {
-  assert.deepEqual(gamePaths.filter(path => /^src\/game\/cities\/(network|network-static|catalogue\.generated|land-components\.generated|routes\.generated)\.ts$/.test(path)), [])
+  assert.deepEqual(gamePaths.filter(path => /^src\/game\/cities\/(network|network-static|catalogueRows|catalogue\.generated|land-components\.generated|routes\.generated)\.ts$/.test(path)), [])
   // The browser resolves #city-network to the lazy reader (package.json imports), which fetches network.ts with import().
   const lazy = readFileSync(join(root, 'src/game/cities/network-lazy.ts'), 'utf8')
   assert.match(lazy, /import\('\.\/network\.ts'\)/)

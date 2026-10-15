@@ -288,7 +288,7 @@ export default defineConfig({
     if (city) return `city-${city[1]}-${city[2]}`
     // The world network (every city's catalogue facts, land components and authored routes): one lazy chunk, fetched when the game is
     // idle after it is ready and awaited by whatever reads other cities. A resident's startup carries only the index (catalogue.ts).
-    if (/\/src\/game\/cities\/(network|catalogue\.generated|land-components\.generated|routes\.generated)\.ts$/.test(id)) return 'city-network'
+    if (/\/src\/game\/cities\/(network|catalogueRows|catalogue\.generated|land-components\.generated|routes\.generated)\.ts$/.test(id)) return 'city-network'
     if (/\/src\/game\/cities\/(spec|specValidation)\.ts$/.test(id)) return 'city-spec'
     if (/\/src\/game\/cities\/contentBuilder\.ts$/.test(id)) return 'city-content-builder'
     if (/\/src\/game\/cities\/ogun\/(contentBuilder)\.ts$/.test(id)) return 'city-ogun-content'

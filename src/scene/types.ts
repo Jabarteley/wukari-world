@@ -84,7 +84,7 @@ export interface Lighting {
  * A camera position per orientation. `start` (default 1) scales how far the camera begins from the
  * avatar: a scene with something tall in it starts farther back so the whole of it is in view.
  */
-export interface SceneCamera { landscape: Vec3; portrait: Vec3; start?: number; bounds?: [number, number, number, number, number, number] }
+export interface SceneCamera { landscape: Vec3; portrait: Vec3; start?: number; azimuth?: [number, number]; bounds?: [number, number, number, number, number, number] }
 /** The place and pose a spot gives an activity running there (landmark.act). */
 export interface LandmarkAct { pose?: string; x?: number; y?: number; z?: number; ry?: number; seat?: number }
 /** A place in a scene a venue spot can attach to (props.landmark). approach: [x, z] or a chain [[x, z], ...]. */

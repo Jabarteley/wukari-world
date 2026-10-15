@@ -83,3 +83,7 @@ CI38730781492 on published d721422f terminalfailure: build/download budgets nowP
 CPUactualhostgrid reproducedLagoswalkrequested(6,2.8) stopping(-.68,2.71), independentlyofcrowd. Visualactionrings were recordedasphysicalblockers acrossnarrowauthorisedsidewalk; pureNAVtests missedhostcomposition. Runtime-onlyrawmarkerbatch nowexcludesringsfromfootprints whilegametablesstillrecordcollision. Actualhostallactionanchors/targetexactpath regressionplusnavigation/contact10/10pass. Thisisnavigationrepair, notrelaxingphysicalobstacles.
 
 Initialteardownguardsremovedstalerendercallbacks butdidnotfixtextureleak. BrowserinstrumentationthenprovedsharedThreeMeshDepthMaterial.map=null whileuniformmapretainsdisposedruntimeTexture; ordinarymeshshadowdrawreuploadedthattexture. Helperownerimplementingowneddepth/distance materiallifetime; no countersreset/noshadowdisable. Finalbrowser/CIrequired.
+
+## Frontage camera acceptance
+
+CI38733202253 passes exact5bb9d30b. Full ambient host navigation/tier/reentry/GPU cleanup passes both venues, but actual Lagos rear-orbit image occludes the player. Root takes SceneCamera optional azimuth contract, Nigeria camera presets and venue-world limit wiring/tests; runtime owner notified, browser owner holding. Restrict exterior frontages to front-facing azimuth; ordinary venues retain free orbit. No integration clearance until new browser evidence and exact-source CI. Root remains main/release coordinator; content lane must hold competing main push.

@@ -636,7 +636,7 @@ test('EVERY VENUE: spawn on free floor, walk to every spot and back out, orbit a
       world.setState(base);
       const spawn = world.diagnostics();
       assert.equal(spawn.location, id);
-      assert.equal(spawn.camera.limits.azimuth, null, `${id}: free orbit`);
+      assert.deepEqual(spawn.camera.limits.azimuth, id === 'market' ? [-1.2, 1.2] : null, `${id}: frontage limits or free orbit`);
       const entrance = { x: spawn.avatar.x, z: spawn.avatar.z };
       if (id === 'market') assert.ok(Math.abs(spawn.avatar.y - NIGERIA_BATCH001_NAVIGATION['lagos-broad-street-01'].entrance.y) < 0.01, 'market: spawns on the elevated drawn sidewalk');
       else assert.equal(spawn.avatar.y < 0.1, true, `${id}: spawns on the ground`);
@@ -673,7 +673,8 @@ test('EVERY VENUE: spawn on free floor, walk to every spot and back out, orbit a
         assert.equal(now.loop.running, false, `${id}: the orbit comes to rest`);
         assert.ok(now.camera.y > 0.5, `${id}: the camera stays above the floor`);
       }
-      assert.ok(Math.abs(turned - Math.PI * 2) < 0.2, `${id}: turned ${turned.toFixed(2)} rad — a full orbit`);
+      if (id === 'market') assert.ok(Math.abs(last) <= 1.201 && turned < 2.4, 'frontage stays within its front-facing camera arc');
+      else assert.ok(Math.abs(turned - Math.PI * 2) < 0.2, `${id}: turned ${turned.toFixed(2)} rad — a full orbit`);
       if (spawn.walls) assert.equal(seen.size, 4, `${id}: each wall was hidden while the camera was behind it, and shown again (${[...seen].join(' ')})`);
       world.recentre(); bench.pump(900);
       assert.deepEqual(world.diagnostics().walls, spawn.walls, `${id}: back where it started, the walls are as they were`);

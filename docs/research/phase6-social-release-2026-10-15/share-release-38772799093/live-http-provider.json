@@ -1,0 +1,74 @@
+{
+  "at": "2026-10-15T17:10:50.326687+00:00",
+  "sourceSha": "6695f00c6779fbfcb69bd21aa8b152d5430a0dca",
+  "health": {
+    "ok": true,
+    "build": "joinallworld-6695f00c6779fbfcb69bd21aa8b",
+    "relay": true,
+    "companionAi": true,
+    "serverTime": 1792084201541,
+    "transport": "cloudflare",
+    "buildId": "joinallworld-6695f00c6779fbfcb69bd21aa8b"
+  },
+  "deploymentId": "37742927-5c98-4cf7-a6f2-374908420ed5",
+  "versionId": "e6d0bf60-350c-4096-8e7e-29e67d1fe2ce",
+  "providerFullBuildIdMatches": true,
+  "nonBuildBindingsUnchanged": true,
+  "namespace": "6b84e715f6c444f69971a0b6cde7868b",
+  "shareAsset": {
+    "url": "https://joinallworld.com/assets/PublicProfile-118d584f.js",
+    "bytes": 8379,
+    "sha256": "aeca60206d9cb63abe12cb07c0fac67b946cd505c8dbd41197108b6c065ec54c",
+    "expectedVisibleCopyLabels": true
+  },
+  "passportAssetReferencesShare": true,
+  "earnedRecord": {
+    "id": "6cea4961-b7fc-4bb7-a6db-a28e9327014f",
+    "kind": "human",
+    "counts": {
+      "achievements": 1,
+      "stories": 2,
+      "projects": 0,
+      "collections": 2
+    },
+    "history": [
+      {
+        "id": "wayfinder",
+        "kind": "achievement",
+        "title": "Wayfinder",
+        "earnedAt": 1792081177959
+      },
+      {
+        "id": "tg:country:local-tales",
+        "kind": "collection",
+        "title": "Guide-Line Keeper",
+        "earnedAt": 1792081106771
+      },
+      {
+        "id": "tg:lome:local-tales",
+        "kind": "collection",
+        "title": "Lom\u00e9 storykeeper",
+        "earnedAt": 1792081106771
+      },
+      {
+        "id": "place-lome-country-story",
+        "kind": "story",
+        "title": "Finish Two Lines Before Moving the Guide",
+        "earnedAt": 1792081106771
+      },
+      {
+        "id": "place-lome-city-story",
+        "kind": "story",
+        "title": "Cold, Mild, Bold, Sweet",
+        "earnedAt": 1792080916588
+      }
+    ]
+  },
+  "adoptionTiming": {
+    "providerDeployCreated": "2026-10-15T17:04:29.891939Z",
+    "lastObservedOldHealth": "2026-10-15T17:08:10.696Z",
+    "firstConfirmedNewHealth": "2026-10-15T17:10:01.541Z",
+    "exactCutoverTimeNotObserved": true
+  },
+  "scope": "Current DO health/provider100percent source, served client assets and preserved normally-earned records verified. Production interactive Share and authenticated ordinary recovery pending Chrome extension update. No SQL/cleanup performed."
+}

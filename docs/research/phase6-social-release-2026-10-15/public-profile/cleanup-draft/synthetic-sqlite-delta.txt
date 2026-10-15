@@ -1,0 +1,31 @@
+OFFLINE SYNTHETIC SQLITE DIAGNOSTIC DELTA
+
+Production draft input
+- cleanup-final.sql.txt SHA-256: 5865c0fb71d3e219e676875ef7d56713ca472d02d67875f305d04ab4832b224f
+- cleanup-rehearsal.sql.txt SHA-256: b39857d59c1b3393dae3cd9aa0207d8a393cce727e062b3e712c173f318d4580
+- Neither draft was edited or executed.
+
+Representative fixture
+- In-memory Python sqlite3 only; SQLite version is recorded in synthetic-sqlite-output.txt.
+- Recreates the exact 15 table definitions captured in production-inventory-schema.txt.
+- Holds three synthetic target sessions/names, nine exact mirror shapes, 17 exact collection-reference shapes, two active homes, exact 5/1/25 action counts, 0 once rows, 1/0/3 target wallet-audit rows, four touched collection/root rows, zero fragments and unrelated canaries.
+- All stored payloads, session secrets, action values, wallet values and WORLD rows are synthetic. No production database value, credential, cookie or session secret was read or used. The reviewed public UUID/name/code literals appear only as source-text replacement keys.
+
+Executed-clone transformation
+- Nine constant-only substitutions convert the three reviewed UUIDs, founder UUID, share code, three names and the Tokyo UUID's guard prefix to synthetic fixture constants.
+- One exact intentional-block substitution changes only:
+    SELECT CASE WHEN 0=1 THEN 1 ELSE 0 END;
+  to:
+    SELECT 1;
+- No guard, deletion selector, backup, WORLD event, epoch fence, receipt or readback behavior was otherwise changed.
+- Executed transformed hashes are recorded in synthetic-sqlite-output.txt and are diagnostic identities only, never operator candidates.
+
+Bounded attempt history
+- Attempt 1 reached CHECK constraint failed: ok=1 before the named rehearsal abort. Transaction rollback occurred. A separate in-memory diagnostic clone removed only the gate CHECK to identify zero gate sequence 10; no repository or production draft changed. The cause was fixture transformation: the welcome-DM guard contains the Tokyo UUID's eight-character prefix as a separate literal, so the first mapping made the synthetic Tokyo DM look like R2.
+- Single correction: add the ninth constant substitution for that prefix. No SQL logic or fixture invariant changed.
+- Attempt 2 passed 8/8. Rehearsal reached the named dry_run_completed failure and rolled back the exact snapshot; final clone committed the expected synthetic state.
+
+Scope of proof
+- Proves this SQLite version can parse and execute the reviewed structure against the representative exact schema/shape.
+- Proves transactional DDL/data rollback in this local engine, private backup counts, target removal, epoch4/receipt, retained wallet rows, append-only old WORLD bytes/summary and unrelated canaries in this fixture.
+- Does not prove Cloudflare Data Studio parsing/transaction semantics, live inventory freshness, the missing share/referral or supplemental-reference classifications, actual provider duration, protected restart timing, production readbacks, postrestart named WORLD routes or unrelated live-user state.

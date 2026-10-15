@@ -1,0 +1,71 @@
+-- READ-ONLY, NON-SECRET readback after an unambiguous committed final transaction.
+SELECT 'receipt' AS check_name,
+  count(*)=1 AS ok,
+  json_object('count',count(*),'operation',max(operation_id),'committed_at',max(committed_at),'source',max(source_sha),'from_epoch',max(from_epoch),'to_epoch',max(to_epoch)) AS actual
+FROM qa_phase6_cleanup3_20261015_receipt
+WHERE singleton=1
+  AND operation_id='phase6-three-disposable-guests-20261015'
+  AND source_sha='6695f00c6779fbfcb69bd21aa8b152d5430a0dca'
+  AND from_epoch=3 AND to_epoch=4;
+
+WITH counts AS (
+  SELECT kind,count(*) AS n FROM qa_phase6_cleanup3_20261015_backup GROUP BY kind
+), fixed(kind,n) AS (VALUES
+  ('authority',1),('session',3),('collection',4),('entry',9),
+  ('action',31),('wallet',4),('store_meta',5)
+)
+SELECT 'backup_counts' AS check_name,
+  NOT EXISTS(SELECT kind,n FROM fixed EXCEPT SELECT kind,n FROM counts)
+    AND (SELECT n FROM counts WHERE kind='world')=(SELECT count(*)-2 FROM world_shards WHERE name IN ('tokyo.centre','lagos.lagos-island'))
+    AND COALESCE((SELECT n FROM counts WHERE kind='world_meta'),0)=(SELECT count(*) FROM world_meta WHERE key='summary') AS ok,
+  (SELECT json_group_object(kind,n) FROM (SELECT kind,n FROM counts ORDER BY kind)) AS actual;
+
+SELECT 'authority_fenced' AS check_name,
+  count(*)=1 AS ok,count(*) AS actual
+FROM main_store_authority
+WHERE singleton=1 AND epoch=4 AND writable=1
+  AND retired_from_epoch IS NULL AND wallet_effect_watermark IS NULL;
+
+WITH targets(id) AS (VALUES
+  ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56'),
+  ('453a0f63-5b90-4e7b-b730-4ea9ff54b70d'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f')
+), counts AS (
+  SELECT
+    (SELECT count(*) FROM sessions WHERE public_id IN (SELECT id FROM targets)) AS sessions,
+    (SELECT count(*) FROM archived_lives WHERE public_id IN (SELECT id FROM targets)) AS archives,
+    (SELECT count(*) FROM accounts a,targets t WHERE a.public_id=t.id OR instr(a.value,t.id)>0) AS accounts,
+    (SELECT count(*) FROM account_devices d JOIN qa_phase6_cleanup3_20261015_backup b ON b.kind='session' AND d.secret=json_extract(b.value,'$.secret')) AS devices,
+    (SELECT count(*) FROM action_receipts WHERE sender IN (SELECT id FROM targets)) AS actions,
+    (SELECT count(*) FROM once_receipts WHERE sender IN (SELECT id FROM targets)) AS once_rows,
+    (SELECT count(*) FROM wallet_effects WHERE public_id IN (SELECT id FROM targets)) AS wallet_rows,
+    (SELECT count(*) FROM collection_parts) AS parts,
+    (SELECT count(*) FROM (
+      SELECT t.id,c.name,'$collection-name' AS path FROM targets t,collections c WHERE instr(c.name,t.id)>0
+      UNION ALL
+      SELECT t.id,c.name,j.fullkey FROM targets t,collections c,json_tree(CASE WHEN json_valid(c.value) THEN c.value ELSE '{}' END) j WHERE j.key=t.id OR (j.type='text' AND j.value=t.id)
+    )) AS paths,
+    (SELECT count(DISTINCT e.coll||char(0)||e.map||char(0)||e.key) FROM entries e,targets t WHERE instr(e.key,t.id)>0 OR instr(e.value,t.id)>0 OR instr(COALESCE(e.jx,''),t.id)>0) AS entries
+)
+SELECT 'target_state_removed_audit_retained' AS check_name,
+  sessions=0 AND archives=0 AND accounts=0 AND devices=0 AND actions=0 AND once_rows=0 AND wallet_rows=4 AND parts=0 AND paths=0 AND entries=0 AS ok,
+  json_object('sessions',sessions,'archives',archives,'accounts',accounts,'devices',devices,'actions',actions,'once',once_rows,'wallet_audit',wallet_rows,'collection_parts',parts,'collection_paths',paths,'entry_rows',entries) AS actual
+FROM counts;
+
+WITH logs(name,text) AS (
+  SELECT n.name,(SELECT group_concat(text,'') FROM (SELECT text FROM world_shards WHERE name=n.name ORDER BY seq))
+  FROM (SELECT 'tokyo.centre' AS name UNION ALL SELECT 'lagos.lagos-island') n
+), events AS (
+  SELECT logs.name,CAST(j.key AS INTEGER) AS ordinal,json_extract(j.value,'$[0]') AS kind,j.value AS event
+  FROM logs,json_each('['||replace(rtrim(logs.text,char(10)),char(10),',')||']') j
+), flags AS (
+  SELECT
+    EXISTS(SELECT 1 FROM events e WHERE e.name='tokyo.centre' AND e.kind='x' AND json_extract(e.event,'$[1]')='bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56' AND e.ordinal=(SELECT max(z.ordinal) FROM events z WHERE z.name=e.name AND z.kind IN ('r','x') AND json_extract(z.event,'$[1]')='bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56')) AS tokyo_removed,
+    EXISTS(SELECT 1 FROM events e WHERE e.name='tokyo.centre' AND e.kind='f' AND json_extract(e.event,'$[1]')=0 AND json_extract(e.event,'$[2]')=0 AND e.ordinal=(SELECT max(z.ordinal) FROM events z WHERE z.name=e.name AND z.kind IN ('h','f') AND json_extract(z.event,'$[1]')=0 AND json_extract(z.event,'$[2]')=0)) AS tokyo_freed,
+    EXISTS(SELECT 1 FROM events e WHERE e.name='lagos.lagos-island' AND e.kind='x' AND json_extract(e.event,'$[1]')='6cea4961-b7fc-4bb7-a6db-a28e9327014f' AND e.ordinal=(SELECT max(z.ordinal) FROM events z WHERE z.name=e.name AND z.kind IN ('r','x') AND json_extract(z.event,'$[1]')='6cea4961-b7fc-4bb7-a6db-a28e9327014f')) AS lagos_removed,
+    EXISTS(SELECT 1 FROM events e WHERE e.name='lagos.lagos-island' AND e.kind='f' AND json_extract(e.event,'$[1]')=0 AND json_extract(e.event,'$[2]')=8 AND e.ordinal=(SELECT max(z.ordinal) FROM events z WHERE z.name=e.name AND z.kind IN ('h','f') AND json_extract(z.event,'$[1]')=0 AND json_extract(z.event,'$[2]')=8)) AS lagos_freed
+)
+SELECT 'world_latest_events' AS check_name,
+  tokyo_removed AND tokyo_freed AND lagos_removed AND lagos_freed AS ok,
+  json_object('tokyo_removed',tokyo_removed,'tokyo_freed',tokyo_freed,'lagos_removed',lagos_removed,'lagos_freed',lagos_freed) AS actual
+FROM flags;

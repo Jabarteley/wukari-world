@@ -1,0 +1,13 @@
+FIRST ATTEMPT (verbatim process output)
+Traceback (most recent call last):
+  File "/tmp/phase6-cleanup-sqlite-diagnostic.py", line 199, in <module>
+    main()
+    ~~~~^^
+  File "/tmp/phase6-cleanup-sqlite-diagnostic.py", line 156, in main
+    assert 'dry_run_completed' in (error or ''), error
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: CHECK constraint failed: ok=1
+
+BOUNDED IN-MEMORY GATE IDENTIFICATION OUTPUT
+zero gate seqs [(10,)]
+all gate count (29,)

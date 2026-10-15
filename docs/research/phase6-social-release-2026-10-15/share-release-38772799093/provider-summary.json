@@ -1,0 +1,73 @@
+{
+  "at": "2026-10-15T17:05:54.455Z",
+  "deploymentId": "37742927-5c98-4cf7-a6f2-374908420ed5",
+  "versionId": "e6d0bf60-350c-4096-8e7e-29e67d1fe2ce",
+  "bindings": [
+    {
+      "name": "ACCOUNTS_FIREBASE_API_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "ACCOUNTS_FIREBASE_PROJECT_ID",
+      "type": "secret_text"
+    },
+    {
+      "name": "ACCOUNTS_GOOGLE_CLIENT_ID",
+      "type": "secret_text"
+    },
+    {
+      "name": "AI_GATEWAY_API_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "ASSETS",
+      "type": "assets"
+    },
+    {
+      "name": "BUILD_ID",
+      "type": "plain_text",
+      "valueHash": "4fde7c5528288568c303d68e58ec9116b99555a863a03f8cc33ebe257ea0a030"
+    },
+    {
+      "name": "EMAIL_FROM_ADDRESS",
+      "type": "secret_text"
+    },
+    {
+      "name": "EMAIL_FROM_NAME",
+      "type": "secret_text"
+    },
+    {
+      "name": "JOINALLWORLD",
+      "type": "durable_object_namespace",
+      "namespaceId": "6b84e715f6c444f69971a0b6cde7868b"
+    },
+    {
+      "name": "MODERATOR_TOKEN",
+      "type": "secret_text"
+    },
+    {
+      "name": "OPENROUTER_API_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "PUBLIC_ORIGIN",
+      "type": "secret_text"
+    },
+    {
+      "name": "TURN_API_TOKEN",
+      "type": "secret_text"
+    },
+    {
+      "name": "TURN_KEY_ID",
+      "type": "secret_text"
+    },
+    {
+      "name": "TURN_TEST_PUBLIC_IDS",
+      "type": "secret_text"
+    },
+    {
+      "name": "ZEPTOMAIL_AUTH",
+      "type": "secret_text"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+SELECT 'metadata' AS kind,json_group_object(key,value) AS detail FROM store_meta WHERE key IN ('layout','synced:social','synced:civic','synced:growth','synced:street') UNION ALL SELECT 'fragment_count',json_object('all_parts',(SELECT count(*) FROM collection_parts)) UNION ALL SELECT 'welcome',json_object('key',key,'kind',json_extract(value,'$.kind'),'members',json_extract(value,'$.members'),'seq',json_extract(value,'$.seq'),'messages',json_array_length(value,'$.messages'),'non_auto',(SELECT count(*) FROM json_each(e.value,'$.messages') m WHERE json_extract(m.value,'$.auto') IS NOT 1)) FROM entries e WHERE coll='social' AND map='convs' AND key IN ('dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.6cea4961-b7fc-4bb7-a6db-a28e9327014f');
+
+kind
+detail
+1
+metadata
+{"layout":"shadow","synced:civic":"{\"at\":1791846321467,\"entries\":92,\"rows\":185,\"chars\":25269}","synced:growth":"{\"at\":1791846321443,\"entries\":227,\"rows\":455,\"chars\":111709}","synced:social":"{\"at\":1791846321391,\"entries\":579,\"rows\":1159,\"chars\":309799}","synced:street":"{\"at\":1791846321580,\"entries\":0,\"rows\":1,\"chars\":15}"}
+2
+fragment_count
+{"all_parts":0}
+3
+welcome
+{"key":"dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.6cea4961-b7fc-4bb7-a6db-a28e9327014f","kind":"dm","members":["0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481","6cea4961-b7fc-4bb7-a6db-a28e9327014f"],"seq":1,"messages":1,"non_auto":0}
+4
+welcome
+{"key":"dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56","kind":"dm","members":["0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481","bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"],"seq":1,"messages":1,"non_auto":0}

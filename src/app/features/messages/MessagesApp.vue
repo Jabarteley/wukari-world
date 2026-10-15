@@ -67,6 +67,8 @@ const openRoom = (id: string): void => { void import('../places/placesStore.ts')
 import ChatSettings from './ChatSettings.vue'
 import ChatMenu from './ChatMenu.vue'
 import AttachSheet from './AttachSheet.vue'
+// Spray packets are fetched only when a group member opens one (docs/SMALLER-FEATURES.md).
+const SprayPacket = defineAsyncComponent(() => import('./SprayPacket.vue'))
 import type { AttachChoice } from './AttachSheet.vue'
 import Lightbox from './Lightbox.vue'
 import { askedAboutNotifications, noteAskedAboutNotifications } from './notifyAsk.ts'
@@ -78,7 +80,9 @@ const growth = useGrowth()
 const pins = createMessagePins({ fetchJson: game.fetchJson, newId: () => game.newId(), actor: () => game.session.value?.id ?? null, connected: () => game.connected.value })
 const pinPreview = ref<number | null>(null)
 /** The sheets over a chat: the pinned messages and the "+" of the message box. */
-const pinsOpen = ref(false), attachOpen = ref(false)
+const pinsOpen = ref(false), attachOpen = ref(false), sprayOpen = ref(false)
+/** The friends of mine in this group: the people a packet can reach. */
+const sprayFriends = computed(() => (conv.value?.kind === 'group' ? conv.value.members.filter((member) => member.id !== me.value?.me.id && me.value?.friends.some((friend) => friend.id === member.id)).length : 0))
 const previewedPin = computed(() => pins.state.view?.items.find((entry) => entry.message.seq === pinPreview.value)?.message ?? null)
 const isPinned = (item: ThreadItem): boolean => !isOutbox(item) && Boolean(pins.state.view?.items.some((entry) => entry.message.seq === item.seq))
 
@@ -148,7 +152,7 @@ const composer = ref<InstanceType<typeof Composer> | null>(null)
 /** The message being answered, until it is sent or cancelled. */
 const replying = ref<Message | null>(null)
 const messageAction = ref<{ kind: 'edit' | 'delete' | 'forward'; item: Message } | null>(null)
-watch(() => ui.open, () => { messageAction.value = null; attachOpen.value = false })
+watch(() => ui.open, () => { messageAction.value = null; attachOpen.value = false; sprayOpen.value = false })
 let actorTurn = 0
 // Of a long conversation only the newest lines are drawn; earlier ones are drawn as the reader scrolls up, and read from the server
 // when the kept lines run out (chunked rendering: a line's height is not known, so there is no fixed window).
@@ -362,6 +366,7 @@ function pickAttachment(choice: AttachChoice): void {
     else if (choice === 'voice') composer.value?.startVoice()
     else if (choice === 'send-money' && partner.value) void sendMoneyTo(partner.value, title.value)
     else if (choice === 'request-money') requests.openForm()
+    else if (choice === 'spray') sprayOpen.value = true
   })
 }
 /** The menu was dismissed (not used): the keyboard goes back to the button that opened it. */
@@ -533,7 +538,10 @@ defineExpose({
             </span>
           </form>
         </BaseSheet>
-        <AttachSheet :open="attachOpen" :pictures="pictureAllowed" :voice="voiceAllowed && !readOnly" :money="Boolean(partner) && !readOnly" :offline="!connected" @close="attachOpen = false" @pick="pickAttachment" />
+        <AttachSheet :open="attachOpen" :pictures="pictureAllowed" :voice="voiceAllowed && !readOnly" :money="Boolean(partner) && !readOnly" :spray="conv?.kind === 'group' && !readOnly" :offline="!connected" @close="attachOpen = false" @pick="pickAttachment" />
+        <BaseSheet v-if="conv?.kind === 'group'" :open="sprayOpen" label="Spray a packet" @close="sprayOpen = false">
+          <SprayPacket v-if="sprayOpen && ui.open" :conv="ui.open" :friends="sprayFriends" :offline="!connected" @done="sprayOpen = false" />
+        </BaseSheet>
 
         <div class="messages-body">
           <div ref="threadBox" class="messages-thread" aria-live="polite" @scroll.passive="onScroll">

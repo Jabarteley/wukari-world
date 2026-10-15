@@ -3,8 +3,8 @@
 // needs a panel sitting between the header and the thread. Only what this chat can do is listed.
 import BaseSheet from '../../ui/BaseSheet.vue'
 
-export type AttachChoice = 'picture' | 'voice' | 'send-money' | 'request-money'
-defineProps<{ open: boolean; pictures: boolean; voice: boolean; money: boolean; offline: boolean }>()
+export type AttachChoice = 'picture' | 'voice' | 'send-money' | 'request-money' | 'spray'
+defineProps<{ open: boolean; pictures: boolean; voice: boolean; money: boolean; offline: boolean; spray?: boolean }>()
 const emit = defineEmits<{ close: []; pick: [choice: AttachChoice] }>()
 </script>
 
@@ -17,8 +17,9 @@ const emit = defineEmits<{ close: []; pick: [choice: AttachChoice] }>()
       <li v-if="voice"><button type="button" data-chat="attach-voice" @click="emit('pick', 'voice')"><span aria-hidden="true">🎤</span><b>Voice note</b><small>Up to one minute, reviewed before sending</small></button></li>
       <li v-if="money"><button type="button" data-chat="send-money" @click="emit('pick', 'send-money')"><span aria-hidden="true">💸</span><b>Send money</b><small>A gift, under the usual limits</small></button></li>
       <li v-if="money"><button type="button" data-chat="request-money" :disabled="offline" @click="emit('pick', 'request-money')"><span aria-hidden="true">🧾</span><b>Request money</b><small>{{ offline ? 'Reconnect to ask for money.' : 'Your friend sees a card to pay or decline' }}</small></button></li>
+      <li v-if="spray"><button type="button" data-chat="spray" :disabled="offline" @click="emit('pick', 'spray')"><span aria-hidden="true">🎉</span><b>Spray</b><small>{{ offline ? 'Reconnect to spray' : 'Share game money with friends in this group' }}</small></button></li>
     </ul>
-    <p v-if="!pictures && !voice && !money" class="attach-none">Nothing can be added to this chat.</p>
+    <p v-if="!pictures && !voice && !money && !spray" class="attach-none">Nothing can be added to this chat.</p>
     </template>
   </BaseSheet>
 </template>

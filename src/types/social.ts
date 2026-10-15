@@ -473,6 +473,11 @@ export type BaeEndResult = Done<'ended', Repeat>
 export type TransferResult =
   | Done<'sent', { amount: number; to: PlayerRef; /** false: stored until the recipient's next request */ credited: boolean; creditedCity: CityId; /** the sender's cash afterwards */ balance: number } & Repeat>
   | Refusal<OtherPlayerRefusal | 'rate_limited' | 'friends_only' | 'account_too_new' | 'friendship_too_new' | 'recipient_limit' | 'recipient_unavailable' | 'recipient_no_life' | (string & {})>
+/** A spray packet: game money split at random among the friends in a group chat (server/social/spray.ts, docs/SMALLER-FEATURES.md). */
+export interface SprayBody { conv: string; amount: number; cityId: CityId; clientId: TimedId }
+export type SprayResult =
+  | Done<'sprayed', { amount: number; shares: number; conv: string; balance: number } & Repeat>
+  | Refusal<OtherPlayerRefusal | 'rate_limited' | 'not_a_member' | 'agents_cannot_spray' | 'nobody_to_spray' | 'amount_too_small' | 'amount_too_large' | (string & {})>
 export type MoneyRequestResult =
   | Done<'requested', { request: MoneyRequestView; message: Message } & Repeat>
   | Refusal<OtherPlayerRefusal | 'rate_limited' | 'friends_only' | 'amount_too_small' | 'amount_too_large' | 'request_open' | 'request_limit' | 'requests_full' | (string & {})>
@@ -548,6 +553,7 @@ export interface SocialHttpRoutes {
   'POST /api/social/romance/public': { body: RomancePublicBody; response: Ok<RomanceResult>; errors: SocialPost | 'invalid_player' | 'invalid_answer' }
   'POST /api/social/bae/end': { body: BaeEndBody; response: Ok<BaeEndResult>; errors: SocialPost | 'invalid_city' }
   'POST /api/social/transfers': { body: TransferBody; response: Ok<TransferResult>; errors: SocialPost | OnceErrorCode | 'invalid_player' | 'invalid_city' | 'invalid_amount' }
+  'POST /api/social/spray': { body: SprayBody; response: Ok<SprayResult>; errors: SocialPost | OnceErrorCode | 'invalid_conversation' | 'invalid_city' | 'invalid_amount' }
   'POST /api/social/money-requests': { body: MoneyRequestBody; response: Ok<MoneyRequestResult>; errors: SocialPost | OnceErrorCode | 'invalid_player' | 'invalid_amount' | 'invalid_note' }
   'POST /api/social/money-requests/answer': { body: MoneyRequestAnswerBody; response: Ok<MoneyRequestAnswerResult>; errors: SocialPost | OnceErrorCode | 'invalid_request' | 'invalid_op' | 'invalid_city' }
 }

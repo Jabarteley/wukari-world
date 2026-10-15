@@ -1,5 +1,5 @@
 {
-  "expectedSourceGitSHA": "83116903f3fbdf60090ce5d924080cbee547bbde",
+  "expectedSourceGitSHA": "ac94fca06702c1c86dd37fc3b714babc41ad7bfd",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
@@ -14,9 +14,9 @@
     "boundaryKey": "cc",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38502396254,
-      "sourceSha": "e7b4a8440947fc8102bda4f2f8e8b288636be2fd",
-      "sourceArtifact": "city-bootstrap-cc-e7b4a8440947fc8102bda4f2f8e8b288636be2fd",
+      "sourceRunId": 38670193219,
+      "sourceSha": "faf09399d70b1b03cdfa8a4163b40036651e83ca",
+      "sourceArtifact": "city-bootstrap-cc-faf09399d70b1b03cdfa8a4163b40036651e83ca",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -53,10 +53,10 @@
         "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
         "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
         "bounds": [
-          96.64651578619483,
-          -12.37072878993398,
-          97.01438141380517,
-          -12.008967010066021
+          96.72011938112345,
+          -12.298376433960387,
+          96.94077781887654,
+          -12.081319366039613
         ]
       },
       "profile": "outpost",
@@ -260,41 +260,41 @@
           "way/1291009296"
         ],
         "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
-        "boundsPolicySha256": "6f384df7d7b374e875192057a85d6bcace4dd2d7c3b3701298a7893dc2ed67b6",
+        "boundsPolicySha256": "d969197ecc36a7d7b594f934ab1ca0e8e28103c83f32720e42de3e5fc384425f",
         "bounds": {
           "policy": {
-            "playKm": 20,
-            "coreKm": 5,
+            "playKm": 12,
+            "coreKm": 4,
             "airportClearanceMetres": 1000,
             "maximumAbsoluteLatitude": 75
           },
           "boxes": {
             "play": [
-              -12.37072878993398,
-              96.64651578619483,
-              -12.008967010066021,
-              97.01438141380517
+              -12.298376433960387,
+              96.72011938112345,
+              -12.081319366039613,
+              96.94077781887654
             ],
             "core": [
-              -12.235068122483495,
-              96.78448913491918,
-              -12.144627677516505,
-              96.87640806508081
+              -12.226024077986796,
+              96.79368228595747,
+              -12.153671722013204,
+              96.86721491404252
             ],
             "outline": [
-              -12.42072878993398,
-              96.59651578619483,
-              -11.95896701006602,
-              97.06438141380517
+              -12.348376433960388,
+              96.67011938112346,
+              -12.031319366039613,
+              96.99077781887654
             ],
             "wide": [
-              -12.970728789933979,
-              96.04651578619483,
-              -11.408967010066021,
-              97.61438141380516
+              -12.829364090590017,
+              96.18913172449382,
+              -11.550331709409983,
+              97.47176547550617
             ]
           },
-          "airportMarginMetres": 19615.93763536111,
+          "airportMarginMetres": 11607.194395481658,
           "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
           "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
         },
@@ -353,25 +353,25 @@
       },
       "extractKey": "west-island",
       "extractSha256": {
-        "places": "ee1e2dc268a3948f9f9f9939e72f5224b4350320b5518565d7b61690e100741a",
-        "extras": "1973118a6198565782259a4602b6a4b436e6aa7c5d67d7feb39c5077c9ff9938",
-        "water": "414b8b8c0c66e8ed51b0f74a181e498aeab36fdbd8d962a76884cf33b11c2383",
-        "landuse": "4f7d706d29b6a977962690c8c63df7ec6e2ad8a7754d1bf1bf2b05d59b2fa01a",
-        "roads": "54bb2bc24d9a3ddcca5bfcf11af33f62a7e11f657c083ae7b0269bc3e6d0dd13"
+        "places": "ac86c417435baa77abaf1fda96f53c5045dce401e3611c88cacabd94d3ce2f77",
+        "extras": "dbda87b9774eb36253650381dd2ff66512994086ce1ac2e7aa57ea182503a0ee",
+        "water": "eeac6df68748399e025d59906b28dd69b88c47d6292bd31ff89d49b303e8b1cc",
+        "landuse": "4d075b5add1aa8d5d76cd1c421f963c23be6734d143c10fc15031b70c9e9ed15",
+        "roads": "f940c58b42adf98ac8cde9bd6d0cb8e81cc1ba2f75cf84053ae6eb5db1561cfb"
       },
       "sourceJob": {
         "city": "west-island",
-        "sourceRunId": 38502396254,
-        "sourceArtifact": "city-bootstrap-cc-e7b4a8440947fc8102bda4f2f8e8b288636be2fd",
-        "sourceSha": "e7b4a8440947fc8102bda4f2f8e8b288636be2fd",
+        "sourceRunId": 38670193219,
+        "sourceArtifact": "city-bootstrap-cc-faf09399d70b1b03cdfa8a4163b40036651e83ca",
+        "sourceSha": "faf09399d70b1b03cdfa8a4163b40036651e83ca",
         "datasetSha256": "b93db5ebb8059ff619c2f1d652a9270b1573cf845574645397e0bfce2260f030",
         "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
         "extractSha256": {
-          "places": "ee1e2dc268a3948f9f9f9939e72f5224b4350320b5518565d7b61690e100741a",
-          "extras": "1973118a6198565782259a4602b6a4b436e6aa7c5d67d7feb39c5077c9ff9938",
-          "water": "414b8b8c0c66e8ed51b0f74a181e498aeab36fdbd8d962a76884cf33b11c2383",
-          "landuse": "4f7d706d29b6a977962690c8c63df7ec6e2ad8a7754d1bf1bf2b05d59b2fa01a",
-          "roads": "54bb2bc24d9a3ddcca5bfcf11af33f62a7e11f657c083ae7b0269bc3e6d0dd13"
+          "places": "ac86c417435baa77abaf1fda96f53c5045dce401e3611c88cacabd94d3ce2f77",
+          "extras": "dbda87b9774eb36253650381dd2ff66512994086ce1ac2e7aa57ea182503a0ee",
+          "water": "eeac6df68748399e025d59906b28dd69b88c47d6292bd31ff89d49b303e8b1cc",
+          "landuse": "4d075b5add1aa8d5d76cd1c421f963c23be6734d143c10fc15031b70c9e9ed15",
+          "roads": "f940c58b42adf98ac8cde9bd6d0cb8e81cc1ba2f75cf84053ae6eb5db1561cfb"
         }
       }
     }

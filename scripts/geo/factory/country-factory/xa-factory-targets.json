@@ -1,5 +1,5 @@
 {
-  "expectedSourceGitSHA": "83116903f3fbdf60090ce5d924080cbee547bbde",
+  "expectedSourceGitSHA": "ac94fca06702c1c86dd37fc3b714babc41ad7bfd",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
@@ -14,9 +14,9 @@
     "boundaryKey": "xa",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38505615108,
-      "sourceSha": "325e8107224e5418b1f6988210d258e299e5a302",
-      "sourceArtifact": "city-bootstrap-xa-325e8107224e5418b1f6988210d258e299e5a302",
+      "sourceRunId": 38670193219,
+      "sourceSha": "faf09399d70b1b03cdfa8a4163b40036651e83ca",
+      "sourceArtifact": "city-bootstrap-xa-faf09399d70b1b03cdfa8a4163b40036651e83ca",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -57,10 +57,10 @@
           "osmRef": "node/1717848188"
         },
         "bounds": [
-          122.95769081486266,
-          -12.396595267450484,
-          123.23361738513735,
-          -12.125273932549517
+          122.94848815470866,
+          -12.315198866980195,
+          123.15082224301472,
+          -12.206670333019806
         ]
       },
       "profile": "wilderness",
@@ -152,41 +152,42 @@
           "way/620292599"
         ],
         "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
-        "boundsPolicySha256": "6f384df7d7b374e875192057a85d6bcace4dd2d7c3b3701298a7893dc2ed67b6",
+        "boundsPolicySha256": "d969197ecc36a7d7b594f934ab1ca0e8e28103c83f32720e42de3e5fc384425f",
         "bounds": {
           "policy": {
-            "playKm": 15,
-            "coreKm": 4,
+            "playKm": 6,
+            "coreKm": 3,
             "airportClearanceMetres": 1000,
-            "maximumAbsoluteLatitude": 75
+            "maximumAbsoluteLatitude": 75,
+            "westKm": 16
           },
           "boxes": {
             "play": [
-              -12.396595267450484,
-              122.95769081486266,
-              -12.125273932549517,
-              123.23361738513735
+              -12.315198866980195,
+              122.94848815470866,
+              -12.206670333019806,
+              123.15082224301472
             ],
             "core": [
-              -12.297110777986797,
-              123.05887787080263,
-              -12.224758422013204,
-              123.13243032919738
+              -12.288066733490098,
+              123.06807287677775,
+              -12.233802466509903,
+              123.12323532322226
             ],
             "outline": [
-              -12.446595267450485,
-              122.90769081486266,
-              -12.075273932549516,
-              123.28361738513735
+              -12.365198866980196,
+              122.89848815470866,
+              -12.156670333019806,
+              123.20082224301471
             ],
             "wide": [
-              -12.996595267450484,
-              122.35769081486266,
-              -11.525273932549517,
-              123.83361738513734
+              -12.818699999439284,
+              122.44498702224956,
+              -11.703169200560717,
+              123.65432337547381
             ]
           },
-          "airportMarginMetres": 14790.138139999934,
+          "airportMarginMetres": 5790.138140000011,
           "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
           "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
         },
@@ -259,25 +260,25 @@
       },
       "extractKey": "ashmore",
       "extractSha256": {
-        "places": "d98a83b6d341a601fdd56049135958e5398cebfd15ac57d066bf6fd2d2c7749c",
-        "extras": "36b32b26b304bab74ca0a49fa8ff4aaf150ad0508c3a482291d6519885bd5046",
-        "water": "5cbe209ba3ae311fd02af4e7f4e2fd17b6f306fa12c6c0886b1891174211b5da",
-        "landuse": "49b53779d32be6ca94ab4af4909cff09f7c867c7fc7668d3eff385841827a7dc",
-        "roads": "fd6331a5c1f8d71934ea3e58776c8509c6db31ec1e96e74bc735d999213d1cb1"
+        "places": "afa5a720310f17b4f9f2ac106fc8f84cfd6b79aee5f99064e0cd0567b93ec070",
+        "extras": "9b150e1c76d3e35480a0969a92ffd8100ad72ba2625a68d70e07847d2875316a",
+        "water": "8e3445e89721847adeace8a15ad7d3ef00235ef8dae06cd0c699b414a4fb3311",
+        "landuse": "e45a4201d735a908ced23b42a2cc1268fcc3d63f876439f6c95be3810f490bca",
+        "roads": "c8ec1991af2eee2cc3280cdf0d422602fcc7dd571a176c49ce5b5aa0aa25fbd0"
       },
       "sourceJob": {
         "city": "ashmore",
-        "sourceRunId": 38505615108,
-        "sourceArtifact": "city-bootstrap-xa-325e8107224e5418b1f6988210d258e299e5a302",
-        "sourceSha": "325e8107224e5418b1f6988210d258e299e5a302",
+        "sourceRunId": 38670193219,
+        "sourceArtifact": "city-bootstrap-xa-faf09399d70b1b03cdfa8a4163b40036651e83ca",
+        "sourceSha": "faf09399d70b1b03cdfa8a4163b40036651e83ca",
         "datasetSha256": "a0f4ef9d733103ae6fe87cb25368588d14defbece9ee5bb49d95758babcf9c48",
         "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
         "extractSha256": {
-          "places": "d98a83b6d341a601fdd56049135958e5398cebfd15ac57d066bf6fd2d2c7749c",
-          "extras": "36b32b26b304bab74ca0a49fa8ff4aaf150ad0508c3a482291d6519885bd5046",
-          "water": "5cbe209ba3ae311fd02af4e7f4e2fd17b6f306fa12c6c0886b1891174211b5da",
-          "landuse": "49b53779d32be6ca94ab4af4909cff09f7c867c7fc7668d3eff385841827a7dc",
-          "roads": "fd6331a5c1f8d71934ea3e58776c8509c6db31ec1e96e74bc735d999213d1cb1"
+          "places": "afa5a720310f17b4f9f2ac106fc8f84cfd6b79aee5f99064e0cd0567b93ec070",
+          "extras": "9b150e1c76d3e35480a0969a92ffd8100ad72ba2625a68d70e07847d2875316a",
+          "water": "8e3445e89721847adeace8a15ad7d3ef00235ef8dae06cd0c699b414a4fb3311",
+          "landuse": "e45a4201d735a908ced23b42a2cc1268fcc3d63f876439f6c95be3810f490bca",
+          "roads": "c8ec1991af2eee2cc3280cdf0d422602fcc7dd571a176c49ce5b5aa0aa25fbd0"
         }
       }
     }

@@ -12,6 +12,8 @@ import { LEFT_OUT, PLAYS } from '../profile.ts';
 import { emit } from '../registry.ts'
 import { cleanText, fail, ok } from '../util.ts'
 import { lagosTime } from '../clock.ts'
+import { cachedCityContent } from '../cities/registry.ts'
+import { levelOf, scaleNaira } from '../price-levels.ts'
 import type { SystemDefinition } from '../../types/registry.ts'
 import type { LedgerDay, LedgerLine, LifeContext, LifeState, MoneyEffect } from '../../types/life.ts'
 
@@ -223,9 +225,10 @@ export default {
   id: 'wallet',
   stateKeys: ['cash', 'ledger', 'ledgerDays'],
   /** `state` already holds the core system's keys (`t`); this fills the wallet's three. */
-  sanitize(input: Record<string, unknown>, target: { t: number }): void {
+  sanitize(input: Record<string, unknown>, target: { t: number }, ctx?: { cityId?: string }): void {
     const state = target as WalletState
-    state.cash = safeCount(input.cash) ? input.cash : STARTING_CASH
+    // A new life's purse is in the prices of the city it is born in (docs/PRICE-LEVELS.md "Starting money"); in Nigeria it is exactly STARTING_CASH.
+    state.cash = safeCount(input.cash) ? input.cash : scaleNaira(STARTING_CASH, levelOf(cachedCityContent(ctx?.cityId)))
     state.ledger = sanitizeLines(input.ledger)
     // Daily summaries: kept as saved when they are consistent with themselves and with the
     // balance; otherwise (a save from before they existed, or a damaged one) rebuilt from the lines.

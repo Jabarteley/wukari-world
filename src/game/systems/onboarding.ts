@@ -126,6 +126,8 @@ import { APPEARANCE, BOUTIQUE_PRICES, DEFAULT_LOOK, DREAMS, FEELING_LINES, LOTTE
 import { lgaOf, lgasOf, cityRules } from '../content/world.ts';
 import { venueFor } from '../cities/runtime.ts';
 import { housesFor } from '../cities/housingRuntime.ts';
+import { cachedCityContent } from '../cities/registry.ts';
+import { LEVEL_MAX, LEVEL_MIN, levelOf, lifeLevel, scaleNaira } from '../price-levels.ts';
 
 /** An accessory of the catalogue: its id and the slot it is worn in. */
 type AccessoryEntry = Appearance['accessories'][number];
@@ -185,7 +187,9 @@ const boutiqueOnlyLists: Partial<Record<WardrobeKind | 'accessories', readonly s
 const boutiqueOnly = (kind: WardrobeKind | 'accessories', id: string): boolean => boutiqueOnlyLists[kind]?.includes(id) === true;
 const kindWord = (kind: WardrobeKind | 'accessories'): string => (kind === 'hair' ? 'hairstyle' : kind === 'accessories' ? 'accessory' : kind);
 /** The Boutique price of a style or accessory that is known to be sold there. */
-const priceOfStyle = (kind: WardrobeKind | 'accessories', id: string): number => BOUTIQUE_PRICES[kind][id]!; // every id offered or accepted here is priced
+const priceOfStyle = (kind: WardrobeKind | 'accessories', id: string, level = 1): number => scaleNaira(BOUTIQUE_PRICES[kind][id]!, level); // every id offered or accepted here is priced
+/** The price level the life's own money is in (docs/PRICE-LEVELS.md "Starting money"): the level it settled at, or, before it has moved in, the one of the city it is choosing a home in. 1 for Nigeria. */
+const startLevel = (state: LifeState): number => (state.onboarding.done ? lifeLevel(state) : levelOf(cachedCityContent(state.estate.city)))
 /** Whether the Sim owns the style `id` of a wardrobe kind. */
 const ownsStyle = (o: OnboardingState, kind: WardrobeKind, id: unknown): boolean => isOneOf(o.wardrobe[kind], id);
 
@@ -436,8 +440,8 @@ const actions = {
   'onboarding.dream'(state, payload) {
     const blocked = notDone(state) || needStep(state, 2);
     if (blocked) return blocked;
-    const dream = isDreamId(payload?.dream) ? dreamFor(state.estate.city, payload.dream) : null;
-    if (!dream) return fail(state, 'invalid_dream', `Choose one dream: ${dreamsFor(state.estate.city).map((item) => item.label).join(', ')}.`);
+    const dream = isDreamId(payload?.dream) ? dreamFor(state.estate.city, payload.dream, startLevel(state)) : null;
+    if (!dream) return fail(state, 'invalid_dream', `Choose one dream: ${dreamsFor(state.estate.city, startLevel(state)).map((item) => item.label).join(', ')}.`);
     state.onboarding.dream = dream.id;
     reach(state, 3);
     state.message = `Dream saved: ${dream.label}.`;
@@ -484,19 +488,23 @@ const actions = {
     // Step 4 is only reached once the lottery was rolled, and a rented home was checked against it by homeLock.
     const rolled = outcome!;
     // A life without a rented home has a local government: 'lga_required' was returned otherwise.
-    const startCash = home ? rolled.startCash[home.id]! : rolled.ownCash; // homeLock checked that this start cash exists
+    // A city outside Nigeria: the purse and the family loan are in that city's prices, so buying power at the start is about the same everywhere (docs/PRICE-LEVELS.md).
+    const level = startLevel(state);
+    const startCash = scaleNaira(home ? rolled.startCash[home.id]! : rolled.ownCash, level); // homeLock checked that this start cash exists
+    const loan = rolled.loan ? { principal: scaleNaira(rolled.loan.principal, level), weekly: scaleNaira(rolled.loan.weekly, level), owed: scaleNaira(rolled.loan.owed, level) } : null;
     const grant = Math.max(0, startCash - o.seed);
     if (!Number.isSafeInteger(state.cash + grant)) return fail(state, 'balance_limit', 'Your saved balance has reached its supported limit.');
 
+    if (level !== 1) o.level = level;
     o.house = home?.id ?? null; o.done = true; o.stage = 'settled'; o.required = false; o.step = DONE_STEP; o.completedAt = finite(ctx.now) ? ctx.now : state.t;
     o.wardrobe = wardrobeOf(o.wardrobe, o.look);
     for (const [skill, level] of Object.entries(rolled.skills || {})) setSkillLevel(state, skill, level);
     startNeeds(state);
     const where = home ? `${home.label}, ${home.district}` : `Starter house, ${unit!.name}`;
-    credit(state, grant, `Start cash · ${where}${rolled.loan ? ` (includes ${naira(rolled.loan.principal)} LAPO loan)` : ''}`, ctx);
+    credit(state, grant, `Start cash · ${where}${loan ? ` (includes ${naira(loan.principal)} LAPO loan)` : ''}`, ctx);
     if (!stay) arrive(state, 'home', ctx, { mode: null });
     emit(state, 'life.started', { body: o.look.body, traits: [...o.traits], dream: o.dream, lottery: rolled.id, house: home?.id ?? null,
-      look: { ...o.look, ...(o.look.accessories ? { accessories: [...o.look.accessories] } : {}) }, loan: rolled.loan ? { ...rolled.loan } : null, rent: home?.rent ?? 0, startCash,
+      look: { ...o.look, ...(o.look.accessories ? { accessories: [...o.look.accessories] } : {}) }, loan, rent: home?.rent ?? 0, startCash,
       ...(unit ? { lga: unit.id, via: payload.via === 'device' ? 'device' as const : 'manual' as const, own: !home } : {}) }, ctx);
     const place = home ? `${home.label} in ${home.district}` : `starter house in ${unit!.name}`;
     state.message = stay ? `Your ${place} is ready. Tap Home whenever you want to see it. You have ${naira(state.cash)}.` : `Welcome to ${home ? home.district : unit!.name}. You moved into your ${home ? home.label : 'own starter house'} with ${naira(state.cash)}. Open the Map to see the world.`;
@@ -510,11 +518,11 @@ const actions = {
     if (!look) return fail(state, 'invalid_look', reason);
     for (const kind of KINDS) {
       if (!ownsStyle(o, kind, look[kind])) {
-        return fail(state, 'not_owned', `You do not own the ${name(look[kind])} ${kind === 'hair' ? 'hairstyle' : kind} yet. Buy it in Phone → Boutique for ${naira(BOUTIQUE_PRICES[kind][look[kind]])}.`);
+        return fail(state, 'not_owned', `You do not own the ${name(look[kind])} ${kind === 'hair' ? 'hairstyle' : kind} yet. Buy it in Phone → Boutique for ${naira(priceOfStyle(kind, look[kind], lifeLevel(state)))}.`);
       }
     }
     const missing = (look.accessories ?? []).find((id) => !ownedAccessories(o).includes(id));
-    if (missing) return fail(state, 'not_owned', `You do not own the ${name(missing)} yet. Buy it in Phone → Boutique for ${naira(BOUTIQUE_PRICES.accessories[missing])}.`);
+    if (missing) return fail(state, 'not_owned', `You do not own the ${name(missing)} yet. Buy it in Phone → Boutique for ${naira(priceOfStyle('accessories', missing, lifeLevel(state)))}.`);
     const missingLayer = (look.wearables ?? []).find(id => !ownedWearables(o).includes(id));
     if (missingLayer) return fail(state, 'not_owned', `Buy ${AVATAR_WEARABLES[missingLayer].label} in the Boutique first.`);
     if (sameLook(look, o.look)) return ok(state, 'unchanged');
@@ -528,7 +536,7 @@ const actions = {
     const o = state.onboarding, kind = payload?.kind, id = payload?.id;
     if (kind === 'wearables') {
       if (!isAvatarWearableId(id)) return fail(state, 'invalid_item', 'Choose clothing from the Boutique list.');
-      const label = AVATAR_WEARABLES[id].label, price = AVATAR_WEARABLE_PRICES[id];
+      const label = AVATAR_WEARABLES[id].label, price = scaleNaira(AVATAR_WEARABLE_PRICES[id], lifeLevel(state));
       if (ownedWearables(o).includes(id)) return fail(state, 'already_owned', `You already own ${label}. Put it on in your Profile.`);
       if (!canAfford(state, price)) return fail(state, 'insufficient_funds', `${label} costs ${naira(price)}; you have ${naira(state.cash)}.`);
       debit(state, price, `Boutique: ${label}`, ctx);
@@ -543,7 +551,7 @@ const actions = {
       return fail(state, 'wrong_body', `${name(id)} is not made for the ${o.look.body} body. Switch body in your Profile first.`);
     }
     if (extra ? isOneOf(ownedAccessories(o), id) : ownsStyle(o, kind, id)) return fail(state, 'already_owned', `You already own ${name(id)}. Put it on in your Profile.`);
-    const price = priceOfStyle(kind, id);
+    const price = priceOfStyle(kind, id, lifeLevel(state));
     if (!canAfford(state, price)) return fail(state, 'insufficient_funds', `${name(id)} costs ${naira(price)}; you have ${naira(state.cash)}.`);
     debit(state, price, `Boutique: ${name(id)} ${kindWord(kind)}`, ctx);
     if (extra) {
@@ -616,6 +624,7 @@ export default {
       base.dream = isDreamId(raw.dream) ? raw.dream : null;
       base.house = isStartHomeId(raw.house) ? raw.house : null;
       base.seed = safeCount(raw.seed) ? raw.seed : state.cash;
+      if (finite(raw.level) && raw.level >= LEVEL_MIN && raw.level <= LEVEL_MAX && raw.level !== 1) base.level = raw.level;
       base.done = raw.done;
       // A guest: saved as one, or left half-way by the old enforced flow (required, not done).
       if (!raw.done && (raw.stage === 'guest' || raw.required === true)) base.stage = 'guest';
@@ -660,7 +669,7 @@ export default {
     },
   },
   view(state: LifeState): OnboardingView {
-    const o = state.onboarding, outcome = outcomeOf(state), mood = moodOf(state);
+    const o = state.onboarding, outcome = outcomeOf(state), mood = moodOf(state), level = startLevel(state);
     const word = moodWord(mood.score);
     const notYet = isGuest(o) ? 'Settle in first.' : 'Finish creating your character first.';
     return {
@@ -668,25 +677,25 @@ export default {
       /** The first-minute timings in server ms (null until they happen) and what a guest has done so far. */
       timing: { bornAt: o.bornAt, playedAt: o.playedAt, firstAt: o.firstAt, settledAt: o.completedAt }, activities: o.activities,
       settleReason: isGuest(o) ? SETTLE_REASON : null, steps: ONBOARDING_STEPS, look: { ...o.look }, traits: [...o.traits], dream: o.dream, house: o.house,
-      lottery: outcome ? { id: outcome.id, label: outcome.label, icon: outcome.icon, tagline: outcome.tagline, bullets: lotteryBulletsFor(state.estate.city, outcome.id), beta: Boolean(outcome.beta), at: o.lottery!.at } : null, // outcomeOf found it through o.lottery
+      lottery: outcome ? { id: outcome.id, label: outcome.label, icon: outcome.icon, tagline: outcome.tagline, bullets: lotteryBulletsFor(state.estate.city, outcome.id, level), beta: Boolean(outcome.beta), at: o.lottery!.at } : null, // outcomeOf found it through o.lottery
       /** The start a new life is offered: its own starter house, free, in the local government it chooses. */
-      own: { startCash: outcome ? outcome.ownCash : null, rent: 0 },
+      own: { startCash: outcome ? scaleNaira(outcome.ownCash, level) : null, rent: 0 },
       homes: Object.values(START_HOMES).filter((home) => housesFor(state.estate.city).some((house) => house.id === home.id)).map((home) => {
         const locked = outcome ? homeLock(outcome, home.id) : null;
-        return { ...home, startCash: outcome && !locked ? outcome.startCash[home.id]! : null, locked }; // not locked: homeLock found the start cash
+        return { ...home, startCash: outcome && !locked ? scaleNaira(outcome.startCash[home.id]!, level) : null, locked }; // not locked: homeLock found the start cash
       }),
       wardrobe: { hair: [...o.wardrobe.hair], outfit: [...o.wardrobe.outfit], fabric: [...o.wardrobe.fabric], accessories: ownedAccessories(o), wearables: ownedWearables(o) },
       boutique: KINDS.flatMap((kind) => optionsFor(kind, o.look.body).map((id): BoutiqueItem => {
-        const owned = ownsStyle(o, kind, id), price = priceOfStyle(kind, id);
+        const owned = ownsStyle(o, kind, id), price = priceOfStyle(kind, id, level);
         const blocked = !o.done ? notYet : owned ? null
           : !canAfford(state, price) ? `Costs ${naira(price)}; you have ${naira(state.cash)}.` : null;
         return { kind, id, label: name(id), price, owned, wearing: o.look[kind] === id, blocked };
       })).concat(APPEARANCE.accessories.map(({ id, slot }): BoutiqueItem => {
-        const owned = ownedAccessories(o).includes(id), price = priceOfStyle('accessories', id);
+        const owned = ownedAccessories(o).includes(id), price = priceOfStyle('accessories', id, level);
         const blocked = !o.done ? notYet : owned ? null
           : !canAfford(state, price) ? `Costs ${naira(price)}; you have ${naira(state.cash)}.` : null;
         return { kind: 'accessories', id, slot, label: name(id), price, owned, wearing: (o.look.accessories ?? []).includes(id), blocked };
-      })).concat(PLAYS ? wearableCards(o, state.cash, notYet) : []),
+      })).concat(PLAYS ? wearableCards(o, state.cash, notYet, level) : []),
       mood: { word: word.word, tone: word.tone, icon: word.icon, score: mood.score },
       feelings: feelingsOf(state).map((feeling) => ({ ...feeling, line: FEELING_LINES[feeling.id] ?? '' })),
     };

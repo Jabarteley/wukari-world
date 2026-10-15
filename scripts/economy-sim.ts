@@ -180,7 +180,17 @@ export class Player {
       this.must('onboarding.look', { look: LOOK });
       this.must('onboarding.traits', { traits: TRAITS });
       this.must('onboarding.dream', { dream: DREAM });
-      this.must('onboarding.lottery', {});
+      // The roll depends on the action id: with a wanted outcome, try ids on a copy until one rolls it (so cities can be compared on the same start).
+      let rolled = lottery === '';
+      for (let i = 0; i < 5000 && !rolled; i++) {
+        const copy = createLife(structuredClone(this.state), { now: this.now, cityId: city.id });
+        this.dispatchOn(copy, 'onboarding.lottery', {}, { now: this.now, cityId: city.id, actionId: `lottery-${i}` });
+        if (copy.onboarding.lottery?.id !== lottery) continue;
+        this.dispatchOn(this.state, 'onboarding.lottery', {}, { now: this.now, cityId: city.id, actionId: `lottery-${i}` });
+        rolled = this.state.onboarding.lottery?.id === lottery;
+      }
+      if (!rolled) throw new Error(`No action id rolled ${lottery}`);
+      if (lottery === '') this.must('onboarding.lottery', {});
       this.must('onboarding.home', { lga: city.lga, via: 'manual' });
       return;
     }
@@ -720,9 +730,9 @@ function ogunDay(player: Player, places: ReturnType<typeof ogunPlaces>, play: bo
 }
 
 /** A new player who starts in one Ogun city: settles in a local government there, works the city's helper job and plays one of its places for `days`. */
-export function simulateOgunStart({ city = 'abeokuta', days = 14, lga }: { city?: string; days?: number; lga?: string } = {}): CityLife {
+export function simulateOgunStart({ city = 'abeokuta', days = 14, lga, lottery = '' }: { city?: string; days?: number; lga?: string; /** A birth-lottery outcome to roll (default: whatever the first roll gives). */ lottery?: string } = {}): CityLife {
   const places = ogunPlaces(city);
-  const player = new Player({ lottery: '', house: OWN, city: { id: city, lga: lga ?? must(CITY_LGAS[city], `${city} local government`) } });
+  const player = new Player({ lottery, house: OWN, city: { id: city, lga: lga ?? must(CITY_LGAS[city], `${city} local government`) } });
   const stages: CityLife['stages'] = [];
   stages.push({ stage: 'settled', city: player.cityId, cash: player.state.cash });
   firstSitting(player, 'community-helper');
@@ -853,7 +863,8 @@ export interface AbroadRow { city: string; level: number; helperPay: number; ent
 export function simulateAbroad(city: string, days = 14): AbroadRow {
   const content = must(cachedCityContent(city), `${city} content`);
   const lga = must(cityRules(city)?.districts.find((district) => district.localUnitId)?.localUnitId, `${city} local unit`);
-  const life = simulateOgunStart({ city, days, lga });
+  // Every city rolls the same birth-lottery outcome (no loan), so the rows compare the same start and not a lucky roll.
+  const life = simulateOgunStart({ city, days, lga, lottery: 'civil-servant' });
   const helper = must(content.workplaces.find((item) => item.careerId === 'community-helper')).definition.shift.reward ?? 0;
   const tracks = content.workplaces.map((item) => item.definition).filter((job) => job.track);
   const entries = tracks.map((job) => job.track ? job.ladder[0]?.pay ?? 0 : 0), tops = tracks.map((job) => job.track ? job.ladder[job.ladder.length - 1]?.pay ?? 0 : 0);
@@ -864,8 +875,8 @@ export function simulateAbroad(city: string, days = 14): AbroadRow {
   return { city, level, helperPay: helper, entryPay: Math.min(...entries), topPay: Math.max(...tops), cheapestRent, foodPack: pack, foodDays: Math.round((Math.min(...entries) / food) * 10) / 10, rentWeeksOfPay: Math.round((cheapestRent / Math.min(...entries)) * 100) / 100, life };
 }
 export function formatAbroad(rows: AbroadRow[]): string {
-  const head = ['city', 'level', 'helper shift', 'entry shift', 'top shift', 'cheapest rent/wk', 'cheapest pack', 'food days per entry shift', 'rent / entry shift', '14-day cash', 'conserved'];
-  const lines = rows.map((row) => [row.city, String(row.level), naira(row.helperPay), naira(row.entryPay), naira(row.topPay), naira(row.cheapestRent), naira(row.foodPack), String(row.foodDays), String(row.rentWeeksOfPay), `${naira(row.life.player.seed)} → ${naira(row.life.finalCash)}`, row.life.conserved ? 'yes' : 'NO']);
+  const head = ['city', 'level', 'helper shift', 'entry shift', 'top shift', 'cheapest rent/wk', 'cheapest pack', 'food days per entry shift', 'rent / entry shift', '14-day cash', 'packs bought by it', 'conserved'];
+  const lines = rows.map((row) => [row.city, String(row.level), naira(row.helperPay), naira(row.entryPay), naira(row.topPay), naira(row.cheapestRent), naira(row.foodPack), String(row.foodDays), String(row.rentWeeksOfPay), `${naira(row.life.player.seed)} → ${naira(row.life.finalCash)}`, String(Math.round(row.life.finalCash / row.foodPack)), row.life.conserved ? 'yes' : 'NO']);
   const widths = head.map((title, column) => Math.max(title.length, ...lines.map((line) => (line[column] ?? '').length)));
   const format = (cells: string[]) => cells.map((cell, column) => (column < 1 ? cell.padEnd(widths[column] ?? 0) : cell.padStart(widths[column] ?? 0))).join('  ');
   return [format(head), widths.map((width) => '-'.repeat(width)).join('  '), ...lines.map(format)].join('\n');

@@ -468,7 +468,7 @@ export interface EconomyState {
   /** `missed` counts Saturdays missed in a row. `house` is null until 'life.started' or 'house.moved'. */
   rent: { house: HouseId | null; arrears: number; missed: number }
   /** `prepaid` = Saturdays already covered by an early instalment; `fees` = late fees added (at most 4). */
-  loan: { left: number; prepaid: number; fees: number } | null
+  loan: { left: number; prepaid: number; fees: number; /** Price level the loan was made at; absent = Lagos terms. */ level?: number } | null
   /** At most 3. */
   deposits: Deposit[]
   /** Counter for deposit ids. */
@@ -716,6 +716,8 @@ export interface OnboardingState {
   step: number
   /** Cash the life was created with, so the start-cash grant tops the wallet up instead of adding to it. */
   seed: number
+  /** Price level of the city the life started in (docs/PRICE-LEVELS.md); absent for a Nigerian start and for older lives, which read as 1. */
+  level?: number
   look: Look
   /** Two trait ids once chosen, else []. */
   traits: TraitId[]
@@ -1317,7 +1319,7 @@ export const SLICE_FIELD_KEYS = {
   home: ['boost', 'custom', 'fuel', 'items', 'overflow', 'seq', 'stocked', 'storage'],
   stories: ['running', 'scenes', 'seq'],
   onboarding: [
-    'activities', 'bonusAt', 'bornAt', 'completedAt', 'done', 'dream', 'firstAt', 'house', 'joined', 'legacy', 'look', 'lottery',
+    'activities', 'bonusAt', 'bornAt', 'completedAt', 'done', 'dream', 'firstAt', 'house', 'joined', 'legacy', 'level', 'look', 'lottery',
     'needsSet', 'playedAt', 'required', 'seed', 'stage', 'step', 'traits', 'wardrobe',
   ],
   goals: ['besties', 'chain', 'cv', 'dream', 'dreamDone', 'feed', 'granted', 'perks', 'rerolls', 'seen', 'seq', 'stars', 'started', 'stats', 'wishes'],

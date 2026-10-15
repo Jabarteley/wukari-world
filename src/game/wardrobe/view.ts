@@ -4,12 +4,13 @@ import type { BoutiqueItem } from '../../types/view.ts'
 import { AVATAR_WEARABLES } from './catalogue.ts'
 import { AVATAR_WEARABLE_PRICES } from './prices.ts'
 import { money } from '../money.ts'
+import { scaleNaira } from '../price-levels.ts'
 
 /** Shared by the authoritative view and the on-demand Boutique, not initial client startup. */
-export function wearableCards(o: Pick<OnboardingState, 'look' | 'wardrobe' | 'done'>, cash: number, notYet: string): BoutiqueItem[] {
+export function wearableCards(o: Pick<OnboardingState, 'look' | 'wardrobe' | 'done'>, cash: number, notYet: string, level = 1): BoutiqueItem[] {
   const ownedIds = new Set([...AVATAR_STARTER_WEARABLES, ...(o.wardrobe.wearables ?? [])])
   return AVATAR_WEARABLE_IDS.map(id => {
-    const owned = ownedIds.has(id), price = AVATAR_WEARABLE_PRICES[id]
+    const owned = ownedIds.has(id), price = scaleNaira(AVATAR_WEARABLE_PRICES[id], level)
     return { kind: 'wearables', id, label: AVATAR_WEARABLES[id].label, price, owned, wearing: (o.look.wearables ?? []).includes(id), blocked: !o.done ? notYet : owned || cash >= price ? null : `Costs ${money(price)}; you have ${money(Math.floor(cash))}.` }
   })
 }

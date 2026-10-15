@@ -2,20 +2,17 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "final-b",
-      "appSha": "60eb5c38376f1b3bde1da775e771e9442d329f32",
+      "id": "overlaps",
+      "appSha": "bf0723c02a3c1874387ca6637d953157417b2f40",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
-        "villa-las-estrellas",
-        "ashmore",
-        "west-island",
-        "bogota",
-        "lima",
-        "rome",
-        "cairo",
-        "dubai",
-        "algiers",
-        "dublin"
+        "the-valley",
+        "marigot",
+        "gustavia",
+        "charlotte-amalie",
+        "road-town",
+        "philipsburg",
+        "st-peter-port"
       ],
       "roundtrip": true,
       "browserOnly": true

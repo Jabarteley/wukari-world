@@ -35,6 +35,38 @@
         {
           "ref": "node/5314158621",
           "reason": "Collins Base: 28 m outside the play polygon; dropped per OUTPOST-AUDIT."
+        },
+        {
+          "ref": "node/2418868645",
+          "reason": "Artigas Base: outside the play polygon (no land disc there)."
+        },
+        {
+          "ref": "node/2418868664",
+          "reason": "Dallmann Laboratory: outside the play polygon (31 m)."
+        },
+        {
+          "ref": "node/2418868697",
+          "reason": "Julio Ripamonti Base: outside the play polygon."
+        },
+        {
+          "ref": "node/10253971454",
+          "reason": "CZ*ECO Nelson: outside the play polygon (150 m)."
+        },
+        {
+          "ref": "node/4797299134",
+          "reason": "Monument to Jeon Jaegyu: outside the play polygon."
+        },
+        {
+          "ref": "node/10025050336",
+          "reason": "Priroda: outside the play polygon."
+        },
+        {
+          "ref": "node/13422317715",
+          "reason": "Suffield Point Wreckage: outside the play polygon."
+        },
+        {
+          "ref": "way/860109157",
+          "reason": "Meteo. Lab.: outside the play polygon."
         }
       ],
       "profile": "outpost",

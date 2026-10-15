@@ -6,9 +6,9 @@
 - **Owner:** `/root/integration_seams`
 - **Model / effort:** `gpt-6.1-sol / high`
 - **Thread:** parent `/root`
-- **UTC updated:** `2026-10-15T15:01:03Z`
-- **Status:** `handoff-with-known-failure`
-- **Work state:** `parent-assuming-door-ownership`
+- **UTC updated:** `2026-10-15T15:18:34Z`
+- **Status:** `ready-for-integration`
+- **Work state:** `door-clearance-verified-local`
 
 ## Goal and boundaries
 
@@ -46,6 +46,9 @@
 - `node --experimental-strip-types --test src/housing-studio/doors.test.ts` — 2 passed, 0 failed. This proves the open state returns the exact Home grid, the close guard, safe nearby interaction, preservation of every base occupied cell, closed cross-room path rejection, cached projections, exact base-grid restoration on reopen, current-floor visibility, recipe immutability and idempotent geometry cleanup.
 - Focused stubbed TypeScript for `doors.ts` and `doors.test.ts` and their `git diff --check` both exited 0 after one strict initialization correction.
 - Extended the real-wrapper interior acceptance over the parent-integrated stable grid delegate. The test holds one `home.walk.grid` reference, observes a known doorway become blocked and clear across close/reopen, closes an upper-floor door without affecting the active ground grid, then observes that same reference reproject the upper blocker after ascent and the reopened ground layer after descent. Recipe placements remain unchanged.
+- Corrected retained-door clearance at `48932aab`: every leaf is capped at 0.9 m, selects an endpoint hinge and swing from sampled swept clearance against furniture, walls, stairs and already selected doors, fills the unused opening with a full-height partition, and exposes typed closed/open/sweep bounds plus clearance failures. Visible leaves now participate in grid and camera-solid collision in both states; toggles reject avatars inside the swept bound. The duplex bedroom/bath leaf now opens toward -z, clear of the bathtub.
+- `node --experimental-strip-types --test src/housing-studio/doors.test.ts` — 3 passed, 0 failed. Counts remain 4 / 2 / 4 / 6. Tests cover all furnished room/stair routes, standard leaf widths, fixture-clear endpoints, active open/closed collision, swept-avatar guard, wall infill, labels, visibility and disposal.
+- Focused stubbed TypeScript and owned-path `git diff --check` both exit 0 after one correction that excludes the intentional first 18 cm hinge/jamb joint from moving-panel collision checks.
 - `node --experimental-strip-types --test src/housing-studio/interior.test.ts` — 1 passed, 0 failed after integration; focused stubbed TypeScript and `git diff --check` exited 0.
 - Focused TypeScript compilation with data stubs — exit 0:
   `ALLWORLD_TYPECHECK_DATA_STUBS=1 node --experimental-strip-types --import ./scripts/typecheck-data-stubs.ts ./node_modules/typescript/bin/tsc --ignoreConfig --noEmit --skipLibCheck --moduleResolution bundler --module preserve --target es2023 --allowImportingTsExtensions --types node,vite/client src/housing-studio/fixtures.ts src/housing-studio/fixtures.test.ts src/housing-studio/exterior.ts src/housing-studio/exterior.test.ts`.
@@ -53,13 +56,12 @@
 
 ### In progress / blockers
 
-- Frozen handoff counts are Lagos duplex 10 rooms / 4 doors / 4 sealed privacy gaps; Lagos two-room apartment 3 / 2 / 1; Lagos two-bedroom apartment 6 / 4 / 3; Abuja mansion 12 / 5 / 4.
-- Focused TypeScript exits 0 and two of three door tests pass. The furnished reachability case still fails for `abuja-mansion/floor 1/Master bedroom`; parent requested immediate source freeze and assumed ownership before a second selection correction.
+- No source blocker in the owned door files; `clearanceFailures` is empty for all four recipes. Parent actual-GLB bounds test and browser acceptance remain separate gates.
 
 ### Immediate resume steps
 
-1. Parent must adjust the Abuja upper-floor retained privacy-edge selection so the stair landing still reaches the master bedroom after redundant gaps are sealed.
-2. Rerun `node --experimental-strip-types --test src/housing-studio/doors.test.ts`, then parent build/browser acceptance and commit.
+1. Parent runs actual-GLB bounds acceptance against `userData.doorId`, then browser/build acceptance.
+2. If actual mesh bounds find a remaining conflict that catalogue footprints miss, parent moves the fixture or returns the exact door/item pair for a bounded correction.
 
 ## Release state
 
@@ -84,3 +86,5 @@
 | 2026-10-15T14:10:49Z | ready-for-integration | Stable wrapper-grid close, reopen and floor reprojection acceptance complete. | Real-wrapper test, focused TypeScript and diff checks exited 0. | Parent browser acceptance and commit. |
 | 2026-10-15T14:25:00Z | active | User requested fewer internal doors; accepted disjoint ownership of door source/tests only. | Current `5d932f12`; latest parent and coordination records read. | Select and verify one privacy entrance per private room. |
 | 2026-10-15T15:01:03Z | handoff-with-known-failure | Reduced doors to privacy boundaries, sealed redundant gaps, added interaction labels and preserved overview low walls. Parent requested immediate source freeze and assumed door ownership. | Focused TypeScript passed; focused tests 2/3 passed. Abuja upper master furnished route remains disconnected. | Parent corrects Abuja retained edge, reruns focused test, then build/browser gates. |
+| 2026-10-15T15:14:25Z | active | Resumed exclusive door ownership for user-reported open-leaf overlap at accepted `48932aab`. | Exact duplex bath gap and bathtub rectangles measured from source fixtures. | Cap leaves, choose clear hinge/swing, add infill and active collision, then focused checks. |
+| 2026-10-15T15:18:34Z | ready-for-integration | Standard-width clearance-selected leaves, wall infill and active-state collision complete without recipe changes. | 3 focused tests pass; focused TypeScript and diff checks pass; all recipes report zero clearance failures. | Parent actual-GLB/browser/build acceptance and commit. |

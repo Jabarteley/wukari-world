@@ -25,12 +25,12 @@ Inspection led to fixes for floating terrace facade bands, missing interior-door
 
 ## Automated checks and package
 
-- `node --experimental-strip-types --test src/housing-studio/*.test.ts`: **11 passed, 0 failed**, final duration about 0.93 seconds. Coverage includes valid fixtures, legacy floor representation, room/stair reachability, exterior collision/door lifecycle, internal door reopening and floor changes, actual Home adapter contracts, asset hashes and scenery budgets.
+- `node --experimental-strip-types --test src/housing-studio/*.test.ts`: **12 passed, 0 failed**, final duration about 0.99 seconds. Coverage includes valid fixtures, legacy floor representation, room/stair reachability, exterior collision/door lifecycle, internal door reopening and floor changes, actual Home adapter contracts, asset hashes and scenery budgets.
 - Scoped TypeScript project: `scripts/housing/tsconfig.json` — **passed, exit 0** after the integration owner released its heavy slot.
-- Scoped Vite build: **passed**, 1.83 seconds. No production entry/configuration/package/lockfile changed. The generic large-chunk warning remains: this standalone preview includes the shared runtime in one large entry.
-- Conservative scenery maximum: **13,800 / 15,000 triangles**, mansion first floor in first person. The audit includes the built shell, furnishings, internal doors and retained Home scenery; it adds near-LOD asset triangles on top of their fallbacks conservatively. Existing avatar geometry belongs to the separately approved character allowance. The on-screen renderer counter includes characters and can therefore exceed 15,000.
+- Scoped Vite build: **passed**, 1.91 seconds. No production entry/configuration/package/lockfile changed. The generic large-chunk warning remains: this standalone preview includes the shared runtime in one large entry.
+- Conservative scenery maximum: **13,920 / 15,000 triangles**, mansion first floor in first person. The audit includes the built shell, furnishings, internal doors and retained Home scenery; it adds near-LOD asset triangles on top of their fallbacks conservatively. Existing avatar geometry belongs to the separately approved character allowance. The on-screen renderer counter includes characters and can therefore exceed 15,000.
 - Selected furniture: **12 GLBs, 164,752 bytes**; hashes match the pinned owned asset library. No external photos or downloaded third-party models are shipped.
-- Standalone package: **40 files, 4,632,792 bytes**. Largest entry: **3,346,344 bytes**, **931,760 bytes gzip at level 9**. Exact output hashes are in [package-receipt.json](package-receipt.json). These are studio-package figures, not a production startup-budget certificate.
+- Standalone package: **40 files, 4,635,737 bytes**. Largest entry: **3,349,289 bytes**, **932,789 bytes gzip at level 9**. Exact output hashes are in [package-receipt.json](package-receipt.json). These are studio-package figures, not a production startup-budget certificate.
 
 ## Preserved boundaries and remaining acceptance
 
@@ -57,3 +57,9 @@ Doors are retained for private rooms; redundant privacy openings are filled visu
 Open/Close front door changes only manual door state. It does not trigger travel or move the avatar. Closing is rejected when the avatar is in its footprint. Walk inside/Walk outside retain the host traversal animation and return the front door to closed afterwards. F operates the nearest room or front door on the current floor. Existing front-door and interior tests exercise manual persistence, no position change, transit yielding, enclosure/overview, and retained privacy-door collision.
 
 The updated built entry is `housing-studio-Cpt9b-AG.js`. Final interactive visual acceptance is pending while the integration owner holds the shared Chrome session for production verification. One attempted hidden in-app browser was unavailable; Chrome was left untouched. Initial screenshots above are retained as earlier evidence, not proof of this correction.
+
+## Object-clearance follow-up
+
+The updated source loads `housing-studio-DYmVz1Sz.js`. See [spatial verification](spatial-verification.md) for the confirmed bathroom door/tub defect and the correction. Actual loaded-model and fallback bounds, door sweeps and both open/closed leaf geometry now pass across all four recipes. Door widths are capped at 0.9 m, their hinges/swing directions avoid obstacles, and unused doorway width is filled. Open leaves now block walking as well as closed leaves.
+
+During an explicitly released browser window, the prior `48932aab` framing, floor overview, independent front-door controls and actual upstairs route passed. That browser check also reproduced the bathroom door/tub intersection. The new spatial build needs its own final visual check after the production operator releases Chrome again.

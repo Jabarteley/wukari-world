@@ -3,6 +3,17 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { housingAssetManifest, HOUSING_ASSET_TOTAL_BYTES } from './asset-manifest.ts';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+import { FURNITURE } from '../game/content/furniture.ts';
+import { footprint } from '../game/home-layout.ts';
+import { bumpsOf, stairsOn } from '../game/home-plan.ts';
+import { createKit } from '../scene/kit.ts';
+import { RECIPES, recipePlan } from './fixtures.ts';
+import { buildHousingFurnishings } from './furnishings.ts';
+import { buildHousingDoors } from './doors.ts';
+import { edge, STOREY } from './shell.ts';
 
 interface GlbAccessor {
   readonly count: number;
@@ -93,5 +104,87 @@ test('housing subset has real compressed GLBs, matching metadata, and a finite b
     // Quantized accessors expose conservative decoded bounds; the manifest records
     // the source measurements, so allow a 1 cm quantization envelope.
     measured.bounds.forEach((value, index) => assert.ok(Math.abs(value - asset.bounds[index]!) < 0.01, `${name} bounds[${index}]`));
+  }
+});
+
+
+function renderedBounds(root: THREE.Object3D): THREE.Box3 {
+  const result = new THREE.Box3();
+  root.updateWorldMatrix(true, true);
+  root.traverse(object => {
+    if (!(object instanceof THREE.Mesh)) return;
+    for (let at: THREE.Object3D | null = object; at; at = at.parent) if (!at.visible) return;
+    object.geometry.computeBoundingBox();
+    if (object.geometry.boundingBox) result.union(object.geometry.boundingBox.clone().applyMatrix4(object.matrixWorld));
+  });
+  return result;
+}
+const overlaps = (a: THREE.Box3, b: THREE.Box3) => !a.isEmpty() && !b.isEmpty()
+  && Math.min(a.max.x, b.max.x) - Math.max(a.min.x, b.min.x) > 0.002
+  && Math.min(a.max.y, b.max.y) - Math.max(a.min.y, b.min.y) > 0.002
+  && Math.min(a.max.z, b.max.z) - Math.max(a.min.z, b.min.z) > 0.002;
+
+function volume(x0: number, y0: number, z0: number, x1: number, y1: number, z1: number) {
+  return new THREE.Box3(new THREE.Vector3(Math.min(x0,x1), Math.min(y0,y1), Math.min(z0,z1)),
+    new THREE.Vector3(Math.max(x0,x1), Math.max(y0,y1), Math.max(z0,z1)));
+}
+
+test('real loaded furniture, fixtures and open door leaves occupy separate usable spaces', async () => {
+  const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+  for (const recipe of RECIPES) {
+    const kit = createKit(), plan = recipePlan(recipe);
+    const furnishings = buildHousingFurnishings(kit, recipe, () => {}, async entry => {
+      const bytes = readFileSync(new URL(entry.url));
+      const buffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+      return (await loader.parseAsync(buffer, '')).scene;
+    });
+    const doors = buildHousingDoors(kit, recipe);
+    try {
+      await furnishings.ready;
+      assert.deepEqual(furnishings.failures, [], `${recipe.id}: actual GLBs must load`);
+      assert.ok(furnishings.loaded > 0);
+      for (let floor = 0; floor < plan.floors.length; floor++) {
+        furnishings.visible(floor, true); doors.visible(floor, true);
+        const items = recipe.items.filter(item => (item.floor ?? 0) === floor).flatMap(item => {
+          const def = FURNITURE[item.itemId];
+          if (!def || def.wall || def.shape === 'rug' || def.shape === 'mat') return [];
+          const object = furnishings.group.getObjectByName(`housing-item-${item.id}`);
+          assert.ok(object, `${recipe.id}/${item.id}: rendered mount`);
+          const bounds = renderedBounds(object), size = footprint(def, item.rot);
+          assert.ok(bounds.min.x >= edge(item.x, recipe.grid) - 0.001 && bounds.max.x <= edge(item.x + size.w, recipe.grid) + 0.001
+            && bounds.min.z >= edge(item.y, recipe.grid) - 0.001 && bounds.max.z <= edge(item.y + size.h, recipe.grid) + 0.001,
+          `${recipe.id}/${item.id}: visible geometry escapes its footprint`);
+          return [{ id: item.id, bounds }];
+        });
+        for (let a = 0; a < items.length; a++) for (let b = a + 1; b < items.length; b++)
+          assert.ok(!overlaps(items[a]!.bounds, items[b]!.bounds), `${recipe.id}: ${items[a]!.id} intersects ${items[b]!.id}`);
+        const walls = bumpsOf(plan, floor).map(wall => volume(
+          edge(wall.x0, recipe.grid) - 0.06, floor * STOREY, edge(wall.y0, recipe.grid) - 0.06,
+          edge(wall.x1, recipe.grid) + 0.06, (floor + 1) * STOREY, edge(wall.y1, recipe.grid) + 0.06));
+        const stairs = stairsOn(plan, floor).map(stair => volume(edge(stair.x, recipe.grid), floor * STOREY, edge(stair.y, recipe.grid),
+          edge(stair.x + stair.w, recipe.grid), (floor + 1) * STOREY, edge(stair.y + stair.h, recipe.grid)));
+        const leafGroups = doors.group.children[floor]!.children.filter(child => child instanceof THREE.Group);
+        for (const item of items) {
+          assert.ok(walls.every(wall => !overlaps(item.bounds, wall)), `${recipe.id}/${item.id}: intersects a room wall or stair rail`);
+          assert.ok(stairs.every(stair => !overlaps(item.bounds, stair)), `${recipe.id}/${item.id}: intersects the reserved stairwell`);
+          for (const leaf of leafGroups) assert.ok(!overlaps(item.bounds, renderedBounds(leaf)),
+            `${recipe.id}/${item.id}: intersects open door ${String(leaf.userData.doorId ?? leaf.name)}`);
+          for (const solid of doors.solids(floor)) assert.ok(!overlaps(item.bounds, volume(solid[0]!, solid[1]!, solid[2]!, solid[3]!, solid[4]!, solid[5]!)),
+            `${recipe.id}/${item.id}: intersects a door leaf or filled doorway wall`);
+        }
+        for (const door of doors.doors.filter(door => door.floor === floor)) {
+          let closed = false;
+          for (let step = 0; step < 24 && !closed; step++) {
+            const angle = step * Math.PI / 12, x = door.x + Math.cos(angle) * 1.85, z = door.z + Math.sin(angle) * 1.85;
+            if (doors.nearest(x, z, floor)?.id === door.id) closed = doors.toggleNearest(x, z, floor);
+          }
+          assert.ok(closed && !door.open, `${recipe.id}/${door.id}: close from clear space`);
+        }
+        for (const item of items) for (const leaf of leafGroups) assert.ok(!overlaps(item.bounds, renderedBounds(leaf)),
+          `${recipe.id}/${item.id}: intersects closed door ${String(leaf.userData.doorId)}`);
+        for (let a = 0; a < leafGroups.length; a++) for (let b = a + 1; b < leafGroups.length; b++)
+          assert.ok(!overlaps(renderedBounds(leafGroups[a]!), renderedBounds(leafGroups[b]!)), `${recipe.id}: closed door leaves intersect`);
+      }
+    } finally { doors.dispose(); furnishings.dispose(); kit.dispose(); await new Promise(resolve => setTimeout(resolve, 0)); }
   }
 });

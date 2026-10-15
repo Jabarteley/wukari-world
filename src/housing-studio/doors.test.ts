@@ -52,21 +52,23 @@ function crossing(grid: WalkGrid, door: HousingDoor): [WalkPoint, WalkPoint] | n
 }
 
 const privateRoom = (label: string) => /bedroom|second room|\bbq\b|bath|toilet/i.test(label)
+const overlap = (a: readonly number[], b: readonly number[]) => a[0]! < b[2]! && a[2]! > b[0]! && a[1]! < b[3]! && a[3]! > b[1]!
 
 test('each recipe keeps a connected set of privacy doors and seals redundant gaps', () => {
   const expected = new Map([
-    ['lagos-duplex', { rooms: 10, privateRooms: 4, doors: 4, sealed: 4 }],
-    ['lagos-two-room-apartment', { rooms: 3, privateRooms: 2, doors: 2, sealed: 1 }],
-    ['lagos-two-bedroom-apartment', { rooms: 6, privateRooms: 3, doors: 4, sealed: 3 }],
-    ['abuja-mansion', { rooms: 12, privateRooms: 4, doors: 6, sealed: 3 }],
+    ['lagos-duplex', { rooms: 10, privateRooms: 4, doors: 4, walls: 8 }],
+    ['lagos-two-room-apartment', { rooms: 3, privateRooms: 2, doors: 2, walls: 3 }],
+    ['lagos-two-bedroom-apartment', { rooms: 6, privateRooms: 3, doors: 4, walls: 7 }],
+    ['abuja-mansion', { rooms: 12, privateRooms: 4, doors: 6, walls: 9 }],
   ])
   for (const recipe of RECIPES) {
     const kit = createKit(), built = buildHousingDoors(kit, recipe), plan = recipePlan(recipe), tile = 10 / recipe.grid
     try {
       const rooms = plan.floors.flatMap((floor, level) => floor.map((room) => ({ ...room, level })))
       const privacyRooms = rooms.filter((room) => privateRoom(room.label))
-      const sealed = plan.floors.reduce((count, _, floor) => count + built.solids(floor).length, 0)
-      assert.deepEqual({ rooms: rooms.length, privateRooms: privacyRooms.length, doors: built.doors.length, sealed }, expected.get(recipe.id), recipe.id)
+      const walls = plan.floors.reduce((count, _, floor) => count + built.solids(floor).length, 0) - built.doors.length
+      assert.deepEqual({ rooms: rooms.length, privateRooms: privacyRooms.length, doors: built.doors.length, walls }, expected.get(recipe.id), recipe.id)
+      assert.deepEqual(built.clearanceFailures, [], `${recipe.id}: every retained door needs a valid clearance choice`)
       for (const room of privacyRooms) {
         const touching = built.doors.filter((door) => {
           if (door.floor !== room.level) return false
@@ -77,6 +79,15 @@ test('each recipe keeps a connected set of privacy doors and seals redundant gap
         assert.ok(touching.length > 0, `${recipe.id}/${room.label}: expected a door at every privacy entrance`)
       }
       for (const door of built.doors) {
+        assert.ok(door.clear, `${recipe.id}/${door.id}: no furniture- and wall-clear hinge option`)
+        assert.ok(door.width > 0.7 && door.width <= 0.900001, `${recipe.id}/${door.id}: standard leaf width`)
+        for (const item of recipe.items.filter((item) => (item.floor ?? 0) === door.floor)) {
+          const def = FURNITURE[item.itemId]
+          if (!def || def.wall || def.shape === 'rug' || def.shape === 'mat') continue
+          const size = footprint(def, item.rot), bounds = [edge(item.x, recipe.grid), edge(item.y, recipe.grid), edge(item.x + size.w, recipe.grid), edge(item.y + size.h, recipe.grid)]
+          assert.equal(overlap(door.closedBounds, bounds), false, `${recipe.id}/${door.id}: closed leaf overlaps ${item.id}`)
+          assert.equal(overlap(door.openBounds, bounds), false, `${recipe.id}/${door.id}: open leaf overlaps ${item.id}`)
+        }
         const touchingPrivacy = privacyRooms.filter((room) => {
           if (door.floor !== room.level) return false
           const x = (door.x + 5) / tile, y = (door.z + 5) / tile, epsilon = 0.01
@@ -122,6 +133,8 @@ test('internal doors close and reopen existing plan routes without replacing the
     for (let index = 0; index < base.cells.length; index++) if (base.cells[index]) assert.equal(open.cells[index], 1, `base obstacle ${index} was lost`)
     assert.equal(doors.toggleNearest(doors.doors[0]!.x, doors.doors[0]!.z, 0), false, 'a door cannot close through the avatar')
     assert.equal(doors.doors[0]!.open, true)
+    const active = doors.doors[0]!.openBounds
+    assert.equal(open.free((active[0] + active[2]) / 2, (active[1] + active[3]) / 2), false, 'the visible open leaf blocks its occupied cells')
 
     const plan = recipePlan(recipe), parlour = plan.floors[0]![0]!, dining = plan.floors[0]![1]!
     const start = base.nearest(edge(parlour.x + parlour.w / 2, recipe.grid), edge(parlour.y + parlour.h / 2, recipe.grid))!
@@ -144,14 +157,14 @@ test('internal doors close and reopen existing plan routes without replacing the
     for (let index = 0; index < base.cells.length; index++) if (base.cells[index]) assert.equal(closed.cells[index], 1, `base obstacle ${index} was lost`)
     assert.equal(closed.clearLine(through![0].x, through![0].z, through![1].x, through![1].z), false, 'the retained privacy door blocks its own opening')
     assert.ok(arrived(closed, start, goal), 'closing a privacy door does not block unrelated social passages')
-    const sealed = doors.solids(0).length - ground.length
-    assert.ok(sealed > 0)
+    const wallSolids = doors.solids(0).length - ground.length
+    assert.ok(wallSolids > 0)
 
-    for (const door of ground) assert.equal(doors.toggleNearest(door.x, door.z, door.floor), true)
+    for (const door of ground) assert.ok(safeToggle(doors, door))
     assert.ok(ground.every((door) => door.open))
     assert.equal(doors.grid(base, 0).clearLine(through![0].x, through![0].z, through![1].x, through![1].z), true)
     assert.ok(arrived(doors.grid(base, 0), start, goal))
-    assert.equal(doors.solids(0).length, sealed)
+    assert.equal(doors.solids(0).length, wallSolids + ground.length)
     assert.equal(JSON.stringify(recipe.items), source)
   } finally {
     doors.dispose()

@@ -6,11 +6,11 @@ import { footprint } from '../game/home-layout.ts';
 import { createBatch, sceneMaterials } from '../scene/build.ts';
 import type { Kit } from '../scene/kit.ts';
 import type { HousingRecipe } from './fixtures.ts';
-import { housingAssetManifest } from './asset-manifest.ts';
+import { housingAssetManifest, type HousingAssetManifestEntry } from './asset-manifest.ts';
 import { STOREY, edge } from './shell.ts';
 
 const SHAPES: Record<string,string> = {sofa:'two-seat-sofa',bed:'single-bed',wardrobe:'wardrobe',chair:'dining-chair',desk:'dining-table',tv:'flat-panel-television',plant:'broadleaf-planter',basin:'knee-clearance-public-washbasin',fridge:'display-fridge',cooker:'four-burner-stove',floorlamp:'floor-lamp'};
-export function buildHousingFurnishings(kit: Kit, recipe: HousingRecipe, changed:()=>void) {
+export function buildHousingFurnishings(kit: Kit, recipe: HousingRecipe, changed:()=>void, loadAsset?: (entry: HousingAssetManifestEntry) => Promise<THREE.Group>) {
   const group=new THREE.Group(), floors=Array.from({length:3},()=>new THREE.Group());group.add(...floors);
   const loader=new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
   const templates=new Map<string,Promise<THREE.Group>>(), owned:THREE.Object3D[]=[], batches:THREE.Mesh[]=[];
@@ -50,27 +50,33 @@ export function buildHousingFurnishings(kit: Kit, recipe: HousingRecipe, changed
     const f=item.floor??0, size=footprint(def,item.rot), mount=new THREE.Group();floors[f]!.add(mount);
     mount.position.set(edge(item.x+size.w/2,recipe.grid),f*STOREY+.025,edge(item.y+size.h/2,recipe.grid));
     mount.rotation.y=-item.rot*Math.PI/2;
-    mount.userData.wall=!!def.wall;
+    mount.userData.wall=!!def.wall;mount.userData.itemId=item.id;mount.name=`housing-item-${item.id}`;
     if(def.wall){mount.position.set(edge(item.x+.5,recipe.grid),f*STOREY+1.75,-4.87);}
     const assetId=item.itemId==='lounge-armchair'?'wood-armchair':SHAPES[def.shape];
     const entry=housingAssetManifest.find(row=>row.id===assetId);
-    const proxy=fallback(def.shape,def.w*tile,def.h*tile);mount.add(proxy);
+    const proxy=fallback(def.shape,def.w*tile,def.h*tile);
+    if(!def.wall){
+      const bounds=new THREE.Box3().setFromObject(proxy),extent=bounds.getSize(new THREE.Vector3()),centre=bounds.getCenter(new THREE.Vector3());
+      const fit=Math.min(1,def.w*tile*.94/extent.x,def.h*tile*.94/extent.z);
+      proxy.scale.setScalar(fit);proxy.position.set(-centre.x*fit,-bounds.min.y*fit,-centre.z*fit);
+    }
+    mount.add(proxy);
     if(!entry)continue;
     let template=templates.get(entry.id);
-    if(!template){template=loader.loadAsync(entry.url).then(gltf=>{owned.push(gltf.scene);return gltf.scene;});templates.set(entry.id,template);}
+    if(!template){template=(loadAsset?loadAsset(entry):loader.loadAsync(entry.url).then(gltf=>gltf.scene)).then(scene=>{owned.push(scene);return scene;});templates.set(entry.id,template);}
     void template.then(source=>{
       if(gone)return;
       const object=source.clone(true);
       const [width,height,depth]=entry.dimensions;
       const fit=Math.min(def.w*tile*.88/width,def.h*tile*.88/depth,def.shape==='tv'?1.05/height:2.15/height);
       object.scale.setScalar(fit);
-      object.position.y=-entry.bounds[1]*fit+(def.shape==='tv'?.55:0);
+      object.position.set(-(entry.bounds[0]+entry.bounds[3])/2*fit,-entry.bounds[1]*fit+(def.shape==='tv'?.55:0),-(entry.bounds[2]+entry.bounds[5])/2*fit);
 
       object.traverse(child=>{if(child instanceof THREE.Mesh){child.castShadow=true;child.receiveShadow=true;}});
       proxy.visible=def.shape==='tv';mount.add(object);loaded++;changed();
     }).catch(()=>{if(!gone){failures.push(entry.id);changed();}});
   }
-  return {group,visible(floor:number,first=false,camera={x:20,z:20}){floors.forEach((g,i)=>{g.visible=i===floor;for(const child of g.children)if(child.userData.wall)child.visible=first||camera.z>=-5;});},get loaded(){return loaded;},get failures(){return failures;},
+  return {group,ready:Promise.allSettled(templates.values()),visible(floor:number,first=false,camera={x:20,z:20}){floors.forEach((g,i)=>{g.visible=i===floor;for(const child of g.children)if(child.userData.wall)child.visible=first||camera.z>=-5;});},get loaded(){return loaded;},get failures(){return failures;},
     dispose(){gone=true;for(const mesh of batches)mesh.geometry.dispose();
       void Promise.allSettled(templates.values()).then(()=>{
         const geometries=new Set<THREE.BufferGeometry>(),materials=new Set<THREE.Material>();

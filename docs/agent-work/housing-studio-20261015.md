@@ -4,9 +4,9 @@
 - Work ID: housing-studio-20261015
 - Owner: /root; chat 01a13a37-fa90-7140-822a-36e81c1c4794
 - Model / effort: primary integration and browser owner; Luna reference/asset research; Sol bounded housing implementation
-- UTC updated: 2026-10-15T14:43:28.280124+00:00
+- UTC updated: 2026-10-15T15:33:56.860240+00:00
 - Status: waiting-for-browser-release
-- Work state: feedback code verified locally; interactive acceptance pending
+- Work state: spatial code verified locally; final image pending
 
 ## Goal and boundaries
 - Goal: deliver a playable, furnished Lagos house first, then apartment/duplex/Abuja mansion variants with first/third-person exploration, collisions, doors, stairs and indoor/outdoor transitions.
@@ -34,7 +34,7 @@
 | Ownership, existing work, online reuse research | accepted | coordination messages; Luna/Sol audits; completed Lekki apartment and Alexence Villa photos inspected | Preserve additive scope |
 | One furnished playable house | verified-local | actual browser gate/inside/dining/upstairs/down/outside journey; door close and F reopen | Integration owner adoption |
 | Apartments, duplex, mansion variants | verified-local | all 4 recipes entered in both views; mansion roof reached at y=6.83 | User visual review and integration |
-| Tests, browser and budget acceptance | verified-local | final 10/10 tests; conservative scenery 14,244; assets 164,752 bytes; final built browser and phone-width checks | Final scoped TypeScript passed after owner lease released |
+| Tests, browser and budget acceptance | verified-local | current 12/12 tests; conservative scenery 13,920; assets 164,752 bytes; prior browser and phone-width checks, spatial-image gate pending | Final scoped TypeScript passed after owner lease released |
 | Tested commit integration handoff | ready | this committed source and docs/housing-studio/verification.md | Send exact SHA to sole integration owner |
 
 ## Decisions / evidence
@@ -71,3 +71,11 @@
 - Final11/11focused checks pass (0.93s), scopedTypeScript exit0, isolatedbuild passes1.83s. Newpackage40files/4,632,792bytes; largest3,346,344bytes; entry housing-studio-Cpt9b-AG.js, gzip931,760B. Conservative scenery13,800/15,000 acrossFP/TP/overview/exterior. Screenshot/browser acceptance stillpending: integrationownerrequestedexclusiveChromeproductionQAand2actorcleanup; housingAstraconfirmedHOLD, lastbaselineUI15:48:33Lagos. Preview4435servesnewbuild, no competingbrowser/nativeactions.
 
 - 2026-10-15T15:09:00.866339+00:00: final source hashes still match tested/built source. HousingAstra attempted exactlyoneindependenthiddenIAB entry; IABunavailable, Chrome/native remaineduntouched. Existing integrationowner is waitingforhumanChromehandoff forproductionQA. Finishthisboundedsourcecommitwith11passingchecks, leavingvisualacceptance explicitlypending; do notclaimupdatedscreenshotsorconsoleproof. Next executable step: after integrationowner releasesChrome, resume housing_visual_qa againstCpt9b-AG, capture normalTP/overview/manualdoor and stair/exit evidence, then update acceptance before adoption. No newdeploymentorPR.
+
+## Spatial overlap correction
+- 2026-10-15T15:13:51.482625+00:00: user screenshot requests preventing object intersections, particularly upstairsdoor/bathtub/avatar. SameadditivecheckoutHEAD48932aab; Chrome/nativeHOLD persistsperintegrationowner. Solownsdoorgeometry/sweep/gridanddoorchecks; LunaownstemporarystaticGLBboundsinventoryreadonly; parentownsrender-fit/fixtures/spatialvalidationandintegration. Preserveallsaves/sharedHome/characterworkandfixedbudgets. Acceptance: actualrenderedobjectboundsfitallocatedspaces, no unintendedpair/wall/stair/door-swingintersection, furnituredoor/avatarclearancewithallroomroutesretained, focusedchecksandpreviewbuild; interactiveQAafterbrowserrelease.
+
+- 2026-10-15T15:31:18.304583+00:00: spatialsourcebuildverifiedafterFP21255normalrelease. ScopedTypeScript exit0,Vite1.91s,12/12tests0.99s;64solidplacementscheckedwithactualGLBs/fallbacks, open/closedleafgeometry, walls/stairsanddoorfills. Max13,920scenery;40files/4,635,737bytes, largest3,349,289B, gzip932,789B, entryhousing-studio-DYmVz1Sz.js. Noasset/fixturelayoutchanges; newleafwidth.9/hingeswingclearance, bothstateswalkblockers, sweeptoggleguard. Browserbaselineacceptedpreviousframing/manualfront/stairfixandconfirmedbathclash; finalnewclearanceimagependingre-releasedChrome, nowheldforprodTokyoQA.
+- HostintegrationlimitationidentifiedandforwardedtoFPowner: TPoccluderssnapshotwalk.solids onenterScene, soadditivegetterchangesarenotlivecameraoccluderupdatesaftertoggle. FPcontextsolidsgetterandwalkinggridaredynamic. No sharedhostAPIchangeattempted; lateradoptionowner canaddpublicinvalidation. Thisdoesnotaffectstaticfurniture/doorgeometryclearanceorlivewalkingblockers.
+
+- 2026-10-15T15:33:56.860111+00:00: retentionownerconfirmednewrelease8affliveandactiveIncognitoTokyoacceptance; no2minuteChromehandoffavailable. Housingkeepsstrictbrowser/nativeHOLD, preservesupdatedartifactDYmVz1Sz. Testedsourcecommitpreparedwith12/12checks,scopedTS/buildandexactpackagehashes; no claimofnewclearancevisualacceptance. NextstepafterexplicitChromerelease: resumehousing_visual_qa, reloadonlylocalhost4435, comparebathopen/closedclearance, attemptwalkthroughopenleaf, stairs/exit, consoleanduniqueimage; thennotifyownerbeforeadoption. ParenthasacceptedSolclearanceimplementationandLuna12GLBstaticboundsauditafterrejecting/correctingobsoleteleafreport; no measuredcostdataavailable.

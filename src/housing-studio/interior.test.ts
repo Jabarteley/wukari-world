@@ -153,7 +153,7 @@ test('actual housing interior preserves the Home host, culling and navigation co
     assert.equal(home.walk.grid, grid)
     assert.equal(grid.free(groundDoor.x, groundDoor.z), false, 'the held grid reference sees the closed door immediately')
     assert.equal(grid.clearLine(crossing![0].x, crossing![0].z, crossing![1].x, crossing![1].z), false)
-    assert.equal(home.doors.toggleNearest(groundDoor.x, groundDoor.z, 0), true)
+    assert.equal(toggleSafely(home, groundDoor), true)
     assert.equal(grid.free(groundDoor.x, groundDoor.z), true, 'the held grid reference sees the reopened doorway')
     assert.equal(grid.clearLine(crossing![0].x, crossing![0].z, crossing![1].x, crossing![1].z), true)
 
@@ -179,7 +179,7 @@ test('actual housing interior preserves the Home host, culling and navigation co
     assert.equal(home.floor, 1)
     assert.equal(home.walk.grid, grid, 'floor transition preserves the stable wrapper-grid reference')
     assert.equal(grid.free(upperDoor.x, upperDoor.z), false, 'the same grid reference reprojects the closed upper-floor door')
-    assert.equal(home.doors.toggleNearest(upperDoor.x, upperDoor.z, 1), true)
+    assert.equal(toggleSafely(home, upperDoor), true)
     assert.equal(grid.free(upperDoor.x, upperDoor.z), true)
     assert.ok(Math.abs(home.walk.heightAt(upper.x + flight.dir * 0.7, upper.z) - (STOREY + 0.03)) < 0.01)
     assert.ok(everyRoomReachable(home.walk.grid!, 1, { x: upper.x + flight.dir * 0.7, z: upper.z }), 'the upper landing reaches every upstairs room')

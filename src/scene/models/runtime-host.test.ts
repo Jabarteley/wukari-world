@@ -34,7 +34,7 @@ async function fixture() {
     bounds: [-1, -1, 1, 1], fallback: [fallback], heights: [0],
     index: () => Object.assign(() => null, { retainedTriangles: 0, cellEntries: 0, broadTriangles: 0 }), fallbackContact: () => null, contact: () => {}, changed: () => {},
   }))!;
-  return { host, group, fallback, setFail: (v: boolean) => { failing = v; },
+  return { host, group, fallback, readPlacement: () => host.placement, setFail: (v: boolean) => { failing = v; },
     setActors: (h: number, c: number) => { hero = h; crowd = c; },
     defer: () => { deferred = true; }, finish: () => { deferred = false; defer!(root()); },
     state: () => ({ calls, released, crowd, readmits }),
@@ -51,7 +51,7 @@ test('host rejection retries on ambient guards with cooldown and a finite per-ti
   now = 1000; f.host.guard(); await settle(); assert.equal(f.state().calls, 2);
   now = 5000; f.host.guard(); await settle(); assert.equal(f.state().calls, 3);
   now = 1e9; for (let i = 0; i < 100; i++) f.host.guard(); await settle();
-  assert.equal(f.state().calls, 3); assert.equal(f.host.placement, null);
+  assert.equal(f.state().calls, 3); assert.equal(f.readPlacement(), null);
 });
 
 test('transient rejection recovers with refreshed actor budgets and near/far admission', async t => {
@@ -60,9 +60,9 @@ test('transient rejection recovers with refreshed actor budgets and near/far adm
   f.host.selectAt(100, 100); await settle();
   f.setFail(false); f.setActors(15, 15); now = 1000;
   f.host.guard(); await settle();
-  assert.equal(f.host.placement?.tier, 'far'); assert.equal(f.state().crowd, 3);
+  assert.equal(f.readPlacement()?.tier, 'far'); assert.equal(f.state().crowd, 3);
   f.setActors(18, 10); f.host.selectAt(0, 0); await settle();
-  assert.equal(f.host.placement?.tier, 'near'); assert.equal(f.state().crowd, 0);
+  assert.equal(f.readPlacement()?.tier, 'near'); assert.equal(f.state().crowd, 0);
   assert.equal(f.fallback.visible, false); assert.equal(f.state().released, 1);
 });
 
@@ -71,22 +71,22 @@ test('late hero eviction clears selection, waits for capacity and recovers witho
   const f = await fixture(); t.after(f.dispose);
   f.host.selectAt(0, 0); await settle();
   f.setActors(25, 0); f.host.guard(); await settle();
-  assert.equal(f.host.placement, null); assert.equal(f.fallback.visible, true);
+  assert.equal(f.readPlacement(), null); assert.equal(f.fallback.visible, true);
   now = 10000; for (let i = 0; i < 100; i++) f.host.guard(); await settle();
   assert.equal(f.state().calls, 1);
   f.setActors(18, 0); f.host.guard(); await settle();
-  assert.equal(f.host.placement?.tier, 'near'); assert.equal(f.state().calls, 2);
+  assert.equal(f.readPlacement()?.tier, 'near'); assert.equal(f.state().calls, 2);
 });
 
 test('stale tier completion and disposal cannot poison the new selection or retain geometry', async t => {
   const f = await fixture(); t.after(f.dispose); f.defer();
   f.host.selectAt(100, 100); await settle();
   f.host.selectAt(0, 0); f.finish(); await settle(); await settle();
-  assert.equal(f.host.placement?.tier, 'near'); assert.equal(f.state().released, 1);
+  assert.equal(f.readPlacement()?.tier, 'near'); assert.equal(f.state().released, 1);
   assert.equal(f.group.userData.runtimeStatus, 'ready');
   f.defer(); f.host.selectAt(100, 100); await settle();
   f.dispose(); f.finish(); await settle();
-  assert.equal(f.host.placement, null); assert.equal(f.state().released, 3);
+  assert.equal(f.readPlacement(), null); assert.equal(f.state().released, 3);
   for (let i = 0; i < 100; i++) f.host.guard(); await settle();
   assert.equal(f.state().calls, 3);
 });

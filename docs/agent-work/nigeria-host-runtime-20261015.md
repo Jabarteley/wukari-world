@@ -70,3 +70,7 @@ Preserved the lazy extraction, then fixed cached selection after rejection and w
 Added runtime-host.test.ts using the real createRuntimeModule and an injected geometry loader: finite rejection retries, transient recovery with fresh hero/crowd budget, far-to-near admission, late hero eviction/capacity recovery, stale completion and disposal. Command `node --experimental-strip-types --test src/scene/models/runtime-host.test.ts src/scene/models/runtime-module.test.ts src/scene/venue-contact.test.ts` passes17/17; log `/tmp/nigeria-runtime-recovery.tap`. No cap changes or local game build. Full supported typecheck and browser source-pinned evidence remain root/acceptance responsibilities.
 
 Source frozen and root notified. No running process and no commit by this lane. Root separately integrated the lighter Lagos asset; this lane made no asset or scene-definition changes. Next: root runs supported typecheck/actual host acceptance and CI bundle size against the exact final source.
+
+## Test type narrowing correction
+
+Root's supported full typecheck identified TS2339 in the recovery test: asserting the mutable placement getter equals null caused TypeScript to retain that narrowing across later guard calls. Added a fixture readPlacement() snapshot function and used it for assertions; no runtime source changed and no casts suppress the diagnostic. Focused host/module/contact tests pass17/17 again (`/tmp/nigeria-runtime-recovery-types-fix.tap`). Root reruns the supported typecheck project; browser source freeze remains intact.

@@ -25,3 +25,16 @@
 - Erased only the authorized disposable LOCAL fixture via UI. Returned list had one founder row instead of two; activity receipt read `Erased 1 character from Allworld and the map.` No production mutation. Viewport reset.
 - Evidence: `docs/research/phase6-social-release-2026-10-15/admin-erasure/local-desktop-preview.jpg`, `local-desktop-preview.txt`, `local-mobile-confirm-guard.jpg`, `local-mobile-erased-list.jpg`, `local-erased-result.txt`, `local-erased-receipt-desktop.jpg`.
 - Production readiness: current Chrome inventory had no Allworld production tabs (prior139/078/152 absent). `https://admin.joinallworld.com` DNS failed. Did not open main gameplay host to avoid creating a new guest without established session. Parent notified; needs existing production tab/safe entry.
+
+- Read-only production readiness resolved via safe GET page navigation to `https://joinallworld.com/api/admin/me`: existing normal Chrome cookie is root `kromate`, ref `ufbsan`. GET exact player endpoints confirmed all three QA IDs still present/non-admin guests; founder `0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481` still account/admin `kromate`. No gameplay page opened and no production mutation. Evidence `admin-erasure/production-readiness.txt`. Browser handoff tab460561228 currently founder GET JSON; awaits verified release before any cleanup.
+
+## Worker size review
+
+- Reviewed parent proposal after unchanged3,500,000-byte Worker gate rejected new3,544,252-byte artifact (parent baseline3,497,821). Recommend `minifySyntax:true` consistently in production packager and budget test, retaining numeric cap and existing whitespace minification. No runtime source reflection/eval/prototype-patching dependency was found in bounded source search.
+- Production package/guard remains authoritative: standard edge tests currently build without minification. Parent must exercise actual syntax-minified bundle in workerd/Miniflare and verify package guard/content assets. Local root esbuild0.28.2 differs from deploy/tooling0.28.1; verify pinned release tooling output, including appended release marker. No build-source edit made by this lane.
+- Reference checked: esbuild official API minify considerations, https://esbuild.github.io/api/#minify (syntax transformations, modern target, source reflection caveats).
+
+## Actual Worker deletion regression
+
+- Root cause of `erasure_actor_live` after main commit: SQLite scanSessions parses rows without populating original row cache; session commit skipped deletes for any unloaded row. Changed undefined session drafts to unconditional exact-key DELETE, matching account/archive semantics. Also public-ID lookup now excludes SQL rows already deleted or reassigned in draft. World safety check unchanged. Added existing storage-suite regression for scan-selected unloaded deletion, in-draft lookup, rollback and unrelated preservation. Sol owns actual syntax-minified Worker rerun.
+- Focused regression evidence: `node --experimental-strip-types --test --test-concurrency=1 deploy/sqlite-store.test.ts` **30/30 PASS**, zero skipped/failures (`/tmp/erasure-sqlite-unloaded-delete.txt`), including draft reassignment lookup. `git diff --check` passed.

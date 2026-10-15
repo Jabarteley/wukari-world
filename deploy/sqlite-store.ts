@@ -708,7 +708,7 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
       },
       sessionKeyByPublicId: publicId => {
         for (const [key, session] of sessions) if (session?.publicId === publicId) return key;
-        return sql.exec<{ secret: string }>('SELECT secret FROM sessions WHERE public_id = ?', publicId).toArray()[0]?.secret;
+        return sql.exec<{ secret: string }>('SELECT secret FROM sessions WHERE public_id = ?', publicId).toArray().find(row => !sessions.has(row.secret))?.secret;
       },
       onceCounts: (liveSince, lightKinds = []) => {
         const sum = { money: 0, light: 0 };
@@ -797,7 +797,8 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
       storage.transactionSync(() => {
         assertWritable();
         for (const [key, session] of sessions) {
-          if (session === undefined) { if (originals.sessions.get(key) !== undefined) { sql.exec('DELETE FROM sessions WHERE secret = ?', key); wrote += 1; } continue; }
+          // A scan can identify a session without loading its draft; deletion must not depend on an earlier read.
+          if (session === undefined) { sql.exec('DELETE FROM sessions WHERE secret = ?', key); wrote += 1; continue; }
           const value = texts.get(key) as string, stored = originals.sessions.get(key);
           if (value !== stored) { writeSession(key, session.publicId, session.expiresAt, value, stored !== undefined && loadedPublicIds.get(key) === session.publicId); wrote += 1; }
         }

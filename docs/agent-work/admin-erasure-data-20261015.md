@@ -6,16 +6,16 @@
 - **Owner:** `/root/erase_domain_impl`
 - **Model / effort:** `gpt-6-astra / high`
 - **Thread:** delegated worker under `01a13bea-138b-7b91-ac44-c49bc3d836ec`
-- **UTC updated:** `2026-10-15T18:23:34Z`
+- **UTC updated:** `2026-10-15T19:01:00Z`
 - **Status:** `ready-for-integration`
 - **Work state:** `implemented; integration owner validating`
 
 ## Goal and boundaries
 
 - **Goal:** Implement the deterministic main-store closure and synchronous data erasure contract used by the root-admin permanent player eraser.
-- **In scope:** `server/admin/erasure-data.ts`; final bounded erasure regressions in `server/admin/admin.test.ts`; schema inventory; focused verification; this work record.
+- **In scope:** `server/admin/erasure-data.ts`; final bounded erasure regressions in `server/admin/admin.test.ts` and `deploy/admin.edge.test.ts`; schema inventory; focused verification; this work record.
 - **Out of scope:** routes, UI, job orchestration, external storage/world cleanup implementations, browser/production work, Git publication, and unrelated tests.
-- **Exclusive file ownership:** `server/admin/erasure-data.ts`; `server/admin/admin.test.ts` (transferred by root for the final bounded regressions); `docs/agent-work/admin-erasure-data-20261015.md`.
+- **Exclusive file ownership:** `server/admin/erasure-data.ts`; `server/admin/admin.test.ts` and `deploy/admin.edge.test.ts` (transferred by root for bounded regressions); `docs/agent-work/admin-erasure-data-20261015.md`.
 - **Input contract:** `planErasure(ctx, db, admin, targetId)` receives the current main-store snapshot and root admin; `eraseData(ctx, db, plan)` is called inside the store transaction.
 - **Output contract:** deterministic typed `ErasurePlan` covering actors, accounts, shards, sessions/devices, external media and conversations; a synchronous apply result for cleanup orchestration; protected-target and unsupported-integrity failures occur before destructive mutation.
 - **Dependencies:** root owns route/UI/job orchestration; `/root/erase_architecture` owns architecture/world/storage review; root persists `db.playerErasure`; Astra integration owner reviews the contract.
@@ -48,7 +48,7 @@
 
 ### In progress / blockers
 
-- No implementation blocker. Root owns the supported serial typecheck, broader affected tests and final integration review.
+- A syntax-minified real Worker endpoint regression is being verified. Root owns the supported serial typecheck, broader affected tests and final integration review.
 
 ### Immediate resume steps
 

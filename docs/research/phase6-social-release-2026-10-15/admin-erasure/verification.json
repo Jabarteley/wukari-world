@@ -1,0 +1,28 @@
+{
+  "status": "local-accepted-release-gates-open",
+  "focusedCompatibility": {
+    "pass": 168,
+    "fail": 0
+  },
+  "actualPinnedMinifiedWorkerAdmin": {
+    "pass": 2,
+    "fail": 0
+  },
+  "sqliteRegression": {
+    "pass": 30,
+    "fail": 0
+  },
+  "packageGuard": {
+    "pass": 25,
+    "fail": 0
+  },
+  "typecheck": "5 projects clean",
+  "build": "pass",
+  "downloadBudgets": "pass unchanged",
+  "workerBytesBeforeMarker": 3437070,
+  "workerByteCap": 3500000,
+  "localBrowser": "desktop and 390x844 pass",
+  "broadNode": "3396 pass observed; stopped at15min in allCities; not a full pass",
+  "edge": "186/193 pass before final byte fixture correction; remaining failures require classification/exception",
+  "productionMutation": false
+}

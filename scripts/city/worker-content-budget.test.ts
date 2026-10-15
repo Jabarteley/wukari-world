@@ -15,7 +15,7 @@ test('the Worker contains city references under 500 bytes each and no city paylo
   t.after(() => rm(folder, { recursive: true, force: true }))
   const outfile = join(folder, 'worker.mjs')
   const built = await build({
-    entryPoints: ['deploy/cloudflare-worker.js'], outfile, bundle: true, minifyWhitespace: true,
+    entryPoints: ['deploy/cloudflare-worker.js'], outfile, bundle: true, minifyWhitespace: true, minifySyntax: true,
     format: 'esm', platform: 'neutral', external: ['cloudflare:workers'], metafile: true,
   })
   const cityIds = new Set(CITY_CONTENT_ASSETS.map(row => row.id))

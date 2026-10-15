@@ -34,3 +34,14 @@ Implementation complete, with 105 focused compatibility checks and 59 storage/wo
 - Astra actual local desktop and390×844 browser: preview/cancel, exact confirmation guard, successful erase and list refresh passed. Evidence docs/research/phase6-social-release-2026-10-15/admin-erasure/.
 - Production browser readiness being re-established read-only via GET/api/admin/me; no new production actor allowed. Production admin subdomain does not resolve; game admin is Alt+Shift+A.
 - Full suite and stable-assets edge rerun still open. No main push/deployment/deletion yet.
+
+## Worker integration and release candidate
+
+- Actual pinned esbuild0.28.1 syntax-minified Worker exposed a real SQLite unloaded-session deletion bug. Fixed commit to delete exact keys independently of prior reads; public-ID lookup now honors draft deletion/reassignment. SQLite30/30 and actual Worker admin2/2 pass. World refusal of still-live actors retained.
+- Final focused compatibility168/168; final supported typecheck5projects clean.
+- Worker was3544252bytes against3500000 before packaging fix; prior8e128a50 was3497821. Astra reviewed minifySyntax:true in actual package builder and both byte-budget fixtures, no caps raised. Pinned output3437070bytes before release marker. Guards25/25 pass.
+- Updated stale existing Settings fixture from6 to9 switches, explicitly asserting the three existing first-person comfort controls. Focused fixture passes; product behavior unchanged.
+- Broad Node run reached3396 passing cases, then was stopped at15minutes in the already-known CPU-bound allCities corpus. It is NOT a full-suite pass. Its two early failures (old packaging bytes and obsolete switch count) were separately corrected and rerun.
+- Stable-assets edge run193tests/186pass/7fail: four eviction timeouts, a city-foundation socket-frame timeout, inherited row-budget assertion, and old whitespace-only byte fixture. Byte fixture corrected; baseline classification of city timeout pending. No broad-suite exception inferred from earlier exact-source approvals.
+- Root additionally owns scripts/package-joinallworld.mjs, scripts/city/worker-content-budget.test.ts, deploy/words.edge.test.ts and src/app/features/panelsA.test.ts for the reviewed release verification fixes.
+- Production still unchanged and exact3 QA still present. No production erasure has executed.

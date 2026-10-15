@@ -498,3 +498,33 @@ test('SQLite collection inventory includes persisted, layered and current-draft 
   assert.ok(listed.includes('draftIdentity'));
   assert.ok(!listed.some(name => name.startsWith('root:')));
 });
+
+
+test('SQLite scan-selected session deletion persists without loading the row and respects rollback', async t => {
+  const f = fixture(t);
+  await f.store.transact(db => {
+    put(db, 'target-key', { ...session(), secret: 'target-key', publicId: 'target-id' });
+    put(db, 'other-key', { ...session(), secret: 'other-key', publicId: 'other-id' });
+  });
+  await assert.rejects(f.store.transact(db => {
+    const target = db.sessions['target-key'];
+    assert.ok(target);
+    target.publicId = 'reassigned-id';
+    const store = (db as unknown as Db).$store!;
+    assert.equal(store.sessionKeyByPublicId('target-id'), undefined, 'draft index does not return an old identity');
+    assert.equal(store.sessionKeyByPublicId('reassigned-id'), 'target-key');
+    throw Error('cancel reassignment');
+  }), /cancel reassignment/);
+  const remove = (db: Draft) => {
+    const store = (db as unknown as Db).$store!;
+    for (const key of store.scanSessions(row => row.publicId === 'target-id')) delete db.sessions[key];
+    assert.equal(store.sessionKeyByPublicId('target-id'), undefined, 'draft index does not return a deleted row');
+    assert.equal(store.sessionKeyByPublicId('other-id'), 'other-key');
+  };
+  await assert.rejects(f.store.transact(db => { remove(db); throw Error('cancel erase'); }), /cancel erase/);
+  assert.equal(await f.store.read(db => (db as unknown as Db).$store!.sessionKeyByPublicId('target-id')), 'target-key');
+  await f.store.transact(remove);
+  assert.equal(count(f.db, "SELECT COUNT(*) AS n FROM sessions WHERE public_id='target-id'"), 0);
+  assert.equal(await f.store.read(db => (db as unknown as Db).$store!.sessionKeyByPublicId('target-id')), undefined);
+  assert.equal(await f.store.read(db => (db as unknown as Db).$store!.sessionKeyByPublicId('other-id')), 'other-key');
+});

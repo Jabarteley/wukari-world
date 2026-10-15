@@ -1,7 +1,7 @@
 # Bespoke country and city content
 
 - Owner: /root, chat01a13bea-138b-7b91-ac44-c49bc3d836ec.
-- Status: all eight batches accepted and locally activated:284cities/243identities/568tales/1704missions. Final69cities authored and reviewed. Engine/save/mission probes pass. Final browser, focused compatibility, CI and main publication in progress; no deployment in this resumed task.
+- Status: COMPLETE for the requested content/source work. All 284 supported cities / 243 country-territory identities have 568 authored tales and 1,704 missions. Final 69 cities, browser fixes, compatibility, CI and main integration accepted. No deployment or measured retention claim.
 - Canonical checkout: /Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld, codex/retention-main-sync.
 - Initial source: c42a4757. Live production runtime ac407c2c. User authorizes unique country/city missions and stories, light parallel agents, documentation and ordinary main sync. This task does not require a new production deployment.
 
@@ -17,7 +17,7 @@ Parent owns typed contract, factory/registry/journey integration, validation, sa
 
 Acceptance:284city/243country coverage; normalized uniqueness of plots/titles/dilemmas/keepsakes/mission labels; grounded valid references; all3choice paths and solo/night routes; duplicate grants/save/reload/travel; old568receipts and oldcollectiontitles intact; agent compatibility and relevant existing tests; CItypecheck/build/size/smoke; representative actual UI including country-specificcopy. No new tracked tests. Preserve primary dirty source, current preview5176 and unrelated services. Costs/tokens unknown.
 
-Next: complete final284browser/agent checks, integrate the Nigeria owner’s scene-budget fix, run exact-candidate CI, then sync main. Current source98926c20 includes main9af2e51e and released world-alive/map updates. Scene edits remain owned by the Nigeria integration chat.
+Next: no remaining city authoring. For a new rollout request, read the documented broad-suite release limitations and reverify current main/production before deploying. Repeat-play and operating-cost outcomes require an authorised pilot. Accepted production source is5bd1fcc8; later docs/diagnostic evidence preserves that runtime.
 
 ## Historical usage cap and earlier handoff
 
@@ -166,3 +166,15 @@ Content source934d0962 is published on codex/retention-main-sync; its pre-fix CI
 Candidate4741f78c combines final content00815a8a, actual UI evidence6109f60c and graphics owner5bb9d30b. Published only to codex/retention-main-sync; CI38734185130 dispatched. All233existing combined focused checks pass (202agent/mission/resident plus31scene/asset/navigation/lifecycle checks). Replayed final284engine and mission probes on this exact candidate;2840paths,34080deals,568old keepsakes,527old collections and283old pending claims pass. Evidence integrated-compatibility.json and integrated-checks.txt.
 
 Graphics owner requests final camera correction536347f9, adding an optional per-scene azimuth bound for Nigeria frontages; other scenes retain unrestricted orbit. Bounded Astra review and focused camera checks pending; final joint CI must include it. Main publication remains held for graphics owner’s terminal browser/resource acceptance. No deployment.
+
+## Final camera candidate
+
+Candidate5bd1fcc8 adds graphics536347f9; Astra independently accepted its bounded source diff. Exact optional azimuth is[-1.2,1.2] for Nigeria scenes; other scenes reset to unrestricted orbit. All25existing venue-world/lighting checks pass. Final joint CI38734503763 running. Source/mission/proof contracts unchanged from the already verified content. Astra record released; actual Tokyo/Paris final screenshots and reload results committed. No owned author or browser workers remain active. Parent preview62944 remains available at5176 with existing data and QA flags; no unrelated process or save touched.
+
+## Completed source integration and handoff
+
+All final69cities are finished. CI38734503763 passes on5bd1fcc89ce888421e8bdcfe463254f5dd07ec35: five-project typecheck, build, unchanged download budgets,17smoke and release policy. Shared host70718gzip<71000; startup601795raw/218518gzip/191760Brotli; loading90541raw/35258gzip. Broad Node/Worker/UI suites skipped, not waived.
+
+Graphics owner’s terminal source clearance covers runtime536347f9 after Lagos16/16, Abuja17/17 and actual app Market/HUD checks. Owner explicitly designated this content lane sole main writer. Final evidence27ef81c7 merged at4238f92f; only documentation and the diagnostic host-check script differ from the CI-tested runtime. Parent five-project typecheck passes after that evidence merge. No production deployment; documented baseline Worker-size/comeback failures remain future release limitations.
+
+Ordinary main publication includes the final source, author records, complete content gate, portable diagnostics, compatibility reports, actual Paris/Tokyo screenshots and graphics owner evidence. See research README/final-ci.json for exact run scope. Source authors and Astra browser/review lane are released; no owned heavy jobs remain. Parent preview62944 remains on5176 using the preserved data directory for review. The earlier inconclusive ui-world-entry-375.png remains untracked and is not acceptance evidence. Primary Desktop changes, real player saves and unrelated services were preserved.

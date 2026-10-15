@@ -1,22 +1,26 @@
 # Bespoke missions, stories and journeys
 
-The full supported catalogue is now authored and activated locally: **284 cities, 243 game country/territory identities, 568 new tales and 1,704 authored mission definitions**. The final 69 cities add 138 tales and 414 missions. Counts describe the game's catalogue, not sovereign states. Main publication and final combined CI are still pending as recorded below.
+The full supported catalogue is now authored and activated and published: **284 cities, 243 game country/territory identities, 568 new tales and 1,704 authored mission definitions**. The final 69 cities add 138 tales and 414 missions. Counts describe the game's catalogue, not sovereign states. The implementation is accepted and synced to main; production deployment is separate.
 
 ## Current acceptance
 
 | Gate | Evidence |
 | --- | --- |
-| Content coverage | Batches01–08 registered;284cities,243identities,568tales,1704missions; zero structural, current-reference, capacity or explicit mission/approach label-mapping errors in `batches-01-08-validation.json` |
-| Semantic review | Conflicts, constraints, decisions, arithmetic and endings reviewed in bounded author/Astra/parent/Luna groups; rejected duplicated plots and incorrect clues were rewritten before activation |
-| Engine and saves | `engine-acceptance.json`:2840completion paths across568tales; all568exact legacy keepsakes and527old collections preserved |
-| Mission dealing | `mission-acceptance.json`:34080dailydeals, free swaps, fallback and283old rollover claims preserved with exactly-once rewards |
-| Agent-play compatibility | Released world-alive main201b9bda integrated; all202existing focused checks pass again with final284city source |
-| Browser | Tokyo city and country tales completed through real UI; both keepsakes, Tokyo2/2 and Japan1/1 persist after final-copy reload. Paris country completion updates both collections immediately without reload after the snapshot-refresh fix |
-| CI | Prior250source72514cbe passed [CI38730371961](https://github.com/kromate/joinallworld/actions/runs/38730371961); final284source requires its own run |
-| Main integration | Main9af2e51e merged locally. Its pre-existing scene-host failure71409>71000gzip is owned by the separate Nigeria integration chat; no overlapping scene edits here |
-| Production | This resumed content task has not deployed. Historical live health and prior releases do not establish final284content availability |
+| Coverage | All 284 cities, 243 game country/territory identities, 568 tales and 1,704 missions; zero content-gate errors in `batches-01-08-validation.json` |
+| Semantic review | Bounded author, Astra, parent and Luna reviews covered conflicts, constraints, decisions, arithmetic and endings. Repeated plots and incorrect clues were rewritten before acceptance |
+| Engine and saves | `engine-acceptance.json`: 2,840 completion paths; all 568 exact legacy keepsakes and 527 old completed collections preserved |
+| Mission dealing | `mission-acceptance.json`: 34,080 daily deals, free swaps and fallback; 283 old rollover claims survive reload and pay once |
+| Compatibility | Combined candidate passes 233 existing focused agent, mission, resident, scene and asset checks. Final camera correction passes 25 focused checks; see `integrated-compatibility.json` and `final-camera-check.txt` |
+| Actual browser | Paris and Tokyo city/country stories completed through real activities and decisions. Exact keepsakes and collection titles persist after reload. Paris collections update immediately after a reward |
+| Hosted CI | [CI 38734503763](https://github.com/kromate/joinallworld/actions/runs/38734503763) passes on runtime source `5bd1fcc8`: five-project typecheck, production build, all-city download budgets, 17 smoke checks and release policy |
+| Main integration | Complete source is published to main, including the graphics owner's accepted runtime `536347f9` and evidence `27ef81c7`. Documentation/diagnostic successors preserve the CI-tested production source |
+| Production | No deployment was performed by this resumed task. Production verification and measured retention remain separate |
 
-Probe reports preserve their original source/dirty-tree provenance. They are not retroactively labeled clean-commit runs. The main blocker must be resolved with unchanged budgets before publication. Five-project local typecheck is clean after final copy and collection-refresh fixes (`final-typecheck.txt`).
+The final 69 cities add 138 stories and 414 missions. Existing agent-play work is preserved. The graphics owner cleared source integration after Lagos 16/16 and Abuja 17/17 browser checks plus actual app Market/HUD entry. Its full evidence is in `../nigeria-runtime-20261015/host/README.md`.
+
+CI measured startup at 601,795 raw / 218,518 gzip / 191,760 Brotli bytes, loading JavaScript at 90,541 raw / 35,258 gzip, and shared scene host at 187,304 raw / 70,718 gzip. All unchanged download limits pass. The lazy progression chunk is 1,482.23 kB raw / 375.86 kB gzip; laziness is not a claim about total transfer or Worker size.
+
+Probe reports preserve their original source and working-tree provenance. Final production source matches CI commit `5bd1fcc8`; the later graphics evidence merge updates documentation and its diagnostic harness only. Five-project typecheck also passes after that merge (`final-evidence-typecheck.txt`). Broad Node, Worker and UI CI suites were skipped. The graphics owner's baseline Worker-size and comeback failures remain documented release limitations; source acceptance does not waive them.
 
 ## Content and player contract
 

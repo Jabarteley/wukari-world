@@ -1,0 +1,13 @@
+SQLite 3.53.4
+transformation: 9 synthetic constant substitutions; 0 guard bypasses; 0 other SQL changes
+rehearsal: PASS named dry_run_completed rollback
+rollback: PASS helpers=0 epoch=3 sessions=3 actions=31 wallets=4 exact snapshot unchanged
+final: PASS epoch=4 target sessions/actions absent wallets=4 receipt=1
+backups: PASS sessions=3 collections=4 entries=9 actions=31 wallets=4
+WORLD: PASS old rows byte-identical, two append rows, meta byte-identical
+unrelated canaries: PASS collection, entry, session, action, wallet preserved
+production drafts: unchanged; exact source hashes asserted before transformation
+bound guards: PASS share opened/joined integer 0, dependency summary 0/1, supplemental 8/0/0
+checks: 9/9
+executed-final-sha256: 862ecdf2c32ebad339774834c68dbf26def60059301f2c3ecf2b6b0f01b3089d
+executed-rehearsal-sha256: 476bfd13dd022d42dec2be9d398467fd26f28dcee4e3a915a9d7ac743475a791

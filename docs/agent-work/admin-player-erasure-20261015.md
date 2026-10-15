@@ -45,3 +45,13 @@ Implementation complete, with 105 focused compatibility checks and 59 storage/wo
 - Stable-assets edge run193tests/186pass/7fail: four eviction timeouts, a city-foundation socket-frame timeout, inherited row-budget assertion, and old whitespace-only byte fixture. Byte fixture corrected; baseline classification of city timeout pending. No broad-suite exception inferred from earlier exact-source approvals.
 - Root additionally owns scripts/package-joinallworld.mjs, scripts/city/worker-content-budget.test.ts, deploy/words.edge.test.ts and src/app/features/panelsA.test.ts for the reviewed release verification fixes.
 - Production still unchanged and exact3 QA still present. No production erasure has executed.
+
+## Candidate publication checkpoint
+
+Candidate4ab427e744d507fa5ded281e24d987f74056aa32 is pushed to codex/admin-player-erasure; main and production remain unchanged. Hosted CI38787644803 passed policy/typecheck/build; its download-budget/smoke job remains in progress. Current city-foundation socket failure reproduced on exact baseline8e128a50 with same assets/pinned tooling, proving it inherited. Words budget/runtime5/5 and release smoke17/17 passed after final corrections.
+
+Local synthetic servers4325/4326 stopped. Production root GET-only browser tab460561228 is preserved for post-release exact-three erasure. No private account readback is committed: tracked evidence holds only checks; full readback stays under /private/tmp/allworld-erasure-ui.
+
+Next executable step: obtain hosted CI terminal success, then request the concrete exception to DEPLOY.md step1 for this exact candidate's six broad Worker failures and incomplete full city corpus. Existing exact6695 release approval does not authorize those new-source exceptions. After approval: main fast-forward/CI, protected deploy, exact3 cleanup, continuity/map/profile checks, docs sync and housing lane return.
+
+Hosted CI38787644803 is terminal SUCCESS on exact4ab427e7. Concrete user exception request sent for six broader Worker failures and incomplete allCities run; main push/deploy await that answer. All necessary local/hosted candidate preparation is complete.

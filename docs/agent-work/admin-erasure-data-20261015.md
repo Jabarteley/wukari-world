@@ -6,7 +6,7 @@
 - **Owner:** `/root/erase_domain_impl`
 - **Model / effort:** `gpt-6-astra / high`
 - **Thread:** delegated worker under `01a13bea-138b-7b91-ac44-c49bc3d836ec`
-- **UTC updated:** `2026-10-15T19:01:00Z`
+- **UTC updated:** `2026-10-15T18:41:23Z`
 - **Status:** `ready-for-integration`
 - **Work state:** `implemented; integration owner validating`
 
@@ -43,17 +43,19 @@
 - Worker unknown-collection preflight enumerates `$store.collectionNames()` as well as object keys and catches an actor UUID inside composite keys or values. The architecture owner reported the updated storage suite passed 59/59; root still owns an end-to-end SQLite admin-preflight assertion.
 - Added the requested actual SQLite-backed regression: a UUID embedded in an unknown custom collection key returns 409 `erasure_ownership_unsupported` and preserves both the target session and custom row. Added a shared-house regression proving erasure retains the other host's conversation and message while removing the erased visitor's line and frozen reply identity.
 - Focused `node --experimental-strip-types --test --test-concurrency=1 server/admin/admin.test.ts` passed 15/15 at `2026-10-15T18:23:34Z`. Final scoped `git diff --check` passed.
+- Added a syntax-minified real Worker regression covering root preview, typed account erasure, removed profile, rejected old session, preserved founder and idempotent completed-receipt replay. With the pinned release tools it passes 2/2; its first run exposed an unloaded-session SQLite deletion defect, which the storage owner fixed with an exact-key deletion and draft-visible identity lookup regression while keeping the world live-actor guard.
+- The stable-assets edge rerun passed 186/193. Four known Miniflare eviction timeouts and one row-budget heartbeat observation are outside the erasure path; the raw bundle budget was corrected by the root packaging owner and subsequently passed 5/5. `city-foundation.test.ts` reproduced the same socket-frame timeout on both the current candidate and a detached exact `8e128a50` base with the same dist and pinned tools, confirming that failure is inherited. The detached comparison worktree was removed and pruned.
 - `git diff --check -- server/admin/erasure-data.ts docs/agent-work/admin-erasure-data-20261015.md` passed at `2026-10-15T18:17:27Z`.
 - The integration owner reported its route integration test passed 1/1. The first supported serial typecheck reached only this new module and reported narrowing errors; the `fail` helper is now a declared `never` function and the parked-character flow uses optional target fields. A supported integration rerun remains with the root owner.
 
 ### In progress / blockers
 
-- A syntax-minified real Worker endpoint regression is being verified. Root owns the supported serial typecheck, broader affected tests and final integration review.
+- No erasure implementation blocker. Root owns the explicit release decision for the known Worker-suite exceptions and the incomplete long all-cities run.
 
 ### Immediate resume steps
 
-1. Root reruns `npm run typecheck` through `scripts/typecheck-data-stubs.ts` and the affected admin/store/world test set.
-2. If the supported check reports a remaining error in `server/admin/erasure-data.ts`, return the exact diagnostic for one bounded correction.
+1. Root records the Worker-suite exceptions and decides the release gate.
+2. Preserve the passing pinned Worker erasure evidence and clean five-project typecheck in the release record.
 
 ## Release state
 
@@ -70,3 +72,4 @@
 | `2026-10-15T18:17:27Z` | `ready-for-integration` | Implemented deterministic closure and explicit main-store erasure; corrected cross-store media, land-journal, retained-group, growth, parked-character and anonymous-wallet boundaries in review. | Source review; `git diff --check`; root-reported route integration 1/1 | Root runs supported serial typecheck and affected integration suite. |
 | `2026-10-15T18:20:57Z` | `ready-for-integration` | Closed cross-account identity-collision, shared house-conversation and Worker custom-collection preflight blockers. | Architecture re-review; storage suite reported 59/59 | Root reruns supported typecheck and proves SQLite custom-collection refusal through admin erasure. |
 | `2026-10-15T18:23:34Z` | `ready-for-integration` | Added actual SQLite custom-owner refusal and other-host house-conversation preservation regressions. | Focused admin suite 15/15; scoped diff check clean | Root runs supported typecheck and broader integration suite. |
+| `2026-10-15T18:41:23Z` | `ready-for-integration` | Proved the complete account-erasure endpoint through the syntax-minified Worker and classified the city-foundation edge failure against the exact base. | Pinned Worker admin edge 2/2; current and base city-foundation logs reproduce the same timeout; full edge 186/193 | Root records explicit release exceptions; no further source expansion. |

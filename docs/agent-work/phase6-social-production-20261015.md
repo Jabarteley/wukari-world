@@ -1,6 +1,6 @@
 # Phase 6 public profiles and production release
 
-## Current work — Share deployed; live verification and cleanup explicitly resumed
+## Current work — cleanup resumed; rollback rehearsal under diagnosis
 
 Parent `/root` owns integration, release and the shared index in chat `01a13bea-138b-7b91-ac44-c49bc3d836ec`. Checkout: `/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld`, branch `codex/retention-main-sync`. Astra owns interactive browser work and consequential cleanup review. Sol owns the offline cleanup diagnostic. Housing and full-suite repair successors are excluded.
 
@@ -23,7 +23,7 @@ A relayed instruction from another chat requested stopping tests for manual QA. 
 
 User confirmed the ChatGPT Chrome extension was updated and tabs preserved. Astra reconnected successfully through Chrome provider 2 and found R2 Incognito tab078 and operator tab105. The former ordinary-account tab099 was not listed; its absence is not proof of cookie loss. A bounded normal-context GET/session recovered existing kromate, public ID `0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481`, without creating an identity or signing in. Astra is binding the actual provider context before the fence. Live R2 Share passed at CSS320/375, including full readonly URL selection, explicit Copy confirmation and close/reopen settling, with no horizontal overflow. Evidence: `public-profile/production-6695-share-css320.jpg` and `production-6695-share-css375.jpg`. R2 returned to static public HTML and viewport reset before inventory; no game writer remains.
 
-Parent reacquired the `codex-phase6` deployment lock. Fresh public health still reports6695; remote main remains documentation successor e438edf3. Preserve all existing tabs, unrelated YouTube, and other owners' local previews. No SQL mutation is authorized before the bound-script and rehearsal gates below.
+Parent reacquired the `codex-phase6` deployment lock for the resumed unit; it is now being released for shutdown/handoff. Fresh public health still reports6695; remote main remains documentation successor e438edf3. Preserve all existing tabs, unrelated YouTube, and other owners' local previews. No SQL mutation is authorized before the bound-script and rehearsal gates below.
 
 ### Frozen cleanup targets
 
@@ -296,3 +296,19 @@ Chrome tool now requires update of ChatGPT extension; a single nativeAXread prov
 ## Verified deployment and external-block handoff
 
 Protected Share release38772799093 and live provider/HTTP acceptance completed on6695f00c. The actual running DO health is new, non-build bindings/namespace match69c3, served Share asset is exact118d584f, and five normally earned Lomé/Togo records remain. Production interactive Share/recovery and all cleanup execution stages remain open for the Chrome ChatGPT extension update. Parent inspected the corrected offline SQL and representative rollback/commit probe; no production SQL ran. The deployment lock was released normally. No new source or deployment is scheduled while awaiting browser restoration. Reacquire/revalidate before continuation; approvals remain exact three actors/current reviewed source, not permission to roll back a newer release.
+
+## Shutdown handoff: provider rehearsal rejected; rollback confirmed
+
+User requested current status while preparing to shut down this session. Live source remains `6695f00c6779fbfcb69bd21aa8b152d5430a0dca`; remote main documentation checkpoint is `8e128a50`. Live Share passes 320/375, and ordinary kromate authentication plus named WORLD reads passed.
+
+One full accepted-hash rehearsal was submitted through actual Data Studio Run all in transaction. Its UI reported Executed62/62 but generic unknown errors, including the final abort; no named `dry_run_completed` CHECK was observed. This rehearsal is REJECTED. The count is not evidence that all guards completed. Separate readback passed all five groups: no new helper tables, epoch3/writable1/null retirement/watermark, all three sessions/actions31/audit4 intact, paths17/entries9 unchanged, both resident/home pairs still active. Evidence: `public-profile/production-cleanup-rehearsal-readback.txt` and the operator-owned screenshot/report. No final cleanup, persistent backup, epoch fence or cleanup restart occurred. The three approved QA identities remain.
+
+Operator tab152, ordinary account139 and R2 static profile078 are preserved. No browser work is scheduled. Existing previews and all unrelated/untracked files are preserved. The `codex-phase6` deployment lock is released normally after this record. Housing owner has a separate direct-user integration/deploy request; coordinate its current source before any future cleanup restart. Never redeploy old6695 over a newer live version.
+
+Next executable step, only after user resumes: inspect current main/live/provider and owner handoffs, then diagnose the generic rehearsal failure with a bounded offline/source check. Do not replay final SQL or treat rollback alone as rehearsal acceptance. Require a provider-supported, accepted full rehearsal and fresh exact inventory before the timed final transaction. No new guest is allowed. Latest handoff changes may remain local after published8e128a50; preserve and transfer them deliberately.
+
+## User resumed exact-three cleanup
+
+User directly requested: "complete the clean up let's get this over with". Rechecked public health at 2026-10-15 18:45 Lagos time: exact live build `joinallworld-6695f00c6779fbfcb69bd21aa8b`; origin/main `8e128a507a4303937002ebef60d988db938c66f6`. Housing owner confirmed it released `codex-housing-release` normally with no branch push, CI or deployment, preserved its candidate, and awaits lock return. Parent acquired `codex-phase6` normally; no competing release. The exact three-guest cleanup authorization still applies. No new guests are allowed.
+
+Fresh setup: diagnose the previous full reviewed rehearsal. It said Executed62/62, but its final abort and neighboring statements displayed a generic unknown error; separate readback had all five rollback groups intact, targets and homes unchanged, epoch3, no helper tables. The batch remains unqualified, not assumed accepted. Astra and Sol received separate bounded offline artifact/source diagnosis tasks. Next steps: refresh actual target/source inventory and unmodified-world comparator after diagnosis; if a corrected and provider-qualified rollback path exists, acquire one protected cleanup window for exact reviewed transaction+6695 restart and postrestart proofs. If the provider cannot expose or validate transaction success, leave all three QA identities and do not guess. Browser sessions/tab152(operator),139(account),078(R2) remain preserved from previous accepted Astra evidence; refresh only if needed for the pending single operation.

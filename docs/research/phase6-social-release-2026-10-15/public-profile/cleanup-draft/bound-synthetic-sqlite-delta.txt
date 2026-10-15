@@ -1,0 +1,19 @@
+# Bound synthetic SQLite diagnostic delta and limits
+
+This records the single offline execution against accepted production draft hashes:
+
+- `cleanup-final.sql.txt`: `be3541b933fc01d2e00520bdfa4b32e421a410c7531c2f7ee70ab8bf64f2e5cd`
+- `cleanup-rehearsal.sql.txt`: `486688b0cdd1e394e363d2a88fe56ca89bbad24803a98e7ca7a222a1f497c4e6`
+
+The disposable diagnostic was derived from `synthetic-sqlite-fixture-probe.py.txt`. It made these bounded changes:
+
+1. Removed the historical `BLOCK`/`BYPASS` constants and the unconditional-block replacement. No current SQL statement or guard was bypassed.
+2. Asserted both accepted source hashes before transforming the fixture copy.
+3. Retained the same nine transparent public-constant substitutions from production identifiers/names to synthetic identifiers/names.
+4. Used the existing synthetic growth records with integer `opened=0`, integer `joined=0`, zero referral/invited/owed/ref/count dependencies, zero share-code text references and one synthetic owner text reference.
+5. Used the existing nine synthetic mirrors: eight entry keys contain a target UUID, zero are previously uncaught composite-key-only references, zero collection names contain a target UUID, and the ninth mirror is the separately validated share key.
+6. Changed only diagnostic output wording to describe the bound guards and `9/9` result.
+
+The one execution used in-memory SQLite 3.53.4. The rehearsal reached the named `dry_run_completed` CHECK failure and rollback restored the exact pre-run snapshot. The final clone committed and satisfied the bound guards and all prior postconditions.
+
+This rules out an inherent SQLite failure in the accepted bound guard SQL for the representative known-literal fixture. It does not reproduce Cloudflare Data Studio's parser, transaction wrapper, response/error reporting, live concurrency or production state. It does not show which statement Data Studio classified as a generic unknown error, and it does not replace the independent production rollback readback. No negative guard mutation was run. No production draft, provider or database was changed.

@@ -6,7 +6,7 @@
 - **Owner:** `/root/phase6_public_profiles_impl`
 - **Model / effort:** requested `gpt-5.6-sol` / `medium` with `fork_turns: none`; actual runtime configuration is not exposed to this agent and remains unknown
 - **Thread:** `/root/phase6_public_profiles_impl`
-- **UTC updated:** `2026-10-15T17:35:26Z`
+- **UTC updated:** `2026-10-15T17:46:09Z`
 - **Status:** `ready-for-review`
 - **Work state:** `offline exact-three-actor cleanup SQL candidate; fresh read-only inventory bound and ready for consequential source review`
 
@@ -87,21 +87,23 @@
 - Bound Astra's `2026-10-15T17:32:13.555Z` supplemental receipt into a separate literal guard requiring eight UUID-bearing entry keys, zero previously uncaught composite-key-only references and zero collection-name references. The mutation remains frozen at exactly nine entries: those eight plus the separately validated share mirror.
 - Recorded Astra's fresh full inventory receipt at `2026-10-15T17:32:50.006Z`: schema2/shadow/epoch3/writable1/null markers, parts0/helper0, sessions1 each, actions5/1/25, wallet audit1/0/3, zero archives/accounts/devices/once receipts and unchanged Tokyo/R2 active WORLD homes with no Smoke home. The final SQL independently rechecks these corresponding facts.
 - Regenerated the rehearsal as an exact byte prefix of the bound final plus only the named `dry_run_completed` abort. Final SHA-256 is `be3541b933fc01d2e00520bdfa4b32e421a410c7531c2f7ee70ab8bf64f2e5cd`; rehearsal SHA-256 is `486688b0cdd1e394e363d2a88fe56ca89bbad24803a98e7ca7a222a1f497c4e6`. No SQL/database/provider action was executed. The earlier synthetic 8/8 evidence remains scoped to the blocker-bearing draft and was not rerun as proof of this bound candidate.
-- Final static consistency controls passed `15/15`: exact rehearsal prefix and named abort, removed unconditional blocker, timestamped bound guards, strict share owner/counter/dependency literals, supplemental 8/0/0 counts, exact nine-entry delete count, authority fence, source-bound receipt, documented hashes and explicit unexecuted synthetic-adaptation status. `git diff --check` is clean.
+- Final static consistency controls passed `15/15` before the requested diagnostic: exact rehearsal prefix and named abort, removed unconditional blocker, timestamped bound guards, strict share owner/counter/dependency literals, supplemental 8/0/0 counts, exact nine-entry delete count, authority fence, source-bound receipt, documented hashes and the then-unexecuted synthetic-adaptation status. `git diff --check` was clean.
+- Ran the explicitly requested one-attempt bound-fixture diagnostic against exact accepted hashes `be3541b9…`/`486688b0…` on in-memory SQLite 3.53.4. It retained the nine transparent synthetic constant substitutions and bypassed zero guards. Result `9/9`: share opened/joined integer-zero and dependency 0/1 summary passed, supplemental 8/0/0 passed, rehearsal reached the named `dry_run_completed` error and restored the exact snapshot, and the final clone committed all previous backup/WORLD/audit/unrelated-canary postconditions.
+- Archived the exact inert diagnostic source, captured output and adaptation/proof limits as `cleanup-draft/bound-synthetic-sqlite-*`. This narrows the Data Studio generic-unknown diagnosis: the accepted SQL has no inherent SQLite failure for the representative known-literal fixture, but the probe cannot reproduce Data Studio's parser, transaction wrapper, live concurrency or error mapping. It does not replace the independent production rollback readback.
 
 ### In progress / blockers
 
-- The three required read-only inventory receipts are now captured and bound. Astra and parent must review this exact SQL source before any DDL or provider rehearsal. This unit performed no production SQL, UI, database execution, test, deployment or application-source change.
-- The newly bound candidate has static consistency evidence only. Its provider parser behavior, actual named-abort rollback, post-rehearsal readback, current authority at execution time and protected-window final mutation remain mandatory gates.
+- The three required read-only inventory receipts are captured and bound. This lane performed no production SQL, UI, provider/database execution, tracked test, deployment or application-source change.
+- The actual Data Studio rehearsal was parent/Astra-owned and returned 62/62 executed statements with generic unknown errors, including the final abort, rather than the required named `dry_run_completed` evidence. This offline 9/9 result makes an inherent SQLite guard defect unlikely for the representative observed-literal fixture, but cannot identify Data Studio's generic error source. Parent owns the independent rollback readback, refreshed inventory and any provider decision.
 - Astra still owns actual browser verification at 320/375 widths, focus/selection, copy-success/copy-failure behavior and production qualification. This lane performs no browser, deployment or production action.
 - Direct execution exception: this is one tightly coupled Vue component with no useful disjoint worker unit, and the task prohibits nested agents. Astra retains browser verification.
 - Historical local probe failure: one earlier attempt threw `TypeError: tale.dilemma.answers.map is not a function` in `src/game/content/local-episodes.ts:17`. Parent subsequently ran the current Node HTTP fixture successfully before provider merges, so that transient failure is explicitly not attributed to the first-person provider lane.
 
 ### Immediate resume steps
 
-1. Astra and parent review the exact bound final/rehearsal source and hashes against the three named production read-only receipts.
-2. Only after acceptance, execute the full named-abort rehearsal and separate rollback readback through the operator procedure.
-3. Review that actual rehearsal receipt before any later protected-window production mutation; do not infer approval from the earlier synthetic fixture.
+1. Parent/Astra reconcile the provider's generic rehearsal response with the independent rollback readback and refreshed live inventory.
+2. Do not infer provider success or production-cleanup approval from either synthetic SQLite fixture.
+3. Keep the accepted production drafts frozen unless parent reports a concrete bounded source defect for review.
 
 ## Release state
 
@@ -135,3 +137,4 @@
 | `2026-10-15T17:06:40Z` | ready-for-review | Added all-nine legacy/entry parity, growth/root metrics parity, composite-key/name detection, backup-secret device proof and a supplemental count-only inventory without broadening deletion. | Static controls 22/22; final `5865c0fb…`; rehearsal exact-prefix `b39857d5…`; no database execution | Parent/Astra source review; both fresh count-only inventories remain mandatory. |
 | `2026-10-15T17:14:34Z` | ready-for-review | Executed one corrected synthetic in-memory SQLite probe without changing production drafts. Named-abort rollback and final-commit paths both behaved as designed on the representative 15-table fixture. | Synthetic SQLite 3.53.4 checks 8/8; archived source/output/delta; drafts remain `5865c0fb…`/`b39857d5…` | Parent/Astra evidence review; live count inventories and actual Data Studio rehearsal remain mandatory. |
 | `2026-10-15T17:35:26Z` | ready-for-review | Bound the fresh share/referral, supplemental-reference and full-inventory receipts into strict literal guards; regenerated the exact rehearsal prefix without executing SQL. | Final `be3541b9…`; rehearsal `486688b0…`; three production read-only receipts named in README | Consequential parent/Astra source review, then actual provider named-abort rehearsal and separate readback. |
+| `2026-10-15T17:46:09Z` | ready-for-review | Executed the one authorized accepted-hash synthetic diagnostic without bypassing any bound guard; production drafts remained byte-identical. | SQLite 3.53.4 `9/9`; named abort rollback exact; `cleanup-draft/bound-synthetic-sqlite-*` | Parent owns Data Studio error diagnosis and production rollback/rehearsal decisions. |

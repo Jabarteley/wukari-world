@@ -45,6 +45,9 @@ Astra's fresh full inventory at `2026-10-15T17:32:50.006Z` is captured in `../pr
 8. `synthetic-sqlite-first-attempt.txt` — verbatim first failure and bounded gate-identification output.
 9. `synthetic-sqlite-output.txt` — the second attempt's concise 8/8 result, SQLite version and executed-clone hashes.
 10. `synthetic-sqlite-delta.txt` — exact constant/blocker transformation, bounded first-failure correction and proof limits.
+11. `bound-synthetic-sqlite-fixture-probe.py.txt` — inert source for the single accepted-hash diagnostic with no guard bypass.
+12. `bound-synthetic-sqlite-output.txt` — captured SQLite 3.53.4 result for that one execution.
+13. `bound-synthetic-sqlite-delta.txt` — exact adaptation and the narrow limits of the bound-fixture result.
 
 Current inventory-bound offline SHA-256 values:
 
@@ -60,6 +63,9 @@ Current inventory-bound offline SHA-256 values:
 | `synthetic-sqlite-first-attempt.txt` | `5bb02406452f9d9c301e93e212796cfcee6cd5ccf038dfebcc89669dfa08dbc4` |
 | `synthetic-sqlite-output.txt` | `e6b48ba7157452795d31ee5671bffaa23d38ef1d8a978d89e1c756e9a5955440` |
 | `synthetic-sqlite-delta.txt` | `cefa5b7226a2880eacb055165b0dfb62f08b36de23751d474ad84c90b65d65fa` |
+| `bound-synthetic-sqlite-fixture-probe.py.txt` | `b923d9ba61b991c8f6eee8fd359f215aac0be707831c4984de92f1a9187d3949` |
+| `bound-synthetic-sqlite-output.txt` | `58ed8a1bdd2cc3cbf36d66904b2033bfa3aab107907efcb230b7701c7ddc932b` |
+| `bound-synthetic-sqlite-delta.txt` | `678733c43b216fe593a1c31532f4c09452e5b804fed09a3ba70924c7eb3f79fb` |
 
 The rehearsal must use Cloudflare Data Studio **Run all in transaction**. The only acceptable failure is the named final `dry_run_completed` CHECK failure, followed by the separate rollback readback. A generic error is not evidence. Final execution can occur only in the reviewed protected restart window described by `production-qa-cleanup-runbook.md`; an ambiguous result is resolved by reading the receipt and epoch, never by replaying the transaction.
 
@@ -69,7 +75,7 @@ One bounded in-memory diagnostic recreated the captured 15-table schema with syn
 
 That archived probe reads the current draft path but describes the earlier blocker-bearing hashes; it must not be rerun or presented as proof of the new bound guards without an explicitly reviewed adaptation. It proves local parser/transaction behavior for the earlier structure only. It does not satisfy the actual Data Studio rehearsal, prove current live inventory freshness, or authorize production execution.
 
-If Astra and the integration owner explicitly request a second synthetic parser check, the bounded adaptation is to copy the archived probe to a temporary file, remove its old blocker assertion/substitution, preserve only its nine public-constant-to-synthetic-fixture substitutions, and execute the current bound final/rehearsal clones unchanged. That proposal is unexecuted; the archived evidence and its hashes remain untouched.
+After the integration owner explicitly requested that bounded adaptation, one disposable diagnostic asserted the accepted production-draft hashes, removed the historical blocker replacement, preserved only the nine public-constant-to-synthetic-fixture substitutions and executed the bound final/rehearsal clones unchanged. SQLite 3.53.4 passed `9/9`: every bound share and supplemental guard passed, the rehearsal reached the named `dry_run_completed` failure and restored the exact snapshot, and the final clone committed all prior postconditions. The original historical evidence and hashes remain untouched. The bound source, output and exact delta are archived in the three `bound-synthetic-sqlite-*` files.
 
 ## Private backups and guards
 
@@ -80,6 +86,6 @@ The final postguards prove the four touched collections equal their backups minu
 ## Review gaps
 
 - Share/referral, supplemental composite-key/name and fresh full-inventory facts are captured in the three named Astra read-only receipts. Any drift blocks through the exact-set and literal guards.
-- The newly bound SQL has static review only. The archived synthetic diagnostic proves the preceding blocker-bearing structure and was deliberately not rerun. No production draft was executed; no provider parser, Data Studio DDL, actual rehearsal or production mutation was run.
+- The newly bound SQL has static review plus one representative in-memory SQLite execution with no guard bypass. That result rules out an inherent SQLite failure for the known-literal fixture, but it does not reproduce Cloudflare Data Studio's parser, transaction wrapper, live state or generic error reporting. This offline diagnostic did not execute any production SQL or production mutation.
 - Actual rollback behavior, provider error naming, transaction duration, fresh authority/layout/reference counts, deployment hold timing, postrestart named world reads, unrelated comparison-player behavior and recovery remain execution gates.
 - The captured inventory is time-sensitive. Any new row, path, fragment, WORLD event, authority change or helper-prefix collision must abort and return to source review.

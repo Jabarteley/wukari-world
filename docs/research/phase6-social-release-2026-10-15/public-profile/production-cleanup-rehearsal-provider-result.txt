@@ -1,0 +1,25 @@
+{
+  "startedAt": "2026-10-15T17:39:55.092Z",
+  "observedCompletedByMs": 15434,
+  "rehearsalSha256": "486688b0cdd1e394e363d2a88fe56ca89bbad24803a98e7ca7a222a1f497c4e6",
+  "result": "NOT ACCEPTED: generic provider error, no named CHECK"
+}
+    - generic: Summary
+    - strong: Executed 62/62
+    - code:
+      - generic: INSERT INTO qa_phase6_cleanup3_20261015_dry_abort(ok) VALUES(0);
+    - button "Click to copy":
+      - generic: Click to copy
+    - generic: "Error: An unknown error has occurred. If this error persists, please file a report in the workers-sdk GitHub repository (https://github.com/cloudflare/workers-sdk/issues) or reach out to your account team."
+    - code:
+      - generic: INSERT INTO qa_phase6_cleanup3_20261015_gate(ok) SELECT CASE WHEN changes()=1 THEN 1 ELSE 0 END;
+    - button "Click to copy":
+      - generic: Click to copy
+    - generic: "Error: An unknown error has occurred. If this error persists, please file a report in the workers-sdk GitHub repository (https://github.com/cloudflare/workers-sdk/issues) or reach out to your account team."
+    - code:
+      - generic: INSERT INTO qa_phase6_cleanup3_20261015_receipt(singleton,operation_id,committed_at,source_sha,from_epoch,to_epoch)
+      - generic: VALUES(1,'phase6-three-disposable-guests-20261015',strftime('%Y-%m-%dT%H:%M:%fZ','now'),'6695f00c6779fbfcb69bd21aa8b152d5430a0dca',3,4);
+    - button "Click to copy":
+      - generic: Click to copy
+    - generic: "Error: An unknown error has occurred. If this error persists, please file a report in the workers-sdk GitHub repository (https://github.com/cloudflare/workers-sdk/issues) or reach out to your account team."
+- region "Notifications"

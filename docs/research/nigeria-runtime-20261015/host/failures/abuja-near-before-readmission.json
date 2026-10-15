@@ -1,0 +1,399 @@
+{
+  "scope": "Actual createVenueHost with production city definitions, player and crowd; development harness, not full application UI or production",
+  "started": "2026-10-15T03:45:36.189Z",
+  "head": "59d23b9700b130870085d4f2b2dacfcbf84fc1d1",
+  "checks": [
+    {
+      "label": "failure",
+      "diagnostics": {
+        "renderCount": 24,
+        "loop": {
+          "running": false,
+          "frames": 14
+        },
+        "avatar": {
+          "x": 0,
+          "z": 39.2,
+          "y": 0,
+          "facing": 0,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 10,
+        "camera": {
+          "yaw": 0.481,
+          "pitch": 0.491,
+          "zoom": 2,
+          "distance": 25.3,
+          "asked": 25.3,
+          "whole": 147.06,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 10.32,
+          "y": 13.47,
+          "z": 58.98,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.249,
+              8.161
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "visit",
+            "x": 0,
+            "z": 32.2,
+            "px": 655,
+            "py": 347,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 5.6000000000000005,
+            "z": 39.2,
+            "px": 763,
+            "py": 507,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": 0,
+            "z": 39.2,
+            "px": 550,
+            "py": 450,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -1.3468710759269935,
+            "z": 40.70813975380361,
+            "px": 472,
+            "py": 417
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": 1.5535653152676472,
+            "z": 37.503994454255135,
+            "px": 634,
+            "py": 388
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": -2.988493826507522,
+            "z": 39.46249695031834,
+            "px": 443,
+            "py": 382
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "x": 2.2872052563375824,
+            "z": 39.28593543508656,
+            "px": 633,
+            "py": 425
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "x": -0.40095159681285314,
+            "z": 36.93521793167351,
+            "px": 576,
+            "py": 364
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "x": -2.8892187682940498,
+            "z": 42.16211932117418,
+            "px": 385,
+            "py": 428
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "x": 3.695779217516279,
+            "z": 37.15200109820158,
+            "px": 719,
+            "py": 401
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "x": -2.204131121621693,
+            "z": 37.720891943431155,
+            "px": 503,
+            "py": 362
+          }
+        ],
+        "objects": [],
+        "drawCalls": 12,
+        "triangles": 10174,
+        "geometries": 18,
+        "textures": 4,
+        "location": "national-mosque",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "high",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 87,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 549,
+            "y": 363,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 470,
+            "y": 362,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 637,
+            "y": 336,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 440,
+            "y": 330,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "text": "Local 3",
+            "name": "Local 3",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 635,
+            "y": 370,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "text": "Local 4",
+            "name": "Local 4",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 576,
+            "y": 313,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "text": "Local 5",
+            "name": "Local 5",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 380,
+            "y": 373,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "text": "Local 6",
+            "name": "Local 6",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 723,
+            "y": 347,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "text": "Local 7",
+            "name": "Local 7",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 502,
+            "y": 311,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [],
+      "statuses": [
+        {
+          "runtimeStatus": "fallback",
+          "runtimeError": "Runtime module exceeds remaining host budget"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 10,
+        "triangles": 15032,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:worship",
+            "triangles": 84
+          },
+          {
+            "name": "solid",
+            "parent": "venue:worship",
+            "triangles": 84
+          },
+          {
+            "name": "sky",
+            "parent": "venue:worship",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:worship",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:worship",
+            "triangles": 40
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:worship",
+            "triangles": 4170
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:worship",
+            "triangles": 160
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 18,
+        "textures": 4
+      },
+      "render": {
+        "frame": 24,
+        "calls": 12,
+        "triangles": 10174,
+        "points": 0,
+        "lines": 0
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "failure",
+      "sha256": "b8e02d279307e2b0883199b1f337ac0a86cd1fa46a6f1bcdc9444302d8f5973d"
+    }
+  ],
+  "sourceHashes": {
+    "src/venue-world.ts": "1be0b8c95721f369695794130ee340ea72835a433b9af53c5b1bf1644ef845be",
+    "src/scene/venue-scenes.ts": "b8722f25d154873434f9555b1d92caaa78cf132388751106ccbbf1a561794ccb",
+    "src/scene/nigeria-runtime-scenes.ts": "b9f9dfd47fe6135c0c48d5a878fbf4d8f379a1a18d952dbb8b1a73903e401b61",
+    "src/scene/models/runtime-module.ts": "35b52b0d735d716232a329d0ac0da9e3ce9d1576afab94083688d4272431631d",
+    "src/scene/models/nigeria-navigation.ts": "72f79de5491f730510c624a11151d23ee8d0896ef7f57ab5b9b1d1a43e55077e",
+    "src/scene/city-scenes.ts": "57d480bf17093ac85ec9ea714b95cc03f634548e3f56bd5cff5301eb4b697d48"
+  },
+  "passed": false,
+  "error": "Error: Timed out after 15000 ms waiting for near view (last: false)",
+  "consoleErrors": [],
+  "httpErrors": [],
+  "sourceHashesAfter": {
+    "src/venue-world.ts": "1be0b8c95721f369695794130ee340ea72835a433b9af53c5b1bf1644ef845be",
+    "src/scene/venue-scenes.ts": "b8722f25d154873434f9555b1d92caaa78cf132388751106ccbbf1a561794ccb",
+    "src/scene/nigeria-runtime-scenes.ts": "b9f9dfd47fe6135c0c48d5a878fbf4d8f379a1a18d952dbb8b1a73903e401b61",
+    "src/scene/models/runtime-module.ts": "35b52b0d735d716232a329d0ac0da9e3ce9d1576afab94083688d4272431631d",
+    "src/scene/models/nigeria-navigation.ts": "72f79de5491f730510c624a11151d23ee8d0896ef7f57ab5b9b1d1a43e55077e",
+    "src/scene/city-scenes.ts": "57d480bf17093ac85ec9ea714b95cc03f634548e3f56bd5cff5301eb4b697d48"
+  },
+  "sourceStable": true,
+  "finished": "2026-10-15T03:46:08.402Z"
+}

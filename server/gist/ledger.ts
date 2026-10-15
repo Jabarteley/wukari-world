@@ -241,7 +241,12 @@ function buildService(ctx: RouteContext) {
       if (busy || now - lastTick < TICK_MS) return 0;
       busy = true; lastTick = now;
       try {
-        const due = await ctx.store.read((db) => { const { items, cursor } = collect(db, now); return items.length > 0 || cursor.records !== peekGist(db).cursor.records; });
+        const due = await ctx.store.read((db) => {
+          const { items, cursor } = collect(db, now);
+          const stored = peekGist(db).cursor?.records;
+          const baseline = typeof stored === 'number' ? Math.max(0, stored) : 0;
+          return items.length > 0 || cursor.records !== baseline;
+        });
         if (!due) return 0;
         return await ctx.store.transact((db) => {
           const { items, cursor } = collect(db, now);

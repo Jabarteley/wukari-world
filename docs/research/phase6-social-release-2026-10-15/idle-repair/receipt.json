@@ -1,0 +1,14 @@
+{
+  "base": "5181c91a8274f0616b5cb6740971598fd97814ad",
+  "scope": "Two-file idle transaction repair; synthetic fixture, not production.",
+  "beforeIdleTransactions": 2,
+  "afterIdleTransactions": 0,
+  "existingFocusedChecks": 52,
+  "passed": 52,
+  "failed": 0,
+  "files": [
+    "server/house/runner.ts",
+    "server/gist/ledger.ts"
+  ],
+  "review": "Astra mechanism/source inspection accepted; tests unchanged."
+}

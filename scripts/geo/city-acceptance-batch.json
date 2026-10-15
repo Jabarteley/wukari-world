@@ -2,14 +2,11 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "ferry-tour",
-      "appSha": "201b9bdac9f8ee9412ff98378971dd12a9463426",
+      "id": "first-person-phase6-20261015",
+      "appSha": "5bb46a442a2b6d1236b988a67d09c653f61ea766",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
-        "west-island",
-        "lagos",
-        "paris",
-        "accra"
+        "lagos"
       ],
       "roundtrip": true,
       "browserOnly": true

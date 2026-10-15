@@ -5,24 +5,22 @@ continue. The full brief is in [docs/agent-plans/world-alive/](docs/agent-plans/
 STATUS.md (what is live, the log, the questions for the owner), then PHASES.md. Repository-wide coordination is in
 [AGENTS.md](AGENTS.md). When everything below is done, empty the "In flight" and "Still to do" sections and say so in STATUS.md.
 
-Last updated: 15 October 2026 (release 8 live: `abec6f54`).
+Last updated: 15 October 2026 (release 9 going out).
 
 ## In flight
 
 | Work | Branch | Where it stopped | Next step |
 | --- | --- | --- | --- |
-| Phases 12 (talk, memory, partners, flirting with consent) and 13a (one resident, Remi, in shadow) | merged on `claude/world-alive` | Tests pass (131), typecheck clean, but STARTUP_RAW is 24 bytes over | Wait for `claude/alive-startup-room3`, merge it, CI, release. |
-| Freeing first-download room (at least 6 KB) | `claude/alive-startup-room3` | Being built | Review, merge into `claude/world-alive`, CI. |
-| Phase 11: missions from agents (and paying a haggled quote on hand-over) | `claude/alive-p11-missions` | Being built | Review, merge, CI, release. |
+| Release 9: Phases 11, 12, 13a and first-download room | `main` | Merged and checked on `claude/world-alive`, being released | Confirm live, run the Lagos smoke test, replace `REL9` in STATUS.md with the commit. |
+| Phase 14: prayers and acts | `claude/alive-p14-prayers` | Being built (from `claude/world-alive`) | Review, merge, CI, release. |
+| Phase 19, the rest: city projects, gift packets, stickers, home-city pin, life stages | `claude/alive-p19b` | Being built | Review, merge, CI, release. |
 
 ## Still to do (in order)
 
 1. Phase 13b (thirty residents, measured
    as an experiment: decide success measures first) and 13c (ideas, assembly, president, Sunday letter).
-3. Phase 14: prayers and acts (acts appear as gist news via `gistService(ctx).add`, never as messages from the owner).
 4. Phase 15: calls with agents (push-to-talk; measure both speech-to-text ways on accents and record the numbers).
 6. Phase 18: real price levels (World Bank data, re-run `scripts/economy-sim.ts`).
-7. Phase 19, the rest: city projects, group gift packets (game money only), a sticker pack, a home-city pin, optional life stages.
 8. Phase 20: agents' own relationships and world events (weddings: Phase 6's wedding share card is ready for them).
 9. Not for an agent to start: local payments, paid cosmetics, the creator programme, anything with ads or spend.
 

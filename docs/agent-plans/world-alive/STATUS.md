@@ -37,9 +37,9 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 8 Gist and the world ledger | live | `95e03aa9` | Public lines from six systems (records, stalls, arrests, busy places, events, announcements), adults named only, hidden players never; Gist app on the phone, "Gist:" line in the Square, share cards, `check_gist` agent tool (docs/GIST.md). Friendships are not a source (private). |
 | 9 Model router and budget | live | `95e03aa9` | One door for every model call, two providers, free first, paid-only for players' words, US$2 a day hard stop, per-player caps, weekly model report, companion moved onto it (docs/MODELS-ROUTER.md). Free gateway cap of 500 a day is a guess (question 7). |
 | 10 House agents and action library | live | `84917cdc` | Rule-run cast in venues with hours (Lagos: a cloth seller and a guide to start; other cities 0, admin settings `houseAgents*`), action library, wake on a person's line, haggling with a floor in code (max discount 15%, never over 30%), model only phrases (paid list, 220 tokens), written lines otherwise (docs/HOUSE-AGENTS.md). No DMs to house agents yet; a deal is a held quote until Phase 11. |
-| 11 Missions from agents | pushed, not yet live | branch `claude/alive-p11-missions` | Tasks a house agent gives in person from templates filled in from the person's life, shown in Missions with the agent and where to find it; new triggers talk to an agent, hand an item, bring a friend, play with another person; the hand-over completes a haggled price (docs/AGENT-MISSIONS.md). The model only rephrases the brief (cached per template and agent). Rewards inside the daily (₦250) and weekly (₦1,000) figures, checked by the life. |
-| 12 Talking, memory, relationships | merged, not yet live | | House agents remember up to five facts per person (never contacts or money), the person sees, deletes or turns it off (Settings), closeness, partners for confirmed adults, and flirting with a partner or an adult's own yes (docs/AGENT-MEMORY.md). No DMs to house agents yet. |
-| 13a One resident in shadow | merged, not yet live | | Remi, a Lagos bookseller: life story, sleep, a model chosen at birth, thoughts as validated choices, nightly summary, shadow (nobody sees her), her day on the admin page (docs/RESIDENTS.md). On by default on the live hosts, in shadow. |
+| 11 Missions from agents | live | REL9 | Tasks a house agent gives in person from templates filled in from the person's life, shown in Missions with the agent and where to find it; new triggers talk to an agent, hand an item, bring a friend, play with another person; the hand-over completes a haggled price (docs/AGENT-MISSIONS.md). The model only rephrases the brief (cached per template and agent). Rewards inside the daily (₦250) and weekly (₦1,000) figures, checked by the life. |
+| 12 Talking, memory, relationships | live | REL9 | House agents remember up to five facts per person (never contacts or money), the person sees, deletes or turns it off (Settings), closeness, partners for confirmed adults, and flirting with a partner or an adult's own yes (docs/AGENT-MEMORY.md). No DMs to house agents yet. |
+| 13a One resident in shadow | live | REL9 | Remi, a Lagos bookseller: life story, sleep, a model chosen at birth, thoughts as validated choices, nightly summary, shadow (nobody sees her), her day on the admin page (docs/RESIDENTS.md). On by default on the live hosts, in shadow. |
 | 13b Thirty residents | not started | | |
 | 13c Ideas, assembly, president, letter | not started | | |
 | 14 Prayers and acts | not started | | |
@@ -95,6 +95,10 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
+- 2026-10-15, release 9 (Phases 11, 12, 13a, and 6 KB more first-download room), REL9: agents give tasks in person and sell a
+  haggled item on hand-over; agents remember a little about you (yours to see, delete or turn off); partners and adults who said
+  yes can flirt; Remi, the first resident, lives in shadow. Checks: typecheck clean; 182 tests of the touched areas pass; CI
+  build and limits ok (startup 598,857 raw).
 - 2026-10-15, release 8 (Phase 17, with release 7's cache-first pass and OpenRouter 1,000 a day), `abec6f54`, live: ride banter,
   the light plan and cut notices. The deploy was refused twice because `main` moved during the build; the third run went out.
   `SMOKE_CITIES=lagos` smoke PASS.

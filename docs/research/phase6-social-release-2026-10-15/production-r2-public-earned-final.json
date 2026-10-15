@@ -1,0 +1,50 @@
+{
+  "at": "2026-10-15T16:30:13.950Z",
+  "source": "joinallworld-69c3ae44e0c10518cc160ea8c05",
+  "id": "6cea4961-b7fc-4bb7-a6db-a28e9327014f",
+  "apiStatus": 200,
+  "kind": "human",
+  "counts": {
+    "achievements": 1,
+    "stories": 2,
+    "projects": 0,
+    "collections": 2
+  },
+  "history": [
+    {
+      "id": "wayfinder",
+      "kind": "achievement",
+      "title": "Wayfinder",
+      "earnedAt": 1792081177959
+    },
+    {
+      "id": "tg:country:local-tales",
+      "kind": "collection",
+      "title": "Guide-Line Keeper",
+      "earnedAt": 1792081106771
+    },
+    {
+      "id": "tg:lome:local-tales",
+      "kind": "collection",
+      "title": "Lomé storykeeper",
+      "earnedAt": 1792081106771
+    },
+    {
+      "id": "place-lome-country-story",
+      "kind": "story",
+      "title": "Finish Two Lines Before Moving the Guide",
+      "earnedAt": 1792081106771
+    },
+    {
+      "id": "place-lome-city-story",
+      "kind": "story",
+      "title": "Cold, Mild, Bold, Sweet",
+      "earnedAt": 1792080916588
+    }
+  ],
+  "pageStatus": 200,
+  "cacheControl": "no-store",
+  "robots": "noindex, nofollow",
+  "earnedTitlesRendered": true,
+  "scope": "Anonymous HTTP after ordinary gameplay and hide/relist; clipboard bytes, peer pin and original before/after identity continuity are separate gaps"
+}

@@ -160,3 +160,9 @@ Astra reproduced stale collection display immediately after earning a country ke
 All180approach label corrections accepted (116older batches,64batch08), enhanced all8gate reports zero errors. Five-project typecheck passes after useRetention reward-signature refresh. Astra verified final08Tokyo reload retaining both keepsakes, Tokyo2/2+storykeeper, Japan1/1+Court-Rest Steward. Actual Paris country completion now updates episode and both collection awards in the same open MyStory panel, without reload/reopen/tab change. This verifies the stale snapshot fix through actual play. Final screenshots and normal Paris reload follow.
 
 Content source934d0962 is published on codex/retention-main-sync; its pre-fix CI38732767698 was dispatched before final copy/UI amendments. Graphics owner published5bb9d30b; parent dispatched CI38733202253 for that branch and awaits owner’s final browser acceptance. No overlapping scene source edits and no deployment.
+
+## Combined candidate verification
+
+Candidate4741f78c combines final content00815a8a, actual UI evidence6109f60c and graphics owner5bb9d30b. Published only to codex/retention-main-sync; CI38734185130 dispatched. All233existing combined focused checks pass (202agent/mission/resident plus31scene/asset/navigation/lifecycle checks). Replayed final284engine and mission probes on this exact candidate;2840paths,34080deals,568old keepsakes,527old collections and283old pending claims pass. Evidence integrated-compatibility.json and integrated-checks.txt.
+
+Graphics owner requests final camera correction536347f9, adding an optional per-scene azimuth bound for Nigeria frontages; other scenes retain unrestricted orbit. Bounded Astra review and focused camera checks pending; final joint CI must include it. Main publication remains held for graphics owner’s terminal browser/resource acceptance. No deployment.

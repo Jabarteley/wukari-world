@@ -1,0 +1,14 @@
+{
+  "source": "4741f78cb78877fcbe996da022686e5da32c6e71",
+  "tests": 233,
+  "passed": 233,
+  "failed": 0,
+  "log": "integrated-checks.txt",
+  "logSha256": "ce6e9ffb3c941f5686377a7bd4d74aa9e8a090ec2eb1376d2a2fb8fdab6514f1",
+  "scope": "202 existing agent/mission/resident checks plus31 scene-host, runtime, navigation, asset and lighting checks on combined candidate. Not broad Node/Worker suites. Engine and mission reports rerun on same candidate. Later camera correction has its separate focused checks and CI.",
+  "engineCompletionPaths": 2840,
+  "dailyMissionDeals": 34080,
+  "legacyKeepsakes": 568,
+  "legacyCollections": 527,
+  "legacyRolloverClaims": 283
+}

@@ -1,24 +1,7 @@
 {
-  "source": "98926c20092fd5c74a1526744eeeb35ac430a4d6",
+  "source": "4741f78cb78877fcbe996da022686e5da32c6e71",
   "dirtyAtRun": [
-    "M docs/agent-work/local-tales-07-quality-20261015.md",
-    " M docs/agent-work/local-tales-08-quality-20261015.md",
-    " M docs/agent-work/unique-local-content-20261015.md",
-    " M scripts/city/check-local-tales.ts",
-    " M src/game/content/local-tales.ts",
-    " M src/game/content/local-tales/batch-02.ts",
-    " M src/game/content/local-tales/batch-03.ts",
-    " M src/game/content/local-tales/batch-06.ts",
-    " M src/game/content/local-tales/batch-07.ts",
-    "?? docs/agent-work/phase6-batch07-middle-source-audit-20261015.md",
-    "?? docs/agent-work/phase6-batch08-source-audit-20261015.md",
-    "?? docs/agent-work/phase6-final-verification-20261015.md",
-    "?? docs/research/unique-local-content-2026-10-15/batches-01-08-validation.json",
-    "?? docs/research/unique-local-content-2026-10-15/ui-paris-earned-250.jpg",
-    "?? docs/research/unique-local-content-2026-10-15/ui-paris-reloaded-250.jpg",
-    "?? docs/research/unique-local-content-2026-10-15/ui-paris-reloaded-card-250.jpg",
-    "?? docs/research/unique-local-content-2026-10-15/ui-world-entry-375.png",
-    "?? src/game/content/local-tales/batch-08.ts"
+    "?? docs/research/unique-local-content-2026-10-15/ui-world-entry-375.png"
   ],
   "acceptedCities": 284,
   "authoredEpisodes": 568,

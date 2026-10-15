@@ -1,22 +1,22 @@
 {
-  "expectedSourceGitSHA": "5b8fd5b9e0683c3d7b5880c2d46fba3e81710fcb",
+  "expectedSourceGitSHA": "fbc5de092e968ab9dcc6bfb38cf70c38cf801523",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "VG",
     "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
-    "receiptSha256": "f46c7b53b1c53bbcea8983ec20928eb7de1b4f54c3b17496a73273d0abc9e0de",
+    "receiptSha256": "6b1888c712685923137a463094ee10c6acbc7684471aaa42e4acc81710cf6df5",
     "receiptBytes": 9558,
     "geometrySha256": "123b50451f31dffb90df4bcd2314e5d7a0794ffaaee6752f8d6e2c7563a696f9",
     "geometryBytes": 2867,
-    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "scriptSha256": "a75e7ddb301ce6651f282b4ee3920097252b23bc8120907abf89487c07916b05",
     "relationId": 285454,
     "boundaryKey": "vg",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38431865880,
-      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
-      "sourceArtifact": "city-bootstrap-vg-76625e88577c373598b4141ef4285f6af082419c",
+      "sourceRunId": 38683818708,
+      "sourceSha": "fd7dd335f300611630179c3c6b03a6349c1f25e2",
+      "sourceArtifact": "city-bootstrap-vg-fd7dd335f300611630179c3c6b03a6349c1f25e2",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -53,7 +53,7 @@
         "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
         "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
         "bounds": [
-          -64.81266223703753,
+          -64.76295577820954,
           18.244885110066022,
           -64.43352056296249,
           18.606646889933977
@@ -200,9 +200,6 @@
         "coastlineRefsWithinWide": [
           "way/23528807",
           "way/26188352",
-          "way/28332664",
-          "way/28332665",
-          "way/28332672",
           "way/28332706",
           "way/28332714",
           "way/28332762",
@@ -222,7 +219,6 @@
           "way/44026834",
           "way/44026835",
           "way/44026838",
-          "way/44026839",
           "way/44026841",
           "way/44026842",
           "way/44026843",
@@ -241,10 +237,7 @@
           "way/44026869",
           "way/44026870",
           "way/44026871",
-          "way/44026872",
-          "way/44026873",
           "way/44026874",
-          "way/44026875",
           "way/44026876",
           "way/44026877",
           "way/44026878",
@@ -259,7 +252,6 @@
           "way/44026904",
           "way/44026905",
           "way/44026906",
-          "way/44026907",
           "way/44026908",
           "way/44029657",
           "way/44029658",
@@ -592,25 +584,24 @@
           "way/1323367986",
           "way/1323367989",
           "way/1323367993",
-          "way/1354806948",
-          "way/1443118493",
           "way/1443566452",
           "way/1457140283",
           "way/1482821453"
         ],
-        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
-        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "boundsPolicySha256": "c387871a4fc76c4170f5fdf4101ee6cf3aabbc77b7435e1e97e6e757dc7343e8",
         "bounds": {
           "policy": {
             "playKm": 20,
             "coreKm": 5,
             "airportClearanceMetres": 1000,
-            "maximumAbsoluteLatitude": 75
+            "maximumAbsoluteLatitude": 75,
+            "westKm": 14.76
           },
           "boxes": {
             "play": [
               18.244885110066022,
-              -64.81266223703753,
+              -64.76295577820954,
               18.606646889933977,
               -64.43352056296249
             ],
@@ -622,13 +613,13 @@
             ],
             "outline": [
               18.19488511006602,
-              -64.86266223703753,
+              -64.81295577820954,
               18.656646889933977,
               -64.38352056296249
             ],
             "wide": [
               17.64488511006602,
-              -65.41266223703752,
+              -65.36295577820954,
               19.206646889933978,
               -63.833520562962484
             ]
@@ -642,7 +633,7 @@
           "rules": {
             "minimumPlaces": 12,
             "minimumNeighbourhoodLabels": 3,
-            "maximumEmptySlots": 4,
+            "maximumEmptySlots": 5,
             "cityPlaceTags": [
               "city",
               "town",
@@ -666,25 +657,25 @@
       },
       "extractKey": "road-town",
       "extractSha256": {
-        "places": "184e46ee435a13a09ee9ea2314fe73789531f5189182358741f0e4517f5ee230",
-        "extras": "67da5f5b36071981a60bda4a1e7d5c2d5e48c4cdb83a19678ead4ae7ec53bcc8",
-        "water": "87417b559fb33572184cb18f31bf4b08a0c8ec182127706481b978859fb50f36",
-        "landuse": "c609fa6da781b2fb176f645c09740af83c3c49171ce87b27252ee17d56a41f96",
-        "roads": "0d98da81b1ac81f706b163b4a0234b229379b3976e31bcea84da3279d1c1cf01"
+        "places": "e0666c43761183d6e3ca9ef44e0ceb5b91df0f6a229b54c467af9eae762d32ca",
+        "extras": "0fdbebe15bb616873ddf5c016a1a9883390833558065190c8e90244e18b1f05b",
+        "water": "a1d99e774985a74b0762bafae43f164818593ebb0f6a98a939afdf3c7028f4e9",
+        "landuse": "2b8da2aea39b7ec0f0c10bd4f8741db0247cf086dea0863116f838692ebe22c6",
+        "roads": "8e8b3c3d5ee2517d4ec0b240d3ec8a4a58b419a1c52de230cf019684fd38d7be"
       },
       "sourceJob": {
         "city": "road-town",
-        "sourceRunId": 38431865880,
-        "sourceArtifact": "city-bootstrap-vg-76625e88577c373598b4141ef4285f6af082419c",
-        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "sourceRunId": 38683818708,
+        "sourceArtifact": "city-bootstrap-vg-fd7dd335f300611630179c3c6b03a6349c1f25e2",
+        "sourceSha": "fd7dd335f300611630179c3c6b03a6349c1f25e2",
         "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
-        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
         "extractSha256": {
-          "places": "184e46ee435a13a09ee9ea2314fe73789531f5189182358741f0e4517f5ee230",
-          "extras": "67da5f5b36071981a60bda4a1e7d5c2d5e48c4cdb83a19678ead4ae7ec53bcc8",
-          "water": "87417b559fb33572184cb18f31bf4b08a0c8ec182127706481b978859fb50f36",
-          "landuse": "c609fa6da781b2fb176f645c09740af83c3c49171ce87b27252ee17d56a41f96",
-          "roads": "0d98da81b1ac81f706b163b4a0234b229379b3976e31bcea84da3279d1c1cf01"
+          "places": "e0666c43761183d6e3ca9ef44e0ceb5b91df0f6a229b54c467af9eae762d32ca",
+          "extras": "0fdbebe15bb616873ddf5c016a1a9883390833558065190c8e90244e18b1f05b",
+          "water": "a1d99e774985a74b0762bafae43f164818593ebb0f6a98a939afdf3c7028f4e9",
+          "landuse": "2b8da2aea39b7ec0f0c10bd4f8741db0247cf086dea0863116f838692ebe22c6",
+          "roads": "8e8b3c3d5ee2517d4ec0b240d3ec8a4a58b419a1c52de230cf019684fd38d7be"
         }
       }
     }

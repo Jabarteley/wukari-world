@@ -32,6 +32,7 @@ const FETCH = {
   'ogun-everyday': async (): Promise<ScenePart> => ({ variants: (await import('./venues-ogun-b.ts')).VARIANTS }),
   'port-harcourt': async (): Promise<ScenePart> => ({ variants: (await import('./venues-rivers.ts')).VARIANTS }),
   abuja: async (): Promise<ScenePart> => ({ variants: (await import('./venues-fct.ts')).VARIANTS }),
+  'nigeria-runtime': async (): Promise<ScenePart> => { const { NIGERIA_RUNTIME_SCENES: scenes } = await import('./nigeria-runtime-scenes.ts'); return { variants: { market: { 'nigeria-broad-street': scenes.lagosMarket }, worship: { 'fct-mosque': scenes.abujaMosque } } }; },
   kano: async (): Promise<ScenePart> => ({ variants: (await import('./venues-kano.ts')).VARIANTS }),
   parametric: async (): Promise<ScenePart> => ({ parametric: await import('./parametric-venue.ts') }),
 } satisfies Record<string, () => Promise<ScenePart>>;
@@ -42,7 +43,7 @@ const CITY_PARTS: Readonly<Record<string, readonly PartId[]>> = Object.freeze({
   ibadan: ['ibadan'],
   abeokuta: ['ogun-signature', 'ogun-everyday'], 'ijebu-ode': ['ogun-signature', 'ogun-everyday'],
   ota: ['ogun-everyday'], sagamu: ['ogun-everyday'],
-  'port-harcourt': ['port-harcourt'], abuja: ['abuja'], kano: ['kano'],
+  'port-harcourt': ['port-harcourt'], abuja: ['nigeria-runtime', 'abuja'], lagos: ['nigeria-runtime'], kano: ['kano'],
 });
 /** On-demand scene kinds and the representative city used by the scene viewer. */
 export const CITY_KINDS: Readonly<Record<string, string>> = Object.freeze({ quad: 'ibadan', hilltop: 'ibadan', lakeside: 'ibadan' });
@@ -84,6 +85,7 @@ export const parametricSceneAdapter = (): ParametricSceneAdapter | null => loade
 /** The city's own scene for a kind: the variant it asked for, else the kind itself where the city added it. Null: the shared kind is drawn. */
 export function citySceneDef(cityId: string, kind: string, variant: string): SceneDef | null {
   const parts = partsOf(cityId);
+  if (cityId === 'lagos' && kind === 'market' && !variant) return loaded.get('nigeria-runtime')?.variants?.market?.['nigeria-broad-street'] ?? null;
   for (const part of parts) { const variants = loaded.get(part)?.variants, own = variants && Object.hasOwn(variants, kind) ? variants[kind]! : null; if (own && Object.hasOwn(own, variant)) return own[variant]!; }
   for (const part of parts) { const kinds = loaded.get(part)?.kinds; if (kinds && Object.hasOwn(kinds, kind)) return kinds[kind]!; }
   return null;

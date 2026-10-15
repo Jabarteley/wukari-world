@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "batch": "batch-001",
+  "assetId": "abuja-mosque-boulevard-01",
+  "status": "offline-reviewed-runtime-candidate",
+  "structuralStatus": "PASS_STRUCTURAL",
+  "visualStatus": "PASS_OFFLINE_DAY_NIGHT",
+  "runtimeManifestSha256": "15b2727c4d4ec0a3161676e53da8262b0a64231421e47c7b227df3da442466fa",
+  "validatorSha256": "eafa09aae4b5105482ab342f62e5fe3a1160149366ec2662fffe819842b2aefa",
+  "files": [
+    {
+      "file": "README.md",
+      "bytes": 2843,
+      "sha256": "8a3205a8d5d2ba69cd93f501966568e51e9ace43a1c12f4d5a6c2162865c4f9f"
+    },
+    {
+      "file": "THIRD-PARTY-NOTICES.md",
+      "bytes": 2312,
+      "sha256": "94a57716dc349063b0ceeb468c7b5e1f358d810bb0ef1ae4e1466329f3aea184"
+    },
+    {
+      "file": "anchors.json",
+      "bytes": 838,
+      "sha256": "8a8a23ec9eb00b8858f9cd1351a248b1e47b9d7be5f89db8cea9104dfb31a248"
+    },
+    {
+      "file": "collision.json",
+      "bytes": 613,
+      "sha256": "500b20ae1a5fbfc3beb50650016f95c38f0a3836e83a8f7bb9dd8aaa88687e3a"
+    },
+    {
+      "file": "far-reimport-day.png",
+      "bytes": 824622,
+      "sha256": "619a974486af5145ffb29e6ddd1ba9c85d9b62b359bdf1de88c7dedc8c91c854"
+    },
+    {
+      "file": "far-reimport-night.png",
+      "bytes": 786720,
+      "sha256": "749afe50b757b327648c01d02af5167ce8c93a8584260347f4444a70b0baf83c"
+    },
+    {
+      "file": "far.glb",
+      "bytes": 970976,
+      "sha256": "14e2cd5faaebd23365858cf765a4f639a68027add83e0b7b732ca9737d70ad5d"
+    },
+    {
+      "file": "manifest.json",
+      "bytes": 2419,
+      "sha256": "15b2727c4d4ec0a3161676e53da8262b0a64231421e47c7b227df3da442466fa"
+    },
+    {
+      "file": "navigation.json",
+      "bytes": 881,
+      "sha256": "361b340d50ffaae9e767c8e6b2a046d3bb8861237826b166aadac6f69929c45f"
+    },
+    {
+      "file": "near-reimport-day.png",
+      "bytes": 835192,
+      "sha256": "4d31395540ba110bbc5e7f4741c3741118ef136810130138b27a4c967830ee38"
+    },
+    {
+      "file": "near-reimport-night.png",
+      "bytes": 787377,
+      "sha256": "25a0f9ae4d2b41a02f47ed4b2ed6b3caeb10fb7f058f86cefbff71628e5067bb"
+    },
+    {
+      "file": "near.glb",
+      "bytes": 1140016,
+      "sha256": "93f54d127a5b87414928ff8db90f377bc00d2cb640e26b848a40b9ed13564983"
+    },
+    {
+      "file": "validation-tools/test_validator.py",
+      "bytes": 2959,
+      "sha256": "40afa58c3d59d91f3000f64a252bc2ee07bb2f845ce08dc187fa831c8e0089fa"
+    },
+    {
+      "file": "validation-tools/validate_runtime_asset.py",
+      "bytes": 13615,
+      "sha256": "eafa09aae4b5105482ab342f62e5fe3a1160149366ec2662fffe819842b2aefa"
+    },
+    {
+      "file": "validation.json",
+      "bytes": 2661,
+      "sha256": "5e4339788cc7af402744f9a3ad4d59f5497c379d507ff5379d586ea84efa84b4"
+    },
+    {
+      "file": "visual-review.json",
+      "bytes": 2598,
+      "sha256": "dca57a0cf867cfdb1a69424224d759d59fad852ab266af922519c82f56c012c5"
+    }
+  ],
+  "excluded": [
+    "large offline Blender source archive",
+    "raw architectural research photographs",
+    "rejected earlier stylized scenes",
+    "backups and stale renders"
+  ],
+  "hostIntegration": "not certified by asset publication"
+}

@@ -1,0 +1,612 @@
+{
+  "scope": "Actual createVenueHost with production city definitions, player and crowd; development harness, not full application UI or production",
+  "started": "2026-10-15T03:42:50.523Z",
+  "head": "59d23b9700b130870085d4f2b2dacfcbf84fc1d1",
+  "checks": [
+    {
+      "label": "lagos-entry",
+      "diagnostics": {
+        "renderCount": 9,
+        "loop": {
+          "running": false,
+          "frames": 0
+        },
+        "avatar": {
+          "x": -3.88,
+          "z": 2.71,
+          "y": 0.26,
+          "facing": 3.142,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 38,
+        "camera": {
+          "yaw": 0.402,
+          "pitch": 0.474,
+          "zoom": 1,
+          "distance": 26.4,
+          "asked": 26.4,
+          "whole": 48.85,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 5.31,
+          "y": 13.86,
+          "z": 24.33,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.392,
+              4.258
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "stalls",
+            "x": -11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": 341,
+            "py": 383,
+            "selected": false
+          },
+          {
+            "id": "food",
+            "x": -5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 510,
+            "py": 417,
+            "selected": false
+          },
+          {
+            "id": "spice",
+            "x": 0,
+            "z": 1.5400000000000003,
+            "px": 703,
+            "py": 457,
+            "selected": false
+          },
+          {
+            "id": "wholesale",
+            "x": 5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 927,
+            "py": 502,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": 1189,
+            "py": 556,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": -2.8000000000000003,
+            "z": 2.8000000000000003,
+            "px": 587,
+            "py": 458,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -3.529795656630451,
+            "z": 1.3357059051776172,
+            "px": 582,
+            "py": 392
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": -1.246434684732353,
+            "z": 1.1039944542551359,
+            "px": 665,
+            "py": 399
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": -5.788493826507523,
+            "z": 3.0624969503183395,
+            "px": 478,
+            "py": 400
+          }
+        ],
+        "objects": [],
+        "drawCalls": 12,
+        "triangles": 7845,
+        "geometries": 18,
+        "textures": 4,
+        "location": "market",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "high",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 84,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 551,
+            "y": 364,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 582,
+            "y": 342,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 668,
+            "y": 344,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 476,
+            "y": 344,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [],
+      "statuses": [
+        {
+          "runtimeStatus": "fallback",
+          "runtimeError": "Runtime scenery unloaded: whole venue budget exceeded"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 10,
+        "triangles": 12703,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:market",
+            "triangles": 432
+          },
+          {
+            "name": "solid",
+            "parent": "venue:market",
+            "triangles": 168
+          },
+          {
+            "name": "sky",
+            "parent": "venue:market",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:market",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:market",
+            "triangles": 40
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:market",
+            "triangles": 1509
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:market",
+            "triangles": 60
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 18,
+        "textures": 4
+      },
+      "render": {
+        "frame": 9,
+        "calls": 12,
+        "triangles": 7845,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "failure",
+      "diagnostics": {
+        "renderCount": 9,
+        "loop": {
+          "running": false,
+          "frames": 0
+        },
+        "avatar": {
+          "x": -3.88,
+          "z": 2.71,
+          "y": 0.26,
+          "facing": 3.142,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 38,
+        "camera": {
+          "yaw": 0.402,
+          "pitch": 0.474,
+          "zoom": 1,
+          "distance": 26.4,
+          "asked": 26.4,
+          "whole": 48.85,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 5.31,
+          "y": 13.86,
+          "z": 24.33,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.392,
+              4.258
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "stalls",
+            "x": -11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": 341,
+            "py": 383,
+            "selected": false
+          },
+          {
+            "id": "food",
+            "x": -5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 510,
+            "py": 417,
+            "selected": false
+          },
+          {
+            "id": "spice",
+            "x": 0,
+            "z": 1.5400000000000003,
+            "px": 703,
+            "py": 457,
+            "selected": false
+          },
+          {
+            "id": "wholesale",
+            "x": 5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 927,
+            "py": 502,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": 1189,
+            "py": 556,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": -2.8000000000000003,
+            "z": 2.8000000000000003,
+            "px": 587,
+            "py": 458,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -3.529795656630451,
+            "z": 1.3357059051776172,
+            "px": 582,
+            "py": 392
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": -1.246434684732353,
+            "z": 1.1039944542551359,
+            "px": 665,
+            "py": 399
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": -5.788493826507523,
+            "z": 3.0624969503183395,
+            "px": 478,
+            "py": 400
+          }
+        ],
+        "objects": [],
+        "drawCalls": 12,
+        "triangles": 7845,
+        "geometries": 18,
+        "textures": 4,
+        "location": "market",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "high",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 84,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 551,
+            "y": 364,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 582,
+            "y": 342,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 668,
+            "y": 344,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 476,
+            "y": 344,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [],
+      "statuses": [
+        {
+          "runtimeStatus": "fallback",
+          "runtimeError": "Runtime scenery unloaded: whole venue budget exceeded"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 10,
+        "triangles": 12703,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:market",
+            "triangles": 432
+          },
+          {
+            "name": "solid",
+            "parent": "venue:market",
+            "triangles": 168
+          },
+          {
+            "name": "sky",
+            "parent": "venue:market",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:market",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:market",
+            "triangles": 40
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:market",
+            "triangles": 1509
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:market",
+            "triangles": 60
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 18,
+        "textures": 4
+      },
+      "render": {
+        "frame": 9,
+        "calls": 12,
+        "triangles": 7845,
+        "points": 0,
+        "lines": 0
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "failure",
+      "sha256": "53cd72b7b4be40232bffc1b6fe06b2e8da43cef1ca2e872a3f14f2389aced699"
+    }
+  ],
+  "sourceHashes": {
+    "src/venue-world.ts": "3b2b2fea8d5c7422e022948cf0f04c8bcf61d5590d9b2c303891e8fb1838c170",
+    "src/scene/venue-scenes.ts": "c571c3d7cb09f85a7a508e6ce8209fa5932e8588a9ff8e928626a4ab594ac8cb",
+    "src/scene/nigeria-runtime-scenes.ts": "9f64d6ff99ec62c7c58702933d0c5d6324eb0b1c080d4d4c146770db4cb29b8d",
+    "src/scene/models/runtime-module.ts": "35b52b0d735d716232a329d0ac0da9e3ce9d1576afab94083688d4272431631d",
+    "src/scene/models/nigeria-navigation.ts": "72f79de5491f730510c624a11151d23ee8d0896ef7f57ab5b9b1d1a43e55077e",
+    "src/scene/city-scenes.ts": "57d480bf17093ac85ec9ea714b95cc03f634548e3f56bd5cff5301eb4b697d48"
+  },
+  "passed": false,
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n0 !== 1\n",
+  "consoleErrors": [],
+  "httpErrors": [],
+  "finished": "2026-10-15T03:43:06.102Z"
+}

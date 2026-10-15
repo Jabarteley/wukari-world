@@ -1,10 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
-import { loadCityContent } from './game/cities/registry.ts';
+import { loadCityScenes } from './scene/city-scenes.ts';
 import { createHostLights, createVenueWorld, HOST_LIGHTING } from './venue-world.ts';
 
-await loadCityContent('lagos');
+await loadCityScenes('lagos');
 
 for (const maps of [false, true]) {
   test(`host lights dispose owned shadow targets once and preserve unrelated lights (allocated=${maps})`, () => {
@@ -49,4 +49,24 @@ test('actual host teardown releases shadow targets before renderer teardown', ()
   assert.ok(shadow, 'the renderer received the actual scene');
   world.dispose(); world.dispose();
   assert.deepEqual(events, ['shadow', 'renderer'], 'host released the shadow target before renderer teardown');
+});
+
+
+test('large venue shadow coverage preserves sunlight direction and resets after travel', () => {
+  const scene = new THREE.Scene(), lights = createHostLights(THREE, scene);
+  const bounds = [-77, 0, -70, 77, 75.6, 43.4] as const;
+  lights.apply(HOST_LIGHTING, bounds);
+  const original = new THREE.Vector3(...HOST_LIGHTING.sun[2]).normalize();
+  const direction = lights.sun.position.clone().sub(lights.sun.target.position).normalize();
+  assert.ok(direction.distanceTo(original) < 1e-10);
+  lights.sun.updateMatrixWorld(); lights.sun.shadow.updateMatrices(lights.sun);
+  const camera = lights.sun.shadow.camera;
+  for (const x of [bounds[0],bounds[3]]) for (const y of [bounds[1],bounds[4]]) for (const z of [bounds[2],bounds[5]]) {
+    const projected = new THREE.Vector3(x,y,z).project(camera);
+    assert.ok(Math.abs(projected.x) <= 1 && Math.abs(projected.y) <= 1 && Math.abs(projected.z) <= 1, 'whole venue inside shadow frustum');
+  }
+  lights.apply(HOST_LIGHTING);
+  assert.equal(camera.left,-22); assert.equal(camera.far,70);
+  assert.deepEqual(lights.sun.target.position.toArray(),[0,0,0]);
+  lights.dispose();
 });

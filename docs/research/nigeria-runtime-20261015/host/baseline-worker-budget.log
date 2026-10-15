@@ -1,0 +1,25 @@
+✖ the Worker contains city references under 500 bytes each and no city payload or packed dictionary (819.46724ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1275.865425
+
+✖ failing tests:
+
+test at scripts/city/worker-content-budget.test.ts:13:1
+✖ the Worker contains city references under 500 bytes each and no city payload or packed dictionary (819.46724ms)
+  AssertionError [ERR_ASSERTION]: Worker is 4680353 bytes
+      at TestContext.<anonymous> (file:///workspace/nigeria-baseline/scripts/city/worker-content-budget.test.ts:28:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

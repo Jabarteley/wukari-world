@@ -1,0 +1,1566 @@
+{
+  "scope": "Actual createVenueHost with production city definitions, player and crowd; development harness, not full application UI or production",
+  "crowdInput": 8,
+  "started": "2026-10-15T03:51:51.837Z",
+  "head": "71e0de6299d609035518c3399e4505d239e88d98",
+  "checks": [
+    {
+      "label": "abuja-entry",
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 15,
+        "loop": {
+          "running": true,
+          "frames": 5
+        },
+        "avatar": {
+          "x": 0,
+          "z": 39.2,
+          "y": 0,
+          "facing": 0,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 4,
+        "camera": {
+          "yaw": 0.481,
+          "pitch": 0.491,
+          "zoom": 1.79,
+          "distance": 28.27,
+          "asked": 28.27,
+          "whole": 147.06,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 11.53,
+          "y": 14.87,
+          "z": 61.3,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.249,
+              8.161
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "visit",
+            "x": 0,
+            "z": 32.2,
+            "px": 646,
+            "py": 351,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 5.6000000000000005,
+            "z": 39.2,
+            "px": 739,
+            "py": 495,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": 0,
+            "z": 39.2,
+            "px": 550,
+            "py": 445,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -1.3468710759269935,
+            "z": 40.70813975380361,
+            "px": 481,
+            "py": 415
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": 1.5535653152676472,
+            "z": 37.503994454255135,
+            "px": 626,
+            "py": 389
+          }
+        ],
+        "objects": [],
+        "drawCalls": 15,
+        "triangles": 11708,
+        "geometries": 22,
+        "textures": 7,
+        "location": "national-mosque",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "high",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 78,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 549,
+            "y": 367,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 479,
+            "y": 366,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 628,
+            "y": 342,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "runtime:abuja-mosque-boulevard-01:near",
+          "scale": [
+            1.4000000000000001,
+            1.4000000000000001,
+            1.4000000000000001
+          ],
+          "bounds": [
+            -77.00000000000001,
+            -1.5400000333786013,
+            -68.25,
+            77.00000000000001,
+            75.60000000000001,
+            43.400000000000006
+          ]
+        }
+      ],
+      "statuses": [
+        {
+          "runtimeStatus": "ready",
+          "runtimeTier": "near"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 13,
+        "triangles": 16566,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:worship",
+            "triangles": 84
+          },
+          {
+            "name": "sky",
+            "parent": "venue:worship",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:worship",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:worship",
+            "triangles": 40
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:worship",
+            "triangles": 966
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:worship",
+            "triangles": 40
+          },
+          {
+            "name": "Abuja_mineral_atlas",
+            "parent": "Scene",
+            "triangles": 3560
+          },
+          {
+            "name": "Recessed_glazing",
+            "parent": "Scene",
+            "triangles": 168
+          },
+          {
+            "name": "Gold_panel_metal",
+            "parent": "Scene",
+            "triangles": 1172
+          },
+          {
+            "name": "Baked_broadleaf_alpha_cards",
+            "parent": "Scene",
+            "triangles": 42
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 22,
+        "textures": 7
+      },
+      "render": {
+        "frame": 15,
+        "calls": 15,
+        "triangles": 11708,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "abuja-day",
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 17,
+        "loop": {
+          "running": true,
+          "frames": 6
+        },
+        "avatar": {
+          "x": 0,
+          "z": 39.2,
+          "y": 0,
+          "facing": 0,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 4,
+        "camera": {
+          "yaw": 0.481,
+          "pitch": 0.491,
+          "zoom": 1.876,
+          "distance": 26.97,
+          "asked": 26.97,
+          "whole": 147.06,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 11,
+          "y": 14.26,
+          "z": 60.29,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.249,
+              8.161
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "visit",
+            "x": 0,
+            "z": 32.2,
+            "px": 649,
+            "py": 350,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 5.6000000000000005,
+            "z": 39.2,
+            "px": 749,
+            "py": 500,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": 0,
+            "z": 39.2,
+            "px": 550,
+            "py": 447,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -1.3468710759269935,
+            "z": 40.70813975380361,
+            "px": 477,
+            "py": 416
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": 1.5535653152676472,
+            "z": 37.503994454255135,
+            "px": 629,
+            "py": 389
+          }
+        ],
+        "objects": [],
+        "drawCalls": 15,
+        "triangles": 11708,
+        "geometries": 22,
+        "textures": 7,
+        "location": "national-mosque",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "high",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 82,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 549,
+            "y": 365,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 475,
+            "y": 364,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 631,
+            "y": 340,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "runtime:abuja-mosque-boulevard-01:near",
+          "scale": [
+            1.4000000000000001,
+            1.4000000000000001,
+            1.4000000000000001
+          ],
+          "bounds": [
+            -77.00000000000001,
+            -1.5400000333786013,
+            -68.25,
+            77.00000000000001,
+            75.60000000000001,
+            43.400000000000006
+          ]
+        }
+      ],
+      "statuses": [
+        {
+          "runtimeStatus": "ready",
+          "runtimeTier": "near"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 13,
+        "triangles": 16566,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:worship",
+            "triangles": 84
+          },
+          {
+            "name": "sky",
+            "parent": "venue:worship",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:worship",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:worship",
+            "triangles": 40
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:worship",
+            "triangles": 966
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:worship",
+            "triangles": 40
+          },
+          {
+            "name": "Abuja_mineral_atlas",
+            "parent": "Scene",
+            "triangles": 3560
+          },
+          {
+            "name": "Recessed_glazing",
+            "parent": "Scene",
+            "triangles": 168
+          },
+          {
+            "name": "Gold_panel_metal",
+            "parent": "Scene",
+            "triangles": 1172
+          },
+          {
+            "name": "Baked_broadleaf_alpha_cards",
+            "parent": "Scene",
+            "triangles": 42
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 22,
+        "textures": 7
+      },
+      "render": {
+        "frame": 17,
+        "calls": 15,
+        "triangles": 11708,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "abuja-night",
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 26,
+        "loop": {
+          "running": false,
+          "frames": 14
+        },
+        "avatar": {
+          "x": 0,
+          "z": 39.2,
+          "y": 0,
+          "facing": 0,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 4,
+        "camera": {
+          "yaw": 0.481,
+          "pitch": 0.491,
+          "zoom": 2,
+          "distance": 25.3,
+          "asked": 25.3,
+          "whole": 147.06,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 10.32,
+          "y": 13.47,
+          "z": 58.98,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.249,
+              8.161
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "visit",
+            "x": 0,
+            "z": 32.2,
+            "px": 655,
+            "py": 347,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 5.6000000000000005,
+            "z": 39.2,
+            "px": 763,
+            "py": 507,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": 0,
+            "z": 39.2,
+            "px": 550,
+            "py": 450,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -1.3468710759269935,
+            "z": 40.70813975380361,
+            "px": 472,
+            "py": 417
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": 1.5535653152676472,
+            "z": 37.503994454255135,
+            "px": 634,
+            "py": 388
+          }
+        ],
+        "objects": [],
+        "drawCalls": 15,
+        "triangles": 11708,
+        "geometries": 22,
+        "textures": 7,
+        "location": "national-mosque",
+        "background": "#2c3c6a",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.2,
+          "sun": 1,
+          "sky": "#a4b8f2"
+        },
+        "tier": "high",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 87,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 549,
+            "y": 363,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 470,
+            "y": 362,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 637,
+            "y": 336,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "runtime:abuja-mosque-boulevard-01:near",
+          "scale": [
+            1.4000000000000001,
+            1.4000000000000001,
+            1.4000000000000001
+          ],
+          "bounds": [
+            -77.00000000000001,
+            -1.5400000333786013,
+            -68.25,
+            77.00000000000001,
+            75.60000000000001,
+            43.400000000000006
+          ]
+        }
+      ],
+      "statuses": [
+        {
+          "runtimeStatus": "ready",
+          "runtimeTier": "near"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 13,
+        "triangles": 16566,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.2
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 1
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 1
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:worship",
+            "triangles": 84
+          },
+          {
+            "name": "sky",
+            "parent": "venue:worship",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:worship",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:worship",
+            "triangles": 40
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:worship",
+            "triangles": 966
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:worship",
+            "triangles": 40
+          },
+          {
+            "name": "Abuja_mineral_atlas",
+            "parent": "Scene",
+            "triangles": 3560
+          },
+          {
+            "name": "Recessed_glazing",
+            "parent": "Scene",
+            "triangles": 168
+          },
+          {
+            "name": "Gold_panel_metal",
+            "parent": "Scene",
+            "triangles": 1172
+          },
+          {
+            "name": "Baked_broadleaf_alpha_cards",
+            "parent": "Scene",
+            "triangles": 42
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 22,
+        "textures": 7
+      },
+      "render": {
+        "frame": 26,
+        "calls": 15,
+        "triangles": 11708,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "abuja-wet-season",
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 28,
+        "loop": {
+          "running": false,
+          "frames": 14
+        },
+        "avatar": {
+          "x": 0,
+          "z": 39.2,
+          "y": 0,
+          "facing": 0,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 4,
+        "camera": {
+          "yaw": 0.481,
+          "pitch": 0.491,
+          "zoom": 2,
+          "distance": 25.3,
+          "asked": 25.3,
+          "whole": 147.06,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 10.32,
+          "y": 13.47,
+          "z": 58.98,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.249,
+              8.161
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "visit",
+            "x": 0,
+            "z": 32.2,
+            "px": 655,
+            "py": 347,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 5.6000000000000005,
+            "z": 39.2,
+            "px": 763,
+            "py": 507,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": 0,
+            "z": 39.2,
+            "px": 550,
+            "py": 450,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -1.3468710759269935,
+            "z": 40.70813975380361,
+            "px": 472,
+            "py": 417
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": 1.5535653152676472,
+            "z": 37.503994454255135,
+            "px": 634,
+            "py": 388
+          }
+        ],
+        "objects": [],
+        "drawCalls": 15,
+        "triangles": 11708,
+        "geometries": 22,
+        "textures": 7,
+        "location": "national-mosque",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "high",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 87,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 549,
+            "y": 363,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 470,
+            "y": 362,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 637,
+            "y": 336,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "runtime:abuja-mosque-boulevard-01:near",
+          "scale": [
+            1.4000000000000001,
+            1.4000000000000001,
+            1.4000000000000001
+          ],
+          "bounds": [
+            -77.00000000000001,
+            -1.5400000333786013,
+            -68.25,
+            77.00000000000001,
+            75.60000000000001,
+            43.400000000000006
+          ]
+        }
+      ],
+      "statuses": [
+        {
+          "runtimeStatus": "ready",
+          "runtimeTier": "near"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 13,
+        "triangles": 16566,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:worship",
+            "triangles": 84
+          },
+          {
+            "name": "sky",
+            "parent": "venue:worship",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:worship",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:worship",
+            "triangles": 40
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:worship",
+            "triangles": 966
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:worship",
+            "triangles": 40
+          },
+          {
+            "name": "Abuja_mineral_atlas",
+            "parent": "Scene",
+            "triangles": 3560
+          },
+          {
+            "name": "Recessed_glazing",
+            "parent": "Scene",
+            "triangles": 168
+          },
+          {
+            "name": "Gold_panel_metal",
+            "parent": "Scene",
+            "triangles": 1172
+          },
+          {
+            "name": "Baked_broadleaf_alpha_cards",
+            "parent": "Scene",
+            "triangles": 42
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 22,
+        "textures": 7
+      },
+      "render": {
+        "frame": 28,
+        "calls": 15,
+        "triangles": 11708,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "abuja-harmattan",
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 29,
+        "loop": {
+          "running": false,
+          "frames": 14
+        },
+        "avatar": {
+          "x": 0,
+          "z": 39.2,
+          "y": 0,
+          "facing": 0,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 4,
+        "camera": {
+          "yaw": 0.481,
+          "pitch": 0.491,
+          "zoom": 2,
+          "distance": 25.3,
+          "asked": 25.3,
+          "whole": 147.06,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 10.32,
+          "y": 13.47,
+          "z": 58.98,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.249,
+              8.161
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "visit",
+            "x": 0,
+            "z": 32.2,
+            "px": 655,
+            "py": 347,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 5.6000000000000005,
+            "z": 39.2,
+            "px": 763,
+            "py": 507,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": 0,
+            "z": 39.2,
+            "px": 550,
+            "py": 450,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -1.3468710759269935,
+            "z": 40.70813975380361,
+            "px": 472,
+            "py": 417
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": 1.5535653152676472,
+            "z": 37.503994454255135,
+            "px": 634,
+            "py": 388
+          }
+        ],
+        "objects": [],
+        "drawCalls": 15,
+        "triangles": 11708,
+        "geometries": 22,
+        "textures": 7,
+        "location": "national-mosque",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "high",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 87,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 549,
+            "y": 363,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 470,
+            "y": 362,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 637,
+            "y": 336,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "runtime:abuja-mosque-boulevard-01:near",
+          "scale": [
+            1.4000000000000001,
+            1.4000000000000001,
+            1.4000000000000001
+          ],
+          "bounds": [
+            -77.00000000000001,
+            -1.5400000333786013,
+            -68.25,
+            77.00000000000001,
+            75.60000000000001,
+            43.400000000000006
+          ]
+        }
+      ],
+      "statuses": [
+        {
+          "runtimeStatus": "ready",
+          "runtimeTier": "near"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 13,
+        "triangles": 16566,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:worship",
+            "triangles": 84
+          },
+          {
+            "name": "sky",
+            "parent": "venue:worship",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:worship",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:worship",
+            "triangles": 40
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:worship",
+            "triangles": 966
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:worship",
+            "triangles": 40
+          },
+          {
+            "name": "Abuja_mineral_atlas",
+            "parent": "Scene",
+            "triangles": 3560
+          },
+          {
+            "name": "Recessed_glazing",
+            "parent": "Scene",
+            "triangles": 168
+          },
+          {
+            "name": "Gold_panel_metal",
+            "parent": "Scene",
+            "triangles": 1172
+          },
+          {
+            "name": "Baked_broadleaf_alpha_cards",
+            "parent": "Scene",
+            "triangles": 42
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 22,
+        "textures": 7
+      },
+      "render": {
+        "frame": 29,
+        "calls": 15,
+        "triangles": 11708,
+        "points": 0,
+        "lines": 0
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "abuja-day",
+      "sha256": "13b17b12555a32871224b64c6845ba9f400e88cf7d4cf36f072c99fe097b80e1"
+    },
+    {
+      "name": "abuja-night",
+      "sha256": "e7556627296c8a32ce511522377b4b472cf8aa5e9b59e871b9e49ec662e1977f"
+    },
+    {
+      "name": "abuja-wet-season",
+      "sha256": "8bf8566736b7bb0958cba84630eb9a56c97b7044f4441b575102a434927d5353"
+    },
+    {
+      "name": "abuja-harmattan",
+      "sha256": "8bf8566736b7bb0958cba84630eb9a56c97b7044f4441b575102a434927d5353"
+    }
+  ],
+  "sourceHashes": {
+    "src/venue-world.ts": "1be0b8c95721f369695794130ee340ea72835a433b9af53c5b1bf1644ef845be",
+    "src/scene/venue-scenes.ts": "eb83b027806ec1cf6dc5a09398ed250b2dd436a7b1a8ee687c16045c4f394b70",
+    "src/scene/nigeria-runtime-scenes.ts": "b9f9dfd47fe6135c0c48d5a878fbf4d8f379a1a18d952dbb8b1a73903e401b61",
+    "src/scene/models/runtime-module.ts": "35b52b0d735d716232a329d0ac0da9e3ce9d1576afab94083688d4272431631d",
+    "src/scene/models/nigeria-navigation.ts": "72f79de5491f730510c624a11151d23ee8d0896ef7f57ab5b9b1d1a43e55077e",
+    "src/scene/city-scenes.ts": "57d480bf17093ac85ec9ea714b95cc03f634548e3f56bd5cff5301eb4b697d48"
+  },
+  "disposed": {
+    "geometries": 0,
+    "textures": 0
+  },
+  "consoleErrors": [],
+  "httpErrors": [],
+  "passed": true,
+  "sourceHashesAfter": {
+    "src/venue-world.ts": "1be0b8c95721f369695794130ee340ea72835a433b9af53c5b1bf1644ef845be",
+    "src/scene/venue-scenes.ts": "eb83b027806ec1cf6dc5a09398ed250b2dd436a7b1a8ee687c16045c4f394b70",
+    "src/scene/nigeria-runtime-scenes.ts": "b9f9dfd47fe6135c0c48d5a878fbf4d8f379a1a18d952dbb8b1a73903e401b61",
+    "src/scene/models/runtime-module.ts": "35b52b0d735d716232a329d0ac0da9e3ce9d1576afab94083688d4272431631d",
+    "src/scene/models/nigeria-navigation.ts": "72f79de5491f730510c624a11151d23ee8d0896ef7f57ab5b9b1d1a43e55077e",
+    "src/scene/city-scenes.ts": "57d480bf17093ac85ec9ea714b95cc03f634548e3f56bd5cff5301eb4b697d48"
+  },
+  "sourceStable": true,
+  "finished": "2026-10-15T03:52:06.265Z"
+}

@@ -1,3 +1,5 @@
+import { loadCityScenes } from './city-scenes.ts';
+await loadCityScenes('lagos');
 import { loadCityContent as preloadCityContent } from '../game/cities/registry.ts';
 await preloadCityContent('lagos');
 import test from 'node:test';

@@ -1,0 +1,563 @@
+{
+  "assetRevision": "8d01a5b83ab23a64b621def4784ffd0c93684c81",
+  "hostRevision": "81a94cbbd6b5024ae87fb2d1d6b3d11239637ddb",
+  "scope": "Independent binary/hash audit; no actual host rendering or navigation certified",
+  "batches": [
+    {
+      "batch": "batch-001",
+      "manifestSha256": "0a4ea8936e07b5b5252cc399eb6e3767b65c5a77cceacbfe186b53e413f9f833",
+      "modules": [
+        {
+          "id": "abuja-mosque-boulevard-01",
+          "verifiedPayloadFiles": 17,
+          "boundsMetresXZ": [
+            -55,
+            -50,
+            55,
+            31
+          ],
+          "boundsGameXZ": [
+            -77.0,
+            -70.0,
+            77.0,
+            43.4
+          ],
+          "entranceMetresXZHeading": [
+            0,
+            28,
+            0
+          ],
+          "rights": "Original geometry owner-authorized project use; imported texture sources CC0-1.0; reference photos research-only and excluded",
+          "tiers": {
+            "near": {
+              "file": "near.glb",
+              "sha256": "93f54d127a5b87414928ff8db90f377bc00d2cb640e26b848a40b9ed13564983",
+              "bytes": 1140016,
+              "triangles": 4942,
+              "drawPrimitives": 4,
+              "rgba8WithMipsBytes": 7340028,
+              "images": [
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "996e1bd1316ffca5b52ac0f4fa6fd93fbaff314bc879259fdb4575d48b7a648b",
+                  "rgba8WithMips": 1398100
+                },
+                {
+                  "width": 1024,
+                  "height": 1024,
+                  "sha256": "d11c83cc95129f18ef6b5347e978109d85f4752cb5a4075c731afa4a16b3963d",
+                  "rgba8WithMips": 5592404
+                },
+                {
+                  "width": 256,
+                  "height": 256,
+                  "sha256": "e2becbc2c5c8fca24707ba37a503f84c94c81ccc0910731ad7e4de8dde70f232",
+                  "rgba8WithMips": 349524
+                }
+              ],
+              "lights": 0,
+              "cameras": 0
+            },
+            "far": {
+              "file": "far.glb",
+              "sha256": "14e2cd5faaebd23365858cf765a4f639a68027add83e0b7b732ca9737d70ad5d",
+              "bytes": 970976,
+              "triangles": 1936,
+              "drawPrimitives": 4,
+              "rgba8WithMipsBytes": 7340028,
+              "images": [
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "996e1bd1316ffca5b52ac0f4fa6fd93fbaff314bc879259fdb4575d48b7a648b",
+                  "rgba8WithMips": 1398100
+                },
+                {
+                  "width": 1024,
+                  "height": 1024,
+                  "sha256": "d11c83cc95129f18ef6b5347e978109d85f4752cb5a4075c731afa4a16b3963d",
+                  "rgba8WithMips": 5592404
+                },
+                {
+                  "width": 256,
+                  "height": 256,
+                  "sha256": "e2becbc2c5c8fca24707ba37a503f84c94c81ccc0910731ad7e4de8dde70f232",
+                  "rgba8WithMips": 349524
+                }
+              ],
+              "lights": 0,
+              "cameras": 0
+            }
+          },
+          "tiersShareIdenticalImages": true
+        },
+        {
+          "id": "lagos-broad-street-01",
+          "verifiedPayloadFiles": 17,
+          "boundsMetresXZ": [
+            -9.800000190734863,
+            -9.149999618530273,
+            9.80000114440918,
+            3.146162271499634
+          ],
+          "boundsGameXZ": [
+            -13.720000267028809,
+            -12.809999465942383,
+            13.72000160217285,
+            4.404627180099487
+          ],
+          "entranceMetresXZHeading": [
+            0,
+            2,
+            3.141592653589793
+          ],
+          "rights": "Original geometry: owner-authorized project use, external redistribution license pending. Imported texture sources CC0-1.0. Reference photos research only, not embedded.",
+          "tiers": {
+            "near": {
+              "file": "lagos_broadstreet_lod0.glb",
+              "sha256": "1d03d5a9faadb7cc49e7595e7a43e896f4787cd6e33064c263f7267ca14bd19f",
+              "bytes": 1182128,
+              "triangles": 7618,
+              "drawPrimitives": 1,
+              "rgba8WithMipsBytes": 8388604,
+              "images": [
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "7c245dd23106985bc0252bc126b9411568375bb62c7379bf3d94036009d0c3d8",
+                  "rgba8WithMips": 1398100
+                },
+                {
+                  "width": 1024,
+                  "height": 1024,
+                  "sha256": "16b4eddac5219931ab45da0936b32dfc4685ee70de32a0a62d6fdb2059381b9e",
+                  "rgba8WithMips": 5592404
+                },
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "36d46ae4f940a9d7bf76ab452fde6de23e94c3e990bc0c2c17815e1682f90d31",
+                  "rgba8WithMips": 1398100
+                }
+              ],
+              "lights": 0,
+              "cameras": 0
+            },
+            "far": {
+              "file": "lagos_broadstreet_lod1.glb",
+              "sha256": "197b7e5d4b85173ea533ada8afb3a0da6db6bbd309e9805427520195b147e0bd",
+              "bytes": 776400,
+              "triangles": 1822,
+              "drawPrimitives": 1,
+              "rgba8WithMipsBytes": 8388604,
+              "images": [
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "7c245dd23106985bc0252bc126b9411568375bb62c7379bf3d94036009d0c3d8",
+                  "rgba8WithMips": 1398100
+                },
+                {
+                  "width": 1024,
+                  "height": 1024,
+                  "sha256": "16b4eddac5219931ab45da0936b32dfc4685ee70de32a0a62d6fdb2059381b9e",
+                  "rgba8WithMips": 5592404
+                },
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "36d46ae4f940a9d7bf76ab452fde6de23e94c3e990bc0c2c17815e1682f90d31",
+                  "rgba8WithMips": 1398100
+                }
+              ],
+              "lights": 0,
+              "cameras": 0
+            }
+          },
+          "tiersShareIdenticalImages": true
+        }
+      ]
+    },
+    {
+      "batch": "batch-002",
+      "manifestSha256": "0bc5da4f4656526df2ee7caa232a954d5836045f1ef42938ef049a54fc358551",
+      "modules": [
+        {
+          "id": "abuja-commercial-boulevard-01",
+          "verifiedPayloadFiles": 17,
+          "boundsMetresXZ": [
+            -35,
+            -20,
+            35,
+            31
+          ],
+          "boundsGameXZ": [
+            -49.0,
+            -28.0,
+            49.0,
+            43.4
+          ],
+          "entranceMetresXZHeading": [
+            0,
+            28,
+            0
+          ],
+          "rights": "Original geometry owner-authorized project use; imported texture sources CC0-1.0; reference photos research-only and excluded",
+          "tiers": {
+            "near": {
+              "file": "near.glb",
+              "sha256": "3366b2c36b5beb87f1bfa936937f08bf12f84fdd22500e5a05fcf840330acc12",
+              "bytes": 1146060,
+              "triangles": 3842,
+              "drawPrimitives": 3,
+              "rgba8WithMipsBytes": 7340028,
+              "images": [
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "996e1bd1316ffca5b52ac0f4fa6fd93fbaff314bc879259fdb4575d48b7a648b",
+                  "rgba8WithMips": 1398100
+                },
+                {
+                  "width": 1024,
+                  "height": 1024,
+                  "sha256": "62e40ccab4d5eaf390ca4310b0519362f9888215eb07a7d002eeff87e9f0bdda",
+                  "rgba8WithMips": 5592404
+                },
+                {
+                  "width": 256,
+                  "height": 256,
+                  "sha256": "e2becbc2c5c8fca24707ba37a503f84c94c81ccc0910731ad7e4de8dde70f232",
+                  "rgba8WithMips": 349524
+                }
+              ],
+              "lights": 0,
+              "cameras": 0
+            },
+            "far": {
+              "file": "far.glb",
+              "sha256": "b0fb570bd5f8d001da2147908e280694b572a2641749d437a9160b3fbfe43b0c",
+              "bytes": 949280,
+              "triangles": 1020,
+              "drawPrimitives": 3,
+              "rgba8WithMipsBytes": 7340028,
+              "images": [
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "996e1bd1316ffca5b52ac0f4fa6fd93fbaff314bc879259fdb4575d48b7a648b",
+                  "rgba8WithMips": 1398100
+                },
+                {
+                  "width": 1024,
+                  "height": 1024,
+                  "sha256": "62e40ccab4d5eaf390ca4310b0519362f9888215eb07a7d002eeff87e9f0bdda",
+                  "rgba8WithMips": 5592404
+                },
+                {
+                  "width": 256,
+                  "height": 256,
+                  "sha256": "e2becbc2c5c8fca24707ba37a503f84c94c81ccc0910731ad7e4de8dde70f232",
+                  "rgba8WithMips": 349524
+                }
+              ],
+              "lights": 0,
+              "cameras": 0
+            }
+          },
+          "tiersShareIdenticalImages": true
+        },
+        {
+          "id": "lagos-transit-shops-01",
+          "verifiedPayloadFiles": 17,
+          "boundsMetresXZ": [
+            -5.5,
+            -9.59999942779541,
+            5.5,
+            9.5
+          ],
+          "boundsGameXZ": [
+            -7.699999999999999,
+            -13.439999198913574,
+            7.699999999999999,
+            13.299999999999999
+          ],
+          "entranceMetresXZHeading": [
+            -4.3,
+            7.8,
+            0
+          ],
+          "rights": "Owner-authorized project use; original geometry external license pending. Source maps CC0-1.0. Research photos not embedded/distributed.",
+          "tiers": {
+            "near": {
+              "file": "lagos_transit_lod0.glb",
+              "sha256": "75dc92d60bc920eddb0fdfdcd23b24bec324a1274b70201ca763fab1275fb3d4",
+              "bytes": 1301304,
+              "triangles": 7668,
+              "drawPrimitives": 1,
+              "rgba8WithMipsBytes": 8388604,
+              "images": [
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "fe2aa34ba46eb5dec3f88f0ccfed39284fd85e4acc07a00241a10b36c40310d4",
+                  "rgba8WithMips": 1398100
+                },
+                {
+                  "width": 1024,
+                  "height": 1024,
+                  "sha256": "8773394312721c9206eb4a524993840711543cc3dd8ab973e94f453aab67e1c6",
+                  "rgba8WithMips": 5592404
+                },
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "a05bab151d4e0f65181194dbf4211e2f0cdd40906636be365b47687d0ed831b0",
+                  "rgba8WithMips": 1398100
+                }
+              ],
+              "lights": 0,
+              "cameras": 0
+            },
+            "far": {
+              "file": "lagos_transit_lod1.glb",
+              "sha256": "bc67af8e7ccfca57321b26db7b6ef605bdde63c222cb5f3bb4327d81f52c6a28",
+              "bytes": 934436,
+              "triangles": 1822,
+              "drawPrimitives": 3,
+              "rgba8WithMipsBytes": 8388604,
+              "images": [
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "fe2aa34ba46eb5dec3f88f0ccfed39284fd85e4acc07a00241a10b36c40310d4",
+                  "rgba8WithMips": 1398100
+                },
+                {
+                  "width": 1024,
+                  "height": 1024,
+                  "sha256": "8773394312721c9206eb4a524993840711543cc3dd8ab973e94f453aab67e1c6",
+                  "rgba8WithMips": 5592404
+                },
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "a05bab151d4e0f65181194dbf4211e2f0cdd40906636be365b47687d0ed831b0",
+                  "rgba8WithMips": 1398100
+                }
+              ],
+              "lights": 0,
+              "cameras": 0
+            }
+          },
+          "tiersShareIdenticalImages": true
+        }
+      ]
+    },
+    {
+      "batch": "batch-003",
+      "manifestSha256": "42a60dd0b5493d0a2f4db97f7820b1bf42882a1789b3e20f257dfe515396983f",
+      "modules": [
+        {
+          "id": "abuja-residential-compound-02",
+          "verifiedPayloadFiles": 20,
+          "boundsMetresXZ": [
+            -24,
+            -30,
+            24,
+            31
+          ],
+          "boundsGameXZ": [
+            -33.599999999999994,
+            -42.0,
+            33.599999999999994,
+            43.4
+          ],
+          "entranceMetresXZHeading": [
+            0,
+            28,
+            0
+          ],
+          "rights": "Owner-authorized original project use; imported surface scans CC0-1.0; research photos excluded",
+          "tiers": {
+            "near": {
+              "file": "near.glb",
+              "sha256": "5be2923f8386d85c5586dfc870fae27485b58b465e90c83e9c2e09bc1815d2f2",
+              "bytes": 1248896,
+              "triangles": 5192,
+              "drawPrimitives": 3,
+              "rgba8WithMipsBytes": 7340028,
+              "images": [
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "996e1bd1316ffca5b52ac0f4fa6fd93fbaff314bc879259fdb4575d48b7a648b",
+                  "rgba8WithMips": 1398100
+                },
+                {
+                  "width": 1024,
+                  "height": 1024,
+                  "sha256": "70d4863fef9474c09b514e8c6a104bf3118ab7038a10540160c29fdb91f2756a",
+                  "rgba8WithMips": 5592404
+                },
+                {
+                  "width": 256,
+                  "height": 256,
+                  "sha256": "e2becbc2c5c8fca24707ba37a503f84c94c81ccc0910731ad7e4de8dde70f232",
+                  "rgba8WithMips": 349524
+                }
+              ],
+              "lights": 0,
+              "cameras": 0
+            },
+            "far": {
+              "file": "far.glb",
+              "sha256": "f29d793c42399f5740bbc50ab492e97bf6f86b270ab4913bb501e7fd6f450ed9",
+              "bytes": 1025152,
+              "triangles": 1780,
+              "drawPrimitives": 3,
+              "rgba8WithMipsBytes": 7340028,
+              "images": [
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "996e1bd1316ffca5b52ac0f4fa6fd93fbaff314bc879259fdb4575d48b7a648b",
+                  "rgba8WithMips": 1398100
+                },
+                {
+                  "width": 1024,
+                  "height": 1024,
+                  "sha256": "70d4863fef9474c09b514e8c6a104bf3118ab7038a10540160c29fdb91f2756a",
+                  "rgba8WithMips": 5592404
+                },
+                {
+                  "width": 256,
+                  "height": 256,
+                  "sha256": "e2becbc2c5c8fca24707ba37a503f84c94c81ccc0910731ad7e4de8dde70f232",
+                  "rgba8WithMips": 349524
+                }
+              ],
+              "lights": 0,
+              "cameras": 0
+            }
+          },
+          "tiersShareIdenticalImages": true
+        },
+        {
+          "id": "lagos-planned-compound-01",
+          "verifiedPayloadFiles": 20,
+          "boundsMetresXZ": [
+            -7.5,
+            -10.0,
+            7.5,
+            7.09999942779541
+          ],
+          "boundsGameXZ": [
+            -10.5,
+            -14.0,
+            10.5,
+            9.939999198913574
+          ],
+          "entranceMetresXZHeading": [
+            0,
+            6.2,
+            3.141592653589793
+          ],
+          "rights": "Owner-authorized project use for original geometry; no third-party redistribution license inferred. Imported material maps CC0-1.0.",
+          "tiers": {
+            "near": {
+              "file": "lagos_residential_lod0.glb",
+              "sha256": "a1e0d926533cc4b1848b481d6e06c5b8a0fa07ccc2d6fdd49160c6f354ed8d32",
+              "bytes": 991844,
+              "triangles": 5956,
+              "drawPrimitives": 2,
+              "rgba8WithMipsBytes": 8388604,
+              "images": [
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "63b0821c983cc2f009a44fa54a751495de43c4ebf95982c91773c26a726c9d4c",
+                  "rgba8WithMips": 1398100
+                },
+                {
+                  "width": 1024,
+                  "height": 1024,
+                  "sha256": "6b7b66b63a313865065a5c5a13719bc5b3702d18756595377f0aeff1db8b2594",
+                  "rgba8WithMips": 5592404
+                },
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "ad86df0427cd344616ef8918b4add990e0f7d66621cf4679d48ce6902b945d08",
+                  "rgba8WithMips": 1398100
+                }
+              ],
+              "lights": 0,
+              "cameras": 0
+            },
+            "far": {
+              "file": "lagos_residential_lod1.glb",
+              "sha256": "3c0cd0cdd4982cee4355526376b82bae9f1a71440f626a443835e6c70a0f1c93",
+              "bytes": 604952,
+              "triangles": 572,
+              "drawPrimitives": 2,
+              "rgba8WithMipsBytes": 8388604,
+              "images": [
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "63b0821c983cc2f009a44fa54a751495de43c4ebf95982c91773c26a726c9d4c",
+                  "rgba8WithMips": 1398100
+                },
+                {
+                  "width": 1024,
+                  "height": 1024,
+                  "sha256": "6b7b66b63a313865065a5c5a13719bc5b3702d18756595377f0aeff1db8b2594",
+                  "rgba8WithMips": 5592404
+                },
+                {
+                  "width": 512,
+                  "height": 512,
+                  "sha256": "ad86df0427cd344616ef8918b4add990e0f7d66621cf4679d48ce6902b945d08",
+                  "rgba8WithMips": 1398100
+                }
+              ],
+              "lights": 0,
+              "cameras": 0
+            }
+          },
+          "tiersShareIdenticalImages": true
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "status": "PASS_INDEPENDENT_HASH_AND_BINARY_METRICS",
+  "contract": {
+    "gameUnitsPerMetre": 1.4,
+    "basis": "2.45 game units per 1.75 metre person; host venue-scenes.ts documents 2.45 person height",
+    "axis": "Already glTF Y-up; do not apply Blender Z-up conversion a second time. Entrance tuple x,z,heading; bounds/walkable xMin,zMin,xMax,zMax. Collision and anchor positions xyz. Apply identical scale/rotation/translation; heading rotates but is never scaled.",
+    "lod": "Far distance only; force near indoors. Release inactive tier or explicitly deduplicate textures. Geometry count excludes host meshes/shadow passes."
+  },
+  "remainingGates": [
+    "Actual in-game total venue <=17000 triangles/60 draws and imported neighborhood <=11500 triangles/20 draws",
+    "Bounded async load cancellation, stale result disposal and active tier residency",
+    "Camera, collision, entrance/exit alignment and lighting/weather/nightlife in actual game",
+    "Preserve property furniture customization and procedural fallbacks",
+    "Avoid calling mosque interior navigable; upper floors decorative; minibus static"
+  ],
+  "hostInspection": {
+    "venueBudget": "src/budgets.ts SCENE_TRIANGLES=17000 SCENE_DRAW_CALLS=60",
+    "neighborhoodBudget": "src/scene/neighbourhood-scene.ts:38 MODEL_BUDGET triangles11500/drawCalls20; existing model layer uses nearRadius30",
+    "legacyImporter": "src/scene/models/gltf-source.ts:88 onward extracts material.map and flattened geometry; output ModelPart does not carry authored normal/roughness/metallic/alpha material semantics",
+    "placementRisks": [
+      "Mosque at 1.4 scale spans154x113.4 game units and75.6 high; typical venue bounds approximately28x25. Cannot shrink to fit without breaking human scale; camera and terrain need a dedicated composition.",
+      "Lagos Broad Street is27.44 units wide and32.081 high; entrance scaled to [0,2.8], heading pi. Authoritative walkable area is only frontage sidewalk, not shop interior.",
+      "Mosque navigation explicitly blocks building; street-entry scaled to [0,0,39.2], heading0. Keep civic/prayer interactions reachable outside blocking volume.",
+      "All Lagos near modules summed21242 triangles; Broad+transit15286 already exceeds neighborhood11500 before other imported meshes. Bound one near module and account for all far modules.",
+      "Existing host grid uses procedural footprints and fixed walk bounds; appending meshes alone will not integrate sidecar collision/entrance.",
+      "Shadow passes can add draw calls beyond primitive count; authored textures contain no runtime lights so preview nighttime lighting is not inherited."
+    ]
+  }
+}

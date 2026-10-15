@@ -1,0 +1,27 @@
+import { createKit } from '/src/scene/kit.ts';
+import { createRuntimeModule } from '/src/scene/models/runtime-module.ts';
+import { createHostLights } from '/src/venue-world.ts';
+import { lightingFor } from '/src/scene/lighting.ts';
+import { applyRendererLook } from '/src/scene/look.ts';
+const kit = createKit(), { THREE } = kit, scene = new THREE.Scene();
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setSize(1100, 800); applyRendererLook(THREE, renderer); document.body.append(renderer.domElement);
+const lights = createHostLights(THREE, scene), camera = new THREE.PerspectiveCamera(48, 1100/800, 0.1, 500);
+const parent = new THREE.Group(); scene.add(parent);
+const module = createRuntimeModule(kit, parent);
+let request;
+const metrics = () => ({ ...renderer.info.render, memory: {...renderer.info.memory}, resident: module.placement && { tier: module.placement.tier, triangles: module.placement.triangles, drawCalls: module.placement.drawCalls, textureBytes: module.placement.textureBytes } });
+const render = (time) => { const p=lightingFor('outdoor',time); lights.apply(p); lights.aim(camera); scene.background = new THREE.Color(p.sky[0]); renderer.render(scene,camera); return metrics(); };
+window.review = {
+ async load(id, tier='near', time='day', indoors=false) {
+  const prefix=`./assets/${id}/`, manifest=await (await fetch(prefix+'manifest.json')).json();
+  request={id,near:{url:prefix+manifest.lods.near.file,sha256:manifest.lods.near.sha256},far:{url:prefix+manifest.lods.far.file,sha256:manifest.lods.far.sha256},tier,indoors,distance:100,navigation:manifest.navigation,position:[0,0,0],yaw:0,budget:{triangles:11500,drawCalls:20,shadowPasses:1}};
+  await module.select(request);
+  const abuja=id.startsWith('abuja'); camera.position.set(...(abuja?[100,75,150]:[30,24,55])); camera.lookAt(...(abuja?[0,20,-5]:[0,12,-3]));
+  return render(time);
+ },
+ async tier(tier, indoors=false) { await module.select({...request,tier,indoors}); return render('day'); },
+ async clear() { await module.select(null); renderer.render(scene,camera); return metrics(); },
+ dispose() { module.dispose(); lights.dispose(); kit.dispose(); renderer.dispose(); return metrics(); }
+};
+window.ready=true;

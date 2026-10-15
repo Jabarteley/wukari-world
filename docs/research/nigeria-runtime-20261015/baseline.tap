@@ -1,0 +1,28 @@
+✔ every budget has a positive whole value, a place it is enforced and a reason (1.086661ms)
+✔ the numbers are the ones the tests and source hard-coded before the table (0.976758ms)
+✔ the realism download targets are named and marked provisional (0.336487ms)
+✔ the scene budget is its two parts, and a phone sees no more draw calls than a venue scene may use (0.146456ms)
+✔ source constants that mirror the table equal it (0.100372ms)
+✔ withinBudget treats the limit as inside, and a floor the other way round (21.553406ms)
+✔ budgets.ts imports nothing, so any module or script can read it (0.745223ms)
+✔ every scene that makes a WebGL renderer gives its context back when it is closed (585.020318ms)
+✔ a file is read once however many placements and layers use it (9.994767ms)
+✔ copies on one atlas are one mesh; another atlas is another; stats count them (1.700103ms)
+✔ a stand-in is drawn at once, swapped for the model when it arrives, and kept when the file fails (5.864176ms)
+✔ near and far follow the focus; far details are skipped; the far file is only read when needed (4.183835ms)
+✔ the budget drops the cheapest and farthest first, and says so (1.497752ms)
+✔ instanced placements are one instanced mesh per part (1.136862ms)
+✔ label cells are shared by equal text and sit inside the atlas (0.263109ms)
+✔ moving the focus reads the file a placement now needs, and keeps its other version on screen meanwhile (2.517447ms)
+✔ walking near and far builds the layer again without throwing its materials away (a material takes its compiled shader with it) (12.814851ms)
+✔ flat venue contact follows the rendered ground top and refuses unsupported or mismatched samples (621.531747ms)
+✔ declared decks must agree with their rendered solid top (459.023429ms)
+✔ declared ramps and released scenes never retain contact support (112.490516ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3145.982898

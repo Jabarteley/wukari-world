@@ -1,0 +1,22 @@
+✔ rectangle complement preserves overlapping corridors and clips outside rectangles (5.823632ms)
+✔ all batch001 anchors are reachable exactly from supported entrance without clearing blockers (25.633956ms)
+✔ Lagos excludes near furniture for both tiers and corrects elevated sidewalk/entrance (0.223526ms)
+✔ Abuja rejects unsupported north strip and preserves raised median crossing (0.876418ms)
+✔ runtime PBR keeps authored material and shares one transform with every navigation shape (11.176688ms)
+✔ indoors forces near and changing tiers releases materials, textures and shared images exactly once (4.324253ms)
+✔ cancelled parsing is serialized, disposed and never attached after a newer selection or scene teardown (6.703921ms)
+✔ over-budget, light-bearing and failed modules leave no resident and allow retry (3.564642ms)
+✔ invalid navigation is rejected before network access (1.124197ms)
+✔ network loader rejects altered bytes and external resources before parsing (31.36719ms)
+✔ quarter-turn collision contract and explicit shadow-pass allowance fail closed (1.496513ms)
+✔ far requests close to the module still use near geometry (0.943831ms)
+✔ repeated geometry groups reserve each double-sided transparent pass (1.732301ms)
+✔ GPU residency counts sampler and colour-space variants of one decoded image (3.808397ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 299.534191

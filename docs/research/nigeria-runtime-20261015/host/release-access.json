@@ -1,0 +1,7 @@
+{
+  "checkedAt": "2026-10-15T03:45:41Z",
+  "actionsRead": "GET https://api.github.com/repos/kromate/joinallworld/actions/workflows/joinallworld-release.yml: Forbidden",
+  "productionHealth": "HTTPS CONNECT joinallworld.com:443: HTTP403 Forbidden by envoy",
+  "dispatchAttemptedThisCheckpoint": false,
+  "requiredAction": "Environment operator restore authorized existing GitHub Actions API and production HTTPS access. No new credentials or guard bypass."
+}

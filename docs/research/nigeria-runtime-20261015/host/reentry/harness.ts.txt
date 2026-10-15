@@ -1,0 +1,16 @@
+import * as THREE from '/node_modules/three/build/three.module.js';
+import { createVenueHost } from '/src/venue-world.ts';
+import { loadCityScenes } from '/src/scene/city-scenes.ts';
+await Promise.all(['lagos','abuja'].map(loadCityScenes));
+const renderer = new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
+let scene, camera; const original = renderer.render.bind(renderer);
+renderer.render = (s,c) => { if(s.isScene) {scene=s;camera=c;} original(s,c); };
+const world=createVenueHost(document.querySelector('#stage'),{renderer,cityId:'lagos',location:'market'});
+let city='lagos', location='market', t=Date.UTC(2026,3,5,11);
+const state=()=>world.setState({location,estate:{city},t});
+world.setPlayer({name:'Acceptance Player',seed:'nigeria-host-acceptance',look:{body:'woman',hair:'afro'}});
+world.setCrowd(Array.from({length:8},(_,i)=>({id:'npc:acceptance'+i,kind:'npc',name:'Local '+i,seed:'local'+i})));
+state(); world.resize(); world.update();
+const snapshot=()=>{let modules=[], statuses=[], meshes=0,triangles=0,lights=[],gpuTextures=new Map(),meshCosts=[];scene?.traverseVisible(o=>{if(o.userData.runtimeStatus)statuses.push({...o.userData});if(o.name.startsWith('runtime:'))modules.push({name:o.name,scale:o.scale.toArray(),bounds:new THREE.Box3().setFromObject(o).min.toArray().concat(new THREE.Box3().setFromObject(o).max.toArray())});if(o.isMesh&&o.visible){meshes++;triangles+=(o.geometry.index?.count??o.geometry.attributes.position?.count??0)/3;meshCosts.push({name:o.name,parent:o.parent?.name,triangles:(o.geometry.index?.count??o.geometry.attributes.position?.count??0)/3});for(const m of Array.isArray(o.material)?o.material:[o.material])for(const t of Object.values(m)){if(t?.isTexture){const allocation=renderer.properties.get(t).__webglTexture;if(allocation&&!gpuTextures.has(allocation))gpuTextures.set(allocation,{width:t.source.data?.width,height:t.source.data?.height,colorSpace:t.colorSpace});}}}if(o.isLight)lights.push({type:o.type,intensity:o.intensity});});return {diagnostics:world.diagnostics(),modules,statuses,sceneInventory:{meshes,triangles,lights,meshCosts},gpuAllocations:[...gpuTextures.values()],gpu:{...renderer.info.memory},render:{...renderer.info.render}};};
+window.check={world,renderer,snapshot,enter:(c,l)=>{city=c;location=l;world.setLocation(l);state();world.update();},time:(value)=>{t=value;state();world.update();},rotate:(yaw)=>{const m=world.motion();m.orbit.rotate(yaw,0);m.wake();},far:()=>{const m=world.motion();m.orbit.zoomBy(.05);m.wake();},dispose:()=>{world.dispose();return {...renderer.info.memory};}};
+window.ready=true;

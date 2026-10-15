@@ -1,0 +1,12 @@
+✔ host lights dispose owned shadow targets once and preserve unrelated lights (allocated=false) (3.317982ms)
+✔ host lights dispose owned shadow targets once and preserve unrelated lights (allocated=true) (1.160381ms)
+✔ actual host teardown releases shadow targets before renderer teardown (177.261055ms)
+✔ large venue shadow coverage preserves sunlight direction and resets after travel (0.9876ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1099.807701

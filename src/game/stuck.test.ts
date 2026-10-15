@@ -23,7 +23,14 @@ try {
   diagnostic(`[stuck-diagnostic] end city-content preload elapsedMs=${Math.round(performance.now() - preloadStarted)} samples=0`)
 }
 
-function measured(name: string, run: (sampled: () => void) => void): void {
+// The hosted runner cannot hold the whole file in one job (about 19 minutes): with STUCK_PART=k/n the per-city samples are split by city,
+// and the three tests that are not per city run in part 1 only. Unset, everything runs, as ever.
+const part = /^([1-9])\/([1-9])$/.exec(process.env['STUCK_PART'] ?? '1/1')
+if (!part || Number(part[1]) > Number(part[2])) throw new Error('STUCK_PART is k/n, for example 1/2')
+const partIndex = Number(part[1]), partCount = Number(part[2])
+const myCities = (): string[] => playableCityIds().filter((_, index) => index % partCount === partIndex - 1)
+function measured(name: string, run: (sampled: () => void) => void, everyPart = false): void {
+  if (!everyPart && partIndex !== 1) return
   test(name, () => {
     const started = performance.now()
     let samples = 0
@@ -52,7 +59,7 @@ measured('with the safety nets, no sampled state is a dead end: needs recover, m
 })
 
 measured('each playable city gets its own bounded dead-end sample', (sampled) => {
-  for (const city of playableCityIds()) {
+  for (const city of myCities()) {
     const next = rng(20261005 + city.length)
     const failing = []
     const otherHomes = playableCityIds().filter(id => id !== city)
@@ -65,7 +72,7 @@ measured('each playable city gets its own bounded dead-end sample', (sampled) =>
     }
     assert.deepEqual(failing.slice(0, 3), [], `${city}: ${failing.length} dead ends in 80 samples`)
   }
-})
+}, true)
 
 measured('the search is not vacuous: without the nets the same states include dead ends, and the owner\'s case is one', (sampled) => {
   const next = rng(20261005)
@@ -97,7 +104,7 @@ measured('a visitor who lands at an airport, a terminal or a station is never st
   const next = rng(20261006)
   let played = 0
   const failing = []
-  for (const city of playableCityIds()) {
+  for (const city of myCities()) {
     const hubs = (cityRules(city)?.hubs ?? []).flatMap((hub) => (hub.venueId && venueFor(city, hub.venueId) ? [hub.venueId] : []))
     for (const venue of hubs) for (let i = 0; i < 40; i++) {
       const sample = { ...sampleOf(next, [city], ['lagos', 'port-harcourt', 'kano']), city, venue }
@@ -112,4 +119,4 @@ measured('a visitor who lands at an airport, a terminal or a station is never st
   }
   assert.ok(played > 100, `${played} states played`)
   assert.deepEqual(failing.slice(0, 3), [], `${failing.length} dead ends starting at a hub`)
-})
+}, true)

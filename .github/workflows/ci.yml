@@ -267,12 +267,12 @@ jobs:
     timeout-minutes: 25
     strategy:
       fail-fast: false
-      max-parallel: 8
+      max-parallel: 10
       matrix:
         node: [22, 24]
-        # economy, cities, routes, homeward and stuck are five files of src/ that each run for 5 to 14 minutes: the game jobs could not hold
-        # them (scripts/node-test-plan.ts). The rest of src/ is three shards.
-        suite: [game-1, game-2, game-3, host, tooling, economy, cities, routes, homeward, stuck]
+        # economy, allCities, combinedRules, relief and stuck are five files of src/ that run for 5 to 19 minutes each: the game jobs could not hold
+        # them, and allCities and stuck are split in two (scripts/node-test-plan.ts). The rest of src/ is three shards.
+        suite: [game-1, game-2, game-3, host, tooling, economy, cities-1, cities-2, routes, homeward, stuck-1, stuck-2]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

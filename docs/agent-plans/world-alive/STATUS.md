@@ -102,9 +102,9 @@ Fixed on 16 October (branch `claude/alive-fix-full`, run with the full CI checks
   collection exist at the first friendship (chat). The row-budget test waits for the residents' first save (c1358561). The accounts test
   skips a house character's greeting. The Worker tests now run as two shards.
 - The 25-minute game job. Five files were slower than the rest of `src/` together and now have jobs of their own (`scripts/node-test-plan.ts`):
-  `economy.test.ts` (about 14 minutes), `allCities.test.ts` (about 10), `combinedRules.test.ts` (every route of every open city: 40 ms a
+  `economy.test.ts` (about 14 minutes), `allCities.test.ts` (about 20, in two jobs by test name), `combinedRules.test.ts` (every route of every open city: 40 ms a
   route over 62,000 routes; `linksFrom` is now built once per city and handed out frozen, 5 ms a route), `relief.test.ts` (a homeward quote for
-  every pair of cities) and `stuck.test.ts` (26,000 dead-end play-outs, about 12). The 284-city overlap check compared every polygon of every
+  every pair of cities) and `stuck.test.ts` (26,000 dead-end play-outs, about 19, in two jobs: `STUCK_PART=k/n` splits its per-city samples). The 284-city overlap check compared every polygon of every
   pair (Auckland has 25,000): it compares each city's box first, which cannot change the answer, and went from over 20 minutes to under a second.
   The rest of `src/` runs as three shards of equal file count.
 - Stale expectations, each with the commit that changed the behaviour: fares are charged in the prices of the city the life started in

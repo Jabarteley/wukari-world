@@ -56,10 +56,13 @@ Doors are retained for private rooms; redundant privacy openings are filled visu
 
 Open/Close front door changes only manual door state. It does not trigger travel or move the avatar. Closing is rejected when the avatar is in its footprint. Walk inside/Walk outside retain the host traversal animation and return the front door to closed afterwards. F operates the nearest room or front door on the current floor. Existing front-door and interior tests exercise manual persistence, no position change, transit yielding, enclosure/overview, and retained privacy-door collision.
 
-The updated built entry is `housing-studio-Cpt9b-AG.js`. Final interactive visual acceptance is pending while the integration owner holds the shared Chrome session for production verification. One attempted hidden in-app browser was unavailable; Chrome was left untouched. Initial screenshots above are retained as earlier evidence, not proof of this correction.
+This correction initially built as `housing-studio-Cpt9b-AG.js`; its framing, overview, independent front-door controls and stair route passed the subsequent browser checkpoint. The current spatial build below supersedes that entry. Initial screenshots above remain historical evidence.
 
 ## Object-clearance follow-up
 
 The updated source loads `housing-studio-DYmVz1Sz.js`. See [spatial verification](spatial-verification.md) for the confirmed bathroom door/tub defect and the correction. Actual loaded-model and fallback bounds, door sweeps and both open/closed leaf geometry now pass across all four recipes. Door widths are capped at 0.9 m, their hinges/swing directions avoid obstacles, and unused doorway width is filled. Open leaves now block walking as well as closed leaves.
 
-During an explicitly released browser window, the prior `48932aab` framing, floor overview, independent front-door controls and actual upstairs route passed. That browser check also reproduced the bathroom door/tub intersection. The new spatial build needs its own final visual check after the production operator releases Chrome again.
+During an explicitly released browser window, the prior `48932aab` framing, floor overview, independent front-door controls and actual upstairs route passed. That browser check also reproduced the bathroom door/tub intersection. The final `housing-studio-DYmVz1Sz.js` build subsequently passed its own bounded localhost-only Chrome check: bathroom leaves visibly clear the tub in both states, close/reopen preserves position, and attempts to walk through the closed leaf halt at z=4.60. First-person enclosure, third-person partitions, overview, stair ascent/descent and exit passed; final compound position (-10.10, 0, 11.68). No console warning/error entries were captured. Open-leaf approach and occupied-sweep rejection have automated coverage but were not separately browser-exercised. Chrome was returned to the integration owner immediately.
+
+![Current open-door clearance](screenshots/duplex-spatial-open.jpg)
+![Current closed-door clearance](screenshots/duplex-spatial-closed.jpg)

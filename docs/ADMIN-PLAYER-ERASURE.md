@@ -21,3 +21,11 @@ The preview binds the target, reason, request ID and current plan. Changed owner
 ## Operator acceptance
 
 For a named, authorized target, verify the completion response, missing public profile, absent map home/resident, rejected old session/key and preservation of an unrelated account. Do not infer deletion authority from a search result or select all similarly named test accounts. The current production QA authorization is exactly the three UUIDs in the owning work record.
+
+## Erasing a selection
+
+In **Admin → Players**, select up to 20 players and choose **Erase selected…** in the bulk-action bar. Enter a reason and choose **Preview every player**. The preview shows the exact characters affected, including whole-account expansion, and counts overlapping selections once. A protected or blocked selection prevents the batch from starting.
+
+Type the displayed `ERASE N CHARACTERS` confirmation, then choose **Permanently erase N characters**. Operations run sequentially; completed deletions cannot be undone. If scope changes, a request fails, its outcome is unknown, or cleanup remains pending, untouched players stay untouched. The panel shows each result. Retry an unknown request with **Retry exact request**, or a pending job with **Retry remaining cleanup**. Continuing untouched players requires another preview and confirmation.
+
+Keep the panel open until uncertain requests are settled. Batch retry state is not restored after reloading. Navigating away stops the next operation but cannot reverse a request already submitted. Only root administrators can see or execute bulk erasure.

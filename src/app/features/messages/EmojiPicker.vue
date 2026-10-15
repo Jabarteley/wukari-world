@@ -1,9 +1,11 @@
 <script setup lang="ts">
 // A small emoji picker: categories, the ones this device used last, and a search by keyword. Text only (src/app/features/messages/emojiData.ts).
-import { computed, ref } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
+// The sticker tab (Pidgin, owambe, table games) is fetched when it is first opened.
+const StickerPack = defineAsyncComponent(() => import('./StickerPack.vue'))
 import { EMOJI_CATEGORIES } from './emojiData.ts'
 
-const emit = defineEmits<{ pick: [char: string] }>()
+const emit = defineEmits<{ pick: [char: string]; sticker: [text: string] }>()
 const RECENT_KEY = 'joinallworld-emoji-recent'
 const read = (): string[] => { try { const saved: unknown = JSON.parse(globalThis.localStorage?.getItem(RECENT_KEY) ?? '[]'); return Array.isArray(saved) ? saved.filter((item): item is string => typeof item === 'string').slice(0, 24) : [] } catch { return [] } }
 const recent = ref<string[]>(read())
@@ -28,8 +30,10 @@ function pick(char: string): void {
     <div v-if="!query" class="emoji-tabs" role="tablist">
       <button v-if="recent.length" type="button" role="tab" :aria-selected="category === 'recent'" aria-label="Recent" @click="category = 'recent'">🕘</button>
       <button v-for="item in EMOJI_CATEGORIES" :key="item.id" type="button" role="tab" :aria-selected="category === item.id" :aria-label="item.label" @click="category = item.id">{{ item.icon }}</button>
+      <button type="button" role="tab" :aria-selected="category === 'stickers'" aria-label="Stickers" data-chat="stickers-tab" @click="category = 'stickers'">🏷️</button>
     </div>
-    <div class="emoji-grid">
+    <StickerPack v-if="category === 'stickers' && !query" @pick="emit('sticker', $event)" />
+    <div v-else class="emoji-grid">
       <button v-for="char in shown" :key="char" type="button" :aria-label="char" @pointerdown.prevent @click="pick(char)">{{ char }}</button>
       <p v-if="!shown.length" class="emoji-none">Nothing matches that. Try another word.</p>
     </div>

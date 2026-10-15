@@ -32,3 +32,12 @@ clientId }`, `src/app/features/messages/SprayPacket.vue` (opened from the "+" sh
   daily receive limit); others are skipped. A share is at least 100, so a packet reaches at most amount / 100 friends.
 - A line in the group says who got what. Each receiver gets the usual "sent you" notice.
 - Never real money. Agents can receive a share; an agent-played character cannot send a packet, and nothing here lets an agent ask.
+
+## A sticker pack (#15)
+
+Thirty text stickers in three sets (Pidgin, owambe, table games), as a last tab ("🏷️") of the emoji picker in the message box. A tap
+sends one as an ordinary message, so it works wherever this message box does (groups, direct chats and house chats), and nothing new is stored. No images:
+the whole pack is under 3 KB and its component is fetched when the tab is first opened. Code:
+`src/app/features/messages/stickerData.ts`, `StickerPack.vue`, `EmojiPicker.vue`, `Composer.vue` (`sendSticker`).
+Reactions already take any emoji (`QUICK_REACTIONS`); stickers are messages, not reactions. A pack that also works in a phone's
+messaging app, and a marketplace for creators, are not built.

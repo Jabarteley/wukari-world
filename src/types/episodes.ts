@@ -2,7 +2,8 @@ import type { ExecutionOrigin } from './progression.ts'
 
 export const EPISODE_IDS = ['hostel-hustle', 'the-quiet-hours'] as const
 export type WorldEpisodeId = `city-${string}-first-steps` | `city-${string}-second-chapter`
-export type EpisodeId = typeof EPISODE_IDS[number] | WorldEpisodeId
+export type PlaceEpisodeId = `place-${string}-${'city' | 'country'}-story`
+export type EpisodeId = typeof EPISODE_IDS[number] | WorldEpisodeId | PlaceEpisodeId
 export type EpisodeChapter = 1 | 2 | 3 | 4
 export type EpisodeChoice = 'work' | 'study' | 'help'
 export type EpisodeOutcomeTag =
@@ -24,7 +25,8 @@ export type EpisodeChallengeOptionId =
   | 'local-work-check' | 'local-work-rush' | 'local-work-assume'
   | 'local-study-notice' | 'local-study-guess' | 'local-study-skip'
   | 'local-help-listen' | 'local-help-push' | 'local-help-ignore'
-export type EpisodeMementoId = 'hostel-hustle-memento' | 'the-quiet-hours-memento' | `${WorldEpisodeId}-memento`
+  | `${PlaceEpisodeId}-${EpisodeChoice}-answer-${0 | 1 | 2}`
+export type EpisodeMementoId = 'hostel-hustle-memento' | 'the-quiet-hours-memento' | `${WorldEpisodeId | PlaceEpisodeId}-memento`
 
 export interface EpisodeObservedProof {
   source: EpisodeObservedProofSource

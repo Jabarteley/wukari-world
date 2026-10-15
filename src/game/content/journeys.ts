@@ -1,5 +1,6 @@
 import { WORLD_STORY_SEEDS } from './world-progression.generated.ts'
 import type { JourneyDefinition } from '../../types/journeys.ts'
+import { ACCEPTED_LOCAL_CITIES, ACCEPTED_LOCAL_COUNTRIES } from './local-tales.ts'
 
 const geography = { countryId: 'ng', cityId: 'lagos', venueId: 'unilag' } as const
 
@@ -41,4 +42,31 @@ const countryJourneys: JourneyDefinition[] = [...countries].flatMap(([countryId,
     members: cities.flatMap(seed => [memberFor(seed.cityId, seed.cityName, false), memberFor(seed.cityId, seed.cityName, true)]),
   } satisfies JourneyDefinition]
 })
-export const JOURNEYS: readonly JourneyDefinition[] = Object.freeze([AKOKA_CHAPTERS, ...cityJourneys, ...countryJourneys])
+
+const taleMember = (cityId: string, title: string, kind: 'city' | 'country') => {
+  const id = `place-${cityId}-${kind}-story`
+  return { id: `${id}-memento`, title, criterion: `Complete ${title}.`, source: { kind: 'episode' as const, id, version: 1 } }
+}
+const authoredCityJourneys: JourneyDefinition[] = [...ACCEPTED_LOCAL_CITIES.values()].map(({ tales, seed }) => ({
+  id: `${seed.countryId}:${seed.cityId}:local-tales`, version: 1,
+  name: `${seed.cityName} tales`, title: `${seed.cityName} storykeeper`,
+  geography: { countryId: seed.countryId, cityId: seed.cityId, venueId: seed.host.venue }, level: 'city',
+  placeLabel: `${seed.countryName} · ${seed.cityName} · ${seed.host.venueName}`,
+  members: [taleMember(seed.cityId, tales.city.title, 'city'), taleMember(seed.cityId, tales.country.title, 'country')],
+}))
+const authoredCountryJourneys: JourneyDefinition[] = [...ACCEPTED_LOCAL_COUNTRIES.values()].flatMap(arc => {
+  const accepted = [...ACCEPTED_LOCAL_CITIES.values()].filter(row => row.seed.countryId === arc.countryId)
+  const first = accepted[0]
+  if (!first) return []
+  return [{
+    id: `${arc.countryId}:country:local-tales`, version: 1, name: arc.collection, title: arc.rewardTitle,
+    description: arc.premise,
+    geography: { countryId: arc.countryId, cityId: first.seed.cityId, venueId: 'country' }, level: 'country',
+    placeLabel: `${first.seed.countryName} · ${accepted.length} supported ${accepted.length === 1 ? 'city' : 'cities'}`,
+    members: accepted.map(({ tales, seed }) => taleMember(seed.cityId, tales.country.title, 'country')),
+  } satisfies JourneyDefinition]
+})
+
+export const JOURNEYS: readonly JourneyDefinition[] = Object.freeze([
+  AKOKA_CHAPTERS, ...cityJourneys, ...countryJourneys, ...authoredCityJourneys, ...authoredCountryJourneys,
+])

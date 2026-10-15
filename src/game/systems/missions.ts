@@ -55,8 +55,9 @@ import { canGrantStars } from './goals.ts';
 type Scope = 'daily' | 'weekly';
 const POOLS: Record<Scope, MissionDefinition[]> = { daily: [...DAILY_MISSIONS], weekly: [...WEEKLY_MISSIONS] };
 const BY_ID = new Map<string, MissionDefinition>([...DAILY_MISSIONS, ...WEEKLY_MISSIONS].map((def) => [def.id, def]));
+const SCOPE_IDS: Record<Scope, Set<string>> = { daily: new Set(DAILY_MISSIONS.map(def => def.id)), weekly: new Set(WEEKLY_MISSIONS.map(def => def.id)) };
 /** The lazy content pack installs published rows without pulling its catalogue into startup. */
-export const missionCatalogues = { pools: POOLS, byId: BY_ID };
+export const missionCatalogues = { pools: POOLS, byId: BY_ID, scopeIds: SCOPE_IDS, authoredIds: new Set<string>(), authoredCities: new Set<string>() };
 export const missionDefinition = (id: string): MissionDefinition | undefined => BY_ID.get(id);
 /** Every dealt or saved id is in the pools; the original read a property of undefined (a TypeError) otherwise. */
 const defOf = (id: string): MissionDefinition => {
@@ -124,8 +125,13 @@ export function dealMissions(state: LifeState, scope: Scope, period: number, ctx
   for (const kind of MISSION_KINDS) {
     const options = POOLS[scope].filter((def) => def.kind === kind && doable(def, state, ctx) && !blocked.has(def.id));
     if (!options.length) continue;
-    const local = kind === 'discovery' ? options.filter(def => def.cityId === state.estate.city) : [];
-    const choices = local.length ? local : options;
+    const authored = options.filter(def => def.cityId === state.estate.city && missionCatalogues.authoredIds.has(def.id));
+    const legacyLocal = kind === 'discovery' ? options.filter(def => def.cityId === state.estate.city) : [];
+    // Guarantee a local thread without making the same three tasks the entire daily experience.
+    const localPriority = scope === 'weekly' || kind === MISSION_KINDS[(period + state.missions.seed) % MISSION_KINDS.length];
+    const choices = missionCatalogues.authoredCities.has(state.estate.city)
+      ? authored.length && localPriority ? authored : options
+      : legacyLocal.length ? legacyLocal : options;
     const choice = choices[Math.floor(rng() * choices.length)];
     if (!choice) continue; // rng() is in [0, 1), so the index is always in range
     picked.push({ id: choice.id, n: 0, marks: [], claimed: false });
@@ -288,7 +294,10 @@ export function rerollMission(state: LifeState, payload: Record<string, unknown>
   if (done(current)) return fail(state, 'already_done', 'That mission is finished. Collect it instead.');
   if (book.rerolls >= MISSION_REWARDS.rerollsPerDay) return fail(state, 'no_rerolls', 'You have used today’s swap. Missions change at midnight, Nigerian time.');
   const old = defOf(current.id);
-  const options = DAILY_MISSIONS.filter((def) => def.kind === old.kind && doable(def, state, ctx) && !book.daily.some((entry) => entry.id === def.id) && !pendingFor(state, def.id));
+  const source = missionCatalogues.authoredCities.has(state.estate.city) ? POOLS.daily : DAILY_MISSIONS;
+  const available = source.filter((def) => def.kind === old.kind && doable(def, state, ctx) && !book.daily.some((entry) => entry.id === def.id) && !pendingFor(state, def.id));
+  const authored = available.filter(def => def.cityId === state.estate.city && missionCatalogues.authoredIds.has(def.id));
+  const options = missionCatalogues.authoredCities.has(state.estate.city) ? authored.length ? authored : available.filter(def => !def.cityId) : available;
   if (!options.length) return fail(state, 'nothing_else', 'There is no other mission of that kind today.');
   book.rerolls += 1;
   const swapped = options[Math.floor(ctx.rng() * options.length)];
@@ -303,7 +312,7 @@ function sanitizeList(value: unknown, scope: Scope, cityId: string): MissionEntr
   const saved: unknown[] = Array.isArray(value) ? value.slice(0, MISSION_REWARDS[scope].slots) : [];
   for (const entry of saved) {
     const def = isRecord(entry) && typeof entry.id === 'string' ? BY_ID.get(entry.id) : null;
-    if (!isRecord(entry) || !def || !POOLS[scope].includes(def) || out.some((item) => item.id === def.id)) continue;
+    if (!isRecord(entry) || !def || !SCOPE_IDS[scope].has(def.id) || out.some((item) => item.id === def.id)) continue;
     const n = safeCount(entry.n) ? Math.min(entry.n, need(def)) : 0;
     const marks = [...new Set((Array.isArray(entry.marks) ? entry.marks : []).flatMap((mark) => { const clean = def.on === 'event' && def.distinct === 'npc' ? cleanNpcIdentity(mark, cityId) : cleanVisitIdentity(mark, cityId); return clean ? [clean] : []; }))].slice(0, MARKS);
     out.push({ id: def.id, n, marks, claimed: entry.claimed === true && n >= need(def) });
@@ -317,7 +326,7 @@ function sanitizeReward(value: unknown): MissionRewardEntitlement | null {
     || !isCityId(value.cityId) || !finite(value.earnedAt) || !inPeriod(value.scope, value.period, value.earnedAt)
     || !ORIGINS.includes(value.earnedOrigin as ExecutionOrigin)) return null;
   const def = BY_ID.get(value.id), cash = V1_REWARDS[value.scope].cash;
-  if (!def || !POOLS[value.scope].includes(def) || value.cash !== cash) return null;
+  if (!def || !SCOPE_IDS[value.scope].has(def.id) || value.cash !== cash) return null;
   const rewardId = missionRewardId(value.cityId, value.scope, value.period, value.id);
   return value.rewardId === rewardId ? { rewardId, id: def.id, scope: value.scope, period: value.period, cityId: value.cityId, earnedAt: value.earnedAt, earnedOrigin: value.earnedOrigin as ExecutionOrigin, cash } : null;
 }

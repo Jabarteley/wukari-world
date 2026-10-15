@@ -468,7 +468,7 @@ function viewOf(state: EpisodeLife, ctx: LifeContext): EpisodesView {
   return {
     trackingSince: state.episodes.trackingSince,
     mementos: Object.values(state.episodes.mementos).filter((row): row is EpisodeMementoReceipt => row !== undefined),
-    rows: [...episodesForCity(ctx.cityId), ...Object.keys(state.episodes.runs).flatMap(id => {
+    rows: [...episodesForCity(ctx.cityId, state.episodes.runs), ...Object.keys(state.episodes.runs).flatMap(id => {
       const episode = episodeById(id)
       return episode && episode.location.city !== ctx.cityId ? [episode] : []
     })].map(episode => viewRow(state, episode, ctx)),
@@ -486,21 +486,21 @@ const play = PLAYS ? {
   on: {
     'npc.interacted'(state: EpisodeLife, data, ctx) {
       if (data.success !== true) return
-      for (const episode of episodesForCity(ctx.cityId)) for (const observation of episode.observations) {
+      for (const episode of episodesForCity(ctx.cityId, state.episodes.runs)) for (const observation of episode.observations) {
         if (observation.event === 'npc.interacted' && data.npc === observation.npcId && atObservationPlace(state, episode, observation, ctx)) {
           observeProof(state, episode, observation.source, referenceOf(observation.source, ctx), ctx)
         }
       }
     },
     'activity.completed'(state: EpisodeLife, data, ctx) {
-      for (const episode of episodesForCity(ctx.cityId)) for (const observation of episode.observations) {
+      for (const episode of episodesForCity(ctx.cityId, state.episodes.runs)) for (const observation of episode.observations) {
         if (observation.event === 'activity.completed' && data.id === observation.activityId && atObservationPlace(state, episode, observation, ctx)) {
           observeProof(state, episode, observation.source, referenceOf(observation.source, ctx), ctx)
         }
       }
     },
     'campus.job.completed'(state: EpisodeLife, data, ctx) {
-      for (const episode of episodesForCity(ctx.cityId)) for (const observation of episode.observations) {
+      for (const episode of episodesForCity(ctx.cityId, state.episodes.runs)) for (const observation of episode.observations) {
         if (observation.event === 'campus.job.completed' && observation.jobIds.some(job => job === data.job)
           && (!observation.requirePositivePay || data.pay > 0) && atObservationPlace(state, episode, observation, ctx)) {
           observeProof(state, episode, observation.source, referenceOf(observation.source, ctx), ctx)
@@ -508,14 +508,14 @@ const play = PLAYS ? {
       }
     },
     'table.played'(state: EpisodeLife, data, ctx) {
-      for (const episode of episodesForCity(ctx.cityId)) for (const observation of episode.observations) {
+      for (const episode of episodesForCity(ctx.cityId, state.episodes.runs)) for (const observation of episode.observations) {
         if (observation.event === 'table.played' && data.game === observation.game && atObservationPlace(state, episode, observation, ctx)) {
           observeProof(state, episode, observation.source, referenceOf(observation.source, ctx), ctx)
         }
       }
     },
     'event.attended'(state: EpisodeLife, data, ctx) {
-      for (const episode of episodesForCity(ctx.cityId)) for (const observation of episode.observations) {
+      for (const episode of episodesForCity(ctx.cityId, state.episodes.runs)) for (const observation of episode.observations) {
         if (observation.event === 'event.attended' && data.venue === observation.venueId && atObservationPlace(state, episode, observation, ctx)) {
           observeProof(state, episode, observation.source, referenceOf(observation.source, ctx), ctx)
         }

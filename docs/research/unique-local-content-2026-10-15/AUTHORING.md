@@ -10,6 +10,12 @@ Each tale contains four titled chapters, three approach labels with distinct rem
 
 Literal authored data only. No shared prose function, string interpolation, rotating title/plot arrays, city-name replacement, generic welcome/handover plots, filler tokens or placeholders. Do not write the same plot with different props. Titles, opening conflicts, dilemmas, outcomes and keepsakes must differ in meaning. Human desires are universal, never descriptions of national character.
 
+## Review the pattern before expanding
+
+First record a compact matrix of every tale's conflict → explicit constraint → decision/resolution. Parent reviews the first six and any apparent repeats before long-form expansion. The same problem and solution with different props is still a duplicate (for example, two collapsing stacks both solved by making three low stacks). Plan varied practical constraints, comedy, spatial/sound puzzles, fair-game decisions, delivery mishaps, repair and performance conflicts. Do not let all plots resolve through clarification, shared credit, permission or keeping every interpretation.
+
+Then propose five cities' six-mission tuples for review before writing the full batch. Choose supported tasks and counts to fit the actual plot motivation, rather than rotating one common tuple. Short natural labels describe observable actions; exact venue/spot/activity/count instructions belong in generated hints. Do not generate apparent uniqueness by appending a full story title to every label or rotating punctuation around the same formula. Literal formatting scripts may serialize authored values; they must not author mission prose or rotate task selections.
+
 ## Grounding and facts
 
 These are fictional game stories. Hosts are game NPCs. Use actual names/places in existingStoryReferences, with at least one meaningful place/action anchor in each tale. Additional registered places can be narrative context, but only the two seed activities and host are wired proof destinations. Never invent a real historical event, festival, official practice, real person's biography or service guarantee. Do not assume airport/statehouse game tasks are real services. Medical/worship/crisis content is outside scope. If adding a factual claim beyond the brief, verify it with a primary source using web tools and record the exact URL; otherwise keep it plainly fictional. No need to add factual claims to make a good story.

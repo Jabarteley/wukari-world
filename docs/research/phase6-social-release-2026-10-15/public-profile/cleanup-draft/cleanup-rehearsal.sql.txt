@@ -134,12 +134,64 @@ SELECT CASE WHEN
     json(json_extract((SELECT value FROM collections WHERE name='root:growth'),'$.metrics'))
 THEN 0 ELSE 1 END;
 
--- INTENTIONAL FAIL-CLOSED BLOCKER: the UUID inventory proved only shares.ffe8762f22.by.
--- Before this can become executable, bind and review the stored opened/joined values and prove
--- no other growth player has ref.code='ffe8762f22', ref.by=R2, or an invited dependency on R2.
--- Removing this always-failing gate without that evidence is outside this draft's contract.
+-- Fresh 2026-10-15T17:32:09.065Z share/referral inventory, bound literally and NULL-safely.
+-- The share is unused and neither target owns or participates in another referral dependency.
+WITH growth(value) AS (
+  SELECT value FROM collections WHERE name='growth' AND json_valid(value)=1
+), share(value) AS (
+  SELECT json_extract(value,'$.shares.ffe8762f22') FROM growth
+), players(key,value) AS (
+  SELECT p.key,p.value FROM growth g,json_each(g.value,'$.players') p
+), code_refs(path) AS (
+  SELECT j.fullkey FROM growth g,json_tree(g.value) j
+  WHERE j.type='text' AND j.value='ffe8762f22'
+), owner_refs(path) AS (
+  SELECT j.fullkey FROM growth g,json_tree(g.value) j
+  WHERE j.type='text' AND j.value='6cea4961-b7fc-4bb7-a6db-a28e9327014f'
+)
 INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
-SELECT CASE WHEN 0=1 THEN 1 ELSE 0 END;
+SELECT CASE WHEN
+  (SELECT count(*) FROM growth) IS NOT 1 OR
+  json_type((SELECT value FROM share)) IS NOT 'object' OR
+  json_extract((SELECT value FROM share),'$.by') IS NOT '6cea4961-b7fc-4bb7-a6db-a28e9327014f' OR
+  json_type((SELECT value FROM share),'$.opened') IS NOT 'integer' OR
+  json_extract((SELECT value FROM share),'$.opened') IS NOT 0 OR
+  json_type((SELECT value FROM share),'$.joined') IS NOT 'integer' OR
+  json_extract((SELECT value FROM share),'$.joined') IS NOT 0 OR
+  (SELECT count(*) FROM players WHERE key<>'6cea4961-b7fc-4bb7-a6db-a28e9327014f' AND json_extract(value,'$.ref.code')='ffe8762f22') IS NOT 0 OR
+  (SELECT count(*) FROM players WHERE key<>'6cea4961-b7fc-4bb7-a6db-a28e9327014f' AND json_extract(value,'$.ref.by')='6cea4961-b7fc-4bb7-a6db-a28e9327014f') IS NOT 0 OR
+  (SELECT count(*) FROM json_each((SELECT value FROM players WHERE key='6cea4961-b7fc-4bb7-a6db-a28e9327014f'),'$.invited')) IS NOT 0 OR
+  (SELECT count(*) FROM players p,json_each(p.value,'$.invited') i WHERE p.key IN ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','6cea4961-b7fc-4bb7-a6db-a28e9327014f')) IS NOT 0 OR
+  (SELECT count(*) FROM players p,json_each(p.value,'$.owed') o WHERE p.key IN ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','6cea4961-b7fc-4bb7-a6db-a28e9327014f')) IS NOT 0 OR
+  (SELECT count(*) FROM players WHERE key IN ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','6cea4961-b7fc-4bb7-a6db-a28e9327014f') AND json_type(value,'$.ref')='object') IS NOT 0 OR
+  (SELECT COALESCE(sum(CAST(json_extract(value,'$.counted') AS INTEGER)),0) FROM players WHERE key IN ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','6cea4961-b7fc-4bb7-a6db-a28e9327014f')) IS NOT 0 OR
+  (SELECT count(*) FROM code_refs) IS NOT 0 OR
+  (SELECT count(*) FROM owner_refs) IS NOT 1
+THEN 0 ELSE 1 END;
+
+-- Fresh 2026-10-15T17:32:13.555Z supplemental inventory. Eight entry keys contain a
+-- target UUID; no UUID appears only in a composite key and no collection name contains one.
+WITH refs(id) AS (
+  VALUES
+    ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56'),
+    ('453a0f63-5b90-4e7b-b730-4ea9ff54b70d'),
+    ('6cea4961-b7fc-4bb7-a6db-a28e9327014f')
+), entry_key_refs(coll,map,key) AS (
+  SELECT DISTINCT e.coll,e.map,e.key FROM entries e,refs t WHERE instr(e.key,t.id)>0
+), entry_key_only_refs(coll,map,key) AS (
+  SELECT DISTINCT e.coll,e.map,e.key
+  FROM entries e,refs t
+  WHERE instr(e.key,t.id)>0 AND e.key<>t.id
+    AND instr(e.value,t.id)=0 AND instr(COALESCE(e.jx,''),t.id)=0
+), collection_name_refs(name) AS (
+  SELECT DISTINCT c.name FROM collections c,refs t WHERE instr(c.name,t.id)>0
+)
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  (SELECT count(*) FROM entry_key_refs) IS NOT 8 OR
+  (SELECT count(*) FROM entry_key_only_refs) IS NOT 0 OR
+  (SELECT count(*) FROM collection_name_refs) IS NOT 0
+THEN 0 ELSE 1 END;
 
 -- Frozen schema, layout and authority. All fragments must still be absent.
 INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)

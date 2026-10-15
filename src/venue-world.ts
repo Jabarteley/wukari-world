@@ -1423,9 +1423,9 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     const close = Math.min(1, ((portrait ? START_DISTANCE.portrait : height <= 520 ? START_DISTANCE.short : START_DISTANCE.wide) * (walk?.scale || 1) * (view.start || 1)) / whole);
     closeness = 1 / close;
     orbit.setBase([preset[0] * close, 0.7 + (preset[1] - 0.7) * close, preset[2] * close]);
-    // Close enough to see a face, far enough to see the whole venue. The orbit is free all the way round:
-    // a room hides the walls the camera is behind (lookIn), so no scene needs an azimuth limit.
-    orbit.setLimits({ near: 6.2 * (walk?.scale || 1), far: whole * 1.38, azimuth: null });
+    // Close enough to see a face, far enough to see the whole venue. Exterior frontages
+    // can keep the camera in front; rooms retain free orbit and hide rear walls (lookIn).
+    orbit.setLimits({ near: 6.2 * (walk?.scale || 1), far: whole * 1.38, azimuth: view.azimuth ?? null });
     camera.fov = portrait ? 48 : 43;
     camera.far = view.bounds ? Math.max(600 + whole * 1.38 + 50, whole * 1.38 + Math.hypot(view.bounds[3] - view.bounds[0], view.bounds[4] - view.bounds[1], view.bounds[5] - view.bounds[2])) : 360;
     // Centre the scene in what the HUD leaves free; on a wide screen also step back a little when little is left.

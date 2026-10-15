@@ -29,7 +29,7 @@ function definition(id: keyof typeof FILES): SceneDef {
   const bounds: [number,number,number,number,number,number] = mosque ? [-77,0,-70,77,75.6,43.4] : [-13.721,-.0071,-12.811,13.721,32.081,4.405];
   return {
     mood: 'outdoor', accent: mosque ? '#d8a838' : '#dfaa62',
-    camera: { landscape: mosque ? [60,70,115] : [17,23,40], portrait: mosque ? [45,85,155] : [14,32,53], start: mosque ? 2.3 : 1.2, bounds },
+    camera: { landscape: mosque ? [60,70,115] : [17,23,40], portrait: mosque ? [45,85,155] : [14,32,53], start: mosque ? 2.3 : 1.2, azimuth: [-1.2, 1.2], bounds },
     walk: { bounds: [...nav.bounds], entrance: [nav.entrance.x,nav.entrance.z], open: true, block: nav.block },
     runtime: {
       createHost: createRuntimeHost,

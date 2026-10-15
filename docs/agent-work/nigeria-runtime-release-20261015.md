@@ -51,3 +51,11 @@ Root additionally owns venue-world-lights.test.ts regression for bounds coverage
 - Newly proven release blockers: Lagos canonicalbody9002+wardrobe1076+near7618=17696triangles beforeoverhead. No supportedheroLODswitch exists; retainplayer andfallback instead of violating17k. Need reviewed lowergeometry Lagosnear candidate, targetbudget determined with actualhost allowance.
 - Broad Worker gate fails identically beforeintegration:4680353bytes vs<3500000, noNigeriaimports. Exactcleanbaseline60c3dff9 reproduction saved; progression/map architecture ownedelsewhere requirescoordinatedrepair, notlimitrelaxation. Combinedcity-scenes lifecycle suite also reproducesbaselinependingpromise timeout; changedreadiness subsets andhostfixturespass. Fullnpmsuite stillrunningandnotclaimedgreen.
 - ExistingActionsAPI stillForbidden andproductionHTTPS CONNECT403 at03:45:41UTC. Read-onlyrechecks recorded. No release dispatch,merge orproductionclaim. Batch002/003 remaingated.
+
+## Host acceptance handoff — 03:53 UTC
+
+Abuja source-stable browser checks passed movement, median support at0.252, near/far, camera, day/night and three visual reentries. Visible whole-scene geometry16566 triangles; actual imported textures allocated after each return; GPU geometry/textures0/0 after teardown. Weather inputs exercise unchanged host behavior but Abuja rules provide no climate; no weather visual acceptance claimed. Actual application guest onboarding reached its HUD, but this is not a full production UI certificate.
+
+Broad local npm test was stopped after about13minutes once two failures were independently reproduced on clean60c3dff9: Worker size4680353>3500000 and comeback zero-work store touches2!=0. It is a failed/incomplete diagnostic run, not a passing full-suite gate. Combined city-scenes lifecycle also reproduces on baseline. Scoped host, navigation, light, contact and customization tests passed; full five-project typecheck passed. No owned full-test/typecheck/browser/devserver processes remain.
+
+Source milestone71e0de6299d609035518c3399e4505d239e88d98. Next: merge currentmain without losing ownership, publish draft with exact-head CI; no deployment until Lagos geometry, baseline gates, weather/complete UI acceptance and authorized network access are resolved.

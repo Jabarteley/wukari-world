@@ -1,0 +1,14 @@
+{
+  "files": [
+    "src/game/content/local-tales/batch-01.ts",
+    "src/game/content/local-tales/batch-02.ts",
+    "src/game/content/local-tales/batch-03.ts",
+    "src/game/content/local-tales/batch-04.ts"
+  ],
+  "cityCount": 145,
+  "countryCount": 104,
+  "taleCount": 290,
+  "missionCount": 870,
+  "errors": [],
+  "scope": "Structural, grounding and normalized exact uniqueness only. Semantic plot quality and gameplay/save/agent compatibility require separate review."
+}

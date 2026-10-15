@@ -53,3 +53,19 @@ The75-city check:fast passed five-project typecheck, production build, all284 ci
 Current authoring ownership: Sol owns batch03 via local-tales-03-quality-20261015.md; Sol owns batch04 via local-tales-04-quality-20261015.md. Both submit concrete plot matrices before expansion. Old03/04 workers remain stopped. Batches05–08 remain held. Focused54 existing mission/agent/registry/creator cases pass. Nairobi keepsake survived browser reload (ui-nairobi-earned.png). Latest usage91%used/9%remaining; stop everything at95%used.
 
 Released mainac94fca0 has now been merged cleanly;111 existing focused agent/mission/desk/errand/resident/creator cases pass together. Local combined typecheck encountered invalid desire values in the unregistered03draft; its owner is fixing those. The accepted75-citycommit is8273254b. New small UI fixes expose the exact-spot disabling reason and singular district grammar. Fresh creator draft confirmsKenya/Nairobi and clean home copy (ui-nairobi-country.png), without starting another life.
+
+## Publication checkpoint
+
+75-city milestone is on GitHubmain4fd4a1b715aca6d39b9d7443315ffc2988dda2a6. CI38670494623 succeeded on2f02124f820b2110257a2fbd852c6bcf4f9dc5e0 (typecheck/build/284citydownload/smoke/policy);4fd4a1b7 adds only the other computer’s release-status docs via5826edd6.111focused existing integration cases pass locally. The small global table-game hint correction and next content batches are not yet included.
+
+Live health now reportsjoinallworld-ac94fca06702c1c86dd37fc3b71, independently released by the other computer (agent missions/memory/resident work). No deployment was performed in this content task. Earlierac407c2c production notes are historical. Latest usage92%used/8%remaining; stop all work at95%used.
+
+Post-merge CI75-city budget evidence:598857raw/217377gzip/190915Brotli startup bytes;90504raw/35243gzip loading JavaScript;184134raw/69586gzip shared scene. All original budgets pass. progression-rules is lazy578.63kBraw/139.09kBgzip. Broad Node/Worker/UI suites were skipped in this fast workflow;111focused cases were run separately.
+
+## Accepted local 145-city milestone
+
+Batches01–04 now accepted locally:145cities,104country/territoryidentities,290tales,870missiondefinitions. All four content files pass the combined structural gate after semantic corrections.03/04 correct-answer positions are24/23/23 each;03prop-target labels corrected,04all210labels corrected,Windhoekfive-cup arithmetic corrected. Both owners released their files. Country arcs activate whole-country only.
+
+Engine probe passes1450completionpaths across290episodes, preserving568exactoldmementos/527oldcollections; mission probe passes17400dailydeals,free swaps,fallback and144legacyrolloverclaims. Reports engine-acceptance.json/mission-acceptance.json now correspond to145-city local activation; previous75-citybuild/CI evidence stays scoped to75 until newCI finishes. Existing111cases previously passed aftermainintegration; new145focusedrun andCIpending. Global table-game hint now uses Phone→Tables instead of prescribing Lagos-specific venues.
+
+Activeauthoring: Sol05quality and Sol06quality own separatefiles/records.05firstsix approved with explicit paint-drying schedule correction and voluntary spicy/mild preferences;06awaits matrix. UpdatedAUTHORING reinforces actual observable mission labels, strict-valid source checkpoints and broader human-life stories. Old03–08Luna workers stay interrupted;07/08unassignedheld. Latestusage92%used/8%remaining; stopallat95%used. No deployment.

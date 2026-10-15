@@ -5,16 +5,25 @@ continue. The full brief is in [docs/agent-plans/world-alive/](docs/agent-plans/
 STATUS.md (what is live, the log, the questions for the owner), then PHASES.md. Repository-wide coordination is in
 [AGENTS.md](AGENTS.md). When everything below is done, empty the "In flight" and "Still to do" sections and say so in STATUS.md.
 
-Last updated: 15 October 2026 (everything released: `1bb55dc5`).
+Last updated: 15 October 2026 (owner's decisions in flight).
 
 ## In flight
 
-Nothing. Every phase of docs/agent-plans/world-alive/PHASES.md was built and released by 15 October 2026 (release 13, `1bb55dc5`).
+The owner's decisions of 15 October 2026, being built:
+
+| Work | Branch | Where it stopped | Next step |
+| --- | --- | --- | --- |
+| Residents everywhere: three per open city (~850), generated distinct personalities, visible (shadow off), rule-driven to stay in budget | `claude/alive-residents-everywhere` | Being built | Review, merge, CI, release. |
+| Starting money scales with the city's price level; home-city pin saved to the account | `claude/alive-money-pin` | Being built | Review, merge, CI, release. |
+| Passing property and reputation to a next character, and to a different (consenting) character: design (docs/LEGACY.md) then build | `claude/alive-legacy` | Being built | Review, merge, CI, release. |
+| Fix tests failing on main (economy simulation and local missions, engine skills test, the STATUS.md list) | `claude/alive-fix-tests` | Being built | Review, merge, CI, release. |
+| iCloud: the Desktop checkout's files were offloaded by iCloud (git hung); downloading them back, then rename the folder to `joinallworld.nosync` with a `joinallworld` link so iCloud stops syncing it | none (owner's Mac) | Downloading | Finish, then rename and link, then check git works there. |
+
+Dropped by the owner: measuring speech to text with recordings.
 
 ## Still to do
 
-Nothing for an agent to start on its own. What is open needs the owner first: see "Questions for the owner" in
-[docs/agent-plans/world-alive/STATUS.md](docs/agent-plans/world-alive/STATUS.md). If you are given new work, add it here.
+Nothing else. When the table above is done, empty this section and the table.
 
 ## How the work is done (learned the hard way)
 

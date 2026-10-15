@@ -134,3 +134,35 @@ On the admin page, under the letters: a text box (5 to 400 characters, **news** 
 ### Checking it
 
 `node --experimental-strip-types --test server/residents/voice.test.ts server/residents/resident.test.ts` (fake fetch: ideas collected, clustered, top five; the weekly election deterministic and apart from people's offices; the letter on Sunday only, bounded, in character, retried or written by rules; the reply as a gist line and as news in the prompts; admin-only routes).
+## Phase 20: residents' own relationships and world events
+
+Code: `server/residents/bonds.ts` (the rules and the engine, portable), `bonds-link.ts` (the wiring: heartbeat, gist, storage, admin), `bonds.test.ts`. `resident.ts` only gained a small `hooks` object (a profile line, a note of each talk, a place to hold a resident, a resident who has left) and `presence()`, `modelOf()`, `askBudgeted()` for the engine to read. With none of it set a resident behaves as in 13b.
+
+### Friendships, quarrels, marriages
+
+- **Closeness** (0 to 100) between two residents grows from each talk (+3), from a day in the same place (+1, once a day) and from a chosen visit (+2), at most 8 a day for a pair. It decays by 1 a day after 2 idle days and the bond ends at 0. 20 is "friends", 50 is "best friends".
+- **Personality** is read from the life stories (`traitsOf`): faith, interests the stories share (music, books, cooking, walks, ...), and a hot temper. `fit` (0 to 1) makes a quarrel likelier when low and forbids a marriage under 0.4.
+- **A quarrel** is only a silence: closeness stops growing and drops by 12. It is never shown on a profile or in the gist. A resident may choose "make up" (asked from the next day); otherwise it fades after 6 days and costs 5 more. Married residents do not quarrel.
+- **A marriage** needs closeness 80 or more kept for 21 days (about four weeks at the fastest), the same city, both single (one marriage each, no divorce, no children, nothing sexual, no cheating; all residents are adults), a fit of 0.4 or more and no quarrel. Then one resident is asked "propose" or "not yet" and, later, the other "accept" or "not yet". A "not yet" makes them wait 7 (or 14) days. Each question is one short model call (the resident's own model, the shared budget, JSON checked in code, thrown away when wrong or out of character, at most 24 a day for all); a failed call decides nothing, so a marriage is never made by the rules alone.
+- Other choices: "visit a friend" (adds closeness; no travel is shown yet) and "make up".
+- **Families** are the married couples. The cast does not grow, so there are no children.
+
+### Shown to people (shadow off only)
+
+- **Profiles**: the resident's line in the people list ("doing") gets a short suffix: "Married to Kemi", "Best friends with Tunde", "Friends with Ama" (the closest bond; never a quarrel, never a number). A resident whose spouse has left shows "Remembers Kemi".
+- **The gist** (kind `event`): "Kemi and Femi are getting married on Saturday at the Square" when the wedding is set, "Kemi and Femi are married. The celebration is at the Square now" when it opens. Only names, a weekday and a place.
+
+### Weddings and funerals
+
+- **A wedding** is set when both have chosen: the next Saturday at least 5 days away, 16:00 in their city, at the square, the park or the market (the first one the city has), with an aso-ebi colour from Phase 16's list. Phase 16's party machinery is house based (a host, a visit), so it was not reused beyond the colour list. The couple stand at the venue from an hour before until 3 hours after (they are held there by `hooks.hold`, visible with the AI mark), the marriage starts when it opens and the bride or groom (the first named) says one written welcome line in the room. Anyone who goes to the venue is a guest. At most 8 weddings, one a week in a city.
+- **The share card** (`docs/SHARE-CARDS.md`): `POST /api/growth/share {kind:'wedding', wedding:'w-3'}` makes the card of a resident wedding that was announced in the gist and has opened: the two public first names and the city, nothing else.
+- **A funeral** exists only when the owner puts a resident key in the setting **`residentFarewell`** (for example `bisi`). That resident stops living for good, the gist says "Friends gather at the Square on Sunday to remember Bisi", and the spouse and best friends (up to 6) stand there on that Sunday 15:00 for 2 hours. At most 2 a week. Never for a person, never by a rule of the game.
+
+### Shadow, one resident, the admin page
+
+- **Shadow on**: everything happens on paper. Nothing is announced, said, shown on a profile or standing at a venue as seen by anyone; no card can be made (not announced). If shadow is switched off while a wedding is still to come, it is announced then. Weddings that passed in shadow stay private.
+- **With `residentCount` 1** (fewer than two residents running) the engine only keeps the clock: no bonds, no calls, no events.
+- **Admin page**, group **Residents: relationships**: counts, the closest pairs with their closeness (admin only), weddings and farewells with whether they are announced, and the log of what happened (what "would announce" in shadow).
+- Stored lazily and not durable in the collection `bonds` (`{ v: 1, day, seq, pairs, events, log, departed, calls }`), at most 300 pairs and 40 events.
+
+Check it: `node --experimental-strip-types --test server/residents/bonds.test.ts server/share-cards.test.ts`.

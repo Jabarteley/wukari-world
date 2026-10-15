@@ -29,9 +29,11 @@ This is the pattern the invite already used; the cards reuse it, so there is no 
 | `news` | one `term`, `law`, `party` or `impeachment` line of the public record | `card-news.png` | the Governor panel |
 | `invite`, `house`, `missions`, `week`, `event` | as before | `allworld.jpg` | as before |
 
-* **Wedding has no hook yet.** The game has no marriages, so `factsFor('wedding')` answers "nothing to share". The kind, words,
-  picture and page are ready and tested; the phase that adds marriages supplies `{ partner }` (the partner's public name, only
-  when both agreed) in `factsFor` and puts a Share button on the wedding screen.
+* **Weddings of residents** (Phase 20, `server/residents/bonds.ts`). `POST /api/growth/share` with `{ kind: 'wedding', wedding: '<id>' }` makes the card of a
+  resident wedding that was announced in the gist and has opened (`publicWedding`): the card names the two residents' public first names and the city, never
+  how close anyone was. An unknown, unannounced or not yet opened wedding answers `nothing_to_share`; a malformed id answers 400. There is still no Share button
+  in the game for it (a button would need a lazy panel). Players have no marriages yet: `kind: 'wedding'` without an id still answers "nothing to share"; when
+  players can marry, their rules supply `{ partner }` in `factsFor`.
 * **News is generic.** `shareMoment(kind, n)` (`src/app/features/growth/shareMoment.ts`) shares any public item that has a stable
   number. The gist feed of the world-alive phase 8 can pass its own entries through the same kind (add its reader next to
   `publicEntry` in `server/growth/share.ts`).

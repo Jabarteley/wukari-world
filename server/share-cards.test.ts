@@ -81,6 +81,24 @@ test('privacy: a card holds the public line and the sharer’s shown name only, 
   assert.ok(!/₦|naira|\$\d/.test(`${tag(html, 'og:title')} ${made.share.facts.headline}`), 'no amounts of money in the card (the open launch offer, which is public, may end the description)');
 });
 
+test('a resident wedding that was announced and has opened can be shared; the card carries the two public names and the city only', async (t) => {
+  const { f, ada, post } = await harness(t);
+  const event = (id: string, announced: boolean, opened: boolean) => ({ id, kind: 'wedding', city: 'lagos', room: 'x', label: 'The Square', who: ['resident.lagos.a', 'resident.lagos.b'], names: ['Kemi', 'Femi'], guests: [], at: f.now(), until: f.now() + 1, colour: 'green', announced, opened, done: false });
+  await f.server.store.transact((db) => { (db as Record<string, unknown>)['bonds'] = { v: 1, day: 1, seq: 3, pairs: { 'resident.lagos.a|resident.lagos.b': { a: 'resident.lagos.a', b: 'resident.lagos.b', c: 91, quarrel: 4 } }, events: [event('w-1', true, true), event('w-2', false, true), event('w-3', true, false)], log: [], departed: [], calls: { day: 1, n: 0 } }; });
+  const made = await post('/api/growth/share', { cityId: 'lagos', kind: 'wedding', wedding: 'w-1' }, ada);
+  assert.equal(made.ok, true, made.reason);
+  assert.equal(made.share.facts.name, 'Kemi');
+  assert.equal(made.share.facts.partner, 'Femi');
+  const html = await (await fetch(`${f.base}/s/${made.share.code}`)).text();
+  assert.match(tag(html, 'og:title') ?? '', /Kemi and Femi just got married/);
+  assert.equal(tag(html, 'og:image'), 'https://play.example/og/card-wedding.png');
+  assert.ok(!/quarrel|closeness|resident\.lagos|"c":/i.test(html), 'nothing of the bond is on the card');
+  assert.equal((await post('/api/growth/share', { cityId: 'lagos', kind: 'wedding', wedding: 'w-2' }, ada)).code, 'nothing_to_share', 'not announced: not public');
+  assert.equal((await post('/api/growth/share', { cityId: 'lagos', kind: 'wedding', wedding: 'w-3' }, ada)).code, 'nothing_to_share', 'not yet opened');
+  assert.equal((await post('/api/growth/share', { cityId: 'lagos', kind: 'wedding', wedding: 'w-9' }, ada)).code, 'nothing_to_share');
+  assert.equal((await post('/api/growth/share', { cityId: 'lagos', kind: 'wedding', wedding: '../x' }, ada)).status, 400);
+});
+
 test('a wedding has nothing to share until the game has marriages; its card is ready for them', async (t) => {
   const { post, ada } = await harness(t);
   assert.equal((await post('/api/growth/share', { cityId: 'lagos', kind: 'wedding' }, ada)).code, 'nothing_to_share');

@@ -200,6 +200,13 @@ export const GOODBYE = 'Go well, and come by again.';
 const hash = (text: string): number => { let h = 2166136261; for (const char of text) { h ^= char.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
 const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+/** The few places Phase 20 (bonds.ts) reaches into a resident's day. All optional: with none set a resident behaves exactly as in Phase 13b. */
+export interface ResidentHooks {
+  profile?: (id: string) => string | null
+  talked?: (a: string, b: string, t: number) => void
+  hold?: (id: string) => string | null
+  retired?: (id: string) => boolean
+}
 export interface ResidentDeps {
   ask?: (input: AskInput) => Promise<AskResult>
   /** The models of the 'resident' list in order, for the assignment at birth. */
@@ -277,6 +284,8 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     where: string | null; talking: boolean; lastTalk: number; recent: string[]; replying: boolean
   }
   const live = new Map<string, Live>();
+  /** Phase 20 (bonds.ts) plugs in here and nowhere else: a short public profile line, a note of each talk, a place to hold a resident (a wedding), a resident who has left. */
+  const hooks: ResidentHooks = {};
   let census: { at: number; rooms: Map<string, number> } = { at: -Infinity, rooms: new Map() };
 
   function liveOf(who: Resident): Live {
@@ -338,6 +347,8 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     return census;
   }
   function placeFor(state: Live, action: ActionId): string | null {
+    const held = hooks.hold?.(state.id);
+    if (held) return held;
     const place = ACTIONS[action].place, { work, city } = state.who;
     if (place === 'post') return state.postRoom;
     if (place === 'market') { const v = venueFor(city, work.market ?? work.post, 'seller'); return v ? venueRoomKey(city, v, '') : state.postRoom; }
@@ -508,6 +519,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
   function leave(state: Live): void {
     if (state.presentAt) { room()?.absent(state.id); state.presentAt = null; }
   }
+  const withProfile = (id: string, doing: string): string => { const line = hooks.profile?.(id); return line ? `${doing} · ${line}`.slice(0, 80) : doing; };
   function stand(state: Live, action: ActionId, t: number): void {
     const door = room(), target = placeFor(state, action);
     if (!door) return;
@@ -516,7 +528,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     if (cur && cur.room === target && cur.until - t >= PRESENCE_MS - RENEW_MS) return;
     const base = initialVenuePosition(target.split(':')[1] ?? ''), h = hash(`${state.id}|${target}`);
     const position = { x: Math.max(-18, Math.min(18, base.x + (h % 9 - 4) * 0.9)), z: Math.max(-18, Math.min(18, base.z + ((h >>> 8) % 9 - 4) * 0.9)) };
-    door.present({ id: state.id, name: state.who.name, mark: { agent: true }, room: target, position, doing: (action === 'open_shop' || action === 'work_shift') && state.who.doing ? state.who.doing : ACTIONS[action].doing, look: HOUSE_LOOKS[state.who.look ?? 'sis'], until: t + PRESENCE_MS });
+    door.present({ id: state.id, name: state.who.name, mark: { agent: true }, room: target, position, doing: withProfile(state.id, (action === 'open_shop' || action === 'work_shift') && state.who.doing ? state.who.doing : ACTIONS[action].doing), look: HOUSE_LOOKS[state.who.look ?? 'sis'], until: t + PRESENCE_MS });
     state.presentAt = { room: target, until: t + PRESENCE_MS };
   }
   const jitter = (state: Live, t: number): number => t + ALONE_MS[0] + (hash(`${state.id}|${Math.floor(t / 60000)}`) % (ALONE_MS[1] - ALONE_MS[0]));
@@ -601,6 +613,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
         ex.record = { at: t, between: [a.id, b.id], room, ground: ex.ground.n, groundText: ex.ground.text, lines: ex.lines, ended: 'turns' };
         for (const state of [a, b]) { const day = dayOf(state.who, t); day.talks = (day.talks ?? 0) + 1; (day.talkLog ??= []).push(ex.record); if (day.talkLog.length > TALKS_KEPT) day.talkLog.splice(0, day.talkLog.length - TALKS_KEPT); }
         persist();
+        try { hooks.talked?.(a.id, b.id, t); } catch { /* a bond note never stops a talk */ }
         ex.busy = false;
       } catch { release(ex); }
     })();
@@ -705,7 +718,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
       if (!isReady) return;
       const t = ctx.now();
       const count = Math.min(s.count, roster.length);
-      for (const [index, who] of roster.entries()) beat(liveOf(who), t, s.on && index < count, s.shadow);
+      for (const [index, who] of roster.entries()) beat(liveOf(who), t, s.on && index < count && !hooks.retired?.(residentId(who)), s.shadow);
       if (s.on) meet(t);
       advance(t);
       saveIfDue(t);
@@ -755,7 +768,12 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
   }
 
   return {
-    tick, ready, settings, line: onLine, report,
+    tick, ready, settings, line: onLine, report, hooks,
+    /** For bonds.ts: who stands where and is awake (switched-on residents only), the model each was given, and one budgeted model call. */
+    presence: (): { id: string; city: string; where: string | null; awake: boolean }[] => { const count = Math.min(settings().count, roster.length); return roster.slice(0, count).map((who) => { const state = liveOf(who); return { id: state.id, city: who.city, where: state.where, awake: state.asleep === false }; }); },
+    modelOf: (id: string): string | null => (Object.hasOwn(stored.residents, id) ? stored.residents[id]!.model : null),
+    askBudgeted: (input: AskInput): Promise<AskResult> => callModel(input),
+    roster,
     /** For tests and the admin page. */
     state(id?: string) {
       const who = roster.find((r) => residentId(r) === id) ?? roster[0]; if (!who) return null;

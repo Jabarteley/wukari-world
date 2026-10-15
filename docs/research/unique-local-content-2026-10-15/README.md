@@ -6,8 +6,8 @@ This work is incomplete. The target is 284 supported cities and 243 game country
 
 | Gate | Evidence |
 | --- | --- |
-| Published to main | `81a94cbb`: batches 01–04, 145 cities, 104 identities, 290 tales, 870 missions |
-| Next committed milestone | Batches 01–06 accepted locally: 215 cities, 174 identities, 430 tales, 1,290 missions; publication checks pending |
+| Published to main | `95855168`: batches 01–06, 215 cities, 174 identities, 430 tales, 1,290 missions |
+| Next committed milestone | CI38675110595 green on source67e13a8f; main95855168 adds only archived authoring checkpoints and documentation. 175 focused existing integration cases pass. |
 | Live production | Last observed health reported `joinallworld-ac94fca06702c1c86dd37fc3b71`, released independently by the other computer. This content task has not deployed. |
 | Remaining authors | Sol authors own batches 07 and 08, covering the remaining 69 cities. These drafts are unregistered. A Luna audit covered 82 middle-range matrix plots without proving a contradiction; that is not full source acceptance. |
 | Usage limit | Last checked: 94% used, 6% remaining. Stop every worker and all task work at 95% used / 5% remaining. Re-read the live tool. |
@@ -68,4 +68,6 @@ Coordinator: `docs/agent-work/unique-local-content-20261015.md`. Shared index: `
 
 Combined CI38673086751 passed on `6198fe21`, including the other computer’s released Phase 14 work. Main `81a94cbb` additionally merges release-status documentation. No deployment was performed here.
 
-The current 215-city reports supersede the 145-city probe totals in the historical table: 2,150 engine paths, 25,800 daily deals, 214 legacy rollover claims, 568 exact old keepsakes and 527 old collections pass. `batches-01-06-validation.json` reports zero structural errors. These are working-tree results; current CI is pending. Welcome copy now describes places worldwide and country/territory identities. The new 375px landing screenshot is inconclusive because browser capture scaled the content; DOM width showed no overflow. Browser binding later failed, and a temporary Chrome viewport reset remains unconfirmed. Existing player saves were not cleared.
+The current 215-city reports supersede the 145-city probe totals in the historical table: 2,150 engine paths, 25,800 daily deals, 214 legacy rollover claims, 568 exact old keepsakes and 527 old collections pass. `batches-01-06-validation.json` reports zero structural errors. These probes were run in the working tree subsequently committed as67e13a8f. CI38675110595 passed typecheck, build, city budgets, smoke and policy; broad suites were skipped. Welcome copy now describes places worldwide and country/territory identities. The new 375px landing screenshot is inconclusive because browser capture scaled the content; DOM width showed no overflow. Browser binding later failed, and a temporary Chrome viewport reset remains unconfirmed. Existing player saves were not cleared.
+
+Final handoff:215-city milestone is on main95855168; no content deployment. Both authors stopped; drafts07(20/35cities) and08(6/34) archived outside compilation with full matrices. Last live usage94%used/6%remaining; stopped at a safe checkpoint ahead of95%used hard floor. Resume requires renewed work instruction and a live usage check.

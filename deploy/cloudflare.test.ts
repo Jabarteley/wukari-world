@@ -1785,8 +1785,19 @@ test('Worker row budget: a connected player who only polls writes nothing; an ac
   await f.life(ada);
   x.send({ type: 'join', cityId: 'lagos', venueId: 'park' }); await x.next();
   const poll = async (): Promise<void> => { for (const path of ['/api/life?city=lagos', '/api/world/pulse', '/api/civic/pulse?city=lagos', '/api/social/people?city=lagos', '/api/session']) { const response = await f.request(path, null, ada.cookie); assert.ok(response.status < 500, `${path} answered ${response.status}`); await response.arrayBuffer(); } };
-  // The first poll of each kind, and the first beat, make what does not exist yet (a collection, a resident's entry): those are written.
-  await poll(); await new Promise(resolve => setTimeout(resolve, 11000)); await poll();
+  // The first poll of each kind and the first two beats make the finite bootstrap collections. Do not start the steady-state meter early.
+  await poll();
+  const bootstrapStorage = await f.storage();
+  const bootstrapCollections = ['modelRouter', 'worldfeed', 'bonds', ...Array.from({ length: 16 }, (_, index) => `residentsS${index.toString(16)}`)];
+  const bootstrapDeadline = Date.now() + 45000;
+  let missingBootstrap = bootstrapCollections;
+  while (missingBootstrap.length && Date.now() < bootstrapDeadline) {
+    const names = new Set((await bootstrapStorage.exec('SELECT name FROM collections')).map((row) => row.name));
+    missingBootstrap = bootstrapCollections.filter((name) => !names.has(name));
+    if (missingBootstrap.length) await new Promise(resolve => setTimeout(resolve, 250));
+  }
+  assert.deepEqual(missingBootstrap, [], `bootstrap collections did not become ready: ${missingBootstrap.join(', ')}`);
+  await poll();
   // From here on: what a page that is only open does, for longer than two beats — it answers the heartbeat, moves, and polls.
   const quiet = (await overview()).rows;
   for (let round = 0; round < 5; round++) {

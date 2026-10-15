@@ -39,7 +39,7 @@ optional collection, nothing existing changed.
 
 ## The person's controls (the Phase 2 promise, [AI-SAFETY.md](AI-SAFETY.md))
 
-On the **card of each AI character** (Phone → "AI characters", and in **Settings**, where the card list sits under the global switch):
+On the **card of each AI character** (in **Settings**, where the card list sits under the global switch; the first download has no room for a separate page, and `AgentMemory.vue` takes an `agent` parameter for opening one card from anywhere later):
 
 | Control | What it does |
 | --- | --- |

@@ -1,0 +1,18 @@
+Allworld smoke check of https://joinallworld.com
+ok    health  build joinallworld-abec6f54ba42f1d9d2afb55c053
+ok    page headers  content-security-policy, x-content-type-options, x-frame-options, referrer-policy
+ok    page and assets  16 files
+ok    guest session  "Zz Test"
+ok    life  in park, spot amphitheatre
+ok    server city content  lagos
+ok    server city content  accra
+ok    server city content  nairobi
+ok    server city content  suva
+ok    server city content  tokyo
+ok    server city content total  5 cities
+ok    world pulse  online 2, today 7, visits 447, cities 284
+ok    socket  frames: pulse, table-state, table-state; online 2
+ok    server dictionary  private Weave game started
+ok    action and its repeat  "selected", then duplicate
+ok    city chunks  1910 files for 284 open cities
+PASS  16 checks, 1992 requests, 223.5 s, https://joinallworld.com

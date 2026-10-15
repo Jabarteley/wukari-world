@@ -5,16 +5,15 @@ continue. The full brief is in [docs/agent-plans/world-alive/](docs/agent-plans/
 STATUS.md (what is live, the log, the questions for the owner), then PHASES.md. Repository-wide coordination is in
 [AGENTS.md](AGENTS.md). When everything below is done, empty the "In flight" and "Still to do" sections and say so in STATUS.md.
 
-Last updated: 15 October 2026.
+Last updated: 15 October 2026 (release 8 live: `abec6f54`).
 
 ## In flight
 
 | Work | Branch | Where it stopped | Next step |
 | --- | --- | --- | --- |
-| Release 8: Phase 17 (city texture) | `main` | Merged on `claude/world-alive`, being released | Release with the retrying helper (rerun the workflow on the new tip if "Refuse stale deployment policy" fails), smoke, note it in STATUS.md. |
-| Phase 11: missions from agents | `claude/alive-p11-missions` | Being built | Review, merge, CI, release. |
-| Phase 12: talking, memory (with the person's controls), closeness, partners | `claude/alive-p12-memory` | Built; sent back so a partnership counts as consent to flirt (owner's rule) | Review the fix, merge, CI, release. |
-| Phase 13a: one resident in shadow | `claude/alive-p13a-resident` | Being built | Review, merge, CI, release. |
+| Phases 12 (talk, memory, partners, flirting with consent) and 13a (one resident, Remi, in shadow) | merged on `claude/world-alive` | Tests pass (131), typecheck clean, but STARTUP_RAW is 24 bytes over | Wait for `claude/alive-startup-room3`, merge it, CI, release. |
+| Freeing first-download room (at least 6 KB) | `claude/alive-startup-room3` | Being built | Review, merge into `claude/world-alive`, CI. |
+| Phase 11: missions from agents (and paying a haggled quote on hand-over) | `claude/alive-p11-missions` | Being built | Review, merge, CI, release. |
 
 ## Still to do (in order)
 

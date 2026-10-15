@@ -288,9 +288,12 @@ function playNow(settle = false): void {
   else shell.close()
   window.dispatchEvent(new CustomEvent('jaw:quick-start', { detail: { name: plan.name, look: plan.look, ...(cr.city ? { city: cr.city } : {}) } }))
 }
-/** "Start in <City>" (or the landing's own line): the character is born in that city when it is open, otherwise where the screen is. */
+/** A named city must load before creating its character; a failed download keeps the visitor here to retry. */
 async function startIn(city: string | null): Promise<void> {
-  if (city) { try { await loadCityContent(city); cr.city = city; (await import('../paths/intent.ts')).markLanding() } catch { /* the life starts in the city on screen */ } }
+  if (city) {
+    try { await loadCityContent(city); cr.city = city; (await import('../paths/intent.ts')).markLanding() }
+    catch { cr.error = 'We could not load this city. Check your connection and try again.'; return }
+  }
   playNow(false)
 }
 let stopWaiting: (() => void) | null = null

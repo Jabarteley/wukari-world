@@ -1,0 +1,19 @@
+{
+  "versionId": "c6d585f2-8134-400e-a83f-20866638ce0f",
+  "sourceCommit": "abec6f54ba42f1d9d2afb55c053019bc1b3b9567",
+  "releaseRun": "https://github.com/kromate/joinallworld/actions/runs/38660509771",
+  "publishStaging": false,
+  "bindings": [
+    {
+      "name": "BUILD_ID",
+      "text": "joinallworld-abec6f54ba42f1d9d2afb55c053019bc1b3b9567",
+      "type": "plain_text"
+    },
+    {
+      "class_name": "JoinAllworldState",
+      "name": "JOINALLWORLD",
+      "namespace_id": "6b84e715f6c444f69971a0b6cde7868b",
+      "type": "durable_object_namespace"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+Current-main existing agent compatibility subset
+Source: abec6f54ba42f1d9d2afb55c053019bc1b3b9567
+Command: node --experimental-strip-types --test --test-concurrency=1 server/agents/agents.test.ts server/agents/agents-open.test.ts server/registry.test.ts
+Result: 40 tests, 40 pass, 0 fail, exit 0; duration 6895.974625 ms.
+Scope: current agent tool access and open endpoints, account and key lifecycle, life actions, route/socket registries, idempotency, server-only actions, save and Worker portability contracts.
+This is current-main compatibility evidence. It does not execute or qualify the unmerged Phase 11 implementation on origin/claude/alive-p11-missions.
+SHA-256: a6c956551363fbbfab1bfefe5f75bcbeddee7da36807652a8b8bd89cfeb848ba

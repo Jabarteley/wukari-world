@@ -38,14 +38,14 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 9 Model router and budget | live | `95e03aa9` | One door for every model call, two providers, free first, paid-only for players' words, US$2 a day hard stop, per-player caps, weekly model report, companion moved onto it (docs/MODELS-ROUTER.md). Free gateway cap of 500 a day is a guess (question 7). |
 | 10 House agents and action library | live | `84917cdc` | Rule-run cast in venues with hours (Lagos: a cloth seller and a guide to start; other cities 0, admin settings `houseAgents*`), action library, wake on a person's line, haggling with a floor in code (max discount 15%, never over 30%), model only phrases (paid list, 220 tokens), written lines otherwise (docs/HOUSE-AGENTS.md). No DMs to house agents yet; a deal is a held quote until Phase 11. |
 | 11 Missions from agents | not started | | |
-| 12 Talking, memory, relationships | not started | | |
-| 13a One resident in shadow | not started | | |
+| 12 Talking, memory, relationships | merged, not yet live | | House agents remember up to five facts per person (never contacts or money), the person sees, deletes or turns it off (Settings), closeness, partners for confirmed adults, and flirting with a partner or an adult's own yes (docs/AGENT-MEMORY.md). No DMs to house agents yet. |
+| 13a One resident in shadow | merged, not yet live | | Remi, a Lagos bookseller: life story, sleep, a model chosen at birth, thoughts as validated choices, nightly summary, shadow (nobody sees her), her day on the admin page (docs/RESIDENTS.md). On by default on the live hosts, in shadow. |
 | 13b Thirty residents | not started | | |
 | 13c Ideas, assembly, president, letter | not started | | |
 | 14 Prayers and acts | not started | | |
 | 15 Calls with agents | not started | | |
 | 16 Festivals, owambe, match nights | live | `8ac05891` | Multi-day festival calendar (NG, GH, KE, ZA, global; Eid and Ramadan dates to 2028), festive Square light, owambe parties with MC/DJ/spray (no money), match-night slots and an empty admin fixture list (docs/FESTIVALS.md). |
-| 17 City texture packs | live | REL8 | Ride banter packs (Lagos danfo, okada, keke, cab; Accra, Nairobi, South Africa starters; no lyrics, no danger or scam words), the district's published light plan and cut notices with generator/inverter (docs/CITY-TEXTURE.md). Haggle-to-purchase comes with Phase 11. No solar item (scene chunk room). |
+| 17 City texture packs | live | `abec6f54` | Ride banter packs (Lagos danfo, okada, keke, cab; Accra, Nairobi, South Africa starters; no lyrics, no danger or scam words), the district's published light plan and cut notices with generator/inverter (docs/CITY-TEXTURE.md). Haggle-to-purchase comes with Phase 11. No solar item (scene chunk room). |
 | 18 Real price levels | not started | | |
 | 19 Smaller features | in progress | REL | Live: "while you were away" sheet and the ask for notifications after a good moment; jail you can play (jobs, community service, visits, parole; docs/JAIL.md). Next: city projects, group gift packets, sticker pack, home-city pin, life stages. |
 | 20 Agents' relationships and world events | not started | | |
@@ -95,6 +95,9 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
+- 2026-10-15, release 8 (Phase 17, with release 7's cache-first pass and OpenRouter 1,000 a day), `abec6f54`, live: ride banter,
+  the light plan and cut notices. The deploy was refused twice because `main` moved during the build; the third run went out.
+  `SMOKE_CITIES=lagos` smoke PASS.
 - 2026-10-15, release 7 (`b8e4f8f0`) was refused twice at deploy because `main` moved during the build; it went out inside release 8.
 - 2026-10-15, release 7 (cache-first pass, OpenRouter 1,000 a day): the online count, gist, local-government directory and Hall
   of Records show what was last seen at once and refresh in the background (docs/PERFORMANCE.md); never money or inventory.

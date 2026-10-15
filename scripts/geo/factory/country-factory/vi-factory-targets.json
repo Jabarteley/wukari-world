@@ -1,22 +1,22 @@
 {
-  "expectedSourceGitSHA": "5b8fd5b9e0683c3d7b5880c2d46fba3e81710fcb",
+  "expectedSourceGitSHA": "fbc5de092e968ab9dcc6bfb38cf70c38cf801523",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "VI",
     "datasetSha256": "d4c788f17185961b70e6267fed3fa58d603e274ded18b1f64575de24072d3a67",
-    "receiptSha256": "6d15e343f3f11a93caeaacba01859e0adb2b05a80e9757e3757eaeefd14180c4",
+    "receiptSha256": "d9b44fee9e8f3e3d3e3ad5c8b07a1d87fa6542ff9c8eeeaf3ce957a1a4534b21",
     "receiptBytes": 11943,
     "geometrySha256": "eb0589799a2b330e52bb1eb4afb4011f28c4b15b67bb91057c59c9749f7281e3",
     "geometryBytes": 10446,
-    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "scriptSha256": "a75e7ddb301ce6651f282b4ee3920097252b23bc8120907abf89487c07916b05",
     "relationId": 286898,
     "boundaryKey": "vi",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38431865880,
-      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
-      "sourceArtifact": "city-bootstrap-vi-76625e88577c373598b4141ef4285f6af082419c",
+      "sourceRunId": 38683818708,
+      "sourceSha": "fd7dd335f300611630179c3c6b03a6349c1f25e2",
+      "sourceArtifact": "city-bootstrap-vi-fd7dd335f300611630179c3c6b03a6349c1f25e2",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -55,7 +55,7 @@
         "bounds": [
           -65.12299447684404,
           18.160576610066023,
-          -64.74404012315597,
+          -64.76300586691484,
           18.522338389933978
         ]
       },
@@ -458,21 +458,22 @@
           "way/1323367993",
           "way/1457140283"
         ],
-        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
-        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "boundsPolicySha256": "c387871a4fc76c4170f5fdf4101ee6cf3aabbc77b7435e1e97e6e757dc7343e8",
         "bounds": {
           "policy": {
             "playKm": 20,
             "coreKm": 5,
             "airportClearanceMetres": 1000,
-            "maximumAbsoluteLatitude": 75
+            "maximumAbsoluteLatitude": 75,
+            "eastKm": 18
           },
           "boxes": {
             "play": [
               18.160576610066023,
               -65.12299447684404,
               18.522338389933978,
-              -64.74404012315597
+              -64.76300586691484
             ],
             "core": [
               18.296237277516507,
@@ -484,13 +485,13 @@
               18.110576610066023,
               -65.17299447684404,
               18.57233838993398,
-              -64.69404012315597
+              -64.71300586691484
             ],
             "wide": [
               17.560576610066022,
               -65.72299447684404,
               19.12233838993398,
-              -64.14404012315597
+              -64.16300586691484
             ]
           },
           "airportMarginMetres": 15400.333454092899,
@@ -500,25 +501,25 @@
       },
       "extractKey": "charlotte-amalie",
       "extractSha256": {
-        "places": "1171b70072a646407b186f24359762d0fa443bb5b275fc17de6541c01cc13762",
-        "extras": "439070b34a3b203cb2e76740425c14c0b7a7a23cc94d1bff3c6a94ca45c93b7a",
-        "water": "aca673b516f151eedff1c747610c471a31fbca2fc7e4cbba80a6366c6b15e2e6",
-        "landuse": "0f8f17f09b7c9027e6590b3c6efc6ee06f7f7259762c1a020157c37268f6da3d",
-        "roads": "069b202757a5e6269551459fe90b3a9859e649babc7cb2bc3762b155904cb312"
+        "places": "d1f8bee291489a9503a794d7d47f8ce2e45cf968685f5bb1129e40781a0cb1bb",
+        "extras": "b7951f7ff812bfd039b760c76d5621dd4e861cba48d9a34b2cec7a90cacc4778",
+        "water": "2420ad0269fa28d673dc52bcd770e60aa9785b3200ea71db0e4a20378456ff99",
+        "landuse": "d6031c924a421be90d27a9e55958c1eedb16884be45245b1d2235044c23cc68f",
+        "roads": "890598972429a707c673f3f5650be6c1aafa0e58e10ded462df97beaf90baae6"
       },
       "sourceJob": {
         "city": "charlotte-amalie",
-        "sourceRunId": 38431865880,
-        "sourceArtifact": "city-bootstrap-vi-76625e88577c373598b4141ef4285f6af082419c",
-        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "sourceRunId": 38683818708,
+        "sourceArtifact": "city-bootstrap-vi-fd7dd335f300611630179c3c6b03a6349c1f25e2",
+        "sourceSha": "fd7dd335f300611630179c3c6b03a6349c1f25e2",
         "datasetSha256": "d4c788f17185961b70e6267fed3fa58d603e274ded18b1f64575de24072d3a67",
-        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
         "extractSha256": {
-          "places": "1171b70072a646407b186f24359762d0fa443bb5b275fc17de6541c01cc13762",
-          "extras": "439070b34a3b203cb2e76740425c14c0b7a7a23cc94d1bff3c6a94ca45c93b7a",
-          "water": "aca673b516f151eedff1c747610c471a31fbca2fc7e4cbba80a6366c6b15e2e6",
-          "landuse": "0f8f17f09b7c9027e6590b3c6efc6ee06f7f7259762c1a020157c37268f6da3d",
-          "roads": "069b202757a5e6269551459fe90b3a9859e649babc7cb2bc3762b155904cb312"
+          "places": "d1f8bee291489a9503a794d7d47f8ce2e45cf968685f5bb1129e40781a0cb1bb",
+          "extras": "b7951f7ff812bfd039b760c76d5621dd4e861cba48d9a34b2cec7a90cacc4778",
+          "water": "2420ad0269fa28d673dc52bcd770e60aa9785b3200ea71db0e4a20378456ff99",
+          "landuse": "d6031c924a421be90d27a9e55958c1eedb16884be45245b1d2235044c23cc68f",
+          "roads": "890598972429a707c673f3f5650be6c1aafa0e58e10ded462df97beaf90baae6"
         }
       }
     }

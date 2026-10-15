@@ -1,22 +1,22 @@
 {
-  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "expectedSourceGitSHA": "fbc5de092e968ab9dcc6bfb38cf70c38cf801523",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "GG",
     "datasetSha256": "f3ecad9dd9c1a682327645282a5273f56124a22a70ea7bc29da65054d8f4d3a5",
-    "receiptSha256": "b753dab69b35249db3fd104706b84dc6a337af3fe1ff478a1e7dee6bd084da3f",
+    "receiptSha256": "c1ca0a1da29605bca7da06e498fc28cc9801c87e05e1f82baf09aab6638532c0",
     "receiptBytes": 21146,
     "geometrySha256": "1b3f16f3d435fa86eb8a58727320827d703e5ce79e35654e8132bfddaf38323d",
     "geometryBytes": 13117,
-    "scriptSha256": "5ff4dfbbd3956af4e7502b3ff27111da8362a4ce4101a0327d3aba52b26c54cc",
+    "scriptSha256": "a75e7ddb301ce6651f282b4ee3920097252b23bc8120907abf89487c07916b05",
     "relationId": 270009,
     "boundaryKey": "gg",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38437674805,
-      "sourceSha": "ac5517527068042341162b637bfbabf0d8133ad6",
-      "sourceArtifact": "city-bootstrap-gg-ac5517527068042341162b637bfbabf0d8133ad6",
+      "sourceRunId": 38683818708,
+      "sourceSha": "fd7dd335f300611630179c3c6b03a6349c1f25e2",
+      "sourceArtifact": "city-bootstrap-gg-fd7dd335f300611630179c3c6b03a6349c1f25e2",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -55,7 +55,7 @@
         "bounds": [
           -2.816417658416154,
           49.275933310066016,
-          -2.261578141583846,
+          -2.2757764086817502,
           49.63769508993398
         ]
       },
@@ -636,21 +636,22 @@
           "way/1489173860",
           "way/1489173861"
         ],
-        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
-        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
+        "boundsPolicySha256": "c387871a4fc76c4170f5fdf4101ee6cf3aabbc77b7435e1e97e6e757dc7343e8",
         "bounds": {
           "policy": {
             "playKm": 20,
             "coreKm": 5,
             "airportClearanceMetres": 1000,
-            "maximumAbsoluteLatitude": 75
+            "maximumAbsoluteLatitude": 75,
+            "eastKm": 18.98
           },
           "boxes": {
             "play": [
               49.275933310066016,
               -2.816417658416154,
               49.63769508993398,
-              -2.261578141583846
+              -2.2757764086817502
             ],
             "core": [
               49.4115939775165,
@@ -662,13 +663,13 @@
               49.22593331006602,
               -2.866417658416154,
               49.687695089933975,
-              -2.2115781415838462
+              -2.2257764086817504
             ],
             "wide": [
               48.675933310066014,
               -3.416417658416154,
               50.23769508993398,
-              -1.661578141583846
+              -1.6757764086817502
             ]
           },
           "airportMarginMetres": 15524.410534338009,
@@ -678,25 +679,25 @@
       },
       "extractKey": "st-peter-port",
       "extractSha256": {
-        "places": "dd2e871ef5ac6c777e56a4cf4cdb70b196c7d2e6ce1672c1b24fcd7da743100e",
-        "extras": "cbacfc53f8044b98c1f6b080fc232f341a2f50c09dba656177fdd3febf4a520d",
-        "water": "5ec81c573f50d6694683c3a682299b5e41d6c8e6907ea85de276ff287ceb7326",
-        "landuse": "d19c7257fa5b798deb753e2146d9da36d1f35816f03af9f89cfd8228e007c989",
-        "roads": "447b52af8b9b60062842ee4c360f158c02c9c9cee68dfd74e4f1d00c39ef45d0"
+        "places": "d55ec02edffff08bec861d31b5c57e9a1d52cd7a29ff63d09596328719e20cc5",
+        "extras": "86ac9354464dc37ab706be27ba1efbc86ce60aee936b798fa67d0bae2f5e4b16",
+        "water": "41bf8444a55fa7043eaea017f000373658e3545b2c7c7c93a9f49ee396cf9632",
+        "landuse": "4611b6f0566c064f63b174b10e98254a981872602e3aa116ba3ddeedca34457d",
+        "roads": "db7f761d6685aa88cb59b5dce9e7ddfeabc6031824e7fc80329c66761bae6ace"
       },
       "sourceJob": {
         "city": "st-peter-port",
-        "sourceRunId": 38437674805,
-        "sourceArtifact": "city-bootstrap-gg-ac5517527068042341162b637bfbabf0d8133ad6",
-        "sourceSha": "ac5517527068042341162b637bfbabf0d8133ad6",
+        "sourceRunId": 38683818708,
+        "sourceArtifact": "city-bootstrap-gg-fd7dd335f300611630179c3c6b03a6349c1f25e2",
+        "sourceSha": "fd7dd335f300611630179c3c6b03a6349c1f25e2",
         "datasetSha256": "f3ecad9dd9c1a682327645282a5273f56124a22a70ea7bc29da65054d8f4d3a5",
-        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
         "extractSha256": {
-          "places": "dd2e871ef5ac6c777e56a4cf4cdb70b196c7d2e6ce1672c1b24fcd7da743100e",
-          "extras": "cbacfc53f8044b98c1f6b080fc232f341a2f50c09dba656177fdd3febf4a520d",
-          "water": "5ec81c573f50d6694683c3a682299b5e41d6c8e6907ea85de276ff287ceb7326",
-          "landuse": "d19c7257fa5b798deb753e2146d9da36d1f35816f03af9f89cfd8228e007c989",
-          "roads": "447b52af8b9b60062842ee4c360f158c02c9c9cee68dfd74e4f1d00c39ef45d0"
+          "places": "d55ec02edffff08bec861d31b5c57e9a1d52cd7a29ff63d09596328719e20cc5",
+          "extras": "86ac9354464dc37ab706be27ba1efbc86ce60aee936b798fa67d0bae2f5e4b16",
+          "water": "41bf8444a55fa7043eaea017f000373658e3545b2c7c7c93a9f49ee396cf9632",
+          "landuse": "4611b6f0566c064f63b174b10e98254a981872602e3aa116ba3ddeedca34457d",
+          "roads": "db7f761d6685aa88cb59b5dce9e7ddfeabc6031824e7fc80329c66761bae6ace"
         }
       }
     }

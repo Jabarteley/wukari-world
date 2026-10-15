@@ -6,7 +6,7 @@ import type {
 } from '../../types/episodes.ts'
 import type { ExecutionOrigin } from '../../types/progression.ts'
 import type { LifeContext, LifeState, SystemDefinition } from '../../types/index.ts'
-import { choiceFor, EPISODES, episodeById, outcomeFor } from '../content/episodes.ts'
+import { choiceFor, episodesForCity, episodeById, episodeByMemento, outcomeFor } from '../content/episodes.ts'
 import { LEFT_OUT, PLAYS } from '../profile.ts'
 import { emit, isDeparting } from '../registry.ts'
 import { fail, isRecord, ok } from '../util.ts'
@@ -19,6 +19,7 @@ const RETURN_RECAP_MS = 24 * 60 * 60 * 1000
 const ORIGINS: readonly ExecutionOrigin[] = ['human', 'delegated-agent', 'agent-character', 'system', 'unknown']
 const OBSERVED_SOURCES: readonly EpisodeObservedProofSource[] = [
   'kola-interaction', 'bisi-interaction', 'campus-job', 'library-study', 'union-whot', 'campus-event',
+  'local-conversation', 'local-practical', 'local-discovery',
 ]
 const PROOF_SOURCES: readonly EpisodeProofSource[] = [...OBSERVED_SOURCES, 'authored-challenge', 'quiet-support', 'quiet-help']
 const CHOICES: readonly EpisodeChoice[] = ['work', 'study', 'help']
@@ -78,8 +79,8 @@ function newRun(episode: EpisodeDefinition, now: number): EpisodeRun {
 
 function observedChapter(episode: EpisodeDefinition, source: EpisodeObservedProofSource, run: EpisodeRun): 1 | 2 | 4 | null {
   if (run.completedAt) return null
-  if (run.chapter === 1 && source === episode.intro.proof) return 1
-  if (run.chapter === 2 && episode.choices.some(choice => choice.proof === source)) return 2
+  if (run.chapter === 1 && (source === episode.intro.proof || source === episode.intro.alternativeProof)) return 1
+  if (run.chapter === 2 && episode.choices.some(choice => choice.proof === source || choice.alternativeProof === source)) return 2
   if (run.chapter === 4 && episode.finale.routes.some(route => route.proof === source)) return 4
   return null
 }
@@ -87,7 +88,7 @@ function observedChapter(episode: EpisodeDefinition, source: EpisodeObservedProo
 function observeProof(state: EpisodeLife, episode: EpisodeDefinition, source: EpisodeObservedProofSource, reference: string, ctx: LifeContext): void {
   let run = state.episodes.runs[episode.id]
   if (!run) {
-    if (source !== episode.intro.proof || !prerequisiteMet(state, episode)) return
+    if ((source !== episode.intro.proof && source !== episode.intro.alternativeProof) || !prerequisiteMet(state, episode)) return
     run = newRun(episode, ctx.now)
     state.episodes.runs[episode.id] = run
   }
@@ -100,7 +101,7 @@ function observeProof(state: EpisodeLife, episode: EpisodeDefinition, source: Ep
 }
 
 function atObservationPlace(state: EpisodeLife, episode: EpisodeDefinition, observation: EpisodeProofObservation, ctx: LifeContext): boolean {
-  if (ctx.cityId !== episode.location.city || state.location !== episode.location.venue || isDeparting(state)) return false
+  if (ctx.cityId !== episode.location.city || state.location !== ('venue' in observation && observation.venue ? observation.venue : episode.location.venue) || isDeparting(state)) return false
   return !('spot' in observation) || state.spot === observation.spot
 }
 
@@ -137,7 +138,7 @@ function episodeRun(state: EpisodeLife, episode: EpisodeDefinition): EpisodeRun 
 }
 
 function wrongEpisode(state: EpisodeLife) {
-  return fail(state, 'invalid_episode', `Choose a known episode from My Story: ${EPISODES.map(episode => episode.title).join(' or ')}.`)
+  return fail(state, 'invalid_episode', 'Choose a known episode from My Story in this city.')
 }
 
 function wrongPlace(state: EpisodeLife, episode: EpisodeDefinition, spot: string) {
@@ -165,7 +166,7 @@ function introduce(state: EpisodeLife, payload: Record<string, unknown>, ctx: Li
   if (run.chapter !== 1) return fail(state, 'wrong_chapter', `Finish the current ${episode.title} chapter before repeating the introduction.`)
   const spot = chapterDefinition(episode, 1).destination.spot
   if (!atEpisodePlace(state, episode, spot, ctx)) return wrongPlace(state, episode, spot)
-  const proof = proofFor(run, episode.intro.proof, 1)
+  const proof = proofFor(run, episode.intro.proof, 1) ?? (episode.intro.alternativeProof ? proofFor(run, episode.intro.alternativeProof, 1) : null)
   if (!proof) return fail(state, 'missing_proof', episode.intro.missingProof)
   const receipt: EpisodeChapterReceipt = { chapter: 1, completedAt: ctx.now, source: proof.source, reference: proof.reference, origin: proof.origin }
   saveReceipt(run, receipt)
@@ -190,7 +191,7 @@ function choose(state: EpisodeLife, payload: Record<string, unknown>, ctx: LifeC
   const spot = chapterDefinition(episode, 2).destination.spot
   if (!atEpisodePlace(state, episode, spot, ctx)) return wrongPlace(state, episode, spot)
   if (choice.requiresStudent && !settledStudent(state)) return fail(state, 'student_required', choice.studentRefusal)
-  const proof = proofFor(run, choice.proof, 2)
+  const proof = proofFor(run, choice.proof, 2) ?? (choice.alternativeProof ? proofFor(run, choice.alternativeProof, 2) : null)
   if (!proof) return fail(state, 'missing_proof', choice.missingProof)
   run.choice = choice.id
   const receipt: EpisodeChapterReceipt = { chapter: 2, completedAt: ctx.now, source: proof.source, reference: proof.reference, origin: proof.origin }
@@ -297,8 +298,8 @@ function assist(state: EpisodeLife, payload: Record<string, unknown>, ctx: LifeC
 }
 
 function proofAllowed(episode: EpisodeDefinition, chapter: EpisodeChapter, source: EpisodeProofSource): boolean {
-  if (chapter === 1) return source === episode.intro.proof
-  if (chapter === 2) return episode.choices.some(choice => choice.proof === source)
+  if (chapter === 1) return source === episode.intro.proof || source === episode.intro.alternativeProof
+  if (chapter === 2) return episode.choices.some(choice => choice.proof === source || choice.alternativeProof === source)
   if (chapter === 3) return source === 'authored-challenge'
   return episode.finale.routes.some(route => route.proof === source)
 }
@@ -337,7 +338,7 @@ function sanitizeRun(value: unknown, episode: EpisodeDefinition, now: number, tr
   let two: EpisodeChapterReceipt | null = null
   if (one && rawChoice) {
     const candidate = sanitizeReceipt(rawReceipts[2], 2, episode, now)
-    if (candidate && candidate.source === expectedProof && candidate.completedAt >= one.completedAt) two = candidate
+    if (candidate && (candidate.source === expectedProof || candidate.source === (rawChoice ? choiceFor(episode, rawChoice)?.alternativeProof : null)) && candidate.completedAt >= one.completedAt) two = candidate
   }
   const correct = rawChoice ? episode.challenges[rawChoice].correct : null
   let three: EpisodeChapterReceipt | null = null
@@ -379,7 +380,9 @@ function historyOf(episode: EpisodeDefinition, run: EpisodeRun): EpisodeHistoryR
     const receipt = run.receipts[chapter]
     if (!receipt) return []
     const choice = run.choice ? choiceFor(episode, run.choice) : null
-    const summary = chapter === 1 ? `Met ${chapterDefinition(episode, 1).speaker} for the introduction.`
+    const summary = chapter === 1 ? receipt.source === episode.intro.alternativeProof
+      ? `Read ${chapterDefinition(episode, 1).speaker}’s welcome note after completing the local activity.`
+      : `Met ${chapterDefinition(episode, 1).speaker} for the introduction.`
       : chapter === 2 ? `Chose ${run.choice ?? 'an approach'} from verified ${receipt.source.replaceAll('-', ' ')}.`
         : chapter === 3 ? `${run.outcomeTags[0]?.replaceAll('-', ' ') ?? 'The callback'} changed what ${choice?.callbackSpeaker ?? 'the host'} remembers.`
           : `Finished ${episode.title} through ${receipt.source.replaceAll('-', ' ')}.`
@@ -396,10 +399,10 @@ function recapOf(episode: EpisodeDefinition, run: EpisodeRun, now: number): stri
 }
 
 function nextFor(episode: EpisodeDefinition, run: EpisodeRun): EpisodeOptionView['next'] & {} {
-  if (run.chapter === 1 && !proofFor(run, episode.intro.proof, 1)) return episode.intro.proofNext
+  if (run.chapter === 1 && !proofFor(run, episode.intro.proof, 1) && !(episode.intro.alternativeProof && proofFor(run, episode.intro.alternativeProof, 1))) return episode.intro.proofNext
   if (run.chapter === 3 && run.choice) {
     const choice = choiceFor(episode, run.choice)
-    if (choice) return { venue: episode.location.venue, spot: choice.callbackSpot, label: `Meet ${choice.callbackSpeaker} at ${choice.callbackSpot === 'library' ? 'the Library' : 'Student Union'}` }
+    if (choice) return { venue: episode.location.venue, spot: choice.callbackSpot, label: episode.chapters[2].destination.label }
   }
   return chapterDefinition(episode, run.chapter).destination
 }
@@ -412,13 +415,13 @@ function optionsOf(state: EpisodeLife, episode: EpisodeDefinition, run: EpisodeR
       action: { type: 'episodes.intro', payload: { id: episode.id } } }]
   }
   if (run.chapter === 1) {
-    const reason = proofFor(run, episode.intro.proof, 1) ? null : episode.intro.missingProof
-    return [{ id: 'continue', label: `Continue with ${chapterDefinition(episode, 1).speaker}`, description: 'Confirm the introduction after the verified conversation.', enabled: reason === null, reason,
+    const reason = (proofFor(run, episode.intro.proof, 1) || episode.intro.alternativeProof && proofFor(run, episode.intro.alternativeProof, 1)) ? null : episode.intro.missingProof
+    return [{ id: 'continue', label: `Continue with ${chapterDefinition(episode, 1).speaker}`, description: episode.intro.alternativeProof ? 'Continue after the conversation or completed activity for the welcome note.' : 'Confirm the introduction after the verified conversation.', enabled: reason === null, reason,
       action: { type: 'episodes.intro', payload: { id: episode.id } }, ...(reason ? { next: episode.intro.proofNext } : {}) }]
   }
   if (run.chapter === 2) return episode.choices.map(choice => {
     const studentBlock = choice.requiresStudent && !settledStudent(state) ? choice.studentRefusal : null
-    const reason = studentBlock ?? (proofFor(run, choice.proof, 2) ? null : choice.missingProof)
+    const reason = studentBlock ?? ((proofFor(run, choice.proof, 2) || choice.alternativeProof && proofFor(run, choice.alternativeProof, 2)) ? null : choice.missingProof)
     return { id: choice.id, label: choice.title, description: choice.description, enabled: reason === null, reason,
       action: { type: 'episodes.choose', payload: { id: episode.id, choice: choice.id } }, ...(reason && !studentBlock ? { next: choice.proofNext } : {}) }
   })
@@ -449,7 +452,7 @@ function viewRow(state: EpisodeLife, episode: EpisodeDefinition, ctx: LifeContex
     if (prerequisite && prerequisiteRun) next = nextFor(prerequisite, prerequisiteRun)
   }
   return {
-    id: episode.id, version: episode.version, title: episode.title,
+    id: episode.id, version: episode.version, title: episode.title, cityId: episode.location.city, cityName: episode.location.name ?? episode.location.city,
     status: !unlocked ? 'locked' as const : run.completedAt ? 'completed' as const : saved ? 'active' as const : 'available' as const,
     chapter: run.chapter, chapterTitle: definition.title, speaker: definition.speaker,
     text: run.chapter === 3 && run.choice ? `${callbackText} ${episode.challenges[run.choice].prompt}` : callbackText,
@@ -465,7 +468,10 @@ function viewOf(state: EpisodeLife, ctx: LifeContext): EpisodesView {
   return {
     trackingSince: state.episodes.trackingSince,
     mementos: Object.values(state.episodes.mementos).filter((row): row is EpisodeMementoReceipt => row !== undefined),
-    rows: EPISODES.map(episode => viewRow(state, episode, ctx)),
+    rows: [...episodesForCity(ctx.cityId), ...Object.keys(state.episodes.runs).flatMap(id => {
+      const episode = episodeById(id)
+      return episode && episode.location.city !== ctx.cityId ? [episode] : []
+    })].map(episode => viewRow(state, episode, ctx)),
   }
 }
 
@@ -480,21 +486,21 @@ const play = PLAYS ? {
   on: {
     'npc.interacted'(state: EpisodeLife, data, ctx) {
       if (data.success !== true) return
-      for (const episode of EPISODES) for (const observation of episode.observations) {
+      for (const episode of episodesForCity(ctx.cityId)) for (const observation of episode.observations) {
         if (observation.event === 'npc.interacted' && data.npc === observation.npcId && atObservationPlace(state, episode, observation, ctx)) {
           observeProof(state, episode, observation.source, referenceOf(observation.source, ctx), ctx)
         }
       }
     },
     'activity.completed'(state: EpisodeLife, data, ctx) {
-      for (const episode of EPISODES) for (const observation of episode.observations) {
+      for (const episode of episodesForCity(ctx.cityId)) for (const observation of episode.observations) {
         if (observation.event === 'activity.completed' && data.id === observation.activityId && atObservationPlace(state, episode, observation, ctx)) {
           observeProof(state, episode, observation.source, referenceOf(observation.source, ctx), ctx)
         }
       }
     },
     'campus.job.completed'(state: EpisodeLife, data, ctx) {
-      for (const episode of EPISODES) for (const observation of episode.observations) {
+      for (const episode of episodesForCity(ctx.cityId)) for (const observation of episode.observations) {
         if (observation.event === 'campus.job.completed' && observation.jobIds.some(job => job === data.job)
           && (!observation.requirePositivePay || data.pay > 0) && atObservationPlace(state, episode, observation, ctx)) {
           observeProof(state, episode, observation.source, referenceOf(observation.source, ctx), ctx)
@@ -502,14 +508,14 @@ const play = PLAYS ? {
       }
     },
     'table.played'(state: EpisodeLife, data, ctx) {
-      for (const episode of EPISODES) for (const observation of episode.observations) {
+      for (const episode of episodesForCity(ctx.cityId)) for (const observation of episode.observations) {
         if (observation.event === 'table.played' && data.game === observation.game && atObservationPlace(state, episode, observation, ctx)) {
           observeProof(state, episode, observation.source, referenceOf(observation.source, ctx), ctx)
         }
       }
     },
     'event.attended'(state: EpisodeLife, data, ctx) {
-      for (const episode of EPISODES) for (const observation of episode.observations) {
+      for (const episode of episodesForCity(ctx.cityId)) for (const observation of episode.observations) {
         if (observation.event === 'event.attended' && data.venue === observation.venueId && atObservationPlace(state, episode, observation, ctx)) {
           observeProof(state, episode, observation.source, referenceOf(observation.source, ctx), ctx)
         }
@@ -527,17 +533,30 @@ export default {
     const trackingSince = stamp(raw.trackingSince, now) ? raw.trackingSince : now
     const rawMementos = isRecord(raw.mementos) ? raw.mementos : {}
     const mementos: EpisodeLife['episodes']['mementos'] = {}
-    for (const episode of EPISODES) {
-      const memento = sanitizeMemento(rawMementos[episode.memento.id], episode, now)
+    for (const id of Object.keys(rawMementos)) {
+      const episode = episodeByMemento(id)
+      if (!episode) continue
+      const memento = sanitizeMemento(rawMementos[id], episode, now)
       if (memento) mementos[memento.id] = memento
     }
     const rawRuns = isRecord(raw.runs) ? raw.runs : {}
     const runs: EpisodeLife['episodes']['runs'] = {}
     state.episodes = { version: 1, trackingSince, runs, mementos }
-    for (const episode of EPISODES) {
-      if (!prerequisiteMet(state, episode)) continue
+    const seen = new Set<string>()
+    const restore = (episode: EpisodeDefinition): void => {
+      if (seen.has(episode.id)) return
+      seen.add(episode.id)
+      if (episode.prerequisite) {
+        const prerequisite = episodeById(episode.prerequisite.episodeId)
+        if (prerequisite) restore(prerequisite)
+      }
+      if (!prerequisiteMet(state, episode)) return
       const run = sanitizeRun(rawRuns[episode.id], episode, now, trackingSince, Boolean(mementos[episode.memento.id]))
       if (run) runs[episode.id] = run
+    }
+    for (const id of Object.keys(rawRuns)) {
+      const episode = episodeById(id)
+      if (episode) restore(episode)
     }
   },
   ...play,

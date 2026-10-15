@@ -1,3 +1,5 @@
+import { WORLD_STORY_SEEDS } from './world-progression.generated.ts'
+import { worldEpisodes } from './world-episodes.ts'
 import type {
   EpisodeChoice, EpisodeDefinition, EpisodeId, EpisodeOutcomeTag,
 } from '../../types/episodes.ts'
@@ -13,7 +15,7 @@ export const HOSTEL_HUSTLE: EpisodeDefinition<'hostel-hustle'> = {
   id: HOSTEL_HUSTLE_ID,
   version: HOSTEL_HUSTLE_VERSION,
   title: 'Hostel Hustle',
-  location: { city: 'lagos', venue: 'unilag' },
+  location: { city: 'lagos', venue: 'unilag', name: 'Lagos' },
   prerequisite: null,
   observations: [
     { event: 'npc.interacted', source: 'kola-interaction', npcId: 'kola-union' },
@@ -193,7 +195,7 @@ export const THE_QUIET_HOURS: EpisodeDefinition<'the-quiet-hours'> = {
   id: THE_QUIET_HOURS_ID,
   version: THE_QUIET_HOURS_VERSION,
   title: 'The Quiet Hours',
-  location: { city: 'lagos', venue: 'unilag' },
+  location: { city: 'lagos', venue: 'unilag', name: 'Lagos' },
   prerequisite: {
     episodeId: HOSTEL_HUSTLE_ID,
     refusal: 'Complete Hostel Hustle first. Bisi’s late-library invitation follows the Union games evening.',
@@ -363,7 +365,7 @@ export const THE_QUIET_HOURS: EpisodeDefinition<'the-quiet-hours'> = {
   },
 }
 
-export const EPISODES: readonly EpisodeDefinition[] = [HOSTEL_HUSTLE, THE_QUIET_HOURS]
+export const EPISODES: readonly EpisodeDefinition[] = [HOSTEL_HUSTLE, THE_QUIET_HOURS, ...WORLD_STORY_SEEDS.flatMap(worldEpisodes)]
 
 const STABLE_ID = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/
 
@@ -399,6 +401,8 @@ export function validateEpisodeCatalogue(catalogue: readonly EpisodeDefinition[]
       if (observation.event === 'campus.job.completed' && (!observation.jobIds.length || observation.jobIds.some(id => !STABLE_ID.test(id)))) errors.push(`${prefix}: invalid campus job observation ids`)
       if ((observation.event === 'table.played' || observation.event === 'event.attended') && !STABLE_ID.test(observation.spot)) errors.push(`${prefix}: unstable observed spot ${observation.spot}`)
     }
+    if (episode.intro.alternativeProof && !observed.has(episode.intro.alternativeProof)) errors.push(`${prefix}: intro alternative proof has no observation rule`)
+    for (const choice of episode.choices) if (choice.alternativeProof && !observed.has(choice.alternativeProof)) errors.push(`${prefix}: choice alternative proof has no observation rule`)
     if (!observed.has(episode.intro.proof)) errors.push(`${prefix}: intro proof ${episode.intro.proof} has no observation rule`)
     const introObservation = episode.observations.find(observation => observation.source === episode.intro.proof)
     if (introObservation?.event !== 'npc.interacted' || introObservation.npcId !== episode.intro.npcId) errors.push(`${prefix}: intro NPC does not match its observation rule`)
@@ -437,8 +441,18 @@ export function validateEpisodeCatalogue(catalogue: readonly EpisodeDefinition[]
 const catalogueErrors = validateEpisodeCatalogue(EPISODES)
 if (catalogueErrors.length) throw new TypeError(`Invalid episode catalogue: ${catalogueErrors.join('; ')}`)
 
+const BY_ID = new Map(EPISODES.map(episode => [episode.id, episode]))
+const BY_MEMENTO = new Map(EPISODES.map(episode => [episode.memento.id, episode]))
+const BY_CITY = new Map<string, EpisodeDefinition[]>()
+for (const episode of EPISODES) {
+  const rows = BY_CITY.get(episode.location.city) ?? []
+  rows.push(episode)
+  BY_CITY.set(episode.location.city, rows)
+}
+export const episodesForCity = (cityId: string): readonly EpisodeDefinition[] => BY_CITY.get(cityId) ?? []
 export const episodeById = (id: unknown): EpisodeDefinition | null =>
-  typeof id === 'string' ? EPISODES.find(episode => episode.id === id) ?? null : null
+  typeof id === 'string' ? BY_ID.get(id as EpisodeDefinition['id']) ?? null : null
+export const episodeByMemento = (id: string): EpisodeDefinition | null => BY_MEMENTO.get(id as EpisodeDefinition['memento']['id']) ?? null
 
 export const choiceFor = (episode: EpisodeDefinition, choice: unknown) =>
   typeof choice === 'string' ? episode.choices.find(row => row.id === choice) ?? null : null

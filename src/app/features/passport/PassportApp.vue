@@ -42,7 +42,8 @@ const titles = computed(() => missions.value.titles)
 const friends = computed(() => playerFriendsOf(view.value.social))
 const residents = computed(() => residentsOf(view.value.social).slice(0, 8))
 const achievements = computed(() => view.value.achievements ?? null)
-const episodes = computed(() => view.value.episodes?.rows ?? [])
+const episodes = computed(() => (view.value.episodes?.rows ?? []).filter(row => row.cityId === view.value.cityId))
+const travelEpisodes = computed(() => (view.value.episodes?.rows ?? []).filter(row => row.cityId !== view.value.cityId))
 const disconnected = computed(() => !view.value.connected ? linkWords(view.value)?.why ?? 'Reconnect to continue.' : '')
 const zeroCash = computed(() => view.value.wallet.cash === 0 && !view.value.onboarding.guest)
 const homeActionLabel = computed(() => view.value.onboarding.guest ? SETTLE_FIRST_HINT : 'Go home first')
@@ -206,10 +207,17 @@ onMounted(() => { void retention.load() })
 
     <section v-else-if="tab === 'story'" id="passport-panel-story" role="tabpanel" aria-labelledby="passport-tab-story" tabindex="0">
       <SectionTitle>Life chapters</SectionTitle>
+      <p class="passport-detail">Original stories set around this city’s playable places. The characters and story events are fiction.</p>
       <div v-if="episodes.length" class="passport-episodes" aria-label="Life chapters">
         <EpisodeCard v-for="episode in episodes" :key="episode.id" :row="episode" :disconnected="disconnected" />
       </div>
       <EmptyState v-else compact icon="book" title="No authored chapter is available yet" text="Your dream, career and campus progress are still recorded below." />
+
+      <details v-if="travelEpisodes.length" class="passport-card">
+        <summary>Chapters from your travels ({{ travelEpisodes.length }})</summary>
+        <p class="passport-detail">Your choices and keepsakes travel with you. Return to a chapter’s city to continue it.</p>
+        <EpisodeCard v-for="episode in travelEpisodes" :key="episode.id" :row="episode" :disconnected="disconnected" />
+      </details>
 
       <template v-if="collections.length">
         <SectionTitle>Journey collection</SectionTitle>
@@ -234,8 +242,8 @@ onMounted(() => { void retention.load() })
         <BaseButton small @click="shell.open(view.career.employed ? 'career' : 'jobs')">{{ view.career.employed ? 'Resume Career' : 'Find work' }}</BaseButton>
       </section>
 
-      <SectionTitle>Campus</SectionTitle>
-      <section class="passport-card">
+      <SectionTitle v-if="view.cityId === 'lagos'">Campus</SectionTitle>
+      <section v-if="view.cityId === 'lagos'" class="passport-card">
         <div class="passport-card-head"><GameIcon name="campus" :size="22" /><div><b>{{ student?.programme?.label ?? 'University of Lagos' }}</b><small>{{ campusLine(student) }}</small></div></div>
         <BaseButton small @click="shell.open('campus')">{{ student?.status === 'deferred' ? 'Resume at Campus' : 'Open Campus' }}</BaseButton>
       </section>

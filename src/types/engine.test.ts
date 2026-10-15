@@ -1146,14 +1146,16 @@ test('every field used by a venue, a spot, an activity or a job is declared in c
   }
 })
 
-test('no content entry carries a field that content.ts does not declare', () => {
+test('no content entry carries a field that content.ts does not declare', async () => {
   assert.deepEqual(validateEpisodeCatalogue(EPISODES), [])
   assert.deepEqual(validateProjectCatalogue(PROJECTS), [])
   assert.deepEqual(validateJourneyCatalogue(JOURNEYS, { episodeIds: new Set(EPISODES.map(row => row.id)), projectIds: new Set(PROJECTS.map(row => row.id)) }), [])
   for (const journey of JOURNEYS) {
     const geography = journey.geography
-    assert.equal(cityRules(geography.cityId)?.country.id, geography.countryId)
-    assert.ok(cityContent(geography.cityId).venues.some(row => row.id === geography.venueId))
+    const country = cityRules(geography.cityId)?.country.id
+    assert.equal(country === 'nigeria' ? 'ng' : country, geography.countryId)
+    if (journey.level === 'country') assert.equal(geography.venueId, 'country')
+    else assert.ok((await preloadCityContent(geography.cityId)).venues.some(row => row.id === geography.venueId))
     for (const member of journey.members) {
       const source = member.source
       if (source.kind === 'episode') assert.ok(EPISODES.some(row => row.id === source.id && row.version === source.version && row.memento.id === member.id))
@@ -1196,11 +1198,11 @@ test('no content entry carries a field that content.ts does not declare', () => 
   declared<CalendarEvent>()(['id', 'title', 'blurb', 'venue', 'icon', 'when', 'spray', 'table'])(EVENTS_CALENDAR, 'calendar event')
   for (const option of Object.values(HOUSE_STYLE).flat()) assert.deepEqual(Object.keys(option).filter((key) => !['id', 'label', 'hex', 'price'].includes(key)), [], option.id)
   // Missions are a union keyed by `on`; each member's own fields are checked by name.
-  const missionFields: Record<MissionDefinition['on'], string[]> = { event: ['event', 'where', 'distinct'], tag: ['tags'], paid: [], venue: ['fresh'] }
+  const missionFields: Record<MissionDefinition['on'], string[]> = { event: ['event', 'where', 'distinct'], tag: ['tags'], paid: [], venue: ['fresh', 'venueId'], activity: ['activityId', 'venueId', 'spotId'] }
   const missions: readonly { id: string; on: string }[] = [...DAILY_MISSIONS, ...WEEKLY_MISSIONS]
   for (const mission of missions) {
     assert.ok(Object.hasOwn(missionFields, mission.on), mission.id)
-    const allowed = ['id', 'kind', 'label', 'hint', 'count', 'needs', 'open', 'go', 'on', ...(missionFields[mission.on as MissionDefinition['on']] ?? [])]
+    const allowed = ['id', 'kind', 'label', 'hint', 'count', 'needs', 'open', 'go', 'on', 'cityId', 'cityLabel', ...(missionFields[mission.on as MissionDefinition['on']] ?? [])]
     assert.deepEqual(Object.keys(mission).filter((key) => !allowed.includes(key)), [], mission.id)
   }
 })

@@ -49,12 +49,15 @@ import { canCredit, credit } from '../api.ts';
 import { DAILY_MISSIONS, DAY_TITLES, MISSION_KINDS, MISSION_REWARDS, STAMP_CARD, WEEKLY_MISSIONS, WEEK_TITLE } from '../content/missions.ts';
 import { hasEventToday } from '../calendar.ts';
 import { venueFor, regularFor, regularsFor } from '../cities/runtime.ts';
-import { isCityId } from '../cities/registry.ts';
+import { isCityId, cachedCityContent } from '../cities/registry.ts';
 import { canGrantStars } from './goals.ts';
 
 type Scope = 'daily' | 'weekly';
-const POOLS: Record<Scope, readonly MissionDefinition[]> = { daily: DAILY_MISSIONS, weekly: WEEKLY_MISSIONS };
+const POOLS: Record<Scope, MissionDefinition[]> = { daily: [...DAILY_MISSIONS], weekly: [...WEEKLY_MISSIONS] };
 const BY_ID = new Map<string, MissionDefinition>([...DAILY_MISSIONS, ...WEEKLY_MISSIONS].map((def) => [def.id, def]));
+/** The lazy content pack installs published rows without pulling its catalogue into startup. */
+export const missionCatalogues = { pools: POOLS, byId: BY_ID };
+export const missionDefinition = (id: string): MissionDefinition | undefined => BY_ID.get(id);
 /** Every dealt or saved id is in the pools; the original read a property of undefined (a TypeError) otherwise. */
 const defOf = (id: string): MissionDefinition => {
   const def = BY_ID.get(id);
@@ -99,6 +102,8 @@ const cleanNpcIdentity = (value: unknown, currentCity: string): string | null =>
 
 /** Can this mission be done at all by this life today? A mission that cannot is never dealt. */
 function doable(def: MissionDefinition, state: LifeState, ctx: LifeContext | undefined): boolean {
+  if (def.cityId && def.cityId !== state.estate.city) return false;
+  if (def.on === 'event' && def.event === 'event.attended' && !cachedCityContent(state.estate.city)?.events.length) return false;
   if (def.on === 'event' && def.distinct === 'npc' && regularsFor(state.estate.city).length < need(def)) return false;
   if (def.needs === 'job' && !state.job) return false;
   if (def.needs === 'event' && !hasEventToday(nowOf(state, ctx), state.estate.city)) return false;
@@ -119,7 +124,9 @@ export function dealMissions(state: LifeState, scope: Scope, period: number, ctx
   for (const kind of MISSION_KINDS) {
     const options = POOLS[scope].filter((def) => def.kind === kind && doable(def, state, ctx) && !blocked.has(def.id));
     if (!options.length) continue;
-    const choice = options[Math.floor(rng() * options.length)];
+    const local = kind === 'discovery' ? options.filter(def => def.cityId === state.estate.city) : [];
+    const choices = local.length ? local : options;
+    const choice = choices[Math.floor(rng() * choices.length)];
     if (!choice) continue; // rng() is in [0, 1), so the index is always in range
     picked.push({ id: choice.id, n: 0, marks: [], claimed: false });
   }
@@ -225,7 +232,7 @@ function progress(state: LifeState, ctx: LifeContext, matches: (def: MissionDefi
   for (const scope of ['daily', 'weekly'] as const) {
     for (const entry of state.missions[scope]) {
       const def = defOf(entry.id);
-      if (done(entry) || !matches(def)) continue;
+      if (done(entry) || (def.cityId && def.cityId !== ctx.cityId) || !matches(def)) continue;
       if (mark !== null) { if (entry.marks.includes(mark) || entry.marks.length >= MARKS) continue; entry.marks.push(mark); }
       entry.n = Math.min(need(def), entry.n + 1);
       if (done(entry)) {
@@ -363,10 +370,11 @@ const listeners = PLAYS ? Object.fromEntries(eventNames.map((name) => [name, (st
 function row(state: LifeState, entry: MissionEntry, scope: Scope): MissionRow {
   const def = defOf(entry.id), count = need(def);
   const reward = pendingForOccurrence(state, entry.id, scope, periodOf(state, scope));
-  return { id: def.id, kind: def.kind, label: def.label, hint: def.hint, n: entry.n, count, done: entry.n >= count, claimed: entry.claimed,
+  const elsewhere = Boolean(def.cityId && def.cityId !== state.estate.city);
+  return { id: def.id, kind: def.kind, label: def.label, hint: elsewhere ? `Return to ${def.cityLabel ?? def.cityId} to continue. ${def.hint}` : def.hint, n: entry.n, count, done: entry.n >= count, claimed: entry.claimed,
     rewardId: reward?.rewardId ?? null, rewardScope: reward?.scope ?? null, rewardPeriod: reward?.period ?? null, rewardCityId: reward?.cityId ?? null,
     cash: reward?.cash ?? MISSION_REWARDS[scope].cash,
-    open: def.open ?? null, go: def.go ?? null };
+    open: elsewhere ? 'map' : def.open ?? null, go: elsewhere ? null : def.go ?? null };
 }
 
 /**
@@ -384,6 +392,7 @@ const play = PLAYS ? {
     /** Settled in: today's missions are dealt now, so they are there when the Phone is next opened. */
     'life.started'(state, data, ctx) { roll(state, ctx); },
     'activity.completed'(state, data, ctx) {
+      progress(state, ctx, def => def.on === 'activity' && def.activityId === data.id && def.venueId === state.location && def.spotId === state.spot);
       const tags = Array.isArray(data?.tags) ? data.tags : [];
       progress(state, ctx, (def) => def.on === 'tag' && def.tags.some((tag) => tags.includes(tag)));
       if (!((data?.def?.reward ?? 0) > 0) || !open(state)) return;
@@ -396,7 +405,7 @@ const play = PLAYS ? {
       if (typeof venue !== 'string' || venue === 'home' || !venueFor(ctx.cityId, venue) || !open(state)) return;
       roll(state, ctx);
       const visited = state.missions.visited, identity = visitIdentity(ctx.cityId, venue), fresh = !visited.list.includes(identity);
-      progress(state, ctx, (def) => def.on === 'venue' && (!def.fresh || fresh), identity);
+      progress(state, ctx, (def) => def.on === 'venue' && (!def.venueId || def.venueId === venue) && (!def.fresh || fresh), identity);
       if (fresh && visited.list.length < 64) visited.list.push(identity);
     },
   },

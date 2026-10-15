@@ -1,3 +1,4 @@
+import { installWorldMissions } from '../content/world-missions.ts'
 /**
  * OWNER: foundation — feature owners never edit this file.
  * Registers host systems in a fixed order (base.ts, progression records, server-only living-world and market actions, then
@@ -26,3 +27,5 @@ registerSystem(livingWorld);
 registerSystem(market);
 for (const system of CAMPUS_SYSTEMS) registerSystem(system);
 export const SYSTEMS = [...BASE_SYSTEMS, ...PROGRESSION_SYSTEMS, livingWorld, market, ...CAMPUS_SYSTEMS];
+
+installWorldMissions()

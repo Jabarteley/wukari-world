@@ -1464,6 +1464,9 @@ export interface CityModule<
 export type MissionKind = 'life' | 'discovery' | 'social'
 
 interface MissionBase {
+  /** Present for a local mission; progress only counts in its published city. */
+  cityId?: string
+  cityLabel?: string
   id: MissionId
   /** A day's three missions are one of each kind. */
   kind: MissionKind
@@ -1488,7 +1491,9 @@ export type MissionDefinition =
   /** An activity that pays completes. */
   | (MissionBase & { on: 'paid' })
   /** Arriving somewhere other than home; with `fresh` only a venue not yet visited this Lagos week. */
-  | (MissionBase & { on: 'venue'; fresh?: boolean })
+  | (MissionBase & { on: 'venue'; fresh?: boolean; venueId?: string })
+  /** Exact, server-observed local activity completion. */
+  | (MissionBase & { on: 'activity'; activityId: string; venueId: string; spotId: string })
 
 export interface MissionRewards {
   daily: { cash: number; setStars: number; slots: number }

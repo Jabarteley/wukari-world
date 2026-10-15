@@ -23,6 +23,8 @@ export interface JourneyCollectionDefinition {
   name: string
   title: string
   geography: JourneyGeography
+  level?: 'city' | 'country'
+  placeLabel?: string
   members: readonly JourneyMemberDefinition[]
 }
 
@@ -41,6 +43,8 @@ export interface JourneyCollectionView {
   name: string
   title: string
   geography: JourneyGeography
+  level?: 'city' | 'country'
+  placeLabel?: string
   members: JourneyMemberView[]
   complete: boolean
   completionAt: number | null
@@ -61,7 +65,6 @@ export function validateJourneyCatalogue(catalogue: readonly JourneyDefinition[]
   const errors: string[] = []
   const collections = new Set<string>()
   const versions = new Set<string>()
-  const members = new Set<string>()
   for (const [index, journey] of catalogue.entries()) {
     const prefix = `journey[${index}]`
     if (!journey.id || collections.has(journey.id)) errors.push(`${prefix}: duplicate or empty id`)
@@ -74,6 +77,7 @@ export function validateJourneyCatalogue(catalogue: readonly JourneyDefinition[]
     const geographyRef = journeyGeographyRef(journey.geography)
     if (context.geographyRefs && !context.geographyRefs.has(geographyRef)) errors.push(`${prefix}: unknown geography ${geographyRef}`)
     if (!journey.members.length) errors.push(`${prefix}: no collection members`)
+    const members = new Set<string>()
     for (const member of journey.members) {
       if (!member.id || members.has(member.id)) errors.push(`${prefix}: duplicate or empty member id ${member.id}`)
       members.add(member.id)

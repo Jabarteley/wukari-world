@@ -12,9 +12,10 @@ const pending = ref<string | null>(null)
 const chapterCount = 4
 const completedChapters = computed(() => Math.min(chapterCount, props.row.history.length))
 const date = new Intl.DateTimeFormat('en-NG', { timeZone: 'Africa/Lagos', day: 'numeric', month: 'short', year: 'numeric' })
-const safePart = /^[a-z][a-z0-9-]{0,63}$/
+const safePart = /^[a-z][a-z0-9-]{0,159}$/
 const routeReason = computed(() => {
   if (props.disconnected) return props.disconnected
+  if (props.row.cityId !== game.view.value.cityId) return `Return to ${props.row.cityName} to continue.`
   const { venue, spot } = props.row.next
   if (!safePart.test(venue) || !safePart.test(spot)) return 'This story destination is unavailable.'
   if (!game.view.value.venues.some(row => row.id === venue)) return `This chapter continues in a place that is not available in ${game.view.value.city.name}.`
@@ -24,13 +25,15 @@ const routeReason = computed(() => {
 function when(at: number): string { return date.format(new Date(at)) }
 function optionReason(option: EpisodeOptionView): string {
   if (props.disconnected) return props.disconnected
+  if (props.row.cityId !== game.view.value.cityId) return `Return to ${props.row.cityName} to continue.`
   if (pending.value) return 'Another story choice is being saved.'
   if (!option.enabled) return option.reason ?? 'Complete the required activity first.'
+  if (game.state.value.location !== props.row.next.venue || game.state.value.spot !== props.row.next.spot) return 'Go to the next place before choosing.'
   return ''
 }
 function prerequisite(option: EpisodeOptionView): void {
   const next = option.next
-  if (!next || props.disconnected || !safePart.test(next.venue) || !safePart.test(next.spot) || !game.view.value.venues.some(row => row.id === next.venue)) return
+  if (!next || props.row.cityId !== game.view.value.cityId || props.disconnected || !safePart.test(next.venue) || !safePart.test(next.spot) || !game.view.value.venues.some(row => row.id === next.venue)) return
   shell.close(); void goTo(next.venue, next.spot)
 }
 function route(): void {

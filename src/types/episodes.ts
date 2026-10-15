@@ -1,16 +1,18 @@
 import type { ExecutionOrigin } from './progression.ts'
 
 export const EPISODE_IDS = ['hostel-hustle', 'the-quiet-hours'] as const
-export type EpisodeId = typeof EPISODE_IDS[number]
+export type WorldEpisodeId = `city-${string}-first-steps` | `city-${string}-second-chapter`
+export type EpisodeId = typeof EPISODE_IDS[number] | WorldEpisodeId
 export type EpisodeChapter = 1 | 2 | 3 | 4
 export type EpisodeChoice = 'work' | 'study' | 'help'
 export type EpisodeOutcomeTag =
   | 'steady-hand' | 'clear-explanation' | 'made-room'
   | 'careful-fix' | 'patient-coach' | 'quiet-welcome'
-export type EpisodeFinaleRoute = 'union-table' | 'campus-event' | 'quiet-support' | 'library-session' | 'quiet-help'
+  | 'local-care' | 'local-curiosity' | 'local-welcome'
+export type EpisodeFinaleRoute = 'union-table' | 'campus-event' | 'quiet-support' | 'library-session' | 'quiet-help' | 'local-visit'
 export type EpisodeAssistanceKind = 'authored-dialogue' | 'supported-role'
 export type EpisodeAgentOrigin = Extract<ExecutionOrigin, 'delegated-agent' | 'agent-character'>
-export type EpisodeObservedProofSource = 'kola-interaction' | 'bisi-interaction' | 'campus-job' | 'library-study' | 'union-whot' | 'campus-event'
+export type EpisodeObservedProofSource = 'kola-interaction' | 'bisi-interaction' | 'campus-job' | 'library-study' | 'union-whot' | 'campus-event' | 'local-conversation' | 'local-practical' | 'local-discovery'
 export type EpisodeProofSource = EpisodeObservedProofSource | 'authored-challenge' | 'quiet-support' | 'quiet-help'
 export type EpisodeChallengeOptionId =
   | 'work-rush-first' | 'work-check-list' | 'work-ask-everyone'
@@ -19,7 +21,10 @@ export type EpisodeChallengeOptionId =
   | 'quiet-work-move-all' | 'quiet-work-check-one' | 'quiet-work-ignore-rattle'
   | 'quiet-study-solve-it' | 'quiet-study-ask-first' | 'quiet-study-copy-notes'
   | 'quiet-help-call-room' | 'quiet-help-offer-corner' | 'quiet-help-leave-alone'
-export type EpisodeMementoId = 'hostel-hustle-memento' | 'the-quiet-hours-memento'
+  | 'local-work-check' | 'local-work-rush' | 'local-work-assume'
+  | 'local-study-notice' | 'local-study-guess' | 'local-study-skip'
+  | 'local-help-listen' | 'local-help-push' | 'local-help-ignore'
+export type EpisodeMementoId = 'hostel-hustle-memento' | 'the-quiet-hours-memento' | `${WorldEpisodeId}-memento`
 
 export interface EpisodeObservedProof {
   source: EpisodeObservedProofSource
@@ -85,8 +90,9 @@ export interface EpisodeDestination {
 }
 
 export interface EpisodeIntroDefinition {
-  proof: Extract<EpisodeObservedProofSource, 'kola-interaction' | 'bisi-interaction'>
+  proof: Extract<EpisodeObservedProofSource, 'kola-interaction' | 'bisi-interaction' | 'local-conversation'>
   npcId: string
+  alternativeProof?: EpisodeObservedProofSource
   proofNext: EpisodeDestination
   missingProof: string
   completeMessage: string
@@ -96,7 +102,8 @@ export interface EpisodeChoiceDefinition {
   id: EpisodeChoice
   title: string
   description: string
-  proof: Extract<EpisodeObservedProofSource, 'campus-job' | 'library-study' | 'kola-interaction' | 'bisi-interaction'>
+  proof: Extract<EpisodeObservedProofSource, 'campus-job' | 'library-study' | 'kola-interaction' | 'bisi-interaction' | 'local-conversation' | 'local-practical' | 'local-discovery'>
+  alternativeProof?: EpisodeObservedProofSource
   proofNext: EpisodeDestination
   missingProof: string
   requiresStudent: boolean
@@ -139,8 +146,8 @@ export interface EpisodeFinaleRouteDefinition {
 }
 
 export type EpisodeProofObservation =
-  | { event: 'npc.interacted'; source: Extract<EpisodeObservedProofSource, 'kola-interaction' | 'bisi-interaction'>; npcId: string }
-  | { event: 'activity.completed'; source: 'library-study'; activityId: string; spot: string }
+  | { event: 'npc.interacted'; venue?: string; source: Extract<EpisodeObservedProofSource, 'kola-interaction' | 'bisi-interaction' | 'local-conversation'>; npcId: string }
+  | { event: 'activity.completed'; source: 'library-study' | 'local-practical' | 'local-discovery'; activityId: string; spot: string; venue?: string }
   | { event: 'campus.job.completed'; source: 'campus-job'; jobIds: readonly string[]; requirePositivePay: true }
   | { event: 'table.played'; source: 'union-whot'; game: string; spot: string }
   | { event: 'event.attended'; source: 'campus-event'; venueId: string; spot: string }
@@ -150,7 +157,7 @@ export interface EpisodeDefinition<I extends EpisodeId = EpisodeId> {
   id: I
   version: 1
   title: string
-  location: { city: string; venue: string }
+  location: { city: string; venue: string; name?: string }
   prerequisite: { episodeId: EpisodeId; refusal: string } | null
   observations: readonly EpisodeProofObservation[]
   intro: EpisodeIntroDefinition
@@ -196,6 +203,8 @@ export interface EpisodeView {
   id: EpisodeId
   version: 1
   title: string
+  cityId: string
+  cityName: string
   status: 'locked' | 'available' | 'active' | 'completed'
   chapter: EpisodeChapter
   chapterTitle: string

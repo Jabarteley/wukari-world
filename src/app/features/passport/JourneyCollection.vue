@@ -11,6 +11,7 @@ const date = new Intl.DateTimeFormat('en-NG', { timeZone: 'Africa/Lagos', day: '
 const countryName = (id: string): string => cityRules(props.collection.geography.cityId)?.country.name ?? id.toUpperCase()
 const earnedDate = (at: number): string => date.format(new Date(at))
 const placeLine = computed(() => {
+  if (props.collection.placeLabel) return props.collection.placeLabel
   const place = props.collection.geography
   return `${countryName(place.countryId)} · ${cityName(place.cityId) ?? place.cityId} · ${venueLabel(place.venueId, place.cityId)}`
 })

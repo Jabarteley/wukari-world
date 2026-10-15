@@ -12,7 +12,8 @@ export function seasonView(saved: SeasonState | undefined, startDay: number | nu
   const startsAt = lagosDayStart(startDay), endsAt = lagosDayStart(startDay + SEASON_DAYS)
   const row = saved?.id === FIRST_SEASON_ID ? saved : undefined
   const played = row?.playedDay !== null && row?.playedDay !== undefined && row.playedDay >= startDay && row.playedDay < startDay + SEASON_DAYS
-  const members = [...new Map(evidence.map(item => [item.id, item])).values()]
+  const akokaIds = new Set(['hostel-hustle-memento', 'the-quiet-hours-memento', 'akoka-games-night', 'unilag-reading-corner'])
+  const members = [...new Map(evidence.filter(item => akokaIds.has(item.id)).map(item => [item.id, item])).values()]
   // Earlier keepsakes count, including for a player who joins on the final day.
   const keepsakes = members.filter(item => item.earnedAt !== null && item.earnedAt < endsAt).length
   return { id: FIRST_SEASON_ID, title: 'A place at Akoka', startsAt, endsAt,

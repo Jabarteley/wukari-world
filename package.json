@@ -34,7 +34,7 @@
     "predev": "npm run -s preflight",
     "predev:open": "npm run -s preflight",
     "prestart:open": "npm run -s preflight",
-    "prebuild": "npm run -s preflight && npm run -s cities:catalogue -- --check && npm run -s cities:land:check",
+    "prebuild": "npm run -s preflight && npm run -s cities:catalogue -- --check && npm run -s cities:land:check && npm run -s progression:check",
     "pretypecheck": "npm run -s preflight",
     "pretest": "npm run -s preflight && npm run -s cities:land:check && npm run -s cities:assets && npm run -s words:assets",
     "prestart": "npm run -s preflight",
@@ -80,7 +80,9 @@
     "cities:catalogue": "node --experimental-strip-types scripts/city/build-catalogue.ts",
     "cities:land:check": "node --experimental-strip-types scripts/city/check-land-components.mjs",
     "cities:assets": "node --experimental-strip-types scripts/city/build-content-assets.ts --out dist/assets/cities --typescript src/game/cities/content-assets.generated.ts",
-    "words:assets": "node --experimental-strip-types scripts/build-dictionary-asset.ts --out dist/assets/words --typescript src/words/dictionary-asset.generated.ts"
+    "words:assets": "node --experimental-strip-types scripts/build-dictionary-asset.ts --out dist/assets/words --typescript src/words/dictionary-asset.generated.ts",
+    "progression:content": "node --experimental-strip-types scripts/city/build-progression-content.ts",
+    "progression:check": "node --experimental-strip-types scripts/city/build-progression-content.ts --check"
   },
   "dependencies": {
     "@sentry/browser": "^11.4.0",

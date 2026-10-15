@@ -69,6 +69,11 @@ function snapshotTime(raw: Record<string, unknown>): number | null {
 export function needsProgressionRules(raw: unknown): boolean {
   try {
     if (!record(raw)) return false
+    const missions = own(raw, 'missions')
+    if (record(missions) && ['daily', 'weekly', 'pending', 'grants'].some(key => {
+      const rows = own(missions, key)
+      return Array.isArray(rows) && rows.some(row => record(row) && typeof row.id === 'string' && /^[dw]-local-/.test(row.id))
+    })) return true
     const now = snapshotTime(raw)
     return PROGRESSION_SYSTEM_IDS.some(id => {
       const value = own(raw, id)

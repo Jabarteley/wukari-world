@@ -1,6 +1,6 @@
 import { lagosTime } from '../../src/game/clock.ts'
 import { getDailyMilestones, setRhythmOptIn, viewRhythm } from '../../src/game/cadence.ts'
-import { DAILY_MISSIONS } from '../../src/game/content/missions.ts'
+import { missionDefinition } from '../../src/game/systems/missions.ts'
 import { journeyCollections } from '../../src/game/journeys.ts'
 import { FIRST_SEASON_ID, seasonView } from '../../src/game/season.ts'
 import { characterCity } from '../character.ts'
@@ -19,7 +19,7 @@ export default function retentionRoutes(ctx: RouteContext): Record<RouteKey, Rou
       const missions = entry?.state.missions
       const collections = entry ? journeyCollections(entry.state) : []
       const complete = missions?.day === today ? missions.daily.filter(row => {
-        const definition = DAILY_MISSIONS.find(def => def.id === row.id)
+        const definition = missionDefinition(row.id)
         return definition && row.n >= (definition.count ?? 1)
       }).length : 0
       return { flags: { dailyMilestones: policy.dailyMilestones, rhythm: policy.rhythm },

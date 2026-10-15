@@ -5,19 +5,16 @@ continue. The full brief is in [docs/agent-plans/world-alive/](docs/agent-plans/
 STATUS.md (what is live, the log, the questions for the owner), then PHASES.md. Repository-wide coordination is in
 [AGENTS.md](AGENTS.md). When everything below is done, empty the "In flight" and "Still to do" sections and say so in STATUS.md.
 
-Last updated: 15 October 2026 (release 9 live: `ac94fca0`).
+Last updated: 15 October 2026 (everything released: `1bb55dc5`).
 
 ## In flight
 
-| Work | Branch | Where it stopped | Next step |
-| --- | --- | --- | --- |
-| Release 13: Phases 13c and 20 (the last phases) | `main` | Merged and checked, being released | Confirm live, smoke, replace `REL13` in STATUS.md, then clear this file's lists. |
-| Speech-to-text accuracy per accent (Phase 15) | none | Needs recordings | Record with `scripts/stt-bench/collect.html` on phones, run `scripts/stt-bench.ts --gateway`, fill the table in docs/CALLS.md. |
+Nothing. Every phase of docs/agent-plans/world-alive/PHASES.md was built and released by 15 October 2026 (release 13, `1bb55dc5`).
 
-## Still to do (in order)
+## Still to do
 
-1. Nothing beyond the in-flight work, except what only the owner can start: local payments, paid cosmetics, the creator
-   programme, anything with ads or spend. After the in-flight work is live, empty this file's two lists.
+Nothing for an agent to start on its own. What is open needs the owner first: see "Questions for the owner" in
+[docs/agent-plans/world-alive/STATUS.md](docs/agent-plans/world-alive/STATUS.md). If you are given new work, add it here.
 
 ## How the work is done (learned the hard way)
 

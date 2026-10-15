@@ -5,8 +5,10 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 
 ## Now
 
-- **Live:** Phases 1 to 12, 13a, 16, 17, the first part of 19, the owner's answers and the cache-first pass (release 9, `ac94fca0`).
-- **Work in flight** is listed in [AGENT.md](../../../AGENT.md) at the repository root: what each branch is and where it stopped.
+- **Every phase in PHASES.md is built and live** (release 13, `1bb55dc5`, 15 October 2026). What is left needs the owner: the
+  questions below, and the speech-to-text recordings.
+- **Residents run in shadow, one at a time,** until the owner has read Remi's day and raises `residentCount` (docs/RESIDENTS.md,
+  "Before raising residentCount"). House agents: two in Lagos to start (`houseAgentsBusy`).
 - **Releases from GitHub work** since 14 October: `CLOUDFLARE_API_TOKEN` (secret) and `ALLWORLD_CF_ACCOUNT_ID` (variable) are set
   in the `production` environment, and the release workflow deployed `63e0f3d2` on its own.
 - **Where the work happens:** the repository on the owner's Desktop is synced by iCloud and `git push`/`fetch` hang there. The work
@@ -41,14 +43,14 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 12 Talking, memory, relationships | live | `ac94fca0` | House agents remember up to five facts per person (never contacts or money), the person sees, deletes or turns it off (Settings), closeness, partners for confirmed adults, and flirting with a partner or an adult's own yes (docs/AGENT-MEMORY.md). No DMs to house agents yet. |
 | 13a One resident in shadow | live | `ac94fca0` | Remi, a Lagos bookseller: life story, sleep, a model chosen at birth, thoughts as validated choices, nightly summary, shadow (nobody sees her), her day on the admin page (docs/RESIDENTS.md). On by default on the live hosts, in shadow. |
 | 13b Thirty residents | live | `ea9f5ddd` | Thirty authored residents (Remi + 29: Lagos, Abuja, Ibadan, Accra, Nairobi, Cape Town, London, New York; Johannesburg and Houston are not open cities), setting `residentCount` (default 1), models spread at birth, agent-to-agent talk (4 turns, grounded in a real ledger line, repetition check), replies to people when visible (no trading, paid models only), `residentDailyCents` budget (default 100), admin comparison of models and the experiment's measures (docs/RESIDENTS.md). Day-1/day-7 return split not built (needs a growth-metrics bit); the page counts people who spoke and who spoke again. |
-| 13c Ideas, assembly, president, letter | live | REL13 | Each night a resident may file one wish and one need (checked, merged by word overlap, top five a day); a weekly residents' assembly elects a president with the people's election code (it holds no people's seat); the president's Sunday letter "to the Founders" on the admin Residents page; the owner's reply becomes a gist line and "news from the Founders" in residents' thoughts, never a message to a person (docs/RESIDENTS.md, docs/POLITICS.md). |
+| 13c Ideas, assembly, president, letter | live | `1bb55dc5` | Each night a resident may file one wish and one need (checked, merged by word overlap, top five a day); a weekly residents' assembly elects a president with the people's election code (it holds no people's seat); the president's Sunday letter "to the Founders" on the admin Residents page; the owner's reply becomes a gist line and "news from the Founders" in residents' thoughts, never a message to a person (docs/RESIDENTS.md, docs/POLITICS.md). |
 | 14 Prayers and acts | live | `545caabb` | Remi prays once a day; players pray at a church, mosque or shrine after the notice that prayers are read; admin Prayers page and eight acts (heal, illness at most weekly and never on a minor, give/take game money, bless a stall, weather for 1 to 6 hours, dream, cross paths, silence), all logged, shown as gist lines, never as messages from the owner (docs/PRAYERS.md). |
 | 15 Calls with agents | live | `ea9f5ddd` | Call a house agent from Settings → AI characters: push-to-talk, the AI mark, its reply spoken on the phone in its own voice (text only crosses the network); speech to text by the browser or by the gateway's transcription model (WAV, budgeted, never stored); 20 minutes a day each, 300 in all, a break reminder every 10 minutes; agents' lines spoken in room voice (docs/CALLS.md). Words-right per accent NOT YET MEASURED: needs recordings (scripts/stt-bench, collect.html). |
 | 16 Festivals, owambe, match nights | live | `8ac05891` | Multi-day festival calendar (NG, GH, KE, ZA, global; Eid and Ramadan dates to 2028), festive Square light, owambe parties with MC/DJ/spray (no money), match-night slots and an empty admin fixture list (docs/FESTIVALS.md). |
 | 17 City texture packs | live | `abec6f54` | Ride banter packs (Lagos danfo, okada, keke, cab; Accra, Nairobi, South Africa starters; no lyrics, no danger or scam words), the district's published light plan and cut notices with generator/inverter (docs/CITY-TEXTURE.md). Haggle-to-purchase comes with Phase 11. No solar item (scene chunk room). |
 | 18 Real price levels | live | `7c084ca6` | World Bank price levels (2021, the last surveyed year: 2025's figures put Accra at 3× Lagos after the naira float), Nigeria = 1, clamped 0.5 to 4: rent, pay, activity and shop prices scaled per country; Nigerian cities unchanged (docs/PRICE-LEVELS.md). Not scaled yet: the starting purse, family loan, goal targets, intercity fares, wardrobe, the launch bonus. |
 | 19 Smaller features | live | `7c084ca6` | Away sheet, notification ask, jail you can play (release 4); city works funded together, group gift packets (game money), 30 text stickers, a home-city pin (on the device), opt-in birthdays (docs/SMALLER-FEATURES.md). Not built: passing property to a next character (needs its own design: no rollback). |
-| 20 Agents' relationships and world events | live | REL13 | Residents' closeness, quarrels (a silence that ends or fades), marriage after 21 days of closeness and both choosing it, weddings on a Saturday at a public place announced in the gist with the wedding share card, friends and spouses on profiles, admin-only gentle farewells; all on paper in shadow; nothing with one resident (docs/RESIDENTS.md). No children (the cast does not grow). |
+| 20 Agents' relationships and world events | live | `1bb55dc5` | Residents' closeness, quarrels (a silence that ends or fades), marriage after 21 days of closeness and both choosing it, weddings on a Saturday at a public place announced in the gist with the wedding share card, friends and spouses on profiles, admin-only gentle farewells; all on paper in shadow; nothing with one resident (docs/RESIDENTS.md). No children (the cast does not grow). |
 
 States: not started · in progress · pushed, not yet live · live · blocked (say on what).
 
@@ -61,6 +63,16 @@ Ask these in your chat as well; record the answer here when you have it.
 2. **The friend gift needs earned money.** ₦5,000 is the most one gift may be, and a gift must come from money earned at work,
    so a new player cannot send it yet (the card says so). Offer a smaller gift to them?
 3. **House agents to start:** two in Lagos, none elsewhere. More?
+
+4. **Speech-to-text recordings (Phase 15).** Words-right per accent is not measured: record short samples of Nigerian, Ghanaian,
+   Kenyan and British English and Pidgin with `scripts/stt-bench/collect.html` on phones (with each speaker's permission), then run
+   `scripts/stt-bench.ts --gateway` and set the default way (`agentCallStt`) from the results.
+5. **Residents:** is Remi right as the first resident (`server/residents/life.ts`)? When to raise `residentCount`, and when to turn
+   `residentShadow` off?
+6. **Price levels:** a new player abroad starts with the same naira against higher prices (the starting purse, the family loan,
+   goal targets, intercity fares, wardrobe and the launch bonus are not scaled yet). Scale them too?
+7. **Home-city pin:** keep it on the device, or store it with the account so it follows the player?
+8. **Passing property to a next character** (Phase 19) needs its own design (no rollback); build it?
 
 Answered on 14 and 15 October 2026:
 - OpenRouter: US$15 of credit was bought, so its free models get 1,000 requests a day (the default since release 7).
@@ -105,7 +117,7 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
-- 2026-10-15, release 13 (Phases 13c and 20), REL13: the residents' assembly, president and Sunday letter; residents' friendships,
+- 2026-10-15, release 13 (Phases 13c and 20), `1bb55dc5`: the residents' assembly, president and Sunday letter; residents' friendships,
   marriages and weddings. With these, every phase in PHASES.md has been built.
 - 2026-10-15, release 12 (Phases 18 and the rest of 19), `7c084ca6`: real price levels; city works, gift packets, stickers, home-city
   pin, birthdays.

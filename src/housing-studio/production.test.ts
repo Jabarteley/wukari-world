@@ -12,7 +12,12 @@ import { createLife } from '../life.ts'
 import { createKit } from '../scene/kit.ts'
 import { buildProductionHomeScene } from './production.ts'
 import { productionHousingOf } from './production-mapping.ts'
-import { RECIPES } from './fixtures.ts'
+import { RECIPES, recipePlan } from './fixtures.ts'
+import { FURNITURE } from '../game/content/furniture.ts'
+import { checkPlacement, plotOf } from '../game/home-layout.ts'
+import { buildHousingDoors, type HousingDoor } from './doors.ts'
+import { edge, STOREY } from './shell.ts'
+import type { ProductionHomeScene } from './production.ts'
 
 for (const city of ['lagos', 'abuja', 'kano']) await loadCityContent(city)
 
@@ -272,4 +277,72 @@ test('closed-room scripted actions wait at the avatar and reopen onto projected 
     assert.ok(home.walk.rest()?.steps?.length)
     assert.equal(home.objectPhase, 'approach')
   } finally { home.dispose(); kit.dispose() }
+}))
+
+
+function toggleSafe(home: ProductionHomeScene, door: HousingDoor): void {
+  const doors = home.housing()!.doors
+  for (let step = 0; step < 24; step++) {
+    const angle = step / 24 * Math.PI * 2, x = door.x + Math.cos(angle) * 1.85, z = door.z + Math.sin(angle) * 1.85
+    if (doors.nearest(x, z, door.floor)?.id === door.id && doors.toggleNearest(x, z, door.floor)) return
+  }
+  assert.fail('safe door-toggle coordinate')
+}
+
+test('a dense legal saved layout falls back before exceeding draw calls', () => environment(() => {
+  const state = stateOf(RECIPES[3]!), plot = plotOf(14, true)
+  state.home.items = []
+  for (let y = 1; y <= 11; y += 2) for (let x = 1; x <= 11; x += 2) {
+    assert.equal(checkPlacement(plot, state.home.items, FURNITURE['centre-rug']!, x, y, 0), null)
+    state.home.items.push({ id: `f${state.home.items.length + 1}`, itemId: 'centre-rug', x, y, rot: 0 })
+  }
+  assert.equal(state.home.items.length, 36)
+  const kit = createKit(), projection = productionHousingOf(state)!
+  const doors = buildHousingDoors(kit, projection)
+  assert.deepEqual(doors.clearanceFailures, [], 'door geometry is valid; rejection must be the budget')
+  doors.dispose()
+  const home = buildProductionHomeScene(kit), before = JSON.stringify(state)
+  try {
+    home.update(state)
+    assert.equal(home.housing(), null)
+    const meshes = visibleMeshSignature(home.group)
+    home.update(state)
+    assert.deepEqual(visibleMeshSignature(home.group), meshes)
+    assert.equal(JSON.stringify(state), before)
+  } finally { home.dispose(); kit.dispose() }
+}))
+
+test('exit blocking covers a closed room before the stairs and a closed room on the ground floor', () => environment(() => {
+  const recipe = RECIPES[0]!, state = stateOf(recipe), kit = createKit(), home = buildProductionHomeScene(kit)
+  try {
+    home.update(state); home.walk.drive(true)
+    const flight = recipePlan(recipe).stairs[0]!
+    for (let step = 1; step <= 19; step++) {
+      const t = step / 20, x = edge(flight.x + (flight.dir === 1 ? t : 1 - t) * flight.w, recipe.grid), z = edge(flight.y + flight.h / 2, recipe.grid)
+      home.walk.move(x, home.walk.heightAt(x, z), z, Math.PI / 2)
+    }
+    const x = edge(flight.x + (flight.dir === 1 ? 1 : 0) * flight.w, recipe.grid) + flight.dir * .7, z = edge(flight.y + flight.h / 2, recipe.grid)
+    home.walk.move(x, STOREY + .03, z, Math.PI / 2); home.look(20, 20)
+    assert.equal(home.floor, 1)
+    const inside = home.walk.grid!.nearest(-1, -1)!
+    home.walk.move(inside.x, STOREY + .03, inside.z, 0)
+    const master = home.housing()!.doors.doors.find(door => door.floor === 1 && /Master bedroom/.test(door.label))!
+    toggleSafe(home, master)
+    assert.equal(master.open, false)
+    assert.equal(home.homeDoor.blocked, true, 'initial path to stair is blocked')
+    toggleSafe(home, master)
+    assert.equal(home.homeDoor.blocked, undefined)
+  } finally { home.dispose(); kit.dispose() }
+  const groundKit = createKit(), ground = buildProductionHomeScene(groundKit)
+  try {
+    ground.update(state); ground.walk.drive(true)
+    const room = recipePlan(recipe).floors[0]!.find(room => /Guest toilet/.test(room.label))!
+    const point = ground.walk.grid!.nearest(edge(room.x + room.w / 2, recipe.grid), edge(room.y + room.h / 2, recipe.grid))!
+    ground.walk.move(point.x, .03, point.z, 0)
+    const door = ground.housing()!.doors.doors.find(door => door.floor === 0)!
+    toggleSafe(ground, door)
+    assert.equal(ground.homeDoor.blocked, true, 'same-floor route to entrance is blocked')
+    toggleSafe(ground, door)
+    assert.equal(ground.homeDoor.blocked, undefined)
+  } finally { ground.dispose(); groundKit.dispose() }
 }))

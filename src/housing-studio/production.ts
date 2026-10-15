@@ -57,7 +57,7 @@ function visibleGeometryCost(root: THREE.Object3D): { triangles: number; drawCal
   return { triangles, drawCalls }
 }
 
-function assetReserve(recipe: HousingRecipe, floor: number): { triangles: number; drawCalls: number } {
+function assetReserve(recipe: HousingRecipe, floor: number, furnishings: THREE.Object3D): { triangles: number; drawCalls: number } {
   let triangles = 0, drawCalls = 0
   for (const item of recipe.items) {
     if ((item.floor ?? 0) !== floor) continue
@@ -67,8 +67,13 @@ function assetReserve(recipe: HousingRecipe, floor: number): { triangles: number
     const asset = assetId && assetFor.get(assetId)
     if (asset) {
       triangles += asset.triangles
-      // The compacted template has one draw and replaces one solid proxy.
-      // A failed load keeps that same proxy, so it adds no simultaneous draw.
+      drawCalls += 1
+    } else {
+      const mount = furnishings.getObjectByName(`housing-item-${item.id}`)
+      if (mount) {
+        const cost = visibleGeometryCost(mount)
+        triangles += cost.triangles; drawCalls += cost.drawCalls
+      }
     }
   }
   return { triangles, drawCalls }
@@ -156,11 +161,11 @@ export function buildProductionHomeScene(kit: Kit, options: ProductionHomeOption
       furnishings.visible(floor, first, camera)
       doors.visible(floor, first)
       const fallback = visibleGeometryCost(group), shellCost = visibleGeometryCost(shell.group), doorCost = visibleGeometryCost(doors.group)
-      const retained = home.housingVisualCost(floor), assets = assetReserve(rendered, floor)
+      const retained = home.housingVisualCost(floor), assets = assetReserve(rendered, floor, furnishings.group)
       const actualTriangles = retained.triangles + shellCost.triangles + doorCost.triangles + assets.triangles
       const actualCalls = retained.drawCalls + shellCost.drawCalls + doorCost.drawCalls + assets.drawCalls
       triangles = Math.max(triangles, retained.triangles + fallback.triangles, actualTriangles)
-      drawCalls = Math.max(drawCalls, actualCalls)
+      drawCalls = Math.max(drawCalls, retained.drawCalls + fallback.drawCalls, actualCalls)
     }
     if (triangles > SCENE_CROWD_TRIANGLES.value || drawCalls + RETAINED_DRAW_CALLS > SCENE_DRAW_CALLS.value) {
       home.setVisualLayer('canonical'); doors.dispose(); furnishings.dispose(); shell.dispose(); return null

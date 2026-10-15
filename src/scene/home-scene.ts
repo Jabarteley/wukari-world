@@ -1242,7 +1242,11 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
 
   return {
     group,
-    get homeDoor() { const x = along(0), z = along(doorSlot(grid)), way = route(0, x, z); return { x, y: 0.03, z, ry: -Math.PI / 2, direction: 'outside' as const, ...(navigationProjection && level > 0 && !way ? { blocked: true } : {}), ...way }; },
+    get homeDoor() {
+      const x = along(0), z = along(doorSlot(grid)), way = route(0, x, z), first = way?.approach ?? { x, z };
+      const blocked = navigationProjection && ((level > 0 && !way) || !projectedPath(level, floorAt.x, floorAt.z, first.x, first.z));
+      return { x, y: 0.03, z, ry: -Math.PI / 2, direction: 'outside' as const, ...(blocked ? { blocked: true } : {}), ...way };
+    },
     get background() { return lightingFor('indoor', homeTime).sky[0]; },
     get sky() { return lightingFor('indoor', homeTime).sky; },
     lighting() { return lightingFor('indoor', homeTime); },

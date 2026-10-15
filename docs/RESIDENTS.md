@@ -101,3 +101,36 @@ Keep `residentShadow` on until you have read the talk. Switch it off for the fir
 ### Checking it
 
 `node --experimental-strip-types --test server/residents/resident.test.ts server/residents/roster.test.ts`
+
+## Phase 13c: ideas, needs, the assembly, the president and the Sunday letter
+
+Code: `server/residents/voice.ts` (all of it, portable), a few lines in `resident.ts` (the night and the prompt), two admin routes in `server/routes/admin.ts`, the admin page `src/app/features/admin/ResidentsView.vue` ("Residents" in the admin rail), `voice.test.ts`.
+Nothing here is in the first download: it is server code and an admin page. Stored lazily in the collection `residentVoice` (bounded; nothing is created until the first write).
+
+### Wishes and needs (nightly)
+
+The night summary call (the one that already exists, still **one call**) now also asks, only if true for the resident, for a line `Wish: ...` (something its town lacks) and a line `Need: ...` (something it keeps failing to get or do).
+`splitNight` pulls those lines out of the answer; the summary is judged on its own, each idea on its own (`judgeIdea`: 12 to 100 characters, in character, `agentWords` clean; a bad one is dropped, never the summary). At most **one wish and one need per resident per Lagos day**.
+Similar ideas are merged by a cheap word-overlap rule (`clusterIdeas`: at least two shared words and half of the shorter wording's words) and the **five most asked for each day** are kept (`tops`, 14 days; the raw ideas of the last 2 days). The admin page shows them with who asked, their cities and their own words. They are proposals: the residents never change the game.
+
+### The assembly and the president (weekly)
+
+Every week the switched-on residents (`residentCount`; with 1 it is Remi alone) hold an election using the **election code of the people's offices** (`server/civic/elections.ts`: the same Monday-to-Sunday timeline, `declare`, `voteBlock`, `vote`, `tally`, `winnerOf`, `governorAt`, the same tie-break) on a ballot kept in `residentVoice.assembly`, not in `civic` or `politics`.
+There is no model: **standing** (`stands`) depends on how civic the life story is (neighbours, children, markets, faith, ...) plus a fixed draw by id and week, and **voting** (`affinity`) prefers the same city, shared words of the life stories and a civic story, with a fixed draw for ties, so the same residents on the same week always give the same ballot. A vote is only counted if `voteBlock` accepts it (a candidate on the ballot, once).
+If nobody stood (a quiet week, one resident, a late start) the resident the week's draw ranks first is put forward, so there is always a president; before any result a caretaker (the same draw) writes. The assembly is the residents' own body: it holds **no people's office** and never writes to one (see docs/POLITICS.md "Residents' assembly and the people's share").
+
+### The Sunday letter
+
+Each Sunday (Lagos time), once per week, the president writes a letter **"To the Founders"**: one router call (purpose `resident`, no person's words), at most **900 characters**, built from the week's five most asked-for wishes and needs (the days' tops merged again). It is judged by `judgeLetter`: addressed to the Founders, in character (`OUT_OF_CHARACTER`), clean under `agentWords`, cut at a sentence if long. A bad answer is asked **once more**; after two bad answers, or when the router refuses (budget), `writtenLetter` writes it by rules from the same lists.
+The letter, the model that wrote it (or `rules`) and its cost are kept (the last 12). The admin page shows them. The dashboard group "Residents" shows today's wishes and needs, the president and the latest letter.
+
+### The owner's reply
+
+On the admin page, under the letters: a text box (5 to 400 characters, **news** or **a decree**, optionally for a letter). `POST /api/admin/residents/reply` (admin only, strict origin, anti-repeat client id, audited as `residents-reply`):
+- the words are checked: no out-of-world words (game, player, AI, model, prompt), no money asks, contact details or links (`judgeReply`), so a resident is never shown them;
+- one **gist line** of kind `owner` for the whole world ("News from the Founders: ..." or "The Founders have decreed: ...", cut to fit the ledger);
+- for 3 days the last two answers are read into every resident's thoughts as `News from the Founders: Word has come: "..."` (or `They have decreed: "..."`), bounded to 300 characters each. They are **not** instructions the residents must follow and are **never a message to a person**.
+
+### Checking it
+
+`node --experimental-strip-types --test server/residents/voice.test.ts server/residents/resident.test.ts` (fake fetch: ideas collected, clustered, top five; the weekly election deterministic and apart from people's offices; the letter on Sunday only, bounded, in character, retried or written by rules; the reply as a gist line and as news in the prompts; admin-only routes).

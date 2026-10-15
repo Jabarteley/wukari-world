@@ -709,6 +709,8 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/admin/settings',
   'GET /api/admin/prayers',
   'POST /api/admin/prayers/act',
+  'GET /api/admin/residents',
+  'POST /api/admin/residents/reply',
   'GET /api/admin/festivals',
   'POST /api/admin/festivals',
   'POST /api/admin/notice',

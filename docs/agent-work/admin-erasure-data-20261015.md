@@ -6,14 +6,14 @@
 - **Owner:** `/root/erase_domain_impl`
 - **Model / effort:** `gpt-6-astra / high`
 - **Thread:** delegated worker under `01a13bea-138b-7b91-ac44-c49bc3d836ec`
-- **UTC updated:** `2026-10-15T18:41:23Z`
-- **Status:** `ready-for-integration`
-- **Work state:** `implemented; integration owner validating`
+- **UTC updated:** `2026-10-15T20:10:00Z`
+- **Status:** `active`
+- **Work state:** `merging accepted erasure with current housing main; sequential revalidation pending`
 
 ## Goal and boundaries
 
 - **Goal:** Implement the deterministic main-store closure and synchronous data erasure contract used by the root-admin permanent player eraser.
-- **In scope:** `server/admin/erasure-data.ts`; final bounded erasure regressions in `server/admin/admin.test.ts` and `deploy/admin.edge.test.ts`; schema inventory; focused verification; this work record.
+- **In scope:** `server/admin/erasure-data.ts`; final bounded erasure regressions in `server/admin/admin.test.ts` and `deploy/admin.edge.test.ts`; merge integration with `origin/main` `dc3ab3a9`; sequential focused verification; this work record.
 - **Out of scope:** routes, UI, job orchestration, external storage/world cleanup implementations, browser/production work, Git publication, and unrelated tests.
 - **Exclusive file ownership:** `server/admin/erasure-data.ts`; `server/admin/admin.test.ts` and `deploy/admin.edge.test.ts` (transferred by root for bounded regressions); `docs/agent-work/admin-erasure-data-20261015.md`.
 - **Input contract:** `planErasure(ctx, db, admin, targetId)` receives the current main-store snapshot and root admin; `eraseData(ctx, db, plan)` is called inside the store transaction.
@@ -25,9 +25,9 @@
 - **Repo:** `kromate/joinallworld`
 - **Host:** local Mac
 - **Branch / worktree:** `codex/retention-main-sync` in the requested existing worktree
-- **Base:** `8e128a507a4303937002ebef60d988db938c66f6`
-- **Current commit:** `8e128a507a4303937002ebef60d988db938c66f6`
-- **Dirty status:** dirty with unrelated coordination/research files and root-owned `docs/agent-work/admin-player-erasure-20261015.md`; preserve all.
+- **Base:** erasure candidate `e484a6bef5269429da23165233777b67476d420d`; integration target `dc3ab3a96febe5842fd98cab9346922b466210ba`
+- **Current commit:** `e8e8984b` after preserving the Settings fixture handoff as a record-only commit.
+- **Dirty status:** only this work record is tracked dirty; unrelated untracked `docs/research/unique-local-content-2026-10-15/ui-world-entry-375.png` must remain untouched.
 - **Port/process ownership:** none
 
 ## Progress
@@ -50,12 +50,12 @@
 
 ### In progress / blockers
 
-- No erasure implementation blocker. Root owns the explicit release decision for the known Worker-suite exceptions and the incomplete long all-cities run.
+- Merge `origin/main` `dc3ab3a9`, preserving the accepted erasure and housing runtime plus the identical Settings fixture correction. Then run the user-approved bounded checks sequentially. No implementation blocker currently known.
 
 ### Immediate resume steps
 
-1. Root records the Worker-suite exceptions and decides the release gate.
-2. Preserve the passing pinned Worker erasure evidence and clean five-project typecheck in the release record.
+1. Merge `origin/main` and inspect every overlap before accepting it.
+2. Run focused erasure/admin/store/world/agent compatibility, pinned minified Worker admin, supported typecheck, build and budgets sequentially.
 
 ## Release state
 
@@ -73,3 +73,4 @@
 | `2026-10-15T18:20:57Z` | `ready-for-integration` | Closed cross-account identity-collision, shared house-conversation and Worker custom-collection preflight blockers. | Architecture re-review; storage suite reported 59/59 | Root reruns supported typecheck and proves SQLite custom-collection refusal through admin erasure. |
 | `2026-10-15T18:23:34Z` | `ready-for-integration` | Added actual SQLite custom-owner refusal and other-host house-conversation preservation regressions. | Focused admin suite 15/15; scoped diff check clean | Root runs supported typecheck and broader integration suite. |
 | `2026-10-15T18:41:23Z` | `ready-for-integration` | Proved the complete account-erasure endpoint through the syntax-minified Worker and classified the city-foundation edge failure against the exact base. | Pinned Worker admin edge 2/2; current and base city-foundation logs reproduce the same timeout; full edge 186/193 | Root records explicit release exceptions; no further source expansion. |
+| `2026-10-15T20:10:00Z` | `active` | User approved the bounded erasure release and exact-three cleanup; resumed as merge owner against current housing main. | HEAD `e8e8984b`; target `dc3ab3a9`; Settings handoff preserved in isolated record commit | Merge, inspect overlap, then run the bounded sequential verification matrix. |

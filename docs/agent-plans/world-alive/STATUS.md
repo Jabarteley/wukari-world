@@ -43,7 +43,7 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 13b Thirty residents | not started | | |
 | 13c Ideas, assembly, president, letter | not started | | |
 | 14 Prayers and acts | not started | | |
-| 15 Calls with agents | not started | | |
+| 15 Calls with agents | built, on branch `claude/alive-p15-calls`, not released | | Push-to-talk calls with house agents from Settings → AI characters; speech to text both ways (browser recognition, gateway `microsoft/mai-transcribe-2`) behind one interface; agent replies spoken on the caller's phone from the agent's `voiceSeed`; minutes per person and in total, break reminder, call-back line; agent venue lines also sent as speakable text to room voice listeners (docs/CALLS.md). Measurements: harness and README committed (`scripts/stt-bench/`), **not yet measured, no recordings** (table in docs/CALLS.md says so). |
 | 16 Festivals, owambe, match nights | live | `8ac05891` | Multi-day festival calendar (NG, GH, KE, ZA, global; Eid and Ramadan dates to 2028), festive Square light, owambe parties with MC/DJ/spray (no money), match-night slots and an empty admin fixture list (docs/FESTIVALS.md). |
 | 17 City texture packs | live | `abec6f54` | Ride banter packs (Lagos danfo, okada, keke, cab; Accra, Nairobi, South Africa starters; no lyrics, no danger or scam words), the district's published light plan and cut notices with generator/inverter (docs/CITY-TEXTURE.md). Haggle-to-purchase comes with Phase 11. No solar item (scene chunk room). |
 | 18 Real price levels | not started | | |

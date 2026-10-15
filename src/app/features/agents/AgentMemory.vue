@@ -8,11 +8,13 @@ import { useApp } from '../../state/app.ts'
 import { useAccountLite } from '../account/useAccountLite.ts'
 import AiTag from '../social/AiTag.vue'
 import ClosenessMeter from '../social/ClosenessMeter.vue'
+import AgentCallList from '../calls/AgentCallList.vue'
+import { startAgentCall } from '../calls/agentCallState.ts'
 import { memoryWords } from './memoryModel.ts'
 import type { AgentMemoryView } from '../../../types/agents-http.ts'
 
 const props = defineProps<{ params?: unknown; agent?: string }>()
-const { game } = useApp()
+const { game, shell } = useApp()
 const lite = useAccountLite()
 const view = ref<AgentMemoryView | null>(null)
 const failed = ref(false)
@@ -39,12 +41,14 @@ const forgetEveryone = (): Promise<void> => run(() => post('/api/agents/memory/f
 const remember = (agent: string | undefined, on: boolean): Promise<void> => run(() => post('/api/agents/memory/remember', agent ? { agent, on } : { on }))
 const flirt = (agent: string, on: boolean): Promise<void> => run(() => post('/api/agents/memory/flirt', { agent, on }))
 const partner = (agent: string, on: boolean): Promise<void> => run(() => post('/api/agents/memory/partner', { agent, on }))
+const callAgent = (card: { id: string; name: string }): void => { startAgentCall(card.id, card.name); shell.close() }
 const meterMax = (card: { standing: { next: { at: number } | null } }): number => card.standing.next?.at ?? 100
 onMounted(() => { void load() })
 </script>
 
 <template>
   <div class="agent-memory" data-agent-memory>
+    <AgentCallList v-if="typeof only !== 'string'" />
     <h3 v-if="typeof only !== 'string'" class="ui-section">What AI characters remember</h3>
     <p v-if="typeof only !== 'string'" class="settings-note">{{ memoryWords.explainer }}</p>
     <p v-if="failed" class="settings-note">This could not be loaded. <button type="button" class="ui-button" @click="load">Try again</button></p>
@@ -64,6 +68,7 @@ onMounted(() => { void load() })
         </template>
         <p v-else class="settings-note" data-memory-off>{{ card.name }} is not remembering you. Nothing is kept.</p>
         <div class="memory-actions">
+          <button type="button" class="ui-button is-primary" data-memory-call :aria-label="`Call ${card.name}`" @click="callAgent(card)">Call {{ card.name }}</button>
           <button type="button" class="ui-button" :disabled="busy" data-memory-toggle @click="remember(card.id, !card.remembering)">{{ card.remembering ? 'Stop remembering me' : 'Remember me again' }}</button>
           <button type="button" class="ui-button" :disabled="busy" data-memory-forget @click="forgetAgent(card.id)">Forget me completely</button>
         </div>

@@ -76,7 +76,8 @@ type Incoming =
   | { type: 'presence-delta'; joined?: RoomMember[]; left?: string[]; moved?: { id: string; x: number; z: number }[]; voice?: { id: string; enabled: boolean; muted?: boolean }[]; counts?: GroupCounts }
   | { type: 'group'; event?: string; here?: number; text?: string; friend?: { id: string; name: string } }
   | { type: 'groups'; total?: number; more?: number; groups?: { id: string; no: number; size: number; open: boolean; mine: boolean; friends?: { id: string; name: string }[] }[] }
-  | { type: 'chat'; id: string; clientId?: string; from?: PublicSession; body: string; speaker?: 'agent' }
+  | { type: 'chat'; id: string; clientId?: string; from?: PublicSession; body: string; speaker?: 'agent'; voiceSeed?: number }
+  | { type: 'voice-text'; id: string; from?: PublicSession; body: string; voiceSeed?: number; x?: number; z?: number }
   | { type: 'signal'; from: string; data?: unknown }
   | { type: 'error'; error?: string; code?: string; message?: string; clientId?: string; to?: string }
 
@@ -510,9 +511,18 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
       else appendChat(message, message.from?.id === session?.id ? 'Sent' : '')
       // Another person's or an agent's line in this place is heard as a soft talk sound (src/audio/voice); the player's own is not. The server may mark the
       // speaker's kind and a voice seed on the public view; without them the public id is the seed.
-      if (message.from && message.from.id !== session?.id) { const who = message.from as { id: string; kind?: string; voice?: string }; heardLine({ id: who.id, text: message.body, kind: who.kind === 'agent' ? 'agent' : 'player', ...(typeof who.voice === 'string' ? { seed: who.voice } : {}) }) }
+      // An AI character's line reaches a listener in room voice a second time, as a `voice-text` frame (below), which is the one that is spoken: not twice.
+      if (message.from && message.from.id !== session?.id && !(voice && message.speaker === 'agent')) { const who = message.from as { id: string; kind?: string; voice?: string }; heardLine({ id: who.id, text: message.body, kind: who.kind === 'agent' || message.speaker === 'agent' ? 'agent' : 'player', ...(typeof who.voice === 'string' ? { seed: who.voice } : message.speaker === 'agent' && typeof message.voiceSeed === 'number' ? { seed: String(message.voiceSeed) } : {}) }) }
       if (!chatNoted && counts) { chatNoted = true; groupNote = GROUP_CHAT_NOTE; emit() }
       if (message.speaker === 'agent') globalThis.dispatchEvent(new CustomEvent('jaw:agent-say', { detail: { id: message.from?.id, name: message.from?.name, text: message.body } }))
+    } else if (message.type === 'voice-text') {
+      // An AI character spoke in this place and this page is in the voice circle: say it in the phone's own voice for that character, quieter the farther it stands.
+      // Only text crossed the network. An AI character never hears room voice; nothing here is sent back.
+      if (!voice || !message.from || message.from.id === session?.id || typeof message.body !== 'string' || seen.has(`vt:${message.id}`)) return
+      seen.add(`vt:${message.id}`)
+      const self = validPosition(selfMember()), at = Number.isFinite(message.x) && Number.isFinite(message.z) ? { x: message.x as number, z: message.z as number } : null
+      const steps = self && at ? Math.hypot(self.x - at.x, self.z - at.z) / (room.venueId === 'neighbourhood' ? STREET_NETWORK_SCALE : 1) : undefined
+      heardLine({ id: message.from.id, text: message.body, kind: 'agent', speakable: true, seed: String(typeof message.voiceSeed === 'number' ? message.voiceSeed : message.from.id), ...(steps !== undefined && Number.isFinite(steps) ? { distance: steps } : {}) })
     } else if (message.type === 'signal') void receiveSignal(message)
     else if (message.type === 'error') {
       const refused = message.error || message.code

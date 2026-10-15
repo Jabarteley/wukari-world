@@ -8,6 +8,7 @@
 import { companionService } from '../companion/service.ts';
 import { linkModels } from '../models/service.ts';
 import { linkHouse } from '../house/runner.ts';
+import { linkAgentCalls } from '../house/call-routes.ts';
 import { linkResidents } from '../residents/resident.ts';
 import { callService } from '../social/calls.ts';
 import { pictureSettings } from '../social/images.ts';
@@ -56,6 +57,7 @@ export function linkFeatures(ctx: RouteContext): void {
   linkBonus(ctx);
   linkModels(ctx);
   linkHouse(ctx);
+  linkAgentCalls(ctx);
   linkResidents(ctx);
 
   // ---- calls: today's counters (UTC day) and whether the relay is configured; no names, no ids ----------------------------------

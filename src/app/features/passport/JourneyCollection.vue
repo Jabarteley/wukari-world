@@ -25,16 +25,20 @@ const placeLine = computed(() => {
       <strong>{{ earned }}/{{ collection.members.length }}</strong>
     </header>
 
+    <p v-if="collection.description" class="journey-description">{{ collection.description }}</p>
     <p v-if="collection.complete" class="journey-title"><GameIcon inline name="star" /> Title earned: <b>{{ collection.title }}</b><template v-if="collection.completionAt !== null"> · {{ earnedDate(collection.completionAt) }}</template></p>
     <p v-else class="journey-progress">Collect every keepsake in this place to earn the {{ collection.title }} title.</p>
 
-    <ul :aria-label="`${collection.name} keepsakes`">
+    <component :is="collection.members.length > 6 ? 'details' : 'div'" class="journey-members">
+      <summary v-if="collection.members.length > 6" :aria-label="`View all ${collection.members.length} keepsakes in ${collection.name}`">View all {{ collection.members.length }} keepsakes</summary>
+      <ul :aria-label="`${collection.name} keepsakes`">
       <li v-for="member in collection.members" :key="member.id" :class="{ 'is-earned': member.earnedAt !== null }">
         <GameIcon :name="member.earnedAt !== null ? 'good' : 'star'" :size="17" />
         <span><b>{{ member.title }}</b><small>{{ member.criterion }}</small></span>
         <strong>{{ member.earnedAt !== null ? earnedDate(member.earnedAt) : 'Not yet' }}</strong>
       </li>
-    </ul>
+      </ul>
+    </component>
   </article>
 </template>
 
@@ -47,7 +51,10 @@ header small,header h3 { display: block; margin: 0; }
 header small { color: var(--c-muted); font-size: 10px; line-height: 1.35; }
 header h3 { margin-top: 2px; font-size: 15px; line-height: 1.25; }
 header > strong { color: var(--c-green-dark); font-size: 12px; font-variant-numeric: tabular-nums; }
-.journey-title,.journey-progress { margin: 0; color: var(--c-ink-2); font-size: 12px; line-height: 1.45; }
+.journey-title,.journey-progress,.journey-description { margin: 0; color: var(--c-ink-2); font-size: 12px; line-height: 1.45; }
+.journey-members summary { box-sizing: border-box; min-height: 44px; padding: 12px 10px; border-radius: var(--r-sm); background: var(--c-fill); color: var(--c-ink); font-size: 12px; font-weight: 600; cursor: pointer; }
+.journey-members summary:focus-visible { outline: 2px solid var(--c-blue); outline-offset: 2px; }
+.journey-members[open] summary { margin-bottom: 8px; }
 ul { list-style: none; display: grid; gap: 6px; margin: 0; padding: 0; }
 li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 9px 10px; border-radius: var(--r-sm); background: var(--c-fill); color: var(--c-muted); }
 li.is-earned { background: var(--c-green-soft); color: var(--c-green-dark); }

@@ -1,12 +1,14 @@
 import type { AuthoredContentBatch, LocalCityTales, LocalCountryArc } from '../../types/local-tales.ts'
 import type { WorldStorySeed } from '../../types/world-progression.ts'
 import { WORLD_STORY_SEEDS } from './world-progression.generated.ts'
+import batch01 from './local-tales/batch-01.ts'
+import batch02 from './local-tales/batch-02.ts'
 
 /**
  * Only batches that have passed the separate content review belong here. Keep this list empty
  * until the integration owner accepts a whole-country batch and adds its explicit import.
  */
-export const ACCEPTED_LOCAL_TALE_BATCHES: readonly AuthoredContentBatch[] = Object.freeze([])
+export const ACCEPTED_LOCAL_TALE_BATCHES: readonly AuthoredContentBatch[] = Object.freeze([batch01, batch02])
 
 export interface AcceptedLocalCity {
   tales: LocalCityTales

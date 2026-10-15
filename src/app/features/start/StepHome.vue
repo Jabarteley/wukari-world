@@ -16,7 +16,7 @@ import { useApp } from '../../state/app.ts'
 import HouseArt from '../world/HouseArt.vue'
 import { findLga, lgaCardUi as ui } from '../world/lgaCardModel.ts'
 import type { AreaChoice } from './onboardingModel.ts'
-import { PLACES, cityOpen, firstOpen, groupLgas, stateOfCity, stateOpen, unitOf } from './placesModel.ts'
+import { PLACES, cityOpen, countryOfCity, firstOpen, groupLgas, stateOfCity, stateOpen, unitOf } from './placesModel.ts'
 import { cr } from './creatorState.ts'
 import { areaForCity, useHomeCity } from './homeCityModel.ts'
 import type { LgaCard } from '../../../types/view.ts'
@@ -34,8 +34,8 @@ const first = (props.choosable ? cr.city : null) ?? (stateOfCity(estate.value.ci
 const stateId = ref(stateOfCity(first)?.id ?? start?.state.id ?? '')
 const city = useHomeCity(first, (ready) => emit('ready', ready), (id) => { cr.city = id; validateArea() })
 const { cityId, readyCityId, loading, error: loadError } = city
-const country = PLACES[0]
-const states = computed(() => country?.states ?? [])
+const country = computed(() => countryOfCity(cityId.value))
+const states = computed(() => PLACES.flatMap((place) => place.states))
 const openStates = computed(() => states.value.filter(stateOpen))
 const stateNow = computed(() => states.value.find((item) => item.id === stateId.value) ?? null)
 const openCities = computed(() => (stateNow.value?.cities ?? []).filter((item) => cityOpen(item.id)))
@@ -119,7 +119,7 @@ onBeforeUnmount(city.cancel)
       </ol>
       <details v-if="choosable && (openStates.length > 1 || openCities.length > 1 || soon.length)" class="cr-change">
         <summary>Starting in <b>{{ cityLabel }}</b> · Change city</summary>
-        <div v-if="openStates.length > 1" class="cr-chips" role="group" aria-label="State">
+        <div v-if="openStates.length > 1" class="cr-chips" role="group" aria-label="City or region">
           <button v-for="item in openStates" :key="item.id" type="button" class="cr-chip" :aria-pressed="item.id === stateId" @click="pickState(item.id)">{{ item.name }}</button>
         </div>
         <div v-if="openCities.length > 1" class="cr-chips" role="group" aria-label="City">

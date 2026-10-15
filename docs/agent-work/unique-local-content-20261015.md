@@ -44,3 +44,15 @@ Runtime review found and requested correction of a mission regression before acc
 Parent took runtime ownership after Sol completed clean five-project typecheck and empty-registry compatibility. Review found always preferring one authored row per kind would make every daily set identical, reducing existing Lagos variety. Parent selection policy now guarantees one authored daily category, rotating category by day/seed, while other categories draw the combined eligible pool; weekly retains authored preference. Generic fallback and free swap remain. This rotates task selection, not authored prose. Existing mission variety tests must continue to hold; do not weaken them to accept three repeated IDs.
 
 Empty-registry parent acceptance: 48/48 existing mission/agent/route-registry cases pass in empty-registry-focused.log (serial command: src/game/missions.test.ts, server/agents/agents.test.ts, server/agents/agents-open.test.ts, server/registry.test.ts). Synthetic legacy save reload preserves all568runs, all568exactmemento values and all527completedcity/countrycollections (empty-registry-save-check.json). Worker five-project typecheck passed; parent selection policy adds two typed lines afterward. No authored batch is activated in this milestone, and no production deployment has occurred.
+
+## Accepted local milestone: 75 cities
+
+Accepted batches01/02:75 cities,35 country/territory identities,150 tales,450 mission definitions. Semantic review rejected initial templates and duplicate solutions before acceptance. Combined gate0errors; engine750paths; mission9000deals/74legacyrolloverclaims; old568mementos/527collections preserved. Actual Nairobi UI completed city tale and earned Gesture tray token using meal/night activity/solo route. Kenya arc and city collection render. Host People spot is required after an Open space activity; record this usability limitation.
+
+UI fixes: native disclosure for collections>6 with44px target/focus and375px screenshot; actual country grouping/global chooser; concise generic home copy; story-intro wording no longer says every story is a welcome note. Existing test lookup now uses the authoritative mission registry and preserves the daily-variety assertion. No new tracked tests.
+
+check:fast75 passes5projecttypecheck/build/284citydownload/17smoke. Focused54existingcases running. Main advanced toac94fca0 (agent missions/memory/residents and startup slimming); combine released main and recheck before push. Production unchanged. Current preview55990 serves5176 with prior data directory, backend52729; source watching restarts backend, brief proxy refusals are expected during restart. Preserve synthetic QA and existing Jolly saves.
+
+Only active lanes: Sol03quality and Sol04quality (disjoint batch files/records). Old03Luna held after repeated plot collision,04oldheld;05–08held. Both active Sol workers submit matrices first. Latest usage91%used/9%remaining; interrupt all at95%used, no continued work beyond cap. Costs unknown.
+
+Focused54existingcases pass. Actual Nairobi city keepsake survives browser reload; screenshot ui-nairobi-earned.png.

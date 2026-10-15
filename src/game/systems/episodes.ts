@@ -381,7 +381,7 @@ function historyOf(episode: EpisodeDefinition, run: EpisodeRun): EpisodeHistoryR
     if (!receipt) return []
     const choice = run.choice ? choiceFor(episode, run.choice) : null
     const summary = chapter === 1 ? receipt.source === episode.intro.alternativeProof
-      ? `Read ${chapterDefinition(episode, 1).speaker}’s welcome note after completing the local activity.`
+      ? `Continued ${chapterDefinition(episode, 1).speaker}’s story after completing the local activity.`
       : `Met ${chapterDefinition(episode, 1).speaker} for the introduction.`
       : chapter === 2 ? `Chose ${run.choice ?? 'an approach'} from verified ${receipt.source.replaceAll('-', ' ')}.`
         : chapter === 3 ? `${run.outcomeTags[0]?.replaceAll('-', ' ') ?? 'The callback'} changed what ${choice?.callbackSpeaker ?? 'the host'} remembers.`
@@ -416,7 +416,7 @@ function optionsOf(state: EpisodeLife, episode: EpisodeDefinition, run: EpisodeR
   }
   if (run.chapter === 1) {
     const reason = (proofFor(run, episode.intro.proof, 1) || episode.intro.alternativeProof && proofFor(run, episode.intro.alternativeProof, 1)) ? null : episode.intro.missingProof
-    return [{ id: 'continue', label: `Continue with ${chapterDefinition(episode, 1).speaker}`, description: episode.intro.alternativeProof ? 'Continue after the conversation or completed activity for the welcome note.' : 'Confirm the introduction after the verified conversation.', enabled: reason === null, reason,
+    return [{ id: 'continue', label: `Continue with ${chapterDefinition(episode, 1).speaker}`, description: episode.intro.alternativeProof ? 'Have a conversation or complete the listed activity, then return here.' : 'Confirm the introduction after the verified conversation.', enabled: reason === null, reason,
       action: { type: 'episodes.intro', payload: { id: episode.id } }, ...(reason ? { next: episode.intro.proofNext } : {}) }]
   }
   if (run.chapter === 2) return episode.choices.map(choice => {

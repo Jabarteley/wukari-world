@@ -15,17 +15,26 @@ export interface CountryPlace { id: string; name: string; states: readonly State
  * added to the registry (a module, or a reserved id) shows up here without another table.
  */
 export function placesFrom(cityIds: readonly string[]): readonly CountryPlace[] {
-  const states = new Map<string, { id: string; name: string; cities: CityPlace[] }>()
+  const countries = new Map<string, { id: string; name: string; states: Map<string, { id: string; name: string; cities: CityPlace[] }> }>()
   for (const id of cityIds) {
     const city = cityCatalogueEntry(id)
     if (!city || id.startsWith('test-')) continue
-    const state = states.get(city.state.id) ?? { id: city.state.id, name: city.state.name, cities: [] }
+    const countryId = city.countryISO?.toLowerCase() ?? 'ng'
+    const country = countries.get(countryId) ?? { id: countryId === 'ng' ? 'nigeria' : countryId, name: city.countryName ?? (countryId === 'ng' ? 'Nigeria' : countryId.toUpperCase()), states: new Map() }
+    const stateId = countryId === 'ng' ? city.state.id : `${countryId}:${city.state.id}`
+    const state = country.states.get(stateId) ?? { id: stateId, name: city.state.name, cities: [] }
     state.cities.push({ id: city.id, name: city.name })
-    states.set(state.id, state)
+    country.states.set(state.id, state)
+    countries.set(countryId, country)
   }
-  return [{ id: 'nigeria', name: 'Nigeria', states: [...states.values()] }]
+  return [...countries.values()].map((country) => ({ id: country.id, name: country.name, states: [...country.states.values()] }))
 }
 export const PLACES: readonly CountryPlace[] = placesFrom(cityCatalogue().map((city) => city.id))
+
+/** The country owning a city, or null for an unknown id. */
+export function countryOfCity(cityId: string, places: readonly CountryPlace[] = PLACES): CountryPlace | null {
+  return places.find((country) => country.states.some((state) => state.cities.some((city) => city.id === cityId))) ?? null
+}
 
 /** Whether lives can be lived in this city today. */
 export const cityOpen = (cityId: string): boolean => isOpenCityId(cityId)

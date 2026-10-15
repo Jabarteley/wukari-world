@@ -237,6 +237,48 @@ const boundsFor = (polygon: Polygon): PolygonBounds => {
 const boxesOverlap = (left: PolygonBounds, right: PolygonBounds): boolean =>
   left.minLon < right.maxLon && right.minLon < left.maxLon && left.minLat < right.maxLat && right.minLat < left.maxLat
 
+interface CityBoundsCacheEntry {
+  readonly members: readonly Polygon[]
+  readonly bounds: PolygonBounds
+}
+
+const cityBoundsCache = new WeakMap<readonly Polygon[], CityBoundsCacheEntry>()
+
+function aggregateBoundsFor(polygons: readonly Polygon[]): PolygonBounds | null {
+  if (!polygons.length) return null
+  const cached = cityBoundsCache.get(polygons)
+  if (cached && cached.members.length === polygons.length && cached.members.every((polygon, index) => polygon === polygons[index])) {
+    return cached.bounds
+  }
+
+  let minLon = Infinity
+  let maxLon = -Infinity
+  let minLat = Infinity
+  let maxLat = -Infinity
+  for (const polygon of polygons) {
+    let bounds: PolygonBounds
+    try {
+      bounds = boundsFor(polygon)
+    } catch {
+      // Keep malformed input on the existing exact-checker path, including its existing error behavior.
+      return null
+    }
+    if (![bounds.minLon, bounds.maxLon, bounds.minLat, bounds.maxLat].every(Number.isFinite)
+      || bounds.minLon > bounds.maxLon || bounds.minLat > bounds.maxLat) return null
+    minLon = Math.min(minLon, bounds.minLon)
+    maxLon = Math.max(maxLon, bounds.maxLon)
+    minLat = Math.min(minLat, bounds.minLat)
+    maxLat = Math.max(maxLat, bounds.maxLat)
+  }
+
+  const bounds = { minLon, maxLon, minLat, maxLat }
+  cityBoundsCache.set(polygons, { members: [...polygons], bounds })
+  return bounds
+}
+
+const strictlySeparated = (left: PolygonBounds, right: PolygonBounds): boolean =>
+  left.maxLon < right.minLon || right.maxLon < left.minLon || left.maxLat < right.minLat || right.maxLat < left.minLat
+
 const segmentsMayCross = (a: Point, b: Point, c: Point, d: Point): boolean =>
   Math.min(a[0], b[0]) < Math.max(c[0], d[0])
   && Math.min(c[0], d[0]) < Math.max(a[0], b[0])
@@ -244,6 +286,11 @@ const segmentsMayCross = (a: Point, b: Point, c: Point, d: Point): boolean =>
   && Math.min(c[1], d[1]) < Math.max(a[1], b[1])
 
 function polygonsOverlap(left: readonly Polygon[], right: readonly Polygon[]): boolean {
+  if (!left.length || !right.length) return false
+  const leftBounds = aggregateBoundsFor(left)
+  const rightBounds = aggregateBoundsFor(right)
+  if (leftBounds && rightBounds && strictlySeparated(leftBounds, rightBounds)) return false
+
   for (const leftPolygon of left) {
     for (const rightPolygon of right) {
       if (!boxesOverlap(boundsFor(leftPolygon), boundsFor(rightPolygon))) continue

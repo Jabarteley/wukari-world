@@ -500,8 +500,10 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     if (runtime) {
       // The scenery can disappear independently; gameplay markers and tables remain drawn.
       fallbackBuilt = batch.build(shared.materials);
-      recorder = footprintRecorder(createBatch(THREE));
-      batch = recorder.batch;
+      // Action rings are visual overlays, not walls across the authored sidewalk.
+      // Tables still draw through the recorder below and keep their physical blockers.
+      batch = createBatch(THREE);
+      recorder = footprintRecorder(batch);
     }
     layout.spots ||= [];
     layout.crowd ||= [];

@@ -64,10 +64,6 @@
         {
           "ref": "node/9200049002",
           "reason": "Southernmost Point of Asia: 3 m outside the play polygon (country mask inset removes the coast); dropped per OUTPOST-AUDIT."
-        },
-        {
-          "ref": "node/3024982382",
-          "reason": "Ferry to Home Island: 29 m outside the play polygon (country mask inset removes the coast); dropped per OUTPOST-AUDIT."
         }
       ],
       "links": [

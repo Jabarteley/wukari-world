@@ -6,7 +6,8 @@ import { admin, useAdmin } from './useAdmin.ts'
 import { naira, relative } from './adminModel.ts'
 import { recordDone, rememberSearch, ui } from './adminUi.ts'
 import PlayerPage from './PlayerPage.vue'
-import type { PlayersPage } from '../../../types/admin.ts'
+import BulkErasePlayers from './BulkErasePlayers.vue'
+import type { PlayerRow, PlayersPage } from '../../../types/admin.ts'
 
 const props = defineProps<{ player: string | null; tab: string | null }>()
 const emit = defineEmits<{ open: [id: string]; back: []; tab: [tab: string] }>()
@@ -23,23 +24,48 @@ async function search(): Promise<void> {
   busy.value = false
   if (reply.ok) { data.value = reply.data; error.value = '' } else error.value = reply.error.reason
 }
-function again(): void { page.value = 0; selected.clear(); void search() }
+function clearSelected(): void { selected.clear(); selectedRows.clear() }
+function again(): void { page.value = 0; if (!eraseActive.value) clearSelected(); void search() }
 watch([filter, city, size, sort, dir], again)
 watch(q, () => { clearTimeout(wait); wait = setTimeout(() => { rememberSearch(q.value); again() }, 350) })
 onMounted(search)
-watch(() => props.player, (next, previous) => { if (!next && previous) { selected.clear(); void search() } })
+watch(() => props.player, (next, previous) => {
+  if (next) eraseTargets.value = null
+  if (!next && previous) { clearSelected(); void search() }
+})
 onBeforeUnmount(() => clearTimeout(wait))
-const sorter = (key: string): void => { if (sort.value === key) dir.value = dir.value === 'desc' ? 'asc' : 'desc'; else { sort.value = key; dir.value = key === 'name' ? 'asc' : 'desc' } }
+const sorter = (key: string): void => { if (eraseActive.value) return; if (sort.value === key) dir.value = dir.value === 'desc' ? 'asc' : 'desc'; else { sort.value = key; dir.value = key === 'name' ? 'asc' : 'desc' } }
 const aria = (key: string): 'ascending' | 'descending' | 'none' => (sort.value === key ? (dir.value === 'asc' ? 'ascending' : 'descending') : 'none')
 const pages = computed(() => (data.value ? Math.max(1, Math.ceil(data.value.total / data.value.pageSize)) : 1))
 
 // ---- bulk ---------------------------------------------------------------------------------------------------------
-const selected = reactive(new Set<string>()), BULK_MAX = 20
+const selected = reactive(new Set<string>()), selectedRows = reactive(new Map<string, PlayerRow>()), BULK_MAX = 20
 const bulk = reactive({ action: '' as '' | 'message' | 'credit', text: '', amount: 500, reason: '', typed: '', token: '', summary: '', busy: false, error: '' })
+const eraseTargets = ref<PlayerRow[] | null>(null)
+const eraseActive = computed(() => eraseTargets.value !== null)
 const all = computed(() => Boolean(data.value?.rows.length) && data.value!.rows.every((row) => selected.has(row.id)))
-function toggleAll(): void { if (all.value) for (const row of data.value?.rows ?? []) selected.delete(row.id); else for (const row of data.value?.rows ?? []) if (selected.size < BULK_MAX) selected.add(row.id) }
-function toggle(id: string): void { if (selected.has(id)) selected.delete(id); else if (selected.size < BULK_MAX) selected.add(id) }
-function startBulk(action: 'message' | 'credit'): void { Object.assign(bulk, { action, token: '', summary: '', typed: '', error: '' }) }
+function toggleAll(): void {
+  if (eraseActive.value) return
+  if (all.value) for (const row of data.value?.rows ?? []) { selected.delete(row.id); selectedRows.delete(row.id) }
+  else for (const row of data.value?.rows ?? []) if (selected.size < BULK_MAX) { selected.add(row.id); selectedRows.set(row.id, row) }
+}
+function toggle(row: PlayerRow): void {
+  if (eraseActive.value) return
+  if (selected.has(row.id)) { selected.delete(row.id); selectedRows.delete(row.id) }
+  else if (selected.size < BULK_MAX) { selected.add(row.id); selectedRows.set(row.id, row) }
+}
+function startBulk(action: 'message' | 'credit'): void { if (!eraseActive.value) Object.assign(bulk, { action, token: '', summary: '', typed: '', error: '' }) }
+function startErase(): void {
+  if (admin.me?.level !== 'root' || eraseActive.value || bulk.busy) return
+  const snapshot = [...selected].map(id => selectedRows.get(id)).filter((row): row is PlayerRow => Boolean(row)).map(row => ({ ...row, flags: [...row.flags] }))
+  if (snapshot.length !== selected.size) { bulk.error = 'Refresh the selection and try again.'; return }
+  bulk.action = ''
+  eraseTargets.value = snapshot
+}
+function closeErase(didChange: boolean): void {
+  eraseTargets.value = null
+  if (didChange) { clearSelected(); void search() }
+}
 const bulkWhy = computed(() => {
   if (!bulk.action) return 'Choose what to do.'
   if (bulk.action === 'message' && !bulk.text.trim()) return 'Write the message.'
@@ -56,28 +82,29 @@ async function sendBulk(): Promise<void> {
   bulk.busy = false
   if (!reply.ok) { bulk.error = reply.error.reason; return }
   if (reply.data.code === 'confirmation_required') { bulk.token = String(reply.data.token); bulk.summary = String(reply.data.summary); return }
-  if (reply.data.ok === true) { recordDone(String(reply.data.summary), true); bulk.action = ''; selected.clear(); void search() } else bulk.error = String(reply.data.reason ?? reply.data.code)
+  if (reply.data.ok === true) { recordDone(String(reply.data.summary), true); bulk.action = ''; clearSelected(); void search() } else bulk.error = String(reply.data.reason ?? reply.data.code)
 }
 </script>
 
 <template>
   <PlayerPage v-if="props.player" :id="props.player" :tab="props.tab" @back="emit('back')" @tab="emit('tab', $event)" @open="emit('open', $event)" />
   <section v-else aria-label="Players">
-    <div class="adm-chips" role="group" aria-label="Saved filters"><button v-for="[id, label] in FILTERS" :key="id" type="button" :aria-pressed="filter === id" @click="filter = id">{{ label }}</button></div>
+    <div class="adm-chips" role="group" aria-label="Saved filters"><button v-for="[id, label] in FILTERS" :key="id" type="button" :aria-pressed="filter === id" :disabled="eraseActive" @click="filter = id">{{ label }}</button></div>
     <form class="adm-row" @submit.prevent="again">
-      <label class="adm-grow">Name, public id, or address hash<input v-model="q" type="search" placeholder="Ada, 3f9a1c2e…, or a 64-character hash" autocomplete="off" list="adm-recent"></label>
+      <label class="adm-grow">Name, public id, or address hash<input v-model="q" type="search" placeholder="Ada, 3f9a1c2e…, or a 64-character hash" autocomplete="off" list="adm-recent" :disabled="eraseActive"></label>
       <datalist id="adm-recent"><option v-for="item in ui.recent" :key="item" :value="item" /></datalist>
-      <label>City<select v-model="city"><option value="">Any</option><option v-for="id in admin.me?.cities ?? []" :key="id" :value="id">{{ id }}</option></select></label>
-      <label>Rows<select v-model.number="size"><option :value="15">15</option><option :value="40">40</option><option :value="100">100</option></select></label>
+      <label>City<select v-model="city" :disabled="eraseActive"><option value="">Any</option><option v-for="id in admin.me?.cities ?? []" :key="id" :value="id">{{ id }}</option></select></label>
+      <label>Rows<select v-model.number="size" :disabled="eraseActive"><option :value="15">15</option><option :value="40">40</option><option :value="100">100</option></select></label>
     </form>
-    <div v-if="ui.recent.length && !q" class="adm-chips adm-small" aria-label="Recent searches"><span class="adm-muted">Recent:</span><button v-for="item in ui.recent" :key="item" type="button" @click="q = item">{{ item }}</button></div>
+    <div v-if="ui.recent.length && !q" class="adm-chips adm-small" aria-label="Recent searches"><span class="adm-muted">Recent:</span><button v-for="item in ui.recent" :key="item" type="button" :disabled="eraseActive" @click="q = item">{{ item }}</button></div>
     <p v-if="error" class="adm-error" role="alert">{{ error }} <button class="adm-btn" @click="search">Try again</button></p>
 
     <div v-if="selected.size" class="adm-bulkbar" role="region" aria-label="Chosen players">
       <b>{{ selected.size }} chosen</b> <span class="adm-muted">(at most {{ BULK_MAX }})</span>
-      <button class="adm-btn" @click="startBulk('message')">Message…</button><button class="adm-btn" @click="startBulk('credit')">Give a little…</button><button class="adm-btn" @click="selected.clear(); bulk.action = ''">Clear</button>
+      <button class="adm-btn" :disabled="eraseActive" @click="startBulk('message')">Message…</button><button class="adm-btn" :disabled="eraseActive" @click="startBulk('credit')">Give a little…</button><button v-if="admin.me?.level === 'root'" class="adm-btn danger" :disabled="eraseActive || bulk.busy" @click="startErase">Erase selected…</button><button class="adm-btn" :disabled="eraseActive" @click="clearSelected(); bulk.action = ''">Clear</button>
     </div>
-    <form v-if="bulk.action && selected.size" class="adm-card adm-form" @submit.prevent="sendBulk">
+    <BulkErasePlayers v-if="eraseTargets" :targets="eraseTargets" @close="closeErase" />
+    <form v-if="bulk.action && selected.size && !eraseActive" class="adm-card adm-form" @submit.prevent="sendBulk">
       <h3>{{ bulk.action === 'message' ? `Message ${selected.size} players as the founder` : `Give ${selected.size} players the same amount` }}</h3>
       <label v-if="bulk.action === 'message'">Message<textarea v-model="bulk.text" maxlength="500" /></label>
       <template v-else><label>Amount (₦ each)<input v-model.number="bulk.amount" type="number" min="1" inputmode="numeric"></label><label>Reason (they see it)<input v-model="bulk.reason" maxlength="200"></label></template>
@@ -91,15 +118,15 @@ async function sendBulk(): Promise<void> {
     <div class="adm-card adm-scroll adm-tablewrap" :aria-busy="busy">
       <table class="adm-table adm-sticky">
         <thead><tr>
-          <th class="adm-check"><input type="checkbox" :checked="all" aria-label="Choose every player on this page" @change="toggleAll"></th>
-          <th :aria-sort="aria('name')"><button type="button" @click="sorter('name')">Name</button></th><th>Kind</th><th>City</th>
-          <th :aria-sort="aria('cash')"><button type="button" @click="sorter('cash')">Cash</button></th>
-          <th :aria-sort="aria('seen')"><button type="button" @click="sorter('seen')">Seen</button></th>
-          <th :aria-sort="aria('since')"><button type="button" @click="sorter('since')">Joined</button></th><th>Flags</th></tr></thead>
+          <th class="adm-check"><input type="checkbox" :checked="all" :disabled="eraseActive" aria-label="Choose every player on this page" @change="toggleAll"></th>
+          <th :aria-sort="aria('name')"><button type="button" :disabled="eraseActive" @click="sorter('name')">Name</button></th><th>Kind</th><th>City</th>
+          <th :aria-sort="aria('cash')"><button type="button" :disabled="eraseActive" @click="sorter('cash')">Cash</button></th>
+          <th :aria-sort="aria('seen')"><button type="button" :disabled="eraseActive" @click="sorter('seen')">Seen</button></th>
+          <th :aria-sort="aria('since')"><button type="button" :disabled="eraseActive" @click="sorter('since')">Joined</button></th><th>Flags</th></tr></thead>
         <tbody>
           <template v-if="!data && !error"><tr v-for="n in 6" :key="n" class="adm-skel-row"><td colspan="8"><i /></td></tr></template>
-          <tr v-for="row in data?.rows ?? []" :key="row.id" class="click" tabindex="0" @click="emit('open', row.id)" @keydown.enter="emit('open', row.id)">
-            <td class="adm-check" @click.stop><input type="checkbox" :checked="selected.has(row.id)" :aria-label="`Choose ${row.name}`" @change="toggle(row.id)"></td>
+          <tr v-for="row in data?.rows ?? []" :key="row.id" class="click" :tabindex="eraseActive ? -1 : 0" @click="!eraseActive && emit('open', row.id)" @keydown.enter="!eraseActive && emit('open', row.id)">
+            <td class="adm-check" @click.stop><input type="checkbox" :checked="selected.has(row.id)" :disabled="eraseActive" :aria-label="`Choose ${row.name}`" @change="toggle(row)"></td>
             <td><span v-if="row.online" class="adm-chip green">online</span> {{ row.name }} <span v-if="row.admin" class="adm-chip">admin</span></td>
             <td>{{ row.kind }}</td><td>{{ row.city ?? '-' }}</td><td>{{ naira(row.cash) }}</td><td>{{ relative(row.lastSeen, api.now()) }}</td><td>{{ row.since ? relative(row.since, api.now()) : '-' }}</td>
             <td><span v-for="flag in row.flags" :key="flag" class="adm-chip red">{{ flag }}</span></td>
@@ -108,7 +135,7 @@ async function sendBulk(): Promise<void> {
         </tbody>
       </table>
       <div v-if="data" class="adm-row adm-between adm-pager"><span class="adm-muted">{{ data.total }} found · page {{ data.page + 1 }} of {{ pages }} · {{ data.scanned }} sessions read</span>
-        <span><button class="adm-btn" :disabled="data.page === 0" @click="page -= 1; search()">Previous</button> <button class="adm-btn" :disabled="data.page + 1 >= pages" @click="page += 1; search()">Next</button></span></div>
+        <span><button class="adm-btn" :disabled="eraseActive || data.page === 0" @click="page -= 1; search()">Previous</button> <button class="adm-btn" :disabled="eraseActive || data.page + 1 >= pages" @click="page += 1; search()">Next</button></span></div>
     </div>
   </section>
 </template>

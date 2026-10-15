@@ -21,18 +21,18 @@ export function useAdmin() {
     get: async <T = AdminJson>(path: string, query: Record<string, string | number | undefined> = {}): Promise<Reply<T>> => {
       try { return { ok: true, data: await fetchJson<T>(path + q(query)) } } catch (error) { return { ok: false, error: failureOf(error) } }
     },
-    /** `intent` names what the admin is doing; its client id is reused until the server has answered for good. */
-    post: async <T = AdminJson>(path: string, body: Record<string, unknown>, intent: string): Promise<Reply<T>> => {
+    /** `intent` names what the admin is doing; its client id is reused until the server has answered for good. Ambiguous erasure replay opts in to retaining it until a terminal erasure code. */
+    post: async <T = AdminJson>(path: string, body: Record<string, unknown>, intent: string, options: { preserveIntentOnFailure?: boolean } = {}): Promise<Reply<T>> => {
       const clientId = pending.get(intent) ?? transport.newId()
       pending.set(intent, clientId)
       try {
         const data = await fetchJson<T>(path, { method: 'POST', body: { ...body, clientId } })
         const code = (data as { code?: string }).code
-        if (code !== 'confirmation_required') pending.delete(intent)
+        if (code !== 'confirmation_required' && !(options.preserveIntentOnFailure && code !== 'player_erased' && code !== 'erasure_pending')) pending.delete(intent)
         return { ok: true, data }
       } catch (error) {
         const failure = failureOf(error)
-        if (failure.status >= 400 && failure.status < 500) pending.delete(intent)
+        if (failure.status >= 400 && failure.status < 500 && !options.preserveIntentOnFailure) pending.delete(intent)
         return { ok: false, error: failure }
       }
     },

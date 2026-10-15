@@ -95,21 +95,44 @@ Antarctica, the Siachen entry and Ashmore and Cartier have real open cities now)
 full tap target). Passing without change: `server/pulse.test.ts`, `server/registry.test.ts`, `server/social.test.ts`,
 `server/admin/history.test.ts`, `server/growth.test.ts`, `server/money-request.test.ts`, `src/types/protocol.test.ts`.
 
-Fixed on 16 October (branch `claude/alive-fix-full`, full CI checks): the six Worker tests (the Worker honours `WORLD_FEED=off` and the
-edge tests set it, because the weather and rates feed of e8dd4fb3 called out from tests and a call in flight kept the object from being
-evicted; the outreach tick no longer runs an empty saved transaction, which held a change in memory and pinned the object after d256523d
-made the growth collection exist at the first friendship; the row-budget test waits for the residents' first save, c1358561; the accounts
-test skips a house character's greeting); the 25-minute game job (the 284-city overlap check compared every polygon of every pair, over 20
-minutes, and now compares each city's box first; the economy simulation, about 14 minutes, and the city contracts, about 10, run in jobs
-of their own, `scripts/node-test-plan.ts`). The comeback "zero work", the SEO copy, the Node-host city life, the new-player cash
-(22,600 and 7,050 are now what the test expects) and the Worker size tests already passed on `main` when this branch was cut.
+Fixed on 16 October (branch `claude/alive-fix-full`, run with the full CI checks, `gh workflow run CI -f full_checks=true`):
+- The six Worker tests. The Worker honours `WORLD_FEED=off` and the edge tests set it: the weather and rates feed of e8dd4fb3 called out
+  from tests, and a call in flight kept the object from being evicted (calls, invitations, accounts). The outreach tick no longer runs
+  its saved transaction when nobody is due: run empty it held a change in memory that pinned the object, since d256523d made the growth
+  collection exist at the first friendship (chat). The row-budget test waits for the residents' first save (c1358561). The accounts test
+  skips a house character's greeting. The Worker tests now run as two shards.
+- The 25-minute game job. Five files were slower than the rest of `src/` together and now have jobs of their own (`scripts/node-test-plan.ts`):
+  `economy.test.ts` (about 14 minutes), `allCities.test.ts` (about 10), `combinedRules.test.ts` (every route of every open city: 40 ms a
+  route over 62,000 routes; `linksFrom` is now built once per city and handed out frozen, 5 ms a route), `relief.test.ts` (a homeward quote for
+  every pair of cities) and `stuck.test.ts` (26,000 dead-end play-outs, about 12). The 284-city overlap check compared every polygon of every
+  pair (Auckland has 25,000): it compares each city's box first, which cannot change the answer, and went from over 20 minutes to under a second.
+  The rest of `src/` runs as three shards of equal file count.
+- Stale expectations, each with the commit that changed the behaviour: fares are charged in the prices of the city the life started in
+  (026d3e6b: `allCities.test.ts`, `stuckSearch.ts`); a skip and a wait differ in the moment a mission was earned (bcbfd549: `trip-skip.test.ts`);
+  the aerial chunk reads Light mode's switch (ae70b610: `aerial-plan.test.ts`); two icons without a glyph (bcbfd549: `icon-map.ts`); the batch
+  rebuild of every generated city needs more than 60 seconds on a hosted runner (`allCities.test.ts`).
+- Already passing on `main` when the branch was cut: the comeback "zero work", the SEO copy, the Node-host city life, the new-player cash
+  (22,600 and 7,050 are what the test expects now) and the Worker size tests.
 
-Still failing, and why they are left (an owner's judgement):
-- `src/scene/scenes-fct.test.ts` ("no two Abuja scenes are the same scene"): office/fct-campus-court and market/fct-lockups now have the
-  same triangle count; whether to change a scene or the test is an art decision.
+Still failing, and why they are left (an owner's judgement, or another team's work in flight):
+- The generic `market` scene tests (`src/scene/scenes.test.ts` x2, `movement.test.ts`, `sight.test.ts`, `street-life/venue-floor.test.ts`:
+  "market has a people anchor", "the entrance is on the ground", "market: has a floor"). Since 71e0de62 (batch001 venues, the Lagos Broad
+  Street runtime scene) a built `market` scene no longer has the anchors, floor and entrance these tests ask of every scene kind. Whether the
+  runtime scene should carry them or the tests should skip it belongs to whoever owns the runtime scenery.
+- `src/scene/ambient/layer.test.ts` (a market holds 9 people at ten; the full tier has a far crowd): the crowd stays on the venue's walkable
+  floor since 8b9b9212 and c50b5e2c ("venues draw no near bodies until the far crowd stands inside it"), and a market now holds 5 and no far
+  crowd. How full a venue should be is a feel decision.
+- `src/scene/scenes-fct.test.ts` ("no two Abuja scenes are the same scene"): office/fct-campus-court and market/fct-lockups have the same
+  triangle count; whether to change a scene or the test is an art decision.
 - `src/game/living-world/vehicle-boarding.test.ts`, `vehicle-clearance.test.ts`: the pinned hashes of `drivingScene.ts` and
-  `src/scene/body/stand-in.ts` (changed on 13 October and later) need the sedan geometry evidence recomputed, not just the hash. The
-  pin exists so a person looks at the clearance again; re-pinning blind would defeat it.
+  `src/scene/body/stand-in.ts` need the sedan geometry evidence recomputed, not just the hash. The pin exists so a person looks at the
+  clearance again; re-pinning blind would defeat it. (`integration-repairs` fails only on `vehicle-boarding`.)
+- `src/game/cities/network.test.ts` ("the startup index and the landing figures"): the Node host counts 243 countries and territories
+  (the raw ISO codes of the catalogue rows, as the generated figure the landing shows does), the catalogue counts 242 (`mapEntryOf` folds
+  six territories into five map entries). Which of the two the landing should say is a product decision.
+- `src/game/relief.test.ts` ("a bounded homeward quote for every pair"): Adamstown has three links (the cheapest way out to Lagos by air
+  is N900,000) and Cove has three (N762,000 to Lagos), so Adamstown to Cove has no route inside the 4 legs and the N1,000,000 credit cap.
+  Whether to raise the cap, add a link or exempt the remotest pairs is a design decision. The test takes 8 minutes in its own job.
 
 ## Measures to keep (Phases 3, 13, 15)
 

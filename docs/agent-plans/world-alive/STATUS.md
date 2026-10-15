@@ -40,7 +40,7 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 11 Missions from agents | pushed, not yet live | branch `claude/alive-p11-missions` | Tasks a house agent gives in person from templates filled in from the person's life, shown in Missions with the agent and where to find it; new triggers talk to an agent, hand an item, bring a friend, play with another person; the hand-over completes a haggled price (docs/AGENT-MISSIONS.md). The model only rephrases the brief (cached per template and agent). Rewards inside the daily (₦250) and weekly (₦1,000) figures, checked by the life. |
 | 12 Talking, memory, relationships | merged, not yet live | | House agents remember up to five facts per person (never contacts or money), the person sees, deletes or turns it off (Settings), closeness, partners for confirmed adults, and flirting with a partner or an adult's own yes (docs/AGENT-MEMORY.md). No DMs to house agents yet. |
 | 13a One resident in shadow | merged, not yet live | | Remi, a Lagos bookseller: life story, sleep, a model chosen at birth, thoughts as validated choices, nightly summary, shadow (nobody sees her), her day on the admin page (docs/RESIDENTS.md). On by default on the live hosts, in shadow. |
-| 13b Thirty residents | not started | | |
+| 13b Thirty residents | pushed, not yet live | branch `claude/alive-p13b-residents` | Thirty authored residents (Remi + 29: Lagos, Abuja, Ibadan, Accra, Nairobi, Cape Town, London, New York; Johannesburg and Houston are not open cities), setting `residentCount` (default 1), models spread at birth, agent-to-agent talk (4 turns, grounded in a real ledger line, repetition check), replies to people when visible (no trading, paid models only), `residentDailyCents` budget (default 100), admin comparison of models and the experiment's measures (docs/RESIDENTS.md). Day-1/day-7 return split not built (needs a growth-metrics bit); the page counts people who spoke and who spoke again. |
 | 13c Ideas, assembly, president, letter | not started | | |
 | 14 Prayers and acts | not started | | |
 | 15 Calls with agents | not started | | |
@@ -88,6 +88,13 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 - Return on day 1, 7 and 30, split by ad source and by "has a friend" (the admin dashboard's "Coming back" table, from Phase 3).
 - Residents: model spend per day, thoughts per resident per day, rule slips, out-of-character retries, talk with strangers,
   businesses started, friendships kept.
+  **The first thirty residents are an experiment; success is (decided before launch, Phase 13b):** (1) cost per day under `residentDailyCents`
+  (US$1 default) and never reaching the US$2 stop; (2) reports about residents at or below the rate for people, and no report of a rule break
+  (money, details, a meeting, romance with a minor); (3) people who spoke to a resident come back at least as often as those who did not (day 1
+  and day 7; today the admin page shows the number of people who spoke to a resident and who spoke again on a later day, the split against the
+  growth return cells is by hand until a resident bit is added to the life record); (4) per model, slips and out-of-character retries stay a small
+  share of thoughts (a model that slips more than about 1 in 20 leaves the `resident` list). Read these on the admin page group "Residents" after a
+  week live.
 - Speech to text: words right and delay, per accent, for each way.
 
 ## Log

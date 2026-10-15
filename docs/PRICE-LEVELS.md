@@ -70,7 +70,43 @@ rent stay as they are (they are below the new cap).
 
 ## Results
 
-RESULTS_PLACEHOLDER
+`node scripts/economy-sim.ts` was run in full (the heavy slot, 30 days, the default career track; no reduced version was needed) on the
+branch with the 2021 table. Its new section plays a new player for 14 days in each city (settle in a local unit, the helper job,
+a free activity) and reads the rent, pay and prices the rules gave. Amounts are naira, before the display conversion of Phase 5.
+
+```
+city       level  helper shift  entry shift  top shift  cheapest rent/wk  cheapest pack  food days per entry shift  rent / entry shift        14-day cash  conserved
+---------  -----  ------------  -----------  ---------  ----------------  -------------  -------------------------  ------------------  -----------------  ---------
+lagos          1          ₦300       ₦2,400    ₦67,200            ₦2,400           ₦200                        3.4                   1   ₦5,000 → ₦46,200        yes
+london      2.51          ₦750       ₦9,000   ₦144,600           ₦15,100           ₦500                        5.1                1.68   ₦5,000 → ₦33,600        yes
+accra       1.01          ₦300       ₦3,600    ₦58,200            ₦6,100           ₦200                        5.1                1.69  ₦5,000 → ₦206,220        yes
+nairobi     1.05          ₦320       ₦3,800    ₦60,500            ₦6,300           ₦210                        5.2                1.66   ₦5,000 → ₦58,640        yes
+cairo       0.67          ₦200       ₦2,400    ₦38,600            ₦4,000           ₦130                        5.1                1.67   ₦5,000 → ₦56,150        yes
+cape-town   1.36          ₦410       ₦4,900    ₦78,300            ₦8,200           ₦270                        5.2                1.67  ₦5,000 → ₦208,500        yes
+delhi       0.77          ₦230       ₦2,800    ₦44,400            ₦4,600           ₦150                        5.3                1.64   ₦5,000 → ₦56,770        yes
+tokyo       2.47          ₦740       ₦8,900   ₦142,300           ₦14,800           ₦490                        5.1                1.66   ₦5,000 → ₦67,260        yes
+new-york    2.73          ₦820       ₦9,800   ₦157,200           ₦16,400           ₦550                        5.1                1.67   ₦5,000 → ₦68,980        yes
+paris       2.28          ₦680       ₦8,200   ₦131,300           ₦13,700           ₦460                        5.1                1.67   ₦5,000 → ₦66,020        yes
+sao-paulo    1.2          ₦360       ₦4,300    ₦69,100            ₦7,200           ₦240                        5.1                1.67   ₦5,000 → ₦25,440        yes
+```
+
+- **London is expensive and pays more:** level 2.51. Against London's own base content every figure is 2.51 times: the cheapest
+  rent 6,000 becomes 15,100, the helper shift 300 becomes 750, the entry career shift about 3,600 becomes 9,000, a pack of rice 200
+  becomes 500. Paris, Tokyo and New York are in the same band (2.3 to 2.7).
+- **Accra is close to Lagos:** level 1.01. Nairobi 1.05, Cape Town 1.36, Cairo 0.67 and Delhi 0.77 are close or cheaper.
+- **Nothing broken:** in every city one entry-level shift buys about 5.1 days of food (the three cheapest grocery packs) and a week of
+  the cheapest rent costs about 1.66 entry shifts; the figures differ by under 4% from city to city, which is the rounding. The
+  helper shift (a starter job) pays one grocery pack, as in Lagos. Every one of the 112 lives of the main simulation and the 11 city lives above keeps
+  `cash = seed + sum of the ledger`, and every ledger reason is classified.
+- **Lagos rows are the same as before** (the Nigerian content is the same object; `price-levels.test.ts` also checks it).
+- **What the table shows that this phase did not change:** (1) the Lagos column differs from the others (3.4 food days and 1 rent per
+  shift, against 5.1 and 1.66 elsewhere) because the other cities' own content has a dearer cheapest home and has no 2,400 entry track,
+  at any level; (2) the 14-day cash of Accra (about 206k) and Cape Town (about 208k) is far above their neighbours' at a level close to 1: it
+  comes from what the first free activity of those cities' content gives, not from the price level. Both are for a later look at those
+  cities' base numbers.
+- **The one real effect of not scaling the starting purse:** a new player in London starts with the same naira as anyone, against
+  prices 2.5 times higher (14-day cash 33,600 against 46,200 in Lagos, at 2.5 times the pay). That is the next step if players find it hard.
+
 
 ## Tests
 

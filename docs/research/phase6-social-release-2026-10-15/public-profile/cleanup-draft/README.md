@@ -1,6 +1,6 @@
 # Exact three-guest cleanup: offline review draft
 
-Status: **blocked, inert, and never executed**. This folder is a review package derived from the captured production inventory for source `6695f00c6779fbfcb69bd21aa8b152d5430a0dca`. It does not authorize Data Studio use, DDL, a rehearsal, a production mutation, an epoch change, or a deployment. Astra and the integration owner must accept the corrected source and fresh inventory before any operator action.
+Status: **inventory-bound, inert, and never executed against production**. This folder is a review package derived from the captured production inventory for source `6695f00c6779fbfcb69bd21aa8b152d5430a0dca`. It does not authorize Data Studio use, DDL, a rehearsal, a production mutation, an epoch change, or a deployment. Astra and the integration owner must accept the bound source before any operator action.
 
 ## Frozen scope
 
@@ -14,17 +14,19 @@ Only these approved disposable workflow guests are targets:
 
 The captured authority is schema 2, shadow layout, epoch 3, writable 1, null retirement/wallet watermark and zero `collection_parts`. There are three sessions, 31 action receipts, no archives/accounts/devices/once receipts, four immutable wallet-audit rows, 17 exact collection paths and nine exact entry mirrors. The wallet rows remain in place and in the private backup; this is not total erasure.
 
-## Blocking missing evidence
+## Bound dependency evidence
 
-The R2-owned growth share `ffe8762f22` has a source-defined `{ by, opened, joined }` record. `server/growth/share.ts` initializes the two counters; `server/growth/referral.ts` can increment `joined` and store the code/owner in another player's `ref` record. The captured UUID inventory proves only `shares.ffe8762f22.by`; it does not prove the stored `opened`/`joined` values, absence of another player's `ref.code`/`ref.by`, or absence of R2's `invited` dependencies.
+The R2-owned growth share `ffe8762f22` has a source-defined `{ by, opened, joined }` record. `server/growth/share.ts` initializes the counters; `server/growth/referral.ts` can increment `joined` and store the code/owner in another player's `ref` record. Astra's production read at `2026-10-15T17:32:09.065Z` returned share exists 1, owner match 1, integer `opened=0`, integer `joined=0`, all eight referral/code/owner/invited/owed/ref/count dependency counts 0, code text references 0 and owner text references 1. `cleanup-final.sql.txt` recomputes and requires that complete summary with strict literal, type and NULL-safe guards.
 
-`missing-share-inventory.sql.txt` is the proposed non-secret, count-only read. Until its fresh result is reviewed, `cleanup-final.sql.txt` deliberately inserts `0` into the gate and therefore must fail before backup or mutation. The blocker may be replaced only by strict literal guards for the reviewed values and dependencies. A nonzero dependency is a source-classification decision, not permission to delete it.
+The exact read-only receipt is `../production-inventory-share-dependencies.txt`; `missing-share-inventory.sql.txt` records its count-only query shape. Any change in type, value or count aborts before backup or mutation. A nonzero dependency remains a source-classification decision, not permission to delete it.
 
-The original inventory predicates also emphasized exact UUID keys and JSON values. `supplemental-reference-inventory.sql.txt` separately counts UUID substrings in composite entry keys, composite-key-only hits and collection names. The final guard now covers those surfaces, but its frozen nine-row deletion set does not expand: any supplemental hit outside the nine reviewed mirrors blocks cleanup and returns to source review.
+The original inventory predicates also emphasized exact UUID keys and JSON values. Astra's supplemental read at `2026-10-15T17:32:13.555Z` found eight entry keys containing a target UUID, zero composite-key-only hits and zero collection-name hits. The exact receipt is `../production-inventory-supplemental-references.txt`; `supplemental-reference-inventory.sql.txt` records its query shape. The final guard recomputes those three literal counts. Its frozen nine-row deletion set remains eight UUID-bearing keys plus the separately validated share key; any drift blocks cleanup.
+
+Astra's fresh full inventory at `2026-10-15T17:32:50.006Z` is captured in `../production-inventory-refresh-6695.txt`. It reconfirmed schema 2, shadow layout, epoch 3, writable 1, null retirement and wallet watermark, zero collection parts and zero rows using the proposed helper prefix. It also reconfirmed one session per target, action counts 5/1/25, wallet-audit counts 1/0/3, zero archives/accounts/devices/once receipts, Tokyo's active 0/0 `tokyo.centre` home, R2's active 0/8 `lagos.lagos-island` away home and no Smoke home. These are time-sensitive observations; the final SQL independently rechecks the corresponding frozen facts before mutation.
 
 ## Source classification
 
-- **Delete after all guards pass:** the three target sessions; their 31 action receipts; two social player leaves; two single-message automated founder DM conversation leaves; two civic resident leaves; two growth player leaves; exact target life-metric leaves in `growth` and `root:growth`; and the R2 share only after the missing dependency classification is accepted.
+- **Delete after all guards pass:** the three target sessions; their 31 action receipts; two social player leaves; two single-message automated founder DM conversation leaves; two civic resident leaves; two growth player leaves; exact target life-metric leaves in `growth` and `root:growth`; and the bound unused R2 share.
 - **Delete exact mirrors:** the nine inventoried `entries` rows. Before deletion, each entry value must be valid object JSON and normalize equal to the legacy collection leaf at the path computed as map segments plus the JSON-quoted key. This includes both dotted founder-DM keys. Divergence blocks; it is never repaired. No surviving entry is updated, so its `ord/ix/tx/jx/value` projection remains byte-for-byte untouched. All fragments must still be absent.
 - **Preserve shared state:** collection aggregate counters and every non-target JSON leaf. Source `KEYED_SPECS` keeps `growth.metrics` in the unkeyed root, so the complete `growth` row and `root:growth` metrics must normalize equal before and after deletion. Divergence blocks; it is never repaired. Postguards also compare each touched collection with its in-transaction backup after applying only the approved `json_remove` paths. Founder sessions/accounts/player state are never a deletion target; the founder player leaf, if present, is covered by the full social-collection comparison.
 - **Preserve audit:** all four `wallet_effects` rows remain immutable and are count-guarded before and after.
@@ -33,10 +35,10 @@ The original inventory predicates also emphasized exact UUID keys and JSON value
 
 ## Files and required sequence
 
-1. `missing-share-inventory.sql.txt` — proposed separate read-only count query; currently unexecuted.
-2. `supplemental-reference-inventory.sql.txt` — proposed separate read-only count query for composite entry keys and collection names; currently unexecuted.
-3. `cleanup-final.sql.txt` — full guarded candidate with private server-side backups, exact deletions, append-only WORLD events, epoch 3 to 4 fence and one dated receipt. It is intentionally blocked.
-4. `cleanup-rehearsal.sql.txt` — byte-for-byte copy of the final candidate followed by the rehearsal-only `dry_run_completed` CHECK failure. Its prefix must exactly hash to the accepted final file. It is also blocked until both supplemental inventories are classified.
+1. `missing-share-inventory.sql.txt` — source of the completed share/referral count-only inventory; the production receipt is outside this folder as named above.
+2. `supplemental-reference-inventory.sql.txt` — source of the completed composite-key/name count-only inventory; the production receipt is outside this folder as named above.
+3. `cleanup-final.sql.txt` — full inventory-bound guarded candidate with private server-side backups, exact deletions, append-only WORLD events, epoch 3 to 4 fence and one dated receipt. It remains unexecuted.
+4. `cleanup-rehearsal.sql.txt` — byte-for-byte copy of the bound final candidate followed by the rehearsal-only `dry_run_completed` CHECK failure. Its prefix must exactly hash to the accepted final file. It remains unexecuted.
 5. `rehearsal-readback.sql.txt` — separate non-secret rollback readback: helper tables absent, epoch still 3, target rows/references and active WORLD state unchanged.
 6. `postcommit-readback.sql.txt` — separate non-secret receipt/backup-count/epoch/absence/WORLD readback. Its device count joins `account_devices` to the privately backed-up session secrets after sessions are deleted, but returns only the count. It never selects backup values or session secrets.
 7. `synthetic-sqlite-fixture-probe.py.txt` — inert exact source for the one corrected in-memory SQLite fixture/probe; it is not a tracked test or executable by extension.
@@ -44,12 +46,12 @@ The original inventory predicates also emphasized exact UUID keys and JSON value
 9. `synthetic-sqlite-output.txt` — the second attempt's concise 8/8 result, SQLite version and executed-clone hashes.
 10. `synthetic-sqlite-delta.txt` — exact constant/blocker transformation, bounded first-failure correction and proof limits.
 
-Current offline-draft SHA-256 values (these must be regenerated after the share blocker is bound):
+Current inventory-bound offline SHA-256 values:
 
 | File | SHA-256 |
 |---|---|
-| `cleanup-final.sql.txt` | `5865c0fb71d3e219e676875ef7d56713ca472d02d67875f305d04ab4832b224f` |
-| `cleanup-rehearsal.sql.txt` | `b39857d59c1b3393dae3cd9aa0207d8a393cce727e062b3e712c173f318d4580` |
+| `cleanup-final.sql.txt` | `be3541b933fc01d2e00520bdfa4b32e421a410c7531c2f7ee70ab8bf64f2e5cd` |
+| `cleanup-rehearsal.sql.txt` | `486688b0cdd1e394e363d2a88fe56ca89bbad24803a98e7ca7a222a1f497c4e6` |
 | `missing-share-inventory.sql.txt` | `5d49576a01e6e150574e3530883be7a0cb6ac866f97497fad4c4d26e16be7b86` |
 | `supplemental-reference-inventory.sql.txt` | `3d93b29ae2b92f03eeeb029aa8f12092cd76f2397b71a6492932f2a82f1c46f6` |
 | `rehearsal-readback.sql.txt` | `e4543f2749271135c9f3c8339833e10ea2648c88a56ed86ebdcacc4ffc3983d7` |
@@ -63,9 +65,11 @@ The rehearsal must use Cloudflare Data Studio **Run all in transaction**. The on
 
 ## Synthetic SQLite evidence
 
-One bounded in-memory diagnostic recreated the captured 15-table schema with synthetic payloads and the exact expected target shapes. It transformed only reviewed public constants to fixture constants and bypassed the documented unconditional share blocker; production drafts stayed byte-identical. The first attempt rolled back at gate sequence 10 because the constant map initially missed the Tokyo prefix used by the DM guard. The one correction added that constant substitution. Attempt two passed 8/8 on SQLite 3.53.4: named final-abort rollback restored the exact snapshot and removed helper DDL; the final clone committed epoch 4, receipt and exact backup counts; retained wallet audit, old WORLD rows/summary and unrelated collection/entry/session/action/wallet canaries were preserved.
+One bounded in-memory diagnostic recreated the captured 15-table schema with synthetic payloads and the exact expected target shapes. It transformed only reviewed public constants to fixture constants and bypassed the then-present unconditional share blocker; the earlier production drafts stayed byte-identical. The first attempt rolled back at gate sequence 10 because the constant map initially missed the Tokyo prefix used by the DM guard. The one correction added that constant substitution. Attempt two passed 8/8 on SQLite 3.53.4: named final-abort rollback restored the exact snapshot and removed helper DDL; the final clone committed epoch 4, receipt and exact backup counts; retained wallet audit, old WORLD rows/summary and unrelated collection/entry/session/action/wallet canaries were preserved.
 
-This proves local parser/transaction behavior for one representative fixture. It does not satisfy the actual Data Studio rehearsal, bind the missing inventory values, prove live inventory freshness, or authorize production execution.
+That archived probe reads the current draft path but describes the earlier blocker-bearing hashes; it must not be rerun or presented as proof of the new bound guards without an explicitly reviewed adaptation. It proves local parser/transaction behavior for the earlier structure only. It does not satisfy the actual Data Studio rehearsal, prove current live inventory freshness, or authorize production execution.
+
+If Astra and the integration owner explicitly request a second synthetic parser check, the bounded adaptation is to copy the archived probe to a temporary file, remove its old blocker assertion/substitution, preserve only its nine public-constant-to-synthetic-fixture substitutions, and execute the current bound final/rehearsal clones unchanged. That proposal is unexecuted; the archived evidence and its hashes remain untouched.
 
 ## Private backups and guards
 
@@ -75,7 +79,7 @@ The final postguards prove the four touched collections equal their backups minu
 
 ## Review gaps
 
-- Fresh count-only share dependency and supplemental composite-key/name inventories are mandatory; the share gate is the intentional executable blocker and any extra reference also blocks through the exact-set guards.
-- SQL has received static review plus the explicitly transformed synthetic in-memory SQLite diagnostic above. No production draft was executed; no provider parser, Data Studio DDL, actual rehearsal or production mutation was run.
+- Share/referral, supplemental composite-key/name and fresh full-inventory facts are captured in the three named Astra read-only receipts. Any drift blocks through the exact-set and literal guards.
+- The newly bound SQL has static review only. The archived synthetic diagnostic proves the preceding blocker-bearing structure and was deliberately not rerun. No production draft was executed; no provider parser, Data Studio DDL, actual rehearsal or production mutation was run.
 - Actual rollback behavior, provider error naming, transaction duration, fresh authority/layout/reference counts, deployment hold timing, postrestart named world reads, unrelated comparison-player behavior and recovery remain execution gates.
 - The captured inventory is time-sensitive. Any new row, path, fragment, WORLD event, authority change or helper-prefix collision must abort and return to source review.

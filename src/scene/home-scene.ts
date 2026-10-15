@@ -413,7 +413,9 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   let level = 0, shownFloor = 0, restFloor = 0, lastAt = { x: NaN, z: NaN };
   let ui: HomeUi = { selected: null, ghost: null, buy: false };
   let who: { look: unknown; seed: string; name: string; pose: Pose | null } = { look: undefined, seed: 'you', name: 'You', pose: null }, guests: Guest[] = [], guestTags: HomeTag[] = [], selfTag: HomeTag | null = null, guestKey = '', restKey = '', dressKey = '';
-  const actorMeshes: THREE.Mesh[] = [], markMeshes: THREE.Mesh[] = [], roomMeshes: THREE.Mesh[] = [], furnitureMeshes: THREE.Mesh[] = [];
+  const actorMeshes: THREE.Mesh[] = [], markMeshes: THREE.Mesh[] = [], roomMeshes: THREE.Mesh[] = [], furnitureMeshes: THREE.Mesh[] = [], itemMeshes: THREE.Mesh[] = [];
+  let visualLayer: 'canonical' | 'housing' = 'canonical';
+  let navigationProjection: ((base: WalkGrid, floor: number) => WalkGrid) | null = null;
   // The player's own figure: a group moved by its transform, with one prebuilt figure per pose.
   const avatar = new THREE.Group();
   avatar.name = 'avatar';
@@ -471,6 +473,14 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   }
   function applyParts() {
     for (const parent of [room, furniture, overlay]) for (const child of parent.children) if (child.userData.part) child.visible = partShown(child.userData.part);
+    if (visualLayer === 'housing') {
+      for (const mesh of roomMeshes) mesh.visible = false;
+      for (const mesh of itemMeshes) mesh.visible = false;
+      for (const mesh of furnitureMeshes) {
+        const part = mesh.userData.part;
+        if (typeof part === 'string' && Number(part.slice(1).split('-')[0]) !== shownFloor) mesh.visible = false;
+      }
+    }
   }
 
   /** A window on an outer wall: a deep painted reveal round bright glass, burglar bars, a sill, curtains on a rod, a clock above and a bulb bracket. */
@@ -818,8 +828,8 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     }, 0, 0, at.scale);
   }
   /** Build a batch into meshes of `parent` (released with the furniture). */
-  function keep(b: Batch, parent: THREE.Object3D) {
-    for (const mesh of b.build(sceneMaterials(kit)).meshes) { mesh.name = `home-furniture-${mesh.name}`; parent.add(mesh); furnitureMeshes.push(mesh); }
+  function keep(b: Batch, parent: THREE.Object3D, meshes = furnitureMeshes) {
+    for (const mesh of b.build(sceneMaterials(kit)).meshes) { mesh.name = `home-furniture-${mesh.name}`; parent.add(mesh); meshes.push(mesh); }
   }
 
   /** A flat marker under a footprint (or behind a wall item). */
@@ -853,9 +863,9 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       level = Math.min(level, plot.floors - 1); shownFloor = viewFloor();
       buildRoom();
     }
-    releaseObjects(furnitureMeshes); furniture.clear(); overlay.clear();
+    releaseObjects(itemMeshes); releaseObjects(furnitureMeshes); furniture.clear(); overlay.clear();
     const items = itemsOf(state);
-    const b = createBatch(THREE);
+    const b = createBatch(THREE), native = createBatch(THREE);
     let placed = 0;
     // Pieces standing on a rug get their shadow on top of it.
     const rugs = items.flatMap((item) => { const def = FURNITURE[item?.itemId]; return def?.shape === 'rug' ? [{ floor: floorOf(item), rect: rectOf(def, item) }] : []; });
@@ -863,28 +873,31 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       const def = FURNITURE[item?.itemId], floor = floorOf(item);
       if (!def || floor >= plot.floors) continue;
       const rest = (def.shape === 'rug' || def.shape === 'mat') ? null : mountOf(def, item.x, item.y, item.rot, floor);
-      model(b, def, item.x, item.y, item.rot, floor, Boolean(rest && !def.wall && rugs.some((rug) => rug.floor === floor && rest.x >= rug.rect[0] && rest.x <= rug.rect[2] && rest.z >= rug.rect[1] && rest.z <= rug.rect[3])));
+      const layer = visualLayer === 'housing' && (def.wall || def.kind === 'tv') ? native : b;
+      model(layer, def, item.x, item.y, item.rot, floor, Boolean(rest && !def.wall && rugs.some((rug) => rug.floor === floor && rest.x >= rug.rect[0] && rest.x <= rug.rect[2] && rest.z >= rug.rect[1] && rest.z <= rug.rect[3])));
       placed += 1;
       // Outside Buy mode the marker follows the spot: it clears when the player moves to another one.
       const spot = KINDS[def.kind]?.spot;
       if (!visit && item.id === ui.selected && (ui.buy || !spot || spot === state?.spot)) marker(def, item.x, item.y, item.rot, floor, '#ffd24a', 0.035);
     }
-    const achievement = displayedAchievement(state);
+    if (visualLayer === 'housing') { keep(b, furniture, itemMeshes); keep(native, furniture); }
+    const keepsakes = visualLayer === 'housing' ? createBatch(THREE) : b, achievement = displayedAchievement(state);
     if (achievement) {
       const part = partOf(0, 'back'), x = -ROOM * 0.36, y = 2.65, z = -ROOM / 2 + 0.12;
-      b.box(x, y, z, 1.02, 0.82, 0.10, '#b48937', { part });
-      b.box(x, y, z + 0.06, 0.9, 0.7, 0.04, '#204b46', { part });
-      b.box(x, y + 0.06, z + 0.1, 0.3, 0.3, 0.06, '#f2d17a', { part, rz: Math.PI / 4 });
+      keepsakes.box(x, y, z, 1.02, 0.82, 0.10, '#b48937', { part });
+      keepsakes.box(x, y, z + 0.06, 0.9, 0.7, 0.04, '#204b46', { part });
+      keepsakes.box(x, y + 0.06, z + 0.1, 0.3, 0.3, 0.06, '#f2d17a', { part, rz: Math.PI / 4 });
       const count = ACHIEVEMENTS.findIndex(row => row.id === achievement.id) + 1;
-      for (let i = 0; i < count; i++) b.box(x + (i - (count - 1) / 2) * 0.1, y - 0.23, z + 0.1, 0.05, 0.05, 0.03, '#f2d17a', { part });
+      for (let i = 0; i < count; i++) keepsakes.box(x + (i - (count - 1) / 2) * 0.1, y - 0.23, z + 0.1, 0.05, 0.05, 0.03, '#f2d17a', { part });
     }
     for (const [index] of mementosOf(state).entries()) {
       const part = partOf(0, 'back'), x = -ROOM * 0.36 + (index % 4) * 0.72, y = 1.75 - Math.floor(index / 4) * 0.7, z = -ROOM / 2 + 0.12;
-      b.box(x, y, z, 0.58, 0.48, 0.08, '#925f37', { part });
-      b.box(x, y, z + 0.06, 0.46, 0.36, 0.04, index % 2 ? '#8b374c' : '#315c9b', { part });
-      b.box(x, y + 0.02, z + 0.1, 0.15, 0.15, 0.03, '#f2d17a', { part, rz: Math.PI / 4 });
+      keepsakes.box(x, y, z, 0.58, 0.48, 0.08, '#925f37', { part });
+      keepsakes.box(x, y, z + 0.06, 0.46, 0.36, 0.04, index % 2 ? '#8b374c' : '#315c9b', { part });
+      keepsakes.box(x, y + 0.02, z + 0.1, 0.15, 0.15, 0.03, '#f2d17a', { part, rz: Math.PI / 4 });
     }
-    keep(b, furniture);
+    if (visualLayer === 'housing') keep(keepsakes, furniture);
+    else keep(b, furniture);
     const ghost = ui.ghost, ghostDef = ghost && FURNITURE[ghost.itemId];
     if (ghostDef) {
       const floor = Math.min(floorOf(ghost), plot.floors - 1);
@@ -1047,10 +1060,25 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     solids = items.map((item, index): Solid => { const base = lift(floorOf(item)), [ax, az, bx, bz] = rects[index]!; return [ax, base, az, bx, base + (TALL[FURNITURE[item.itemId]!.shape] || 0.7) * tile, bz]; })
       .filter((box) => box[4] - box[1] > 0.9 * tile);
   }
+  function projectedPath(floor: number, ax: number, az: number, bx: number, bz: number): WalkPoint[] | null {
+    const grid = navigationProjection?.(grids[floor]!, floor) ?? grids[floor]!;
+    const path = grid.path(ax, az, bx, bz);
+    if (!navigationProjection) return path;
+    // WalkGrid deliberately returns a partial approach to an unreachable goal.
+    // A scripted stair/action route must never turn that partial path into a hop.
+    const goal = grid.nearest(bx, bz), end = path?.at(-1) ?? grid.nearest(ax, az);
+    return path && goal && end && Math.hypot(end.x - goal.x, end.z - goal.z) < 0.01 ? path : null;
+  }
+
   /** The way to a place on another floor: over this floor to the stairs, up or down them, and across the floor there. */
   function route(to: number, x: number, z: number): { approach: WalkPoint; steps: WalkPoint[] } | null {
-    const points = grids.length > Math.max(to, level) && routeOf<WalkPoint>(plan, level, to, { x, z }, (tx, ty) => ({ x: edge(tx), z: edge(ty) }), (floor, a, b) => grids[floor]!.path(a.x, a.z, b.x, b.z));
-    return points ? { approach: points[0]!, steps: points.slice(1) } : null;
+    let blocked = false;
+    const points = grids.length > Math.max(to, level) && routeOf<WalkPoint>(plan, level, to, { x, z }, (tx, ty) => ({ x: edge(tx), z: edge(ty) }), (floor, a, b) => {
+      const path = projectedPath(floor, a.x, a.z, b.x, b.z);
+      if (navigationProjection && !path) blocked = true;
+      return path;
+    });
+    return points && !blocked ? { approach: points[0]!, steps: points.slice(1) } : null;
   }
 
   /** Hide the outer walls the camera is behind (and what hangs on them), and lift off the floors above the one in view. True when anything changed. */
@@ -1081,8 +1109,13 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     const at = seat?.at, offset = at?.kind === 'seat' ? tile * 0.85 : 0;
     const approach = at && grids[mine.floor]?.nearest(at.x + Math.sin(at.ry) * offset, at.z + Math.cos(at.ry) * offset, Math.ceil(tile * 2 / 0.25));
     const x = approach?.x ?? along(mine.x), z = approach?.z ?? along(mine.y);
-    restAt = { spot: visit ? null : state?.spot ?? null, x, y: lift(mine.floor) + 0.03, z, ry: at?.ry ?? mine.ry, pose, busy: Boolean(active) && !leaving && !who.pose, leaving, fixed: Boolean(who.pose), ...route(mine.floor, x, z) };
-    const object: ObjectAction | null = at && seat?.id && (seat.pose === 'sit' || seat.pose === 'lie' || seat.pose === 'bucket' || seat.pose === 'cook' || seat.pose === 'cookLow' || seat.pose === 'eat' || seat.pose === 'drink' || seat.pose === 'wash' || seat.pose === 'soak') && active?.kind === 'activity' && !who.pose
+    const way = route(mine.floor, x, z), approachTarget = way?.approach ?? { x, z };
+    const reachable = !navigationProjection || !driven || Boolean((mine.floor === level || way) && projectedPath(level, floorAt.x, floorAt.z, approachTarget.x, approachTarget.z));
+    restAt = reachable
+      ? { spot: visit ? null : state?.spot ?? null, x, y: lift(mine.floor) + 0.03, z, ry: at?.ry ?? mine.ry, pose, busy: Boolean(active) && !leaving && !who.pose, leaving, fixed: Boolean(who.pose), ...way }
+      : { spot: null, x: floorAt.x, y: floorAt.y, z: floorAt.z, ry: floorAt.ry, pose: 'stand', busy: Boolean(active), leaving: false, fixed: false };
+    if (!reachable) { show('stand'); poseBody('stand', false); }
+    const object: ObjectAction | null = reachable && at && seat?.id && (seat.pose === 'sit' || seat.pose === 'lie' || seat.pose === 'bucket' || seat.pose === 'cook' || seat.pose === 'cookLow' || seat.pose === 'eat' || seat.pose === 'drink' || seat.pose === 'wash' || seat.pose === 'soak') && active?.kind === 'activity' && !who.pose
       ? { id: [seat.id, active.id, active.duration, active.choice ?? ''].join('|'), pose: seat.pose, floor: mine.floor,
         approach: { x, y: restAt.y, z, ry: restAt.ry }, use: at, exit: { x, y: restAt.y, z, ry: restAt.ry }, ...(seat.table ? { table: seat.table } : {}), ...(seat.surface ? { surface: seat.surface } : {}) } : null;
     sequence.sync(object);
@@ -1120,7 +1153,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     if (next === drawn) return false;
     drawn = next;
     try { const placed = rebuild(state); announce(placed ? 'ready' : 'empty', placed); }
-    catch (error) { console.error('Home scene failed to build:', error); releaseObjects(furnitureMeshes); furniture.clear(); overlay.clear(); announce('error', 0); }
+    catch (error) { console.error('Home scene failed to build:', error); releaseObjects(itemMeshes); releaseObjects(furnitureMeshes); furniture.clear(); overlay.clear(); announce('error', 0); }
     return true;
   }
 
@@ -1151,7 +1184,11 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     raycaster.setFromCamera(pointer, camera);
     group.updateMatrixWorld(true);
     // What is on a hidden wall or a lifted-off floor cannot be tapped.
-    const touched = raycaster.intersectObjects(furniture.children.filter((child) => child.visible), false)[0];
+    const targets = furniture.children.filter((child) => child.visible);
+    // Housing replaces the drawn item models, but the canonical meshes remain the
+    // exact interaction proxies for saved furniture and its server-owned actions.
+    if (visualLayer === 'housing') for (const mesh of itemMeshes) if (partShown(mesh.userData.part)) targets.push(mesh);
+    const touched = raycaster.intersectObjects(targets, false)[0];
     const id = !visit && touched ? objectAt(group.worldToLocal(touched.point.clone())) : null;
     let cell = null, x = NaN, z = NaN;
     floorPlane.constant = -(lift(shownFloor) + 0.016) - group.position.y;
@@ -1205,7 +1242,11 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
 
   return {
     group,
-    get homeDoor() { const x = along(0), z = along(doorSlot(grid)); return { x, y: 0.03, z, ry: -Math.PI / 2, direction: 'outside' as const, ...route(0, x, z) }; },
+    get homeDoor() {
+      const x = along(0), z = along(doorSlot(grid)), way = route(0, x, z), first = way?.approach ?? { x, z };
+      const blocked = navigationProjection && ((level > 0 && !way) || !projectedPath(level, floorAt.x, floorAt.z, first.x, first.z));
+      return { x, y: 0.03, z, ry: -Math.PI / 2, direction: 'outside' as const, ...(blocked ? { blocked: true } : {}), ...way };
+    },
     get background() { return lightingFor('indoor', homeTime).sky[0]; },
     get sky() { return lightingFor('indoor', homeTime).sky; },
     lighting() { return lightingFor('indoor', homeTime); },
@@ -1287,6 +1328,35 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     get floors() { return plot.floors; },
     /** True in Buy mode: taps place and pick furniture, and the host does not walk the avatar. */
     get placing() { return buying(); },
+    /** Project route queries through a scene-owned barrier layer; default is the canonical floor grid. */
+    setNavigationProjection(project: ((base: WalkGrid, floor: number) => WalkGrid) | null) {
+      if (navigationProjection === project) return false;
+      navigationProjection = project;
+      if (lastState) refreshPeople(lastState);
+      return true;
+    },
+    /** Switch only the procedural shell and replaceable furniture. The plinth, door, UI overlays, wall pieces, TVs and keepsakes remain canonical. */
+    setVisualLayer(next: 'canonical' | 'housing') {
+      if (next === visualLayer) return false;
+      visualLayer = next;
+      if (lastState) rebuild(lastState);
+      else applyParts();
+      return true;
+    },
+    /** Worst-case canonical scenery retained by the housing layer, across all floors and wall views. */
+    housingVisualCost(floor = viewFloor()) {
+      const replaced = new Set<THREE.Object3D>([...roomMeshes, ...itemMeshes]);
+      let triangles = 0, drawCalls = 0;
+      for (const parent of [room, furniture, overlay]) parent.traverse((object) => {
+        if (!(object instanceof THREE.Mesh) || replaced.has(object)) return;
+        const part = object.userData.part;
+        if (typeof part === 'string' && Number(part.slice(1).split('-')[0]) !== floor) return;
+        const count = object.geometry.index?.count ?? object.geometry.getAttribute('position')?.count ?? 0;
+        triangles += count / 3;
+        drawCalls += 1;
+      });
+      return { triangles, drawCalls };
+    },
     screens() {
       return itemsOf(lastState).flatMap(item => {
         const def = FURNITURE[item.itemId];
@@ -1384,6 +1454,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       releaseObjects(actorMeshes);
       releaseObjects(markMeshes);
       releaseObjects(roomMeshes);
+      releaseObjects(itemMeshes);
       releaseObjects(furnitureMeshes);
       goalMark = null;
       clearFigures();

@@ -39,7 +39,8 @@ import { cityReference, readCityReference } from '../cities/references.ts';
  *        'notice.posted'     { kind: 'mission', text }   a finished weekly set, a new title
  */
 import type { LagosTime } from '../clock.ts';
-import type { LifeContext, LifeState, MissionDefinition, MissionEntry, MissionGrantReceipt, MissionRewardEntitlement, MissionRow, MissionSet, MissionSetRewardEntitlement, MissionTitleId, SystemDefinition, VenueId } from '../../types/index.ts';
+import type { LifeContext, LifeState, MissionDefinition, MissionEntry, MissionGrantReceipt, MissionRewardEntitlement, MissionRow, MissionSet, MissionSetRewardEntitlement, MissionsState, MissionTitleId, SystemDefinition, VenueId } from '../../types/index.ts';
+import type { ServerOnlyAction } from '../../types/registry.ts';
 import type { ExecutionOrigin } from '../../types/progression.ts';
 import { LEFT_OUT, PLAYS } from '../profile.ts';
 import { emit } from '../registry.ts';
@@ -51,6 +52,7 @@ import { hasEventToday } from '../calendar.ts';
 import { venueFor, regularFor, regularsFor } from '../cities/runtime.ts';
 import { isCityId, cachedCityContent } from '../cities/registry.ts';
 import { canGrantStars } from './goals.ts';
+import { agentOp, agentTable, claimAgent, sanitizeAgent } from './agent-missions.ts';
 
 type Scope = 'daily' | 'weekly';
 const POOLS: Record<Scope, MissionDefinition[]> = { daily: [...DAILY_MISSIONS], weekly: [...WEEKLY_MISSIONS] };
@@ -85,7 +87,7 @@ const sameOccurrence = (reward: Pick<MissionRewardEntitlement, 'id' | 'scope' | 
 const pendingForOccurrence = (state: LifeState, id: string, scope: Scope, period: number): MissionRewardEntitlement | undefined => state.missions.pending.find((reward) => sameOccurrence(reward, id, scope, period));
 const originOf = (ctx: LifeContext): ExecutionOrigin => ctx.executionOrigin && ORIGINS.includes(ctx.executionOrigin) ? ctx.executionOrigin : 'unknown';
 const periodStart = (scope: Scope, period: number): number => lagosDayStart(scope === 'daily' ? period : period * 7 - 3);
-const periodEnd = (scope: Scope, period: number): number => periodStart(scope, period) + (scope === 'daily' ? DAY_MS : 7 * DAY_MS) - 1;
+const periodEnd = (scope: Scope, period: number): number => periodStart(scope, period) + DAY_MS * (scope === 'daily' ? 1 : 7) - 1;
 const inPeriod = (scope: Scope, period: number, at: number): boolean => at >= periodStart(scope, period) && at <= periodEnd(scope, period);
 const legacyEarnedAt = (scope: Scope, period: number, savedAt: number): number => Math.max(periodStart(scope, period), Math.min(savedAt, periodEnd(scope, period)));
 export const visitIdentity = cityReference;
@@ -246,6 +248,8 @@ function progress(state: LifeState, ctx: LifeContext, matches: (def: MissionDefi
 export function claimMission(state: LifeState, payload: Record<string, unknown>, ctx: LifeContext) {
   if (!open(state)) return fail(state, 'missions_locked', LOCKED);
   roll(state, ctx);
+  const task = typeof payload?.id === 'string' && payload.id.startsWith('ag-') ? claimAgent(state, payload.id, ctx) : null; // a task an agent gave in person (systems/agent-missions.ts)
+  if (task) return task;
   const id = payload?.id, askedRewardId = payload?.rewardId;
   if (typeof id !== 'string' || !BY_ID.has(id) || (askedRewardId !== undefined && typeof askedRewardId !== 'string')) {
     return fail(state, 'unknown_mission', 'That mission reward is not available.');
@@ -356,6 +360,15 @@ function sanitizePendingSets(value: unknown, sets: LifeState['missions']['sets']
 }
 
 // Construct host listeners only in playing builds; their closures retain the full reward mutation graph.
+/**
+ * The optional agent fields of a saved life, cleaned (systems/agent-missions.ts). Only a host that plays lives keeps them: the first download carries none of this. The Missions app
+ * gets the tasks from the server's answer to the growth hello (server/routes/growth.ts `agentTasks`), which is where it is drawn.
+ */
+function agentFields(saved: Record<string, unknown>): Pick<MissionsState, 'agent' | 'deal'> {
+  const agent = sanitizeAgent(saved.agent);
+  return { ...(agent ? { agent } : {}), ...(typeof saved.deal === 'string' && saved.deal ? { deal: saved.deal.slice(0, 80) } : {}) };
+}
+
 const eventNames = PLAYS ? [...new Set([...DAILY_MISSIONS, ...WEEKLY_MISSIONS].filter((def): def is Extract<MissionDefinition, { on: 'event' }> => def.on === 'event').map((def) => def.event))] : [];
 const listeners = PLAYS ? Object.fromEntries(eventNames.map((name) => [name, (state: LifeState, data: unknown, ctx: LifeContext) => {
   const payload = isRecord(data) ? data : {};
@@ -386,9 +399,11 @@ const play = PLAYS ? {
     'missions.claim': claimMission,
     'missions.reroll': rerollMission,
     'missions.refresh'(state, payload, ctx) { roll(state, ctx); return ok(state, 'refreshed'); },
+    'missions.server': { serverOnly: true, run: agentOp, refusal: 'This is completed by the server when an agent gives you a task. Nothing was changed.' } satisfies ServerOnlyAction<'missions.server'>,
   },
   on: {
     ...listeners,
+    'table.played'(state, data, ctx) { listeners['table.played']?.(state, data, ctx); agentTable(state, data, ctx); },
     /** Settled in: today's missions are dealt now, so they are there when the Phone is next opened. */
     'life.started'(state, data, ctx) { roll(state, ctx); },
     'activity.completed'(state, data, ctx) {
@@ -461,6 +476,7 @@ export default {
       titles: [...new Set((Array.isArray(saved.titles) ? saved.titles : []).filter((id): id is MissionTitleId => TITLE_IDS.includes(id)))],
       claimed: count(saved.claimed),
     };
+    if (PLAYS) Object.assign(state.missions, agentFields(saved));
   },
   view(state, ctx) {
     const book = state.missions, now = nowOf(state, ctx), time = lagosTime(now);
@@ -471,10 +487,8 @@ export default {
       stars: MISSION_REWARDS[scope].setStars, granted });
     const weekStart = lagosDayStart(time.day - ((time.weekday + 6) % 7));
     const titles = book.titles.map((id) => DAY_TITLES.find((title) => title.id === id) ?? WEEK_TITLE);
-    const currentRewardIds = new Set([
-      ...daily.flatMap((entry) => { const reward = pendingForOccurrence(state, entry.id, 'daily', book.day); return reward ? [reward.rewardId] : []; }),
-      ...weekly.flatMap((entry) => { const reward = pendingForOccurrence(state, entry.id, 'weekly', book.week); return reward ? [reward.rewardId] : []; }),
-    ]);
+    const rewardIdsOf = (list: MissionEntry[], scope: Scope, period: number): string[] => list.flatMap((entry) => { const reward = pendingForOccurrence(state, entry.id, scope, period); return reward ? [reward.rewardId] : []; });
+    const currentRewardIds = new Set([...rewardIdsOf(daily, 'daily', book.day), ...rewardIdsOf(weekly, 'weekly', book.week)]);
     const pendingRewards = book.pending.filter((reward) => !currentRewardIds.has(reward.rewardId)).map((reward) => {
       const def = defOf(reward.id);
       return { ...reward, kind: def.kind, label: def.label };
@@ -489,7 +503,7 @@ export default {
       stamps: { days: stamps.days, need: STAMP_CARD.need, stars: STAMP_CARD.stars, paid: stamps.paid },
       activeDays: book.active.days, title: titles.at(-1)?.label ?? null, titles: titles.map((title) => title.label),
       nextTitle: DAY_TITLES.find((title) => title.days > book.active.days) ?? null,
-      resetAt: lagosDayStart(time.day + 1), weekResetAt: weekStart + 7 * 86400000, claimed: book.claimed,
+      resetAt: lagosDayStart(time.day + 1), weekResetAt: weekStart + 7 * DAY_MS, claimed: book.claimed,
     };
   },
   ...play,

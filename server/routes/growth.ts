@@ -181,7 +181,7 @@ export default function growthRoutes(ctx: RouteContext): Record<RouteKey, RouteH
       const out = outreach.mine(db, g, id, session);
       return { ok: true, material, ...(material ? { state } : {}), channel: out.channel, contact: out, away: { hours: Math.round(hoursAway * 10) / 10, since }, referral: refs, consent: consentView(player), events,
         // What a weekly message would say. This build sends nothing outside the game: it is shown in the in-game inbox only.
-        digest: { ...digest, delivery: 'dry-run' }, sharesLeft: Math.max(0, LIMITS.sharesPerDay - (player.shares.day === lagosTime(now).day ? player.shares.n : 0)) };
+        digest: { ...digest, delivery: 'dry-run' }, ...(state.missions.agent?.length ? { agentTasks: state.missions.agent } : {}), sharesLeft: Math.max(0, LIMITS.sharesPerDay - (player.shares.day === lagosTime(now).day ? player.shares.n : 0)) };
     }, { durable: (result) => result?.material === true }),
 
     'POST /api/growth/share': route(({ db, g, session, state, cityId, body }) => createShare(ctx, db, g, session, state, cityId, body)),

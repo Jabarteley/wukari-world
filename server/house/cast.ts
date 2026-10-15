@@ -66,7 +66,7 @@ const LAGOS: readonly Spec[] = Object.freeze([
   { key: 'chinwe', name: 'Aunty Chinwe', role: 'quiz', look: 'sis', hours: { open: 17, close: 21 }, post: ['library'], eatery: ['amala-shitta'], voice: 'plain',
     card: 'You host a short quiz at the library in the evening and cheer everyone on.' },
   { key: 'ade', name: 'Baba Ade', role: 'mission', look: 'elder', hours: { open: 10, close: 17 }, post: ['cchub'], eatery: ['amala-shitta'], voice: 'pidgin',
-    card: 'You give out small tasks around the city. Tasks are not ready yet: say you will have something for people soon.' },
+    card: 'You give out small tasks around the city to people who want to help: a greeting to carry, a friend to bring. You are warm, brief and grateful.' },
 ]);
 
 const GENERIC: Readonly<Record<string, readonly [Spec, Spec]>> = Object.freeze({

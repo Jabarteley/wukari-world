@@ -1,6 +1,6 @@
 // What the Missions app itself draws: a mission's glyph, button and progress, the set line and the stamp card. Fetched with the
 // app: the first download needs only the badge and the notification lines in missionsModel.ts.
-import type { MissionRow, MissionSet, MissionsView } from '../../../types/view.ts'
+import type { AgentMissionRow, MissionRow, MissionSet, MissionsView } from '../../../types/view.ts'
 
 /** The mark of a mission by its kind; a finished one is the 'good' mark. */
 const KIND_ICON: Readonly<Record<string, string>> = { life: 'home', discovery: 'compass', social: 'people' }
@@ -36,3 +36,8 @@ export function daysTail(m: Pick<MissionsView, 'activeDays' | 'title' | 'nextTit
 export function stampsNote(stamps: MissionsView['stamps']): string {
   return stamps.paid ? `Stamp card complete: +${stamps.stars} stars earned.` : `Play on any ${stamps.need} days this week for +${stamps.stars} stars. Which days is up to you.`
 }
+
+/** The small line under an agent's task: where and when to find it, and what it pays (or that it is done). */
+export const agentHint = (task: Pick<AgentMissionRow, 'by' | 'cash' | 'done' | 'claimed'>, money: (value: number) => string): string =>
+  task.claimed ? 'Done' : task.done ? `Done · ${money(task.cash)} to collect` : `${task.by.place}${task.by.hours ? `, ${task.by.hours}` : ''} · ${money(task.cash)}`
+export const agentPercent = (task: Pick<AgentMissionRow, 'n' | 'count'>): number => Math.round((task.n / task.count) * 100)

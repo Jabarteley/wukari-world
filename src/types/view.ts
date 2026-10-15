@@ -1081,6 +1081,26 @@ export interface MissionSetRewardView {
   earnedOrigin: ExecutionOrigin
 }
 
+/** One agent mission in the Missions app: who gave it, where to find them, and how far it is. */
+export interface AgentMissionRow {
+  id: MissionId
+  kind: 'talk' | 'hand' | 'bring' | 'table'
+  /** The task in plain words, and the agent's own words for it. */
+  label: string
+  brief: string
+  n: number
+  count: number
+  done: boolean
+  claimed: boolean
+  cash: number
+  /** Server ms it lapses. */
+  until: number
+  /** The agent (always AI-played): its id, name, and where and when to find it. */
+  by: { id: string; name: string; place: string; hours: string }
+  /** Walks to the agent's venue when it is in the city the life is in. */
+  go: string[] | null
+}
+
 /** How far one set (daily or weekly) is, and whether its star bonus was granted. */
 export interface MissionSet {
   done: number

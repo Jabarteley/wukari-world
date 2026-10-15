@@ -40,7 +40,10 @@ import type { Spec } from './cast.ts';
 import { HAGGLE, decide, freshTalk, priceList, readOffer } from './haggle.ts';
 import type { PricedItem, Talk, Verdict } from './haggle.ts';
 import * as say from './lines.ts';
-import { QUIZ, allowedNumbers, cleanReply, intentOf, isRight, matchItem, matchVenue, promptFor } from './talk.ts';
+import { QUIZ, allowedNumbers, cleanReply, handsOver, intentOf, isRight, matchItem, matchVenue, promptFor, takesIt } from './talk.ts';
+import { deskOf } from './desk.ts';
+import type { Desk } from './desk.ts';
+import type { AgentRef } from './errands.ts';
 import type { Intent, Question } from './talk.ts';
 
 /** Agents looked at in one beat, and lines they may say in one beat: the runner's whole work per beat. */
@@ -59,6 +62,8 @@ export const DEFAULTS = Object.freeze({ on: true, busy: 2, quiet: 0, discount: H
 export interface HouseDeps {
   /** The model door; the router's by default. Tests pass one that sits on a fake fetch. */
   ask?: (input: AskInput) => Promise<AskResult>
+  /** The desk that gives tasks and completes hand-overs (desk.ts); built from the context by default. Tests pass one on a fake world. */
+  desk?: Desk
 }
 interface Person { item: string | null; talks: Map<string, Talk & { at: number }> }
 interface Presence { room: string; action: ActionId; until: number }
@@ -88,6 +93,7 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
   const ask = deps.ask ?? ((input: AskInput): Promise<AskResult> => routerOf(ctx).ask(input));
   const setting = (key: string): boolean | number | string | undefined => ctx.checks?.setting?.(key) ?? ctx.checks?.text?.(key);
   const room = () => ctx.checks?.agentRoom;
+  const desk = deps.desk ?? deskOf(ctx, deps.ask ? { ask: deps.ask } : {});
 
   const day = (): number => Math.floor(ctx.now() / 86400000);
   function count(): Counters { if (counterDay !== day()) { counterDay = day(); counters = blank(); } return counters; }
@@ -250,15 +256,16 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
   const callNames = (agent: Agent): string[] => agent.spec.name.toLowerCase().split(/\s+/).filter((word) => word.length >= 3 && !FIRST_WORDS.has(word));
   const ROLE_FOR: Partial<Record<Intent, Spec['role']>> = { offer: 'seller', prices: 'seller', pressure: 'seller', hours: 'seller', directions: 'guide', tonight: 'marketer', mission: 'mission' };
 
-  function chooseAgent(there: Agent[], body: string, intent: Intent): Agent | null {
+  function chooseAgent(there: Agent[], body: string, intent: Intent, dealer: Agent | null = null): Agent | null {
     if (!there.length) return null;
     const said = new Set(body.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/));
     const named = there.find((agent) => callNames(agent).some((name) => said.has(name)));
     if (named) return named;
     const quiz = there.find((agent) => agent.quiz);
     if (quiz) return quiz;
+    if (dealer && takesIt(body)) return dealer;
     const role = ROLE_FOR[intent];
-    const byRole = role ? there.find((agent) => agent.spec.role === role) : undefined;
+    const byRole = role ? there.find((agent) => agent.spec.role === role) ?? (intent === 'mission' ? there.find((agent) => agent.spec.role === 'seller') : undefined) : undefined;
     if (byRole) return byRole;
     if (intent === 'greet') return there[0]!;
     return there.length === 1 ? there[0]! : null;
@@ -274,6 +281,27 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     return found;
   }
 
+  /** The agent as the desk needs it: where it stands, when, and how it talks. */
+  function refOf(agent: Agent): AgentRef {
+    const venue = agent.rooms.post.split(':')[1] ?? '';
+    const place = cachedCityContent(agent.city)?.venues.find((entry) => entry.id === venue)?.name ?? venue;
+    const { spec } = agent;
+    return { id: agent.id, key: spec.key, name: spec.name, role: spec.role, voice: spec.voice, card: spec.card, city: agent.city, venue, place, hours: `${formatHour(spec.hours.open)} to ${formatHour(spec.hours.close)}` };
+  }
+  /** The other agents standing in this agent's city now: whom a task may send a person to. */
+  const peersOf = (agent: Agent): AgentRef[] => [...agents.values()].filter((other) => other.city === agent.city && other.id !== agent.id && other.at !== null).map(refOf);
+  /** The agreed price this person still holds with this agent (haggle.ts), or null: the quote is kept for HAGGLE.quoteMs. */
+  function heldQuote(agent: Agent, personId: string, t: number): { item: PricedItem; talk: Talk & { at: number } } | null {
+    const person = agent.people.get(personId);
+    if (!person) return null;
+    const ids = person.item ? [person.item, ...person.talks.keys()] : [...person.talks.keys()];
+    for (const id of ids) {
+      const talk = person.talks.get(id), item = agent.items.find((entry) => entry.id === id);
+      if (talk && item && talk.deal !== null && t - talk.at <= HAGGLE.quoteMs) return { item, talk };
+    }
+    return null;
+  }
+
   interface Plan { intent: Intent; written: string; verdict: { item: PricedItem; verdict: Verdict } | null; prices: number[]; useModel: boolean; claimsQuery: string | null }
 
   /** What a line means and the written answer to it. The haggle (price and verdict) is settled HERE, before any model is asked. */
@@ -287,7 +315,7 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     const base: Plan = { intent, written: say.fallback(spec, seed), verdict: null, prices: agent.items.map((entry) => entry.list), useModel: false, claimsQuery: null };
     if (intent === 'greet') return { ...base, written: say.greet(spec, from.name, seed) };
     if (intent === 'bye') return { ...base, written: say.bye(spec, seed) };
-    if (intent === 'mission') return { ...base, written: spec.role === 'mission' ? say.mission(spec, seed) : say.fallback(spec, seed) };
+    if (intent === 'mission') return { ...base, written: say.taskNone(spec, seed) };
     if (intent === 'hours') return { ...base, written: say.hoursLine(spec, open) };
     if (spec.role !== 'seller' && (intent === 'prices' || intent === 'offer' || intent === 'pressure')) return { ...base, written: say.notSeller(spec, seed) };
     if (spec.role === 'seller' && (intent === 'prices' || intent === 'offer' || intent === 'pressure')) {
@@ -338,6 +366,24 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     }
     // While a round is running, chat that is not an answer is left alone (unless it names the host), so the host does not talk over the quiz.
     if (agent.quiz && t < agent.quiz.until && intentOf(body, spec.role, false) === 'other' && !callNames(agent).some((name) => body.toLowerCase().includes(name))) return;
+    // Tasks and the hand-over are rules, not talk: they come before any answer, and when one happens its line is the whole answer.
+    const quote = heldQuote(agent, from.id, t), taking = quote !== null && takesIt(body);
+    const where = agent.at?.room ?? '';
+    const humans = (ctx.checks?.groupPeers?.(from.id, where) ?? []).filter((id) => !id.startsWith(ID_PREFIX));
+    const noticed = await desk.notice({ agent: refOf(agent), spec, who: from, peers: humans, handWords: handsOver(body) && !taking });
+    if (noticed) { await speak(agent, noticed); return; }
+    if (taking && quote) {
+      const price = Math.max(quote.item.floor, quote.talk.deal!), seed = `${agent.id}|${from.id}|${t}`;
+      const done = await desk.sell({ agent: refOf(agent), who: from, item: { id: quote.item.id, label: quote.item.label, list: quote.item.list }, price, quoteAt: quote.talk.at });
+      if (done.ok) agent.people.get(from.id)?.talks.delete(quote.item.id);
+      await speak(agent, say.sale(spec, done.ok ? { ok: true, label: quote.item.label, price } : { ok: false, code: done.code, label: quote.item.label, price }, seed));
+      return;
+    }
+    if (intentOf(body, spec.role, false) === 'mission') {
+      const given = await desk.offer({ giver: refOf(agent), spec, peers: peersOf(agent), who: from });
+      await speak(agent, given.say);
+      return;
+    }
     const worked = plan(agent, from, body, t);
     const cityName = cityRules(agent.city)?.name ?? agent.city;
     const around = places(agent.city, t);
@@ -379,7 +425,8 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
       if (!there.length) return;
       const body = event.body.slice(0, 300);
       const items = there.find((entry) => entry.spec.role === 'seller')?.items ?? [];
-      const agent = chooseAgent(there, body, intentOf(body, 'seller', items.length > 0 && readOffer(body, items[0]!.list, matchItem(body, items) !== null) !== null));
+      const dealer = there.find((entry) => heldQuote(entry, event.from.id, ctx.now()) !== null) ?? null;
+      const agent = chooseAgent(there, body, intentOf(body, 'seller', items.length > 0 && readOffer(body, items[0]!.list, matchItem(body, items) !== null) !== null), dealer);
       if (!agent || agent.busy) return;
       // Nothing wakes without room: a person may wake one agent a few times a minute, and the whole cast has a ceiling.
       if (!ctx.allow(`house:wake:${agent.id}:${event.from.id}`, 8, 60000) || !ctx.allow('house:wake:all', 120, 60000)) return;
@@ -399,6 +446,7 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     lastBeat: () => ({ ...last }),
     priceList: (id: string): PricedItem[] => agents.get(id)?.items ?? [],
     settings,
+    desk,
     /** Test hook: the same call the 'venue-line' event makes. */
     line: onLine,
     present: (): number => [...agents.values()].filter((agent) => agent.at !== null).length,
@@ -429,4 +477,11 @@ export function linkHouse(ctx: RouteContext): void {
   stat('written', 'Answered from written lines today', () => house.counters().written);
   stat('low', 'Offers refused below the floor today', () => house.counters().refusedLow);
   stat('blocked', 'Lines held back by the word rules today', () => house.counters().blocked);
+  const task = (id: string, label: string, read: () => number): void => stat(`task-${id}`, label, read);
+  task('given', 'Tasks given in person today', () => house.desk.counters().given);
+  task('model', 'Task briefs phrased by a model today', () => house.desk.counters().model);
+  task('cached', 'Task briefs from the phrasing cache today', () => house.desk.counters().cached);
+  task('written', 'Task briefs from the written brief today', () => house.desk.counters().written);
+  task('done', 'Greetings, hand-overs and friends brought today', () => { const c = house.desk.counters(); return c.greeted + c.handed + c.brought; });
+  task('sold', 'Held quotes paid and handed over today', () => house.desk.counters().sold);
 }

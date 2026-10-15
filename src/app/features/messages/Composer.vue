@@ -146,6 +146,12 @@ function choose(index: number): void {
   text.value = done.text
   void nextTick(() => { field.value?.focus(); field.value?.setSelectionRange(done.caret, done.caret); caret.value = done.caret; grow() })
 }
+/** A sticker is a short message of its own: it goes at once (as a reply when one is being answered) and leaves what is typed alone. */
+function sendSticker(sticker: string): void {
+  if (props.disabled) return
+  emit('send', sticker, props.reply ? { replyTo: props.reply.seq } : {})
+  emoji.value = false
+}
 function insertEmoji(char: string): void {
   const box = field.value, at = box?.selectionStart ?? text.value.length
   text.value = text.value.slice(0, at) + char + text.value.slice((box?.selectionEnd ?? at))
@@ -206,7 +212,7 @@ const lines = computed(() => composerLines(text.value))
       </div>
     </div>
     <VoiceComposer v-if="voice" ref="voiceBox" :target="target" :conv="conv" :me-id="meId" :disabled="disabled || Boolean(photo)" :new-id="newId" :reply-to="reply?.seq" @sent="(result) => { emit('sentVoice', result); emit('cancelReply') }" />
-    <EmojiPicker v-if="emoji" class="composer-emoji" @pick="insertEmoji" />
+    <EmojiPicker v-if="emoji" class="composer-emoji" @pick="insertEmoji" @sticker="sendSticker" />
     <form class="composer-form" @submit.prevent="submit">
       <input v-if="pictures" ref="fileInput" type="file" accept="image/*" class="composer-file" aria-label="Choose a picture" tabindex="-1" @change="chosen">
       <div class="composer-pill">

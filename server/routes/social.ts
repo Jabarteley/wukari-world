@@ -49,6 +49,7 @@
  *   POST /api/social/bae/answer          { from, accept, cityId }
  *   POST /api/social/bae/end             { cityId }
  *   POST /api/social/transfers           { to, amount, cityId, clientId }
+ *   POST /api/social/spray               { conv, amount, cityId, clientId }   a packet of game money split at random among the friends in a group chat (docs/SMALLER-FEATURES.md)
  *   POST /api/social/romance/answer      { with: AI character, accept }                     Yes or No to "can we flirt in public?" (docs/AI-SAFETY.md)
  *   POST /api/social/romance/public      { with: AI character, on }                          the profile switch "Flirting in public"
  *   POST /api/social/money-requests      { to, amount, note?, clientId }                    ask a friend for money (src/moneyRequest.ts)
@@ -256,6 +257,7 @@ export default function socialRoutes(ctx: RouteContext): Record<RouteKey, RouteH
     'POST /api/social/romance/answer': mine((db, session, body) => service.answerPublicRomance(db, session, body)),
     'POST /api/social/romance/public': mine((db, session, body) => service.setPublicRomance(db, session, body)),
     'POST /api/social/transfers': route((db, session, body) => service.transfer(db, session, body)),
+    'POST /api/social/spray': route((db, session, body) => service.spray(db, session, body)),
     'POST /api/social/money-requests': route((db, session, body) => service.requestMoney(db, session, body)),
     'POST /api/social/money-requests/answer': route((db, session, body) => service.answerMoneyRequest(db, session, body)),
   };

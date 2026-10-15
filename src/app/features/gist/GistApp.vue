@@ -4,7 +4,7 @@
 // from the line's number (src/app/features/growth/shareMoment.ts).
 import '../../../ui/controls.css'
 import '../../../ui/panels/social.css'
-import { computed, onMounted, ref } from 'vue'
+import { computed, defineAsyncComponent, onMounted, ref } from 'vue'
 import { useApp } from '../../state/app.ts'
 import EmptyState from '../../ui/EmptyState.vue'
 import SectionTitle from '../../ui/SectionTitle.vue'
@@ -13,6 +13,10 @@ import { shareGist } from '../growth/shareMoment.ts'
 import { gist, loadGist } from './gistStore.ts'
 import { agoText } from './gistModel.ts'
 
+// The works card and the home-city pin are fetched when this app opens, never at first paint.
+const CityWorks = defineAsyncComponent(() => import('./CityWorks.vue'))
+const HomePin = defineAsyncComponent(() => import('./HomePin.vue'))
+const BirthdayCard = defineAsyncComponent(() => import('./BirthdayCard.vue'))
 const { game } = useApp()
 const city = computed(() => game.view.value.cityId)
 const offline = computed(() => !game.view.value.connected)
@@ -27,6 +31,9 @@ const shareFailed = (): void => game.toast('That could not be shared. Try again.
     <SectionTitle>The gist</SectionTitle>
     <p class="social-note">What is happening around the city. Only things everybody can already see.</p>
     <p v-if="offline" class="ui-note" role="status">You are offline. Showing the last gist.</p>
+    <CityWorks />
+    <HomePin />
+    <BirthdayCard />
     <p v-if="gist.failed && !gist.lines.length" class="ui-error" role="alert">The gist could not load. <button type="button" class="social-btn" @click="refresh(true)">Try again</button></p>
     <EmptyState v-else-if="!gist.lines.length && !gist.loading" icon="megaphone" title="Quiet for now" text="Nothing has happened yet. When a stall opens, an election is decided or a festival starts, it shows up here." />
     <p v-if="gist.loading && !gist.lines.length" class="ui-note" role="status">Listening…</p>

@@ -1,4 +1,5 @@
 import { loadCityContent as preloadCityContent } from '../src/game/cities/registry.ts';
+import { LOCAL_DAILY_MISSIONS } from '../src/game/content/local-missions.ts';
 await Promise.all(['lagos', 'ibadan'].map(preloadCityContent));
 import test from 'node:test';
 import type { TestContext } from 'node:test';
@@ -810,7 +811,17 @@ test('Combined game on the Worker: quick start, settle in with a plot, a mission
   // Every mission the dealer can deal to a life with no job and no event today is covered: the three kinds are dealt one each,
   // and the life kind (d-meal, d-fresh, d-fun, d-paid, d-train) always has a recipe; d-shift is never dealt without a job.
   // d-train and d-gist have recipes too, so no deal can leave the test with nothing to do.
-  const chosen = missions.daily.find(mission => mission.done && !mission.claimed) ?? missions.daily.find(mission => Object.hasOwn(recipes, mission.id));
+  // A city's own missions (src/game/content/local-missions.ts) say what they ask: an activity at a spot, or a visit to a place.
+  for (const local of LOCAL_DAILY_MISSIONS as readonly { id: string; on?: string; venueId?: string; spotId?: string; activityId?: string }[]) {
+    if (Object.hasOwn(recipes, local.id) || !local.venueId) continue;
+    const { venueId, spotId, activityId } = local;
+    if (local.on === 'activity' && spotId && activityId) (recipes as Record<string, () => Promise<unknown>>)[local.id] = async () => { await f.travel(ada, venueId); return f.run(ada, spotId, activityId); };
+    else if (local.on === 'venue') (recipes as Record<string, () => Promise<unknown>>)[local.id] = () => f.travel(ada, venueId);
+  }
+  // A visit is the plainest thing to do, so the order is: already done, a recipe above, a local visit, a local activity.
+  const localOn = new Map((LOCAL_DAILY_MISSIONS as readonly { id: string; on?: string }[]).map(local => [local.id, local.on]));
+  const rank = (id: string): number => (!localOn.has(id) ? 0 : localOn.get(id) === 'venue' ? 1 : 2);
+  const chosen = missions.daily.find(mission => mission.done && !mission.claimed) ?? [...missions.daily].filter(mission => Object.hasOwn(recipes, mission.id)).sort((a, b) => rank(a.id) - rank(b.id))[0];
   assert.ok(chosen, `one of today’s missions can be done: ${missions.daily.map(mission => mission.id).join(', ')}`);
   if (!chosen.done) await (recipes as Record<string, () => Promise<unknown>>)[chosen.id]?.();
   const purse = (await f.life(ada)).cash, claimed = await f.act(ada, 'missions.claim', { id: chosen.id });

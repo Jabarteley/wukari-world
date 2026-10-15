@@ -43,7 +43,7 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 13b Thirty residents | not started | | |
 | 13c Ideas, assembly, president, letter | not started | | |
 | 14 Prayers and acts | live | `545caabb` | Remi prays once a day; players pray at a church, mosque or shrine after the notice that prayers are read; admin Prayers page and eight acts (heal, illness at most weekly and never on a minor, give/take game money, bless a stall, weather for 1 to 6 hours, dream, cross paths, silence), all logged, shown as gist lines, never as messages from the owner (docs/PRAYERS.md). |
-| 15 Calls with agents | not started | | |
+| 15 Calls with agents | live | REL11 | Call a house agent from Settings → AI characters: push-to-talk, the AI mark, its reply spoken on the phone in its own voice (text only crosses the network); speech to text by the browser or by the gateway's transcription model (WAV, budgeted, never stored); 20 minutes a day each, 300 in all, a break reminder every 10 minutes; agents' lines spoken in room voice (docs/CALLS.md). Words-right per accent NOT YET MEASURED: needs recordings (scripts/stt-bench, collect.html). |
 | 16 Festivals, owambe, match nights | live | `8ac05891` | Multi-day festival calendar (NG, GH, KE, ZA, global; Eid and Ramadan dates to 2028), festive Square light, owambe parties with MC/DJ/spray (no money), match-night slots and an empty admin fixture list (docs/FESTIVALS.md). |
 | 17 City texture packs | live | `abec6f54` | Ride banter packs (Lagos danfo, okada, keke, cab; Accra, Nairobi, South Africa starters; no lyrics, no danger or scam words), the district's published light plan and cut notices with generator/inverter (docs/CITY-TEXTURE.md). Haggle-to-purchase comes with Phase 11. No solar item (scene chunk room). |
 | 18 Real price levels | not started | | |
@@ -88,7 +88,8 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 - Return on day 1, 7 and 30, split by ad source and by "has a friend" (the admin dashboard's "Coming back" table, from Phase 3).
 - Residents: model spend per day, thoughts per resident per day, rule slips, out-of-character retries, talk with strangers,
   businesses started, friendships kept.
-- Speech to text: words right and delay, per accent, for each way.
+- Speech to text: words right and delay, per accent, for each way. Not yet measured: record samples with
+  `scripts/stt-bench/collect.html` on phones, then run `scripts/stt-bench.ts --gateway` (scripts/stt-bench/README.md).
 
 ## Log
 

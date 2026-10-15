@@ -240,6 +240,38 @@ export function createRouter(deps: Deps) {
     return refuse(attempts.length ? 'failed' : blocked ?? 'no-model', attempts);
   }
 
+  /**
+   * A paid request that is not a chat (speech to text, server/models/transcribe.ts) under the SAME day cap and person caps as `ask`. The caller says what the
+   * worst case may cost; the room is reserved before `run` is awaited and settled with the real cost after it. `run` returns null when the provider failed (nothing is booked).
+   * Only the gateway is used, so the caller must pass a model that keeps no data and does not train (transcribe.ts checks). Nothing about the content is ever kept here.
+   */
+  async function spend<T>(input: { purpose: string; model: string; playerId?: string; worstMicro: number }, run: () => Promise<{ value: T; micro: number } | null>): Promise<{ ok: true; value: T; micro: number } | { ok: false; why: Refusal }> {
+    await ready();
+    if (!hasKey('gateway')) return { ok: false, why: 'off' };
+    const day = today(), limits = deps.limits();
+    const reserve = Math.max(0, Math.ceil(input.worstMicro));
+    let player: Tally | null = null;
+    if (input.playerId) {
+      if (!own(day.players, input.playerId) && Object.keys(day.players).length >= PLAYERS_KEPT) { refuse('player-cap', []); return { ok: false, why: 'player-cap' }; }
+      player = tally(day.players, input.playerId, () => ({ n: 0, micro: 0 }));
+      if (player.n >= limits.playerRequests || player.micro + reserve > limits.playerMicro) { refuse('player-cap', []); return { ok: false, why: 'player-cap' }; }
+    }
+    if (day.micro + reserved + reserve > limits.dailyCapMicro) { refuse('budget', []); return { ok: false, why: 'budget' }; }
+    reserved += reserve;
+    const key = `gateway:${input.model}`;
+    let done: { value: T; micro: number } | null = null;
+    try { done = await run(); } catch { done = null; } finally { reserved = Math.max(0, reserved - reserve); }
+    const m = tally(day.byModel, key, () => ({ n: 0, micro: 0, input: 0, output: 0, failed: 0 }));
+    if (player) player.n++;
+    if (!done) { m.failed++; persist(); return { ok: false, why: 'failed' }; }
+    const micro = Math.max(0, Math.round(done.micro));
+    day.micro += micro; day.requests++; m.n++; m.micro += micro;
+    const p = tally(day.byPurpose, input.purpose, () => ({ n: 0, micro: 0 })); p.n++; p.micro += micro;
+    if (player) player.micro += micro;
+    persist();
+    return { ok: true, value: done.value, micro };
+  }
+
   function targetOf(provider: Provider, input: AskInput): { target: Target } {
     const found = deps.provider(provider)!;
     const base = provider === 'openrouter' ? OPENROUTER_URL : found.baseUrl || DEFAULT_GATEWAY_URL;
@@ -249,6 +281,9 @@ export function createRouter(deps: Deps) {
   return {
     ready,
     ask,
+    spend,
+    /** A provider's key and base address (the transcription route calls the gateway with them), or null. */
+    provider: (name: Provider): { key: string; baseUrl: string } | null => deps.provider(name),
     /** Today's ledger (a copy), the cap and the money in flight. */
     today(): { day: number; ledger: DayLedger; capMicro: number; reservedMicro: number } { return { day: dayNumber(), ledger: structuredClone(today()), capMicro: deps.limits().dailyCapMicro, reservedMicro: reserved }; },
     stored: (): Stored => stored,

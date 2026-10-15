@@ -48,3 +48,25 @@ Focused contact regressions3/3 pass after change (/tmp/nigeria-host-reservation-
 ## Late hero / far-to-near admission fix
 
 Root identified that a late canonical hero can coexist with the cheaper far module, so the measured active-tier guard returned without trimming crowd against the near reservation. selectRuntime now readmits crowd before computing each new tier request, temporarily suppressing recursive guard entry. No budget changed. Source freeze restored and browser agent notified; interrupted concurrent two-crowd capture must not be claimed as exact-source evidence. Focused contact regressions rerun in /tmp/nigeria-host-late-body-contact.tap.
+
+## Lazy extraction ownership
+
+Root delegated new src/scene/models/runtime-host.ts plus existing owned types.ts/venue-scenes.ts after exact-source CI measured shared scene gzip71409 >71000 (raw189572 <192000). Own the new helper before editing; root owns importing its factory from the lazy Nigeria definition. Move only asynchronous owner initialization, placement/contact baking and fallback/status callback. Preserve guards, caps, navigation and behavior. No commit until requested; actual host acceptance must be rerun on extracted source.
+
+## Lazy extraction checkpoint
+
+Implemented factory through SceneDef.runtime.createHost, loaded solely by the lazy Nigeria definitions. The helper now owns asynchronous initialization/contact baking, near/far selection and guard state, reservation validation, visible cost measurement, support lookup and sidecar-solid transforms. General host contact index, actors, markers and procedural scenes remain in the host. New helper imports venue contact types only, avoiding an eager runtime dependency.
+
+A bounded single-file esbuild transform (not a game build) estimates venue-scenes before31311 raw/13330gzip versus after29178/12611:719gzip saved. This is only a sizing estimate; CI must confirm bundled savings under the unchanged71000 limit. Final focused contact tests3/3 pass; source frozen and acceptance agent notified for actual Abuja and reentry rerun. No commit yet, no owned running processes.
+
+## Restart / recovery ownership
+
+/root/runtime_recovery resumes the preserved lazy extraction at published head34893f47. Own runtime-host.ts, types.ts, venue-scenes.ts, new runtime-host.test.ts and this record; no commit or local build. Root coordinates other authors and browser freeze. Fix rejected/evicted selection with bounded retries, current budget accounting and stale completion isolation.
+
+## Bounded recovery checkpoint (cloud restart)
+
+Preserved the lazy extraction, then fixed cached selection after rejection and whole-scene budget eviction. A rejected selection clears immediately; ambient guards retry the last camera target after 1s then4s, with at most three failures per tier per host lifetime. Camera oscillation cannot reset the failure allowance. Budget eviction remembers the actual imported tier cost and waits for available host capacity before actor rebuild or network work. Every attempted load readmits actors and recomputes the available triangle/draw budget. A generation token isolates rejected/cancelled stale requests; disposal invalidates pending callbacks and relies on the existing serialized module disposal.
+
+Added runtime-host.test.ts using the real createRuntimeModule and an injected geometry loader: finite rejection retries, transient recovery with fresh hero/crowd budget, far-to-near admission, late hero eviction/capacity recovery, stale completion and disposal. Command `node --experimental-strip-types --test src/scene/models/runtime-host.test.ts src/scene/models/runtime-module.test.ts src/scene/venue-contact.test.ts` passes17/17; log `/tmp/nigeria-runtime-recovery.tap`. No cap changes or local game build. Full supported typecheck and browser source-pinned evidence remain root/acceptance responsibilities.
+
+Source frozen and root notified. No running process and no commit by this lane. Root separately integrated the lighter Lagos asset; this lane made no asset or scene-definition changes. Next: root runs supported typecheck/actual host acceptance and CI bundle size against the exact final source.

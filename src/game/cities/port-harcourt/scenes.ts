@@ -16,7 +16,7 @@ export const PORT_HARCOURT_SCENES: Readonly<Record<string, VenueScene>> = Object
   'railway-township': { kind: 'walk', variant: 'ph-station' },
   wharf: { kind: 'walk', variant: 'ph-wharf' },
   'tourist-beach': { kind: 'beach', variant: 'ph-creek' },
-  'bonny-jetty': { kind: 'hub', variant: 'ph-terminal' },
+  'bonny-jetty': { kind: 'hub', variant: 'ph-terminal', anchors: { 'boat-observation': 'people' } },
   'okrika-jetty': { kind: 'hub', variant: 'ph-pier' },
   'rumuola-hub': { kind: 'hub', variant: 'ph-interchange' },
   'yakubu-gowon-stadium': { kind: 'viewing', variant: 'ph-main-stand' },

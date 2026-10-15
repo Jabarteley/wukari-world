@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/city/build-progression-content.ts",
-  "sourceHead": "9af2e51eaf1cf90237c9cf24c49d0f5628ceb8b6",
+  "sourceHead": "8462b96ec2c1325aca3d48bd16d961237986342c",
   "counts": {
     "playableCityIds": 284,
     "openCatalogueCities": 284,
@@ -26,7 +26,7 @@
     },
     "ibadan": {
       "moduleSha256": "70547591f8f64710cc98f68cc467c7537432ff8793523119c778e0724bb393f0",
-      "contentEntrySha256": "5be6afaefb1df27891366f0958d0136a3141f9b162083b7c27c418e86246f02c",
+      "contentEntrySha256": "b29634065a251df14644c288895960d50291e7a0e95e2c7699c2c3d3ad372f7e",
       "seedSha256": "d5a2fe2d3f035afd72fcbe01dc0a96ff47edcbe26ea34d2d6e8a68b979277bf9"
     },
     "abeokuta": {
@@ -51,7 +51,7 @@
     },
     "port-harcourt": {
       "moduleSha256": "5cb53341d747c68ec0e1dfac3791b4dbc3eccfacd5768c51dd2b2f4ba9433980",
-      "contentEntrySha256": "f18e98046fa09ea109f55bd73ba90def850cd5bc108ececceea6963503e3195f",
+      "contentEntrySha256": "69219446ebca1af2443661a381b23d104a2aee3726e935a27d95c90fe7a321ef",
       "seedSha256": "bfecb9a0525b4bece565fc5662cd2f7978b29c29f79e8a2126f89b273ed54929"
     },
     "abuja": {
@@ -61,7 +61,7 @@
     },
     "kano": {
       "moduleSha256": "15e48737aef3febbea67e302e28a68542efaddf9d89054c5ba1c1621d5105e33",
-      "contentEntrySha256": "e5ca6b5db450bc5337f5e52e151b463d7b229bb755de1731d96a139d8efbfd25",
+      "contentEntrySha256": "9f21913abbcdd289fde29452beb3656def509fcee3c806108fb2a7778be359d9",
       "seedSha256": "8560f03f81bde45c6e217c00e1f222ddf2499573a419c297ff40ab3a58af4aa9"
     },
     "enugu": {
@@ -1501,7 +1501,7 @@
       "placeLine": "Play ayo and stay for an evening garden set.",
       "sourceHashes": {
         "moduleSha256": "70547591f8f64710cc98f68cc467c7537432ff8793523119c778e0724bb393f0",
-        "contentEntrySha256": "5be6afaefb1df27891366f0958d0136a3141f9b162083b7c27c418e86246f02c",
+        "contentEntrySha256": "b29634065a251df14644c288895960d50291e7a0e95e2c7699c2c3d3ad372f7e",
         "seedSha256": "d5a2fe2d3f035afd72fcbe01dc0a96ff47edcbe26ea34d2d6e8a68b979277bf9"
       }
     },
@@ -1661,7 +1661,7 @@
       "placeLine": "Walk, relax and play ayo.",
       "sourceHashes": {
         "moduleSha256": "5cb53341d747c68ec0e1dfac3791b4dbc3eccfacd5768c51dd2b2f4ba9433980",
-        "contentEntrySha256": "f18e98046fa09ea109f55bd73ba90def850cd5bc108ececceea6963503e3195f",
+        "contentEntrySha256": "69219446ebca1af2443661a381b23d104a2aee3726e935a27d95c90fe7a321ef",
         "seedSha256": "bfecb9a0525b4bece565fc5662cd2f7978b29c29f79e8a2126f89b273ed54929"
       }
     },
@@ -1725,7 +1725,7 @@
       "placeLine": "Sit under the neem trees and play ayo in the neighbourhood garden at Gama.",
       "sourceHashes": {
         "moduleSha256": "15e48737aef3febbea67e302e28a68542efaddf9d89054c5ba1c1621d5105e33",
-        "contentEntrySha256": "e5ca6b5db450bc5337f5e52e151b463d7b229bb755de1731d96a139d8efbfd25",
+        "contentEntrySha256": "9f21913abbcdd289fde29452beb3656def509fcee3c806108fb2a7778be359d9",
         "seedSha256": "8560f03f81bde45c6e217c00e1f222ddf2499573a419c297ff40ab3a58af4aa9"
       }
     },

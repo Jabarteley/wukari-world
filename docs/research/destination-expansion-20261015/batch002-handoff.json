@@ -1,0 +1,257 @@
+[
+  {
+    "cityId": "ibadan",
+    "districtKey": "mapo",
+    "districtKeyStatus": "art-only locality key; not registered housing district",
+    "venueId": "mapo-hall",
+    "spotId": "terrace",
+    "activityIds": [
+      "ibadan-mapo-roofscape",
+      "ibadan-mapo-colonnade"
+    ],
+    "assetRequestId": "ibadan-mapo-terrace-01",
+    "researched": "parent photo inspection plus existing mapped venue source",
+    "implemented": true,
+    "assetRequested": "proposal awaiting parent production scheduling",
+    "integrated": false,
+    "deployed": false,
+    "units": "metres",
+    "upAxis": "Y",
+    "hostUnitsPerMetre": 1.4,
+    "assetBoundsXZ": [
+      -12,
+      -10,
+      12,
+      10
+    ],
+    "entrance": [
+      0,
+      0,
+      9
+    ],
+    "activityAnchor": [
+      4.0,
+      0,
+      7.214286
+    ],
+    "hostAnchorXZ": [
+      5.6,
+      10.1
+    ],
+    "nearBudget": {
+      "triangles": 6000,
+      "drawCalls": 30
+    },
+    "farBudget": {
+      "triangles": 2000,
+      "drawCalls": 12
+    },
+    "clearPathWidthMetres": 1.5,
+    "playerClearanceMetres": 0.4,
+    "geometryStatus": "proposed original composition, not surveyed geometry"
+  },
+  {
+    "cityId": "ibadan",
+    "districtKey": "dugbe",
+    "districtKeyStatus": "existing rules district",
+    "venueId": "dugbe-market",
+    "spotId": "pavement",
+    "activityIds": [
+      "ibadan-dugbe-frontages",
+      "ibadan-dugbe-street-rhythm"
+    ],
+    "assetRequestId": "ibadan-dugbe-pavement-01",
+    "researched": "parent photo inspection plus existing mapped venue source",
+    "implemented": true,
+    "assetRequested": "proposal awaiting parent production scheduling",
+    "integrated": false,
+    "deployed": false,
+    "units": "metres",
+    "upAxis": "Y",
+    "hostUnitsPerMetre": 1.4,
+    "assetBoundsXZ": [
+      -12,
+      -10,
+      12,
+      10
+    ],
+    "entrance": [
+      0,
+      0,
+      9
+    ],
+    "activityAnchor": [
+      -4.714286,
+      0,
+      -1.0
+    ],
+    "hostAnchorXZ": [
+      -6.6,
+      -1.4
+    ],
+    "nearBudget": {
+      "triangles": 6000,
+      "drawCalls": 30
+    },
+    "farBudget": {
+      "triangles": 2000,
+      "drawCalls": 12
+    },
+    "clearPathWidthMetres": 1.5,
+    "playerClearanceMetres": 0.4,
+    "geometryStatus": "proposed original composition, not surveyed geometry"
+  },
+  {
+    "cityId": "kano",
+    "districtKey": "kano-municipal",
+    "districtKeyStatus": "existing rules district",
+    "venueId": "palace",
+    "spotId": "outer-court",
+    "activityIds": [
+      "kano-kudu-facade",
+      "kano-kudu-forecourt"
+    ],
+    "assetRequestId": "kano-kofar-kudu-court-01",
+    "researched": "parent photo inspection plus existing mapped venue source",
+    "implemented": true,
+    "assetRequested": "proposal awaiting parent production scheduling",
+    "integrated": false,
+    "deployed": false,
+    "units": "metres",
+    "upAxis": "Y",
+    "hostUnitsPerMetre": 1.4,
+    "assetBoundsXZ": [
+      -12,
+      -10,
+      12,
+      10
+    ],
+    "entrance": [
+      0,
+      0,
+      9
+    ],
+    "activityAnchor": [
+      0.428571,
+      0,
+      5.428571
+    ],
+    "hostAnchorXZ": [
+      0.6,
+      7.6
+    ],
+    "nearBudget": {
+      "triangles": 6000,
+      "drawCalls": 30
+    },
+    "farBudget": {
+      "triangles": 2000,
+      "drawCalls": 12
+    },
+    "clearPathWidthMetres": 1.5,
+    "playerClearanceMetres": 0.4,
+    "geometryStatus": "proposed original composition, not surveyed geometry"
+  },
+  {
+    "cityId": "kano",
+    "districtKey": "kano-municipal",
+    "districtKeyStatus": "existing rules district",
+    "venueId": "kurmi-market",
+    "spotId": "market-crossing",
+    "activityIds": [
+      "kano-kurmi-shop-bays",
+      "kano-kurmi-handcarts"
+    ],
+    "assetRequestId": "kano-kurmi-crossing-01",
+    "researched": "parent photo inspection plus existing mapped venue source",
+    "implemented": true,
+    "assetRequested": "proposal awaiting parent production scheduling",
+    "integrated": false,
+    "deployed": false,
+    "units": "metres",
+    "upAxis": "Y",
+    "hostUnitsPerMetre": 1.4,
+    "assetBoundsXZ": [
+      -12,
+      -10,
+      12,
+      10
+    ],
+    "entrance": [
+      0,
+      0,
+      9
+    ],
+    "activityAnchor": [
+      0.285714,
+      0,
+      5.428571
+    ],
+    "hostAnchorXZ": [
+      0.4,
+      7.6
+    ],
+    "nearBudget": {
+      "triangles": 6000,
+      "drawCalls": 30
+    },
+    "farBudget": {
+      "triangles": 2000,
+      "drawCalls": 12
+    },
+    "clearPathWidthMetres": 1.5,
+    "playerClearanceMetres": 0.4,
+    "geometryStatus": "proposed original composition, not surveyed geometry"
+  },
+  {
+    "cityId": "port-harcourt",
+    "districtKey": "creek-road-waterside",
+    "districtKeyStatus": "art-only locality key; not registered housing district",
+    "venueId": "bonny-jetty",
+    "spotId": "boat-observation",
+    "activityIds": [
+      "ph-nembe-outboards",
+      "ph-nembe-loading"
+    ],
+    "assetRequestId": "ph-nembe-boat-observation-01",
+    "researched": "parent photo inspection plus existing mapped venue source",
+    "implemented": true,
+    "assetRequested": "proposal awaiting parent production scheduling",
+    "integrated": false,
+    "deployed": false,
+    "units": "metres",
+    "upAxis": "Y",
+    "hostUnitsPerMetre": 1.4,
+    "assetBoundsXZ": [
+      -12,
+      -10,
+      12,
+      10
+    ],
+    "entrance": [
+      0,
+      0,
+      9
+    ],
+    "activityAnchor": [
+      0.428571,
+      0,
+      4.0
+    ],
+    "hostAnchorXZ": [
+      0.6,
+      5.6
+    ],
+    "nearBudget": {
+      "triangles": 6000,
+      "drawCalls": 30
+    },
+    "farBudget": {
+      "triangles": 2000,
+      "drawCalls": 12
+    },
+    "clearPathWidthMetres": 1.5,
+    "playerClearanceMetres": 0.4,
+    "geometryStatus": "proposed original composition, not surveyed geometry"
+  }
+]

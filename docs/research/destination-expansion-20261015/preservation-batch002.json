@@ -1,0 +1,50 @@
+{
+  "base": "9af2e51e",
+  "checks": [
+    {
+      "city": "lagos",
+      "unchangedVenues": 26,
+      "unchangedExistingActivities": 274,
+      "housingUnchanged": true,
+      "localRoutesUnchanged": true,
+      "positionsUnchanged": true,
+      "defaultSpotsUnchanged": true
+    },
+    {
+      "city": "abuja",
+      "unchangedVenues": 29,
+      "unchangedExistingActivities": 33,
+      "housingUnchanged": true,
+      "localRoutesUnchanged": true,
+      "positionsUnchanged": true,
+      "defaultSpotsUnchanged": true
+    },
+    {
+      "city": "ibadan",
+      "unchangedVenues": 25,
+      "unchangedExistingActivities": 30,
+      "housingUnchanged": true,
+      "localRoutesUnchanged": true,
+      "positionsUnchanged": true,
+      "defaultSpotsUnchanged": true
+    },
+    {
+      "city": "kano",
+      "unchangedVenues": 30,
+      "unchangedExistingActivities": 37,
+      "housingUnchanged": true,
+      "localRoutesUnchanged": true,
+      "positionsUnchanged": true,
+      "defaultSpotsUnchanged": true
+    },
+    {
+      "city": "port-harcourt",
+      "unchangedVenues": 30,
+      "unchangedExistingActivities": 34,
+      "housingUnchanged": true,
+      "localRoutesUnchanged": true,
+      "positionsUnchanged": true,
+      "defaultSpotsUnchanged": true
+    }
+  ]
+}

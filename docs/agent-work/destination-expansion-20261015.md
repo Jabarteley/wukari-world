@@ -23,3 +23,18 @@
 - Asset integration/deployment not done. Full build/download/browser and new photo acceptance remain release/art gates. No new paid services or credentials.
 - Next executable step: parent passes commit to sole integration writer; verify host/browser and download budgets. Continue next batch with parent photo briefs for Ibadan/Kano/Port Harcourt, then primary-source district-label corrections for Accra/Nairobi. Exact Okrika geometry stays blocked.
 - Remote reference clone /workspace/allworld-assets-reference is read-only in practice; detached baseline /workspace/destination-baseline used only for comparisons. No servers started.
+
+## Continuation reconciliation
+
+- Parent explicitly requested continuation, pending browser/size checks and next-city work. Fetched origin/main bc113b55, merged without conflict on isolated branch. Content owner 01a13bea record reports final source integration complete and author/browser workers released; main changes no assigned city venue files. Parent relay requested for unpublished overlap; no direct cross-thread tool is exposed here.
+- Pending batch001 requests: lagos-lekki-canopy-ground-01, abuja-maitama-millennium-bench-01, abuja-jabi-lawn-01 (all proposed, not produced/integrated). Exact stop/activity IDs remain in destination-expansion.test.ts.
+- Using supplied 18GB cloud runner for build/browser verification under no-extra-spend constraint rather than dispatching metered hosted CI; no Mac execution. Repo CI preference concerns 5GB builds; this runner has >17GB available. No deployment.
+- Proposed next ownership: additive spots/anchors in Ibadan, Kano, Port Harcourt content and corresponding per-city scene maps; this lane's test, generated fingerprints and research records. Housing internals excluded.
+
+## 2026-10-15T13:25Z continuation checkpoint
+
+- Implemented locally: five new stops/ten activities across Mapo, Dugbe, Kofar Kudu, Kurmi and Bonny/Nembe Waterside. Exact IDs and proposed Blender request IDs: batch002.md and batch002-handoff.json.
+- Combined eight-stop tests8/8, including16 real engine dispatch/completion paths; next-city contracts12/12; map/travel/journey/placement/outing21/21; typecheck five projects clean. All408 prior activities, default spots, coordinates, housing and routes preserved in baseline comparison.
+- Final Chromium production-host diagnostic PASS32/32 at1280/390 widths, forced shipped phone tier, real pointer/touch, every new activity anchor and return route; source hashes stable, no console/HTTP errors. Sixteen screenshots. Exact avatar anchor positions independently checked within0.15host units. Synthetic accepted-state fixture is not full app/HTTP or physical-phone acceptance.
+- Full combined build passes (2m56s). Full download budget report still running its quality11 compression; no size pass claimed yet. Source and browser/artifacts remain uncommitted at this checkpoint.
+- Original-scene visual review reinforces pending art: Mapo rusty clock-tower composition, generic brown Kano palace, and market/terminal layouts are stylised placeholders. No false photo-match or survey claim.

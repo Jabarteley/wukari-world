@@ -80,7 +80,7 @@ const VENUE_SEEDS: readonly VenueSeed[] = [
   {
     id: 'mapo-hall', name: 'Mapo Hall', district: 'Mapo, Ibadan South-East', kind: 'statehouse', category: 'civic', icon: 'governor', point: { lon: 3.8969774, lat: 7.3759998 }, variant: 'hill-hall',
     description: 'Visit the civic hall, read notices and look across the old city.', ambient: ['The broad steps face the old city.'],
-    spots: [spot('steps', 'Mapo steps', activity('ibadan-mapo-view', 'Look across old Ibadan', 'view', ['view', 'history'], { effects: { fun: 7, social: 2 } })), work()],
+    spots: [spot('steps', 'Mapo steps', activity('ibadan-mapo-view', 'Look across old Ibadan', 'view', ['view', 'history'], { effects: { fun: 7, social: 2 } })), work(), spot('terrace', 'Old-city terrace', activity('ibadan-mapo-roofscape', 'Trace the old-city roofscape', 'view', ["view", "history"], { duration: 10, effects: { fun: 8, energy: -2 }, note: 'Original beta observation at a stylised scene stop; bespoke photo-based art is pending.' }), activity('ibadan-mapo-colonnade', 'Study the hall colonnade', 'view', ["art", "learn"], { duration: 10, effects: { fun: 8, energy: -2 }, note: 'Original beta observation at a stylised scene stop; bespoke photo-based art is pending.' }))],
   },
   {
     id: 'mapo-polling', name: 'Mapo Civic Polling Centre', district: 'Mapo, Ibadan South-East', kind: 'polling', category: 'civic', icon: 'poll', point: { lon: 3.89706, lat: 7.37586 },
@@ -109,7 +109,7 @@ const VENUE_SEEDS: readonly VenueSeed[] = [
   {
     id: 'dugbe-market', name: 'Dugbe Market', district: 'Dugbe, Ibadan North-West', kind: 'market', category: 'work', icon: 'market', point: { lon: 3.88040447, lat: 7.3870279 }, variant: 'street',
     description: 'Browse the commercial heart of Dugbe and bargain for household goods.', ambient: ['Buses, traders and office workers share the same crowded streets.'],
-    spots: [spot('arcade', 'Market arcade', activity('ibadan-dugbe-bargain', 'Bargain for household goods', 'shop', ['market'], { xp: { hustle: 10 } })), work()],
+    spots: [spot('arcade', 'Market arcade', activity('ibadan-dugbe-bargain', 'Bargain for household goods', 'shop', ['market'], { xp: { hustle: 10 } })), work(), spot('pavement', 'Commercial street pavement', activity('ibadan-dugbe-frontages', 'Explore the shop frontages', 'view', ["market", "walk"], { duration: 10, effects: { fun: 8, energy: -2 }, note: 'Original beta observation at a stylised scene stop; bespoke photo-based art is pending.' }), activity('ibadan-dugbe-street-rhythm', 'Watch the street traders at work', 'view', ["market", "learn"], { duration: 10, effects: { fun: 8, energy: -2 }, note: 'Original beta observation at a stylised scene stop; bespoke photo-based art is pending.' }))],
   },
   {
     id: 'gbagi-market', name: 'Gbagi New International Market', district: 'Gbagi, Egbeda', kind: 'market', category: 'work', icon: 'market', point: { lon: 3.9558975, lat: 7.39337 }, variant: 'cloth',

@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import { createLife, dispatch, advanceLife } from '../life.ts'
 import { loadCityContent } from '../game/cities/registry.ts'
 import { loadAllCityScenes } from './city-scenes.ts'
 import { createKit } from './kit.ts'
@@ -9,12 +10,18 @@ import type { SceneVenue } from './types.ts'
 
 await loadCityContent('lagos')
 await loadCityContent('abuja')
+for (const city of ['ibadan', 'kano', 'port-harcourt']) await loadCityContent(city)
 await loadAllCityScenes()
 
 const stops = [
   ['lagos', 'canopy-walk', 'wildlife-stop', ['canopy-listen-birds', 'canopy-observe-habitat']],
   ['abuja', 'millennium-park', 'garden-bench', ['fct-millennium-sketch', 'fct-millennium-shade']],
   ['abuja', 'jabi-lake-park', 'picnic-lawn', ['fct-jabi-lawn-rest', 'fct-jabi-sketch']],
+  ['ibadan', 'mapo-hall', 'terrace', ['ibadan-mapo-roofscape', 'ibadan-mapo-colonnade']],
+  ['ibadan', 'dugbe-market', 'pavement', ['ibadan-dugbe-frontages', 'ibadan-dugbe-street-rhythm']],
+  ['kano', 'palace', 'outer-court', ['kano-kudu-facade', 'kano-kudu-forecourt']],
+  ['kano', 'kurmi-market', 'market-crossing', ['kano-kurmi-shop-bays', 'kano-kurmi-handcarts']],
+  ['port-harcourt', 'bonny-jetty', 'boat-observation', ['ph-nembe-outboards', 'ph-nembe-loading']],
 ] as const
 
 for (const [cityId, venueId, spotId, activityIds] of stops) {
@@ -31,6 +38,14 @@ for (const [cityId, venueId, spotId, activityIds] of stops) {
       assert.equal(activity.cost, 0)
       assert.ok(activity.duration > 0)
       assert.equal(activity.reward, undefined)
+      const now = Date.UTC(2026, 0, 5, 11)
+      const state = createLife({ name: 'Destination QA', location: venueId, spot: spotId }, { now, cityId })
+      const home = structuredClone(state.estate)
+      assert.equal(dispatch(state, { type: 'activity', payload: { id: activity.id } }, { now, cityId }).code, 'started')
+      assert.equal(advanceLife(state, activity.duration + 1, { now: now + (activity.duration + 1) * 1000, cityId }).ok, true)
+      assert.equal(state.activeAction, null)
+      assert.deepEqual(state.estate, home)
+
     }
     const kit = createKit()
     const entry = buildVenueScene(kit, sceneVenue(venueId, cityId) as unknown as SceneVenue, cityId)

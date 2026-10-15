@@ -8,9 +8,9 @@ import type { VenueScene } from '../../../types/content.ts'
  */
 export const KANO_SCENES: Readonly<Record<string, VenueScene>> = Object.freeze({
   'nassarawa-garden': { kind: 'park', variant: 'kano-garden' },
-  palace: { kind: 'walk', variant: 'kano-palace-gate' },
+  palace: { kind: 'walk', variant: 'kano-palace-gate', anchors: { 'outer-court': 'people' } },
   'central-mosque': { kind: 'worship', variant: 'kano-central-mosque' },
-  'kurmi-market': { kind: 'market', variant: 'kano-kurmi' },
+  'kurmi-market': { kind: 'market', variant: 'kano-kurmi', anchors: { 'market-crossing': 'people' } },
   'dye-pits': { kind: 'market', variant: 'kano-dye-pits' },
   museum: { kind: 'office', variant: 'kano-museum' },
   'dala-hill': { kind: 'walk', variant: 'kano-dala' },

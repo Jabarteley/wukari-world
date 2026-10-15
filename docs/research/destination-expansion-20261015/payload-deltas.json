@@ -1,0 +1,40 @@
+{
+  "against": "bc113b55",
+  "rows": [
+    {
+      "city": "lagos",
+      "baseBytes": 151656,
+      "bytes": 152365,
+      "delta": 709,
+      "sha256": "f6bdc0a4050c980b1238d7ab6c0213bcc1c14540420f9e7e9c6582429547168b"
+    },
+    {
+      "city": "ibadan",
+      "baseBytes": 72537,
+      "bytes": 73783,
+      "delta": 1246,
+      "sha256": "4c0c2ea699ec66260894fb07e0ca5a641cdb6d49117d29e6b638a9d0108205f7"
+    },
+    {
+      "city": "abuja",
+      "baseBytes": 83311,
+      "bytes": 84460,
+      "delta": 1149,
+      "sha256": "30a43e8179175615fb40516f0cfa23167b3181698e29edf3cf4671b72bd2d712"
+    },
+    {
+      "city": "port-harcourt",
+      "baseBytes": 79895,
+      "bytes": 80577,
+      "delta": 682,
+      "sha256": "07889f14f8e36cda83370656e3ed41429621562483955a6324c63d4209b604c2"
+    },
+    {
+      "city": "kano",
+      "baseBytes": 83625,
+      "bytes": 85057,
+      "delta": 1432,
+      "sha256": "adfc0e5236930982ee5f2132fe2b565eb3fbebdc0a30961767f03b6fc9b2231b"
+    }
+  ]
+}

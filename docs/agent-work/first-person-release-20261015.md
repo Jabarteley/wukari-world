@@ -5,9 +5,9 @@
 - **Work ID:** `first-person-release-20261015`
 - **Owner:** `/root`, first-person chat `01a13a42-b51e-7942-b5a2-32f38c198c37`
 - **Model / effort:** primary session; Luna for bounded typing, Astra for integration, browser verification and release review
-- **UTC updated:** `2026-10-15T13:15:06.922467+00:00`
+- **UTC updated:** `2026-10-15T14:31:00Z`
 - **Status:** `active`
-- **Work state:** `implementation`
+- **Work state:** `release-gates`
 
 ## Goal and boundaries
 
@@ -24,9 +24,9 @@
 - **Repo:** JoinAllworld, isolated release candidate; primary checkout preserved.
 - **Host:** Anthony Mac; host-local candidate `/Users/anthonyakpan/.codex/worktrees/first-person-release-20261015/JoinAllworld`.
 - **Branch / worktree:** `codex/first-person-release-20261015`, managed worktree explicitly approved by the user.
-- **Base / current commit:** base `9af2e51eaf1cf90237c9cf24c49d0f5628ceb8b6`; scoped implementation `2c76945724a7832a163464beec7e7b5a57f74c07`. Original primary remains at `22366a53cb4ab2a147b5029f4e2f5a2b1d3a192d`.
+- **Base / current commit:** base `9af2e51eaf1cf90237c9cf24c49d0f5628ceb8b6`; current published source `e79d735a58625394d947aa06a32106fa0faac6c8`. First-person camera/menu accepted at8061dc2c; hosted combined candidate5bb46a44. Original primary remains at `22366a53cb4ab2a147b5029f4e2f5a2b1d3a192d`.
 - **Dirty status:** isolated candidate contains only scoped first-person changes and work records. Primary retains all unrelated drafts. Dependency lockfiles match; candidate reuses the primary node_modules via symlink.
-- **Port/process ownership:** fresh isolated preview `http://first-person.localhost:4412`, unified session37962, data `/tmp/allworld-first-person-candidate-data-20261015`, candidate dist. Server slot2 explicitly recorded; existing retention5176 remains untouched. Astra is sole browser operator.
+- **Port/process ownership:** own4412preview/session66912 stopped after acceptance; fake data `/tmp/allworld-first-person-candidate-data-20261015` and tab460560920 preserved. No current server/heavy lease. Retention owns5176 and interactive browser; its Astra owns any final live check. No competing browser use.
 
 ## Progress
 
@@ -40,20 +40,20 @@
 
 ### In progress / blockers
 
-- Initial primary and candidate typechecks pass all five projects. First candidate build measured shared host 71,716 gzip against 71,000; reviewed optional reward rendering now loads lazily. Final measurement is pending. The scoped source is committed at `2c769457`; remote main advanced to `5181c91a` during verification, so Astra is reconciling it before the final gate chain.
-- User approved the isolated branch/worktree. Astra owns candidate source integration; primary owns non-UI check scheduling and its record. Do not deploy the mixed primary checkout.
-- Remaining browser/device/hosted checks are listed in the plan. Physical-device availability is unconfirmed.
+- Five-project typecheck, fixed shared-host/Worker/download budgets, finite local first-person matrix and hosted desktop/phone map regression checks pass. Four newly exposed Worker fixtures are repaired with9/9 existing checks passing; exact source published for retention integration.
+- Retention owns remaining full-suite failures and sole final combined main/deployment. Baseline status does not imply full CI passed or waive the linked release rule. Source and acceptance details are recorded in checkpoints below.
+- Physical handset and audible-speaker proof are unavailable. Extreme downward lying angle can expose the collar aperture. Deployed-SHA live first-person check is pending; do not deploy the mixed primary checkout.
 
 ### Immediate resume steps
 
-1. Integrate latest main, then run exact-source typecheck, two stable builds, size, Worker and full Node gates.
-2. Build and measure unchanged download limits, then exercise remaining mobile/web journeys on a fresh candidate preview.
-3. Follow the current relay release protocol, hosted acceptance, deploy lock, exact-source checks, production continuity and bounded smoke.
+1. Retention integrates fixture sourcee79d735a and resolves remaining release gates or obtains an explicit applicable decision.
+2. Retention performs one locked, sealed-source deployment with exact health/continuity proof.
+3. Its Astra verifies the live More-menu switch/body/restoration in the sole tracked cleanup-owned actor, then reports evidence back to this lane.
 
 ## Release state
 
-- **Local implementation:** `active`
-- **Deployment:** `prepared` (requested; no remote mutation performed)
+- **Local implementation:** `accepted; source published`
+- **Deployment:** `held at remaining release gates` (requested; not performed)
 - **Release gate:** current-source validation, hosted/mobile/web acceptance, clean candidate, release lock, CI/package guard and live continuity.
 - **References:** `docs/FIRST-PERSON-PLAN.md`; host-local relay `CODEX-FIRST-PERSON-HANDOFF.md`, `CODEX-ASSET-HANDOFF.md`, `DEPLOY.md`.
 
@@ -115,3 +115,19 @@
 - Astra accepted the exact occupied-tree-cell representation: unchanged2m grid/.4m radius and existing circle/containing-cell rules, sorted unique valid indices, visual trees untouched. The generated payload shrinks208,181→167,130bytes; this lane's Worker is3,382,393bytes against the unchanged3,500,000 cap.
 - Parent independently hashes full normal before/after snapshots to `df98a168c29a9edbbb2a8931514e21c0a5ac27641b8e40f92808e258aefa221c` and extra-footprint snapshots to `b899516ea41903974e610c2aa7f1e02ea2d2aa0a0f6eae30b0010903b103d44a`. All1,312,150 occupancy cells,35anchors/routes,81zones and entrance match. Walk/shuttle11/11 and local Node24.14/24.21 generated checks pass. Hosted Linux remains required; truncated CI output cannot prove first differing coordinate/count/maxdelta.
 - Retention reports packageguard fixture correctioncf1156bc passes25/25 and cleanup owner has cleared epoch3/a22e96b4. Retention owns final verification and any production continuity identities; this lane creates no production test actor. Hosted QA queue is idle, prepared batch remains undispatched until corrected combined source pin.
+
+## Combined hosted verification in progress
+
+- Published campus156c2e32 and parent acceptance checkpointf1d0a7d2 are included in final combined candidate5bb46a442a2b6d1236b988a67d09c653f61ea766. First-person camera/menu/home/view-host files match the locally accepted8061dc2c source exactly.
+- Full CI38747641450 passed package policy and both Node22/24 Linux builds, clearing the campus generated-data drift gate. Full Node/Worker suites and download gates remain in progress; no final CI or release claim.
+- Astra dispatched runner-local Lagos roundtrip browser acceptance38747916891, queue commit94898568252989d6065c81590291c2d9d70ae537, exact application5bb46a44 and driver8c661b4f. Previous batch was complete; queue head/blob rechecked before update. This uses no production user data.
+- Browser/server handoff to retention completed: only own4412child28857 gracefully stopped, session66912 exited0. Fake save directory and tab460560920 preserved. Retention owns5176 and interactive browser until explicit return. This lane awaits hosted report/screens and eventual deployed-SHA first-person spot-check.
+
+## Hosted acceptance and fixture repair complete
+
+- Hosted38747916891 is successful on5bb46a44. Astra reviewed actual desktop/390/320 city-map screenshots and reports, with8,498dist entries verified and no console errors. Scope is map regression acceptance, not hosted first-person replay. Headless software pan measurements are not physical-device performance evidence. Artifacts: `/tmp/allworld-first-person-hosted-38747916891/`. Download/watch sessions21701/65827 both complete.
+- New mandatory progression-asset startup exposed four incomplete Worker fixtures. Astra reviewed fixture-only real-ASSETS bindings and copied progression payloads in the bespoke admin fixture. Existing9checks pass in7.07s; no runtime fallback, integrity relaxation or assertion changes. Publishede79d735a58625394d947aa06a32106fa0faac6c8; retention receives this exact source.
+- Read-only provider audit found no asynchronous cycle: progression snapshot installation is synchronous. All-city module initialization was already CPU-bound before extraction; retention owns bounded diagnosis of the long all-city test and five host harness failures. Four Miniflare eviction failures and the zero-row invariant also reproduce before extraction, but current10-versus-baseline2collection writes are not yet attributed and are not claimed cost-neutral.
+- Release policy provenance: the user's original CODEX-FIRST-PERSON-HANDOFF.md line24 links CODEX-ASSET-HANDOFF.md, whose release rules link `/Users/anthonyakpan/Documents/Allworld-notes/relay/DEPLOY.md`. That file hashes to `7c8d64783d069f5fee6df6fd3b3ecac9a032a38bab656d57639cdd366ffb6756`, dated by its header to owner instruction11October23:30. Step1 explicitly requires full Node/edge suites green except its one table-test retry exception. Retention has the exact path/quote; no baseline-failure waiver or production acceptance is inferred.
+- Direct human Phase6 continuation instruction was verified in retention turn01a13f5a-a54b-7b93-bef6-a226e0f26546: continue Phase6 and do not worry about usage because it reset. This is recorded separately from the unresolved test-gate policy; it does not waive test failures.
+- Next: retention integrates accepted fixture source, resolves remaining release gates or obtains an explicit applicable decision, performs one serialized deployment and live first-person proof in its sole tracked cleanup-owned actor. This lane creates no production test actor/home and does not operate the shared browser concurrently.

@@ -1,0 +1,433 @@
+import type { AuthoredContentBatch } from '../../../types/local-tales.ts'
+
+const batch: AuthoredContentBatch = {
+  countries: [
+    { countryId: 'kz', title: 'The Listening Score', premise: 'A fictional ensemble builds a shared sound piece in which each player may answer, pause, or leave space for another voice.', collection: 'Sounds in Conversation', rewardTitle: 'Listening Composer' },
+    { countryId: 'ws', title: 'The Folded Stage', premise: 'A fictional paper theatre changes shape as its makers decide who moves the scene and who watches.', collection: 'Scenes in Motion', rewardTitle: 'Paper Playwright' },
+    { countryId: 'ck', title: 'The Kinetic Paper Kite', premise: 'Fictional paper artists make a hanging form whose movement changes when its makers trade the pieces.', collection: 'Paper in Motion', rewardTitle: 'Kinetic Artist' },
+    { countryId: 'tm', title: 'Clay with Two Edges', premise: 'Fictional makers test whether an imperfect clay form can hold two different ideas at once.', collection: 'Forms in Dialogue', rewardTitle: 'Shape Shifter' },
+    { countryId: 'bn', title: 'The Color That Waited', premise: 'A fictional color study asks its artists when contrast helps a shared composition and when it overwhelms it.', collection: 'Colors in Balance', rewardTitle: 'Color Keeper' },
+    { countryId: 'za', title: 'A Chorus of Small Gestures', premise: 'Fictional performers compose a scene from gestures that can share attention without competing for a lead.', collection: 'Gestures Together', rewardTitle: 'Ensemble Maker' },
+    { countryId: 'md', title: 'The Print Turned Sideways', premise: 'A fictional printmaking group finds a new reading when one plate is rotated rather than corrected.', collection: 'Prints Reconsidered', rewardTitle: 'Print Reframer' },
+    { countryId: 'tc', title: 'The Sound after the Sound', premise: 'Fictional sound artists work with a final echo and decide whether it belongs to the composition or the room.', collection: 'Echoes Included', rewardTitle: 'Echo Listener' },
+    { countryId: 'dk', title: 'A Sculpture with a Loose Joint', premise: 'A fictional object sculpture changes when its makers decide whether a loose connection should be fixed or made expressive.', collection: 'Objects in Balance', rewardTitle: 'Patient Assembler' },
+    { countryId: 'tz', title: 'The Shadow That Changed Parts', premise: 'Fictional artists rearrange a shadow-play so its most interesting figure can trade roles with the one at the edge.', collection: 'Shadows in Play', rewardTitle: 'Shadow Director' },
+    { countryId: 'im', title: 'Paper That Refused to Lie Flat', premise: 'A fictional paper-folding session turns an unexpected curl into a new choice of form.', collection: 'Folds and Turns', rewardTitle: 'Fold Designer' },
+    { countryId: 'ae', title: 'Light through the Cutout', premise: 'Fictional makers compose with a cutout whose changing light makes the first arrangement impossible to keep.', collection: 'Light in Pieces', rewardTitle: 'Light Composer' },
+    { countryId: 'gs', title: 'The Silhouette with No Name', premise: 'A fictional drawing group uses anonymous silhouettes to let the viewer complete a scene without assigning a real identity.', collection: 'Unfinished Silhouettes', rewardTitle: 'Open-Ended Artist' },
+    { countryId: 'sh', title: 'The Letter with a Different Ending', premise: 'A fictional type-setting game lets its players rearrange a made-up letter until its ending belongs to the whole table.', collection: 'Letters in New Order', rewardTitle: 'Type Arranger' },
+    { countryId: 'rw', title: 'The Beat Passed On', premise: 'A fictional percussion circle builds a rhythm that can be continued by someone who has not heard its beginning.', collection: 'Rhythms Passed Forward', rewardTitle: 'Rhythm Keeper' },
+    { countryId: 'vc', title: 'The Green That Would Not Match', premise: 'Fictional painters let two greens remain different and discover how the disagreement changes their shared picture.', collection: 'Colors Kept Distinct', rewardTitle: 'Difference Painter' },
+    { countryId: 'eh', title: 'The Scene without a Caption', premise: 'Fictional artists decide whether a wordless scene needs a title or can trust its viewers to bring their own meaning.', collection: 'Scenes Left Open', rewardTitle: 'Quiet Storyteller' },
+    { countryId: 'pt', title: 'A Collage Made from Gaps', premise: 'A fictional collage is rearranged around its empty spaces after the makers notice what the crowded first version hides.', collection: 'Gaps in the Picture', rewardTitle: 'Space Arranger' },
+    { countryId: 'ph', title: 'The Toy with Two Instructions', premise: 'Fictional toy-makers turn a disagreement about how to play into two compatible rules rather than one winner.', collection: 'Play Both Ways', rewardTitle: 'Play Designer' },
+    { countryId: 'ls', title: 'The Object with a Soft Landing', premise: 'Fictional makers test how a fragile paper object can arrive safely without losing the motion that makes it interesting.', collection: 'Careful Landings', rewardTitle: 'Gentle Maker' },
+    { countryId: 'nc', title: 'The Blue beside the Orange', premise: 'Fictional artists explore how clashing colors can share a surface while keeping their own character.', collection: 'Colors in Tension', rewardTitle: 'Contrast Builder' },
+    { countryId: 'aw', title: 'The Picture Made from Almosts', premise: 'Fictional printmakers use near-matches and imperfect repeats as deliberate parts of one playful image.', collection: 'Almost Aligned', rewardTitle: 'Repeat Improviser' },
+    { countryId: 'bf', title: 'The Puppet with No Fixed Voice', premise: 'Fictional puppet-makers share one character by changing its voice and movement as the scene shifts.', collection: 'Voices for One Puppet', rewardTitle: 'Puppet Collaborator' },
+    { countryId: 'fm', title: 'A Mobile Balanced by Sound', premise: 'Fictional object artists adjust a hanging mobile by listening to how its pieces move near one another.', collection: 'Motion You Can Hear', rewardTitle: 'Balance Listener' },
+    { countryId: 'sr', title: 'The Two-Sided Mask', premise: 'Fictional mask-makers let two moods share one object and decide which side faces the audience at the ending.', collection: 'Both Sides of a Scene', rewardTitle: 'Mask Composer' },
+    { countryId: 'mu', title: 'The Pattern with a Missing Tile', premise: 'Fictional pattern-makers treat a missing tile as a playful invitation rather than an error that must disappear.', collection: 'Patterns with Space', rewardTitle: 'Pattern Inventor' },
+    { countryId: 'cv', title: 'The Unfinished Duet', premise: 'Fictional musicians leave a duet unfinished until each player can choose how to answer the other.', collection: 'Duets Still Growing', rewardTitle: 'Duet Partner' },
+    { countryId: 'je', title: 'The Scene Rebuilt from Scraps', premise: 'Fictional theatre-makers recompose a scene from leftover props after the original centerpiece is unavailable.', collection: 'Scenes from Scraps', rewardTitle: 'Resourceful Director' },
+    { countryId: 'gg', title: 'A Frame with Moving Edges', premise: 'Fictional photographers play with a frame that changes when a second viewer chooses what belongs inside it.', collection: 'Frames We Share', rewardTitle: 'Frame Finder' },
+    { countryId: 'ki', title: 'The Song with a Rest in It', premise: 'Fictional songwriters preserve a deliberate rest after a player mistakes silence for a missed cue.', collection: 'Rests and Replies', rewardTitle: 'Rest Keeper' },
+    { countryId: 'hn', title: 'The Sketch That Changed Hands', premise: 'Fictional illustrators pass one drawing between makers, each adding a choice without erasing the previous hand.', collection: 'Drawn Together', rewardTitle: 'Shared Sketcher' },
+    { countryId: 'ca', title: 'The Model with Removable Walls', premise: 'Fictional builders create a small object model whose removable walls let each collaborator test a different use.', collection: 'Models to Reimagine', rewardTitle: 'Flexible Builder' },
+    { countryId: 'mm', title: 'The Scene Played in Silence', premise: 'Fictional performers compose a silent scene where meaning comes from timing and attention rather than explanation.', collection: 'Silence in Motion', rewardTitle: 'Silent Scene Maker' },
+    { countryId: 'nr', title: 'A Tiny Gallery on One Card', premise: 'Fictional artists choose which three small images can stand together without pretending to tell one complete story.', collection: 'Three Images, Many Readings', rewardTitle: 'Miniature Curator' },
+    { countryId: 'am', title: 'The Piece with a Missing Color', premise: 'Fictional painters turn an unavailable pigment into a creative constraint and decide whether to substitute or redesign.', collection: 'The Missing Color', rewardTitle: 'Inventive Painter' },
+  ],
+  cities: [
+    {
+      cityId: 'almaty',
+      city: {
+        title: 'The Melody with a Missing Beat', desire: 'autonomy',
+        chapters: [
+          { title: 'A Rest in the Pattern', text: 'At Baum grove, fictional sound-maker Mira is arranging a two-player rhythm for a listening game. Her sequence is almost finished, except one beat is blank. Her collaborator Pavel keeps tapping through the gap, assuming it is a mistake, while Mira hears a pause that could let another person answer.' },
+          { title: 'Who Owns the Silence?', text: 'Mira does not want to claim the pause as hers if Pavel meant to fill it. He does not want to overwrite her composition by guessing. Arden, a game host at Almaty Botanical Garden, suggests that they try each version once and listen for what each asks of the other player.' },
+          { title: 'Three Ways to Play', text: 'You look around Baum grove and use the discovery activity as a moment to listen without rushing. Mira tries a filled beat, then a quiet pause, then a short answering sound from Pavel. The third version makes their roles audible without deciding that either person must lead every time.' },
+          { title: 'The Duet Stays Open', text: 'Mira marks the empty beat with a small circle and writes “answer, echo, or rest” beside it. Pavel can still choose to play through, but the score no longer labels that choice a correction. They leave space at the end for a second round with their roles reversed.' },
+        ],
+        approaches: [
+          { label: 'Ground the rehearsal in the practical visit', callback: 'Mira takes the familiar activity as a cue to repeat the rhythm at an unhurried pace.' },
+          { label: 'Take a listening pause', callback: 'The discovery activity helps Pavel notice that a rest changes how Mira’s phrase feels.' },
+          { label: 'Ask Arden or leave a quiet note', callback: 'Arden reminds them to make room for a reply without demanding one.' },
+        ],
+        dilemma: { prompt: 'How should Mira mark the blank beat in a duet neither player owns alone?', answers: ['Fill it herself so the score feels complete.', 'Label it as a possible answer or rest, then let each player choose.', 'Erase the whole passage because they disagree.'], correct: 1, explanation: 'An open cue preserves Mira’s pause and Pavel’s agency while making the shared score playable.' },
+        closing: 'The next time they perform the piece, the beat changes twice. Mira likes that the composition remembers both choices instead of pretending it had only one correct version.',
+        keepsake: { name: 'Three-Choice Rhythm Card', description: 'A hand-marked rhythm with one beat circled for an answer, an echo, or a deliberate rest.' },
+      },
+      country: {
+        title: 'The Listening Score', desire: 'belonging',
+        chapters: [
+          { title: 'A Table of Sounds', text: 'In this fictional Kazakhstan game thread, composer Anel is collecting short sounds for a tabletop score. One participant offers a soft two-note phrase; another replies with a loud repeated tap. Anel worries that the page will become a contest over whose sound deserves to be heard.' },
+          { title: 'No Solo Winner', text: 'At Kok-Tobe Park, Anel’s group tries placing the two phrases in sequence, then overlapping them. Neither arrangement feels complete to everyone. Arden, the game host at Almaty Botanical Garden, asks whether the score could give each sound a turn as caller and responder.' },
+          { title: 'Trade the Roles', text: 'You visit the Botanical Garden discovery point while Anel reorders the page. The soft phrase starts the first round and the tapping answers; then they switch. A third space lets a listener choose silence. The exercise is fictional, and no one is asked to represent a place or community.' },
+          { title: 'A Score That Belongs to the Group', text: 'Anel writes the roles as instructions rather than ranking the sounds. Participants can repeat, alter, or pass, and the final line returns to whichever sound began the round. The score becomes easier to share because each person can hear where their choice enters.' },
+        ],
+        approaches: [
+          { label: 'Use the practical activity as a rehearsal cue', callback: 'Anel repeats one seed activity and hears how its pace shapes a musical turn.' },
+          { label: 'Visit the discovery point', callback: 'The visit gives the group a quiet moment to compare its two arrangements.' },
+          { label: 'Talk with Arden or leave a quiet note', callback: 'Arden suggests trading caller and responder so the score can hold more than one lead.' },
+        ],
+        dilemma: { prompt: 'The two sounds compete when they play together. What should Anel try?', answers: ['Keep the louder sound as the permanent lead.', 'Remove one participant’s phrase from the page.', 'Give both phrases a turn to call and answer, with an optional rest.'], correct: 2, explanation: 'Trading roles creates an audible place for both contributors without forcing them into one texture.' },
+        closing: 'The group leaves with a score that can change on each play. Its shared ending is a return, not a verdict about which sound mattered more.',
+        keepsake: { name: 'Call-and-Answer Score', description: 'A small performance card showing two phrases trading lead, response, and an optional rest.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Rehearse one rhythm phrase', purpose: 'Give Mira a steady tempo before she decides whether the blank beat should remain open.', task: 'practical', count: 1 },
+          { label: 'Listen for the pause', purpose: 'Help Mira hear how the discovery activity changes the way her phrase can be answered.', task: 'discovery', count: 1 },
+          { label: 'Offer a duet response', purpose: 'Give Mira a considerate chance to test an answer without taking over her score.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Try the rhythm at two paces', purpose: 'Let Mira hear whether a repeated practical action changes the feel of the sequence.', task: 'practical', count: 2 },
+          { label: 'Return to the listening cue', purpose: 'Reconnect the shared score to the exact discovery activity that inspired its pause.', task: 'discovery-visit', count: 1 },
+          { label: 'Prepare a second-player turn', purpose: 'Help Mira leave an audible opening for a collaborator before the next rehearsal.', task: 'practical-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'apia',
+      city: {
+        title: 'The Shadow Puppet without a Center', desire: 'recognition',
+        chapters: [
+          { title: 'The Figure in Front', text: 'At Vaitele Park, fictional paper-maker Lani is building a short shadow scene. Each time she places one figure in the center, the other silhouettes look like a waiting audience. Her friend Sina wants the central figure to stay, but Lani thinks the story could belong to more than one character.' },
+          { title: 'A Scene Can Move', text: 'Lani tests a moving duet, then a line of small silhouettes that cross the paper screen together. Both versions have a different ending. Arden, the game host at Western Samoa Trust Estates Corporation Park, suggests asking what feeling each scene gives rather than who is supposed to be its hero.' },
+          { title: 'Try the Chorus', text: 'You look around the Trust Estates Corporation Park and let the discovery activity reset the rehearsal. Lani gives each silhouette one brief entrance, then lets the group overlap. Sina finds a way to make her figure visible without holding the center for the whole scene.' },
+          { title: 'An Ending with Several Edges', text: 'The final version ends with the silhouettes turning outward in different directions. No character speaks for the others. Lani and Sina keep the duet as an alternate ending, so the scene can feel intimate one night and collective another.' },
+        ],
+        approaches: [
+          { label: 'Settle into the practical activity', callback: 'Lani uses a familiar quiet moment to test the scene one figure at a time.' },
+          { label: 'Watch the scene from another side', callback: 'The discovery activity gives Sina a chance to see how the silhouettes read from a different angle.' },
+          { label: 'Ask Arden or leave a quiet note', callback: 'Arden encourages them to test what the scene expresses instead of naming a hero.' },
+        ],
+        dilemma: { prompt: 'How can Lani give Sina’s figure a meaningful place without making it the only center?', answers: ['Let the figures enter in turn and share the final image.', 'Keep the first silhouette in front throughout.', 'Remove Sina’s figure so the composition stays simple.'], correct: 0, explanation: 'Sequential entrances make room for each figure and give the ending a shape they compose together.' },
+        closing: 'Lani folds the chorus ending and the duet ending into the same sleeve. Their next rehearsal can begin with either one.',
+        keepsake: { name: 'Layered Silhouette Sleeve', description: 'A paper sleeve holding two puppet-scene endings: one intimate duet and one shared chorus.' },
+      },
+      country: {
+        title: 'The Folded Stage', desire: 'autonomy',
+        chapters: [
+          { title: 'The Scene Keeps Tilting', text: 'In this fictional Samoa game thread, paper-theatre maker Fia folds a small stage for a scene about a traveler who cannot decide which door to open. Each new fold makes one doorway taller and the other smaller. Fia wants the shape to invite a choice, not make it for the audience.' },
+          { title: 'Fold or Unfold', text: 'At Sagaga 3 District Office, a supplied game venue, Fia shows the stage to a friend who prefers a clear ending. Arden, host at Western Samoa Trust Estates Corporation Park, proposes a reversible hinge: the paper can hold either doorway forward, and the audience can choose which to see first.' },
+          { title: 'A Playable Object', text: 'You visit the discovery point at the Trust Estates Corporation Park while Fia changes the crease. The stage stands in two positions without tearing. Fia writes a short prompt on its back: “Which door would you open first, and what might you leave behind?”' },
+          { title: 'The Audience Moves the Set', text: 'At the next game rehearsal, a participant turns the stage before the scene starts. The performer follows the chosen doorway, then offers the other one as an alternate ending. The little theatre makes uncertainty playable, while the audience still controls its own answer.' },
+        ],
+        approaches: [
+          { label: 'Use the practical activity as a pause', callback: 'Fia resets the paper stage during a quiet moment instead of forcing a final fold.' },
+          { label: 'Visit the discovery point', callback: 'The visit gives Fia time to check whether both folds can stand on their own.' },
+          { label: 'Ask Arden or leave a quiet note', callback: 'Arden suggests that the audience should be able to turn the scene before it begins.' },
+        ],
+        dilemma: { prompt: 'The fold makes one doorway look like the obvious choice. How should Fia revise the stage?', answers: ['Make the preferred doorway permanent.', 'Add a reversible hinge so either doorway can face the audience.', 'Remove both doors and end the scene.'], correct: 1, explanation: 'The hinge makes the choice visible without selecting an answer for the audience.' },
+        closing: 'Fia keeps the hinge as part of the design. Each performance begins with a small invitation to turn the scene toward a different possibility.',
+        keepsake: { name: 'Reversible Paper Stage', description: 'A folded miniature set with a hinge that lets either doorway take the foreground.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Test one puppet entrance', purpose: 'Help Lani discover whether a small silhouette can be seen without owning the whole scene.', task: 'practical', count: 1 },
+          { label: 'Watch the shared ending', purpose: 'Give Lani another point of view on the chorus she and Sina are composing.', task: 'discovery', count: 1 },
+          { label: 'Offer a scene idea', purpose: 'Let Lani hear a collaborator’s suggestion while keeping the final composition hers to shape.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Rehearse both scene endings', purpose: 'Help Lani compare the duet and chorus as two intentional versions.', task: 'practical', count: 2 },
+          { label: 'Return for a silhouette view', purpose: 'Check how the discovery activity changes the scene’s closing image.', task: 'discovery-visit', count: 1 },
+          { label: 'Prepare a shared entrance order', purpose: 'Give each figure a place in the next rehearsal before the ending is chosen.', task: 'practical-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'ashgabat',
+      city: {
+        title: 'The Bowl with Two Horizons', desire: 'competence',
+        chapters: [
+          { title: 'A Rim That Slips', text: 'At First (Pervyy) Park, fictional clay-maker Selbi is shaping a shallow bowl for a tabletop composition. One side of its rim keeps sagging. Her partner calls it a flaw; Selbi thinks the uneven edge could frame two different views if they stop trying to force it level.' },
+          { title: 'A Shape to Test', text: 'They set a small paper figure at either side. From one angle it looks sheltered; from the other it looks ready to leave. Wren, the game host at Central Botanical Garden, asks them to rotate the bowl before deciding whether the shape needs repair.' },
+          { title: 'Turn the Piece', text: 'You look around First (Pervyy) Park and use the practical activity as a quiet break between trials. Selbi rotates the bowl, then adjusts only the base so it can rest safely. The rim stays uneven, but now its two heights create a deliberate frame for both figures.' },
+          { title: 'A Form That Holds Two Readings', text: 'Selbi names the piece “Near and Far.” Her partner chooses the figure that faces inward; Selbi chooses the one looking out. The bowl does not settle their disagreement. It gives their two readings a shared surface, which is what the composition needed.' },
+        ],
+        approaches: [
+          { label: 'Take a practical making pause', callback: 'Selbi returns to the clay with steadier hands after the familiar activity.' },
+          { label: 'Study the garden composition', callback: 'The discovery activity invites Selbi to rotate the bowl before judging its uneven rim.' },
+          { label: 'Talk with Wren or leave a quiet note', callback: 'Wren suggests changing the viewing angle before changing the material.' },
+        ],
+        dilemma: { prompt: 'The rim is uneven but can frame both figures. What should Selbi do?', answers: ['Flatten the rim completely so it matches on every side.', 'Keep the shape and test whether it can rest securely at two angles.', 'Discard the bowl because it changed during making.'], correct: 1, explanation: 'Testing the base addresses stability while preserving the expressive shape Selbi has discovered.' },
+        closing: 'Selbi leaves a tiny mark beneath the base to remember the adjustment. Her next piece can begin with an irregular edge on purpose.',
+        keepsake: { name: 'Two-Horizon Clay Study', description: 'A small study of an uneven rim that frames two figures from different viewing angles.' },
+      },
+      country: {
+        title: 'Clay with Two Edges', desire: 'fairness',
+        chapters: [
+          { title: 'One Lump, Two Ideas', text: 'In this fictional Turkmenistan game thread, maker Murad and collaborator Ayna each have a different plan for one lump of clay. Murad wants a smooth arch; Ayna wants two low forms facing each other. They have time to make only one object before their rehearsal ends.' },
+          { title: 'The Shape of a Compromise', text: 'At Inspiration Park, Murad rolls the clay into a narrow ridge while Ayna presses two shallow hollows beside it. The first attempt collapses. Wren, host at Central Botanical Garden, asks whether they can test a form that keeps both edges visible rather than making either plan disappear.' },
+          { title: 'A Shared Test', text: 'You visit the discovery point at the Central Botanical Garden as they make a second attempt. Murad supports a curved bridge between the hollows; Ayna chooses where the bridge should touch. They take turns adjusting the piece and stop when it can stand without anyone holding it.' },
+          { title: 'Two Signatures', text: 'The resulting form is neither an arch nor a pair of separate bowls. Murad and Ayna give it a made-up title, “Meeting Place,” and each presses a different small mark into its underside. Their agreement is visible without making their original ideas identical.' },
+        ],
+        approaches: [
+          { label: 'Try a practical reset', callback: 'The practical activity gives both makers a moment to choose what can be tested next.' },
+          { label: 'Visit the garden reference', callback: 'The discovery point helps Murad and Ayna see their piece from more than one angle.' },
+          { label: 'Ask Wren or leave a quiet note', callback: 'Wren suggests giving each maker one adjustment before they judge the shared shape.' },
+        ],
+        dilemma: { prompt: 'One object must carry both collaborators’ ideas. How can they proceed fairly?', answers: ['Let Murad make the arch while Ayna watches.', 'Make two separate pieces and abandon the shared task.', 'Test a connecting form and let each person make one meaningful adjustment.'], correct: 2, explanation: 'Alternating control lets both ideas shape one stable object without requiring either maker to surrender completely.' },
+        closing: 'They leave the form on the worktable with both marks visible underneath. The next pair of makers can decide whether the piece is finished or wants another turn.',
+        keepsake: { name: 'Two-Maker Clay Token', description: 'A small clay form with a bridge between two hollows and a maker’s mark from each collaborator.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Reset the making table', purpose: 'Give Selbi a patient start before she tests whether the bowl can rest on its adjusted base.', task: 'practical', count: 1 },
+          { label: 'Rotate the clay study', purpose: 'Help Selbi compare the two views that make the irregular rim useful.', task: 'discovery', count: 1 },
+          { label: 'Share a second angle', purpose: 'Let Selbi hear another interpretation without requiring her to copy it.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Test the bowl from both sides', purpose: 'Check that Selbi’s clay form holds its two readings after a repeat trial.', task: 'practical', count: 2 },
+          { label: 'Revisit the garden view', purpose: 'Give Selbi a second chance to consider the composition from another angle.', task: 'discovery-visit', count: 1 },
+          { label: 'Prepare a stable base test', purpose: 'Help Selbi distinguish the bowl’s expressive rim from its practical support.', task: 'practical-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'avarua',
+      city: {
+        title: 'The Mobile That Turned Slowly', desire: 'competence',
+        chapters: [
+          { title: 'A Quiet Turn', text: 'At Raemaru Park, fictional paper artist Tere makes a hanging mobile for a tabletop play scene. One paper shape turns so slowly that her collaborator thinks it is stuck. Tere sees that its pause gives the faster pieces a moment to settle.' },
+          { title: 'A Different Kind of Motion', text: 'Arden, the game host at Nikao Social Centre, suggests comparing the piece from below and from the side. The group notices that a slow turn changes the silhouette more than the quick spin does.' },
+          { title: 'Balance without Uniformity', text: 'You look around Raemaru Park, then Tere shifts one string and tries the mobile again. She does not speed every piece up. Instead, she moves the slow form closer to the center so the other shapes can pass it without colliding.' },
+          { title: 'The Pause Becomes Part', text: 'The mobile now has a deliberate quiet turn in its sequence. Tere names the slow shape “The Listener.” Her collaborators add their own titles to the faster pieces, and the group keeps the gentle pause that first looked like a fault.' },
+        ],
+        approaches: [
+          { label: 'Take a practical reset', callback: 'Tere gives the hanging pieces a moment to settle before changing their balance.' },
+          { label: 'View the mobile from below', callback: 'The discovery activity helps Tere notice the slow turn’s changing silhouette.' },
+          { label: 'Ask Arden or leave a quiet note', callback: 'Arden points out that different speeds can make one composition easier to follow.' },
+        ],
+        dilemma: { prompt: 'One paper shape moves slower than the others. How should Tere respond?', answers: ['Remove it so the mobile has one shared speed.', 'Move it toward the center and test whether its pause helps the rest pass.', 'Add weight until it spins as fast as the others.'], correct: 1, explanation: 'Changing the arrangement tests Tere’s idea while preserving the distinctive slow movement.' },
+        closing: 'The group keeps the uneven rhythm and lets each viewer decide which piece is leading. Their small mobile becomes a playable scene about attention.',
+        keepsake: { name: 'Slow-Turn Mobile', description: 'A miniature paper mobile with one central piece that turns more slowly than the rest.' },
+      },
+      country: {
+        title: 'The Kinetic Paper Kite', desire: 'autonomy',
+        chapters: [
+          { title: 'Pieces on the String', text: 'In this fictional Cook Islands game thread, paper artist Moana builds a hanging shape from three folded forms. Her partner wants to fix them in one arrangement; Moana wants the pieces to trade positions. The first test tangles the paper and makes the string hard to handle.' },
+          { title: 'A Safer Experiment', text: 'At Nikao Social Centre, Arden asks them to test the movement with a short loose loop before adding another piece. The problem is not a real-world flight or weather claim; this is a small fictional tabletop sculpture with a moving joint.' },
+          { title: 'Trade the Pieces', text: 'You visit Raemaru Park’s practical activity while Moana makes a simple paper connector. She lets each collaborator choose one shape to move, then checks the mobile between turns. The rearrangement becomes part of the work rather than a fight over the first design.' },
+          { title: 'A Moving Agreement', text: 'The finished mobile can be rearranged by loosening one connector. Moana’s partner keeps the original order as an alternate, and both versions earn a place on the display card.' },
+        ],
+        approaches: [
+          { label: 'Reset the paper pieces', callback: 'Moana pauses the making session and untangles the connector before the next test.' },
+          { label: 'Compare the mobile in place', callback: 'The discovery activity helps Moana decide whether a piece has room to move.' },
+          { label: 'Talk with Arden or leave a quiet note', callback: 'Arden suggests testing one rearrangement at a time so each maker can see its effect.' },
+        ],
+        dilemma: { prompt: 'The first mobile tangles when its pieces trade places. What should Moana change?', answers: ['Lock every piece in the first arrangement.', 'Add many more pieces so they balance each other.', 'Test a simple loose connector and let collaborators move one piece per turn.'], correct: 2, explanation: 'A small reversible test protects the work and preserves the shared choice to rearrange it.' },
+        closing: 'The display card shows both arrangements and how to switch between them. Moana’s group treats change as a feature they can control.',
+        keepsake: { name: 'Reversible Paper Connector', description: 'A looped paper joint that lets a small mobile change order without remaking its parts.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Let the mobile settle', purpose: 'Give Tere a steady starting point before she adjusts the slow-turning shape.', task: 'practical', count: 1 },
+          { label: 'Watch one quiet rotation', purpose: 'Help Tere see how the discovery view changes the mobile’s silhouette.', task: 'discovery', count: 1 },
+          { label: 'Suggest a piece title', purpose: 'Give Tere a playful response while leaving her collaborators free to name their own shapes.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Try two mobile arrangements', purpose: 'Let Tere compare the original balance with the version that centers the slow shape.', task: 'practical', count: 2 },
+          { label: 'Return to the moving silhouette', purpose: 'Reconnect the mobile to the exact discovery activity that inspired its quiet turn.', task: 'discovery-visit', count: 1 },
+          { label: 'Prepare a gentle rotation test', purpose: 'Help Tere check the mobile after one adjustment instead of changing every piece.', task: 'practical-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'bsb',
+      city: {
+        title: 'The Color That Would Not Blend', desire: 'autonomy',
+        chapters: [
+          { title: 'Two Reds on One Page', text: 'At Peliunan Park, fictional poster-maker Hana is composing a bright paper panel with her friend Iskandar. He wants the red shapes blended into one field; Hana likes the sharp boundary where they meet. They disagree about whether the contrast looks unfinished.' },
+          { title: 'Cover or Compare', text: 'Uri, the game host at Taman Jubli Perak Sultan Haji Hassanal Bolkiah, suggests they place a small test beside the full panel. The choice is not to declare a color correct, but to see whether both versions can serve the playful poster they are making.' },
+          { title: 'A Folded Test', text: 'You look around Peliunan Park and help Hana fold the spare paper into two windows. One hides the boundary; the other frames it. Iskandar notices that the split version draws attention to the shapes instead of making them fight for the same space.' },
+          { title: 'Contrast by Choice', text: 'Hana keeps the edge and adds a narrow neutral strip where the colors meet. Iskandar chooses the smoother version for the back of the card. The poster now offers two readings, and neither friend has to pretend their first reaction vanished.' },
+        ],
+        approaches: [
+          { label: 'Arrange a small color test', callback: 'Hana uses the practical activity to prepare a manageable comparison before changing the large panel.' },
+          { label: 'Look at the paper in place', callback: 'The discovery activity gives Hana a fresh view of the color boundary.' },
+          { label: 'Ask Uri or leave a quiet note', callback: 'Uri suggests comparing two versions before deciding what the colors need.' },
+        ],
+        dilemma: { prompt: 'Hana and Iskandar disagree about a sharp color boundary. What should they do?', answers: ['Blend the colors everywhere so the disagreement disappears.', 'Make a small side-by-side test and keep the version each can explain.', 'Ask Uri to choose which friend is right.'], correct: 1, explanation: 'A reversible comparison shows what each design does without making the choice personal.' },
+        closing: 'The poster’s split face becomes the feature Hana and Iskandar remember. They leave the next color decision open for whoever adds the final paper shape.',
+        keepsake: { name: 'Two-Window Color Test', description: 'A folded paper viewer that compares a blended patch with a crisp color boundary.' },
+      },
+      country: {
+        title: 'The Color That Waited', desire: 'recognition',
+        chapters: [
+          { title: 'The Unused Swatch', text: 'In this fictional Brunei game thread, colorist Nabil lays out a set of made-up paint swatches for a group picture. The palest swatch has not been chosen by anyone. He wonders whether to remove it from the palette or give it a job that does not steal the whole composition.' },
+          { title: 'A Small Place to Begin', text: 'At Golden Jubilee Crown Park, Nabil tries the pale color as a narrow frame. Uri, host at Taman Jubli Perak Sultan Haji Hassanal Bolkiah, asks the group to describe what they notice before assigning the swatch a meaning.' },
+          { title: 'Let the Viewer Finish', text: 'You visit the discovery point at Taman Jubli Perak Sultan Haji Hassanal Bolkiah. The group turns the paper panel sideways and finds that the pale strip makes the bold shapes feel more separate. They agree it can stay as an edge, not as the story’s centerpiece.' },
+          { title: 'A Swatch with a Place', text: 'Nabil labels the swatch “room” and leaves its interpretation open. The group keeps the name as a game choice, not a claim about any real tradition. The once-unused color now helps the other marks show up.' },
+        ],
+        approaches: [
+          { label: 'Set the swatches out again', callback: 'Nabil starts from the actual palette rather than guessing what the pale color should mean.' },
+          { label: 'Turn the composition', callback: 'The discovery visit helps the group see the pale edge in a different relation to the bold shapes.' },
+          { label: 'Ask Uri or leave a quiet note', callback: 'Uri invites the group to notice the color before giving it a fixed meaning.' },
+        ],
+        dilemma: { prompt: 'No one has chosen the palest swatch. How can Nabil include it?', answers: ['Remove it before anyone can suggest a use.', 'Make it the largest shape so its presence is undeniable.', 'Try it as a narrow edge and let the group decide what it contributes.'], correct: 2, explanation: 'A modest test gives the swatch a visible place without forcing one interpretation.' },
+        closing: 'The finished game panel uses every color at a different scale. Nabil keeps the pale edge small enough to support the composition, yet clear enough to be seen.',
+        keepsake: { name: 'Room Swatch', description: 'A pale paper strip tested as a quiet border around a set of more saturated shapes.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Prepare two color windows', purpose: 'Help Hana compare the blended and divided versions before deciding on the poster.', task: 'practical', count: 1 },
+          { label: 'Recheck the color boundary', purpose: 'Give Hana a fresh discovery view of the red shapes she and Iskandar are composing.', task: 'discovery', count: 1 },
+          { label: 'Offer one viewer reaction', purpose: 'Let Hana hear what a player notices without asking them to settle the design disagreement.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Test both color treatments', purpose: 'Help Hana compare a blended field and a crisp edge using the same paper shapes.', task: 'practical', count: 2 },
+          { label: 'Return to the poster view', purpose: 'Check whether the discovery view changes how the two reds share the page.', task: 'discovery-visit', count: 1 },
+          { label: 'Prepare the final paper layer', purpose: 'Let Hana choose one small adjustment after she has seen the color test.', task: 'practical-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'cape-town',
+      city: {
+        title: 'The Frame that Would Not Pick a Star', desire: 'belonging',
+        chapters: [
+          { title: 'A Two-Person Photograph', text: 'At Green Point Park, fictional photographer Zola is making a paper-frame challenge with her friend Ben. The frame can show only one side of their invented scene at a time. Each keeps choosing a different detail, and neither wants their favorite to disappear.' },
+          { title: 'Look, Then Move', text: 'Jesse, the game host at Green Point Park, asks them to try the frame at three heights. The change does not reveal a hidden fact; it lets the artists decide what their made-up scene might emphasize.' },
+          { title: 'A Frame with Hinges', text: 'You look around Green Point Park, then Zola folds a second flap into the frame. Ben can open it from the other side. Their scene alternates between a close view and a wide one, so the challenge becomes a playful turn-taking game.' },
+          { title: 'Two Pictures, One Scene', text: 'Zola writes a different caption for each opening and leaves the center unnamed. Ben adds a third caption that connects the views. Their frame no longer asks who noticed the best detail; it asks how one scene can hold several.' },
+        ],
+        approaches: [
+          { label: 'Reset the frame challenge', callback: 'Zola puts the paper frame back to its starting position before trying another angle.' },
+          { label: 'Look from a different height', callback: 'The discovery activity gives Zola a new way to compose the same invented scene.' },
+          { label: 'Ask Jesse or leave a quiet note', callback: 'Jesse suggests making the frame adjustable so both artists can choose a view.' },
+        ],
+        dilemma: { prompt: 'The paper frame can show only one favorite detail at once. What should Zola try?', answers: ['Add a second opening that reveals a different view.', 'Let Ben’s preferred detail fill the whole frame.', 'End the challenge because the scene has too many details.'], correct: 0, explanation: 'A second opening turns the disagreement into a repeatable way to see the scene differently.' },
+        closing: 'The group pins both captions beside the frame. The next player can choose which view to open first, and can still change their mind.',
+        keepsake: { name: 'Hinged Paper Frame', description: 'A small frame with two openings, each giving the same fictional scene a different emphasis.' },
+      },
+      country: {
+        title: 'A Chorus of Small Gestures', desire: 'recognition',
+        chapters: [
+          { title: 'No Lead Gesture', text: 'In this fictional South Africa game thread, movement-maker Ayanda is arranging a short silent chorus. One performer has a large sweeping gesture; another has a precise movement that is easy to miss. Ayanda wants the scene to make both choices visible without forcing either performer to imitate the other.' },
+          { title: 'Change the Timing', text: 'At Arderne Gardens, the group tries the large gesture first, then the small one. Jesse, host at Green Point Park, asks them to repeat the sequence with more space between movements. The pauses let the small gesture register.' },
+          { title: 'Pass the Lead', text: 'You visit the discovery point at Green Point Park. Ayanda gives each movement one turn in front, then asks the performers to choose a gesture they want to echo. The chorus changes with each pass, and the performers can decline to repeat a movement.' },
+          { title: 'A Shared Closing Shape', text: 'The scene ends with everyone choosing a still pose rather than one final lead. Ayanda names the piece “After the Wave.” The performers keep their own movement styles while making a picture they can hold together.' },
+        ],
+        approaches: [
+          { label: 'Rehearse the practical sequence', callback: 'Ayanda uses the familiar activity as a timing cue before the chorus begins.' },
+          { label: 'Visit the garden viewpoint', callback: 'The discovery visit gives the performers a different place from which to read the sequence.' },
+          { label: 'Ask Jesse or leave a quiet note', callback: 'Jesse suggests leaving enough pause for each gesture to be seen.' },
+        ],
+        dilemma: { prompt: 'One movement keeps taking over the silent chorus. What can Ayanda change?', answers: ['Remove the performer with the quieter movement.', 'Give each gesture a turn and let performers choose whether to echo it.', 'Ask everyone to copy the largest movement.'], correct: 1, explanation: 'Turns and optional echoes allow distinct movements to stay visible without making imitation compulsory.' },
+        closing: 'The performers leave with a closing image that belongs to the whole group. Ayanda remembers that recognition can come from timing, not only size.',
+        keepsake: { name: 'Gesture Sequence Card', description: 'A card showing three movement turns, two pauses, and a final still pose chosen together.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Fold the second frame opening', purpose: 'Help Zola turn one fixed photo challenge into a playful choice between two views.', task: 'practical', count: 1 },
+          { label: 'Try a lower frame angle', purpose: 'Give Zola a new discovery view of the same invented scene.', task: 'discovery', count: 1 },
+          { label: 'Choose which flap to open', purpose: 'Let a player contribute an order to Zola’s framing game without settling its meaning.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Play all frame views', purpose: 'Help Zola compare both openings and the connecting caption in her paper challenge.', task: 'practical', count: 3 },
+          { label: 'Return to the close-up', purpose: 'Check how the discovery view changes the scene before the next caption is written.', task: 'discovery-visit', count: 1 },
+          { label: 'Prepare a third caption', purpose: 'Give Zola a way to connect two views while preserving their different details.', task: 'practical-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'chisinau',
+      city: {
+        title: 'The Photograph with a Moving Edge', desire: 'curiosity',
+        chapters: [
+          { title: 'A Crop That Changes the Mood', text: 'At Valea Morilor Park, fictional image-maker Irina is doing a photo-framing challenge with Nico, the game host at Rose Valley Park. They use a blank paper window over a made-up picture. Each time Irina narrows the view, the scene seems to tell a different story.' },
+          { title: 'One Image, Several Readings', text: 'Nico wants to settle on the most cheerful crop. Irina is curious about the tense version that appears when the frame cuts off a smiling face. She does not want to call that reading true; it is one playful possibility the paper window creates.' },
+          { title: 'Invite a Viewer', text: 'You look around Valea Morilor Park and Irina moves the frame in small steps. She asks a player to name what they notice before suggesting a caption. The response surprises both artists: the viewer focuses on the blank space, not the face.' },
+          { title: 'Keep the Edge Mobile', text: 'Irina marks three places where the frame can rest, but leaves the paper window loose. The challenge now rewards attention, not a correct interpretation. Nico writes the ending: “Move the edge until you can explain what changed.”' },
+        ],
+        approaches: [
+          { label: 'Prepare the frame window', callback: 'Irina cuts a clean edge for the challenge before placing it on the invented picture.' },
+          { label: 'Look through the moving crop', callback: 'The discovery activity helps Irina notice how the blank space changes the scene.' },
+          { label: 'Ask Nico or leave a quiet note', callback: 'Nico invites the viewer to name a detail before anyone proposes a caption.' },
+        ],
+        dilemma: { prompt: 'The crop creates two different moods. What should Irina call the right one?', answers: ['Choose the cheerful view because it is easier to share.', 'Let the viewer move the crop and explain what changed.', 'Reject the tense view as a mistake.'], correct: 1, explanation: 'The exercise is about noticing how framing changes a reading, not deciding which invented mood is factual.' },
+        closing: 'Irina leaves the paper window beside the picture. Each player can start from a different edge and still arrive at a reasoned interpretation.',
+        keepsake: { name: 'Sliding Frame Window', description: 'A movable paper crop with three resting marks for exploring different readings of one image.' },
+      },
+      country: {
+        title: 'The Print Turned Sideways', desire: 'competence',
+        chapters: [
+          { title: 'A Misaligned Plate', text: 'In this fictional Moldova game thread, printmaker Doru is layering two made-up shapes. The registration is imperfect: one shape sits several finger-widths away from the other. His first instinct is to correct the plate, but the overlap now looks like a new object.' },
+          { title: 'Rotate Before Repair', text: 'At the Botanical Garden, Doru turns the paper a quarter turn. Nico, host at Rose Valley Park, asks him to print a small test before changing the original block. The sideways version makes the two shapes appear to chase each other rather than collide.' },
+          { title: 'A Repeat with Variation', text: 'You visit the Rose Valley Park discovery point as Doru makes a second test. He keeps the offset, but varies the ink pressure so the first shape remains clear. His game companion gets to choose which print to display and which one to use as the next starting point.' },
+          { title: 'The Error Becomes a Rule', text: 'Doru writes a playful rule on the print sleeve: “Turn the plate before you fix it.” It is not a claim about a real printmaking practice; it is a reminder from this fictional experiment. The next print can still be aligned if the maker wants.' },
+        ],
+        approaches: [
+          { label: 'Make a small test print', callback: 'Doru checks the layer on a scrap before changing his larger composition.' },
+          { label: 'Rotate the paper view', callback: 'The discovery visit gives Doru a new reading of the offset shapes.' },
+          { label: 'Ask Nico or leave a quiet note', callback: 'Nico reminds Doru that a reversible test can show whether the offset is useful.' },
+        ],
+        dilemma: { prompt: 'The print is misaligned, but the offset creates a lively shape. What should Doru do?', answers: ['Rotate the paper and make a small test before correcting the plate.', 'Erase the second layer and keep only the first.', 'Call the offset a permanent rule for every print.'], correct: 0, explanation: 'A small reversible test lets Doru learn from the accident without making it compulsory.' },
+        closing: 'Doru stores both versions side by side. His skill grows through comparing what a change does, not by hiding that the first attempt wandered.',
+        keepsake: { name: 'Sideways Test Print', description: 'A two-layer paper print with one offset version and one note inviting the next maker to rotate it.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Set up the frame window', purpose: 'Give Irina a clear starting edge for the photo-framing challenge.', task: 'practical', count: 1 },
+          { label: 'Try a second crop', purpose: 'Help Irina see how the discovery activity changes the blank space around her picture.', task: 'discovery', count: 1 },
+          { label: 'Name one noticed detail', purpose: 'Let Irina hear a viewer’s observation before the group invents a caption.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Compare three frame positions', purpose: 'Help Irina test the resting marks that make her crop challenge playable.', task: 'practical', count: 3 },
+          { label: 'Return to the blank-space view', purpose: 'Revisit the discovery angle that changed the scene’s first reading.', task: 'discovery-visit', count: 1 },
+          { label: 'Prepare a caption-free round', purpose: 'Give players time to notice the crop before interpreting Irina’s image.', task: 'practical-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'cockburn-town',
+      city: {
+        title: 'The Puzzle with One Empty Piece', desire: 'curiosity',
+        chapters: [
+          { title: 'A Gap in the Pattern', text: 'At Historic Lighthouse Park, fictional puzzle-maker Selah lays out a paper pattern for a small cooperative game. One square is missing. Her partner reaches for a blank replacement, while Selah wonders whether the empty space might be the clue that makes the pattern interesting.' },
+          { title: 'Fill It or Play It', text: 'Indigo, the game host at Lester Williams Community Park, suggests testing both versions. If the gap is filled, the pattern becomes predictable; left open, it invites each player to guess what could fit. Selah wants the game to feel complete without making every answer identical.' },
+          { title: 'A Piece Made of Questions', text: 'You look around Historic Lighthouse Park and Selah offers three paper shapes that could fit the gap. None is labelled correct. Players place one, explain what they noticed, and may swap it after hearing another idea.' },
+          { title: 'The Empty Space Remains', text: 'Selah keeps the gap on the board and stores the three candidate pieces in a sleeve. The game ends when everyone has offered one possibility, not when a single hidden answer is found.' },
+        ],
+        approaches: [
+          { label: 'Lay out the puzzle pieces', callback: 'Selah gives each paper shape a clear place before the group starts interpreting the gap.' },
+          { label: 'Study the pattern from a new side', callback: 'The discovery activity helps Selah notice a different relation between the shapes.' },
+          { label: 'Ask Indigo or leave a quiet note', callback: 'Indigo suggests inviting reasons for a guess instead of scoring one answer as correct.' },
+        ],
+        dilemma: { prompt: 'The group wants to fill the puzzle gap. How can Selah preserve the playful question?', answers: ['Offer several possible pieces and let each player explain one choice.', 'Draw the missing square herself and end the discussion.', 'Hide all the pieces until someone names the exact answer.'], correct: 0, explanation: 'Several explainable options make the gap a shared puzzle rather than a test with a secret answer.' },
+        closing: 'A player later places the empty square first, then surrounds it with shapes. Selah adds this as another valid way to begin.',
+        keepsake: { name: 'Question-Piece Sleeve', description: 'A paper sleeve holding three possible puzzle shapes and one empty outline.' },
+      },
+      country: {
+        title: 'The Sound after the Sound', desire: 'curiosity',
+        chapters: [
+          { title: 'An Ending that Lingers', text: 'In this fictional Turks and Caicos Islands game thread, sound-maker Imani records a short sequence of taps and claps. She hears an imagined echo at the end, though no second player has made it. Her partner wants to add a final note and close the piece.' },
+          { title: 'Leave Space for Listening', text: 'At Historic Lighthouse Park, Imani asks the group to wait for one breath after the last sound. Indigo, host at Lester Williams Community Park, suggests they call the pause an invitation rather than pretending an echo was actually heard.' },
+          { title: 'Two Endings', text: 'You visit the discovery point at Lester Williams Community Park. The group tries one ending with a final note and another with a quiet rest. Players can choose whether to answer the imagined sound or let it remain unresolved.' },
+          { title: 'An Echo the Audience Can Make', text: 'Imani writes a small instruction: after the last tap, choose to echo, answer with a different sound, or stay still. The audience can shape the ending without being told what they must hear.' },
+        ],
+        approaches: [
+          { label: 'Repeat the short sound sequence', callback: 'Imani begins with the known taps so the ending can change without changing the whole piece.' },
+          { label: 'Visit the quiet listening point', callback: 'The discovery activity gives the group a moment to hear the silence after the phrase.' },
+          { label: 'Ask Indigo or leave a quiet note', callback: 'Indigo suggests naming the pause as an invitation, not a factual echo.' },
+        ],
+        dilemma: { prompt: 'The group imagines an echo after the last sound. How should Imani end the piece?', answers: ['Add a required final note so no silence remains.', 'Say that a real echo was heard and write it into the score.', 'Offer echo, alternate answer, or stillness as three endings.'], correct: 2, explanation: 'The score can invite an imagined echo while staying honest about what the players choose to create.' },
+        closing: 'Each performance ends differently. Imani likes that the final sound belongs to the listeners who decide whether to make one.',
+        keepsake: { name: 'Three-Ending Sound Card', description: 'A small score that gives the audience a choice to echo, answer, or leave a rest.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Set out the possible pieces', purpose: 'Help Selah make the pattern gap playable without hiding a secret answer.', task: 'practical', count: 1 },
+          { label: 'Look at the gap from another side', purpose: 'Give Selah a fresh discovery view before she offers the three candidate shapes.', task: 'discovery', count: 1 },
+          { label: 'Explain one possible fit', purpose: 'Let Selah hear a player’s reason for choosing a paper shape.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Play three puzzle arrangements', purpose: 'Help Selah compare the empty start with the candidate-piece versions.', task: 'practical', count: 3 },
+          { label: 'Return to the open pattern', purpose: 'Revisit the discovery view that made the missing square feel like a clue.', task: 'discovery-visit', count: 1 },
+          { label: 'Prepare a no-score round', purpose: 'Let each player explain a possible fit without turning the puzzle into a test.', task: 'practical-visit', count: 1 },
+        ],
+      },
+    },

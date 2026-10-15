@@ -1,0 +1,388 @@
+import type { AuthoredContentBatch } from '../../../types/local-tales.ts'
+
+const batch: AuthoredContentBatch = {
+  countries: [
+    { countryId: 'nz', title: 'The Pocket Stage', premise: 'A fictional tabletop theatre kit passes between Auckland and Wellington; each maker invents a different stage effect from the same modest props.', collection: 'Scenes Made by Hand', rewardTitle: 'Keeper of the Pocket Stage' },
+    { countryId: 'rs', title: 'The Counterweight Cabinet', premise: 'A fictional cabinet of kinetic toy puzzles invites each contributor to solve a different motion problem with a few reusable pieces.', collection: 'Small Motions, Many Hands', rewardTitle: 'Maker of the Counterweight Cabinet' },
+    { countryId: 'at', title: 'The Unfinished Measure', premise: 'A fictional set of makers compares drafts and decides which details deserve another pass.', collection: 'Measures in Progress', rewardTitle: 'Steward of the Draft' },
+    { countryId: 'bd', title: 'A Place for the Next Voice', premise: 'A fictional message board changes as contributors make room for people who have not yet spoken.', collection: 'The Unclaimed Line', rewardTitle: 'Listener of the Next Page' },
+    { countryId: 'bl', title: 'The Small Envelope', premise: 'A fictional exchange of folded notes asks its keepers to protect privacy while passing along useful intentions.', collection: 'Notes Folded Twice', rewardTitle: 'Keeper of Small Promises' },
+    { countryId: 'by', title: 'The Repaired Index', premise: 'A fictional shared index has missing labels; each correction must keep uncertainty visible.', collection: 'Labels Restored', rewardTitle: 'Index Tender' },
+    { countryId: 'ch', title: 'The Useful Pause', premise: 'A fictional group learns that a quiet pause can be part of a careful decision rather than a failure to act.', collection: 'Intervals of Care', rewardTitle: 'Keeper of the Interval' },
+    { countryId: 'cr', title: 'The Borrowed Pencil', premise: 'A fictional planning circle shares one pencil and must decide when to add, erase or leave a proposal open.', collection: 'Marks Left Lightly', rewardTitle: 'Caretaker of the Draft' },
+    { countryId: 'de', title: 'The Room for Revisions', premise: 'A fictional display team makes room for corrections without hiding the earlier version of an idea.', collection: 'Versions in View', rewardTitle: 'Revision Keeper' },
+    { countryId: 'ee', title: 'The Listening Grid', premise: 'A fictional grid collects observations from people with different questions, and its editor resists forcing them into agreement.', collection: 'Signals Kept Distinct', rewardTitle: 'Keeper of the Listening Grid' },
+    { countryId: 'fj', title: 'The Shared Tide Line', premise: 'A fictional planning sheet has one marked line and several interpretations; its contributors must distinguish proposal from certainty.', collection: 'Lines for Later', rewardTitle: 'Reader of the Open Line' },
+    { countryId: 'gd', title: 'The Missing Caption', premise: 'A fictional collection of sketches is separated from its captions, and its helpers must reconnect them without guessing.', collection: 'Captions Rejoined', rewardTitle: 'Caption Finder' },
+    { countryId: 'gq', title: 'The Unsent Invitation', premise: 'A fictional organizer drafts an invitation whose wording could pressure its reader, then finds a way to make refusal easy.', collection: 'Invitations Without Pressure', rewardTitle: 'Host of an Open Door' },
+    { countryId: 'hk', title: 'The Pocket Schedule', premise: 'A fictional shared schedule is too crowded to help anyone choose; its editor must make priorities legible without deciding for others.', collection: 'Time Left to Choose', rewardTitle: 'Keeper of the Pocket Page' },
+    { countryId: 'ie', title: 'The Second Ending', premise: 'A fictional story circle discovers that a neat ending would erase an unresolved question, and chooses how to close honestly.', collection: 'Endings Still Open', rewardTitle: 'Keeper of the Second Ending' },
+    { countryId: 'is', title: 'The Warm Margin', premise: 'A fictional note-taker adds care to practical instructions without promising that every reader will need the same thing.', collection: 'Margins for Many Needs', rewardTitle: 'Tender of the Margin' },
+    { countryId: 'kg', title: 'The Fold Between Pages', premise: 'A fictional message travels between two notebooks; each keeper decides what context must travel with it.', collection: 'Context Carried Forward', rewardTitle: 'Keeper of the Fold' },
+    { countryId: 'kw', title: 'The Borrowed Hour', premise: 'A fictional group negotiates a limited shared hour, balancing one person’s urgent task with everyone’s ability to participate.', collection: 'An Hour Shared Fairly', rewardTitle: 'Steward of the Hour' },
+    { countryId: 'lk', title: 'The Quiet Reply', premise: 'A fictional conversation includes one reply that arrives late; its keepers must leave room for silence without treating it as consent.', collection: 'Replies at Their Own Pace', rewardTitle: 'Keeper of the Quiet Reply' },
+    { countryId: 'ma', title: 'The Thread on the Board', premise: 'A fictional planning board mixes commitments with ideas; the team separates what is decided from what remains a possibility.', collection: 'Plans and Possibilities', rewardTitle: 'Board Reader' },
+    { countryId: 'mk', title: 'The Two-Column Promise', premise: 'A fictional page places hopes beside limits so that enthusiasm does not become an unsupported promise.', collection: 'Hopes Beside Limits', rewardTitle: 'Keeper of the Two Columns' },
+    { countryId: 'ms', title: 'The Shared Eraser', premise: 'A fictional drawing is revised by several hands, and its contributors agree on when an edit should remain visible.', collection: 'Corrections in Plain Sight', rewardTitle: 'Steward of Visible Change' },
+    { countryId: 'mz', title: 'The Question Basket', premise: 'A fictional group collects questions before proposing answers, making sure the first confident voice does not close discussion.', collection: 'Questions Kept Open', rewardTitle: 'Keeper of the Basket' },
+    { countryId: 'no', title: 'The Smallest Useful List', premise: 'A fictional team trims a long list until each remaining item has a clear purpose and an honest owner.', collection: 'Lists with a Purpose', rewardTitle: 'Editor of the Useful List' },
+    { countryId: 'pf', title: 'The Draft in the Window', premise: 'A fictional note is placed where contributors can see it, but its author must decide what feedback is welcome.', collection: 'Drafts Open to Reply', rewardTitle: 'Keeper of the Window' },
+    { countryId: 'pr', title: 'The Name Beside the Work', premise: 'A fictional collaborative project must credit the person who made a small but essential contribution.', collection: 'Work Remembered by Name', rewardTitle: 'Keeper of the Credit' },
+    { countryId: 'se', title: 'The Unclaimed Seat', premise: 'A fictional circle plans a discussion and keeps an unassigned place available without assuming who will fill it.', collection: 'Room for Whoever Comes', rewardTitle: 'Keeper of the Open Place' },
+    { countryId: 'sn', title: 'The Clear Hand-Off', premise: 'A fictional project changes hands; its outgoing keeper records both what is finished and what still needs attention.', collection: 'Work Passed with Care', rewardTitle: 'Keeper of the Hand-Off' },
+    { countryId: 'sy', title: 'The Page Kept Safe', premise: 'A fictional note contains more personal detail than its task requires; its editor finds a useful version that protects privacy.', collection: 'Useful Without Exposure', rewardTitle: 'Keeper of the Safe Page' },
+    { countryId: 'tj', title: 'The Measure of Enough', premise: 'A fictional team must decide when a plan is ready for use and when another revision would matter.', collection: 'Enough for the Next Step', rewardTitle: 'Keeper of Enough' },
+    { countryId: 'tv', title: 'The Note That Can Wait', premise: 'A fictional message can be sent now or held until its audience is ready; its author weighs clarity against urgency.', collection: 'Messages on Their Time', rewardTitle: 'Keeper of the Patient Note' },
+    { countryId: 'uz', title: 'The Mark of a Question', premise: 'A fictional editor replaces a period with a question mark where the evidence is incomplete, inviting another observation.', collection: 'Questions in the Record', rewardTitle: 'Keeper of the Question Mark' },
+    { countryId: 'vu', title: 'The Lightweight Promise', premise: 'A fictional volunteer offers help without taking over another person’s task, and learns to make a bounded commitment.', collection: 'Promises Kept in Reach', rewardTitle: 'Keeper of the Bounded Promise' },
+    { countryId: 'xs', title: 'The Page Left Unfinished', premise: 'A fictional notebook reaches its final sheet before its contributors agree; they decide how an unfinished record should continue.', collection: 'A Record Still Growing', rewardTitle: 'Keeper of the Next Page' },
+  ],
+  cities: [
+    {
+      cityId: 'auckland',
+      city: {
+        title: 'The Three-Beat Riddle', desire: 'curiosity',
+        chapters: [
+          { title: 'A Sound with No Color', text: 'At Fred Taylor Park, Indigo sets up a fictional listening puzzle for Tavi. Three small props make three sounds: a paper tube taps, a wooden disk rolls, and a ribbon brushes a card. Tavi closes their eyes and sorts the sounds by rhythm, but Indigo keeps changing the order.' },
+          { title: 'The Trick That Moves', text: 'Indigo thinks surprise makes the puzzle exciting; Tavi says a clue that changes after each round stops being a clue. They test a simple pattern: one long sound, then two short ones. The props can be rearranged, but the pattern stays stable, so solving depends on listening rather than guessing Indigo’s next move.' },
+          { title: 'A Fairer Surprise', text: 'A new problem appears when the rolling disk produces two taps on one turn. Tavi wants the answer to be a sound sequence, not a hidden object. They choose to let players hear the sequence twice and then make one deliberate change to the arrangement.' },
+          { title: 'The Last Beat', text: 'Indigo tries the puzzle with the order hidden and the rhythm repeated. Tavi solves it, then changes one prop and explains the new sound. The game remains surprising because the objects move, while its rule is steady enough for a player to learn and test.' },
+        ],
+        approaches: [
+          { label: 'Try Indigo’s sound sequence at Ōtuataua Stonefields Historic Reserve', callback: 'You found the repeatable rhythm beneath Indigo’s moving arrangement.' },
+          { label: 'Listen for a pattern while looking around Fred Taylor Park', callback: 'Tavi used your observation to separate a real clue from a changing prop.' },
+          { label: 'Tell Indigo which sound should repeat', callback: 'Indigo kept the changing objects and made the rhythm steady.' },
+        ],
+        dilemma: { prompt: 'How can Indigo keep the puzzle surprising while making its clue learnable?', answers: ['Keep changing both the props and the sound pattern so every round is unpredictable.', 'Keep one audible pattern stable, repeat it, and change only the props between rounds.', 'Hide the objects and let Tavi guess which one Indigo picked.'], correct: 1, explanation: 'Tavi wants to solve by listening. A stable repeated rhythm gives a learnable clue, while changing the arrangement preserves surprise.' },
+        closing: 'Indigo lays the props out for another round, this time letting the rhythm speak first. Tavi laughs when the disk makes its double tap again, because now that sound is a useful variation rather than a moving target.',
+        keepsake: { name: 'Three-Beat Token', description: 'A wooden disk marked with one long stroke and two short ones for the puzzle’s repeatable rhythm.' },
+      },
+      country: {
+        title: 'The Shadow with a Missing Ear', desire: 'competence',
+        chapters: [
+          { title: 'A Pocket Theatre', text: 'The fictional Pocket Stage kit arrives at Fred Taylor Park with a paper screen, a lamp-shaped game prop, and three cutout animals. Indigo places a fox silhouette on the screen, but its pointed ear disappears whenever Tavi moves the cutout to make it dance.' },
+          { title: 'Closer or Larger', text: 'Tavi suggests making the fox bigger. Indigo instead wants to keep the small cutout and move it closer to the screen. Each change alters the shadow in the game’s stage scene, and neither maker wants the fix to flatten the lively movement they already like.' },
+          { title: 'A Test in Two Positions', text: 'They compare the fox at two marked distances, keeping the lamp prop fixed. Near the screen, the ear reads clearly but the body barely grows. Farther away, the shape expands and blurs. The problem is no longer a mystery: the stage effect depends on a chosen distance.' },
+          { title: 'A New Entrance', text: 'Indigo gives the fox a short entrance near the screen, then lets it cross into the larger, softer shadow. Tavi keeps the missing-ear moment as a deliberate transformation instead of hiding it. The same cutout now has two readable appearances, each with a purpose.' },
+        ],
+        approaches: [
+          { label: 'Complete the simple activity at Ōtuataua Stonefields Historic Reserve', callback: 'Your experiment helped Indigo find a clear first position for the fox.' },
+          { label: 'Look around Fred Taylor Park and compare the shadow shapes', callback: 'Tavi used your comparison to make the change in scale part of the scene.' },
+          { label: 'Describe the fox’s entrance to Indigo', callback: 'Indigo turned the missing ear into a planned stage transformation.' },
+        ],
+        dilemma: { prompt: 'How should Indigo solve the vanishing ear without losing the fox’s movement?', answers: ['Use a clear close entrance, then move the cutout farther away for a larger transformed shadow.', 'Keep the cutout far away throughout and pretend the missing ear is still visible.', 'Make the cutout larger and leave it fixed in one place.'], correct: 0, explanation: 'The close position preserves the ear while the farther position creates the larger change. Using both makes the effect intentional and legible.' },
+        closing: 'The fox crosses the screen twice: first crisp, then enormous and soft. The Pocket Stage kit carries the idea onward, not as a fixed script but as a practical trick another maker can reinterpret.',
+        keepsake: { name: 'Fox-Ear Cutout', description: 'A tiny paper fox whose two stage positions create a crisp entrance and a broad shadow.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Test the three-beat riddle', purpose: 'Listen for the stable rhythm while the props change order.', task: 'practical', count: 1 },
+          { label: 'Notice a repeated sound', purpose: 'Use the discovery activity to identify one sound that can serve as a reliable clue.', task: 'discovery', count: 1 },
+          { label: 'Ask Indigo about the double tap', purpose: 'Discuss how a surprise can stay fair when one prop behaves differently.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Solve three changing arrangements', purpose: 'Repeat the sound puzzle and keep the rhythm constant across its variations.', task: 'practical', count: 3 },
+          { label: 'Compare the stage shadows', purpose: 'Observe the two fox positions that make the cutout crisp and broad.', task: 'discovery', count: 2 },
+          { label: 'Share the shadow entrance idea', purpose: 'Tell Indigo which position should introduce the fox before its transformation.', task: 'host-visit', count: 1 },
+        ],
+      },
+    },
+      cityId: 'belgrade',
+      city: {
+        title: 'The Bridge for One Wooden Moon', desire: 'competence',
+        chapters: [
+          { title: 'A Narrow Crossing', text: 'At Jajinci Memorial Park, Uri builds a fictional tabletop challenge from two paper cups, a folded card, and a wooden token he calls the moon. The token must cross a gap between the cups without falling. Uri’s first bridge bends when the moon reaches its middle.' },
+          { title: 'Three Tempting Fixes', text: 'A friend suggests adding more cups, but the challenge allows only two. Uri could make the card shorter, hold it with a finger, or fold it into a shallow channel. Each solution has a cost: less room, outside help, or a more deliberate build.' },
+          { title: 'A Fold with a Job', text: 'Uri makes a channel from the card and rests its ends on the cups. The moon stays in place, but a sharp turn near the edge sends it toward a cup’s rim. Uri decides the bridge needs a straight approach, not another support that would break the puzzle’s prop limit.' },
+          { title: 'Crossing at Its Own Pace', text: 'The friend moves the wooden moon slowly along the channel. It reaches the far cup, then stops before the rim. Uri counts the attempt as a solution because the bridge, not a hidden hand, carries the token through the gap.' },
+        ],
+        approaches: [
+          { label: 'Try Uri’s two-cup bridge at Jajinci Memorial Park', callback: 'Your build kept the wooden moon inside the bridge’s prop limit.' },
+          { label: 'Look around ОШ Алекса Шантић and study the crossing shape', callback: 'You spotted why the straight approach mattered near the cup.' },
+          { label: 'Tell Uri which prop should do the supporting', callback: 'Uri kept the card as the bridge and let the cups remain its supports.' },
+        ],
+        dilemma: { prompt: 'Which solution respects the two-cup limit and lets the bridge carry the wooden moon?', answers: ['Ask a friend to hold the card up while the token crosses.', 'Fold the card into a shallow channel, rest it on both cups, and give the token a straight approach.', 'Shorten the card until it barely touches the cups and send the token quickly.'], correct: 1, explanation: 'The channel makes the card itself carry the token, and the straight approach addresses the turn that sent it toward the rim.' },
+        closing: 'Uri leaves the cups where the next player can see them and sets the wooden moon at the start. The little crossing is a complete fictional puzzle: its constraints are visible, and its solution does not depend on a hidden helper.',
+        keepsake: { name: 'Cardboard Moon Bridge', description: 'A shallow folded-card channel balanced between two paper cups.' },
+      },
+      country: {
+        title: 'The Counterweight That Would Not Turn', desire: 'curiosity',
+        chapters: [
+          { title: 'A Cabinet of Motion', text: 'Uri opens the fictional Counterweight Cabinet at ОШ Алекса Шантић. Inside is a small disk, a thread, and two wooden shapes. He wants the disk to turn when one shape rises, but the first arrangement pulls the thread tight and leaves everything still.' },
+          { title: 'Pull or Release', text: 'One player proposes a stronger tug. Another wants to remove the thread and spin the disk by hand. Uri keeps both suggestions on the table, then asks what the mechanism is supposed to show: a connection between opposite movements, not simply a disk that can be spun.' },
+          { title: 'A Loose Loop', text: 'Uri makes a loose loop around the disk’s center and attaches one wooden shape to each end. When one rises, the other lowers, and the disk turns a little. The pieces now demonstrate the relationship, but a long pull makes them tangle.' },
+          { title: 'A Smaller Motion', text: 'The group shortens the pull and lets the shapes travel only partway. The disk moves without the thread crossing itself. Uri labels no result as a real machine; this is a fictional cabinet puzzle whose purpose is to let a player notice how one movement can answer another.' },
+        ],
+        approaches: [
+          { label: 'Complete the simple activity at Jajinci Memorial Park', callback: 'The paired shapes now move in opposite directions without a forceful pull.' },
+          { label: 'Look around ОШ Алекса Шантић for a clear place to view the mechanism', callback: 'Your observation helped Uri keep the moving parts visible together.' },
+          { label: 'Ask Uri what the counterweight should demonstrate', callback: 'Uri kept the linked motion as the point of the puzzle.' },
+        ],
+        dilemma: { prompt: 'How can Uri make the disk turn while showing the relationship between the two shapes?', answers: ['Spin the disk by hand and leave the thread out.', 'Pull hard enough to force the tight thread around the disk.', 'Make a loose loop with a shape at each end, then shorten the movement so the thread does not tangle.'], correct: 2, explanation: 'The loose loop connects opposite movement to the disk, and the shorter travel prevents the pieces from crossing.' },
+        closing: 'Uri returns each piece to its compartment, leaving the loose loop in place for the next player. The cabinet puzzle ends with a small, visible motion that a player can understand and then alter.',
+        keepsake: { name: 'Paired-Motion Disk', description: 'A small disk with a loose thread loop linking two wooden shapes.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Build the two-cup crossing', purpose: 'Use the folded-card channel to carry the wooden moon between its supports.', task: 'practical', count: 1 },
+          { label: 'Inspect the bridge approach', purpose: 'Notice why a straight approach helps the token stay away from the cup rim.', task: 'discovery', count: 1 },
+          { label: 'Ask Uri about the prop limit', purpose: 'Discuss which part of the build must carry the token without hidden help.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Retry the moon crossing', purpose: 'Make three bridge attempts while keeping the two-cup constraint.', task: 'practical', count: 3 },
+          { label: 'Watch the paired motion', purpose: 'Observe how the disk and wooden shapes move when the thread is loose.', task: 'discovery', count: 2 },
+          { label: 'Review Uri’s counterweight', purpose: 'Ask Uri why a short pull keeps the two moving shapes from tangling.', task: 'host-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'berlin',
+      city: {
+        title: 'The Blue Cube Has Two Owners', desire: 'fairness',
+        chapters: [
+          { title: 'One Prop, Two Parts', text: 'Uri brings a blue wooden cube to Volkspark Lichtenrade for a fictional two-character stage scene. In the first version, one character carries it as a tool; in the second, another uses the same cube as a prize. The audience laughs at the handoff, but the first character disappears from the story.' },
+          { title: 'A Joke with an Edge', text: 'Uri intended the cube to connect both characters. His friend says the second use makes the scene funnier. Uri notices that the joke works because the prop changes hands, yet the first character has no chance to respond or shape what the cube means.' },
+          { title: 'Make the Exchange Visible', text: 'They try adding a second cube, but the scene then loses its simple handoff. Uri suggests letting the first character choose to lend it, and letting the second return it with a new use. The prop stays singular; the characters now have a reason to meet.' },
+          { title: 'A Shared Punchline', text: 'The two characters trade the cube and build a small game around its changing purpose. The laugh comes from how each imagines a different use, not from one character being pushed aside. Uri keeps the scene short and gives both of them a final choice.' },
+        ],
+        approaches: [
+          { label: 'Rehearse the cube handoff at Zamenhofpark', callback: 'You helped Uri make the exchange a choice both characters can shape.' },
+          { label: 'Look around Volkspark Lichtenrade for a clear stage position', callback: 'Your observation gave each character room to answer the handoff.' },
+          { label: 'Tell Uri which character needs the last move', callback: 'Uri gave the final cube move to the character who had been left out.' },
+        ],
+        dilemma: { prompt: 'How can Uri keep the funny single-cube handoff while giving both characters agency?', answers: ['Add a second cube so neither character has to share.', 'Let one character choose to lend it and let the other return it with a new use.', 'Keep the joke exactly as it is because the audience laughed.'], correct: 1, explanation: 'A chosen exchange preserves the simple prop and the joke while letting both characters affect its meaning.' },
+        closing: 'Uri performs the exchange again, slower this time. The cube becomes a little invitation passed back and forth, and the scene ends with both characters inventing what to do next.',
+        keepsake: { name: 'Blue Exchange Cube', description: 'A small blue stage prop with two shallow grooves marking its first and second uses.' },
+      },
+      country: {
+        title: 'The Spinning Doorway', desire: 'curiosity',
+        chapters: [
+          { title: 'A Flat Scene', text: 'Uri opens the fictional Room for Revisions collection at Zamenhofpark. Its newest stage set is a doorway painted on a single card. The scene needs a surprising entrance, but the doorway never changes; every character arrives in exactly the same way.' },
+          { title: 'More Props, Less Space', text: 'A friend offers a stack of extra scenery. Uri worries that the new pieces will crowd the tiny stage and distract from the entrance. He asks whether one piece could do two jobs instead of filling the set with separate doors.' },
+          { title: 'A Turn in the Card', text: 'Uri creases the card down its center. One side shows a closed doorway, the other an open arch. The fold lets the scene change with a simple turn, but it also creates a visible seam that could look like a crack in the wall.' },
+          { title: 'The Seam Becomes a Hinge', text: 'The performers make the seam part of the scene: a character touches the fold and the doorway turns. Nothing else is added. The set now offers a before and after, and the audience can see exactly how the transformation happens.' },
+        ],
+        approaches: [
+          { label: 'Complete the simple activity at Zamenhofpark', callback: 'The folded doorway now changes with one visible turn.' },
+          { label: 'Look around Volkspark Lichtenrade and compare the two sides', callback: 'You helped Uri make the closed and open shapes easy to distinguish.' },
+          { label: 'Suggest who should turn the doorway card', callback: 'Uri gave the transformation to a character who needed a choice.' },
+        ],
+        dilemma: { prompt: 'How can Uri make the doorway change without crowding the small stage?', answers: ['Add a stack of separate door props behind the card.', 'Paint the same closed doorway on both sides so the set stays consistent.', 'Fold the card so one visible turn changes a closed door into an open arch.'], correct: 2, explanation: 'The folded card creates two readable states with one prop, and the visible turn makes the change understandable.' },
+        closing: 'The card doorway opens only when a character chooses to turn it. Uri stores it flat between scenes, ready to change the next performance without adding clutter.',
+        keepsake: { name: 'Folded Door Card', description: 'A two-sided paper stage door that changes from closed to open when turned.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Rehearse the blue cube exchange', purpose: 'Let both fictional characters choose how the single stage prop changes hands.', task: 'practical', count: 1 },
+          { label: 'Study the folded doorway', purpose: 'Notice how one turn makes two distinct stage shapes.', task: 'discovery', count: 1 },
+          { label: 'Ask Uri about the last move', purpose: 'Discuss who should shape the punchline after the cube changes hands.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Play three cube handoffs', purpose: 'Try several uses while preserving both characters’ choices.', task: 'practical', count: 3 },
+          { label: 'Compare both doorway states', purpose: 'Observe the stage card before and after its visible turn.', task: 'discovery', count: 2 },
+          { label: 'Discuss the prop’s second purpose', purpose: 'Ask Uri how the doorway card can transform without extra scenery.', task: 'host-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'bishkek',
+      city: {
+        title: 'The Ring That Must Not Touch', desire: 'autonomy',
+        chapters: [
+          { title: 'A Tiny Orbit', text: 'Greer sets a fictional puzzle at FIELD: guide a light ring around a central wooden peg without touching it. The first player uses a short handle and keeps bumping the peg. Greer offers a longer handle, but that makes the ring swing too widely.' },
+          { title: 'A Choice of Control', text: 'A second player wants Greer to steer the ring directly. Greer declines; the point is for the player to control the movement. They compare a long handle, a short handle, and a bent one, each with a different balance of reach and precision.' },
+          { title: 'A Gentle Curve', text: 'Greer bends the handle just before its tip. The ring now starts around the peg with less sideways swing, though the first turn is slower. The player asks to try again without help, keeping the puzzle’s challenge instead of removing it.' },
+          { title: 'The Player Finds the Line', text: 'On the next attempt, the player moves the ring in a small curve and completes the orbit. Greer does not claim the bent handle is the only answer; it is one tool that gives this player a different amount of control.' },
+        ],
+        approaches: [
+          { label: 'Try the ring puzzle at Кара-Жыгач багы', callback: 'The gentler curve gave you room to guide the ring yourself.' },
+          { label: 'Look around FIELD and compare handle shapes', callback: 'Greer used your observation to keep the bent tip from becoming a steering aid.' },
+          { label: 'Tell Greer which turn felt too wide', callback: 'Greer kept the challenge and adjusted the point where the handle bends.' },
+        ],
+        dilemma: { prompt: 'How can Greer help the player guide the ring without taking control away?', answers: ['Steer the ring directly for the player.', 'Offer a slightly bent handle that changes the swing while leaving the movement to the player.', 'Use the longest handle so the ring can be pushed from far away.'], correct: 1, explanation: 'The bent handle gives a different balance of reach and control, while the player still performs the orbit.' },
+        closing: 'Greer places both handles beside the peg. The player chooses the bent one today and leaves the short one ready for another attempt, making the puzzle a choice of tools rather than a test with only one acceptable style.',
+        keepsake: { name: 'Bent Orbit Handle', description: 'A short wooden handle with one gentle bend near its tip.' },
+      },
+      country: {
+        title: 'The Counter That Lost a Turn', desire: 'recognition',
+        chapters: [
+          { title: 'A Set of Sliding Tiles', text: 'Greer opens the fictional Fold Between Pages puzzle at FIELD. Three bright game tiles slide along a shallow track, each carrying a different shape. The sequence should loop back to its start, but the square tile always skips the final turn.' },
+          { title: 'Speed or Sequence', text: 'One friend pushes all three tiles together to make the loop feel energetic. Another argues for moving only the square faster. Greer sees the same mistake in both attempts: speed changes, but nobody checks what each tile must do before the next one moves.' },
+          { title: 'One Turn at a Time', text: 'Greer slows the sequence. The circle moves first, then the triangle, then the square. The square now reaches the end, but the pattern feels less playful. They decide that each tile can trigger the next after it reaches a painted notch.' },
+          { title: 'A Loop with a Cue', text: 'The circle reaches its notch and releases the triangle; the triangle does the same for the square. When the square completes its move, it frees the circle again. Greer celebrates the square’s long-awaited turn and keeps the timing cue visible.' },
+        ],
+        approaches: [
+          { label: 'Complete the simple activity at Кара-Жыгач багы', callback: 'The square now gets its turn when the triangle reaches the painted notch.' },
+          { label: 'Look around FIELD for a clear view of the tile track', callback: 'Your observation helped Greer make each release point visible.' },
+          { label: 'Ask Greer which tile kept getting skipped', callback: 'Greer gave the square a clear place in the loop.' },
+        ],
+        dilemma: { prompt: 'How should Greer keep the sliding loop playful while making sure every tile gets a turn?', answers: ['Push all three tiles at once and hope they arrive in order.', 'Move the square much faster than the others.', 'Let each tile release the next one only after reaching its painted notch.'], correct: 2, explanation: 'Visible release points make the sequence reliable and preserve the square’s turn without depending on a forceful push.' },
+        closing: 'The track repeats its cycle with the square included. Greer leaves the little notches uncovered so the next player can see how the loop works and try a different order.',
+        keepsake: { name: 'Square-Turn Tile', description: 'A bright square tile with a small notch mark showing where its move begins.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Guide the ring around its peg', purpose: 'Try the bent handle while keeping control of the ring’s orbit.', task: 'practical', count: 1 },
+          { label: 'Compare the three handle shapes', purpose: 'Notice how each handle changes the ring’s swing.', task: 'discovery', count: 1 },
+          { label: 'Ask Greer about the skipped tile', purpose: 'Discuss the cue that gives the square its missing turn.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Make three careful ring passes', purpose: 'Repeat the orbit puzzle while choosing how much reach and control you want.', task: 'practical', count: 3 },
+          { label: 'Watch the tiles complete a loop', purpose: 'Observe each painted notch that releases the next tile.', task: 'discovery', count: 2 },
+          { label: 'Review the orbit tool choice', purpose: 'Tell Greer whether the bent handle leaves enough room for a self-guided attempt.', task: 'host-visit', count: 1 },
+        ],
+      },
+    },
+    },
+    {
+      cityId: 'brades',
+      city: {
+        title: 'The Pinwheel with One Folded Blade', desire: 'curiosity',
+        chapters: [
+          { title: 'A Lopsided Spin', text: 'Wren brings a fictional paper pinwheel to Grand Park. Three blades are flat, while the fourth has a shallow fold. When the wheel turns, it pauses at the folded blade and then jumps forward. Wren’s friend calls it broken; Wren wonders whether the uneven motion could become a clue.' },
+          { title: 'Smooth or Readable', text: 'Flattening the blade would make the spin more even, but it would remove the pause. Making every blade identical in a different fold would make the whole wheel stutter. Wren asks what the puzzle should teach: how to predict a stop, or how to make an object spin fast.' },
+          { title: 'A Mark for the Pause', text: 'They add a small painted dot to the folded blade. The wheel now pauses at the dot, giving a player a visible cue before it jumps. The friend tries to time the motion and misses once, but the next attempt begins with a clearer expectation.' },
+          { title: 'The Pause Becomes a Turn', text: 'Wren places a small paper star beside the pinwheel. When the marked blade pauses, the player chooses which direction the star should face. The wheel is still uneven, yet that unevenness now creates a moment for decision instead of a flaw to hide.' },
+        ],
+        approaches: [
+          { label: 'Try Wren’s pinwheel at Salem Park', callback: 'The folded blade’s pause became a cue you could anticipate.' },
+          { label: 'Look around Grand Park and watch for the marked blade', callback: 'Your observation helped Wren make the pause easy to see.' },
+          { label: 'Ask Wren what the pause should let a player choose', callback: 'Wren gave the player a turn when the marked blade stops.' },
+        ],
+        dilemma: { prompt: 'Should Wren remove the uneven blade or build the puzzle around its pause?', answers: ['Flatten every blade so the wheel spins evenly.', 'Keep the folded blade, mark its pause, and let that moment create a player choice.', 'Fold all four blades the same way so the wheel never pauses.'], correct: 1, explanation: 'The marked pause is now a readable cue for the choice Wren wants to offer, so the unusual motion serves a clear purpose.' },
+        closing: 'The player turns the paper star at the pinwheel’s pause. Wren keeps the folded blade, not because every uneven object is useful, but because this one gives the scene a moment that can be anticipated and chosen.',
+        keepsake: { name: 'Pause-Marked Pinwheel', description: 'A paper wheel with one folded blade and a dot marking its deliberate pause.' },
+      },
+      country: {
+        title: 'The Stage with a Vanishing Corner', desire: 'autonomy',
+        chapters: [
+          { title: 'A Flat Wall', text: 'Wren opens the fictional Missing Caption collection at Salem Park. Its paper stage has a square window, and a tiny bird puppet should pass through it. The puppet’s wing catches on the frame every time, stopping the entrance just before the reveal.' },
+          { title: 'Cut or Turn', text: 'One maker wants to cut away a corner of the frame. Another wants to make the puppet smaller. Wren tries the frame sideways and notices that the window can turn into a diamond, leaving a different path for the wing.' },
+          { title: 'A Choice of Openings', text: 'The diamond lets the puppet pass, but its pointed shape changes the scene. Wren tries a second orientation and finds a wide opening with no snag. The frame can now rotate between two entrances, and the bird can choose which one to use.' },
+          { title: 'The Corner Appears', text: 'The puppet enters through the square window, pauses, then returns through the turned frame. The audience sees the same paper corner become obstacle and opening. Wren leaves the turning choice to the performer rather than fixing one correct entrance.' },
+        ],
+        approaches: [
+          { label: 'Complete the simple activity at Salem Park', callback: 'The rotated frame now gives the puppet a second way through.' },
+          { label: 'Look around Grand Park and compare the window shapes', callback: 'Your observation helped Wren find the orientation without cutting the frame.' },
+          { label: 'Ask Wren which entrance feels like the reveal', callback: 'Wren let the performer choose when the corner should turn.' },
+        ],
+        dilemma: { prompt: 'How can Wren free the puppet’s wing without throwing away the paper frame?', answers: ['Cut off the corner before trying another orientation.', 'Make the puppet smaller and keep the square opening fixed.', 'Turn the frame to find a second opening and let the performer choose when to use it.'], correct: 2, explanation: 'Rotating the frame preserves the prop and turns its corner into a choice of entrances.' },
+        closing: 'The paper corner no longer traps the puppet; it gives the performer a second entrance. Wren returns the frame to the kit with its turning motion intact.',
+        keepsake: { name: 'Turning Window Frame', description: 'A square stage frame that rotates to create two different puppet entrances.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Time the pinwheel pause', purpose: 'Use the folded blade as a visible cue for a player’s next choice.', task: 'practical', count: 1 },
+          { label: 'Find the marked blade', purpose: 'Observe the dot that identifies where the uneven spin pauses.', task: 'discovery', count: 1 },
+          { label: 'Ask Wren about the turning frame', purpose: 'Discuss how a stage corner can become an alternate entrance.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Play three pinwheel turns', purpose: 'Try several star directions while keeping the marked pause as the cue.', task: 'practical', count: 3 },
+          { label: 'Compare the two puppet entrances', purpose: 'Notice how rotating the frame changes the bird’s path.', task: 'discovery', count: 2 },
+          { label: 'Review the folded blade', purpose: 'Ask Wren why the pause is useful in this particular scene.', task: 'host-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'colombo',
+      city: {
+        title: 'The Cup That Hid the Last Color', desire: 'belonging',
+        chapters: [
+          { title: 'A Tabletop Puzzle', text: 'Corin arranges a fictional color-matching game near Galle Face Green. Four paper cups hide colored tokens, and players must remember which pair belongs together. The smallest cup covers the final token so completely that a new player cannot tell whether it is part of the puzzle.' },
+          { title: 'Reveal or Remember', text: 'Corin’s friend wants to uncover every token before the game begins. Corin prefers a memory challenge. They try a simple rule: show each token once, then cover it. But when the small cup hides the final color too quickly, players are left guessing whether they missed a turn.' },
+          { title: 'One Shared Glimpse', text: 'Corin raises the small cup for a single count before hiding the token. Everyone gets the same glimpse, then the cups move. The game remains about remembering, while a new player can see that the last color exists and will receive a turn.' },
+          { title: 'The Pair Returns', text: 'The group finds the matching tokens and places them beside the cups. Corin gives the newest player the choice of which pair to reveal next. The puzzle now has a memory challenge and a visible invitation to take part.' },
+        ],
+        approaches: [
+          { label: 'Play the color-cup game at Weras Ganga Park', callback: 'Your shared glimpse made the last token part of the puzzle.' },
+          { label: 'Look around Galle Face Green and track the cups', callback: 'Corin used your careful observation to keep every turn visible.' },
+          { label: 'Tell Corin who should choose the next pair', callback: 'Corin offered the newest player the next reveal.' },
+        ],
+        dilemma: { prompt: 'How can Corin keep the memory challenge while making sure a new player can join?', answers: ['Show the last token once to everyone before the cups move.', 'Leave the smallest cup covering the token so the puzzle is harder.', 'Uncover all tokens and remove the memory part of the game.'], correct: 0, explanation: 'One shared glimpse keeps the memory task and makes the last token and its turn visible to everyone.' },
+        closing: 'The new player chooses the next cup and gets the same glimpse as the others. Corin keeps the small cup in the game, now as part of a fair turn instead of an accidental barrier.',
+        keepsake: { name: 'Last-Color Cup', description: 'A small paper cup that lifts for one shared glimpse of the final token.' },
+      },
+      country: {
+        title: 'The Teetering Tower of Bowls', desire: 'care',
+        chapters: [
+          { title: 'A Reused Stack', text: 'Corin brings a fictional stacking puzzle to Weras Ganga Park: three light bowls, a wooden bead, and a flat ring. The tower holds while still, but the bead rolls off when the top bowl is added. Corin wants a build that changes without becoming a contest to stack highest.' },
+          { title: 'Height or Balance', text: 'A friend proposes one more bowl; another wants to glue the stack in place. Corin rejects both because the game asks players to notice how the parts balance. They test the flat ring between the lower bowls, but the top still tilts.' },
+          { title: 'A Wider Base', text: 'The lower bowls are turned so their broad rims meet. The ring sits between them, and the bead rests in the top bowl’s center. The arrangement is shorter than the first tower, but it stays together when a player adds the final piece.' },
+          { title: 'A Gentle Finish', text: 'Corin invites the friend who suggested glue to place the last bowl. The tower holds, and everyone can see which change mattered: the pieces now support one another without being fixed in place.' },
+        ],
+        approaches: [
+          { label: 'Complete the simple activity at Weras Ganga Park', callback: 'The wider base held the bead without glue.' },
+          { label: 'Look around Galle Face Green and inspect the bowl rims', callback: 'You noticed how the meeting edges support the top bowl.' },
+          { label: 'Ask Corin which piece should remain movable', callback: 'Corin kept the stack adjustable so the next player could try.' },
+        ],
+        dilemma: { prompt: 'How should Corin make the bowl tower hold the bead while keeping the pieces reusable?', answers: ['Glue every bowl in place.', 'Add another bowl on top to make it taller.', 'Turn the lower bowls so their broad rims meet, then center the bead in the top bowl.'], correct: 2, explanation: 'The broad meeting rims and centered bead make this stack stable in the game while leaving its pieces free to rearrange.' },
+        closing: 'Corin takes the bead from the top and the tower comes apart cleanly. The puzzle ends with a stable arrangement but no permanent build, ready for someone else to find a different balance.',
+        keepsake: { name: 'Balance Ring', description: 'A flat ring placed between the lower bowls to help their rims meet.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Reveal the last color', purpose: 'Give every player one shared glimpse before the cup positions change.', task: 'practical', count: 1 },
+          { label: 'Track the cup positions', purpose: 'Observe where each hidden token returns during the memory game.', task: 'discovery', count: 1 },
+          { label: 'Ask Corin who picks next', purpose: 'Discuss how the newest player can choose the next color pair.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Match three color pairs', purpose: 'Replay the cup puzzle while giving each player the same glimpse.', task: 'practical', count: 3 },
+          { label: 'Inspect the bowl balance', purpose: 'Notice which rim positions hold the bead without fixing the stack.', task: 'discovery', count: 2 },
+          { label: 'Review the movable stack', purpose: 'Ask Corin why the tower should come apart after the puzzle.', task: 'host-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'dakar',
+      city: {
+        title: 'The Menu with One Empty Place', desire: 'fairness',
+        chapters: [
+          { title: 'A Fictional Table Game', text: 'Jesse sets a fictional serving puzzle at Place de l’Indépendance. Three wooden shapes represent dishes on a pretend menu, and four players each have a favorite. The board has room for only two shapes at a time, leaving two players’ choices unseen.' },
+          { title: 'Choose or Rotate', text: 'Jesse could let the loudest player pick both shapes, or make each player choose one and erase the others. A friend suggests rotating the menu after every turn. Jesse worries that constant rotation will make it hard to remember what the group has already tried.' },
+          { title: 'A Turn for Every Choice', text: 'They place two shapes on the board, then switch one after each player has named a preference. A small ring marks which shape is next to move. Everyone’s choice reaches the board, even though the board can display only two at once.' },
+          { title: 'No Favorite Erased', text: 'Jesse asks the last player to move the ring. The final menu is not a promise about a real meal; it is the ending of a fictional game. Each person’s preference was heard, and the group can explain why these two shapes finished the round.' },
+        ],
+        approaches: [
+          { label: 'Play the menu puzzle at Dibiterie Le Ndiambour', callback: 'The turn ring gave each preference a place in the fictional round.' },
+          { label: 'Look around Place de l’Indépendance and study the two-space board', callback: 'Your observation helped Jesse make the limited display easier to follow.' },
+          { label: 'Ask Jesse whose choice moves next', callback: 'Jesse let the final player move the ring and complete the round.' },
+        ],
+        dilemma: { prompt: 'How can Jesse fit a group’s preferences into a two-place board without erasing anyone’s turn?', answers: ['Let the first player pick both shapes and keep them there.', 'Rotate one shape after each player has named a preference, tracking the next move with the ring.', 'Remove every shape and end the game before anyone chooses.'], correct: 1, explanation: 'A tracked rotation keeps the board’s limit visible while allowing each player’s preference to affect the final pair.' },
+        closing: 'Jesse returns the wooden shapes to their box and leaves the turn ring beside the board. The pretend menu closes with a shared decision, not a claim about what any real venue serves.',
+        keepsake: { name: 'Turn Ring', description: 'A small wooden ring that marks which menu shape should move next.' },
+      },
+      country: {
+        title: 'The Bowl That Would Not Echo', desire: 'curiosity',
+        chapters: [
+          { title: 'A Quiet Sound Puzzle', text: 'Jesse opens the fictional Clear Hand-Off collection at Place de l’Indépendance. Two small bowls and a wooden bead make a sound puzzle. The bead gives a sharp click in one bowl and a soft thud in the other, but when both bowls are covered the sounds become difficult to tell apart.' },
+          { title: 'Louder or Clearer', text: 'One friend wants to strike the bead harder. Another wants to remove the cover. Jesse asks whether the puzzle should test volume or recognition. They agree that a stronger hit would change the sound and could make the answer depend on force.' },
+          { title: 'A Shared Starting Sound', text: 'Jesse leaves both bowls uncovered for the first pass and rolls the bead gently into each. Then the covers return, and players identify which sound belongs to which bowl. The familiar first pass gives them a comparison without revealing every later answer.' },
+          { title: 'Pass the Bead', text: 'Jesse hands the bead to another player, who chooses which bowl to test first. The puzzle remains about listening, while the shared starting sound makes the second round easier to understand. The bead changes hands without changing the rule.' },
+        ],
+        approaches: [
+          { label: 'Complete the simple activity at Dibiterie Le Ndiambour', callback: 'The gentle first pass gave the covered-bowl sounds a fair comparison.' },
+          { label: 'Look around Place de l’Indépendance and compare the two bowls', callback: 'You helped Jesse keep the two sound sources distinct.' },
+          { label: 'Ask Jesse who should roll the bead next', callback: 'Jesse passed the bead and the first choice to another player.' },
+        ],
+        dilemma: { prompt: 'How can Jesse make the covered-bowl sound puzzle understandable without changing it into a test of force?', answers: ['Strike the bead harder so every sound is louder.', 'Give a gentle uncovered comparison first, then cover the bowls for the recognition round.', 'Remove one bowl so players have only one possible answer.'], correct: 1, explanation: 'The shared comparison demonstrates the difference while leaving the later recognition task intact.' },
+        closing: 'The next player chooses the first bowl and rolls the bead gently. Jesse keeps the covers nearby, ready for the recognition round, and the group can now take turns without guessing the rule.',
+        keepsake: { name: 'First-Sound Bead', description: 'A wooden bead used for a gentle comparison before the covered-bowl round.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Rotate the two-space menu', purpose: 'Give each fictional player a tracked turn before settling on the final pair.', task: 'practical', count: 1 },
+          { label: 'Compare the two bowl sounds', purpose: 'Use the uncovered first pass to learn the sound difference.', task: 'discovery', count: 1 },
+          { label: 'Ask Jesse about the turn ring', purpose: 'Discuss how the ring lets each player affect the pretend menu.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Complete three menu rounds', purpose: 'Rotate the shapes through several preferences while tracking whose move comes next.', task: 'practical', count: 3 },
+          { label: 'Listen through two bowl rounds', purpose: 'Compare the gentle open sounds before recognizing them under covers.', task: 'discovery', count: 2 },
+          { label: 'Pass Jesse the next bowl choice', purpose: 'Ask who should receive the bead and the first choice in the next round.', task: 'host-visit', count: 1 },
+        ],
+      },
+    },
+    },
+  ],
+}
+
+export default batch

@@ -1,0 +1,580 @@
+import type { AuthoredContentBatch } from '../../../types/local-tales.ts'
+
+const authoredContentBatch: AuthoredContentBatch = {
+  countries: [
+    { countryId: 'ci', title: 'The Spare Turn', premise: 'Fictional Côte d’Ivoire teammates discover how a shared game changes when one turn can help a partner.', collection: 'Turns Played Together', rewardTitle: 'Keeper of the Spare Turn' },
+    { countryId: 'ad', title: 'The No-Referee Rematch', premise: 'In a fictional Andorran game, friends learn to replay a disputed point without appointing a winner by popularity.', collection: 'Rematches Without Referees', rewardTitle: 'Fair-Play Steward' },
+    { countryId: 'gr', title: 'The Rule You Can Teach', premise: 'A fictional Greece-set team game tests whether a rule is fair when a newcomer cannot learn it in one explanation.', collection: 'Rules Worth Sharing', rewardTitle: 'Clear-Rule Keeper' },
+    { countryId: 'ml', title: 'The Quiet Player Scores', premise: 'Fictional Mali teammates try a game where an observant player’s support matters as much as the final score.', collection: 'Every Role Counts', rewardTitle: 'Role Keeper' },
+    { countryId: 'bz', title: 'The Bent Piece', premise: 'A fictional Belize game pauses when its most-used playing piece fails, and friends choose how to keep play fair.', collection: 'Play Goes On', rewardTitle: 'Keeper of the Rematch' },
+    { countryId: 'be', title: 'The Unusual Assist', premise: 'Fictional Belgium teammates discover that an assist can be clever, quiet, and worth celebrating.', collection: 'Assists Remembered', rewardTitle: 'Assist Steward' },
+    { countryId: 'eg', title: 'The Point After the Point', premise: 'In a fictional Egypt-set match, rivals decide whether a narrow win is enough when the game left a friend behind.', collection: 'One More Rally', rewardTitle: 'Rally Keeper' },
+    { countryId: 'hm', title: 'The Rule for a Small Team', premise: 'At imagined Atlas Cove Station, a small fictional team adjusts its game so no one waits out a round.', collection: 'Everyone in the Round', rewardTitle: 'Round Keeper' },
+    { countryId: 'tl', title: 'The Borrowed Move', premise: 'Fictional Timor-Leste friends decide how to respond when one player repeats another’s clever move.', collection: 'Moves Shared Fairly', rewardTitle: 'Move Steward' },
+    { countryId: 'dj', title: 'The Point We Replay', premise: 'A fictional Djibouti match asks two friends to replay an unclear point even when either could claim it.', collection: 'Points Played Again', rewardTitle: 'Replay Keeper' },
+    { countryId: 'ky', title: 'The Helping Rival', premise: 'Fictional Cayman Islands rivals learn when helping an opponent makes competition more satisfying for both.', collection: 'Rivals Who Help', rewardTitle: 'Rivalry Steward' },
+    { countryId: 'bm', title: 'The Captain for One Round', premise: 'In a fictional Bermuda team game, a rotating captain learns to invite ideas rather than dictate every move.', collection: 'One-Round Captains', rewardTitle: 'Captain for All' },
+    { countryId: 'cu', title: 'The Unexpected Team', premise: 'A fictional Cuba-set game pairs unlikely teammates who must invent a way to communicate before the next round.', collection: 'Teams We Choose', rewardTitle: 'Team Builder' },
+    { countryId: 'np', title: 'A Goal for Both Sides', premise: 'Fictional Nepal game players experiment with a cooperative objective that both former rivals can achieve.', collection: 'Shared Goals', rewardTitle: 'Goal Steward' },
+    { countryId: 'wf', title: 'The Turn That Came Back', premise: 'Fictional Wallis and Futuna teammates test whether returning a missed turn can make a game more welcoming.', collection: 'Turns Returned', rewardTitle: 'Turn Keeper' },
+    { countryId: 'sz', title: 'A Fair Starting Line', premise: 'A fictional Eswatini race gives friends different starting needs and asks how to keep the contest meaningful.', collection: 'Starts Made Fair', rewardTitle: 'Starting-Line Steward' },
+    { countryId: 'so', title: 'The Cheer That Changed the Match', premise: 'In a fictional Somalia-set match, a team learns that its encouragement can change how a losing player participates.', collection: 'Cheers for Everyone', rewardTitle: 'Cheer Keeper' },
+    { countryId: 'mc', title: 'The Spectator Steps In', premise: 'A fictional Monaco team game invites a spectator into play after the original teams begin to feel fixed.', collection: 'Open Teams', rewardTitle: 'Team Opener' },
+    { countryId: 'lr', title: 'The Friend Who Kept Score', premise: 'Fictional Liberia rivals share scorekeeping and discover how trust changes a close match.', collection: 'Scores Held in Trust', rewardTitle: 'Score Steward' },
+    { countryId: 'ru', title: 'The Comeback Was a Pass', premise: 'A fictional Russia-set team game turns when a player gives up a scoring chance to set up a partner.', collection: 'Passes That Matter', rewardTitle: 'Passing Keeper' },
+    { countryId: 'kh', title: 'A New Player Names the Rule', premise: 'Fictional Cambodia teammates let a beginner propose one rule and test whether it gives everyone a real chance.', collection: 'Rules by Everyone', rewardTitle: 'Rule Steward' },
+    { countryId: 'pg', title: 'The Game With Two Finishers', premise: 'A fictional Papua New Guinea relay lets two teammates cross together, challenging a team that expects one winner.', collection: 'Finish Together', rewardTitle: 'Finish-Line Keeper' },
+    { countryId: 'ps', title: 'The Rival Who Returned the Ball', premise: 'Fictional Palestine competitors decide how to treat a point interrupted by a mistake neither player caused.', collection: 'Points Returned Kindly', rewardTitle: 'Fair-Point Steward' },
+    { countryId: 'it', title: 'The Last Shot Is a Pass', premise: 'A fictional Italy-set game tests whether a player can trust a teammate with the final chance to score.', collection: 'Final Chances Shared', rewardTitle: 'Chance Keeper' },
+    { countryId: 'ye', title: 'A Game of Gentle Rules', premise: 'Fictional Yemen friends invent a playful contest where cleverness matters more than speed or strength.', collection: 'Gentle Games', rewardTitle: 'Game Steward' },
+    { countryId: 'sg', title: 'The Doubles Pair', premise: 'In a fictional Singapore match, two friends learn to coordinate after each assumes the other will take the shot.', collection: 'Pairs in Play', rewardTitle: 'Doubles Partner' },
+    { countryId: 'fk', title: 'The Shared Finish', premise: 'Fictional Falkland Islands teammates decide whether to recognize a close finish as a shared achievement.', collection: 'Finishes in Company', rewardTitle: 'Shared-Finish Keeper' },
+    { countryId: 'au', title: 'The Opponent’s Good Idea', premise: 'A fictional Australia-set strategy game rewards a player who notices and credits an opponent’s clever move.', collection: 'Good Moves Recognized', rewardTitle: 'Move Recognizer' },
+    { countryId: 'tw', title: 'The Match Point Pause', premise: 'Fictional Taiwan rivals pause at match point to agree on the call before either celebrates.', collection: 'Calls Made Together', rewardTitle: 'Call Keeper' },
+    { countryId: 'ge', title: 'The Repaired Bat', premise: 'A fictional Georgia game stalls when its shared prop breaks, and players decide whether a repair can preserve balance.', collection: 'Props Repaired Fairly', rewardTitle: 'Repair Steward' },
+    { countryId: 'il', title: 'A Role Beyond Scoring', premise: 'Fictional Israel teammates try a round where defense and encouragement count alongside scoring.', collection: 'Roles Beyond the Score', rewardTitle: 'Role Steward' },
+    { countryId: 'al', title: 'The Beginner’s Rematch', premise: 'A fictional Albania game gives a beginner another round with a partner who explains only what was requested.', collection: 'Rematches for Beginners', rewardTitle: 'Beginner’s Ally' },
+    { countryId: 'mt', title: 'The Winning Friend Waits', premise: 'Fictional Malta teammates decide how to celebrate a win while their friend finishes a close final turn.', collection: 'Celebrations Shared', rewardTitle: 'Celebration Keeper' },
+    { countryId: 'va', title: 'The Gentle Tie-Break', premise: 'A fictional Vatican City game replaces a tense tie-break with a cooperative final challenge everyone can attempt.', collection: 'Ties Resolved Together', rewardTitle: 'Tie-Break Steward' },
+    { countryId: 'na', title: 'The Seat on the Team', premise: 'Fictional Namibia players change a team game so a late-arriving friend can join without displacing someone else.', collection: 'Teams With Room', rewardTitle: 'Team-Making Keeper' },
+  ],
+  cities: [
+    {
+      cityId: 'abidjan',
+      city: {
+        title: 'The Rule Everyone Misheard', desire: 'fairness',
+        chapters: [
+          { title: 'A Close Finish', text: 'At Mandela Peace Park, Jesse lays out a fictional pebble-and-path game. Two friends reach the last square together; one heard the rule as “first to touch,” the other as “first to land.”' },
+          { title: 'The Awkward Victory', text: 'The player who calls the win looks delighted, then notices the other friend has gone quiet. Nobody cheated; each followed the version they remember hearing.' },
+          { title: 'Replay Without Blame', text: 'After a simple meal at Le Debarcadère, you suggest a one-point rematch with the rule read aloud first. Jesse asks both players to explain it back in their own words.' },
+          { title: 'A Win They Can Share', text: 'The rematch is close again, but this time the players agree on the finish. The winner offers the next first move to their friend, who accepts with a grin.' },
+        ],
+        approaches: [
+          { label: 'Have a simple meal at Le Debarcadère', callback: 'The players agree the first finish was unclear, not a reason to accuse either friend.' },
+          { label: 'Enjoy a quiet evening at Mandela Peace Park', callback: 'The two friends replay the last point after making the rule audible to everyone.' },
+          { label: 'Talk with Jesse about the disputed finish', callback: 'Jesse asks each player to say the rule back before the rematch begins.' },
+        ],
+        dilemma: { prompt: 'How should Jesse settle the close finish?', answers: ['Declare the louder player the winner so the game can move on.', 'Replay one point after both players agree aloud what counts as finishing.', 'Cancel the game and say the friends should have listened better.'], correct: 1, explanation: 'Both players acted on a plausible version of an unclear rule. A shared, limited replay resolves the score without turning a misunderstanding into blame.' },
+        closing: 'The score stands after a clear rematch, and the friends trade first move next round. Their disagreement becomes a rule they now both understand.',
+        keepsake: { name: 'Last-square marker', description: 'A smooth fictional game token used to show exactly when a move reaches the final square.' },
+      },
+      country: {
+        title: 'The Spare Turn', desire: 'care',
+        chapters: [
+          { title: 'Two Scores to Chase', text: 'At Le Debarcadère, Jesse introduces a fictional cooperative game: one player can use a turn to score, or spend it giving a teammate another chance.' },
+          { title: 'The Nearly Finished Round', text: 'At Mandela Peace Park, the team is close to its shared target. Amadou has not yet made a successful move, while you could finish the round alone.' },
+          { title: 'An Unforced Offer', text: 'You ask whether Amadou wants the extra chance, rather than deciding what would encourage him. He chooses a practice attempt first, then volunteers to take the next live turn.' },
+          { title: 'A Shared Finish', text: 'The team misses its target by one, but both players name a move they learned. Jesse offers a rematch with the same shared goal and no individual winner.' },
+        ],
+        approaches: [
+          { label: 'Have a simple meal at Le Debarcadère', callback: 'The team agrees to ask before spending a turn on someone else’s behalf.' },
+          { label: 'Enjoy a quiet evening at Mandela Peace Park', callback: 'Amadou takes a practice attempt, then chooses when he wants the live turn.' },
+          { label: 'Ask Jesse about the extra turn', callback: 'Jesse keeps the goal shared and leaves the choice of practice or play with Amadou.' },
+        ],
+        dilemma: { prompt: 'One move remains. What should you do?', answers: ['Take the scoring turn yourself to guarantee the closest personal result.', 'Offer Amadou a practice move and let him choose whether to take the live turn.', 'Give Amadou the live turn without asking because he has not scored yet.'], correct: 1, explanation: 'The game is cooperative, but support should still respect Amadou’s choice. Offering a low-pressure practice turn lets him decide how to participate.' },
+        closing: 'The team falls just short, then chooses a rematch together. Amadou names the move he wants to practice, and Jesse records it as the team’s next challenge.',
+        keepsake: { name: 'Spare-turn token', description: 'A fictional game token that can offer a teammate a practice move before the shared round continues.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Replay the last square fairly', purpose: 'Use the meal-stop activity before the players agree aloud what counts as a finished move.', task: 'practical', count: 1 },
+          { label: 'Find the park where the finish was disputed', purpose: 'Look around Mandela Peace Park, where the friends turn a misheard rule into a fair rematch.', task: 'discovery', count: 1 },
+          { label: 'Return to Jesse’s game', purpose: 'Visit the host at the game’s park setting to revisit the rule everyone now understands.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Practice a shared-goal round', purpose: 'Complete the practical activity while offering a teammate practice before their live turn.', task: 'practical', count: 2 },
+          { label: 'Visit both game anchors', purpose: 'Move between supported places as the team follows its game from the meal stop to the park.', task: 'places', count: 2 },
+          { label: 'Prepare the rematch rule', purpose: 'Use a discovery activity before discussing how a clear finish keeps friendly play fair.', task: 'discovery', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'andorra-la-vella',
+      city: {
+        title: 'The Rematch With No Referee', desire: 'belonging',
+        chapters: [
+          { title: 'A Bounced Token', text: 'At Jardins de Juberri, Emery hosts a fictional tabletop flicking game. A token hits the edge and bounces back; both players claim the point under different house rules.' },
+          { title: 'The Vote Feels Wrong', text: 'More friends gather near Plaça del Poble. A quick vote would settle the score, but the smaller team has fewer friends present.' },
+          { title: 'Let the Players Replay', text: 'You suggest setting the token back and replaying one move with both rules stated first. Emery asks the players to choose the rule together, not ask the crowd to choose a favorite.' },
+          { title: 'A Point Earned Twice', text: 'The players select a simple boundary rule and replay. The point goes to one friend, who thanks the other for agreeing to a clean restart.' },
+        ],
+        approaches: [
+          { label: 'Look around Plaça del Poble', callback: 'The crowd steps back so the two players can settle their own game.' },
+          { label: 'Look around Jardins de Juberri', callback: 'The bounced token is replayed after both friends agree on the boundary rule.' },
+          { label: 'Talk with Emery about the vote', callback: 'Emery leaves the decision with the players instead of counting which side has more friends.' },
+        ],
+        dilemma: { prompt: 'How should the disputed point be decided?', answers: ['Let the larger group vote, because most people will be fair.', 'Let the players agree on one boundary rule and replay the move.', 'Give the point to whoever speaks first, then begin a new game.'], correct: 1, explanation: 'The crowd’s size does not make its ruling more accurate. A replay under a jointly chosen rule gives the players ownership of the result.' },
+        closing: 'Emery keeps the boundary rule for the next round. The friends accept the point because they helped decide how it would be earned.',
+        keepsake: { name: 'Bounce-line token', description: 'A fictional marker set at the agreed edge so the next close bounce is easy to judge.' },
+      },
+      country: {
+        title: 'The No-Referee Rematch', desire: 'autonomy',
+        chapters: [
+          { title: 'A Disputed Rally', text: 'Emery brings a fictional hand-tap rally game to Plaça del Poble. A quick return lands between two players, and neither can tell whether it touched the line.' },
+          { title: 'A Friendly Audience', text: 'At Jardins de Juberri, spectators offer confident calls. Each supports a different friend, and the players realize the audience is making a small dispute feel like a trial.' },
+          { title: 'A Limit on the Argument', text: 'You suggest one replay, then letting the rally stand. The players choose that limit together and agree not to revisit the call if the next point is clear.' },
+          { title: 'Play Resumes', text: 'The replay goes to one player. Their opponent accepts it and serves next, glad the game has a way forward that does not require a permanent referee.' },
+        ],
+        approaches: [
+          { label: 'Look around Jardins de Juberri', callback: 'The friends set a one-replay limit so the disputed point cannot consume the match.' },
+          { label: 'Look around Plaça del Poble', callback: 'The next serve begins after a jointly chosen replay rule settles the close call.' },
+          { label: 'Ask Emery how to restart the rally', callback: 'Emery lets the players choose how much review is enough for a friendly game.' },
+        ],
+        dilemma: { prompt: 'What should the players do with the uncertain line call?', answers: ['Keep debating until the spectators agree on one side.', 'Replay once under a limit both players choose, then continue the match.', 'Award the point to the player who seems more upset.'], correct: 1, explanation: 'The players can settle a close call while protecting the rest of the match from endless argument or a decision based on emotion.' },
+        closing: 'The friends accept the replay and get back to their rally. Emery smiles that the game has no referee, but it does have an agreement.',
+        keepsake: { name: 'One-replay marker', description: 'A fictional game counter used to remember the shared limit on reviewing a close point.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Agree on the boundary before flicking', purpose: 'Practice the agreed line rule before the players replay the disputed token.', task: 'practical', count: 1 },
+          { label: 'Look around the rematch garden', purpose: 'Notice where Emery lets the players settle the point without a crowd vote.', task: 'discovery', count: 1 },
+          { label: 'Visit Emery’s game setting', purpose: 'Return to Jardins de Juberri to discuss why the players, not the larger crowd, choose the rule.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Play two rounds under one clear rule', purpose: 'Complete the seed activity while keeping the boundary consistent across turns.', task: 'practical', count: 2 },
+          { label: 'Follow the game between its places', purpose: 'Visit distinct supported anchors as the dispute moves from crowd pressure back to play.', task: 'places', count: 2 },
+          { label: 'Practice a bounded replay', purpose: 'Use a discovery activity before asking Emery how the one-replay agreement protects the game.', task: 'discovery', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'athens',
+      city: {
+        title: 'The Rule You Can Teach', desire: 'competence',
+        chapters: [
+          { title: 'One Confusing Turn', text: 'At Pedion Areos, Greer starts a fictional target-toss game. A new player misses a turn because the rule says “nearest” without saying whether the marker or the player must be nearest.' },
+          { title: 'The Fast Explanation', text: 'An experienced player repeats the same sentence louder. The newcomer smiles but still looks unsure, while the rest of the team waits for the game to continue.' },
+          { title: 'Show, Then Ask', text: 'You demonstrate one practice toss and invite the newcomer to explain what they think happens next. Greer notices that the example answers the question the rule could not.' },
+          { title: 'A Clearer Round', text: 'At Άλσος Βεΐκου, the group changes the rule to name the marker and gives everyone one practice turn. The newcomer lands a toss and asks to play another round.' },
+        ],
+        approaches: [
+          { label: 'Enjoy a quiet evening at Άλσος Βεΐκου', callback: 'The group gives every player a practice toss before keeping score.' },
+          { label: 'Look around Pedion Areos', callback: 'Greer replaces “nearest” with a clear description of which marker determines the result.' },
+          { label: 'Ask Greer how the newcomer wants to learn', callback: 'Greer checks understanding with a demonstration instead of repeating the confusing sentence.' },
+        ],
+        dilemma: { prompt: 'What should Greer do when the newcomer still looks unsure?', answers: ['Repeat the rule louder and begin scoring immediately.', 'Demonstrate one practice turn, then ask what part remains unclear.', 'Remove the newcomer from the round so the others can continue.'], correct: 1, explanation: 'A demonstration offers another way to learn while keeping the newcomer included. Asking what remains unclear avoids assuming that louder repetition solved it.' },
+        closing: 'The newcomer explains the marker rule back and joins the scored round. Greer leaves practice turns in the game because they make the first move less intimidating.',
+        keepsake: { name: 'Practice-turn marker', description: 'A fictional token that gives each player one unscored try before a target-toss round begins.' },
+      },
+      country: {
+        title: 'The Rule You Can Teach', desire: 'belonging',
+        chapters: [
+          { title: 'A Silent Signal', text: 'Greer brings a fictional team-passing game to Pedion Areos. The teams may communicate only with gestures, but one player cannot tell whether a raised hand means “pass” or “wait.”' },
+          { title: 'The Private Joke', text: 'The experienced players use a signal they invented earlier. They enjoy how quickly it works for them, yet their new teammate keeps losing possession.' },
+          { title: 'Build the Signal Together', text: 'At Άλσος Βεΐκου, you propose a short practice round where everyone suggests a signal and the team chooses one meaning for it. The new player picks the gesture for “ready.”' },
+          { title: 'An Assist Goes Through', text: 'The next pass reaches its target. Greer credits the shared signal, and the teammate says they now feel like a player rather than an audience to the team’s private language.' },
+        ],
+        approaches: [
+          { label: 'Look around Pedion Areos', callback: 'The team practices one shared signal before making it part of the scored game.' },
+          { label: 'Enjoy a quiet evening at Άλσος Βεΐκου', callback: 'The new teammate chooses the gesture that means ready.' },
+          { label: 'Talk with Greer about the passing game', callback: 'Greer keeps the old private joke out of the shared rule set until everyone understands it.' },
+        ],
+        dilemma: { prompt: 'How should the team handle its familiar but unclear signal?', answers: ['Keep it, because longtime players already know what it means.', 'Pause for a practice round and choose a gesture everyone can explain.', 'Let the new teammate watch until they copy the others.'], correct: 1, explanation: 'A team signal works only when the whole team can use it. Shared practice lets the newcomer contribute to the convention rather than merely imitate it.' },
+        closing: 'The team’s gesture belongs to everyone who helped choose it. Greer calls the next round, and the new teammate sends the first clear pass.',
+        keepsake: { name: 'Ready signal card', description: 'A fictional game card showing the team’s agreed gesture for starting a pass.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Take an unscored practice toss', purpose: 'Give the newcomer time to learn which marker decides a turn before the target game counts.', task: 'practical', count: 1 },
+          { label: 'Look around the clearer-round setting', purpose: 'Return to Pedion Areos where Greer changes the confusing rule into a teachable example.', task: 'discovery', count: 1 },
+          { label: 'Ask Greer to demonstrate the marker rule', purpose: 'Visit the host at the actual game anchor and test whether the new wording can be explained.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Practice the target game twice', purpose: 'Build confidence by trying the same clear rule in more than one round.', task: 'practical', count: 2 },
+          { label: 'Visit both practice settings', purpose: 'Connect the first confusing turn with the place where the group tests its explanation.', task: 'places', count: 2 },
+          { label: 'Try the team’s shared signal', purpose: 'Complete a discovery activity after the players agree on a gesture every teammate can explain.', task: 'discovery', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'bamako',
+      city: {
+        title: 'The Quiet Player Scores', desire: 'recognition',
+        chapters: [
+          { title: 'A Team With One Voice', text: 'At Park Happy Hour, Arden starts a fictional three-goal passing game. The loudest teammate calls every move, while Binta reads the play well but rarely gets the ball.' },
+          { title: 'A Misread Pass', text: 'During a simple visit to Zoo Bamako, the team discusses a missed chance. Binta had seen the open lane, but the caller never looked over.' },
+          { title: 'Try a New Role', text: 'You suggest a round with a rotating caller and a required pass to each teammate. Arden asks Binta whether she wants to call first or make the first run.' },
+          { title: 'A Goal Built by Three', text: 'Binta chooses the first run, spots a clear route, and calls for a pass. The goal belongs to the team, but her decision is named aloud.' },
+        ],
+        approaches: [
+          { label: 'Enjoy a quiet evening at Zoo Bamako', callback: 'The team notices Binta’s read of the open lane and asks how she wants to join the next play.' },
+          { label: 'Look around Park Happy Hour', callback: 'Arden rotates the caller role so one player cannot take every decision.' },
+          { label: 'Talk with Arden about team roles', callback: 'Arden adds a pass-to-every-player rule and lets each person choose their first role.' },
+        ],
+        dilemma: { prompt: 'How can Arden help Binta take part without putting her on the spot?', answers: ['Assign her the caller role immediately, even though she has not chosen it.', 'Offer her a choice of first role and rotate who calls the next play.', 'Leave the rules alone because the loudest player is most confident.'], correct: 1, explanation: 'A genuine choice and rotating role create room for Binta’s skill without assuming how she wants to contribute.' },
+        closing: 'Arden rotates the call after every round. Binta calls the next opening herself, and the team celebrates the pass as well as the goal.',
+        keepsake: { name: 'Rotating-caller band', description: 'A fictional game marker passed to the next teammate who chooses to call a play.' },
+      },
+      country: {
+        title: 'The Quiet Player Scores', desire: 'fairness',
+        chapters: [
+          { title: 'The Uncounted Assist', text: 'Arden brings a fictional scoring challenge to Park Happy Hour. A player who blocks a shot and redirects the ball is not credited because the score sheet records only goals.' },
+          { title: 'A Scorekeeper’s Habit', text: 'The team argues about whether changing the count mid-game would be unfair. The scorekeeper says the rule was clear, but everyone sees that the game measures only one kind of contribution.' },
+          { title: 'Finish This Round, Revise the Next', text: 'At Zoo Bamako, you suggest keeping the current score and adding an assist point for the next round. Arden asks both teams to agree before that round begins.' },
+          { title: 'A Better Measure', text: 'The next game gives credit for a block that creates a scoring chance. The goal count still matters, but a defensive read now has a visible place in the result.' },
+        ],
+        approaches: [
+          { label: 'Look around Park Happy Hour', callback: 'The team keeps the current score intact and changes the rule only for a new round.' },
+          { label: 'Enjoy a quiet visit to Zoo Bamako', callback: 'Both teams agree that a useful block can count as an assist in the next game.' },
+          { label: 'Ask Arden about the score sheet', callback: 'Arden makes room for a defensive contribution without erasing the goals already scored.' },
+        ],
+        dilemma: { prompt: 'When should the teams add an assist point?', answers: ['Apply it retroactively to change the round already underway.', 'Keep the current score and agree on the assist rule before the next round.', 'Ignore assists because changing any game rule is always unfair.'], correct: 1, explanation: 'The teams honor the rule players started with while making a transparent change before anyone plays under the new one.' },
+        closing: 'Arden adds the assist category for the next round. The scorekeeper calls out the first block that creates a chance, and its maker gets a deserved nod.',
+        keepsake: { name: 'Assist counter', description: 'A fictional score token that recognizes a play setting up a teammate’s goal.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Pass to every teammate once', purpose: 'Try the rotating-role round where Binta can choose how to enter the play.', task: 'practical', count: 1 },
+          { label: 'Look around the team’s meeting place', purpose: 'Notice Park Happy Hour as the place where Arden recognizes a quiet player’s read.', task: 'discovery', count: 1 },
+          { label: 'Return to Arden’s game', purpose: 'Visit the host where the team decides that a useful assist deserves recognition.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Try two rotating-call rounds', purpose: 'Complete repeated play while giving different teammates a chance to call the next move.', task: 'practical', count: 2 },
+          { label: 'Visit two places in the team story', purpose: 'Connect the missed lane at Park Happy Hour with the team’s discussion at Zoo Bamako.', task: 'places', count: 2 },
+          { label: 'Practice a pass that creates a chance', purpose: 'Use the discovery activity to notice when a teammate’s play sets up someone else to score.', task: 'discovery', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'belize-city',
+      city: {
+        title: 'The Bent Playing Piece', desire: 'competence',
+        chapters: [
+          { title: 'A Lopsided Roll', text: 'At Digi Park, Wren brings a fictional tabletop game whose shared spinner has bent. It now lands on one color more often, and a close friend keeps getting the advantage.' },
+          { title: 'Keep Playing or Pause', text: 'The friends enjoy the game and do not want to blame the player who spun well. Still, the lopsided spinner makes the next round feel decided before it begins.' },
+          { title: 'Test a Fair Fix', text: 'At Wilton Park, you suggest using a flat coin-like token and alternating who chooses its side. Wren asks both players to test the substitute before counting points.' },
+          { title: 'A Rematch on Equal Ground', text: 'The substitute works for a practice round. The friends restart the score, keep the bent spinner as a silly reminder, and laugh when the new token lands edge-on.' },
+        ],
+        approaches: [
+          { label: 'Look around Wilton Park', callback: 'Both friends test the substitute prop before agreeing it gives them a fair chance.' },
+          { label: 'Look around Digi Park', callback: 'Wren pauses the scored round instead of treating the spinner’s bias as a player’s fault.' },
+          { label: 'Ask Wren how to restart', callback: 'Wren starts a rematch only after both players accept the replacement token.' },
+        ],
+        dilemma: { prompt: 'What should the friends do with the lopsided spinner?', answers: ['Keep its score because nobody caused the bend on purpose.', 'Pause, test a neutral substitute together, then restart the score.', 'Let the player who is behind choose who gets the next point.'], correct: 1, explanation: 'The unfair result comes from the prop, not either player. A tested replacement and fresh score give both friends a reason to trust the next round.' },
+        closing: 'The game restarts with a prop both friends tested. The bent spinner stays on the table as a comic mascot, not as the judge of their score.',
+        keepsake: { name: 'Edge-on token', description: 'A fictional replacement game piece remembered for landing on its edge during the practice round.' },
+      },
+      country: {
+        title: 'The Bent Playing Piece', desire: 'belonging',
+        chapters: [
+          { title: 'The Missing Handle', text: 'Wren sets up a fictional relay at Digi Park. The team’s soft baton loses its grip during warm-up, and one player worries they will be blamed if it slips again.' },
+          { title: 'No One Wants a Substitute', text: 'The other players insist the relay cannot work without the familiar baton. A teammate offers to hold it differently, but the worried player has not asked for help.' },
+          { title: 'Choose the Safe Practice', text: 'At Wilton Park, you suggest a slow handoff with a folded cloth around the baton. Wren asks the player whether the new grip feels secure before the team tries a timed run.' },
+          { title: 'A Team That Adjusts', text: 'The first relay is untimed. The player completes a comfortable handoff and volunteers for another run, while the team keeps the cloth wrap for the next game.' },
+        ],
+        approaches: [
+          { label: 'Look around Digi Park', callback: 'The team treats the slipping baton as a shared equipment problem rather than a player’s fault.' },
+          { label: 'Look around Wilton Park', callback: 'The new grip is tested slowly before the team adds a clock.' },
+          { label: 'Talk with Wren about the handoff', callback: 'Wren asks the player whether the wrapped baton feels secure and waits for their answer.' },
+        ],
+        dilemma: { prompt: 'How should the team respond to the slipping baton?', answers: ['Start the timed relay and see whether the player can hold on.', 'Practice an untimed handoff with a tested grip and let the player choose whether to continue.', 'Remove the player from the relay so the equipment cannot slow the team.'], correct: 1, explanation: 'A slow test addresses the prop problem while leaving the player in control of whether to keep playing.' },
+        closing: 'Wren marks the relay as complete only after the handoff feels secure. The player carries the baton on the next practice run by choice.',
+        keepsake: { name: 'Cloth-wrapped baton', description: 'A fictional relay prop with a soft grip tested by the players before timed play.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Test the replacement token', purpose: 'Try a practice round before the friends trust the neutral piece in a scored rematch.', task: 'practical', count: 1 },
+          { label: 'Look around the first game setting', purpose: 'Return to Digi Park where Wren spots that the shared spinner makes the game lopsided.', task: 'discovery', count: 1 },
+          { label: 'Visit Wren’s game table', purpose: 'Talk with the host at the actual anchor about pausing play when a prop changes the odds.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Play two fair-start rounds', purpose: 'Complete repeated play after both players test and accept the substitute piece.', task: 'practical', count: 2 },
+          { label: 'Visit both places in the rematch', purpose: 'Follow the game from its lopsided start to the place where the replacement is tested.', task: 'places', count: 2 },
+          { label: 'Practice an untimed handoff', purpose: 'Use the discovery activity before deciding whether the wrapped relay baton feels secure.', task: 'discovery', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'brussels',
+      city: {
+        title: 'The Unusual Assist', desire: 'recognition',
+        chapters: [
+          { title: 'A Move Nobody Called', text: 'At Parc Trois Fontaines, Sage starts a fictional three-pass scoring game. Jules blocks a stray token and nudges it toward Noor, who makes the point.' },
+          { title: 'Who Made the Play?', text: 'The scorer sheet names only the final touch. Jules says the point was Noor’s, and Noor says it would never have happened without Jules.' },
+          { title: 'Name the Whole Play', text: 'You suggest asking both players how they want the move described. At Park van het Kasteel Groenenberg, Sage tests a score call that credits the assist without splitting the point.' },
+          { title: 'A Team Credit', text: 'Noor keeps the score, Jules receives an assist mark, and both friends choose the next pairing. The game gains a new word for cooperation without making credit scarce.' },
+        ],
+        approaches: [
+          { label: 'Look around Park van het Kasteel Groenenberg', callback: 'Sage tests an assist mark that recognizes the setup while keeping the point with the scorer.' },
+          { label: 'Look around Parc Trois Fontaines', callback: 'The friends describe the full play before deciding how each contribution should be credited.' },
+          { label: 'Ask Sage about the score call', callback: 'Sage lets both players choose how their parts of the play are named.' },
+        ],
+        dilemma: { prompt: 'How should Sage record the point?', answers: ['Give all credit to Noor because Noor made the final touch.', 'Record Noor’s point and Jules’s assist after asking how both want the play described.', 'Split the point equally even though the score rule has only one scorer.'], correct: 1, explanation: 'The point and the assist are different contributions. Naming both accurately recognizes the play without changing the game’s scoring rule.' },
+        closing: 'Sage adds an assist mark beside the point. Jules and Noor pair up again, eager to see what kind of play they can build together next.',
+        keepsake: { name: 'Assist stamp', description: 'A fictional score mark for a teammate whose setup makes another player’s point possible.' },
+      },
+      country: {
+        title: 'The Unusual Assist', desire: 'autonomy',
+        chapters: [
+          { title: 'A Chance to Call', text: 'Sage brings a fictional team maze game to Parc Trois Fontaines. A player who usually follows calls spots a safe opening before the usual captain sees it.' },
+          { title: 'The Captain’s Habit', text: 'The captain keeps calling every turn, not to exclude anyone but because the team has never tried another caller. The player with the idea waits.' },
+          { title: 'Offer the Next Call', text: 'At Park van het Kasteel Groenenberg, you suggest the captain ask who wants to call the next move. The quiet player volunteers and explains their route before anyone moves.' },
+          { title: 'A Different Kind of Assist', text: 'The route works, and the old captain celebrates the caller’s plan. Sage points out that stepping back created the assist: a teammate received the space to lead.' },
+        ],
+        approaches: [
+          { label: 'Look around Parc Trois Fontaines', callback: 'The captain asks who wants the next call instead of assuming the old role must continue.' },
+          { label: 'Look around Park van het Kasteel Groenenberg', callback: 'The new caller explains the route while teammates wait before moving.' },
+          { label: 'Talk with Sage about the team maze', callback: 'Sage notes that making room for a teammate’s idea can be a contribution of its own.' },
+        ],
+        dilemma: { prompt: 'How should the captain handle the next move?', answers: ['Call the familiar route before the teammate can explain.', 'Ask whether the teammate wants to lead this move and listen to the plan.', 'Leave the team without any caller so nobody has authority.'], correct: 1, explanation: 'Inviting the teammate to lead preserves their choice and gives the group a chance to evaluate the idea together.' },
+        closing: 'The team tries the route and learns from the caller’s explanation. The captain keeps their role for later, now shared by invitation rather than habit.',
+        keepsake: { name: 'Caller’s token', description: 'A fictional game marker passed to whoever chooses to lead the next team move.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Set up a teammate’s scoring chance', purpose: 'Try the pass-and-score activity before Sage credits the setup as an assist.', task: 'practical', count: 1 },
+          { label: 'Look around the assist game', purpose: 'Notice Parc Trois Fontaines as the place where Jules and Noor describe the whole play.', task: 'discovery', count: 1 },
+          { label: 'Return to Sage’s score call', purpose: 'Visit the host to discuss how the caller can name both scorer and assisting player accurately.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Try two pass-and-score rounds', purpose: 'Complete repeated play to see how a setup can create a teammate’s point.', task: 'practical', count: 2 },
+          { label: 'Visit both game locations', purpose: 'Follow the move from Parc Trois Fontaines to the supported place where Sage tests the assist mark.', task: 'places', count: 2 },
+          { label: 'Give another teammate the next call', purpose: 'Use a discovery activity before inviting someone else to lead a team move.', task: 'discovery', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'cairo',
+      city: {
+        title: 'The Point After the Point', desire: 'belonging',
+        chapters: [
+          { title: 'One Point Behind', text: 'Jesse sets a fictional palm-tap rally game at Al Azhar Park. Salma is one point behind and asks for a short pause; her friend fears the match will end before she can reset.' },
+          { title: 'A Pause or a Win', text: 'At Café Riche, the friends disagree about stopping. One thinks a pause changes the match unfairly; the other says continuing while distracted is not a real contest.' },
+          { title: 'Agree on the Clock', text: 'You suggest both players choose a brief pause limit before the next game, not after seeing who benefits. Jesse asks them to decide together whether the current rally continues.' },
+          { title: 'One More Rally', text: 'They finish the current point, then take the agreed pause before a fresh game. Salma returns ready, and her friend says the restart felt fair.' },
+        ],
+        approaches: [
+          { label: 'Have a simple meal at Café Riche', callback: 'The friends agree on a pause rule before the next score can create pressure.' },
+          { label: 'Enjoy a quiet evening at Al Azhar Park', callback: 'They finish the current rally and begin the next game after their jointly chosen pause.' },
+          { label: 'Ask Jesse how the pause should work', callback: 'Jesse makes sure both players accept the limit before a new match begins.' },
+        ],
+        dilemma: { prompt: 'Salma asks to pause while one point behind. What should the friends do?', answers: ['Refuse every pause because the match is close.', 'Finish the current point, then use a pause limit both players agreed on for the next game.', 'Stop the score and declare Salma the winner for asking.'], correct: 1, explanation: 'A rule agreed before the next match protects both players from advantage-seeking while allowing a genuine pause.' },
+        closing: 'The fresh match begins after the shared pause. The friends stay rivals, but neither has to pretend that a tired point is the only fair ending.',
+        keepsake: { name: 'Next-rally token', description: 'A fictional game token set aside during a mutually agreed pause between matches.' },
+      },
+      country: {
+        title: 'The Point After the Point', desire: 'fairness',
+        chapters: [
+          { title: 'A Glancing Touch', text: 'At Al Azhar Park, Jesse starts a fictional cup-and-token duel. A token clips the cup’s rim, then falls inside; both players freeze before claiming a point.' },
+          { title: 'A Friendly Dispute', text: 'At Café Riche, each friend remembers a different rule from their practice round. Neither wants a win that the other will keep questioning.' },
+          { title: 'Choose Before the Toss', text: 'You suggest they define a rim-touch before the next toss and replay the disputed one only if both agree. Jesse asks them to settle the rule while calm.' },
+          { title: 'A Point They Can Keep', text: 'The friends agree that a rim touch counts if the token stays in the cup. They replay once, accept the result, and ask Jesse to start the next duel.' },
+        ],
+        approaches: [
+          { label: 'Look around Al Azhar Park', callback: 'The players replay the close toss after agreeing whether the rim counts.' },
+          { label: 'Have a simple meal at Café Riche', callback: 'The rule is settled in conversation before the next toss raises the stakes.' },
+          { label: 'Talk with Jesse about the cup game', callback: 'Jesse keeps the replay limited to the disputed toss and lets the players define the call.' },
+        ],
+        dilemma: { prompt: 'How should the friends handle the token that touched the rim?', answers: ['Award the point to whoever called it first.', 'Agree on a rim rule while calm and replay the disputed toss once.', 'Give no point for any toss that creates disagreement.'], correct: 1, explanation: 'The friends can make a clear rule and apply it once to the disputed play, instead of rewarding speed of argument or avoiding every close call.' },
+        closing: 'The next toss lands cleanly. The friends keep the rim rule for later rounds and laugh that their fiercest dispute ended with one small cup.',
+        keepsake: { name: 'Rim-call cup', description: 'A fictional practice cup used to settle whether a token that clips the edge still counts.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Play through one agreed rally', purpose: 'Finish the current point before the players use the pause rule they chose together.', task: 'practical', count: 1 },
+          { label: 'Look around the rally’s park', purpose: 'Return to Al Azhar Park where Jesse lets the friends set a fair pause before another match.', task: 'discovery', count: 1 },
+          { label: 'Talk with Jesse about the rim call', purpose: 'Visit the host at the cup-game anchor to agree what a rim touch means before the toss.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Play two rounds under the pause rule', purpose: 'Complete repeated practical play after both rivals have agreed how a pause works.', task: 'practical', count: 2 },
+          { label: 'Visit the match’s two anchors', purpose: 'Connect the park rally with the meal conversation where the next game’s rule is settled.', task: 'places', count: 2 },
+          { label: 'Practice a clean cup toss', purpose: 'Use the discovery activity to learn the agreed rim rule before a close score arrives.', task: 'discovery', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'cove',
+      city: {
+        title: 'The Round With Three Seats', desire: 'belonging',
+        chapters: [
+          { title: 'A Game for Four', text: 'At the fictional Recreation area, Jesse sets out a four-player color-count game. Only three friends are present, and its rule says a player must wait whenever a seat is empty.' },
+          { title: 'The Waiting Seat', text: 'One friend volunteers to sit out so the others can play as written. The remaining pair dislike the idea but cannot agree whether changing the rule would spoil it.' },
+          { title: 'A Three-Player Trial', text: 'You suggest a practice round where each player rotates the first move, leaving no one permanently in the waiting role. Jesse asks the group to test whether the turns stay balanced.' },
+          { title: 'A Game That Fits', text: 'The practice round works, though the score is close. The friends keep the rotation for their small group and save the four-seat version for another day.' },
+        ],
+        approaches: [
+          { label: 'Enjoy a quiet evening in the recreation area', callback: 'The three friends test a rotating first move instead of assigning one person to wait.' },
+          { label: 'Look around the recreation area', callback: 'Jesse keeps both the original four-seat rule and the tested small-group version.' },
+          { label: 'Ask Jesse how the turns feel', callback: 'Jesse checks whether each player gets the same number of first moves before keeping the variant.' },
+        ],
+        dilemma: { prompt: 'How should the three friends use a game designed for four?', answers: ['Keep the rule and make one person sit out every round.', 'Try a practice round with rotating first moves and keep it only if turns balance.', 'Let the first player choose who waits for the rest of the game.'], correct: 1, explanation: 'The players can adapt the fictional game while checking that the change gives everyone a fair chance to lead.' },
+        closing: 'The group chooses the tested three-player variant. The empty fourth seat becomes a place for a token pile, not a reason to exclude a friend.',
+        keepsake: { name: 'Rotating-first token', description: 'A fictional game piece passed between players so each can lead one round.' },
+      },
+      country: {
+        title: 'The Rule for a Small Team', desire: 'fairness',
+        chapters: [
+          { title: 'The Long Turn', text: 'Jesse brings a fictional signal-and-guess game to the Recreation area. Two players work together while the third waits through a long sequence of clues.' },
+          { title: 'A Small Team’s Problem', text: 'The waiting player starts calling out answers from the side. The guessers get frustrated, but Jesse sees that the rule has made waiting the least enjoyable role.' },
+          { title: 'Add a Rotating Clue', text: 'You suggest that the waiting player provide one clue each turn, then rotate into the guessing pair. The group tries a short round and checks that no one gives away the answer.' },
+          { title: 'No One Sits Out', text: 'The revised round moves faster, and every player gets to clue and guess. Jesse keeps the original rule for larger groups and the tested version for three.' },
+        ],
+        approaches: [
+          { label: 'Look around the Recreation area', callback: 'The group notices the waiting role and experiments with a one-clue turn.' },
+          { label: 'Enjoy a quiet evening in the game space', callback: 'The friends rotate between clue-giver and guesser so each role gets played.' },
+          { label: 'Talk with Jesse about the long turn', callback: 'Jesse keeps the small-team variant after the practice round works for everyone.' },
+        ],
+        dilemma: { prompt: 'What should the third player do during the guessing turn?', answers: ['Wait silently until the pair finishes every clue.', 'Offer one bounded clue, then rotate into the guessing pair next turn.', 'Call out every answer so the game finishes sooner.'], correct: 1, explanation: 'A limited clue gives the waiting player a real role without taking the challenge away from the guessers.' },
+        closing: 'Jesse writes down a three-player version that gives each person both roles. The friends start another round before deciding who guesses first.',
+        keepsake: { name: 'Clue-turn token', description: 'A fictional marker showing whose turn it is to offer one clue before roles rotate.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Try the rotating first move', purpose: 'Use the three-player practice round to keep the empty seat from excluding one friend.', task: 'discovery', count: 1 },
+          { label: 'Look around the fictional game space', purpose: 'Notice where Jesse and the group adapt their four-seat game for three players.', task: 'host-visit', count: 1 },
+          { label: 'Play one balanced round', purpose: 'Complete the practical activity after checking that each friend receives a fair first move.', task: 'practical', count: 1 },
+        ],
+        weekly: [
+          { label: 'Play two turns in each role', purpose: 'Practice clue-giving and guessing so no one is left waiting outside the game.', task: 'practical', count: 2 },
+          { label: 'Revisit the small-team game', purpose: 'Return to the host’s game space and consider whether the three-person rule still feels balanced.', task: 'host-visit', count: 1 },
+          { label: 'Try the clue-turn variant', purpose: 'Use the discovery activity before choosing who guesses first in the next round.', task: 'discovery', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'dili',
+      city: {
+        title: 'The Borrowed Move', desire: 'recognition',
+        chapters: [
+          { title: 'A Clever Slide', text: 'At Monumentu Nicolau Lobato, Corin hosts a fictional sliding-token game. Rui discovers that a diagonal bank shot reaches the target, and Nita uses the same move on her next turn.' },
+          { title: 'Was It Copying?', text: 'Rui says Nita stole the idea. Nita thought the game rewarded anyone who could see and repeat a clever move; neither friend wants the game to become personal.' },
+          { title: 'Name the Shared Rule', text: 'At Jardim Remexio, you ask Corin whether moves are private inventions or open tactics. The group agrees that a legal move may be copied, while its discoverer can still be credited.' },
+          { title: 'A Rivalry With Respect', text: 'Nita makes the bank shot and names Rui’s idea. Rui responds by inventing a counter-move, and both friends are excited to test it.' },
+        ],
+        approaches: [
+          { label: 'Look around Jardim Remexio', callback: 'The players agree that an open tactic can be copied and still credited to its discoverer.' },
+          { label: 'Look around Monumentu Nicolau Lobato', callback: 'Rui answers Nita’s borrowed move with a new tactic of his own.' },
+          { label: 'Ask Corin what the rules permit', callback: 'Corin clarifies that the move is legal and asks the players to recognize where it came from.' },
+        ],
+        dilemma: { prompt: 'How should Nita respond after seeing Rui’s bank shot?', answers: ['Avoid the move so Rui can keep it as a personal trick.', 'Use the legal move and credit Rui for showing it, then keep playing.', 'Claim she invented it first so they have equal ownership.'], correct: 1, explanation: 'The game allows anyone to use the tactic. Giving credit respects Rui’s discovery without turning a shared game move into private property.' },
+        closing: 'The friends test both the original shot and Rui’s counter. Corin records the move as part of their shared game repertoire, with its first discoverer named.',
+        keepsake: { name: 'Diagonal-shot token', description: 'A fictional marker placed at the bank-shot angle Rui first noticed.' },
+      },
+      country: {
+        title: 'The Turn That Came Back', desire: 'care',
+        chapters: [
+          { title: 'A Skipped Turn', text: 'Corin sets up a fictional sequence game at Monumentu Nicolau Lobato. A player misses a turn while searching for a token, and the next player has already begun.' },
+          { title: 'Keep the Clock Moving', text: 'One friend wants to keep the sequence as played; another says the missed player has been left behind through no choice of their own.' },
+          { title: 'A Return Rule', text: 'You suggest giving one missed turn back at the end of the round, but only if the player wants it. Corin asks everyone to agree before they restart.' },
+          { title: 'A Turn Accepted', text: 'The player chooses the returned turn and makes a move that brings them back into the game. The group keeps the rule for future rounds, with a clear limit of one.' },
+        ],
+        approaches: [
+          { label: 'Look around Monumentu Nicolau Lobato', callback: 'The players add one bounded returned turn instead of pretending a missed chance did not matter.' },
+          { label: 'Look around Jardim Remexio', callback: 'Corin asks whether the player wants the returned move before the sequence resumes.' },
+          { label: 'Talk with Corin about the restart', callback: 'Corin confirms that everyone agrees on the one-turn limit before playing again.' },
+        ],
+        dilemma: { prompt: 'A player missed a turn while finding the game token. What should happen?', answers: ['Keep the sequence without any chance to rejoin.', 'Offer one returned turn and let the player decide whether to use it.', 'Give them every move they missed, regardless of what they want.'], correct: 1, explanation: 'A limited offer can restore participation without giving an unlimited advantage, and the affected player chooses whether to accept it.' },
+        closing: 'The sequence continues, and the player’s returned move counts once. Corin turns the rule into a shared agreement instead of an argument after each missed turn.',
+        keepsake: { name: 'Returned-turn token', description: 'A fictional game marker used once when a player wants to rejoin after a missed move.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Try Rui’s bank shot respectfully', purpose: 'Use the legal sliding move and credit its first discoverer before inventing a counter.', task: 'practical', count: 1 },
+          { label: 'Look around Corin’s game setting', purpose: 'Visit Monumentu Nicolau Lobato where the friends turn a borrowed move into friendly rivalry.', task: 'discovery', count: 1 },
+          { label: 'Ask Corin about the shared tactic', purpose: 'Visit the host to confirm the move is open play and learn how the group credits its origin.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Play two rounds with a returned turn', purpose: 'Complete repeated play after the group agrees on its one-turn rejoin rule.', task: 'practical', count: 2 },
+          { label: 'Visit both places in the rivalry', purpose: 'Follow the friends from the first clever slide to their conversation about using it fairly.', task: 'places', count: 2 },
+          { label: 'Practice a counter-move', purpose: 'Try a discovery activity before deciding whether to credit a tactic someone else first noticed.', task: 'discovery', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'djibouti',
+      city: {
+        title: 'The Keeper’s Call', desire: 'fairness',
+        chapters: [
+          { title: 'A Ball at the Line', text: 'Corin starts a fictional handball-in-a-square game at Jardin. A soft ball lands on a painted boundary; the keeper calls it out, but the thrower is sure it bounced inside.' },
+          { title: 'The Helpful Witness', text: 'A teammate saw the bounce from behind the thrower, not from the side. The keeper asks that witness to decide, then realizes their view was limited too.' },
+          { title: 'Replay the Point', text: 'You suggest marking the point as unclear and replaying one throw. Corin asks both players to state the boundary rule before the ball is returned.' },
+          { title: 'A Call They Both Accept', text: 'The replay lands clearly out. The thrower accepts the point because the call came from a fresh play rather than a friend’s uncertain angle.' },
+        ],
+        approaches: [
+          { label: 'Enjoy a quiet evening at Rond-point du Progrès', callback: 'The players choose a replay instead of relying on a witness who saw only part of the bounce.' },
+          { label: 'Look around Jardin', callback: 'Corin states the boundary rule before the next throw.' },
+          { label: 'Ask Corin to explain the point call', callback: 'Corin marks the first bounce as unclear and lets the replay settle the score.' },
+        ],
+        dilemma: { prompt: 'How should Corin handle a boundary bounce no one clearly saw?', answers: ['Accept the keeper’s call because that role must always decide.', 'Mark it unclear, state the rule, and replay the throw.', 'Ask the teammate with the least to lose to choose the score.'], correct: 1, explanation: 'No player has a clear view, so a bounded replay applies the agreed rule without pretending an uncertain witness is certain.' },
+        closing: 'Corin keeps the replay result and gives the next serve to the other player. The two friends are ready to continue without reopening the first call.',
+        keepsake: { name: 'Boundary square', description: 'A fictional line marker used to make the next handball throw easier to judge.' },
+      },
+      country: {
+        title: 'The Point We Replay', desire: 'continuity',
+        chapters: [
+          { title: 'A Missing Count', text: 'At Jardin, Corin hosts a fictional paired-clap contest. The caller loses track after a dropped clap, and one team claims the round ended while the other expects one more beat.' },
+          { title: 'A Friendship on the Line', text: 'Both teams enjoy the contest, but each has a friend who practiced the sequence. Ending it abruptly would leave the effort feeling wasted.' },
+          { title: 'Reset the Sequence', text: 'You suggest restarting the count from the last clear beat, not replaying the entire contest. Corin checks that both teams remember the same point in the sequence.' },
+          { title: 'One Clear Finish', text: 'The teams resume from that shared beat and finish together. Corin adds a count-check pause so players can confirm the sequence before the final clap.' },
+        ],
+        approaches: [
+          { label: 'Look around Jardin', callback: 'The teams resume from the last beat both sides remember, rather than arguing about a lost count.' },
+          { label: 'Enjoy a quiet evening at Rond-point du Progrès', callback: 'The next sequence includes a brief count-check before its final clap.' },
+          { label: 'Talk with Corin about the lost count', callback: 'Corin asks both teams to confirm the restart point before the game continues.' },
+        ],
+        dilemma: { prompt: 'The caller loses count near the finish. What is the fairest restart?', answers: ['End the game at the point one team prefers.', 'Resume from the last beat both teams clearly remember and confirm the count.', 'Restart the entire contest even if both teams know most of it was fair.'], correct: 1, explanation: 'A shared restart point protects the effort already made while restoring a common understanding of where the game stands.' },
+        closing: 'The count-check becomes part of the next round. Both teams cross the finish on the same clap, laughing at how loud a quiet pause can be.',
+        keepsake: { name: 'Count-check clapper', description: 'A fictional game marker tapped once when both teams confirm the sequence before its final beat.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Replay one unclear boundary throw', purpose: 'Use the game activity after Corin and the players agree the first bounce could not be judged.', task: 'practical', count: 1 },
+          { label: 'Look around the line-call garden', purpose: 'Return to Jardin where the group replaces an uncertain witness call with a clean replay.', task: 'discovery', count: 1 },
+          { label: 'Visit Corin’s game', purpose: 'Ask the host how to continue after an unclear point without blaming a friend.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Play two rounds with a count-check', purpose: 'Practice confirming the last shared beat before a paired-clap contest reaches its finish.', task: 'practical', count: 2 },
+          { label: 'Visit the two supported game anchors', purpose: 'Connect the disputed throw with the players’ agreement to restart from a shared point.', task: 'places', count: 2 },
+          { label: 'Practice the final clap together', purpose: 'Use a discovery activity to rebuild the sequence from a beat every player remembers.', task: 'discovery', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'george-town',
+      city: {
+        title: 'The Helping Rival', desire: 'care',
+        chapters: [
+          { title: 'A Token Off the Course', text: 'Sage begins a fictional mini-golf challenge at Airport Park. A rival’s token slips behind a course marker, leaving their next shot impossible to judge.' },
+          { title: 'A Free Advantage?', text: 'The leading player could claim the missed shot as a penalty. They notice their rival searching and feel unsure whether helping would look like pity.' },
+          { title: 'Offer, Don’t Take Over', text: 'At Public Beach, you suggest asking whether the rival wants help finding the token. Sage sets a neutral reset point that would apply to either player.' },
+          { title: 'A Better Contest', text: 'The rival accepts the search, resets from the same mark, and makes a strong shot. The leader still wins, but says the close finish felt better because both got to play.' },
+        ],
+        approaches: [
+          { label: 'Look around Public Beach', callback: 'The players choose one reset mark that would apply equally whichever token slipped away.' },
+          { label: 'Look around Airport Park', callback: 'The leading player asks before helping a rival recover the hidden token.' },
+          { label: 'Ask Sage how to handle a lost token', callback: 'Sage uses the same neutral reset point for both players.' },
+        ],
+        dilemma: { prompt: 'A rival’s token disappears behind a marker. What should the leader do?', answers: ['Claim the penalty immediately because the rules do not mention searching.', 'Offer help and use a neutral reset point that applies to either player.', 'Move the rival’s token without asking so the match can continue.'], correct: 1, explanation: 'The leader can help without taking control, and a rule that applies equally preserves the competition.' },
+        closing: 'Sage keeps the neutral reset mark for future rounds. The rival chooses the next course and the two players start again with trust intact.',
+        keepsake: { name: 'Neutral reset marker', description: 'A fictional course token placed at the same fallback point for either player.' },
+      },
+      country: {
+        title: 'The Helping Rival', desire: 'autonomy',
+        chapters: [
+          { title: 'A Strategy Game', text: 'Sage brings a fictional three-turn strategy game to Airport Park. A rival overlooks a simple move that would protect their last piece, and the leading player spots it.' },
+          { title: 'Help or Stay Quiet', text: 'The leader could keep silent and likely win. Their friend once asked for hints, but today has not said whether they want advice.' },
+          { title: 'Ask Before the Hint', text: 'At Public Beach, you suggest offering a hint without revealing the move. The rival declines, then finds a different defense by looking again at the board.' },
+          { title: 'A Rivalry With Choice', text: 'The leader respects the answer and wins the game narrowly. Afterward, the rival asks to see the overlooked move, and both agree the next match can include optional hints.' },
+        ],
+        approaches: [
+          { label: 'Look around Airport Park', callback: 'The leader notices a move but asks before revealing a hint.' },
+          { label: 'Look around Public Beach', callback: 'The rival declines help, then finds a defense in their own way.' },
+          { label: 'Talk with Sage about optional hints', callback: 'Sage adds a pre-game question so players can choose whether hints are welcome.' },
+        ],
+        dilemma: { prompt: 'The leader sees a defense their rival has missed. What should happen?', answers: ['Reveal the move without asking, because winning fairly means using all information.', 'Offer an optional hint and respect the rival’s answer.', 'Pretend not to see the move but change the rules to help them.'], correct: 1, explanation: 'Offering support can be kind, but the rival should choose whether to receive it in a competitive game.' },
+        closing: 'The next game starts with a simple question about hints. The friends keep their rivalry and gain a way to make help welcome by choice.',
+        keepsake: { name: 'Optional-hint token', description: 'A fictional marker a player may accept before a strategy round begins.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Use the neutral reset mark', purpose: 'Continue the fictional course after a token slips away without giving either rival a special rule.', task: 'practical', count: 1 },
+          { label: 'Look around the helping rival’s course', purpose: 'Visit Airport Park where Sage makes the reset point fair to both competitors.', task: 'discovery', count: 1 },
+          { label: 'Ask Sage about an optional hint', purpose: 'Visit the host to discuss how a rival can offer help while leaving the choice with the player.', task: 'host-visit', count: 1 },
+        ],
+        weekly: [
+          { label: 'Play two rounds with equal resets', purpose: 'Practice applying the same neutral fallback when either player loses a token.', task: 'practical', count: 2 },
+          { label: 'Visit both rivalry settings', purpose: 'Follow the contest from Airport Park to the place where the players settle their reset rule.', task: 'places', count: 2 },
+          { label: 'Offer a hint and wait for the answer', purpose: 'Complete a discovery activity after asking whether a rival wants a strategy clue.', task: 'discovery', count: 2 },
+        ],
+      },
+    },

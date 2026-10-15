@@ -1,0 +1,3450 @@
+{
+  "batch": 7,
+  "grounding": {
+    "fiction": "Everything authored from this brief remains explicitly fictional gameplay. Existing place names and game text are reference points from the shipped content model.",
+    "limits": "This is an inventory of existing game content, not independently verified geographic truth. Do not infer real history, services, conditions, schedules, practices, or claims about real people. Hosts are fictional game regulars. Do not add medical or worship claims.",
+    "countryIdAuthority": "For each city, the loaded CityModule.rules.country.id is authoritative. Country/territory group id uses that value, with the progression generator normalization nigeria -> ng. Country names come from rules.country.name; IDs count game identity modules, not sovereign states.",
+    "sourceScope": "Per-city sourcePaths identify the city module files supplying rules, venues, regulars, and content. Story references and guide/activity wording are copied from loaded TypeScript modules."
+  },
+  "countries": [
+    {
+      "countryId": "ag",
+      "countryName": "Antigua & Barbuda",
+      "cityIds": [
+        "st-johns"
+      ]
+    },
+    {
+      "countryId": "aq",
+      "countryName": "Antarctica",
+      "cityIds": [
+        "villa-las-estrellas"
+      ]
+    },
+    {
+      "countryId": "az",
+      "countryName": "Azerbaijan",
+      "cityIds": [
+        "baku"
+      ]
+    },
+    {
+      "countryId": "bh",
+      "countryName": "Bahrain",
+      "cityIds": [
+        "manama"
+      ]
+    },
+    {
+      "countryId": "bs",
+      "countryName": "Bahamas",
+      "cityIds": [
+        "nassau"
+      ]
+    },
+    {
+      "countryId": "cd",
+      "countryName": "Democratic Republic of the Congo",
+      "cityIds": [
+        "kinshasa"
+      ]
+    },
+    {
+      "countryId": "cm",
+      "countryName": "Cameroon",
+      "cityIds": [
+        "yaounde"
+      ]
+    },
+    {
+      "countryId": "cx",
+      "countryName": "Christmas Island",
+      "cityIds": [
+        "flying-fish-cove"
+      ]
+    },
+    {
+      "countryId": "do",
+      "countryName": "Dominican Republic",
+      "cityIds": [
+        "santo-domingo"
+      ]
+    },
+    {
+      "countryId": "es",
+      "countryName": "Spain",
+      "cityIds": [
+        "madrid"
+      ]
+    },
+    {
+      "countryId": "fr",
+      "countryName": "France",
+      "cityIds": [
+        "paris"
+      ]
+    },
+    {
+      "countryId": "gl",
+      "countryName": "Greenland",
+      "cityIds": [
+        "nuuk"
+      ]
+    },
+    {
+      "countryId": "gu",
+      "countryName": "Guam",
+      "cityIds": [
+        "hagatna"
+      ]
+    },
+    {
+      "countryId": "ht",
+      "countryName": "Haiti",
+      "cityIds": [
+        "port-au-prince"
+      ]
+    },
+    {
+      "countryId": "io",
+      "countryName": "British Indian Ocean Territory",
+      "cityIds": [
+        "chagos"
+      ]
+    },
+    {
+      "countryId": "jo",
+      "countryName": "Jordan",
+      "cityIds": [
+        "amman"
+      ]
+    },
+    {
+      "countryId": "kn",
+      "countryName": "St Kitts & Nevis",
+      "cityIds": [
+        "basseterre"
+      ]
+    },
+    {
+      "countryId": "lb",
+      "countryName": "Lebanon",
+      "cityIds": [
+        "beirut"
+      ]
+    },
+    {
+      "countryId": "lu",
+      "countryName": "Luxembourg",
+      "cityIds": [
+        "luxembourg"
+      ]
+    },
+    {
+      "countryId": "mf",
+      "countryName": "St Martin (French)",
+      "cityIds": [
+        "marigot"
+      ]
+    },
+    {
+      "countryId": "mo",
+      "countryName": "Macau",
+      "cityIds": [
+        "macau"
+      ]
+    },
+    {
+      "countryId": "mw",
+      "countryName": "Malawi",
+      "cityIds": [
+        "lilongwe"
+      ]
+    },
+    {
+      "countryId": "nf",
+      "countryName": "Norfolk Island",
+      "cityIds": [
+        "kingston-nf"
+      ]
+    },
+    {
+      "countryId": "om",
+      "countryName": "Oman",
+      "cityIds": [
+        "muscat"
+      ]
+    },
+    {
+      "countryId": "pl",
+      "countryName": "Poland",
+      "cityIds": [
+        "warsaw"
+      ]
+    },
+    {
+      "countryId": "py",
+      "countryName": "Paraguay",
+      "cityIds": [
+        "asuncion"
+      ]
+    },
+    {
+      "countryId": "sb",
+      "countryName": "Solomon Islands",
+      "cityIds": [
+        "honiara"
+      ]
+    },
+    {
+      "countryId": "sk",
+      "countryName": "Slovakia",
+      "cityIds": [
+        "bratislava"
+      ]
+    },
+    {
+      "countryId": "st",
+      "countryName": "Sao Tome & Principe",
+      "cityIds": [
+        "sao-tome"
+      ]
+    },
+    {
+      "countryId": "tf",
+      "countryName": "French S. Terr.",
+      "cityIds": [
+        "port-aux-francais"
+      ]
+    },
+    {
+      "countryId": "to",
+      "countryName": "Tonga",
+      "cityIds": [
+        "nukualofa"
+      ]
+    },
+    {
+      "countryId": "ug",
+      "countryName": "Uganda",
+      "cityIds": [
+        "kampala"
+      ]
+    },
+    {
+      "countryId": "vg",
+      "countryName": "Virgin Islands (UK)",
+      "cityIds": [
+        "road-town"
+      ]
+    },
+    {
+      "countryId": "xg",
+      "countryName": "Siachen Glacier",
+      "cityIds": [
+        "siachen"
+      ]
+    },
+    {
+      "countryId": "zw",
+      "countryName": "Zimbabwe",
+      "cityIds": [
+        "harare"
+      ]
+    }
+  ],
+  "cities": [
+    {
+      "cityId": "amman",
+      "cityName": "Amman",
+      "countryId": "jo",
+      "countryName": "Jordan",
+      "sourceCountryRuleId": "jo",
+      "existingStoryReferences": {
+        "host": {
+          "id": "amman-amman-osm-node-13128408649-1",
+          "name": "Corin",
+          "venue": "amman-osm-node-13128408649",
+          "venueName": "مزرعة اليازوري"
+        },
+        "practical": {
+          "venue": "amman-recreation",
+          "venueName": "Hada'iq al-Malik Hussein",
+          "spot": "visit",
+          "id": "amman-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "discovery": {
+          "venue": "amman-osm-node-13128408649",
+          "venueName": "مزرعة اليازوري",
+          "spot": "visit",
+          "id": "amman-osm-node-13128408649-visit",
+          "label": "Look around"
+        },
+        "placeLine": "مزرعة اليازوري, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "amman-airport-amman-airport",
+          "name": "Queen Alia International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Queen Alia International Airport.",
+          "guideSnippet": "Arrive at Queen Alia International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "amman-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "amman-community-notices",
+          "name": "Al-Zarqaa Manucipality",
+          "kind": "statehouse",
+          "whatYouCanDo": "Al-Zarqaa Manucipality, a mapped place for the game.",
+          "guideSnippet": "Al-Zarqaa Manucipality, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "amman-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "amman-community-voting-game",
+          "name": "Hashemite Plaza",
+          "kind": "polling",
+          "whatYouCanDo": "Hashemite Plaza; voting here is a fictional game activity.",
+          "guideSnippet": "Hashemite Plaza; voting here is a fictional game activity.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "amman-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/amman/content.ts",
+        "src/game/cities/amman/facts.ts",
+        "src/game/cities/amman/index.ts"
+      ]
+    },
+    {
+      "cityId": "asuncion",
+      "cityName": "Asuncion",
+      "countryId": "py",
+      "countryName": "Paraguay",
+      "sourceCountryRuleId": "py",
+      "existingStoryReferences": {
+        "host": {
+          "id": "asuncion-asuncion-osm-way-752981298-1",
+          "name": "Ira",
+          "venue": "asuncion-osm-way-752981298",
+          "venueName": "ecologica"
+        },
+        "practical": {
+          "venue": "asuncion-recreation",
+          "venueName": "Parque Ñu Guasú",
+          "spot": "visit",
+          "id": "asuncion-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "discovery": {
+          "venue": "asuncion-osm-way-752981298",
+          "venueName": "ecologica",
+          "spot": "visit",
+          "id": "asuncion-osm-way-752981298-visit",
+          "label": "Look around"
+        },
+        "placeLine": "ecologica, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "asuncion-airport-asuncion-airport",
+          "name": "Silvio Pettirossi International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Silvio Pettirossi International Airport.",
+          "guideSnippet": "Arrive at Silvio Pettirossi International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "asuncion-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "asuncion-community-notices",
+          "name": "Embassy of Chile",
+          "kind": "statehouse",
+          "whatYouCanDo": "Embassy of Chile, a mapped place for the game.",
+          "guideSnippet": "Embassy of Chile, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "asuncion-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "asuncion-community-voting-game",
+          "name": "Municipalidad de San Antonio",
+          "kind": "polling",
+          "whatYouCanDo": "Municipalidad de San Antonio; voting here is a fictional game activity.",
+          "guideSnippet": "Municipalidad de San Antonio; voting here is a fictional game activity.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "asuncion-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/asuncion/content.ts",
+        "src/game/cities/asuncion/facts.ts",
+        "src/game/cities/asuncion/index.ts"
+      ]
+    },
+    {
+      "cityId": "baku",
+      "cityName": "Baku",
+      "countryId": "az",
+      "countryName": "Azerbaijan",
+      "sourceCountryRuleId": "az",
+      "existingStoryReferences": {
+        "host": {
+          "id": "baku-baku-osm-way-178593266-1",
+          "name": "Corin",
+          "venue": "baku-osm-way-178593266",
+          "venueName": "Izmir Garden"
+        },
+        "practical": {
+          "venue": "baku-osm-way-299424032",
+          "venueName": "Sabir Park",
+          "spot": "visit",
+          "id": "baku-osm-way-299424032-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "baku-osm-way-178593266",
+          "venueName": "Izmir Garden",
+          "spot": "visit",
+          "id": "baku-osm-way-178593266-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Izmir Garden, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "baku-recreation",
+          "name": "Botanical Gardens, Baku",
+          "kind": "park",
+          "whatYouCanDo": "Botanical Gardens, Baku, a mapped place for the game.",
+          "guideSnippet": "Botanical Gardens, Baku, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "baku-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "baku-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "baku-airport-baku-airport",
+          "name": "Heydar Aliyev International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Heydar Aliyev International Airport.",
+          "guideSnippet": "Arrive at Heydar Aliyev International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "baku-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "baku-community-notices",
+          "name": "Daşınmaz Əmlakın Reyestri İdarəsi",
+          "kind": "statehouse",
+          "whatYouCanDo": "Daşınmaz Əmlakın Reyestri İdarəsi, a mapped place for the game.",
+          "guideSnippet": "Daşınmaz Əmlakın Reyestri İdarəsi, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "baku-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/baku/content.ts",
+        "src/game/cities/baku/facts.ts",
+        "src/game/cities/baku/index.ts"
+      ]
+    },
+    {
+      "cityId": "basseterre",
+      "cityName": "Basseterre",
+      "countryId": "kn",
+      "countryName": "St Kitts & Nevis",
+      "sourceCountryRuleId": "kn",
+      "existingStoryReferences": {
+        "host": {
+          "id": "basseterre-basseterre-osm-way-397539300-1",
+          "name": "Ira",
+          "venue": "basseterre-osm-way-397539300",
+          "venueName": "St. Kitts Eco-Park"
+        },
+        "practical": {
+          "venue": "basseterre-osm-way-545067913",
+          "venueName": "National Heroes Park",
+          "spot": "visit",
+          "id": "basseterre-osm-way-545067913-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "basseterre-osm-way-397539300",
+          "venueName": "St. Kitts Eco-Park",
+          "spot": "visit",
+          "id": "basseterre-osm-way-397539300-visit",
+          "label": "Look around"
+        },
+        "placeLine": "St. Kitts Eco-Park, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "basseterre-recreation",
+          "name": "Independence Square",
+          "kind": "park",
+          "whatYouCanDo": "Independence Square, a mapped place for the game.",
+          "guideSnippet": "Independence Square, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "basseterre-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "basseterre-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "basseterre-airport-basseterre-airport",
+          "name": "Robert L. Bradshaw International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Robert L. Bradshaw International Airport.",
+          "guideSnippet": "Arrive at Robert L. Bradshaw International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "basseterre-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "basseterre-community-notices",
+          "name": "Government House",
+          "kind": "statehouse",
+          "whatYouCanDo": "Government House, a mapped place for the game.",
+          "guideSnippet": "Government House, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "basseterre-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/basseterre/content.ts",
+        "src/game/cities/basseterre/facts.ts",
+        "src/game/cities/basseterre/index.ts"
+      ]
+    },
+    {
+      "cityId": "beirut",
+      "cityName": "Beirut",
+      "countryId": "lb",
+      "countryName": "Lebanon",
+      "sourceCountryRuleId": "lb",
+      "existingStoryReferences": {
+        "host": {
+          "id": "beirut-beirut-osm-node-12928075501-1",
+          "name": "Ira",
+          "venue": "beirut-osm-node-12928075501",
+          "venueName": "Bchamoun Garden"
+        },
+        "practical": {
+          "venue": "beirut-recreation",
+          "venueName": "Horsh Beirut",
+          "spot": "visit",
+          "id": "beirut-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "discovery": {
+          "venue": "beirut-osm-node-12928075501",
+          "venueName": "Bchamoun Garden",
+          "spot": "visit",
+          "id": "beirut-osm-node-12928075501-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Bchamoun Garden, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "beirut-airport-beirut-airport",
+          "name": "Beirut Rafic Hariri International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Beirut Rafic Hariri International Airport.",
+          "guideSnippet": "Arrive at Beirut Rafic Hariri International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "beirut-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "beirut-community-notices",
+          "name": "Lebanese Football Association",
+          "kind": "statehouse",
+          "whatYouCanDo": "Lebanese Football Association, a mapped place for the game.",
+          "guideSnippet": "Lebanese Football Association, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "beirut-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "beirut-community-voting-game",
+          "name": "Martyrs Square",
+          "kind": "polling",
+          "whatYouCanDo": "Martyrs Square; voting here is a fictional game activity.",
+          "guideSnippet": "Martyrs Square; voting here is a fictional game activity.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "beirut-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/beirut/content.ts",
+        "src/game/cities/beirut/facts.ts",
+        "src/game/cities/beirut/index.ts"
+      ]
+    },
+    {
+      "cityId": "bratislava",
+      "cityName": "Bratislava",
+      "countryId": "sk",
+      "countryName": "Slovakia",
+      "sourceCountryRuleId": "sk",
+      "existingStoryReferences": {
+        "host": {
+          "id": "bratislava-bratislava-osm-way-216958979-1",
+          "name": "Ira",
+          "venue": "bratislava-osm-way-216958979",
+          "venueName": "Lippayova záhrada"
+        },
+        "practical": {
+          "venue": "bratislava-recreation",
+          "venueName": "Zámocký Park",
+          "spot": "visit",
+          "id": "bratislava-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "discovery": {
+          "venue": "bratislava-osm-way-216958979",
+          "venueName": "Lippayova záhrada",
+          "spot": "visit",
+          "id": "bratislava-osm-way-216958979-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Lippayova záhrada, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "bratislava-airport-bratislava-airport",
+          "name": "M. R. Štefánik Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at M. R. Štefánik Airport.",
+          "guideSnippet": "Arrive at M. R. Štefánik Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "bratislava-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "bratislava-community-notices",
+          "name": "Mestský úrad v Šamoríne",
+          "kind": "statehouse",
+          "whatYouCanDo": "Mestský úrad v Šamoríne, a mapped place for the game.",
+          "guideSnippet": "Mestský úrad v Šamoríne, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "bratislava-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "bratislava-community-voting-game",
+          "name": "Námestie sv. Trojice",
+          "kind": "polling",
+          "whatYouCanDo": "Námestie sv. Trojice; voting here is a fictional game activity.",
+          "guideSnippet": "Námestie sv. Trojice; voting here is a fictional game activity.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "bratislava-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/bratislava/content.ts",
+        "src/game/cities/bratislava/facts.ts",
+        "src/game/cities/bratislava/index.ts"
+      ]
+    },
+    {
+      "cityId": "chagos",
+      "cityName": "Île Boddam",
+      "countryId": "io",
+      "countryName": "British Indian Ocean Territory",
+      "sourceCountryRuleId": "io",
+      "existingStoryReferences": {
+        "host": {
+          "id": "chagos-chagos-recreation-1",
+          "name": "Jesse",
+          "venue": "chagos-recreation",
+          "venueName": "Recreation area (game venue)"
+        },
+        "practical": {
+          "venue": "chagos-meal-stop",
+          "venueName": "Visitor meal stop (game venue)",
+          "spot": "counter",
+          "id": "chagos-visitor-meal",
+          "label": "Have a simple meal"
+        },
+        "discovery": {
+          "venue": "chagos-recreation",
+          "venueName": "Recreation area (game venue)",
+          "spot": "visit",
+          "id": "chagos-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "placeLine": "A fictional free gameplay space for rest and recreation."
+      },
+      "additionalVenues": [
+        {
+          "id": "chagos-airport-chagos-airport",
+          "name": "Île Boddam",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Île Boddam.",
+          "guideSnippet": "Arrive at Île Boddam.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "chagos-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "chagos-community-notices",
+          "name": "Community notices (game venue)",
+          "kind": "statehouse",
+          "whatYouCanDo": "A fictional noticeboard for the starter game community; it does not represent a real government office.",
+          "guideSnippet": "A fictional noticeboard for the starter game community; it does not represent a real government office.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "chagos-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "chagos-community-voting-game",
+          "name": "Community voting simulation (game venue)",
+          "kind": "polling",
+          "whatYouCanDo": "A fictional civic game activity; it is not an election office or polling station.",
+          "guideSnippet": "A fictional civic game activity; it is not an election office or polling station.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "chagos-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/chagos/content.ts",
+        "src/game/cities/chagos/facts.ts",
+        "src/game/cities/chagos/index.ts"
+      ]
+    },
+    {
+      "cityId": "flying-fish-cove",
+      "cityName": "Flying Fish Cove",
+      "countryId": "cx",
+      "countryName": "Christmas Island",
+      "sourceCountryRuleId": "cx",
+      "existingStoryReferences": {
+        "host": {
+          "id": "flying-fish-cove-flying-fish-cove-osm-way-1550247964-1",
+          "name": "Uri",
+          "venue": "flying-fish-cove-osm-way-1550247964",
+          "venueName": "Poon Saan Park"
+        },
+        "practical": {
+          "venue": "flying-fish-cove-recreation",
+          "venueName": "Drumsite Park",
+          "spot": "visit",
+          "id": "flying-fish-cove-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "discovery": {
+          "venue": "flying-fish-cove-osm-way-1550247964",
+          "venueName": "Poon Saan Park",
+          "spot": "visit",
+          "id": "flying-fish-cove-osm-way-1550247964-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Poon Saan Park, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "flying-fish-cove-airport-flying-fish-cove-airport",
+          "name": "Christmas Island International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Christmas Island International Airport.",
+          "guideSnippet": "Arrive at Christmas Island International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "flying-fish-cove-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "flying-fish-cove-community-notices",
+          "name": "Community notices (game venue)",
+          "kind": "statehouse",
+          "whatYouCanDo": "A fictional noticeboard for the starter game community; it does not represent a real government office.",
+          "guideSnippet": "A fictional noticeboard for the starter game community; it does not represent a real government office.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "flying-fish-cove-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "flying-fish-cove-community-voting-game",
+          "name": "Community voting simulation (game venue)",
+          "kind": "polling",
+          "whatYouCanDo": "A fictional civic game activity; it is not an election office or polling station.",
+          "guideSnippet": "A fictional civic game activity; it is not an election office or polling station.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "flying-fish-cove-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/flying-fish-cove/content.ts",
+        "src/game/cities/flying-fish-cove/facts.ts",
+        "src/game/cities/flying-fish-cove/index.ts"
+      ]
+    },
+    {
+      "cityId": "hagatna",
+      "cityName": "Hagåtña",
+      "countryId": "gu",
+      "countryName": "Guam",
+      "sourceCountryRuleId": "gu",
+      "existingStoryReferences": {
+        "host": {
+          "id": "hagatna-hagatna-osm-node-358671978-1",
+          "name": "Parker",
+          "venue": "hagatna-osm-node-358671978",
+          "venueName": "Barrigada War Memorial Park"
+        },
+        "practical": {
+          "venue": "hagatna-osm-way-606591976",
+          "venueName": "Chief Quipuha Park",
+          "spot": "visit",
+          "id": "hagatna-osm-way-606591976-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "hagatna-osm-node-358671978",
+          "venueName": "Barrigada War Memorial Park",
+          "spot": "visit",
+          "id": "hagatna-osm-node-358671978-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Barrigada War Memorial Park, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "hagatna-airport-hagatna-airport",
+          "name": "Antonio B. Won Pat International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Antonio B. Won Pat International Airport.",
+          "guideSnippet": "Arrive at Antonio B. Won Pat International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "hagatna-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "hagatna-community-notices",
+          "name": "NASA Guam MSFN Station (Decommisioned)",
+          "kind": "statehouse",
+          "whatYouCanDo": "NASA Guam MSFN Station (Decommisioned), a mapped place for the game.",
+          "guideSnippet": "NASA Guam MSFN Station (Decommisioned), a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "hagatna-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "hagatna-community-voting-game",
+          "name": "Asan Community Center",
+          "kind": "polling",
+          "whatYouCanDo": "Asan Community Center; voting here is a fictional game activity.",
+          "guideSnippet": "Asan Community Center; voting here is a fictional game activity.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "hagatna-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/hagatna/content.ts",
+        "src/game/cities/hagatna/facts.ts",
+        "src/game/cities/hagatna/index.ts"
+      ]
+    },
+    {
+      "cityId": "harare",
+      "cityName": "Harare",
+      "countryId": "zw",
+      "countryName": "Zimbabwe",
+      "sourceCountryRuleId": "zw",
+      "existingStoryReferences": {
+        "host": {
+          "id": "harare-harare-recreation-1",
+          "name": "Jesse",
+          "venue": "harare-recreation",
+          "venueName": "Greenwood Park"
+        },
+        "practical": {
+          "venue": "harare-meal-stop",
+          "venueName": "Afrotopia Café @ The Gallery",
+          "spot": "counter",
+          "id": "harare-visitor-meal",
+          "label": "Have a simple meal"
+        },
+        "discovery": {
+          "venue": "harare-recreation",
+          "venueName": "Greenwood Park",
+          "spot": "visit",
+          "id": "harare-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "placeLine": "A public park, for a free break, a rest or a game of chess."
+      },
+      "additionalVenues": [
+        {
+          "id": "harare-african-liberation-museum",
+          "name": "Museum of African liberation",
+          "kind": "walk",
+          "whatYouCanDo": "A museum: walk the exhibits.",
+          "guideSnippet": "A museum: walk the exhibits.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "harare-african-liberation-museum-visit",
+              "label": "Look around",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "harare-airport-harare-airport",
+          "name": "Robert Gabriel Mugabe International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Robert Gabriel Mugabe International Airport.",
+          "guideSnippet": "Arrive at Robert Gabriel Mugabe International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "harare-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "harare-chiremba-balancing-rocks",
+          "name": "Chiremba Balancing Rocks",
+          "kind": "viewing",
+          "whatYouCanDo": "A natural attraction: take in the view.",
+          "guideSnippet": "A natural attraction: take in the view.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "harare-chiremba-balancing-rocks-visit",
+              "label": "Watch from the stands",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/harare/content.ts",
+        "src/game/cities/harare/facts.ts",
+        "src/game/cities/harare/index.ts"
+      ]
+    },
+    {
+      "cityId": "honiara",
+      "cityName": "Honiara",
+      "countryId": "sb",
+      "countryName": "Solomon Islands",
+      "sourceCountryRuleId": "sb",
+      "existingStoryReferences": {
+        "host": {
+          "id": "honiara-honiara-recreation-1",
+          "name": "Jesse",
+          "venue": "honiara-recreation",
+          "venueName": "Children's Park"
+        },
+        "practical": {
+          "venue": "honiara-meal-stop",
+          "venueName": "The Ofis",
+          "spot": "counter",
+          "id": "honiara-visitor-meal",
+          "label": "Have a simple meal"
+        },
+        "discovery": {
+          "venue": "honiara-recreation",
+          "venueName": "Children's Park",
+          "spot": "visit",
+          "id": "honiara-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "placeLine": "Children's Park, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "honiara-airport-honiara-airport",
+          "name": "Honiara International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Honiara International Airport.",
+          "guideSnippet": "Arrive at Honiara International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "honiara-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "honiara-community-notices",
+          "name": "National Parliament of Solomon Islands",
+          "kind": "statehouse",
+          "whatYouCanDo": "National Parliament of Solomon Islands, a mapped place for the game.",
+          "guideSnippet": "National Parliament of Solomon Islands, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "honiara-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "honiara-community-voting-game",
+          "name": "Honiara City Council",
+          "kind": "polling",
+          "whatYouCanDo": "Honiara City Council; voting here is a fictional game activity.",
+          "guideSnippet": "Honiara City Council; voting here is a fictional game activity.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "honiara-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/honiara/content.ts",
+        "src/game/cities/honiara/facts.ts",
+        "src/game/cities/honiara/index.ts"
+      ]
+    },
+    {
+      "cityId": "kampala",
+      "cityName": "Kampala",
+      "countryId": "ug",
+      "countryName": "Uganda",
+      "sourceCountryRuleId": "ug",
+      "existingStoryReferences": {
+        "host": {
+          "id": "kampala-kampala-recreation-1",
+          "name": "Jesse",
+          "venue": "kampala-recreation",
+          "venueName": "Entebbe Botanical Gardens"
+        },
+        "practical": {
+          "venue": "kampala-meal-stop",
+          "venueName": "Cafe Javas",
+          "spot": "counter",
+          "id": "kampala-visitor-meal",
+          "label": "Have a simple meal"
+        },
+        "discovery": {
+          "venue": "kampala-recreation",
+          "venueName": "Entebbe Botanical Gardens",
+          "spot": "visit",
+          "id": "kampala-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "placeLine": "Botanical gardens, for a free break, a rest or a game of chess."
+      },
+      "additionalVenues": [
+        {
+          "id": "kampala-airport-kampala-airport",
+          "name": "Entebbe International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Entebbe International Airport.",
+          "guideSnippet": "Arrive at Entebbe International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "kampala-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "kampala-community-notices",
+          "name": "KCCA Town Hall",
+          "kind": "statehouse",
+          "whatYouCanDo": "The city authority town hall; the notice board here is a game activity, not a government office.",
+          "guideSnippet": "The city authority town hall; the notice board here is a game activity, not a government office.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "kampala-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "kampala-community-voting-game",
+          "name": "Independence Monument",
+          "kind": "polling",
+          "whatYouCanDo": "A public monument in the centre. The voting desk here is a game activity, not an election office.",
+          "guideSnippet": "A public monument in the centre. The voting desk here is a game activity, not an election office.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "kampala-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/kampala/content.ts",
+        "src/game/cities/kampala/facts.ts",
+        "src/game/cities/kampala/index.ts"
+      ]
+    },
+    {
+      "cityId": "kingston-nf",
+      "cityName": "Kingston",
+      "countryId": "nf",
+      "countryName": "Norfolk Island",
+      "sourceCountryRuleId": "nf",
+      "existingStoryReferences": {
+        "host": {
+          "id": "kingston-nf-kingston-nf-osm-way-681850666-1",
+          "name": "Wren",
+          "venue": "kingston-nf-osm-way-681850666",
+          "venueName": "Lions Park"
+        },
+        "practical": {
+          "venue": "kingston-nf-osm-way-681850758",
+          "venueName": "Norfolk Island Memorial Park",
+          "spot": "visit",
+          "id": "kingston-nf-osm-way-681850758-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "kingston-nf-osm-way-681850666",
+          "venueName": "Lions Park",
+          "spot": "visit",
+          "id": "kingston-nf-osm-way-681850666-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Lions Park, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "kingston-nf-recreation",
+          "name": "Pop's Corner",
+          "kind": "park",
+          "whatYouCanDo": "Pop's Corner, a mapped place for the game.",
+          "guideSnippet": "Pop's Corner, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "kingston-nf-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "kingston-nf-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "kingston-nf-airport-kingston-nf-airport",
+          "name": "Norfolk Island International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Norfolk Island International Airport.",
+          "guideSnippet": "Arrive at Norfolk Island International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "kingston-nf-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "kingston-nf-community-notices",
+          "name": "Council Chambers",
+          "kind": "statehouse",
+          "whatYouCanDo": "Council Chambers, a mapped place for the game.",
+          "guideSnippet": "Council Chambers, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "kingston-nf-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/kingston-nf/content.ts",
+        "src/game/cities/kingston-nf/facts.ts",
+        "src/game/cities/kingston-nf/index.ts"
+      ]
+    },
+    {
+      "cityId": "kinshasa",
+      "cityName": "Kinshasa",
+      "countryId": "cd",
+      "countryName": "Democratic Republic of the Congo",
+      "sourceCountryRuleId": "cd",
+      "existingStoryReferences": {
+        "host": {
+          "id": "kinshasa-kinshasa-recreation-1",
+          "name": "Jesse",
+          "venue": "kinshasa-recreation",
+          "venueName": "Parc Naturel de la Nsele (Mangiers)"
+        },
+        "practical": {
+          "venue": "kinshasa-meal-stop",
+          "venueName": "petit restaurant et plage",
+          "spot": "counter",
+          "id": "kinshasa-visitor-meal",
+          "label": "Have a simple meal"
+        },
+        "discovery": {
+          "venue": "kinshasa-recreation",
+          "venueName": "Parc Naturel de la Nsele (Mangiers)",
+          "spot": "visit",
+          "id": "kinshasa-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "placeLine": "Parc Naturel de la Nsele (Mangiers), a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "kinshasa-airport-kinshasa-airport",
+          "name": "Ndjili International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Ndjili International Airport.",
+          "guideSnippet": "Arrive at Ndjili International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "kinshasa-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "kinshasa-community-notices",
+          "name": "Institut Congolais pour la Conservation de la Nature",
+          "kind": "statehouse",
+          "whatYouCanDo": "Institut Congolais pour la Conservation de la Nature, a mapped place for the game.",
+          "guideSnippet": "Institut Congolais pour la Conservation de la Nature, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "kinshasa-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "kinshasa-community-voting-game",
+          "name": "Bureau de Quartier Kinkole Pêcheur",
+          "kind": "polling",
+          "whatYouCanDo": "Bureau de Quartier Kinkole Pêcheur; voting here is a fictional game activity.",
+          "guideSnippet": "Bureau de Quartier Kinkole Pêcheur; voting here is a fictional game activity.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "kinshasa-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/kinshasa/content.ts",
+        "src/game/cities/kinshasa/facts.ts",
+        "src/game/cities/kinshasa/index.ts"
+      ]
+    },
+    {
+      "cityId": "lilongwe",
+      "cityName": "Lilongwe",
+      "countryId": "mw",
+      "countryName": "Malawi",
+      "sourceCountryRuleId": "mw",
+      "existingStoryReferences": {
+        "host": {
+          "id": "lilongwe-lilongwe-recreation-1",
+          "name": "Jesse",
+          "venue": "lilongwe-recreation",
+          "venueName": "Bingu National Stadium"
+        },
+        "practical": {
+          "venue": "lilongwe-meal-stop",
+          "venueName": "Mamma Mia",
+          "spot": "counter",
+          "id": "lilongwe-visitor-meal",
+          "label": "Have a simple meal"
+        },
+        "discovery": {
+          "venue": "lilongwe-recreation",
+          "venueName": "Bingu National Stadium",
+          "spot": "visit",
+          "id": "lilongwe-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "placeLine": "A mapped stadium used as a game recreation stop."
+      },
+      "additionalVenues": [
+        {
+          "id": "lilongwe-african-bible-college",
+          "name": "African Bible College",
+          "kind": "quad",
+          "whatYouCanDo": "A mapped college represented as an in-game campus walk.",
+          "guideSnippet": "A mapped college represented as an in-game campus walk.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "lilongwe-african-bible-college-visit",
+              "label": "Walk the campus",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "lilongwe-airport-kamuzu-international-airport",
+          "name": "Kamuzu International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Kamuzu International Airport.",
+          "guideSnippet": "Arrive at Kamuzu International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "lilongwe-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "lilongwe-capital-kids-play-centre",
+          "name": "Capital Kids Play Centre",
+          "kind": "walk",
+          "whatYouCanDo": "A mapped attraction represented as a game outing.",
+          "guideSnippet": "A mapped attraction represented as a game outing.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "lilongwe-capital-kids-play-centre-visit",
+              "label": "Look around",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/lilongwe/content.ts",
+        "src/game/cities/lilongwe/facts.ts",
+        "src/game/cities/lilongwe/index.ts"
+      ]
+    },
+    {
+      "cityId": "luxembourg",
+      "cityName": "Luxembourg",
+      "countryId": "lu",
+      "countryName": "Luxembourg",
+      "sourceCountryRuleId": "lu",
+      "existingStoryReferences": {
+        "host": {
+          "id": "luxembourg-luxembourg-osm-way-50041968-1",
+          "name": "Emery",
+          "venue": "luxembourg-osm-way-50041968",
+          "venueName": "Place de Gand"
+        },
+        "practical": {
+          "venue": "luxembourg-osm-way-526461841",
+          "venueName": "Parc Heintz",
+          "spot": "visit",
+          "id": "luxembourg-osm-way-526461841-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "luxembourg-osm-way-50041968",
+          "venueName": "Place de Gand",
+          "spot": "visit",
+          "id": "luxembourg-osm-way-50041968-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Place de Gand, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "luxembourg-recreation",
+          "name": "Parc Gerlache",
+          "kind": "park",
+          "whatYouCanDo": "Parc Gerlache, a mapped place for the game.",
+          "guideSnippet": "Parc Gerlache, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "luxembourg-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "luxembourg-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "luxembourg-airport-luxembourg-airport",
+          "name": "Luxembourg-Findel International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Luxembourg-Findel International Airport.",
+          "guideSnippet": "Arrive at Luxembourg-Findel International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "luxembourg-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "luxembourg-community-notices",
+          "name": "Administration du cadastre et de la topographie",
+          "kind": "statehouse",
+          "whatYouCanDo": "Administration du cadastre et de la topographie, a mapped place for the game.",
+          "guideSnippet": "Administration du cadastre et de la topographie, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "luxembourg-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/luxembourg/content.ts",
+        "src/game/cities/luxembourg/facts.ts",
+        "src/game/cities/luxembourg/index.ts"
+      ]
+    },
+    {
+      "cityId": "macau",
+      "cityName": "Macau",
+      "countryId": "mo",
+      "countryName": "Macau",
+      "sourceCountryRuleId": "mo",
+      "existingStoryReferences": {
+        "host": {
+          "id": "macau-macau-osm-way-244930722-1",
+          "name": "Logan",
+          "venue": "macau-osm-way-244930722",
+          "venueName": "Ramalho Eanes Garden"
+        },
+        "practical": {
+          "venue": "macau-osm-way-322642517",
+          "venueName": "Hac Sa Park",
+          "spot": "visit",
+          "id": "macau-osm-way-322642517-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "macau-osm-way-244930722",
+          "venueName": "Ramalho Eanes Garden",
+          "spot": "visit",
+          "id": "macau-osm-way-244930722-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Ramalho Eanes Garden, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "macau-recreation",
+          "name": "氹仔海濱休憩區 Zona de Lazer da Marginal da Taipa",
+          "kind": "park",
+          "whatYouCanDo": "氹仔海濱休憩區 Zona de Lazer da Marginal da Taipa, a mapped place for the game.",
+          "guideSnippet": "氹仔海濱休憩區 Zona de Lazer da Marginal da Taipa, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "macau-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "macau-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "macau-airport-macau-airport",
+          "name": "Macau International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Macau International Airport.",
+          "guideSnippet": "Arrive at Macau International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "macau-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "macau-community-notices",
+          "name": "Monetary Authority of Macao",
+          "kind": "statehouse",
+          "whatYouCanDo": "Monetary Authority of Macao, a mapped place for the game.",
+          "guideSnippet": "Monetary Authority of Macao, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "macau-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/macau/content.ts",
+        "src/game/cities/macau/facts.ts",
+        "src/game/cities/macau/index.ts"
+      ]
+    },
+    {
+      "cityId": "madrid",
+      "cityName": "Madrid",
+      "countryId": "es",
+      "countryName": "Spain",
+      "sourceCountryRuleId": "es",
+      "existingStoryReferences": {
+        "host": {
+          "id": "madrid-madrid-osm-way-28742252-1",
+          "name": "Wren",
+          "venue": "madrid-osm-way-28742252",
+          "venueName": "Parque Dehesa Boyal"
+        },
+        "practical": {
+          "venue": "madrid-osm-way-32030445",
+          "venueName": "Parque de Las Presillas",
+          "spot": "visit",
+          "id": "madrid-osm-way-32030445-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "madrid-osm-way-28742252",
+          "venueName": "Parque Dehesa Boyal",
+          "spot": "visit",
+          "id": "madrid-osm-way-28742252-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Parque Dehesa Boyal, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "madrid-recreation",
+          "name": "Dehesa de Navalcarbón",
+          "kind": "park",
+          "whatYouCanDo": "Dehesa de Navalcarbón, a mapped place for the game.",
+          "guideSnippet": "Dehesa de Navalcarbón, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "madrid-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "madrid-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "madrid-airport-madrid-airport",
+          "name": "Adolfo Suárez Madrid–Barajas Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Adolfo Suárez Madrid–Barajas Airport.",
+          "guideSnippet": "Arrive at Adolfo Suárez Madrid–Barajas Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "madrid-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "madrid-community-notices",
+          "name": "Junta Municipal de Distrito de Barajas.",
+          "kind": "statehouse",
+          "whatYouCanDo": "Junta Municipal de Distrito de Barajas., a mapped place for the game.",
+          "guideSnippet": "Junta Municipal de Distrito de Barajas., a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "madrid-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/madrid/content.ts",
+        "src/game/cities/madrid/facts.ts",
+        "src/game/cities/madrid/index.ts"
+      ]
+    },
+    {
+      "cityId": "manama",
+      "cityName": "Manama",
+      "countryId": "bh",
+      "countryName": "Bahrain",
+      "sourceCountryRuleId": "bh",
+      "existingStoryReferences": {
+        "host": {
+          "id": "manama-manama-recreation-1",
+          "name": "Jesse",
+          "venue": "manama-recreation",
+          "venueName": "Askar Garden"
+        },
+        "practical": {
+          "venue": "manama-meal-stop",
+          "venueName": "Light House Cafe",
+          "spot": "counter",
+          "id": "manama-visitor-meal",
+          "label": "Have a simple meal"
+        },
+        "discovery": {
+          "venue": "manama-recreation",
+          "venueName": "Askar Garden",
+          "spot": "visit",
+          "id": "manama-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "placeLine": "Askar Garden, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "manama-airport-manama-airport",
+          "name": "Bahrain International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Bahrain International Airport.",
+          "guideSnippet": "Arrive at Bahrain International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "manama-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "manama-community-notices",
+          "name": "Ministry of Interior",
+          "kind": "statehouse",
+          "whatYouCanDo": "Ministry of Interior, a mapped place for the game.",
+          "guideSnippet": "Ministry of Interior, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "manama-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "manama-community-voting-game",
+          "name": "Northern Area Municipality",
+          "kind": "polling",
+          "whatYouCanDo": "Northern Area Municipality; voting here is a fictional game activity.",
+          "guideSnippet": "Northern Area Municipality; voting here is a fictional game activity.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "manama-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/manama/content.ts",
+        "src/game/cities/manama/facts.ts",
+        "src/game/cities/manama/index.ts"
+      ]
+    },
+    {
+      "cityId": "marigot",
+      "cityName": "Marigot",
+      "countryId": "mf",
+      "countryName": "St Martin (French)",
+      "sourceCountryRuleId": "mf",
+      "existingStoryReferences": {
+        "host": {
+          "id": "marigot-marigot-recreation-1",
+          "name": "Jesse",
+          "venue": "marigot-recreation",
+          "venueName": "Lili's Tropical Garden"
+        },
+        "practical": {
+          "venue": "marigot-meal-stop",
+          "venueName": "Le Sand",
+          "spot": "counter",
+          "id": "marigot-visitor-meal",
+          "label": "Have a simple meal"
+        },
+        "discovery": {
+          "venue": "marigot-recreation",
+          "venueName": "Lili's Tropical Garden",
+          "spot": "visit",
+          "id": "marigot-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "placeLine": "Lili's Tropical Garden, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "marigot-airport-marigot-airport",
+          "name": "Grand Case-l'Espérance Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Grand Case-l'Espérance Airport.",
+          "guideSnippet": "Arrive at Grand Case-l'Espérance Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "marigot-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "marigot-community-notices",
+          "name": "Préfecture déléguée",
+          "kind": "statehouse",
+          "whatYouCanDo": "Préfecture déléguée, a mapped place for the game.",
+          "guideSnippet": "Préfecture déléguée, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "marigot-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "marigot-community-voting-game",
+          "name": "Réserve Naturelle de Saint-Martin",
+          "kind": "polling",
+          "whatYouCanDo": "Réserve Naturelle de Saint-Martin; voting here is a fictional game activity.",
+          "guideSnippet": "Réserve Naturelle de Saint-Martin; voting here is a fictional game activity.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "marigot-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/marigot/content.ts",
+        "src/game/cities/marigot/facts.ts",
+        "src/game/cities/marigot/index.ts"
+      ]
+    },
+    {
+      "cityId": "muscat",
+      "cityName": "Muscat",
+      "countryId": "om",
+      "countryName": "Oman",
+      "sourceCountryRuleId": "om",
+      "existingStoryReferences": {
+        "host": {
+          "id": "muscat-muscat-osm-node-1719812351-1",
+          "name": "Wren",
+          "venue": "muscat-osm-node-1719812351",
+          "venueName": "Muntaza.h Qantab"
+        },
+        "practical": {
+          "venue": "muscat-osm-way-287310284",
+          "venueName": "Al Amerat Public Park",
+          "spot": "visit",
+          "id": "muscat-osm-way-287310284-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "muscat-osm-node-1719812351",
+          "venueName": "Muntaza.h Qantab",
+          "spot": "visit",
+          "id": "muscat-osm-node-1719812351-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Muntaza.h Qantab, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "muscat-recreation",
+          "name": "Al Qurm Natural Park",
+          "kind": "park",
+          "whatYouCanDo": "Al Qurm Natural Park, a mapped place for the game.",
+          "guideSnippet": "Al Qurm Natural Park, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "muscat-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "muscat-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "muscat-airport-muscat-airport",
+          "name": "Muscat International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Muscat International Airport.",
+          "guideSnippet": "Arrive at Muscat International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "muscat-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "muscat-community-notices",
+          "name": "Consultative Council of Oman",
+          "kind": "statehouse",
+          "whatYouCanDo": "Consultative Council of Oman, a mapped place for the game.",
+          "guideSnippet": "Consultative Council of Oman, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "muscat-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/muscat/content.ts",
+        "src/game/cities/muscat/facts.ts",
+        "src/game/cities/muscat/index.ts"
+      ]
+    },
+    {
+      "cityId": "nassau",
+      "cityName": "Nassau",
+      "countryId": "bs",
+      "countryName": "Bahamas",
+      "sourceCountryRuleId": "bs",
+      "existingStoryReferences": {
+        "host": {
+          "id": "nassau-nassau-osm-way-174579796-1",
+          "name": "Uri",
+          "venue": "nassau-osm-way-174579796",
+          "venueName": "Community Centre"
+        },
+        "practical": {
+          "venue": "nassau-osm-way-228455375",
+          "venueName": "Cairo National Park",
+          "spot": "visit",
+          "id": "nassau-osm-way-228455375-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "nassau-osm-way-174579796",
+          "venueName": "Community Centre",
+          "spot": "visit",
+          "id": "nassau-osm-way-174579796-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Community Centre, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "nassau-recreation",
+          "name": "Bamboo Town Constituency Park",
+          "kind": "park",
+          "whatYouCanDo": "Bamboo Town Constituency Park, a mapped place for the game.",
+          "guideSnippet": "Bamboo Town Constituency Park, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "nassau-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "nassau-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "nassau-airport-nassau-airport",
+          "name": "Lynden Pindling International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Lynden Pindling International Airport.",
+          "guideSnippet": "Arrive at Lynden Pindling International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "nassau-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "nassau-community-notices",
+          "name": "Bahamas National Archives",
+          "kind": "statehouse",
+          "whatYouCanDo": "Bahamas National Archives, a mapped place for the game.",
+          "guideSnippet": "Bahamas National Archives, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "nassau-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/nassau/content.ts",
+        "src/game/cities/nassau/facts.ts",
+        "src/game/cities/nassau/index.ts"
+      ]
+    },
+    {
+      "cityId": "nukualofa",
+      "cityName": "Nuku'alofa",
+      "countryId": "to",
+      "countryName": "Tonga",
+      "sourceCountryRuleId": "to",
+      "existingStoryReferences": {
+        "host": {
+          "id": "nukualofa-nukualofa-osm-way-338584633-1",
+          "name": "Greer",
+          "venue": "nukualofa-osm-way-338584633",
+          "venueName": "Fa'onelua Park"
+        },
+        "practical": {
+          "venue": "nukualofa-recreation",
+          "venueName": "Tukingapahu",
+          "spot": "visit",
+          "id": "nukualofa-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "discovery": {
+          "venue": "nukualofa-osm-way-338584633",
+          "venueName": "Fa'onelua Park",
+          "spot": "visit",
+          "id": "nukualofa-osm-way-338584633-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Fa'onelua Park, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "nukualofa-airport-nukualofa-airport",
+          "name": "Fua'amotu International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Fua'amotu International Airport.",
+          "guideSnippet": "Arrive at Fua'amotu International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "nukualofa-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "nukualofa-community-notices",
+          "name": "MAFF",
+          "kind": "statehouse",
+          "whatYouCanDo": "MAFF, a mapped place for the game.",
+          "guideSnippet": "MAFF, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "nukualofa-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "nukualofa-community-voting-game",
+          "name": "Makatolo a Maui Community Hall",
+          "kind": "polling",
+          "whatYouCanDo": "Makatolo a Maui Community Hall; voting here is a fictional game activity.",
+          "guideSnippet": "Makatolo a Maui Community Hall; voting here is a fictional game activity.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "nukualofa-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/nukualofa/content.ts",
+        "src/game/cities/nukualofa/facts.ts",
+        "src/game/cities/nukualofa/index.ts"
+      ]
+    },
+    {
+      "cityId": "nuuk",
+      "cityName": "Nuuk",
+      "countryId": "gl",
+      "countryName": "Greenland",
+      "sourceCountryRuleId": "gl",
+      "existingStoryReferences": {
+        "host": {
+          "id": "nuuk-nuuk-osm-way-255823949-1",
+          "name": "Corin",
+          "venue": "nuuk-osm-way-255823949",
+          "venueName": "Aqqaluk Plads"
+        },
+        "practical": {
+          "venue": "nuuk-recreation",
+          "venueName": "Mitsimmavik",
+          "spot": "visit",
+          "id": "nuuk-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "discovery": {
+          "venue": "nuuk-osm-way-255823949",
+          "venueName": "Aqqaluk Plads",
+          "spot": "visit",
+          "id": "nuuk-osm-way-255823949-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Aqqaluk Plads, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "nuuk-airport-nuuk-airport",
+          "name": "Nuuk International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Nuuk International Airport.",
+          "guideSnippet": "Arrive at Nuuk International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "nuuk-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "nuuk-community-notices",
+          "name": "Nukissiorfiit",
+          "kind": "statehouse",
+          "whatYouCanDo": "Nukissiorfiit, a mapped place for the game.",
+          "guideSnippet": "Nukissiorfiit, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "nuuk-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "nuuk-community-voting-game",
+          "name": "Kommuneqarfik Sermersooq",
+          "kind": "polling",
+          "whatYouCanDo": "Kommuneqarfik Sermersooq; voting here is a fictional game activity.",
+          "guideSnippet": "Kommuneqarfik Sermersooq; voting here is a fictional game activity.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "nuuk-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/nuuk/content.ts",
+        "src/game/cities/nuuk/facts.ts",
+        "src/game/cities/nuuk/index.ts"
+      ]
+    },
+    {
+      "cityId": "paris",
+      "cityName": "Paris",
+      "countryId": "fr",
+      "countryName": "France",
+      "sourceCountryRuleId": "fr",
+      "existingStoryReferences": {
+        "host": {
+          "id": "paris-paris-osm-way-111365747-1",
+          "name": "Logan",
+          "venue": "paris-osm-way-111365747",
+          "venueName": "Parc de Ladoucette"
+        },
+        "practical": {
+          "venue": "paris-osm-way-365579410",
+          "venueName": "Parc Montreau",
+          "spot": "visit",
+          "id": "paris-osm-way-365579410-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "paris-osm-way-111365747",
+          "venueName": "Parc de Ladoucette",
+          "spot": "visit",
+          "id": "paris-osm-way-111365747-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Parc de Ladoucette, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "paris-recreation",
+          "name": "Parc de Versailles",
+          "kind": "park",
+          "whatYouCanDo": "Parc de Versailles, a mapped place for the game.",
+          "guideSnippet": "Parc de Versailles, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "paris-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "paris-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "paris-airport-paris-airport",
+          "name": "Charles de Gaulle International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Charles de Gaulle International Airport.",
+          "guideSnippet": "Arrive at Charles de Gaulle International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "paris-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "paris-community-notices",
+          "name": "Préfecture des Hauts-de-Seine",
+          "kind": "statehouse",
+          "whatYouCanDo": "Préfecture des Hauts-de-Seine, a mapped place for the game.",
+          "guideSnippet": "Préfecture des Hauts-de-Seine, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "paris-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/paris/content.ts",
+        "src/game/cities/paris/facts.ts",
+        "src/game/cities/paris/index.ts"
+      ]
+    },
+    {
+      "cityId": "port-au-prince",
+      "cityName": "Port-au-Prince",
+      "countryId": "ht",
+      "countryName": "Haiti",
+      "sourceCountryRuleId": "ht",
+      "existingStoryReferences": {
+        "host": {
+          "id": "port-au-prince-port-au-prince-recreation-1",
+          "name": "Jesse",
+          "venue": "port-au-prince-recreation",
+          "venueName": "Champs de Mars"
+        },
+        "practical": {
+          "venue": "port-au-prince-meal-stop",
+          "venueName": "Hôtel Montana",
+          "spot": "counter",
+          "id": "port-au-prince-visitor-meal",
+          "label": "Have a simple meal"
+        },
+        "discovery": {
+          "venue": "port-au-prince-recreation",
+          "venueName": "Champs de Mars",
+          "spot": "visit",
+          "id": "port-au-prince-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "placeLine": "Champs de Mars, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "port-au-prince-airport-port-au-prince-airport",
+          "name": "Toussaint Louverture International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Toussaint Louverture International Airport.",
+          "guideSnippet": "Arrive at Toussaint Louverture International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "port-au-prince-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "port-au-prince-community-notices",
+          "name": "Annexe Mairie Croix des Bouquets",
+          "kind": "statehouse",
+          "whatYouCanDo": "Annexe Mairie Croix des Bouquets, a mapped place for the game.",
+          "guideSnippet": "Annexe Mairie Croix des Bouquets, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "port-au-prince-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "port-au-prince-community-voting-game",
+          "name": "Annexe de la Mairie de Thomazeau",
+          "kind": "polling",
+          "whatYouCanDo": "Annexe de la Mairie de Thomazeau; voting here is a fictional game activity.",
+          "guideSnippet": "Annexe de la Mairie de Thomazeau; voting here is a fictional game activity.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "port-au-prince-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/port-au-prince/content.ts",
+        "src/game/cities/port-au-prince/facts.ts",
+        "src/game/cities/port-au-prince/index.ts"
+      ]
+    },
+    {
+      "cityId": "port-aux-francais",
+      "cityName": "Port-aux-Français",
+      "countryId": "tf",
+      "countryName": "French S. Terr.",
+      "sourceCountryRuleId": "tf",
+      "existingStoryReferences": {
+        "host": {
+          "id": "port-aux-francais-port-aux-francais-recreation-1",
+          "name": "Jesse",
+          "venue": "port-aux-francais-recreation",
+          "venueName": "Recreation area (game venue)"
+        },
+        "practical": {
+          "venue": "port-aux-francais-meal-stop",
+          "venueName": "Tiker",
+          "spot": "counter",
+          "id": "port-aux-francais-visitor-meal",
+          "label": "Have a simple meal"
+        },
+        "discovery": {
+          "venue": "port-aux-francais-recreation",
+          "venueName": "Recreation area (game venue)",
+          "spot": "visit",
+          "id": "port-aux-francais-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "placeLine": "A fictional free gameplay space for rest and recreation."
+      },
+      "additionalVenues": [
+        {
+          "id": "port-aux-francais-airport-port-aux-francais-airport",
+          "name": "Port-aux-Français Heliport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Port-aux-Français Heliport.",
+          "guideSnippet": "Arrive at Port-aux-Français Heliport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "port-aux-francais-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "port-aux-francais-community-notices",
+          "name": "Community notices (game venue)",
+          "kind": "statehouse",
+          "whatYouCanDo": "A fictional noticeboard for the starter game community; it does not represent a real government office.",
+          "guideSnippet": "A fictional noticeboard for the starter game community; it does not represent a real government office.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "port-aux-francais-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "port-aux-francais-community-voting-game",
+          "name": "Résidence",
+          "kind": "polling",
+          "whatYouCanDo": "Résidence; voting here is a fictional game activity.",
+          "guideSnippet": "Résidence; voting here is a fictional game activity.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "port-aux-francais-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/port-aux-francais/content.ts",
+        "src/game/cities/port-aux-francais/facts.ts",
+        "src/game/cities/port-aux-francais/index.ts"
+      ]
+    },
+    {
+      "cityId": "road-town",
+      "cityName": "Road Town",
+      "countryId": "vg",
+      "countryName": "Virgin Islands (UK)",
+      "sourceCountryRuleId": "vg",
+      "existingStoryReferences": {
+        "host": {
+          "id": "road-town-road-town-osm-way-398735674-1",
+          "name": "Arden",
+          "venue": "road-town-osm-way-398735674",
+          "venueName": "Queen Elizabeth Park"
+        },
+        "practical": {
+          "venue": "road-town-osm-way-399518614",
+          "venueName": "The Noel Lloyd Positive Action Movement Park",
+          "spot": "visit",
+          "id": "road-town-osm-way-399518614-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "road-town-osm-way-398735674",
+          "venueName": "Queen Elizabeth Park",
+          "spot": "visit",
+          "id": "road-town-osm-way-398735674-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Queen Elizabeth Park, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "road-town-recreation",
+          "name": "The Baths National Park",
+          "kind": "park",
+          "whatYouCanDo": "The Baths National Park, a mapped place for the game.",
+          "guideSnippet": "The Baths National Park, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "road-town-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "road-town-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "road-town-airport-road-town-airport",
+          "name": "Terrance B. Lettsome International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Terrance B. Lettsome International Airport.",
+          "guideSnippet": "Arrive at Terrance B. Lettsome International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "road-town-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "road-town-community-notices",
+          "name": "Department of Motor Vehicles",
+          "kind": "statehouse",
+          "whatYouCanDo": "Department of Motor Vehicles, a mapped place for the game.",
+          "guideSnippet": "Department of Motor Vehicles, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "road-town-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/road-town/content.ts",
+        "src/game/cities/road-town/facts.ts",
+        "src/game/cities/road-town/index.ts"
+      ]
+    },
+    {
+      "cityId": "santo-domingo",
+      "cityName": "Santo Domingo",
+      "countryId": "do",
+      "countryName": "Dominican Republic",
+      "sourceCountryRuleId": "do",
+      "existingStoryReferences": {
+        "host": {
+          "id": "santo-domingo-santo-domingo-osm-way-1170357043-1",
+          "name": "Ira",
+          "venue": "santo-domingo-osm-way-1170357043",
+          "venueName": "Parque Central de San Antonio de Guerra"
+        },
+        "practical": {
+          "venue": "santo-domingo-osm-way-358599439",
+          "venueName": "Centro Olímpico Juan Pablo Duarte",
+          "spot": "visit",
+          "id": "santo-domingo-osm-way-358599439-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "santo-domingo-osm-way-1170357043",
+          "venueName": "Parque Central de San Antonio de Guerra",
+          "spot": "visit",
+          "id": "santo-domingo-osm-way-1170357043-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Parque Central de San Antonio de Guerra, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "santo-domingo-recreation",
+          "name": "Parque Colón",
+          "kind": "park",
+          "whatYouCanDo": "Parque Colón, a mapped place for the game.",
+          "guideSnippet": "Parque Colón, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "santo-domingo-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "santo-domingo-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "santo-domingo-airport-santo-domingo-airport",
+          "name": "Las Américas International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Las Américas International Airport.",
+          "guideSnippet": "Arrive at Las Américas International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "santo-domingo-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "santo-domingo-community-notices",
+          "name": "Ministerio de Relaciones Exteriores",
+          "kind": "statehouse",
+          "whatYouCanDo": "Ministerio de Relaciones Exteriores, a mapped place for the game.",
+          "guideSnippet": "Ministerio de Relaciones Exteriores, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "santo-domingo-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/santo-domingo/content.ts",
+        "src/game/cities/santo-domingo/facts.ts",
+        "src/game/cities/santo-domingo/index.ts"
+      ]
+    },
+    {
+      "cityId": "sao-tome",
+      "cityName": "São Tomé",
+      "countryId": "st",
+      "countryName": "Sao Tome & Principe",
+      "sourceCountryRuleId": "st",
+      "existingStoryReferences": {
+        "host": {
+          "id": "sao-tome-sao-tome-osm-way-1126943996-1",
+          "name": "Greer",
+          "venue": "sao-tome-osm-way-1126943996",
+          "venueName": "Praça de Independência"
+        },
+        "practical": {
+          "venue": "sao-tome-osm-way-206543431",
+          "venueName": "Parque Popular",
+          "spot": "visit",
+          "id": "sao-tome-osm-way-206543431-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "sao-tome-osm-way-1126943996",
+          "venueName": "Praça de Independência",
+          "spot": "visit",
+          "id": "sao-tome-osm-way-1126943996-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Praça de Independência, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "sao-tome-recreation",
+          "name": "Praça da Juventude",
+          "kind": "park",
+          "whatYouCanDo": "Praça da Juventude, a mapped place for the game.",
+          "guideSnippet": "Praça da Juventude, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "sao-tome-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "sao-tome-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "sao-tome-airport-sao-tome-airport",
+          "name": "São Tomé International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at São Tomé International Airport.",
+          "guideSnippet": "Arrive at São Tomé International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "sao-tome-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "sao-tome-community-notices",
+          "name": "Presidential Palace",
+          "kind": "statehouse",
+          "whatYouCanDo": "Presidential Palace, a mapped place for the game.",
+          "guideSnippet": "Presidential Palace, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "sao-tome-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/sao-tome/content.ts",
+        "src/game/cities/sao-tome/facts.ts",
+        "src/game/cities/sao-tome/index.ts"
+      ]
+    },
+    {
+      "cityId": "siachen",
+      "cityName": "Terong Kangri",
+      "countryId": "xg",
+      "countryName": "Siachen Glacier",
+      "sourceCountryRuleId": "xg",
+      "existingStoryReferences": {
+        "host": {
+          "id": "siachen-siachen-recreation-1",
+          "name": "Jesse",
+          "venue": "siachen-recreation",
+          "venueName": "Recreation area (game venue)"
+        },
+        "practical": {
+          "venue": "siachen-meal-stop",
+          "venueName": "Visitor meal stop (game venue)",
+          "spot": "counter",
+          "id": "siachen-visitor-meal",
+          "label": "Have a simple meal"
+        },
+        "discovery": {
+          "venue": "siachen-recreation",
+          "venueName": "Recreation area (game venue)",
+          "spot": "visit",
+          "id": "siachen-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "placeLine": "A fictional free gameplay space for rest and recreation."
+      },
+      "additionalVenues": [
+        {
+          "id": "siachen-airport-siachen-airport",
+          "name": "Col D'Italia",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Col D'Italia.",
+          "guideSnippet": "Arrive at Col D'Italia.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "siachen-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "siachen-community-notices",
+          "name": "Community notices (game venue)",
+          "kind": "statehouse",
+          "whatYouCanDo": "A fictional noticeboard for the starter game community; it does not represent a real government office.",
+          "guideSnippet": "A fictional noticeboard for the starter game community; it does not represent a real government office.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "siachen-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "siachen-community-voting-game",
+          "name": "Community voting simulation (game venue)",
+          "kind": "polling",
+          "whatYouCanDo": "A fictional civic game activity; it is not an election office or polling station.",
+          "guideSnippet": "A fictional civic game activity; it is not an election office or polling station.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "siachen-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/siachen/content.ts",
+        "src/game/cities/siachen/facts.ts",
+        "src/game/cities/siachen/index.ts"
+      ]
+    },
+    {
+      "cityId": "st-johns",
+      "cityName": "St. John's",
+      "countryId": "ag",
+      "countryName": "Antigua & Barbuda",
+      "sourceCountryRuleId": "ag",
+      "existingStoryReferences": {
+        "host": {
+          "id": "st-johns-st-johns-osm-way-459204144-1",
+          "name": "Greer",
+          "venue": "st-johns-osm-way-459204144",
+          "venueName": "Sea View Farm Playfield"
+        },
+        "practical": {
+          "venue": "st-johns-osm-way-555984831",
+          "venueName": "National Hero's Park",
+          "spot": "visit",
+          "id": "st-johns-osm-way-555984831-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "st-johns-osm-way-459204144",
+          "venueName": "Sea View Farm Playfield",
+          "spot": "visit",
+          "id": "st-johns-osm-way-459204144-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Sea View Farm Playfield, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "st-johns-recreation",
+          "name": "all saints park",
+          "kind": "park",
+          "whatYouCanDo": "all saints park, a mapped place for the game.",
+          "guideSnippet": "all saints park, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "st-johns-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "st-johns-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "st-johns-airport-st-johns-airport",
+          "name": "V. C. Bird International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at V. C. Bird International Airport.",
+          "guideSnippet": "Arrive at V. C. Bird International Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "st-johns-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "st-johns-community-notices",
+          "name": "Antigua & Barbuda Transport Board Headquarters",
+          "kind": "statehouse",
+          "whatYouCanDo": "Antigua & Barbuda Transport Board Headquarters, a mapped place for the game.",
+          "guideSnippet": "Antigua & Barbuda Transport Board Headquarters, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "st-johns-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/st-johns/content.ts",
+        "src/game/cities/st-johns/facts.ts",
+        "src/game/cities/st-johns/index.ts"
+      ]
+    },
+    {
+      "cityId": "villa-las-estrellas",
+      "cityName": "Villa Las Estrellas",
+      "countryId": "aq",
+      "countryName": "Antarctica",
+      "sourceCountryRuleId": "aq",
+      "existingStoryReferences": {
+        "host": {
+          "id": "villa-las-estrellas-villa-las-estrellas-recreation-1",
+          "name": "Jesse",
+          "venue": "villa-las-estrellas-recreation",
+          "venueName": "Recreation area (game venue)"
+        },
+        "practical": {
+          "venue": "villa-las-estrellas-meal-stop",
+          "venueName": "Visitor meal stop (game venue)",
+          "spot": "counter",
+          "id": "villa-las-estrellas-visitor-meal",
+          "label": "Have a simple meal"
+        },
+        "discovery": {
+          "venue": "villa-las-estrellas-recreation",
+          "venueName": "Recreation area (game venue)",
+          "spot": "visit",
+          "id": "villa-las-estrellas-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "placeLine": "A fictional free gameplay space for rest and recreation."
+      },
+      "additionalVenues": [
+        {
+          "id": "villa-las-estrellas-airport-villa-las-estrellas-airport",
+          "name": "Teniente Rodolfo Marsh Martin Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Teniente Rodolfo Marsh Martin Airport.",
+          "guideSnippet": "Arrive at Teniente Rodolfo Marsh Martin Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "villa-las-estrellas-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "villa-las-estrellas-community-notices",
+          "name": "Community notices (game venue)",
+          "kind": "statehouse",
+          "whatYouCanDo": "A fictional noticeboard for the starter game community; it does not represent a real government office.",
+          "guideSnippet": "A fictional noticeboard for the starter game community; it does not represent a real government office.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "villa-las-estrellas-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "villa-las-estrellas-community-voting-game",
+          "name": "Community voting simulation (game venue)",
+          "kind": "polling",
+          "whatYouCanDo": "A fictional civic game activity; it is not an election office or polling station.",
+          "guideSnippet": "A fictional civic game activity; it is not an election office or polling station.",
+          "activities": [
+            {
+              "spotId": "officials",
+              "spotLabel": "officials",
+              "activityId": "villa-las-estrellas-community-vote-info",
+              "label": "Read the community voting game rules",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/villa-las-estrellas/content.ts",
+        "src/game/cities/villa-las-estrellas/facts.ts",
+        "src/game/cities/villa-las-estrellas/index.ts"
+      ]
+    },
+    {
+      "cityId": "warsaw",
+      "cityName": "Warsaw",
+      "countryId": "pl",
+      "countryName": "Poland",
+      "sourceCountryRuleId": "pl",
+      "existingStoryReferences": {
+        "host": {
+          "id": "warsaw-warsaw-osm-way-23771865-1",
+          "name": "Sage",
+          "venue": "warsaw-osm-way-23771865",
+          "venueName": "Park Kombatantów"
+        },
+        "practical": {
+          "venue": "warsaw-osm-way-326736657",
+          "venueName": "Park Fosa",
+          "spot": "visit",
+          "id": "warsaw-osm-way-326736657-visit",
+          "label": "Look around"
+        },
+        "discovery": {
+          "venue": "warsaw-osm-way-23771865",
+          "venueName": "Park Kombatantów",
+          "spot": "visit",
+          "id": "warsaw-osm-way-23771865-visit",
+          "label": "Look around"
+        },
+        "placeLine": "Park Kombatantów, a mapped place for the game."
+      },
+      "additionalVenues": [
+        {
+          "id": "warsaw-recreation",
+          "name": "Park przy Bażantarni",
+          "kind": "park",
+          "whatYouCanDo": "Park przy Bażantarni, a mapped place for the game.",
+          "guideSnippet": "Park przy Bażantarni, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "warsaw-evening-rest",
+              "label": "Enjoy a quiet evening",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "warsaw-quiet-rest",
+              "label": "Sit and rest",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "warsaw-airport-warsaw-airport",
+          "name": "Warsaw Chopin Airport",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Warsaw Chopin Airport.",
+          "guideSnippet": "Arrive at Warsaw Chopin Airport.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "warsaw-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "warsaw-community-notices",
+          "name": "Agencja Restrukturyzacji i Modernizacji Rolnictwa",
+          "kind": "statehouse",
+          "whatYouCanDo": "Agencja Restrukturyzacji i Modernizacji Rolnictwa, a mapped place for the game.",
+          "guideSnippet": "Agencja Restrukturyzacji i Modernizacji Rolnictwa, a mapped place for the game.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "warsaw-community-notices",
+              "label": "Read community game notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/warsaw/content.ts",
+        "src/game/cities/warsaw/facts.ts",
+        "src/game/cities/warsaw/index.ts"
+      ]
+    },
+    {
+      "cityId": "yaounde",
+      "cityName": "Yaoundé",
+      "countryId": "cm",
+      "countryName": "Cameroon",
+      "sourceCountryRuleId": "cm",
+      "existingStoryReferences": {
+        "host": {
+          "id": "yaounde-yaounde-recreation-1",
+          "name": "Jesse",
+          "venue": "yaounde-recreation",
+          "venueName": "Parcours Vita"
+        },
+        "practical": {
+          "venue": "yaounde-meal-stop",
+          "venueName": "Restaurant Municipal La Cascade",
+          "spot": "counter",
+          "id": "yaounde-visitor-meal",
+          "label": "Have a simple meal"
+        },
+        "discovery": {
+          "venue": "yaounde-recreation",
+          "venueName": "Parcours Vita",
+          "spot": "visit",
+          "id": "yaounde-evening-rest",
+          "label": "Enjoy a quiet evening"
+        },
+        "placeLine": "A fitness trail in a park, for a free break, a rest or a game of chess."
+      },
+      "additionalVenues": [
+        {
+          "id": "yaounde-airport-yaounde-airport",
+          "name": "Yaoundé / Nsimalen",
+          "kind": "airport",
+          "whatYouCanDo": "Arrive at Yaoundé / Nsimalen.",
+          "guideSnippet": "Arrive at Yaoundé / Nsimalen.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "yaounde-arrival-info",
+              "label": "Read visitor information",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "yaounde-blackitude-museum",
+          "name": "Blackitude Museum",
+          "kind": "walk",
+          "whatYouCanDo": "A museum: walk the galleries.",
+          "guideSnippet": "A museum: walk the galleries.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "yaounde-blackitude-museum-visit",
+              "label": "Look around",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "yaounde-charles-atangana",
+          "name": "Charles Atangana",
+          "kind": "walk",
+          "whatYouCanDo": "A memorial: walk around it.",
+          "guideSnippet": "A memorial: walk around it.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "yaounde-charles-atangana-visit",
+              "label": "Look around",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/yaounde/content.ts",
+        "src/game/cities/yaounde/facts.ts",
+        "src/game/cities/yaounde/index.ts"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+import type { AuthoredContentBatch } from '../../../types/local-tales.ts'
+
+const batch: AuthoredContentBatch = {
+  countries: [
+    { countryId: 'af', title: 'The Shared Pot', premise: 'Fictional housemates turn a mismatched meal plan into a supper that lets each person keep one promised ingredient and one needed rest.', collection: 'Suppers Rebalanced', rewardTitle: 'Table Rebalancer' },
+    { countryId: 'ao', title: 'The Bent Handle', premise: 'A fictional team decides whether to repair a familiar carrying basket for one more use or change how they divide the load.', collection: 'Useful Repairs', rewardTitle: 'Repair Partner' },
+    { countryId: 'ax', title: 'The Late Place Setting', premise: 'A small fictional gathering makes space for a delayed guest without treating the person who prepared the room as endlessly flexible.', collection: 'Late Arrivals Welcomed', rewardTitle: 'Place-Setting Keeper' },
+    { countryId: 'bg', title: 'The Lopsided Cake', premise: 'Fictional friends rescue a celebration after a dessert tips, choosing whether to serve it honestly or spend the remaining hour rebuilding it.', collection: 'Celebrations Recovered', rewardTitle: 'Celebration Saver' },
+    { countryId: 'bo', title: 'The Shared Spool', premise: 'A fictional repair circle divides a short length of thread between two useful fixes and agrees which item can safely wait.', collection: 'Thread Shared Well', rewardTitle: 'Resource Steward' },
+    { countryId: 'cc', title: 'The Borrowed Blanket', premise: 'A quiet fictional gathering decides whether a borrowed blanket should go to a chilly guest or stay under the person who brought it.', collection: 'Warmth Returned', rewardTitle: 'Thoughtful Borrower' },
+    { countryId: 'cl', title: 'The Missing Tray', premise: 'Fictional friends adapt a surprise meal when its serving tray is unavailable, protecting the reveal without making a helper miss the gathering.', collection: 'Surprises Rebalanced', rewardTitle: 'Plan Saver' },
+    { countryId: 'cw', title: 'The Wobbly Stool', premise: 'A fictional shared kitchen must choose between a quick safe repair, a changed seating plan or postponing one part of a reunion.', collection: 'Seats Made Safe', rewardTitle: 'Careful Fixer' },
+    { countryId: 'dm', title: 'The Spare Hour', premise: 'Fictional companions use an unexpected free hour to celebrate a small success without turning their quiet plan into an obligation.', collection: 'Hours Well Spent', rewardTitle: 'Hour Steward' },
+    { countryId: 'er', title: 'The Repaired Hem', premise: 'A fictional host decides how to mend a loosened party hem while honoring the guest who offered a different solution.', collection: 'Mended for the Evening', rewardTitle: 'Mending Companion' },
+    { countryId: 'fo', title: 'The Warm Arrival', premise: 'Fictional friends rearrange a shared meal for an arrival whose timing is unknown, balancing warmth with the cook’s need to finish.', collection: 'Arrivals Made Easy', rewardTitle: 'Welcome Planner' },
+    { countryId: 'gh', title: 'The Patched Picnic', premise: 'A fictional send-off keeps its small celebration after a picnic cloth tears, balancing a visible repair against a borrowed replacement.', collection: 'Gathered Again', rewardTitle: 'Patchwork Host' },
+    { countryId: 'gt', title: 'The Uneven Lanterns', premise: 'Fictional neighbors improvise a modest celebration when some decorations fail, deciding what to reuse and what to let go.', collection: 'Light Enough', rewardTitle: 'Resourceful Celebrant' },
+    { countryId: 'hr', title: 'The Two-Room Reunion', premise: 'A fictional reunion outgrows its first seating plan, and friends choose a welcome that does not leave one quiet guest stranded.', collection: 'Room for Reunion', rewardTitle: 'Room Maker' },
+    { countryId: 'in', title: 'The Shared Ladle', premise: 'Fictional cooks with one working ladle arrange a meal sequence that gives every dish time without making one person wait to eat.', collection: 'Meals in Turn', rewardTitle: 'Sequence Keeper' },
+    { countryId: 'jm', title: 'The Skipped Song', premise: 'A fictional celebration loses its planned music cue, so friends decide whether to wait, improvise or let the honoree choose the next moment.', collection: 'Moments Reclaimed', rewardTitle: 'Moment Keeper' },
+    { countryId: 'km', title: 'The Reused Ribbon', premise: 'Fictional siblings reuse a ribbon from an earlier gathering while negotiating who gets to keep the small keepsake afterward.', collection: 'Ribbon Reused', rewardTitle: 'Keepsake Mediator' },
+    { countryId: 'la', title: 'The Empty Bowl', premise: 'A fictional shared meal has one fewer bowl than guests, prompting a considerate choice about pacing and the host’s comfort.', collection: 'A Place at Supper', rewardTitle: 'Table Companion' },
+    { countryId: 'lt', title: 'The Loose Wheel', premise: 'Fictional friends find a small wheel loose before a planned game and decide whether to mend it, change the game or ask its owner.', collection: 'Play Saved', rewardTitle: 'Playful Repairer' },
+    { countryId: 'me', title: 'The Surprise Too Soon', premise: 'A fictional helper reveals a celebration clue early and must help the group salvage the joy without blaming the excited guest.', collection: 'Joy Reassembled', rewardTitle: 'Gentle Rescheduler' },
+    { countryId: 'mn', title: 'The Shared Scarf', premise: 'Fictional friends decide how to reuse one warm scarf during a long wait while respecting the comfort and choice of its owner.', collection: 'Warmth in Turns', rewardTitle: 'Warmth Steward' },
+    { countryId: 'mv', title: 'The Last Clean Cup', premise: 'A fictional tea gathering has one clean cup left when an extra visitor arrives, and its host must choose a welcoming pace.', collection: 'One More Cup', rewardTitle: 'Gentle Host' },
+    { countryId: 'ne', title: 'The Missing Spoon', premise: 'Fictional neighbors recover a potluck plan when its serving spoon goes missing, sharing tasks without assigning blame to the last helper.', collection: 'Potluck Recovered', rewardTitle: 'Potluck Keeper' },
+    { countryId: 'nu', title: 'The Folded Chair', premise: 'A fictional gathering makes room for an unexpected visitor while keeping the chair’s owner free to decide whether to lend it.', collection: 'A Chair Offered', rewardTitle: 'Considerate Host' },
+    { countryId: 'pk', title: 'The Torn Recipe Sleeve', premise: 'Fictional cousins repair a worn recipe sleeve before a shared meal, choosing what must be preserved and what can be replaced.', collection: 'Recipes Kept Safe', rewardTitle: 'Recipe Steward' },
+    { countryId: 'pw', title: 'The Spare Sandals', premise: 'A fictional outing plan changes when one guest needs a slower pace, and companions decide how to adapt without speaking for them.', collection: 'Pace Shared', rewardTitle: 'Pace Companion' },
+    { countryId: 'sa', title: 'The Covered Dish', premise: 'A fictional surprise meal is delayed, and the group chooses how long to keep it ready before inviting everyone to eat.', collection: 'Dinner Kept Kind', rewardTitle: 'Dinner Keeper' },
+    { countryId: 'si', title: 'The Repaired Kite', premise: 'Fictional friends mend a kite with a mismatched tail, deciding whether the visible patch belongs in the celebration or should be hidden.', collection: 'Kite Mended', rewardTitle: 'Patchwork Flyer' },
+    { countryId: 'ss', title: 'The Shared Bench', premise: 'A fictional group planning a brief celebration rethinks its seating when two guests need the same quiet place for different reasons.', collection: 'A Bench Shared', rewardTitle: 'Space Mediator' },
+    { countryId: 'td', title: 'The Staggered Supper', premise: 'Fictional friends stagger a meal so a late helper can arrive without making the cook keep everything waiting.', collection: 'Supper in Stages', rewardTitle: 'Supper Sequencer' },
+    { countryId: 'tn', title: 'The Gift Bag Reused', premise: 'A fictional friend reuses a gift bag for a small thank-you, weighing thrift, surprise and the recipient’s wish to keep the wrapping.', collection: 'Second-Gift Joy', rewardTitle: 'Reuse Celebrant' },
+    { countryId: 'ua', title: 'The Recovered Toast', premise: 'A fictional toast is interrupted by a mix-up, and friends choose how to restore the moment while allowing the speaker to begin again.', collection: 'Words and Welcome', rewardTitle: 'Toast Companion' },
+    { countryId: 've', title: 'The One Long Table', premise: 'A fictional celebration has too few small tables, so its guests choose between sharing one long table and splitting the gathering.', collection: 'Together at One Table', rewardTitle: 'Table Unifier' },
+    { countryId: 'xa', title: 'The Useful Crate', premise: 'Fictional visitors repurpose an empty game prop crate as a seat or serving surface, first checking who still needs it for the scene.', collection: 'Crate Reimagined', rewardTitle: 'Reuse Planner' },
+    { countryId: 'zm', title: 'The Second Candle', premise: 'A fictional birthday plan loses its first candle before the guest arrives, and friends find a small way to keep the welcome personal.', collection: 'Birthday Re-lit', rewardTitle: 'Small-Joy Keeper' },
+  ],
+  cities: [
+    {
+      cityId: 'accra',
+      city: {
+        title: 'The Patched Picnic', desire: 'continuity',
+        chapters: [
+          { title: 'A send-off plan', text: 'At Kwame Nkrumah Memorial Park, Jesse is helping a fictional group arrange a small send-off for a friend who is leaving their weekly game circle.' },
+          { title: 'A tear in the cloth', text: 'Their shared picnic cloth has split near one edge. One friend offers a visible patch; another worries the departing guest will feel obliged to help repair it.' },
+          { title: 'A borrowed replacement', text: 'Over a meal at Odo Rise, the group weighs borrowing a newer cloth from another friend, though that person has not yet been asked.' },
+          { title: 'A celebration with limits', text: 'You help Jesse choose a short gathering around the repaired cloth, with the send-off kept separate from the work of mending it.' },
+        ],
+        approaches: [
+          { label: 'Have a simple meal at Odo Rise', callback: 'You helped the group decide how to celebrate without making repair work part of the gift.' },
+          { label: 'Enjoy a quiet evening at Kwame Nkrumah Memorial Park', callback: 'You kept the send-off focused on the friend who was leaving.' },
+          { label: 'Talk with Jesse at Kwame Nkrumah Memorial Park', callback: 'Jesse remembers that the patch could show care without becoming the guest’s responsibility.' },
+        ],
+        dilemma: { prompt: 'The cloth can be patched before the send-off, or the group can borrow someone else’s. Which plan is fairest?', answers: ['Use the visible patch and keep the departing friend free of repair duties.', 'Borrow the replacement before asking, because the send-off is time-sensitive.', 'Cancel the gathering until a perfect cloth is available.'], correct: 0, explanation: 'The patch makes the gathering possible without assuming another person will lend an item or labor.' },
+        closing: 'Jesse’s group keeps the celebration modest and mends the cloth on its own time. The goodbye belongs to the departing friend, not to the repair task.',
+        keepsake: { name: 'Bright Patch Square', description: 'A fictional cloth square from the patched picnic cloth, kept as a sign of a gathering saved.' },
+      },
+      country: {
+        title: 'The Order of Surprises', desire: 'care',
+        chapters: [
+          { title: 'A late arrival', text: 'Jesse tells you about a different fictional group preparing a small welcome for someone returning to their game circle after time away.' },
+          { title: 'The order goes wrong', text: 'A helper planned to bring the guest in after the food was set out, but the guest arrives while everyone is still arranging the room.' },
+          { title: 'No one is blamed', text: 'The group can greet the guest now or try to preserve the surprise. At Kwame Nkrumah Memorial Park, Jesse asks what would feel welcoming rather than impressive.' },
+          { title: 'The moment becomes theirs', text: 'You help them greet the returning friend plainly, then let the friend choose whether to join the meal or take a quiet minute first.' },
+        ],
+        approaches: [
+          { label: 'Enjoy a quiet evening at Kwame Nkrumah Memorial Park', callback: 'You helped the group put the guest’s comfort ahead of the planned reveal.' },
+          { label: 'Have a simple meal at Odo Rise', callback: 'You helped the helpers keep the meal flexible after the arrival came early.' },
+          { label: 'Talk with Jesse at Kwame Nkrumah Memorial Park', callback: 'Jesse remembers that you let the returning friend choose how the welcome unfolded.' },
+        ],
+        dilemma: { prompt: 'The returning guest arrives before the surprise is ready. What should the helpers do?', answers: ['Ask the guest to wait outside until the room is perfect.', 'Greet them warmly now and let them choose whether to join the meal immediately.', 'Continue setting up as though they are not there.'], correct: 1, explanation: 'A direct welcome avoids making the guest manage the helpers’ schedule and gives them control over the next moment.' },
+        closing: 'The guest smiles at the unfinished setup and takes a seat when ready. The helpers still share their planned meal, now as a welcome instead of a reveal.',
+        keepsake: { name: 'Welcome Napkin', description: 'A fictional folded napkin saved from the improvised meal after the surprise changed.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Keep the send-off about the guest', purpose: 'Use a meal stop to plan the celebration without assigning the departing friend repair work.', task: 'practical', count: 1 },
+          { label: 'Visit the picnic gathering place', purpose: 'Look around the park where the group plans its modest goodbye.', task: 'discovery', count: 1 },
+          { label: 'Choose a flexible welcome', purpose: 'Prepare Jesse to let an early guest decide whether to join the meal right away.', task: 'discovery', count: 1 },
+        ],
+        weekly: [
+          { label: 'Return to the patched picnic plan', purpose: 'Visit the gathering place and keep the celebration independent from the repair.', task: 'discovery-visit', count: 1 },
+          { label: 'Plan the meal around the guest', purpose: 'Use the practical stop to choose an easy way to greet the returning friend.', task: 'practical', count: 2 },
+          { label: 'Check the welcome with Jesse', purpose: 'Visit the host where the group can settle who chooses the next moment.', task: 'host-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'alofi',
+      city: {
+        title: 'One Place Kept', desire: 'belonging',
+        chapters: [
+          { title: 'The later guest', text: 'At Alofi’s recreation area, Jesse’s fictional game group is preparing a small shared meal when a friend says they may arrive after the others.' },
+          { title: 'A promise already made', text: 'The only open place is beside the group’s helper, who promised to keep the meal moving. Giving it away could make the helper miss the part they planned.' },
+          { title: 'A practical pause', text: 'At Israel Cafe, Jesse asks whether welcome must mean saving one exact seat, or whether the group can keep a place in the conversation and adjust the order.' },
+          { title: 'Welcome without taking', text: 'You help them plan to greet the late friend first, then offer the available place without assuming the helper will surrender theirs.' },
+        ],
+        approaches: [
+          { label: 'Have a simple meal at Israel Cafe', callback: 'You found a way to welcome the late friend without spending the helper’s promise for them.' },
+          { label: 'Enjoy a quiet evening at the recreation area', callback: 'You kept belonging in the plan even when one seat could not be reserved.' },
+          { label: 'Talk with Jesse at the recreation area', callback: 'Jesse remembers that you let the helper choose whether to move.' },
+        ],
+        dilemma: { prompt: 'A late friend may arrive, but the only open place is beside the person keeping the meal on schedule. What should the group promise?', answers: ['Promise that the helper will give up their place when the friend arrives.', 'Keep the welcome open, then ask both people what arrangement works when the friend arrives.', 'Tell the late friend to skip the meal so the plan stays simple.'], correct: 1, explanation: 'The group can promise a welcome without deciding in advance which person must give something up.' },
+        closing: 'The late friend arrives to a greeting, not a reserved seat they were told to expect. The helper keeps their choice, and the group makes room together.',
+        keepsake: { name: 'Extra Place Card', description: 'A fictional card from the meal plan that says “welcome; we will find a place together.”' },
+      },
+      country: {
+        title: 'The Borrowed Blanket', desire: 'care',
+        chapters: [
+          { title: 'One useful comfort', text: 'Jesse tells you a separate fictional game story about two friends sharing one soft blanket during a long wait at the recreation area.' },
+          { title: 'The owner is tired', text: 'One friend brought the blanket and is ready to leave. The other is still waiting and hopes to borrow it a little longer.' },
+          { title: 'A clear return', text: 'Over a simple meal at Israel Cafe, Jesse asks the friends to decide whether a short extension is welcome and when the blanket will come back.' },
+          { title: 'A loan with an ending', text: 'You help them agree on one brief extension, then choose another way for the waiting friend to stay comfortable afterward.' },
+        ],
+        approaches: [
+          { label: 'Enjoy a quiet evening at the recreation area', callback: 'You helped both friends name the comfort and the cost of extending the loan.' },
+          { label: 'Have a simple meal at Israel Cafe', callback: 'You made the return time part of the request rather than an awkward surprise.' },
+          { label: 'Talk with Jesse at the recreation area', callback: 'Jesse remembers that your loan had an end and a next step.' },
+        ],
+        dilemma: { prompt: 'The blanket’s owner needs to leave, while their friend is still waiting. What should happen?', answers: ['Let the owner decide whether to extend the loan briefly, then arrange another comfort.', 'Tell the owner to leave the blanket because the other friend needs it more.', 'Take the blanket back at once without discussing the request.'], correct: 0, explanation: 'A bounded request respects the owner’s choice and still helps the waiting friend plan.' },
+        closing: 'The owner agrees to stay a little longer, then takes the blanket along. Their friend has time to arrange a different seat and does not have to ask again.',
+        keepsake: { name: 'Borrowed-Blanket Tie', description: 'A fictional tie used to bundle the blanket once its agreed loan is over.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Keep a welcome without reserving someone else’s seat', purpose: 'Use the meal stop to plan a greeting that leaves the helper free to choose.', task: 'practical', count: 1 },
+          { label: 'Visit the gathering place', purpose: 'Look around where the group will welcome the friend who may arrive late.', task: 'discovery', count: 1 },
+          { label: 'Set an end to the blanket loan', purpose: 'Prepare a kind return plan before the owner and waiting friend discuss it.', task: 'practical', count: 1 },
+        ],
+        weekly: [
+          { label: 'Return to the shared meal plan', purpose: 'Visit the recreation area and leave room for the late friend to choose a seat.', task: 'discovery-visit', count: 1 },
+          { label: 'Revisit the loan arrangement', purpose: 'Use the meal stop to set a clear end time and another comfort option.', task: 'practical', count: 2 },
+          { label: 'Ask Jesse how the plan landed', purpose: 'Visit the host who heard both friends’ needs before any loan extension.', task: 'host-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'ashmore',
+      city: {
+        title: 'The Uneven Slices', desire: 'fairness',
+        chapters: [
+          { title: 'A small celebration', text: 'At East Island’s fictional recreation area, Jesse’s game group has one small cake after finishing a shared puzzle. The first cuts are uneven.' },
+          { title: 'The baker waits', text: 'A friend who baked the cake has not taken a piece. Another friend is arriving late and had hoped to celebrate with everyone.' },
+          { title: 'No perfect portion', text: 'At the visitor meal stop, Jesse asks whether fairness means equal slices, first choice for the baker, or a piece saved for the person still on the way.' },
+          { title: 'A choice before the cut', text: 'You help the group ask what each person would enjoy, then agree on a smaller shared tasting rather than promising a full slice to anyone.' },
+        ],
+        approaches: [
+          { label: 'Have a simple meal at the visitor meal stop', callback: 'You helped the group make a fair plan before the cake was divided again.' },
+          { label: 'Enjoy a quiet evening at the recreation area', callback: 'You kept the celebration about finishing together, not winning the largest slice.' },
+          { label: 'Talk with Jesse at the recreation area', callback: 'Jesse remembers that the baker and late friend were both asked what they wanted.' },
+        ],
+        dilemma: { prompt: 'The cake is small, the slices uneven, and one guest is late. What should the group offer?', answers: ['Cut smaller tasting pieces now, ask the baker and save a taste for the late guest.', 'Give the baker the largest slice and tell the late guest there was not enough.', 'Wait until the late guest arrives, even if the baker must leave first.'], correct: 0, explanation: 'A shared tasting honors the baker’s effort and keeps the absent guest included without promising equal full portions.' },
+        closing: 'The group shares a few small tastes before the baker leaves, and Jesse keeps a piece for the late friend. The celebration fits the cake instead of asking the cake to fit an ideal plan.',
+        keepsake: { name: 'Puzzle Crumb Tin', description: 'A fictional tiny tin that held the last crumbs from a puzzle-complete celebration.' },
+      },
+      country: {
+        title: 'The Useful Crate', desire: 'competence',
+        chapters: [
+          { title: 'A crate in the way', text: 'In a different fictional game scene, Jesse sees an empty prop crate beside a group preparing a simple shared activity.' },
+          { title: 'Two good uses', text: 'One visitor wants it as a seat; another has been using it to carry the game pieces. Neither knew the other needed it.' },
+          { title: 'Ask before reuse', text: 'At the recreation area, Jesse helps them check how long the pieces need to stay together and whether a different seat is available.' },
+          { title: 'A short second job', text: 'You help them agree to use the crate as a seat after the game pieces are put away, rather than forcing either person to lose their plan.' },
+        ],
+        approaches: [
+          { label: 'Enjoy a quiet evening at the recreation area', callback: 'You noticed the crate had two useful jobs at different times.' },
+          { label: 'Have a simple meal at the visitor meal stop', callback: 'You helped the visitors check when the carrying job would be finished.' },
+          { label: 'Talk with Jesse at the recreation area', callback: 'Jesse remembers that you checked with both people before repurposing the crate.' },
+        ],
+        dilemma: { prompt: 'One visitor needs the crate for pieces and another wants to sit. How can they reuse it?', answers: ['Give it to whoever arrived first.', 'Keep it as a seat and ask someone else to carry the pieces.', 'Agree on a sequence after checking when the pieces can be set down.'], correct: 2, explanation: 'A timed handoff respects both uses and avoids deciding that one person’s need matters more.' },
+        closing: 'The pieces are put away first; then the crate becomes a seat. Jesse says the small change worked because the group asked before moving someone else’s things.',
+        keepsake: { name: 'Crate Corner Token', description: 'A fictional wooden token reminding the group to ask before giving an object a second job.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Plan a tasting everyone can join', purpose: 'Use the visitor meal stop to share the cake without promising equal full slices.', task: 'practical', count: 1 },
+          { label: 'Visit the puzzle celebration', purpose: 'Look around where Jesse’s group is finishing its small celebration.', task: 'discovery', count: 1 },
+          { label: 'Check before reusing the crate', purpose: 'Prepare Jesse to ask both visitors when the crate can change jobs.', task: 'practical', count: 1 },
+        ],
+        weekly: [
+          { label: 'Return to the cake celebration', purpose: 'Visit the game space and keep the late friend in the plan.', task: 'discovery-visit', count: 1 },
+          { label: 'Sequence the crate’s two uses', purpose: 'Use a practical stop to decide which job finishes first.', task: 'practical', count: 2 },
+          { label: 'Hear what each visitor needs', purpose: 'Visit Jesse where the two visitors can explain their competing uses.', task: 'host-visit', count: 1 },
+        ],
+      },
+    },
+    {
+      cityId: 'asmara',
+      city: {
+        title: 'The Early Cup', desire: 'care',
+        chapters: [
+          { title: 'A guest arrives early', text: 'At ኮመሰራታ ሓማሴን, Jesse’s fictional group is setting up a small thank-you meal when the guest arrives before the last dish is ready.' },
+          { title: 'A helper’s promise', text: 'One friend planned to make the first cup of tea and say a few words. Another wants to keep the guest talking until the moment is ready.' },
+          { title: 'The snack is ready', text: 'At Wide Hiyab Snack Bar, Jesse asks whether delaying the greeting protects the plan or makes the guest feel like an interruption.' },
+          { title: 'A welcome in stages', text: 'You help the group greet the guest now, offer what is ready, and let the promised speaker decide whether to give the words later.' },
+        ],
+        approaches: [
+          { label: 'Have a simple meal at Wide Hiyab Snack Bar', callback: 'You helped the group make the first welcome fit what was ready.' },
+          { label: 'Enjoy a quiet evening at ኮመሰራታ ሓማሴን', callback: 'You kept the planned words optional after the guest arrived early.' },
+          { label: 'Talk with Jesse at ኮመሰራታ ሓማሴን', callback: 'Jesse remembers that the helper chose whether and when to speak.' },
+        ],
+        dilemma: { prompt: 'The guest is early and the meal is unfinished. What should the group do first?', answers: ['Ask them to wait outside until the whole plan is ready.', 'Greet them and offer what is ready, then leave the planned words to the speaker.', 'Have another friend give the speech so the helper can finish the meal.'], correct: 1, explanation: 'A direct welcome avoids treating the guest as a disruption and preserves the helper’s choice.' },
+        closing: 'The guest joins the group while the rest of the meal is finished. The helper gives their words when ready, and the early arrival becomes part of the gathering rather than a problem to hide.',
+        keepsake: { name: 'First-Cup Saucer', description: 'A fictional saucer from the first cup offered before the planned meal was complete.' },
+      },
+      country: {
+        title: 'The Repaired Hem', desire: 'competence',
+        chapters: [
+          { title: 'A loose stitch', text: 'Jesse tells you about another fictional celebration: a host notices a loose hem on a borrowed jacket shortly before the group photo.' },
+          { title: 'Repair or return', text: 'The host can try a quick stitch, ask the owner what they prefer, or keep the jacket aside. Each choice changes whether the owner can wear it now.' },
+          { title: 'A careful ask', text: 'While having a simple meal at Wide Hiyab Snack Bar, Jesse reminds the host that a borrowed item still belongs to its owner.' },
+          { title: 'The owner chooses', text: 'You help the host ask first. The owner prefers to wear it as it is and mend it later, so the group moves the photo rather than the hem.' },
+        ],
+        approaches: [
+          { label: 'Enjoy a quiet evening at ኮመሰራታ ሓማሴን', callback: 'You helped the group shift its schedule around the owner’s choice.' },
+          { label: 'Have a simple meal at Wide Hiyab Snack Bar', callback: 'You remembered that quick repairs still need the owner’s consent.' },
+          { label: 'Talk with Jesse at ኮመሰራታ ሓማሴን', callback: 'Jesse remembers that you let the borrower decide how the jacket should be handled.' },
+        ],
+        dilemma: { prompt: 'A borrowed jacket has a loose hem before a group photo. What should the host do?', answers: ['Ask the owner whether they want it worn, set aside, or repaired later.', 'Make a quick stitch without asking so the photo can stay on schedule.', 'Tell the owner to hold the hem closed for the picture.'], correct: 0, explanation: 'The owner can choose how their garment is handled, even when the group must change its timing.' },
+        closing: 'The photo happens later, after the owner has had the jacket returned just as they chose. The group adapts its schedule instead of turning borrowed clothing into a shared project.',
+        keepsake: { name: 'Thread Keeper', description: 'A fictional spool sleeve held for a future repair the garment’s owner chooses.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Welcome the early guest in stages', purpose: 'Use the snack stop to decide what can be offered before the full meal is ready.', task: 'practical', count: 1 },
+          { label: 'Visit the thank-you gathering', purpose: 'Look around where Jesse’s group is arranging its small meal.', task: 'discovery', count: 1 },
+          { label: 'Ask before mending the jacket', purpose: 'Prepare the host to respect the borrowed garment’s owner.', task: 'practical', count: 1 },
+        ],
+        weekly: [
+          { label: 'Return to the staged welcome', purpose: 'Visit the gathering place and let the speaker choose when to share their words.', task: 'discovery-visit', count: 1 },
+          { label: 'Plan around the garment owner', purpose: 'Use the practical stop to make room for the owner’s decision about the jacket.', task: 'practical', count: 2 },
+          { label: 'Check what the host promised', purpose: 'Visit Jesse to keep the schedule change distinct from permission to repair.', task: 'host-visit', count: 1 },
+        ],
+      },
+    },
+  ],
+}
+
+export default batch

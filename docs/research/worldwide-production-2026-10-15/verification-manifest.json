@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "productionSource": "ac407c2c251c196e3539885d23df0143ac67bd51",
+  "providerVersion": "812d203a-a942-43b6-84aa-ce12af815f52",
+  "releaseRun": "https://github.com/kromate/joinallworld/actions/runs/38662285932",
+  "ciRun": "https://github.com/kromate/joinallworld/actions/runs/38662221371",
+  "acceptance": "Final live health and actual same-player reload verified; see UI record for exactscope. Initial all-city asset smoke atabec; gameengineunchanged by laterCreatorApp-only repair.",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 7848,
+      "sha256": "bc7b7cb035ee30fc275db8344826aeaecbf54eec877aba49c286c6ea26c925ed"
+    },
+    {
+      "path": "agent-compat.log",
+      "bytes": 738,
+      "sha256": "4b4674f1654009ed21681b1c140e8504cd6688871e78f6cf05233aa7e4223e48"
+    },
+    {
+      "path": "city-entry-asset.json",
+      "bytes": 355,
+      "sha256": "86c5e9c818aa8f9b0800f370467ffff5775c060798bfda38498ea6be206b4540"
+    },
+    {
+      "path": "city-start-checks.log",
+      "bytes": 5414,
+      "sha256": "169424b4421e3201cac3bd125b3e6c44fe1c97a014ffe7e16aca5e79aca175ad"
+    },
+    {
+      "path": "city-start-ci.log",
+      "bytes": 813711,
+      "sha256": "cdfd2c4c549db9c6e019a6ac1b79d6be02cb941ef77fad4832e39c3bc34f37c4"
+    },
+    {
+      "path": "city-start-probe.log",
+      "bytes": 261,
+      "sha256": "fa51ef230c8e458f38febf8251ac446ccce722a53dfe16739aeb39b11e7fc11a"
+    },
+    {
+      "path": "live-health-final.json",
+      "bytes": 229,
+      "sha256": "82986d7f1816470f44bd8ba882189723a3ee2f0bf9a6ac0c7c433d38451aebd2"
+    },
+    {
+      "path": "live-health-initial.json",
+      "bytes": 229,
+      "sha256": "548b3c08a6d2b96ee8f5c2d5e1bf5efa38aa65541da737648ad72e9f75099fc9"
+    },
+    {
+      "path": "live-smoke.log",
+      "bytes": 871,
+      "sha256": "8eb0972bcd15a5ceafe1b649ead16f47140d17b1817ef543b0e9856cdb1b28b0"
+    },
+    {
+      "path": "provider-final.json",
+      "bytes": 640,
+      "sha256": "67f03c614e873fce46798ad2273dde7027a3eecde586aade31e5976ef84f36fe"
+    },
+    {
+      "path": "provider-release.json",
+      "bytes": 571,
+      "sha256": "35f6511d0b24a952984888dc79f06db82de1736b34f9f6c53b0c26ab57336e97"
+    },
+    {
+      "path": "release-final.log",
+      "bytes": 1167801,
+      "sha256": "8da92fb9a37ea3f057de14de62e426fe0ecbf5f01263bd1ff326afb22e1be3da"
+    },
+    {
+      "path": "release-initial.log",
+      "bytes": 1168270,
+      "sha256": "658e78c7007980741c5232831c8ceec11defc47ffd9d6f12eb4e280e38ed7e04"
+    },
+    {
+      "path": "ui-continuity-lagos.png",
+      "bytes": 67970,
+      "sha256": "32d5fc0eb303fdd6f4b4cec0e6dc6a4635d0c427ea5a11d29fe6e3e8890c90c5"
+    },
+    {
+      "path": "ui-mission-reward.png",
+      "bytes": 264670,
+      "sha256": "173e35cb3178ac144d156f922320e4d78b22455e8df428befb8adb4d3a11ca16"
+    },
+    {
+      "path": "ui-tokyo-complete-375.png",
+      "bytes": 45004,
+      "sha256": "86cd66f3ee42ee3fa6c35fc3b4b4349a5f34ba7ab960dff881067e10c71ab173"
+    }
+  ]
+}

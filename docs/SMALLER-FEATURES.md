@@ -62,7 +62,4 @@ on the map. Code: `server/stages/birthday.ts`, `server/routes/stages.ts` (`GET` 
 `src/app/features/gist/BirthdayCard.vue`, `server/stages.test.ts`. Stored in a new top-level collection `stages`; nothing existing
 changes. The date is not the age the game holds for safety rules and is never compared with it.
 
-**Passing property and reputation to a next character is not built.** A house, a stall or a plot belongs to one session's life and to
-that city's record (land, rent, business, a seat in an election), and a hand-over would have to move owned things between sessions
-and undo their city rules in one step; the store has no rollback, so a half-finished hand-over would lose or duplicate a house. It
-needs its own design (what moves, what is undone, who agrees), so it is left for the owner to decide.
+**Passing property and reputation to a next character** was left out here and is now designed and built separately: see [LEGACY.md](LEGACY.md).

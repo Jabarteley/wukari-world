@@ -2,15 +2,20 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "slim",
-      "appSha": "1a78071d3ad80b39b4f0b65d27366e6b94da440f",
+      "id": "final-a",
+      "appSha": "9ee04948fb0e6493bec8953c2666fc54e5e81ec3",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
-        "lagos",
-        "paris",
-        "accra",
-        "sydney",
-        "cotonou"
+        "villa-las-estrellas",
+        "ashmore",
+        "west-island",
+        "bogota",
+        "lima",
+        "rome",
+        "cairo",
+        "dubai",
+        "algiers",
+        "dublin"
       ],
       "roundtrip": true,
       "browserOnly": true

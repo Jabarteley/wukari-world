@@ -21,7 +21,7 @@
  * THE BUDGET is the router's (free models first, the US$2 a day stop, resting models). Nothing here has its own money. When the router says the
  * day's budget is spent the resident goes to sleep for the rest of the UTC day.
  *
- * SHADOW (admin settings residentOn, off by default; residentShadow, on by default). In shadow it is NOT placed in agentRoom (so not in the
+ * SHADOW (admin settings residentOn, on by default only on the live hosts (ctx.worldFeed), off in tests; residentShadow, on by default). In shadow it is NOT placed in agentRoom (so not in the
  * people list and not in the pulse `ai` number), its lines are NOT sent to anyone, it reads no person's words and it changes no player's state.
  * Its "world" is its own sandbox record (where it stands, what it does, the lines it WOULD have said). With residentShadow off it stands in its
  * venue with the AI-played mark and says its lines through agentRoom.say (the same word rules as every agent): that is for the next phase.
@@ -59,6 +59,7 @@ export type Wake = 'morning' | 'routine-end' | 'arrival' | 'spoken-to' | 'alone'
 export const ALONE_MS = [15 * 60000, 30 * 60000] as const, EVENT_GAP_MS = 3 * 60000;
 export const MAX_THOUGHTS = 64, MAX_ENTRIES = 120, DAYS_KEPT = 7, SUMMARY_MAX = 600, LINE_MAX = 140, MODEL_TOKENS = 160, SUMMARY_TOKENS = 240;
 const CENSUS_MS = 30000, PRESENCE_MS = 12 * 60000, RENEW_MS = 6 * 60000, CHOICE_MS = 60 * 60000;
+/** `on`: whether she lives when the owner has not chosen; on the real hosts (the ones that ask the outside world, ctx.worldFeed) she does, in shadow. */
 export const DEFAULTS = Object.freeze({ on: false, shadow: true });
 
 /** Words a character never says about what it is made of or lives in. */
@@ -457,7 +458,7 @@ const localMinuteOf = (who: Resident, t: number): number => ((Math.floor(t / 600
 
 /** Settings and the admin page group "Resident (shadow)". Called once per host with the other admin links (server/admin/links.ts). */
 export function linkResidents(ctx: RouteContext): void {
-  registerAdminSetting(ctx, { key: 'residentOn', label: 'Resident: on', help: 'One resident (a Lagos bookseller) lives her day, asleep at night, thinking with a free model. Off by default. In shadow nobody sees her. Costs only what the model router allows.', kind: 'boolean', default: () => DEFAULTS.on });
+  registerAdminSetting(ctx, { key: 'residentOn', label: 'Resident: on', help: 'One resident (a Lagos bookseller) lives her day, asleep at night, thinking with a free model. On by default on the live hosts, in shadow: nobody sees her. Costs only what the model router allows.', kind: 'boolean', default: () => DEFAULTS.on || ctx.worldFeed === true });
   registerAdminSetting(ctx, { key: 'residentShadow', label: 'Resident: shadow (nobody sees her)', help: 'On: she acts only in her own record, is not in any room or in the online count, and says nothing to anyone. Off: she stands in her venue with the AI-played mark and speaks. Leave on until the owner has read her day.', kind: 'boolean', default: () => DEFAULTS.shadow });
   const runner = residentService(ctx), who = RESIDENTS[0]!;
   const stat = (id: string, label: string, read: () => number | string): void => registerAdminStat(ctx, { id: `resident-${id}`, group: 'Resident (shadow)', label, cost: 'memory', read });

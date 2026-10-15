@@ -2,17 +2,13 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "overlaps-2",
-      "appSha": "c19a0fe7c27201477c577619feacedaa791c4098",
+      "id": "ferry",
+      "appSha": "61ccffb7f4eb4e0adb98e3a1e3e026c49cd9e206",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
-        "the-valley",
-        "marigot",
-        "gustavia",
-        "charlotte-amalie",
-        "road-town",
-        "philipsburg",
-        "st-peter-port"
+        "west-island",
+        "lagos",
+        "paris"
       ],
       "roundtrip": true,
       "browserOnly": true

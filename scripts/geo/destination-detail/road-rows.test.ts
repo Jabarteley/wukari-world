@@ -9,6 +9,8 @@ import type { Element } from './overpass.ts';
 import { joinWays, selectChains, simplifyChain } from './road-chains.ts';
 import type { RoadWay } from './road-chains.ts';
 import { roadRows } from './road-rows.ts';
+import { project } from '../../../src/geo/frame.ts';
+import { tidyRoads } from '../../../src/map3d/road-tidy.ts';
 import type { RoadRowConfig } from './road-rows.ts';
 
 // Port Moresby's road stage as the factory generated it (Geofabrik PNG 2026-10, run 38313119499): the recorded road ways (tags cut to
@@ -43,6 +45,9 @@ const network = (rows: readonly string[]): { km: number; loose: number } => {
   });
   return { km, loose };
 };
+
+/** How many roads the map draws from the rows once its tidy pass has run (src/map3d/road-tidy.ts). */
+const ribbons = (rows: readonly string[]): number => tidyRoads(rows.map((row, i) => ({ id: `road-${i}`, name: '', points: vertices(row).map(([x, y]): [number, number] => { const f = project(x / 1e4, y / 1e4); return [f.x, f.z]; }) }))).length;
 
 test('an uncapped city keeps its per-way rows byte for byte (Port Moresby fixture)', () => {
   assert.equal(sha(fixture.rows), '221d3ef52d4a31032bc4898265e6d39dc9033ba6a7fe05b084885a281524e208', 'fixture integrity');
@@ -125,4 +130,79 @@ test('a short connector is kept when both its ends meet kept roads, and the budg
   assert.ok(tight.runs.length <= 2);
   const few = selectChains(ways, { ...options, maxPoints: 4 });
   assert.ok(few.points <= 4);
+});
+
+test('a capped city with closeEnds keeps its budgets, is deterministic and leaves fewer loose ends than the plain chained rows', () => {
+  const config = { ...fixture.config, maxRoads: 100 };
+  const plain = roadRows(fixture.elements, config, reach, inSea, nameIn);
+  const closed = roadRows(fixture.elements, config, reach, inSea, nameIn, { closeEnds: true });
+  assert.ok(closed.chained);
+  assert.ok(closed.rows.length <= 100);
+  assert.ok(closed.points <= closed.chained.perWayPoints, `${closed.points} points within ${closed.chained.perWayPoints}`);
+  assert.equal(closed.points, closed.rows.reduce((sum, row) => sum + vertices(row).length, 0));
+  assert.deepEqual(roadRows(fixture.elements, config, reach, inSea, nameIn, { closeEnds: true }), closed, 'deterministic');
+  // Fewer loose ends than the plain chained rows (the closed rows end on a road or at the edge of the drawn ground).
+  const plainNet = network(plain.rows), closedNet = network(closed.rows);
+  assert.ok(closedNet.loose < plainNet.loose, `loose ends: closed ${closedNet.loose} vs plain ${plainNet.loose}`);
+  assert.match(closed.note, /cut back to its span between junctions or the map's edge/);
+  // A road count cap: the weakest minor roads go (motorways and trunk roads stay, so the cap may not be reached).
+  const cap = ribbons(closed.rows) - 4, fewer = roadRows(fixture.elements, config, reach, inSea, nameIn, { closeEnds: true, maxRibbons: cap });
+  const main = (rows: readonly string[]): string[] => rows.filter((row) => row.includes('", 1, '));
+  assert.ok(ribbons(fewer.rows) <= Math.max(cap, ribbons(main(closed.rows))), `${ribbons(fewer.rows)} roads on the map, cap ${cap}`);
+  assert.ok(main(fewer.rows).length >= main(closed.rows).length, 'main roads stay');
+  // Uncapped: closeEnds changes nothing.
+  assert.deepEqual(roadRows(fixture.elements, fixture.config, reach, inSea, nameIn, { closeEnds: true }).rows, fixture.rows);
+});
+
+// closeEnds on a small grid near the equator (0.0001 degree is about 11 m). The play box is [0, 0.02] x [0, 0.01]: ends on its edge
+// are at the edge of the map.
+const boxEdge = (p: P): boolean => p[0] <= 0.00005 || p[0] >= 0.01995 || p[1] <= -0.00995 || p[1] >= 0.00995;
+const closeOptions = { minRoadKm: 0.7, maxRows: 20, maxPoints: 100, toleranceAt: () => 0.00001, runsOf: (line: P[]) => [line], closeEnds: { edgeAt: boxEdge } };
+const near = (a: P, b: P): boolean => Math.abs(a[0] - b[0]) < 1e-9 && Math.abs(a[1] - b[1]) < 1e-9;
+
+test('closeEnds: an end within 25 m of a road is moved onto it, with the junction vertex added to that road', () => {
+  const { runs } = selectChains([way('Main', 2, [0, 0], [0.02, 0]), way('Side', 3, [0.01, 0.0002], [0.01, 0.01])], closeOptions);
+  const main = runs.find((r) => r.name === 'Main')!, side = runs.find((r) => r.name === 'Side')!;
+  assert.ok(near(side.points[0]!, [0.01, 0]), `side starts on Main: ${side.points[0]}`);
+  assert.equal(main.points.length, 3);
+  assert.ok(near(main.points[1]!, [0.01, 0]), 'Main has the junction vertex');
+});
+
+test('closeEnds: a dead end up to 40 m short of a road is carried on to it (a T-junction)', () => {
+  const { runs } = selectChains([way('Main', 2, [0, 0], [0.02, 0]), way('Side', 3, [0.01, 0.0003], [0.01, 0.01])], closeOptions);
+  const side = runs.find((r) => r.name === 'Side')!;
+  assert.equal(side.points.length, 3, 'one step added');
+  assert.ok(near(side.points[0]!, [0.01, 0]));
+});
+
+test('closeEnds: a leaf stub goes, a bridge between kept roads stays, an end at the edge is not loose', () => {
+  const ways = [
+    way('North', 2, [0, 0.005], [0.02, 0.005]),
+    way('South', 2, [0, -0.005], [0.02, -0.005]),
+    way('Rung', 3, [0.01, -0.005], [0.01, 0.005]),            // 1.1 km between the two: a bridge
+    way('Stub', 3, [0.005, 0.005], [0.005, 0.008]),           // 330 m off North, ending nowhere: a leaf
+    way('Spur', 3, [0.015, 0.005], [0.015, 0.01]),            // off North to the box edge: kept
+  ];
+  const { runs } = selectChains(ways, closeOptions);
+  assert.deepEqual(runs.map((r) => r.name).sort(), ['North', 'Rung', 'South', 'Spur']);
+  // The far ends of a road with nothing beyond a junction are cut back to it.
+  const tail = selectChains([...ways.slice(0, 3), way('Long', 2, [0.012, 0.005], [0.012, 0.0099], [0.03, 0.0099])], closeOptions);
+  assert.ok(tail.runs.some((r) => r.name === 'Long'), 'Long reaches the edge');
+  assert.deepEqual(selectChains(ways, closeOptions), selectChains(ways, closeOptions), 'deterministic');
+});
+
+test('closeEnds: a short gap off the drawn ground inside one road is drawn through when joinGap allows it', () => {
+  const line: P[] = Array.from({ length: 21 }, (_, i): P => [i * 0.001, 0]);
+  const runsOf = (points: P[]): P[][] => {
+    const out: P[][] = [];
+    let run: P[] = [];
+    for (const p of points) { if (p[0] > 0.0085 && p[0] < 0.0115) { if (run.length > 1) out.push(run); run = []; } else run.push(p); }
+    if (run.length > 1) out.push(run);
+    return out;
+  };
+  const cutOptions = { ...closeOptions, runsOf, closeEnds: { edgeAt: (p: P) => boxEdge(p) || (p[0] > 0.0075 && p[0] < 0.0125) } };
+  assert.equal(selectChains([way('Long', 2, ...line)], cutOptions).runs.length, 2, 'cut at the gap');
+  const joined = selectChains([way('Long', 2, ...line)], { ...cutOptions, closeEnds: { ...cutOptions.closeEnds, joinGap: (gap: readonly P[]) => gap.length <= 5 } });
+  assert.equal(joined.runs.length, 1, 'drawn through the gap');
+  assert.ok(near(joined.runs[0]!.points[0]!, [0, 0]) && near(joined.runs[0]!.points.at(-1)!, [0.02, 0]));
 });

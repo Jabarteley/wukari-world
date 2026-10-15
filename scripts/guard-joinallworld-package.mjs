@@ -34,11 +34,13 @@ export function checkPackage(root, sourceSha, publish) {
       else {
         if (!stat.isFile() || stat.size > 5 * 1024 * 1024) throw Error('Invalid package file');
         const cityAsset = /^assets\/assets\/cities\/[a-z][a-z0-9-]*\.([a-f0-9]{64})\.json$/.exec(rel);
+        const progressionAsset = /^assets\/assets\/progression\/(?:episodes-\d+|journeys|missions)\.([a-f0-9]{64})\.json$/.exec(rel);
         // The two reduced-detail body files of the near crowd (src/scene/body/files.ts): the only binary that is not a glTF.
         const bodyLod = /^assets\/assets\/base-body-(?:male|female)-lod-[0-9a-f]{8}\.bin$/.test(rel) && stat.size > 0 && stat.size < 1024 * 1024;
-        if (!['worker.js', 'wrangler.json', 'manifest.json'].includes(rel) && !cityAsset && !bodyLod && !/^assets\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/.test(rel)) throw Error('Unexpected package file');
+        if (!['worker.js', 'wrangler.json', 'manifest.json'].includes(rel) && !cityAsset && !progressionAsset && !bodyLod && !/^assets\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/.test(rel)) throw Error('Unexpected package file');
         const bytes = readFileSync(full);
         if (cityAsset && cityAsset[1] !== hash(bytes)) throw Error('City content filename hash mismatch');
+        if (progressionAsset && progressionAsset[1] !== hash(bytes)) throw Error('Progression content filename hash mismatch');
         if (rel.endsWith('.glb') && !isGlb(bytes)) throw Error('Invalid model file');
         files.push({ path: rel, bytes: stat.size, sha256: hash(bytes) });
       }
@@ -55,16 +57,17 @@ export function checkPackage(root, sourceSha, publish) {
   const worker = readFileSync(join(root, 'worker.js'), 'utf8');
   // The Node host's local developer mode is never part of a release: its module carries this marker, so a Worker bundle that pulled it in is refused.
   if (worker.includes('allworld-open-dev-node-only')) throw Error('Open dev mode code in the release package');
-  const contentPaths = new Set(worker.match(/\/assets\/(?:cities\/[a-z][a-z0-9-]*\.[a-f0-9]{64}\.json|words\/dictionary\.[a-f0-9]{64}\.txt)/g) ?? []);
+  const contentPaths = new Set(worker.match(/\/assets\/(?:cities\/[a-z][a-z0-9-]*\.[a-f0-9]{64}\.json|words\/dictionary\.[a-f0-9]{64}\.txt|progression\/(?:episodes-\d+|journeys|missions)\.[a-f0-9]{64}\.json)/g) ?? []);
   const cityPaths = [...contentPaths].filter(path => path.startsWith('/assets/cities/'));
   const dictionaryPaths = [...contentPaths].filter(path => path.startsWith('/assets/words/'));
-  if (!cityPaths.length || dictionaryPaths.length !== 1) throw Error('Missing content manifest references');
+  const progressionPaths = [...contentPaths].filter(path => path.startsWith('/assets/progression/'));
+  if (!cityPaths.length || dictionaryPaths.length !== 1 || progressionPaths.length < 3) throw Error('Missing content manifest references');
   for (const path of contentPaths) {
     const file = files.find(file => file.path === `assets${path}`);
     if (!file) throw Error('Missing referenced content asset');
     if (file.sha256 !== path.match(/\.([a-f0-9]{64})\.(?:json|txt)$/)?.[1]) throw Error('Content asset filename hash mismatch');
   }
-  for (const file of files.filter(file => /^assets\/assets\/(?:cities\/[a-z][a-z0-9-]*\.[a-f0-9]{64}\.json|words\/dictionary\.[a-f0-9]{64}\.txt)$/.test(file.path))) {
+  for (const file of files.filter(file => /^assets\/assets\/(?:cities\/[a-z][a-z0-9-]*\.[a-f0-9]{64}\.json|words\/dictionary\.[a-f0-9]{64}\.txt|progression\/(?:episodes-\d+|journeys|missions)\.[a-f0-9]{64}\.json)$/.test(file.path))) {
     if (!contentPaths.has(file.path.slice('assets'.length))) throw Error('Unreferenced content asset');
   }
   return hash(JSON.stringify(files));

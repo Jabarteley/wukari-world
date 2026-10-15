@@ -15,7 +15,7 @@ import GameIcon from '../../ui/GameIcon.vue'
 import NeedsStrip from './NeedsStrip.vue'
 import { linkWording } from './hudModel.ts'
 
-const { game, shell, menu, community } = useApp()
+const { game, shell, menu, community, scene } = useApp()
 const ui = shell.ui
 const view = game.view
 const SLOTS: readonly HudSlot[] = ['alert', 'goal', 'hud']
@@ -40,6 +40,7 @@ watch([game.state, shell.legacyTick], recount, { flush: 'post' })
 onMounted(recount)
 const link = computed(() => linkWording(view.value))
 const atHome = computed(() => game.state.value.location === 'home')
+const sceneViewChoice = computed(() => game.mode.value === 'venue' ? scene.viewChoice.value : null)
 
 const root = ref<HTMLElement | null>(null)
 /** A tap anywhere outside the column closes the tray. */
@@ -67,6 +68,13 @@ function pick(id: string): void { ui.trayOpen = false; menu(id) }
         <div ref="tray" class="life-hud"><HudChip v-for="panel in bySlot.hud" v-show="!empty[panel.id]" :key="panel.id" :panel="panel" @rendered="onRendered(panel.id, $event)" /></div>
         <div class="life-menu">
           <p class="life-brand"><strong><span>Allworld</span></strong><small>{{ link ? link.menu : 'Beta' }}</small></p>
+          <template v-if="sceneViewChoice">
+            <button type="button" :aria-label="sceneViewChoice.label" :title="sceneViewChoice.title" :aria-pressed="sceneViewChoice.pressed" :aria-busy="sceneViewChoice.busy" :disabled="sceneViewChoice.busy" @click="sceneViewChoice.toggle()">
+              <span aria-hidden="true"><GameIcon name="person" :size="19" /></span>
+              <span><b>First-person view</b><small>{{ sceneViewChoice.text }}</small></span>
+            </button>
+            <small v-if="sceneViewChoice.error" class="life-view-status" role="status">{{ sceneViewChoice.error }}</small>
+          </template>
           <button type="button" @click="pick('city')"><span aria-hidden="true"><GameIcon name="globe" :size="19" /></span><span><b>{{ view.city?.name || 'City' }}</b><small>Switch city on the world map</small></span></button>
           <button type="button" @click="ui.trayOpen = false; community.toggle(true)"><span aria-hidden="true"><GameIcon name="community" :size="19" /></span><span><b>Community</b><small>{{ atHome ? 'Home is private — visit a venue to chat' : 'People, chat and voice at this venue' }}</small></span></button>
           <button type="button" @click="shell.open('help')"><span aria-hidden="true"><GameIcon name="help" :size="19" /></span><span><b>How to play</b><small>Tips and keyboard shortcuts</small></span></button>
@@ -77,3 +85,7 @@ function pick(id: string): void { ui.trayOpen = false; menu(id) }
     </template>
   </aside>
 </template>
+
+<style scoped>
+.life-view-status{padding:2px 8px 4px 50px;color:var(--c-red-dark);font-size:var(--t-small);line-height:1.35}
+</style>

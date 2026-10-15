@@ -54,6 +54,16 @@ export const tripKey = (state: LifeState): string => {
 
 const HELD_KEY = 'joinallworld-cities'
 
+export type SceneViewChoice = {
+  label: string
+  title: string
+  text: string
+  pressed: boolean
+  busy: boolean
+  error: string | null
+  toggle: () => void
+}
+
 function createApp(game: Game, native: readonly VuePanel[]) {
   /** Where the other players in this venue room stand, as the room reports it: { [publicId]: { x, z } }. */
   let positions: Record<string, { x: number; z: number }> = {}
@@ -61,6 +71,8 @@ function createApp(game: Game, native: readonly VuePanel[]) {
   /** The 3D hosts, once their code has arrived. */
   const scene = {
     venue: shallowRef<SceneWorld | null>(null),
+    /** A scene-owned view choice that other UI can present without owning its controller lifecycle. */
+    viewChoice: shallowRef<SceneViewChoice | null>(null),
     city: shallowRef<CityView | null>(null),
     world: shallowRef<WorldMap | null>(null),
     /** Bumped when the venue comes up after a trip, so the pane can fade it in. */

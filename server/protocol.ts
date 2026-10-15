@@ -4,8 +4,7 @@ import { isCityId } from '../src/game/cities/registry.ts';
 import { hasAction, isDeparting, occupiesVenue } from '../src/life.ts';
 import { screenText } from './moderation/text.ts';
 import { agentMark } from './agents/policy.ts';
-import { createCampusWalk } from '../src/campus/unilag/walk.ts';
-import { ENTRANCE } from '../src/campus/unilag/layout.ts';
+import { CAMPUS_NAVIGATION_ENTRANCE, createCampusWalk } from '../src/campus/unilag/walk.ts';
 import type { ActionRequest, CityId, IceServerConfig, PublicSession } from '../src/types/protocol.ts';
 import type { AccountDeviceRecord, ActionReceipt, ArchivedLife, Collections, CollectionName, Db, HttpError, SessionRecord } from './types.ts';
 import type { PlotAddress } from '../src/types/life.ts';
@@ -218,7 +217,7 @@ export const STUN_ONLY_CONFIG = Object.freeze({ iceServers: Object.freeze([{ url
  */
 let campusWalk: ReturnType<typeof createCampusWalk> | undefined;
 /** Where a socket that has just joined a venue room stands: the campus gate, or the origin ("not reported yet") anywhere else. */
-export function initialVenuePosition(venueId: unknown): Point { return venueId === 'unilag' ? { x: ENTRANCE.x, z: ENTRANCE.z } : { x: 0, z: 0 }; }
+export function initialVenuePosition(venueId: unknown): Point { return venueId === 'unilag' ? { x: CAMPUS_NAVIGATION_ENTRANCE.x, z: CAMPUS_NAVIGATION_ENTRANCE.z } : { x: 0, z: 0 }; }
 /** A value with finite numeric x and z. */
 function isFinitePoint(value: unknown): value is Point {
   if (!value || typeof value !== 'object') return false;

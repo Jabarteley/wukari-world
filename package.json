@@ -27,6 +27,18 @@
       "browser": "./src/words/dictionary-source.ts",
       "node": "./src/words/dictionary-node.ts",
       "default": "./src/words/dictionary-asset.ts"
+    },
+    "#progression-provider": {
+      "types": "./src/game/progression/source-provider.ts",
+      "browser": "./src/game/progression/source-provider.ts",
+      "node": "./src/game/progression/source-provider.ts",
+      "default": "./src/game/progression/asset-provider.ts"
+    },
+    "#campus-navigation-data": {
+      "types": "./src/campus/unilag/navigation-data-source.ts",
+      "browser": "./src/campus/unilag/navigation-data-source.ts",
+      "node": "./src/campus/unilag/navigation-data-source.ts",
+      "default": "./src/campus/unilag/navigation-data.generated.ts"
     }
   },
   "scripts": {
@@ -34,16 +46,16 @@
     "predev": "npm run -s preflight",
     "predev:open": "npm run -s preflight",
     "prestart:open": "npm run -s preflight",
-    "prebuild": "npm run -s preflight && npm run -s cities:catalogue -- --check && npm run -s cities:land:check && npm run -s progression:check",
+    "prebuild": "npm run -s preflight && npm run -s cities:catalogue -- --check && npm run -s cities:land:check && npm run -s progression:check && npm run -s progression:assets -- --check && npm run -s campus:navigation -- --check",
     "pretypecheck": "npm run -s preflight",
-    "pretest": "npm run -s preflight && npm run -s cities:land:check && npm run -s cities:assets && npm run -s words:assets",
+    "pretest": "npm run -s preflight && npm run -s cities:land:check && npm run -s cities:assets && npm run -s words:assets && npm run -s progression:assets && npm run -s campus:navigation -- --check",
     "prestart": "npm run -s preflight",
     "dev": "node --experimental-strip-types scripts/dev.ts",
     "dev:open": "node --experimental-strip-types scripts/dev.ts --open",
     "start:open": "node --experimental-strip-types scripts/open-dev.ts start",
     "dev:fund": "node --experimental-strip-types scripts/open-dev.ts fund",
     "dev:seed": "node --experimental-strip-types scripts/open-dev.ts seed",
-    "build": "vite build && npm run cities:assets && npm run words:assets",
+    "build": "vite build && npm run cities:assets && npm run words:assets && npm run progression:assets",
     "check": "npm run typecheck && npm run build && npm test",
     "test:smoke": "node --experimental-strip-types --test --test-concurrency=1 src/app/entry.test.ts server/release.test.ts src/types/protocol.test.ts",
     "check:fast": "npm run typecheck && npm run build && npm run size:download && npm run test:smoke",
@@ -82,7 +94,9 @@
     "cities:assets": "node --experimental-strip-types scripts/city/build-content-assets.ts --out dist/assets/cities --typescript src/game/cities/content-assets.generated.ts",
     "words:assets": "node --experimental-strip-types scripts/build-dictionary-asset.ts --out dist/assets/words --typescript src/words/dictionary-asset.generated.ts",
     "progression:content": "node --experimental-strip-types scripts/city/build-progression-content.ts",
-    "progression:check": "node --experimental-strip-types scripts/city/build-progression-content.ts --check"
+    "progression:check": "node --experimental-strip-types scripts/city/build-progression-content.ts --check",
+    "progression:assets": "node --experimental-strip-types scripts/city/build-progression-assets.ts --out dist/assets/progression --typescript src/game/progression/assets.generated.ts",
+    "campus:navigation": "node --experimental-strip-types scripts/campus/build-navigation-data.ts"
   },
   "dependencies": {
     "@sentry/browser": "^11.4.0",

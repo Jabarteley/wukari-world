@@ -14,6 +14,7 @@ export function createFirstPerson(source: SceneViewSource, inputAllowed: () => b
   const saved = { fov: camera.fov, near: camera.near, zoom: camera.zoom, view: camera.view && { ...camera.view } }
   const point = new THREE.Vector3(), look = new THREE.Vector3(), bodyEye = new THREE.Vector3()
   const bodyForward = new THREE.Vector3(), bodyOrigin = new THREE.Vector3()
+  const headUp = new THREE.Vector3(), headFrame = new THREE.Matrix4()
   let yaw = renderedFacing(), lastBodyFacing = yaw, pitch = 0, scene = context.scene, pose = context.pose
   let preferences = readViewPreferences(), target: ViewTarget | null = null
   let pointer: { id: number; x: number; y: number; startX: number; startY: number; dragged: boolean; snap: number } | null = null
@@ -121,17 +122,24 @@ export function createFirstPerson(source: SceneViewSource, inputAllowed: () => b
     // The home object sequence moves its body independently of the navigation waypoint.
     // Follow that rendered head during seats, beds and door motion; walking keeps optional bob only.
     const head = !context.moving && bodies[1]?.getObjectByName('Head')
+    const lying = Boolean(head && bodies[1]?.userData.canonicalCharacter && (pose === 'lie' || pose === 'sleep'))
     if (head && scene) {
       head.updateWorldMatrix(true, false); head.getWorldPosition(bodyEye); scene.worldToLocal(bodyEye)
-      const dx = bodyEye.x - eye.x, dy = bodyEye.y + 0.12 * context.scale - eye.y, dz = bodyEye.z - eye.z
+      const dx = bodyEye.x - eye.x, dy = bodyEye.y + (lying ? 0 : 0.12 * context.scale) - eye.y, dz = bodyEye.z - eye.z
       eye.x += dx; eye.y += dy; eye.z += dz; eye.lookX += dx; eye.lookY += dy; eye.lookZ += dz
     }
     const body = bodies[1]
     if (body?.userData.canonicalCharacter && scene) {
       // The eye turns around the head joint without pitching into the collar or upper torso.
-      bodyForward.set(Math.sin(yaw), 0, Math.cos(yaw)).multiplyScalar(0.28 * context.scale)
-      eye.x += bodyForward.x; eye.z += bodyForward.z
-      eye.lookX += bodyForward.x; eye.lookZ += bodyForward.z
+      if (lying && head) {
+        // In sleep/lie-down the face points upward. Offset in the rendered anatomical
+        // frame (+Y toward the crown, +Z out of the face), not the upright world frame.
+        headFrame.copy(scene.matrixWorld).invert().multiply(head.matrixWorld)
+        headUp.set(0, 1, 0).transformDirection(headFrame).multiplyScalar(0.12 * context.scale)
+        bodyForward.set(0, 0, 1).transformDirection(headFrame).multiplyScalar(0.28 * context.scale).add(headUp)
+      } else bodyForward.set(Math.sin(yaw), 0, Math.cos(yaw)).multiplyScalar(0.28 * context.scale)
+      eye.x += bodyForward.x; eye.y += bodyForward.y; eye.z += bodyForward.z
+      eye.lookX += bodyForward.x; eye.lookY += bodyForward.y; eye.lookZ += bodyForward.z
     }
     point.set(eye.x, eye.y, eye.z); look.set(eye.lookX, eye.lookY, eye.lookZ)
     if (scene) { scene.updateWorldMatrix(true, false); scene.localToWorld(point); scene.localToWorld(look) }

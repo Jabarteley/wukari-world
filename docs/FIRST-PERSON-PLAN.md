@@ -2,11 +2,25 @@
 
 ## Current release candidate — 15 October 2026
 
-The user authorized fixing the remaining blockers, completing mobile/web checks and deployment, then explicitly approved an isolated release worktree. Current work is tracked in [first-person-release-20261015](agent-work/first-person-release-20261015.md). The candidate starts at current main `9af2e51e`; unrelated character drafts remain in the primary checkout.
+The user authorized clearing the blockers, completing mobile/web checks and deployment, and explicitly approved an isolated release worktree. Work is tracked in [first-person-release-20261015](agent-work/first-person-release-20261015.md). Primary checkout character drafts remain separate. The retention chat is the sole final combined main/deployment operator.
 
-The primary checkout's 19 Street Studio errors are fixed and all five typecheck projects pass. The selective current-main first-person integration also passes typecheck. Its first build passes startup limits across 284 cities (602,051 raw / 218,611 gzip / 191,834 Brotli bytes); the shared host is 190,292 raw / 71,716 gzip, leaving a 716-byte gzip correction. No budgets are raised. Optional reward presentation is being moved behind a lazy import.
+Current committed baseline is a9141b12, containing main5181c91a. The primary checkout's19 Street Studio errors are fixed; the candidate passes all five typecheck projects. Baseline two-build output was identical. Optional reward presentation extraction clears the shared-host cap:186,321raw/70,419gzip against192,000/71,000. No budget was raised.
 
-Fresh browser, hosted and production acceptance remain pending. The 14 October preview has stopped; the evidence below is historical and must not be reported as current-source release acceptance.
+The inherited5,110,078-byte Worker blocker is repaired in pending source: immutable progression assets preserve the exact catalogue, compact campus navigation/shuttle data preserves every grid/route result, and a pure money import removes accidental Vue runtime. Reviewed Worker measurement is3,422,076bytes against3,500,000. Focused52/52 plus companion3/3 checks pass. Full accepted-city/country object maps are source-only; current Worker consumers use accepted IDs and episode/journey facades. Final combined profile/content source still needs all release gates and fresh generated assets.
+
+The user requested the view switch move into the existing More menu. The scene retains camera lifecycle ownership while the menu supplies its accessible control. This supersedes the historical floating-button placement below. The same pending source also fixes lying-pose eye offset and provides Reload to retry after a failed cached lazy import. These corrections need rebuilt browser proof.
+
+| Current acceptance | Evidence | Remaining scope |
+| --- | --- | --- |
+| Desktop hands/body/legs, side view, third-person restoration and saved preference | Actual a9141b12 served build; two avatars/outfits | Replay final source after menu move |
+| Mobile320/390px and landscape layout; simultaneous move/look and release | Browser emulation and actual two-touch CDP input | New menu placement; physical handset unavailable |
+| Phone input release, Buy suspension, home/outside/home, Danfo arrival | Actual local browser interactions | Final source spot-check; rail/browser arrival |
+| TV seated body and active screen, fun increase, mute UI | Normal1x clock, current avatar/outfit | Audible speaker proof unavailable; screen is generated still plus ambience |
+| Bed action and lazy-load failure | Both reproduced defects; source corrections reviewed | Rebuilt down-look and Reload to retry replay |
+| Performance | Existing budgets; local body diagnostics15draws/8,330triangles, loop stopped in one sample | Paired idle/FPS comparison; no physical-device performance claim |
+| Production readiness | Reviewed source only; no main push/deployment from this lane | Combined full gates, pinned hosted city QA, exact deployment receipt and live first-person check |
+
+Local browser evidence: `/tmp/allworld-first-person-browser-20261015/`. Current preview4412 serves immutable a9141b12 server source and preserved fake save data at1x. Browser ownership temporarily belongs to the retention lane for5176 profile checks; no concurrent UI operation. Historical14October material below remains labelled as such.
 
 ## Prior implementation and local evidence — 14 October 2026
 

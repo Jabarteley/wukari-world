@@ -2,6 +2,8 @@ import { retentionPolicy } from '../server/retention-policy.ts';
 import { registeredCityIds, loadCityLinks } from '../src/game/cities/registry.ts';
 import { installCityAssetReader } from '../src/game/cities/host-loaders.ts';
 import { installDictionaryAssetReader } from '../src/words/dictionary-asset.ts';
+import { installProgressionAssetReader, loadProgressionAssets } from '../src/game/progression/asset-provider.ts';
+import { installProgressionMissions } from '../src/game/systems/missions.ts';
 import { placeOfRoom } from '../src/places/model.ts';
 import { characterCity } from '../server/character.ts';
 import { roomVoiceRelay } from '../server/voice-relay.ts';
@@ -98,7 +100,7 @@ const ACK_CHECK_MS = 60000;
 /** How often expired sessions are looked for after start-up (expiredSessions below). */
 const EXPIRY_SWEEP_MS = 60000;
 /** Path prefixes outside /api/ that a module may serve as an HTML page (ctx.pages). The Worker sends these to the object. */
-const PAGE_PREFIXES = ['/s/', '/e/', '/shop/', '/agents/'];
+const PAGE_PREFIXES = ['/s/', '/e/', '/shop/', '/agents/', '/p/'];
 /** A socket's attachment may hold 2,048 bytes. */
 const ATTACHMENT_BYTES = 2000;
 /** The limiter's STORED classes, one table each (server/limiter.ts). The short class is kept in memory and has no table. */
@@ -349,6 +351,11 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
       if (!response.ok) throw new Error('Dictionary asset request failed');
       return new Uint8Array(await response.arrayBuffer());
     });
+    installProgressionAssetReader(async path => {
+      const response = await env.ASSETS.fetch(new Request(`https://allworld-assets.invalid${path}`, { redirect: 'manual' }));
+      if (!response.ok) throw new Error('Progression asset request failed');
+      return new Uint8Array(await response.arrayBuffer());
+    });
     this.held = { all: new Set(), bySecret: new Map(), byPlayer: new Map(), byAddress: new Map() }; this.unsaved = new Set(); this.checked = new WeakMap();
     const now = () => Date.now();
     const log = (line: unknown): void => { try { console.error(String(line).slice(0, 500)); } catch { /* a failing logger changes nothing */ } };
@@ -509,6 +516,8 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
     this.routes = buildRoutes(context, [...ROUTE_MODULES, telemetryRoutes]);
     this.telemetry.attach(context);
     this.ready = ctx.blockConcurrencyWhile(async () => {
+      await loadProgressionAssets();
+      installProgressionMissions();
       await Promise.all(context.startup.splice(0));
       for (const socket of ctx.getWebSockets()) { const info = socket.deserializeAttachment(); if (info && !info.closed) this.handlers.restore(this.wrap(socket, info)); }
       // Rotate credentials created by versions that exposed the cookie as a public ID, and archive what has expired.

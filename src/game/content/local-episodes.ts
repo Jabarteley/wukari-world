@@ -4,7 +4,7 @@ import type {
 } from '../../types/episodes.ts'
 import type { LocalTale } from '../../types/local-tales.ts'
 import type { WorldStorySeed } from '../../types/world-progression.ts'
-import { ACCEPTED_LOCAL_CITIES } from './local-tales.ts'
+import { ACCEPTED_LOCAL_CITIES } from './local-tales-source.ts'
 
 const episodeId = (cityId: string, kind: 'city' | 'country'): PlaceEpisodeId => `place-${cityId}-${kind}-story`
 const destination = (seed: WorldStorySeed, label: string) => ({ venue: seed.host.venue, spot: 'people', label })

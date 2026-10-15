@@ -2,7 +2,7 @@ import type { MissionDefinition, MissionKind } from '../../types/content.ts'
 import type { LocalMissionTask, LocalTaleMission } from '../../types/local-tales.ts'
 import type { WorldStorySeed } from '../../types/world-progression.ts'
 import { missionCatalogues } from '../systems/missions.ts'
-import { ACCEPTED_LOCAL_CITIES, ACCEPTED_LOCAL_CITY_IDS } from './local-tales.ts'
+import { ACCEPTED_LOCAL_CITIES, ACCEPTED_LOCAL_CITY_IDS } from './local-tales-source.ts'
 
 type Scope = 'daily' | 'weekly'
 const kinds: readonly MissionKind[] = ['life', 'discovery', 'social']

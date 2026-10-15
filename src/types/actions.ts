@@ -354,6 +354,8 @@ export interface ActionMap extends CampusActionMap, StoryActionMap, AchievementA
   'missions.reroll': { payload: { id: MissionId }; ok: 'rerolled'; fail: 'missions_locked' | 'unknown_mission' | 'already_done' | 'no_rerolls' | 'nothing_else' }
   /** Deal today's set if the day turned; changes nothing else and never fails. */
   'missions.refresh': { payload: NoPayload; ok: 'refreshed'; fail: never }
+  /** SERVER ONLY: what happened between this life and a house agent, after the server checked it (server/house/desk.ts, systems/agent-missions.ts). `op` is an AgentMissionOp. */
+  'missions.server': { payload: { op: AgentMissionOp; [field: string]: unknown }; ok: 'given' | 'greeted' | 'handed' | 'brought' | 'bought'; fail: AgentMissionBlockCode; serverOnly: true }
 
   // -- events --
   /** At a live event that allows it: pay `amount` (one of SPRAY.amounts) for Social and Fun. A pure sink. */
@@ -425,6 +427,13 @@ export type TablesBlockCode = 'invalid_operation' | 'invalid_amount' | 'balance_
 export type MarketServerOp = 'deposit' | 'withdraw'
 /** Why the life's half of a market deposit or withdrawal was refused. */
 export type MarketBlockCode = 'invalid_operation' | 'invalid_amount' | 'insufficient_funds' | 'balance_limit'
+
+/** The operations 'missions.server' accepts (systems/agent-missions.ts). */
+export type AgentMissionOp = 'give' | 'talk' | 'hand' | 'bring' | 'sale'
+/** Why the life's half of an agent mission step was refused. */
+export type AgentMissionBlockCode =
+  | 'invalid_operation' | 'missions_locked' | 'too_many' | 'too_big' | 'already_given' | 'nothing_to_do' | 'item_short' | 'not_a_friend'
+  | 'unknown_product' | 'bad_price' | 'insufficient_funds' | 'bag_full' | 'already_done' | 'not_needed'
 
 /** The operations 'business.server' accepts (systems/business.ts). */
 export type BusinessServerOp = 'open' | 'spend' | 'collect' | 'refund' | 'buy' | 'bag-add' | 'bag-take' | 'bag-return'
@@ -525,7 +534,7 @@ export const ACTION_TYPES = [
   'goals.buy-perk', 'goals.reroll-wish', 'goals.set-dream',
   'social.call', 'social.sync', 'social.server',
   'civic.hunt-search', 'civic.hunt-claim', 'civic.refresh', 'civic.news', 'civic.run', 'civic.vote', 'civic.rent-ad', 'civic.treasury', 'civic.justice', 'civic.shoutout',
-  'missions.claim', 'missions.reroll', 'missions.refresh',
+  'missions.claim', 'missions.reroll', 'missions.refresh', 'missions.server',
   'events.spray',
   'growth.table-result', 'growth.referral', 'tables.server',
   'business.server',
@@ -541,11 +550,14 @@ export const ACTION_TYPES = [
 export const SERVER_ONLY_ACTIONS = [
   'estate.land-pay', 'street.place',
   'wallet.admin', 'wallet.bonus', 'needs.admin', 'activity.admin', 'estate.assign', 'estate.released', 'onboarding.arrive', 'social.server', 'civic.news', 'civic.run', 'civic.vote', 'civic.rent-ad',
-  'civic.treasury', 'civic.justice', 'civic.shoutout', 'growth.table-result', 'growth.referral', 'tables.server', 'business.server', 'projects.server', 'living-world.server', 'market.server', 'unilag.election.nominate', 'unilag.election.vote',
+  'civic.treasury', 'civic.justice', 'civic.shoutout', 'growth.table-result', 'growth.referral', 'tables.server', 'business.server', 'projects.server', 'missions.server', 'living-world.server', 'market.server', 'unilag.election.nominate', 'unilag.election.vote',
 ] as const satisfies readonly ServerOnlyActionType[]
 
 /** The server-only deliveries that pass a held life's veto (onboarding.js INBOUND). */
 export const INBOUND_ACTIONS = ['social.server', 'growth.referral', 'growth.table-result'] as const satisfies readonly InboundActionType[]
+
+/** The operations 'missions.server' accepts (systems/agent-missions.ts). */
+export const AGENT_MISSION_OPS = ['give', 'talk', 'hand', 'bring', 'sale'] as const satisfies readonly AgentMissionOp[]
 
 /** The operations 'business.server' accepts (systems/business.ts). */
 export const BUSINESS_SERVER_OPS = ['open', 'spend', 'collect', 'refund', 'buy', 'bag-add', 'bag-take', 'bag-return'] as const satisfies readonly BusinessServerOp[]

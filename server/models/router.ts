@@ -101,6 +101,8 @@ export interface AskInput {
   carriesPlayerWords: boolean
   /** All the time the request may take (default 8 s). */
   timeoutMs?: number
+  /** A model id (or `provider:id`) to try first when it is in the purpose's list and usable: a resident's model assigned at birth. The others stay as fallbacks. */
+  prefer?: string
 }
 export type Refusal = 'off' | 'no-model' | 'budget' | 'player-cap' | 'rate' | 'failed';
 export interface Attempt { model: string; provider: Provider; ok: boolean; why?: GatewayFailure }
@@ -179,7 +181,9 @@ export function createRouter(deps: Deps) {
     for (const [key, until] of resting) if (until <= now) resting.delete(key);
     const fresh = usable.filter((entry) => !resting.has(entryKey(entry)) && !resting.has(`provider:${entry.provider}`));
     // Everything resting: try them anyway rather than answer nothing.
-    const order = fresh.length ? fresh : usable.filter((entry) => !resting.has(`provider:${entry.provider}`));
+    const rested = fresh.length ? fresh : usable.filter((entry) => !resting.has(`provider:${entry.provider}`));
+    const liked = input.prefer ? rested.findIndex((entry) => entry.id === input.prefer || entryKey(entry) === input.prefer) : -1;
+    const order = liked > 0 ? [rested[liked]!, ...rested.filter((_, at) => at !== liked)] : rested;
     const totalMs = input.timeoutMs ?? 8000;
     let blocked: Refusal | null = null;
     for (let index = 0; index < order.length; index++) {

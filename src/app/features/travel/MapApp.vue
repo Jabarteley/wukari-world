@@ -30,7 +30,8 @@ import TripBar from './TripBar.vue'
 import VenueCard from './VenueCard.vue'
 import { DATA_LAYERS, asMapParams, layoutKey, LAYERS, tripInfo } from './travelModel.ts'
 import type { MapUiDetail } from './travelModel.ts'
-import { isListOpen, layers, mapUi, seen, tell, trackWide } from './travelState.ts'
+import { mapUi } from './travelState.ts'
+import { isListOpen, layers, seen, tell, trackWide } from './travelMapState.ts'
 
 const props = defineProps<{ params?: unknown }>()
 const { game } = useApp()

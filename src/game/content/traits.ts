@@ -20,6 +20,7 @@
  *   bonus       { tags: [...], needs: { ... } }    extra need change when such an activity completes
  */
 
+import { withIds } from './with-ids.ts'
 import type { AccessoryId, DreamId, Look, LotteryId, NeedId, StartHomeId, TraitId, Wardrobe } from '../../types/life.ts'
 import type {
   Appearance, BoutiquePrices, DreamDefinition, LotteryOutcome, MoodWord, OnboardingStep, StartHomeDefinition, TraitDefinition,
@@ -127,38 +128,38 @@ export const BOUTIQUE_PRICES: BoutiquePrices = {
 // ---- Traits (choose exactly two) ---------------------------------------------------------
 // The ten names and what each one is about are fixed; every magnitude is an original beta value.
 export const TRAITS_REQUIRED = 2;
-export const TRAITS: Record<TraitId, TraitDefinition> = {
-  hustler: { id: 'hustler', label: 'Hustler', icon: '💸', beta: true, betaFields: ['fx', 'blurb'],
+export const TRAITS: Record<TraitId, TraitDefinition> = withIds<TraitDefinition>({
+  hustler: { label: 'Hustler', icon: '💸', beta: true, betaFields: ['fx', 'blurb'],
     blurb: 'Every corner is a business plan.', effects: ['Hustle grows 25% faster', 'Work performance rises 15% faster'],
     fx: { xp: { hustle: 1.25 }, performance: 1.15 } },
-  foodie: { id: 'foodie', label: 'Foodie', icon: '🍛', beta: true, betaFields: ['fx', 'blurb'],
+  foodie: { label: 'Foodie', icon: '🍛', beta: true, betaFields: ['fx', 'blurb'],
     blurb: 'A good plate fixes most problems.', effects: ['Cooking grows 25% faster', 'Every meal gives +5 Fun'],
     fx: { xp: { cooking: 1.25 }, bonus: { tags: ['food'], needs: { fun: 5 } } } },
-  'owambe-spirit': { id: 'owambe-spirit', label: 'Owambe Spirit', icon: '🎊', beta: true, betaFields: ['fx', 'blurb'],
+  'owambe-spirit': { label: 'Owambe Spirit', icon: '🎊', beta: true, betaFields: ['fx', 'blurb'],
     blurb: 'First on the dance floor, last to leave.', effects: ['Dance grows 25% faster', 'Parties and dancing give +6 Fun', 'Fun drops 15% faster'],
     fx: { xp: { dance: 1.25 }, decay: { fun: 1.15 }, bonus: { tags: ['party', 'dance'], needs: { fun: 6 } } } },
-  'gym-rat': { id: 'gym-rat', label: 'Gym Rat', icon: '🏋️', beta: true, betaFields: ['fx', 'blurb'],
+  'gym-rat': { label: 'Gym Rat', icon: '🏋️', beta: true, betaFields: ['fx', 'blurb'],
     blurb: 'Rest day is a rumour.', effects: ['Fitness grows 25% faster', 'Workouts give +6 Fun'],
     fx: { xp: { fitness: 1.25 }, bonus: { tags: ['workout', 'fitness'], needs: { fun: 6 } } } },
-  'smooth-talker': { id: 'smooth-talker', label: 'Smooth Talker', icon: '🗣️', beta: true, betaFields: ['fx', 'blurb'],
+  'smooth-talker': { label: 'Smooth Talker', icon: '🗣️', beta: true, betaFields: ['fx', 'blurb'],
     blurb: 'Could talk a danfo conductor into giving change.', effects: ['Charisma grows 25% faster', 'Social interactions gain 15% more'],
     fx: { xp: { charisma: 1.25 }, social: 1.15 } },
-  'lazy-bone': { id: 'lazy-bone', label: 'Lazy Bone', icon: '🛋️', beta: true, betaFields: ['fx', 'blurb'],
+  'lazy-bone': { label: 'Lazy Bone', icon: '🛋️', beta: true, betaFields: ['fx', 'blurb'],
     blurb: 'Saves energy like it is rent money.', effects: ['Energy drops 20% slower', 'Work performance rises 10% slower'],
     fx: { decay: { energy: 0.8 }, performance: 0.9 } },
-  'clean-pikin': { id: 'clean-pikin', label: 'Clean Pikin', icon: '🫧', beta: true, betaFields: ['fx', 'blurb'],
+  'clean-pikin': { label: 'Clean Pikin', icon: '🫧', beta: true, betaFields: ['fx', 'blurb'],
     blurb: 'Smells like fresh laundry at all times.', effects: ['Hygiene drops 25% slower'],
     fx: { decay: { hygiene: 0.75 } } },
-  'night-crawler': { id: 'night-crawler', label: 'Night Crawler', icon: '🌙', beta: true, betaFields: ['fx', 'blurb'],
+  'night-crawler': { label: 'Night Crawler', icon: '🌙', beta: true, betaFields: ['fx', 'blurb'],
     blurb: 'The city gets interesting after dark.', effects: ['Energy drops 25% slower from 9 PM to 5 AM', 'Nightlife costs 10% less', 'Nightlife and parties give +5 Fun'],
     fx: { nightDecay: { energy: 0.75 }, cost: { tags: ['nightlife'], mult: 0.9 }, bonus: { tags: ['nightlife', 'party'], needs: { fun: 5 } } } },
-  'tech-bro-or-sis': { id: 'tech-bro-or-sis', label: 'Tech Bro or Sis', icon: '💻', beta: true, betaFields: ['fx', 'blurb'],
+  'tech-bro-or-sis': { label: 'Tech Bro or Sis', icon: '💻', beta: true, betaFields: ['fx', 'blurb'],
     blurb: 'Ships a side project before breakfast.', effects: ['Coding grows 25% faster'],
     fx: { xp: { coding: 1.25 } } },
-  musical: { id: 'musical', label: 'Musical', icon: '🎵', beta: true, betaFields: ['fx', 'blurb'],
+  musical: { label: 'Musical', icon: '🎵', beta: true, betaFields: ['fx', 'blurb'],
     blurb: 'Has a melody for every mood.', effects: ['Music grows 25% faster'],
     fx: { xp: { music: 1.25 } } },
-};
+}) as Record<TraitId, TraitDefinition>;
 
 // ---- Dreams (choose one) -----------------------------------------------------------------
 // Names and completion conditions are fixed. How progress is measured on the way there

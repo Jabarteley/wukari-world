@@ -14,7 +14,7 @@
  * limited to 120 requests a minute per player (429 `rate_limited`).
  * WORKER: none of this exists on the Cloudflare Worker (every path is 404, every frame `invalid_message`).
  */
-import type { LifeState } from './life.ts'
+import type { AgentMission, LifeState } from './life.ts'
 import type { GrowthView } from './view.ts'
 import type { CityId, HostErrorCode, JsonBodyErrorCode, Ok, PlayerRef, Refusal, SessionErrorCode, StorageErrorCode } from './protocol.ts'
 import type { Done, Repeat } from './social.ts'
@@ -192,6 +192,8 @@ export type HelloResult =
     events: CalendarOccurrence[]
     digest: Digest & { delivery: 'dry-run' }
     sharesLeft: number
+    /** Tasks house agents gave this life in person (open and just finished); absent when there are none (docs/AGENT-MISSIONS.md). */
+    agentTasks?: AgentMission[]
   })
   | Refusal<'not_ready' | 'server_full'>
 

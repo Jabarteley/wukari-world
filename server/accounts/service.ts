@@ -42,6 +42,7 @@ import type { VerifiedIdentity } from './token.ts';
 import { eraseRealValue, exportRealValue } from '../real-value/privacy.ts';
 import { eraseShowcase, exportShowcase } from '../showcase/privacy.ts';
 import { eraseMarket, exportMarket } from '../market/privacy.ts';
+import { erasePerson, exportMemory, peekMemory } from '../house/memory.ts';
 import { eraseAgents, exportAgents } from '../agents/privacy.ts';
 import { eraseLivingWorldProgress, exportLivingWorldProgress, rebindBarberAccount, rebindClerkAccount, rebindJusticePracticeAccount, rebindAssessmentAccount, rebindParcelAccount } from '../living-world/privacy.ts';
 import type { LivingWorldPrivacyExport } from '../living-world/privacy.ts';
@@ -549,6 +550,7 @@ export function deleteAccount(db: Db, deps: AccountDeps, input: Caller & { ident
   eraseRealValue(db, publicIds);
   eraseMarket(db, publicIds);
   eraseAgents(db, account.id, (d, id) => { const key = d.$store ? d.$store.sessionKeyByPublicId(id) : Object.keys(d.sessions).find(item => d.sessions[item]?.publicId === id); return key === undefined ? undefined : d.sessions[key]; }, deps.archive);
+  for (const id of publicIds) if (input.erase || id !== account.publicId) erasePerson(db, id);
   const showcasePhotos = eraseShowcase(db, publicIds);
   if (db.social) for (const id of publicIds) if (input.erase || id !== account.publicId) clearPlayerFamily(db.social.players, id);
   for (const id of publicIds) if (db.street && (input.erase || id !== account.publicId)) delete db.street.journeys[id];
@@ -612,6 +614,7 @@ export function exportAccount(db: Db, deps: AccountDeps, caller: Caller, identit
     ...(db.realValue ? { realValue: exportRealValue(db, [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)], now) } : {}),
     ...(livingWorld ? { livingWorld } : {}),
     ...(db.agents ? { aiAgents: exportAgents(db, account.id) } : {}),
+    ...(peekMemory(db) ? { aiMemory: exportMemory(db, [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)], now) } : {}),
     ...(db.trustChecks ? { identityChecks: Object.values(db.trustChecks.checks).filter(check => check.account === account.id).map(check => ({ ref: check.ref, player: check.player, at: check.at, expiresAt: check.expiresAt, status: check.status, environment: check.environment, adultVerified: check.adult === true })) } : {}),
     history: (log?.audit ?? []).filter(line => line.ref === ref).map(line => ({ at: line.at, event: line.event, ...(line.life ? { character: line.life } : {}) })),
   };

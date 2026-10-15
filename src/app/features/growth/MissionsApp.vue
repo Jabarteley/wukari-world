@@ -16,12 +16,15 @@ import HeroCard from '../../ui/HeroCard.vue'
 import HowItWorks from '../../ui/HowItWorks.vue'
 import SectionTitle from '../../ui/SectionTitle.vue'
 import MissionItem from './MissionItem.vue'
+import AgentMissionItem from './AgentMissionItem.vue'
+import { agentRows } from './agentTasks.ts'
+import { venueFor } from '../../../game/cities/runtime.ts'
 import { daysTail, setLine, stampCells, stampsNote } from './missionsLines.ts'
 import { until } from './growthModel.ts'
 import { useGrowth } from './useGrowth.ts'
 import { startSettling } from '../start/settleModel.ts'
 import { useRetention } from '../passport/useRetention.ts'
-import type { MissionRewardView, MissionRow } from '../../../types/view.ts'
+import type { AgentMissionRow, MissionRewardView, MissionRow } from '../../../types/view.ts'
 
 defineProps<{ params?: unknown }>()
 const { game, shell, goTo } = useApp()
@@ -34,7 +37,9 @@ const noteWhy = computed(() => linkWords(view.value)?.why ?? '')
 const stamps = computed(() => (m.value ? stampCells(m.value.stamps) : []))
 const resetsIn = computed(() => (m.value ? until(m.value.resetAt, view.value.now) : ''))
 const weekIn = computed(() => (m.value ? until(m.value.weekResetAt, view.value.now) : ''))
-const noMissions = computed(() => Boolean(m.value) && !m.value?.daily.length && !m.value?.weekly.length && !m.value?.pendingRewards.length && !m.value?.pendingSetRewards.length)
+// The tasks come with the growth hello (the engine of the first download does not carry them): see server/routes/growth.ts.
+const agentTasks = computed(() => agentRows({ agent: growth.state.hello?.agentTasks }, view.value.now, game.state.value.estate.city, (city, venue) => venueFor(city, venue)?.label ?? null))
+const noMissions = computed(() => Boolean(m.value) && !m.value?.daily.length && !m.value?.weekly.length && !m.value?.pendingRewards.length && !m.value?.pendingSetRewards.length && !agentTasks.value.length)
 const dailyMilestones = computed(() => retention.state.view?.flags.dailyMilestones && m.value ? getDailyMilestones(m.value.dailySet.done) : null)
 const rules = computed(() => [
   'Three missions a day and three a week: one about your life, one about the city, one about people.',
@@ -42,10 +47,12 @@ const rules = computed(() => [
   'Unfinished progress resets at midnight (weekly progress on Monday), Nigerian time. A completed cash reward stays saved until you collect it.',
   'If your star balance is full, a completed set bonus stays saved and new missions of that period wait until it fits.',
   'You can swap one unfinished daily mission a day.',
+  'People around town (the AI-played characters, marked as such) give out tasks in person: ask one in its place for a task. A task pays the figure shown, once; at most two a day.',
   'Your count of days only ever goes up. There is no streak to lose.',
 ])
 
-onMounted(() => { void growth.load(); void retention.load() })
+// A task may have been given since the last hello, so this panel asks again when it is drawn.
+onMounted(() => { void growth.load({ force: true }); void retention.load() })
 
 /** Which control is on its way to the server: one at a time. */
 const working = ref<{ key: string; what: 'claim' | 'swap' } | null>(null)
@@ -67,6 +74,20 @@ async function claim(mission: Pick<MissionRow, 'id' | 'rewardId' | 'rewardScope'
       }
     }
   } finally { working.value = null }
+}
+/** A task an agent gave in person: the same 'missions.claim', by the task's id. */
+const pendingOfTask = (task: AgentMissionRow): 'claim' | 'swap' | null => (working.value?.key === task.id ? working.value.what : null)
+async function claimTask(task: AgentMissionRow): Promise<void> {
+  if (working.value) return
+  working.value = { key: task.id, what: 'claim' }
+  try {
+    const result = await game.command('missions.claim', { id: task.id })
+    if (result.ok) { game.toast(game.state.value.message || 'Task collected.', 'earn'); growth.track('mission_completed', { kind: 'agent' }); void growth.load({ force: true }) }
+  } finally { working.value = null }
+}
+function goAgent(task: AgentMissionRow): void {
+  const venue = task.go?.[0]
+  if (venue) { shell.close(); void goTo(venue) }
 }
 async function swap(mission: MissionRow): Promise<void> {
   if (working.value) return
@@ -123,6 +144,13 @@ function go(mission: MissionRow): void {
       </ul>
       <p v-if="setLine(m.dailySet, 'today')" class="gr-set">{{ setLine(m.dailySet, 'today') }}</p>
       <BaseButton v-if="m.dailySet.total && m.dailySet.done === m.dailySet.total" block :disabled="growth.state.busy !== null" @click="growth.share('missions')">{{ growth.state.busy === 'missions' ? 'Preparing…' : 'Share today’s result' }}</BaseButton>
+
+      <template v-if="agentTasks.length">
+        <SectionTitle note="given in person">From agents</SectionTitle>
+        <ul class="gr-list" aria-label="Tasks from agents">
+          <AgentMissionItem v-for="task in agentTasks" :key="task.id" :task="task" :why="collectWhy" :pending="pendingOfTask(task)" @claim="claimTask(task)" @go="goAgent(task)" />
+        </ul>
+      </template>
 
       <SectionTitle v-if="m.weekly.length" :note="`resets in ${weekIn}`">This week</SectionTitle>
       <ul v-if="m.weekly.length" class="gr-list" aria-label="This week’s missions">

@@ -87,6 +87,7 @@ export const ACTION_CATALOGUE: readonly (readonly [string, string, string])[] = 
   [ "missions.claim", "Collect a finished mission's naira, once.", "{ id: MissionId; rewardId?: string }" ],
   [ "missions.reroll", "Swap one unfinished DAILY mission (MISSION_REWARDS.rerollsPerDay a day).", "{ id: MissionId }" ],
   [ "missions.refresh", "Deal today's set if the day turned; changes nothing else and never fails.", "NoPayload" ],
+  [ "missions.server", "", "{ op: AgentMissionOp; [field: string]: unknown }" ],
   [ "events.spray", "At a live event that allows it: pay `amount` (one of SPRAY.amounts) for Social and Fun.", "{ amount: number }" ],
   [ "growth.table-result", "", "{ game: string; label: string; won: boolean; human: boolean; counted: boolean }" ],
   [ "growth.referral", "", "{ kind: 'welcome' | 'reward'; name?: string }" ],

@@ -983,8 +983,8 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
         send(ws, { type: 'group', event: 'notice', here: [...audience(room, ws.group)].length, text });
         return;
       }
-      pushLine(room, ws.group ?? null, { at: now(), from: { id: ws.session.id, name: ws.session.name, ...(ws.session.agent === true ? { agent: true as const } : {}) }, body });
-      if (machines.length > 0 && ws.session.agent !== true) ctx.emit?.('venue-line', { room, group: ws.group ?? null, from: { id: ws.session.id, name: ws.session.name }, body });
+      const lineSeq = pushLine(room, ws.group ?? null, { at: now(), from: { id: ws.session.id, name: ws.session.name, ...(ws.session.agent === true ? { agent: true as const } : {}) }, body });
+      if (machines.length > 0 && ws.session.agent !== true) ctx.emit?.('venue-line', { room, group: ws.group ?? null, from: { id: ws.session.id, name: ws.session.name }, body, seq: lineSeq });
     }),
   };
 

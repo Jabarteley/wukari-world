@@ -31,6 +31,14 @@ export const MISSION_REWARDS: Readonly<MissionRewards> = Object.freeze({
   rerollsPerDay: 1,
 });
 
+/**
+ * AGENT MISSIONS (systems/agent-missions.ts, docs/AGENT-MISSIONS.md): tasks a house agent gives in person. A reward is never above MISSION_REWARDS (a task
+ * of a day pays at most the daily figure, a `big` one of a week at most the weekly figure), whatever the server asks; a life holds at most `open` at a time
+ * and is given at most `perDay` a Lagos day and `bigPerWeek` weekly-sized task a Lagos week, so agents add at most perDay x the daily figure to a day (₦500) and one weekly figure (₦1,000) to a week.
+ * `floorShare` is the least share of a product's list price a house agent sells for (the least a player-owned shop may ask: content/business.ts band).
+ */
+export const AGENT_MISSIONS = Object.freeze({ open: 3, perDay: 2, bigPerWeek: 1, kept: 6, maxCount: 4, maxUnits: 9, bigDays: 7, floorShare: 0.7, step: 10 });
+
 /** The weekly card: one stamp per Lagos day with any counted activity. `need` stamps pay `stars` once a week. */
 export const STAMP_CARD: Readonly<StampCard> = Object.freeze({ need: 4, stars: 3 });
 

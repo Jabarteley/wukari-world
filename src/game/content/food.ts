@@ -21,28 +21,29 @@
  * finished, together with its effects. Cancelling, or closing the game mid-cook, uses nothing.
  */
 import type { ItemId } from '../../types/life.ts'
+import { withIds } from './with-ids.ts'
 import type { IngredientDefinition, RecipeDefinition } from '../../types/content.ts'
 
-export const INGREDIENTS: Record<ItemId, IngredientDefinition> = {
-  rice: { id: 'rice', label: 'Long-grain Rice', icon: '🍚', start: 2, price: 600, pack: 3 },
-  'tomato-paste': { id: 'tomato-paste', label: 'Tomato Paste', icon: '🥫', start: 2, price: 300, pack: 3 },
-  seasoning: { id: 'seasoning', label: 'Seasoning Cubes', icon: '🧂', start: 6, price: 200, pack: 10 },
-  'veg-oil': { id: 'veg-oil', label: 'Vegetable Oil', icon: '🫗', start: 4, price: 800, pack: 8 },
-  garri: { id: 'garri', label: 'Yellow Garri', icon: '🥣', start: 4, price: 400, pack: 5 },
-  sugar: { id: 'sugar', label: 'Cube Sugar', icon: '🧊', start: 5, price: 300, pack: 6 },
-  noodles: { id: 'noodles', label: 'Instant Noodles', icon: '🍜', start: 3, price: 450, pack: 3 },
-  eggs: { id: 'eggs', label: 'Eggs', icon: '🥚', start: 6, price: 900, pack: 6 },
-  bread: { id: 'bread', label: 'Soft Bread Loaf', icon: '🍞', start: 2, price: 500, pack: 1 },
-  zobo: { id: 'zobo', label: 'Zobo', icon: '🧃', start: 1, price: 250, pack: 1 },
-  plantain: { id: 'plantain', label: 'Plantain', icon: '🍌', start: 2, price: 500, pack: 2 },
-  egusi: { id: 'egusi', label: 'Ground Egusi', icon: '🌰', start: 0, price: 800, pack: 2 },
-  'palm-oil': { id: 'palm-oil', label: 'Palm Oil', icon: '🛢️', start: 0, price: 600, pack: 4 },
-  spinach: { id: 'spinach', label: 'Efo Tete (spinach)', icon: '🥬', start: 0, price: 250, pack: 1 },
-  mackerel: { id: 'mackerel', label: 'Mackerel', icon: '🐟', start: 0, price: 1200, pack: 1 },
-  chicken: { id: 'chicken', label: 'Frozen Chicken', icon: '🍗', start: 0, price: 2000, pack: 1 },
-  'smoked-fish': { id: 'smoked-fish', label: 'Smoked Fish', icon: '🐠', start: 0, price: 900, pack: 1 },
-  semolina: { id: 'semolina', label: 'Semolina', icon: '🌾', start: 0, price: 600, pack: 3, beta: true },
-};
+export const INGREDIENTS: Record<ItemId, IngredientDefinition> = withIds<IngredientDefinition>({
+  rice: { label: 'Long-grain Rice', icon: '🍚', start: 2, price: 600, pack: 3 },
+  'tomato-paste': { label: 'Tomato Paste', icon: '🥫', start: 2, price: 300, pack: 3 },
+  seasoning: { label: 'Seasoning Cubes', icon: '🧂', start: 6, price: 200, pack: 10 },
+  'veg-oil': { label: 'Vegetable Oil', icon: '🫗', start: 4, price: 800, pack: 8 },
+  garri: { label: 'Yellow Garri', icon: '🥣', start: 4, price: 400, pack: 5 },
+  sugar: { label: 'Cube Sugar', icon: '🧊', start: 5, price: 300, pack: 6 },
+  noodles: { label: 'Instant Noodles', icon: '🍜', start: 3, price: 450, pack: 3 },
+  eggs: { label: 'Eggs', icon: '🥚', start: 6, price: 900, pack: 6 },
+  bread: { label: 'Soft Bread Loaf', icon: '🍞', start: 2, price: 500, pack: 1 },
+  zobo: { label: 'Zobo', icon: '🧃', start: 1, price: 250, pack: 1 },
+  plantain: { label: 'Plantain', icon: '🍌', start: 2, price: 500, pack: 2 },
+  egusi: { label: 'Ground Egusi', icon: '🌰', start: 0, price: 800, pack: 2 },
+  'palm-oil': { label: 'Palm Oil', icon: '🛢️', start: 0, price: 600, pack: 4 },
+  spinach: { label: 'Efo Tete (spinach)', icon: '🥬', start: 0, price: 250, pack: 1 },
+  mackerel: { label: 'Mackerel', icon: '🐟', start: 0, price: 1200, pack: 1 },
+  chicken: { label: 'Frozen Chicken', icon: '🍗', start: 0, price: 2000, pack: 1 },
+  'smoked-fish': { label: 'Smoked Fish', icon: '🐠', start: 0, price: 900, pack: 1 },
+  semolina: { label: 'Semolina', icon: '🌾', start: 0, price: 600, pack: 3, beta: true },
+}) as Record<ItemId, IngredientDefinition>;
 
 export const INGREDIENT_ORDER = Object.keys(INGREDIENTS);
 

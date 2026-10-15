@@ -1205,7 +1205,7 @@ export interface ServerConfig {
 /** In-process events between server modules; nothing is sent to a client by raising one. */
 export interface ServerEvents {
   /** rooms.js: a person wrote a line in a public venue where an AI character stands (house agents wake on it, server/house/runner.ts). Raised after the game's own AI answers. */
-  'venue-line': { room: string; group: string | null; from: { id: string; name: string; agent?: boolean }; body: string }
+  'venue-line': { room: string; group: string | null; from: { id: string; name: string; agent?: boolean }; body: string; /** The line's number in the place's book, so a reply can be addressed to it. */ seq?: number }
   /** rooms.js: a room's membership or a member's name changed. `cause` is who joined, left or was renamed. */
   'room-changed': { room: string; cityId: string; venueId: string; members: string[]; cause: string | null }
   /** social: a house visit ended; rooms.js drops that guest from the host's Home room. */

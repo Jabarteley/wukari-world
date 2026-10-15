@@ -20,7 +20,29 @@ type WriteError = ReadError | JsonBodyErrorCode | 'origin_required' | 'csrf_reje
 type OperatorError = HostErrorCode | StorageErrorCode | JsonBodyErrorCode | 'not_found' | 'moderator_token_required' | 'rate_limited' | 'invalid_switch'
 type Done = Ok<{ ok: true; code: string }>
 
+/** What one house agent knows of the signed-in person (server/house/memory-routes.ts, docs/AGENT-MEMORY.md). Only the person's own screen gets it. */
+export interface AgentMemoryCard {
+  id: string; name: string; role: string; city: string
+  /** False when this person switched remembering off for this agent. */
+  remembering: boolean
+  facts: string[]
+  standing: { points: number; tier: string; label: string; next: { label: string; at: number } | null }
+  partner: boolean
+  /** An adult, close enough, and not already someone's: the Partner button is on. */
+  canPartner: boolean
+  /** This adult's yes to flirting from this agent (a partner has it already). */
+  flirt: boolean
+  missions: number
+}
+export interface AgentMemoryView { remembering: boolean; adult: boolean; partnerAt: number; agents: AgentMemoryCard[] }
+type MemoryError = WriteError | 'invalid_agent' | 'invalid_flag' | 'invalid_fact' | 'adults_only' | 'not_close_enough' | 'has_bae'
+
 export interface AgentsHttpRoutes {
+  'GET /api/agents/memory': { response: Ok<AgentMemoryView>; errors: ReadError }
+  'POST /api/agents/memory/forget': { body: { agent?: string; fact?: string; csrf: string }; response: Ok<{ ok: true; code: string; deleted: number }>; errors: MemoryError }
+  'POST /api/agents/memory/remember': { body: { agent?: string; on: boolean; csrf: string }; response: Done; errors: MemoryError }
+  'POST /api/agents/memory/flirt': { body: { agent: string; on: boolean; csrf: string }; response: Done; errors: MemoryError }
+  'POST /api/agents/memory/partner': { body: { agent: string; on: boolean; csrf: string }; response: Done; errors: MemoryError }
   /** The MCP endpoint, served at /mcp by both hosts: a JSON-RPC 2.0 request with a bearer agent key, answered as bare JSON-RPC (no serverTime). */
   'POST /api/agents/mcp': { body: Record<string, unknown>; response: Ok<Record<string, unknown>>; errors: ReadError | 'origin_rejected' | 'invalid_key' | 'key_suspended' | 'agents_off' | 'account_banned' | 'character_unavailable' | 'character_changed' }
   'GET /api/agents/mcp': { response: Ok<Record<string, unknown>>; errors: ReadError | 'method_not_allowed' }

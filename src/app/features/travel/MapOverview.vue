@@ -17,7 +17,8 @@ import LayerNotes from './LayerNotes.vue'
 import { FILTERS, LAYERS, layerLabel, layerNote, matchesFilter, overviewLine, statusClass } from './travelModel.ts'
 import type { LayerData, LayerId, LayerNote } from './travelModel.ts'
 import { linkWords } from './travelBoundary.ts'
-import { isListOpen, layers, mapUi, tell, wide } from './travelState.ts'
+import { mapUi } from './travelState.ts'
+import { isListOpen, layers, tell, wide } from './travelMapState.ts'
 import { useCrowd } from './useCrowd.ts'
 
 const { game } = useApp()

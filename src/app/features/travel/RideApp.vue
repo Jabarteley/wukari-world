@@ -12,7 +12,7 @@ import GameIcon from '../../ui/GameIcon.vue'
 import HowItWorks from '../../ui/HowItWorks.vue'
 import GoFix from './GoFix.vue'
 import { fareText, pickedMode, rideRows, rideRules, ridePlaces, statusClass, tripLine } from './travelModel.ts'
-import { ride } from './travelState.ts'
+import { ride } from './travelMapState.ts'
 import { useTravelActions } from './useTravelActions.ts'
 
 defineProps<{ params?: unknown }>()

@@ -19,6 +19,9 @@
       "name": "St Peter Port",
       "countryISO": "GG",
       "cityOsmRef": "node/116359720",
+      "playBox": {
+        "eastKm": 18.98
+      },
       "airport": {
         "ident": "EGJB",
         "sourceUrl": "https://ourairports.com/airports/EGJB/"

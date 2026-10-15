@@ -38,10 +38,14 @@ class SeedKnobs(unittest.TestCase):
     def test_one_sided_play_box_passes(self):
         batch.validate(self.table(playBox={'westKm': 10.45}))
         batch.validate(self.table(playBox={'playKm': 14, 'eastKm': 10.35, 'northKm': 18, 'southKm': 6, 'coreKm': 5}))
+        # Sides down to 1 km: with no coreKm the core defaults to the smallest side minus 0.1 km (bounds-policy.mjs).
+        batch.validate(self.table(playBox={'northKm': 7.64, 'southKm': 1.344}))
+        batch.validate(self.table(playBox={'eastKm': 10.35, 'northKm': 3.27}))
+        batch.validate(self.table(playBox={'southKm': 1.344, 'coreKm': 1}))
 
     def test_play_box_refused(self):
-        for box in ({'playKm': 2}, {'playKm': 12, 'coreKm': 13}, {'coreKm': 30}, {'width': 3}, {}, {'westKm': 2}, {'eastKm': 50},
-                    {'northKm': '10'}, {'southKm': 6, 'coreKm': 8}):
+        for box in ({'playKm': 2}, {'playKm': 12, 'coreKm': 13}, {'coreKm': 30}, {'width': 3}, {}, {'westKm': 0.5}, {'eastKm': 50},
+                    {'northKm': '10'}, {'southKm': 6, 'coreKm': 8}, {'westKm': 2, 'coreKm': 5}, {'southKm': 1.344, 'coreKm': 2}):
             with self.assertRaises(ValueError, msg=str(box)):
                 batch.validate(self.table(playBox=box))
 

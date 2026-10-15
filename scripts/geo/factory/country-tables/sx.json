@@ -20,7 +20,8 @@
       "countryISO": "SX",
       "profile": "microstate",
       "playBox": {
-        "eastKm": 10.35
+        "eastKm": 10.35,
+        "northKm": 3.27
       },
       "airport": {
         "ident": "TNCM",

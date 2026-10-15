@@ -19,6 +19,9 @@
       "name": "Road Town",
       "countryISO": "VG",
       "profile": "microstate",
+      "playBox": {
+        "westKm": 14.76
+      },
       "airport": {
         "ident": "TUPJ",
         "sourceUrl": "https://ourairports.com/airports/TUPJ/"

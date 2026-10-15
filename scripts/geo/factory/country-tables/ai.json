@@ -19,6 +19,9 @@
       "name": "The Valley",
       "countryISO": "AI",
       "profile": "microstate",
+      "playBox": {
+        "southKm": 8.69
+      },
       "airport": {
         "ident": "TQPF",
         "sourceUrl": "https://ourairports.com/airports/TQPF/"

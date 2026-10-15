@@ -219,7 +219,13 @@ def play_box(seed):
         raise ValueError(f"{seed.get('id', 'seed')}: unsupported playBox fields {unknown}")
     for key, value in box.items():
         number_in_range(f"{seed.get('id', 'seed')}: playBox.{key}", value, KNOBS['playBox'][key])
-    play, core = box.get('playKm', 20), box.get('coreKm', 5)
+    play = box.get('playKm', 20)
+    # A side below the default core (5 km) with no coreKm given: the core defaults to the smallest side minus 0.1 km
+    # (bounds-policy.mjs CORE_SIDE_MARGIN_KM), so the core stays inside the play box. Every box valid before is unchanged.
+    smallest = min(box.get(key, play) for key in ('westKm', 'eastKm', 'southKm', 'northKm'))
+    core = box['coreKm'] if 'coreKm' in box else (smallest - 0.1 if smallest < 5 else 5)
+    if core <= 0:
+        raise ValueError(f"{seed.get('id', 'seed')}: playBox core half-width must be positive")
     if core > play:
         raise ValueError(f"{seed.get('id', 'seed')}: playBox.coreKm must not exceed playKm")
     # One-sided extents (westKm/eastKm/southKm/northKm, each defaulting to playKm) let two neighbouring cities meet on one edge.

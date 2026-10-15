@@ -18,6 +18,9 @@
       "id": "charlotte-amalie",
       "name": "Charlotte Amalie",
       "countryISO": "VI",
+      "playBox": {
+        "eastKm": 18
+      },
       "airport": {
         "ident": "TIST",
         "sourceUrl": "https://ourairports.com/airports/TIST/"

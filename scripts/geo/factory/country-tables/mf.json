@@ -20,6 +20,10 @@
       "countryISO": "MF",
       "cityOsmRef": "node/271047808",
       "profile": "microstate",
+      "playBox": {
+        "northKm": 7.64,
+        "southKm": 1.344
+      },
       "airport": {
         "ident": "TFFG",
         "sourceUrl": "https://ourairports.com/airports/TFFG/"

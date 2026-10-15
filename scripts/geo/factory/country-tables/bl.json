@@ -20,7 +20,8 @@
       "countryISO": "BL",
       "profile": "microstate",
       "playBox": {
-        "westKm": 10.45
+        "westKm": 10.45,
+        "northKm": 17.4
       },
       "airport": {
         "ident": "TFFJ",

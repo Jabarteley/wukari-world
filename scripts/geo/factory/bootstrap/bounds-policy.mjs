@@ -29,10 +29,17 @@ function checkBox(box, label) {
   if (south <= -POLICY.maximumAbsoluteLatitude || north >= POLICY.maximumAbsoluteLatitude) throw Error(`${label}: polar boxes unsupported`);
 }
 
+// A side cut below the default core half-width (two cities closer than 5 km to the shared edge, e.g. Marigot and Philipsburg) shrinks the
+// default core to the smallest side minus this margin, so the core box stays strictly inside the play box. An explicit coreKm is kept as given.
+export const CORE_SIDE_MARGIN_KM = 0.1;
+
 export function proposeBounds(facts, overrides, geometry) {
   checkFacts(facts);
   const policy = { ...POLICY, ...overrides };
   for (const key of Object.keys(overrides ?? {})) if (!['playKm', 'coreKm', ...SIDES].includes(key)) throw Error(`Unsupported policy override ${key}`);
+  const smallestSide = Math.min(...SIDES.map(key => policy[key] ?? policy.playKm));
+  // Only when no coreKm is given and a side is below the default core: every box that was valid before keeps exactly the same policy.
+  if (overrides?.coreKm === undefined && smallestSide < POLICY.coreKm && smallestSide > CORE_SIDE_MARGIN_KM) policy.coreKm = smallestSide - CORE_SIDE_MARGIN_KM;
   if (![policy.playKm, policy.coreKm].every(value => Number.isFinite(value) && value > 0) || policy.coreKm > policy.playKm) throw Error('coreKm/playKm must be finite positive half-widths with coreKm <= playKm');
   // Optional one-sided extents (westKm, eastKm, southKm, northKm; each defaults to playKm): two neighbouring cities can meet on a
   // shared edge without shrinking their other sides. Each side is the matching side of the symmetric box of that size, so with no

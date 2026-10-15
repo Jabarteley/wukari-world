@@ -7,10 +7,10 @@ This work is incomplete. The target is 284 supported cities and 243 game country
 | Gate | Evidence |
 | --- | --- |
 | Published to main | `95855168`: batches 01–06, 215 cities, 174 identities, 430 tales, 1,290 missions |
-| Next committed milestone | CI38675110595 green on source67e13a8f; main95855168 adds only archived authoring checkpoints and documentation. 175 focused existing integration cases pass. |
+| Next local milestone | Batches01–07 accepted:250cities/209identities/500tales/1500missions. Current-seed/capacity gate,2500enginepaths,30000dailydeals and249legacyclaims pass; browserParis/CI pending. |
 | Live production | Last observed health reported `joinallworld-ac94fca06702c1c86dd37fc3b71`, released independently by the other computer. This content task has not deployed. |
-| Remaining authors | Sol authors own batches 07 and 08, covering the remaining 69 cities. These drafts are unregistered. A Luna audit covered 82 middle-range matrix plots without proving a contradiction; that is not full source acceptance. |
-| Usage limit | Last checked: 94% used, 6% remaining. Stop every worker and all task work at 95% used / 5% remaining. Re-read the live tool. |
+| Remaining authors | 07 is complete and accepted locally.08 is undergoing final plot/mission revisions before activation. Astra owns browser/integration review; Luna completed42tale source audit. |
+| Resumption | User confirmed reset and requested completion of all69remainingcities; former usage stop revoked. Main201b9bda integrated released world-alive and map changes. |
 
 Cities outside accepted batches keep their existing playable stories and missions. Country arcs activate only when every assigned city in that country is present. Incremental acceptance must never be called complete worldwide bespoke coverage.
 
@@ -71,3 +71,9 @@ Combined CI38673086751 passed on `6198fe21`, including the other computer’s re
 The current 215-city reports supersede the 145-city probe totals in the historical table: 2,150 engine paths, 25,800 daily deals, 214 legacy rollover claims, 568 exact old keepsakes and 527 old collections pass. `batches-01-06-validation.json` reports zero structural errors. These probes were run in the working tree subsequently committed as67e13a8f. CI38675110595 passed typecheck, build, city budgets, smoke and policy; broad suites were skipped. Welcome copy now describes places worldwide and country/territory identities. The new 375px landing screenshot is inconclusive because browser capture scaled the content; DOM width showed no overflow. Browser binding later failed, and a temporary Chrome viewport reset remains unconfirmed. Existing player saves were not cleared.
 
 Final handoff:215-city milestone is on main95855168; no content deployment. Both authors stopped; drafts07(20/35cities) and08(6/34) archived outside compilation with full matrices. Last live usage94%used/6%remaining; stopped at a safe checkpoint ahead of95%used hard floor. Resume requires renewed work instruction and a live usage check.
+
+## Resumed Phase6 verification
+
+Current main201b9bda is merged. Philipsburg changed its host and practical venue; batch02 copy now matches. The content gate reads current WORLD_STORY_SEEDS and checks registered people/place capacity. resumed-seed-drift.json records the two changed references.202existing agent/mission/resident/prayer/creator checks pass after main integration. Diagnostic sources and replay instructions are archived under diagnostics/ for another computer.
+
+07 adds35cities after semantic review; latest engine/mission reports cover250cities and preserve568old keepsakes/527oldcollections.08 remains unregistered until duplicate plot families and repetitive mission tuples are revised. Old paused sections below are historical.

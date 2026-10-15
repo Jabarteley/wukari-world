@@ -840,32 +840,32 @@ const batch: AuthoredContentBatch = {
         {
             cityId: 'philipsburg',
             city: { title: 'The Ring Chain over the Line', desire: 'competence', chapters: [
-                    { title: 'Rings beyond reach', text: 'At Emilio Wilson Park, Arden’s toss rings blow behind a low game barrier.' },
+                    { title: 'Rings beyond reach', text: 'At Cyrus Wathey Square, Sage’s toss rings blow behind a low game barrier.' },
                     { title: 'The boundary stays closed', text: 'Players cannot cross, and the rings are too flat for a single hook from Emmancipation Roundabout.' },
                     { title: "Rings beyond the boundary", text: "Three routes fit the constraint: (1) link spares into a chain that can bend behind the barrier; (2) throw one heavy ring onto the stack; or (3) cross the boundary briefly." },
-                    { title: "A retrieval becomes a throw", text: "Arden joins spare rings into a chain that bends behind the obstacle and catches the lost stack. The chain draws every ring back, then becomes the final long-distance target." }
+                    { title: "A retrieval becomes a throw", text: "Sage joins spare rings into a chain that bends behind the obstacle and catches the lost stack. The chain draws every ring back, then becomes the final long-distance target." }
                 ], approaches: [
-                    { label: 'Link the spare rings', callback: 'Arden remembers the flexible reach you built.' },
-                    { label: 'Judge the barrier corner', callback: 'Arden remembers where the chain could bend.' },
-                    { label: 'Guide the catch loop', callback: 'Arden remembers your last careful pull.' },
-                ], dilemma: { prompt: 'How should Arden recover the flat rings?', answers: ['Link spares into a chain that can bend behind the barrier.', 'Throw one heavy ring onto the stack.', 'Cross the boundary briefly.'], correct: 0, explanation: 'The linked chain reaches around the obstacle while respecting the boundary.' }, closing: 'The rescue chain hangs as the hardest target in the next round.', keepsake: { name: 'Linked-ring hook', description: 'Three tiny rings joined around one open loop.' } },
+                    { label: 'Link the spare rings', callback: 'Sage remembers the flexible reach you built.' },
+                    { label: 'Judge the barrier corner', callback: 'Sage remembers where the chain could bend.' },
+                    { label: 'Guide the catch loop', callback: 'Sage remembers your last careful pull.' },
+                ], dilemma: { prompt: 'How should Sage recover the flat rings?', answers: ['Link spares into a chain that can bend behind the barrier.', 'Throw one heavy ring onto the stack.', 'Cross the boundary briefly.'], correct: 0, explanation: 'The linked chain reaches around the obstacle while respecting the boundary.' }, closing: 'The rescue chain hangs as the hardest target in the next round.', keepsake: { name: 'Linked-ring hook', description: 'Three tiny rings joined around one open loop.' } },
             country: { title: 'The Rival Mobile', desire: 'belonging', chapters: [
                     { title: 'Two sculptures fall', text: 'At Emmancipation Roundabout, rival teams receive shapes that tip whenever displayed separately.' },
-                    { title: 'No hidden stands', text: 'Emilio Wilson Park has one overhead game bar and each team wants its shapes visible.' },
+                    { title: 'No hidden stands', text: 'Cyrus Wathey Square has one overhead game bar and each team wants its shapes visible.' },
                     { title: "Two unstable displays", text: "The team can now choose: (1) give the overhead bar to one team; (2) suspend both as counterweights on one moving mobile; or (3) lay every shape flat." },
-                    { title: "The rivalry keeps moving", text: "Arden suspends both sets on opposite arms and shifts the cords until the pieces counterweight each other. The joint mobile turns, showing every shape without a floor stand." }
+                    { title: "The rivalry keeps moving", text: "Sage suspends both sets on opposite arms and shifts the cords until the pieces counterweight each other. The joint mobile turns, showing every shape without a floor stand." }
                 ], approaches: [
-                    { label: 'Hang the heaviest shapes', callback: 'Arden remembers how you found the first balance.' },
-                    { label: 'Watch the turning clearance', callback: 'Arden remembers the gap that kept rivals from colliding.' },
-                    { label: 'Guide the cord shifts', callback: 'Arden remembers your small adjustments across the bar.' },
-                ], dilemma: { prompt: 'How should Arden display both unstable sculptures?', answers: ['Give the overhead bar to one team.', 'Suspend both as counterweights on one moving mobile.', 'Lay every shape flat.'], correct: 1, explanation: 'The counterweighted mobile uses every shape and turns instability into motion.' }, closing: 'Each rival shape rises when the other descends, and both teams claim the best turn.', keepsake: { name: 'Counterweight spinner', description: 'A balanced bar with a different colored shape at each end.' } },
+                    { label: 'Hang the heaviest shapes', callback: 'Sage remembers how you found the first balance.' },
+                    { label: 'Watch the turning clearance', callback: 'Sage remembers the gap that kept rivals from colliding.' },
+                    { label: 'Guide the cord shifts', callback: 'Sage remembers your small adjustments across the bar.' },
+                ], dilemma: { prompt: 'How should Sage display both unstable sculptures?', answers: ['Give the overhead bar to one team.', 'Suspend both as counterweights on one moving mobile.', 'Lay every shape flat.'], correct: 1, explanation: 'The counterweighted mobile uses every shape and turns instability into motion.' }, closing: 'Each rival shape rises when the other descends, and both teams claim the best turn.', keepsake: { name: 'Counterweight spinner', description: 'A balanced bar with a different colored shape at each end.' } },
             missions: { daily: [
-                    { label: 'Look around once in Emilio Wilson Park', purpose: 'Find the ring chain’s bend around the barrier.', task: 'practical', count: 1 },
+                    { label: 'Look around once in Cyrus Wathey Square', purpose: 'Find the ring chain’s bend around the barrier.', task: 'practical', count: 1 },
                     { label: 'Visit Emmancipation Roundabout', purpose: 'Balance the rival mobile.', task: 'host-visit', count: 1 },
-                    { label: "Greet four game regulars beneath the moving sculpture", purpose: 'Represent both sculpture teams and cord holders.', task: 'people', count: 4 },
+                    { label: "Greet four game regulars in Philipsburg", purpose: 'Represent both sculpture teams and cord holders.', task: 'people', count: 4 },
                 ], weekly: [
-                    { label: 'Look around three times in Emilio Wilson Park', purpose: 'Practice three chain-retrieval angles.', task: 'practical', count: 3 },
-                    { label: 'Visit three game places to compare turning clearance for the mobile', purpose: 'Compare turning clearance for the mobile.', task: 'places', count: 3 },
+                    { label: 'Look around three times in Cyrus Wathey Square', purpose: 'Practice three chain-retrieval angles.', task: 'practical', count: 3 },
+                    { label: 'Visit three game places in Philipsburg', purpose: 'Compare turning clearance for the mobile.', task: 'places', count: 3 },
                     { label: 'Look around twice in Emmancipation Roundabout', purpose: 'Refine the counterweight cord positions.', task: 'discovery', count: 2 },
                 ] },
         },

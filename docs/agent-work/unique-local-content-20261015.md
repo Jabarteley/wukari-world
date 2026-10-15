@@ -1,7 +1,7 @@
 # Bespoke country and city content
 
 - Owner: /root, chat01a13bea-138b-7b91-ac44-c49bc3d836ec.
-- Status: authoring contract and compatibility baseline ready; literal content drafts in revision. Runtime integration has not begun. No bespoke batch is accepted or released.
+- Status: resumed implementation. Batches01–06 are accepted and published:215cities/174identities/430tales/1290missions. Sol07/08 are completing the final69cities from reviewed drafts; parent owns integration and verification.
 - Canonical checkout: /Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld, codex/retention-main-sync.
 - Initial source: c42a4757. Live production runtime ac407c2c. User authorizes unique country/city missions and stories, light parallel agents, documentation and ordinary main sync. This task does not require a new production deployment.
 
@@ -17,9 +17,11 @@ Parent owns typed contract, factory/registry/journey integration, validation, sa
 
 Acceptance:284city/243country coverage; normalized uniqueness of plots/titles/dilemmas/keepsakes/mission labels; grounded valid references; all3choice paths and solo/night routes; duplicate grants/save/reload/travel; old568receipts and oldcollectiontitles intact; agent compatibility and relevant existing tests; CItypecheck/build/size/smoke; representative actual UI including country-specificcopy. No new tracked tests. Preserve primary dirty source, current preview5176 and unrelated services. Costs/tokens unknown.
 
-Next: freeze compact typed authoring contract, partition whole countries into bounded files, author in parallel, integrate only after full explicit coverage. Publish reviewed data and source milestones to main; maintain final evidence README and current index.
+Next: finish and review07/08, accept whole batches, verify284city completion/save/mission paths and current agent-play compatibility, run CI, then sync main. Current source201b9bda includes released world-alive and map updates.
 
-## Usage cap and current handoff
+## Historical usage cap and earlier handoff
+
+Superseded on resumption: user confirmed reset and directed completion without the former usage stop. The sections below retain historical checkpoints; the current state is at the top and latest appended entry.
 
 User clarified the 5% limit concerns account usage. Parent interprets the instruction as stop all work at 5% remaining; latest live weekly reading is 90% used / 10% remaining. Check the live usage tool regularly and interrupt every running worker when usedPercent reaches 95. No automatic continuation beyond that threshold.
 
@@ -114,3 +116,15 @@ Accepted215 milestone committed67e13a8f and pushed branch; CI38675110595 in prog
 ## Terminal handoff
 
 CI38675110595 succeeded on67e13a8f (typecheck/build/all284citybudgets/smoke/releasepolicy; broad suites skipped). Main freshly fetched unchanged; pushed checked source plus docs-only checkpoint95855168 to main. Published215cities/174identities/430tales/1290missions. Focused175/175 pass. No deployment. Final69cities remain inactive. Both authors and Luna audit completed/stopped; no further authoring underway. Lastusage94%used/6%remaining, ending at safe checkpoint before95%hard floor. Shared preview remains available with saves preserved; no unrelated processes touched. Inconclusive ui-world-entry-375.png remains local/untracked and is not acceptance evidence. Chrome viewport reset still unconfirmed after browser operation timed out.
+
+## Resumed final 69 cities — 2026-10-15T11:39:00.423695+00:00
+
+User explicitly resumed Phase6, authorizes parallel light agents and main synchronization, and revoked the prior usage stop for this reset. Live usage0% used verified. Exact checkout remains /Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld, branch codex/retention-main-sync; fast-forwarded released origin/main to 201b9bdac9f8ee9412ff98378971dd12a9463426. Untracked inconclusive screenshot preserved; Desktop checkout untouched. Main now includes released world-alive programme and regenerated city maps.
+
+Parent owns accepted registry, content gate/input freshness checks, compatibility probes, index and this record. Sol07/08 authors resume their existing disjoint batch source/records from archived checkpoints. No test creation, engine redesign, currency changes or deployment in scope. Acceptance: all284cities/243identities,568newtales/1704missions; meaningful story review, live seed grounding, engine/reload/legacy reward probes, existing focused agent checks, CI and fresh-main sync. Browser verification is reserved to Astra. Running preview5176 may be reused after checking process ownership; do not clear saves or stop unrelated services. Next: restore accepted draft checkpoints, complete literal source, validate against current seed references, accept each whole batch and sync after checks.
+
+Current seed audit: only Philipsburg host name and practical venue changed from the original authoring brief. Parent corrected its existing batch02 prose/labels and changed the structural gate to current WORLD_STORY_SEEDS. resumed-seed-drift.json records exact differences. Refreshed215city engine baseline passes2150paths and retained568legacy receipts/527collections. Portable diagnostic source archives and replay instructions are now under diagnostics/, so another computer can reproduce the probes.
+
+Batch07 accepted after independent Astra review and parent correction of three Siachen mission purposes left over from the replaced scarf plot. Warsaw geometry, RoadTown friction controls, Siachen Z-fold constraints now explicit. Local registry01–07:250cities/209identities/500tales/1500missions. Author released ownership; parent now owns07source. Full gate,250engine/mission checks and browserParis playthrough underway before CI/main.
+
+250-city acceptance probes pass2500completionpaths,30000dailydeals,249legacyrolloverclaims; all568oldreceipts/527oldcollections preserved.202focused existing checks passed on integratedmain215baseline; final focused run after284activation pending. Batch08 full draft is held for4plot replacements and mission task variety after source review; do not activate yet.

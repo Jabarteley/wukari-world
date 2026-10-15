@@ -4,10 +4,6 @@
     {
       "id": "cc",
       "table": "scripts/geo/factory/country-factory/cc-factory-targets.json"
-    },
-    {
-      "id": "aq",
-      "table": "scripts/geo/factory/country-factory/aq-factory-targets.json"
     }
   ]
 }

@@ -35,7 +35,8 @@ async function fixture(t: TestContext, sleeps = false) {
   const bundle = join(folder, 'worker.mjs');
   await build({ entryPoints: [new URL('./cloudflare-worker.ts', import.meta.url).pathname], outfile: bundle, bundle: true, format: 'esm', platform: 'neutral', external: ['cloudflare:workers'] });
   const options = { name: 'joinallworld-chat', script: await readFile(bundle, 'utf8'), modules: true, compatibilityDate: '2026-10-01', durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } }, durableObjectsPersist: join(folder, 'storage'), bindings: { ...layoutBindings(), BUILD_ID: 'local-chat', FOUNDER_EMAIL_SHA256: '', CHAT_IMAGES: 'friends', ...(sleeps ? { SLEEP_BETWEEN_BEATS: '1' } : {}) }, assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } } };
-  const mf = new Miniflare({ ...convertV4MiniflareOptions(options), resourcePersistencePath: join(folder, 'storage'), unsafeInspectDurableObjects: true, handleStructuredLogs: () => {} });
+  const miniflareOptions = { ...convertV4MiniflareOptions(options), resourcePersistencePath: join(folder, 'storage'), unsafeInspectDurableObjects: true, handleStructuredLogs: () => {} };
+  let mf = new Miniflare(miniflareOptions);
   const sockets: StubSocket[] = [], handed: MiniflareResponse[] = [];
   const within = <T>(step: string, work: Promise<T>, ms = 30000) => { let timer: NodeJS.Timeout; return Promise.race([work, new Promise<never>((_, reject) => { timer = setTimeout(() => reject(Error(`${step} did not finish within ${ms} ms`)), ms); })]).finally(() => clearTimeout(timer)); };
   const send = async (url: string, init?: RequestInit & { headers?: Record<string, string> }) => { const response = await mf.dispatchFetch(url, init); handed.push(response); return response; };
@@ -45,6 +46,11 @@ async function fixture(t: TestContext, sleeps = false) {
     await within('Miniflare dispose', mf.dispose());
     await rm(folder, { recursive: true, force: true });
   });
+  const restart = async () => {
+    await within('Miniflare dispose', mf.dispose());
+    mf = new Miniflare(miniflareOptions);
+    await within('Miniflare restart', mf.ready);
+  };
   await mf.ready;
   const origin = 'https://joinallworld.test';
   const request = async (path: string, body: object | null, who?: Device): Promise<Answer & { status: number }> => {
@@ -77,7 +83,7 @@ async function fixture(t: TestContext, sleeps = false) {
     return { ws, frames, until };
   }
   const image = (path: string, who?: Device) => send(origin + path, { headers: { origin, ...(who ? { cookie: who.cookie } : {}) } });
-  return { request, player, socket, id, image, restart: () => mf.unsafeEvictDurableObject('joinallworld-chat', 'JoinAllworldState', { name: 'joinallworld-v1' }), page: (path: string) => send(origin + path) };
+  return { request, player, socket, id, image, restart, page: (path: string) => send(origin + path) };
 }
 const jpeg = (): Uint8Array => Uint8Array.from([0xff, 0xd8, 0xff, 0xe1, 0, 11, 0x45, 0x78, 0x69, 0x66, 0, 0, 0x47, 0x50, 0x53, 0xff, 0xe0, 0, 16, 0x4a, 0x46, 0x49, 0x46, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0xff, 0xc0, 0, 17, 8, 0, 8, 0, 8, 3, 1, 0x22, 0, 2, 0x11, 1, 3, 0x11, 1, 0xff, 0xda, 0, 12, 3, 1, 0, 2, 0x11, 3, 0x11, 0, 63, 0, 1, 2, 3, 0xff, 0xd9]);
 

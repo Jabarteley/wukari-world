@@ -34,7 +34,8 @@ async function fixture(t: TestContext, sleeps = false, extra: { bindings?: Recor
   const bundle = join(folder, 'worker.mjs');
   await build({ entryPoints: [new URL('./cloudflare-worker.ts', import.meta.url).pathname], outfile: bundle, bundle: true, format: 'esm', platform: 'neutral', external: ['cloudflare:workers'] });
   const options = { name: 'joinallworld-calls', script: await readFile(bundle, 'utf8'), modules: true, compatibilityDate: '2026-10-01', durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } }, durableObjectsPersist: join(folder, 'storage'), bindings: { ...layoutBindings(), BUILD_ID: 'local-calls', ...(sleeps ? { SLEEP_BETWEEN_BEATS: '1' } : {}), ...(extra.bindings ?? {}) }, ...(extra.outboundService ? { outboundService: extra.outboundService } : {}), assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } } };
-  const mf = new Miniflare({ ...convertV4MiniflareOptions(options), resourcePersistencePath: join(folder, 'storage'), unsafeInspectDurableObjects: true, handleStructuredLogs: () => {} });
+  const miniflareOptions = { ...convertV4MiniflareOptions(options), resourcePersistencePath: join(folder, 'storage'), unsafeInspectDurableObjects: true, handleStructuredLogs: () => {} };
+  let mf = new Miniflare(miniflareOptions);
   const sockets: StubSocket[] = [], handed: MiniflareResponse[] = [];
   const within = <T>(step: string, work: Promise<T>, ms = 30000) => { let timer: NodeJS.Timeout; return Promise.race([work, new Promise<never>((_, reject) => { timer = setTimeout(() => reject(Error(`${step} did not finish within ${ms} ms`)), ms); })]).finally(() => clearTimeout(timer)); };
   const send = async (url: string, init?: RequestInit & { headers?: Record<string, string> }) => { const response = await mf.dispatchFetch(url, init); handed.push(response); return response; };
@@ -43,6 +44,11 @@ async function fixture(t: TestContext, sleeps = false, extra: { bindings?: Recor
     for (const socket of sockets.splice(0)) try { socket.close(); } catch { /* closed */ }
     for (const response of handed.splice(0)) if (!response.bodyUsed && response.body && !response.body.locked) await response.body.cancel().catch(() => {});
     await within('Miniflare dispose', mf.dispose());
+  }
+  async function restart() {
+    await within('Miniflare dispose', mf.dispose());
+    mf = new Miniflare(miniflareOptions);
+    await within('Miniflare restart', mf.ready);
   }
   t.after(async () => { await stop(); await rm(folder, { recursive: true, force: true }); });
   await mf.ready;
@@ -83,7 +89,7 @@ async function fixture(t: TestContext, sleeps = false, extra: { bindings?: Recor
     };
     return peer;
   }
-  return { request, device, befriend, socket, hibernate: () => mf.unsafeEvictDurableObject('joinallworld-calls', 'JoinAllworldState', { name: 'joinallworld-v1', webSockets: 'hibernate' }) };
+  return { request, device, befriend, socket, hibernate: () => mf.unsafeEvictDurableObject('joinallworld-calls', 'JoinAllworldState', { name: 'joinallworld-v1', webSockets: 'hibernate' }), restart };
 }
 let counter = 0;
 const invite = (peer: Peer, to: string): void => peer.send({ type: 'call-invite', to, clientId: `edge${++counter}` });
@@ -195,7 +201,7 @@ test('on the Worker: a ring that is not answered ends close to 30 seconds, for b
   assert.equal((await b.until('call-state')).state, 'ended', 'too late to answer');
 });
 
-test('on the Worker: when the object is evicted mid-call, the other side is told it ended, and new calls work afterwards', async (t) => {
+test('on the Worker: after a cold runtime replacement mid-call, both sides reconnect to a clean table and new calls work', async (t) => {
   const f = await fixture(t, true);
   const ada = await f.device('Ada'), bola = await f.device('Bola');
   await f.befriend(ada, bola);
@@ -204,15 +210,19 @@ test('on the Worker: when the object is evicted mid-call, the other side is told
   const incoming = await b.until('call-incoming'); await a.until('call-state');
   b.send({ type: 'call-accept', callId: incoming.callId });
   await b.until('call-state'); await a.until('call-state');
-  // A call keeps the object awake (a timer is pending), so an eviction drops its sockets: the call table is gone with it.
-  // Each side must hear that the call is over, or reconnect to a clean table.
-  await f.hibernate();
-  const told = await b.next(5000);
-  assert.deepEqual([told.type, told.state, told.callId], ['call-state', 'ended', incoming.callId]);
+  // A live call deliberately keeps a sleeping host awake, so replacement is a cold runtime restart rather than hibernation.
+  // Both clients reconnect, and each stale call id must be rejected by the new in-memory table.
+  await f.restart();
   const a2 = await f.socket(ada), b2 = await f.socket(bola);
+  a2.send({ type: 'call-hangup', callId: incoming.callId });
+  b2.send({ type: 'call-hangup', callId: incoming.callId });
+  for (const ended of [await a2.until('call-state'), await b2.until('call-state')]) assert.deepEqual([ended.state, ended.callId], ['ended', incoming.callId]);
   invite(a2, bola.id);
-  assert.equal((await b2.until('call-incoming')).from?.name, 'Ada');
+  const fresh = await b2.until('call-incoming');
+  assert.equal(fresh.from?.name, 'Ada');
   assert.equal((await a2.until('call-state')).state, 'ringing');
+  b2.send({ type: 'call-accept', callId: fresh.callId });
+  assert.deepEqual([(await b2.until('call-state')).state, (await a2.until('call-state')).state], ['accepted', 'accepted']);
 });
 
 test('on the Worker: both sides of an accepted call get their own relay servers, the day count survives the object sleeping, a limit falls back to STUN, and health reports the relay', async (t) => {

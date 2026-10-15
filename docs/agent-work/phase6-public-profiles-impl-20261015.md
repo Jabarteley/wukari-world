@@ -6,7 +6,7 @@
 - **Owner:** `/root/phase6_public_profiles_impl`
 - **Model / effort:** requested `gpt-5.6-sol` / `medium` with `fork_turns: none`; actual runtime configuration is not exposed to this agent and remains unknown
 - **Thread:** `/root/phase6_public_profiles_impl`
-- **UTC updated:** `2026-10-15T13:39:28Z`
+- **UTC updated:** `2026-10-15T13:48:40Z`
 - **Status:** `ready-for-integration`
 - **Work state:** `complete`
 
@@ -15,7 +15,7 @@
 - **Goal:** Implement the accepted public accomplishment profile contract across a read-only server projection, JSON/HTML routes, and the existing character/passport/civic UI seams.
 - **In scope:** Public UUID eligibility and privacy checks; allowlisted earned achievement/story/project/collection projection; strict cursor pagination; anonymous `/p/` HTML; lazy UI rendering/share controls; honest resident/NPC no-records states; existing directory-hide explanation.
 - **Out of scope:** `deploy/cloudflare-worker.ts`, provider/startup/build/package work, schemas or writes, tests, Git mutations, deployment, browser/CUA, services, map transport, agent-model calls, credentials and private state.
-- **Exclusive file ownership:** `src/types/public-profile.ts`; `server/public-profile.ts`; `server/public-profile-page.ts`; `server/routes/profiles.ts`; `src/types/protocol.ts`; `server/routes/index.ts`; `src/app/features/social/PublicProfile.vue`; optional helpers beside it; `src/app/features/social/PlayerCard.vue`; `src/app/features/social/NpcCard.vue`; `src/app/features/social/ContactsApp.vue` found-player identity label only; `src/app/features/passport/PassportApp.vue`; `src/app/features/civic/NeighboursApp.vue`; narrow `/p/` game-target proxy entries only in `scripts/dev.ts` and `vite.config.ts`; this record.
+- **Exclusive file ownership:** `src/types/public-profile.ts`; `server/public-profile.ts`; `server/public-profile-page.ts`; `server/routes/profiles.ts`; `src/types/protocol.ts`; `server/routes/index.ts`; `src/app/features/social/PublicProfile.vue`; optional helpers beside it; `src/app/features/social/PlayerCard.vue`; `src/app/features/social/NpcCard.vue`; `src/app/features/social/ContactsApp.vue` found-player identity label only; `src/app/features/passport/PassportApp.vue`; `src/app/features/civic/NeighboursApp.vue`; narrow `/p/` game-target proxy entries only in `scripts/dev.ts` and `vite.config.ts`; bounded existing fixture correction in `scripts/guard-joinallworld-package.test.mjs`; this record and its evidence.
 - **Input contract:** Accepted Astra contract in `docs/research/phase6-social-release-2026-10-15/public-profile-design.md`, checkout `codex/retention-main-sync` at `5181c91a8274f0616b5cb6740971598fd97814ad`.
 - **Output contract:** Reviewable code slice plus focused static/type evidence and explicit integration gaps for the parent; no release claim.
 - **Dependencies:** Parent is integration/release owner. First-person lane owns Worker/provider startup and must add `/p/` to `PAGE_PREFIXES` while preserving synchronous episode/journey APIs.
@@ -26,7 +26,7 @@
 - **Host:** local
 - **Branch / worktree:** `codex/retention-main-sync` / `/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld`
 - **Base:** `5181c91a8274f0616b5cb6740971598fd97814ad`
-- **Current commit:** `7d1844c244135afbd4ef80c2f3ae0af17a5121cb`, containing public-profile integration `f19a81c213a0ecf44714817c5eaa54d0326facd7`, regenerated progression assets `fa1ddbbf859334be26c82703dc038fd25a83256a`, and the subsequent first-person provider merge. This implementation began from `5181c91a8274f0616b5cb6740971598fd97814ad`; this lane ran no Git mutation.
+- **Current commit:** `82237708000b7ab45e8d36ab5d259793148640b5`. This implementation began from `5181c91a8274f0616b5cb6740971598fd97814ad`; this lane ran no Git mutation.
 - **Dirty status:** Dirty before this lane: parent-owned `docs/AGENT-COORDINATION.md`; untracked Phase 6 audit/design/production records and research artifacts; unrelated `ui-world-entry-375.png`. Preserve all unrelated changes.
 - **Port/process ownership:** none; this lane will not start or stop services.
 
@@ -55,10 +55,12 @@
 - A fresh Miniflare/SQLite Durable Object fixture over the actual integrated Worker passed 20/20 checks with 63 accepted history rows across three pages. It verified anonymous human and permanent-agent kinds, delegated-human identity, canonical receipt rejection for 35 wrong-key aliases, all four accomplishment kinds, collection projection, pagination termination/uniqueness, `/p/` Worker prefix, JSON/HTML/HEAD `no-store`, empty HEAD, private/stored-title canary exclusion from every paginated JSON response, directory hide/unhide, known-viewer blocking, honest cookie-free anonymous-page behavior, unchanged player-store `sessions`, `collections` and `entries` contents across the profile-read window, and no synthetic session secret in captured structured logs. This storage comparison does not claim zero SQL transactions, zero startup writes, or coverage of every host table.
 - The first Worker attempt used an index-only temporary asset directory and correctly failed the startup integrity barrier with `Progression asset missions has an unexpected byte length`. The final fixture copied the regenerated `dist` assets into its disposable directory; this was a diagnostic correction, not a source or provider change.
 - Portable evidence is archived at `docs/research/phase6-social-release-2026-10-15/public-profile/worker-diagnostic.mjs.txt` and `worker-checks.txt`. The archived result contains labels and counts only; no synthetic cookie value is persisted. A second run from the portable archived script also produced the same 20-check pass before a wrapper-only zsh variable-name error after probe completion.
+- Corrected only the common fixture in `scripts/guard-joinallworld-package.test.mjs`: it now creates hash-named, valid synthetic `episodes-0`, `journeys` and `missions` JSON assets, includes their three paths in `worker.js`, returns `progressionPaths`, and retains those references when the dictionary-negative case rewrites Worker content. The runtime guard, package policy and 25 existing test cases are unchanged.
+- Baseline existing guard test reproduced 7 failures (`18/25` passed), each caused by `Missing content manifest references`. After the fixture correction, the same existing test file passed `25/25` through the shared heavy lease. Portable logs: `docs/research/phase6-social-release-2026-10-15/package-guard-fixture/initial-failure.txt` and `pass.txt`.
 
 ### In progress / blockers
 
-- No known lane-owned source or Worker-profile blocker. The feature source is frozen for parent integration/release handling.
+- No known lane-owned blocker. The package-guard fixture correction is complete and scoped to the existing test fixture.
 - Historical local probe failure: one earlier attempt threw `TypeError: tale.dilemma.answers.map is not a function` in `src/game/content/local-episodes.ts:17`. Parent subsequently ran the current Node HTTP fixture successfully before provider merges, so that transient failure is explicitly not attributed to the first-person provider lane.
 
 ### Immediate resume steps
@@ -85,3 +87,4 @@
 | `2026-10-15T13:28:18Z` | ready-for-integration | Added `/p/` dev proxies, corrected Contacts permanent-agent wording and removed raw achievement icon identifiers. Astra accepted source and local browser matrix. | Parent live 5176 profile receipt; proxy source diagnostic; HTML icon diagnostic; existing social component suite 20/20 | Freeze edits for parent integration. |
 | `2026-10-15T13:36:28Z` | complete | Probed the integrated Cloudflare Worker with a disposable Miniflare/SQLite fixture and archived a portable diagnostic. | 20/20 checks; 63 history rows/3 pages; `worker-diagnostic.mjs.txt`; `worker-checks.txt` | Parent/Astra review; no further lane source edits. |
 | `2026-10-15T13:39:28Z` | complete | Tightened the privacy assertion to inspect every paginated JSON response and narrowed the read-only claim to the compared player-store tables. | Corrected portable probe reran 20/20; 63 history rows/3 pages | Parent/Astra evidence review. |
+| `2026-10-15T13:48:40Z` | complete | Added the three required synthetic progression assets and Worker references to the existing package-guard fixture, including its dictionary rewrite path. | Baseline 18/25 with 7 manifest-reference failures; corrected existing suite 25/25; portable before/after logs | Parent review and commit. |

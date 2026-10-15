@@ -15,18 +15,25 @@ function fixture(t) {
   t.after(() => rmSync(root, { recursive: true, force: true }));
   mkdirSync(join(root, 'assets')); writeFileSync(join(root, 'assets/index.html'), '<!doctype html><title>Fixture</title>');
   const city = '{"version":1,"cityId":"lagos"}', dictionary = 'synthetic packed words';
+  const progression = [
+    ['episodes-0', '{"version":1,"kind":"episodes","order":0,"items":[]}'],
+    ['journeys', '{"version":1,"kind":"journeys","order":0,"items":[],"acceptedCityIds":[],"acceptedCountryIds":[]}'],
+    ['missions', '{"version":1,"kind":"missions","order":0,"value":{"definitions":[]}}'],
+  ];
   const cityDigest = createHash('sha256').update(city).digest('hex'), dictionaryDigest = createHash('sha256').update(dictionary).digest('hex');
   const cityPath = `/assets/cities/lagos.${cityDigest}.json`, dictionaryPath = `/assets/words/dictionary.${dictionaryDigest}.txt`;
-  mkdirSync(join(root, 'assets/assets/cities'), { recursive: true }); mkdirSync(join(root, 'assets/assets/words'), { recursive: true });
+  const progressionPaths = progression.map(([name, bytes]) => `/assets/progression/${name}.${createHash('sha256').update(bytes).digest('hex')}.json`);
+  mkdirSync(join(root, 'assets/assets/cities'), { recursive: true }); mkdirSync(join(root, 'assets/assets/words'), { recursive: true }); mkdirSync(join(root, 'assets/assets/progression'), { recursive: true });
   writeFileSync(join(root, `assets${cityPath}`), city); writeFileSync(join(root, `assets${dictionaryPath}`), dictionary);
-  writeFileSync(join(root, 'worker.js'), `export const content = ${JSON.stringify([cityPath, dictionaryPath])};`);
+  progression.forEach(([, bytes], index) => writeFileSync(join(root, `assets${progressionPaths[index]}`), bytes));
+  writeFileSync(join(root, 'worker.js'), `export const content = ${JSON.stringify([cityPath, dictionaryPath, ...progressionPaths])};`);
   writeFileSync(join(root, 'wrangler.json'), JSON.stringify(expectedConfig(sha, false)));
   const seal = () => {
     const files = [];
     function walk(path) { for (const name of readdirSync(path).sort()) { if (name === 'manifest.json') continue; const full = join(path, name), stat = statSync(full); if (stat.isDirectory()) walk(full); else files.push({ path: relative(root, full), bytes: stat.size, sha256: createHash('sha256').update(readFileSync(full)).digest('hex') }); } }
     walk(root); writeFileSync(join(root, 'manifest.json'), JSON.stringify({ sourceSha: sha, publish: false, files }));
   };
-  seal(); return { root, seal, cityPath, dictionaryPath };
+  seal(); return { root, seal, cityPath, dictionaryPath, progressionPaths };
 }
 test('accepts exact separate-worker package and rejects content changes', t => {
   const f = fixture(t); assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
@@ -47,7 +54,7 @@ test('requires every content asset referenced by the sealed Worker and authentic
   const f = fixture(t), dictionary = 'another synthetic packed word list';
   const digest = createHash('sha256').update(dictionary).digest('hex');
   const path = `/assets/words/dictionary.${digest}.txt`;
-  writeFileSync(join(f.root, 'worker.js'), `export const content = ${JSON.stringify([f.cityPath, path])};`); f.seal();
+  writeFileSync(join(f.root, 'worker.js'), `export const content = ${JSON.stringify([f.cityPath, path, ...f.progressionPaths])};`); f.seal();
   assert.throws(() => checkPackage(f.root, sha, false), /Missing referenced content asset/);
   rmSync(join(f.root, `assets${f.dictionaryPath}`));
   const file = join(f.root, `assets${path}`);

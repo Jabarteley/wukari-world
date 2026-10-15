@@ -154,6 +154,10 @@ Still failing, and why they are left (an owner's judgement, or another team's wo
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
+- 2026-10-16, release 16 (main's tests repaired), `c2419edb`, live: Worker tests (no outside calls from tests, a quiet outreach tick),
+  faster and split CI jobs, stale expectations updated; eleven tests left for the owner's judgement (below). The release workflow's
+  Worker checks passed; the live smoke test could not run from the owner's Mac (its internet connection was dropping requests to
+  every site): run it again.
 - 2026-10-16, release 15 (starting money by city, home city on the account), `69c3ae44`: a new life's purse, family loan, dreams, Boutique,
   intercity fares and launch bonus follow the starting city's price level (a London start buys about what a Lagos start does);
   the home-city pin is kept with the character. The launch bonus is never below the advertised amount (the words now say "at

@@ -4,23 +4,25 @@
 
 The user authorized clearing the blockers, completing mobile/web checks and deployment, and explicitly approved an isolated release worktree. Work is tracked in [first-person-release-20261015](agent-work/first-person-release-20261015.md). Primary checkout character drafts remain separate. The retention chat is the sole final combined main/deployment operator.
 
-Current committed baseline is a9141b12, containing main5181c91a. The primary checkout's19 Street Studio errors are fixed; the candidate passes all five typecheck projects. Baseline two-build output was identical. Optional reward presentation extraction clears the shared-host cap:186,321raw/70,419gzip against192,000/71,000. No budget was raised.
+The accepted first-person browser source is8061dc2c, containing mainbc113b55. The primary checkout's19 Street Studio errors are fixed; the candidate passes all five typecheck projects. Baseline two-build output was identical. Optional reward presentation extraction clears the shared-host cap; the8061dc2c build measures186,322raw/70,426gzip against192,000/71,000. No budget was raised.
 
-The inherited5,110,078-byte Worker blocker is repaired in pending source: immutable progression assets preserve the exact catalogue, compact campus navigation/shuttle data preserves every grid/route result, and a pure money import removes accidental Vue runtime. Reviewed Worker measurement is3,422,076bytes against3,500,000. Focused52/52 plus companion3/3 checks pass. Full accepted-city/country object maps are source-only; current Worker consumers use accepted IDs and episode/journey facades. Final combined profile/content source still needs all release gates and fresh generated assets.
+The inherited5,110,078-byte Worker blocker is repaired: immutable progression assets preserve the exact catalogue, compact campus navigation/shuttle data preserves every grid/route result, and a pure money import removes accidental Vue runtime. The latest exact occupied-tree-cell repair measures3,382,393bytes against3,500,000 in this lane. Focused52/52 plus companion3/3 checks pass; the cell repair separately passes11/11 walk/shuttle checks and exact normal/extra-footprint occupancy snapshots. Full accepted-city/country object maps are source-only; current Worker consumers use accepted IDs and episode/journey facades. Final combined profile/content source still needs all release gates and fresh generated assets.
 
-The user requested the view switch move into the existing More menu. The scene retains camera lifecycle ownership while the menu supplies its accessible control. This supersedes the historical floating-button placement below. The same pending source also fixes lying-pose eye offset and provides Reload to retry after a failed cached lazy import. These corrections need rebuilt browser proof.
+The user requested the view switch move into the existing More menu. The scene retains camera lifecycle ownership while the menu supplies its accessible control. This supersedes the historical floating-button placement below. The same accepted source also fixes lying-pose eye offset and provides Reload to retry after a failed cached lazy import. The menu, retry and lying-pose fixes now have rebuilt browser proof on8061dc2c; see the current matrix below.
 
 | Current acceptance | Evidence | Remaining scope |
 | --- | --- | --- |
-| Desktop hands/body/legs, side view, third-person restoration and saved preference | Actual a9141b12 served build; two avatars/outfits | Replay final source after menu move |
-| Mobile320/390px and landscape layout; simultaneous move/look and release | Browser emulation and actual two-touch CDP input | New menu placement; physical handset unavailable |
-| Phone input release, Buy suspension, home/outside/home, Danfo arrival | Actual local browser interactions | Final source spot-check; rail/browser arrival |
-| TV seated body and active screen, fun increase, mute UI | Normal1x clock, current avatar/outfit | Audible speaker proof unavailable; screen is generated still plus ambience |
-| Bed action and lazy-load failure | Both reproduced defects; source corrections reviewed | Rebuilt down-look and Reload to retry replay |
-| Performance | Existing budgets; local body diagnostics15draws/8,330triangles, loop stopped in one sample | Paired idle/FPS comparison; no physical-device performance claim |
-| Production readiness | Reviewed source only; no main push/deployment from this lane | Combined full gates, pinned hosted city QA, exact deployment receipt and live first-person check |
+| Desktop body/legs, side view, restoration and preference | Two avatars/outfits; normal lying level/down/side and full restoration on8061dc2c | Extreme maximum-down lying view can show collar aperture; not all-angle realism acceptance |
+| More-menu control, keyboard,320/390px and landscape | Actual browser captures26–29; row reachable through existing narrow tray scroll; floating control removed | Physical handset unavailable; browser emulation only |
+| Phone release, Buy suspension, home/outside/home, move plus look | Local served interactions; two-touch simultaneous input/release | No physical-device performance claim |
+| TV and bed activities | TV screen/animated body and effects; bed normal angles with actual presentation pose hook | Audible speaker proof unavailable; TV remains generated still plus ambience |
+| Lazy-load recovery and constrained device | Controller blocked then unblocked; normal Reload to retry preserves saved life;2-core/reduced-motion/throttled boot and movement pass | All temporary browser overrides restored |
+| Rail journey and arrival | Normal Lagos→Ibadan train; ₦9,000 deducted once,21s ride, station arrival and return | Hosted city journey separate |
+| Idle diagnostics | Third18draws/8,390triangles, first14/8,342; both24geometries/4textures, loops stopped | Reload resets position: not a matched draw-saving or FPS benchmark |
+| Production readiness | Local finite acceptance complete; source8061dc2c included in combined82237708 | Combined CI repairs, pinned hosted city QA, exact deployment receipt and live spot-check |
 
-Local browser evidence: `/tmp/allworld-first-person-browser-20261015/`. Current preview4412 serves immutable a9141b12 server source and preserved fake save data at1x. Browser ownership temporarily belongs to the retention lane for5176 profile checks; no concurrent UI operation. Historical14October material below remains labelled as such.
+
+Local browser evidence: `/tmp/allworld-first-person-browser-20261015/`. Preview4412 uses preserved fake save data at1x, immutable11936921 server source and8061dc2c browser assets. Its browser is idle after finite acceptance. Combined CI caught campus generator drift across platforms and a package-guard fixture gap. Both have bounded local repairs; hosted Linux and final combined CI remain release gates. The navigation repair serializes exact occupied grid cells, leaving visual trees and every tested route unchanged. The truncated CI diff cannot establish exact coordinate drift; no such measurement is claimed. Historical14October material below remains labelled as such.
 
 ## Prior implementation and local evidence — 14 October 2026
 

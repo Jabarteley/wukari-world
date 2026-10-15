@@ -1,6 +1,7 @@
 import { CITY_INDEX, CITY_LOADERS, CITY_WORLD_INDEX, RESERVED_CITIES } from './catalogue.ts'
 import { generateCityLinks } from './generatedLinks.ts'
 import { mapEntryOf } from './mapEntry.ts'
+import { priceLevelOf, scaleCityContent } from '../price-levels.ts'
 import { CITY_NETWORK_AT_START, fetchCityNetwork } from '#city-network'
 import type { CityCatalogueEntry, CityModuleLoader, CityWorldIndex, CityWorldIndexLoader } from './catalogue.ts'
 import type { CityLandComponentRow } from './generatedLinks.ts'
@@ -368,8 +369,12 @@ async function readCityContent(cityId: string): Promise<CityContent> {
   if (cached) return cached
   // A city's content never reads the world network: a resident's startup is its rules and content only.
   const module = await loadCityModule(cityId)
-  const content = await module.loadContent()
-  if (content.cityId !== module.id) throw new Error(`City content id ${content.cityId} does not match ${module.id}`)
+  const loaded = await module.loadContent()
+  if (loaded.cityId !== module.id) throw new Error(`City content id ${loaded.cityId} does not match ${module.id}`)
+  // Real price levels (docs/PRICE-LEVELS.md): outside Nigeria a city's prices and wages are its base values times its country's level. The table is a lazy file, fetched here.
+  const country = module.rules.country.id
+  const foreign = country !== 'ng' && country !== 'nigeria'
+  const content = foreign ? scaleCityContent(loaded, priceLevelOf((await import('../price-levels-data.ts')).PRICE_LEVEL_DATA, mapEntryOf(country))) : loaded
   if (cityModule(module.id) === module) loadedContent.set(module.id, content)
   return content
 }

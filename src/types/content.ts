@@ -1356,6 +1356,8 @@ export type UnmappedService = 'food' | 'polling'
 
 export interface CityContent<City extends string = string> {
   cityId: City
+  /** The country's price level against Nigeria (= 1) that this content's prices and wages were multiplied by (src/game/price-levels.ts); absent in a Nigerian city. */
+  priceLevel?: number
   /** Local market products and specialties; shared shop mechanics remain unchanged. */
   business?: {
     readonly plate: string

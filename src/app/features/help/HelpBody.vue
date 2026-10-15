@@ -44,6 +44,7 @@ function showShortcuts(): void { window.dispatchEvent(new CustomEvent('jaw:short
     <p class="help-credits">
       <a :href="feedCredits.weatherUrl" target="_blank" rel="noopener noreferrer">{{ feedCredits.weather }}</a>
       <template v-if="feedCredits.rates && feedCredits.ratesUrl"> · <a :href="feedCredits.ratesUrl" target="_blank" rel="noopener noreferrer">{{ feedCredits.rates }}</a></template>
+      · <a href="https://data.worldbank.org/indicator/PA.NUS.PPP" target="_blank" rel="noopener noreferrer">Price levels from the World Bank (CC BY 4.0)</a>
     </p>
   </div>
 </template>

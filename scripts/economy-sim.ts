@@ -1,5 +1,7 @@
-import { cachedCityContent, loadCityContent } from '../src/game/cities/registry.ts';
-await Promise.all(['lagos', 'ibadan', 'abeokuta', 'ota', 'ijebu-ode', 'sagamu', 'port-harcourt', 'abuja', 'kano'].map(loadCityContent));
+import { cachedCityContent, cityRules, loadCityContent } from '../src/game/cities/registry.ts';
+// PRICE_LEVEL_CITIES: cities outside Nigeria that the price-level section plays (docs/PRICE-LEVELS.md).
+const PRICE_LEVEL_CITIES = ['london', 'accra', 'nairobi', 'cairo', 'cape-town', 'delhi', 'tokyo', 'new-york', 'paris', 'sao-paulo'];
+await Promise.all(['lagos', 'ibadan', 'abeokuta', 'ota', 'ijebu-ode', 'sagamu', 'port-harcourt', 'abuja', 'kano', ...PRICE_LEVEL_CITIES].map(loadCityContent));
 /**
  * Economy simulation: scripted players on a virtual clock, played through the real rules engine
  * (createLife / dispatch / advanceLife — nothing here sets cash, needs or skills by hand).
@@ -57,6 +59,8 @@ import { NPCS } from '../src/game/cities/lagos/regulars.ts';
 
 import { LOTTERY, START_HOMES } from '../src/game/content/traits.ts';
 import { HOUSES, HOUSE_ORDER } from '../src/game/content/housing.ts';
+import { INGREDIENTS } from '../src/game/content/food.ts';
+import { scaleNaira } from '../src/game/price-levels.ts';
 import { CARS, CAR_ORDER } from '../src/game/content/cars.ts';
 import { HOUSE_TIERS, TIER_ORDER, tierCost } from '../src/game/content/world.ts';
 import { EVENTS } from '../src/game/content/events.ts';
@@ -716,9 +720,9 @@ function ogunDay(player: Player, places: ReturnType<typeof ogunPlaces>, play: bo
 }
 
 /** A new player who starts in one Ogun city: settles in a local government there, works the city's helper job and plays one of its places for `days`. */
-export function simulateOgunStart({ city = 'abeokuta', days = 14 }: { city?: string; days?: number } = {}): CityLife {
+export function simulateOgunStart({ city = 'abeokuta', days = 14, lga }: { city?: string; days?: number; lga?: string } = {}): CityLife {
   const places = ogunPlaces(city);
-  const player = new Player({ lottery: '', house: OWN, city: { id: city, lga: must(CITY_LGAS[city], `${city} local government`) } });
+  const player = new Player({ lottery: '', house: OWN, city: { id: city, lga: lga ?? must(CITY_LGAS[city], `${city} local government`) } });
   const stages: CityLife['stages'] = [];
   stages.push({ stage: 'settled', city: player.cityId, cash: player.state.cash });
   firstSitting(player, 'community-helper');
@@ -844,6 +848,29 @@ export function formatTable(rows: Row[]): string {
   return [format(head), widths.map((width) => '-'.repeat(width)).join('  '), ...lines.map(format)].join('\n');
 }
 
+/** One row of the price-level report: a city outside Nigeria played for `days`, with the price and wage figures its rules gave (docs/PRICE-LEVELS.md). */
+export interface AbroadRow { city: string; level: number; helperPay: number; entryPay: number; topPay: number; cheapestRent: number; foodPack: number; foodDays: number; rentWeeksOfPay: number; life: CityLife }
+export function simulateAbroad(city: string, days = 14): AbroadRow {
+  const content = must(cachedCityContent(city), `${city} content`);
+  const lga = must(cityRules(city)?.districts.find((district) => district.localUnitId)?.localUnitId, `${city} local unit`);
+  const life = simulateOgunStart({ city, days, lga });
+  const helper = must(content.workplaces.find((item) => item.careerId === 'community-helper')).definition.shift.reward ?? 0;
+  const tracks = content.workplaces.map((item) => item.definition).filter((job) => job.track);
+  const entries = tracks.map((job) => job.track ? job.ladder[0]?.pay ?? 0 : 0), tops = tracks.map((job) => job.track ? job.ladder[job.ladder.length - 1]?.pay ?? 0 : 0);
+  const level = content.priceLevel ?? 1, pack = scaleNaira(Math.min(...Object.values(INGREDIENTS).map((item) => item.price)), level);
+  const cheapestRent = Math.min(...content.housing.map((house) => house.definition.rent));
+  // "A day's food": the three cheapest packs of groceries. "Food days": how many such days one entry-level career shift pays for.
+  const food = Object.values(INGREDIENTS).map((item) => scaleNaira(item.price, level)).sort((a, b) => a - b).slice(0, 3).reduce((sum, price) => sum + price, 0);
+  return { city, level, helperPay: helper, entryPay: Math.min(...entries), topPay: Math.max(...tops), cheapestRent, foodPack: pack, foodDays: Math.round((Math.min(...entries) / food) * 10) / 10, rentWeeksOfPay: Math.round((cheapestRent / Math.min(...entries)) * 100) / 100, life };
+}
+export function formatAbroad(rows: AbroadRow[]): string {
+  const head = ['city', 'level', 'helper shift', 'entry shift', 'top shift', 'cheapest rent/wk', 'cheapest pack', 'food days per entry shift', 'rent / entry shift', '14-day cash', 'conserved'];
+  const lines = rows.map((row) => [row.city, String(row.level), naira(row.helperPay), naira(row.entryPay), naira(row.topPay), naira(row.cheapestRent), naira(row.foodPack), String(row.foodDays), String(row.rentWeeksOfPay), `${naira(row.life.player.seed)} → ${naira(row.life.finalCash)}`, row.life.conserved ? 'yes' : 'NO']);
+  const widths = head.map((title, column) => Math.max(title.length, ...lines.map((line) => (line[column] ?? '').length)));
+  const format = (cells: string[]) => cells.map((cell, column) => (column < 1 ? cell.padEnd(widths[column] ?? 0) : cell.padStart(widths[column] ?? 0))).join('  ');
+  return [format(head), widths.map((width) => '-'.repeat(width)).join('  '), ...lines.map(format)].join('\n');
+}
+
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = process.argv.slice(2);
   const option = (name: string, fallback: string | number) => { const at = args.indexOf(`--${name}`); return at >= 0 ? args[at + 1] : fallback; };
@@ -855,6 +882,9 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   const lives = [simulateIbadanStart(), simulateTraveller(), ...Object.keys(CITY_LGAS).map((city) => simulateOgunStart({ city })), simulateOgunTraveller(), simulateStatesTraveller()];
   console.log('Lives across cities (14 days in Ibadan, each Ogun city, Port Harcourt, Abuja and Kano; Lagos → Ibadan by road → Lagos by rail; Lagos → Ota → Abeokuta → Ibadan → Abeokuta → Lagos; Lagos → Abuja → Kano → Abuja → Port Harcourt → Lagos):');
   for (const life of lives) console.log(`  ${life.label}: cash ${naira(life.player.seed)} seed → ${naira(life.finalCash)} · ledger ${naira(life.ledgerSum)} · ${life.conserved ? 'conserved' : 'NOT CONSERVED'} · ${life.stages.map((stage) => `${stage.stage} (${stage.city}) ${naira(stage.cash)}`).join(' → ')}`);
+  const abroad = ['lagos', ...PRICE_LEVEL_CITIES].map((city) => simulateAbroad(city));
+  console.log('Real price levels (14 days, helper job in each city, amounts in naira before the display conversion; docs/PRICE-LEVELS.md). "food days" = how many days of food (the three cheapest grocery packs) one entry-level career shift pays for; Lagos is the base:');
+  console.log(formatAbroad(abroad));
   const bad = rows.filter((row) => !row.conserved || must(row.unknown).length);
   console.log(bad.length ? `NOT CONSERVED or unknown reasons in ${bad.length} rows: ${JSON.stringify(bad.map((row) => [row.lottery, row.house, row.strategy, row.unknown]))}` : `Conservation: cash = seed + Σ ledger in all ${rows.length} lives; every ledger reason is classified.`);
   console.log(`Next house = move-in + 4 weeks' rent: ${HOUSE_ORDER.map((id) => `${id} ${naira((must(HOUSES[id]).moveIn ?? 0) + 4 * must(HOUSES[id]).rent)}`).join(' · ')} · own house upgrade (${TIER_ORDER[1]} in ${SIM_LGA}) ${naira((tierCost(CITY, SIM_LGA, must(TIER_ORDER[1])) ?? 0) + 4 * must(HOUSE_TIERS[must(TIER_ORDER[1])]).groundRent)} · cheapest car ${naira(CHEAPEST_CAR.price)}`);

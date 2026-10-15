@@ -346,6 +346,8 @@ export default defineConfig({
     if (id.endsWith('/src/game/calendar-export.ts')) return undefined
     // The real weather of the world feed (its hours, words and reader) is read only by the lazy feed module and the server: weatherAt keeps a hook (src/game/systems/health.ts).
     if (/\/src\/game\/weather-observed(-read)?\.ts$/.test(id)) return undefined
+    // The price-level table (one line per country, written once a year by scripts/price-levels.ts) is fetched with the first city outside Nigeria (src/game/cities/registry.ts); only the tiny scaler (price-levels.ts) is in the engine.
+    if (/\/src\/game\/price-levels-data\.ts$/.test(id)) return undefined
     // Full statement reconciliation is only read by the lazy Statement screen (and by the server build).
     if (/\/src\/game\/wallet-statement\.ts$/.test(id)) return undefined
     // The trust rules (tiers, the no-fee filter, the link allow-list): read only by the community panel, the "leaving Allworld" sheet and the trust card, all fetched on demand.

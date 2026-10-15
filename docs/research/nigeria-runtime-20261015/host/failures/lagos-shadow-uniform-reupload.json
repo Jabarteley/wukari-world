@@ -1,0 +1,5461 @@
+{
+  "scope": "Actual createVenueHost with production city definitions, player and crowd; development harness, not full application UI or production",
+  "viewport": {
+    "width": 480,
+    "height": 640,
+    "scale": 1,
+    "mobile": true
+  },
+  "crowdInput": 8,
+  "ambientFixture": "production full ambient layer with noon/dry density inputs and delayed canonical female fetch",
+  "started": "2026-10-15T12:10:19.376Z",
+  "head": "c43e676da8da7dbf1ddc428431227ad952cff03c",
+  "checks": [
+    {
+      "label": "lagos-before-canonical-hero",
+      "at": 5601.200000000186,
+      "heroHeld": 1,
+      "ambientPeople": [
+        {
+          "id": "npc:acceptance0",
+          "role": "stander",
+          "x": -3.529795656630451,
+          "z": 1.3357059051776172,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance1",
+          "role": "stander",
+          "x": -1.246434684732353,
+          "z": 1.1039944542551359,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance2",
+          "role": "stander",
+          "x": -5.788493826507523,
+          "z": 3.0624969503183395,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance3",
+          "role": "stander",
+          "x": 1.8550845274432992,
+          "z": 1.5501183011033786,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance4",
+          "role": "stander",
+          "x": -7.905817933099979,
+          "z": 3.185544846918524,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance5",
+          "role": "stander",
+          "x": -8.658775943849271,
+          "z": 1.999068365715976,
+          "sitting": false
+        }
+      ],
+      "ambientFrames": 3,
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 11,
+        "loop": {
+          "running": true,
+          "frames": 3
+        },
+        "avatar": {
+          "x": -2.8,
+          "z": 2.8,
+          "y": 0.26,
+          "facing": 3.142,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 43,
+        "camera": {
+          "yaw": 0.258,
+          "pitch": 0.519,
+          "zoom": 1.651,
+          "distance": 12,
+          "asked": 12,
+          "whole": 63.12,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": -0.14,
+          "y": 7.76,
+          "z": 12.87,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.227,
+              3.194
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "stalls",
+            "x": -11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": -242,
+            "py": 615,
+            "selected": false
+          },
+          {
+            "id": "food",
+            "x": -5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 247,
+            "py": 684,
+            "selected": false
+          },
+          {
+            "id": "spice",
+            "x": 0,
+            "z": 1.5400000000000003,
+            "px": 829,
+            "py": 766,
+            "selected": false
+          },
+          {
+            "id": "wholesale",
+            "x": 5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 1531,
+            "py": 865,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": 2397,
+            "py": 988,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": -2.8000000000000003,
+            "z": 2.8000000000000003,
+            "px": 491,
+            "py": 799,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -3.529795656630451,
+            "z": 1.3357059051776172,
+            "px": 454,
+            "py": 586
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": -1.246434684732353,
+            "z": 1.1039944542551359,
+            "px": 706,
+            "py": 605
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": -5.788493826507523,
+            "z": 3.0624969503183395,
+            "px": 144,
+            "py": 645
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "x": 1.8550845274432992,
+            "z": 1.5501183011033786,
+            "px": 1075,
+            "py": 674
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "x": -7.905817933099979,
+            "z": 3.185544846918524,
+            "px": -82,
+            "py": 621
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "x": -8.658775943849271,
+            "z": 1.999068365715976,
+            "px": -79,
+            "py": 555
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "x": -1.2549475575211555,
+            "z": 2.3842922300579934,
+            "px": 685,
+            "py": 675
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "x": -4.841404177237461,
+            "z": 1.7404392489538665,
+            "px": 304,
+            "py": 589
+          }
+        ],
+        "objects": [],
+        "drawCalls": 26,
+        "triangles": 11970,
+        "geometries": 27,
+        "textures": 8,
+        "location": "market",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "wide",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 258,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 491,
+            "y": 496,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 452,
+            "y": 421,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 720,
+            "y": 436,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 121,
+            "y": 470,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "text": "Local 3",
+            "name": "Local 3",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 1116,
+            "y": 495,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "text": "Local 4",
+            "name": "Local 4",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": -120,
+            "y": 450,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "text": "Local 5",
+            "name": "Local 5",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": -113,
+            "y": 395,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "text": "Local 6",
+            "name": "Local 6",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 698,
+            "y": 495,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "text": "Local 7",
+            "name": "Local 7",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 293,
+            "y": 423,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "runtime:lagos-broad-street-01:near",
+          "scale": [
+            1.4000000000000001,
+            1.4000000000000001,
+            1.4000000000000001
+          ],
+          "bounds": [
+            -13.72000026702881,
+            -0.0070000037550926215,
+            -12.809999465942385,
+            13.720001602172854,
+            32.0809986114502,
+            4.404627180099488
+          ]
+        }
+      ],
+      "statuses": [
+        {
+          "runtimeStatus": "ready",
+          "runtimeTier": "near"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 25,
+        "triangles": 11872,
+        "drawCalls": 45,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:market",
+            "triangles": 168
+          },
+          {
+            "name": "sky",
+            "parent": "venue:market",
+            "triangles": 224
+          },
+          {
+            "name": "solid",
+            "parent": "torso",
+            "triangles": 900
+          },
+          {
+            "name": "solid",
+            "parent": "head",
+            "triangles": 1168
+          },
+          {
+            "name": "glow",
+            "parent": "head",
+            "triangles": 28
+          },
+          {
+            "name": "solid",
+            "parent": "armL",
+            "triangles": 220
+          },
+          {
+            "name": "solid",
+            "parent": "armR",
+            "triangles": 220
+          },
+          {
+            "name": "solid",
+            "parent": "legL",
+            "triangles": 164
+          },
+          {
+            "name": "solid",
+            "parent": "legR",
+            "triangles": 164
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:market",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:market",
+            "triangles": 40
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 465
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 501
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 543
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 497
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 547
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 541
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:market",
+            "triangles": 1076
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:market",
+            "triangles": 40
+          },
+          {
+            "name": "Sidewalk_concrete_slab065",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 1822
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_1",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 1824
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_2",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_3",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_4",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        }
+      ],
+      "gpu": {
+        "geometries": 27,
+        "textures": 8
+      },
+      "render": {
+        "frame": 11,
+        "calls": 26,
+        "triangles": 11970,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "lagos-after-canonical-hero",
+      "at": 8837,
+      "heroHeld": 1,
+      "ambientPeople": [
+        {
+          "id": "npc:acceptance0",
+          "role": "stander",
+          "x": -3.529795656630451,
+          "z": 1.3357059051776172,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance1",
+          "role": "stander",
+          "x": -1.246434684732353,
+          "z": 1.1039944542551359,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance2",
+          "role": "stander",
+          "x": -5.788493826507523,
+          "z": 3.0624969503183395,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance3",
+          "role": "stander",
+          "x": 1.8550845274432992,
+          "z": 1.5501183011033786,
+          "sitting": false
+        }
+      ],
+      "ambientFrames": 5,
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 14,
+        "loop": {
+          "running": true,
+          "frames": 5
+        },
+        "avatar": {
+          "x": -2.8,
+          "z": 2.8,
+          "y": 0.26,
+          "facing": 3.142,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 39,
+        "camera": {
+          "yaw": 0.258,
+          "pitch": 0.519,
+          "zoom": 1.876,
+          "distance": 10.55,
+          "asked": 10.55,
+          "whole": 63.12,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": -0.46,
+          "y": 7.04,
+          "z": 11.66,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.227,
+              3.194
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "stalls",
+            "x": -11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": -316,
+            "py": 611,
+            "selected": false
+          },
+          {
+            "id": "food",
+            "x": -5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 220,
+            "py": 688,
+            "selected": false
+          },
+          {
+            "id": "spice",
+            "x": 0,
+            "z": 1.5400000000000003,
+            "px": 870,
+            "py": 780,
+            "selected": false
+          },
+          {
+            "id": "wholesale",
+            "x": 5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 1674,
+            "py": 895,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": 2695,
+            "py": 1040,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": -2.8000000000000003,
+            "z": 2.8000000000000003,
+            "px": 490,
+            "py": 817,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -3.529795656630451,
+            "z": 1.3357059051776172,
+            "px": 450,
+            "py": 578
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": -1.246434684732353,
+            "z": 1.1039944542551359,
+            "px": 733,
+            "py": 599
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": -5.788493826507523,
+            "z": 3.0624969503183395,
+            "px": 99,
+            "py": 644
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "x": 1.8550845274432992,
+            "z": 1.5501183011033786,
+            "px": 1153,
+            "py": 677
+          }
+        ],
+        "objects": [],
+        "drawCalls": 17,
+        "triangles": 11976,
+        "geometries": 25,
+        "textures": 11,
+        "location": "market",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "wide",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 292,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 495,
+            "y": 522,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 447,
+            "y": 391,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 750,
+            "y": 408,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 69,
+            "y": 444,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "text": "Local 3",
+            "name": "Local 3",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 1207,
+            "y": 471,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "text": "Local 4",
+            "name": "Local 4",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": -202,
+            "y": 423,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "text": "Local 5",
+            "name": "Local 5",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": -187,
+            "y": 363,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "text": "Local 6",
+            "name": "Local 6",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 729,
+            "y": 472,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "text": "Local 7",
+            "name": "Local 7",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 267,
+            "y": 394,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "runtime:lagos-broad-street-01:near",
+          "scale": [
+            1.4000000000000001,
+            1.4000000000000001,
+            1.4000000000000001
+          ],
+          "bounds": [
+            -13.72000026702881,
+            -0.0070000037550926215,
+            -12.809999465942385,
+            13.720001602172854,
+            32.0809986114502,
+            4.404627180099488
+          ]
+        }
+      ],
+      "statuses": [
+        {
+          "runtimeStatus": "ready",
+          "runtimeTier": "near"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 16,
+        "triangles": 16882,
+        "drawCalls": 27,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:market",
+            "triangles": 168
+          },
+          {
+            "name": "sky",
+            "parent": "venue:market",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:market",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:market",
+            "triangles": 40
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 465
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 501
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 543
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 497
+          },
+          {
+            "name": "Sidewalk_concrete_slab065",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 1822
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_1",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 1824
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_2",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_3",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_4",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 25,
+        "textures": 11
+      },
+      "render": {
+        "frame": 14,
+        "calls": 17,
+        "triangles": 11976,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "lagos-entry",
+      "at": 8843.800000000047,
+      "heroHeld": 1,
+      "ambientPeople": [
+        {
+          "id": "npc:acceptance0",
+          "role": "stander",
+          "x": -3.529795656630451,
+          "z": 1.3357059051776172,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance1",
+          "role": "stander",
+          "x": -1.246434684732353,
+          "z": 1.1039944542551359,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance2",
+          "role": "stander",
+          "x": -5.788493826507523,
+          "z": 3.0624969503183395,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance3",
+          "role": "stander",
+          "x": 1.8550845274432992,
+          "z": 1.5501183011033786,
+          "sitting": false
+        }
+      ],
+      "ambientFrames": 6,
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 16,
+        "loop": {
+          "running": true,
+          "frames": 6
+        },
+        "avatar": {
+          "x": -2.8,
+          "z": 2.8,
+          "y": 0.26,
+          "facing": 3.142,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 39,
+        "camera": {
+          "yaw": 0.258,
+          "pitch": 0.519,
+          "zoom": 1.896,
+          "distance": 10.44,
+          "asked": 10.44,
+          "whole": 63.12,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": -0.48,
+          "y": 6.99,
+          "z": 11.57,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.227,
+              3.194
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "stalls",
+            "x": -11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": -323,
+            "py": 611,
+            "selected": false
+          },
+          {
+            "id": "food",
+            "x": -5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 218,
+            "py": 688,
+            "selected": false
+          },
+          {
+            "id": "spice",
+            "x": 0,
+            "z": 1.5400000000000003,
+            "px": 874,
+            "py": 781,
+            "selected": false
+          },
+          {
+            "id": "wholesale",
+            "x": 5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 1687,
+            "py": 897,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": 2722,
+            "py": 1045,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": -2.8000000000000003,
+            "z": 2.8000000000000003,
+            "px": 491,
+            "py": 819,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -3.529795656630451,
+            "z": 1.3357059051776172,
+            "px": 450,
+            "py": 578
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": -1.246434684732353,
+            "z": 1.1039944542551359,
+            "px": 735,
+            "py": 598
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": -5.788493826507523,
+            "z": 3.0624969503183395,
+            "px": 95,
+            "py": 643
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "x": 1.8550845274432992,
+            "z": 1.5501183011033786,
+            "px": 1160,
+            "py": 677
+          }
+        ],
+        "objects": [],
+        "drawCalls": 17,
+        "triangles": 11976,
+        "geometries": 25,
+        "textures": 11,
+        "location": "market",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "wide",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 295,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 495,
+            "y": 520,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 447,
+            "y": 389,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 753,
+            "y": 405,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 65,
+            "y": 442,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "text": "Local 3",
+            "name": "Local 3",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 1215,
+            "y": 469,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "text": "Local 4",
+            "name": "Local 4",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": -210,
+            "y": 420,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "text": "Local 5",
+            "name": "Local 5",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": -193,
+            "y": 360,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "text": "Local 6",
+            "name": "Local 6",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 731,
+            "y": 470,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "text": "Local 7",
+            "name": "Local 7",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 265,
+            "y": 391,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "runtime:lagos-broad-street-01:near",
+          "scale": [
+            1.4000000000000001,
+            1.4000000000000001,
+            1.4000000000000001
+          ],
+          "bounds": [
+            -13.72000026702881,
+            -0.0070000037550926215,
+            -12.809999465942385,
+            13.720001602172854,
+            32.0809986114502,
+            4.404627180099488
+          ]
+        }
+      ],
+      "statuses": [
+        {
+          "runtimeStatus": "ready",
+          "runtimeTier": "near"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 16,
+        "triangles": 16882,
+        "drawCalls": 27,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:market",
+            "triangles": 168
+          },
+          {
+            "name": "sky",
+            "parent": "venue:market",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:market",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:market",
+            "triangles": 40
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 465
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 501
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 543
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 497
+          },
+          {
+            "name": "Sidewalk_concrete_slab065",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 1822
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_1",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 1824
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_2",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_3",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_4",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 25,
+        "textures": 11
+      },
+      "render": {
+        "frame": 16,
+        "calls": 17,
+        "triangles": 11976,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "lagos-exit-0",
+      "at": 15345.300000000047,
+      "heroHeld": 1,
+      "ambientPeople": [
+        {
+          "id": "npc:acceptance0",
+          "role": "stander",
+          "x": 3.8102137096122624,
+          "z": 3.7501159258920627,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance1",
+          "role": "stander",
+          "x": 1.1882699293804864,
+          "z": 6.4184005810922,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance2",
+          "role": "stander",
+          "x": 5.264621702856629,
+          "z": 6.193140879534669,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance3",
+          "role": "stander",
+          "x": -2.2,
+          "z": 5.6,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance4",
+          "role": "stander",
+          "x": -1.6,
+          "z": 0.4,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance5",
+          "role": "stander",
+          "x": 0.21820454304969472,
+          "z": -1.784995565010774,
+          "sitting": false
+        }
+      ],
+      "ambientFrames": 2,
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 21,
+        "loop": {
+          "running": true,
+          "frames": 8
+        },
+        "avatar": {
+          "x": 0,
+          "z": 11.4,
+          "y": 0,
+          "facing": 3.142,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": null
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 90,
+        "camera": {
+          "yaw": 0.405,
+          "pitch": 0.602,
+          "zoom": 1.237,
+          "distance": 13.33,
+          "asked": 13.33,
+          "whole": 50.83,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 2.94,
+          "y": 9.23,
+          "z": 17.23,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.235,
+              2.661
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "amphitheatre",
+            "x": -4,
+            "z": -4.9,
+            "px": 633,
+            "py": 317,
+            "selected": false
+          },
+          {
+            "id": "art",
+            "x": 9,
+            "z": -5,
+            "px": 1540,
+            "py": 456,
+            "selected": false
+          },
+          {
+            "id": "trees",
+            "x": 8.8,
+            "z": 7.6,
+            "px": 1766,
+            "py": 1184,
+            "selected": false
+          },
+          {
+            "id": "drinks",
+            "x": -8.4,
+            "z": 6.6,
+            "px": -51,
+            "py": 607,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": 2.6,
+            "z": 5.2,
+            "px": 942,
+            "py": 774,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": -3.4,
+            "z": 8.7,
+            "px": 226,
+            "py": 833,
+            "selected": false
+          }
+        ],
+        "things": [
+          {
+            "id": "table:park-bench",
+            "kind": "table",
+            "label": "Whot · Bench under the trees",
+            "x": 9.7,
+            "z": 2.9,
+            "px": 1789,
+            "py": 758,
+            "at": false
+          },
+          {
+            "id": "table:park-ayo",
+            "kind": "table",
+            "label": "Ayo · Ayo board under the trees",
+            "x": -9.6,
+            "z": 1.8,
+            "px": 101,
+            "py": 373,
+            "at": false
+          },
+          {
+            "id": "table:park-goal",
+            "kind": "table",
+            "label": "Penalties · Kickabout corner",
+            "x": -11.9,
+            "z": -7.9,
+            "px": 299,
+            "py": 166,
+            "at": false
+          },
+          {
+            "id": "table:park-chess",
+            "kind": "table",
+            "label": "Chess · Chess under the trees",
+            "x": 3,
+            "z": -7,
+            "px": 1101,
+            "py": 291,
+            "at": false
+          }
+        ],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": 3.8102137096122624,
+            "z": 3.7501159258920627,
+            "px": 1117,
+            "py": 609
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": 1.1882699293804864,
+            "z": 6.4184005810922,
+            "px": 786,
+            "py": 695
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": 5.264621702856629,
+            "z": 6.193140879534669,
+            "px": 1284,
+            "py": 796
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "x": -2.2,
+            "z": 5.6,
+            "px": 477,
+            "py": 574
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "x": -1.6,
+            "z": 0.4,
+            "px": 684,
+            "py": 387
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "x": 0.21820454304969472,
+            "z": -1.784995565010774,
+            "px": 863,
+            "py": 347
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "x": -6.763208924035757,
+            "z": -0.807414479832248,
+            "px": 365,
+            "py": 296
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "x": 6,
+            "z": 2.8,
+            "px": 1361,
+            "py": 609
+          }
+        ],
+        "objects": [],
+        "drawCalls": 17,
+        "triangles": 16505,
+        "geometries": 20,
+        "textures": 7,
+        "location": "park",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "wide",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 243,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 430,
+            "y": 941,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 1156,
+            "y": 474,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 806,
+            "y": 553,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 1343,
+            "y": 647,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "text": "Local 3",
+            "name": "Local 3",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 476,
+            "y": 442,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "text": "Local 4",
+            "name": "Local 4",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 693,
+            "y": 274,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "text": "Local 5",
+            "name": "Local 5",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 879,
+            "y": 238,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "text": "Local 6",
+            "name": "Local 6",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 360,
+            "y": 194,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "text": "Local 7",
+            "name": "Local 7",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 1415,
+            "y": 474,
+            "visible": false
+          },
+          {
+            "id": "table:park-bench",
+            "kind": "table",
+            "text": "Whot · Bench under the trees",
+            "name": "Whot · Bench under the trees",
+            "x": 1871,
+            "y": 630,
+            "visible": false
+          },
+          {
+            "id": "table:park-ayo",
+            "kind": "table",
+            "text": "Ayo · Ayo board under the trees",
+            "name": "Ayo · Ayo board under the trees",
+            "x": 85,
+            "y": 275,
+            "visible": true
+          },
+          {
+            "id": "table:park-goal",
+            "kind": "table",
+            "text": "Penalties · Kickabout corner",
+            "name": "Penalties · Kickabout corner",
+            "x": 293,
+            "y": 92,
+            "visible": true
+          },
+          {
+            "id": "table:park-chess",
+            "kind": "table",
+            "text": "Chess · Chess under the trees",
+            "name": "Chess · Chess under the trees",
+            "x": 1123,
+            "y": 202,
+            "visible": false
+          }
+        ]
+      },
+      "modules": [],
+      "statuses": [],
+      "sceneInventory": {
+        "meshes": 16,
+        "triangles": 21906,
+        "drawCalls": 25,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          },
+          {
+            "type": "PointLight",
+            "intensity": 2.6
+          },
+          {
+            "type": "PointLight",
+            "intensity": 2.2
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:park",
+            "triangles": 7106
+          },
+          {
+            "name": "glow",
+            "parent": "venue:park",
+            "triangles": 72
+          },
+          {
+            "name": "glass",
+            "parent": "venue:park",
+            "triangles": 24
+          },
+          {
+            "name": "sky",
+            "parent": "venue:park",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:park",
+            "triangles": 48
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 465
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 501
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 543
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 497
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 547
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 541
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:park",
+            "triangles": 1076
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:park",
+            "triangles": 40
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 20,
+        "textures": 7
+      },
+      "render": {
+        "frame": 21,
+        "calls": 17,
+        "triangles": 16505,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "lagos-reentry-0",
+      "at": 19660.200000000186,
+      "heroHeld": 1,
+      "ambientPeople": [
+        {
+          "id": "npc:acceptance0",
+          "role": "stander",
+          "x": -3.529795656630451,
+          "z": 1.3357059051776172,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance1",
+          "role": "stander",
+          "x": -1.246434684732353,
+          "z": 1.1039944542551359,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance2",
+          "role": "stander",
+          "x": -5.788493826507523,
+          "z": 3.0624969503183395,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance3",
+          "role": "stander",
+          "x": 1.8550845274432992,
+          "z": 1.5501183011033786,
+          "sitting": false
+        }
+      ],
+      "ambientFrames": 0,
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 25,
+        "loop": {
+          "running": true,
+          "frames": 8
+        },
+        "avatar": {
+          "x": -2.8,
+          "z": 2.8,
+          "y": 0.26,
+          "facing": 3.142,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 43,
+        "camera": {
+          "yaw": 0.258,
+          "pitch": 0.519,
+          "zoom": 1.237,
+          "distance": 16,
+          "asked": 16,
+          "whole": 63.12,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 2.16,
+          "y": 9.61,
+          "z": 20.56,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.227,
+              3.194
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "stalls",
+            "x": -11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": -12,
+            "py": 480,
+            "selected": false
+          },
+          {
+            "id": "food",
+            "x": -5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 316,
+            "py": 517,
+            "selected": false
+          },
+          {
+            "id": "spice",
+            "x": 0,
+            "z": 1.5400000000000003,
+            "px": 684,
+            "py": 559,
+            "selected": false
+          },
+          {
+            "id": "wholesale",
+            "x": 5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 1097,
+            "py": 605,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": 1566,
+            "py": 658,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": -2.8000000000000003,
+            "z": 2.8000000000000003,
+            "px": 472,
+            "py": 575,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -3.529795656630451,
+            "z": 1.3357059051776172,
+            "px": 450,
+            "py": 449
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": -1.246434684732353,
+            "z": 1.1039944542551359,
+            "px": 607,
+            "py": 458
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": -5.788493826507523,
+            "z": 3.0624969503183395,
+            "px": 260,
+            "py": 478
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "x": 1.8550845274432992,
+            "z": 1.5501183011033786,
+            "px": 825,
+            "py": 492
+          }
+        ],
+        "objects": [],
+        "drawCalls": 18,
+        "triangles": 12024,
+        "geometries": 18,
+        "textures": 8,
+        "location": "market",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "wide",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 167,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 474,
+            "y": 406,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 449,
+            "y": 341,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 612,
+            "y": 349,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 250,
+            "y": 367,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "text": "Local 3",
+            "name": "Local 3",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 839,
+            "y": 379,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "runtime:lagos-broad-street-01:near",
+          "scale": [
+            1.4000000000000001,
+            1.4000000000000001,
+            1.4000000000000001
+          ],
+          "bounds": [
+            -13.72000026702881,
+            -0.0070000037550926215,
+            -12.809999465942385,
+            13.720001602172854,
+            32.0809986114502,
+            4.404627180099488
+          ]
+        }
+      ],
+      "statuses": [
+        {
+          "runtimeStatus": "ready",
+          "runtimeTier": "near"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 16,
+        "triangles": 16882,
+        "drawCalls": 27,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:market",
+            "triangles": 168
+          },
+          {
+            "name": "sky",
+            "parent": "venue:market",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:market",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:market",
+            "triangles": 40
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 465
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 501
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 543
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 497
+          },
+          {
+            "name": "Sidewalk_concrete_slab065",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 1822
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_1",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 1824
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_2",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_3",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_4",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        }
+      ],
+      "gpu": {
+        "geometries": 18,
+        "textures": 8
+      },
+      "render": {
+        "frame": 25,
+        "calls": 18,
+        "triangles": 12024,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "lagos-exit-1",
+      "at": 24494,
+      "heroHeld": 1,
+      "ambientPeople": [
+        {
+          "id": "npc:acceptance0",
+          "role": "stander",
+          "x": 3.8102137096122624,
+          "z": 3.7501159258920627,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance1",
+          "role": "stander",
+          "x": 1.1882699293804864,
+          "z": 6.4184005810922,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance2",
+          "role": "stander",
+          "x": 5.264621702856629,
+          "z": 6.193140879534669,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance3",
+          "role": "stander",
+          "x": -2.2,
+          "z": 5.6,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance4",
+          "role": "stander",
+          "x": -1.6,
+          "z": 0.4,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance5",
+          "role": "stander",
+          "x": 0.21820454304969472,
+          "z": -1.784995565010774,
+          "sitting": false
+        }
+      ],
+      "ambientFrames": 0,
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 35,
+        "loop": {
+          "running": true,
+          "frames": 15
+        },
+        "avatar": {
+          "x": 0,
+          "z": 11.4,
+          "y": 0,
+          "facing": 3.142,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": null
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 86,
+        "camera": {
+          "yaw": 0.405,
+          "pitch": 0.602,
+          "zoom": 1.009,
+          "distance": 16.34,
+          "asked": 16.34,
+          "whole": 50.83,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 2.7,
+          "y": 11.05,
+          "z": 15.78,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.235,
+              2.661
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "amphitheatre",
+            "x": -4,
+            "z": -4.9,
+            "px": 612,
+            "py": 456,
+            "selected": false
+          },
+          {
+            "id": "art",
+            "x": 9,
+            "z": -5,
+            "px": 1522,
+            "py": 625,
+            "selected": false
+          },
+          {
+            "id": "trees",
+            "x": 8.8,
+            "z": 7.6,
+            "px": 1734,
+            "py": 1517,
+            "selected": false
+          },
+          {
+            "id": "drinks",
+            "x": -8.4,
+            "z": 6.6,
+            "px": -87,
+            "py": 808,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": 2.6,
+            "z": 5.2,
+            "px": 910,
+            "py": 1014,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": -3.4,
+            "z": 8.7,
+            "px": 185,
+            "py": 1085,
+            "selected": false
+          }
+        ],
+        "things": [
+          {
+            "id": "table:park-bench",
+            "kind": "table",
+            "label": "Whot · Bench under the trees",
+            "x": 9.7,
+            "z": 2.9,
+            "px": 1764,
+            "py": 1015,
+            "at": false
+          },
+          {
+            "id": "table:park-ayo",
+            "kind": "table",
+            "label": "Ayo · Ayo board under the trees",
+            "x": -9.6,
+            "z": 1.8,
+            "px": 72,
+            "py": 537,
+            "at": false
+          },
+          {
+            "id": "table:park-goal",
+            "kind": "table",
+            "label": "Penalties · Kickabout corner",
+            "x": -11.9,
+            "z": -7.9,
+            "px": 279,
+            "py": 283,
+            "at": false
+          },
+          {
+            "id": "table:park-chess",
+            "kind": "table",
+            "label": "Chess · Chess under the trees",
+            "x": 3,
+            "z": -7,
+            "px": 1082,
+            "py": 437,
+            "at": false
+          }
+        ],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": 3.8102137096122624,
+            "z": 3.7501159258920627,
+            "px": 1087,
+            "py": 848
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": 1.1882699293804864,
+            "z": 6.4184005810922,
+            "px": 750,
+            "py": 956
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": 5.264621702856629,
+            "z": 6.193140879534669,
+            "px": 1250,
+            "py": 1084
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "x": -2.2,
+            "z": 5.6,
+            "px": 441,
+            "py": 803
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "x": -1.6,
+            "z": 0.4,
+            "px": 658,
+            "py": 568
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "x": 0.21820454304969472,
+            "z": -1.784995565010774,
+            "px": 839,
+            "py": 518
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "x": -6.763208924035757,
+            "z": -0.807414479832248,
+            "px": 340,
+            "py": 454
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "x": 6,
+            "z": 2.8,
+            "px": 1333,
+            "py": 847
+          }
+        ],
+        "objects": [],
+        "drawCalls": 17,
+        "triangles": 16505,
+        "geometries": 17,
+        "textures": 6,
+        "location": "park",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "wide",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 196,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 373,
+            "y": 1321,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 1124,
+            "y": 726,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 768,
+            "y": 830,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 1308,
+            "y": 954,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "text": "Local 3",
+            "name": "Local 3",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 438,
+            "y": 683,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "text": "Local 4",
+            "name": "Local 4",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 666,
+            "y": 463,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "text": "Local 5",
+            "name": "Local 5",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 855,
+            "y": 416,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "text": "Local 6",
+            "name": "Local 6",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 333,
+            "y": 358,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "text": "Local 7",
+            "name": "Local 7",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 1386,
+            "y": 726,
+            "visible": false
+          },
+          {
+            "id": "table:park-bench",
+            "kind": "table",
+            "text": "Whot · Bench under the trees",
+            "name": "Whot · Bench under the trees",
+            "x": 1845,
+            "y": 902,
+            "visible": false
+          },
+          {
+            "id": "table:park-ayo",
+            "kind": "table",
+            "text": "Ayo · Ayo board under the trees",
+            "name": "Ayo · Ayo board under the trees",
+            "x": 55,
+            "y": 446,
+            "visible": true
+          },
+          {
+            "id": "table:park-goal",
+            "kind": "table",
+            "text": "Penalties · Kickabout corner",
+            "name": "Penalties · Kickabout corner",
+            "x": 273,
+            "y": 211,
+            "visible": true
+          },
+          {
+            "id": "table:park-chess",
+            "kind": "table",
+            "text": "Chess · Chess under the trees",
+            "name": "Chess · Chess under the trees",
+            "x": 1104,
+            "y": 352,
+            "visible": false
+          }
+        ]
+      },
+      "modules": [],
+      "statuses": [],
+      "sceneInventory": {
+        "meshes": 16,
+        "triangles": 21906,
+        "drawCalls": 25,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          },
+          {
+            "type": "PointLight",
+            "intensity": 2.6
+          },
+          {
+            "type": "PointLight",
+            "intensity": 2.2
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:park",
+            "triangles": 7106
+          },
+          {
+            "name": "glow",
+            "parent": "venue:park",
+            "triangles": 72
+          },
+          {
+            "name": "glass",
+            "parent": "venue:park",
+            "triangles": 24
+          },
+          {
+            "name": "sky",
+            "parent": "venue:park",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:park",
+            "triangles": 48
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 465
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 501
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 543
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 497
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 547
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 541
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:park",
+            "triangles": 1076
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:park",
+            "triangles": 40
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 17,
+        "textures": 6
+      },
+      "render": {
+        "frame": 35,
+        "calls": 17,
+        "triangles": 16505,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "lagos-reentry-1",
+      "at": 29053.200000000186,
+      "heroHeld": 1,
+      "ambientPeople": [
+        {
+          "id": "npc:acceptance0",
+          "role": "stander",
+          "x": -3.529795656630451,
+          "z": 1.3357059051776172,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance1",
+          "role": "stander",
+          "x": -1.246434684732353,
+          "z": 1.1039944542551359,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance2",
+          "role": "stander",
+          "x": -5.788493826507523,
+          "z": 3.0624969503183395,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance3",
+          "role": "stander",
+          "x": 1.8550845274432992,
+          "z": 1.5501183011033786,
+          "sitting": false
+        }
+      ],
+      "ambientFrames": 1,
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 40,
+        "loop": {
+          "running": true,
+          "frames": 16
+        },
+        "avatar": {
+          "x": -2.8,
+          "z": 2.8,
+          "y": 0.26,
+          "facing": 3.142,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 39,
+        "camera": {
+          "yaw": 0.258,
+          "pitch": 0.519,
+          "zoom": 1.009,
+          "distance": 19.61,
+          "asked": 19.61,
+          "whole": 63.12,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 1.74,
+          "y": 11.52,
+          "z": 19.86,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.227,
+              3.194
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "stalls",
+            "x": -11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": 7,
+            "py": 608,
+            "selected": false
+          },
+          {
+            "id": "food",
+            "x": -5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 333,
+            "py": 652,
+            "selected": false
+          },
+          {
+            "id": "spice",
+            "x": 0,
+            "z": 1.5400000000000003,
+            "px": 697,
+            "py": 701,
+            "selected": false
+          },
+          {
+            "id": "wholesale",
+            "x": 5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 1106,
+            "py": 755,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": 1568,
+            "py": 817,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": -2.8000000000000003,
+            "z": 2.8000000000000003,
+            "px": 488,
+            "py": 719,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -3.529795656630451,
+            "z": 1.3357059051776172,
+            "px": 466,
+            "py": 590
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": -1.246434684732353,
+            "z": 1.1039944542551359,
+            "px": 621,
+            "py": 601
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": -5.788493826507523,
+            "z": 3.0624969503183395,
+            "px": 278,
+            "py": 625
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "x": 1.8550845274432992,
+            "z": 1.5501183011033786,
+            "px": 837,
+            "py": 642
+          }
+        ],
+        "objects": [],
+        "drawCalls": 18,
+        "triangles": 12024,
+        "geometries": 18,
+        "textures": 10,
+        "location": "market",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "wide",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 156,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 490,
+            "y": 562,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 465,
+            "y": 489,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 626,
+            "y": 499,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 270,
+            "y": 521,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "text": "Local 3",
+            "name": "Local 3",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 851,
+            "y": 537,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "runtime:lagos-broad-street-01:near",
+          "scale": [
+            1.4000000000000001,
+            1.4000000000000001,
+            1.4000000000000001
+          ],
+          "bounds": [
+            -13.72000026702881,
+            -0.0070000037550926215,
+            -12.809999465942385,
+            13.720001602172854,
+            32.0809986114502,
+            4.404627180099488
+          ]
+        }
+      ],
+      "statuses": [
+        {
+          "runtimeStatus": "ready",
+          "runtimeTier": "near"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 16,
+        "triangles": 16882,
+        "drawCalls": 27,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:market",
+            "triangles": 168
+          },
+          {
+            "name": "sky",
+            "parent": "venue:market",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:market",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:market",
+            "triangles": 40
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 465
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 501
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 543
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 497
+          },
+          {
+            "name": "Sidewalk_concrete_slab065",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 1822
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_1",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 1824
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_2",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_3",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_4",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        }
+      ],
+      "gpu": {
+        "geometries": 18,
+        "textures": 10
+      },
+      "render": {
+        "frame": 40,
+        "calls": 18,
+        "triangles": 12024,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "lagos-exit-2",
+      "at": 34286.60000000009,
+      "heroHeld": 1,
+      "ambientPeople": [
+        {
+          "id": "npc:acceptance0",
+          "role": "stander",
+          "x": 3.8102137096122624,
+          "z": 3.7501159258920627,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance1",
+          "role": "stander",
+          "x": 1.1882699293804864,
+          "z": 6.4184005810922,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance2",
+          "role": "stander",
+          "x": 5.264621702856629,
+          "z": 6.193140879534669,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance3",
+          "role": "stander",
+          "x": -2.2,
+          "z": 5.6,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance4",
+          "role": "stander",
+          "x": -1.6,
+          "z": 0.4,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance5",
+          "role": "stander",
+          "x": 0.21820454304969472,
+          "z": -1.784995565010774,
+          "sitting": false
+        }
+      ],
+      "ambientFrames": 0,
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 50,
+        "loop": {
+          "running": true,
+          "frames": 23
+        },
+        "avatar": {
+          "x": 0,
+          "z": 11.4,
+          "y": 0,
+          "facing": 3.142,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": null
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 86,
+        "camera": {
+          "yaw": 0.405,
+          "pitch": 0.602,
+          "zoom": 1,
+          "distance": 16.5,
+          "asked": 16.5,
+          "whole": 50.83,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 2.58,
+          "y": 11.16,
+          "z": 15.36,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.235,
+              2.661
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "amphitheatre",
+            "x": -4,
+            "z": -4.9,
+            "px": 610,
+            "py": 474,
+            "selected": false
+          },
+          {
+            "id": "art",
+            "x": 9,
+            "z": -5,
+            "px": 1533,
+            "py": 649,
+            "selected": false
+          },
+          {
+            "id": "trees",
+            "x": 8.8,
+            "z": 7.6,
+            "px": 1763,
+            "py": 1590,
+            "selected": false
+          },
+          {
+            "id": "drinks",
+            "x": -8.4,
+            "z": 6.6,
+            "px": -101,
+            "py": 841,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": 2.6,
+            "z": 5.2,
+            "px": 914,
+            "py": 1056,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": -3.4,
+            "z": 8.7,
+            "px": 173,
+            "py": 1131,
+            "selected": false
+          }
+        ],
+        "things": [
+          {
+            "id": "table:park-bench",
+            "kind": "table",
+            "label": "Whot · Bench under the trees",
+            "x": 9.7,
+            "z": 2.9,
+            "px": 1787,
+            "py": 1060,
+            "at": false
+          },
+          {
+            "id": "table:park-ayo",
+            "kind": "table",
+            "label": "Ayo · Ayo board under the trees",
+            "x": -9.6,
+            "z": 1.8,
+            "px": 63,
+            "py": 559,
+            "at": false
+          },
+          {
+            "id": "table:park-goal",
+            "kind": "table",
+            "label": "Penalties · Kickabout corner",
+            "x": -11.9,
+            "z": -7.9,
+            "px": 275,
+            "py": 296,
+            "at": false
+          },
+          {
+            "id": "table:park-chess",
+            "kind": "table",
+            "label": "Chess · Chess under the trees",
+            "x": 3,
+            "z": -7,
+            "px": 1087,
+            "py": 455,
+            "at": false
+          }
+        ],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": 3.8102137096122624,
+            "z": 3.7501159258920627,
+            "px": 1094,
+            "py": 887
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": 1.1882699293804864,
+            "z": 6.4184005810922,
+            "px": 750,
+            "py": 1001
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": 5.264621702856629,
+            "z": 6.193140879534669,
+            "px": 1263,
+            "py": 1137
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "x": -2.2,
+            "z": 5.6,
+            "px": 435,
+            "py": 840
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "x": -1.6,
+            "z": 0.4,
+            "px": 656,
+            "py": 593
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "x": 0.21820454304969472,
+            "z": -1.784995565010774,
+            "px": 840,
+            "py": 541
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "x": -6.763208924035757,
+            "z": -0.807414479832248,
+            "px": 334,
+            "py": 475
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "x": 6,
+            "z": 2.8,
+            "px": 1346,
+            "py": 886
+          }
+        ],
+        "objects": [],
+        "drawCalls": 17,
+        "triangles": 16505,
+        "geometries": 17,
+        "textures": 7,
+        "location": "park",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "wide",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 192,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 360,
+            "y": 1399,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 1133,
+            "y": 765,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 768,
+            "y": 875,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 1323,
+            "y": 1008,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "text": "Local 3",
+            "name": "Local 3",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 432,
+            "y": 720,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "text": "Local 4",
+            "name": "Local 4",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 664,
+            "y": 488,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "text": "Local 5",
+            "name": "Local 5",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 856,
+            "y": 439,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "text": "Local 6",
+            "name": "Local 6",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 327,
+            "y": 378,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "text": "Local 7",
+            "name": "Local 7",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 1401,
+            "y": 764,
+            "visible": false
+          },
+          {
+            "id": "table:park-bench",
+            "kind": "table",
+            "text": "Whot · Bench under the trees",
+            "name": "Whot · Bench under the trees",
+            "x": 1872,
+            "y": 948,
+            "visible": false
+          },
+          {
+            "id": "table:park-ayo",
+            "kind": "table",
+            "text": "Ayo · Ayo board under the trees",
+            "name": "Ayo · Ayo board under the trees",
+            "x": 45,
+            "y": 468,
+            "visible": true
+          },
+          {
+            "id": "table:park-goal",
+            "kind": "table",
+            "text": "Penalties · Kickabout corner",
+            "name": "Penalties · Kickabout corner",
+            "x": 268,
+            "y": 224,
+            "visible": true
+          },
+          {
+            "id": "table:park-chess",
+            "kind": "table",
+            "text": "Chess · Chess under the trees",
+            "name": "Chess · Chess under the trees",
+            "x": 1108,
+            "y": 371,
+            "visible": false
+          }
+        ]
+      },
+      "modules": [],
+      "statuses": [],
+      "sceneInventory": {
+        "meshes": 16,
+        "triangles": 21906,
+        "drawCalls": 25,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          },
+          {
+            "type": "PointLight",
+            "intensity": 2.6
+          },
+          {
+            "type": "PointLight",
+            "intensity": 2.2
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:park",
+            "triangles": 7106
+          },
+          {
+            "name": "glow",
+            "parent": "venue:park",
+            "triangles": 72
+          },
+          {
+            "name": "glass",
+            "parent": "venue:park",
+            "triangles": 24
+          },
+          {
+            "name": "sky",
+            "parent": "venue:park",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:park",
+            "triangles": 48
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 465
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 501
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 543
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 497
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 547
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 541
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:park",
+            "triangles": 1076
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:park",
+            "triangles": 40
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 17,
+        "textures": 7
+      },
+      "render": {
+        "frame": 50,
+        "calls": 17,
+        "triangles": 16505,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "lagos-reentry-2",
+      "at": 39264.30000000005,
+      "heroHeld": 1,
+      "ambientPeople": [
+        {
+          "id": "npc:acceptance0",
+          "role": "stander",
+          "x": -3.529795656630451,
+          "z": 1.3357059051776172,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance1",
+          "role": "stander",
+          "x": -1.246434684732353,
+          "z": 1.1039944542551359,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance2",
+          "role": "stander",
+          "x": -5.788493826507523,
+          "z": 3.0624969503183395,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance3",
+          "role": "stander",
+          "x": 1.8550845274432992,
+          "z": 1.5501183011033786,
+          "sitting": false
+        }
+      ],
+      "ambientFrames": 1,
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 55,
+        "loop": {
+          "running": true,
+          "frames": 24
+        },
+        "avatar": {
+          "x": -2.8,
+          "z": 2.8,
+          "y": 0.26,
+          "facing": 3.142,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": "people"
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 39,
+        "camera": {
+          "yaw": 0.258,
+          "pitch": 0.519,
+          "zoom": 1,
+          "distance": 19.8,
+          "asked": 19.8,
+          "whole": 63.12,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 1.61,
+          "y": 11.63,
+          "z": 19.49,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.227,
+              3.194
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "stalls",
+            "x": -11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": 3,
+            "py": 626,
+            "selected": false
+          },
+          {
+            "id": "food",
+            "x": -5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 333,
+            "py": 671,
+            "selected": false
+          },
+          {
+            "id": "spice",
+            "x": 0,
+            "z": 1.5400000000000003,
+            "px": 702,
+            "py": 722,
+            "selected": false
+          },
+          {
+            "id": "wholesale",
+            "x": 5.6000000000000005,
+            "z": 1.5400000000000003,
+            "px": 1117,
+            "py": 779,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": 11.200000000000001,
+            "z": 1.5400000000000003,
+            "px": 1588,
+            "py": 843,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": -2.8000000000000003,
+            "z": 2.8000000000000003,
+            "px": 490,
+            "py": 741,
+            "selected": false
+          }
+        ],
+        "things": [],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": -3.529795656630451,
+            "z": 1.3357059051776172,
+            "px": 467,
+            "py": 609
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": -1.246434684732353,
+            "z": 1.1039944542551359,
+            "px": 625,
+            "py": 621
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": -5.788493826507523,
+            "z": 3.0624969503183395,
+            "px": 278,
+            "py": 646
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "x": 1.8550845274432992,
+            "z": 1.5501183011033786,
+            "px": 844,
+            "py": 663
+          }
+        ],
+        "objects": [],
+        "drawCalls": 18,
+        "triangles": 12024,
+        "geometries": 18,
+        "textures": 11,
+        "location": "market",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "wide",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 157,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 493,
+            "y": 582,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 467,
+            "y": 508,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 631,
+            "y": 518,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 269,
+            "y": 541,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "text": "Local 3",
+            "name": "Local 3",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 859,
+            "y": 557,
+            "visible": true
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "runtime:lagos-broad-street-01:near",
+          "scale": [
+            1.4000000000000001,
+            1.4000000000000001,
+            1.4000000000000001
+          ],
+          "bounds": [
+            -13.72000026702881,
+            -0.0070000037550926215,
+            -12.809999465942385,
+            13.720001602172854,
+            32.0809986114502,
+            4.404627180099488
+          ]
+        }
+      ],
+      "statuses": [
+        {
+          "runtimeStatus": "ready",
+          "runtimeTier": "near"
+        }
+      ],
+      "sceneInventory": {
+        "meshes": 16,
+        "triangles": 16882,
+        "drawCalls": 27,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:market",
+            "triangles": 168
+          },
+          {
+            "name": "sky",
+            "parent": "venue:market",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:market",
+            "triangles": 48
+          },
+          {
+            "name": "mark-near",
+            "parent": "venue:market",
+            "triangles": 40
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 465
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 501
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 543
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 497
+          },
+          {
+            "name": "Sidewalk_concrete_slab065",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 1822
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_1",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 1824
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_2",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_3",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          },
+          {
+            "name": "Sidewalk_concrete_slab065_4",
+            "parent": "Lagos_BroadStreet_v2_near",
+            "triangles": 176
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "colorSpace": ""
+        }
+      ],
+      "gpu": {
+        "geometries": 18,
+        "textures": 11
+      },
+      "render": {
+        "frame": 55,
+        "calls": 18,
+        "triangles": 12024,
+        "points": 0,
+        "lines": 0
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "lagos-reentry-0",
+      "sha256": "895ba24644f2a06e3b72a0ab5514ef64f1f9a7a463fcf2523eb6f2044d796260"
+    },
+    {
+      "name": "lagos-reentry-1",
+      "sha256": "f5e3f7723f1584c9d15715980adaefc09d4fdd5256235756219da096554a9f05"
+    },
+    {
+      "name": "lagos-reentry-2",
+      "sha256": "7e1b7ebfa208a6ed88e83088de4be1d6b4934a3be4f51ed39abf28de5c9cc186"
+    }
+  ],
+  "sourceHashes": {
+    "src/venue-world.ts": "19c557b4bb4fa2836f25e56a91beaed993f72ad439af95708c82d50c8c934199",
+    "src/scene/venue-scenes.ts": "9727aac4cf1bc59c14d9d20872284c93ceed72e65786759297440928618730e1",
+    "src/scene/nigeria-runtime-scenes.ts": "e17d8e66946fd4dc01c51855985233e2fcb6b1baa2fd7a40378d41b3777bb3d0",
+    "src/scene/models/runtime-module.ts": "35b52b0d735d716232a329d0ac0da9e3ce9d1576afab94083688d4272431631d",
+    "src/scene/models/runtime-host.ts": "033e4c24bcae21094adf2865bc898c9cdb30d00f9765280cdae0d52220a06a80",
+    "src/scene/types.ts": "d0f4f8a144536c2a0f6eff129d1e7d444efd426d181578f1038e5c922d5b6443",
+    "src/scene/models/nigeria-navigation.ts": "72f79de5491f730510c624a11151d23ee8d0896ef7f57ab5b9b1d1a43e55077e",
+    "src/scene/city-scenes.ts": "57d480bf17093ac85ec9ea714b95cc03f634548e3f56bd5cff5301eb4b697d48",
+    "src/scene/ambient/layer.ts": "e2e84193a357bce67bba16fa785f886f39b978d59c13342ed0c7cc8b8a0bcf0a",
+    "scripts/nigeria-runtime-host-check.ts": "5bdd0846e5ed99d5f8c29e269ea20c6b482bf03d29771cb8410d8f3285453928",
+    "public/assets/nigeria-runtime/revisions/lagos-broad-street-02/lagos_broadstreet_v2_lod0.glb": "60d833c9593ce0ad41bd179561c9631d847901ea5addebbe8db0a7325febd4ed",
+    "public/assets/nigeria-runtime/batch-001/lagos-broad-street-01/lagos_broadstreet_lod1.glb": "197b7e5d4b85173ea533ada8afb3a0da6db6bbd309e9805427520195b147e0bd",
+    "public/assets/nigeria-runtime/batch-001/abuja-mosque-boulevard-01/near.glb": "93f54d127a5b87414928ff8db90f377bc00d2cb640e26b848a40b9ed13564983",
+    "public/assets/nigeria-runtime/batch-001/abuja-mosque-boulevard-01/far.glb": "14e2cd5faaebd23365858cf765a4f639a68027add83e0b7b732ca9737d70ad5d"
+  },
+  "gpuBeforeDispose": [
+    {
+      "id": 1,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at WebGLTextures.setupRenderTarget (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:12002:44)\n    at WebGLRenderer.setRenderTarget (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17542:15)\n    at WebGLShadowMap.render (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:8556:13)\n    at WebGLRenderer.render (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16446:14)\n    at renderer.render (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:49:3)\n    at renderScene (http://127.0.0.1:5189/src/venue-world.ts?t=1792066110039:1228:14)\n    at resize (http://127.0.0.1:5189/src/venue-world.ts?t=1792066110039:1335:5)\n    at setLocation (http://127.0.0.1:5189/src/venue-world.ts?t=1792066110039:1386:5)\n    at createVenueHost (http://127.0.0.1:5189/src/venue-world.ts?t=1792066110039:1464:3)"
+    },
+    {
+      "id": 2,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.upload (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5546:7)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17376:19)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16866:11)"
+    },
+    {
+      "id": 10,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.setValue (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5524:28)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17293:17)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16866:11)"
+    },
+    {
+      "id": 11,
+      "deleted": false,
+      "owners": [
+        "body-female//map"
+      ],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.upload (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5546:7)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17376:19)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16866:11)",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": 12,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.upload (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5546:7)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17376:19)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:8775:15)"
+    },
+    {
+      "id": 22,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.upload (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5546:7)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17376:19)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:8775:15)"
+    },
+    {
+      "id": 30,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.upload (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5546:7)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17376:19)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:8775:15)"
+    },
+    {
+      "id": 31,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2DArray (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10696:4)\n    at SingleUniform.setValueT2DArray1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5037:11)\n    at WebGLUniforms.setValue (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5524:28)\n    at Object.update (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4309:25)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17320:18)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)"
+    },
+    {
+      "id": 32,
+      "deleted": false,
+      "owners": [
+        "Sidewalk_concrete_slab065/Lagos_baked_PBR/map"
+      ],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.upload (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5546:7)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17376:19)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16866:11)",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": 33,
+      "deleted": false,
+      "owners": [
+        "Sidewalk_concrete_slab065/Lagos_baked_PBR/normalMap"
+      ],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.upload (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5546:7)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17376:19)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16866:11)",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": 34,
+      "deleted": false,
+      "owners": [
+        "Sidewalk_concrete_slab065/Lagos_baked_PBR/roughnessMap",
+        "Sidewalk_concrete_slab065/Lagos_baked_PBR/metalnessMap"
+      ],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.upload (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5546:7)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17376:19)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16866:11)",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "id": 35,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2DArray (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10696:4)\n    at SingleUniform.setValueT2DArray1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5037:11)\n    at WebGLUniforms.setValue (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5524:28)\n    at Object.update (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4309:25)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17320:18)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)"
+    },
+    {
+      "id": 36,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2DArray (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10696:4)\n    at SingleUniform.setValueT2DArray1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5037:11)\n    at WebGLUniforms.setValue (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5524:28)\n    at Object.update (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4309:25)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17320:18)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)"
+    },
+    {
+      "id": 37,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2DArray (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10696:4)\n    at SingleUniform.setValueT2DArray1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5037:11)\n    at WebGLUniforms.setValue (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5524:28)\n    at Object.update (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4309:25)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17320:18)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)"
+    }
+  ],
+  "disposed": {
+    "geometries": 0,
+    "textures": 3
+  },
+  "disposedAfterDelay": {
+    "geometries": 0,
+    "textures": 3
+  },
+  "gpuAfterDispose": [
+    {
+      "id": 12,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.upload (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5546:7)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17376:19)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:8775:15)"
+    },
+    {
+      "id": 22,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.upload (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5546:7)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17376:19)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:8775:15)"
+    },
+    {
+      "id": 30,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.upload (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5546:7)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17376:19)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderer.renderBufferDirect (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792066219385:33:18)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:8775:15)"
+    }
+  ],
+  "shadowAudit": [
+    {
+      "object": "Sidewalk_concrete_slab065_1",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_2",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_3",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_4",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_1",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_2",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_3",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_4",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_1",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_2",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_3",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_4",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_1",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_2",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_3",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_4",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_1",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_2",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_3",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_4",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": false,
+      "allocation": 4
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "actors-solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "actors-solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "6fe4966e-12e2-483c-ac97-2006171d85c2",
+      "disposed": true,
+      "allocation": 12
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_1",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_2",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_3",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_4",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_1",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_2",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_3",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_4",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_1",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_2",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_3",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_4",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_1",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_2",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_3",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "Sidewalk_concrete_slab065_4",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": false,
+      "allocation": 15
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": true,
+      "allocation": 22
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": true,
+      "allocation": 22
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": true,
+      "allocation": 22
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": true,
+      "allocation": 22
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": true,
+      "allocation": 22
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": true,
+      "allocation": 22
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": true,
+      "allocation": 22
+    },
+    {
+      "object": "actors-solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": true,
+      "allocation": 22
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": true,
+      "allocation": 22
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": true,
+      "allocation": 22
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": true,
+      "allocation": 22
+    },
+    {
+      "object": "solid",
+      "material": "MeshDepthMaterial",
+      "materialId": "7bfb0df6-b130-413b-b118-f407c9609c83",
+      "map": null,
+      "uniform": "7ddde6f5-c791-4867-a9e7-f6b0679224e5",
+      "disposed": true,
+      "allocation": 22
+    }
+  ],
+  "disposalAudit": {
+    "renderCallsDuringDispose": 0
+  },
+  "passed": false,
+  "error": "AssertionError [ERR_ASSERTION]: renderer resources disposed\n+ actual - expected\n\n  {\n    geometries: 0,\n+   textures: 3\n-   textures: 0\n  }\n",
+  "consoleErrors": [],
+  "httpErrors": [],
+  "sourceHashesAfter": {
+    "src/venue-world.ts": "19c557b4bb4fa2836f25e56a91beaed993f72ad439af95708c82d50c8c934199",
+    "src/scene/venue-scenes.ts": "9727aac4cf1bc59c14d9d20872284c93ceed72e65786759297440928618730e1",
+    "src/scene/nigeria-runtime-scenes.ts": "e17d8e66946fd4dc01c51855985233e2fcb6b1baa2fd7a40378d41b3777bb3d0",
+    "src/scene/models/runtime-module.ts": "35b52b0d735d716232a329d0ac0da9e3ce9d1576afab94083688d4272431631d",
+    "src/scene/models/runtime-host.ts": "033e4c24bcae21094adf2865bc898c9cdb30d00f9765280cdae0d52220a06a80",
+    "src/scene/types.ts": "d0f4f8a144536c2a0f6eff129d1e7d444efd426d181578f1038e5c922d5b6443",
+    "src/scene/models/nigeria-navigation.ts": "72f79de5491f730510c624a11151d23ee8d0896ef7f57ab5b9b1d1a43e55077e",
+    "src/scene/city-scenes.ts": "57d480bf17093ac85ec9ea714b95cc03f634548e3f56bd5cff5301eb4b697d48",
+    "src/scene/ambient/layer.ts": "e2e84193a357bce67bba16fa785f886f39b978d59c13342ed0c7cc8b8a0bcf0a",
+    "scripts/nigeria-runtime-host-check.ts": "5bdd0846e5ed99d5f8c29e269ea20c6b482bf03d29771cb8410d8f3285453928",
+    "public/assets/nigeria-runtime/revisions/lagos-broad-street-02/lagos_broadstreet_v2_lod0.glb": "60d833c9593ce0ad41bd179561c9631d847901ea5addebbe8db0a7325febd4ed",
+    "public/assets/nigeria-runtime/batch-001/lagos-broad-street-01/lagos_broadstreet_lod1.glb": "197b7e5d4b85173ea533ada8afb3a0da6db6bbd309e9805427520195b147e0bd",
+    "public/assets/nigeria-runtime/batch-001/abuja-mosque-boulevard-01/near.glb": "93f54d127a5b87414928ff8db90f377bc00d2cb640e26b848a40b9ed13564983",
+    "public/assets/nigeria-runtime/batch-001/abuja-mosque-boulevard-01/far.glb": "14e2cd5faaebd23365858cf765a4f639a68027add83e0b7b732ca9737d70ad5d"
+  },
+  "sourceStable": true,
+  "finished": "2026-10-15T12:11:04.548Z"
+}

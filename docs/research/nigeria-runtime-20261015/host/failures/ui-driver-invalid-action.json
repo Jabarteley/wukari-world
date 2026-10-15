@@ -1,0 +1,81 @@
+{
+  "scope": "Actual application UI on supported loopback open-dev mode, relaxed onboarding and accelerated clock1000; travel requested through normal authenticated action API; not production",
+  "started": "2026-10-15T12:26:49.083Z",
+  "entryText": "NPC\nAyo \u00b7 Ayo board under the trees\n+\n\u2212\n1\nonline\n\u00b7 1 here\n\u00b7 1 visits\n\u00b7 You're first here: invite a friend\nSign up\n7:15 am\nInvite\n\u20a650m\n1\nPlay a round of Ayo\nUnder the trees \u00b7 takes 7 seconds\nGoal 1/10 \u00b7 +\u20a6500 +1\n Freedom Park \u00b7 Lagos Island\nAmphitheatre\nArt gallery\nUnder the trees\nDrinks kiosk\nPeople\nCommunity desk\nSquare\nHome\nBuy\nMap\nPhone\nOpen dev mode\n\nSomething new is waiting in More\n\nSomething new is waiting in More \u2192\n\nLumo\nAI guide\n\n1 of 10\n\nWelcome to Allworld\n\nHi, I am Lumo, the world\u2019s guide. Let me show you around. It takes a minute, and you can skip any time.\n\nSkip tour\nNext\n\nStep 1 of 10: Welcome to Allworld. Hi, I am Lumo, the world\u2019s guide. Let me show you around. It takes a minute, and you can skip any time.",
+  "travel": {
+    "status": 400,
+    "body": {
+      "error": "invalid_action"
+    }
+  },
+  "life": {
+    "status": 200,
+    "location": "park"
+  },
+  "text": "+\n\u2212\n3\nonline\n\u00b7 3 here\n\u00b7 1 visits\nSign up\n10:59 am\nInvite\n\u20a650m\n1\nWhile you were away\nYou were gone for 4 hours. Nothing was taken from you.\n\u00d7\nDue tomorrow (Saturday): loan \u20a612,000. You have \u20a650,000,000.\nSee what is new in the city and with your people\n3 missions for today\n\nGoal 1 of 10 \u00b7 Play a round of Ayo\nTap Under the trees to see what you can do.\n\n Freedom Park \u00b7 Lagos Island\nAmphitheatre\nArt gallery\nUnder the trees\nDrinks kiosk\nPeople\nCommunity desk\nSquare\nHome\nBuy\nMap\nPhone\nOpen dev mode\n\nSomething new is waiting in More",
+  "canvas": 2,
+  "runtimeRequests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5189/src/scene/nigeria-runtime-scenes.ts",
+      "body": null,
+      "requestId": "9404.554",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5189/src/scene/nigeria-runtime-scenes.ts",
+      "body": null,
+      "requestId": "9404.1336",
+      "status": 200
+    }
+  ],
+  "screenshotSHA256": "6d95486a216aed21fbfeb5957c978146069298d751d01c92603388bc3c1f23fc",
+  "passed": false,
+  "errors": [
+    "log: Manifest: Line: 1, column: 1, Syntax error. http://127.0.0.1:5189/manifest.webmanifest",
+    "log: Manifest: Line: 1, column: 1, Syntax error. http://127.0.0.1:5189/manifest.webmanifest",
+    "log: Failed to load resource: the server responded with a status of 401 (Unauthorized) http://127.0.0.1:5189/api/session",
+    "log: Failed to load resource: the server responded with a status of 409 (Conflict) http://127.0.0.1:5189/api/street/me",
+    "log: Failed to load resource: the server responded with a status of 400 (Bad Request) http://127.0.0.1:5189/api/action",
+    "log: Manifest: Line: 1, column: 1, Syntax error. http://127.0.0.1:5189/manifest.webmanifest",
+    "log: Manifest: Line: 1, column: 1, Syntax error. http://127.0.0.1:5189/manifest.webmanifest",
+    "log: Failed to load resource: the server responded with a status of 409 (Conflict) http://127.0.0.1:5189/api/street/me"
+  ],
+  "sourceHashes": {
+    "src/venue-world.ts": "6a10260bb3059dd97341b65436990f1cdf8073105bf5b316cb266d1832b6417b",
+    "src/scene/venue-scenes.ts": "9727aac4cf1bc59c14d9d20872284c93ceed72e65786759297440928618730e1",
+    "src/scene/nigeria-runtime-scenes.ts": "3343bde27e6c6b977440e0e94737180d5e52c417fdfa07078c378ca81c55a6bd",
+    "src/scene/models/runtime-module.ts": "fbb72c4ee1d748e5c162a7394ee1a4d14babc8560ebcb65af7d680c35585ca18",
+    "src/scene/models/runtime-host.ts": "033e4c24bcae21094adf2865bc898c9cdb30d00f9765280cdae0d52220a06a80",
+    "src/scene/types.ts": "eb835f95c05e2652045e6db8c47d8129f66166f369ec8d84b30ded000e6189cc",
+    "src/scene/camera-controls.ts": "040040e13977ae62170af58519387c420f5a049c350170234268e84147146b76",
+    "src/scene/models/nigeria-navigation.ts": "72f79de5491f730510c624a11151d23ee8d0896ef7f57ab5b9b1d1a43e55077e",
+    "src/scene/city-scenes.ts": "57d480bf17093ac85ec9ea714b95cc03f634548e3f56bd5cff5301eb4b697d48",
+    "src/scene/ambient/layer.ts": "e2e84193a357bce67bba16fa785f886f39b978d59c13342ed0c7cc8b8a0bcf0a",
+    "scripts/nigeria-runtime-host-check.ts": "e62b9ae5ec6411d5374188eac523e7963087a583d0c73d1a1fa4f086be74a387",
+    "public/assets/nigeria-runtime/revisions/lagos-broad-street-02/lagos_broadstreet_v2_lod0.glb": "60d833c9593ce0ad41bd179561c9631d847901ea5addebbe8db0a7325febd4ed",
+    "public/assets/nigeria-runtime/batch-001/lagos-broad-street-01/lagos_broadstreet_lod1.glb": "197b7e5d4b85173ea533ada8afb3a0da6db6bbd309e9805427520195b147e0bd",
+    "public/assets/nigeria-runtime/batch-001/abuja-mosque-boulevard-01/near.glb": "93f54d127a5b87414928ff8db90f377bc00d2cb640e26b848a40b9ed13564983",
+    "public/assets/nigeria-runtime/batch-001/abuja-mosque-boulevard-01/far.glb": "14e2cd5faaebd23365858cf765a4f639a68027add83e0b7b732ca9737d70ad5d"
+  },
+  "sourceHashesAfter": {
+    "src/venue-world.ts": "6a10260bb3059dd97341b65436990f1cdf8073105bf5b316cb266d1832b6417b",
+    "src/scene/venue-scenes.ts": "9727aac4cf1bc59c14d9d20872284c93ceed72e65786759297440928618730e1",
+    "src/scene/nigeria-runtime-scenes.ts": "3343bde27e6c6b977440e0e94737180d5e52c417fdfa07078c378ca81c55a6bd",
+    "src/scene/models/runtime-module.ts": "fbb72c4ee1d748e5c162a7394ee1a4d14babc8560ebcb65af7d680c35585ca18",
+    "src/scene/models/runtime-host.ts": "033e4c24bcae21094adf2865bc898c9cdb30d00f9765280cdae0d52220a06a80",
+    "src/scene/types.ts": "eb835f95c05e2652045e6db8c47d8129f66166f369ec8d84b30ded000e6189cc",
+    "src/scene/camera-controls.ts": "040040e13977ae62170af58519387c420f5a049c350170234268e84147146b76",
+    "src/scene/models/nigeria-navigation.ts": "72f79de5491f730510c624a11151d23ee8d0896ef7f57ab5b9b1d1a43e55077e",
+    "src/scene/city-scenes.ts": "57d480bf17093ac85ec9ea714b95cc03f634548e3f56bd5cff5301eb4b697d48",
+    "src/scene/ambient/layer.ts": "e2e84193a357bce67bba16fa785f886f39b978d59c13342ed0c7cc8b8a0bcf0a",
+    "scripts/nigeria-runtime-host-check.ts": "e62b9ae5ec6411d5374188eac523e7963087a583d0c73d1a1fa4f086be74a387",
+    "public/assets/nigeria-runtime/revisions/lagos-broad-street-02/lagos_broadstreet_v2_lod0.glb": "60d833c9593ce0ad41bd179561c9631d847901ea5addebbe8db0a7325febd4ed",
+    "public/assets/nigeria-runtime/batch-001/lagos-broad-street-01/lagos_broadstreet_lod1.glb": "197b7e5d4b85173ea533ada8afb3a0da6db6bbd309e9805427520195b147e0bd",
+    "public/assets/nigeria-runtime/batch-001/abuja-mosque-boulevard-01/near.glb": "93f54d127a5b87414928ff8db90f377bc00d2cb640e26b848a40b9ed13564983",
+    "public/assets/nigeria-runtime/batch-001/abuja-mosque-boulevard-01/far.glb": "14e2cd5faaebd23365858cf765a4f639a68027add83e0b7b732ca9737d70ad5d"
+  },
+  "sourceStable": true,
+  "finished": "2026-10-15T12:27:28.474Z"
+}

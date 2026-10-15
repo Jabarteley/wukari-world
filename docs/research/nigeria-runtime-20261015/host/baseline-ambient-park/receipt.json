@@ -1,0 +1,1244 @@
+{
+  "scope": "Actual createVenueHost with production city definitions, player and crowd; development harness, not full application UI or production",
+  "viewport": {
+    "width": 480,
+    "height": 640,
+    "scale": 1,
+    "mobile": false
+  },
+  "crowdInput": 8,
+  "ambientFixture": "production full ambient layer with noon/dry density inputs and delayed canonical female fetch",
+  "started": "2026-10-15T12:00:02.509Z",
+  "head": "9d22df8b9e40d937071f418a63d0c2acb6d01d20",
+  "checks": [
+    {
+      "label": "ordinary-park-before-hero",
+      "at": 14711.299999999814,
+      "heroHeld": 0,
+      "ambientPeople": [
+        {
+          "id": "npc:acceptance0",
+          "role": "stander",
+          "x": 3.8102137096122624,
+          "z": 3.7501159258920627,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance1",
+          "role": "stander",
+          "x": 1.1882699293804864,
+          "z": 6.4184005810922,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance2",
+          "role": "stander",
+          "x": 5.264621702856629,
+          "z": 6.193140879534669,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance3",
+          "role": "stander",
+          "x": -2.2,
+          "z": 5.6,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance4",
+          "role": "stander",
+          "x": -1.6,
+          "z": 0.4,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance5",
+          "role": "stander",
+          "x": 0.21820454304969472,
+          "z": -1.784995565010774,
+          "sitting": false
+        }
+      ],
+      "ambientFrames": 1,
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 8,
+        "loop": {
+          "running": true,
+          "frames": 1
+        },
+        "avatar": {
+          "x": 0,
+          "z": 11.4,
+          "y": 0,
+          "facing": 3.142,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": null
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 90,
+        "camera": {
+          "yaw": 0.405,
+          "pitch": 0.602,
+          "zoom": 1,
+          "distance": 16.5,
+          "asked": 16.5,
+          "whole": 50.83,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 5.36,
+          "y": 10.9,
+          "z": 23.9,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.235,
+              2.661
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "amphitheatre",
+            "x": -4,
+            "z": -4.9,
+            "px": 304,
+            "py": 130,
+            "selected": false
+          },
+          {
+            "id": "art",
+            "x": 9,
+            "z": -5,
+            "px": 635,
+            "py": 177,
+            "selected": false
+          },
+          {
+            "id": "trees",
+            "x": 8.8,
+            "z": 7.6,
+            "px": 637,
+            "py": 369,
+            "selected": false
+          },
+          {
+            "id": "drinks",
+            "x": -8.4,
+            "z": 6.6,
+            "px": 63,
+            "py": 224,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": 2.6,
+            "z": 5.2,
+            "px": 404,
+            "py": 271,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": -3.4,
+            "z": 8.7,
+            "px": 168,
+            "py": 286,
+            "selected": false
+          }
+        ],
+        "things": [
+          {
+            "id": "table:park-bench",
+            "kind": "table",
+            "label": "Whot · Bench under the trees",
+            "x": 9.7,
+            "z": 2.9,
+            "px": 677,
+            "py": 260,
+            "at": false
+          },
+          {
+            "id": "table:park-ayo",
+            "kind": "table",
+            "label": "Ayo · Ayo board under the trees",
+            "x": -9.6,
+            "z": 1.8,
+            "px": 107,
+            "py": 147,
+            "at": false
+          },
+          {
+            "id": "table:park-goal",
+            "kind": "table",
+            "label": "Penalties · Kickabout corner",
+            "x": -11.9,
+            "z": -7.9,
+            "px": 172,
+            "py": 74,
+            "at": false
+          },
+          {
+            "id": "table:park-chess",
+            "kind": "table",
+            "label": "Chess · Chess under the trees",
+            "x": 3,
+            "z": -7,
+            "px": 481,
+            "py": 119,
+            "at": false
+          }
+        ],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": 3.8102137096122624,
+            "z": 3.7501159258920627,
+            "px": 462,
+            "py": 215
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": 1.1882699293804864,
+            "z": 6.4184005810922,
+            "px": 350,
+            "py": 238
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": 5.264621702856629,
+            "z": 6.193140879534669,
+            "px": 504,
+            "py": 264
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "x": -2.2,
+            "z": 5.6,
+            "px": 249,
+            "py": 205
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "x": -1.6,
+            "z": 0.4,
+            "px": 321,
+            "py": 150
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "x": 0.21820454304969472,
+            "z": -1.784995565010774,
+            "px": 387,
+            "py": 136
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "x": -6.763208924035757,
+            "z": -0.807414479832248,
+            "px": 204,
+            "py": 120
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "x": 6,
+            "z": 2.8,
+            "px": 543,
+            "py": 215
+          }
+        ],
+        "objects": [],
+        "drawCalls": 23,
+        "triangles": 14838,
+        "geometries": 22,
+        "textures": 3,
+        "location": "park",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "high",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 87,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 240,
+            "y": 267,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 471,
+            "y": 168,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 355,
+            "y": 189,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 516,
+            "y": 212,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "text": "Local 3",
+            "name": "Local 3",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 249,
+            "y": 159,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "text": "Local 4",
+            "name": "Local 4",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 324,
+            "y": 108,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "text": "Local 5",
+            "name": "Local 5",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 391,
+            "y": 96,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "text": "Local 6",
+            "name": "Local 6",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 203,
+            "y": 81,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "text": "Local 7",
+            "name": "Local 7",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 556,
+            "y": 168,
+            "visible": false
+          },
+          {
+            "id": "table:park-bench",
+            "kind": "table",
+            "text": "Whot · Bench under the trees",
+            "name": "Whot · Bench under the trees",
+            "x": 695,
+            "y": 215,
+            "visible": false
+          },
+          {
+            "id": "table:park-ayo",
+            "kind": "table",
+            "text": "Ayo · Ayo board under the trees",
+            "name": "Ayo · Ayo board under the trees",
+            "x": 103,
+            "y": 111,
+            "visible": true
+          },
+          {
+            "id": "table:park-goal",
+            "kind": "table",
+            "text": "Penalties · Kickabout corner",
+            "name": "Penalties · Kickabout corner",
+            "x": 171,
+            "y": 44,
+            "visible": true
+          },
+          {
+            "id": "table:park-chess",
+            "kind": "table",
+            "text": "Chess · Chess under the trees",
+            "name": "Chess · Chess under the trees",
+            "x": 487,
+            "y": 85,
+            "visible": false
+          }
+        ]
+      },
+      "modules": [],
+      "statuses": [],
+      "sceneInventory": {
+        "meshes": 21,
+        "triangles": 14692,
+        "drawCalls": 36,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          },
+          {
+            "type": "PointLight",
+            "intensity": 2.6
+          },
+          {
+            "type": "PointLight",
+            "intensity": 2.2
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:park",
+            "triangles": 7106
+          },
+          {
+            "name": "glow",
+            "parent": "venue:park",
+            "triangles": 72
+          },
+          {
+            "name": "glass",
+            "parent": "venue:park",
+            "triangles": 24
+          },
+          {
+            "name": "sky",
+            "parent": "venue:park",
+            "triangles": 224
+          },
+          {
+            "name": "solid",
+            "parent": "torso",
+            "triangles": 900
+          },
+          {
+            "name": "solid",
+            "parent": "head",
+            "triangles": 1168
+          },
+          {
+            "name": "glow",
+            "parent": "head",
+            "triangles": 28
+          },
+          {
+            "name": "solid",
+            "parent": "armL",
+            "triangles": 220
+          },
+          {
+            "name": "solid",
+            "parent": "armR",
+            "triangles": 220
+          },
+          {
+            "name": "solid",
+            "parent": "legL",
+            "triangles": 164
+          },
+          {
+            "name": "solid",
+            "parent": "legR",
+            "triangles": 164
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:park",
+            "triangles": 48
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 465
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 501
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 543
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 497
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 547
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 541
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:park",
+            "triangles": 1076
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:park",
+            "triangles": 40
+          }
+        ]
+      },
+      "gpuAllocations": [],
+      "gpu": {
+        "geometries": 22,
+        "textures": 3
+      },
+      "render": {
+        "frame": 8,
+        "calls": 23,
+        "triangles": 14838,
+        "points": 0,
+        "lines": 0
+      }
+    },
+    {
+      "label": "ordinary-park-after-hero",
+      "at": 18806.399999999907,
+      "heroHeld": 1,
+      "ambientPeople": [
+        {
+          "id": "npc:acceptance0",
+          "role": "stander",
+          "x": 3.8102137096122624,
+          "z": 3.7501159258920627,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance1",
+          "role": "stander",
+          "x": 1.1882699293804864,
+          "z": 6.4184005810922,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance2",
+          "role": "stander",
+          "x": 5.264621702856629,
+          "z": 6.193140879534669,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance3",
+          "role": "stander",
+          "x": -2.2,
+          "z": 5.6,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance4",
+          "role": "stander",
+          "x": -1.6,
+          "z": 0.4,
+          "sitting": false
+        },
+        {
+          "id": "npc:acceptance5",
+          "role": "stander",
+          "x": 0.21820454304969472,
+          "z": -1.784995565010774,
+          "sitting": false
+        }
+      ],
+      "ambientFrames": 4,
+      "conditions": {
+        "outage": false,
+        "generator": false,
+        "wet": false,
+        "harmattan": false
+      },
+      "diagnostics": {
+        "renderCount": 12,
+        "loop": {
+          "running": true,
+          "frames": 4
+        },
+        "avatar": {
+          "x": 0,
+          "z": 11.4,
+          "y": 0,
+          "facing": 3.142,
+          "phase": 0,
+          "moving": false,
+          "mode": "idle",
+          "blocked": false,
+          "locked": false,
+          "near": null
+        },
+        "walls": null,
+        "perch": false,
+        "hover": null,
+        "easing": false,
+        "solids": 90,
+        "camera": {
+          "yaw": 0.405,
+          "pitch": 0.602,
+          "zoom": 1,
+          "distance": 16.5,
+          "asked": 16.5,
+          "whole": 50.83,
+          "held": 1,
+          "pan": [
+            0,
+            0
+          ],
+          "holding": 0,
+          "ghost": 0,
+          "x": 5.36,
+          "y": 10.9,
+          "z": 23.9,
+          "limits": {
+            "pitch": [
+              0.1,
+              1.501
+            ],
+            "zoom": [
+              0.235,
+              2.661
+            ],
+            "azimuth": null
+          }
+        },
+        "spots": [
+          {
+            "id": "amphitheatre",
+            "x": -4,
+            "z": -4.9,
+            "px": 304,
+            "py": 130,
+            "selected": false
+          },
+          {
+            "id": "art",
+            "x": 9,
+            "z": -5,
+            "px": 635,
+            "py": 177,
+            "selected": false
+          },
+          {
+            "id": "trees",
+            "x": 8.8,
+            "z": 7.6,
+            "px": 637,
+            "py": 369,
+            "selected": false
+          },
+          {
+            "id": "drinks",
+            "x": -8.4,
+            "z": 6.6,
+            "px": 63,
+            "py": 224,
+            "selected": false
+          },
+          {
+            "id": "people",
+            "x": 2.6,
+            "z": 5.2,
+            "px": 404,
+            "py": 271,
+            "selected": false
+          },
+          {
+            "id": "work",
+            "x": -3.4,
+            "z": 8.7,
+            "px": 168,
+            "py": 286,
+            "selected": false
+          }
+        ],
+        "things": [
+          {
+            "id": "table:park-bench",
+            "kind": "table",
+            "label": "Whot · Bench under the trees",
+            "x": 9.7,
+            "z": 2.9,
+            "px": 677,
+            "py": 260,
+            "at": false
+          },
+          {
+            "id": "table:park-ayo",
+            "kind": "table",
+            "label": "Ayo · Ayo board under the trees",
+            "x": -9.6,
+            "z": 1.8,
+            "px": 107,
+            "py": 147,
+            "at": false
+          },
+          {
+            "id": "table:park-goal",
+            "kind": "table",
+            "label": "Penalties · Kickabout corner",
+            "x": -11.9,
+            "z": -7.9,
+            "px": 172,
+            "py": 74,
+            "at": false
+          },
+          {
+            "id": "table:park-chess",
+            "kind": "table",
+            "label": "Chess · Chess under the trees",
+            "x": 3,
+            "z": -7,
+            "px": 481,
+            "py": 119,
+            "at": false
+          }
+        ],
+        "people": [
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "x": 3.8102137096122624,
+            "z": 3.7501159258920627,
+            "px": 462,
+            "py": 215
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "x": 1.1882699293804864,
+            "z": 6.4184005810922,
+            "px": 350,
+            "py": 238
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "x": 5.264621702856629,
+            "z": 6.193140879534669,
+            "px": 504,
+            "py": 264
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "x": -2.2,
+            "z": 5.6,
+            "px": 249,
+            "py": 205
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "x": -1.6,
+            "z": 0.4,
+            "px": 321,
+            "py": 150
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "x": 0.21820454304969472,
+            "z": -1.784995565010774,
+            "px": 387,
+            "py": 136
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "x": -6.763208924035757,
+            "z": -0.807414479832248,
+            "px": 204,
+            "py": 120
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "x": 6,
+            "z": 2.8,
+            "px": 543,
+            "py": 215
+          }
+        ],
+        "objects": [],
+        "drawCalls": 18,
+        "triangles": 17048,
+        "geometries": 24,
+        "textures": 8,
+        "location": "park",
+        "background": "#e6efe6",
+        "scenes": 1,
+        "crowd": 8,
+        "lighting": {
+          "hemi": 1.6,
+          "sun": 2.9,
+          "sky": "#e4f0ff"
+        },
+        "tier": "high",
+        "matte": false,
+        "pixelRatio": 1,
+        "shadowMap": 2048,
+        "avatarPx": 87,
+        "tags": [
+          {
+            "id": "self",
+            "kind": "self",
+            "text": "Acceptance Player",
+            "name": "Acceptance Player",
+            "marker": "crown",
+            "colour": "#ffd34d",
+            "x": 241,
+            "y": 281,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance0",
+            "kind": "npc",
+            "text": "Local 0",
+            "name": "Local 0",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 471,
+            "y": 168,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance1",
+            "kind": "npc",
+            "text": "Local 1",
+            "name": "Local 1",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 355,
+            "y": 189,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance2",
+            "kind": "npc",
+            "text": "Local 2",
+            "name": "Local 2",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 516,
+            "y": 212,
+            "visible": false
+          },
+          {
+            "id": "npc:acceptance3",
+            "kind": "npc",
+            "text": "Local 3",
+            "name": "Local 3",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 249,
+            "y": 159,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance4",
+            "kind": "npc",
+            "text": "Local 4",
+            "name": "Local 4",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 324,
+            "y": 108,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance5",
+            "kind": "npc",
+            "text": "Local 5",
+            "name": "Local 5",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 391,
+            "y": 96,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance6",
+            "kind": "npc",
+            "text": "Local 6",
+            "name": "Local 6",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 203,
+            "y": 81,
+            "visible": true
+          },
+          {
+            "id": "npc:acceptance7",
+            "kind": "npc",
+            "text": "Local 7",
+            "name": "Local 7",
+            "marker": "dot",
+            "colour": "#58d68a",
+            "x": 556,
+            "y": 168,
+            "visible": false
+          },
+          {
+            "id": "table:park-bench",
+            "kind": "table",
+            "text": "Whot · Bench under the trees",
+            "name": "Whot · Bench under the trees",
+            "x": 695,
+            "y": 215,
+            "visible": false
+          },
+          {
+            "id": "table:park-ayo",
+            "kind": "table",
+            "text": "Ayo · Ayo board under the trees",
+            "name": "Ayo · Ayo board under the trees",
+            "x": 103,
+            "y": 111,
+            "visible": true
+          },
+          {
+            "id": "table:park-goal",
+            "kind": "table",
+            "text": "Penalties · Kickabout corner",
+            "name": "Penalties · Kickabout corner",
+            "x": 171,
+            "y": 44,
+            "visible": true
+          },
+          {
+            "id": "table:park-chess",
+            "kind": "table",
+            "text": "Chess · Chess under the trees",
+            "name": "Chess · Chess under the trees",
+            "x": 487,
+            "y": 85,
+            "visible": false
+          }
+        ]
+      },
+      "modules": [],
+      "statuses": [],
+      "sceneInventory": {
+        "meshes": 16,
+        "triangles": 21906,
+        "drawCalls": 25,
+        "lights": [
+          {
+            "type": "HemisphereLight",
+            "intensity": 1.6
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 2.9
+          },
+          {
+            "type": "DirectionalLight",
+            "intensity": 0.7
+          },
+          {
+            "type": "PointLight",
+            "intensity": 2.6
+          },
+          {
+            "type": "PointLight",
+            "intensity": 2.2
+          }
+        ],
+        "meshCosts": [
+          {
+            "name": "ground",
+            "parent": "",
+            "triangles": 144
+          },
+          {
+            "name": "solid",
+            "parent": "venue:park",
+            "triangles": 7106
+          },
+          {
+            "name": "glow",
+            "parent": "venue:park",
+            "triangles": 72
+          },
+          {
+            "name": "glass",
+            "parent": "venue:park",
+            "triangles": 24
+          },
+          {
+            "name": "sky",
+            "parent": "venue:park",
+            "triangles": 224
+          },
+          {
+            "name": "mark-spot",
+            "parent": "venue:park",
+            "triangles": 48
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 465
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 501
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 543
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 497
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 547
+          },
+          {
+            "name": "solid",
+            "parent": "",
+            "triangles": 541
+          },
+          {
+            "name": "actors-solid",
+            "parent": "venue:park",
+            "triangles": 1076
+          },
+          {
+            "name": "actors-glow",
+            "parent": "venue:park",
+            "triangles": 40
+          },
+          {
+            "name": "body-female",
+            "parent": "body",
+            "triangles": 9002
+          },
+          {
+            "name": "avatar-wardrobe",
+            "parent": "body",
+            "triangles": 1076
+          }
+        ]
+      },
+      "gpuAllocations": [
+        {
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        }
+      ],
+      "gpu": {
+        "geometries": 24,
+        "textures": 8
+      },
+      "render": {
+        "frame": 12,
+        "calls": 18,
+        "triangles": 17048,
+        "points": 0,
+        "lines": 0
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "ordinary-park",
+      "sha256": "22e8e029fce112824931ee383c6a00343dc7bf9de5f20953d6f6b3a8edaad10c"
+    }
+  ],
+  "sourceHashes": {
+    "src/venue-world.ts": "1be0b8c95721f369695794130ee340ea72835a433b9af53c5b1bf1644ef845be",
+    "src/scene/venue-scenes.ts": "a53209d8781c5f2c4050b00c215f06fb086bbbe0860949c1f3ea1f983e534007",
+    "src/scene/nigeria-runtime-scenes.ts": "e17d8e66946fd4dc01c51855985233e2fcb6b1baa2fd7a40378d41b3777bb3d0",
+    "src/scene/models/runtime-module.ts": "35b52b0d735d716232a329d0ac0da9e3ce9d1576afab94083688d4272431631d",
+    "src/scene/models/runtime-host.ts": "6d768d839f6d380bdc31797902984ebfc0a5f0552a01fa82780d8c6fc1f0f125",
+    "src/scene/types.ts": "d0f4f8a144536c2a0f6eff129d1e7d444efd426d181578f1038e5c922d5b6443",
+    "src/scene/models/nigeria-navigation.ts": "72f79de5491f730510c624a11151d23ee8d0896ef7f57ab5b9b1d1a43e55077e",
+    "src/scene/city-scenes.ts": "57d480bf17093ac85ec9ea714b95cc03f634548e3f56bd5cff5301eb4b697d48",
+    "src/scene/ambient/layer.ts": "e2e84193a357bce67bba16fa785f886f39b978d59c13342ed0c7cc8b8a0bcf0a",
+    "scripts/nigeria-runtime-host-check.ts": "43c53a442af7677cfd8602bb4ec65156f7854e3016dcb7b4d99afe494f9f22ed",
+    "public/assets/nigeria-runtime/revisions/lagos-broad-street-02/lagos_broadstreet_v2_lod0.glb": "60d833c9593ce0ad41bd179561c9631d847901ea5addebbe8db0a7325febd4ed",
+    "public/assets/nigeria-runtime/batch-001/lagos-broad-street-01/lagos_broadstreet_lod1.glb": "197b7e5d4b85173ea533ada8afb3a0da6db6bbd309e9805427520195b147e0bd",
+    "public/assets/nigeria-runtime/batch-001/abuja-mosque-boulevard-01/near.glb": "93f54d127a5b87414928ff8db90f377bc00d2cb640e26b848a40b9ed13564983",
+    "public/assets/nigeria-runtime/batch-001/abuja-mosque-boulevard-01/far.glb": "14e2cd5faaebd23365858cf765a4f639a68027add83e0b7b732ca9737d70ad5d"
+  },
+  "gpuBeforeDispose": [
+    {
+      "id": 1,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792065602516:13:92)\n    at WebGLTextures.setupRenderTarget (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:12002:44)\n    at WebGLRenderer.setRenderTarget (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17542:15)\n    at WebGLShadowMap.render (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:8556:13)\n    at WebGLRenderer.render (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16446:14)\n    at renderer.render (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792065602516:29:3)\n    at renderScene (http://127.0.0.1:5189/src/venue-world.ts:1228:14)\n    at resize (http://127.0.0.1:5189/src/venue-world.ts:1335:5)\n    at setLocation (http://127.0.0.1:5189/src/venue-world.ts:1385:5)\n    at createVenueHost (http://127.0.0.1:5189/src/venue-world.ts:1463:3)"
+    },
+    {
+      "id": 2,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792065602516:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.upload (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5546:7)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17376:19)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16866:11)\n    at renderObjects (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16835:6)"
+    },
+    {
+      "id": 3,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792065602516:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2DArray (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10696:4)\n    at SingleUniform.setValueT2DArray1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5037:11)\n    at WebGLUniforms.setValue (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5524:28)\n    at Object.update (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4309:25)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17320:18)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:8775:15)"
+    },
+    {
+      "id": 4,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792065602516:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2DArray (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10696:4)\n    at SingleUniform.setValueT2DArray1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5037:11)\n    at WebGLUniforms.setValue (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5524:28)\n    at Object.update (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4309:25)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17320:18)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:8775:15)"
+    },
+    {
+      "id": 5,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792065602516:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2DArray (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10696:4)\n    at SingleUniform.setValueT2DArray1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5037:11)\n    at WebGLUniforms.setValue (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5524:28)\n    at Object.update (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4309:25)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17320:18)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:8775:15)"
+    },
+    {
+      "id": 6,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792065602516:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2DArray (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10696:4)\n    at SingleUniform.setValueT2DArray1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5037:11)\n    at WebGLUniforms.setValue (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5524:28)\n    at Object.update (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4309:25)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17320:18)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:8775:15)"
+    },
+    {
+      "id": 7,
+      "deleted": false,
+      "owners": [],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792065602516:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.setValue (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5524:28)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17293:17)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16866:11)\n    at renderObjects (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16835:6)"
+    },
+    {
+      "id": 8,
+      "deleted": false,
+      "owners": [
+        "body-female//map"
+      ],
+      "stack": "Error\n    at gl.createTexture (http://127.0.0.1:5189/.nigeria-host-review/harness.ts?t=1792065602516:13:92)\n    at initTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10846:19)\n    at uploadTexture (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:11005:23)\n    at WebGLTextures.setTexture2D (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:10675:5)\n    at SingleUniform.setValueT1 [as setValue] (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:4989:11)\n    at WebGLUniforms.upload (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:5546:7)\n    at setProgram (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:17376:19)\n    at WebGLRenderer.renderBufferDirect (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:15941:20)\n    at renderObject (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16866:11)\n    at renderObjects (http://127.0.0.1:5189/node_modules/three/build/three.module.js?v=d6dd722f:16835:6)",
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "disposed": {
+    "geometries": 0,
+    "textures": 0
+  },
+  "disposedAfterDelay": {
+    "geometries": 0,
+    "textures": 0
+  },
+  "gpuAfterDispose": [],
+  "consoleErrors": [],
+  "httpErrors": [],
+  "passed": true,
+  "sourceHashesAfter": {
+    "src/venue-world.ts": "1be0b8c95721f369695794130ee340ea72835a433b9af53c5b1bf1644ef845be",
+    "src/scene/venue-scenes.ts": "a53209d8781c5f2c4050b00c215f06fb086bbbe0860949c1f3ea1f983e534007",
+    "src/scene/nigeria-runtime-scenes.ts": "e17d8e66946fd4dc01c51855985233e2fcb6b1baa2fd7a40378d41b3777bb3d0",
+    "src/scene/models/runtime-module.ts": "35b52b0d735d716232a329d0ac0da9e3ce9d1576afab94083688d4272431631d",
+    "src/scene/models/runtime-host.ts": "6d768d839f6d380bdc31797902984ebfc0a5f0552a01fa82780d8c6fc1f0f125",
+    "src/scene/types.ts": "d0f4f8a144536c2a0f6eff129d1e7d444efd426d181578f1038e5c922d5b6443",
+    "src/scene/models/nigeria-navigation.ts": "72f79de5491f730510c624a11151d23ee8d0896ef7f57ab5b9b1d1a43e55077e",
+    "src/scene/city-scenes.ts": "57d480bf17093ac85ec9ea714b95cc03f634548e3f56bd5cff5301eb4b697d48",
+    "src/scene/ambient/layer.ts": "e2e84193a357bce67bba16fa785f886f39b978d59c13342ed0c7cc8b8a0bcf0a",
+    "scripts/nigeria-runtime-host-check.ts": "43c53a442af7677cfd8602bb4ec65156f7854e3016dcb7b4d99afe494f9f22ed",
+    "public/assets/nigeria-runtime/revisions/lagos-broad-street-02/lagos_broadstreet_v2_lod0.glb": "60d833c9593ce0ad41bd179561c9631d847901ea5addebbe8db0a7325febd4ed",
+    "public/assets/nigeria-runtime/batch-001/lagos-broad-street-01/lagos_broadstreet_lod1.glb": "197b7e5d4b85173ea533ada8afb3a0da6db6bbd309e9805427520195b147e0bd",
+    "public/assets/nigeria-runtime/batch-001/abuja-mosque-boulevard-01/near.glb": "93f54d127a5b87414928ff8db90f377bc00d2cb640e26b848a40b9ed13564983",
+    "public/assets/nigeria-runtime/batch-001/abuja-mosque-boulevard-01/far.glb": "14e2cd5faaebd23365858cf765a4f639a68027add83e0b7b732ca9737d70ad5d"
+  },
+  "sourceStable": true,
+  "finished": "2026-10-15T12:00:32.299Z"
+}

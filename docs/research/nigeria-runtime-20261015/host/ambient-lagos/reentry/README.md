@@ -1,0 +1,1 @@
+Historical rejected diagnostic before owned shadow materials: three exit/reentries leaked three textures. The receipt directly records disposed textures reused by a shared shadow uniform. This is superseded by the passing full run in the parent `ambient-lagos/` directory; these images and receipt do not certify final source.

@@ -5,8 +5,8 @@
 - Owner: /root; chat 01a13a37-fa90-7140-822a-36e81c1c4794
 - Model / effort: primary integration and browser owner; Luna reference/asset research; Sol bounded housing implementation
 - UTC updated: 2026-10-15T15:46:57.130204+00:00
-- Status: integrating-actual-game
-- Work state: standalone verified; production consumer wiring in progress
+- Status: integrating-and-releasing-by-explicit-user-instruction
+- Work state: actual-game wiring reviewed and locally verified; current deployment takeover pending lock handoff
 
 ## Goal and boundaries
 - Goal: deliver a playable, furnished Lagos house first, then apartment/duplex/Abuja mansion variants with first/third-person exploration, collisions, doors, stairs and indoor/outdoor transitions.
@@ -14,8 +14,8 @@
 - Exclusive ownership: housing-studio.html, src/housing-studio/, scripts/housing/, docs/housing-studio/, this record. No existing home/customization/runtime protocol changes without owner agreement.
 - Input: current main bc113b55; existing home-plan/home-layout/furniture/save contracts and owned allworld-assets revision e810eb46.
 - Output: tested source commit(s), standalone reviewable studio, reference/provenance ledger and exact evidence for integration owner.
-- Dependencies: retention chat 01a13bea owns main/deploy; first-person chat 01a13a42 owns home-scene, venue-world, view-extension, camera/body/ScenePane integration until accepted release checkpoint.
-- Exclusions: no PR, no main push, no deployment, no production data changes, no overwrite of existing housing/customization or first-person drafts.
+- Dependencies: retention chat 01a13bea must hand over the active release lock/data window; housing now owns this authorized integration/deployment. Previously released isolated Home/venue/world-adapter hunks are reviewed. Preserve other runtime ownership.
+- Exclusions: no PR, competing release, production data/SQL changes, or overwrite of existing housing/customization or first-person drafts. Latest direct instruction authorizes serialized main integration and deployment through required gates.
 
 ## Repository state
 - Repo: kromate/joinallworld
@@ -101,3 +101,17 @@
 
 - Final source f8bbaab7d6b7fefdde20d07c062b6bcd98752002 (housing wiring c9947af3c8ee0246e90899503cbcf6d5767481a5) accepted/pinned by Astra. Runtime76/76pass16.837s; scopedstrictTS includesnewhosttests/actualworldadapter exit0,4.361s; fullnpmproductionbuild exit0,62.630s; finaldownloadgate exit0,217.998s. Sharedhost70545/71000gzip; startup220828/223000gzip, no limits changed. Fullserialfive-projectTS incomplete: testprojectonlyexceededlocal3072MB; existingCIuses8192MB andmustqualifyfulltestprogram. Initialexternal /tmp configsetupfailedtype-resolution, correctedscopedconfiginownedrepo-temporarypath thenremoved; no source/baseline change. HeavyreturnedFPowner. Logs /tmp/housing-final-{combined-tests,scoped-typecheck,typecheck,build,size}.log.
 - Owner explicitly released ONE isolated Astra headless project QA session onlylocalhost4441/newsyntheticDATA_DIR/freshprofile/existinglocalOperator. No userChrome/Incognito/CDP/native/production/realsave/main/deploy. EarlierparentCUA-onlybriefsupersededforindependentfallbackonly, governingrulesunchanged. AstraownsPlaywright+cachedheadlessshell and actualUIevidence now; parentownsnonUIreceipt/integration. Headless is local automated WebGL evidence, not physical/native/hosted. Ownerproduction6695Shareislive; housingstillrequiresactualgamejourney, fullhostedCI andowneradoption/release. Next executable step: collectbqbasicentry/doors/FP/Buycheckpoint, fixonlyreproducedhousingissues, expandduplex/stairs+retainedstate, thenbundleevidenceandtestedSHAforownerfinalreview.
+
+## STOP / manual handoff
+
+Coordination owner relayed Anthony's latest instruction to stop automated testing/browser QA/monitoring and let him test manually. Parent immediately stopped all new housing QA through Astra; no jobs restarted, no automation scheduled, no deployment or cleanup. All workers are idle/completed. Preserve headless browser/context/page and both previews. Built4441 resource changed safely from ownedVite10498 to canonical builtserver61052 with same syntheticDATA_DIR/1000xclock; servedproduction/worldadapterJS hashes match finaldist, standardHTMLservertransforms preserved.
+
+Last Astra checkpoint: sameOperator nowduplex13objects; chair f7 intentionallymoved/stored/restoredat originaltile(2,2) asnewcanonicalinstancef14. NormalUIbungalow/duplexupgradescomplete. Realstairascentverified, lastplayer(5.91,3.43,7.02)upperlanding, keyreleased. Builtbq/bungalow/duplexscreenshots and earlierFP/Buyimages saved; consoleerrors[]lastread. GPUtotalbq33draw/9104tris, duplexoverview32draw/10796tris, SwiftShader notphysicalproof. Villa, stairdescent, blockedexit/roomdoorjourney, TV/activity, fullpersistencecompare andbuiltFP remainmanualpending. No confirmedruntimeblocker.
+
+Manual URL http://127.0.0.1:4441/; samefixturelogin /api/account/open-dev/operator ifneeded. Fullhandoff docs/housing-studio/MANUAL-TESTING-HANDOFF.md. Testedsourcef8bbaab7 /housingc994 /latestdocsbf82. NewQAimages/buildreceipt/ownAstrarecordremainuntracked; preserveexactstate, no commitafterstop. Next executable step is Anthony's manualtest, then explicit integration-owner adoption/hostedCI/release decision. Becomeidle; do not pollowners or schedulefollowups.
+
+## Explicit integration and deployment takeover
+
+Latest direct instruction: "integrate it yourself and deploy". This authorizes committing/pushing/integrating the accepted housing source and deploying to joinallworld.com through current protected release gates. Existing stop on broad automated QA/monitoring remains; do not restart broad test/browser workers. Reuse accepted local evidence and run only required release gates. Parent owns integration/release execution, bounded Luna reads current workflow/guard policy only, Astra consequential release review required before remote cutover.
+
+Checkout remains housing-studio-20261015, latestdocsbf82de38/testedruntimef8bbaab7/wiringc9947af3. Dirty ownrecord and untracked manualQAevidence preserved; dist-housing remains excluded, no deletes. Current canonicalretentioncheckout8e128a50 and live6695 need operational refresh. deploy-lock statuscodex-phase6 PID78871 18:20; owner contacted for explicit lock/data-window handoff before any push/deploy. No canonical edits, production data/SQL changes or lock stealing. Current work: finalize ownhousing evidence, mergefreshmain intoexistingbranch, requiredgate/package/source review, serializepush/protecteddeployment, verifyactualhealth/assets/continuity andgiveproductionlink.

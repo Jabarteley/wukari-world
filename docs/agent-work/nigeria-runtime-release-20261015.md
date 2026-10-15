@@ -59,3 +59,11 @@ Abuja source-stable browser checks passed movement, median support at0.252, near
 Broad local npm test was stopped after about13minutes once two failures were independently reproduced on clean60c3dff9: Worker size4680353>3500000 and comeback zero-work store touches2!=0. It is a failed/incomplete diagnostic run, not a passing full-suite gate. Combined city-scenes lifecycle also reproduces on baseline. Scoped host, navigation, light, contact and customization tests passed; full five-project typecheck passed. No owned full-test/typecheck/browser/devserver processes remain.
 
 Source milestone71e0de6299d609035518c3399e4505d239e88d98. Next: merge currentmain without losing ownership, publish draft with exact-head CI; no deployment until Lagos geometry, baseline gates, weather/complete UI acceptance and authorized network access are resolved.
+
+## Cloud restart and revision integration
+
+Execution resumed in /workspace/joinallworld with Node24.19.0 and Chromium151, existing dependencies and preserved uncommitted lazy extraction/evidence. No paid compute or credentials created. Remote main now9af2e51e includes PR24 merged by another actor; fast-forwarded dedicated branch to preserve all171 intervening changed files, pending owned edits retained. This merge is not release acceptance. Root owns revision deployment copies, scene definitions, integration record and release coordination. runtime_recovery takes over host-runtime files/tests; host_acceptance resumes harness/evidence. No overlap with WORLD uploader.
+
+Integrate reviewed asset commit9a5999d, manifest8c6681fd...; actual near4174triangles/5primitives must be measured with canonicalhero and host shadows. Fix bounded failure/eviction recovery, rerun source-pinned host/browser/type checks and hosted budgets before any release. Prior baseline failures require current-main comparison. PR24 already merged: publish follow-up PR from authorized branch, preserving ancestry guard.
+
+Workflow correction: explicit11:48UTC user instruction forbids new PRs; use tested direct integration to main subject to existing protections. PR24 confirmed already merged9af2e51e. No new PR will be created.

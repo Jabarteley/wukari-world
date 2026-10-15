@@ -90,3 +90,27 @@ ActualMoscowTalesQA created via localhost creator: Russia/Moscow grouping correc
 A third finite Luna outline lane was tried while two Sol writers authored;07matrix rejected for repeated05meal/care patterns and arithmetic failures (fourrequests/twowindows, demo+threelearnersinthreeturns, nineguests/sixplates). Worker corrected its record and stopped. No sourceaccepted. Actualcheckoutrevision in that record corrected from stale inputbasec42 to84679997. This trial did not establish cost savings; costs unknown. Only05/06writers remain active;07requires re-authoring,08held.
 
 Combined main Phase14 focused checks pass145/145 in /tmp/allworld-unique-145-main10-check.log.
+
+Moscow browser completion now passes: real arboretum Look around → return Brateevo People spot → intro → real Brateevo Look around → People spot → observation approach → under-arch response → quiet solo finale. Under-arch ribbon clasp earned; ui-moscow-earned-145.png saved. No Moscow reload claim yet. Exact-spot disabling guidance visibly appeared before returning to host, confirming the UI fix.
+
+Live usage93%used/7%remaining. Stop all agents/work at95%used; keep current owned source checkpoints closed and documented.05/06 both near final35city completion;07rejected,08held.
+
+## 215-city checkpoint before usage stop
+
+Main81a94cbb publishes145cities,104identities,290tales,870missions. Combined released Phase14 CI38673086751 green on6198fe21; later merge adds release-status docs. No deployment in this task.
+
+Batches05/06 accepted after source semantic review and Luna middle-range84plot audit. Corrected reciprocal coaching, course counts, drying schedule, shared walks, Juba shelf capacity and repeated problem/solution plots. Local accepted01–06 now215cities,174identities,430tales,1290missions. Engine2150paths pass preserving568oldkeepsakes/527collections. Mission25800deals/214retiredrolloverclaims pass. Whole-country activation and trusted agent proof/reward boundaries unchanged.
+
+Sol07/08 own remaining69cities, unregistered source/matrices; Luna82plot matrix audit completed with no proven high-confidence contradiction. Those are not accepted whole batches. Read their quality records for exact checkpoints. Old rejected07outline is historical and must not be resumed.
+
+Welcome copy now worldwide; country count says countries and territories. Quiet finale and choice instructions use player-facing language. Existing entry tests30pass before combined rerun. Nairobi and Moscow real-browser completion proven; ui-moscow-earned-145.png records Moscow reward. Fresh landing375DOM no overflow; capture scaling inconclusive. Chrome tab binding subsequently timed out repeatedly; temporary Chrome viewport reset unconfirmed. IAB viewport reset succeeded. Owned synthetic tabs: Chrome460560808 Nairobi/460560835 Moscow/460560847 freshqa.localhost; preserve unrelated CharacterLab460560822 and user Jolly save.
+
+Usage94%used/6%remaining. Authors instructed to close current valid checkpoint, document and stop without starting another city. Hard stop all work at95%used. Parent finishing215publication checks. Next agent: inspect liveusage first; do not resume without user allowing work past stop. After authorization, finish/review07/08, gate whole batches, register, run284city probes and CI, fetch/merge released main preserving world-alive contracts, sync; deployment is separate. Temporary probes are /tmp/allworld-unique-progression-acceptance.ts and /tmp/allworld-unique-mission-proof.ts.
+
+215-city combined existing mission/agent API/registry/house/resident/prayer/creator/entry checks pass175/175, zero failures (/tmp/allworld-unique-215-check.log).
+
+Accepted215 milestone committed67e13a8f and pushed branch; CI38675110595 in progress. Both authors stopped at94:07completed20/35cities (40tales120missions),08completed6/34 (12tales36missions). Parent archived their closed strict-valid incomplete sources as draft-batches/batch-07-quality-usage-checkpoint.ts.txt and batch-08-quality-usage-checkpoint.ts.txt, outside compilation. Whole69-city activation remains pending;26cities have partial draft prose,43remain unwritten. All matrices and resumes are in owned quality records. No author agents remain running. Chrome viewport reset attempted again through documented browser capability, but timed out; reset unconfirmed.
+
+## Terminal handoff
+
+CI38675110595 succeeded on67e13a8f (typecheck/build/all284citybudgets/smoke/releasepolicy; broad suites skipped). Main freshly fetched unchanged; pushed checked source plus docs-only checkpoint95855168 to main. Published215cities/174identities/430tales/1290missions. Focused175/175 pass. No deployment. Final69cities remain inactive. Both authors and Luna audit completed/stopped; no further authoring underway. Lastusage94%used/6%remaining, ending at safe checkpoint before95%hard floor. Shared preview remains available with saves preserved; no unrelated processes touched. Inconclusive ui-world-entry-375.png remains local/untracked and is not acceptance evidence. Chrome viewport reset still unconfirmed after browser operation timed out.

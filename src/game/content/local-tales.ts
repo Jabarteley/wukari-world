@@ -5,11 +5,13 @@ import batch01 from './local-tales/batch-01.ts'
 import batch02 from './local-tales/batch-02.ts'
 import batch03 from './local-tales/batch-03.ts'
 import batch04 from './local-tales/batch-04.ts'
+import batch05 from './local-tales/batch-05.ts'
+import batch06 from './local-tales/batch-06.ts'
 
 /**
  * Only whole-country batches accepted by the integration owner after content review belong here.
  */
-export const ACCEPTED_LOCAL_TALE_BATCHES: readonly AuthoredContentBatch[] = Object.freeze([batch01, batch02, batch03, batch04])
+export const ACCEPTED_LOCAL_TALE_BATCHES: readonly AuthoredContentBatch[] = Object.freeze([batch01, batch02, batch03, batch04, batch05, batch06])
 
 export interface AcceptedLocalCity {
   tales: LocalCityTales

@@ -1,0 +1,525 @@
+import type { AuthoredContentBatch } from '../../../types/local-tales.ts'
+
+const batch = {
+  countries: [
+    { countryId: 'jo', title: 'Skills Cross in Two Rounds', premise: 'Neighbors exchange distinct fictional skills through paired teaching and learning rounds.', collection: 'Cross-Skill Sessions', rewardTitle: 'Skill-Swap Partner' },
+    { countryId: 'py', title: 'Make Space by Moving One Shelf', premise: 'A shared shelf gains useful uneven spaces through one measured board move.', collection: 'Measured Shelves', rewardTitle: 'Shelf-Space Planner' },
+    { countryId: 'az', title: 'One Heat Change', premise: 'A shared fictional kitchen groups matching dishes before its single heat change.', collection: 'Matched Oven Rounds', rewardTitle: 'Heat-Change Cook' },
+    { countryId: 'kn', title: 'Second Choices Break the Tie', premise: 'Friends resolve a fictional ranked-choice tie by transferring the unique lowest option.', collection: 'Fair Choice Games', rewardTitle: 'Second-Choice Steward' },
+    { countryId: 'lb', title: 'A Quiet Role before One Loud Run', premise: 'A friend contributes visual counts before observing one energetic rehearsal run.', collection: 'Rehearsal Roles', rewardTitle: 'Visual-Count Lead' },
+    { countryId: 'sk', title: 'One Friend Bridges Two Sessions', premise: 'A flexible friend carries continuity between separate morning and evening goal sessions.', collection: 'Bridged Sessions', rewardTitle: 'Session Link' },
+    { countryId: 'io', title: 'Meet at the Passing Bay', premise: 'Two fictional work carts use one passing bay without reversing on a narrow path.', collection: 'Passing-Bay Routes', rewardTitle: 'Narrow-Path Guide' },
+    { countryId: 'cx', title: 'Dependencies before the Shared Finish', premise: 'Friends complete independent fictional cooking tasks before their dependent finishing steps.', collection: 'Two-Station Sequences', rewardTitle: 'Dependency Cook' },
+    { countryId: 'gu', title: 'Five Players, Five Referee Turns', premise: 'A friendly court rotates one referee turn evenly through five players.', collection: 'Five-Round Courts', rewardTitle: 'Referee-Rota Keeper' },
+    { countryId: 'zw', title: 'Six Plots in Two Full Trips', premise: 'A fictional carrier serves six plots through two exact full trips.', collection: 'Full-Carrier Rounds', rewardTitle: 'Measure Carrier' },
+    { countryId: 'sb', title: 'One Playable Game from Three Sets', premise: 'Compatible surviving pieces from three fictional sets become one rotating shared game.', collection: 'Combined Game Nights', rewardTitle: 'Game-Set Builder' },
+    { countryId: 'ug', title: 'Lower the Ladder Only Once', premise: 'Neighbors order fictional high-to-low jobs around an adjustable ladder.', collection: 'Descending Tasks', rewardTitle: 'Ladder Planner' },
+    { countryId: 'nf', title: 'Two Balanced Goals from Six Boards', premise: 'Long and short boards form a rigid equal-sided fictional frame without cutting.', collection: 'Joined-Side Frames', rewardTitle: 'Frame Joiner' },
+    { countryId: 'cd', title: 'One Shared Briefing, Two Solo Consultations', premise: 'Four teams fit three help intervals by sharing their identical briefing.', collection: 'Briefing Windows', rewardTitle: 'Consultation Planner' },
+    { countryId: 'mw', title: 'Assign by the Smallest Time Loss', premise: 'A relay resolves a contested leg through measured comparative cost.', collection: 'Evidence Relays', rewardTitle: 'Relay Analyst' },
+    { countryId: 'lu', title: 'Two Triangles Share One Side', premise: 'Five equal sticks form a rigid double-triangle fictional frame.', collection: 'Shared-Side Builds', rewardTitle: 'Triangle Builder' },
+    { countryId: 'mo', title: 'Split Every Skill Level', premise: 'Two friendly teams each receive one player from every experience pair.', collection: 'Balanced Skill Teams', rewardTitle: 'Team Balancer' },
+    { countryId: 'es', title: 'Save the Battery for the Final Hour', premise: 'A fictional project preserves one charged lamp until all three lights are needed.', collection: 'Final-Hour Lights', rewardTitle: 'Battery Keeper' },
+    { countryId: 'bh', title: 'Ingredients, Method, Timing', premise: 'Three friends alternate complementary recipe knowledge in a repeatable speaking order.', collection: 'Three-Part Recipes', rewardTitle: 'Recipe Sequencer' },
+    { countryId: 'mf', title: 'A Reversible Middle Panel', premise: 'One reversible panel aligns both seams of a fictional fabric display.', collection: 'Aligned Panels', rewardTitle: 'Seam Matcher' },
+    { countryId: 'om', title: 'Five Matches Form a Cycle', premise: 'Five friendly players each receive two matches through one complete neighbor cycle.', collection: 'Five-Match Cycles', rewardTitle: 'Court-Cycle Keeper' },
+    { countryId: 'bs', title: 'Three Doorways Identify Three Boxes', premise: 'Doorway constraints assign three fictional boxes without labels or guessing.', collection: 'Doorway Deliveries', rewardTitle: 'Constraint Sorter' },
+    { countryId: 'to', title: 'Seven Blocks Make One Braced Arch', premise: 'Seven blocks become two pillars, one lintel and two stabilizing braces.', collection: 'Braced Arches', rewardTitle: 'Arch Bracer' },
+    { countryId: 'gl', title: 'Three Rhythms Meet on Beat Six', premise: 'Different repeating rhythms close together at their first shared cycle.', collection: 'Shared-Cycle Sounds', rewardTitle: 'Beat-Six Conductor' },
+    { countryId: 'fr', title: 'Complementary Clues, Timed Finish', premise: 'Friendly rivals combine necessary constraints before racing an independent final step.', collection: 'Rival Puzzle Finishes', rewardTitle: 'Constraint Ally' },
+    { countryId: 'ht', title: 'Two Hooks Anchor the Menu Chain', premise: 'Folded fictional menus interlock so one small weight secures the chain.', collection: 'Counter Anchors', rewardTitle: 'Menu-Chain Maker' },
+    { countryId: 'tf', title: 'Demanding and Light Tasks Alternate', premise: 'A personal goal alternates demanding and light work to protect accuracy.', collection: 'Alternating Workdays', rewardTitle: 'Effort Sequencer' },
+    { countryId: 'vg', title: 'Balance Two Hinges before Reuse', premise: 'One tight and one loose fictional hinge receive opposite adjustments before testing.', collection: 'Balanced Hinges', rewardTitle: 'Door Tester' },
+    { countryId: 'do', title: 'Swap the Hotter Rack between Rivals', premise: 'Friendly bakers exchange unequal rack positions across two scored rounds.', collection: 'Two-Rack Bakes', rewardTitle: 'Rack-Swap Referee' },
+    { countryId: 'st', title: 'Two Pushes around an L-Bend', premise: 'A trapped soft spool exits an L-shaped space through two directional pushes.', collection: 'Corner Rescues', rewardTitle: 'L-Bend Solver' },
+    { countryId: 'xg', title: 'Three Cross-Color Pairs', premise: 'Two scarves of three colors form three mixed fictional teams.', collection: 'Cross-Color Teams', rewardTitle: 'Color-Pair Captain' },
+    { countryId: 'ag', title: 'A Folded Beam beneath the Center', premise: 'One folded strip braces the loaded center of a fictional paper bridge.', collection: 'Center Beams', rewardTitle: 'Bridge Bracer' },
+    { countryId: 'aq', title: 'One Long Game, Three Quick Games', premise: 'Two tables host one continuous game and three sequential short games.', collection: 'Two-Table Game Days', rewardTitle: 'Table-Time Host' },
+    { countryId: 'pl', title: 'Two Slaloms Share the Finish', premise: 'Seven cones create two equal fictional lanes and one common finish.', collection: 'Shared-Finish Courses', rewardTitle: 'Course Setter' },
+    { countryId: 'cm', title: 'Walk the Ball out of the Rails', premise: 'Alternating side pushes free a soft ball from parallel fictional rails.', collection: 'Rail Rescues', rewardTitle: 'Paddle Walker' },
+  ],
+  cities: [
+    {
+      cityId: 'amman',
+      city: { title: 'The Frame with Unequal Diagonals', desire: 'competence', chapters: [
+        { title: 'A square leans without a loose corner', text: 'At مزرعة اليازوري, Corin’s fictional display frame has skewed even though all four corner joints remain secure. Its panel will not sit straight.' },
+        { title: 'Two measurements reveal the strain', text: "A quiet evening at Hada'iq al-Malik Hussein gives Corin time to compare corner-to-corner lengths. One diagonal is longer, and one cord can connect that pair." },
+        { title: 'The corners must remain assembled', text: 'Corin could force one side inward, remove a corner, or tension the longer diagonal gradually until both diagonal measurements match.' },
+        { title: 'Equal diagonals restore the shape', text: 'Corin ties the cord across the longer diagonal and tightens it in small steps. When both measurements match, the panel settles square without disturbing a joint.' },
+      ], approaches: [
+        { label: 'Compare both diagonals', callback: 'Corin remembers the measurement that exposed the skew.' }, { label: 'Protect the corner joints', callback: 'Corin remembers why the frame stayed assembled.' }, { label: 'Tension in small steps', callback: 'Corin remembers how equal lengths restored the square.' },
+      ], dilemma: { prompt: 'How should Corin straighten the secure but skewed frame?', answers: ['Force one side inward by hand.', 'Remove and rebuild a corner.', 'Tension the longer diagonal until both diagonals match.'], correct: 2, explanation: 'The unequal diagonals identify the skew, and the single cord corrects it without undoing secure corners.' }, closing: 'The panel rests inside a square frame, held by four original joints and one measured diagonal.', keepsake: { name: 'Equal-Diagonal Cord', description: 'A short cord marked with two matching corner-to-corner lengths.' } },
+      country: { title: 'Skills Cross in Two Rounds', desire: 'belonging', chapters: [
+        { title: 'Four neighbors know only one side', text: "At Hada'iq al-Malik Hussein, Corin’s fictional skill fair has two confident planters and two confident cooks. Each person wants to learn the unfamiliar skill." },
+        { title: 'Every person must teach and learn', text: 'Looking around مزرعة اليازوري confirms there are exactly two rounds. No participant can teach and learn at the same moment.' },
+        { title: 'Parallel experts would leave gaps', text: 'Corin could keep experts together, let one person demonstrate everything, or make two cross-skill pairs and reverse teacher and learner roles after round one.' },
+        { title: 'The second round completes the exchange', text: 'Each planter first teaches a cook. Then each cook teaches the planter partner. Four people finish with one taught skill and one newly practised skill.' },
+      ], approaches: [
+        { label: 'Form cross-skill pairs', callback: 'Corin remembers how every pair held two kinds of knowledge.' }, { label: 'Reverse the roles', callback: 'Corin remembers the second round’s exchange.' }, { label: 'Count teaching and learning', callback: 'Corin remembers that all four did both.' },
+      ], dilemma: { prompt: 'How should the four neighbors use the two rounds?', answers: ['Keep the planters and cooks in separate pairs.', 'Let one expert teach both rounds.', 'Pair across skills, then reverse who teaches.'], correct: 2, explanation: 'Cross-skill pairs and a role reversal give every participant one teaching turn and one learning turn.' }, closing: 'Two rounds end with four neighbors carrying a skill they did not bring.', keepsake: { name: 'Cross-Skill Pair Badge', description: 'A two-sided badge marked teach on one face and learn on the other.' } },
+      missions: { daily: [
+        { label: "Enjoy one quiet evening at Hada'iq al-Malik Hussein", purpose: 'Compare the fictional frame’s diagonal lengths.', task: 'practical', count: 1 }, { label: 'Visit Corin at مزرعة اليازوري', purpose: 'Review the cross-skill pairings.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Amman', purpose: 'Give Corin neighbors for the two teaching roles.', task: 'people', count: 2 },
+      ], weekly: [
+        { label: 'Look around twice at مزرعة اليازوري', purpose: 'Practise the teach-then-learn exchange.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Amman', purpose: 'Think through equal diagonals and secure corners.', task: 'places', count: 3 }, { label: "Enjoy three quiet evenings at Hada'iq al-Malik Hussein", purpose: 'Repeat the measured frame correction.', task: 'practical', count: 3 },
+      ] },
+    },
+    {
+      cityId: 'asuncion',
+      city: { title: 'Mild, Medium, Strong', desire: 'curiosity', chapters: [
+        { title: 'One spoon meets three sauces', text: 'At ecologica, Ira’s fictional tasting challenge presents mild, medium and strong sauces. Only one tasting spoon is available.' },
+        { title: 'Two rinses protect three tastes', text: 'A quiet evening at Parque Ñu Guasú reveals water for exactly two rinses. A strong taste would hide any gentler flavor that follows it.' },
+        { title: 'Order matters more than speed', text: 'Ira could begin with strong, choose randomly, or taste mild then medium then strong while rinsing at both transitions.' },
+        { title: 'Every flavor remains distinct', text: 'Ira tastes mild, rinses, tastes medium, rinses again and finishes with strong. The final sauce needs no later comparison, so the limited water is enough.' },
+      ], approaches: [
+        { label: 'Rank the flavor strength', callback: 'Ira remembers the useful tasting order.' }, { label: 'Reserve two rinses', callback: 'Ira remembers the transitions that protect each taste.' }, { label: 'Finish with strong', callback: 'Ira remembers why the boldest flavor came last.' },
+      ], dilemma: { prompt: 'How should Ira taste all three sauces with two rinses?', answers: ['Taste strong first.', 'Choose the order randomly.', 'Taste mild, medium and strong, rinsing between them.'], correct: 2, explanation: 'Moving from mild to strong prevents an earlier bold flavor from masking the next sample, and two transitions use exactly two rinses.' }, closing: 'Three flavors remain recognizable because the spoon follows their strength.', keepsake: { name: 'Three-Taste Spoon Rest', description: 'A spoon rest marked mild, rinse, medium, rinse and strong.' } },
+      country: { title: 'Make Space by Moving One Shelf', desire: 'competence', chapters: [
+        { title: 'A tall book meets equal gaps', text: 'At Parque Ñu Guasú, Ira’s fictional project shelf has three twenty-unit gaps. One book is twenty-eight units tall; every other book is at most twelve.' },
+        { title: 'Only the first board may move', text: 'Looking around ecologica shows the shelf height totals sixty units. The middle board stays fixed, while the first can shift upward by eight.' },
+        { title: 'Every book must remain upright', text: 'Ira could lay the tall book flat, move both boards, or move the first board from twenty to twenty-eight, leaving gaps of twenty-eight, twelve and twenty.' },
+        { title: 'One move creates three useful heights', text: 'The tall book stands in the new lower gap. Short books fill the twelve- and twenty-unit gaps, and the untouched middle board confirms only one shelf moved.' },
+      ], approaches: [
+        { label: 'Add the total height', callback: 'Ira remembers the fixed sixty units.' }, { label: 'Protect the middle board', callback: 'Ira remembers the one-move constraint.' }, { label: 'Match books to gaps', callback: 'Ira remembers how every book remained upright.' },
+      ], dilemma: { prompt: 'How should Ira fit the twenty-eight-unit book?', answers: ['Lay it flat across other books.', 'Move both shelf boards.', 'Move the first board to make gaps of twenty-eight, twelve and twenty.'], correct: 2, explanation: 'Shifting one board by eight preserves the total height and leaves two gaps large enough for all books of twelve units or less.' }, closing: 'One measured shelf move gives the tallest book a proper place without displacing the shorter collection.', keepsake: { name: 'Twenty-Eight Gap Gauge', description: 'A slim gauge marked with the final three shelf heights.' } },
+      missions: { daily: [
+        { label: 'Enjoy two quiet evenings at Parque Ñu Guasú', purpose: 'Plan Ira’s mild-to-strong tasting order.', task: 'practical', count: 2 }, { label: 'Visit ecologica', purpose: 'Inspect the fictional one-board shelf change.', task: 'discovery-visit', count: 1 }, { label: 'Greet three game regulars in Asuncion', purpose: 'Give Ira tasters for the three-flavor challenge.', task: 'people', count: 3 },
+      ], weekly: [
+        { label: 'Look around three times at ecologica', purpose: 'Practise the twenty-eight, twelve and twenty gaps.', task: 'discovery', count: 3 }, { label: 'Visit two game places in Asuncion', purpose: 'Think through the two rinses.', task: 'places', count: 2 }, { label: 'Enjoy one quiet evening at Parque Ñu Guasú', purpose: 'Repeat the strength-based tasting sequence.', task: 'practical', count: 1 },
+      ] },
+    },
+    {
+      cityId: 'baku',
+      city: { title: 'Three Tones across Six Beats', desire: 'curiosity', chapters: [
+        { title: 'Every tone returns one beat later', text: 'At Izmir Garden, Corin’s fictional listening game must sound low, high and middle in order. Each original tone echoes on the following beat.' },
+        { title: 'Adjacent tones overlap', text: 'Looking around Sabir Park reveals that a new tone played during an echo becomes hard to distinguish. The sequence must finish within six beats.' },
+        { title: 'Silence can carry the order', text: 'Corin could play on three adjacent beats, reverse the tones, or play originals on beats one, three and five so each echo occupies the beat between.' },
+        { title: 'The echoes receive their own spaces', text: 'Low sounds on beat one and echoes on two. High uses three and four; middle uses five and six. The ordered originals remain distinct.' },
+      ], approaches: [
+        { label: 'Mark the echo beats', callback: 'Corin remembers the returning sound after each original.' }, { label: 'Leave alternating spaces', callback: 'Corin remembers how silence prevented overlap.' }, { label: 'Count all six beats', callback: 'Corin remembers the complete low-high-middle sequence.' },
+      ], dilemma: { prompt: 'How should Corin place the three original tones?', answers: ['Use beats one, two and three.', 'Reverse the requested order.', 'Use beats one, three and five.'], correct: 2, explanation: 'Alternating original and echo beats preserves the required order and completes exactly on beat six.' }, closing: 'Three originals and three echoes fill the sequence without covering one another.', keepsake: { name: 'Six-Beat Echo Strip', description: 'A strip alternating three tone marks with three echo rings.' } },
+      country: { title: 'One Heat Change', desire: 'competence', chapters: [
+        { title: 'Three dishes need two heats', text: 'At Sabir Park, Corin’s fictional shared kitchen has two dishes needing thirty minutes at the same heat and one needing fifteen minutes at another.' },
+        { title: 'The oven holds a pair', text: 'A look around Izmir Garden confirms the oven holds two dishes together but the group has time for only one heat change.' },
+        { title: 'Matching work should stay together', text: 'Corin could change heat for every dish, cook one matching dish alone, or cook the thirty-minute pair together before changing heat for the short dish.' },
+        { title: 'One pair and one change complete the meal', text: 'The matching dishes share the first oven round. Corin changes the heat once, cooks the fifteen-minute dish and closes the fictional kitchen on schedule.' },
+      ], approaches: [
+        { label: 'Group the matching dishes', callback: 'Corin remembers the pair needing one heat.' }, { label: 'Reserve one heat change', callback: 'Corin remembers the transition before the short dish.' }, { label: 'Use both oven spaces', callback: 'Corin remembers how the long round stayed efficient.' },
+      ], dilemma: { prompt: 'How should Corin schedule the three dishes?', answers: ['Change the heat before every dish.', 'Cook each matching dish alone.', 'Cook the matching pair together, then change heat once.'], correct: 2, explanation: 'The pair shares time and temperature, leaving the single allowed heat change for the distinct short dish.' }, closing: 'Two matching dishes leave together, and one short round follows a single deliberate heat change.', keepsake: { name: 'One-Change Oven Dial', description: 'A dial showing one paired long round and one short round.' } },
+      missions: { daily: [
+        { label: 'Look around once at Sabir Park', purpose: 'Count Corin’s six fictional sound beats.', task: 'practical', count: 1 }, { label: 'Visit Corin at Izmir Garden', purpose: 'Review the shared kitchen heat groups.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in Baku', purpose: 'Give Corin listeners for the echo sequence.', task: 'people', count: 4 },
+      ], weekly: [
+        { label: 'Look around twice at Izmir Garden', purpose: 'Practise alternating original and echo beats.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Baku', purpose: 'Think through the single heat change.', task: 'places', count: 3 }, { label: 'Look around three times at Sabir Park', purpose: 'Repeat the low-high-middle timing.', task: 'practical', count: 3 },
+      ] },
+    },
+    {
+      cityId: 'basseterre',
+      city: { title: 'Two Chocks on the Downhill Side', desire: 'competence', chapters: [
+        { title: 'A display rolls while hands are busy', text: 'At St. Kitts Eco-Park, Ira’s fictional wheeled display drifts toward the low edge whenever the team releases it.' },
+        { title: 'Only two chocks are available', text: 'Looking around National Heroes Park shows four wheels cannot be locked. Both downhill wheels remain reachable, and the floor direction does not change.' },
+        { title: 'The display needs resistance on both sides', text: 'Ira could chock two wheels on one end, place both uphill, or put one chock behind each downhill wheel.' },
+        { title: 'The frame stops without twisting', text: 'Ira seats one chock behind the left downhill wheel and one behind the right. Both sides meet resistance together, so the display stays square and still.' },
+      ], approaches: [
+        { label: 'Find the downhill direction', callback: 'Ira remembers where the display wanted to travel.' }, { label: 'Split the two chocks', callback: 'Ira remembers why both sides needed support.' }, { label: 'Test the released frame', callback: 'Ira remembers the stable final position.' },
+      ], dilemma: { prompt: 'Where should Ira place the two chocks?', answers: ['Put both behind one end wheel.', 'Place both on the uphill side.', 'Place one behind each downhill wheel.'], correct: 2, explanation: 'Supporting both downhill wheels resists the shared drift without allowing one side to rotate ahead of the other.' }, closing: 'The display remains still when the team steps away, held evenly at its downhill edge.', keepsake: { name: 'Paired Wheel Chocks', description: 'Two small wedges marked left downhill and right downhill.' } },
+      country: { title: 'Second Choices Break the Tie', desire: 'fairness', chapters: [
+        { title: 'First choices produce no majority', text: 'At National Heroes Park, Ira’s five fictional outing ballots rank three games. No game receives three first choices, and one option has the unique lowest total.' },
+        { title: 'Every ballot includes a second choice', text: 'A look around St. Kitts Eco-Park confirms the lowest option can leave without losing its voters’ preferences.' },
+        { title: 'The group needs a deterministic finish', text: 'Ira could draw a winner, repeat the same vote, or remove the unique lowest option and transfer those ballots to their next ranked choice.' },
+        { title: 'Transferred preferences create a majority', text: 'Ira removes the lowest option, reads its voters’ second choices and adds them to the remaining totals. One game now earns three of five preferences.' },
+      ], approaches: [
+        { label: 'Count first choices', callback: 'Ira remembers why no majority existed.' }, { label: 'Identify the unique lowest', callback: 'Ira remembers which option could leave cleanly.' }, { label: 'Transfer ranked choices', callback: 'Ira remembers how all five ballots still mattered.' },
+      ], dilemma: { prompt: 'How should Ira resolve the ranked-choice result?', answers: ['Draw one option at random.', 'Repeat the unchanged first-choice vote.', 'Remove the unique lowest and transfer its ballots.'], correct: 2, explanation: 'The ranked second choices preserve every voter’s stated preference and produce a majority without inventing a new rule.' }, closing: 'The chosen game wins through three ranked preferences, and every ballot contributes to the result.', keepsake: { name: 'Transferred-Choice Token', description: 'A token showing a first arrow continuing to a second choice.' } },
+      missions: { daily: [
+        { label: 'Look around twice at National Heroes Park', purpose: 'Check Ira’s two downhill wheel positions.', task: 'practical', count: 2 }, { label: 'Visit St. Kitts Eco-Park', purpose: 'Review the fictional ranked-choice transfer.', task: 'discovery-visit', count: 1 }, { label: 'Greet two game regulars in Basseterre', purpose: 'Give Ira voters for the three-option game choice.', task: 'people', count: 2 },
+      ], weekly: [
+        { label: 'Look around three times at St. Kitts Eco-Park', purpose: 'Practise counting first and second preferences.', task: 'discovery', count: 3 }, { label: 'Visit two game places in Basseterre', purpose: 'Think through even downhill support.', task: 'places', count: 2 }, { label: 'Look around once at National Heroes Park', purpose: 'Repeat the paired-chock placement.', task: 'practical', count: 1 },
+      ] },
+    },
+    {
+      cityId: 'beirut',
+      city: { title: 'Nine Chapters, Three Leaders', desire: 'recognition', chapters: [
+        { title: 'One book must reach three readers', text: 'At Bchamoun Garden, Ira’s fictional book circle has one nine-chapter copy and one meeting. Every reader wants a meaningful leadership turn.' },
+        { title: 'The book changes hands only twice', text: 'A quiet evening at Horsh Beirut reveals each reader can take one consecutive three-chapter section before passing the copy onward.' },
+        { title: 'The meeting must cover the whole story', text: 'Ira could let one reader summarize everything, skip the middle, or assign consecutive thirds and invite the three recaps in story order.' },
+        { title: 'Three voices rebuild one story', text: 'The first reader leads chapters one to three, the second four to six and the third seven to nine. Their ordered recaps join without a missing chapter.' },
+      ], approaches: [
+        { label: 'Divide consecutive thirds', callback: 'Ira remembers how one copy reached everyone.' }, { label: 'Give each reader a lead', callback: 'Ira remembers the three distinct contributions.' }, { label: 'Recap in story order', callback: 'Ira remembers how the whole plot returned.' },
+      ], dilemma: { prompt: 'How should Ira organize the one-copy book circle?', answers: ['Let one reader lead every chapter.', 'Skip the middle section.', 'Assign consecutive thirds and recap them in order.'], correct: 2, explanation: 'Three consecutive sections cover all nine chapters and give every reader one complete leadership turn.' }, closing: 'The circle hears one continuous story carried by three clearly owned sections.', keepsake: { name: 'Three-Reader Chapter Band', description: 'A band divided into chapters one-three, four-six and seven-nine.' } },
+      country: { title: 'A Quiet Role before One Loud Run', desire: 'autonomy', chapters: [
+        { title: 'One friend wants a quieter contribution', text: 'At Horsh Beirut, Ira’s fictional group needs visual movement counts and one energetic full-volume rehearsal. A friend chooses not to join the loud run.' },
+        { title: 'The quiet block needs a leader', text: 'Looking around Bchamoun Garden shows the visual counts can be designed and taught without music. A separate project area remains available during the final run.' },
+        { title: 'Contribution does not require every activity', text: 'Ira could cancel the run, pressure the friend to join it, or let the friend lead the silent count block before observing the full run from the separate area.' },
+        { title: 'The visual work guides the energetic finish', text: 'The friend teaches the counts in silence, then watches from the chosen area as the group performs once at full volume. Their contribution stays visible throughout.' },
+      ], approaches: [
+        { label: 'Build visual counts', callback: 'Ira remembers the quiet contribution the group needed.' }, { label: 'Keep one full run', callback: 'Ira remembers the rehearsal’s fixed energetic finish.' }, { label: 'Use the separate area', callback: 'Ira remembers the friend’s chosen place for observing.' },
+      ], dilemma: { prompt: 'How should Ira include the friend’s chosen quiet role?', answers: ['Cancel the full run.', 'Require everyone to join the loud section.', 'Have the friend lead silent counts, then observe from the separate area.'], correct: 2, explanation: 'The plan completes both necessary rehearsal parts while honoring the friend’s chosen form of contribution.' }, closing: 'Silent counts shape the final run, and the friend sees their work carried through every movement.', keepsake: { name: 'Visual Count Ribbon', description: 'A ribbon marked with the rehearsal’s silent movement counts.' } },
+      missions: { daily: [
+        { label: 'Enjoy one quiet evening at Horsh Beirut', purpose: 'Plan Ira’s three ordered book recaps.', task: 'practical', count: 1 }, { label: 'Visit Ira at Bchamoun Garden', purpose: 'Review the fictional silent-count role.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Beirut', purpose: 'Give Ira readers for the three-part circle.', task: 'people', count: 3 },
+      ], weekly: [
+        { label: 'Look around twice at Bchamoun Garden', purpose: 'Practise the visual rehearsal counts.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Beirut', purpose: 'Think through the nine-chapter handoff.', task: 'places', count: 3 }, { label: 'Enjoy two quiet evenings at Horsh Beirut', purpose: 'Repeat the ordered three-reader recap.', task: 'practical', count: 2 },
+      ] },
+    },
+    {
+      cityId: 'bratislava',
+      city: { title: 'Clean the Axle before the Oil', desire: 'competence', chapters: [
+        { title: 'The empty cart squeaks', text: 'At Lippayova záhrada, Ira’s fictional hand cart squeaks and resists each turn even after its load is removed.' },
+        { title: 'Grit surrounds the dry axle', text: 'A quiet evening at Zámocký Park reveals one cloth and enough oil for one application. Oil placed over grit would trap it.' },
+        { title: 'The order determines the repair', text: 'Ira could oil immediately, force the wheel, or lift the unloaded wheel, wipe the axle, oil it once and test.' },
+        { title: 'A clean surface takes the oil', text: 'Ira wipes away the grit before applying the oil. The wheel turns quietly on its test without wasting the single application.' },
+      ], approaches: [
+        { label: 'Unload and lift the wheel', callback: 'Ira remembers how the axle became reachable.' }, { label: 'Wipe before oiling', callback: 'Ira remembers the grit that had to leave first.' }, { label: 'Test one full turn', callback: 'Ira remembers the quiet result.' },
+      ], dilemma: { prompt: 'How should Ira use the cloth and single oil application?', answers: ['Oil over the grit.', 'Force the wheel until it loosens.', 'Clean the axle, oil once and test.'], correct: 2, explanation: 'Cleaning first prevents trapped grit and lets the one oil application reach the dry axle.' }, closing: 'The empty cart completes a quiet turn because the repair followed the cause in order.', keepsake: { name: 'Clean-Axle Cloth Patch', description: 'A cloth patch marked wipe, oil and test.' } },
+      country: { title: 'One Friend Bridges Two Sessions', desire: 'continuity', chapters: [
+        { title: 'Seven friends have divided schedules', text: 'At Zámocký Park, Ira’s fictional goal club has three morning-only friends, three evening-only friends and one flexible friend.' },
+        { title: 'Each session holds four', text: 'Looking around Lippayova záhrada shows both sessions need a participant who heard the other group. Only the flexible friend can attend both.' },
+        { title: 'Continuity needs a living link', text: 'Ira could run unrelated sessions, overfill one, or place the flexible friend in both and carry the same opening question between them.' },
+        { title: 'Two groups continue one conversation', text: 'The morning group answers the opening question. The flexible friend brings its key idea to the evening group, which adds its own answer.' },
+      ], approaches: [
+        { label: 'Fit three plus one', callback: 'Ira remembers how each session stayed within four places.' }, { label: 'Repeat the opening question', callback: 'Ira remembers the shared point between groups.' }, { label: 'Carry one key idea', callback: 'Ira remembers the flexible friend’s bridge role.' },
+      ], dilemma: { prompt: 'How should Ira connect the two fixed sessions?', answers: ['Run them with unrelated goals.', 'Put all seven in one session.', 'Have the flexible friend attend both with one shared question.'], correct: 2, explanation: 'Three fixed participants plus the flexible friend fill each session and preserve continuity without changing anyone’s availability.' }, closing: 'Morning and evening remain separate meetings, joined by one question and one returning friend.', keepsake: { name: 'Two-Session Link Card', description: 'A card with morning and evening circles joined by one name.' } },
+      missions: { daily: [
+        { label: 'Enjoy one quiet evening at Zámocký Park', purpose: 'Plan Ira’s clean-then-oil repair.', task: 'practical', count: 1 }, { label: 'Visit Ira at Lippayova záhrada', purpose: 'Review the fictional two-session bridge.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in Bratislava', purpose: 'Give Ira participants for one goal session.', task: 'people', count: 4 },
+      ], weekly: [
+        { label: 'Look around three times at Lippayova záhrada', purpose: 'Practise carrying one question between groups.', task: 'discovery', count: 3 }, { label: 'Visit two game places in Bratislava', purpose: 'Think through the one-application axle repair.', task: 'places', count: 2 }, { label: 'Enjoy two quiet evenings at Zámocký Park', purpose: 'Repeat the wipe, oil and test order.', task: 'practical', count: 2 },
+      ] },
+    },
+    {
+      cityId: 'chagos',
+      city: { title: 'The Cup at the Center of the Tray', desire: 'care', chapters: [
+        { title: 'One cup pulls the tray sideways', text: 'At Recreation area (game venue), Jesse’s fictional counter tray holds one full cup and four empty bowls. The cup sits near an edge.' },
+        { title: 'Nothing may leave or stack', text: 'Having a simple meal at Visitor meal stop (game venue) shows the tray has space for a central cup and two bowls on either side.' },
+        { title: 'Balance needs symmetry', text: 'Jesse could grip the tilted tray harder, stack bowls, or center the cup and place equal bowl pairs opposite one another.' },
+        { title: 'The load settles around its center', text: 'Jesse moves the cup to the middle and mirrors two bowls on each side. The tray stays level during the fictional carry.' },
+      ], approaches: [
+        { label: 'Center the full cup', callback: 'Jesse remembers where the weight belonged.' }, { label: 'Mirror the empty bowls', callback: 'Jesse remembers the balanced pairs.' }, { label: 'Test the whole tray', callback: 'Jesse remembers the level carry.' },
+      ], dilemma: { prompt: 'How should Jesse balance the fixed tray load?', answers: ['Hold the tilted tray more tightly.', 'Stack all four bowls.', 'Center the cup and mirror the bowl pairs.'], correct: 2, explanation: 'Centering the only heavy item and distributing equal light items symmetrically removes the sideways pull.' }, closing: 'One full cup travels level inside a quiet ring of four bowls.', keepsake: { name: 'Centered Tray Token', description: 'A tray token with one center circle and four mirrored outlines.' } },
+      country: { title: 'Meet at the Passing Bay', desire: 'belonging', chapters: [
+        { title: 'Two carts enter one narrow path', text: 'At Visitor meal stop (game venue), two fictional cleanup crews approach from opposite ends with carts that cannot reverse.' },
+        { title: 'One passing bay favors the farther crew', text: 'A quiet evening at Recreation area (game venue) reveals the bay lies two-thirds from the nearer crew’s entrance.' },
+        { title: 'Both carts need a clear route', text: 'Jesse could send both immediately, make one reverse, or send the farther crew to the bay while the nearer waits at its entrance.' },
+        { title: 'The meeting happens where passing is possible', text: 'The farther cart reaches the bay and stops. The near cart enters, passes safely, and both crews continue without backing up.' },
+      ], approaches: [
+        { label: 'Locate the passing bay', callback: 'Jesse remembers the only wide point.' }, { label: 'Send the farther cart first', callback: 'Jesse remembers which crew had to start early.' }, { label: 'Hold at the entrance', callback: 'Jesse remembers how the near route stayed clear.' },
+      ], dilemma: { prompt: 'How should the two carts use the narrow path?', answers: ['Send both into the path together.', 'Require one cart to reverse.', 'Stage the farther cart in the bay before the nearer enters.'], correct: 2, explanation: 'The passing bay can serve both only if the farther cart occupies it before the nearer cart blocks the route.' }, closing: 'The carts cross once at the bay and roll onward in opposite directions.', keepsake: { name: 'Passing-Bay Route Peg', description: 'A narrow route peg widened at one off-center meeting point.' } },
+      missions: { daily: [
+        { label: 'Have one simple meal at Visitor meal stop (game venue)', purpose: 'Plan Jesse’s centered fictional tray.', task: 'practical', count: 1 }, { label: 'Visit Jesse at Recreation area (game venue)', purpose: 'Review the passing-bay order.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Île Boddam', purpose: 'Give Jesse crews for the narrow-path plan.', task: 'people', count: 2 },
+      ], weekly: [
+        { label: 'Enjoy two quiet evenings at Recreation area (game venue)', purpose: 'Practise the passing-bay sequence.', task: 'discovery', count: 2 }, { label: 'Visit two game places in Île Boddam', purpose: 'Think through the balanced tray layout.', task: 'places', count: 2 }, { label: 'Have three simple meals at Visitor meal stop (game venue)', purpose: 'Repeat the center-and-pairs arrangement.', task: 'practical', count: 3 },
+      ] },
+    },
+    {
+      cityId: 'flying-fish-cove',
+      city: { title: 'The Cord Loop inside the Tube', desire: 'curiosity', chapters: [
+        { title: 'A soft token stops at the middle', text: 'At Poon Saan Park, Uri’s fictional game token is trapped in a clear tube. The tube cannot open or tilt.' },
+        { title: 'Two cords can overlap beyond it', text: 'A quiet evening at Drumsite Park reveals a cord can enter from each end. Neither reaches around the token alone.' },
+        { title: 'The token needs a movable cradle', text: 'Uri could shake the fixed tube, push with one short cord, or overlap and cross both cords beyond the token to form a loop.' },
+        { title: 'The loop draws the token home', text: 'Uri crosses the overlapping cords, tightens them gently around the token and pulls toward one opening. The soft piece slides out intact.' },
+      ], approaches: [
+        { label: 'Feed cords from both ends', callback: 'Uri remembers how the short lengths met.' }, { label: 'Cross beyond the token', callback: 'Uri remembers where the loop formed.' }, { label: 'Draw toward one opening', callback: 'Uri remembers the successful rescue direction.' },
+      ], dilemma: { prompt: 'How should Uri retrieve the token without tilting the tube?', answers: ['Shake the fixed tube.', 'Push with one cord that cannot reach.', 'Cross two overlapping cords into a pulling loop.'], correct: 2, explanation: 'The two cords jointly reach beyond the token and form a movable cradle without opening the tube.' }, closing: 'A loop made from two short cords carries the soft token through the nearest opening.', keepsake: { name: 'Crossed-Cord Loop', description: 'Two short cords joined in a loose rescue loop.' } },
+      country: { title: 'Dependencies before the Shared Finish', desire: 'competence', chapters: [
+        { title: 'Four tasks share two stations', text: 'At Drumsite Park, four friends use two fictional cooking stations. Chopping must precede mixing, and heating must precede garnishing.' },
+        { title: 'The first tasks are independent', text: 'Looking around Poon Saan Park shows chopping and heating can begin together. Mixing and garnishing wait for those results.' },
+        { title: 'Busy stations are not enough', text: 'Uri could start a dependent task early, leave one station idle, or chop and heat in parallel before mixing and garnishing.' },
+        { title: 'Both paths meet at the finish', text: 'Two friends chop and heat. When both stations free, the others mix and garnish, completing each dependency without a queue.' },
+      ], approaches: [
+        { label: 'Name both prerequisites', callback: 'Uri remembers what mixing and garnishing require.' }, { label: 'Start independent work together', callback: 'Uri remembers the productive first round.' }, { label: 'Release both finishing tasks', callback: 'Uri remembers the clean second round.' },
+      ], dilemma: { prompt: 'How should Uri use the two stations?', answers: ['Start mixing before chopping.', 'Leave one station unused.', 'Run chopping and heating, then mixing and garnishing.'], correct: 2, explanation: 'The independent prerequisites fill round one and unlock both dependent tasks for round two.' }, closing: 'Two parallel starts become two ready finishes without breaking either recipe dependency.', keepsake: { name: 'Two-Station Dependency Tile', description: 'A tile with two starting arrows feeding two finishing arrows.' } },
+      missions: { daily: [
+        { label: 'Enjoy one quiet evening at Drumsite Park', purpose: 'Plan Uri’s two-cord token rescue.', task: 'practical', count: 1 }, { label: 'Visit Uri at Poon Saan Park', purpose: 'Review the fictional station dependencies.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Flying Fish Cove', purpose: 'Give Uri partners for the two-stage task plan.', task: 'people', count: 3 },
+      ], weekly: [
+        { label: 'Look around three times at Poon Saan Park', purpose: 'Practise the parallel prerequisites.', task: 'discovery', count: 3 }, { label: 'Visit three game places in Flying Fish Cove', purpose: 'Think through the crossed-cord loop.', task: 'places', count: 3 }, { label: 'Enjoy two quiet evenings at Drumsite Park', purpose: 'Repeat the fictional token rescue.', task: 'practical', count: 2 },
+      ] },
+    },
+    {
+      cityId: 'hagatna',
+      city: { title: 'Five Players Rotate the Whistle', desire: 'fairness', chapters: [
+        { title: 'Four play while one watches', text: 'At Barrigada War Memorial Park, Parker’s fictional court holds one two-versus-two match and one referee. Five friends want equal participation.' },
+        { title: 'Five rounds fit five referee turns', text: 'Looking around Chief Quipuha Park shows each round needs exactly one referee. Nobody needs to take the whistle twice.' },
+        { title: 'The waiting role can travel', text: 'Parker could keep one permanent referee, choose randomly each round, or publish a five-round order with every player refereeing once.' },
+        { title: 'Every player gets four matches', text: 'The whistle moves to a new player after every round. By round five, each friend has refereed once and played four times.' },
+      ], approaches: [
+        { label: 'List five referee turns', callback: 'Parker remembers the complete rotation.' }, { label: 'Move the whistle each round', callback: 'Parker remembers the visible handoff.' }, { label: 'Count four playing rounds', callback: 'Parker remembers every player’s equal court time.' },
+      ], dilemma: { prompt: 'How should Parker assign the referee role?', answers: ['Keep one referee all day.', 'Draw a hidden name every round.', 'Rotate the role once through all five players.'], correct: 2, explanation: 'Five rounds and five players allow one referee turn each, leaving four playing rounds per person.' }, closing: 'The last whistle completes a rotation everyone could see from the start.', keepsake: { name: 'Five-Turn Whistle Ring', description: 'A ring with five equal referee marks.' } },
+      country: { title: 'Two Cuts Make Three Exact Lengths', desire: 'competence', chapters: [
+        { title: 'One strip holds three orders', text: 'At Chief Quipuha Park, Parker’s fictional workshop has one nine-unit strip and orders for lengths two, three and four.' },
+        { title: 'Only two cuts are allowed', text: 'A look around Barrigada War Memorial Park confirms the requested lengths total nine. Two cuts can create exactly three pieces.' },
+        { title: 'Cut positions must serve every order', text: 'Parker could cut equal thirds, leave scrap, or cut after units two and five to produce lengths two, three and four.' },
+        { title: 'The full strip becomes three orders', text: 'Parker marks unit two, then three units farther at unit five. The remaining four-unit section completes the set with no scrap.' },
+      ], approaches: [
+        { label: 'Add the requested lengths', callback: 'Parker remembers why no scrap was needed.' }, { label: 'Mark cumulative cuts', callback: 'Parker remembers positions two and five.' }, { label: 'Check all three pieces', callback: 'Parker remembers the exact order set.' },
+      ], dilemma: { prompt: 'Where should Parker make the two cuts?', answers: ['Cut the strip into equal thirds.', 'Choose positions that leave scrap.', 'Cut after units two and five.'], correct: 2, explanation: 'The cumulative marks create two-, three- and four-unit pieces whose lengths use the full nine-unit strip.' }, closing: 'Two marks turn one complete strip into three exact fictional orders.', keepsake: { name: 'Two-Five Cut Gauge', description: 'A nine-unit gauge marked at the two exact cut positions.' } },
+      missions: { daily: [
+        { label: 'Look around once at Chief Quipuha Park', purpose: 'Plan Parker’s five-turn referee rotation.', task: 'practical', count: 1 }, { label: 'Visit Parker at Barrigada War Memorial Park', purpose: 'Review the fictional two-cut strip.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in Hagåtña', purpose: 'Give Parker players for the court rotation.', task: 'people', count: 4 },
+      ], weekly: [
+        { label: 'Look around twice at Barrigada War Memorial Park', purpose: 'Practise the two cumulative cut marks.', task: 'discovery', count: 2 }, { label: 'Visit two game places in Hagåtña', purpose: 'Think through five equal referee turns.', task: 'places', count: 2 }, { label: 'Look around three times at Chief Quipuha Park', purpose: 'Repeat the visible player rotation.', task: 'practical', count: 3 },
+      ] },
+    },
+    {
+      cityId: 'harare',
+      city: { title: 'The Cloth beneath the Short Leg', desire: 'care', chapters: [
+        { title: 'One table rocks under a shared meal', text: 'At Greenwood Park, Jesse’s fictional café table tips whenever a plate reaches one corner. The tabletop must remain available.' },
+        { title: 'One leg ends above the floor', text: 'Having a simple meal at Afrotopia Café @ The Gallery reveals a gentle corner press identifies the short leg. One cloth can be folded.' },
+        { title: 'The fix belongs below the gap', text: 'Jesse could hold the table throughout, pile cloth on top, or fold the cloth beneath the short leg until the surface settles.' },
+        { title: 'A small support steadies every place', text: 'Jesse folds the cloth to the measured gap and slides it under the short leg. Plates now remain level at all four places.' },
+      ], approaches: [
+        { label: 'Press each corner gently', callback: 'Jesse remembers how the short leg was found.' }, { label: 'Fold to the gap', callback: 'Jesse remembers the needed thickness.' }, { label: 'Test all four places', callback: 'Jesse remembers the stable table.' },
+      ], dilemma: { prompt: 'How should Jesse steady the table with one cloth?', answers: ['Hold the table for the whole meal.', 'Place the cloth on the tabletop.', 'Fold it beneath the short leg.'], correct: 2, explanation: 'The rocking test identifies the one gap, and a folded support closes it without removing the table from use.' }, closing: 'A cloth hidden beneath one leg lets the whole table share a steady meal.', keepsake: { name: 'Short-Leg Fold', description: 'A folded cloth patch matching one small floor gap.' } },
+      country: { title: 'Six Plots in Two Full Trips', desire: 'competence', chapters: [
+        { title: 'A carrier holds three measures', text: 'At Afrotopia Café @ The Gallery, Jesse’s fictional garden game has six plots, each needing one measure from a three-measure carrier.' },
+        { title: 'Only two trips fit', text: 'A quiet evening at Greenwood Park confirms every measure must be used before returning. Three adjacent plots form each side of the route.' },
+        { title: 'Partial trips would fail the count', text: 'Jesse could serve plots randomly, return half-full, or complete one adjacent group of three on each full trip.' },
+        { title: 'Two empty returns prove completion', text: 'The first full carrier serves three neighboring plots. Jesse refills once, serves the other three and returns empty after exactly two trips.' },
+      ], approaches: [
+        { label: 'Group three adjacent plots', callback: 'Jesse remembers the first full route.' }, { label: 'Empty before returning', callback: 'Jesse remembers the capacity proof.' }, { label: 'Repeat on the other side', callback: 'Jesse remembers the complete six-plot result.' },
+      ], dilemma: { prompt: 'How should Jesse cover six plots in two trips?', answers: ['Visit plots in a random order.', 'Return with unused measures.', 'Serve one adjacent group of three per full trip.'], correct: 2, explanation: 'Two full three-measure trips cover all six plots exactly and avoid carrying unused capacity back.' }, closing: 'Two full carriers return empty after six fictional plots receive one measure each.', keepsake: { name: 'Two-Trip Measure Clip', description: 'A clip showing two groups of three plot marks.' } },
+      missions: { daily: [
+        { label: 'Have one simple meal at Afrotopia Café @ The Gallery', purpose: 'Check Jesse’s fictional table stability.', task: 'practical', count: 1 }, { label: 'Visit Jesse at Greenwood Park', purpose: 'Review the two full garden trips.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Harare', purpose: 'Give Jesse neighbors for the six-plot plan.', task: 'people', count: 3 },
+      ], weekly: [
+        { label: 'Enjoy three quiet evenings at Greenwood Park', purpose: 'Practise grouping the fictional plot route.', task: 'discovery', count: 3 }, { label: 'Visit three game places in Harare', purpose: 'Think through the folded-cloth support.', task: 'places', count: 3 }, { label: 'Have two simple meals at Afrotopia Café @ The Gallery', purpose: 'Repeat the short-leg table check.', task: 'practical', count: 2 },
+      ] },
+    },
+    {
+      cityId: 'honiara',
+      city: { title: 'Three, Three and Two Decorations', desire: 'belonging', chapters: [
+        { title: 'Eight decorations need three spans', text: "At Children's Park, Jesse’s fictional neighbor celebration has eight paper decorations and three strings that hold at most three each." },
+        { title: 'The centerpiece needs breathing room', text: 'Having a simple meal at The Ofis shows the centerpiece can share a span with one small decoration, while the others are equal.' },
+        { title: 'No string may carry four', text: 'Jesse could overload one string, leave a decoration down, or arrange three, three and two with the centerpiece in the smallest group.' },
+        { title: 'Every decoration hangs safely', text: 'Two strings carry three small decorations each. The last holds the centerpiece and one companion, keeping all spans within their limits.' },
+      ], approaches: [
+        { label: 'Count each string limit', callback: 'Jesse remembers the maximum of three.' }, { label: 'Reserve the centerpiece span', callback: 'Jesse remembers the two-decoration group.' }, { label: 'Hang every piece', callback: 'Jesse remembers the complete celebration.' },
+      ], dilemma: { prompt: 'How should Jesse divide eight decorations?', answers: ['Hang four on one string.', 'Leave one decoration unused.', 'Use groups of three, three and two.'], correct: 2, explanation: 'The three groups total eight and none exceeds the stated capacity.' }, closing: 'Eight decorations brighten three spans, with the centerpiece clear inside the smallest group.', keepsake: { name: 'Three-Three-Two Garland', description: 'A tiny garland divided into the three safe groups.' } },
+      country: { title: 'One Playable Game from Three Sets', desire: 'curiosity', chapters: [
+        { title: 'Three incomplete games arrive', text: "At The Ofis, Jesse’s fictional game night has one set missing a board, one missing tokens and one missing a die." },
+        { title: 'The surviving pieces are compatible', text: "A quiet evening at Children's Park confirms one complete board, token group and die remain across the three boxes." },
+        { title: 'The group needs one playable set', text: 'Jesse could abandon all three, invent pieces, or combine the compatible survivors and rotate who sets each challenge.' },
+        { title: 'A shared game begins', text: 'The board, tokens and die meet on one table. A different friend sets the opening challenge each round, so every donor shapes play.' },
+      ], approaches: [
+        { label: 'Check surviving components', callback: 'Jesse remembers the compatible board, tokens and die.' }, { label: 'Build one complete set', callback: 'Jesse remembers the playable combination.' }, { label: 'Rotate the challenge setter', callback: 'Jesse remembers how each friend stayed involved.' },
+      ], dilemma: { prompt: 'What should Jesse do with the three incomplete sets?', answers: ['Put every set away.', 'Create imaginary replacements.', 'Combine compatible pieces into one game.'], correct: 2, explanation: 'The surviving components fill one another’s exact gaps without altering or inventing game pieces.' }, closing: 'Three incomplete boxes produce one complete evening of rotating challenges.', keepsake: { name: 'Combined Game Token', description: 'A token showing board, piece and die symbols together.' } },
+      missions: { daily: [
+        { label: 'Have one simple meal at The Ofis', purpose: 'Plan Jesse’s three decoration spans.', task: 'practical', count: 1 }, { label: "Visit Jesse at Children's Park", purpose: 'Review the fictional combined game set.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Honiara', purpose: 'Give Jesse partners for the game night.', task: 'people', count: 2 },
+      ], weekly: [
+        { label: "Enjoy two quiet evenings at Children's Park", purpose: 'Practise combining the compatible game pieces.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Honiara', purpose: 'Think through the three-three-two decoration split.', task: 'places', count: 3 }, { label: 'Have three simple meals at The Ofis', purpose: 'Repeat the safe decoration count.', task: 'practical', count: 3 },
+      ] },
+    },
+    {
+      cityId: 'kampala',
+      city: { title: 'Equal Pulls for the Awning', desire: 'competence', chapters: [
+        { title: 'Two edges rise unevenly', text: 'At Entebbe Botanical Gardens, Jesse’s fictional shop awning tilts because its two pull cords begin with different slack.' },
+        { title: 'Neither side may lead by a hand-span', text: 'Having a simple meal at Cafe Javas shows both cords remain usable and neither may be cut.' },
+        { title: 'The tighter side must sometimes wait', text: 'Jesse could yank both continuously, cut the longer cord, or alternate equal hand-span pulls while pausing whichever edge reaches the limit.' },
+        { title: 'The edges meet at the top', text: 'Jesse pulls in measured turns and pauses the tight side once. Both awning edges arrive level without changing either cord.' },
+      ], approaches: [
+        { label: 'Measure one hand-span', callback: 'Jesse remembers the equal pull unit.' }, { label: 'Watch both edges', callback: 'Jesse remembers when one side needed to pause.' }, { label: 'Finish level', callback: 'Jesse remembers the aligned awning.' },
+      ], dilemma: { prompt: 'How should Jesse raise the uneven awning?', answers: ['Yank both cords continuously.', 'Cut the longer cord.', 'Alternate equal pulls and pause the leading side.'], correct: 2, explanation: 'Measured alternating pulls absorb the initial slack difference while keeping both edges within the allowed gap.' }, closing: 'Two unchanged cords finish with one level fictional awning.', keepsake: { name: 'Hand-Span Pull Marker', description: 'A cord marker showing the shared pull length.' } },
+      country: { title: 'Lower the Ladder Only Once', desire: 'competence', chapters: [
+        { title: 'Three tasks sit at three heights', text: 'At Cafe Javas, three neighbors share an adjustable fictional ladder for high, medium and low project jobs.' },
+        { title: 'The ladder may descend but not rise again', text: 'A quiet evening at Entebbe Botanical Gardens reveals every adjustment locks safely downward until the session ends.' },
+        { title: 'Task order determines completion', text: 'Jesse could begin low, jump between heights, or finish high first before lowering for medium and then low.' },
+        { title: 'One direction completes every job', text: 'The highest task finishes at full extension. Jesse lowers the ladder for medium, then low, never needing a forbidden upward reset.' },
+      ], approaches: [
+        { label: 'Rank the three heights', callback: 'Jesse remembers the descending order.' }, { label: 'Begin at full extension', callback: 'Jesse remembers the only chance to reach high.' }, { label: 'Lower after completion', callback: 'Jesse remembers the one-way adjustments.' },
+      ], dilemma: { prompt: 'In what order should the ladder tasks run?', answers: ['Low, medium, high.', 'Switch heights after every step.', 'High, medium, low.'], correct: 2, explanation: 'Descending order respects the no-raising constraint and still reaches all three heights.' }, closing: 'The ladder ends low after completing high, medium and low work once each.', keepsake: { name: 'Descending Ladder Tag', description: 'A tag with three steps pointing downward.' } },
+      missions: { daily: [
+        { label: 'Have one simple meal at Cafe Javas', purpose: 'Plan Jesse’s equal awning pulls.', task: 'practical', count: 1 }, { label: 'Visit Jesse at Entebbe Botanical Gardens', purpose: 'Review the fictional descending ladder jobs.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Kampala', purpose: 'Give Jesse neighbors for the height sequence.', task: 'people', count: 3 },
+      ], weekly: [
+        { label: 'Enjoy three quiet evenings at Entebbe Botanical Gardens', purpose: 'Practise the high-to-low task order.', task: 'discovery', count: 3 }, { label: 'Visit two game places in Kampala', purpose: 'Think through the alternating pull lengths.', task: 'places', count: 2 }, { label: 'Have two simple meals at Cafe Javas', purpose: 'Repeat the level-awning plan.', task: 'practical', count: 2 },
+      ] },
+    },
+    {
+      cityId: 'kingston-nf',
+      city: { title: 'Three Shots at Each Goal', desire: 'fairness', chapters: [
+        { title: 'Two targets reward different skills', text: 'At Lions Park, Wren’s friendly ball game has one wide goal and one narrow goal. Raw totals from only one goal would favor its specialists.' },
+        { title: 'Every player has six shots', text: 'Looking around Norfolk Island Memorial Park shows the schedule fits exactly three attempts at each goal.' },
+        { title: 'Comparable evidence needs both targets', text: 'Wren could let players choose a goal, use only the narrow one, or give everyone three shots at each and combine results.' },
+        { title: 'One score reflects both challenges', text: 'Each player completes both three-shot blocks. Wren adds the results, so the ranking includes wide-goal control and narrow-goal precision.' },
+      ], approaches: [
+        { label: 'Split six into two blocks', callback: 'Wren remembers the equal attempt count.' }, { label: 'Use both goals', callback: 'Wren remembers the two different demands.' }, { label: 'Combine the results', callback: 'Wren remembers the comparable final score.' },
+      ], dilemma: { prompt: 'How should Wren compare the players?', answers: ['Let each choose a goal.', 'Use only the narrow target.', 'Give three shots at each goal and combine them.'], correct: 2, explanation: 'Equal attempts at both fixed targets create the same test for every player.' }, closing: 'The final score belongs to six shots across both kinds of challenge.', keepsake: { name: 'Two-Goal Score Disc', description: 'A disc divided into wide and narrow three-shot halves.' } },
+      country: { title: 'Two Balanced Goals from Six Boards', desire: 'competence', chapters: [
+        { title: 'Six boards must form four equal sides', text: 'At Norfolk Island Memorial Park, Wren’s fictional build has two long boards and four boards exactly half their length.' },
+        { title: 'No cutting is allowed', text: 'A look around Lions Park shows paired short boards can join end to end and every board must be used.' },
+        { title: 'Opposite sides should match', text: 'Wren could discard shorts, overlap lengths, or place long boards opposite and join two short boards for each remaining side.' },
+        { title: 'Six pieces close one equal frame', text: 'The two long boards face each other. Two joined short pairs complete the other sides at the same length.' },
+      ], approaches: [
+        { label: 'Match half-length pairs', callback: 'Wren remembers how four shorts became two sides.' }, { label: 'Place long sides opposite', callback: 'Wren remembers the balanced frame.' }, { label: 'Use all six boards', callback: 'Wren remembers the complete build.' },
+      ], dilemma: { prompt: 'How should Wren build four equal sides?', answers: ['Discard the short boards.', 'Overlap unequal lengths.', 'Use two long sides and two joined short pairs.'], correct: 2, explanation: 'Each short pair equals one long board, producing four matched sides without cutting.' }, closing: 'Two single boards and two joined pairs close one equal-sided fictional frame.', keepsake: { name: 'Joined-Side Corner', description: 'A model corner showing one long side and one paired side.' } },
+      missions: { daily: [
+        { label: 'Look around once at Norfolk Island Memorial Park', purpose: 'Plan Wren’s two-goal shot split.', task: 'practical', count: 1 }, { label: 'Visit Wren at Lions Park', purpose: 'Review the six-board fictional frame.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in Kingston', purpose: 'Give Wren players for the fair score.', task: 'people', count: 4 },
+      ], weekly: [
+        { label: 'Look around twice at Lions Park', purpose: 'Practise joining the half-length boards.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Kingston', purpose: 'Think through equal attempts at both goals.', task: 'places', count: 3 }, { label: 'Look around three times at Norfolk Island Memorial Park', purpose: 'Repeat the combined scoring plan.', task: 'practical', count: 3 },
+      ] },
+    },
+    {
+      cityId: 'kinshasa',
+      city: { title: 'The Tray Turns before the Door', desire: 'competence', chapters: [
+        { title: 'A wide tray meets a narrow doorway', text: 'At Parc Naturel de la Nsele (Mangiers), Jesse’s fictional tray holds three fragile cups and is wider than the project doorway.' },
+        { title: 'The diagonal fits', text: 'Having a simple meal at petit restaurant et plage shows the doorway diagonal exceeds the tray width. Cups cannot leave and the tray must stay level.' },
+        { title: 'Orientation is the available change', text: 'Jesse could remove cups, tilt the tray, or turn it level and guide the long corner through first.' },
+        { title: 'Three cups pass without tipping', text: 'Jesse rotates before the threshold, advances the far corner and follows with the near corner. The level tray clears the doorway.' },
+      ], approaches: [
+        { label: 'Compare width and diagonal', callback: 'Jesse remembers the opening that fit.' }, { label: 'Turn while still clear', callback: 'Jesse remembers where orientation changed.' }, { label: 'Lead with one corner', callback: 'Jesse remembers the safe passage.' },
+      ], dilemma: { prompt: 'How should Jesse move the tray through the doorway?', answers: ['Remove the fragile cups.', 'Tilt the loaded tray.', 'Rotate it level and lead with the long corner.'], correct: 2, explanation: 'The diagonal opening fits the unchanged level tray when its orientation changes before entry.' }, closing: 'Three cups cross the narrow doorway on the same level tray.', keepsake: { name: 'Diagonal Doorway Tile', description: 'A doorway tile with a tray turning through one corner.' } },
+      country: { title: 'One Shared Briefing, Two Solo Consultations', desire: 'fairness', chapters: [
+        { title: 'Four teams request three help intervals', text: 'At petit restaurant et plage, Jesse’s fictional project has four teams and only three consultation intervals.' },
+        { title: 'Two requests are identical', text: 'A quiet evening at Parc Naturel de la Nsele (Mangiers) reveals two teams need the same opening briefing; the others need separate advice.' },
+        { title: 'Shared information can share time', text: 'Jesse could reject one team, rush all four together, or brief the matching pair jointly and reserve one interval for each other team.' },
+        { title: 'Three intervals serve four teams', text: 'The identical briefing opens with two teams. Separate consultations follow, and every request receives its needed format.' },
+      ], approaches: [
+        { label: 'Match identical requests', callback: 'Jesse remembers the pair that could share.' }, { label: 'Protect solo intervals', callback: 'Jesse remembers the distinct advice.' }, { label: 'Count three complete sessions', callback: 'Jesse remembers the full schedule.' },
+      ], dilemma: { prompt: 'How should Jesse fit four teams into three intervals?', answers: ['Reject one team.', 'Rush everyone through one meeting.', 'Share the identical briefing, then hold two solo sessions.'], correct: 2, explanation: 'Combining only the identical request preserves two intervals for advice that cannot be shared.' }, closing: 'Four teams leave three complete consultations with no request compressed into the wrong format.', keepsake: { name: 'Shared-Briefing Slot', description: 'A three-slot card with two team marks in the first.' } },
+      missions: { daily: [
+        { label: 'Have one simple meal at petit restaurant et plage', purpose: 'Plan Jesse’s diagonal fictional tray turn.', task: 'practical', count: 1 }, { label: 'Visit Jesse at Parc Naturel de la Nsele (Mangiers)', purpose: 'Review the three consultation intervals.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Kinshasa', purpose: 'Give Jesse teams for the shared briefing.', task: 'people', count: 2 },
+      ], weekly: [
+        { label: 'Enjoy three quiet evenings at Parc Naturel de la Nsele (Mangiers)', purpose: 'Practise matching the identical requests.', task: 'discovery', count: 3 }, { label: 'Visit two game places in Kinshasa', purpose: 'Think through the level tray orientation.', task: 'places', count: 2 }, { label: 'Have two simple meals at petit restaurant et plage', purpose: 'Repeat the doorway turn.', task: 'practical', count: 2 },
+      ] },
+    },
+    {
+      cityId: 'lilongwe',
+      city: { title: 'The Leg with the Smallest Loss', desire: 'fairness', chapters: [
+        { title: 'Two runners want the middle leg', text: 'At Bingu National Stadium, Jesse’s friendly relay has short, middle and long legs. Two runners prefer the middle distance.' },
+        { title: 'Practice reveals unequal tradeoffs', text: 'Having a simple meal at Mamma Mia shows one runner loses one beat when moved short; the other loses five.' },
+        { title: 'Preference alone cannot fill three legs', text: 'Jesse could draw lots, ignore practice, or keep the larger specialist advantage in the middle and move the smaller-loss runner short.' },
+        { title: 'The team preserves more combined strength', text: 'The five-beat specialist takes middle, the one-beat alternative takes short, and the third runner keeps long. Every leg has an owner.' },
+      ], approaches: [
+        { label: 'Compare each time loss', callback: 'Jesse remembers the one-beat and five-beat difference.' }, { label: 'Protect the larger advantage', callback: 'Jesse remembers why middle stayed with its specialist.' }, { label: 'Fill every leg', callback: 'Jesse remembers the complete relay.' },
+      ], dilemma: { prompt: 'Who should move from the contested middle leg?', answers: ['Choose by lot.', 'Ignore the practice results.', 'Move the runner who loses only one beat.'], correct: 2, explanation: 'Moving the smaller-loss runner preserves four more beats of combined relay performance.' }, closing: 'Three runners take distinct legs through a choice grounded in their measured tradeoffs.', keepsake: { name: 'One-Beat Relay Marker', description: 'A marker comparing the one-beat and five-beat alternatives.' } },
+      country: { title: 'Eight Seats around Two Edge Tables', desire: 'belonging', chapters: [
+        { title: 'The center must stay open', text: 'At Mamma Mia, Jesse’s fictional celebration has twelve chairs and three tables, but the central activity needs a four-chair-sized space.' },
+        { title: 'Only eight guests need seats', text: 'A quiet evening at Bingu National Stadium reveals two edge tables each hold four people. The third can carry supplies outside the center.' },
+        { title: 'Furniture must serve people and space', text: 'Jesse could fill the center, remove guest seats, or seat four at each edge table and move the supply table outside the activity area.' },
+        { title: 'The gathering gains a clear middle', text: 'Eight guests sit at the two edge tables. Supplies remain reachable on the third, and the full central space opens for the shared activity.' },
+      ], approaches: [
+        { label: 'Count eight guest seats', callback: 'Jesse remembers the two full edge tables.' }, { label: 'Move supplies outward', callback: 'Jesse remembers the third table’s useful role.' }, { label: 'Protect the center', callback: 'Jesse remembers the open activity space.' },
+      ], dilemma: { prompt: 'How should Jesse arrange the celebration furniture?', answers: ['Place a table in the center.', 'Remove seats from guests.', 'Use two edge tables for guests and one outer supply table.'], correct: 2, explanation: 'Two four-seat tables fit all eight guests while the third serves supplies without consuming the required center.' }, closing: 'Eight friends gather at the edges around one generous open middle.', keepsake: { name: 'Open-Center Table Plan', description: 'A plan showing two four-seat edges and one outer supply table.' } },
+      missions: { daily: [
+        { label: 'Have one simple meal at Mamma Mia', purpose: 'Compare Jesse’s fictional relay tradeoffs.', task: 'practical', count: 1 }, { label: 'Visit Jesse at Bingu National Stadium', purpose: 'Review the open-center celebration layout.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Lilongwe', purpose: 'Give Jesse runners for the three relay legs.', task: 'people', count: 3 },
+      ], weekly: [
+        { label: 'Enjoy two quiet evenings at Bingu National Stadium', purpose: 'Practise the eight-seat edge layout.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Lilongwe', purpose: 'Think through the measured runner assignment.', task: 'places', count: 3 }, { label: 'Have three simple meals at Mamma Mia', purpose: 'Repeat the small-loss comparison.', task: 'practical', count: 3 },
+      ] },
+    },
+    {
+      cityId: 'luxembourg',
+      city: { title: 'Two Stories and One Shared Question', desire: 'recognition', chapters: [
+        { title: 'Six minutes hold two stories', text: 'At Place de Gand, Emery and a friend each bring a fictional story to a six-minute meetup. Both need a complete turn.' },
+        { title: 'A common question must remain', text: 'Looking around Parc Heintz shows two minutes per story leaves two minutes for the question connecting them.' },
+        { title: 'Neither voice should consume the meeting', text: 'Emery could tell one long story, rush both without response, or give each two minutes and reserve the final two for the shared question.' },
+        { title: 'The question makes the stories meet', text: 'Both stories finish inside equal turns. Their remaining two minutes reveal one surprising theme they share.' },
+      ], approaches: [
+        { label: 'Time two complete turns', callback: 'Emery remembers the equal story space.' }, { label: 'Name one shared theme', callback: 'Emery remembers what joined the stories.' }, { label: 'Protect the final question', callback: 'Emery remembers the responsive ending.' },
+      ], dilemma: { prompt: 'How should Emery use the six-minute meetup?', answers: ['Tell one long story.', 'Rush both stories without response.', 'Give two minutes each and two to a shared question.'], correct: 2, explanation: 'Two equal story turns preserve both voices and leave the required time for a real connection.' }, closing: 'Two finished stories lead into one question neither friend expected.', keepsake: { name: 'Two-Two-Two Story Dial', description: 'A six-minute dial divided into two stories and one question.' } },
+      country: { title: 'Two Triangles Share One Side', desire: 'competence', chapters: [
+        { title: 'Five sticks must make a rigid double-frame', text: 'At Parc Heintz, Emery’s fictional build has five equal sticks. No stick may be cut or bent.' },
+        { title: 'Two triangles can share an edge', text: 'A look around Place de Gand shows separate triangles would need six sticks, but joined triangles reuse one middle side.' },
+        { title: 'The shared piece must carry both shapes', text: 'Emery could make one square, leave a gap, or build two triangles against the same central stick.' },
+        { title: 'Five pieces brace one another', text: 'Three sticks form the first triangle. Two more meet its shared side to close the second, creating a rigid double-frame.' },
+      ], approaches: [
+        { label: 'Reserve the shared side', callback: 'Emery remembers the stick used twice.' }, { label: 'Close the first triangle', callback: 'Emery remembers the stable starting shape.' }, { label: 'Brace the second', callback: 'Emery remembers the complete five-stick frame.' },
+      ], dilemma: { prompt: 'How should Emery form two rigid shapes with five sticks?', answers: ['Build one four-sided shape.', 'Leave one triangle open.', 'Make two triangles share one side.'], correct: 2, explanation: 'Sharing one side reduces six required edges to five while preserving both closed triangles.' }, closing: 'One middle stick belongs fully to two shapes at once.', keepsake: { name: 'Shared-Side Joint', description: 'A five-stick model of two joined triangles.' } },
+      missions: { daily: [
+        { label: 'Look around once at Parc Heintz', purpose: 'Plan Emery’s balanced story turns.', task: 'practical', count: 1 }, { label: 'Visit Emery at Place de Gand', purpose: 'Review the fictional shared-side frame.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Luxembourg', purpose: 'Give Emery a partner for the shared question.', task: 'people', count: 2 },
+      ], weekly: [
+        { label: 'Look around three times at Place de Gand', purpose: 'Practise the five-stick double triangle.', task: 'discovery', count: 3 }, { label: 'Visit two game places in Luxembourg', purpose: 'Think through the two-two-two conversation.', task: 'places', count: 2 }, { label: 'Look around twice at Parc Heintz', purpose: 'Repeat the equal story timing.', task: 'practical', count: 2 },
+      ] },
+    },
+    {
+      cityId: 'macau',
+      city: { title: 'Back the Slider away from the Fold', desire: 'competence', chapters: [
+        { title: 'Fabric catches inside a zipper', text: 'At Ramalho Eanes Garden, Logan’s friend catches a fold in a fictional project zipper. Pulling forward tightens it.' },
+        { title: 'The slider still moves backward', text: 'Looking around Hac Sa Park reveals the fabric cannot be cut, but one backward step releases pressure.' },
+        { title: 'Force would deepen the snag', text: 'Logan could pull harder, cut the fold, or ease the slider back, flatten the fabric and close forward again.' },
+        { title: 'Slack frees the project', text: 'The slider moves back one step. Logan smooths the fold clear and closes the zipper without damage.' },
+      ], approaches: [
+        { label: 'Stop the forward pull', callback: 'Logan remembers what tightened the snag.' }, { label: 'Create one step of slack', callback: 'Logan remembers the useful backward move.' }, { label: 'Flatten before closing', callback: 'Logan remembers the clean finish.' },
+      ], dilemma: { prompt: 'How should Logan free the caught fabric?', answers: ['Pull the zipper harder.', 'Cut the fabric fold.', 'Back the slider up, flatten the fold and close again.'], correct: 2, explanation: 'Backward movement releases pressure so the intact fabric can leave the zipper path.' }, closing: 'The zipper closes cleanly after one careful retreat.', keepsake: { name: 'Freed-Fold Zipper Pull', description: 'A zipper pull marked back, smooth and forward.' } },
+      country: { title: 'Split Every Skill Level', desire: 'fairness', chapters: [
+        { title: 'Six players need two equal teams', text: 'At Hac Sa Park, Logan’s friendly game has advanced, intermediate and beginner pairs.' },
+        { title: 'Each team needs the full range', text: 'A look around Ramalho Eanes Garden confirms teams must have three players and cannot place both partners from one level together.' },
+        { title: 'Random groups could stack experience', text: 'Logan could draw freely, group by level, or split every level pair across the two teams.' },
+        { title: 'Both teams receive one of each', text: 'One advanced, intermediate and beginner player joins each side. The first round starts with equal experience ranges.' },
+      ], approaches: [
+        { label: 'Pair matching levels', callback: 'Logan remembers the three experience pairs.' }, { label: 'Split each pair', callback: 'Logan remembers the balanced distribution.' }, { label: 'Count three per team', callback: 'Logan remembers the complete lineups.' },
+      ], dilemma: { prompt: 'How should Logan form the teams?', answers: ['Draw all names without constraints.', 'Put matching levels together.', 'Split each experience pair between teams.'], correct: 2, explanation: 'Dividing every level pair guarantees both three-player teams contain the same experience range.' }, closing: 'Two teams face each other with one player from every level.', keepsake: { name: 'Three-Level Team Band', description: 'A band split into matching advanced, intermediate and beginner halves.' } },
+      missions: { daily: [
+        { label: 'Look around once at Hac Sa Park', purpose: 'Plan Logan’s zipper release.', task: 'practical', count: 1 }, { label: 'Visit Logan at Ramalho Eanes Garden', purpose: 'Review the fictional team split.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Macau', purpose: 'Give Logan players for the balanced teams.', task: 'people', count: 3 },
+      ], weekly: [
+        { label: 'Look around twice at Ramalho Eanes Garden', purpose: 'Practise splitting the three skill pairs.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Macau', purpose: 'Think through the back-smooth-forward repair.', task: 'places', count: 3 }, { label: 'Look around three times at Hac Sa Park', purpose: 'Repeat the fictional zipper fix.', task: 'practical', count: 3 },
+      ] },
+    },
+    {
+      cityId: 'madrid',
+      city: { title: 'Score the Five Rounds by Hand', desire: 'competence', chapters: [
+        { title: 'The display stops after round five', text: 'At Parque Dehesa Boyal, Wren’s fictional game score display fails after five completed rounds. The results themselves remain known.' },
+        { title: 'Wins and draws have fixed values', text: 'Looking around Parque de Las Presillas confirms a win is two points and a draw one. No round can be replayed.' },
+        { title: 'The existing result can be recovered', text: 'Wren could restart the game, guess the leader, or total every recorded win and draw by hand.' },
+        { title: 'Arithmetic restores the scoreboard', text: 'Wren adds two per win and one per draw for each player. The reconstructed totals agree with all five round records.' },
+      ], approaches: [
+        { label: 'List the five results', callback: 'Wren remembers the evidence that survived.' }, { label: 'Apply fixed point values', callback: 'Wren remembers the scoring rule.' }, { label: 'Check the total', callback: 'Wren remembers the recovered result.' },
+      ], dilemma: { prompt: 'How should Wren finish scoring the game?', answers: ['Replay all five rounds.', 'Guess the leader.', 'Total the recorded wins and draws by hand.'], correct: 2, explanation: 'Known results and fixed point values reproduce the score without altering completed play.' }, closing: 'The final ranking returns through five records and simple arithmetic.', keepsake: { name: 'Five-Round Tally Tile', description: 'A tile marked two for wins and one for draws.' } },
+      country: { title: 'Save the Battery for the Final Hour', desire: 'continuity', chapters: [
+        { title: 'Three lamps are needed together at the finish', text: 'At Parque de Las Presillas, Wren’s fictional project has three lamps, one two-socket cable and one lamp with a one-hour battery.' },
+        { title: 'Only the final hour needs all three', text: 'A look around Parque Dehesa Boyal confirms two plugged lamps cover setup. The charged lamp must last the closing hour.' },
+        { title: 'Early use could spend the only reserve', text: 'Wren could run the battery during setup, leave one final lamp dark, or preserve it while two plugged lamps handle setup.' },
+        { title: 'The third light joins exactly when needed', text: 'Two cable-powered lamps illuminate setup. Wren switches on the charged lamp for the final hour, when all three shine together.' },
+      ], approaches: [
+        { label: 'Power two setup lamps', callback: 'Wren remembers the cable’s exact capacity.' }, { label: 'Preserve the charged lamp', callback: 'Wren remembers the one-hour reserve.' }, { label: 'Start it at the finish', callback: 'Wren remembers the three-light closing.' },
+      ], dilemma: { prompt: 'How should Wren schedule the battery lamp?', answers: ['Use it throughout setup.', 'Accept a dark lamp at the finish.', 'Save it for the final hour.'], correct: 2, explanation: 'The plugged pair covers setup, preserving the exact battery duration for the only interval needing three lamps.' }, closing: 'The saved third light joins the pair for a complete final hour.', keepsake: { name: 'Final-Hour Lamp Tab', description: 'A tab showing two steady lights and one timed reserve.' } },
+      missions: { daily: [
+        { label: 'Look around once at Parque de Las Presillas', purpose: 'Rebuild Wren’s fictional five-round score.', task: 'practical', count: 1 }, { label: 'Visit Wren at Parque Dehesa Boyal', purpose: 'Review the final-hour lamp plan.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in Madrid', purpose: 'Give Wren players for the recorded rounds.', task: 'people', count: 4 },
+      ], weekly: [
+        { label: 'Look around three times at Parque Dehesa Boyal', purpose: 'Practise preserving the charged lamp.', task: 'discovery', count: 3 }, { label: 'Visit two game places in Madrid', purpose: 'Think through the win-and-draw totals.', task: 'places', count: 2 }, { label: 'Look around twice at Parque de Las Presillas', purpose: 'Repeat the manual scoring check.', task: 'practical', count: 2 },
+      ] },
+    },
+    {
+      cityId: 'manama',
+      city: { title: 'Practise the Ending First', desire: 'competence', chapters: [
+        { title: 'The routine always restarts', text: 'At Askar Garden, Jesse’s friend practises a fictional three-section routine from the beginning and never reaches the ending confidently.' },
+        { title: 'Three practice turns remain', text: 'Having a simple meal at Light House Cafe shows each turn can hold the ending alone, the middle-to-ending link or one full run.' },
+        { title: 'Forward repetition would repeat the gap', text: 'Jesse could restart three more times, skip the ending, or work backward: ending, middle-plus-ending, then full routine.' },
+        { title: 'The strongest section grows backward', text: 'The friend secures the ending, connects it to the middle and completes one full run. Every practice turn reaches the former weak point.' },
+      ], approaches: [
+        { label: 'Isolate the ending', callback: 'Jesse remembers where confidence was missing.' }, { label: 'Add the middle link', callback: 'Jesse remembers the second backward step.' }, { label: 'Finish with one full run', callback: 'Jesse remembers the completed routine.' },
+      ], dilemma: { prompt: 'How should the friend use the three remaining turns?', answers: ['Restart from the beginning every time.', 'Skip the ending.', 'Practise ending, link, then full routine.'], correct: 2, explanation: 'Backward chaining makes every turn reach the weak ending before testing it inside the complete routine.' }, closing: 'The ending becomes the section the friend has practised most, not least.', keepsake: { name: 'Backward Practice Strip', description: 'A strip marked ending, link and full run.' } },
+      country: { title: 'Ingredients, Method, Timing', desire: 'belonging', chapters: [
+        { title: 'Three friends hold different recipe knowledge', text: 'At Light House Cafe, one fictional cook knows ingredients, one method and one timing.' },
+        { title: 'No voice may speak twice in a row', text: 'A quiet evening at Askar Garden reveals every recipe step needs all three facts in the same dependable order.' },
+        { title: 'A repeating sequence can combine expertise', text: 'Jesse could let one friend dominate, mix the order randomly, or repeat ingredients-method-timing for each step.' },
+        { title: 'Every step arrives complete', text: 'The ingredient voice names what is used, method explains the action and timing closes the step. The sequence repeats without consecutive turns.' },
+      ], approaches: [
+        { label: 'Assign three knowledge roles', callback: 'Jesse remembers what each friend contributes.' }, { label: 'Keep one speaking order', callback: 'Jesse remembers the reliable sequence.' }, { label: 'Repeat for every step', callback: 'Jesse remembers the complete recipe explanation.' },
+      ], dilemma: { prompt: 'How should the three friends explain each step?', answers: ['Let one person explain everything.', 'Change the order randomly.', 'Use ingredients, method, then timing.'], correct: 2, explanation: 'The repeated order combines all required facts while naturally alternating the three speakers.' }, closing: 'Three kinds of knowledge become one recipe through a sequence everyone can follow.', keepsake: { name: 'Three-Voice Recipe Ring', description: 'A ring marked ingredients, method and timing.' } },
+      missions: { daily: [
+        { label: 'Have one simple meal at Light House Cafe', purpose: 'Plan Jesse’s backward practice turns.', task: 'practical', count: 1 }, { label: 'Visit Jesse at Askar Garden', purpose: 'Review the three fictional recipe roles.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Manama', purpose: 'Give Jesse voices for the recipe sequence.', task: 'people', count: 3 },
+      ], weekly: [
+        { label: 'Enjoy two quiet evenings at Askar Garden', purpose: 'Practise the three-part explanation order.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Manama', purpose: 'Think through the ending-first routine.', task: 'places', count: 3 }, { label: 'Have three simple meals at Light House Cafe', purpose: 'Repeat the backward practice chain.', task: 'practical', count: 3 },
+      ] },
+    },
+    {
+      cityId: 'marigot',
+      city: { title: 'Flip Only the Middle Panel', desire: 'curiosity', chapters: [
+        { title: 'Two seams refuse to meet', text: "At Lili's Tropical Garden, Jesse’s fictional fabric display has three patterned panels. The outer edges align, but both center seams break." },
+        { title: 'The middle panel is reversible', text: 'Having a simple meal at Le Sand reveals the panels cannot be cut, and flipping either outer panel would spoil its finished edge.' },
+        { title: 'One change can affect both seams', text: 'Jesse could trim the panels, flip an outer one, or reverse only the middle panel.' },
+        { title: 'Both broken lines connect', text: 'The reversed middle panel presents its matching edges to both neighbors. The outer finished edges remain facing outward.' },
+      ], approaches: [
+        { label: 'Protect the outer edges', callback: 'Jesse remembers which faces had to remain.' }, { label: 'Inspect both middle faces', callback: 'Jesse remembers the reversible piece.' }, { label: 'Check two seams', callback: 'Jesse remembers the single change that fixed both.' },
+      ], dilemma: { prompt: 'How should Jesse align both pattern seams?', answers: ['Cut the panels.', 'Flip an outer finished panel.', 'Reverse only the middle panel.'], correct: 2, explanation: 'The reversible center changes both internal edges while preserving the required outer faces.' }, closing: 'One flipped center makes two continuous lines across the full display.', keepsake: { name: 'Reversible Seam Patch', description: 'A patch with matching lines on opposite edges.' } },
+      country: { title: 'One Paired Task, Two Solo Tasks', desire: 'fairness', chapters: [
+        { title: 'Four friends face three jobs', text: 'At Le Sand, a fictional project has one task requiring a pair and two independent tasks requiring one person each.' },
+        { title: 'Every friend needs a full role', text: "A quiet evening at Lili's Tropical Garden confirms the paired task cannot split, while the solo jobs cannot share." },
+        { title: 'The task sizes already match the group', text: 'Jesse could crowd one job, leave a solo task open, or assign two friends jointly and one to each solo task.' },
+        { title: 'Four roles fill three jobs exactly', text: 'The pair completes the shared lift while two friends handle independent work. No task or participant waits.' },
+      ], approaches: [
+        { label: 'Identify the paired job', callback: 'Jesse remembers the only two-person need.' }, { label: 'Protect both solo jobs', callback: 'Jesse remembers the independent roles.' }, { label: 'Count four assignments', callback: 'Jesse remembers the exact fit.' },
+      ], dilemma: { prompt: 'How should Jesse assign four friends to three jobs?', answers: ['Put everyone on one job.', 'Leave a solo job open.', 'Use one pair and two solo assignments.'], correct: 2, explanation: 'The required staffing totals four people exactly, matching the available group without overlap.' }, closing: 'One pair and two independent workers finish three different jobs together.', keepsake: { name: 'Two-One-One Task Clip', description: 'A clip divided into one paired role and two solo roles.' } },
+      missions: { daily: [
+        { label: 'Have one simple meal at Le Sand', purpose: 'Plan Jesse’s middle-panel reversal.', task: 'practical', count: 1 }, { label: "Visit Jesse at Lili's Tropical Garden", purpose: 'Review the fictional two-one-one roles.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Marigot', purpose: 'Give Jesse partners for the shared task.', task: 'people', count: 2 },
+      ], weekly: [
+        { label: "Enjoy three quiet evenings at Lili's Tropical Garden", purpose: 'Practise assigning one pair and two solos.', task: 'discovery', count: 3 }, { label: 'Visit two game places in Marigot', purpose: 'Think through the reversible center panel.', task: 'places', count: 2 }, { label: 'Have two simple meals at Le Sand', purpose: 'Repeat the two-seam check.', task: 'practical', count: 2 },
+      ] },
+    },
+  ],
+} satisfies AuthoredContentBatch
+
+export default batch

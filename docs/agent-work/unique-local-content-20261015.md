@@ -80,3 +80,13 @@ Batches01–04 now accepted locally:145cities,104country/territoryidentities,290
 Engine probe passes1450completionpaths across290episodes, preserving568exactoldmementos/527oldcollections; mission probe passes17400dailydeals,free swaps,fallback and144legacyrolloverclaims. Reports engine-acceptance.json/mission-acceptance.json now correspond to145-city local activation; previous75-citybuild/CI evidence stays scoped to75 until newCI finishes. Existing111cases previously passed aftermainintegration; new145focusedrun andCIpending. Global table-game hint now uses Phone→Tables instead of prescribing Lagos-specific venues.
 
 Activeauthoring: Sol05quality and Sol06quality own separatefiles/records.05firstsix approved with explicit paint-drying schedule correction and voluntary spicy/mild preferences;06awaits matrix. UpdatedAUTHORING reinforces actual observable mission labels, strict-valid source checkpoints and broader human-life stories. Old03–08Luna workers stay interrupted;07/08unassignedheld. Latestusage92%used/8%remaining; stopallat95%used. No deployment.
+
+## 145-city CI and concurrent main movement
+
+CI38671975290 passes on84679997, and111focused integration cases pass after145activation. Before mainpush, fresh main545caabb adds released Phase14 (29files); merged cleanly and rerunning focused checks including prayer/resident contracts, then combined CI. No new content task deployment.
+
+ActualMoscowTalesQA created via localhost creator: Russia/Moscow grouping correct, both distinct tales and Soft-Block Paths country collection render. First real arboretum Look around activity completed; wholeMoscowtale not yet completed inbrowser. Nairobi token survives145expansion (ui-nairobi-earned-145.png).
+
+A third finite Luna outline lane was tried while two Sol writers authored;07matrix rejected for repeated05meal/care patterns and arithmetic failures (fourrequests/twowindows, demo+threelearnersinthreeturns, nineguests/sixplates). Worker corrected its record and stopped. No sourceaccepted. Actualcheckoutrevision in that record corrected from stale inputbasec42 to84679997. This trial did not establish cost savings; costs unknown. Only05/06writers remain active;07requires re-authoring,08held.
+
+Combined main Phase14 focused checks pass145/145 in /tmp/allworld-unique-145-main10-check.log.

@@ -3,8 +3,8 @@ import App from './App.vue'
 import { useApp } from './state/app.ts'
 import { telemetry } from '../telemetry/index.ts'
 import { landingCodeSettled } from './features/start/warmLanding.ts'
-import { preloadNext } from './state/idlePreload.ts'
 import { loadCityIndex } from '../game/cities/registry.ts'
+import { lightOn } from '../lightMode.ts'
 import { watch } from 'vue'
 import { takeStoreReturn } from './features/commerce/connectionReturn.ts'
 
@@ -28,7 +28,8 @@ export function ready(): void {
     globalThis.setTimeout(resolve, 10000)
   })
   const settled = Promise.all([landingCodeSettled(), sceneShown])
-  preloadNext(settled)
+  // The preloader itself (its list of chunks) is fetched then too, and not at all in light mode: nothing of it is needed before the scene is up.
+  if (!lightOn()) void settled.then(() => import('./state/idlePreload.ts')).then(({ preloadNext }) => { preloadNext(Promise.resolve()) }, () => undefined)
   // The whole city index (every open city's id, name and rules file; the first download names Nigeria's cities only) is a few kB:
   // fetched as soon as the scene is up, on every connection, so a screen that lists or names other cities finds it in (registry.ts).
   void settled.then(() => loadCityIndex()).catch(() => undefined)

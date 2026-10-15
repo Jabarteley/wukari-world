@@ -2291,6 +2291,13 @@ function buildService(ctx: RouteContext) {
       return { push };
     },
 
+    /** A line in a player's Updates feed about a hand-over of property (server/legacy/service.ts). Nothing is written for a player this collection does not know. */
+    legacyNote(db: Db, to: string, text: string) {
+      const s = col(db), push: PushList = [];
+      notify(s, to, 'legacy', text, null, push);
+      return { push };
+    },
+
     // ---- house invites: knock → let in / not now -----------------------------------------------
     house(db: Db, session: SessionRecord, rawHost: unknown) {
       const hostId = uuid(rawHost);

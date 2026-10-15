@@ -218,6 +218,7 @@ import gist from './gist.ts';
 import prayers from './prayers.ts';
 import works from './works.ts';
 import stages from './stages.ts';
+import legacy from './legacy.ts';
 import ping from './ping.ts';
 import visit from './visit.ts';
 import places from './places.ts';
@@ -245,7 +246,7 @@ import agentsMod from './agents-mod.ts';
 import profiles from './profiles.ts';
 import { prepareRouteCityContent, warmCityContentFailure } from '../request-city-content.ts';
 
-export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support, moderation, world, land, growth, growthMod, campus, projects, retention, pulse, festivals, worldFeed, gist, prayers, works, stages, ping, visit, places, business, commerce, businessMod, market, marketMod, notice, residence, companion, admin, bonus, storageMod, politics, records, trust, realValue, street, livingWorld, showcase, showcaseMod, agents, agentsMod, profiles];
+export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support, moderation, world, land, growth, growthMod, campus, projects, retention, pulse, festivals, worldFeed, gist, prayers, works, stages, ping, visit, places, business, commerce, businessMod, market, marketMod, notice, residence, companion, admin, bonus, storageMod, politics, records, trust, realValue, street, livingWorld, showcase, showcaseMod, agents, agentsMod, legacy, profiles];
 const KEY = /^(GET|POST|PUT|PATCH|DELETE) (\/api\/[A-Za-z0-9\-_/:.]+)$/;
 
 /**

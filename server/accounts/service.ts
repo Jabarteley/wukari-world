@@ -42,6 +42,7 @@ import type { VerifiedIdentity } from './token.ts';
 import { eraseRealValue, exportRealValue } from '../real-value/privacy.ts';
 import { eraseShowcase, exportShowcase } from '../showcase/privacy.ts';
 import { eraseMarket, exportMarket } from '../market/privacy.ts';
+import { eraseLegacy, exportLegacy } from '../legacy/privacy.ts';
 import { erasePerson, exportMemory, peekMemory } from '../house/memory.ts';
 import { eraseAgents, exportAgents } from '../agents/privacy.ts';
 import { eraseLivingWorldProgress, exportLivingWorldProgress, rebindBarberAccount, rebindClerkAccount, rebindJusticePracticeAccount, rebindAssessmentAccount, rebindParcelAccount } from '../living-world/privacy.ts';
@@ -549,6 +550,7 @@ export function deleteAccount(db: Db, deps: AccountDeps, input: Caller & { ident
   }
   eraseRealValue(db, publicIds);
   eraseMarket(db, publicIds);
+  eraseLegacy(db, publicIds);
   eraseAgents(db, account.id, (d, id) => { const key = d.$store ? d.$store.sessionKeyByPublicId(id) : Object.keys(d.sessions).find(item => d.sessions[item]?.publicId === id); return key === undefined ? undefined : d.sessions[key]; }, deps.archive);
   for (const id of publicIds) if (input.erase || id !== account.publicId) erasePerson(db, id);
   const showcasePhotos = eraseShowcase(db, publicIds);
@@ -610,6 +612,7 @@ export function exportAccount(db: Db, deps: AccountDeps, caller: Caller, identit
     setAside: account.parked.map(item => ({ ...item })),
     ...(db.street ? { streetJourneys: [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)].flatMap(player => { const journey = own(db.street?.journeys, player); return journey ? [{ player, ...structuredClone(journey) }] : []; }) } : {}),
     ...(db.showcase ? { showcase: exportShowcase(db, [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)]) } : {}),
+    ...(db.legacy ? { legacy: exportLegacy(db, [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)]) } : {}),
     ...(db.market ? { market: exportMarket(db, [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)]) } : {}),
     ...(db.realValue ? { realValue: exportRealValue(db, [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)], now) } : {}),
     ...(livingWorld ? { livingWorld } : {}),

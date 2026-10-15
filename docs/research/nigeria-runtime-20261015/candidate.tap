@@ -1,0 +1,36 @@
+✔ every budget has a positive whole value, a place it is enforced and a reason (1.441372ms)
+✔ the numbers are the ones the tests and source hard-coded before the table (1.274515ms)
+✔ the realism download targets are named and marked provisional (0.568986ms)
+✔ the scene budget is its two parts, and a phone sees no more draw calls than a venue scene may use (0.263414ms)
+✔ source constants that mirror the table equal it (0.177692ms)
+✔ withinBudget treats the limit as inside, and a floor the other way round (65.575025ms)
+✔ budgets.ts imports nothing, so any module or script can read it (1.638476ms)
+✔ every scene that makes a WebGL renderer gives its context back when it is closed (2993.194864ms)
+✔ runtime PBR keeps authored material and shares one transform with every navigation shape (94.552657ms)
+✔ indoors forces near and changing tiers releases materials, textures and shared images exactly once (56.557233ms)
+✔ cancelled parsing is serialized, disposed and never attached after a newer selection or scene teardown (27.714126ms)
+✔ over-budget, light-bearing and failed modules leave no resident and allow retry (5.459241ms)
+✔ invalid navigation is rejected before network access (2.549763ms)
+✔ network loader rejects altered bytes and external resources before parsing (99.786551ms)
+✔ quarter-turn collision contract and explicit shadow-pass allowance fail closed (2.336831ms)
+✔ far requests close to the module still use near geometry (3.112217ms)
+✔ a file is read once however many placements and layers use it (46.29055ms)
+✔ copies on one atlas are one mesh; another atlas is another; stats count them (6.628598ms)
+✔ a stand-in is drawn at once, swapped for the model when it arrives, and kept when the file fails (9.714047ms)
+✔ near and far follow the focus; far details are skipped; the far file is only read when needed (12.57241ms)
+✔ the budget drops the cheapest and farthest first, and says so (2.212787ms)
+✔ instanced placements are one instanced mesh per part (1.904545ms)
+✔ label cells are shared by equal text and sit inside the atlas (0.372144ms)
+✔ moving the focus reads the file a placement now needs, and keeps its other version on screen meanwhile (6.074269ms)
+✔ walking near and far builds the layer again without throwing its materials away (a material takes its compiled shader with it) (12.439191ms)
+✔ flat venue contact follows the rendered ground top and refuses unsupported or mismatched samples (815.644095ms)
+✔ declared decks must agree with their rendered solid top (1041.850851ms)
+✔ declared ramps and released scenes never retain contact support (342.119154ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11935.204107

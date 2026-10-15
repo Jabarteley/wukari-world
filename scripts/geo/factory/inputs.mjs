@@ -12,6 +12,9 @@ export const GEOMETRY_PRESETS = {
         source: 'OpenStreetMap contributors via Geofabrik PBF',
     },
 };
+// A seed with a one-sided play box extent (playBox.westKm/eastKm/southKm/northKm, recorded in the source run's bounds policy) meets a neighbour on that
+// edge, so exact-coastwater.py cuts its land and play area at the play box (the generator traces land 0.05 degrees beyond it). Others: no recipe change.
+export const playAreaWithinBox = target => ['westKm', 'eastKm', 'southKm', 'northKm'].some(key => target?.metadataSources?.bounds?.policy?.[key] !== undefined);
 export async function factsForTarget(table, target) {
     if (target.facts) {
         if (target.facts.id !== target.id || target.facts.name !== target.name

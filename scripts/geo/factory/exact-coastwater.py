@@ -422,7 +422,12 @@ def main():
     report['generatorSea'] = {'marginMetres': GENERATOR_SEA_MARGIN_METRES, 'maximumDisagreement': GENERATOR_SEA_DISAGREEMENT, 'disagreement': disagreement, 'missingSeaFraction': missing / clip.area, 'drownedLandFraction': drowned / clip.area}
     wet_in_generated = [ref for ref, point in anchor_candidates if generated.covers(point)]
     report['generatorSea']['wetPlaceRefs'] = wet_in_generated
-    if disagreement <= GENERATOR_SEA_DISAGREEMENT and not wet_in_generated:
+    # A city that meets a neighbour on a one-sided play box edge (recipe `playAreaWithinBox`, set by batch.mjs from the seed's westKm/eastKm/southKm/northKm)
+    # always takes the exact path below, where its land and play area are cut at the play box: the generator traces land over the play box plus 0.05 degrees,
+    # so without the cut two such neighbours overlap however their boxes meet (OVERLAPS.md 15 Oct: Marigot and Philipsburg on one island). Others: unchanged.
+    within_box = config.get('playAreaWithinBox') is True
+    report['playAreaWithinBox'] = within_box
+    if disagreement <= GENERATOR_SEA_DISAGREEMENT and not wet_in_generated and not within_box:
         report['status'] = 'generator-validated'
         report['sourceHashes'] = hashes
         report['coastCount'] = len(coast)
@@ -480,7 +485,7 @@ def main():
         if not polys or any(not p.is_valid for p in polys):
             raise ValueError('Invalid generated GEOMETRY.' + key)
         return h, unary_union(polys)
-    _, development_land = geometry_property('land')
+    land_hit, development_land = geometry_property('land')
     play_hit, old_play = geometry_property('playArea')
     overlap = development_land.intersection(water)
     # Land owns any legacy coastal sliver; never draw both layers at the same point.
@@ -594,6 +599,18 @@ def main():
     if gap_slivers:
         tile_union = unary_union([tile_union] + gap_slivers)
     report['gapSliversFilled'] = {'count': len(gap_slivers), 'areaM2': sum(h.area for h in gap_slivers) * scale[0] * scale[1]}
+    if within_box:
+        play_box_polygon = bounds(play)
+        land_before_cut, play_before_cut = development_land, tile_union
+        def cut(g):
+            result = g.intersection(play_box_polygon)
+            parts = list(result.geoms) if hasattr(result, 'geoms') else [result]
+            return unary_union([part for part in parts if part.geom_type in ('Polygon', 'MultiPolygon') and not part.is_empty])
+        development_land, tile_union = cut(development_land), cut(tile_union)
+        if development_land.is_empty or not development_land.is_valid or not tile_union.is_valid:
+            raise ValueError('Invalid land/play area after the play box cut')
+        report['playAreaBoxCut'] = {'landRemovedM2Approx': land_before_cut.difference(development_land).area * scale[0] * scale[1],
+                                    'playAreaRemovedM2Approx': play_before_cut.difference(tile_union).area * scale[0] * scale[1]}
     if not water.is_valid or not tile_union.is_valid:
         raise ValueError('Invalid canonical land/water union')
     def touching_rings(p):
@@ -758,6 +775,14 @@ def main():
     play_arrays = triangulation_safe(play_arrays, 'playArea')
     play_encoded = json.dumps(play_arrays, separators=(',', ':'), allow_nan=False)
     geometry_after = geometry_before[:play_hit.start(1)] + play_encoded + geometry_before[play_hit.end(1):]
+    if within_box:
+        # GEOMETRY.land is the city's local unit: it must stay inside the play area (cityContractTest), so it is cut and serialized the same way.
+        if land_hit.end(1) >= play_hit.start(1):
+            raise ValueError('GEOMETRY.land must precede GEOMETRY.playArea')
+        land_arrays, land_serialization = serializeNoRingContacts(development_land)
+        land_arrays = triangulation_safe(land_arrays, 'land')
+        geometry_after = geometry_after[:land_hit.start(1)] + json.dumps(land_arrays, separators=(',', ':'), allow_nan=False) + geometry_after[land_hit.end(1):]
+        report['playAreaBoxCut']['landPolygons'] = len(land_arrays)
     geometry_raw = geometry_after.encode()
     if len(geometry_raw) > LIMIT:
         raise ValueError('Output geometry exceeds 5 MiB')
@@ -771,7 +796,7 @@ def main():
         'landWaterOverlapRemovedM2Approx': overlap.area * scale[0] * scale[1],
         'landWaterOverlapAfterDegrees2': development_land.intersection(water).area,
         'canonicalTileUnionSymmetricDifferenceDegrees2': tile_union.symmetric_difference(unary_union([development_land, exact_play_water])).area,
-        'landUnchanged': True,
+        'landUnchanged': not within_box,
         'playAreaBoundaryFaces': play_serialization['boundaryFaces'],
         'playAreaTouchFacesSplit': play_serialization['touchFacesSplit'],
         'playAreaSerializedSymmetricDifferenceDegrees2': play_serialization['serializedSymmetricDifferenceDegrees2'],

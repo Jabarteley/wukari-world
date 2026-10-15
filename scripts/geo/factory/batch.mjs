@@ -8,7 +8,7 @@ import { resolve, join, dirname } from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
-import { factsForTarget, geometryPolicy } from './inputs.mjs';
+import { factsForTarget, geometryPolicy, playAreaWithinBox } from './inputs.mjs';
 import { fillSlots } from './slot-fallback.mjs';
 import { fitCatalogueBudget, CATALOGUE_LIMIT } from './catalogue-budget.mjs';
 import { districtLabels } from './district-labels.mjs';
@@ -224,6 +224,7 @@ for (const target of table.targets) {
         const { seaBandMetres, ...recipeKnobs } = geometryKnobs;
         const config = { ...old, ...recipeKnobs, name: target.name, box: boxes.play, core: boxes.core, places: choices, names,
             ...(target.sceneWaterExtent === undefined ? {} : { sceneWaterExtent: target.sceneWaterExtent }),
+            ...(playAreaWithinBox(target) ? { playAreaWithinBox: true } : {}),
             ...(target.profile === undefined ? {} : { profile: target.profile, emptySlots }) };
         for (const key of ['discovery', 'water', 'landuse', 'roads', 'sea', 'wideWater'])
             delete config[key];

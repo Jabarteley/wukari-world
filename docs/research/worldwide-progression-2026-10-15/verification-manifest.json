@@ -15,6 +15,11 @@
       "sha256": "bad256f953568a49703de547e5a4ad903de0c8cdeebb5191ac2ea21c331d01d3"
     },
     {
+      "path": "logs/ci-accepted.log",
+      "bytes": 812506,
+      "sha256": "9d02043c3368f02e77b2e26a3f908b69a9b6f48ab1d78deee8d2db9cb62fb8ad"
+    },
+    {
       "path": "logs/content-contract.log",
       "bytes": 201,
       "sha256": "092827d6f056b068a83b0cf11c1546eaf509558bca466035a13cacbd91d39a25"
@@ -66,5 +71,22 @@
     }
   ],
   "mergedSourceFocused": "11/11 existing mission/browser tests pass at c4e93ee7, including homeward fixture",
-  "localSize": "All unchanged budgets pass at6e5f4fd8: startup raw614962/615000, gzip221748/223000, Brotli194272/195600"
+  "localSize": "All unchanged budgets pass at6e5f4fd8: startup raw614962/615000, gzip221748/223000, Brotli194272/195600",
+  "hostedCI": {
+    "sourceCommit": "a65c57c44c9244d6ec1445eae80369f09f4201bc",
+    "url": "https://github.com/kromate/joinallworld/actions/runs/38659336789",
+    "conclusion": "success",
+    "checks": [
+      "release-policy",
+      "typecheck-fast",
+      "build-and-smoke-fast"
+    ],
+    "startupBytes": {
+      "raw": 614987,
+      "gzip": 221763,
+      "brotli": 194282
+    },
+    "smokePassed": 17,
+    "fullNodeAndWorkerSuites": "not run by this fast workflow"
+  }
 }

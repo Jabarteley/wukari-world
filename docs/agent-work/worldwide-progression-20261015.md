@@ -1,7 +1,7 @@
 # Worldwide progression expansion
 
 - Owner: `/root`, chat `01a13bea-138b-7b91-ac44-c49bc3d836ec`.
-- Status: implemented and source published; final evidence packaging and merged-source CI pending.
+- Status: complete, source and evidence published; hosted CI accepted.
 - Canonical checkout: `/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld`, branch `codex/retention-main-sync`.
 - Start source: `c0d77b94c5ca102470527014291e1942286957a8`, fetched and fast-forwarded main. Prior retention implementation is published through `9863f3e7`.
 - User authorizes expansion of missions, stories and journeys to every supported country/city, light parallel subagents, documentation and frequent main sync. Deployment is separate.
@@ -53,3 +53,9 @@ Next: finish final size/merged-source CI, archive portable logs, refresh this re
 Final merged-source mission/browser subset: **11/11 pass** at `c4e93ee7`, including homeward. Prior intermittent failure remains archived with the earlier successful and isolated runs. Corrected375px screenshot independently inspected: both city/country2/2, titles and keepsakes visible. Desktop recapture timed out; final viewport reset is not confirmed.
 
 Final download measurement at `6e5f4fd8`: **all unchanged budgets pass**. Startup raw614962/615000, gzip221748/223000, Brotli194272/195600. Raw margin38bytes; keep global content/registration lazy. Portable logs+hashes are in the research verification manifest. This evidence/documentation checkpoint is ready for main. Merged-source CI is running (build complete, size/typecheck pending). After docs publication the final main CI is the remaining hosted verification gate; do not infer deployment.
+
+## Accepted handoff
+
+Main `a65c57c44c9244d6ec1445eae80369f09f4201bc` passes hosted CI38659336789: build, typecheck, size,17smoke and release policy. Combined startup raw614987/615000 has **13bytes margin**, gzip221763/223000, Brotli194282/195600. Hosted log is archived with hashes. This supersedes the earlier pending CI/download statuses above; local pre-merge results retain their stated revision. Final checkpoint changes documentation/logs only.
+
+All runtime ownership released. Preview5176 and synthetic QA actors remain preserved; no deployment performed. Next executable step for a future agent: fetch current main, read this record and the coverage README, then run progression:check before content changes. Phase11agent-mission integration remains its owner’s separate work; preserve execution origins, stable IDs and reward caps. Known broad-suite limits are unchanged.

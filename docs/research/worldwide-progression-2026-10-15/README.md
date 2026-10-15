@@ -34,3 +34,7 @@ When a city is added or its content changes, complete its city factory gates, re
 Corrected [375px collection evidence](ui-tokyo-complete-375.png) and [320px collection evidence](ui-tokyo-complete-320.png) were inspected from the saved bytes. The parent confirmed the 375px image shows both completed collections. Desktop recapture timed out; final viewport reset and tab marking are unconfirmed. The portable [verification manifest](verification-manifest.json) identifies retained logs and hashes.
 
 The final merged-source focused run at `c4e93ee7` passes all 11 existing mission/browser checks, including homeward. [Final focused log](logs/focused-accepted.log). The earlier intermittent failure remains archived.
+
+## Final hosted verification
+
+[CI run38659336789](https://github.com/kromate/joinallworld/actions/runs/38659336789) **passes** at published main `a65c57c44c9244d6ec1445eae80369f09f4201bc`: build, five-project typecheck, unchanged download budgets,17/17smoke and release policy. The combined Phase17 source measures startup raw614987/615000 (13bytes remaining), gzip221763/223000 and Brotli194282/195600. [Hosted log](logs/ci-accepted.log). No budget was raised. This fast CI does not run the full Node/Worker suites. Source/evidence are published; production deployment and measured return rates remain separate. Runtime ownership is released; future work starts from current main and the shared agent index.

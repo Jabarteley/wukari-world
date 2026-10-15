@@ -281,12 +281,13 @@ export const registeredCityIds = (): readonly CityId[] => {
   if (!wholeIndexFor('registeredCityIds()')) return Object.freeze([...cityIndex.ids.filter((id) => cityIndex.open.has(id)), ...fixtures.keys()].filter((id, at, all) => all.indexOf(id) === at))
   return registeredIds ??= Object.freeze([...cityIndex.ids.filter((id) => cityIndex.open.has(id)), ...fixtures.keys()].filter((id, at, all) => all.indexOf(id) === at))
 }
-export const playableCityIds = (): readonly CityId[] => {
-  wholeIndexFor('playableCityIds()')
+/** The open cities the index holds so far (Nigeria's in a browser before loadCityIndex() settles, all after): never refuses and never reports, for a reader that runs at mount. */
+export const playableCityIdsSoFar = (): readonly CityId[] => {
   const open = new Set(cityIndex.ids.filter((id) => cityIndex.open.has(id)))
   const ordered = PLAYABLE_ORDER.filter((id) => open.delete(id))
   return Object.freeze([...ordered, ...open, ...fixtures.keys()].filter((id, at, all) => all.indexOf(id) === at))
 }
+export const playableCityIds = (): readonly CityId[] => { wholeIndexFor('playableCityIds()'); return playableCityIdsSoFar() }
 export const isKnownCityId = (value: unknown): value is string => typeof value === 'string' && answerable(value, 'isKnownCityId') && (cityIndex.names.has(value) || fixtures.has(value))
 export const isCityId = (value: unknown): value is CityId => typeof value === 'string' && answerable(value, 'isCityId') && (cityIndex.open.has(value) || fixtures.has(value))
 export const isOpenCityId = isCityId

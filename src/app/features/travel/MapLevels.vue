@@ -3,7 +3,7 @@
 // a small list of the whole trail. One tap on a wider level swaps the backdrop to the atlas at that level (the atlas has the same control, with
 // the level in view marked). It is always on screen while the city map is, so the world is never further than one tap from the Map.
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
-import { playableCityIds } from '../../../game/cities/registry.ts'
+import { openCityIds } from '../../openCities.ts'
 import { useApp } from '../../state/app.ts'
 import '../../../ui/levelMenu.css'
 import GameIcon from '../../ui/GameIcon.vue'
@@ -15,7 +15,7 @@ const cityName = computed(() => game.view.value.city?.name ?? 'City')
 const cityId = computed(() => game.cityId.value)
 const levels = computed(() => mapLevels(cityName.value, 'city', 2, cityId.value))
 const levelLabels = computed(() => levels.value.map(level => level.label).join(', '))
-const openCities = playableCityIds().length
+const openCities = computed(() => openCityIds().length)
 
 /** Only the current level shows, as one chip; it opens the whole trail as a small list. */
 const open = ref(false)

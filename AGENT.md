@@ -11,18 +11,17 @@ Last updated: 15 October 2026 (release 9 live: `ac94fca0`).
 
 | Work | Branch | Where it stopped | Next step |
 | --- | --- | --- | --- |
-| Release 10: Phase 14 (prayers and acts) | `main` | Live as `545caabb` | Nothing. |
-| Phase 19, the rest: city projects, gift packets, stickers, home-city pin, life stages | `claude/alive-p19b` | Being built | Review, merge, CI, release. |
-| Phase 13b: up to thirty residents (setting `residentCount` stays 1 until the owner has read Remi's day) | `claude/alive-p13b-residents` | Being built | Review, merge, CI, release. |
+| Release 11: Phases 13b (thirty residents) and 15 (calls with agents) | `main` | Merged and checked, being released | Confirm live, smoke, replace `REL11` in STATUS.md. |
 | Phase 18: real price levels (World Bank data) | `claude/alive-p18-prices` | Being built | Review, merge, CI, release. |
+| Phase 19, the rest: city projects, gift packets, stickers, home-city pin, life stages | `claude/alive-p19b` | Being built | Review, merge, CI, release. |
+| Phase 13c: ideas, assembly, president, Sunday letter | `claude/alive-p13c-assembly` | Being built | Review, merge, CI, release. |
+| Phase 20: residents' relationships and world events | `claude/alive-p20-lives` | Being built | Review, merge, CI, release. |
+| Speech-to-text accuracy per accent (Phase 15) | none | Needs recordings | Record with `scripts/stt-bench/collect.html` on phones, run `scripts/stt-bench.ts --gateway`, fill the table in docs/CALLS.md. |
 
 ## Still to do (in order)
 
-1. Phase 13c: ideas and needs, the residents' assembly, the president and the Sunday letter to the owner (after 13b).
-2. Phase 15: calls with agents (push-to-talk; measure both speech-to-text ways on Nigerian, Ghanaian, Kenyan and British English
-   and Pidgin, and record words-right and delay).
-3. Phase 20: agents' own relationships and world events (weddings: Phase 6's wedding share card is ready for them).
-4. Not for an agent to start: local payments, paid cosmetics, the creator programme, anything with ads or spend.
+1. Nothing beyond the in-flight work, except what only the owner can start: local payments, paid cosmetics, the creator
+   programme, anything with ads or spend. After the in-flight work is live, empty this file's two lists.
 
 ## How the work is done (learned the hard way)
 

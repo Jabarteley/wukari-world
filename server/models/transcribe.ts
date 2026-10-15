@@ -122,7 +122,7 @@ export async function transcribe(router: Router, fetcher: Fetcher, input: Input)
       return { value: { text, seconds }, micro: seconds * perSecond };
     } catch { return null; } finally { clearTimeout(timer); }
   });
-  if (!done.ok) return { ok: false, why: done.why };
+  if (!done.ok) return { ok: false, why: done.why === 'rate' || done.why === 'no-model' ? 'failed' : done.why };
   if (!done.value.text) return { ok: false, why: 'empty' };
   return { ok: true, text: done.value.text, seconds: done.value.seconds, model, costMicro: done.micro };
 }

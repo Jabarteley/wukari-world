@@ -46,8 +46,16 @@ const minutes = computed(() => (view.value.leftSeconds === null ? null : Math.ma
 const busyText = computed(() => view.value.phase === 'starting' ? 'Calling…' : view.value.phase === 'thinking' ? `${props.name} is thinking…` : view.value.phase === 'listening' ? 'Listening… let go when you are done.' : view.value.phase === 'over' ? 'The call is over for today.' : view.value.phase === 'ended' ? 'Call ended.' : 'Hold the button and speak.')
 const note = computed(() => view.value.stt === 'gateway' || (view.value.stt === null && choice.value === 'gateway') ? STT_WORDS.gateway : STT_WORDS.browser)
 
+// iPhones only let a page speak after a tap has started speech once: the first press says a silent dot, so the answer that arrives later can be spoken.
+let unlocked = false
+function unlock(): void {
+  if (unlocked || !found) return
+  unlocked = true
+  try { const dot = found.utter('.'); dot.volume = 0; found.api.speak(dot) } catch { /* the words are shown anyway */ }
+}
 function down(event: Event): void {
   event.preventDefault()
+  unlock()
   if (!canTalk.value || holding.value) return
   void call.press()
   if (hold) clearTimeout(hold)
@@ -61,7 +69,7 @@ function key(event: KeyboardEvent, pressed: boolean): void {
   if (event.repeat || (event.key !== ' ' && event.key !== 'Enter')) return
   if (pressed) down(event); else { event.preventDefault(); up() }
 }
-function submit(): void { const text = typed.value; typed.value = ''; void call.say(text) }
+function submit(): void { unlock(); const text = typed.value; typed.value = ''; void call.say(text) }
 function choose(event: Event): void { choice.value = readChoice((event.target as HTMLSelectElement).value); call.setChoice(choice.value) }
 function hang(): void { void call.hangup().then(() => closeAgentCall()) }
 function done(): void { void call.hangup().then(() => closeAgentCall()) }

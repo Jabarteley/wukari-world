@@ -1,7 +1,6 @@
 // The phone's side of the routes in server/house/call-routes.ts: start, transcribe, turn, end. One small adapter so the call logic (agentCall.ts) never sees HTTP.
+import type { FetchJson } from '../../types/client.ts'
 import type { CallApi, StartAnswer, TurnAnswer } from './agentCall.ts'
-
-type Fetch = <T>(path: string, options?: { method?: string; body?: unknown }) => Promise<T>
 
 /** A route's error as the words to show: its `reason` sentence when it has one. A call the server no longer has is the call ending. */
 export function wordsOf(error: unknown): Error {
@@ -13,7 +12,7 @@ export function wordsOf(error: unknown): Error {
   return new Error(error instanceof Error && error.message && !/^[a-z_]+$/.test(error.message) ? error.message : 'That did not work. Try again.')
 }
 
-export function agentCallApi(fetchJson: Fetch, token: () => string | null): CallApi & { transcribe(call: string, audioBase64: string, mediaType: string): Promise<string> } {
+export function agentCallApi(fetchJson: FetchJson, token: () => string | null): CallApi & { transcribe(call: string, audioBase64: string, mediaType: string): Promise<string> } {
   const post = async <T>(path: string, body: Record<string, unknown>): Promise<T> => {
     try { return await fetchJson<T>(path, { method: 'POST', body: { ...body, csrf: token() } }) } catch (error) { throw wordsOf(error) }
   }

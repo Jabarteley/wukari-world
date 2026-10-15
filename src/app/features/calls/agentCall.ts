@@ -110,7 +110,7 @@ export function createAgentCall(deps: Deps) {
     }
     if (!got) { set({ phase: 'ready', typeOnly: true, problem: 'This phone cannot turn speech into words here. Type instead.' }); return }
     // The button came up while the microphone was still opening: stop at once.
-    if (state.phase !== 'listening') { got.capture.cancel(); return }
+    if ((state.phase as Phase) !== 'listening') { got.capture.cancel(); return }
     capture = got.capture; kind = got.kind
     set({ stt: got.kind })
     const watch = (): void => { if (capture === got!.capture && state.phase === 'listening') { set({ partial: capture.partial?.() ?? '' }); setTimeout(watch, 250) } }

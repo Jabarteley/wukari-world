@@ -16,8 +16,10 @@ export interface Owner { id: string; cookie: string; subject: string }
 
 export async function world(t: TestContext, options: FixtureOptions = {}, outside?: { match: (url: string) => boolean; fetch: (url: string, init?: object) => Promise<unknown> }) {
   const key = await makeKey('agent-key-1'), provider = fakeProvider([key]);
-  const f = await fixture(t, { env: { ACCOUNTS_FIREBASE_PROJECT_ID: PROJECT, ACCOUNTS_FIREBASE_API_KEY: 'test-web-api-key-0000000000000000000000', NEW_SESSIONS_PER_ADDRESS: '1000' },
-    fetch: (url, init) => (outside?.match(url) ? outside.fetch(url, init as object) : provider.fetch(url, init as { body?: unknown })), log: () => {}, moderatorToken: OPERATOR, ...options, env: { ACCOUNTS_FIREBASE_PROJECT_ID: PROJECT, ACCOUNTS_FIREBASE_API_KEY: 'test-web-api-key-0000000000000000000000', NEW_SESSIONS_PER_ADDRESS: '1000', ...options.env } });
+  const f = await fixture(t, {
+    fetch: (url, init) => (outside?.match(url) ? outside.fetch(url, init as object) as Promise<Response> : provider.fetch(url, init as { body?: unknown })), log: () => {}, moderatorToken: OPERATOR, ...options,
+    env: { ACCOUNTS_FIREBASE_PROJECT_ID: PROJECT, ACCOUNTS_FIREBASE_API_KEY: 'test-web-api-key-0000000000000000000000', NEW_SESSIONS_PER_ADDRESS: '1000', ...options.env },
+  });
   /** A browser call: same origin, with the cookie. */
   const call = (path: string, body?: unknown, cookie?: string | null, headers: Record<string, string> = {}): Promise<Response> => fetch(f.base + path, {
     method: body !== undefined && body !== null ? 'POST' : 'GET', headers: { Origin: f.base, ...(body !== undefined && body !== null ? { 'Content-Type': 'application/json' } : {}), ...(cookie ? { Cookie: cookie } : {}), ...headers },

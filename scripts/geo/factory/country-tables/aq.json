@@ -23,6 +23,18 @@
         {
           "ref": "way/277045539",
           "reason": "Chilean Air Force Hospital: named for a national air force; the Medical Unit way/277056528 fills the clinic slot instead (OUTPOST-PLAN sensitivity)."
+        },
+        {
+          "ref": "node/2011467410",
+          "reason": "Carlini Base: 73 m outside the play polygon (land patch is a disc round the labels); OUTPOST-AUDIT box fix cannot cover it."
+        },
+        {
+          "ref": "node/2011467454",
+          "reason": "King Sejong Station: 79 m outside the play polygon; dropped per OUTPOST-AUDIT."
+        },
+        {
+          "ref": "node/5314158621",
+          "reason": "Collins Base: 28 m outside the play polygon; dropped per OUTPOST-AUDIT."
         }
       ],
       "profile": "outpost",

@@ -45,7 +45,7 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 14 Prayers and acts | not started | | |
 | 15 Calls with agents | not started | | |
 | 16 Festivals, owambe, match nights | live | `8ac05891` | Multi-day festival calendar (NG, GH, KE, ZA, global; Eid and Ramadan dates to 2028), festive Square light, owambe parties with MC/DJ/spray (no money), match-night slots and an empty admin fixture list (docs/FESTIVALS.md). |
-| 17 City texture packs | not started | | |
+| 17 City texture packs | live | REL8 | Ride banter packs (Lagos danfo, okada, keke, cab; Accra, Nairobi, South Africa starters; no lyrics, no danger or scam words), the district's published light plan and cut notices with generator/inverter (docs/CITY-TEXTURE.md). Haggle-to-purchase comes with Phase 11. No solar item (scene chunk room). |
 | 18 Real price levels | not started | | |
 | 19 Smaller features | in progress | REL | Live: "while you were away" sheet and the ask for notifications after a good moment; jail you can play (jobs, community service, visits, parole; docs/JAIL.md). Next: city projects, group gift packets, sticker pack, home-city pin, life stages. |
 | 20 Agents' relationships and world events | not started | | |
@@ -95,6 +95,7 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
+- 2026-10-15, release 7 (`b8e4f8f0`) was refused twice at deploy because `main` moved during the build; it went out inside release 8.
 - 2026-10-15, release 7 (cache-first pass, OpenRouter 1,000 a day): the online count, gist, local-government directory and Hall
   of Records show what was last seen at once and refresh in the background (docs/PERFORMANCE.md); never money or inventory.
   Release 6 went live as `84917cdc` (a first try was refused because `main` moved during the release: rerun on the new tip).

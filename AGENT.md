@@ -11,17 +11,17 @@ Last updated: 15 October 2026.
 
 | Work | Branch | Where it stopped | Next step |
 | --- | --- | --- | --- |
-| Release 7: the cache-first pass and OpenRouter 1,000 a day | `main` | Merged on `claude/world-alive`, being released | Confirm `/api/health`, run the Lagos smoke test, note release 7 in STATUS.md. |
+| Release 8: Phase 17 (city texture) | `main` | Merged on `claude/world-alive`, being released | Release with the retrying helper (rerun the workflow on the new tip if "Refuse stale deployment policy" fails), smoke, note it in STATUS.md. |
 | Phase 11: missions from agents | `claude/alive-p11-missions` | Being built | Review, merge, CI, release. |
-| Phase 12: talking, memory (with the person's controls), closeness, partners | `claude/alive-p12-memory` | Being built | Review, merge, CI, release. |
+| Phase 12: talking, memory (with the person's controls), closeness, partners | `claude/alive-p12-memory` | Built; sent back so a partnership counts as consent to flirt (owner's rule) | Review the fix, merge, CI, release. |
+| Phase 13a: one resident in shadow | `claude/alive-p13a-resident` | Being built | Review, merge, CI, release. |
 
 ## Still to do (in order)
 
-1. Phase 13a: one resident in shadow for a day (admin page shows its day, cost, slips). Then 13b (thirty residents, measured
+1. Phase 13b (thirty residents, measured
    as an experiment: decide success measures first) and 13c (ideas, assembly, president, Sunday letter).
 3. Phase 14: prayers and acts (acts appear as gist news via `gistService(ctx).add`, never as messages from the owner).
 4. Phase 15: calls with agents (push-to-talk; measure both speech-to-text ways on accents and record the numbers).
-5. Phase 17: city texture packs (danfo/okada rides, power cuts and generators, market haggling: reuse Phase 10's haggling).
 6. Phase 18: real price levels (World Bank data, re-run `scripts/economy-sim.ts`).
 7. Phase 19, the rest: city projects, group gift packets (game money only), a sticker pack, a home-city pin, optional life stages.
 8. Phase 20: agents' own relationships and world events (weddings: Phase 6's wedding share card is ready for them).

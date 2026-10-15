@@ -1,0 +1,3770 @@
+{
+  "batch": 1,
+  "grounding": {
+    "fiction": "Everything authored from this brief remains explicitly fictional gameplay. Existing place names and game text are reference points from the shipped content model.",
+    "limits": "This is an inventory of existing game content, not independently verified geographic truth. Do not infer real history, services, conditions, schedules, practices, or claims about real people. Hosts are fictional game regulars. Do not add medical or worship claims.",
+    "countryIdAuthority": "For each city, the loaded CityModule.rules.country.id is authoritative. Country/territory group id uses that value, with the progression generator normalization nigeria -> ng. Country names come from rules.country.name; IDs count game identity modules, not sovereign states.",
+    "sourceScope": "Per-city sourcePaths identify the city module files supplying rules, venues, regulars, and content. Story references and guide/activity wording are copied from loaded TypeScript modules."
+  },
+  "countries": [
+    {
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "cityIds": [
+        "abakaliki",
+        "abeokuta",
+        "abuja",
+        "ado-ekiti",
+        "akure",
+        "asaba",
+        "awka",
+        "bauchi",
+        "benin-city",
+        "birnin-kebbi",
+        "calabar",
+        "damaturu",
+        "dutse",
+        "enugu",
+        "gombe",
+        "gusau",
+        "ibadan",
+        "ijebu-ode",
+        "ilorin",
+        "jalingo",
+        "jos",
+        "kaduna",
+        "kano",
+        "katsina",
+        "lafia",
+        "lagos",
+        "lokoja",
+        "maiduguri",
+        "makurdi",
+        "minna",
+        "osogbo",
+        "ota",
+        "owerri",
+        "port-harcourt",
+        "sagamu",
+        "sokoto",
+        "umuahia",
+        "uyo",
+        "yenagoa",
+        "yola"
+      ]
+    }
+  ],
+  "cities": [
+    {
+      "cityId": "abakaliki",
+      "cityName": "Abakaliki",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "abakaliki-fatilami-park-1",
+          "name": "Amara Mbah",
+          "venue": "fatilami-park",
+          "venueName": "Fatilami Park"
+        },
+        "practical": {
+          "venue": "abakaliki-rice-processing-market",
+          "venueName": "Abakaliki Rice Processing Market",
+          "spot": "aisle",
+          "id": "abakaliki-abakaliki-rice-processing-market-visit",
+          "label": "Browse Abakaliki rice"
+        },
+        "discovery": {
+          "venue": "fatilami-park",
+          "venueName": "Fatilami Park",
+          "spot": "visit",
+          "id": "abakaliki-fatilami-park-evening",
+          "label": "Spend a quiet evening here"
+        },
+        "placeLine": "A mapped public park named Fatilami Park."
+      },
+      "additionalVenues": [
+        {
+          "id": "abakaliki-township-stadium",
+          "name": "Abakaliki Township Stadium",
+          "kind": "viewing",
+          "whatYouCanDo": "A mapped stadium named Abakaliki Township Stadium.",
+          "guideSnippet": "A mapped stadium named Abakaliki Township Stadium.",
+          "activities": [
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "abakaliki-abakaliki-township-stadium-visit",
+              "label": "Watch a training session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "crunchies-restaurant-abakaliki",
+          "name": "Crunchies Restaurant",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped restaurant named Crunchies Restaurant, shown here with Abakaliki rice.",
+          "guideSnippet": "A mapped restaurant named Crunchies Restaurant, shown here with Abakaliki rice.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "abakaliki-crunchies-restaurant-abakaliki-visit",
+              "label": "Eat Abakaliki rice",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "ebonyi-ministry-of-works",
+          "name": "Ministry of Works",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped government office named Ministry of Works.",
+          "guideSnippet": "A mapped government office named Ministry of Works.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "abakaliki-ebonyi-ministry-of-works-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/abakaliki/content.ts",
+        "src/game/cities/abakaliki/geography.ts",
+        "src/game/cities/abakaliki/index.ts",
+        "src/game/cities/abakaliki/rules.ts",
+        "src/game/cities/abakaliki/scenes.ts",
+        "src/game/cities/abakaliki/spec.ts"
+      ]
+    },
+    {
+      "cityId": "abeokuta",
+      "cityName": "Abeokuta",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "ng",
+      "existingStoryReferences": {
+        "host": {
+          "id": "abeokuta-ogun-river-1",
+          "name": "Peju Adefisan",
+          "venue": "ogun-river",
+          "venueName": "Ogun River and Lafenwa Bridge"
+        },
+        "practical": {
+          "venue": "kuto-market",
+          "venueName": "Kuto Market",
+          "spot": "aisle",
+          "id": "abeokuta-kuto-price",
+          "label": "Price the market"
+        },
+        "discovery": {
+          "venue": "ogun-river",
+          "venueName": "Ogun River and Lafenwa Bridge",
+          "spot": "bank",
+          "id": "abeokuta-river-walk",
+          "label": "Walk beside the river"
+        },
+        "placeLine": "Walk beside the river at Lafenwa."
+      },
+      "additionalVenues": [
+        {
+          "id": "alake-palace",
+          "name": "Alake's Palace",
+          "kind": "statehouse",
+          "whatYouCanDo": "Visit the palace frontage and learn about Egba civic history.",
+          "guideSnippet": "Learn about Egba civic history.",
+          "activities": [
+            {
+              "spotId": "court",
+              "spotLabel": "court",
+              "activityId": "abeokuta-ake-history",
+              "label": "Read the Egba history display",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "centenary-hall",
+          "name": "Centenary Hall",
+          "kind": "walk",
+          "whatYouCanDo": "Visit the Egba centenary landmark opposite the palace.",
+          "guideSnippet": "Visit the landmark opposite the palace.",
+          "activities": [
+            {
+              "spotId": "hall",
+              "spotLabel": "hall",
+              "activityId": "abeokuta-centenary-visit",
+              "label": "Read the centenary story",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "itoku-market",
+          "name": "Itoku Adire Market",
+          "kind": "market",
+          "whatYouCanDo": "Choose cloth and learn a small resist-dye pattern with an adire maker.",
+          "guideSnippet": "Learn a small resist-dye pattern.",
+          "activities": [
+            {
+              "spotId": "cloth",
+              "spotLabel": "cloth",
+              "activityId": "abeokuta-adire-dye",
+              "label": "Dye an adire sample",
+              "duration": 14,
+              "cost": 700
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/abeokuta/content.ts",
+        "src/game/cities/abeokuta/index.ts",
+        "src/game/cities/abeokuta/rules.ts"
+      ]
+    },
+    {
+      "cityId": "abuja",
+      "cityName": "Abuja",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "ng",
+      "existingStoryReferences": {
+        "host": {
+          "id": "abuja-children-zoo-1",
+          "name": "Grace Samuel",
+          "venue": "children-zoo",
+          "venueName": "National Children’s Park and Zoo"
+        },
+        "practical": {
+          "venue": "eagle-square",
+          "venueName": "Eagle Square",
+          "spot": "visit",
+          "id": "fct-eagle-square-visit",
+          "label": "Walk the parade ground"
+        },
+        "discovery": {
+          "venue": "children-zoo",
+          "venueName": "National Children’s Park and Zoo",
+          "spot": "visit",
+          "id": "fct-children-zoo-visit",
+          "label": "Walk the park and see the animals"
+        },
+        "placeLine": "Walk the children’s park under Aso Rock and learn about its animals."
+      },
+      "additionalVenues": [
+        {
+          "id": "arts-village",
+          "name": "Abuja Arts and Crafts Village",
+          "kind": "market",
+          "whatYouCanDo": "Browse the thatched craft huts and learn how Gbagyi potters build a pot by hand.",
+          "guideSnippet": "Browse the thatched craft huts and learn how Gbagyi potters build a pot by hand.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "fct-arts-village-visit",
+              "label": "Learn about Gbagyi pottery",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "millennium-park",
+          "name": "Millennium Park",
+          "kind": "park",
+          "whatYouCanDo": "Walk the long lawns and fountain paths of the capital’s largest park, with Aso Rock on the skyline.",
+          "guideSnippet": "Walk the long lawns and fountain paths of the capital’s largest park, with Aso Rock on the skyline.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "fct-millennium-park-visit",
+              "label": "Walk the park and rest on the lawn",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "national-stadium",
+          "name": "MKO Abiola National Stadium",
+          "kind": "viewing",
+          "whatYouCanDo": "Tour the national stadium and watch a training session from the stands.",
+          "guideSnippet": "Tour the national stadium and watch a training session from the stands.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "fct-national-stadium-visit",
+              "label": "Watch a training session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/abuja/content.ts",
+        "src/game/cities/abuja/descriptions.ts",
+        "src/game/cities/abuja/index.ts",
+        "src/game/cities/abuja/rules.ts",
+        "src/game/cities/abuja/scenes.ts"
+      ]
+    },
+    {
+      "cityId": "ado-ekiti",
+      "cityName": "Ado-Ekiti",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "ado-ekiti-asha-botanical-garden-1",
+          "name": "Yetunde Lawal",
+          "venue": "asha-botanical-garden",
+          "venueName": "Asha Botanical Garden"
+        },
+        "practical": {
+          "venue": "bisi-market",
+          "venueName": "Bisi Market",
+          "spot": "aisle",
+          "id": "ado-ekiti-bisi-market-visit",
+          "label": "Browse Yam, cassava and grain"
+        },
+        "discovery": {
+          "venue": "asha-botanical-garden",
+          "venueName": "Asha Botanical Garden",
+          "spot": "visit",
+          "id": "ado-ekiti-asha-botanical-garden-visit",
+          "label": "Spend an evening in the garden"
+        },
+        "placeLine": "A mapped garden named Asha Botanical Garden, tagged open daily from 09:00 to 22:00."
+      },
+      "additionalVenues": [
+        {
+          "id": "ekiti-state-government-territory",
+          "name": "Ekiti State Government Territory",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped point tagged Ekiti State Government Territory in Ado-Ekiti.",
+          "guideSnippet": "A mapped point tagged Ekiti State Government Territory in Ado-Ekiti.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "ado-ekiti-ekiti-state-government-territory-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "afe-babalola-university",
+          "name": "Afe Babalola University",
+          "kind": "office",
+          "whatYouCanDo": "A private university named Afe Babalola University, placed at its Wikidata point.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "ado-ekiti-afe-babalola-university-visit",
+              "label": "Join a learning session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "ekiti-state-house-of-assembly",
+          "name": "Ekiti State House of Assembly",
+          "kind": "walk",
+          "whatYouCanDo": "The legislative arm of the Ekiti state government, named Ekiti State House of Assembly and placed at its Wikidata point.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "ado-ekiti-ekiti-state-house-of-assembly-visit",
+              "label": "Learn about this place",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/ado-ekiti/content.ts",
+        "src/game/cities/ado-ekiti/geography.ts",
+        "src/game/cities/ado-ekiti/index.ts",
+        "src/game/cities/ado-ekiti/rules.ts",
+        "src/game/cities/ado-ekiti/scenes.ts",
+        "src/game/cities/ado-ekiti/spec.ts"
+      ]
+    },
+    {
+      "cityId": "akure",
+      "cityName": "Akure",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "akure-chicken-republic-akure-1",
+          "name": "Ayodele Balogun",
+          "venue": "chicken-republic-akure",
+          "venueName": "Chicken Republic"
+        },
+        "practical": {
+          "venue": "akure-market",
+          "venueName": "Akure Market",
+          "spot": "aisle",
+          "id": "akure-akure-market-visit",
+          "label": "Browse Cocoa, yam and cassava"
+        },
+        "discovery": {
+          "venue": "erekesan-market",
+          "venueName": "Erekesan Market",
+          "spot": "aisle",
+          "id": "akure-erekesan-market-visit",
+          "label": "Browse Cocoa, yam and cassava"
+        },
+        "placeLine": "A mapped marketplace named Erekesan Market. Its specialty link is the regional farm-produce trade, not a market-specific source."
+      },
+      "additionalVenues": [
+        {
+          "id": "ministry-of-information",
+          "name": "Ministry of Information",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped government office named Ministry of Information in Akure North.",
+          "guideSnippet": "A mapped government office named Ministry of Information in Akure North.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "akure-ministry-of-information-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "ministry-of-justice",
+          "name": "Ministry of Justice",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped government office named Ministry of Justice along NEPA Road.",
+          "guideSnippet": "A mapped government office named Ministry of Justice along NEPA Road.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "akure-ministry-of-justice-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "akure-sports-stadium",
+          "name": "Akure Sports Stadium",
+          "kind": "viewing",
+          "whatYouCanDo": "A mapped stadium named Akure Sports Stadium in Akure South.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "akure-akure-sports-stadium-evening",
+              "label": "Spend a quiet evening here",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "akure-akure-sports-stadium-visit",
+              "label": "Watch a training session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/akure/content.ts",
+        "src/game/cities/akure/geography.ts",
+        "src/game/cities/akure/index.ts",
+        "src/game/cities/akure/rules.ts",
+        "src/game/cities/akure/scenes.ts",
+        "src/game/cities/akure/spec.ts"
+      ]
+    },
+    {
+      "cityId": "asaba",
+      "cityName": "Asaba",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "asaba-pokaribs-native-kitchen-1",
+          "name": "Nnamdi Ibe",
+          "venue": "pokaribs-native-kitchen",
+          "venueName": "Pokaribs Native Kitchen & Lounge"
+        },
+        "practical": {
+          "venue": "ogbeogonogo-modern-market",
+          "venueName": "Ogbeogonogo Modern Market",
+          "spot": "aisle",
+          "id": "asaba-ogbeogonogo-modern-market-visit",
+          "label": "Browse Yams, spices and smoked fish"
+        },
+        "discovery": {
+          "venue": "national-museum-asaba",
+          "venueName": "National Museum Asaba",
+          "spot": "visit",
+          "id": "asaba-national-museum-asaba-visit",
+          "label": "Learn about the collection"
+        },
+        "placeLine": "A Wikidata museum record for the National Museum Asaba, held in the 1886 Royal Niger Company timber house named after Mungo Park."
+      },
+      "additionalVenues": [
+        {
+          "id": "federal-college-of-education-technical-asaba",
+          "name": "Federal College of Education (Technical), Asaba",
+          "kind": "office",
+          "whatYouCanDo": "A Wikidata college-of-education record for the Federal College of Education (Technical), Asaba, Delta State.",
+          "guideSnippet": "A Wikidata college-of-education record for the Federal College of Education (Technical), Asaba, Delta State.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "asaba-federal-college-of-education-technical-asaba-visit",
+              "label": "Join a learning session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "federal-secretariat-complex-asaba",
+          "name": "Federal Secretariat Complex",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped government office named Federal Secretariat Complex in Asaba.",
+          "guideSnippet": "A mapped government office named Federal Secretariat Complex in Asaba.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "asaba-federal-secretariat-complex-asaba-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "asaba-international-airport",
+          "name": "Asaba International Airport",
+          "kind": "airport",
+          "whatYouCanDo": "A mapped terminal building tagged Asaba International Airport in Oshimili North.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "terminal",
+              "spotLabel": "terminal",
+              "activityId": "asaba-asaba-international-airport-visit",
+              "label": "Read the departures board",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/asaba/content.ts",
+        "src/game/cities/asaba/geography.ts",
+        "src/game/cities/asaba/index.ts",
+        "src/game/cities/asaba/rules.ts",
+        "src/game/cities/asaba/scenes.ts",
+        "src/game/cities/asaba/spec.ts"
+      ]
+    },
+    {
+      "cityId": "awka",
+      "cityName": "Awka",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "awka-burger-chicken-awka-1",
+          "name": "Adaeze Chukwu",
+          "venue": "burger-chicken-awka",
+          "venueName": "Burger Chicken and Co"
+        },
+        "practical": {
+          "venue": "eke-awka-main-market",
+          "venueName": "Eke Awka Main Market, Awka",
+          "spot": "aisle",
+          "id": "awka-eke-awka-main-market-visit",
+          "label": "Browse Traditional retail markets"
+        },
+        "discovery": {
+          "venue": "old-timber-market-awka",
+          "venueName": "Old Timber Market Awka",
+          "spot": "aisle",
+          "id": "awka-old-timber-market-awka-visit",
+          "label": "Browse Traditional retail markets"
+        },
+        "placeLine": "Wikidata records the Old Timber Market as a market in Awka."
+      },
+      "additionalVenues": [
+        {
+          "id": "diamond-pizza-awka",
+          "name": "Diamond Pizza & Restaurant",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped restaurant tagged Diamond Pizza & Restaurant Aw, shown here with Abacha.",
+          "guideSnippet": "A mapped restaurant tagged Diamond Pizza & Restaurant Aw, shown here with Abacha.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "awka-diamond-pizza-awka-visit",
+              "label": "Eat Abacha",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "awka-city-stadium",
+          "name": "Awka City Stadium",
+          "kind": "viewing",
+          "whatYouCanDo": "Wikidata records Awka City Stadium as a stadium in Awka South.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "awka-awka-city-stadium-evening",
+              "label": "Spend a quiet evening here",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "awka-awka-city-stadium-visit",
+              "label": "Watch a training session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "anambra-ministry-of-works",
+          "name": "Anambra State Ministry of Works and Infrastructure",
+          "kind": "statehouse",
+          "whatYouCanDo": "Wikidata records the Anambra State Ministry of Works and Infrastructure as a state ministry in Awka.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "awka-anambra-ministry-of-works-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/awka/content.ts",
+        "src/game/cities/awka/geography.ts",
+        "src/game/cities/awka/index.ts",
+        "src/game/cities/awka/rules.ts",
+        "src/game/cities/awka/scenes.ts",
+        "src/game/cities/awka/spec.ts"
+      ]
+    },
+    {
+      "cityId": "bauchi",
+      "cityName": "Bauchi",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "bauchi-unity-park-bauchi-1",
+          "name": "Rabi Yakubu",
+          "venue": "unity-park-bauchi",
+          "venueName": "Unity Park"
+        },
+        "practical": {
+          "venue": "muda-lawal-market-bauchi",
+          "venueName": "Muda lawal market",
+          "spot": "aisle",
+          "id": "bauchi-muda-lawal-market-bauchi-visit",
+          "label": "Browse Groundnut, cotton, grain and livestock trade"
+        },
+        "discovery": {
+          "venue": "unity-park-bauchi",
+          "venueName": "Unity Park",
+          "spot": "visit",
+          "id": "bauchi-unity-park-bauchi-evening",
+          "label": "Spend a quiet evening here"
+        },
+        "placeLine": "A mapped park named Unity Park."
+      },
+      "additionalVenues": [
+        {
+          "id": "alhamus-restaurant-bauchi",
+          "name": "Alhamus",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped restaurant named Alhamus serving local cuisine, shown here with suya.",
+          "guideSnippet": "A mapped restaurant named Alhamus serving local cuisine, shown here with suya.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "bauchi-alhamus-restaurant-bauchi-visit",
+              "label": "Eat Suya",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "shukurah-restaurant-bauchi",
+          "name": "SHUKURAH RESTAURANT BAUCHI",
+          "kind": "buka",
+          "whatYouCanDo": "Wikidata records Shukurah Restaurant in Bauchi, shown here with kilishi.",
+          "guideSnippet": "Wikidata records Shukurah Restaurant in Bauchi, shown here with kilishi.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "bauchi-shukurah-restaurant-bauchi-visit",
+              "label": "Eat Kilishi",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "atbu-stadium-bauchi",
+          "name": "Abubakar Tafawa Balewa Stadium",
+          "kind": "viewing",
+          "whatYouCanDo": "Wikidata records the football stadium in Bauchi named for Abubakar Tafawa Balewa.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "bauchi-atbu-stadium-bauchi-visit",
+              "label": "Watch a training session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/bauchi/content.ts",
+        "src/game/cities/bauchi/geography.ts",
+        "src/game/cities/bauchi/index.ts",
+        "src/game/cities/bauchi/rules.ts",
+        "src/game/cities/bauchi/scenes.ts",
+        "src/game/cities/bauchi/spec.ts"
+      ]
+    },
+    {
+      "cityId": "benin-city",
+      "cityName": "Benin City",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "benin-city-celebrate-garden-1",
+          "name": "Efosa Aghedo",
+          "venue": "celebrate-garden",
+          "venueName": "Celebrate Garden"
+        },
+        "practical": {
+          "venue": "ramat-park",
+          "venueName": "Ramat Park",
+          "spot": "visit",
+          "id": "benin-city-ramat-park-visit",
+          "label": "Walk through the park"
+        },
+        "discovery": {
+          "venue": "celebrate-garden",
+          "venueName": "Celebrate Garden",
+          "spot": "visit",
+          "id": "benin-city-celebrate-garden-visit",
+          "label": "Spend an evening in the garden"
+        },
+        "placeLine": "A mapped garden in Oredo used for the city evening option."
+      },
+      "additionalVenues": [
+        {
+          "id": "benin-airport",
+          "name": "Benin City Airport",
+          "kind": "airport",
+          "whatYouCanDo": "FAAN lists Benin City Airport with IATA code BNI and ICAO code DNBE.",
+          "guideSnippet": "FAAN lists Benin City Airport with IATA code BNI and ICAO code DNBE.",
+          "activities": [
+            {
+              "spotId": "terminal",
+              "spotLabel": "terminal",
+              "activityId": "benin-city-benin-airport-visit",
+              "label": "Read the departures board",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "chicken-republic",
+          "name": "Chicken Republic",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped Chicken Republic fast-food restaurant; the chain press release documents Smokey Jollof nationwide.",
+          "guideSnippet": "A mapped Chicken Republic fast-food restaurant; the chain press release documents Smokey Jollof nationwide.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "benin-city-chicken-republic-visit",
+              "label": "Eat Smokey Jollof",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "edo-line",
+          "name": "Edo Line",
+          "kind": "hub",
+          "whatYouCanDo": "A mapped Edo Line bus station and public-transport station.",
+          "guideSnippet": "A mapped Edo Line bus station and public-transport station.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "benin-city-edo-line-visit",
+              "label": "Read the road departures board",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/benin-city/content.ts",
+        "src/game/cities/benin-city/geography.ts",
+        "src/game/cities/benin-city/index.ts",
+        "src/game/cities/benin-city/rules.ts",
+        "src/game/cities/benin-city/scenes.ts",
+        "src/game/cities/benin-city/spec.ts"
+      ]
+    },
+    {
+      "cityId": "birnin-kebbi",
+      "cityName": "Birnin Kebbi",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "birnin-kebbi-daula-restaurant-birnin-kebbi-1",
+          "name": "Aliyu Yakubu",
+          "venue": "daula-restaurant-birnin-kebbi",
+          "venueName": "Daula Restaurant"
+        },
+        "practical": {
+          "venue": "yaryara-mini-market-birnin-kebbi",
+          "venueName": "Yaryara mini market",
+          "spot": "aisle",
+          "id": "birnin-kebbi-yaryara-mini-market-birnin-kebbi-visit",
+          "label": "Browse Rice, grain, fish and livestock trade"
+        },
+        "discovery": {
+          "venue": "zaget-mini-market-birnin-kebbi",
+          "venueName": "zaget mini market",
+          "spot": "aisle",
+          "id": "birnin-kebbi-zaget-mini-market-birnin-kebbi-visit",
+          "label": "Browse Rice, grain, fish and livestock trade"
+        },
+        "placeLine": "Wikidata records zaget mini market in Kebbi State; Wikipedia describes the city as a local market centre for millet, sorghum, rice, fish, goats and cattle."
+      },
+      "additionalVenues": [
+        {
+          "id": "deelad-place-birnin-kebbi",
+          "name": "DEELAD PLACE",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped fast-food outlet named DEELAD PLACE, open around the clock, shown here with suya.",
+          "guideSnippet": "A mapped fast-food outlet named DEELAD PLACE, open around the clock, shown here with suya.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "birnin-kebbi-deelad-place-birnin-kebbi-visit",
+              "label": "Eat Suya",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "kebbi-ministry-of-information-culture",
+          "name": "Kebbi State Ministry of Information and Culture",
+          "kind": "statehouse",
+          "whatYouCanDo": "Wikidata records the Kebbi State Ministry of Information and Culture as a government agency in Birnin Kebbi.",
+          "guideSnippet": "Wikidata records the Kebbi State Ministry of Information and Culture as a government agency in Birnin Kebbi.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "birnin-kebbi-kebbi-ministry-of-information-culture-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "haliru-abdu-stadium-birnin-kebbi",
+          "name": "Haliru Abdu Stadium.",
+          "kind": "viewing",
+          "whatYouCanDo": "Wikidata records Haliru Abdu Stadium as a stadium in Kebbi State.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "birnin-kebbi-haliru-abdu-stadium-birnin-kebbi-evening",
+              "label": "Spend a quiet evening here",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "birnin-kebbi-haliru-abdu-stadium-birnin-kebbi-visit",
+              "label": "Watch a training session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/birnin-kebbi/content.ts",
+        "src/game/cities/birnin-kebbi/geography.ts",
+        "src/game/cities/birnin-kebbi/index.ts",
+        "src/game/cities/birnin-kebbi/rules.ts",
+        "src/game/cities/birnin-kebbi/scenes.ts",
+        "src/game/cities/birnin-kebbi/spec.ts"
+      ]
+    },
+    {
+      "cityId": "calabar",
+      "cityName": "Calabar",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "calabar-calabar-municipal-gardens-1",
+          "name": "Ete Udoh",
+          "venue": "calabar-municipal-gardens",
+          "venueName": "Calabar Municipal Gardens"
+        },
+        "practical": {
+          "venue": "millennium-park-calabar",
+          "venueName": "Millennium Park",
+          "spot": "visit",
+          "id": "calabar-millennium-park-calabar-visit",
+          "label": "Walk through the park"
+        },
+        "discovery": {
+          "venue": "calabar-municipal-gardens",
+          "venueName": "Calabar Municipal Gardens",
+          "spot": "visit",
+          "id": "calabar-calabar-municipal-gardens-visit",
+          "label": "Spend an evening in the garden"
+        },
+        "placeLine": "A mapped recreation ground named Calabar Municipal Gardens."
+      },
+      "additionalVenues": [
+        {
+          "id": "chef-green-local-cuisine-hub",
+          "name": "Chef Green Signature Local Cuisine Hub",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped African-cuisine restaurant, shown here with Afang soup.",
+          "guideSnippet": "A mapped African-cuisine restaurant, shown here with Afang soup.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "calabar-chef-green-local-cuisine-hub-visit",
+              "label": "Eat Afang soup",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "native-delicacies-food",
+          "name": "Native Delicacies Food",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped restaurant named Native Delicacies Food, shown here with Edikang Ikong.",
+          "guideSnippet": "A mapped restaurant named Native Delicacies Food, shown here with Edikang Ikong.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "calabar-native-delicacies-food-visit",
+              "label": "Eat Edikang Ikong",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "slave-history-museum",
+          "name": "Slave History Museum",
+          "kind": "walk",
+          "whatYouCanDo": "A mapped museum named Slave History Museum, which Wikipedia describes within Calabar slave-trade history.",
+          "guideSnippet": "A mapped museum named Slave History Museum, which Wikipedia describes within Calabar slave-trade history.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "calabar-slave-history-museum-visit",
+              "label": "Learn about the collection",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/calabar/content.ts",
+        "src/game/cities/calabar/geography.ts",
+        "src/game/cities/calabar/index.ts",
+        "src/game/cities/calabar/rules.ts",
+        "src/game/cities/calabar/scenes.ts",
+        "src/game/cities/calabar/spec.ts"
+      ]
+    },
+    {
+      "cityId": "damaturu",
+      "cityName": "Damaturu",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "damaturu-bayan-tasha-market-1",
+          "name": "Hauwa Bulama",
+          "venue": "bayan-tasha-market",
+          "venueName": "Bayan Tasha market"
+        },
+        "practical": {
+          "venue": "damaturu-modern-market",
+          "venueName": "DAMATURU MODERN MARKET",
+          "spot": "aisle",
+          "id": "damaturu-damaturu-modern-market-visit",
+          "label": "Browse Yobe farm produce"
+        },
+        "discovery": {
+          "venue": "bayan-tasha-market",
+          "venueName": "Bayan Tasha market",
+          "spot": "aisle",
+          "id": "damaturu-bayan-tasha-market-visit",
+          "label": "Browse Yobe farm produce"
+        },
+        "placeLine": "Wikidata records Bayan Tasha market in Yobe State; Wikipedia lists groundnuts, beans and cotton among Yobe produce."
+      },
+      "additionalVenues": [
+        {
+          "id": "federal-polytechnic-damaturu",
+          "name": "Federal Polytechnic Damaturu",
+          "kind": "office",
+          "whatYouCanDo": "Wikidata records Federal Polytechnic Damaturu with a published coordinate.",
+          "guideSnippet": "Wikidata records Federal Polytechnic Damaturu with a published coordinate.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "damaturu-federal-polytechnic-damaturu-visit",
+              "label": "Join a practical workshop",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "national-museum-damaturu",
+          "name": "National Museum, Damaturu",
+          "kind": "walk",
+          "whatYouCanDo": "Wikidata records the National Museum, Damaturu as a national museum in Yobe State.",
+          "guideSnippet": "Wikidata records the National Museum, Damaturu as a national museum in Yobe State.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "damaturu-national-museum-damaturu-visit",
+              "label": "Learn about the collection",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "yobe-state-university",
+          "name": "Yobe State University",
+          "kind": "office",
+          "whatYouCanDo": "A mapped university named Yobe State University.",
+          "guideSnippet": "A mapped university named Yobe State University.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "damaturu-yobe-state-university-visit",
+              "label": "Join a learning session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/damaturu/content.ts",
+        "src/game/cities/damaturu/geography.ts",
+        "src/game/cities/damaturu/index.ts",
+        "src/game/cities/damaturu/rules.ts",
+        "src/game/cities/damaturu/scenes.ts",
+        "src/game/cities/damaturu/spec.ts"
+      ]
+    },
+    {
+      "cityId": "dutse",
+      "cityName": "Dutse",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "dutse-dutse-emirate-museum-park-1",
+          "name": "Binta Suleiman",
+          "venue": "dutse-emirate-museum-park",
+          "venueName": "Dutse Emirate Museum"
+        },
+        "practical": {
+          "venue": "dutse-ultra-modern-market",
+          "venueName": "Dutse Ultra Modern Market",
+          "spot": "aisle",
+          "id": "dutse-dutse-ultra-modern-market-visit",
+          "label": "Browse Farming, livestock and trade"
+        },
+        "discovery": {
+          "venue": "dutse-emirate-museum-park",
+          "venueName": "Dutse Emirate Museum",
+          "spot": "visit",
+          "id": "dutse-dutse-emirate-museum-park-evening",
+          "label": "Spend a quiet evening here"
+        },
+        "placeLine": "A mapped park, recorded under the name Dutse Emirate Museum."
+      },
+      "additionalVenues": [
+        {
+          "id": "hadiza-nakowa-restaurant-dutse",
+          "name": "Hadiza Nakowa Restaurant",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped restaurant named Hadiza Nakowa Restaurant serving regional cuisine, shown here with kilishi.",
+          "guideSnippet": "A mapped restaurant named Hadiza Nakowa Restaurant serving regional cuisine, shown here with kilishi.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "dutse-hadiza-nakowa-restaurant-dutse-visit",
+              "label": "Eat Kilishi",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "jigawa-ministry-of-environment-dutse",
+          "name": "Jigawa State Ministry of Environment",
+          "kind": "statehouse",
+          "whatYouCanDo": "Wikidata records the Jigawa State Ministry of Environment in Dutse.",
+          "guideSnippet": "Wikidata records the Jigawa State Ministry of Environment in Dutse.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "dutse-jigawa-ministry-of-environment-dutse-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "jigawa-state-secretariat-dutse",
+          "name": "Jigawa State Secretariat",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped government office named Jigawa State Secretariat.",
+          "guideSnippet": "A mapped government office named Jigawa State Secretariat.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "dutse-jigawa-state-secretariat-dutse-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/dutse/content.ts",
+        "src/game/cities/dutse/geography.ts",
+        "src/game/cities/dutse/index.ts",
+        "src/game/cities/dutse/rules.ts",
+        "src/game/cities/dutse/scenes.ts",
+        "src/game/cities/dutse/spec.ts"
+      ]
+    },
+    {
+      "cityId": "enugu",
+      "cityName": "Enugu",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "ng",
+      "existingStoryReferences": {
+        "host": {
+          "id": "enugu-agofure-park-1",
+          "name": "Uzoamaka Eze",
+          "venue": "agofure-park",
+          "venueName": "Agofure park"
+        },
+        "practical": {
+          "venue": "ekulu-garden",
+          "venueName": "Ekulu garden",
+          "spot": "visit",
+          "id": "enugu-ekulu-garden-visit",
+          "label": "Spend an evening in the garden"
+        },
+        "discovery": {
+          "venue": "agofure-park",
+          "venueName": "Agofure park",
+          "spot": "visit",
+          "id": "enugu-agofure-park-visit",
+          "label": "Walk through the park"
+        },
+        "placeLine": "A mapped public park in Enugu North."
+      },
+      "additionalVenues": [
+        {
+          "id": "jombos-kitchen",
+          "name": "Jombo's Kitchen",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped restaurant whose cuisine tag includes African soup.",
+          "guideSnippet": "A mapped restaurant whose cuisine tag includes African soup.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "enugu-jombos-kitchen-visit",
+              "label": "Eat African soup",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "nnamdi-azikiwe-stadium",
+          "name": "Nnamdi Azikiwe Stadium",
+          "kind": "viewing",
+          "whatYouCanDo": "A mapped stadium in Enugu North.",
+          "guideSnippet": "A mapped stadium in Enugu North.",
+          "activities": [
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "enugu-nnamdi-azikiwe-stadium-visit",
+              "label": "Watch a training session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "access-bank-okpara-avenue",
+          "name": "Access Bank",
+          "kind": "office",
+          "whatYouCanDo": "A mapped bank on Okpara Avenue.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "enugu-access-bank-okpara-avenue-visit",
+              "label": "Learn everyday budgeting",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/enugu/content.ts",
+        "src/game/cities/enugu/geography.ts",
+        "src/game/cities/enugu/index.ts",
+        "src/game/cities/enugu/rules.ts",
+        "src/game/cities/enugu/scenes.ts",
+        "src/game/cities/enugu/spec.ts"
+      ]
+    },
+    {
+      "cityId": "gombe",
+      "cityName": "Gombe",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "gombe-botanical-garden-gombe-1",
+          "name": "Zulai Gambo",
+          "venue": "botanical-garden-gombe",
+          "venueName": "Botanical Garden"
+        },
+        "practical": {
+          "venue": "kasuwar-mata",
+          "venueName": "KASUWAR MATA",
+          "spot": "aisle",
+          "id": "gombe-kasuwar-mata-visit",
+          "label": "Browse Farming and grain trade"
+        },
+        "discovery": {
+          "venue": "botanical-garden-gombe",
+          "venueName": "Botanical Garden",
+          "spot": "visit",
+          "id": "gombe-botanical-garden-gombe-visit",
+          "label": "Spend an evening in the garden"
+        },
+        "placeLine": "A mapped garden named Botanical Garden."
+      },
+      "additionalVenues": [
+        {
+          "id": "bubayeros-tomb",
+          "name": "Bubayero's Tomb",
+          "kind": "walk",
+          "whatYouCanDo": "Wikidata records Bubayero's Tomb as a tourist centre in Gombe.",
+          "guideSnippet": "Wikidata records Bubayero's Tomb as a tourist centre in Gombe.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "gombe-bubayeros-tomb-visit",
+              "label": "Learn about this place",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "emirs-palace-gombe",
+          "name": "Emir's Palace Gombe",
+          "kind": "walk",
+          "whatYouCanDo": "Wikidata records the Emir's Palace in Gombe with a published coordinate.",
+          "guideSnippet": "Wikidata records the Emir's Palace in Gombe with a published coordinate.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "gombe-emirs-palace-gombe-visit",
+              "label": "Learn about this place",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "gombe-state-university",
+          "name": "Gombe State University",
+          "kind": "office",
+          "whatYouCanDo": "A mapped university named Gombe State University.",
+          "guideSnippet": "A mapped university named Gombe State University.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "gombe-gombe-state-university-visit",
+              "label": "Join a learning session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/gombe/content.ts",
+        "src/game/cities/gombe/geography.ts",
+        "src/game/cities/gombe/index.ts",
+        "src/game/cities/gombe/rules.ts",
+        "src/game/cities/gombe/scenes.ts",
+        "src/game/cities/gombe/spec.ts"
+      ]
+    },
+    {
+      "cityId": "gusau",
+      "cityName": "Gusau",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "gusau-gusau-amusement-park-1",
+          "name": "Maryam Abubakar",
+          "venue": "gusau-amusement-park",
+          "venueName": "Gusau Amusement Park"
+        },
+        "practical": {
+          "venue": "gusau-central-market",
+          "venueName": "Gusau central market",
+          "spot": "aisle",
+          "id": "gusau-gusau-central-market-visit",
+          "label": "Browse Farming and commerce"
+        },
+        "discovery": {
+          "venue": "gusau-amusement-park",
+          "venueName": "Gusau Amusement Park",
+          "spot": "visit",
+          "id": "gusau-gusau-amusement-park-evening",
+          "label": "Spend a quiet evening here"
+        },
+        "placeLine": "Wikidata records Gusau Amusement Park as a park in Gusau, Zamfara State."
+      },
+      "additionalVenues": [
+        {
+          "id": "zamfara-ministry-of-environment-solid-minerals",
+          "name": "Zamfara State Ministry of Environment & Solid Minerals Development",
+          "kind": "statehouse",
+          "whatYouCanDo": "Wikidata records the Zamfara State Ministry of Environment and Solid Minerals Development in Gusau.",
+          "guideSnippet": "Wikidata records the Zamfara State Ministry of Environment and Solid Minerals Development in Gusau.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "gusau-zamfara-ministry-of-environment-solid-minerals-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "zamfara-ministry-of-information-culture-tourism",
+          "name": "Zamfara State Ministry of information, Culture and Tourism",
+          "kind": "statehouse",
+          "whatYouCanDo": "Wikidata records the Zamfara State Ministry of Information, Culture and Tourism as the state agency for culture and tourism.",
+          "guideSnippet": "Wikidata records the Zamfara State Ministry of Information, Culture and Tourism as the state agency for culture and tourism.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "gusau-zamfara-ministry-of-information-culture-tourism-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "zamfara-state-gis-gusau",
+          "name": "Zamfara State Geographic Information System",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped government office named Zamfara State Geographic Information System.",
+          "guideSnippet": "A mapped government office named Zamfara State Geographic Information System.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "gusau-zamfara-state-gis-gusau-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/gusau/content.ts",
+        "src/game/cities/gusau/geography.ts",
+        "src/game/cities/gusau/index.ts",
+        "src/game/cities/gusau/rules.ts",
+        "src/game/cities/gusau/scenes.ts",
+        "src/game/cities/gusau/spec.ts"
+      ]
+    },
+    {
+      "cityId": "ibadan",
+      "cityName": "Ibadan",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "ng",
+      "existingStoryReferences": {
+        "host": {
+          "id": "ibadan-agodi-gardens-1",
+          "name": "Yetunde Akinola",
+          "venue": "agodi-gardens",
+          "venueName": "Agodi Gardens"
+        },
+        "practical": {
+          "venue": "bodija-market",
+          "venueName": "Bodija Market",
+          "spot": "aisle",
+          "id": "ibadan-bodija-price",
+          "label": "Price the market"
+        },
+        "discovery": {
+          "venue": "agodi-gardens",
+          "venueName": "Agodi Gardens",
+          "spot": "garden",
+          "id": "ibadan-play-ayo",
+          "label": "Play a round of ayo"
+        },
+        "placeLine": "Play ayo and stay for an evening garden set."
+      },
+      "additionalVenues": [
+        {
+          "id": "bowers-tower",
+          "name": "Bower’s Tower",
+          "kind": "hilltop",
+          "whatYouCanDo": "Climb for a view over the seven hills and the brown-roof skyline.",
+          "guideSnippet": "See the seven hills and brown roofs from Oke Aare.",
+          "activities": [
+            {
+              "spotId": "top",
+              "spotLabel": "top",
+              "activityId": "ibadan-tower-view",
+              "label": "Take in the seven hills",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "dugbe-amala",
+          "name": "Dugbe Amala Joint",
+          "kind": "buka",
+          "whatYouCanDo": "Order amala with gbegiri and ewedu at a busy local joint.",
+          "guideSnippet": "Eat amala with gbegiri and ewedu.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "ibadan-amala-plate",
+              "label": "Eat amala, gbegiri and ewedu",
+              "duration": 10,
+              "cost": 1200
+            }
+          ]
+        },
+        {
+          "id": "eleyele-lake",
+          "name": "Eleyele Reservoir",
+          "kind": "lakeside",
+          "whatYouCanDo": "Sit by the reservoir and watch the water and birds.",
+          "guideSnippet": "Watch birds from the water’s edge.",
+          "activities": [
+            {
+              "spotId": "shore",
+              "spotLabel": "shore",
+              "activityId": "ibadan-eleyele-watch",
+              "label": "Watch birds by the water",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/ibadan/content.ts",
+        "src/game/cities/ibadan/descriptions.ts",
+        "src/game/cities/ibadan/index.ts",
+        "src/game/cities/ibadan/rules.ts"
+      ]
+    },
+    {
+      "cityId": "ijebu-ode",
+      "cityName": "Ijebu-Ode",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "ng",
+      "existingStoryReferences": {
+        "host": {
+          "id": "ijebu-ode-ijebu-evening-garden-1",
+          "name": "Ronke Odukoya",
+          "venue": "ijebu-evening-garden",
+          "venueName": "Ijebu Evening Garden"
+        },
+        "practical": {
+          "venue": "ijebu-neighbourhood-park",
+          "venueName": "Ijebu Neighbourhood Park",
+          "spot": "trees",
+          "id": "ijebu-play-ayo",
+          "label": "Play a round of ayo"
+        },
+        "discovery": {
+          "venue": "ijebu-market",
+          "venueName": "Ijebu-Ode Market",
+          "spot": "aisle",
+          "id": "ijebu-market-price",
+          "label": "Price the market"
+        },
+        "placeLine": "Price produce, cloth and household goods."
+      },
+      "additionalVenues": [
+        {
+          "id": "dipo-dina-stadium",
+          "name": "Otunba Dipo Dina International Stadium",
+          "kind": "viewing",
+          "whatYouCanDo": "Train and watch a football match at the stadium.",
+          "guideSnippet": "Watch a match in Ijebu-Ode.",
+          "activities": [
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "ijebu-match",
+              "label": "Watch the match",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "ijebu-museum",
+          "name": "Ijebu Heritage Gallery",
+          "kind": "walk",
+          "whatYouCanDo": "Explore Ijebu cloth, music and civic history.",
+          "guideSnippet": "Explore cloth, music and civic history.",
+          "activities": [
+            {
+              "spotId": "gallery",
+              "spotLabel": "gallery",
+              "activityId": "ijebu-gallery-tour",
+              "label": "Tour the heritage gallery",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "ojude-oba-forecourt",
+          "name": "Ijebu Heritage Gathering",
+          "kind": "statehouse",
+          "whatYouCanDo": "Explore a city-level interpretation of Ojude Oba, regberegbe and Ijebu festival culture.",
+          "guideSnippet": "Explore a fictional city-level interpretation of Ojude Oba and regberegbe.",
+          "activities": [
+            {
+              "spotId": "forecourt",
+              "spotLabel": "forecourt",
+              "activityId": "ijebu-regberegbe-learn",
+              "label": "Learn about regberegbe",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/ijebu-ode/content.ts",
+        "src/game/cities/ijebu-ode/index.ts",
+        "src/game/cities/ijebu-ode/rules.ts"
+      ]
+    },
+    {
+      "cityId": "ilorin",
+      "cityName": "Ilorin",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "ilorin-diamond-park-1",
+          "name": "Folake Adeyemi",
+          "venue": "diamond-park",
+          "venueName": "Diamond Park"
+        },
+        "practical": {
+          "venue": "flower-garden",
+          "venueName": "Flower Garden",
+          "spot": "visit",
+          "id": "ilorin-flower-garden-visit",
+          "label": "Spend an evening in the garden"
+        },
+        "discovery": {
+          "venue": "diamond-park",
+          "venueName": "Diamond Park",
+          "spot": "visit",
+          "id": "ilorin-diamond-park-visit",
+          "label": "Walk through the park"
+        },
+        "placeLine": "A mapped public park named Diamond Park in Ilorin West."
+      },
+      "additionalVenues": [
+        {
+          "id": "kwara-government-house",
+          "name": "Kwara State Government House",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped government office named Kwara State Government House in Ilorin East.",
+          "guideSnippet": "A mapped government office named Kwara State Government House in Ilorin East.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "ilorin-kwara-government-house-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "oja-oba",
+          "name": "Oja Oba",
+          "kind": "market",
+          "whatYouCanDo": "A mapped marketplace named Oja Oba in Ilorin West. Its specialty link is the city-wide aso-oke trade, not a market-specific source.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "aisle",
+              "spotLabel": "aisle",
+              "activityId": "ilorin-oja-oba-visit",
+              "label": "Browse Aso-oke weaving",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "aisle",
+              "spotLabel": "aisle",
+              "activityId": "ilorin-oja-oba-food",
+              "label": "Eat Tuwo at a food stall",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "al-hikmah-university",
+          "name": "Al-Hikmah University",
+          "kind": "office",
+          "whatYouCanDo": "A mapped university named Al-Hikmah University in Ilorin West.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "ilorin-al-hikmah-university-visit",
+              "label": "Join a learning session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/ilorin/content.ts",
+        "src/game/cities/ilorin/geography.ts",
+        "src/game/cities/ilorin/index.ts",
+        "src/game/cities/ilorin/rules.ts",
+        "src/game/cities/ilorin/scenes.ts",
+        "src/game/cities/ilorin/spec.ts"
+      ]
+    },
+    {
+      "cityId": "jalingo",
+      "cityName": "Jalingo",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "jalingo-bando-market-1",
+          "name": "Hannatu Yohanna",
+          "venue": "bando-market",
+          "venueName": "Bando Market"
+        },
+        "practical": {
+          "venue": "jalingo-centre-market",
+          "venueName": "Jalingo centre market",
+          "spot": "aisle",
+          "id": "jalingo-jalingo-centre-market-visit",
+          "label": "Browse Taraba farming"
+        },
+        "discovery": {
+          "venue": "bando-market",
+          "venueName": "Bando Market",
+          "spot": "aisle",
+          "id": "jalingo-bando-market-visit",
+          "label": "Browse Taraba farming"
+        },
+        "placeLine": "Wikidata records Bando Market in Jalingo; Wikipedia lists groundnuts and cotton among Taraba cash crops."
+      },
+      "additionalVenues": [
+        {
+          "id": "jolly-nyame-stadium",
+          "name": "Jolly Nyame Stadium",
+          "kind": "viewing",
+          "whatYouCanDo": "A mapped stadium named Jolly Nyame Stadium.",
+          "guideSnippet": "A mapped stadium named Jolly Nyame Stadium.",
+          "activities": [
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "jalingo-jolly-nyame-stadium-evening",
+              "label": "Spend a quiet evening here",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "jalingo-jolly-nyame-stadium-visit",
+              "label": "Watch a training session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "taraba-state-civil-service",
+          "name": "Taraba State Civil Service",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped government office named Taraba State Civil Service.",
+          "guideSnippet": "A mapped government office named Taraba State Civil Service.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "jalingo-taraba-state-civil-service-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "college-of-education-jalingo",
+          "name": "College of Education, Jalingo",
+          "kind": "office",
+          "whatYouCanDo": "Wikidata records the College of Education, Jalingo with a published coordinate.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "jalingo-college-of-education-jalingo-visit",
+              "label": "Join a learning session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/jalingo/content.ts",
+        "src/game/cities/jalingo/geography.ts",
+        "src/game/cities/jalingo/index.ts",
+        "src/game/cities/jalingo/rules.ts",
+        "src/game/cities/jalingo/scenes.ts",
+        "src/game/cities/jalingo/spec.ts"
+      ]
+    },
+    {
+      "cityId": "jos",
+      "cityName": "Jos",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "jos-gotul-peace-park-1",
+          "name": "Grace Danjuma",
+          "venue": "gotul-peace-park",
+          "venueName": "Dr. T. K. Gotul Peace Park"
+        },
+        "practical": {
+          "venue": "sculpture-garden",
+          "venueName": "Sculpture Garden",
+          "spot": "visit",
+          "id": "jos-sculpture-garden-visit",
+          "label": "Spend an evening in the garden"
+        },
+        "discovery": {
+          "venue": "gotul-peace-park",
+          "venueName": "Dr. T. K. Gotul Peace Park",
+          "spot": "visit",
+          "id": "jos-gotul-peace-park-visit",
+          "label": "Walk through the park"
+        },
+        "placeLine": "A mapped park named Dr. T. K. Gotul Peace Park in Jos North."
+      },
+      "additionalVenues": [
+        {
+          "id": "baptist-college-of-theology",
+          "name": "Baptist College of Theology",
+          "kind": "office",
+          "whatYouCanDo": "A mapped college named Baptist College of Theology in Jos North.",
+          "guideSnippet": "A mapped college named Baptist College of Theology in Jos North.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "jos-baptist-college-of-theology-visit",
+              "label": "Join a learning session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "jos-museum",
+          "name": "Jos Museum",
+          "kind": "walk",
+          "whatYouCanDo": "A mapped museum; Wikipedia says it was founded in 1952 and its Pottery Hall holds Nok terracotta heads and artefacts.",
+          "guideSnippet": "A mapped museum; Wikipedia says it was founded in 1952 and its Pottery Hall holds Nok terracotta heads and artefacts.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "jos-jos-museum-visit",
+              "label": "Learn about the collection",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "kyan-rikkos-village-head-palace",
+          "name": "Village Head palace Kyan Rikkos",
+          "kind": "walk",
+          "whatYouCanDo": "A mapped historic castle-type building tagged Village Head palace Kyan Rikkos in Jos North.",
+          "guideSnippet": "A mapped historic castle-type building tagged Village Head palace Kyan Rikkos in Jos North.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "jos-kyan-rikkos-village-head-palace-visit",
+              "label": "Learn about this place",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/jos/content.ts",
+        "src/game/cities/jos/geography.ts",
+        "src/game/cities/jos/index.ts",
+        "src/game/cities/jos/rules.ts",
+        "src/game/cities/jos/scenes.ts",
+        "src/game/cities/jos/spec.ts"
+      ]
+    },
+    {
+      "cityId": "kaduna",
+      "cityName": "Kaduna",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "kaduna-love-garden-1",
+          "name": "Amina Tanko",
+          "venue": "love-garden",
+          "venueName": "Love Garden"
+        },
+        "practical": {
+          "venue": "chechinya-market",
+          "venueName": "Chechinya Market",
+          "spot": "aisle",
+          "id": "kaduna-chechinya-market-visit",
+          "label": "Browse Textile making"
+        },
+        "discovery": {
+          "venue": "love-garden",
+          "venueName": "Love Garden",
+          "spot": "visit",
+          "id": "kaduna-love-garden-evening",
+          "label": "Spend a quiet evening here"
+        },
+        "placeLine": "A mapped park named Love Garden in Kaduna North."
+      },
+      "additionalVenues": [
+        {
+          "id": "kaduna-government-house",
+          "name": "Government House",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped government office named Government House in Kaduna South.",
+          "guideSnippet": "A mapped government office named Government House in Kaduna South.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "kaduna-kaduna-government-house-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "kaduna-secretariat",
+          "name": "Kaduna Secretariat",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped public building named Kaduna Secretariat in Kaduna North.",
+          "guideSnippet": "A mapped public building named Kaduna Secretariat in Kaduna North.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "kaduna-kaduna-secretariat-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "ahmadu-bello-stadium",
+          "name": "Ahmadu Bello Stadium",
+          "kind": "viewing",
+          "whatYouCanDo": "A mapped stadium named Ahmadu Bello Stadium in Kaduna North.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "kaduna-ahmadu-bello-stadium-visit",
+              "label": "Watch a training session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/kaduna/content.ts",
+        "src/game/cities/kaduna/geography.ts",
+        "src/game/cities/kaduna/index.ts",
+        "src/game/cities/kaduna/rules.ts",
+        "src/game/cities/kaduna/scenes.ts",
+        "src/game/cities/kaduna/spec.ts"
+      ]
+    },
+    {
+      "cityId": "kano",
+      "cityName": "Kano",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "ng",
+      "existingStoryReferences": {
+        "host": {
+          "id": "kano-nassarawa-garden-1",
+          "name": "Amina Bello",
+          "venue": "nassarawa-garden",
+          "venueName": "Gama Community Garden"
+        },
+        "practical": {
+          "venue": "racecourse",
+          "venueName": "Kano Racecourse",
+          "spot": "visit",
+          "id": "kano-racecourse-visit",
+          "label": "Learn about the racecourse"
+        },
+        "discovery": {
+          "venue": "nassarawa-garden",
+          "venueName": "Gama Community Garden",
+          "spot": "visit",
+          "id": "kano-play-ayo",
+          "label": "Play a round of ayo"
+        },
+        "placeLine": "Sit under the neem trees and play ayo in the neighbourhood garden at Gama."
+      },
+      "additionalVenues": [
+        {
+          "id": "kurmi-market",
+          "name": "Kurmi Market",
+          "kind": "market",
+          "whatYouCanDo": "Walk the narrow lanes of Kurmi, the old city market, and compare prices on leather, caps and crafts.",
+          "guideSnippet": "Walk the narrow lanes of Kurmi, the old city market, and compare prices on leather, caps and crafts.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "kano-leather-learn",
+              "label": "Learn about leather finishing",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "kano-market-haggle",
+              "label": "Compare prices at Kurmi",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "tea-garden",
+          "name": "Sabon Gari Tea and Suya Garden",
+          "kind": "park",
+          "whatYouCanDo": "Hear an evening music programme and share suya, kilishi and fura da nono in the tea garden.",
+          "guideSnippet": "Hear an evening music programme and share suya, kilishi and fura da nono in the tea garden.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "kano-evening-programme",
+              "label": "Hear an evening music programme",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "kano-suya-meal",
+              "label": "Share suya, kilishi and fura da nono",
+              "duration": 8,
+              "cost": 600
+            }
+          ]
+        },
+        {
+          "id": "buk-new",
+          "name": "Bayero University — New Campus",
+          "kind": "office",
+          "whatYouCanDo": "Visit the new campus of Bayero University and join a coding workshop.",
+          "guideSnippet": "Visit the new campus of Bayero University and join a coding workshop.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "kano-buk-new-visit",
+              "label": "Join a coding workshop",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/kano/content.ts",
+        "src/game/cities/kano/descriptions.ts",
+        "src/game/cities/kano/index.ts",
+        "src/game/cities/kano/rules.ts",
+        "src/game/cities/kano/scenes.ts"
+      ]
+    },
+    {
+      "cityId": "katsina",
+      "cityName": "Katsina",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "katsina-katsina-polo-ground-1",
+          "name": "Asmau Umar",
+          "venue": "katsina-polo-ground",
+          "venueName": "Katsina Polo Ground"
+        },
+        "practical": {
+          "venue": "maryam-park-katsina",
+          "venueName": "Maryam Park",
+          "spot": "visit",
+          "id": "katsina-maryam-park-katsina-evening",
+          "label": "Spend a quiet evening here"
+        },
+        "discovery": {
+          "venue": "katsina-polo-ground",
+          "venueName": "Katsina Polo Ground",
+          "spot": "visit",
+          "id": "katsina-katsina-polo-ground-visit",
+          "label": "Walk through the park"
+        },
+        "placeLine": "A mapped park named Katsina Polo Ground."
+      },
+      "additionalVenues": [
+        {
+          "id": "lady-m-katsina",
+          "name": "Lady m",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped fast-food outlet named Lady m, shown here with suya.",
+          "guideSnippet": "A mapped fast-food outlet named Lady m, shown here with suya.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "katsina-lady-m-katsina-visit",
+              "label": "Eat Suya",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "s-cafe-katsina",
+          "name": "S-cafe fast food and restaurant",
+          "kind": "buka",
+          "whatYouCanDo": "Wikidata records S-cafe fast food and restaurant in Katsina, shown here with tuwon shinkafa.",
+          "guideSnippet": "Wikidata records S-cafe fast food and restaurant in Katsina, shown here with tuwon shinkafa.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "katsina-s-cafe-katsina-visit",
+              "label": "Eat Tuwon shinkafa",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "central-market-katsina",
+          "name": "Central Market, Katsina",
+          "kind": "market",
+          "whatYouCanDo": "A mapped marketplace named Central Market, Katsina; Wikipedia describes the city as a centre for groundnuts, cotton and hides.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "aisle",
+              "spotLabel": "aisle",
+              "activityId": "katsina-central-market-katsina-visit",
+              "label": "Browse Groundnuts, cotton and hides",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/katsina/content.ts",
+        "src/game/cities/katsina/geography.ts",
+        "src/game/cities/katsina/index.ts",
+        "src/game/cities/katsina/rules.ts",
+        "src/game/cities/katsina/scenes.ts",
+        "src/game/cities/katsina/spec.ts"
+      ]
+    },
+    {
+      "cityId": "lafia",
+      "cityName": "Lafia",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "lafia-lafia-market-1",
+          "name": "Laraba Audu",
+          "venue": "lafia-market",
+          "venueName": "Lafia Market"
+        },
+        "practical": {
+          "venue": "lafia-new-market",
+          "venueName": "New market",
+          "spot": "aisle",
+          "id": "lafia-lafia-new-market-visit",
+          "label": "Browse Yams, sorghum and millet"
+        },
+        "discovery": {
+          "venue": "lafia-market",
+          "venueName": "Lafia Market",
+          "spot": "aisle",
+          "id": "lafia-lafia-market-visit",
+          "label": "Browse Sesame and soybean collecting point and Yams, sorghum and millet"
+        },
+        "placeLine": "A Wikidata point for Lafia Market; Wikipedia says the Lafia market became one of the most important in the Benue Valley under Mohamman Agwai and calls modern Lafia a collecting point and trading centre for farm produce."
+      },
+      "additionalVenues": [
+        {
+          "id": "federal-university-of-lafia",
+          "name": "Federal University of Lafia",
+          "kind": "office",
+          "whatYouCanDo": "A Wikidata point for Federal University of Lafia; Wikipedia lists it among the institutions of Lafia.",
+          "guideSnippet": "A Wikidata point for Federal University of Lafia; Wikipedia lists it among the institutions of Lafia.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "lafia-federal-university-of-lafia-visit",
+              "label": "Join a learning session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "lafia-lg-secretariat",
+          "name": "Lafia LGsec. Lafia",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped government office tagged Lafia LGsec. Lafia.",
+          "guideSnippet": "A mapped government office tagged Lafia LGsec. Lafia.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "lafia-lafia-lg-secretariat-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "nasarawa-ministry-information-culture-tourism",
+          "name": "Nasarawa State Ministry of Information, Culture and Tourism",
+          "kind": "statehouse",
+          "whatYouCanDo": "A Wikidata point for the state agency responsible for culture and tourism development in Lafia.",
+          "guideSnippet": "A Wikidata point for the state agency responsible for culture and tourism development in Lafia.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "lafia-nasarawa-ministry-information-culture-tourism-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/lafia/content.ts",
+        "src/game/cities/lafia/geography.ts",
+        "src/game/cities/lafia/index.ts",
+        "src/game/cities/lafia/rules.ts",
+        "src/game/cities/lafia/scenes.ts",
+        "src/game/cities/lafia/spec.ts"
+      ]
+    },
+    {
+      "cityId": "lagos",
+      "cityName": "Lagos",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "ng",
+      "existingStoryReferences": {
+        "host": {
+          "id": "kunle",
+          "name": "Kunle",
+          "venue": "park",
+          "venueName": "Freedom Park"
+        },
+        "practical": {
+          "venue": "amala-shitta",
+          "venueName": "Amala Shitta",
+          "spot": "kitchen",
+          "id": "buka-gist",
+          "label": "Gist with Mama"
+        },
+        "discovery": {
+          "venue": "park",
+          "venueName": "Freedom Park",
+          "spot": "amphitheatre",
+          "id": "open-mic-jokes",
+          "label": "Test Jokes at the Open Mic"
+        },
+        "placeLine": "A place to relax, enjoy art and meet your city."
+      },
+      "additionalVenues": [
+        {
+          "id": "beach",
+          "name": "Beach",
+          "kind": "beach",
+          "whatYouCanDo": "Atlantic waves, cabanas, horses and grilled fish. Never closes.",
+          "guideSnippet": "Atlantic waves, cabanas, horses and grilled fish. Never closes.",
+          "activities": [
+            {
+              "spotId": "shore",
+              "spotLabel": "shore",
+              "activityId": "beach-sunset",
+              "label": "Shoot the Sunset",
+              "duration": 9,
+              "cost": 0
+            },
+            {
+              "spotId": "shore",
+              "spotLabel": "shore",
+              "activityId": "beach-stroll",
+              "label": "Stroll the Shoreline",
+              "duration": 10,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "market",
+          "name": "Market",
+          "kind": "market",
+          "whatYouCanDo": "Fabric, pepper, plastics and noise. Bring your haggling voice.",
+          "guideSnippet": "Fabric, pepper, plastics and noise. Bring your haggling voice.",
+          "activities": [
+            {
+              "spotId": "stalls",
+              "spotLabel": "stalls",
+              "activityId": "market-browse",
+              "label": "Browse the Ankara",
+              "duration": 9,
+              "cost": 0
+            },
+            {
+              "spotId": "stalls",
+              "spotLabel": "stalls",
+              "activityId": "market-haggle",
+              "label": "Haggle Like a Pro",
+              "duration": 10,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "airport",
+          "name": "Airport",
+          "kind": "airport",
+          "whatYouCanDo": "The terminal at Ikeja: check-in queues, a wall of glass on the runway and somebody’s whole family at Arrivals. Open all day and all night.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "lounge",
+              "spotLabel": "lounge",
+              "activityId": "airport-restroom",
+              "label": "Use the Restroom",
+              "duration": 4,
+              "cost": 0
+            },
+            {
+              "spotId": "desk",
+              "spotLabel": "desk",
+              "activityId": "airport-flight-board",
+              "label": "Read the Flight Board",
+              "duration": 5,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/lagos/content.ts",
+        "src/game/cities/lagos/descriptions.ts",
+        "src/game/cities/lagos/index.ts",
+        "src/game/cities/lagos/regulars.ts",
+        "src/game/cities/lagos/rules.ts",
+        "src/game/cities/lagos/venues.ts"
+      ]
+    },
+    {
+      "cityId": "lokoja",
+      "cityName": "Lokoja",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "lokoja-children-amusement-park-1",
+          "name": "Salamatu Audu",
+          "venue": "children-amusement-park",
+          "venueName": "Children Amusement"
+        },
+        "practical": {
+          "venue": "lokoja-old-market",
+          "venueName": "Old Market",
+          "spot": "aisle",
+          "id": "lokoja-lokoja-old-market-visit",
+          "label": "Browse Grains and vegetables"
+        },
+        "discovery": {
+          "venue": "children-amusement-park",
+          "venueName": "Children Amusement",
+          "spot": "visit",
+          "id": "lokoja-children-amusement-park-evening",
+          "label": "Spend a quiet evening here"
+        },
+        "placeLine": "A mapped park tagged Children Amusement in Lokoja."
+      },
+      "additionalVenues": [
+        {
+          "id": "federal-university-lokoja",
+          "name": "Federal University Lokoja",
+          "kind": "office",
+          "whatYouCanDo": "A mapped university named Federal University Lokoja.",
+          "guideSnippet": "A mapped university named Federal University Lokoja.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "lokoja-federal-university-lokoja-visit",
+              "label": "Join a learning session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "kgirs-lokoja",
+          "name": "KGIRS",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped government office tagged KGIRS in Lokoja.",
+          "guideSnippet": "A mapped government office tagged KGIRS in Lokoja.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "lokoja-kgirs-lokoja-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "lokoja-national-museum",
+          "name": "Lokoja National Museum",
+          "kind": "walk",
+          "whatYouCanDo": "A mapped museum building named Lokoja National Museum.",
+          "guideSnippet": "A mapped museum building named Lokoja National Museum.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "lokoja-lokoja-national-museum-visit",
+              "label": "Learn about the collection",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/lokoja/content.ts",
+        "src/game/cities/lokoja/geography.ts",
+        "src/game/cities/lokoja/index.ts",
+        "src/game/cities/lokoja/rules.ts",
+        "src/game/cities/lokoja/scenes.ts",
+        "src/game/cities/lokoja/spec.ts"
+      ]
+    },
+    {
+      "cityId": "maiduguri",
+      "cityName": "Maiduguri",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "maiduguri-bexil-gardens-1",
+          "name": "Kachalla Abatcha",
+          "venue": "bexil-gardens",
+          "venueName": "BEXIL GARDENS"
+        },
+        "practical": {
+          "venue": "maiduguri-international-park",
+          "venueName": "maiduguri international park",
+          "spot": "visit",
+          "id": "maiduguri-maiduguri-international-park-visit",
+          "label": "Walk through the park"
+        },
+        "discovery": {
+          "venue": "bexil-gardens",
+          "venueName": "BEXIL GARDENS",
+          "spot": "visit",
+          "id": "maiduguri-bexil-gardens-visit",
+          "label": "Spend an evening in the garden"
+        },
+        "placeLine": "A mapped leisure area named BEXIL GARDENS."
+      },
+      "additionalVenues": [
+        {
+          "id": "adamawa-sunshine-motor-park",
+          "name": "Adamwa Sunshine Motor Park",
+          "kind": "hub",
+          "whatYouCanDo": "A mapped bus station named Adamwa Sunshine Motor Park.",
+          "guideSnippet": "A mapped bus station named Adamwa Sunshine Motor Park.",
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "maiduguri-adamawa-sunshine-motor-park-visit",
+              "label": "Read the road departures board",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "el-kanemi-stadium",
+          "name": "El-Kanemi Stadium",
+          "kind": "viewing",
+          "whatYouCanDo": "A mapped stadium named El-Kanemi Stadium.",
+          "guideSnippet": "A mapped stadium named El-Kanemi Stadium.",
+          "activities": [
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "maiduguri-el-kanemi-stadium-visit",
+              "label": "Watch a training session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "maiduguri-monday-market",
+          "name": "Maiduguri Monday Market",
+          "kind": "market",
+          "whatYouCanDo": "A mapped marketplace named Maiduguri Monday Market; Wikipedia describes Maiduguri as the principal trading hub of north-eastern Nigeria.",
+          "guideSnippet": "A mapped marketplace named Maiduguri Monday Market; Wikipedia describes Maiduguri as the principal trading hub of north-eastern Nigeria.",
+          "activities": [
+            {
+              "spotId": "aisle",
+              "spotLabel": "aisle",
+              "activityId": "maiduguri-maiduguri-monday-market-visit",
+              "label": "Browse Regional trade and services",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/maiduguri/content.ts",
+        "src/game/cities/maiduguri/geography.ts",
+        "src/game/cities/maiduguri/index.ts",
+        "src/game/cities/maiduguri/rules.ts",
+        "src/game/cities/maiduguri/scenes.ts",
+        "src/game/cities/maiduguri/spec.ts"
+      ]
+    },
+    {
+      "cityId": "makurdi",
+      "cityName": "Makurdi",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "makurdi-golden-plate-restaurant-1",
+          "name": "Aondover Shima",
+          "venue": "golden-plate-restaurant",
+          "venueName": "Golden Plate Restaurant"
+        },
+        "practical": {
+          "venue": "north-bank-market",
+          "venueName": "North bank market",
+          "spot": "aisle",
+          "id": "makurdi-north-bank-market-visit",
+          "label": "Browse Fresh farm produce"
+        },
+        "discovery": {
+          "venue": "wurukum-market",
+          "venueName": "Wurukum market",
+          "spot": "aisle",
+          "id": "makurdi-wurukum-market-visit",
+          "label": "Browse Fresh farm produce"
+        },
+        "placeLine": "A Wikidata market record for Wurukum market; Nigeria Galleria calls it a large daily market where farmers bring raw produce to sell at cheap rates."
+      },
+      "additionalVenues": [
+        {
+          "id": "benue-ministry-of-information-culture-tourism",
+          "name": "Benue State Ministry of Information, Culture & Tourism",
+          "kind": "statehouse",
+          "whatYouCanDo": "A Wikidata government-agency record for the Benue State Ministry of Information, Culture & Tourism.",
+          "guideSnippet": "A Wikidata government-agency record for the Benue State Ministry of Information, Culture & Tourism.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "makurdi-benue-ministry-of-information-culture-tourism-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "benue-state-university",
+          "name": "Benue State University",
+          "kind": "office",
+          "whatYouCanDo": "A Wikidata university record for Benue State University.",
+          "guideSnippet": "A Wikidata university record for Benue State University.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "makurdi-benue-state-university-visit",
+              "label": "Join a learning session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "dajo-pottery",
+          "name": "Dajo Pottery",
+          "kind": "walk",
+          "whatYouCanDo": "A Wikidata record for Dajo Pottery, described as a Benue tourist attraction and tagged with pottery as its subject.",
+          "guideSnippet": "A Wikidata record for Dajo Pottery, described as a Benue tourist attraction and tagged with pottery as its subject.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "makurdi-dajo-pottery-visit",
+              "label": "Learn about this place",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/makurdi/content.ts",
+        "src/game/cities/makurdi/geography.ts",
+        "src/game/cities/makurdi/index.ts",
+        "src/game/cities/makurdi/rules.ts",
+        "src/game/cities/makurdi/scenes.ts",
+        "src/game/cities/makurdi/spec.ts"
+      ]
+    },
+    {
+      "cityId": "minna",
+      "cityName": "Minna",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "minna-veez-garden-1",
+          "name": "Fatima Yakubu",
+          "venue": "veez-garden",
+          "venueName": "Veez Garden"
+        },
+        "practical": {
+          "venue": "yemisi-suswam-garden",
+          "venueName": "Yemisi Suswam Garden",
+          "spot": "visit",
+          "id": "minna-yemisi-suswam-garden-visit",
+          "label": "Spend an evening in the garden"
+        },
+        "discovery": {
+          "venue": "veez-garden",
+          "venueName": "Veez Garden",
+          "spot": "visit",
+          "id": "minna-veez-garden-visit",
+          "label": "Walk through the park"
+        },
+        "placeLine": "A mapped park named Veez Garden in Chanchaga."
+      },
+      "additionalVenues": [
+        {
+          "id": "kings-corner",
+          "name": "King's Corner",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped restaurant whose cuisine tag lists moi-moi, rice, indomie, bread, eggs and tea.",
+          "guideSnippet": "A mapped restaurant whose cuisine tag lists moi-moi, rice, indomie, bread, eggs and tea.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "minna-kings-corner-visit",
+              "label": "Eat Moi-moi",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "niger-state-house-of-assembly",
+          "name": "Niger State House Assembly",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped government office named Niger State House Assembly in Chanchaga.",
+          "guideSnippet": "A mapped government office named Niger State House Assembly in Chanchaga.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "minna-niger-state-house-of-assembly-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "federal-library-minna",
+          "name": "Federal Library Minna",
+          "kind": "walk",
+          "whatYouCanDo": "A mapped library building named Federal library Minna in Chanchaga.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "minna-federal-library-minna-visit",
+              "label": "Learn about this place",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/minna/content.ts",
+        "src/game/cities/minna/geography.ts",
+        "src/game/cities/minna/index.ts",
+        "src/game/cities/minna/rules.ts",
+        "src/game/cities/minna/scenes.ts",
+        "src/game/cities/minna/spec.ts"
+      ]
+    },
+    {
+      "cityId": "osogbo",
+      "cityName": "Osogbo",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "osogbo-nelson-mandela-freedom-park-1",
+          "name": "Temitope Adeyemi",
+          "venue": "nelson-mandela-freedom-park",
+          "venueName": "Nelson Mandela Freedom Park"
+        },
+        "practical": {
+          "venue": "ayegbaju-market",
+          "venueName": "Ayegbaju International Modern Market",
+          "spot": "aisle",
+          "id": "osogbo-ayegbaju-market-visit",
+          "label": "Browse Yam"
+        },
+        "discovery": {
+          "venue": "nelson-mandela-freedom-park",
+          "venueName": "Nelson Mandela Freedom Park",
+          "spot": "visit",
+          "id": "osogbo-nelson-mandela-freedom-park-visit",
+          "label": "Walk through the park"
+        },
+        "placeLine": "A mapped public park named Nelson Mandela Freedom Park in Osogbo."
+      },
+      "additionalVenues": [
+        {
+          "id": "osun-house-of-assembly",
+          "name": "Osun State House of Assembly",
+          "kind": "statehouse",
+          "whatYouCanDo": "A mapped government office named Osun State House of Assembly on Gbongan-Osogbo Road.",
+          "guideSnippet": "A mapped government office named Osun State House of Assembly on Gbongan-Osogbo Road.",
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "osogbo-osun-house-of-assembly-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "abegi-anu-bar",
+          "name": "ABEGI ANU",
+          "kind": "club",
+          "whatYouCanDo": "A mapped bar named ABEGI ANU in Olorunda.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "stage",
+              "spotLabel": "stage",
+              "activityId": "osogbo-abegi-anu-bar-visit",
+              "label": "Listen to the programme",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "fountain-university",
+          "name": "Fountain University",
+          "kind": "office",
+          "whatYouCanDo": "A mapped university named Fountain University in Osogbo.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "osogbo-fountain-university-visit",
+              "label": "Join a learning session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/osogbo/content.ts",
+        "src/game/cities/osogbo/geography.ts",
+        "src/game/cities/osogbo/index.ts",
+        "src/game/cities/osogbo/rules.ts",
+        "src/game/cities/osogbo/scenes.ts",
+        "src/game/cities/osogbo/spec.ts"
+      ]
+    },
+    {
+      "cityId": "ota",
+      "cityName": "Ota",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "ng",
+      "existingStoryReferences": {
+        "host": {
+          "id": "ota-ota-evening-garden-1",
+          "name": "Temi Adebayo",
+          "venue": "ota-evening-garden",
+          "venueName": "Ota Evening Garden"
+        },
+        "practical": {
+          "venue": "ota-neighbourhood-park",
+          "venueName": "Ota Neighbourhood Park",
+          "spot": "trees",
+          "id": "ota-play-ayo",
+          "label": "Play a round of ayo"
+        },
+        "discovery": {
+          "venue": "sango-market",
+          "venueName": "Sango-Ota Market",
+          "spot": "aisle",
+          "id": "ota-market-price",
+          "label": "Price the market"
+        },
+        "placeLine": "Price goods beside the commuter routes."
+      },
+      "additionalVenues": [
+        {
+          "id": "bells-university",
+          "name": "Bells University of Technology",
+          "kind": "office",
+          "whatYouCanDo": "Visit the technology campus and work on a practical project.",
+          "guideSnippet": "Build a practical technology project.",
+          "activities": [
+            {
+              "spotId": "lab",
+              "spotLabel": "lab",
+              "activityId": "ota-bells-project",
+              "label": "Build a practical project",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "covenant-university",
+          "name": "Covenant University",
+          "kind": "office",
+          "whatYouCanDo": "Join a technology and enterprise workshop on the university campus.",
+          "guideSnippet": "Join an enterprise workshop.",
+          "activities": [
+            {
+              "spotId": "lab",
+              "spotLabel": "lab",
+              "activityId": "ota-covenant-workshop",
+              "label": "Join an enterprise workshop",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "ota-industry-walk",
+          "name": "Ota Industry Walk",
+          "kind": "walk",
+          "whatYouCanDo": "Learn how the Lagos-border industrial corridor grew.",
+          "guideSnippet": "Learn how the border corridor grew.",
+          "activities": [
+            {
+              "spotId": "route",
+              "spotLabel": "route",
+              "activityId": "ota-industry-learn",
+              "label": "Walk the industry route",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/ota/content.ts",
+        "src/game/cities/ota/index.ts",
+        "src/game/cities/ota/rules.ts"
+      ]
+    },
+    {
+      "cityId": "owerri",
+      "cityName": "Owerri",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "owerri-imo-golf-amusement-center-1",
+          "name": "Adaeze Ugwu",
+          "venue": "imo-golf-amusement-center",
+          "venueName": "Imo Golf and Amusement Center"
+        },
+        "practical": {
+          "venue": "love-garden-imsu",
+          "venueName": "Love Garden, IMSU",
+          "spot": "visit",
+          "id": "owerri-love-garden-imsu-visit",
+          "label": "Spend an evening in the garden"
+        },
+        "discovery": {
+          "venue": "imo-golf-amusement-center",
+          "venueName": "Imo Golf and Amusement Center",
+          "spot": "visit",
+          "id": "owerri-imo-golf-amusement-center-visit",
+          "label": "Walk through the park"
+        },
+        "placeLine": "Wikidata records the Imo Golf and Amusement Center as a park in Owerri."
+      },
+      "additionalVenues": [
+        {
+          "id": "mr-biggs-owerri",
+          "name": "Mr.Biggs",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped fast-food outlet named Mr.Biggs, shown here with Ofe Owerri.",
+          "guideSnippet": "A mapped fast-food outlet named Mr.Biggs, shown here with Ofe Owerri.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "owerri-mr-biggs-owerri-visit",
+              "label": "Eat Ofe Owerri",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "akachi-monument",
+          "name": "Akachi Monument",
+          "kind": "walk",
+          "whatYouCanDo": "A mapped monument named Akachi Monument.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "owerri-akachi-monument-visit",
+              "label": "Learn about this place",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "dan-anyiam-stadium",
+          "name": "Dan Anyiam Stadium",
+          "kind": "viewing",
+          "whatYouCanDo": "A mapped stadium named Dan Anyiam Stadium.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "owerri-dan-anyiam-stadium-visit",
+              "label": "Watch a training session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/owerri/content.ts",
+        "src/game/cities/owerri/geography.ts",
+        "src/game/cities/owerri/index.ts",
+        "src/game/cities/owerri/rules.ts",
+        "src/game/cities/owerri/scenes.ts",
+        "src/game/cities/owerri/spec.ts"
+      ]
+    },
+    {
+      "cityId": "port-harcourt",
+      "cityName": "Port Harcourt",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "ng",
+      "existingStoryReferences": {
+        "host": {
+          "id": "port-harcourt-garden-city-amusement-1",
+          "name": "Kelechi Amadi",
+          "venue": "garden-city-amusement",
+          "venueName": "Garden City Amusement Park"
+        },
+        "practical": {
+          "venue": "isaac-boro-park",
+          "venueName": "Isaac Boro Park",
+          "spot": "walk",
+          "id": "ph-boro-walk",
+          "label": "Walk through Isaac Boro Park"
+        },
+        "discovery": {
+          "venue": "pleasure-park",
+          "venueName": "Port Harcourt Pleasure Park",
+          "spot": "lawn",
+          "id": "ph-play-ayo",
+          "label": "Play a round of ayo"
+        },
+        "placeLine": "Walk, relax and play ayo."
+      },
+      "additionalVenues": [
+        {
+          "id": "bonny-jetty",
+          "name": "Bonny/Nembe Waterside Terminal",
+          "kind": "hub",
+          "whatYouCanDo": "Take the boat to Okrika.",
+          "guideSnippet": "Take the boat to Okrika.",
+          "activities": [
+            {
+              "spotId": "landing",
+              "spotLabel": "landing",
+              "activityId": "ph-jetty-wait",
+              "label": "Wait at the landing",
+              "duration": 4,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "mile-one-market",
+          "name": "New Mile One Market",
+          "kind": "market",
+          "whatYouCanDo": "Price produce, cloth and household goods in Diobu.",
+          "guideSnippet": "Price produce, cloth and household goods.",
+          "activities": [
+            {
+              "spotId": "aisle",
+              "spotLabel": "aisle",
+              "activityId": "ph-mile-one-price",
+              "label": "Price the market",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "tourist-beach",
+          "name": "Port Harcourt Tourist Beach",
+          "kind": "beach",
+          "whatYouCanDo": "Walk the waterfront and learn about its boat-regatta history.",
+          "guideSnippet": "Walk the waterfront and learn its regatta history.",
+          "activities": [
+            {
+              "spotId": "shore",
+              "spotLabel": "shore",
+              "activityId": "ph-beach-walk",
+              "label": "Walk by the water",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/port-harcourt/content.ts",
+        "src/game/cities/port-harcourt/descriptions.ts",
+        "src/game/cities/port-harcourt/index.ts",
+        "src/game/cities/port-harcourt/rules.ts",
+        "src/game/cities/port-harcourt/scenes.ts"
+      ]
+    },
+    {
+      "cityId": "sagamu",
+      "cityName": "Sagamu",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "ng",
+      "existingStoryReferences": {
+        "host": {
+          "id": "sagamu-remo-evening-garden-1",
+          "name": "Temi Adebiyi",
+          "venue": "remo-evening-garden",
+          "venueName": "Remo Evening Garden"
+        },
+        "practical": {
+          "venue": "sagamu-neighbourhood-park",
+          "venueName": "Sagamu Neighbourhood Park",
+          "spot": "trees",
+          "id": "sagamu-play-ayo",
+          "label": "Play a round of ayo"
+        },
+        "discovery": {
+          "venue": "sagamu-market",
+          "venueName": "Sagamu Market",
+          "spot": "aisle",
+          "id": "sagamu-market-price",
+          "label": "Price the market"
+        },
+        "placeLine": "Price produce and household goods."
+      },
+      "additionalVenues": [
+        {
+          "id": "babcock-university",
+          "name": "Babcock University",
+          "kind": "office",
+          "whatYouCanDo": "Join a university workshop at the Ilishan-Remo campus.",
+          "guideSnippet": "Join a university workshop at Ilishan-Remo.",
+          "activities": [
+            {
+              "spotId": "lab",
+              "spotLabel": "lab",
+              "activityId": "sagamu-babcock-workshop",
+              "label": "Join a project workshop",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "ikenne-heritage",
+          "name": "Ikenne Heritage Walk",
+          "kind": "walk",
+          "whatYouCanDo": "Learn about Ikenne’s schools and political history.",
+          "guideSnippet": "Learn about schools and political history.",
+          "activities": [
+            {
+              "spotId": "route",
+              "spotLabel": "route",
+              "activityId": "sagamu-ikenne-learn",
+              "label": "Walk the Ikenne heritage route",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "sagamu-interchange",
+          "name": "Sagamu Interchange",
+          "kind": "hub",
+          "whatYouCanDo": "Change buses between Lagos, Abeokuta, Ibadan and the road east.",
+          "guideSnippet": "See where major roads meet.",
+          "activities": [
+            {
+              "spotId": "platform",
+              "spotLabel": "platform",
+              "activityId": "sagamu-bus-wait",
+              "label": "Wait for the bus",
+              "duration": 4,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/sagamu/content.ts",
+        "src/game/cities/sagamu/index.ts",
+        "src/game/cities/sagamu/rules.ts"
+      ]
+    },
+    {
+      "cityId": "sokoto",
+      "cityName": "Sokoto",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "sokoto-shanghai-bakers-sokoto-1",
+          "name": "Halima Suleiman",
+          "venue": "shanghai-bakers-sokoto",
+          "venueName": "Shanghai Bakers"
+        },
+        "practical": {
+          "venue": "central-market-sokoto",
+          "venueName": "Central Market",
+          "spot": "aisle",
+          "id": "sokoto-central-market-sokoto-visit",
+          "label": "Browse Hides, skins and leather trade"
+        },
+        "discovery": {
+          "venue": "karra-cattle-market-sokoto",
+          "venueName": "Sokoto karra cattle market",
+          "spot": "aisle",
+          "id": "sokoto-karra-cattle-market-sokoto-visit",
+          "label": "Browse Farming and fishing"
+        },
+        "placeLine": "Wikidata records the Sokoto karra cattle market as a market in Sokoto State; Wikipedia says Sokoto residents largely practise agriculture."
+      },
+      "additionalVenues": [
+        {
+          "id": "sultans-palace-sokoto",
+          "name": "The sultan of sokoto palace",
+          "kind": "walk",
+          "whatYouCanDo": "Wikidata records the Sultan of Sokoto palace as a tourist attraction in Sokoto North.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "sokoto-sultans-palace-sokoto-evening",
+              "label": "Spend a quiet evening here",
+              "duration": 8,
+              "cost": 0
+            },
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "sokoto-sultans-palace-sokoto-visit",
+              "label": "Learn about this place",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "cross-country-motor-park-sokoto",
+          "name": "Cross Country Motor Park",
+          "kind": "hub",
+          "whatYouCanDo": "A mapped bus station named Cross Country Motor Park.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "arrival",
+              "spotLabel": "arrival",
+              "activityId": "sokoto-cross-country-motor-park-sokoto-visit",
+              "label": "Read the road departures board",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "first-bank-sokoto",
+          "name": "First Bank",
+          "kind": "office",
+          "whatYouCanDo": "A mapped bank building named First Bank.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "sokoto-first-bank-sokoto-visit",
+              "label": "Learn everyday budgeting",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/sokoto/content.ts",
+        "src/game/cities/sokoto/geography.ts",
+        "src/game/cities/sokoto/index.ts",
+        "src/game/cities/sokoto/rules.ts",
+        "src/game/cities/sokoto/scenes.ts",
+        "src/game/cities/sokoto/spec.ts"
+      ]
+    },
+    {
+      "cityId": "umuahia",
+      "cityName": "Umuahia",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "umuahia-ulo-ama-umuochoko-park-1",
+          "name": "Ifeoma Anyanwu",
+          "venue": "ulo-ama-umuochoko-park",
+          "venueName": "Ulo ama Umuochoko"
+        },
+        "practical": {
+          "venue": "orie-ugba-market",
+          "venueName": "Orie Ugba Market",
+          "spot": "aisle",
+          "id": "umuahia-orie-ugba-market-visit",
+          "label": "Browse Farm produce market"
+        },
+        "discovery": {
+          "venue": "ulo-ama-umuochoko-park",
+          "venueName": "Ulo ama Umuochoko",
+          "spot": "visit",
+          "id": "umuahia-ulo-ama-umuochoko-park-evening",
+          "label": "Spend a quiet evening here"
+        },
+        "placeLine": "A mapped park named Ulo ama Umuochoko."
+      },
+      "additionalVenues": [
+        {
+          "id": "afrikana-flavors-umuahia",
+          "name": "Afrikana Flavors Umuahia",
+          "kind": "buka",
+          "whatYouCanDo": "Wikidata records Afrikana Flavors Umuahia as a restaurant, shown here with Abacha.",
+          "guideSnippet": "Wikidata records Afrikana Flavors Umuahia as a restaurant, shown here with Abacha.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "umuahia-afrikana-flavors-umuahia-visit",
+              "label": "Eat Abacha",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "college-of-nursing-umuahia",
+          "name": "College of Nursing Sciences, Umuahia, Abia State",
+          "kind": "office",
+          "whatYouCanDo": "Wikidata records the College of Nursing Sciences, Umuahia as a nursing college.",
+          "guideSnippet": "Wikidata records the College of Nursing Sciences, Umuahia as a nursing college.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "umuahia-college-of-nursing-umuahia-visit",
+              "label": "Join a learning session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "de-native-restaurant-umuahia",
+          "name": "De Native Restaurant Umuahia",
+          "kind": "buka",
+          "whatYouCanDo": "Wikidata records De Native Restaurant Umuahia as a restaurant, shown here with Ukwa.",
+          "guideSnippet": "Wikidata records De Native Restaurant Umuahia as a restaurant, shown here with Ukwa.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "umuahia-de-native-restaurant-umuahia-visit",
+              "label": "Eat Ukwa",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/umuahia/content.ts",
+        "src/game/cities/umuahia/geography.ts",
+        "src/game/cities/umuahia/index.ts",
+        "src/game/cities/umuahia/rules.ts",
+        "src/game/cities/umuahia/scenes.ts",
+        "src/game/cities/umuahia/spec.ts"
+      ]
+    },
+    {
+      "cityId": "uyo",
+      "cityName": "Uyo",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "uyo-unity-park-uyo-1",
+          "name": "Ifiok Akpan",
+          "venue": "unity-park-uyo",
+          "venueName": "Unity Park"
+        },
+        "practical": {
+          "venue": "akpan-andem-market",
+          "venueName": "Akpan Andem Market",
+          "spot": "aisle",
+          "id": "uyo-akpan-andem-market-visit",
+          "label": "Browse Akpan Andem yam trade"
+        },
+        "discovery": {
+          "venue": "unity-park-uyo",
+          "venueName": "Unity Park",
+          "spot": "visit",
+          "id": "uyo-unity-park-uyo-evening",
+          "label": "Spend a quiet evening here"
+        },
+        "placeLine": "A mapped public park named Unity Park."
+      },
+      "additionalVenues": [
+        {
+          "id": "cheeries-fast-food",
+          "name": "Cheeries Fast food",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped fast-food outlet named Cheeries Fast food, shown here with Afang soup.",
+          "guideSnippet": "A mapped fast-food outlet named Cheeries Fast food, shown here with Afang soup.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "uyo-cheeries-fast-food-visit",
+              "label": "Eat Afang soup",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "national-museum-uyo",
+          "name": "National Museum, Uyo",
+          "kind": "walk",
+          "whatYouCanDo": "Wikidata records the National Museum, Uyo as a museum in Akwa Ibom State.",
+          "guideSnippet": "Wikidata records the National Museum, Uyo as a museum in Akwa Ibom State.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "uyo-national-museum-uyo-visit",
+              "label": "Learn about the collection",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "night-fast-food",
+          "name": "Night fast food",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped restaurant named Night fast food, shown here with Edikang Ikong.",
+          "guideSnippet": "A mapped restaurant named Night fast food, shown here with Edikang Ikong.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "uyo-night-fast-food-visit",
+              "label": "Eat Edikang Ikong",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/uyo/content.ts",
+        "src/game/cities/uyo/geography.ts",
+        "src/game/cities/uyo/index.ts",
+        "src/game/cities/uyo/rules.ts",
+        "src/game/cities/uyo/scenes.ts",
+        "src/game/cities/uyo/spec.ts"
+      ]
+    },
+    {
+      "cityId": "yenagoa",
+      "cityName": "Yenagoa",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "yenagoa-igbogene-field-1",
+          "name": "Ine Pere",
+          "venue": "igbogene-field",
+          "venueName": "Igbogene Field"
+        },
+        "practical": {
+          "venue": "onopa-market-yenagoa",
+          "venueName": "Onopa Market",
+          "spot": "aisle",
+          "id": "yenagoa-onopa-market-yenagoa-visit",
+          "label": "Browse Fishing, farming and palm products"
+        },
+        "discovery": {
+          "venue": "igbogene-field",
+          "venueName": "Igbogene Field",
+          "spot": "visit",
+          "id": "yenagoa-igbogene-field-evening",
+          "label": "Spend a quiet evening here"
+        },
+        "placeLine": "A mapped park named Igbogene Field."
+      },
+      "additionalVenues": [
+        {
+          "id": "crunchies-yenagoa",
+          "name": "Crunchies",
+          "kind": "buka",
+          "whatYouCanDo": "A mapped fast-food outlet named Crunchies, shown here with fried fish and plantain.",
+          "guideSnippet": "A mapped fast-food outlet named Crunchies, shown here with fried fish and plantain.",
+          "activities": [
+            {
+              "spotId": "counter",
+              "spotLabel": "counter",
+              "activityId": "yenagoa-crunchies-yenagoa-visit",
+              "label": "Eat Fried fish and plantain",
+              "duration": 8,
+              "cost": 700
+            }
+          ]
+        },
+        {
+          "id": "alamieyesiegha-castle",
+          "name": "Alamieyesiegha Castle",
+          "kind": "walk",
+          "whatYouCanDo": "A mapped historic castle named Alamieyesiegha Castle.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "yenagoa-alamieyesiegha-castle-visit",
+              "label": "Learn about this place",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "bayelsa-state-government-house",
+          "name": "Bayelsa State Government House",
+          "kind": "statehouse",
+          "whatYouCanDo": "Wikidata records the Bayelsa State Government House as a government building in Yenagoa.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "yenagoa-bayelsa-state-government-house-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/yenagoa/content.ts",
+        "src/game/cities/yenagoa/geography.ts",
+        "src/game/cities/yenagoa/index.ts",
+        "src/game/cities/yenagoa/rules.ts",
+        "src/game/cities/yenagoa/scenes.ts",
+        "src/game/cities/yenagoa/spec.ts"
+      ]
+    },
+    {
+      "cityId": "yola",
+      "cityName": "Yola",
+      "countryId": "ng",
+      "countryName": "Nigeria",
+      "sourceCountryRuleId": "nigeria",
+      "existingStoryReferences": {
+        "host": {
+          "id": "yola-gorilla-park-yola-1",
+          "name": "Ruth Tanko",
+          "venue": "gorilla-park-yola",
+          "venueName": "Gorilla Park Yola"
+        },
+        "practical": {
+          "venue": "jimeta-ultra-modern-market",
+          "venueName": "Jimeta ultra modern market",
+          "spot": "aisle",
+          "id": "yola-jimeta-ultra-modern-market-visit",
+          "label": "Browse Livestock and crop trade"
+        },
+        "discovery": {
+          "venue": "gorilla-park-yola",
+          "venueName": "Gorilla Park Yola",
+          "spot": "visit",
+          "id": "yola-gorilla-park-yola-evening",
+          "label": "Spend a quiet evening here"
+        },
+        "placeLine": "Wikidata records Gorilla Park Yola, described as a recreational garden."
+      },
+      "additionalVenues": [
+        {
+          "id": "american-university-of-nigeria",
+          "name": "American University of Nigeria",
+          "kind": "office",
+          "whatYouCanDo": "A mapped university named American University of Nigeria.",
+          "guideSnippet": "A mapped university named American University of Nigeria.",
+          "activities": [
+            {
+              "spotId": "visit",
+              "spotLabel": "visit",
+              "activityId": "yola-american-university-of-nigeria-visit",
+              "label": "Join a learning session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "yola-race-course",
+          "name": "Yola Race Course",
+          "kind": "viewing",
+          "whatYouCanDo": "A mapped stadium named Yola Race Course.",
+          "guideSnippet": "A mapped stadium named Yola Race Course.",
+          "activities": [
+            {
+              "spotId": "stand",
+              "spotLabel": "stand",
+              "activityId": "yola-yola-race-course-visit",
+              "label": "Watch a training session",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        },
+        {
+          "id": "adamawa-ministry-tourism-arts-culture",
+          "name": "Adamawa state Ministry of Tourism, Arts and Culture",
+          "kind": "statehouse",
+          "whatYouCanDo": "Wikidata records the Adamawa State Ministry of Tourism, Arts and Culture.",
+          "guideSnippet": null,
+          "activities": [
+            {
+              "spotId": "notices",
+              "spotLabel": "notices",
+              "activityId": "yola-adamawa-ministry-tourism-arts-culture-visit",
+              "label": "Read the civic notices",
+              "duration": 8,
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "sourcePaths": [
+        "src/game/cities/yola/content.ts",
+        "src/game/cities/yola/geography.ts",
+        "src/game/cities/yola/index.ts",
+        "src/game/cities/yola/rules.ts",
+        "src/game/cities/yola/scenes.ts",
+        "src/game/cities/yola/spec.ts"
+      ]
+    }
+  ]
+}

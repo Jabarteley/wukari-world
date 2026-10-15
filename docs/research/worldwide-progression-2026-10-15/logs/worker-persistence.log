@@ -1,0 +1,25 @@
+(node:39803) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Store: social now kept per entry (0 entries, 0 ms)
+Store: growth now kept per entry (0 entries, 0 ms)
+Store: civic now kept per entry (0 entries, 0 ms)
+Store: business now kept per entry (0 entries, 0 ms)
+Store: market now kept per entry (0 entries, 0 ms)
+Store: commerce now kept per entry (0 entries, 0 ms)
+Store: records now kept per entry (0 entries, 0 ms)
+Store: realValue now kept per entry (0 entries, 0 ms)
+Store: showcase now kept per entry (0 entries, 0 ms)
+Store: trustChecks now kept per entry (0 entries, 0 ms)
+Store: street now kept per entry (0 entries, 0 ms)
+Store: livingWorld now kept per entry (0 entries, 0 ms)
+Store: agents now kept per entry (0 entries, 0 ms)
+Store: every collection has its per-entry copy (13 copied at this start, 0 characters); the stored values stay the truth
+✔ Worker city modules: complete city journey and lossless legacy switches survive SQLite restart (6662.494292ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7245.100584

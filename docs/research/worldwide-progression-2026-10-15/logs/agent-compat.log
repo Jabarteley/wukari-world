@@ -1,0 +1,48 @@
+✔ full access: every action type the registry dispatches to a player is allowed, read from the registry, and the deny list is the documented one (194.240791ms)
+✔ the unauthenticated surface is exactly two tools; a key unlocks the rest (39.927791ms)
+✔ creation limits: per address a day, a global daily cap and a creation switch an operator controls apart from play; names and labels are filtered (65.701584ms)
+✔ the claim flow: unclaimed, claimed once by a signed-in person, renamed, taken over as their own character; links expire; idle unclaimed agents are archived (128.51875ms)
+✔ an unclaimed agent with no activity for 14 days is archived with the existing archive of expired lives; one that plays is kept (277.145792ms)
+✔ unclaimed agents play like any player: no money limit, no first-contact limit beyond the chat's own, no property or office restrictions of their own (96.017584ms)
+✔ virtual presence: an agent character stands in its place for everyone there while its key is active, moves, and leaves; it holds no socket (1168.854792ms)
+✔ venue chat round trip: say_here reaches the place with the agent mark and a voice seed, people's replies come back through read_here, and the filters are the people's (231.301542ms)
+✔ analytics: AI agents are counted apart from people in the pulse, and are not in the people's online count (63.951ms)
+✔ the two families of boards: a character an agent played in the week MOVES to the agents' boards with everything it earned, and back the week after; nothing is dropped (2.245084ms)
+✔ the Agent league: the composite, the columns, weekly and all-time, and the public pages with head tags (18.88025ms)
+✔ the public pages escape everything that comes from a player or an agent (0.257833ms)
+✔ politics: an agent can stand, vote and make rules through the same routes as a person, and the game's own rules decide; the swarm numbers are the documented ones (28.693125ms)
+✔ operator settings change the per-key ceiling without a release (91.868ms)
+✔ all agents together have a rate: a call over it does nothing, costs the key nothing, and is told how long to wait (410.494791ms)
+✔ modes: an own-character key plays the account's character; a key for a new agent character makes a separate marked life owned by the account, with no phone check, two at most (71.355167ms)
+✔ protocol: initialize, ping, tools/list and tools/call answer as JSON-RPC 2.0; a notification gets 202; mistakes get the right error codes (154.212666ms)
+✔ the endpoint is for programs: a key is required, a browser origin is refused, nothing allows another site, and only POST answers (38.760166ms)
+✔ key lifecycle: shown once, stored only as a hash, listed without the secret, last-used time, revoked at once, at most three (78.37825ms)
+✔ who may make a key: guests are refused, a new account waits a day, a browser must name this host and carry its token (59.292917ms)
+✔ honesty: a key that acted marks its character AI-played for a few minutes; an agent character is marked for good (71.567792ms)
+✔ safety valves: the operator switch ends all agent access at once and back; a key is suspended after repeated refusals and after reports (476.276333ms)
+✔ audit: each key keeps its last calls, bounded, and the owner can read them (383.066ms)
+✔ privacy: tools show only what the player's own client could read; no other player's position, no keys, no hashes (85.282125ms)
+✔ a life saved before this change reads the same: no agent data is added until a key is made, and the wire shapes are unchanged (54.99025ms)
+✔ account data: the export lists keys without secrets, and deleting an account ends them (0.298959ms)
+✔ every tool answers with the life summary, and the game's own refusals come back in plain words with what to do next (127.331042ms)
+✔ route registry: a module gets storage, sessions, settlement, actions and push through the context (59.775334ms)
+✔ route registry rejects duplicate and malformed routes at start-up and lists the core routes (1.435625ms)
+✔ accounts are off unless configured: one disabled answer, every other account route a 404, device sessions unchanged (12.125959ms)
+✔ socket registry: room-free and room-only handlers, error replies, open/close hooks, core behaviour intact (31.758333ms)
+✔ socket registry rejects duplicate or malformed message types and lists the core types (0.569833ms)
+✔ everyone joins a room outside voice and muted; mute state is per identity and resets on rejoin (13.252833ms)
+✔ idempotent replay covers the payload: same request replays, a changed payload conflicts (22.509583ms)
+✔ action envelope: types come from the registry and payloads are size-limited plain objects (15.149375ms)
+✔ server-only actions: the public /api/action can never run one; a route module reaches them through ctx.act (157.730709ms)
+✔ fingerprints without a payload keep the pre-payload format, so stored receipts stay valid (0.167833ms)
+✔ collections are namespaced, created lazily and cannot shadow core data (0.201708ms)
+✔ an old-format saved life survives the refactor: state, timers, per-city entries and receipts (25.440833ms)
+✔ modules shared with the Cloudflare worker stay portable: no Node-only imports (501.988958ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7027.096042

@@ -1,0 +1,314 @@
+
+> joinallworld@0.1.0 test:smoke
+> node --experimental-strip-types --test --test-concurrency=1 src/app/entry.test.ts server/release.test.ts src/types/protocol.test.ts
+
+✔ JavaScript is limited to the service worker, release shims and exact reviewed tooling (30.388125ms)
+✔ the two release shims only point at the TypeScript they stand for (1.397875ms)
+✔ every file in public/ is an asset the release package admits (no dot-file, no map, no manifest, no xml) (11.061083ms)
+✔ the Worker config is the one the release package fixes, and the Worker exports its Durable Object (2.673667ms)
+✔ the default build config emits no source map (maps are opt-in, SOURCEMAPS=1, into dist-maps/) (1.41425ms)
+✔ the first download paints without the game shell, rules engine or city content; the startup closure reads them through the browser system set (0.8685ms)
+✔ the shared shell does not statically import a city venue or regular catalogue (0.410334ms)
+✔ the shared shell does not statically import the world city network (catalogue rows, land components, routes) (0.320542ms)
+✔ each generated catalogue row has one checked-in Node and Worker loader (0.816792ms)
+✔ Three.js, maps, scene hosts, campus world, models and telemetry SDKs remain separate from both entry and shell (1.384375ms)
+✔ the eager JavaScript does not grow and contains only the loading screen and Vue (5.84225ms)
+ℹ assets/vue-4eb727db.js 81273 raw 30921 gzip; assets/preload-helper-86ad5cfe.js 1260 raw 698 gzip; assets/app-cea979e2.js 7971 raw 3624 gzip; total 90504 raw 35243 gzip
+✔ automatic game startup, including one selected city, stays within the original first-load budget (3576.88475ms)
+ℹ lagos automatic startup: 614962 raw 221748 gzip bytes
+ℹ ibadan automatic startup: 581691 raw 213357 gzip bytes
+ℹ abuja automatic startup: 594731 raw 214762 gzip bytes
+ℹ port-harcourt automatic startup: 584458 raw 214391 gzip bytes
+ℹ abeokuta automatic startup: 571055 raw 210458 gzip bytes
+ℹ ota automatic startup: 569671 raw 209812 gzip bytes
+ℹ ijebu-ode automatic startup: 570346 raw 210080 gzip bytes
+ℹ sagamu automatic startup: 572080 raw 210813 gzip bytes
+ℹ kano automatic startup: 595939 raw 214898 gzip bytes
+ℹ enugu automatic startup: 585563 raw 214803 gzip bytes
+ℹ benin-city automatic startup: 586541 raw 214842 gzip bytes
+ℹ calabar automatic startup: 588651 raw 215785 gzip bytes
+ℹ uyo automatic startup: 583420 raw 213839 gzip bytes
+ℹ umuahia automatic startup: 589981 raw 214928 gzip bytes
+ℹ owerri automatic startup: 591498 raw 215184 gzip bytes
+ℹ yenagoa automatic startup: 591944 raw 215095 gzip bytes
+ℹ awka automatic startup: 589055 raw 215028 gzip bytes
+ℹ kaduna automatic startup: 586198 raw 214366 gzip bytes
+ℹ maiduguri automatic startup: 586539 raw 214252 gzip bytes
+ℹ gombe automatic startup: 585957 raw 214348 gzip bytes
+ℹ yola automatic startup: 586008 raw 214327 gzip bytes
+ℹ ilorin automatic startup: 584927 raw 214287 gzip bytes
+ℹ minna automatic startup: 582257 raw 213851 gzip bytes
+ℹ osogbo automatic startup: 583913 raw 213952 gzip bytes
+ℹ damaturu automatic startup: 581658 raw 213343 gzip bytes
+ℹ jalingo automatic startup: 581939 raw 213304 gzip bytes
+ℹ akure automatic startup: 583932 raw 213903 gzip bytes
+ℹ ado-ekiti automatic startup: 581804 raw 213498 gzip bytes
+ℹ asaba automatic startup: 581975 raw 213848 gzip bytes
+ℹ lokoja automatic startup: 581110 raw 213319 gzip bytes
+ℹ jos automatic startup: 588705 raw 215180 gzip bytes
+ℹ lafia automatic startup: 581106 raw 213268 gzip bytes
+ℹ katsina automatic startup: 589980 raw 214841 gzip bytes
+ℹ sokoto automatic startup: 588080 raw 214767 gzip bytes
+ℹ birnin-kebbi automatic startup: 586749 raw 214526 gzip bytes
+ℹ gusau automatic startup: 584162 raw 213778 gzip bytes
+ℹ dutse automatic startup: 585373 raw 214296 gzip bytes
+ℹ bauchi automatic startup: 590485 raw 214948 gzip bytes
+ℹ makurdi automatic startup: 582945 raw 213639 gzip bytes
+ℹ abakaliki automatic startup: 582627 raw 213822 gzip bytes
+ℹ accra automatic startup: 582277 raw 214562 gzip bytes
+ℹ algiers automatic startup: 582582 raw 214715 gzip bytes
+ℹ lome automatic startup: 581985 raw 214550 gzip bytes
+ℹ nairobi automatic startup: 582408 raw 214556 gzip bytes
+ℹ yaounde automatic startup: 582154 raw 214573 gzip bytes
+ℹ abidjan automatic startup: 582305 raw 214672 gzip bytes
+ℹ addis-ababa automatic startup: 582081 raw 214440 gzip bytes
+ℹ cape-town automatic startup: 582585 raw 214678 gzip bytes
+ℹ cotonou automatic startup: 582379 raw 214709 gzip bytes
+ℹ dakar automatic startup: 582503 raw 214723 gzip bytes
+ℹ cairo automatic startup: 583029 raw 214795 gzip bytes
+ℹ rabat automatic startup: 582684 raw 214705 gzip bytes
+ℹ kigali automatic startup: 583062 raw 214725 gzip bytes
+ℹ kampala automatic startup: 581815 raw 214499 gzip bytes
+ℹ lusaka automatic startup: 582539 raw 214600 gzip bytes
+ℹ gaborone automatic startup: 581436 raw 214226 gzip bytes
+ℹ harare automatic startup: 581767 raw 214354 gzip bytes
+ℹ luanda automatic startup: 581905 raw 214457 gzip bytes
+ℹ maputo automatic startup: 581896 raw 214350 gzip bytes
+ℹ windhoek automatic startup: 582584 raw 214514 gzip bytes
+ℹ bamako automatic startup: 581505 raw 214327 gzip bytes
+ℹ lilongwe automatic startup: 582354 raw 214300 gzip bytes
+ℹ maseru automatic startup: 581803 raw 214354 gzip bytes
+ℹ ouagadougou automatic startup: 583379 raw 214725 gzip bytes
+ℹ tripoli automatic startup: 582157 raw 214398 gzip bytes
+ℹ brazzaville automatic startup: 583607 raw 214501 gzip bytes
+ℹ dar-es-salaam automatic startup: 582007 raw 214404 gzip bytes
+ℹ libreville automatic startup: 582514 raw 214591 gzip bytes
+ℹ mbabane automatic startup: 582059 raw 214303 gzip bytes
+ℹ tunis automatic startup: 583051 raw 214360 gzip bytes
+ℹ antananarivo automatic startup: 582894 raw 214335 gzip bytes
+ℹ bujumbura automatic startup: 582506 raw 214259 gzip bytes
+ℹ ndjamena automatic startup: 582496 raw 214216 gzip bytes
+ℹ kinshasa automatic startup: 583096 raw 214352 gzip bytes
+ℹ apia automatic startup: 582467 raw 214124 gzip bytes
+ℹ bogota automatic startup: 583177 raw 214469 gzip bytes
+ℹ buenos-aires automatic startup: 583417 raw 214459 gzip bytes
+ℹ dubai automatic startup: 582717 raw 214268 gzip bytes
+ℹ mexico-city automatic startup: 583328 raw 214429 gzip bytes
+ℹ santiago automatic startup: 583499 raw 214526 gzip bytes
+ℹ suva automatic startup: 582097 raw 214092 gzip bytes
+ℹ lima automatic startup: 583030 raw 214338 gzip bytes
+ℹ auckland automatic startup: 582911 raw 214330 gzip bytes
+ℹ dublin automatic startup: 582610 raw 214224 gzip bytes
+ℹ rome automatic startup: 582815 raw 214334 gzip bytes
+ℹ wellington automatic startup: 582987 raw 214293 gzip bytes
+ℹ asmara automatic startup: 582305 raw 214065 gzip bytes
+ℹ bangui automatic startup: 581807 raw 214023 gzip bytes
+ℹ bissau automatic startup: 582623 raw 214203 gzip bytes
+ℹ conakry automatic startup: 582516 raw 214210 gzip bytes
+ℹ djibouti automatic startup: 582386 raw 214142 gzip bytes
+ℹ khartoum automatic startup: 582557 raw 214273 gzip bytes
+ℹ malabo automatic startup: 582234 raw 214137 gzip bytes
+ℹ mogadishu automatic startup: 582622 raw 214214 gzip bytes
+ℹ monrovia automatic startup: 582509 raw 214162 gzip bytes
+ℹ moroni automatic startup: 582468 raw 214154 gzip bytes
+ℹ niamey automatic startup: 582548 raw 214236 gzip bytes
+ℹ nouakchott automatic startup: 582306 raw 214156 gzip bytes
+ℹ port-louis automatic startup: 582790 raw 214263 gzip bytes
+ℹ praia automatic startup: 582534 raw 214210 gzip bytes
+ℹ sao-tome automatic startup: 582198 raw 214158 gzip bytes
+ℹ victoria automatic startup: 582471 raw 214206 gzip bytes
+ℹ amman automatic startup: 582381 raw 214222 gzip bytes
+ℹ ashgabat automatic startup: 582840 raw 214225 gzip bytes
+ℹ asuncion automatic startup: 583130 raw 214375 gzip bytes
+ℹ baku automatic startup: 582634 raw 214317 gzip bytes
+ℹ beirut automatic startup: 582578 raw 214253 gzip bytes
+ℹ belgrade automatic startup: 583335 raw 214503 gzip bytes
+ℹ bishkek automatic startup: 582868 raw 214418 gzip bytes
+ℹ bratislava automatic startup: 582990 raw 214387 gzip bytes
+ℹ bsb automatic startup: 582952 raw 214287 gzip bytes
+ℹ bucharest automatic startup: 582973 raw 214376 gzip bytes
+ℹ budapest automatic startup: 583054 raw 214434 gzip bytes
+ℹ caracas automatic startup: 583166 raw 214415 gzip bytes
+ℹ chisinau automatic startup: 583039 raw 214365 gzip bytes
+ℹ colombo automatic startup: 582912 raw 214348 gzip bytes
+ℹ dili automatic startup: 582346 raw 214161 gzip bytes
+ℹ doha automatic startup: 582770 raw 214268 gzip bytes
+ℹ dushanbe automatic startup: 582660 raw 214287 gzip bytes
+ℹ georgetown automatic startup: 582494 raw 214137 gzip bytes
+ℹ guatemala-city automatic startup: 583029 raw 214285 gzip bytes
+ℹ havana automatic startup: 582968 raw 214345 gzip bytes
+ℹ honiara automatic startup: 581982 raw 213985 gzip bytes
+ℹ kathmandu automatic startup: 582727 raw 214288 gzip bytes
+ℹ koror automatic startup: 581893 raw 214002 gzip bytes
+ℹ kuala-lumpur automatic startup: 583097 raw 214376 gzip bytes
+ℹ kuwait-city automatic startup: 582542 raw 214234 gzip bytes
+ℹ la-paz automatic startup: 582930 raw 214353 gzip bytes
+ℹ larnaca automatic startup: 582627 raw 214237 gzip bytes
+ℹ ljubljana automatic startup: 582808 raw 214276 gzip bytes
+ℹ luxembourg automatic startup: 582745 raw 214215 gzip bytes
+ℹ majuro automatic startup: 581010 raw 213877 gzip bytes
+ℹ managua automatic startup: 583390 raw 214482 gzip bytes
+ℹ manama automatic startup: 582756 raw 214280 gzip bytes
+ℹ minsk automatic startup: 583574 raw 214612 gzip bytes
+ℹ montevideo automatic startup: 583180 raw 214404 gzip bytes
+ℹ muscat automatic startup: 582561 raw 214239 gzip bytes
+ℹ nukualofa automatic startup: 582421 raw 214124 gzip bytes
+ℹ phnom-penh automatic startup: 582794 raw 214165 gzip bytes
+ℹ podgorica automatic startup: 582692 raw 214230 gzip bytes
+ℹ port-au-prince automatic startup: 582916 raw 214292 gzip bytes
+ℹ quito automatic startup: 582590 raw 214214 gzip bytes
+ℹ reykjavik automatic startup: 582570 raw 214267 gzip bytes
+ℹ riga automatic startup: 582593 raw 214253 gzip bytes
+ℹ riyadh automatic startup: 582594 raw 214135 gzip bytes
+ℹ san-jose automatic startup: 583060 raw 214314 gzip bytes
+ℹ san-salvador automatic startup: 583356 raw 214423 gzip bytes
+ℹ santo-domingo automatic startup: 583494 raw 214420 gzip bytes
+ℹ sarajevo automatic startup: 582965 raw 214318 gzip bytes
+ℹ skopje automatic startup: 582850 raw 214391 gzip bytes
+ℹ sofia automatic startup: 583195 raw 214484 gzip bytes
+ℹ tallinn automatic startup: 582732 raw 214281 gzip bytes
+ℹ tarawa automatic startup: 582300 raw 214100 gzip bytes
+ℹ tashkent automatic startup: 583052 raw 214385 gzip bytes
+ℹ tbilisi automatic startup: 583043 raw 214286 gzip bytes
+ℹ tegucigalpa automatic startup: 583086 raw 214305 gzip bytes
+ℹ tirana automatic startup: 582712 raw 214271 gzip bytes
+ℹ ulaanbaatar automatic startup: 583186 raw 214435 gzip bytes
+ℹ valletta automatic startup: 582836 raw 214272 gzip bytes
+ℹ vientiane automatic startup: 582503 raw 214148 gzip bytes
+ℹ vilnius automatic startup: 583110 raw 214320 gzip bytes
+ℹ yerevan automatic startup: 582739 raw 214224 gzip bytes
+ℹ zagreb automatic startup: 582794 raw 214319 gzip bytes
+ℹ freetown automatic startup: 582318 raw 214113 gzip bytes
+ℹ juba automatic startup: 581929 raw 214020 gzip bytes
+ℹ serekunda automatic startup: 582710 raw 214208 gzip bytes
+ℹ almaty automatic startup: 582877 raw 214368 gzip bytes
+ℹ bangkok automatic startup: 582845 raw 214305 gzip bytes
+ℹ belize-city automatic startup: 582751 raw 214182 gzip bytes
+ℹ copenhagen automatic startup: 582523 raw 214243 gzip bytes
+ℹ damascus automatic startup: 582867 raw 214277 gzip bytes
+ℹ dhaka automatic startup: 583003 raw 214342 gzip bytes
+ℹ kabul automatic startup: 582678 raw 214292 gzip bytes
+ℹ kingston automatic startup: 582782 raw 214233 gzip bytes
+ℹ lisbon automatic startup: 582927 raw 214353 gzip bytes
+ℹ nassau automatic startup: 582662 raw 214215 gzip bytes
+ℹ panama-city automatic startup: 582995 raw 214306 gzip bytes
+ℹ paramaribo automatic startup: 582750 raw 214193 gzip bytes
+ℹ port-vila automatic startup: 582370 raw 214148 gzip bytes
+ℹ prague automatic startup: 582709 raw 214344 gzip bytes
+ℹ sanaa automatic startup: 582738 raw 214264 gzip bytes
+ℹ vienna automatic startup: 582568 raw 214222 gzip bytes
+ℹ yangon automatic startup: 582654 raw 214234 gzip bytes
+ℹ andorra-la-vella automatic startup: 582929 raw 214252 gzip bytes
+ℹ basseterre automatic startup: 582673 raw 214169 gzip bytes
+ℹ brasilia automatic startup: 583032 raw 214329 gzip bytes
+ℹ bridgetown automatic startup: 582883 raw 214286 gzip bytes
+ℹ castries automatic startup: 582517 raw 214178 gzip bytes
+ℹ delhi automatic startup: 582620 raw 214266 gzip bytes
+ℹ kingstown automatic startup: 582339 raw 214100 gzip bytes
+ℹ lahore automatic startup: 582608 raw 214202 gzip bytes
+ℹ london automatic startup: 582624 raw 214205 gzip bytes
+ℹ madrid automatic startup: 583062 raw 214281 gzip bytes
+ℹ port-moresby automatic startup: 582532 raw 214170 gzip bytes
+ℹ port-of-spain automatic startup: 582762 raw 214227 gzip bytes
+ℹ roseau automatic startup: 582322 raw 214087 gzip bytes
+ℹ sao-paulo automatic startup: 583360 raw 214448 gzip bytes
+ℹ st-georges automatic startup: 582666 raw 214193 gzip bytes
+ℹ thimphu automatic startup: 582553 raw 214167 gzip bytes
+ℹ tokyo automatic startup: 582705 raw 214313 gzip bytes
+ℹ vaduz automatic startup: 582476 raw 214136 gzip bytes
+ℹ warsaw automatic startup: 582769 raw 214333 gzip bytes
+ℹ amsterdam automatic startup: 582683 raw 214222 gzip bytes
+ℹ athens automatic startup: 583325 raw 214548 gzip bytes
+ℹ baghdad automatic startup: 582987 raw 214319 gzip bytes
+ℹ berlin automatic startup: 582848 raw 214354 gzip bytes
+ℹ brussels automatic startup: 582699 raw 214257 gzip bytes
+ℹ istanbul automatic startup: 582760 raw 214337 gzip bytes
+ℹ moscow automatic startup: 583665 raw 214626 gzip bytes
+ℹ pyongyang automatic startup: 583017 raw 214307 gzip bytes
+ℹ tehran automatic startup: 583115 raw 214394 gzip bytes
+ℹ zurich automatic startup: 582565 raw 214225 gzip bytes
+ℹ ho-chi-minh-city automatic startup: 583097 raw 214238 gzip bytes
+ℹ manila automatic startup: 582887 raw 214315 gzip bytes
+ℹ new-york automatic startup: 582926 raw 214364 gzip bytes
+ℹ oslo automatic startup: 582330 raw 214146 gzip bytes
+ℹ sydney automatic startup: 582676 raw 214236 gzip bytes
+ℹ tel-aviv-yafo automatic startup: 582755 raw 214334 gzip bytes
+ℹ kyiv automatic startup: 583343 raw 214582 gzip bytes
+ℹ male automatic startup: 582420 raw 214160 gzip bytes
+ℹ palikir automatic startup: 580304 raw 213719 gzip bytes
+ℹ ramallah automatic startup: 582648 raw 214275 gzip bytes
+ℹ singapore automatic startup: 582701 raw 214283 gzip bytes
+ℹ st-johns automatic startup: 582747 raw 214254 gzip bytes
+ℹ toronto automatic startup: 582808 raw 214281 gzip bytes
+ℹ yaren automatic startup: 579958 raw 213660 gzip bytes
+ℹ jakarta automatic startup: 582697 raw 214214 gzip bytes
+ℹ san-marino automatic startup: 582685 raw 214166 gzip bytes
+ℹ seoul automatic startup: 582645 raw 214295 gzip bytes
+ℹ helsinki automatic startup: 582749 raw 214270 gzip bytes
+ℹ monaco automatic startup: 582748 raw 214178 gzip bytes
+ℹ stockholm automatic startup: 582470 raw 214198 gzip bytes
+ℹ paris automatic startup: 582904 raw 214332 gzip bytes
+ℹ funafuti automatic startup: 579108 raw 213520 gzip bytes
+ℹ shanghai automatic startup: 582890 raw 214275 gzip bytes
+ℹ vatican-city automatic startup: 580301 raw 213715 gzip bytes
+ℹ cockburn-town automatic startup: 579493 raw 213564 gzip bytes
+ℹ douglas automatic startup: 582272 raw 214121 gzip bytes
+ℹ garapan automatic startup: 581941 raw 214112 gzip bytes
+ℹ george-town automatic startup: 581320 raw 213967 gzip bytes
+ℹ gustavia automatic startup: 581348 raw 213946 gzip bytes
+ℹ kyrenia automatic startup: 582555 raw 214230 gzip bytes
+ℹ laayoune automatic startup: 582450 raw 214113 gzip bytes
+ℹ macau automatic startup: 583502 raw 214636 gzip bytes
+ℹ mariehamn automatic startup: 582613 raw 214222 gzip bytes
+ℹ noumea automatic startup: 582407 raw 214190 gzip bytes
+ℹ pago-pago automatic startup: 580125 raw 213698 gzip bytes
+ℹ papeete automatic startup: 582391 raw 214177 gzip bytes
+ℹ philipsburg automatic startup: 582687 raw 214236 gzip bytes
+ℹ pristina automatic startup: 582636 raw 214282 gzip bytes
+ℹ st-peter-port automatic startup: 582546 raw 214210 gzip bytes
+ℹ stanley automatic startup: 579787 raw 213627 gzip bytes
+ℹ taipei automatic startup: 582825 raw 214421 gzip bytes
+ℹ the-valley automatic startup: 580652 raw 213864 gzip bytes
+ℹ torshavn automatic startup: 582038 raw 214099 gzip bytes
+ℹ willemstad automatic startup: 582589 raw 214279 gzip bytes
+ℹ alofi automatic startup: 579631 raw 213541 gzip bytes
+ℹ avarua automatic startup: 581548 raw 213982 gzip bytes
+ℹ charlotte-amalie automatic startup: 582978 raw 214288 gzip bytes
+ℹ flying-fish-cove automatic startup: 579668 raw 213509 gzip bytes
+ℹ hagatna automatic startup: 582624 raw 214190 gzip bytes
+ℹ hamilton automatic startup: 582844 raw 214259 gzip bytes
+ℹ hargeisa automatic startup: 582231 raw 214086 gzip bytes
+ℹ hong-kong automatic startup: 582928 raw 214315 gzip bytes
+ℹ kingston-nf automatic startup: 580447 raw 213745 gzip bytes
+ℹ marigot automatic startup: 580941 raw 213934 gzip bytes
+ℹ nuuk automatic startup: 581183 raw 213883 gzip bytes
+ℹ oranjestad automatic startup: 582584 raw 214234 gzip bytes
+ℹ road-town automatic startup: 581600 raw 214012 gzip bytes
+ℹ san-juan automatic startup: 583095 raw 214323 gzip bytes
+ℹ brades automatic startup: 580401 raw 213755 gzip bytes
+ℹ villa-las-estrellas automatic startup: 578188 raw 213303 gzip bytes
+ℹ jamestown automatic startup: 579977 raw 213694 gzip bytes
+ℹ mata-utu automatic startup: 580183 raw 213776 gzip bytes
+ℹ st-helier automatic startup: 582386 raw 214164 gzip bytes
+ℹ adamstown automatic startup: 578048 raw 213270 gzip bytes
+ℹ cove automatic startup: 575874 raw 212695 gzip bytes
+ℹ grytviken automatic startup: 577193 raw 213132 gzip bytes
+ℹ port-aux-francais automatic startup: 578294 raw 213370 gzip bytes
+ℹ saint-pierre automatic startup: 581115 raw 213840 gzip bytes
+ℹ siachen automatic startup: 575876 raw 212683 gzip bytes
+ℹ west-island automatic startup: 577853 raw 213243 gzip bytes
+ℹ ashmore automatic startup: 575921 raw 212700 gzip bytes
+ℹ chagos automatic startup: 576176 raw 212906 gzip bytes
+✔ every registered route is typed, and every typed route is registered (8.309583ms)
+✔ every frame type the server accepts or sends is typed (27.903583ms)
+✔ the Cloudflare Worker runs the shared registries: the same routes and frames, plus what the types say only it does (1.999459ms)
+✔ only a trusted interactive-teaching host adds the ephemeral display capability to life and action snapshots (58.896375ms)
+✔ core, social, civic and support answers carry exactly the typed keys (216.848917ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4804.135667

@@ -1,0 +1,454 @@
+[teaching-probe] probe-start {"mode":"teaching-cache","city":"lagos","targetCity":null,"atMs":1792022700886}
+[teaching-hook] parser-requested {"count":1,"requestMarkerWritten":true,"atMs":1792022700936}
+[teaching-hook] parser-source-returned {"atMs":1792022700937}
+[teaching-probe] client-created {"mode":"teaching-cache","city":"lagos","atMs":1792022700938}
+[teaching-probe] request-seen {"mode":"teaching-cache","atMs":1792022700938}
+[teaching-probe] marker-watch-installed {"mode":"teaching-cache","markerKind":"evaluation","targetExists":false,"atMs":1792022700939}
+[teaching-eval] barrier-watch-installed {"targetExists":false}
+[teaching-eval] evaluation-marker-created {"targetExists":false}
+[teaching-probe] marker-event {"mode":"teaching-cache","markerKind":"evaluation","eventCount":1,"filenamePresent":true,"targetExists":true,"atMs":1792022700947}
+[teaching-probe] evaluation-waiting {"mode":"teaching-cache","atMs":1792022700948}
+[teaching-probe] release-created {"mode":"teaching-cache","atMs":1792022700948}
+[teaching-eval] barrier-event {"eventCount":1,"filenamePresent":true,"targetExists":true}
+[teaching-probe] probe-start {"mode":"teaching-newer","city":"lagos","targetCity":null,"atMs":1792022701174}
+[teaching-hook] parser-requested {"count":1,"requestMarkerWritten":true,"atMs":1792022701224}
+[teaching-hook] parser-source-returned {"atMs":1792022701224}
+[teaching-probe] client-created {"mode":"teaching-newer","city":"lagos","atMs":1792022701225}
+[teaching-eval] barrier-watch-installed {"targetExists":false}
+[teaching-eval] evaluation-marker-created {"targetExists":false}
+[teaching-probe] connect-completed {"mode":"teaching-newer","connected":true,"city":"lagos","atMs":1792022701227}
+[teaching-probe] request-seen {"mode":"teaching-newer","atMs":1792022701227}
+[teaching-probe] evaluation-waiting {"mode":"teaching-newer","atMs":1792022701227}
+[teaching-probe] release-created {"mode":"teaching-newer","atMs":1792022701227}
+[teaching-eval] barrier-event {"eventCount":1,"filenamePresent":true,"targetExists":true}
+[teaching-probe] probe-start {"mode":"teaching-retry-connect","city":"lagos","targetCity":null,"atMs":1792022701452}
+[teaching-hook] parser-requested {"count":1,"requestMarkerWritten":true,"atMs":1792022701504}
+[teaching-probe] client-created {"mode":"teaching-retry-connect","city":"lagos","atMs":1792022701506}
+[teaching-hook] parser-requested {"count":2,"requestMarkerWritten":true,"atMs":1792022701508}
+[teaching-hook] parser-source-returned {"atMs":1792022701508}
+[teaching-probe] connect-completed {"mode":"teaching-retry-connect","connected":true,"city":"lagos","atMs":1792022701510}
+[teaching-probe] probe-start {"mode":"teaching-switch","city":"lagos","targetCity":"ibadan","atMs":1792022701735}
+[teaching-probe] client-created {"mode":"teaching-switch","city":"lagos","atMs":1792022701784}
+[teaching-probe] connect-completed {"mode":"teaching-switch","connected":true,"city":"lagos","atMs":1792022701785}
+[teaching-probe] city-switch-start {"mode":"teaching-switch","from":"lagos","to":"ibadan","atMs":1792022701785}
+[teaching-probe] marker-watch-installed {"mode":"teaching-switch","markerKind":"request","targetExists":false,"atMs":1792022701786}
+[teaching-hook] parser-requested {"count":1,"requestMarkerWritten":true,"atMs":1792022701786}
+[teaching-hook] parser-source-returned {"atMs":1792022701787}
+[teaching-eval] barrier-watch-installed {"targetExists":false}
+[teaching-eval] evaluation-marker-created {"targetExists":false}
+[teaching-probe] marker-event {"mode":"teaching-switch","markerKind":"request","eventCount":1,"filenamePresent":true,"targetExists":true,"atMs":1792022701798}
+[teaching-probe] request-seen {"mode":"teaching-switch","atMs":1792022701798}
+[teaching-probe] evaluation-waiting {"mode":"teaching-switch","atMs":1792022701798}
+[teaching-probe] release-created {"mode":"teaching-switch","atMs":1792022701799}
+[teaching-eval] barrier-event {"eventCount":1,"filenamePresent":true,"targetExists":true}
+[teaching-probe] city-switch-completed {"mode":"teaching-switch","ok":true,"city":"ibadan","atMs":1792022701800}
+file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/[eval1]:32
+    finish(new Error('probe marker timed out'));
+           ^
+
+Error: probe marker timed out
+    at Timeout.<anonymous> (file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/[eval1]:32:12)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+
+Node.js v24.14.1
+✔ the browser engine rebuilds and views every life as the full engine does, and refuses a campus life until the campus rules are loaded (1349.263625ms)
+ℹ 17 lives, 3 using the campus, 4 in the test city
+✔ the read-only browser hydrates, retries and fences a saved authored teaching session (1116.14675ms)
+✖ the read-only browser loads homeward route and ticket rules only for relevant lives, before exposing them (21628.983584ms)
+✔ missions: a set is one mission of each kind, the same for the same life and day, and only what can be done (46.069042ms)
+✔ missions: real play completes a mission exactly once, a claim pays once, and the set bonus is granted once (464.263459ms)
+✔ missions: an earned reward survives midnight and reload, weekly progress survives the night, and one swap a day is allowed (126.353083ms)
+✔ missions: the stamp card pays once at four days, the day count only goes up, and absence costs nothing (148.613333ms)
+✔ missions: hostile saved input is rebuilt to a valid slice (1.789833ms)
+✔ calendar: weekly events recur on Nigerian time, also across midnight; dated events hold their days; a closed venue never hosts (1.620917ms)
+✔ events: being there counts once per occurrence; spraying is a capped sink that needs a party (86.261167ms)
+✔ growth: table results and referral gifts are server-only, pay inside their caps and never twice over them (63.418542ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25768.699666
+
+✖ failing tests:
+
+test at src/game/browser-profile.test.ts:728:1
+✖ the read-only browser loads homeward route and ticket rules only for relevant lives, before exposing them (21628.983584ms)
+  Error: Command failed: /Users/anthonyakpan/.nvm/versions/node/v24.14.1/bin/node --experimental-strip-types --no-warnings --import data:text/javascript,import%20%7B%20register%20%7D%20from%20'node%3Amodule'%3B%20register('data%3Atext%2Fjavascript%2C'%20%2B%20encodeURIComponent(%22%5Cnimport%20%7B%20writeFileSync%2C%20writeSync%20%7D%20from%20'node%3Afs'%3B%5Cnlet%20failedTeachingImport%20%3D%20false%3B%5Cnlet%20teachingResolveCount%20%3D%200%3B%5Cnlet%20failedHomewardImport%20%3D%20false%3B%5Cnlet%20homewardResolveCount%20%3D%200%3B%5Cnlet%20hookTraceCount%20%3D%200%3B%5Cnfunction%20hookTrace(event%2C%20data)%20%7B%5Cn%20%20if%20(process.env.TEACHING_GATE_DIAGNOSTICS%20%3D%3D%3D%20'1'%20%26%26%20hookTraceCount%20%3C%2024)%20%7B%5Cn%20%20%20%20hookTraceCount%2B%2B%3B%5Cn%20%20%20%20writeSync(2%2C%20'%5Bteaching-hook%5D%20'%20%2B%20event%20%2B%20'%20'%20%2B%20JSON.stringify(%7B%20...data%2C%20atMs%3A%20Date.now()%20%7D)%20%2B%20'%5C%5Cn')%3B%5Cn%20%20%7D%5Cn%7D%5Cnexport%20async%20function%20resolve(specifier%2C%20context%2C%20next)%20%7B%5Cn%20%20let%20teachingState%20%3D%20false%3B%5Cn%20%20let%20homewardRules%20%3D%20false%3B%5Cn%20%20if%20(specifier.endsWith('homeward-rules.ts')%20%26%26%20context.parentURL%3F.endsWith('%2Fsrc%2Fgame%2Fhomeward-gate.ts'))%20%7B%5Cn%20%20%20%20homewardRules%20%3D%20true%3B%5Cn%20%20%20%20homewardResolveCount%2B%2B%3B%5Cn%20%20%20%20const%20requestMarker%20%3D%20process.env.HOMEWARD_GATE_REQUEST_MARKER%3B%5Cn%20%20%20%20if%20(requestMarker)%20writeFileSync(requestMarker%2C%20String(homewardResolveCount))%3B%5Cn%20%20%20%20if%20(process.env.HOMEWARD_GATE_FAIL_FIRST%20%3D%3D%3D%20'1'%20%26%26%20!failedHomewardImport)%20%7B%5Cn%20%20%20%20%20%20failedHomewardImport%20%3D%20true%3B%5Cn%20%20%20%20%20%20const%20marker%20%3D%20process.env.HOMEWARD_GATE_FAIL_MARKER%3B%5Cn%20%20%20%20%20%20if%20(marker)%20writeFileSync(marker%2C%20'failed%20once')%3B%5Cn%20%20%20%20%20%20throw%20new%20Error('injected%20first%20homeward-rules%20resolution%20failure')%3B%5Cn%20%20%20%20%7D%5Cn%20%20%7D%5Cn%20%20if%20(specifier.endsWith('living-world%2Fteaching-state.ts')%20%26%26%20context.parentURL%3F.endsWith('%2Fsrc%2Fgame%2Fteaching-gate.ts'))%20%7B%5Cn%20%20%20%20teachingState%20%3D%20true%3B%5Cn%20%20%20%20teachingResolveCount%2B%2B%3B%5Cn%20%20%20%20const%20requestMarker%20%3D%20process.env.TEACHING_GATE_REQUEST_MARKER%3B%5Cn%20%20%20%20if%20(requestMarker)%20writeFileSync(requestMarker%2C%20String(teachingResolveCount))%3B%5Cn%20%20%20%20hookTrace('parser-requested'%2C%20%7B%20count%3A%20teachingResolveCount%2C%20requestMarkerWritten%3A%20Boolean(requestMarker)%20%7D)%3B%5Cn%20%20%20%20if%20(process.env.TEACHING_GATE_FAIL_FIRST%20%3D%3D%3D%20'1'%20%26%26%20!failedTeachingImport)%20%7B%5Cn%20%20%20%20%20%20failedTeachingImport%20%3D%20true%3B%5Cn%20%20%20%20%20%20const%20marker%20%3D%20process.env.TEACHING_GATE_FAIL_MARKER%3B%5Cn%20%20%20%20%20%20if%20(marker)%20writeFileSync(marker%2C%20'failed%20once')%3B%5Cn%20%20%20%20%20%20throw%20new%20Error('injected%20first%20teaching-state%20resolution%20failure')%3B%5Cn%20%20%20%20%7D%5Cn%20%20%7D%5Cn%20%20const%20resolved%20%3D%20await%20next(specifier%2C%20context)%3B%5Cn%20%20if%20(teachingState)%20return%20%7B%20...resolved%2C%20url%3A%20resolved.url%20%2B%20'%3Fteaching-gate-fixture%3D'%20%2B%20teachingResolveCount%2C%20shortCircuit%3A%20true%20%7D%3B%5Cn%20%20if%20(homewardRules)%20return%20%7B%20...resolved%2C%20url%3A%20resolved.url%20%2B%20'%3Fhomeward-gate-fixture%3D'%20%2B%20homewardResolveCount%2C%20shortCircuit%3A%20true%20%7D%3B%5Cn%20%20return%20%2F%5C%5C%2Fsrc%5C%5C%2Fgame%5C%5C%2Fsystems%5C%5C%2Findex%5C%5C.ts%24%2F.test(resolved.url)%20%3F%20%7B%20...resolved%2C%20url%3A%20resolved.url.replace(%2Findex%5C%5C.ts%24%2F%2C%20'browser.ts')%2C%20shortCircuit%3A%20true%20%7D%20%3A%20resolved%3B%5Cn%7D%5Cnexport%20async%20function%20load(url%2C%20context%2C%20next)%20%7B%5Cn%20%20if%20(%2F%5C%5C%2Fsrc%5C%5C%2Fgame%5C%5C%2Fprofile%5C%5C.ts%24%2F.test(url))%20return%20%7B%20format%3A%20'module'%2C%20source%3A%20'export%20const%20PLAYS%20%3D%20false%3B%5C%5Cnexport%20const%20LEFT_OUT%20%3D%20%7B%7D%3B%5C%5Cn'%2C%20shortCircuit%3A%20true%20%7D%3B%5Cn%20%20if%20(url.includes('%3Fhomeward-gate-fixture%3D'))%20%7B%5Cn%20%20%20%20const%20sourceUrl%20%3D%20url.slice(0%2C%20url.indexOf('%3F'))%3B%5Cn%20%20%20%20const%20loaded%20%3D%20await%20next(sourceUrl%2C%20context)%3B%5Cn%20%20%20%20const%20source%20%3D%20typeof%20loaded.source%20%3D%3D%3D%20'string'%20%3F%20loaded.source%20%3A%20Buffer.from(loaded.source).toString('utf8')%3B%5Cn%20%20%20%20const%20barrier%20%3D%20%5B%5Cn%20%20%20%20%20%20%5C%22import%20%7B%20existsSync%20as%20__homewardExists%2C%20watch%20as%20__homewardWatch%2C%20writeFileSync%20as%20__homewardMark%20%7D%20from%20'node%3Afs'%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22import%20%7B%20dirname%20as%20__homewardDirname%20%7D%20from%20'node%3Apath'%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22const%20__homewardTarget%20%3D%20process.env.HOMEWARD_GATE_BARRIER%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22if%20(__homewardTarget%20%26%26%20!__homewardExists(__homewardTarget))%20await%20new%20Promise((resolve%2C%20reject)%20%3D%3E%20%7B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%20%20let%20watcher%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%20%20const%20finish%20%3D%20(error)%20%3D%3E%20%7B%20clearTimeout(timer)%3B%20watcher%3F.close()%3B%20error%20%3F%20reject(error)%20%3A%20resolve()%3B%20%7D%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%20%20const%20timer%20%3D%20setTimeout(()%20%3D%3E%20finish(new%20Error('homeward%20gate%20barrier%20timed%20out'))%2C%2020000)%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%20%20watcher%20%3D%20__homewardWatch(__homewardDirname(__homewardTarget)%2C%20()%20%3D%3E%20%7B%20if%20(__homewardExists(__homewardTarget))%20finish()%3B%20%7D)%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%20%20const%20marker%20%3D%20process.env.HOMEWARD_GATE_EVAL_MARKER%3B%20if%20(marker)%20__homewardMark(marker%2C%20'evaluation%20pending')%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%20%20if%20(__homewardExists(__homewardTarget))%20finish()%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%7D)%3B%5C%22%2C%5Cn%20%20%20%20%5D.join('%5C%5Cn')%20%2B%20'%5C%5Cn'%3B%5Cn%20%20%20%20return%20%7B%20...loaded%2C%20source%3A%20barrier%20%2B%20source%20%7D%3B%5Cn%20%20%7D%5Cn%20%20if%20(url.includes('%3Fteaching-gate-fixture%3D'))%20%7B%5Cn%20%20%20%20const%20sourceUrl%20%3D%20url.slice(0%2C%20url.indexOf('%3F'))%3B%5Cn%20%20%20%20const%20loaded%20%3D%20await%20next(sourceUrl%2C%20context)%3B%5Cn%20%20%20%20const%20source%20%3D%20typeof%20loaded.source%20%3D%3D%3D%20'string'%20%3F%20loaded.source%20%3A%20Buffer.from(loaded.source).toString('utf8')%3B%5Cn%20%20%20%20const%20barrier%20%3D%20%5B%5Cn%20%20%20%20%20%20%5C%22import%20%7B%20existsSync%20as%20__teachingExists%2C%20watch%20as%20__teachingWatch%2C%20writeFileSync%20as%20__teachingMark%2C%20writeSync%20as%20__teachingWrite%20%7D%20from%20'node%3Afs'%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22import%20%7B%20dirname%20as%20__teachingDirname%20%7D%20from%20'node%3Apath'%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22const%20__teachingTrace%20%3D%20(event%2C%20data)%20%3D%3E%20%7B%20if%20(process.env.TEACHING_GATE_DIAGNOSTICS%20%3D%3D%3D%20'1')%20__teachingWrite(2%2C%20'%5Bteaching-eval%5D%20'%20%2B%20event%20%2B%20'%20'%20%2B%20JSON.stringify(data)%20%2B%20'%5C%5C%5C%5Cn')%3B%20%7D%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22const%20__teachingTarget%20%3D%20process.env.TEACHING_GATE_BARRIER%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22if%20(__teachingTarget%20%26%26%20!__teachingExists(__teachingTarget))%20await%20new%20Promise((resolve%2C%20reject)%20%3D%3E%20%7B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%20%20let%20watcher%2C%20eventCount%20%3D%200%2C%20namedEvents%20%3D%200%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%20%20const%20finish%20%3D%20(error)%20%3D%3E%20%7B%20clearTimeout(timer)%3B%20watcher%3F.close()%3B%20error%20%3F%20reject(error)%20%3A%20resolve()%3B%20%7D%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%20%20const%20timer%20%3D%20setTimeout(()%20%3D%3E%20%7B%20__teachingTrace('barrier-timeout'%2C%20%7B%20eventCount%2C%20namedEvents%2C%20targetExists%3A%20__teachingExists(__teachingTarget)%20%7D)%3B%20finish(new%20Error('teaching%20gate%20barrier%20timed%20out'))%3B%20%7D%2C%2020000)%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%20%20watcher%20%3D%20__teachingWatch(__teachingDirname(__teachingTarget)%2C%20(_event%2C%20name)%20%3D%3E%20%7B%20eventCount%2B%2B%3B%20if%20(name%20!%3D%20null)%20namedEvents%2B%2B%3B%20const%20targetExists%20%3D%20__teachingExists(__teachingTarget)%3B%20if%20(eventCount%20%3C%3D%204)%20__teachingTrace('barrier-event'%2C%20%7B%20eventCount%2C%20filenamePresent%3A%20name%20!%3D%20null%2C%20targetExists%20%7D)%3B%20if%20(targetExists)%20finish()%3B%20%7D)%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%20%20__teachingTrace('barrier-watch-installed'%2C%20%7B%20targetExists%3A%20__teachingExists(__teachingTarget)%20%7D)%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%20%20const%20evaluationMarker%20%3D%20process.env.TEACHING_GATE_EVAL_MARKER%3B%20if%20(evaluationMarker)%20%7B%20__teachingMark(evaluationMarker%2C%20'evaluation%20pending')%3B%20__teachingTrace('evaluation-marker-created'%2C%20%7B%20targetExists%3A%20__teachingExists(__teachingTarget)%20%7D)%3B%20%7D%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%20%20if%20(__teachingExists(__teachingTarget))%20finish()%3B%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22%7D)%3B%5C%22%2C%5Cn%20%20%20%20%5D.join('%5C%5Cn')%20%2B%20'%5C%5Cn'%3B%5Cn%20%20%20%20hookTrace('parser-source-returned'%2C%20%7B%7D)%3B%5Cn%20%20%20%20return%20%7B%20...loaded%2C%20source%3A%20barrier%20%2B%20source%20%7D%3B%5Cn%20%20%7D%5Cn%20%20return%20next(url%2C%20context)%3B%5Cn%7D%22))%3B --input-type=module --eval 
+  import { existsSync, readFileSync, watch, writeFileSync, writeSync } from 'node:fs';
+  import { dirname } from 'node:path';
+  import assert from 'node:assert/strict';
+  import { createLife, dispatch, viewLife } from 'file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/life.ts';
+  import { campusFor, loadCampus } from 'file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/campus-gate.ts';
+  import { progressionFor, loadProgression } from 'file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/progression-gate.ts';
+  import { isStandIn } from 'file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/registry.ts';
+  // The page fetches the rules of the city's conditions when it is idle (src/app/state/idlePreload.ts); until then it shows an open road and the light on.
+  await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/conditions/pack.ts');
+  // The fictional cities of the city contract: lives in them must read the same in the browser engine (the city's content comes through the registry).
+  const { loadCityContent, registerCityForTest } = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/cities/registry.ts');
+  const fixtures = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/cities/testing/fictionalCity.test-fixture.ts');
+  registerCityForTest(fixtures.fictionalCity); registerCityForTest(fixtures.fictionalNeighbourCity);
+  await Promise.all([loadCityContent('lagos'), loadCityContent('ibadan'), loadCityContent(fixtures.FICTIONAL_CITY_ID), loadCityContent(fixtures.FICTIONAL_NEIGHBOUR_CITY_ID)]);
+  const input = JSON.parse(readFileSync(process.argv[1], 'utf8'));
+  let probeTraceCount = 0;
+  const probeTrace = (event, data) => {
+    if (process.env.TEACHING_GATE_DIAGNOSTICS === '1' && probeTraceCount < 24) {
+      probeTraceCount++;
+      writeSync(2, '[teaching-probe] ' + event + ' ' + JSON.stringify({ ...data, atMs: Date.now() }) + '\n');
+    }
+  };
+  probeTrace('probe-start', { mode: input.mode, city: 'lagos', targetCity: input.mode === 'teaching-switch' ? 'ibadan' : null });
+  const response = (status, body) => ({ ok: status < 300, status, json: async () => body });
+  const waitForFile = (target, markerKind) => new Promise((resolve, reject) => {
+    if (existsSync(target)) return resolve();
+    let watcher, eventCount = 0, namedEvents = 0;
+    const finish = (error) => { clearTimeout(timer); watcher?.close(); error ? reject(error) : resolve(); };
+    const timer = setTimeout(() => {
+      probeTrace('marker-timeout', { mode: input.mode, markerKind, eventCount, namedEvents, targetExists: existsSync(target) });
+      finish(new Error('probe marker timed out'));
+    }, 20000);
+    // Node may omit the filename; inspect only the requested marker path on every event.
+    watcher = watch(dirname(target), (_event, name) => {
+      eventCount++;
+      if (name != null) namedEvents++;
+      const targetExists = existsSync(target);
+      if (eventCount <= 4) probeTrace('marker-event', { mode: input.mode, markerKind, eventCount, filenamePresent: name != null, targetExists });
+      if (targetExists) finish();
+    });
+    probeTrace('marker-watch-installed', { mode: input.mode, markerKind, targetExists: existsSync(target) });
+    if (existsSync(target)) finish();
+  });
+  const awaitRequestMarker = async () => { await waitForFile(input.requestMarker, 'request'); probeTrace('request-seen', { mode: input.mode }); };
+  const awaitEvaluationMarker = async () => { await waitForFile(input.evaluationMarker, 'evaluation'); probeTrace('evaluation-waiting', { mode: input.mode }); };
+  const releaseGate = () => { writeFileSync(input.release, 'release'); probeTrace('release-created', { mode: input.mode }); };
+  if (input.mode?.startsWith('homeward-')) {
+    const { homewardFor, readHomewardTicket } = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/homeward-gate.ts');
+    const { loadLifeCities } = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/cities/lifeCities.ts');
+    if (input.mode === 'homeward-idle') {
+      assert.equal(homewardFor(input.resident), null, 'a settled resident does not need route or ticket rules');
+      assert.equal(homewardFor(input.guest), null, 'a guest does not need route or ticket rules');
+      await loadLifeCities(input.resident, [input.resident.estate.city]);
+      await loadLifeCities(input.guest, [input.guest.estate.city]);
+      const { createClient } = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/client.ts');
+      const storedFor = state => new Map([['joinallworld-life-v1', JSON.stringify({ version: 1, state, identity: { name: state.name }, cityId: state.estate.city, ownerId: 'public-idle' })]]);
+      const residentClient = createClient({ storage: { getItem: key => storedFor(input.resident).get(key) ?? null, setItem() {} }, setTimeout: () => 0, clearTimeout: () => {} });
+      const guestClient = createClient({ storage: { getItem: key => storedFor(input.guest).get(key) ?? null, setItem() {} }, setTimeout: () => 0, clearTimeout: () => {} });
+      for (const type of ['travel', 'civic.hunt-claim', 'invented-action']) {
+        const pendingAction = { sessionId: 'public-idle', actionId: '1000:11111111-1111-4111-8111-111111111111', cityId: input.resident.estate.city, type, payload: { id: 'library', mode: 'trek' } };
+        const cache = JSON.stringify({ version: 1, state: input.resident, ownerId: 'public-idle', identity: { name: 'Ada' }, cityId: input.resident.estate.city, pendingAction });
+        const pending = createClient({ storage: { getItem: () => cache, setItem() {} }, setTimeout: () => 0, clearTimeout: () => {} });
+        assert.deepEqual(pending.pendingAction, type === 'invented-action' ? null : pendingAction, 'protocol vocabulary survives omitted executable handlers; unknown types remain refused');
+        pending.stop();
+      }
+      assert.equal(viewLife(residentClient.state, { now: input.resident.t, cityId: input.resident.estate.city }).estate.ride.journey, null);
+      assert.equal(viewLife(guestClient.state, { now: input.guest.t, cityId: input.guest.estate.city }).estate.ride.journey, null);
+      await new Promise(resolve => setImmediate(resolve));
+      assert.equal(existsSync(input.requestMarker), false, 'neither idle client nor its first view requests the homeward rules chunk');
+      residentClient.stop(); guestClient.stop();
+      process.stdout.write('homeward-idle-ok\n'); process.exit(0);
+    }
+    const raw = input.snapshot;
+    await loadLifeCities(raw, [raw.estate.city]);
+    const progressionWaiting = progressionFor(raw);
+    if (progressionWaiting) await progressionWaiting;
+    if (input.mode === 'homeward-retry-connect' || input.mode === 'homeward-newer') {
+      const { createClient } = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/client.ts');
+      const stored = new Map([['joinallworld-life-v1', JSON.stringify({ version: 1, state: raw, identity: { name: 'Ada' }, cityId: raw.estate.city, ownerId: 'public-A', pendingAction: { sessionId: 'public-A', actionId: '1000:11111111-1111-4111-8111-111111111111', cityId: raw.estate.city, type: 'homeward.accept', payload: { quote: input.quote } } })]]);
+      let sessionReads = 0;
+      const client = createClient({ fetch: async path => {
+        if (path === '/api/session') {
+          const actorB = input.mode === 'homeward-newer' && sessionReads++ === 0;
+          return response(200, { session: { id: actorB ? 'public-B' : 'public-A', name: actorB ? 'Bola' : 'Ada', cities: [raw.estate.city] }, serverTime: input.now });
+        }
+        if (path === '/api/life?city=' + raw.estate.city) {
+          if (input.mode === 'homeward-newer' && sessionReads > 1) return response(500, { error: 'internal_error' });
+          return response(200, { state: input.mode === 'homeward-newer' ? input.plain : raw, rev: 8, serverTime: input.now });
+        }
+        throw new Error('unexpected request ' + path);
+      }, now: () => input.now, setTimeout: () => 0, clearTimeout: () => {}, randomUUID: () => '11111111-1111-4111-8111-111111111111', storage: { getItem: key => stored.get(key) ?? null, setItem: (key, value) => stored.set(key, value) } });
+      assert.equal(client.state.activeAction, null, 'cached ticket stays hidden while rules are pending');
+      assert.ok(client.pendingAction, 'cached retry intent remains attached to the saved actor');
+      if (input.mode === 'homeward-retry-connect') {
+        await assert.rejects(homewardFor(raw), /injected first homeward-rules resolution failure/);
+        assert.equal(existsSync(input.failureMarker), true, 'the first homeward rules import failed deliberately');
+        assert.equal(readFileSync(input.requestMarker, 'utf8'), '1');
+        assert.deepEqual(JSON.parse(stored.get('joinallworld-life-v1')).state, raw, 'failed rules loading leaves the original cached ticket untouched');
+        assert.ok(client.pendingAction, 'a failed lazy import does not clear the cached retry intent');
+        const connecting = client.connect();
+        await awaitRequestMarker(); await awaitEvaluationMarker();
+        assert.equal(readFileSync(input.requestMarker, 'utf8'), '2');
+        const heldCache = JSON.parse(stored.get('joinallworld-life-v1'));
+        assert.deepEqual(heldCache.state, raw, 'an unresolved same-owner cache keeps the exact saved ticket');
+        assert.deepEqual(heldCache.pendingAction, client.pendingAction, 'an unresolved import does not replace the retry intent');
+        releaseGate();
+        const connected = await connecting;
+        assert.equal(connected, true, 'the same actor response retries the failed rules load');
+        assert.equal(client.state.activeAction?.kind, 'homeward');
+        assert.deepEqual(client.state.activeAction?.kind === 'homeward' ? client.state.activeAction.ticket : null, raw.activeAction.ticket);
+        assert.ok(client.pendingAction, 'same-owner pending intent survives the retry and accepted snapshot');
+        client.stop(); process.stdout.write('homeward-retry-connect-ok\n'); process.exit(0);
+      }
+      const waiting = homewardFor(raw); assert.ok(waiting instanceof Promise);
+      await awaitRequestMarker(); await awaitEvaluationMarker();
+      assert.throws(() => readHomewardTicket(raw.activeAction, createLife(input.plain), { now: input.now, cityId: raw.estate.city }), /have not loaded/, 'the lazy reader refuses use before installation');
+      const connected = await client.connect();
+      assert.equal(connected, true, 'actor B response is accepted while actor A cache hydration is pending');
+      assert.equal(client.state.cash, input.plain.cash);
+      assert.equal(client.state.activeAction, null);
+      assert.equal(client.pendingAction, null, 'actor A pending action is cleared on the identity change');
+      assert.equal(await client.connect(), false, 'returning to actor A with a failed authoritative read stays unavailable');
+      assert.equal(client.session?.id, 'public-A');
+      assert.equal(client.snapshotPhase, 'unavailable');
+      releaseGate(); await waiting; await new Promise(resolve => setImmediate(resolve));
+      assert.equal(client.state.cash, input.plain.cash, 'A to B to A cannot revive the original pending actor A snapshot');
+      assert.equal(client.state.activeAction, null);
+      assert.equal(client.pendingAction, null);
+      const fencedCache = JSON.parse(stored.get('joinallworld-life-v1'));
+      assert.equal(fencedCache.state, undefined);
+      assert.equal(fencedCache.ownerId, undefined);
+      client.stop(); process.stdout.write('homeward-newer-ok\n'); process.exit(0);
+    }
+    const waiting = homewardFor(raw); assert.ok(waiting instanceof Promise, 'a ticket or possible visitor requests rules before reconstruction');
+    if (input.mode === 'homeward-cache' || input.mode === 'homeward-visitor') {
+      const { createClient } = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/client.ts');
+      const stored = new Map([['joinallworld-life-v1', JSON.stringify({ version: 1, state: raw, identity: { name: 'Ada' }, cityId: raw.estate.city, ownerId: 'public-A' })]]);
+      const client = createClient({ storage: { getItem: key => stored.get(key) ?? null, setItem: (key, value) => stored.set(key, value) }, setTimeout: () => 0, clearTimeout: () => {} });
+      await awaitRequestMarker(); await awaitEvaluationMarker();
+      assert.equal(client.state.activeAction, null, 'ticket data is not exposed before its reader installs');
+      releaseGate(); await waiting; await new Promise(resolve => setImmediate(resolve));
+      if (input.mode === 'homeward-cache') {
+        assert.equal(client.state.cash, raw.cash);
+        assert.deepEqual(client.state.activeAction?.kind === 'homeward' ? client.state.activeAction.ticket : null, raw.activeAction.ticket);
+        assert.equal(client.state.travel.rideDebt, raw.travel.rideDebt);
+        for (const debt of [-1, '12000', 1.5, Number.MAX_SAFE_INTEGER + 1, 1000001, undefined]) {
+          const corrupt = structuredClone(raw);
+          if (debt === undefined) delete corrupt.travel;
+          else corrupt.travel.rideDebt = debt;
+          const cache = JSON.stringify({ version: 1, state: corrupt, ownerId: 'public-A', identity: { name: 'Ada' }, cityId: raw.estate.city });
+          const stored = new Map([['joinallworld-life-v1', cache]]);
+          const damaged = createClient({ storage: { getItem: key => stored.get(key) ?? null, setItem: (key, value) => stored.set(key, value) },
+            setTimeout: () => 0, clearTimeout: () => {}, fetch: async path => path === '/api/session'
+              ? response(200, { session: { id: 'public-A', name: 'Ada', cities: [raw.estate.city] }, serverTime: input.now })
+              : response(500, { error: 'internal_error' }) });
+          assert.equal(damaged.snapshotPhase, 'unavailable', 'a retained ticket must not hide corrupt raw loan fields');
+          assert.equal(await damaged.connect(), false);
+          assert.equal(damaged.snapshotPhase, 'unavailable');
+          assert.equal(stored.get('joinallworld-life-v1'), cache);
+          damaged.stop();
+          const pendingAction = { sessionId: 'public-A', actionId: '1000:11111111-1111-4111-8111-111111111111', cityId: raw.estate.city, type: 'homeward.accept', payload: { quote: input.quote } };
+          const goodCache = JSON.stringify({ version: 1, state: raw, ownerId: 'public-A', identity: { name: 'Ada' }, cityId: raw.estate.city, pendingAction });
+          const answeredStore = new Map([['joinallworld-life-v1', goodCache]]);
+          const answered = createClient({ storage: { getItem: key => answeredStore.get(key) ?? null, setItem: (key, value) => answeredStore.set(key, value) },
+            setTimeout: () => 0, clearTimeout: () => {}, fetch: async path => path === '/api/session'
+              ? response(200, { session: { id: 'public-A', name: 'Ada', cities: [raw.estate.city] }, serverTime: input.now })
+              : response(200, { state: corrupt, rev: 9, serverTime: input.now }) });
+          assert.equal(await answered.connect(), false, 'a malformed raw loan in a server answer is never accepted');
+          assert.equal(answeredStore.get('joinallworld-life-v1'), goodCache);
+          assert.equal(answered.state.travel.rideDebt, raw.travel.rideDebt);
+          assert.deepEqual(answered.state.activeAction.ticket, raw.activeAction.ticket);
+          assert.deepEqual(answered.pendingAction, pendingAction);
+          answered.stop();
+        }
+      } else {
+        assert.equal(client.state.onboarding?.done, true, 'legacy state without onboarding was normalized before view');
+        assert.equal(client.state.estate.home, 'maiduguri', 'main home is recovered from the away residence');
+        assert.ok(viewLife(client.state, { now: input.now, cityId: raw.estate.city }).estate.ride.journey, 'the itinerary is available before the first visitor view');
+      }
+      client.stop(); process.stdout.write(input.mode + '-ok\n'); process.exit(0);
+    }
+    if (input.mode === 'homeward-malformed') {
+      await waiting;
+      const rebuilt = createLife(raw, { now: input.now, cityId: raw.estate.city });
+      assert.equal(rebuilt.activeAction, null, 'the separate untrusted engine import keeps its refusal semantics');
+      assert.equal(rebuilt.cash, raw.cash);
+      assert.equal(readHomewardTicket(raw.activeAction, rebuilt, { now: input.now, cityId: raw.estate.city }), null);
+      const { createClient } = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/client.ts');
+      const cache = JSON.stringify({ version: 1, state: raw, identity: { name: 'Ada' }, cityId: raw.estate.city, ownerId: 'public-A' });
+      const stored = new Map([['joinallworld-life-v1', cache]]);
+      const client = createClient({ storage: { getItem: key => stored.get(key) ?? null, setItem: (key, value) => stored.set(key, value) },
+        setTimeout: () => 0, clearTimeout: () => {}, fetch: async path => path === '/api/session'
+          ? response(200, { session: { id: 'public-A', name: 'Ada', cities: [raw.estate.city] }, serverTime: input.now })
+          : response(500, { error: 'internal_error' }) });
+      assert.equal(client.snapshotPhase, 'unavailable', 'a client cannot publish a normalized-away cached ticket');
+      assert.equal(await client.connect(), false);
+      assert.equal(client.snapshotPhase, 'unavailable');
+      assert.equal(stored.get('joinallworld-life-v1'), cache, 'the malformed cached ticket is retained for reconciliation');
+      client.stop();
+      process.stdout.write('homeward-malformed-ok\n'); process.exit(0);
+    }
+    throw new Error('unexpected homeward mode ' + input.mode);
+  }
+  if (input.mode === 'teaching-cache' || input.mode === 'teaching-newer' || input.mode === 'teaching-retry-connect' || input.mode === 'teaching-switch') {
+    const gate = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/teaching-gate.ts');
+    const { createClient } = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/client.ts');
+    let playing = true;
+    try { dispatch(createLife(null), { type: 'cancel' }); } catch { playing = false; }
+    assert.equal(playing, false, 'this probe executes the browser PLAYS=false branch');
+    const startCity = 'lagos';
+    const cachedState = input.mode === 'teaching-switch' ? input.plainLagos : input.snapshot;
+    const stored = new Map([['joinallworld-life-v1', JSON.stringify({ version: 1, state: cachedState, identity: { name: 'Ada' }, cityId: startCity, ownerId: 'public-1' })]]);
+    let markedChanges = 0, lifeRequests = 0;
+    const fetchLife = async (path) => {
+      if (path === '/api/session') return response(200, { session: { id: 'public-1', name: 'Ada', cities: ['lagos', 'ibadan'] }, serverTime: input.now });
+      if (path === '/api/life?city=' + startCity) {
+        lifeRequests++;
+        const state = input.mode === 'teaching-newer' ? input.plain : input.mode === 'teaching-switch' ? input.plainLagos : input.snapshot;
+        return response(200, { state, rev: lifeRequests + 2, serverTime: input.now });
+      }
+      if (input.mode === 'teaching-switch' && path === '/api/life?city=ibadan') return response(200, { state: input.switchSnapshot, rev: 7, serverTime: input.now });
+      throw new Error('unexpected request ' + path);
+    };
+    const client = createClient({ fetch: fetchLife, now: () => input.now, setTimeout: () => 0, clearTimeout: () => {},
+      randomUUID: () => '11111111-1111-4111-8111-111111111111',
+      storage: { getItem: (key) => stored.get(key) ?? null, setItem: (key, value) => stored.set(key, value) },
+      onChange: (next) => { if (next.activeAction?.teaching) markedChanges++; },
+    });
+    probeTrace('client-created', { mode: input.mode, city: client.cityId });
+    if (input.mode === 'teaching-cache') {
+      assert.equal(client.state.activeAction, null, 'the marked cache waits for its strict parser');
+      const waiting = gate.teachingFor(input.snapshot);
+      assert.ok(waiting instanceof Promise);
+      await awaitRequestMarker();
+      assert.equal(readFileSync(input.requestMarker, 'utf8'), '1');
+      await awaitEvaluationMarker();
+      assert.equal(gate.readTeachingSnapshot(input.snapshot.activeAction.teaching), null, 'the strict reader is not installed while the gate import is pending');
+      releaseGate();
+      await waiting;
+      assert.deepEqual(gate.readTeachingSnapshot(input.snapshot.activeAction.teaching), input.snapshot.activeAction.teaching);
+      await Promise.resolve();
+      const restored = client.state;
+      assert.deepEqual(restored.activeAction, input.snapshot.activeAction);
+      assert.equal(restored.career.teachingGeneration, input.snapshot.career.teachingGeneration);
+      assert.equal(restored.cash, input.snapshot.cash, 'read-only restoration does not change saved money');
+      const restoredTeaching = viewLife(restored, { now: restored.t, cityId: 'lagos' }).career.teaching;
+      assert.ok(restoredTeaching);
+      assert.deepEqual(restoredTeaching.practice, input.snapshot.activeAction.teaching);
+      assert.equal(markedChanges, 1, 'the cached marked snapshot is restored once');
+      const future = structuredClone(input.snapshot); future.activeAction.teaching.version = 2;
+      const corrupt = structuredClone(input.snapshot); corrupt.activeAction.teaching.stage = 'invented';
+      const partial = structuredClone(input.snapshot); delete partial.activeAction.teaching;
+      for (const hostile of [future, corrupt, partial]) assert.equal(createLife(hostile).activeAction, null, 'future, corrupt, and generation-only markers fail closed');
+      client.stop(); process.stdout.write('teaching-cache-ok\n'); process.exit(0);
+    }
+    if (input.mode === 'teaching-newer') {
+      const connected = await client.connect();
+      probeTrace('connect-completed', { mode: input.mode, connected, city: client.cityId });
+      assert.equal(connected, true, 'the newer plain server snapshot is accepted while the cache parser is pending');
+      assert.equal(client.state.cash, input.plain.cash);
+      assert.equal(client.state.activeAction, null);
+      const waiting = gate.teachingFor(input.snapshot);
+      assert.ok(waiting instanceof Promise);
+      await awaitRequestMarker();
+      assert.equal(readFileSync(input.requestMarker, 'utf8'), '1');
+      await awaitEvaluationMarker();
+      assert.equal(gate.readTeachingSnapshot(input.snapshot.activeAction.teaching), null);
+      releaseGate();
+      await waiting; await Promise.resolve();
+      assert.equal(client.state.cash, input.plain.cash);
+      assert.equal(client.state.activeAction, null, 'late cached practice cannot overwrite an accepted server snapshot');
+      assert.equal(markedChanges, 0);
+      client.stop(); process.stdout.write('teaching-newer-ok\n'); process.exit(0);
+    }
+    if (input.mode === 'teaching-switch') {
+      assert.equal(await client.connect(), true);
+      probeTrace('connect-completed', { mode: input.mode, connected: true, city: client.cityId });
+      assert.equal(client.state.activeAction, null);
+      const switching = client.switchCity('ibadan');
+      probeTrace('city-switch-start', { mode: input.mode, from: 'lagos', to: 'ibadan' });
+      await awaitRequestMarker();
+      assert.equal(readFileSync(input.requestMarker, 'utf8'), '1');
+      await awaitEvaluationMarker();
+      assert.equal(gate.readTeachingSnapshot(input.switchSnapshot.activeAction.teaching), null, 'switchCity waits while the parser is unavailable');
+      assert.equal(client.cityId, 'ibadan');
+      assert.equal(client.state.activeAction, null, 'the marked response is not exposed before validation');
+      releaseGate();
+      const switched = await switching;
+      probeTrace('city-switch-completed', { mode: input.mode, ok: switched.ok, city: client.cityId });
+      assert.equal(switched.ok, true, 'switchCity accepts the marked same-owner server response');
+      assert.deepEqual(client.state.activeAction.teaching, input.switchSnapshot.activeAction.teaching);
+      assert.equal(client.state.cash, input.switchSnapshot.cash);
+      client.stop(); process.stdout.write('teaching-switch-ok\n'); process.exit(0);
+    }
+    const failed = gate.teachingFor(input.snapshot);
+    assert.ok(failed instanceof Promise);
+    await assert.rejects(failed, /injected first teaching-state resolution failure/);
+    assert.equal(existsSync(input.failureMarker), true, 'the first lazy parser resolution was deliberately rejected');
+    assert.equal(readFileSync(input.requestMarker, 'utf8'), '1');
+    const connected = await client.connect();
+    probeTrace('connect-completed', { mode: input.mode, connected, city: client.cityId });
+    assert.equal(connected, true, 'connect retries the failed lazy parser for the same-owner server snapshot');
+    assert.equal(readFileSync(input.requestMarker, 'utf8'), '2', 'the gate made a second resolve request after the first rejection');
+    assert.deepEqual(client.state.activeAction.teaching, input.snapshot.activeAction.teaching);
+    assert.equal(client.state.cash, input.snapshot.cash);
+    client.stop(); process.stdout.write('teaching-retry-connect-ok\n'); process.exit(0);
+  }
+  if (input.mode === 'client') {
+    // The client, given a life that uses the campus (saved on the device, and answered by the server): it fetches the campus rules and keeps all of it.
+    const { createClient } = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/client.ts');
+    const reply = (status, body) => ({ ok: status < 300, status, json: async () => body });
+    const wanted = input.lives.find((life) => life.name === 'a student at the campus');
+    const stored = new Map([['joinallworld-life-v1', JSON.stringify({ version: 1, state: wanted.raw, identity: { name: 'Ada' }, cityId: 'lagos' })]]);
+    const fetchLife = async (path) => (path === '/api/session' ? reply(200, { session: { id: 'public-1', name: 'Ada' }, serverTime: 5000 }) : reply(200, { state: wanted.raw, serverTime: wanted.ctx.now }));
+    const client = createClient({ fetch: fetchLife, now: () => wanted.ctx.now, setTimeout: () => 0, clearTimeout: () => {}, randomUUID: () => '11111111-1111-4111-8111-111111111111',
+      storage: { getItem: (key) => stored.get(key) ?? null, setItem: (key, value) => stored.set(key, value) } });
+    const standInAtStart = isStandIn('unilagStudent');
+    const before = client.state.unilagStudent.status;
+    const connected = await client.connect();
+    const { unilagStudent, unilagShuttle, unilagCommunity } = client.state;
+    process.stdout.write(JSON.stringify({ client: { standInAtStart, before, connected, standIn: isStandIn('unilagStudent'), status: unilagStudent.status, programme: unilagStudent.programme, rides: unilagShuttle.rides, clubs: unilagCommunity.clubs } }));
+    process.exit(0);
+  }
+  const results = [];
+  let playing = true;
+  try { dispatch(createLife(null), { type: 'cancel' }); } catch { playing = false; }
+  const { teachingFor } = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/teaching-gate.ts');
+  const { homewardFor } = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/homeward-gate.ts');
+  for (const { raw, ctx } of input.lives) {
+    let refused = null;
+    const waiting = campusFor(raw);
+    const progressionWaiting = progressionFor(raw) ?? loadProgression();
+    const teachingWaiting = teachingFor(raw);
+    await progressionWaiting;
+    if (waiting) { try { createLife(raw, ctx); } catch (error) { refused = error.name; } await waiting; }
+    if (teachingWaiting) await teachingWaiting;
+    await homewardFor(raw);
+    const state = createLife(raw, ctx);
+    const baseView = viewLife(state, ctx);
+    const wearablesDeferred = !baseView.onboarding.boutique.some(item => item.kind === 'wearables');
+    // Same helper used by BoutiqueApp after opening: keep the catalogue out of startup,
+    // then compare its complete projection against the full engine without dropping any expected entries.
+    const { withWearableBoutique } = await import('file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/app/features/life/boutiqueModel.ts');
+    results.push({ waited: waiting !== null, refused, state, wearablesDeferred,
+      view: { ...baseView, onboarding: withWearableBoutique(baseView.onboarding, state) } });
+  }
+  await loadCampus();
+  process.stdout.write(JSON.stringify({ playing, standInsLeft: isStandIn('unilagStudent'), results })); /var/folders/3x/y9y7vtp934q97zk_sl810lj40000gn/T/browser-homeward-profile-L3dbG8/homeward-retry-connect.json
+  file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/[eval1]:32
+      finish(new Error('probe marker timed out'));
+             ^
+  
+  Error: probe marker timed out
+      at Timeout.<anonymous> (file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/[eval1]:32:12)
+      at listOnTimeout (node:internal/timers:605:17)
+      at process.processTimers (node:internal/timers:541:7)
+  
+  Node.js v24.14.1
+  
+      at genericNodeError (node:internal/errors:985:15)
+      at wrappedFn (node:internal/errors:539:14)
+      at checkExecSyncError (node:child_process:925:11)
+      at execFileSync (node:child_process:961:15)
+      at probe (file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/browser-profile.test.ts:473:10)
+      at TestContext.<anonymous> (file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/browser-profile.test.ts:757:18)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    status: 1,
+    signal: null,
+    output: [ null, '', "file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/[eval1]:32\n    finish(new Error('probe marker timed out'));\n           ^\n\nError: probe marker timed out\n    at Timeout.<anonymous> (file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/[eval1]:32:12)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)\n\nNode.js v24.14.1\n" ],
+    pid: 52439,
+    stdout: '',
+    stderr: "file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/[eval1]:32\n    finish(new Error('probe marker timed out'));\n           ^\n\nError: probe marker timed out\n    at Timeout.<anonymous> (file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/[eval1]:32:12)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)\n\nNode.js v24.14.1\n"
+  }

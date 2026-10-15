@@ -1,0 +1,64 @@
+[teaching-probe] probe-start {"mode":"teaching-cache","city":"lagos","targetCity":null,"atMs":1792022355973}
+[teaching-hook] parser-requested {"count":1,"requestMarkerWritten":true,"atMs":1792022356015}
+[teaching-hook] parser-source-returned {"atMs":1792022356015}
+[teaching-probe] client-created {"mode":"teaching-cache","city":"lagos","atMs":1792022356016}
+[teaching-probe] request-seen {"mode":"teaching-cache","atMs":1792022356016}
+[teaching-probe] marker-watch-installed {"mode":"teaching-cache","markerKind":"evaluation","targetExists":false,"atMs":1792022356017}
+[teaching-eval] barrier-watch-installed {"targetExists":false}
+[teaching-eval] evaluation-marker-created {"targetExists":false}
+[teaching-probe] marker-event {"mode":"teaching-cache","markerKind":"evaluation","eventCount":1,"filenamePresent":true,"targetExists":true,"atMs":1792022356025}
+[teaching-probe] evaluation-waiting {"mode":"teaching-cache","atMs":1792022356026}
+[teaching-probe] release-created {"mode":"teaching-cache","atMs":1792022356026}
+[teaching-eval] barrier-event {"eventCount":1,"filenamePresent":true,"targetExists":true}
+[teaching-probe] probe-start {"mode":"teaching-newer","city":"lagos","targetCity":null,"atMs":1792022356236}
+[teaching-hook] parser-requested {"count":1,"requestMarkerWritten":true,"atMs":1792022356279}
+[teaching-hook] parser-source-returned {"atMs":1792022356279}
+[teaching-probe] client-created {"mode":"teaching-newer","city":"lagos","atMs":1792022356280}
+[teaching-eval] barrier-watch-installed {"targetExists":false}
+[teaching-eval] evaluation-marker-created {"targetExists":false}
+[teaching-probe] connect-completed {"mode":"teaching-newer","connected":true,"city":"lagos","atMs":1792022356283}
+[teaching-probe] request-seen {"mode":"teaching-newer","atMs":1792022356283}
+[teaching-probe] evaluation-waiting {"mode":"teaching-newer","atMs":1792022356283}
+[teaching-probe] release-created {"mode":"teaching-newer","atMs":1792022356283}
+[teaching-eval] barrier-event {"eventCount":1,"filenamePresent":true,"targetExists":true}
+[teaching-probe] probe-start {"mode":"teaching-retry-connect","city":"lagos","targetCity":null,"atMs":1792022356475}
+[teaching-hook] parser-requested {"count":1,"requestMarkerWritten":true,"atMs":1792022356518}
+[teaching-probe] client-created {"mode":"teaching-retry-connect","city":"lagos","atMs":1792022356520}
+[teaching-hook] parser-requested {"count":2,"requestMarkerWritten":true,"atMs":1792022356521}
+[teaching-hook] parser-source-returned {"atMs":1792022356521}
+[teaching-probe] connect-completed {"mode":"teaching-retry-connect","connected":true,"city":"lagos","atMs":1792022356522}
+[teaching-probe] probe-start {"mode":"teaching-switch","city":"lagos","targetCity":"ibadan","atMs":1792022356712}
+[teaching-probe] client-created {"mode":"teaching-switch","city":"lagos","atMs":1792022356757}
+[teaching-probe] connect-completed {"mode":"teaching-switch","connected":true,"city":"lagos","atMs":1792022356758}
+[teaching-probe] city-switch-start {"mode":"teaching-switch","from":"lagos","to":"ibadan","atMs":1792022356758}
+[teaching-probe] marker-watch-installed {"mode":"teaching-switch","markerKind":"request","targetExists":false,"atMs":1792022356758}
+[teaching-hook] parser-requested {"count":1,"requestMarkerWritten":true,"atMs":1792022356759}
+[teaching-hook] parser-source-returned {"atMs":1792022356759}
+[teaching-eval] barrier-watch-installed {"targetExists":false}
+[teaching-eval] evaluation-marker-created {"targetExists":false}
+[teaching-probe] marker-event {"mode":"teaching-switch","markerKind":"request","eventCount":1,"filenamePresent":true,"targetExists":true,"atMs":1792022356762}
+[teaching-probe] request-seen {"mode":"teaching-switch","atMs":1792022356762}
+[teaching-probe] evaluation-waiting {"mode":"teaching-switch","atMs":1792022356762}
+[teaching-probe] release-created {"mode":"teaching-switch","atMs":1792022356763}
+[teaching-eval] barrier-event {"eventCount":1,"filenamePresent":true,"targetExists":true}
+[teaching-probe] city-switch-completed {"mode":"teaching-switch","ok":true,"city":"ibadan","atMs":1792022356764}
+✔ the browser engine rebuilds and views every life as the full engine does, and refuses a campus life until the campus rules are loaded (1221.6235ms)
+ℹ 17 lives, 3 using the campus, 4 in the test city
+✔ the read-only browser hydrates, retries and fences a saved authored teaching session (971.930875ms)
+✔ the read-only browser loads homeward route and ticket rules only for relevant lives, before exposing them (1669.33225ms)
+✔ missions: a set is one mission of each kind, the same for the same life and day, and only what can be done (43.084084ms)
+✔ missions: real play completes a mission exactly once, a claim pays once, and the set bonus is granted once (448.679042ms)
+✔ missions: an earned reward survives midnight and reload, weekly progress survives the night, and one swap a day is allowed (122.32925ms)
+✔ missions: the stamp card pays once at four days, the day count only goes up, and absence costs nothing (144.957334ms)
+✔ missions: hostile saved input is rebuilt to a valid slice (1.962416ms)
+✔ calendar: weekly events recur on Nigerian time, also across midnight; dated events hold their days; a closed venue never hosts (1.120583ms)
+✔ events: being there counts once per occurrence; spraying is a capped sink that needs a party (84.113292ms)
+✔ growth: table results and referral gifts are server-only, pay inside their caps and never twice over them (62.290167ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5249.675667

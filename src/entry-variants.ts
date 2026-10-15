@@ -36,8 +36,8 @@ const TAIL = 'Free in your browser, no download.'
 export const ENTRY_VARIANTS: readonly EntryVariant[] = Object.freeze([
   {
     id: 'home', paths: ['/'], title: 'Allworld: a digital world you can live in',
-    description: 'A digital world to live in. Real cities across Africa, with more opening: work, travel, make friends and play. Free in your browser, no download.',
-    headline: 'A digital world you can live in', pitch: '{cities} real cities across Africa, and more opening. Free, in your browser, no download.',
+    description: 'A digital world to live in. Real-world places to explore: work, travel, make friends and play. Free in your browser, no download.',
+    headline: 'A digital world you can live in', pitch: '{cities} real-world places to explore. Free, in your browser, no download.',
     tiles: [{ icon: 'pin', label: 'Live in a real city' }, { icon: 'earn', label: 'Work and earn' }, { icon: 'boutique', label: 'Open a shop for your real business' }, { icon: 'people', label: 'Friends, voice and games' }],
     image: null, og: '/og/allworld.jpg', primary: { label: 'Play now', kind: 'play' }, secondary: [{ label: 'Find my city', kind: 'find' }],
   },

@@ -132,11 +132,11 @@ export function createRuntimeModule(kit: Kit, parent: THREE.Group, options: {
       triangles += (mesh.geometry.index?.count ?? mesh.geometry.attributes.position?.count ?? 0) / 3;
       mesh.castShadow = true; mesh.receiveShadow = true;
       const list = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
-      drawCalls += (Array.isArray(mesh.material) ? mesh.geometry.groups.length : 1) * (1 + request.budget.shadowPasses);
+      const drawn = Array.isArray(mesh.material) ? mesh.geometry.groups.map(group => list[group.materialIndex ?? 0]).filter((material): material is THREE.Material => Boolean(material)) : list;
+      for (const material of drawn) drawCalls += request.budget.shadowPasses + (material.transparent && material.side === THREE.DoubleSide && !material.forceSinglePass ? 2 : 1);
       for (const material of list) {
         if (!(material as THREE.MeshStandardMaterial).isMeshStandardMaterial) throw new Error('Runtime module requires PBR materials');
         materials.add(material);
-        if (material.transparent && material.side === THREE.DoubleSide && !material.forceSinglePass) drawCalls++;
         for (const value of Object.values(material)) {
           if (!value?.isTexture) continue;
           const data = (value as THREE.Texture).source.data;

@@ -128,3 +128,18 @@ test('far requests close to the module still use near geometry', async () => {
   assert.equal(module.placement!.tier, 'near'); assert.deepEqual(urls, ['near.glb']);
   module.dispose(); f.kit.dispose();
 });
+
+test('repeated geometry groups reserve each double-sided transparent pass', async () => {
+  const f = fixture();
+  const module = createRuntimeModule(f.kit, f.parent, { open: async () => {
+    const root = f.root(), mesh = root.children[0] as InstanceType<typeof f.THREE.Mesh>;
+    const material = mesh.material as InstanceType<typeof f.THREE.MeshStandardMaterial>;
+    material.transparent = true; material.side = f.THREE.DoubleSide;
+    mesh.material = [material]; mesh.geometry.clearGroups();
+    for (let n = 0; n < 4; n++) mesh.geometry.addGroup(n * 9, 9, 0);
+    return root;
+  } });
+  await assert.rejects(module.select({ ...f.request, budget: { triangles: 11500, drawCalls: 9, shadowPasses: 1 } }), /budget/);
+  await module.select(f.request); assert.equal(module.placement!.drawCalls, 12);
+  module.dispose(); f.kit.dispose();
+});

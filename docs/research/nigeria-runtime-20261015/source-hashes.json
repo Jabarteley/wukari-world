@@ -1,6 +1,6 @@
 {
-  "src/scene/models/runtime-module.ts": "b50c493074495171dfd6b880f61ec2d878612a9ea4225533fadb4295b48ed6c7",
-  "src/scene/models/runtime-module.test.ts": "24eb752eb42e1f11fcd87dc692cc0cef0a93c3452a6ac3548f3ba8ed87445a5c",
+  "src/scene/models/runtime-module.ts": "5453b00bac6b830ff69c205b07b86573061d56dbf33e4abe0c15c7fc7bedf49c",
+  "src/scene/models/runtime-module.test.ts": "2249e048f0d8865b01bc01b166ddeb2b481002da66615ed152cba7f5fbccd377",
   "docs/research/nigeria-runtime-20261015/harness.ts.txt": "b8fe3c0df6e23785e1522b1dc9e96cd9f6cb35d4c9d0fc7289ae0560c8be1dbb",
   "src/venue-world.ts": "446a7b128e83f6ad7c2d1d6d5410af1a3f73321e0f3f1ddd7b23d67e9e6c0260",
   "src/scene/lighting.ts": "0a5b803c1ed5581a082376efb8ec063eae910417a5a2e31aed89c1e767f37665",

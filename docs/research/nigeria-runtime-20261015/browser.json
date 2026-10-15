@@ -1,6 +1,6 @@
 {
   "scope": "Adapter diagnostic with actual host light factory; NOT in-game navigation or production acceptance",
-  "startedAt": "2026-10-15T03:14:59.443Z",
+  "startedAt": "2026-10-15T03:20:41.949Z",
   "cases": [
     {
       "id": "lagos-broad-street-01",
@@ -268,5 +268,5 @@
   },
   "errors": [],
   "failedRequests": [],
-  "completedAt": "2026-10-15T03:15:56.517Z"
+  "completedAt": "2026-10-15T03:20:57.848Z"
 }

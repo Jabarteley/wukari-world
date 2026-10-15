@@ -63,9 +63,9 @@ export class Voices {
 
   setAvatar(x: number, z: number): void { this.avatar = { x, z } }
 
-  private where(at: { x?: number; z?: number; screenX?: number }, profile: VoiceProfile): { distance: number; pan: number } {
+  private where(at: { x?: number; z?: number; screenX?: number; distance?: number }, profile: VoiceProfile): { distance: number; pan: number } {
     const known = at.x !== undefined && at.z !== undefined && this.avatar
-    const distance = known ? distanceOf({ x: at.x as number, z: at.z as number }, this.avatar as { x: number; z: number }) : UNPLACED
+    const distance = at.distance !== undefined ? at.distance : known ? distanceOf({ x: at.x as number, z: at.z as number }, this.avatar as { x: number; z: number }) : UNPLACED
     const pan = at.screenX !== undefined ? panOf(at.screenX) : known ? panFromOffset((at.x as number) - (this.avatar as { x: number }).x) : profile.home * 0.6
     return { distance, pan }
   }
@@ -86,7 +86,7 @@ export class Voices {
     const level = gainAt(distance)
     // Spoken words: only the nearest of the voices that sound, and only when the device has a voice of its own.
     const nearest = this.cap.live(now).every(item => item.id === line.id || distance <= item.distance)
-    if (mode.speech && (line.kind === 'companion' || (nearest && distance <= SPEECH_REACH)) && this.deps.speech?.say(line.text, profile, this.deps.settings().master * (0.55 + 0.45 * level))) {
+    if (mode.speech && (line.kind === 'companion' || line.speakable === true || (nearest && distance <= SPEECH_REACH)) && this.deps.speech?.say(line.text, profile, this.deps.settings().master * (0.55 + 0.45 * level))) {
       this.stats.spoken++
       this.after(line, now)
       return

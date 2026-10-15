@@ -99,6 +99,7 @@ import { venueFor } from '../../src/game/cities/runtime.ts';
  *   'home-closed' { hostId, cityId } (the host's life left home), 'host-absent' { hostId, guestId,
  *   cityId } (no host connection in the room) or 'guest-expired' with the same fields (anything else).
  */
+import { voiceSeedOf } from '../voice-seed.ts';
 import { MAX_VOICE_MEMBERS, UUID_PATTERN, canOccupyVenue, initialVenuePosition, validatePosition, withinVoiceDistance, venueRoomKey } from '../protocol.ts';
 import { streetRoomKey, STREET_NETWORK_SCALE } from '../../src/game/neighbourhood-space.ts';
 import { PLACES, SQUARE_ROOM, isRoomId, placeOfRoom, roomKeyOf } from '../../src/places/model.ts';
@@ -116,7 +117,7 @@ import { screenText } from '../moderation/text.ts';
 import { addressedIn, agentWords } from '../moderation/agent-words.ts';
 import { aiAnswer, asksIfAi, countryOfCity, crisisWords, helpText } from '../moderation/ai-intercept.ts';
 import { screenFee } from '../../src/game/trust/fees.ts';
-import type { CityId, ChatFrame, GroupSummary, PresenceDeltaFrame, PresenceMember, PublicSession, RoomCounts, SignalData } from '../../src/types/protocol.ts';
+import type { CityId, ChatFrame, GroupSummary, PresenceDeltaFrame, PresenceMember, PublicSession, RoomCounts, SignalData, VoiceTextFrame } from '../../src/types/protocol.ts';
 import type { LifeState } from '../../src/types/life.ts';
 import type { Db, IncomingFrame, RouteContext, ServerEvents, SessionRecord, WsConnection, WsHandlers, WsMessageEntry } from '../types.ts';
 
@@ -296,6 +297,9 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       const chat: ChatFrame = { type: 'chat', id: core.newId(), ...(clientId ? { clientId } : {}), from: { id: from.id, name: from.name, ...from.mark }, body: text, at: now(), speaker: 'agent', voiceSeed: voiceSeedOf(from.id) };
       chatAt.set(from.id, now());
       sendAll([...audience(room, v.group)].filter(peer => !hidden(from.id, peer.session.id)), chat);
+      // The same line as speakable text for the people in the voice circle (Phase 15): their phones speak it, near or far by where the agent stands. Agents never receive voice.
+      const spoken: VoiceTextFrame = { type: 'voice-text', id: chat.id, from: chat.from, body: text, at: chat.at, voiceSeed: voiceSeedOf(from.id), x: v.position.x, z: v.position.z };
+      sendAll([...audience(room, v.group)].filter(peer => peer.voice.enabled && !hidden(from.id, peer.session.id)), spoken);
       return { ok: true as const, seq: pushLine(room, v.group, { at: now(), from: { id: from.id, name: from.name, ...(from.mark.agent ? { agent: true as const } : {}) }, body: text }) };
     },
     lines(id, room, since, limit) {
@@ -310,7 +314,6 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
   };
   ctx.on?.('heartbeat', () => { for (const v of [...virtuals.values()]) if (v.until <= now()) dropVirtual(v.id); });
   /** A stable voice seed for a player: the same for the same player, so a client can give an agent one voice. */
-  const voiceSeedOf = (id: string): number => { let h = 2166136261; for (let i = 0; i < id.length; i++) { h ^= id.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; };
   /** A way to ask "can this recipient not see that player?", or null while nobody has blocked anybody (then one list serves everyone). */
   const blockFilter = (): ((a: string, b: string) => boolean) | null => (ctx.checks?.anyBlocks?.() === true ? hidden : null);
   /** The group as one socket sees it, whole: its first `presence` on joining, and again whenever what it can see is rebuilt. */

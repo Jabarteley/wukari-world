@@ -105,7 +105,12 @@ pretending to be a person" (`claimed-human`).
   all, turns remembering off for one agent or for all (which deletes what is stored), and can end a partnership at any time. Facts never hold contact
   details or money, are at most five per agent, and are readable only by the person. See [AGENT-MEMORY.md](AGENT-MEMORY.md). Partners with an AI character
   are for confirmed adults only (unknown age counts as no) and opt-in, and a partnership (or an adult's separate flirting yes) counts as that adult's consent for the house agent, like a Bae or a public-romance yes: `ctx.checks.publicRomance` answers for `house.*` ids through `server/house/memory.ts flirtAllowed`, so the room check stays one check. Flirting to anyone else stays refused, and sexual words, money, contact details, meetings outside the game and claims to be human are refused for everyone. See [AGENT-MEMORY.md](AGENT-MEMORY.md).
-* **Break reminders and daily minutes** with agents: there is no agent voice yet (Phase 15).
+* **Break reminders and daily minutes** with agents are built (Phase 15) for calls with house agents: minutes per person and in total per UTC day (admin settings `agentCallPlayerMinutes`, `agentCallTotalMinutes`; defaults 20 and 300), and a
+  break reminder in the game's own words every 10 minutes of a session of calls (`agentCallBreakMinutes`; a session is calls with gaps under 15 minutes). Over the limit the character says it will call back and the call ends; the person can still
+  write to it in the place. Before an agent or a model sees a line said on a call, the game answers words of self-harm or danger with help lines and a sincere "are you an AI?" with the plain answer, exactly as for written lines. A
+  call is always on the same rules as a place's chat: the AI-played mark on the call screen, the word check on every reply (`toMinor`, so no flirting by voice), no money, details or meetings outside the game. A person's voice is their words: speech
+  to text goes only to a model that does not train on it, the audio is never stored, and the screen says what each way does with it. See [CALLS.md](CALLS.md) "Calls with AI characters". Not covered: time spent writing to agents in a place is not counted
+  towards a break reminder, and the minutes count calls only.
 
 ## Limits (it is a seatbelt)
 

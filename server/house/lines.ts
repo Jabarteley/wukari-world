@@ -96,6 +96,16 @@ const TONIGHT_NONE = both(
   ['Nothing big wey I don hear yet, but the Square always dey alive. Come see.', 'Quiet so far. Check the Square, things dey start small.'],
   ['Nothing big announced yet, but the Square is always worth a look.', 'Quiet so far. Check the Square: things start small.'],
 );
+/** On a call: the day's minutes are used up, so the agent says it will ring back, and the talk can go on by writing in the place. */
+const CALL_BACK = both(
+  ['I must go now o, plenty work dey. I go call you back tomorrow. You fit still write me for the place.', 'Time don go for today. I go call you back tomorrow, make we still chat for the place if you like.'],
+  ['I have to go now, there is a lot to do. I will call you back tomorrow. You can still write to me in the place.', 'That is all the time I have today. I will call you back tomorrow, and we can still chat by writing in the place.'],
+);
+/** On a call, at the start: the same, when the day's minutes were already used up. */
+const CALL_BUSY = both(
+  ['Ah, I no fit talk for phone again today. I go call you back tomorrow. You fit write me for the place.', 'My phone time for today don finish. I go call you back tomorrow, abeg write me for the place.'],
+  ['I cannot take more calls today. I will call you back tomorrow. You can still write to me in the place.', 'My call time for today is used up. I will call you back tomorrow, and you can write to me in the place meanwhile.'],
+);
 const BYE = both(['Okay o, see you later!', 'Safe, my friend.'], ['Alright, see you later!', 'Take care, and come back soon.']);
 
 const fill = (text: string, vars: Record<string, string>): string => text.replace(/\{(\w+)\}/g, (_, key: string) => vars[key] ?? '');
@@ -120,6 +130,8 @@ export function sale(spec: Spec, outcome: { ok: true; label: string; price: numb
   const table = outcome.code === 'insufficient_funds' ? SALE_SHORT : outcome.code === 'bag_full' ? SALE_FULL : outcome.code === 'not_needed' ? SALE_STUFFED : SALE_NO;
   return fill(pick(table[spec.voice], seed), { label: outcome.label, price: naira(outcome.price) });
 }
+export const callBack = (spec: Spec, seed: string): string => pick(CALL_BACK[spec.voice], seed);
+export const callBusy = (spec: Spec, seed: string): string => pick(CALL_BUSY[spec.voice], seed);
 export const bye = (spec: Spec, seed: string): string => pick(BYE[spec.voice], seed);
 export const which = (spec: Spec, names: readonly string[], seed: string): string => fill(pick(WHICH[spec.voice], seed), { names: names.join(', ') });
 export const tonight = (spec: Spec, events: readonly string[], seed: string): string => (events.length ? `Tonight: ${events.slice(0, 2).join('. ')}.` : pick(TONIGHT_NONE[spec.voice], seed));

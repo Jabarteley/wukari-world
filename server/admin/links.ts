@@ -8,6 +8,7 @@
 import { companionService } from '../companion/service.ts';
 import { linkModels } from '../models/service.ts';
 import { linkHouse } from '../house/runner.ts';
+import { linkAgentCalls } from '../house/call-routes.ts';
 import { linkResidents } from '../residents/resident.ts';
 import { linkPrayers } from '../prayers/link.ts';
 import { callService } from '../social/calls.ts';
@@ -57,6 +58,7 @@ export function linkFeatures(ctx: RouteContext): void {
   linkBonus(ctx);
   linkModels(ctx);
   linkHouse(ctx);
+  linkAgentCalls(ctx);
   linkResidents(ctx);
   linkPrayers(ctx);
 

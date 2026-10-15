@@ -1,11 +1,12 @@
 /**
  * OWNER: agents (residents, docs/RESIDENTS.md)
- * A RESIDENT'S LIFE: who it is, written as the character would tell it, in the first person. Authored data, portable and pure. No real
+ * A RESIDENT'S LIFE (Remi here; the other twenty-nine are in roster.ts): who it is, written as the character would tell it, in the first person. Authored data, portable and pure. No real
  * person's name, and nothing about danger or scams: a quiet, warm life. The story is the character's whole memory of itself; it is
  * the start of every prompt (resident.ts), so it must never name what the character is made of or what the world is made of: the words
  * AI, model, game, player, assistant and prompt appear nowhere in it (life.test.ts checks).
  */
-import type { Spec } from '../house/cast.ts';
+import type { HouseLook, Spec } from '../house/cast.ts';
+import { ROSTER } from './roster.ts';
 
 /** Words a character never says about what it is made of or lives in. */
 export const OUT_OF_CHARACTER = /\b(?:a\.?i\.?|artificial|intelligence|language model|llm|chat ?bots?|bots?|models?|games?|gaming|gamers?|players?|assistants?|prompts?|openai|anthropic|claude|gpt|simulat\w*|npcs?|as an? (?:ai|assistant)|programmed|virtual)\b/i;
@@ -21,6 +22,10 @@ export interface Resident {
   sleep: { bed: number; wake: number }
   /** Where and when it works: the action library's day plan (house/actions.ts planAt) is its routine, with no model. */
   work: Pick<Spec, 'role' | 'hours' | 'post' | 'market' | 'eatery'>
+  /** What the people list shows beside the name while it works (for example "Nursing on the ward"); the action library's own words when absent. */
+  doing?: string
+  /** Which of the house looks it wears when visible; a plain one when absent. */
+  look?: HouseLook
   /** The first-person life story: family, places, voice, private goals, likes and dislikes, faith. */
   story: string
 }
@@ -45,6 +50,6 @@ export const REMI: Resident = Object.freeze<Resident>({
   story: REMI_STORY,
 });
 
-/** Every resident of the phase: one, in Lagos. */
-export const RESIDENTS: readonly Resident[] = Object.freeze([REMI]);
+/** Every resident, in the order they are switched on by the setting `residentCount`: Remi first, then the roster (roster.ts), thirty in all. */
+export const RESIDENTS: readonly Resident[] = Object.freeze([REMI, ...ROSTER]);
 export const residentId = (resident: Resident): string => `resident.${resident.city}.${resident.key}`;

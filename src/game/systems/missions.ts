@@ -53,6 +53,7 @@ import { venueFor, regularFor, regularsFor } from '../cities/runtime.ts';
 import { isCityId, cachedCityContent } from '../cities/registry.ts';
 import { canGrantStars } from './goals.ts';
 import { agentOp, agentTable, claimAgent, sanitizeAgent } from './agent-missions.ts';
+import { progressionSnapshot } from '../progression/provider.ts';
 
 type Scope = 'daily' | 'weekly';
 const POOLS: Record<Scope, MissionDefinition[]> = { daily: [...DAILY_MISSIONS], weekly: [...WEEKLY_MISSIONS] };
@@ -61,6 +62,22 @@ const SCOPE_IDS: Record<Scope, Set<string>> = { daily: new Set(DAILY_MISSIONS.ma
 /** The lazy content pack installs published rows without pulling its catalogue into startup. */
 export const missionCatalogues = { pools: POOLS, byId: BY_ID, scopeIds: SCOPE_IDS, authoredIds: new Set<string>(), authoredCities: new Set<string>() };
 export const missionDefinition = (id: string): MissionDefinition | undefined => BY_ID.get(id);
+/** Replace the complete mutable indices only after a provider validated and assembled every catalogue row. */
+export function installProgressionMissions(): void {
+  const source = progressionSnapshot().missions;
+  const byId = new Map(source.definitions.map(def => [def.id, def]));
+  const pool = (ids: readonly string[]): MissionDefinition[] => ids.map(id => {
+    const def = byId.get(id);
+    if (!def) throw new TypeError(`Unknown mission ${id}`);
+    return def;
+  });
+  const daily = pool(source.pools.daily), weekly = pool(source.pools.weekly);
+  BY_ID.clear(); for (const [id, def] of byId) BY_ID.set(id, def);
+  POOLS.daily.splice(0, POOLS.daily.length, ...daily); POOLS.weekly.splice(0, POOLS.weekly.length, ...weekly);
+  for (const scope of ['daily', 'weekly'] as const) { SCOPE_IDS[scope].clear(); for (const id of source.scopeIds[scope]) SCOPE_IDS[scope].add(id); }
+  missionCatalogues.authoredIds.clear(); for (const id of source.authoredIds) missionCatalogues.authoredIds.add(id);
+  missionCatalogues.authoredCities.clear(); for (const id of source.authoredCities) missionCatalogues.authoredCities.add(id);
+}
 /** Every dealt or saved id is in the pools; the original read a property of undefined (a TypeError) otherwise. */
 const defOf = (id: string): MissionDefinition => {
   const def = BY_ID.get(id);

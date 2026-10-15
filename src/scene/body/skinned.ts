@@ -204,6 +204,7 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
 
   const object = new T.Group();
   object.name = 'skinned-body';
+  object.userData.canonicalCharacter = true;
   object.add(root);
   // Garment rest fitting must see the untouched asset before age-face geometry changes.
   const wardrobe = createWardrobeRenderer(skinned, kit.matte);

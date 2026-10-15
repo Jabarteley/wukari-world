@@ -3,7 +3,7 @@
 // suggest.ts), and `whyNot` says, for any button, why it cannot work right now, so a button that cannot work says so instead of doing nothing.
 // A model suggestion therefore can never land somewhere other than the answer the brain would give. Pure (no Vue, no game): the server imports suggest.ts.
 import type { CompanionAction, CompanionContext, PlaceFact, TourId } from './types.ts'
-import { money } from '../../ui/format.ts'
+import { money } from '../../../game/money.ts'
 
 const open = (id: string, label: string, params?: Record<string, unknown>): CompanionAction => ({ kind: 'open', id, label, ...(params ? { params } : {}) })
 

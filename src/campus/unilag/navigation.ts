@@ -1,11 +1,9 @@
 import { createWalkGrid } from '../../scene/walk-grid.ts';
 import type { WalkCircle, WalkGrid, WalkPoint, WalkRect } from '../../scene/walk-grid.ts';
-import { CAMPUS_MAP } from './map.generated.ts';
+import { CAMPUS_NAVIGATION_DATA } from '#campus-navigation-data';
 import { pointInRing } from './geo.ts';
 import type { MetreRing } from './geo.ts';
-import { ANCHORS, ZONES, zoneAtPoint } from './layout.ts';
 import type { CampusZone } from './layout.ts';
-import { CAMPUS_TREES } from './landscape.ts';
 
 export interface CampusWalk { grids:Map<string,WalkGrid>; zoneAt:(x:number,z:number)=>CampusZone|null; route:(from:WalkPoint,to:WalkPoint)=>WalkPoint[]|null }
 const CELL=2, RADIUS=.4;
@@ -18,16 +16,16 @@ const blockedBy=(x:number,z:number,ring:MetreRing)=>pointInRing([x,z],ring)||dis
 
 export function createGeographicCampusWalk(extraFootprints:Record<string,Array<WalkRect|WalkCircle>>={}):CampusWalk{
   const gateColumns:WalkRect[]=[[-1.5,-2.5,1.5,2.5],[-1.5,-16.7,1.5,-15.3],[-1.5,15.3,1.5,16.7]];
-  const treeTrunks:WalkCircle[]=CAMPUS_TREES.map(tree=>[tree.x,tree.z,.45*tree.size]);
-  const grid=createWalkGrid({bounds:[CAMPUS_MAP.bounds[0],CAMPUS_MAP.bounds[1],CAMPUS_MAP.bounds[2],CAMPUS_MAP.bounds[3]],block:[...gateColumns,...treeTrunks,...Object.values(extraFootprints).flat()],cell:CELL,radius:RADIUS});
+  const treeTrunks:WalkCircle[]=CAMPUS_NAVIGATION_DATA.trees.map(([x,z,size])=>[x,z,.45*size]);
+  const grid=createWalkGrid({bounds:[...CAMPUS_NAVIGATION_DATA.bounds],block:[...gateColumns,...treeTrunks,...Object.values(extraFootprints).flat()],cell:CELL,radius:RADIUS});
   const [minX,minZ]=grid.bounds;
   // A trunk smaller than the cell diagonal may contain no cell centre; always
   // claim its containing cell so the rendered trunk cannot be walked through.
-  for(const tree of CAMPUS_TREES){const column=Math.floor((tree.x-minX)/grid.cell),row=Math.floor((tree.z-minZ)/grid.cell);if(column>=0&&row>=0&&column<grid.cols&&row<grid.rows)grid.cells[row*grid.cols+column]=1;}
+  for(const [x,z] of CAMPUS_NAVIGATION_DATA.trees){const column=Math.floor((x-minX)/grid.cell),row=Math.floor((z-minZ)/grid.cell);if(column>=0&&row>=0&&column<grid.cols&&row<grid.rows)grid.cells[row*grid.cols+column]=1;}
   for(let row=0;row<grid.rows;row++){
     const z=minZ+(row+.5)*grid.cell, crossings:number[]=[];
-    for(let index=1;index<CAMPUS_MAP.boundary.length;index++){
-      const [ax,az]=CAMPUS_MAP.boundary[index-1]!,[bx,bz]=CAMPUS_MAP.boundary[index]!;
+    for(let index=1;index<CAMPUS_NAVIGATION_DATA.boundary.length;index++){
+      const [ax,az]=CAMPUS_NAVIGATION_DATA.boundary[index-1]!,[bx,bz]=CAMPUS_NAVIGATION_DATA.boundary[index]!;
       if((az>z)===(bz>z))continue;
       crossings.push(ax+(bx-ax)*(z-az)/(bz-az));
     }
@@ -38,15 +36,17 @@ export function createGeographicCampusWalk(extraFootprints:Record<string,Array<W
       if(!inside)grid.cells[row*grid.cols+column]=1;
     }
   }
-  for(const feature of [...CAMPUS_MAP.buildings,...CAMPUS_MAP.surfaces.filter(surface=>surface.kind==='water'||surface.kind==='wetland'||surface.kind==='pool')]){
-    const ring=feature.ring,xs=ring.map(p=>p[0]),zs=ring.map(p=>p[1]);
+  for(const ring of CAMPUS_NAVIGATION_DATA.blockedRings){
+    const xs=ring.map(p=>p[0]),zs=ring.map(p=>p[1]);
     const c0=Math.max(0,Math.floor((Math.min(...xs)-RADIUS-minX)/grid.cell)),c1=Math.min(grid.cols-1,Math.floor((Math.max(...xs)+RADIUS-minX)/grid.cell));
     const r0=Math.max(0,Math.floor((Math.min(...zs)-RADIUS-minZ)/grid.cell)),r1=Math.min(grid.rows-1,Math.floor((Math.max(...zs)+RADIUS-minZ)/grid.cell));
     for(let row=r0;row<=r1;row++)for(let column=c0;column<=c1;column++){const x=minX+(column+.5)*grid.cell,z=minZ+(row+.5)*grid.cell;if(blockedBy(x,z,ring))grid.cells[row*grid.cols+column]=1;}
   }
-  const grids=new Map(ZONES.map(zone=>[zone.id,grid]));
-  const zoneAt=(x:number,z:number)=>Number.isFinite(x)&&Number.isFinite(z)?zoneAtPoint(x,z):null;
-  for(const anchor of Object.values(ANCHORS)){
+  const grids=new Map(CAMPUS_NAVIGATION_DATA.zones.map(zone=>[zone.id,grid]));
+  const zoneAt=(x:number,z:number)=>Number.isFinite(x)&&Number.isFinite(z)
+    ? CAMPUS_NAVIGATION_DATA.zones.find(zone=>x>=zone.bounds[0]&&x<zone.bounds[2]&&z>=zone.bounds[1]&&z<zone.bounds[3]
+      && pointInRing([x,z],CAMPUS_NAVIGATION_DATA.boundary))??null : null;
+  for(const anchor of CAMPUS_NAVIGATION_DATA.anchors){
     if(grid.free(anchor.x,anchor.z))continue;
     const nearest=grid.nearest(anchor.x,anchor.z,20);if(!nearest)continue;
     anchor.x=nearest.x;anchor.z=nearest.z;anchor.zone=zoneAt(nearest.x,nearest.z)?.id??anchor.zone;
@@ -59,3 +59,5 @@ export function createGeographicCampusWalk(extraFootprints:Record<string,Array<W
   };
   return {grids,zoneAt,route};
 }
+
+export const CAMPUS_NAVIGATION_ENTRANCE = CAMPUS_NAVIGATION_DATA.entrance;

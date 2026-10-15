@@ -1,0 +1,85 @@
+# First-person implementation and acceptance
+
+## Current release candidate — 15 October 2026
+
+The user authorized clearing the blockers, completing mobile/web checks and deployment, and explicitly approved an isolated release worktree. Work is tracked in [first-person-release-20261015](agent-work/first-person-release-20261015.md). Primary checkout character drafts remain separate. The retention chat is the sole final combined main/deployment operator.
+
+Current committed baseline is a9141b12, containing main5181c91a. The primary checkout's19 Street Studio errors are fixed; the candidate passes all five typecheck projects. Baseline two-build output was identical. Optional reward presentation extraction clears the shared-host cap:186,321raw/70,419gzip against192,000/71,000. No budget was raised.
+
+The inherited5,110,078-byte Worker blocker is repaired in pending source: immutable progression assets preserve the exact catalogue, compact campus navigation/shuttle data preserves every grid/route result, and a pure money import removes accidental Vue runtime. Reviewed Worker measurement is3,422,076bytes against3,500,000. Focused52/52 plus companion3/3 checks pass. Full accepted-city/country object maps are source-only; current Worker consumers use accepted IDs and episode/journey facades. Final combined profile/content source still needs all release gates and fresh generated assets.
+
+The user requested the view switch move into the existing More menu. The scene retains camera lifecycle ownership while the menu supplies its accessible control. This supersedes the historical floating-button placement below. The same pending source also fixes lying-pose eye offset and provides Reload to retry after a failed cached lazy import. These corrections need rebuilt browser proof.
+
+| Current acceptance | Evidence | Remaining scope |
+| --- | --- | --- |
+| Desktop hands/body/legs, side view, third-person restoration and saved preference | Actual a9141b12 served build; two avatars/outfits | Replay final source after menu move |
+| Mobile320/390px and landscape layout; simultaneous move/look and release | Browser emulation and actual two-touch CDP input | New menu placement; physical handset unavailable |
+| Phone input release, Buy suspension, home/outside/home, Danfo arrival | Actual local browser interactions | Final source spot-check; rail/browser arrival |
+| TV seated body and active screen, fun increase, mute UI | Normal1x clock, current avatar/outfit | Audible speaker proof unavailable; screen is generated still plus ambience |
+| Bed action and lazy-load failure | Both reproduced defects; source corrections reviewed | Rebuilt down-look and Reload to retry replay |
+| Performance | Existing budgets; local body diagnostics15draws/8,330triangles, loop stopped in one sample | Paired idle/FPS comparison; no physical-device performance claim |
+| Production readiness | Reviewed source only; no main push/deployment from this lane | Combined full gates, pinned hosted city QA, exact deployment receipt and live first-person check |
+
+Local browser evidence: `/tmp/allworld-first-person-browser-20261015/`. Current preview4412 serves immutable a9141b12 server source and preserved fake save data at1x. Browser ownership temporarily belongs to the retention lane for5176 profile checks; no concurrent UI operation. Historical14October material below remains labelled as such.
+
+## Prior implementation and local evidence — 14 October 2026
+
+
+Requested 14 October 2026 in `CODEX-FIRST-PERSON-HANDOFF.md`.
+
+Third person remains the default. First person is a device preference, never a server rule. Use the existing walker, obstacle grid, action callbacks, activity poses, and home door animation. Keep the controller, preferences UI, and presentation effects in lazy modules. Do not edit generated cities, map dive/aerial code, street-life code, or budgets.
+
+## Design
+
+Two shapes were considered: a second independent scene host, and a camera/input extension on the existing host. A second host would duplicate navigation, activities, geometry, and disposal. The extension shares those owners and adds only `setView(factory | null)` to the host API. The factory receives live scene coordinates, bodies, interaction targets, camera, and existing activation callbacks. Only the selected view loads its implementation. The adapter carries the factory across host/city changes.
+
+The camera uses the canonical character's eye height (2.3 avatar units, about 1.66 world units at the street's 0.72 scale), FOV 75, near plane 0.04. First person uses an unshifted projection so the reticle and input ray agree. Fallback standing, sitting, lying and soaking heights are pure arithmetic. During stationary poses and home door motion the camera follows the rendered head, because home furniture sequences move the body independently of the navigation waypoint. Walking uses the stable eye height unless optional bob is enabled. Movement uses the existing walk/jog speeds and grid. There is no new animation loop. Bob, vignette and 30-degree snap turns are optional and off by default. Reduced motion suppresses bob and transition fades.
+
+The user's follow-up requests a visible first-person body. Canonical body and wardrobe material clones retain the original skin/fabric shaders, authored sidedness and animations, showing torso, arms, hands, trousers/legs and shoes. A per-mesh bone-weight mask hides head/neck pixels, including hair and headwear; rigid head accessories are hidden separately. A small eye exclusion prevents nearby geometry clipping. The eye sits 0.28 avatar units forward along the current look yaw, independent of pitch, outside the collar. Initial and reset heading use the rendered body's facing; stationary seated turns preserve the user's relative head look without feeding walking turns back into movement. Shadow materials, skeletons and geometry remain untouched; no mesh, texture or animation loop is added. An inseparable baked fallback remains hidden. Original materials are restored when switching views; wardrobe replacements are refreshed without overwriting externally changed materials.
+
+The quick switch is a 44px icon-and-text button in the top HUD, with the target view written in full, current state/action announced to assistive technology, keyboard activation, focus indication, loading and retry states. It is hidden in Map and Buy modes, which suspend the controller and restore the ordinary view. Reach is capped, targets must be in front, and solids between the player and target block activation. E/Space, click/tap and the prompt use existing callbacks; the ordinary phone remains on P and the HUD.
+
+## Delivery tracker
+
+| Unit | Implementation | Evidence | Remaining gate |
+| --- | --- | --- | --- |
+| Camera, reach, visibility, device preferences | Implemented; default third person | Focused Node tests cover controller, pure math, materials, storage, live venue adapter and TV | Pending touch, network and FPS/geometry acceptance |
+| Visible first-person body | Implemented with head mask and forward eye position | Focused shader/material/eye tests; browser accepted standing/downward, side/downward, active seated and third-person restoration for Sharp Amaka | Other avatars/wardrobes; bulky clothing partly obscures seated legs |
+| Settings and quick scene switch | Implemented as lazy components | Local browser verified click/Enter, reload persistence, Buy suspension/resume and body restoration; clear at desktop, 390px, 320px and landscape | Physical-device touch and failed-load browser journey |
+| Venue/home/neighbourhood controller | Implemented against existing navigation and action callbacks | Local browser verified Lagos home/outside/home, Danfo fare/arrival, chair E-select/Sit/Rest and scene persistence | Touch simultaneity and FPS/geometry checks |
+| City street controller | Implemented; doors require an unobstructed grid line | Production build and typecheck | Server-backed street journey in browser |
+| Home doors, seats, beds and phone | Existing callbacks retained; rendered head follows object poses/door motion | Local browser verified Phone P and chair interaction; door path included in home/outside/home journey | Visual door alignment and bed acceptance |
+| TV presentation | Small generated still on the physical screen; existing synthesized viewing soundscape for `home-watch-tv` | Local browser verified TV placement, `Watch TV` action and the active ALLWORLD screen graphic | Audible/mute acceptance |
+| Bus/rail presentation | Lazy seated window view driven by existing travel state; map remains available; reduced motion/weak devices stop scenery motion | Local Danfo journey and fare/arrival verified | Rail browser acceptance; physical platform-to-train walking remains unimplemented |
+| UNILAG custom campus | Existing third-person host retained; preferred first person resumes in supported hosts | Explicit unsupported-host handling | Separate campus camera integration |
+| Budgets | Controller and venue interpretation lazy; reward display and diagnostic observer deferred | Updated build measured; controller remains absent from startup/first paint; shared scene remains over its existing cap | Reconcile existing shared-host excess on current main |
+| Map dive/arrival integration | Existing adapter retains view choice across supported hosts | Host scene replacement test | This checkout has no `src/map3d/dive*.ts`; integrate with current main |
+| Hosted one-city acceptance | Pending | Isolated local preview only; no hosted run or release claim | Current-main integration, authorized QA push and hosted journey |
+
+The checkout began on dirty `main`, 166 commits behind its tracked `origin/main`; the tracked branch was 171 commits ahead at final inspection. Existing character, asset, scene and generated-city changes are preserved. No branch/worktree, rebase, commit, push or deployment was made. Budgets are byte-for-byte unchanged from the starting copy.
+
+## Verification and limitations
+
+- The broader focused suite recorded **83 passes** in `/tmp/allworld-first-person-body-tests.log`. After the final body/accessory and camera changes, all **10 controller/visibility tests pass** in `/tmp/allworld-first-person-body-final-tests.log`, including original shader preservation, complete shadow/material restoration, rigid attachments, the collar offset, seated heading and independent head look. These are separate runs.
+- Updated production Vite build succeeds in **35.20 seconds**. Output: `/tmp/allworld-first-person-build-20261014`; log: `/tmp/allworld-first-person-body-camera-build.log`. Existing circular-chunk and large-asset warnings remain. The served controller is byte-identical to the build (`assets/controller-d980d451.js`).
+- Full `npm run typecheck` covers the final camera logic: changed TypeScript/Vue files are clean; the full command fails on **19 existing errors** in `scripts/street/build-studio.mjs` (15 TS7006, 4 TS7031). The baseline was not widened. Log: `/tmp/allworld-first-person-body-final-types.log`.
+- A source-override production rebuild using the saved pre-change files measured the shared scene at **194,668 raw / 72,875 gzip bytes** before this work. This does not modify or restore working files. Receipt: `/tmp/allworld-first-person-baseline-size.json`.
+- Current shared scene measurement: **192,415 raw / 72,126 gzip bytes** against **192,000 raw / 71,000 gzip** limits. This improves the existing excess but does not clear the release gate. Updated download receipt: `/tmp/allworld-first-person-body-budget-checks.json`. Startup is **611,719 raw / 221,953 gzip / 194,322 Brotli bytes**, all within their unchanged limits across 229 cities. The first-person controller is absent from the startup and first-paint closures. Loading JavaScript, first-paint Brotli, base bodies and clip pack also pass; wardrobe and street-tile artifact budgets are not measured by the current filename patterns. Old hashed chunks retained for already-open preview tabs are excluded from this build's measurement.
+- An isolated local preview is running on server port **4412** with fresh data at `/tmp/allworld-first-person-preview-data-20261014`; the preferred URL is `http://first-person.localhost:4412`. Chrome tabs sharing unscoped cookies can produce `device_session_required` on `127.0.0.1`, so use the preferred hostname. Browser captures and diagnostics are in `/tmp/allworld-first-person-browser-20261014/`.
+- Local browser evidence covers third-person → first-person, drag look plus W/Up/Shift-W, Phone P, reload persistence, Danfo fare/arrival, Buy suspension/resume, chair E-select/Sit/Rest, TV placement and Watch TV, and home/outside/home return. Updated switch captures are `19-mobile-toggle-updated.jpg`, `20-320-toggle.jpg` and `21-landscape-toggle.jpg` in the browser evidence directory; emulated touch/reduced motion were exercised, not a physical device. The active ALLWORLD graphic is visible on the TV in `34-active-seated-body.jpg`. Audio/mute, simultaneous touch controls, constrained-network behavior and a motion FPS benchmark remain unverified. No hosted run or live release is claimed.
+- The initial body version exposed the collar interior when looking down. Camera positioning and heading corrections resolve the standing, side and seated obstruction while preserving solid shoes and sleeves. Final accepted captures are `42-authored-forward.jpg` (hands, torso, trousers and shoes), `43-authored-side.jpg` (external shoulder), `44-authored-seated.jpg` (active TV pose, solid sleeve/torso and animated hand) and `45-authored-third.jpg` (complete third-person character restored). This acceptance covers Sharp Amaka's current wardrobe; bulky clothing and UI partly obscure seated legs.
+- Public renderer diagnostics before the final camera corrections measured first person at **14 draws / 6,234 triangles** and third person at **17 / 6,270**, both **16 geometries / 5 textures**. Idle animation loops were stopped with zero loop frames; render count changed from 9 to 11 across event updates, so this is not a claim of zero event renders or measured FPS. Receipts: `first-diag.json`, `first-idle-diag.json`, `third-diag.json` in the browser evidence directory.
+- TV is a generated still plus existing ambience, not a video broadcast. Transit is a seated presentation of existing travel, not a navigable train, physical boarding sequence or geographic window simulation. Those parts of the original handoff remain open.
+
+## Acceptance journey
+
+1. New device: third person, controller chunk absent. Select first person in Settings or the scene button; refresh and verify persistence. Switch back and verify original camera/body restoration. The isolated preview covers this path and the revised button on desktop and narrow mobile viewports.
+2. Desktop: drag look, WASD/arrows, Shift jog, E/Space interaction. Confirm a sheet, typing, hidden tab, lost pointer and mode switch release input. No pointer lock required.
+3. Phone: move stick and look drag simultaneously; prompt and quick switch have 44px touch targets. Emulated touch/reduced motion and responsive switch layout are verified. Physical-device touch simultaneity, constrained network and failed lazy-import recovery remain open.
+4. Lagos home: fridge/seat/TV/bed actions use ordinary UI; camera follows activity height. Local browser verified TV placement/watch with its active screen graphic, chair selection/sit/rest, visible body during Watch TV, and home/outside/home return. Bed, audio/mute and no-wall/reach browser checks remain open.
+5. Travel: existing bus/rail trip, arrival in another venue/city, return to first-person view. Preserve cancellation, fares, timing and arrival rules.
+6. Compare idle frame counts, walking geometry, draw calls and frame times. No raised scenery/character/download budgets. Hosted driver: `scripts/journeys/map-shots.ts` on `claude/qa-20261012`, one-city acceptance batch before any release.
+
+## Routing record
+
+Luna (medium): interaction inventory, pure math/occlusion, visibility and focused tests. Sol (medium): preferences/settings, television presentation. Primary: architecture, host integration, review and final non-UI verification. Luna also handled reward/benchmark deferral, controller tests and wardrobe replacement visibility; Sol handled the real TV activity correction and live venue adapter tests. Worker outputs were inspected and integrated by the primary. Astra performed a bounded final integration review, found the earlier host capture-click handler could bypass first-person interaction, and the primary added a host guard plus a tap/drag/switch-back regression test. Browser work belongs to Astra. Token and monetary usage are unavailable; no cost savings claimed.

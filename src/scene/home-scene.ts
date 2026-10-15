@@ -1283,6 +1283,16 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     get floors() { return plot.floors; },
     /** True in Buy mode: taps place and pick furniture, and the host does not walk the avatar. */
     get placing() { return buying(); },
+    screens() {
+      return itemsOf(lastState).flatMap(item => {
+        const def = FURNITURE[item.itemId];
+        if (def?.kind !== 'tv') return [];
+        const at = mountOf(def, item.x, item.y, item.rot, floorOf(item)), depth = 0.047 * at.scale;
+        return [{ id: item.id, x: at.x + Math.sin(at.ry) * depth, y: at.y + (0.5 + def.w * 0.26) * at.scale,
+          z: at.z + Math.cos(at.ry) * depth, ry: at.ry, width: def.w * 0.62 * at.scale, height: def.w * 0.34 * at.scale }];
+      });
+    },
+    get playerBody() { return body?.object ?? null; },
     pickAt, use,
     /** Floor furniture and where it stands, for diagnostics: [{ id, itemId, x, y, z }] (centre of the footprint, on its floor). */
     objects() {

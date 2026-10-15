@@ -1,4 +1,5 @@
-import { installWorldMissions } from '../content/world-missions.ts'
+import { installBundledProgression } from '#progression-provider'
+import { progressionReady } from '../progression/provider.ts'
 /**
  * OWNER: foundation — feature owners never edit this file.
  * Registers host systems in a fixed order (base.ts, progression records, server-only living-world and market actions, then
@@ -17,6 +18,7 @@ import market from './market.ts';
 import unilagStudent from '../../campus/unilag/student.ts';
 import unilagCommunity from '../../campus/unilag/games.ts';
 import unilagShuttle from '../../campus/unilag/shuttle.ts';
+import { installProgressionMissions } from './missions.ts';
 
 installHomewardRules(homewardRules);
 
@@ -28,4 +30,5 @@ registerSystem(market);
 for (const system of CAMPUS_SYSTEMS) registerSystem(system);
 export const SYSTEMS = [...BASE_SYSTEMS, ...PROGRESSION_SYSTEMS, livingWorld, market, ...CAMPUS_SYSTEMS];
 
-installWorldMissions()
+installBundledProgression()
+if (progressionReady()) installProgressionMissions()

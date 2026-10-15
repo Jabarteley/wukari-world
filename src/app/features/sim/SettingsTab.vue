@@ -34,6 +34,7 @@ import { browserSpeech, pickVoice } from '../../../audio/voice/speech.ts'
 import { getSound, onSoundChange, setSound } from '../../../audio/settings.ts'
 import { play } from '../../../audio/play.ts'
 import { useSection } from '../kit/section.ts'
+import ViewSettings from './ViewSettings.vue'
 
 const props = defineProps<{ params?: unknown }>()
 useSection(() => props.params)
@@ -120,6 +121,8 @@ onMounted(() => { void growth.load(); void loadOlderLives() })
       <button v-for="item in WALLPAPERS" :key="item.id" type="button" class="settings-wall" :class="`wall-${item.id}`" :aria-pressed="item.id === wall" :aria-label="`${item.label} wallpaper`" @click="pickWall(item.id)"><span>{{ item.label }}</span></button>
     </div>
     <p class="settings-note">Saved on this device only. Open the Phone to see it.</p>
+
+    <ViewSettings />
 
     <h3 class="ui-section">Guidance</h3>
     <div class="ui-rows">

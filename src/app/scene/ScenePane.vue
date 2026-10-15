@@ -24,6 +24,9 @@ import { social } from '../features/social/useSocial.ts'
 import { lightOn } from '../../lightMode.ts'
 import { placeNow } from '../features/places/placeState.ts'
 
+const SceneViewToggle = defineAsyncComponent(() => import('./SceneViewToggle.vue'))
+const viewHostRevision = ref(0)
+
 const props = defineProps<{
   /** Elements whose bottom edge marks how far the HUD covers the top of the scene. */
   top: () => (Element | null)[]
@@ -133,7 +136,7 @@ onMounted(() => {
       // The campus: its host walks the avatar to a landmark and then asks for the game's ordinary `spot` action; its shuttle runs on server time.
       commitSpot: ({ id }: { id: string }) => commitSpot(id), now: () => game.serverNow(),
       onScenes, onError: sceneFailed,
-      onHost: () => { if (scene.venue.value) hostUp(); layout(); reportPlace() } })
+      onHost: () => { viewHostRevision.value++; if (scene.venue.value) hostUp(); layout(); reportPlace() } })
       scene.venue.value = venue
       void import('../features/neighbourhood/neighbourhoodStore.ts').then((module) => module.startNeighbourhood())
       venue.setState(game.state.value)
@@ -180,6 +183,7 @@ defineExpose({ layout })
 
 <template>
   <div id="venue-scene" ref="container"  class="life-scene" :hidden="hidden" @animationend.self="onResize">
+    <SceneViewToggle v-if="!waiting" :host-revision="viewHostRevision" />
     <div v-if="waiting" class="scene-wait" :class="{ 'is-stuck': failed || stuck }" role="status">
       <img src="/icons/world-loader.webp" width="96" height="96" alt="" />
       <SceneUnsupported v-if="failed" />

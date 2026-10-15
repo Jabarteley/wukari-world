@@ -7,8 +7,7 @@
 import { arrive, debit, spotsOf } from '../../game/api.ts';
 import { LEFT_OUT, PLAYS } from '../../game/profile.ts';
 import { busy, fail, ok } from '../../game/util.ts';
-import { ANCHORS, ROADS } from './layout.ts';
-import { CAMPUS_MAP } from './map.generated.ts';
+import { CAMPUS_NAVIGATION_DATA } from '#campus-navigation-data';
 import { indexRoadBuildings, roadCorridorClearIndexed } from './shuttle-clearance.ts';
 import type { CampusAnchor } from './layout.ts';
 import { createCampusWalk } from './walk.ts';
@@ -35,7 +34,8 @@ export interface ShuttleStop {
   anchor: CampusAnchor
 }
 
-const anchorOf = (id: ShuttleStopId): CampusAnchor | null => ANCHORS[id] ?? null;
+const anchors = new Map(CAMPUS_NAVIGATION_DATA.anchors.map(anchor => [anchor.landmark, anchor]));
+const anchorOf = (id: ShuttleStopId): CampusAnchor | null => anchors.get(id) ?? null;
 
 const STOP_ROWS: readonly (readonly [ShuttleStopId, string])[] = [
   ['main-gate', 'Main Gate'],
@@ -86,7 +86,7 @@ const edgesAt = (graph: Map<string, RoadEdge[]>, key: string): RoadEdge[] => {
   if (!edges) { edges = []; graph.set(key, edges); }
   return edges;
 };
-const buildingRings = CAMPUS_MAP.buildings.map((building) => building.ring);
+const buildingRings = CAMPUS_NAVIGATION_DATA.blockedRings.slice(0, CAMPUS_NAVIGATION_DATA.buildingRingCount);
 // Building geometry is stationary for this generated map. Compile and copy
 // its validated bounds once instead of rebuilding every ring bound per road.
 const buildingClearance = indexRoadBuildings(buildingRings);
@@ -97,7 +97,7 @@ const addEdge = (a: Point, b: Point, roadId: string, width: number): void => {
   edgesAt(roadGraph, bk).push({ to: ak, length: span, points: [b, a] });
   roadSegments.push({ a, b, ak, bk, roadId, width });
 };
-for (const road of ROADS) {
+for (const road of CAMPUS_NAVIGATION_DATA.roads) {
   for (let index = 1; index < road.points.length; index += 1) {
     const from = road.points[index - 1], to = road.points[index];
     if (!from || !to) continue; // index is always in range

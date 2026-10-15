@@ -1,6 +1,6 @@
 import type { WalkCircle, WalkGrid, WalkPoint, WalkRect } from '../../scene/walk-grid.ts';
 import type { CampusBuilding } from './layout.ts';
-import { createGeographicCampusWalk } from './navigation.ts';
+import { CAMPUS_NAVIGATION_ENTRANCE, createGeographicCampusWalk } from './navigation.ts';
 import type { CampusWalk } from './navigation.ts';
 
 export type { WalkCircle, WalkGrid, WalkPoint, WalkRect, CampusWalk };
@@ -13,3 +13,4 @@ export function footprintOf(building:CampusBuilding):WalkRect[]{
 }
 
 export function createCampusWalk(extraFootprints:Record<string,Array<WalkRect|WalkCircle>>={}):CampusWalk{return createGeographicCampusWalk(extraFootprints);}
+export { CAMPUS_NAVIGATION_ENTRANCE };

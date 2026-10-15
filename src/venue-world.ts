@@ -1,3 +1,4 @@
+import type { SceneViewContext, SceneViewExtension, SceneViewFactory, VenueViewSource } from './scene/view-extension.ts';
 import { avatarProportions } from './types/avatar.ts';
 import { venueFor } from './game/cities/runtime.ts';
 import { DEFAULT_CITY_ID } from './game/cities/registry.ts';
@@ -93,7 +94,6 @@ import type { DragKind } from './scene/gesture.ts';
 import { createOccluders, resolve as resolveCollision } from './scene/camera-collision.ts';
 import { sceneMaterials } from './scene/build.ts';
 import { createMotionLoop } from './scene/motion-loop.ts';
-import { rewardChips, cheer } from './scene/reward.ts';
 import { applyRendererLook, renderTier, createSky, createGround, mixHex, matteScenery } from './scene/look.ts';
 import { createWalker, createPositionReporter, gaitPhase, WALK_SPEED, JOG_SPEED } from './scene/movement.ts';
 import { createSceneControls } from './scene/controls.ts';
@@ -114,6 +114,7 @@ import type { WalkPoint, WalkMode } from './scene/movement.ts';
 import type { LifeState } from './types/life.ts';
 import { inputMode, readFacts } from './ui/inputMode.ts';
 import { NPC_WORD, addNpcWord, npcAria, npcTitle } from './ui/npc-mark.ts';
+
 
 /** The player's avatar in every scene: their saved look, seeded by the session's public id (never the cookie). pose: set only by the host's own callers (a fixed pose). */
 export interface PlayerLook { look: unknown; seed: string; name: string; pose?: string | null }
@@ -210,6 +211,8 @@ export interface HostWalk extends Omit<SceneWalk, 'rest' | 'things'> {
 }
 /** What a scene entry may offer the host (see the header). Venue scenes and the home room both satisfy it. */
 export interface HostScene {
+  screens?(): SceneViewContext['screens'];
+  readonly playerBody?: THREE.Object3D | null;
   setHostBudget?(budget: { triangles: number; drawCalls: number }): void
   readonly streetGate?: { x: number; z: number; ry?: number }
   beginDoor?(done: () => void): void
@@ -249,11 +252,12 @@ export interface HostScene {
   pickAt?(x: number, y: number): HomePick | null
   use?(id?: string | null, cell?: { x: number; y: number } | null): void
   readonly walls?: { back: boolean; left: boolean } | null
-  objects?(): { id: string; itemId: string; x: number; z: number }[]
+  objects?(): { id: string; itemId: string; x: number; y?: number; z: number }[]
   dispose?(): void
 }
 /** What createVenueWorld() returns. Every method draws at most one frame, and only when something changed. */
 export interface VenueWorld {
+  setView(factory: SceneViewFactory | null): boolean
   update(): void
   captureCanvas(): HTMLCanvasElement | null
   setStreet(street: WorldStreetResponse | null): void
@@ -503,10 +507,12 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   const built = new Map<string, HostScene>();
   let prepared: string | null = null;
   let current: HostScene | null = null, currentLocation: string | null = null, renderCount = 0, lastState: LifeState | null = null, size = { width: 0, height: 0 };
+  let rewardEpoch = 0;
   let ambientFor: ((venue: string, kind: string) => AmbientIdent | null) | null = null;
   let player: Partial<PlayerLook> = {}, crowd: CrowdPerson[] = [], crowdKey = '[]', background: Colour = DEFAULT_BACKGROUND, insets = { top: 0, bottom: 0 };
   let tagSource: TagData[] = [], shownTags: ShownTag[] = [], tagNodes: TagNode[] = [], tagShape = '', tagsRead = true;
   const point = new THREE.Vector3(), rayA = new THREE.Vector3(), rayB = new THREE.Vector3();
+  let view: SceneViewExtension | null = null;
   const orbit = createOrbit();
   const walker = createWalker();
   const pointers = new Map<number, { x: number; y: number; startX: number; startY: number; loose: boolean; kind: DragKind; type: string; down: number }>();
@@ -652,7 +658,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     const still = reduced();
     const beforeX = walker.x, beforeZ = walker.z;
     walker.jogSpeed = (walk.onStairs ? WALK_SPEED : JOG_SPEED) * walk.scale;
-    const more = walker.step(dt, orbit.azimuth, still);
+    const more = walker.step(dt, view?.azimuth ?? orbit.azimuth, still);
     const distance = Math.hypot(walker.x - beforeX, walker.z - beforeZ);
     const proportions = avatarProportions(lastState?.onboarding?.look.appearance);
     const jogging = walker.jogging && !walk.onStairs;
@@ -830,7 +836,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
    */
   function keepInSight() {
     const walk = walkOf();
-    if (!walk || !current) { orbit.cap(Infinity); ghost.goal = 0; return; }
+    if (view || !walk || !current) { orbit.cap(Infinity); ghost.now = ghost.goal = 0; return; }
     const offset = current.group.position, tall = 2.45 * walk.scale;
     head.set(walker.x, avatarY + tall * 0.62, walker.z);
     // The camera's un-held place, from the orbit's present angles and pivot.
@@ -1157,6 +1163,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     pointerenter() { refreshBox(); },
     pointerleave() { if (hover && !pointers.size) { setHover(null); if (!loop.running) renderScene(); } },
     click(event) {
+      if (view) { event.preventDefault(); return; }
       if (suppressClick && (event as MouseEvent).detail !== 0) { event.preventDefault(); event.stopImmediatePropagation(); return; }
       if ((event as MouseEvent).detail === 0) return; // a keyboard-generated click is not a place on the floor
       if (tap(event as MouseEvent) && !loop.running) renderScene();
@@ -1207,29 +1214,28 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     onReward({ detail: { cash: (Number(state.cash) || 0) - from.cash, needs: diff(state.needs, from.needs), skills: diff(state.skills, from.skills, 0) } });
   }
   function onReward(event: Event | { detail: RewardDetail }) {
-    const chips = rewardChips((event as CustomEvent<RewardDetail | null>).detail || {});
+    const detail = (event as CustomEvent<RewardDetail | null>).detail || {};
     const walk = walkOf();
-    if (!tagLayer || !chips.length || !walk || !current || uiMode !== 'venue') return;
-    tagLayer.querySelector('.scene-reward')?.remove();
+    if (!tagLayer || !walk || !current || uiMode !== 'venue') return;
     current.group.updateMatrixWorld(true);
     const box = container.getBoundingClientRect();
     screenOf(walker.x, avatarY + 2.75 * walk.scale, walker.z, pixel);
-    const node = globalThis.document.createElement('div');
-    node.className = 'scene-reward'; node.setAttribute('aria-hidden', 'true');
-    node.style.left = `${Math.round(clamp(pixel.x - (box.left || 0), 84, Math.max(84, size.width - 84)))}px`;
-    node.style.top = `${Math.round(clamp(pixel.y - (box.top || 0), insets.top + 28 * chips.length + 12, Math.max(insets.top + 60, size.height - insets.bottom - 20)))}px`;
-    for (const chip of chips) {
-      const item = globalThis.document.createElement('span');
-      item.className = `is-${['gain', 'loss', 'money', 'xp'].includes(chip.kind) ? chip.kind : 'gain'}`;
-      if (typeof chip.glyph === 'string' && chip.glyph.startsWith('<svg')) item.innerHTML = chip.glyph;
-      item.append(String(chip.text || ''));
-      node.append(item);
-    }
-    // The last chip to finish takes the whole group away; with animations off they are simply removed by the next reward or scene change.
-    node.lastChild!.addEventListener('animationend', () => node.remove(), { once: true });
-    tagLayer.append(node);
+    const x = pixel.x - (box.left || 0), y = pixel.y - (box.top || 0);
+    const epoch = rewardEpoch, location = currentLocation;
+    void import('./scene/reward.ts').then(({ showReward }) => {
+      if (gone || epoch !== rewardEpoch || location !== currentLocation || !tagLayer || !current || uiMode !== 'venue') return;
+      showReward(tagLayer, detail, {
+        x, y, width: size.width, height: size.height,
+        topInset: insets.top, bottomInset: insets.bottom,
+      });
+    }).catch(() => { /* rewards are optional presentation */ });
   }
-  const onCheer = () => cheer(globalThis.document?.querySelector('dialog[open]') || globalThis.document?.body);
+  function onCheer() {
+    const epoch = rewardEpoch;
+    void import('./scene/reward.ts').then(({ cheer }) => {
+      if (!gone && epoch === rewardEpoch) cheer(globalThis.document?.querySelector('dialog[open]') || globalThis.document?.body);
+    }).catch(() => { /* cheers are optional presentation */ });
+  }
   function onMode(event: Event) { homeDoorEpoch++; uiMode = (event as CustomEvent<{ mode?: string } | null>).detail?.mode || 'venue'; if (uiMode !== 'venue') dropInput(); }
   // Created after the shell: start from the view the shell wrote on its root element.
   uiMode = globalThis.document?.querySelector?.<HTMLElement>('.life-ui')?.dataset?.mode || 'venue';
@@ -1325,6 +1331,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   function crowdReady() { if (gone) return; readTags(); if (!loop.running) renderScene(); }
   function renderScene() {
     if (container.hidden === true) return;
+    view?.render();
     lookIn(); aimGhost();
     lights.aim(camera, orbit.now.x + orbit.now.px, orbit.now.y, orbit.now.z + orbit.now.pz);
     renderer.render(scene, camera); renderCount += 1; projectTags();
@@ -1466,6 +1473,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   /** Show a venue. Draws one frame only if the venue actually changed. */
   function setLocation(id: string) {
     if (id === currentLocation) return;
+    rewardEpoch++;
     loop.stop();
     if (current) {
       current.walk?.drive(false);
@@ -1543,7 +1551,17 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     return true;
   }
   setLocation(location);
+  const viewSource: VenueViewSource = {
+    THREE, container, camera, canvas, walker,
+    read: () => ({ current, walk: walkOf(), state: lastState, body: standIn?.object ?? null, y: avatarY, phase: stride,
+      rest: restPose, mode: uiMode, locked, location: currentLocation, weakDevice: tier.name === 'phone', spots: spotList, things: thingList, tags: tagSource }),
+    actions: { spot: id => requestSpot(id, true), object: id => current?.use?.(id, null),
+      home: onHomeDoor && walkHomeDoor, neighbour: onNeighbourDoor && walkNeighbourDoor, street: onStreetGate && walkStreetGate, tag: onTag },
+    refresh: () => { if (!gone) renderScene(); },
+    release() { dropInput(); releasePointers(); if (walker.mode === 'keys') walker.stop(); clearDwell(); if (thingDwell !== null) { clearTimeout(thingDwell); thingDwell = null; } },
+  };
   return {
+    setView(factory) { view?.dispose(); view = null; viewSource.release(); view = factory?.(viewSource) ?? null; resize(); return true; },
     update() { renderScene(); },
     get location() { return currentLocation; },
     /**
@@ -1565,6 +1583,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     motion() { return current && loop.available && !reduced() ? { orbit, wake: loop.wake } : null; },
     diagnostics() {
       return {
+        view: view ? 'first' : 'third',
         renderCount,
         // Movement and camera: where the avatar is, which way it faces, where the camera is, and whether frames are being drawn.
         loop: { running: loop.running, frames: loop.frames },
@@ -1649,6 +1668,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     position() { const k = presenceScale(); return { x: Math.round(walker.x * k * 100) / 100, z: Math.round(walker.z * k * 100) / 100, location: currentLocation }; },
     dispose() {
       if (gone) return;
+      view?.dispose(); view = null;
       gone = true; reducedMotion?.removeEventListener?.('change', onReducedMotion); standInStartup.dispose(); loop.dispose(); standIn?.dispose(); clearDwell(); if (thingDwell !== null) { clearTimeout(thingDwell); thingDwell = null; }
       releasePointers();
       for (const [type, listener] of Object.entries(listeners)) canvas.removeEventListener?.(type, listener, { capture: type === 'click' });

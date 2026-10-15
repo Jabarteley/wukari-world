@@ -1,3 +1,4 @@
+import type { SceneViewFactory } from '../../scene/view-extension.ts';
 /**
  * ONE SCENE API, TWO HOSTS. Every venue is drawn by the venue host (src/venue-world.ts). The UNILAG
  * campus is a venue the size of a district — ten zones, position-driven level of detail, a shuttle on
@@ -50,6 +51,7 @@ type AmbientPerson = import('../../scene/ambient/layer.ts').AmbientPerson;
 
 /** What the adapter asks of either host (the venue host has more; the campus host has no setGoal/zoom/recentre/prepare). */
 interface WorldHost {
+  setView?(factory: SceneViewFactory | null): boolean;
   setStreet?(street: WorldStreetResponse | null): void;
   walkNeighbourDoor?(host: string): boolean;
   walkStreetGate?(): boolean;
@@ -107,6 +109,7 @@ export interface WorldAdapterOptions {
 }
 
 export function createWorldAdapter(container: HTMLElement, { location = 'park', commitSpot, now, onHost, onScenes, onError, onStreetJourney, loadStreet = () => import('../../street/host.ts'), loadCampus = () => import('./host.ts'), loadScenes = loadCityScenes, scenesReady = cityScenesReady, lazy, ...options }: WorldAdapterOptions = {}) {
+  let viewFactory: SceneViewFactory | null = null;
   let currentLocation = location;
   // Where the regulars are (their daily routines): a chunk of its own, fetched with the scene and not with the first page. Until it lands every regular of a venue is listed, as before.
   void import('../../game/routines/pack.ts').then(undefined, () => undefined);
@@ -153,6 +156,7 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
     if (insets) host.setInsets(insets);
     if (goal !== null) host.setGoal?.(goal);
     if (ambientFor) host.setAmbient?.(ambientFor);
+    if (viewFactory) host.setView?.(viewFactory);
     host.resize?.();
     onHost?.(kind);
   }
@@ -236,6 +240,7 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
   build(currentLocation);
 
   return {
+    setView(factory: SceneViewFactory | null) { viewFactory = factory; return host?.setView?.(factory) ?? false; },
     update() { host?.update(); },
     resize() { host?.resize(); },
     get location() { return currentLocation; },

@@ -60,6 +60,7 @@ export function solveSupportedFeet(body: Pick<SkinnedBody, 'sampleFootContacts' 
 }
 
 export interface StandIn {
+  readonly object: THREE.Object3D | null;
   /** True while a bounded pose or locomotion blend needs host frames. */
   readonly easing: boolean;
   /** The body, once it is in and shown (tests, diagnostics). */
@@ -132,6 +133,7 @@ export function createStandIn(kit: Kit, onReady: () => void, allowed: boolean = 
   }
   return {
     get easing() { return Boolean(body?.easing && scene); },
+    get object() { return body?.object ?? null; },
     get shown() { return Boolean(body && scene && body.object.parent === scene.group); },
     tagPosition() {
       const head = body?.object.getObjectByName('Head');

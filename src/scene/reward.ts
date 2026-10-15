@@ -19,6 +19,14 @@ export interface RewardInput {
   skills?: Record<string, number>;
   order?: string[];
 }
+export interface RewardLayout {
+  x: number
+  y: number
+  width: number
+  height: number
+  topInset: number
+  bottomInset: number
+}
 interface RewardDraft { text: string; kind: RewardKind; icon: string; size: number }
 
 export function rewardChips({ cash = 0, needs = {}, skills = {}, order = Object.keys(needs) }: RewardInput = {}): RewardChip[] {
@@ -34,6 +42,29 @@ export function rewardChips({ cash = 0, needs = {}, skills = {}, order = Object.
   }
   chips.sort((a, b) => Number(b.kind !== 'loss') - Number(a.kind !== 'loss') || b.size - a.size);
   return chips.slice(0, 4).map(({ text, kind, icon }) => ({ text, kind, glyph: hasGlyph(icon) ? glyph(icon) : '' }));
+}
+
+/** Render the reward chips at a precomputed avatar projection without asking for another frame. */
+export function showReward(parent: Element | null | undefined, detail: RewardInput = {}, layout: RewardLayout): boolean {
+  const chips = rewardChips(detail)
+  const doc = globalThis.document
+  if (!doc?.createElement || !parent || !chips.length) return false
+  parent.querySelector('.scene-reward')?.remove()
+  const clamp = (value: number, low: number, high: number) => Math.max(low, Math.min(high, value))
+  const node = doc.createElement('div')
+  node.className = 'scene-reward'; node.setAttribute('aria-hidden', 'true')
+  node.style.left = `${Math.round(clamp(layout.x, 84, Math.max(84, layout.width - 84)))}px`
+  node.style.top = `${Math.round(clamp(layout.y, layout.topInset + 28 * chips.length + 12, Math.max(layout.topInset + 60, layout.height - layout.bottomInset - 20)))}px`
+  for (const chip of chips) {
+    const item = doc.createElement('span')
+    item.className = `is-${['gain', 'loss', 'money', 'xp'].includes(chip.kind) ? chip.kind : 'gain'}`
+    if (typeof chip.glyph === 'string' && chip.glyph.startsWith('<svg')) item.innerHTML = chip.glyph
+    item.append(String(chip.text || ''))
+    node.append(item)
+  }
+  node.lastChild!.addEventListener('animationend', () => node.remove(), { once: true })
+  parent.append(node)
+  return true
 }
 
 const COLOURS = ['#f2b01e', '#2fa866', '#2a5bd7', '#e2572b', '#7a3fb0', '#ffffff'];

@@ -1,3 +1,4 @@
+import type { SceneViewContext, SceneViewExtension, SceneViewFactory } from '../scene/view-extension.ts'
 import type { Object3D, WebGLRenderer } from 'three'
 import type { HostPerson, HostPlayer, HostState } from '../campus/unilag/host.ts'
 import type { StreetJourney } from './types.ts'
@@ -40,6 +41,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
   const scenery = createStreetRenderer(kit); world.add(scenery.group)
   const walker = createWalker({ speed: WALK_SPEED * 0.72, jogSpeed: JOG_SPEED * 0.72 }), orbit = createOrbit()
   orbit.setBase([8, 10, 13], [0, 1, 0]); orbit.setLimits({ near: 0.45, far: 2.5 })
+  let view: SceneViewExtension | null = null
   let closed = false, busy = false, location = 'city-street', initialized = false, centreKey = '', renderCount = 0, travelled = 0, lastSend = 0
   let player: HostPlayer = {}, avatar = buildAvatar(kit, undefined, { rig: true, scale: 0.72 }), playerKey = ''
   let standIn: StandIn | null = null, stride = 0
@@ -47,6 +49,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
   world.add(avatar)
   let pending: Promise<void> | null = null, entering = false, doorTask: string | null = null
   const held = new Set<string>(), doorViews = new Map<string, HTMLButtonElement>(), label = document.createElement('div')
+  label.className = 'street-door-labels'
   label.setAttribute('aria-label', 'Street entrances'); Object.assign(label.style, { position: 'absolute', inset: '0', pointerEvents: 'none', overflow: 'hidden' }); container.appendChild(label)
   const status = document.createElement('span'); status.setAttribute('role', 'status'); status.textContent = 'Loading city street…'; Object.assign(status.style, { position: 'absolute', bottom: '12px', left: '12px', color: '#152a2b', background: '#fffbe8', padding: '5px 9px', borderRadius: '8px', pointerEvents: 'none', fontSize: '12px' }); container.appendChild(status)
   const practiceLabels = document.createElement('div')
@@ -144,11 +147,11 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
       element.style.left = `${(point.x + 1) * container.clientWidth / 2}px`; element.style.top = `${(1 - point.y) * container.clientHeight / 2}px`; element.style.transform = 'translate(-50%,-100%)'
     }
   }
-  function draw() { if (closed) return; const at = scenery.local(walker); avatar.position.set(at.x, 0, at.z); avatar.rotation.y = walker.ry; standIn?.move(at.x, 0, at.z, walker.ry); orbit.follow(at.x, 1.2, at.z); orbit.apply(camera); renderer.render(world, camera); renderCount++; renderDoors(); renderPracticeLabels() }
+  function draw() { if (closed) return; const at = scenery.local(walker); avatar.position.set(at.x, 0, at.z); avatar.rotation.y = walker.ry; standIn?.move(at.x, 0, at.z, walker.ry); orbit.follow(at.x, 1.2, at.z); orbit.apply(camera); view?.render(); renderer.render(world, camera); renderCount++; renderDoors(); renderPracticeLabels() }
   const loop = createMotionLoop(dt => {
     if (closed || !initialized) return false
     const accepted = client.journey, before = { x: walker.x, z: walker.z }, ahead = accepted ? Math.hypot(walker.x - accepted.point.x, walker.z - accepted.point.z) : 0
-    const moving = !busy && !entering && ahead < 2.5 && walker.step(dt, orbit.azimuth), distance = Math.hypot(walker.x - before.x, walker.z - before.z); travelled += distance
+    const moving = !busy && !entering && ahead < 2.5 && walker.step(dt, view?.azimuth ?? orbit.azimuth), distance = Math.hypot(walker.x - before.x, walker.z - before.z); travelled += distance
     const proportions = avatarProportions(player.look?.appearance)
     stride += gaitPhase(distance, 0.72 * proportions.height * proportions.depth, walker.jogging, standIn?.shown === true)
     poseAvatar(avatar, { pose: distance > 0 ? walker.jogging ? 'jog' : 'walk' : 'stand', stride: (stride / (2 * Math.PI)) % 1 })
@@ -160,7 +163,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
   const controls = createSceneControls(container, { onZoom: d => { orbit.zoomBy(d > 0 ? 0.9 : 1.1); loop.wake() }, onRecentre: () => { orbit.reset(); loop.wake() }, onStick: (right, forward, jog) => { if (busy || entering) return; doorTask = null; walker.input(right, forward, jog); loop.wake() } })
   controls?.touch(true)
   const directions = new Map([['w', 'up'], ['arrowup', 'up'], ['s', 'down'], ['arrowdown', 'down'], ['a', 'left'], ['arrowleft', 'left'], ['d', 'right'], ['arrowright', 'right']])
-  function key(event: KeyboardEvent) { const direction = directions.get(event.key.toLowerCase()); if (!direction) return; if (event.type === 'keydown' && (event.target instanceof Element && event.target.closest('input,textarea,select,[contenteditable],button') || busy || entering)) return; event.preventDefault(); if (event.type === 'keydown') held.add(direction); else held.delete(direction); doorTask = null; walker.input(Number(held.has('right')) - Number(held.has('left')), Number(held.has('up')) - Number(held.has('down')), event.shiftKey); loop.wake() }
+  function key(event: KeyboardEvent) { const direction = directions.get(event.key.toLowerCase()); if (!direction) return; if (view && !view.inputEnabled && event.type === 'keydown') return; if (event.type === 'keydown' && (event.target instanceof Element && event.target.closest('input,textarea,select,[contenteditable],button') || busy || entering)) return; event.preventDefault(); if (event.type === 'keydown') held.add(direction); else held.delete(direction); doorTask = null; walker.input(Number(held.has('right')) - Number(held.has('left')), Number(held.has('up')) - Number(held.has('down')), event.shiftKey); loop.wake() }
   globalThis.addEventListener('keydown', key); globalThis.addEventListener('keyup', key)
   let pointer: { id: number; x: number; y: number; lastX: number; lastY: number; dragged: boolean } | null = null
   function pointerDown(event: PointerEvent) { pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, lastX: event.clientX, lastY: event.clientY, dragged: false }; renderer.domElement.setPointerCapture(event.pointerId) }
@@ -181,7 +184,22 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
     useJourney(journey, true); await loaded
   }).catch(error => { fail(error); throw error })
   void ready.catch(() => undefined)
+  const viewContext: SceneViewContext = {
+    THREE, container, camera, canvas: renderer.domElement, screens: [], weakDevice: true,
+    get scene() { return world; }, get bodies() { return [avatar, standIn?.object ?? null]; },
+    get x() { return scenery.local(walker).x; }, get y() { return 0; }, get z() { return scenery.local(walker).z; },
+    get facing() { return walker.ry; }, get scale() { return 0.72 * avatarProportions(player.look?.appearance).height; },
+    get pose() { return 'stand'; }, get seat() { return undefined; },
+    get moving() { return walker.moving; }, get phase() { return stride; },
+    get enabled() { return !closed && !container.hidden && location === 'city-street'; },
+    get canAct() { return initialized && !busy && !entering; }, get location() { return location; },
+    get activity() { return null; }, get solids() { return []; },
+    targets() { return scenery.doors().filter(door => walker.grid?.clearLine(walker.x, walker.z, door.approach.x, door.approach.z)).map(door => ({ id: door.id, kind: 'street-door', label: door.target.kind === 'estate' ? 'Return to your street' : venueLabel(door.target.venue, client.journey?.city ?? ''), ...scenery.local(door.approach), y: 1.2 })); },
+    activate(target) { walkDoor(target.id); }, refresh: draw,
+    release() { held.clear(); if (walker.mode === 'keys') walker.stop(); controls?.release(); },
+  }
   return {
+    setView(factory: SceneViewFactory | null) { view?.dispose(); view = null; viewContext.release(); view = factory?.(viewContext) ?? null; draw(); return true },
     ready, update: draw, resize,
     refresh: async () => { const journey = await client.refresh(); useJourney(journey, true) },
     setState(next: HostState | null) { busy = Boolean(next?.activeAction); if (busy) { held.clear(); walker.stop(); doorTask = null; controls?.release() } draw() },
@@ -193,8 +211,8 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
     walkBy(dx: number, dz: number) { return walkGround({ x: walker.x + dx, z: walker.z + dz }) },
     zoom(direction: number) { orbit.zoomBy(direction > 0 ? 0.9 : 1.1); loop.wake() }, recentre() { orbit.reset(); loop.wake() },
     position() { return { x: walker.x, z: walker.z, location } }, captureCanvas() { return renderer.domElement },
-    diagnostics() { const window = liveTiles?.snapshot(); return { location, initialized, busy, entering, renderCount, journey: client.journey, avatar: { x: walker.x, z: walker.z, moving: walker.moving, skinned: standIn?.shown === true, phase: stride }, tiles: window && { resident: window.resident, pending: window.pending, queued: window.queued, errors: window.errors }, scenery: scenery.diagnostics(), overlays: overlays.diagnostics(), drawCalls: renderer.info.render.calls, triangles: renderer.info.render.triangles, loop: { frames: loop.frames, running: loop.running }, disposed: closed } },
-    dispose() { if (closed) return; closed = true; initialTile?.reject(Error('Street closed')); initialTile = null; walker.stop(); loop.dispose(); client.dispose(); liveTiles?.dispose(); overlays.dispose(); overlayTiles.clear(); overlayLabels.clear(); scenery.dispose(); controls?.dispose(); observer?.disconnect(); globalThis.removeEventListener('keydown', key); globalThis.removeEventListener('keyup', key); renderer.domElement.removeEventListener('pointerdown', pointerDown); renderer.domElement.removeEventListener('pointermove', pointerMove); renderer.domElement.removeEventListener('pointerup', pointerUp); renderer.domElement.removeEventListener('pointercancel', pointerUp); label.remove(); practiceLabels.remove(); status.remove(); standIn?.dispose(); avatar.userData.dispose(); kit.dispose(); world.clear(); renderer.domElement.remove(); if (!options.renderer) renderer.dispose(); if (!options.renderer) { try { renderer.forceContextLoss() } catch { /* the context is already gone */ } } },
+    diagnostics() { const window = liveTiles?.snapshot(); return { view: view ? 'first' : 'third', camera: { x: camera.position.x, y: camera.position.y, z: camera.position.z, fov: camera.fov }, location, initialized, busy, entering, renderCount, journey: client.journey, avatar: { x: walker.x, z: walker.z, moving: walker.moving, skinned: standIn?.shown === true, phase: stride }, tiles: window && { resident: window.resident, pending: window.pending, queued: window.queued, errors: window.errors }, scenery: scenery.diagnostics(), overlays: overlays.diagnostics(), drawCalls: renderer.info.render.calls, triangles: renderer.info.render.triangles, loop: { frames: loop.frames, running: loop.running }, disposed: closed } },
+    dispose() { if (closed) return; view?.dispose(); view = null; closed = true; initialTile?.reject(Error('Street closed')); initialTile = null; walker.stop(); loop.dispose(); client.dispose(); liveTiles?.dispose(); overlays.dispose(); overlayTiles.clear(); overlayLabels.clear(); scenery.dispose(); controls?.dispose(); observer?.disconnect(); globalThis.removeEventListener('keydown', key); globalThis.removeEventListener('keyup', key); renderer.domElement.removeEventListener('pointerdown', pointerDown); renderer.domElement.removeEventListener('pointermove', pointerMove); renderer.domElement.removeEventListener('pointerup', pointerUp); renderer.domElement.removeEventListener('pointercancel', pointerUp); label.remove(); practiceLabels.remove(); status.remove(); standIn?.dispose(); avatar.userData.dispose(); kit.dispose(); world.clear(); renderer.domElement.remove(); if (!options.renderer) renderer.dispose(); if (!options.renderer) { try { renderer.forceContextLoss() } catch { /* the context is already gone */ } } },
   }
 }
 export type StreetHost = ReturnType<typeof createStreetHost>

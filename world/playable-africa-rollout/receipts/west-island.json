@@ -7,7 +7,7 @@
     "stateId": "cc",
     "stateName": "West Island"
   },
-  "inventorySha256": "2835d895affc011a78190408b0f431ff54d7b4b55e5902e15a27427a21056036",
+  "inventorySha256": "e5e744e72753bc39b3c8a462113fb5257a8159621faeb5c71ff7becbd4c8073e",
   "inventoryPath": "world/playable-africa-rollout/sources/west-island.json",
   "admission": {
     "registered": true,
@@ -68,7 +68,7 @@
     "places": 7,
     "roads": 6,
     "neighbourhoodLabels": 2,
-    "landPolygons": 3,
+    "landPolygons": 4,
     "waterPolygons": 1,
     "reachWaterPolygons": 1
   },
@@ -141,8 +141,8 @@
       "sha256": "a6415fa41350a3e08dbbf8a08bf78df0b50a321c3bb11cd9209151668b2b6441"
     },
     "geometry.ts": {
-      "bytes": 121297,
-      "sha256": "286a096e1f5f4d101e8edcd1a93f81b3b6933903d6681a91d60cb4df8997c96f"
+      "bytes": 120317,
+      "sha256": "9b82b4c8da694fa91029a2e41c902719637de071cc27af74c6eb53392321cf32"
     },
     "index.ts": {
       "bytes": 262,

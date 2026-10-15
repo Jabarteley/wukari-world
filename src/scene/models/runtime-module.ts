@@ -52,7 +52,8 @@ export function disposeRuntimeRoot(root: THREE.Object3D): void {
     const mesh = object as THREE.Mesh;
     if (!mesh.isMesh) return;
     geometry.add(mesh.geometry);
-    for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) {
+    for (const material of [...(Array.isArray(mesh.material) ? mesh.material : [mesh.material]), mesh.customDepthMaterial, mesh.customDistanceMaterial]) {
+      if (!material) continue;
       materials.add(material);
       for (const value of Object.values(material)) if (value?.isTexture) textures.add(value as THREE.Texture);
     }
@@ -131,6 +132,11 @@ export function createRuntimeModule(kit: Kit, parent: THREE.Group, options: {
       if ((mesh as THREE.SkinnedMesh).isSkinnedMesh || (mesh as THREE.InstancedMesh).isInstancedMesh) throw new Error('Runtime module must be static');
       triangles += (mesh.geometry.index?.count ?? mesh.geometry.attributes.position?.count ?? 0) / 3;
       mesh.castShadow = true; mesh.receiveShadow = true;
+      // Three's shared opaque shadow material can retain a discarded map uniform and
+      // upload it again while drawing an unrelated unmapped mesh. Own these uniforms
+      // with the module so no shadow material outlives its authored texture resources.
+      mesh.customDepthMaterial = new THREE.MeshDepthMaterial({ depthPacking: THREE.RGBADepthPacking });
+      mesh.customDistanceMaterial = new THREE.MeshDistanceMaterial();
       const list = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
       const drawn = Array.isArray(mesh.material) ? mesh.geometry.groups.map(group => list[group.materialIndex ?? 0]).filter((material): material is THREE.Material => Boolean(material)) : list;
       for (const material of drawn) drawCalls += request.budget.shadowPasses + (material.transparent && material.side === THREE.DoubleSide && !material.forceSinglePass ? 2 : 1);

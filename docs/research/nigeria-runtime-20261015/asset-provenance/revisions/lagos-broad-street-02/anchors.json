@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "assetId": "lagos-broad-street-02",
+  "units": "metres",
+  "upAxis": "Y",
+  "origin": [
+    0,
+    0,
+    0
+  ],
+  "manifestSha256": "8c6681fd6fb23b9080452c51caea721cbc42c838ac194df238b020ba611ca8e7",
+  "authoritativeSource": "manifest.json#/navigation",
+  "entrance": [
+    0,
+    2,
+    3.141592653589793
+  ],
+  "walkable": [
+    [
+      -9.2,
+      0.65,
+      9.2,
+      2.65
+    ]
+  ],
+  "anchors": [
+    {
+      "id": "exit",
+      "position": [
+        0,
+        0,
+        2
+      ],
+      "kind": "exit"
+    },
+    {
+      "id": "shop-approach",
+      "position": [
+        -1.6,
+        0,
+        1.1
+      ],
+      "kind": "entrance"
+    }
+  ]
+}

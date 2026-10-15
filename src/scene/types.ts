@@ -178,6 +178,7 @@ export interface SceneDef {
   walk?: SceneWalkSpec
   /** Dedicated scenery with fixed navigation and a matching procedural build() fallback. */
   runtime?: {
+    createHost: typeof import('./models/runtime-host.ts').createRuntimeHost
     request: Omit<import('./models/runtime-module.ts').RuntimeRequest, 'tier' | 'distance' | 'budget'>
     /** Verified maximum tier cost, including the host's shadow pass. */
     reservation: Readonly<{ triangles: number; drawCalls: number }>

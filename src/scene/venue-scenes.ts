@@ -257,7 +257,7 @@ export const SPOT_BEHIND = 1.3, SPOT_FRONT = 3.4, SPOT_SIDE = 1.7;
 /** A rendered, horizontal triangle in venue-local space. */
 interface ContactTriangle { ax: number; az: number; bx: number; bz: number; cx: number; cz: number; y: number }
 const CONTACT_CELL = 1, CONTACT_TOP_EPSILON = 0.004, CONTACT_EDGE_MARGIN = 0.16;
-interface ContactSurfaceQuery {
+export interface ContactSurfaceQuery {
   (x: number, z: number, minY: number, maxY: number, exactY?: number): number | null;
   readonly retainedTriangles: number;
   readonly cellEntries: number;
@@ -442,13 +442,11 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   let fallbackContactTop: ReturnType<typeof contactSurfaceIndex> | null = null;
   let fallbackBuilt: ReturnType<Batch['build']> | null = null;
   const fallbackObjects: THREE.Object3D[] = [];
-  let runtimeOwner: ReturnType<typeof import('./models/runtime-module.ts').createRuntimeModule> | null = null;
-  let runtimeGeneration = 0, runtimeSelection: 'near' | 'far' | null = null;
+  let runtimeOwner: Awaited<ReturnType<typeof import('./models/runtime-host.ts').createRuntimeHost>> = null;
+  let runtimeGeneration = 0;
   const runtime = def.runtime;
-  if (runtime && (!Number.isInteger(runtime.reservation.triangles) || runtime.reservation.triangles <= 0 || runtime.reservation.triangles > 11500 ||
-    !Number.isInteger(runtime.reservation.drawCalls) || runtime.reservation.drawCalls <= 0 || runtime.reservation.drawCalls > 20)) throw new Error('Invalid runtime scenery reservation');
+  runtime?.createHost.validate(runtime.reservation);
   let runtimeBudget = { triangles: 17000, drawCalls: 60 };
-  let checkingRuntimeBudget = false;
   const staticObjects: Releasable[] = [], actorObjects: Releasable[] = [], markObjects: Releasable[] = [];
   let staticTriangles = 0, actorTriangles = 0, crowdTags: SceneTag[] = [], selfTag: SceneTag | null = null, sky: THREE.Mesh | null = null;
   // Other players who report where they stand: one figure each, eased to every new position.
@@ -502,8 +500,10 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     if (runtime) {
       // The scenery can disappear independently; gameplay markers and tables remain drawn.
       fallbackBuilt = batch.build(shared.materials);
-      recorder = footprintRecorder(createBatch(THREE));
-      batch = recorder.batch;
+      // Action rings are visual overlays, not walls across the authored sidewalk.
+      // Tables still draw through the recorder below and keep their physical blockers.
+      batch = createBatch(THREE);
+      recorder = footprintRecorder(batch);
     }
     layout.spots ||= [];
     layout.crowd ||= [];
@@ -516,12 +516,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     placeTables(recorder);
     footprints = recorder.shapes();
     if (runtime) {
-      const transform = new THREE.Matrix4().compose(new THREE.Vector3(...runtime.request.position),
-        new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), runtime.request.yaw), new THREE.Vector3(1.4, 1.4, 1.4));
-      const solids = runtime.request.navigation.collision.map(({ min, max }) => {
-        const box = new THREE.Box3(new THREE.Vector3(...min), new THREE.Vector3(...max)).applyMatrix4(transform);
-        return [box.min.x, box.min.y, box.min.z, box.max.x, box.max.y, box.max.z] as [number, number, number, number, number, number];
-      });
+      const solids = runtime.createHost.solids(kit, runtime.request);
       footprints = { ...footprints, floor: runtime.bounds, solids: [...solids, ...footprints.solids] };
     }
     return batch;
@@ -914,101 +909,31 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     for (const object of staticObjects as THREE.PointLight[]) if (object.isPointLight) object.intensity = object.userData.intensity * preset.lamps;
     if (sky) paintSky(THREE, sky, preset.sky);
   }
-  function runtimeSupport(x: number, z: number): number | null {
-    let top: number | null = null;
-    for (const { rect: [x0, z0, x1, z1], y } of runtime?.support ?? []) {
-      if (x >= x0 && x <= x1 && z >= z0 && z <= z1) top = Math.max(top ?? -Infinity, y);
-    }
-    return top;
-  }
+  function runtimeSupport(x: number, z: number): number | null { return runtime?.createHost.support(runtime.support, x, z) ?? null; }
   function meshDrawCalls(mesh: THREE.Mesh): number {
     const materials = Array.isArray(mesh.material) ? mesh.geometry.groups.map(part => mesh.material instanceof Array ? mesh.material[part.materialIndex ?? 0] : undefined) : [mesh.material];
     return materials.reduce((sum, material) => sum + (material ? (material.transparent && material.side === THREE.DoubleSide && !material.forceSinglePass ? 2 : 1) + (mesh.castShadow ? 1 : 0) : 0), 0);
   }
   function runtimeHostCost(excludeRuntime = false) {
-    let triangles = 0, drawCalls = 0;
-    group.traverseVisible(child => {
-      if (!(child as THREE.Mesh).isMesh || fallbackObjects.includes(child)) return;
-      if (excludeRuntime) for (let up: THREE.Object3D | null = child; up; up = up.parent) if (up === runtimeOwner?.placement?.root) return;
-      triangles += triangleCount(child as THREE.Mesh); drawCalls += meshDrawCalls(child as THREE.Mesh);
-    });
-    return { triangles, drawCalls };
+    return runtime!.createHost.measure(kit, group, fallbackObjects, excludeRuntime ? runtimeOwner?.placement?.root : null);
   }
-  function guardRuntimeBudget() {
-    if (!runtimeOwner?.placement || checkingRuntimeBudget) return;
-    checkingRuntimeBudget = true;
-    try {
-      let spent = runtimeHostCost();
-      if (spent.triangles <= runtimeBudget.triangles && spent.drawCalls <= runtimeBudget.drawCalls) return;
-      // A higher-detail player body can arrive after scenery. Re-admit network figures
-      // against its actual cost before deciding whether the scenery still fits.
-      buildActors();
-      spent = runtimeHostCost();
-      if (spent.triangles > runtimeBudget.triangles || spent.drawCalls > runtimeBudget.drawCalls) {
-        group.userData.runtimeError = 'Runtime scenery unloaded: whole venue budget exceeded';
-        void runtimeOwner.select(null);
-      }
-    } finally { checkingRuntimeBudget = false; }
-  }
-  function selectRuntime(x: number, z: number) {
-    if (!runtime || !runtimeOwner || !live) return;
-    const [x0, z0, x1, z1] = runtime.bounds;
-    const distance = Math.hypot(Math.max(x0 - x, 0, x - x1), Math.max(z0 - z, 0, z - z1));
-    const tier = runtime.request.indoors || distance < 30 ? 'near' : 'far';
-    if (tier === runtimeSelection) return;
-    runtimeSelection = tier;
-    // The hero can arrive while the cheaper far tier still fits. Re-admit crowds against
-    // the reserved near cost before measuring this request, even if the old tier is valid.
-    const wasChecking = checkingRuntimeBudget;
-    checkingRuntimeBudget = true;
-    try { buildActors(); } finally { checkingRuntimeBudget = wasChecking; }
-    const spent = runtimeHostCost(true);
-    const generation = runtimeGeneration;
-    const loading = runtimeOwner.select({ ...runtime.request, tier, distance, budget: {
-      triangles: Math.max(0, runtimeBudget.triangles - spent.triangles), drawCalls: Math.max(0, runtimeBudget.drawCalls - spent.drawCalls), shadowPasses: 1,
-    } });
-    group.userData.runtimeStatus = 'loading';
-    void loading.catch(error => {
-      if (generation !== runtimeGeneration || !live) return;
-      group.userData.runtimeError = String(error instanceof Error ? error.message : error);
-      group.userData.runtimeStatus = 'fallback';
-      ambientChanged?.(false);
-    });
-  }
+  function guardRuntimeBudget() { runtimeOwner?.guard(); }
+  function selectRuntime(x: number, z: number) { runtimeOwner?.selectAt(x, z); }
   function startRuntime() {
     if (!runtime) return;
     const generation = ++runtimeGeneration;
-    void import('./models/runtime-module.ts').then(({ createRuntimeModule }) => {
-      if (generation !== runtimeGeneration || !live || disposed) return;
-      runtimeOwner = createRuntimeModule(kit, group, { changed(placement) {
-        if (placement) {
-          const spent = runtimeHostCost(true);
-          if (spent.triangles + placement.triangles > runtimeBudget.triangles || spent.drawCalls + placement.drawCalls > runtimeBudget.drawCalls) throw new Error('Runtime scenery exceeds whole venue budget');
-          // GLTF meshes retain their hierarchy and authored transforms. Bake only transient CPU
-          // geometry for the contact index, in venue coordinates (never mutate PBR render meshes).
-          group.updateWorldMatrix(true, true);
-          const inverse = group.matrixWorld.clone().invert(), meshes: THREE.Mesh[] = [];
-          placement.root.traverse(child => {
-            if (!(child as THREE.Mesh).isMesh) return;
-            const source = child as THREE.Mesh, geometry = source.geometry.clone();
-            geometry.applyMatrix4(new THREE.Matrix4().multiplyMatrices(inverse, source.matrixWorld));
-            const mesh = new THREE.Mesh(geometry, source.material); mesh.name = 'solid'; meshes.push(mesh);
-          });
-          try { renderedContactTop = contactSurfaceIndex(meshes, runtime.support.map(surface => surface.y)); }
-          finally { for (const mesh of meshes) mesh.geometry.dispose(); }
-          for (const object of fallbackObjects) object.visible = false;
-          delete group.userData.runtimeError;
-          group.userData.runtimeTier = placement.tier;
-          group.userData.runtimeStatus = 'ready';
-        } else {
-          renderedContactTop = fallbackContactTop;
-          for (const object of fallbackObjects) object.visible = true;
-          delete group.userData.runtimeTier;
-          group.userData.runtimeStatus = 'fallback';
-        }
-        ambient.rebudget();
-        ambientChanged?.(false);
-      } });
+    void runtime.createHost(kit, group, {
+      current: () => generation === runtimeGeneration && live && !disposed,
+      cost: runtimeHostCost, budget: () => runtimeBudget, readmit: () => buildActors(),
+      request: runtime.request, bounds: runtime.bounds,
+      fallback: fallbackObjects, heights: runtime.support.map(surface => surface.y),
+      index: contactSurfaceIndex, fallbackContact: () => fallbackContactTop,
+      contact: query => { renderedContactTop = query; },
+      changed: () => { ambient.rebudget(); ambientChanged?.(false); },
+    }).then(owner => {
+      if (!owner) return;
+      if (generation !== runtimeGeneration || !live || disposed) { owner.dispose(); return; }
+      runtimeOwner = owner;
       selectRuntime(sceneCamera.landscape[0], sceneCamera.landscape[2]);
     }).catch(error => { if (generation === runtimeGeneration && live) group.userData.runtimeError = String(error); });
   }
@@ -1045,7 +970,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   }
   function release() {
     runtimeGeneration++;
-    runtimeOwner?.dispose(); runtimeOwner = null; runtimeSelection = null;
+    runtimeOwner?.dispose(); runtimeOwner = null;
     fallbackObjects.length = 0; fallbackContactTop = null;
     renderedContactTop = null;
     for (const peer of [...peers.values()]) dropPeer(peer);

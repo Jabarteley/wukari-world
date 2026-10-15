@@ -59,3 +59,27 @@ Abuja source-stable browser checks passed movement, median support at0.252, near
 Broad local npm test was stopped after about13minutes once two failures were independently reproduced on clean60c3dff9: Worker size4680353>3500000 and comeback zero-work store touches2!=0. It is a failed/incomplete diagnostic run, not a passing full-suite gate. Combined city-scenes lifecycle also reproduces on baseline. Scoped host, navigation, light, contact and customization tests passed; full five-project typecheck passed. No owned full-test/typecheck/browser/devserver processes remain.
 
 Source milestone71e0de6299d609035518c3399e4505d239e88d98. Next: merge currentmain without losing ownership, publish draft with exact-head CI; no deployment until Lagos geometry, baseline gates, weather/complete UI acceptance and authorized network access are resolved.
+
+## Cloud restart and revision integration
+
+Execution resumed in /workspace/joinallworld with Node24.19.0 and Chromium151, existing dependencies and preserved uncommitted lazy extraction/evidence. No paid compute or credentials created. Remote main now9af2e51e includes PR24 merged by another actor; fast-forwarded dedicated branch to preserve all171 intervening changed files, pending owned edits retained. This merge is not release acceptance. Root owns revision deployment copies, scene definitions, integration record and release coordination. runtime_recovery takes over host-runtime files/tests; host_acceptance resumes harness/evidence. No overlap with WORLD uploader.
+
+Integrate reviewed asset commit9a5999d, manifest8c6681fd...; actual near4174triangles/5primitives must be measured with canonicalhero and host shadows. Fix bounded failure/eviction recovery, rerun source-pinned host/browser/type checks and hosted budgets before any release. Prior baseline failures require current-main comparison. PR24 already merged: publish follow-up PR from authorized branch, preserving ancestry guard.
+
+Workflow correction: explicit11:48UTC user instruction forbids new PRs; use tested direct integration to main subject to existing protections. PR24 confirmed already merged9af2e51e. No new PR will be created.
+
+## Restart validation and lifecycle repair
+
+Published candidate d721422f on authorized integration branch (no new PR, no main push). Current main9af2 CI38729884505 terminalfailure shared host71409gzip>71000; candidateCI38730781492 dispatched externally, monitor toterminal. Supported local typecheck caught test-only stale TypeScript narrowing, fixed9d22df8b; 82focused host/adapter/navigation/assets/lighting/customization/start-screen cases pass,25policytests pass. Recheck underway.
+
+Actualambient Lagos browser completedwalk,near/far,threevisualreentries within sampled imported-venue limits (peak16962tri/45draw in recorded checks), but finalGPUtextures5 fails lifecycle. Ordinarypark control withoutNigeria leaves0textures/0geometry, isolating lifecycleissue. Ordinarypark itself measures21906tri inheritedambientbudgetfailure; do not claimwholejourneybudgetacceptance. Hostagent identified runtime disposal calling stale changed callback, renderingduringteardown. Rootadded gone guard to renderScene and staleambientcallback rejection in venue-world.ts; regression teardown callbacks cannot render passes4/4lighting tests. Helperowner suppresses stale runtimecallbacks; newbrowser evidence required.
+
+Clean9af2 andcandidate reproduce Worker4822254bytes vs3500000 and comebackidle2!=0. No relevantserver/game/worker sourcechanges. These remainfailinggates; fastCI excludes them. Actionsdispatch viaapi.github.com Forbidden andjoinallworld.com HTTPSCONNECT403 remainaccessblocks. Existingrelease38679346983 ancestryfailure is separate; no retry/bypass. Userauthorizedenvironmentpolicyedit butthissession hasno computer-use tool, no settingscontrol.
+
+## Hosted budget and static navigation findings
+
+CI38730781492 on published d721422f terminalfailure: build/download budgets nowPASS sharedhost187283raw/70706gzip (71000cap), startup601795raw/218540gzip/191733brotli, loading90541/35255. Typecheckfail was correctedtestnarrowing; smoke16/17 failedbecausepublicNigeriaMarkdown/JSON violatedexistingreleaseassetextensions. Rootmovedallnonruntime metadata to docs/research/nigeria-runtime-20261015/asset-provenance, retainedplain-text noticesbesideunchangedGLBs. Guardunchanged; package+assetaudit8/8pass.
+
+CPUactualhostgrid reproducedLagoswalkrequested(6,2.8) stopping(-.68,2.71), independentlyofcrowd. Visualactionrings were recordedasphysicalblockers acrossnarrowauthorisedsidewalk; pureNAVtests missedhostcomposition. Runtime-onlyrawmarkerbatch nowexcludesringsfromfootprints whilegametablesstillrecordcollision. Actualhostallactionanchors/targetexactpath regressionplusnavigation/contact10/10pass. Thisisnavigationrepair, notrelaxingphysicalobstacles.
+
+Initialteardownguardsremovedstalerendercallbacks butdidnotfixtextureleak. BrowserinstrumentationthenprovedsharedThreeMeshDepthMaterial.map=null whileuniformmapretainsdisposedruntimeTexture; ordinarymeshshadowdrawreuploadedthattexture. Helperownerimplementingowneddepth/distance materiallifetime; no countersreset/noshadowdisable. Finalbrowser/CIrequired.

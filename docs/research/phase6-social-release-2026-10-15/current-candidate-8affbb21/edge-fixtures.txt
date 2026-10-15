@@ -1,0 +1,41 @@
+✔ on the Worker the admin address serves the admin page and a few routes, and nothing of the game (740.206292ms)
+(node:28315) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ on the Worker every admin route refuses a guest, a request without a session and a cross-site page (1218.175375ms)
+(node:28321) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Cloudflare notice: signed by the key, shown to open and late sockets, refused when wrong (882.941541ms)
+✔ Cloudflare notice: the Workers runtime verifies Ed25519 under at least one of the two algorithm names (49.502417ms)
+(node:28346) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Worker script: 3462225 bytes, 1039627 gzipped
+✔ the Worker script and every built asset stay inside the per-file limit, and the list is one string per length of at most 13 letters (472.433583ms)
+import: the list 5.8 ms, the whole Worker 76.1 ms
+✔ evaluating the Worker script does not inflate, parse, split or index the list (323.75375ms)
+first inflate: 49.0 ms; first Weave tables: 37.8 ms; a lookup 0.16 µs
+✔ the list is inflated once by ready(), within a bound, and the first game of Weave and every lookup are right (335.845167ms)
+Store: social now kept per entry (0 entries, 0 ms)
+Store: growth now kept per entry (0 entries, 0 ms)
+Store: civic now kept per entry (0 entries, 0 ms)
+Store: business now kept per entry (0 entries, 0 ms)
+Store: market now kept per entry (0 entries, 0 ms)
+Store: commerce now kept per entry (0 entries, 0 ms)
+Store: records now kept per entry (0 entries, 0 ms)
+Store: realValue now kept per entry (0 entries, 0 ms)
+Store: showcase now kept per entry (0 entries, 0 ms)
+Store: trustChecks now kept per entry (0 entries, 0 ms)
+Store: street now kept per entry (0 entries, 0 ms)
+Store: livingWorld now kept per entry (0 entries, 0 ms)
+Store: agents now kept per entry (0 entries, 0 ms)
+Store: every collection has its per-entry copy (13 copied at this start, 0 characters); the stored values stay the truth
+✔ the Worker script starts under Miniflare with the list inside it (932.7545ms)
+Worker runtime: first inflate 33 ms
+✔ the Worker runtime inflates the list on first use and answers lookups (538.215708ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6378.359125

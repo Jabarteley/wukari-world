@@ -6,7 +6,7 @@
 - **Owner:** `/root/phase6_public_profiles_impl`
 - **Model / effort:** requested `gpt-5.6-sol` / `medium` with `fork_turns: none`; actual runtime configuration is not exposed to this agent and remains unknown
 - **Thread:** `/root/phase6_public_profiles_impl`
-- **UTC updated:** `2026-10-15T14:28:17Z`
+- **UTC updated:** `2026-10-15T14:35:38Z`
 - **Status:** `ready-for-integration`
 - **Work state:** `complete`
 
@@ -26,7 +26,7 @@
 - **Host:** local
 - **Branch / worktree:** `codex/retention-main-sync` / `/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld`
 - **Base:** `5181c91a8274f0616b5cb6740971598fd97814ad`
-- **Current commit:** `5bb46a442a2b6d1236b988a67d09c653f61ea766`. The worktree is intentionally dirty with this lane plus parent/Luna-owned static metadata and harness corrections. The final packaging diagnostic used the current built `dist` and current Worker graph after the accepted static metadata correction, while passing `5bb46a44…` as its synthetic marker input; it does not claim the dirty worktree is source-equivalent to that commit. This lane ran no Git mutation.
+- **Current commit:** `8affbb212333edd61954e5c6ed32e9c30682fe51`. The accepted implementation and policy work was integrated by the parent before the final optional row-attribution probe. The earlier packaging diagnostic used the then-current built `dist` and dirty Worker graph while passing `5bb46a44…` as its synthetic marker input; it does not claim that commit alone generated those bytes. This lane ran no Git mutation.
 - **Dirty status:** Dirty before this lane: parent-owned `docs/AGENT-COORDINATION.md`; untracked Phase 6 audit/design/production records and research artifacts; unrelated `ui-world-entry-375.png`. Preserve all unrelated changes.
 - **Port/process ownership:** none; this lane will not start or stop services.
 
@@ -63,6 +63,9 @@
 - Final policy evidence after corrections: existing suite `25/25`; temporary security controls `11/11`; typecheck clean across 5 projects with 0 errors and 0 JavaScript baseline. The final actual package comparison covered 8,501 files: same-run digest `11774ce9370ef6950e7ef2cf98be7f8f934b8d46a3229ae364e163c696e4a0da` was identical, changed run altered only `manifest.json` and `worker.js`, and marked Worker size was 3,396,693 bytes. Evidence: `docs/research/phase6-social-release-2026-10-15/sealed-deployment-identity/`.
 - Repaired `scripts/new-player.ts` without catalog forcing or progress injection. It resolves every dealt daily row through the current mission catalogue, strictly checks identity/kind/label/count/city, creates normal travel/activity recipes for exact activity and venue definitions, retains legacy recipes as fallback, claims once, and still proves restart equality.
 - The first repaired journey completed but exposed the stale deterministic cash assertion. Actual transcript evidence shows Ada's current local mission pays ₦250 after a ₦150 Danfo fare, while Bola wins the seeded Whot game for ₦150; the single assertion was corrected from ₦22,500/₦6,900 to the evidenced ₦22,600/₦7,050. Final existing journey test passed `1/1`. Evidence: `docs/research/phase6-social-release-2026-10-15/new-player-current-mission/`.
+- Ran one final source-frozen Miniflare attribution probe at exact HEAD `8affbb212333edd61954e5c6ed32e9c30682fe51`; `server/residents/resident.ts` remained SHA-256 `61a5e65f5303e367f24b3cc88013204cc01e14660a4c0837bac9446cf49757d0` before and after. The 37.7-second diagnostic passed `1/1` and, after its warm-up `QUIET` snapshot, observed `modelRouter` plus `worldfeed` on the first measured wait, then `bonds` plus all 16 `residentsS0` through `residentsSf` shards on the second: 19 first-creation collection-row writes in the measured quiet window. No later measured wait, move or poll changed a collection.
+- The writer roots are heartbeat-started services: the weekly model report persists `modelRouter`; the world-feed tick persists `worldfeed`; the resident save initializes all 16 shard fingerprints from empty strings and therefore creates every shard on its first save; the bonds engine's initial day rollover dirties and creates `bonds`. Each requests `{ durable: false }`, but the SQLite store cannot hold a missing collection row lazily, so initial creation is durable. This is bounded fresh-object bootstrap evidence, not a production cost measurement, steady-state proof, or historical parity claim.
+- Archived the historical pre-merge and stable current logs separately, the exact temporary probe body, source identities/hashes, and risk classification under `docs/research/phase6-social-release-2026-10-15/worker-row-attribution/`. The temporary test was deleted; no runtime or tracked test file changed.
 
 ### In progress / blockers
 
@@ -96,3 +99,4 @@
 | `2026-10-15T13:48:40Z` | complete | Added the three required synthetic progression assets and Worker references to the existing package-guard fixture, including its dictionary rewrite path. | Baseline 18/25 with 7 manifest-reference failures; corrected existing suite 25/25; portable before/after logs | Parent review and commit. |
 | `2026-10-15T14:17:59Z` | review | Completed the sealed identity/marker/deploy implementation and opt-in fixed cleanup window. | Existing suite 25/25; temporary security controls 11/11; actual final-dist package deterministic across same run, only Worker/manifest differ across run IDs; marked Worker 3,396,696 bytes | Astra diff review, then rerun actual packaging after authorized static metadata correction. |
 | `2026-10-15T14:28:17Z` | complete | Corrected strict typing, reran every focused gate, measured the final current Worker, and completed the current-definition new-player mission recipe plus evidenced cash baseline. | Typecheck clean; policy 25/25; controls 11/11; package digest `11774ce9…`, 3,396,693-byte Worker; new-player 1/1 | Freeze source and hand off to parent integration. |
+| `2026-10-15T14:35:38Z` | complete | Attributed fresh-object collection writes on source-frozen `8affbb21` without changing runtime or tests. | Stable HEAD/resident hash; diagnostic 1/1; 19 first-creation rows after `QUIET`; `worker-row-attribution/` | Report bounded bootstrap risk; no further probe or refactor. |

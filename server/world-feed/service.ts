@@ -19,9 +19,9 @@ import { cityCatalogueEntry, playableCityIds } from '../../src/game/cities/regis
 import { CURRENCY_CODES, currencyOfCountry } from '../../src/game/currency.ts';
 import { setCityMoney } from '../../src/game/money.ts';
 import { readCityMoney } from '../../src/game/money-feed.ts';
-import { HOUR_MS } from '../../src/game/weather-observed.ts';
+import { HOUR_MS, MAX_OBSERVED_HOURS } from '../../src/game/weather-observed.ts';
 import { readObservedWeather, setObservedWeather } from '../../src/game/weather-observed-read.ts';
-import type { ObservedHour } from '../../src/game/weather-observed.ts';
+import type { ObservedHour, SkyKind } from '../../src/game/weather-observed.ts';
 import { pulseOf } from '../pulse.ts';
 import { USER_AGENT, httpDate, metUrl, readMet } from './met.ts';
 import { RATES_AFTER_MS, RATES_RETRY_MS, fetchRates, utcDay } from './rates.ts';
@@ -55,6 +55,10 @@ export interface WorldFeed {
   rates(): RatesRecord | null
   /** Resolves once the stored record has been read. */
   ready: Promise<void>
+  /** The owner's weather (docs/PRAYERS.md): `sky` over a city from now for `hours`, over the real weather. Returns when it ends. */
+  override(cityId: string, sky: SkyKind, hours: number, tempC?: number | null): number
+  /** The override in force over a city, or null. */
+  overrideOf(cityId: string): { sky: SkyKind; from: number; until: number } | null
 }
 
 const SIX_HOURS = 6 * HOUR_MS;
@@ -76,6 +80,8 @@ function build(ctx: RouteContext): WorldFeed {
   const weather = new Map<string, WeatherEntry>();
   /** When someone was last in each city. */
   const seen = new Map<string, number>();
+  /** The owner's weather over a city, laid over the real hours (docs/PRAYERS.md). Kept in the stored record. */
+  const overrides = new Map<string, { sky: SkyKind; tempC: number | null; from: number; until: number }>();
   const retry = new Map<string, number>();
   const fails = new Map<string, number>();
   let lastBeat = 0;
@@ -96,6 +102,11 @@ function build(ctx: RouteContext): WorldFeed {
         weather.set(id, { at: value['at'], expires: typeof value['expires'] === 'number' ? value['expires'] : 0, ...(typeof value['modified'] === 'string' ? { modified: value['modified'] } : {}), hours: [...hours.hours] });
         setObservedWeather(id, hours);
       }
+      const o = stored['overrides'];
+      if (isObject(o)) for (const [id, value] of Object.entries(o)) {
+        if (isObject(value) && typeof value['sky'] === 'string' && typeof value['from'] === 'number' && typeof value['until'] === 'number' && value['until'] > now()) overrides.set(id, { sky: value['sky'] as SkyKind, tempC: typeof value['tempC'] === 'number' ? value['tempC'] : null, from: value['from'], until: value['until'] });
+      }
+      for (const id of overrides.keys()) publish(id);
       const s = stored['seen'];
       if (isObject(s)) for (const [id, at] of Object.entries(s)) if (typeof at === 'number') seen.set(id, at);
     }).catch(() => {})
@@ -107,8 +118,23 @@ function build(ctx: RouteContext): WorldFeed {
     dirty = false;
     const t = now();
     for (const [id, at] of seen) if (t - at > BUSY_WINDOW_MS) seen.delete(id);
-    const plain = { rates, weather: Object.fromEntries([...weather].map(([id, e]) => [id, { at: e.at, expires: e.expires, ...(e.modified ? { modified: e.modified } : {}), hours: e.hours.map((h) => [...h]) }])), seen: Object.fromEntries(seen) };
+    for (const [id, o] of overrides) if (o.until <= t) overrides.delete(id);
+    const plain = { overrides: Object.fromEntries(overrides), rates, weather: Object.fromEntries([...weather].map(([id, e]) => [id, { at: e.at, expires: e.expires, ...(e.modified ? { modified: e.modified } : {}), hours: e.hours.map((h) => [...h]) }])), seen: Object.fromEntries(seen) };
     try { await ctx.store.transact((db) => { Object.assign(ctx.collection(db, 'worldfeed'), JSON.parse(JSON.stringify(plain))); }, { durable: false }); } catch { dirty = true; }
+  }
+
+  /** The hours a city shows: the real ones with the owner's sky laid over the hours it covers (the hours it adds when the feed has none). */
+  function hoursOf(id: string): ObservedHour[] | null {
+    const real = weather.get(id)?.hours ?? null, o = overrides.get(id);
+    if (!o || o.until <= now()) return real ? [...real] : null;
+    const byStart = new Map<number, ObservedHour>((real ?? []).map((h) => [h[0], h]));
+    for (let start = Math.floor(o.from / HOUR_MS) * HOUR_MS; start < o.until; start += HOUR_MS) byStart.set(start, [start, o.sky, o.tempC ?? byStart.get(start)?.[2] ?? null]);
+    return [...byStart.values()].sort((a, b) => a[0] - b[0]).filter((h) => h[0] + HOUR_MS > now()).slice(0, MAX_OBSERVED_HOURS);
+  }
+  /** Hands the city's hours (real and laid over) to the rules engine, so the server and every phone that asks read one sky. */
+  function publish(id: string): void {
+    const hours = hoursOf(id);
+    setObservedWeather(id, hours ? readObservedWeather({ hours }) : null);
   }
 
   async function askRates(): Promise<boolean> {
@@ -137,7 +163,7 @@ function build(ctx: RouteContext): WorldFeed {
       if (!hours) { failed(); return; }
       const modified = response.headers.get('last-modified');
       weather.set(id, { at: t, expires, ...(modified ? { modified } : {}), hours: [...hours.hours] });
-      setObservedWeather(id, hours);
+      publish(id);
       fails.delete(id); retry.delete(id); dirty = true;
     } catch { failed(); }
   }
@@ -178,10 +204,11 @@ function build(ctx: RouteContext): WorldFeed {
       const out: Record<string, number> = {};
       if (rates) for (const code of wanted) { const rate = code === 'USD' ? 1 : rates.rates[code]; if (rate !== undefined) out[code] = rate; }
       const entry = weather.get(cityId);
+      const shown = hoursOf(cityId);
       const fallback = rates?.source === 'er-api';
       const result: FeedAnswer = {
         day: rates?.day ?? null, rates: out, currency: currency ? { code: currency.code, symbol: currency.symbol, decimals: currency.decimals } : null,
-        weather: entry ? { at: entry.at, hours: entry.hours.filter((h) => h[0] + HOUR_MS > now()) } : null,
+        weather: shown ? { at: entry?.at ?? overrides.get(cityId)?.from ?? now(), hours: shown.filter((h) => h[0] + HOUR_MS > now()) } : null,
         credits: { weather: 'Weather data from MET Norway', weatherUrl: 'https://www.met.no/en', rates: fallback ? 'Rates By Exchange Rate API' : null, ratesUrl: fallback ? 'https://www.exchangerate-api.com' : null },
       };
       setCityMoney(cityId, readCityMoney(result)); // the server's own holder, so money(amount, city) works here too
@@ -189,6 +216,15 @@ function build(ctx: RouteContext): WorldFeed {
     },
     seen: markSeen,
     rates: () => rates,
+    override(cityId, sky, hours, tempC = null) {
+      const from = now(), until = from + Math.max(1, Math.min(hours, 6)) * HOUR_MS;
+      overrides.set(cityId, { sky, tempC, from, until });
+      dirty = true;
+      publish(cityId);
+      void save();
+      return until;
+    },
+    overrideOf: (cityId) => { const o = overrides.get(cityId); return o && o.until > now() ? { sky: o.sky, from: o.from, until: o.until } : null; },
   };
   ctx.on?.('heartbeat', () => { const work = service.tick(); ctx.waitUntil?.(work); });
   return service;

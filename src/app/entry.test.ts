@@ -122,6 +122,7 @@ test('Three.js, maps, scene hosts, campus world, models and telemetry SDKs remai
     ['the models', /^src\/models\//],
     ['the community and voice client', /^src\/community\.ts$/],
     ['the telemetry SDK modules', /^src\/telemetry\/(core|sentry|sentry-replay|posthog|consent-ui)\.ts$/],
+    ['the online pill, its poll and its wording (it shows nothing before the first count; HudBar.vue fetches it with the bar)', /^src\/app\/features\/hud\/(OnlinePill\.vue|OnlineSheet\.vue|usePulse\.ts|onlinePillModel\.ts|pulseCache\.ts)$/],
     ['the walkthrough and the shortcuts sheet (only the small trigger, the state and the stored "seen" flags are in the first download)', /^src\/app\/features\/tour\/(?!(TourTrigger\.vue|tourState\.ts|tourSeen\.ts)$)/],
     ['the companion (its loader, 3D model and stage, brain, director, chat and tours are all fetched after the first frame; nothing of it is in the first download)', /^src\/app\/features\/companion\//],
     ['the sign-in screens, their store and the provider client (only the panel registration, the small account state, the ways of opening the sheet and the guest bar\'s rules are allowed)', /^src\/app\/features\/account\/(?!(register|accountOpen|accountTrack|shownOnce|accountLite|useAccountLite|guestBarModel)\.ts$)/],
@@ -231,6 +232,7 @@ test('automatic game startup, including one selected city, stays within the orig
   }
   const homewardRules = one(/^homeward-rules-[\w-]{8}\.js$/, 'recovery reader and planner have one conditional chunk')
   const panelBodies = one(/^panelBodies-[\w-]{8}\.js$/, 'unopened app body loaders have one conditional chunk')
+  const onlinePill = one(/^online-pill-[\w-]{8}\.js$/, 'the online pill, its poll and its wording are one chunk, fetched with the top bar')
   const measure = (names: readonly string[]) => names.reduce((sum, name) => {
     const bytes = readFileSync(join(dist, name))
     return { raw: sum.raw + bytes.length, gzip: sum.gzip + gzipSync(bytes).length }
@@ -238,6 +240,7 @@ test('automatic game startup, including one selected city, stays within the orig
   const common = [...core]
   const commonNames = eagerChunks(dist, common.map((name) => `assets/${name}`))
   const commonCode = commonNames.map((name) => readFileSync(join(dist, name), 'utf8')).join('\n')
+  assert.ok(!commonNames.includes(`assets/${onlinePill}`), 'the startup does not preload the online pill (HudBar.vue fetches it)')
   for (let index = 0; index < catalogueRows.length; index += 1) {
     const row = catalogueRows[index]!, id = row[0], exportName = loaderExports[index]!
     const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')

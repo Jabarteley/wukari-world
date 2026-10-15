@@ -9,9 +9,11 @@ import GameIcon from '../../ui/GameIcon.vue'
 import { money, moneyHint } from '../../ui/format.ts'
 import { cashDelta, moodOf, noteExpiry, savedPill } from './hudModel.ts'
 import InviteButton from '../growth/InviteButton.vue'
-import OnlinePill from './OnlinePill.vue'
 import AccountHud from './AccountHud.vue'
 import { useAccountLite } from '../account/useAccountLite.ts'
+// The online pill shows nothing until the first count arrives over the network, so it is fetched with the bar instead of riding in the
+// first download (its count-up, poll and wording come with it). A failed fetch is retried a few times, like the community host's.
+const OnlinePill = defineAsyncComponent({ loader: () => import('./OnlinePill.vue'), onError: (_error, retry, fail, attempts) => { if (attempts <= 3) setTimeout(retry, 800 * attempts); else fail() } })
 // The speaker is fetched just after the bar paints (it keeps the sound preferences out of the first download); its place is held meanwhile.
 const SoundButton = defineAsyncComponent({ loader: () => import('./SoundButton.vue'), loadingComponent: { render: () => h('span', { class: 'hud-sound-slot', 'aria-hidden': 'true' }) }, delay: 0 })
 

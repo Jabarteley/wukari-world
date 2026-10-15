@@ -14,7 +14,7 @@ NODE_OPTIONS=--max-old-space-size=3584 node --experimental-strip-types scripts/a
 node node_modules/vite/bin/vite.js preview --config scripts/housing/vite.config.ts --host 127.0.0.1 --port 4435 --strictPort
 ```
 
-Open `http://127.0.0.1:4435/housing-studio.html`. Use the front-door button to enter or leave, room buttons to walk via the real staircase, WASD/arrows or touch direction buttons to explore, and F/the room-door button beside an internal doorway. Switch between first and third person; drag to look, or use brackets to turn in first person. Closed doors alter the shared walk grid; a room with another entrance may remain reachable by an alternative route.
+Open `http://127.0.0.1:4435/housing-studio.html`. Use **Walk inside / Walk outside** to travel through the front entrance. **Open / Close front door** changes the door while you stay where you are. Use room buttons to walk via the real staircase, WASD/arrows or touch direction buttons to explore, and F/the room-door button beside an internal doorway. Switch between first and third person; drag to look, or use brackets to turn in first person. Normal third person retains room-height partitions. **Floor overview** explicitly lowers the partitions and resets the camera to fit the current floor; use upstairs room buttons for other floors. Closed doors alter the shared walk grid; a room with another entrance may remain reachable by an alternative route.
 
 The studio creates an in-memory visit. It never persists fixtures or changes the player's saved home, inventory, ownership or appearance. It uses the existing shipped avatar and first-person controller. No new character customization work is integrated.
 
@@ -24,8 +24,9 @@ Original base `bc113b55a135c7a37592d264764407627263aafc`; current reviewed first
 
 - `fixtures.ts` uses the existing `HouseStyle`, `PlacedItem`, `plotOf` and `planOf` contracts. Ground-floor placements retain the legacy omitted `floor` representation.
 - `interior.ts` delegates to the actual `buildHomeScene`; only its static visual batches are replaced. The existing host remains authoritative for movement, furniture footprints, stairs, avatar pose and the animated front door.
-- `doors.ts` derives internal openings from shared room boundaries and `wallsOf`. A stable grid facade lets existing walkers observe door/floor changes. Closing is rejected while the avatar occupies the closing leaf footprint.
-- `shell.ts` and `furnishings.ts` cull unused floors, retain far facades in third person and enclose the active floor in first person. Missing model loads retain procedural fallbacks.
+- `doors.ts` derives internal openings from shared room boundaries and `wallsOf`. Social spaces use open passages; privacy rooms retain a small connected set of doors. Redundant privacy openings are filled and blocked consistently. A stable grid facade lets existing walkers observe door/floor changes. Closing is rejected while the avatar occupies the closing leaf footprint.
+- `shell.ts` and `furnishings.ts` cull unused floors, retain far facades and full-height interior partitions in normal third person, and enclose the active floor in first person. Floor overview is an explicit cutaway. Stair landing caps keep the top of a visible flight attached to a landing. Missing model loads retain procedural fallbacks.
+- `front-door.ts` retains the existing named Home door leaf and keeps manual open/close state separate from travel. The adapter yields to the host animation during entry/exit, then returns the door to its closed position.
 - `exterior.ts` supplies a navigable gated compound and blocks the building footprint. Enter/leave uses the existing host door callback and scene transition. Leaving currently returns to the compound entrance; it is not a continuous streaming interior.
 - `scripts/housing/vite.config.ts` builds only this studio and Lagos/Abuja data, with no public-directory copy. Existing production entry points, budgets, dependencies and runtime files remain unchanged.
 

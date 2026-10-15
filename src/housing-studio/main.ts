@@ -9,11 +9,13 @@ import { RECIPES, recipePlan, type HousingRecipe } from './fixtures.ts';
 import { buildHousingInterior } from './interior.ts';
 import { buildHousingExterior } from './exterior.ts';
 import { edge } from './shell.ts';
+import { withHousingFrontDoor, type HousingFrontDoorState } from './front-door.ts';
 
 const byId=<T extends HTMLElement>(id:string)=>document.getElementById(id) as T;
 const scene=byId('scene'),select=byId<HTMLSelectElement>('house'),status=byId('status'),rooms=byId('rooms');
 let world:VenueWorld|null=null,home:ReturnType<typeof buildHousingInterior>|null=null;
-let recipe:HousingRecipe=RECIPES[0]!,first=false,epoch=0,disposed=false;
+let recipe:HousingRecipe=RECIPES[0]!,first=false,overview=false,epoch=0,disposed=false;
+let exterior:ReturnType<typeof withHousingFrontDoor>|null=null,front:HousingFrontDoorState={open:false};
 let queue:{x:number;z:number}[]=[],destination:{floor:number;room:number}|null=null;
 let target:{x:number;z:number}|null=null,walkStarted=0;
 let state:ReturnType<typeof createLife>;
@@ -60,28 +62,45 @@ function location(next:'home'|'neighbourhood'){
   status.textContent=next==='home'?'Welcome home. Pick a room, or explore with W A S D.':'Walk around your compound, then use the front door to enter.';
 }
 async function openHouse(next:HousingRecipe){
-  const load=++epoch;stopTour();world?.dispose();world=null;home=null;recipe=next;
+  const load=++epoch;stopTour();world?.dispose();world=null;home=null;exterior=null;recipe=next;front={open:false};
   status.textContent='Preparing your home…';byId('description').textContent=recipe.description;byId('place').textContent=recipe.label;
   await loadCityContent(recipe.city);if(load!==epoch||disposed)return;
   installBundledProgression();
   state=createLife({location:'neighbourhood',home:{custom:true,items:recipe.items},estate:{city:recipe.city,living:'own',tier:recipe.grid===14?'villa':recipe.grid===12?'duplex':recipe.grid===10?'bungalow':'bq',style:recipe.style}}, {cityId:recipe.city,now:Date.UTC(2026,9,15,11)});
   world=createVenueWorld(scene,{location:'neighbourhood',cityId:recipe.city,
-    buildHome:kit=>home=buildHousingInterior(kit,recipe,()=>first,()=>world?.update()),
-    buildNeighbourhood:kit=>buildHousingExterior(kit,recipe),
+    buildHome:kit=>home=buildHousingInterior(kit,recipe,()=>first,()=>world?.update(),()=>overview,front),
+    buildNeighbourhood:kit=>exterior=withHousingFrontDoor(buildHousingExterior(kit,recipe),front),
     onHomeDoor:direction=>location(direction==='inside'?'home':'neighbourhood')});
   world.setPlayer({name:'You',seed:'housing-studio',look:state.onboarding.look});world.setState(state);if(first)world.setView(createFirstPerson);
   showRooms();location('neighbourhood');world.resize();
 }
+function toggleFrontDoor(){
+  const door=world?.location==='home'?home?.frontDoor:exterior?.frontDoor;
+  if(door?.toggle()){world?.update();status.textContent=`Front door ${door.open?'opened':'closed'}.`;}
+  else if(door)status.textContent='Step clear of the front doorway to close it.';
+}
 function toggleDoor(){
-  if(!world||!home||world.location!=='home')return;
+  if(!world)return;
   const p=world.diagnostics().avatar;
+  const entry=world.location==='home'?home?.homeDoor:exterior?.homeDoor;
+  const nearby=world.location==='home'?home?.doors.nearest(p.x,p.z,home.floor):null;
+  const distance=entry&&(world.location!=='home'||home?.floor===0)?Math.hypot(entry.x-p.x,entry.z-p.z):Infinity;
+  if(distance<2&&(!nearby||distance<Math.hypot(nearby.x-p.x,nearby.z-p.z))){toggleFrontDoor();return;}
+  if(world.location!=='home'||!home)return;
   if(home.doors.toggleNearest(p.x,p.z,home.floor)){stopTour();world.update();status.textContent='Door '+(home.doors.nearest(p.x,p.z,home.floor)?.open?'opened.':'closed.');}
   else status.textContent='Stand beside the doorway to open or close it.';
 }
-function setView(value:boolean){first=value;world?.setView(first?createFirstPerson:null);home?.refreshPresentation();world?.update();byId('first').setAttribute('aria-pressed',String(first));byId('third').setAttribute('aria-pressed',String(!first));}
+function setView(value:boolean){first=value;if(first){overview=false;byId('overview').setAttribute('aria-pressed','false');}world?.setView(first?createFirstPerson:null);home?.refreshPresentation();world?.update();byId('first').setAttribute('aria-pressed',String(first));byId('third').setAttribute('aria-pressed',String(!first));}
 for(const entry of RECIPES){const option=document.createElement('option');option.value=entry.id;option.textContent=entry.label;select.append(option);}
 select.addEventListener('change',()=>void openHouse(RECIPES.find(r=>r.id===select.value)!).catch(failed));
 byId('internal-door').addEventListener('click',toggleDoor);
+byId('front-door').addEventListener('click',toggleFrontDoor);
+byId('overview').addEventListener('click',()=>{
+  overview=!overview;
+  if(overview)setView(false);
+  byId('overview').setAttribute('aria-pressed',String(overview));
+  home?.refreshPresentation();world?.resize();world?.recentre();world?.update();
+});
 byId('first').addEventListener('click',()=>setView(true));byId('third').addEventListener('click',()=>setView(false));
 byId('door').addEventListener('click',()=>{stopTour();if(world?.walkHomeDoor())status.textContent='Walking to the front door…';});
 window.addEventListener('keydown',event=>{if(event.ctrlKey||event.metaKey||event.altKey||event.target instanceof Element&&event.target.closest('input,select,textarea'))return;if(event.key.toLowerCase()==='f'&&!event.repeat){event.preventDefault();toggleDoor();return;}const action=keys[event.key.toLowerCase()];if(action){event.preventDefault();stopTour();key(action,true,event.shiftKey);}});
@@ -93,10 +112,14 @@ for(const button of document.querySelectorAll<HTMLButtonElement>('[data-walk]'))
 }
 const timer=setInterval(()=>{
   if(!world)return;const d=world.diagnostics();
-  byId('level').textContent=world.location==='home'?`${home?.floor===0?'Ground floor':home?.floor===1?'First floor':'Roof terrace'} · ${first?'First person':'Third person'}`:'The compound';
+  byId<HTMLButtonElement>('overview').disabled=world.location!=='home';
+  const frontDoor=world.location==='home'?home?.frontDoor:exterior?.frontDoor;
+  byId<HTMLButtonElement>('front-door').disabled=!frontDoor||frontDoor.busy;
+  byId('front-door').textContent=`${frontDoor?.open?'Close':'Open'} front door`;
+  byId('level').textContent=world.location==='home'?`${home?.floor===0?'Ground floor':home?.floor===1?'First floor':'Roof terrace'} · ${first?'First person':overview?'Floor overview':'Third person'}`:'The compound';
   byId('metrics').textContent=`${d.triangles??0} visible triangles · ${d.drawCalls??0} draw calls\nPosition ${d.avatar.x.toFixed(2)}, ${d.avatar.y.toFixed(2)}, ${d.avatar.z.toFixed(2)}\nFloor ${home?.floor??0} · ${d.avatar.moving?'walking':d.avatar.blocked?'blocked':'standing'}\nModels ${home?.assets.loaded??0} loaded · ${home?.assets.failures.length??0} failed`;
   const nearby=world.location==='home'?home?.doors.nearest(d.avatar.x,d.avatar.z,home.floor):null;
-  const internal=byId<HTMLButtonElement>('internal-door');internal.disabled=!nearby;internal.textContent=nearby?`${nearby.open?'Close':'Open'} room door · F`:'Approach a room door';
+  const internal=byId<HTMLButtonElement>('internal-door');internal.disabled=!nearby;internal.textContent=nearby?`${nearby.open?'Close':'Open'} ${nearby.label.toLowerCase()} door · F`:'Approach a room door';
   if(target){
     if(Math.hypot(d.avatar.x-target.x,d.avatar.z-target.z)<.35&&!d.avatar.moving){target=null;nextLeg();if(!target)status.textContent='You have arrived. Drag to look around.';}
     else if(performance.now()-walkStarted>20000){stopTour();status.textContent='Route paused. Use the walk controls to continue.';}

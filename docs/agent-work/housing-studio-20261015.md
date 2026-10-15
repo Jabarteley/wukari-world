@@ -5,8 +5,8 @@
 - Owner: /root; chat 01a13a37-fa90-7140-822a-36e81c1c4794
 - Model / effort: primary integration and browser owner; Luna reference/asset research; Sol bounded housing implementation
 - UTC updated: 2026-10-15T14:43:28.280124+00:00
-- Status: ready-for-integration
-- Work state: verified-local
+- Status: waiting-for-browser-release
+- Work state: feedback code verified locally; interactive acceptance pending
 
 ## Goal and boundaries
 - Goal: deliver a playable, furnished Lagos house first, then apartment/duplex/Abuja mansion variants with first/third-person exploration, collisions, doors, stairs and indoor/outdoor transitions.
@@ -62,3 +62,12 @@
 - Tokens, monetary cost and exact worker elapsed times are unavailable; no measured savings claim. Parent held repeat TypeScript behind the integration owner heavy lease rather than competing for local build resources.
 
 - 2026-10-15T14:43:28.279992+00:00: final scoped TypeScript exit0 after the integration owner released its heavy slot; final10/10 tests and cached diff check pass. Only additive source/assets/docs staged (dist-housing excluded). Ready for exact tested commit handoff.
+
+## User feedback correction
+- 2026-10-15T14:50:12.189452+00:00: user rejects unclear inside cutaway and excessive doors, requests independent front-door open/close. Reopened additive lane from5d932f12. Sol owns doors.ts/doors.test.ts and its own record; Astra owns browser inspection/acceptance; parent owns view framing, explicit overview and front-door adapter in existing additive paths. No shared Home/FP/runtime edits planned.
+- Acceptance: recognizable full-height room partitions in normal interior, explicit whole-floor overview, privacy doors instead of every passage, independent front open/close without changing player position/location, retained entry/exit and stair routes, focused checks/budget and actual browser evidence.
+
+- 2026-10-15T15:06:23.718547+00:00: feedback code complete and frozen. Parent replaced the room-graph-only door selector after it sealed a necessary furnished mansion route; redundant gaps now seal only when actual raster-grid room/stair reachability is preserved. Final counts4/2/4/6 internal doors, duplexgroundonlyoneGuesttoilet door. Fullheightpartitions normalTP; explicitflooroverview; higherfullfloorcamera; stairlandingcaps. Separate front-door adapter preservesmanualstate and rejects closing through avatar, yielding duringnativeentry/exit.
+- Final11/11focused checks pass (0.93s), scopedTypeScript exit0, isolatedbuild passes1.83s. Newpackage40files/4,632,792bytes; largest3,346,344bytes; entry housing-studio-Cpt9b-AG.js, gzip931,760B. Conservative scenery13,800/15,000 acrossFP/TP/overview/exterior. Screenshot/browser acceptance stillpending: integrationownerrequestedexclusiveChromeproductionQAand2actorcleanup; housingAstraconfirmedHOLD, lastbaselineUI15:48:33Lagos. Preview4435servesnewbuild, no competingbrowser/nativeactions.
+
+- 2026-10-15T15:09:00.866339+00:00: final source hashes still match tested/built source. HousingAstra attempted exactlyoneindependenthiddenIAB entry; IABunavailable, Chrome/native remaineduntouched. Existing integrationowner is waitingforhumanChromehandoff forproductionQA. Finishthisboundedsourcecommitwith11passingchecks, leavingvisualacceptance explicitlypending; do notclaimupdatedscreenshotsorconsoleproof. Next executable step: after integrationowner releasesChrome, resume housing_visual_qa againstCpt9b-AG, capture normalTP/overview/manualdoor and stair/exit evidence, then update acceptance before adoption. No newdeploymentorPR.

@@ -13,3 +13,6 @@
 #scene .scene-tag:focus-visible{outline:2px solid #fff;outline-offset:1px}
 #scene .scene-pad{bottom:120px;right:24px}#scene .scene-hint,#scene .scene-stick{display:none}
 @media(max-width:760px){#scene .scene-pad{right:12px;bottom:110px}}
+
+#overview{margin:0 0 8px}#overview[aria-pressed=true]{background:#d4dfce;border-color:#315d43}
+@media(max-width:760px){aside{max-height:260px}#overview{margin:0}}

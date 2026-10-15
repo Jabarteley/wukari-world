@@ -5,10 +5,12 @@ import type { HousingRecipe } from './fixtures.ts';
 import { buildHousingShell } from './shell.ts';
 import { buildHousingFurnishings } from './furnishings.ts';
 import { buildHousingDoors } from './doors.ts';
+import { withHousingFrontDoor, type HousingFrontDoorState } from './front-door.ts';
+import type { SceneCamera } from '../scene/types.ts';
 import type { WalkGrid } from '../scene/walk-grid.ts';
 
 /** The existing Home remains the authority for walking, stairs, doors, body and furniture actions. */
-export function buildHousingInterior(kit: Kit,recipe: HousingRecipe,first:()=>boolean,changed:()=>void) {
+export function buildHousingInterior(kit: Kit,recipe: HousingRecipe,first:()=>boolean,changed:()=>void,overview:()=>boolean=()=>false,front:HousingFrontDoorState={open:false}) {
   const home=buildHomeScene(kit,{visit:{grid:recipe.grid,style:recipe.style,items:recipe.items,owned:true}});
   let camera={x:20,z:20};
   const shell=buildHousingShell(kit,recipe),furnishings=buildHousingFurnishings(kit,recipe,changed);
@@ -26,10 +28,14 @@ export function buildHousingInterior(kit: Kit,recipe: HousingRecipe,first:()=>bo
   function present(){
     // Suppress only the old static batches. Keep the animated hinge, UI markers and avatar owned by Home.
     home.group.traverse(object=>{if(object.name.startsWith('home-room-')||object.name.startsWith('home-furniture-'))object.visible=false;});
-    shell.visible(home.floor,first(),false,camera);furnishings.visible(home.floor,first(),camera);doors.visible(home.floor,first());
+    shell.visible(home.floor,first(),false,camera,overview());furnishings.visible(home.floor,first(),camera);doors.visible(home.floor,first()||!overview());
   }
   const wrapper=Object.create(home) as typeof home & {assets: typeof furnishings;doors: typeof doors;refreshPresentation:()=>void};
   wrapper.walk=Object.create(home.walk);
+  Object.defineProperty(wrapper,'camera',{get:():SceneCamera=>{
+    const k=Math.max(1,Math.max(shell.plan.plot.w,shell.plan.plot.d)*10/recipe.grid/10);
+    return {landscape:[15*k,27*k,15*k],portrait:[19*k,32*k,19*k],start:overview()?5:3.6};
+  }});
   Object.defineProperty(wrapper.walk,'grid',{get:()=>home.walk.grid?grid:null});
   Object.defineProperty(wrapper.walk,'solids',{get:()=>[...home.walk.solids,...doors.solids(home.floor)]});
   wrapper.doors=doors;
@@ -38,5 +44,5 @@ export function buildHousingInterior(kit: Kit,recipe: HousingRecipe,first:()=>bo
   wrapper.update=(state:LifeState)=>{const changed=home.update(state);present();return changed;};
   wrapper.look=(x:number,z:number)=>{const changed=home.look(x,z);camera={x,z};present();return changed;};
   wrapper.dispose=()=>{doors.dispose();furnishings.dispose();shell.dispose();home.dispose();};
-  return wrapper;
+  return withHousingFrontDoor(wrapper,front,()=>home.floor===0);
 }

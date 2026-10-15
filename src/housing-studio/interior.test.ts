@@ -63,8 +63,8 @@ function toggleSafely(home: ReturnType<typeof buildHousingInterior>, door: Housi
 
 test('actual housing interior preserves the Home host, culling and navigation contracts', async () => {
   const kit = createKit(), source = JSON.stringify(recipe.items)
-  let first = false, changed = 0
-  const home = buildHousingInterior(kit, recipe, () => first, () => { changed += 1 })
+  let first = false, overview = false, changed = 0
+  const home = buildHousingInterior(kit, recipe, () => first, () => { changed += 1 }, () => overview)
   const parent = new THREE.Group()
   parent.add(home.group)
   const state = createLife({
@@ -89,7 +89,27 @@ test('actual housing interior preserves the Home host, culling and navigation co
     assert.ok(oldStatic.length > 0 && oldStatic.every((object) => !object.visible), 'the wrapper suppresses only the old static room and furniture batches')
     assert.ok(shell.length > 0)
     assert.ok(shell.some((mesh) => mesh.visible && String(mesh.userData.part).startsWith('0:floor')))
-    assert.ok(shell.every((mesh) => !mesh.visible || !/:inner|:ceiling/.test(String(mesh.userData.part))), 'third person cuts away the ceiling and full-height inner walls')
+    assert.ok(shell.some((mesh) => mesh.visible && /0:inner/.test(String(mesh.userData.part))), 'normal third person preserves full-height room partitions')
+    assert.ok(shell.every((mesh) => !mesh.visible || !/:ceiling/.test(String(mesh.userData.part))), 'third person lifts ceilings for visibility')
+    overview = true
+    home.refreshPresentation()
+    assert.ok(shell.every((mesh) => !mesh.visible || !/:inner|:ceiling/.test(String(mesh.userData.part))), 'the explicit floor overview cuts away upper partitions')
+    overview = false
+    home.refreshPresentation()
+    const frontLeaf = home.group.getObjectByName('home-door-leaf')!
+    const playerBefore = home.walk.avatar.position.clone()
+    assert.equal(home.frontDoor.open, false)
+    assert.equal(home.frontDoor.toggle(), true)
+    assert.equal(home.frontDoor.open, true)
+    assert.equal(frontLeaf.rotation.y, -Math.PI / 2)
+    home.look(-20, -20)
+    home.update(state)
+    assert.equal(frontLeaf.rotation.y, -Math.PI / 2, 'manual front door remains open across presentation refreshes')
+    assert.ok(home.walk.avatar.position.equals(playerBefore), 'manual front door does not move the avatar')
+    assert.equal(home.floor, 0)
+    assert.equal(home.frontDoor.toggle(), true)
+    assert.equal(frontLeaf.rotation.y, 0)
+    home.look(20, 20)
     const shownOuter = () => shell.filter((mesh) => mesh.visible && /0:outer:/.test(String(mesh.userData.part))).map((mesh) => String(mesh.userData.part).split(':')[2]).sort()
     assert.deepEqual([...new Set(shownOuter())], ['back', 'left'], 'third person retains only the camera-far facade planes')
     home.look(-20, -20)
@@ -123,8 +143,8 @@ test('actual housing interior preserves the Home host, culling and navigation co
 
     const groundDoor = home.doors.doors.find((door) => door.floor === 0)!
     const crossings: [WalkPoint, WalkPoint][] = [
-      [{ x: groundDoor.x - 0.7, z: groundDoor.z }, { x: groundDoor.x + 0.7, z: groundDoor.z }],
-      [{ x: groundDoor.x, z: groundDoor.z - 0.7 }, { x: groundDoor.x, z: groundDoor.z + 0.7 }],
+      [{ x: groundDoor.x - 0.5, z: groundDoor.z }, { x: groundDoor.x + 0.5, z: groundDoor.z }],
+      [{ x: groundDoor.x, z: groundDoor.z - 0.5 }, { x: groundDoor.x, z: groundDoor.z + 0.5 }],
     ]
     const crossing = crossings.find(([from, to]) => grid.free(from.x, from.z) && grid.free(to.x, to.z) && grid.clearLine(from.x, from.z, to.x, to.z))
     assert.ok(crossing, 'known doorway should have a clear cross-leaf line while open')
@@ -138,8 +158,9 @@ test('actual housing interior preserves the Home host, culling and navigation co
     assert.equal(grid.clearLine(crossing![0].x, crossing![0].z, crossing![1].x, crossing![1].z), true)
 
     const upperDoor = home.doors.doors.find((door) => door.floor === 1)!
+    const groundAtUpperDoor = grid.free(upperDoor.x, upperDoor.z)
     assert.ok(toggleSafely(home, upperDoor), 'an upper-floor door can change without replacing the host grid')
-    assert.equal(grid.free(upperDoor.x, upperDoor.z), true, 'the closed upper door does not leak into the active ground grid')
+    assert.equal(grid.free(upperDoor.x, upperDoor.z), groundAtUpperDoor, 'the closed upper door does not change the active ground grid')
 
     const flight = recipePlan(recipe).stairs[0]!
     const point = (up: number) => ({

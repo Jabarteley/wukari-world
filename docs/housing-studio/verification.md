@@ -25,12 +25,12 @@ Inspection led to fixes for floating terrace facade bands, missing interior-door
 
 ## Automated checks and package
 
-- `node --experimental-strip-types --test src/housing-studio/*.test.ts`: **10 passed, 0 failed**, final duration about 0.71 seconds. Coverage includes valid fixtures, legacy floor representation, room/stair reachability, exterior collision/door lifecycle, internal door reopening and floor changes, actual Home adapter contracts, asset hashes and scenery budgets.
+- `node --experimental-strip-types --test src/housing-studio/*.test.ts`: **11 passed, 0 failed**, final duration about 0.93 seconds. Coverage includes valid fixtures, legacy floor representation, room/stair reachability, exterior collision/door lifecycle, internal door reopening and floor changes, actual Home adapter contracts, asset hashes and scenery budgets.
 - Scoped TypeScript project: `scripts/housing/tsconfig.json` — **passed, exit 0** after the integration owner released its heavy slot.
-- Scoped Vite build: **passed**, 2.48 seconds. No production entry/configuration/package/lockfile changed. The generic large-chunk warning remains: this standalone preview includes the shared runtime in one large entry.
-- Conservative scenery maximum: **14,244 / 15,000 triangles**, mansion first floor in first person. The audit includes the built shell, furnishings, internal doors and retained Home scenery; it adds near-LOD asset triangles on top of their fallbacks conservatively. Existing avatar geometry belongs to the separately approved character allowance. The on-screen renderer counter includes characters and can therefore exceed 15,000.
+- Scoped Vite build: **passed**, 1.83 seconds. No production entry/configuration/package/lockfile changed. The generic large-chunk warning remains: this standalone preview includes the shared runtime in one large entry.
+- Conservative scenery maximum: **13,800 / 15,000 triangles**, mansion first floor in first person. The audit includes the built shell, furnishings, internal doors and retained Home scenery; it adds near-LOD asset triangles on top of their fallbacks conservatively. Existing avatar geometry belongs to the separately approved character allowance. The on-screen renderer counter includes characters and can therefore exceed 15,000.
 - Selected furniture: **12 GLBs, 164,752 bytes**; hashes match the pinned owned asset library. No external photos or downloaded third-party models are shipped.
-- Standalone package: **40 files, 4,627,436 bytes**. Largest entry: **3,341,364 bytes**, **930,059 bytes gzip at level 9**. Exact output hashes are in [package-receipt.json](package-receipt.json). These are studio-package figures, not a production startup-budget certificate.
+- Standalone package: **40 files, 4,632,792 bytes**. Largest entry: **3,346,344 bytes**, **931,760 bytes gzip at level 9**. Exact output hashes are in [package-receipt.json](package-receipt.json). These are studio-package figures, not a production startup-budget certificate.
 
 ## Preserved boundaries and remaining acceptance
 
@@ -47,3 +47,13 @@ Integration into the main game, hosted CI, final production download budgets, ph
 ![Duplex phone-width preview](screenshots/duplex-phone.jpg)
 ![Mansion exterior](screenshots/mansion-exterior.jpg)
 ![Mansion roof terrace](screenshots/mansion-roof.jpg)
+
+## User-review correction
+
+The initial screenshot showed a low camera cutaway with full-height door frames and missing partitions. Normal third person now retains full-height interior walls and starts farther back and higher. Floor overview is an explicit toggle that resets the camera and lowers the partitions. Stair tops retain a small landing cap. First person remains enclosed with ceilings.
+
+Doors are retained for private rooms; redundant privacy openings are filled visually and blocked in the same navigation projection. Public social-room gaps remain open passages. There are four internal doors in the duplex, two in the compact apartment, four in the two-bedroom apartment and six in the mansion. The duplex ground floor has only the guest-toilet door. The selector verifies furnished room/stair reachability before sealing each candidate, rather than inferring it from room adjacency. All recipe room/stair routes pass the focused checks.
+
+Open/Close front door changes only manual door state. It does not trigger travel or move the avatar. Closing is rejected when the avatar is in its footprint. Walk inside/Walk outside retain the host traversal animation and return the front door to closed afterwards. F operates the nearest room or front door on the current floor. Existing front-door and interior tests exercise manual persistence, no position change, transit yielding, enclosure/overview, and retained privacy-door collision.
+
+The updated built entry is `housing-studio-Cpt9b-AG.js`. Final interactive visual acceptance is pending while the integration owner holds the shared Chrome session for production verification. One attempted hidden in-app browser was unavailable; Chrome was left untouched. Initial screenshots above are retained as earlier evidence, not proof of this correction.

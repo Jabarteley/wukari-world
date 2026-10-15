@@ -111,13 +111,17 @@ export function buildHousingShell(kit: Kit, recipe: HousingRecipe) {
       box(edge(s.x+s.w/2,recipe.grid),s.floor*STOREY+STOREY/2+.96,z,runLength,.055,.055,wood,{part:`${s.floor}:stairs`,rz:s.dir*Math.atan2(STOREY,s.w*tile)});
     }
   }
+  for(const s of plan.stairs) {
+    const x=edge(s.x+(s.dir===1?s.w:0),recipe.grid)+s.dir*.38;
+    box(x,(s.floor+1)*STOREY-.08,edge(s.y+s.h/2,recipe.grid),.76,.16,s.h*tile,stone,{part:`${s.floor}:landing-cap`});
+  }
   const built=b.build(sceneMaterials(kit)); root.add(...built.meshes);
-  const visible=(floor:number,first:boolean,exterior=false,camera={x:20,z:20})=> {
+  const visible=(floor:number,first:boolean,exterior=false,camera={x:20,z:20},overview=false)=> {
     for(const mesh of built.meshes) {
       const [n,kind,side]=String(mesh.userData.part).split(':'); const f=Number(n);
       const wallShown=side==='back'?camera.z>=-5:side==='left'?camera.x>=-5:side==='front'?camera.z<=d-5:camera.x<=w-5;
       mesh.visible=exterior ? kind==='outer'||kind==='ceiling'||kind==='floor' :
-        (f===floor || (kind==='stairs'||first&&kind==='floor')&&f===floor-1) && (kind!=='ceiling'||first) && (kind!=='outer'||first||wallShown) && (kind!=='inner'||first);
+        (f===floor || (kind==='stairs'||first&&kind==='floor')&&f===floor-1) && (kind!=='ceiling'||first) && (kind!=='outer'||first||wallShown) && (kind!=='inner'||first||!overview);
     }
   };
   return {group:root,plan,triangles:built.triangles,visible,dispose(){for(const m of built.meshes)m.geometry.dispose();root.removeFromParent();}};

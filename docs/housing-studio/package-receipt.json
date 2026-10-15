@@ -1,10 +1,10 @@
 {
-  "recorded_utc": "2026-10-15T14:36:45.407828+00:00",
+  "recorded_utc": "2026-10-15T15:05:17.915308+00:00",
   "files": 40,
-  "bytes": 4627436,
+  "bytes": 4632792,
   "largest": [
-    3341364,
-    "assets/housing-studio-DPYkFblY.js"
+    3346344,
+    "assets/housing-studio-Cpt9b-AG.js"
   ],
   "outputs": {
     "assets/base-body-female-DALTB_7N.glb": {
@@ -35,17 +35,17 @@
       "bytes": 338060,
       "sha256": "89a2c636d3a9d1d9eac0e1125c20ca14d030c55ae27561dd8644b30645fd3d47"
     },
-    "assets/content-DFbfJRv1.js": {
+    "assets/content-BKkBjb6T.js": {
       "bytes": 43325,
-      "sha256": "1b2b2536aabd0f4759223dc896fbda87aa1ae72283ac579fd68d1920a58b1f28"
+      "sha256": "977f06b671509560d392ca2dfeea08bd41ba9c72e37b95b863da860559e4bbff"
     },
-    "assets/content-DSiyad3e.js": {
+    "assets/content-BwzKj5JI.js": {
       "bytes": 70572,
-      "sha256": "3967528e4f244990ab688c5e7e1eedf07527cf0178d6cee8dc0058fea975f690"
+      "sha256": "2d90c4f83d3e31a42c98dc7657955f197b962cb49be438b9a48635a082c202a3"
     },
-    "assets/context-0kuOnKW_.js": {
+    "assets/context-kvK-NjeN.js": {
       "bytes": 41533,
-      "sha256": "86d906f5edf30f7c0c4259d19e405369477e2fb5ebacd561b2c04a9f6c2a722f"
+      "sha256": "8259e92881da6d2a9c57a8ae45118758715a0517c603f2e36be9431d3440e463"
     },
     "assets/descriptions-DcFL_aO5.js": {
       "bytes": 1780,
@@ -75,29 +75,29 @@
       "bytes": 14576,
       "sha256": "5a69f7c0f80348dfea3e8604ca19add56cd431f5474270f306d5a501a71b8632"
     },
-    "assets/housing-studio-DPYkFblY.js": {
-      "bytes": 3341364,
-      "sha256": "9a617be6435900f6bcf6b900433aaa6895781faaa8aedd071fdee58ece338809"
+    "assets/housing-studio-ChpQfRDj.css": {
+      "bytes": 11555,
+      "sha256": "33e6ba81e9f8d851842fa794acdcf21920cafc482ba0ae7607f00f17c4db87dd"
     },
-    "assets/housing-studio-DX4g1xmF.css": {
-      "bytes": 11394,
-      "sha256": "ab549f00ca070d9c5d4ac742e8451613452fd41960e25f7323ee14b2d3fe9cde"
+    "assets/housing-studio-Cpt9b-AG.js": {
+      "bytes": 3346344,
+      "sha256": "5e1c1ff0f2ec3bcb85ad757c7464b71db3452d86795d8ba3887155148b1f5256"
     },
-    "assets/index-CVtiS9OR.js": {
+    "assets/index-Bvl5Y8UQ.js": {
       "bytes": 4549,
-      "sha256": "4b5dd43e5c175af571029a18e0a43fea6fb44083c1f5007decd5c4896a09f614"
+      "sha256": "0ba44329850da084f91440018d0c482191e99e4cbd705f3dd75fd4a3fa92eee1"
     },
-    "assets/index-Cue8c_AY.js": {
+    "assets/index-DgVsCB0L.js": {
       "bytes": 5692,
-      "sha256": "cbbb04395e80274bc35c326f06fc5708b4be740f104780761805f89b7ccba965"
+      "sha256": "7f49ab5e427830f69e9350e2734a6b73bed95433fca291ea9641b4d20774d09c"
     },
     "assets/knee-clearance-public-washbasin-near-Dms0cUDN.glb": {
       "bytes": 6440,
       "sha256": "59d2d712fceba05a69d61319acad1b9bccda6bc94eaa72889388d6425d1dcdb1"
     },
-    "assets/lagos-BVD36yWu.js": {
+    "assets/lagos-Cfn4W0I1.js": {
       "bytes": 13772,
-      "sha256": "a2b52939f7338faf4ef52f523db10576180381af3ea87d43ad6d61cd2059ea94"
+      "sha256": "b9595200d9c7ec34994ab5603437e1c1b34c5e51aa27c271b25207e008fdcbf6"
     },
     "assets/lagos-DbaUcb73.js": {
       "bytes": 12180,
@@ -111,41 +111,41 @@
       "bytes": 265,
       "sha256": "ca7cfacac3d0a2f85bb6d64c828c3901e89cf35e07171377547ff960a7728e3d"
     },
-    "assets/map-CPqGTe0I.js": {
-      "bytes": 128795,
-      "sha256": "fc66400606ccade56e00a477891193ef677eea08e9654bd3b6867d73e101579d"
-    },
-    "assets/map-SGW6mSSJ.js": {
+    "assets/map-C3IbBwnv.js": {
       "bytes": 1393,
-      "sha256": "79458b2efeb95b40157cf8b2ee99abcbab7e58d9db747b38febfa33b0e02a506"
+      "sha256": "ec47542d83f3dad4a871628db4403a28fc9c979d50dc129c2a49b505709061bb"
     },
-    "assets/module-BvDHExMh.js": {
+    "assets/map-CUVWOkGM.js": {
+      "bytes": 128795,
+      "sha256": "52fdac32fc26c25885393b488d554e4bdd7358e59b6a587b60d33268790403f6"
+    },
+    "assets/module-BTUeLlb-.js": {
       "bytes": 11276,
-      "sha256": "94b44188299ce91477a2b6ca4c0580b2c22cf2e7532a488ede323c18d37ba9a4"
+      "sha256": "78c85bca2c67096e1fc4f5c2fc1c5609cd570fcb370de2a2aa84fb93918c8e99"
     },
     "assets/price-levels-data-DKOupUfg.js": {
       "bytes": 3220,
       "sha256": "904fa28ddb7abaecacf50633743725b7b8c8d5ccd79ad6725f69892052c7cfa6"
     },
-    "assets/reward-ZSj5NPR7.js": {
+    "assets/reward-DNC3MCzu.js": {
       "bytes": 20280,
-      "sha256": "218fcbd5d99fd5fd47176f7a12d10f92b2a26f402679f5ebed3c845d37e5a742"
+      "sha256": "d16d6d6515d301566a768febeda75a1936b629f64e145e3d740c5d3d6a96b19d"
     },
-    "assets/scenery-5nlqsx7K.js": {
+    "assets/scenery-XH4AMSZt.js": {
       "bytes": 733,
-      "sha256": "8848d53febf214a12b0bfbe4344b9c2f110daa1b7ba5cbcf890ae730333012bb"
+      "sha256": "fdf88da72f97f5dfcf408c5c8d3e9d00c69a16b12fa8bff37bb53802e59c7494"
     },
     "assets/single-bed-near-DYnTMkGf.glb": {
       "bytes": 18856,
       "sha256": "cd46d1f53b3102207eafefc6fb97af7a9fda186367af65e468adb58d3320258a"
     },
-    "assets/skinned-BtLcei_V.js": {
+    "assets/skinned-CdyCCJFm.js": {
       "bytes": 56632,
-      "sha256": "6adbfa8643ed2e9ff17af8afe7f32d33efb4f243da91799e4e4c47f8432c940f"
+      "sha256": "11c963db2d5390d5d4be2ebd28b096ec5d79cd7652b2f374a4a55d21f138ca1d"
     },
-    "assets/stand-in-CS3th4eA.js": {
+    "assets/stand-in-BLwozFNw.js": {
       "bytes": 2924,
-      "sha256": "38e4083b073a04b6341a224d7cc622990fc9999f009a58303ef243df3c61b70b"
+      "sha256": "849b61bfe5cc82333876df6564d6b78d6dac7d5590cd27363bae49f427c8a7ae"
     },
     "assets/topo-WFTRc4ut.js": {
       "bytes": 2874,
@@ -164,9 +164,9 @@
       "sha256": "c7d55be46fc4a2e30bad49a7181ea918ab81e562ac58934d0ef07213c81968d1"
     },
     "housing-studio.html": {
-      "bytes": 2351,
-      "sha256": "b8d2ffa7269f372ef82ae03841b160f25af4d74e07ed611ecb4e233d46215e6e"
+      "bytes": 2566,
+      "sha256": "da292c9bb6a43cf66c0cf543e2068fbef9bc032d46d518b5a1e925cab8d3ad6c"
     }
   },
-  "entry_gzip_bytes": 930059
+  "entry_gzip_bytes": 931760
 }

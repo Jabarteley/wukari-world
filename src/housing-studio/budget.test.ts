@@ -97,9 +97,9 @@ test('every housing recipe stays inside the 15k scenery cap on each floor and vi
     const furnishings = buildHousingFurnishings(kit, recipe, () => {})
     const doors = buildHousingDoors(kit, recipe)
     const exteriorScene = buildHousingExterior(kit, recipe)
-    let first = false
+    let first = false, overview = false
     const homeKit = createKit()
-    const home = buildHousingInterior(homeKit, recipe, () => first, () => {})
+    const home = buildHousingInterior(homeKit, recipe, () => first, () => {}, () => overview)
     try {
       const state = createLife({
         location: 'home',
@@ -110,8 +110,9 @@ test('every housing recipe stays inside the 15k scenery cap on each floor and vi
       const floors = recipePlan(recipe).floors.length
       for (let floor = 0; floor < floors; floor += 1) {
         moveHomeToFloor(home, recipe, floor)
-        for (const mode of ['third-person', 'first-person', 'exterior'] as const) {
+        for (const mode of ['third-person', 'first-person', 'overview', 'exterior'] as const) {
           const firstPerson = mode === 'first-person'
+          overview = mode === 'overview'
           first = firstPerson
           const exterior = mode === 'exterior'
           let built: number
@@ -120,9 +121,9 @@ test('every housing recipe stays inside the 15k scenery cap on each floor and vi
           } else {
             home.walk.goal(0, 0)
             home.refreshPresentation()
-            shell.visible(floor, firstPerson, false)
+            shell.visible(floor, firstPerson, false, {x:20,z:20}, overview)
             furnishings.visible(floor, firstPerson)
-            doors.visible(floor, firstPerson)
+            doors.visible(floor, firstPerson || !overview)
             built = visibleTriangles(shell.group) + visibleTriangles(furnishings.group) + visibleTriangles(doors.group)
           }
           const expectedGlb = exterior ? 0 : expectedNearTriangles(recipe, floor)

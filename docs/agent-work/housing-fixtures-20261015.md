@@ -6,9 +6,9 @@
 - **Owner:** `/root/integration_seams`
 - **Model / effort:** `gpt-6.1-sol / high`
 - **Thread:** parent `/root`
-- **UTC updated:** `2026-10-15T14:10:49Z`
-- **Status:** `ready-for-integration`
-- **Work state:** `verified-local`
+- **UTC updated:** `2026-10-15T15:01:03Z`
+- **Status:** `handoff-with-known-failure`
+- **Work state:** `parent-assuming-door-ownership`
 
 ## Goal and boundaries
 
@@ -42,7 +42,7 @@
 - `node --experimental-strip-types --test src/housing-studio/fixtures.test.ts src/housing-studio/exterior.test.ts` — 5 passed, 0 failed. This proves sequential `checkPlacement` and direct `planRule` acceptance, omitted-floor ground fixtures round-trip through `fitInto`, room/stair routes, blocked house/boundary footprints, routes from every courtyard entrance to its house door, door completion and idempotent geometry cleanup.
 - Added a host-level test of the real `buildHousingInterior` wrapper. `node --experimental-strip-types --test src/housing-studio/interior.test.ts` — 1 passed, 0 failed. It proves the inherited Home contract, recipe immutability, old-static suppression, camera-relative third-person facades, complete first-person enclosure, current-floor-only furnishings, furniture/wall collision, routes into every room, monotonic ascent and descent through the Home stair solver, and complete teardown.
 - Direct visible-geometry probe of the duplex fallback path: third person 5,860 triangles / 29 meshes; first person 7,624 triangles / 36 meshes. Both are below the 15,000 scenery allowance. Browser acceptance separately established 16 loaded GLBs; Node intentionally exercises the procedural fallback because its loader cannot fetch bundled file URLs.
-- Added `buildHousingDoors`, deriving stable door records, frames and one/two hinged leaves from the openings already cut into adjacent room boundaries by `wallsOf`. Doors start open, interact within two world units, refuse to close through the avatar, expose current-floor visibility and closed-door solids, and cache a walk-grid projection by base grid, floor and closed-door state.
+- Added `buildHousingDoors`, deriving stable labelled door records and single hinged leaves from privacy-room openings cut into adjacent room boundaries by `wallsOf`. Redundant privacy gaps receive a full-height wall split into a persistent 0.85 m overview section and a cullable upper section; social gaps remain passages. Doors start open, interact within two world units, refuse to close through the avatar, expose current-floor visibility and closed-door solids, and cache a walk-grid projection by base grid, floor and closed-door state.
 - `node --experimental-strip-types --test src/housing-studio/doors.test.ts` — 2 passed, 0 failed. This proves the open state returns the exact Home grid, the close guard, safe nearby interaction, preservation of every base occupied cell, closed cross-room path rejection, cached projections, exact base-grid restoration on reopen, current-floor visibility, recipe immutability and idempotent geometry cleanup.
 - Focused stubbed TypeScript for `doors.ts` and `doors.test.ts` and their `git diff --check` both exited 0 after one strict initialization correction.
 - Extended the real-wrapper interior acceptance over the parent-integrated stable grid delegate. The test holds one `home.walk.grid` reference, observes a known doorway become blocked and clear across close/reopen, closes an upper-floor door without affecting the active ground grid, then observes that same reference reproject the upper blocker after ascent and the reopened ground layer after descent. Recipe placements remain unchanged.
@@ -53,16 +53,17 @@
 
 ### In progress / blockers
 
-- No blocker. Parent browser acceptance and combined commit remain.
+- Frozen handoff counts are Lagos duplex 10 rooms / 4 doors / 4 sealed privacy gaps; Lagos two-room apartment 3 / 2 / 1; Lagos two-bedroom apartment 6 / 4 / 3; Abuja mansion 12 / 5 / 4.
+- Focused TypeScript exits 0 and two of three door tests pass. The furnished reachability case still fails for `abuja-mansion/floor 1/Master bedroom`; parent requested immediate source freeze and assumed ownership before a second selection correction.
 
 ### Immediate resume steps
 
-1. Parent combines this stable-grid evidence with its browser door presentation pass.
-2. Parent commits the combined worktree batch.
+1. Parent must adjust the Abuja upper-floor retained privacy-edge selection so the stair landing still reaches the master bedroom after redundant gaps are sealed.
+2. Rerun `node --experimental-strip-types --test src/housing-studio/doors.test.ts`, then parent build/browser acceptance and commit.
 
 ## Release state
 
-- **Local implementation:** `verified-local`
+- **Local implementation:** `active`
 - **Deployment:** `not-requested`
 - **Release gate:** parent review and commit after focused tests pass.
 - **References:** `docs/agent-work/housing-studio-20261015.md`, `src/game/home-layout.ts`, `src/game/home-plan.ts`.
@@ -81,3 +82,5 @@
 | 2026-10-15T14:01:33Z | ready-for-integration | Internal-door geometry, interaction, collision projection and focused tests complete. | 2 tests passed; focused TypeScript and diff checks exited 0. | Parent integration and browser acceptance. |
 | 2026-10-15T14:06:00Z | active | Accepted bounded wrapper-grid acceptance after parent integrated internal doors. | Parent `interior.ts` stable delegate and existing real-wrapper test. | Add door and floor reprojection assertions. |
 | 2026-10-15T14:10:49Z | ready-for-integration | Stable wrapper-grid close, reopen and floor reprojection acceptance complete. | Real-wrapper test, focused TypeScript and diff checks exited 0. | Parent browser acceptance and commit. |
+| 2026-10-15T14:25:00Z | active | User requested fewer internal doors; accepted disjoint ownership of door source/tests only. | Current `5d932f12`; latest parent and coordination records read. | Select and verify one privacy entrance per private room. |
+| 2026-10-15T15:01:03Z | handoff-with-known-failure | Reduced doors to privacy boundaries, sealed redundant gaps, added interaction labels and preserved overview low walls. Parent requested immediate source freeze and assumed door ownership. | Focused TypeScript passed; focused tests 2/3 passed. Abuja upper master furnished route remains disconnected. | Parent corrects Abuja retained edge, reruns focused test, then build/browser gates. |

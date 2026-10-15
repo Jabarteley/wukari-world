@@ -1,0 +1,39 @@
+✖ the Worker contains city references under 500 bytes each and no city payload or packed dictionary (525.860103ms)
+✔ need alert: away a day, the worst of hunger, energy and social, only if it would be low on return (1.863197ms)
+✔ someone waiting: friends named, requests only counted, nothing before the last mail (0.433583ms)
+✔ a friend misses you: counted for a week, once per mail (0.258724ms)
+✔ milestones come from state that exists: house, deposit, table win, election, shift (95.16577ms)
+✔ events: only one that starts within the next 24 hours, once, for a player who has been away a day (0.593404ms)
+✔ away steps: 3, 7 and 28 days, each once per absence, the highest reached (0.173795ms)
+✔ priority: someone waiting > a friend nudge > a need > a milestone > an event > away (0.867614ms)
+✔ gates: off, paused, active in the last 12 hours, quiet hours, preference per type (1.020669ms)
+✔ caps: one in 24 hours, three in 7 days, across every type (the digest is one of them) (0.568734ms)
+✔ cooldowns: a need at most every 3 days; waiting and milestones every 2; each key once (0.409787ms)
+✔ back-off: three mails with no visit in between drop to one per 14 days; the final away mail ends the run until a visit (0.530713ms)
+✔ the final away mail is never starved, and five mails with no visit end the run whatever they were (0.198039ms)
+✔ remember: the ledger is bounded and what was sent is not sent again (0.364107ms)
+✔ words: in the character’s voice, one button, no message text, no balance (1.131571ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1410.276492
+
+✖ failing tests:
+
+test at scripts/city/worker-content-budget.test.ts:13:1
+✖ the Worker contains city references under 500 bytes each and no city payload or packed dictionary (525.860103ms)
+  AssertionError [ERR_ASSERTION]: Worker is 4822254 bytes
+      at TestContext.<anonymous> (file:///workspace/nigeria-baseline/scripts/city/worker-content-budget.test.ts:28:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

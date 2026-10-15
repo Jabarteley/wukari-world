@@ -288,7 +288,7 @@ export default defineConfig({
     if (city) return `city-${city[1]}-${city[2]}`
     // The world network (every city's catalogue facts, land components and authored routes): one lazy chunk, fetched when the game is
     // idle after it is ready and awaited by whatever reads other cities. A resident's startup carries only the index (catalogue.ts).
-    if (/\/src\/game\/cities\/(network|catalogue\.generated|land-components\.generated|routes\.generated)\.ts$/.test(id)) return 'city-network'
+    if (/\/src\/game\/cities\/(network|catalogueRows|catalogue\.generated|land-components\.generated|routes\.generated)\.ts$/.test(id)) return 'city-network'
     if (/\/src\/game\/cities\/(spec|specValidation)\.ts$/.test(id)) return 'city-spec'
     if (/\/src\/game\/cities\/contentBuilder\.ts$/.test(id)) return 'city-content-builder'
     if (/\/src\/game\/cities\/ogun\/(contentBuilder)\.ts$/.test(id)) return 'city-ogun-content'
@@ -369,9 +369,11 @@ export default defineConfig({
     if (/\/src\/game\/memory\/(mind|lines)\.ts$/.test(id)) return undefined
     if (/\/src\/game\/neighbourhood-space\.ts$/.test(id)) return undefined
     if (/\/src\/game\/home-plan\.ts$/.test(id)) return undefined
+    // The online pill (src/app/features/hud/OnlinePill.vue), its poll and its wording: fetched with the top bar (HudBar.vue), one file; the Hunt chip reads the same poll.
+    if (/\/src\/app\/features\/hud\/(OnlinePill\.vue|usePulse\.ts|onlinePillModel\.ts)/.test(id)) return 'online-pill'
     // Small modules every page uses, shared by the lazy panels and each needing no more than Vue and the engine: kept in the engine chunk
     // (already in the first download) instead of one file apiece, which would each carry its own header and lose what the others share when compressed.
-    if (/\/src\/(geo\/frame|campus\/unilag\/(slices|volunteer)|app\/ui\/format|app\/features\/(commerce\/connectionReturn|account\/(accountLite|accountTrack)|hud\/(usePulse|onlinePillModel|coachModel)|sim\/settingsModel|tour\/tourState|neighbourhood\/cityWalkState))\.ts$/.test(id)) return 'engine'
+    if (/\/src\/(geo\/frame|campus\/unilag\/(slices|volunteer)|app\/ui\/format|app\/features\/(commerce\/connectionReturn|account\/(accountLite|accountTrack)|hud\/coachModel|sim\/settingsModel|tour\/tourState|neighbourhood\/cityWalkState))\.ts$/.test(id)) return 'engine'
     // The small shared pieces the game shell itself uses (buttons, sheet, skeleton rows, glyph text, the calls loader and the growth store): one file in the first download instead of six, each of which would carry its own header and lose what the others share when compressed. Lazy panels import them from here.
     if (/\/src\/app\/(ui\/(BaseButton|BaseSheet|SkeletonRows)\.vue)(\?|$)/.test(id)) return 'shell-kit'
     // Reading a world-feed answer into a city's money and the short money form (docs/CURRENCY.md): only the lazy feed module, the top bar's count-up and the civic boards use them; the writer (money.ts) is in the engine.

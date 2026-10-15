@@ -54,3 +54,9 @@ Final scoped TypeScript (`scripts/housing/tsconfig.json`) passes with exit 0; ca
 ## Review corrections
 
 Astra source review identified two P1 issues, corrected in the adapter lane: final draw estimates now count compact model and procedural furnishing calls as well as retained/fallback geometry; blocked exit detection now includes the initial approach and same-floor exit. A legal dense 36-rug layout verifies canonical fallback at the unchanged draw cap. Actual stair and ground-floor closed-door approaches verify blocked exits. Astra accepted the source corrections; host consumption and actual full-game browser acceptance remain pending.
+
+## Combined wiring checkpoint
+
+The isolated candidate now wires the production builder through the existing lazy Home loader. The host consumes blocked exits as handled with feedback and refreshes third-person static occluders when the stable solids identity changes. Astra accepted the combined source after wall-item backing, entrance precedence, balcony spans and terrace mirror clearance corrections. Four shell geometry tests and two host behavior tests pass. The earlier combined 72-check run and full build/download qualification passed before these final shell corrections; final combined verification remains required.
+
+Initial fixed-budget figures: startup 609,092/615,000 raw and 220,834/223,000 gzip bytes; shared scene host 186,608/192,000 raw and 70,551/71,000 gzip. These are the initial candidate figures, not final-source or hosted acceptance. Actual game browser, WebGL, owner adoption and deployed link remain open.

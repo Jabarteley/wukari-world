@@ -2,10 +2,14 @@ import type { Kit } from '../scene/kit.ts';
 import { createBatch, sceneMaterials } from '../scene/build.ts';
 import { planOf, wallsOf, slabOf, roomAt } from '../game/home-plan.ts';
 import { plotOf, doorSlot } from '../game/home-layout.ts';
+import { FURNITURE } from '../game/content/furniture.ts';
 import type { HousingRecipe } from './fixtures.ts';
 
 export const STOREY = 3.4;
 export const edge = (n: number, grid: number) => -5 + n * 10 / grid;
+
+/** Width of the canonical wall models in src/scene/home-scene.ts, before their mounting scale. */
+const WALL_MODEL_WIDTH: Readonly<Record<string, number>> = { lamp:.22,strip:.9,fan:.64,mirror:.74,calendar:.4,art:.74 };
 
 /** A visual skin over the existing house plan. All coordinates remain in the host's units. */
 export function buildHousingShell(kit: Kit, recipe: HousingRecipe, options: { wall?: string } = {}) {
@@ -17,15 +21,22 @@ export function buildHousingShell(kit: Kit, recipe: HousingRecipe, options: { wa
   const box = b.box.bind(b);
   const run = (x0: number,z0: number,x1: number,z1: number,y: number,h: number,t: number,c: string,part: string) =>
     box((x0+x1)/2,y+h/2,(z0+z1)/2,Math.abs(x1-x0)||t,h,Math.abs(z1-z0)||t,c,{part});
+  const wallMounts = (floor:number,side:'back'|'left') => recipe.items.flatMap(item=>{
+    const def=FURNITURE[item.itemId];if(!def?.wall||(item.floor??0)!==floor||(item.rot===0?'back':'left')!==side)return [];
+    const centre=edge((side==='back'?item.x:item.y)+.5,recipe.grid),scale=Math.max(tile,.8),half=(WALL_MODEL_WIDTH[def.shape]??.8)*scale/2;
+    return [{centre,half}];
+  });
   const windowWall = (length: number, floor: number, side: string) => {
     const part = `${floor}:outer:${side}`, y = floor * STOREY;
     const segment = length / Math.max(1, Math.round(length/3.4));
+    const wallCentre = side === 'back' || side === 'left' ? -5.1 : (side === 'front' ? -5+d : -5+w)+.1;
     const across = (x:number,z:number,wide:number,deep:number,yy:number,hh:number,c:string,layer?:'glass') => {
-      const pos = side === 'back' ? [x,-5] : side === 'front' ? [x,-5+d] : side === 'left' ? [-5,z] : [-5+w,z];
+      const pos = side === 'back'||side === 'front' ? [x,wallCentre] : [wallCentre,z];
       box(pos[0]!, yy, pos[1]!, side==='back'||side==='front'?wide:deep,hh,side==='back'||side==='front'?deep:wide,c,{part,...(layer?{layer}:{})});
     };
     for(let start=0;start<length-.01;start+=segment) {
       const centre=-5+start+segment/2, win=segment*.63;
+      const low=-5+start,high=low+segment;
       // Leave the existing animated front door and its clear opening on the left facade.
       const doorZ=edge(doorSlot(recipe.grid)+.5,recipe.grid);
       const tx=(side==='left'?0:side==='right'?plan.plot.w-.1:(centre+5)/tile);
@@ -36,18 +47,19 @@ export function buildHousingShell(kit: Kit, recipe: HousingRecipe, options: { wa
         across(centre,centre,segment,.035,y+.57,.96,'#9bb5b0','glass');
         across(centre,centre,segment,.08,y+1.08,.06,metal);
         for(const sign of [-1,1])across(centre+sign*segment/2,centre+sign*segment/2,.055,.09,y+.57,1.02,metal);
+        if(side==='back'||side==='left')for(const item of wallMounts(floor,side))if(item.centre>=low&&item.centre<high)
+          across(item.centre,item.centre,item.half*2,.2,y+STOREY/2,STOREY,wall);
         continue;
       }
-      const artPanel=side==='back'&&recipe.items.some(item=>item.itemId==='wall-art'&&(item.floor??0)===floor&&edge(item.x+.5,recipe.grid)>=-5+start&&edge(item.x+.5,recipe.grid)<-5+start+segment);
+      const wallBacking=(side==='back'||side==='left')&&wallMounts(floor,side).some(item=>item.centre-item.half<high&&item.centre+item.half>low);
       const isDoor=floor===0 && side==='left' && doorZ>=-5+start && doorZ< -5+start+segment;
-      if(artPanel) {
-        across(centre,centre,segment,.2,y+STOREY/2,STOREY,wall);
-      } else if(isDoor) {
+      if(isDoor) {
         const half=Math.min(tile*.86,1.5)/2;
-        const low=-5+start,high=low+segment;
         if(doorZ-half>low) across(0,(low+doorZ-half)/2,doorZ-half-low,.2,y+STOREY/2,STOREY,wall);
         if(high>doorZ+half) across(0,(high+doorZ+half)/2,high-doorZ-half,.2,y+STOREY/2,STOREY,wall);
         across(0,doorZ,half*2,.2,y+2.85,1.1,wall);
+      } else if(wallBacking) {
+        across(centre,centre,segment,.2,y+STOREY/2,STOREY,wall);
       } else {
         across(centre,centre,segment,.2,y+.48,.96,stone);
         across(centre,centre,segment,.2,y+3.02,.76,wall);
@@ -89,8 +101,11 @@ export function buildHousingShell(kit: Kit, recipe: HousingRecipe, options: { wa
     }
     if(!terrace) for(const side of ['back','front','left','right']) windowWall(side==='back'||side==='front'?w:d,floor,side);
     else {
-      for(const z of [-5,-5+d]) run(-5,z,-5+w,z,base,1.05,.12,stone,`${floor}:outer:front`);
-      for(const x of [-5,-5+w]) run(x,-5,x,-5+d,base,1.05,.12,stone,`${floor}:outer:left`);
+      for(const z of [-5.06,-5+d+.06]) run(-5,z,-5+w,z,base,1.05,.12,stone,`${floor}:outer:front`);
+      for(const x of [-5.06,-5+w+.06]) run(x,-5,x,-5+d,base,1.05,.12,stone,`${floor}:outer:left`);
+      // A saved wall item on an open terrace still gets a real backing, without closing the terrace around it.
+      for(const {centre,half} of wallMounts(floor,'back')) run(centre-half,-5.1,centre+half,-5.1,base,STOREY,.2,wall,`${floor}:outer:back`);
+      for(const {centre,half} of wallMounts(floor,'left')) run(-5.1,centre-half,-5.1,centre+half,base,STOREY,.2,wall,`${floor}:outer:left`);
     }
     // Horizontal facade bands and restrained walnut entry screen.
     if(!terrace) for(const z of [-5.12,-5+d+.12]) box(-5+w/2,base+3.25,z,w+.45,.22,.34,metal,{part:`${floor}:outer:${z<0?'back':'front'}`});

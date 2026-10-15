@@ -158,6 +158,7 @@ Account-based guard decided per request from server records; constant-time hash 
 | `adminAnnounce` | announcements | last 200 |
 | `adminSettings` | only values that differ from the environment | the registered settings |
 | `modelRouter` | the model router's ledger (spend by day, model, purpose, person; the weekly report), 14 days, written lazily | docs/MODELS-ROUTER.md |
+| `agentCalls` | seconds of calls with AI characters per day: `{ days: { [utcDay]: { total, players: { [one-way key]: seconds } } } }`, 3 days, written lazily; numbers only (`server/house/call-limits.ts`) | docs/CALLS.md |
 | `adminNotes` | private notes | 20 per player, 2000 players |
 | `adminDaily` | `{ first, days: { [lagosDay]: number[13] } }`, one row of whole numbers per Lagos day (`server/admin/history.ts`) | last 400 days; written at most every 15 minutes, only when a number changed |
 

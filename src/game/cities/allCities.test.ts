@@ -58,8 +58,9 @@ test('every generated city passes its offline source and output check', () => {
     }
     generated.push(id)
   }
+  // The batch check rebuilds every generated city from its pinned source: about 50 seconds on a fast laptop and over a minute on a hosted runner, so 60 s was a coin toss.
   if (generated.length) execFileSync(process.execPath, ['--experimental-strip-types', join(root, 'scripts/city/build-city.ts'), '--check-batch', ...generated], {
-    cwd: root, encoding: 'utf8', timeout: 60_000,
+    cwd: root, encoding: 'utf8', timeout: 300_000,
   })
   if (foreign.length) {
     const python = realpathSync(process.env.WORLD_TEST_PYTHON ?? (existsSync('/usr/bin/python3') ? '/usr/bin/python3' : execFileSync('which', ['python3'], { encoding: 'utf8' }).trim()))

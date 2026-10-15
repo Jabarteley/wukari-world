@@ -1,0 +1,74 @@
+{
+  "at": "2026-10-15T16:21:32.342Z",
+  "deploymentId": "bbfd6870-12c1-40ed-9152-bf811610743f",
+  "versionId": "ce38ecb4-5ca8-4fe6-819d-d9b7cf42a019",
+  "bindings": [
+    {
+      "name": "ACCOUNTS_FIREBASE_API_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "ACCOUNTS_FIREBASE_PROJECT_ID",
+      "type": "secret_text"
+    },
+    {
+      "name": "ACCOUNTS_GOOGLE_CLIENT_ID",
+      "type": "secret_text"
+    },
+    {
+      "name": "AI_GATEWAY_API_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "ASSETS",
+      "type": "assets"
+    },
+    {
+      "name": "BUILD_ID",
+      "type": "plain_text",
+      "valueHash": "af15c562818309dab0490fb80249d9e3892274f8e5f965853db8be77794f9ff3"
+    },
+    {
+      "name": "EMAIL_FROM_ADDRESS",
+      "type": "secret_text"
+    },
+    {
+      "name": "EMAIL_FROM_NAME",
+      "type": "secret_text"
+    },
+    {
+      "name": "JOINALLWORLD",
+      "type": "durable_object_namespace",
+      "namespaceId": "6b84e715f6c444f69971a0b6cde7868b"
+    },
+    {
+      "name": "MODERATOR_TOKEN",
+      "type": "secret_text"
+    },
+    {
+      "name": "OPENROUTER_API_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "PUBLIC_ORIGIN",
+      "type": "secret_text"
+    },
+    {
+      "name": "TURN_API_TOKEN",
+      "type": "secret_text"
+    },
+    {
+      "name": "TURN_KEY_ID",
+      "type": "secret_text"
+    },
+    {
+      "name": "TURN_TEST_PUBLIC_IDS",
+      "type": "secret_text"
+    },
+    {
+      "name": "ZEPTOMAIL_AUTH",
+      "type": "secret_text"
+    }
+  ],
+  "scope": "Current live source after independent protected release38762867412; do not overwrite original8aff receipt."
+}

@@ -46,3 +46,12 @@
 - verification.md and download-budgets.json hold the final scope, changed-file list and remaining integration/art limits. This evidence-only checkpoint follows the source commit.
 - Owned Chromium/Vite and optional budget-inventory processes stopped; temporary fixture removed. Remote worktree clean after final evidence commit. No PR/main writes/deployment.
 - Parent should serialize1054d570 + ed0357a1 and final evidence through existing integration owner. Housing internals untouched. Exact IDs/pending art requests in batch002-handoff.json and original README. Next art work requires photo-faithful replacements; further research includes Bodija/UI, everyday Kano compounds, Trans-Amadi/GRA and Accra/Nairobi labels. Do not broaden Okrika geometry without evidence.
+
+## Art-budget correction checkpoint
+
+- Parent requested correction of proposed 30-draw near assets; source 7a301336, isolated branch unchanged. Own changes limited to this record and destination research README.md, batch002.md, batch002-handoff.json.
+- Verified createRuntimeHost.validate in src/scene/models/runtime-host.ts rejects reservations above20 draw calls or11500 triangles. Admission also subtracts current host cost; transparent double-sided and shadow passes count. No runtime gates or housing/shared adapters will change.
+- Apply near ceiling20 and far12, both further limited by measured remaining host budget, to original and batch002 briefs and all future batches. These are ceilings, not guaranteed available allocations.
+- Local integration owner reports receipt only: candidate not integrated/tested/deployed by that lane and excluded from current Phase6 scope. Reported combined source d427cd55 and last live201b9bda are parent-supplied statuses, not independently checked here.
+- Validation: all10 near/far budgets passed the actual imported createRuntimeHost.validate;21 and30 draws rejected. Existing runtime-host.test.ts6/6 pass; git diff --check clean. No build rerun needed for documentation-only correction.
+- Exact changed files: docs/agent-work/destination-expansion-20261015.md; docs/research/destination-expansion-20261015/README.md; docs/research/destination-expansion-20261015/batch002.md; docs/research/destination-expansion-20261015/batch002-handoff.json. No GLB/runtime asset manifests exist for these proposed requests. Next: parent must pass this correction to modeling before production and obtain explicit integration acceptance separately.

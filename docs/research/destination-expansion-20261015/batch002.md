@@ -33,7 +33,7 @@ These photographs remain reference links only. No pixels, copyrighted signs or t
 
 All slices are original 24m × 20m compositions, Y-up, 1m → 1.4 host units. These new bounds are design proposals, not survey measurements. Keep exact host anchor positions unless an independently tested adapter is supplied. Maintain 1.5m-wide continuous entrance/activity/return paths with >=0.4m radius clearance. Block raised shop thresholds, water edges, piers, walls and planted beds appropriately; never expand a walkable rectangle across unsupported water. Do not combine Mapo with Dugbe, palace with Kurmi, or Okrika with the city terminal as one continuous street.
 
-Proposed slice limits: near6k triangles/30draws; far2k/12draws; <=1024 textures, original/CC0 material sources. Integrator still must check complete host+hero+crowd totals against unchanged repo limits, release bytes, correct Y support, camera views, every activity approach/return, lifecycle/reentry and single-tier residency. Require original/cleared materials, hash-bound near/far GLBs, bounds/entrance/action/collision/navigation sidecars, daylight/night offline views and actual host captures. Do not overlay full new geometry on old colliders.
+Proposed slice limits: near6k triangles/20draws; far2k/12draws; <=1024 textures, original/CC0 material sources. Integrator still must check complete host+hero+crowd totals against unchanged repo limits, release bytes, correct Y support, camera views, every activity approach/return, lifecycle/reentry and single-tier residency. Require original/cleared materials, hash-bound near/far GLBs, bounds/entrance/action/collision/navigation sidecars, daylight/night offline views and actual host captures. Do not overlay full new geometry on old colliders.
 
 ## Verification so far
 
@@ -43,3 +43,7 @@ Proposed slice limits: near6k triangles/30draws; far2k/12draws; <=1024 textures,
 - Full typecheck/build/download/browser results are recorded in the verification receipt after completion. Browser harness uses real production VenueHost and real pointer/touch events with synthetic accepted activity state; engine checks separately prove actual dispatch/completion. It is not a full application/HTTP journey or real-phone performance measurement.
 
 No standalone deployment or competing main write. Parent integration owner receives tested source commits and this handoff.
+
+### Runtime budget correction — applies to this and every subsequent batch
+
+The earlier 30-draw near proposal was invalid. `src/scene/models/runtime-host.ts:createRuntimeHost.validate` caps a runtime reservation at **20 draw calls and 11,500 triangles**. These briefs request near <=6,000 triangles/20 draws and far <=2,000 triangles/12 draws. Each tier must also fit the **smaller measured remaining host budget** after host, hero, crowd and other resident content; do not assume the full ceiling is available. Count material groups, transparent double-sided passes and shadow passes as runtime measurement does. If either resource cannot fit, reduce the asset or defer admission; never raise runtime gates. Apply this rule to Accra/Nairobi and all later handoffs before modeling. Existing whole-host limits and lifecycle checks remain mandatory.

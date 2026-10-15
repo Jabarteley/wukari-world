@@ -40,12 +40,13 @@
     ],
     "nearBudget": {
       "triangles": 6000,
-      "drawCalls": 30
+      "drawCalls": 20
     },
     "farBudget": {
       "triangles": 2000,
       "drawCalls": 12
     },
+    "budgetConstraint": "Each tier must fit min(proposed tier ceiling, measured remaining host budget after host/hero/crowd/other resident content). Count material groups, transparent double-sided passes and shadows. Runtime reservation cap: 11500 triangles/20 draws. Reduce or defer if insufficient; never raise gates.",
     "clearPathWidthMetres": 1.5,
     "playerClearanceMetres": 0.4,
     "geometryStatus": "proposed original composition, not surveyed geometry"
@@ -91,12 +92,13 @@
     ],
     "nearBudget": {
       "triangles": 6000,
-      "drawCalls": 30
+      "drawCalls": 20
     },
     "farBudget": {
       "triangles": 2000,
       "drawCalls": 12
     },
+    "budgetConstraint": "Each tier must fit min(proposed tier ceiling, measured remaining host budget after host/hero/crowd/other resident content). Count material groups, transparent double-sided passes and shadows. Runtime reservation cap: 11500 triangles/20 draws. Reduce or defer if insufficient; never raise gates.",
     "clearPathWidthMetres": 1.5,
     "playerClearanceMetres": 0.4,
     "geometryStatus": "proposed original composition, not surveyed geometry"
@@ -142,12 +144,13 @@
     ],
     "nearBudget": {
       "triangles": 6000,
-      "drawCalls": 30
+      "drawCalls": 20
     },
     "farBudget": {
       "triangles": 2000,
       "drawCalls": 12
     },
+    "budgetConstraint": "Each tier must fit min(proposed tier ceiling, measured remaining host budget after host/hero/crowd/other resident content). Count material groups, transparent double-sided passes and shadows. Runtime reservation cap: 11500 triangles/20 draws. Reduce or defer if insufficient; never raise gates.",
     "clearPathWidthMetres": 1.5,
     "playerClearanceMetres": 0.4,
     "geometryStatus": "proposed original composition, not surveyed geometry"
@@ -193,12 +196,13 @@
     ],
     "nearBudget": {
       "triangles": 6000,
-      "drawCalls": 30
+      "drawCalls": 20
     },
     "farBudget": {
       "triangles": 2000,
       "drawCalls": 12
     },
+    "budgetConstraint": "Each tier must fit min(proposed tier ceiling, measured remaining host budget after host/hero/crowd/other resident content). Count material groups, transparent double-sided passes and shadows. Runtime reservation cap: 11500 triangles/20 draws. Reduce or defer if insufficient; never raise gates.",
     "clearPathWidthMetres": 1.5,
     "playerClearanceMetres": 0.4,
     "geometryStatus": "proposed original composition, not surveyed geometry"
@@ -244,12 +248,13 @@
     ],
     "nearBudget": {
       "triangles": 6000,
-      "drawCalls": 30
+      "drawCalls": 20
     },
     "farBudget": {
       "triangles": 2000,
       "drawCalls": 12
     },
+    "budgetConstraint": "Each tier must fit min(proposed tier ceiling, measured remaining host budget after host/hero/crowd/other resident content). Count material groups, transparent double-sided passes and shadows. Runtime reservation cap: 11500 triangles/20 draws. Reduce or defer if insufficient; never raise gates.",
     "clearPathWidthMetres": 1.5,
     "playerClearanceMetres": 0.4,
     "geometryStatus": "proposed original composition, not surveyed geometry"

@@ -96,7 +96,7 @@ async function runEpisodePath(state: LifeState, cityId: string, episode: Episode
 
   if (agentAssistance) {
     const assistance = act(state, cityId, 'episodes.assist', { id: episode.id, kind: 'authored-dialogue' }, 'delegated-agent')
-    assert.equal(assistance.code, 'assistance_recorded', `${episode.id}: identified agent assistance records`) 
+    assert.equal(assistance.code, 'assistance_recorded', `${episode.id}: identified agent assistance records`)
     assert.equal(state.episodes.runs[episode.id]?.chapter, 2, 'assistance is chapter guidance, not advancement')
     assert.equal(state.episodes.runs[episode.id]?.receipts[2], undefined, 'assistance cannot substitute for chapter proof')
     totals.agentAssistanceRecords += 1

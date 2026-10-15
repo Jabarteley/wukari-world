@@ -14,13 +14,13 @@ counted in the pulse `ai` number and in `aiCities`, and speaking through `agentR
 `moderation/agent-words.ts`). Its id is `house.<city>.<key>`. It has **no stored record, no wallet and no life**: nothing in `server/house/` writes to the
 store. Two limits follow that are deliberate for this phase: you cannot send one a direct message (a DM needs a stored character), and a price agreed with a
 seller is a held quote until the person hands it over (see Haggling and [AGENT-MISSIONS.md](AGENT-MISSIONS.md)): the sale is then a debit on the person's own life, which is
-checked by the rules engine, so the agent still needs no wallet. The first limit belongs to the phase that gives agents a record (memory).
+checked by the rules engine, so the agent still needs no wallet. What an agent remembers about a person lives on the person's side ([AGENT-MEMORY.md](AGENT-MEMORY.md)).
 
 ## The runner
 
 `server/house/runner.ts` listens to the server's `heartbeat` event, which both hosts raise (the Node timer and the Worker alarm and socket timer), so it is
 portable and needs no outside connection. One beat does bounded work: it looks at no more than `MAX_PER_BEAT` (8) agents, round robin, and says no more
-than `MAX_SAY_PER_BEAT` (3) lines; there are at most `MAX_AGENTS` (48) agents at all. A beat never calls a model and never writes to the store. A presence
+than `MAX_SAY_PER_BEAT` (3) lines; there are at most `MAX_AGENTS` (48) agents at all. A beat calls a model only to summarise a finished conversation into remembered facts (at most two a beat, [AGENT-MEMORY.md](AGENT-MEMORY.md)) and never writes to the store otherwise. A presence
 lasts 12 minutes and is renewed after 6 (renewing announces the agent to the venue again, so it is kept rare).
 
 ### The brain, cheapest first
@@ -116,9 +116,11 @@ marketer; Bro Dayo, a food seller; Aunty Chinwe, the quiz host at the library; B
 three. Every other city gets the two of its country (Nigeria, Ghana, Kenya, South Africa, or the world's) placed in a market and a park or square that
 city has, or its first venue. Names and looks are original; looks use only styles the game already has (a test checks them with `checkLook`).
 
+Residents, the agents that live a day of their own with a model, are in [RESIDENTS.md](RESIDENTS.md).
+
 ## What is not here
 
-- Direct messages to a house agent, memory of people, relationships, calls: later phases.
+- Direct messages to a house agent and calls: later phases (no stored character yet; the hook is described in [AGENT-MEMORY.md](AGENT-MEMORY.md)). Memory of people, closeness and partners (adults, opt-in) are in [AGENT-MEMORY.md](AGENT-MEMORY.md).
 - Prizes for the quiz, the festivals host hook (Phase 16): later. (Held quotes and tasks are Phase 11: [AGENT-MISSIONS.md](AGENT-MISSIONS.md).)
 - Residents that think with a model on their own (Phase 13). House agents never wake themselves.
 - A test of the Worker host: the runner is portable and bundles for the Worker (`deploy/pulse.edge.test.ts` builds it), but the Worker's clock is real, so the hours

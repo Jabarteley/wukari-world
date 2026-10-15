@@ -130,7 +130,7 @@ export function deskOf(ctx: RouteContext, deps: DeskDeps = {}) {
    * `peers` are the public ids of the people in the speaker's group of the venue. `handWords` says the line sounds like handing something over.
    * Resolves one line to say, or null when no task of this life asked for anything.
    */
-  function notice(input: { agent: AgentRef; spec: Spec; who: Who; peers: readonly string[]; handWords: boolean }): Promise<string | null> {
+  function notice(input: { agent: AgentRef; spec: Spec; who: Who; peers: readonly string[]; handWords: boolean; /** Called with the id of the agent who gave a task this step finished (closeness rises: runner.ts missionDone). */ onDone?: (giverId: string) => void | Promise<void> }): Promise<string | null> {
     const { agent, spec, who } = input, seed = `${agent.id}|${who.id}|${ctx.now()}`;
     return guarded(null, async () => {
       const plan = await ctx.store.read((db) => {
@@ -142,10 +142,10 @@ export function deskOf(ctx: RouteContext, deps: DeskDeps = {}) {
         const friends = input.peers.filter((id) => id !== who.id && found.state.social.rel[id]?.friend === true && !found.state.social.rel[id]?.npc && !ctx.core?.sessionByPublicId?.(db, id)?.agent);
         const bringing = open.filter((e) => e.kind === 'bring' && e.by.id === agent.id);
         const friend = bringing.length ? friends.find((id) => bringing.some((e) => !e.marks.includes(id))) : undefined;
-        return { greet: greet.length > 0, hand: input.handWords ? hand[0] : undefined, friend };
+        return { greet: greet.length > 0, hand: input.handWords ? hand[0] : undefined, friend, ids: [...greet, ...(input.handWords ? hand.slice(0, 1) : []), ...bringing].map((e) => e.id) };
       });
       if (!plan || (!plan.greet && !plan.hand && !plan.friend)) return null;
-      const lines: string[] = [];
+      const lines: string[] = [], finished: string[] = [];
       await ctx.store.transact((db) => {
         if (plan.greet && step(db, who, agent.city, { op: 'talk', agent: agent.id }, 'The agent is marked on the task, so a repeat counts nothing').ok) { count().greeted += 1; lines.push(say.taskGreeted(spec, seed)); }
         if (plan.friend && step(db, who, agent.city, { op: 'bring', agent: agent.id, friend: plan.friend }, 'The friend is marked on the task, so a repeat counts nothing').ok) { count().brought += 1; lines.push(say.taskBrought(spec, seed)); }
@@ -154,7 +154,9 @@ export function deskOf(ctx: RouteContext, deps: DeskDeps = {}) {
           if (done.ok) { count().handed += 1; lines.push(say.taskHanded(spec, seed)); }
           else lines.push(say.taskShort(spec, plan.hand.units ?? 1, INGREDIENTS[plan.hand.item ?? '']?.label.toLowerCase() ?? 'what I asked for', seed));
         }
+        for (const e of lifeOf(db, who, agent.city)?.state.missions.agent ?? []) if (plan.ids.includes(e.id) && e.n >= e.count && !e.claimed) finished.push(e.by.id);
       });
+      for (const giver of new Set(finished)) { try { await input.onDone?.(giver); } catch { /* closeness is a bonus, never a reason to fail */ } }
       return lines.length ? lines.join(' ') : null;
     });
   }
@@ -178,6 +180,14 @@ export function deskOf(ctx: RouteContext, deps: DeskDeps = {}) {
     });
   }
 
-  return { offer, notice, sell, counters: (): DeskCounters => ({ ...count() }), phrasings: (): number => memory.size, templates: TEMPLATES.length };
+  /** A person's open tasks that involve this agent, as short phrases for the model's prompt (Phase 12 `missions` hook). */
+  async function phrases(personId: string, agent: { id: string; city: string }): Promise<string[]> {
+    return guarded([], () => ctx.store.read((db) => {
+      const found = lifeOf(db, { id: personId, name: '' }, agent.city), now = ctx.now();
+      return (found?.state.missions.agent ?? []).filter((e) => !e.claimed && e.n < e.count && e.until > now && (e.by.id === agent.id || e.with?.id === agent.id)).map((e) => `${e.label} (${e.n} of ${e.count})`);
+    }));
+  }
+
+  return { offer, notice, sell, phrases, counters: (): DeskCounters => ({ ...count() }), phrasings: (): number => memory.size, templates: TEMPLATES.length };
 }
 export type Desk = ReturnType<typeof deskOf>;

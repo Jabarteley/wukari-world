@@ -1,6 +1,7 @@
 import type { FamilyCommand, FamilyFailure, FamilyLinkView } from '../../src/types/family.ts';
 import { answerFamily, inviteFamily, isFamilySlot, pruneFamily, removeFamilyLink, clearPlayerFamily, unlinkFamilyPair } from './family.ts';
 import { sha256Hex } from '../../src/game/util.ts';
+import { flirtAllowed } from '../house/memory.ts';
 import { venueFor } from '../../src/game/cities/runtime.ts';
 /**
  * OWNER: social
@@ -234,7 +235,9 @@ function buildService(ctx: RouteContext) {
     return null;
   }
 
-  if (ctx.checks) ctx.checks.publicRomance = (db, people, agent) => { const s = col(db); return people.length > 0 && people.every((person) => publicConsent(db, s, person, agent)); };
+  // A house agent (docs/HOUSE-AGENTS.md) has no stored character: its id is `house.<city>.<key>` and a person's yes is a partnership or a flirting consent kept with the
+  // agent's memory (server/house/memory.ts flirtAllowed). Still only confirmed adults; every other word rule is read by the caller as for any AI character.
+  if (ctx.checks) ctx.checks.publicRomance = (db, people, agent) => { const s = col(db); return people.length > 0 && people.every((person) => (agent.startsWith('house.') ? Boolean(s.players[person]) && !speaksAsAi(s, person) && flirtAllowed(db, person, agent, now(), !notAdult(db, person)) : publicConsent(db, s, person, agent))); };
   /** The question's card changed (answered): both members of the chat see it. */
   function romanceCardChanged(s: SocialCollection, conv: ConversationRecord, line: MessageRecord, push: PushList): void {
     for (const member of conv.members) if (s.players[member]?.convs[conv.id]) push.push([member, { type: 'message-changed', conv: summary(s, conv, member), message: messageView(s, conv, line, member) }]);

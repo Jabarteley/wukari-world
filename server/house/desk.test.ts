@@ -214,3 +214,19 @@ test('the hand-over charges exactly the price given, refuses one below the least
   assert.ok(say.sale(specOf('tolani'), { ok: true, label: 'Ankara', price: 1850 }, 's').includes('1,850'));
   assert.ok(writtenBrief(TEMPLATES[0]!, 'plain'));
 });
+
+test('finishing a task tells the runner which agent gave it (closeness), and the open tasks of an agent are phrased for its prompt', async () => {
+  const r = rig();
+  r.person('p1', 'Ada', { cash: 5000 });
+  const state = r.db.sessions['p1']!.cities['lagos']!.state;
+  const desk = r.desk();
+  const stamp = { n: 0, count: 1, cash: 150, marks: [], claimed: false, at: r.clock.t, until: r.clock.t + DAY, brief: 'b', by: { id: 'house.lagos.ade', name: 'Baba Ade', city: 'lagos', venue: 'cchub', hours: '' } };
+  state.missions.agent = [{ ...stamp, id: 'ag-greet-ade-1', kind: 'talk', label: 'Say hello to Tunji', with: { id: 'house.lagos.tunji', name: 'Tunji', city: 'lagos', venue: 'park' } }];
+  assert.deepEqual(await desk.phrases('p1', { id: 'house.lagos.tunji', city: 'lagos' }), ['Say hello to Tunji (0 of 1)']);
+  assert.deepEqual(await desk.phrases('p1', { id: 'house.lagos.dayo', city: 'lagos' }), []);
+  const done: string[] = [];
+  const line = await desk.notice({ agent: AGENTS[1]!, spec: specOf('tunji'), who: WHO('p1', 'Ada'), peers: [], handWords: false, onDone: (giver) => { done.push(giver); } });
+  assert.ok(line);
+  assert.deepEqual(done, ['house.lagos.ade'], 'the giver, not the agent spoken to, gains closeness');
+  assert.deepEqual(await desk.phrases('p1', { id: 'house.lagos.tunji', city: 'lagos' }), [], 'a finished task is no longer open');
+});

@@ -360,3 +360,17 @@ test('a 429 with no retry-after, or an unreadable one, backs off 1, 2 then 5 min
     assert.equal(w.calls[0]?.model, 'busy/model-y-free', 'one minute again, not five');
   }
 });
+
+test('prefer: a model named by the caller is tried first when it is usable, the others stay as fallbacks', async () => {
+  const w = world({ settings: { modelsResident: 'gateway:nvidia/nemotron-3.5-lightning-free, gateway:poolside/laguna-s-2.1-free, gateway:stealth/glyph-cluster' } });
+  const first = await w.router.ask({ ...say('resident'), prefer: 'gateway:stealth/glyph-cluster' });
+  assert.ok(first.ok && first.model === 'stealth/glyph-cluster');
+  const bare = await w.router.ask({ ...say('resident'), prefer: 'poolside/laguna-s-2.1-free' });
+  assert.ok(bare.ok && bare.model === 'poolside/laguna-s-2.1-free');
+  const gone = await w.router.ask({ ...say('resident'), prefer: 'gateway:not/in-the-list' });
+  assert.ok(gone.ok && gone.model === 'nvidia/nemotron-3.5-lightning-free');
+  // A preferred model that fails falls to the next as usual.
+  const failing = world({ settings: { modelsResident: 'gateway:nvidia/nemotron-3.5-lightning-free, gateway:stealth/glyph-cluster' }, plan: (call) => (call.model === 'stealth/glyph-cluster' ? { status: 500 } : {}) });
+  const fell = await failing.router.ask({ ...say('resident'), prefer: 'stealth/glyph-cluster' });
+  assert.ok(fell.ok && fell.model === 'nvidia/nemotron-3.5-lightning-free' && fell.attempts.length === 2);
+});

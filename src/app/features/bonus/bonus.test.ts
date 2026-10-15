@@ -19,8 +19,8 @@ const OFFER = { on: true, amount: 1_000_000, places: 10_000, left: 4_230 }
 const memory = (): Pick<Storage, 'getItem' | 'setItem'> => { const data = new Map<string, string>(); return { getItem: (key) => data.get(key) ?? null, setItem: (key, value) => { data.set(key, value) } } }
 
 test('the offer line: honest, in-game naira, the true count, and gone when the offer is over', () => {
-  assert.equal(offerLine(OFFER), 'Launch bonus: the first 10,000 players to sign up get ₦1,000,000 in the game. 4,230 left.')
-  assert.equal(chipText(OFFER), 'Sign up to claim ₦1,000,000 in the game · 4,230 left')
+  assert.equal(offerLine(OFFER), 'Launch bonus: the first 10,000 players to sign up get at least ₦1,000,000 in the game. 4,230 left.')
+  assert.equal(chipText(OFFER), 'Sign up to claim at least ₦1,000,000 in the game · 4,230 left')
   for (const gone of [null, undefined, { ...OFFER, on: false }, { ...OFFER, left: 0 }]) assert.equal(offerLine(gone), null)
   assert.equal(chipText({ ...OFFER, left: 0 }), null)
   assert.ok(!/hurry|only|last chance|countdown/i.test(offerLine(OFFER) ?? ''), 'no pressure beyond the true count')
@@ -50,11 +50,11 @@ test('the moment: the toast names the place, the companion says one line, a held
 test('share text and the link preview carry the offer only while it is open', () => {
   const facts = { kind: 'invite', name: 'Ada', city: 'Lagos', district: 'Yaba' }
   const open = shareText(facts, 'https://example.test/s/abc12345', OFFER)
-  assert.ok(open.includes('The first 10,000 players get ₦1,000,000 in the game'))
+  assert.ok(open.includes('The first 10,000 players get at least ₦1,000,000 in the game'))
   assert.ok(open.endsWith('https://example.test/s/abc12345'), 'the link stays the last line')
   assert.ok(!shareText(facts, 'https://example.test/s/abc12345', { ...OFFER, on: false }).includes('first 10,000'))
   assert.ok(!shareText(facts, 'https://example.test/s/abc12345').includes('first 10,000'))
-  assert.ok(sharePreview(facts, OFFER).description.endsWith('The first 10,000 players get ₦1,000,000 in the game.'))
+  assert.ok(sharePreview(facts, OFFER).description.endsWith('The first 10,000 players get at least ₦1,000,000 in the game.'))
   assert.equal(sharePreview(facts, null).description, sharePreview(facts).description)
   assert.equal(offerSentence({ ...OFFER, on: false }), '')
 })
@@ -110,13 +110,13 @@ test('the landing line and the guest chip render from the offer, and nothing ren
   store.bonus.offer = OFFER
   const line = await render('/src/app/features/bonus/BonusLine.vue')
   assert.match(line, /data-bonus-line/)
-  assert.equal(text(line), 'Launch bonus: the first 10,000 players to sign up get ₦1,000,000 in the game. 4,230 left.')
+  assert.equal(text(line), 'Launch bonus: the first 10,000 players to sign up get at least ₦1,000,000 in the game. 4,230 left.')
   // A guest on a server with accounts, connected, in the venue view, nothing in front.
   const lite = (await load<typeof import('../account/useAccountLite.ts')>('/src/app/features/account/useAccountLite.ts')).useAccountLite()
   Object.assign(lite.state, { loaded: true, enabled: true, account: null })
   const chip = await render('/src/app/features/bonus/BonusHost.vue')
   assert.match(chip, /data-bonus-chip/)
-  assert.ok(text(chip).startsWith('Sign up to claim ₦1,000,000 in the game · 4,230 left'))
+  assert.ok(text(chip).startsWith('Sign up to claim at least ₦1,000,000 in the game · 4,230 left'))
   assert.match(chip, /data-bonus-signup/); assert.match(chip, /data-bonus-dismiss/)
   Object.assign(lite.state, { account: { email: 'ada@example.com', provider: 'password', createdAt: 1, devices: 1 } })
   assert.equal(text(await render('/src/app/features/bonus/BonusHost.vue')), '', 'not for a signed-in player')

@@ -53,3 +53,46 @@ test('the pin is kept on this device and can be removed', () => {
   assert.deepEqual(homePin.value, lagos, 'a full store still pins for this visit')
   setHomePin(null, store)
 })
+
+// ---- the pin is kept with the character: the device is a cache ----
+import { resetHomePinSync, savePin, syncHomePin } from './homePinStore.ts'
+const memory = () => { const data = new Map<string, string>(); return { data, getItem: (k: string) => data.get(k) ?? null, setItem: (k: string, v: string) => { data.set(k, v) }, removeItem: (k: string) => { data.delete(k) } } }
+const accra = { city: 'accra', name: 'Accra', tz: 'Africa/Accra' }
+
+test('sync: the server pin wins and refreshes the cache', async () => {
+  resetHomePinSync(); setHomePin(null, memory())
+  const store = memory(); store.setItem('allworld.homepin', JSON.stringify(lagos))
+  const calls: string[] = []
+  const pin = await syncHomePin(async (path, options) => { calls.push(`${options?.method ?? 'GET'} ${path}`); return { home: accra } }, store)
+  assert.deepEqual(pin, accra); assert.deepEqual(homePin.value, accra)
+  assert.deepEqual(JSON.parse(store.getItem('allworld.homepin')!), accra, 'the device copy now follows the account')
+  assert.deepEqual(calls, ['GET /api/world/home-city'], 'nothing is uploaded when the server has a pin')
+  await syncHomePin(async () => { throw new Error('once per page') }, store)
+})
+
+test('sync: a pin only the device has is uploaded once (ifNone), then kept', async () => {
+  resetHomePinSync(); setHomePin(null, memory())
+  const store = memory(); store.setItem('allworld.homepin', JSON.stringify(lagos))
+  const sent: unknown[] = []
+  const pin = await syncHomePin(async (_path, options) => { if (!options) return { home: null }; sent.push(options.body); return { home: lagos } }, store)
+  assert.deepEqual(sent, [{ ...lagos, ifNone: true }])
+  assert.deepEqual(pin, lagos); assert.deepEqual(homePin.value, lagos)
+})
+
+test('sync: neither side has one, or the network is down: the cache stands', async () => {
+  resetHomePinSync(); setHomePin(null, memory())
+  assert.equal(await syncHomePin(async () => ({ home: null }), memory()), null)
+  resetHomePinSync(); setHomePin(lagos, memory())
+  assert.deepEqual(await syncHomePin(async () => { throw new Error('offline') }, memory()), lagos)
+  resetHomePinSync(); setHomePin(null, memory())
+})
+
+test('choosing and removing a pin updates the cache at once and tells the server; a failed save leaves the cache', async () => {
+  const store = memory(), sent: unknown[] = []
+  await savePin(async (_p, options) => { sent.push(options?.body); return {} }, accra, store)
+  await savePin(async (_p, options) => { sent.push(options?.body); return {} }, null, store)
+  assert.deepEqual(sent, [accra, { clear: true }]); assert.equal(store.getItem('allworld.homepin'), null); assert.equal(homePin.value, null)
+  await savePin(async () => { throw new Error('offline') }, accra, store)
+  assert.deepEqual(homePin.value, accra, 'kept on this device')
+  setHomePin(null, store)
+})

@@ -1079,3 +1079,47 @@ test('N6 — a claim nobody settled does not sit in the queue for good: after a 
   assert.equal(next.status, 200); assert.equal(typeof (await m.account('UidEve'))?.welcome, 'number', 'the new account was not marked skipped');
   assert.equal((await m.stored()).accountLog?.welcome?.length, 0);
 });
+
+test('home city: kept with the character, follows the account to another device, uploaded once from a device, exported and erased', async t => {
+  const a = await accounts(t), ada = await a.player('Ada');
+  const pin = { city: 'accra', name: 'Accra', tz: 'Africa/Accra' };
+  const home = async (cookie: string): Promise<unknown> => (await (await a.call('/api/world/home-city', null, cookie)).json() as { home: unknown }).home;
+  const save = async (cookie: string, body: Json): Promise<Response> => a.call('/api/world/home-city', body, cookie);
+  assert.equal((await a.call('/api/world/home-city')).status, 401, 'a session is needed');
+  assert.equal(await home(ada.cookie), null);
+  // The device's old pin is uploaded once, and only when the server has none.
+  assert.deepEqual(await (await save(ada.cookie, { ...pin, ifNone: true })).json().then(body => (body as { home: unknown }).home), pin);
+  assert.equal((await save(ada.cookie, { city: 'nairobi', name: 'Nairobi', tz: 'Africa/Nairobi', ifNone: true })).status, 200);
+  assert.deepEqual(await home(ada.cookie), pin, 'an upload with ifNone never overwrites');
+  // Junk is refused, nothing changes.
+  for (const bad of [{ city: '../x', name: 'X', tz: 'Africa/Accra' }, { city: 'accra', name: 'Accra', tz: 'Mars/Base' }, { city: 'accra', name: '<>', tz: 'Africa/Accra' }, {}]) assert.equal((await save(ada.cookie, bad)).status, 400, JSON.stringify(bad));
+  assert.deepEqual(await home(ada.cookie), pin);
+  // It follows the account: a second device signed in to the same account reads it.
+  const laptop = await a.signIn('UidAda', ada.cookie); a.f.advance(5000);
+  const phone = await a.signIn('UidAda');
+  assert.deepEqual(await home(phone.cookie), pin, 'another device reads the same pin');
+  // Changing it on one device changes it on the other.
+  const lagos = { city: 'lagos', name: 'Lagos', tz: 'Africa/Lagos' };
+  assert.equal((await save(laptop.cookie, lagos)).status, 200);
+  assert.deepEqual(await home(phone.cookie), lagos);
+  // The account export carries it.
+  const data = await (await a.proved('/api/account/export', {}, phone.cookie, 'UidAda')).json() as AccountExportResponse;
+  assert.deepEqual(data.character?.homeCity, lagos);
+  // A character without a pin exports without the field.
+  assert.equal(((await (await a.proved('/api/account/export', {}, phone.cookie, 'UidAda')).json()) as AccountExportResponse).character?.homeCity?.city, 'lagos');
+  assert.equal((await save(phone.cookie, { clear: true })).status, 200);
+  assert.equal(await home(laptop.cookie), null);
+  assert.ok(!('homeCity' in (((await (await a.proved('/api/account/export', {}, phone.cookie, 'UidAda')).json()) as AccountExportResponse).character ?? {})));
+  // Erase: the pin goes with the character; without erase the character, and so the pin, is handed back as a guest life.
+  assert.equal((await save(phone.cookie, pin)).status, 200);
+  const kept = await a.change('/api/account/delete', { confirm: 'delete', idToken: await a.token('UidAda') }, phone.cookie);
+  const guestCookie = kept.headers.get('set-cookie')?.split(';')[0] ?? '';
+  assert.deepEqual(await home(guestCookie), pin, 'the kept character keeps its own pin');
+  a.f.advance(61000);
+  const bola = await a.player('Bola'), signed = await a.signIn('UidBola', bola.cookie);
+  assert.equal((await save(signed.cookie, pin)).status, 200);
+  await a.change('/api/account/delete', { confirm: 'delete', erase: true, idToken: await a.token('UidBola') }, signed.cookie);
+  const db = await a.stored();
+  assert.ok(!Object.values(db.sessions).some(session => session.publicId === bola.id) && db.archivedLives?.[bola.id] === undefined, 'an erased character, and so its pin, is gone');
+  assert.equal(Object.values(db.sessions).filter(session => session.homeCity).length, 1, 'only the character that was kept still has a pin');
+});

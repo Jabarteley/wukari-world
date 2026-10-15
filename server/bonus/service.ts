@@ -13,6 +13,10 @@
  * earnings) → marker written. The store serialises transactions on both hosts, so two devices at once, a replay, and the last place
  * racing the one after it resolve to exactly the right count.
  *
+ * THE AMOUNT: the advertised LAUNCH_BONUS_AMOUNT is the least a player is paid. A life that started in a city outside Nigeria is paid that amount times
+ * the price level of its starting city (src/game/price-levels.ts `lifeLevel`, docs/PRICE-LEVELS.md), never less, so the bonus buys about as much in
+ * London as in Lagos and the advertised words stay true. The marker's `amount` becomes what was actually paid.
+ *
  * HELD, NOT LOST. The place is reserved the moment the account first asks (the counter goes up and the marker says which number it
  * is), so a player is never told "you got it" and then loses it. The money waits for either of two things and is paid by a later call:
  *   held 'character'  the account has no started character yet (signed up before finishing the creator): paid when it has one;
@@ -33,6 +37,7 @@ import { characterCity } from '../character.ts';
 import { prepareStoredCityContent } from '../request-city-content.ts';
 import { addressBucket } from '../host-context.ts';
 import { hash53 } from '../protocol.ts';
+import { lifeLevel, scaleNaira } from '../../src/game/price-levels.ts';
 import { accountOfBinding } from '../accounts/service.ts';
 import { registerAdminSetting } from '../admin/settings.ts';
 import { registerAdminStat } from '../admin/tools.ts';
@@ -135,10 +140,13 @@ export function bonusService(ctx: RouteContext) {
         const open = typeof ctx.peek === 'function' ? ctx.peek(key, config.perAddressDay) : true;
         if (!open || !ctx.allow(key, config.perAddressDay, DAY_MS)) bonus.held = 'address';
         else {
+          // Real price levels (docs/PRICE-LEVELS.md "Starting money"): a life that started in a dearer city is paid the advertised amount times that city's level, so the
+          // bonus buys about as much there as at home. Never less than the advertised amount: the words promise it.
+          const pay = Math.max(bonus.amount, scaleNaira(bonus.amount, lifeLevel(found.session.cities[found.city]?.state ?? {})));
           const life = ctx.settle(found.session, found.city);
-          const result = ctx.act(life, { type: 'wallet.bonus', payload: { amount: bonus.amount, reason: bonusReason(config.places) }, cityId: found.city, stateGuard: 'The launch bonus marker on the account is written in this same transaction' });
+          const result = ctx.act(life, { type: 'wallet.bonus', payload: { amount: pay, reason: bonusReason(config.places) }, cityId: found.city, stateGuard: 'The launch bonus marker on the account is written in this same transaction' });
           if (result.ok) {
-            delete bonus.held; bonus.at = now;
+            delete bonus.held; bonus.at = now; bonus.amount = pay;
             if (social.modKnows(db, found.session.publicId)) push = { push: social.modNote(db, found.session.publicId, `Launch bonus: ₦${bonus.amount.toLocaleString('en-NG')} in the game was added to your cash. You are player #${bonus.n.toLocaleString('en-NG')} of the first ${config.places.toLocaleString('en-NG')}.`).push };
           } else bonus.held = 'character';
         }

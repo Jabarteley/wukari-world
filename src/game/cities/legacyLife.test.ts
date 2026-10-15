@@ -34,6 +34,13 @@ test('a Lagos life saved without the city fields is read as it was, with its job
   assert.deepEqual(read.stories, { seq: 1, scenes: [], running: null }, 'an older life receives the empty story-authoring slice')
   // A life saved before businesses existed gains the empty business slice and nothing else.
   assert.deepEqual(read.business, { opened: 0, sales: 0, spent: 0, buys: { day: 0, spent: 0, count: 0 }, bag: {} })
+  // Added since: the progression books (empty, tracking from the moment of reading), the stake counter, and the mission claim books; a
+  // mission this save had finished but not collected becomes one pending claim, not a lost reward.
+  const more = read as unknown as { achievements: { earned: object; trackingSince: number }; episodes: { runs: object }; projects: { proofs: object }; growth: { tables: { staked?: number } }; missions: { daily: { id: string; done?: boolean }[]; grants?: unknown[]; pending?: { id: string }[]; pendingSets?: unknown[] } & Record<string, unknown> }
+  assert.deepEqual([more.achievements.earned, more.achievements.trackingSince, more.episodes.runs, more.projects.proofs, more.growth.tables.staked, more.missions.grants, more.missions.pendingSets], [{}, NOW, {}, {}, 0, [], []])
+  assert.equal((more.missions.pending?.length ?? 0) <= 1, true)
+  delete more.growth.tables.staked; delete more.missions.grants; delete more.missions.pending; delete more.missions.pendingSets
+  delete (read as Record<string, unknown>).achievements; delete (read as Record<string, unknown>).episodes; delete (read as Record<string, unknown>).projects
   delete read.business; delete read.stories
   delete read.career.city; delete read.career.transferDay; delete read.career.teachingGeneration; delete read.travel.skipped; delete read.estate.home; delete read.estate.homeAt; delete read.economy.headsUp; delete read.home.fuel; if (read.civic.hunt) delete read.civic.hunt.city
   assert.deepEqual(read, { ...old, t: read.t })

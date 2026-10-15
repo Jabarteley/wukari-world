@@ -241,7 +241,30 @@ test('the welcome mail names the bonus only when the account holds one', () => {
 test('the share preview page names the offer only while it is open', () => {
   const share = { by: '11111111-2222-4333-8444-555555555555', facts: { kind: 'invite', name: 'Ada', city: 'Lagos', district: 'Yaba' } } as unknown as Parameters<typeof sharePageHtml>[0];
   const open = sharePageHtml(share, 'abcd1234', 'https://example.test', { on: true, amount: 1_000_000, places: 10_000 });
-  assert.ok(open.includes('The first 10,000 players get ₦1,000,000 in the game.'));
+  assert.ok(open.includes('The first 10,000 players get at least ₦1,000,000 in the game.'));
   assert.ok(!sharePageHtml(share, 'abcd1234', 'https://example.test', { on: false, amount: 1_000_000, places: 10_000 }).includes('first 10,000'));
   assert.ok(!sharePageHtml(share, 'abcd1234', 'https://example.test').includes('first 10,000'));
+});
+
+test('a life that started in a dearer city is paid the advertised amount times its starting level; a cheaper one is paid the advertised amount, never less', async (t) => {
+  const b = await bonusHost(t);
+  const setLevel = (id: string, level: number): Promise<unknown> => b.f.server.store.transact((db) => {
+    const session = Object.values(db.sessions).find((item) => item.publicId === id);
+    const state = session?.cities['lagos']?.state as { onboarding: { level?: number } } | undefined;
+    assert.ok(state, 'the stored life');
+    state.onboarding.level = level;
+  });
+  const dear = await b.player('Dayo'); await setLevel(dear.id, 2.5);
+  const signedDear = await b.signIn('UidDayo', dear.cookie);
+  assert.equal(signedDear.status, 200);
+  const dearLife = await b.life(signedDear.cookie);
+  assert.deepEqual(dearLife.ledger.filter((line) => line.reason === LABEL).map((line) => line.amount), [2_500_000], 'the advertised amount times 2.5');
+  assert.equal((await b.claim(signedDear.cookie)).amount, 2_500_000, 'the answer says what was paid');
+  const marker = await b.stored((db) => Object.values(db.accounts ?? {}).find((account) => account.publicId === dear.id)?.bonus);
+  assert.equal(marker?.amount, 2_500_000);
+  const cheap = await b.player('Cairo'); await setLevel(cheap.id, 0.67);
+  const signedCheap = await b.signIn('UidCairo', cheap.cookie);
+  assert.deepEqual((await b.life(signedCheap.cookie)).ledger.filter((line) => line.reason === LABEL).map((line) => line.amount), [1_000_000], 'never below the advertised amount');
+  const plain = await b.player('Lagos'); const signedPlain = await b.signIn('UidLagos', plain.cookie);
+  assert.deepEqual((await b.life(signedPlain.cookie)).ledger.filter((line) => line.reason === LABEL).map((line) => line.amount), [1_000_000], 'a Nigerian start is exactly as before');
 });

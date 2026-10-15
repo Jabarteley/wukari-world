@@ -10,6 +10,7 @@ import { computed, nextTick, onBeforeUnmount, watch } from 'vue'
 import type { Look } from '../../../types/life.ts'
 import { useApp } from '../../state/app.ts'
 import { dreamFor } from '../../../game/cities/characterContent.ts'
+import { lifeLevel } from '../../../game/price-levels.ts'
 import { START_HOMES, TRAITS } from '../../../game/content/traits.ts'
 import { linkWords } from '../../../ui/link.ts'
 import LgaCard from '../world/LgaCard.vue'
@@ -29,7 +30,7 @@ const { game, shell, command } = useApp()
 const state = game.state
 const view = game.view
 const traits = TRAITS, homes = START_HOMES
-const dream = computed(() => state.value.onboarding.dream ? dreamFor(state.value.estate.city, state.value.onboarding.dream) : null)
+const dream = computed(() => state.value.onboarding.dream ? dreamFor(state.value.estate.city, state.value.onboarding.dream, lifeLevel(state.value)) : null)
 
 /** The draft is rebuilt whenever the saved name or look changes underneath it. */
 function sync(): void {

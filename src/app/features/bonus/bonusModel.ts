@@ -13,12 +13,12 @@ export const open = (offer: Offer | null | undefined): offer is Offer => Boolean
 /** The landing screen's and the sign-up sheet's line. Honest: the first N to sign up, in-game naira, and only the true "N left". */
 export function offerLine(offer: Offer | null | undefined): string | null {
   if (!open(offer)) return null
-  return `Launch bonus: the first ${count(offer.places)} players to sign up get ${naira(offer.amount)} in the game. ${count(offer.left)} left.`
+  return `Launch bonus: the first ${count(offer.places)} players to sign up get at least ${naira(offer.amount)} in the game. ${count(offer.left)} left.`
 }
 /** The guest's chip beside the sign-up button. */
 export function chipText(offer: Offer | null | undefined): string | null {
   if (!open(offer)) return null
-  return `Sign up to claim ${naira(offer.amount)} in the game · ${count(offer.left)} left`
+  return `Sign up to claim at least ${naira(offer.amount)} in the game · ${count(offer.left)} left`
 }
 
 export const CHIP_KEY = 'joinallworld-bonus-chip'

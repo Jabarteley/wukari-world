@@ -5,13 +5,13 @@
  * Numbers: content/relief.ts. The ways themselves are the game's: src/game/relief.ts and systems/estate.ts.
  */
 import { routeUnavailable } from '../../../game/cities/routeAvailability.ts';
-import { cityRules, linksFrom } from '../../../game/cities/registry.ts';
+import { cityRules } from '../../../game/cities/registry.ts';
 import { blockReason, spotsOf } from '../../../game/api.ts';
 import { venueFor, venuesFor } from '../../../game/cities/runtime.ts';
 import { ODD_JOBS } from '../../../game/content/relief.ts';
 import { LODGING } from '../../../game/content/world.ts';
 import { naira } from '../../../game/util.ts';
-import { creditLink, homewardQuote, unsettled, visitingHere } from '../../../game/systems/estate.ts';
+import { creditLink, homewardQuote, linksPriced, unsettled, visitingHere } from '../../../game/systems/estate.ts';
 import { reliefActivities } from '../../../game/relief.ts';
 import type { ActivityDefinition } from '../../../types/content.ts';
 import type { LifeContext, LifeState } from '../../../types/life.ts';
@@ -29,7 +29,7 @@ export function helpOf(state: LifeState, ctx: LifeContext): ReliefHelp | null {
   if (unsettled(state) || state.activeAction) return null;
   const away = visitingHere(state), homeName = cityRules(e.home)?.name ?? 'home';
   // No link runs from a city to itself, so a life at home has no fare home and never reads the world network (loadLifeCities loads it for a life away).
-  const fares = e.home && e.home !== e.city ? linksFrom(e.city).filter((item) => item.to === e.home && !routeUnavailable(item)).map((item) => item.fare) : [];
+  const fares = e.home && e.home !== e.city ? linksPriced(state, e.city).filter((item) => item.to === e.home && !routeUnavailable(item)).map((item) => item.fare) : [];
   const cheapest = fares.length ? Math.min(...fares) : null;
   const quote = homewardQuote(state, ctx);
   const journey = quote && state.cash < quote.totalFare ? quote : null;

@@ -10,8 +10,12 @@
  *            and goal rewards from the city's content, so no rule knows about price levels. The shared catalogues that are not city
  *            content (furniture, groceries, cars) are scaled by the 'shop.price' modifier in systems/economy.ts, which asks `levelOf`.
  *            A Nigerian city (and any city whose level is exactly 1) gets its content back untouched: byte for byte the same objects.
- * NOT SCALED  what is not a price or a wage: the starting purse and the family loan, goal targets, stored balances, fares between cities,
- *            and wardrobe prices. Stored amounts are never rewritten; the level only changes what a city's rules ask for from now on.
+ * THE START   (docs/PRICE-LEVELS.md "Starting money") a NEW life settled in a city outside Nigeria also gets its starting purse, its family
+ *            loan (and that loan's weekly instalment and late fee), the dream targets and reward, and the Boutique prices times the level of
+ *            the city it starts in. That level is written once into `onboarding.level` when the life moves in (a Nigerian start writes
+ *            nothing), so a saved life without it reads as 1 and nothing stored is rewritten. `lifeLevel` reads it; `scaleNaira` does the sum.
+ *            Fares between cities are scaled by the same life level where a ticket is priced and charged (systems/estate.ts `linksPriced`).
+ * NOT SCALED  stored balances, and text already written into data. Stored amounts are never rewritten.
  * Pure, tiny, no table: the table (price-levels-data.ts) is a lazy file that the registry fetches with the first city outside Nigeria.
  */
 import { naira } from './money.ts'
@@ -40,6 +44,10 @@ export function scaleNaira(amount: number, level: number): number {
   const raw = amount * level, step = raw >= 1000 ? 100 : raw >= 100 ? 10 : 1
   return Math.max(1, Math.round(raw / step) * step)
 }
+/** A sentence with each "₦12,000" in it restated at `level` (the same rounding as every price), so words written in Lagos naira stay true for a life that started elsewhere. Level 1: the text itself. */
+export const restateNaira = (text: string, level: number): string => level === 1 ? text : text.replace(/₦(\d{1,3}(?:,\d{3})+|\d+)/g, (_all, digits: string) => naira(scaleNaira(Number(digits.replaceAll(',', '')), level)))
+/** The level a life started at (written once by 'onboarding.home'); 1 for a Nigerian start and for every life saved before this existed. */
+export const lifeLevel = (state: { onboarding?: { level?: number } | null }): number => { const level = state.onboarding?.level; return typeof level === 'number' && level >= LEVEL_MIN && level <= LEVEL_MAX ? level : 1 }
 /** The level of a loaded city (1 for a Nigerian one). Used by the 'shop.price' modifier. */
 export const levelOf = (content: Pick<CityContent, 'priceLevel'> | null | undefined): number => content?.priceLevel ?? 1
 

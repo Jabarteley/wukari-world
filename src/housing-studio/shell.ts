@@ -8,12 +8,12 @@ export const STOREY = 3.4;
 export const edge = (n: number, grid: number) => -5 + n * 10 / grid;
 
 /** A visual skin over the existing house plan. All coordinates remain in the host's units. */
-export function buildHousingShell(kit: Kit, recipe: HousingRecipe) {
+export function buildHousingShell(kit: Kit, recipe: HousingRecipe, options: { wall?: string } = {}) {
   const plan = planOf(plotOf(recipe.grid, true)), tile = 10 / recipe.grid;
   const w = plan.plot.w * tile, d = plan.plot.d * tile;
   const b = createBatch(kit.THREE), root = new kit.THREE.Group();
   const stone = recipe.city === 'abuja' ? '#ddd7ca' : '#e6e1d7';
-  const wall = '#f1eee7', wood = '#725442', metal = '#343b39';
+  const wall = options.wall ?? '#f1eee7', wood = '#725442', metal = '#343b39';
   const box = b.box.bind(b);
   const run = (x0: number,z0: number,x1: number,z1: number,y: number,h: number,t: number,c: string,part: string) =>
     box((x0+x1)/2,y+h/2,(z0+z1)/2,Math.abs(x1-x0)||t,h,Math.abs(z1-z0)||t,c,{part});

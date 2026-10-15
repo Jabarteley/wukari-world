@@ -385,7 +385,7 @@ export default defineConfig({
     // Authored character progression is fetched through progression-gate, Passport or the home scene. Keep the complete systems,
     // catalogues and their view helpers together without pulling them into the broad eager engine chunk below. The small gate,
     // fresh-slice stand-ins and registry deliberately do not match this rule and remain in engine.
-    if (/\/src\/game\/(systems\/(achievements|episodes|projects|progression-register)|content\/(achievements|episodes|projects|journeys|world-episodes|world-missions|world-progression\.generated|local-(?:tales|episodes|missions))|content\/local-tales\/[^/]+|cadence|season|journeys|mementos)\.ts$/.test(id)) return 'progression-rules'
+    if (/\/src\/game\/(systems\/(achievements|episodes|projects|progression-register)|progression\/source-provider|content\/(achievements|episode-validation|episodes(?:-source)?|projects|journeys(?:-source)?|world-episodes|world-missions|world-progression\.generated|local-(?:tales(?:-source)?|episodes|missions))|content\/local-tales\/[^/]+|cadence|season|journeys|mementos)\.ts$/.test(id)) return 'progression-rules'
     if (/\/src\/(game\/|life\.ts$|campus\/unilag\/(content|spot-names)\.ts$|tables\/places\.ts$)/.test(id)) return 'engine'
     } } },
   },

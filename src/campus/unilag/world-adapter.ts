@@ -123,7 +123,7 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
   function loadHome(): Promise<void> {
     if (homeBuilder) return Promise.resolve();
     if (homePending) return homePending;
-    homePending = import('../../scene/home-scene.ts').then((module) => { homeBuilder = module.buildHomeScene; }).finally(() => { homePending = null; });
+    homePending = import('../../housing-studio/production.ts').then((module) => { homeBuilder = module.buildProductionHomeScene; }).finally(() => { homePending = null; });
     return homePending;
   }
   let neighbourhoodPending: Promise<void> | null = null;

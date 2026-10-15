@@ -219,7 +219,7 @@ export interface HostScene {
   setStreet?(street: WorldStreetResponse | null): boolean
   neighbourDoors?(): NeighbourDoor[]
   group: THREE.Group
-  readonly homeDoor?: Place & { ry?: number; direction: 'outside' | 'inside' }
+  readonly homeDoor?: Place & { ry?: number; direction: 'outside' | 'inside'; blocked?: boolean }
   camera?: SceneCamera
   update?(state: LifeState): boolean
   background?: Colour
@@ -471,6 +471,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   const win = globalThis.window;
   // Keeping the avatar in sight (camera-collision.js): boxes to test against, and the see-through circle.
   const occluders = createOccluders(), collision = { cap: Infinity, ghost: false };
+  let staticSolids: HostWalk['solids'] | null | undefined;
   const ghost = { now: 0, goal: 0, uniforms: { uGhost: { value: new THREE.Vector4(0, 0, 1, 0) }, uGhostDepth: { value: 0 } } };
   const patchGhost = ghostPatch(ghost.uniforms);
   { const shared = sceneMaterials(kit); patchGhost(shared.solid); patchGhost(shared.glass); kit.eachMaterial(patchGhost); }
@@ -540,6 +541,14 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   // perch: the raised place the avatar stepped up on to, and the way back down ([{ x, z }, ...] ending on the floor).
   let perch: { down: WalkPoint[] } | null = null, hover: Hover | null = null, hintTop = 0, closeness = 1;
   const walkOf = (): HostWalk | null => current?.walk || null;
+  /** Rebuild camera boxes only when a scene replaces its stable solids collection. */
+  function refreshStaticSolids(walk = walkOf()) {
+    const next = walk?.solids ?? null;
+    if (next === staticSolids) return false;
+    staticSolids = next;
+    occluders.setStatic(next as OccluderBox[] | null);
+    return true;
+  }
   /** Scene units → presence units (1 unless a scene's floor is larger than the room protocol's bounds). */
   function presenceScale() {
     if (currentLocation === 'neighbourhood') return STREET_NETWORK_SCALE;
@@ -781,7 +790,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     stick.x = 0; stick.z = 0; stick.jog = false;
     walker.setGrid(walk?.grid || null);
     walker.others = walk?.people() || null;
-    occluders.setStatic((walk?.solids || []) as OccluderBox[]);
+    refreshStaticSolids(walk);
     ghost.now = 0; ghost.goal = 0; ghost.uniforms.uGhost.value.w = 0; orbit.cap(Infinity);
     if (!walk) { locked = false; restKey = ''; return; }
     walk.drive(true);
@@ -1084,9 +1093,10 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   function walkHomeDoor(): boolean {
     const door = current?.homeDoor, entry = current, state = lastState;
     if (!door || !onHomeDoor || locked || uiMode !== 'venue' || current?.placing || state?.activeAction) return false;
+    if (door.blocked) { controls?.hint('The doorway is blocked.'); return true; }
     const grid = walkOf()?.grid, stand = door.approach ? { x: door.x, z: door.z } : grid?.nearest(door.x, door.z);
     const first = door.approach ?? stand;
-    if (!stand || !first || !grid?.path(walker.x, walker.z, first.x, first.z)) return false;
+    if (!stand || !first || !grid?.path(walker.x, walker.z, first.x, first.z)) { controls?.hint('The doorway is blocked.'); return true; }
     const location = currentLocation, epoch = ++homeDoorEpoch;
     const ok = walkTo(stand.x, stand.z, { exact: true, face: door.ry, mark: true, ...wayUp(door), then: () => {
       const valid = () => !gone && epoch === homeDoorEpoch && uiMode === 'venue' && !current?.placing && current === entry && currentLocation === location && lastState?.location === location && !lastState?.activeAction;
@@ -1095,8 +1105,9 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       if (entry?.beginDoor) { entry.beginDoor(finish); loop.wake(); }
       else finish();
     } });
-    if (ok && !loop.running) renderScene();
-    return ok;
+    if (!ok) { controls?.hint('The doorway is blocked.'); return true; }
+    if (!loop.running) renderScene();
+    return true;
   }
   /** A tap that was not a drag: walk to what was tapped, then do what tapping it does. */
   function walkNeighbourDoor(id: string): boolean {
@@ -1331,6 +1342,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   function crowdReady() { if (gone) return; readTags(); if (!loop.running) renderScene(); }
   function renderScene() {
     if (gone || container.hidden === true) return;
+    if (!view) refreshStaticSolids();
     view?.render();
     lookIn(); aimGhost();
     lights.aim(camera, orbit.now.x + orbit.now.px, orbit.now.y, orbit.now.z + orbit.now.pz);
@@ -1656,7 +1668,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     walkStreetGate,
     walkNeighbourDoor,
     restorePosition(at) { const k = presenceScale(), point = walkOf()?.grid?.nearest(at.x / k, at.z / k); if (point) { walker.place(point.x, point.z, 0); applyAvatar(); settleView(); orbit.apply(camera); renderScene(); } },
-    setStreet(street) { if (current?.setStreet?.(street)) { walker.stop(); walker.setGrid(walkOf()?.grid ?? null); occluders.setStatic((walkOf()?.solids || []) as OccluderBox[]); readTags(); renderScene(); } },
+    setStreet(street) { if (current?.setStreet?.(street)) { walker.stop(); walker.setGrid(walkOf()?.grid ?? null); refreshStaticSolids(); readTags(); renderScene(); } },
     captureCanvas() { if (gone || !current || renderer.getContext().isContextLost()) return null; renderScene(); return renderer.domElement; },
     /** Walk the avatar by (dx, dz) scene units — the community panel's keyboard-accessible Walk buttons. False when it cannot walk now. */
     walkBy(dx, dz) {

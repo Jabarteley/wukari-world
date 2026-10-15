@@ -1,0 +1,21 @@
+{
+  "source": "f8bbaab7d6b7fefdde20d07c062b6bcd98752002",
+  "housingWiring": "c9947af3c8ee0246e90899503cbcf6d5767481a5",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 6983,
+      "sha256": "bf5a2c1465eeccb979cf8075937db9add74f89a45c5d0d7e268b5184b4a6324d"
+    },
+    {
+      "path": "assets/production-81e1e125.js",
+      "bytes": 85710,
+      "sha256": "434bcc9d9086c42b7d8c1bb9c0a7151f36b1109dc6dbf4d9bf311189e8e7d3d9"
+    },
+    {
+      "path": "assets/world-adapter-f35d4145.js",
+      "bytes": 186608,
+      "sha256": "a19095094831b5bb31a9a3ebb81759365fcdf269b9d3f77d80d7a9fdd228bc74"
+    }
+  ]
+}

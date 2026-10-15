@@ -1,0 +1,172 @@
+{
+  "recorded_utc": "2026-10-15T15:28:55.602689+00:00",
+  "files": 40,
+  "bytes": 4635737,
+  "largest": [
+    3349289,
+    "assets/housing-studio-DYmVz1Sz.js"
+  ],
+  "outputs": {
+    "assets/base-body-female-DALTB_7N.glb": {
+      "bytes": 157992,
+      "sha256": "ee8b9eb6d7ad2b35abfb026f2997d85384b7484342922cb99503e72462c2c5ad"
+    },
+    "assets/base-body-female-lod-BAMMsFGP.bin": {
+      "bytes": 14580,
+      "sha256": "cbf6f4aa85c980395af8b2119453f21d73f44acd822b91f14dcd6bbeb57d2cfe"
+    },
+    "assets/base-body-male-BXYzN4hI.glb": {
+      "bytes": 159916,
+      "sha256": "a375403639d688da351b0c87d5a70afa0080dafcf85dbf64b64395ce76e66f7c"
+    },
+    "assets/base-body-male-lod-CuvTVmxk.bin": {
+      "bytes": 14580,
+      "sha256": "6a4d2108aae95e6a5599920d3e5958d2264ccb3dbb8046c2f02d8de0f1111978"
+    },
+    "assets/broadleaf-planter-near-DhrWwrG7.glb": {
+      "bytes": 15080,
+      "sha256": "bb90e54c39767a5d45326d05ae27948da8da9e939e8e7d68f88a74b3b4d1139f"
+    },
+    "assets/career-ids-mLJuVyQ3.js": {
+      "bytes": 232,
+      "sha256": "60f559f6890c94bffbc95c7ebb94ff622ee9aed258b744819cb237c6b1c34b14"
+    },
+    "assets/clip-pack-CKCl3SUY.glb": {
+      "bytes": 338060,
+      "sha256": "89a2c636d3a9d1d9eac0e1125c20ca14d030c55ae27561dd8644b30645fd3d47"
+    },
+    "assets/content-B-yI7tOk.js": {
+      "bytes": 70572,
+      "sha256": "27c384e77df0fa03a0e75ea5a534a10ac62f51d0f199cc78c7959613e2b392c8"
+    },
+    "assets/content-CTW3-bvU.js": {
+      "bytes": 43325,
+      "sha256": "db1b30ae6573e1a58d115ef6a6d9dd54c637eab44e5fadd2c567aa984ce9f75c"
+    },
+    "assets/context-D1Ty_TWh.js": {
+      "bytes": 41533,
+      "sha256": "169b826f936457e741b9d58deb5ebc4ac134e2800a8219f91aeb831f94527064"
+    },
+    "assets/descriptions-DcFL_aO5.js": {
+      "bytes": 1780,
+      "sha256": "9711b3e2950d69ce69741b345ea4c34fa8cdfd1721e568e57c7d3ed0646edc23"
+    },
+    "assets/dining-chair-near-BQl9WMNz.glb": {
+      "bytes": 13740,
+      "sha256": "5f204669d3c8518e773d978f8996ba5fdb7f0e4a6c317895cf340e7925e09c72"
+    },
+    "assets/dining-table-near-0MJTUzMs.glb": {
+      "bytes": 13468,
+      "sha256": "37d2c2578f92bbf6059531d163662450e3a8ad38a1526a06eacc5b647c4c2db4"
+    },
+    "assets/display-fridge-near-BZW-cv6I.glb": {
+      "bytes": 12624,
+      "sha256": "77c866fb0c06040aebf6bd8123415bf8a12d1d0fe5e7eb5fdc73fbe2c59ea204"
+    },
+    "assets/flat-panel-television-near-C2tFQ9AQ.glb": {
+      "bytes": 6684,
+      "sha256": "4074f2d13a83a89fb0215e471c867aa79520b5a893496b811a5f14c56f417ae5"
+    },
+    "assets/floor-lamp-near-CspgliY2.glb": {
+      "bytes": 13592,
+      "sha256": "202535b0d31a2bf6ab4f3be608061efa43ceff6bd7a61bab7f9fdb965fcce476"
+    },
+    "assets/four-burner-stove-near-DGLyY-fn.glb": {
+      "bytes": 14576,
+      "sha256": "5a69f7c0f80348dfea3e8604ca19add56cd431f5474270f306d5a501a71b8632"
+    },
+    "assets/housing-studio-ChpQfRDj.css": {
+      "bytes": 11555,
+      "sha256": "33e6ba81e9f8d851842fa794acdcf21920cafc482ba0ae7607f00f17c4db87dd"
+    },
+    "assets/housing-studio-DYmVz1Sz.js": {
+      "bytes": 3349289,
+      "sha256": "2d3d30c1e14c1676e91f9d4044feedcd6fdea01cd8c57472b34c360fbbcc7dff"
+    },
+    "assets/index-1eLOsMoX.js": {
+      "bytes": 4549,
+      "sha256": "4ef31ff341443ccdccd82480c4ae2578268a585035535a7026a32bf3a0d7ac15"
+    },
+    "assets/index-BqOXfKKa.js": {
+      "bytes": 5692,
+      "sha256": "5c18c89d826ff00a1d42a1f23e9e43180d64e41e7b0d3361d2944ff58587faef"
+    },
+    "assets/knee-clearance-public-washbasin-near-Dms0cUDN.glb": {
+      "bytes": 6440,
+      "sha256": "59d2d712fceba05a69d61319acad1b9bccda6bc94eaa72889388d6425d1dcdb1"
+    },
+    "assets/lagos-C3HStIIe.js": {
+      "bytes": 13772,
+      "sha256": "d071b34071c7db1f0e849b70eb9b80f99aca4dfa5baa28b3687efcb90a639fc6"
+    },
+    "assets/lagos-DbaUcb73.js": {
+      "bytes": 12180,
+      "sha256": "6649185a1adaf4b807d202afce5cdd1c30967576994787d675bfc3919e7f8a56"
+    },
+    "assets/lagos-shapes-DEO9ohOG.js": {
+      "bytes": 420,
+      "sha256": "dbe7390aa39f2edc9ea6e9633b4f5388a2641fd13b44ab0ae267ebc3f689db65"
+    },
+    "assets/lga-CBCPCdAy.js": {
+      "bytes": 265,
+      "sha256": "ca7cfacac3d0a2f85bb6d64c828c3901e89cf35e07171377547ff960a7728e3d"
+    },
+    "assets/map-DrxMm77m.js": {
+      "bytes": 1393,
+      "sha256": "7f9c09a7099b10b1e6046843b02db1675fde1541458b144716c97805ad9d22c2"
+    },
+    "assets/map-XrR4MP3L.js": {
+      "bytes": 128795,
+      "sha256": "3614b6162aa72cc5034eb5357ffe67e9bee4c0293509d9d9865f828d9afb2ad4"
+    },
+    "assets/module-B0Y7g1OR.js": {
+      "bytes": 11276,
+      "sha256": "4c6c5824a1482238a0f45f8c2bbf27243f6bed5e797fe2a3d746ab653137977f"
+    },
+    "assets/price-levels-data-DKOupUfg.js": {
+      "bytes": 3220,
+      "sha256": "904fa28ddb7abaecacf50633743725b7b8c8d5ccd79ad6725f69892052c7cfa6"
+    },
+    "assets/reward-DpLN-c9x.js": {
+      "bytes": 20280,
+      "sha256": "0d7560a9c56d9b45bcdc3c9c6d12128d2652f6f7e9251e4143b704e9f8a201ef"
+    },
+    "assets/scenery-BJ1Vzide.js": {
+      "bytes": 733,
+      "sha256": "201ed0da93eea33fa46f4e5967da2512a3704050e48dc2c201fa6380f5897b35"
+    },
+    "assets/single-bed-near-DYnTMkGf.glb": {
+      "bytes": 18856,
+      "sha256": "cd46d1f53b3102207eafefc6fb97af7a9fda186367af65e468adb58d3320258a"
+    },
+    "assets/skinned-DBXQuGA5.js": {
+      "bytes": 56632,
+      "sha256": "5dbb27d7a0a7341b30295665989d9000a179b5014776cec6633d1131abafe1a2"
+    },
+    "assets/stand-in-DfYn_b7r.js": {
+      "bytes": 2924,
+      "sha256": "b41ff058f20f741a08b787b005751730670853d6be33af631c193c3ebfecf27a"
+    },
+    "assets/topo-WFTRc4ut.js": {
+      "bytes": 2874,
+      "sha256": "6598c79fda36bee3a11ffe0815f41888f38575bd99661b99d6913114370055b8"
+    },
+    "assets/two-seat-sofa-near-CAKC1M7_.glb": {
+      "bytes": 19440,
+      "sha256": "475f142289c2eb987f8b6ad21bf631751744209346009f3b5a7b6c6e47fb541d"
+    },
+    "assets/wardrobe-near-52919dqO.glb": {
+      "bytes": 15908,
+      "sha256": "31518807c84a8cd3dead1fd06b6bfec0b484a4cf51b3cab366581adde1d7e65e"
+    },
+    "assets/wood-armchair-near-8iXMn6fi.glb": {
+      "bytes": 14344,
+      "sha256": "c7d55be46fc4a2e30bad49a7181ea918ab81e562ac58934d0ef07213c81968d1"
+    },
+    "housing-studio.html": {
+      "bytes": 2566,
+      "sha256": "9072e93583b20ca502284dda7792eba7dd3c88db6e716a6bd8387b6cdf4dc301"
+    }
+  },
+  "entry_gzip_bytes": 932789
+}

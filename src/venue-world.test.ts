@@ -9,8 +9,9 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import * as THREE from 'three';
 import { createVenueWorld, HOST_LIGHTING } from './venue-world.ts';
-import type { VenueWorld, VenueWorldOptions, SceneSpotRequest, SceneTag, AvatarPosition, ShownTag } from './venue-world.ts';
+import type { VenueWorld, VenueWorldOptions, SceneSpotRequest, SceneTag, AvatarPosition, ShownTag, HostScene } from './venue-world.ts';
 import { LIGHTING, MAX_CROWD } from './scene/venue-scenes.ts';
+import { createWalkGrid } from './scene/movement.ts';
 import { NIGERIA_BATCH001_NAVIGATION } from './scene/models/nigeria-navigation.ts';
 import { createLife } from './life.ts';
 
@@ -27,8 +28,58 @@ type TestWorld = Omit<VenueWorld, 'setState'> & { setState(state: object): void 
 function makeWorld(host: StubContainer, options: VenueWorldOptions): TestWorld {
   return createVenueWorld(host as unknown as HTMLElement, options) as unknown as TestWorld;
 }
+function testHome({ blocked = false, solids = () => [] as number[][], update = () => false }: { blocked?: boolean; solids?: () => number[][]; update?: HostScene['update'] } = {}): HostScene {
+  const group = new THREE.Group(), avatar = new THREE.Group();
+  group.add(avatar);
+  const grid = createWalkGrid({ bounds: [-3, -3, 3, 3] });
+  return {
+    group,
+    homeDoor: { x: 2, y: 0, z: 2, ry: 0, direction: 'outside', approach: { x: 2, z: 2 }, blocked },
+    update,
+    walk: {
+      grid, entrance: { x: 0, y: 0, z: 0, ry: 0 }, open: false, scale: 1, centre: [0, 0, 0], avatar,
+      drive() {}, rest: () => null, spots: () => [], things: () => [], people: () => [], get solids() { return solids(); },
+      move(x, y, z, ry) { avatar.position.set(x, y, z); avatar.rotation.y = ry; }, pose: () => false, gait: () => false,
+      heightAt: () => 0, near: () => false, goal: () => false,
+    },
+  };
+}
 /** The browser globals the tests replace and restore (assignable here, unlike on the real `globalThis`). */
 const browser = globalThis as unknown as Record<string, unknown>;
+
+test('a blocked Home doorway is handled without walking or requesting a transition', () => {
+  let transitions = 0;
+  const world = makeWorld(container, { location: 'home', renderer: stubRenderer(), buildHome: () => testHome({ blocked: true }), onHomeDoor: () => { transitions += 1; } });
+  try {
+    world.setState({ location: 'home' });
+    const before = world.diagnostics();
+    assert.equal(world.walkHomeDoor(), true, 'the scene handled the door request instead of allowing a direct command fallback');
+    assert.equal(transitions, 0, 'a blocked route never requests the Home transition');
+    assert.deepEqual(world.diagnostics().avatar, before.avatar, 'the avatar did not start traversing to the blocked door');
+  } finally { world.dispose(); }
+});
+
+test('third-person camera solids follow stable identity changes without re-entering the scene or waking idle work', () => {
+  const one = [[-1, 0, -1, 1, 2, 1]], two = [...one, [1, 0, 1, 2, 2, 2]];
+  let active = one, revision = '', builds = 0;
+  const world = makeWorld(container, { location: 'home', renderer: stubRenderer(), buildHome: () => {
+    builds += 1;
+    return testHome({ solids: () => active, update: (state) => {
+      const next = String((state as unknown as { revision?: string }).revision ?? '');
+      if (next === revision) return false;
+      revision = next; active = next === 'two' ? two : one; return true;
+    } });
+  } });
+  try {
+    world.setState({ location: 'home', revision: 'one' });
+    const idle = world.diagnostics();
+    assert.equal(idle.solids, 1);
+    world.setState({ location: 'home', revision: 'one' });
+    assert.deepEqual([world.diagnostics().renderCount, world.diagnostics().solids], [idle.renderCount, 1], 'an unchanged stable collection remains idle');
+    world.setState({ location: 'home', revision: 'two' });
+    assert.deepEqual([builds, world.diagnostics().solids], [1, 2], 'the live replacement refreshed the existing third-person scene');
+  } finally { world.dispose(); }
+});
 
 test('idle venue performs zero renders; each change draws exactly one frame', async (t) => {
   const errors = t.mock.method(console, 'error', () => {});

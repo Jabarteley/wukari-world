@@ -243,7 +243,25 @@ const segmentsMayCross = (a: Point, b: Point, c: Point, d: Point): boolean =>
   && Math.min(a[1], b[1]) < Math.max(c[1], d[1])
   && Math.min(c[1], d[1]) < Math.max(a[1], b[1])
 
+// The box of a whole city's polygons, measured once per list. Two cities whose boxes do not overlap cannot have two polygons whose boxes do,
+// so the check below skips them whole: without it every pair of the 284 cities compared every polygon of one with every polygon of the other
+// (Auckland alone has about 25,000), which took the full-city test over half an hour.
+const listBoundsCache = new WeakMap<readonly Polygon[], PolygonBounds | null>()
+const boundsOfList = (polygons: readonly Polygon[]): PolygonBounds | null => {
+  const known = listBoundsCache.get(polygons)
+  if (known !== undefined) return known
+  let all: PolygonBounds | null = null
+  for (const polygon of polygons) {
+    const box = boundsFor(polygon)
+    all = all === null ? box : { minLon: Math.min(all.minLon, box.minLon), maxLon: Math.max(all.maxLon, box.maxLon), minLat: Math.min(all.minLat, box.minLat), maxLat: Math.max(all.maxLat, box.maxLat) }
+  }
+  listBoundsCache.set(polygons, all)
+  return all
+}
+
 function polygonsOverlap(left: readonly Polygon[], right: readonly Polygon[]): boolean {
+  const leftBox = boundsOfList(left), rightBox = boundsOfList(right)
+  if (leftBox === null || rightBox === null || !boxesOverlap(leftBox, rightBox)) return false
   for (const leftPolygon of left) {
     for (const rightPolygon of right) {
       if (!boxesOverlap(boundsFor(leftPolygon), boundsFor(rightPolygon))) continue

@@ -267,10 +267,11 @@ jobs:
     timeout-minutes: 25
     strategy:
       fail-fast: false
-      max-parallel: 2
+      max-parallel: 4
       matrix:
         node: [22, 24]
-        suite: [game, host, tooling]
+        # economy and cities are two files of src/ that run for 14 and 10 minutes: the game job could not hold them (scripts/node-test-plan.ts).
+        suite: [game, host, tooling, economy, cities]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -316,6 +317,8 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - id: build
         run: npm run build
+      # src/game/cities/allCities.test.ts and src/game/economy.test.ts are not here: together they need more than this job's 15 minutes
+      # (about 10 and 14), and the economy and cities jobs of full-node run them with their own clocks.
       - if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: >-
           node --experimental-strip-types --test --test-concurrency=1
@@ -323,5 +326,4 @@ jobs:
           server/new-player.test.ts server/two-players.test.ts server/release.test.ts
           src/app/components.test.ts src/app/entry.test.ts
           src/app/features/tour/tour.test.ts src/game/browser-profile.test.ts
-          src/game/career.test.ts src/game/cities/allCities.test.ts
-          src/game/economy.test.ts src/game/living-world/vehicle-boarding.test.ts
+          src/game/career.test.ts src/game/living-world/vehicle-boarding.test.ts

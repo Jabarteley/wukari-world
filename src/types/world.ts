@@ -161,6 +161,7 @@ export interface WorldWorksResponse {
   limits: { min: number; max: number; daily: number }
   you?: { canOrder: boolean }
 }
+export interface WorldBirthdayResponse { mine: { m: number; d: number; share: boolean } | null; today: boolean; friends: string[] }
 export interface WorldHttpRoutes {
   'GET /api/world/street': { query: { city: CityId }; response: Ok<WorldStreetResponse>; errors: WorldCommon | StorageErrorCode | 'city_moved' | 'not_on_street' | 'plot_unavailable' }
   /** Settles (or creates) the caller's life in that city exactly as a poll would, so it can also answer 409 `city_moved` and 503 `storage_unavailable`. */
@@ -180,6 +181,9 @@ export interface WorldHttpRoutes {
   'POST /api/world/pray': { body: { text: string; notice: true; venue?: string; clientId: string }; response: Ok<{ ok: true; message: string }>; errors: WorldCommon | 'notice_required' | 'invalid_prayer' | 'too_many_prayers' }
   /** Public: the city's shared works, the one taking gifts, those that stand and the order (server/routes/works.ts, docs/SMALLER-FEATURES.md). `you` only with a session. */
   'GET /api/world/works': { query: { id: CityId }; response: Ok<WorldWorksResponse>; errors: HostErrorCode | 'invalid_city' | 'works_rate_limited' }
+  /** Opt-in birthdays (server/routes/stages.ts, docs/SMALLER-FEATURES.md): the caller's own choice and the friends who share and celebrate today. */
+  'GET /api/world/birthday': { query: Record<string, never>; response: Ok<WorldBirthdayResponse>; errors: HostErrorCode | SessionErrorCode }
+  'POST /api/world/birthday': { body: { m: number; d: number; share?: boolean } | { clear: true }; response: Ok<WorldBirthdayResponse>; errors: HostErrorCode | SessionErrorCode | JsonBodyErrorCode | 'invalid_date' | 'stages_rate_limited' }
   'GET /api/world/city': { query: { city: CityId; v?: string }; response: Ok<WorldCityResponse>; errors: WorldCommon }
   'GET /api/world/lga/:id': { params: { id: LgaId }; query: { city: CityId }; response: Ok<WorldLgaResponse>; errors: WorldLga }
   /** `from` 0…511, `count` 0…128 (default 128); 400 `invalid_number` otherwise. */

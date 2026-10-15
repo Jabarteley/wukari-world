@@ -53,3 +53,16 @@ Nigerian time, as before). Code: `src/app/features/gist/HomePin.vue`, `homePinMo
   shown on the card. It does not touch the weather of the city the player is in.
 - The pin is kept on the device only (`allworld.homepin` in localStorage): where someone calls home is not sent to the server. The
   city's time zone is read from its rules once, when it is pinned.
+
+## Life stages (#18): birthdays only
+
+Opt-in birthdays. A player gives a month and a day (no year), and chooses whether friends may see it. On the day they get a greeting
+in the Gist app, and friends who chose to share are named for each other. Nothing is public: not in the gist, not on a profile, not
+on the map. Code: `server/stages/birthday.ts`, `server/routes/stages.ts` (`GET` / `POST /api/world/birthday`),
+`src/app/features/gist/BirthdayCard.vue`, `server/stages.test.ts`. Stored in a new top-level collection `stages`; nothing existing
+changes. The date is not the age the game holds for safety rules and is never compared with it.
+
+**Passing property and reputation to a next character is not built.** A house, a stall or a plot belongs to one session's life and to
+that city's record (land, rent, business, a seat in an election), and a hand-over would have to move owned things between sessions
+and undo their city rules in one step; the store has no rollback, so a half-finished hand-over would lose or duplicate a house. It
+needs its own design (what moves, what is undone, who agrees), so it is left for the owner to decide.

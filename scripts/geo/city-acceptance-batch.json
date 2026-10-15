@@ -2,12 +2,15 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "blsx",
-      "appSha": "bb5a74c1e0b5766e0df7fc8c62fc49711786db08",
+      "id": "slim",
+      "appSha": "1a78071d3ad80b39b4f0b65d27366e6b94da440f",
       "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
-        "gustavia",
-        "philipsburg"
+        "lagos",
+        "paris",
+        "accra",
+        "sydney",
+        "cotonou"
       ],
       "roundtrip": true,
       "browserOnly": true

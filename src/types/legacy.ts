@@ -16,3 +16,5 @@ export interface LegacyView {
   nextGiftAt: number | null
 }
 export interface LegacyPreview { ok: boolean; kind?: 'heir' | 'other'; to?: LegacyPerson; lines?: string[]; stays?: { what: string; why: string }[]; code?: string; reason?: string }
+/** What a write answers: the code (`passed`, `offered`, `accepted`, `declined`, `cancelled`, `gone`, `offer_void`), the plain lines of what moved, and a refusal's reason. */
+export interface LegacyAnswer { ok: boolean; code: string; reason?: string; kind?: 'heir' | 'other'; lines?: string[]; stays?: { what: string; why: string }[]; duplicate?: true }

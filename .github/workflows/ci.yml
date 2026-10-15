@@ -267,11 +267,12 @@ jobs:
     timeout-minutes: 25
     strategy:
       fail-fast: false
-      max-parallel: 6
+      max-parallel: 8
       matrix:
         node: [22, 24]
-        # economy and cities are two files of src/ that run for 14 and 10 minutes: the game job could not hold them (scripts/node-test-plan.ts).
-        suite: [game-1, game-2, game-3, host, tooling, economy, cities]
+        # economy, cities, routes, homeward and stuck are five files of src/ that each run for 5 to 14 minutes: the game jobs could not hold
+        # them (scripts/node-test-plan.ts). The rest of src/ is three shards.
+        suite: [game-1, game-2, game-3, host, tooling, economy, cities, routes, homeward, stuck]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -293,6 +294,8 @@ jobs:
       fail-fast: false
       matrix:
         node: [22, 24]
+        # The Worker tests took 12 to 17 minutes in one job, and the job was cancelled once at 25 with every test passed: two shards (scripts/node-test-plan.ts).
+        suite: [edge-1, edge-2]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -302,7 +305,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run build
       - run: npm ci --ignore-scripts --no-audit --no-fund --prefix deploy/tooling
-      - run: npm run test:edge
+      - run: node --experimental-strip-types scripts/node-test-plan.ts ${{ matrix.suite }}
 
   integration-repairs:
     if: github.event_name == 'workflow_dispatch' && inputs.full_checks

@@ -348,7 +348,7 @@ test('Sim tabs: Needs has a meter per need, Skills ten segments per skill, Setti
   const skills = await render('/src/app/features/sim/SkillsTab.vue')
   assert.match(skills, /aria-valuetext="Level \d+ of 10, /)
   const settings = await render('/src/app/features/sim/SettingsTab.vue')
-  assert.equal((settings.match(/role="switch"/g) ?? []).length, 6, 'hints, Light mode, sound, Quiet, Music on, and the location-confirmed badge')
+  assert.equal((settings.match(/role="switch"/g) ?? []).length, 9, 'hints, Light mode, sound, Quiet, Music on, the location-confirmed badge, and the three first-person comfort switches (2c769457)')
   assert.match(settings, /role="switch"[^>]*aria-label="Light mode"[^>]*data-light-mode/)
   assert.match(text(settings), /Data and battery .*Light mode .*Data used: 0 B this session · 0 B today/)
   assert.match(settings, /type="range"[^>]*aria-label="Music"/)

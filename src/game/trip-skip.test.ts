@@ -73,8 +73,10 @@ test('between cities: the first skip is free, the next is charged exactly the pr
   // The same trip waited out, then both brought to the same moment: everything a player owns or is, is the same.
   const end = waited.t + 21000;
   settle(waited, end); settle(skipped, end);
+  // Not the moment a mission was earned (earnedAt, bcbfd549): a skip arrives when it is skipped, a wait when the trip ends, and each stamp says so.
+  const withoutStamps = (value: unknown): unknown => JSON.parse(JSON.stringify(value), (key, item: unknown) => key === 'earnedAt' ? undefined : item);
   for (const key of ['estate', 'location', 'spot', 'activeAction', 'skills', 'inventory', 'job', 'career', 'goals', 'missions', 'property', 'home', 'onboarding', 'health', 'economy', 'social', 'cash', 'ledger'] as const) {
-    assert.deepEqual(skipped[key], waited[key], `${key} after a skip is what it is after waiting`);
+    assert.deepEqual(key === 'missions' ? withoutStamps(skipped[key]) : skipped[key], key === 'missions' ? withoutStamps(waited[key]) : waited[key], `${key} after a skip is what it is after waiting`);
   }
   assert.deepEqual({ ...skipped.travel, skipped: false }, waited.travel);
   for (const need of Object.keys(waited.needs) as (keyof LifeState['needs'])[]) assert.ok(Math.abs(skipped.needs[need] - waited.needs[need]) < 0.01, `${need}: the clock was not moved by the skip`);

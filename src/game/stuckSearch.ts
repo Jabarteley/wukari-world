@@ -144,8 +144,9 @@ export function playOut(sample: Sample, { nets = true } = {}): Outcome {
   }
   if (sample.midTrip !== undefined && sample.city !== sample.home) {
     // Start part-way through a genuinely paid connection; subsequent connections still have to be earned or accepted.
-    const leg = bookablePath(sample.city, sample.home)[0];
-    if (!leg) throw new Error('A mid-trip visitor needs a real first connection');
+    const step = bookablePath(sample.city, sample.home)[0];
+    if (!step) throw new Error('A mid-trip visitor needs a real first connection');
+    const leg = linksPriced(state, state.estate.city).find((item) => item.to === step.to && item.mode === step.mode) ?? step;
     const remaining = Math.min(sample.midTrip, leg.seconds);
     const elapsed = leg.seconds - remaining;
     now -= elapsed * 1000;
@@ -217,10 +218,12 @@ export function playOut(sample: Sample, { nets = true } = {}): Outcome {
         const leg = route?.legs[0];
         if (route && leg && state.cash >= route.totalFare && !here.ride.debt) {
           const before = state.cash;
+          // The quote keeps the base fares; a ticket is charged in the prices of the city the life started in (026d3e6b).
+          const fare = linksPriced(state, state.estate.city).find((item) => item.to === leg.to && item.mode === leg.mode)?.fare ?? leg.fare;
           const sent = run('estate.relocate', { to: leg.to, mode: leg.mode });
           if (sent.ok) {
-            if (state.cash !== before - leg.fare || state.ledger.at(-1)?.amount !== -leg.fare) throw new Error('Paid recovery fare did not settle exactly');
-            trail.push(`paid ${leg.fare} towards home via ${leg.to}`); continue;
+            if (state.cash !== before - fare || state.ledger.at(-1)?.amount !== -fare) throw new Error('Paid recovery fare did not settle exactly');
+            trail.push(`paid ${fare} towards home via ${leg.to}`); continue;
           }
           trail.push(`fare home refused: ${sent.code}`);
         } else if (nets && !here.ride.journey && here.ride.offer) {

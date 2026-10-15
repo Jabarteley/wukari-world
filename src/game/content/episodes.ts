@@ -1,7 +1,9 @@
 import { WORLD_STORY_SEEDS } from './world-progression.generated.ts'
 import { worldEpisodes } from './world-episodes.ts'
+import { LOCAL_EPISODES } from './local-episodes.ts'
+import { hasAcceptedLocalCity } from './local-tales.ts'
 import type {
-  EpisodeChoice, EpisodeDefinition, EpisodeId, EpisodeOutcomeTag,
+  EpisodeChoice, EpisodeDefinition, EpisodeId, EpisodeOutcomeTag, EpisodeRun,
 } from '../../types/episodes.ts'
 
 export const HOSTEL_HUSTLE_ID = 'hostel-hustle' as const satisfies EpisodeId
@@ -365,7 +367,7 @@ export const THE_QUIET_HOURS: EpisodeDefinition<'the-quiet-hours'> = {
   },
 }
 
-export const EPISODES: readonly EpisodeDefinition[] = [HOSTEL_HUSTLE, THE_QUIET_HOURS, ...WORLD_STORY_SEEDS.flatMap(worldEpisodes)]
+export const EPISODES: readonly EpisodeDefinition[] = [HOSTEL_HUSTLE, THE_QUIET_HOURS, ...WORLD_STORY_SEEDS.flatMap(worldEpisodes), ...LOCAL_EPISODES]
 
 const STABLE_ID = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/
 
@@ -449,7 +451,18 @@ for (const episode of EPISODES) {
   rows.push(episode)
   BY_CITY.set(episode.location.city, rows)
 }
-export const episodesForCity = (cityId: string): readonly EpisodeDefinition[] => BY_CITY.get(cityId) ?? []
+const retiredLegacyEpisode = (episode: EpisodeDefinition): boolean =>
+  episode.id === `city-${episode.location.city}-first-steps` || episode.id === `city-${episode.location.city}-second-chapter`
+
+/**
+ * Accepted bespoke cities stop discovering their generic predecessors. A saved predecessor remains
+ * visible and resolvable, so active and completed histories retain their exact definitions.
+ */
+export const episodesForCity = (cityId: string, runs?: Readonly<Partial<Record<EpisodeId, EpisodeRun>>>): readonly EpisodeDefinition[] => {
+  const rows = BY_CITY.get(cityId) ?? []
+  if (!hasAcceptedLocalCity(cityId)) return rows
+  return rows.filter(episode => !retiredLegacyEpisode(episode) || runs?.[episode.id] !== undefined)
+}
 export const episodeById = (id: unknown): EpisodeDefinition | null =>
   typeof id === 'string' ? BY_ID.get(id as EpisodeDefinition['id']) ?? null : null
 export const episodeByMemento = (id: string): EpisodeDefinition | null => BY_MEMENTO.get(id as EpisodeDefinition['memento']['id']) ?? null

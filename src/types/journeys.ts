@@ -25,6 +25,7 @@ export interface JourneyCollectionDefinition {
   geography: JourneyGeography
   level?: 'city' | 'country'
   placeLabel?: string
+  description?: string
   members: readonly JourneyMemberDefinition[]
 }
 
@@ -45,6 +46,7 @@ export interface JourneyCollectionView {
   geography: JourneyGeography
   level?: 'city' | 'country'
   placeLabel?: string
+  description?: string
   members: JourneyMemberView[]
   complete: boolean
   completionAt: number | null

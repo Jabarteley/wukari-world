@@ -1,6 +1,7 @@
 import type { MissionDefinition } from '../../types/content.ts'
 import { WORLD_STORY_SEEDS } from './world-progression.generated.ts'
 import { missionCatalogues } from '../systems/missions.ts'
+import { installLocalMissions } from './local-missions.ts'
 
 const LOCAL_SEEDS = WORLD_STORY_SEEDS.filter(seed => seed.cityId !== 'lagos')
 
@@ -61,9 +62,13 @@ export const WORLD_WEEKLY_MISSIONS: readonly MissionDefinition[] = Object.freeze
 /** Register these city-specific rows only when the world-mission catalogue is explicitly installed. */
 export function installWorldMissions(): void {
   for (const [scope, rows] of [['daily', WORLD_DAILY_MISSIONS], ['weekly', WORLD_WEEKLY_MISSIONS]] as const) {
-    for (const def of rows) if (!missionCatalogues.byId.has(def.id)) {
-      missionCatalogues.byId.set(def.id, def)
-      missionCatalogues.pools[scope].push(def)
+    for (const def of rows) {
+      if (!missionCatalogues.byId.has(def.id)) {
+        missionCatalogues.byId.set(def.id, def)
+        missionCatalogues.pools[scope].push(def)
+      }
+      missionCatalogues.scopeIds[scope].add(def.id)
     }
   }
+  installLocalMissions()
 }

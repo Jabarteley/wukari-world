@@ -1324,7 +1324,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   // A scene that is not on screen (the map is in front) is not drawn: it is drawn when it is shown again (resize()).
   function crowdReady() { if (gone) return; readTags(); if (!loop.running) renderScene(); }
   function renderScene() {
-    if (container.hidden === true) return;
+    if (gone || container.hidden === true) return;
     lookIn(); aimGhost();
     lights.aim(camera, orbit.now.x + orbit.now.px, orbit.now.y, orbit.now.z + orbit.now.pz);
     renderer.render(scene, camera); renderCount += 1; projectTags();
@@ -1452,6 +1452,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     if (!current?.setAmbient) return false;
     const shown = current;
     shown.onAmbient = (ready) => {
+      if (gone || current !== shown) return;
       readTags();
       // The people arrived after the scene was shown: they get their window of frames like everyone who was there on arrival.
       if (ready && wakeAmbientFrames(shown)) return;

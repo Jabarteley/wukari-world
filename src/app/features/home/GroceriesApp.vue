@@ -17,6 +17,7 @@ import { useApp } from '../../state/app.ts'
 import { INGREDIENTS, INGREDIENT_ORDER, RECIPES } from '../../../game/content/food.ts'
 import { formatHour, lagosTime } from '../../../game/clock.ts'
 import { LITRE_PRICE, TANK_LITRES } from '../../../game/conditions/power.ts'
+import { powerSchedule, scheduleWords } from '../../../game/conditions/power-schedule.ts'
 import { linkWords } from '../../../ui/link.ts'
 import { money, moneyHint } from '../../ui/format.ts'
 import GameIcon from '../../ui/GameIcon.vue'
@@ -80,6 +81,12 @@ const fuelLine = computed(() => {
   const light = info.grid ? '' : ` Light is off in ${info.district} until ${formatHour(lagosTime(info.until ?? 0).minuteOfDay / 60)}.`
   return `Generator: ${info.fuel} of ${TANK_LITRES} litres in the tank · ${money(LITRE_PRICE)} a litre.${light}`
 })
+// The published plan: when the light is due off in the home's district today and tomorrow, for everyone (a generator or an inverter is bought in Buy mode).
+const planLine = computed(() => {
+  const info = power.value
+  if (!info?.district) return ''
+  return `${scheduleWords(info.district, powerSchedule(game.cityId.value, info.district, Date.now()))}${info.generator || info.source === 'inverter' ? '' : ' A generator or an inverter from Buy mode keeps the lights on.'}`
+})
 const fuelRoom = computed(() => Math.max(0, Math.floor(TANK_LITRES - (power.value?.fuel ?? 0))))
 const fuelOffer = computed(() => Math.min(5, fuelRoom.value, Math.max(0, Math.floor(state.value.cash / LITRE_PRICE))))
 async function refuel(litres: number): Promise<void> {
@@ -140,6 +147,7 @@ async function orderAll(): Promise<void> {
     <p v-if="fuelLine" class="groceries-intro groceries-fuel" :data-groceries-fuel="power?.source">{{ fuelLine }}
       <button type="button" class="ui-button is-small" :disabled="!view.connected || working || fuelOffer < 1" @click="refuel(fuelOffer)">{{ fuelling ? 'Buying…' : fuelRoom < 1 ? 'Tank full' : fuelOffer < 1 ? `Need ${money(LITRE_PRICE)} for 1 litre` : `Buy ${fuelOffer} ${fuelOffer === 1 ? 'litre' : 'litres'} · ${money(fuelOffer * LITRE_PRICE)}` }}</button>
     </p>
+    <p v-if="planLine" class="groceries-intro groceries-plan" data-groceries-plan>{{ planLine }}</p>
     <HowItWorks id="groceries-rules" page label="How ordering works" :rules="groceriesRules" />
     <ul class="groceries-grid">
       <li v-for="card in cards" :key="card.id" class="groceries-card" :class="{ 'is-picked': card.packs }">

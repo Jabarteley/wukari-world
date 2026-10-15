@@ -612,7 +612,7 @@ const OWN_VENUES = {
     label: 'Canopy Walk', district: 'Lekki', icon: '🌿', category: 'fun',
     description: 'A swaying walkway through the treetops, monkeys overhead and swamp below.',
     hours: { open: 7, close: 19 },
-    zone: 'east', map: { x: 89, y: 56 }, scene: { kind: 'walk' },
+    zone: 'east', map: { x: 89, y: 56 }, scene: { kind: 'walk', anchors: { 'wildlife-stop': 'gate' } },
     ambient: ['The walkway is swaying a little', 'A monkey just stole somebody’s biscuit', 'Birdsong over the swamp', 'A school group is counting the steps'],
     spots: {
       walkway: { label: 'Canopy walkway', icon: '🌉', caption: 'Do not look down', activities: [
@@ -630,6 +630,10 @@ const OWN_VENUES = {
       huts: { label: 'Picnic huts', icon: '🧺', caption: 'Thatch roofs and a tortoise', activities: [
         { id: 'canopy-picnic', label: 'Picnic Under the Huts', duration: 9, cost: 800, effects: { hunger: 30, fun: 8, social: 6 }, tags: ['food'] },
         { id: 'canopy-rest', label: 'Rest in the Shade', icon: '🌴', duration: 10, effects: { energy: 8 }, tags: ['rest'] },
+      ] },
+      'wildlife-stop': { label: 'Forest welcome stop', icon: '🌿', caption: 'A stylised ground-level stop; bespoke conservation-centre art is pending', activities: [
+        { id: 'canopy-listen-birds', label: 'Listen for Forest Birds', duration: 8, effects: { fun: 8 }, tags: ['nature'], note: 'Original beta activity; no particular species or sighting is guaranteed.' },
+        { id: 'canopy-observe-habitat', label: 'Observe the Forest Habitat', duration: 10, effects: { fun: 9, energy: -2 }, tags: ['nature', 'learn'], note: 'Stylised ground-level observation, not a surveyed trail or guided service.' },
       ] },
     },
   },

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/city/build-progression-content.ts",
-  "sourceHead": "c0cd32bc1db9c0310e67da759dd9b91ee93b69e0",
+  "sourceHead": "9af2e51eaf1cf90237c9cf24c49d0f5628ceb8b6",
   "counts": {
     "playableCityIds": 284,
     "openCatalogueCities": 284,
@@ -56,7 +56,7 @@
     },
     "abuja": {
       "moduleSha256": "af141adcf4021e8afaf544273b333b92ca378fdbc310b36d17317ca71a27bbb9",
-      "contentEntrySha256": "b8440ebe249f3790262165f4513f3222bd36538152527bbec0a26a0672033842",
+      "contentEntrySha256": "1720ccfc51819c6da11a1bf82be2d5f7e1ac8ac2edba9734cc981d12ef057d3f",
       "seedSha256": "2655571db1bca53cda4f18ab3f4ded909ec407613425982dbe9820273fc8baec"
     },
     "kano": {
@@ -1693,7 +1693,7 @@
       "placeLine": "Walk the children’s park under Aso Rock and learn about its animals.",
       "sourceHashes": {
         "moduleSha256": "af141adcf4021e8afaf544273b333b92ca378fdbc310b36d17317ca71a27bbb9",
-        "contentEntrySha256": "b8440ebe249f3790262165f4513f3222bd36538152527bbec0a26a0672033842",
+        "contentEntrySha256": "1720ccfc51819c6da11a1bf82be2d5f7e1ac8ac2edba9734cc981d12ef057d3f",
         "seedSha256": "2655571db1bca53cda4f18ab3f4ded909ec407613425982dbe9820273fc8baec"
       }
     },

@@ -1,0 +1,23 @@
+{
+  "base": "9af2e51eaf1cf90237c9cf24c49d0f5628ceb8b6",
+  "checks": [
+    {
+      "city": "lagos",
+      "unchangedVenues": 26,
+      "unchangedExistingActivities": 274,
+      "housingUnchanged": true,
+      "localRoutesUnchanged": true,
+      "positionsUnchanged": true,
+      "defaultSpotsUnchanged": true
+    },
+    {
+      "city": "abuja",
+      "unchangedVenues": 29,
+      "unchangedExistingActivities": 33,
+      "housingUnchanged": true,
+      "localRoutesUnchanged": true,
+      "positionsUnchanged": true,
+      "defaultSpotsUnchanged": true
+    }
+  ]
+}

@@ -6,7 +6,7 @@ import type { VenueScene } from '../../../types/content.ts'
  * A venue that is not listed keeps the bare scene of its kind.
  */
 export const ABUJA_SCENES: Readonly<Record<string, VenueScene>> = Object.freeze({
-  'millennium-park': { kind: 'park', variant: 'fct-terraces', anchors: { visit: 'fountains' } },
+  'millennium-park': { kind: 'park', variant: 'fct-terraces', anchors: { visit: 'fountains', 'garden-bench': 'bench' } },
   'national-mosque': { kind: 'worship', variant: 'fct-mosque', anchors: { visit: 'court' } },
   'christian-centre': { kind: 'worship', variant: 'fct-church', anchors: { visit: 'court' } },
   'eagle-square': { kind: 'park', variant: 'fct-parade', anchors: { visit: 'square' } },
@@ -27,5 +27,5 @@ export const ABUJA_SCENES: Readonly<Record<string, VenueScene>> = Object.freeze(
   'community-house': { kind: 'statehouse', variant: 'fct-hall', anchors: { visit: 'notices' } },
   'kubwa-garden': { kind: 'park', variant: 'fct-garden-ayo', anchors: { visit: 'ayo' } },
   'gwagwalada-garden': { kind: 'park', variant: 'fct-garden-plots', anchors: { visit: 'plots' } },
-  'jabi-lake-park': { kind: 'park', variant: 'fct-lake', anchors: { walk: 'promenade' } },
+  'jabi-lake-park': { kind: 'park', variant: 'fct-lake', anchors: { walk: 'promenade', 'picnic-lawn': 'lawn' } },
 })

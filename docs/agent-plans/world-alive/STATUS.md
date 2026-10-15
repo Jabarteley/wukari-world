@@ -95,14 +95,21 @@ Antarctica, the Siachen entry and Ashmore and Cartier have real open cities now)
 full tap target). Passing without change: `server/pulse.test.ts`, `server/registry.test.ts`, `server/social.test.ts`,
 `server/admin/history.test.ts`, `server/growth.test.ts`, `server/money-request.test.ts`, `src/types/protocol.test.ts`.
 
-Still failing, and why they are left:
+Fixed on 16 October (branch `claude/alive-fix-full`, full CI checks): the six Worker tests (the Worker honours `WORLD_FEED=off` and the
+edge tests set it, because the weather and rates feed of e8dd4fb3 called out from tests and a call in flight kept the object from being
+evicted; the outreach tick no longer runs an empty saved transaction, which held a change in memory and pinned the object after d256523d
+made the growth collection exist at the first friendship; the row-budget test waits for the residents' first save, c1358561; the accounts
+test skips a house character's greeting); the 25-minute game job (the 284-city overlap check compared every polygon of every pair, over 20
+minutes, and now compares each city's box first; the economy simulation, about 14 minutes, and the city contracts, about 10, run in jobs
+of their own, `scripts/node-test-plan.ts`). The comeback "zero work", the SEO copy, the Node-host city life, the new-player cash
+(22,600 and 7,050 are now what the test expects) and the Worker size tests already passed on `main` when this branch was cut.
+
+Still failing, and why they are left (an owner's judgement):
 - `src/scene/scenes-fct.test.ts` ("no two Abuja scenes are the same scene"): office/fct-campus-court and market/fct-lockups now have the
   same triangle count; whether to change a scene or the test is an art decision.
 - `src/game/living-world/vehicle-boarding.test.ts`, `vehicle-clearance.test.ts`: the pinned hashes of `drivingScene.ts` and
-  `src/scene/body/stand-in.ts` (changed on 13 October and later) need the sedan geometry evidence recomputed, not just the hash.
-- `server/new-player.test.ts`: the journey now gets past the missions step (its script runs local missions as the Worker test does), but
-  the recorded final cash differs (Ada 22,600 against 22,500, Bola 7,050 against 6,900); the owner must say whether that money is right.
-- `src/game/cities/allCities.test.ts`: takes over half an hour on the shared machine and was not finished; left to CI.
+  `src/scene/body/stand-in.ts` (changed on 13 October and later) need the sedan geometry evidence recomputed, not just the hash. The
+  pin exists so a person looks at the clearance again; re-pinning blind would defeat it.
 
 ## Measures to keep (Phases 3, 13, 15)
 

@@ -13,6 +13,7 @@ import { reliefActivities } from '../relief.ts'
 import { businessVenue, isBusinessType, productCost, productLabel } from '../business-model.ts'
 import { BUSINESS_PRODUCTS } from '../content/business.ts'
 import { linksFrom, playableCityIds, cityModule, loadCityContent } from './registry.ts'
+import { linksPriced } from '../systems/estate.ts'
 import { publicArrivalVenue } from './runtime.ts'
 import { assertCityModuleContract } from './cityContractTest.test.ts'
 import type { CityModule } from '../../types/content.ts'
@@ -221,10 +222,12 @@ test('each playable city can settle, work, eat, rest, travel to three cities, re
     for (const target of targets.flatMap(target => [target, module.id])) {
       const link = linksFrom(current).find((candidate) => candidate.to === target && candidate.status !== 'coming')
       assert.ok(link, `${current}: route to ${target}`)
-      state.cash = Math.max(state.cash, (link!.fare * 4) + 1000)
+      // The ticket is in the prices of the city the life started in (026d3e6b): a start outside Nigeria pays the fare times that city's level.
+      const fare = linksPriced(state, current).find((candidate) => candidate.to === target && candidate.mode === link!.mode)?.fare ?? link!.fare
+      state.cash = Math.max(state.cash, (fare * 4) + 1000)
       const beforeFare = state.cash
       assert.equal(run({ type: 'estate.relocate', payload: { to: target, mode: link!.mode } }).code, 'departed', `${current}: depart for ${target}`)
-      assert.equal(state.cash, beforeFare - link!.fare, `${current}: fare to ${target}`)
+      assert.equal(state.cash, beforeFare - fare, `${current}: fare to ${target}`)
       if (state.activeAction) finishTrip(state, contextNow(), life.setNow)
       assert.equal(state.estate.city, target)
       if (target === targets[0]) {

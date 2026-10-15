@@ -1,6 +1,12 @@
 /**
  * OWNER: agents (residents, docs/RESIDENTS.md)
  * THE RESIDENT RUNNER: an agent that really lives. Portable (no Node imports): the Node host and the Worker run it on the heartbeat.
+ * RESIDENTS EVERYWHERE (15 October 2026, docs/RESIDENTS.md): `residentsPerCity` (default 3) residents live in EVERY open city of the host: the authored ones first, then
+ * generated ones (generate.ts, the same every restart). They are visible by default (`residentShadow` off) and live BY RULES: the routine, outings chosen by character
+ * (persona.ts), written lines, written talk, prayers by devotion. The model is a small share: answers to people who speak to a resident (paid list), deep thoughts and
+ * model talks out of a quota spread over the day (`residentDeepPerDay`), and the night of a resident who met a person. At most STEP_MAX residents are stepped per
+ * beat, round-robin. When the budget is spent nobody goes to bed: they carry on by rules. State: 16 small collections, only the changed ones written.
+ * (Everything below about thirty residents, shadow and "all go to sleep when the budget is spent" is the older design; the code keeps what it still means.)
  * Phase 13a: ONE resident (life.ts), in SHADOW: it acts, but nobody sees it.
  * Phase 13b: up to THIRTY (life.ts Remi and roster.ts the rest), switched on in order by the setting `residentCount` (default 1: only Remi), each with its
  * own sleep, routine, model (spread over the router's resident list at birth) and life story. New in 13b, all bounded:
@@ -125,8 +131,8 @@ export interface DayRecord {
   talks?: number; talkLines?: number; talkRetries?: number; talkSlips?: number; talkCostMicro?: number; talkLog?: TalkRecord[]
   /** 13b: replies to people (shadow off): how many, retries, slips, cost. */
   replies?: number; replyRetries?: number; replySlips?: number; replyCostMicro?: number
-  /** Residents everywhere, all optional: rule steps, outings, written lines said, rule-driven talks, and whether a person was where it stood (visible only). */
-  steps?: number; outings?: number; said?: number; ruleTalks?: number; met?: boolean
+  /** Residents everywhere, all optional: outings, written lines said, rule-driven talks, and whether a person was where it stood (visible only). */
+  outings?: number; said?: number; ruleTalks?: number; met?: boolean
 }
 export interface Life {
   born: number; model: string | null; days: Record<string, DayRecord>; memory: string[]
@@ -287,11 +293,11 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
   const founders = deps.founders ?? ((): Promise<string[]> => ctx.store.read((db) => newsFromFounders(db, ctx.now())));
   let isReady = false;
   const ready = (): Promise<void> => (loaded ??= load().then((found) => { if (found && typeof found.residents === 'object' && found.residents !== null) stored = { v: 1, residents: { ...found.residents } }; }, () => {}).then(() => { isReady = true; }));
-  // Thirty residents change their records all day: they are written at most once in SAVE_MS, by the heartbeat.
+  // Residents change their records all day: they are written at most once in SAVE_MS (four times that with a whole world of them), by the heartbeat, and only the shards that changed.
   let saving = false, dirty = false, lastSave = -Infinity;
   function persist(): void { dirty = true; }
   function saveIfDue(t: number): void {
-    if (!dirty || saving || (t - lastSave < SAVE_MS && t >= lastSave)) return;
+    if (!dirty || saving || (t - lastSave < (rosterNow().length > 100 ? SAVE_MS * 4 : SAVE_MS) && t >= lastSave)) return;
     saving = true; lastSave = t;
     void (async () => { try { while (dirty) { dirty = false; await save(stored); } } catch { /* the next change tries again */ } finally { saving = false; } })();
   }
@@ -729,7 +735,6 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     }
     state.lastRoutine = routine.action; state.lastPeople = people;
     setWhere(state, target);
-    day.steps = (day.steps ?? 0) + 1;
     const reason = state.pending;
     if (reason && !state.busy) {
       const event = reason !== 'morning' && reason !== 'alone';

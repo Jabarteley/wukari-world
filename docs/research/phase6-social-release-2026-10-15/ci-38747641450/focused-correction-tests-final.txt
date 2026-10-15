@@ -1,0 +1,17 @@
+✔ Node host serves a real city life and loads every authenticated payload from the built checkout dist directory (347.627375ms)
+✔ index.html head: one title, one description, a canonical, Open Graph and Twitter tags, robots, icons (3.596625ms)
+✔ index.html JSON-LD parses: a VideoGame and a WebSite (0.56925ms)
+✔ the host writes the page for its own origin: canonical, og:url, og:image and JSON-LD (0.452125ms)
+✔ the sitemap and the manifest are code, not files: the release package admits neither extension (6.640584ms)
+✔ public files: robots.txt, sitemap.xml, manifest and the images they name (3.303166ms)
+✔ the workshop pages are not for search engines (0.916708ms)
+✔ the page, the manifest and the readme use the approved worldwide description consistently (0.76875ms)
+✔ the two-player script runs to the end with every assertion holding (481.778ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2365.498708

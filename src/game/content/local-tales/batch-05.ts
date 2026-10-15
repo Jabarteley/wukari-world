@@ -31,7 +31,7 @@ const batch: AuthoredContentBatch = {
     { countryId: 'cv', title: 'One-Way Serving Batches', premise: 'Cape Verde installments prevent collisions at a narrow fictional pass by alternating complete hot and cold batches.', collection: 'Cape Verde: Clear Passes', rewardTitle: 'Batch Caller' },
     { countryId: 'je', title: 'Three Must-Dos with Unique Owners', premise: 'Jersey installments choose a limited friendship plan from activities that each matter most to a different person.', collection: 'Jersey: Owned Choices', rewardTitle: 'Plan Keeper' },
     { countryId: 'gg', title: 'One Cut Serves Two Orders', premise: 'Guernsey installments use a single permitted cut on the largest fictional loaf to complete one flexible and one small order.', collection: 'Guernsey: Exact Portions', rewardTitle: 'Order Cutter' },
-    { countryId: 'ki', title: 'Three Shared Dishes Free Three Places', premise: 'Kiribati installments move fictional meal dishes into central bowls so limited table space can seat every guest.', collection: 'Kiribati: Open Places', rewardTitle: 'Table Arranger' },
+    { countryId: 'ki', title: 'Two Accounts, One Short Closing', premise: 'Corin’s brief closing separately attributes two already-heard recollections and leaves their unresolved difference intact because no independent record settles it.', collection: 'Two-Account Story Cards', rewardTitle: 'Careful Storykeeper' },
     { countryId: 'hn', title: 'The Waiting Player Chooses First', premise: 'Honduras installments make a sporting bye an active scorekeeping role with first match choice in the next round.', collection: 'Honduras: Rotating Ladders', rewardTitle: 'Round Keeper' },
     { countryId: 'ca', title: 'Safe Work before the Missing Part', premise: 'Canada installments preserve fictional repair promises by completing available safe work while holding release order.', collection: 'Canada: Promised Order', rewardTitle: 'Repair Sequencer' },
     { countryId: 'mm', title: 'Four Turns in the Quiet Corner', premise: 'Myanmar installments allocate one limited quiet workspace through fixed equal time slots and outside preparation.', collection: 'Myanmar: Shared Quiet', rewardTitle: 'Corner Scheduler' },
@@ -905,7 +905,7 @@ const batch: AuthoredContentBatch = {
         closing: 'One broad cord lets five hooks hold six complete pictures.', keepsake: { name: 'Joined-Frame Hook', description: 'Two small frames hanging from one wide support.' },
       },
       missions: { daily: [
-        { label: 'Complete one simple meal at Pakbo', purpose: 'Plan Jesse’s five-confirmed-one-open order.', task: 'practical', count: 1 }, { label: 'Visit Jesse at Curepipe Botanic Gardens', purpose: 'Inspect the fictional joined frame pair.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Port Louis', purpose: 'Give Jesse a group for the meal assignment.', task: 'people', count: 2 },
+        { label: 'Complete one simple meal at Pakbo', purpose: 'Plan Jesse’s five-confirmed-one-open order.', task: 'practical', count: 1 }, { label: 'Visit Jesse at Curepipe Botanic Gardens', purpose: 'Inspect the fictional joined frame pair.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Port Louis', purpose: 'Discuss the decision in “The Sixth Meal Waits Unseasoned”: How should Jesse prepare the six-meal order with one choice missing?', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Complete two quiet evenings at Curepipe Botanic Gardens', purpose: 'Practice the six-frame layout.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Port Louis', purpose: 'Think through confirmed and open meal choices.', task: 'places', count: 3 }, { label: 'Complete three simple meals at Pakbo', purpose: 'Repeat the plain-base preparation plan.', task: 'practical', count: 3 },
       ] },
@@ -1021,21 +1021,23 @@ const batch: AuthoredContentBatch = {
         closing: 'Two voices try the rule before one clear example puts it into motion.', keepsake: { name: 'Two-Try Rule Token', description: 'Two question marks followed by one play symbol.' },
       },
       country: {
-        title: 'Nine Plates around Six Places', desire: 'care',
+        title: 'Two Accounts, One Short Closing', desire: 'care',
         chapters: [
-          { title: 'Three serving plates occupy guest space', text: 'At TTRP, Corin’s fictional shared meal has nine plates but table room for six places. Three large dishes currently sit on individual plates where guests need to sit.' },
-          { title: 'Three deep bowls fit the center', text: 'A look around Tobwaan te Tongo Park reveals three existing deep bowls fit along the table center. Moving the shared dishes into them frees three plates for guests.' },
-          { title: 'All six guests eat together', text: 'Corin could seat three guests later, stack serving plates at places, or use three center bowls for shared dishes and six plates for individual settings.' },
-          { title: 'The center holds food and the edge holds people', text: 'Corin transfers each shared dish into a center bowl and lays six plates around the edge. Every guest sits at once, and the table remains clear enough to pass the food.' },
+          { title: 'Both neighbors have been heard', text: 'At TTRP, Corin’s fictional park story circle has already heard two neighbors describe the same gathering. Their recollections differ in one detail, and both have finished their turns.' },
+          { title: 'The meeting has one brief closing turn', text: 'Looking around Tobwaan te Tongo Park, Corin sees that only one short closing summary fits before the circle ends. No independent record is available to settle the disagreement.' },
+          { title: 'A summary can preserve the difference', text: 'Corin could choose one account as correct, blend the accounts into a version neither neighbor told, or briefly attribute each recollection and leave the differing detail unresolved.' },
+          { title: 'The closing keeps both accounts distinct', text: 'Corin’s short summary says that one neighbor recalls one detail and the other recalls it differently. The circle closes without choosing between them or inventing a reconciliation.' },
         ], approaches: [
-          { label: 'Count six guest places', callback: 'Corin remembers the real seating need.' }, { label: 'Move three dishes to bowls', callback: 'Corin remembers how the center saved space.' }, { label: 'Set six outer plates', callback: 'Corin remembers the complete shared table.' },
-        ], dilemma: { prompt: 'How should Corin seat six guests at the crowded table?', answers: ['Seat three guests later.', 'Stack serving plates at guest places.', 'Use three center bowls and six individual plates.'], correct: 2, explanation: 'The center bowls carry shared food while all six plates become available for simultaneous seating.' },
-        closing: 'Three bowls fill the center, leaving six clear places around one shared meal.', keepsake: { name: 'Three-Center-Bowl Mat', description: 'A table mat with three central bowls and six outer plates.' },
+          { label: 'Hear both completed recollections', callback: 'Corin remembers that each neighbor has already had a full turn.' },
+          { label: 'Keep each account distinct in the summary', callback: 'Corin remembers not to blend details the neighbors described differently.' },
+          { label: 'Name what the available record cannot settle', callback: 'Corin remembers that no independent record resolves the difference.' },
+        ], dilemma: { prompt: 'What should Corin do in the one short closing turn?', answers: ['Declare one neighbor’s recollection correct.', 'Combine the accounts into a detail neither neighbor gave.', 'Briefly attribute both recollections and leave their difference unresolved.'], correct: 2, explanation: 'Attributing each account preserves what was actually heard; without an independent record, the summary should not settle or reconcile the difference.' },
+        closing: 'Corin closes with both attributed recollections and the difference still unresolved.', keepsake: { name: 'Two-Account Story Card', description: 'A fictional card with two separately attributed recollections and an unresolved detail.' },
       },
       missions: { daily: [
-        { label: 'Look around once at Tobwaan te Tongo Park', purpose: 'Plan Corin’s two-attempt game-night rule.', task: 'practical', count: 1 }, { label: 'Visit Corin at TTRP', purpose: 'Inspect the fictional six-place meal layout.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in South Tarawa', purpose: 'Give Corin newcomers and an expert for the rule sequence.', task: 'people', count: 4 },
+        { label: 'Look around once at Tobwaan te Tongo Park', purpose: 'Hear both neighbors’ completed recollections.', task: 'practical', count: 1 }, { label: 'Visit Corin at TTRP', purpose: 'Inspect the two accounts before Corin’s short summary.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in South Tarawa', purpose: 'Invite listeners to preserve the detail on which accounts differ.', task: 'people', count: 4 },
       ], weekly: [
-        { label: 'Look around twice at TTRP', purpose: 'Practice the three-bowl table arrangement.', task: 'discovery', count: 2 }, { label: 'Visit three game places in South Tarawa', purpose: 'Think through attempts, confirmation and demonstration.', task: 'places', count: 3 }, { label: 'Look around three times at Tobwaan te Tongo Park', purpose: 'Repeat the newcomer-first rule round.', task: 'practical', count: 3 },
+        { label: 'Look around twice at TTRP', purpose: 'Practice keeping each recollection separately attributed.', task: 'discovery', count: 2 }, { label: 'Visit three game places in South Tarawa', purpose: 'Connect the two registered settings through Corin’s closing summary.', task: 'places', count: 3 }, { label: 'Look around three times at Tobwaan te Tongo Park', purpose: 'Repeat why the available record does not resolve the difference.', task: 'practical', count: 3 },
       ] },
     },
     {

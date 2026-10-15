@@ -1,0 +1,33 @@
+test('TEMP current-8aff row collection attribution', async t => {
+  const f = await fixture(t, { bindings: { ...layoutBindings(), BUILD_ID: 'local-conformance', MODERATOR_TOKEN: 'worker-operator-token-0123456789-abcdef' } });
+  type Snap = Map<string, { bytes: number; hash: string }>;
+  const snap = async (): Promise<Snap> => {
+    const rows = await (await f.storage()).exec('SELECT name,value FROM collections ORDER BY name');
+    return new Map(rows.map(row => { const value = String(row.value); return [String(row.name), { bytes: value.length, hash: createHash('sha256').update(value).digest('hex').slice(0, 12) }]; }));
+  };
+  let previous = await snap();
+  const mark = async (label: string): Promise<void> => {
+    const current = await snap(), changed: string[] = [];
+    for (const name of new Set([...previous.keys(), ...current.keys()])) {
+      const a = previous.get(name), b = current.get(name);
+      if (a?.hash !== b?.hash || a?.bytes !== b?.bytes) changed.push(`${name}:${a?.bytes ?? 0}->${b?.bytes ?? 0}:${a?.hash ?? 'none'}->${b?.hash ?? 'none'}`);
+    }
+    if (changed.length) console.log(`ROWPROBE ${label} ${changed.join(',')}`);
+    previous = current;
+  };
+  const ada = await f.device('Ada'); await mark('device');
+  const x = await f.socket(ada); await mark('socket');
+  await f.life(ada); await mark('life');
+  x.send({ type: 'join', cityId: 'lagos', venueId: 'park' }); await x.next(); await mark('join');
+  const paths = ['/api/life?city=lagos', '/api/world/pulse', '/api/civic/pulse?city=lagos', '/api/social/people?city=lagos', '/api/session'];
+  const poll = async (prefix: string): Promise<void> => { for (const path of paths) { const response = await f.request(path, null, ada.cookie); await response.arrayBuffer(); await mark(`${prefix}:${path}`); } };
+  await poll('warm1');
+  await new Promise(resolve => setTimeout(resolve, 11000)); await mark('warm-wait11');
+  await poll('warm2');
+  console.log('ROWPROBE QUIET');
+  for (let round = 0; round < 5; round++) {
+    await new Promise(resolve => setTimeout(resolve, 5000)); await mark(`round${round}:wait5`);
+    x.send({ type: 'move', x: 1 + round, z: 2 }); await new Promise(resolve => setTimeout(resolve, 50)); await mark(`round${round}:move`);
+    await poll(`round${round}`);
+  }
+});

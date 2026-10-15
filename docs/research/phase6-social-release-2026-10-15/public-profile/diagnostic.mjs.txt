@@ -1,0 +1,61 @@
+// Synthetic local HTTP/privacy fixture. To rerun, copy this file to the same directory as
+// `diagnostic.mjs`, then run it from the repository root through the shared heavy slot.
+import assert from 'node:assert/strict';
+import {fixture} from '../../../../server/test-fixture.ts';
+import {EPISODES} from '../../../../src/game/content/episodes.ts';
+import {ACHIEVEMENTS} from '../../../../src/game/content/achievements.ts';
+import {PROJECTS} from '../../../../src/game/content/projects.ts';
+const cleanup=[],checks=[];
+const f=await fixture({after:fn=>cleanup.push(fn)},{env:{},publicOrigin:'https://play.example'});
+const check=(label,condition)=>{assert.ok(condition,label);checks.push(label)};
+const find=(db,id)=>Object.values(db.sessions).find(s=>s.publicId===id);
+const get=async(path,cookie)=>{const r=await f.request(path,null,cookie);const text=await r.text();let body;try{body=JSON.parse(text)}catch{}return {status:r.status,cache:r.headers.get('cache-control'),text,body}};
+try{
+ const human=await f.device('Profile diagnostic'),agent=await f.device('Agent diagnostic');
+ for(const who of [human,agent]){await f.request('/api/life?city=lagos',null,who.cookie);await f.request('/api/social/me',null,who.cookie)}
+ const privateCanary='PRIVATE_PROFILE_CANARY_735192';
+ const definitions=EPISODES.filter(e=>e.id.startsWith('world-')||e.id.startsWith('place-')).slice(0,38);
+ const tokyo=EPISODES.filter(e=>e.location.city==='tokyo');
+ const akokaEpisodes=EPISODES.filter(e=>e.id==='hostel-hustle'||e.id==='the-quiet-hours');
+ const seeded=[...new Map([...definitions,...tokyo,...akokaEpisodes].map(e=>[e.id,e])).values()];
+ await f.server.store.transact(db=>{
+  const s=find(db,human.id),a=find(db,agent.id),state=s.cities.lagos.state;
+  s.name='<img src=x onerror=alert(1)> Profile diagnostic';s.privateCanary=privateCanary;s.account=privateCanary;s.legacyLives={unused:{privateCanary}};
+  a.agent={char:true,key:privateCanary};
+  state.t=f.now();state.cash=987654321;state.privateCanary=privateCanary;
+  const award=ACHIEVEMENTS[0];state.achievements.earned[award.id]={id:award.id,version:award.version,earnedAt:f.now()-500,origins:['delegated-agent']};state.achievements.pinned=[award.id];
+  for(const e of seeded)state.episodes.mementos[e.memento.id]={id:e.memento.id,version:1,episodeId:e.id,episodeVersion:e.version,grantedAt:f.now()-1000,origins:['human'],rewardId:e.memento.rewardId};
+  const aliased=state.episodes.mementos[seeded[0].memento.id];
+  for(let i=0;i<35;i++)state.episodes.mementos['wrong-key-alias-'+i]={...aliased};
+  state.episodes.mementos['invalid-canary']={id:privateCanary,version:1,episodeId:privateCanary,episodeVersion:1,grantedAt:f.now()-50,origins:[privateCanary],rewardId:privateCanary};
+  const wrongCityProject=PROJECTS[0],validProject=PROJECTS[1];
+  state.projects.mementos[wrongCityProject.id]={id:wrongCityProject.id,occurrence:wrongCityProject.occurrence,title:privateCanary,earnedAt:f.now()-900,cityId:'tokyo',origins:['system',privateCanary]};
+  state.projects.mementos[validProject.id]={id:validProject.id,occurrence:validProject.occurrence,title:privateCanary,earnedAt:f.now()-900,cityId:validProject.city,origins:['system',privateCanary]};
+ });
+ const before=await f.server.store.read(db=>JSON.stringify(db));
+ const first=await get('/api/profiles/'+human.id);check('anonymous public profile is available',first.status===200);check('API is no-store',first.cache==='no-store');
+ const p=first.body.profile;
+ assert.deepEqual(Object.keys(p).sort(),['version','id','name','kind','path','achievements','counts','history','next'].sort());checks.push('public root fields match explicit allowlist');
+ check('human identity remains human despite delegated reward',p.kind==='human');check('earned badge and delegated provenance appear',p.achievements.length===1&&p.achievements[0].origins.includes('delegated-agent'));check('wrong-key aliases do not duplicate canonical stories',p.counts.stories===seeded.length);check('only the canonical valid-city project appears',p.counts.projects===1);check('complete collections appear',p.counts.collections>=2);check('private canaries never appear in JSON',!first.text.includes(privateCanary)&&!first.text.includes('987654321'));
+ const entries=[...p.history];let next=p.next;let pages=1;
+ while(next){const r=await get('/api/profiles/'+human.id+'?after='+encodeURIComponent(next));check('older profile page is available',r.status===200);entries.push(...r.body.profile.history);next=r.body.profile.next;pages++;assert.ok(pages<10)}
+ check('pagination includes all accepted history rows',entries.length===Object.values(p.counts).reduce((a,b)=>a+b,0));check('pagination does not duplicate entries',new Set(entries.map(e=>e.kind+':'+e.id)).size===entries.length);
+ check('wrong-city project cannot complete its collection',!entries.some(e=>e.kind==='collection'&&e.id==='ng:lagos:akoka-chapters'));
+ check('all four accomplishment types appear',new Set(entries.map(e=>e.kind)).size===4);
+ for(const e of entries){assert.deepEqual(Object.keys(e).sort(),(e.kind==='story'?['kind','id','title','earnedAt','origins','memento']:['kind','id','title','earnedAt','origins']).sort())};checks.push('every history row uses its allowlist');
+ const page=await get('/p/'+human.id);check('public share HTML is available',page.status===200);check('share page is no-store',page.cache==='no-store');check('malicious name is escaped',page.text.includes('&lt;img')&&!page.text.includes('<img src=x'));check('private canaries never appear in HTML',!page.text.includes(privateCanary)&&!page.text.includes('987654321'));check('HTML identifies human and links older rows',page.text.includes('Human character')&&page.text.includes('after='));
+ const head=await fetch(f.base+'/p/'+human.id,{method:'HEAD'});check('HEAD has no body',head.status===200&&(await head.text())==='');
+ const ap=await get('/api/profiles/'+agent.id);check('persistent agent character classification',ap.status===200&&ap.body.profile.kind==='agent');
+ for(const suffix of ['?after=bad','?after=1:999999:story:unknown'])check('invalid cursor is rejected', (await get('/api/profiles/'+human.id+suffix)).status===400);
+ const after=await f.server.store.read(db=>JSON.stringify(db));check('profile reads do not mutate stored state',before===after);
+ await f.server.store.transact(db=>{db.civic??={};db.civic.prefs??={};db.civic.prefs[human.id]={directory:true}});
+ const hidden=await get('/api/profiles/'+human.id,human.cookie),hiddenPage=await get('/p/'+human.id),unknownPage=await get('/p/00000000-0000-4000-8000-000000000000');
+ check('directory hidden also hides owner public endpoint',hidden.status===404&&hidden.body.error==='profile_unavailable');check('hidden HTML has generic metadata',hiddenPage.status===404&&hiddenPage.text===unknownPage.text&&!hiddenPage.text.includes('Profile diagnostic'));check('hidden API and HTML are no-store',hidden.cache==='no-store'&&hiddenPage.cache==='no-store');
+ await f.server.store.transact(db=>{db.civic.prefs[human.id].directory=false;db.social.players[agent.id].blocked[human.id]=f.now()});
+ check('known viewer block is enforced', (await get('/api/profiles/'+human.id,agent.cookie)).status===404);check('public anonymous page remains explicitly public',(await get('/p/'+human.id)).status===200);
+ await f.server.store.transact(db=>{delete db.social.players[agent.id].blocked[human.id];db.social.players[human.id].blocked[agent.id]=f.now()});
+ check('target blocking viewer is enforced',(await get('/api/profiles/'+human.id,agent.cookie)).status===404);
+ for(const id of ['__proto__','resident.lagos.unknown','not-a-uuid','00000000-0000-4000-8000-000000000000'])check('unknown and malformed identities are unavailable',(await get('/api/profiles/'+id)).status===404);
+ await f.server.store.transact(db=>{find(db,human.id).expiresAt=f.now()-1});check('expired identity is unavailable',(await get('/api/profiles/'+human.id)).status===404);
+ console.log(JSON.stringify({checks:checks.length,passed:true,pages,historyRows:entries.length,scope:'Synthetic local HTTP/privacy fixture; not earned gameplay or Worker/production proof',checksPassed:checks},null,2));
+}catch(error){console.error(error);process.exitCode=1}finally{for(const fn of cleanup.reverse())await fn()}

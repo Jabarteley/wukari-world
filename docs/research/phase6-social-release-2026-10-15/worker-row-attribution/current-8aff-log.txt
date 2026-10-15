@@ -1,0 +1,32 @@
+(node:67975) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Store: social now kept per entry (0 entries, 1 ms)
+Store: growth now kept per entry (0 entries, 0 ms)
+Store: civic now kept per entry (0 entries, 0 ms)
+Store: business now kept per entry (0 entries, 0 ms)
+Store: market now kept per entry (0 entries, 0 ms)
+Store: commerce now kept per entry (0 entries, 0 ms)
+Store: records now kept per entry (0 entries, 0 ms)
+Store: realValue now kept per entry (0 entries, 0 ms)
+Store: showcase now kept per entry (0 entries, 0 ms)
+Store: trustChecks now kept per entry (0 entries, 0 ms)
+Store: street now kept per entry (0 entries, 1 ms)
+Store: livingWorld now kept per entry (0 entries, 0 ms)
+Store: agents now kept per entry (0 entries, 0 ms)
+Store: every collection has its per-entry copy (13 copied at this start, 0 characters); the stored values stay the truth
+ROWPROBE warm1:/api/world/pulse pulse:0->71:none->4d62bfa4a942
+ROWPROBE warm1:/api/civic/pulse?city=lagos civic:0->516:none->46a9b7d8ef74,root:civic:0->390:none->fdbf9e4c9aa4
+ROWPROBE warm1:/api/social/people?city=lagos root:social:0->164:none->6f10ca850e2f,social:0->387:none->a982f036c97b
+ROWPROBE warm-wait11 adminDaily:0->61:none->a647b3a9c792,growth:0->188:none->6740821a8fb0,residentVoice:0->1376:none->143dc6e7a415,root:growth:0->257:none->a4590b3611ee
+ROWPROBE QUIET
+ROWPROBE round0:wait5 modelRouter:0->1124:none->b4a73ad10f18,worldfeed:0->6266:none->3ae46c0af52c
+ROWPROBE round1:wait5 bonds:0->267:none->727bb0c4c3dd,residentsS0:0->22:none->14a2e3016570,residentsS1:0->609:none->60ef298c03f0,residentsS2:0->593:none->688710d2fa8e,residentsS3:0->902:none->a47c22aeae24,residentsS4:0->315:none->88080f0cb63e,residentsS5:0->889:none->f0406f3cf6f8,residentsS6:0->882:none->d5326080aded,residentsS7:0->1178:none->cd8075db948b,residentsS8:0->878:none->46e5a1126eaa,residentsS9:0->877:none->7f1eb2d0a516,residentsSa:0->1175:none->66bc88f7de1b,residentsSb:0->1465:none->b84b0edfe744,residentsSc:0->1170:none->d4f85ec476a1,residentsSd:0->600:none->12a59bda1e56,residentsSe:0->310:none->1fe41a9c5795,residentsSf:0->2317:none->aea0dae635cb
+✔ TEMP current-8aff row collection attribution (37723.725167ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 38153.576584

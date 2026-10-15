@@ -59,4 +59,3 @@ export const ACCEPTED_LOCAL_CITY_IDS: ReadonlySet<string> = new Set(cities.keys(
 export const ACCEPTED_LOCAL_COUNTRY_IDS: ReadonlySet<string> = new Set(countries.keys())
 export const acceptedLocalCity = (cityId: string): AcceptedLocalCity | null => cities.get(cityId) ?? null
 export const hasAcceptedLocalCity = (cityId: string): boolean => cities.has(cityId)
-

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "fileCount": 8501,
+  "packageDigest": "11774ce9370ef6950e7ef2cf98be7f8f934b8d46a3229ae364e163c696e4a0da",
+  "workerBytes": 3396693,
+  "sameRunIdentical": true,
+  "changedRunFiles": [
+    "manifest.json",
+    "worker.js"
+  ]
+}

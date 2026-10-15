@@ -1,4 +1,6 @@
-# Residents (Phase 13a: one resident in shadow; Phase 13b: thirty, visible when the owner chooses)
+# Residents (Phase 13a: one resident in shadow; Phase 13b: thirty; 15 October: three in every open city, visible)
+
+> **15 October 2026, the owner's decision: Remi is approved. Residents are ON and VISIBLE, three in every open city.** The section [Residents everywhere](#residents-everywhere-15-october-2026) below is the current design and supersedes what the older sections say about `residentShadow` (now off by default), `residentCount` (retired), and "all residents go to sleep when the budget is spent" (now they carry on by rules). The older sections are kept for what they still explain: the thoughts, the checks, the nightly summary, replies, talk, the assembly, relationships.
 
 A resident is an AI-played character that lives its own day instead of waiting for a person: it sleeps, wakes, follows a routine and sometimes thinks with a
 language model. Phase 13a builds ONE (Remi, a bookseller in Lagos) and keeps her in **shadow**: she acts, but nobody sees her. The owner reads her day on the admin page
@@ -25,8 +27,7 @@ in `AskInput`) and falls back to the rest of the list when it fails or rests.
   After the second failure she does what her routine says and says nothing. Slips (out of character, word rules) and invalid replies are counted apart, with the retries.
 - **At night**, when she goes to bed, one more call writes a short first-person summary of the day (at most 600 characters, same checks, one retry, a written summary when it fails).
   The last 7 are kept; the last two go into the next day's prompts.
-- **Budget**: she uses only what the model router allows (free models first, the US$2 a day stop, resting models; `docs/MODELS-ROUTER.md`). When the router says the budget is spent she goes to
-  sleep early for the rest of the UTC day and writes her summary without a call.
+- **Budget**: she uses only what the model router allows (free models first, the US$2 a day stop, resting models; `docs/MODELS-ROUTER.md`). When the router says the budget is spent she asks no more for the rest of the UTC day, carries on by her routine and writes her summary without a call.
 
 ## Shadow mode
 
@@ -35,7 +36,7 @@ Settings on the admin page (no release needed):
 | Setting | Default | Meaning |
 | --- | --- | --- |
 | `residentOn` | **off** | The owner turns her on. Off: she does nothing and costs nothing. |
-| `residentShadow` | **on** | On: she is not placed in `agentRoom` (not in any people list, not in the pulse `ai` number), her lines are not sent to anyone, she reads no person's words and changes no player's state. Her "world" is her own record: where she stands, what she does, the lines she **would** have said. Off: she stands in her venue with the AI-played mark and speaks through `agentRoom.say` (the same word rules as every agent); that is for Phase 13b. |
+| `residentShadow` | ~~on~~ **off since 15 October** (see Residents everywhere) | On: she is not placed in `agentRoom` (not in any people list, not in the pulse `ai` number), her lines are not sent to anyone, she reads no person's words and changes no player's state. Her "world" is her own record: where she stands, what she does, the lines she **would** have said. Off: she stands in her venue with the AI-played mark and speaks through `agentRoom.say` (the same word rules as every agent); that is for Phase 13b. |
 
 Stored lazily, never durable, in the collection `residents` (`{ v: 1, residents: { [id]: { born, model, days, memory } } }`): 7 days, at most 120 choices a day.
 
@@ -55,13 +56,109 @@ touches a player's save.
 `node --experimental-strip-types --test server/residents/resident.test.ts` (a fake fetch and a fast clock: a whole day, thought spacing and bounds, out-of-character replies, invalid JSON, shadow
 mode, the budget stop, the nightly summary, the model assigned at birth) and the `prefer` test in `server/models/router.test.ts`.
 
+
+## Residents everywhere (15 October 2026)
+
+Code: `server/residents/generate.ts` (the generator, pure), `persona.ts` (personality and what it changes, pure), `world.ts` (which residents live in which cities, venues by kind), the runner `resident.ts`, relationships `bonds.ts`, tests `everywhere.test.ts`.
+
+### Who lives where
+
+Every open city of the host (`ctx.cityIds`: 284 today, about 40 Nigerian and one for each of about 244 other countries) has **`residentsPerCity`** residents (new setting, **0 to 5, default 3**; 0 turns every resident off). That is about **852** residents. Slots are filled in order: the **authored** residents of the city first (Lagos: Remi, Adaeze, Ibrahim; Abuja, Ibadan, Accra, Nairobi, London three each; Cape Town and New York two, and one made-up each), then **generated** ones. The authored residents beyond the setting (seven more in Lagos, one in Abuja) stay dormant; they come back if the setting goes up (Lagos has ten, the setting stops at five).
+
+`residentCount` is **retired**: the setting is still registered so an old saved value (1, 30, anything) loads, and it is ignored. It no longer limits anything. `residentShadow` now defaults to **off** (visible, with the AI-played mark always on); a saved `true` stays on. `residentOn` is on for live hosts, as before; it stays off in tests unless a test turns it on.
+
+### The generator
+
+`generateResident(city, slot)` is a function of its two arguments only (the city's id, name, country, place; and the slot): **the same people every restart, on every host.** No storage, no clock, no random. Each one gets:
+
+- **A name** from the pool of its region (about 33 regions: Yoruba, Igbo and Hausa names by where a Nigerian city lies, Akan, francophone West Africa, Central Africa, Swahili, the Horn, Southern Africa, the Indian Ocean, North Africa, the Gulf, Persian, Turkic, Hebrew, South Asia, South-East Asia, Chinese, Japanese, Korean, the Pacific, the Caribbean, Spanish, Portuguese, English-speaking, French, Germanic, Italian, Greek, Slavic, Baltic, Romanian-Hungarian, Caucasus). Given names only, invented or common, never a real public figure's; no two in a city share a name; older West Africans may be "Mama" or "Baba".
+- **An age** from 21 to 75, a look (one of the six house looks, by age and gender), and **a job fitted to the age** from what every city has: a market stall (sixteen kinds of goods), the clinic (nurse, desk, pharmacy), the workshop (tailor, carpenter, repairs, printing, books, photographs), the eatery (cook, waiter, baker), the park (gardener, exercise leader), the hall of worship (keeper), the transit stop (conductor, dispatcher, porter), the notice house, the campus (teacher, librarian, student), the shopping hall, a guide for visitors, or retirement on a park bench. The job is stored as **kinds of venue**, resolved in the city's own loaded venues (`world.ts venueOfKind`), different venues for different residents of one city.
+- **A faith or none** by the odds of its region, **a family situation** by age, **likes and dislikes**, **one private goal**, **a way of speaking** (warm, plain, formal, jokey, brisk, or Pidgin where that is spoken) with the **local words** of the region (a greeting, a filler, a thanks, a goodbye, an exclamation in 27 tongues).
+- **Eight numbers, 0 to 99:** `chatty`, `temper`, `devout`, `curious`, `funny`, `ambitious`, `generous`, `social`. The residents of one city are drawn from **different fifths** of every number, so three neighbours differ by at least 8 on each and usually by 20 or more (a test checks all 284 cities).
+- **A sleep schedule and working hours in the city's own time**: a lark (up about 5, bed about 21), a middle (up about 6.5, bed about 23) or an owl (up about 8, bed after midnight), by slot; work starts one and a half hours after waking and runs 7 to 12 hours. The city's offset comes from its country (standard time, not moved for summer time) or, for a country not listed, from its longitude. Everyone is awake on a Saturday 16:00 to 19:00 and a Sunday 15:00 to 17:00, so a wedding or a gathering never finds a resident asleep.
+- **A first-person life story** of 170 to 400 words, composed from all of that on first use (a getter, so nothing is written until a model needs it). It never uses the words AI, model, game, player, assistant or prompt (the test reads every story of every city).
+
+The Prayers page and the owner's acts find a generated resident by its id (`resident.<city>.g<slot>-<name>`), rebuilt from the id (`world.ts residentById`).
+
+### Personality changes behaviour, not only the prompt
+
+All by rules in `persona.ts`, with no model:
+
+| Trait | What it changes |
+| --- | --- |
+| `social`, `curious` | whether a resident leaves its post for an **outing** (a walk, a bite, the market, reading, a view). Decided once per 45-minute slot by a fixed roll for (resident, day, slot): about 12 + 0.55 `social` per cent in free time, a few per cent at work. Which outing is by weight: the curious read and look, the sociable eat out and walk, those who like the sea or a garden walk more. |
+| `devout`, faith | going to the place of worship in the window of the faith (Friday noon, Sunday morning, Saturday...), and **prayers** by rule: none without a faith, 0, 1 or 2 a day by `devout` (a morning one half an hour after waking, a second near bed). Prayers go to the Prayers page (at most **40 a day for all**; the setting `residentRulePrayers` turns them off). |
+| `ambitious`, `generous`, `social` | skipping lunch (the ambitious and careful eat at their post and carry on). |
+| `chatty` | how many times a day it talks (1 to 6), the break between talks (15 to 75 minutes), the length of a talk (2 to 4 lines), how many written lines it says a day, and how readily a pair begins to talk. |
+| `curious`, `funny`, `ambitious`, `generous`, likes, goal | **what it talks about** (the town's gist, its work, what it likes, what it cannot stand, its goal, family, faith, a joke) and what it says when nobody asks. |
+| style, tongue | the words of the line: a Pidgin speaker leans on its local words, a formal one never contracts, a brisk one speaks one short sentence. |
+| `chatty`, `social` (bonds.ts) | **how fast a friendship grows**: a talk gives 2 to 4 closeness instead of always 3. |
+| `temper` (bonds.ts) | **how likely a quarrel is**: the chance is scaled from 0.4 to 2.4 times by the two tempers, and like tempers fit a little better than a hot one and a calm one. |
+
+`everywhere.test.ts` shows it: the rules in isolation (more outings for the sociable, prayers by devotion, talk by chattiness), a simulated day in six cities where every pair of neighbours differs in at least two measures (rooms visited, outings, lines said, prayers, talks, when they first stood), and a three-resident market where the talkative talk and speak at least as much as the quiet one.
+
+### The cost model
+
+About 852 residents cannot each ask a model every 15 to 30 minutes. They do not. **Default behaviour is rules, with no model:** the routine of the house action library, outings, written lines, written talk, rule prayers. The model is used in **four** places only:
+
+| Use | Who pays | Bound |
+| --- | --- | --- |
+| **A person speaks to a resident** (names it, or greets a lone one) | the paid list only (the person's words never reach a free model) | the existing wake limits (6 per person per minute, 60 a minute in all, 120 a resident a day) and the budget below |
+| **Deep thoughts** (a model thought on a wake-up event or the 15 to 30 minute alone timer; and a model talk of four lines) | the router (free models first) | **`residentDeepPerDay`, default 240** units for all residents together (a thought is 1, a model talk is 4), spread over the UTC day (never ahead of the clock by more than 4), at most 2 started per beat, at most `ceil(3 x quota / residents)` thoughts (at least 2) per resident per day, at most 64 |
+| **The night summary** (and the wish and need in it) | the router | only for a resident who **met a person that day** (a person stood where it stood, or spoke to it); others write nothing and keep nothing |
+| **Weddings and choices of Phase 20** | the router | 24 a day, as before |
+
+Everything shares `residentDailyCents` (default 100 = US$1, never above 190) and the router's US$2 hard stop. **When the budget is spent no resident is put to bed**: the model is simply not asked again until the next UTC day and they carry on by rules (moving, talking, praying, answering a greeting with a written line). The old behaviour (all go to sleep early) is gone.
+
+The numbers, measured in `everywhere.test.ts` with a fake fetch: a test model of about US$0.000055 a call (400 tokens in, 30 out); with a quota of 60 and a limit of 1 cent over a busy day (14 hours, people in three cities speaking to the residents by name) the residents made 182 calls (23 thoughts, 2 talks, 157 answers), the quota was never passed (27 of 60 used), the 1 cent limit was reached and **then no further call was made while residents went on moving and speaking.** At the defaults, 240 deep units a day at the same price are about US$0.013 even if every one is paid; free models come first, so a normal day is nearer zero. The real ceiling is the US$1 limit, whatever people say to them.
+
+### Work per beat
+
+The host's heartbeat is every 10 seconds. A beat **steps at most `STEP_MAX` = 48 residents**, round-robin from where the last beat stopped (so 852 residents are each stepped about every **3 minutes**; presence is renewed every 6 and lasts 12). Stepping a sleeping resident costs one clock comparison. Talk is found from an index of who stands in which room, never by walking everyone. Measured with all 852 living: about **0.65 ms per beat** on a laptop. Nothing is loaded or built at startup: the first beat after `residentOn` builds the list from the city catalogue (no city content is read), and city content is only read if somebody is already there.
+
+Residents are **visible only where a city's venues are loaded** (somebody is there or has been): until then a resident of that city lives on paper; the first person to arrive finds it a few minutes later. Everything else (sleep, outings that need venues excepted, talk, prayers) goes on regardless.
+
+### Storage
+
+Kept per resident (`Life`: born, a model if one was ever needed, a few small day records, at most two summaries) in **16 small collections `residentsS0`..`residentsSf`**, by a hash of the resident's id. The runner keeps the whole thing in memory, saves lazily (at most once in 30 seconds, only when something changed) and writes **only the shards whose text changed.** The old single collection `residents` is read once at start, and emptied after the first sharded save; nothing is lost on the way. A generated resident keeps **2 day records and no choice entries** (only counters), a model-written summary only if it met a person, and holds no model until one is needed. Measured by the test over three simulated days with 852 residents: **476 KB in all, 572 bytes a resident** (the authored thirty keep 7 days and the last two days of choices, a few KB each). The admin page shows the live size ("Storage").
+
+Why not `server/keyed.ts`? Its `KEYED_SPECS` change the layout of a collection on the Worker and need the owner's migration steps (docs/STORAGE.md); the shards give the same effect (small writes, no whole-world rewrite) with an ordinary lazy collection, and can move into `KEYED_SPECS` later without changing the runner.
+
+### Talk between residents
+
+When two awake residents stand in the same room they may talk, by the odds of their two characters (about 7 to 60 per cent a minute), never within 2 hours as a pair, and within each resident's own daily limit and break. **By default the talk is written by rules** (`persona.ts talkLine`: a greeting by name, a topic by character, a real ledger line of the city when the speaker is curious about the town, a reply that acknowledges first: the curious ask, the funny joke, the quiet nod); every line passes `judgeTalk` (plain text, 140 characters at most, no digits except a ledger line's, `agentWords`) and the repetition check. When the deep quota has room it is a model's talk, grounded in one real ledger line, as in 13b. In shadow it is kept on paper; visible, it is said in the room with the AI mark. Rule talks are kept in memory only (the last 60, for the admin page) and as counters on the day.
+
+### What stays as it was
+
+Every line passes `agentWords`; the AI-played mark is always on a visible resident; no resident asks for money, details or a meeting; no romance with minors (all residents are adults, and `toMinor` is on for every line); residents never touch a player's save. The weddings, funerals, quarrels and the assembly of earlier phases work as before for the residents who live (the assembly sits among the authored residents who live now).
+
+### The admin page
+
+Group "Residents": **Residents living now** (how many, in how many cities, awake, asleep, standing in venues, talking, visible or shadow, whether the budget is spent), **Deep thoughts today against the quota** (and residents stepped on the last beat, rule prayers today), **Written lines and rule-driven talk lately**, **Storage**, then everything that was there (spent against the limit, models compared, talk, the success measures, wishes and needs, the president and the letter). The "Remi:" rows read Remi if she lives.
+
+### Settings
+
+| Setting | Default | |
+| --- | --- | --- |
+| `residentOn` | on for live hosts | the master switch |
+| `residentsPerCity` | **3** (0 to 5) | residents in each open city |
+| `residentShadow` | **off** | on: on paper only, nobody sees them |
+| `residentDeepPerDay` | **240** (0 to 2000) | the model's share of thoughts and talks, all residents together |
+| `residentDailyCents` | 100 | everything the residents spend, never above 190 |
+| `residentRulePrayers` | on | rule-written prayers to the Prayers page (40 a day at most) |
+| `residentCount` | (retired) | read and ignored |
+
+### Checking it
+
+`node --experimental-strip-types --test server/residents/everywhere.test.ts server/residents/resident.test.ts server/residents/roster.test.ts server/residents/voice.test.ts server/residents/bonds.test.ts`
+
 ## Phase 13b: thirty residents
 
 Code: `server/residents/roster.ts` (twenty-nine more life stories beside Remi in `life.ts`), `resident.ts` (the runner, now for N residents, with talk and replies), `roster.test.ts`.
 
 ### The roster
 
-Thirty residents, switched on **in order** by the setting `residentCount` (**default 1: only Remi runs**): Remi, nine more in Lagos, then Abuja (4), Ibadan (3), Accra (3), Nairobi (3), Cape Town (2), London (3) and New York (2).
+Thirty residents, **originally** switched on in order by the setting `residentCount` (default 1: only Remi ran; **retired on 15 October**, now `residentsPerCity` decides): Remi, nine more in Lagos, then Abuja (4), Ibadan (3), Accra (3), Nairobi (3), Cape Town (2), London (3) and New York (2).
 Johannesburg and Houston, named in the plan, are not open cities in the game (no rules or venues), so Cape Town and New York stand in for them. All are adults (26 to 71) with different faiths (Christian, Catholic, Muslim, Hindu, Jewish, Sikh, the old Yoruba ways, none), jobs
 (nurse, tailor, radio presenter, librarian, teacher, florist, pharmacist, musician, cook, guide, grain seller and more) and sleep times. Every story is long, in the first person, with ordinary first names only, and no danger or scam. A story never uses the words
 AI, model, game, player, assistant or prompt (`roster.test.ts` checks all thirty). Hours and sleep are the city's local time (offsets are the winter ones, not moved for summer time); the runner converts to the action library's Lagos clock. A resident who is not a seller is not offered the market trip, and "open_shop" means going to work.
@@ -83,7 +180,7 @@ A reply is one short model line (purpose `resident` with `carriesPlayerWords` tr
 
 ### The budget
 
-The residents share the router's budget (free models first, the US$2 stop). They also stop at the setting **`residentDailyCents`** (default **100 = US$1**, never above 190): when thoughts, talk and answers together reach it, or the router answers "budget", **all residents go to sleep early** for the rest of the UTC day (a written summary, no call), so the other purposes
+The residents share the router's budget (free models first, the US$2 stop). They also stop at the setting **`residentDailyCents`** (default **100 = US$1**, never above 190): when thoughts, talk and answers together reach it, or the router answers "budget", **no resident asks a model again** for the rest of the UTC day (*until 15 October they all went to sleep early; now they carry on by rules*), so the other purposes
 (companion, house agents, safety) still answer. At most 4 residents' calls are in flight at once; wake-ups are staggered by that and by their own sleep times.
 
 ### The admin page (group "Residents")

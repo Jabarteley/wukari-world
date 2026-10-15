@@ -1,0 +1,110 @@
+import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
+import { chmodSync, cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, realpathSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { join, relative } from 'node:path'
+import { tmpdir } from 'node:os'
+import { spawnSync } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
+import {
+  checkPackage, expectedConfig, parseReleaseIdentity, releaseIdentityFromEnvironment, releaseMarker,
+} from '../../../../scripts/guard-joinallworld-package.mjs'
+
+// Copy this file to controls.mjs beside it, then run it from the repository root.
+const ROOT = fileURLToPath(new URL('../../../..', import.meta.url))
+const SHA = 'a'.repeat(40)
+const folder = realpathSync(mkdtempSync(join(tmpdir(), 'allworld-sealed-identity-')))
+const source = join(folder, 'source'), tooling = join(folder, 'tooling')
+const packageScript = join(ROOT, 'scripts/package-joinallworld.mjs')
+const guardScript = join(ROOT, 'scripts/guard-joinallworld-package.mjs')
+const checks = []
+const check = (label, condition) => { assert.ok(condition, label); checks.push(label) }
+const digest = bytes => createHash('sha256').update(bytes).digest('hex')
+
+function prepareSource() {
+  mkdirSync(join(source, 'deploy'), { recursive: true }); mkdirSync(join(source, 'dist/assets/cities'), { recursive: true })
+  mkdirSync(join(source, 'dist/assets/words'), { recursive: true }); mkdirSync(join(source, 'dist/assets/progression'), { recursive: true })
+  writeFileSync(join(source, 'dist/index.html'), '<!doctype html><title>fixture</title>')
+  const assets = [
+    ['cities/lagos', '{"version":1,"cityId":"lagos"}', 'json'], ['words/dictionary', 'packed words', 'txt'],
+    ['progression/episodes-0', '{"version":1,"kind":"episodes","order":0,"items":[]}', 'json'],
+    ['progression/journeys', '{"version":1,"kind":"journeys","order":0,"items":[]}', 'json'],
+    ['progression/missions', '{"version":1,"kind":"missions","order":0,"value":{"definitions":[]}}', 'json'],
+  ]
+  const paths = assets.map(([name, bytes, extension]) => `/assets/${name}.${digest(bytes)}.${extension}`)
+  assets.forEach(([, bytes], index) => writeFileSync(join(source, 'dist', paths[index]), bytes))
+  writeFileSync(join(source, 'deploy/cloudflare-worker.js'), `export const content=${JSON.stringify(paths)};`)
+  mkdirSync(join(tooling, 'node_modules/esbuild'), { recursive: true })
+  writeFileSync(join(tooling, 'package.json'), '{"private":true}')
+  writeFileSync(join(tooling, 'node_modules/esbuild/index.js'), "const fs=require('fs');exports.build=async o=>fs.copyFileSync(o.entryPoints[0],o.outfile);")
+}
+function runPackage(name, env, publish = false) {
+  const output = join(folder, name)
+  const result = spawnSync(process.execPath, [packageScript, source, output, SHA, String(publish), tooling], { encoding: 'utf8', env: { PATH: process.env.PATH, ...env } })
+  return { ...result, output, receipt: result.status === 0 ? JSON.parse(result.stdout) : null }
+}
+function reseal(root, identity) {
+  const files = []
+  const walk = path => { for (const name of readdirSync(path).sort()) { if (name === 'manifest.json') continue; const full = join(path, name), stat = statSync(full); if (stat.isDirectory()) walk(full); else files.push({ path: relative(root, full), bytes: stat.size, sha256: digest(readFileSync(full)) }); } }
+  walk(root); writeFileSync(join(root, 'manifest.json'), JSON.stringify({ sourceSha: SHA, publish: false, identity, files }, null, 2) + '\n')
+}
+function files(root) {
+  const found = new Map(); const walk = path => { for (const name of readdirSync(path).sort()) { const full = join(path, name), stat = statSync(full); if (stat.isDirectory()) walk(full); else found.set(relative(root, full), digest(readFileSync(full))); } }; walk(root); return found
+}
+
+try {
+  prepareSource()
+  const github = { version: 1, kind: 'github', runId: '123456789', runAttempt: '2' }
+  assert.deepEqual(parseReleaseIdentity({ version: 1, kind: 'local' }), { version: 1, kind: 'local' })
+  assert.deepEqual(releaseIdentityFromEnvironment({ GITHUB_ACTIONS: 'true', GITHUB_RUN_ID: github.runId, GITHUB_RUN_ATTEMPT: github.runAttempt }), github)
+  check('strict versioned local and GitHub identities are accepted', true)
+  for (const invalid of [null, {}, { version: 1, kind: 'github', runId: '1' }, { version: 1, kind: 'github', runId: '0', runAttempt: '1' }, { version: 1, kind: 'github', runId: '01', runAttempt: '1' }, { version: 1, kind: 'github', runId: 1, runAttempt: '1' }, { version: 1, kind: 'github', runId: '9223372036854775808', runAttempt: '1' }, { version: 1, kind: 'local', extra: true }]) assert.throws(() => parseReleaseIdentity(invalid))
+  assert.throws(() => releaseIdentityFromEnvironment({ GITHUB_ACTIONS: 'true', GITHUB_RUN_ID: '1' }))
+  check('malformed, partial, noncanonical and out-of-range identities are rejected', true)
+
+  const env = { GITHUB_ACTIONS: 'true', GITHUB_RUN_ID: github.runId, GITHUB_RUN_ATTEMPT: github.runAttempt }
+  const first = runPackage('first', env), second = runPackage('second', env), changed = runPackage('changed', { ...env, GITHUB_RUN_ID: '123456790' })
+  assert.equal(first.status, 0, first.stderr); assert.equal(second.status, 0, second.stderr); assert.equal(changed.status, 0, changed.stderr)
+  check('same-run package digests are deterministic', first.receipt.packageDigest === second.receipt.packageDigest)
+  const firstFiles = files(first.output), secondFiles = files(second.output), changedFiles = files(changed.output)
+  assert.deepEqual(firstFiles, secondFiles)
+  const changedNames = [...firstFiles].filter(([name, hash]) => changedFiles.get(name) !== hash).map(([name]) => name)
+  check('changed run changes only Worker marker and manifest', JSON.stringify(changedNames) === JSON.stringify(['manifest.json', 'worker.js']))
+  check('Worker begins with exact source and GitHub identity marker', readFileSync(join(first.output, 'worker.js'), 'utf8').startsWith(releaseMarker(SHA, github)))
+
+  const localProduction = runPackage('local-production', {}, true)
+  check('local production packaging is rejected', localProduction.status !== 0 && /Publishing requires a GitHub release identity/.test(localProduction.stderr))
+  const partial = runPackage('partial', { GITHUB_ACTIONS: 'true', GITHUB_RUN_ID: '1' })
+  check('partial GitHub packaging identity is rejected', partial.status !== 0 && /Invalid GitHub run attempt/.test(partial.stderr))
+
+  for (const [label, worker] of [
+    ['missing marker', readFileSync(join(source, 'deploy/cloudflare-worker.js'), 'utf8')],
+    ['forged source marker', releaseMarker('b'.repeat(40), github) + readFileSync(join(source, 'deploy/cloudflare-worker.js'), 'utf8')],
+    ['forged identity marker', releaseMarker(SHA, { ...github, runAttempt: '3' }) + readFileSync(join(source, 'deploy/cloudflare-worker.js'), 'utf8')],
+    ['duplicate marker', releaseMarker(SHA, github) + readFileSync(join(first.output, 'worker.js'), 'utf8')],
+  ]) {
+    const target = join(folder, `marker-${label.replaceAll(' ', '-')}`); cpSync(first.output, target, { recursive: true })
+    writeFileSync(join(target, 'worker.js'), worker); reseal(target, github)
+    assert.throws(() => checkPackage(target, SHA, false), /Worker release marker mismatch/)
+  }
+  check('missing, forged, resealed and duplicate Worker markers are rejected', true)
+
+  const huge = join(folder, 'huge-worker'); cpSync(first.output, huge, { recursive: true })
+  writeFileSync(join(huge, 'worker.js'), releaseMarker(SHA, github) + 'x'.repeat(3_500_000)); reseal(huge, github)
+  assert.throws(() => checkPackage(huge, SHA, false), /Invalid Worker file/)
+  check('marked raw Worker cap is enforced at 3500000 bytes', true)
+
+  const wrangler = join(folder, 'wrangler.mjs'), receipt = join(folder, 'wrangler-argv.json')
+  writeFileSync(wrangler, `import{writeFileSync}from'node:fs';writeFileSync(${JSON.stringify(receipt)},JSON.stringify(process.argv.slice(2)))`); chmodSync(wrangler, 0o700)
+  const deployEnv = { PATH: process.env.PATH, HOME: process.env.HOME, GITHUB_ACTIONS: 'true', GITHUB_EVENT_NAME: 'workflow_dispatch', GITHUB_REF: 'refs/heads/main', GITHUB_REPOSITORY: 'kromate/joinallworld', CLOUDFLARE_API_TOKEN: 'synthetic', CLOUDFLARE_ACCOUNT_ID: 'synthetic' }
+  for (const mismatch of [{ GITHUB_RUN_ID: '123456790', GITHUB_RUN_ATTEMPT: '2' }, { GITHUB_RUN_ID: github.runId, GITHUB_RUN_ATTEMPT: '3' }]) {
+    const result = spawnSync(process.execPath, [guardScript, 'deploy', first.output, SHA, 'false', first.receipt.packageDigest, wrangler], { encoding: 'utf8', env: { ...deployEnv, ...mismatch } })
+    assert.notEqual(result.status, 0); assert.match(result.stderr, /Deployment identity rejected/)
+  }
+  check('wrong current GitHub run or attempt is rejected before deploy', true)
+  const deployed = spawnSync(process.execPath, [guardScript, 'deploy', first.output, SHA, 'false', first.receipt.packageDigest, wrangler], { encoding: 'utf8', env: { ...deployEnv, GITHUB_RUN_ID: github.runId, GITHUB_RUN_ATTEMPT: github.runAttempt } })
+  assert.equal(deployed.status, 0, deployed.stderr)
+  assert.deepEqual(JSON.parse(readFileSync(receipt, 'utf8')), ['deploy', '--config', join(first.output, 'wrangler.json'), '--durable-objects-code-update-mode', 'immediate'])
+  check('same-run deploy uses only fixed config and immediate Durable Object code-update argv', true)
+
+  console.log(JSON.stringify({ passed: true, checks: checks.length, checksPassed: checks }, null, 2))
+} finally { rmSync(folder, { recursive: true, force: true }) }

@@ -2,7 +2,7 @@
 // My Life is a readable projection of the systems that already own progress. It does not create
 // awards or infer history: every line comes from the current LifeView and every action reuses an
 // existing destination.
-import { computed, onMounted, ref } from 'vue'
+import { computed, defineAsyncComponent, onMounted, ref } from 'vue'
 import type { AchievementRow } from '../../../types/achievements.ts'
 import type { MissionRow, RelationshipCard } from '../../../types/view.ts'
 import { cityName } from '../../../game/cities/registry.ts'
@@ -24,6 +24,8 @@ import ProjectBoard from './ProjectBoard.vue'
 import RhythmCard from './RhythmCard.vue'
 import SeasonCard from './SeasonCard.vue'
 import { useRetention } from './useRetention.ts'
+
+const PublicProfile = defineAsyncComponent(() => import('../social/PublicProfile.vue'))
 
 const props = defineProps<{ params?: unknown }>()
 const askedTab = (props.params as { tab?: unknown } | null)?.tab
@@ -250,6 +252,7 @@ onMounted(() => { void retention.load() })
     </section>
 
     <section v-else-if="tab === 'achievements'" id="passport-panel-achievements" role="tabpanel" aria-labelledby="passport-tab-achievements" tabindex="0">
+      <PublicProfile v-if="game.session.value?.id" mode="profile" :id="game.session.value.id" :name="game.state.value.name" own />
       <template v-if="achievements">
         <section class="passport-achievement-summary" aria-labelledby="achievement-summary-title">
           <span aria-hidden="true"><GameIcon name="star" :size="22" /></span>

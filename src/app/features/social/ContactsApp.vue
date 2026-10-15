@@ -79,7 +79,7 @@ async function find(): Promise<void> {
       <template v-else-if="results?.length">
         <div v-for="player in results" :key="player.id" class="social-row">
           <PlayerAvatar :name="player.name" :seed="player.id" />
-          <div><strong>{{ player.name }}<FounderTag v-if="player.founder" /><AiTag :who="player" /></strong><small>Real player{{ player.friend ? ' · Friend' : '' }} · #{{ player.id.slice(0, 6) }}</small></div>
+          <div><strong>{{ player.name }}<FounderTag v-if="player.founder" /><AiTag :who="player" /></strong><small>Allworld character{{ player.friend ? ' · Friend' : '' }} · #{{ player.id.slice(0, 6) }}</small></div>
           <span class="social-actions"><button type="button" class="social-btn" @click="shell.open('person', { player: player.id, name: player.name })">View</button></span>
         </div>
       </template>

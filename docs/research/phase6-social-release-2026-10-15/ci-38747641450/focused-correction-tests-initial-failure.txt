@@ -1,0 +1,33 @@
+✔ Node host serves a real city life and loads every authenticated payload from the built checkout dist directory (343.981083ms)
+✔ index.html head: one title, one description, a canonical, Open Graph and Twitter tags, robots, icons (4.412417ms)
+✔ index.html JSON-LD parses: a VideoGame and a WebSite (0.609583ms)
+✔ the host writes the page for its own origin: canonical, og:url, og:image and JSON-LD (0.702042ms)
+✔ the sitemap and the manifest are code, not files: the release package admits neither extension (6.486333ms)
+✔ public files: robots.txt, sitemap.xml, manifest and the images they name (3.582916ms)
+✔ the workshop pages are not for search engines (1.586041ms)
+✖ the page, the manifest and the readme use the approved worldwide description consistently (0.882625ms)
+✔ the two-player script runs to the end with every assertion holding (505.52725ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2473.517
+
+✖ failing tests:
+
+test at server/seo.test.ts:113:1
+✖ the page, the manifest and the readme use the approved worldwide description consistently (0.882625ms)
+  AssertionError [ERR_ASSERTION]: README opens with the approved worldwide description
+      at TestContext.<anonymous> (file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/server/seo.test.ts:126:10)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

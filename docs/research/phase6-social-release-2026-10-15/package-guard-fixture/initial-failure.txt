@@ -1,0 +1,155 @@
+✖ accepts exact separate-worker package and rejects content changes (4.88125ms)
+✖ accepts hashed city JSON and refuses a resealed payload under the wrong content hash (3.835375ms)
+✖ requires every content asset referenced by the sealed Worker and authenticates the dictionary (4.184ms)
+✖ rejects a missing referenced city payload and content files larger than 5 MiB (4.768666ms)
+✔ rejects rebundling the sealed Worker even with resealed manifest (2.880167ms)
+✔ rejects static assets included as Worker modules even with resealed manifest (2.415667ms)
+✔ rejects old Worker identity even with resealed manifest (2.527833ms)
+✔ rejects old namespace binding even with resealed manifest (2.891833ms)
+✔ rejects apex route even with resealed manifest (2.65575ms)
+✔ rejects build hook even with resealed manifest (5.604375ms)
+✔ rejects preview exposure even with resealed manifest (2.898125ms)
+✔ rejects unapproved public runtime even with resealed manifest (3.748125ms)
+✔ rejects extra secret binding even with resealed manifest (3.420791ms)
+✖ accepts the two near-crowd body files and no other .bin (5.345208ms)
+✖ accepts binary glTF models and rejects files only named .glb (4.472209ms)
+✔ rejects hidden, state and symlink files (3.106875ms)
+✔ workflow permits only the fixed guarded command (3.680208ms)
+✔ release Node pins meet the minimum numerically and still require exact supported versions (0.243875ms)
+✔ source gate rejects unmerged and foreign-repository revisions (345.675292ms)
+✖ deploy context rejects before invoking any executable (2.799042ms)
+✔ archive extractor rejects traversal, symlink, hardlink and oversize entries (267.61575ms)
+✔ archive extractor accepts the street-pack count and rejects excess entries or an oversize file (1737.180917ms)
+✔ open dev mode guard: the real source is clean (2196.552417ms)
+✔ open dev mode guard: catches the setting in production configuration and open-mode code reached from the Worker (5.486125ms)
+✔ open dev mode guard: a release package whose Worker carries the open-mode module is refused (2.871291ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 18
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4673.177833
+
+✖ failing tests:
+
+test at scripts/guard-joinallworld-package.test.mjs:31:1
+✖ accepts exact separate-worker package and rejects content changes (4.88125ms)
+  Error: Missing content manifest references
+      at checkPackage (file://<repo>/scripts/guard-joinallworld-package.mjs:64:95)
+      at TestContext.<anonymous> (file://<repo>/scripts/guard-joinallworld-package.test.mjs:32:38)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+
+test at scripts/guard-joinallworld-package.test.mjs:35:1
+✖ accepts hashed city JSON and refuses a resealed payload under the wrong content hash (3.835375ms)
+  Error: Missing content manifest references
+      at checkPackage (file://<repo>/scripts/guard-joinallworld-package.mjs:64:95)
+      at TestContext.<anonymous> (file://<repo>/scripts/guard-joinallworld-package.test.mjs:42:16)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at scripts/guard-joinallworld-package.test.mjs:46:1
+✖ requires every content asset referenced by the sealed Worker and authenticates the dictionary (4.184ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Missing referenced content asset/. Input:
+  
+  'Error: Missing content manifest references'
+  
+      at TestContext.<anonymous> (file://<repo>/scripts/guard-joinallworld-package.test.mjs:51:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Missing content manifest references
+        at checkPackage (file://<repo>/scripts/guard-joinallworld-package.mjs:64:95)
+        at file://<repo>/scripts/guard-joinallworld-package.test.mjs:51:23
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file://<repo>/scripts/guard-joinallworld-package.test.mjs:51:10)
+        at Test.runInAsyncScope (node:async_hooks:228:14)
+        at Test.run (node:internal/test_runner/test:1118:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+        at Test.postRun (node:internal/test_runner/test:1247:19)
+        at Test.run (node:internal/test_runner/test:1175:12),
+    expected: /Missing referenced content asset/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at scripts/guard-joinallworld-package.test.mjs:59:1
+✖ rejects a missing referenced city payload and content files larger than 5 MiB (4.768666ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Missing referenced content asset/. Input:
+  
+  'Error: Missing content manifest references'
+  
+      at TestContext.<anonymous> (file://<repo>/scripts/guard-joinallworld-package.test.mjs:62:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Missing content manifest references
+        at checkPackage (file://<repo>/scripts/guard-joinallworld-package.mjs:64:95)
+        at file://<repo>/scripts/guard-joinallworld-package.test.mjs:62:23
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file://<repo>/scripts/guard-joinallworld-package.test.mjs:62:10)
+        at Test.runInAsyncScope (node:async_hooks:228:14)
+        at Test.run (node:internal/test_runner/test:1118:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+        at Test.postRun (node:internal/test_runner/test:1247:19)
+        at Test.run (node:internal/test_runner/test:1175:12),
+    expected: /Missing referenced content asset/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at scripts/guard-joinallworld-package.test.mjs:90:1
+✖ accepts the two near-crowd body files and no other .bin (5.345208ms)
+  Error: Missing content manifest references
+      at checkPackage (file://<repo>/scripts/guard-joinallworld-package.mjs:64:95)
+      at TestContext.<anonymous> (file://<repo>/scripts/guard-joinallworld-package.test.mjs:93:16)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+
+test at scripts/guard-joinallworld-package.test.mjs:98:1
+✖ accepts binary glTF models and rejects files only named .glb (4.472209ms)
+  Error: Missing content manifest references
+      at checkPackage (file://<repo>/scripts/guard-joinallworld-package.mjs:64:95)
+      at TestContext.<anonymous> (file://<repo>/scripts/guard-joinallworld-package.test.mjs:101:16)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+
+test at scripts/guard-joinallworld-package.test.mjs:151:1
+✖ deploy context rejects before invoking any executable (2.799042ms)
+  Error: Missing content manifest references
+      at checkPackage (file://<repo>/scripts/guard-joinallworld-package.mjs:64:95)
+      at TestContext.<anonymous> (file://<repo>/scripts/guard-joinallworld-package.test.mjs:152:34)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)

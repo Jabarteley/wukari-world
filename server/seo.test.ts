@@ -35,7 +35,7 @@ test('index.html head: one title, one description, a canonical, Open Graph and T
   const favicon = await readFile(new URL('public/icons/favicon-32.png', root));
   assert.equal(favicon.subarray(1, 4).toString(), 'PNG');
   assert.deepEqual([favicon.readUInt32BE(16), favicon.readUInt32BE(20)], [32, 32]);
-  assert.match(html, /<noscript>.*Allworld.*Lagos.*<\/noscript>/);
+  assert.match(html, /<noscript>.*Allworld is a free digital world to live in, with places around the world.*<\/noscript>/);
   assert.ok(!/Lagos life/i.test(head), 'the home page head does not present the game as a Lagos life'); assert.ok(!/Lagos/.test(titles[0] ?? ''), 'the title leads with the world, not a city');
   assert.ok(!/Lagos/.test(og['og:image:alt'] ?? ''), 'the share image does not mention Lagos');
 });
@@ -110,18 +110,23 @@ test('the workshop pages are not for search engines', async () => {
   for (const page of ['campus.html', 'models.html', 'voice-test.html']) assert.match(await read(page), /<meta name="robots" content="noindex,nofollow">/, page);
 });
 
-test('the page, the manifest and the readme say which cities are open, and say it the same way', async () => {
+test('the page, the manifest and the readme use the approved worldwide description consistently', async () => {
   const html = await read('index.html'), head = html.slice(0, html.indexOf('</head>'));
   const manifest = (JSON.parse(siteFile('/manifest.webmanifest', '')?.body ?? '') as { description: string }).description;
   const description = tag(head, 'description') ?? '';
-  for (const text of [description, tag(head, 'og:description') ?? '', tag(head, 'twitter:description') ?? '', manifest]) {
-    assert.match(text, /Real cities across Africa, with more opening/, text);
+  const approved = 'A digital world to live in. Real-world places to explore: work, travel, make friends and play. Free in your browser, no download.';
+  assert.equal(description, approved);
+  for (const [name, text] of [['description', description], ['Open Graph description', tag(head, 'og:description') ?? ''], ['Twitter description', tag(head, 'twitter:description') ?? ''], ['manifest description', manifest]]) {
+    assert.equal(text, approved, `${name} matches the approved worldwide description`);
     assert.ok(!/Nigeria|nine|Explore/.test(text), `no stale country, count or repeated verb in: ${text}`);
   }
   assert.ok(description.length <= 155 && ((/<title>([^<]*)<\/title>/.exec(head)?.[1] ?? '').length <= 60), 'title at most 60 and description at most 155 characters');
-  assert.match(html, /<noscript>[^]*real cities across Africa, from Lagos to Cape Town, and more opening[^]*<\/noscript>/);
-  for (const [name, text] of [['index.html', html], ['manifest', manifest], ['README.md', await read('README.md')], ['CONTRIBUTING.md', await read('CONTRIBUTING.md')]] as const) {
+  assert.match(html, /<noscript>[^]*Allworld is a free digital world to live in, with places around the world[^]*<\/noscript>/);
+  const readme = await read('README.md');
+  const openingParagraph = readme.split(/\n\n/).find((paragraph) => paragraph.startsWith('Allworld is an open-source browser game.')) ?? '';
+  assert.ok(openingParagraph.startsWith(`Allworld is an open-source browser game. ${approved}`), 'README opening paragraph starts with the approved worldwide description');
+  for (const [name, text] of [['index.html', html], ['manifest', manifest], ['README.md', readme], ['CONTRIBUTING.md', await read('CONTRIBUTING.md')]] as const) {
     assert.ok(!/two cities|Lagos and Ibadan are open|first two cities|more cities (are )?coming/i.test(text), `${name} does not claim only two cities are open`);
   }
-  assert.match(await read('README.md'), /Real cities across Africa are open, from Lagos and Accra to Nairobi and Cape Town, and more are opening/);
+  assert.match(readme, /The aim is the whole world; the in-game atlas lists every open city/);
 });

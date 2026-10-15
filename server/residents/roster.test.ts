@@ -14,6 +14,7 @@ import type { AgentRoom, RouteContext } from '../types.ts';
 import { RESIDENTS, REMI, residentId } from './life.ts';
 import type { Resident } from './life.ts';
 import { ROSTER } from './roster.ts';
+import { personaOf, talkProfile } from './persona.ts';
 import { GOODBYE, LINE_MAX, MAX_TALKS, MAX_THOUGHTS, NOT_TRADING, OUT_OF_CHARACTER, TALK_TURNS, WRITTEN, entriesOfTalk, judgeTalk, linkResidents, overlap, repeats, residentsOf } from './resident.ts';
 
 const HOUR = 3600000, MIN = 60000;
@@ -36,7 +37,7 @@ const kindOf = (messages: { content: string }[]): Call['kind'] => {
 
 function rig(options: { settings?: Record<string, boolean | number | string>; reply?: (call: Call) => string; limits?: Partial<Limits>; list?: string; start?: number; roster?: readonly Resident[]; gist?: string[]; houseAgent?: boolean } = {}) {
   const clock = { t: options.start ?? at(0) };
-  const settings: Record<string, boolean | number | string> = { residentOn: true, ...options.settings };
+  const settings: Record<string, boolean | number | string> = { residentOn: true, residentShadow: true, residentsPerCity: 1, residentDeepPerDay: 2000, residentRulePrayers: false, ...options.settings };
   const calls: Call[] = [], presents: { id: string; room: string }[] = [], says: { id: string; room: string; body: string }[] = [];
   const sockets: { room: string; session: { id: string } }[] = [];
   const present = new Map<string, string>();
@@ -106,18 +107,19 @@ test('the roster: thirty residents, Lagos first, unique, adults, long first-pers
   }
 });
 
-test('residentCount 1 (the default) runs only Remi; 3 runs the first three; the others stay off', async () => {
+test('residentsPerCity decides who lives: 1 runs the first of the city (Remi), 3 the first three; residentCount is retired and ignored; lowering it puts the extra ones away at once', async () => {
   const one = rig({ start: at(9) });
   await one.run(60);
   assert.deepEqual(Object.keys(one.runner.stored().residents), [residentId(REMI)]);
-  const three = rig({ start: at(9), settings: { residentCount: 3 } });
+  const three = rig({ start: at(9), settings: { residentsPerCity: 3, residentCount: 1 } }); // an old saved residentCount of 1 changes nothing
   await three.run(60);
   assert.deepEqual(Object.keys(three.runner.stored().residents), RESIDENTS.slice(0, 3).map(residentId));
   assert.equal(three.runner.census().count, 3);
-  // Lowering the count puts the extra ones away at once.
-  three.settings['residentCount'] = 1;
+  three.settings['residentsPerCity'] = 1;
   await three.run(2);
-  assert.equal(three.runner.state(residentId(RESIDENTS[2]!))!.asleep, null);
+  assert.equal(three.runner.state(residentId(RESIDENTS[2]!)), null, 'no longer one of those who live here');
+  assert.equal(three.runner.census().count, 1);
+  assert.equal(three.presents.filter((p) => p.id === residentId(RESIDENTS[2]!)).length, 0, 'and not standing anywhere');
 });
 
 test('ten Lagos residents over a simulated day keep within the thought bounds, and every kept line passes agentWords', async () => {
@@ -128,7 +130,7 @@ test('ten Lagos residents over a simulated day keep within the thought bounds, a
     const day = t.runner.day(residentId(who));
     assert.ok(day, who.name);
     assert.ok(day.thoughts >= 4 && day.thoughts <= MAX_THOUGHTS, `${who.name}: ${day.thoughts} thoughts`);
-    assert.ok((day.talks ?? 0) <= MAX_TALKS, `${who.name}: talks`);
+    assert.ok((day.talks ?? 0) <= Math.max(MAX_TALKS, talkProfile(personaOf(who)).maxTalks), `${who.name}: talks`);
     for (const entry of day.entries) if (entry.line) assert.equal(agentWords(entry.line, { toMinor: true }).ok, true);
     if (who.sleep.bed >= 12) assert.ok(day.summary, `${who.name}: a summary at bed`);
   }
@@ -136,21 +138,21 @@ test('ten Lagos residents over a simulated day keep within the thought bounds, a
   assert.equal(t.agentRoom.count(), 0, 'shadow: not in the ai count');
 });
 
-test('the residents\' own budget: at the limit they all go to sleep early, other purposes still answer, and the router\'s hard stop is not reached', async () => {
+test('the residents\' own budget: at the limit the model is not asked again and they carry on by their rules, other purposes still answer, and the router\'s hard stop is not reached', async () => {
   const lagos = RESIDENTS.filter((r) => r.city === 'lagos');
   // Paid model only, 1 US cent a day for the residents.
   const t = rig({ roster: lagos, settings: { residentCount: lagos.length, residentDailyCents: 1 }, list: PAID, start: at(6), reply: (call) => (call.kind === 'thought' ? '{"next":"keep_routine","say":""}' : talkReply(call)) });
   await t.run(10 * 60);
   const census = t.runner.census();
   assert.equal(census.stopped, true);
-  assert.equal(census.awake, 0, 'everyone is in bed');
-  const spent = t.router.today().ledger.micro;
+  assert.ok(census.awake > 0, 'not put to bed by the budget: they live by their rules');
+  const spent = t.router.today().ledger.micro, callsAtStop = t.calls.length;
   assert.ok(spent > 0 && spent <= 10000 + 5 * (spent / t.calls.length), `spent ${spent} for ${t.calls.length} calls`);
   assert.ok(spent < HARD_CAP_MICRO / 50);
-  for (const who of lagos) { const state = t.runner.state(residentId(who))!; assert.equal(state.asleep === true || state.asleep === null, true); }
+  await t.run(8 * 60);
+  assert.equal(t.calls.length, callsAtStop, 'no call once the day\'s limit is spent');
   const day = t.runner.day()!;
-  assert.equal(day.sleptEarly, true);
-  assert.ok(day.summary, 'a written summary');
+  assert.equal(day.sleptEarly, false);
   // The router still answers other purposes.
   const other = await t.router.ask({ purpose: 'companion', messages: [{ role: 'user', content: 'hello' }], maxTokens: 20, carriesPlayerWords: true, playerId: 'p_x' });
   assert.equal(other.ok, true);
@@ -162,9 +164,11 @@ test('the residents\' own budget: at the limit they all go to sleep early, other
 
 test('the model mix: thirty residents are spread over the resident list, each model held by within one of the others', async () => {
   const list = 'gateway:nvidia/nemotron-3.5-lightning-free, gateway:poolside/laguna-s-2.1-free, gateway:stealth/glyph-cluster';
-  const t = rig({ list, settings: { residentCount: 30 }, start: at(0) });
+  const t = rig({ list, roster: RESIDENTS, settings: { residentCount: 30 }, start: at(0) });
   // Run through a whole day so every city's residents have woken once (the model is given at first waking).
   await t.run(26 * 60);
+  // The model is given the first time one is needed (a resident who only follows rules holds none).
+  for (const who of RESIDENTS) t.runner.modelOf(residentId(who));
   const held = new Map<string, number>();
   for (const life of Object.values(t.runner.stored().residents)) { assert.ok(life.model); held.set(life.model!, (held.get(life.model!) ?? 0) + 1); }
   assert.equal(held.size, 3);

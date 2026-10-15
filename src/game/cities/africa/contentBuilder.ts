@@ -194,7 +194,7 @@ export function buildDestinationContent(facts: DestinationFacts, places: readonl
     cityName: valid.name,
     origin: valid.mapOrigin,
     bounds,
-    localUnitDescriptions: { centre: valid.playerIntro ?? `${area} within ${valid.coverageNote}` },
+    localUnitDescriptions: { centre: valid.playerIntro ?? `A home base in ${valid.name}. Explore local places, meet regulars and follow the city’s stories.` },
     venues,
     people: peopleFor(valid.id, venues),
     careerVenues: { 'community-helper': ids.community, tech: ids.community },

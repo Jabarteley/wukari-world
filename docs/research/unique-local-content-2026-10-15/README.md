@@ -1,6 +1,6 @@
 # Bespoke local missions and stories
 
-Status: in progress. This directory is a handoff and review trail, not a release certificate. The previously deployed shared-template runtime remains the production baseline. No bespoke authored batch has yet passed the complete semantic, gameplay, save, agent and UI acceptance gates.
+Status: in progress. This directory is a handoff and review trail, not a release certificate. The previously deployed shared-template runtime remains the production baseline. Batches01/02 are accepted locally: 75 cities, 35 country/territory identities, 150 authored tales and 450 mission definitions. Remaining cities retain existing content; worldwide bespoke coverage is incomplete.
 
 ## What changes
 
@@ -39,3 +39,17 @@ Contract/inventory/baseline milestone is on main at9b76461a; checker and paused 
 ## Empty-registry implementation checkpoint
 
 The factories, lookup preservation, separate collections and lazy chunk routing are implemented with zero accepted batches. Sol's five-project typecheck passes. Parent's serial existing checks pass48/48, and the legacy save reload preserves568runs,568exactmementos and527completedcity/countrycollections. See empty-registry-focused.log and empty-registry-save-check.json. These checks do not exercise authored activation; content and its UI are still pending.
+
+## Accepted 75-city milestone
+
+Batches01/02 passed structural validation and sampled semantic review after rejected template-like drafts were rewritten. The engine probe covers750 work/study/help, solo finale, activity finale and nighttime paths; mission proof covers9,000 daily deals, free swaps, blocked-ID fallback and74 legacy rollover claims. Legacy reload preserves568 exact mementos and527 completed old city/country collections. These probes inject real registered proof event shapes; they do not substitute for browser play. Reports: batches-01-02-validation.json, engine-acceptance.json, mission-acceptance.json.
+
+Actual browser verification: an isolated LocalTalesQA character in Nairobi completed The Trays for the Wrong Roles through a free meal, return to Uhuru Park, quiet-evening activity, authored dilemma and solo finale, earning Gesture tray token. The host's People spot is required after an Open space activity. Kenya's distinct arc and Nairobi collection render correctly. Existing Jolly Tunde save was preserved. Country collections larger than six keepsakes now use native keyboard-operable disclosure;375px screenshot verifies layout,320px DOM checks show no overflow (320px screenshot scaling is inconclusive).
+
+Onboarding now groups cities under their actual country and keeps the global city chooser reachable. Generic airport/schedule provenance is replaced by short player-facing home copy; licensing and coverage metadata stay intact. Existing creator-model checks cover every catalogue country plus Nairobi/Kenya and Tokyo/Japan.
+
+The75-city check:fast passed five-project typecheck, production build, all284 city download budgets and17 smoke cases. Startup605210 raw/218157 gzip bytes is within the unchanged615000/223000 budgets. Authored content stays lazy. Production is unchanged. Main advanced toac94fca0 with agent missions/memory/residents while verification ran; integrate that released main and recheck the combined source before pushing.
+
+Current authoring ownership: Sol owns batch03 via local-tales-03-quality-20261015.md; Sol owns batch04 via local-tales-04-quality-20261015.md. Both submit concrete plot matrices before expansion. Old03/04 workers remain stopped. Batches05–08 remain held. Focused54 existing mission/agent/registry/creator cases pass. Nairobi keepsake survived browser reload (ui-nairobi-earned.png). Latest usage91%used/9%remaining; stop everything at95%used.
+
+Released mainac94fca0 has now been merged cleanly;111 existing focused agent/mission/desk/errand/resident/creator cases pass together. Local combined typecheck encountered invalid desire values in the unregistered03draft; its owner is fixing those. The accepted75-citycommit is8273254b. New small UI fixes expose the exact-spot disabling reason and singular district grammar. Fresh creator draft confirmsKenya/Nairobi and clean home copy (ui-nairobi-country.png), without starting another life.

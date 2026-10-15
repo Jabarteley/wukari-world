@@ -12,7 +12,7 @@ import { lagosTime, lagosDayStart } from './clock.ts';
 import type { ActionBody, ActionResult, ActionType } from '../types/actions.ts';
 import type { CalendarEvent } from '../types/content.ts';
 import type { LifeContext, LifeContextInit, LifeState } from '../types/life.ts';
-import { dealMissions } from './systems/missions.ts';
+import { dealMissions, missionDefinition } from './systems/missions.ts';
 import { DAILY_MISSIONS, WEEKLY_MISSIONS, MISSION_REWARDS, MISSION_KINDS, STAMP_CARD } from './content/missions.ts';
 import { EVENTS_CALENDAR, SPRAY } from './content/calendar.ts';
 import { REFERRAL, TABLE_REWARDS } from './content/growth.ts';
@@ -62,7 +62,7 @@ test('missions: a set is one mission of each kind, the same for the same life an
   const { state } = life();
   const first = dealMissions(state, 'daily', TODAY, ctxAt(NOW)), again = dealMissions(state, 'daily', TODAY, ctxAt(NOW));
   assert.deepEqual(first, again);
-  assert.deepEqual(first.map((entry) => need(DAILY_MISSIONS.find((def) => def.id === entry.id)).kind), MISSION_KINDS);
+  assert.deepEqual(first.map((entry) => need(missionDefinition(entry.id)).kind), MISSION_KINDS);
   assert.equal(dealMissions(state, 'weekly', WEEK, ctxAt(NOW)).length, MISSION_REWARDS.weekly.slots);
   // Across many days: a life without a job is never asked to finish a shift, and "show up at an event" is dealt only on a day with one.
   const ids = new Set();

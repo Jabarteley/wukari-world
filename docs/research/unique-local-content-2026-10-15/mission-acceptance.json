@@ -1,0 +1,532 @@
+{
+  "cities": 75,
+  "dayDeals": 9000,
+  "legacyRolloverClaims": 74,
+  "rows": [
+    {
+      "cityId": "abakaliki",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "abeokuta",
+      "distinctDailyIdsAcross120Days": 18,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "abuja",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "ado-ekiti",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "akure",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "asaba",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "awka",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "bauchi",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "benin-city",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "birnin-kebbi",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "calabar",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "damaturu",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "dutse",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "enugu",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "gombe",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "gusau",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "ibadan",
+      "distinctDailyIdsAcross120Days": 18,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "ijebu-ode",
+      "distinctDailyIdsAcross120Days": 18,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "kaduna",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "kano",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "katsina",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "lafia",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "lagos",
+      "distinctDailyIdsAcross120Days": 18,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": false
+    },
+    {
+      "cityId": "lokoja",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "maiduguri",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "makurdi",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "minna",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "osogbo",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "ota",
+      "distinctDailyIdsAcross120Days": 18,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "owerri",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "port-harcourt",
+      "distinctDailyIdsAcross120Days": 18,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "sagamu",
+      "distinctDailyIdsAcross120Days": 18,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "sokoto",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "ilorin",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "jalingo",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "jos",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "umuahia",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "uyo",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "yenagoa",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "yola",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "adamstown",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "amsterdam",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "bangkok",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "bogota",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "brasilia",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "brazzaville",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "bridgetown",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "bucharest",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "conakry",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "cotonou",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "gaborone",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "georgetown",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "helsinki",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "ho-chi-minh-city",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "jakarta",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "khartoum",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "kuala-lumpur",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "kyrenia",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "lima",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "london",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "majuro",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "montevideo",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "nairobi",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "nouakchott",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "pago-pago",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "philipsburg",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "port-of-spain",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "prague",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "quito",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "san-marino",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "sao-paulo",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "seoul",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "tehran",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "tripoli",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    },
+    {
+      "cityId": "vaduz",
+      "distinctDailyIdsAcross120Days": 17,
+      "freeSwap": true,
+      "blockedAuthoredFallback": true,
+      "preservedLegacyRolloverClaim": true
+    }
+  ]
+}

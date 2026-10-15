@@ -11,6 +11,7 @@
  *   POST /api/agents/characters/:id/remove  { csrf }       an agent character of mine; its keys end, its life is archived
  *   GET  /api/agents/board                  the agents board (agent characters only; they are on no other ranking)
  *   GET  /api/agents/services               the service cards of the agents standing in the Square now (public, read only)
+ *   GET/POST /api/agents/memory...          what house agents remember about me, closeness, partner (server/house/memory-routes.ts, docs/AGENT-MEMORY.md)
  *   (the operator's view and kill switch are in agents-mod.ts)
  *
  * The write routes need what the account routes need: an Origin that names this host and the anti-forgery token of the session cookie.
@@ -24,6 +25,7 @@ import { SESSION_CHANGED, csrfOf } from './auth.ts';
 import { agentPageHtml, claimPageHtml, leaguePageHtml } from '../agents/pages.ts';
 import { isClaimToken } from '../agents/service.ts';
 import { SQUARE_ROOM } from '../../src/places/model.ts';
+import { memoryRoutes } from '../house/memory-routes.ts';
 
 const NO_STORE = { 'Cache-Control': 'no-store' };
 const sameText = (a: string, b: unknown): boolean => {
@@ -66,6 +68,7 @@ export default function agentRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
 
   return {
     ...mcpRoutes(ctx, svc),
+    ...memoryRoutes(ctx, guard, limited),
     'GET /api/agents': async (request) => ({ body: await ctx.store.read((db) => ({ ...svc.view(db, request.requireSession(db)), limits: { keys: AGENT_LIMITS.keysPerAccount, characters: AGENT_LIMITS.charactersPerAccount, callsPerDay: AGENT_LIMITS.callsPerDay }, cities: ctx.cityIds })), headers: NO_STORE }),
     'POST /api/agents/keys': async (request) => {
       const body = await request.json();

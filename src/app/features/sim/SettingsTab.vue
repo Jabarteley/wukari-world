@@ -22,6 +22,8 @@ import HowItWorks from '../../ui/HowItWorks.vue'
 import DataLightSection from './DataLightSection.vue'
 import CallSettings from '../calls/CallSettings.vue'
 const VisitDoor = defineAsyncComponent(() => import('../visit/VisitDoor.vue'))
+// What AI characters remember about the person, with see / delete / turn off (lazy: its own chunk).
+const AgentMemory = defineAsyncComponent(() => import('../agents/AgentMemory.vue'))
 import AccountSettings from '../account/AccountSettings.vue'
 import ResidenceCard from '../locate/ResidenceCard.vue'
 import { useAccount } from '../account/useAccount.ts'
@@ -171,6 +173,8 @@ onMounted(() => { void growth.load(); void loadOlderLives() })
       <!-- Opens the telemetry sheet (src/telemetry): what is collected and the Accept / Reject choice for this device. -->
       <button type="button" class="ui-row" @click="openPrivacy()"><span class="ui-row-icon" aria-hidden="true"><GameIcon inline name="id" /></span><span class="ui-row-body"><b>Analytics and error reports</b><small>What we collect, and your choice</small></span><span class="ui-row-end"><GameIcon inline name="chevron" /></span></button>
     </div>
+
+    <AgentMemory />
 
     <MailStatus />
 

@@ -41,11 +41,14 @@ const seenCard = 'Duration and price are fixed; effect amounts are original beta
 const seenName = 'Name is fixed; duration, price and effects are original beta values.';
 
 // The venues of this file are written without what repeats (the page downloads this file at startup): a venue and a spot take their id
-// from the key they sit under, and an activity is a beta entry unless it says `beta: false` (that marker is dropped, so a fixed entry has no `beta`).
-type ActivityIn = Omit<ActivityDefinition, 'beta'> & { beta?: false };
+// from the key they sit under, an activity costs 0 unless it has a `reward` (or says `cost: false`: none), and it is a beta entry unless it says
+// `beta: false` (that marker is dropped, so a fixed entry has no `beta`).
+type ActivityIn = Omit<ActivityDefinition, 'beta' | 'cost'> & { beta?: false; cost?: number | false };
 type SpotIn = Omit<SpotDefinition, 'id' | 'activities'> & { activities: ActivityIn[] };
 type VenueIn = Omit<VenueDefinition, 'id' | 'spots'> & { spots: Record<string, SpotIn> };
-const spotOf = (id: string, { activities, ...spot }: SpotIn): SpotDefinition => ({ id, ...spot, activities: activities.map(({ beta, ...activity }) => (beta === false ? activity : { ...activity, beta: true })) });
+const costOf = (cost: number | false | undefined, reward: number | undefined): { cost?: number } => (cost === false ? {} : cost !== undefined ? { cost } : reward === undefined ? { cost: 0 } : {});
+const activityOf = ({ beta, cost, ...activity }: ActivityIn): ActivityDefinition => ({ ...activity, ...costOf(cost, activity.reward), ...(beta === false ? {} : { beta: true }) });
+const spotOf = (id: string, { activities, ...spot }: SpotIn): SpotDefinition => ({ id, ...spot, activities: activities.map(activityOf) });
 const venuesOf = <T extends Record<string, VenueIn>>(data: T): { [K in keyof T]: VenueDefinition } => Object.fromEntries(Object.entries(data).map(([id, { spots, ...venue }]) => [id, { id, ...venue, spots: Object.fromEntries(Object.entries(spots).map(([spot, value]) => [spot, spotOf(spot, value)])) }])) as { [K in keyof T]: VenueDefinition };
 
 const OWN_VENUES = {
@@ -58,27 +61,27 @@ const OWN_VENUES = {
       amphitheatre: { label: 'Amphitheatre', icon: '🎭', caption: 'Poets warming up by the stage', activities: [
         { id: 'stage-play', label: 'Watch a Stage Play', icon: '🎭', duration: 14, cost: 400, effects: { fun: 18 }, tags: ['fun', 'show'], note: seenCard },
         { id: 'comedy-show', label: 'Watch a Comedy Show', icon: '😂', duration: 11, cost: 500, effects: { fun: 16, social: 6 }, xp: { comedy: 6 }, tags: ['fun', 'social', 'show'], note: seenCard },
-        { id: 'spoken-word', label: 'Spoken Word Open Mic', icon: '🗣️', duration: 9, cost: 0, effects: { fun: 6, social: 8 }, xp: { charisma: 10 }, tags: ['fun', 'social'], note: seenCard },
-        { id: 'open-mic-jokes', label: 'Test Jokes at the Open Mic', icon: '🎤', duration: 9, cost: 0, effects: { energy: -3, social: 5 }, xp: { comedy: 22 }, tags: ['training'] },
+        { id: 'spoken-word', label: 'Spoken Word Open Mic', icon: '🗣️', duration: 9, effects: { fun: 6, social: 8 }, xp: { charisma: 10 }, tags: ['fun', 'social'], note: seenCard },
+        { id: 'open-mic-jokes', label: 'Test Jokes at the Open Mic', icon: '🎤', duration: 9, effects: { energy: -3, social: 5 }, xp: { comedy: 22 }, tags: ['training'] },
         { id: 'perform-comedy', label: 'Perform at Comedy Night', icon: '🎙️', duration: 11, requiresSkill: { id: 'comedy', level: 3 }, reward: 900, minimumNeeds: { energy: 20 },
           effects: { energy: -8, fun: 10, social: 10 }, xp: { comedy: 25 }, cooldown: 600, tags: ['performance'],
           note: 'Duration and the Comedy 3 requirement are fixed; pay, effects and cooldown are original beta values.' },
       ] },
       art: { label: 'Art gallery', icon: '🖼️', caption: 'Art in the heart of the city', activities: [
         { id: 'see-art', label: 'See the Exhibition', icon: '🖼️', duration: 10, cost: 200, effects: { fun: 12 }, xp: { photography: 6 }, tags: ['fun', 'art'] },
-        { id: 'park-shoot-sculptures', label: 'Photograph the Sculptures', icon: '📷', duration: 9, cost: 0, effects: { fun: 5 }, xp: { photography: 20 }, tags: ['training', 'art'] },
+        { id: 'park-shoot-sculptures', label: 'Photograph the Sculptures', icon: '📷', duration: 9, effects: { fun: 5 }, xp: { photography: 20 }, tags: ['training', 'art'] },
         { id: 'park-sell-prints', label: 'Sell Your Prints', icon: '🖨️', duration: 12, requiresSkill: { id: 'photography', level: 3 }, reward: 700, minimumNeeds: { energy: 20 },
           effects: { energy: -6 }, xp: { photography: 20, hustle: 8 }, cooldown: 600, tags: ['performance'] },
       ] },
       trees: { label: 'Under the trees', icon: '🌳', caption: 'Cool breeze under the trees', activities: [
-        { id: 'chill', label: 'Chill Under the Trees', icon: '🌳', duration: 11, cost: 0, effects: { energy: 4, fun: 10 },
+        { id: 'chill', label: 'Chill Under the Trees', icon: '🌳', duration: 11, effects: { energy: 4, fun: 10 },
           note: 'Duration and effects are fixed.', beta: false },
-        { id: 'play-ayo', label: 'Play Ayo', icon: '🎲', duration: 7, cost: 0, effects: { fun: 8, social: 8 }, tags: ['fun', 'social'], note: seenCard },
+        { id: 'play-ayo', label: 'Play Ayo', icon: '🎲', duration: 7, effects: { fun: 8, social: 8 }, tags: ['fun', 'social'], note: seenCard },
       ] },
       drinks: { label: 'Drinks kiosk', icon: '🍹', caption: 'A quiet stop by the kiosk', activities: [
         { id: 'park-zobo', label: 'Chilled Zobo', icon: '🥤', duration: 5, cost: 200, effects: { hunger: 8, fun: 6, bladder: -6 }, tags: ['food', 'drink'] },
         { id: 'park-palmwine', label: 'Palm Wine & Suya', icon: '🍢', duration: 8, cost: 600, effects: { hunger: 25, fun: 12, social: 4, bladder: -8 }, tags: ['food'] },
-        { id: 'park-kiosk-gist', label: 'Gist with the Kiosk Lady', icon: '💬', duration: 7, cost: 0, effects: { social: 10 }, xp: { charisma: 8 }, tags: ['social'] },
+        { id: 'park-kiosk-gist', label: 'Gist with the Kiosk Lady', icon: '💬', duration: 7, effects: { social: 10 }, xp: { charisma: 8 }, tags: ['social'] },
       ] },
       people: { label: 'People', icon: '👥', caption: 'Meet your city community', activities: [] },
       work: { label: 'Community desk', icon: '💼', caption: 'Lend a hand at the Community desk', beta: true, activities: [] },
@@ -92,13 +95,13 @@ const OWN_VENUES = {
     ambient: ['Somebody just found the right book', 'The DJ is easing into amapiano', 'Candles flicker along the shelves', 'A birthday crew is filling the lounge'],
     spots: {
       bookcase: { label: 'Secret bookcase', icon: '📚', caption: 'One of these books is a door handle', activities: [
-        { id: 'lib-bookcase', label: 'Find the Secret Bookcase', icon: '🔎', duration: 8, cost: 0, effects: { fun: 10 }, tags: ['fun'], note: seenName },
-        { id: 'lib-read', label: 'Read by Candlelight', icon: '🕯️', duration: 12, cost: 0, effects: { energy: 4, fun: 6 }, xp: { charisma: 6 }, tags: ['rest'], note: seenName },
+        { id: 'lib-bookcase', label: 'Find the Secret Bookcase', icon: '🔎', duration: 8, effects: { fun: 10 }, tags: ['fun'], note: seenName },
+        { id: 'lib-read', label: 'Read by Candlelight', icon: '🕯️', duration: 12, effects: { energy: 4, fun: 6 }, xp: { charisma: 6 }, tags: ['rest'], note: seenName },
       ] },
       lounge: { label: 'Lounge', icon: '🛋️', caption: 'Deep sofas, deeper gist', activities: [
-        { id: 'lib-lounge', label: 'Chill in the Lounge', icon: '🛋️', duration: 11, cost: 0, effects: { energy: 5, fun: 8 }, tags: ['rest'], note: seenName },
-        { id: 'lib-selfies', label: 'Selfies for the ’Gram', icon: '🤳', duration: 8, cost: 0, effects: { fun: 6, social: 4 }, xp: { photography: 18 }, tags: ['training', 'social'], note: seenName },
-        { id: 'lib-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, cost: 0, effects: { bladder: 60 }, tags: ['restroom'] },
+        { id: 'lib-lounge', label: 'Chill in the Lounge', icon: '🛋️', duration: 11, effects: { energy: 5, fun: 8 }, tags: ['rest'], note: seenName },
+        { id: 'lib-selfies', label: 'Selfies for the ’Gram', icon: '🤳', duration: 8, effects: { fun: 6, social: 4 }, xp: { photography: 18 }, tags: ['training', 'social'], note: seenName },
+        { id: 'lib-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, effects: { bladder: 60 }, tags: ['restroom'] },
       ] },
       bar: { label: 'Cocktail bar', icon: '🍸', caption: 'The bartender remembers your order', activities: [
         { id: 'lib-cocktails', label: 'Cocktails with the Crew', icon: '🍸', duration: 9, cost: 2500, effects: { fun: 18, social: 14, bladder: -10 }, tags: ['drink', 'social'], note: seenName },
@@ -106,7 +109,7 @@ const OWN_VENUES = {
           moodlets: [{ id: 'big-spender', label: 'Big Spender', value: 10, duration: 1800 }], tags: ['status', 'broadcast'], note: seenName },
       ] },
       dance: { label: 'Dance floor', icon: '🪩', caption: 'Shoulders are already moving', activities: [
-        { id: 'lib-dance', label: 'Dance to the DJ', icon: '🪩', duration: 10, cost: 0, effects: { fun: 14, energy: -6 }, xp: { dance: 20 }, tags: ['training', 'fun'], note: seenName },
+        { id: 'lib-dance', label: 'Dance to the DJ', icon: '🪩', duration: 10, effects: { fun: 14, energy: -6 }, xp: { dance: 20 }, tags: ['training', 'fun'], note: seenName },
         { id: 'lib-shoutout', label: 'Pay the DJ for a Shout-out', icon: '📣', duration: 6, cost: 2000, effects: { fun: 8, social: 12 },
           moodlets: [{ id: 'name-on-the-mic', label: 'Name on the Mic', value: 4, duration: 900 }], tags: ['status', 'broadcast'], note: seenName },
       ] },
@@ -121,15 +124,15 @@ const OWN_VENUES = {
       kitchen: { label: 'Kitchen', icon: '🥣', activities: [
         // The free fallback behind the cooler's Soak Garri & Sugar: listed only when that cannot be made
         // (systems/home.ts), so nobody is ever stuck hungry with an empty kitchen. The id is kept for old saves.
-        { id: 'garri', label: 'Eat Dry Garri', icon: '🥣', duration: 5, cost: 0, effects: { hunger: 20 }, tags: ['food'],
+        { id: 'garri', label: 'Eat Dry Garri', icon: '🥣', duration: 5, effects: { hunger: 20 }, tags: ['food'],
           note: 'Original beta fallback: free, no ingredients, +20 hunger. Duration for soaking garri is fixed.' },
       ] },
       bathroom: { label: 'Bathroom', icon: '🛁', activities: [
-        { id: 'bath', label: 'Take a Bath', icon: '🛁', duration: 6, cost: 0, effects: { hygiene: 25 }, tags: ['hygiene'],
+        { id: 'bath', label: 'Take a Bath', icon: '🛁', duration: 6, effects: { hygiene: 25 }, tags: ['hygiene'],
           note: 'Duration is fixed; the +25 hygiene amount is an original beta value.' },
       ] },
       bedroom: { label: 'Bedroom', icon: '🛏️', activities: [
-        { id: 'nap', label: 'Take a Nap', icon: '🛏️', duration: 15, cost: 0, effects: {}, effectsPerSecond: { energy: 2 }, tags: ['sleep'],
+        { id: 'nap', label: 'Take a Nap', icon: '🛏️', duration: 15, effects: {}, effectsPerSecond: { energy: 2 }, tags: ['sleep'],
           note: 'Original beta rate: +2 energy per second; accrued energy survives an early stop.' },
       ] },
     },
@@ -141,11 +144,11 @@ const OWN_VENUES = {
     ambient: ['The ON AIR light is red', 'A caller is shouting about traffic', 'Jingle rehearsal down the corridor', 'The newsroom printer has jammed again'],
     spots: {
       reception: { label: 'Reception', icon: '🛎️', caption: 'Sign the visitors’ book', activities: [
-        { id: 'radio-tour', label: 'Take the Studio Tour', icon: '🎧', duration: 9, cost: 0, effects: { fun: 8 }, tags: ['fun'] },
+        { id: 'radio-tour', label: 'Take the Studio Tour', icon: '🎧', duration: 9, effects: { fun: 8 }, tags: ['fun'] },
         { id: 'radio-request', label: 'Request a Song', icon: '🎶', duration: 5, cost: 200, effects: { fun: 8 }, xp: { music: 4 }, tags: ['fun'] },
       ] },
       studio: { label: 'Live studio', icon: '🎙️', caption: 'Mind the cables', activities: [
-        { id: 'radio-callin', label: 'Call In to the Morning Show', icon: '📞', duration: 8, cost: 0, effects: { social: 8 }, xp: { charisma: 18, comedy: 6 }, tags: ['training', 'social'] },
+        { id: 'radio-callin', label: 'Call In to the Morning Show', icon: '📞', duration: 8, effects: { social: 8 }, xp: { charisma: 18, comedy: 6 }, tags: ['training', 'social'] },
         { id: 'radio-guest', label: 'Guest on a Talk Show', icon: '🗣️', duration: 12, requiresSkill: { id: 'charisma', level: 3 }, reward: 800, minimumNeeds: { energy: 20 },
           effects: { energy: -6, social: 10 }, xp: { charisma: 24 }, cooldown: 900, tags: ['performance'] },
         { id: 'radio-skit', label: 'Perform a Radio Skit', icon: '🎭', duration: 12, requiresSkill: { id: 'comedy', level: 4 }, reward: 1000, minimumNeeds: { energy: 20 },
@@ -157,7 +160,7 @@ const OWN_VENUES = {
           effects: { energy: -8 }, xp: { music: 30 }, cooldown: 1200, tags: ['performance'] },
       ] },
       newsroom: { label: 'Newsroom', icon: '📰', caption: 'Deadline in ten minutes', activities: [
-        { id: 'radio-headlines', label: 'Practise Reading the Headlines', icon: '📰', duration: 9, cost: 0, effects: { fun: 2 }, xp: { charisma: 10 }, tags: ['training'] },
+        { id: 'radio-headlines', label: 'Practise Reading the Headlines', icon: '📰', duration: 9, effects: { fun: 2 }, xp: { charisma: 10 }, tags: ['training'] },
         { id: 'radio-errands', label: 'Run Errands for the Newsroom', icon: '🏃', duration: 13, reward: 250, minimumNeeds: { energy: 20 },
           effects: { energy: -8, hunger: -4 }, xp: { hustle: 10 }, cooldown: 300, tags: ['gig'] },
       ] },
@@ -172,14 +175,14 @@ const OWN_VENUES = {
     spots: {
       stage: { label: 'Main stage', icon: '🎷', caption: 'The band never really stops', activities: [
         { id: 'shrine-live', label: 'Watch the Live Band', icon: '🎷', duration: 12, cost: 1000, effects: { fun: 20, social: 6 }, xp: { music: 6 }, tags: ['fun', 'show'] },
-        { id: 'shrine-jam', label: 'Join the Open Jam', icon: '🎸', duration: 11, cost: 0, effects: { energy: -5, fun: 8 }, xp: { music: 28 }, tags: ['training'] },
+        { id: 'shrine-jam', label: 'Join the Open Jam', icon: '🎸', duration: 11, effects: { energy: -5, fun: 8 }, xp: { music: 28 }, tags: ['training'] },
         { id: 'shrine-perform', label: 'Perform a Set', icon: '🎤', duration: 14, requiresSkill: { id: 'music', level: 3 }, reward: 1200, minimumNeeds: { energy: 25 },
           effects: { energy: -12, fun: 8 }, xp: { music: 30, charisma: 8 }, cooldown: 600, tags: ['performance'] },
         { id: 'shrine-headline', label: 'Headline the Night', icon: '🌟', duration: 16, requiresSkill: { id: 'music', level: 7 }, reward: 2500, minimumNeeds: { energy: 35 },
           effects: { energy: -18, fun: 14, social: 14 }, xp: { music: 50 }, cooldown: 1800, tags: ['performance'] },
       ] },
       floor: { label: 'Dance floor', icon: '💃', caption: 'Waists are working overtime', activities: [
-        { id: 'shrine-dance', label: 'Dance to Afrobeat', icon: '💃', duration: 10, cost: 0, effects: { fun: 14, energy: -6 }, xp: { dance: 22 }, tags: ['training', 'fun'] },
+        { id: 'shrine-dance', label: 'Dance to Afrobeat', icon: '💃', duration: 10, effects: { fun: 14, energy: -6 }, xp: { dance: 22 }, tags: ['training', 'fun'] },
         { id: 'shrine-backup', label: 'Dance Backup for the Band', icon: '🕺', duration: 12, requiresSkill: { id: 'dance', level: 4 }, reward: 900, minimumNeeds: { energy: 25 },
           effects: { energy: -14, hygiene: -5 }, xp: { dance: 28 }, cooldown: 600, tags: ['performance'] },
       ] },
@@ -189,7 +192,7 @@ const OWN_VENUES = {
       ] },
       yard: { label: 'Drum circle', icon: '🥁', caption: 'Talking drums are talking', activities: [
         { id: 'shrine-drums', label: 'Learn the Talking Drum', icon: '🥁', duration: 12, cost: 300, effects: { fun: 5 }, xp: { music: 34 }, tags: ['training'] },
-        { id: 'shrine-yabis', label: 'Join the Yabis Session', icon: '😆', duration: 9, cost: 0, effects: { social: 10, fun: 6 }, xp: { comedy: 14 }, tags: ['social', 'training'] },
+        { id: 'shrine-yabis', label: 'Join the Yabis Session', icon: '😆', duration: 9, effects: { social: 10, fun: 6 }, xp: { comedy: 14 }, tags: ['social', 'training'] },
       ] },
     },
   },
@@ -202,15 +205,15 @@ const OWN_VENUES = {
     spots: {
       screen: { label: 'Big screen', icon: '📺', caption: 'Front row or nothing', activities: [
         { id: 'view-match', label: 'Watch the Big Match', icon: '⚽', duration: 14, cost: 300, effects: { fun: 20, social: 8 }, tags: ['fun', 'show'] },
-        { id: 'view-argue', label: 'Argue About the Line-up', icon: '🗯️', duration: 8, cost: 0, effects: { social: 12, fun: 5 }, xp: { charisma: 10 }, tags: ['social'] },
+        { id: 'view-argue', label: 'Argue About the Line-up', icon: '🗯️', duration: 8, effects: { social: 12, fun: 5 }, xp: { charisma: 10 }, tags: ['social'] },
       ] },
       benches: { label: 'Back benches', icon: '🪑', caption: 'Where the real commentary happens', activities: [
-        { id: 'view-banter', label: 'Crack Jokes at Half-time', icon: '😂', duration: 9, cost: 0, effects: { fun: 8, social: 6 }, xp: { comedy: 20 }, tags: ['training', 'social'] },
+        { id: 'view-banter', label: 'Crack Jokes at Half-time', icon: '😂', duration: 9, effects: { fun: 8, social: 6 }, xp: { comedy: 20 }, tags: ['training', 'social'] },
         { id: 'view-commentary', label: 'Do the Live Commentary', icon: '🎙️', duration: 12, requiresSkill: { id: 'comedy', level: 2 }, reward: 600, minimumNeeds: { energy: 20 },
           effects: { energy: -6, social: 8 }, xp: { comedy: 22, charisma: 8 }, cooldown: 480, tags: ['performance'] },
       ] },
       pitch: { label: 'Five-a-side pitch', icon: '🥅', caption: 'Monkey post, rubber ball', activities: [
-        { id: 'view-kickabout', label: 'Five-a-side Kickabout', icon: '🏃', duration: 12, cost: 0, minimumNeeds: { energy: 20 }, effects: { energy: -10, hygiene: -6, fun: 12 }, xp: { fitness: 26 }, tags: ['training', 'fun'] },
+        { id: 'view-kickabout', label: 'Five-a-side Kickabout', icon: '🏃', duration: 12, minimumNeeds: { energy: 20 }, effects: { energy: -10, hygiene: -6, fun: 12 }, xp: { fitness: 26 }, tags: ['training', 'fun'] },
         { id: 'view-setpiece', label: 'Win the Set-piece Challenge', icon: '🏆', duration: 12, requiresSkill: { id: 'fitness', level: 3 }, reward: 700, minimumNeeds: { energy: 25 },
           effects: { energy: -12, hygiene: -6 }, xp: { fitness: 24 }, cooldown: 600, tags: ['performance'] },
       ] },
@@ -239,7 +242,7 @@ const OWN_VENUES = {
         { id: 'buka-zobo', label: 'Cup of Chilled Zobo', icon: '🥤', duration: 5, cost: 150, effects: { hunger: 6, fun: 5, bladder: -5 }, tags: ['food', 'drink'], note: seenName },
       ] },
       kitchen: { label: 'Mama’s kitchen', icon: '👩🏾‍🍳', caption: 'Firewood, big pots, bigger opinions', activities: [
-        { id: 'buka-gist', label: 'Gist with Mama', icon: '💬', duration: 8, cost: 0, effects: { social: 12, fun: 4 }, xp: { charisma: 8 }, tags: ['social'], note: seenName },
+        { id: 'buka-gist', label: 'Gist with Mama', icon: '💬', duration: 8, effects: { social: 12, fun: 4 }, xp: { charisma: 8 }, tags: ['social'], note: seenName },
         { id: 'buka-learn', label: 'Learn Mama’s Ewedu Secret', icon: '📖', duration: 12, cost: 300, effects: { fun: 4 }, xp: { cooking: 30 }, tags: ['training'], note: seenName },
         { id: 'buka-help', label: 'Help at the Buka', icon: '🧽', duration: 15, reward: 350, minimumNeeds: { energy: 20 },
           effects: { energy: -10, hygiene: -6 }, xp: { cooking: 12, hustle: 6 }, cooldown: 300, tags: ['gig'], note: seenName },
@@ -247,7 +250,7 @@ const OWN_VENUES = {
           effects: { energy: -10, hygiene: -5 }, xp: { cooking: 30 }, cooldown: 600, tags: ['performance'] },
       ] },
       wash: { label: 'Wash bowl', icon: '🫧', caption: 'Soap, water, one shared towel', activities: [
-        { id: 'buka-wash', label: 'Wash Hands', icon: '🫧', duration: 4, cost: 0, effects: { hygiene: 8 }, tags: ['hygiene'], note: seenName },
+        { id: 'buka-wash', label: 'Wash Hands', icon: '🫧', duration: 4, effects: { hygiene: 8 }, tags: ['hygiene'], note: seenName },
       ] },
     },
   },
@@ -259,16 +262,16 @@ const OWN_VENUES = {
     ambient: ['Someone just shipped to production on a Friday', 'A founder is drawing boxes on the whiteboard', 'The Wi-Fi is flying today', 'Demo day posters are going up'],
     spots: {
       desks: { label: 'Hot desks', icon: '💻', caption: 'Find a socket, claim a chair', activities: [
-        { id: 'hub-hack', label: 'Hack on Side Project', icon: '⌨️', duration: 12, cost: 0, effects: { energy: -5, fun: 3 }, xp: { coding: 30 }, tags: ['training'], note: seenName },
-        { id: 'hub-wifi', label: 'Free Wi-Fi & Chill', icon: '📶', duration: 10, cost: 0, effects: { fun: 10, energy: 3 }, tags: ['rest'], note: seenName },
+        { id: 'hub-hack', label: 'Hack on Side Project', icon: '⌨️', duration: 12, effects: { energy: -5, fun: 3 }, xp: { coding: 30 }, tags: ['training'], note: seenName },
+        { id: 'hub-wifi', label: 'Free Wi-Fi & Chill', icon: '📶', duration: 10, effects: { fun: 10, energy: 3 }, tags: ['rest'], note: seenName },
         { id: 'hub-freelance', label: 'Freelance Gig', icon: '🧑🏾‍💻', duration: 15, requiresSkill: { id: 'coding', level: 2 }, reward: 1200, minimumNeeds: { energy: 25 },
           effects: { energy: -12, fun: -4 }, xp: { coding: 20, hustle: 10 }, cooldown: 600, tags: ['gig'], note: seenName },
-        { id: 'hub-hack-atm', label: 'Hack an ATM', icon: '🏧', duration: 12, requiresSkill: { id: 'coding', level: 6 }, minimumNeeds: { energy: 20 },
+        { id: 'hub-hack-atm', label: 'Hack an ATM', icon: '🏧', duration: 12, cost: false, requiresSkill: { id: 'coding', level: 6 }, minimumNeeds: { energy: 20 },
           effects: { energy: -8 }, xp: { coding: 20 }, cooldown: 1200, tags: ['risky'],
           note: 'Name is fixed. The gamble (see ACTIVITY_OUTCOMES in content/events.ts) is an original beta rule.' },
       ] },
       stage: { label: 'Pitch stage', icon: '📈', caption: 'Three minutes, one slide deck', activities: [
-        { id: 'hub-meetup', label: 'Attend Tech Meetup', icon: '🤝', duration: 11, cost: 0, effects: { social: 12 }, xp: { coding: 12, charisma: 6 }, tags: ['social', 'training'], note: seenName },
+        { id: 'hub-meetup', label: 'Attend Tech Meetup', icon: '🤝', duration: 11, effects: { social: 12 }, xp: { coding: 12, charisma: 6 }, tags: ['social', 'training'], note: seenName },
         { id: 'hub-pitch', label: 'Pitch Your Startup', icon: '📈', duration: 14, cost: 1000, requiresSkill: { id: 'coding', level: 4 }, minimumNeeds: { energy: 20 },
           effects: { energy: -8 }, xp: { charisma: 20, hustle: 20 }, cooldown: 900, tags: ['pitch', 'startup'],
           note: 'Name is fixed. The outcome roll (see ACTIVITY_OUTCOMES in content/events.ts) is an original beta rule.' },
@@ -277,8 +280,8 @@ const OWN_VENUES = {
       ] },
       cafe: { label: 'Café corner', icon: '☕', caption: 'Coffee is a food group here', activities: [
         { id: 'hub-coffee', label: 'Coffee & Puff-puff', icon: '☕', duration: 6, cost: 500, effects: { hunger: 15, energy: 10, bladder: -6 }, tags: ['food'], note: seenName },
-        { id: 'hub-founders', label: 'Gist with Founders', icon: '💡', duration: 9, cost: 0, effects: { social: 12 }, xp: { hustle: 12, charisma: 6 }, tags: ['social', 'training'], note: seenName },
-        { id: 'hub-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, cost: 0, effects: { bladder: 60 }, tags: ['restroom'] },
+        { id: 'hub-founders', label: 'Gist with Founders', icon: '💡', duration: 9, effects: { social: 12 }, xp: { hustle: 12, charisma: 6 }, tags: ['social', 'training'], note: seenName },
+        { id: 'hub-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, effects: { bladder: 60 }, tags: ['restroom'] },
       ] },
     },
   },
@@ -293,16 +296,16 @@ const OWN_VENUES = {
         { id: 'hospital-checkup', label: 'Health Check-up', icon: '📋', duration: 8, cost: 500, tags: ['checkup'] },
       ] },
       ward: { label: 'Free clinic', icon: '🛏️', caption: 'No bill, long wait', activities: [
-        { id: 'hospital-free', label: 'Queue at the Free Clinic', icon: '⏳', duration: 45, cost: 0, requiresIllness: true, tags: ['cure'] },
-        { id: 'hospital-rest', label: 'Rest on a Bench', icon: '🪑', duration: 10, cost: 0, effects: { energy: 6 }, tags: ['rest'] },
-        { id: 'hospital-donate', label: 'Donate Blood', icon: '🩸', duration: 12, cost: 0, minimumNeeds: { energy: 40, hunger: 30 }, effects: { energy: -15 },
+        { id: 'hospital-free', label: 'Queue at the Free Clinic', icon: '⏳', duration: 45, requiresIllness: true, tags: ['cure'] },
+        { id: 'hospital-rest', label: 'Rest on a Bench', icon: '🪑', duration: 10, effects: { energy: 6 }, tags: ['rest'] },
+        { id: 'hospital-donate', label: 'Donate Blood', icon: '🩸', duration: 12, minimumNeeds: { energy: 40, hunger: 30 }, effects: { energy: -15 },
           moodlets: [{ id: 'good-deed', label: 'Good Deed', value: 8, duration: 3600 }], cooldown: 86400, tags: ['kindness'] },
       ] },
       pharmacy: { label: 'Pharmacy', icon: '💊', caption: 'Ask for the pharmacist, not the cashier', activities: [
         { id: 'hospital-vitamins', label: 'Buy Vitamins', icon: '💊', duration: 4, cost: 800, tags: ['immunity'] },
         { id: 'hospital-volunteer', label: 'Volunteer at Reception', icon: '🗂️', duration: 14, reward: 300, minimumNeeds: { energy: 20 },
           effects: { energy: -8 }, xp: { charisma: 10 }, cooldown: 300, tags: ['gig'] },
-        { id: 'hospital-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, cost: 0, effects: { bladder: 60 }, tags: ['restroom'] },
+        { id: 'hospital-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, effects: { bladder: 60 }, tags: ['restroom'] },
       ] },
     },
   },
@@ -323,8 +326,8 @@ const OWN_VENUES = {
         { id: 'salon-wash', label: 'Wash & Condition', icon: '🚿', duration: 8, cost: 800, effects: { hygiene: 40 }, tags: ['hygiene'] },
       ] },
       bench: { label: 'Waiting bench', icon: '🗞️', caption: 'The gist is free', activities: [
-        { id: 'salon-gist', label: 'Salon Gist', icon: '💬', duration: 9, cost: 0, effects: { social: 14, fun: 6 }, xp: { charisma: 8, comedy: 6 }, tags: ['social'] },
-        { id: 'salon-magazines', label: 'Flip Through Style Magazines', icon: '📖', duration: 8, cost: 0, effects: { fun: 5 }, xp: { photography: 8 }, tags: ['rest'] },
+        { id: 'salon-gist', label: 'Salon Gist', icon: '💬', duration: 9, effects: { social: 14, fun: 6 }, xp: { charisma: 8, comedy: 6 }, tags: ['social'] },
+        { id: 'salon-magazines', label: 'Flip Through Style Magazines', icon: '📖', duration: 8, effects: { fun: 5 }, xp: { photography: 8 }, tags: ['rest'] },
       ] },
       nails: { label: 'Nail table', icon: '💅🏾', caption: 'Pick a colour', activities: [
         { id: 'salon-nails', label: 'Mani-Pedi', icon: '💅🏾', duration: 10, cost: 2500, effects: { fun: 12, hygiene: 10 }, tags: ['style'] },
@@ -343,21 +346,21 @@ const OWN_VENUES = {
     ambient: ['The organist is practising', 'Ushers are arranging the offering baskets', 'Choir robes are being ironed', 'A harmattan breeze moves through the louvres'],
     spots: {
       pews: { label: 'Pews', icon: '⛪', caption: 'Find a seat near the fan', activities: [
-        { id: 'church-service', label: 'Attend Service', icon: '🙏🏾', duration: 14, cost: 0, effects: { fun: 6, social: 10 },
+        { id: 'church-service', label: 'Attend Service', icon: '🙏🏾', duration: 14, effects: { fun: 6, social: 10 },
           moodlets: [{ id: 'at-peace', label: 'At Peace', value: 6, duration: 3600 }], tags: ['worship', 'social'] },
-        { id: 'church-quiet', label: 'Quiet Prayer', icon: '🕊️', duration: 9, cost: 0, effects: { energy: 4 },
+        { id: 'church-quiet', label: 'Quiet Prayer', icon: '🕊️', duration: 9, effects: { energy: 4 },
           moodlets: [{ id: 'at-peace', label: 'At Peace', value: 4, duration: 1800 }], tags: ['worship', 'rest'] },
         { id: 'church-offering', label: 'Give an Offering', icon: '🧺', duration: 5, cost: 500,
           moodlets: [{ id: 'generous', label: 'Generous', value: 5, duration: 3600 }], tags: ['kindness'] },
       ] },
       choir: { label: 'Choir stand', icon: '🎼', caption: 'Sopranos to the left', activities: [
-        { id: 'church-choir', label: 'Choir Practice', icon: '🎼', duration: 12, cost: 0, effects: { social: 8, energy: -3 }, xp: { music: 26 }, tags: ['training', 'social'] },
+        { id: 'church-choir', label: 'Choir Practice', icon: '🎼', duration: 12, effects: { social: 8, energy: -3 }, xp: { music: 26 }, tags: ['training', 'social'] },
         { id: 'church-solo', label: 'Sing the Solo', icon: '🎤', duration: 11, requiresSkill: { id: 'music', level: 2 }, reward: 500, minimumNeeds: { energy: 20 },
           effects: { energy: -6, social: 8 }, xp: { music: 24 }, cooldown: 900, tags: ['performance'] },
       ] },
       hall: { label: 'Fellowship hall', icon: '🍛', caption: 'Coolers of rice at the back', activities: [
-        { id: 'church-jollof', label: 'Fellowship Jollof', icon: '🍛', duration: 8, cost: 0, effects: { hunger: 30, social: 8 }, cooldown: 1800, tags: ['food'] },
-        { id: 'church-serve', label: 'Serve at the Food Drive', icon: '🥘', duration: 13, cost: 0, minimumNeeds: { energy: 20 }, effects: { energy: -8, social: 6 }, xp: { cooking: 14 },
+        { id: 'church-jollof', label: 'Fellowship Jollof', icon: '🍛', duration: 8, effects: { hunger: 30, social: 8 }, cooldown: 1800, tags: ['food'] },
+        { id: 'church-serve', label: 'Serve at the Food Drive', icon: '🥘', duration: 13, minimumNeeds: { energy: 20 }, effects: { energy: -8, social: 6 }, xp: { cooking: 14 },
           moodlets: [{ id: 'good-deed', label: 'Good Deed', value: 8, duration: 3600 }], tags: ['kindness', 'training'] },
       ] },
     },
@@ -370,20 +373,20 @@ const OWN_VENUES = {
     ambient: ['Sandals are lined up at the door', 'The call to prayer carries over the rooftops', 'Children are reciting in the courtyard', 'Someone is sharing dates from a tray'],
     spots: {
       hall: { label: 'Prayer hall', icon: '🕌', caption: 'Shoes off, phone silent', activities: [
-        { id: 'mosque-prayer', label: 'Join the Prayer', icon: '🤲🏾', duration: 12, cost: 0, effects: { social: 8, fun: 4 },
+        { id: 'mosque-prayer', label: 'Join the Prayer', icon: '🤲🏾', duration: 12, effects: { social: 8, fun: 4 },
           moodlets: [{ id: 'at-peace', label: 'At Peace', value: 6, duration: 3600 }], tags: ['worship', 'social'] },
-        { id: 'mosque-quiet', label: 'Quiet Reflection', icon: '📿', duration: 9, cost: 0, effects: { energy: 4 },
+        { id: 'mosque-quiet', label: 'Quiet Reflection', icon: '📿', duration: 9, effects: { energy: 4 },
           moodlets: [{ id: 'at-peace', label: 'At Peace', value: 4, duration: 1800 }], tags: ['worship', 'rest'] },
         { id: 'mosque-sadaqah', label: 'Give Sadaqah', icon: '🪙', duration: 5, cost: 500,
           moodlets: [{ id: 'generous', label: 'Generous', value: 5, duration: 3600 }], tags: ['kindness'] },
       ] },
       ablution: { label: 'Ablution area', icon: '💧', caption: 'Cool water from a row of taps', activities: [
-        { id: 'mosque-ablution', label: 'Perform Ablution', icon: '💧', duration: 6, cost: 0, effects: { hygiene: 15 }, tags: ['hygiene'] },
+        { id: 'mosque-ablution', label: 'Perform Ablution', icon: '💧', duration: 6, effects: { hygiene: 15 }, tags: ['hygiene'] },
       ] },
       courtyard: { label: 'Courtyard', icon: '🌴', caption: 'Mats in the shade', activities: [
-        { id: 'mosque-dates', label: 'Share Dates & Kunu', icon: '🥛', duration: 7, cost: 0, effects: { hunger: 20, social: 8 }, cooldown: 1800, tags: ['food'] },
-        { id: 'mosque-recite', label: 'Learn Recitation', icon: '📖', duration: 11, cost: 0, effects: { fun: 3 }, xp: { music: 18, charisma: 6 }, tags: ['training'] },
-        { id: 'mosque-teach', label: 'Help at the Madrasa', icon: '🧑🏾‍🏫', duration: 13, cost: 0, minimumNeeds: { energy: 20 }, effects: { energy: -6, social: 6 }, xp: { charisma: 16 },
+        { id: 'mosque-dates', label: 'Share Dates & Kunu', icon: '🥛', duration: 7, effects: { hunger: 20, social: 8 }, cooldown: 1800, tags: ['food'] },
+        { id: 'mosque-recite', label: 'Learn Recitation', icon: '📖', duration: 11, effects: { fun: 3 }, xp: { music: 18, charisma: 6 }, tags: ['training'] },
+        { id: 'mosque-teach', label: 'Help at the Madrasa', icon: '🧑🏾‍🏫', duration: 13, minimumNeeds: { energy: 20 }, effects: { energy: -6, social: 6 }, xp: { charisma: 16 },
           moodlets: [{ id: 'good-deed', label: 'Good Deed', value: 8, duration: 3600 }], tags: ['kindness', 'training'] },
       ] },
     },
@@ -396,8 +399,8 @@ const OWN_VENUES = {
     ambient: ['“Customer! Come and see!”', 'A wheelbarrow is forcing its way through', 'New lace just arrived on the third row', 'Somebody is counting change very slowly'],
     spots: {
       stalls: { label: 'Fabric stalls', icon: '🧵', caption: 'Ankara to the ceiling', activities: [
-        { id: 'market-browse', label: 'Browse the Ankara', icon: '🧵', duration: 9, cost: 0, effects: { fun: 8 }, xp: { hustle: 6 }, tags: ['fun'] },
-        { id: 'market-haggle', label: 'Haggle Like a Pro', icon: '🤝', duration: 10, cost: 0, effects: { social: 6, energy: -3 }, xp: { hustle: 24, charisma: 6 }, tags: ['training'] },
+        { id: 'market-browse', label: 'Browse the Ankara', icon: '🧵', duration: 9, effects: { fun: 8 }, xp: { hustle: 6 }, tags: ['fun'] },
+        { id: 'market-haggle', label: 'Haggle Like a Pro', icon: '🤝', duration: 10, effects: { social: 6, energy: -3 }, xp: { hustle: 24, charisma: 6 }, tags: ['training'] },
         { id: 'market-fabric', label: 'Buy Six Yards of Ankara', icon: '🎁', duration: 7, cost: 3500, effects: { fun: 14 },
           moodlets: [{ id: 'fresh-drip', label: 'Fresh Drip', value: 5, duration: 1800 }], tags: ['status', 'shopping'] },
       ] },
@@ -428,12 +431,12 @@ const OWN_VENUES = {
     ambient: ['The desk sergeant is writing in a very large book', 'Boots are drumming in the yard', 'A ceiling fan is losing its battle', 'Somebody came to report a missing goat'],
     spots: {
       desk: { label: 'Front desk', icon: '📒', caption: 'State your name and business', activities: [
-        { id: 'police-report', label: 'Report a Lost Item', icon: '📒', duration: 8, cost: 0, effects: { fun: -2, social: 4 }, xp: { charisma: 6 }, tags: ['civic'] },
+        { id: 'police-report', label: 'Report a Lost Item', icon: '📒', duration: 8, effects: { fun: -2, social: 4 }, xp: { charisma: 6 }, tags: ['civic'] },
         { id: 'police-clear', label: 'Pay to Clear Your Name', icon: '🧾', duration: 8, cost: 1000, requiresMoodlet: 'booked', requiresReason: 'You have no record at the station, so there is nothing to clear.', clears: ['booked'], tags: ['civic'] },
-        { id: 'police-service', label: 'Do Community Service', icon: '🧹', duration: 30, cost: 0, requiresMoodlet: 'booked', requiresReason: 'You have no record at the station, so there is nothing to clear.', clears: ['booked'], effects: { energy: -8 }, tags: ['civic'] },
+        { id: 'police-service', label: 'Do Community Service', icon: '🧹', duration: 30, requiresMoodlet: 'booked', requiresReason: 'You have no record at the station, so there is nothing to clear.', clears: ['booked'], effects: { energy: -8 }, tags: ['civic'] },
       ] },
       yard: { label: 'Parade yard', icon: '🥾', caption: 'Left, right, left', activities: [
-        { id: 'police-drill', label: 'Join the Morning Drill', icon: '🥾', duration: 12, cost: 0, minimumNeeds: { energy: 20 }, effects: { energy: -10, hygiene: -5 }, xp: { fitness: 26 }, tags: ['training'] },
+        { id: 'police-drill', label: 'Join the Morning Drill', icon: '🥾', duration: 12, minimumNeeds: { energy: 20 }, effects: { energy: -10, hygiene: -5 }, xp: { fitness: 26 }, tags: ['training'] },
         { id: 'police-defence', label: 'Self-defence Class', icon: '🥋', duration: 11, cost: 500, minimumNeeds: { energy: 20 }, effects: { energy: -8, fun: 5 }, xp: { fitness: 30 }, tags: ['training'] },
       ] },
       community: { label: 'Community room', icon: '🤝', caption: 'Plastic chairs in a circle', activities: [
@@ -452,18 +455,18 @@ const OWN_VENUES = {
     ambient: ['Agents are comparing their lists', 'The queue has an unofficial chairman', 'Somebody brought a stool from home', 'Ink pads are drying in the sun'],
     spots: {
       queue: { label: 'The queue', icon: '🧍🏾', caption: 'No shunting', activities: [
-        { id: 'polling-gist', label: 'Gist on the Queue', icon: '💬', duration: 8, cost: 0, effects: { social: 10, fun: 3 }, xp: { charisma: 8 }, tags: ['social', 'civic'] },
-        { id: 'polling-debate', label: 'Debate the Candidates', icon: '🗯️', duration: 10, cost: 0, requiresSkill: { id: 'charisma', level: 2 }, effects: { social: 12, fun: 8 }, xp: { charisma: 22, comedy: 6 }, tags: ['social', 'civic'] },
+        { id: 'polling-gist', label: 'Gist on the Queue', icon: '💬', duration: 8, effects: { social: 10, fun: 3 }, xp: { charisma: 8 }, tags: ['social', 'civic'] },
+        { id: 'polling-debate', label: 'Debate the Candidates', icon: '🗯️', duration: 10, requiresSkill: { id: 'charisma', level: 2 }, effects: { social: 12, fun: 8 }, xp: { charisma: 22, comedy: 6 }, tags: ['social', 'civic'] },
       ] },
       table: { label: 'Registration table', icon: '📋', caption: 'Check your name on the list', activities: [
-        { id: 'polling-register', label: 'Check the Voter Register', icon: '📋', duration: 6, cost: 0, effects: { fun: 2 }, tags: ['civic'] },
-        { id: 'polling-educate', label: 'Voter Education Session', icon: '🧑🏾‍🏫', duration: 10, cost: 0, effects: { social: 4 }, xp: { charisma: 14 }, tags: ['training', 'civic'] },
+        { id: 'polling-register', label: 'Check the Voter Register', icon: '📋', duration: 6, effects: { fun: 2 }, tags: ['civic'] },
+        { id: 'polling-educate', label: 'Voter Education Session', icon: '🧑🏾‍🏫', duration: 10, effects: { social: 4 }, xp: { charisma: 14 }, tags: ['training', 'civic'] },
         { id: 'polling-agent', label: 'Volunteer as a Polling Agent', icon: '🪪', duration: 15, reward: 400, minimumNeeds: { energy: 20 },
           effects: { energy: -8, fun: -3 }, xp: { hustle: 8 }, cooldown: 600, tags: ['gig', 'civic'] },
       ] },
       canopy: { label: 'Shade canopy', icon: '⛱️', caption: 'The only shade for fifty metres', activities: [
         { id: 'polling-puffpuff', label: 'Puff-puff from the Tray', icon: '🍩', duration: 5, cost: 200, effects: { hunger: 14, fun: 3 }, tags: ['food'] },
-        { id: 'polling-shade', label: 'Rest in the Shade', icon: '⛱️', duration: 9, cost: 0, effects: { energy: 5 }, tags: ['rest'] },
+        { id: 'polling-shade', label: 'Rest in the Shade', icon: '⛱️', duration: 9, effects: { energy: 5 }, tags: ['rest'] },
       ] },
     },
   },
@@ -476,16 +479,16 @@ const OWN_VENUES = {
     spots: {
       gate: { label: 'Front gate', icon: '🚪', caption: 'Visitors sign in here', activities: [
         { id: 'state-tour', label: 'Take the Guided Tour', icon: '🏛️', duration: 12, cost: 500, effects: { fun: 10 }, xp: { charisma: 6 }, tags: ['fun', 'civic'] },
-        { id: 'state-petition', label: 'Submit a Petition', icon: '✍🏾', duration: 8, cost: 0, effects: { fun: 2, social: 4 }, tags: ['civic'] },
+        { id: 'state-petition', label: 'Submit a Petition', icon: '✍🏾', duration: 8, effects: { fun: 2, social: 4 }, tags: ['civic'] },
       ] },
       gallery: { label: 'Public gallery', icon: '🪑', caption: 'Phones on silent', activities: [
-        { id: 'state-townhall', label: 'Watch a Town Hall', icon: '🪑', duration: 11, cost: 0, effects: { social: 8 }, xp: { charisma: 12 }, tags: ['civic', 'training'] },
-        { id: 'state-speak', label: 'Speak at the Town Hall', icon: '🎙️', duration: 12, cost: 0, requiresSkill: { id: 'charisma', level: 5 }, minimumNeeds: { energy: 20 }, effects: { energy: -6, social: 20 }, xp: { charisma: 35 },
+        { id: 'state-townhall', label: 'Watch a Town Hall', icon: '🪑', duration: 11, effects: { social: 8 }, xp: { charisma: 12 }, tags: ['civic', 'training'] },
+        { id: 'state-speak', label: 'Speak at the Town Hall', icon: '🎙️', duration: 12, requiresSkill: { id: 'charisma', level: 5 }, minimumNeeds: { energy: 20 }, effects: { energy: -6, social: 20 }, xp: { charisma: 35 },
           moodlets: [{ id: 'voice-heard', label: 'Voice Heard', value: 8, duration: 3600 }], tags: ['civic', 'performance'] },
       ] },
       gardens: { label: 'Gardens', icon: '🌺', caption: 'Lagoon breeze and clipped hedges', activities: [
-        { id: 'state-gardens', label: 'Walk the Gardens', icon: '🌺', duration: 10, cost: 0, effects: { energy: 4, fun: 8 }, tags: ['rest'] },
-        { id: 'state-architecture', label: 'Photograph the Architecture', icon: '📷', duration: 9, cost: 0, effects: { fun: 4 }, xp: { photography: 24 }, tags: ['training'] },
+        { id: 'state-gardens', label: 'Walk the Gardens', icon: '🌺', duration: 10, effects: { energy: 4, fun: 8 }, tags: ['rest'] },
+        { id: 'state-architecture', label: 'Photograph the Architecture', icon: '📷', duration: 9, effects: { fun: 4 }, xp: { photography: 24 }, tags: ['training'] },
       ] },
       press: { label: 'Press room', icon: '🎥', caption: 'Elbows out for the front row', activities: [
         { id: 'state-press', label: 'Cover the Press Briefing', icon: '🎥', duration: 12, requiresSkill: { id: 'photography', level: 3 }, reward: 900, minimumNeeds: { energy: 20 },
@@ -502,11 +505,11 @@ const OWN_VENUES = {
     spots: {
       weights: { label: 'Weights floor', icon: '🏋🏾', caption: 'Re-rack your plates', activities: [
         { id: 'gym-lift', label: 'Lift Weights', icon: '🏋🏾', duration: 12, cost: 500, minimumNeeds: { energy: 20 }, effects: { energy: -12, hygiene: -8, fun: 4 }, xp: { fitness: 40 }, tags: ['training'] },
-        { id: 'gym-spot', label: 'Spot a Stranger', icon: '🤜🏾', duration: 7, cost: 0, effects: { social: 8 }, xp: { fitness: 8 }, tags: ['social'] },
+        { id: 'gym-spot', label: 'Spot a Stranger', icon: '🤜🏾', duration: 7, effects: { social: 8 }, xp: { fitness: 8 }, tags: ['social'] },
       ] },
       studio: { label: 'Studio', icon: '🤸🏾', caption: 'Mats down, music up', activities: [
         { id: 'gym-aerobics', label: 'Afrobeat Aerobics Class', icon: '🤸🏾', duration: 12, cost: 700, minimumNeeds: { energy: 20 }, effects: { energy: -10, hygiene: -6, fun: 12 }, xp: { fitness: 24, dance: 16 }, tags: ['training', 'fun'] },
-        { id: 'gym-stretch', label: 'Stretch on the Mats', icon: '🧘🏾', duration: 8, cost: 0, effects: { energy: 2 }, xp: { fitness: 10 }, tags: ['training', 'rest'] },
+        { id: 'gym-stretch', label: 'Stretch on the Mats', icon: '🧘🏾', duration: 8, effects: { energy: 2 }, xp: { fitness: 10 }, tags: ['training', 'rest'] },
         { id: 'gym-bootcamp', label: 'Lead a Bootcamp', icon: '📣', duration: 14, requiresSkill: { id: 'fitness', level: 4 }, reward: 1100, minimumNeeds: { energy: 30 },
           effects: { energy: -16, hygiene: -8 }, xp: { fitness: 30, charisma: 10 }, cooldown: 600, tags: ['performance'] },
       ] },
@@ -515,7 +518,7 @@ const OWN_VENUES = {
       ] },
       showers: { label: 'Showers', icon: '🚿', caption: 'Hot water, actual pressure', activities: [
         { id: 'gym-shower', label: 'Hot Shower', icon: '🚿', duration: 7, cost: 200, effects: { hygiene: 45 }, tags: ['hygiene'] },
-        { id: 'gym-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, cost: 0, effects: { bladder: 60 }, tags: ['restroom'] },
+        { id: 'gym-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, effects: { bladder: 60 }, tags: ['restroom'] },
       ] },
     },
   },
@@ -527,16 +530,16 @@ const OWN_VENUES = {
     ambient: ['The lift is stuck on the ninth floor again', 'Someone is on a very loud speakerphone', 'Security is checking ID cards', 'A printer is producing somebody’s wedding invitations'],
     spots: {
       lobby: { label: 'Lobby', icon: '🛗', caption: 'Lanyards and marble', activities: [
-        { id: 'office-network', label: 'Network in the Lobby', icon: '🤝', duration: 9, cost: 0, effects: { social: 10 }, xp: { charisma: 16 }, tags: ['social', 'training'] },
-        { id: 'office-cv', label: 'Drop Off Your CV', icon: '📄', duration: 7, cost: 0, effects: { fun: -2 }, xp: { hustle: 10 }, tags: ['training'] },
-        { id: 'office-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, cost: 0, effects: { bladder: 60 }, tags: ['restroom'] },
+        { id: 'office-network', label: 'Network in the Lobby', icon: '🤝', duration: 9, effects: { social: 10 }, xp: { charisma: 16 }, tags: ['social', 'training'] },
+        { id: 'office-cv', label: 'Drop Off Your CV', icon: '📄', duration: 7, effects: { fun: -2 }, xp: { hustle: 10 }, tags: ['training'] },
+        { id: 'office-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, effects: { bladder: 60 }, tags: ['restroom'] },
       ] },
       canteen: { label: 'Canteen', icon: '🍛', caption: 'Rice is finished by 1PM', activities: [
         { id: 'office-lunch', label: 'Canteen Rice & Stew', icon: '🍛', duration: 8, cost: 700, effects: { hunger: 40 }, tags: ['food'] },
         { id: 'office-coffee', label: 'Vending-machine Coffee', icon: '☕', duration: 4, cost: 300, effects: { energy: 10, bladder: -5 }, tags: ['drink'] },
       ] },
       floor: { label: 'Open floor', icon: '🖥️', caption: 'Hot-desking, cold AC', activities: [
-        { id: 'office-spreadsheets', label: 'Lunch-and-Learn: Spreadsheets', icon: '📊', duration: 11, cost: 0, effects: { fun: -2 }, xp: { coding: 18 }, tags: ['training'] },
+        { id: 'office-spreadsheets', label: 'Lunch-and-Learn: Spreadsheets', icon: '📊', duration: 11, effects: { fun: -2 }, xp: { coding: 18 }, tags: ['training'] },
         { id: 'office-temp', label: 'Temp Data Entry', icon: '⌨️', duration: 15, reward: 450, minimumNeeds: { energy: 20 },
           effects: { energy: -10, fun: -6 }, xp: { coding: 8, hustle: 6 }, cooldown: 300, tags: ['gig'] },
       ] },
@@ -556,11 +559,11 @@ const OWN_VENUES = {
     ambient: ['Sparklers are heading for a VIP table', 'The bouncer is reading a very short list', 'The bass is rearranging people’s organs', 'Somebody just sprayed a whole bundle'],
     spots: {
       rope: { label: 'Velvet rope', icon: '🚧', caption: 'Dress well, smile at the bouncer', activities: [
-        { id: 'quilox-queue', label: 'People-watch on the Queue', icon: '👀', duration: 7, cost: 0, effects: { social: 8, fun: 4 }, xp: { photography: 6 }, tags: ['social'] },
+        { id: 'quilox-queue', label: 'People-watch on the Queue', icon: '👀', duration: 7, effects: { social: 8, fun: 4 }, xp: { photography: 6 }, tags: ['social'] },
       ] },
       floor: { label: 'Dance floor', icon: '🪩', caption: 'No space, nobody minds', activities: [
-        { id: 'quilox-dance', label: 'Dance Till Dawn', icon: '💃', duration: 11, cost: 0, effects: { energy: -8, fun: 18 }, xp: { dance: 26 }, tags: ['training', 'fun'] },
-        { id: 'quilox-hype', label: 'Hype the Crowd', icon: '🙌🏾', duration: 8, cost: 0, effects: { social: 10, energy: -3 }, xp: { charisma: 12 }, tags: ['social', 'training'] },
+        { id: 'quilox-dance', label: 'Dance Till Dawn', icon: '💃', duration: 11, effects: { energy: -8, fun: 18 }, xp: { dance: 26 }, tags: ['training', 'fun'] },
+        { id: 'quilox-hype', label: 'Hype the Crowd', icon: '🙌🏾', duration: 8, effects: { social: 10, energy: -3 }, xp: { charisma: 12 }, tags: ['social', 'training'] },
         { id: 'quilox-battle', label: 'Win the Dance Battle', icon: '🏆', duration: 12, requiresSkill: { id: 'dance', level: 3 }, reward: 1300, minimumNeeds: { energy: 25 },
           effects: { energy: -14, hygiene: -6 }, xp: { dance: 30 }, cooldown: 600, tags: ['performance'] },
       ] },
@@ -572,7 +575,7 @@ const OWN_VENUES = {
       ] },
       bar: { label: 'Bar', icon: '🍹', caption: 'Shout your order twice', activities: [
         { id: 'quilox-chapman', label: 'Chapman', icon: '🍹', duration: 5, cost: 1500, effects: { fun: 8, hunger: 5, bladder: -8 }, tags: ['drink'] },
-        { id: 'quilox-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, cost: 0, effects: { bladder: 60 }, tags: ['restroom'] },
+        { id: 'quilox-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, effects: { bladder: 60 }, tags: ['restroom'] },
       ] },
     },
   },
@@ -584,8 +587,8 @@ const OWN_VENUES = {
     ambient: ['The skyline is turning orange', 'A saxophonist is warming up', 'Ring lights are out in force', 'The grill man is fanning the coals'],
     spots: {
       terrace: { label: 'Terrace', icon: '🌇', caption: 'Best view on the island', activities: [
-        { id: 'rooftop-sunset', label: 'Watch the Sunset', icon: '🌇', duration: 10, cost: 0, effects: { fun: 10, energy: 3 }, tags: ['rest'] },
-        { id: 'rooftop-content', label: 'Shoot Content for the ’Gram', icon: '🤳', duration: 10, cost: 0, effects: { fun: 4 }, xp: { photography: 26, charisma: 6 }, tags: ['training'] },
+        { id: 'rooftop-sunset', label: 'Watch the Sunset', icon: '🌇', duration: 10, effects: { fun: 10, energy: 3 }, tags: ['rest'] },
+        { id: 'rooftop-content', label: 'Shoot Content for the ’Gram', icon: '🤳', duration: 10, effects: { fun: 4 }, xp: { photography: 26, charisma: 6 }, tags: ['training'] },
         { id: 'rooftop-campaign', label: 'Shoot a Brand Campaign', icon: '📸', duration: 14, requiresSkill: { id: 'photography', level: 5 }, reward: 2000, minimumNeeds: { energy: 25 },
           effects: { energy: -10 }, xp: { photography: 36 }, cooldown: 1200, tags: ['performance'] },
       ] },
@@ -614,19 +617,19 @@ const OWN_VENUES = {
     spots: {
       walkway: { label: 'Canopy walkway', icon: '🌉', caption: 'Do not look down', activities: [
         { id: 'canopy-cross', label: 'Cross the Canopy Walk', icon: '🌉', duration: 14, cost: 1000, effects: { fun: 22, energy: -8 }, xp: { fitness: 18 }, tags: ['fun'] },
-        { id: 'canopy-treetops', label: 'Photograph the Treetops', icon: '📷', duration: 9, cost: 0, effects: { fun: 6 }, xp: { photography: 28 }, tags: ['training'] },
+        { id: 'canopy-treetops', label: 'Photograph the Treetops', icon: '📷', duration: 9, effects: { fun: 6 }, xp: { photography: 28 }, tags: ['training'] },
         { id: 'canopy-guide', label: 'Guide a Tour Group', icon: '🧭', duration: 14, requiresSkill: { id: 'charisma', level: 3 }, reward: 800, minimumNeeds: { energy: 25 },
           effects: { energy: -10 }, xp: { charisma: 22, fitness: 8 }, cooldown: 600, tags: ['performance'] },
       ] },
       trail: { label: 'Nature trail', icon: '🥾', caption: 'Boardwalk over the swamp', activities: [
-        { id: 'canopy-hike', label: 'Hike the Nature Trail', icon: '🥾', duration: 12, cost: 0, minimumNeeds: { energy: 15 }, effects: { energy: -8, hygiene: -4, fun: 10 }, xp: { fitness: 22 }, tags: ['training', 'fun'] },
-        { id: 'canopy-monkeys', label: 'Watch the Monkeys', icon: '🐒', duration: 8, cost: 0, effects: { fun: 10 }, tags: ['fun'] },
+        { id: 'canopy-hike', label: 'Hike the Nature Trail', icon: '🥾', duration: 12, minimumNeeds: { energy: 15 }, effects: { energy: -8, hygiene: -4, fun: 10 }, xp: { fitness: 22 }, tags: ['training', 'fun'] },
+        { id: 'canopy-monkeys', label: 'Watch the Monkeys', icon: '🐒', duration: 8, effects: { fun: 10 }, tags: ['fun'] },
         { id: 'canopy-wildlife', label: 'Sell Wildlife Shots', icon: '🦜', duration: 12, requiresSkill: { id: 'photography', level: 4 }, reward: 1200, minimumNeeds: { energy: 20 },
           effects: { energy: -6 }, xp: { photography: 28 }, cooldown: 900, tags: ['performance'] },
       ] },
       huts: { label: 'Picnic huts', icon: '🧺', caption: 'Thatch roofs and a tortoise', activities: [
         { id: 'canopy-picnic', label: 'Picnic Under the Huts', icon: '🧺', duration: 9, cost: 800, effects: { hunger: 30, fun: 8, social: 6 }, tags: ['food'] },
-        { id: 'canopy-rest', label: 'Rest in the Shade', icon: '🌴', duration: 10, cost: 0, effects: { energy: 8 }, tags: ['rest'] },
+        { id: 'canopy-rest', label: 'Rest in the Shade', icon: '🌴', duration: 10, effects: { energy: 8 }, tags: ['rest'] },
       ] },
     },
   },
@@ -644,10 +647,10 @@ const OWN_VENUES = {
       food: { label: 'Food court', icon: '🌯', caption: 'Trays, queues and free AC', activities: [
         { id: 'palms-shawarma', label: 'Chicken Shawarma', icon: '🌯', duration: 6, cost: 2000, effects: { hunger: 40, fun: 6 }, tags: ['food'] },
         { id: 'palms-icecream', label: 'Two Scoops of Ice Cream', icon: '🍨', duration: 5, cost: 1000, effects: { fun: 10, hunger: 8 }, tags: ['food'] },
-        { id: 'palms-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, cost: 0, effects: { bladder: 60 }, tags: ['restroom'] },
+        { id: 'palms-restroom', label: 'Use the Restroom', icon: '🚻', duration: 4, effects: { bladder: 60 }, tags: ['restroom'] },
       ] },
       shops: { label: 'Shops', icon: '🛍️', caption: 'Everything is “imported”', activities: [
-        { id: 'palms-window', label: 'Window-shop', icon: '👀', duration: 9, cost: 0, effects: { fun: 7 }, tags: ['fun'] },
+        { id: 'palms-window', label: 'Window-shop', icon: '👀', duration: 9, effects: { fun: 7 }, tags: ['fun'] },
         { id: 'palms-outfit', label: 'Buy a New Outfit', icon: '👗', duration: 8, cost: 15000, effects: { fun: 16 },
           moodlets: [{ id: 'fresh-drip', label: 'Fresh Drip', value: 8, duration: 3600 }], tags: ['status', 'shopping'] },
         { id: 'palms-flyers', label: 'Hand Out Promo Flyers', icon: '📄', duration: 13, reward: 350, minimumNeeds: { energy: 20 },
@@ -666,9 +669,9 @@ const OWN_VENUES = {
     ambient: ['The tide is coming in', 'A horse is posing for photographs', 'Fish is hissing on the grill', 'Somebody’s speaker is louder than the sea'],
     spots: {
       shore: { label: 'Shoreline', icon: '🌊', caption: 'Wet sand, loud waves', activities: [
-        { id: 'beach-stroll', label: 'Stroll the Shoreline', icon: '🌊', duration: 10, cost: 0, effects: { energy: 3, fun: 8 }, tags: ['rest'] },
-        { id: 'beach-swim', label: 'Swim in the Atlantic', icon: '🏊🏾', duration: 10, cost: 0, minimumNeeds: { energy: 15 }, effects: { energy: -6, hygiene: 6, fun: 14 }, xp: { fitness: 16 }, tags: ['training', 'fun'] },
-        { id: 'beach-sunset', label: 'Shoot the Sunset', icon: '📷', duration: 9, cost: 0, effects: { fun: 5 }, xp: { photography: 26 }, tags: ['training'] },
+        { id: 'beach-stroll', label: 'Stroll the Shoreline', icon: '🌊', duration: 10, effects: { energy: 3, fun: 8 }, tags: ['rest'] },
+        { id: 'beach-swim', label: 'Swim in the Atlantic', icon: '🏊🏾', duration: 10, minimumNeeds: { energy: 15 }, effects: { energy: -6, hygiene: 6, fun: 14 }, xp: { fitness: 16 }, tags: ['training', 'fun'] },
+        { id: 'beach-sunset', label: 'Shoot the Sunset', icon: '📷', duration: 9, effects: { fun: 5 }, xp: { photography: 26 }, tags: ['training'] },
       ] },
       cabanas: { label: 'Cabanas', icon: '⛱️', caption: 'Shade for hire', activities: [
         { id: 'beach-cabana', label: 'Rent a Cabana', icon: '⛱️', duration: 12, cost: 4000, effects: { energy: 14, fun: 16, social: 6 }, tags: ['rest', 'status'] },
@@ -676,7 +679,7 @@ const OWN_VENUES = {
           effects: { energy: -6 }, xp: { photography: 20 }, cooldown: 480, tags: ['performance'] },
       ] },
       pitch: { label: 'Sand pitch', icon: '⚽', caption: 'Slippers for goalposts', activities: [
-        { id: 'beach-football', label: 'Beach Football', icon: '⚽', duration: 12, cost: 0, minimumNeeds: { energy: 20 }, effects: { energy: -12, hygiene: -8, fun: 14, social: 8 }, xp: { fitness: 28 }, tags: ['training', 'fun', 'social'] },
+        { id: 'beach-football', label: 'Beach Football', icon: '⚽', duration: 12, minimumNeeds: { energy: 20 }, effects: { energy: -12, hygiene: -8, fun: 14, social: 8 }, xp: { fitness: 28 }, tags: ['training', 'fun', 'social'] },
         { id: 'beach-tournament', label: 'Win the Beach Tournament', icon: '🏆', duration: 14, requiresSkill: { id: 'fitness', level: 5 }, reward: 1400, minimumNeeds: { energy: 30 },
           effects: { energy: -16, hygiene: -8 }, xp: { fitness: 32 }, cooldown: 900, tags: ['performance'] },
       ] },

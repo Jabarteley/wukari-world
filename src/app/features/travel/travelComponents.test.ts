@@ -27,7 +27,7 @@ async function render(path: string, props: Record<string, unknown> = {}): Promis
   const component = (await load(path)).default
   return renderToString(createSSRApp({ render: () => h(component, props) }))
 }
-const travelState = (): Promise<TravelStateModule> => load<TravelStateModule>('/src/app/features/travel/travelState.ts')
+const travelState = async (): Promise<TravelStateModule> => ({ ...(await load<TravelStateModule>('/src/app/features/travel/travelState.ts')), ...(await load<TravelStateModule>('/src/app/features/travel/travelMapState.ts')) })
 /** Run `body` with the life changed, then put it back. */
 /** Run `body` while the fake server is unreachable, then reconnect. */
 async function whileOffline(body: () => Promise<void>): Promise<void> {

@@ -25,7 +25,7 @@ Phase 4 of the "world alive" programme (`docs/agent-plans/world-alive/`). The co
 ## How it runs
 
 - Off by default. The Node host's entry point and the Cloudflare Worker turn it on (`ctx.worldFeed`); a test turns it on only with a
-  fake `fetch`, so no test calls out. `WORLD_FEED=off` turns it off on the Node host.
+  fake `fetch`, so no test calls out. `WORLD_FEED=off` turns it off on the Node host and on the Worker (the edge tests set it).
 - It rides the host's heartbeat (`ctx.on('heartbeat')`): every 10 seconds on Node, every 10 seconds on the Worker while a socket
   is open, and the Worker's 5-minute alarm otherwise. Work is kept alive with `ctx.waitUntil`. Nothing is fetched while a player waits.
 - **Rates.** Once a day, after 00:30 UTC: the primary, then the fallback. Only the currencies of `src/game/currency.ts` are kept

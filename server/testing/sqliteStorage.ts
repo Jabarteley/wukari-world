@@ -24,12 +24,14 @@ export function testStorage(existing?: DatabaseSync): TestStorage {
 }
 
 /**
- * The `STORE_LAYOUT` binding the edge tests hand the Worker when the run asks for one (`STORE_LAYOUT=entries npm run test:edge`).
- * With none asked for, the Worker goes by the build's own word (deploy/store-release.ts), as the released one does.
+ * The bindings every edge test hands the Worker. `WORLD_FEED: 'off'`: the weather and exchange-rate feed (e8dd4fb3) would call
+ * the outside from the test, and a call in flight keeps the object from being evicted, which several tests do on purpose.
+ * `STORE_LAYOUT` when the run asks for one (`STORE_LAYOUT=entries npm run test:edge`); with none asked for, the Worker goes by
+ * the build's own word (deploy/store-release.ts), as the released one does.
  */
 export function layoutBindings(): Record<string, string> {
   const layout = process.env['STORE_LAYOUT'];
-  return layout === 'entries' || layout === 'shadow' || layout === 'legacy' ? { STORE_LAYOUT: layout } : {};
+  return { WORLD_FEED: 'off', ...(layout === 'entries' || layout === 'shadow' || layout === 'legacy' ? { STORE_LAYOUT: layout } : {}) };
 }
 
 /** What an edge test reads and writes stored collections through: an async `exec` over the object's storage (rows as plain objects). */

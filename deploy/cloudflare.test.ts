@@ -1465,14 +1465,15 @@ test('Cloudflare: accounts — fixation, CSRF, token replay, unverified address,
   assert.equal(presence.members[0].id, ada.id); assert.ok(!JSON.stringify(presence).includes(mine.slice(11)));
   await f.hibernate();
   await f.action({ ...ada, cookie: victim.cookie }, { type: 'travel', id: 'library', mode: 'cab' });
-  assert.equal((await x.next()).code, 'venue_mismatch', 'an action from the other device revokes this device’s room');
+  // A house character may walk into the park and greet while the object wakes (the beat after the eviction): its presence update and its line are not the answer.
+  const answer = async (peer: { next(): Promise<Frame> }): Promise<Frame> => { let frame = await peer.next(); while (frame.type === 'presence' || frame.type === 'chat') frame = await peer.next(); return frame; };
+  assert.equal((await answer(x)).code, 'venue_mismatch', 'an action from the other device revokes this device’s room');
   const closed = new Promise<number>((resolve) => { y.ws.addEventListener('close', event => resolve(event.code)); });
   await (await f.change('/api/account/sign-out', {}, victim.cookie)).text();
   assert.equal(await closed, 4401);
   assert.equal((await f.upgrade({ origin: f.origin, cookie: victim.cookie })).status, 401, 'a signed-out cookie opens no socket');
   // The device that stayed signed in is still answered as the character (in transit now, so no room admits it): not as a stranger.
-  x.send({ type: 'join', cityId: 'lagos', venueId: 'library' }); assert.equal((await x.next()).code, 'venue_mismatch');
-  // Limits: ten attempts a minute from one address; a reset is answered the same for any address and never waits for the provider.
+  x.send({ type: 'join', cityId: 'lagos', venueId: 'library' }); assert.equal((await answer(x)).code, 'venue_mismatch');  // Limits: ten attempts a minute from one address; a reset is answered the same for any address and never waits for the provider.
   const one = { 'cf-connecting-ip': '198.51.100.7' };
   for (let i = 0; i < 10; i++) assert.equal((await f.request('/api/account/sign-in', { idToken: 'not.a.token' }, null, one)).status, 401);
   assert.deepEqual(await f.errorOf(await f.request('/api/account/sign-in', { idToken: await f.token('UidBola') }, null, one)), [429, 'account_rate_limited']);
@@ -1785,8 +1786,9 @@ test('Worker row budget: a connected player who only polls writes nothing; an ac
   await f.life(ada);
   x.send({ type: 'join', cityId: 'lagos', venueId: 'park' }); await x.next();
   const poll = async (): Promise<void> => { for (const path of ['/api/life?city=lagos', '/api/world/pulse', '/api/civic/pulse?city=lagos', '/api/social/people?city=lagos', '/api/session']) { const response = await f.request(path, null, ada.cookie); assert.ok(response.status < 500, `${path} answered ${response.status}`); await response.arrayBuffer(); } };
-  // The first poll of each kind, and the first beat, make what does not exist yet (a collection, a resident's entry): those are written.
-  await poll(); await new Promise(resolve => setTimeout(resolve, 11000)); await poll();
+  // The first poll of each kind, and the first two beats, make what does not exist yet (a collection, a resident's entry): those are written.
+  // The residents need the second beat: the first only loads them, the second wakes them and saves their shards for the first time (three residents in every open city, c1358561).
+  await poll(); await new Promise(resolve => setTimeout(resolve, 24000)); await poll();
   // From here on: what a page that is only open does, for longer than two beats — it answers the heartbeat, moves, and polls.
   const quiet = (await overview()).rows;
   for (let round = 0; round < 5; round++) {

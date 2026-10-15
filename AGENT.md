@@ -13,7 +13,7 @@ The owner's decisions of 15 October 2026, being built:
 
 | Work | Branch | Where it stopped | Next step |
 | --- | --- | --- | --- |
-| Release 15: starting money by city, home city on the account, "at least" bonus words, passing property on (docs/LEGACY.md), test fixes | `main` | Merged and checked, being released | Confirm live, smoke, replace `REL15` in STATUS.md. |
+| Release 15: money by city, home city, bonus words, passing property on, test fixes | `main` | Live as `69c3ae44` | Nothing. |
 | Residents everywhere: three per open city, visible | `main` | Live as `9321b79e` | Nothing. |
 | iCloud: the Desktop checkout's files were offloaded by iCloud (git hung); downloading them back, then rename the folder to `joinallworld.nosync` with a `joinallworld` link so iCloud stops syncing it | none (owner's Mac) | Downloading | Finish, then rename and link, then check git works there. |
 

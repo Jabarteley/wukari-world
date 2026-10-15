@@ -117,7 +117,7 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
-- 2026-10-16, release 14 (residents everywhere), REL14: three residents in every open city (~852), generated distinct personalities that
+- 2026-10-16, release 14 (residents everywhere), `9321b79e`: three residents in every open city (~852), generated distinct personalities that
   change their behaviour, visible with the AI mark; rule-driven, the model only when a person speaks to one or from a daily quota.
 - 2026-10-15, release 13 (Phases 13c and 20), `1bb55dc5`: the residents' assembly, president and Sunday letter; residents' friendships,
   marriages and weddings. With these, every phase in PHASES.md has been built.

@@ -23,6 +23,7 @@ import type { CampusElectionRecord } from '../src/types/campus.ts'
 import type { CommerceCollection, CommerceGateway } from './commerce/types.ts'
 import type { BusinessCollection } from '../src/types/business.ts'
 import type { MarketCollection } from '../src/types/market.ts'
+import type { LegacyCollection } from './legacy/data.ts'
 import type { BillsRecord, DecreeRecord, GrantRecord, JusticeRecord, PartyRecord, PetitionRecord, LawsRecord, TermAccounts, TermAudit, TreasuryRecord } from '../src/types/politics.ts'
 import type { ComebackType, LedgerType, PrefKey } from '../src/game/comeback.ts'
 import type { StoredWalletEffect } from './economy/effects.ts'
@@ -882,6 +883,8 @@ export interface Database {
   business?: BusinessCollection
   /** server/market/service.ts: every city's market accounts, order books and tape. Created by the first deposit or order, so it is not in COLLECTION_NAMES. */
   market?: MarketCollection
+  /** server/legacy/: offers to pass property on, a short record of hand-overs. Created by the first one, so it is not in COLLECTION_NAMES. */
+  legacy?: LegacyCollection
   /** server/trust/service.ts: checked tiers and complaints. Created by the first report or check, so it is not in COLLECTION_NAMES. */
   trust?: import('./trust/service.ts').TrustCollection
   trustChecks?: import('./trust/dojah.ts').IdChecks

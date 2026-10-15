@@ -148,7 +148,7 @@ export interface PictureView {
 
 export type SocialUpdateKind =
   | 'family' | 'friend-request' | 'friend-accepted' | 'report' | 'group-added' | 'invite-knock' | 'invite-answer'
-  | 'bae-request' | 'bae-answer' | 'transfer' | 'moderation' | 'invite-joined' | 'ping' | 'business' | 'mention' | 'reaction' | 'missed-call' | 'visit'
+  | 'bae-request' | 'bae-answer' | 'transfer' | 'moderation' | 'invite-joined' | 'ping' | 'business' | 'mention' | 'reaction' | 'missed-call' | 'visit' | 'legacy'
 /** One line of Messages → Updates (service.js notify()). */
 export interface SocialUpdate {
   id: number

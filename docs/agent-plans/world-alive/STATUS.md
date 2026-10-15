@@ -117,6 +117,9 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
+- 2026-10-16, release 15 (starting money by city, home city on the account), REL15: a new life's purse, family loan, dreams, Boutique,
+  intercity fares and launch bonus follow the starting city's price level (a London start buys about what a Lagos start does);
+  the home-city pin is kept with the character. The launch bonus is never below the advertised amount.
 - 2026-10-16, release 14 (residents everywhere), `9321b79e`: three residents in every open city (~852), generated distinct personalities that
   change their behaviour, visible with the AI mark; rule-driven, the model only when a person speaks to one or from a daily quota.
 - 2026-10-15, release 13 (Phases 13c and 20), `1bb55dc5`: the residents' assembly, president and Sunday letter; residents' friendships,

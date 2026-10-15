@@ -28,10 +28,10 @@ export const FACTS = {
   "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
   "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
   "bounds": [
-    96.64651578619483,
-    -12.37072878993398,
-    97.01438141380517,
-    -12.008967010066021
+    96.72011938112345,
+    -12.298376433960387,
+    96.94077781887654,
+    -12.081319366039613
   ],
   "generatedLinkPolicy": "authored-only",
   "links": [

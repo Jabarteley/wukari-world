@@ -7,7 +7,7 @@
     "stateId": "aq",
     "stateName": "Villa Las Estrellas"
   },
-  "inventorySha256": "a96185f13b8060ef8866c6b454648e28bf28cfecc88a240af3658555ddfaed58",
+  "inventorySha256": "43e660a112f111e3007f26374f40a0b5c0f8e083dcce18030e32ff687d67e853",
   "inventoryPath": "world/playable-africa-rollout/sources/villa-las-estrellas.json",
   "admission": {
     "registered": true,
@@ -22,10 +22,10 @@
     "sourceUrl": "https://ourairports.com/airports/SCRM/"
   },
   "bounds": [
-    -62.38130678993398,
-    -59.35291859748897,
-    -62.01954501006602,
-    -58.57781940251103
+    -62.290866344966986,
+    -59.158561186040636,
+    -62.10998545503301,
+    -58.63624968743183
   ],
   "sources": {
     "geometryInput": {
@@ -34,31 +34,31 @@
       "datasetSha256": "52516734e725e61456789ec8d957feacd98f7686377b1f40520b6084dee152d0",
       "pbfHeaderTimestamp": "2026-10-13T20:21:31Z",
       "adapter": "offline-extract.py/v3-nested-centres",
-      "adapterSha256": "4079d0a7f3520bbcbb8289d4d8b36f3c4fa8a6d866c15f0041884becbccbb1d3",
+      "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
       "extracts": [
         {
           "file": "places.json",
-          "sha256": "342da0b264548aa71ce96fb3a2a9a83ce24e8fd61b7f1b4ea6cfd969fa3cffc6",
-          "elements": 60
+          "sha256": "d71616d80bf19989a7447953f674699496266d9a861404bd1ec66eef4fc14fa7",
+          "elements": 58
         },
         {
           "file": "extras.json",
-          "sha256": "21d75b624f7da31c7d88d34ffff359fdbbdceca9b8f8c54b8049c43209c08a69",
+          "sha256": "72ff227900eedce76b01a047c80eceb6c6b81e4eda8304087f278929f65f0ff9",
           "elements": 3
         },
         {
           "file": "water.json",
-          "sha256": "e325917d1ec622e7b0525db7e7bd5be041b1ac7940ee6e5ee9e18c193e67be82",
-          "elements": 1113
+          "sha256": "1443b65edd91e4824715f5c76aa2975a5b31a79772336b585f00fe0adb659e0f",
+          "elements": 1024
         },
         {
           "file": "landuse.json",
-          "sha256": "5a388d277e704208e36821e44c81939a58eaa959f20b5ac8fd0e0243fba39322",
+          "sha256": "4962fed3ab7a625a8602f044280fae4ae9fd0004123bba1106eb3da4173aad85",
           "elements": 1
         },
         {
           "file": "roads.json",
-          "sha256": "e275bb6d7b014075057614a99cfde80eca3eb49857a1c31b7aa948174d6c46c5",
+          "sha256": "d2286fe99ac8f8bcfd6b5250649f97d3fad904fea2ba87c808ddcb17ef16d25a",
           "elements": 74
         }
       ]
@@ -69,8 +69,8 @@
     "roads": 10,
     "neighbourhoodLabels": 2,
     "landPolygons": 1,
-    "waterPolygons": 3,
-    "reachWaterPolygons": 1
+    "waterPolygons": 2,
+    "reachWaterPolygons": 2
   },
   "selection": {
     "profile": "outpost",
@@ -122,20 +122,20 @@
     }
   ],
   "observed": {
-    "places": 60,
+    "places": 58,
     "extras": 3,
-    "water": 1113,
+    "water": 1024,
     "landuse": 1,
     "roads": 74
   },
   "assets": {
     "facts.ts": {
-      "bytes": 1573,
-      "sha256": "528c15dac593ef218172f255500c8472eb1b60c80d4f622f60bfc7f576693523"
+      "bytes": 1575,
+      "sha256": "8807b565718062c216b28c1fc4516a9ec65ecb68254e4863b7d1e9ef15e87fa5"
     },
     "geometry.ts": {
-      "bytes": 161737,
-      "sha256": "f61f9791115933a8b831648c2bbe8eb38edf36f2ba07a1429e78409b6d2a37a8"
+      "bytes": 126733,
+      "sha256": "2ba06ca5e5cda2db28edbc62130b8a97c2c0580fc9335cefd69d3d33072d866b"
     },
     "index.ts": {
       "bytes": 270,

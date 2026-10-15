@@ -21,16 +21,16 @@ export const CONFIG = {
   "source": "OpenStreetMap contributors via Geofabrik PBF",
   "name": "West Island",
   "box": [
-    -12.37072878993398,
-    96.64651578619483,
-    -12.008967010066021,
-    97.01438141380517
+    -12.298376433960387,
+    96.72011938112345,
+    -12.081319366039613,
+    96.94077781887654
   ],
   "core": [
-    -12.235068122483495,
-    96.78448913491918,
-    -12.144627677516505,
-    96.87640806508081
+    -12.226024077986796,
+    96.79368228595747,
+    -12.153671722013204,
+    96.86721491404252
   ],
   "places": [
     {
@@ -50,12 +50,12 @@ export const CONFIG = {
       "line": "Salty's Airport Cafe, a mapped place for the game."
     },
     {
-      "key": "osm-node-9200049002",
+      "key": "osm-node-4547647294",
       "kind": "walk",
       "category": "fun",
       "icon": "walk",
-      "ref": "node/9200049002",
-      "line": "Southernmost Point of Asia, a mapped place for the game."
+      "ref": "node/4547647294",
+      "line": "Yacht Club, a mapped place for the game."
     },
     {
       "key": "osm-way-1015047086",
@@ -66,20 +66,20 @@ export const CONFIG = {
       "line": "Sula Sula Servery, a mapped place for the game."
     },
     {
-      "key": "osm-node-4547647294",
-      "kind": "walk",
-      "category": "fun",
-      "icon": "walk",
-      "ref": "node/4547647294",
-      "line": "Yacht Club, a mapped place for the game."
-    },
-    {
       "key": "osm-way-1204779092",
       "kind": "walk",
       "category": "fun",
       "icon": "walk",
       "ref": "way/1204779092",
       "line": "Muslim Cemetery, a mapped place for the game."
+    },
+    {
+      "key": "osm-node-4547647295",
+      "kind": "walk",
+      "category": "fun",
+      "icon": "walk",
+      "ref": "node/4547647295",
+      "line": "Twiss Memorial, a mapped place for the game."
     },
     {
       "key": "osm-way-198316207",

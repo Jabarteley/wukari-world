@@ -7,7 +7,7 @@
     "stateId": "cc",
     "stateName": "West Island"
   },
-  "inventorySha256": "60cb70c689cea94e04fa52a70c00a9634c03c909d22542a01f28448fa8261cf0",
+  "inventorySha256": "2835d895affc011a78190408b0f431ff54d7b4b55e5902e15a27427a21056036",
   "inventoryPath": "world/playable-africa-rollout/sources/west-island.json",
   "admission": {
     "registered": true,
@@ -22,10 +22,10 @@
     "sourceUrl": "https://ourairports.com/airports/YPCC/"
   },
   "bounds": [
-    -12.37072878993398,
-    96.64651578619483,
-    -12.008967010066021,
-    97.01438141380517
+    -12.298376433960387,
+    96.72011938112345,
+    -12.081319366039613,
+    96.94077781887654
   ],
   "sources": {
     "geometryInput": {
@@ -38,27 +38,27 @@
       "extracts": [
         {
           "file": "places.json",
-          "sha256": "ee1e2dc268a3948f9f9f9939e72f5224b4350320b5518565d7b61690e100741a",
+          "sha256": "ac86c417435baa77abaf1fda96f53c5045dce401e3611c88cacabd94d3ce2f77",
           "elements": 35
         },
         {
           "file": "extras.json",
-          "sha256": "1973118a6198565782259a4602b6a4b436e6aa7c5d67d7feb39c5077c9ff9938",
+          "sha256": "dbda87b9774eb36253650381dd2ff66512994086ce1ac2e7aa57ea182503a0ee",
           "elements": 1
         },
         {
           "file": "water.json",
-          "sha256": "414b8b8c0c66e8ed51b0f74a181e498aeab36fdbd8d962a76884cf33b11c2383",
+          "sha256": "eeac6df68748399e025d59906b28dd69b88c47d6292bd31ff89d49b303e8b1cc",
           "elements": 94
         },
         {
           "file": "landuse.json",
-          "sha256": "4f7d706d29b6a977962690c8c63df7ec6e2ad8a7754d1bf1bf2b05d59b2fa01a",
+          "sha256": "4d075b5add1aa8d5d76cd1c421f963c23be6734d143c10fc15031b70c9e9ed15",
           "elements": 9
         },
         {
           "file": "roads.json",
-          "sha256": "54bb2bc24d9a3ddcca5bfcf11af33f62a7e11f657c083ae7b0269bc3e6d0dd13",
+          "sha256": "f940c58b42adf98ac8cde9bd6d0cb8e81cc1ba2f75cf84053ae6eb5db1561cfb",
           "elements": 189
         }
       ]
@@ -66,11 +66,11 @@
   },
   "kept": {
     "places": 7,
-    "roads": 7,
+    "roads": 6,
     "neighbourhoodLabels": 2,
-    "landPolygons": 4,
-    "waterPolygons": 3,
-    "reachWaterPolygons": 3
+    "landPolygons": 3,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 1
   },
   "selection": {
     "profile": "outpost",
@@ -137,12 +137,12 @@
   },
   "assets": {
     "facts.ts": {
-      "bytes": 1559,
-      "sha256": "ef1fd555596779709ae553e0142d0367722b09f07e42e45dce097e3b1e7b6dcf"
+      "bytes": 1560,
+      "sha256": "a6415fa41350a3e08dbbf8a08bf78df0b50a321c3bb11cd9209151668b2b6441"
     },
     "geometry.ts": {
-      "bytes": 128478,
-      "sha256": "44c15304525e46fa87325ea807cddf959b39a1a295707feb22f8126f35869f60"
+      "bytes": 121297,
+      "sha256": "286a096e1f5f4d101e8edcd1a93f81b3b6933903d6681a91d60cb4df8997c96f"
     },
     "index.ts": {
       "bytes": 262,

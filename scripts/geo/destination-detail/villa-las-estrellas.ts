@@ -21,16 +21,16 @@ export const CONFIG = {
   "source": "OpenStreetMap contributors via Geofabrik PBF",
   "name": "Villa Las Estrellas",
   "box": [
-    -62.38130678993398,
-    -59.35291859748897,
-    -62.01954501006602,
-    -58.57781940251103
+    -62.290866344966986,
+    -59.158561186040636,
+    -62.10998545503301,
+    -58.63624968743183
   ],
   "core": [
-    -62.24564612248349,
-    -59.06182018568934,
-    -62.155205677516506,
-    -58.86891781431066
+    -62.236602077986795,
+    -59.042506810865,
+    -62.1642497220132,
+    -58.888231189135006
   ],
   "places": [
     {
@@ -58,28 +58,28 @@ export const CONFIG = {
       "line": "Chapel of Saint Mary Queen of Peace, a mapped place for the game."
     },
     {
-      "key": "osm-node-2011467410",
+      "key": "osm-node-9013260590",
       "kind": "walk",
       "category": "fun",
       "icon": "walk",
-      "ref": "node/2011467410",
-      "line": "Carlini Base, a mapped place for the game."
+      "ref": "node/9013260590",
+      "line": "Great Wall Station, a mapped place for the game."
     },
     {
-      "key": "osm-node-2011467454",
+      "key": "osm-node-5316835183",
       "kind": "walk",
       "category": "fun",
       "icon": "walk",
-      "ref": "node/2011467454",
-      "line": "King Sejong Station, a mapped place for the game."
+      "ref": "node/5316835183",
+      "line": "Professor Julio Escudero Base, a mapped place for the game."
     },
     {
-      "key": "osm-node-5314158621",
+      "key": "osm-node-10684180473",
       "kind": "walk",
       "category": "fun",
       "icon": "walk",
-      "ref": "node/5314158621",
-      "line": "Collins Base, a mapped place for the game."
+      "ref": "node/10684180473",
+      "line": "President Eduardo Frei Montalva Base, a mapped place for the game."
     },
     {
       "key": "osm-way-749856717",

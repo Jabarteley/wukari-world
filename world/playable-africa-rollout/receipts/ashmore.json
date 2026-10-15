@@ -7,7 +7,7 @@
     "stateId": "xa",
     "stateName": "East Island"
   },
-  "inventorySha256": "74b6676da69058f7854115f9ea68374ded97bf1d001eda400aea3b2d925a8507",
+  "inventorySha256": "d24a43706fed9e59994001ecf2871b467bdba6f13ae16b693ce060b8ad3e2f16",
   "inventoryPath": "world/playable-africa-rollout/sources/ashmore.json",
   "admission": {
     "registered": true,
@@ -22,10 +22,10 @@
     "sourceUrl": "https://www.openstreetmap.org/node/1717848188"
   },
   "bounds": [
-    -12.396595267450484,
-    122.95769081486266,
-    -12.125273932549517,
-    123.23361738513735
+    -12.315198866980195,
+    122.94848815470866,
+    -12.206670333019806,
+    123.15082224301472
   ],
   "sources": {
     "geometryInput": {
@@ -38,27 +38,27 @@
       "extracts": [
         {
           "file": "places.json",
-          "sha256": "d98a83b6d341a601fdd56049135958e5398cebfd15ac57d066bf6fd2d2c7749c",
+          "sha256": "afa5a720310f17b4f9f2ac106fc8f84cfd6b79aee5f99064e0cd0567b93ec070",
           "elements": 4
         },
         {
           "file": "extras.json",
-          "sha256": "36b32b26b304bab74ca0a49fa8ff4aaf150ad0508c3a482291d6519885bd5046",
+          "sha256": "9b150e1c76d3e35480a0969a92ffd8100ad72ba2625a68d70e07847d2875316a",
           "elements": 0
         },
         {
           "file": "water.json",
-          "sha256": "5cbe209ba3ae311fd02af4e7f4e2fd17b6f306fa12c6c0886b1891174211b5da",
+          "sha256": "8e3445e89721847adeace8a15ad7d3ef00235ef8dae06cd0c699b414a4fb3311",
           "elements": 7
         },
         {
           "file": "landuse.json",
-          "sha256": "49b53779d32be6ca94ab4af4909cff09f7c867c7fc7668d3eff385841827a7dc",
+          "sha256": "e45a4201d735a908ced23b42a2cc1268fcc3d63f876439f6c95be3810f490bca",
           "elements": 0
         },
         {
           "file": "roads.json",
-          "sha256": "fd6331a5c1f8d71934ea3e58776c8509c6db31ec1e96e74bc735d999213d1cb1",
+          "sha256": "c8ec1991af2eee2cc3280cdf0d422602fcc7dd571a176c49ce5b5aa0aa25fbd0",
           "elements": 0
         }
       ]
@@ -163,11 +163,11 @@
   "assets": {
     "facts.ts": {
       "bytes": 1610,
-      "sha256": "45050f4c911affb6ff0e2cc1692168fad2ad6571904a981f203c53e6e40819a7"
+      "sha256": "600add21c8304625197ef34386b55d0b9afc86e426451608d090f36f0d2cb83e"
     },
     "geometry.ts": {
-      "bytes": 3176,
-      "sha256": "76434b27ddff44585153249e8c128027798296e21f6bc52ed3ee3424e9bd906d"
+      "bytes": 3177,
+      "sha256": "3258904b5879e0c06c22ea0c960992f5ab7253a3bb2f285518d366e471639fd3"
     },
     "index.ts": {
       "bytes": 258,

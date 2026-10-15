@@ -1,0 +1,180 @@
+{
+  "achievements": {
+    "displayed": null,
+    "earned": {},
+    "pinned": [],
+    "progress": {},
+    "trackingSince": 1792077426074,
+    "version": 1
+  },
+  "activeAction": null,
+  "cash": 76000,
+  "episodes": {
+    "mementos": {},
+    "runs": {},
+    "trackingSince": 1792077426074,
+    "version": 1
+  },
+  "estate": {
+    "away": {},
+    "city": "tokyo",
+    "ground": {
+      "arrears": 0,
+      "week": null
+    },
+    "home": "tokyo",
+    "homeAt": null,
+    "lga": "centre",
+    "lgaAt": 1792077427893,
+    "lgaConfirmed": true,
+    "lgaVia": "manual",
+    "living": "own",
+    "nudged": false,
+    "old": null,
+    "plot": {
+      "estate": 0,
+      "lga": "centre",
+      "plot": 0
+    },
+    "style": {
+      "door": 0,
+      "fence": 0,
+      "roof": 0,
+      "shape": 0,
+      "sign": 0,
+      "wall": 0,
+      "windows": 0,
+      "yard": 0
+    },
+    "tier": "starter",
+    "upgrade": null
+  },
+  "goals": {
+    "besties": [],
+    "chain": 0,
+    "cv": 2,
+    "dream": "oga-at-the-top",
+    "dreamDone": false,
+    "feed": [],
+    "granted": 0,
+    "perks": [],
+    "rerolls": {
+      "day": 0,
+      "used": 0
+    },
+    "seen": [
+      "settle-in"
+    ],
+    "seq": 0,
+    "stars": 0,
+    "started": true,
+    "stats": {
+      "assets": 0,
+      "best": 0,
+      "cchub": false,
+      "debt": 72000,
+      "friends": 0,
+      "funded": false,
+      "level": 0,
+      "levelCap": 0
+    },
+    "wishes": [
+      {
+        "day": 20741,
+        "id": "earn-15k",
+        "n": 0
+      },
+      {
+        "day": 20741,
+        "id": "park-art",
+        "n": 0
+      },
+      {
+        "day": 20741,
+        "id": "work-shift",
+        "n": 0
+      }
+    ]
+  },
+  "homeOwned": false,
+  "location": "home",
+  "missions": {
+    "active": {
+      "days": 0,
+      "last": null
+    },
+    "claimed": 0,
+    "daily": [
+      {
+        "claimed": false,
+        "id": "d-fun",
+        "marks": [],
+        "n": 0
+      },
+      {
+        "claimed": false,
+        "id": "d-local-tokyo-tale-discovery",
+        "marks": [],
+        "n": 0
+      },
+      {
+        "claimed": false,
+        "id": "d-local-tokyo-tale-social",
+        "marks": [],
+        "n": 0
+      }
+    ],
+    "day": 20741,
+    "grants": [],
+    "paidDay": 0,
+    "pending": [],
+    "pendingSets": [],
+    "rerolls": 0,
+    "seed": 3493799400,
+    "sets": {
+      "day": 0,
+      "week": 0
+    },
+    "stamps": {
+      "days": 0,
+      "paid": false,
+      "week": 2963
+    },
+    "titles": [],
+    "visited": {
+      "list": [],
+      "week": 2963
+    },
+    "week": 2963,
+    "weekly": [
+      {
+        "claimed": false,
+        "id": "w-local-tokyo-tale-life",
+        "marks": [],
+        "n": 0
+      },
+      {
+        "claimed": false,
+        "id": "w-local-tokyo-tale-discovery",
+        "marks": [],
+        "n": 0
+      },
+      {
+        "claimed": false,
+        "id": "w-local-tokyo-tale-social",
+        "marks": [],
+        "n": 0
+      }
+    ]
+  },
+  "name": "Zz Test Phase6 Tokyo",
+  "projects": {
+    "mementos": {},
+    "proofs": {},
+    "trackingSince": 1792077426074,
+    "version": 2
+  },
+  "publicId": "bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56",
+  "rev": 1792077479424,
+  "serverTime": 1792077479424
+}

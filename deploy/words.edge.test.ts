@@ -243,6 +243,7 @@ test('the Worker script starts under Miniflare with the list inside it', async (
     name: 'joinallworld-words', script: await readFile(files.real, 'utf8'), modules: true, compatibilityDate: '2026-10-01',
     durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } }, durableObjectsPersist: join(folder, 'storage'),
     bindings: { ...layoutBindings(), BUILD_ID: 'local-words', FOUNDER_EMAIL_SHA256: '' },
+    assets: { directory: here('../dist'), binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } },
   };
   const miniflare = new Miniflare(convertV4MiniflareOptions(options));
   t.after(() => miniflare.dispose());

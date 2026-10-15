@@ -6,9 +6,9 @@
 - **Owner:** `/root/view_ui` progression asset worker
 - **Model / effort:** GPT-6.1 Sol / high
 - **Thread:** `/root/view_ui`
-- **UTC updated:** `2026-10-15T13:56:30Z`
-- **Status:** `review-accepted`
-- **Work state:** `source and local parity accepted; hosted Linux Node 24.21 generator replay pending`
+- **UTC updated:** `2026-10-15T14:26:20Z`
+- **Status:** `review-ready`
+- **Work state:** `Astra-approved progression asset fixture correction passes all four focused edge files`
 
 ## Goal and boundaries
 
@@ -17,6 +17,7 @@
 - **Out of scope:** content authoring, `src/game/content/local-tales/batch-*.ts`, gameplay changes, campus behavior changes, budget increases, new test files, browser work, Git publication and deployment.
 - **Current bounded correction:** expose the home smart-object's rendered player pose to the existing first-person context without changing navigation rest semantics, camera offsets, body masking or materials. Owned source is limited to `src/scene/home-scene.ts`, `src/scene/view-extension.ts` and `src/scene/first-person/venue-context.ts`.
 - **Current CI repair:** replace runtime-derived decorative-tree floats in the compact navigation payload with exact occupied grid-cell indices using the existing tree collision rules and shared fixed grid constants. Owned paths are limited to the campus navigation data/source/generated/runtime and generator plus this record. Visual trees, map geometry, navigation behavior and budgets remain unchanged.
+- **Current Worker fixture repair:** preserve the mandatory progression startup barrier and exact hash validation by giving four existing Miniflare fixtures the generated progression assets they now require. Owned paths are limited to `deploy/admin-host.edge.test.ts`, `deploy/admin.edge.test.ts`, `deploy/notice.edge.test.ts`, `deploy/words.edge.test.ts` and this record. Runtime/provider code, assertions and the other five broad-Worker failures are out of scope.
 - **Exclusive file ownership:** this record; proposed provider/build/runtime files after parent approves the finite contract. The retention owner keeps authored local-tale batches and final release/deployment ownership.
 - **Input contract:** candidate branch `codex/first-person-release-20261015` at `a9141b12085f631b256e3088ab0753f121f576aa`; Worker gate is 5,110,078 bytes against an unchanged strict 3,500,000-byte limit.
 - **Output contract:** source and generated manifest/assets that keep the Worker graph free of full authored tales/seeds, install one complete validated snapshot before Worker restore/startup/alarms, and retain all existing IDs, versions, order and save behavior.
@@ -28,8 +29,8 @@
 - **Host:** local Codex worktree
 - **Branch / worktree:** `codex/first-person-release-20261015`
 - **Base:** `a9141b12085f631b256e3088ab0753f121f576aa`
-- **Current commit:** `8061dc2caf871d9874ab1fd39d5e09b625e890d8`
-- **Dirty status:** only this record and the parent-owned first-person release record are dirty. The accepted presentation-pose correction is committed and pushed.
+- **Current commit:** `f1d0a7d2790f9785c33a7867756aba1f6f078a47`
+- **Dirty status:** parent-owned `docs/agent-work/first-person-release-20261015.md` was already dirty before this fixture correction; preserve it. This record is the only owned dirty file before the fixture edits.
 - **Port/process ownership:** none
 
 ## Progress
@@ -40,6 +41,8 @@
 - Mapped the Worker import paths through `systems/index.ts`, episode/mission/journey catalogues and the retention route.
 - Confirmed the existing immutable city asset pattern provides bounded byte/hash/UTF-8/JSON/envelope validation and retryable failed reads.
 - Confirmed the Worker startup barrier currently waits `context.startup` before socket restore, expiry storage transaction and alarm scheduling.
+- Traced four hosted Worker 500s to Miniflare fixtures that did not serve the newly mandatory generated progression assets. Three fixtures now bind the existing full `dist`; the bespoke admin-host fixture copies only `dist/assets/progression`, preserving its hand-built pages and route assertions. Runtime/provider code, the startup barrier and hash validation are unchanged.
+- Focused serial edge command passed 9/9 in 7.07 seconds: `node --experimental-strip-types --test --test-concurrency=1 deploy/admin-host.edge.test.ts deploy/admin.edge.test.ts deploy/notice.edge.test.ts deploy/words.edge.test.ts`. Log: `/tmp/allworld-worker-progression-fixtures.log`. `git diff --check` passes the four fixtures and this record.
 - Ownership agreed with the retention lane: this lane owns provider/package/build/startup work; the retention lane retains authored batches and final deployment.
 - Captured the exact pre-mutation progression snapshot: 10,886,582 bytes, SHA-256 `dda3cd76196e3a20d542a00b821c7d284cf1d740119b55b0cc847795bbfa4520`; 1,138 episodes, 1,055 journeys, 284 accepted cities, 243 accepted countries and 3,428 mission definitions.
 - Moved authored progression construction behind the Node/browser source provider and preserved the original episode, journey and accepted-ID public paths as synchronous provider facades. Direct facade import verifies 1,138 episodes, 1,055 journeys and hostel/memento lookups without systems initialization.
@@ -92,3 +95,4 @@
 | 2026-10-15T13:41:40Z | review-accepted | The home scene now reports the smart-object presentation pose separately from navigation rest state, and first-person interpretation prefers it. Astra accepted the exact three-file diff. | existing controller/context tests 7/7; `git diff --check` | Freeze source; parent builds and Astra replays Stay in Bed in the served browser. |
 | 2026-10-15T13:43:40Z | browser-replay-pending | Fresh build and targeted startup/shared-host gates pass for the accepted pose correction; source is committed and pushed. | `8061dc2c`; startup 608,139 / 220,420 / 193,436; scene host 186,322 / 70,426 | Astra performs the final served Stay in Bed replay; parent/retention lane owns combined gates. |
 | 2026-10-15T13:56:30Z | review-accepted | Compact navigation stores exact occupied tree-cell indices derived by the unchanged collision rules and shared grid constants. Astra accepted the source; complete normal and extra-footprint navigation snapshots remain byte-identical. | normal SHA `df98a168…`; extra SHA `b899516e…`; walk/shuttle 11/11; Worker 3,382,393 bytes; generator check pass | Commit the four campus files and this record, then rerun hosted Linux Node 24.21 CI as the final determinism gate. |
+| 2026-10-15T14:26:20Z | review-ready | Four existing Miniflare fixtures now serve the exact generated progression assets required by the mandatory Worker startup barrier; no runtime fallback or validation change. | focused edge files 9/9; 7.07s; `/tmp/allworld-worker-progression-fixtures.log`; diff check clean | Astra reviews the exact fixture diff, then parent integrates it into the combined release candidate. |

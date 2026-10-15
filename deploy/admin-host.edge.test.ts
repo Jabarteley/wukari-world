@@ -2,7 +2,7 @@
 // build's second entry, read from the assets binding; the game's own address does not serve it, and the admin address serves nothing of the game.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, rm, readFile, writeFile } from 'node:fs/promises';
+import { cp, mkdtemp, mkdir, rm, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { createRequire } from 'node:module';
@@ -18,6 +18,7 @@ test('on the Worker the admin address serves the admin page and a few routes, an
   const folder = await mkdtemp(join(tmpdir(), 'joinallworld-adminhost-'));
   const dist = join(folder, 'dist');
   await mkdir(join(dist, 'assets'), { recursive: true });
+  await cp(new URL('../dist/assets/progression', import.meta.url), join(dist, 'assets', 'progression'), { recursive: true });
   await writeFile(join(dist, 'index.html'), '<!doctype html><title>The game</title><div id="app"></div>');
   await writeFile(join(dist, 'adminshell.html'), '<!doctype html><title>Allworld staff</title><div id="app"></div><script type="module" src="/assets/adminshell-test.js"></script>');
   await writeFile(join(dist, 'assets', 'adminshell-test.js'), 'export {}');

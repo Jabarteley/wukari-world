@@ -7,6 +7,7 @@ const settle = () => new Promise<void>(resolve => setImmediate(resolve));
 async function fixture() {
   const kit = createKit(), { THREE } = kit, group = new THREE.Group(), fallback = new THREE.Group();
   group.add(fallback);
+  let contacts = 0, changes = 0;
   let calls = 0, released = 0, failing = false, alive = true, hero = 0, crowd = 0, readmits = 0;
   let defer: ((root: InstanceType<typeof THREE.Group>) => void) | null = null;
   let deferred = false;
@@ -32,12 +33,13 @@ async function fixture() {
       navigation: { entrance: [0, 0, 0], anchors: [], collision: [], walkable: [[-1, -1, 1, 1]] },
     },
     bounds: [-1, -1, 1, 1], fallback: [fallback], heights: [0],
-    index: () => Object.assign(() => null, { retainedTriangles: 0, cellEntries: 0, broadTriangles: 0 }), fallbackContact: () => null, contact: () => {}, changed: () => {},
+    index: () => Object.assign(() => null, { retainedTriangles: 0, cellEntries: 0, broadTriangles: 0 }), fallbackContact: () => null, contact: () => { contacts++; }, changed: () => { changes++; },
   }))!;
   return { host, group, fallback, readPlacement: () => host.placement, setFail: (v: boolean) => { failing = v; },
     setActors: (h: number, c: number) => { hero = h; crowd = c; },
     defer: () => { deferred = true; }, finish: () => { deferred = false; defer!(root()); },
-    state: () => ({ calls, released, crowd, readmits }),
+    state: () => ({ calls, released, crowd, readmits, contacts, changes }),
+    invalidate: () => { alive = false; },
     dispose: () => { alive = false; host.dispose(); kit.dispose(); },
   };
 }
@@ -89,4 +91,25 @@ test('stale tier completion and disposal cannot poison the new selection or reta
   assert.equal(f.readPlacement(), null); assert.equal(f.state().released, 3);
   for (let i = 0; i < 100; i++) f.host.guard(); await settle();
   assert.equal(f.state().calls, 3);
+});
+
+
+test('scene teardown cannot rebuild contact or ambient state through disposal callbacks', async t => {
+  const f = await fixture(); t.after(f.dispose);
+  f.host.selectAt(0, 0); await settle();
+  const { contacts, changes } = f.state();
+  assert.equal(contacts, 1); assert.equal(changes, 1);
+  f.invalidate(); f.host.dispose();
+  assert.equal(f.state().contacts, contacts);
+  assert.equal(f.state().changes, changes);
+  assert.equal(f.state().released, 1);
+  assert.equal(f.readPlacement(), null);
+});
+
+test('late parsing after scene teardown releases resources without host callbacks', async t => {
+  const f = await fixture(); t.after(f.dispose); f.defer();
+  f.host.selectAt(0, 0); await settle();
+  f.invalidate(); f.host.dispose(); f.finish(); await settle();
+  assert.equal(f.state().contacts, 0); assert.equal(f.state().changes, 0);
+  assert.equal(f.state().released, 1); assert.equal(f.readPlacement(), null);
 });

@@ -74,3 +74,9 @@ Source frozen and root notified. No running process and no commit by this lane. 
 ## Test type narrowing correction
 
 Root's supported full typecheck identified TS2339 in the recovery test: asserting the mutable placement getter equals null caused TypeScript to retain that narrowing across later guard calls. Added a fixture readPlacement() snapshot function and used it for assertions; no runtime source changed and no casts suppress the diagnostic. Focused host/module/contact tests pass17/17 again (`/tmp/nigeria-runtime-recovery-types-fix.tap`). Root reruns the supported typecheck project; browser source freeze remains intact.
+
+## Runtime teardown callback isolation
+
+Actual ambient Lagos acceptance retained5 GPU textures; ordinary ambient park comparison reached0/0. Read-only source trace found runtime-module drop calls changed(null) synchronously during runtime-host.dispose after venue-scene generation invalidation. That stale callback called ambient.rebudget/onAmbient and could render the scene while host teardown was in progress. A direct real-module Node probe reproduced one stale host callback during disposal. Root owns the independent renderScene gone guard.
+
+After root released browser freeze, added an early current() guard to the runtime placement callback. Disposed or superseded hosts now do no contact, fallback or ambient notification work. Added tests for loaded-scene disposal and pending parse completed after disposal; both require zero stale contact/changed callbacks and verify geometry release. Focused host/module/contact tests pass19/19 (`/tmp/nigeria-runtime-teardown.tap`). Source ready/frozen again for GPU audit; this establishes callback isolation, not yet an actual GPU leak fix certificate. No commit yet.

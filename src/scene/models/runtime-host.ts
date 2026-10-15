@@ -33,6 +33,7 @@ async function startRuntimeHost(kit: Kit, group: THREE.Group, options: {
     retryAt[tier] = Date.now() + 1000 * 4 ** failures[tier]++;
   }
   const owner = createRuntimeModule(kit, group, { open: options.open, changed(placement) {
+    if (!current()) return;
     if (placement) {
       const spent = options.cost(true), budget = options.budget();
       if (spent.triangles + placement.triangles > budget.triangles || spent.drawCalls + placement.drawCalls > budget.drawCalls) throw new Error('Runtime scenery exceeds whole venue budget');

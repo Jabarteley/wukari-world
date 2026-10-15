@@ -7,6 +7,8 @@ import type { EventsView } from '../../../types/view.ts'
 import { money } from '../../ui/format.ts'
 import BaseButton from '../../ui/BaseButton.vue'
 import { presenceNote, sprayReason, whenLine } from './eventsLines.ts'
+import { homePin } from '../gist/homePinStore.ts'
+import { homeTimes } from '../gist/homePinModel.ts'
 
 const props = defineProps<{
   event: CalendarOccurrence
@@ -24,6 +26,8 @@ const props = defineProps<{
   spraying: number | null
 }>()
 const emit = defineEmits<{ go: []; calendar: []; share: []; spray: [amount: number] }>()
+// With a home city pinned: the same time on this device's clock and on the home city's (the line above is Nigerian time).
+const homeLine = computed(() => homeTimes(props.event.start, props.event.end, homePin.value))
 const note = computed(() => presenceNote(props.attended, props.event.live, props.here))
 </script>
 
@@ -31,6 +35,7 @@ const note = computed(() => presenceNote(props.attended, props.event.live, props
   <article class="gr-card">
     <h3>{{ event.title }}<span v-if="event.live" class="gr-live">On now</span></h3>
     <p class="gr-when">{{ whenLine(event, now) }}</p>
+    <p v-if="homeLine" class="gr-when" data-events="home-times">{{ homeLine }}</p>
     <p>{{ event.blurb }}<template v-if="note"> <b>{{ note }}</b></template></p>
     <div v-if="spray" class="gr-spray" role="group" aria-label="Spray at this event">
       Spray:

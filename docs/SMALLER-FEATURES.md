@@ -41,3 +41,15 @@ the whole pack is under 3 KB and its component is fetched when the tab is first 
 `src/app/features/messages/stickerData.ts`, `StickerPack.vue`, `EmojiPicker.vue`, `Composer.vue` (`sendSticker`).
 Reactions already take any emoji (`QUICK_REACTIONS`); stickers are messages, not reactions. A pack that also works in a phone's
 messaging app, and a marketplace for creators, are not built.
+
+## Home-city pin (#16)
+
+A player abroad picks the city they come from in the Gist app and sees a small card: its weather now and its last three gist lines.
+In the Events app every event then also shows its time on the player's own clock and on the home city's clock (the first line stays
+Nigerian time, as before). Code: `src/app/features/gist/HomePin.vue`, `homePinModel.ts`, `homePinStore.ts`, `EventCard.vue`,
+`src/app/features/gist/homePin.test.ts`.
+
+- It reuses the two public reads, `GET /api/world/gist?id=` and `GET /api/world/feed?id=`; the weather credit the feed asks for is
+  shown on the card. It does not touch the weather of the city the player is in.
+- The pin is kept on the device only (`allworld.homepin` in localStorage): where someone calls home is not sent to the server. The
+  city's time zone is read from its rules once, when it is pinned.

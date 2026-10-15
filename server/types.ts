@@ -107,6 +107,11 @@ export interface SessionRecord {
   /** server/pulse.ts: the Lagos day (src/game/clock.ts) this player was last counted as a visit. Absent on older sessions. */
   visitDay?: number
   /**
+   * The home-city pin (docs/SMALLER-FEATURES.md #16): the city this player calls home, kept with the character so it follows an account across devices
+   * (the device keeps a cache). Optional: absent until the player pins one. Written by server/routes/stages.ts, exported and erased with the character.
+   */
+  homeCity?: { city: string; name: string; tz: string }
+  /**
    * Set only on a character that belongs to an account (server/accounts/service.ts): the account's id. Such a record
    * is filed under a key no browser holds — it is reached only through a device binding (`accountDevices`), and a
    * cookie that names its key directly is refused (protocol.ts sessionOfCookie).

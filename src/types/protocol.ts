@@ -742,6 +742,8 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/world/works',
   'GET /api/world/birthday',
   'POST /api/world/birthday',
+  'GET /api/world/home-city',
+  'POST /api/world/home-city',
   'GET /api/world/city',
   'GET /api/world/lga/:id',
   'GET /api/world/lga/:id/estates',

@@ -10,6 +10,7 @@ import HowItWorks from '../../ui/HowItWorks.vue'
 import SectionTitle from '../../ui/SectionTitle.vue'
 import type { CalendarOccurrence } from '../../../types/growth.ts'
 import EventCard from './EventCard.vue'
+import { syncHomePin } from '../gist/homePinStore.ts'
 import LinkButton from './LinkButton.vue'
 import { upcomingEvents } from './rulesBoundary.ts'
 import { eventIcs } from '../../../game/calendar-export.ts'
@@ -35,7 +36,8 @@ const later = computed(() => events.value.filter((event) => !event.live))
 const rules = ['Events happen at a place and a time, on Nigerian time. Be there and finish any activity to count as attending.', 'An event changes no price and no pay. Being there counts for missions.',
   'Events come round again: weekly ones every week, yearly ones every year. Nothing is gone for ever.', '“Add to my calendar” makes a calendar file on your phone. The game sends no reminder by itself.']
 
-onMounted(() => { void growth.load(); void loadFeed(view.value.cityId).then((found) => { feed.value = found }) })
+// The home-city pin is kept with the character: read it once, so a pin made on another device shows on the event times.
+onMounted(() => { void syncHomePin(game.fetchJson); void growth.load(); void loadFeed(view.value.cityId).then((found) => { feed.value = found }) })
 
 const hereAt = (event: CalendarOccurrence): boolean => state.value.location === event.venue && !isDeparting(state.value)
 const attended = (event: CalendarOccurrence): boolean => Boolean(view.value.events?.live?.find((item) => item.key === event.key)?.attended)

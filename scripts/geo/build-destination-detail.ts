@@ -21,7 +21,7 @@ import { loadPbfExtract } from './destination-detail/pbf-extract.ts';
 import { validateDestinationFacts } from '../../src/game/cities/africa/types.ts';
 import { toLocal } from '../../src/geo/frame.ts';
 import type { DetailConfig } from './destination-detail/config.ts';
-import { OUTLINE_MARGIN, countryPolygons, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, rasterArea, round, roundRing, shoreWater, simplifyRing } from './destination-detail/geometry-tools.ts';
+import { OUTLINE_MARGIN, countryPolygons, safePolygons, areaRings, reachFor, builtUp, keptPlacePoints, ringArea, coverage, inBox, polygonsOf, rasterArea, round, roundRing, shoreWater, simplifyRing } from './destination-detail/geometry-tools.ts';
 import type { Box, P } from './destination-detail/geometry-tools.ts';
 import { waterLabelPoint } from './destination-detail/water-label.ts';
 import { roadRows } from './destination-detail/road-rows.ts';
@@ -164,7 +164,7 @@ const useRings = landuse.elements.flatMap((element) => areaRings(element).outer)
 const anchors = [...places.map((place) => ({ at: [place.lon, place.lat] as P, metres: 450 })), ...labelled.map((label) => ({ at: label.at, metres: 900 })), { at: [FACTS.airport.lon, FACTS.airport.lat] as P, metres: 450 }];
 const roadsEarly = await recorded('roads', config.roads(bbox, `${config.core.join(',')}`));
 const roadLines = roadsEarly.elements.filter((way) => way.type === 'way' && way.geometry && way.tags?.highway).map((way) => way.geometry!.map((g): P => [g.lon, g.lat]));
-const traced = builtUp(useRings, anchors, roadLines, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore, joinMetres: config.joinMetres ?? 1500, country });
+const traced = builtUp(useRings, anchors, roadLines, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore, joinMetres: config.joinMetres ?? 1500, country, keep: keptPlacePoints(config.profile, places.map((place): P => [place.lon, place.lat])) });
 const tidy = (polygons: P[][][]): P[][][] => safePolygons(polygons, Math.min(config.outlineTolerance, 0.00015), project);
 const land = tidy(traced.land);
 // The water the map declares is what the grid holds one cell in from the water's edge (see builtUp); the drawn water, `reachWater`, keeps the mapped shape.

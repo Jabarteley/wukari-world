@@ -78,4 +78,6 @@ export interface DetailConfig {
   coreTolerance: number
   places: readonly PlacePick[]
   names: readonly NamePick[]
+  /** The factory's selection profile (standard when absent); outpost and wilderness keep a lone place's disc (see keptPlacePoints in geometry-tools.ts). */
+  profile?: string
 }

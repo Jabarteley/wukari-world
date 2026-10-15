@@ -9,6 +9,7 @@ import { BOND, DAY_MS, HOUR_MS, askText, blankBond, bondsOf, dayPasses, fit, fun
 import type { BondsDeps, BondsStored } from './bonds.ts';
 import { OUT_OF_CHARACTER } from './life.ts';
 import { agentWords } from '../moderation/agent-words.ts';
+import { gainOf, personaOf } from './persona.ts';
 
 const person = (key: string, name: string, story: string = REMI.story): Resident => ({ ...REMI, key, name, story });
 const KEMI = person('kemi', 'Kemi'), FEMI = person('femi', 'Femi'), TUNDE = person('tunde', 'Tunde', 'My name is Tunde. I am a Muslim and I like football and I have a temper that I am working on and I am stubborn.');
@@ -59,12 +60,15 @@ test('closeness grows from talks and shared days, is capped each day, decays whe
 test('talks from resident.ts and a day in the same place both grow a bond; a quarrel pauses growth', async () => {
   const r = rig();
   r.engine.talked(K, F, r.clock.t);
-  assert.equal(r.engine.stored.pairs[`${F}|${K}`.split('|').sort().join('|')]!.c, 3);
+  // A talk gives BOND.talkGain, a little more between talkative, sociable residents and a little less between quiet ones (persona.ts gainOf).
+  const gained = gainOf(personaOf(KEMI), personaOf(FEMI), BOND.talkGain);
+  assert.ok(gained >= 2 && gained <= 4);
+  assert.equal(r.engine.stored.pairs[`${F}|${K}`.split('|').sort().join('|')]!.c, gained);
   await r.beat();
   const key = [K, F].sort().join('|');
-  assert.equal(r.engine.stored.pairs[key]!.c, 4, 'the same place on the same day gives +1');
+  assert.equal(r.engine.stored.pairs[key]!.c, gained + 1, 'the same place on the same day gives +1');
   r.clock.t += 2 * 60000; await r.beat();
-  assert.equal(r.engine.stored.pairs[key]!.c, 4, 'only once a day');
+  assert.equal(r.engine.stored.pairs[key]!.c, gained + 1, 'only once a day');
   r.engine.stored.pairs[key]!.quarrel = Math.floor(r.clock.t / DAY_MS);
   assert.equal(grow(r.engine.stored.pairs[key]!, 3, Math.floor(r.clock.t / DAY_MS) + 1), 0);
 });

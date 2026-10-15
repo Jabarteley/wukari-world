@@ -62,6 +62,9 @@ import type { ActionId } from '../house/actions.ts';
 import { HOUSE_LOOKS, venueFor } from '../house/cast.ts';
 import { intentOf } from '../house/talk.ts';
 import { OUT_OF_CHARACTER, RESIDENTS, residentId } from './life.ts';
+import { PASTIMES, hourAt, lunchSkipped, outingOdds, pastimeAt, personaOf, prayersToday, ruleLine, ruleVow, talkLine, talkOdds, talkProfile, weekdayAt } from './persona.ts';
+import type { PastimeId } from './persona.ts';
+import { residentsOfCities, venueOfKind } from './world.ts';
 import { prayersOf } from '../prayers/service.ts';
 import { fateIn, prayerText } from '../prayers/model.ts';
 import type { Fate } from '../prayers/model.ts';
@@ -89,9 +92,11 @@ export const TALK_TURNS = 4, TALK_STEP_MS = 20000, PAIR_GAP_MS = 2 * 3600000, TA
 export const REPLY_TOKENS = 140, TALKERS_KEPT = 400, MAX_REPLIES = 120;
 export const SAVE_MS = 30000, ENTRY_DAYS = 2;
 export const COUNT_MAX = 30, CENTS_DEFAULT = 100, CENTS_MAX = 190;
+/** Residents everywhere: how many are stepped per beat (round-robin), the model's share of the day (deep thoughts), rule prayers for all together, and the most rule-driven talks at once. */
+export const STEP_MAX = 48, DEEP_DEFAULT = 240, DEEP_MAX = 2000, DEEP_PER_BEAT = 2, DEEP_BURST = 4, RULE_PRAYERS_PER_DAY = 40, RULE_EXCHANGES = 60, SHARDS = 16, DAYS_KEPT_RULE = 2, RULE_TALKS_KEPT = 60, OUTING_SLOT_MIN = 45;
 const CENSUS_MS = 30000, PRESENCE_MS = 12 * 60000, RENEW_MS = 6 * 60000, CHOICE_MS = 60 * 60000;
 /** `on`: whether she lives when the owner has not chosen; on the real hosts (the ones that ask the outside world, ctx.worldFeed) she does, in shadow. */
-export const DEFAULTS = Object.freeze({ on: false, shadow: true, count: 1, cents: CENTS_DEFAULT });
+export const DEFAULTS = Object.freeze({ on: false, shadow: false, count: 1, cents: CENTS_DEFAULT, perCity: 3, deep: DEEP_DEFAULT });
 
 export interface Entry {
   at: number; reason: Wake
@@ -120,6 +125,8 @@ export interface DayRecord {
   talks?: number; talkLines?: number; talkRetries?: number; talkSlips?: number; talkCostMicro?: number; talkLog?: TalkRecord[]
   /** 13b: replies to people (shadow off): how many, retries, slips, cost. */
   replies?: number; replyRetries?: number; replySlips?: number; replyCostMicro?: number
+  /** Residents everywhere, all optional: rule steps, outings, written lines said, rule-driven talks, and whether a person was where it stood (visible only). */
+  steps?: number; outings?: number; said?: number; ruleTalks?: number; met?: boolean
 }
 export interface Life {
   born: number; model: string | null; days: Record<string, DayRecord>; memory: string[]
@@ -225,19 +232,57 @@ export interface ResidentDeps {
 }
 
 export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
-  const roster = deps.residents ?? RESIDENTS;
   const ask = deps.ask ?? ((input: AskInput): Promise<AskResult> => routerOf(ctx).ask(input));
   const modelList = deps.models ?? ((): string[] => { try { return routerOf(ctx).listFor('resident').map(entryKey); } catch { return []; } });
   const setting = (key: string): boolean | number | string | undefined => ctx.checks?.setting?.(key) ?? ctx.checks?.text?.(key);
   const num = (key: string, least: number, most: number, fallback: number): number => { const value = setting(key); return typeof value === 'number' && Number.isFinite(value) ? Math.max(least, Math.min(most, Math.round(value))) : fallback; };
-  const settings = () => ({ on: setting('residentOn') === true, shadow: setting('residentShadow') !== false, count: num('residentCount', 1, COUNT_MAX, DEFAULTS.count), cents: num('residentDailyCents', 0, CENTS_MAX, DEFAULTS.cents) });
+  /** `residentCount` is retired (old saved values are read and ignored: residents live in every open city); `residentsPerCity` says how many. */
+  const settings = () => { const shadow = setting('residentShadow'); return { on: setting('residentOn') === true, shadow: typeof shadow === 'boolean' ? shadow : DEFAULTS.shadow, perCity: num('residentsPerCity', 0, 5, DEFAULTS.perCity), cents: num('residentDailyCents', 0, CENTS_MAX, DEFAULTS.cents), deep: num('residentDeepPerDay', 0, DEEP_MAX, DEFAULTS.deep) }; };
+  /** WHO LIVES WHERE. With a roster given (tests) exactly that one; else `perCity` residents in each open city of the host (authored first, then generated), rebuilt when the setting or the city list changes. */
+  const fixed = deps.residents;
+  let built: readonly Resident[] = fixed ?? [], builtFor = '', byId = new Map<string, Resident>(), cursor = 0;
+  function rosterNow(): readonly Resident[] {
+    if (fixed) { if (!byId.size && fixed.length) byId = new Map(fixed.map((who) => [residentId(who), who])); return fixed; }
+    const cities = ctx.cityIds ?? [], key = `${settings().perCity}|${cities.length}|${cities[0] ?? ''}`;
+    if (key !== builtFor) {
+      built = residentsOfCities(cities, settings().perCity); builtFor = key; byId = new Map(built.map((who) => [residentId(who), who])); cursor = 0;
+      // Whoever no longer lives here (the setting went down) is put away at once.
+      for (const state of live.values()) if (!byId.has(state.id) && state.asleep !== null) beat(state, ctx.now(), false, true);
+    }
+    return built;
+  }
+  const whoIs = (id: string | undefined): Resident | undefined => { const list = rosterNow(); return id ? byId.get(id) : list[0]; };
   const room = () => ctx.checks?.agentRoom;
   let stored: Stored = { v: 1, residents: {} };
   let loaded: Promise<void> | null = null;
+  /** Stored in SHARDS small collections (`residents` is the old single one, read once and emptied), by a hash of the resident's id, and only the shards whose text changed are written. */
+  const shardOf = (id: string): number => hash(id) % SHARDS;
+  const shardName = (n: number): string => `residentsS${n.toString(16)}`;
+  const shardText: string[] = new Array(SHARDS).fill('');
+  let legacyLeft = false;
+  const load = deps.load ?? ((): Promise<Stored | undefined> => ctx.store.read((db) => {
+    const all = db as Record<string, unknown>, merged: Stored = { v: 1, residents: {} };
+    const take = (col: unknown): boolean => { if (!col || typeof col !== 'object' || typeof (col as Stored).residents !== 'object' || (col as Stored).residents === null) return false; Object.assign(merged.residents, structuredClone((col as Stored).residents)); return true; };
+    legacyLeft = take(all['residents']) && Object.keys((all['residents'] as Stored).residents).length > 0;
+    let found = legacyLeft;
+    for (let n = 0; n < SHARDS; n++) found = take(all[shardName(n)]) || found;
+    return found ? merged : undefined;
+  }));
+  const save = deps.save ?? (async (value: Stored): Promise<void> => {
+    const parts: Stored[] = Array.from({ length: SHARDS }, () => ({ v: 1, residents: {} }));
+    for (const [id, life] of Object.entries(value.residents)) parts[shardOf(id)]!.residents[id] = life;
+    const texts = parts.map((part) => JSON.stringify(part)), changed = texts.map((text, n) => text !== shardText[n]);
+    if (!changed.some(Boolean) && !legacyLeft) return;
+    await ctx.store.transact((db) => {
+      texts.forEach((text, n) => { if (changed[n]) Object.assign(ctx.collection(db, shardName(n), { v: 1, residents: {} }), structuredClone(parts[n]!)); });
+      if (legacyLeft) { const old = (db as Record<string, unknown>)['residents']; if (old && typeof old === 'object') (old as Stored).residents = {}; }
+    }, { durable: false });
+    texts.forEach((text, n) => { shardText[n] = text; });
+    legacyLeft = false;
+  });
+  const rulesPray = (): boolean => setting('residentRulePrayers') !== false;
   const pray = deps.pray ?? ((prayer: { id: string; name: string; city: string; text: string; situation: string }): Promise<void> => ctx.store.transact((db) => { prayersOf(ctx).residentPrays(db, prayer); }));
   const fateRead = deps.fate ?? ((id: string): Promise<Fate | null> => ctx.store.read((db) => fateIn(db, id)));
-  const load = deps.load ?? ((): Promise<Stored | undefined> => ctx.store.read((db) => { const col = (db as Record<string, unknown>)['residents']; return col && typeof col === 'object' ? structuredClone(col) as Stored : undefined; }));
-  const save = deps.save ?? ((value: Stored): Promise<void> => ctx.store.transact((db) => { Object.assign(ctx.collection(db, 'residents', { v: 1, residents: {} }), structuredClone(value)); }, { durable: false }));
   const collect = deps.collect ?? ((idea: IdeaIn): Promise<unknown> => voiceService(ctx).collect(idea));
   const founders = deps.founders ?? ((): Promise<string[]> => ctx.store.read((db) => newsFromFounders(db, ctx.now())));
   let isReady = false;
@@ -282,8 +327,21 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     summarising: boolean
     /** Where it stands now (a venue room key; in shadow only in its own record), whether it is in an exchange, when the last one ended, its own latest lines. */
     where: string | null; talking: boolean; lastTalk: number; recent: string[]; replying: boolean
+    /** An outing it chose by its personality (persona.ts), the slot it last decided in, the rooms of its work resolved in its city's own venues (generated residents), and a line waiting to be said. */
+    outing: { room: string; doing: string; until: number; pastime: PastimeId } | null; slot: string
+    rooms: { post: string | null; market: string | null; eatery: string | null; tried: number }
+    say: string | null; announced: string
   }
   const live = new Map<string, Live>();
+  /** Awake residents by the room they stand in (visible or on paper), so a line, a census or a meeting never walks the whole roster. */
+  const whereIndex = new Map<string, Set<Live>>();
+  const awakeSet = new Set<Live>();
+  function setWhere(state: Live, where: string | null): void {
+    if (state.where === where) return;
+    if (state.where) { const set = whereIndex.get(state.where); set?.delete(state); if (set && !set.size) whereIndex.delete(state.where); }
+    state.where = where;
+    if (where) { const set = whereIndex.get(where); if (set) set.add(state); else whereIndex.set(where, new Set([state])); }
+  }
   /** Phase 20 (bonds.ts) plugs in here and nowhere else: a short public profile line, a note of each talk, a place to hold a resident (a wedding), a resident who has left. */
   const hooks: ResidentHooks = {};
   let census: { at: number; rooms: Map<string, number> } = { at: -Infinity, rooms: new Map() };
@@ -292,8 +350,9 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     const id = residentId(who);
     let found = live.get(id);
     if (!found) {
-      const post = venueFor(who.city, who.work.post, who.work.role);
-      found = { who, id, asleep: null, busy: false, nextAlone: 0, lastThought: -Infinity, lastRoutine: null, lastPeople: 0, doing: null, pending: null, postRoom: post ? venueRoomKey(who.city, post, '') : null, lines: 0, presentAt: null, mark: 0, summarising: false, where: null, talking: false, lastTalk: -Infinity, recent: [], replying: false };
+      const post = who.kinds ? null : venueFor(who.city, who.work.post, who.work.role);
+      found = { who, id, asleep: null, busy: false, nextAlone: 0, lastThought: -Infinity, lastRoutine: null, lastPeople: 0, doing: null, pending: null, postRoom: post ? venueRoomKey(who.city, post, '') : null, lines: 0, presentAt: null, mark: 0, summarising: false, where: null, talking: false, lastTalk: -Infinity, recent: [], replying: false,
+        outing: null, slot: '', rooms: { post: null, market: null, eatery: null, tried: -Infinity }, say: null, announced: '' };
       live.set(id, found);
     }
     return found;
@@ -301,20 +360,25 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
   function lifeOf(who: Resident, t: number): Life {
     const id = residentId(who);
     let found = Object.hasOwn(stored.residents, id) ? stored.residents[id]! : undefined;
-    if (!found) { found = { born: t, model: null, days: {}, memory: [] }; stored.residents[id] = found; }
-    if (found.model === null) {
-      // THE MODEL ASSIGNED AT BIRTH: one of the router's 'resident' list, chosen by the resident's own id so the mix is spread, and kept for life.
-      // Spread: the model the fewest residents hold so far, ties broken by the resident's own id, so thirty residents use every model about equally.
-      const list = modelList();
-      if (list.length) {
-        const held = (key: string): number => Object.values(stored.residents).filter((other) => other.model === key).length;
-        const start = hash(id) % list.length;
-        found.model = [...list.slice(start), ...list.slice(0, start)].reduce((best, key) => (held(key) < held(best) ? key : best));
-        persist();
-      }
-    }
+    if (!found) { found = { born: t, model: null, days: {}, memory: [] }; stored.residents[id] = found; heldFor = -1; }
     return found;
   }
+  /** THE MODEL ASSIGNED AT BIRTH (given the first time a model is needed, so a resident who only follows rules holds none): one of the router's 'resident' list, spread by count, ties by the resident's own id, kept for life. */
+  const held = new Map<string, number>();
+  let heldFor = -1;
+  function modelFor(life: Life, id: string): string | null {
+    if (life.model !== null) return life.model;
+    const list = modelList();
+    if (!list.length) return null;
+    const count = Object.keys(stored.residents).length;
+    if (heldFor !== count) { held.clear(); for (const other of Object.values(stored.residents)) if (other.model) held.set(other.model, (held.get(other.model) ?? 0) + 1); heldFor = count; }
+    const start = hash(id) % list.length;
+    life.model = [...list.slice(start), ...list.slice(0, start)].reduce((best, key) => ((held.get(key) ?? 0) < (held.get(best) ?? 0) ? key : best));
+    held.set(life.model, (held.get(life.model) ?? 0) + 1);
+    persist();
+    return life.model;
+  }
+  const preferOf = (life: Life, id: string): { prefer?: string } => { const model = modelFor(life, id); return model ? { prefer: model } : {}; };
 
   // ---- time: the city's clock, the sleep schedule and the "life day" (wake to wake) -----------------------------------------------------
   const localMinute = (who: Resident, t: number): number => ((Math.floor(t / 60000) + who.utcOffsetMin) % 1440 + 1440) % 1440;
@@ -329,7 +393,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     const life = lifeOf(who, t), key = String(lifeDay(who, t));
     if (!Object.hasOwn(life.days, key)) {
       life.days[key] = blankDay(lifeDay(who, t));
-      for (const old of Object.keys(life.days).map(Number).sort((a, b) => a - b).slice(0, -DAYS_KEPT)) delete life.days[String(old)];
+      for (const old of Object.keys(life.days).map(Number).sort((a, b) => a - b).slice(0, -(who.generated ? DAYS_KEPT_RULE : DAYS_KEPT))) delete life.days[String(old)];
       // The day-by-day choices are kept for the newest ENTRY_DAYS days only: thirty residents' week of them would be large; the counters stay.
       for (const old of Object.keys(life.days).map(Number).sort((a, b) => a - b).slice(0, -ENTRY_DAYS)) { const kept = life.days[String(old)]!; kept.entries = []; if (kept.talkLog) kept.talkLog = kept.talkLog.slice(-3); }
     }
@@ -346,14 +410,44 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     census = { at: t, rooms };
     return census;
   }
-  function placeFor(state: Live, action: ActionId): string | null {
+  const MAIN_ACTION: Readonly<Record<string, ActionId>> = { seller: 'open_shop', guide: 'work_shift', marketer: 'announce', quiz: 'host_quiz', mission: 'give_tasks' };
+  /** The room of a resident's post, market or eatery. Authored residents name venues; generated ones name KINDS of venue, resolved in their city's own loaded content (retried every few minutes while nobody has opened the city). */
+  function roomOf(state: Live, which: 'post' | 'market' | 'eatery', t: number): string | null {
+    const { who } = state, { work, city } = who;
+    if (!who.kinds) {
+      if (which === 'post') {
+        // An authored resident names venues; a city nobody has opened yet has none loaded, so the post is looked for again every few minutes.
+        if (!state.postRoom && !(t >= state.rooms.tried && t - state.rooms.tried < 5 * 60000)) { const v = venueFor(city, work.post, work.role); if (v) state.postRoom = venueRoomKey(city, v, ''); else state.rooms.tried = t; }
+        return state.postRoom;
+      }
+      if (which === 'market') { const v = venueFor(city, work.market ?? work.post, 'seller'); return v ? venueRoomKey(city, v, '') : state.postRoom; }
+      const v = work.eatery ? venueFor(city, work.eatery, 'guide') : null;
+      return v ? venueRoomKey(city, v, '') : null;
+    }
+    const cache = state.rooms;
+    if (cache[which]) return cache[which];
+    if (t >= cache.tried && t - cache.tried < 5 * 60000) return which === 'market' ? roomOf(state, 'post', t) : null;
+    const kinds = which === 'market' ? who.kinds.market ?? who.kinds.post : which === 'eatery' ? who.kinds.eatery ?? [] : who.kinds.post;
+    let id = kinds.length ? venueOfKind(city, kinds, `${state.id}|${which}`) : null;
+    if (!id && which !== 'eatery') id = venueOfKind(city, ['market', 'park', 'office', 'hub', 'walk'], `${state.id}|${which}|fallback`);
+    if (id) cache[which] = venueRoomKey(city, id, ''); else cache.tried = t;
+    return cache[which] ?? (which === 'market' ? roomOf(state, 'post', t) : null);
+  }
+  function placeFor(state: Live, action: ActionId, t: number): string | null {
     const held = hooks.hold?.(state.id);
     if (held) return held;
-    const place = ACTIONS[action].place, { work, city } = state.who;
-    if (place === 'post') return state.postRoom;
-    if (place === 'market') { const v = venueFor(city, work.market ?? work.post, 'seller'); return v ? venueRoomKey(city, v, '') : state.postRoom; }
-    if (place === 'eatery') { const v = work.eatery ? venueFor(city, work.eatery, 'guide') : null; return v ? venueRoomKey(city, v, '') : null; }
+    if (state.outing && t < state.outing.until) return state.outing.room;
+    const place = ACTIONS[action].place;
+    if (place === 'post') return roomOf(state, 'post', t);
+    if (place === 'market') return roomOf(state, 'market', t);
+    if (place === 'eatery') return roomOf(state, 'eatery', t);
     return null;
+  }
+  /** What the resident is doing now: a choice a model made, else the day plan with its personality applied (those who skip lunch eat at their post). */
+  function actionNow(state: Live, routine: { action: ActionId }, t: number): ActionId {
+    if (state.doing && t < state.doing.until) return state.doing.action;
+    if (routine.action === 'eat' && lunchSkipped(personaOf(state.who), `${state.id}|${Math.floor((t + state.who.utcOffsetMin * 60000) / 86400000)}|lunch`)) return MAIN_ACTION[state.who.work.role] ?? 'work_shift';
+    return routine.action;
   }
   /** What a choice means for this resident: praying keeps the routine; "open_shop" is its own work (a shift, for one who has no stall). */
   const actionOf = (choice: Choice, routine: ActionId, who?: Resident): ActionId => (choice === 'keep_routine' || choice === 'pray' ? routine : choice === 'open_shop' && who && who.work.role !== 'seller' ? 'work_shift' : choice);
@@ -428,7 +522,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     let verdict: Verdict | null = null;
     for (let attempt = 0; attempt < 2; attempt++) {
       let answer: AskResult;
-      try { answer = await callModel({ purpose: 'resident', messages: attempt === 0 ? messages : [...messages, { role: 'user', content: RETRY }], maxTokens: MODEL_TOKENS, carriesPlayerWords: false, timeoutMs: 8000, ...(life.model ? { prefer: life.model } : {}) }); }
+      try { answer = await callModel({ purpose: 'resident', messages: attempt === 0 ? messages : [...messages, { role: 'user', content: RETRY }], maxTokens: MODEL_TOKENS, carriesPlayerWords: false, timeoutMs: 8000, ...preferOf(life, state.id) }); }
       catch { entry.why = 'failed'; break; }
       if (!answer.ok) {
         entry.why = answer.why;
@@ -486,15 +580,15 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
       const life = lifeOf(who, t), day = dayOf(who, t - 3600000);
       if (day.summary !== null) return;
       let text: string | null = null, night: ReturnType<typeof splitNight> | null = null;
-      if (!stopped(t) && day.entries.length) {
-        const doings = day.entries.slice(-30).map((e) => {
+      if (!stopped(t) && (day.met === true || (day.replies ?? 0) > 0)) {
+        const doings = day.entries.length === 0 ? ['I went about my usual day and met someone while I was out.'] : day.entries.slice(-30).map((e) => {
           const local = localMinute(who, e.at);
           return `${String(Math.floor(local / 60)).padStart(2, '0')}:${String(local % 60).padStart(2, '0')} ${ACTIONS[actionOf(e.action, e.routine, who)].doing.toLowerCase()}${e.line ? `, saying "${e.line}"` : ''}`;
         });
         const messages = [{ role: 'system' as const, content: system(who) }, { role: 'user' as const, content: `Your day is over and you are going to bed. This is how it went:\n${doings.join('\n')}\n\nIn two to four sentences, in the first person and plain words, write what you will remember about today and what you hope for tomorrow. Then, only if it is true for you, add up to two more lines: \"Wish: \" and one short line (under 100 characters) about something your town lacks that you wish it had, and \"Need: \" and one short line about something you keep failing to get or do. Leave a line out if you have nothing for it. Plain text only.` }];
         for (let attempt = 0; attempt < 2 && text === null; attempt++) {
           let answer: AskResult;
-          try { answer = await callModel({ purpose: 'resident', messages: attempt === 0 ? messages : [...messages, { role: 'user', content: 'Please write it again in your own words, as yourself. Plain text only.' }], maxTokens: SUMMARY_TOKENS, carriesPlayerWords: false, timeoutMs: 8000, ...(life.model ? { prefer: life.model } : {}) }); }
+          try { answer = await callModel({ purpose: 'resident', messages: attempt === 0 ? messages : [...messages, { role: 'user', content: 'Please write it again in your own words, as yourself. Plain text only.' }], maxTokens: SUMMARY_TOKENS, carriesPlayerWords: false, timeoutMs: 8000, ...preferOf(life, state.id) }); }
           catch { break; }
           if (!answer.ok) break;
           day.summaryCostMicro += answer.costMicro; day.costMicro += answer.costMicro;
@@ -509,8 +603,11 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
         const idea = line ? judgeIdea(line) : null;
         if (idea?.ok) await Promise.resolve().then(() => collect({ id: state.id, name: who.name, city: who.city, kind, text: idea.text })).catch(() => {});
       }
-      life.memory.push(day.summary);
-      if (life.memory.length > DAYS_KEPT) life.memory.splice(0, life.memory.length - DAYS_KEPT);
+      // Kept for a week; a generated resident keeps only what a model wrote (one who met a person), so the many who only follow rules cost no space.
+      if (text !== null || !who.generated) {
+        life.memory.push(day.summary);
+        if (life.memory.length > (who.generated ? DAYS_KEPT_RULE : DAYS_KEPT)) life.memory.splice(0, life.memory.length - (who.generated ? DAYS_KEPT_RULE : DAYS_KEPT));
+      } else day.summary = null;
       persist();
     } finally { state.summarising = false; }
   }
@@ -521,28 +618,96 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
   }
   const withProfile = (id: string, doing: string): string => { const line = hooks.profile?.(id); return line ? `${doing} · ${line}`.slice(0, 80) : doing; };
   function stand(state: Live, action: ActionId, t: number): void {
-    const door = room(), target = placeFor(state, action);
+    const door = room(), target = placeFor(state, action, t);
     if (!door) return;
     if (!target) { leave(state); return; }
     const cur = state.presentAt;
     if (cur && cur.room === target && cur.until - t >= PRESENCE_MS - RENEW_MS) return;
     const base = initialVenuePosition(target.split(':')[1] ?? ''), h = hash(`${state.id}|${target}`);
     const position = { x: Math.max(-18, Math.min(18, base.x + (h % 9 - 4) * 0.9)), z: Math.max(-18, Math.min(18, base.z + ((h >>> 8) % 9 - 4) * 0.9)) };
-    door.present({ id: state.id, name: state.who.name, mark: { agent: true }, room: target, position, doing: withProfile(state.id, (action === 'open_shop' || action === 'work_shift') && state.who.doing ? state.who.doing : ACTIONS[action].doing), look: HOUSE_LOOKS[state.who.look ?? 'sis'], until: t + PRESENCE_MS });
+    const out = state.outing && t < state.outing.until && state.outing.room === target ? state.outing : null;
+    door.present({ id: state.id, name: state.who.name, mark: { agent: true }, room: target, position, doing: withProfile(state.id, out ? out.doing : (action === 'open_shop' || action === 'work_shift') && state.who.doing ? state.who.doing : ACTIONS[action].doing), look: HOUSE_LOOKS[state.who.look ?? 'sis'], until: t + PRESENCE_MS });
     state.presentAt = { room: target, until: t + PRESENCE_MS };
   }
   const jitter = (state: Live, t: number): number => t + ALONE_MS[0] + (hash(`${state.id}|${Math.floor(t / 60000)}`) % (ALONE_MS[1] - ALONE_MS[0]));
 
+  // ---- deep thoughts: the model's small share of the day --------------------------------------------------------------------------------------
+  /** The day's deep thoughts (and talks) are paid out of a quota spread over the UTC day: at most `residentDeepPerDay` (default 240), and never ahead of the clock by more than a few. */
+  const deep = { day: -1, used: 0, beat: 0 };
+  function deepRoom(t: number, need: number): boolean {
+    const quota = settings().deep;
+    if (quota <= 0 || stopped(t)) return false;
+    const d = utc(t);
+    if (deep.day !== d) { deep.day = d; deep.used = 0; }
+    return deep.used + need <= Math.floor(quota * ((t % 86400000) / 86400000)) + DEEP_BURST;
+  }
+  const deepCap = (): number => Math.max(2, Math.min(MAX_THOUGHTS, Math.ceil(settings().deep * 3 / Math.max(1, rosterNow().length))));
+
+  // ---- what a resident does by its own character, with no model ---------------------------------------------------------------------------------
+  const ruleSamples: string[] = [];
+  const rulePrayed = { day: -1, n: 0 };
+  /** A written line chosen by traits: how often it speaks and how much depends on how talkative it is; the line itself is from its style, tongue, likes and goals. */
+  function queueLine(state: Live, day: DayRecord, kind: 'morning' | 'greet' | 'work' | 'outing' | 'remark' | 'evening', t: number, extra: { pastime?: PastimeId } = {}): void {
+    const p = personaOf(state.who), prof = talkProfile(p);
+    if ((day.said ?? 0) >= prof.lines || state.say) return;
+    const odds = kind === 'greet' ? 35 + p.chatty * 0.6 : kind === 'morning' ? 30 + p.chatty * 0.5 : kind === 'outing' ? 20 + p.chatty * 0.5 : 8 + p.chatty * 0.4;
+    if (hash(`${state.id}|${kind}|${Math.floor(t / 60000)}|odds`) % 100 >= odds) return;
+    const text = ruleLine(p, kind, `${state.id}|${Math.floor(t / 60000)}|${kind}`, { ...extra, owl: state.who.sleep.wake >= 7.5 });
+    if (!text || OUT_OF_CHARACTER.test(text) || !agentWords(text, { toMinor: true }).ok) return;
+    day.said = (day.said ?? 0) + 1; state.lines += 1; state.say = text;
+    ruleSamples.push(`${clockOf(state.who, t)} ${state.who.name}: ${text}`); if (ruleSamples.length > 30) ruleSamples.shift();
+  }
+  /** What a resident does when it is not at its post, decided once per 45-minute slot by its character: a walk, a bite, the market, a quiet hour at the place of worship. */
+  function considerOuting(state: Live, day: DayRecord, routine: { action: ActionId }, t: number): void {
+    if (state.outing && t >= state.outing.until) state.outing = null;
+    const { who } = state, key = `${lifeDay(who, t)}:${Math.floor(localMinute(who, t) / OUTING_SLOT_MIN)}`;
+    if (state.slot === key) return;
+    state.slot = key;
+    if (state.outing || hooks.hold?.(state.id) || (state.doing && t < state.doing.until)) return;
+    const p = personaOf(who), working = routine.action !== 'go_home' && routine.action !== 'eat';
+    const pastime = pastimeAt(p, `${state.id}|${key}`, weekdayAt(t, who.utcOffsetMin), hourAt(t, who.utcOffsetMin), working);
+    if (!pastime) return;
+    const venue = venueOfKind(who.city, PASTIMES[pastime].kinds, `${state.id}|${pastime}|${lifeDay(who, t)}`);
+    if (!venue) return;
+    const target = venueRoomKey(who.city, venue, '');
+    if (target === roomOf(state, 'post', t)) return;
+    const [lo, hi] = PASTIMES[pastime].minutes, minutes = lo + hash(`${state.id}|${key}|len`) % (hi - lo + 1);
+    state.outing = { room: target, doing: PASTIMES[pastime].doing, until: t + minutes * 60000, pastime };
+    day.outings = (day.outings ?? 0) + 1; persist();
+    queueLine(state, day, 'outing', t, { pastime });
+  }
+  /** A prayer by rule: faith and devotion decide whether and how often (persona.ts); a morning one half an hour after waking, a second in the last hours before bed. All together at most RULE_PRAYERS_PER_DAY a UTC day. */
+  function rulePray(state: Live, day: DayRecord, t: number): void {
+    if (!rulesPray()) return;
+    const { who } = state, p = personaOf(who), want = prayersToday(p, `${state.id}|${day.day}`), said = day.prayed ?? 0;
+    if (said >= want || t - (day.wokeAt ?? t) < 30 * 60000) return;
+    const toBed = (Math.round(who.sleep.bed * 60) - localMinute(who, t) + 1440) % 1440;
+    if (said === 1 && toBed > 150) return;
+    const d = utc(t);
+    if (rulePrayed.day !== d) { rulePrayed.day = d; rulePrayed.n = 0; }
+    if (rulePrayed.n >= RULE_PRAYERS_PER_DAY) return;
+    const text = ruleVow(p.faith, `${state.id}|${day.day}|${said}`);
+    if (OUT_OF_CHARACTER.test(text) || !agentWords(text, { toMinor: true }).ok) return;
+    rulePrayed.n += 1; day.prayed = said + 1; persist();
+    void pray({ id: state.id, name: who.name, city: who.city, text, situation: `${ACTIONS[routineOf(who, t).action].doing.toLowerCase()} · ${clockOf(who, t)} local` }).catch(() => {});
+  }
+  /** What a wake-up means when no model is asked: a written line, if its character would say one. */
+  function ruleReact(state: Live, day: DayRecord, reason: Wake, routine: { action: ActionId }, t: number): void {
+    if (reason === 'morning') queueLine(state, day, 'morning', t);
+    else if (reason === 'arrival' || reason === 'spoken-to') queueLine(state, day, 'greet', t);
+    else if (reason === 'routine-end') { if (routine.action === 'go_home') queueLine(state, day, 'evening', t); }
+    else queueLine(state, day, routine.action === 'go_home' ? 'remark' : 'work', t);
+  }
+
   function beat(state: Live, t: number, on: boolean, shadow: boolean): void {
-    if (!on) { if (state.asleep !== null) { leave(state); state.asleep = null; state.where = null; } return; }
-    const slept = asleepAt(state.who, t) || stopped(t);
+    if (!on) { if (state.asleep !== null) { leave(state); state.asleep = null; state.outing = null; setWhere(state, null); awakeSet.delete(state); } return; }
+    const slept = asleepAt(state.who, t);
     if (slept) {
       if (state.asleep === false) {
-        // Going to bed: one summary call (not when it is the budget that sent it).
+        // Going to bed: one summary (a model writes it only for one who met a person today; not when it is the budget that sent it).
         const day = dayOf(state.who, t - 3600000);
-        if (stopped(t)) day.sleptEarly = true;
         day.sleptAt = t; persist();
-        leave(state); state.doing = null; state.where = null;
+        leave(state); state.doing = null; state.outing = null; setWhere(state, null); awakeSet.delete(state);
         void summarise(state, t).catch(() => {});
       }
       state.asleep = true;
@@ -550,68 +715,86 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     }
     const day = dayOf(state.who, t);
     if (state.asleep !== false) {
-      state.asleep = false; day.wokeAt ??= t; state.pending = 'morning'; state.lastRoutine = routineOf(state.who, t).action; state.nextAlone = jitter(state, t); persist();
+      state.asleep = false; awakeSet.add(state); day.wokeAt ??= t; state.pending = 'morning'; state.lastRoutine = routineOf(state.who, t).action; state.nextAlone = jitter(state, t); persist();
     }
     const routine = routineOf(state.who, t);
-    const target = placeFor(state, state.doing && t < state.doing.until ? state.doing.action : routine.action);
+    considerOuting(state, day, routine, t);
+    const action = actionNow(state, routine, t), target = placeFor(state, action, t);
     const rooms = takeCensus(t).rooms, people = target ? rooms.get(target) ?? 0 : 0;
+    if (!shadow && people > 0 && !day.met) { day.met = true; persist(); }
     if (!state.pending) {
       if (routine.action !== state.lastRoutine) state.pending = 'routine-end';
       else if (people > 0 && state.lastPeople === 0) state.pending = 'arrival';
       else if (t >= state.nextAlone) state.pending = 'alone';
     }
     state.lastRoutine = routine.action; state.lastPeople = people;
-    state.where = target;
+    setWhere(state, target);
+    day.steps = (day.steps ?? 0) + 1;
     const reason = state.pending;
-    if (reason && !state.busy && inflight < MAX_INFLIGHT) {
+    if (reason && !state.busy) {
       const event = reason !== 'morning' && reason !== 'alone';
-      if (!event || t - state.lastThought >= EVENT_GAP_MS) {
-        state.pending = null; state.busy = true; state.nextAlone = jitter(state, t);
-        inflight += 1;
-        void think(state, reason, t).catch(() => {}).finally(() => { state.busy = false; inflight -= 1; });
-      } else state.pending = null; // too soon after the last thought: this event is let go
+      if (event && t - state.lastThought < EVENT_GAP_MS) state.pending = null; // too soon after the last thought: this event is let go
+      else if (inflight < MAX_INFLIGHT && deep.beat < DEEP_PER_BEAT) {
+        // The model's share is small: a deep thought only while the day's quota and this resident's own share allow it; otherwise it lives by its rules.
+        if (day.thoughts < deepCap() && deepRoom(t, 1)) {
+          state.pending = null; state.busy = true; state.nextAlone = jitter(state, t);
+          deep.used += 1; deep.beat += 1; inflight += 1;
+          void think(state, reason, t).catch(() => {}).finally(() => { state.busy = false; inflight -= 1; });
+        } else { state.pending = null; state.nextAlone = jitter(state, t); ruleReact(state, day, reason, routine, t); }
+      }
     }
     // Where it stands. In shadow: only in its own record.
-    const at = state.doing && t < state.doing.until ? state.doing.action : routine.action;
-    if (shadow) { if (state.presentAt) leave(state); } else stand(state, at, t);
+    if (shadow) { if (state.presentAt) leave(state); } else stand(state, action, t);
+    if (state.say) { const text = state.say; state.say = null; if (!shadow) void speak(state, text); }
+    rulePray(state, day, t);
   }
 
-  // ---- talk between residents: two awake residents who stand in the same venue, at most TALK_TURNS lines, grounded in one real ledger line --------
-  interface Exchange { a: Live; b: Live; room: string; ground: GistItem | null; groundUsed: boolean; lines: TalkRecord['lines']; nextAt: number; busy: boolean; record: TalkRecord | null }
+  // ---- talk between residents: two awake residents who stand in the same venue --------------------------------------------------------------------
+  // By default the talk is WRITTEN BY RULES (persona.ts talkLine: topic, tone and length from the two characters, a real ledger line when one is there and the
+  // speaker is curious about the town); only when the day's deep quota has room is it a model's talk (grounded in one real ledger line, as in 13b).
+  interface Exchange { a: Live; b: Live; room: string; ground: GistItem | null; groundUsed: boolean; lines: TalkRecord['lines']; nextAt: number; busy: boolean; record: TalkRecord | null; rule: boolean; turns: number; id: number }
   const exchanges = new Set<Exchange>();
+  const ruleTalks: TalkRecord[] = [];
+  let exSeq = 0;
   const pairLast = new Map<string, number>();
   const pairKey = (x: Live, y: Live): string => (x.id < y.id ? `${x.id}|${y.id}` : `${y.id}|${x.id}`);
   const talksOn = (state: Live, t: number): number => dayOf(state.who, t).talks ?? 0;
   const clockOf = (who: Resident, t: number): string => { const local = localMinute(who, t); return `${String(Math.floor(local / 60)).padStart(2, '0')}:${String(local % 60).padStart(2, '0')}`; };
+  const willing = (state: Live, t: number): boolean => { const prof = talkProfile(personaOf(state.who)); return state.asleep === false && !state.talking && t - state.lastTalk >= prof.gapMs && talksOn(state, t) < prof.maxTalks; };
 
-  /** Who is together now: awake residents with the same place, at most one new pair per place per beat, within every bound above. */
+  /** Who is together now: awake residents with the same place; at most one new pair per place per beat; a pair begins to talk by the two characters' chance, never within the pair gap, and within every bound above. */
   function meet(t: number): void {
-    if (stopped(t) || exchanges.size >= MAX_INFLIGHT) return;
-    const byRoom = new Map<string, Live[]>();
-    for (const state of live.values()) {
-      if (state.asleep !== false || !state.where || state.talking || t - state.lastTalk < TALK_GAP_MS || talksOn(state, t) >= MAX_TALKS) continue;
-      const list = byRoom.get(state.where); if (list) list.push(state); else byRoom.set(state.where, [state]);
-    }
-    for (const [room, here] of byRoom) {
-      for (let i = 0; i < here.length - 1; i++) {
-        const other = here.slice(i + 1).find((candidate) => t - (pairLast.get(pairKey(here[i]!, candidate)) ?? -Infinity) >= PAIR_GAP_MS);
+    if (exchanges.size >= MAX_INFLIGHT + RULE_EXCHANGES) return;
+    for (const [where, here] of whereIndex) {
+      if (here.size < 2) continue;
+      const list = [...here].filter((state) => willing(state, t));
+      for (let i = 0; i < list.length - 1; i++) {
+        const other = list.slice(i + 1).find((candidate) => t - (pairLast.get(pairKey(list[i]!, candidate)) ?? -Infinity) >= PAIR_GAP_MS
+          && hash(`${pairKey(list[i]!, candidate)}|${Math.floor(t / 60000)}`) % 100 < talkOdds(personaOf(list[i]!.who), personaOf(candidate.who)));
         if (!other) continue;
-        begin(here[i]!, other, room, t);
+        begin(list[i]!, other, where, t);
         break;
       }
     }
   }
   function begin(a: Live, b: Live, room: string, t: number): void {
-    const ex: Exchange = { a, b, room, ground: null, groundUsed: false, lines: [], nextAt: t, busy: true, record: null };
+    const turns = Math.min(TALK_TURNS, Math.max(talkProfile(personaOf(a.who)).turns, talkProfile(personaOf(b.who)).turns));
+    const modelWanted = [...exchanges].filter((other) => !other.rule).length < MAX_INFLIGHT && deepRoom(t, TALK_TURNS);
+    if (modelWanted) deep.used += TALK_TURNS;
+    const ex: Exchange = { a, b, room, ground: null, groundUsed: false, lines: [], nextAt: t, busy: true, record: null, rule: !modelWanted, turns: modelWanted ? TALK_TURNS : turns, id: ++exSeq };
     a.talking = b.talking = true; exchanges.add(ex); pairLast.set(pairKey(a, b), t);
     void (async () => {
       try {
-        const items = await ctx.store.read((db) => gistService(ctx).recent(db, a.who.city, { limit: 8 }));
-        // Grounded or not at all: with nothing in the ledger there is nothing to talk about, and nothing is said.
-        if (!items.length) { release(ex); return; }
-        ex.ground = items[hash(`${pairKey(a, b)}|${utc(t)}`) % items.length]!;
-        ex.record = { at: t, between: [a.id, b.id], room, ground: ex.ground.n, groundText: ex.ground.text, lines: ex.lines, ended: 'turns' };
-        for (const state of [a, b]) { const day = dayOf(state.who, t); day.talks = (day.talks ?? 0) + 1; (day.talkLog ??= []).push(ex.record); if (day.talkLog.length > TALKS_KEPT) day.talkLog.splice(0, day.talkLog.length - TALKS_KEPT); }
+        const items = await ctx.store.read((db) => gistService(ctx).recent(db, a.who.city, { limit: 8 })).catch(() => [] as GistItem[]);
+        // A model's talk is grounded or not at all: with nothing in the ledger there is nothing to talk about, and nothing is said. A rule talk may be about the speakers' own days.
+        if (!items.length && !ex.rule) { release(ex); return; }
+        ex.ground = items.length ? items[hash(`${pairKey(a, b)}|${utc(t)}`) % items.length]! : null;
+        ex.record = { at: t, between: [a.id, b.id], room, ground: ex.ground?.n ?? null, groundText: ex.ground?.text ?? null, lines: ex.lines, ended: 'turns' };
+        for (const state of [a, b]) {
+          const day = dayOf(state.who, t); day.talks = (day.talks ?? 0) + 1;
+          if (ex.rule) day.ruleTalks = (day.ruleTalks ?? 0) + 1; else { (day.talkLog ??= []).push(ex.record); if (day.talkLog.length > TALKS_KEPT) day.talkLog.splice(0, day.talkLog.length - TALKS_KEPT); }
+        }
+        if (ex.rule) { ruleTalks.push(ex.record); if (ruleTalks.length > RULE_TALKS_KEPT) ruleTalks.shift(); }
         persist();
         try { hooks.talked?.(a.id, b.id, t); } catch { /* a bond note never stops a talk */ }
         ex.busy = false;
@@ -623,12 +806,31 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
   function advance(t: number): void {
     for (const ex of [...exchanges]) {
       if (ex.busy || t < ex.nextAt) continue;
-      if (stopped(t)) { finish(ex, 'budget'); continue; }
+      if (stopped(t) && !ex.rule) { finish(ex, 'budget'); continue; }
       if (ex.a.asleep !== false || ex.b.asleep !== false || ex.a.where !== ex.room || ex.b.where !== ex.room) { finish(ex, 'left'); continue; }
+      if (ex.rule) { try { ruleTurn(ex, t); } catch { finish(ex, 'failed'); } continue; }
       if (inflight >= MAX_INFLIGHT) continue;
       ex.busy = true; inflight += 1;
       void turn(ex, t).catch(() => finish(ex, 'failed')).finally(() => { ex.busy = false; inflight -= 1; });
     }
+  }
+  /** One line of a rule talk: from the speaker's character, checked like any line said aloud. */
+  function ruleTurn(ex: Exchange, t: number): void {
+    const speaker = ex.lines.length % 2 === 0 ? ex.a : ex.b, other = speaker === ex.a ? ex.b : ex.a, day = dayOf(speaker.who, t);
+    const numbers = digitsOf(ex.ground ? [ex.ground.text] : []);
+    let line: string | null = null;
+    for (const gist of ex.ground && !ex.groundUsed ? [ex.ground.text, null] : [null]) {
+      const checked = judgeTalk(talkLine(personaOf(speaker.who), other.who.name, ex.lines.length, `${ex.id}|${ex.lines.length}|${speaker.id}`, gist), numbers);
+      if (checked.ok) { line = checked.text; break; }
+    }
+    if (line === null) { finish(ex, 'slip'); return; }
+    if (repeats(line, [...ex.lines.map((said) => said.text), ...speaker.recent])) { finish(ex, 'repeat'); return; }
+    if (ex.ground && overlap(ex.ground.text, line) >= 0.5) ex.groundUsed = true;
+    ex.lines.push({ by: speaker.id, text: line, model: null });
+    speaker.recent.push(line); if (speaker.recent.length > 8) speaker.recent.shift();
+    day.talkLines = (day.talkLines ?? 0) + 1; speaker.lines += 1; persist();
+    if (!settings().shadow) void speak(speaker, line);
+    if (ex.lines.length >= ex.turns) finish(ex, 'turns'); else ex.nextAt = ctx.now() + TALK_STEP_MS;
   }
   function talkMessages(speaker: Live, other: Live, ex: Exchange, t: number): { role: 'system' | 'user'; content: string }[] {
     const city = cityRules(speaker.who.city)?.name ?? speaker.who.city;
@@ -649,7 +851,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     let line: string | null = null, model: string | null = null, why: TalkRecord['ended'] = 'failed';
     for (let attempt = 0; attempt < 2; attempt++) {
       let answer: AskResult;
-      try { answer = await callModel({ purpose: 'resident', messages: attempt === 0 ? messages : [...messages, { role: 'user', content: RETRY_TALK }], maxTokens: TALK_TOKENS, carriesPlayerWords: false, timeoutMs: 8000, ...(life.model ? { prefer: life.model } : {}) }); }
+      try { answer = await callModel({ purpose: 'resident', messages: attempt === 0 ? messages : [...messages, { role: 'user', content: RETRY_TALK }], maxTokens: TALK_TOKENS, carriesPlayerWords: false, timeoutMs: 8000, ...preferOf(life, speaker.id) }); }
       catch { why = 'failed'; break; }
       if (!answer.ok) { why = answer.why === 'budget' ? 'budget' : 'failed'; break; }
       day.talkCostMicro = (day.talkCostMicro ?? 0) + answer.costMicro; model = answer.model;
@@ -667,7 +869,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     speaker.recent.push(line); if (speaker.recent.length > 8) speaker.recent.shift();
     day.talkLines = (day.talkLines ?? 0) + 1; persist();
     if (!settings().shadow) void speak(speaker, line);
-    if (ex.lines.length >= TALK_TURNS) finish(ex, 'turns'); else ex.nextAt = ctx.now() + TALK_STEP_MS;
+    if (ex.lines.length >= ex.turns) finish(ex, 'turns'); else ex.nextAt = ctx.now() + TALK_STEP_MS;
   }
 
   // ---- people speaking to a visible resident (shadow off) ----------------------------------------------------------------------------------
@@ -681,7 +883,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
   }
   const TITLES = new Set(['mama', 'baba', 'hajia', 'auntie', 'aunty', 'bro', 'sis']);
   const callsOf = (who: Resident): string[] => who.name.toLowerCase().split(/\s+/).filter((word) => word.length >= 3 && !TITLES.has(word));
-  const isNamed = (who: Resident, body: string): boolean => { const lower = body.toLowerCase(), words = new Set(lower.split(/[^\p{L}\p{N}]+/u)); return lower.includes(who.name.toLowerCase()) || callsOf(who).some((word) => words.has(word)); };
+  const isNamed = (who: Resident, body: string): boolean => { const lower = body.toLowerCase(), words = new Set(lower.split(/[^\p{L}\p{N}]+/u)), name = who.name.toLowerCase(); return (name.includes(' ') ? lower.includes(name) : words.has(name)) || callsOf(who).some((word) => words.has(word)); };
   const TRADE = /\d|₦|naira|\b(?:price|prices|cost|pay|buy|sell|sale|discount|cheap|offer|owe|loan|lend|money|cash|send)\b/i;
   async function replyTo(state: Live, from: { id: string; name: string }, body: string): Promise<void> {
     const t = ctx.now(), life = lifeOf(state.who, t), day = dayOf(state.who, t);
@@ -697,7 +899,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
       const messages = [{ role: 'system' as const, content: system(state.who, false) }, { role: 'user' as const, content: `${from.name.slice(0, 24)} says to you: "${body.slice(0, 200)}"\nAnswer in one or two short sentences (under ${LINE_MAX} characters), as yourself, in plain text only. Do not mention prices or numbers, and do not ask for money, contact details or to meet anywhere else.` }];
       for (let attempt = 0; attempt < 2 && text === null; attempt++) {
         let answer: AskResult;
-        try { answer = await callModel({ purpose: 'resident', messages: attempt === 0 ? messages : [...messages, { role: 'user', content: RETRY_TALK }], maxTokens: REPLY_TOKENS, playerId: `p_${sha256Hex(`allworld-house-v1|${from.id}`).slice(0, 32)}`, carriesPlayerWords: true, timeoutMs: 8000, ...(life.model ? { prefer: life.model } : {}) }); }
+        try { answer = await callModel({ purpose: 'resident', messages: attempt === 0 ? messages : [...messages, { role: 'user', content: RETRY_TALK }], maxTokens: REPLY_TOKENS, playerId: `p_${sha256Hex(`allworld-house-v1|${from.id}`).slice(0, 32)}`, carriesPlayerWords: true, timeoutMs: 8000, ...preferOf(life, state.id) }); }
         catch { break; }
         if (!answer.ok) break;
         day.replyCostMicro = (day.replyCostMicro ?? 0) + answer.costMicro;
@@ -706,19 +908,23 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
         else { day.replySlips = (day.replySlips ?? 0) + 1; if (attempt === 0) day.replyRetries = (day.replyRetries ?? 0) + 1; }
       }
     }
-    await speak(state, text ?? WRITTEN[seed % WRITTEN.length]!);
+    await speak(state, text ?? (state.who.generated ? ruleLine(personaOf(state.who), 'greet', `${state.id}|${seed}`) : null) ?? WRITTEN[seed % WRITTEN.length]!);
     persist();
   }
 
+  let stepped = 0;
   function tick(): void {
     try {
       const s = settings();
       if (!s.on && !isReady) return;
       void ready();
       if (!isReady) return;
-      const t = ctx.now();
-      const count = Math.min(s.count, roster.length);
-      for (const [index, who] of roster.entries()) beat(liveOf(who), t, s.on && index < count && !hooks.retired?.(residentId(who)), s.shadow);
+      const t = ctx.now(), list = rosterNow(), size = list.length;
+      // At most STEP_MAX residents are stepped per beat, round-robin, so a thousand residents cost the same heartbeat as fifty.
+      deep.beat = 0;
+      stepped = Math.min(size, STEP_MAX);
+      for (let i = 0; i < stepped; i++) { const who = list[(cursor + i) % size]!; beat(liveOf(who), t, s.on && !hooks.retired?.(residentId(who)), s.shadow); }
+      if (size) cursor = (cursor + stepped) % size;
       if (s.on) meet(t);
       advance(t);
       saveIfDue(t);
@@ -730,10 +936,10 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
       const s = settings();
       if (event.from.agent === true || !s.on) return;
       const body = String(event.body ?? '');
-      for (const state of live.values()) if (state.asleep === false && state.postRoom === event.room && isNamed(state.who, body) && !state.pending) state.pending = 'spoken-to';
+      for (const state of whereIndex.get(event.room) ?? []) if (state.asleep === false && isNamed(state.who, body) && !state.pending) state.pending = 'spoken-to';
       const id = event.from.id;
       if (s.shadow || stopped(ctx.now()) || typeof id !== 'string' || !id || id.startsWith('house.') || id.startsWith('resident.')) return;
-      const here = [...live.values()].filter((state) => state.asleep === false && state.presentAt?.room === event.room && !state.replying);
+      const here = [...(whereIndex.get(event.room) ?? [])].filter((state) => state.asleep === false && state.presentAt?.room === event.room && !state.replying);
       let target = here.find((state) => isNamed(state.who, body)) ?? null;
       // Not named: only a lone resident answers a plain greeting, and only where no house agent already stands.
       if (!target && here.length === 1 && !(room()?.members(event.room) ?? []).some((member) => member.id.startsWith('house.')) && intentOf(body, here[0]!.who.work.role, false) === 'greet') target = here[0]!;
@@ -769,28 +975,35 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
 
   return {
     tick, ready, settings, line: onLine, report, hooks,
-    /** For bonds.ts: who stands where and is awake (switched-on residents only), the model each was given, and one budgeted model call. */
-    presence: (): { id: string; city: string; where: string | null; awake: boolean }[] => { const count = Math.min(settings().count, roster.length); return roster.slice(0, count).map((who) => { const state = liveOf(who); return { id: state.id, city: who.city, where: state.where, awake: state.asleep === false }; }); },
-    modelOf: (id: string): string | null => (Object.hasOwn(stored.residents, id) ? stored.residents[id]!.model : null),
+    /** For bonds.ts: who stands where and is awake, the model each was given, and one budgeted model call. */
+    presence: (): { id: string; city: string; where: string | null; awake: boolean }[] => rosterNow().map((who) => { const state = liveOf(who); return { id: state.id, city: who.city, where: state.where, awake: state.asleep === false }; }),
+    modelOf: (id: string): string | null => { const who = whoIs(id); if (!who) return null; return modelFor(lifeOf(who, ctx.now()), id); },
     askBudgeted: (input: AskInput): Promise<AskResult> => callModel(input),
-    roster,
+    /** Everyone who lives here now (the host's open cities times `residentsPerCity`, or the roster a test gave). */
+    get roster(): readonly Resident[] { return rosterNow(); },
     /** For tests and the admin page. */
     state(id?: string) {
-      const who = roster.find((r) => residentId(r) === id) ?? roster[0]; if (!who) return null;
+      const who = whoIs(id); if (!who) return null;
       const state = liveOf(who), life = Object.hasOwn(stored.residents, state.id) ? stored.residents[state.id]! : null, t = ctx.now();
       const day = life ? Object.values(life.days).sort((a, b) => b.day - a.day)[0] ?? null : null;
-      return { id: state.id, name: who.name, asleep: state.asleep, budgetStopped: stopped(t), doing: state.doing?.action ?? null, model: life?.model ?? null, lines: state.lines, present: state.presentAt !== null, day, memory: life?.memory ?? [], busy: state.busy, where: state.where, talking: state.talking };
+      return { id: state.id, name: who.name, asleep: state.asleep, budgetStopped: stopped(t), doing: state.doing?.action ?? null, outing: state.outing && t < state.outing.until ? state.outing.pastime : null, model: life?.model ?? null, lines: state.lines, present: state.presentAt !== null, day, memory: life?.memory ?? [], busy: state.busy, where: state.where, talking: state.talking };
     },
-    /** Who is switched on, awake or asleep, in roster order. */
+    /** Who is awake or asleep now, how many are standing in venues, what the day's quota and rule prayers look like. */
     census() {
-      const count = Math.min(settings().count, roster.length), t = ctx.now();
+      const t = ctx.now(), size = rosterNow().length;
       let awake = 0, asleep = 0, present = 0;
-      for (const [index, who] of roster.entries()) { if (index >= count) break; const state = liveOf(who); if (state.asleep === false) awake += 1; else if (state.asleep === true) asleep += 1; if (state.presentAt) present += 1; }
-      return { count, awake, asleep, present, exchanges: exchanges.size, stopped: stopped(t), spentMicro: spentToday(), limitMicro: settings().cents * 10000 };
+      for (const state of live.values()) { if (state.asleep === false) awake += 1; else if (state.asleep === true) asleep += 1; if (state.presentAt) present += 1; }
+      const d = utc(t);
+      return { count: size, awake, asleep, present, exchanges: exchanges.size, stopped: stopped(t), spentMicro: spentToday(), limitMicro: settings().cents * 10000, stepped, deepUsed: deep.day === d ? deep.used : 0, deepQuota: settings().deep, rulePrayers: rulePrayed.day === d ? rulePrayed.n : 0, cities: new Set(rosterNow().map((who) => who.city)).size };
     },
+    /** How many residents the last heartbeat stepped (never more than STEP_MAX). */
+    stepped: (): number => stepped,
     stored: (): Stored => stored,
+    /** The last rule-driven talks and written lines, for the admin page (memory only). */
+    ruleTalks: (): readonly TalkRecord[] => ruleTalks,
+    ruleSamples: (): readonly string[] => ruleSamples,
     /** The newest day record of the first resident (or of the one asked for), or null. */
-    day: (id?: string): DayRecord | null => { const who = roster.find((r) => residentId(r) === id) ?? roster[0]; if (!who || !Object.hasOwn(stored.residents, residentId(who))) return null; return Object.values(stored.residents[residentId(who)]!.days).sort((a, b) => b.day - a.day)[0] ?? null; },
+    day: (id?: string): DayRecord | null => { const who = whoIs(id); if (!who || !Object.hasOwn(stored.residents, residentId(who))) return null; return Object.values(stored.residents[residentId(who)]!.days).sort((a, b) => b.day - a.day)[0] ?? null; },
     /** Test hook: save now, whatever the clock says. */
     flushSave: (): void => { lastSave = -Infinity; saveIfDue(ctx.now()); },
   };
@@ -817,15 +1030,21 @@ const localMinuteOf = (who: Resident, t: number): number => ((Math.floor(t / 600
 /** Settings and the admin groups "Residents". Called once per host with the other admin links (server/admin/links.ts). */
 export function linkResidents(ctx: RouteContext): void {
   registerAdminSetting(ctx, { key: 'residentOn', label: 'Residents: on', help: 'Residents (AI-played characters with a life story of their own) live their day, asleep at night, thinking with the models of the resident list. On by default on the live hosts, in shadow: nobody sees them. How many run is residentCount. Costs only what the model router allows and residentDailyCents.', kind: 'boolean', default: () => DEFAULTS.on || ctx.worldFeed === true });
-  registerAdminSetting(ctx, { key: 'residentShadow', label: 'Residents: shadow (nobody sees them)', help: 'On: they act only in their own records, are not in any room or in the online count, talk to each other only on paper and say nothing to anyone. Off: they stand in their venues with the AI-played mark, speak, and answer a person who names them. Leave on until the owner has read their days.', kind: 'boolean', default: () => DEFAULTS.shadow });
-  registerAdminSetting(ctx, { key: 'residentCount', label: 'Residents: how many', help: 'How many of the thirty authored residents run, in order (Remi first, then Lagos, Abuja, Ibadan, Accra, Nairobi, Cape Town, London, New York). 1 runs only Remi. Raise it only after reading her day on this page.', kind: 'number', min: 1, max: COUNT_MAX, default: () => DEFAULTS.count });
+  registerAdminSetting(ctx, { key: 'residentShadow', label: 'Residents: shadow (nobody sees them)', help: 'Off (the default): residents stand in their venues with the AI-played mark, count in the online AI number, speak in rooms and answer a person who names them. On: they act only in their own records, are in no room, and say nothing to anyone.', kind: 'boolean', default: () => DEFAULTS.shadow });
+  registerAdminSetting(ctx, { key: 'residentCount', label: 'Residents: how many (retired, ignored)', help: 'Retired: it once chose how many of the thirty authored residents ran. Residents now live in every open city; use residentsPerCity. Old saved values are kept and ignored.', kind: 'number', min: 1, max: COUNT_MAX, default: () => DEFAULTS.count });
+  registerAdminSetting(ctx, { key: 'residentsPerCity', label: 'Residents: per city', help: 'How many residents live in each open city (0 to 5). The authored ones keep their cities\' first places; the rest are made up from the city, the same every time. 0 turns every resident off. About 284 cities times 3 is about 850 residents; they follow rules and cost nothing unless the deep-thought quota below is used.', kind: 'number', min: 0, max: 5, default: () => DEFAULTS.perCity });
+  registerAdminSetting(ctx, { key: 'residentDeepPerDay', label: 'Residents: deep thoughts a day (all residents)', help: 'The model\'s small share of the day: how many model thoughts and model talks all residents together may take in a UTC day, spread over the day (default 240; 0 = none). Answers to people and the night summary of those who met someone are separate. They also stop at residentDailyCents.', kind: 'number', min: 0, max: DEEP_MAX, default: () => DEFAULTS.deep });
+  registerAdminSetting(ctx, { key: 'residentRulePrayers', label: 'Residents: prayers by rule', help: 'On (the default): devout residents sometimes say a short written prayer, which goes to the Prayers page (at most 40 a day for all). Off: only a model-chosen prayer is kept.', kind: 'boolean', default: () => true });
   registerAdminSetting(ctx, { key: 'residentDailyCents', label: 'Residents: most spent a day (US cents)', help: 'When the residents have spent this much in a UTC day (thoughts, talk and answers together) they all go to sleep early, so the other model purposes still answer. 100 = US$1. Never above 190, under the router\'s US$2 hard stop.', kind: 'number', min: 0, max: CENTS_MAX, default: () => DEFAULTS.cents });
   const runner = residentService(ctx), who = RESIDENTS[0]!;
   const stat = (id: string, label: string, read: (db: Db) => number | string): void => registerAdminStat(ctx, { id: `resident-${id}`, group: 'Residents', label, cost: 'memory', read });
-  const view = () => runner.state(), day = () => runner.day();
-  stat('roster', 'Switched on (residentCount)', () => { const c = runner.census(), set = runner.settings(); return !set.on ? 'off' : `${c.count} of ${RESIDENTS.length}: ${c.awake} awake, ${c.asleep} asleep, ${c.present} standing in venues, ${c.exchanges} talking · ${set.shadow ? 'shadow (nobody sees them)' : 'visible'}${c.stopped ? ' · ALL ASLEEP EARLY (budget spent)' : ''}`; });
+  const view = () => runner.state(residentId(who)), day = () => runner.day(residentId(who));
+  stat('roster', 'Residents living now (residentsPerCity)', () => { const c = runner.census(), set = runner.settings(); return !set.on ? 'off' : `${c.count} in ${c.cities} cities (${set.perCity} each): ${c.awake} awake, ${c.asleep} asleep, ${c.present} standing in venues, ${c.exchanges} talking · ${set.shadow ? 'shadow (nobody sees them)' : 'visible, with the AI-played mark'}${c.stopped ? ' · BUDGET SPENT: living by rules, no model until tomorrow' : ''}`; });
+  stat('deep', 'Deep thoughts today (model) against the day\'s quota; residents stepped per beat; rule prayers today', () => { const c = runner.census(); return `${c.deepUsed} of ${c.deepQuota} · ${c.stepped} stepped on the last beat (at most ${STEP_MAX}) · ${c.rulePrayers} prayers by rule (at most ${RULE_PRAYERS_PER_DAY})`; });
+  stat('rules', 'Written lines and rule-driven talk lately (newest last)', () => [...runner.ruleSamples().slice(-6), ...entriesOfTalk({ v: 1, residents: {} }, runner.roster, runner.ruleTalks()).slice(-4)].join('\n') || 'none yet');
+  stat('size', 'Storage: residents kept, and their size in text', () => { const text = JSON.stringify(runner.stored()); return `${Object.keys(runner.stored().residents).length} kept · ${(text.length / 1024).toFixed(0)} KB in ${SHARDS} small collections`; });
   stat('budget', 'Spent today against the residents\' limit', () => { const c = runner.census(); return `${usd(c.spentMicro)} of ${usd(c.limitMicro)}`; });
-  stat('state', 'Remi: state', () => { const s = view(), set = runner.settings(); return !s || !set.on ? 'off' : `${s.name}: ${s.budgetStopped ? 'asleep early (budget spent)' : s.asleep ? 'asleep' : s.asleep === false ? `awake, ${s.doing ?? 'following the plan'}` : 'starting'} · ${set.shadow ? 'shadow (nobody sees her)' : 'visible'}`; });
+  stat('state', 'Remi: state', () => { const s = view(), set = runner.settings(); return !s || !set.on ? 'off' : `${s.name}: ${s.budgetStopped && s.asleep === false ? `awake, living by rules (budget spent)` : s.asleep ? 'asleep' : s.asleep === false ? `awake, ${s.doing ?? 'following the plan'}` : 'starting'} · ${set.shadow ? 'shadow (nobody sees her)' : 'visible'}`; });
   stat('model', 'Remi: model assigned at birth', () => view()?.model ?? 'not yet');
   stat('thoughts', 'Remi: thoughts today', () => day()?.thoughts ?? 0);
   stat('retries', 'Remi: retries (a reply thrown away and asked again)', () => day()?.retries ?? 0);
@@ -848,7 +1067,7 @@ export function linkResidents(ctx: RouteContext): void {
     const rows = Object.entries(runner.report().models).sort((a, b) => b[1].residents - a[1].residents);
     return rows.map(([model, r]) => `${model}: ${r.residents} residents · ${r.thoughts} thoughts · ${r.talks} talks/${r.talkLines} lines · ${r.replies} answers to people · ${r.retries} retries (asked again) · ${r.slips} slips (out of character or rule breaks) · ${r.invalid} invalid · ${r.fallbacks} fell back · ${usd(r.costMicro)}`).join('\n') || 'none yet';
   });
-  stat('talk', 'Talk between residents (newest last; kept on paper in shadow)', () => entriesOfTalk(runner.stored(), RESIDENTS).slice(-8).join('\n') || 'none yet');
+  stat('talk', 'Talk between residents (newest last; kept on paper in shadow)', () => entriesOfTalk(runner.stored(), runner.roster, runner.ruleTalks()).slice(-8).join('\n') || 'none yet');
   stat('talkers', 'People who spoke to a resident (7 days): how many, and how many came back on a later day', () => { const r = runner.report(); return `${r.people} spoke to one · ${r.returned} spoke again on a later day`; });
   stat('reports', 'Reports about residents', (db) => reportsAbout(db));
   stat('perday', 'Cost per day (all residents; thoughts, talk and answers)', () => Object.entries(runner.report().perDay).sort((a, b) => Number(a[0]) - Number(b[0])).slice(-7).map(([d, micro]) => `day ${d}: ${usd(micro)}`).join('\n') || 'none yet');
@@ -862,9 +1081,10 @@ export function linkResidents(ctx: RouteContext): void {
 }
 const reportsAbout = (db: Db): number => { const list = (db as unknown as { social?: { reports?: { about?: unknown }[] } }).social?.reports; return Array.isArray(list) ? list.filter((report) => typeof report?.about === 'string' && report.about.startsWith('resident.')).length : 0; };
 /** The exchanges of every resident's newest day as readable lines, oldest first (each exchange once). */
-export function entriesOfTalk(stored: Stored, roster: readonly Resident[]): string[] {
+export function entriesOfTalk(stored: Stored, roster: readonly Resident[], extra: readonly TalkRecord[] = []): string[] {
   const names = new Map(roster.map((who) => [residentId(who), who.name]));
   const seen = new Set<string>(), found: TalkRecord[] = [];
+  for (const talk of extra) { const key = `${talk.at}|${talk.between.join('|')}`; if (!seen.has(key)) { seen.add(key); found.push(talk); } }
   for (const life of Object.values(stored.residents)) {
     const newest = Object.values(life.days).sort((a, b) => b.day - a.day)[0];
     for (const talk of newest?.talkLog ?? []) { const key = `${talk.at}|${talk.between.join('|')}`; if (!seen.has(key)) { seen.add(key); found.push(talk); } }

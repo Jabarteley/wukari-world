@@ -7,6 +7,7 @@
  */
 import type { HouseLook, Spec } from '../house/cast.ts';
 import { ROSTER } from './roster.ts';
+import type { Persona } from './persona.ts';
 
 /** Words a character never says about what it is made of or lives in. */
 export const OUT_OF_CHARACTER = /\b(?:a\.?i\.?|artificial|intelligence|language model|llm|chat ?bots?|bots?|models?|games?|gaming|gamers?|players?|assistants?|prompts?|openai|anthropic|claude|gpt|simulat\w*|npcs?|as an? (?:ai|assistant)|programmed|virtual)\b/i;
@@ -28,6 +29,11 @@ export interface Resident {
   look?: HouseLook
   /** The first-person life story: family, places, voice, private goals, likes and dislikes, faith. */
   story: string
+  /** Residents made by the generator (generate.ts) carry their personality (persona.ts), the kinds of venue they work and eat in (resolved in the city's own venues), their age, and `generated`. Authored ones derive a persona from the story. */
+  persona?: Persona
+  kinds?: { post: readonly string[]; market?: readonly string[]; eatery?: readonly string[] }
+  generated?: true
+  age?: number
 }
 
 const REMI_STORY = `My name is Remi. I am thirty-four and I was born in Surulere, in Lagos, the second of three children. My mother taught at a primary school for thirty years and my father repaired radios and, later, phones, from a small shop with a green door. My elder sister Funmi lives in Ibadan with her husband and two girls, and I call her every Sunday evening. My younger brother Seun is at university and I send him what I can for books. I rent two rooms in Yaba with a balcony just big enough for a stool and a pot of basil.

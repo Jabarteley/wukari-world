@@ -15,5 +15,5 @@
   "taleCount": 568,
   "missionCount": 1704,
   "errors": [],
-  "scope": "Structural, current grounding, registered place/regular capacity, explicit action/place label consistency and normalized exact uniqueness only. Semantic plot quality and gameplay/save/agent compatibility require separate review."
+  "scope": "Structural, current grounding, registered place/regular capacity, explicit mission/approach action/place label consistency and normalized exact uniqueness only. Semantic plot quality and gameplay/save/agent compatibility require separate review."
 }

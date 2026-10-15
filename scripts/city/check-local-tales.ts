@@ -3,6 +3,7 @@ import { writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import type { AuthoredContentBatch, LocalTale } from '../../src/types/local-tales.ts'
+import type { WorldStorySeed } from '../../src/types/world-progression.ts'
 import { WORLD_STORY_SEEDS } from '../../src/game/content/world-progression.generated.ts'
 import { loadCityContent } from '../../src/game/cities/index.ts'
 
@@ -30,6 +31,23 @@ function unique(kind: string, text: string, owner: string) {
   if (previous) errors.push(`${owner}: duplicate ${kind} with ${previous}: ${text}`)
   else seen.set(key, owner)
   if (/\b(?:TODO|TBD|lorem ipsum|placeholder)\b/i.test(text)) errors.push(`${owner}: placeholder in ${kind}`)
+}
+function checkActionLabel(text: string, target: { venueName: string }, seed: WorldStorySeed, owner: string, expected?: string) {
+  const label = normalized(text)
+  const targetName = normalized(target.venueName)
+  const wrongPlace = [seed.host, seed.practical, seed.discovery].find(place => {
+    const name = normalized(place.venueName)
+    return name !== targetName && !targetName.includes(name) && label.includes(name) && !label.includes(targetName)
+  })
+  if (wrongPlace) errors.push(`${owner}: label names ${wrongPlace.venueName} but task goes to ${target.venueName}`)
+  const namedAction = [
+    { pattern: /\blook around\b/, name: 'Look around' },
+    { pattern: /\bquiet evenings?\b/, name: 'Enjoy a quiet evening' },
+    { pattern: /\bsimple meals?\b/, name: 'Have a simple meal' },
+  ].find(action => action.pattern.test(label))
+  if (expected && namedAction && expected !== namedAction.name && !namedAction.pattern.test(normalized(expected))) {
+    errors.push(`${owner}: label describes ${namedAction.name} but task requires ${expected}`)
+  }
 }
 function tale(row: LocalTale, owner: string, anchors: string[]) {
   unique('title', row.title, owner)
@@ -66,6 +84,11 @@ for (const file of args) {
     const anchors = [refs.host.name, refs.host.venueName, refs.practical.venueName, refs.discovery.venueName]
     tale(city.city, `${city.cityId}/city`, anchors)
     tale(city.country, `${city.cityId}/country`, anchors)
+    for (const scope of ['city', 'country'] as const) {
+      const approaches = city[scope].approaches
+      checkActionLabel(approaches[0].label, seed.practical, seed, `${city.cityId}/${scope}/approach/0`, seed.practical.label)
+      checkActionLabel(approaches[1].label, seed.discovery, seed, `${city.cityId}/${scope}/approach/1`, seed.discovery.label)
+    }
     for (const scope of ['daily', 'weekly'] as const) {
       const missions = city.missions[scope]
       if (missions.length !== 3) errors.push(`${city.cityId}/${scope}: need three missions`)
@@ -76,26 +99,8 @@ for (const file of args) {
         const target = mission.task === 'practical' || mission.task === 'practical-visit' ? seed.practical
           : mission.task === 'discovery' || mission.task === 'discovery-visit' ? seed.discovery
             : mission.task === 'host-visit' ? seed.host : undefined
-        if (target) {
-          const label = normalized(mission.label)
-          const targetName = normalized(target.venueName)
-          const wrongPlace = [seed.host, seed.practical, seed.discovery].find(place => {
-            const name = normalized(place.venueName)
-            return name !== targetName && !targetName.includes(name) && label.includes(name) && !label.includes(targetName)
-          })
-          if (wrongPlace) errors.push(`${owner}: label names ${wrongPlace.venueName} but task goes to ${target.venueName}`)
-          if (mission.task === 'practical' || mission.task === 'discovery') {
-            const expected = mission.task === 'practical' ? seed.practical.label : seed.discovery.label
-            const namedAction = [
-              { pattern: /\blook around\b/, name: 'Look around' },
-              { pattern: /\bquiet evenings?\b/, name: 'Enjoy a quiet evening' },
-              { pattern: /\bsimple meals?\b/, name: 'Have a simple meal' },
-            ].find(action => action.pattern.test(label))
-            if (namedAction && expected !== namedAction.name && !namedAction.pattern.test(normalized(expected))) {
-              errors.push(`${owner}: label describes ${namedAction.name} but task requires ${expected}`)
-            }
-          }
-        }
+        if (target) checkActionLabel(mission.label, target, seed, owner,
+          mission.task === 'practical' ? seed.practical.label : mission.task === 'discovery' ? seed.discovery.label : undefined)
         const activity = mission.task === 'practical' || mission.task === 'discovery'
         const visit = ['host-visit', 'practical-visit', 'discovery-visit'].includes(mission.task)
         const valid = activity ? mission.count >= 1 && mission.count <= 3 : visit ? mission.count === 1 : mission.task === 'places' ? [2, 3].includes(mission.count) : mission.task === 'people' && [2, 3, 4].includes(mission.count)
@@ -117,7 +122,7 @@ for (const city of cities) {
   const country = seeds.get(city)?.countryId
   if (country && !countries.has(country)) errors.push(`${city}: missing country arc ${country}`)
 }
-const report = { referenceSource: 'src/game/content/world-progression.generated.ts', files: args, cityCount: cities.size, countryCount: countries.size, taleCount: cities.size * 2, missionCount: cities.size * 6, errors, scope: 'Structural, current grounding, registered place/regular capacity, explicit action/place label consistency and normalized exact uniqueness only. Semantic plot quality and gameplay/save/agent compatibility require separate review.' }
+const report = { referenceSource: 'src/game/content/world-progression.generated.ts', files: args, cityCount: cities.size, countryCount: countries.size, taleCount: cities.size * 2, missionCount: cities.size * 6, errors, scope: 'Structural, current grounding, registered place/regular capacity, explicit mission/approach action/place label consistency and normalized exact uniqueness only. Semantic plot quality and gameplay/save/agent compatibility require separate review.' }
 if (output) await writeFile(output, `${JSON.stringify(report, null, 2)}\n`)
 console.log(JSON.stringify(report, null, 2))
 if (errors.length) process.exitCode = 1

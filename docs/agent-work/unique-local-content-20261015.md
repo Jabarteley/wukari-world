@@ -148,3 +148,15 @@ Astra source acceptance received after current seed mapping review; combined sem
 ## Final284engine and agent compatibility checkpoint
 
 On source98926c20 plus final content edits,2840completion paths pass across568tales;568old exact keepsakes and527old completed collections remain intact.34080daily deals preserve variety, free swap and blocked-ID fallback;283old rollover claims survive reload and pay once. All202existing focused mission/agent/registry/house/resident/prayer/creator checks pass. Portable reports and source hashes are saved under docs/research/unique-local-content-2026-10-15; log final-agent-check.txt is the full focused run. No source changes are pending from authors. Astra owns actual Tokyo playthrough and final Paris reload. Prior250CI38730371961 passed; final284CI remains a separate gate.
+
+## Browser-driven copy and collection repair
+
+Actual Tokyo play exposed reversed approach titles even though generated action hints and proof destinations were correct. Parent expanded the current-seed gate to first/second approach labels; Luna owns label-only fixes01/04/06 (116strings), Sol owns08 (64strings). Runtime order, callbacks, story decisions and saved identities stay unchanged.
+
+Astra reproduced stale collection display immediately after earning a country keepsake: reactive episode card updated, but cached retention HTTP snapshot stayed old until reload. Source diagnosis confirms useRetention watches session/city/connection only. Integration owner now owns a bounded change to src/app/features/passport/useRetention.ts: refresh authoritative retention snapshot when permanent episode/project reward signature changes, retaining scope epoch and request generation guards. No polling or reward inference. Astra will verify Paris country completion updates collections without reload.
+
+## Final copy and live collection acceptance
+
+All180approach label corrections accepted (116older batches,64batch08), enhanced all8gate reports zero errors. Five-project typecheck passes after useRetention reward-signature refresh. Astra verified final08Tokyo reload retaining both keepsakes, Tokyo2/2+storykeeper, Japan1/1+Court-Rest Steward. Actual Paris country completion now updates episode and both collection awards in the same open MyStory panel, without reload/reopen/tab change. This verifies the stale snapshot fix through actual play. Final screenshots and normal Paris reload follow.
+
+Content source934d0962 is published on codex/retention-main-sync; its pre-fix CI38732767698 was dispatched before final copy/UI amendments. Graphics owner published5bb9d30b; parent dispatched CI38733202253 for that branch and awaits owner’s final browser acceptance. No overlapping scene source edits and no deployment.

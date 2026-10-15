@@ -1,22 +1,22 @@
 # Bespoke missions, stories and journeys
 
-The full supported catalogue is now authored and activated locally: **284 cities, 243 game country/territory identities, 568 new tales and 1,704 authored mission definitions**. The final 69 cities add 138 tales and 414 missions. Counts describe the game's catalogue, not sovereign states. Main publication and final browser/CI acceptance are still pending as recorded below.
+The full supported catalogue is now authored and activated locally: **284 cities, 243 game country/territory identities, 568 new tales and 1,704 authored mission definitions**. The final 69 cities add 138 tales and 414 missions. Counts describe the game's catalogue, not sovereign states. Main publication and final combined CI are still pending as recorded below.
 
 ## Current acceptance
 
 | Gate | Evidence |
 | --- | --- |
-| Content coverage | Batches01–08 registered;284cities,243identities,568tales,1704missions; zero structural, current-reference, capacity or explicit label-mapping errors in `batches-01-08-validation.json` |
+| Content coverage | Batches01–08 registered;284cities,243identities,568tales,1704missions; zero structural, current-reference, capacity or explicit mission/approach label-mapping errors in `batches-01-08-validation.json` |
 | Semantic review | Conflicts, constraints, decisions, arithmetic and endings reviewed in bounded author/Astra/parent/Luna groups; rejected duplicated plots and incorrect clues were rewritten before activation |
 | Engine and saves | `engine-acceptance.json`:2840completion paths across568tales; all568exact legacy keepsakes and527old collections preserved |
 | Mission dealing | `mission-acceptance.json`:34080dailydeals, free swaps, fallback and283old rollover claims preserved with exactly-once rewards |
 | Agent-play compatibility | Released world-alive main201b9bda integrated; all202existing focused checks pass again with final284city source |
-| Browser | Paris actual activity, authored decision, earned Dual-Use Bag Tag and reload passed at250cities. Final Tokyo and Paris-source reload acceptance pending |
+| Browser | Tokyo city and country tales completed through real UI; both keepsakes, Tokyo2/2 and Japan1/1 persist after final-copy reload. Paris country completion updates both collections immediately without reload after the snapshot-refresh fix |
 | CI | Prior250source72514cbe passed [CI38730371961](https://github.com/kromate/joinallworld/actions/runs/38730371961); final284source requires its own run |
 | Main integration | Main9af2e51e merged locally. Its pre-existing scene-host failure71409>71000gzip is owned by the separate Nigeria integration chat; no overlapping scene edits here |
 | Production | This resumed content task has not deployed. Historical live health and prior releases do not establish final284content availability |
 
-Probe reports preserve their original source/dirty-tree provenance. They are not retroactively labeled clean-commit runs. The main blocker must be resolved with unchanged budgets before publication.
+Probe reports preserve their original source/dirty-tree provenance. They are not retroactively labeled clean-commit runs. The main blocker must be resolved with unchanged budgets before publication. Five-project local typecheck is clean after final copy and collection-refresh fixes (`final-typecheck.txt`).
 
 ## Content and player contract
 
@@ -32,9 +32,13 @@ Daily deals guarantee one rotating authored category while preserving three slot
 
 Paris's **Five Items Cover Seven Needs** was completed through actual registered activities, the dual-use decision and a solo finale. Its permanent **Dual-Use Bag Tag** survived normal reload alongside Paris1/2, the separate France collection and mission progress. Screenshots: `ui-paris-earned-250.jpg`, `ui-paris-reloaded-250.jpg`, `ui-paris-reloaded-card-250.jpg`.
 
+Tokyo completed both local tales through real activities and authored decisions: **Two-test three-goal band** and **Five-rest court wheel**. Normal reload retains Tokyo tales2/2 with **Tokyo storykeeper**, and Japan Five Rest Rotations1/1 with **Court-Rest Steward**. See `ui-tokyo-collections-final.jpg`.
+
+The real UI exposed 180 reversed approach labels across four batches; all are corrected against current proof destinations and guarded by the content checker. It also exposed stale collection snapshots after new rewards. The retention view now refreshes on permanent episode/project reward changes, retaining request-generation and session/city guards. Paris earned its country keepsake **Shared-Clue Finish Flag** and immediately showed Paris2/2 plus France1/1, without reload or reopening.
+
 Earlier Nairobi and Moscow actual completion/reload evidence remains in `ui-nairobi-earned-145.png` and `ui-moscow-earned-145.png`. Those runs do not prove final source acceptance. Existing Jolly Tunde progress was preserved. Development backend restart recovery required a normal reload, never Start fresh. No physical-device or production-performance claim is made.
 
-Engine probes inject registered proof shapes and establish engine behavior, not real activity execution. Structural exact uniqueness does not prove unique plots. Explicit action/place label checks cover recognized phrases, not arbitrary natural-language semantics. Fast CI skips broader Node/Worker/UI suites; focused compatibility results are reported separately. No retention uplift has been measured.
+Engine probes inject registered proof shapes and establish engine behavior, not real activity execution. Structural exact uniqueness does not prove unique plots. Explicit mission and approach action/place label checks cover recognized phrases, not arbitrary natural-language semantics. Fast CI skips broader Node/Worker/UI suites; focused compatibility results are reported separately. No retention uplift has been measured.
 
 ## Reproduce or take over
 

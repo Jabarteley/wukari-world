@@ -6,7 +6,7 @@
 - **Owner:** `/root/local_tales_04_quality`
 - **Model / effort:** `gpt-6-sol / medium`
 - **Thread:** delegated bounded authoring lane
-- **UTC updated:** `2026-10-15T12:02:51Z`
+- **UTC updated:** `2026-10-15T12:13:24Z`
 - **Status:** `ready-for-parent-review`
 - **Work state:** `verified-local`
 
@@ -25,7 +25,7 @@
 - **Repo:** JoinAllworld canonical retention worktree.
 - **Host:** local desktop.
 - **Branch / worktree:** `/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld`.
-- **Base / current commit:** `98926c20092fd5c74a1526744eeeb35ac430a4d6` at final local verification; the shared worktree advanced during parent integration activity.
+- **Base / current commit:** `934d0962607f5320ecade84397489ded5f5243ac` at final local verification; the shared worktree advanced during parent integration activity.
 - **Dirty status:** shared worktree dirty with accepted parallel batches; only owned paths may change.
 - **Port/process ownership:** none.
 
@@ -108,7 +108,8 @@ These four replacements remove exact problem/solution collisions reported in `ph
 - Exact final source counts: 34 country arcs, 34 cities, 68 tales and 204 missions. All 68 tale titles, closings and keepsake names are distinct.
 - Correct-answer positions are balanced `23 / 23 / 22`; all eight allowed desire tags appear. Mission task counts are discovery 39, discovery-visit 18, host-visit 8, people 34, places 34, practical 63 and practical-visit 8.
 - Audited every changed mission task against the live `WORLD_STORY_SEEDS` action and venue. Corrected all named-place/action drift reported by the extended gate, including Larnaca, Libreville, New York, Pyongyang, San Salvador, Sarajevo, Shanghai, The Valley, Thimphu, Tokyo and Victoria.
-- Isolated strict TypeScript passes. The extended standalone batch-08 content gate passes with `34 / 34 / 68 / 204` and zero errors, including explicit action/place label consistency. The combined batches 01–08 gate reaches `284 / 243 / 568 / 1704` and reports only four parent-owned pre-existing mismatches in Nouakchott, Damascus and Tórshavn; batch 08 contributes zero errors. `git diff --check` passes on both owned paths.
+- Audited all 204 tale approach labels against the engine’s fixed index mapping: index 0 practical, index 1 discovery and index 2 host. Corrected 64 inverse country-approach action/place labels to their exact live seed activity and venue; city and host approaches required no change. Callbacks, stories, IDs and outcomes remain unchanged.
+- Isolated strict TypeScript passes. The extended standalone batch-08 content gate passes with `34 / 34 / 68 / 204` and zero errors, including explicit mission and approach action/place consistency. The combined batches 01–08 gate reaches `284 / 243 / 568 / 1704` and reports 119 parent-owned approach mismatches outside batch 08; batch 08 contributes zero errors. `git diff --check` passes on both owned paths.
 
 ### In progress / blockers
 
@@ -135,5 +136,6 @@ These four replacements remove exact problem/solution collisions reported in `ph
 | 2026-10-15T11:44:26Z | active | Resume authorized after usage reset; source restored; cities 7–20 authored; counts 34/20/40/120; current seeds checked; strict TypeScript and diff check pass | Owned source and this record | Continue from New York through Victoria |
 | 2026-10-15T11:57:25Z | ready-for-parent-review | All 34 cities complete; source-audit collisions replaced; 13 mission tuples diversified; exact counts 34/34/68/204; strict, standalone gate, combined 01–08 gate and diff check pass | `/tmp/local-tales-08-quality.json`; `/tmp/local-tales-01-08-quality.json`; owned source and this record | Parent semantic acceptance and integration |
 | 2026-10-15T12:02:51Z | ready-for-parent-review | Re-audited changed mission labels against live seed actions/venues after the checker gained explicit consistency validation; batch 08 now has zero label errors | Extended standalone gate zero errors; combined gate has only four errors outside batch 08; strict TypeScript and diff check pass | Parent handles the four pre-existing external errors and integration |
+| 2026-10-15T12:13:24Z | ready-for-parent-review | Re-audited all city/country approach labels against fixed engine indices; corrected 64 inverse country labels; batch 08 has zero approach errors | Extended standalone gate zero errors; combined gate’s 119 errors are all outside batch 08; strict TypeScript and diff check pass | Parent integrates released batch-08 source |
 
 Historical checkpoint: the six-city usage-stop snapshot remains archived at `docs/research/unique-local-content-2026-10-15/draft-batches/batch-08-quality-usage-checkpoint.ts.txt`. The authoritative complete source is now `src/game/content/local-tales/batch-08.ts`.

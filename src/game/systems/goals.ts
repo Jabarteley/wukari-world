@@ -63,6 +63,7 @@ import { lagosTime } from '../clock.ts';
 import { blockReason, credit, MAX_LEVEL, NEEDS, skillLevel, spotsOf, xpForLevel } from '../api.ts';
 import { fxModifiers } from '../character-effects.ts';
 import { GUIDE_LOW_NEED, PERKS, STARTER_GOALS, STARTER_INTRO, WISHES, WISH_REROLLS_PER_DAY, WISH_SLOTS, WISH_STARS } from '../content/goals.ts';
+import { lifeLevel, scaleNaira } from '../price-levels.ts';
 import { DREAMS, DREAM_REWARD, DREAM_TARGETS, LOTTERY } from '../content/traits.ts';
 
 const FEED_LIMIT = 8;
@@ -231,10 +232,10 @@ function skillFraction(state: LifeState, skill: 'music' | 'coding'): number {
 
 /** Dream progress 0–1 (original beta formulas; the completion conditions themselves are fixed). */
 export function dreamProgress(state: LifeState): number {
-  const g = state.goals, s = g.stats, T = DREAM_TARGETS;
+  const g = state.goals, s = g.stats, T = DREAM_TARGETS, level = lifeLevel(state);
   const table: Record<DreamId, () => number> = {
     'oga-at-the-top': () => s.level / (s.levelCap || T.careerTopLevel),
-    'lekki-landlord': () => Math.max(0, state.cash + s.assets - s.debt) / T.netWorth,
+    'lekki-landlord': () => Math.max(0, state.cash + s.assets - s.debt) / scaleNaira(T.netWorth, level),
     'afrobeats-star': () => skillFraction(state, 'music') / MAX_LEVEL,
     'everybodys-padi': () => (Math.min(T.bestFriends, s.friends) + Math.min(T.bestFriends, s.best)) / (2 * T.bestFriends),
     'yaba-unicorn': () => (s.funded ? 1 : Math.min(0.85, 0.6 * Math.min(1, skillFraction(state, 'coding') / T.codingLevel)
@@ -249,8 +250,9 @@ function checkDream(state: LifeState, ctx: LifeContext): void {
   if (!g.dream || g.dreamDone || dreamProgress(state) < 1) return;
   g.dreamDone = true; // set first: the reward's own wallet event must not pay it again
   addStars(state, DREAM_REWARD.stars);
-  const paid = credit(state, DREAM_REWARD.cash, `Dream achieved: ${dreamFor(state.estate.city, g.dream).label}`, ctx);
-  note(state, `Dream achieved: ${dreamFor(state.estate.city, g.dream).label} · ${paid ? `+${naira(DREAM_REWARD.cash)} ` : ''}+${DREAM_REWARD.stars}✨`);
+  const reward = scaleNaira(DREAM_REWARD.cash, lifeLevel(state));
+  const paid = credit(state, reward, `Dream achieved: ${dreamFor(state.estate.city, g.dream, lifeLevel(state)).label}`, ctx);
+  note(state, `Dream achieved: ${dreamFor(state.estate.city, g.dream, lifeLevel(state)).label} · ${paid ? `+${naira(reward)} ` : ''}+${DREAM_REWARD.stars}✨`);
   emit(state, 'dream.completed', { id: g.dream }, ctx);
 }
 
@@ -292,8 +294,9 @@ const HANDLERS: Record<string, Handler | undefined> = {
     bumpWishes(state, ctx, (wish) => wish.on === 'activity' && state.location === wish.venue && activityFits(wish, def, state.spot));
     if (tags.includes(PITCH_TAG) && !state.goals.stats.funded) {
       state.goals.stats.funded = true;
-      const paid = credit(state, DREAM_TARGETS.funding, `Startup funding from ${pitchVenueFor(ctx.cityId)?.label ?? 'the local hub'}`, ctx);
-      note(state, `Your startup is funded${paid ? ` · +${naira(DREAM_TARGETS.funding)}` : ''}`);
+      const funding = scaleNaira(DREAM_TARGETS.funding, lifeLevel(state));
+      const paid = credit(state, funding, `Startup funding from ${pitchVenueFor(ctx.cityId)?.label ?? 'the local hub'}`, ctx);
+      note(state, `Your startup is funded${paid ? ` · +${naira(funding)}` : ''}`);
     }
   },
   'promotion'(state, data) {
@@ -431,7 +434,7 @@ function chipOf(state: LifeState, ctx: LifeContext): GoalChip {
   if (!state.job) return { kind: 'guide', icon: '💼', title: 'Find a job', hint: 'Open Phone → Jobs', open: 'jobs' };
   const firstWish = g.wishes[0], wish = firstWish ? wishTable(state)[firstWish.id] : undefined;
   if (wish) return { kind: 'guide', icon: wish.icon, title: wish.label, hint: `${wish.hint} · +${WISH_STARS}✨`, open: 'goals' };
-  if (g.dream && !g.dreamDone) return { kind: 'guide', icon: DREAMS[g.dream].icon, title: dreamFor(state.estate.city, g.dream).label, hint: `${Math.floor(dreamProgress(state) * 100)}% · ${dreamFor(state.estate.city, g.dream).goal}`, open: 'goals' };
+  if (g.dream && !g.dreamDone) return { kind: 'guide', icon: DREAMS[g.dream].icon, title: dreamFor(state.estate.city, g.dream, lifeLevel(state)).label, hint: `${Math.floor(dreamProgress(state) * 100)}% · ${dreamFor(state.estate.city, g.dream, lifeLevel(state)).goal}`, open: 'goals' };
   const workplace = workplaceOf(state);
   return { kind: 'guide', icon: '💼', title: 'Work a shift', hint: 'Earn towards your next upgrade', ...(workplace ? { go: workplace } : { open: 'jobs' }) };
 }
@@ -474,9 +477,9 @@ const actions = {
   },
   'goals.set-dream'(state, payload, ctx) {
     const g = state.goals;
-    if (g.dream) return fail(state, 'dream_already_chosen', `Your dream is already ${dreamFor(state.estate.city, g.dream).label}. A dream is chosen once per life.`);
-    const dreamId = payload?.dream, dream = isDream(dreamId) ? dreamFor(state.estate.city, dreamId) : null;
-    if (!dream) return fail(state, 'invalid_dream', `Choose one dream: ${dreamsFor(state.estate.city).map((item) => item.label).join(', ')}.`);
+    if (g.dream) return fail(state, 'dream_already_chosen', `Your dream is already ${dreamFor(state.estate.city, g.dream, lifeLevel(state)).label}. A dream is chosen once per life.`);
+    const dreamId = payload?.dream, dream = isDream(dreamId) ? dreamFor(state.estate.city, dreamId, lifeLevel(state)) : null;
+    if (!dream) return fail(state, 'invalid_dream', `Choose one dream: ${dreamsFor(state.estate.city, lifeLevel(state)).map((item) => item.label).join(', ')}.`);
     g.dream = dream.id;
     state.message = `Dream chosen: ${dream.label}.`;
     checkDream(state, ctx);
@@ -579,8 +582,8 @@ export default {
       }),
       rerolls: { ...rerolls, blocked: rerolls.left > 0 ? null : `No re-rolls left today (${WISH_REROLLS_PER_DAY} a day). They reset at midnight, Nigerian time.` },
       granted: g.granted,
-      dream: g.dream ? { ...dreamFor(state.estate.city, g.dream), progress, percent: Math.floor(progress * 100), done: g.dreamDone, reward: DREAM_REWARD } : null,
-      dreams: g.dream ? [] : dreamsFor(state.estate.city),
+      dream: g.dream ? { ...dreamFor(state.estate.city, g.dream, lifeLevel(state)), progress, percent: Math.floor(progress * 100), done: g.dreamDone, reward: { ...DREAM_REWARD, cash: scaleNaira(DREAM_REWARD.cash, lifeLevel(state)) } } : null,
+      dreams: g.dream ? [] : dreamsFor(state.estate.city, lifeLevel(state)),
       feed: g.feed.map((item) => ({ ...item })),
       seq: g.seq,
     };

@@ -90,6 +90,7 @@ import { localUnitDescription, ticketArrivalVenue } from '../cities/runtime.ts';
  */
 import { LEFT_OUT, PLAYS } from '../profile.ts';
 import { emit } from '../registry.ts';
+import { lifeLevel, scaleNaira } from '../price-levels.ts';
 import { busy, fail, finite, isRecord, naira, ok, safeCount } from '../util.ts';
 import { isOpen as openAt, lagosTime } from '../clock.ts';
 import { arrive, canAfford, changeNeeds, credit, debit } from '../api.ts';
@@ -437,11 +438,19 @@ export const hasPlace = (state: LifeState): boolean => Boolean(state?.estate?.lg
   && (state.estate.lgaConfirmed === true || (state.onboarding?.done === true && state.onboarding.legacy === true));
 
 /** Is the city open for departures? `ctx.openCities` lets a test open one; no request can set it. */
+/**
+ * The links out of a city with each fare in the life's prices (docs/PRICE-LEVELS.md "Starting money"): the link's base fare times the level of the city the life
+ * started in. A Nigerian start (and every life saved before this) pays the fare as written. The whole-route ride home on credit (`homewardQuote`) keeps the base fares.
+ */
+export function linksPriced(state: LifeState, city: string): CityLinkFrom[] {
+  const level = lifeLevel(state), links = linksFrom(city);
+  return level === 1 ? links : links.map((link) => ({ ...link, fare: scaleNaira(link.fare, level) }));
+}
 const isOpen = (id: string, ctx?: LifeContext): boolean => isOpenCityId(id) || Boolean(ctx?.openCities?.includes(id as WorldCityId));
 /** Why a trip to another city cannot start, or null. `ctx.openCities` lets a test open a city; no request can set it. */
 export function relocateBlock(state: LifeState, to: unknown, mode: unknown, ctx?: LifeContext): { code: RelocateBlockCode; reason: string } | null {
   const e = state.estate, dest = cityCatalogueEntry(to);
-  const link = dest ? linksFrom(e.city).find((item) => item.to === to && item.mode === mode) : null;
+  const link = dest ? linksPriced(state, e.city).find((item) => item.to === to && item.mode === mode) : null;
   if (!dest || to === e.city) return { code: 'invalid_city', reason: 'Choose another city to travel to.' };
   if (!link) return { code: 'no_route', reason: `There is no ${mode === 'air' ? 'flight' : mode === 'rail' ? 'train' : 'road link'} from ${cityRules(e.city)?.name ?? 'here'} to ${dest.name}.` };
   const unavailable = routeUnavailable(link);
@@ -460,7 +469,7 @@ function directCreditLink(state: LifeState, ctx?: LifeContext): CityLinkFrom | n
   const e = state.estate, home = e.home;
   if (!visitingHere(state) || !home || rideDebtOf(state) > 0) return null;
   if (!isOpen(home, ctx)) return null;
-  const links = linksFrom(e.city).filter((item) => item.to === home && !routeUnavailable(item)).sort((a, b) => a.fare - b.fare || a.seconds - b.seconds);
+  const links = linksPriced(state, e.city).filter((item) => item.to === home && !routeUnavailable(item)).sort((a, b) => a.fare - b.fare || a.seconds - b.seconds);
   const cheapest = links[0];
   return cheapest && state.cash < cheapest.fare ? cheapest : null;
 }
@@ -498,7 +507,7 @@ function relocate(state: LifeState, payload: Record<string, unknown>, ctx: LifeC
   const onCredit = payload?.credit === true;
   const why = onCredit ? creditBlock(state, payload?.to, payload?.mode, ctx) : relocateBlock(state, payload?.to, payload?.mode, ctx);
   if (why) return fail(state, why.code, why.reason);
-  const link = linksFrom(state.estate.city).find((item) => item.to === payload.to && item.mode === payload.mode)!; // relocateBlock found this link, or it would have returned a reason
+  const link = linksPriced(state, state.estate.city).find((item) => item.to === payload.to && item.mode === payload.mode)!; // relocateBlock found this link, or it would have returned a reason
   if (onCredit) {
     // The fare is advanced and goes straight to the ticket: it is never handed over as spending money.
     credit(state, link.fare, `Ride home on credit: ${link.label} (advance)`, ctx);
@@ -597,7 +606,7 @@ function view(state: LifeState, ctx: LifeContext): EstateView {
     cheapest: cheapest ? { ...cheapest, total: cheapest.total ?? 0, lgaName: lgaName(e.city, cheapest.lga), label: HOUSE_TIERS[cheapest.tier].label } : null,
     rules: { beta: true, housesPerLife: OWNING.housesPerLife, cooldownDays: LGA_RULES.changeCooldownDays },
     // The travel list reads the world network; until it is in (a resident's startup in the browser) the list is null, not partial.
-    links: !cityNetworkReady() ? null : linksFrom(e.city).map((link) => ({ ...link, name: cityName(link.to) ?? link.to, open: isOpenCityId(link.to), hub: city?.hub?.[link.mode] ?? null,
+    links: !cityNetworkReady() ? null : linksPriced(state, e.city).map((link) => ({ ...link, name: cityName(link.to) ?? link.to, open: isOpenCityId(link.to), hub: city?.hub?.[link.mode] ?? null,
       blocked: (unsettled(state) ? SETTLE_FIRST : null) ?? relocateBlock(state, link.to, link.mode, ctx)?.reason
         ?? (state.activeAction?.kind === 'intercity' ? `You are on the way to ${cityName(state.activeAction.id) ?? 'another city'}. Arrive first.` : state.activeAction ? 'Finish what you are doing first (or cancel it), then travel.' : null) })),
     // Object.entries widens the keys of the city table.
@@ -678,7 +687,7 @@ export default {
       moves: true,
       sanitize(value, state) {
         const from = state.estate.city;
-        const link = linksFrom(from).find((item) => item.to === value.id && item.mode === value.mode);
+        const link = linksPriced(state, from).find((item) => item.to === value.id && item.mode === value.mode);
         // A trip that left under an earlier, longer timetable finishes on the clock it left with: same link, same fare.
         const known = link && (value.duration === link.seconds || (value.fare === link.fare && value.duration > link.seconds && value.duration <= MAX_SAVED_TRIP_SECONDS));
         return link && known ? { mode: link.mode, fare: link.fare, from } : null;

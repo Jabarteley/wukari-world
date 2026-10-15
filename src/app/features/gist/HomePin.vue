@@ -1,13 +1,12 @@
 <script setup lang="ts">
-// The home-city pin (docs/SMALLER-FEATURES.md): a player abroad picks a home city and sees its gist and its weather in a small card. The pin lives on
-// this device only. The two reads are the public ones everybody can make (GET /api/world/gist and /api/world/feed); the weather credit the feed asks
+// The home-city pin (docs/SMALLER-FEATURES.md): a player abroad picks a home city and sees its gist and its weather in a small card. The pin is kept with your character on the server (it follows you to other devices); this device keeps a copy. The two reads are the public ones everybody can make (GET /api/world/gist and /api/world/feed); the weather credit the feed asks
 // for is shown with it. Fetched when the Gist app opens, never at first paint.
 import { computed, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { cityCatalogueEntry, cityRules, loadCityContent, loadCityNetwork, playableCityIds } from '../../../game/cities/registry.ts'
 import { agoText, readGist } from './gistModel.ts'
 import type { GistLine } from './gistModel.ts'
-import { homePin, setHomePin } from './homePinStore.ts'
+import { homePin, savePin, syncHomePin } from './homePinStore.ts'
 import { pinPaths, validZone, weatherCredit, weatherLine, weatherNow } from './homePinModel.ts'
 
 const { game } = useApp()
@@ -15,6 +14,7 @@ const choices = ref<{ id: string; name: string }[]>([])
 const picking = ref(false), failed = ref(false), busy = ref(false)
 const lines = ref<GistLine[]>([]), weather = ref(''), credit = ref(''), now = ref(Date.now())
 onMounted(async () => {
+  void syncHomePin(game.fetchJson).then(() => read())
   try { await loadCityNetwork(); choices.value = playableCityIds().flatMap((id) => { const entry = cityCatalogueEntry(id); return entry ? [{ id, name: entry.countryName ? `${entry.name}, ${entry.countryName}` : entry.name }] : [] }).sort((a, b) => a.name.localeCompare(b.name)) } catch { /* no list: the pin keeps what it has */ }
   void read()
 })
@@ -37,7 +37,7 @@ async function choose(event: Event): Promise<void> {
     // The city's rules say its time zone. Only functions other screens already use are imported here, so the engine chunk gains no export for this card.
     await loadCityContent(id)
     const zone = cityRules(id)?.timezone ?? ''
-    setHomePin({ city: id, name, tz: validZone(zone) ? zone : 'Africa/Lagos' }); picking.value = false; lines.value = []; weather.value = ''
+    await savePin(game.fetchJson, { city: id, name, tz: validZone(zone) ? zone : 'Africa/Lagos' }); picking.value = false; lines.value = []; weather.value = ''
     await read()
   } catch { failed.value = true } finally { busy.value = false }
 }
@@ -66,7 +66,7 @@ const elsewhere = computed(() => homePin.value !== null && homePin.value.city !=
         <option value="">{{ choices.length ? 'Choose a city' : 'Loading cities…' }}</option>
         <option v-for="item in choices" :key="item.id" :value="item.id">{{ item.name }}</option>
       </select>
-      <button v-if="homePin" type="button" class="social-btn" @click="setHomePin(null); picking = false">Remove the pin</button>
+      <button v-if="homePin" type="button" class="social-btn" @click="savePin(game.fetchJson, null); picking = false">Remove the pin</button>
     </template>
   </section>
 </template>

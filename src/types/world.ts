@@ -161,6 +161,7 @@ export interface WorldWorksResponse {
   limits: { min: number; max: number; daily: number }
   you?: { canOrder: boolean }
 }
+export interface WorldHomeCityResponse { home: { city: string; name: string; tz: string } | null }
 export interface WorldBirthdayResponse { mine: { m: number; d: number; share: boolean } | null; today: boolean; friends: string[] }
 export interface WorldHttpRoutes {
   'GET /api/world/street': { query: { city: CityId }; response: Ok<WorldStreetResponse>; errors: WorldCommon | StorageErrorCode | 'city_moved' | 'not_on_street' | 'plot_unavailable' }
@@ -184,6 +185,9 @@ export interface WorldHttpRoutes {
   /** Opt-in birthdays (server/routes/stages.ts, docs/SMALLER-FEATURES.md): the caller's own choice and the friends who share and celebrate today. */
   'GET /api/world/birthday': { query: Record<string, never>; response: Ok<WorldBirthdayResponse>; errors: HostErrorCode | SessionErrorCode }
   'POST /api/world/birthday': { body: { m: number; d: number; share?: boolean } | { clear: true }; response: Ok<WorldBirthdayResponse>; errors: HostErrorCode | SessionErrorCode | JsonBodyErrorCode | 'invalid_date' | 'stages_rate_limited' }
+  /** The home-city pin kept with the caller's character, so it follows an account across devices (server/routes/stages.ts, docs/SMALLER-FEATURES.md). `ifNone`: the device's one-off upload, which never overwrites. */
+  'GET /api/world/home-city': { query: Record<string, never>; response: Ok<WorldHomeCityResponse>; errors: HostErrorCode | SessionErrorCode }
+  'POST /api/world/home-city': { body: { city: string; name: string; tz: string; ifNone?: boolean } | { clear: true }; response: Ok<WorldHomeCityResponse>; errors: HostErrorCode | SessionErrorCode | JsonBodyErrorCode | 'invalid_home_city' | 'stages_rate_limited' }
   'GET /api/world/city': { query: { city: CityId; v?: string }; response: Ok<WorldCityResponse>; errors: WorldCommon }
   'GET /api/world/lga/:id': { params: { id: LgaId }; query: { city: CityId }; response: Ok<WorldLgaResponse>; errors: WorldLga }
   /** `from` 0…511, `count` 0…128 (default 128); 400 `invalid_number` otherwise. */

@@ -55,7 +55,7 @@ export interface AccountExportResponse extends ApiEnvelope {
   commerce?: import('./commerce.ts').OwnCommerce
   account: { provider: AccountProviderId; email: string; createdAt: number; lastSeenAt: number }
   devices: { signedInAt: number; lastSeenAt: number; expiresAt: number; thisDevice: boolean }[]
-  character: (AccountCharacter & { cities: string[] }) | null
+  character: (AccountCharacter & { cities: string[]; homeCity?: { city: string; name: string; tz: string } }) | null
   setAside: ParkedCharacter[]
   history: { at: number; event: string; character?: string }[]
 }

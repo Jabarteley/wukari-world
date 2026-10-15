@@ -606,7 +606,7 @@ export function exportAccount(db: Db, deps: AccountDeps, caller: Caller, identit
     ...(commerce ? { commerce: ownCommerce(commerce, record ? commerceAddress(record) : null, now) } : {}),
     account: { provider: account.provider, email: account.email, createdAt: account.createdAt, lastSeenAt: account.lastSeenAt },
     devices: account.devices.flatMap((key) => { const device = own(db.accountDevices, key); return device ? [{ signedInAt: device.createdAt, lastSeenAt: device.seenAt, expiresAt: device.expiresAt, thisDevice: key === bound.cookie }] : []; }),
-    character: record && record.account === account.id && record.expiresAt > now ? { id: record.publicId, name: record.name, cities: Object.keys(record.cities || {}) } : null,
+    character: record && record.account === account.id && record.expiresAt > now ? { id: record.publicId, name: record.name, cities: Object.keys(record.cities || {}), ...(record.homeCity ? { homeCity: { ...record.homeCity } } : {}) } : null,
     setAside: account.parked.map(item => ({ ...item })),
     ...(db.street ? { streetJourneys: [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)].flatMap(player => { const journey = own(db.street?.journeys, player); return journey ? [{ player, ...structuredClone(journey) }] : []; }) } : {}),
     ...(db.showcase ? { showcase: exportShowcase(db, [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)]) } : {}),

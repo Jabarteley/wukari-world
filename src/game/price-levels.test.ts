@@ -6,7 +6,7 @@ import { LEVEL_MAX, LEVEL_MIN, priceLevelOf, scaleCityContent, scaleNaira } from
 import { loadCityContent, cachedCityContent } from './cities/registry.ts'
 import { LAGOS_CONTENT } from './cities/lagos/content.ts'
 import { INGREDIENTS } from './content/food.ts'
-import { createLife } from '../life.ts'
+import { advanceLife, createLife, dispatch, viewLife } from '../life.ts'
 import { groceryPrice } from './systems/home.ts'
 import { makeContext } from './util.ts'
 import { CURRENCY_COUNTRIES } from './currency.ts'
@@ -133,4 +133,118 @@ test('old saves load: nothing stored is rewritten', async () => {
   assert.ok(cachedCityContent('london'))
   const lagos = createLife(null, makeContext({ now: at, cityId: 'lagos', isNew: true }))
   assert.equal(json(createLife(JSON.parse(json(lagos)), makeContext({ now: at, cityId: 'lagos' }))), json(lagos))
+})
+
+// ---- Starting money (docs/PRICE-LEVELS.md "Starting money") ----
+import { BOUTIQUE_PRICES, LOTTERY } from './content/traits.ts'
+import { LOAN, LOAN_LATE_FEE, loanTerms } from './systems/economy.ts'
+import { STARTING_CASH } from './systems/wallet.ts'
+import { dreamFor, lotteryBulletsFor } from './cities/characterContent.ts'
+import { cityRules, linksFrom } from './cities/registry.ts'
+import { linksPriced } from './systems/estate.ts'
+import { lifeLevel, restateNaira } from './price-levels.ts'
+import type { LifeState } from '../types/life.ts'
+import type { ActionBody } from '../types/actions.ts'
+
+const LONDON_UNIT = (): string => cityRules('london')?.districts.find((district) => district.localUnitId)?.localUnitId ?? ''
+const LOOK = { body: 'man', hair: 'low-cut', outfit: 'casual', fabric: 'plain', skin: 'skin-4', hairColor: 'black', outfitColor: 'blue', bottomsColor: 'navy' }
+const MONDAY = Date.UTC(2026, 0, 5, 8)
+const act = (state: LifeState, type: string, payload: object, seed = 'start') => dispatch(state, { type, payload } as unknown as ActionBody, makeContext({ now: MONDAY, cityId: state.estate.city, seed }))
+/** A brand-new life in `city`, through the creator, rolling the wanted lottery outcome, settled in a local government. */
+function start(city: string, lga: string, lottery: keyof typeof LOTTERY): LifeState {
+  const state = createLife(null, makeContext({ now: MONDAY, cityId: city, seed: 'new', isNew: true, requireOnboarding: true }))
+  for (const [type, payload] of [['onboarding.look', { look: LOOK }], ['onboarding.traits', { traits: ['musical', 'tech-bro-or-sis'] }], ['onboarding.dream', { dream: 'lekki-landlord' }]] as const) assert.equal(act(state, type, payload).ok, true, type)
+  for (let i = 0; i < 400; i++) {
+    const copy = createLife(structuredClone(state), makeContext({ now: MONDAY, cityId: city }))
+    act(copy, 'onboarding.lottery', {}, `roll-${i}`)
+    if (copy.onboarding.lottery?.id === lottery) { assert.equal(act(state, 'onboarding.lottery', {}, `roll-${i}`).ok, true); break }
+  }
+  assert.equal(state.onboarding.lottery?.id, lottery)
+  assert.equal(act(state, 'onboarding.home', { lga, via: 'manual' }).ok, true)
+  return state
+}
+
+test('a Nigerian start is exactly what it was: purse, loan, no level stored', async () => {
+  await loadCityContent('ibadan')
+  assert.equal(loanTerms().total, LOAN.total); assert.equal(loanTerms({}).fee, LOAN_LATE_FEE); assert.equal(loanTerms({ level: 1 }).weekly, LOAN.weekly)
+  const fresh = createLife(null, makeContext({ now: MONDAY, cityId: 'ibadan', isNew: true }))
+  assert.equal(fresh.cash, STARTING_CASH)
+  const lapo = start('ibadan', 'ibadan-north', 'lapo-baby')
+  assert.equal(lapo.onboarding.level, undefined, 'a Nigerian life stores nothing new')
+  assert.equal(lapo.cash, LOTTERY['lapo-baby'].ownCash)
+  assert.deepEqual(lapo.economy.loan, { left: LOAN.total, prepaid: 0, fees: 0 })
+  assert.equal(lifeLevel(lapo), 1)
+  const grant = lapo.ledger.find((line) => line.reason.startsWith('Start cash'))
+  assert.match(grant?.reason ?? '', /includes ₦60,000 LAPO loan/)
+})
+
+test('a London start has the purse, the loan, the dream and the Boutique in London prices; buying power is about the same as in Lagos', async () => {
+  await loadCityContent('london'); await loadCityContent('ibadan')
+  const factor = level('gb')
+  assert.ok(factor > 2)
+  const london = start('london', LONDON_UNIT(), 'lapo-baby')
+  assert.equal(london.onboarding.level, factor)
+  assert.equal(london.cash, scaleNaira(LOTTERY['lapo-baby'].ownCash, factor))
+  assert.ok(Math.abs(london.cash / LOTTERY['lapo-baby'].ownCash - factor) < 0.01, 'the purse is the Lagos purse times the level')
+  const terms = loanTerms({ level: factor })
+  assert.deepEqual(london.economy.loan, { left: terms.total, prepaid: 0, fees: 0, level: factor })
+  assert.equal(terms.weekly, scaleNaira(LOAN.weekly, factor))
+  assert.match(london.ledger.find((line) => line.reason.startsWith('Start cash'))?.reason ?? '', new RegExp(`includes ₦${terms.principal.toLocaleString('en-NG')} LAPO loan`))
+  // The loan is collected at the scaled instalment and cleared at the scaled total.
+  const before = london.cash
+  advanceLife(london, 8 * 86400, makeContext({ now: MONDAY + 8 * 86400000, cityId: 'london' }))
+  assert.ok(london.economy.loan && london.economy.loan.left < terms.total, 'an instalment was collected')
+  assert.equal(terms.total - london.economy.loan.left, terms.weekly * Math.round((terms.total - london.economy.loan.left) / terms.weekly), 'in whole instalments of the scaled weekly amount')
+  assert.ok(before > 0)
+  // The same roll in Lagos-priced Ibadan: London's purse buys about the same (cash over the cheapest pack).
+  const home = start('ibadan', 'ibadan-north', 'lapo-baby')
+  const pack = (city: string, factor2: number) => scaleNaira(Math.min(...Object.values(INGREDIENTS).map((item) => item.price)), factor2)
+  const londonPacks = start('london', LONDON_UNIT(), 'civil-servant').cash / pack('london', factor), lagosPacks = start('ibadan', 'ibadan-north', 'civil-servant').cash / pack('ibadan', 1)
+  assert.ok(Math.abs(londonPacks / lagosPacks - 1) < 0.05, `${londonPacks} packs against ${lagosPacks}`)
+  assert.ok(home.cash > 0)
+  // Words that name an amount are restated at the level; at 1 they are the text itself.
+  assert.match(dreamFor('london', 'lekki-landlord', factor).goal, new RegExp(`₦${scaleNaira(1000000, factor).toLocaleString('en-NG')}`))
+  assert.equal(dreamFor('ibadan', 'lekki-landlord', 1).goal, dreamFor('ibadan', 'lekki-landlord').goal)
+  assert.ok(lotteryBulletsFor('london', 'lapo-baby', factor).some((line) => line.includes(`₦${terms.principal.toLocaleString('en-NG')}`)))
+  assert.equal(restateNaira('₦60,000 loan, ₦12,000 a week', 1), '₦60,000 loan, ₦12,000 a week')
+  // The Boutique is dearer by the same level.
+  const priceOf = (state: LifeState) => viewLife(state, makeContext({ now: MONDAY, cityId: state.estate.city })).onboarding.boutique.find((item) => item.kind === 'hair' && item.price > 0)
+  const londonHair = priceOf(london), lagosHair = priceOf(home)
+  assert.ok(londonHair && lagosHair)
+  assert.equal(londonHair.price, scaleNaira(BOUTIQUE_PRICES.hair[londonHair.id]!, factor))
+  assert.equal(lagosHair.price, BOUTIQUE_PRICES.hair[lagosHair.id], 'Nigeria: the catalogue price')
+})
+
+test('the dream reward and a loan by level; an old life without a level reads as 1 and is not rewritten', async () => {
+  await loadCityContent('london')
+  const old = createLife(null, makeContext({ now: MONDAY, cityId: 'london', isNew: true }))
+  old.cash = 77777
+  const loaded = createLife(JSON.parse(json(old)), makeContext({ now: MONDAY, cityId: 'london' }))
+  assert.equal(loaded.onboarding.level, undefined); assert.equal(lifeLevel(loaded), 1); assert.equal(loaded.cash, 77777)
+  const bad = JSON.parse(json(old)); bad.onboarding.level = 99
+  assert.equal(createLife(bad, makeContext({ now: MONDAY, cityId: 'london' })).onboarding.level, undefined, 'a level outside the range is dropped')
+  const withLoan = JSON.parse(json(start('london', LONDON_UNIT(), 'lapo-baby')))
+  const again = createLife(withLoan, makeContext({ now: MONDAY, cityId: 'london' }))
+  assert.equal(json(again.economy.loan), json(withLoan.economy.loan), 'a scaled loan survives a load')
+  assert.equal(again.onboarding.level, withLoan.onboarding.level)
+})
+
+test('a new life in London begins with a London-sized guest purse; Nigeria keeps 5,000', async () => {
+  await loadCityContent('london')
+  assert.equal(createLife(null, makeContext({ now: MONDAY, cityId: 'london', isNew: true })).cash, scaleNaira(STARTING_CASH, level('gb')))
+  assert.equal(createLife(null, makeContext({ now: MONDAY, cityId: 'lagos', isNew: true })).cash, STARTING_CASH)
+})
+
+test('a ticket is in the prices of the city the life started in; Nigerian lives and old lives pay the fare as written', async () => {
+  await loadCityContent('london'); await loadCityContent('ibadan')
+  const base = linksFrom('ibadan'), london = start('london', LONDON_UNIT(), 'civil-servant'), home = start('ibadan', 'ibadan-north', 'civil-servant')
+  assert.ok(base.length > 0)
+  linksPriced(london, 'ibadan').forEach((link, i) => assert.equal(link.fare, scaleNaira(base[i]!.fare, level('gb')), `${link.label} costs the London amount`))
+  assert.deepEqual(linksPriced(home, 'ibadan'), base, 'a Nigerian start: exactly as written')
+  const old = createLife(JSON.parse(json(london)), makeContext({ now: MONDAY, cityId: 'london' })); delete old.onboarding.level
+  assert.deepEqual(linksPriced(old, 'ibadan'), base, 'a life without a level reads as 1')
+  // The fare is charged, and shown, at the scaled amount.
+  london.estate.city = 'ibadan'
+  const shown = viewLife(london, makeContext({ now: MONDAY, cityId: 'ibadan' })).estate.links?.find((link) => link.fare > 0)
+  assert.equal(shown?.fare, scaleNaira(base.find((link) => link.to === shown?.to && link.mode === shown?.mode)!.fare, level('gb')))
 })

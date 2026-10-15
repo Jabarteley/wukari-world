@@ -19,7 +19,6 @@ import type { EngineEvent, ModifierKey, SystemDefinition } from '../types/regist
 import type { ActionOutcome, ActivityAction, LedgerDay, LedgerLine, LifeContext, LifeContextInit, LifeState, NeedId } from '../types/life.ts';
 
 // addSkillXp only passes its context on to modifiers and listeners; the engine tolerates none, so the original calls gave none.
-const NO_CTX = undefined as unknown as LifeContext;
 const MONDAY_9AM = Date.UTC(2026, 0, 5, 8); // 09:00 in Lagos (UTC+1), a Monday
 const at = (now: number, seed = 'test'): LifeContext => makeContext({ now, cityId: 'lagos', seed });
 
@@ -247,13 +246,14 @@ test('skills: nine skills, XP to level, rate modifier hook and level-up event', 
   assert.deepEqual([...SKILLS], ['cooking', 'charisma', 'fitness', 'coding', 'music', 'hustle', 'dance', 'comedy', 'photography']);
   const state = blank();
   assert.equal(skillLevel(state, 'coding'), 0);
-  assert.equal(addSkillXp(state, 'coding', 99, NO_CTX), 0); assert.equal(addSkillXp(state, 'coding', 1, NO_CTX), 1);
-  assert.equal(addSkillXp(state, 'coding', 1e9, NO_CTX), 10); assert.equal(state.skills.coding, xpForLevel(10));
-  assert.equal(addSkillXp(state, 'hacking', 50, NO_CTX), -1); assert.equal(addSkillXp(state, 'music', -5, NO_CTX), -1);
+  const ctx = at(0); // a real context: the level-up event reaches systems (achievements) that read it
+  assert.equal(addSkillXp(state, 'coding', 99, ctx), 0); assert.equal(addSkillXp(state, 'coding', 1, ctx), 1);
+  assert.equal(addSkillXp(state, 'coding', 1e9, ctx), 10); assert.equal(state.skills.coding, xpForLevel(10));
+  assert.equal(addSkillXp(state, 'hacking', 50, ctx), -1); assert.equal(addSkillXp(state, 'music', -5, ctx), -1);
   assert.equal(setSkillLevel(state, 'hustle', 2), true); assert.equal(skillLevel(state, 'hustle'), 2);
   setSkillLevel(state, 'hustle', 1); assert.equal(skillLevel(state, 'hustle'), 2, 'never lowers');
   const boosted = createLife({ probe: { boost: true } });
-  addSkillXp(boosted, 'dance', 50, NO_CTX); assert.equal(boosted.skills.dance, 100); assert.equal(skillLevel(boosted, 'dance'), 1);
+  addSkillXp(boosted, 'dance', 50, ctx); assert.equal(boosted.skills.dance, 100); assert.equal(skillLevel(boosted, 'dance'), 1);
   const view = viewLife(state).skills;
   assert.deepEqual(view.hustle, { xp: 300, level: 2, next: 600, progress: 0 }); assert.equal(view.coding.next, null);
 });

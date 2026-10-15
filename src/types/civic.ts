@@ -369,9 +369,15 @@ export interface PrefsResponse { ok: true; prefs: { richList: boolean; directory
 type CivicRead = HostErrorCode | 'invalid_city' | 'civic_rate_limited' | 'invalid_tier' | 'no_such_seat'
 type CivicWrite = CivicRead | JsonBodyErrorCode | SessionErrorCode | StorageErrorCode
 
+/** City works (server/routes/works.ts): a gift of game money to the active work, and the head of the city's order. */
+export interface WorksGiveBody { cityId: CityId; amount: number; requestId: TimedId }
+export interface WorksOrderBody { cityId: CityId; order: string[]; requestId: TimedId }
+export interface WorksWriteResponse { ok: boolean; code: string; reason?: string; amount?: number; state: LifeState; works: import('./world.ts').WorldWorksResponse }
 export interface CivicHttpRoutes {
   'GET /api/civic/pulse': { query: { city: CityId }; response: Ok<PulseResponse>; errors: CivicRead | StorageErrorCode }
   'GET /api/civic/gov': { query: { city: CityId; tier?: TierId }; response: Ok<GovResponse>; errors: CivicRead }
+  'POST /api/civic/works/give': { body: WorksGiveBody; response: Ok<WorksWriteResponse>; errors: CivicWrite | OnceErrorCode }
+  'POST /api/civic/works/order': { body: WorksOrderBody; response: Ok<WorksWriteResponse>; errors: CivicWrite | OnceErrorCode }
   'POST /api/civic/gov/run': { body: RunBody; response: Ok<RunResponse>; errors: CivicWrite | OnceErrorCode }
   'POST /api/civic/gov/vote': { body: VoteBody; response: Ok<VoteResponse>; errors: CivicWrite }
   'POST /api/civic/gov/announce': { body: AnnounceBody; response: Ok<AnnounceResponse>; errors: CivicWrite }

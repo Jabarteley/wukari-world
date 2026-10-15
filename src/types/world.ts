@@ -151,6 +151,16 @@ export interface WorldFeedResponse {
 /** GET /api/world/gist (server/gist): public lines of what happened in a city, newest first (docs/GIST.md). */
 export interface GistLine { n: number; at: number; city: string; kind: string; text: string }
 export interface WorldGistResponse { city: CityId; items: GistLine[]; latest: number }
+/** GET /api/world/works: see server/works/works.ts WorksView. */
+export interface WorldWorksResponse {
+  city: CityId
+  active: { id: string; label: string; line: string; paid: number; cost: number; gifts: number } | null
+  done: { id: string; label: string; line: string; at: number }[]
+  order: string[]
+  later: { id: string; label: string }[]
+  limits: { min: number; max: number; daily: number }
+  you?: { canOrder: boolean }
+}
 export interface WorldHttpRoutes {
   'GET /api/world/street': { query: { city: CityId }; response: Ok<WorldStreetResponse>; errors: WorldCommon | StorageErrorCode | 'city_moved' | 'not_on_street' | 'plot_unavailable' }
   /** Settles (or creates) the caller's life in that city exactly as a poll would, so it can also answer 409 `city_moved` and 503 `storage_unavailable`. */
@@ -168,6 +178,8 @@ export interface WorldHttpRoutes {
   /** A player's prayer (server/routes/prayers.ts, docs/PRAYERS.md): the notice to show first, then the prayer, sent with `notice: true`. */
   'GET /api/world/pray': { query: Record<string, never>; response: Ok<{ notice: string; received: string; left: number; max: number }>; errors: WorldCommon }
   'POST /api/world/pray': { body: { text: string; notice: true; venue?: string; clientId: string }; response: Ok<{ ok: true; message: string }>; errors: WorldCommon | 'notice_required' | 'invalid_prayer' | 'too_many_prayers' }
+  /** Public: the city's shared works, the one taking gifts, those that stand and the order (server/routes/works.ts, docs/SMALLER-FEATURES.md). `you` only with a session. */
+  'GET /api/world/works': { query: { id: CityId }; response: Ok<WorldWorksResponse>; errors: HostErrorCode | 'invalid_city' | 'works_rate_limited' }
   'GET /api/world/city': { query: { city: CityId; v?: string }; response: Ok<WorldCityResponse>; errors: WorldCommon }
   'GET /api/world/lga/:id': { params: { id: LgaId }; query: { city: CityId }; response: Ok<WorldLgaResponse>; errors: WorldLga }
   /** `from` 0…511, `count` 0…128 (default 128); 400 `invalid_number` otherwise. */

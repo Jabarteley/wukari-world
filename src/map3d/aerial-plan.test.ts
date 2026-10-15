@@ -170,7 +170,8 @@ test('the aerial chunk imports nothing it does not own, and the map fetches it o
   for (const file of ['src/map3d/aerial-plan.ts', 'src/map3d/aerial.ts', 'src/map3d/aerial-tiers.ts']) {
     const code = await readFile(file, 'utf8');
     const values = [...code.matchAll(/^import (?!type )[^;]*from '([^']+)'/gm)].map((match) => match[1]);
-    assert.deepEqual(values.filter((path) => path !== './aerial-plan.ts' && path !== './aerial-tiers.ts'), [], `${file} has no value imports but its own plan and tier table`);
+    // Light mode's switch (ae70b610) lives in the engine chunk, which is always loaded (2f603a36): reading it adds no file to the aerial chunk.
+    assert.deepEqual(values.filter((path) => path !== './aerial-plan.ts' && path !== './aerial-tiers.ts' && path !== '../lightMode.ts'), [], `${file} has no value imports but its own plan and tier table, and Light mode's switch`);
   }
   const map = await readFile('src/map3d/map3d.ts', 'utf8');
   assert.match(map, /import\('\.\/aerial\.ts'\)/, 'fetched when a dive starts');

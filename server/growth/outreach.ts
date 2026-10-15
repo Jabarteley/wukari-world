@@ -416,6 +416,9 @@ function buildService(ctx: RouteContext) {
         }
         return sessions;
       });
+      // Nobody is due: nothing can be claimed, so the saved transaction below is not run. (Run empty, it still filled in the growth
+      // collection's missing parts and held that change in memory, which kept the Worker object from being evicted in the edge tests.)
+      if (candidates.length === 0) return { ran: true, jobs: 0 };
       await Promise.all(candidates.map((session) => prepareStoredCityContent(ctx, session)));
       const preparedIds = new Set(candidates.map((session) => session.publicId));
       await ctx.store.transact((db) => {

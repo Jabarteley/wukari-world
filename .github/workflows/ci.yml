@@ -267,10 +267,12 @@ jobs:
     timeout-minutes: 25
     strategy:
       fail-fast: false
-      max-parallel: 2
+      max-parallel: 10
       matrix:
         node: [22, 24]
-        suite: [game, host, tooling]
+        # economy, allCities, combinedRules, relief and stuck are five files of src/ that run for 5 to 19 minutes each: the game jobs could not hold
+        # them, and allCities and stuck are split in two (scripts/node-test-plan.ts). The rest of src/ is three shards.
+        suite: [game-1, game-2, game-3, host, tooling, economy, cities-1, cities-2, routes, homeward, stuck-1, stuck-2]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -292,6 +294,8 @@ jobs:
       fail-fast: false
       matrix:
         node: [22, 24]
+        # The Worker tests took 12 to 17 minutes in one job, and the job was cancelled once at 25 with every test passed: two shards (scripts/node-test-plan.ts).
+        suite: [edge-1, edge-2]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -301,7 +305,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run build
       - run: npm ci --ignore-scripts --no-audit --no-fund --prefix deploy/tooling
-      - run: npm run test:edge
+      - run: node --experimental-strip-types scripts/node-test-plan.ts ${{ matrix.suite }}
 
   integration-repairs:
     if: github.event_name == 'workflow_dispatch' && inputs.full_checks
@@ -316,6 +320,8 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - id: build
         run: npm run build
+      # src/game/cities/allCities.test.ts and src/game/economy.test.ts are not here: together they need more than this job's 15 minutes
+      # (about 10 and 14), and the economy and cities jobs of full-node run them with their own clocks.
       - if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: >-
           node --experimental-strip-types --test --test-concurrency=1
@@ -323,5 +329,4 @@ jobs:
           server/new-player.test.ts server/two-players.test.ts server/release.test.ts
           src/app/components.test.ts src/app/entry.test.ts
           src/app/features/tour/tour.test.ts src/game/browser-profile.test.ts
-          src/game/career.test.ts src/game/cities/allCities.test.ts
-          src/game/economy.test.ts src/game/living-world/vehicle-boarding.test.ts
+          src/game/career.test.ts src/game/living-world/vehicle-boarding.test.ts

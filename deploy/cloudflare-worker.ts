@@ -299,6 +299,8 @@ export interface WorkerEnv {
   SLEEP_BETWEEN_BEATS?: string
   /** How the big collections are stored: `legacy` (default), `shadow` or `entries` (docs/STORAGE.md). */
   STORE_LAYOUT?: string
+  /** `off`: the world feed (weather, exchange rates) makes no outside call, as `WORLD_FEED=off` does on the Node host. The edge tests set it: an outside call in flight keeps the object from being evicted. */
+  WORLD_FEED?: string
   /** The most characters of stored collections the store copies before one transaction while it moves itself (deploy/sqlite-store.ts STEP_CHARS). */
   STORE_STEP_CHARS?: string
   /** Replaces the built-in founder hash; empty: no founder (server/host-context.ts founderEmailHash). */
@@ -463,7 +465,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
       },
       // The Workers runtime cannot be told to fail on a redirect: it is not followed, and the answer is refused (host-context.js).
       fetch: outboundFetch((url: string, init?: RequestInit) => fetch(url, init), { refuseRedirect: 'manual' }),
-      worldFeed: true,
+      worldFeed: env.WORLD_FEED !== 'off',
       /** A secret this host makes for itself, once: a row of `host_keys` in the object's own storage. Never logged. */
       keyFile: <T extends object>(name: string, make: () => T | Promise<T>): Promise<T> => {
         if (!/^[a-z][a-z0-9-]{0,31}$/.test(name)) return Promise.reject(new Error('Invalid key file name'));

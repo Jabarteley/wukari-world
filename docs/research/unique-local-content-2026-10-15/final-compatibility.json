@@ -1,0 +1,22 @@
+{
+  "source": "98926c20092fd5c74a1526744eeeb35ac430a4d6",
+  "scope": "Final 284-city source; existing focused agent, mission, registry, resident, prayer and creator checks. Not full repository suite or production proof.",
+  "tests": 202,
+  "passed": 202,
+  "failed": 0,
+  "sourceHashes": {
+    "src/game/content/local-tales.ts": "d607ca66c58bc4c352eb641128e90f9828511901e1a3d7c384361d20aa145d40",
+    "scripts/city/check-local-tales.ts": "252cb7245e466ad60689fcc303bf558d7b718072a3582f4520e2f62c855031d8",
+    "src/game/content/local-tales/batch-01.ts": "3d8f3cd411b12eb103823a602e90d65ec46d6b5402f115af2f23b4c2c5a87a43",
+    "src/game/content/local-tales/batch-02.ts": "a8b92e3b77619299221f8bf971c65fc48663db333b60c15a4e39435717ee8a08",
+    "src/game/content/local-tales/batch-03.ts": "74ab58f77e39605b83957beba04c2548bbfb2bd44f91d93bdd6531cbbaf7bab0",
+    "src/game/content/local-tales/batch-04.ts": "d1ec1816b070ad52c20901aad9afe0cb7c3e32b80dcf80db34405135e9531ab0",
+    "src/game/content/local-tales/batch-05.ts": "0b01d98a5984dd6e1aa4692a204d1c1fc4123d5debf94585c69a98519ffe7dbe",
+    "src/game/content/local-tales/batch-06.ts": "5e5fde739473176cce22487415e9f05bf62c14284eb2dbd8798724c04264a48b",
+    "src/game/content/local-tales/batch-07.ts": "bc3f0b1b43c3dd3d7628b3a9a366dd04875c83ca4471fa1b2954eda31d3a9e82",
+    "src/game/content/local-tales/batch-08.ts": "aa0f89bf515afe440dcabd6bb00a55310904a077ccd008792645177e2c680e7b"
+  },
+  "logSha256": "02c4ae57ca6dca5284e42acac7c09bc49e7700a67f577a648e65ad3002d4bc44",
+  "log": "final-agent-check.txt",
+  "command": "node --experimental-strip-types scripts/agent-slot.ts heavy --wait-ms 1000 -- node --experimental-strip-types --test --test-concurrency=1 src/game/missions.test.ts src/game/agent-missions.test.ts server/agents/agents.test.ts server/agents/agents-open.test.ts server/registry.test.ts server/house/desk.test.ts server/house/errands.test.ts server/house/missions.live.test.ts server/residents/resident.test.ts src/app/features/start/creatorModel.test.ts server/prayers/prayers.test.ts src/app/features/prayers/prayModel.test.ts src/app/features/start/entryModel.test.ts src/app/features/start/startComponents.test.ts server/residents/bonds.test.ts server/residents/roster.test.ts"
+}

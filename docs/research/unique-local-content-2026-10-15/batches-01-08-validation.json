@@ -1,0 +1,19 @@
+{
+  "referenceSource": "src/game/content/world-progression.generated.ts",
+  "files": [
+    "src/game/content/local-tales/batch-01.ts",
+    "src/game/content/local-tales/batch-02.ts",
+    "src/game/content/local-tales/batch-03.ts",
+    "src/game/content/local-tales/batch-04.ts",
+    "src/game/content/local-tales/batch-05.ts",
+    "src/game/content/local-tales/batch-06.ts",
+    "src/game/content/local-tales/batch-07.ts",
+    "src/game/content/local-tales/batch-08.ts"
+  ],
+  "cityCount": 284,
+  "countryCount": 243,
+  "taleCount": 568,
+  "missionCount": 1704,
+  "errors": [],
+  "scope": "Structural, current grounding, registered place/regular capacity, explicit action/place label consistency and normalized exact uniqueness only. Semantic plot quality and gameplay/save/agent compatibility require separate review."
+}

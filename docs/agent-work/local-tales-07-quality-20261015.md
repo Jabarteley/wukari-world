@@ -133,4 +133,19 @@ Checkpoint archive retained at `docs/research/unique-local-content-2026-10-15/dr
 - Rejected blanket moral-answer and known repeated-mechanism phrase audit returns no matches.
 - Current Marigot and Road Town authoritative seed references match the assigned venues/actions, so no seed conflict remains.
 
+## Mission-variety follow-up
+
+Parent’s task-signature audit found that the first complete draft imposed one mission shape on 33 of 35 cities. The follow-up leaves every tale and country arc unchanged and revises missions for 15 cities whose story motivation supports a different proof path. Paris remains unchanged so its completed daily mission progress keeps the same task and count.
+
+- Amman, Beirut, Honiara, Nassau, Road Town and Warsaw use a real place or host visit for the discovery slot and a supported solo activity for social preparation. The later greeting supplies the fictional participants only when the story needs them.
+- Baku uses discovery activity to study echo spacing, practical activity to prepare timing and another discovery activity as social rehearsal; the sound plot does not require greeting regulars.
+- Hagåtña and Luxembourg use discovery activity as daily life, a place or host visit to inspect the relevant setup and practical activity to prepare the fair turn or story exchange.
+- Île Boddam, Kinshasa, Manama, Terong Kangri and Yaoundé use discovery activity as life, a practical-venue visit for inspection and practical activity for solo preparation. Their later greetings provide crews, speakers, helpers or partners tied to the tale.
+- Nuku'alofa uses discovery activity for the arch, places for comparing meal layouts, practical activity for the two-spoon preparation and a later host review plus greetings for the shared meal.
+
+The resulting 35-city distribution has 12 distinct task signatures: the retained original signature appears 18 times; revised signatures appear in groups of 3, 2, 2, 2, and seven single-city forms. Across all 210 missions the task totals are practical 64, discovery 42, people 34, places 33, host-visit 30, practical-visit 5 and discovery-visit 2. Labels continue to name only registered actions, real seed venues or city/count targets; fictional motivation remains in purpose.
+
+The isolated strict TypeScript check, Batch 07 gate and combined batches 01-07 gate all pass after this mission-only edit. Batch 07 remains 35/35/70/210 with zero errors; combined coverage remains 250 cities, 209 countries, 500 tales and 1,500 missions with zero errors.
+
 | 2026-10-15T11:47:38Z | ready-for-review | Complete 35/35/70/210; strict TypeScript, batch gate and combined 01-07 gate pass; answer positions 24/23/23; semantic exact-duplicate audit 0 | `/tmp/local-tales-07-quality.json`; `/tmp/local-tales-01-07-quality.json`; owned source and record | Parent semantic acceptance and activation |
+| 2026-10-15T11:59:47Z | mission-variety-ready | Mission-only follow-up revises 15 cities into 12 total task signatures; Paris unchanged; strict TypeScript and batch/combined gates pass | `/tmp/local-tales-07-quality.json`; `/tmp/local-tales-01-07-quality.json`; owned source and record | Parent task-signature probe, semantic acceptance and activation |

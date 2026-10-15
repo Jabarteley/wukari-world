@@ -1319,10 +1319,10 @@ const batch = {
       },
       missions: { daily: [
         { label: 'Enjoy one quiet evening in Tórshavn', purpose: 'Support Corin’s equal relay plan.', task: 'practical', count: 1 },
-        { label: 'Visit Viðarlundin in Tórshavn', purpose: 'Reach the relay and supper setting.', task: 'discovery-visit', count: 1 },
+        { label: 'Visit Torgið in Tórshavn', purpose: 'Reach the relay and supper setting.', task: 'discovery-visit', count: 1 },
         { label: 'Greet two game regulars in Tórshavn', purpose: 'Bring ordinary teammates to the relay context.', task: 'people', count: 2 },
       ], weekly: [
-        { label: 'Look around Viðarlundin three times', purpose: 'Reflect on three covered dishes.', task: 'discovery', count: 3 },
+        { label: 'Look around Torgið three times', purpose: 'Reflect on three covered dishes.', task: 'discovery', count: 3 },
         { label: 'Visit two supported places in Tórshavn', purpose: 'Connect registered settings.', task: 'places', count: 2 },
         { label: 'Enjoy two quiet evenings in Tórshavn', purpose: 'Echo two walking legs per friend.', task: 'practical', count: 2 },
       ] },

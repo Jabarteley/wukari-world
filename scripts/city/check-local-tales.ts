@@ -73,6 +73,29 @@ for (const file of args) {
         const owner = `${city.cityId}/${scope}/${slot}`
         unique('mission-label', mission.label, owner)
         if (!mission.purpose?.trim()) errors.push(`${owner}: missing purpose`)
+        const target = mission.task === 'practical' || mission.task === 'practical-visit' ? seed.practical
+          : mission.task === 'discovery' || mission.task === 'discovery-visit' ? seed.discovery
+            : mission.task === 'host-visit' ? seed.host : undefined
+        if (target) {
+          const label = normalized(mission.label)
+          const targetName = normalized(target.venueName)
+          const wrongPlace = [seed.host, seed.practical, seed.discovery].find(place => {
+            const name = normalized(place.venueName)
+            return name !== targetName && !targetName.includes(name) && label.includes(name) && !label.includes(targetName)
+          })
+          if (wrongPlace) errors.push(`${owner}: label names ${wrongPlace.venueName} but task goes to ${target.venueName}`)
+          if (mission.task === 'practical' || mission.task === 'discovery') {
+            const expected = mission.task === 'practical' ? seed.practical.label : seed.discovery.label
+            const namedAction = [
+              { pattern: /\blook around\b/, name: 'Look around' },
+              { pattern: /\bquiet evenings?\b/, name: 'Enjoy a quiet evening' },
+              { pattern: /\bsimple meals?\b/, name: 'Have a simple meal' },
+            ].find(action => action.pattern.test(label))
+            if (namedAction && expected !== namedAction.name && !namedAction.pattern.test(normalized(expected))) {
+              errors.push(`${owner}: label describes ${namedAction.name} but task requires ${expected}`)
+            }
+          }
+        }
         const activity = mission.task === 'practical' || mission.task === 'discovery'
         const visit = ['host-visit', 'practical-visit', 'discovery-visit'].includes(mission.task)
         const valid = activity ? mission.count >= 1 && mission.count <= 3 : visit ? mission.count === 1 : mission.task === 'places' ? [2, 3].includes(mission.count) : mission.task === 'people' && [2, 3, 4].includes(mission.count)
@@ -94,7 +117,7 @@ for (const city of cities) {
   const country = seeds.get(city)?.countryId
   if (country && !countries.has(country)) errors.push(`${city}: missing country arc ${country}`)
 }
-const report = { referenceSource: 'src/game/content/world-progression.generated.ts', files: args, cityCount: cities.size, countryCount: countries.size, taleCount: cities.size * 2, missionCount: cities.size * 6, errors, scope: 'Structural, current grounding, registered place/regular capacity and normalized exact uniqueness only. Semantic plot quality and gameplay/save/agent compatibility require separate review.' }
+const report = { referenceSource: 'src/game/content/world-progression.generated.ts', files: args, cityCount: cities.size, countryCount: countries.size, taleCount: cities.size * 2, missionCount: cities.size * 6, errors, scope: 'Structural, current grounding, registered place/regular capacity, explicit action/place label consistency and normalized exact uniqueness only. Semantic plot quality and gameplay/save/agent compatibility require separate review.' }
 if (output) await writeFile(output, `${JSON.stringify(report, null, 2)}\n`)
 console.log(JSON.stringify(report, null, 2))
 if (errors.length) process.exitCode = 1

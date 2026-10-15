@@ -58,10 +58,10 @@ const batch = {
         { label: 'Form cross-skill pairs', callback: 'Corin remembers how every pair held two kinds of knowledge.' }, { label: 'Reverse the roles', callback: 'Corin remembers the second round’s exchange.' }, { label: 'Count teaching and learning', callback: 'Corin remembers that all four did both.' },
       ], dilemma: { prompt: 'How should the four neighbors use the two rounds?', answers: ['Keep the planters and cooks in separate pairs.', 'Pair across skills, then reverse who teaches.', 'Let one expert teach both rounds.'], correct: 1, explanation: 'Cross-skill pairs and a role reversal give every participant one teaching turn and one learning turn.' }, closing: 'Two rounds end with four neighbors carrying a skill they did not bring.', keepsake: { name: 'Cross-Skill Pair Badge', description: 'A two-sided badge marked teach on one face and learn on the other.' } },
       missions: { daily: [
-        { label: "Enjoy one quiet evening at Hada'iq al-Malik Hussein", purpose: 'Compare the fictional frame’s diagonal lengths.', task: 'practical', count: 1 }, { label: 'Visit Corin at مزرعة اليازوري', purpose: 'Review the cross-skill pairings.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Amman', purpose: 'Give Corin neighbors for the two teaching roles.', task: 'people', count: 2 },
+        { label: "Enjoy one quiet evening at Hada'iq al-Malik Hussein", purpose: 'Compare the fictional frame’s diagonal lengths.', task: 'practical', count: 1 }, { label: 'Visit two game places in Amman', purpose: 'Compare settings for Corin’s equal-corner frame.', task: 'places', count: 2 }, { label: 'Look around once at مزرعة اليازوري', purpose: 'Prepare the teach-then-learn exchange.', task: 'discovery', count: 1 },
       ], weekly: [
-        { label: 'Look around twice at مزرعة اليازوري', purpose: 'Practise the teach-then-learn exchange.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Amman', purpose: 'Think through equal diagonals and secure corners.', task: 'places', count: 3 }, { label: "Enjoy three quiet evenings at Hada'iq al-Malik Hussein", purpose: 'Repeat the measured frame correction.', task: 'practical', count: 3 },
-      ] },
+        { label: 'Look around twice at مزرعة اليازوري', purpose: 'Practise the two-round cross-skill pairing.', task: 'discovery', count: 2 }, { label: 'Visit Corin at مزرعة اليازوري', purpose: 'Review the diagonal tension plan.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Amman', purpose: 'Give Corin neighbors for both teaching rounds.', task: 'people', count: 3 },
+      ] }
     },
     {
       cityId: 'asuncion',
@@ -106,10 +106,10 @@ const batch = {
         { label: 'Group the matching dishes', callback: 'Corin remembers the pair needing one heat.' }, { label: 'Reserve one heat change', callback: 'Corin remembers the transition before the short dish.' }, { label: 'Use both oven spaces', callback: 'Corin remembers how the long round stayed efficient.' },
       ], dilemma: { prompt: 'How should Corin schedule the three dishes?', answers: ['Change the heat before every dish.', 'Cook each matching dish alone.', 'Cook the matching pair together, then change heat once.'], correct: 2, explanation: 'The pair shares time and temperature, leaving the single allowed heat change for the distinct short dish.' }, closing: 'Two matching dishes leave together, and one short round follows a single deliberate heat change.', keepsake: { name: 'One-Change Oven Dial', description: 'A dial showing one paired long round and one short round.' } },
       missions: { daily: [
-        { label: 'Look around once at Sabir Park', purpose: 'Count Corin’s six fictional sound beats.', task: 'practical', count: 1 }, { label: 'Visit Corin at Izmir Garden', purpose: 'Review the shared kitchen heat groups.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in Baku', purpose: 'Give Corin listeners for the echo sequence.', task: 'people', count: 4 },
+        { label: 'Look around once at Izmir Garden', purpose: 'Hear space between Corin’s fictional echo beats.', task: 'discovery', count: 1 }, { label: 'Visit Corin at Izmir Garden', purpose: 'Review the shared kitchen heat groups.', task: 'host-visit', count: 1 }, { label: 'Look around twice at Sabir Park', purpose: 'Prepare the low-high-middle timing.', task: 'practical', count: 2 },
       ], weekly: [
-        { label: 'Look around twice at Izmir Garden', purpose: 'Practise alternating original and echo beats.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Baku', purpose: 'Think through the single heat change.', task: 'places', count: 3 }, { label: 'Look around three times at Sabir Park', purpose: 'Repeat the low-high-middle timing.', task: 'practical', count: 3 },
-      ] },
+        { label: 'Look around three times at Sabir Park', purpose: 'Repeat the six-beat sound sequence.', task: 'practical', count: 3 }, { label: 'Visit three game places in Baku', purpose: 'Compare plans for the single heat change.', task: 'places', count: 3 }, { label: 'Look around twice at Izmir Garden', purpose: 'Practise alternating each tone and echo.', task: 'discovery', count: 2 },
+      ] }
     },
     {
       cityId: 'basseterre',
@@ -154,10 +154,10 @@ const batch = {
         { label: 'Build visual counts', callback: 'Ira remembers the quiet contribution the group needed.' }, { label: 'Keep one full run', callback: 'Ira remembers the rehearsal’s fixed energetic finish.' }, { label: 'Use the separate area', callback: 'Ira remembers the friend’s chosen place for observing.' },
       ], dilemma: { prompt: 'How should Ira include the friend’s chosen quiet role?', answers: ['Have the friend lead silent counts, then observe from the separate area.', 'Cancel the full run.', 'Require everyone to join the loud section.'], correct: 0, explanation: 'The plan completes both necessary rehearsal parts while honoring the friend’s chosen form of contribution.' }, closing: 'Silent counts shape the final run, and the friend sees their work carried through every movement.', keepsake: { name: 'Visual Count Ribbon', description: 'A ribbon marked with the rehearsal’s silent movement counts.' } },
       missions: { daily: [
-        { label: 'Enjoy one quiet evening at Horsh Beirut', purpose: 'Plan Ira’s three ordered book recaps.', task: 'practical', count: 1 }, { label: 'Visit Ira at Bchamoun Garden', purpose: 'Review the fictional silent-count role.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Beirut', purpose: 'Give Ira readers for the three-part circle.', task: 'people', count: 3 },
+        { label: 'Enjoy one quiet evening at Horsh Beirut', purpose: 'Plan Ira’s three ordered book recaps.', task: 'practical', count: 1 }, { label: 'Visit two game places in Beirut', purpose: 'Compare spaces for the quiet and loud rehearsal roles.', task: 'places', count: 2 }, { label: 'Look around once at Bchamoun Garden', purpose: 'Prepare the fictional visual-count role.', task: 'discovery', count: 1 },
       ], weekly: [
-        { label: 'Look around twice at Bchamoun Garden', purpose: 'Practise the visual rehearsal counts.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Beirut', purpose: 'Think through the nine-chapter handoff.', task: 'places', count: 3 }, { label: 'Enjoy two quiet evenings at Horsh Beirut', purpose: 'Repeat the ordered three-reader recap.', task: 'practical', count: 2 },
-      ] },
+        { label: 'Enjoy two quiet evenings at Horsh Beirut', purpose: 'Repeat the ordered three-reader recap.', task: 'practical', count: 2 }, { label: 'Visit Ira at Bchamoun Garden', purpose: 'Review the silent-count rehearsal role.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Beirut', purpose: 'Give Ira readers for the ordered three-part recap.', task: 'people', count: 3 },
+      ] }
     },
     {
       cityId: 'bratislava',
@@ -202,10 +202,10 @@ const batch = {
         { label: 'Locate the passing bay', callback: 'Jesse remembers the only wide point.' }, { label: 'Send the farther cart first', callback: 'Jesse remembers which crew had to start early.' }, { label: 'Hold at the entrance', callback: 'Jesse remembers how the near route stayed clear.' },
       ], dilemma: { prompt: 'How should the two carts use the narrow path?', answers: ['Send both into the path together.', 'Stage the farther cart in the bay before the nearer enters.', 'Require one cart to reverse.'], correct: 1, explanation: 'The passing bay can serve both only if the farther cart occupies it before the nearer cart blocks the route.' }, closing: 'The carts cross once at the bay and roll onward in opposite directions.', keepsake: { name: 'Passing-Bay Route Peg', description: 'A narrow route peg widened at one off-center meeting point.' } },
       missions: { daily: [
-        { label: 'Have one simple meal at Visitor meal stop (game venue)', purpose: 'Plan Jesse’s centered fictional tray.', task: 'practical', count: 1 }, { label: 'Visit Jesse at Recreation area (game venue) in Île Boddam', purpose: 'Review the passing-bay order.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Île Boddam', purpose: 'Give Jesse crews for the narrow-path plan.', task: 'people', count: 2 },
+        { label: 'Enjoy one quiet evening at Recreation area (game venue) in Île Boddam', purpose: 'Plan the fictional passing-bay sequence.', task: 'discovery', count: 1 }, { label: 'Visit Visitor meal stop (game venue) in Île Boddam', purpose: 'Inspect a setting for Jesse’s balanced tray.', task: 'practical-visit', count: 1 }, { label: 'Have two simple meals at Visitor meal stop (game venue)', purpose: 'Repeat the center-and-pairs tray arrangement.', task: 'practical', count: 2 },
       ], weekly: [
-        { label: 'Enjoy two quiet evenings at Recreation area (game venue) in Île Boddam', purpose: 'Practise the passing-bay sequence.', task: 'discovery', count: 2 }, { label: 'Visit two game places in Île Boddam', purpose: 'Think through the balanced tray layout.', task: 'places', count: 2 }, { label: 'Have three simple meals at Visitor meal stop (game venue)', purpose: 'Repeat the center-and-pairs arrangement.', task: 'practical', count: 3 },
-      ] },
+        { label: 'Have three simple meals at Visitor meal stop (game venue)', purpose: 'Check the centered cup and opposite bowls.', task: 'practical', count: 3 }, { label: 'Visit two game places in Île Boddam', purpose: 'Compare routes for the narrow-path encounter.', task: 'places', count: 2 }, { label: 'Greet two game regulars in Île Boddam', purpose: 'Give Jesse crews for the passing-bay plan.', task: 'people', count: 2 },
+      ] }
     },
     {
       cityId: 'flying-fish-cove',
@@ -250,10 +250,10 @@ const batch = {
         { label: 'Add the requested lengths', callback: 'Parker remembers why no scrap was needed.' }, { label: 'Mark cumulative cuts', callback: 'Parker remembers positions two and five.' }, { label: 'Check all three pieces', callback: 'Parker remembers the exact order set.' },
       ], dilemma: { prompt: 'Where should Parker make the two cuts?', answers: ['Cut the strip into equal thirds.', 'Choose positions that leave scrap.', 'Cut after units two and five.'], correct: 2, explanation: 'The cumulative marks create two-, three- and four-unit pieces whose lengths use the full nine-unit strip.' }, closing: 'Two marks turn one complete strip into three exact fictional orders.', keepsake: { name: 'Two-Five Cut Gauge', description: 'A nine-unit gauge marked at the two exact cut positions.' } },
       missions: { daily: [
-        { label: 'Look around once at Chief Quipuha Park', purpose: 'Plan Parker’s five-turn referee rotation.', task: 'practical', count: 1 }, { label: 'Visit Parker at Barrigada War Memorial Park', purpose: 'Review the fictional two-cut strip.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in Hagåtña', purpose: 'Give Parker players for the court rotation.', task: 'people', count: 4 },
+        { label: 'Look around once at Barrigada War Memorial Park', purpose: 'Mark Parker’s two cumulative fictional cut points.', task: 'discovery', count: 1 }, { label: 'Visit two game places in Hagåtña', purpose: 'Compare settings for the five-round rotation.', task: 'places', count: 2 }, { label: 'Look around once at Chief Quipuha Park', purpose: 'Prepare one referee turn for each player.', task: 'practical', count: 1 },
       ], weekly: [
-        { label: 'Look around twice at Barrigada War Memorial Park', purpose: 'Practise the two cumulative cut marks.', task: 'discovery', count: 2 }, { label: 'Visit two game places in Hagåtña', purpose: 'Think through five equal referee turns.', task: 'places', count: 2 }, { label: 'Look around three times at Chief Quipuha Park', purpose: 'Repeat the visible player rotation.', task: 'practical', count: 3 },
-      ] },
+        { label: 'Look around three times at Chief Quipuha Park', purpose: 'Repeat Parker’s visible player rotation.', task: 'practical', count: 3 }, { label: 'Visit Parker at Barrigada War Memorial Park', purpose: 'Review the two-cut strip plan.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in Hagåtña', purpose: 'Give Parker players for the fair court rounds.', task: 'people', count: 4 },
+      ] }
     },
     {
       cityId: 'harare',
@@ -298,10 +298,10 @@ const batch = {
         { label: 'Check surviving components', callback: 'Jesse remembers the compatible board, tokens and die.' }, { label: 'Build one complete set', callback: 'Jesse remembers the playable combination.' }, { label: 'Rotate the challenge setter', callback: 'Jesse remembers how each friend stayed involved.' },
       ], dilemma: { prompt: 'What should Jesse do with the three incomplete sets?', answers: ['Combine compatible pieces into one game.', 'Put every set away.', 'Create imaginary replacements.'], correct: 0, explanation: 'The surviving components fill one another’s exact gaps without altering or inventing game pieces.' }, closing: 'Three incomplete boxes produce one complete evening of rotating challenges.', keepsake: { name: 'Combined Game Token', description: 'A token showing board, piece and die symbols together.' } },
       missions: { daily: [
-        { label: 'Have one simple meal at The Ofis', purpose: 'Plan Jesse’s three decoration spans.', task: 'practical', count: 1 }, { label: "Visit Jesse at Children's Park", purpose: 'Review the fictional combined game set.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Honiara', purpose: 'Give Jesse partners for the game night.', task: 'people', count: 2 },
+        { label: 'Have one simple meal at The Ofis', purpose: 'Plan Jesse’s three decoration spans.', task: 'practical', count: 1 }, { label: "Visit Jesse at Children's Park", purpose: 'Review the combined fictional game set.', task: 'host-visit', count: 1 }, { label: "Enjoy one quiet evening at Children's Park", purpose: 'Prepare the board, tokens and die rotation.', task: 'discovery', count: 1 },
       ], weekly: [
-        { label: "Enjoy two quiet evenings at Children's Park", purpose: 'Practise combining the compatible game pieces.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Honiara', purpose: 'Think through the three-three-two decoration split.', task: 'places', count: 3 }, { label: 'Have three simple meals at The Ofis', purpose: 'Repeat the safe decoration count.', task: 'practical', count: 3 },
-      ] },
+        { label: "Enjoy two quiet evenings at Children's Park", purpose: 'Practise combining the compatible game pieces.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Honiara', purpose: 'Compare settings for the three-three-two decoration split.', task: 'places', count: 3 }, { label: 'Greet two game regulars in Honiara', purpose: 'Give Jesse partners for the game night.', task: 'people', count: 2 },
+      ] }
     },
     {
       cityId: 'kampala',
@@ -370,10 +370,10 @@ const batch = {
         { label: 'Match identical requests', callback: 'Jesse remembers the pair that could share.' }, { label: 'Protect solo intervals', callback: 'Jesse remembers the distinct advice.' }, { label: 'Count three complete sessions', callback: 'Jesse remembers the full schedule.' },
       ], dilemma: { prompt: 'How should Jesse fit four teams into three intervals?', answers: ['Share the identical briefing, then hold two solo sessions.', 'Reject one team.', 'Rush everyone through one meeting.'], correct: 0, explanation: 'Combining only the identical request preserves two intervals for advice that cannot be shared.' }, closing: 'Four teams leave three complete consultations with no request compressed into the wrong format.', keepsake: { name: 'Shared-Briefing Slot', description: 'A three-slot card with two team marks in the first.' } },
       missions: { daily: [
-        { label: 'Have one simple meal at petit restaurant et plage', purpose: 'Plan Jesse’s diagonal fictional tray turn.', task: 'practical', count: 1 }, { label: 'Visit Jesse at Parc Naturel de la Nsele (Mangiers)', purpose: 'Review the three consultation intervals.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Kinshasa', purpose: 'Give Jesse teams for the shared briefing.', task: 'people', count: 2 },
+        { label: 'Enjoy one quiet evening at Parc Naturel de la Nsele (Mangiers)', purpose: 'Plan the shared briefing before solo consultations.', task: 'discovery', count: 1 }, { label: 'Visit petit restaurant et plage', purpose: 'Inspect a setting for Jesse’s level tray turn.', task: 'practical-visit', count: 1 }, { label: 'Have one simple meal at petit restaurant et plage', purpose: 'Prepare the diagonal doorway approach.', task: 'practical', count: 1 },
       ], weekly: [
-        { label: 'Enjoy three quiet evenings at Parc Naturel de la Nsele (Mangiers)', purpose: 'Practise matching the identical requests.', task: 'discovery', count: 3 }, { label: 'Visit two game places in Kinshasa', purpose: 'Think through the level tray orientation.', task: 'places', count: 2 }, { label: 'Have two simple meals at petit restaurant et plage', purpose: 'Repeat the doorway turn.', task: 'practical', count: 2 },
-      ] },
+        { label: 'Enjoy two quiet evenings at Parc Naturel de la Nsele (Mangiers)', purpose: 'Practise matching the identical briefing requests.', task: 'discovery', count: 2 }, { label: 'Visit two game places in Kinshasa', purpose: 'Compare layouts for the three consultation intervals.', task: 'places', count: 2 }, { label: 'Greet two game regulars in Kinshasa', purpose: 'Give Jesse teams for the shared briefing.', task: 'people', count: 2 },
+      ] }
     },
     {
       cityId: 'lilongwe',
@@ -418,10 +418,10 @@ const batch = {
         { label: 'Reserve the shared side', callback: 'Emery remembers the stick used twice.' }, { label: 'Close the first triangle', callback: 'Emery remembers the stable starting shape.' }, { label: 'Brace the second', callback: 'Emery remembers the complete five-stick frame.' },
       ], dilemma: { prompt: 'How should Emery form two rigid shapes with five sticks?', answers: ['Build one four-sided shape.', 'Make two triangles share one side.', 'Leave one triangle open.'], correct: 1, explanation: 'Sharing one side reduces six required edges to five while preserving both closed triangles.' }, closing: 'One middle stick belongs fully to two shapes at once.', keepsake: { name: 'Shared-Side Joint', description: 'A five-stick model of two joined triangles.' } },
       missions: { daily: [
-        { label: 'Look around once at Parc Heintz', purpose: 'Plan Emery’s balanced story turns.', task: 'practical', count: 1 }, { label: 'Visit Emery at Place de Gand', purpose: 'Review the fictional shared-side frame.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Luxembourg', purpose: 'Give Emery a partner for the shared question.', task: 'people', count: 2 },
+        { label: 'Look around once at Place de Gand', purpose: 'Study Emery’s fictional shared-side frame.', task: 'discovery', count: 1 }, { label: 'Visit Emery at Place de Gand', purpose: 'Review the two stories and one shared question.', task: 'host-visit', count: 1 }, { label: 'Look around once at Parc Heintz', purpose: 'Prepare the balanced story turns.', task: 'practical', count: 1 },
       ], weekly: [
-        { label: 'Look around three times at Place de Gand', purpose: 'Practise the five-stick double triangle.', task: 'discovery', count: 3 }, { label: 'Visit two game places in Luxembourg', purpose: 'Think through the two-two-two conversation.', task: 'places', count: 2 }, { label: 'Look around twice at Parc Heintz', purpose: 'Repeat the equal story timing.', task: 'practical', count: 2 },
-      ] },
+        { label: 'Look around twice at Place de Gand', purpose: 'Practise the five-stick double triangle.', task: 'discovery', count: 2 }, { label: 'Visit two game places in Luxembourg', purpose: 'Compare spaces for Emery’s equal story timing.', task: 'places', count: 2 }, { label: 'Greet two game regulars in Luxembourg', purpose: 'Give Emery a partner for the shared question.', task: 'people', count: 2 },
+      ] }
     },
     {
       cityId: 'macau',
@@ -490,10 +490,10 @@ const batch = {
         { label: 'Assign three knowledge roles', callback: 'Jesse remembers what each friend contributes.' }, { label: 'Keep one speaking order', callback: 'Jesse remembers the reliable sequence.' }, { label: 'Repeat for every step', callback: 'Jesse remembers the complete recipe explanation.' },
       ], dilemma: { prompt: 'How should the three friends explain each step?', answers: ['Let one person explain everything.', 'Use ingredients, method, then timing.', 'Change the order randomly.'], correct: 1, explanation: 'The repeated order combines all required facts while naturally alternating the three speakers.' }, closing: 'Three kinds of knowledge become one recipe through a sequence everyone can follow.', keepsake: { name: 'Three-Voice Recipe Ring', description: 'A ring marked ingredients, method and timing.' } },
       missions: { daily: [
-        { label: 'Have one simple meal at Light House Cafe', purpose: 'Plan Jesse’s backward practice turns.', task: 'practical', count: 1 }, { label: 'Visit Jesse at Askar Garden', purpose: 'Review the three fictional recipe roles.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Manama', purpose: 'Give Jesse voices for the recipe sequence.', task: 'people', count: 3 },
+        { label: 'Enjoy one quiet evening at Askar Garden', purpose: 'Plan Jesse’s three-part fictional recipe order.', task: 'discovery', count: 1 }, { label: 'Visit Light House Cafe', purpose: 'Inspect a setting for the ingredients-method-timing sequence.', task: 'practical-visit', count: 1 }, { label: 'Have one simple meal at Light House Cafe', purpose: 'Prepare the backward rehearsal turns.', task: 'practical', count: 1 },
       ], weekly: [
-        { label: 'Enjoy two quiet evenings at Askar Garden', purpose: 'Practise the three-part explanation order.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Manama', purpose: 'Think through the ending-first routine.', task: 'places', count: 3 }, { label: 'Have three simple meals at Light House Cafe', purpose: 'Repeat the backward practice chain.', task: 'practical', count: 3 },
-      ] },
+        { label: 'Have three simple meals at Light House Cafe', purpose: 'Repeat the ending-first practice chain.', task: 'practical', count: 3 }, { label: 'Visit Jesse at Askar Garden', purpose: 'Review the three speaking roles.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Manama', purpose: 'Give Jesse voices for the recipe sequence.', task: 'people', count: 3 },
+      ] }
     },
     {
       cityId: 'marigot',
@@ -562,10 +562,10 @@ const batch = {
         { label: 'List doorway limits', callback: 'Uri remembers the narrow and low exclusions.' }, { label: 'Place constrained boxes first', callback: 'Uri remembers why guessing was unnecessary.' }, { label: 'Use the flexible remainder', callback: 'Uri remembers the final assignment.' },
       ], dilemma: { prompt: 'How should Uri assign the unlabelled boxes?', answers: ['Guess all three rooms.', 'Reserve open for flexible, then assign wide to low and tall to narrow.', 'Force a restricted box through.'], correct: 1, explanation: 'The fixed connection reserves open for flexible; the two doorway exclusions then force wide to low and tall to narrow.' }, closing: 'Three doorway shapes restore three missing destinations without a label.', keepsake: { name: 'Doorway Constraint Tile', description: 'A tile showing narrow, low and open doorway outlines.' } },
       missions: { daily: [
-        { label: 'Look around once at Cairo National Park', purpose: 'Plan Uri’s eight-minute attempt block.', task: 'practical', count: 1 }, { label: 'Visit Uri at Community Centre', purpose: 'Review the fictional doorway assignments.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Nassau', purpose: 'Give Uri a partner for the puzzle clock.', task: 'people', count: 2 },
+        { label: 'Look around once at Cairo National Park', purpose: 'Plan Uri’s eight-minute attempt block.', task: 'practical', count: 1 }, { label: 'Visit two game places in Nassau', purpose: 'Compare entrances for the constrained fictional boxes.', task: 'places', count: 2 }, { label: 'Look around once at Community Centre', purpose: 'Prepare the open, low and narrow assignments.', task: 'discovery', count: 1 },
       ], weekly: [
-        { label: 'Look around three times at Community Centre', purpose: 'Practise placing constrained boxes first.', task: 'discovery', count: 3 }, { label: 'Visit two game places in Nassau', purpose: 'Think through the eight-two time split.', task: 'places', count: 2 }, { label: 'Look around twice at Cairo National Park', purpose: 'Repeat the marked-doubt review.', task: 'practical', count: 2 },
-      ] },
+        { label: 'Look around three times at Community Centre', purpose: 'Practise placing the fixed-connection box first.', task: 'discovery', count: 3 }, { label: 'Visit Uri at Community Centre', purpose: 'Review the eight-two puzzle time split.', task: 'host-visit', count: 1 }, { label: 'Greet two game regulars in Nassau', purpose: 'Give Uri a partner for the marked-doubt review.', task: 'people', count: 2 },
+      ] }
     },
     {
       cityId: 'nukualofa',
@@ -586,10 +586,10 @@ const batch = {
         { label: 'Build equal pillars', callback: 'Greer remembers the four opening blocks.' }, { label: 'Place the lintel', callback: 'Greer remembers the spanning fifth block.' }, { label: 'Brace both bases', callback: 'Greer remembers the stabilizing pair.' },
       ], dilemma: { prompt: 'Where should the final two blocks go?', answers: ['Brace the two pillar bases.', 'Stack them above the lintel.', 'Leave them unused.'], correct: 0, explanation: 'Outward base braces use both remaining blocks symmetrically and resist the pillars spreading.' }, closing: 'Seven blocks become one opening held by two quiet braces.', keepsake: { name: 'Seven-Block Arch Model', description: 'A miniature arch with two marked base braces.' } },
       missions: { daily: [
-        { label: 'Enjoy one quiet evening at Tukingapahu', purpose: 'Plan Greer’s two-spoon meal service.', task: 'practical', count: 1 }, { label: "Visit Greer at Fa'onelua Park", purpose: 'Review the fictional seven-block arch.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Nuku\'alofa', purpose: 'Give Greer guests for the shared meal.', task: 'people', count: 3 },
+        { label: "Look around once at Fa'onelua Park", purpose: 'Plan Greer’s seven-block fictional arch.', task: 'discovery', count: 1 }, { label: "Visit two game places in Nuku'alofa", purpose: 'Compare settings for the separate wet and dry dishes.', task: 'places', count: 2 }, { label: 'Enjoy one quiet evening at Tukingapahu', purpose: 'Prepare the two-spoon meal service.', task: 'practical', count: 1 },
       ], weekly: [
-        { label: "Look around twice at Fa'onelua Park", purpose: 'Practise the two pillar braces.', task: 'discovery', count: 2 }, { label: "Visit three game places in Nuku'alofa", purpose: 'Think through the wet-and-dry serving roles.', task: 'places', count: 3 }, { label: 'Enjoy three quiet evenings at Tukingapahu', purpose: 'Repeat the two-spoon assignment.', task: 'practical', count: 3 },
-      ] },
+        { label: 'Enjoy three quiet evenings at Tukingapahu', purpose: 'Repeat the two-spoon assignment.', task: 'practical', count: 3 }, { label: "Visit Greer at Fa'onelua Park", purpose: 'Review the braced arch base.', task: 'host-visit', count: 1 }, { label: "Greet three game regulars in Nuku'alofa", purpose: 'Give Greer guests for the shared meal.', task: 'people', count: 3 },
+      ] }
     },
     {
       cityId: 'nuuk',
@@ -706,10 +706,10 @@ const batch = {
         { label: 'Read both friction controls', callback: 'Arden remembers the one-three mismatch.' }, { label: 'Use the tested hold mark', callback: 'Arden remembers the shared level two.' }, { label: 'Swing and release once', callback: 'Arden remembers the balanced result.' },
       ], dilemma: { prompt: 'How should Arden set the adjustable-friction hinges?', answers: ['Set both to maximum.', 'Set both controls to the marked level two.', 'Keep one at one and one at three.'], correct: 1, explanation: 'The explicit tested setting gives both hinges equal holding resistance without the binding risk of maximum friction.' }, closing: 'Two matched controls let the fictional door move freely and remain where it is released.', keepsake: { name: 'Level-Two Hinge Dial', description: 'A paired dial showing both friction controls at two.' } },
       missions: { daily: [
-        { label: 'Look around once at The Noel Lloyd Positive Action Movement Park', purpose: 'Plan Arden’s nine-tile path layout.', task: 'practical', count: 1 }, { label: 'Visit Arden at Queen Elizabeth Park', purpose: 'Review the fictional hinge adjustments.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in Road Town', purpose: 'Give Arden friends for the hub puzzle.', task: 'people', count: 4 },
+        { label: 'Look around once at The Noel Lloyd Positive Action Movement Park', purpose: 'Plan Arden’s nine-tile path layout.', task: 'practical', count: 1 }, { label: 'Visit two game places in Road Town', purpose: 'Compare settings for the adjustable-friction door.', task: 'places', count: 2 }, { label: 'Look around once at Queen Elizabeth Park', purpose: 'Prepare the matching level-two hinge settings.', task: 'discovery', count: 1 },
       ], weekly: [
-        { label: 'Look around three times at Queen Elizabeth Park', purpose: 'Practise distinguishing tight and loose hinges.', task: 'discovery', count: 3 }, { label: 'Visit two game places in Road Town', purpose: 'Think through the center-and-corners tile layout.', task: 'places', count: 2 }, { label: 'Look around twice at The Noel Lloyd Positive Action Movement Park', purpose: 'Repeat the four-way connector placement.', task: 'practical', count: 2 },
-      ] },
+        { label: 'Look around twice at The Noel Lloyd Positive Action Movement Park', purpose: 'Repeat the four-way connector placement.', task: 'practical', count: 2 }, { label: 'Visit Arden at Queen Elizabeth Park', purpose: 'Review the center-and-corners tile layout.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in Road Town', purpose: 'Give Arden friends for the hub puzzle.', task: 'people', count: 4 },
+      ] }
     },
     {
       cityId: 'santo-domingo',
@@ -778,10 +778,10 @@ const batch = {
         { label: 'Check both hinge directions', callback: 'Jesse remembers the inward and outward limits.' }, { label: 'Match the two angles', callback: 'Jesse remembers the balanced folds.' }, { label: 'Test inside the strip', callback: 'Jesse remembers the stable Z shape.' },
       ], dilemma: { prompt: 'How should Jesse stand the attached screen in the narrow strip?', answers: ['Force both hinges inward.', 'Use equal opposite folds to form a Z.', 'Open the screen fully beyond the strip.'], correct: 1, explanation: 'Opposite equal folds keep all three attached panels inside the width and turn the outer panels into parallel supports.' }, closing: 'Three attached panels hold their place through one inward fold and one outward fold.', keepsake: { name: 'Z-Fold Hinge Model', description: 'A three-panel model with equal opposite hinge angles.' } },
       missions: { daily: [
-        { label: 'Have one simple meal at Visitor meal stop (game venue) in Terong Kangri', purpose: 'Plan Jesse’s equal fictional board wedges.', task: 'practical', count: 1 }, { label: 'Visit Jesse at Recreation area (game venue) in Terong Kangri', purpose: 'Review the screen’s opposite hinge directions.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Terong Kangri', purpose: 'Gather helpers to steady the fictional folding screen.', task: 'people', count: 3 },
+        { label: 'Enjoy one quiet evening at Recreation area (game venue) in Terong Kangri', purpose: 'Plan the fictional screen’s opposite folds.', task: 'discovery', count: 1 }, { label: 'Visit Visitor meal stop (game venue) in Terong Kangri', purpose: 'Inspect a setting for Jesse’s level-board test.', task: 'practical-visit', count: 1 }, { label: 'Have one simple meal at Visitor meal stop (game venue) in Terong Kangri', purpose: 'Prepare the equal low-edge wedges.', task: 'practical', count: 1 },
       ], weekly: [
-        { label: 'Enjoy two quiet evenings at Recreation area (game venue) in Terong Kangri', purpose: 'Plan the equal inward and outward screen angles.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Terong Kangri', purpose: 'Think through the equal low-edge lift.', task: 'places', count: 3 }, { label: 'Have three simple meals at Visitor meal stop (game venue) in Terong Kangri', purpose: 'Repeat the center-piece level test.', task: 'practical', count: 3 },
-      ] },
+        { label: 'Have three simple meals at Visitor meal stop (game venue) in Terong Kangri', purpose: 'Repeat the centered-piece level test.', task: 'practical', count: 3 }, { label: 'Visit three game places in Terong Kangri', purpose: 'Compare narrow spaces for the Z-fold.', task: 'places', count: 3 }, { label: 'Greet three game regulars in Terong Kangri', purpose: 'Give Jesse helpers for the folding-screen setup.', task: 'people', count: 3 },
+      ] }
     },
     {
       cityId: 'st-johns',
@@ -850,10 +850,10 @@ const batch = {
         { label: 'Split six lane cones', callback: 'Sage remembers the equal three-and-three turns.' }, { label: 'Reserve cone seven', callback: 'Sage remembers the common finish.' }, { label: 'Check both routes', callback: 'Sage remembers the matched course lengths.' },
       ], dilemma: { prompt: 'How should Sage use the seven cones?', answers: ['Give one lane an extra turn.', 'Use three per lane and one shared finish.', 'Build courses without a finish.'], correct: 1, explanation: 'The six lane cones divide evenly, and the indivisible seventh cone serves both routes equally at their endpoint.' }, closing: 'Two separate slaloms weave toward one unmistakable final cone.', keepsake: { name: 'Shared-Finish Cone Pin', description: 'A pin showing two three-turn lanes joining at cone seven.' } },
       missions: { daily: [
-        { label: 'Look around once at Park Fosa', purpose: 'Plan Sage’s five-prop fictional stand.', task: 'practical', count: 1 }, { label: 'Visit Sage at Park Kombatantów', purpose: 'Review the seven-cone course.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Warsaw', purpose: 'Give Sage racers for the matched slaloms.', task: 'people', count: 3 },
+        { label: 'Look around once at Park Fosa', purpose: 'Plan Sage’s five-prop fictional stand.', task: 'practical', count: 1 }, { label: 'Visit two game places in Warsaw', purpose: 'Compare spaces for the shared-finish course.', task: 'places', count: 2 }, { label: 'Look around once at Park Kombatantów', purpose: 'Prepare the opposite-pair stand geometry.', task: 'discovery', count: 1 },
       ], weekly: [
-        { label: 'Look around three times at Park Kombatantów', purpose: 'Practise the opposite-pair stand geometry.', task: 'discovery', count: 3 }, { label: 'Visit two game places in Warsaw', purpose: 'Think through the shared finish cone.', task: 'places', count: 2 }, { label: 'Look around twice at Park Fosa', purpose: 'Repeat the equal lane split.', task: 'practical', count: 2 },
-      ] },
+        { label: 'Look around twice at Park Fosa', purpose: 'Repeat the equal slalom lane split.', task: 'practical', count: 2 }, { label: 'Visit Sage at Park Kombatantów', purpose: 'Review the centered fifth weight and shared finish.', task: 'host-visit', count: 1 }, { label: 'Greet three game regulars in Warsaw', purpose: 'Give Sage racers for the matched slaloms.', task: 'people', count: 3 },
+      ] }
     },
     {
       cityId: 'yaounde',
@@ -874,10 +874,10 @@ const batch = {
         { label: 'Fit both side paddles', callback: 'Jesse remembers the two available gaps.' }, { label: 'Alternate small pushes', callback: 'Jesse remembers the walking motion.' }, { label: 'Aim toward the open end', callback: 'Jesse remembers the final direction.' },
       ], dilemma: { prompt: 'How should Jesse free the jammed ball?', answers: ['Alternate small pushes from both sides.', 'Push harder from directly behind.', 'Pry continuously from one side.'], correct: 0, explanation: 'Alternating side forces relieve the jam and advance the ball without driving it more tightly between the rails.' }, closing: 'The ball leaves the rails through a patient series of left-right steps.', keepsake: { name: 'Rail-Walk Paddle Pair', description: 'Two flat paddles marked left, right and forward.' } },
       missions: { daily: [
-        { label: 'Have one simple meal at Restaurant Municipal La Cascade', purpose: 'Plan Jesse’s fictional opposite cup pairs.', task: 'practical', count: 1 }, { label: 'Visit Jesse at Parcours Vita', purpose: 'Review the two-paddle ball rescue.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in Yaoundé', purpose: 'Give Jesse partners for the tray check.', task: 'people', count: 4 },
+        { label: 'Enjoy one quiet evening at Parcours Vita', purpose: 'Plan the alternating fictional paddle pushes.', task: 'discovery', count: 1 }, { label: 'Visit Restaurant Municipal La Cascade', purpose: 'Inspect a setting for Jesse’s opposite cup pairs.', task: 'practical-visit', count: 1 }, { label: 'Have one simple meal at Restaurant Municipal La Cascade', purpose: 'Prepare the pre-lock tray check.', task: 'practical', count: 1 },
       ], weekly: [
-        { label: 'Enjoy two quiet evenings at Parcours Vita', purpose: 'Practise alternating the fictional paddle pushes.', task: 'discovery', count: 2 }, { label: 'Visit three game places in Yaoundé', purpose: 'Think through the pre-lock cup placement.', task: 'places', count: 3 }, { label: 'Have three simple meals at Restaurant Municipal La Cascade', purpose: 'Repeat the opposite-pair tray setup.', task: 'practical', count: 3 },
-      ] },
+        { label: 'Enjoy two quiet evenings at Parcours Vita', purpose: 'Practise alternating the fictional paddle pushes.', task: 'discovery', count: 2 }, { label: 'Visit Jesse at Parcours Vita', purpose: 'Review the opposite-pair tray setup.', task: 'host-visit', count: 1 }, { label: 'Greet four game regulars in Yaoundé', purpose: 'Give Jesse partners for the tray check.', task: 'people', count: 4 },
+      ] }
     },
   ],
 } satisfies AuthoredContentBatch

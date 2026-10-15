@@ -798,7 +798,7 @@ const batch: AuthoredContentBatch = {
             missions: { daily: [
                     { label: 'Complete one simple meal at Le Mirador', purpose: 'Count the cart’s repeating squeaks.', task: 'practical', count: 1 },
                     { label: 'Visit Parc Ehel Limame', purpose: 'Arrange the eleven-tile round.', task: 'host-visit', count: 1 },
-                    { label: 'Look around once in Parc Ehel Limame', purpose: 'Practice the short-hand rotation alone.', task: 'discovery', count: 1 },
+                    { label: 'Enjoy one quiet evening in Parc Ehel Limame', purpose: 'Practice the short-hand rotation alone.', task: 'discovery', count: 1 },
                 ], weekly: [
                     { label: 'Complete three simple meals to rehearse three squeak-and-pose beats', purpose: 'Rehearse three squeak-and-pose beats.', task: 'practical', count: 3 },
                     { label: 'Visit three game places to try different opening edges for the tile game', purpose: 'Try different opening edges for the tile game.', task: 'places', count: 3 },

@@ -1,58 +1,61 @@
 {
-  "source": "201b9bdac9f8ee9412ff98378971dd12a9463426",
+  "source": "98926c20092fd5c74a1526744eeeb35ac430a4d6",
   "dirtyAtRun": [
-    "M docs/AGENT-COORDINATION.md",
-    " M docs/agent-work/local-tales-07-quality-20261015.md",
+    "M docs/agent-work/local-tales-07-quality-20261015.md",
     " M docs/agent-work/local-tales-08-quality-20261015.md",
     " M docs/agent-work/unique-local-content-20261015.md",
-    " M docs/research/unique-local-content-2026-10-15/engine-acceptance.json",
     " M scripts/city/check-local-tales.ts",
     " M src/game/content/local-tales.ts",
     " M src/game/content/local-tales/batch-02.ts",
+    " M src/game/content/local-tales/batch-03.ts",
+    " M src/game/content/local-tales/batch-06.ts",
+    " M src/game/content/local-tales/batch-07.ts",
+    "?? docs/agent-work/phase6-batch07-middle-source-audit-20261015.md",
+    "?? docs/agent-work/phase6-batch08-source-audit-20261015.md",
     "?? docs/agent-work/phase6-final-verification-20261015.md",
-    "?? docs/research/unique-local-content-2026-10-15/batches-01-07-validation.json",
-    "?? docs/research/unique-local-content-2026-10-15/diagnostics/",
-    "?? docs/research/unique-local-content-2026-10-15/resumed-seed-drift.json",
+    "?? docs/research/unique-local-content-2026-10-15/batches-01-08-validation.json",
+    "?? docs/research/unique-local-content-2026-10-15/ui-paris-earned-250.jpg",
+    "?? docs/research/unique-local-content-2026-10-15/ui-paris-reloaded-250.jpg",
+    "?? docs/research/unique-local-content-2026-10-15/ui-paris-reloaded-card-250.jpg",
     "?? docs/research/unique-local-content-2026-10-15/ui-world-entry-375.png",
-    "?? src/game/content/local-tales/batch-07.ts",
     "?? src/game/content/local-tales/batch-08.ts"
   ],
-  "acceptedCities": 250,
-  "authoredEpisodes": 500,
-  "completionPaths": 2500,
+  "acceptedCities": 284,
+  "authoredEpisodes": 568,
+  "completionPaths": 2840,
   "totals": {
-    "cities": 250,
-    "episodeDefinitions": 500,
-    "completedPaths": 2000,
-    "quietSupportPaths": 1500,
-    "localVisitPaths": 500,
+    "cities": 284,
+    "episodeDefinitions": 568,
+    "completedPaths": 2272,
+    "quietSupportPaths": 1704,
+    "localVisitPaths": 568,
     "choicePaths": {
-      "work": 1000,
-      "study": 500,
-      "help": 500
+      "work": 1136,
+      "study": 568,
+      "help": 568
     },
     "quietSupportChoicePaths": {
-      "work": 500,
-      "study": 500,
-      "help": 500
+      "work": 568,
+      "study": 568,
+      "help": 568
     },
     "localVisitChoicePaths": {
-      "work": 500,
+      "work": 568,
       "study": 0,
       "help": 0
     },
-    "activityOnlyHelpPaths": 500,
-    "activityOnlyDuplicateFinishIdempotency": 500,
-    "activityOnlySaveReloadRoundTrips": 500,
-    "activityOnlyMissingChoiceProofRefusals": 500,
+    "activityOnlyHelpPaths": 568,
+    "activityOnlyDuplicateFinishIdempotency": 568,
+    "activityOnlySaveReloadRoundTrips": 568,
+    "activityOnlyMissingChoiceProofRefusals": 568,
     "observedProofEvents": 0,
-    "wrongCityProofRefusals": 250,
-    "prerequisiteRefusals": 750,
-    "missingChoiceProofRefusals": 2000,
-    "duplicateFinishIdempotency": 2000,
-    "saveReloadRoundTrips": 2000,
-    "agentAssistanceRecords": 250,
-    "cityJourneyMatches": 250,
+    "wrongCityProofRefusals": 284,
+    "prerequisiteRefusals": 852,
+    "missingChoiceProofRefusals": 2272,
+    "duplicateFinishIdempotency": 2272,
+    "saveReloadRoundTrips": 2272,
+    "agentAssistanceRecords": 284,
+    "cityJourneyMatches": 284,
     "countryJourneyMatches": 0,
     "crossCityJourneyExclusions": 0
   },
@@ -427,6 +430,24 @@
       "separateCityCollection": "gh:accra:local-tales"
     },
     {
+      "cityId": "algiers",
+      "episodeIds": [
+        "place-algiers-city-story",
+        "place-algiers-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "dz:algiers:local-tales"
+    },
+    {
+      "cityId": "lome",
+      "episodeIds": [
+        "place-lome-city-story",
+        "place-lome-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "tg:lome:local-tales"
+    },
+    {
       "cityId": "nairobi",
       "episodeIds": [
         "place-nairobi-city-story",
@@ -452,6 +473,15 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "ci:abidjan:local-tales"
+    },
+    {
+      "cityId": "addis-ababa",
+      "episodeIds": [
+        "place-addis-ababa-city-story",
+        "place-addis-ababa-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "et:addis-ababa:local-tales"
     },
     {
       "cityId": "cape-town",
@@ -634,6 +664,15 @@
       "separateCityCollection": "tz:dar-es-salaam:local-tales"
     },
     {
+      "cityId": "libreville",
+      "episodeIds": [
+        "place-libreville-city-story",
+        "place-libreville-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "ga:libreville:local-tales"
+    },
+    {
       "cityId": "mbabane",
       "episodeIds": [
         "place-mbabane-city-story",
@@ -650,6 +689,24 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "tn:tunis:local-tales"
+    },
+    {
+      "cityId": "antananarivo",
+      "episodeIds": [
+        "place-antananarivo-city-story",
+        "place-antananarivo-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "mg:antananarivo:local-tales"
+    },
+    {
+      "cityId": "bujumbura",
+      "episodeIds": [
+        "place-bujumbura-city-story",
+        "place-bujumbura-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "bi:bujumbura:local-tales"
     },
     {
       "cityId": "ndjamena",
@@ -688,6 +745,15 @@
       "separateCityCollection": "co:bogota:local-tales"
     },
     {
+      "cityId": "buenos-aires",
+      "episodeIds": [
+        "place-buenos-aires-city-story",
+        "place-buenos-aires-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "ar:buenos-aires:local-tales"
+    },
+    {
       "cityId": "dubai",
       "episodeIds": [
         "place-dubai-city-story",
@@ -695,6 +761,15 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "ae:dubai:local-tales"
+    },
+    {
+      "cityId": "mexico-city",
+      "episodeIds": [
+        "place-mexico-city-city-story",
+        "place-mexico-city-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "mx:mexico-city:local-tales"
     },
     {
       "cityId": "santiago",
@@ -767,6 +842,24 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "er:asmara:local-tales"
+    },
+    {
+      "cityId": "bangui",
+      "episodeIds": [
+        "place-bangui-city-story",
+        "place-bangui-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "cf:bangui:local-tales"
+    },
+    {
+      "cityId": "bissau",
+      "episodeIds": [
+        "place-bissau-city-story",
+        "place-bissau-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "gw:bissau:local-tales"
     },
     {
       "cityId": "conakry",
@@ -877,6 +970,15 @@
       "separateCityCollection": "st:sao-tome:local-tales"
     },
     {
+      "cityId": "victoria",
+      "episodeIds": [
+        "place-victoria-city-story",
+        "place-victoria-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "sc:victoria:local-tales"
+    },
+    {
       "cityId": "amman",
       "episodeIds": [
         "place-amman-city-story",
@@ -967,6 +1069,15 @@
       "separateCityCollection": "ro:bucharest:local-tales"
     },
     {
+      "cityId": "budapest",
+      "episodeIds": [
+        "place-budapest-city-story",
+        "place-budapest-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "hu:budapest:local-tales"
+    },
+    {
       "cityId": "caracas",
       "episodeIds": [
         "place-caracas-city-story",
@@ -1001,6 +1112,15 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "tl:dili:local-tales"
+    },
+    {
+      "cityId": "doha",
+      "episodeIds": [
+        "place-doha-city-story",
+        "place-doha-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "qa:doha:local-tales"
     },
     {
       "cityId": "dushanbe",
@@ -1093,6 +1213,15 @@
       "separateCityCollection": "bo:la-paz:local-tales"
     },
     {
+      "cityId": "larnaca",
+      "episodeIds": [
+        "place-larnaca-city-story",
+        "place-larnaca-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "cy:larnaca:local-tales"
+    },
+    {
       "cityId": "ljubljana",
       "episodeIds": [
         "place-ljubljana-city-story",
@@ -1118,6 +1247,15 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "mh:majuro:local-tales"
+    },
+    {
+      "cityId": "managua",
+      "episodeIds": [
+        "place-managua-city-story",
+        "place-managua-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "ni:managua:local-tales"
     },
     {
       "cityId": "manama",
@@ -1210,6 +1348,15 @@
       "separateCityCollection": "is:reykjavik:local-tales"
     },
     {
+      "cityId": "riga",
+      "episodeIds": [
+        "place-riga-city-story",
+        "place-riga-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "lv:riga:local-tales"
+    },
+    {
       "cityId": "riyadh",
       "episodeIds": [
         "place-riyadh-city-story",
@@ -1228,6 +1375,15 @@
       "separateCityCollection": "cr:san-jose:local-tales"
     },
     {
+      "cityId": "san-salvador",
+      "episodeIds": [
+        "place-san-salvador-city-story",
+        "place-san-salvador-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "sv:san-salvador:local-tales"
+    },
+    {
       "cityId": "santo-domingo",
       "episodeIds": [
         "place-santo-domingo-city-story",
@@ -1235,6 +1391,15 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "do:santo-domingo:local-tales"
+    },
+    {
+      "cityId": "sarajevo",
+      "episodeIds": [
+        "place-sarajevo-city-story",
+        "place-sarajevo-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "ba:sarajevo:local-tales"
     },
     {
       "cityId": "skopje",
@@ -1363,6 +1528,15 @@
       "separateCityCollection": "hr:zagreb:local-tales"
     },
     {
+      "cityId": "freetown",
+      "episodeIds": [
+        "place-freetown-city-story",
+        "place-freetown-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "sl:freetown:local-tales"
+    },
+    {
       "cityId": "juba",
       "episodeIds": [
         "place-juba-city-story",
@@ -1370,6 +1544,15 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "ss:juba:local-tales"
+    },
+    {
+      "cityId": "serekunda",
+      "episodeIds": [
+        "place-serekunda-city-story",
+        "place-serekunda-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "gm:serekunda:local-tales"
     },
     {
       "cityId": "almaty",
@@ -1462,6 +1645,15 @@
       "separateCityCollection": "bs:nassau:local-tales"
     },
     {
+      "cityId": "panama-city",
+      "episodeIds": [
+        "place-panama-city-city-story",
+        "place-panama-city-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "pa:panama-city:local-tales"
+    },
+    {
       "cityId": "paramaribo",
       "episodeIds": [
         "place-paramaribo-city-story",
@@ -1550,6 +1742,15 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "bb:bridgetown:local-tales"
+    },
+    {
+      "cityId": "castries",
+      "episodeIds": [
+        "place-castries-city-story",
+        "place-castries-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "lc:castries:local-tales"
     },
     {
       "cityId": "delhi",
@@ -1642,6 +1843,24 @@
       "separateCityCollection": "gd:st-georges:local-tales"
     },
     {
+      "cityId": "thimphu",
+      "episodeIds": [
+        "place-thimphu-city-story",
+        "place-thimphu-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "bt:thimphu:local-tales"
+    },
+    {
+      "cityId": "tokyo",
+      "episodeIds": [
+        "place-tokyo-city-story",
+        "place-tokyo-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "jp:tokyo:local-tales"
+    },
+    {
       "cityId": "vaduz",
       "episodeIds": [
         "place-vaduz-city-story",
@@ -1678,6 +1897,15 @@
       "separateCityCollection": "gr:athens:local-tales"
     },
     {
+      "cityId": "baghdad",
+      "episodeIds": [
+        "place-baghdad-city-story",
+        "place-baghdad-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "iq:baghdad:local-tales"
+    },
+    {
       "cityId": "berlin",
       "episodeIds": [
         "place-berlin-city-story",
@@ -1696,6 +1924,15 @@
       "separateCityCollection": "be:brussels:local-tales"
     },
     {
+      "cityId": "istanbul",
+      "episodeIds": [
+        "place-istanbul-city-story",
+        "place-istanbul-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "tr:istanbul:local-tales"
+    },
+    {
       "cityId": "moscow",
       "episodeIds": [
         "place-moscow-city-story",
@@ -1703,6 +1940,15 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "ru:moscow:local-tales"
+    },
+    {
+      "cityId": "pyongyang",
+      "episodeIds": [
+        "place-pyongyang-city-story",
+        "place-pyongyang-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "kp:pyongyang:local-tales"
     },
     {
       "cityId": "tehran",
@@ -1739,6 +1985,15 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "ph:manila:local-tales"
+    },
+    {
+      "cityId": "new-york",
+      "episodeIds": [
+        "place-new-york-city-story",
+        "place-new-york-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "us:new-york:local-tales"
     },
     {
       "cityId": "oslo",
@@ -1912,6 +2167,15 @@
       "separateCityCollection": "tv:funafuti:local-tales"
     },
     {
+      "cityId": "shanghai",
+      "episodeIds": [
+        "place-shanghai-city-story",
+        "place-shanghai-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "cn:shanghai:local-tales"
+    },
+    {
       "cityId": "vatican-city",
       "episodeIds": [
         "place-vatican-city-city-story",
@@ -1937,6 +2201,15 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "im:douglas:local-tales"
+    },
+    {
+      "cityId": "garapan",
+      "episodeIds": [
+        "place-garapan-city-story",
+        "place-garapan-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "mp:garapan:local-tales"
     },
     {
       "cityId": "george-town",
@@ -2029,6 +2302,15 @@
       "separateCityCollection": "sx:philipsburg:local-tales"
     },
     {
+      "cityId": "pristina",
+      "episodeIds": [
+        "place-pristina-city-story",
+        "place-pristina-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "xk:pristina:local-tales"
+    },
+    {
       "cityId": "st-peter-port",
       "episodeIds": [
         "place-st-peter-port-city-story",
@@ -2054,6 +2336,15 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "tw:taipei:local-tales"
+    },
+    {
+      "cityId": "the-valley",
+      "episodeIds": [
+        "place-the-valley-city-story",
+        "place-the-valley-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "ai:the-valley:local-tales"
     },
     {
       "cityId": "torshavn",
@@ -2090,6 +2381,15 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "ck:avarua:local-tales"
+    },
+    {
+      "cityId": "charlotte-amalie",
+      "episodeIds": [
+        "place-charlotte-amalie-city-story",
+        "place-charlotte-amalie-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "vi:charlotte-amalie:local-tales"
     },
     {
       "cityId": "flying-fish-cove",
@@ -2270,6 +2570,15 @@
       ],
       "tenCompletionPaths": true,
       "separateCityCollection": "tf:port-aux-francais:local-tales"
+    },
+    {
+      "cityId": "saint-pierre",
+      "episodeIds": [
+        "place-saint-pierre-city-story",
+        "place-saint-pierre-country-story"
+      ],
+      "tenCompletionPaths": true,
+      "separateCityCollection": "pm:saint-pierre:local-tales"
     },
     {
       "cityId": "siachen",
@@ -2517,7 +2826,41 @@
     "ag:country:local-tales",
     "aq:country:local-tales",
     "pl:country:local-tales",
-    "cm:country:local-tales"
+    "cm:country:local-tales",
+    "et:country:local-tales",
+    "dz:country:local-tales",
+    "mg:country:local-tales",
+    "iq:country:local-tales",
+    "cf:country:local-tales",
+    "gw:country:local-tales",
+    "hu:country:local-tales",
+    "ar:country:local-tales",
+    "bi:country:local-tales",
+    "lc:country:local-tales",
+    "vi:country:local-tales",
+    "qa:country:local-tales",
+    "sl:country:local-tales",
+    "mp:country:local-tales",
+    "tr:country:local-tales",
+    "cy:country:local-tales",
+    "ga:country:local-tales",
+    "tg:country:local-tales",
+    "ni:country:local-tales",
+    "mx:country:local-tales",
+    "us:country:local-tales",
+    "pa:country:local-tales",
+    "xk:country:local-tales",
+    "kp:country:local-tales",
+    "lv:country:local-tales",
+    "pm:country:local-tales",
+    "sv:country:local-tales",
+    "ba:country:local-tales",
+    "gm:country:local-tales",
+    "cn:country:local-tales",
+    "ai:country:local-tales",
+    "bt:country:local-tales",
+    "jp:country:local-tales",
+    "sc:country:local-tales"
   ],
   "preservedLegacyReceipts": 568,
   "preservedLegacyCompletedCollections": 527,

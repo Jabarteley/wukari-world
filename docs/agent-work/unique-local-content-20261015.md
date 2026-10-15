@@ -1,7 +1,7 @@
 # Bespoke country and city content
 
 - Owner: /root, chat01a13bea-138b-7b91-ac44-c49bc3d836ec.
-- Status: resumed implementation. Batches01–06 are accepted and published:215cities/174identities/430tales/1290missions. Sol07/08 are completing the final69cities from reviewed drafts; parent owns integration and verification.
+- Status: all eight batches accepted and locally activated:284cities/243identities/568tales/1704missions. Final69cities authored and reviewed. Engine/save/mission probes pass. Final browser, focused compatibility, CI and main publication in progress; no deployment in this resumed task.
 - Canonical checkout: /Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld, codex/retention-main-sync.
 - Initial source: c42a4757. Live production runtime ac407c2c. User authorizes unique country/city missions and stories, light parallel agents, documentation and ordinary main sync. This task does not require a new production deployment.
 
@@ -17,7 +17,7 @@ Parent owns typed contract, factory/registry/journey integration, validation, sa
 
 Acceptance:284city/243country coverage; normalized uniqueness of plots/titles/dilemmas/keepsakes/mission labels; grounded valid references; all3choice paths and solo/night routes; duplicate grants/save/reload/travel; old568receipts and oldcollectiontitles intact; agent compatibility and relevant existing tests; CItypecheck/build/size/smoke; representative actual UI including country-specificcopy. No new tracked tests. Preserve primary dirty source, current preview5176 and unrelated services. Costs/tokens unknown.
 
-Next: finish and review07/08, accept whole batches, verify284city completion/save/mission paths and current agent-play compatibility, run CI, then sync main. Current source201b9bda includes released world-alive and map updates.
+Next: complete final284browser/agent checks, integrate the Nigeria owner’s scene-budget fix, run exact-candidate CI, then sync main. Current source98926c20 includes main9af2e51e and released world-alive/map updates. Scene edits remain owned by the Nigeria integration chat.
 
 ## Historical usage cap and earlier handoff
 
@@ -128,3 +128,23 @@ Current seed audit: only Philipsburg host name and practical venue changed from 
 Batch07 accepted after independent Astra review and parent correction of three Siachen mission purposes left over from the replaced scarf plot. Warsaw geometry, RoadTown friction controls, Siachen Z-fold constraints now explicit. Local registry01–07:250cities/209identities/500tales/1500missions. Author released ownership; parent now owns07source. Full gate,250engine/mission checks and browserParis playthrough underway before CI/main.
 
 250-city acceptance probes pass2500completionpaths,30000dailydeals,249legacyrolloverclaims; all568oldreceipts/527oldcollections preserved.202focused existing checks passed on integratedmain215baseline; final focused run after284activation pending. Batch08 full draft is held for4plot replacements and mission task variety after source review; do not activate yet.
+
+250-city source72514cbe pushed to branch; CI38730371961 running. c78ac254 only strips whitespace in archived diagnostic text. Astra actual Paris playthrough passes: new synthetic PhaseSixQA, real Montreau Lookaround, hostreturn, fresh Ladoucette Lookaround, discoverychoice, dualuse+3singles answer, solo finale. Dual-UseBagTag earned and normalreload preserved Paris1/2 and France0/1 separately, plus actual missioncounts. Screenshots ui-paris-earned-250.jpg,ui-paris-reloaded-250.jpg,ui-paris-reloaded-card-250.jpg. No injected events in browser proof. Final08 held for semantic revisions; main publication waitsCIandfinal07auditadjudication.
+
+Further07 source audit read28middle tales. Luna suggested Lilongwe/DarEsSalaam duplicate, but parent and Astra direct-source adjudication did not sustain it: monopolizing twolegs/fair participation differs from competing for oneleg/1vs5opportunitycost. Finding remains in audit record with this disposition. No story rewrite required.
+
+Parent then audited task signatures and found33/35batch07cities shared one daily/weeklytasktuple. This violates the authoring variety contract despite unique labels/purposes.250mainpublication held;07author temporarily owns missions-only+record for story-fit variation, no tale/arc edits.08 is performing equivalent improvement plus4plotreplacements. Runtime/IDs/rewardamounts unchanged. Final mission probes/CI will run on corrected source; prior250engine and Parisstory proof remain scoped and valid for unchanged tales.
+
+## Final catalogue label audit and concurrent main integration
+
+At source98926c20 (main9af2e51e merged), extended the content gate to compare explicit standard activity and venue labels to live WORLD_STORY_SEEDS. Batch08 author corrected26 mismatches without reverting varied tasks. Integration owner corrected four older labels in Nouakchott, Damascus and Tórshavn. These label repairs preserve stable mission IDs and completion requirements. This narrow lexical audit does not prove arbitrary natural-language semantics.
+
+Current main has a pre-existing scene-host gzip failure71409>71000 (CI38729884505). The separate ‘Integrate Nigeria production batches’ chat owns the lazy-host extraction and recovery follow-up; coordination sent and no overlapping scene writes here. Content lane awaits that validated fix before green final-main integration. No budget cap raised and no production deployment requested by this resumed lane.
+
+## Batch08 accepted and full catalogue activated
+
+Astra source acceptance received after current seed mapping review; combined semantic review covered initial, middle and final tale groups with corrections. All eight batches pass the enhanced content gate with284cities,243game country/territory identities,568distinct local tales and1704authored mission definitions. Batch08 is now registered. No claim of live production or measured retention. Next: final284engine/save/mission probes, existing agent contract tests and synthetic Tokyo browser completion/reload.
+
+## Final284engine and agent compatibility checkpoint
+
+On source98926c20 plus final content edits,2840completion paths pass across568tales;568old exact keepsakes and527old completed collections remain intact.34080daily deals preserve variety, free swap and blocked-ID fallback;283old rollover claims survive reload and pay once. All202existing focused mission/agent/registry/house/resident/prayer/creator checks pass. Portable reports and source hashes are saved under docs/research/unique-local-content-2026-10-15; log final-agent-check.txt is the full focused run. No source changes are pending from authors. Astra owns actual Tokyo playthrough and final Paris reload. Prior250CI38730371961 passed; final284CI remains a separate gate.

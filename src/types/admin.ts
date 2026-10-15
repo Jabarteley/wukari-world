@@ -37,7 +37,7 @@ export interface AdminHttpRoutes {
   'GET /api/admin/prayers': Get<AdminJson>
   'POST /api/admin/prayers/act': Post<{ clientId: string; kind: string; reason: string; prayer?: number; target?: string; other?: string; city?: string; venue?: string; amount?: number; hours?: number; sky?: string; text?: string; form?: 'dream' | 'sign' }, AdminJson>
   'GET /api/admin/residents': Get<AdminJson>
-  'POST /api/admin/residents/reply': Post<{ clientId: string; text: string; kind?: 'news' | 'decree'; letter?: number }>
+  'POST /api/admin/residents/reply': Post<{ clientId: string; text: string; kind?: 'news' | 'decree'; letter?: number }, AdminJson>
   'GET /api/admin/festivals': Get<AdminJson>
   'POST /api/admin/festivals': Post<{ clientId: string; action: string; id?: string; item?: unknown }, AdminJson>
   'POST /api/admin/notice': Post<{ clientId: string; minutes: number }, AdminJson>

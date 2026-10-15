@@ -10,6 +10,7 @@ import { linkModels } from '../models/service.ts';
 import { linkHouse } from '../house/runner.ts';
 import { linkAgentCalls } from '../house/call-routes.ts';
 import { linkResidents } from '../residents/resident.ts';
+import { linkBonds } from '../residents/bonds-link.ts';
 import { linkPrayers } from '../prayers/link.ts';
 import { callService } from '../social/calls.ts';
 import { pictureSettings } from '../social/images.ts';
@@ -60,6 +61,7 @@ export function linkFeatures(ctx: RouteContext): void {
   linkHouse(ctx);
   linkAgentCalls(ctx);
   linkResidents(ctx);
+  linkBonds(ctx);
   linkPrayers(ctx);
 
   // ---- calls: today's counters (UTC day) and whether the relay is configured; no names, no ids ----------------------------------

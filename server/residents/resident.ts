@@ -68,7 +68,7 @@ import type { ActionId } from '../house/actions.ts';
 import { HOUSE_LOOKS, venueFor } from '../house/cast.ts';
 import { intentOf } from '../house/talk.ts';
 import { OUT_OF_CHARACTER, RESIDENTS, residentId } from './life.ts';
-import { PASTIMES, hourAt, lunchSkipped, outingOdds, pastimeAt, personaOf, prayersToday, ruleLine, ruleVow, talkLine, talkOdds, talkProfile, weekdayAt } from './persona.ts';
+import { PASTIMES, describePersona, hourAt, lunchSkipped, outingOdds, pastimeAt, personaOf, prayersToday, ruleLine, ruleVow, talkLine, talkOdds, talkProfile, weekdayAt } from './persona.ts';
 import type { PastimeId } from './persona.ts';
 import { residentsOfCities, venueOfKind } from './world.ts';
 import { prayersOf } from '../prayers/service.ts';
@@ -341,7 +341,6 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
   const live = new Map<string, Live>();
   /** Awake residents by the room they stand in (visible or on paper), so a line, a census or a meeting never walks the whole roster. */
   const whereIndex = new Map<string, Set<Live>>();
-  const awakeSet = new Set<Live>();
   function setWhere(state: Live, where: string | null): void {
     if (state.where === where) return;
     if (state.where) { const set = whereIndex.get(state.where); set?.delete(state); if (set && !set.size) whereIndex.delete(state.where); }
@@ -484,6 +483,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     const lines = [
       `It is ${clock} on ${weekday} in ${city}. ${REASON[reason]}`,
       `Your day plan says: ${ACTIONS[routine].doing.toLowerCase()}.`,
+      `How you are, by nature: ${describePersona(personaOf(who))}.`,
       state.doing && t < state.doing.until ? `Right now you are ${ACTIONS[state.doing.action].doing.toLowerCase()}.` : '',
       recent.length ? `Earlier today: ${recent.join('; ')}.` : '',
       life.memory.length ? `How your last days felt: ${life.memory.slice(-2).map((m) => m.slice(0, 300)).join(' ')}` : '',
@@ -706,14 +706,14 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
   }
 
   function beat(state: Live, t: number, on: boolean, shadow: boolean): void {
-    if (!on) { if (state.asleep !== null) { leave(state); state.asleep = null; state.outing = null; setWhere(state, null); awakeSet.delete(state); } return; }
+    if (!on) { if (state.asleep !== null) { leave(state); state.asleep = null; state.outing = null; setWhere(state, null); } return; }
     const slept = asleepAt(state.who, t);
     if (slept) {
       if (state.asleep === false) {
         // Going to bed: one summary (a model writes it only for one who met a person today; not when it is the budget that sent it).
         const day = dayOf(state.who, t - 3600000);
         day.sleptAt = t; persist();
-        leave(state); state.doing = null; state.outing = null; setWhere(state, null); awakeSet.delete(state);
+        leave(state); state.doing = null; state.outing = null; setWhere(state, null);
         void summarise(state, t).catch(() => {});
       }
       state.asleep = true;
@@ -721,7 +721,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     }
     const day = dayOf(state.who, t);
     if (state.asleep !== false) {
-      state.asleep = false; awakeSet.add(state); day.wokeAt ??= t; state.pending = 'morning'; state.lastRoutine = routineOf(state.who, t).action; state.nextAlone = jitter(state, t); persist();
+      state.asleep = false; day.wokeAt ??= t; state.pending = 'morning'; state.lastRoutine = routineOf(state.who, t).action; state.nextAlone = jitter(state, t); persist();
     }
     const routine = routineOf(state.who, t);
     considerOuting(state, day, routine, t);

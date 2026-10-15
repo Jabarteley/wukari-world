@@ -278,3 +278,17 @@ export function ruleVow(faith: Faith, seed: string): string {
 export const gainOf = (a: Persona, b: Persona, base: number): number => Math.max(1, Math.round(base * (0.6 + (a.chatty + b.chatty + a.social + b.social) / 400 * 0.9)));
 export const quarrelScale = (a: Persona, b: Persona): number => 0.4 + (a.temper + b.temper) / 100;
 export const sameBand = (a: number, b: number): boolean => Math.abs(a - b) < 20;
+
+/** A few plain words for the model about how this resident is, by nature (the rules above read the numbers; a deep thought is told the words too). */
+export function describePersona(p: Persona): string {
+  const words: string[] = [];
+  words.push(p.chatty >= 66 ? 'talkative' : p.chatty <= 33 ? 'quiet' : 'friendly enough');
+  words.push(p.temper >= 70 ? 'quick to anger' : p.temper <= 30 ? 'calm' : 'even-tempered');
+  if (p.faith !== 'none' && p.devout >= 60) words.push('devout');
+  if (p.curious >= 66) words.push('curious');
+  if (p.funny >= 66) words.push('funny');
+  if (p.ambitious >= 66) words.push('ambitious');
+  if (p.generous >= 66) words.push('generous'); else if (p.generous <= 30) words.push('careful with money');
+  if (p.social >= 66) words.push('fond of company'); else if (p.social <= 30) words.push('happy alone');
+  return words.join(', ');
+}

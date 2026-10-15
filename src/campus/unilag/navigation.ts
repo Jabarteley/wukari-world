@@ -1,12 +1,13 @@
 import { createWalkGrid } from '../../scene/walk-grid.ts';
 import type { WalkCircle, WalkGrid, WalkPoint, WalkRect } from '../../scene/walk-grid.ts';
 import { CAMPUS_NAVIGATION_DATA } from '#campus-navigation-data';
+import { CAMPUS_NAVIGATION_CELL, CAMPUS_NAVIGATION_RADIUS, campusNavigationGridDimensions, validateCampusNavigationTreeCells } from './navigation-data.ts';
 import { pointInRing } from './geo.ts';
 import type { MetreRing } from './geo.ts';
 import type { CampusZone } from './layout.ts';
 
 export interface CampusWalk { grids:Map<string,WalkGrid>; zoneAt:(x:number,z:number)=>CampusZone|null; route:(from:WalkPoint,to:WalkPoint)=>WalkPoint[]|null }
-const CELL=2, RADIUS=.4;
+const CELL=CAMPUS_NAVIGATION_CELL, RADIUS=CAMPUS_NAVIGATION_RADIUS;
 const distanceToRing=(x:number,z:number,ring:MetreRing):number=>{
   let best=Infinity;
   for(let index=1;index<ring.length;index++){const [ax,az]=ring[index-1]!,[bx,bz]=ring[index]!,dx=bx-ax,dz=bz-az;const t=Math.max(0,Math.min(1,((x-ax)*dx+(z-az)*dz)/(dx*dx+dz*dz||1)));best=Math.min(best,Math.hypot(x-ax-dx*t,z-az-dz*t));}
@@ -16,12 +17,12 @@ const blockedBy=(x:number,z:number,ring:MetreRing)=>pointInRing([x,z],ring)||dis
 
 export function createGeographicCampusWalk(extraFootprints:Record<string,Array<WalkRect|WalkCircle>>={}):CampusWalk{
   const gateColumns:WalkRect[]=[[-1.5,-2.5,1.5,2.5],[-1.5,-16.7,1.5,-15.3],[-1.5,15.3,1.5,16.7]];
-  const treeTrunks:WalkCircle[]=CAMPUS_NAVIGATION_DATA.trees.map(([x,z,size])=>[x,z,.45*size]);
-  const grid=createWalkGrid({bounds:[...CAMPUS_NAVIGATION_DATA.bounds],block:[...gateColumns,...treeTrunks,...Object.values(extraFootprints).flat()],cell:CELL,radius:RADIUS});
+  const grid=createWalkGrid({bounds:[...CAMPUS_NAVIGATION_DATA.bounds],block:[...gateColumns,...Object.values(extraFootprints).flat()],cell:CELL,radius:RADIUS});
   const [minX,minZ]=grid.bounds;
-  // A trunk smaller than the cell diagonal may contain no cell centre; always
-  // claim its containing cell so the rendered trunk cannot be walked through.
-  for(const [x,z] of CAMPUS_NAVIGATION_DATA.trees){const column=Math.floor((x-minX)/grid.cell),row=Math.floor((z-minZ)/grid.cell);if(column>=0&&row>=0&&column<grid.cols&&row<grid.rows)grid.cells[row*grid.cols+column]=1;}
+  const dimensions=campusNavigationGridDimensions(CAMPUS_NAVIGATION_DATA.bounds);
+  if(grid.cols!==dimensions.cols||grid.rows!==dimensions.rows)throw new Error('Campus navigation grid dimensions differ');
+  validateCampusNavigationTreeCells(CAMPUS_NAVIGATION_DATA.bounds,CAMPUS_NAVIGATION_DATA.treeCells);
+  for(const index of CAMPUS_NAVIGATION_DATA.treeCells)grid.cells[index]=1;
   for(let row=0;row<grid.rows;row++){
     const z=minZ+(row+.5)*grid.cell, crossings:number[]=[];
     for(let index=1;index<CAMPUS_NAVIGATION_DATA.boundary.length;index++){

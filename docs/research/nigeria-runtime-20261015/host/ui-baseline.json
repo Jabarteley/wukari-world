@@ -1,0 +1,17 @@
+{
+  "text": "NPC\n+\n−\nMama Ronke · NPC\nMy team will win the league this year. Just watch.\n1 online\n· 1 here\n· 1 visits\n· You're first here: invite a friend\nThu 15 · 4:42 am\n Happy\nSaved\nSound on\nInvite\n₦5,000\n🏠\nSettle in: get your home\n×\n Freedom Park · Lagos Island\nAmphitheatre\nArt gallery\nUnder the trees\nDrinks kiosk\nPeople\nCommunity desk\nSquare\nHome\nBuy\nMap\nPhone",
+  "canvas": 1,
+  "error": "Error: Page.captureScreenshot: no answer from the browser in 90 s",
+  "errors": [
+    "log: Manifest: Line: 1, column: 1, Syntax error. http://127.0.0.1:5189/manifest.webmanifest",
+    "log: Manifest: Line: 1, column: 1, Syntax error. http://127.0.0.1:5189/manifest.webmanifest",
+    "log: Failed to load resource: the server responded with a status of 401 (Unauthorized) http://127.0.0.1:5189/api/session",
+    "log: Failed to load resource: the server responded with a status of 409 (Conflict) http://127.0.0.1:5189/api/street/me",
+    "log: Manifest: Line: 1, column: 1, Syntax error. http://127.0.0.1:5189/manifest.webmanifest",
+    "log: Manifest: Line: 1, column: 1, Syntax error. http://127.0.0.1:5189/manifest.webmanifest",
+    "log: Failed to load resource: the server responded with a status of 409 (Conflict) http://127.0.0.1:5189/api/street/me",
+    "log: Manifest: Line: 1, column: 1, Syntax error. http://127.0.0.1:5189/manifest.webmanifest",
+    "log: Manifest: Line: 1, column: 1, Syntax error. http://127.0.0.1:5189/manifest.webmanifest",
+    "log: Failed to load resource: the server responded with a status of 409 (Conflict) http://127.0.0.1:5189/api/street/me"
+  ]
+}

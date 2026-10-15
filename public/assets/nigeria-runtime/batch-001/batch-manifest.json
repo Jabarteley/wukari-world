@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "batch": "batch-001",
+  "scope": "Two separately streamable Nigeria runtime scene candidates",
+  "slices": [
+    {
+      "id": "abuja-mosque-boulevard-01",
+      "manifest": "abuja-mosque-boulevard-01/manifest.json",
+      "manifestSha256": "15b2727c4d4ec0a3161676e53da8262b0a64231421e47c7b227df3da442466fa",
+      "publicationManifest": "abuja-mosque-boulevard-01/publication-manifest.json",
+      "publicationManifestSha256": "6eb481ebe2a017f6fc4578d9e58e769d27025b4c0c37300e9186aa9877089fcd",
+      "sha256sums": "abuja-mosque-boulevard-01/SHA256SUMS.txt",
+      "sha256sumsSha256": "a7d303f7401c342aa2420d9b5b0edd583d9150b1659c8e1ca95d1572806a1924"
+    },
+    {
+      "id": "lagos-broad-street-01",
+      "manifest": "lagos-broad-street-01/manifest.json",
+      "manifestSha256": "a0549210b773233f63ea24145d72956415e47d3c0755a85e0dd8a58735c0ad1a",
+      "publicationManifest": "lagos-broad-street-01/publication-manifest.json",
+      "publicationManifestSha256": "1b7dec4ee876d6bb3b62795dbb29f4b00a4bb46f2dfcd37fe74e031c6d80f967",
+      "sha256sums": "lagos-broad-street-01/SHA256SUMS.txt",
+      "sha256sumsSha256": "9f8898c15d4f701a9505e4ebb3f420f7084d3355dc3552c1c7f7b1460c7ba064"
+    }
+  ],
+  "acceptance": "PASS_STRUCTURAL and scoped PASS_OFFLINE_DAY_NIGHT; host integration/deployment unverified"
+}

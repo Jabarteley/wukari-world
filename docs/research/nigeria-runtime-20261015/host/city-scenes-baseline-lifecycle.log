@@ -1,0 +1,24 @@
+✔ with no city loaded, the default city builds and every other city with scenes of its own is refused (2660.595821ms)
+✔ the adapter draws nothing for a city whose scenes are on their way, says so, and builds the venue host when they arrive (137.70119ms)
+✔ a failed download is retried by itself with growing waits, then stops until the player asks again (96.605066ms)
+✔ an automatic retry that succeeds builds the scene without the player doing anything (138.399004ms)
+✔ arriving in another city: the old city leaves the screen, the new one is built when its scenes arrive, and a place change meanwhile is kept (250.909147ms)
+
+Interrupted while running:
+
+⚠ src/scene/city-scenes.test.ts (src/scene/city-scenes.test.ts:1:1)
+✖ src/scene/city-scenes.test.ts (74904.79907ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 1
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 74911.114229
+
+✖ failing tests:
+
+test at src/scene/city-scenes.test.ts:1:1
+✖ src/scene/city-scenes.test.ts (74904.79907ms)
+  'Promise resolution is still pending but the event loop has already resolved'

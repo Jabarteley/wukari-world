@@ -1,0 +1,272 @@
+{
+  "scope": "Adapter diagnostic with actual host light factory; NOT in-game navigation or production acceptance",
+  "startedAt": "2026-10-15T03:20:41.949Z",
+  "cases": [
+    {
+      "id": "lagos-broad-street-01",
+      "tier": "near",
+      "time": "day",
+      "metrics": {
+        "frame": 1,
+        "calls": 1,
+        "triangles": 7618,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 1,
+          "textures": 4
+        },
+        "resident": {
+          "tier": "near",
+          "triangles": 7618,
+          "drawCalls": 2,
+          "textureBytes": 8388610
+        }
+      },
+      "screenshot": "lagos-broad-street-01-near-day.png"
+    },
+    {
+      "id": "lagos-broad-street-01",
+      "tier": "near",
+      "time": "night",
+      "metrics": {
+        "frame": 2,
+        "calls": 1,
+        "triangles": 7618,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 1,
+          "textures": 4
+        },
+        "resident": {
+          "tier": "near",
+          "triangles": 7618,
+          "drawCalls": 2,
+          "textureBytes": 8388610
+        }
+      },
+      "screenshot": "lagos-broad-street-01-near-night.png"
+    },
+    {
+      "id": "lagos-broad-street-01",
+      "tier": "far",
+      "time": "day",
+      "metrics": {
+        "frame": 3,
+        "calls": 1,
+        "triangles": 1822,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 1,
+          "textures": 4
+        },
+        "resident": {
+          "tier": "far",
+          "triangles": 1822,
+          "drawCalls": 2,
+          "textureBytes": 8388610
+        }
+      },
+      "screenshot": "lagos-broad-street-01-far-day.png"
+    },
+    {
+      "id": "lagos-broad-street-01",
+      "tier": "far",
+      "time": "night",
+      "metrics": {
+        "frame": 4,
+        "calls": 1,
+        "triangles": 1822,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 1,
+          "textures": 4
+        },
+        "resident": {
+          "tier": "far",
+          "triangles": 1822,
+          "drawCalls": 2,
+          "textureBytes": 8388610
+        }
+      },
+      "screenshot": "lagos-broad-street-01-far-night.png"
+    },
+    {
+      "id": "abuja-mosque-boulevard-01",
+      "tier": "near",
+      "time": "day",
+      "metrics": {
+        "frame": 5,
+        "calls": 4,
+        "triangles": 4942,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 4,
+          "textures": 4
+        },
+        "resident": {
+          "tier": "near",
+          "triangles": 4942,
+          "drawCalls": 8,
+          "textureBytes": 7340034
+        }
+      },
+      "screenshot": "abuja-mosque-boulevard-01-near-day.png"
+    },
+    {
+      "id": "abuja-mosque-boulevard-01",
+      "tier": "near",
+      "time": "night",
+      "metrics": {
+        "frame": 6,
+        "calls": 4,
+        "triangles": 4942,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 4,
+          "textures": 4
+        },
+        "resident": {
+          "tier": "near",
+          "triangles": 4942,
+          "drawCalls": 8,
+          "textureBytes": 7340034
+        }
+      },
+      "screenshot": "abuja-mosque-boulevard-01-near-night.png"
+    },
+    {
+      "id": "abuja-mosque-boulevard-01",
+      "tier": "far",
+      "time": "day",
+      "metrics": {
+        "frame": 7,
+        "calls": 4,
+        "triangles": 1936,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 4,
+          "textures": 4
+        },
+        "resident": {
+          "tier": "far",
+          "triangles": 1936,
+          "drawCalls": 8,
+          "textureBytes": 7340034
+        }
+      },
+      "screenshot": "abuja-mosque-boulevard-01-far-day.png"
+    },
+    {
+      "id": "abuja-mosque-boulevard-01",
+      "tier": "far",
+      "time": "night",
+      "metrics": {
+        "frame": 8,
+        "calls": 4,
+        "triangles": 1936,
+        "points": 0,
+        "lines": 0,
+        "memory": {
+          "geometries": 4,
+          "textures": 4
+        },
+        "resident": {
+          "tier": "far",
+          "triangles": 1936,
+          "drawCalls": 8,
+          "textureBytes": 7340034
+        }
+      },
+      "screenshot": "abuja-mosque-boulevard-01-far-night.png"
+    }
+  ],
+  "indoors": {
+    "frame": 9,
+    "calls": 4,
+    "triangles": 4942,
+    "points": 0,
+    "lines": 0,
+    "memory": {
+      "geometries": 4,
+      "textures": 4
+    },
+    "resident": {
+      "tier": "near",
+      "triangles": 4942,
+      "drawCalls": 8,
+      "textureBytes": 7340034
+    }
+  },
+  "cycles": [
+    {
+      "frame": 12,
+      "calls": 0,
+      "triangles": 0,
+      "points": 0,
+      "lines": 0,
+      "memory": {
+        "geometries": 0,
+        "textures": 1
+      },
+      "resident": null
+    },
+    {
+      "frame": 15,
+      "calls": 0,
+      "triangles": 0,
+      "points": 0,
+      "lines": 0,
+      "memory": {
+        "geometries": 0,
+        "textures": 1
+      },
+      "resident": null
+    },
+    {
+      "frame": 18,
+      "calls": 0,
+      "triangles": 0,
+      "points": 0,
+      "lines": 0,
+      "memory": {
+        "geometries": 0,
+        "textures": 1
+      },
+      "resident": null
+    },
+    {
+      "frame": 21,
+      "calls": 0,
+      "triangles": 0,
+      "points": 0,
+      "lines": 0,
+      "memory": {
+        "geometries": 0,
+        "textures": 1
+      },
+      "resident": null
+    }
+  ],
+  "disposed": {
+    "frame": 21,
+    "calls": 0,
+    "triangles": 0,
+    "points": 0,
+    "lines": 0,
+    "memory": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "resident": null
+  },
+  "errors": [],
+  "failedRequests": [],
+  "completedAt": "2026-10-15T03:20:57.848Z"
+}

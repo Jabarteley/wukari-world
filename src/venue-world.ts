@@ -210,6 +210,7 @@ export interface HostWalk extends Omit<SceneWalk, 'rest' | 'things'> {
 }
 /** What a scene entry may offer the host (see the header). Venue scenes and the home room both satisfy it. */
 export interface HostScene {
+  setHostBudget?(budget: { triangles: number; drawCalls: number }): void
   readonly streetGate?: { x: number; z: number; ry?: number }
   beginDoor?(done: () => void): void
   setStreet?(street: WorldStreetResponse | null): boolean
@@ -320,14 +321,27 @@ export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shado
   const rim = new THREE.DirectionalLight(HOST_LIGHTING.rim[0], HOST_LIGHTING.rim[1]);
   rim.castShadow = false;
   rim.position.set(-14, 12, -18);
-  scene.add(hemi, sun, rim, rim.target);
+  scene.add(hemi, sun, sun.target, rim, rim.target);
   let disposed = false;
   return {
     hemi, sun, rim,
-    apply(preset?: Partial<LightPreset> | null) {
+    apply(preset?: Partial<LightPreset> | null, coverage?: readonly [number, number, number, number, number, number]) {
       const use = preset?.hemi && preset.sun && Array.isArray(preset.hemi) && Array.isArray(preset.sun) ? preset as LightPreset : HOST_LIGHTING;
       hemi.color.set(use.hemi[0]); hemi.groundColor.set(use.hemi[1]); hemi.intensity = use.hemi[2];
       sun.color.set(use.sun[0]); sun.intensity = use.sun[1]; sun.position.set(...use.sun[2]);
+      // Large authored venues keep the approved light direction while covering their real
+      // metre-scaled bounds. Reset on ordinary venues so coverage never leaks across travel.
+      if (coverage) {
+        const centre = new THREE.Vector3((coverage[0] + coverage[3]) / 2, (coverage[1] + coverage[4]) / 2, (coverage[2] + coverage[5]) / 2);
+        const radius = Math.max(22, Math.hypot(coverage[3] - coverage[0], coverage[4] - coverage[1], coverage[5] - coverage[2]) / 2 + 3);
+        sun.position.normalize().multiplyScalar(radius * 2).add(centre);
+        sun.target.position.copy(centre);
+        Object.assign(sun.shadow.camera, { left: -radius, right: radius, top: radius, bottom: -radius, near: 1, far: radius * 4 });
+      } else {
+        sun.target.position.set(0, 0, 0);
+        Object.assign(sun.shadow.camera, { left: -22, right: 22, top: 22, bottom: -22, near: 1, far: 70 });
+      }
+      sun.target.updateMatrixWorld(); sun.shadow.camera.updateProjectionMatrix();
       const back = Array.isArray(use.rim) ? use.rim as readonly [Colour, number] : HOST_LIGHTING.rim;
       rim.color.set(back[0]); rim.intensity = back[1];
     },
@@ -345,7 +359,7 @@ export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shado
       // Renderer teardown does not own light shadow targets. Release them while its
       // render-target dispose listeners can still free the GPU allocations.
       sun.dispose(); rim.dispose();
-      scene.remove(hemi, sun, rim, rim.target);
+      scene.remove(hemi, sun, sun.target, rim, rim.target);
     },
   };
 }
@@ -1357,6 +1371,9 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       if (id === 'neighbourhood' && !buildNeighbourhood) throw new Error('The neighbourhood scene has not loaded.');
       if (venue?.scene?.kind === 'home' && !buildHome) throw new Error('The home scene has not loaded.');
       const entry = id === 'neighbourhood' && buildNeighbourhood ? buildNeighbourhood(kit) : venue?.scene?.kind === 'home' && buildHome ? buildHome(kit, visitHome ? { visit: visitHome } : {}) : buildVenueScene(kit, sceneVenue(id, cityId), cityId);
+      // Ground is double-sided transparent (two passes); the background texture is a
+      // full-screen triangle pair. Reserve host work outside the venue group too.
+      entry.setHostBudget?.({ triangles: 17000 - (ground.mesh.geometry.index?.count ?? 0) / 3 - 2, drawCalls: 60 - 3 });
       entry.group.visible = false;
       scene.add(entry.group);
       built.set(id, entry);
@@ -1366,7 +1383,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   /** Take the lighting and clear colour the current scene asks for. */
   function applyLook() {
     const preset = current?.lighting?.();
-    lights.apply(preset);
+    lights.apply(preset, current?.camera?.bounds);
     // Shared meshes take the active scene's glow, including Home and the street.
     // No private material or extra rendering pass is needed for a clock change.
     sceneMaterials(kit).glow.color.setScalar(typeof preset?.glow === 'number' && Number.isFinite(preset.glow) && preset.glow >= 0 ? preset.glow : HOST_LIGHTING.glow);
@@ -1410,6 +1427,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     // a room hides the walls the camera is behind (lookIn), so no scene needs an azimuth limit.
     orbit.setLimits({ near: 6.2 * (walk?.scale || 1), far: whole * 1.38, azimuth: null });
     camera.fov = portrait ? 48 : 43;
+    camera.far = view.bounds ? Math.max(600 + whole * 1.38 + 50, whole * 1.38 + Math.hypot(view.bounds[3] - view.bounds[0], view.bounds[4] - view.bounds[1], view.bounds[5] - view.bounds[2])) : 360;
     // Centre the scene in what the HUD leaves free; on a wide screen also step back a little when little is left.
     const free = Math.max(160, height - insets.top - insets.bottom);
     camera.zoom = portrait ? 1 : Math.max(0.74, Math.min(1, free / (height * 0.6)));

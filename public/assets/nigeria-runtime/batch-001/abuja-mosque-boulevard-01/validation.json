@@ -1,0 +1,88 @@
+{
+  "manifest": "/workspace/scratch/52727e811c82/abuja-realistic-study/production/abuja-mosque-boulevard-01/manifest.json",
+  "manifestSha256": "15b2727c4d4ec0a3161676e53da8262b0a64231421e47c7b227df3da442466fa",
+  "validatorSha256": "eafa09aae4b5105482ab342f62e5fe3a1160149366ec2662fffe819842b2aefa",
+  "status": "PASS_STRUCTURAL",
+  "errors": [],
+  "warnings": [
+    "Aggregate host costs and physical-device performance are not certified.",
+    "Collision-to-visible-wall alignment and exit reachability still need host/visual checks.",
+    "Tangent-space normal appearance, winding and licences require independent review."
+  ],
+  "tiers": {
+    "near": {
+      "file": "near.glb",
+      "sha256": "93f54d127a5b87414928ff8db90f377bc00d2cb640e26b848a40b9ed13564983",
+      "bytes": 1140016,
+      "triangles": 4942,
+      "primitives": 4,
+      "materials": 4,
+      "worldBounds": [
+        -55.0,
+        -1.100000023841858,
+        -48.75,
+        55.0,
+        54.0,
+        31.0
+      ],
+      "textureBytesWithMips": 7340028,
+      "images": [
+        {
+          "width": 512,
+          "height": 512,
+          "sha256": "996e1bd1316ffca5b52ac0f4fa6fd93fbaff314bc879259fdb4575d48b7a648b",
+          "rgba8WithMips": 1398100
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "sha256": "d11c83cc95129f18ef6b5347e978109d85f4752cb5a4075c731afa4a16b3963d",
+          "rgba8WithMips": 5592404
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "sha256": "e2becbc2c5c8fca24707ba37a503f84c94c81ccc0910731ad7e4de8dde70f232",
+          "rgba8WithMips": 349524
+        }
+      ]
+    },
+    "far": {
+      "file": "far.glb",
+      "sha256": "14e2cd5faaebd23365858cf765a4f639a68027add83e0b7b732ca9737d70ad5d",
+      "bytes": 970976,
+      "triangles": 1936,
+      "primitives": 4,
+      "materials": 4,
+      "worldBounds": [
+        -55.0,
+        -1.100000023841858,
+        -48.70000076293945,
+        55.0,
+        54.0,
+        31.0
+      ],
+      "textureBytesWithMips": 7340028,
+      "images": [
+        {
+          "width": 512,
+          "height": 512,
+          "sha256": "996e1bd1316ffca5b52ac0f4fa6fd93fbaff314bc879259fdb4575d48b7a648b",
+          "rgba8WithMips": 1398100
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "sha256": "d11c83cc95129f18ef6b5347e978109d85f4752cb5a4075c731afa4a16b3963d",
+          "rgba8WithMips": 5592404
+        },
+        {
+          "width": 256,
+          "height": 256,
+          "sha256": "e2becbc2c5c8fca24707ba37a503f84c94c81ccc0910731ad7e4de8dde70f232",
+          "rgba8WithMips": 349524
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "assetId": "abuja-mosque-boulevard-01",
+  "units": "metres",
+  "upAxis": "Y",
+  "origin": [
+    0,
+    0,
+    0
+  ],
+  "manifestSha256": "15b2727c4d4ec0a3161676e53da8262b0a64231421e47c7b227df3da442466fa",
+  "authoritativeSource": "manifest.json#/navigation",
+  "entrance": [
+    0,
+    28,
+    0
+  ],
+  "walkable": [
+    [
+      -54,
+      25.5,
+      54,
+      30.5
+    ],
+    [
+      -54,
+      5.5,
+      54,
+      24
+    ],
+    [
+      -54,
+      -2,
+      54,
+      4
+    ],
+    [
+      -1.5,
+      0,
+      1.5,
+      29
+    ]
+  ],
+  "anchors": [
+    {
+      "id": "street-entry",
+      "position": [
+        0,
+        0,
+        28
+      ],
+      "kind": "exit"
+    },
+    {
+      "id": "landmark-view",
+      "position": [
+        0,
+        0,
+        23
+      ],
+      "kind": "viewpoint"
+    }
+  ]
+}

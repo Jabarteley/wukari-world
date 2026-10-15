@@ -1,0 +1,33 @@
+import { Browser } from '/workspace/joinallworld/scripts/journeys/cdp.ts';
+import { writeFileSync } from 'node:fs';
+const browser = await Browser.launch(9397, ['--no-sandbox', '--disable-dev-shm-usage']);
+const evidence: any = { scope: 'Adapter diagnostic with actual host light factory; NOT in-game navigation or production acceptance', startedAt: new Date().toISOString(), cases: [] };
+try {
+ await browser.setViewport({width:1100,height:800,scale:1,mobile:false});
+ await browser.goto('http://127.0.0.1:5189/.nigeria-review/index.html');
+ await browser.waitFor('window.ready === true', 60000, 'review harness');
+ for (const id of ['lagos-broad-street-01','abuja-mosque-boulevard-01']) {
+  for (const tier of ['near','far']) for (const time of ['day','night']) {
+   console.log('START',id,tier,time);
+   const metrics = await browser.eval(`window.review.load(${JSON.stringify(id)},${JSON.stringify(tier)},${JSON.stringify(time)})`);
+   console.log('LOADED',JSON.stringify(metrics));
+   const screenshot = await browser.send('Page.captureScreenshot', {format:'png'});
+   const file = `${id}-${tier}-${time}.png`;
+   writeFileSync(`/workspace/nigeria-release-evidence/${file}`, Buffer.from(screenshot.data,'base64'));
+   evidence.cases.push({id,tier,time,metrics,screenshot:file});
+  }
+ }
+ evidence.indoors = await browser.eval('window.review.tier("far",true)');
+ evidence.cycles=[];
+ for(let n=0;n<4;n++) {
+  await browser.eval('window.review.load("lagos-broad-street-01")');
+  await browser.eval('window.review.tier("far")');
+  evidence.cycles.push(await browser.eval('window.review.clear()'));
+ }
+ evidence.disposed = await browser.eval('window.review.dispose()');
+ evidence.errors=browser.consoleErrors;
+ evidence.failedRequests=browser.requests.filter(x=>x.status && x.status>=400).map(x=>({url:x.url,status:x.status}));
+ evidence.completedAt=new Date().toISOString();
+ writeFileSync('/workspace/nigeria-release-evidence/browser.json',JSON.stringify(evidence,null,2));
+ console.log(JSON.stringify(evidence));
+} finally { browser.close(); }

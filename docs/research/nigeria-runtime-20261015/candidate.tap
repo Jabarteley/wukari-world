@@ -1,0 +1,37 @@
+✔ every budget has a positive whole value, a place it is enforced and a reason (1.926976ms)
+✔ the numbers are the ones the tests and source hard-coded before the table (1.624709ms)
+✔ the realism download targets are named and marked provisional (0.686012ms)
+✔ the scene budget is its two parts, and a phone sees no more draw calls than a venue scene may use (0.253373ms)
+✔ source constants that mirror the table equal it (0.192924ms)
+✔ withinBudget treats the limit as inside, and a floor the other way round (31.345071ms)
+✔ budgets.ts imports nothing, so any module or script can read it (1.27443ms)
+✔ every scene that makes a WebGL renderer gives its context back when it is closed (930.984217ms)
+✔ runtime PBR keeps authored material and shares one transform with every navigation shape (8.659685ms)
+✔ indoors forces near and changing tiers releases materials, textures and shared images exactly once (3.256351ms)
+✔ cancelled parsing is serialized, disposed and never attached after a newer selection or scene teardown (7.285684ms)
+✔ over-budget, light-bearing and failed modules leave no resident and allow retry (3.911238ms)
+✔ invalid navigation is rejected before network access (1.220371ms)
+✔ network loader rejects altered bytes and external resources before parsing (51.297762ms)
+✔ quarter-turn collision contract and explicit shadow-pass allowance fail closed (1.651167ms)
+✔ far requests close to the module still use near geometry (1.092313ms)
+✔ repeated geometry groups reserve each double-sided transparent pass (1.911664ms)
+✔ a file is read once however many placements and layers use it (14.397684ms)
+✔ copies on one atlas are one mesh; another atlas is another; stats count them (2.880217ms)
+✔ a stand-in is drawn at once, swapped for the model when it arrives, and kept when the file fails (6.91964ms)
+✔ near and far follow the focus; far details are skipped; the far file is only read when needed (8.019945ms)
+✔ the budget drops the cheapest and farthest first, and says so (1.96034ms)
+✔ instanced placements are one instanced mesh per part (1.805945ms)
+✔ label cells are shared by equal text and sit inside the atlas (0.431882ms)
+✔ moving the focus reads the file a placement now needs, and keeps its other version on screen meanwhile (3.712866ms)
+✔ walking near and far builds the layer again without throwing its materials away (a material takes its compiled shader with it) (10.354542ms)
+✔ flat venue contact follows the rendered ground top and refuses unsupported or mismatched samples (206.814352ms)
+✔ declared decks must agree with their rendered solid top (202.151878ms)
+✔ declared ramps and released scenes never retain contact support (128.709885ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3886.053895

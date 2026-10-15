@@ -1,0 +1,88 @@
+{
+  "manifest": "/workspace/scratch/52727e811c82/lagos-broadstreet-study/runtime-batch1/manifest.json",
+  "manifestSha256": "a0549210b773233f63ea24145d72956415e47d3c0755a85e0dd8a58735c0ad1a",
+  "validatorSha256": "eafa09aae4b5105482ab342f62e5fe3a1160149366ec2662fffe819842b2aefa",
+  "status": "PASS_STRUCTURAL",
+  "errors": [],
+  "warnings": [
+    "Aggregate host costs and physical-device performance are not certified.",
+    "Collision-to-visible-wall alignment and exit reachability still need host/visual checks.",
+    "Tangent-space normal appearance, winding and licences require independent review."
+  ],
+  "tiers": {
+    "near": {
+      "file": "lagos_broadstreet_lod0.glb",
+      "sha256": "1d03d5a9faadb7cc49e7595e7a43e896f4787cd6e33064c263f7267ca14bd19f",
+      "bytes": 1182128,
+      "triangles": 7618,
+      "primitives": 1,
+      "materials": 1,
+      "worldBounds": [
+        -9.800000190734863,
+        -0.005000002682209015,
+        -9.149999618530273,
+        9.80000114440918,
+        22.91499900817871,
+        3.146162271499634
+      ],
+      "textureBytesWithMips": 8388604,
+      "images": [
+        {
+          "width": 512,
+          "height": 512,
+          "sha256": "7c245dd23106985bc0252bc126b9411568375bb62c7379bf3d94036009d0c3d8",
+          "rgba8WithMips": 1398100
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "sha256": "16b4eddac5219931ab45da0936b32dfc4685ee70de32a0a62d6fdb2059381b9e",
+          "rgba8WithMips": 5592404
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "sha256": "36d46ae4f940a9d7bf76ab452fde6de23e94c3e990bc0c2c17815e1682f90d31",
+          "rgba8WithMips": 1398100
+        }
+      ]
+    },
+    "far": {
+      "file": "lagos_broadstreet_lod1.glb",
+      "sha256": "197b7e5d4b85173ea533ada8afb3a0da6db6bbd309e9805427520195b147e0bd",
+      "bytes": 776400,
+      "triangles": 1822,
+      "primitives": 1,
+      "materials": 1,
+      "worldBounds": [
+        -9.800000190734863,
+        -0.005000002682209015,
+        -9.149999618530273,
+        9.80000114440918,
+        22.91499900817871,
+        3.146162271499634
+      ],
+      "textureBytesWithMips": 8388604,
+      "images": [
+        {
+          "width": 512,
+          "height": 512,
+          "sha256": "7c245dd23106985bc0252bc126b9411568375bb62c7379bf3d94036009d0c3d8",
+          "rgba8WithMips": 1398100
+        },
+        {
+          "width": 1024,
+          "height": 1024,
+          "sha256": "16b4eddac5219931ab45da0936b32dfc4685ee70de32a0a62d6fdb2059381b9e",
+          "rgba8WithMips": 5592404
+        },
+        {
+          "width": 512,
+          "height": 512,
+          "sha256": "36d46ae4f940a9d7bf76ab452fde6de23e94c3e990bc0c2c17815e1682f90d31",
+          "rgba8WithMips": 1398100
+        }
+      ]
+    }
+  }
+}

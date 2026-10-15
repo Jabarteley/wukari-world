@@ -1,3 +1,5 @@
+import { loadCityScenes } from './city-scenes.ts';
+await loadCityScenes('lagos');
 import test from 'node:test'
 import { SCENE_TRIANGLES, SCENE_DRAW_CALLS } from '../budgets.ts'
 import { loadParametricScenes } from './city-scenes.ts'

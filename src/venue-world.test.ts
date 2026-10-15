@@ -1,3 +1,5 @@
+import { loadCityScenes } from './scene/city-scenes.ts';
+await loadCityScenes('lagos');
 import { loadCityContent as preloadCityContent } from './game/cities/registry.ts';
 await Promise.all(['lagos', 'ibadan'].map(preloadCityContent));
 // Battery rule: a venue scene renders on demand only — an idle scene does zero renders.
@@ -9,6 +11,7 @@ import * as THREE from 'three';
 import { createVenueWorld, HOST_LIGHTING } from './venue-world.ts';
 import type { VenueWorld, VenueWorldOptions, SceneSpotRequest, SceneTag, AvatarPosition, ShownTag } from './venue-world.ts';
 import { LIGHTING, MAX_CROWD } from './scene/venue-scenes.ts';
+import { NIGERIA_BATCH001_NAVIGATION } from './scene/models/nigeria-navigation.ts';
 import { createLife } from './life.ts';
 
 /** The host is handed a renderer and a container; these are the narrow stand-ins the tests drive it with (there is no WebGL or DOM under node). */
@@ -635,7 +638,8 @@ test('EVERY VENUE: spawn on free floor, walk to every spot and back out, orbit a
       assert.equal(spawn.location, id);
       assert.equal(spawn.camera.limits.azimuth, null, `${id}: free orbit`);
       const entrance = { x: spawn.avatar.x, z: spawn.avatar.z };
-      assert.equal(spawn.avatar.y < 0.1, true, `${id}: spawns on the ground`);
+      if (id === 'market') assert.ok(Math.abs(spawn.avatar.y - NIGERIA_BATCH001_NAVIGATION['lagos-broad-street-01'].entrance.y) < 0.01, 'market: spawns on the elevated drawn sidewalk');
+      else assert.equal(spawn.avatar.y < 0.1, true, `${id}: spawns on the ground`);
       // Every spot the server knows, chosen in the panel one after another: the avatar gets there and the loop stops.
       // (The first state of a scene just shown leaves the avatar at the entrance, so the first spot is visited last.)
       for (const spot of id === 'home' ? [] : [...spots.slice(1), spots[0]]) {
@@ -650,7 +654,8 @@ test('EVERY VENUE: spawn on free floor, walk to every spot and back out, orbit a
       assert.equal(world.walkTo(entrance.x, entrance.z), true);
       bench.pump(4000);
       const out = world.diagnostics();
-      assert.ok(Math.hypot(out.avatar.x - entrance.x, out.avatar.z - entrance.z) < 0.5 && !out.loop.running && out.avatar.y < 0.1 && !out.perch, `${id}: back at the entrance, on the ground (${out.avatar.x}, ${out.avatar.z}, y ${out.avatar.y})`);
+      const onEntranceFloor = id === 'market' ? Math.abs(out.avatar.y - NIGERIA_BATCH001_NAVIGATION['lagos-broad-street-01'].entrance.y) < 0.01 : out.avatar.y < 0.1;
+      assert.ok(Math.hypot(out.avatar.x - entrance.x, out.avatar.z - entrance.z) < 0.5 && !out.loop.running && onEntranceFloor && !out.perch, `${id}: back at the entrance, on the ground (${out.avatar.x}, ${out.avatar.z}, y ${out.avatar.y})`);
       // Keys still walk from there.
       bench.key('walk-up'); bench.pump(20); bench.keyUp('walk-up'); bench.pump(400);
       assert.ok(Math.hypot(world.diagnostics().avatar.x - out.avatar.x, world.diagnostics().avatar.z - out.avatar.z) > 0.3, `${id}: not stuck at the entrance`);

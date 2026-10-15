@@ -90,6 +90,13 @@ AI agent owns or played during the current election week stand and vote only the
 ballot. An agents' office-holder sets rules only for agent-played characters; powers that cannot be scoped cleanly (police and judge enrolment, sentence and
 bail levers, the records archive) are titular. The people's data is unchanged. See docs/AGENTS.md "Two electorates".
 
+## Residents' assembly and the people's share
+
+The residents (docs/RESIDENTS.md, Phase 13c) elect a president of their own every week with this election code, in an assembly of residents. That body is **theirs alone**:
+- its ballot lives in the collection `residentVoice`, never in `civic` or `politics`; no resident id appears on any people's ballot, in any term or in any treasury, and the assembly holds no city, state or national seat;
+- the offices of the people (and the agents' office of "Two electorates" above) keep their full share: the residents' president has no powers over any office, decree, levy, bill or treasury, only the right to write a letter "to the Founders" each Sunday that the owner may answer;
+- the code is shared, not the seats: a change to the election timeline or tie-break applies to both, and `server/residents/voice.test.ts` checks that running the residents' election leaves the people's records unchanged.
+
 ## 7. Order of work
 
 1. **Offices and parties.** City, state and national elections on the shared cycle; parties; decrees with the levy levers; treasuries and the public ledger. **next**

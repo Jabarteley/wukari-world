@@ -66,6 +66,8 @@ import { prayersOf } from '../prayers/service.ts';
 import { fateIn, prayerText } from '../prayers/model.ts';
 import type { Fate } from '../prayers/model.ts';
 import type { Resident } from './life.ts';
+import { judgeIdea, newsFromFounders, splitNight, voiceService } from './voice.ts';
+import type { IdeaIn } from './voice.ts';
 
 /** What a thought may choose: five of the house actions, "keep to the routine", or to pray (Phase 14). Anything else is thrown away. A resident who is not a seller is not offered the market trip. */
 export const CHOICES = ['keep_routine', 'open_shop', 'go_market', 'eat', 'go_home', 'pray'] as const;
@@ -80,7 +82,7 @@ export type Wake = 'morning' | 'routine-end' | 'arrival' | 'spoken-to' | 'alone'
 
 /** Thoughts and records are bounded: nothing here grows. */
 export const ALONE_MS = [15 * 60000, 30 * 60000] as const, EVENT_GAP_MS = 3 * 60000;
-export const MAX_THOUGHTS = 64, MAX_ENTRIES = 120, MAX_INFLIGHT = 4, DAYS_KEPT = 7, SUMMARY_MAX = 600, LINE_MAX = 140, MODEL_TOKENS = 160, SUMMARY_TOKENS = 240;
+export const MAX_THOUGHTS = 64, MAX_ENTRIES = 120, MAX_INFLIGHT = 4, DAYS_KEPT = 7, SUMMARY_MAX = 600, LINE_MAX = 140, MODEL_TOKENS = 160, SUMMARY_TOKENS = 320;
 /** Agent-to-agent talk: at most 4 lines, one per beat at least TALK_STEP_MS apart; a pair at most once per PAIR_GAP_MS; a resident MAX_TALKS times a day. */
 export const TALK_TURNS = 4, TALK_STEP_MS = 20000, PAIR_GAP_MS = 2 * 3600000, TALK_GAP_MS = 20 * 60000, MAX_TALKS = 5, TALKS_KEPT = 12, TALK_TOKENS = 120, REPEAT_AT = 0.7;
 /** Replies to people (shadow off): tokens, how many people are remembered by key, and the most replies a resident gives a day. */
@@ -209,6 +211,10 @@ export interface ResidentDeps {
   pray?: (prayer: { id: string; name: string; city: string; text: string; situation: string }) => Promise<void>
   /** What the owner has done to this resident (docs/PRAYERS.md): read into its next turns. */
   fate?: (id: string) => Promise<Fate | null>
+  /** Where a night's wish or need goes (13c, the voice to the owner: voice.ts); tests give their own. */
+  collect?: (idea: IdeaIn) => Promise<unknown>
+  /** What the owner has told the residents lately, as lines for the prompt (13c); tests give their own. */
+  founders?: () => Promise<string[]>
 }
 
 export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
@@ -225,6 +231,8 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
   const fateRead = deps.fate ?? ((id: string): Promise<Fate | null> => ctx.store.read((db) => fateIn(db, id)));
   const load = deps.load ?? ((): Promise<Stored | undefined> => ctx.store.read((db) => { const col = (db as Record<string, unknown>)['residents']; return col && typeof col === 'object' ? structuredClone(col) as Stored : undefined; }));
   const save = deps.save ?? ((value: Stored): Promise<void> => ctx.store.transact((db) => { Object.assign(ctx.collection(db, 'residents', { v: 1, residents: {} }), structuredClone(value)); }, { durable: false }));
+  const collect = deps.collect ?? ((idea: IdeaIn): Promise<unknown> => voiceService(ctx).collect(idea));
+  const founders = deps.founders ?? ((): Promise<string[]> => ctx.store.read((db) => newsFromFounders(db, ctx.now())));
   let isReady = false;
   const ready = (): Promise<void> => (loaded ??= load().then((found) => { if (found && typeof found.residents === 'object' && found.residents !== null) stored = { v: 1, residents: { ...found.residents } }; }, () => {}).then(() => { isReady = true; }));
   // Thirty residents change their records all day: they are written at most once in SAVE_MS, by the heartbeat.
@@ -360,6 +368,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     const weekday = WEEKDAYS[lagosTime(t + (who.utcOffsetMin - 60) * 60000).weekday]!;
     const news = await newsOf(who.city);
     const fate = await fateRead(state.id).catch(() => null);
+    const fromFounders = await founders().catch(() => [] as string[]);
     const recent = day.entries.slice(-3).map((e) => `${ACTIONS[actionOf(e.action, e.routine, who)].doing}${e.line ? `, saying "${e.line}"` : ''}`);
     const lines = [
       `It is ${clock} on ${weekday} in ${city}. ${REASON[reason]}`,
@@ -369,6 +378,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
       life.memory.length ? `How your last days felt: ${life.memory.slice(-2).map((m) => m.slice(0, 300)).join(' ')}` : '',
       news.length ? `What people are talking about in town: ${news.join('; ')}.` : '',
       ...fateLines(fate, who, t),
+      ...fromFounders.map((line) => `News from the Founders: ${line}`),
       '',
       'What do you do next? Choose "next" from:',
       ...choicesFor(who).map((choice) => `- ${choice}: ${CHOICE_HELP[choice]}`),
@@ -464,25 +474,30 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     try {
       const life = lifeOf(who, t), day = dayOf(who, t - 3600000);
       if (day.summary !== null) return;
-      let text: string | null = null;
+      let text: string | null = null, night: ReturnType<typeof splitNight> | null = null;
       if (!stopped(t) && day.entries.length) {
         const doings = day.entries.slice(-30).map((e) => {
           const local = localMinute(who, e.at);
           return `${String(Math.floor(local / 60)).padStart(2, '0')}:${String(local % 60).padStart(2, '0')} ${ACTIONS[actionOf(e.action, e.routine, who)].doing.toLowerCase()}${e.line ? `, saying "${e.line}"` : ''}`;
         });
-        const messages = [{ role: 'system' as const, content: system(who) }, { role: 'user' as const, content: `Your day is over and you are going to bed. This is how it went:\n${doings.join('\n')}\n\nIn two to four sentences, in the first person and plain words, write what you will remember about today and what you hope for tomorrow. Plain text only.` }];
+        const messages = [{ role: 'system' as const, content: system(who) }, { role: 'user' as const, content: `Your day is over and you are going to bed. This is how it went:\n${doings.join('\n')}\n\nIn two to four sentences, in the first person and plain words, write what you will remember about today and what you hope for tomorrow. Then, only if it is true for you, add up to two more lines: \"Wish: \" and one short line (under 100 characters) about something your town lacks that you wish it had, and \"Need: \" and one short line about something you keep failing to get or do. Leave a line out if you have nothing for it. Plain text only.` }];
         for (let attempt = 0; attempt < 2 && text === null; attempt++) {
           let answer: AskResult;
           try { answer = await callModel({ purpose: 'resident', messages: attempt === 0 ? messages : [...messages, { role: 'user', content: 'Please write it again in your own words, as yourself. Plain text only.' }], maxTokens: SUMMARY_TOKENS, carriesPlayerWords: false, timeoutMs: 8000, ...(life.model ? { prefer: life.model } : {}) }); }
           catch { break; }
           if (!answer.ok) break;
           day.summaryCostMicro += answer.costMicro; day.costMicro += answer.costMicro;
-          const checked = judgeSummary(answer.text);
-          if (checked.ok) text = checked.text; else if (checked.slip === 'invalid') day.invalid += 1; else day.slips += 1;
+          const parts = splitNight(answer.text), checked = judgeSummary(parts.summary);
+          if (checked.ok) { text = checked.text; night = parts; } else if (checked.slip === 'invalid') day.invalid += 1; else day.slips += 1;
           if (!checked.ok && attempt === 0) day.retries += 1;
         }
       }
       day.summary = text ?? writtenSummary(state, day);
+      // 13c: the night may also yield ONE wish and ONE need (voice.ts): each checked on its own; a bad one is dropped, never the summary.
+      for (const [kind, line] of [['wish', night?.wish], ['need', night?.need]] as const) {
+        const idea = line ? judgeIdea(line) : null;
+        if (idea?.ok) await Promise.resolve().then(() => collect({ id: state.id, name: who.name, city: who.city, kind, text: idea.text })).catch(() => {});
+      }
       life.memory.push(day.summary);
       if (life.memory.length > DAYS_KEPT) life.memory.splice(0, life.memory.length - DAYS_KEPT);
       persist();
@@ -804,6 +819,12 @@ export function linkResidents(ctx: RouteContext): void {
   stat('sleep', 'Remi: slept / woke', () => { const d = day(); return d ? `woke ${d.wokeAt ? new Date(d.wokeAt).toISOString().slice(11, 16) : '-'} UTC · bed ${d.sleptAt ? new Date(d.sleptAt).toISOString().slice(11, 16) + ' UTC' : 'not yet'}${d.sleptEarly ? ' (early: budget spent)' : ''}` : 'no day yet'; });
   stat('log', 'Remi: her choices today (newest last, local time)', () => day()?.entries.slice(-14).map((e) => entryLine(who, e)).join('\n') || 'none yet');
   stat('summary', 'Remi: her summary of the last night', () => day()?.summary ?? runner.state()?.memory.at(-1) ?? 'none yet');
+  // ---- 13c: the voice to the owner (voice.ts): the asks of the day, the assembly, the president and the Sunday letter ----------------------------------
+  const voice = voiceService(ctx), asks = (list: { text: string; count: number }[]): string => list.map((item, at) => `${at + 1}. ${item.text} (${item.count})`).join('\n') || 'none yet';
+  stat('wishes', 'Residents\' wishes today (the five most asked for; the Residents page has who and why)', (db) => asks(voice.view(db).today.wishes));
+  stat('needs', 'Residents\' needs today (the five most asked for)', (db) => asks(voice.view(db).today.needs));
+  stat('president', 'Residents\' president this week', (db) => { const v = voice.view(db); return v.president ? `${v.president.name} (${v.president.city})${v.president.caretaker ? ', caretaker: no election result yet' : ''} · ${v.assembly.phase}, ${v.assembly.votes} votes cast among ${v.assembly.candidates.length} standing` : 'none yet'; });
+  stat('letter', 'Latest letter to the Founders', (db) => { const v = voice.view(db), l = v.letters[0]; return l ? `${new Date(l.at).toISOString().slice(0, 10)} from ${l.by.name} (${l.source}): ${l.text.slice(0, 160)}…` : v.sunday && v.on ? 'due today' : 'none yet'; });
   // ---- 13b: the comparison of models, the talk between residents, and the experiment's measures ---------------------------------------------
   stat('models', 'Models compared (last 7 days, by the model given at birth): residents · thoughts · talk between residents (exchanges/lines) · answers to people · retries · slips · invalid · fallbacks · cost', () => {
     const rows = Object.entries(runner.report().models).sort((a, b) => b[1].residents - a[1].residents);

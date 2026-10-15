@@ -11,6 +11,7 @@ import type { AgentRoom, RouteContext } from '../types.ts';
 import { RESIDENTS, REMI, residentId } from './life.ts';
 import { ALONE_MS, CHOICES, EVENT_GAP_MS, MAX_THOUGHTS, OUT_OF_CHARACTER, SUMMARY_MAX, entryLine, judge, judgeSummary, residentsOf } from './resident.ts';
 import type { Stored } from './resident.ts';
+import type { IdeaIn } from './voice.ts';
 
 const HOUR = 3600000, MIN = 60000;
 const DAY0 = lagosDayStart(20000); // a Lagos midnight
@@ -21,7 +22,7 @@ const flush = (): Promise<void> => new Promise((resolve) => setImmediate(resolve
 interface Call { model: string; messages: { role: string; content: string }[]; n: number }
 const GOOD = '{"next":"keep_routine","say":"Good morning, ehn."}';
 
-function rig(options: { fate?: import('../prayers/model.ts').Fate; settings?: Record<string, boolean | number | string>; reply?: (call: Call) => string; limits?: Partial<Limits>; list?: string; start?: number } = {}) {
+function rig(options: { fate?: import('../prayers/model.ts').Fate; settings?: Record<string, boolean | number | string>; reply?: (call: Call) => string; limits?: Partial<Limits>; list?: string; start?: number; collect?: (idea: IdeaIn) => Promise<unknown>; founders?: () => Promise<string[]> } = {}) {
   const clock = { t: options.start ?? at(0) };
   const settings: Record<string, boolean | number | string> = { residentOn: true, ...options.settings };
   const prayed: { id: string; name: string; city: string; text: string; situation: string }[] = [];
@@ -54,7 +55,7 @@ function rig(options: { fate?: import('../prayers/model.ts').Fate; settings?: Re
     setting: (key) => (key === 'modelsResident' ? options.list : undefined), limits: () => limits,
     load: async () => undefined, save: async () => {},
   });
-  const runner = residentsOf(ctx, { ask: (input) => router.ask(input), models: () => router.listFor('resident').map((e) => `${e.provider}:${e.id}`), load: async () => undefined, save: async (value) => { saves.push(structuredClone(value)); }, pray: async (p) => { prayed.push(p); }, fate: async () => options.fate ?? null });
+  const runner = residentsOf(ctx, { ask: (input) => router.ask(input), models: () => router.listFor('resident').map((e) => `${e.provider}:${e.id}`), load: async () => undefined, save: async (value) => { saves.push(structuredClone(value)); }, pray: async (p) => { prayed.push(p); }, fate: async () => options.fate ?? null, collect: options.collect ?? (async () => {}), founders: options.founders ?? (async () => []) });
   /** Run the clock forward by `minutes`, one beat a minute, letting each thought finish. */
   const run = async (minutes: number): Promise<void> => { for (let n = 0; n < minutes; n++) { runner.tick(); await flush(); await flush(); clock.t += MIN; } };
   return { prayed, clock, settings, calls, presents, absents, says, saves, sockets, runner, router, agentRoom, run, ctx, listeners };
@@ -355,4 +356,41 @@ test('what the owner did to her is lived as her own luck: a fever, a dream, a pu
   const later = rig({ start: at(9), fate: { sickUntil: at(8), dreams: [{ at: at(9) - 2 * 86400000, text: 'an old dream' }] } });
   await later.run(30);
   assert.equal(/not feeling well|old dream/.test(later.calls.map((c) => c.messages.map((m) => m.content).join(' ')).join(' ')), false);
+});
+
+// ---- Phase 13c: the night yields a wish and a need; the owner's word reaches the next thoughts -----------------------------------------------------
+test('the nightly summary may also yield one wish and one need: each checked on its own, the summary kept clean, a bad wish dropped', async () => {
+  const ideas: IdeaIn[] = [];
+  const night = (call: Call): string => (/going to bed/.test(call.messages.at(-1)!.content) ? 'I sold a few books and walked home slowly, happy with the day.\nWish: A night market in Yaba so the evenings feel alive.\nNeed: A stall rent I can pay each month without worry.' : GOOD);
+  const t = rig({ reply: night, collect: async (idea) => { ideas.push(idea); } });
+  await t.run(24 * 60);
+  assert.deepEqual(ideas.map((idea) => idea.kind), ['wish', 'need']);
+  assert.equal(ideas[0]!.id, residentId(REMI)); assert.equal(ideas[0]!.name, 'Remi');
+  assert.equal(ideas[0]!.text, 'A night market in Yaba so the evenings feel alive.');
+  const summary = t.runner.day()!.summary!;
+  assert.ok(!/wish:|need:/i.test(summary) && !/night market/.test(summary), summary);
+  assert.equal(t.calls.length, t.runner.day()!.thoughts + 1, 'still one call for the night');
+  // A wish that steps out of the world or breaks the word rules is dropped; the summary stays.
+  const odd: IdeaIn[] = [];
+  const bad = rig({ reply: (call) => (/going to bed/.test(call.messages.at(-1)!.content) ? 'A calm day at the stall, and I am glad of it.\nWish: This game should have more shops for players.\nNeed: Send me money for my stall rent please.' : GOOD), collect: async (idea) => { odd.push(idea); } });
+  await bad.run(24 * 60);
+  assert.equal(odd.length, 0);
+  assert.match(bad.runner.day()!.summary!, /calm day/);
+  // A night without those lines yields nothing.
+  const plain = rig({ collect: async (idea) => { odd.push(idea); } });
+  await plain.run(24 * 60);
+  assert.equal(odd.length, 0);
+});
+
+test('word from the Founders is read into the next thoughts as news from the Founders, in the world\'s own words', async () => {
+  const lines = ['Word has come: "The road to the market will be mended."', 'They have decreed: "Every stall is free of rent this Saturday."'];
+  const t = rig({ start: at(9), founders: async () => lines });
+  await t.run(20);
+  assert.ok(t.calls.length > 0);
+  for (const call of t.calls) {
+    const text = call.messages.map((m) => m.content).join('\n');
+    assert.match(text, /News from the Founders: Word has come: "The road to the market will be mended\."/);
+    assert.match(text, /News from the Founders: They have decreed: "Every stall is free of rent this Saturday\."/);
+    assert.equal(FORBIDDEN.test(text) || OUT_OF_CHARACTER.test(text), false);
+  }
 });

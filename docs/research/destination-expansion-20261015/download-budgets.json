@@ -1,0 +1,78 @@
+{
+  "sourceCommit": "ed0357a1",
+  "command": "checks(readDist('dist')) from scripts/download-budget.ts; identical named gates, without slow optional lazy-group inventory",
+  "checks": [
+    {
+      "budget": "LOADING_RAW",
+      "measured": 90541,
+      "detail": "first-paint JavaScript",
+      "status": "ok"
+    },
+    {
+      "budget": "LOADING_GZIP",
+      "measured": 35259,
+      "detail": "first-paint JavaScript",
+      "status": "ok"
+    },
+    {
+      "budget": "FIRST_PAINT_BROTLI",
+      "measured": 35392,
+      "detail": "5 files: index.html, stylesheet and JavaScript",
+      "status": "ok"
+    },
+    {
+      "budget": "STARTUP_RAW",
+      "measured": 602211,
+      "detail": "largest over 284 cities (lagos)",
+      "status": "ok"
+    },
+    {
+      "budget": "STARTUP_GZIP",
+      "measured": 218656,
+      "detail": "largest over 284 cities (lagos)",
+      "status": "ok"
+    },
+    {
+      "budget": "STARTUP_BROTLI",
+      "measured": 191930,
+      "detail": "largest over 284 cities (lagos)",
+      "status": "ok"
+    },
+    {
+      "budget": "SCENE_HOST_RAW",
+      "measured": 187304,
+      "detail": "shared scene chunk (world-adapter)",
+      "status": "ok"
+    },
+    {
+      "budget": "SCENE_HOST_GZIP",
+      "measured": 70718,
+      "detail": "shared scene chunk (world-adapter)",
+      "status": "ok"
+    },
+    {
+      "budget": "BASE_BODY_BROTLI",
+      "measured": 138098,
+      "detail": "4 file(s) matching /(^|\\/)base-body[^/]*\\.(glb|gltf|bin)$/",
+      "status": "ok"
+    },
+    {
+      "budget": "CLIP_PACK_BROTLI",
+      "measured": 55111,
+      "detail": "1 file(s) matching /(^|\\/)clip-pack[^/]*\\.(glb|gltf|bin|json)$/",
+      "status": "ok"
+    },
+    {
+      "budget": "WARDROBE_ITEM_BROTLI",
+      "measured": null,
+      "detail": "no file matches /(^|\\/)wardrobe\\/[^/]+\\.(glb|gltf)$/",
+      "status": "not measured"
+    },
+    {
+      "budget": "STREET_TILE_BROTLI",
+      "measured": null,
+      "detail": "no file matches /(^|\\/)(street-)?tiles?\\/[^/]+\\.(glb|gltf|bin)$/",
+      "status": "not measured"
+    }
+  ]
+}

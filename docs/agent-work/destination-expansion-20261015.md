@@ -38,3 +38,11 @@
 - Final Chromium production-host diagnostic PASS32/32 at1280/390 widths, forced shipped phone tier, real pointer/touch, every new activity anchor and return route; source hashes stable, no console/HTTP errors. Sixteen screenshots. Exact avatar anchor positions independently checked within0.15host units. Synthetic accepted-state fixture is not full app/HTTP or physical-phone acceptance.
 - Full combined build passes (2m56s). Full download budget report still running its quality11 compression; no size pass claimed yet. Source and browser/artifacts remain uncommitted at this checkpoint.
 - Original-scene visual review reinforces pending art: Mapo rusty clock-tower composition, generic brown Kano palace, and market/terminal layouts are stylised placeholders. No false photo-match or survey claim.
+
+## Final continuation result
+
+- Source and browser evidence published as ed0357a1 on codex/destination-expansion-20261015; original1054d570 remains in history. Main unchanged atbc113b55 when rechecked before push.
+- Final exact repository download gates obtained with checks(readDist('dist')):10measurable pass,0over,2not-measured. Startup602211raw/218656gzip/191930Brotli; host70718gzip. Stopped only this task's slow optional lazy-group inventory after obtaining all named gates; no thresholds or compression settings changed. Full CLI inventory is not claimed complete.
+- verification.md and download-budgets.json hold the final scope, changed-file list and remaining integration/art limits. This evidence-only checkpoint follows the source commit.
+- Owned Chromium/Vite and optional budget-inventory processes stopped; temporary fixture removed. Remote worktree clean after final evidence commit. No PR/main writes/deployment.
+- Parent should serialize1054d570 + ed0357a1 and final evidence through existing integration owner. Housing internals untouched. Exact IDs/pending art requests in batch002-handoff.json and original README. Next art work requires photo-faithful replacements; further research includes Bodija/UI, everyday Kano compounds, Trans-Amadi/GRA and Accra/Nairobi labels. Do not broaden Okrika geometry without evidence.

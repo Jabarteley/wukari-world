@@ -9,6 +9,8 @@ import { loadCityContent } from '../../src/game/cities/registry.ts';
 import { lagosDayStart } from '../../src/game/clock.ts';
 import type { AgentRoom, RouteContext } from '../types.ts';
 import { MAX_AGENTS, MAX_PER_BEAT, MAX_SAY_PER_BEAT, houseOf } from './runner.ts';
+import type { Desk } from './desk.ts';
+import type { AgentRef } from './errands.ts';
 
 const HOUR = 3600000, MIN = 60000;
 const DAY0 = lagosDayStart(20000); // a Lagos midnight
@@ -18,7 +20,7 @@ const settle = (): Promise<void> => new Promise((resolve) => setTimeout(resolve,
 interface Said { id: string; room: string; body: string }
 interface Call { model: string; body: Record<string, unknown> }
 
-function rig(options: { settings?: Record<string, boolean | number | string>; keys?: boolean; reply?: (call: Call, n: number) => string; limits?: Partial<Limits>; cities?: string[] } = {}) {
+function rig(options: { settings?: Record<string, boolean | number | string>; keys?: boolean; reply?: (call: Call, n: number) => string; limits?: Partial<Limits>; cities?: string[]; desk?: Desk } = {}) {
   const clock = { t: at(10) };
   const settings: Record<string, boolean | number | string> = { ...options.settings };
   const present = new Map<string, { id: string; name: string; mark: { agent?: true }; room: string; doing: string | null; look: unknown; until: number }>();
@@ -67,7 +69,7 @@ function rig(options: { settings?: Record<string, boolean | number | string>; ke
     setting: () => undefined, limits: () => limits,
     load: async () => undefined, save: async () => {},
   });
-  const house = houseOf(ctx, { ask: (input) => router.ask(input) });
+  const house = houseOf(ctx, { ask: (input) => router.ask(input), ...(options.desk ? { desk: options.desk } : {}) });
   const beat = (): void => house.tick();
   const person = (room: string, id = 'p1'): void => { sockets.push({ room, session: { id } }); };
   const write = async (room: string, body: string, who = { id: 'p1', name: 'Ada' }): Promise<string[]> => {
@@ -337,4 +339,94 @@ test('a line that comes from an agent, or from a house agent, wakes nobody', asy
   r.house.line({ room: MARKET, group: null, from: { id: 'x', name: 'Bot', agent: true }, body: 'hello' });
   await settle();
   assert.equal(r.said.length, 0);
+});
+
+// ---- tasks and the hand-over (desk.ts is replaced by a recorder: the rules of the life are tested in desk.test.ts and missions.live.test.ts) -----------------------------------
+
+function fakeDesk(over: { offer?: string; notice?: (call: { agent: AgentRef; handWords: boolean; peers: readonly string[] }) => string | null; sell?: { ok: boolean; code: string } } = {}) {
+  const log = { offers: [] as { giver: AgentRef; peers: readonly AgentRef[]; who: { id: string; name: string } }[], notices: [] as { agent: AgentRef; handWords: boolean; peers: readonly string[] }[], sales: [] as { agent: AgentRef; item: { id: string; label: string; list: number }; price: number; quoteAt: number }[] };
+  const desk = {
+    offer: async (input: { giver: AgentRef; peers: readonly AgentRef[]; who: { id: string; name: string } }) => { log.offers.push(input); return { say: over.offer ?? 'Carry my greeting to Tunji. It is in your Goals.', given: true }; },
+    notice: async (input: { agent: AgentRef; handWords: boolean; peers: readonly string[] }) => { log.notices.push(input); return over.notice?.(input) ?? null; },
+    sell: async (input: { agent: AgentRef; item: { id: string; label: string; list: number }; price: number; quoteAt: number }) => { log.sales.push(input); return over.sell ?? { ok: true, code: 'bought' }; },
+    counters: () => ({ given: 0, refused: 0, greeted: 0, handed: 0, brought: 0, sold: 0, model: 0, cached: 0, written: 0, blocked: 0 }),
+    phrasings: () => 0, templates: 0,
+  } as unknown as Desk;
+  return { desk, log };
+}
+
+test('asking for a task goes to the desk with the other agents standing in the city, and the desk\'s words are said; a seller gives tasks when no giver is there', async () => {
+  const { desk, log } = fakeDesk();
+  const r = rig({ desk, keys: false, settings: { houseAgentsBusy: 2 } });
+  r.clock.t = at(10); r.beat(); r.person(MARKET);
+  const said = await r.write(MARKET, 'Mama Tolani, any task for me?');
+  assert.deepEqual(said, ['Carry my greeting to Tunji. It is in your Goals.']);
+  assert.equal(log.offers.length, 1);
+  assert.equal(log.offers[0]!.giver.id, 'house.lagos.tolani');
+  assert.deepEqual(log.offers[0]!.peers.map((peer) => peer.id), ['house.lagos.tunji'], 'a greeting can be sent to the agent in the park');
+  assert.equal(log.offers[0]!.giver.venue, 'market');
+  assert.equal(log.offers[0]!.who.id, 'p1');
+  // Plain talk does not reach the desk's offer.
+  await r.write(MARKET, 'hello Mama Tolani');
+  assert.equal(log.offers.length, 1);
+  assert.equal(log.notices.length, 2, 'every line to an agent is looked at for a greeting, a friend or a hand-over');
+});
+
+test('a hand-over line is passed on as hand words only when it says so, and what the desk finds is the whole answer', async () => {
+  const { desk, log } = fakeDesk({ notice: ({ handWords }) => (handWords ? 'Thank you, that is just what I needed! Your task is done: collect it in Goals.' : null) });
+  const r = rig({ desk, keys: false });
+  r.clock.t = at(10); r.beat(); r.person(MARKET);
+  const plain = await r.write(MARKET, 'Mama Tolani, how much is the ankara?');
+  assert.match(plain.join(' '), /₦2,000/);
+  const handed = await r.write(MARKET, 'Mama Tolani, here you go, I brought it');
+  assert.deepEqual(handed, ['Thank you, that is just what I needed! Your task is done: collect it in Goals.']);
+  assert.deepEqual(log.notices.map((call) => call.handWords), [false, true]);
+});
+
+test('the hand-over of a held quote sells at exactly the agreed price, never below the floor, once, and only while the quote is held', async () => {
+  const { desk, log } = fakeDesk();
+  const r = rig({ desk, keys: false });
+  r.clock.t = at(10); r.beat(); r.person(MARKET);
+  const list = r.house.priceList('house.lagos.tolani').find((item) => item.id === 'ankara')!;
+  assert.deepEqual([list.list, list.floor], [2000, 1700]);
+  await r.write(MARKET, "Mama Tolani, I'll take it");
+  assert.equal(log.sales.length, 0, 'nothing agreed, nothing sold');
+  // A counter is not a deal.
+  const counter = await r.write(MARKET, 'Mama Tolani, ankara for 1800');
+  assert.match(counter.join(' '), /1,900/);
+  await r.write(MARKET, "Mama Tolani, I'll take it");
+  assert.equal(log.sales.length, 0, 'a counter-offer holds no price');
+  // A refused offer is not a deal either.
+  await r.write(MARKET, 'Mama Tolani, ankara for 500');
+  await r.write(MARKET, "Mama Tolani, I'll take it");
+  assert.equal(log.sales.length, 0);
+  // Agreed at a fair offer, then taken.
+  const deal = await r.write(MARKET, 'Mama Tolani, ankara for 1900');
+  assert.match(deal.join(' '), /1,900/);
+  const sold = await r.write(MARKET, "Mama Tolani, ok I'll take it");
+  assert.equal(log.sales.length, 1);
+  assert.deepEqual([log.sales[0]!.price, log.sales[0]!.item.id, log.sales[0]!.item.list], [1900, 'ankara', 2000]);
+  assert.ok(log.sales[0]!.price >= list.floor);
+  assert.match(sold.join(' '), /1,900/);
+  // The quote is spent: saying it again sells nothing more.
+  await r.write(MARKET, "Mama Tolani, I'll take it");
+  assert.equal(log.sales.length, 1);
+  // A quote that was held too long is not paid.
+  await r.write(MARKET, 'Mama Tolani, ankara for 2000');
+  r.clock.t += 11 * MIN; r.beat();
+  await r.write(MARKET, "Mama Tolani, I'll take it");
+  assert.equal(log.sales.length, 1, 'ten minutes is the hold');
+});
+
+test('a hand-over the life refuses keeps the quote, and the agent says why in its own words', async () => {
+  const { desk, log } = fakeDesk({ sell: { ok: false, code: 'insufficient_funds' } });
+  const r = rig({ desk, keys: false });
+  r.clock.t = at(10); r.beat(); r.person(MARKET);
+  await r.write(MARKET, 'Mama Tolani, ankara for 1900');
+  const short = await r.write(MARKET, "I'll take it");
+  assert.match(short.join(' '), /1,900/);
+  assert.match(short.join(' '), /short|need|hold/i);
+  const again = await r.write(MARKET, "I'll take it");
+  assert.equal(log.sales.length, 2, 'the quote is still held');
+  assert.equal(again.length, 1);
 });

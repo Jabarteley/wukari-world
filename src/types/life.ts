@@ -973,6 +973,41 @@ export interface MissionSetRewardEntitlement {
   stars: number
 }
 
+/** What an agent mission asks: 'talk' greet another agent, 'hand' bring items to the giver, 'bring' come with a friend, 'table' play a table game with another person. */
+export type AgentMissionKind = 'talk' | 'hand' | 'bring' | 'table'
+/**
+ * A task a house agent gave this life in person (server/house/desk.ts, docs/AGENT-MISSIONS.md). Written only by the server-only
+ * action 'missions.server'; every field is cleaned and every number clamped when a life is loaded.
+ */
+export interface AgentMission {
+  /** `ag-<template>-<agent>-<day>`: one per template, agent and Lagos day. */
+  id: string
+  kind: AgentMissionKind
+  /** The task in plain words (written by the template; the agent's words are `brief`). */
+  label: string
+  /** The agent's own words for it (phrased by a model at most once per template and agent, or written). */
+  brief: string
+  /** Progress and target. */
+  n: number
+  count: number
+  /** Naira paid when collected: never above MISSION_REWARDS (daily, or weekly when `big`). */
+  cash: number
+  big?: true
+  /** The agent who gave it: its id, name, the city and venue where it stands, and its hours in words. */
+  by: { id: string; name: string; city: string; venue: string; hours: string }
+  /** 'talk': the agent to greet. */
+  with?: { id: string; name: string; city: string; venue: string }
+  /** 'hand': what and how many (an inventory item). */
+  item?: string
+  units?: number
+  /** Server ms given, and when it lapses. */
+  at: Ms
+  until: Ms
+  /** People or agents already counted (at most 6). */
+  marks: string[]
+  claimed: boolean
+}
+
 export interface MissionsState {
   /** Unsigned 32-bit integer that fixes which missions this life is dealt each day. */
   seed: number
@@ -1004,6 +1039,10 @@ export interface MissionsState {
   titles: MissionTitleId[]
   /** Lifetime missions claimed. */
   claimed: number
+  /** Agent missions (at most 6; absent on a life saved before they existed). */
+  agent?: AgentMission[]
+  /** The last purchase from a house agent (a repeat of the same hand-over is refused). */
+  deal?: string
 }
 
 /** OWNER growth. */
@@ -1284,7 +1323,7 @@ export const SLICE_FIELD_KEYS = {
   goals: ['besties', 'chain', 'cv', 'dream', 'dreamDone', 'feed', 'granted', 'perks', 'rerolls', 'seen', 'seq', 'stars', 'started', 'stats', 'wishes'],
   social: ['bae', 'coupon', 'earned', 'family', 'followUps', 'free', 'notices', 'rel', 'rumours', 'streak', 'transfer'],
   civic: ['claims', 'gems', 'hunt', 'news', 'seed', 'since', 'week', 'work'],
-  missions: ['active', 'claimed', 'daily', 'day', 'grants', 'paidDay', 'pending', 'pendingSets', 'rerolls', 'seed', 'sets', 'stamps', 'titles', 'visited', 'week', 'weekly'],
+  missions: ['active', 'agent', 'claimed', 'daily', 'day', 'deal', 'grants', 'paidDay', 'pending', 'pendingSets', 'rerolls', 'seed', 'sets', 'stamps', 'titles', 'visited', 'week', 'weekly'],
   events: ['attended', 'count', 'spray', 'sprayed'],
   growth: ['referrals', 'tables', 'welcomed'],
   business: ['bag', 'buys', 'opened', 'sales', 'spent'],

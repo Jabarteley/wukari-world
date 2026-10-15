@@ -31,12 +31,24 @@ export function intentOf(text: string, role: Role, hasOffer: boolean): Intent {
   if (/\b(how much|price|prices|cost|wetin you sell|what do you sell|what you sell|menu|for sale|your goods|sell)\b/.test(line)) return 'prices';
   if (/\b(tonight|events?|happening|what'?s on|whats on|plans|party|show|wetin dey happen|any news)\b/.test(line)) return 'tonight';
   if (/\b(where|direction|directions|how do i get|how far is|find|nearest|way to|route|lost|how to go|wey dey)\b/.test(line)) return 'directions';
-  if (/\b(mission|task|tasks|errand|quest|job for me|work for me|anything for me)\b/.test(line)) return 'mission';
+  if (/\b(mission|task|tasks|errand|errands|quest|job for me|work for me|anything for me|any work|something to do|need help|need a hand|can i help|i can help|how can i help|anything i can do|any job)\b/.test(line)) return 'mission';
   if (/\b(bye|goodbye|see you|later|cheers|i dey go|gotta go|got to go)\b/.test(line)) return 'bye';
   if (/^\s*(hi|hello|hey|hiya|yo|sup|good (morning|afternoon|evening|day)|how far|how are you|how you dey|wetin dey|wassup|greetings|oga|madam|mama|aunty|auntie|bros?)\b/.test(line)) return 'greet';
   if (role === 'seller' && isPressure(line)) return 'pressure';
   return 'other';
 }
+
+/** Does the line say the person takes what was agreed ("I'll take it", "deal")? Only meaningful while a quote is held. */
+export const takesIt = (text: string): boolean => {
+  const line = text.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '');
+  return !/\b(no deal|not a deal|don'?t take|do not take|i won'?t take|i will not take)\b/.test(line)
+    && /\b(i'?ll take (it|them|this|that|one)|i will take (it|them|this|that|one)|i take (it|them|this|that)|i'?ll buy (it|them|this|that)|i will buy (it|them|this|that)|i want (it|them|this|that)|i agree|we have a deal|it'?s a deal|it is a deal|deal done|sell (it|am) to me|i go take (it|am)|i dey take (it|am)|make i take (it|am)|done deal|shake on it|agreed)\b/.test(line);
+};
+/** Does the line sound like handing something over ("here you go", "I brought them", "this is for you")? Only meaningful while a task asks for items. */
+export const handsOver = (text: string): boolean => {
+  const line = text.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '');
+  return /\b(here (is|are|you go|it is|they are)|i('?ve| have)? (brought|bring|got|have|gat) (it|them|the|your|all)|this is for you|take (it|them|this|these)|hand(ing|ed)? (it |them )?over|i deliver|delivery|i dey (come )?with|see (it|them|am)|i don bring|i don get)\b/.test(line);
+};
 
 /** The item a line is about: the one whose label or id words it uses. */
 export function matchItem<T extends { id: string; label: string }>(text: string, items: readonly T[]): T | null {

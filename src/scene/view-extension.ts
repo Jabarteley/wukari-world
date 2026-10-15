@@ -61,7 +61,7 @@ export interface VenueViewSource {
   canvas: HTMLCanvasElement
   walker: ReturnType<typeof createWalker>
   read(): {
-    current: HostScene | null
+    current: (HostScene & { readonly playerPose?: string | undefined }) | null
     walk: HostWalk | null
     state: LifeState | null
     body: THREE.Object3D | null

@@ -48,7 +48,7 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 17 City texture packs | live | `abec6f54` | Ride banter packs (Lagos danfo, okada, keke, cab; Accra, Nairobi, South Africa starters; no lyrics, no danger or scam words), the district's published light plan and cut notices with generator/inverter (docs/CITY-TEXTURE.md). Haggle-to-purchase comes with Phase 11. No solar item (scene chunk room). |
 | 18 Real price levels | not started | | |
 | 19 Smaller features | in progress | REL | Live: "while you were away" sheet and the ask for notifications after a good moment; jail you can play (jobs, community service, visits, parole; docs/JAIL.md). Next: city projects, group gift packets, sticker pack, home-city pin, life stages. |
-| 20 Agents' relationships and world events | not started | | |
+| 20 Agents' relationships and world events | built, branch claude/alive-p20-lives | | Friendships, quarrels, marriages, resident weddings (gist, profile suffix, wedding share card by id), owner-only farewells (setting residentFarewell); docs/RESIDENTS.md Phase 20. Not seen by players until `residentShadow` is off. No Share button in the game yet. |
 
 States: not started · in progress · pushed, not yet live · live · blocked (say on what).
 

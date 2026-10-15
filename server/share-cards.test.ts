@@ -92,7 +92,7 @@ test('a resident wedding that was announced and has opened can be shared; the ca
   const html = await (await fetch(`${f.base}/s/${made.share.code}`)).text();
   assert.match(tag(html, 'og:title') ?? '', /Kemi and Femi just got married/);
   assert.equal(tag(html, 'og:image'), 'https://play.example/og/card-wedding.png');
-  assert.ok(!/91|quarrel|closeness|resident\.lagos/i.test(html), 'nothing of the bond is on the card');
+  assert.ok(!/quarrel|closeness|resident\.lagos|"c":/i.test(html), 'nothing of the bond is on the card');
   assert.equal((await post('/api/growth/share', { cityId: 'lagos', kind: 'wedding', wedding: 'w-2' }, ada)).code, 'nothing_to_share', 'not announced: not public');
   assert.equal((await post('/api/growth/share', { cityId: 'lagos', kind: 'wedding', wedding: 'w-3' }, ada)).code, 'nothing_to_share', 'not yet opened');
   assert.equal((await post('/api/growth/share', { cityId: 'lagos', kind: 'wedding', wedding: 'w-9' }, ada)).code, 'nothing_to_share');

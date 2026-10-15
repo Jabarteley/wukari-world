@@ -106,7 +106,7 @@ export function dayPasses(bond: Bond, day: number): boolean {
   return bond.c > 0;
 }
 /** The chance in a hundred that a talk between two friends ends in a quarrel: more when they fit badly or one is hot. */
-export const quarrelChance = (fitness: number, hot: boolean): number => (fitness < BOND.minFit ? 10 : hot ? 5 : 2);
+export const quarrelChance = (fitness: number, hot: boolean): number => (fitness < BOND.minFit ? 8 : hot ? 3 : 1);
 export function quarrels(bond: Bond, day: number, roll: number, chance: number): boolean {
   if (bond.married !== undefined || bond.quarrel !== undefined || bond.c < BOND.friendAt || bond.wedding !== undefined) return false;
   if (roll >= chance) return false;

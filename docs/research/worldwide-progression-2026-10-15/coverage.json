@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/city/build-progression-content.ts",
-  "sourceHead": "c0d77b94c5ca102470527014291e1942286957a8",
+  "sourceHead": "c0cd32bc1db9c0310e67da759dd9b91ee93b69e0",
   "counts": {
     "playableCityIds": 284,
     "openCatalogueCities": 284,
@@ -1262,7 +1262,7 @@
     "philipsburg": {
       "moduleSha256": "e90c4e3d6709d842240778ab80e448b584b09653b54f94d2af4ed55ba8466872",
       "contentEntrySha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb",
-      "seedSha256": "e9b41e0601394278c643756f0966fa69a1d94f1315e363dbb4cd7430047816e6"
+      "seedSha256": "dbef1d4facf79f9fb01a2fdddbf76b0cc833ced46f127e4ecc1ce734fecdb97a"
     },
     "pristina": {
       "moduleSha256": "8c40f17ba4f492228f032b156f1e56487a79fb66feac12c3878f8b0bdd1b94e2",
@@ -9384,15 +9384,15 @@
       "countryName": "St Maarten (Dutch)",
       "host": {
         "id": "philipsburg-philipsburg-osm-way-1417556522-1",
-        "name": "Arden",
+        "name": "Sage",
         "venue": "philipsburg-osm-way-1417556522",
         "venueName": "Emmancipation Roundabout"
       },
       "practical": {
-        "venue": "philipsburg-osm-way-522407960",
-        "venueName": "Emilio Wilson Park",
+        "venue": "philipsburg-osm-way-363071670",
+        "venueName": "Cyrus Wathey Square",
         "spot": "visit",
-        "id": "philipsburg-osm-way-522407960-visit",
+        "id": "philipsburg-osm-way-363071670-visit",
         "label": "Look around"
       },
       "discovery": {
@@ -9406,7 +9406,7 @@
       "sourceHashes": {
         "moduleSha256": "e90c4e3d6709d842240778ab80e448b584b09653b54f94d2af4ed55ba8466872",
         "contentEntrySha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb",
-        "seedSha256": "e9b41e0601394278c643756f0966fa69a1d94f1315e363dbb4cd7430047816e6"
+        "seedSha256": "dbef1d4facf79f9fb01a2fdddbf76b0cc833ced46f127e4ecc1ce734fecdb97a"
       }
     },
     {

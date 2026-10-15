@@ -23,7 +23,7 @@ export const CONFIG = {
   "box": [
     17.71482341006602,
     -62.94953618220457,
-    18.076585189933976,
+    18.05307067424256,
     -62.66184689789981
   ],
   "core": [
@@ -278,6 +278,7 @@ export const CONFIG = {
       "kind": "neighbourhood"
     }
   ],
+  "playAreaWithinBox": true,
   "profile": "microstate",
   "emptySlots": [
     {

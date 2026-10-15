@@ -7,7 +7,7 @@
     "stateId": "vg-road-town",
     "stateName": "Road Town"
   },
-  "inventorySha256": "84859971b51b7130528b7fbb2b97c76f84751dd4ac9f5e7a26aa134e9789088e",
+  "inventorySha256": "bc904be581adb67ab3798941d997cfd4f563d3f86579a87341f90be96357ebd6",
   "inventoryPath": "world/playable-africa-rollout/sources/road-town.json",
   "admission": {
     "registered": true,
@@ -23,7 +23,7 @@
   },
   "bounds": [
     18.244885110066022,
-    -64.81266223703753,
+    -64.76295577820954,
     18.606646889933977,
     -64.43352056296249
   ],
@@ -34,32 +34,32 @@
       "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
       "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
       "adapter": "offline-extract.py/v3-nested-centres",
-      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
       "extracts": [
         {
           "file": "places.json",
-          "sha256": "184e46ee435a13a09ee9ea2314fe73789531f5189182358741f0e4517f5ee230",
-          "elements": 274
+          "sha256": "e0666c43761183d6e3ca9ef44e0ceb5b91df0f6a229b54c467af9eae762d32ca",
+          "elements": 209
         },
         {
           "file": "extras.json",
-          "sha256": "67da5f5b36071981a60bda4a1e7d5c2d5e48c4cdb83a19678ead4ae7ec53bcc8",
-          "elements": 28
+          "sha256": "0fdbebe15bb616873ddf5c016a1a9883390833558065190c8e90244e18b1f05b",
+          "elements": 19
         },
         {
           "file": "water.json",
-          "sha256": "87417b559fb33572184cb18f31bf4b08a0c8ec182127706481b978859fb50f36",
-          "elements": 452
+          "sha256": "a1d99e774985a74b0762bafae43f164818593ebb0f6a98a939afdf3c7028f4e9",
+          "elements": 440
         },
         {
           "file": "landuse.json",
-          "sha256": "c609fa6da781b2fb176f645c09740af83c3c49171ce87b27252ee17d56a41f96",
-          "elements": 103
+          "sha256": "2b8da2aea39b7ec0f0c10bd4f8741db0247cf086dea0863116f838692ebe22c6",
+          "elements": 97
         },
         {
           "file": "roads.json",
-          "sha256": "0d98da81b1ac81f706b163b4a0234b229379b3976e31bcea84da3279d1c1cf01",
-          "elements": 274
+          "sha256": "8e8b3c3d5ee2517d4ec0b240d3ec8a4a58b419a1c52de230cf019684fd38d7be",
+          "elements": 186
         }
       ]
     }
@@ -69,8 +69,8 @@
     "roads": 23,
     "neighbourhoodLabels": 18,
     "landPolygons": 2,
-    "waterPolygons": 8,
-    "reachWaterPolygons": 13
+    "waterPolygons": 6,
+    "reachWaterPolygons": 14
   },
   "selection": {
     "profile": "microstate",
@@ -88,20 +88,20 @@
     }
   },
   "observed": {
-    "places": 274,
-    "extras": 28,
-    "water": 452,
-    "landuse": 103,
-    "roads": 274
+    "places": 209,
+    "extras": 19,
+    "water": 440,
+    "landuse": 97,
+    "roads": 186
   },
   "assets": {
     "facts.ts": {
       "bytes": 1273,
-      "sha256": "f31075864dc5f7fbbbe680f8c541cb83191eced448e144205bb7e72f1f6f641d"
+      "sha256": "9b66c73fa0e6adf386454207b614d541ecd9e9e1127e744e3ac938f12392fc05"
     },
     "geometry.ts": {
-      "bytes": 883534,
-      "sha256": "ff00df09ede3fa68112038d720ab8d78533bb8f0d164acc2813afd392ef93a7a"
+      "bytes": 748833,
+      "sha256": "4ce351169af30cba08f11455a5a17ce2e5c793c068ef1abfb5a8b6e7225d46bc"
     },
     "index.ts": {
       "bytes": 260,

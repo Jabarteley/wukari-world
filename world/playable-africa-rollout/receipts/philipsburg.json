@@ -7,7 +7,7 @@
     "stateId": "sx",
     "stateName": "Philipsburg"
   },
-  "inventorySha256": "1c55312034560880a7b7741dc3e3d1deafea13cacd0120653a77a354515f40ca",
+  "inventorySha256": "edba7ac94365007fa7e7fce79fc8cf25008265684ab5b1f4b97e557e067306b8",
   "inventoryPath": "world/playable-africa-rollout/sources/philipsburg.json",
   "admission": {
     "registered": true,
@@ -24,7 +24,7 @@
   "bounds": [
     17.844190410066023,
     -63.23743746692212,
-    18.205952189933978,
+    18.054645325504207,
     -62.95048133494575
   ],
   "sources": {
@@ -38,39 +38,39 @@
       "extracts": [
         {
           "file": "places.json",
-          "sha256": "472d7414e2a765d667ed9ea22a359c84b621acfdb078ae002aa26bf5a66a867b",
-          "elements": 568
+          "sha256": "c147a43a372a4cc4051825884cfae928fabb851ed34a4ca21aff9f2bf9876747",
+          "elements": 255
         },
         {
           "file": "extras.json",
-          "sha256": "ae03d0815aff08742e9e803902c9a4a2862a142080b025a58be29bf290ad06b8",
-          "elements": 48
+          "sha256": "5b2ba566f8e6001c31093435ef075507650aac403746c8d54eb499937f267ccb",
+          "elements": 28
         },
         {
           "file": "water.json",
-          "sha256": "471ea2a4ce4f54bf98393e467e98f81c35576a2ec5447097f7a78c78c803133b",
+          "sha256": "eaf87575c409450a0a05afedf483374568f4ac373d8ebbe0d958edc855f6abea",
           "elements": 444
         },
         {
           "file": "landuse.json",
-          "sha256": "4f3ee4d81dc950e743a47c26e12583c371f908ac19aeb439501ac81d5c2cc44b",
-          "elements": 320
+          "sha256": "c398b9049d0fc2656a6e64029a013756cccbe0f6dfde399dfcb57d184763f07c",
+          "elements": 277
         },
         {
           "file": "roads.json",
-          "sha256": "563cad5b5919514883fc97010974c6e967d3772608bf2b194f2889c841c87918",
-          "elements": 353
+          "sha256": "c77352ebd3aaa312238123cd1b256c4fc152cf68428f286efb50cbefcb3c13f5",
+          "elements": 237
         }
       ]
     }
   },
   "kept": {
     "places": 24,
-    "roads": 11,
-    "neighbourhoodLabels": 18,
+    "roads": 9,
+    "neighbourhoodLabels": 13,
     "landPolygons": 1,
     "waterPolygons": 5,
-    "reachWaterPolygons": 13
+    "reachWaterPolygons": 8
   },
   "selection": {
     "profile": "microstate",
@@ -101,58 +101,23 @@
         "limit": 150,
         "passed": true
       }
-    },
-    {
-      "class": "wet-places",
-      "change": {
-        "selectionExclusions": [
-          {
-            "ref": "way/22901563",
-            "reason": "auto: place point is water (exactCoast run 38651282299)"
-          }
-        ]
-      },
-      "before": {
-        "stage": "exactCoast",
-        "wetPlaces": [
-          {
-            "ref": "way/22901563",
-            "name": "Maho Beach",
-            "lon": -63.121033600000004,
-            "lat": 18.03960285
-          }
-        ]
-      },
-      "after": {
-        "passed": true,
-        "stages": {
-          "generation": true,
-          "exactCoast": true,
-          "sourceScene": true,
-          "acceptance": true,
-          "proofGround": true,
-          "proofCity": true
-        },
-        "triangles": 14923,
-        "triangleLimit": 90000
-      }
     }
   ],
   "observed": {
-    "places": 568,
-    "extras": 48,
+    "places": 255,
+    "extras": 28,
     "water": 444,
-    "landuse": 320,
-    "roads": 353
+    "landuse": 277,
+    "roads": 237
   },
   "assets": {
     "facts.ts": {
       "bytes": 1277,
-      "sha256": "03e3ff1f2945191cf443343da050840840995b697bf664bffe00298c73679444"
+      "sha256": "420d3c084c5b9724a44d9302af29c1f464c5df530d6b6ae440aa9ab92705c358"
     },
     "geometry.ts": {
-      "bytes": 611942,
-      "sha256": "a0932ba4d2868af7023a6602f73197105a3073eb269c0c4eaad3b327f7882292"
+      "bytes": 221105,
+      "sha256": "386ba35911f02be4617b3e842379a95e20fddb18686ab59485f29a161375a39c"
     },
     "index.ts": {
       "bytes": 262,

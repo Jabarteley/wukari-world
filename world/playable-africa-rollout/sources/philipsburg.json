@@ -27,31 +27,31 @@
     "play": [
       17.844190410066023,
       -63.23743746692212,
-      18.205952189933978,
+      18.054645325504207,
       -62.95048133494575
     ],
     "core": [
-      17.979851077516507,
-      -63.095553181890594,
-      18.070291522483494,
-      -63.0010614181094
+      17.996401678945464,
+      -63.0782583675082,
+      18.053740921054537,
+      -63.0183562324918
     ],
     "outline": [
       17.794190410066022,
       -63.287437466922114,
-      18.25595218993398,
+      18.104645325504208,
       -62.90048133494575
     ],
     "wide": [
       17.24419041006602,
       -63.83743746692212,
-      18.80595218993398,
+      18.65464532550421,
       -62.35048133494575
     ],
     "water": [
       17.24419041006602,
       -63.83743746692212,
-      18.80595218993398,
+      18.65464532550421,
       -62.35048133494575
     ]
   },
@@ -73,28 +73,28 @@
     "extracts": [
       {
         "file": "places.json",
-        "sha256": "472d7414e2a765d667ed9ea22a359c84b621acfdb078ae002aa26bf5a66a867b",
-        "elements": 568
+        "sha256": "c147a43a372a4cc4051825884cfae928fabb851ed34a4ca21aff9f2bf9876747",
+        "elements": 255
       },
       {
         "file": "extras.json",
-        "sha256": "ae03d0815aff08742e9e803902c9a4a2862a142080b025a58be29bf290ad06b8",
-        "elements": 48
+        "sha256": "5b2ba566f8e6001c31093435ef075507650aac403746c8d54eb499937f267ccb",
+        "elements": 28
       },
       {
         "file": "water.json",
-        "sha256": "471ea2a4ce4f54bf98393e467e98f81c35576a2ec5447097f7a78c78c803133b",
+        "sha256": "eaf87575c409450a0a05afedf483374568f4ac373d8ebbe0d958edc855f6abea",
         "elements": 444
       },
       {
         "file": "landuse.json",
-        "sha256": "4f3ee4d81dc950e743a47c26e12583c371f908ac19aeb439501ac81d5c2cc44b",
-        "elements": 320
+        "sha256": "c398b9049d0fc2656a6e64029a013756cccbe0f6dfde399dfcb57d184763f07c",
+        "elements": 277
       },
       {
         "file": "roads.json",
-        "sha256": "563cad5b5919514883fc97010974c6e967d3772608bf2b194f2889c841c87918",
-        "elements": 353
+        "sha256": "c77352ebd3aaa312238123cd1b256c4fc152cf68428f286efb50cbefcb3c13f5",
+        "elements": 237
       }
     ]
   },
@@ -111,13 +111,13 @@
       "accuracy": "mapped-feature"
     },
     {
-      "name": "Beau Beau's",
-      "osm": "node/1497965663",
+      "name": "Hong Mian",
+      "osm": "way/366770416",
       "coordinatesWgs84": [
-        -63.015847,
-        18.052338
+        -63.042203,
+        18.013284
       ],
-      "accuracy": "mapped-feature"
+      "accuracy": "feature-centroid"
     },
     {
       "name": "University of Sint Maarten",
@@ -138,11 +138,11 @@
       "accuracy": "mapped-feature"
     },
     {
-      "name": "Lower Prince Roundabout",
-      "osm": "way/1417556523",
+      "name": "Emilio Wilson Park",
+      "osm": "way/522407960",
       "coordinatesWgs84": [
-        -63.040763,
-        18.053411
+        -63.064356,
+        18.042752
       ],
       "accuracy": "feature-centroid"
     },
@@ -183,15 +183,6 @@
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Caribbean International Academy",
-      "osm": "way/261385206",
-      "coordinatesWgs84": [
-        -63.128055,
-        18.052323
-      ],
-      "accuracy": "feature-centroid"
-    },
-    {
       "name": "Fort Amsterdam",
       "osm": "node/1927202186",
       "coordinatesWgs84": [
@@ -228,31 +219,22 @@
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Caraibisch SoIL Bar & Restaurant",
-      "osm": "way/521561458",
+      "name": "Look Out Bar & Snack",
+      "osm": "way/367767346",
       "coordinatesWgs84": [
-        -63.063,
-        18.047638
+        -63.04835,
+        18.045261
       ],
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Beauty Cristal",
-      "osm": "way/367541884",
+      "name": "Champagne",
+      "osm": "node/3704027752",
       "coordinatesWgs84": [
-        -63.03929,
-        18.038695
+        -63.078997,
+        18.036213
       ],
-      "accuracy": "feature-centroid"
-    },
-    {
-      "name": "Blue Mall",
-      "osm": "way/207975556",
-      "coordinatesWgs84": [
-        -63.134593,
-        18.051332
-      ],
-      "accuracy": "feature-centroid"
+      "accuracy": "mapped-feature"
     },
     {
       "name": "Sint Maarten Medical Center | SMMC",
@@ -260,15 +242,6 @@
       "coordinatesWgs84": [
         -63.066196,
         18.02651
-      ],
-      "accuracy": "feature-centroid"
-    },
-    {
-      "name": "Emilio Wilson Park",
-      "osm": "way/522407960",
-      "coordinatesWgs84": [
-        -63.064356,
-        18.042752
       ],
       "accuracy": "feature-centroid"
     },
@@ -291,20 +264,20 @@
       "accuracy": "mapped-feature"
     },
     {
+      "name": "The Wizzards Computer Repairs & Onsite Services",
+      "osm": "way/521520589",
+      "coordinatesWgs84": [
+        -63.064058,
+        18.045616
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
       "name": "Shop 4 Less",
       "osm": "way/368560586",
       "coordinatesWgs84": [
         -63.065009,
         18.033988
-      ],
-      "accuracy": "feature-centroid"
-    },
-    {
-      "name": "American University of the Caribbean",
-      "osm": "way/1388191554",
-      "coordinatesWgs84": [
-        -63.126643,
-        18.050611
       ],
       "accuracy": "feature-centroid"
     },
@@ -316,24 +289,51 @@
         18.030023
       ],
       "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Yoda Guy Movie Exhibit",
+      "osm": "way/363228766",
+      "coordinatesWgs84": [
+        -63.043134,
+        18.02207
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cyrus Wathey Square",
+      "osm": "way/363071670",
+      "coordinatesWgs84": [
+        -63.045885,
+        18.023404
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maho Beach Airplane Spotting",
+      "osm": "node/13841746696",
+      "coordinatesWgs84": [
+        -63.120296,
+        18.039293
+      ],
+      "accuracy": "mapped-feature"
     }
   ],
   "generatedAssets": {
     "facts.ts": {
       "bytes": 1277,
-      "sha256": "03e3ff1f2945191cf443343da050840840995b697bf664bffe00298c73679444"
+      "sha256": "420d3c084c5b9724a44d9302af29c1f464c5df530d6b6ae440aa9ab92705c358"
     },
     "geometry.ts": {
-      "bytes": 611942,
-      "sha256": "a0932ba4d2868af7023a6602f73197105a3073eb269c0c4eaad3b327f7882292"
+      "bytes": 221105,
+      "sha256": "386ba35911f02be4617b3e842379a95e20fddb18686ab59485f29a161375a39c"
     },
     "places.ts": {
-      "bytes": 9618,
-      "sha256": "fe189486014ef2782f3470de49e1c31cf2c54b753cf36e5851cbcb0e6945e836"
+      "bytes": 9649,
+      "sha256": "dc62ce3d956b451b9c31bfb7538c5db9325da322d2344c4349b2ca96374ec177"
     },
     "terrain.ts": {
-      "bytes": 348711,
-      "sha256": "de98566c549f3bb81b272dd27e582a4519e0bcca2cb31902024354fbe0457bbb"
+      "bytes": 182120,
+      "sha256": "8837dcc38c659ebe8ddae5c960990a3bdfd11eaefe47cd58e0b696bfc6693a16"
     },
     "index.ts": {
       "bytes": 262,

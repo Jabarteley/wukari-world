@@ -21,7 +21,7 @@ export const CONFIG = {
   "source": "OpenStreetMap contributors via Geofabrik PBF",
   "name": "The Valley",
   "box": [
-    18.03370521006602,
+    18.135993353323684,
     -63.24111307900157,
     18.395466989933976,
     -62.86243872099843
@@ -265,18 +265,9 @@ export const CONFIG = {
       "id": "district-12871028890",
       "ref": "node/12871028890",
       "kind": "neighbourhood"
-    },
-    {
-      "id": "water-relation-9204905",
-      "ref": "relation/9204905",
-      "kind": "water"
-    },
-    {
-      "id": "water-relation-9208151",
-      "ref": "relation/9208151",
-      "kind": "water"
     }
   ],
+  "playAreaWithinBox": true,
   "profile": "microstate",
   "emptySlots": [
     {

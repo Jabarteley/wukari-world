@@ -23,14 +23,14 @@ export const CONFIG = {
   "box": [
     17.844190410066023,
     -63.23743746692212,
-    18.205952189933978,
+    18.054645325504207,
     -62.95048133494575
   ],
   "core": [
-    17.979851077516507,
-    -63.095553181890594,
-    18.070291522483494,
-    -63.0010614181094
+    17.996401678945464,
+    -63.0782583675082,
+    18.053740921054537,
+    -63.0183562324918
   ],
   "places": [
     {
@@ -46,8 +46,8 @@ export const CONFIG = {
       "kind": "buka",
       "category": "food",
       "icon": "food",
-      "ref": "node/1497965663",
-      "line": "Beau Beau's, a mapped place for the game."
+      "ref": "way/366770416",
+      "line": "Hong Mian, a mapped place for the game."
     },
     {
       "slot": "community",
@@ -70,8 +70,8 @@ export const CONFIG = {
       "kind": "park",
       "category": "fun",
       "icon": "park",
-      "ref": "way/1417556523",
-      "line": "Lower Prince Roundabout, a mapped place for the game."
+      "ref": "way/522407960",
+      "line": "Emilio Wilson Park, a mapped place for the game."
     },
     {
       "slot": "market",
@@ -111,14 +111,6 @@ export const CONFIG = {
       "line": "Immigration and Border Protection Service Office, a mapped place for the game."
     },
     {
-      "key": "osm-way-261385206",
-      "kind": "quad",
-      "category": "work",
-      "icon": "school",
-      "ref": "way/261385206",
-      "line": "Caribbean International Academy, a mapped place for the game."
-    },
-    {
       "key": "osm-node-1927202186",
       "kind": "viewing",
       "category": "fun",
@@ -151,28 +143,20 @@ export const CONFIG = {
       "line": "St. Martin of Tours' Church, a mapped place for the game."
     },
     {
-      "key": "osm-way-521561458",
+      "key": "osm-way-367767346",
       "kind": "buka",
       "category": "food",
       "icon": "food",
-      "ref": "way/521561458",
-      "line": "Caraibisch SoIL Bar & Restaurant, a mapped place for the game."
+      "ref": "way/367767346",
+      "line": "Look Out Bar & Snack, a mapped place for the game."
     },
     {
-      "key": "osm-way-367541884",
+      "key": "osm-node-3704027752",
       "kind": "buka",
       "category": "food",
       "icon": "food",
-      "ref": "way/367541884",
-      "line": "Beauty Cristal, a mapped place for the game."
-    },
-    {
-      "key": "osm-way-207975556",
-      "kind": "market",
-      "category": "work",
-      "icon": "market",
-      "ref": "way/207975556",
-      "line": "Blue Mall, a mapped place for the game."
+      "ref": "node/3704027752",
+      "line": "Champagne, a mapped place for the game."
     },
     {
       "key": "osm-relation-10372197",
@@ -181,14 +165,6 @@ export const CONFIG = {
       "icon": "health",
       "ref": "relation/10372197",
       "line": "Sint Maarten Medical Center | SMMC, a mapped place for the game."
-    },
-    {
-      "key": "osm-way-522407960",
-      "kind": "park",
-      "category": "fun",
-      "icon": "park",
-      "ref": "way/522407960",
-      "line": "Emilio Wilson Park, a mapped place for the game."
     },
     {
       "key": "osm-way-1417556522",
@@ -207,6 +183,14 @@ export const CONFIG = {
       "line": "Billy Bones Boat Exursions, a mapped place for the game."
     },
     {
+      "key": "osm-way-521520589",
+      "kind": "market",
+      "category": "work",
+      "icon": "market",
+      "ref": "way/521520589",
+      "line": "The Wizzards Computer Repairs & Onsite Services, a mapped place for the game."
+    },
+    {
       "key": "osm-way-368560586",
       "kind": "market",
       "category": "work",
@@ -215,28 +199,39 @@ export const CONFIG = {
       "line": "Shop 4 Less, a mapped place for the game."
     },
     {
-      "key": "osm-way-1388191554",
-      "kind": "quad",
-      "category": "work",
-      "icon": "school",
-      "ref": "way/1388191554",
-      "line": "American University of the Caribbean, a mapped place for the game."
-    },
-    {
       "key": "osm-way-368524649",
       "kind": "hospital",
       "category": "care",
       "icon": "health",
       "ref": "way/368524649",
       "line": "Windward Island Emergency Medical Services, a mapped place for the game."
+    },
+    {
+      "key": "osm-way-363228766",
+      "kind": "walk",
+      "category": "fun",
+      "icon": "walk",
+      "ref": "way/363228766",
+      "line": "Yoda Guy Movie Exhibit, a mapped place for the game."
+    },
+    {
+      "key": "osm-way-363071670",
+      "kind": "park",
+      "category": "fun",
+      "icon": "park",
+      "ref": "way/363071670",
+      "line": "Cyrus Wathey Square, a mapped place for the game."
+    },
+    {
+      "key": "osm-node-13841746696",
+      "kind": "viewing",
+      "category": "fun",
+      "icon": "view",
+      "ref": "node/13841746696",
+      "line": "Maho Beach Airplane Spotting, a mapped place for the game."
     }
   ],
   "names": [
-    {
-      "id": "district-1918631523",
-      "ref": "node/1918631523",
-      "kind": "neighbourhood"
-    },
     {
       "id": "district-5116701391",
       "ref": "node/5116701391",
@@ -283,16 +278,6 @@ export const CONFIG = {
       "kind": "neighbourhood"
     },
     {
-      "id": "district-5116701402",
-      "ref": "node/5116701402",
-      "kind": "neighbourhood"
-    },
-    {
-      "id": "district-5116701404",
-      "ref": "node/5116701404",
-      "kind": "neighbourhood"
-    },
-    {
       "id": "district-5116701408",
       "ref": "node/5116701408",
       "kind": "neighbourhood"
@@ -308,18 +293,8 @@ export const CONFIG = {
       "kind": "neighbourhood"
     },
     {
-      "id": "district-1918631607",
-      "ref": "node/1918631607",
-      "kind": "neighbourhood"
-    },
-    {
-      "id": "district-5081990787",
-      "ref": "node/5081990787",
-      "kind": "neighbourhood"
-    },
-    {
-      "id": "district-5116701390",
-      "ref": "node/5116701390",
+      "id": "district-5116701394",
+      "ref": "node/5116701394",
       "kind": "neighbourhood"
     },
     {
@@ -331,13 +306,9 @@ export const CONFIG = {
       "id": "water-relation-9204905",
       "ref": "relation/9204905",
       "kind": "water"
-    },
-    {
-      "id": "water-relation-9208151",
-      "ref": "relation/9208151",
-      "kind": "water"
     }
   ],
+  "playAreaWithinBox": true,
   "profile": "microstate",
   "emptySlots": [],
   "wideWater": true,

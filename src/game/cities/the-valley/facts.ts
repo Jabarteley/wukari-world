@@ -29,7 +29,7 @@ export const FACTS = {
   "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
   "bounds": [
     -63.24111307900157,
-    18.03370521006602,
+    18.135993353323684,
     -62.86243872099843,
     18.395466989933976
   ],

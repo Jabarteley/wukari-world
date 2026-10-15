@@ -29,9 +29,9 @@ export const FACTS = {
   "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
   "bounds": [
     -63.27406249099159,
-    17.885973510066023,
+    18.05469920419644,
     -62.89571130900841,
-    18.247735289933978
+    18.13595089995478
   ],
   "names": {
     "area": "Marigot",

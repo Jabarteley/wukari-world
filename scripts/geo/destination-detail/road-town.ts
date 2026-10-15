@@ -22,7 +22,7 @@ export const CONFIG = {
   "name": "Road Town",
   "box": [
     18.244885110066022,
-    -64.81266223703753,
+    -64.76295577820954,
     18.606646889933977,
     -64.43352056296249
   ],
@@ -299,6 +299,7 @@ export const CONFIG = {
       "kind": "neighbourhood"
     }
   ],
+  "playAreaWithinBox": true,
   "profile": "microstate",
   "emptySlots": [],
   "wideWater": true,

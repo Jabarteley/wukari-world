@@ -24,7 +24,7 @@ export const CONFIG = {
     49.275933310066016,
     -2.816417658416154,
     49.63769508993398,
-    -2.261578141583846
+    -2.2757764086817502
   ],
   "core": [
     49.4115939775165,
@@ -318,6 +318,7 @@ export const CONFIG = {
       "kind": "neighbourhood"
     }
   ],
+  "playAreaWithinBox": true,
   "wideWater": true,
   "sea": {
     "kind": "coast",

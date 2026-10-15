@@ -24,7 +24,7 @@ export const CONFIG = {
     18.160576610066023,
     -65.12299447684404,
     18.522338389933978,
-    -64.74404012315597
+    -64.76300586691484
   ],
   "core": [
     18.296237277516507,
@@ -263,18 +263,8 @@ export const CONFIG = {
       "kind": "neighbourhood"
     },
     {
-      "id": "district-9864255154",
-      "ref": "node/9864255154",
-      "kind": "neighbourhood"
-    },
-    {
       "id": "district-9864255162",
       "ref": "node/9864255162",
-      "kind": "neighbourhood"
-    },
-    {
-      "id": "district-9864255163",
-      "ref": "node/9864255163",
       "kind": "neighbourhood"
     },
     {
@@ -316,8 +306,19 @@ export const CONFIG = {
       "id": "district-9864255151",
       "ref": "node/9864255151",
       "kind": "neighbourhood"
+    },
+    {
+      "id": "district-9864255153",
+      "ref": "node/9864255153",
+      "kind": "neighbourhood"
+    },
+    {
+      "id": "district-9864255157",
+      "ref": "node/9864255157",
+      "kind": "neighbourhood"
     }
   ],
+  "playAreaWithinBox": true,
   "wideWater": true,
   "sea": {
     "kind": "coast",

@@ -21,16 +21,16 @@ export const CONFIG = {
   "source": "OpenStreetMap contributors via Geofabrik PBF",
   "name": "Marigot",
   "box": [
-    17.885973510066023,
+    18.05469920419644,
     -63.27406249099159,
-    18.247735289933978,
+    18.13595089995478,
     -62.89571130900841
   ],
   "core": [
-    18.021634177516507,
-    -63.13214403872752,
-    18.112074622483494,
-    -63.037629761272484
+    18.055603608646106,
+    -63.0966421985842,
+    18.078105191353895,
+    -63.0731316014158
   ],
   "places": [
     {
@@ -111,12 +111,12 @@ export const CONFIG = {
       "line": "Préfecture déléguée, a mapped place for the game."
     },
     {
-      "key": "osm-node-3893659644",
+      "key": "osm-node-3276974411",
       "kind": "viewing",
       "category": "fun",
       "icon": "view",
-      "ref": "node/3893659644",
-      "line": "Babit Point, a mapped place for the game."
+      "ref": "node/3276974411",
+      "line": "Observatoire aux Oiseaux, a mapped place for the game."
     },
     {
       "key": "osm-relation-9565439",
@@ -127,20 +127,20 @@ export const CONFIG = {
       "line": "Pinel Island, a mapped place for the game."
     },
     {
-      "key": "osm-node-542487242",
-      "kind": "walk",
-      "category": "fun",
-      "icon": "walk",
-      "ref": "node/542487242",
-      "line": "Border Monument, a mapped place for the game."
-    },
-    {
       "key": "osm-node-3324470538",
       "kind": "walk",
       "category": "fun",
       "icon": "walk",
       "ref": "node/3324470538",
       "line": "Roche Gravée du Moho, a mapped place for the game."
+    },
+    {
+      "key": "osm-node-542412470",
+      "kind": "walk",
+      "category": "fun",
+      "icon": "walk",
+      "ref": "node/542412470",
+      "line": "Fort Louis, a mapped place for the game."
     },
     {
       "key": "osm-way-399788872",
@@ -151,20 +151,12 @@ export const CONFIG = {
       "line": "Pearch Bar, a mapped place for the game."
     },
     {
-      "key": "osm-way-334678758",
+      "key": "osm-way-330812306",
       "kind": "buka",
       "category": "food",
       "icon": "food",
-      "ref": "way/334678758",
-      "line": "Le Santal, a mapped place for the game."
-    },
-    {
-      "key": "osm-way-369607931",
-      "kind": "viewing",
-      "category": "fun",
-      "icon": "view",
-      "ref": "way/369607931",
-      "line": "L'observatoire des baleines, a mapped place for the game."
+      "ref": "way/330812306",
+      "line": "Carroserie, a mapped place for the game."
     },
     {
       "key": "osm-node-3969654359",
@@ -181,6 +173,14 @@ export const CONFIG = {
       "icon": "market",
       "ref": "way/366902209",
       "line": "Marina Royale, a mapped place for the game."
+    },
+    {
+      "key": "osm-node-14181701799",
+      "kind": "viewing",
+      "category": "fun",
+      "icon": "view",
+      "ref": "node/14181701799",
+      "line": "Baie de Cul de Sac, a mapped place for the game."
     },
     {
       "key": "osm-node-3375689678",
@@ -233,11 +233,6 @@ export const CONFIG = {
       "kind": "neighbourhood"
     },
     {
-      "id": "district-2614028204",
-      "ref": "node/2614028204",
-      "kind": "neighbourhood"
-    },
-    {
       "id": "district-2614028207",
       "ref": "node/2614028207",
       "kind": "neighbourhood"
@@ -263,11 +258,6 @@ export const CONFIG = {
       "kind": "neighbourhood"
     },
     {
-      "id": "district-2614028221",
-      "ref": "node/2614028221",
-      "kind": "neighbourhood"
-    },
-    {
       "id": "district-2614028224",
       "ref": "node/2614028224",
       "kind": "neighbourhood"
@@ -278,19 +268,19 @@ export const CONFIG = {
       "kind": "neighbourhood"
     },
     {
-      "id": "district-2614028230",
-      "ref": "node/2614028230",
+      "id": "district-2614129124",
+      "ref": "node/2614129124",
       "kind": "neighbourhood"
     },
     {
-      "id": "water-relation-2314243",
-      "ref": "relation/2314243",
-      "kind": "water"
+      "id": "district-2618026389",
+      "ref": "node/2618026389",
+      "kind": "neighbourhood"
     },
     {
-      "id": "water-relation-9204905",
-      "ref": "relation/9204905",
-      "kind": "water"
+      "id": "district-2618026390",
+      "ref": "node/2618026390",
+      "kind": "neighbourhood"
     },
     {
       "id": "water-relation-9208151",
@@ -298,6 +288,7 @@ export const CONFIG = {
       "kind": "water"
     }
   ],
+  "playAreaWithinBox": true,
   "profile": "microstate",
   "emptySlots": [],
   "wideWater": true,

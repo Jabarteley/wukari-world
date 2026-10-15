@@ -7,7 +7,7 @@
     "stateId": "mf-marigot",
     "stateName": "Marigot"
   },
-  "inventorySha256": "392ab0df698bd62433e6b3043ae861bafef3e0a4c9fd575a331ed2e33c054319",
+  "inventorySha256": "d20b5cb4610d36c3d1b6321add606a3aef498abb718e4cb74ab9a1f957555fc7",
   "inventoryPath": "world/playable-africa-rollout/sources/marigot.json",
   "admission": {
     "registered": true,
@@ -22,9 +22,9 @@
     "sourceUrl": "https://ourairports.com/airports/TFFG/"
   },
   "bounds": [
-    17.885973510066023,
+    18.05469920419644,
     -63.27406249099159,
-    18.247735289933978,
+    18.13595089995478,
     -62.89571130900841
   ],
   "sources": {
@@ -34,43 +34,43 @@
       "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
       "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
       "adapter": "offline-extract.py/v3-nested-centres",
-      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
       "extracts": [
         {
           "file": "places.json",
-          "sha256": "d73d14af2cdfeab7d07dc2c4de6b276bcc058a7c435eff73947323ec2552d29b",
-          "elements": 609
+          "sha256": "7efaefa2af196d3cb988c5641bd1173f1b2494688731c3973e948a12e7ef486b",
+          "elements": 252
         },
         {
           "file": "extras.json",
-          "sha256": "66fd1f45828e504644ed9460ab79146b835bd55e2b2e92eca16ce78c82738a05",
-          "elements": 59
+          "sha256": "0c7199a7505aa295de9984ce3fba399f2fe65f8268b3b67e953bb01674d2f7b2",
+          "elements": 19
         },
         {
           "file": "water.json",
-          "sha256": "f1e62c0d26b874cee87464902212363e4fdea4d31e6f773f5b00366330fb4ee1",
-          "elements": 443
+          "sha256": "d8ffb3ef93ba39fb31ab29be295c7f305df3ef083130c7787687345f4d5fcebe",
+          "elements": 400
         },
         {
           "file": "landuse.json",
-          "sha256": "89fe2195ed0a89b4bf0b05d554de4a00bb00579fc4e3a9138957918fc35dc3db",
-          "elements": 350
+          "sha256": "a61286ed42beea1304b0740e326d6147c069e5f43ac80caf0576d9869c945828",
+          "elements": 293
         },
         {
           "file": "roads.json",
-          "sha256": "a58adde693114caab486a6a6c2494dd6871bb92ba4eb35c027fb1196a31325a8",
-          "elements": 390
+          "sha256": "87fd3d35a60e1da22532eecb7168aa12af1c10513ba1759c2fb484c73b76e6ae",
+          "elements": 87
         }
       ]
     }
   },
   "kept": {
     "places": 19,
-    "roads": 14,
+    "roads": 11,
     "neighbourhoodLabels": 18,
     "landPolygons": 3,
-    "waterPolygons": 11,
-    "reachWaterPolygons": 17
+    "waterPolygons": 4,
+    "reachWaterPolygons": 5
   },
   "selection": {
     "profile": "microstate",
@@ -84,20 +84,20 @@
     ]
   },
   "observed": {
-    "places": 609,
-    "extras": 59,
-    "water": 443,
-    "landuse": 350,
-    "roads": 390
+    "places": 252,
+    "extras": 19,
+    "water": 400,
+    "landuse": 293,
+    "roads": 87
   },
   "assets": {
     "facts.ts": {
-      "bytes": 1244,
-      "sha256": "7bf9ddd0699c7e6868ef30db18988487aaecb6456d0870ba9b8c2fd1ac26d22e"
+      "bytes": 1242,
+      "sha256": "1d0f05de584e84f7a8eba68e1c257bf930da82bc8dd40671007526dab4cb2d7d"
     },
     "geometry.ts": {
-      "bytes": 171492,
-      "sha256": "25db430dfe3ace3a83c0670eee70130bf35dd0b1b0b4879aa4b77e064e36e72c"
+      "bytes": 390383,
+      "sha256": "dc780d2c23bc50ec93db5a2028727d9e16cedef2d0bda20e6cc69c65d257f980"
     },
     "index.ts": {
       "bytes": 258,

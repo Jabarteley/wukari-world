@@ -6705,15 +6705,15 @@ export const WORLD_STORY_SEEDS: readonly WorldStorySeed[] = Object.freeze([
     "countryName": "St Maarten (Dutch)",
     "host": {
       "id": "philipsburg-philipsburg-osm-way-1417556522-1",
-      "name": "Arden",
+      "name": "Sage",
       "venue": "philipsburg-osm-way-1417556522",
       "venueName": "Emmancipation Roundabout"
     },
     "practical": {
-      "venue": "philipsburg-osm-way-522407960",
-      "venueName": "Emilio Wilson Park",
+      "venue": "philipsburg-osm-way-363071670",
+      "venueName": "Cyrus Wathey Square",
       "spot": "visit",
-      "id": "philipsburg-osm-way-522407960-visit",
+      "id": "philipsburg-osm-way-363071670-visit",
       "label": "Look around"
     },
     "discovery": {

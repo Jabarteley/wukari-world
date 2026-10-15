@@ -25,33 +25,33 @@
   },
   "boxes": {
     "play": [
-      17.885973510066023,
+      18.05469920419644,
       -63.27406249099159,
-      18.247735289933978,
+      18.13595089995478,
       -62.89571130900841
     ],
     "core": [
-      18.021634177516507,
-      -63.13214403872752,
-      18.112074622483494,
-      -63.037629761272484
+      18.055603608646106,
+      -63.0966421985842,
+      18.078105191353895,
+      -63.0731316014158
     ],
     "outline": [
-      17.835973510066022,
+      18.004699204196438,
       -63.32406249099159,
-      18.29773528993398,
+      18.18595089995478,
       -62.845711309008415
     ],
     "wide": [
-      17.28597351006602,
+      17.454699204196437,
       -63.87406249099159,
-      18.84773528993398,
+      18.73595089995478,
       -62.29571130900841
     ],
     "water": [
-      17.28597351006602,
+      17.454699204196437,
       -63.87406249099159,
-      18.84773528993398,
+      18.73595089995478,
       -62.29571130900841
     ]
   },
@@ -69,32 +69,32 @@
     "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
     "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
     "adapter": "offline-extract.py/v3-nested-centres",
-    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
     "extracts": [
       {
         "file": "places.json",
-        "sha256": "d73d14af2cdfeab7d07dc2c4de6b276bcc058a7c435eff73947323ec2552d29b",
-        "elements": 609
+        "sha256": "7efaefa2af196d3cb988c5641bd1173f1b2494688731c3973e948a12e7ef486b",
+        "elements": 252
       },
       {
         "file": "extras.json",
-        "sha256": "66fd1f45828e504644ed9460ab79146b835bd55e2b2e92eca16ce78c82738a05",
-        "elements": 59
+        "sha256": "0c7199a7505aa295de9984ce3fba399f2fe65f8268b3b67e953bb01674d2f7b2",
+        "elements": 19
       },
       {
         "file": "water.json",
-        "sha256": "f1e62c0d26b874cee87464902212363e4fdea4d31e6f773f5b00366330fb4ee1",
-        "elements": 443
+        "sha256": "d8ffb3ef93ba39fb31ab29be295c7f305df3ef083130c7787687345f4d5fcebe",
+        "elements": 400
       },
       {
         "file": "landuse.json",
-        "sha256": "89fe2195ed0a89b4bf0b05d554de4a00bb00579fc4e3a9138957918fc35dc3db",
-        "elements": 350
+        "sha256": "a61286ed42beea1304b0740e326d6147c069e5f43ac80caf0576d9869c945828",
+        "elements": 293
       },
       {
         "file": "roads.json",
-        "sha256": "a58adde693114caab486a6a6c2494dd6871bb92ba4eb35c027fb1196a31325a8",
-        "elements": 390
+        "sha256": "87fd3d35a60e1da22532eecb7168aa12af1c10513ba1759c2fb484c73b76e6ae",
+        "elements": 87
       }
     ]
   },
@@ -183,11 +183,11 @@
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Babit Point",
-      "osm": "node/3893659644",
+      "name": "Observatoire aux Oiseaux",
+      "osm": "node/3276974411",
       "coordinatesWgs84": [
-        -63.011253,
-        18.053503
+        -63.014481,
+        18.06273
       ],
       "accuracy": "mapped-feature"
     },
@@ -201,20 +201,20 @@
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Border Monument",
-      "osm": "node/542487242",
-      "coordinatesWgs84": [
-        -63.040403,
-        18.055921
-      ],
-      "accuracy": "mapped-feature"
-    },
-    {
       "name": "Roche Gravée du Moho",
       "osm": "node/3324470538",
       "coordinatesWgs84": [
         -63.040175,
         18.072592
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fort Louis",
+      "osm": "node/542412470",
+      "coordinatesWgs84": [
+        -63.085376,
+        18.070794
       ],
       "accuracy": "mapped-feature"
     },
@@ -228,20 +228,11 @@
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Le Santal",
-      "osm": "way/334678758",
+      "name": "Carroserie",
+      "osm": "way/330812306",
       "coordinatesWgs84": [
-        -63.097272,
-        18.060474
-      ],
-      "accuracy": "feature-centroid"
-    },
-    {
-      "name": "L'observatoire des baleines",
-      "osm": "way/369607931",
-      "coordinatesWgs84": [
-        -63.012565,
-        18.06666
+        -63.066093,
+        18.093944
       ],
       "accuracy": "feature-centroid"
     },
@@ -264,6 +255,15 @@
       "accuracy": "feature-centroid"
     },
     {
+      "name": "Baie de Cul de Sac",
+      "osm": "node/14181701799",
+      "coordinatesWgs84": [
+        -63.033018,
+        18.110371
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
       "name": "Howell Center",
       "osm": "node/3375689678",
       "coordinatesWgs84": [
@@ -275,20 +275,20 @@
   ],
   "generatedAssets": {
     "facts.ts": {
-      "bytes": 1244,
-      "sha256": "7bf9ddd0699c7e6868ef30db18988487aaecb6456d0870ba9b8c2fd1ac26d22e"
+      "bytes": 1242,
+      "sha256": "1d0f05de584e84f7a8eba68e1c257bf930da82bc8dd40671007526dab4cb2d7d"
     },
     "geometry.ts": {
-      "bytes": 171492,
-      "sha256": "25db430dfe3ace3a83c0670eee70130bf35dd0b1b0b4879aa4b77e064e36e72c"
+      "bytes": 390383,
+      "sha256": "dc780d2c23bc50ec93db5a2028727d9e16cedef2d0bda20e6cc69c65d257f980"
     },
     "places.ts": {
-      "bytes": 7578,
-      "sha256": "64ef1b4b35b8a2ade97d961f05df034190aecc9a9bf0212dd77b6c442044c4ce"
+      "bytes": 7561,
+      "sha256": "83552c43a081049568908d5611fb4524c43d694bccb7dd7b780206266b865d32"
     },
     "terrain.ts": {
-      "bytes": 395480,
-      "sha256": "f1265f21a0319aceab704681afb76573401973ed2dae4707fc1f194d88175501"
+      "bytes": 245625,
+      "sha256": "4e6264c01d9b7b8943557896f1379244d4bd273d66051e1c93e1741554872690"
     },
     "index.ts": {
       "bytes": 258,

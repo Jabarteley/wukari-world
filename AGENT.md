@@ -11,9 +11,7 @@ Last updated: 15 October 2026 (release 9 live: `ac94fca0`).
 
 | Work | Branch | Where it stopped | Next step |
 | --- | --- | --- | --- |
-| Release 11: Phases 13b (thirty residents) and 15 (calls with agents) | `main` | Merged and checked, being released | Confirm live, smoke, replace `REL11` in STATUS.md. |
-| Phase 18: real price levels (World Bank data) | `claude/alive-p18-prices` | Being built | Review, merge, CI, release. |
-| Phase 19, the rest: city projects, gift packets, stickers, home-city pin, life stages | `claude/alive-p19b` | Being built | Review, merge, CI, release. |
+| Release 12: Phases 18 and the rest of 19 | `main` | Merged and checked, being released | Confirm live, smoke, replace `REL12` in STATUS.md. |
 | Phase 13c: ideas, assembly, president, Sunday letter | `claude/alive-p13c-assembly` | Being built | Review, merge, CI, release. |
 | Phase 20: residents' relationships and world events | `claude/alive-p20-lives` | Being built | Review, merge, CI, release. |
 | Speech-to-text accuracy per accent (Phase 15) | none | Needs recordings | Record with `scripts/stt-bench/collect.html` on phones, run `scripts/stt-bench.ts --gateway`, fill the table in docs/CALLS.md. |

@@ -40,14 +40,14 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 11 Missions from agents | live | `ac94fca0` | Tasks a house agent gives in person from templates filled in from the person's life, shown in Missions with the agent and where to find it; new triggers talk to an agent, hand an item, bring a friend, play with another person; the hand-over completes a haggled price (docs/AGENT-MISSIONS.md). The model only rephrases the brief (cached per template and agent). Rewards inside the daily (₦250) and weekly (₦1,000) figures, checked by the life. |
 | 12 Talking, memory, relationships | live | `ac94fca0` | House agents remember up to five facts per person (never contacts or money), the person sees, deletes or turns it off (Settings), closeness, partners for confirmed adults, and flirting with a partner or an adult's own yes (docs/AGENT-MEMORY.md). No DMs to house agents yet. |
 | 13a One resident in shadow | live | `ac94fca0` | Remi, a Lagos bookseller: life story, sleep, a model chosen at birth, thoughts as validated choices, nightly summary, shadow (nobody sees her), her day on the admin page (docs/RESIDENTS.md). On by default on the live hosts, in shadow. |
-| 13b Thirty residents | live | REL11 | Thirty authored residents (Remi + 29: Lagos, Abuja, Ibadan, Accra, Nairobi, Cape Town, London, New York; Johannesburg and Houston are not open cities), setting `residentCount` (default 1), models spread at birth, agent-to-agent talk (4 turns, grounded in a real ledger line, repetition check), replies to people when visible (no trading, paid models only), `residentDailyCents` budget (default 100), admin comparison of models and the experiment's measures (docs/RESIDENTS.md). Day-1/day-7 return split not built (needs a growth-metrics bit); the page counts people who spoke and who spoke again. |
+| 13b Thirty residents | live | `ea9f5ddd` | Thirty authored residents (Remi + 29: Lagos, Abuja, Ibadan, Accra, Nairobi, Cape Town, London, New York; Johannesburg and Houston are not open cities), setting `residentCount` (default 1), models spread at birth, agent-to-agent talk (4 turns, grounded in a real ledger line, repetition check), replies to people when visible (no trading, paid models only), `residentDailyCents` budget (default 100), admin comparison of models and the experiment's measures (docs/RESIDENTS.md). Day-1/day-7 return split not built (needs a growth-metrics bit); the page counts people who spoke and who spoke again. |
 | 13c Ideas, assembly, president, letter | not started | | |
 | 14 Prayers and acts | live | `545caabb` | Remi prays once a day; players pray at a church, mosque or shrine after the notice that prayers are read; admin Prayers page and eight acts (heal, illness at most weekly and never on a minor, give/take game money, bless a stall, weather for 1 to 6 hours, dream, cross paths, silence), all logged, shown as gist lines, never as messages from the owner (docs/PRAYERS.md). |
-| 15 Calls with agents | live | REL11 | Call a house agent from Settings → AI characters: push-to-talk, the AI mark, its reply spoken on the phone in its own voice (text only crosses the network); speech to text by the browser or by the gateway's transcription model (WAV, budgeted, never stored); 20 minutes a day each, 300 in all, a break reminder every 10 minutes; agents' lines spoken in room voice (docs/CALLS.md). Words-right per accent NOT YET MEASURED: needs recordings (scripts/stt-bench, collect.html). |
+| 15 Calls with agents | live | `ea9f5ddd` | Call a house agent from Settings → AI characters: push-to-talk, the AI mark, its reply spoken on the phone in its own voice (text only crosses the network); speech to text by the browser or by the gateway's transcription model (WAV, budgeted, never stored); 20 minutes a day each, 300 in all, a break reminder every 10 minutes; agents' lines spoken in room voice (docs/CALLS.md). Words-right per accent NOT YET MEASURED: needs recordings (scripts/stt-bench, collect.html). |
 | 16 Festivals, owambe, match nights | live | `8ac05891` | Multi-day festival calendar (NG, GH, KE, ZA, global; Eid and Ramadan dates to 2028), festive Square light, owambe parties with MC/DJ/spray (no money), match-night slots and an empty admin fixture list (docs/FESTIVALS.md). |
 | 17 City texture packs | live | `abec6f54` | Ride banter packs (Lagos danfo, okada, keke, cab; Accra, Nairobi, South Africa starters; no lyrics, no danger or scam words), the district's published light plan and cut notices with generator/inverter (docs/CITY-TEXTURE.md). Haggle-to-purchase comes with Phase 11. No solar item (scene chunk room). |
-| 18 Real price levels | not started | | |
-| 19 Smaller features | in progress | REL | Live: "while you were away" sheet and the ask for notifications after a good moment; jail you can play (jobs, community service, visits, parole; docs/JAIL.md). Next: city projects, group gift packets, sticker pack, home-city pin, life stages. |
+| 18 Real price levels | live | REL12 | World Bank price levels (2021, the last surveyed year: 2025's figures put Accra at 3× Lagos after the naira float), Nigeria = 1, clamped 0.5 to 4: rent, pay, activity and shop prices scaled per country; Nigerian cities unchanged (docs/PRICE-LEVELS.md). Not scaled yet: the starting purse, family loan, goal targets, intercity fares, wardrobe, the launch bonus. |
+| 19 Smaller features | live | REL12 | Away sheet, notification ask, jail you can play (release 4); city works funded together, group gift packets (game money), 30 text stickers, a home-city pin (on the device), opt-in birthdays (docs/SMALLER-FEATURES.md). Not built: passing property to a next character (needs its own design: no rollback). |
 | 20 Agents' relationships and world events | not started | | |
 
 States: not started · in progress · pushed, not yet live · live · blocked (say on what).
@@ -75,6 +75,8 @@ Answered on 14 and 15 October 2026:
 ## Failing on `main` before us
 
 Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` needs a build and was not run here):
+- `src/game/economy.test.ts` (15 October): `scripts/economy-sim.ts` cannot complete the city stories' local missions
+  (`missionRun` throws "value is missing"); came with the local missions, not from the world-alive work.
 - `server/pulse.test.ts` (8 of 14), `server/registry.test.ts` (7 of 12), `server/social.test.ts`, `server/admin/history.test.ts`,
   `server/growth.test.ts`, `server/money-request.test.ts`, `src/types/protocol.test.ts`: the server answers 503 because the city
   content is not built. `npm run cities:assets` and `npm run words:assets` first (no full build needed), and most pass.
@@ -103,7 +105,11 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
-- 2026-10-15, release 11 (Phases 13b and 15), REL11: thirty authored residents (only Remi runs until `residentCount` is raised),
+- 2026-10-15, release 12 (Phases 18 and the rest of 19), REL12: real price levels; city works, gift packets, stickers, home-city
+  pin, birthdays.
+- 2026-10-15, release 11 (Phases 13b, 15), `ea9f5ddd`, live. Main had become unreleasable (the Worker test could not complete the
+  city stories' new local missions); a test-only fix let it release.
+- 2026-10-15, release 11 (Phases 13b and 15), `ea9f5ddd`: thirty authored residents (only Remi runs until `residentCount` is raised),
   calls with house agents and agents' lines in room voice. Speech-to-text accuracy not yet measured (no recordings).
 - 2026-10-15, release 10 (Phase 14), `545caabb`: prayers and acts. Checks: typecheck clean; 112 tests of the touched areas pass
   (the route registry's namespace list was updated); CI build and limits ok.

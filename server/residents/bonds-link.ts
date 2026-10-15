@@ -34,7 +34,9 @@ export function linkBonds(ctx: RouteContext): void {
   let engine: Bonds | null = null;
   const stat = (id: string, label: string, read: (db: Db) => number | string): void => registerAdminStat(ctx, { id: `bonds-${id}`, group: 'Residents: relationships', label, cost: 'memory', read });
   const need = (): Bonds | null => engine;
-  void ctx.store.read((db) => { const col = (db as Record<string, unknown>)['bonds']; return col ? structuredClone(col) : undefined; }).catch(() => undefined).then((found) => {
+  let started = false;
+  /** Loaded on the first beat (like `residents`), never at link time. */
+  const start = (): void => { started = true; void Promise.resolve().then(() => ctx.store.read((db) => { const col = (db as Record<string, unknown>)['bonds']; return col ? structuredClone(col) : undefined; })).catch(() => undefined).then((found) => {
     engine = bondsOf({
       roster: runner.roster, now: () => ctx.now(),
       active: () => { const s = settings(); return s.on ? Math.min(s.count, runner.roster.length) : 0; },
@@ -55,8 +57,8 @@ export function linkBonds(ctx: RouteContext): void {
     runner.hooks.talked = (a, b, t) => engine?.talked(a, b, t);
     runner.hooks.hold = (id) => engine?.hold(id) ?? null;
     runner.hooks.retired = (id) => engine?.retired(id) ?? false;
-  });
-  ctx.on?.('heartbeat', () => { need()?.tick(); });
+  }); };
+  ctx.on?.('heartbeat', () => { try { if (!started) { if (settings().on) start(); } else need()?.tick(); } catch { /* never stops the heartbeat */ } });
 
   const rows = (): string[] => need()?.report().pairs.slice(0, 25).map((p) => `${p.a} and ${p.b}: ${p.stage ?? 'acquainted'}, closeness ${p.closeness}${p.quarrel ? ', quiet between them' : ''}${p.asked ? `, ${p.asked} has asked` : ''}, ${p.high} days near the marriage line`) ?? [];
   stat('summary', 'Relationships: bonds, marriages, weddings set', () => { const r = need()?.report(); return !r ? 'not loaded' : `${r.pairs.length} bonds · ${r.pairs.filter((p) => p.stage === 'married').length} married · ${r.events.filter((e) => e.kind === 'wedding' && !e.done).length} weddings set · ${r.departed.length} farewells · ${r.calls.n} choices asked today`; });

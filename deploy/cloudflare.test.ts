@@ -899,7 +899,9 @@ test('Combined game on the Worker: quick start, settle in with a plot, a mission
   assert.deepEqual([bolaState.location, bolaState.onboarding.joined, bolaState.onboarding.stage, bolaState.cash], ['amala-shitta', true, 'guest', 5000]);
   const bolaSocket = await f.peer(bola);
   bolaSocket.send({ type: 'join', cityId: CITY, venueId: 'amala-shitta' });
-  assert.deepEqual((await bolaSocket.until('presence')).members.map(member => member.name).sort(), ['Ada', 'Bola'], 'the two of them are in the same room');
+  // The people in the room (residents and house agents, AI characters with ids of their own, may stand there too).
+  const people = (members: { id: string; name: string }[]) => members.filter(member => !/^(resident|house)\./.test(member.id)).map(member => member.name).sort();
+  assert.deepEqual(people((await bolaSocket.until('presence')).members), ['Ada', 'Bola'], 'the two of them are in the same room');
   assert.equal((await f.post('/api/social/join', { host: link.join, cityId: CITY }, bola)).code, 'here', 'asking again changes nothing');
 
   // 6. the table the link named: a whole game of Whot, one human against the other, over their own sockets.
@@ -1008,7 +1010,7 @@ test('Invitations on the Worker: house link, friend request, first DM, knock and
   assert.equal((await b.until('invite-answer')).answer, 'accepted');
   b.send({ type: 'join', cityId: CITY, venueId: 'home', hostId: ada.id });
   const inside = await b.until('presence');
-  assert.deepEqual(inside.members.map(member => member.name).sort(), ['Ada', 'Bola']);
+  assert.deepEqual(inside.members.filter((member: { id: string }) => !/^(resident|house)\./.test(member.id)).map((member: { name: string }) => member.name).sort(), ['Ada', 'Bola']);
   assert.ok(inside.members.every(member => member.enabled === false && member.muted === true), 'a house visit does not turn voice on');
   // Asleep and awake again: the guest is still in the host's room, and house chat still reaches both.
   await f.hibernate();

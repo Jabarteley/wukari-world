@@ -13,7 +13,7 @@ The owner's decisions of 15 October 2026, being built:
 
 | Work | Branch | Where it stopped | Next step |
 | --- | --- | --- | --- |
-| Residents everywhere: three per open city (~850), generated distinct personalities, visible (shadow off), rule-driven to stay in budget | `claude/alive-residents-everywhere` | Being built | Review, merge, CI, release. |
+| Residents everywhere: three per open city (~852), distinct personalities, visible | `main` | Merged and checked, being released | Confirm live, smoke, note it in STATUS.md. |
 | Starting money scales with the city's price level; home-city pin saved to the account | `claude/alive-money-pin` | Being built | Review, merge, CI, release. |
 | Passing property and reputation to a next character, and to a different (consenting) character: design (docs/LEGACY.md) then build | `claude/alive-legacy` | Being built | Review, merge, CI, release. |
 | Fix tests failing on main (economy simulation and local missions, engine skills test, the STATUS.md list) | `claude/alive-fix-tests` | Being built | Review, merge, CI, release. |

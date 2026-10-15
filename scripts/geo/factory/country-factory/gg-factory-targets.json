@@ -59,7 +59,12 @@
           49.63769508993398
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "node/2072652842",
+          "reason": "Herm Harbour: a harbour locality point; its mapped point lies in water (the exact-coast stage reports it as a wet source anchor, auto-retried in factory run 38689067237); not a place a player can stand."
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/116359720",

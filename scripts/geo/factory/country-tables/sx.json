@@ -30,7 +30,13 @@
       "timezone": {
         "id": "America/Puerto_Rico",
         "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
-      }
+      },
+      "selectionExclusions": [
+        {
+          "ref": "way/22901563",
+          "reason": "Maho Beach: a beach centroid; its point lies in water (the exact-coast stage reports it as a wet source anchor, auto-retried in factory run 38689067237); not a place a player can stand."
+        }
+      ]
     }
   ]
 }

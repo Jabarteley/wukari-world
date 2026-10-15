@@ -2,32 +2,12 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "mf",
-      "table": "scripts/geo/factory/country-factory/mf-factory-targets.json"
-    },
-    {
       "id": "sx",
       "table": "scripts/geo/factory/country-factory/sx-factory-targets.json"
     },
     {
-      "id": "ai",
-      "table": "scripts/geo/factory/country-factory/ai-factory-targets.json"
-    },
-    {
-      "id": "bl",
-      "table": "scripts/geo/factory/country-factory/bl-factory-targets.json"
-    },
-    {
       "id": "gg",
       "table": "scripts/geo/factory/country-factory/gg-factory-targets.json"
-    },
-    {
-      "id": "vi",
-      "table": "scripts/geo/factory/country-factory/vi-factory-targets.json"
-    },
-    {
-      "id": "vg",
-      "table": "scripts/geo/factory/country-factory/vg-factory-targets.json"
     }
   ]
 }

@@ -1,7 +1,7 @@
 # Worldwide progression expansion
 
 - Owner: `/root`, chat `01a13bea-138b-7b91-ac44-c49bc3d836ec`.
-- Status: active, inventory and reusable content contract.
+- Status: implemented and source published; final evidence packaging and merged-source CI pending.
 - Canonical checkout: `/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld`, branch `codex/retention-main-sync`.
 - Start source: `c0d77b94c5ca102470527014291e1942286957a8`, fetched and fast-forwarded main. Prior retention implementation is published through `9863f3e7`.
 - User authorizes expansion of missions, stories and journeys to every supported country/city, light parallel subagents, documentation and frequent main sync. Deployment is separate.
@@ -35,3 +35,21 @@ Reuse local preview on port 5176, source from this checkout, isolated DATA_DIR f
 The exact current set is 284 open/loadable cities and 243 module-owned country/territory IDs. Kaduna is now open despite the older reserved declaration, so the actual supported set excludes no row. The generated city references validate all hosts and two free, ungated activities per city. The generator, seed data and per-city reference coverage are ready for the first main milestone. Runtime integration adds two stories per city, local missions outside Lagos, city and country collections, current-city views and saved travel history. These runtime changes are not yet published.
 
 Next step: verify the combined engine paths and preserve the lazy loading boundary, then build and sync the runtime milestone.
+
+## Runtime checkpoint — 15 October
+
+Published runtime source `6e5f4fd824318fd9baf524cdfabbe828631688ab`, merged the other computer’s Phase 17 city texture from `8dc43fff`, and pushed combined main `c4e93ee73c9114b0e26adfde18844c6a91f6ed07`. Remote ref read back exactly. No conflicts. Generator/reference milestone `64155f3` was published earlier. Agent-play Phase 11 remains its owner’s separate work; this expansion preserves execution origins, mission limits and existing receipts. Forty existing agent compatibility cases pass.
+
+Implemented: 568 new four-chapter episodes using two shared local narrative structures, 1,698 new mission definitions outside Lagos, 284 city and 243 country/territory collections. All 284 supported cities have validated actual host/place/action references. Night-time NPC absence has an explicit free-activity welcome-note/Help path; history records the actual proof. Current-city views are bounded and earlier started stories remain readable. Country IDs include territories and are not a sovereign-state count.
+
+Final source build, five-project typecheck and smoke17 pass at `6e5f4fd8`; all-city engine and mission probes pass on that revision. Prior focused agent40, Worker persistence1 and affected content contract1 pass. One combined browser fixture run hit an intermittent homeward marker timeout; its isolated retry passed. Broad Node/Worker suite limitations remain in the earlier retention handoff and are not declared fixed. Download measurement is finishing. Merged-source CI: https://github.com/kromate/joinallworld/actions/runs/38658964055 (pending at this checkpoint). No deployment or production retention claim.
+
+Astra played both Tokyo stories through actual completed activities and the Help/quiet-support route. Reload preserved both notes and Tokyo/Japan 2/2 collections. NPC conversation and actual inter-city travel were not exercised. Screenshots and exact actions are in the separate UI record; viewport checks are not physical-device evidence.
+
+Preview remains running on port5176, task-owned exec session25745, log `/tmp/allworld-world-preview.log`, isolated DATA_DIR in the retention-phase-zero checkout. A stale old process was replaced once; preserve the current preview and unrelated services. Chrome QA tab460560722 is the synthetic TokyoTrailQA deliverable; original127.0.0.1 actor and other QA guests remain untouched.
+
+Next: finish final size/merged-source CI, archive portable logs, refresh this record and the shared index, then push the documentation checkpoint. Source ownership is released after that checkpoint; future city-content owners run `npm run progression:content` and `npm run progression:check` (also enforced by prebuild). Costs/tokens are unavailable. Two Luna workers owned data and bounded audits; Astra owned UI; parent owned integration and verification.
+
+Final merged-source mission/browser subset: **11/11 pass** at `c4e93ee7`, including homeward. Prior intermittent failure remains archived with the earlier successful and isolated runs. Corrected375px screenshot independently inspected: both city/country2/2, titles and keepsakes visible. Desktop recapture timed out; final viewport reset is not confirmed.
+
+Final download measurement at `6e5f4fd8`: **all unchanged budgets pass**. Startup raw614962/615000, gzip221748/223000, Brotli194272/195600. Raw margin38bytes; keep global content/registration lazy. Portable logs+hashes are in the research verification manifest. This evidence/documentation checkpoint is ready for main. Merged-source CI is running (build complete, size/typecheck pending). After docs publication the final main CI is the remaining hosted verification gate; do not infer deployment.

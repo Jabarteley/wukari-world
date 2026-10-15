@@ -1,5 +1,7 @@
 # Worldwide journey pattern (2026-10-14)
 
+Later worldwide expansion: see [current coverage and implementation](worldwide-progression-2026-10-15/README.md). The inventory and counts below describe the earlier Lagos-only milestone.
+
 This is a source-backed authoring pattern for adding local journeys without implying that every catalogue row already has playable places or authored story content.
 
 ## What exists today

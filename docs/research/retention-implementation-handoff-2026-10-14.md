@@ -1,5 +1,7 @@
 # Retention implementation handoff (2026-10-14)
 
+Later worldwide expansion: see [current coverage and implementation](worldwide-progression-2026-10-15/README.md). The inventory and counts below describe the earlier Lagos-only milestone.
+
 Phases 0–6 are implemented in runtime commit `bcbfd549cb5d4e28b57003ae0eb741708bf81a77`. The combined source, including the other computer's cache-first work from `b8e4f8f0`, is **published on GitHub main at `376285c0314dba05e0703a4e43b8666037384c8e`**; the remote SHA was read back after an ordinary push. Canonical local checkout: `/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld`, branch `codex/retention-main-sync`.
 
 The final combined build, five-project typecheck, 17 smoke checks, 22 cache checks and complete all-city download report pass. Largest startup over 284 cities: **614596 raw JS / 221567 gzip JS / 194060 Brotli overall**, within unchanged limits 615000 / 223000 / 195600. The existing circular-chunk warning remains. This is source publication and local acceptance; this task has not deployed production or established cohort outcomes.

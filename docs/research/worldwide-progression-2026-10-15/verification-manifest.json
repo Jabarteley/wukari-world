@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "runtimeCommit": "6e5f4fd824318fd9baf524cdfabbe828631688ab",
+  "publishedCombinedCommit": "c4e93ee73c9114b0e26adfde18844c6a91f6ed07",
+  "note": "Local build/typecheck/smoke/probes accepted before Phase17 upstream integration. CI separately validates combined source. Older focused checks have the source scope described by their work records. Intermittent fixture failure retained. No production deployment.",
+  "files": [
+    {
+      "path": "logs/agent-compat.log",
+      "bytes": 5376,
+      "sha256": "f89de8afb80fd5448e5f23beb7d5e8f23fda1fd77e79c224821b92b122127274"
+    },
+    {
+      "path": "logs/build-accepted.log",
+      "bytes": 299991,
+      "sha256": "bad256f953568a49703de547e5a4ad903de0c8cdeebb5191ac2ea21c331d01d3"
+    },
+    {
+      "path": "logs/content-contract.log",
+      "bytes": 201,
+      "sha256": "092827d6f056b068a83b0cf11c1546eaf509558bca466035a13cacbd91d39a25"
+    },
+    {
+      "path": "logs/focused-accepted.log",
+      "bytes": 5613,
+      "sha256": "68292eac51b142b302eec4fb3b63c23480841ed866efa5591bd0e06de4b701ce"
+    },
+    {
+      "path": "logs/focused-initial.log",
+      "bytes": 5611,
+      "sha256": "9fd99545053f2f4df96ef95c743d1c21816008fb6bf795ee95bc3d223e26006a"
+    },
+    {
+      "path": "logs/focused-intermittent.log",
+      "bytes": 47200,
+      "sha256": "364e1d06bfbe37d99d32676c06a63b9a3df48100a9f16eb83e14bd7cf8a6c44a"
+    },
+    {
+      "path": "logs/homeward-isolated.log",
+      "bytes": 241,
+      "sha256": "818a9e4c8fc03ce6014e5cbe8aafd65406e617965a3576346da9ff995f6735c4"
+    },
+    {
+      "path": "logs/probes-accepted.log",
+      "bytes": 248636,
+      "sha256": "89b63fccbf8fd03969922b165d3a3b0a7f87387e8f4b2c7a59850bb85a5f7934"
+    },
+    {
+      "path": "logs/size-accepted.log",
+      "bytes": 5375,
+      "sha256": "1ddf8603c3d7c5ea555956cc48f2efdc464749dd83ea0c87a7361b60e17be770"
+    },
+    {
+      "path": "logs/smoke-accepted.log",
+      "bytes": 19515,
+      "sha256": "fcfc3ec65ce4842267b03a97efc300e6cfbb6767480dda07bfd9ee0fa3406f9b"
+    },
+    {
+      "path": "logs/typecheck-accepted.log",
+      "bytes": 247,
+      "sha256": "e4a2b0ad05c650003cfb21d27194315a5a00064af070512fd886693de73d48e7"
+    },
+    {
+      "path": "logs/worker-persistence.log",
+      "bytes": 1203,
+      "sha256": "4ab3fc5c999ced7cfb105b9914564d0193aaea8924dd692c709db9ba1457f11d"
+    }
+  ],
+  "mergedSourceFocused": "11/11 existing mission/browser tests pass at c4e93ee7, including homeward fixture",
+  "localSize": "All unchanged budgets pass at6e5f4fd8: startup raw614962/615000, gzip221748/223000, Brotli194272/195600"
+}

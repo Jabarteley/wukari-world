@@ -68,3 +68,17 @@ For every city, load its rules and content serially. Use actual country IDs (nor
 - Acceptance target: all 284 cities × two episodes × three choices = 1,704 direct-engine completion paths, emitting actual proof-shaped events through `src/game/registry.ts`; plus wrong-city proof rejection, prerequisite refusal, finish idempotency, save/reload, and representative delegated-agent assistance.
 - Scope boundary: a direct-engine fixture demonstrates rule wiring and persisted receipts. It does not establish real activity execution, HTTP/UI path, production behavior, or human playthrough.
 - No tests, builds, browser sessions, network/account activity, or Git mutations are authorized in this follow-on.
+
+### Runtime acceptance milestone — 2026-10-15
+
+- Acceptance completed against source commit `64155f399ec79ac7f7b550325a5024c60fbf80fa`; the artifact records the exact dirty path list visible at probe start. Probe and log: `/tmp/allworld-world-progression-acceptance.ts` and `/tmp/allworld-world-progression-acceptance.log`.
+- The direct-engine synthetic fixture loaded actual rules/content serially for 284 playable cities, validated 568 generated episode definitions, and exercised 2,272 completion paths: 1,704 quiet-support paths across work/study/help and 568 observed local-visit paths. Proof-shaped NPC/activity notifications were injected through the registry after checking their actual city content references. This does not claim user-performed activity, HTTP/UI acceptance, or a full human playthrough.
+- All 284 cities rejected a foreign-city intro proof; the second episode prerequisite was rejected 852 times; choice-before-proof was rejected 2,272 times. Every completion granted one memento, duplicate finish was idempotent, and all 2,272 saved states reconstructed with durable chapter receipts, choice, completion time, agent-assistance receipt where present, and memento intact.
+- Journey projection passed for all 284 cities: after both city chapters, the matching city and country collections contained both earned receipts, and an unearned foreign city collection stayed hidden. One Lagos branch also recorded delegated-agent assistance without creating proof or advancing the chapter.
+- Largest serialized fixture was 8,549 bytes for the two-episode Ho Chi Minh City path. This is a per-city two-episode fixture size, not a full-world account/save bound.
+- Exact command: `npx tsx /tmp/allworld-world-progression-acceptance.ts` — PASS. This used a fixed synthetic clock so receipt timestamps remain within the fixture state's durable time; no test file, build, browser, network/account action, or Git mutation was used.
+- Updated report: `docs/research/worldwide-progression-2026-10-15/engine-acceptance.json`, with aggregate and per-city evidence.
+
+| UTC | Status | Change or finding | Evidence | Next step |
+|---|---|---|---|---|
+| 2026-10-15 | complete | Direct-engine episode and journey projection acceptance passed across all 284 cities | `/tmp/allworld-world-progression-acceptance.log`; `docs/research/worldwide-progression-2026-10-15/engine-acceptance.json` | Parent integration review |

@@ -18,8 +18,15 @@ type Json = Record<string, unknown>
 const saved = (name: string): Json => JSON.parse(readFileSync(new URL(`./testing/${name}.json`, import.meta.url), 'utf8')) as Json
 const plain = (state: LifeState): Json => JSON.parse(JSON.stringify(state)) as Json
 const EMPTY_BUSINESS = { opened: 0, sales: 0, spent: 0, buys: { day: 0, spent: 0, count: 0 }, bag: {} }
-/** Everything a life from that build gains when it is read now. */
-const ADDED = { 'career.transferDay': null, 'career.teachingGeneration': 0, 'travel.skipped': false, 'economy.headsUp': null, 'estate.home': 'lagos', 'estate.homeAt': null, 'home.fuel': 0, stories: { seq: 1, scenes: [], running: null }, business: EMPTY_BUSINESS }
+/** Everything a life from that build gains when it is read now (the progression books start tracking at the moment it is read). */
+const ADDED = (now: number) => ({
+  'career.transferDay': null, 'career.teachingGeneration': 0, 'travel.skipped': false, 'economy.headsUp': null, 'estate.home': 'lagos', 'estate.homeAt': null, 'home.fuel': 0,
+  'growth.tables.staked': 0, 'missions.grants': [], 'missions.pending': [], 'missions.pendingSets': [],
+  stories: { seq: 1, scenes: [], running: null }, business: EMPTY_BUSINESS,
+  achievements: { displayed: null, earned: {}, pinned: [], progress: {}, trackingSince: now, version: 1 },
+  episodes: { mementos: {}, runs: {}, trackingSince: now, version: 1 },
+  projects: { mementos: {}, proofs: {}, trackingSince: now, version: 2 },
+})
 
 /** Every path at which two JSON values differ, with what the second one has there. */
 function differences(before: unknown, after: unknown, path = ''): Record<string, unknown> {
@@ -39,7 +46,7 @@ test('a settled Lagos life from the build before: the free skip not yet used, La
   const now = Number(old.t)
   // The server's own read of its stored copy (trustedSave), at the moment it was stored.
   const state = createLife(structuredClone(old), { now, cityId: 'lagos', trustedSave: true })
-  assert.deepEqual(differences(old, plain(state)), ADDED)
+  assert.deepEqual(differences(old, plain(state)), ADDED(now))
   // The same holds for the copy a browser kept, and reading the result again changes nothing.
   assert.deepEqual(plain(createLife(structuredClone(old), { now, cityId: 'lagos' })), plain(state))
   assert.deepEqual(plain(createLife(plain(state), { now, cityId: 'lagos', trustedSave: true })), plain(state))
@@ -55,7 +62,7 @@ test('a life from the build before with a house in two cities keeps both, and th
   assert.ok(must(stored.away.lagos).lgaAt < stored.lgaAt, 'Lagos was settled first')
   const now = Number(old.t)
   const state = createLife(structuredClone(old), { now, cityId: 'ibadan', trustedSave: true })
-  assert.deepEqual(differences(old, plain(state)), ADDED)
+  assert.deepEqual(differences(old, plain(state)), ADDED(now))
   assert.deepEqual(plain(createLife(plain(state), { now, cityId: 'ibadan', trustedSave: true })), plain(state))
   // Both houses are held: it is at home in Ibadan (not a visitor, no guest house needed) and may name Ibadan its main home at once.
   assert.deepEqual([state.estate.lga, state.estate.tier, must(state.estate.away.lagos).lga, must(state.estate.away.lagos).tier], [stored.lga, 'starter', must(stored.away.lagos).lga, 'starter'])

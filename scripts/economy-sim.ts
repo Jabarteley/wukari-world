@@ -64,7 +64,7 @@ import { scaleNaira } from '../src/game/price-levels.ts';
 import { CARS, CAR_ORDER } from '../src/game/content/cars.ts';
 import { HOUSE_TIERS, TIER_ORDER, tierCost } from '../src/game/content/world.ts';
 import { EVENTS } from '../src/game/content/events.ts';
-import { DAILY_MISSIONS, WEEKLY_MISSIONS } from '../src/game/content/missions.ts';
+import { missionCatalogues } from '../src/game/systems/missions.ts';
 import { REFERRAL, TABLE_REWARDS } from '../src/game/content/growth.ts';
 import { PROGRAMMES, LECTURE_SLOTS, semesterOf } from '../src/campus/unilag/curriculum.ts';
 import { CAMPUS_JOBS } from '../src/campus/unilag/student.ts';
@@ -394,13 +394,18 @@ function doSomewhere(player: Player, wanted: (def: ActivityDefinition) => boolea
 /** Work through today's and this week's missions as a determined player would, then collect every finished one. */
 function missionRun(player: Player) {
   const pending = () => { const view = player.view().missions; return [...view.daily, ...view.weekly].filter((mission) => !mission.done); };
-  const def = (id: string) => [...DAILY_MISSIONS, ...WEEKLY_MISSIONS].find((mission) => mission.id === id);
+  // Every dealt mission, the city stories' local ones included, is looked up in the one catalogue the dealer uses.
+  const def = (id: string) => missionCatalogues.byId.get(id);
   let guard = 0;
   for (const mission of pending()) {
     const rule = must(def(mission.id));
     for (let left = mission.count - mission.n; left > 0 && guard++ < 40; left--) {
       if (player.state.needs.energy < 35 || player.state.needs.hunger < 30) player.upkeep({ energy: 80, hunger: 70 });
-      if (rule.on === 'venue') {
+      if (rule.on === 'activity') {
+        // A local mission names its own venue, spot and activity: go there and do exactly that.
+        if (!isOpen(must(venueFor(player.cityId, rule.venueId), 'registered venue').hours, player.now) || !player.travel(rule.venueId) || !player.run(rule.spotId, rule.activityId).ok) break;
+      } else if (rule.on === 'venue' && rule.venueId) { if (player.state.location === rule.venueId || !player.travel(rule.venueId)) break; }
+      else if (rule.on === 'venue') {
         const fresh = VENUE_IDS.find((venue) => venue !== 'home' && venue !== player.state.location && isOpen(must(VENUES[venue], 'registered venue').hours, player.now) && !player.state.missions.visited.list.includes(venue));
         if (!fresh || !player.travel(fresh)) break;
       } else if (rule.on === 'tag') { if (!doSomewhere(player, (item) => (item.tags ?? []).some((tag) => rule.tags.includes(tag)))) break; }

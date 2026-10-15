@@ -271,7 +271,13 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
       let started = 0;
       for (const [key, convo] of convos) { if (started >= MAX_SUMMARIES_PER_BEAT) break; if (!convo.busy && t - convo.at >= CONVO_IDLE_MS) { started += 1; void finish(key).catch(() => {}); } }
       const lagos = memory.lagosDayOf(t);
-      if (sweptDay !== lagos) { sweptDay = lagos; void Promise.resolve().then(() => ctx.store.transact((db) => memory.sweep(db, t), { durable: false })).catch(() => {}); }
+      if (sweptDay !== lagos) {
+        sweptDay = lagos;
+        void Promise.resolve().then(async () => {
+          const hasPeople = await ctx.store.read((db) => Object.keys(memory.peekMemory(db)?.people ?? {}).length > 0);
+          if (hasPeople) await ctx.store.transact((db) => memory.sweep(db, t), { durable: false });
+        }).catch(() => {});
+      }
     } catch { /* a bad beat must never stop the host's heartbeat */ }
   }
 

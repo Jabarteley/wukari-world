@@ -1,0 +1,14 @@
+import {fixture} from '__REPO_ROOT__/server/test-fixture.ts';
+const cleanup=[];
+const f=await fixture({after:fn=>cleanup.push(fn)},{moderatorToken:'diagnostic-operator-token-0123456789',publicOrigin:'https://play.example',env:{ZEPTOMAIL_AUTH:'FAKE-DIAGNOSTIC-KEY',EMAIL_FROM_ADDRESS:'hello@mail.play.example',EMAIL_FROM_NAME:'Allworld',EMAIL_CONTACT_LINE:'Allworld Example'},fetch:async()=>new Response(null,{status:202})});
+try {
+ const who=await f.device('Idle diagnostic');
+ for(const [path,body] of [['/api/life?city=lagos',null],['/api/growth/hello',{cityId:'lagos'}],['/api/growth/consent',{cityId:'lagos',age:'adult'}],['/api/social/me',null]]) await f.request(path,body,who.cookie);
+ const r=await fetch(f.base+'/api/mod/growth/outreach/run',{method:'POST',headers:{Authorization:'Bearer diagnostic-operator-token-0123456789','Content-Type':'application/json'},body:'{}'});
+ const answer=await r.json();
+ const calls=[];const original=f.server.store.transact;
+ f.server.store.transact=function(...args){calls.push({stack:new Error().stack.split('\n').slice(1,8),callback:String(args[0]).slice(0,170)});return original.apply(this,args)};
+ f.advance(3600000);f.server.beat();await new Promise(resolve=>setTimeout(resolve,100));
+ f.server.store.transact=original;
+ console.log(JSON.stringify({comeback:answer.comeback,transactionCount:calls.length,calls},null,2));
+}finally{for(const fn of cleanup.reverse())await fn();}

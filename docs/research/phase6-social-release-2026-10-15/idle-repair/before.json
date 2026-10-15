@@ -1,0 +1,25 @@
+{
+  "comeback": {
+    "ran": true,
+    "jobs": 0
+  },
+  "transactionCount": 2,
+  "calls": [
+    {
+      "stack": [
+        "    at f.server.store.transact (file:///private/tmp/allworld-phase6-idle-trace.mjs:10:62)",
+        "    at file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/server/house/runner.ts:274:95",
+        "    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+      ],
+      "callback": "(db) => memory.sweep(db, t)"
+    },
+    {
+      "stack": [
+        "    at f.server.store.transact (file:///private/tmp/allworld-phase6-idle-trace.mjs:10:62)",
+        "    at Object.tick (file:///Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/server/gist/ledger.ts:246:32)",
+        "    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+      ],
+      "callback": "(db) => {\n          const { items, cursor } = collect(db, now);\n          const gist = gistOf(ctx, db);\n          gist.cursor = cursor;\n          let added = 0;\n         "
+    }
+  ]
+}

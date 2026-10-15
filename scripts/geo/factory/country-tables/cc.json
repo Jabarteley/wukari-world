@@ -20,6 +20,10 @@
       "countryISO": "CC",
       "cityOsmRef": "node/1927498780",
       "profile": "outpost",
+      "playBox": {
+        "playKm": 12,
+        "coreKm": 4
+      },
       "airport": {
         "ident": "YPCC",
         "sourceUrl": "https://ourairports.com/airports/YPCC/"

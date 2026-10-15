@@ -21,8 +21,9 @@
       "cityOsmRef": "way/25763630",
       "profile": "wilderness",
       "playBox": {
-        "playKm": 15,
-        "coreKm": 4
+        "playKm": 6,
+        "coreKm": 3,
+        "westKm": 16
       },
       "gateway": {
         "osmRef": "node/1717848188",

@@ -26,6 +26,11 @@
         }
       ],
       "profile": "outpost",
+      "playBox": {
+        "playKm": 10,
+        "coreKm": 4,
+        "eastKm": 17
+      },
       "links": [
         {
           "to": "santiago",

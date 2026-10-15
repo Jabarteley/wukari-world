@@ -96,7 +96,7 @@ function localEpisode(seed: WorldStorySeed, tale: LocalTale, kind: 'city' | 'cou
         },
         {
           id: 'quiet-support', title: 'Finish with quiet support',
-          description: 'Use the choice you already proved. This route remains available to a solo player.',
+          description: 'Finish using the choice you made earlier. You can complete this route on your own.',
           proof: 'quiet-support', missingProof: null,
         },
       ],

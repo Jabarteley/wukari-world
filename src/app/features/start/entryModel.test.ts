@@ -23,11 +23,11 @@ test('the figures come from the catalogue: only open cities, each country once',
 
 test('the live line never says 0, and drops the count until there is one', () => {
   const f = { cities: 60, countries: 21 }
-  assert.equal(liveLine(128, f), '128 in Allworld now · 60 cities, 21 countries')
-  assert.equal(liveLine(1234, f), '1,234 in Allworld now · 60 cities, 21 countries')
-  assert.equal(liveLine(0, f), '60 cities, 21 countries')
-  assert.equal(liveLine(null, f), '60 cities, 21 countries')
-  assert.equal(liveLine(1, { cities: 1, countries: 1 }), '1 in Allworld now · 1 city, 1 country')
+  assert.equal(liveLine(128, f), '128 in Allworld now · 60 cities, 21 countries and territories')
+  assert.equal(liveLine(1234, f), '1,234 in Allworld now · 60 cities, 21 countries and territories')
+  assert.equal(liveLine(0, f), '60 cities, 21 countries and territories')
+  assert.equal(liveLine(null, f), '60 cities, 21 countries and territories')
+  assert.equal(liveLine(1, { cities: 1, countries: 1 }), '1 in Allworld now · 1 city, 1 country or territory')
 })
 
 test('the agent choices and the checklist use the approved words', () => {
@@ -64,7 +64,7 @@ test('every variant has a head that fits, tiles, and a primary button; setup var
   }
   assert.equal(withFigures('{cities} real cities in {countries} countries', { cities: 60, countries: 21 }), '60 real cities in 21 countries')
   assert.deepEqual(ENTRY_VARIANTS.find((variant) => variant.id === 'home')?.tiles.map((tile) => tile.label), ['Live in a real city', 'Work and earn', 'Open a shop for your real business', 'Friends, voice and games'])
-  assert.equal(ENTRY_VARIANTS.find((variant) => variant.id === 'home')?.pitch, '{cities} real cities across Africa, and more opening. Free, in your browser, no download.')
+  assert.equal(ENTRY_VARIANTS.find((variant) => variant.id === 'home')?.pitch, '{cities} real-world places to explore. Free, in your browser, no download.')
 })
 
 test('the campaign content is the variant name, for the addresses of the entry page only', () => {

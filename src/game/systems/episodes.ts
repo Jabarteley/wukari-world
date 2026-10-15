@@ -426,7 +426,7 @@ function optionsOf(state: EpisodeLife, episode: EpisodeDefinition, run: EpisodeR
       action: { type: 'episodes.choose', payload: { id: episode.id, choice: choice.id } }, ...(reason && !studentBlock ? { next: choice.proofNext } : {}) }
   })
   if (run.chapter === 3 && run.choice) return episode.challenges[run.choice].options.map(option => ({
-    id: option.id, label: option.label, description: 'Choose the authored response that helps the next person continue.', enabled: true, reason: null,
+    id: option.id, label: option.label, description: 'Choose the response that fits this scene.', enabled: true, reason: null,
     action: { type: 'episodes.resolve', payload: { id: episode.id, answer: option.id } },
   }))
   return episode.finale.routes.map(route => {

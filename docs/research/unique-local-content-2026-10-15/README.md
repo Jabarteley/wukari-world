@@ -6,11 +6,11 @@ This work is incomplete. The target is 284 supported cities and 243 game country
 
 | Gate | Evidence |
 | --- | --- |
-| Published to main | `4fd4a1b7`: batches 01–02, 75 cities, 35 identities, 150 tales, 450 missions |
-| Next committed milestone | `84679997`: batches 01–04, 145 cities, 104 identities, 290 tales, 870 missions; CI passed, then released main Phase 14 was merged; combined CI pending |
+| Published to main | `95855168`: batches 01–06, 215 cities, 174 identities, 430 tales, 1,290 missions |
+| Next committed milestone | CI38675110595 green on source67e13a8f; main95855168 adds only archived authoring checkpoints and documentation. 175 focused existing integration cases pass. |
 | Live production | Last observed health reported `joinallworld-ac94fca06702c1c86dd37fc3b71`, released independently by the other computer. This content task has not deployed. |
-| Remaining authors | Sol owns batch 05; Sol owns batch 06. Luna’s batch 07 outline was rejected and stopped; 07 needs re-authoring and 08 is held. |
-| Usage limit | Last checked: 92% used, 8% remaining. Stop every worker and all task work at 95% used / 5% remaining. Re-read the live tool. |
+| Remaining authors | Sol authors own batches 07 and 08, covering the remaining 69 cities. These drafts are unregistered. A Luna audit covered 82 middle-range matrix plots without proving a contradiction; that is not full source acceptance. |
+| Usage limit | Last checked: 94% used, 6% remaining. Stop every worker and all task work at 95% used / 5% remaining. Re-read the live tool. |
 
 Cities outside accepted batches keep their existing playable stories and missions. Country arcs activate only when every assigned city in that country is present. Incremental acceptance must never be called complete worldwide bespoke coverage.
 
@@ -45,9 +45,9 @@ The published post-merge build passes five-project typecheck, production build, 
 
 ## Actual browser evidence
 
-An isolated `LocalTalesQA` character completed Nairobi's **The Trays for the Wrong Roles** through a free meal, return to Uhuru Park, quiet-evening activity, authored dilemma and solo finale. **Gesture tray token** survived browser reload and the 145-city expansion. A separate MoscowTalesQA life shows Moscow’s two distinct tales and Russia’s Soft-Block Paths collection; its setup correctly shows Russia. Moscow completion is still pending, so only Nairobi has browser completion evidence. Kenya's distinct arc and Nairobi collection render. Existing Jolly Tunde progress was preserved.
+An isolated `LocalTalesQA` character completed Nairobi's **The Trays for the Wrong Roles** through a free meal, return to Uhuru Park, quiet-evening activity, authored dilemma and solo finale. **Gesture tray token** survived browser reload and the 145-city expansion. A separate MoscowTalesQA life shows Moscow’s two distinct tales and Russia’s Soft-Block Paths collection; its setup correctly shows Russia. Moscow’s The Ribbon Under the Arch also completed through actual arboretum and Brateevo Look around activities, the authored under-arch decision and solo finale, earning Under-arch ribbon clasp. Nairobi reload continuity and Moscow completion are separate checks. Kenya's distinct arc and Nairobi collection render. Existing Jolly Tunde progress was preserved.
 
-Screenshots: `ui-nairobi-earned.png`, `ui-nairobi-earned-145.png`, `ui-nairobi-country.png`, and `ui-country-collection-375.png`.
+Screenshots: `ui-nairobi-earned.png`, `ui-nairobi-earned-145.png`, `ui-nairobi-country.png`, `ui-moscow-earned-145.png`, and `ui-country-collection-375.png`.
 
 UI fixes include actual country grouping (Nairobi → Kenya, Tokyo → Japan), concise home copy instead of provenance text, singular district grammar, visible exact-story-spot guidance for disabled choices, and native disclosure for collections larger than six keepsakes. The 375px collection capture was visually verified; 320px DOM measurements show no overflow, but screenshot scaling at that size was inconclusive. No physical-device claim is made.
 
@@ -66,4 +66,8 @@ Portable inputs include the audited 284-city brief, its 826 guide snippets and 2
 
 Coordinator: `docs/agent-work/unique-local-content-20261015.md`. Shared index: `docs/AGENT-COORDINATION.md`. Current records: `local-tales-05-quality-20261015.md`, `local-tales-06-quality-20261015.md`, and `local-tales-07-outline-20261015-r2.md` (rejected outline). The other computer owns the world-alive programme in `AGENT.md` and `docs/agent-plans/world-alive/STATUS.md`. Per-worker tokens and monetary cost are unknown.
 
-Main advanced again to `545caabb` during 145-city CI, adding the other computer’s Phase 14 prayer/resident work. That released source was merged cleanly; 145 focused combined checks pass; combined CI is being rerun before publication. No new country fiction uses medical, worship or crisis content.
+Combined CI38673086751 passed on `6198fe21`, including the other computer’s released Phase 14 work. Main `81a94cbb` additionally merges release-status documentation. No deployment was performed here.
+
+The current 215-city reports supersede the 145-city probe totals in the historical table: 2,150 engine paths, 25,800 daily deals, 214 legacy rollover claims, 568 exact old keepsakes and 527 old collections pass. `batches-01-06-validation.json` reports zero structural errors. These probes were run in the working tree subsequently committed as67e13a8f. CI38675110595 passed typecheck, build, city budgets, smoke and policy; broad suites were skipped. Welcome copy now describes places worldwide and country/territory identities. The new 375px landing screenshot is inconclusive because browser capture scaled the content; DOM width showed no overflow. Browser binding later failed, and a temporary Chrome viewport reset remains unconfirmed. Existing player saves were not cleared.
+
+Final handoff:215-city milestone is on main95855168; no content deployment. Both authors stopped; drafts07(20/35cities) and08(6/34) archived outside compilation with full matrices. Last live usage94%used/6%remaining; stopped at a safe checkpoint ahead of95%used hard floor. Resume requires renewed work instruction and a live usage check.

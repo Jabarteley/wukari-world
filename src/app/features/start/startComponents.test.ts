@@ -95,7 +95,7 @@ test('the first screen of a new visitor is the entry page: the world, one card, 
   const words = text(html)
   assert.match(html, /data-entry/)
   assert.ok(!html.includes('data-cr-root'), 'the creator is not the first screen')
-  assert.ok(words.includes('A digital world you can live in') && words.includes('real cities across Africa, and more opening. Free, in your browser, no download.'))
+  assert.ok(words.includes('A digital world you can live in') && words.includes('real-world places to explore. Free, in your browser, no download.'))
   assert.match(html, /<button[^>]*data-key="play-now"[^>]*>Play now<\/button>/)
   assert.match(html, /data-entry-creator[^>]*>Make my character first<\/button>/)
   assert.match(html, /data-entry-agent[^>]*>[\s\S]*Connect an AI agent/)

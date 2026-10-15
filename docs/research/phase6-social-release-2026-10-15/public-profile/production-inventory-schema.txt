@@ -1,0 +1,256 @@
+- banner:
+  - navigation "breadcrumb":
+    - link "Durable Objects":
+      - /url: /2df8a0883d45057d519fc26187176389/workers/durable-objects
+      - text: Durable Objects
+    - generic: joinallworld-next_JoinAllworldState
+  - button "Ask AI":
+    - generic: Ask AI
+  - link "Support":
+    - /url: /?to=/:account/support
+    - generic: Support
+  - button "User menu":
+- main:
+  - main:
+    - textbox "Search":
+      - /placeholder: Search...
+    - button "Filters 3":
+      - text: Filters
+      - generic: "3"
+    - button "Entity Relationship Diagram":
+    - button "Refresh schema":
+    - button "New":
+      - text: New
+    - tree:
+      - treeitem "_cf_METADATA":
+        - generic: _cf_METADATA
+      - treeitem "account_devices":
+        - generic: account_devices
+      - treeitem "accounts":
+        - generic: accounts
+      - treeitem "action_receipts":
+        - generic: action_receipts
+      - treeitem "app_schema":
+        - generic: app_schema
+      - treeitem "app_schema_migrations":
+        - generic: app_schema_migrations
+      - treeitem "archived_lives":
+        - generic: archived_lives
+      - treeitem "call_relay_budget":
+        - generic: call_relay_budget
+      - treeitem "chat_images":
+        - generic: chat_images
+      - treeitem "chat_receipts":
+        - generic: chat_receipts
+      - treeitem "chat_voice_notes":
+        - generic: chat_voice_notes
+      - treeitem "collection_parts":
+        - generic: collection_parts
+      - treeitem "collections":
+        - generic: collections
+      - treeitem "entries":
+        - generic: entries
+      - treeitem "host_keys":
+        - generic: host_keys
+      - treeitem "main_store_authority":
+        - generic: main_store_authority
+      - treeitem "once_receipts":
+        - generic: once_receipts
+      - treeitem "qa_cleanup_atomic_probe_20261015":
+        - generic: qa_cleanup_atomic_probe_20261015
+      - treeitem "qa_cleanup_backup_20261015":
+        - generic: qa_cleanup_backup_20261015
+      - treeitem "qa_cleanup_control_20261015":
+        - generic: qa_cleanup_control_20261015
+      - treeitem "qa_cleanup_gate_20261015":
+        - generic: qa_cleanup_gate_20261015
+      - treeitem "qa_cleanup_intentional_rollback_20261015":
+        - generic: qa_cleanup_intentional_rollback_20261015
+      - treeitem "qa_cleanup_paths_20261015":
+        - generic: qa_cleanup_paths_20261015
+      - treeitem "qa_cleanup_targets_20261015":
+        - generic: qa_cleanup_targets_20261015
+      - treeitem "qa_cleanup_world_20261015":
+        - generic: qa_cleanup_world_20261015
+      - treeitem "qa_cleanup_world_events_20261015":
+        - generic: qa_cleanup_world_events_20261015
+      - treeitem "qa_suffix_backup_20261015":
+        - generic: qa_suffix_backup_20261015
+      - treeitem "qa_suffix_control_20261015":
+        - generic: qa_suffix_control_20261015
+      - treeitem "qa_suffix_dry_abort_20261015":
+        - generic: qa_suffix_dry_abort_20261015
+      - treeitem "qa_suffix_gate_20261015":
+        - generic: qa_suffix_gate_20261015
+      - treeitem "qa_suffix_paths_20261015":
+        - generic: qa_suffix_paths_20261015
+      - treeitem "qa_suffix_session_plots_20261015":
+        - generic: qa_suffix_session_plots_20261015
+      - treeitem "qa_suffix_shards_20261015":
+        - generic: qa_suffix_shards_20261015
+      - treeitem "qa_suffix_targets_20261015":
+        - generic: qa_suffix_targets_20261015
+      - treeitem "qa_suffix_world_events_20261015":
+        - generic: qa_suffix_world_events_20261015
+      - treeitem "qa_suffix_world_plots_20261015":
+        - generic: qa_suffix_world_plots_20261015
+      - treeitem "qa_suffix_world_residents_20261015":
+        - generic: qa_suffix_world_residents_20261015
+      - treeitem "rate_limits":
+        - generic: rate_limits
+      - treeitem "rate_limits_long":
+        - generic: rate_limits_long
+      - treeitem "rate_limits_protected":
+        - generic: rate_limits_protected
+      - treeitem "sessions":
+        - generic: sessions
+      - treeitem "showcase_images":
+        - generic: showcase_images
+      - treeitem "sqlite_sequence":
+        - generic: sqlite_sequence
+      - treeitem "store_meta":
+        - generic: store_meta
+      - treeitem "turn_budget":
+        - generic: turn_budget
+      - treeitem "wallet_effects":
+        - generic: wallet_effects
+      - treeitem "world_meta":
+        - generic: world_meta
+      - treeitem "world_shards":
+        - generic: world_shards
+    - generic: Query
+    - text: New
+    - generic: "1"
+    - textbox:
+      - generic: SELECT name, sql FROM sqlite_master WHERE type='table' AND name IN ('sessions','archived_lives','accounts','account_devices','action_receipts','once_receipts','wallet_effects','collections','entries','collection_parts','store_meta','main_store_authority','app_schema','world_shards','world_meta') ORDER BY name;
+    - generic: Ln 1 Col 312
+    - button "Format ⌥ F"
+    - button "Run":
+      - generic: Run
+    - button:
+    - generic: sqlite_master • 2 x 15
+    - generic: Summary
+    - table:
+      - rowgroup:
+        - row "name sql":
+          - columnheader
+          - columnheader "name":
+            - generic: name
+          - columnheader "sql":
+            - generic: sql
+      - rowgroup:
+        - row "1 account_devices CREATE TABLE account_devices (secret TEXT PRIMARY KEY, account_id TEXT NOT NULL, expires_at INTEGER NOT NULL, value TEXT NOT NULL)":
+          - cell "1":
+            - generic: "1"
+          - cell "account_devices":
+            - generic: account_devices
+          - cell "CREATE TABLE account_devices (secret TEXT PRIMARY KEY, account_id TEXT NOT NULL, expires_at INTEGER NOT NULL, value TEXT NOT NULL)":
+            - generic: CREATE TABLE account_devices (secret TEXT PRIMARY KEY, account_id TEXT NOT NULL, expires_at INTEGER NOT NULL, value TEXT NOT NULL)
+        - row "2 accounts CREATE TABLE accounts (id TEXT PRIMARY KEY, public_id TEXT, value TEXT NOT NULL)":
+          - cell "2":
+            - generic: "2"
+          - cell "accounts":
+            - generic: accounts
+          - cell "CREATE TABLE accounts (id TEXT PRIMARY KEY, public_id TEXT, value TEXT NOT NULL)":
+            - generic: CREATE TABLE accounts (id TEXT PRIMARY KEY, public_id TEXT, value TEXT NOT NULL)
+        - row "3 action_receipts CREATE TABLE action_receipts (sender TEXT NOT NULL, action_id TEXT NOT NULL, action_at INTEGER NOT NULL, value TEXT NOT NULL, PRIMARY KEY(sender,action_id))":
+          - cell "3":
+            - generic: "3"
+          - cell "action_receipts":
+            - generic: action_receipts
+          - cell "CREATE TABLE action_receipts (sender TEXT NOT NULL, action_id TEXT NOT NULL, action_at INTEGER NOT NULL, value TEXT NOT NULL, PRIMARY KEY(sender,action_id))":
+            - generic: CREATE TABLE action_receipts (sender TEXT NOT NULL, action_id TEXT NOT NULL, action_at INTEGER NOT NULL, value TEXT NOT NULL, PRIMARY KEY(sender,action_id))
+        - row "4 app_schema CREATE TABLE app_schema (singleton INTEGER PRIMARY KEY CHECK(singleton=1), version INTEGER NOT NULL)":
+          - cell "4":
+            - generic: "4"
+          - cell "app_schema":
+            - generic: app_schema
+          - cell "CREATE TABLE app_schema (singleton INTEGER PRIMARY KEY CHECK(singleton=1), version INTEGER NOT NULL)":
+            - generic: CREATE TABLE app_schema (singleton INTEGER PRIMARY KEY CHECK(singleton=1), version INTEGER NOT NULL)
+        - row "5 archived_lives CREATE TABLE archived_lives (public_id TEXT PRIMARY KEY, value TEXT NOT NULL)":
+          - cell "5":
+            - generic: "5"
+          - cell "archived_lives":
+            - generic: archived_lives
+          - cell "CREATE TABLE archived_lives (public_id TEXT PRIMARY KEY, value TEXT NOT NULL)":
+            - generic: CREATE TABLE archived_lives (public_id TEXT PRIMARY KEY, value TEXT NOT NULL)
+        - row "6 collection_parts CREATE TABLE collection_parts (name TEXT NOT NULL, part INTEGER NOT NULL, value TEXT NOT NULL, PRIMARY KEY(name,part))":
+          - cell "6":
+            - generic: "6"
+          - cell "collection_parts":
+            - generic: collection_parts
+          - cell "CREATE TABLE collection_parts (name TEXT NOT NULL, part INTEGER NOT NULL, value TEXT NOT NULL, PRIMARY KEY(name,part))":
+            - generic: CREATE TABLE collection_parts (name TEXT NOT NULL, part INTEGER NOT NULL, value TEXT NOT NULL, PRIMARY KEY(name,part))
+        - row "7 collections CREATE TABLE collections (name TEXT PRIMARY KEY, value TEXT NOT NULL)":
+          - cell "7":
+            - generic: "7"
+          - cell "collections":
+            - generic: collections
+          - cell "CREATE TABLE collections (name TEXT PRIMARY KEY, value TEXT NOT NULL)":
+            - generic: CREATE TABLE collections (name TEXT PRIMARY KEY, value TEXT NOT NULL)
+        - row "8 entries CREATE TABLE entries (coll TEXT NOT NULL, map TEXT NOT NULL, key TEXT NOT NULL, ord INTEGER NOT NULL, ix INTEGER, tx TEXT, jx TEXT, value TEXT NOT NULL, PRIMARY KEY(coll,map,key)) WITHOUT ROWID":
+          - cell "8":
+            - generic: "8"
+          - cell "entries":
+            - generic: entries
+          - cell "CREATE TABLE entries (coll TEXT NOT NULL, map TEXT NOT NULL, key TEXT NOT NULL, ord INTEGER NOT NULL, ix INTEGER, tx TEXT, jx TEXT, value TEXT NOT NULL, PRIMARY KEY(coll,map,key)) WITHOUT ROWID":
+            - generic: CREATE TABLE entries (coll TEXT NOT NULL, map TEXT NOT NULL, key TEXT NOT NULL, ord INTEGER NOT NULL, ix INTEGER, tx TEXT, jx TEXT, value TEXT NOT NULL, PRIMARY KEY(coll,map,key)) WITHOUT ROWID
+        - row "9 main_store_authority CREATE TABLE main_store_authority (singleton INTEGER PRIMARY KEY CHECK(singleton=1), epoch INTEGER NOT NULL, writable INTEGER NOT NULL CHECK(writable IN (0,1)), retired_from_epoch INTEGER, wallet_effect_watermark INTEGER)":
+          - cell "9":
+            - generic: "9"
+          - cell "main_store_authority":
+            - generic: main_store_authority
+          - cell "CREATE TABLE main_store_authority (singleton INTEGER PRIMARY KEY CHECK(singleton=1), epoch INTEGER NOT NULL, writable INTEGER NOT NULL CHECK(writable IN (0,1)), retired_from_epoch INTEGER, wallet_effect_watermark INTEGER)":
+            - generic: CREATE TABLE main_store_authority (singleton INTEGER PRIMARY KEY CHECK(singleton=1), epoch INTEGER NOT NULL, writable INTEGER NOT NULL CHECK(writable IN (0,1)), retired_from_epoch INTEGER, wallet_effect_watermark INTEGER)
+        - row "10 once_receipts CREATE TABLE once_receipts (sender TEXT NOT NULL, id TEXT NOT NULL, at INTEGER NOT NULL, kind TEXT NOT NULL, value TEXT NOT NULL, PRIMARY KEY(sender,id))":
+          - cell "10":
+            - generic: "10"
+          - cell "once_receipts":
+            - generic: once_receipts
+          - cell "CREATE TABLE once_receipts (sender TEXT NOT NULL, id TEXT NOT NULL, at INTEGER NOT NULL, kind TEXT NOT NULL, value TEXT NOT NULL, PRIMARY KEY(sender,id))":
+            - generic: CREATE TABLE once_receipts (sender TEXT NOT NULL, id TEXT NOT NULL, at INTEGER NOT NULL, kind TEXT NOT NULL, value TEXT NOT NULL, PRIMARY KEY(sender,id))
+        - row "11 sessions CREATE TABLE sessions (secret TEXT PRIMARY KEY, public_id TEXT UNIQUE NOT NULL, expires_at INTEGER NOT NULL, value TEXT NOT NULL)":
+          - cell "11":
+            - generic: "11"
+          - cell "sessions":
+            - generic: sessions
+          - cell "CREATE TABLE sessions (secret TEXT PRIMARY KEY, public_id TEXT UNIQUE NOT NULL, expires_at INTEGER NOT NULL, value TEXT NOT NULL)":
+            - generic: CREATE TABLE sessions (secret TEXT PRIMARY KEY, public_id TEXT UNIQUE NOT NULL, expires_at INTEGER NOT NULL, value TEXT NOT NULL)
+        - row "12 store_meta CREATE TABLE store_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)":
+          - cell "12":
+            - generic: "12"
+          - cell "store_meta":
+            - generic: store_meta
+          - cell "CREATE TABLE store_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)":
+            - generic: CREATE TABLE store_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)
+        - row "13 wallet_effects CREATE TABLE wallet_effects (seq INTEGER PRIMARY KEY AUTOINCREMENT, public_id TEXT NOT NULL, city_id TEXT NOT NULL, operation_id TEXT, ordinal INTEGER NOT NULL, at INTEGER NOT NULL, amount INTEGER NOT NULL, balance_after INTEGER NOT NULL, reason TEXT NOT NULL, transfer_id TEXT)":
+          - cell "13":
+            - generic: "13"
+          - cell "wallet_effects":
+            - generic: wallet_effects
+          - cell "CREATE TABLE wallet_effects (seq INTEGER PRIMARY KEY AUTOINCREMENT, public_id TEXT NOT NULL, city_id TEXT NOT NULL, operation_id TEXT, ordinal INTEGER NOT NULL, at INTEGER NOT NULL, amount INTEGER NOT NULL, balance_after INTEGER NOT NULL, reason TEXT NOT NULL, transfer_id TEXT)":
+            - generic: CREATE TABLE wallet_effects (seq INTEGER PRIMARY KEY AUTOINCREMENT, public_id TEXT NOT NULL, city_id TEXT NOT NULL, operation_id TEXT, ordinal INTEGER NOT NULL, at INTEGER NOT NULL, amount INTEGER NOT NULL, balance_after INTEGER NOT NULL, reason TEXT NOT NULL, transfer_id TEXT)
+        - row "14 world_meta CREATE TABLE world_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)":
+          - cell "14":
+            - generic: "14"
+          - cell "world_meta":
+            - generic: world_meta
+          - cell "CREATE TABLE world_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)":
+            - generic: CREATE TABLE world_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)
+        - row "15 world_shards CREATE TABLE world_shards (seq INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, text TEXT NOT NULL)":
+          - cell "15":
+            - generic: "15"
+          - cell "world_shards":
+            - generic: world_shards
+          - cell "CREATE TABLE world_shards (seq INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, text TEXT NOT NULL)":
+            - generic: CREATE TABLE world_shards (seq INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, text TEXT NOT NULL)
+    - button "Export query results":
+      - text: Export
+    - generic: Query Time
+    - button:
+    - generic: ": 0.0ms"
+    - generic: Response Time
+    - button:
+    - generic: ": 1.42s"
+    - generic: "Rows Read: 115"
+- region "Notifications"

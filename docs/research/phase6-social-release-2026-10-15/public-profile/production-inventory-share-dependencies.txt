@@ -1,0 +1,5 @@
+2026-10-15T17:32:09.065Z
+READ-ONLY; no production mutation.
+dependency_summary
+1
+{"share_exists":1,"owner_matches":1,"opened_type":"integer","opened":0,"joined_type":"integer","joined":0,"other_player_ref_code_count":0,"other_player_ref_owner_count":0,"owner_invited_count":0,"target_invited_count":0,"target_owed_count":0,"target_ref_count":0,"target_counted_sum":0,"share_code_text_refs":0,"owner_text_refs":1}

@@ -1,0 +1,34 @@
+-- READ-ONLY INVENTORY DRAFT. DO NOT RUN AS PART OF THE CLEANUP TRANSACTION.
+-- Returns counts and share counters only; it does not return player IDs, facts or private state.
+WITH growth(value) AS (
+  SELECT value FROM collections WHERE name='growth' AND json_valid(value)=1
+), share(value) AS (
+  SELECT json_extract(value,'$.shares.ffe8762f22') FROM growth
+), players(key,value) AS (
+  SELECT p.key,p.value FROM growth g,json_each(g.value,'$.players') p
+), code_refs(path) AS (
+  SELECT j.fullkey
+  FROM growth g,json_tree(g.value) j
+  WHERE j.type='text' AND j.value='ffe8762f22'
+), owner_refs(path) AS (
+  SELECT j.fullkey
+  FROM growth g,json_tree(g.value) j
+  WHERE j.type='text' AND j.value='6cea4961-b7fc-4bb7-a6db-a28e9327014f'
+)
+SELECT json_object(
+  'share_exists',CASE WHEN json_type((SELECT value FROM share))='object' THEN 1 ELSE 0 END,
+  'owner_matches',CASE WHEN json_extract((SELECT value FROM share),'$.by')='6cea4961-b7fc-4bb7-a6db-a28e9327014f' THEN 1 ELSE 0 END,
+  'opened_type',json_type((SELECT value FROM share),'$.opened'),
+  'opened',json_extract((SELECT value FROM share),'$.opened'),
+  'joined_type',json_type((SELECT value FROM share),'$.joined'),
+  'joined',json_extract((SELECT value FROM share),'$.joined'),
+  'other_player_ref_code_count',(SELECT count(*) FROM players WHERE key<>'6cea4961-b7fc-4bb7-a6db-a28e9327014f' AND json_extract(value,'$.ref.code')='ffe8762f22'),
+  'other_player_ref_owner_count',(SELECT count(*) FROM players WHERE key<>'6cea4961-b7fc-4bb7-a6db-a28e9327014f' AND json_extract(value,'$.ref.by')='6cea4961-b7fc-4bb7-a6db-a28e9327014f'),
+  'owner_invited_count',(SELECT count(*) FROM json_each((SELECT value FROM players WHERE key='6cea4961-b7fc-4bb7-a6db-a28e9327014f'),'$.invited')),
+  'target_invited_count',(SELECT count(*) FROM players p,json_each(p.value,'$.invited') i WHERE p.key IN ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','6cea4961-b7fc-4bb7-a6db-a28e9327014f')),
+  'target_owed_count',(SELECT count(*) FROM players p,json_each(p.value,'$.owed') o WHERE p.key IN ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','6cea4961-b7fc-4bb7-a6db-a28e9327014f')),
+  'target_ref_count',(SELECT count(*) FROM players WHERE key IN ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','6cea4961-b7fc-4bb7-a6db-a28e9327014f') AND json_type(value,'$.ref')='object'),
+  'target_counted_sum',(SELECT COALESCE(sum(CAST(json_extract(value,'$.counted') AS INTEGER)),0) FROM players WHERE key IN ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','6cea4961-b7fc-4bb7-a6db-a28e9327014f')),
+  'share_code_text_refs',(SELECT count(*) FROM code_refs),
+  'owner_text_refs',(SELECT count(*) FROM owner_refs)
+) AS dependency_summary;

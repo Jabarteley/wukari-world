@@ -1,0 +1,5 @@
+Deploy only joinallworld-next	Download sealed artifact from this run	2026-10-15T17:04:10.6574013Z - joinallworld-package (ID: 11992477953, Size: 72843251, Expected Digest: sha256:100453cffd85b71edf0476ae57964d780d9948fc2cb10f794411154ff9952c90)
+Deploy only joinallworld-next	Verify archive and extract regular package files only	﻿2026-10-15T17:04:13.6638907Z ##[group]Run echo "$ARCHIVE_SHA  $RUNNER_TEMP/sealed/joinallworld-package.tar" | sha256sum --check --strict
+Deploy only joinallworld-next	Verify archive and extract regular package files only	2026-10-15T17:04:13.6639748Z ^[[36;1mecho "$ARCHIVE_SHA  $RUNNER_TEMP/sealed/joinallworld-package.tar" | sha256sum --check --strict^[[0m
+Deploy only joinallworld-next	Revalidate fixed identity and deploy with existing protected credential	2026-10-15T17:04:32.7218425Z No targets deployed for joinallworld-next (0.57 sec)
+Deploy only joinallworld-next	Revalidate fixed identity and deploy with existing protected credential	2026-10-15T17:04:32.7221033Z Current Version ID: e6d0bf60-350c-4096-8e7e-29e67d1fe2ce

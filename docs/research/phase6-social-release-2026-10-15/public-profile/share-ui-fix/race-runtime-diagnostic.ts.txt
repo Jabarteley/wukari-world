@@ -1,0 +1,61 @@
+import assert from 'node:assert/strict'
+import test from 'node:test'
+import { fileURLToPath } from 'node:url'
+import { createServer } from 'vite'
+import { createRenderer, nextTick, ssrContextKey } from 'vue'
+import type { Component } from 'vue'
+import type { App } from '../../state/app.ts'
+
+type Node = { children: Node[]; parent: Node | null }
+const renderer = createRenderer<Node, Node>({
+  createElement: () => ({ children: [], parent: null }), createText: () => ({ children: [], parent: null }), createComment: () => ({ children: [], parent: null }),
+  patchProp: () => {}, setText: () => {}, setElementText: () => {},
+  insert(child, parent, anchor) { child.parent = parent; parent.children.splice(anchor ? parent.children.indexOf(anchor) : parent.children.length, 0, child) },
+  remove(child) { if (child.parent) child.parent.children.splice(child.parent.children.indexOf(child), 1) },
+  parentNode: node => node.parent, nextSibling(node) { return node.parent?.children[node.parent.children.indexOf(node) + 1] ?? null },
+})
+const root = fileURLToPath(new URL('../../../..', import.meta.url))
+const deferred = () => { let resolve!: () => void; const promise = new Promise<void>(done => { resolve = done }); return { promise, resolve } }
+const waitFor = async (condition: () => boolean): Promise<void> => { for (let i = 0; i < 100 && !condition(); i += 1) await new Promise(done => setImmediate(done)); assert.ok(condition()) }
+
+test('same-ID reopen, bounded copy, and unmount invalidate late completion', async () => {
+  const vite = await createServer({ root, configFile: `${root}vite.config.ts`, logLevel: 'error', appType: 'custom',
+    plugins: [{ name: 'public-profile-copy-probe', enforce: 'pre', resolveId(source, importer) { return importer?.includes('PublicProfile.vue') && source.endsWith('/ui/share.ts') ? '\0copy-probe' : null }, load(id) { return id === '\0copy-probe' ? 'export const copyText = text => globalThis.__profileProbeCopy(text)' : null } }],
+    server: { middlewareMode: true, hmr: false, ws: false, watch: null }, optimizeDeps: { noDiscovery: true, include: [] } })
+  const oldLocation = Object.getOwnPropertyDescriptor(globalThis, 'location'), oldTimer = globalThis.setTimeout
+  let app: App | undefined, oldFetch: App['game']['fetchJson'] | undefined, oldToast: App['game']['toast'] | undefined
+  try {
+    const cities = await vite.ssrLoadModule('/src/game/cities/registry.ts') as typeof import('../../../game/cities/registry.ts'); await cities.loadCityContent('lagos')
+    app = (await vite.ssrLoadModule('/src/app/state/app.ts') as { useApp(): App }).useApp(); oldFetch = app.game.fetchJson; oldToast = app.game.toast
+    const copies: ReturnType<typeof deferred>[] = [], toasts: string[] = []
+    Reflect.set(globalThis, '__profileProbeCopy', () => { const item = deferred(); copies.push(item); return item.promise })
+    Object.defineProperty(globalThis, 'location', { configurable: true, value: { origin: 'https://allworld.example' } })
+    app.game.fetchJson = async () => ({ profile: { version: 1, id: 'same', name: 'Ada', kind: 'human', path: '/p/same', achievements: [], counts: { achievements: 0, stories: 0, projects: 0, collections: 0 }, history: [], next: null } }) as never
+    app.game.toast = message => { toasts.push(message) }
+    const component = (await vite.ssrLoadModule('/src/app/features/social/PublicProfile.vue') as { default: Component }).default
+    const instance = renderer.createApp(Object.assign({}, component, { render: () => null }) as Component, { id: 'same', name: 'Ada', mode: 'profile' })
+    instance.provide(ssrContextKey, { modules: new Set<string>() }); instance.mount({ children: [], parent: null })
+    const state = (instance as unknown as { _instance: { setupState: { shareState: { kind: string; url?: string; copy?: string }; share(): Promise<void>; copyLink(): Promise<void> } } })._instance.setupState
+    await nextTick(); await state.share()
+    const idle = { kind: 'ready', url: 'https://allworld.example/p/same', copy: 'idle' }; assert.deepEqual(state.shareState, idle)
+
+    const oldCopy = state.copyLink(); await waitFor(() => copies.length === 1)
+    await state.share(); await state.share(); assert.deepEqual(state.shareState, idle)
+    copies[0]!.resolve(); await oldCopy; assert.deepEqual(state.shareState, idle); assert.deepEqual(toasts, [])
+
+    globalThis.setTimeout = ((callback: TimerHandler, ms?: number, ...args: unknown[]) => oldTimer(callback, Math.min(Number(ms), 2), ...args)) as typeof setTimeout
+    const timeoutCopy = state.copyLink(); await waitFor(() => copies.length === 2); await timeoutCopy
+    assert.equal(state.shareState.copy, 'failed'); assert.deepEqual(toasts, ['Copy failed. Select the link and copy it manually.'])
+    copies[1]!.resolve(); await nextTick(); assert.equal(state.shareState.copy, 'failed'); assert.equal(toasts.length, 1)
+    globalThis.setTimeout = oldTimer
+
+    await state.share(); await state.share()
+    const unmountedCopy = state.copyLink(); await waitFor(() => copies.length === 3)
+    instance.unmount(); copies[2]!.resolve(); await unmountedCopy; assert.equal(toasts.length, 1)
+  } finally {
+    globalThis.setTimeout = oldTimer; Reflect.deleteProperty(globalThis, '__profileProbeCopy')
+    if (app && oldFetch) app.game.fetchJson = oldFetch; if (app && oldToast) app.game.toast = oldToast
+    app?.game.stop(); await vite.close()
+    if (oldLocation) Object.defineProperty(globalThis, 'location', oldLocation); else Reflect.deleteProperty(globalThis, 'location')
+  }
+})

@@ -1,0 +1,5 @@
+Temporary harness history (no product assertion failure):
+1. Initial setup stopped before component execution because Lagos saved-life rules were not preloaded.
+2. After preloading Lagos, a polling assertion ran before the dynamic share-module import reached the clipboard stub.
+3. Final disposable Vite setup compiled the real SFC and replaced only copyText at its dependency seam with a deferred promise resolving void; the same-ID reopen, bounded timeout, and unmount scenario passed 1/1. This proves rejection of a late completion, not the boolean-true copy-success branch; ordinary copy success remains a browser gate.
+The temporary test file was deleted after the run.

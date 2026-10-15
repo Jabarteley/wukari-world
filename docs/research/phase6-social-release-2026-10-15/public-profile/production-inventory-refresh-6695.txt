@@ -1,0 +1,27 @@
+2026-10-15T17:32:50.006Z
+READ-ONLY; no production mutation.
+WITH targets(id) AS (VALUES ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56'),('453a0f63-5b90-4e7b-b730-4ea9ff54b70d'),('6cea4961-b7fc-4bb7-a6db-a28e9327014f')) SELECT 'authority' AS kind,json_object('schema',(SELECT version FROM app_schema),'epoch',epoch,'writable',writable,'retired',retired_from_epoch,'watermark',wallet_effect_watermark,'layout',(SELECT value FROM store_meta WHERE key='layout'),'parts',(SELECT count(*) FROM collection_parts),'new_helpers',(SELECT count(*) FROM sqlite_master WHERE name GLOB 'qa_phase6_cleanup3_20261015_*')) AS detail FROM main_store_authority UNION ALL SELECT 'target',json_object('id',t.id,'sessions',(SELECT count(*) FROM sessions WHERE public_id=t.id),'archives',(SELECT count(*) FROM archived_lives WHERE public_id=t.id),'accounts',(SELECT count(*) FROM accounts WHERE public_id=t.id),'devices',(SELECT count(*) FROM account_devices d JOIN sessions s ON d.secret=s.secret WHERE s.public_id=t.id),'actions',(SELECT count(*) FROM action_receipts WHERE sender=t.id),'once',(SELECT count(*) FROM once_receipts WHERE sender=t.id),'wallet_audit',(SELECT count(*) FROM wallet_effects WHERE public_id=t.id)) FROM targets t UNION ALL SELECT 'plot',json_object('id',s.public_id,'city',c.key,'cash',json_extract(c.value,'$.state.cash'),'plot',json_extract(c.value,'$.state.estate.plot'),'away_lagos_plot',json_extract(c.value,'$.state.estate.away.lagos.plot')) FROM sessions s,json_each(s.value,'$.cities') c WHERE s.public_id IN (SELECT id FROM targets);
+
+kind
+detail
+1
+authority
+{"schema":2,"epoch":3,"writable":1,"retired":null,"watermark":null,"layout":"shadow","parts":0,"new_helpers":0}
+2
+target
+{"id":"bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56","sessions":1,"archives":0,"accounts":0,"devices":0,"actions":5,"once":0,"wallet_audit":1}
+3
+target
+{"id":"453a0f63-5b90-4e7b-b730-4ea9ff54b70d","sessions":1,"archives":0,"accounts":0,"devices":0,"actions":1,"once":0,"wallet_audit":0}
+4
+target
+{"id":"6cea4961-b7fc-4bb7-a6db-a28e9327014f","sessions":1,"archives":0,"accounts":0,"devices":0,"actions":25,"once":0,"wallet_audit":3}
+5
+plot
+{"id":"453a0f63-5b90-4e7b-b730-4ea9ff54b70d","city":"lagos","cash":5000,"plot":null,"away_lagos_plot":null}
+6
+plot
+{"id":"6cea4961-b7fc-4bb7-a6db-a28e9327014f","city":"lome","cash":69750,"plot":null,"away_lagos_plot":{"lga":"lagos-island","estate":0,"plot":8}}
+7
+plot
+{"id":"bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56","city":"tokyo","cash":76000,"plot":{"lga":"centre","estate":0,"plot":0},"away_lagos_plot":null}

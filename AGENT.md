@@ -5,24 +5,24 @@ continue. The full brief is in [docs/agent-plans/world-alive/](docs/agent-plans/
 STATUS.md (what is live, the log, the questions for the owner), then PHASES.md. Repository-wide coordination is in
 [AGENTS.md](AGENTS.md). When everything below is done, empty the "In flight" and "Still to do" sections and say so in STATUS.md.
 
-Last updated: 15 October 2026 (release 9 going out).
+Last updated: 15 October 2026 (release 9 live: `ac94fca0`).
 
 ## In flight
 
 | Work | Branch | Where it stopped | Next step |
 | --- | --- | --- | --- |
-| Release 9: Phases 11, 12, 13a and first-download room | `main` | Merged and checked on `claude/world-alive`, being released | Confirm live, run the Lagos smoke test, replace `REL9` in STATUS.md with the commit. |
 | Phase 14: prayers and acts | `claude/alive-p14-prayers` | Being built (from `claude/world-alive`) | Review, merge, CI, release. |
 | Phase 19, the rest: city projects, gift packets, stickers, home-city pin, life stages | `claude/alive-p19b` | Being built | Review, merge, CI, release. |
+| Phase 13b: up to thirty residents (setting `residentCount` stays 1 until the owner has read Remi's day) | `claude/alive-p13b-residents` | Being built | Review, merge, CI, release. |
+| Phase 18: real price levels (World Bank data) | `claude/alive-p18-prices` | Being built | Review, merge, CI, release. |
 
 ## Still to do (in order)
 
-1. Phase 13b (thirty residents, measured
-   as an experiment: decide success measures first) and 13c (ideas, assembly, president, Sunday letter).
-4. Phase 15: calls with agents (push-to-talk; measure both speech-to-text ways on accents and record the numbers).
-6. Phase 18: real price levels (World Bank data, re-run `scripts/economy-sim.ts`).
-8. Phase 20: agents' own relationships and world events (weddings: Phase 6's wedding share card is ready for them).
-9. Not for an agent to start: local payments, paid cosmetics, the creator programme, anything with ads or spend.
+1. Phase 13c: ideas and needs, the residents' assembly, the president and the Sunday letter to the owner (after 13b).
+2. Phase 15: calls with agents (push-to-talk; measure both speech-to-text ways on Nigerian, Ghanaian, Kenyan and British English
+   and Pidgin, and record words-right and delay).
+3. Phase 20: agents' own relationships and world events (weddings: Phase 6's wedding share card is ready for them).
+4. Not for an agent to start: local payments, paid cosmetics, the creator programme, anything with ads or spend.
 
 ## How the work is done (learned the hard way)
 

@@ -1,0 +1,28 @@
+
+> joinallworld@0.1.0 slot
+> node --experimental-strip-types scripts/agent-slot.ts heavy -- node --experimental-strip-types scripts/new-player.ts
+
+New player · server clock starts 2026-01-03T09:00:00.000Z (Sat 10:00 in Lagos) · public origin https://play.example
+01  Ada lands and taps Play: a guest in Freedom Park                  · 4s after landing · one goal line: “Play a round of Ayo” · no missions, no house, in no directory yet
+02  Play Ayo under the trees → the first reward                       · +₦500 +1✨ 15s after landing; chilling first did not count as the goal
+03  Say hello to Mama Ronke; settle in: Street Smart, own starter house in Ikeja· ₦20,000 · Plot 1, Street 1, Estate 1, Ikeja · no rent · goals 1–3 paid
+04  Eat from the cooler and take a bucket bath at home                · goals 4 and 5 paid (₦21,000); next: “Get a job”
+05  Missions: “Gist before the borrowed punchline”, “Find a gem”, “Greet 2 regulars before the prop change”· finished and collected “Gist before the borrowed punchline”: +₦250 (₦21,100)
+06  Ada takes a Danfo to Amala Shitta and shares the Corner table     · https://play.example/s/newplayers · “Whot” at Amala Shitta
+07  A new visitor opens the link: the preview page, read without running a script· og:title “Come and play Whot with Ada” · absolute og:image · no script, no cookie · leads to ?join=…&ref=newplayers&table=buka-corner
+08  Bola taps Play and lands in the buka beside Ada                   · “You’re joining Ada” — Ada is at Amala Shitta right now — so are you. Look for their name tag. Work a paid shift and you both get a gift. · referral attached, nothing paid yet
+09  They sit at the Corner table and play Whot: 71 moves              · The market finished. Bola wins on the count with 17. · Bola +₦150, paid by the game, once
+10  The referral pays only after real work                            · Bola +₦1,000 after his first paid day; Ada +₦1,500 +2✨ after his second (the next Lagos day); each once
+11  Reload (server restarted on the same data)                        · both lives identical · Plot 1, Street 1, Estate 1, Ikeja still Ada’s · gifts not paid again
+
+Ada’s ledger:
+    +₦500      Goal: Play a round of Ayo                                       ₦5,500
+    +₦500      Goal: Say hello to someone                                      ₦6,000
+    +₦13,000   Start cash · Starter house, Ikeja                               ₦19,000
+    +₦1,000    Goal: Settle in                                                 ₦20,000
+    +₦500      Goal: Eat something                                             ₦20,500
+    +₦500      Goal: Freshen up                                                ₦21,000
+    −₦150      Danfo to Amala Shitta                                           ₦20,850
+    +₦250      Mission: Gist before the borrowed punchline                     ₦21,100
+    +₦1,500    Referral reward (a friend you invited is playing)               ₦22,600
+New player complete: 11 steps. Ada ₦22,600 (5 starter goals to go), Bola ₦7,050.

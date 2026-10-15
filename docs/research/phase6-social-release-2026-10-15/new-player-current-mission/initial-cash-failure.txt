@@ -1,0 +1,38 @@
+
+> joinallworld@0.1.0 slot
+> node --experimental-strip-types scripts/agent-slot.ts heavy -- node --experimental-strip-types --test server/new-player.test.ts
+
+✖ the new-player journey runs to the end with every assertion holding (707.074083ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1393.466916
+
+✖ failing tests:
+
+test at server/new-player.test.ts:9:1
+✖ the new-player journey runs to the end with every assertion holding (707.074083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   ada: 22600,
+  +   bola: 7050
+  -   ada: 22500,
+  -   bola: 6900
+    }
+  
+      at TestContext.<anonymous> (file://<repo>/server/new-player.test.ts:16:10)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { ada: 22600, bola: 7050 },
+    expected: { ada: 22500, bola: 6900 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

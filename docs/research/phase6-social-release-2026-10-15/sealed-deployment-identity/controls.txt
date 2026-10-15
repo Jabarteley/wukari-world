@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": 11,
+  "checksPassed": [
+    "strict versioned local and GitHub identities are accepted",
+    "malformed, partial, noncanonical and out-of-range identities are rejected",
+    "same-run package digests are deterministic",
+    "changed run changes only Worker marker and manifest",
+    "Worker begins with exact source and GitHub identity marker",
+    "local production packaging is rejected",
+    "partial GitHub packaging identity is rejected",
+    "missing, forged, resealed and duplicate Worker markers are rejected",
+    "marked raw Worker cap is enforced at 3500000 bytes",
+    "wrong current GitHub run or attempt is rejected before deploy",
+    "same-run deploy uses only fixed config and immediate Durable Object code-update argv"
+  ]
+}

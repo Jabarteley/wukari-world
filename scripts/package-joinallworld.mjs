@@ -2,14 +2,18 @@ import { mkdirSync, cpSync, writeFileSync, readFileSync, readdirSync, statSync }
 import { resolve, join, relative } from 'node:path';
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
-import { expectedConfig, checkPackage } from './guard-joinallworld-package.mjs';
+import { expectedConfig, checkPackage, releaseIdentityFromEnvironment, releaseMarker } from './guard-joinallworld-package.mjs';
 const [sourcePath, packagePath, sourceSha, publishing, toolingPath] = process.argv.slice(2);
 if (!sourcePath || !packagePath || !sourceSha || !publishing || !toolingPath) throw Error('Missing package arguments');
 if (!['true', 'false'].includes(publishing)) throw Error('Invalid publish mode');
 const source = resolve(sourcePath), root = resolve(packagePath), publish = publishing === 'true';
+const identity = releaseIdentityFromEnvironment(process.env);
+if (publish && identity.kind !== 'github') throw Error('Publishing requires a GitHub release identity');
 mkdirSync(root);
 const require = createRequire(join(resolve(toolingPath), 'package.json'));
-await require('esbuild').build({ entryPoints: [join(source, 'deploy/cloudflare-worker.js')], outfile: join(root, 'worker.js'), bundle: true, minifyWhitespace: true, format: 'esm', platform: 'neutral', external: ['cloudflare:workers'] });
+const workerPath = join(root, 'worker.js');
+await require('esbuild').build({ entryPoints: [join(source, 'deploy/cloudflare-worker.js')], outfile: workerPath, bundle: true, minifyWhitespace: true, format: 'esm', platform: 'neutral', external: ['cloudflare:workers'] });
+writeFileSync(workerPath, releaseMarker(sourceSha, identity) + readFileSync(workerPath, 'utf8'));
 cpSync(join(source, 'dist'), join(root, 'assets'), { recursive: true, dereference: false });
 writeFileSync(join(root, 'wrangler.json'), JSON.stringify(expectedConfig(sourceSha, publish), null, 2) + '\n');
 /** @type {{path: string, bytes: number, sha256: string}[]} */
@@ -23,7 +27,7 @@ function walk(path) {
   }
 }
 walk(root);
-writeFileSync(join(root, 'manifest.json'), JSON.stringify({ sourceSha, publish, files }, null, 2) + '\n');
+writeFileSync(join(root, 'manifest.json'), JSON.stringify({ sourceSha, publish, identity, files }, null, 2) + '\n');
 const packageDigest = checkPackage(root, sourceSha, publish);
 const manifestBytes = statSync(join(root, 'manifest.json')).size;
 console.log(JSON.stringify({

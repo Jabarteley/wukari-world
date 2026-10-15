@@ -39,6 +39,7 @@ import { EVENTS } from '../src/game/content/events.ts';
 import { HELPER_COOLDOWN_SECONDS } from '../src/game/content/jobs.ts';
 import { REFERRAL, TABLE_REWARDS } from '../src/game/content/growth.ts';
 import { MISSION_REWARDS } from '../src/game/content/missions.ts';
+import { missionDefinition } from '../src/game/systems/missions.ts';
 import { STARTER_GOALS } from '../src/game/content/goals.ts';
 import { venueLabel } from '../src/game/content/venues.ts';
 import { joinIdFrom, linkParts, joinBanner, GIFT_LINE } from '../src/quick-start/model.ts';
@@ -309,9 +310,36 @@ export async function runNewPlayer({ log = console.log, saltPrefix = SALT_PREFIX
       'd-new-place': async () => travel(ada, 'amala-shitta'),
       'd-greet': async () => { await travel(ada, 'park'); const here = view(await life(ada)).social.here; for (const npc of here.slice(0, 2)) await run(ada, 'people', `npc-${npc.id}-hello`); return life(ada); },
     };
-    let chosen = missions.daily.find((mission) => mission.done && !mission.claimed) ?? missions.daily.find((mission) => Object.hasOwn(recipes, mission.id));
+    const currentRecipes = new Map<string, () => Promise<LifeState>>();
+    for (const mission of missions.daily) {
+      const definition = must(missionDefinition(mission.id), `definition for current mission ${mission.id}`);
+      assert.deepEqual([definition.id, definition.kind, definition.label, definition.count ?? 1], [mission.id, mission.kind, mission.label, mission.count], `current mission ${mission.id} matches its definition`);
+      if (definition.cityId) assert.equal(definition.cityId, CITY, `current mission ${mission.id} belongs to ${CITY}`);
+      if (definition.on === 'activity') {
+        const { activityId, venueId, spotId } = definition;
+        assert.deepEqual(definition.go, [venueId, spotId], `current activity mission ${mission.id} has an exact destination`);
+        currentRecipes.set(mission.id, async () => {
+          let completed = await life(ada);
+          for (let n = mission.n; n < mission.count; n++) {
+            if (completed.location !== venueId) completed = await travel(ada, venueId);
+            completed = await run(ada, spotId, activityId);
+          }
+          return completed;
+        });
+      } else if (definition.on === 'venue' && definition.venueId) {
+        const venueId = definition.venueId;
+        assert.deepEqual([definition.count ?? 1, definition.go], [1, [venueId]], `current exact-venue mission ${mission.id} is one normal arrival`);
+        currentRecipes.set(mission.id, async () => {
+          assert.notEqual((await life(ada)).location, venueId, `unfinished mission ${mission.id} needs a new arrival`);
+          return travel(ada, venueId);
+        });
+      }
+    }
+    let chosen = missions.daily.find((mission) => mission.done && !mission.claimed)
+      ?? missions.daily.find((mission) => currentRecipes.has(mission.id))
+      ?? missions.daily.find((mission) => Object.hasOwn(recipes, mission.id));
     assert.ok(chosen, `one of today’s missions can be done: ${missions.daily.map((mission) => mission.id).join(', ')}`);
-    if (!chosen.done) state = await must(recipes[chosen.id])();
+    if (!chosen.done) state = await must(currentRecipes.get(chosen.id) ?? recipes[chosen.id], `recipe for current mission ${chosen.id}`)();
     missions = view(await life(ada)).missions;
     const finished = must(missions.daily.find((mission) => mission.id === chosen.id));
     assert.deepEqual([finished.done, finished.claimed, missions.claimable >= 1], [true, false, true], `“${finished.label}” is finished and waiting to be collected`);

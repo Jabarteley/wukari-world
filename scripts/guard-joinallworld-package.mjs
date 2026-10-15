@@ -6,6 +6,42 @@ import { fileURLToPath } from 'node:url';
 
 /** @param {string | Uint8Array} bytes */
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+export const RELEASE_IDENTITY_VERSION = 1;
+export const RELEASE_MARKER_PREFIX = '// joinallworld-release:v1 ';
+const MAX_DECIMAL_ID = 9223372036854775807n;
+const MAX_WORKER_BYTES = 3_500_000;
+/** @param {unknown} value @param {string} name */
+function positiveDecimal(value, name) {
+  if (typeof value !== 'string' || !/^[1-9][0-9]{0,18}$/.test(value) || BigInt(value) > MAX_DECIMAL_ID) throw Error(`Invalid ${name}`);
+  return value;
+}
+/** @param {unknown} value */
+export function parseReleaseIdentity(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error('Invalid release identity');
+  const identity = /** @type {Record<string, unknown>} */ (value);
+  const keys = Object.keys(identity).sort();
+  if (identity.version !== RELEASE_IDENTITY_VERSION || typeof identity.kind !== 'string' || !['github', 'local'].includes(identity.kind)) throw Error('Invalid release identity');
+  if (identity.kind === 'local') {
+    if (JSON.stringify(keys) !== JSON.stringify(['kind', 'version'])) throw Error('Invalid release identity');
+    return { version: RELEASE_IDENTITY_VERSION, kind: 'local' };
+  }
+  if (JSON.stringify(keys) !== JSON.stringify(['kind', 'runAttempt', 'runId', 'version'])) throw Error('Invalid release identity');
+  return { version: RELEASE_IDENTITY_VERSION, kind: 'github', runId: positiveDecimal(identity.runId, 'GitHub run ID'), runAttempt: positiveDecimal(identity.runAttempt, 'GitHub run attempt') };
+}
+/** @param {Record<string, string | undefined>} env */
+export function releaseIdentityFromEnvironment(env = process.env) {
+  if (env.GITHUB_ACTIONS !== 'true') return { version: RELEASE_IDENTITY_VERSION, kind: 'local' };
+  return parseReleaseIdentity({ version: RELEASE_IDENTITY_VERSION, kind: 'github', runId: env.GITHUB_RUN_ID, runAttempt: env.GITHUB_RUN_ATTEMPT });
+}
+/** @param {string} sourceSha @param {unknown} identity */
+export function releaseMarker(sourceSha, identity) {
+  if (!/^[a-f0-9]{40}$/.test(sourceSha)) throw Error('Invalid release source');
+  const parsed = parseReleaseIdentity(identity);
+  const tag = parsed.kind === 'local' ? 'local' : `github:${parsed.runId}:${parsed.runAttempt}`;
+  return `${RELEASE_MARKER_PREFIX}source=${sourceSha} identity=${tag}\n`;
+}
+/** @param {unknown} left @param {unknown} right */
+export function sameReleaseIdentity(left, right) { return JSON.stringify(parseReleaseIdentity(left)) === JSON.stringify(parseReleaseIdentity(right)); }
 /** @param {string} sourceSha @param {boolean} publish */
 export function expectedConfig(sourceSha, publish) {
   if (!/^[a-f0-9]{40}$/.test(sourceSha) || typeof publish !== 'boolean') throw Error('Invalid release identity');
@@ -48,13 +84,17 @@ export function checkPackage(root, sourceSha, publish) {
   }
   walk(root);
   const manifest = JSON.parse(readFileSync(join(root, 'manifest.json'), 'utf8'));
-  if (manifest.sourceSha !== sourceSha || manifest.publish !== publish) throw Error('Manifest identity mismatch');
+  const identity = parseReleaseIdentity(manifest.identity);
+  if (manifest.sourceSha !== sourceSha || manifest.publish !== publish || (publish && identity.kind !== 'github')) throw Error('Manifest identity mismatch');
   const listed = files.filter(file => file.path !== 'manifest.json');
   if (JSON.stringify(manifest.files) !== JSON.stringify(listed)) throw Error('Package manifest mismatch');
   const config = JSON.parse(readFileSync(join(root, 'wrangler.json'), 'utf8'));
   if (JSON.stringify(config) !== JSON.stringify(expectedConfig(sourceSha, publish))) throw Error('Unapproved deployment configuration');
   if (!files.some(file => file.path === 'worker.js') || !files.some(file => file.path === 'assets/index.html')) throw Error('Missing runtime files');
   const worker = readFileSync(join(root, 'worker.js'), 'utf8');
+  if (Buffer.byteLength(worker) > MAX_WORKER_BYTES) throw Error('Invalid Worker file');
+  const marker = releaseMarker(sourceSha, identity);
+  if (!worker.startsWith(marker) || worker.slice(marker.length).startsWith(RELEASE_MARKER_PREFIX)) throw Error('Worker release marker mismatch');
   // The Node host's local developer mode is never part of a release: its module carries this marker, so a Worker bundle that pulled it in is refused.
   if (worker.includes('allworld-open-dev-node-only')) throw Error('Open dev mode code in the release package');
   const contentPaths = new Set(worker.match(/\/assets\/(?:cities\/[a-z][a-z0-9-]*\.[a-f0-9]{64}\.json|words\/dictionary\.[a-f0-9]{64}\.txt|progression\/(?:episodes-\d+|journeys|missions)\.[a-f0-9]{64}\.json)/g) ?? []);
@@ -91,9 +131,12 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   if (mode === 'check') console.log(digest);
   else {
     if (process.env.GITHUB_EVENT_NAME !== 'workflow_dispatch' || process.env.GITHUB_REF !== 'refs/heads/main' || process.env.GITHUB_REPOSITORY !== 'kromate/joinallworld') throw Error('Deployment context rejected');
+    const manifest = JSON.parse(readFileSync(join(realpathSync(root), 'manifest.json'), 'utf8'));
+    const currentIdentity = releaseIdentityFromEnvironment(process.env);
+    if (currentIdentity.kind !== 'github' || !sameReleaseIdentity(manifest.identity, currentIdentity)) throw Error('Deployment identity rejected');
     if (!expectedDigest || !wrangler || !process.env.CLOUDFLARE_API_TOKEN || !process.env.CLOUDFLARE_ACCOUNT_ID) throw Error('Missing protected deployment inputs');
     if (checkPackage(root, sourceSha, publishing === 'true') !== expectedDigest) throw Error('Package changed before deploy');
-    const result = spawnSync(process.execPath, [realpathSync(wrangler), 'deploy', '--config', join(realpathSync(root), 'wrangler.json')], {
+    const result = spawnSync(process.execPath, [realpathSync(wrangler), 'deploy', '--config', join(realpathSync(root), 'wrangler.json'), '--durable-objects-code-update-mode', 'immediate'], {
       cwd: realpathSync(root), stdio: 'inherit', env: {
         PATH: process.env.PATH, HOME: process.env.HOME, TMPDIR: process.env.TMPDIR,
         CLOUDFLARE_API_TOKEN: process.env.CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID,

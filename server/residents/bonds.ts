@@ -28,6 +28,7 @@ import { COLOURS } from '../../src/festivals/party.ts';
 import { agentWords } from '../moderation/agent-words.ts';
 import { OUT_OF_CHARACTER, residentId } from './life.ts';
 import type { Resident } from './life.ts';
+import { gainOf, personaOf, quarrelScale } from './persona.ts';
 
 export const DAY_MS = 86400000, HOUR_MS = 3600000;
 export const BOND = Object.freeze({
@@ -68,18 +69,25 @@ export const dayOf = (t: number): number => Math.floor(t / DAY_MS);
 const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 // ---- personality, from the life stories --------------------------------------------------------------------------------------------------------
-export interface Traits { faith: string; interests: string[]; hot: boolean }
+/** What a life says about its character. `temper`, `chatty` and `social` (0..99, persona.ts) also make friendship quicker and quarrels likelier. */
+export interface Traits { faith: string; interests: string[]; hot: boolean; temper?: number; chatty?: number; social?: number }
 const FAITHS: readonly [string, RegExp][] = [['catholic', /\bcatholic\b/i], ['muslim', /\bmuslim\b/i], ['hindu', /\bhindu\b/i], ['jewish', /\bjewish\b|\bshabbat\b/i], ['sikh', /\bsikh\b/i], ['yoruba', /\bold yoruba ways\b|\borisa\b/i], ['christian', /\bchristian\b|\bchurch\b/i]];
 const INTERESTS: readonly [string, RegExp][] = [['music', /\bmusic|songs?|highlife|choir|guitar\b/i], ['football', /\bfootball\b/i], ['books', /\bbooks?|novels?|library|reading\b/i], ['cooking', /\bcook\w*|kitchen|soup\b/i], ['garden', /\bgarden\w*|flowers?|plants?\b/i],
   ['walks', /\bwalks?\b/i], ['sea', /\bsea|beach|ocean\b/i], ['children', /\bchildren|kids|school\b/i], ['art', /\bpaint\w*|sketch\w*|drawing|art\b/i], ['radio', /\bradio\b/i], ['dance', /\bdanc\w+/i], ['tea', /\btea\b/i]];
 export function traitsOf(who: Resident): Traits {
+  const p = personaOf(who);
+  // A generated resident carries its persona (no story needs to be written to read it).
+  if (who.persona) return { faith: p.faith, interests: p.likes, hot: p.temper >= 70, temper: p.temper, chatty: p.chatty, social: p.social };
   const story = who.story, faith = FAITHS.find(([, pattern]) => pattern.test(story))?.[0] ?? 'none';
-  return { faith, interests: INTERESTS.filter(([, pattern]) => pattern.test(story)).map(([name]) => name), hot: /\b(?:temper|stubborn|quick to (?:anger|argue)|short fuse|proud)\b/i.test(story) };
+  const hot = /\b(?:temper|stubborn|quick to (?:anger|argue)|short fuse|proud)\b/i.test(story);
+  return { faith, interests: INTERESTS.filter(([, pattern]) => pattern.test(story)).map(([name]) => name), hot, temper: hot ? Math.max(p.temper, 70) : Math.min(p.temper, 69), chatty: p.chatty, social: p.social };
 }
 /** How well two lives fit, 0..1: the same faith, shared interests (three at most count), and a hot temper on either side counts against. */
 export function fit(a: Traits, b: Traits): number {
   const shared = a.interests.filter((name) => b.interests.includes(name)).length;
-  const value = 0.35 + (a.faith === b.faith && a.faith !== 'none' ? 0.15 : 0) + Math.min(3, shared) * 0.1 - (a.hot ? 0.1 : 0) - (b.hot ? 0.1 : 0);
+  // Like tempers get on (a little); a hot one and a calm one clash (a little).
+  const tempers = a.temper !== undefined && b.temper !== undefined ? (Math.abs(a.temper - b.temper) < 25 ? 0.05 : Math.abs(a.temper - b.temper) >= 60 ? -0.05 : 0) : 0;
+  const value = 0.35 + (a.faith === b.faith && a.faith !== 'none' ? 0.15 : 0) + Math.min(3, shared) * 0.1 - (a.hot ? 0.1 : 0) - (b.hot ? 0.1 : 0) + tempers;
   return Math.max(0, Math.min(1, value));
 }
 
@@ -207,8 +215,11 @@ export interface BondsDeps {
 
 export function bondsOf(deps: BondsDeps, initial: BondsStored = emptyBonds()) {
   const stored: BondsStored = initial;
-  const byId = new Map(deps.roster.map((who) => [residentId(who), who]));
-  const traits = new Map(deps.roster.map((who) => [residentId(who), traitsOf(who)]));
+  // The roster can change while the engine runs (residents everywhere: the host's cities times residentsPerCity), so the lookups follow it.
+  let seen: readonly Resident[] | null = null, ids = new Map<string, Resident>(), traitMap = new Map<string, Traits>();
+  const refresh = (): void => { const list = deps.roster; if (list !== seen || list.length !== ids.size) { seen = list; ids = new Map(list.map((who) => [residentId(who), who])); traitMap = new Map(); } };
+  const byId = { get: (id: string): Resident | undefined => (refresh(), ids.get(id)), has: (id: string): boolean => (refresh(), ids.has(id)) };
+  const traits = { get: (id: string): Traits | undefined => { refresh(); let found = traitMap.get(id); const who = ids.get(id); if (!found && who) { found = traitsOf(who); traitMap.set(id, found); } return found; } };
   const nameOf = (id: string): string => byId.get(id)?.name ?? 'a resident';
   const gone = (): Set<string> => new Set(stored.departed);
   let dirty = false, lastSave = -Infinity, lastPlace = -Infinity, busy = false, stepping = false, saving = false;
@@ -238,10 +249,11 @@ export function bondsOf(deps: BondsDeps, initial: BondsStored = emptyBonds()) {
     const day = dayOf(t), bond = bondOf(x, y, day, true);
     if (!bond) return;
     const before = stageOf(bond);
-    grow(bond, BOND.talkGain, day);
+    const pa = byId.get(x), pb = byId.get(y);
+    grow(bond, pa && pb ? gainOf(personaOf(pa), personaOf(pb), BOND.talkGain) : BOND.talkGain, day);
     if (stageOf(bond) !== before) note(`${nameOf(x)} and ${nameOf(y)}: now ${stageOf(bond) === 'best' ? 'best friends' : 'friends'} (closeness ${bond.c})`);
     const a = traits.get(x), b = traits.get(y);
-    if (a && b && quarrels(bond, day, hash(`${pairKey(x, y)}|${t}`) % 100, quarrelChance(fit(a, b), a.hot || b.hot))) note(`${nameOf(x)} and ${nameOf(y)} fell out (a quiet disagreement; closeness ${bond.c})`);
+    if (a && b && quarrels(bond, day, hash(`${pairKey(x, y)}|${t}`) % 100, quarrelChance(fit(a, b), a.hot || b.hot) * (pa && pb ? quarrelScale(personaOf(pa), personaOf(pb)) : 1))) note(`${nameOf(x)} and ${nameOf(y)} fell out (a quiet disagreement; closeness ${bond.c})`);
     dirty = true;
   }
 

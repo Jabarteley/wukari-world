@@ -227,7 +227,18 @@ export function voiceOf(ctx: RouteContext, deps: VoiceDeps = {}) {
   const ask = deps.ask ?? ((input: AskInput): Promise<AskResult> => routerOf(ctx).ask(input));
   const setting = (key: string): boolean | number | string | undefined => ctx.checks?.setting?.(key) ?? ctx.checks?.text?.(key);
   const on = (): boolean => setting('residentOn') === true;
-  const active = (): readonly Resident[] => { const value = setting('residentCount'); const count = typeof value === 'number' && Number.isFinite(value) ? Math.max(1, Math.min(roster.length, Math.round(value))) : 1; return roster.slice(0, count); };
+  /** The assembly sits among the authored residents who live now: with `residentsPerCity` set, the first of each city that the host has open; else (a bare host) the first `residentCount`, as before. */
+  const active = (): readonly Resident[] => {
+    const per = setting('residentsPerCity');
+    if (typeof per === 'number' && Number.isFinite(per)) {
+      const open = new Set<string>(ctx.cityIds ?? []), seen = new Map<string, number>();
+      const living = roster.filter((who) => { if (!open.has(who.city)) return false; const n = seen.get(who.city) ?? 0; seen.set(who.city, n + 1); return n < per; });
+      return living.length ? living : roster.slice(0, 1);
+    }
+    const value = setting('residentCount');
+    const count = typeof value === 'number' && Number.isFinite(value) ? Math.max(1, Math.min(roster.length, Math.round(value))) : 1;
+    return roster.slice(0, count);
+  };
   const gist = gistService(ctx);
   const voiceFor = (db: Db): Voice => {
     const found = ctx.collection(db, 'residentVoice', emptyVoice()) as unknown as Partial<Voice>;

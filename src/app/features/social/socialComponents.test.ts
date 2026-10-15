@@ -200,7 +200,7 @@ test('Contacts: found players are listed with their short code and a View button
   contactsUi.results = [{ id: 'abcdef123456', name: 'Ada', friend: true }]
   try {
     const words = text(await renderWithFamily('/src/app/features/social/ContactsApp.vue'))
-    assert.ok(words.includes('Ada Real player · Friend · #abcdef View'), words)
+    assert.ok(words.includes('Ada Allworld character · Friend · #abcdef View'), words)
     contactsUi.results = { error: 'Type at least two letters of their name.' }
     assert.ok(text(await renderWithFamily('/src/app/features/social/ContactsApp.vue')).includes('Type at least two letters of their name.'))
     contactsUi.results = []
@@ -274,7 +274,7 @@ test('Person: a player\'s card says why each control is off, and a stranger read
   try {
     let html = await render('/src/app/features/social/PersonApp.vue', { params: { player: 'ada', name: 'Ada' } })
     let words = text(html)
-    assert.ok(words.startsWith('Ada <b> Real player · Offline'), words.slice(0, 60))
+    assert.ok(words.startsWith('Ada <b> Allworld character · Offline'), words.slice(0, 60))
     assert.ok(!html.includes('Ada <b>'), 'a name is text')
     // Not in the game: Ping stands where Call would, and for a stranger it says what is missing.
     assert.ok(words.includes('Chat Ping Ada <b> Add Ada <b> as a friend to ping them.'), words)
@@ -298,7 +298,8 @@ test('Person: a player\'s card says why each control is off, and a stranger read
     assert.ok(disabledButton(html, 'Chat') && words.includes('Unblock'))
 
     client.state.profiles.set('ada', { ...card, self: true })
-    assert.equal(text(await render('/src/app/features/social/PersonApp.vue', { params: { player: 'ada' } })), 'This is you, Ada <b>.')
+    const selfWords = text(await render('/src/app/features/social/PersonApp.vue', { params: { player: 'ada' } }))
+    assert.ok(selfWords.startsWith('This is you, Ada <b>.') && selfWords.includes('Accomplishment record'), selfWords)
 
     personUi.form = 'report'
     client.state.profiles.set('ada', card)
@@ -465,7 +466,7 @@ test('NPC mark: the NPC card, Contacts (Mummy and saved NPCs) and Family carry t
     assert.equal(badges(contacts), view.social.family.filter((member) => member.contact).length + view.social.relationships.filter((rel) => rel.npc).length, 'Mummy and each saved NPC')
     contactsUi.results = [{ id: 'abcdef123456', name: 'Ada', friend: true }]
     const found = await renderWithFamily('/src/app/features/social/ContactsApp.vue')
-    assert.ok(text(found).includes('Ada Real player'))
+    assert.ok(text(found).includes('Ada Allworld character'))
     assert.equal(badges(found), badges(contacts), 'the found player adds no badge')
   } finally { contactsUi.results = null; client.state.me = null }
 }))

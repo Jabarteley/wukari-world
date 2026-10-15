@@ -3,7 +3,7 @@
 // start with them (each takes a few seconds and can be cancelled).
 import '../../../ui/controls.css'
 import '../../../ui/panels/social.css'
-import { computed, ref } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { contentFor, regularFor, regularsFor, venueFor } from '../../../game/cities/runtime.ts'
 import { cityRules } from '../../../game/cities/registry.ts'
@@ -19,6 +19,8 @@ import ClosenessMeter from './ClosenessMeter.vue'
 import PlayerAvatar from './PlayerAvatar.vue'
 import { npcActionReason, npcMeterMax, npcReason } from './personModel.ts'
 import { closenessText, STRANGER_TEXT, tagLabel } from './socialWords.ts'
+
+const PublicProfile = defineAsyncComponent(() => import('./PublicProfile.vue'))
 
 const props = defineProps<{ id: string }>()
 const { game, shell } = useApp()
@@ -68,6 +70,7 @@ async function start(activity: string): Promise<void> {
   <div v-else>
     <div class="social-head people-who"><span class="social-avatar is-big" aria-hidden="true"><PlayerAvatar :name="base.name" :seed="base.id" /></span><h3>{{ base.name }}</h3><NpcBadge /></div>
     <p>{{ base.role }}<template v-if="here"> · {{ here.left }} of {{ view.social.dailyInteractions }} interactions left today</template></p>
+    <PublicProfile mode="no-records" :id="id" :name="base.name" actor-label="AI resident" />
     <p v-if="whereNow" class="social-note">{{ whereNow }}</p>
     <p v-if="here" class="social-quote">“{{ greeting }}”</p>
     <p>{{ rel ? closenessText(rel, view.social.maxCloseness) : STRANGER_TEXT }}</p>

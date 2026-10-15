@@ -8,16 +8,24 @@
 - Canonical checkout: /Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld; branch codex/retention-main-sync; base5181c91a8274f0616b5cb6740971598fd97814ad.
 - Preserved unrelated file: docs/research/unique-local-content-2026-10-15/ui-world-entry-375.png. Primary Desktop checkout is untouched.
 - Scope: unique/nonrepetitive authored content audit and necessary corrections; public human/agent achievement/history profiles accessible from map and shareable links; agent-play compatibility; production release and real non-Lagos mission/story/journey proof.
-- Current ownership: this record, shared coordination row and release/integration evidence. No shared runtime paths claimed until Astra design and worker handoff. No other agent records edited by parent.
-- Parallel lanes: phase6_content_audit owns audit docs only; phase6_public_profile_design owns design docs only, initially read-only runtime.
+- Current ownership: parent owns this record, shared coordination row, checker, idle correction, affected existing social-component assertions and release/integration evidence. Sol owns public-profile types/server/routes/UI slice; Luna owns batch05–08 content repairs and its audit records. No other agent records edited by parent.
+- Parallel lanes: phase6_content_audit performs bounded literal content/identity verification; phase6_public_profile_design owns consequential source review and the current5176 browser slot. First-person lane owns provider/campus/package/Worker startup and its camera/menu files.
 - Live health observed at start: joinallworld-201b9bdac9f8ee9412ff9837897; no new release yet.
 - Known release concerns: existing Worker raw-size and idle comeback failures documented in Nigeria validation. Reproduce current source and diagnose before release; never raise budgets or weaken gates. New public projection requires explicit identity/visibility/redaction review.
 - Product contract: public profile shows earned accomplishments and explicit human/agent identity, with existing visibility rules. Private life state, credentials, agent memory and hidden locations must not leak. Sharing a link must not silently change visibility.
 - Existing data/rewards: preserve old keepsakes, collections, pending mission claims, stable IDs, trusted origins and human-only cadence rules.
 - Running resource: prior parent preview5176/session62944 uses preserved QA data. Other services and real player saves remain untouched. New browser work belongs only to Astra.
 - Acceptance: content audit findings resolved or honestly bounded; map→public profile→share→open profile works for visible human/agent; hidden/nonexistent/private data rejection; local/CI/build/download/Worker gates; exact main release and production health readback; actual non-Lagos mission claim, story/collection completion and reload; portable records/evidence.
-- Next: read public-profile architecture, run current release diagnostics, implement assigned slice, verify and deploy through existing GitHub workflow. No new tracked tests without current authorization; run relevant existing checks and temporary diagnostics.
+- Next: accept corrected profile/content source and local UI, commit bounded feature slice, integrate accepted first-person/provider source, run final combined CI/Worker/package gates, deploy through existing GitHub workflow, then verify hosted non-Lagos gameplay and profiles. No new tracked tests; affected existing assertions are authorized.
 - Usage/cost: unknown. Former usage stop was explicitly revoked by the user.
+
+| Unit | Implementation/evidence | Release state | Next action |
+|---|---|---|---|
+| Idle no-work writes | Accepted two-file fixcc0ecacb;52checks;0synthetic transactions | Branch published; not main/live | Retain in combined integration |
+| Content variety and coverage | Corrected4story families/96purpose rows;284cities/243arcs;2840engine paths;213leaf-path diff restricted to approved fields | Branch publishedfc57c4fa; not live | Retain in final provider snapshot |
+| Public character profiles | Astra source/local UI accepted;37HTTP/privacy checks;20social component checks before final Contacts wording | Feature checkpoint ready; not live | Final text assertion rerun queued33007; integrate provider |
+| Worker/provider release fit | Other-lane source reviewed11936921; reported3422076raw bytes | Accepted branch handed off; combined gate open | Merge exact SHA; regenerate immutable assets |
+| Combined main/release | Main docs refreshed throughbc113b55 | No new deployment; live201b9bda | Final exact-source gates, main sync, release, hosted continuity/gameplay |
 
 ## Release repair ownership
 
@@ -34,3 +42,35 @@ Synthetic trace confirms house/runner.ts daily memory sweep opens a transaction 
 Fixed only server/house/runner.ts and server/gist/ledger.ts. Original synthetic trace2transactions now0, same fixture and unchanged idle assertion. All52existing comeback/house-memory/runner/gist checks pass. Portable evidence under docs/research/phase6-social-release-2026-10-15/idle-repair includes before/after, log and diagnostic source archive. Publishing this narrow commit to integration branch for first-person owner; main and production still held for combined feature/provider acceptance.
 
 Parent additionally owns scripts/city/check-local-tales.ts: mission-purpose uniqueness is now enforced with the existing Unicode normalization. Luna owns all8batch data corrections, including73extra repeated purpose rows; live content checker is expected red until that accepted slice completes. Original audit evidence remains unchanged as pre-repair scope.
+
+## Public profile and content review checkpoint
+
+Public profile implementation is present but not accepted or released. Parent synthetic Node HTTP diagnostic passes36 checks across pagination, public allowlists, human/agent classification, legacy and local earned receipts, directory hiding, block-aware API reads, anonymous HTML behavior, HEAD, escaping, expiry and read-only storage. Evidence currently /tmp/allworld-phase6-public-profile-probe.mjs and .log; archive the final corrected diagnostic after review.
+
+Astra source review requires four bounded corrections: reject story receipt map-key aliases to avoid repeated pagination; use equally strict story/project receipts for collection projection; reset pagination loading on target changes; replace stale Malawi relay metadata. Readable provenance labels are also requested. Sol retains public-profile source ownership for these corrections; Luna retains batch data ownership. Four replacement story premises are accepted, subject to corrected metadata and final source checks. All-eight content checker currently reports284cities/243country arcs/568tales/1704missions with zero errors after purpose rewrites; semantic review is bounded and does not claim a unique underlying game mechanic for every mission.
+
+Production curl recheck returns HTTP200 health with unchanged joinallworld-201b9bdac9f8ee9412ff9837897 and unknown profile404. Python urllib403 was client-specific, not a proven network outage. First-person lane remains Worker/provider/campus owner and current browser-slot owner; our Astra has not used the browser. Main remains ahead only by documentation bc113b55, refreshed before integration. Existing protocol/social/civic/agent/mission/component checks are queued through the shared heavy lease; build and final Worker gates wait for accepted provider integration.
+
+## Focused integration and browser handoff
+
+Focused protocol/social/civic/agent/mission/component run completes91/92, with one expected socialComponents assertion still requiring the prior Real player label. Parent takes exclusive ownership of that existing test's two affected assertions under the user's continuing authorization to update affected existing tests; no new test cases/files. The neutral card heading must cover permanent agent characters, with exact Human/Agent identity supplied by the server-backed public record. All remaining social-control assertions remain intact.
+
+First-person owner explicitly handed browser slot to our Astra for5176 publicprofile QA; their4412 tab is idle. Their Worker provider/campus candidate reaches3496918bytes and further bounded removal of an accidental Vue import is under review, projecting3422076bytes. These are their intermediate measurements, not the final combined artifact gate. Their small More-menu first-person control correction remains separate ownership. Parent merged origin/main docsbc113b55 cleanly; all uncommitted feature work preserved.
+
+## All-city engine proof after story corrections
+
+Parent ran the existing portable all-city diagnostic against the corrected source, with its output redirected into this release evidence folder rather than overwriting prior accepted evidence. It passes284cities/568authored episodes/2840completion paths, preserves568legacy keepsakes and527legacy completed collections, and completes authored country collections from the accumulated new keepsakes. Evidence: docs/research/phase6-social-release-2026-10-15/engine-acceptance.json, .log and .mts.txt. It injects registered engine proof events; it does not establish real browser actions or hosted behavior. Final provider parity and combined release checks remain separate gates.
+
+## Local profile browser and development-route repair
+
+Astra source re-review accepts canonical receipts, validated collection input, loading reset, readable provenance and Malawi metadata. Browser375/320 permanent agent card shows AI-played and Agent character, zero earned counts with honest empty state, no measured horizontal overflow. LocalTalesQA existing earned story shows Human character/Human play; foreground native clipboard fallback gives copied-link confirmation. Local NPC/resident has explicit no-earned-records state. Full map/share/hide flow remains active, not accepted yet.
+
+Parent created one local permanent synthetic agent via existing MCP on the task's Node backend: Zz Test Profile Agent, publicID00dc82d5-46a1-424d-a6b7-1328f15e07e4, Kigali. Secrets were neither printed nor archived. Parent has not mutated LocalTalesQA; observed Nairobi→Kigali travel/wallet change during browser inspection remains unexplained and must not be attributed to concurrent writes without evidence.
+
+Missing development /p/ proxy reproduced from scripts/dev.ts and vite.config.ts; Sol added only /p/ forwarding to the same existing game target. Parent stopped owned5176session62944 to adopt it, retaining DATA_DIR and QA flags; restart92152 currently waits on shared server lease behind first-person4412. Requested owner release temporarily; no unrelated process killed or slot limit raised. First-person source accepted/pushed11936921c726ad68141654c239955ccae0500cbd is available to merge after this feature checkpoint. Current live build unchanged.
+
+## Local browser milestone accepted and resources returned
+
+Restart92152 succeeded after first-person owner gracefully released its own idle preview. Real same-origin5176/p/ URLs render standalone public HTML. Actual live synthetic Observer friend pin on Kigali map opens the Human accomplishment card; permanent agent Contacts card and public URL show Agent character. Hide/reload gives generic unavailable without name, own card links to working privacy controls, relisting restores the same public URL. Original listed preference restored. Desktop375/320 layouts have no observed horizontal overflow. Copy success toast and correct share URL/page are verified; literal clipboard bytes were not read because browser permission was denied. Agent map pin was not separately exercised.
+
+Astra final record phase6-public-profile-design-20261015.md releases source and browser acceptance. Sol fixed observed Contacts mislabel and raw badge icon identifier; final existing20-case social rerun queued33007 behind first-person size scan. Parent changed only four existing assertion lines/expressions, no test cases/files added. Parent created local human Observer69bafdf6-83c5-4cba-9e9e-a2143db147cf and sent a normal friend request; Astra accepted it through UI. Temporary socket92162 and owned preview92152 are now stopped gracefully. Browser/server slots explicitly returned to first-person lane; no other services or saves touched. Local synthetic friendship remains; no unsupported direct data deletion.

@@ -115,7 +115,7 @@ export async function prepareShare(facts: unknown, link: string, doc: Document =
   return { text, link, file, url, whatsapp: whatsappUrl(text), x: xUrl(text) };
 }
 
-/** The launch offer, asked once and kept for a minute: the share says "The first 10,000 players get ₦1,000,000 in the game" only while it is open. Null when it cannot be read. */
+/** The launch offer, asked once and kept for a minute: the share says "The first 10,000 players get at least ₦1,000,000 in the game" only while it is open. Null when it cannot be read. */
 let offered: { at: number; offer: ShareOffer | null } | null = null;
 async function readOffer(): Promise<ShareOffer | null> {
   if (offered && Date.now() - offered.at < 60000) return offered.offer;

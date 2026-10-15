@@ -40,10 +40,10 @@ export function cleanFacts(input: unknown): ShareFacts {
 
 /** The launch offer as GET /api/world/bonus tells it (server/bonus/service.ts). */
 export interface ShareOffer { on: boolean; amount: number; places: number }
-/** "The first 10,000 players get ₦1,000,000 in the game" while the offer is open, else ''. In-game naira, said so. */
+/** "The first 10,000 players get at least ₦1,000,000 in the game" (more in a dearer starting city: server/bonus/service.ts) while the offer is open, else ''. In-game naira, said so. */
 export function offerSentence(offer: ShareOffer | null | undefined): string {
   if (!offer || offer.on !== true || !(offer.amount > 0) || !(offer.places > 0)) return '';
-  return `The first ${offer.places.toLocaleString('en-NG')} players get ₦${offer.amount.toLocaleString('en-NG')} in the game`;
+  return `The first ${offer.places.toLocaleString('en-NG')} players get at least ₦${offer.amount.toLocaleString('en-NG')} in the game`;
 }
 
 /**

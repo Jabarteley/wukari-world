@@ -241,7 +241,7 @@ test('the welcome mail names the bonus only when the account holds one', () => {
 test('the share preview page names the offer only while it is open', () => {
   const share = { by: '11111111-2222-4333-8444-555555555555', facts: { kind: 'invite', name: 'Ada', city: 'Lagos', district: 'Yaba' } } as unknown as Parameters<typeof sharePageHtml>[0];
   const open = sharePageHtml(share, 'abcd1234', 'https://example.test', { on: true, amount: 1_000_000, places: 10_000 });
-  assert.ok(open.includes('The first 10,000 players get ₦1,000,000 in the game.'));
+  assert.ok(open.includes('The first 10,000 players get at least ₦1,000,000 in the game.'));
   assert.ok(!sharePageHtml(share, 'abcd1234', 'https://example.test', { on: false, amount: 1_000_000, places: 10_000 }).includes('first 10,000'));
   assert.ok(!sharePageHtml(share, 'abcd1234', 'https://example.test').includes('first 10,000'));
 });

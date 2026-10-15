@@ -86,16 +86,23 @@ Answered on 14 and 15 October 2026:
 
 ## Failing on `main` before us
 
-Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` needs a build and was not run here):
-- `src/game/economy.test.ts` (15 October): `scripts/economy-sim.ts` cannot complete the city stories' local missions
-  (`missionRun` throws "value is missing"); came with the local missions, not from the world-alive work.
-- `server/pulse.test.ts` (8 of 14), `server/registry.test.ts` (7 of 12), `server/social.test.ts`, `server/admin/history.test.ts`,
-  `server/growth.test.ts`, `server/money-request.test.ts`, `src/types/protocol.test.ts`: the server answers 503 because the city
-  content is not built. `npm run cities:assets` and `npm run words:assets` first (no full build needed), and most pass.
-- `src/map3d/geo/atlas.test.ts`: "open versus coming soon is derived from the additive city catalogue".
-- Reported before us and not re-checked: `src/game/cities/allCities.test.ts`, `legacyLife.test.ts`, `liveBuildLife.test.ts`,
-  `mapEntries.test.ts`, `src/scene/scenes-fct.test.ts`, `src/game/living-world/vehicle-boarding.test.ts`,
-  `vehicle-clearance.test.ts`, `src/ui/phone/phone.test.ts`, `server/new-player.test.ts`.
+Checked on 14 October 2026 and again on 15 October (Node 22, one file at a time, after `npm run cities:assets` and `npm run words:assets`;
+the full `npm test` needs a build and was not run here). Fixed on 15 October: `src/game/economy.test.ts` (the economy simulation now runs
+the city stories' local missions from their own definitions), the skills test in `src/game/engine.test.ts` (it passed no context; the
+level-up event now reaches the achievements system), `src/map3d/geo/atlas.test.ts`, `src/game/cities/mapEntries.test.ts` (China,
+Antarctica, the Siachen entry and Ashmore and Cartier have real open cities now), `src/game/cities/legacyLife.test.ts`,
+`src/game/cities/liveBuildLife.test.ts` (the fields later builds add to an old save), `src/ui/phone/phone.test.ts` (the round button is a
+full tap target). Passing without change: `server/pulse.test.ts`, `server/registry.test.ts`, `server/social.test.ts`,
+`server/admin/history.test.ts`, `server/growth.test.ts`, `server/money-request.test.ts`, `src/types/protocol.test.ts`.
+
+Still failing, and why they are left:
+- `src/scene/scenes-fct.test.ts` ("no two Abuja scenes are the same scene"): office/fct-campus-court and market/fct-lockups now have the
+  same triangle count; whether to change a scene or the test is an art decision.
+- `src/game/living-world/vehicle-boarding.test.ts`, `vehicle-clearance.test.ts`: the pinned hashes of `drivingScene.ts` and
+  `src/scene/body/stand-in.ts` (changed on 13 October and later) need the sedan geometry evidence recomputed, not just the hash.
+- `server/new-player.test.ts`: the journey now gets past the missions step (its script runs local missions as the Worker test does), but
+  the recorded final cash differs (Ada 22,600 against 22,500, Bola 7,050 against 6,900); the owner must say whether that money is right.
+- `src/game/cities/allCities.test.ts`: takes over half an hour on the shared machine and was not finished; left to CI.
 
 ## Measures to keep (Phases 3, 13, 15)
 

@@ -245,7 +245,8 @@ test('the compact layout: a 45% panel, a 44px target for every small control, on
   assert.match(css, /@media\(max-width:480px\)/);
   assert.match(css, /max-height:calc\(45 \* var\(--ui-vh\)\)/, 'an open panel takes at most 45% of the height');
   assert.match(css, /\.m3-controls[^{]*\{[^}]*grid-auto-flow:row/, 'the view buttons are one column');
-  assert.match(css, /\.life-round::after\{content:'';position:absolute;inset:-5px\}/, 'a small round button reaches a 44px target');
+  assert.match(css, /\.life-round\{position:relative;width:var\(--tap\);height:var\(--tap\)\}/, 'a small round button is a full tap target');
+  assert.match(css, /\.life-round::after\{content:'';position:absolute;inset:-\d+px\}/, 'and its hit area reaches past the drawing');
   assert.match(css, /safe-area-inset-bottom/);
   assert.match(css, /prefers-reduced-motion/);
   assert.doesNotMatch(css, /font-size:\s*(?:[0-9]|1[01])(?:\.\d+)?px/, 'no text below 12px');

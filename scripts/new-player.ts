@@ -39,6 +39,7 @@ import { EVENTS } from '../src/game/content/events.ts';
 import { HELPER_COOLDOWN_SECONDS } from '../src/game/content/jobs.ts';
 import { REFERRAL, TABLE_REWARDS } from '../src/game/content/growth.ts';
 import { MISSION_REWARDS } from '../src/game/content/missions.ts';
+import { LOCAL_DAILY_MISSIONS } from '../src/game/content/local-missions.ts';
 import { STARTER_GOALS } from '../src/game/content/goals.ts';
 import { venueLabel } from '../src/game/content/venues.ts';
 import { joinIdFrom, linkParts, joinBanner, GIFT_LINE } from '../src/quick-start/model.ts';
@@ -309,7 +310,17 @@ export async function runNewPlayer({ log = console.log, saltPrefix = SALT_PREFIX
       'd-new-place': async () => travel(ada, 'amala-shitta'),
       'd-greet': async () => { await travel(ada, 'park'); const here = view(await life(ada)).social.here; for (const npc of here.slice(0, 2)) await run(ada, 'people', `npc-${npc.id}-hello`); return life(ada); },
     };
-    let chosen = missions.daily.find((mission) => mission.done && !mission.claimed) ?? missions.daily.find((mission) => Object.hasOwn(recipes, mission.id));
+    // A city's own missions (src/game/content/local-missions.ts) say what they ask: an activity at a spot, or a visit to a place.
+    for (const local of LOCAL_DAILY_MISSIONS as readonly { id: string; on?: string; venueId?: string; spotId?: string; activityId?: string }[]) {
+      const { venueId, spotId, activityId } = local;
+      if (Object.hasOwn(recipes, local.id) || !venueId) continue;
+      if (local.on === 'activity' && spotId && activityId) recipes[local.id] = async () => { await travel(ada, venueId); return run(ada, spotId, activityId); };
+      else if (local.on === 'venue') recipes[local.id] = async () => travel(ada, venueId);
+    }
+    // A visit is the plainest thing to do, so the order is: already done, a recipe above, a local visit, a local activity.
+    const localOn = new Map((LOCAL_DAILY_MISSIONS as readonly { id: string; on?: string }[]).map((local) => [local.id, local.on]));
+    const rank = (id: string): number => (!localOn.has(id) ? 0 : localOn.get(id) === 'venue' ? 1 : 2);
+    let chosen = missions.daily.find((mission) => mission.done && !mission.claimed) ?? [...missions.daily].filter((mission) => Object.hasOwn(recipes, mission.id)).sort((a, b) => rank(a.id) - rank(b.id))[0];
     assert.ok(chosen, `one of today’s missions can be done: ${missions.daily.map((mission) => mission.id).join(', ')}`);
     if (!chosen.done) state = await must(recipes[chosen.id])();
     missions = view(await life(ada)).missions;

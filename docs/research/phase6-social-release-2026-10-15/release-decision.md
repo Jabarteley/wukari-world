@@ -30,3 +30,7 @@ The named disposable **Phase6 production-verification workflow** is limited to a
 Use isolated guest browser state; log public IDs only, never credentials. Inventory exact actors and any automatic plots/auxiliary state, privately back up, rehearse the complete guarded atomic deletion with forced rollback, then clean only those exact IDs using the prepared fixed deployment window and one epoch fence. Confirm authenticated recovery, target absence, unchanged unrelated data and intended live build. Announce the normal fixed update notice if required by the release procedure. The [two-actor cleanup runbook](production-qa-cleanup-runbook.md) records the detailed controls. This explicit disposable scope is required before relying on the computer-use test-workflow cleanup exception.
 
 No Phase6 main push, new production actor, production SQL, or Phase6 deployment has occurred. Hosted gameplay/privacy/continuity/cleanup remains unfinished. The other computer's independent main9321release is a separate operation.
+
+## Human decision
+
+The direct human response to the complete candidate/exception/two-disposable-actor question was: **“Approve bounded release and QA cleanup”.** Proceed only within that scope; keep the reviewed implementation pin and every other release/cleanup safeguard. This does not mark the full suites green or authorize unrelated candidate integration.

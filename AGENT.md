@@ -5,23 +5,18 @@ continue. The full brief is in [docs/agent-plans/world-alive/](docs/agent-plans/
 STATUS.md (what is live, the log, the questions for the owner), then PHASES.md. Repository-wide coordination is in
 [AGENTS.md](AGENTS.md). When everything below is done, empty the "In flight" and "Still to do" sections and say so in STATUS.md.
 
-Last updated: 15 October 2026 (owner's decisions in flight).
+Last updated: 16 October 2026 (nothing in flight).
 
 ## In flight
 
-The owner's decisions of 15 October 2026, being built:
-
-| Work | Branch | Where it stopped | Next step |
-| --- | --- | --- | --- |
-| Release 15: money by city, home city, bonus words, passing property on, test fixes | `main` | Live as `69c3ae44` | Nothing. |
-| Residents everywhere: three per open city, visible | `main` | Live as `9321b79e` | Nothing. |
-| iCloud: the Desktop checkout's files were offloaded by iCloud (git hung); downloading them back, then rename the folder to `joinallworld.nosync` with a `joinallworld` link so iCloud stops syncing it | none (owner's Mac) | Downloading | Finish, then rename and link, then check git works there. |
-
-Dropped by the owner: measuring speech to text with recordings.
+Nothing. The owner's decisions of 15 and 16 October are live (releases 14 and 15) and main's tests were repaired (release 16).
 
 ## Still to do
 
-Nothing else. When the table above is done, empty this section and the table.
+Nothing for an agent to start on its own. Eleven tests are left failing on purpose because they need the owner's judgement
+(market scene anchors, ambient crowd size, two Abuja scenes, sedan geometry hashes, the country count, one remote homeward
+route): see "Failing on `main` before us" in [docs/agent-plans/world-alive/STATUS.md](docs/agent-plans/world-alive/STATUS.md).
+If you are given new work, add it here.
 
 ## How the work is done (learned the hard way)
 

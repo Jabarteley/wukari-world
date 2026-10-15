@@ -11,9 +11,7 @@ Last updated: 15 October 2026 (release 9 live: `ac94fca0`).
 
 | Work | Branch | Where it stopped | Next step |
 | --- | --- | --- | --- |
-| Release 12: Phases 18 and the rest of 19 | `main` | Live as `7c084ca6` | Nothing. |
-| Phase 13c: ideas, assembly, president, Sunday letter | `claude/alive-p13c-assembly` | Being built | Review, merge, CI, release. |
-| Phase 20: residents' relationships and world events | `claude/alive-p20-lives` | Being built | Review, merge, CI, release. |
+| Release 13: Phases 13c and 20 (the last phases) | `main` | Merged and checked, being released | Confirm live, smoke, replace `REL13` in STATUS.md, then clear this file's lists. |
 | Speech-to-text accuracy per accent (Phase 15) | none | Needs recordings | Record with `scripts/stt-bench/collect.html` on phones, run `scripts/stt-bench.ts --gateway`, fill the table in docs/CALLS.md. |
 
 ## Still to do (in order)

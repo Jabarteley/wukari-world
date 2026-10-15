@@ -2,15 +2,19 @@
 // The trip bar: all there is of the Map panel while a trip runs, so the map, where the trip is
 // happening, stays in view. Cancel is the shell's own; the rule beside it is the server's (the fare
 // was charged at departure and is not refunded). The bar fills from the server's own numbers each
-// time it reports: from the fraction done, to full, over the seconds left (one CSS animation).
+// time it reports: from the fraction done, to full, over the seconds left (one CSS animation). Under it the ride's written banter (RideBanter.vue).
+import { computed, defineAsyncComponent } from 'vue'
 import { useApp } from '../../state/app.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import { paidText } from './travelModel.ts'
 import type { TripInfo } from './travelModel.ts'
 import SkipTrip from './SkipTrip.vue'
 
-defineProps<{ trip: TripInfo }>()
-const { command } = useApp()
+const RideBanter = defineAsyncComponent(() => import('./RideBanter.vue'))
+const props = defineProps<{ trip: TripInfo }>()
+const { command, game } = useApp()
+// A trip between cities leaves from the city it started in; one inside a city runs in the city the player is in.
+const banterCity = computed(() => (props.trip.locked ? props.trip.from.id : game.cityId.value))
 </script>
 
 <template>
@@ -27,6 +31,7 @@ const { command } = useApp()
       <!-- Drawn again at each report so the animation restarts from the server's number. -->
       <i :key="`${trip.fraction}|${trip.remaining}`" :style="{ '--from': `${(trip.fraction * 100).toFixed(1)}%`, animationDuration: `${Math.max(0.05, trip.remaining).toFixed(2)}s` }" />
     </div>
+    <RideBanter v-if="!trip.commute" :city="banterCity" :mode="trip.mode.id" :from="trip.from.label" :to="trip.to.label" :seconds="trip.duration" :fraction="trip.fraction" />
     <p class="map-trip-rule">{{ trip.rule }}</p>
     <SkipTrip />
   </div>

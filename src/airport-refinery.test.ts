@@ -1,3 +1,5 @@
+import { loadCityScenes } from './scene/city-scenes.ts';
+await loadCityScenes('lagos');
 import { loadCityContent as preloadCityContent } from './game/cities/registry.ts';
 await Promise.all(['lagos', 'ibadan'].map(preloadCityContent));
 // The airport (Ikeja) and the refinery (Lekki Free Zone) are venues like any other: on the map,

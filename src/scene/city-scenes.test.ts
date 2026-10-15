@@ -1,6 +1,6 @@
 import { loadCityContent, playableCityIds, DEFAULT_CITY_ID } from '../game/cities/registry.ts';
 await Promise.all(playableCityIds().map(loadCityContent));
-// Each city's own scenes are a download of their own: the scene host builds the default city with nothing else loaded, refuses
+// Each city's own scenes are a download of their own: the scene host awaits the default city's own download, refuses
 // a city whose scenes have not arrived (it never draws a stand-in for one), and every venue of a city is drawn from that city's
 // download alone. The world adapter waits for the download with bounded retries and builds the venue host when it is here.
 // The tests run in order: the first ones need a process in which no city's scenes have been loaded yet.
@@ -23,10 +23,10 @@ import { cityContent } from '../game/cities/registry.ts';
 
 // Node has no CSS loader. Keep the browser stylesheet intact and stub only its
 // side-effect import while this test imports the adapter's pure host seam.
-const adapterCssUrl = new URL('../campus/unilag/world-adapter.css', import.meta.url).href;
+const adapterCssUrls = new Set(['../campus/unilag/world-adapter.css', './controls.css'].map(path => new URL(path, import.meta.url).href));
 const cssFixtureHook = registerHooks({
   load(url, context, nextLoad) {
-    if (url === adapterCssUrl) return { format: 'module', source: '', shortCircuit: true };
+    if (adapterCssUrls.has(url)) return { format: 'module', source: '', shortCircuit: true };
     return nextLoad(url, context);
   },
 });
@@ -66,20 +66,21 @@ function adapter(options: WorldAdapterOptions) {
   return { world, container, seen, hosts };
 }
 
-test('with no city loaded, the default city builds and every other city with scenes of its own is refused', () => {
+test('every city with authored scenes, including Lagos, waits for its own download', async () => {
   const kit = createKit();
-  assert.ok(cityScenesReady(DEFAULT_CITY_ID), 'the default city needs no download');
-  assert.equal(sceneCityIds().includes(DEFAULT_CITY_ID), false);
+  assert.equal(sceneCityIds().includes(DEFAULT_CITY_ID), true);
+  for (const cityId of sceneCityIds()) {
+    assert.equal(cityScenesReady(cityId), false, `${cityId} is not ready before its download`);
+    assert.throws(() => buildVenueScene(kit, venuesOf(cityId)[0], cityId), /have not been loaded/, `${cityId}: no stand-in scene is built`);
+  }
+  await loadCityScenes(DEFAULT_CITY_ID);
+  assert.ok(cityScenesReady(DEFAULT_CITY_ID));
   for (const venue of venuesOf(DEFAULT_CITY_ID)) {
     const entry = buildVenueScene(kit, venue, DEFAULT_CITY_ID);
     assert.equal(entry.kind, asked(venue)[0], `${venue.id} is drawn as its own kind`);
     entry.dispose();
   }
-  for (const cityId of sceneCityIds()) {
-    assert.equal(cityScenesReady(cityId), false, `${cityId} is not ready before its download`);
-    assert.throws(() => buildVenueScene(kit, venuesOf(cityId)[0], cityId), /have not been loaded/, `${cityId}: no stand-in scene is built`);
-  }
-  // An unknown city has no scenes of its own: it draws with the shared kinds.
+  assert.equal(cityScenesReady('abuja'), false, 'shared Nigeria part does not load Abuja authored scenes');
   assert.ok(cityScenesReady('test-nowhere'));
   kit.dispose();
 });
@@ -212,14 +213,23 @@ test('every venue of every city is drawn from its own city\'s download alone', a
       // A kind that arrives with a city is only drawn by that city, or replaced by a scene of the venue's own city.
       if (Object.hasOwn(CITY_KINDS, kind)) assert.ok(own, `${cityId}/${venue.id}: ${kind} is not part of this city's download`);
       // No other city has a scene under this name that this city would have needed.
-      for (const other of sceneCityIds()) if (other !== cityId && citySceneDef(other, kind, variant) && !Object.hasOwn(CITY_KINDS, kind)) assert.equal(citySceneDef(other, kind, variant), own, `${cityId}/${venue.id}: ${kind}/${variant} is ${other}'s scene`);
+      for (const other of sceneCityIds()) {
+        // Lagos alone deliberately overrides the shared bare market kind.
+        const lagosMarket = kind === 'market' && !variant && (other === 'lagos' || cityId === 'lagos');
+        if (!lagosMarket && other !== cityId && citySceneDef(other, kind, variant) && !Object.hasOwn(CITY_KINDS, kind)) assert.equal(citySceneDef(other, kind, variant), own, `${cityId}/${venue.id}: ${kind}/${variant} is ${other}'s scene`);
+      }
       const entry = buildVenueScene(kit, venue, cityId);
       assert.equal(entry.kind, kind, `${cityId}/${venue.id} is drawn as its own kind, not the plain plaza`);
       entry.dispose();
     }
   }
-  // The default city draws nothing from another city's download, whichever are loaded.
-  for (const venue of venuesOf(DEFAULT_CITY_ID)) assert.equal(citySceneDef(DEFAULT_CITY_ID, ...asked(venue)), null);
+  // Lagos overrides its own market; its other bare kinds still use shared scenery.
+  for (const venue of venuesOf(DEFAULT_CITY_ID)) {
+    const [kind, variant] = asked(venue);
+    if (kind === 'market' && !variant) assert.ok(citySceneDef(DEFAULT_CITY_ID, kind, variant));
+    else assert.equal(citySceneDef(DEFAULT_CITY_ID, kind, variant), null);
+  }
+  assert.equal(citySceneDef('ibadan', 'market', ''), null, 'Lagos market never replaces another city');
   assert.equal(sceneCityOf('worship', 'fct-mosque'), 'abuja');
   assert.equal(sceneCityOf('quad', ''), 'ibadan');
   assert.equal(sceneCityOf('park', 'no-such-variant'), null);
@@ -246,6 +256,7 @@ test('the shared scene chunk holds no city\'s own scenes: each is a chunk of its
   // Static imports only (`from"./x.js"`, `import"./x.js"`): the host must not pull a city's scenes in with itself.
   const eager = [...code.matchAll(/(?:\bfrom|\bimport)\s*"\.\/([^"]+\.js)"/g)].map((match) => match[1] as string);
   assert.deepEqual(eager.filter((name) => /^city-.+-scenes/.test(name) || /^venues-/.test(name)), [], 'no city scene chunk is a static import of the host');
+  assert.deepEqual(eager.filter((name) => /^nigeria-runtime-scenes-/.test(name)), [], 'Nigeria scenes are not eagerly imported by host');
   // And no city's scenes are a static import of another's.
   for (const name of cities) {
     const own = readFileSync(join(assets, name), 'utf8');

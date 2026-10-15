@@ -1,6 +1,6 @@
 # Retention implementation handoff (2026-10-14)
 
-Later worldwide expansion: see [current coverage and implementation](worldwide-progression-2026-10-15/README.md). The inventory and counts below describe the earlier Lagos-only milestone.
+Later worldwide expansion: see [the progression foundation](worldwide-progression-2026-10-15/README.md) and [the current bespoke Phase 6 catalogue and evidence](unique-local-content-2026-10-15/README.md). The inventory and counts below describe the earlier Lagos-only milestone.
 
 Phases 0–6 are implemented in runtime commit `bcbfd549cb5d4e28b57003ae0eb741708bf81a77`. The combined source, including the other computer's cache-first work from `b8e4f8f0`, is **published on GitHub main at `376285c0314dba05e0703a4e43b8666037384c8e`**; the remote SHA was read back after an ordinary push. Canonical local checkout: `/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld`, branch `codex/retention-main-sync`.
 

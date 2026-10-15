@@ -612,8 +612,8 @@ const batch: AuthoredContentBatch = {
           { title: 'The shoe dances alone', text: 'They choose a safe solo: the dancer freezes while the shoe wiggles in place, then picks it up between steps. The rival troupe adds a silent drumroll. The dancer finishes the routine and takes a bow with both shoes still on.' },
         ],
         approaches: [
-          { label: 'Walk through Agofure park and test the turn', callback: 'You helped the dancer keep control while making the loose shoe a planned gag.' },
-          { label: 'Spend an evening in Ekulu garden', callback: 'You found a safe pause where the dancer could reset without losing the act.' },
+          { label: 'Spend an evening in the garden at Ekulu garden', callback: 'You helped the dancer keep control while making the loose shoe a planned gag.' },
+          { label: 'Walk through the park at Agofure park', callback: 'You found a safe pause where the dancer could reset without losing the act.' },
           { label: 'Leave Uzoamaka a shoe-solo idea', callback: 'You gave the dancer a way to continue after the slip.' },
         ],
         dilemma: { prompt: 'The dancer wants to finish without throwing or kicking the loose shoe. How can the mishap become playable?', answers: ['Stop after every turn to tighten the shoe.', 'Freeze while the shoe has a small solo, then retrieve it between steps.', 'Tie the shoe as tightly as possible and hope it stays put.'], correct: 1, explanation: 'The solo makes the slip deliberate, keeps the shoe close, and lets the dancer continue.' },
@@ -629,7 +629,7 @@ const batch: AuthoredContentBatch = {
           { title: 'The line passes cleanly', text: 'They add a small star beside each handoff. The actors follow the marks and finish the scene together. Their rivals borrow the symbol for a script with even more parts.' },
         ],
         approaches: [
-          { label: 'Visit Agofure park during rehearsal', callback: 'You helped the actors mark where each line changes hands.' },
+          { label: 'Spend an evening in the garden at Ekulu garden', callback: 'You helped the actors mark where each line changes hands.' },
           { label: 'Browse Ogbete Market before the next scene', callback: 'You gave both performers a way to keep their roles.' },
           { label: 'Leave Chika a handoff mark for the next script', callback: 'You made a cue the next cast can reuse.' }
         ],
@@ -722,7 +722,7 @@ const batch: AuthoredContentBatch = {
         ],
         approaches: [
           { label: 'Visit Gusau City Park during the rehearsal', callback: 'You helped the newcomer choose how to take part.' },
-          { label: 'Browse Gusau Central Market before the next run', callback: 'You left an open role for someone who arrives later.' },
+          { label: 'Spend a quiet evening here at Gusau Amusement Park', callback: 'You left an open role for someone who arrives later.' },
           { label: 'Leave Safiya a welcome cue', callback: 'You kept watching and joining as equal options.' }
         ],
         dilemma: { prompt: 'How should the troupe respond when a newcomer has not said whether they want to perform?', answers: ['Bring them into the scene immediately.', 'Continue without acknowledging them.', 'Offer watching, a small role, or a later turn.'], correct: 2, explanation: 'The newcomer can choose how to participate without pressure.' },
@@ -767,8 +767,8 @@ const batch: AuthoredContentBatch = {
           { title: 'A shared laugh', text: 'They add the callback and replay the scene. The audience recognizes the setup as part of the joke, and both actors bow together without interrupting the performance.' },
         ],
         approaches: [
-          { label: 'Visit Agodi Gardens after the rehearsal', callback: 'You helped the audience notice both parts of the joke.' },
-          { label: 'Browse Bodija Market before the next act', callback: 'You gave the setup performer a clear place in the laugh.' },
+          { label: 'Price the market at Bodija Market', callback: 'You helped the audience notice both parts of the joke.' },
+          { label: 'Play a round of ayo at Agodi Gardens', callback: 'You gave the setup performer a clear place in the laugh.' },
           { label: 'Leave Bisi a callback cue', callback: 'You helped the cast share credit inside the scene.' }
         ],
         dilemma: { prompt: 'How can the act recognize both performers without stopping for another bow?', answers: ['Repeat the joke and give both a second bow.', 'Add a callback that makes the setup visible.', 'Ignore the performer whose setup was missed.'], correct: 1, explanation: 'The callback includes the setup in the audience’s recognition while the scene continues.' },
@@ -814,7 +814,7 @@ const batch: AuthoredContentBatch = {
         ],
         approaches: [
           { label: 'Price the market before the duet', callback: 'You helped the performers find a shorter ending that still belonged to all three.' },
-          { label: 'Play a round at Ijebu Neighbourhood Park', callback: 'You gave the departing singer a clear cue and the remaining singer a solo answer.' },
+          { label: 'Price the market at Ijebu-Ode Market', callback: 'You gave the departing singer a clear cue and the remaining singer a solo answer.' },
           { label: 'Leave Ronke a closing hum', callback: 'You offered the rival a small part they could join without knowing the full song.' },
         ],
         dilemma: { prompt: 'One singer must leave, and the replacement does not know the full song. How can the act stay shared?', answers: ['Cancel the performance.', 'Give the departing singer a cue, the remaining singer an answer, and the rival a closing hum.', 'Ask the rival to improvise the entire missing verse.'], correct: 1, explanation: 'A shorter call-and-answer lets the departing singer participate and gives the rival a part they can perform.' },
@@ -859,7 +859,7 @@ const batch: AuthoredContentBatch = {
           { title: 'The signal brings the cast in', text: 'The performer chooses a small hand signal from their seat. The others gather on that cue and shape a final picture around them. The rival troupe asks to borrow the tableau for its own closing scene.' },
         ],
         approaches: [
-          { label: 'Visit Love Garden during the finale rehearsal', callback: 'You helped the performer choose a comfortable role.' },
+          { label: 'Browse Textile making at Chechinya Market', callback: 'You helped the performer choose a comfortable role.' },
           { label: 'Browse Central Market before the scene', callback: 'You gave the cast a way to build around the seated cue.' },
           { label: 'Leave Tunde a tableau signal', callback: 'You made the ending work with different positions.' }
         ],
@@ -905,7 +905,7 @@ const batch: AuthoredContentBatch = {
           { title: 'Both groups get ready', text: 'They agree to the quiet period first, then use the space together for a short joint run. The second troupe learns one cue from the first and returns the favor with a new warm-up rhythm.' },
         ],
         approaches: [
-          { label: 'Visit Gama Community Garden before the shared rehearsal', callback: 'You helped the troupes divide the time by what each needed.' },
+          { label: 'Learn about the racecourse at Kano Racecourse', callback: 'You helped the troupes divide the time by what each needed.' },
           { label: 'Browse Kurmi Market before the warm-up', callback: 'You gave both groups a chance to prepare.' },
           { label: 'Leave Sani a two-part schedule', callback: 'You helped keep the courtyard usable for both acts.' }
         ],
@@ -935,7 +935,7 @@ const batch: AuthoredContentBatch = {
         ],
         approaches: [
           { label: 'Walk the polo ground and test the start cue', callback: 'You made a quiet gap so the riders could hear the starting signal.' },
-          { label: 'Spend a quiet evening at Maryam Park', callback: 'You kept the colorful commentary but gave it room to breathe.' },
+          { label: 'Walk through the park at Katsina Polo Ground', callback: 'You kept the colorful commentary but gave it room to breathe.' },
           { label: 'Leave Asmau a short call for the start', callback: 'You helped the commentator save a joke for after the cue.' },
         ],
         dilemma: { prompt: 'The riders enjoy commentary but need to hear the start cue. What should the commentator do?', answers: ['Keep narrating and ask them to listen harder.', 'Use short calls with a clear pause for the cue.', 'Stop narrating for the entire race.'], correct: 1, explanation: 'Short calls preserve the lively introductions while the pause makes the cue audible.' },
@@ -951,7 +951,7 @@ const batch: AuthoredContentBatch = {
           { title: 'The card holds the moment', text: 'They pair the soft bell with a bright card. The actors see the card even when laughter covers the sound, and the pause becomes part of the scene. The next troupe chooses a signal of its own.' },
         ],
         approaches: [
-          { label: 'Visit Katsina Polo Ground during the cue rehearsal', callback: 'You helped the actors catch a cue through the laughter.' },
+          { label: 'Spend a quiet evening here at Maryam Park', callback: 'You helped the actors catch a cue through the laughter.' },
           { label: 'Browse Katsina Central Market before the scene', callback: 'You saw the visible signal keep the moment clear.' },
           { label: 'Leave Amina a cue card for the next troupe', callback: 'You gave the next act a way to make a cue visible.' }
         ],
@@ -1043,7 +1043,7 @@ const batch: AuthoredContentBatch = {
           { title: 'The next scene is ready', text: 'They mark two return spots and move the props in order. The transition becomes a playful procession, and the important prop arrives just as its character enters.' },
         ],
         approaches: [
-          { label: 'Visit Freedom Park during the transition rehearsal', callback: 'You helped the troupe give each prop a return place.' },
+          { label: 'Gist with Mama at Amala Shitta', callback: 'You helped the troupe give each prop a return place.' },
           { label: 'Browse Balogun Market before the next act', callback: 'You saw the scene change become orderly and playful.' },
           { label: 'Leave Ayo a two-spot prop cue', callback: 'You gave the next troupe a way to reset its scene.' }
         ],
@@ -1319,8 +1319,8 @@ const batch: AuthoredContentBatch = {
           { title: 'Announce, do not decide', text: 'They choose an announcer. The volunteer gives each act a playful introduction, then lets the performers begin when ready. The troupe that paused restarts, and the volunteer enjoys the new role.' },
         ],
         approaches: [
-          { label: 'Price Sango-Ota Market before the race', callback: 'You helped change an unwanted referee into an announcer by choice.' },
-          { label: 'Play a round at Ota Neighbourhood Park', callback: 'You left performers in charge of when their act begins.' },
+          { label: 'Play a round of ayo at Ota Neighbourhood Park', callback: 'You helped change an unwanted referee into an announcer by choice.' },
+          { label: 'Price the market at Sango-Ota Market', callback: 'You left performers in charge of when their act begins.' },
           { label: 'Leave Temi an announcer introduction', callback: 'You gave the volunteer a way to help without directing each move.' },
         ],
         dilemma: { prompt: 'The volunteer wants to help, but performers want to control their own timing. What role fits?', answers: ['Ask the volunteer to leave the event.', 'Offer an announcer role and let performers begin when ready.', 'Accept every referee call.'], correct: 1, explanation: 'The announcer role welcomes the volunteer’s help without taking control from performers.' },
@@ -1440,8 +1440,8 @@ const batch: AuthoredContentBatch = {
           { title: 'A partner picked freely', text: 'They play a short round with each rival. The newcomer chooses the second partner, then asks to play another round with the first later. Temi declares the tryout a success because nobody had to win the choice forever.' },
         ],
         approaches: [
-          { label: 'Price Sagamu Market before pairing', callback: 'You gave the new player time to try both styles before choosing.' },
-          { label: 'Play a round at Sagamu Neighbourhood Park', callback: 'You helped the rivals make the choice reversible.' },
+          { label: 'Play a round of ayo at Sagamu Neighbourhood Park', callback: 'You gave the new player time to try both styles before choosing.' },
+          { label: 'Price the market at Sagamu Market', callback: 'You helped the rivals make the choice reversible.' },
           { label: 'Leave Temi a practice-round idea', callback: 'You let the newcomer compare partners without making a permanent choice.' },
         ],
         dilemma: { prompt: 'The newcomer wants to try both playing styles before choosing a partner. What lets them do that?', answers: ['Let the rivals choose who partners with them.', 'Offer a short practice round with each and let the newcomer choose afterward.', 'Have both rivals take turns without asking.'], correct: 1, explanation: 'The newcomer asked to try both, and a short practice round makes the choice theirs.' },
@@ -1457,8 +1457,8 @@ const batch: AuthoredContentBatch = {
           { title: 'A pace that can change', text: 'They use the hand sign to switch pace. The fast section ends in a sudden slow-motion stare, and the audience laughs at the contrast. Each performer gets a chance to lead the change.' },
         ],
         approaches: [
-          { label: 'Visit Sagamu Market during the wordless scene', callback: 'You helped the actors control when the pace changes.' },
-          { label: 'Play a round of ayo at Sagamu Neighbourhood Park before rehearsal', callback: 'You gave the scene a clear sign for shifting speed.' },
+          { label: 'Play a round of ayo at Sagamu Neighbourhood Park', callback: 'You helped the actors control when the pace changes.' },
+          { label: 'Price the market at Sagamu Market', callback: 'You gave the scene a clear sign for shifting speed.' },
           { label: 'Leave Temi a pace-change cue', callback: 'You let the performers lead the transition.' }
         ],
         dilemma: { prompt: 'How can the actors change pace without losing a shared scene?', answers: ['Force everyone to use one pace.', 'Use a hand sign to shift between fast and slow.', 'Let every performer choose a different speed at any time.'], correct: 1, explanation: 'A shared sign lets the performers change pace together while still choosing when.' },
@@ -1549,8 +1549,8 @@ const batch: AuthoredContentBatch = {
           { title: 'A cue the cast can read', text: 'They place the bell before the surprise and the drum after it. The actors respond to each sound in turn, and the rival troupe asks to try the sequence with its own instruments.' },
         ],
         approaches: [
-          { label: 'Visit Diamond Park during the cue rehearsal', callback: 'You helped give each sound a different moment.' },
-          { label: 'Spend an evening at Flower Garden for the scene practice', callback: 'You saw the actors respond to the cues in order.' },
+          { label: 'Spend an evening in the garden at Flower Garden', callback: 'You helped give each sound a different moment.' },
+          { label: 'Walk through the park at Diamond Park', callback: 'You saw the actors respond to the cues in order.' },
           { label: 'Leave Folake a two-sound cue card', callback: 'You gave the next troupe a sequence it can adapt.' }
         ],
         dilemma: { prompt: 'How can the actors tell the surprise cue from the scene-change cue?', answers: ['Remove one of the sounds.', 'Play both sounds together, but louder.', 'Give each sound its own moment and practice the transition.'], correct: 2, explanation: 'Separate moments make the cues distinguishable while keeping both performers’ ideas.' },
@@ -1641,7 +1641,7 @@ const batch: AuthoredContentBatch = {
           { title: 'A clear sightline', text: 'They fold the brim for one entrance and shift the cue-giver to the wearer’s visible side. The performer can see the signal and keeps the original brim ready for a later scene. The rival troupe borrows the folded shape for its own comic entrance.' },
         ],
         approaches: [
-          { label: 'Visit Dr. T. K. Gotul Peace Park during the costume rehearsal', callback: 'You helped test changes the wearer could undo.' },
+          { label: 'Spend an evening in the garden at Sculpture Garden', callback: 'You helped test changes the wearer could undo.' },
           { label: 'Browse Terminus market before the next entrance', callback: 'You gave the performer time to choose how the hat should work.' },
           { label: 'Leave Maimuna a reversible costume idea', callback: 'You kept the original hat available for another scene.' }
         ],
@@ -1733,7 +1733,7 @@ const batch: AuthoredContentBatch = {
           { title: 'A question starts the act', text: 'The audience picks one question. The actors improvise a brief scene around it, then return the remaining slips to the box for another troupe. Nobody has to decide what every question means at once.' },
         ],
         approaches: [
-          { label: 'Visit Unity Park during the question-box rehearsal', callback: 'You helped the audience choose which question begins.' },
+          { label: 'Browse Akpan Andem yam trade at Akpan Andem Market', callback: 'You helped the audience choose which question begins.' },
           { label: 'Browse Itam Market before the next act', callback: 'You kept the other questions available for another troupe.' },
           { label: 'Leave Eno a question-box cue', callback: 'You gave the next performers a simple way to start.' }
         ],

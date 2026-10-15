@@ -1,73 +1,58 @@
 # Bespoke missions, stories and journeys
 
-This work is incomplete. The target is 284 supported cities and 243 game country/territory identities, with 568 new tales, 1,704 mission definitions and 243 country arc profiles. Counts describe the game's catalogue, not a claim about sovereign states.
+The full supported catalogue is now authored and activated and published: **284 cities, 243 game country/territory identities, 568 new tales and 1,704 authored mission definitions**. The final 69 cities add 138 tales and 414 missions. Counts describe the game's catalogue, not sovereign states. The implementation is accepted and synced to main; production deployment is separate.
 
-## Current state
+## Current acceptance
 
 | Gate | Evidence |
 | --- | --- |
-| Published to main | `95855168`: batches 01–06, 215 cities, 174 identities, 430 tales, 1,290 missions |
-| Next committed milestone | CI38675110595 green on source67e13a8f; main95855168 adds only archived authoring checkpoints and documentation. 175 focused existing integration cases pass. |
-| Live production | Last observed health reported `joinallworld-ac94fca06702c1c86dd37fc3b71`, released independently by the other computer. This content task has not deployed. |
-| Remaining authors | Sol authors own batches 07 and 08, covering the remaining 69 cities. These drafts are unregistered. A Luna audit covered 82 middle-range matrix plots without proving a contradiction; that is not full source acceptance. |
-| Usage limit | Last checked: 94% used, 6% remaining. Stop every worker and all task work at 95% used / 5% remaining. Re-read the live tool. |
+| Coverage | All 284 cities, 243 game country/territory identities, 568 tales and 1,704 missions; zero content-gate errors in `batches-01-08-validation.json` |
+| Semantic review | Bounded author, Astra, parent and Luna reviews covered conflicts, constraints, decisions, arithmetic and endings. Repeated plots and incorrect clues were rewritten before acceptance |
+| Engine and saves | `engine-acceptance.json`: 2,840 completion paths; all 568 exact legacy keepsakes and 527 old completed collections preserved |
+| Mission dealing | `mission-acceptance.json`: 34,080 daily deals, free swaps and fallback; 283 old rollover claims survive reload and pay once |
+| Compatibility | Combined candidate passes 233 existing focused agent, mission, resident, scene and asset checks. Final camera correction passes 25 focused checks; see `integrated-compatibility.json` and `final-camera-check.txt` |
+| Actual browser | Paris and Tokyo city/country stories completed through real activities and decisions. Exact keepsakes and collection titles persist after reload. Paris collections update immediately after a reward |
+| Hosted CI | [CI 38734503763](https://github.com/kromate/joinallworld/actions/runs/38734503763) passes on runtime source `5bd1fcc8`: five-project typecheck, production build, all-city download budgets, 17 smoke checks and release policy |
+| Main integration | Complete source is published to main, including the graphics owner's accepted runtime `536347f9` and evidence `27ef81c7`. Documentation/diagnostic successors preserve the CI-tested production source |
+| Production | No deployment was performed by this resumed task. Production verification and measured retention remain separate |
 
-Cities outside accepted batches keep their existing playable stories and missions. Country arcs activate only when every assigned city in that country is present. Incremental acceptance must never be called complete worldwide bespoke coverage.
+The final 69 cities add 138 stories and 414 missions. Existing agent-play work is preserved. The graphics owner cleared source integration after Lagos 16/16 and Abuja 17/17 browser checks plus actual app Market/HUD entry. Its full evidence is in `../nigeria-runtime-20261015/host/README.md`.
 
-## What makes the content different
+CI measured startup at 601,795 raw / 218,518 gzip / 191,760 Brotli bytes, loading JavaScript at 90,541 raw / 35,258 gzip, and shared scene host at 187,304 raw / 70,718 gzip. All unchanged download limits pass. The lazy progression chunk is 1,482.23 kB raw / 375.86 kB gzip; laziness is not a claim about total transfer or Worker size.
 
-Each city has two literal authored tales with different conflicts, constraints, decisions, callbacks, endings and keepsakes. Its country tale belongs to a separate country arc and collection. Each tale identifies its strongest human desire: belonging, competence, autonomy, curiosity, recognition, care, fairness or continuity. These describe individual fictional situations, never national character.
+Probe reports preserve their original source and working-tree provenance. Final production source matches CI commit `5bd1fcc8`; the later graphics evidence merge updates documentation and its diagnostic harness only. Five-project typecheck also passes after that merge (`final-evidence-typecheck.txt`). Broad Node, Worker and UI CI suites were skipped. The graphics owner's baseline Worker-size and comeback failures remain documented release limitations; source acceptance does not waive them.
 
-Stories are original game fiction anchored to existing registered hosts, places and activities. They do not claim verified history, real events, services or physical world changes. The actual activity proves the player's effort; an authored decision resolves the fictional event. An AI response cannot invent proof or grant a reward. Practical, observation and host/fallback approaches and a solo finale remain available.
+## Content and player contract
 
-Six missions per city supply daily and weekly life/discovery/social options. Labels describe observable actions and actual places/counts. Fictional motivation belongs in purpose text. People tasks count distinct game regulars; places tasks count any distinct eligible venues. Neither proves interaction with imaginary performers or props.
+Every city has two individually authored fictional tales with different conflicts, constraints, decisions, callbacks, endings and keepsakes. One joins its city collection and the other its country's arc. Country arcs activate only when all supported cities in that identity are present. Each tale foregrounds belonging, competence, autonomy, curiosity, recognition, care, fairness or continuity; these describe fictional situations, never national character.
 
-The daily deal guarantees a rotating authored category while preserving variety, three slots, a free swap and generic fallback when an authored ID is blocked by a pending reward. Weekly deals prefer authored tasks. Reward amounts, trusted origins and human-day exclusions are unchanged.
+Existing registered hosts, places and activities anchor the fiction. The content does not claim verified history, real events or changes to physical places. Real activity proof and an authored decision are separate steps. Practical, discovery and host/fallback approaches and a solo finale remain available. AI responses cannot invent proof or grant rewards.
 
-## Evidence and its limits
+Six missions per city supply daily and weekly life/discovery/social options. Labels describe actual observable actions and counts; fictional motivation lives in purpose text. People tasks count distinct game regulars, not imaginary performers. Places tasks count eligible venues, not fictional props.
 
-The 145-city working tree was subsequently committed as `84679997`. Reports retain their original dirty-tree provenance; they were not relabeled as a clean-commit run.
+Daily deals guarantee one rotating authored category while preserving three slots, a free swap, variety and generic fallback when pending rewards block an authored ID. Weekly deals prefer authored rows. Reward values, trusted origins and human-day exclusions are unchanged. Existing world-v1 definitions, exact earned keepsakes, pending claims and completed collections remain readable and payable; new collections use separate stable IDs.
 
-| Check | Result | Artifact |
-| --- | --- | --- |
-| Structural, grounding and exact uniqueness | 145 cities, 104 identities, 290 tales, 870 missions; zero errors | `batches-01-04-validation.json` |
-| Scripted engine paths | 1,450 paths across 290 tales; work/study/help, night activity fallback, both finales, prerequisites, wrong place, missing proof, reload, duplicate grants and assistance | `engine-acceptance.json` |
-| Daily mission dealing | 17,400 deals; variety, free swaps and excluded-ID fallback pass | `mission-acceptance.json` |
-| Retired mission rewards | 144 old rollover claims survive reload and pay exactly once | `mission-acceptance.json` |
-| Legacy achievements | All 568 exact old mementos and 527 completed old city/country collections remain; Akoka remains separate | `engine-acceptance.json` |
-| Agent integration after 145 activation | 111 existing mission, agent API, registry, house desk/errand, resident and creator cases pass | `/tmp/allworld-unique-145-agent-check.log` |
-| Published 75-city CI | Green on `2f02124f`; main `4fd4a1b7` adds only release-status documentation | [CI 38670494623](https://github.com/kromate/joinallworld/actions/runs/38670494623) |
-| 145-city CI before latest main merge | Green on `84679997`; does not cover the subsequent Phase 14 merge | [CI 38671975290](https://github.com/kromate/joinallworld/actions/runs/38671975290) |
+## Browser evidence and limits
 
-The probes inject registered proof event shapes. They establish engine behavior, not real activity execution or browser completion. Structural uniqueness also does not prove distinct plots: sampled semantic review rejected shared templates, prop swaps, unsupported labels and arithmetic errors before activation.
+Paris's **Five Items Cover Seven Needs** was completed through actual registered activities, the dual-use decision and a solo finale. Its permanent **Dual-Use Bag Tag** survived normal reload alongside Paris1/2, the separate France collection and mission progress. Screenshots: `ui-paris-earned-250.jpg`, `ui-paris-reloaded-250.jpg`, `ui-paris-reloaded-card-250.jpg`.
 
-The published post-merge build passes five-project typecheck, production build, all 284 city download budgets, 17 smoke checks and release policy. Startup is 598,857 raw / 217,377 gzip / 190,915 Brotli bytes. Loading JavaScript is 90,504 raw / 35,243 gzip; shared scene is 184,134 raw / 69,586 gzip. Budgets were not raised. The lazy progression chunk is 578.63 kB raw / 139.09 kB gzip. These figures belong to the 75-city CI, until the next build supplies new measurements. Broad Node, Worker and UI suites were skipped in that fast workflow.
+Tokyo completed both local tales through real activities and authored decisions: **Two-test three-goal band** and **Five-rest court wheel**. Normal reload retains Tokyo tales2/2 with **Tokyo storykeeper**, and Japan Five Rest Rotations1/1 with **Court-Rest Steward**. See `ui-tokyo-collections-final.jpg`.
 
-## Actual browser evidence
+The real UI exposed 180 reversed approach labels across four batches; all are corrected against current proof destinations and guarded by the content checker. It also exposed stale collection snapshots after new rewards. The retention view now refreshes on permanent episode/project reward changes, retaining request-generation and session/city guards. Paris earned its country keepsake **Shared-Clue Finish Flag** and immediately showed Paris2/2 plus France1/1, without reload or reopening. A subsequent normal reload retained both keepsakes and both titles; see `ui-paris-live-collections-final.jpg`.
 
-An isolated `LocalTalesQA` character completed Nairobi's **The Trays for the Wrong Roles** through a free meal, return to Uhuru Park, quiet-evening activity, authored dilemma and solo finale. **Gesture tray token** survived browser reload and the 145-city expansion. A separate MoscowTalesQA life shows Moscow’s two distinct tales and Russia’s Soft-Block Paths collection; its setup correctly shows Russia. Moscow’s The Ribbon Under the Arch also completed through actual arboretum and Brateevo Look around activities, the authored under-arch decision and solo finale, earning Under-arch ribbon clasp. Nairobi reload continuity and Moscow completion are separate checks. Kenya's distinct arc and Nairobi collection render. Existing Jolly Tunde progress was preserved.
+Earlier Nairobi and Moscow actual completion/reload evidence remains in `ui-nairobi-earned-145.png` and `ui-moscow-earned-145.png`. Those runs do not prove final source acceptance. Existing Jolly Tunde progress was preserved. Development backend restart recovery required a normal reload, never Start fresh. No physical-device or production-performance claim is made.
 
-Screenshots: `ui-nairobi-earned.png`, `ui-nairobi-earned-145.png`, `ui-nairobi-country.png`, `ui-moscow-earned-145.png`, and `ui-country-collection-375.png`.
+Engine probes inject registered proof shapes and establish engine behavior, not real activity execution. Structural exact uniqueness does not prove unique plots. Explicit mission and approach action/place label checks cover recognized phrases, not arbitrary natural-language semantics. Fast CI skips broader Node/Worker/UI suites; focused compatibility results are reported separately. No retention uplift has been measured.
 
-UI fixes include actual country grouping (Nairobi → Kenya, Tokyo → Japan), concise home copy instead of provenance text, singular district grammar, visible exact-story-spot guidance for disabled choices, and native disclosure for collections larger than six keepsakes. The 375px collection capture was visually verified; 320px DOM measurements show no overflow, but screenshot scaling at that size was inconclusive. No physical-device claim is made.
+## Reproduce or take over
 
-The preview sometimes remains on its loading screen after a development backend restart. One normal reload recovered the saved QA life; Start fresh was not used. This is not evidence of a production loading failure.
+1. Read `AUTHORING.md`, `assignments.json`, the relevant `input-NN.json`, `src/types/local-tales.ts`, and the current author/integration records. Historical authoring references must be checked against live `WORLD_STORY_SEEDS`.
+2. Review each conflict → constraint → decision/resolution matrix before prose. Preserve stable IDs, independent old rewards and whole-country registration.
+3. Run `node --experimental-strip-types scripts/city/check-local-tales.ts src/game/content/local-tales/batch-0{1,2,3,4,5,6,7,8}.ts --output <report.json>`. Archived `.ts.txt` drafts are never runtime content.
+4. Replay portable engine/save and mission probes using `diagnostics/README.md`. Diagnostic archives are source evidence outside compilation, not new tracked tests. Use the repository heavy-work lease for each bounded command.
+5. Run affected existing mission/agent/resident checks and representative real browser completion/reload. Use isolated synthetic profiles; preserve existing saves and unrelated services.
+6. Fetch main, resolve ownership before overlapping edits, run CI on the exact candidate and publish only after gates pass. Deployment is separate.
 
-## Reproduce and continue
+The audited input covers284cities with826guide snippets and26documented guide gaps. Earlier rejected drafts are preserved outside compilation. Chronological milestones, old usage-cap pauses and their explicit revocation remain in the coordinator's record; they do not describe current status.
 
-1. Read `AUTHORING.md`, `assignments.json`, the assigned `input-NN.json`, `src/types/local-tales.ts`, and the relevant worker record.
-2. Review each conflict → constraint → decision/resolution matrix before expanding prose. Check logic and arithmetic, not just wording. Keep every source checkpoint strict-type-valid.
-3. Run `node --experimental-strip-types scripts/city/check-local-tales.ts <explicit accepted batch paths> --output <report.json>`. Never include archived `.ts.txt` snapshots.
-4. Run isolated strict TypeScript validation before registration. The parent alone edits `src/game/content/local-tales.ts` and accepts complete whole-country batches.
-5. Recheck engine/save/mission compatibility and representative browser behavior. Temporary parent probe sources are `/tmp/allworld-unique-progression-acceptance.ts` and `/tmp/allworld-unique-mission-proof.ts`; their methods and results are described above. No new tracked tests were added.
-6. Fetch released main before publication, preserve agent-play changes, run branch CI, and push main only after checks. Do not merge unreleased programme branches automatically. Deployment is a separate gate.
-
-Portable inputs include the audited 284-city brief, its 826 guide snippets and 26 documented guide gaps; whole-country assignments; a synthetic legacy save; and the original engine baseline. `draft-batches/` preserves incomplete/rejected work outside compilation. Its old ownership notes are historical.
-
-Coordinator: `docs/agent-work/unique-local-content-20261015.md`. Shared index: `docs/AGENT-COORDINATION.md`. Current records: `local-tales-05-quality-20261015.md`, `local-tales-06-quality-20261015.md`, and `local-tales-07-outline-20261015-r2.md` (rejected outline). The other computer owns the world-alive programme in `AGENT.md` and `docs/agent-plans/world-alive/STATUS.md`. Per-worker tokens and monetary cost are unknown.
-
-Combined CI38673086751 passed on `6198fe21`, including the other computer’s released Phase 14 work. Main `81a94cbb` additionally merges release-status documentation. No deployment was performed here.
-
-The current 215-city reports supersede the 145-city probe totals in the historical table: 2,150 engine paths, 25,800 daily deals, 214 legacy rollover claims, 568 exact old keepsakes and 527 old collections pass. `batches-01-06-validation.json` reports zero structural errors. These probes were run in the working tree subsequently committed as67e13a8f. CI38675110595 passed typecheck, build, city budgets, smoke and policy; broad suites were skipped. Welcome copy now describes places worldwide and country/territory identities. The new 375px landing screenshot is inconclusive because browser capture scaled the content; DOM width showed no overflow. Browser binding later failed, and a temporary Chrome viewport reset remains unconfirmed. Existing player saves were not cleared.
-
-Final handoff:215-city milestone is on main95855168; no content deployment. Both authors stopped; drafts07(20/35cities) and08(6/34) archived outside compilation with full matrices. Last live usage94%used/6%remaining; stopped at a safe checkpoint ahead of95%used hard floor. Resume requires renewed work instruction and a live usage check.
+Coordinator: [unique-local-content-20261015](../../agent-work/unique-local-content-20261015.md). Shared index: [AGENT-COORDINATION](../../AGENT-COORDINATION.md). Current final author records: [batch07](../../agent-work/local-tales-07-quality-20261015.md), [batch08](../../agent-work/local-tales-08-quality-20261015.md). Independent acceptance: [Astra](../../agent-work/phase6-final-verification-20261015.md), [07 middle review](../../agent-work/phase6-batch07-middle-source-audit-20261015.md), [08 middle review](../../agent-work/phase6-batch08-source-audit-20261015.md). Agent-play programme remains owned by `AGENT.md` and `docs/agent-plans/world-alive/STATUS.md`. Per-worker token and monetary cost are unknown.

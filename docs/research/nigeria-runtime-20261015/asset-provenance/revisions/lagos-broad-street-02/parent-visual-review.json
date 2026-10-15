@@ -1,0 +1,26 @@
+{
+  "status": "PASS_OFFLINE_SCOPED",
+  "reviewer": "parent-independent-review",
+  "manifestSha256": "8c6681fd6fb23b9080452c51caea721cbc42c838ac194df238b020ba611ca8e7",
+  "reviewedFiles": {
+    "lagos_broadstreet_v2_lod0.glb": "60d833c9593ce0ad41bd179561c9631d847901ea5addebbe8db0a7325febd4ed",
+    "lagos_broadstreet_v2_lod1.glb": "197b7e5d4b85173ea533ada8afb3a0da6db6bbd309e9805427520195b147e0bd",
+    "runtime-lod0-day.png": "e6b26b9bcb73c6ec260c7024ccb0b0d839d25ba89f6ac334bf90408c329276f5",
+    "runtime-lod0-night.png": "de9e06d37387b235b350c9be69c862c65fc2c0d3d9baf0b501e14898d45c5be2",
+    "runtime-eye-day.png": "1503642173492d66c074127e394721ea80580334f3001e56a4f9e91c9251c507",
+    "collision.json": "fbd673165edc79e117a0b117b4b018b74c898e879eec2e25ed426c31377c593c",
+    "anchors.json": "0e40e8330a41679d3939e29858bd061695108b6846dff7b6518b01c0d93fc5db"
+  },
+  "findings": [
+    "Frontage silhouette, dark glazing, selective louvres, canopy and continuous curb retained in frozen GLB reimport views.",
+    "Near geometry reduced from published7618 to4174 triangles; exact prior far1822 retained.",
+    "Sidecar revision bindings corrected with unchanged navigation coordinates."
+  ],
+  "limitations": [
+    "Derived from accepted far mesh plus reconstructed selected details; not lossless reduction of unavailable original near mesh.",
+    "Five near material primitives versus previousone; aggregate draw calls and budget still require host tests.",
+    "Reduced shop detail and opaque glazing remain runtime approximations.",
+    "Night is only standalone material/silhouette check; lights from preview rig are not exported.",
+    "No gameplay/collision alignment/physical-device/production acceptance."
+  ]
+}

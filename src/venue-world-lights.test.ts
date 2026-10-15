@@ -30,11 +30,13 @@ for (const maps of [false, true]) {
 
 test('actual host teardown releases shadow targets before renderer teardown', () => {
   const events: string[] = [];
+  let renders = 0;
   let shadow: THREE.LightShadow | undefined;
   const renderer = {
     shadowMap: {}, domElement: { remove() {} },
     setPixelRatio() {}, setClearColor() {}, setSize() {},
     render(scene: THREE.Scene) {
+      renders++;
       if (shadow) return;
       const sun = scene.children.find(child => child instanceof THREE.DirectionalLight && child.castShadow) as THREE.DirectionalLight | undefined;
       assert.ok(sun, 'the actual host owns a shadow-casting sun');
@@ -47,7 +49,11 @@ test('actual host teardown releases shadow targets before renderer teardown', ()
   const container = { appendChild() {}, getBoundingClientRect: () => ({ width: 390, height: 844 }) } as unknown as HTMLElement;
   const world = createVenueWorld(container, { location: 'park', renderer });
   assert.ok(shadow, 'the renderer received the actual scene');
+  shadow.map!.addEventListener('dispose', () => world.update());
+  const beforeDispose = renders;
   world.dispose(); world.dispose();
+  world.update(); world.resize();
+  assert.equal(renders, beforeDispose, 'callbacks during and after teardown cannot resurrect GPU resources');
   assert.deepEqual(events, ['shadow', 'renderer'], 'host released the shadow target before renderer teardown');
 });
 

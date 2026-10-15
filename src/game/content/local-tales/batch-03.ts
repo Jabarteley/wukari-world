@@ -421,7 +421,7 @@ const batch: AuthoredContentBatch = {
         daily: [
           { label: 'Complete one quiet evening at Umayyads Park', purpose: 'Test the domino’s hinged hold and release.', task: 'practical', count: 1 },
           { label: 'Visit Greer at Sebki Park', purpose: 'Compare the switchback panel’s two groove faces.', task: 'host-visit', count: 1 },
-          { label: 'Look around once in Umayyads Park', purpose: 'Practice the one-turn spiral timing without another player.', task: 'discovery', count: 1 },
+          { label: 'Look around once in Sebki Park', purpose: 'Practice the one-turn spiral timing without another player.', task: 'discovery', count: 1 },
         ],
         weekly: [
           { label: 'Complete two quiet evenings at Umayyads Park', purpose: 'Rehearse the held domino finale twice.', task: 'practical', count: 2 },

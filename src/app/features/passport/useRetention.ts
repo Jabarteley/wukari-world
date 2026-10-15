@@ -125,7 +125,12 @@ export function useRetention() {
     return Boolean(row && (row.flags.rhythm || row.rhythm.optedIn || row.rhythm.lifetime > 0 || row.rhythm.recognition.length > 0))
   })
 
-  watch([() => game.session.value?.id, () => game.view.value.cityId, () => game.connected.value], ([, , connected]) => {
+  const earnedRewards = computed(() => JSON.stringify([
+    (game.view.value.episodes?.mementos ?? []).map(row => [row.id, row.grantedAt]),
+    (game.view.value.projects?.mementos ?? []).map(row => [row.id, row.occurrence, row.earnedAt]),
+  ]))
+
+  watch([() => game.session.value?.id, () => game.view.value.cityId, () => game.connected.value, earnedRewards], ([, , connected]) => {
     reset(scope())
     if (connected) void load(true)
   })

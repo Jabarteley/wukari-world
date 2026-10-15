@@ -31,6 +31,7 @@
  */
 import { lagosTime } from '../../src/game/clock.ts';
 import { cityRules } from '../../src/game/cities/index.ts';
+import { venueLabel } from '../../src/game/content/venues.ts';
 import { agentWords } from '../moderation/agent-words.ts';
 import { gistService } from '../gist/ledger.ts';
 import { initialVenuePosition, venueRoomKey } from '../protocol.ts';
@@ -43,15 +44,20 @@ import type { RouteContext } from '../types.ts';
 import { ACTIONS, planAt } from '../house/actions.ts';
 import type { ActionId } from '../house/actions.ts';
 import { HOUSE_LOOKS, venueFor } from '../house/cast.ts';
-import { RESIDENTS, residentId } from './life.ts';
+import { OUT_OF_CHARACTER, RESIDENTS, residentId } from './life.ts';
+import { prayersOf } from '../prayers/service.ts';
+import { fateIn, prayerText } from '../prayers/model.ts';
+import type { Fate } from '../prayers/model.ts';
 import type { Resident } from './life.ts';
 
 /** What a thought may choose: five of the house actions, or "keep to the routine". Anything else is thrown away. */
-export const CHOICES = ['keep_routine', 'open_shop', 'go_market', 'eat', 'go_home'] as const;
+export const CHOICES = ['keep_routine', 'open_shop', 'go_market', 'eat', 'go_home', 'pray'] as const;
 export type Choice = typeof CHOICES[number];
+export { OUT_OF_CHARACTER };
 const CHOICE_HELP: Readonly<Record<Choice, string>> = Object.freeze({
   keep_routine: 'carry on with what the day plan says', open_shop: 'stand at your stall and keep it', go_market: 'go to the market for stock',
   eat: 'go and eat something', go_home: 'go home and be on your own',
+  pray: 'say a prayer in your own words (write it in "prayer"; once a day at most, when something weighs on you or you are grateful)',
 });
 export type Wake = 'morning' | 'routine-end' | 'arrival' | 'spoken-to' | 'alone';
 
@@ -61,9 +67,6 @@ export const MAX_THOUGHTS = 64, MAX_ENTRIES = 120, DAYS_KEPT = 7, SUMMARY_MAX = 
 const CENSUS_MS = 30000, PRESENCE_MS = 12 * 60000, RENEW_MS = 6 * 60000, CHOICE_MS = 60 * 60000;
 /** `on`: whether she lives when the owner has not chosen; on the real hosts (the ones that ask the outside world, ctx.worldFeed) she does, in shadow. */
 export const DEFAULTS = Object.freeze({ on: false, shadow: true });
-
-/** Words a character never says about what it is made of or lives in. */
-export const OUT_OF_CHARACTER = /\b(?:a\.?i\.?|artificial|intelligence|language model|llm|chat ?bots?|bots?|models?|games?|gaming|gamers?|players?|assistants?|prompts?|openai|anthropic|claude|gpt|simulat\w*|npcs?|as an? (?:ai|assistant)|programmed|virtual)\b/i;
 
 export interface Entry {
   at: number; reason: Wake
@@ -78,6 +81,8 @@ export interface Entry {
 }
 export interface DayRecord {
   day: number; wokeAt: number | null; sleptAt: number | null; sleptEarly: boolean
+  /** Prayers said today (at most one). Optional: older records do not have it. */
+  prayed?: number
   thoughts: number; retries: number; slips: number; invalid: number; fallbacks: number; costMicro: number
   entries: Entry[]; summary: string | null; summaryCostMicro: number
 }
@@ -86,7 +91,7 @@ export interface Stored { v: 1; residents: Record<string, Life> }
 
 const blankDay = (day: number): DayRecord => ({ day, wokeAt: null, sleptAt: null, sleptEarly: false, thoughts: 0, retries: 0, slips: 0, invalid: 0, fallbacks: 0, costMicro: 0, entries: [], summary: null, summaryCostMicro: 0 });
 
-export type Verdict = { ok: true; next: Choice; say: string | null } | { ok: false; slip: 'character' | 'words' | 'invalid' };
+export type Verdict = { ok: true; next: Choice; say: string | null; prayer: string | null } | { ok: false; slip: 'character' | 'words' | 'invalid' };
 /** The whole check of a reply: in character, the right JSON, a choice from the list, a short line that passes the agent word rules. */
 export function judge(raw: string): Verdict {
   const text = String(raw ?? '');
@@ -96,13 +101,22 @@ export function judge(raw: string): Verdict {
   let parsed: unknown;
   try { parsed = JSON.parse(text.slice(from, to + 1)); } catch { return { ok: false, slip: 'invalid' }; }
   if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) return { ok: false, slip: 'invalid' };
-  const { next, say } = parsed as Record<string, unknown>;
+  const { next, say, prayer } = parsed as Record<string, unknown>;
   if (typeof next !== 'string' || !(CHOICES as readonly string[]).includes(next)) return { ok: false, slip: 'invalid' };
   if (say !== undefined && say !== null && typeof say !== 'string') return { ok: false, slip: 'invalid' };
   const line = typeof say === 'string' ? say.replace(/\s+/g, ' ').trim() : '';
   if (line.length > LINE_MAX) return { ok: false, slip: 'invalid' };
   if (line && !agentWords(line, { toMinor: true }).ok) return { ok: false, slip: 'words' };
-  return { ok: true, next: next as Choice, say: line || null };
+  // A prayer is written only when the choice is to pray: bounded, in character, and passing the same word rules as a spoken line.
+  let said: string | null = null;
+  if (next === 'pray') {
+    const written = prayerText(typeof prayer === 'string' ? prayer : '');
+    if (!written.ok) return { ok: false, slip: 'invalid' };
+    if (OUT_OF_CHARACTER.test(written.text)) return { ok: false, slip: 'character' };
+    if (!agentWords(written.text, { toMinor: true }).ok) return { ok: false, slip: 'words' };
+    said = written.text;
+  }
+  return { ok: true, next: next as Choice, say: line || null, prayer: said };
 }
 /** A summary is plain text: in character, passing the word rules, cut to SUMMARY_MAX. */
 export function judgeSummary(raw: string): { ok: true; text: string } | { ok: false; slip: 'character' | 'words' | 'invalid' } {
@@ -123,6 +137,10 @@ export interface ResidentDeps {
   load?: () => Promise<Stored | undefined>
   save?: (stored: Stored) => Promise<void>
   residents?: readonly Resident[]
+  /** Where a prayer goes (the admin's Prayers page); tests give their own. */
+  pray?: (prayer: { id: string; name: string; city: string; text: string; situation: string }) => Promise<void>
+  /** What the owner has done to this resident (docs/PRAYERS.md): read into its next turns. */
+  fate?: (id: string) => Promise<Fate | null>
 }
 
 export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
@@ -134,6 +152,8 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
   const room = () => ctx.checks?.agentRoom;
   let stored: Stored = { v: 1, residents: {} };
   let loaded: Promise<void> | null = null;
+  const pray = deps.pray ?? ((prayer: { id: string; name: string; city: string; text: string; situation: string }): Promise<void> => ctx.store.transact((db) => { prayersOf(ctx).residentPrays(db, prayer); }));
+  const fateRead = deps.fate ?? ((id: string): Promise<Fate | null> => ctx.store.read((db) => fateIn(db, id)));
   const load = deps.load ?? ((): Promise<Stored | undefined> => ctx.store.read((db) => { const col = (db as Record<string, unknown>)['residents']; return col && typeof col === 'object' ? structuredClone(col) as Stored : undefined; }));
   const save = deps.save ?? ((value: Stored): Promise<void> => ctx.store.transact((db) => { Object.assign(ctx.collection(db, 'residents', { v: 1, residents: {} }), structuredClone(value)); }, { durable: false }));
   let isReady = false;
@@ -214,7 +234,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     if (place === 'eatery') { const v = work.eatery ? venueFor(city, work.eatery, 'guide') : null; return v ? venueRoomKey(city, v, '') : null; }
     return null;
   }
-  const actionOf = (choice: Choice, routine: ActionId): ActionId => (choice === 'keep_routine' ? routine : choice);
+  const actionOf = (choice: Choice, routine: ActionId): ActionId => (choice === 'keep_routine' || choice === 'pray' ? routine : choice);
 
   // ---- the prompt: the life story, then only what the character itself would know -----------------------------------------------------------
   async function newsOf(city: string): Promise<string[]> {
@@ -236,6 +256,7 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     const clock = `${String(Math.floor(local / 60)).padStart(2, '0')}:${String(local % 60).padStart(2, '0')}`;
     const weekday = WEEKDAYS[lagosTime(t + (who.utcOffsetMin - 60) * 60000).weekday]!;
     const news = await newsOf(who.city);
+    const fate = await fateRead(state.id).catch(() => null);
     const recent = day.entries.slice(-3).map((e) => `${e.action === 'keep_routine' ? ACTIONS[e.routine].doing : ACTIONS[actionOf(e.action, e.routine)].doing}${e.line ? `, saying "${e.line}"` : ''}`);
     const lines = [
       `It is ${clock} on ${weekday} in ${city}. ${REASON[reason]}`,
@@ -244,13 +265,24 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
       recent.length ? `Earlier today: ${recent.join('; ')}.` : '',
       life.memory.length ? `How your last days felt: ${life.memory.slice(-2).map((m) => m.slice(0, 300)).join(' ')}` : '',
       news.length ? `What people are talking about in town: ${news.join('; ')}.` : '',
+      ...fateLines(fate, who, t),
       '',
       'What do you do next? Choose "next" from:',
       ...CHOICES.map((choice) => `- ${choice}: ${CHOICE_HELP[choice]}`),
       'You may also say one short thing aloud ("say", under 140 characters, or an empty string if you say nothing). You can choose anything on the list, including carrying on as planned.',
-      'Reply as {"next":"...","say":"..."}.',
+      'Reply as {"next":"...","say":"..."}; with "pray", also "prayer":"...".',
     ];
     return [{ role: 'system', content: system(who) }, { role: 'user', content: lines.filter((line, at) => line !== '' || at > 0).join('\n') }];
+  }
+  /** What happened to the resident that it would take as its own luck, its own dream or its own mood. Never says where it came from. */
+  function fateLines(fate: Fate | null, who: Resident, t: number): string[] {
+    if (!fate) return [];
+    const out: string[] = [];
+    if ((fate.sickUntil ?? 0) > t) out.push('You are not feeling well today: a fever.');
+    const dream = (fate.dreams ?? []).filter((d) => t - d.at < 86400000).at(-1);
+    if (dream) out.push(`A dream stayed with you: ${dream.text}`);
+    if (fate.cross && fate.cross.until > t && fate.cross.city === who.city) out.push(`Something keeps pulling you towards ${venueLabel(fate.cross.venue, who.city)} today.`);
+    return out;
   }
   const RETRY = 'That was not what I needed. Answer again as yourself, in your own words: only the small JSON object with "next" and "say".';
 
@@ -289,6 +321,17 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
     }
     if (verdict) { entry.outcome = 'model'; entry.action = verdict.next; entry.line = verdict.say; entry.why = null; }
     else entry.line = null;
+    if (verdict?.next === 'pray') {
+      // A prayer goes to the admin's Prayers page and nowhere else: it is not spoken. One a day; a second is let go as a quiet moment.
+      entry.line = null;
+      if ((day.prayed ?? 0) >= 1 || !verdict.prayer) entry.action = 'keep_routine';
+      else {
+        day.prayed = (day.prayed ?? 0) + 1;
+        const fate = await fateRead(state.id).catch(() => null), local = localMinute(who, t);
+        const situation = `${(fate?.sickUntil ?? 0) > t ? 'unwell' : 'well'} · ${ACTIONS[routine.action].doing.toLowerCase()} · ${String(Math.floor(local / 60)).padStart(2, '0')}:${String(local % 60).padStart(2, '0')} local`;
+        try { await pray({ id: state.id, name: who.name, city: who.city, text: verdict.prayer, situation }); } catch { /* the prayer is lost; the day goes on */ }
+      }
+    }
     record(state, day, entry);
     applyChoice(state, entry, ctx.now());
   }

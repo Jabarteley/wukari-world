@@ -3,6 +3,8 @@
 Phase 5 of the "world alive" programme. The code is `src/game/money.ts` (pure, no imports), the table is `src/game/currency.ts`
 (Phase 4, only the server reads it), the rates come from the world feed (`docs/WORLD-FEED.md`).
 
+Prices and wages follow the country's price level too: see [PRICE-LEVELS.md](PRICE-LEVELS.md) (Phase 18).
+
 ## What a player sees
 
 In a city outside Nigeria the amounts on screen are written in that city's money at the day's real rate: £3.40 in London,

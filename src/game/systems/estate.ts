@@ -442,7 +442,7 @@ export const hasPlace = (state: LifeState): boolean => Boolean(state?.estate?.lg
  * The links out of a city with each fare in the life's prices (docs/PRICE-LEVELS.md "Starting money"): the link's base fare times the level of the city the life
  * started in. A Nigerian start (and every life saved before this) pays the fare as written. The whole-route ride home on credit (`homewardQuote`) keeps the base fares.
  */
-export function linksPriced(state: LifeState, city: string): CityLinkFrom[] {
+export function linksPriced(state: LifeState, city: string): readonly CityLinkFrom[] {
   const level = lifeLevel(state), links = linksFrom(city);
   return level === 1 ? links : links.map((link) => ({ ...link, fare: scaleNaira(link.fare, level) }));
 }

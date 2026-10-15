@@ -267,11 +267,11 @@ jobs:
     timeout-minutes: 25
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 6
       matrix:
         node: [22, 24]
         # economy and cities are two files of src/ that run for 14 and 10 minutes: the game job could not hold them (scripts/node-test-plan.ts).
-        suite: [game, host, tooling, economy, cities]
+        suite: [game-1, game-2, game-3, host, tooling, economy, cities]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

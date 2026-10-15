@@ -15,6 +15,7 @@ import { isReliefActivity } from './relief.ts';
 import { planHomewardRoute } from './cities/homewardRoute.ts';
 import { routeUnavailable } from './cities/routeAvailability.ts';
 import { LEDGER_LIMIT } from './systems/wallet.ts';
+import { linksPriced } from './systems/estate.ts';
 import type { ActivityDefinition, CityLinkFrom } from '../types/content.ts';
 import type { LifeContextInit, LifeState } from '../types/life.ts';
 
@@ -104,7 +105,9 @@ function build(home: string, city: string): LifeState {
   run('onboarding.lottery', {});
   const started = run('onboarding.home', { lga: cityRules(home)!.units[0]!.id, via: 'manual' });
   if (started.code !== 'life_started') throw new Error(`could not start a life in ${home}: ${started.code}`);
-  for (const leg of bookablePath(home, city)) {
+  for (const step of bookablePath(home, city)) {
+    // The ticket is in the prices of the city the life started in (026d3e6b): the fare charged is the link's times that city's level.
+    const leg = linksPriced(state, state.estate.city).find((item) => item.to === step.to && item.mode === step.mode) ?? step;
     seedWallet(state, leg.fare, at(state));
     const before = state.cash;
     const sent = run('estate.relocate', { to: leg.to, mode: leg.mode });

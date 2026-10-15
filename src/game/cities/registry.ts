@@ -363,7 +363,18 @@ export const cityLinks = (cityId: string): readonly CityLink[] => {
   }
   return [...(index.get(cityId) ?? [])]
 }
-export const linksFrom = (cityId: string): CityLinkFrom[] => cityLinks(cityId).map(({ a, b, ...link }) => ({ ...link, to: a === cityId ? b : a }))
+// The links out of a city, seen from that city. Built once per merged list and city (the list is replaced, not edited, when a fixture city is
+// registered, so a new list starts a new cache) and handed out frozen: every view of a life, every route search and every ticket asks for them, and
+// building 200 objects per ask took most of the time of the every-route test (about 40 ms a route).
+const linksFromCache = new WeakMap<readonly CityLink[], Map<string, readonly CityLinkFrom[]>>()
+export const linksFrom = (cityId: string): readonly CityLinkFrom[] => {
+  const all = allCityLinks()
+  let known = linksFromCache.get(all)
+  if (!known) { known = new Map(); linksFromCache.set(all, known) }
+  let links = known.get(cityId)
+  if (!links) { links = Object.freeze(cityLinks(cityId).map(({ a, b, ...link }) => Object.freeze({ ...link, to: a === cityId ? b : a }))); known.set(cityId, links) }
+  return links
+}
 
 async function readCityContent(cityId: string): Promise<CityContent> {
   const cached = loadedContent.get(cityId)

@@ -7,6 +7,8 @@ const groups = { game: 'src/', host: 'server/', tooling: 'scripts/' }
 // Two files are slower than everything else in `src/` together, so each gets a job of its own (the game job ran out of its 25 minutes with them):
 // the full economy simulation (all starts and strategies, about 14 minutes) and the contracts of every playable city (about 10).
 const alone = { economy: 'src/game/economy.test.ts', cities: 'src/game/cities/allCities.test.ts' }
+// The rest of src/ is about 975 files and over 25 minutes in one job, so it runs as GAME_SHARDS jobs (game-1 ... game-3): sorted, file n goes to shard n mod 3.
+const GAME_SHARDS = 3
 type Suite = keyof typeof groups | keyof typeof alone
 const record = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value)
 const manifest: unknown = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'))
@@ -34,17 +36,22 @@ for (const [name, globs] of Object.entries(plan)) {
 }
 for (const [path, name] of aloneOwner) if (ownership.get(path) !== name) throw new Error(`The slow file ${path} is not in the npm test inventory.`)
 // What each partition runs: its globs; the files that run alone; and for the game partition every other file of src/.
-const files = (name: Suite): string[] => name === 'economy' || name === 'cities' ? [alone[name]] : name === 'game' ? [...ownership].filter(([, owner]) => owner === 'game').map(([file]) => file).sort() : plan[name]
+const gameFiles = (): string[] => [...ownership].filter(([, owner]) => owner === 'game').map(([file]) => file).sort()
+const files = (name: Suite): string[] => name === 'economy' || name === 'cities' ? [alone[name]] : name === 'game' ? gameFiles() : plan[name]
+const shardOf = (name: string): number | null => { const found = /^game-([1-9])$/.exec(name); return found && Number(found[1]) <= GAME_SHARDS ? Number(found[1]) : null }
 const complete = new Set(patterns.flatMap(pattern => globSync(pattern)))
 if (!complete.size || complete.size !== ownership.size || [...complete].some(file => !ownership.has(file))) throw new Error('Hosted partitions do not cover the complete npm test file inventory.')
 
 const selected = process.argv[2]
 if (selected === '--plan' && process.argv.length === 3) {
   const names: Suite[] = ['game', 'host', 'tooling', 'economy', 'cities']
-  process.stdout.write(JSON.stringify({ totalFiles: complete.size, partitions: Object.fromEntries(names.map(name => [name, { globs: name === 'economy' || name === 'cities' ? [alone[name]] : plan[name], files: [...ownership.values()].filter(owner => owner === name).length }])) }, null, 2) + '\n')
+  const shards = Array.from({ length: GAME_SHARDS }, (_, n) => ({ [`game-${n + 1}`]: gameFiles().filter((_, index) => index % GAME_SHARDS === n).length }))
+  process.stdout.write(JSON.stringify({ totalFiles: complete.size, game_shards: Object.assign({}, ...shards), partitions: Object.fromEntries(names.map(name => [name, { globs: name === 'economy' || name === 'cities' ? [alone[name]] : plan[name], files: [...ownership.values()].filter(owner => owner === name).length }])) }, null, 2) + '\n')
 } else {
-  if (process.argv.length !== 3 || (selected !== 'game' && selected !== 'host' && selected !== 'tooling' && selected !== 'economy' && selected !== 'cities')) throw new Error('Choose game, host, tooling, economy, cities, or --plan.')
-  const child = spawn(process.execPath, ['--experimental-strip-types', '--test', '--test-concurrency=1', ...files(selected)], { stdio: 'inherit' })
+  const shard = selected === undefined ? null : shardOf(selected)
+  if (process.argv.length !== 3 || (shard === null && selected !== 'game' && selected !== 'host' && selected !== 'tooling' && selected !== 'economy' && selected !== 'cities')) throw new Error('Choose game-1 ... game-3, host, tooling, economy, cities, or --plan.')
+  const chosen = shard !== null ? gameFiles().filter((_, index) => index % GAME_SHARDS === shard - 1) : files(selected as Suite)
+  const child = spawn(process.execPath, ['--experimental-strip-types', '--test', '--test-concurrency=1', ...chosen], { stdio: 'inherit' })
   const signals = ['SIGINT', 'SIGTERM', 'SIGHUP'] as const
   for (const signal of signals) process.on(signal, () => child.kill(signal))
   child.on('error', error => { process.stderr.write(`${error.message}\n`); process.exitCode = 1 })

@@ -7,6 +7,9 @@
  */
 import type { Spec } from '../house/cast.ts';
 
+/** Words a character never says about what it is made of or lives in. */
+export const OUT_OF_CHARACTER = /\b(?:a\.?i\.?|artificial|intelligence|language model|llm|chat ?bots?|bots?|models?|games?|gaming|gamers?|players?|assistants?|prompts?|openai|anthropic|claude|gpt|simulat\w*|npcs?|as an? (?:ai|assistant)|programmed|virtual)\b/i;
+
 export interface Resident {
   /** Stable key, part of the id `resident.<city>.<key>`. */
   key: string

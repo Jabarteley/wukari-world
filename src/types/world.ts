@@ -165,6 +165,9 @@ export interface WorldHttpRoutes {
   'GET /api/world/feed': { query: { id: CityId }; response: Ok<WorldFeedResponse>; errors: HostErrorCode | 'invalid_city' | 'feed_rate_limited' }
   /** Public: the newest public lines of a city's gist (its own and the world's) after `since`; cached 15 seconds. */
   'GET /api/world/gist': { query: { id: CityId; since?: number; limit?: number }; response: Ok<WorldGistResponse>; errors: HostErrorCode | 'invalid_city' | 'gist_rate_limited' }
+  /** A player's prayer (server/routes/prayers.ts, docs/PRAYERS.md): the notice to show first, then the prayer, sent with `notice: true`. */
+  'GET /api/world/pray': { query: Record<string, never>; response: Ok<{ notice: string; received: string; left: number; max: number }>; errors: WorldCommon }
+  'POST /api/world/pray': { body: { text: string; notice: true; venue?: string; clientId: string }; response: Ok<{ ok: true; message: string }>; errors: WorldCommon | 'notice_required' | 'invalid_prayer' | 'too_many_prayers' }
   'GET /api/world/city': { query: { city: CityId; v?: string }; response: Ok<WorldCityResponse>; errors: WorldCommon }
   'GET /api/world/lga/:id': { params: { id: LgaId }; query: { city: CityId }; response: Ok<WorldLgaResponse>; errors: WorldLga }
   /** `from` 0…511, `count` 0…128 (default 128); 400 `invalid_number` otherwise. */

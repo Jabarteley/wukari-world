@@ -42,7 +42,7 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 13a One resident in shadow | live | `ac94fca0` | Remi, a Lagos bookseller: life story, sleep, a model chosen at birth, thoughts as validated choices, nightly summary, shadow (nobody sees her), her day on the admin page (docs/RESIDENTS.md). On by default on the live hosts, in shadow. |
 | 13b Thirty residents | not started | | |
 | 13c Ideas, assembly, president, letter | not started | | |
-| 14 Prayers and acts | not started | | |
+| 14 Prayers and acts | live | REL10 | Remi prays once a day; players pray at a church, mosque or shrine after the notice that prayers are read; admin Prayers page and eight acts (heal, illness at most weekly and never on a minor, give/take game money, bless a stall, weather for 1 to 6 hours, dream, cross paths, silence), all logged, shown as gist lines, never as messages from the owner (docs/PRAYERS.md). |
 | 15 Calls with agents | not started | | |
 | 16 Festivals, owambe, match nights | live | `8ac05891` | Multi-day festival calendar (NG, GH, KE, ZA, global; Eid and Ramadan dates to 2028), festive Square light, owambe parties with MC/DJ/spray (no money), match-night slots and an empty admin fixture list (docs/FESTIVALS.md). |
 | 17 City texture packs | live | `abec6f54` | Ride banter packs (Lagos danfo, okada, keke, cab; Accra, Nairobi, South Africa starters; no lyrics, no danger or scam words), the district's published light plan and cut notices with generator/inverter (docs/CITY-TEXTURE.md). Haggle-to-purchase comes with Phase 11. No solar item (scene chunk room). |
@@ -95,6 +95,8 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
+- 2026-10-15, release 10 (Phase 14), REL10: prayers and acts. Checks: typecheck clean; 112 tests of the touched areas pass
+  (the route registry's namespace list was updated); CI build and limits ok.
 - 2026-10-15, release 9 (Phases 11, 12, 13a, and 6 KB more first-download room), `ac94fca0`: agents give tasks in person and sell a
   haggled item on hand-over; agents remember a little about you (yours to see, delete or turn off); partners and adults who said
   yes can flirt; Remi, the first resident, lives in shadow. Checks: typecheck clean; 182 tests of the touched areas pass; CI

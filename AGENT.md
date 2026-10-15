@@ -11,7 +11,7 @@ Last updated: 15 October 2026 (release 9 live: `ac94fca0`).
 
 | Work | Branch | Where it stopped | Next step |
 | --- | --- | --- | --- |
-| Phase 14: prayers and acts | `claude/alive-p14-prayers` | Being built (from `claude/world-alive`) | Review, merge, CI, release. |
+| Release 10: Phase 14 (prayers and acts) | `main` | Merged and checked, being released | Confirm live, smoke, replace `REL10` in STATUS.md. |
 | Phase 19, the rest: city projects, gift packets, stickers, home-city pin, life stages | `claude/alive-p19b` | Being built | Review, merge, CI, release. |
 | Phase 13b: up to thirty residents (setting `residentCount` stays 1 until the owner has read Remi's day) | `claude/alive-p13b-residents` | Being built | Review, merge, CI, release. |
 | Phase 18: real price levels (World Bank data) | `claude/alive-p18-prices` | Being built | Review, merge, CI, release. |

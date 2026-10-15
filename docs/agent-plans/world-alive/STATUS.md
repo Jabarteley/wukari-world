@@ -46,8 +46,8 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 15 Calls with agents | live | `ea9f5ddd` | Call a house agent from Settings → AI characters: push-to-talk, the AI mark, its reply spoken on the phone in its own voice (text only crosses the network); speech to text by the browser or by the gateway's transcription model (WAV, budgeted, never stored); 20 minutes a day each, 300 in all, a break reminder every 10 minutes; agents' lines spoken in room voice (docs/CALLS.md). Words-right per accent NOT YET MEASURED: needs recordings (scripts/stt-bench, collect.html). |
 | 16 Festivals, owambe, match nights | live | `8ac05891` | Multi-day festival calendar (NG, GH, KE, ZA, global; Eid and Ramadan dates to 2028), festive Square light, owambe parties with MC/DJ/spray (no money), match-night slots and an empty admin fixture list (docs/FESTIVALS.md). |
 | 17 City texture packs | live | `abec6f54` | Ride banter packs (Lagos danfo, okada, keke, cab; Accra, Nairobi, South Africa starters; no lyrics, no danger or scam words), the district's published light plan and cut notices with generator/inverter (docs/CITY-TEXTURE.md). Haggle-to-purchase comes with Phase 11. No solar item (scene chunk room). |
-| 18 Real price levels | live | REL12 | World Bank price levels (2021, the last surveyed year: 2025's figures put Accra at 3× Lagos after the naira float), Nigeria = 1, clamped 0.5 to 4: rent, pay, activity and shop prices scaled per country; Nigerian cities unchanged (docs/PRICE-LEVELS.md). Not scaled yet: the starting purse, family loan, goal targets, intercity fares, wardrobe, the launch bonus. |
-| 19 Smaller features | live | REL12 | Away sheet, notification ask, jail you can play (release 4); city works funded together, group gift packets (game money), 30 text stickers, a home-city pin (on the device), opt-in birthdays (docs/SMALLER-FEATURES.md). Not built: passing property to a next character (needs its own design: no rollback). |
+| 18 Real price levels | live | `7c084ca6` | World Bank price levels (2021, the last surveyed year: 2025's figures put Accra at 3× Lagos after the naira float), Nigeria = 1, clamped 0.5 to 4: rent, pay, activity and shop prices scaled per country; Nigerian cities unchanged (docs/PRICE-LEVELS.md). Not scaled yet: the starting purse, family loan, goal targets, intercity fares, wardrobe, the launch bonus. |
+| 19 Smaller features | live | `7c084ca6` | Away sheet, notification ask, jail you can play (release 4); city works funded together, group gift packets (game money), 30 text stickers, a home-city pin (on the device), opt-in birthdays (docs/SMALLER-FEATURES.md). Not built: passing property to a next character (needs its own design: no rollback). |
 | 20 Agents' relationships and world events | not started | | |
 
 States: not started · in progress · pushed, not yet live · live · blocked (say on what).
@@ -105,7 +105,7 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
-- 2026-10-15, release 12 (Phases 18 and the rest of 19), REL12: real price levels; city works, gift packets, stickers, home-city
+- 2026-10-15, release 12 (Phases 18 and the rest of 19), `7c084ca6`: real price levels; city works, gift packets, stickers, home-city
   pin, birthdays.
 - 2026-10-15, release 11 (Phases 13b, 15), `ea9f5ddd`, live. Main had become unreleasable (the Worker test could not complete the
   city stories' new local missions); a test-only fix let it release.

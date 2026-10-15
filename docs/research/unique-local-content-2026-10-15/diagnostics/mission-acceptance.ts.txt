@@ -1,0 +1,57 @@
+import assert from 'node:assert/strict'
+import {writeFile} from 'node:fs/promises'
+import {createLife,dispatch,advanceLife} from '__REPO_ROOT__/src/life.ts'
+import {makeContext} from '__REPO_ROOT__/src/game/util.ts'
+import {loadCityContent,loadCityRules} from '__REPO_ROOT__/src/game/cities/index.ts'
+import {ACCEPTED_LOCAL_CITY_IDS} from '__REPO_ROOT__/src/game/content/local-tales.ts'
+import {dealMissions,missionDefinition,missionCatalogues} from '__REPO_ROOT__/src/game/systems/missions.ts'
+import {MISSION_REWARDS} from '__REPO_ROOT__/src/game/content/missions.ts'
+import {lagosTime,lagosDayStart} from '__REPO_ROOT__/src/game/clock.ts'
+const NOW=Date.UTC(2026,9,15,12), DAY=86400000, today=lagosTime(NOW).day
+let serial=0
+const ctx=(cityId:string,now=NOW)=>makeContext({cityId,now,executionOrigin:'human',actionId:`unique-mission-${++serial}`,seed:42})
+await loadCityContent('lagos'); await loadCityRules('lagos')
+const rows=[]
+for(const city of ACCEPTED_LOCAL_CITY_IDS){
+ await loadCityRules(city); await loadCityContent(city)
+ const state=createLife({cash:50000},ctx(city))
+ const ids=new Set<string>()
+ for(let day=today;day<today+120;day++){
+  const dealt=dealMissions(state,'daily',day,ctx(city,lagosDayStart(day)+12*3600000))
+  assert.equal(dealt.length,3,`${city}: three slots`)
+  assert.ok(dealt.some(row=>row.id.includes('-tale-')),`${city}: at least one local thread`)
+  dealt.forEach(row=>ids.add(row.id))
+ }
+ assert.ok(ids.size>=8,`${city}: base mission variety survives`)
+ const daily=dealMissions(state,'daily',today,ctx(city))
+ state.missions.day=today; state.missions.daily=daily
+ const authored=daily.find(row=>row.id.includes('-tale-'))!
+ const swap=dispatch(state,{type:'missions.reroll',payload:{id:authored.id}},ctx(city))
+ assert.equal(swap.ok,true,`${city}: local row free swap: ${swap.code}`)
+ const authoredIds=[...missionCatalogues.authoredIds].filter(id=>missionDefinition(id)?.cityId===city)
+ assert.equal(dealMissions(state,'daily',today,ctx(city),authoredIds).length,3,`${city}: blocked local IDs preserve three slots`)
+ let preservedLegacy=false
+ if(city!=='lagos'){
+  const id=`d-local-${city}-activity`
+  const oldDef=missionDefinition(id)
+  assert.ok(oldDef,`${city}: old definition retained`)
+  assert.equal(missionCatalogues.pools.daily.some(row=>row.id===id),false,`${city}: old row retired from future deals`)
+  const old=createLife({cash:50000,t:NOW-DAY,missions:{seed:7,day:today-1,week:lagosTime(NOW-DAY).week,daily:[{id,n:oldDef.count??1,marks:[],claimed:false}],weekly:[]}},ctx(city,NOW-DAY))
+  assert.equal(old.missions.daily[0]?.id,id,`${city}: saved old row survives sanitizer`)
+  advanceLife(old,DAY/1000,ctx(city))
+  assert.ok(old.missions.pending.some(row=>row.id===id),`${city}: completed old reward survives rollover`)
+  const restored=createLife(JSON.parse(JSON.stringify(old)),{cityId:city,now:NOW,trustedSave:true,executionOrigin:'human'})
+  assert.ok(restored.missions.pending.some(row=>row.id===id),`${city}: retired row pending reward survives reload`)
+  const cash=restored.cash
+  const claim=dispatch(restored,{type:'missions.claim',payload:{id}},ctx(city))
+  assert.equal(claim.ok,true,`${city}: old pending claim ${claim.code}`)
+  assert.equal(restored.cash,cash+MISSION_REWARDS.daily.cash)
+  dispatch(restored,{type:'missions.claim',payload:{id}},ctx(city))
+  assert.equal(restored.cash,cash+MISSION_REWARDS.daily.cash,`${city}: exactly one old grant`)
+  preservedLegacy=true
+ }
+ rows.push({cityId:city,distinctDailyIdsAcross120Days:ids.size,freeSwap:true,blockedAuthoredFallback:true,preservedLegacyRolloverClaim:preservedLegacy})
+}
+const report={cities:rows.length,dayDeals:rows.length*120,legacyRolloverClaims:rows.filter(row=>row.preservedLegacyRolloverClaim).length,rows}
+await writeFile('__REPO_ROOT__/docs/research/unique-local-content-2026-10-15/mission-acceptance.json',JSON.stringify(report,null,2)+'\n')
+console.log(JSON.stringify({cities:report.cities,dayDeals:report.dayDeals,legacyRolloverClaims:report.legacyRolloverClaims}))

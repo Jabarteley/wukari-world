@@ -68,7 +68,7 @@ const batch = {
         ],
         approaches: [
           { label: 'Enjoy a quiet park evening', callback: 'The slower setting makes each repeating pulse distinct.' },
-          { label: 'Have a simple meal before rehearsal', callback: 'Jesse taps the six-beat meeting on the table edge.' },
+          { label: 'Enjoy a quiet evening at Mandela Peace Park', callback: 'Jesse taps the six-beat meeting on the table edge.' },
           { label: 'Ask Jesse to hold one pulse', callback: 'Jesse stops chasing the other players and trusts the next meeting beat.' },
         ],
         dilemma: { prompt: 'What structure should the trio use?', answers: ['Follow whichever player is loudest at each moment.', 'Keep three steady patterns that reunite on every sixth beat.', 'Make every player use the same slow pattern.'], correct: 1, explanation: 'A shared meeting point prevents acceleration while preserving three recognizable parts.' },
@@ -116,8 +116,8 @@ const batch = {
           { title: 'A Strong Last Turn', text: 'They save the rested runner for the climb. The others hold a steady lead through the flat legs, and the final runner reaches the top smiling rather than staggering.' },
         ],
         approaches: [
-          { label: 'Look around Jardins de Juberri', callback: 'The hill makes the final leg’s demand visible.' },
-          { label: 'Look around Plaça del Poble', callback: 'The team rehearses clean exchanges on level ground.' },
+          { label: 'Look around at Plaça del Poble', callback: 'The hill makes the final leg’s demand visible.' },
+          { label: 'Look around at Jardins de Juberri', callback: 'The team rehearses clean exchanges on level ground.' },
           { label: 'Plan the legs with Emery', callback: 'Emery treats fresh strength as a shared resource.' },
         ],
         dilemma: { prompt: 'How should the relay assign its four fixed legs?', answers: ['Use legal exchanges so steady runners cover flats and fresh strength reaches the climb.', 'Keep the original order even after seeing the final climb.', 'Ask the fastest runner to cover as much of the course as possible.'], correct: 0, explanation: 'Matching effort to terrain protects the runner and gives every teammate a meaningful leg.' },
@@ -165,7 +165,7 @@ const batch = {
           { title: 'Together on Three', text: 'Both hidden characters answer the first two beats. On the third, they step through their separate gates at once and recognize each other before the cheering begins.' },
         ],
         approaches: [
-          { label: 'Look around the gate setting', callback: 'The two fixed entrances can be seen from one shared listening point.' },
+          { label: 'Enjoy a quiet evening at Άλσος Βεΐκου', callback: 'The two fixed entrances can be seen from one shared listening point.' },
           { label: 'Enjoy a quiet garden evening', callback: 'The familiar three-beat rhythm carries without spoken names.' },
           { label: 'Talk with Greer about the reunion', callback: 'Greer remembers the rhythm both characters used in their old game.' },
         ],
@@ -214,8 +214,8 @@ const batch = {
           { title: 'Matched Difficulties', text: 'At Zoo Bamako, one team shoots from the near mark and the other from the far mark, then they swap at the next size. Their totals reflect the same sequence of openings and distances.' },
         ],
         approaches: [
-          { label: 'Look around the game setting', callback: 'The opposite distance marks reveal how each target size can be shared.' },
-          { label: 'Enjoy a quiet evening nearby', callback: 'Arden has time to compare the teams’ full difficulty sequence.' },
+          { label: 'Enjoy a quiet evening at Zoo Bamako', callback: 'The opposite distance marks reveal how each target size can be shared.' },
+          { label: 'Look around at Park Happy Hour', callback: 'Arden has time to compare the teams’ full difficulty sequence.' },
           { label: 'Ask Arden to match the rounds', callback: 'Arden pairs each shrinking opening with both shooting distances.' },
         ],
         dilemma: { prompt: 'How should teams share a target that shrinks after each score?', answers: ['Alternate turns from one common line.', 'Use opposite distances at each size and swap them on the next size.', 'Let one team complete every attempt before the other begins.'], correct: 1, explanation: 'Pairing target sizes with both distances gives each team the same complete challenge sequence.' },
@@ -263,8 +263,8 @@ const batch = {
           { title: 'Three Openings Meet', text: 'The outer shells counter-rotate and a thin line of daylight reaches the center. The smallest shell slides sideways into Wren’s waiting hand, revealing the figure intact.' },
         ],
         approaches: [
-          { label: 'Look around Digi Park', callback: 'Wren can see how far the side openings miss one another.' },
-          { label: 'Look around Wilton Park', callback: 'The open space makes counter-rotation easy to rehearse.' },
+          { label: 'Look around at Wilton Park', callback: 'Wren can see how far the side openings miss one another.' },
+          { label: 'Look around at Digi Park', callback: 'The open space makes counter-rotation easy to rehearse.' },
           { label: 'Ask Wren about the shell seams', callback: 'Wren traces the only sideways route to the trapped center.' },
         ],
         dilemma: { prompt: 'How should the crew free the smallest shell?', answers: ['Counter-rotate the outer shells until their side openings align.', 'Shake the entire stack until something drops.', 'Pull the inner shell with a cord through the top.'], correct: 0, explanation: 'Aligning existing openings creates a safe sideways route without bending or grabbing the shell.' },
@@ -312,7 +312,7 @@ const batch = {
           { title: 'One Sound, Three Breaths', text: 'The screen crosses as each hidden player takes one phrase. From the audience side, the horn seems to travel on a single impossible breath.' },
         ],
         approaches: [
-          { label: 'Look around Parc Trois Fontaines', callback: 'The ensemble measures the screen’s crossing time.' },
+          { label: 'Look around at Park van het Kasteel Groenenberg', callback: 'The ensemble measures the screen’s crossing time.' },
           { label: 'Look around the castle park', callback: 'Three players rehearse their hidden handovers.' },
           { label: 'Ask Sage to cue each breath', callback: 'Sage keeps the phrase seamless without hiding its shared work.' },
         ],
@@ -359,7 +359,7 @@ const batch = {
         ],
         approaches: [
           { label: 'Enjoy the park setting', callback: 'The fixed lamp shows how path length changes arrival time.' },
-          { label: 'Have a simple meal nearby', callback: 'The performers trace a curve and a direct route on the table.' },
+          { label: 'Enjoy a quiet evening at Al Azhar Park', callback: 'The performers trace a curve and a direct route on the table.' },
           { label: 'Ask Jesse to count the crossing', callback: 'Jesse gives both figures one shared starting cue.' },
         ],
         dilemma: { prompt: 'How should the unequal shadow figures meet on time?', answers: ['Delay the nearer figure after the music starts.', 'Give the nearer figure a curved path and the farther one a direct path.', 'Move the nearer figure unusually slowly.'], correct: 1, explanation: 'Different path lengths let both figures begin naturally and meet on the same cue.' },
@@ -542,8 +542,8 @@ const batch = {
           { title: 'The Chase Crosses Paths', text: 'The wheels meet the sash and slow just enough. The actor’s wider route intersects the suitcase, completing the comic catch without a grab.' },
         ],
         approaches: [
-          { label: 'Look around Airport Park', callback: 'The suitcase’s repeated loop becomes easy to predict.' },
-          { label: 'Look around Public Beach', callback: 'The cast tests a soft sash against the rolling prop.' },
+          { label: 'Look around at Public Beach', callback: 'The suitcase’s repeated loop becomes easy to predict.' },
+          { label: 'Look around at Airport Park', callback: 'The cast tests a soft sash against the rolling prop.' },
           { label: 'Plan the crossing with Sage', callback: 'Sage shifts the actor’s route instead of demanding more speed.' },
         ],
         dilemma: { prompt: 'How should the actor meet the circling suitcase?', answers: ['Add soft friction at one point and cross on a wider route.', 'Run faster around the same loop.', 'Stop the wheels with a foot.'], correct: 0, explanation: 'Gentle slowing and a changed route create an intersection without grabbing or kicking the prop.' },
@@ -588,7 +588,7 @@ const batch = {
           { title: 'A Flight with a Destination', text: 'Actors shift the corridor as the cape drifts. It slides along the sheltered air and settles across the performer’s shoulders on cue.' },
         ],
         approaches: [
-          { label: 'Look around Shelly Bay Park', callback: 'The ensemble sees the cape’s first drifting direction.' },
+          { label: 'Look around at Bermuda Botanical Gardens', callback: 'The ensemble sees the cape’s first drifting direction.' },
           { label: 'Look around the gardens', callback: 'Actors rehearse a corridor that bends without closing.' },
           { label: 'Ask Uri to call the shifts', callback: 'Uri moves the corridor one pair of arms at a time.' },
         ],
@@ -635,7 +635,7 @@ const batch = {
         ],
         approaches: [
           { label: 'Look around the band setting', callback: 'Parker hears the delay’s exact one-beat length.' },
-          { label: 'Look around Fraternity park', callback: 'The band finds an open beat for the answer.' },
+          { label: 'Look around at John Lennon Park', callback: 'The band finds an open beat for the answer.' },
           { label: 'Count the echo with Parker', callback: 'Parker stops treating the late sound as a failed downbeat.' },
         ],
         dilemma: { prompt: 'How should the band use the delayed drum?', answers: ['Strike early and hope the timing stays constant.', 'Write the delayed sound into the open echo beat.', 'Remove the drum from the show.'], correct: 1, explanation: 'Giving the delay its own musical role makes the mechanism predictable and expressive.' },
@@ -680,8 +680,8 @@ const batch = {
           { title: 'The Audience Builds It', text: 'The platform grows from the outside inward. Each person stands only when their cushion moves, and the last seated row completes the top step.' },
         ],
         approaches: [
-          { label: 'Look around शहीदगेट', callback: 'The crew counts which occupied cushions can move first.' },
-          { label: 'Look around Garden of Dreams', callback: 'The audience rehearses an inward passing rhythm.' },
+          { label: 'Look around at Garden of Dreams', callback: 'The crew counts which occupied cushions can move first.' },
+          { label: 'Look around at शहीदगेट', callback: 'The audience rehearses an inward passing rhythm.' },
           { label: 'Plan the edge with Parker', callback: 'Parker keeps a seat beneath everyone until their turn.' },
         ],
         dilemma: { prompt: 'How should occupied cushions become the finale platform?', answers: ['Pass outer cushions inward as their occupants join the standing edge.', 'Ask the whole audience to stand before the scene.', 'Build a smaller platform with unused cushions only.'], correct: 0, explanation: 'Edge-first movement preserves seating until each cushion becomes available and includes the audience in the change.' },
@@ -727,7 +727,7 @@ const batch = {
         ],
         approaches: [
           { label: 'Enjoy the recreation area', callback: 'Players mark the two separate wind lanes.' },
-          { label: 'Have a simple meal nearby', callback: 'Jesse lays out possible ground patterns between rounds.' },
+          { label: 'Enjoy a quiet evening at Recreation area (game venue)', callback: 'Jesse lays out possible ground patterns between rounds.' },
           { label: 'Ask Jesse to rotate the roles', callback: 'Jesse ensures every kite flies and guides a launch.' },
         ],
         dilemma: { prompt: 'How should three kites share two wind lanes?', answers: ['Remove one kite from each round.', 'Make each flying round much shorter.', 'Rotate one kite through a ground role that controls the next launch.'], correct: 2, explanation: 'The ground role remains consequential and rotates, so every kite participates fully.' },
@@ -772,8 +772,8 @@ const batch = {
           { title: 'Power Cancels at Center', text: 'Paired stomps strike from opposite sides. The floor still booms, but the stand steadies and the hidden prop opens intact.' },
         ],
         approaches: [
-          { label: 'Enjoy Coronation Park', callback: 'The troupe marks equal distances around the center stand.' },
-          { label: 'Have a simple meal nearby', callback: 'Jesse taps the paired stomp count at the table.' },
+          { label: 'Have a simple meal at The Albert Millin', callback: 'The troupe marks equal distances around the center stand.' },
+          { label: 'Enjoy a quiet evening at Coronation Park', callback: 'Jesse taps the paired stomp count at the table.' },
           { label: 'Ask Jesse to balance the pairs', callback: 'Jesse matches dancers whose impacts arrive together.' },
         ],
         dilemma: { prompt: 'How should the troupe protect the fixed center prop?', answers: ['Make the required stomps quiet.', 'Land equally strong stomps in opposing pairs.', 'Assign one actor to hold the prop.'], correct: 1, explanation: 'Opposing simultaneous impacts preserve the loud choreography while reducing the stand’s sideways shake.' },
@@ -819,7 +819,7 @@ const batch = {
         ],
         approaches: [
           { label: 'Enjoy the recreation setting', callback: 'The cast measures how much extra weaving fits before the third actor.' },
-          { label: 'Have a simple meal nearby', callback: 'Jesse arranges cups as the three route stations.' },
+          { label: 'Enjoy a quiet evening at Xarunta Dalxiiska ee Degmada Dayniile', callback: 'Jesse arranges cups as the three route stations.' },
           { label: 'Ask Jesse to trace the weave', callback: 'Jesse adds distance without touching the hoop’s speed.' },
         ],
         dilemma: { prompt: 'How should the show create time without slowing the hoop?', answers: ['Lengthen the first two actors’ weaving routes.', 'Remove part of the final costume change.', 'Ask the last actor to dress faster.'], correct: 0, explanation: 'Extra distance delays arrival while preserving continuous full-speed motion.' },
@@ -864,7 +864,7 @@ const batch = {
           { title: 'A Level Parade', text: 'Performers shift to the light side before each turn and cross behind after it. Their moving weight keeps the tiny procession level.' },
         ],
         approaches: [
-          { label: 'Look around Japanese Garden', callback: 'The crew sees when the platform’s lean changes.' },
+          { label: 'Look around at Jardins de la Petite Afrique', callback: 'The crew sees when the platform’s lean changes.' },
           { label: 'Look around the small garden route', callback: 'Gray rehearses the walkers’ crossing points.' },
           { label: 'Ask Gray to call each shift', callback: 'Gray moves the counterweight pattern before every corner.' },
         ],
@@ -911,7 +911,7 @@ const batch = {
         ],
         approaches: [
           { label: 'Enjoy the stadium setting', callback: 'The outer route around fixed teams becomes clear.' },
-          { label: 'Have a simple meal nearby', callback: 'Jesse taps the phrase handoffs around the table edge.' },
+          { label: 'Enjoy a quiet evening at Antoinette Tubman Stadium', callback: 'Jesse taps the phrase handoffs around the table edge.' },
           { label: 'Ask Jesse to start the relay', callback: 'Jesse sends the first phrase toward the long side of the field.' },
         ],
         dilemma: { prompt: 'How should the fixed teams deliver the response to the far side?', answers: ['Shout the whole answer directly across.', 'Relay phrases around the outer players to the destination.', 'Turn every player to face away.'], correct: 1, explanation: 'A voice relay preserves positions and lets the final phrase emerge from the required side.' },
@@ -956,7 +956,7 @@ const batch = {
           { title: 'A Gentle Reunion', text: 'The blocks guide the fox’s first three steps, then fall away from the route. It walks freely toward the partner and stops nose to nose.' },
         ],
         approaches: [
-          { label: 'Look around Brateevo park', callback: 'The helpers observe the fox’s repeated turning direction.' },
+          { label: 'Look around at Москворецкий дендропарк', callback: 'The helpers observe the fox’s repeated turning direction.' },
           { label: 'Look around the arboretum', callback: 'Indigo curves the soft blocks around the start.' },
           { label: 'Ask Indigo to set the release', callback: 'Indigo keeps every guide before the one allowed wind.' },
         ],
@@ -1002,7 +1002,7 @@ const batch = {
           { title: 'The Light Holds Everyone', text: 'Pairs move their arch alongside the lamp while the character walks beneath it. The silhouette stays visible through the final turn.' },
         ],
         approaches: [
-          { label: 'Enjoy EM Park', callback: 'The troupe observes the light’s unchanging route.' },
+          { label: 'Have a simple meal at ហាងកាហ្វេ', callback: 'The troupe observes the light’s unchanging route.' },
           { label: 'Have a simple café meal', callback: 'Jesse models the traveling arch with two cups.' },
           { label: 'Ask Jesse to pace the arch', callback: 'Jesse keeps the dancers beside the lamp rather than in front of it.' },
         ],
@@ -1048,7 +1048,7 @@ const batch = {
           { title: 'Two Separate Exits', text: 'The inner runner circles quickly while the outer takes a broad arc. The twist loosens, and they leave on separate paths without stopping.' },
         ],
         approaches: [
-          { label: 'Look around Unagi Park', callback: 'The runners see which direction added the twist.' },
+          { label: 'Look around at Gerehu Sports Centre', callback: 'The runners see which direction added the twist.' },
           { label: 'Look around the sports centre', callback: 'Ira marks inner and outer circles.' },
           { label: 'Ask Ira to call the exits', callback: 'Ira waits until the tails hang free before splitting the paths.' },
         ],
@@ -1094,8 +1094,8 @@ const batch = {
           { title: 'The Dance Is Recognized', text: 'The character watches the steps, repeats the final turn, and chooses that umbrella. Their waiting friend opens it from the other side.' },
         ],
         approaches: [
-          { label: 'Look around Selwad Park', callback: 'Emery keeps all three closed umbrellas equally placed.' },
-          { label: 'Look around Aboud Gardens', callback: 'Friends rehearse the remembered three-step dance.' },
+          { label: 'Look around at Aboud Gardens', callback: 'Emery keeps all three closed umbrellas equally placed.' },
+          { label: 'Look around at Selwad Park', callback: 'Friends rehearse the remembered three-step dance.' },
           { label: 'Ask Emery about the old game', callback: 'Emery recalls the final turn both characters used together.' },
         ],
         dilemma: { prompt: 'How should friends identify the reunion umbrella silently?', answers: ['Perform the pair’s remembered dance beside it.', 'Stand closer to the correct umbrella.', 'Shift the correct umbrella forward.'], correct: 0, explanation: 'The personal movement clue respects the fixed choices and lets the returning character recognize the connection.' },
@@ -1187,7 +1187,7 @@ const batch = {
         ],
         approaches: [
           { label: 'Enjoy the park setting', callback: 'Jesse lays the seven prop plants in a visible circle.' },
-          { label: 'Have a simple meal nearby', callback: 'Players time when the traveling token can move.' },
+          { label: 'Enjoy a quiet evening at منتزه', callback: 'Players time when the traveling token can move.' },
           { label: 'Ask Jesse to count the rounds', callback: 'Jesse ensures a different plant receives the shared turn each time.' },
         ],
         dilemma: { prompt: 'How should six whole tokens serve seven plants?', answers: ['Leave the hardiest plant without a turn.', 'Pass one token onward after each timed round.', 'Pretend there is an extra token.'], correct: 1, explanation: 'A full rotating turn respects the indivisible tokens and includes every plant across play.' },
@@ -1232,8 +1232,8 @@ const batch = {
           { title: 'The Diagonal Exit', text: 'Each screen pivots on its mark. Their corners align into a slanting passage, and the actor walks out as the room appears to transform.' },
         ],
         approaches: [
-          { label: 'Look around Clementi Woods', callback: 'The crew studies the four fixed screen feet.' },
-          { label: 'Look around Yishun Park', callback: 'Logan tests equal quarter-turns at every corner.' },
+          { label: 'Look around at Yishun Park', callback: 'The crew studies the four fixed screen feet.' },
+          { label: 'Look around at Clementi Woods', callback: 'Logan tests equal quarter-turns at every corner.' },
           { label: 'Ask Logan to call the pivots', callback: 'Logan turns all four walls as one stage event.' },
         ],
         dilemma: { prompt: 'How should the actor leave the fixed screen enclosure?', answers: ['Quarter-turn all four screens into a diagonal corridor.', 'Fold one wall flat against the floor.', 'Move one screen off its marked feet.'], correct: 0, explanation: 'Coordinated pivots preserve every marked foot and create a walkable exit.' },
@@ -1324,7 +1324,7 @@ const batch = {
           { title: 'Two New Curves of Sound', text: 'Each team places the borrowed quiet motif differently. One arrangement creates a surprising climb and clean release, giving the contest a musical result.' },
         ],
         approaches: [
-          { label: 'Look around Oatley Park', callback: 'Arden hears where each loud finale has room for contrast.' },
+          { label: 'Look around at Oxford Falls Peace Park', callback: 'Arden hears where each loud finale has room for contrast.' },
           { label: 'Look around the peace park', callback: 'Teams rehearse the shared quiet motif.' },
           { label: 'Ask Arden to trace the sound shape', callback: 'Arden listens for rise and fall rather than raw force.' },
         ],
@@ -1371,7 +1371,7 @@ const batch = {
         ],
         approaches: [
           { label: 'Look around the riverside setting', callback: 'Nico observes the fixed direction of the first opening petal.' },
-          { label: 'Look around 國順公園', callback: 'The duo rehearses the crossing in stages.' },
+          { label: 'Look around at Yingfeng Riverside Park', callback: 'The duo rehearses the crossing in stages.' },
           { label: 'Ask Nico to cue each petal', callback: 'Nico keeps the partners clear of the moving folds.' },
         ],
         dilemma: { prompt: 'How should the duo correct the fixed flower reveal?', answers: ['Cross places through the petals during the opening.', 'Force the base to turn.', 'Rewrite the joke for the other performer.'], correct: 0, explanation: 'The performers adapt their positions while preserving the fixed prop and intended reveal.' },
@@ -1416,7 +1416,7 @@ const batch = {
           { title: 'Heard Without Being Seen', text: 'Hands fall silent at the screen edge, but feet continue the pulse. Players resume clapping as they reappear without losing a beat.' },
         ],
         approaches: [
-          { label: 'Look around Mtatsminda Park', callback: 'Corin marks the exact point where hands disappear.' },
+          { label: 'Look around at Tbilisi Zoo', callback: 'Corin marks the exact point where hands disappear.' },
           { label: 'Look around the zoo setting', callback: 'Players match foot strikes to the hand-clap pulse.' },
           { label: 'Count the transition with Corin', callback: 'Corin makes the instrument change on one shared beat.' },
         ],
@@ -1462,8 +1462,8 @@ const batch = {
           { title: 'One Gap, Three Motions', text: 'The low character clears, the sideways character follows, and the last steps through the raised arch. The crowded entrance becomes a layered image.' },
         ],
         approaches: [
-          { label: 'Look around HaPark HaLeumi', callback: 'Sage measures the fixed curtain gap.' },
-          { label: 'Look around Raanana Park', callback: 'The actors rehearse low, side and arch routes.' },
+          { label: 'Look around at Raanana Park', callback: 'Sage measures the fixed curtain gap.' },
+          { label: 'Look around at HaPark HaLeumi', callback: 'The actors rehearse low, side and arch routes.' },
           { label: 'Ask Sage to cue the layers', callback: 'Sage keeps the fixed order while separating the movements.' },
         ],
         dilemma: { prompt: 'How should three visible characters share the narrow entrance?', answers: ['Enter separately with long pauses.', 'Use low, side and over-arch routes in order.', 'All turn sideways together.'], correct: 1, explanation: 'Distinct heights and orientations let the fixed-order entrance fit through one gap.' },
@@ -1509,7 +1509,7 @@ const batch = {
         ],
         approaches: [
           { label: 'Look around Grand Park', callback: 'Emery hears the chair’s repeated squeak interval.' },
-          { label: 'Look around Rinia Park', callback: 'Musicians rehearse answering without exposing the source.' },
+          { label: 'Look around at Grand Park of Tirana', callback: 'Musicians rehearse answering without exposing the source.' },
           { label: 'Ask Emery to cue the curtain', callback: 'Emery waits until the rhythm has disguised the full approach.' },
         ],
         dilemma: { prompt: 'How should the troupe protect the squeaking surprise?', answers: ['Turn each squeak into part of an escalating rhythm.', 'Begin cheering before the guest arrives.', 'Push the chair faster down the same route.'], correct: 0, explanation: 'Musical camouflage preserves the fixed prop, route and reveal moment.' },
@@ -1554,8 +1554,8 @@ const batch = {
           { title: 'Meet at the Chord', text: 'The clockwise phrases travel outward while one voice comes back through them. All paths meet on the final chord.' },
         ],
         approaches: [
-          { label: 'Look around Hastings Garden', callback: 'Greer hears where the clockwise round leaves an opening.' },
-          { label: 'Look around Lower Barracca Gardens', callback: 'The final singer rehearses the reverse phrase.' },
+          { label: 'Look around at Lower Barracca Gardens', callback: 'Greer hears where the clockwise round leaves an opening.' },
+          { label: 'Look around at Hastings Garden', callback: 'The final singer rehearses the reverse phrase.' },
           { label: 'Ask Greer to cue both directions', callback: 'Greer protects one entrance for every fixed position.' },
         ],
         dilemma: { prompt: 'How should the final singer enter the fixed round?', answers: ['Add a second clockwise entrance.', 'Move the singer to another position.', 'Sing the round in reverse toward the closing chord.'], correct: 2, explanation: 'A counter-direction fills the missing path while preserving melody, positions and one entrance each.' },
@@ -1600,7 +1600,7 @@ const batch = {
           { title: 'A Safe Sky Crossing', text: 'One side descends, the cloth travels under the moon, and the far side rises. The moon reappears just as the returning character enters.' },
         ],
         approaches: [
-          { label: 'Enjoy French Garden', callback: 'The crew sees where the cloud edge catches the moon.' },
+          { label: 'Have a simple meal at Bistròt La Pigna', callback: 'The crew sees where the cloud edge catches the moon.' },
           { label: 'Have a simple bistro meal', callback: 'Jesse models the changing height with a folded cloth.' },
           { label: 'Ask Jesse to cue both lines', callback: 'Jesse lowers and raises the cloud without dropping either end.' },
         ],
@@ -1646,7 +1646,7 @@ const batch = {
           { title: 'A Complete Chain', text: 'One remembered section flows into the next through matching boundary moves. Together the runners perform a sequence none could carry alone.' },
         ],
         approaches: [
-          { label: 'Enjoy Zoo Park', callback: 'Jesse helps each runner recall a beginning and ending move.' },
+          { label: 'Have a simple meal at Craft Café', callback: 'Jesse helps each runner recall a beginning and ending move.' },
           { label: 'Have a simple café meal', callback: 'The group pairs matching boundary gestures across the table.' },
           { label: 'Ask Jesse to cue the first link', callback: 'Jesse starts the chain without pretending to know its full middle.' },
         ],

@@ -162,3 +162,31 @@ test('GPU residency counts sampler and colour-space variants of one decoded imag
     module.dispose(); f.kit.dispose();
   }
 });
+
+
+test('module-owned shadow materials isolate texture lifetimes and dispose grouped maps exactly once', async () => {
+  const f = fixture(), root = f.root(), mesh = root.children[0] as InstanceType<typeof f.THREE.Mesh>;
+  const mapped = mesh.material as InstanceType<typeof f.THREE.MeshStandardMaterial>;
+  const plain = new f.THREE.MeshStandardMaterial();
+  let closed = 0, textureDisposals = 0, depthDisposals = 0, distanceDisposals = 0;
+  mapped.map = new f.THREE.Texture({ width: 8, height: 8, close: () => closed++ } as ImageBitmap);
+  mapped.map.addEventListener('dispose', () => textureDisposals++);
+  mesh.material = [mapped, plain];
+  mesh.geometry.clearGroups(); mesh.geometry.addGroup(0, 18, 0); mesh.geometry.addGroup(18, 18, 1);
+  const module = createRuntimeModule(f.kit, f.parent, { open: async () => root });
+  await module.select(f.request);
+  const depth = mesh.customDepthMaterial as InstanceType<typeof f.THREE.MeshDepthMaterial>;
+  const distance = mesh.customDistanceMaterial as InstanceType<typeof f.THREE.MeshDistanceMaterial>;
+  assert.ok(depth.isMeshDepthMaterial); assert.ok(distance.isMeshDistanceMaterial);
+  assert.equal(depth.depthPacking, f.THREE.RGBADepthPacking);
+  assert.deepEqual(mesh.material, [mapped, plain], 'authored PBR materials remain untouched');
+  assert.equal(module.placement!.drawCalls, 4, 'owned shadow materials add no render passes');
+  // Reproduce renderer shadow-map references: each override can retain an authored map.
+  depth.map = mapped.map; distance.map = mapped.map;
+  depth.addEventListener('dispose', () => depthDisposals++);
+  distance.addEventListener('dispose', () => distanceDisposals++);
+  module.dispose(); module.dispose(); f.kit.dispose();
+  assert.equal(depthDisposals, 1); assert.equal(distanceDisposals, 1);
+  assert.equal(textureDisposals, 1); assert.equal(closed, 1);
+  assert.equal(f.parent.children.length, 0);
+});

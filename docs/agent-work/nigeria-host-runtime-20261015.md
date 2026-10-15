@@ -48,3 +48,47 @@ Focused contact regressions3/3 pass after change (/tmp/nigeria-host-reservation-
 ## Late hero / far-to-near admission fix
 
 Root identified that a late canonical hero can coexist with the cheaper far module, so the measured active-tier guard returned without trimming crowd against the near reservation. selectRuntime now readmits crowd before computing each new tier request, temporarily suppressing recursive guard entry. No budget changed. Source freeze restored and browser agent notified; interrupted concurrent two-crowd capture must not be claimed as exact-source evidence. Focused contact regressions rerun in /tmp/nigeria-host-late-body-contact.tap.
+
+## Lazy extraction ownership
+
+Root delegated new src/scene/models/runtime-host.ts plus existing owned types.ts/venue-scenes.ts after exact-source CI measured shared scene gzip71409 >71000 (raw189572 <192000). Own the new helper before editing; root owns importing its factory from the lazy Nigeria definition. Move only asynchronous owner initialization, placement/contact baking and fallback/status callback. Preserve guards, caps, navigation and behavior. No commit until requested; actual host acceptance must be rerun on extracted source.
+
+## Lazy extraction checkpoint
+
+Implemented factory through SceneDef.runtime.createHost, loaded solely by the lazy Nigeria definitions. The helper now owns asynchronous initialization/contact baking, near/far selection and guard state, reservation validation, visible cost measurement, support lookup and sidecar-solid transforms. General host contact index, actors, markers and procedural scenes remain in the host. New helper imports venue contact types only, avoiding an eager runtime dependency.
+
+A bounded single-file esbuild transform (not a game build) estimates venue-scenes before31311 raw/13330gzip versus after29178/12611:719gzip saved. This is only a sizing estimate; CI must confirm bundled savings under the unchanged71000 limit. Final focused contact tests3/3 pass; source frozen and acceptance agent notified for actual Abuja and reentry rerun. No commit yet, no owned running processes.
+
+## Restart / recovery ownership
+
+/root/runtime_recovery resumes the preserved lazy extraction at published head34893f47. Own runtime-host.ts, types.ts, venue-scenes.ts, new runtime-host.test.ts and this record; no commit or local build. Root coordinates other authors and browser freeze. Fix rejected/evicted selection with bounded retries, current budget accounting and stale completion isolation.
+
+## Bounded recovery checkpoint (cloud restart)
+
+Preserved the lazy extraction, then fixed cached selection after rejection and whole-scene budget eviction. A rejected selection clears immediately; ambient guards retry the last camera target after 1s then4s, with at most three failures per tier per host lifetime. Camera oscillation cannot reset the failure allowance. Budget eviction remembers the actual imported tier cost and waits for available host capacity before actor rebuild or network work. Every attempted load readmits actors and recomputes the available triangle/draw budget. A generation token isolates rejected/cancelled stale requests; disposal invalidates pending callbacks and relies on the existing serialized module disposal.
+
+Added runtime-host.test.ts using the real createRuntimeModule and an injected geometry loader: finite rejection retries, transient recovery with fresh hero/crowd budget, far-to-near admission, late hero eviction/capacity recovery, stale completion and disposal. Command `node --experimental-strip-types --test src/scene/models/runtime-host.test.ts src/scene/models/runtime-module.test.ts src/scene/venue-contact.test.ts` passes17/17; log `/tmp/nigeria-runtime-recovery.tap`. No cap changes or local game build. Full supported typecheck and browser source-pinned evidence remain root/acceptance responsibilities.
+
+Source frozen and root notified. No running process and no commit by this lane. Root separately integrated the lighter Lagos asset; this lane made no asset or scene-definition changes. Next: root runs supported typecheck/actual host acceptance and CI bundle size against the exact final source.
+
+## Test type narrowing correction
+
+Root's supported full typecheck identified TS2339 in the recovery test: asserting the mutable placement getter equals null caused TypeScript to retain that narrowing across later guard calls. Added a fixture readPlacement() snapshot function and used it for assertions; no runtime source changed and no casts suppress the diagnostic. Focused host/module/contact tests pass17/17 again (`/tmp/nigeria-runtime-recovery-types-fix.tap`). Root reruns the supported typecheck project; browser source freeze remains intact.
+
+## Runtime teardown callback isolation
+
+Actual ambient Lagos acceptance retained5 GPU textures; ordinary ambient park comparison reached0/0. Read-only source trace found runtime-module drop calls changed(null) synchronously during runtime-host.dispose after venue-scene generation invalidation. That stale callback called ambient.rebudget/onAmbient and could render the scene while host teardown was in progress. A direct real-module Node probe reproduced one stale host callback during disposal. Root owns the independent renderScene gone guard.
+
+After root released browser freeze, added an early current() guard to the runtime placement callback. Disposed or superseded hosts now do no contact, fallback or ambient notification work. Added tests for loaded-scene disposal and pending parse completed after disposal; both require zero stale contact/changed callbacks and verify geometry release. Focused host/module/contact tests pass19/19 (`/tmp/nigeria-runtime-teardown.tap`). Source ready/frozen again for GPU audit; this establishes callback isolation, not yet an actual GPU leak fix certificate. No commit yet.
+
+## Shadow resource investigation ownership
+
+Root delegates runtime-module.ts and its tests to this lane, while root now owns venue-scenes.ts for the separately reproduced marker/navigation issue. The callback guard removes teardown rendering but actual Lagos still retains5 textures; ordinary park baseline reaches0/0. GL upload stacks identify shadow pass allocations with no current source-material owner. Installed Three reuses its global opaque depth material and only refreshes a map uniform when the current map is non-null. Preparing module-owned depth/distance materials and explicit disposal to isolate shadow uniforms from discarded module textures; browser A/B remains required before acceptance. No counters reset or budget changes.
+
+## Confirmed shadow-uniform ownership fix
+
+Host audit confirmed Three's shared MeshDepthMaterial had map=null but cached uniform.map still referenced an already-disposed Nigeria texture. Ordinary solid/actors-solid shadow draws then reuploaded it under a new GL allocation. The source-stable old-code reentry receipt retains three leaked textures across three reentries; full near/far journey retained five. This is independent of the already-fixed teardown callback issue.
+
+After diagnostic browser closed, each imported mesh now receives its own MeshDepthMaterial (RGBADepthPacking) and MeshDistanceMaterial. Runtime disposal gathers those materials and their texture slots along with authored materials, deduplicating texture/image disposal. No host-global shadow material retains imported maps; PBR source materials, geometry, navigation, shadow pass counts and caps are unchanged. No per-frame needsUpdate churn was added.
+
+Added a grouped mapped/unmapped material regression proving authored materials preserved, two groups still cost four submitted passes, both owned shadow materials disposed exactly once, and their shared authored map/image disposed/closed once. Host/module/contact tests pass20/20 (`/tmp/nigeria-runtime-shadow-owner.tap`). Source ready/frozen for actual GPU A/B; no commit pending root review.

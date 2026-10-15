@@ -1,0 +1,16 @@
+typecheck-fast	Run npm run typecheck	2026-10-15T12:28:59.5621073Z Typecheck clean: 5 projects, 0 errors in .ts and .vue, 0 baselined in existing JavaScript.
+release-policy	Run node --test scripts/guard-joinallworld-package.test.mjs	2026-10-15T12:25:54.8223053Z ℹ tests 25
+release-policy	Run node --test scripts/guard-joinallworld-package.test.mjs	2026-10-15T12:25:54.8224220Z ℹ pass 25
+release-policy	Run node --test scripts/guard-joinallworld-package.test.mjs	2026-10-15T12:25:54.8224685Z ℹ fail 0
+build-and-smoke-fast	Run npm run build	2026-10-15T12:28:01.1824193Z ^[[2mdist/^[[22m^[[2massets/^[[22m^[[36mprogression-rules-1ed3c6d1.js                                   ^[[39m^[[1m^[[33m1,482.23 kB^[[39m^[[22m^[[2m │ gzip:   375.86 kB^[[22m
+build-and-smoke-fast	Run npm run size:download	2026-10-15T12:33:52.3170831Z ok   LOADING_RAW               90541  budget 92,000 raw bytes (max)  first-paint JavaScript
+build-and-smoke-fast	Run npm run size:download	2026-10-15T12:33:52.3172908Z ok   LOADING_GZIP              35258  budget 37,000 gzip bytes (max)  first-paint JavaScript
+build-and-smoke-fast	Run npm run size:download	2026-10-15T12:33:52.3178173Z ok   STARTUP_RAW              601795  budget 615,000 raw bytes (max)  largest over 284 cities (lagos)
+build-and-smoke-fast	Run npm run size:download	2026-10-15T12:33:52.3181532Z ok   STARTUP_GZIP             218518  budget 223,000 gzip bytes (max)  largest over 284 cities (lagos)
+build-and-smoke-fast	Run npm run size:download	2026-10-15T12:33:52.3183228Z ok   STARTUP_BROTLI           191760  budget 195,600 brotli bytes (max) [provisional]  largest over 284 cities (lagos)
+build-and-smoke-fast	Run npm run size:download	2026-10-15T12:33:52.3184617Z ok   SCENE_HOST_RAW           187304  budget 192,000 raw bytes (max)  shared scene chunk (world-adapter)
+build-and-smoke-fast	Run npm run size:download	2026-10-15T12:33:52.3185887Z ok   SCENE_HOST_GZIP           70718  budget 71,000 gzip bytes (max)  shared scene chunk (world-adapter)
+build-and-smoke-fast	Run npm run size:download	2026-10-15T12:33:52.3230775Z   1482.2    375.9    304.2  progression-rules                  1  assets/progression-rules-1ed3c6d1.js (304.2 kB)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-15T12:33:59.6474793Z ℹ tests 17
+build-and-smoke-fast	Run npm run test:smoke	2026-10-15T12:33:59.6475867Z ℹ pass 17
+build-and-smoke-fast	Run npm run test:smoke	2026-10-15T12:33:59.6476233Z ℹ fail 0

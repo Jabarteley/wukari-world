@@ -1,0 +1,16 @@
+✔ JavaScript is limited to the service worker, release shims and exact reviewed tooling (46.829942ms)
+✔ the two release shims only point at the TypeScript they stand for (0.958898ms)
+✔ every file in public/ is an asset the release package admits (no dot-file, no map, no manifest, no xml) (25.736498ms)
+✔ the Worker config is the one the release package fixes, and the Worker exports its Durable Object (1.286759ms)
+✔ the default build config emits no source map (maps are opt-in, SOURCEMAPS=1, into dist-maps/) (0.509424ms)
+✔ deployed Nigeria tiers match pinned bytes and fit their host reservations including shadows (9.159ms)
+✔ Lagos revision preserves accepted navigation and binds its published manifest (1.545016ms)
+✔ actual Lagos host markers cannot disconnect the authored sidewalk or action anchors (91.181051ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 611.132003

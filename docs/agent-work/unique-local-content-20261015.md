@@ -1,7 +1,7 @@
 # Bespoke country and city content
 
 - Owner: /root, chat01a13bea-138b-7b91-ac44-c49bc3d836ec.
-- Status: authoring contract and compatibility baseline ready; literal content drafts in revision. Runtime integration has not begun. No bespoke batch is accepted or released.
+- Status: COMPLETE for the requested content/source work. All 284 supported cities / 243 country-territory identities have 568 authored tales and 1,704 missions. Final 69 cities, browser fixes, compatibility, CI and main integration accepted. No deployment or measured retention claim.
 - Canonical checkout: /Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld, codex/retention-main-sync.
 - Initial source: c42a4757. Live production runtime ac407c2c. User authorizes unique country/city missions and stories, light parallel agents, documentation and ordinary main sync. This task does not require a new production deployment.
 
@@ -17,9 +17,11 @@ Parent owns typed contract, factory/registry/journey integration, validation, sa
 
 Acceptance:284city/243country coverage; normalized uniqueness of plots/titles/dilemmas/keepsakes/mission labels; grounded valid references; all3choice paths and solo/night routes; duplicate grants/save/reload/travel; old568receipts and oldcollectiontitles intact; agent compatibility and relevant existing tests; CItypecheck/build/size/smoke; representative actual UI including country-specificcopy. No new tracked tests. Preserve primary dirty source, current preview5176 and unrelated services. Costs/tokens unknown.
 
-Next: freeze compact typed authoring contract, partition whole countries into bounded files, author in parallel, integrate only after full explicit coverage. Publish reviewed data and source milestones to main; maintain final evidence README and current index.
+Next: no remaining city authoring. For a new rollout request, read the documented broad-suite release limitations and reverify current main/production before deploying. Repeat-play and operating-cost outcomes require an authorised pilot. Accepted production source is5bd1fcc8; later docs/diagnostic evidence preserves that runtime.
 
-## Usage cap and current handoff
+## Historical usage cap and earlier handoff
+
+Superseded on resumption: user confirmed reset and directed completion without the former usage stop. The sections below retain historical checkpoints; the current state is at the top and latest appended entry.
 
 User clarified the 5% limit concerns account usage. Parent interprets the instruction as stop all work at 5% remaining; latest live weekly reading is 90% used / 10% remaining. Check the live usage tool regularly and interrupt every running worker when usedPercent reaches 95. No automatic continuation beyond that threshold.
 
@@ -114,3 +116,65 @@ Accepted215 milestone committed67e13a8f and pushed branch; CI38675110595 in prog
 ## Terminal handoff
 
 CI38675110595 succeeded on67e13a8f (typecheck/build/all284citybudgets/smoke/releasepolicy; broad suites skipped). Main freshly fetched unchanged; pushed checked source plus docs-only checkpoint95855168 to main. Published215cities/174identities/430tales/1290missions. Focused175/175 pass. No deployment. Final69cities remain inactive. Both authors and Luna audit completed/stopped; no further authoring underway. Lastusage94%used/6%remaining, ending at safe checkpoint before95%hard floor. Shared preview remains available with saves preserved; no unrelated processes touched. Inconclusive ui-world-entry-375.png remains local/untracked and is not acceptance evidence. Chrome viewport reset still unconfirmed after browser operation timed out.
+
+## Resumed final 69 cities — 2026-10-15T11:39:00.423695+00:00
+
+User explicitly resumed Phase6, authorizes parallel light agents and main synchronization, and revoked the prior usage stop for this reset. Live usage0% used verified. Exact checkout remains /Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld, branch codex/retention-main-sync; fast-forwarded released origin/main to 201b9bdac9f8ee9412ff98378971dd12a9463426. Untracked inconclusive screenshot preserved; Desktop checkout untouched. Main now includes released world-alive programme and regenerated city maps.
+
+Parent owns accepted registry, content gate/input freshness checks, compatibility probes, index and this record. Sol07/08 authors resume their existing disjoint batch source/records from archived checkpoints. No test creation, engine redesign, currency changes or deployment in scope. Acceptance: all284cities/243identities,568newtales/1704missions; meaningful story review, live seed grounding, engine/reload/legacy reward probes, existing focused agent checks, CI and fresh-main sync. Browser verification is reserved to Astra. Running preview5176 may be reused after checking process ownership; do not clear saves or stop unrelated services. Next: restore accepted draft checkpoints, complete literal source, validate against current seed references, accept each whole batch and sync after checks.
+
+Current seed audit: only Philipsburg host name and practical venue changed from the original authoring brief. Parent corrected its existing batch02 prose/labels and changed the structural gate to current WORLD_STORY_SEEDS. resumed-seed-drift.json records exact differences. Refreshed215city engine baseline passes2150paths and retained568legacy receipts/527collections. Portable diagnostic source archives and replay instructions are now under diagnostics/, so another computer can reproduce the probes.
+
+Batch07 accepted after independent Astra review and parent correction of three Siachen mission purposes left over from the replaced scarf plot. Warsaw geometry, RoadTown friction controls, Siachen Z-fold constraints now explicit. Local registry01–07:250cities/209identities/500tales/1500missions. Author released ownership; parent now owns07source. Full gate,250engine/mission checks and browserParis playthrough underway before CI/main.
+
+250-city acceptance probes pass2500completionpaths,30000dailydeals,249legacyrolloverclaims; all568oldreceipts/527oldcollections preserved.202focused existing checks passed on integratedmain215baseline; final focused run after284activation pending. Batch08 full draft is held for4plot replacements and mission task variety after source review; do not activate yet.
+
+250-city source72514cbe pushed to branch; CI38730371961 running. c78ac254 only strips whitespace in archived diagnostic text. Astra actual Paris playthrough passes: new synthetic PhaseSixQA, real Montreau Lookaround, hostreturn, fresh Ladoucette Lookaround, discoverychoice, dualuse+3singles answer, solo finale. Dual-UseBagTag earned and normalreload preserved Paris1/2 and France0/1 separately, plus actual missioncounts. Screenshots ui-paris-earned-250.jpg,ui-paris-reloaded-250.jpg,ui-paris-reloaded-card-250.jpg. No injected events in browser proof. Final08 held for semantic revisions; main publication waitsCIandfinal07auditadjudication.
+
+Further07 source audit read28middle tales. Luna suggested Lilongwe/DarEsSalaam duplicate, but parent and Astra direct-source adjudication did not sustain it: monopolizing twolegs/fair participation differs from competing for oneleg/1vs5opportunitycost. Finding remains in audit record with this disposition. No story rewrite required.
+
+Parent then audited task signatures and found33/35batch07cities shared one daily/weeklytasktuple. This violates the authoring variety contract despite unique labels/purposes.250mainpublication held;07author temporarily owns missions-only+record for story-fit variation, no tale/arc edits.08 is performing equivalent improvement plus4plotreplacements. Runtime/IDs/rewardamounts unchanged. Final mission probes/CI will run on corrected source; prior250engine and Parisstory proof remain scoped and valid for unchanged tales.
+
+## Final catalogue label audit and concurrent main integration
+
+At source98926c20 (main9af2e51e merged), extended the content gate to compare explicit standard activity and venue labels to live WORLD_STORY_SEEDS. Batch08 author corrected26 mismatches without reverting varied tasks. Integration owner corrected four older labels in Nouakchott, Damascus and Tórshavn. These label repairs preserve stable mission IDs and completion requirements. This narrow lexical audit does not prove arbitrary natural-language semantics.
+
+Current main has a pre-existing scene-host gzip failure71409>71000 (CI38729884505). The separate ‘Integrate Nigeria production batches’ chat owns the lazy-host extraction and recovery follow-up; coordination sent and no overlapping scene writes here. Content lane awaits that validated fix before green final-main integration. No budget cap raised and no production deployment requested by this resumed lane.
+
+## Batch08 accepted and full catalogue activated
+
+Astra source acceptance received after current seed mapping review; combined semantic review covered initial, middle and final tale groups with corrections. All eight batches pass the enhanced content gate with284cities,243game country/territory identities,568distinct local tales and1704authored mission definitions. Batch08 is now registered. No claim of live production or measured retention. Next: final284engine/save/mission probes, existing agent contract tests and synthetic Tokyo browser completion/reload.
+
+## Final284engine and agent compatibility checkpoint
+
+On source98926c20 plus final content edits,2840completion paths pass across568tales;568old exact keepsakes and527old completed collections remain intact.34080daily deals preserve variety, free swap and blocked-ID fallback;283old rollover claims survive reload and pay once. All202existing focused mission/agent/registry/house/resident/prayer/creator checks pass. Portable reports and source hashes are saved under docs/research/unique-local-content-2026-10-15; log final-agent-check.txt is the full focused run. No source changes are pending from authors. Astra owns actual Tokyo playthrough and final Paris reload. Prior250CI38730371961 passed; final284CI remains a separate gate.
+
+## Browser-driven copy and collection repair
+
+Actual Tokyo play exposed reversed approach titles even though generated action hints and proof destinations were correct. Parent expanded the current-seed gate to first/second approach labels; Luna owns label-only fixes01/04/06 (116strings), Sol owns08 (64strings). Runtime order, callbacks, story decisions and saved identities stay unchanged.
+
+Astra reproduced stale collection display immediately after earning a country keepsake: reactive episode card updated, but cached retention HTTP snapshot stayed old until reload. Source diagnosis confirms useRetention watches session/city/connection only. Integration owner now owns a bounded change to src/app/features/passport/useRetention.ts: refresh authoritative retention snapshot when permanent episode/project reward signature changes, retaining scope epoch and request generation guards. No polling or reward inference. Astra will verify Paris country completion updates collections without reload.
+
+## Final copy and live collection acceptance
+
+All180approach label corrections accepted (116older batches,64batch08), enhanced all8gate reports zero errors. Five-project typecheck passes after useRetention reward-signature refresh. Astra verified final08Tokyo reload retaining both keepsakes, Tokyo2/2+storykeeper, Japan1/1+Court-Rest Steward. Actual Paris country completion now updates episode and both collection awards in the same open MyStory panel, without reload/reopen/tab change. This verifies the stale snapshot fix through actual play. Final screenshots and normal Paris reload follow.
+
+Content source934d0962 is published on codex/retention-main-sync; its pre-fix CI38732767698 was dispatched before final copy/UI amendments. Graphics owner published5bb9d30b; parent dispatched CI38733202253 for that branch and awaits owner’s final browser acceptance. No overlapping scene source edits and no deployment.
+
+## Combined candidate verification
+
+Candidate4741f78c combines final content00815a8a, actual UI evidence6109f60c and graphics owner5bb9d30b. Published only to codex/retention-main-sync; CI38734185130 dispatched. All233existing combined focused checks pass (202agent/mission/resident plus31scene/asset/navigation/lifecycle checks). Replayed final284engine and mission probes on this exact candidate;2840paths,34080deals,568old keepsakes,527old collections and283old pending claims pass. Evidence integrated-compatibility.json and integrated-checks.txt.
+
+Graphics owner requests final camera correction536347f9, adding an optional per-scene azimuth bound for Nigeria frontages; other scenes retain unrestricted orbit. Bounded Astra review and focused camera checks pending; final joint CI must include it. Main publication remains held for graphics owner’s terminal browser/resource acceptance. No deployment.
+
+## Final camera candidate
+
+Candidate5bd1fcc8 adds graphics536347f9; Astra independently accepted its bounded source diff. Exact optional azimuth is[-1.2,1.2] for Nigeria scenes; other scenes reset to unrestricted orbit. All25existing venue-world/lighting checks pass. Final joint CI38734503763 running. Source/mission/proof contracts unchanged from the already verified content. Astra record released; actual Tokyo/Paris final screenshots and reload results committed. No owned author or browser workers remain active. Parent preview62944 remains available at5176 with existing data and QA flags; no unrelated process or save touched.
+
+## Completed source integration and handoff
+
+All final69cities are finished. CI38734503763 passes on5bd1fcc89ce888421e8bdcfe463254f5dd07ec35: five-project typecheck, build, unchanged download budgets,17smoke and release policy. Shared host70718gzip<71000; startup601795raw/218518gzip/191760Brotli; loading90541raw/35258gzip. Broad Node/Worker/UI suites skipped, not waived.
+
+Graphics owner’s terminal source clearance covers runtime536347f9 after Lagos16/16, Abuja17/17 and actual app Market/HUD checks. Owner explicitly designated this content lane sole main writer. Final evidence27ef81c7 merged at4238f92f; only documentation and the diagnostic host-check script differ from the CI-tested runtime. Parent five-project typecheck passes after that evidence merge. No production deployment; documented baseline Worker-size/comeback failures remain future release limitations.
+
+Ordinary main publication includes the final source, author records, complete content gate, portable diagnostics, compatibility reports, actual Paris/Tokyo screenshots and graphics owner evidence. See research README/final-ci.json for exact run scope. Source authors and Astra browser/review lane are released; no owned heavy jobs remain. Parent preview62944 remains on5176 using the preserved data directory for review. The earlier inconclusive ui-world-entry-375.png remains untracked and is not acceptance evidence. Primary Desktop changes, real player saves and unrelated services were preserved.

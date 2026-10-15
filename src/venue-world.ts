@@ -1330,7 +1330,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   // A scene that is not on screen (the map is in front) is not drawn: it is drawn when it is shown again (resize()).
   function crowdReady() { if (gone) return; readTags(); if (!loop.running) renderScene(); }
   function renderScene() {
-    if (container.hidden === true) return;
+    if (gone || container.hidden === true) return;
     view?.render();
     lookIn(); aimGhost();
     lights.aim(camera, orbit.now.x + orbit.now.px, orbit.now.y, orbit.now.z + orbit.now.pz);
@@ -1430,9 +1430,9 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     const close = Math.min(1, ((portrait ? START_DISTANCE.portrait : height <= 520 ? START_DISTANCE.short : START_DISTANCE.wide) * (walk?.scale || 1) * (view.start || 1)) / whole);
     closeness = 1 / close;
     orbit.setBase([preset[0] * close, 0.7 + (preset[1] - 0.7) * close, preset[2] * close]);
-    // Close enough to see a face, far enough to see the whole venue. The orbit is free all the way round:
-    // a room hides the walls the camera is behind (lookIn), so no scene needs an azimuth limit.
-    orbit.setLimits({ near: 6.2 * (walk?.scale || 1), far: whole * 1.38, azimuth: null });
+    // Close enough to see a face, far enough to see the whole venue. Exterior frontages
+    // can keep the camera in front; rooms retain free orbit and hide rear walls (lookIn).
+    orbit.setLimits({ near: 6.2 * (walk?.scale || 1), far: whole * 1.38, azimuth: view.azimuth ?? null });
     camera.fov = portrait ? 48 : 43;
     camera.far = view.bounds ? Math.max(600 + whole * 1.38 + 50, whole * 1.38 + Math.hypot(view.bounds[3] - view.bounds[0], view.bounds[4] - view.bounds[1], view.bounds[5] - view.bounds[2])) : 360;
     // Centre the scene in what the HUD leaves free; on a wide screen also step back a little when little is left.
@@ -1459,6 +1459,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     if (!current?.setAmbient) return false;
     const shown = current;
     shown.onAmbient = (ready) => {
+      if (gone || current !== shown) return;
       readTags();
       // The people arrived after the scene was shown: they get their window of frames like everyone who was there on arrival.
       if (ready && wakeAmbientFrames(shown)) return;

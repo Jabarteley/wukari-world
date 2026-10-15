@@ -1,0 +1,40 @@
+{
+  "reference": "201b9bda",
+  "cityCount": 284,
+  "changes": [
+    {
+      "cityId": "philipsburg",
+      "part": "host",
+      "before": {
+        "id": "philipsburg-philipsburg-osm-way-1417556522-1",
+        "name": "Arden",
+        "venue": "philipsburg-osm-way-1417556522",
+        "venueName": "Emmancipation Roundabout"
+      },
+      "current": {
+        "id": "philipsburg-philipsburg-osm-way-1417556522-1",
+        "name": "Sage",
+        "venue": "philipsburg-osm-way-1417556522",
+        "venueName": "Emmancipation Roundabout"
+      }
+    },
+    {
+      "cityId": "philipsburg",
+      "part": "practical",
+      "before": {
+        "venue": "philipsburg-osm-way-522407960",
+        "venueName": "Emilio Wilson Park",
+        "spot": "visit",
+        "id": "philipsburg-osm-way-522407960-visit",
+        "label": "Look around"
+      },
+      "current": {
+        "venue": "philipsburg-osm-way-363071670",
+        "venueName": "Cyrus Wathey Square",
+        "spot": "visit",
+        "id": "philipsburg-osm-way-363071670-visit",
+        "label": "Look around"
+      }
+    }
+  ]
+}

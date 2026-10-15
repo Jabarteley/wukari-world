@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "assetId": "lagos-broad-street-02",
+  "revisionOf": "scenes/runtime-nigeria-2026-10/batch-001/lagos-broad-street-01",
+  "status": "offline-reviewed-budget-revision",
+  "structuralStatus": "PASS_STRUCTURAL",
+  "visualStatus": "PASS_OFFLINE_SCOPED",
+  "runtimeManifestSha256": "8c6681fd6fb23b9080452c51caea721cbc42c838ac194df238b020ba611ca8e7",
+  "validatorSha256": "eafa09aae4b5105482ab342f62e5fe3a1160149366ec2662fffe819842b2aefa",
+  "parentVisualReviewSha256": "64179ed4eb828dbb255c59689e44d6cb47532001960e4093a4f527e076613c32",
+  "structuralReportSha256": "ec05afd8fcdc0380fa029713e858574d191329c79fdb42a777460d7df3498408",
+  "sourceCommit": "8d01a5b83ab23a64b621def4784ffd0c93684c81",
+  "derivation": "Exact accepted far GLB plus selectively reconstructed near detail; not lossless reduction of the unavailable original near.",
+  "files": [
+    {
+      "file": "AUTHOR-REVIEW.md",
+      "bytes": 1137,
+      "sha256": "2f1df72bd3641d9902f96f69f939e0762bc4308088aa868b498fcb458d8d86e0"
+    },
+    {
+      "file": "README.md",
+      "bytes": 4221,
+      "sha256": "1582de0af6c45d763e598e5c6ea675db2c95baf2a97720037dc3192c36c0eb77"
+    },
+    {
+      "file": "THIRD-PARTY-NOTICES.md",
+      "bytes": 2095,
+      "sha256": "f5ebffae44829876550114aebe0891d5491c5a1d8e5d643df05de6bbd2c22303"
+    },
+    {
+      "file": "analyze_parts.py",
+      "bytes": 1103,
+      "sha256": "875ed3aaaf0a5727e1010e75859cc445e91295d3f2a4675b3008834e1efb95cd"
+    },
+    {
+      "file": "anchors.json",
+      "bytes": 685,
+      "sha256": "0e40e8330a41679d3939e29858bd061695108b6846dff7b6518b01c0d93fc5db"
+    },
+    {
+      "file": "baseline/lagos_broadstreet_lod1.glb",
+      "bytes": 776400,
+      "sha256": "197b7e5d4b85173ea533ada8afb3a0da6db6bbd309e9805427520195b147e0bd"
+    },
+    {
+      "file": "baseline/manifest.json",
+      "bytes": 9353,
+      "sha256": "a0549210b773233f63ea24145d72956415e47d3c0755a85e0dd8a58735c0ad1a"
+    },
+    {
+      "file": "baseline/validation-tools/test_validator.py",
+      "bytes": 2959,
+      "sha256": "40afa58c3d59d91f3000f64a252bc2ee07bb2f845ce08dc187fa831c8e0089fa"
+    },
+    {
+      "file": "baseline/validation-tools/validate_runtime_asset.py",
+      "bytes": 13615,
+      "sha256": "eafa09aae4b5105482ab342f62e5fe3a1160149366ec2662fffe819842b2aefa"
+    },
+    {
+      "file": "broadstreet-v2-source.blend",
+      "bytes": 1643449,
+      "sha256": "a4bbfa80b15559897ed1f0dfc93ca688a7bf4ffe3758fae6a5d71dbef0ccdc76"
+    },
+    {
+      "file": "broadstreet_basecolor_1k.png",
+      "bytes": 499245,
+      "sha256": "bbea27066ad7db5e93820b72eff961ededcdcbf1d2f9e4212de9cbe37db16c06"
+    },
+    {
+      "file": "broadstreet_normal_512.png",
+      "bytes": 83541,
+      "sha256": "bccb9dc803268a5efc3d9da3a169ef28decf2806ae7128dc766e43efce02a5d0"
+    },
+    {
+      "file": "broadstreet_orm_512.png",
+      "bytes": 68454,
+      "sha256": "59ce300e6778643f82d6c6c0e1b44ebda971a0f53caf3c8f4061e982beefd78c"
+    },
+    {
+      "file": "build_v2.py",
+      "bytes": 6278,
+      "sha256": "a19d3d1e65da4dd3da647c36b5164843525e4e9a12272679ee3987dabfbc0351"
+    },
+    {
+      "file": "check_winding.py",
+      "bytes": 1241,
+      "sha256": "5537d45086b73c85b2ae120a425b9d2ff525ed0ef26a909935278df6dc8bb43c"
+    },
+    {
+      "file": "collision.json",
+      "bytes": 6321,
+      "sha256": "fbd673165edc79e117a0b117b4b018b74c898e879eec2e25ed426c31377c593c"
+    },
+    {
+      "file": "export_atlas.py",
+      "bytes": 282,
+      "sha256": "668b98995261f2e89bf11ea63c660b31cc005b4d0c4dc1524efa06bf20d30142"
+    },
+    {
+      "file": "lagos_broadstreet_v2_lod0.glb",
+      "bytes": 1007144,
+      "sha256": "60d833c9593ce0ad41bd179561c9631d847901ea5addebbe8db0a7325febd4ed"
+    },
+    {
+      "file": "lagos_broadstreet_v2_lod1.glb",
+      "bytes": 776400,
+      "sha256": "197b7e5d4b85173ea533ada8afb3a0da6db6bbd309e9805427520195b147e0bd"
+    },
+    {
+      "file": "manifest.json",
+      "bytes": 9596,
+      "sha256": "8c6681fd6fb23b9080452c51caea721cbc42c838ac194df238b020ba611ca8e7"
+    },
+    {
+      "file": "parent-visual-review.json",
+      "bytes": 1722,
+      "sha256": "64179ed4eb828dbb255c59689e44d6cb47532001960e4093a4f527e076613c32"
+    },
+    {
+      "file": "parts-lagos_broadstreet_lod1.json",
+      "bytes": 44396,
+      "sha256": "f11877b8c26fb5ccca0c271998011b4546f77931c0dc1ca2d137612389bc21a4"
+    },
+    {
+      "file": "render_review.py",
+      "bytes": 1921,
+      "sha256": "63c02c192bb51f40b8fa86f526e5db013baeef1ecc432be2a069a7c2918103be"
+    },
+    {
+      "file": "runtime-eye-day.png",
+      "bytes": 1300009,
+      "sha256": "1503642173492d66c074127e394721ea80580334f3001e56a4f9e91c9251c507"
+    },
+    {
+      "file": "runtime-lod0-day.png",
+      "bytes": 1319781,
+      "sha256": "e6b26b9bcb73c6ec260c7024ccb0b0d839d25ba89f6ac334bf90408c329276f5"
+    },
+    {
+      "file": "runtime-lod0-night.png",
+      "bytes": 1074544,
+      "sha256": "de9e06d37387b235b350c9be69c862c65fc2c0d3d9baf0b501e14898d45c5be2"
+    },
+    {
+      "file": "share_atlas_bytes.py",
+      "bytes": 1397,
+      "sha256": "bf73ff00cbe80372f4d44edc093228269f6933cb6884431829c5c07ce22cf3db"
+    },
+    {
+      "file": "validation.json",
+      "bytes": 2814,
+      "sha256": "ec05afd8fcdc0380fa029713e858574d191329c79fdb42a777460d7df3498408"
+    },
+    {
+      "file": "winding.json",
+      "bytes": 128,
+      "sha256": "88bbcad0afbb0dab8d51d114f761736a1b39b922654e688223492e1dceb3a205"
+    }
+  ],
+  "hostIntegration": "Not certified. Triangle arithmetic is not an aggregate game-budget or draw-call pass.",
+  "excluded": [
+    "research photographs",
+    "logs and backups",
+    "empty baseline near placeholder",
+    "duplicate all-in-one ZIP"
+  ]
+}

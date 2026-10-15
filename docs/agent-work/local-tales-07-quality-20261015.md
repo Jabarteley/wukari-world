@@ -6,7 +6,7 @@
 - **Owner / chat:** `/root/local_tales_02_quality` (Sol, medium; parent `/root` owns acceptance and integration)
 - **Date:** 2026-10-15
 - **Checkout:** `/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld`
-- **Source revision:** parent-provided retention-main-sync checkout; exact Git revision intentionally not queried because this assignment forbids Git operations. Coordination reports accepted batches 01/02 on `4fd4a1b7`; later local batches are parent-owned unregistered work.
+- **Source revision:** parent-provided retention-main-sync checkout fast-forwarded to main `201b9bda`; exact Git state was not queried because this assignment forbids Git operations.
 
 ## Scope and ownership
 
@@ -15,7 +15,7 @@
 - **Read-only dependencies:** current `docs/research/unique-local-content-2026-10-15/AUTHORING.md`, `input-07.json`, `src/types/local-tales.ts`, accepted batches 01-06 and their matrices, and rejected `local-tales-07-outline-20261015-r2.md`.
 - **Out of scope:** shared registry/types, other batches, Git, tests/build/CI, runtime/UI/browser/services, deployment and nested agents.
 - **Counts:** exactly 35 assigned cities and 35 assigned country identities.
-- **Usage stop:** stop all work at 95% account usage; 93% confirmed at registration.
+- **Usage:** earlier 95% stop was honored at 94%; parent later revoked it after the account reset to 0%, authorizing completion.
 - **Cost:** unknown.
 
 ## Contracts and known rejected material
@@ -37,20 +37,16 @@
 - Registered ownership before creating shared source.
 - Read current coordination, technical-autopilot routing, authoring/type/input contracts and the rejected Batch 07 record. Direct Sol execution follows the parent route and explicit no-nested-agent restriction.
 - Authored the fresh 35-row conflict/constraint/resolution matrix and five mission tuples; parent approved the corrected first six.
-- Created all 35 country arcs and the first 20 city records (Amman through Marigot): 40 tales and 120 missions. The source is closed and isolated strict TypeScript passes.
+- Authored all 35 country arcs and all 35 city records: 70 tales and 210 mission entries as explicit typed literals. The restored checkpoint was preserved in the archive and completed from Muscat through Yaoundé.
 - Corrected the Baku matrix before expansion after detecting both faulty court capacity and an accepted Batch 06 Torshavn AB/BC/CA duplicate. Corrected Asuncion to a true one-board 28/12/20 shelf layout.
 
 ### Pending
 
-- Fifteen city records remain: Muscat, Nassau, Nuku'alofa, Nuuk, Paris, Port-au-Prince, Port-aux-Français, Road Town, Santo Domingo, São Tomé, Terong Kangri, St. John's, Villa Las Estrellas, Warsaw and Yaoundé.
-- Those 15 records comprise 30 tales and 90 missions. Final answer-position rebalance, exact counts, mission audit, strict TypeScript, batch checker and combined semantic comparison remain pending.
-- Work stopped at the parent-directed usage checkpoint: 94% used, with a hard stop before 95%.
+- Parent semantic acceptance, registry activation and runtime/integration proof only.
 
 ### Next executable step
 
-1. Resume only after the parent explicitly reassigns work with sufficient usage headroom.
-2. Continue at Muscat; do not rewrite the completed Amman-Marigot block.
-3. After all 35 cities exist, rebalance answer positions and run the full gates.
+1. Parent reviews and activates the complete batch through its owned registry/runtime path.
 
 ## Checkpoint history
 
@@ -84,21 +80,21 @@ Every event below is fictional. City rows use only the supplied NPC and seed pla
 | Madrid / Spain | **Save the Battery for the Final Hour** | Wren’s fictional five-round game has wins worth two and draws worth one, but the score display stops → all results remain known and no round can be replayed → total each player’s recorded wins and draws by hand and announce the existing result | Three fictional project lamps are needed for a final hour; one cable has two sockets and one lamp has a one-hour battery → all three must shine together only at the finish → keep two lamps plugged in and preserve the charged lamp for the final hour |
 | Manama / Bahrain | **Ingredients, Method, Timing** | Jesse’s friend keeps restarting a three-section fictional routine and never practices the ending → three practice turns remain → work backward with the ending, then middle-to-ending, then the complete routine | Three friends explain a fictional recipe: one knows ingredients, one method and one timing → no speaker may take consecutive turns and every step needs all three facts → repeat the order ingredients-method-timing for each step |
 | Marigot / St Martin (French) | **A Reversible Middle Panel** | Jesse’s fictional fabric display has three patterned panels; the outer edges match but the center seams do not → the middle panel is reversible and panels cannot be cut → flip only the middle panel so both seams align | Four friends have one paired project and two independent jobs → the pair must work together and each solo job needs one person → assign the pair to the joint task and one remaining friend to each solo task |
-| Muscat / Oman | **Five Matches Form a Cycle** | Wren’s fictional tool chest lid needs a support rod, but the available rod is longer than the vertical gap → it cannot be cut and the chest has a farther corner notch → brace it diagonally into the distant notch | Five players each need exactly two matches on one fictional court across five rounds → each match uses two players, giving ten available appearances → schedule a five-match neighbor cycle so every player meets the two beside them once |
-| Nassau / Bahamas | **Three Doorways Identify Three Boxes** | Uri and a friend have five fictional puzzles and ten minutes; one rushes while the other rechecks every move → all five need an attempt and one final check → alternate first attempts for eight minutes, then use two minutes to inspect only the marked uncertainties | Three unlabelled fictional boxes fit three project rooms with narrow, low and open doorways → the widest box cannot use narrow, the tallest cannot use low, and only one box fits both limits → place the constrained boxes first and the flexible box in the remaining room |
+| Muscat / Oman | **Five Matches Form a Cycle** | Wren’s fictional tool chest lid needs a support rod, but the available rod is longer than the vertical gap → it cannot be cut and exactly matches the diagonal span to a farther corner notch → brace it diagonally into that notch | Five players each need exactly two matches on one fictional court across five rounds → each match uses two players, giving ten available appearances → schedule a five-match neighbor cycle so every player meets the two beside them once |
+| Nassau / Bahamas | **Three Doorways Identify Three Boxes** | Uri and a friend have five fictional puzzles and ten minutes; one rushes while the other rechecks every move → all five need an attempt and one final check → alternate first attempts for eight minutes, then use two minutes to inspect only the marked uncertainties | Three unlabelled fictional boxes fit rooms with narrow, low and open doorways → the flexible box must use open for its fixed connection, the widest cannot use narrow and the tallest cannot use low → assign flexible to open, wide to low and tall to narrow |
 | Nuku'alofa / Tonga | **Seven Blocks Make One Braced Arch** | Greer’s shared fictional meal has two wet dishes, one dry finger food and only two serving spoons → every dish must remain separate and utensils cannot be added → give spoons to the wet dishes and serve the dry food from its platter | Seven blocks must form a freestanding fictional arch → two equal pillars need two blocks each and one lintel spans them → use the final two blocks as outward base braces |
 | Nuuk / Greenland | **Three Rhythms Meet on Beat Six** | Corin’s fictional fitting project has one tall booth and one standard booth; one long garment requires tall clearance and three short garments fit either → two rounds must serve all four fittings → pair the long fitting with one short fitting, then use both booths for the last two | Three friends clap repeating two-, three- and six-beat fictional rhythms → they must begin and end together without changing patterns → start together and close after beat six, their first shared cycle boundary |
 | Paris / France | **Complementary Clues, Timed Finish** | Logan packs a fictional five-item day bag for three planned activities → carrying limit is five, and two dual-use items cover four requirements → choose both dual-use items plus the three single requirements they do not cover | Friendly rival puzzle teams each hold different necessary constraints → neither clue set can produce a valid arrangement alone, and the game awards a final speed point after a correct joint setup → combine constraints for the setup, then race the final independent step |
 | Port-au-Prince / Haiti | **Two Hooks Anchor the Menu Chain** | Jesse’s fictional café menus keep sliding from an outdoor counter → one small weight is available, menus may be folded but not damaged → interlock the folded corners into a chain and weight the two end loops together | Six friends share three fictional two-person tasks, with each task needing one experienced and one learning partner → three friends have prior experience and three do not → make three mixed pairs and rotate which partner leads the second half |
 | Port-aux-Français / French S. Terr. | **Demanding and Light Tasks Alternate** | Jesse’s fictional serving mat twists in a gusty game scene → weights are forbidden, but its corners reach four fixed tray handles → weave each corner through a handle and tuck it back under itself | A personal goal has four demanding and four light fictional tasks → two demanding tasks in a row cause errors and all eight must finish → alternate demanding and light tasks, choosing freely within each category |
-| Road Town / Virgin Islands (UK) | **Balance Two Hinges before Reuse** | Arden’s friendly target challenge has four players and two differently sized targets → every player needs comparable evidence → each takes two attempts at each target, and totals combine both sizes | A fictional project door swings shut because one hinge is tight and the other loose → only a screwdriver is available and the door cannot be removed → tighten the loose hinge, ease the tight hinge a quarter-turn, then test before further adjustment |
+| Road Town / Virgin Islands (UK) | **Match the Two Friction Settings** | Arden’s fictional three-by-three path puzzle has one hub, four connectors and four corner decorations → every connector must touch the hub and corners cannot carry paths → center the hub, place connectors on four cardinal sides and fill corners last | A fictional door has adjustable-friction hinges reading one and three, with a tested hold mark of two → both controls remain attached and maximum risks binding → set both to two, then swing and release once |
 | Santo Domingo / Dominican Republic | **Swap the Hotter Rack between Rivals** | Ira’s two friendly fictional bakers use an oven with one hotter rack → each makes two loaves and rack position affects the result → swap rack positions for the second bake and compare each baker’s two-loaf total | A neighbor project has three work areas and six volunteers with three different skills represented twice → each area needs two different skills → arrange three mixed pairs so neither copy of a skill shares an area |
 | São Tomé / Sao Tome & Principe | **Two Pushes around an L-Bend** | Greer’s four fictional chimes must play a rising sequence, but their sizes are misleading → every chime may sound once before the attempt → order them by heard pitch from low to high | A soft spool rolls behind an L-shaped fictional bench → reaching underneath and moving the bench are forbidden, but both open ends are accessible → push from the short opening to the bend, then from the second opening toward the exit |
-| Terong Kangri / Siachen Glacier | **Three Cross-Color Pairs** | Jesse’s tabletop puzzle keeps sliding toward one low edge → the board cannot move and two equal wedges are available → lift both low corners with one wedge each until a test piece stays centered | Six fictional team scarves include two each of red, blue and green → three pairs must have different colors and every scarf is used → form one red-blue, one blue-green and one green-red pair |
+| Terong Kangri / Siachen Glacier | **The Z-Fold Holds** | Jesse’s tabletop puzzle keeps sliding toward one low edge → the board cannot move and two equal wedges are available → lift both low corners with one wedge each until a test piece stays centered | A three-panel fictional screen must stand inside a narrow strip → panels stay attached, first hinge opens inward and second outward → use equal opposite hinge angles to form a stable Z |
 | St. John's / Antigua & Barbuda | **A Folded Beam beneath the Center** | Greer’s fictional paper bridge carries its end tokens but sags under the third center token → one strip remains and the deck cannot be rebuilt → fold the strip into a triangular beam and slide it beneath the center | Eight practice balls serve three newcomers and a two-ball demonstration → each newcomer needs two attempts and balls are not reused during the session → reserve two for the demonstration and give two to each newcomer |
 | Villa Las Estrellas / Antarctica | **One Long Game, Three Quick Games** | Jesse receives three fictional project crates one session early, but storage holds only two → one crate contains the materials needed immediately for setup → open and use that crate, then store the other two | Four tabletop games share two tables; one long game occupies a table throughout and three quick games fit sequentially in the same span → keep the long game on one table and rotate the three quick games on the other |
-| Warsaw / Poland | **Two Slaloms Share the Finish** | Sage’s fictional umbrella stand tips when five props fill adjacent holes → the base and six-hole pattern are fixed → place two opposite pairs first and the fifth in the central hole | Seven cones must create two equal fictional slaloms and one common finish → no cone may move after the start → give each lane three cones and place the seventh at the shared finish |
-| Yaoundé / Cameroon | **Walk the Ball out of the Rails** | Jesse’s fictional rotating tray must carry six cups through one full turn → the center pivot and cups stay fixed to the tray surface → place cups as three opposite pairs before turning slowly | A soft ball is wedged between two parallel fictional rails → a direct push jams it and only two flat paddles fit the gaps → alternate small pushes from opposite sides to walk the ball toward the open end |
+| Warsaw / Poland | **Two Slaloms Share the Finish** | Sage’s fictional stand has one center, four rim holes in two opposite pairs, one off-center spare rim hole and five equal-weight props → placement occurs before locking → fill both opposite pairs, place the fifth at center and leave the spare rim hole empty | Seven cones must create two equal fictional slaloms and one common finish → no cone may move after the start → give each lane three cones and place the seventh at the shared finish |
+| Yaoundé / Cameroon | **Walk the Ball out of the Rails** | Jesse’s fictional rotating tray has six equal cups and clips that lock before one full turn → cups remain adjustable only before locking and every position has an equal opposite → arrange three opposite pairs, verify them, then lock all six clips before turning | A soft ball is wedged between two parallel fictional rails → a direct push jams it and only two flat paddles fit the gaps → alternate small pushes from opposite sides to walk the ball toward the open end |
 
 ## First five mission tuples
 
@@ -114,4 +110,42 @@ Labels describe only registered actions, actual venues/city and counts. Fictiona
 
 | 2026-10-15T03:13:19Z | stopped-at-usage-cap | 35 country arcs; 20/35 city records; 40/70 tales; 120/210 missions; closed source and isolated strict TypeScript pass; parent reports 94% used | Resume at Muscat only after reassignment and sufficient headroom |
 
-Parent handoff: closed incomplete source archived at `docs/research/unique-local-content-2026-10-15/draft-batches/batch-07-quality-usage-checkpoint.ts.txt` outside compilation. Restore to original batch source only after resumption authorization. Not registered or accepted.
+Checkpoint archive retained at `docs/research/unique-local-content-2026-10-15/draft-batches/batch-07-quality-usage-checkpoint.ts.txt`; completed source now lives in the owned batch path.
+
+### Final-matrix constraint corrections
+
+- Muscat now states the rod exactly matches the diagonal span to the far notch.
+- Nassau now has one feasible assignment: the flexible box requires the open room’s fixed connection, forcing the wide box through low and tall box through narrow.
+- Road Town’s duplicated equal-target fairness plot was replaced with a nine-tile construction: center hub, four cardinal connectors and four corner decorations.
+- Warsaw now specifies one center, four rim holes in two opposite pairs and one off-center spare rim hole, five equal-weight props, two opposite rim pairs, the centered fifth prop and one empty rim hole.
+- Yaoundé now states cups are arranged as three equal opposite pairs before all six clips lock for rotation.
+
+- Final Astra corrections: Warsaw rim geometry now has four rim holes in two opposite pairs plus one off-center spare and center; Siachen country is now the distinct Z-fold screen problem; Road Town country now uses explicit adjustable-friction controls set from one/three to the tested two/two.
+
+## Final evidence
+
+- Isolated strict TypeScript passes for `src/game/content/local-tales/batch-07.ts`.
+- Batch gate: 35 cities, 35 countries, 70 tales and 210 missions; zero errors; current `WORLD_STORY_SEEDS` reference source.
+- Combined batches 01-07 gate: 250 cities, 209 countries, 500 tales and 1,500 missions; zero errors.
+- Intended answer positions are 24/23/23; all eight valid desire tags occur.
+- Mission-kind/count audit reports zero issues. Normalized exact title and intended-answer comparison across batches 01-07 reports zero duplicates.
+- Full tale copy ranges 182-245 words, mean 208; all 70 are inside the rough 180-260 target.
+- Rejected blanket moral-answer and known repeated-mechanism phrase audit returns no matches.
+- Current Marigot and Road Town authoritative seed references match the assigned venues/actions, so no seed conflict remains.
+
+## Mission-variety follow-up
+
+Parent’s task-signature audit found that the first complete draft imposed one mission shape on 33 of 35 cities. The follow-up leaves every tale and country arc unchanged and revises missions for 15 cities whose story motivation supports a different proof path. Paris remains unchanged so its completed daily mission progress keeps the same task and count.
+
+- Amman, Beirut, Honiara, Nassau, Road Town and Warsaw use a real place or host visit for the discovery slot and a supported solo activity for social preparation. The later greeting supplies the fictional participants only when the story needs them.
+- Baku uses discovery activity to study echo spacing, practical activity to prepare timing and another discovery activity as social rehearsal; the sound plot does not require greeting regulars.
+- Hagåtña and Luxembourg use discovery activity as daily life, a place or host visit to inspect the relevant setup and practical activity to prepare the fair turn or story exchange.
+- Île Boddam, Kinshasa, Manama, Terong Kangri and Yaoundé use discovery activity as life, a practical-venue visit for inspection and practical activity for solo preparation. Their later greetings provide crews, speakers, helpers or partners tied to the tale.
+- Nuku'alofa uses discovery activity for the arch, places for comparing meal layouts, practical activity for the two-spoon preparation and a later host review plus greetings for the shared meal.
+
+The resulting 35-city distribution has 12 distinct task signatures: the retained original signature appears 18 times; revised signatures appear in groups of 3, 2, 2, 2, and seven single-city forms. Across all 210 missions the task totals are practical 64, discovery 42, people 34, places 33, host-visit 30, practical-visit 5 and discovery-visit 2. Labels continue to name only registered actions, real seed venues or city/count targets; fictional motivation remains in purpose.
+
+The isolated strict TypeScript check, Batch 07 gate and combined batches 01-07 gate all pass after this mission-only edit. Batch 07 remains 35/35/70/210 with zero errors; combined coverage remains 250 cities, 209 countries, 500 tales and 1,500 missions with zero errors.
+
+| 2026-10-15T11:47:38Z | ready-for-review | Complete 35/35/70/210; strict TypeScript, batch gate and combined 01-07 gate pass; answer positions 24/23/23; semantic exact-duplicate audit 0 | `/tmp/local-tales-07-quality.json`; `/tmp/local-tales-01-07-quality.json`; owned source and record | Parent semantic acceptance and activation |
+| 2026-10-15T11:59:47Z | mission-variety-ready | Mission-only follow-up revises 15 cities into 12 total task signatures; Paris unchanged; strict TypeScript and batch/combined gates pass | `/tmp/local-tales-07-quality.json`; `/tmp/local-tales-01-07-quality.json`; owned source and record | Parent task-signature probe, semantic acceptance and activation |

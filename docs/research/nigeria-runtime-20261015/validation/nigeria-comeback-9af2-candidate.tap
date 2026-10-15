@@ -1,0 +1,47 @@
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (77s))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (78s))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (79s))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (80s))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (81s))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (82s))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (83s))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (84s))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (85s))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (86s))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (87s))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (88s))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (89s))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (2m))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (3m))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (4m))
+agent-slot: waiting for heavy slot (1/1 busy: pid 1496 in /workspace/joinallworld: env NODE_OPTIONS=--max-old-space-size=3584 npm run typecheck (5m))
+agent-slot: waiting for heavy slot (1/1 busy: pid 2051 in /workspace/nigeria-baseline: node --experimental-strip-types --test --test-name-pattern=^zero work: not configured, nobody opted in, switched off$ server/comeback.test.ts (4m))
+agent-slot: waiting for heavy slot (1/1 busy: pid 2051 in /workspace/nigeria-baseline: node --experimental-strip-types --test --test-name-pattern=^zero work: not configured, nobody opted in, switched off$ server/comeback.test.ts (5m))
+✖ zero work: not configured, nobody opted in, switched off (1036.970391ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4575.854712
+
+✖ failing tests:
+
+test at server/comeback.test.ts:340:1
+✖ zero work: not configured, nobody opted in, switched off (1036.970391ms)
+  AssertionError [ERR_ASSERTION]: idle: no store access at all
+  
+  2 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/joinallworld/server/comeback.test.ts:368:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

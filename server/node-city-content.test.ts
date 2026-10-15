@@ -5,8 +5,12 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import test from 'node:test'
+import { PRICE_LEVEL_DATA } from '../src/game/price-levels-data.ts'
 import { CITY_CONTENT_ASSETS } from '../src/game/cities/content-assets.generated.ts'
+import { loadCityContentAsset } from '../src/game/cities/content-asset.ts'
+import { mapEntryOf } from '../src/game/cities/mapEntry.ts'
 import { cachedCityContent, loadCityContent, registeredCityIds } from '../src/game/cities/registry.ts'
+import { priceLevelOf, scaleCityContent } from '../src/game/price-levels.ts'
 import { createServer } from './server.ts'
 
 test('Node host serves a real city life and loads every authenticated payload from the built checkout dist directory', async (t) => {
@@ -46,8 +50,9 @@ test('Node host serves a real city life and loads every authenticated payload fr
 
   assert.equal(CITY_CONTENT_ASSETS.length, registeredCityIds().length)
   for (const row of CITY_CONTENT_ASSETS) {
-    const expected: unknown = JSON.parse(await readFile(join(built, row.path), 'utf8'))
-    assert.ok(expected && typeof expected === 'object')
-    assert.deepEqual(await loadCityContent(row.id), Reflect.get(expected, 'content'), row.id)
+    const asset = await loadCityContentAsset(row, async path => new Uint8Array(await readFile(join(built, path))))
+    const country = asset.rules.country.id
+    const level = country === 'ng' || country === 'nigeria' ? 1 : priceLevelOf(PRICE_LEVEL_DATA, mapEntryOf(country))
+    assert.deepEqual(await loadCityContent(row.id), scaleCityContent(asset.content, level), row.id)
   }
 })

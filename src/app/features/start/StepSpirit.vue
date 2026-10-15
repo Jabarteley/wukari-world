@@ -4,6 +4,7 @@
 import { DREAMS, TRAITS, TRAITS_REQUIRED } from '../../../game/content/traits.ts'
 import { dreamsFor } from '../../../game/cities/characterContent.ts'
 import { cachedCityContent } from '../../../game/cities/registry.ts'
+import { levelOf } from '../../../game/price-levels.ts'
 import type { DreamId, TraitId } from '../../../types/life.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 
@@ -11,7 +12,7 @@ const props = defineProps<{ city?: string; traits: readonly TraitId[]; dream: Dr
 const emit = defineEmits<{ trait: [id: TraitId]; dream: [id: DreamId]; random: [] }>()
 const traitList = Object.values(TRAITS)
 /** The dreams in the words of the city the life will be in (the same ids and rewards everywhere). */
-const dreamList = props.city && cachedCityContent(props.city) ? dreamsFor(props.city) : Object.values(DREAMS)
+const dreamList = props.city && cachedCityContent(props.city) ? dreamsFor(props.city, levelOf(cachedCityContent(props.city))) : Object.values(DREAMS)
 const picked = (): string => `${props.traits.length} of ${TRAITS_REQUIRED} chosen. A third pick swaps out your first.`
 </script>
 

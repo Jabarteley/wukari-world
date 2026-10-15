@@ -69,7 +69,7 @@ function hi(player: { id: string; name: string }): void {
         <CivicAction :working="civic.busy('prefs')" :reason="offline('change this') ?? ''" @click="toggle">{{ data.hidden ? 'List my home in the directory' : 'Hide my home from the directory' }}</CivicAction>
         <CivicAction :working="item.loading" @click="reload">Refresh</CivicAction>
       </div>
-      <HowItWorks id="neighbours-rules" page label="How the directory works" :rules="['These are real counts of players who have opened the game since this feature shipped (beta).', '“Online now” means a live connection at the moment this list was loaded.', unset ? 'Districts fill in once players choose a house.' : '', 'Homes are drawn on the city map behind the Neighbours layer.', 'Hiding your home takes you off this list and off that map layer.']" />
+      <HowItWorks id="neighbours-rules" page label="How the directory works" :rules="['These are real counts of players who have opened the game since this feature shipped (beta).', '“Online now” means a live connection at the moment this list was loaded.', unset ? 'Districts fill in once players choose a house.' : '', 'Homes are drawn on the city map behind the Neighbours layer.', 'Hiding your home takes you off this list, the map layer and your public accomplishment profile.']" />
     </template>
   </div>
 </template>

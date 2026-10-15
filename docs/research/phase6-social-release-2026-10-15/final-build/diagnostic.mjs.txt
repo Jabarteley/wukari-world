@@ -1,0 +1,11 @@
+import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {readdirSync,readFileSync,writeFileSync,openSync,closeSync} from 'node:fs';
+import {join,relative} from 'node:path';
+const out='/tmp/allworld-phase6-final-build';
+function run(args,label){const fd=openSync(`${out}-${label}.log`,'w'); const r=spawnSync('npm',args,{stdio:['ignore',fd,fd]});closeSync(fd);if(r.status!==0)throw Error(`${label} failed ${r.status}`);console.log(`${label}: PASS`);}
+function snapshot(){const rows=[];function walk(dir){for(const e of readdirSync(dir,{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name))){const p=join(dir,e.name);if(e.isDirectory())walk(p);else{const b=readFileSync(p);rows.push([relative('dist',p),b.length,createHash('sha256').update(b).digest('hex')]);}}}walk('dist');return rows;}
+run(['run','build'],'build1');const a=snapshot();
+run(['run','build'],'build2');const b=snapshot();
+const same=JSON.stringify(a)===JSON.stringify(b);const result={source:'5bb46a442a2b6d1236b988a67d09c653f61ea766',files:a.length,equal:same,digest:createHash('sha256').update(JSON.stringify(a)).digest('hex')};writeFileSync(`${out}-receipt.json`,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));if(!same)throw Error('Build output differs');
+run(['run','size:download'],'download');

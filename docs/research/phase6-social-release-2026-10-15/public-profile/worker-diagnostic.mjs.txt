@@ -1,0 +1,186 @@
+import assert from 'node:assert/strict'
+import { cp, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join, resolve } from 'node:path'
+import { createRequire } from 'node:module'
+import { fileURLToPath } from 'node:url'
+import { EPISODES } from '../../../../src/game/content/episodes.ts'
+import { ACHIEVEMENTS } from '../../../../src/game/content/achievements.ts'
+import { PROJECTS } from '../../../../src/game/content/projects.ts'
+import { layoutBindings } from '../../../../server/testing/sqliteStorage.ts'
+
+// Copy this file to worker-diagnostic.mjs beside it, then run it from the repository root.
+const ROOT = fileURLToPath(new URL('../../../..', import.meta.url))
+const TOOL_ROOT = resolve(process.env.JOINALLWORLD_TOOLS || join(ROOT, 'deploy/tooling'))
+const require = createRequire(join(TOOL_ROOT, 'package.json'))
+const { Miniflare, convertV4MiniflareOptions } = require('miniflare')
+const { build } = require('esbuild')
+const checks = []
+const check = (label, condition) => { assert.ok(condition, label); checks.push(label) }
+const noStore = (value) => typeof value === 'string' && value.split(',').some(token => token.trim() === 'no-store')
+const bounded = async (label, promise, ms) => {
+  let timer
+  return Promise.race([promise, new Promise((_, reject) => { timer = setTimeout(() => reject(Error(`${label} exceeded ${ms}ms`)), ms) })]).finally(() => clearTimeout(timer))
+}
+const folder = await mkdtemp(join(tmpdir(), 'allworld-profile-worker-'))
+const assets = join(folder, 'assets'), bundle = join(folder, 'worker.mjs')
+let worker = null
+const logs = []
+const ORIGIN = 'https://joinallworld.test'
+
+try {
+  await cp(join(ROOT, 'dist'), assets, { recursive: true })
+  await writeFile(join(assets, 'index.html'), '<!doctype html><html><body><div id="app">ASSET_FALLBACK_SENTINEL</div></body></html>')
+  await bounded('Worker bundle', build({
+    entryPoints: [join(ROOT, 'deploy/cloudflare-worker.ts')], outfile: bundle,
+    bundle: true, format: 'esm', platform: 'neutral', external: ['cloudflare:workers'],
+  }), 120000)
+  const options = {
+    name: 'phase6-public-profile-worker', script: await readFile(bundle, 'utf8'), modules: true,
+    compatibilityDate: '2026-10-01',
+    durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } },
+    durableObjectsPersist: join(folder, 'storage'),
+    bindings: { ...layoutBindings(), BUILD_ID: 'phase6-public-profile-worker-probe' },
+    assets: { directory: assets, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } },
+  }
+  worker = new Miniflare({
+    ...convertV4MiniflareOptions(options), resourcePersistencePath: join(folder, 'storage'),
+    unsafeInspectDurableObjects: true,
+    handleStructuredLogs: ({ level, message }) => { logs.push(`${level}:${message}`) },
+  })
+  await bounded('Miniflare ready', worker.ready, 60000)
+
+  const dispatch = (path, init = {}) => bounded(`Worker ${init.method || 'GET'} ${path}`, worker.dispatchFetch(ORIGIN + path, init), 45000)
+  const call = async (path, { body, cookie, method, headers = {} } = {}) => {
+    const actualMethod = method || (body === undefined ? 'GET' : 'POST')
+    const response = await dispatch(path, {
+      method: actualMethod,
+      headers: { ...(path.startsWith('/api/') ? { origin: ORIGIN } : {}), ...(body === undefined ? {} : { 'content-type': 'application/json' }), ...(cookie ? { cookie } : {}), ...headers },
+      ...(body === undefined ? {} : { body: JSON.stringify(body) }),
+    })
+    const text = await bounded(`Read ${actualMethod} ${path}`, response.text(), 15000)
+    let json = null
+    try { json = JSON.parse(text) } catch {}
+    return { status: response.status, cache: response.headers.get('cache-control'), page: response.headers.get('x-allworld-page'), setCookie: response.headers.get('set-cookie'), text, json }
+  }
+  const device = async (name) => {
+    const result = await call('/api/session', { body: { name } })
+    assert.equal(result.status, 200, `session creation returned ${result.status}: ${result.text.slice(0, 600)}\n${logs.slice(-8).join('\n')}`)
+    const cookie = result.setCookie?.split(';')[0]
+    assert.ok(cookie && result.json.session?.id)
+    return { id: result.json.session.id, cookie, secret: cookie.slice(cookie.indexOf('=') + 1) }
+  }
+
+  const human = await device('Worker human'), agent = await device('Worker agent'), viewer = await device('Worker viewer')
+  for (const who of [human, agent, viewer]) {
+    assert.equal((await call('/api/life?city=lagos', { cookie: who.cookie })).status, 200)
+    assert.equal((await call('/api/social/me', { cookie: who.cookie })).status, 200)
+  }
+
+  const storage = await worker.unsafeGetDurableObjectStorage('phase6-public-profile-worker', 'JoinAllworldState', { name: 'joinallworld-v1' })
+  const exec = (sql, ...values) => storage.exec(sql, ...values)
+  const readSession = async (secret) => JSON.parse((await exec('SELECT value FROM sessions WHERE secret = ?', secret))[0].value)
+  const writeSession = async (secret, session) => { await exec('UPDATE sessions SET value = ? WHERE secret = ?', JSON.stringify(session), secret) }
+  const canary = 'PRIVATE_WORKER_PROFILE_CANARY_824601'
+  const selected = [...new Map([
+    ...EPISODES.filter(row => row.id.startsWith('world-') || row.id.startsWith('place-')).slice(0, 38),
+    ...EPISODES.filter(row => row.id === 'hostel-hustle' || row.id === 'the-quiet-hours'),
+  ].map(row => [row.id, row])).values()]
+
+  const humanSession = await readSession(human.secret)
+  const humanState = humanSession.cities.lagos.state
+  const baseAt = humanState.t - 1000
+  humanSession.privateCanary = canary
+  humanState.privateCanary = canary
+  const award = ACHIEVEMENTS[0]
+  humanState.achievements.earned[award.id] = { id: award.id, version: award.version, earnedAt: baseAt, cityId: 'lagos', origins: ['delegated-agent'] }
+  humanState.achievements.pinned = [award.id]
+  for (const [index, episode] of selected.entries()) humanState.episodes.mementos[episode.memento.id] = {
+    id: episode.memento.id, version: 1, episodeId: episode.id, episodeVersion: episode.version,
+    grantedAt: baseAt - 10 - index, origins: ['human'], rewardId: episode.memento.rewardId,
+  }
+  const canonical = humanState.episodes.mementos[selected[0].memento.id]
+  for (let index = 0; index < 35; index += 1) humanState.episodes.mementos[`wrong-key-worker-alias-${index}`] = { ...canonical }
+  for (const [index, project] of PROJECTS.entries()) humanState.projects.mementos[project.id] = {
+    id: project.id, occurrence: project.occurrence, title: canary, earnedAt: baseAt - 100 - index,
+    cityId: project.city, origins: ['system'],
+  }
+  await writeSession(human.secret, humanSession)
+
+  const agentSession = await readSession(agent.secret)
+  agentSession.agent = { char: true }
+  const agentState = agentSession.cities.lagos.state, agentAward = ACHIEVEMENTS[1]
+  agentState.achievements.earned[agentAward.id] = { id: agentAward.id, version: agentAward.version, earnedAt: agentState.t - 1000, cityId: 'lagos', origins: ['agent-character'] }
+  agentState.achievements.pinned = [agentAward.id]
+  await writeSession(agent.secret, agentSession)
+
+  const snapshot = async () => JSON.stringify({
+    sessions: await exec('SELECT secret,value,expires_at FROM sessions ORDER BY secret'),
+    collections: await exec('SELECT name,value FROM collections ORDER BY name'),
+    entries: await exec('SELECT coll,map,key,ord,ix,tx,jx,value FROM entries ORDER BY coll,map,ord'),
+  })
+  const beforeReads = await snapshot()
+
+  const first = await call(`/api/profiles/${human.id}`)
+  assert.equal(first.status, 200, `anonymous profile returned ${first.status}: ${first.text.slice(0, 600)}`)
+  check('Worker anonymous human profile is available and no-store', first.status === 200 && noStore(first.cache))
+  const profile = first.json.profile
+  check('delegated human remains a Human character', profile.kind === 'human' && profile.achievements[0].origins.includes('delegated-agent'))
+  check('canonical receipts exclude wrong-key aliases', profile.counts.stories === selected.length)
+  check('all four public accomplishment kinds are counted', Object.values(profile.counts).every(value => value > 0))
+  const history = [...profile.history]
+  const pageTexts = [first.text]
+  let cursor = profile.next, pages = 1
+  while (cursor) {
+    const page = await call(`/api/profiles/${human.id}?after=${encodeURIComponent(cursor)}`)
+    assert.equal(page.status, 200)
+    pageTexts.push(page.text)
+    history.push(...page.json.profile.history)
+    cursor = page.json.profile.next
+    pages += 1
+    assert.ok(pages <= 8, 'pagination must terminate')
+  }
+  check('private and stored-title canaries stay outside every JSON page', pageTexts.every(text => !text.includes(canary)))
+  check('Worker pagination reaches every accepted row', history.length === Object.values(profile.counts).reduce((sum, value) => sum + value, 0))
+  check('Worker pagination has no duplicates or alias cursor trap', new Set(history.map(row => `${row.kind}:${row.id}`)).size === history.length && pages >= 2)
+  check('canonical local collection survives Worker projection', history.some(row => row.kind === 'collection' && row.id === 'ng:lagos:akoka-chapters'))
+
+  const agentRead = await call(`/api/profiles/${agent.id}`)
+  check('Worker permanent agent identity is explicit', agentRead.status === 200 && agentRead.json.profile.kind === 'agent')
+  const humanPage = await call(`/p/${human.id}`), agentPage = await call(`/p/${agent.id}`)
+  check('Worker /p/ prefix dispatches profile HTML, not asset fallback', humanPage.status === 200 && noStore(humanPage.cache) && humanPage.text.includes('Public character record') && !humanPage.text.includes('ASSET_FALLBACK_SENTINEL'))
+  check('Worker public HTML identifies Human and Agent characters', humanPage.text.includes('Human character') && agentPage.text.includes('Agent character'))
+  check('Worker public HTML excludes private canary and raw badge icon token', !humanPage.text.includes(canary) && !humanPage.text.includes(`>${award.icon} `))
+  const head = await call(`/p/${human.id}`, { method: 'HEAD' })
+  check('Worker profile HEAD is empty and no-store', head.status === 200 && noStore(head.cache) && head.text === '')
+
+  const afterReads = await snapshot()
+  check('Worker profile reads leave player-store sessions, collections and entries unchanged', beforeReads === afterReads)
+
+  const hide = await call('/api/civic/prefs', { cookie: human.cookie, body: { directory: false } })
+  assert.equal(hide.status, 200)
+  const hiddenApi = await call(`/api/profiles/${human.id}`, { cookie: human.cookie }), hiddenPage = await call(`/p/${human.id}`)
+  check('Worker directory hiding revokes owner JSON and public HTML', hiddenApi.status === 404 && hiddenPage.status === 404)
+  check('Worker hidden responses are generic and no-store', noStore(hiddenApi.cache) && noStore(hiddenPage.cache) && !hiddenPage.text.includes('Worker human'))
+  assert.equal((await call('/api/civic/prefs', { cookie: human.cookie, body: { directory: true } })).status, 200)
+  check('Worker unhide restores the public profile', (await call(`/api/profiles/${human.id}`)).status === 200)
+
+  const block = await call('/api/social/block', { cookie: viewer.cookie, body: { id: human.id, cityId: 'lagos' } })
+  assert.equal(block.status, 200)
+  check('Worker known-viewer block hides JSON', (await call(`/api/profiles/${human.id}`, { cookie: viewer.cookie })).status === 404)
+  check('Worker anonymous public page remains public across account block', (await call(`/p/${human.id}`)).status === 200)
+
+  const secrets = [human.secret, agent.secret, viewer.secret]
+  check('Worker structured logs contain no synthetic session secret', secrets.every(secret => !logs.join('\n').includes(secret)))
+  console.log(JSON.stringify({
+    passed: true, checks: checks.length, pages, historyRows: history.length,
+    scope: 'Fresh synthetic Miniflare/Durable Object Worker fixture; not earned gameplay, existing-player, network, browser or production proof',
+    checksPassed: checks,
+  }, null, 2))
+} catch (error) {
+  console.error(error instanceof Error ? `${error.name}: ${error.message}\n${error.stack || ''}` : String(error))
+  process.exitCode = 1
+} finally {
+  if (worker) await bounded('Miniflare dispose', worker.dispose(), 30000).catch(error => { console.error(error.message); process.exitCode = 1 })
+  await rm(folder, { recursive: true, force: true })
+}

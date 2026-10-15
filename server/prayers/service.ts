@@ -31,7 +31,8 @@ import { socialService } from '../social/service.ts';
 import { gistService } from '../gist/ledger.ts';
 import { businessOf } from '../business/service.ts';
 import { worldFeedOf } from '../world-feed/service.ts';
-import { RESIDENTS, OUT_OF_CHARACTER, residentId } from '../residents/life.ts';
+import { OUT_OF_CHARACTER } from '../residents/life.ts';
+import { residentById } from '../residents/world.ts';
 import { limitsOf } from '../admin/config.ts';
 import { movedToday } from '../admin/actions.ts';
 import { mayAct, shortRef } from '../admin/gate.ts';
@@ -126,7 +127,7 @@ export function prayersOf(ctx: RouteContext) {
     | { kind: 'player'; id: string; name: string; city: CityId; session: SessionRecord; life: LifeState }
     | { kind: 'resident'; id: string; name: string; city: string };
   function person(db: Db, id: string): Person {
-    const who = RESIDENTS.find((r) => residentId(r) === id);
+    const who = residentById(id);
     if (who) return { kind: 'resident', id, name: who.name, city: who.city };
     if (!UUID_PATTERN.test(id)) throw refuse(400, 'invalid_target', 'Name a player (their id) or a resident.');
     const session = ctx.core.sessionByPublicId?.(db, id.toLowerCase());

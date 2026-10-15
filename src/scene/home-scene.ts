@@ -1296,6 +1296,10 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       placeBody(); markAvatar();
     },
     get objectPhase() { return sequence.phase; },
+    get playerPose() {
+      if (sequence.phase === 'approach' || sequence.phase === 'align') return 'stand';
+      return sequence.presented?.pose;
+    },
     get bodyShown() { return body !== null; },
     stepCrowd(dt: number) {
       const more = Boolean(body?.step(dt)), using = sequence.step(dt), door = hinge?.step(dt) ?? false;

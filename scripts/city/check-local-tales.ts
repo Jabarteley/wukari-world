@@ -95,7 +95,7 @@ for (const file of args) {
       missions.forEach((mission, slot) => {
         const owner = `${city.cityId}/${scope}/${slot}`
         unique('mission-label', mission.label, owner)
-        if (!mission.purpose?.trim()) errors.push(`${owner}: missing purpose`)
+        unique('mission-purpose', mission.purpose, owner)
         const target = mission.task === 'practical' || mission.task === 'practical-visit' ? seed.practical
           : mission.task === 'discovery' || mission.task === 'discovery-visit' ? seed.discovery
             : mission.task === 'host-visit' ? seed.host : undefined

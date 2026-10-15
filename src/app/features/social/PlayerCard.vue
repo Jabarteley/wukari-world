@@ -24,6 +24,7 @@ import PersonCallButton from '../calls/PersonCallButton.vue'
 import PingButton from '../ping/PingButton.vue'
 const VisitButton = defineAsyncComponent(() => import('../visit/VisitButton.vue'))
 const PersonJustice = defineAsyncComponent(() => import('../politics/PersonJustice.vue'))
+const PublicProfile = defineAsyncComponent(() => import('./PublicProfile.vue'))
 import PingStrip from '../ping/PingStrip.vue'
 import { pingInstead } from '../ping/pingModel.ts'
 import type { SocialResult } from './socialClient.ts'
@@ -35,6 +36,7 @@ import { ladderLine, thanksItem, thanksLine } from './friendOfferModel.ts'
 import { useSocialScreen } from './useSocialScreen.ts'
 
 const props = defineProps<{ id: string; form?: 'money' }>()
+const recordlessActor = computed<'AI resident' | 'AI house character' | null>(() => props.id.startsWith('resident.') ? 'AI resident' : props.id.startsWith('house.') ? 'AI house character' : null)
 const { game, shell, client, state, view, gate, action, runAction, retryLoad } = useSocialScreen()
 const cityId = (): string => client.cityId()
 const growth = useGrowth()
@@ -143,7 +145,8 @@ async function sendReport(): Promise<void> {
 </script>
 
 <template>
-  <GateNote v-if="gate" :gate="gate" :action="action?.label ?? null" @action="runAction" @retry="retryLoad" />
+  <PublicProfile v-if="recordlessActor" mode="no-records" :id="id" :actor-label="recordlessActor" />
+  <GateNote v-else-if="gate" :gate="gate" :action="action?.label ?? null" @action="runAction" @retry="retryLoad" />
   <p v-else-if="!profile" class="social-note">Loading player…</p>
   <template v-else-if="profileError !== null">
     <p class="social-note is-warn">{{ profileError }}</p>
@@ -151,12 +154,14 @@ async function sendReport(): Promise<void> {
   </template>
   <div v-else-if="card?.self">
     <p>This is you, {{ card.name }}.</p>
+    <PublicProfile mode="profile" :id="id" :name="card.name" own />
     <p v-if="card.thanks" class="social-note" data-thanks>{{ thanksLine(card.thanks) }}</p>
     <ul v-if="card.thanks?.recent.length" class="social-note" data-thanks-recent><li v-for="item in card.thanks.recent" :key="`${item.at}-${item.who}-${item.dir}`">{{ thanksItem(item) }}</li></ul>
   </div>
   <div v-else-if="card" :data-c-player="id">
     <div class="social-head people-who"><PlayerAvatar :name="card.name" :seed="id" :status="card.status" /><h3>{{ card.name }}<AiTag :who="card" /><FounderTag v-if="card.founder" /><ResidentBadge :id="id" /></h3></div>
-    <p>Real player · <span class="social-presence" :class="`is-${presenceClass(card.status)}`">{{ presenceText(card, venueName, view.now, place) }}</span><template v-if="together"> · here with you</template><template v-if="card.bae"> · your Bae <GameIcon name="heart" inline /></template><template v-else-if="card.friend"> · Friend</template></p>
+    <p>Allworld character · <span class="social-presence" :class="`is-${presenceClass(card.status)}`">{{ presenceText(card, venueName, view.now, place) }}</span><template v-if="together"> · here with you</template><template v-if="card.bae"> · your Bae <GameIcon name="heart" inline /></template><template v-else-if="card.friend"> · Friend</template></p>
+    <PublicProfile mode="profile" :id="id" :name="card.name" />
     <button type="button" class="ui-button is-primary is-block" :disabled="card.blocked" @click="shell.open('messages', { to: id, name: card.name })">Chat</button>
     <span v-if="card.blocked" class="social-why">Unblock this player to chat.</span>
     <VisitButton v-if="card.friend && !card.blocked" :id="id" :name="card.name" />

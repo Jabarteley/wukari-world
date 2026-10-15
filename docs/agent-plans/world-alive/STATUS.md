@@ -7,8 +7,8 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 
 - **Every phase in PHASES.md is built and live** (release 13, `1bb55dc5`, 15 October 2026). What is left needs the owner: the
   questions below, and the speech-to-text recordings.
-- **Residents run in shadow, one at a time,** until the owner has read Remi's day and raises `residentCount` (docs/RESIDENTS.md,
-  "Before raising residentCount"). House agents: two in Lagos to start (`houseAgentsBusy`).
+- **Residents are on and visible, three in every open city** (decision of 15 October: Remi approved; `residentsPerCity` 3, `residentShadow` off,
+  about 852 residents, rules by default and the model only in a small share, docs/RESIDENTS.md "Residents everywhere"). House agents: two in Lagos to start (`houseAgentsBusy`).
 - **Releases from GitHub work** since 14 October: `CLOUDFLARE_API_TOKEN` (secret) and `ALLWORLD_CF_ACCOUNT_ID` (variable) are set
   in the `production` environment, and the release workflow deployed `63e0f3d2` on its own.
 - **Where the work happens:** the repository on the owner's Desktop is synced by iCloud and `git push`/`fetch` hang there. The work
@@ -42,7 +42,7 @@ what is pushed but not live, what is next, what is blocked. Newest entries at th
 | 11 Missions from agents | live | `ac94fca0` | Tasks a house agent gives in person from templates filled in from the person's life, shown in Missions with the agent and where to find it; new triggers talk to an agent, hand an item, bring a friend, play with another person; the hand-over completes a haggled price (docs/AGENT-MISSIONS.md). The model only rephrases the brief (cached per template and agent). Rewards inside the daily (₦250) and weekly (₦1,000) figures, checked by the life. |
 | 12 Talking, memory, relationships | live | `ac94fca0` | House agents remember up to five facts per person (never contacts or money), the person sees, deletes or turns it off (Settings), closeness, partners for confirmed adults, and flirting with a partner or an adult's own yes (docs/AGENT-MEMORY.md). No DMs to house agents yet. |
 | 13a One resident in shadow | live | `ac94fca0` | Remi, a Lagos bookseller: life story, sleep, a model chosen at birth, thoughts as validated choices, nightly summary, shadow (nobody sees her), her day on the admin page (docs/RESIDENTS.md). On by default on the live hosts, in shadow. |
-| 13b Thirty residents | live | `ea9f5ddd` | Thirty authored residents (Remi + 29: Lagos, Abuja, Ibadan, Accra, Nairobi, Cape Town, London, New York; Johannesburg and Houston are not open cities), setting `residentCount` (default 1), models spread at birth, agent-to-agent talk (4 turns, grounded in a real ledger line, repetition check), replies to people when visible (no trading, paid models only), `residentDailyCents` budget (default 100), admin comparison of models and the experiment's measures (docs/RESIDENTS.md). Day-1/day-7 return split not built (needs a growth-metrics bit); the page counts people who spoke and who spoke again. |
+| 13b Thirty residents | live; **15 Oct: three in every open city, visible (branch `claude/alive-residents-everywhere`)** | `ea9f5ddd` | Thirty authored residents (Remi + 29: Lagos, Abuja, Ibadan, Accra, Nairobi, Cape Town, London, New York; Johannesburg and Houston are not open cities), setting `residentCount` (default 1; **retired 15 October**), models spread at birth, agent-to-agent talk (4 turns, grounded in a real ledger line, repetition check), replies to people when visible (no trading, paid models only), `residentDailyCents` budget (default 100), admin comparison of models and the experiment's measures (docs/RESIDENTS.md). Day-1/day-7 return split not built (needs a growth-metrics bit); the page counts people who spoke and who spoke again. **15 October (owner's decision, Remi approved):** `residentsPerCity` (default 3, about 852 residents in the 284 open cities: the authored first, the rest generated from the city and a seed, the same every restart), `residentShadow` off, personality changes routines, outings, talk, prayer, friendship and quarrels by rules; the model only for people who speak to a resident, a rotating quota of deep thoughts (`residentDeepPerDay` 240) and the night of those who met a person; at most 48 residents stepped a beat; 476 KB for the world in 16 small collections; when the budget is spent they carry on by rules (docs/RESIDENTS.md). |
 | 13c Ideas, assembly, president, letter | live | `1bb55dc5` | Each night a resident may file one wish and one need (checked, merged by word overlap, top five a day); a weekly residents' assembly elects a president with the people's election code (it holds no people's seat); the president's Sunday letter "to the Founders" on the admin Residents page; the owner's reply becomes a gist line and "news from the Founders" in residents' thoughts, never a message to a person (docs/RESIDENTS.md, docs/POLITICS.md). |
 | 14 Prayers and acts | live | `545caabb` | Remi prays once a day; players pray at a church, mosque or shrine after the notice that prayers are read; admin Prayers page and eight acts (heal, illness at most weekly and never on a minor, give/take game money, bless a stall, weather for 1 to 6 hours, dream, cross paths, silence), all logged, shown as gist lines, never as messages from the owner (docs/PRAYERS.md). |
 | 15 Calls with agents | live | `ea9f5ddd` | Call a house agent from Settings → AI characters: push-to-talk, the AI mark, its reply spoken on the phone in its own voice (text only crosses the network); speech to text by the browser or by the gateway's transcription model (WAV, budgeted, never stored); 20 minutes a day each, 300 in all, a break reminder every 10 minutes; agents' lines spoken in room voice (docs/CALLS.md). Words-right per accent NOT YET MEASURED: needs recordings (scripts/stt-bench, collect.html). |
@@ -67,8 +67,8 @@ Ask these in your chat as well; record the answer here when you have it.
 4. **Speech-to-text recordings (Phase 15).** Words-right per accent is not measured: record short samples of Nigerian, Ghanaian,
    Kenyan and British English and Pidgin with `scripts/stt-bench/collect.html` on phones (with each speaker's permission), then run
    `scripts/stt-bench.ts --gateway` and set the default way (`agentCallStt`) from the results.
-5. **Residents:** is Remi right as the first resident (`server/residents/life.ts`)? When to raise `residentCount`, and when to turn
-   `residentShadow` off?
+5. **Residents:** decided on 15 October (Remi approved, three in every city, visible). To watch: the cost per day on the Residents page,
+   reports about residents, and what the generated lives read like (`residentsPerCity` 0 turns them all off).
 6. **Price levels:** a new player abroad starts with the same naira against higher prices (the starting purse, the family loan,
    goal targets, intercity fares, wardrobe and the launch bonus are not scaled yet). Scale them too?
 7. **Home-city pin:** keep it on the device, or store it with the account so it follows the player?
@@ -86,16 +86,23 @@ Answered on 14 and 15 October 2026:
 
 ## Failing on `main` before us
 
-Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` needs a build and was not run here):
-- `src/game/economy.test.ts` (15 October): `scripts/economy-sim.ts` cannot complete the city stories' local missions
-  (`missionRun` throws "value is missing"); came with the local missions, not from the world-alive work.
-- `server/pulse.test.ts` (8 of 14), `server/registry.test.ts` (7 of 12), `server/social.test.ts`, `server/admin/history.test.ts`,
-  `server/growth.test.ts`, `server/money-request.test.ts`, `src/types/protocol.test.ts`: the server answers 503 because the city
-  content is not built. `npm run cities:assets` and `npm run words:assets` first (no full build needed), and most pass.
-- `src/map3d/geo/atlas.test.ts`: "open versus coming soon is derived from the additive city catalogue".
-- Reported before us and not re-checked: `src/game/cities/allCities.test.ts`, `legacyLife.test.ts`, `liveBuildLife.test.ts`,
-  `mapEntries.test.ts`, `src/scene/scenes-fct.test.ts`, `src/game/living-world/vehicle-boarding.test.ts`,
-  `vehicle-clearance.test.ts`, `src/ui/phone/phone.test.ts`, `server/new-player.test.ts`.
+Checked on 14 October 2026 and again on 15 October (Node 22, one file at a time, after `npm run cities:assets` and `npm run words:assets`;
+the full `npm test` needs a build and was not run here). Fixed on 15 October: `src/game/economy.test.ts` (the economy simulation now runs
+the city stories' local missions from their own definitions), the skills test in `src/game/engine.test.ts` (it passed no context; the
+level-up event now reaches the achievements system), `src/map3d/geo/atlas.test.ts`, `src/game/cities/mapEntries.test.ts` (China,
+Antarctica, the Siachen entry and Ashmore and Cartier have real open cities now), `src/game/cities/legacyLife.test.ts`,
+`src/game/cities/liveBuildLife.test.ts` (the fields later builds add to an old save), `src/ui/phone/phone.test.ts` (the round button is a
+full tap target). Passing without change: `server/pulse.test.ts`, `server/registry.test.ts`, `server/social.test.ts`,
+`server/admin/history.test.ts`, `server/growth.test.ts`, `server/money-request.test.ts`, `src/types/protocol.test.ts`.
+
+Still failing, and why they are left:
+- `src/scene/scenes-fct.test.ts` ("no two Abuja scenes are the same scene"): office/fct-campus-court and market/fct-lockups now have the
+  same triangle count; whether to change a scene or the test is an art decision.
+- `src/game/living-world/vehicle-boarding.test.ts`, `vehicle-clearance.test.ts`: the pinned hashes of `drivingScene.ts` and
+  `src/scene/body/stand-in.ts` (changed on 13 October and later) need the sedan geometry evidence recomputed, not just the hash.
+- `server/new-player.test.ts`: the journey now gets past the missions step (its script runs local missions as the Worker test does), but
+  the recorded final cash differs (Ada 22,600 against 22,500, Bola 7,050 against 6,900); the owner must say whether that money is right.
+- `src/game/cities/allCities.test.ts`: takes over half an hour on the shared machine and was not finished; left to CI.
 
 ## Measures to keep (Phases 3, 13, 15)
 
@@ -117,6 +124,13 @@ Checked on 14 October 2026 (Node 22, one file at a time; the full `npm test` nee
 Newest first. One entry per release: date, phase, commit, what a player gains, checks (typecheck, build, sizes, tests, CI,
 smoke), anything left.
 
+- 2026-10-16, release 15 (starting money by city, home city on the account), `69c3ae44`: a new life's purse, family loan, dreams, Boutique,
+  intercity fares and launch bonus follow the starting city's price level (a London start buys about what a Lagos start does);
+  the home-city pin is kept with the character. The launch bonus is never below the advertised amount (the words now say "at
+  least"). Also: passing a house, shop, car, belongings and some reputation to an heir or a consenting friend, all or nothing
+  (docs/LEGACY.md; land parcels are not passed: the owner agreed on 16 October, as were the 3-day and 14-day limits for friends), and fixes to nine stale or broken tests.
+- 2026-10-16, release 14 (residents everywhere), `9321b79e`: three residents in every open city (~852), generated distinct personalities that
+  change their behaviour, visible with the AI mark; rule-driven, the model only when a person speaks to one or from a daily quota.
 - 2026-10-15, release 13 (Phases 13c and 20), `1bb55dc5`: the residents' assembly, president and Sunday letter; residents' friendships,
   marriages and weddings. With these, every phase in PHASES.md has been built.
 - 2026-10-15, release 12 (Phases 18 and the rest of 19), `7c084ca6`: real price levels; city works, gift packets, stickers, home-city

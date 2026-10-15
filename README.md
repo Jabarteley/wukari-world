@@ -2,7 +2,7 @@
 
 ![Allworld: a whole world to live in](public/og/allworld.png)
 
-Allworld is an open-source browser game: a digital world of real cities you can live in and travel between. You make a character, pick a city, walk around its venues in 3D, work, eat, make friends, play table games, rent or build a home, vote in your local government, and take the road, the train or a flight to the next city. The aim is the whole world. Real cities across Africa are open, from Lagos and Accra to Nairobi and Cape Town, and more are opening; the in-game atlas lists every open city and shows the world, then Africa, then Nigeria, with other places marked as coming.
+Allworld is an open-source browser game. A digital world to live in. Real-world places to explore: work, travel, make friends and play. Free in your browser, no download. You make a character, pick a city, walk around its venues in 3D, work, eat, make friends, play table games, rent or build a home, vote in your local government, and take the road, the train or a flight to the next city. The aim is the whole world; the in-game atlas lists every open city and shows the world, then Africa, then Nigeria, with other places marked as coming.
 
 Play it at [joinallworld.com](https://joinallworld.com).
 

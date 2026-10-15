@@ -38,8 +38,8 @@ export function linkBonds(ctx: RouteContext): void {
   /** Loaded on the first beat (like `residents`), never at link time. */
   const start = (): void => { started = true; void Promise.resolve().then(() => ctx.store.read((db) => { const col = (db as Record<string, unknown>)['bonds']; return col ? structuredClone(col) : undefined; })).catch(() => undefined).then((found) => {
     engine = bondsOf({
-      roster: runner.roster, now: () => ctx.now(),
-      active: () => { const s = settings(); return s.on ? Math.min(s.count, runner.roster.length) : 0; },
+      get roster() { return runner.roster; }, now: () => ctx.now(),
+      active: () => (settings().on ? runner.roster.length : 0),
       shadow: () => settings().shadow,
       presence: () => runner.presence(),
       decide: async (id, messages) => {

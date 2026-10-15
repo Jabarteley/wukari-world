@@ -22,6 +22,8 @@
  *     credits it. Collected each Saturday after rent. "Pay ₦12,000 now" is an early instalment
  *     that covers the next Saturday's collection; "Pay it all off" clears the balance. A missed
  *     instalment stays owed and adds LOAN_LATE_FEE, at most MAX_LOAN_FEES times (original).
+ *     Those are the Lagos terms. A loan made by a life that started outside Nigeria carries the price level it was made at
+ *     (`loan.level`) and has these figures times it (`loanTerms`); an older loan has no level and is unchanged.
  *
  * SAVINGS (original beta product)
  *   Fixed deposits: lock cash for 1, 3 or 7 days; principal plus simple interest is paid back
@@ -66,7 +68,7 @@ import { conditionsKit } from '../conditions/slot.ts';
 import { addMoodlet, canAfford, canCredit, credit, debit, removeMoodlet } from '../api.ts';
 import { houseFor as cityHouseFor } from '../cities/housingRuntime.ts';
 import { cachedCityContent } from '../cities/registry.ts';
-import { levelOf, scaleNaira } from '../price-levels.ts';
+import { LEVEL_MAX, LEVEL_MIN, levelOf, lifeLevel, scaleNaira } from '../price-levels.ts';
 import type { ActionMap } from '../../types/actions.ts';
 import type { DepositTerm, LoanTerms, RentEntry } from '../../types/content.ts';
 import type { Deposit, DepositTermId, EconomyState, HouseId, LifeContext, LifeState } from '../../types/life.ts';
@@ -89,6 +91,12 @@ export const LOAN = Object.freeze({ principal: 60000, total: 72000, weekly: 1200
 /** Original beta values. */
 export const LOAN_LATE_FEE = 500;
 export const MAX_LOAN_FEES = 4;
+/** The terms of one loan: Lagos terms, times the price level it was made at (docs/PRICE-LEVELS.md "Starting money"). A loan without a level, and every Nigerian one, has exactly LOAN and LOAN_LATE_FEE. */
+export const loanTerms = (loan?: { level?: number } | null): { principal: number; total: number; weekly: number; fee: number } => {
+  const level = loan?.level;
+  return typeof level !== 'number' || level === 1 ? { ...LOAN, fee: LOAN_LATE_FEE }
+    : { principal: scaleNaira(LOAN.principal, level), total: scaleNaira(LOAN.total, level), weekly: scaleNaira(LOAN.weekly, level), fee: scaleNaira(LOAN_LATE_FEE, level) };
+};
 export const LATE_FEE_PERCENT = 10;
 export const MAX_ARREARS_WEEKS = 4;
 export const MAX_CATCHUP_WEEKS = 4;
@@ -142,7 +150,7 @@ function startBilling(state: LifeState, ctx: LifeContext): void {
 /** What falls due on the coming Saturday, as the Thursday heads-up and the Friday reminder name it. */
 function dueSoon(state: LifeState, ctx: LifeContext): { parts: string[]; total: number } {
   const economy = state.economy, house = houseOf(cityOf(state, ctx), economy.rent.house), loan = economy.loan;
-  const instalment = loan && loan.left > 0 && !(loan.prepaid > 0) ? Math.min(LOAN.weekly, loan.left) : 0;
+  const instalment = loan && loan.left > 0 && !(loan.prepaid > 0) ? Math.min(loanTerms(loan).weekly, loan.left) : 0;
   return { parts: [house ? `rent ${naira(house.rent)}` : '', instalment ? `loan ${naira(instalment)}` : ''].filter(Boolean), total: (house ? house.rent : 0) + instalment };
 }
 
@@ -182,16 +190,16 @@ function bill(state: LifeState, week: number, ctx: LifeContext): void {
   if (loan && loan.left > 0) {
     if (loan.prepaid > 0) loan.prepaid -= 1;
     else {
-      const amount = Math.min(LOAN.weekly, loan.left);
+      const terms = loanTerms(loan), amount = Math.min(terms.weekly, loan.left);
       if (debit(state, amount, `Loan repayment (due ${due})`, ctx)) {
         loan.left -= amount;
         emit(state, 'loan.paid', { amount, left: loan.left }, ctx);
         note(state, 'loan', loan.left > 0 ? `Loan instalment paid: ${naira(amount)} (due ${due}). ${naira(loan.left)} left.` : `Last loan instalment paid: ${naira(amount)}. Your loan is cleared.`, ctx);
       } else {
         const charged = loan.fees < MAX_LOAN_FEES;
-        if (charged) { loan.fees += 1; loan.left += LOAN_LATE_FEE; }
+        if (charged) { loan.fees += 1; loan.left += terms.fee; }
         emit(state, 'loan.missed', { amount, left: loan.left }, ctx);
-        note(state, 'loan-missed', `Loan instalment missed: ${naira(amount)} was due ${due} and you had ${naira(state.cash)}.${charged ? ` A ${naira(LOAN_LATE_FEE)} fee was added.` : ''} ${naira(loan.left)} is now owed.`, ctx);
+        note(state, 'loan-missed', `Loan instalment missed: ${naira(amount)} was due ${due} and you had ${naira(state.cash)}.${charged ? ` A ${naira(terms.fee)} fee was added.` : ''} ${naira(loan.left)} is now owed.`, ctx);
       }
     }
   }
@@ -205,13 +213,13 @@ const actions = {
     const loan = state.economy.loan;
     if (!loan || loan.left <= 0) return fail(state, 'no_loan', 'You have no loan balance to pay.');
     if (payload.mode !== 'week' && payload.mode !== 'all') return fail(state, 'invalid_payment', 'Choose one instalment or the full balance.');
-    const amount = payload.mode === 'all' ? loan.left : Math.min(LOAN.weekly, loan.left);
+    const weekly = loanTerms(loan).weekly, amount = payload.mode === 'all' ? loan.left : Math.min(weekly, loan.left);
     if (!debit(state, amount, payload.mode === 'all' ? 'Loan paid off in full' : 'Loan repayment (paid early)', ctx)) {
       return fail(state, 'insufficient_funds', `This payment is ${naira(amount)} and you have ${naira(state.cash)}. Earn ${naira(amount - state.cash)} more first.`);
     }
     loan.left -= amount;
     if (loan.left <= 0) loan.prepaid = 0;
-    else if (payload.mode === 'week') loan.prepaid = Math.min(loan.prepaid + 1, Math.ceil(loan.left / LOAN.weekly));
+    else if (payload.mode === 'week') loan.prepaid = Math.min(loan.prepaid + 1, Math.ceil(loan.left / weekly));
     state.message = loan.left > 0 ? `Paid ${naira(amount)} towards your loan. ${naira(loan.left)} left; this covers the next Saturday collection.` : 'Loan paid off in full. No more weekly collections.';
     emit(state, 'loan.paid', { amount, left: loan.left }, ctx);
     note(state, 'loan', loan.left > 0 ? `You paid ${naira(amount)} towards your loan. ${naira(loan.left)} left.` : 'You paid off your loan in full.', ctx);
@@ -301,7 +309,9 @@ const play = PLAYS ? {
         economy.started = true;
         const lottery: unknown = data?.lottery, id = idOf(lottery); // saved lives and tests may carry a lottery object
         const hasLoan = (typeof id === 'string' && id.toLowerCase().includes('lapo')) || (isRecord(lottery) && Boolean(lottery.loan));
-        if (hasLoan && !economy.loan) economy.loan = { left: LOAN.total, prepaid: 0, fees: 0 };
+        // A loan made now is in the prices of the city the life started in; a Nigerian start (no level) has the Lagos terms.
+        const level = lifeLevel(state);
+        if (hasLoan && !economy.loan) economy.loan = { left: loanTerms({ level }).total, prepaid: 0, fees: 0, ...(level !== 1 ? { level } : {}) };
       }
       if (economy.rent.house || economy.loan) startBilling(state, ctx);
     },
@@ -369,7 +379,9 @@ export default {
     const rent = isRecord(saved.rent) ? saved.rent : {};
     const house = houseOf(cityOf(state, ctx), rent.house);
     const loan = isRecord(saved.loan) ? saved.loan : null;
-    const maxLeft = LOAN.total + LOAN_LATE_FEE * MAX_LOAN_FEES;
+    const level = loan && finite(loan.level) && loan.level >= LEVEL_MIN && loan.level <= LEVEL_MAX && loan.level !== 1 ? loan.level : undefined;
+    const terms = loanTerms({ level });
+    const maxLeft = terms.total + terms.fee * MAX_LOAN_FEES;
     const left = loan && safeCount(loan.left) && loan.left <= maxLeft ? loan.left : null; // the saved balance, when it is a valid one
     const validLoan = loan !== null && left !== null;
     const fees = validLoan && finite(loan.fees) && Number.isInteger(loan.fees) && loan.fees >= 0 && loan.fees <= MAX_LOAN_FEES ? loan.fees : 0;
@@ -384,9 +396,10 @@ export default {
         missed: house && safeCount(rent.missed) ? Math.min(rent.missed, 1000) : 0,
       },
       loan: validLoan ? {
-        left: Math.min(left, LOAN.total + LOAN_LATE_FEE * fees),
-        prepaid: safeCount(loan.prepaid) ? Math.min(loan.prepaid, Math.ceil(left / LOAN.weekly)) : 0,
+        left: Math.min(left, terms.total + terms.fee * fees),
+        prepaid: safeCount(loan.prepaid) ? Math.min(loan.prepaid, Math.ceil(left / terms.weekly)) : 0,
         fees,
+        ...(level !== undefined ? { level } : {}),
       } : null,
       deposits: sanitizeDeposits(saved.deposits, now),
       seq: safeCount(saved.seq) ? saved.seq : 0,
@@ -400,7 +413,7 @@ export default {
     const nextDue = dueAt(billingWeek(now) + 1);
     const nextDueLabel = dateLabel(nextDue);
     const loan = economy.loan;
-    const instalment = loan ? Math.min(LOAN.weekly, loan.left) : 0;
+    const terms = loanTerms(loan), instalment = loan ? Math.min(terms.weekly, loan.left) : 0;
     const short = (amount: number): string => `You have ${naira(state.cash)}; this needs ${naira(amount)}.`;
     const locked = lockedTotal(economy);
     const room = Math.max(0, DEPOSIT_TOTAL_CAP - locked);
@@ -422,18 +435,18 @@ export default {
         rule: `Rent is collected automatically every Saturday (Nigerian time), even while you are away — at most ${MAX_CATCHUP_WEEKS} missed weeks are caught up. It is never taken in part.`,
       } : null,
       loan: loan ? {
-        principal: LOAN.principal, total: LOAN.total + LOAN_LATE_FEE * loan.fees, weekly: LOAN.weekly, left: loan.left, fees: loan.fees,
-        paid: Math.max(0, LOAN.total + LOAN_LATE_FEE * loan.fees - loan.left),
-        progress: Math.max(0, Math.min(1, 1 - loan.left / (LOAN.total + LOAN_LATE_FEE * loan.fees))),
+        principal: terms.principal, total: terms.total + terms.fee * loan.fees, weekly: terms.weekly, left: loan.left, fees: loan.fees,
+        paid: Math.max(0, terms.total + terms.fee * loan.fees - loan.left),
+        progress: Math.max(0, Math.min(1, 1 - loan.left / (terms.total + terms.fee * loan.fees))),
         cleared: loan.left <= 0, prepaid: loan.prepaid, instalment,
-        weeksLeft: Math.ceil(loan.left / LOAN.weekly),
+        weeksLeft: Math.ceil(loan.left / terms.weekly),
         nextDue, nextDueLabel,
         nextCollection: loan.left <= 0 ? 'Paid off. Nothing more is collected.'
           : loan.prepaid > 0 ? `The collection on ${nextDueLabel} is already covered by your early payment.`
           : `${naira(instalment)} is collected automatically on ${nextDueLabel}.`,
         weekBlocked: loan.left <= 0 ? 'The loan is paid off.' : canAfford(state, instalment) ? null : short(instalment),
         allBlocked: loan.left <= 0 ? 'The loan is paid off.' : canAfford(state, loan.left) ? null : short(loan.left),
-        rule: `${naira(LOAN.weekly)} is collected every Saturday after rent. A missed week stays owed and adds a ${naira(LOAN_LATE_FEE)} fee (at most ${MAX_LOAN_FEES} times).`,
+        rule: `${naira(terms.weekly)} is collected every Saturday after rent. A missed week stays owed and adds a ${naira(terms.fee)} fee (at most ${MAX_LOAN_FEES} times).`,
       } : null,
       deposits: economy.deposits.map((deposit) => ({
         id: deposit.id, amount: deposit.amount, term: deposit.term, termLabel: DEPOSIT_TERMS[deposit.term].label,

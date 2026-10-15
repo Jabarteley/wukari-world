@@ -1,0 +1,135 @@
+2026-10-15T14:19:47.0287801Z ✖ failing tests:
+2026-10-15T14:19:47.0288057Z 
+2026-10-15T14:19:47.0288420Z test at deploy/admin-host.edge.test.ts:17:1
+2026-10-15T14:19:47.0289869Z ✖ on the Worker the admin address serves the admin page and a few routes, and nothing of the game (838.100491ms)
+2026-10-15T14:19:47.0291166Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-10-15T14:19:47.0291857Z   
+2026-10-15T14:19:47.0292572Z   500 !== 200
+2026-10-15T14:19:47.0293024Z   
+2026-10-15T14:19:47.0294164Z       at TestContext.<anonymous> (file:///home/runner/work/joinallworld/joinallworld/deploy/admin-host.edge.test.ts:50:58)
+2026-10-15T14:19:47.0295688Z       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-10-15T14:19:47.0296695Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-15T14:19:47.0298171Z       at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+2026-10-15T14:19:47.0298948Z     generatedMessage: true,
+2026-10-15T14:19:47.0299389Z     code: 'ERR_ASSERTION',
+2026-10-15T14:19:47.0299803Z     actual: 500,
+2026-10-15T14:19:47.0300171Z     expected: 200,
+2026-10-15T14:19:47.0300585Z     operator: 'strictEqual',
+2026-10-15T14:19:47.0301072Z     diff: 'simple'
+2026-10-15T14:19:47.0301483Z   }
+2026-10-15T14:19:47.0301652Z 
+2026-10-15T14:19:47.0301835Z test at deploy/admin.edge.test.ts:28:1
+2026-10-15T14:19:47.0304521Z ✖ on the Worker every admin route refuses a guest, a request without a session and a cross-site page (677.432858ms)
+2026-10-15T14:19:47.0305814Z   AssertionError [ERR_ASSERTION]: GET /api/admin/me for a guest: 500
+2026-10-15T14:19:47.0307196Z       at TestContext.<anonymous> (file:///home/runner/work/joinallworld/joinallworld/deploy/admin.edge.test.ts:52:14)
+2026-10-15T14:19:47.0308586Z       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-10-15T14:19:47.0309629Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-15T14:19:47.0314966Z       at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+2026-10-15T14:19:47.0315771Z     generatedMessage: false,
+2026-10-15T14:19:47.0316204Z     code: 'ERR_ASSERTION',
+2026-10-15T14:19:47.0316589Z     actual: false,
+2026-10-15T14:19:47.0316950Z     expected: true,
+2026-10-15T14:19:47.0317313Z     operator: '==',
+2026-10-15T14:19:47.0317659Z     diff: 'simple'
+2026-10-15T14:19:47.0318012Z   }
+2026-10-15T14:19:47.0318197Z 
+2026-10-15T14:19:47.0318539Z test at deploy/calls.edge.test.ts:198:1
+2026-10-15T14:19:47.0320135Z ✖ on the Worker: when the object is evicted mid-call, the other side is told it ended, and new calls work afterwards (32012.628766ms)
+2026-10-15T14:19:47.0321774Z   Error: Timed out waiting to evict Durable Object: it still has active references.
+2026-10-15T14:19:47.0323646Z       at _Miniflare.unsafeEvictDurableObject (/home/runner/work/joinallworld/joinallworld/deploy/tooling/node_modules/miniflare/dist/src/index.js:125432:19)
+2026-10-15T14:19:47.0324817Z       at async TestContext.<anonymous> (file:///home/runner/work/joinallworld/joinallworld/deploy/calls.edge.test.ts:209:3)
+2026-10-15T14:19:47.0325530Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-15T14:19:47.0326090Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-15T14:19:47.0326542Z     [cause]: undefined
+2026-10-15T14:19:47.0326784Z   }
+2026-10-15T14:19:47.0326913Z 
+2026-10-15T14:19:47.0327120Z test at deploy/chat.edge.test.ts:84:1
+2026-10-15T14:19:47.0327981Z ✖ Cloudflare messages: a group with a mention, a quoted reply, a reaction, a muted group, and two devices (32355.744651ms)
+2026-10-15T14:19:47.0328763Z   Error: Timed out waiting to evict Durable Object: it still has active references.
+2026-10-15T14:19:47.0329719Z       at _Miniflare.unsafeEvictDurableObject (/home/runner/work/joinallworld/joinallworld/deploy/tooling/node_modules/miniflare/dist/src/index.js:125432:19)
+2026-10-15T14:19:47.0330660Z       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-10-15T14:19:47.0331479Z       at async TestContext.<anonymous> (file:///home/runner/work/joinallworld/joinallworld/deploy/chat.edge.test.ts:111:3)
+2026-10-15T14:19:47.0332177Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-15T14:19:47.0333068Z       at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+2026-10-15T14:19:47.0333545Z     [cause]: undefined
+2026-10-15T14:19:47.0333788Z   }
+2026-10-15T14:19:47.0333891Z 
+2026-10-15T14:19:47.0334078Z test at deploy/cloudflare.test.ts:971:1
+2026-10-15T14:19:47.0334947Z ✖ Invitations on the Worker: house link, friend request, first DM, knock and let-in — over sockets, across a sleep (36912.808871ms)
+2026-10-15T14:19:47.0335747Z   Error: Timed out waiting to evict Durable Object: it still has active references.
+2026-10-15T14:19:47.0336924Z       at _Miniflare.unsafeEvictDurableObject (/home/runner/work/joinallworld/joinallworld/deploy/tooling/node_modules/miniflare/dist/src/index.js:125432:19)
+2026-10-15T14:19:47.0338033Z       at async TestContext.<anonymous> (file:///home/runner/work/joinallworld/joinallworld/deploy/cloudflare.test.ts:1014:3)
+2026-10-15T14:19:47.0338743Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-15T14:19:47.0339296Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-15T14:19:47.0339745Z     [cause]: undefined
+2026-10-15T14:19:47.0339978Z   }
+2026-10-15T14:19:47.0340108Z 
+2026-10-15T14:19:47.0340304Z test at deploy/cloudflare.test.ts:1416:1
+2026-10-15T14:19:47.0341362Z ✖ Cloudflare: accounts — fixation, CSRF, token replay, unverified address, one answer for every bad token, limits, and sockets closed on sign-out (33964.988767ms)
+2026-10-15T14:19:47.0342461Z   Error: Timed out waiting to evict Durable Object: it still has active references.
+2026-10-15T14:19:47.0343470Z       at _Miniflare.unsafeEvictDurableObject (/home/runner/work/joinallworld/joinallworld/deploy/tooling/node_modules/miniflare/dist/src/index.js:125432:19)
+2026-10-15T14:19:47.0344758Z       at async TestContext.<anonymous> (file:///home/runner/work/joinallworld/joinallworld/deploy/cloudflare.test.ts:1464:3)
+2026-10-15T14:19:47.0345848Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-15T14:19:47.0346524Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-15T14:19:47.0347271Z     [cause]: undefined
+2026-10-15T14:19:47.0347719Z   }
+2026-10-15T14:19:47.0347910Z 
+2026-10-15T14:19:47.0348215Z test at deploy/cloudflare.test.ts:1775:1
+2026-10-15T14:19:47.0350092Z ✖ Worker row budget: a connected player who only polls writes nothing; an action writes three rows; a restart keeps what was acknowledged and forgets only what was lazy (37805.2075ms)
+2026-10-15T14:19:47.0351187Z   AssertionError [ERR_ASSERTION]: no kind of work wrote a row
+2026-10-15T14:19:47.0351571Z   + actual - expected
+2026-10-15T14:19:47.0351797Z   
+2026-10-15T14:19:47.0351978Z   + [
+2026-10-15T14:19:47.0352511Z   +   'beat {"calls":3,"rows":10,"tables":{"collections":10}}'
+2026-10-15T14:19:47.0352976Z   + ]
+2026-10-15T14:19:47.0353165Z   - []
+2026-10-15T14:19:47.0353347Z   
+2026-10-15T14:19:47.0353887Z       at TestContext.<anonymous> (file:///home/runner/work/joinallworld/joinallworld/deploy/cloudflare.test.ts:1798:10)
+2026-10-15T14:19:47.0354639Z       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-10-15T14:19:47.0355173Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-15T14:19:47.0355709Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-15T14:19:47.0356145Z     generatedMessage: false,
+2026-10-15T14:19:47.0356404Z     code: 'ERR_ASSERTION',
+2026-10-15T14:19:47.0356780Z     actual: [ 'beat {"calls":3,"rows":10,"tables":{"collections":10}}' ],
+2026-10-15T14:19:47.0357148Z     expected: [],
+2026-10-15T14:19:47.0357400Z     operator: 'deepStrictEqual',
+2026-10-15T14:19:47.0357660Z     diff: 'simple'
+2026-10-15T14:19:47.0357859Z   }
+2026-10-15T14:19:47.0357968Z 
+2026-10-15T14:19:47.0358128Z test at deploy/notice.edge.test.ts:75:1
+2026-10-15T14:19:47.0358858Z ✖ Cloudflare notice: signed by the key, shown to open and late sockets, refused when wrong (714.088257ms)
+2026-10-15T14:19:47.0359496Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-10-15T14:19:47.0359868Z   
+2026-10-15T14:19:47.0360046Z   500 !== 200
+2026-10-15T14:19:47.0360238Z   
+2026-10-15T14:19:47.0360721Z       at Object.player (file:///home/runner/work/joinallworld/joinallworld/deploy/notice.edge.test.ts:57:12)
+2026-10-15T14:19:47.0361434Z       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-10-15T14:19:47.0362224Z       at async TestContext.<anonymous> (file:///home/runner/work/joinallworld/joinallworld/deploy/notice.edge.test.ts:78:31)
+2026-10-15T14:19:47.0363339Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-15T14:19:47.0363882Z       at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+2026-10-15T14:19:47.0364337Z     generatedMessage: true,
+2026-10-15T14:19:47.0364596Z     code: 'ERR_ASSERTION',
+2026-10-15T14:19:47.0364833Z     actual: 500,
+2026-10-15T14:19:47.0365051Z     expected: 200,
+2026-10-15T14:19:47.0365279Z     operator: 'strictEqual',
+2026-10-15T14:19:47.0365524Z     diff: 'simple'
+2026-10-15T14:19:47.0365731Z   }
+2026-10-15T14:19:47.0365832Z 
+2026-10-15T14:19:47.0366005Z test at deploy/words.edge.test.ts:239:1
+2026-10-15T14:19:47.0366601Z ✖ the Worker script starts under Miniflare with the list inside it (866.038293ms)
+2026-10-15T14:19:47.0367176Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-10-15T14:19:47.0367550Z   
+2026-10-15T14:19:47.0367766Z   500 !== 200
+2026-10-15T14:19:47.0367955Z   
+2026-10-15T14:19:47.0368476Z       at TestContext.<anonymous> (file:///home/runner/work/joinallworld/joinallworld/deploy/words.edge.test.ts:251:10)
+2026-10-15T14:19:47.0369223Z       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-10-15T14:19:47.0369754Z       at async Test.run (node:internal/test_runner/test:1409:7)
+2026-10-15T14:19:47.0370279Z       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+2026-10-15T14:19:47.0370709Z     generatedMessage: true,
+2026-10-15T14:19:47.0370959Z     code: 'ERR_ASSERTION',
+2026-10-15T14:19:47.0371197Z     actual: 500,
+2026-10-15T14:19:47.0371404Z     expected: 200,
+2026-10-15T14:19:47.0371626Z     operator: 'strictEqual',
+2026-10-15T14:19:47.0371873Z     diff: 'simple'
+2026-10-15T14:19:47.0372101Z   }
+2026-10-15T14:19:47.0468380Z ##[error]Process completed with exit code 1.

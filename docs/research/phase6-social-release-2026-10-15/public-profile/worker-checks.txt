@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "checks": 20,
+  "pages": 3,
+  "historyRows": 63,
+  "scope": "Fresh synthetic Miniflare/Durable Object Worker fixture; not earned gameplay, existing-player, network, browser or production proof",
+  "checksPassed": [
+    "Worker anonymous human profile is available and no-store",
+    "delegated human remains a Human character",
+    "canonical receipts exclude wrong-key aliases",
+    "all four public accomplishment kinds are counted",
+    "private and stored-title canaries stay outside every JSON page",
+    "Worker pagination reaches every accepted row",
+    "Worker pagination has no duplicates or alias cursor trap",
+    "canonical local collection survives Worker projection",
+    "Worker permanent agent identity is explicit",
+    "Worker /p/ prefix dispatches profile HTML, not asset fallback",
+    "Worker public HTML identifies Human and Agent characters",
+    "Worker public HTML excludes private canary and raw badge icon token",
+    "Worker profile HEAD is empty and no-store",
+    "Worker profile reads leave player-store sessions, collections and entries unchanged",
+    "Worker directory hiding revokes owner JSON and public HTML",
+    "Worker hidden responses are generic and no-store",
+    "Worker unhide restores the public profile",
+    "Worker known-viewer block hides JSON",
+    "Worker anonymous public page remains public across account block",
+    "Worker structured logs contain no synthetic session secret"
+  ]
+}

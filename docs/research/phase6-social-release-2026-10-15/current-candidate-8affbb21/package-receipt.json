@@ -1,0 +1,12 @@
+{
+  "sourceSha": "8affbb212333edd61954e5c6ed32e9c30682fe51",
+  "passed": true,
+  "fileCount": 8501,
+  "packageDigest": "ce9540bf559d44e35a682e010ee95c6a5b54e4fb74b2cb2965c84730306e7e71",
+  "workerBytes": 3462328,
+  "sameRunIdentical": true,
+  "changedRunFiles": [
+    "manifest.json",
+    "worker.js"
+  ]
+}

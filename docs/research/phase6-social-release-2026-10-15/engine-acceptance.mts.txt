@@ -1,0 +1,247 @@
+import assert from 'node:assert/strict'
+import { execFileSync } from 'node:child_process'
+import { readFile, writeFile } from 'node:fs/promises'
+import { createLife, dispatch, viewLife } from '/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/life.ts'
+import { emit } from '/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/registry.ts'
+import { makeContext } from '/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/util.ts'
+import { episodesForCity } from '/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/content/episodes.ts'
+import { journeyCollections } from '/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/journeys.ts'
+import { WORLD_STORY_SEEDS } from '/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/content/world-progression.generated.ts'
+import { loadCityContent, loadCityRules, loadCityNetwork, playableCityIds } from '/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/game/cities/index.ts'
+import type { EpisodeDefinition, EpisodeChoice } from '/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/types/episodes.ts'
+import type { LifeContextInit, LifeState } from '/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld/src/types/life.ts'
+
+;(async () => {
+
+const ROOT = '/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld'
+const OUTPUT = `${ROOT}/docs/research/phase6-social-release-2026-10-15/engine-acceptance.json`
+const COMMIT = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: ROOT, encoding: 'utf8' }).trim()
+const DIRTY = execFileSync('git', ['status', '--short'], { cwd: ROOT, encoding: 'utf8' }).trim().split('\n').filter(Boolean)
+const choices: EpisodeChoice[] = ['work', 'study', 'help']
+const FIXTURE_NOW = Date.UTC(2026, 9, 15, 12)
+let serial = 0
+let injected = 0
+const context = (cityId: string, origin: 'human' | 'delegated-agent' = 'human'): ReturnType<typeof makeContext> => {
+  serial += 1
+  return makeContext({ cityId, now: FIXTURE_NOW, executionOrigin: origin, actionId: `world-coverage-${serial}` })
+}
+const act = (state: LifeState, cityId: string, type: string, payload: Record<string, unknown>, origin: 'human' | 'delegated-agent' = 'human') =>
+  dispatch(state, { type, payload } as never, context(cityId, origin))
+const mementoCount = (state: LifeState): number => Object.keys(state.episodes.mementos).length
+const event = (state: LifeState, cityId: string, name: string, data: Record<string, unknown>, origin: 'human' | 'delegated-agent' = 'human') => {
+  emit(state, name as never, data as never, context(cityId, origin))
+  injected += 1
+}
+const hostPlace = (state: LifeState, episode: EpisodeDefinition): void => {
+  state.location = episode.location.venue
+  state.spot = 'people'
+}
+const completedActivityEvent = (content: Awaited<ReturnType<typeof loadCityContent>>, venueId: string, spotId: string, activityId: string) => {
+  const activity = content.venues.find((venue) => venue.id === venueId)?.definition.spots[spotId]?.activities.find((item) => item.id === activityId)
+  assert.ok(activity, `actual activity ${activityId} exists at ${venueId}/${spotId}`)
+  return { id: activity.id, def: activity, tags: activity.tags ?? [], choice: null, cash: 0 }
+}
+const reseat = (state: LifeState, venue: string, spot: string): void => {
+  state.location = venue
+  state.spot = spot
+}
+const contextForCreate = (cityId: string): LifeContextInit => ({ cityId, now: FIXTURE_NOW, isNew: true, executionOrigin: 'human' })
+
+await loadCityNetwork()
+const ids = [...playableCityIds()]
+const seedByCity = new Map(WORLD_STORY_SEEDS.map((seed) => [seed.cityId, seed]))
+assert.equal(seedByCity.size, ids.length, 'seed catalogue and playable city count must match')
+assert.equal(ids.length, 284)
+
+const cityResults: Record<string, unknown>[] = []
+const accumulatedRuns: Record<string, LifeState['episodes']['runs'][string]> = {}
+const accumulatedMementos: Record<string, LifeState['episodes']['mementos'][string]> = {}
+let accumulatedBase: LifeState | null = null
+let accumulatedTrackingSince = Number.POSITIVE_INFINITY
+const totals = {
+  cities: 0, episodeDefinitions: 0, completedPaths: 0, quietSupportPaths: 0, localVisitPaths: 0,
+  choicePaths: { work: 0, study: 0, help: 0 }, quietSupportChoicePaths: { work: 0, study: 0, help: 0 }, localVisitChoicePaths: { work: 0, study: 0, help: 0 },
+  activityOnlyHelpPaths: 0, activityOnlyDuplicateFinishIdempotency: 0, activityOnlySaveReloadRoundTrips: 0, activityOnlyMissingChoiceProofRefusals: 0, observedProofEvents: 0, wrongCityProofRefusals: 0, prerequisiteRefusals: 0, missingChoiceProofRefusals: 0,
+  duplicateFinishIdempotency: 0, saveReloadRoundTrips: 0, agentAssistanceRecords: 0,
+  cityJourneyMatches: 0, countryJourneyMatches: 0, crossCityJourneyExclusions: 0,
+}
+let worstSerializedState = { cityId: '', bytes: 0 }
+
+async function runEpisodePath(state: LifeState, cityId: string, episode: EpisodeDefinition, choiceId: EpisodeChoice, finaleRoute: 'quiet-support' | 'local-visit', agentAssistance: boolean, activityOnly = false): Promise<{ bytes: number; restored: LifeState }> {
+  const content = await loadCityContent(cityId)
+  assert.ok(content.venues.some((venue) => venue.id === episode.location.venue && venue.id !== 'home'), `${episode.id}: actual host venue exists`)
+  assert.ok(content.regulars.some((regular) => regular.id === episode.intro.npcId && regular.venueId === episode.location.venue), `${episode.id}: actual host regular exists`)
+  for (const observation of episode.observations) {
+    if (observation.event === 'activity.completed') {
+      const venueId = observation.venue ?? episode.location.venue
+      const venue = content.venues.find((row) => row.id === venueId)
+      assert.ok(venue?.definition.spots[observation.spot]?.activities.some((activity) => activity.id === observation.activityId), `${episode.id}: actual activity ${observation.activityId} exists`)
+    }
+  }
+
+  if (activityOnly) {
+    assert.ok(episode.intro.alternativeProof, `${episode.id}: activity-only intro alternative is authored`)
+    const introRule = episode.observations.find((row) => row.source === episode.intro.alternativeProof)
+    assert.ok(introRule?.event === 'activity.completed', `${episode.id}: intro alternative is observed activity proof`)
+    const introVenue = introRule.venue ?? episode.location.venue
+    reseat(state, introVenue, introRule.spot)
+    event(state, cityId, 'activity.completed', completedActivityEvent(content, introVenue, introRule.spot, introRule.activityId))
+    hostPlace(state, episode)
+  } else {
+    hostPlace(state, episode)
+    event(state, cityId, 'npc.interacted', { success: true, npc: episode.intro.npcId })
+  }
+  const introduced = act(state, cityId, 'episodes.intro', { id: episode.id })
+  assert.equal(introduced.code, 'introduced', `${episode.id}: introduction`)
+
+  if (agentAssistance) {
+    const assistance = act(state, cityId, 'episodes.assist', { id: episode.id, kind: 'authored-dialogue' }, 'delegated-agent')
+    assert.equal(assistance.code, 'assistance_recorded', `${episode.id}: identified agent assistance records`)
+    assert.equal(state.episodes.runs[episode.id]?.chapter, 2, 'assistance is chapter guidance, not advancement')
+    assert.equal(state.episodes.runs[episode.id]?.receipts[2], undefined, 'assistance cannot substitute for chapter proof')
+    totals.agentAssistanceRecords += 1
+  }
+  const beforeProof = act(state, cityId, 'episodes.choose', { id: episode.id, choice: choiceId })
+  assert.equal(beforeProof.code, 'missing_proof', `${episode.id}: chapter choice requires observed proof`)
+  if (activityOnly) totals.activityOnlyMissingChoiceProofRefusals += 1
+  else totals.missingChoiceProofRefusals += 1
+
+  const choice = episode.choices.find((row) => row.id === choiceId)
+  assert.ok(choice, `${episode.id}: ${choiceId} choice exists`)
+  const proofSource = activityOnly ? choice.alternativeProof : choice.proof
+  assert.ok(proofSource, `${episode.id}/${choiceId}: selected proof source exists`)
+  const proofRule = episode.observations.find((row) => row.source === proofSource)
+  assert.ok(proofRule, `${episode.id}: choice proof has a listener rule`)
+  if (proofRule.event === 'npc.interacted') {
+    hostPlace(state, episode)
+    event(state, cityId, 'npc.interacted', { success: true, npc: proofRule.npcId })
+  } else if (proofRule.event === 'activity.completed') {
+    const venueId = proofRule.venue ?? episode.location.venue
+    reseat(state, venueId, proofRule.spot)
+    event(state, cityId, 'activity.completed', completedActivityEvent(content, venueId, proofRule.spot, proofRule.activityId))
+  } else {
+    assert.fail(`${episode.id}: generated choice unexpectedly depends on ${proofRule.event}`)
+  }
+  hostPlace(state, episode)
+  const selected = act(state, cityId, 'episodes.choose', { id: episode.id, choice: choiceId })
+  assert.equal(selected.code, 'choice_saved', `${episode.id}: ${choiceId} choice saves from observed proof`)
+  const correctAnswer = episode.challenges[choiceId].correct
+  const resolved = act(state, cityId, 'episodes.resolve', { id: episode.id, answer: correctAnswer })
+  assert.equal(resolved.code, 'callback_resolved', `${episode.id}: ${choiceId} challenge resolves`)
+
+  const finalRoute = episode.finale.routes.find((route) => route.id === 'local-visit')
+  assert.ok(finalRoute && finalRoute.proof === 'local-discovery', `${episode.id}: local visit is the observed finale route`)
+  if (finaleRoute === 'local-visit') {
+    const finalRule = episode.observations.find((row) => row.source === finalRoute.proof)
+    assert.ok(finalRule?.event === 'activity.completed', `${episode.id}: final visit proof is an activity listener`)
+    const finalVenue = finalRule.venue ?? episode.location.venue
+    reseat(state, finalVenue, finalRule.spot)
+    event(state, cityId, 'activity.completed', completedActivityEvent(content, finalVenue, finalRule.spot, finalRule.activityId))
+  }
+  hostPlace(state, episode)
+  const beforeMementos = mementoCount(state)
+  const finished = act(state, cityId, 'episodes.finish', { id: episode.id, route: finaleRoute })
+  assert.equal(finished.code, 'completed', `${episode.id}: ${finaleRoute} finale completes`)
+  assert.equal(mementoCount(state), beforeMementos + 1, `${episode.id}: completion grants one memento`)
+  const duplicate = act(state, cityId, 'episodes.finish', { id: episode.id, route: finaleRoute })
+  assert.equal(duplicate.code, 'already_completed', `${episode.id}: duplicate finish is idempotent`)
+  assert.equal(mementoCount(state), beforeMementos + 1, `${episode.id}: duplicate finish grants no extra memento`)
+  const serialized = JSON.stringify(state)
+  const bytes = Buffer.byteLength(serialized)
+  const restored = createLife(JSON.parse(serialized), { cityId, now: FIXTURE_NOW, trustedSave: true, executionOrigin: 'human' })
+  assert.deepEqual(restored.episodes.runs[episode.id]?.receipts, state.episodes.runs[episode.id]?.receipts, `${episode.id}: chapter receipts round-trip`)
+  assert.equal(restored.episodes.runs[episode.id]?.choice, choiceId, `${episode.id}: branch selection round-trips`)
+  assert.equal(restored.episodes.runs[episode.id]?.completedAt, state.episodes.runs[episode.id]?.completedAt, `${episode.id}: completion time round-trips`)
+  assert.deepEqual(restored.episodes.runs[episode.id]?.assistance, state.episodes.runs[episode.id]?.assistance, `${episode.id}: agent assistance receipt round-trips`)
+  assert.deepEqual(restored.episodes.mementos[episode.memento.id], state.episodes.mementos[episode.memento.id], `${episode.id}: permanent memento round-trips`)
+  if (activityOnly) {
+    totals.activityOnlyDuplicateFinishIdempotency += 1
+    totals.activityOnlySaveReloadRoundTrips += 1
+  } else {
+    totals.completedPaths += 1
+    totals.choicePaths[choiceId] += 1
+    if (finaleRoute === 'quiet-support') {
+      totals.quietSupportPaths += 1
+      totals.quietSupportChoicePaths[choiceId] += 1
+    } else {
+      totals.localVisitPaths += 1
+      totals.localVisitChoicePaths[choiceId] += 1
+    }
+    totals.duplicateFinishIdempotency += 1
+    totals.saveReloadRoundTrips += 1
+  }
+  return { bytes, restored }
+}
+
+
+await loadCityRules('lagos')
+await loadCityContent('lagos')
+const acceptedCityIds = ids.filter(city => episodesForCity(city).some(ep => ep.id === `place-${city}-city-story`))
+assert.ok(acceptedCityIds.length > 0, 'at least one reviewed authored batch is registered')
+for (const [index, cityId] of acceptedCityIds.entries()) {
+  await loadCityRules(cityId)
+  await loadCityContent(cityId)
+  const episodes = episodesForCity(cityId).filter(ep => ep.id.startsWith(`place-${cityId}-`))
+  assert.equal(episodes.length, 2)
+  const [first, second] = episodes
+  assert.ok(first && second)
+  for (const choice of choices) {
+    const state = createLife(null, contextForCreate(cityId))
+    hostPlace(state, second)
+    assert.equal(act(state, cityId, 'episodes.intro', { id: second.id }).code, 'missing_prerequisite')
+    totals.prerequisiteRefusals += 1
+    if (choice === 'work') {
+      hostPlace(state, first)
+      const foreignCity = acceptedCityIds[(index + 1) % acceptedCityIds.length]!
+      event(state, foreignCity, 'npc.interacted', { success: true, npc: first.intro.npcId })
+      assert.equal(act(state, cityId, 'episodes.intro', { id: first.id }).code, 'missing_proof')
+      assert.equal(state.episodes.runs[first.id], undefined)
+      totals.wrongCityProofRefusals += 1
+    }
+    const a = await runEpisodePath(state, cityId, first, choice, 'quiet-support', choice === 'work')
+    await runEpisodePath(a.restored, cityId, second, choice, 'quiet-support', false)
+    assert.equal(Object.keys(state.episodes.runs).some(id => id.startsWith(`city-${cityId}-`)), false, 'matching NPC/activity proof does not auto-start retired generic stories')
+  }
+  const visit = createLife(null, contextForCreate(cityId))
+  const a = await runEpisodePath(visit, cityId, first, 'work', 'local-visit', false)
+  const b = await runEpisodePath(a.restored, cityId, second, 'work', 'local-visit', false)
+  for (const ep of episodes) {
+    accumulatedRuns[ep.id] = b.restored.episodes.runs[ep.id]!
+    accumulatedMementos[ep.memento.id] = b.restored.episodes.mementos[ep.memento.id]!
+  }
+  accumulatedBase = b.restored
+  const night = createLife(null, contextForCreate(cityId))
+  const c = await runEpisodePath(night, cityId, first, 'help', 'quiet-support', false, true)
+  await runEpisodePath(c.restored, cityId, second, 'help', 'quiet-support', false, true)
+  const collection = journeyCollections(b.restored).find(row => row.level === 'city' && row.members.some(member => member.id === first.memento.id))
+  assert.ok(collection?.complete, 'new separate city collection is complete')
+  assert.equal(collection.members.length, 2)
+  totals.cities += 1
+  totals.episodeDefinitions += 2
+  totals.activityOnlyHelpPaths += 2
+  totals.cityJourneyMatches += 1
+  cityResults.push({ cityId, episodeIds: episodes.map(ep => ep.id), tenCompletionPaths: true, separateCityCollection: collection.id })
+  if ((index + 1) % 10 === 0) console.log(`accepted ${index + 1}/${acceptedCityIds.length} bespoke cities`)
+}
+assert.ok(accumulatedBase)
+accumulatedBase.episodes.runs = accumulatedRuns
+accumulatedBase.episodes.mementos = accumulatedMementos
+const accumulated = createLife(JSON.parse(JSON.stringify(accumulatedBase)), { cityId: accumulatedBase.estate.city, now: FIXTURE_NOW, trustedSave: true })
+assert.equal(Object.keys(accumulated.episodes.mementos).length, acceptedCityIds.length * 2)
+const completedNewCountries = journeyCollections(accumulated).filter(row => row.level === 'country' && row.members.some(member => member.id.startsWith('place-')) && row.complete)
+assert.ok(completedNewCountries.length > 0, 'whole-country authored collections complete after all accepted cities')
+const oldSave = JSON.parse(await readFile(`${ROOT}/docs/research/unique-local-content-2026-10-15/legacy-save.json`, 'utf8')) as LifeState
+const old = createLife(oldSave, { cityId: 'lagos', now: FIXTURE_NOW, trustedSave: true, executionOrigin: 'human' })
+assert.deepEqual(old.episodes.mementos, oldSave.episodes.mementos, 'all 568 old permanent receipts unchanged')
+assert.equal(Object.keys(old.episodes.runs).length, 568)
+assert.equal(Object.keys(old.episodes.mementos).length, 568)
+const oldCollections = journeyCollections(old).filter(row => row.id.endsWith(':local-chapters'))
+assert.equal(oldCollections.length, 527)
+assert.equal(oldCollections.filter(row => row.complete).length, 527)
+assert.equal(oldCollections.filter(row => row.level === 'city').length, 284)
+assert.equal(oldCollections.filter(row => row.level === 'country').length, 243)
+assert.equal(journeyCollections(old).filter(row => row.members.some(member => member.id.startsWith('place-'))).some(row => row.complete), false, 'no invented authored reward from old receipts')
+const report = { source: COMMIT, dirtyAtRun: DIRTY, acceptedCities: acceptedCityIds.length, authoredEpisodes: acceptedCityIds.length * 2, completionPaths: totals.completedPaths + totals.activityOnlyHelpPaths, totals, cities: cityResults, completedNewCountries: completedNewCountries.map(row => row.id), preservedLegacyReceipts: 568, preservedLegacyCompletedCollections: 527, scope: 'Engine proof events injected from actual registered activity definitions; separate UI and real action verification still required.' }
+await writeFile(OUTPUT, JSON.stringify(report, null, 2) + '\n')
+console.log(JSON.stringify({ cities: report.acceptedCities, episodes: report.authoredEpisodes, completionPaths: report.completionPaths, legacyReceipts:568, legacyCollections:527 }))
+})().catch(error => { console.error(error); process.exitCode = 1 })

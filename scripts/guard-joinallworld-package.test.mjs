@@ -6,27 +6,35 @@ import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { checkPackage, expectedConfig } from './guard-joinallworld-package.mjs';
+import { checkPackage, expectedConfig, releaseMarker } from './guard-joinallworld-package.mjs';
 import { checkSource, openDevProblems } from './check-joinallworld-source.mjs';
 import { checkWorkflow, nodePinProblems, parseYaml } from './check-workflows.mjs';
 const sha = 'a'.repeat(40);
-function fixture(t) {
+function fixture(t, identity = { version: 1, kind: 'local' }) {
   const root = realpathSync(mkdtempSync(join(tmpdir(), 'joinallworld-package-test-')));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   mkdirSync(join(root, 'assets')); writeFileSync(join(root, 'assets/index.html'), '<!doctype html><title>Fixture</title>');
   const city = '{"version":1,"cityId":"lagos"}', dictionary = 'synthetic packed words';
+  const progression = [
+    ['episodes-0', '{"version":1,"kind":"episodes","order":0,"items":[]}'],
+    ['journeys', '{"version":1,"kind":"journeys","order":0,"items":[],"acceptedCityIds":[],"acceptedCountryIds":[]}'],
+    ['missions', '{"version":1,"kind":"missions","order":0,"value":{"definitions":[]}}'],
+  ];
   const cityDigest = createHash('sha256').update(city).digest('hex'), dictionaryDigest = createHash('sha256').update(dictionary).digest('hex');
   const cityPath = `/assets/cities/lagos.${cityDigest}.json`, dictionaryPath = `/assets/words/dictionary.${dictionaryDigest}.txt`;
-  mkdirSync(join(root, 'assets/assets/cities'), { recursive: true }); mkdirSync(join(root, 'assets/assets/words'), { recursive: true });
+  const progressionPaths = progression.map(([name, bytes]) => `/assets/progression/${name}.${createHash('sha256').update(bytes).digest('hex')}.json`);
+  mkdirSync(join(root, 'assets/assets/cities'), { recursive: true }); mkdirSync(join(root, 'assets/assets/words'), { recursive: true }); mkdirSync(join(root, 'assets/assets/progression'), { recursive: true });
   writeFileSync(join(root, `assets${cityPath}`), city); writeFileSync(join(root, `assets${dictionaryPath}`), dictionary);
-  writeFileSync(join(root, 'worker.js'), `export const content = ${JSON.stringify([cityPath, dictionaryPath])};`);
+  progression.forEach(([, bytes], index) => writeFileSync(join(root, `assets${progressionPaths[index]}`), bytes));
+  const markWorker = source => releaseMarker(sha, identity) + source;
+  writeFileSync(join(root, 'worker.js'), markWorker(`export const content = ${JSON.stringify([cityPath, dictionaryPath, ...progressionPaths])};`));
   writeFileSync(join(root, 'wrangler.json'), JSON.stringify(expectedConfig(sha, false)));
   const seal = () => {
     const files = [];
     function walk(path) { for (const name of readdirSync(path).sort()) { if (name === 'manifest.json') continue; const full = join(path, name), stat = statSync(full); if (stat.isDirectory()) walk(full); else files.push({ path: relative(root, full), bytes: stat.size, sha256: createHash('sha256').update(readFileSync(full)).digest('hex') }); } }
-    walk(root); writeFileSync(join(root, 'manifest.json'), JSON.stringify({ sourceSha: sha, publish: false, files }));
+    walk(root); writeFileSync(join(root, 'manifest.json'), JSON.stringify({ sourceSha: sha, publish: false, identity, files }));
   };
-  seal(); return { root, seal, cityPath, dictionaryPath };
+  seal(); return { root, seal, cityPath, dictionaryPath, progressionPaths, markWorker };
 }
 test('accepts exact separate-worker package and rejects content changes', t => {
   const f = fixture(t); assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
@@ -47,7 +55,7 @@ test('requires every content asset referenced by the sealed Worker and authentic
   const f = fixture(t), dictionary = 'another synthetic packed word list';
   const digest = createHash('sha256').update(dictionary).digest('hex');
   const path = `/assets/words/dictionary.${digest}.txt`;
-  writeFileSync(join(f.root, 'worker.js'), `export const content = ${JSON.stringify([f.cityPath, path])};`); f.seal();
+  writeFileSync(join(f.root, 'worker.js'), f.markWorker(`export const content = ${JSON.stringify([f.cityPath, path, ...f.progressionPaths])};`)); f.seal();
   assert.throws(() => checkPackage(f.root, sha, false), /Missing referenced content asset/);
   rmSync(join(f.root, `assets${f.dictionaryPath}`));
   const file = join(f.root, `assets${path}`);
@@ -149,13 +157,15 @@ test('source gate rejects unmerged and foreign-repository revisions', t => {
 });
 
 test('deploy context rejects before invoking any executable', t => {
-  const f = fixture(t), digest = checkPackage(f.root, sha, false);
+  const release = { version: 1, kind: 'github', runId: '123456789', runAttempt: '2' };
+  const f = fixture(t, release), digest = checkPackage(f.root, sha, false);
   const guard = fileURLToPath(new URL('./guard-joinallworld-package.mjs', import.meta.url));
+  const releaseEnv = { GITHUB_ACTIONS: 'true', GITHUB_RUN_ID: release.runId, GITHUB_RUN_ATTEMPT: release.runAttempt };
   for (const context of [{ GITHUB_EVENT_NAME: 'push', GITHUB_REF: 'refs/heads/main', GITHUB_REPOSITORY: 'kromate/joinallworld' }, { GITHUB_EVENT_NAME: 'workflow_dispatch', GITHUB_REF: 'refs/heads/other', GITHUB_REPOSITORY: 'kromate/joinallworld' }, { GITHUB_EVENT_NAME: 'workflow_dispatch', GITHUB_REF: 'refs/heads/main', GITHUB_REPOSITORY: 'other/repo' }]) {
     const result = spawnSync(process.execPath, [guard, 'deploy', f.root, sha, 'false', digest, '/does-not-exist'], { encoding: 'utf8', env: { PATH: process.env.PATH, ...context } });
     assert.notEqual(result.status, 0); assert.match(result.stderr, /Deployment context rejected/);
   }
-  const allowed = spawnSync(process.execPath, [guard, 'deploy', f.root, sha, 'false', digest, '/does-not-exist'], { encoding: 'utf8', env: { PATH: process.env.PATH, GITHUB_EVENT_NAME: 'workflow_dispatch', GITHUB_REF: 'refs/heads/main', GITHUB_REPOSITORY: 'kromate/joinallworld' } });
+  const allowed = spawnSync(process.execPath, [guard, 'deploy', f.root, sha, 'false', digest, '/does-not-exist'], { encoding: 'utf8', env: { PATH: process.env.PATH, GITHUB_EVENT_NAME: 'workflow_dispatch', GITHUB_REF: 'refs/heads/main', GITHUB_REPOSITORY: 'kromate/joinallworld', ...releaseEnv } });
   assert.notEqual(allowed.status, 0); assert.match(allowed.stderr, /Missing protected deployment inputs/);
 });
 
@@ -209,6 +219,6 @@ test('open dev mode guard: catches the setting in production configuration and o
 });
 test('open dev mode guard: a release package whose Worker carries the open-mode module is refused', t => {
   const f = fixture(t);
-  writeFileSync(join(f.root, 'worker.js'), 'export default {fetch(){return new Response("/* allworld-open-dev-node-only */")}}'); f.seal();
+  writeFileSync(join(f.root, 'worker.js'), f.markWorker('export default {fetch(){return new Response("/* allworld-open-dev-node-only */")}}')); f.seal();
   assert.throws(() => checkPackage(f.root, sha, false), /Open dev mode code in the release package/);
 });

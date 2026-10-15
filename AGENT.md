@@ -13,10 +13,8 @@ The owner's decisions of 15 October 2026, being built:
 
 | Work | Branch | Where it stopped | Next step |
 | --- | --- | --- | --- |
-| Residents everywhere: three per open city (~850), generated distinct personalities, visible (shadow off), rule-driven to stay in budget | `claude/alive-residents-everywhere` | Being built | Review, merge, CI, release. |
-| Starting money scales with the city's price level; home-city pin saved to the account | `claude/alive-money-pin` | Being built | Review, merge, CI, release. |
-| Passing property and reputation to a next character, and to a different (consenting) character: design (docs/LEGACY.md) then build | `claude/alive-legacy` | Being built | Review, merge, CI, release. |
-| Fix tests failing on main (economy simulation and local missions, engine skills test, the STATUS.md list) | `claude/alive-fix-tests` | Being built | Review, merge, CI, release. |
+| Release 15: money by city, home city, bonus words, passing property on, test fixes | `main` | Live as `69c3ae44` | Nothing. |
+| Residents everywhere: three per open city, visible | `main` | Live as `9321b79e` | Nothing. |
 | iCloud: the Desktop checkout's files were offloaded by iCloud (git hung); downloading them back, then rename the folder to `joinallworld.nosync` with a `joinallworld` link so iCloud stops syncing it | none (owner's Mac) | Downloading | Finish, then rename and link, then check git works there. |
 
 Dropped by the owner: measuring speech to text with recordings.

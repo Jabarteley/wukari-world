@@ -11,6 +11,10 @@ on:
         description: Deploy reviewed candidate after the selected checks pass
         type: boolean
         default: false
+      cleanup_window:
+        description: Hold the prepared exact-ID artifact for a fixed 5-minute operator window to complete synthetic cleanup before deploy
+        type: boolean
+        default: false
       full_checks:
         description: Run exhaustive checks here only if they have not already passed locally for this source SHA
         type: boolean
@@ -156,6 +160,9 @@ jobs:
         run: |
           echo "$ARCHIVE_SHA  $RUNNER_TEMP/sealed/joinallworld-package.tar" | sha256sum --check --strict
           python3 scripts/unpack-joinallworld.py "$RUNNER_TEMP/sealed/joinallworld-package.tar" "$RUNNER_TEMP/joinallworld-package"
+      - name: Hold fixed operator cleanup window
+        if: inputs.cleanup_window
+        run: sleep 300
       - name: Revalidate fixed identity and deploy with existing protected credential
         env:
           SOURCE_SHA: ${{ inputs.source_sha }}

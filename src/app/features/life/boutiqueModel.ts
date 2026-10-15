@@ -7,6 +7,7 @@ import { chooseAvatarWearable, keepAvatarAccessoryChoice } from '../../../game/w
 import type { AvatarLook } from '../../../game/wardrobe/look.ts'
 import { isAvatarWearableId } from '../../../game/wardrobe/rules.ts'
 import { wearableCards } from '../../../game/wardrobe/view.ts'
+import { lifeLevel } from '../../../game/price-levels.ts'
 export { wearableCards }
 export { removeAvatarWearable } from '../../../game/wardrobe/look.ts'
 
@@ -14,7 +15,7 @@ export { removeAvatarWearable } from '../../../game/wardrobe/look.ts'
 export function withWearableBoutique(base: OnboardingView, state: Pick<LifeState, 'onboarding' | 'cash'>): OnboardingView {
   return { ...base, boutique: [
     ...base.boutique.filter(item => item.kind !== 'wearables'),
-    ...wearableCards(state.onboarding, state.cash, base.guest ? 'Settle in first.' : 'Finish creating your character first.'),
+    ...wearableCards(state.onboarding, state.cash, base.guest ? 'Settle in first.' : 'Finish creating your character first.', lifeLevel(state)),
   ] }
 }
 

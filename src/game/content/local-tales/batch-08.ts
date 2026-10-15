@@ -10,7 +10,7 @@ const batch = {
     { countryId: 'gw', title: 'One Pair Clears the Pass', premise: 'Three serving pairs protect a narrow route by completing each out-and-back journey in order.', collection: 'Clear Passing Routes', rewardTitle: 'Serving-Pass Steward' },
     { countryId: 'hu', title: 'The Long Test Holds One Socket', premise: 'A two-interval test stays in one socket while two short tests share the other.', collection: 'Socket Schedules', rewardTitle: 'Test-Bench Planner' },
     { countryId: 'ar', title: 'Low Pieces Open the View', premise: 'A tall fictional display stays visible without hiding three lower pieces.', collection: 'Open Sightlines', rewardTitle: 'Display-Angle Keeper' },
-    { countryId: 'bi', title: 'Covers Follow the Course', premise: 'Three waiting dishes receive three covers while two opening dishes serve immediately.', collection: 'Covered Final Courses', rewardTitle: 'Course Cover Host' },
+    { countryId: 'bi', title: 'An Invitation without the Anecdote', premise: 'Ira removes a neighbor’s anecdote and indirect identifiers, then broadcasts only confirmed public event details.', collection: 'Public-Details Broadcast Cards', rewardTitle: 'Trustworthy Broadcaster' },
     { countryId: 'lc', title: 'Both Clamps First', premise: 'A repair bench completes its double-clamp job before independent jobs share the released tools.', collection: 'Clamp Sequences', rewardTitle: 'Clamp-Bench Planner' },
     { countryId: 'vi', title: 'Bundles Group by Owner', premise: 'Six fictional bundles become three customer pairs before each owner chooses internal order.', collection: 'Owner Bundle Pairs', rewardTitle: 'Bundle Pair Keeper' },
     { countryId: 'qa', title: 'Cut Twelve into Five, Four and Three', premise: 'Two measured cuts divide one twelve-unit fictional ribbon into three exact package lengths.', collection: 'Exact Ribbon Lengths', rewardTitle: 'Two-Cut Measure Keeper' },
@@ -80,7 +80,7 @@ const batch = {
         { label: 'Greet two game regulars in Addis Ababa', purpose: 'Bring ordinary neighbors into the work story.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Enjoy two quiet evenings in Addis Ababa', purpose: 'Recall paired and solo work.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in Addis Ababa', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Addis Ababa', purpose: 'Connect the settings through “Two Paired Jobs, Four Solo Jobs”: How should four neighbors divide six jobs?', task: 'places', count: 3 },
         { label: 'Have three simple meals at Tomoca Coffee', purpose: 'Echo repeated serving practice.', task: 'practical', count: 3 },
       ] },
     },
@@ -126,7 +126,7 @@ const batch = {
         { label: 'Greet three game regulars in Algiers', purpose: 'Bring ordinary neighbors into the project.', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Enjoy two quiet evenings in Algiers', purpose: 'Recall the two hinge directions.', task: 'discovery', count: 2 },
-        { label: 'Visit two supported places in Algiers', purpose: 'Connect the registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Algiers', purpose: 'Connect the settings through “The Inward-Folding Screen”: How should six hinges fit three screens?', task: 'places', count: 2 },
         { label: 'Have two simple meals at Cafeteria Telemly', purpose: 'Echo the paired hinges.', task: 'practical', count: 2 },
       ] },
     },
@@ -172,7 +172,7 @@ const batch = {
         { label: 'Greet two game regulars in Antananarivo', purpose: 'Bring ordinary players into the game.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Centre de loisirs Tanamasoanadro three times', purpose: 'Recall the mat schedule.', task: 'discovery', count: 3 },
-        { label: 'Visit three supported places in Antananarivo', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Antananarivo', purpose: 'Connect the settings through “Four Rounds on Two Mats”: How can five ordered projects use two mats?', task: 'places', count: 3 },
         { label: 'Look around Tsarasaotra Bird Park twice', purpose: 'Echo the two long projects.', task: 'practical', count: 2 },
       ] },
     },
@@ -218,7 +218,7 @@ const batch = {
         { label: 'Greet three game regulars in Baghdad', purpose: 'Bring ordinary diners into the shared story.', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Um Al Khanzeer Island twice', purpose: 'Recall two textures and flavors.', task: 'discovery', count: 2 },
-        { label: 'Visit two supported places in Baghdad', purpose: 'Connect the registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Baghdad', purpose: 'Connect the settings through “One Mild and One Bold”: How should eight dishes serve four diners?', task: 'places', count: 2 },
         { label: 'Look around Zawraa Park three times', purpose: 'Echo three pieces of each texture.', task: 'practical', count: 3 },
       ] },
     },
@@ -264,7 +264,7 @@ const batch = {
         { label: 'Greet two game regulars in Bangui', purpose: 'Bring ordinary players into the games.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Enjoy two quiet evenings in Bangui', purpose: 'Reflect on spaced caller turns.', task: 'practical', count: 2 },
-        { label: 'Visit three supported places in Bangui', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Bangui', purpose: 'Connect the settings through “The Caller at One, Four, Seven, Ten”: How should twelve turns be scheduled?', task: 'places', count: 3 },
         { label: 'Look around Jardin de Mairie three times', purpose: 'Echo the repeated turn cycle.', task: 'discovery', count: 3 },
       ] },
     },
@@ -310,7 +310,7 @@ const batch = {
         { label: 'Greet three game regulars in Bissau', purpose: 'Bring ordinary friends into both stories.', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Praça Titina Silá twice', purpose: 'Recall the two complete results.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in Bissau', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Bissau', purpose: 'Connect the settings through “One Serving Pair at a Time”: How should three pairs use the narrow passage?', task: 'places', count: 3 },
         { label: 'Look around Parque Europa - Lagoa de M´batonha three times', purpose: 'Echo three serving pairs.', task: 'practical', count: 3 },
       ] },
     },
@@ -356,7 +356,7 @@ const batch = {
         { label: 'Greet two game regulars in Budapest', purpose: 'Bring ordinary quiz partners into the story.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Szent Imre tér twice', purpose: 'Recall two test intervals.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in Budapest', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Budapest', purpose: 'Connect the settings through “Ask Twice, Answer Twice”: How should ten quiz turns be assigned?', task: 'places', count: 3 },
         { label: 'Look around Mátyás király tér three times', purpose: 'Echo three tested lamps.', task: 'practical', count: 3 },
       ] },
     },
@@ -402,7 +402,7 @@ const batch = {
         { label: 'Greet three game regulars in Buenos Aires', purpose: 'Bring ordinary diners into the story.', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Parque Bosque Alegre twice', purpose: 'Recall the paired choices.', task: 'discovery', count: 2 },
-        { label: 'Visit two supported places in Buenos Aires', purpose: 'Connect the registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Buenos Aires', purpose: 'Connect the settings through “The Tall Item at the Back Corner”: How should four unequal items share the fixed display?', task: 'places', count: 2 },
         { label: 'Look around Parque Presidente Sarmiento three times', purpose: 'Echo three complete dish pairs.', task: 'practical', count: 3 },
       ] },
     },
@@ -426,30 +426,30 @@ const batch = {
         keepsake: { name: 'Four-cycle pass cord', description: 'A fictional cord with four paired knots.' },
       },
       country: {
-        title: 'Cover the Final Three', desire: 'care',
+        title: 'An Invitation without the Anecdote', desire: 'care',
         chapters: [
-          { title: 'Five Courses, Three Covers', text: 'At Place de l’Indépendance, a fictional neighborhood meal has five dishes and three heat covers.' },
-          { title: 'Opening Dishes Leave First', text: 'The first two dishes serve immediately. The last three wait, and every cover can protect one waiting dish.' },
-          { title: 'Match Covers to Waiting', text: 'At Jardin Public, Ira considers covering dishes at random, delaying the opening, or covering exactly the three final dishes before service.' },
-          { title: 'Right Food, Right Time', text: 'The opening pair reaches the table at once. All three later dishes remain covered until their planned course.' },
+          { title: 'A public invitation carries a private detail', text: 'At Place de l’Indépendance, Ira prepares a fictional community-radio announcement for a neighborhood event. A neighbor’s personal anecdote would make the invitation vivid, but the neighbor has not agreed to share it.' },
+          { title: 'Small clues can identify someone too', text: 'Reviewing the event notice at Jardin Public, Ira notices that removing the neighbor’s name would not remove indirect details that listeners could use to identify them. The event time and place are confirmed public information.' },
+          { title: 'The broadcast deadline is fixed', text: 'Ira could read the anecdote with identifying clues, cancel the entire announcement, or remove the anecdote and indirect identifiers while keeping only confirmed event details. There is no time to seek permission before the broadcast.' },
+          { title: 'The invitation stays useful and non-identifying', text: 'Ira removes the personal story and clues that point to the neighbor. The broadcast shares the confirmed event time and place; the neighbor may contribute later only if they choose.' },
         ],
         approaches: [
-          { label: 'Enjoy a quiet evening at Jardin Public', callback: 'Ira separates opening from waiting dishes.' },
-          { label: 'Look around Place de l\'Indépendance', callback: 'Three covers match three delayed courses.' },
-          { label: 'Ask Ira to cover by serving order', callback: 'Capacity follows the actual wait.' },
+          { label: 'Review the confirmed event notice at Jardin Public', callback: 'Ira remembers which event details are public and verified.' },
+          { label: 'Look around Place de l’Indépendance for identifying clues', callback: 'Ira remembers that indirect details can reveal a neighbor too.' },
+          { label: 'Ask Ira to prepare the public invitation', callback: 'Ira remembers to omit the anecdote and its identifying clues.' },
         ],
-        dilemma: { prompt: 'Which dishes should receive the three covers?', answers: ['Cover the final three and serve the opening pair.', 'Cover three dishes at random.', 'Delay all five dishes together.'], correct: 0, explanation: 'Only the final three need protection during a wait.' },
-        closing: 'Five dishes arrive in their intended order, with the last three kept ready.',
-        keepsake: { name: 'Final-three cover tab', description: 'A fictional tab marked for the waiting courses.' },
+        dilemma: { prompt: 'What should Ira keep in the neighborhood announcement?', answers: ['Read the anecdote and identifying clues because the neighbor is unnamed.', 'Cancel the whole event announcement.', 'Remove the anecdote and indirect identifiers, and share only the confirmed public event details.'], correct: 2, explanation: 'The useful invitation needs only confirmed public details; removing both the story and indirect identifiers protects the neighbor’s privacy.' },
+        closing: 'Listeners receive a clear invitation without a neighbor’s story or clues that could identify them.',
+        keepsake: { name: 'Public-Details Broadcast Card', description: 'A fictional radio card with confirmed event details and no personal anecdote or identifying clues.' },
       },
       missions: { daily: [
-        { label: 'Enjoy one quiet evening at Jardin Public', purpose: 'Support Ira’s pass cycles.', task: 'practical', count: 1 },
-        { label: 'Visit Place de l’Indépendance once', purpose: 'Reach the game and meal setting.', task: 'discovery-visit', count: 1 },
-        { label: 'Greet two game regulars in Bujumbura', purpose: 'Bring ordinary partners into the story.', task: 'people', count: 2 },
+        { label: 'Enjoy one quiet evening at Jardin Public', purpose: 'Review Ira’s confirmed public event details.', task: 'practical', count: 1 },
+        { label: 'Visit Place de l’Indépendance once', purpose: 'Reach the invitation setting without sharing a neighbor’s story.', task: 'discovery-visit', count: 1 },
+        { label: 'Greet two game regulars in Bujumbura', purpose: 'Bring ordinary listeners to a non-identifying announcement.', task: 'people', count: 2 },
       ], weekly: [
-        { label: 'Look around Place de l’Indépendance three times', purpose: 'Recall three covered dishes.', task: 'discovery', count: 3 },
-        { label: 'Visit three supported places in Bujumbura', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
-        { label: 'Enjoy two quiet evenings in Bujumbura', purpose: 'Echo paired passes.', task: 'practical', count: 2 },
+        { label: 'Look around Place de l’Indépendance three times', purpose: 'Recall which private details and clues Ira removes.', task: 'discovery', count: 3 },
+        { label: 'Visit three supported places in Bujumbura', purpose: 'Connect the radio invitation to its confirmed public event.', task: 'places', count: 3 },
+        { label: 'Enjoy two quiet evenings in Bujumbura', purpose: 'Echo Ira’s choice to keep only verified event information.', task: 'practical', count: 2 },
       ] },
     },
     {
@@ -494,7 +494,7 @@ const batch = {
         { label: 'Greet three game regulars in Castries', purpose: 'Bring ordinary teammates into the story.', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Grand Rivere Playing Field twice', purpose: 'Recall two game rounds.', task: 'discovery', count: 2 },
-        { label: 'Visit two supported places in Castries', purpose: 'Connect both registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Castries', purpose: 'Connect the settings through “The Double-Clamp Job Goes First”: How should four repairs use two clamps?', task: 'places', count: 2 },
         { label: 'Look around Canaries Village Square three times', purpose: 'Echo three rotating roles.', task: 'practical', count: 3 },
       ] },
     },
@@ -540,7 +540,7 @@ const batch = {
         { label: 'Greet two game regulars in Charlotte Amalie', purpose: 'Bring ordinary friends into the reunion.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Antonio Jarvis Square twice', purpose: 'Recall two bundles per owner.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in Charlotte Amalie', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Charlotte Amalie', purpose: 'Connect the settings through “Group Bundles Before Ordering Them”: How should six bundles be organized?', task: 'places', count: 3 },
         { label: 'Look around Emancipation Gardens Park three times', purpose: 'Echo three bundle owners.', task: 'practical', count: 3 },
       ] },
     },
@@ -632,7 +632,7 @@ const batch = {
         { label: 'Greet two game regulars in Freetown', purpose: 'Bring ordinary readers into the story.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Enjoy three quiet evenings in Freetown', purpose: 'Recall the three later recipes.', task: 'discovery', count: 3 },
-        { label: 'Visit three supported places in Freetown', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Freetown', purpose: 'Connect the settings through “Put the Single-Chapter Reader in the Middle”: How should seven chapters be assigned?', task: 'places', count: 3 },
         { label: 'Have two simple meals at Francos', purpose: 'Echo alternating readers.', task: 'practical', count: 2 },
       ] },
     },
@@ -678,7 +678,7 @@ const batch = {
         { label: 'Greet two game regulars in Garapan', purpose: 'Bring ordinary players into the story.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Civic Center Park twice', purpose: 'Recall two paint rounds.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in Garapan', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Garapan', purpose: 'Connect the settings through “Paint the Gaps After Drying”: How should five adjacent sections be painted?', task: 'places', count: 3 },
         { label: 'Look around Sugar King Park three times', purpose: 'Echo the odd-section first set.', task: 'practical', count: 3 },
       ] },
     },
@@ -724,7 +724,7 @@ const batch = {
         { label: 'Greet three game regulars in Istanbul', purpose: 'Bring ordinary teammates into the challenge.', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Büyük Çamlıca three times', purpose: 'Recall three flavors and turns.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Istanbul', purpose: 'Connect the registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Istanbul', purpose: 'Connect the settings through “One of Every Flavor at Every Table”: How should nine portions serve three tables?', task: 'places', count: 2 },
         { label: 'Look around Beykoz Korusu twice', purpose: 'Revisit the cue sequence.', task: 'practical', count: 2 },
       ] },
     },
@@ -767,10 +767,10 @@ const batch = {
       missions: { daily: [
         { label: 'Enjoy one quiet evening in Larnaca', purpose: 'Support Greer’s confident opening order.', task: 'practical', count: 1 },
         { label: 'Visit Fountain & Statue of Artemis', purpose: 'Reach the game and joining setting.', task: 'practical-visit', count: 1 },
-        { label: 'Greet two game regulars in Larnaca', purpose: 'Bring ordinary players into the story.', task: 'people', count: 2 },
+        { label: 'Greet two game regulars in Larnaca', purpose: 'Discuss the decision in “Watch Twice Before Opening”: How should four opening catches be assigned?', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Park of Georgia Kyriakidou three times', purpose: 'Echo three joined pairs.', task: 'discovery', count: 3 },
-        { label: 'Visit three supported places in Larnaca', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Larnaca', purpose: 'Connect the settings through “Match Six Edges into Three Joins”: How should six strips use three joining turns?', task: 'places', count: 3 },
         { label: 'Enjoy two quiet evenings in Larnaca', purpose: 'Recall two hesitant players.', task: 'practical', count: 2 },
       ] },
     },
@@ -816,7 +816,7 @@ const batch = {
         { label: 'Look around Beach Park twice', purpose: 'Recall the two alternating cushion patterns.', task: 'practical', count: 2 },
       ], weekly: [
         { label: 'Look around Beach Park three times', purpose: 'Echo the first three cleaned seats.', task: 'practical', count: 3 },
-        { label: 'Visit two supported places in Libreville', purpose: 'Connect the registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Libreville', purpose: 'Connect the settings through “Alternate Four Reversible Seats”: How should four cushions be shown around the circle?', task: 'places', count: 2 },
         { label: 'Greet three game regulars in Libreville', purpose: 'Bring ordinary neighbors into the gathering.', task: 'people', count: 3 },
       ] },
     },
@@ -858,11 +858,11 @@ const batch = {
       },
       missions: { daily: [
         { label: 'Have one simple meal at La Casa', purpose: 'Reflect on Jesse’s four-course order.', task: 'practical', count: 1 },
-        { label: 'Visit Jesse at Palais de Lome', purpose: 'Reach the meal and project setting.', task: 'host-visit', count: 1 },
+        { label: 'Visit Jesse at Palais de Lome', purpose: 'Ask about the choice in “Cold, Mild, Bold, Sweet”: How should Jesse order the four courses?', task: 'host-visit', count: 1 },
         { label: 'Enjoy two quiet evenings in Lomé', purpose: 'Recall the mild and bold middle courses.', task: 'discovery', count: 2 },
       ], weekly: [
         { label: 'Have three simple meals at La Casa', purpose: 'Echo three panel alignments.', task: 'practical', count: 3 },
-        { label: 'Visit three supported places in Lomé', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Lomé', purpose: 'Connect the settings through “Finish Two Lines Before Moving the Guide”: How should one guide measure six lines?', task: 'places', count: 3 },
         { label: 'Greet two game regulars in Lomé', purpose: 'Bring ordinary diners into the ordered lunch.', task: 'people', count: 2 },
       ] },
     },
@@ -905,10 +905,10 @@ const batch = {
       missions: { daily: [
         { label: 'Look around Parque Las Piedrecitas once', purpose: 'Support Greer’s practice allocation.', task: 'practical', count: 1 },
         { label: 'Visit Parque Luis Alfonso Velásquez Flores', purpose: 'Reach the practice and game setting.', task: 'discovery-visit', count: 1 },
-        { label: 'Greet three game regulars in Managua', purpose: 'Bring ordinary players into the match.', task: 'people', count: 3 },
+        { label: 'Greet three game regulars in Managua', purpose: 'Discuss the decision in “Practice Where the Final Check Is Hardest”: How should Greer use ten repetitions?', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Parque Luis Alfonso Velásquez Flores twice', purpose: 'Recall the two game teams.', task: 'discovery', count: 2 },
-        { label: 'Visit two supported places in Managua', purpose: 'Connect the registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Managua', purpose: 'Connect the settings through “The Caller Trades Places for One Point”: How can the caller play one point fairly?', task: 'places', count: 2 },
         { label: 'Look around Parque Las Piedrecitas three times', purpose: 'Continue the focused practice theme.', task: 'practical', count: 3 },
       ] },
     },
@@ -951,10 +951,10 @@ const batch = {
       missions: { daily: [
         { label: 'Look around Alameda del Sur once', purpose: 'Support Indigo’s targeted tile check.', task: 'practical', count: 1 },
         { label: 'Visit Proyecto Ecológico Lago de Texcoco', purpose: 'Reach the project and meal setting.', task: 'discovery-visit', count: 1 },
-        { label: 'Greet two game regulars in Mexico City', purpose: 'Bring ordinary diners into the story.', task: 'people', count: 2 },
+        { label: 'Greet two game regulars in Mexico City', purpose: 'Discuss the decision in “Rotate Only the Failed Join”: How should Indigo use the final layout check?', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Proyecto Ecológico Lago de Texcoco three times', purpose: 'Recall three arrival pairs.', task: 'discovery', count: 3 },
-        { label: 'Visit three supported places in Mexico City', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Mexico City', purpose: 'Connect the settings through “Open Each Pair on Arrival”: How should six portions serve three arrival groups?', task: 'places', count: 3 },
         { label: 'Look around Alameda del Sur twice', purpose: 'Revisit the valid and failed joins.', task: 'practical', count: 2 },
       ] },
     },
@@ -1000,7 +1000,7 @@ const batch = {
         { label: 'Look around Riverside Park twice', purpose: 'Reflect on the two specialist tickets.', task: 'practical', count: 2 },
       ], weekly: [
         { label: 'Look around Riverside Park three times', purpose: 'Revisit the route comparison.', task: 'practical', count: 3 },
-        { label: 'Visit three supported places in New York', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in New York', purpose: 'Connect the settings through “Assign Specialist Tickets First”: How should five tickets be assigned?', task: 'places', count: 3 },
         { label: 'Greet two game regulars in New York', purpose: 'Bring ordinary walkers into the contest.', task: 'people', count: 2 },
       ] },
     },
@@ -1043,10 +1043,10 @@ const batch = {
       missions: { daily: [
         { label: 'Look around Museo Afroantillano once', purpose: 'Support Emery’s ordered reunion clue.', task: 'practical', count: 1 },
         { label: 'Visit Metropolitan Natural Park', purpose: 'Reach the reunion and meal setting.', task: 'discovery-visit', count: 1 },
-        { label: 'Greet three game regulars in Panama City', purpose: 'Bring ordinary friends into the reunion.', task: 'people', count: 3 },
+        { label: 'Greet three game regulars in Panama City', purpose: 'Discuss the decision in “The First Stop Is Written into the Plan”: Where should Emery wait for the friend?', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Metropolitan Natural Park twice', purpose: 'Recall the two divided boards.', task: 'discovery', count: 2 },
-        { label: 'Visit two supported places in Panama City', purpose: 'Connect the registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Panama City', purpose: 'Connect the settings through “Two Divided Boards Hold Four Dishes”: How should six dishes use four boards?', task: 'places', count: 2 },
         { label: 'Look around Museo Afroantillano three times', purpose: 'Revisit the fixed itinerary.', task: 'practical', count: 3 },
       ] },
     },
@@ -1088,11 +1088,11 @@ const batch = {
       },
       missions: { daily: [
         { label: 'Look around Parku i Qytetit once', purpose: 'Support Ira’s scoring demonstration.', task: 'practical', count: 1 },
-        { label: 'Visit Te Bicollt', purpose: 'Reach the game and repair setting.', task: 'discovery-visit', count: 1 },
-        { label: 'Greet two game regulars in Pristina', purpose: 'Bring ordinary teammates into the story.', task: 'people', count: 2 },
+        { label: 'Visit Te Bicollt', purpose: 'Explore the clues in “Demonstrate the Disputed Case”: How should Ira resolve the rule dispute?', task: 'discovery-visit', count: 1 },
+        { label: 'Greet two game regulars in Pristina', purpose: 'Discuss the decision in “Demonstrate the Disputed Case”: How should Ira resolve the rule dispute?', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Te Bicollt three times', purpose: 'Recall the three screw-dependent handles.', task: 'discovery', count: 3 },
-        { label: 'Visit three supported places in Pristina', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Pristina', purpose: 'Connect the settings through “Twist-Test Before Using Screws”: How should five handles use three screws?', task: 'places', count: 3 },
         { label: 'Look around Parku i Qytetit twice', purpose: 'Echo the two remaining game rounds.', task: 'practical', count: 2 },
       ] },
     },
@@ -1138,8 +1138,8 @@ const batch = {
         { label: 'Enjoy two quiet evenings at Pyongyang Folklore Park', purpose: 'Recall the one paired set of cards.', task: 'practical', count: 2 },
       ], weekly: [
         { label: 'Enjoy three quiet evenings in Pyongyang', purpose: 'Rehearse the counted routine.', task: 'practical', count: 3 },
-        { label: 'Visit two supported places in Pyongyang', purpose: 'Connect the registered settings.', task: 'places', count: 2 },
-        { label: 'Greet three game regulars in Pyongyang', purpose: 'Bring ordinary players into the game.', task: 'people', count: 3 },
+        { label: 'Visit two supported places in Pyongyang', purpose: 'Connect the settings through “Keep the Paired Cards in One Hand”: How should eight cards make four equal hands?', task: 'places', count: 2 },
+        { label: 'Greet three game regulars in Pyongyang', purpose: 'Discuss the decision in “Keep the Paired Cards in One Hand”: How should eight cards make four equal hands?', task: 'people', count: 3 },
       ] },
     },
     {
@@ -1184,7 +1184,7 @@ const batch = {
         { label: 'Greet two game regulars in Riga', purpose: 'Bring ordinary neighbors into the rota.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Dauderu parks three times', purpose: 'Recall the three-step chain.', task: 'discovery', count: 3 },
-        { label: 'Visit three supported places in Riga', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Riga', purpose: 'Connect the settings through “One Helper Follows the Chain”: How should two helpers divide five checks?', task: 'places', count: 3 },
         { label: 'Look around Riga National Zoological Garden twice', purpose: 'Echo two views per fitting.', task: 'practical', count: 2 },
       ] },
     },
@@ -1226,11 +1226,11 @@ const batch = {
       },
       missions: { daily: [
         { label: 'Look around Square Joffre once', purpose: 'Support Arden’s paired-point count.', task: 'practical', count: 1 },
-        { label: 'Visit Place du Général de Gaulle', purpose: 'Reach the game and meal setting.', task: 'discovery-visit', count: 1 },
-        { label: 'Greet three game regulars in Saint-Pierre', purpose: 'Bring ordinary players into the match.', task: 'people', count: 3 },
+        { label: 'Visit Place du Général de Gaulle', purpose: 'Explore the clues in “Hold the Marker for a Complete Pair”: What should happen after the odd point?', task: 'discovery-visit', count: 1 },
+        { label: 'Greet three game regulars in Saint-Pierre', purpose: 'Discuss the decision in “Hold the Marker for a Complete Pair”: What should happen after the odd point?', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Place du Général de Gaulle twice', purpose: 'Recall the two edge rounds.', task: 'discovery', count: 2 },
-        { label: 'Visit two supported places in Saint-Pierre', purpose: 'Connect the registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Saint-Pierre', purpose: 'Connect the settings through “Two, Three, Two Serving Rounds”: How should seven portions fill three rounds?', task: 'places', count: 2 },
         { label: 'Look around Square Joffre three times', purpose: 'Echo three serving rounds.', task: 'practical', count: 3 },
       ] },
     },
@@ -1276,7 +1276,7 @@ const batch = {
         { label: 'Look around El Boqueron National Park twice', purpose: 'Recall the two points removed from the display.', task: 'practical', count: 2 },
       ], weekly: [
         { label: 'Look around El Boqueron National Park once', purpose: 'Recall the single agreed tiebreaker.', task: 'practical', count: 1 },
-        { label: 'Visit three supported places in San Salvador', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in San Salvador', purpose: 'Connect the settings through “Two Pair Legs and Two Solo Legs”: How should six runners fill four relay legs?', task: 'places', count: 3 },
         { label: 'Greet two game regulars in San Salvador', purpose: 'Bring ordinary runners into the relay.', task: 'people', count: 2 },
       ] },
     },
@@ -1318,11 +1318,11 @@ const batch = {
       },
       missions: { daily: [
         { label: 'Look around Vraca Memorial Park once', purpose: 'Notice Sage’s matched meal counts.', task: 'discovery', count: 1 },
-        { label: 'Visit Sage at Vraca Memorial Park', purpose: 'Reach the meal and project setting.', task: 'host-visit', count: 1 },
+        { label: 'Visit Sage at Vraca Memorial Park', purpose: 'Ask about the choice in “Serve the Three-and-Two Choice”: How should five guests receive the two dishes?', task: 'host-visit', count: 1 },
         { label: 'Look around Vrelo Bosne twice', purpose: 'Recall the two distinct stamp designs.', task: 'practical', count: 2 },
       ], weekly: [
         { label: 'Look around Vrelo Bosne three times', purpose: 'Echo the three-person dish choice.', task: 'practical', count: 3 },
-        { label: 'Visit two supported places in Sarajevo', purpose: 'Connect the registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Sarajevo', purpose: 'Connect the settings through “Two Different Stamps for One Owner”: How should two stamps finish four projects?', task: 'places', count: 2 },
         { label: 'Greet three game regulars in Sarajevo', purpose: 'Bring ordinary diners into the meal.', task: 'people', count: 3 },
       ] },
     },
@@ -1368,7 +1368,7 @@ const batch = {
         { label: 'Enjoy two quiet evenings in Serrekunda', purpose: 'Recall the main and dessert course order.', task: 'discovery', count: 2 },
       ], weekly: [
         { label: 'Have two simple meals at Tao', purpose: 'Echo main and dessert courses.', task: 'practical', count: 2 },
-        { label: 'Visit three supported places in Serrekunda', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Serrekunda', purpose: 'Connect the settings through “One Complete Tile Row Each”: How should eight tiles be divided among three volunteers?', task: 'places', count: 3 },
         { label: 'Greet two game regulars in Serrekunda', purpose: 'Bring ordinary volunteers into the project.', task: 'people', count: 2 },
       ] },
     },
@@ -1414,7 +1414,7 @@ const batch = {
         { label: 'Look around Guyi Garden twice', purpose: 'Notice the two similar bells.', task: 'discovery', count: 2 },
       ], weekly: [
         { label: 'Look around Guyi Garden three times', purpose: 'Recall three long task starts.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Shanghai', purpose: 'Connect the registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Shanghai', purpose: 'Connect the settings through “Start Every Long Task Before Closing Work”: How should one worker order five tasks?', task: 'places', count: 2 },
         { label: 'Greet three game regulars in Shanghai', purpose: 'Bring ordinary players into the sound game.', task: 'people', count: 3 },
       ] },
     },
@@ -1456,11 +1456,11 @@ const batch = {
       },
       missions: { daily: [
         { label: 'Look around Mary Elizabeth Recreation Park once', purpose: 'Notice Uri’s rotating corner judges.', task: 'discovery', count: 1 },
-        { label: 'Visit Owen Mussington Playing Field', purpose: 'Reach the game and meal setting.', task: 'practical-visit', count: 1 },
+        { label: 'Visit Owen Mussington Playing Field', purpose: 'Follow the choice in “Players Become the Missing Corners”: How should the game replace the missing boundary marker?', task: 'practical-visit', count: 1 },
         { label: 'Look around Owen Mussington Playing Field twice', purpose: 'Recall the two whole shared loaves.', task: 'practical', count: 2 },
       ], weekly: [
         { label: 'Look around Owen Mussington Playing Field three times', purpose: 'Echo the three-piece loaf cuts.', task: 'practical', count: 3 },
-        { label: 'Visit three supported places in The Valley', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in The Valley', purpose: 'Connect the settings through “Cut Two Loaves into Six Equal Shares”: How should four loaves serve six equal opening shares?', task: 'places', count: 3 },
         { label: 'Greet two game regulars in The Valley', purpose: 'Bring ordinary players into the field game.', task: 'people', count: 2 },
       ] },
     },
@@ -1506,7 +1506,7 @@ const batch = {
         { label: 'Look around Anniversary park twice', purpose: 'Notice the tied first-choice leaders.', task: 'discovery', count: 2 },
       ], weekly: [
         { label: 'Look around Anniversary park three times', purpose: 'Recall the three fictional game choices.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Thimphu', purpose: 'Connect the registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Thimphu', purpose: 'Connect the settings through “Four Approvals Break the Tie”: Which game should the five friends choose?', task: 'places', count: 2 },
         { label: 'Greet three game regulars in Thimphu', purpose: 'Bring ordinary friends into the game choice.', task: 'people', count: 3 },
       ] },
     },
@@ -1549,10 +1549,10 @@ const batch = {
       missions: { daily: [
         { label: 'Look around Higahi Ohgishima East Park once', purpose: 'Notice Nico’s distinct movement tests.', task: 'discovery', count: 1 },
         { label: 'Visit 秋ヶ瀬公園', purpose: 'Reach the practice and court setting.', task: 'practical-visit', count: 1 },
-        { label: 'Greet two game regulars in Tokyo', purpose: 'Bring ordinary players into the game.', task: 'people', count: 2 },
+        { label: 'Greet two game regulars in Tokyo', purpose: 'Discuss the decision in “Test Two Distinct Movements”: How should two tests cover three goals?', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around 秋ヶ瀬公園 three times', purpose: 'Recall the three practice goals.', task: 'practical', count: 3 },
-        { label: 'Visit three supported places in Tokyo', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Tokyo', purpose: 'Connect the settings through “Every Player Rests Once”: How should five players share five rest turns?', task: 'places', count: 3 },
         { label: 'Look around Higahi Ohgishima East Park twice', purpose: 'Echo the two direct tests.', task: 'discovery', count: 2 },
       ] },
     },
@@ -1594,11 +1594,11 @@ const batch = {
       },
       missions: { daily: [
         { label: 'Look around Parc Éden once', purpose: 'Support Greer’s pitcher refill plan.', task: 'practical', count: 1 },
-        { label: 'Visit Parc Bazar Victoria', purpose: 'Reach the meal and repair setting.', task: 'discovery-visit', count: 1 },
+        { label: 'Visit Parc Bazar Victoria', purpose: 'Explore the clues in “Refill While the Tables Are Set”: How should one pitcher serve three tables?', task: 'discovery-visit', count: 1 },
         { label: 'Look around Parc Bazar Victoria twice', purpose: 'Notice the two tool groups.', task: 'discovery', count: 2 },
       ], weekly: [
         { label: 'Look around Parc Bazar Victoria three times', purpose: 'Echo three served tables.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Victoria', purpose: 'Connect the registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Victoria', purpose: 'Connect the settings through “Sort Fasteners by Tool Fit”: How should six fasteners use two tools?', task: 'places', count: 2 },
         { label: 'Greet three game regulars in Victoria', purpose: 'Bring ordinary neighbors into the meal.', task: 'people', count: 3 },
       ] },
     },

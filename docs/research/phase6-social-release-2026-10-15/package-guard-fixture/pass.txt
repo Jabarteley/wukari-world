@@ -1,0 +1,37 @@
+
+> joinallworld@0.1.0 slot
+> node --experimental-strip-types scripts/agent-slot.ts heavy -- node --test scripts/guard-joinallworld-package.test.mjs
+
+✔ accepts exact separate-worker package and rejects content changes (6.793125ms)
+✔ accepts hashed city JSON and refuses a resealed payload under the wrong content hash (4.087958ms)
+✔ requires every content asset referenced by the sealed Worker and authenticates the dictionary (5.251375ms)
+✔ rejects a missing referenced city payload and content files larger than 5 MiB (11.095667ms)
+✔ rejects rebundling the sealed Worker even with resealed manifest (4.31975ms)
+✔ rejects static assets included as Worker modules even with resealed manifest (3.096916ms)
+✔ rejects old Worker identity even with resealed manifest (3.11375ms)
+✔ rejects old namespace binding even with resealed manifest (3.26775ms)
+✔ rejects apex route even with resealed manifest (4.195958ms)
+✔ rejects build hook even with resealed manifest (3.314542ms)
+✔ rejects preview exposure even with resealed manifest (3.136917ms)
+✔ rejects unapproved public runtime even with resealed manifest (3.1955ms)
+✔ rejects extra secret binding even with resealed manifest (3.195417ms)
+✔ accepts the two near-crowd body files and no other .bin (5.4015ms)
+✔ accepts binary glTF models and rejects files only named .glb (5.768542ms)
+✔ rejects hidden, state and symlink files (3.207ms)
+✔ workflow permits only the fixed guarded command (2.292833ms)
+✔ release Node pins meet the minimum numerically and still require exact supported versions (0.167625ms)
+✔ source gate rejects unmerged and foreign-repository revisions (405.400292ms)
+✔ deploy context rejects before invoking any executable (138.915667ms)
+✔ archive extractor rejects traversal, symlink, hardlink and oversize entries (302.14ms)
+✔ archive extractor accepts the street-pack count and rejects excess entries or an oversize file (2047.160917ms)
+✔ open dev mode guard: the real source is clean (2263.914291ms)
+✔ open dev mode guard: catches the setting in production configuration and open-mode code reached from the Worker (5.641875ms)
+✔ open dev mode guard: a release package whose Worker carries the open-mode module is refused (3.912792ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5289.961792

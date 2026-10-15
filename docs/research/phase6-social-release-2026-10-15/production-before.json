@@ -1,0 +1,23 @@
+{
+  "scope": "Unauthenticated read-only baseline; no actor/session created",
+  "responses": [
+    {
+      "path": "/api/health",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "cacheControl": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
+    },
+    {
+      "path": "/api/profiles/00000000-0000-4000-8000-000000000000",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "cacheControl": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
+    },
+    {
+      "path": "/p/00000000-0000-4000-8000-000000000000",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "cacheControl": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
+    }
+  ]
+}

@@ -51,8 +51,21 @@ Nigerian time, as before). Code: `src/app/features/gist/HomePin.vue`, `homePinMo
 
 - It reuses the two public reads, `GET /api/world/gist?id=` and `GET /api/world/feed?id=`; the weather credit the feed asks for is
   shown on the card. It does not touch the weather of the city the player is in.
-- The pin is kept on the device only (`allworld.homepin` in localStorage): where someone calls home is not sent to the server. The
-  city's time zone is read from its rules once, when it is pinned.
+- **Kept with the character, so it follows the account** (15 October; before, it was on the device only). The pin is an optional field of the
+  character's record (`SessionRecord.homeCity = { city, name, tz }`, server/types.ts): `GET /api/world/home-city` reads it and
+  `POST /api/world/home-city` sets it (`{ city, name, tz }`) or removes it (`{ clear: true }`); both need a session and answer `{ home }`
+  (`server/routes/stages.ts`, `server/stages/home-city.ts`). A guest character keeps it with the device's session; a signed-in character
+  keeps it for every device of the account. It is shown only to its owner, never in a gist, on the map or on a profile.
+- **The device copy is a cache** (`allworld.homepin` in localStorage): the card and the Events times read it at once, and the first read of the
+  page (`syncHomePin`, when the Gist or Events app opens) asks the server. The server's pin wins and refreshes the cache. **Migration:** when
+  the server has none and the device has one, the device uploads it once with `ifNone: true` (the server never overwrites a pin made on another
+  device with an upload). Choosing or removing a pin updates the cache first, then tells the server; offline, the cache stands and the next
+  sync uploads it.
+- **Export and erase:** the account export (`POST /api/account/export`) lists it under `character.homeCity`. It lives in the character's
+  record, so deleting the account with `erase: true` removes it with the character; deleting the account while keeping the character hands
+  the character back as a guest life with its own pin, as with the rest of that life. Test: `server/auth.test.ts` ("home city"),
+  `src/app/features/gist/homePin.test.ts`.
+- The city's time zone is read from its rules once, when it is pinned.
 
 ## Life stages (#18): birthdays only
 
@@ -62,7 +75,4 @@ on the map. Code: `server/stages/birthday.ts`, `server/routes/stages.ts` (`GET` 
 `src/app/features/gist/BirthdayCard.vue`, `server/stages.test.ts`. Stored in a new top-level collection `stages`; nothing existing
 changes. The date is not the age the game holds for safety rules and is never compared with it.
 
-**Passing property and reputation to a next character is not built.** A house, a stall or a plot belongs to one session's life and to
-that city's record (land, rent, business, a seat in an election), and a hand-over would have to move owned things between sessions
-and undo their city rules in one step; the store has no rollback, so a half-finished hand-over would lose or duplicate a house. It
-needs its own design (what moves, what is undone, who agrees), so it is left for the owner to decide.
+**Passing property and reputation to a next character** was left out here and is now designed and built separately: see [LEGACY.md](LEGACY.md).

@@ -22,12 +22,12 @@ const flush = (): Promise<void> => new Promise((resolve) => setImmediate(resolve
 interface Call { model: string; messages: { role: string; content: string }[]; n: number }
 const GOOD = '{"next":"keep_routine","say":"Good morning, ehn."}';
 
-function rig(options: { fate?: import('../prayers/model.ts').Fate; settings?: Record<string, boolean | number | string>; reply?: (call: Call) => string; limits?: Partial<Limits>; list?: string; start?: number; collect?: (idea: IdeaIn) => Promise<unknown>; founders?: () => Promise<string[]> } = {}) {
+function rig(options: { met?: boolean; fate?: import('../prayers/model.ts').Fate; settings?: Record<string, boolean | number | string>; reply?: (call: Call) => string; limits?: Partial<Limits>; list?: string; start?: number; collect?: (idea: IdeaIn) => Promise<unknown>; founders?: () => Promise<string[]> } = {}) {
   const clock = { t: options.start ?? at(0) };
-  const settings: Record<string, boolean | number | string> = { residentOn: true, ...options.settings };
+  const settings: Record<string, boolean | number | string> = { residentOn: true, residentShadow: !options.met, residentsPerCity: 1, residentDeepPerDay: 2000, residentRulePrayers: false, ...options.settings };
   const prayed: { id: string; name: string; city: string; text: string; situation: string }[] = [];
   const calls: Call[] = [], presents: unknown[] = [], absents: string[] = [], says: string[] = [], saves: Stored[] = [];
-  const sockets: { room: string; session: { id: string } }[] = [];
+  const sockets: { room: string; session: { id: string } }[] = options.met ? [{ room: venueRoomKey('lagos', 'market', ''), session: { id: 's_met' } }] : [];
   const listeners: Record<string, ((data: never) => void)[]> = {};
   const agentRoom: AgentRoom = {
     present(member) { presents.push(member); }, absent(id) { absents.push(id); },
@@ -89,8 +89,8 @@ test('off by default: nothing runs and nothing is called', async () => {
   assert.equal(t.runner.day(), null);
 });
 
-test('a simulated day: asleep until the morning, thoughts spaced and bounded, one summary at bed, nothing while asleep', async () => {
-  const t = rig();
+test('a simulated day: asleep until the morning, thoughts spaced and bounded, one summary at bed (she met a person), nothing while asleep', async () => {
+  const t = rig({ met: true });
   const times: { at: number; reason: string }[] = [];
   await t.run(24 * 60);
   const day = t.runner.day()!;
@@ -206,29 +206,29 @@ test('shadow off: it stands in its venue with the AI-played mark and speaks thro
   assert.equal(t.agentRoom.count(), 1);
 });
 
-test('the budget stop: when the router says the day is spent it goes to bed early, summarises without a call, wakes the next UTC day', async () => {
+test('the budget stop: when the router says the day is spent the model is not asked again, and she carries on by her rules, writes her night without a call, and asks again the next UTC day', async () => {
   // A paid-only list under a zero cap: every ask is refused with "budget".
   const t = rig({ start: at(9), list: 'gateway:openai/gpt-5.6-luna', limits: { dailyCapMicro: 0 } });
   await t.run(30);
   const s = t.runner.state()!;
   assert.equal(s.budgetStopped, true);
-  assert.equal(s.asleep, true);
+  assert.equal(s.asleep, false, 'not put to bed by the budget: she lives by her rules');
+  assert.ok(s.where, 'she still goes where her day plan says');
   const day = t.runner.day()!;
-  assert.equal(day.sleptEarly, true);
   assert.equal(day.entries[0]!.why, 'budget');
-  assert.ok(day.summary && day.summary.length > 0, 'a written summary, no call');
   assert.equal(t.calls.length, 0);
-  // It stays asleep for the rest of the UTC day.
-  const sleptAt = t.clock.t;
-  await t.run(Math.floor((Math.ceil(sleptAt / 86400000) * 86400000 - sleptAt) / MIN) - 2);
+  // Through the day and into her night: still no call, a written summary at bed.
+  await t.run(15 * 60);
+  assert.equal(t.calls.length, 0);
   assert.equal(t.runner.state()!.asleep, true);
-  assert.equal(t.calls.length, 0);
+  assert.ok(t.runner.day()!.summary && t.runner.day()!.summary!.length > 0, 'a written summary, no call');
+  assert.equal(t.runner.day()!.sleptEarly, false);
 });
 
 test('the nightly summary is one call, bounded, kept for a week and fed into the next day', async () => {
   const long = 'I sold three atlases and walked home slowly. '.repeat(100);
   let sawSummary = false;
-  const t = rig({ reply: (call) => { const last = call.messages.at(-1)!.content; if (/going to bed/.test(last)) { sawSummary = true; return long; } return GOOD; } });
+  const t = rig({ met: true, reply: (call) => { const last = call.messages.at(-1)!.content; if (/going to bed/.test(last)) { sawSummary = true; return long; } return GOOD; } });
   await t.run(24 * 60);
   assert.ok(sawSummary);
   const life = t.runner.stored().residents[residentId(REMI)]!;
@@ -244,7 +244,7 @@ test('the nightly summary is one call, bounded, kept for a week and fed into the
 });
 
 test('a summary that steps out of character twice is replaced by a written one', async () => {
-  const t = rig({ reply: (call) => (/going to bed/.test(call.messages.at(-1)!.content) || /write it again/.test(call.messages.at(-1)!.content) ? 'Today the player was an assistant in a game.' : GOOD) });
+  const t = rig({ met: true, reply: (call) => (/going to bed/.test(call.messages.at(-1)!.content) || /write it again/.test(call.messages.at(-1)!.content) ? 'Today the player was an assistant in a game.' : GOOD) });
   await t.run(24 * 60);
   const day = t.runner.day()!;
   assert.ok(day.summary && !OUT_OF_CHARACTER.test(day.summary) && day.summary.length <= SUMMARY_MAX);
@@ -362,7 +362,7 @@ test('what the owner did to her is lived as her own luck: a fever, a dream, a pu
 test('the nightly summary may also yield one wish and one need: each checked on its own, the summary kept clean, a bad wish dropped', async () => {
   const ideas: IdeaIn[] = [];
   const night = (call: Call): string => (/going to bed/.test(call.messages.at(-1)!.content) ? 'I sold a few books and walked home slowly, happy with the day.\nWish: A night market in Yaba so the evenings feel alive.\nNeed: A stall rent I can pay each month without worry.' : GOOD);
-  const t = rig({ reply: night, collect: async (idea) => { ideas.push(idea); } });
+  const t = rig({ met: true, reply: night, collect: async (idea) => { ideas.push(idea); } });
   await t.run(24 * 60);
   assert.deepEqual(ideas.map((idea) => idea.kind), ['wish', 'need']);
   assert.equal(ideas[0]!.id, residentId(REMI)); assert.equal(ideas[0]!.name, 'Remi');
@@ -372,7 +372,7 @@ test('the nightly summary may also yield one wish and one need: each checked on 
   assert.equal(t.calls.length, t.runner.day()!.thoughts + 1, 'still one call for the night');
   // A wish that steps out of the world or breaks the word rules is dropped; the summary stays.
   const odd: IdeaIn[] = [];
-  const bad = rig({ reply: (call) => (/going to bed/.test(call.messages.at(-1)!.content) ? 'A calm day at the stall, and I am glad of it.\nWish: This game should have more shops for players.\nNeed: Send me money for my stall rent please.' : GOOD), collect: async (idea) => { odd.push(idea); } });
+  const bad = rig({ met: true, reply: (call) => (/going to bed/.test(call.messages.at(-1)!.content) ? 'A calm day at the stall, and I am glad of it.\nWish: This game should have more shops for players.\nNeed: Send me money for my stall rent please.' : GOOD), collect: async (idea) => { odd.push(idea); } });
   await bad.run(24 * 60);
   assert.equal(odd.length, 0);
   assert.match(bad.runner.day()!.summary!, /calm day/);

@@ -1,0 +1,32 @@
+(node:56311) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Store: social now kept per entry (0 entries, 0 ms)
+Store: growth now kept per entry (0 entries, 0 ms)
+Store: civic now kept per entry (0 entries, 0 ms)
+Store: business now kept per entry (0 entries, 0 ms)
+Store: market now kept per entry (0 entries, 0 ms)
+Store: commerce now kept per entry (0 entries, 0 ms)
+Store: records now kept per entry (0 entries, 0 ms)
+Store: realValue now kept per entry (0 entries, 0 ms)
+Store: showcase now kept per entry (0 entries, 0 ms)
+Store: trustChecks now kept per entry (0 entries, 0 ms)
+Store: street now kept per entry (0 entries, 0 ms)
+Store: livingWorld now kept per entry (0 entries, 0 ms)
+Store: agents now kept per entry (0 entries, 0 ms)
+Store: every collection has its per-entry copy (13 copied at this start, 0 characters); the stored values stay the truth
+ROWPROBE warm1:/api/world/pulse pulse:0->71:none->9376264a2787
+ROWPROBE warm1:/api/civic/pulse?city=lagos civic:0->516:none->32d801d463f9,root:civic:0->390:none->8975913f9fe2
+ROWPROBE warm1:/api/social/people?city=lagos root:social:0->164:none->9bd10547db79,social:0->387:none->b9c65c575c77
+ROWPROBE warm-wait11 adminDaily:0->61:none->a647b3a9c792,growth:0->188:none->de7909a25d3c,residentVoice:0->302:none->108b248fde8f,root:growth:0->257:none->60d7e0d67a2d
+ROWPROBE QUIET
+ROWPROBE round0:wait5 modelRouter:0->1124:none->71c7b1e82915,worldfeed:0->6266:none->42ed881c4fb1
+ROWPROBE round1:wait5 residents:0->338:none->a2c640499b00
+✔ TEMP row collection attribution (37770.240875ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 38193.451667

@@ -1,0 +1,1329 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "repository": "kromate/joinallworld",
+    "branch": "codex/retention-main-sync",
+    "commit": "5181c91a8274f0616b5cb6740971598fd97814ad",
+    "auditedAtUtc": "2026-10-15T12:50:58Z",
+    "sourceSha256": {
+      "src/game/content/local-tales.ts": "d607ca66c58bc4c352eb641128e90f9828511901e1a3d7c384361d20aa145d40",
+      "src/game/content/world-progression.generated.ts": "22d7ca92ca8b95d18cc96fce0dbeb6f31422cea02af0e396a132b382ec4f7f14",
+      "src/game/content/local-tales/batch-01.ts": "3a8b9a81bacc423eab5a58ab66ec2beb5d762af9c3490871fd166fe251d3d253",
+      "src/game/content/local-tales/batch-02.ts": "a8b92e3b77619299221f8bf971c65fc48663db333b60c15a4e39435717ee8a08",
+      "src/game/content/local-tales/batch-03.ts": "74ab58f77e39605b83957beba04c2548bbfb2bd44f91d93bdd6531cbbaf7bab0",
+      "src/game/content/local-tales/batch-04.ts": "3b443ee53625cf990f19fc6066b69b24ca27fc0133db5b19277c4416b1b5e891",
+      "src/game/content/local-tales/batch-05.ts": "0b01d98a5984dd6e1aa4692a204d1c1fc4123d5debf94585c69a98519ffe7dbe",
+      "src/game/content/local-tales/batch-06.ts": "20ba43d397b9d757a0461558d5937d58d7c4607d97a9f34c6a48364135d8e77b",
+      "src/game/content/local-tales/batch-07.ts": "bc3f0b1b43c3dd3d7628b3a9a366dd04875c83ca4471fa1b2954eda31d3a9e82",
+      "src/game/content/local-tales/batch-08.ts": "25834b8a6c37c454396af1423f53a4a77cf1fdfd33962417dcb6196ee1194db9"
+    }
+  },
+  "scope": {
+    "included": "Accepted authored local city/country tales, country arc metadata, authored daily/weekly mission labels and purposes, current supported geography registry.",
+    "excluded": "Runtime, deployment, public achievement profile behavior/privacy, gameplay/browser, and production state."
+  },
+  "coverage": {
+    "cityRecords": 284,
+    "uniqueCityIds": 284,
+    "registryCityIds": 284,
+    "missingCityIds": [],
+    "extraCityIds": [],
+    "countryTerritoryArcs": 243,
+    "uniqueArcIds": 243,
+    "registryCountryTerritoryIds": 243,
+    "missingIdentityIds": [],
+    "extraIdentityIds": [],
+    "allCitiesInCorrectWholeCountryBatch": true,
+    "supportedGameIdentityMeaning": "The registry has 243 supported country/territory identities; this count is not a count of sovereign states.",
+    "unComparison": {
+      "source": "UN Dag Hammarskjold Library current member states and non-member observer states pages, retrieved 2026-10-15",
+      "memberStates": 193,
+      "membersPresentByCurrentGameCountryId": 193,
+      "membersMissing": [],
+      "nonMemberObserverStates": [
+        "Holy See",
+        "State of Palestine"
+      ],
+      "observerStatesPresentByCurrentGameCountryId": 2,
+      "otherGameIdentitiesOutsideMemberAndObserverLists": [
+        {
+          "countryId": "tc",
+          "name": "Turks & Caicos Is"
+        },
+        {
+          "countryId": "im",
+          "name": "Isle of Man"
+        },
+        {
+          "countryId": "mp",
+          "name": "Northern Mariana Islands"
+        },
+        {
+          "countryId": "ky",
+          "name": "Cayman Islands"
+        },
+        {
+          "countryId": "bl",
+          "name": "St Barthelemy"
+        },
+        {
+          "countryId": "xn",
+          "name": "Northern Cyprus"
+        },
+        {
+          "countryId": "eh",
+          "name": "Western Sahara"
+        },
+        {
+          "countryId": "mo",
+          "name": "Macau"
+        },
+        {
+          "countryId": "ax",
+          "name": "Åland Islands"
+        },
+        {
+          "countryId": "nc",
+          "name": "New Caledonia"
+        },
+        {
+          "countryId": "as",
+          "name": "Samoa (American)"
+        },
+        {
+          "countryId": "pf",
+          "name": "French Polynesia"
+        },
+        {
+          "countryId": "sx",
+          "name": "St Maarten (Dutch)"
+        },
+        {
+          "countryId": "xk",
+          "name": "Kosovo"
+        },
+        {
+          "countryId": "gg",
+          "name": "Guernsey"
+        },
+        {
+          "countryId": "fk",
+          "name": "Falkland Islands"
+        },
+        {
+          "countryId": "tw",
+          "name": "Taiwan"
+        },
+        {
+          "countryId": "ai",
+          "name": "Anguilla"
+        },
+        {
+          "countryId": "fo",
+          "name": "Faroe Islands"
+        },
+        {
+          "countryId": "cw",
+          "name": "Curaçao"
+        },
+        {
+          "countryId": "nu",
+          "name": "Niue"
+        },
+        {
+          "countryId": "ck",
+          "name": "Cook Islands"
+        },
+        {
+          "countryId": "vi",
+          "name": "Virgin Islands (US)"
+        },
+        {
+          "countryId": "cx",
+          "name": "Christmas Island"
+        },
+        {
+          "countryId": "gu",
+          "name": "Guam"
+        },
+        {
+          "countryId": "bm",
+          "name": "Bermuda"
+        },
+        {
+          "countryId": "xs",
+          "name": "Somaliland"
+        },
+        {
+          "countryId": "hk",
+          "name": "Hong Kong"
+        },
+        {
+          "countryId": "nf",
+          "name": "Norfolk Island"
+        },
+        {
+          "countryId": "mf",
+          "name": "St Martin (French)"
+        },
+        {
+          "countryId": "gl",
+          "name": "Greenland"
+        },
+        {
+          "countryId": "aw",
+          "name": "Aruba"
+        },
+        {
+          "countryId": "vg",
+          "name": "Virgin Islands (UK)"
+        },
+        {
+          "countryId": "pr",
+          "name": "Puerto Rico"
+        },
+        {
+          "countryId": "ms",
+          "name": "Montserrat"
+        },
+        {
+          "countryId": "aq",
+          "name": "Antarctica"
+        },
+        {
+          "countryId": "sh",
+          "name": "St Helena"
+        },
+        {
+          "countryId": "wf",
+          "name": "Wallis & Futuna"
+        },
+        {
+          "countryId": "je",
+          "name": "Jersey"
+        },
+        {
+          "countryId": "pn",
+          "name": "Pitcairn"
+        },
+        {
+          "countryId": "hm",
+          "name": "Heard Island & McDonald Islands"
+        },
+        {
+          "countryId": "gs",
+          "name": "South Georgia & the South Sandwich Islands"
+        },
+        {
+          "countryId": "tf",
+          "name": "French S. Terr."
+        },
+        {
+          "countryId": "pm",
+          "name": "St Pierre & Miquelon"
+        },
+        {
+          "countryId": "xg",
+          "name": "Siachen Glacier"
+        },
+        {
+          "countryId": "cc",
+          "name": "Cocos (Keeling) Islands"
+        },
+        {
+          "countryId": "xa",
+          "name": "Ashmore and Cartier Islands"
+        },
+        {
+          "countryId": "io",
+          "name": "British Indian Ocean Territory"
+        }
+      ],
+      "otherIdentityCount": 48,
+      "interpretation": "All 193 current UN members and both UN non-member observer states have supported game identities and authored country arcs. The remaining 48 registry identities are additional game geography; they are not counted as missing UN states or equated with sovereign countries.",
+      "references": [
+        "https://research.un.org/en/unmembers/currentmembers",
+        "https://research.un.org/en/unmembers/observers"
+      ]
+    }
+  },
+  "batchCoverage": [
+    {
+      "batch": 1,
+      "cities": 40,
+      "countryArcs": 1
+    },
+    {
+      "batch": 2,
+      "cities": 35,
+      "countryArcs": 34
+    },
+    {
+      "batch": 3,
+      "cities": 35,
+      "countryArcs": 34
+    },
+    {
+      "batch": 4,
+      "cities": 35,
+      "countryArcs": 35
+    },
+    {
+      "batch": 5,
+      "cities": 35,
+      "countryArcs": 35
+    },
+    {
+      "batch": 6,
+      "cities": 35,
+      "countryArcs": 35
+    },
+    {
+      "batch": 7,
+      "cities": 35,
+      "countryArcs": 35
+    },
+    {
+      "batch": 8,
+      "cities": 34,
+      "countryArcs": 34
+    }
+  ],
+  "structuralChecker": {
+    "command": "node --experimental-strip-types scripts/city/check-local-tales.ts src/game/content/local-tales/batch-0{1,2,3,4,5,6,7,8}.ts --output /tmp/phase6-all8-current-check.json",
+    "result": "PASS",
+    "cityCount": 284,
+    "countryCount": 243,
+    "taleCount": 568,
+    "missionCount": 1704,
+    "errorCount": 0,
+    "scope": "Structural, current grounding, registered place/regular capacity, explicit mission/approach action/place label consistency and normalized exact uniqueness only. Semantic plot quality and gameplay/save/agent compatibility require separate review."
+  },
+  "deterministicTextAudit": {
+    "extraction": "Imported ACCEPTED_LOCAL_TALE_BATCHES and WORLD_STORY_SEEDS at the audited source revision; did not infer from stale reports.",
+    "normalization": "Unicode-preserving casefold plus punctuation/whitespace normalization for exact comparisons.",
+    "taleTitleCount": 568,
+    "uniqueNormalizedTaleTitles": 568,
+    "duplicateTaleTitles": [],
+    "fullNarrativeBodyDuplicates": [],
+    "repeatedChapterHeadingGroups": [
+      {
+        "normalizedText": "copy or contrast",
+        "locations": [
+          {
+            "cityId": "owerri",
+            "scope": "city",
+            "chapter": 3,
+            "title": "Copy or contrast"
+          },
+          {
+            "cityId": "yola",
+            "scope": "city",
+            "chapter": 3,
+            "title": "Copy or contrast"
+          }
+        ]
+      },
+      {
+        "normalizedText": "no replacement",
+        "locations": [
+          {
+            "cityId": "conakry",
+            "scope": "country",
+            "chapter": 2,
+            "title": "No replacement"
+          },
+          {
+            "cityId": "helsinki",
+            "scope": "country",
+            "chapter": 2,
+            "title": "No replacement"
+          }
+        ]
+      },
+      {
+        "normalizedText": "an empty sound role",
+        "locations": [
+          {
+            "cityId": "gaborone",
+            "scope": "country",
+            "chapter": 1,
+            "title": "An empty sound role"
+          },
+          {
+            "cityId": "gaborone",
+            "scope": "country",
+            "chapter": 3,
+            "title": "An empty sound role"
+          }
+        ]
+      },
+      {
+        "normalizedText": "two incomplete tracks",
+        "locations": [
+          {
+            "cityId": "kyrenia",
+            "scope": "country",
+            "chapter": 1,
+            "title": "Two incomplete tracks"
+          },
+          {
+            "cityId": "kyrenia",
+            "scope": "country",
+            "chapter": 3,
+            "title": "Two incomplete tracks"
+          }
+        ]
+      },
+      {
+        "normalizedText": "no lifting",
+        "locations": [
+          {
+            "cityId": "prague",
+            "scope": "city",
+            "chapter": 2,
+            "title": "No lifting"
+          },
+          {
+            "cityId": "taipei",
+            "scope": "city",
+            "chapter": 2,
+            "title": "No Lifting"
+          }
+        ]
+      },
+      {
+        "normalizedText": "no reset",
+        "locations": [
+          {
+            "cityId": "tripoli",
+            "scope": "city",
+            "chapter": 2,
+            "title": "No reset"
+          },
+          {
+            "cityId": "bamako",
+            "scope": "country",
+            "chapter": 2,
+            "title": "No Reset"
+          }
+        ]
+      }
+    ],
+    "missionLabelRows": 1704,
+    "uniqueNormalizedMissionLabels": 1704,
+    "duplicateMissionLabelGroups": [],
+    "missionPurposeRows": 1704,
+    "uniqueNormalizedMissionPurposes": 1631,
+    "repeatedMissionPurposeGroupCount": 20,
+    "extraRowsFromRepeatedPurposes": 73,
+    "repeatedMissionPurposeGroups": [
+      {
+        "text": "give jesse a group for the meal assignment",
+        "locations": [
+          "cape-town.daily[2]",
+          "port-louis.daily[2]"
+        ]
+      },
+      {
+        "text": "connect the registered settings",
+        "locations": [
+          "delhi.weekly[1]",
+          "algiers.weekly[1]",
+          "baghdad.weekly[1]",
+          "buenos-aires.weekly[1]",
+          "istanbul.weekly[1]",
+          "libreville.weekly[1]",
+          "managua.weekly[1]",
+          "panama-city.weekly[1]",
+          "pyongyang.weekly[1]",
+          "saint-pierre.weekly[1]",
+          "sarajevo.weekly[1]",
+          "shanghai.weekly[1]",
+          "thimphu.weekly[1]",
+          "victoria.weekly[1]"
+        ]
+      },
+      {
+        "text": "bring ordinary players to the social context",
+        "locations": [
+          "juba.daily[2]",
+          "male.daily[2]",
+          "riyadh.daily[2]",
+          "roseau.daily[2]",
+          "ulaanbaatar.daily[2]"
+        ]
+      },
+      {
+        "text": "connect registered settings",
+        "locations": [
+          "juba.weekly[1]",
+          "kingston.weekly[1]",
+          "luanda.weekly[1]",
+          "male.weekly[1]",
+          "moroni.weekly[1]",
+          "niamey.weekly[1]",
+          "riyadh.weekly[1]",
+          "santiago.weekly[1]",
+          "torshavn.weekly[1]",
+          "ulaanbaatar.weekly[1]"
+        ]
+      },
+      {
+        "text": "broaden the reflection",
+        "locations": [
+          "koror.weekly[1]",
+          "la-paz.weekly[1]"
+        ]
+      },
+      {
+        "text": "connect the settings",
+        "locations": [
+          "kyiv.weekly[1]",
+          "lahore.weekly[1]"
+        ]
+      },
+      {
+        "text": "broaden reflection",
+        "locations": [
+          "ljubljana.weekly[1]",
+          "lusaka.weekly[1]",
+          "mariehamn.weekly[1]",
+          "ndjamena.weekly[1]",
+          "podgorica.weekly[1]",
+          "roseau.weekly[1]",
+          "sofia.weekly[1]",
+          "tunis.weekly[1]"
+        ]
+      },
+      {
+        "text": "reach the meal and project setting",
+        "locations": [
+          "lusaka.daily[1]",
+          "lome.daily[1]",
+          "sarajevo.daily[1]"
+        ]
+      },
+      {
+        "text": "bring ordinary neighbor contact to the story",
+        "locations": [
+          "moroni.daily[2]",
+          "tunis.daily[2]"
+        ]
+      },
+      {
+        "text": "reach the meal and repair setting",
+        "locations": [
+          "podgorica.daily[1]",
+          "victoria.daily[1]"
+        ]
+      },
+      {
+        "text": "broaden the local setting",
+        "locations": [
+          "vientiane.weekly[1]",
+          "vilnius.weekly[1]",
+          "addis-ababa.weekly[1]",
+          "antananarivo.weekly[1]",
+          "bangui.weekly[1]",
+          "bissau.weekly[1]",
+          "budapest.weekly[1]",
+          "bujumbura.weekly[1]",
+          "charlotte-amalie.weekly[1]",
+          "freetown.weekly[1]",
+          "garapan.weekly[1]",
+          "larnaca.weekly[1]",
+          "lome.weekly[1]",
+          "mexico-city.weekly[1]",
+          "new-york.weekly[1]",
+          "pristina.weekly[1]",
+          "riga.weekly[1]",
+          "san-salvador.weekly[1]",
+          "serekunda.weekly[1]",
+          "the-valley.weekly[1]",
+          "tokyo.weekly[1]"
+        ]
+      },
+      {
+        "text": "bring ordinary players into the match",
+        "locations": [
+          "willemstad.daily[2]",
+          "managua.daily[2]",
+          "saint-pierre.daily[2]"
+        ]
+      },
+      {
+        "text": "connect both registered settings",
+        "locations": [
+          "willemstad.weekly[1]",
+          "zagreb.weekly[1]",
+          "castries.weekly[1]"
+        ]
+      },
+      {
+        "text": "bring ordinary players into the game",
+        "locations": [
+          "antananarivo.daily[2]",
+          "pyongyang.weekly[2]",
+          "tokyo.daily[2]"
+        ]
+      },
+      {
+        "text": "bring ordinary diners into the story",
+        "locations": [
+          "buenos-aires.daily[2]",
+          "mexico-city.daily[2]"
+        ]
+      },
+      {
+        "text": "reach the game and meal setting",
+        "locations": [
+          "bujumbura.daily[1]",
+          "saint-pierre.daily[1]",
+          "the-valley.daily[1]"
+        ]
+      },
+      {
+        "text": "reach the game and repair setting",
+        "locations": [
+          "castries.daily[1]",
+          "pristina.daily[1]"
+        ]
+      },
+      {
+        "text": "bring ordinary teammates into the story",
+        "locations": [
+          "castries.daily[2]",
+          "pristina.daily[2]"
+        ]
+      },
+      {
+        "text": "bring ordinary friends into the reunion",
+        "locations": [
+          "charlotte-amalie.daily[2]",
+          "panama-city.daily[2]"
+        ]
+      },
+      {
+        "text": "bring ordinary players into the story",
+        "locations": [
+          "garapan.daily[2]",
+          "larnaca.daily[2]"
+        ]
+      }
+    ],
+    "missionTaskSignatures": {
+      "distinctDailyAndWeeklyScopeTaskCountSignaturesCombined": 74,
+      "note": "74 distinct scope/task/count signatures occur across daily and weekly missions; 32 signatures occur in at least three cities. Shared task mechanics are not duplicate authored stories. This audit reports the repeated-task pattern without treating it as a story duplicate.",
+      "largestGroups": [
+        {
+          "scope": "weekly",
+          "signature": [
+            [
+              "discovery",
+              2
+            ],
+            [
+              "places",
+              3
+            ],
+            [
+              "practical",
+              3
+            ]
+          ],
+          "cityCount": 71,
+          "cityIds": [
+            "amsterdam",
+            "khartoum",
+            "bishkek",
+            "colombo",
+            "dublin",
+            "gustavia",
+            "hong-kong",
+            "kuwait-city",
+            "maputo",
+            "oslo",
+            "papeete",
+            "rabat",
+            "san-jose",
+            "skopje",
+            "st-georges",
+            "suva",
+            "tashkent",
+            "wellington",
+            "george-town",
+            "havana",
+            "mata-utu",
+            "mogadishu",
+            "monrovia",
+            "port-moresby",
+            "rome",
+            "singapore",
+            "sydney",
+            "tbilisi",
+            "almaty",
+            "bsb",
+            "copenhagen",
+            "douglas",
+            "kigali",
+            "laayoune",
+            "manila",
+            "oranjestad",
+            "palikir",
+            "port-louis",
+            "st-helier",
+            "tarawa",
+            "tegucigalpa",
+            "yangon",
+            "yerevan",
+            "guatemala-city",
+            "kabul",
+            "koror",
+            "la-paz",
+            "ljubljana",
+            "lusaka",
+            "mariehamn",
+            "ndjamena",
+            "podgorica",
+            "roseau",
+            "sofia",
+            "tunis",
+            "vientiane",
+            "vilnius",
+            "west-island",
+            "kingston-nf",
+            "lilongwe",
+            "macau",
+            "muscat",
+            "paris",
+            "port-aux-francais",
+            "santo-domingo",
+            "villa-las-estrellas",
+            "addis-ababa",
+            "bissau",
+            "budapest",
+            "charlotte-amalie",
+            "garapan"
+          ]
+        },
+        {
+          "scope": "daily",
+          "signature": [
+            [
+              "practical",
+              1
+            ],
+            [
+              "host-visit",
+              1
+            ],
+            [
+              "people",
+              3
+            ]
+          ],
+          "cityCount": 68,
+          "cityIds": [
+            "amsterdam",
+            "brasilia",
+            "bucharest",
+            "cotonou",
+            "gaborone",
+            "helsinki",
+            "khartoum",
+            "lima",
+            "nairobi",
+            "port-of-spain",
+            "quito",
+            "tehran",
+            "belgrade",
+            "brades",
+            "colombo",
+            "dublin",
+            "funafuti",
+            "hong-kong",
+            "malabo",
+            "oslo",
+            "port-vila",
+            "reykjavik",
+            "san-juan",
+            "stockholm",
+            "tallinn",
+            "vienna",
+            "zurich",
+            "george-town",
+            "havana",
+            "mata-utu",
+            "mogadishu",
+            "moscow",
+            "port-moresby",
+            "rome",
+            "tel-aviv-yafo",
+            "valletta",
+            "windhoek",
+            "bsb",
+            "cape-town",
+            "copenhagen",
+            "dar-es-salaam",
+            "dubai",
+            "jamestown",
+            "kingstown",
+            "lisbon",
+            "maseru",
+            "noumea",
+            "ouagadougou",
+            "praia",
+            "st-helier",
+            "tegucigalpa",
+            "yaren",
+            "caracas",
+            "guatemala-city",
+            "kabul",
+            "koror",
+            "la-paz",
+            "ljubljana",
+            "lusaka",
+            "flying-fish-cove",
+            "harare",
+            "kampala",
+            "lilongwe",
+            "macau",
+            "muscat",
+            "paris",
+            "port-aux-francais",
+            "santo-domingo"
+          ]
+        },
+        {
+          "scope": "weekly",
+          "signature": [
+            [
+              "discovery",
+              3
+            ],
+            [
+              "places",
+              2
+            ],
+            [
+              "practical",
+              2
+            ]
+          ],
+          "cityCount": 63,
+          "cityIds": [
+            "gaborone",
+            "belgrade",
+            "brades",
+            "dakar",
+            "dhaka",
+            "funafuti",
+            "hargeisa",
+            "malabo",
+            "minsk",
+            "port-vila",
+            "reykjavik",
+            "san-juan",
+            "stockholm",
+            "tallinn",
+            "vienna",
+            "zurich",
+            "cairo",
+            "hamilton",
+            "kathmandu",
+            "mbabane",
+            "monaco",
+            "phnom-penh",
+            "ramallah",
+            "sanaa",
+            "stanley",
+            "taipei",
+            "avarua",
+            "cockburn-town",
+            "dar-es-salaam",
+            "dubai",
+            "jamestown",
+            "kingstown",
+            "lisbon",
+            "maseru",
+            "noumea",
+            "ouagadougou",
+            "paramaribo",
+            "praia",
+            "st-peter-port",
+            "toronto",
+            "yaren",
+            "delhi",
+            "juba",
+            "kingston",
+            "kyiv",
+            "lahore",
+            "luanda",
+            "male",
+            "moroni",
+            "niamey",
+            "santiago",
+            "torshavn",
+            "ulaanbaatar",
+            "zagreb",
+            "bratislava",
+            "kampala",
+            "madrid",
+            "marigot",
+            "nuuk",
+            "port-au-prince",
+            "sao-tome",
+            "st-johns",
+            "istanbul"
+          ]
+        },
+        {
+          "scope": "daily",
+          "signature": [
+            [
+              "practical",
+              1
+            ],
+            [
+              "host-visit",
+              1
+            ],
+            [
+              "people",
+              2
+            ]
+          ],
+          "cityCount": 57,
+          "cityIds": [
+            "enugu",
+            "gusau",
+            "kaduna",
+            "katsina",
+            "lokoja",
+            "minna",
+            "port-harcourt",
+            "jos",
+            "uyo",
+            "yola",
+            "adamstown",
+            "jakarta",
+            "kyrenia",
+            "majuro",
+            "pago-pago",
+            "san-marino",
+            "vaduz",
+            "auckland",
+            "dhaka",
+            "dushanbe",
+            "gustavia",
+            "kuwait-city",
+            "minsk",
+            "papeete",
+            "rabat",
+            "san-jose",
+            "skopje",
+            "st-georges",
+            "suva",
+            "tashkent",
+            "wellington",
+            "abidjan",
+            "bamako",
+            "brussels",
+            "dili",
+            "stanley",
+            "taipei",
+            "almaty",
+            "chisinau",
+            "douglas",
+            "grytviken",
+            "laayoune",
+            "oranjestad",
+            "palikir",
+            "port-louis",
+            "st-peter-port",
+            "toronto",
+            "yerevan",
+            "accra",
+            "moroni",
+            "niamey",
+            "marigot",
+            "port-au-prince",
+            "sao-tome",
+            "villa-las-estrellas",
+            "addis-ababa",
+            "antananarivo"
+          ]
+        },
+        {
+          "scope": "daily",
+          "signature": [
+            [
+              "practical",
+              1
+            ],
+            [
+              "discovery-visit",
+              1
+            ],
+            [
+              "people",
+              2
+            ]
+          ],
+          "cityCount": 41,
+          "cityIds": [
+            "abuja",
+            "damaturu",
+            "ijebu-ode",
+            "lagos",
+            "makurdi",
+            "ota",
+            "sokoto",
+            "bishkek",
+            "hamilton",
+            "kathmandu",
+            "mbabane",
+            "monaco",
+            "phnom-penh",
+            "ramallah",
+            "sanaa",
+            "tirana",
+            "vatican-city",
+            "avarua",
+            "manila",
+            "delhi",
+            "juba",
+            "kingston",
+            "kyiv",
+            "lahore",
+            "luanda",
+            "male",
+            "riyadh",
+            "santiago",
+            "torshavn",
+            "ulaanbaatar",
+            "vientiane",
+            "west-island",
+            "zagreb",
+            "budapest",
+            "bujumbura",
+            "charlotte-amalie",
+            "freetown",
+            "garapan",
+            "mexico-city",
+            "pristina",
+            "riga"
+          ]
+        },
+        {
+          "scope": "daily",
+          "signature": [
+            [
+              "practical",
+              1
+            ],
+            [
+              "discovery-visit",
+              1
+            ],
+            [
+              "people",
+              3
+            ]
+          ],
+          "cityCount": 22,
+          "cityIds": [
+            "andorra-la-vella",
+            "cairo",
+            "singapore",
+            "sydney",
+            "apia",
+            "mariehamn",
+            "ndjamena",
+            "podgorica",
+            "roseau",
+            "sofia",
+            "tunis",
+            "vilnius",
+            "willemstad",
+            "algiers",
+            "baghdad",
+            "bissau",
+            "buenos-aires",
+            "castries",
+            "istanbul",
+            "managua",
+            "panama-city",
+            "saint-pierre"
+          ]
+        },
+        {
+          "scope": "weekly",
+          "signature": [
+            [
+              "discovery",
+              2
+            ],
+            [
+              "places",
+              2
+            ],
+            [
+              "practical",
+              3
+            ]
+          ],
+          "cityCount": 21,
+          "cityIds": [
+            "adamstown",
+            "auckland",
+            "abidjan",
+            "brussels",
+            "cove",
+            "djibouti",
+            "moscow",
+            "tel-aviv-yafo",
+            "valletta",
+            "windhoek",
+            "chisinau",
+            "grytviken",
+            "accra",
+            "caracas",
+            "riyadh",
+            "baghdad",
+            "buenos-aires",
+            "castries",
+            "managua",
+            "panama-city",
+            "saint-pierre"
+          ]
+        },
+        {
+          "scope": "daily",
+          "signature": [
+            [
+              "practical",
+              1
+            ],
+            [
+              "host-visit",
+              1
+            ],
+            [
+              "discovery",
+              1
+            ]
+          ],
+          "cityCount": 17,
+          "cityIds": [
+            "abakaliki",
+            "bangkok",
+            "brazzaville",
+            "conakry",
+            "georgetown",
+            "ho-chi-minh-city",
+            "kuala-lumpur",
+            "london",
+            "montevideo",
+            "nouakchott",
+            "prague",
+            "sao-paulo",
+            "tripoli",
+            "damascus",
+            "cove",
+            "ashmore",
+            "honiara"
+          ]
+        }
+      ]
+    }
+  },
+  "semanticReview": {
+    "pairwiseCandidateGenerator": "TF-IDF cosine over Unicode tokens from each tale title, chapter headings/text, dilemma, approach labels/callbacks, closing and keepsake, with common function/game words removed.",
+    "candidateThreshold": 0.28,
+    "candidatePairCount": 240,
+    "manualReview": "Inspected highest scoring story pairs and current final matrix/source-review reports. This was a focused semantic pass, not exhaustive human adjudication of all candidates; candidate rows are explicitly labeled.",
+    "confirmedOrActionableFindings": [
+      {
+        "id": "repeat-01",
+        "status": "confirmed-high-confidence",
+        "type": "same conflict and resolution",
+        "affected": [
+          "fo:torshavn:country",
+          "bi:bujumbura:country"
+        ],
+        "taleTitles": [
+          "Three Covers for the Closing",
+          "Cover the Final Three"
+        ],
+        "evidence": {
+          "torshavn": "Five dishes and three covers; serve the first two immediately and cover the final three.",
+          "bujumbura": "Five dishes and three covers; serve the first two immediately and cover the final three."
+        },
+        "assessment": "Same counts, same course split, same required assignment, same player-visible result. Wording and venues vary while the underlying story does not.",
+        "proposedDistinctReplacement": "Replace one with an unrelated fictional conflict such as a community radio rehearsal where one correction slot remains before a recorded segment airs; define the exact constraint and the choice that resolves it, then compare against the cross-batch matrix."
+      },
+      {
+        "id": "repeat-02",
+        "status": "confirmed-mechanism-family",
+        "type": "paired-work and solo-work allocation",
+        "affected": [
+          "mf:marigot:country",
+          "et:addis-ababa:country"
+        ],
+        "taleTitles": [
+          "One Paired Task, Two Solo Tasks",
+          "Two Paired Jobs, Four Solo Jobs"
+        ],
+        "evidence": {
+          "marigot": "One task needs a pair and two need one person each; assign a pair and two solo contributors.",
+          "addis-ababa": "Two tasks need a pair and four need one person each; assign one pair to joint jobs and the other two to split solo jobs."
+        },
+        "assessment": "The problem and solution pattern are the same pair-versus-solo staffing allocation; only the number of jobs changes. This is a mechanism-level duplicate, not identical prose.",
+        "proposedDistinctReplacement": "Replace one with a fictional coordination problem governed by a different rule family, for example a single correction slot and a fixed playback deadline, rather than assigning a group across paired and individual jobs."
+      },
+      {
+        "id": "repeat-03",
+        "status": "repetition-risk-distinct-exact-constraints",
+        "type": "relay runner assignment from measured tradeoffs",
+        "affected": [
+          "tz:dar-es-salaam:city",
+          "mw:lilongwe:city"
+        ],
+        "taleTitles": [
+          "One Difficult Leg per Runner",
+          "The Leg with the Smallest Loss"
+        ],
+        "evidence": {
+          "dar-es-salaam": "A strongest runner wants both hard legs; practice fit and one choice assign three distinct legs.",
+          "lilongwe": "Two runners want the middle leg; move the runner who loses one beat instead of the one who loses five."
+        },
+        "assessment": "Both are fictional relays resolved by assigning runners according to measured tradeoffs. Exact constraints and procedures differ, so this is a repeated story family under the user’s no-repetition bar, not a claim that the puzzles are identical.",
+        "proposedDistinctReplacement": "Replace one relay with a non-competitive premise from a different domain and constraint family; keep the current city anchor and make the new choice independent of runner-to-leg allocation."
+      },
+      {
+        "id": "scope-01",
+        "status": "confirmed-content-misalignment",
+        "type": "country collection metadata repeats city tale",
+        "affected": [
+          "ag:st-johns:city",
+          "ag:country-arc",
+          "ag:st-johns:country"
+        ],
+        "taleTitles": [
+          "A Folded Beam beneath the Center",
+          "Eight Balls Cover Demonstration and Practice"
+        ],
+        "evidence": {
+          "cityTale": "A fictional paper bridge sags under its center token; folding a strip into a triangular support resolves it.",
+          "countryArc": "Title is “A Folded Beam beneath the Center”; premise says one folded strip braces the loaded center of a fictional paper bridge.",
+          "countryTale": "The actual country-scope tale allocates eight balls between a two-ball demonstration and three equal learner pairs."
+        },
+        "assessment": "The country-journey description repeats the city-scope plot and leaves the actual country tale unexplained; the arc title also collides with the city tale title.",
+        "proposedDistinctReplacement": "Rewrite the `ag` country arc title and premise to describe its actual country-scope tale(s), or a verified shared throughline across Antigua and Barbuda country tales; do not reuse the St. John’s city bridge plot."
+      }
+    ],
+    "notConfirmedCandidates": [
+      {
+        "status": "candidate-not-confirmed",
+        "affected": [
+          "xg:siachen:country",
+          "dz:algiers:country"
+        ],
+        "titles": [
+          "The Z-Fold Holds",
+          "The Inward-Folding Screen"
+        ],
+        "rationale": "Both feature fictional folding screens and hinge directions, but one stands one attached screen in a narrow strip with a Z fold while the other assigns six directional hinges across three screens."
+      },
+      {
+        "status": "candidate-not-confirmed",
+        "affected": [
+          "eg:cairo:city",
+          "io:chagos:city"
+        ],
+        "titles": [
+          "The Tray with One Loose Foot",
+          "The Cup at the Center of the Tray"
+        ],
+        "rationale": "Both are unstable-tray balancing plots. One places the lightest cup over a loose foot and uses a serving order; the other centers a full cup and mirrors two bowl pairs."
+      },
+      {
+        "status": "candidate-not-confirmed",
+        "affected": [
+          "ws:apia:country",
+          "ki:tarawa:country"
+        ],
+        "titles": [
+          "Seven Guests and Five Bowls",
+          "Nine Plates around Six Places"
+        ],
+        "rationale": "Both recover a shared meal from a tableware/seating shortage by moving shared dishes into center bowls and freeing place settings; counts and stated capacity conflict differ."
+      },
+      {
+        "status": "candidate-not-confirmed",
+        "affected": [
+          "gg:st-peter-port:country",
+          "ai:the-valley:country"
+        ],
+        "titles": [
+          "One Cut for Two Bread Orders",
+          "Cut Two Loaves into Six Equal Shares"
+        ],
+        "rationale": "Both use exact loaf partitioning to meet a meal requirement; one makes two half-orders from one oversized loaf, while the other makes six thirds and keeps two loaves whole."
+      },
+      {
+        "status": "candidate-not-confirmed",
+        "affected": [
+          "jm:kingston:country",
+          "sv:san-salvador:country"
+        ],
+        "titles": [
+          "Four Legs, Three Runners",
+          "Two Pair Legs and Two Solo Legs"
+        ],
+        "rationale": "Both solve fictional relay staffing across four fixed legs, but one assigns an endurance runner to separated legs and the other mixes paired and solo leg capacity."
+      }
+    ],
+    "priorFindingsNowResolved": [
+      {
+        "affected": [
+          "py:asuncion:city",
+          "tg:lome:city"
+        ],
+        "priorIssue": "Sauce tasting with rinsing between flavors.",
+        "currentState": "Resolved in current source: Lomé’s four-course fixed-order lunch has a distinct conflict and solution."
+      },
+      {
+        "affected": [
+          "cx:flying-fish-cove:country",
+          "qa:doha:country"
+        ],
+        "priorIssue": "Parallel independent prerequisites followed by dependent finishing jobs.",
+        "currentState": "Resolved in current source: Doha’s exact 12-unit ribbon cut is distinct."
+      },
+      {
+        "affected": [
+          "ua:kyiv:city",
+          "sv:san-salvador:city"
+        ],
+        "priorIssue": "Borrowed-tool deadline with tool-dependent work first and hand-finish after return.",
+        "currentState": "Resolved in current source: San Salvador corrects a score overcount and applies a pre-agreed tiebreak."
+      },
+      {
+        "affected": [
+          "rw:kigali:city",
+          "zm:lusaka:city"
+        ],
+        "priorIssue": "Alternate one new order with one pickup at a single counter.",
+        "currentState": "Resolved in current source: Lusaka now keeps a practice-dish goal and lunch promise through a tasting meal."
+      }
+    ],
+    "limits": [
+      "Similarity scores rank review candidates and do not prove semantic duplication.",
+      "A complete human line-by-line semantic adjudication of all 568 tales was not performed.",
+      "Mission task signatures repeat by design; only repeated authored label/purpose copy is assessed as mission-content repetition."
+    ]
+  }
+}

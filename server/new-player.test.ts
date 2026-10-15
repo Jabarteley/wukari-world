@@ -13,5 +13,6 @@ test('the new-player journey runs to the end with every assertion holding', asyn
   assert.ok(lines.some((line) => line.startsWith('New player complete')));
   assert.ok(result.moves > 4, 'a whole game was played');
   // The deal is seeded from a counter and the clock is the script's own, so the same journey ends on the same money every time.
-  assert.deepEqual(result.cash, { ada: 22500, bola: 6900 });
+  // Ada's current local mission pays ₦250 after a ₦150 Danfo trip; Bola wins the seeded Whot game for ₦150.
+  assert.deepEqual(result.cash, { ada: 22600, bola: 7050 });
 });

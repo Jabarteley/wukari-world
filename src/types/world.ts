@@ -13,7 +13,8 @@
  * shard store. `v` is a version stamp: send it back as `?v=` and an unchanged answer is short.
  * Both Node and Worker use these routes; their registry shards use files and SQLite respectively.
  */
-import type { CityId, HostErrorCode, JsonBodyErrorCode, Ok, SessionErrorCode, StorageErrorCode } from './protocol.ts'
+import type { CityId, HostErrorCode, JsonBodyErrorCode, Ok, OnceErrorCode, SessionErrorCode, StorageErrorCode } from './protocol.ts'
+import type { LegacyAnswer, LegacyInclude, LegacyPreview, LegacyView } from './legacy.ts'
 import type { HouseId, LgaId, PlotAddress } from './life.ts'
 
 /** What every world route can throw before its own validation. */
@@ -161,6 +162,7 @@ export interface WorldWorksResponse {
   limits: { min: number; max: number; daily: number }
   you?: { canOrder: boolean }
 }
+export interface WorldHomeCityResponse { home: { city: string; name: string; tz: string } | null }
 export interface WorldBirthdayResponse { mine: { m: number; d: number; share: boolean } | null; today: boolean; friends: string[] }
 export interface WorldHttpRoutes {
   'GET /api/world/street': { query: { city: CityId }; response: Ok<WorldStreetResponse>; errors: WorldCommon | StorageErrorCode | 'city_moved' | 'not_on_street' | 'plot_unavailable' }
@@ -184,6 +186,16 @@ export interface WorldHttpRoutes {
   /** Opt-in birthdays (server/routes/stages.ts, docs/SMALLER-FEATURES.md): the caller's own choice and the friends who share and celebrate today. */
   'GET /api/world/birthday': { query: Record<string, never>; response: Ok<WorldBirthdayResponse>; errors: HostErrorCode | SessionErrorCode }
   'POST /api/world/birthday': { body: { m: number; d: number; share?: boolean } | { clear: true }; response: Ok<WorldBirthdayResponse>; errors: HostErrorCode | SessionErrorCode | JsonBodyErrorCode | 'invalid_date' | 'stages_rate_limited' }
+  /** The home-city pin kept with the caller's character, so it follows an account across devices (server/routes/stages.ts, docs/SMALLER-FEATURES.md). `ifNone`: the device's one-off upload, which never overwrites. */
+  'GET /api/world/home-city': { query: Record<string, never>; response: Ok<WorldHomeCityResponse>; errors: HostErrorCode | SessionErrorCode }
+  'POST /api/world/home-city': { body: { city: string; name: string; tz: string; ifNone?: boolean } | { clear: true }; response: Ok<WorldHomeCityResponse>; errors: HostErrorCode | SessionErrorCode | JsonBodyErrorCode | 'invalid_home_city' | 'stages_rate_limited' }
+  /** Passing property on (server/routes/legacy.ts, docs/LEGACY.md). Every write carries a `requestId` and is exactly-once; a refusal is `{ ok: false, code, reason }`. */
+  'GET /api/world/legacy': { query: Record<string, never>; response: Ok<LegacyView>; errors: HostErrorCode | SessionErrorCode }
+  'POST /api/world/legacy/preview': { body: { to: string; include: LegacyInclude }; response: Ok<LegacyPreview>; errors: HostErrorCode | SessionErrorCode | JsonBodyErrorCode }
+  'POST /api/world/legacy/pass': { body: { requestId: string; to: string; include: LegacyInclude }; response: Ok<LegacyAnswer>; errors: HostErrorCode | SessionErrorCode | JsonBodyErrorCode | OnceErrorCode }
+  'POST /api/world/legacy/accept': { body: { requestId: string; offer: string }; response: Ok<LegacyAnswer>; errors: HostErrorCode | SessionErrorCode | JsonBodyErrorCode | OnceErrorCode }
+  'POST /api/world/legacy/decline': { body: { requestId: string; offer: string }; response: Ok<LegacyAnswer>; errors: HostErrorCode | SessionErrorCode | JsonBodyErrorCode | OnceErrorCode }
+  'POST /api/world/legacy/cancel': { body: { requestId: string; offer: string }; response: Ok<LegacyAnswer>; errors: HostErrorCode | SessionErrorCode | JsonBodyErrorCode | OnceErrorCode }
   'GET /api/world/city': { query: { city: CityId; v?: string }; response: Ok<WorldCityResponse>; errors: WorldCommon }
   'GET /api/world/lga/:id': { params: { id: LgaId }; query: { city: CityId }; response: Ok<WorldLgaResponse>; errors: WorldLga }
   /** `from` 0…511, `count` 0…128 (default 128); 400 `invalid_number` otherwise. */

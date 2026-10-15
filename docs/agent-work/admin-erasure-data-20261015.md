@@ -6,9 +6,9 @@
 - **Owner:** `/root/erase_domain_impl`
 - **Model / effort:** `gpt-6-astra / high`
 - **Thread:** delegated worker under `01a13bea-138b-7b91-ac44-c49bc3d836ec`
-- **UTC updated:** `2026-10-15T20:10:00Z`
-- **Status:** `active`
-- **Work state:** `merging accepted erasure with current housing main; sequential revalidation pending`
+- **UTC updated:** `2026-10-15T21:07:25Z`
+- **Status:** `ready-for-release-review`
+- **Work state:** `merged with housing main and sequential local gates passed; checkout returning to root`
 
 ## Goal and boundaries
 
@@ -26,8 +26,8 @@
 - **Host:** local Mac
 - **Branch / worktree:** `codex/retention-main-sync` in the requested existing worktree
 - **Base:** erasure candidate `e484a6bef5269429da23165233777b67476d420d`; integration target `dc3ab3a96febe5842fd98cab9346922b466210ba`
-- **Current commit:** `e8e8984b` after preserving the Settings fixture handoff as a record-only commit.
-- **Dirty status:** only this work record is tracked dirty; unrelated untracked `docs/research/unique-local-content-2026-10-15/ui-world-entry-375.png` must remain untouched.
+- **Current commit:** merge candidate `a7f7d691831a2079f0c4329e0a68caa944f6de3f`; a final record-only checkpoint follows.
+- **Dirty status:** root-owned approval record is concurrently dirty and remains unstaged; unrelated untracked `docs/research/unique-local-content-2026-10-15/ui-world-entry-375.png` remains untouched.
 - **Port/process ownership:** none
 
 ## Progress
@@ -45,21 +45,26 @@
 - Focused `node --experimental-strip-types --test --test-concurrency=1 server/admin/admin.test.ts` passed 15/15 at `2026-10-15T18:23:34Z`. Final scoped `git diff --check` passed.
 - Added a syntax-minified real Worker regression covering root preview, typed account erasure, removed profile, rejected old session, preserved founder and idempotent completed-receipt replay. With the pinned release tools it passes 2/2; its first run exposed an unloaded-session SQLite deletion defect, which the storage owner fixed with an exact-key deletion and draft-visible identity lookup regression while keeping the world live-actor guard.
 - The stable-assets edge rerun passed 186/193. Four known Miniflare eviction timeouts and one row-budget heartbeat observation are outside the erasure path; the raw bundle budget was corrected by the root packaging owner and subsequently passed 5/5. `city-foundation.test.ts` reproduced the same socket-frame timeout on both the current candidate and a detached exact `8e128a50` base with the same dist and pinned tools, confirming that failure is inherited. The detached comparison worktree was removed and pruned.
+- Preserved the Settings fixture handoff in isolated commit `e8e8984b`, checkpointed resumed integration in `302c2d2d`, and merged `origin/main` `dc3ab3a9` cleanly as `a7f7d691`. The Settings test was identical in both parents; housing introduced no server, store, Worker, protocol or erasure overlap. Housing adds the accepted scene/campus/venue runtime and assets.
+- Post-merge unique compatibility passed **167/167**: SQLite/store/world, admin host/routes, auth/account lifecycle, agent API, privacy and admin UI models (`/private/tmp/allworld-erasure-housing-compat.log`).
+- Reconstructed and passed the accepted housing CPU matrix **76/76** across `/private/tmp/allworld-erasure-housing-{runtime,first-person,scene,math}.log`. Manual villa, stair descent, TV/activity and built first-person checks remain inherited housing limits; this integration does not claim them as newly verified.
+- Actual pinned syntax-minified Worker admin passed **2/2** (`/private/tmp/allworld-erasure-housing-worker-admin.log`). Supported serial TypeScript passed **5 projects, 0 errors/baselines** (`/private/tmp/allworld-erasure-housing-typecheck.log`).
+- Production build passed, including stable assets for 284 cities, dictionary and progression (`/private/tmp/allworld-erasure-housing-build.log`). Download budgets passed unchanged: startup `609092` raw / `220847` gzip / `193709` brotli and scene host `186608` raw / `70546` gzip (`/private/tmp/allworld-erasure-housing-size.log`). Worker content guard passed at `3437070` bytes with maximum city reference `332` bytes; pinned Worker dictionary/runtime passed **5/5** (`/private/tmp/allworld-erasure-housing-{worker-budget,words}.log`).
 - `git diff --check -- server/admin/erasure-data.ts docs/agent-work/admin-erasure-data-20261015.md` passed at `2026-10-15T18:17:27Z`.
 - The integration owner reported its route integration test passed 1/1. The first supported serial typecheck reached only this new module and reported narrowing errors; the `fail` helper is now a declared `never` function and the parked-character flow uses optional target fields. A supported integration rerun remains with the root owner.
 
 ### In progress / blockers
 
-- Merge `origin/main` `dc3ab3a9`, preserving the accepted erasure and housing runtime plus the identical Settings fixture correction. Then run the user-approved bounded checks sequentially. No implementation blocker currently known.
+- No implementation blocker. Astra accepted the merge source; root owns the human-approval record, push/main CI, protected deployment and exact-three production cleanup. The user-approved six Worker/incomplete-corpus exceptions remain explicit.
 
 ### Immediate resume steps
 
-1. Merge `origin/main` and inspect every overlap before accepting it.
-2. Run focused erasure/admin/store/world/agent compatibility, pinned minified Worker admin, supported typecheck, build and budgets sequentially.
+1. Root commits its approval/client-update record without staging the unrelated PNG.
+2. Root pushes/integrates the exact candidate and proceeds through main CI, protected release and exact-three cleanup under the acquired lock.
 
 ## Release state
 
-- **Local implementation:** `ready-for-integration`
+- **Local implementation:** `ready-for-release-review`
 - **Deployment:** `not-requested`
 - **Release gate:** Astra integration review plus root-owned route/job/world/storage verification.
 - **References:** `docs/agent-work/admin-player-erasure-20261015.md`; `docs/AGENT-COORDINATION.md`
@@ -74,3 +79,4 @@
 | `2026-10-15T18:23:34Z` | `ready-for-integration` | Added actual SQLite custom-owner refusal and other-host house-conversation preservation regressions. | Focused admin suite 15/15; scoped diff check clean | Root runs supported typecheck and broader integration suite. |
 | `2026-10-15T18:41:23Z` | `ready-for-integration` | Proved the complete account-erasure endpoint through the syntax-minified Worker and classified the city-foundation edge failure against the exact base. | Pinned Worker admin edge 2/2; current and base city-foundation logs reproduce the same timeout; full edge 186/193 | Root records explicit release exceptions; no further source expansion. |
 | `2026-10-15T20:10:00Z` | `active` | User approved the bounded erasure release and exact-three cleanup; resumed as merge owner against current housing main. | HEAD `e8e8984b`; target `dc3ab3a9`; Settings handoff preserved in isolated record commit | Merge, inspect overlap, then run the bounded sequential verification matrix. |
+| `2026-10-15T21:07:25Z` | `ready-for-release-review` | Cleanly merged accepted erasure with current housing main and completed the bounded sequential revalidation. | Merge `a7f7d691`; compatibility 167/167; housing 76/76; Worker admin 2/2; typecheck/build/download and Worker budgets pass | Return checkout to root for approval record, push/main CI, protected release and exact-three cleanup. |

@@ -24,7 +24,7 @@
 | Idle no-work writes | Accepted two-file fixcc0ecacb;52checks;0synthetic transactions | Branch published; not main/live | Retain in combined integration |
 | Content variety and coverage | Corrected4story families/96purpose rows;284cities/243arcs;2840engine paths;213leaf-path diff restricted to approved fields | Branch publishedfc57c4fa; not live | Retain in final provider snapshot |
 | Public character profiles | Astra source/local UI accepted;37HTTP/privacy checks;20social component checks before final Contacts wording | Feature checkpoint ready; not live | Final text assertion rerun queued33007; integrate provider |
-| Worker/provider release fit | Merged11936921; final corrected content manifest generated; combined typecheck and3436477raw-byte gate pass | HOLD: first-person owner found browser startup/chunk regression | Integrate bounded browser-boundary correction, then final CI/package gates |
+| Worker/provider release fit | Corrected73f66122merged7d1844c2; final manifest generated; five-project typecheck,3436477raw bytes,20Worker-profile checks pass | Initial browser regression corrected; combined full CI/package open | Run exact combined CI/package gates |
 | Combined main/release | Main docs refreshed throughbc113b55 | No new deployment; live201b9bda | Final exact-source gates, main sync, release, hosted continuity/gameplay |
 
 ## Release repair ownership
@@ -59,7 +59,7 @@ First-person owner explicitly handed browser slot to our Astra for5176 publicpro
 
 ## All-city engine proof after story corrections
 
-Parent ran the existing portable all-city diagnostic against the corrected source, with its output redirected into this release evidence folder rather than overwriting prior accepted evidence. It passes284cities/568authored episodes/2840completion paths, preserves568legacy keepsakes and527legacy completed collections, and completes authored country collections from the accumulated new keepsakes. Evidence: docs/research/phase6-social-release-2026-10-15/engine-acceptance.json, .log and .mts.txt. It injects registered engine proof events; it does not establish real browser actions or hosted behavior. Final provider parity and combined release checks remain separate gates.
+Parent ran the existing portable all-city diagnostic against the corrected source, with its output redirected into this release evidence folder rather than overwriting prior accepted evidence. It passes284cities/568authored episodes/2840completion paths, preserves568legacy keepsakes and527legacy completed collections, and completes authored country collections from the accumulated new keepsakes. Evidence: docs/research/phase6-social-release-2026-10-15/engine-acceptance.json, .txt and .mts.txt. It injects registered engine proof events; it does not establish real browser actions or hosted behavior. Final provider parity and combined release checks remain separate gates.
 
 ## Local profile browser and development-route repair
 
@@ -82,3 +82,11 @@ Final existing social component suite after all copy fixes passes20/20. Profile 
 Regenerated progression assets from corrected final batch source:1138episodes in two shards593/545,1055journeys,3428missions. All five combined typecheck projects clean; unchanged strict Worker gate passes3436477bytes<3500000, maximum city reference332bytes. The chained diagnostic then stopped on a mistyped temporary filename; corrected command separately passes37HTTP/privacy checks on merged provider source. No repeated compiler/raw-gate run needed for that CLI typo. Logs currently /tmp/allworld-phase6-combined-focused.log and /tmp/allworld-phase6-combined-profile-check.log.
 
 First-person owner independently found an actual browser startup/chunk regression in11936921: reported initial download2091050raw/597484gzip/498535brotli and startup failure before API. Their lane owns the bounded browser-source/chunk boundary correction, including Vite configuration; our committed /p/ proxy must be preserved. No budget increase, final build/main sync/deployment while this blocker remains. Parent's complete Node/Worker/package chain awaits successor source. Worker-specific synthetic HTTP verification proceeds independently with Sol; no production changes.
+
+Parent additionally owns the single affected namespace fixture in server/registry.test.ts: the existing assertion compares45registered modules with44listed namespaces after adding profiles. Append only the new /api/profiles/ namespace, preserving duplicate/malformed/core/security assertions. User's continuing affected-existing-test authorization applies; no new test case/file. Agent compatibility run otherwise passes77/78; Luna reruns the focused set after this fixture correction and preserves the initial failure log.
+
+## Corrected browser source and final focused verification
+
+Merged accepted classification-only fix73f66122 as7d1844c2; our /p/ dev proxy is preserved. The existing chunk regex now includes the moved source-provider/catalogue/validation files in the lazy progression chunk. First-person owner reports actual corrected boot and targeted startup608139raw/220411gzip/193476brotli passing its unchanged limits; our final complete build/download scan remains required. No bootstrap API or provider payload change in this fix.
+
+Luna rerun passes78/78 after the sole existing namespace-fixture correction; archived initial failure/pass records are separate. Sol's actual disposable Miniflare Worker fixture passes20checks/63history rows/3pages, covering public IDs and canonical receipts, all four accomplishment kinds, direct /p/ prefix dispatch, Human/Agent identity, privacy/hiding/block semantics, no-store/HEAD and read-only SQLite. This is synthetic Worker evidence, not real earned gameplay or production. Astra source review of that diagnostic is pending. Final protected release must retain exact-source CI/build/package and actual hosted non-Lagos gameplay/continuity gates.

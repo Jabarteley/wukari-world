@@ -6,9 +6,9 @@
 - **Owner:** `/root/phase6_public_profiles_impl`
 - **Model / effort:** requested `gpt-5.6-sol` / `medium` with `fork_turns: none`; actual runtime configuration is not exposed to this agent and remains unknown
 - **Thread:** `/root/phase6_public_profiles_impl`
-- **UTC updated:** `2026-10-15T13:28:18Z`
+- **UTC updated:** `2026-10-15T13:39:28Z`
 - **Status:** `ready-for-integration`
-- **Work state:** `handoff-stable`
+- **Work state:** `complete`
 
 ## Goal and boundaries
 
@@ -26,7 +26,7 @@
 - **Host:** local
 - **Branch / worktree:** `codex/retention-main-sync` / `/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld`
 - **Base:** `5181c91a8274f0616b5cb6740971598fd97814ad`
-- **Current commit:** parent reported integration HEAD moved to `cc0ecacb` for an unrelated idle repair during this lane; this implementation began from `5181c91a8274f0616b5cb6740971598fd97814ad` and no Git operation was run here
+- **Current commit:** `7d1844c244135afbd4ef80c2f3ae0af17a5121cb`, containing public-profile integration `f19a81c213a0ecf44714817c5eaa54d0326facd7`, regenerated progression assets `fa1ddbbf859334be26c82703dc038fd25a83256a`, and the subsequent first-person provider merge. This implementation began from `5181c91a8274f0616b5cb6740971598fd97814ad`; this lane ran no Git mutation.
 - **Dirty status:** Dirty before this lane: parent-owned `docs/AGENT-COORDINATION.md`; untracked Phase 6 audit/design/production records and research artifacts; unrelated `ui-world-entry-375.png`. Preserve all unrelated changes.
 - **Port/process ownership:** none; this lane will not start or stop services.
 
@@ -52,18 +52,19 @@
 - Changed the Contacts found-player row in `src/app/features/social/ContactsApp.vue` from “Real player” to neutral “Allworld character”; retained `AiTag`, founder tag, friend suffix, short code and View control. Parent updated only the two affected existing assertions. Astra verified the actual permanent-agent Contacts result.
 - Removed the internal achievement icon identifier from standalone HTML badge text. The static path/title/pinned/date/origin remain; story memento emoji remain because episode definitions store real emoji. Temporary HTML diagnostic confirms `compass` is absent while `Wayfinder · Pinned` and the story emoji remain.
 - Parent/Astra browser acceptance passed actual friend map-pin → Person profile, public human and permanent-agent HTML, hide/unhide and owner privacy, plus desktop/375/320 layouts. Clipboard contents were not readable under browser permissions; correct copy toast and target page were accepted as bounded evidence.
+- A fresh Miniflare/SQLite Durable Object fixture over the actual integrated Worker passed 20/20 checks with 63 accepted history rows across three pages. It verified anonymous human and permanent-agent kinds, delegated-human identity, canonical receipt rejection for 35 wrong-key aliases, all four accomplishment kinds, collection projection, pagination termination/uniqueness, `/p/` Worker prefix, JSON/HTML/HEAD `no-store`, empty HEAD, private/stored-title canary exclusion from every paginated JSON response, directory hide/unhide, known-viewer blocking, honest cookie-free anonymous-page behavior, unchanged player-store `sessions`, `collections` and `entries` contents across the profile-read window, and no synthetic session secret in captured structured logs. This storage comparison does not claim zero SQL transactions, zero startup writes, or coverage of every host table.
+- The first Worker attempt used an index-only temporary asset directory and correctly failed the startup integrity barrier with `Progression asset missions has an unexpected byte length`. The final fixture copied the regenerated `dist` assets into its disposable directory; this was a diagnostic correction, not a source or provider change.
+- Portable evidence is archived at `docs/research/phase6-social-release-2026-10-15/public-profile/worker-diagnostic.mjs.txt` and `worker-checks.txt`. The archived result contains labels and counts only; no synthetic cookie value is persisted. A second run from the portable archived script also produced the same 20-check pass before a wrapper-only zsh variable-name error after probe completion.
 
 ### In progress / blockers
 
-- No known lane-owned source blocker. Parent is staging the feature commit; this lane will make no further edits during integration.
-- Final existing 20-case social component rerun is queued through the shared heavy slot as session `33007`, waiting behind first-person resource owner PID `1297`. The same suite passed 20/20 immediately before the final Contacts text adjustment; parent updated only its two affected expectations.
-- Historical local probe failure: one earlier attempt threw `TypeError: tale.dilemma.answers.map is not a function` in `src/game/content/local-episodes.ts:17`. Parent subsequently ran the current Node HTTP fixture successfully without provider merges, so that transient failure is not attributed to the first-person provider lane.
+- No known lane-owned source or Worker-profile blocker. The feature source is frozen for parent integration/release handling.
+- Historical local probe failure: one earlier attempt threw `TypeError: tale.dilemma.answers.map is not a function` in `src/game/content/local-episodes.ts:17`. Parent subsequently ran the current Node HTTP fixture successfully before provider merges, so that transient failure is explicitly not attributed to the first-person provider lane.
 
 ### Immediate resume steps
 
-1. Parent stages the stable feature source; this lane does not edit during integration.
-2. Capture queued session `33007` final social-suite result when the shared heavy slot is released.
-3. Parent integrates first-person provider source and reruns final combined build/release gates.
+1. Parent/Astra may review the archived Worker fixture and its exact 20-check result.
+2. Treat this evidence only as fresh synthetic Worker/SQLite proof; it is not existing-player, earned-gameplay, browser, network, deployment or production proof.
 
 ## Release state
 
@@ -81,4 +82,6 @@
 | `2026-10-15T13:06:10Z` | ready-for-review | Final typecheck and HTML escaping checks passed. Runtime projection probe reached an unrelated in-flight city-content provider failure before profile code executed. | Final `npm run typecheck:slot` clean; temporary HTML diagnostic clean; provider error recorded above | Parent review and combined-provider runtime verification. |
 | `2026-10-15T13:15:07Z` | ready-for-review | Corrected canonical story keys, sanitized collection inputs, pagination reset and readable origin labels after Astra review. | Typecheck clean; 37-check HTTP probe clean with 35 wrong-key aliases and wrong-city collection rejection | Hold ownership for Astra re-review; parent handles authorized compatibility assertions. |
 | `2026-10-15T13:16:39Z` | ready-for-review | Archived portable redacted probe evidence and verified parent’s bounded compatibility assertion updates. | Existing social component suite 20/20; `docs/research/phase6-social-release-2026-10-15/public-profile/` | Release corrected source to Astra re-review; remain available for bounded findings. |
-| `2026-10-15T13:28:18Z` | ready-for-integration | Added `/p/` dev proxies, corrected Contacts permanent-agent wording and removed raw achievement icon identifiers. Astra accepted source and local browser matrix. | Parent live 5176 profile receipt; proxy source diagnostic; HTML icon diagnostic; final social suite queued as session `33007` | Freeze edits for parent integration; report queued suite result. |
+| `2026-10-15T13:28:18Z` | ready-for-integration | Added `/p/` dev proxies, corrected Contacts permanent-agent wording and removed raw achievement icon identifiers. Astra accepted source and local browser matrix. | Parent live 5176 profile receipt; proxy source diagnostic; HTML icon diagnostic; existing social component suite 20/20 | Freeze edits for parent integration. |
+| `2026-10-15T13:36:28Z` | complete | Probed the integrated Cloudflare Worker with a disposable Miniflare/SQLite fixture and archived a portable diagnostic. | 20/20 checks; 63 history rows/3 pages; `worker-diagnostic.mjs.txt`; `worker-checks.txt` | Parent/Astra review; no further lane source edits. |
+| `2026-10-15T13:39:28Z` | complete | Tightened the privacy assertion to inspect every paginated JSON response and narrowed the read-only claim to the compared player-store tables. | Corrected portable probe reran 20/20; 63 history rows/3 pages | Parent/Astra evidence review. |

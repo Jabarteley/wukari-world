@@ -1,0 +1,36 @@
+
+> joinallworld@0.1.0 pretypecheck
+> npm run -s preflight
+
+
+> joinallworld@0.1.0 typecheck
+> node --experimental-strip-types scripts/typecheck.ts --serial
+
+Typecheck clean: 5 projects, 0 errors in .ts and .vue, 0 baselined in existing JavaScript.
+Worker: 3436477 bytes; 284 cities; maximum compiled city reference: 332 bytes; mean: 289 bytes
+✔ the Worker contains city references under 500 bytes each and no city payload or packed dictionary (93.46625ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 165.431083
+node:internal/modules/cjs/loader:1459
+  throw err;
+  ^
+
+Error: Cannot find module '/tmp/allworld-phase6-public-profile-fix-probe.mjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.14.1

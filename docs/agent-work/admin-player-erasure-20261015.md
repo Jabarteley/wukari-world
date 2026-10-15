@@ -55,3 +55,7 @@ Local synthetic servers4325/4326 stopped. Production root GET-only browser tab46
 Next executable step: obtain hosted CI terminal success, then request the concrete exception to DEPLOY.md step1 for this exact candidate's six broad Worker failures and incomplete full city corpus. Existing exact6695 release approval does not authorize those new-source exceptions. After approval: main fast-forward/CI, protected deploy, exact3 cleanup, continuity/map/profile checks, docs sync and housing lane return.
 
 Hosted CI38787644803 is terminal SUCCESS on exact4ab427e7. Concrete user exception request sent for six broader Worker failures and incomplete allCities run; main push/deploy await that answer. All necessary local/hosted candidate preparation is complete.
+
+## Yield handoff
+
+Code candidate4ab427e7 and evidence/docs0e459604 are on origin/codex/admin-player-erasure. Main was not changed; no deployment or production erasure. User release-exception question remains pending. codex-phase6 lock released normally; housing owner explicitly received lane return and its coordination hold is lifted. On resume, fetch/recheck main and live health before reacquiring; never overwrite a newer housing release with this older candidate. Browser production GET-only tab460561228 preserved; local synthetic servers stopped. Unrelated untracked ui-world-entry-375.png remains untouched.

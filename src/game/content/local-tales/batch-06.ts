@@ -495,7 +495,7 @@ const batch = {
         { label: 'Greet two game regulars in Kingston', purpose: 'Bring ordinary social effort to the surprise.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Emancipation Park three times', purpose: 'Reflect on four relay legs.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Kingston', purpose: 'Connect registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Kingston', purpose: 'Connect the settings through “Four Legs, Three Runners”: How should three runners cover four nonconsecutive legs?', task: 'places', count: 2 },
         { label: 'Look around Cinchona Botanical Gardens twice', purpose: 'Echo the careful test.', task: 'practical', count: 2 },
       ] },
     },
@@ -633,7 +633,7 @@ const batch = {
         { label: 'Greet three game regulars in La Paz', purpose: 'Bring ordinary witnesses to the shared answer.', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Moon Valley twice', purpose: 'Reflect on two tray trips.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in La Paz', purpose: 'Broaden the reflection.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in La Paz', purpose: 'Connect the settings through “The Divided First Tray”: How should seven portions travel in two trays?', task: 'places', count: 3 },
         { label: 'Look around Jardín Botánico three times', purpose: 'Echo alternating memory fragments.', task: 'practical', count: 3 },
       ] },
     },
@@ -679,7 +679,7 @@ const batch = {
         { label: 'Greet two game regulars in Lahore', purpose: 'Bring ordinary company to the meal context.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Model Town Central Park three times', purpose: 'Reflect on repeated focus turns.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Lahore', purpose: 'Connect the settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Lahore', purpose: 'Connect the settings through “Four Turns in the Quiet Seat”: How should four members share one quiet seat?', task: 'places', count: 2 },
         { label: 'Look around Gulshan-e-Iqbal Park twice', purpose: 'Echo the two tasting portions.', task: 'practical', count: 2 },
       ] },
     },
@@ -771,7 +771,7 @@ const batch = {
         { label: 'Greet two game regulars in Luanda', purpose: 'Bring ordinary social effort to the shared game.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Parque Infantil Luanda Mágica three times', purpose: 'Reflect on the fixed return.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Luanda', purpose: 'Connect registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Luanda', purpose: 'Connect the settings through “The End Seat Clears the Path”: How should six guests keep the serving path open?', task: 'places', count: 2 },
         { label: 'Look around Parque da Maianga twice', purpose: 'Echo the passing practice.', task: 'practical', count: 2 },
       ] },
     },
@@ -817,7 +817,7 @@ const batch = {
         { label: 'Greet three game regulars in Lusaka', purpose: 'Bring ordinary company to the shared meal.', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Enjoy two quiet evenings in Lusaka', purpose: 'Reflect on ordered work.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in Lusaka', purpose: 'Broaden reflection.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Lusaka', purpose: 'Connect the settings through “Edges Lead the Broad Brush”: How should two brushes finish four panels?', task: 'places', count: 3 },
         { label: 'Have three simple meals in Lusaka', purpose: 'Continue the shared-practice theme.', task: 'practical', count: 3 },
       ] },
     },
@@ -860,10 +860,10 @@ const batch = {
       missions: { daily: [
         { label: 'Look around Redbull Park once', purpose: 'Support Ira’s tempo comparison.', task: 'practical', count: 1 },
         { label: 'Visit Tree Tower Park in Malé', purpose: 'Reach the game and display setting.', task: 'discovery-visit', count: 1 },
-        { label: 'Greet two game regulars in Malé', purpose: 'Bring ordinary players to the social context.', task: 'people', count: 2 },
+        { label: 'Greet two game regulars in Malé', purpose: 'Discuss the decision in “Six Throws at Two Tempos”: How should unequal routines fit one session?', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Tree Tower Park three times', purpose: 'Reflect on three display bundles.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Malé', purpose: 'Connect registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Malé', purpose: 'Connect the settings through “The Midpoint Bundle Swap”: How should three bundles use two tables?', task: 'places', count: 2 },
         { label: 'Look around Redbull Park twice', purpose: 'Echo two throw tempos.', task: 'practical', count: 2 },
       ] },
     },
@@ -909,7 +909,7 @@ const batch = {
         { label: 'Greet three game regulars in Mariehamn', purpose: 'Bring ordinary company to the picnic.', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Miramarparken twice', purpose: 'Echo two shared laps.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in Mariehamn', purpose: 'Broaden reflection.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Mariehamn', purpose: 'Connect the settings through “Together for the Middle Laps”: How should a companion join a four-lap goal?', task: 'places', count: 3 },
         { label: 'Look around Självstyrelseparken three times', purpose: 'Reflect on timed arrival.', task: 'practical', count: 3 },
       ] },
     },
@@ -955,7 +955,7 @@ const batch = {
         { label: 'Greet two game regulars in Moroni', purpose: 'Bring ordinary neighbor contact to the story.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Enjoy three quiet evenings in Moroni', purpose: 'Reflect on three care intervals.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Moroni', purpose: 'Connect registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Moroni', purpose: 'Connect the settings through “Independent First, Joint Last”: How should two helpers cover three care intervals?', task: 'places', count: 2 },
         { label: 'Have two simple meals in Moroni', purpose: 'Echo two guest times.', task: 'practical', count: 2 },
       ] },
     },
@@ -1001,7 +1001,7 @@ const batch = {
         { label: 'Greet three game regulars in N\'Djamena', purpose: 'Bring ordinary neighbor contact to shared work.', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around parc du marche Koweïtien twice', purpose: 'Reflect on two work surfaces.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in N\'Djamena', purpose: 'Broaden reflection.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in N\'Djamena', purpose: 'Connect the settings through “The Surface Left Open”: How should three teams use two surfaces?', task: 'places', count: 3 },
         { label: 'Enjoy three quiet evenings in N\'Djamena', purpose: 'Echo three movement patterns.', task: 'practical', count: 3 },
       ] },
     },
@@ -1047,7 +1047,7 @@ const batch = {
         { label: 'Greet two game regulars in Niamey', purpose: 'Bring ordinary social effort to the lesson.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Parc d’Attraction Aéroport three times', purpose: 'Echo three beginner turns.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Niamey', purpose: 'Connect registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Niamey', purpose: 'Connect the settings through “The Coach Demonstrates for a Score”: How should four turns include score and coaching?', task: 'places', count: 2 },
         { label: 'Look around Parc d’agrément twice', purpose: 'Reflect on two screens.', task: 'practical', count: 2 },
       ] },
     },
@@ -1093,7 +1093,7 @@ const batch = {
         { label: 'Greet three game regulars in Podgorica', purpose: 'Bring ordinary company to shared work.', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Gushing Water Tree twice', purpose: 'Reflect on two drying jobs.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in Podgorica', purpose: 'Broaden reflection.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Podgorica', purpose: 'Connect the settings through “Drying Jobs Begin First”: How should five jobs finish in two rounds?', task: 'places', count: 3 },
         { label: 'Look around Karađorđev park three times', purpose: 'Echo three meal dishes.', task: 'practical', count: 3 },
       ] },
     },
@@ -1136,10 +1136,10 @@ const batch = {
       missions: { daily: [
         { label: 'Look around King Abdullah Park once', purpose: 'Support Greer’s release-style comparison.', task: 'practical', count: 1 },
         { label: 'Visit Suwaidi Park in Riyadh', purpose: 'Reach the game and review setting.', task: 'discovery-visit', count: 1 },
-        { label: 'Greet two game regulars in Riyadh', purpose: 'Bring ordinary players to the social context.', task: 'people', count: 2 },
+        { label: 'Greet two game regulars in Riyadh', purpose: 'Discuss the decision in “Three-Throw Blocks”: How should partners share twelve attempts?', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Suwaidi Park twice', purpose: 'Reflect on paired chapters.', task: 'discovery', count: 2 },
-        { label: 'Visit two supported places in Riyadh', purpose: 'Connect registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Riyadh', purpose: 'Connect the settings through “One Review Method Continues”: How should one friend interval support four chapters?', task: 'places', count: 2 },
         { label: 'Look around King Abdullah Park three times', purpose: 'Echo three-attempt blocks.', task: 'practical', count: 3 },
       ] },
     },
@@ -1182,10 +1182,10 @@ const batch = {
       missions: { daily: [
         { label: 'Look around Botanical Gardens once', purpose: 'Support Uri’s rest-seat plan.', task: 'practical', count: 1 },
         { label: 'Visit Concord Playing Feild in Roseau', purpose: 'Reach the chair and catching setting.', task: 'discovery-visit', count: 1 },
-        { label: 'Greet three game regulars in Roseau', purpose: 'Bring ordinary players to the social context.', task: 'people', count: 3 },
+        { label: 'Greet three game regulars in Roseau', purpose: 'Discuss the decision in “The Chair That Moves Last”: How should setup keep a rest chair available?', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Concord Playing Feild twice', purpose: 'Reflect on two passing cycles.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in Roseau', purpose: 'Broaden reflection.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Roseau', purpose: 'Connect the settings through “Two Staggered Passing Cycles”: How should two balls reach all five players?', task: 'places', count: 3 },
         { label: 'Look around Botanical Gardens three times', purpose: 'Echo three movable chairs.', task: 'practical', count: 3 },
       ] },
     },
@@ -1231,7 +1231,7 @@ const batch = {
         { label: 'Greet two game regulars in Santiago', purpose: 'Bring ordinary company to the review.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Parque Mapocho Río Tramo 3 three times', purpose: 'Reflect on three topping choices.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Santiago', purpose: 'Connect registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Santiago', purpose: 'Connect the settings through “The Repeated Topping Never Repeats”: How should one topping repeat without adjacency?', task: 'places', count: 2 },
         { label: 'Look around Parque Metropolitano Sur Cerro Chena twice', purpose: 'Echo two solo practices.', task: 'practical', count: 2 },
       ] },
     },
@@ -1277,7 +1277,7 @@ const batch = {
         { label: 'Greet three game regulars in Sofia', purpose: 'Bring ordinary social effort to the challenge.', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Мадарска градинка twice', purpose: 'Reflect on task and coaching.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in Sofia', purpose: 'Broaden reflection.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Sofia', purpose: 'Connect the settings through “Coach, Then Keep the Challenge”: How should friends support the hardest-task owner?', task: 'places', count: 3 },
         { label: 'Look around West Park three times', purpose: 'Echo the odd positions.', task: 'practical', count: 3 },
       ] },
     },
@@ -1323,7 +1323,7 @@ const batch = {
         { label: 'Greet two game regulars in Tórshavn', purpose: 'Bring ordinary teammates to the relay context.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Torgið three times', purpose: 'Reflect on three covered dishes.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Tórshavn', purpose: 'Connect registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Tórshavn', purpose: 'Connect the settings through “Three Covers for the Closing”: How should three covers serve five dishes?', task: 'places', count: 2 },
         { label: 'Enjoy two quiet evenings in Tórshavn', purpose: 'Echo two walking legs per friend.', task: 'practical', count: 2 },
       ] },
     },
@@ -1366,10 +1366,10 @@ const batch = {
       missions: { daily: [
         { label: 'Look around Place de Barcelone once', purpose: 'Support Arden’s display plan.', task: 'practical', count: 1 },
         { label: 'Visit Place Pasteur in Tunis', purpose: 'Reach the display and care setting.', task: 'discovery-visit', count: 1 },
-        { label: 'Greet three game regulars in Tunis', purpose: 'Bring ordinary neighbor contact to the story.', task: 'people', count: 3 },
+        { label: 'Greet three game regulars in Tunis', purpose: 'Discuss the decision in “The Low Piece Between Two Stands”: How should three pieces use two stands?', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Place Pasteur twice', purpose: 'Reflect on two care shifts.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in Tunis', purpose: 'Broaden reflection.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Tunis', purpose: 'Connect the settings through “Morning Helper, Evening Helper”: How should two helpers cover morning and evening?', task: 'places', count: 3 },
         { label: 'Look around Place de Barcelone three times', purpose: 'Echo three display pieces.', task: 'practical', count: 3 },
       ] },
     },
@@ -1412,10 +1412,10 @@ const batch = {
       missions: { daily: [
         { label: 'Enjoy one quiet evening in Ulaanbaatar', purpose: 'Support Ira’s focused transition practice.', task: 'practical', count: 1 },
         { label: 'Visit Ulaanbaatar Park', purpose: 'Reach the routine and strategy setting.', task: 'discovery-visit', count: 1 },
-        { label: 'Greet two game regulars in Ulaanbaatar', purpose: 'Bring ordinary players to the social context.', task: 'people', count: 2 },
+        { label: 'Greet two game regulars in Ulaanbaatar', purpose: 'Discuss the decision in “Practice the Transition Twice”: How should Ira use three repetitions?', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Ulaanbaatar Park three times', purpose: 'Echo three repetitions.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Ulaanbaatar', purpose: 'Connect registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Ulaanbaatar', purpose: 'Connect the settings through “The Neutral Tenth Marker”: How should ten markers serve three equal players?', task: 'places', count: 2 },
         { label: 'Enjoy two quiet evenings in Ulaanbaatar', purpose: 'Reflect on two focused runs.', task: 'practical', count: 2 },
       ] },
     },
@@ -1507,7 +1507,7 @@ const batch = {
         { label: 'Greet three game regulars in Vilnius', purpose: 'Bring ordinary practice partners into the story.', task: 'people', count: 3 },
       ], weekly: [
         { label: 'Look around Vingis Park twice', purpose: 'Recall coaching and solo phases.', task: 'discovery', count: 2 },
-        { label: 'Visit three supported places in Vilnius', purpose: 'Broaden the local setting.', task: 'places', count: 3 },
+        { label: 'Visit three supported places in Vilnius', purpose: 'Connect the settings through “Three Tins, Seven Packets”: How should seven packets fill three tins?', task: 'places', count: 3 },
         { label: 'Look around Panerių skulptūrų parkas three times', purpose: 'Echo three practice intervals.', task: 'practical', count: 3 },
       ] },
     },
@@ -1645,7 +1645,7 @@ const batch = {
         { label: 'Greet two game regulars in Zagreb', purpose: 'Bring ordinary neighbors into the shared goals.', task: 'people', count: 2 },
       ], weekly: [
         { label: 'Look around Bundek three times', purpose: 'Echo three shared walks.', task: 'discovery', count: 3 },
-        { label: 'Visit two supported places in Zagreb', purpose: 'Connect both registered settings.', task: 'places', count: 2 },
+        { label: 'Visit two supported places in Zagreb', purpose: 'Connect the settings through “Two Walks in One Shared Day”: How can the friends keep their three-walk promise?', task: 'places', count: 2 },
         { label: 'Look around Park mladenaca twice', purpose: 'Recall the two available days.', task: 'practical', count: 2 },
       ] },
     },

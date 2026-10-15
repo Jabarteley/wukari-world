@@ -1,6 +1,7 @@
 // The snapshot the brain reads, built from the live game: the rules engine's view of the life, the city registry and the social client.
 // Nothing here is sent anywhere. It is read each time the companion answers or the director looks.
-import { cachedCityContent, cityRules, playableCityIds } from '../../../game/cities/registry.ts'
+import { cachedCityContent, cityRules } from '../../../game/cities/registry.ts'
+import { openCityIds } from '../../openCities.ts'
 import { helpNow } from '../relief/reliefModel.ts'
 import { callStore } from '../calls/callState.ts'
 import { social } from '../social/useSocial.ts'
@@ -39,7 +40,7 @@ export function contextFromGame(app: App): CompanionContext {
     away: Boolean(view.estate?.visiting), rideDebt: view.estate?.ride?.debt ?? 0, stuck: helpNow(state, here) !== null,
     goal: step, missions: { locked: view.missions?.locked ?? null, claimable: view.missions?.claimable ?? 0, open: missions },
     places,
-    cities: playableCityIds().flatMap((id) => { const rules = cityRules(id); return rules ? [{ id, name: rules.name, open: rules.status === 'open', here: id === here, home: view.estate?.home?.city === id }] : [] }),
+    cities: openCityIds().flatMap((id) => { const rules = cityRules(id); return rules ? [{ id, name: rules.name, open: rules.status === 'open', here: id === here, home: view.estate?.home?.city === id }] : [] }),
     friends: (me?.friends ?? []).map((friend) => ({ id: friend.id, name: friend.name, online: friend.status === 'online', ...(friend.founder ? { founder: true } : {}) })),
     unread: unreadChats(me), employed: Boolean(view.career?.employed), jobRole: view.career?.role ?? null,
     stallsOpened: state.business?.opened ?? 0, stallAlert: updates.find((update) => update.kind === 'business' && !update.read)?.text ?? null,

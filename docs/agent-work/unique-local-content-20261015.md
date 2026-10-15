@@ -64,3 +64,53 @@ Merged origin/mainac94fca0 cleanly after local75-citycommit8273254b. This brings
 Fresh localhost creator draft verifies Nairobi breadcrumbKenya and concise home copy; screenshotui-nairobi-country.png, stopped before Play. Encountered and corrected1districts grammar and invisible exact-story-spot disabled reason: EpisodeCard now prints the actual disabling reason, including guidance to use Go there. BrowserNairobi token survived reload.
 
 The main merge changed Lagos asset serialization order without byte-count change. Preview asset regeneration updated the Lagos hash; include the regenerated manifest before CI publication so the built manifest and emitted JSON path agree. This is generated source synchronization, not a map/content behavior change.
+
+## Publication checkpoint
+
+75-city milestone is on GitHubmain4fd4a1b715aca6d39b9d7443315ffc2988dda2a6. CI38670494623 succeeded on2f02124f820b2110257a2fbd852c6bcf4f9dc5e0 (typecheck/build/284citydownload/smoke/policy);4fd4a1b7 adds only the other computer’s release-status docs via5826edd6.111focused existing integration cases pass locally. The small global table-game hint correction and next content batches are not yet included.
+
+Live health now reportsjoinallworld-ac94fca06702c1c86dd37fc3b71, independently released by the other computer (agent missions/memory/resident work). No deployment was performed in this content task. Earlierac407c2c production notes are historical. Latest usage92%used/8%remaining; stop all work at95%used.
+
+Batch03 is complete and parent-reviewed (35cities/34arcs/70tales/210missions). Source gate and isolatedstrict pass; corrected unsupported fictional-prop mission targets and changed option positions to24/23/23 before any activation. Worker03 now owns05quality. Batch04 is complete structurally/strict; parent sampled firstsix, Cairo/Moscow and finalsix. It still needs action-honest mission label correction plus a Windhoek5cups/4saucers arithmetic correction (current prose used6cups). Do not activate until those are confirmed.
+
+## Accepted local 145-city milestone
+
+Batches01–04 now accepted locally:145cities,104country/territoryidentities,290tales,870missiondefinitions. All four content files pass the combined structural gate after semantic corrections.03/04 correct-answer positions are24/23/23 each;03prop-target labels corrected,04all210labels corrected,Windhoekfive-cup arithmetic corrected. Both owners released their files. Country arcs activate whole-country only.
+
+Engine probe passes1450completionpaths across290episodes, preserving568exactoldmementos/527oldcollections; mission probe passes17400dailydeals,free swaps,fallback and144legacyrolloverclaims. Reports engine-acceptance.json/mission-acceptance.json now correspond to145-city local activation; previous75-citybuild/CI evidence stays scoped to75 until newCI finishes. Existing111cases previously passed aftermainintegration; new145focusedrun andCIpending. Global table-game hint now uses Phone→Tables instead of prescribing Lagos-specific venues.
+
+Activeauthoring: Sol05quality and Sol06quality own separatefiles/records.05firstsix approved with explicit paint-drying schedule correction and voluntary spicy/mild preferences;06awaits matrix. UpdatedAUTHORING reinforces actual observable mission labels, strict-valid source checkpoints and broader human-life stories. Old03–08Luna workers stay interrupted;07/08unassignedheld. Latestusage92%used/8%remaining; stopallat95%used. No deployment.
+
+## 145-city CI and concurrent main movement
+
+CI38671975290 passes on84679997, and111focused integration cases pass after145activation. Before mainpush, fresh main545caabb adds released Phase14 (29files); merged cleanly and rerunning focused checks including prayer/resident contracts, then combined CI. No new content task deployment.
+
+ActualMoscowTalesQA created via localhost creator: Russia/Moscow grouping correct, both distinct tales and Soft-Block Paths country collection render. First real arboretum Look around activity completed; wholeMoscowtale not yet completed inbrowser. Nairobi token survives145expansion (ui-nairobi-earned-145.png).
+
+A third finite Luna outline lane was tried while two Sol writers authored;07matrix rejected for repeated05meal/care patterns and arithmetic failures (fourrequests/twowindows, demo+threelearnersinthreeturns, nineguests/sixplates). Worker corrected its record and stopped. No sourceaccepted. Actualcheckoutrevision in that record corrected from stale inputbasec42 to84679997. This trial did not establish cost savings; costs unknown. Only05/06writers remain active;07requires re-authoring,08held.
+
+Combined main Phase14 focused checks pass145/145 in /tmp/allworld-unique-145-main10-check.log.
+
+Moscow browser completion now passes: real arboretum Look around → return Brateevo People spot → intro → real Brateevo Look around → People spot → observation approach → under-arch response → quiet solo finale. Under-arch ribbon clasp earned; ui-moscow-earned-145.png saved. No Moscow reload claim yet. Exact-spot disabling guidance visibly appeared before returning to host, confirming the UI fix.
+
+Live usage93%used/7%remaining. Stop all agents/work at95%used; keep current owned source checkpoints closed and documented.05/06 both near final35city completion;07rejected,08held.
+
+## 215-city checkpoint before usage stop
+
+Main81a94cbb publishes145cities,104identities,290tales,870missions. Combined released Phase14 CI38673086751 green on6198fe21; later merge adds release-status docs. No deployment in this task.
+
+Batches05/06 accepted after source semantic review and Luna middle-range84plot audit. Corrected reciprocal coaching, course counts, drying schedule, shared walks, Juba shelf capacity and repeated problem/solution plots. Local accepted01–06 now215cities,174identities,430tales,1290missions. Engine2150paths pass preserving568oldkeepsakes/527collections. Mission25800deals/214retiredrolloverclaims pass. Whole-country activation and trusted agent proof/reward boundaries unchanged.
+
+Sol07/08 own remaining69cities, unregistered source/matrices; Luna82plot matrix audit completed with no proven high-confidence contradiction. Those are not accepted whole batches. Read their quality records for exact checkpoints. Old rejected07outline is historical and must not be resumed.
+
+Welcome copy now worldwide; country count says countries and territories. Quiet finale and choice instructions use player-facing language. Existing entry tests30pass before combined rerun. Nairobi and Moscow real-browser completion proven; ui-moscow-earned-145.png records Moscow reward. Fresh landing375DOM no overflow; capture scaling inconclusive. Chrome tab binding subsequently timed out repeatedly; temporary Chrome viewport reset unconfirmed. IAB viewport reset succeeded. Owned synthetic tabs: Chrome460560808 Nairobi/460560835 Moscow/460560847 freshqa.localhost; preserve unrelated CharacterLab460560822 and user Jolly save.
+
+Usage94%used/6%remaining. Authors instructed to close current valid checkpoint, document and stop without starting another city. Hard stop all work at95%used. Parent finishing215publication checks. Next agent: inspect liveusage first; do not resume without user allowing work past stop. After authorization, finish/review07/08, gate whole batches, register, run284city probes and CI, fetch/merge released main preserving world-alive contracts, sync; deployment is separate. Temporary probes are /tmp/allworld-unique-progression-acceptance.ts and /tmp/allworld-unique-mission-proof.ts.
+
+215-city combined existing mission/agent API/registry/house/resident/prayer/creator/entry checks pass175/175, zero failures (/tmp/allworld-unique-215-check.log).
+
+Accepted215 milestone committed67e13a8f and pushed branch; CI38675110595 in progress. Both authors stopped at94:07completed20/35cities (40tales120missions),08completed6/34 (12tales36missions). Parent archived their closed strict-valid incomplete sources as draft-batches/batch-07-quality-usage-checkpoint.ts.txt and batch-08-quality-usage-checkpoint.ts.txt, outside compilation. Whole69-city activation remains pending;26cities have partial draft prose,43remain unwritten. All matrices and resumes are in owned quality records. No author agents remain running. Chrome viewport reset attempted again through documented browser capability, but timed out; reset unconfirmed.
+
+## Terminal handoff
+
+CI38675110595 succeeded on67e13a8f (typecheck/build/all284citybudgets/smoke/releasepolicy; broad suites skipped). Main freshly fetched unchanged; pushed checked source plus docs-only checkpoint95855168 to main. Published215cities/174identities/430tales/1290missions. Focused175/175 pass. No deployment. Final69cities remain inactive. Both authors and Luna audit completed/stopped; no further authoring underway. Lastusage94%used/6%remaining, ending at safe checkpoint before95%hard floor. Shared preview remains available with saves preserved; no unrelated processes touched. Inconclusive ui-world-entry-375.png remains local/untracked and is not acceptance evidence. Chrome viewport reset still unconfirmed after browser operation timed out.

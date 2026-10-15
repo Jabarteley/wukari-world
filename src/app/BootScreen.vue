@@ -94,7 +94,7 @@ async function clearAndReload(): Promise<void> {
       <img class="boot-world" src="/icons/world-loader.webp" width="96" height="96" alt="" :class="{ paused: failed }">
       <h1 id="boot-title">Allworld</h1>
       <p class="boot-lead">A whole world to live in.</p>
-      <p class="boot-sub">Real cities across Africa. Free, in your browser.</p>
+      <p class="boot-sub">Places around the world. Free, in your browser.</p>
       <div v-if="failed" role="alert">
         <p v-if="updateAvailable">Allworld has been updated. Reload to continue.</p>
         <p v-else>Allworld couldn't finish loading. Check your connection, then try again.</p>

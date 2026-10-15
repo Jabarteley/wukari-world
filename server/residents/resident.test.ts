@@ -11,6 +11,7 @@ import type { AgentRoom, RouteContext } from '../types.ts';
 import { RESIDENTS, REMI, residentId } from './life.ts';
 import { ALONE_MS, CHOICES, EVENT_GAP_MS, MAX_THOUGHTS, OUT_OF_CHARACTER, SUMMARY_MAX, entryLine, judge, judgeSummary, residentsOf } from './resident.ts';
 import type { Stored } from './resident.ts';
+import type { IdeaIn } from './voice.ts';
 
 const HOUR = 3600000, MIN = 60000;
 const DAY0 = lagosDayStart(20000); // a Lagos midnight
@@ -21,9 +22,10 @@ const flush = (): Promise<void> => new Promise((resolve) => setImmediate(resolve
 interface Call { model: string; messages: { role: string; content: string }[]; n: number }
 const GOOD = '{"next":"keep_routine","say":"Good morning, ehn."}';
 
-function rig(options: { settings?: Record<string, boolean | number | string>; reply?: (call: Call) => string; limits?: Partial<Limits>; list?: string; start?: number } = {}) {
+function rig(options: { fate?: import('../prayers/model.ts').Fate; settings?: Record<string, boolean | number | string>; reply?: (call: Call) => string; limits?: Partial<Limits>; list?: string; start?: number; collect?: (idea: IdeaIn) => Promise<unknown>; founders?: () => Promise<string[]> } = {}) {
   const clock = { t: options.start ?? at(0) };
   const settings: Record<string, boolean | number | string> = { residentOn: true, ...options.settings };
+  const prayed: { id: string; name: string; city: string; text: string; situation: string }[] = [];
   const calls: Call[] = [], presents: unknown[] = [], absents: string[] = [], says: string[] = [], saves: Stored[] = [];
   const sockets: { room: string; session: { id: string } }[] = [];
   const listeners: Record<string, ((data: never) => void)[]> = {};
@@ -53,16 +55,16 @@ function rig(options: { settings?: Record<string, boolean | number | string>; re
     setting: (key) => (key === 'modelsResident' ? options.list : undefined), limits: () => limits,
     load: async () => undefined, save: async () => {},
   });
-  const runner = residentsOf(ctx, { ask: (input) => router.ask(input), models: () => router.listFor('resident').map((e) => `${e.provider}:${e.id}`), load: async () => undefined, save: async (value) => { saves.push(structuredClone(value)); } });
+  const runner = residentsOf(ctx, { ask: (input) => router.ask(input), models: () => router.listFor('resident').map((e) => `${e.provider}:${e.id}`), load: async () => undefined, save: async (value) => { saves.push(structuredClone(value)); }, pray: async (p) => { prayed.push(p); }, fate: async () => options.fate ?? null, collect: options.collect ?? (async () => {}), founders: options.founders ?? (async () => []) });
   /** Run the clock forward by `minutes`, one beat a minute, letting each thought finish. */
   const run = async (minutes: number): Promise<void> => { for (let n = 0; n < minutes; n++) { runner.tick(); await flush(); await flush(); clock.t += MIN; } };
-  return { clock, settings, calls, presents, absents, says, saves, sockets, runner, router, agentRoom, run, ctx, listeners };
+  return { prayed, clock, settings, calls, presents, absents, says, saves, sockets, runner, router, agentRoom, run, ctx, listeners };
 }
 
 test('judge: only the right JSON, a listed choice, in character, with a clean short line', () => {
-  assert.deepEqual(judge('{"next":"eat","say":"Time for lunch."}'), { ok: true, next: 'eat', say: 'Time for lunch.' });
-  assert.deepEqual(judge('Sure! ```json\n{"next":"go_home"}\n```'), { ok: true, next: 'go_home', say: null });
-  assert.deepEqual(judge('{"next":"keep_routine","say":""}'), { ok: true, next: 'keep_routine', say: null });
+  assert.deepEqual(judge('{"next":"eat","say":"Time for lunch."}'), { ok: true, next: 'eat', say: 'Time for lunch.', prayer: null });
+  assert.deepEqual(judge('Sure! ```json\n{"next":"go_home"}\n```'), { ok: true, next: 'go_home', say: null, prayer: null });
+  assert.deepEqual(judge('{"next":"keep_routine","say":""}'), { ok: true, next: 'keep_routine', say: null, prayer: null });
   for (const bad of ['', 'no json here', '{"next":', '{"next":"fly_away"}', '{"say":"hi"}', '[1,2]', '{"next":"eat","say":5}', `{"next":"eat","say":"${'x'.repeat(200)}"}`]) assert.deepEqual(judge(bad), { ok: false, slip: 'invalid' }, bad);
   for (const slip of ['As an AI I cannot', '{"next":"eat","say":"I am just a language model"}', '{"next":"eat","say":"this game is fun"}', '{"next":"eat","say":"hello player"}', '{"next":"eat","say":"your assistant here"}', '{"next":"eat","say":"my prompt says"}', '{"next":"eat","say":"I am an A.I."}']) assert.deepEqual(judge(slip), { ok: false, slip: 'character' }, slip);
   assert.deepEqual(judge('{"next":"eat","say":"send me money please"}'), { ok: false, slip: 'words' });
@@ -294,4 +296,101 @@ test('records are stored lazily and bounded; a saved day loads back', async () =
   const again = residentsOf(t.ctx, { ask: async () => ({ ok: false, why: 'off', attempts: [] }), models: () => [], load: async () => last, save: async () => {} });
   await again.ready();
   assert.equal(again.day()!.thoughts, last.residents[residentId(REMI)]!.days[Object.keys(last.residents[residentId(REMI)]!.days)[0]!]!.thoughts);
+});
+
+// ---- prayer (docs/PRAYERS.md) ---------------------------------------------------------------------------------------------------------------
+
+const PRAYER = 'Thank you for this quiet morning. Keep my sister safe in Ibadan.';
+const PRAYING = JSON.stringify({ next: 'pray', say: '', prayer: PRAYER });
+
+test('judge: a prayer is a listed choice with its own bounded text that passes the agent word rules and stays in character', () => {
+  assert.ok((CHOICES as readonly string[]).includes('pray'));
+  assert.deepEqual(judge(PRAYING), { ok: true, next: 'pray', say: null, prayer: PRAYER });
+  assert.deepEqual(judge('{"next":"pray","say":""}'), { ok: false, slip: 'invalid' }, 'a prayer needs words');
+  assert.deepEqual(judge('{"next":"pray","prayer":"ok"}'), { ok: false, slip: 'invalid' }, 'and not a few letters');
+  assert.deepEqual(judge(`{"next":"pray","prayer":"${'a '.repeat(150)}"}`), { ok: false, slip: 'invalid' }, 'and not a page');
+  assert.deepEqual(judge('{"next":"pray","prayer":"Please send me money so I can pay rent"}'), { ok: false, slip: 'words' });
+  assert.deepEqual(judge('{"next":"pray","prayer":"Call me on 08031234567 and bless this house"}'), { ok: false, slip: 'words' });
+  assert.deepEqual(judge('{"next":"pray","prayer":"I am only a language model, but I pray"}'), { ok: false, slip: 'character' });
+  assert.equal(agentWords(PRAYER, { toMinor: true }).ok, true, 'the resident\'s prayer passes agentWords');
+  // A prayer is not carried by any other choice.
+  assert.deepEqual(judge('{"next":"eat","say":"","prayer":"A prayer that rides along"}'), { ok: true, next: 'eat', say: null, prayer: null });
+});
+
+test('a resident prays once a day: the prayer goes to the Prayers page, is never spoken, and a second is let go', async () => {
+  const t = rig({ start: at(9), reply: () => PRAYING, settings: { residentShadow: false } });
+  await t.run(120);
+  assert.equal(t.prayed.length, 1, 'one prayer a day');
+  assert.deepEqual(t.prayed[0], { id: residentId(REMI), name: 'Remi', city: 'lagos', text: PRAYER, situation: t.prayed[0]!.situation });
+  assert.match(t.prayed[0]!.situation, /^well · .+ · \d\d:\d\d local$/);
+  assert.equal(t.says.includes(PRAYER), false, 'a prayer is not said aloud');
+  const day = t.runner.day()!;
+  assert.equal(day.prayed, 1);
+  assert.ok(day.entries.some((e) => e.action === 'pray'), 'the prayer is in her record of choices');
+  assert.ok(day.entries.filter((e) => e.action === 'keep_routine').length >= 1, 'the later ones were let go as quiet moments');
+  assert.ok(entryLine(REMI, day.entries.find((e) => e.action === 'pray')!).includes('pray'));
+  // Tomorrow she may pray again.
+  await t.run(24 * 60);
+  assert.equal(t.prayed.length, 2);
+});
+
+test('a prayer that breaks the word rules is thrown away and asked again; after two it is not kept', async () => {
+  const bad = JSON.stringify({ next: 'pray', prayer: 'Please send me money for my shop' });
+  const t = rig({ start: at(9), reply: () => bad });
+  await t.run(10);
+  assert.equal(t.prayed.length, 0);
+  const day = t.runner.day()!;
+  assert.ok(day.slips >= 2 && day.retries >= 1, 'counted as slips and a retry');
+});
+
+test('what the owner did to her is lived as her own luck: a fever, a dream, a pull towards a place; never its source', async () => {
+  const t = rig({ start: at(9), fate: { sickUntil: at(23), dreams: [{ at: at(8), text: 'a green door in the rain' }], cross: { venue: 'market', city: 'lagos', until: at(23) } } });
+  await t.run(30);
+  const text = t.calls.map((call) => call.messages.map((m) => m.content).join('\n')).join('\n');
+  assert.match(text, /You are not feeling well today/);
+  assert.match(text, /A dream stayed with you: a green door in the rain/);
+  assert.match(text, /Something keeps pulling you towards .+ today\./);
+  assert.equal(/owner|admin|prayer was|answered/i.test(text), false);
+  assert.equal(FORBIDDEN.test(text) || OUT_OF_CHARACTER.test(text), false);
+  // An old dream or an ended fever is not mentioned.
+  const later = rig({ start: at(9), fate: { sickUntil: at(8), dreams: [{ at: at(9) - 2 * 86400000, text: 'an old dream' }] } });
+  await later.run(30);
+  assert.equal(/not feeling well|old dream/.test(later.calls.map((c) => c.messages.map((m) => m.content).join(' ')).join(' ')), false);
+});
+
+// ---- Phase 13c: the night yields a wish and a need; the owner's word reaches the next thoughts -----------------------------------------------------
+test('the nightly summary may also yield one wish and one need: each checked on its own, the summary kept clean, a bad wish dropped', async () => {
+  const ideas: IdeaIn[] = [];
+  const night = (call: Call): string => (/going to bed/.test(call.messages.at(-1)!.content) ? 'I sold a few books and walked home slowly, happy with the day.\nWish: A night market in Yaba so the evenings feel alive.\nNeed: A stall rent I can pay each month without worry.' : GOOD);
+  const t = rig({ reply: night, collect: async (idea) => { ideas.push(idea); } });
+  await t.run(24 * 60);
+  assert.deepEqual(ideas.map((idea) => idea.kind), ['wish', 'need']);
+  assert.equal(ideas[0]!.id, residentId(REMI)); assert.equal(ideas[0]!.name, 'Remi');
+  assert.equal(ideas[0]!.text, 'A night market in Yaba so the evenings feel alive.');
+  const summary = t.runner.day()!.summary!;
+  assert.ok(!/wish:|need:/i.test(summary) && !/night market/.test(summary), summary);
+  assert.equal(t.calls.length, t.runner.day()!.thoughts + 1, 'still one call for the night');
+  // A wish that steps out of the world or breaks the word rules is dropped; the summary stays.
+  const odd: IdeaIn[] = [];
+  const bad = rig({ reply: (call) => (/going to bed/.test(call.messages.at(-1)!.content) ? 'A calm day at the stall, and I am glad of it.\nWish: This game should have more shops for players.\nNeed: Send me money for my stall rent please.' : GOOD), collect: async (idea) => { odd.push(idea); } });
+  await bad.run(24 * 60);
+  assert.equal(odd.length, 0);
+  assert.match(bad.runner.day()!.summary!, /calm day/);
+  // A night without those lines yields nothing.
+  const plain = rig({ collect: async (idea) => { odd.push(idea); } });
+  await plain.run(24 * 60);
+  assert.equal(odd.length, 0);
+});
+
+test('word from the Founders is read into the next thoughts as news from the Founders, in the world\'s own words', async () => {
+  const lines = ['Word has come: "The road to the market will be mended."', 'They have decreed: "Every stall is free of rent this Saturday."'];
+  const t = rig({ start: at(9), founders: async () => lines });
+  await t.run(20);
+  assert.ok(t.calls.length > 0);
+  for (const call of t.calls) {
+    const text = call.messages.map((m) => m.content).join('\n');
+    assert.match(text, /News from the Founders: Word has come: "The road to the market will be mended\."/);
+    assert.match(text, /News from the Founders: They have decreed: "Every stall is free of rent this Saturday\."/);
+    assert.equal(FORBIDDEN.test(text) || OUT_OF_CHARACTER.test(text), false);
+  }
 });

@@ -611,3 +611,36 @@ test('a regular\'s line (REALISM R12) joins this device\'s feed with the NPC mar
   for (let i = 0; i < 100; i += 1) api.npcLine?.('Chidi', `line ${i}`)
   assert.ok(api.state.chat.length <= 80, 'the feed stays bounded')
 })
+
+test('an AI character\'s `voice-text` is spoken only while this page is in voice, once, with its seed and its distance; the chat line is then not spoken a second time', async (t) => {
+  const heard: Loose[] = []
+  const hadWindow = Object.getOwnPropertyDescriptor(globalThis, 'window')
+  Object.defineProperty(globalThis, 'window', { value: { dispatchEvent: (event: { type: string; detail: Loose }) => { if (event.type === 'jaw:voice') heard.push(event.detail); return true } }, configurable: true, writable: true })
+  g.dispatchEvent = () => true // the page's own `jaw:agent-say` event
+  t.after(() => { if (hadWindow) Object.defineProperty(globalThis, 'window', hadWindow); else delete g.window; delete g.dispatchEvent })
+  const track = { enabled: true, stop() {} }
+  const { start } = browserFor(t, { mediaDevices: { enumerateDevices: async () => [], getUserMedia: async () => ({ getTracks: () => [track], getAudioTracks: () => [track] }) } })
+  const api = await start()
+  const ws = lastSocket()
+  ws.open()
+  ws.receive({ type: 'presence', members: [{ id: 'a', name: 'Alex', enabled: false, muted: false, position: { x: 1, z: 1 } }, { id: 'house.lagos.tunji', name: 'Tunji', enabled: false, muted: true, position: { x: 4, z: 5 } }] })
+  const agent = { id: 'house.lagos.tunji', name: 'Tunji', agent: true }
+  // Not in voice: the chat line is heard as before (a talk sound or the near speaker), the voice-text frame is ignored.
+  ws.receive({ type: 'chat', id: 'c1', from: agent, body: 'Welcome, Alex!', speaker: 'agent', voiceSeed: 77 })
+  ws.receive({ type: 'voice-text', id: 'c1', from: agent, body: 'Welcome, Alex!', voiceSeed: 77, x: 4, z: 5 })
+  assert.deepEqual(heard.map((line) => [line.id, line.text, line.kind, line.seed, line.speakable]), [['house.lagos.tunji', 'Welcome, Alex!', 'agent', '77', undefined]])
+  // In voice: the voice-text frame is the one that is spoken, as the character's voice, with the distance in steps, and the chat line is not spoken again.
+  await api.joinVoice()
+  heard.length = 0
+  ws.receive({ type: 'chat', id: 'c2', from: agent, body: 'Come and see the cloth.', speaker: 'agent', voiceSeed: 77 })
+  assert.equal(heard.length, 0, 'the chat line is left to the voice-text frame')
+  ws.receive({ type: 'voice-text', id: 'c2', from: agent, body: 'Come and see the cloth.', voiceSeed: 77, x: 4, z: 5 })
+  assert.deepEqual(heard.map((line) => [line.id, line.text, line.kind, line.seed, line.speakable, line.distance]), [['house.lagos.tunji', 'Come and see the cloth.', 'agent', '77', true, 5]])
+  ws.receive({ type: 'voice-text', id: 'c2', from: agent, body: 'Come and see the cloth.', voiceSeed: 77, x: 4, z: 5 })
+  assert.equal(heard.length, 1, 'the same line is not spoken twice')
+  // A person's chat line in voice is still heard as before.
+  ws.receive({ type: 'chat', id: 'c3', from: { id: 'b', name: 'Bola' }, body: 'hello' })
+  assert.equal(heard.at(-1)?.kind, 'player')
+  // Nothing is ever sent back for it.
+  assert.ok(!ws.sent.some((frame) => frame.type === 'voice-text'))
+})

@@ -24,6 +24,10 @@ import { prepareStoredCityContent } from '../request-city-content.ts';
  *   GET/POST /api/admin/announcements[/:id/cancel]
  *   GET/POST /api/admin/settings              runtime settings (server/admin/settings.ts) and the e-mail / push switches
  *   GET/POST /api/admin/festivals             festivals and football fixtures kept without a release (server/admin/festivals.ts): { clientId, action, item?, id? }
+ *   GET  /api/admin/prayers?by&city&answered&before   the Prayers page (server/prayers/service.ts, docs/PRAYERS.md): prayers newest first, the acts log, the limits
+ *   POST /api/admin/prayers/act               { clientId, kind, reason, prayer?, target?, other?, city?, venue?, amount?, hours?, sky?, text?, form? }   take one act on a prayer or a person; logged
+ *   GET  /api/admin/residents                 the residents' voice (server/residents/voice.ts, docs/RESIDENTS.md Phase 13c): the day's and week's five most asked-for wishes and needs, the assembly and president, the Sunday letters, the answers sent
+ *   POST /api/admin/residents/reply           { clientId, text, kind?: news | decree, letter? }   the owner's answer: a gist line (kind owner) and "news from the Founders" in the residents' next thoughts; never a message to a person
  *   POST /api/admin/notice                    { clientId, minutes }  the "update is coming" notice from a button (0 ends it)
  *   GET  /api/admin/moderation/reports, POST …/reports/:id/act, GET/POST …/shops, GET/POST …/content
  *   GET  /api/admin/trust/reports?status      complaints filed through /api/trust/report (server/trust/service.ts)
@@ -64,6 +68,9 @@ import { sanctionsOf } from '../admin/sanctions.ts';
 import { settingsOf } from '../admin/settings.ts';
 import { festivalsOf } from '../admin/festivals.ts';
 import { statsService } from '../admin/stats.ts';
+import { prayersOf } from '../prayers/service.ts';
+import { voiceService, REPLY_MAX } from '../residents/voice.ts';
+import { ACT_KINDS, LIMITS as PRAYER_LIMITS, NOTICE as PRAYER_NOTICE, SKIES } from '../prayers/model.ts';
 import { audit, peek } from '../admin/store.ts';
 import { politicsAct, politicsOverview } from '../admin/politics.ts';
 import { adminTools } from '../admin/tools.ts';
@@ -81,7 +88,7 @@ const TRUST_REPORT_ACTIONS = ['uphold', 'dismiss'] as const;
 export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
   const players = playersService(ctx), actions = actionsService(ctx), stats = statsService(ctx), announce = announceOf(ctx), settings = settingsOf(ctx), sanctions = sanctionsOf(ctx), festivals = festivalsOf(ctx);
   const world = worldService(ctx), moderation = moderationService(ctx), social = socialService(ctx), outreach = outreachService(ctx), shops = businessService(ctx), notice = noticeOf(ctx);
-  const trust = trustService(ctx);
+  const trust = trustService(ctx), prayers = prayersOf(ctx), voice = voiceService(ctx);
   linkFeatures(ctx);
   // The history of the dashboard: one small row per day, sampled by the heartbeat (server/admin/history.ts).
   const history = recorder(ctx, (db) => {
@@ -300,6 +307,27 @@ export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
     },
 
     'GET /api/admin/settings': read((db) => ({ settings: settings.list(db), switches: { email: db.growth?.outreach?.off.email === true, push: db.growth?.outreach?.off.push === true }, notice: notice.frame() })),
+    'GET /api/admin/prayers': read((db, _admin, request) => {
+      const q = request.query, number = Number(q.get('before'));
+      return { ...prayers.list(db, { by: q.get('by') ?? '', city: q.get('city') ?? '', answered: q.get('answered') ?? '', before: Number.isSafeInteger(number) && number > 0 ? number : 0, limit: Number(q.get('limit')) || 30 }), log: prayers.log(db), acts: [...ACT_KINDS], skies: [...SKIES], notice: PRAYER_NOTICE,
+        limits: { blessMax: PRAYER_LIMITS.blessMax, moneyMax: Math.min(PRAYER_LIMITS.moneyMax, limitsOf(ctx).maxAmount), weatherHoursMax: PRAYER_LIMITS.weatherHoursMax, dreamMax: PRAYER_LIMITS.dreamMax, sickGapDays: PRAYER_LIMITS.sickGapMs / 86400000 } };
+    }),
+    'POST /api/admin/prayers/act': write('prayer-act', (db, admin, body, _request, effects) => { const input = prayers.parseAct(body); return { fingerprint: [input], run: () => prayers.act(db, admin, input, effects) }; }, { before: async (_admin, body) => {
+      // The people an act names, and their cities, are made ready before the transaction (it runs the rules engine synchronously).
+      const ids = [body.target, body.other].filter((value): value is string => typeof value === 'string' && UUID_PATTERN.test(value));
+      const prayed = typeof body.prayer === 'number' ? await ctx.store.read((db) => prayers.peekPrayers(db).items.find((item) => item.n === body.prayer)?.who) : undefined;
+      if (prayed && UUID_PATTERN.test(prayed)) ids.push(prayed);
+      const sessions = await ctx.store.read((db) => ids.map((id) => ctx.core.sessionByPublicId?.(db, id.toLowerCase())).filter((session): session is NonNullable<typeof session> => session !== undefined));
+      for (const session of sessions) await prepareStoredCityContent(ctx, session);
+      return null;
+    } }),
+    'GET /api/admin/residents': read((db) => ({ ...voice.view(db), replyMax: REPLY_MAX })),
+    'POST /api/admin/residents/reply': write('residents-reply', (db, admin, body) => ({ fingerprint: [body.text, body.kind, body.letter], run: () => {
+      const done = voice.reply(db, admin.name, { text: body.text, kind: body.kind, letter: body.letter });
+      if (!done.ok) throw refuse(400, done.code, done.reason);
+      const line = audit(ctx, db, { admin: admin.accountId, adminName: admin.name, action: 'residents-reply', target: '', targetName: 'residents', params: { kind: done.reply.kind, length: done.reply.text.length, gist: done.reply.gist }, summary: `Answered the residents as ${done.reply.kind === 'decree' ? 'a decree' : 'news'}: “${done.reply.text.slice(0, 100)}”`, reason: '' });
+      return { ok: true, code: 'sent', summary: line.summary, line: line.n, gist: done.reply.gist, reply: done.reply };
+    } })),
     'GET /api/admin/festivals': read(() => festivals.list(ctx.now())),
     'POST /api/admin/festivals': write('festivals', (db, admin, body, _request, effects) => ({ fingerprint: [body.action, body.id, body.item], run: () => {
       const done = festivals.change(db, String(body.action ?? ''), body);

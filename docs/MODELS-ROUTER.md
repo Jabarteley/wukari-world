@@ -49,6 +49,8 @@ answer is `no-model`; nothing is sent. Free models see only lines with no player
 - **The ledger** records, per day, the dollars spent (in millionths), requests, tokens, and the same by model and by purpose, free
   requests per provider, refusals, and per person. It is one stored collection, `modelRouter`, written lazily (`durable: false`);
   no words are stored in it. A person's id in it is the one-way id the guide already sends to the gateway.
+- **Speech to text** is the one paid request that is not a chat: `router.spend(...)` (used by `server/models/transcribe.ts`) reserves a worst case against the same day cap and the same person caps before the request is sent, and books the real cost
+  (seconds times the model's price) under the purpose `transcribe`. Only models the gateway lists as not training on audio are used (docs/CALLS.md).
 - **Cost** comes from the answer's `usage` (tokens in and out) times the price table (`PRICES` in `catalog.ts`, US$ per million tokens;
   free is 0; a paid model missing from the table is priced US$1 / US$4 so the budget errs safe). With no `usage`, from the characters
   (4 per token). A failed request costs nothing.

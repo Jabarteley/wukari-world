@@ -58,35 +58,36 @@ const batch: AuthoredContentBatch = {
         keepsake: { name: 'Three-Beat Token', description: 'A wooden disk marked with one long stroke and two short ones for the puzzle’s repeatable rhythm.' },
       },
       country: {
-        title: 'The Shadow with a Missing Ear', desire: 'competence',
+        title: 'The Moth That Rang Before It Flew', desire: 'competence',
         chapters: [
-          { title: 'A Pocket Theatre', text: 'The fictional Pocket Stage kit arrives at Fred Taylor Park with a paper screen, a lamp-shaped game prop, and three cutout animals. Indigo places a fox silhouette on the screen, but its pointed ear disappears whenever Tavi moves the cutout to make it dance.' },
-          { title: 'Closer or Larger', text: 'Tavi suggests making the fox bigger. Indigo instead wants to keep the small cutout and move it closer to the screen. Each change alters the shadow in the game’s stage scene, and neither maker wants the fix to flatten the lively movement they already like.' },
-          { title: 'A Test in Two Positions', text: 'They compare the fox at two marked distances, keeping the lamp prop fixed. Near the screen, the ear reads clearly but the body barely grows. Farther away, the shape expands and blurs. The problem is no longer a mystery: the stage effect depends on a chosen distance.' },
-          { title: 'A New Entrance', text: 'Indigo gives the fox a short entrance near the screen, then lets it cross into the larger, softer shadow. Tavi keeps the missing-ear moment as a deliberate transformation instead of hiding it. The same cutout now has two readable appearances, each with a purpose.' },
+          { title: 'The Early Chime', text: 'At Fred Taylor Park, Indigo makes a fictional paper moth that travels along a bent thread toward a landing pin. A tiny folded wing taps a bell as the moth starts moving, so the chime comes before the moth seems to fly. Tavi likes the sound but says it feels like a warning rather than a landing.' },
+          { title: 'One Bell, One Moth', text: 'Indigo considers adding a second bell to mark arrival, but the Pocket Stage rule allows one bell and one moth. Tavi proposes making the thread longer; that gives the moth more travel but does not change when the folded wing touches the bell. They need to change the path, not add another signal.' },
+          { title: 'Low Before High', text: 'They test a low start, then a rising curve near the pin. On the first try, the wing catches the bell halfway up. Indigo turns the paper moth so its folded wing trails behind; now it passes the bell on the climb and taps only when the body settles onto the landing pin.' },
+          { title: 'A Sound That Arrives', text: 'Tavi watches the moth cross the little stage and hears the bell after it lands. Indigo keeps the gentle curve because it makes the flight readable, while the trailing wing gives the chime a clear job. The puzzle closes with the sound in the right order and no extra prop.' },
         ],
         approaches: [
-          { label: 'Complete the simple activity at Ōtuataua Stonefields Historic Reserve', callback: 'Your experiment helped Indigo find a clear first position for the fox.' },
-          { label: 'Look around Fred Taylor Park and compare the shadow shapes', callback: 'Tavi used your comparison to make the change in scale part of the scene.' },
-          { label: 'Describe the fox’s entrance to Indigo', callback: 'Indigo turned the missing ear into a planned stage transformation.' },
+          { label: 'Try the moth’s curved flight at Ōtuataua Stonefields Historic Reserve', callback: 'Your experiment helped Indigo place the bell after the landing.' },
+          { label: 'Look around Fred Taylor Park for a clear flight path', callback: 'Tavi used your observation to keep the moth’s low-to-high route readable.' },
+          { label: 'Tell Indigo when the bell should sound', callback: 'Indigo kept the single bell and made it mark the moth’s arrival.' },
         ],
-        dilemma: { prompt: 'How should Indigo solve the vanishing ear without losing the fox’s movement?', answers: ['Use a clear close entrance, then move the cutout farther away for a larger transformed shadow.', 'Keep the cutout far away throughout and pretend the missing ear is still visible.', 'Make the cutout larger and leave it fixed in one place.'], correct: 0, explanation: 'The close position preserves the ear while the farther position creates the larger change. Using both makes the effect intentional and legible.' },
-        closing: 'The fox crosses the screen twice: first crisp, then enormous and soft. The Pocket Stage kit carries the idea onward, not as a fixed script but as a practical trick another maker can reinterpret.',
-        keepsake: { name: 'Fox-Ear Cutout', description: 'A tiny paper fox whose two stage positions create a crisp entrance and a broad shadow.' },
+        dilemma: { prompt: 'How can Indigo make the bell mark the moth’s landing?', answers: ['Add another bell at the pin and let both ring at once.', 'Keep the folded wing trailing so it clears the bell on the climb and taps it only as the moth settles.', 'Move the bell farther away and leave the flight path unchanged.'], correct: 1, explanation: 'The trailing wing avoids an early tap, then reaches the single bell as the paper moth settles onto its pin.' },
+        closing: 'The moth arcs upward, settles at the pin, and rings the bell only at the end. Indigo and Tavi pass along the Pocket Stage puzzle as a small lesson in timing: a cue works best when it arrives with the action it explains.',
+        keepsake: { name: 'Trailing-Wing Moth', description: 'A folded paper moth whose wing clears the bell on the climb and taps it at the landing.' },
       },
       missions: {
         daily: [
           { label: 'Test the three-beat riddle', purpose: 'Listen for the stable rhythm while the props change order.', task: 'practical', count: 1 },
-          { label: 'Notice a repeated sound', purpose: 'Use the discovery activity to identify one sound that can serve as a reliable clue.', task: 'discovery', count: 1 },
-          { label: 'Ask Indigo about the double tap', purpose: 'Discuss how a surprise can stay fair when one prop behaves differently.', task: 'host-visit', count: 1 },
+          { label: 'Trace the puzzle’s sound pattern', purpose: 'Visit the discovery anchor and listen for the stable rhythm in Indigo’s puzzle.', task: 'discovery-visit', count: 1 },
+          { label: 'Compare the double tap with two regulars', purpose: 'Invite two game regulars to test whether the double tap stays recognizable as props change.', task: 'people', count: 2 },
         ],
         weekly: [
-          { label: 'Solve three changing arrangements', purpose: 'Repeat the sound puzzle and keep the rhythm constant across its variations.', task: 'practical', count: 3 },
-          { label: 'Compare the stage shadows', purpose: 'Observe the two fox positions that make the cutout crisp and broad.', task: 'discovery', count: 2 },
-          { label: 'Share the shadow entrance idea', purpose: 'Tell Indigo which position should introduce the fox before its transformation.', task: 'host-visit', count: 1 },
+          { label: 'Track three changing rhythms', purpose: 'Use the discovery activity on three occasions to compare the repeated rhythm across prop arrangements.', task: 'discovery', count: 3 },
+          { label: 'Compare moth flight paths', purpose: 'Use the discovery activity twice to compare when the folded wing reaches the bell.', task: 'practical-visit', count: 1 },
+          { label: 'Share the moth’s landing cue', purpose: 'Show two game regulars how the curved path makes the bell sound after arrival.', task: 'people', count: 2 },
         ],
       },
     },
+    {
       cityId: 'belgrade',
       city: {
         title: 'The Bridge for One Wooden Moon', desire: 'competence',
@@ -125,13 +126,13 @@ const batch: AuthoredContentBatch = {
       missions: {
         daily: [
           { label: 'Build the two-cup crossing', purpose: 'Use the folded-card channel to carry the wooden moon between its supports.', task: 'practical', count: 1 },
-          { label: 'Inspect the bridge approach', purpose: 'Notice why a straight approach helps the token stay away from the cup rim.', task: 'discovery', count: 1 },
-          { label: 'Ask Uri about the prop limit', purpose: 'Discuss which part of the build must carry the token without hidden help.', task: 'host-visit', count: 1 },
+          { label: 'Trace Uri’s bridge approach', purpose: 'Visit the discovery anchor and notice why a straight approach keeps the token from the rim.', task: 'discovery-visit', count: 1 },
+          { label: 'Explain the bridge rule to two regulars', purpose: 'Show two game regulars which piece carries the wooden moon without hidden help.', task: 'people', count: 2 },
         ],
         weekly: [
-          { label: 'Retry the moon crossing', purpose: 'Make three bridge attempts while keeping the two-cup constraint.', task: 'practical', count: 3 },
-          { label: 'Watch the paired motion', purpose: 'Observe how the disk and wooden shapes move when the thread is loose.', task: 'discovery', count: 2 },
-          { label: 'Review Uri’s counterweight', purpose: 'Ask Uri why a short pull keeps the two moving shapes from tangling.', task: 'host-visit', count: 1 },
+          { label: 'Follow the paired motion', purpose: 'Use the discovery activity on three occasions to compare the shapes as the disk turns.', task: 'discovery', count: 3 },
+          { label: 'Inspect the loose loop', purpose: 'Visit the discovery anchor and notice how a short pull keeps the shapes apart.', task: 'practical-visit', count: 1 },
+          { label: 'Compare two pulley motions', purpose: 'Invite two game regulars to compare the loose loop with the tight thread.', task: 'people', count: 2 },
         ],
       },
     },
@@ -173,14 +174,14 @@ const batch: AuthoredContentBatch = {
       },
       missions: {
         daily: [
-          { label: 'Rehearse the blue cube exchange', purpose: 'Let both fictional characters choose how the single stage prop changes hands.', task: 'practical', count: 1 },
-          { label: 'Study the folded doorway', purpose: 'Notice how one turn makes two distinct stage shapes.', task: 'discovery', count: 1 },
-          { label: 'Ask Uri about the last move', purpose: 'Discuss who should shape the punchline after the cube changes hands.', task: 'host-visit', count: 1 },
+          { label: 'Check both cube faces', purpose: 'Use the discovery activity twice to see which audience side can read each face.', task: 'discovery', count: 2 },
+          { label: 'Look around Volkspark Lichtenrade', purpose: 'Visit Uri’s discovery anchor and watch the stage entrance from the audience side.', task: 'discovery-visit', count: 1 },
+          { label: 'Try the cube exchange with two regulars', purpose: 'Invite two regulars to notice both sides of the prop during Uri’s fictional scene.', task: 'people', count: 2 },
         ],
         weekly: [
           { label: 'Play three cube handoffs', purpose: 'Try several uses while preserving both characters’ choices.', task: 'practical', count: 3 },
-          { label: 'Compare both doorway states', purpose: 'Observe the stage card before and after its visible turn.', task: 'discovery', count: 2 },
-          { label: 'Discuss the prop’s second purpose', purpose: 'Ask Uri how the doorway card can transform without extra scenery.', task: 'host-visit', count: 1 },
+          { label: 'Test the hinge fold', purpose: 'Visit the practical anchor and observe how Uri’s stage panel clears the final entrance.', task: 'practical-visit', count: 1 },
+          { label: 'Show three regulars both cube faces', purpose: 'Let three game regulars compare the visible side of Uri’s single prop.', task: 'people', count: 3 },
         ],
       },
     },
@@ -223,13 +224,13 @@ const batch: AuthoredContentBatch = {
       missions: {
         daily: [
           { label: 'Guide the ring around its peg', purpose: 'Try the bent handle while keeping control of the ring’s orbit.', task: 'practical', count: 1 },
-          { label: 'Compare the three handle shapes', purpose: 'Notice how each handle changes the ring’s swing.', task: 'discovery', count: 1 },
-          { label: 'Ask Greer about the skipped tile', purpose: 'Discuss the cue that gives the square its missing turn.', task: 'host-visit', count: 1 },
+          { label: 'Look around FIELD', purpose: 'Visit Greer’s discovery anchor and notice the tight turn around the peg.', task: 'discovery-visit', count: 1 },
+          { label: 'Show two regulars the ring’s tight turn', purpose: 'Let two game regulars compare where the handle clears the peg.', task: 'people', count: 2 },
         ],
         weekly: [
           { label: 'Make three careful ring passes', purpose: 'Repeat the orbit puzzle while choosing how much reach and control you want.', task: 'practical', count: 3 },
-          { label: 'Watch the tiles complete a loop', purpose: 'Observe each painted notch that releases the next tile.', task: 'discovery', count: 2 },
-          { label: 'Review the orbit tool choice', purpose: 'Tell Greer whether the bent handle leaves enough room for a self-guided attempt.', task: 'host-visit', count: 1 },
+          { label: 'Visit the slider puzzle', purpose: 'Look around the practical anchor and trace the token’s path beneath the slider.', task: 'practical-visit', count: 1 },
+          { label: 'Rehearse two handle choices', purpose: 'Use the discovery activity twice to prepare a self-guided demonstration for another player.', task: 'discovery', count: 2 },
         ],
       },
     },
@@ -273,13 +274,13 @@ const batch: AuthoredContentBatch = {
       missions: {
         daily: [
           { label: 'Time the pinwheel pause', purpose: 'Use the folded blade as a visible cue for a player’s next choice.', task: 'practical', count: 1 },
-          { label: 'Find the marked blade', purpose: 'Observe the dot that identifies where the uneven spin pauses.', task: 'discovery', count: 1 },
-          { label: 'Ask Wren about the turning frame', purpose: 'Discuss how a stage corner can become an alternate entrance.', task: 'host-visit', count: 1 },
+          { label: 'Look around Grand Park', purpose: 'Visit the discovery anchor and watch for the mark on Wren’s folded blade.', task: 'discovery-visit', count: 1 },
+          { label: 'Show two regulars the frame turn', purpose: 'Let two game regulars compare the bird’s first and second entrances.', task: 'people', count: 2 },
         ],
         weekly: [
           { label: 'Play three pinwheel turns', purpose: 'Try several star directions while keeping the marked pause as the cue.', task: 'practical', count: 3 },
-          { label: 'Compare the two puppet entrances', purpose: 'Notice how rotating the frame changes the bird’s path.', task: 'discovery', count: 2 },
-          { label: 'Review the folded blade', purpose: 'Ask Wren why the pause is useful in this particular scene.', task: 'host-visit', count: 1 },
+          { label: 'Visit the puppet frame', purpose: 'Look around the practical anchor and observe the two entrances after Wren turns the frame.', task: 'practical-visit', count: 1 },
+          { label: 'Compare the pinwheel stops with two regulars', purpose: 'Let two game regulars see how the marked pause becomes a turn cue.', task: 'people', count: 2 },
         ],
       },
     },
@@ -322,13 +323,13 @@ const batch: AuthoredContentBatch = {
       missions: {
         daily: [
           { label: 'Reveal the last color', purpose: 'Give every player one shared glimpse before the cup positions change.', task: 'practical', count: 1 },
-          { label: 'Track the cup positions', purpose: 'Observe where each hidden token returns during the memory game.', task: 'discovery', count: 1 },
-          { label: 'Ask Corin who picks next', purpose: 'Discuss how the newest player can choose the next color pair.', task: 'host-visit', count: 1 },
+          { label: 'Look around Galle Face Green', purpose: 'Visit Corin’s discovery anchor and follow where the hidden token returns.', task: 'discovery-visit', count: 1 },
+          { label: 'Let two regulars pick the next pair', purpose: 'Give two game regulars a chance to choose which color pair the cup game reveals.', task: 'people', count: 2 },
         ],
         weekly: [
           { label: 'Match three color pairs', purpose: 'Replay the cup puzzle while giving each player the same glimpse.', task: 'practical', count: 3 },
-          { label: 'Inspect the bowl balance', purpose: 'Notice which rim positions hold the bead without fixing the stack.', task: 'discovery', count: 2 },
-          { label: 'Review the movable stack', purpose: 'Ask Corin why the tower should come apart after the puzzle.', task: 'host-visit', count: 1 },
+          { label: 'Visit the bowl puzzle', purpose: 'Look around Corin’s practical anchor and observe how the bead sits in the top bowl.', task: 'practical-visit', count: 1 },
+          { label: 'Explain the bowl balance to two regulars', purpose: 'Let two game regulars try the arrangement while keeping every piece movable.', task: 'people', count: 2 },
         ],
       },
     },
@@ -371,16 +372,525 @@ const batch: AuthoredContentBatch = {
       missions: {
         daily: [
           { label: 'Rotate the two-space menu', purpose: 'Give each fictional player a tracked turn before settling on the final pair.', task: 'practical', count: 1 },
-          { label: 'Compare the two bowl sounds', purpose: 'Use the uncovered first pass to learn the sound difference.', task: 'discovery', count: 1 },
-          { label: 'Ask Jesse about the turn ring', purpose: 'Discuss how the ring lets each player affect the pretend menu.', task: 'host-visit', count: 1 },
+          { label: 'Look around Place de l’Indépendance', purpose: 'Visit Jesse’s discovery anchor and listen to the uncovered comparison before the covered round.', task: 'discovery-visit', count: 1 },
+          { label: 'Show the turn ring to two regulars', purpose: 'Let two game regulars take part in Jesse’s tracked menu rotation.', task: 'people', count: 2 },
         ],
         weekly: [
           { label: 'Complete three menu rounds', purpose: 'Rotate the shapes through several preferences while tracking whose move comes next.', task: 'practical', count: 3 },
-          { label: 'Listen through two bowl rounds', purpose: 'Compare the gentle open sounds before recognizing them under covers.', task: 'discovery', count: 2 },
-          { label: 'Pass Jesse the next bowl choice', purpose: 'Ask who should receive the bead and the first choice in the next round.', task: 'host-visit', count: 1 },
+          { label: 'Visit the bowl puzzle', purpose: 'Look around Jesse’s practical anchor and observe both bowls before the covers return.', task: 'practical-visit', count: 1 },
+          { label: 'Pass the bead among two regulars', purpose: 'Let two game regulars choose which bowl to test first after the shared comparison.', task: 'people', count: 2 },
         ],
       },
     },
+    },
+    {
+      cityId: 'damascus',
+      city: {
+        title: 'The Domino That Rang Too Soon', desire: 'autonomy',
+        chapters: [
+          { title: 'The Early Bell', text: 'At Umayyads Park, Greer arranges a fictional row of dominoes leading to a small bell. The last tile falls before the puppet onstage is ready to enter. The bell is doing exactly what the row tells it to do, but the character loses the moment meant for their arrival.' },
+          { title: 'Wait or Rebuild', text: 'Greer could move the bell farther away, rebuild the entire row, or insert a tile that pauses the chain. The scene has room for only the short row already in place. The player wants to choose when the last tile moves, not merely watch a delayed version.' },
+          { title: 'A Tile That Holds', text: 'Greer puts one domino on a tiny hinged prop plate at the end of the line. The chain reaches it and stops. The player can lower the plate when the puppet is ready, releasing the final tile and bell.' },
+          { title: 'The Entrance on Cue', text: 'The puppet appears before the player lowers the plate. The bell rings after the entrance, and the comic pause now belongs to the character rather than the accident. Greer keeps the hinged plate visible so each player can decide when to finish the sequence.' },
+        ],
+        approaches: [
+          { label: 'Watch the domino chain at Umayyads Park', callback: 'The final tile waits until you release Greer’s little hinge.' },
+          { label: 'Look around Sebki Park and follow the short line', callback: 'You noticed where the chain can pause without moving the bell.' },
+          { label: 'Tell Greer when the puppet should enter', callback: 'Greer left the final tile in your control after the entrance.' },
+        ],
+        dilemma: { prompt: 'How can Greer keep the short domino row but let the player time the bell?', answers: ['Move the bell farther away and hope the extra space delays it enough.', 'Place a hinged stop at the end so the player can release the final tile after the puppet enters.', 'Rebuild the whole row as a longer chain that always takes more time.'], correct: 1, explanation: 'The visible hinged stop preserves the short row and gives the player direct control over the final fall.' },
+        closing: 'Greer resets the row, then leaves the plate raised. The puppet waits at its entrance. The next player gets to decide when the bell completes the joke.',
+        keepsake: { name: 'Hinged Pause Tile', description: 'A final domino resting on a small plate that can be lowered to complete the chain.' },
+      },
+      country: {
+        title: 'The Ball in the Switchback', desire: 'curiosity',
+        chapters: [
+          { title: 'The Stalled Marble', text: 'At Sebki Park, Greer opens the fictional Ball in the Switchback puzzle, a tabletop spiral with two channels and one wooden ball. It reaches the inner bend, stalls, and rolls back to the same entrance. Greer wants the player to find the passage without lifting the ball.' },
+          { title: 'Push or Turn', text: 'A stronger push makes the ball hit the wall. Tilting the whole board sends it to an edge. Greer notices that the center panel can rotate a little, but turning it changes which channel receives the ball.' },
+          { title: 'A New Channel', text: 'Greer holds the board level and turns the center panel at the bend. The first channel now meets the second. The ball rolls through, but the player has to release it from the upper entry or it loops back again.' },
+          { title: 'Find the Joining Point', text: 'The player traces the channels with one finger, then chooses the upper entry for the next attempt. The ball reaches the far end. Greer leaves the panel loose enough to rotate for another puzzle, not fixed as a permanent solution.' },
+        ],
+        approaches: [
+          { label: 'Try the switchback at Umayyads Park', callback: 'The center panel now connects the two channels at the tight bend.' },
+          { label: 'Look around Sebki Park and trace the ball’s loop', callback: 'You found the entry that keeps the ball from returning to the start.' },
+          { label: 'Ask Greer which way the center panel should turn', callback: 'Greer left the choice with the player who releases the ball.' },
+        ],
+        dilemma: { prompt: 'How can Greer guide the ball through the switchback without lifting it or tilting the whole board?', answers: ['Push harder at the bend so the ball strikes through.', 'Lift the ball over the divider and set it in the second channel.', 'Turn the center panel to join the channels, then release the ball from the upper entry.'], correct: 2, explanation: 'Rotating the panel joins the channels while the upper entry gives the ball a path that does not loop back.' },
+        closing: 'The ball makes one clean pass through both channels. Greer leaves the center panel movable, so the player can reset the puzzle and try a different connection.',
+        keepsake: { name: 'Switchback Ball', description: 'A wooden ball that fits the two channels after their center panel is turned.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Hold the final domino', purpose: 'Use the hinged plate to choose when the puppet’s bell rings.', task: 'practical', count: 1 },
+          { label: 'Trace Greer’s switchback', purpose: 'Find where the ball returns and where the two channels can join.', task: 'discovery', count: 1 },
+          { label: 'Show a player the pause tile', purpose: 'Let another regular decide when to release the last domino.', task: 'people', count: 2 },
+        ],
+        weekly: [
+          { label: 'Time three bell entrances', purpose: 'Complete the domino activity on three occasions with the player controlling the last fall.', task: 'practical', count: 3 },
+          { label: 'Visit the switchback puzzle', purpose: 'Look around at Greer’s seed venue and retrace the ball’s two-channel path.', task: 'discovery-visit', count: 1 },
+          { label: 'Compare two release points', purpose: 'Use the discovery activity to prepare a clear demonstration of the upper entry.', task: 'discovery', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'dhaka',
+      city: {
+        title: 'The Train That Split on the Curve', desire: 'competence',
+        chapters: [
+          { title: 'Three Cars, Two Connectors', text: 'At Ramna Park, Arden tests a fictional three-car toy train on a small tabletop curve. The rear car keeps separating at the turn. The track is fixed, and Arden has only one flexible connector, so replacing the track or adding another joint would end the challenge.' },
+          { title: 'Which Joint Should Bend?', text: 'The first connector sits behind the engine, where the turn begins. Arden moves it to the back, but now the engine swings too far and clips the curve marker. The middle joint stays rigid, pulling the rear car straight while the front turns.' },
+          { title: 'One Flexible Middle', text: 'Arden puts the flexible connector between the second and third cars. Now the short engine leads around the bend while the last car can follow its own angle. The train stays together but still makes the turn slowly.' },
+          { title: 'A Slow Lap', text: 'The player guides the engine through one measured lap. Every car reaches the end, and the curve marker remains upright. Arden laughs at how the smallest piece changes the whole train’s movement.' },
+        ],
+        approaches: [
+          { label: 'Guide the three cars at Bangladesh National Monument', callback: 'The flexible middle joint let the rear car follow the curve.' },
+          { label: 'Look around Ramna Park and inspect the curve marker', callback: 'You spotted where the rigid joint forced the car straight.' },
+          { label: 'Ask Arden which joint should flex', callback: 'Arden moved the flexible connector to the middle car.' },
+        ],
+        dilemma: { prompt: 'Where should Arden place the only flexible connector so all three cars can turn together?', answers: ['Between the second and third cars so the rear car can follow the curve.', 'Behind the engine so the first car swings wide at the turn.', 'Keep it at the back and push the train faster through the bend.'], correct: 0, explanation: 'The middle connector lets the rear car follow the bend without making the engine swing into the marker.' },
+        closing: 'Arden returns the train to the start and leaves the flexible joint where it worked. The next player can try the curve at a different speed without changing the track.',
+        keepsake: { name: 'Middle Connector', description: 'The one flexible joint that lets the rear toy car follow a curve.' },
+      },
+      country: {
+        title: 'The Shutter That Changed the Animal', desire: 'curiosity',
+        chapters: [
+          { title: 'A Sudden Transformation', text: 'Arden brings a fictional paper stage to Bangladesh National Monument. A shutter moves across a screen, and a fish cutout suddenly looks like a bird. The effect is meant to surprise, but the change is so quick that the audience cannot tell what moved.' },
+          { title: 'Slow or Explain', text: 'One performer wants to stop the shutter halfway and explain the shapes. Arden worries that an explanation will remove the discovery. Another suggests slowing the shutter, but the paper catches when it moves in tiny increments.' },
+          { title: 'A Marked Halfway Point', text: 'Arden adds a broad halfway notch to the shutter’s path. The paper moves in one smooth motion until it reaches that mark, pauses, then continues. The audience sees the fish change into a bird without needing a spoken explanation.' },
+          { title: 'The Pause Reveals', text: 'The player chooses whether to let the shutter pause or continue straight through on the next turn. Both choices work: one invites a closer look, the other keeps the surprise. Arden leaves the notch visible so the performer can choose the pace.' },
+        ],
+        approaches: [
+          { label: 'Try the shutter at Ramna Park', callback: 'The broad halfway notch made the changing cutout easier to follow.' },
+          { label: 'Look around Bangladesh National Monument and compare both shapes', callback: 'You recognized the fish and bird without a spoken explanation.' },
+          { label: 'Ask Arden whether to pause at the notch', callback: 'Arden left the scene’s pace in the performer’s hands.' },
+        ],
+        dilemma: { prompt: 'How can Arden let the audience notice the fish-to-bird change without explaining it?', answers: ['Stop the shutter and describe each cutout aloud.', 'Add a broad halfway notch so the shutter pauses once between the two shapes.', 'Move the shutter quickly so the change stays a surprise.'], correct: 1, explanation: 'A single visible pause gives the audience time to recognize the transition while preserving the discovery.' },
+        closing: 'The next performance pauses once at the notch. A child names the bird before the shutter opens fully, and Arden keeps the rest of the transformation for the next player.',
+        keepsake: { name: 'Halfway Shutter', description: 'A paper screen slider with one wide notch for a deliberate pause.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Guide the train around the curve', purpose: 'Keep all three cars connected by placing the flexible joint between the rear cars.', task: 'practical', count: 1 },
+          { label: 'Watch the shutter pause', purpose: 'Notice where the two cutout shapes become distinguishable.', task: 'discovery-visit', count: 1 },
+          { label: 'Explain the middle joint to a regular', purpose: 'Prepare another player to see why the rear car needs its own angle.', task: 'discovery', count: 2 },
+        ],
+        weekly: [
+          { label: 'Complete three train turns', purpose: 'Run the toy through the curve three times without changing the track.', task: 'practical', count: 3 },
+          { label: 'Look around Ramna Park', purpose: 'Visit Arden’s discovery anchor and compare the shutter before and after its pause.', task: 'discovery-visit', count: 1 },
+          { label: 'Show the two cutout shapes', purpose: 'Let two regulars recognize the fish and bird before the shutter fully opens.', task: 'people', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'dublin',
+      city: {
+        title: 'The Hat That Beat the Punchline', desire: 'recognition',
+        chapters: [
+          { title: 'The Early Entrance', text: 'Parker rehearses a fictional comedy at St Enda’s Park. Each time the character begins a careful setup, the stage hat drops into view before the last line. The audience laughs at the interruption, but the performer worries nobody hears the joke they worked on.' },
+          { title: 'A Louder Cue?', text: 'A friend suggests raising the voice over the falling hat. Parker tries it, and the line becomes a shout. Another performer proposes removing the hat entirely, but the hat is the comic character’s signature entrance.' },
+          { title: 'A Visible Lift', text: 'Parker changes the cue. Instead of dropping the hat at the first word, the performer raises one hand after the setup. The hat appears only then, and the audience gets the line before the visual joke.' },
+          { title: 'The Line Gets Its Turn', text: 'The performer delivers the ending at a normal volume, lifts a hand, and watches the hat descend. The audience laughs at both parts. Parker keeps the cue simple enough to repeat and gives the performer a clear moment of recognition.' },
+        ],
+        approaches: [
+          { label: 'Rehearse Parker’s hat cue at Corkagh Park', callback: 'The hand lift let the setup finish before the hat arrived.' },
+          { label: 'Look around St Enda’s Park and watch the entrance timing', callback: 'You saw how the silent cue gives the punchline its own beat.' },
+          { label: 'Tell Parker which line should finish first', callback: 'Parker kept the performer’s line ahead of the visual joke.' },
+        ],
+        dilemma: { prompt: 'How can Parker keep the signature hat entrance without losing the performer’s punchline?', answers: ['Raise the performer’s voice over the falling hat.', 'Remove the hat so the performer can finish the line.', 'Use a visible hand lift after the setup as the hat’s cue.'], correct: 2, explanation: 'The simple gesture delays the hat until the line lands and keeps the signature entrance.' },
+        closing: 'The performer lifts a hand only after the final word. The hat drops, the audience laughs, and Parker lets the performer take the bow before the next act begins.',
+        keepsake: { name: 'Cue Hat', description: 'A soft stage hat tied to one visible hand-lift cue.' },
+      },
+      country: {
+        title: 'The Suitcase with a Loose Handle', desire: 'care',
+        chapters: [
+          { title: 'A Split Strap', text: 'At Corkagh Park, Parker finds the handle of a fictional stage suitcase slipping free during a prop transfer. The suitcase holds three small scene pieces, and the cast has one more entrance before the short performance ends. No replacement handle is available in the scene.' },
+          { title: 'Carry or Empty', text: 'One performer wants to empty the case and carry its contents separately. Another wants to hold the loose strap tightly and hope it lasts. Parker notices two lower loops that can take the old strap without opening the case.' },
+          { title: 'A Lower Carry', text: 'Parker threads the strap through the lower loops and carries the suitcase close to the ground. The improvised hold is slower, but the pieces stay inside. The performer reaches the stage without pulling the damaged handle farther apart.' },
+          { title: 'Repair After the Scene', text: 'The cast completes the performance, then Parker sets the case down for a proper repair in the fictional story. The temporary carry solved the immediate transfer without pretending the strap is permanently fixed.' },
+        ],
+        approaches: [
+          { label: 'Complete the simple activity at Corkagh Park', callback: 'The lower loops gave Parker a temporary way to carry the case.' },
+          { label: 'Look around St Enda’s Park and check the strap path', callback: 'You noticed the lower loops before the suitcase was lifted again.' },
+          { label: 'Ask Parker when to repair the handle', callback: 'Parker finished the scene first, then set the case aside for repair.' },
+        ],
+        dilemma: { prompt: 'How should Parker move the suitcase through the last entrance with its handle loose?', answers: ['Carry the case by the damaged handle and keep a tight grip.', 'Empty the props onto the stage before the entrance.', 'Thread the old strap through the lower loops and carry the case low until the scene ends.'], correct: 2, explanation: 'The lower loops support a temporary carry while keeping the props in the case and avoiding extra strain on the damaged handle.' },
+        closing: 'The suitcase reaches the stage with all three props still inside. Parker sets it down after the final bow and starts a proper repair in the story.',
+        keepsake: { name: 'Lower-Loop Strap', description: 'The original strap rerouted through the suitcase’s lower loops for a careful temporary carry.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Wait for Parker’s hand cue', purpose: 'Let the punchline finish before the stage hat appears.', task: 'practical', count: 1 },
+          { label: 'Inspect the suitcase loops', purpose: 'Find the lower loops that can carry the case while its handle is loose.', task: 'discovery-visit', count: 1 },
+          { label: 'Show another regular the cue', purpose: 'Let a second player rehearse the hand lift after the setup line.', task: 'people', count: 2 },
+        ],
+        weekly: [
+          { label: 'Rehearse three hat entrances', purpose: 'Repeat the comic cue so the performer’s line lands before the hat arrives.', task: 'practical', count: 3 },
+          { label: 'Visit the suitcase set', purpose: 'Look around the discovery venue and retrace Parker’s temporary strap path.', task: 'discovery-visit', count: 1 },
+          { label: 'Prepare the careful carry', purpose: 'Use the discovery activity twice to plan how the case can move without stressing the loose handle.', task: 'discovery', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'dushanbe',
+      city: {
+        title: 'The Turn Everyone Missed', desire: 'fairness',
+        chapters: [
+          { title: 'A Place at the Table', text: 'At Rudaki Park, Jesse sets out a fictional meal-table puzzle with three spaces and one wooden token. The players take turns placing the token beside a dish card, but Jesse notices one guest gets to place twice while another has not moved at all. The game ends quickly, though the quiet player looks ready to try.' },
+          { title: 'A Small Rule Change', text: 'Jesse could add more spaces, but the puzzle is meant to fit on one small tray. A second token would change the challenge, too. They consider letting the first player choose every move, then decide the waiting guest should have a meaningful choice without taking control of the whole game.' },
+          { title: 'Save the Last Placement', text: 'They leave the first two placements to the usual turn order and reserve the last space for the player who has not moved. This keeps the puzzle short, but the waiting guest now chooses which dish card receives the token. Jesse tests the rule with two different starting orders.' },
+          { title: 'A Fair Final Move', text: 'Both rounds end with each player making one decision. The last placement changes the ending, so it is not a courtesy turn with no effect. Jesse keeps the three spaces and one token: the repair is a turn rule that makes room for the person who was missed.' },
+        ],
+        approaches: [
+          { label: 'Try the three-space puzzle at Rudaki Park', callback: 'You helped Jesse see which turn the original rule skipped.' },
+          { label: 'Look around Алмос and compare turn orders', callback: 'Your observation helped make the reserved placement a real choice.' },
+          { label: 'Tell Jesse who should place last', callback: 'Jesse reserved the final move for the player who had not yet chosen.' },
+        ],
+        dilemma: { prompt: 'How can Jesse keep the small puzzle and give the waiting player a consequential turn?', answers: ['Add several spaces and another token so everyone can move more often.', 'Reserve the final placement for the person who has not moved, and let them choose its position.', 'Keep the turn order and let the waiting guest watch the next round.'], correct: 1, explanation: 'The final placement changes the outcome and fits the existing three-space, one-token puzzle.' },
+        closing: 'The last guest places the token beside the dish card no one expected, and the group gets a new ending to discuss. Jesse leaves the short rule in place: a small game can be fair when every player gets a choice that matters.',
+        keepsake: { name: 'Last-Turn Token', description: 'A wooden token kept for the player whose move was missed.' },
+      },
+      country: {
+        title: 'The Measure That Overshot', desire: 'competence',
+        chapters: [
+          { title: 'Three Joined Pieces', text: 'At Алмос, Jesse brings a fictional three-part wooden gauge to a small tabletop challenge. The pieces are joined on one strip, and each has a notch that marks its own stop. A player slides the whole gauge at once; the far piece passes its mark before the near one reaches its notch.' },
+          { title: 'One Motion or Three', text: 'Jesse could separate the pieces, but then they would no longer form one measuring tool. Moving the whole strip slowly is also unreliable because the far end begins traveling first. They need to keep the joined shape while giving each section its own moment.' },
+          { title: 'Read Each Notch', text: 'They slide the first section to its notch and pause, then move the second, then the third. The player can see each stop before continuing. It takes longer than one push, but the final position matches all three marks and the joined pieces remain together.' },
+          { title: 'A Sequence Instead of Force', text: 'The gauge now reaches its target without a strong shove or a reset. Jesse asks the next player to call out each notch before the following section moves. The puzzle rewards a careful sequence, not speed, and its solution keeps every part doing its intended job.' },
+        ],
+        approaches: [
+          { label: 'Follow the gauge at Rudaki Park', callback: 'Your careful sequence kept the far section from overshooting.' },
+          { label: 'Look around Алмос for three clear stopping points', callback: 'You noticed how each notch gives one section its own turn.' },
+          { label: 'Tell Jesse when to pause', callback: 'Jesse kept the parts joined and gave each one a separate stop.' },
+        ],
+        dilemma: { prompt: 'How should Jesse move the joined gauge so each section reaches its own mark?', answers: ['Move each section in order, pausing at its notch before continuing.', 'Push the full gauge quickly so all three pieces cross their marks together.', 'Separate the pieces and place them by eye.'], correct: 0, explanation: 'The sequential movement gives each notch a clear stop while preserving the joined gauge.' },
+        closing: 'The three sections settle into their marks in order. Jesse keeps the small pauses as part of the puzzle, turning what looked like a slow tool into a test of attention.',
+        keepsake: { name: 'Three-Notch Gauge', description: 'A joined wooden strip with three stops reached one at a time.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Give everyone a final move', purpose: 'Use the practical activity to notice how a reserved last placement changes the table puzzle.', task: 'practical', count: 1 },
+          { label: 'Trace the three turn spaces', purpose: 'Visit the discovery anchor and compare which player gets a consequential choice.', task: 'discovery-visit', count: 1 },
+          { label: 'Compare two turn orders', purpose: 'Invite two game regulars to test whether the reserved move changes the puzzle ending.', task: 'people', count: 2 },
+        ],
+        weekly: [
+          { label: 'Practice the notch sequence', purpose: 'Repeat the discovery activity three times, pausing at each gauge mark.', task: 'discovery', count: 3 },
+          { label: 'Inspect the joined gauge', purpose: 'Visit the practical anchor and follow how each notch stops one section.', task: 'practical-visit', count: 1 },
+          { label: 'Call out each pause', purpose: 'Use the practical activity twice to rehearse the gauge’s three separate stopping points.', task: 'practical', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'funafuti',
+      city: {
+        title: 'The Race with Uneven Starts', desire: 'fairness',
+        chapters: [
+          { title: 'Two Paper Boats', text: 'At the recreation area game venue, Jesse lays out two fictional paper boats for a friendly tabletop race. A short course ends at a drawn finish line. One boat begins closer because its folded hull is shorter, and the first heat makes that boat look much faster.' },
+          { title: 'The Lane Question', text: 'Jesse could refold the boats, but then the race would no longer compare the same designs. Moving the finish line helps one lane and harms the other. They want a result that acknowledges the uneven starts without pretending the boats are identical.' },
+          { title: 'Reverse the Lanes', text: 'Jesse marks where each boat began, then swaps their lanes for a second heat. Both boats travel the same course under the same push rule. The first boat wins one heat and the second wins the other; the race now shows that the lane and start both mattered.' },
+          { title: 'A Result with Context', text: 'They count placements across both heats instead of declaring a champion from one run. The result is still a contest, but its rule makes the comparison fairer. Jesse keeps the boats unchanged and lets the players decide whether a close pair deserves another round.' },
+        ],
+        approaches: [
+          { label: 'Try Jesse’s two-heat race at the recreation area', callback: 'You helped compare the boats after their lanes changed.' },
+          { label: 'Look around the recreation area and check the start marks', callback: 'Your observation helped Jesse keep both heats comparable.' },
+          { label: 'Tell Jesse how to count the race', callback: 'Jesse counted both placements instead of trusting one uneven start.' },
+        ],
+        dilemma: { prompt: 'How can Jesse compare the same boats when their starting positions are uneven?', answers: ['Run one heat, then crown whichever boat reaches the line first.', 'Refold the shorter boat until both hulls look alike.', 'Swap lanes for a second heat and count each boat’s placements across both.'], correct: 2, explanation: 'Reversing the lanes exposes how position affects the race while preserving the original boats.' },
+        closing: 'The boats cross in different orders, and the players compare the two heats before choosing whether to race again. Jesse keeps the result open to discussion because the useful discovery is how much a starting place can change a contest.',
+        keepsake: { name: 'Two-Heat Scorecard', description: 'A small card that remembers both lane results instead of one finish.' },
+      },
+      country: {
+        title: 'The Sail That Went in Circles', desire: 'curiosity',
+        chapters: [
+          { title: 'A Paper Sail', text: 'At the recreation area game venue, Jesse makes a fictional paper sail that loops around a thin pole instead of opening. A player pulls its thread, but the attachment catches at the folded edge and the sail turns around itself. Jesse wants the sail to pivot outward with one simple pull.' },
+          { title: 'More Thread, More Tangle', text: 'A longer thread gives the player more reach but adds slack around the pole. A second attachment might stabilize the paper, but the country puzzle allows one pole and one loop. Jesse looks at the fold and notices that the loop is trapped above the point where the sail should rotate.' },
+          { title: 'Move the Attachment', text: 'They shift the loop below the fold and leave the paper sail free to pivot. On the first test it opens halfway, then turns back when the thread crosses the pole. Jesse adjusts the starting angle so the loop travels outward instead of wrapping behind.' },
+          { title: 'A Clean Opening', text: 'The sail swings out and stays visible through the small stage cue. Nothing new was added; a changed attachment point gave the existing thread a clearer path. Jesse invites the next player to start from a different angle and see whether the loop still opens cleanly.' },
+        ],
+        approaches: [
+          { label: 'Test the paper sail at the recreation area', callback: 'Your trial helped the sail pivot without circling its pole.' },
+          { label: 'Look around the recreation area for a clear opening path', callback: 'You spotted where the loop needed room to travel outward.' },
+          { label: 'Tell Jesse where the thread should pass', callback: 'Jesse moved the attachment below the fold and cleared the turn.' },
+        ],
+        dilemma: { prompt: 'How can Jesse make the paper sail open with one pole and one loop?', answers: ['Move the loop below the fold and set its starting angle so it travels outward.', 'Add a second pole to hold the paper open.', 'Pull harder while the loop remains trapped above the fold.'], correct: 0, explanation: 'The lower attachment and outward starting angle give the existing loop a clear path.' },
+        closing: 'The folded sail opens on its cue, then settles without winding around the pole. Jesse keeps the tiny adjustment as the puzzle’s answer: sometimes a prop behaves differently when its path has room.',
+        keepsake: { name: 'Outward-Loop Sail', description: 'A folded paper sail with one attachment below its crease.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Run both paper-boat heats', purpose: 'Use the practical activity to compare the boats after the lanes reverse.', task: 'practical', count: 1 },
+          { label: 'Check the marked starts', purpose: 'Visit the discovery anchor and notice how the starting places differ.', task: 'discovery-visit', count: 1 },
+          { label: 'Compare two race results', purpose: 'Invite two game regulars to decide how both heat placements should count.', task: 'people', count: 2 },
+        ],
+        weekly: [
+          { label: 'Track the boats across heats', purpose: 'Use the discovery activity on three occasions to compare lane and start effects.', task: 'discovery', count: 3 },
+          { label: 'Follow the sail loop', purpose: 'Visit the practical anchor and watch how the lower attachment opens outward.', task: 'practical-visit', count: 1 },
+          { label: 'Try a new sail angle', purpose: 'Repeat the practical activity twice to see whether the loop still clears the pole.', task: 'practical', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'gustavia',
+      city: {
+        title: 'The Notch on the Other Side', desire: 'curiosity',
+        chapters: [
+          { title: 'Two Leaf Shapes', text: 'At Square de la Rétrocession, Arden brings two fictional leaf cutouts to a matching game. Their fronts look nearly alike, and the first player keeps pairing the wrong shapes. Arden does not want to add color because the puzzle should work with the pieces already on the table.' },
+          { title: 'A Match from One View', text: 'They try placing the leaves closer together, but the front edges still line up. Turning the pieces over reveals a small notch on one and a rounded corner on the other. The clue is present, though the current rule asks players to match before they have a chance to see it.' },
+          { title: 'Turn Before Pairing', text: 'Arden changes the round: first flip each piece, then pair by the shape of its back edge. The first player worries this makes the answer too easy. Arden counters that remembering which notch belongs to which leaf is now the challenge.' },
+          { title: 'A Different Kind of Memory', text: 'The next round begins with all backs visible, then the pieces turn face down. Players must remember the notch rather than guess from the similar fronts. The cutouts remain unchanged, but one deliberate flip turns a frustrating visual trick into a learnable memory puzzle.' },
+        ],
+        approaches: [
+          { label: 'Try the leaf-matching game at Square de la Rétrocession', callback: 'You found the back-edge clue Arden had left hidden.' },
+          { label: 'Look around La Maison des Plantes and compare the cutout edges', callback: 'Your observation helped make the notch a usable clue.' },
+          { label: 'Tell Arden when to flip the pieces', callback: 'Arden made the back edge part of the memory round.' },
+        ],
+        dilemma: { prompt: 'How can Arden keep the existing pieces and make their difference learnable?', answers: ['Add bright colors that reveal the pair immediately.', 'Flip the cutouts first so players can notice and remember the different back edges.', 'Keep the fronts hidden and ask players to guess at random.'], correct: 1, explanation: 'A first look at the notches makes the actual difference observable, while a later face-down round tests memory.' },
+        closing: 'A player remembers the notched leaf and finds its partner without relying on a lucky guess. Arden keeps the round short and lets the pieces teach their own clue.',
+        keepsake: { name: 'Notched Leaf Pair', description: 'Two paper leaves whose backs carry different edge shapes.' },
+      },
+      country: {
+        title: 'The Sleeve That Would Not Open', desire: 'autonomy',
+        chapters: [
+          { title: 'A Bead in the Fold', text: 'At La Maison des Plantes, Arden makes a fictional paper sleeve with a bead tucked inside. The flap folds over the opening, but when the player tips the sleeve, the bead stays trapped. Pulling harder risks tearing the thin paper, and Arden wants the container to remain reusable.' },
+          { title: 'Tear or Refold', text: 'A player suggests widening the opening with a cut. Another wants to shake the bead free. Neither option preserves the original sleeve as a puzzle. Arden studies the fold and sees that the flap lies across the bead’s path like a fixed wall.' },
+          { title: 'A Sliding Latch', text: 'They refold one flap into a narrow sliding latch. It holds the sleeve closed, but slides aside when a thumb pushes along the crease. The bead can then roll out through the same opening, and the paper stays intact for the next round.' },
+          { title: 'Open on Purpose', text: 'Arden lets the player find the latch rather than opening the sleeve for them. The bead rolls into the palm, and the sleeve can be closed again with the same fold. The puzzle changes from force to a small action the player can discover and control.' },
+        ],
+        approaches: [
+          { label: 'Try the paper sleeve at Square de la Rétrocession', callback: 'You found a way to release the bead without tearing the sleeve.' },
+          { label: 'Look around La Maison des Plantes for the fold’s sliding edge', callback: 'Your observation helped Arden see which flap could become a latch.' },
+          { label: 'Tell Arden which fold should move', callback: 'Arden made the flap slide aside instead of blocking the bead.' },
+        ],
+        dilemma: { prompt: 'How can Arden release the bead and keep the paper sleeve reusable?', answers: ['Cut the opening wider and replace the sleeve after the round.', 'Shake harder until the bead forces past the flap.', 'Refold one flap as a sliding latch that moves aside and closes again.'], correct: 2, explanation: 'The sliding fold releases the bead without damaging the sleeve and can be reset.' },
+        closing: 'The bead rolls free, then the player slides the latch closed again. Arden likes that the answer belongs to the person solving it: the sleeve opens when they find the small moving fold.',
+        keepsake: { name: 'Sliding-Flap Sleeve', description: 'A folded paper pouch with a reusable moving latch.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Match the notched leaves', purpose: 'Use the practical activity to identify each cutout by its back edge.', task: 'practical', count: 1 },
+          { label: 'Inspect both sides of the cutouts', purpose: 'Visit the discovery anchor and notice the difference hidden on each leaf’s back.', task: 'discovery-visit', count: 1 },
+          { label: 'Play a memory round', purpose: 'Invite two game regulars to remember which leaf carries the notch.', task: 'people', count: 2 },
+        ],
+        weekly: [
+          { label: 'Remember three leaf pairs', purpose: 'Repeat the discovery activity three times, using the backs as the clue.', task: 'discovery', count: 3 },
+          { label: 'Trace the sliding fold', purpose: 'Visit the practical anchor and follow the latch that releases the bead.', task: 'practical-visit', count: 1 },
+          { label: 'Reset the paper sleeve', purpose: 'Use the practical activity twice to open and close the reusable latch.', task: 'practical', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'hargeisa',
+      city: {
+        title: 'The Loop That Locked Itself', desire: 'competence',
+        chapters: [
+          { title: 'A Thread Puzzle', text: 'At Guri_Samo Park, Ira lays a fictional cord around a single peg for a loop puzzle. The loose end passes through the first loop, then wraps the peg again. When Ira pulls both ends, the cord tightens into a knot that will not slide.' },
+          { title: 'Pull or Start Again', text: 'A player wants to pull harder. Ira stops them before the cord cinches further. Starting over would solve the immediate snag but would not explain why the loop locked. Ira traces the cord back and notices the second wrap traps the loose end outside the first loop.' },
+          { title: 'Back Through the First Loop', text: 'Ira draws the loose end back through the first loop before tightening. The cord now follows a single path around the peg. They test a gentle pull from each end; the loop holds, then releases when the player loosens the right side.' },
+          { title: 'A Knot with an Exit', text: 'The puzzle becomes a small lesson in following a path rather than adding force. Ira lets the next player trace each pass with a finger before trying the release. The cord remains one piece, and the peg stays fixed.' },
+        ],
+        approaches: [
+          { label: 'Trace Ira’s cord loop at Guri_Samo Park', callback: 'You found where the loose end needed to pass before the pull.' },
+          { label: 'Look around Hand Memorial and follow the cord path', callback: 'Your observation showed why the second wrap trapped the loop.' },
+          { label: 'Tell Ira which pass to undo', callback: 'Ira routed the loose end back through the first loop.' },
+        ],
+        dilemma: { prompt: 'How can Ira keep one cord and one peg while making the loop release?', answers: ['Pull both ends harder until the knot slips over the peg.', 'Pass the loose end back through the first loop before tightening.', 'Add a second cord to hold the first one open.'], correct: 1, explanation: 'The corrected route removes the trapped second wrap and lets the loop hold and release with gentle pulls.' },
+        closing: 'The loop tightens, holds, and then opens with a light pull. Ira leaves the cord laid out so the next player can follow its path from the beginning.',
+        keepsake: { name: 'Single-Peg Loop', description: 'A cord path that holds around one peg and releases when traced correctly.' },
+      },
+      country: {
+        title: 'The Two Shadows That Became One', desire: 'curiosity',
+        chapters: [
+          { title: 'Two Birds on One Screen', text: 'At Hand Memorial, Ira sets two paper bird cutouts before the single screen of a fictional Pocket Stage. When both enter together, their wings overlap in the beam and appear to be one bird with an impossible shape. The audience cannot tell which bird is meant to lead.' },
+          { title: 'Wider or Later', text: 'Ira considers widening the screen, but the prop must stay one small panel. A second light would make the puzzle easier while changing its constraint. The cutouts can enter at different times, though the scene still needs both birds to meet.' },
+          { title: 'Let the First Clear', text: 'They move the first bird across the bright center and wait until its tail clears the beam. Only then does the second bird enter from the opposite side. The first attempt waits too long and loses the rhythm, so Ira shortens the pause to one clear wingbeat.' },
+          { title: 'Two Shapes, One Meeting', text: 'The birds now appear separately before crossing at the edge of the screen. Their meeting is visible because the audience has already learned to see them as two. Ira keeps the one screen and gives each cutout its own entrance.' },
+        ],
+        approaches: [
+          { label: 'Test the two-bird entrance at Hand Memorial', callback: 'You helped Ira separate the silhouettes before their meeting.' },
+          { label: 'Look around Guri_Samo Park for the overlap point', callback: 'Your observation helped Ira time the second bird’s entrance.' },
+          { label: 'Tell Ira when the second bird should enter', callback: 'Ira waited for one wingbeat after the first cutout cleared.' },
+        ],
+        dilemma: { prompt: 'How can Ira show two birds on one screen without adding another light or panel?', answers: ['Widen the screen so the cutouts never approach each other.', 'Stagger the entrances until the first bird clears the beam, then bring in the second.', 'Enter both together and ask the audience to imagine two shapes.'], correct: 1, explanation: 'A short stagger makes each silhouette readable while preserving the single screen and both cutouts.' },
+        closing: 'One bird crosses, a wingbeat passes, and the second follows. They meet at the edge as two distinct shapes, giving Ira the clear entrance the scene needed.',
+        keepsake: { name: 'Wingbeat Cue', description: 'A short timing cue that separates two bird silhouettes on one screen.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Trace the single-peg loop', purpose: 'Use the practical activity to follow the loose end back through the first loop.', task: 'practical', count: 1 },
+          { label: 'Follow the cord path', purpose: 'Visit the discovery anchor and see where the second wrap trapped the end.', task: 'discovery-visit', count: 1 },
+          { label: 'Compare two gentle pulls', purpose: 'Invite two game regulars to test how the corrected loop holds and releases.', task: 'people', count: 2 },
+        ],
+        weekly: [
+          { label: 'Practice the loop release', purpose: 'Repeat the discovery activity three times, tracing the same single-peg route.', task: 'discovery', count: 3 },
+          { label: 'Watch the birds clear the beam', purpose: 'Visit the practical anchor and notice the gap Ira leaves between the two cutout entrances.', task: 'practical-visit', count: 1 },
+          { label: 'Compare two entrance pauses', purpose: 'Invite two game regulars to decide when the first bird has cleared the beam.', task: 'people', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'hong-kong',
+      city: {
+        title: 'The Lift Skipped a Floor', desire: 'competence',
+        chapters: [
+          { title: 'A Missing Stop', text: 'At Ma On Shan Park, Sage prepares a fictional toy elevator with a slider and three marked floors. The car rises from the bottom to the top, passing the middle mark without pausing. Sage’s friend says the ride is still fun, but a passenger waiting on that floor never gets on.' },
+          { title: 'More Force or a Pause', text: 'Sage considers slowing the slider by hand. That works only while the maker controls it, and the puzzle should let a player choose where to stop. A second lever would make the toy more complicated. They need a pause built into the single control.' },
+          { title: 'A Center Detent', text: 'Sage adds a small detent at the center mark. The slider catches there lightly, then continues when the player pushes again. On the first attempt it catches too strongly and the car cannot reach the top. Sage makes the notch shallower so it signals a stop without becoming a lock.' },
+          { title: 'Every Floor Gets a Turn', text: 'The elevator pauses at the middle level and completes the trip when the player chooses to continue. The waiting passenger boards before the final ride. Sage keeps one slider and three marks, giving the toy a useful choice instead of a forced pass.' },
+        ],
+        approaches: [
+          { label: 'Try the three-floor slider at Ma On Shan Park', callback: 'You helped Sage find a center stop that still lets the lift continue.' },
+          { label: 'Look around Jordan Valley Park for the middle mark', callback: 'Your observation helped make the skipped floor visible in the sequence.' },
+          { label: 'Tell Sage how the lift should pause', callback: 'Sage added a shallow catch at the middle level.' },
+        ],
+        dilemma: { prompt: 'How can Sage pause at the middle floor without adding another control?', answers: ['Push the slider harder so it moves past the center quickly.', 'Make the center detent shallow enough to catch, then release with another push.', 'Add a second slider and let the player guess which one stops the lift.'], correct: 1, explanation: 'A shallow detent creates a chosen pause with the toy’s existing single slider.' },
+        closing: 'The car stops at the center, waits for its passenger, then travels on. Sage leaves the detent shallow: enough to invite a decision, not enough to trap the ride.',
+        keepsake: { name: 'Center-Floor Detent', description: 'A shallow notch that lets the toy lift pause at its middle level.' },
+      },
+      country: {
+        title: 'The Gear That Opened Backward', desire: 'curiosity',
+        chapters: [
+          { title: 'A Curtain Crank', text: 'At Ma On Shan Park, Sage sets up a fictional curtain prop driven by a small gear train and a hand crank. The crank turns, but the curtain closes when the cue says open. Sage has kept the gears visible so a player can follow how the motion travels.' },
+          { title: 'Turn the Crank or the Train', text: 'A player suggests simply turning the crank the other way. That opens the curtain, but makes the closing cue awkward and reverses both actions. Sage wants the crank direction to remain intuitive and the curtain to respond correctly when the opening cue arrives.' },
+          { title: 'Reverse the First Gear', text: 'Sage remounts the first gear so its teeth meet the next gear from the opposite side. The train still uses the same crank and gears, but the curtain’s movement changes direction. They test both cues slowly to be sure the open and close actions have not swapped.' },
+          { title: 'Motion with a Clear Cue', text: 'The crank turns in the familiar direction and the curtain opens when expected. Sage leaves the gear train visible, turning the repair into a puzzle about how a small change at the beginning changes motion at the end.' },
+        ],
+        approaches: [
+          { label: 'Test the curtain crank at Ma On Shan Park', callback: 'You helped Sage trace the opening cue through the first gear.' },
+          { label: 'Look around Jordan Valley Park and follow the gear teeth', callback: 'Your observation showed where the first gear changed the direction.' },
+          { label: 'Tell Sage which gear should move', callback: 'Sage remounted the first gear so the curtain opened on cue.' },
+        ],
+        dilemma: { prompt: 'How can Sage keep the crank and make the curtain open on its cue?', answers: ['Remount the first gear so its teeth meet the next gear from the opposite side.', 'Turn the crank backward for opening and change the cue each time.', 'Remove the gear train and pull the curtain directly.'], correct: 0, explanation: 'Reversing the first gear’s mounting changes the train’s output while preserving the crank and cue.' },
+        closing: 'The curtain opens, then closes on the next signal. Sage keeps the gears visible for the next player, who can trace the motion from the first tooth to the final fold.',
+        keepsake: { name: 'Reversed First Gear', description: 'The first visible gear remounted to send the curtain in the intended direction.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Pause at the middle floor', purpose: 'Use the practical activity to test the lift’s center detent and continue by choice.', task: 'practical', count: 1 },
+          { label: 'Trace the curtain gear train', purpose: 'Visit the discovery anchor and follow how the first gear changes the curtain’s direction.', task: 'discovery-visit', count: 1 },
+          { label: 'Compare both curtain cues', purpose: 'Invite two game regulars to check that the crank opens and closes the curtain as expected.', task: 'people', count: 2 },
+        ],
+        weekly: [
+          { label: 'Ride through all three stops', purpose: 'Repeat the discovery activity three times, pausing at the center before continuing.', task: 'discovery', count: 3 },
+          { label: 'Inspect the first gear', purpose: 'Visit the practical anchor and notice where the visible gear train reverses direction.', task: 'practical-visit', count: 1 },
+          { label: 'Test the two crank cues', purpose: 'Use the practical activity twice to confirm that both opening and closing work.', task: 'practical', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'kuwait-city',
+      city: {
+        title: 'The Fold That Would Not Stand', desire: 'competence',
+        chapters: [
+          { title: 'A Square and a Token', text: 'At Northwest Sulaibikhat Public Park, Jesse brings a fictional paper-folding challenge: make one square napkin stand beside a wooden token. Two folds create a tall tent, but it tips when the token is placed nearby.' },
+          { title: 'More Height or More Foot', text: 'Jesse considers a third fold, though that would break the two-fold rule. The player can widen the tent, but it would take up the entire board. The challenge is to trade some height for a base that can hold its shape.' },
+          { title: 'Open One Corner', text: 'They unfold one corner and press it outward as a foot. The napkin stands lower than before, and the token fits beside it. A small test shows the foot slips when placed on its narrow edge, so Jesse turns the corner flat.' },
+          { title: 'A Shorter, Steadier Shape', text: 'The folded paper now stays upright without another crease or support. Jesse keeps the changed outline because the challenge is not to make the tallest shape; it is to make a useful one that can stand on its own.' },
+        ],
+        approaches: [
+          { label: 'Try the two-fold challenge at Northwest Sulaibikhat Public Park', callback: 'You found a broader foot that lets the napkin stand.' },
+          { label: 'Look around Johnny Carino’s and compare the paper base', callback: 'Your observation helped Jesse notice how the corner rested.' },
+          { label: 'Tell Jesse what to trade for stability', callback: 'Jesse gave up height to make a flat supporting foot.' },
+        ],
+        dilemma: { prompt: 'How can Jesse keep the two-fold limit and make the paper stand by the token?', answers: ['Unfold one corner into a broad, flat foot, accepting a shorter shape.', 'Add a third fold and hide it under the board.', 'Keep the narrow tent and place the token on its top.'], correct: 0, explanation: 'The broad foot uses the existing square and two-fold limit while giving up height for stability.' },
+        closing: 'The napkin stands beside the token, shorter than the first attempt but steady enough to stay put. Jesse keeps the broad foot as the memorable part of the puzzle.',
+        keepsake: { name: 'Flat-Foot Fold', description: 'A two-fold paper shape whose open corner becomes a stable base.' },
+      },
+      country: {
+        title: 'The Top at the Narrow Gate', desire: 'curiosity',
+        chapters: [
+          { title: 'A Spinning Entrance', text: 'At Northwest Sulaibikhat Public Park, Jesse sets a fictional spinning top before a narrow stage gate. The top spins well on the open board, but its point catches when it reaches the gate and stops before the finish.' },
+          { title: 'Wider Gate or Guided Turn', text: 'The player asks to widen the gate. Jesse wants to keep the tight opening because it makes the puzzle interesting. Adding a second top would change the test; the same top must pass through the same gap.' },
+          { title: 'A Low Guide Ring', text: 'Jesse adds a low paper guide ring at the gate entrance. It does not enlarge the opening; it keeps the top’s point centered as it approaches. On the first run the ring sits too high and nudges the top over, so they lower it until it guides without blocking.' },
+          { title: 'Through Without a Shortcut', text: 'The top spins through the narrow gate and reaches the marked finish. Jesse leaves the opening unchanged. The small guide gives the top a clean approach, so the challenge remains about steering rather than brute force.' },
+        ],
+        approaches: [
+          { label: 'Send the top through the gate', callback: 'You helped Jesse guide the spin through the original narrow opening.' },
+          { label: 'Look around Northwest Sulaibikhat Public Park at the gate approach', callback: 'Your observation showed where a low guide could keep the top centered.' },
+          { label: 'Tell Jesse how to preserve the tight opening', callback: 'Jesse lowered the ring so it guides without widening the gate.' },
+        ],
+        dilemma: { prompt: 'How can Jesse guide the top through the same narrow gate?', answers: ['Widen the gate until the top no longer needs steering.', 'Add a low guide ring that centers the top at the entrance.', 'Push the top harder so it jumps past the opening.'], correct: 1, explanation: 'The low ring helps the top approach the existing gate without removing its constraint.' },
+        closing: 'The top crosses the gate with its spin intact. Jesse keeps the ring low and the opening narrow, letting the player see how the approach changes the result.',
+        keepsake: { name: 'Low Guide Ring', description: 'A paper ring set low at the stage gate to center a spinning top.' },
+      },
+      missions: {
+        daily: [
+          { label: 'Stand the folded square', purpose: 'Use the practical activity to test the broad foot beside the wooden token.', task: 'practical', count: 1 },
+          { label: 'Inspect the top’s approach', purpose: 'Visit the discovery anchor and notice where the narrow gate catches the spin.', task: 'discovery-visit', count: 1 },
+          { label: 'Compare two paper bases', purpose: 'Invite two game regulars to judge which two-fold shape stands beside the token.', task: 'people', count: 2 },
+        ],
+        weekly: [
+          { label: 'Test three paper folds', purpose: 'Repeat the discovery activity three times, trading height for a steadier foot.', task: 'discovery', count: 3 },
+          { label: 'Follow the low guide ring', purpose: 'Visit the practical anchor and check how it centers the top at the gate.', task: 'practical-visit', count: 1 },
+          { label: 'Try a new top approach', purpose: 'Use the practical activity twice to test the unchanged gate with a guided entry.', task: 'practical', count: 2 },
+        ],
+      },
+    },
+    {
+      cityId: 'malabo',
+      city: {
+        title: 'The Ring at the Third Gate', desire: 'curiosity',
+        chapters: [
+          { title: 'Three Openings', text: 'At Plaza de San Fernando, Sage brings two nested rings to a fictional puzzle with three fixed gates. The pair passes the first two, then the inner ring catches at the last opening. The rings must remain joined, and the gates cannot move.' },
+          { title: 'Split or Turn', text: 'A player wants to separate the rings. Sage refuses because the puzzle is about moving them as one pair. Pushing straight through makes the inner ring catch again. They need to change the pair’s orientation at the final gate.' },
+          { title: 'Rotate the Inner Ring', text: 'Sage holds the outer ring steady and rotates the inner one before the third pass. The first try twists them together and the same edge catches. They reset, align the inner ring’s narrow side with the opening, then guide both forward.' },
+          { title: 'The Pair Fits Together', text: 'The rings pass through without separating. Sage marks the last gate as the one that requires a turn, so players can anticipate the change instead of forcing the pair through.' },
+        ],
+        approaches: [
+          { label: 'Try the three-gate ring puzzle at Plaza de San Fernando', callback: 'You found an orientation that lets the joined rings pass the last gate.' },
+          { label: 'Look around Parque de Alcaide and compare the openings', callback: 'Your observation helped Sage identify which ring needed to turn.' },
+          { label: 'Tell Sage how to keep the pair joined', callback: 'Sage rotated the inner ring before the final pass.' },
+        ],
+        dilemma: { prompt: 'How can Sage pass the third fixed gate without separating the rings?', answers: ['Push the joined pair harder through the same alignment.', 'Rotate the inner ring so its narrow side meets the opening.', 'Move the third gate aside for one turn.'], correct: 1, explanation: 'Changing the inner ring’s orientation preserves the joined pair and fixed gates.' },
+        closing: 'The nested rings clear the last opening in one smooth turn. Sage returns them to the starting position, leaving the final gate as a puzzle of orientation rather than strength.',
+        keepsake: { name: 'Nested Ring Pair', description: 'Two joined rings aligned edgewise for the final fixed gate.' },
+      },
+      country: {
+        title: 'The Puppet with One Visible Hand', desire: 'autonomy',
+        chapters: [
+          { title: 'Two Characters, One Rod', text: 'At Parque de Alcaide, Sage builds a fictional two-character puppet controlled by one rod. The figures move together, but every turn reveals the puppeteer’s hand between them. Sage wants both characters to remain connected without exposing the control.' },
+          { title: 'Hide or Rebuild', text: 'A player suggests adding a second rod, but the scene allows one. A wider screen hides the hand but also hides the figures’ shared movement. Sage watches how the rod passes between the characters and sees that the hand appears during a direct turn.' },
+          { title: 'A Sliding Crossing', text: 'Sage changes the motion to a sliding crossing: one character travels in front while the other glides behind, then they reverse. The first pass exposes the rod at the turn. Sage slows the crossing and keeps the figures close until they have traded positions.' },\n          { title: 'Still Joined, More Readable', text: 'The pair crosses without a sudden reveal of the hand. Their movements are distinct, though the single rod still links them. Sage keeps the slower crossing as the scene’s signature gesture.' },\n        ],\n        approaches: [\n          { label: 'Try the one-rod puppet at Parque de Alcaide', callback: 'You helped Sage find a crossing that keeps the figures together.' },\n          { label: 'Look around Plaza de San Fernando for the reveal point', callback: 'Your observation helped Sage smooth the motion where the hand appeared.' },\n          { label: 'Tell Sage how the figures should cross', callback: 'Sage made the characters slide past each other before reversing.' },\n        ],\n        dilemma: { prompt: 'How can Sage keep one rod and make both puppet characters readable?', answers: ['Add another control rod so each figure moves alone.', 'Hide the full scene behind a wider screen.', 'Use a slower sliding crossing that keeps the figures close as they trade places.'], correct: 2, explanation: 'The sliding crossing preserves one rod and makes the shared movement legible.' },\n        closing: 'The characters trade places in a quiet glide, and the hand no longer interrupts their scene. Sage keeps the one-rod limit as part of the puppet’s identity.',\n        keepsake: { name: 'Crossing Puppet', description: 'Two linked figures arranged for a smooth sliding exchange.' },\n      },\n      missions: {\n        daily: [\n          { label: 'Turn the nested rings', purpose: 'Use the practical activity to align the inner ring at the last gate.', task: 'practical', count: 1 },\n          { label: 'Compare the three gates', purpose: 'Visit the discovery anchor and notice why only the final opening needs a turn.', task: 'discovery-visit', count: 1 },\n          { label: 'Rehearse the puppet crossing', purpose: 'Invite two game regulars to compare the sliding exchange with a direct turn.', task: 'people', count: 2 },\n        ],\n        weekly: [\n          { label: 'Practice the final ring pass', purpose: 'Repeat the discovery activity three times, keeping the pair joined through the gate.', task: 'discovery', count: 3 },\n          { label: 'Inspect the one-rod control', purpose: 'Visit the practical anchor and follow the shared rod through the character crossing.', task: 'practical-visit', count: 1 },\n          { label: 'Try the slow puppet glide', purpose: 'Use the practical activity twice to make the figures trade places without a sudden reveal.', task: 'practical', count: 2 },\n        ],
+      },
+    },
+    {
+      cityId: 'maputo',
+      city: {
+        title: 'The Tray Turn at the Handoff', desire: 'belonging',
+        chapters: [
+          { title: 'One Handle, Two Players', text: 'At Praça da Independência, Jesse sketches a fictional tabletop relay with one tray and a short marked course. The next player grabs the handle from the same side as the first, forcing both hands together and stopping the pass.' },
+          { title: 'Change the Course or the Grip', text: 'Jesse could widen the course, but the challenge is meant to fit a narrow board. Adding another handle would change the tray. They consider how the object can arrive in a position that gives the next player a clear grip.' },
+          { title: 'A Quarter Turn', text: 'They mark a short turn at the handoff and rotate the tray a quarter-turn before passing it. The handle now faces the waiting player. On the first attempt it turns too early and clips a course marker, so they place the turn after the tray clears the lane.' },
+          { title: 'A Pass with Room', text: 'The tray reaches the next hand without crossing the course or tangling the players. Jesse keeps one handle and one route, using its orientation to make space for the second person.' },
+        ],
+        approaches: [
+          { label: 'Try Jesse’s tray handoff at Praça da Independência', callback: 'You helped turn the handle toward the waiting player.' },
+          { label: 'Look around Café Continental and trace the course', callback: 'Your observation helped place the quarter-turn after the marker.' },
+          { label: 'Tell Jesse when the tray should turn', callback: 'Jesse kept the narrow course and made room at the handoff.' },
+        ],
+        dilemma: { prompt: 'How can Jesse pass one tray along the narrow course without crowding both hands?', answers: ['Add a second handle and change the tray.', 'Turn the tray a quarter-turn after it clears the marker so the handle faces the next player.', 'Widen the course until both players can reach the same side.'], correct: 1, explanation: 'A timed turn preserves the tray and narrow course while giving the next player a clear grip.' },
+        closing: 'The tray clears the marker, turns, and reaches the waiting hand handle-first. Jesse keeps the small rotation as the relay’s most important move.',\n        keepsake: { name: 'Quarter-Turn Tray', description: 'A relay tray positioned to face its handle toward the next player.' },\n      },\n      country: {\n        title: 'The Balcony Before the Bow', desire: 'care',
+        chapters: [
+          { title: 'A Rotating Scene', text: 'At Café Continental, Jesse prepares a fictional tabletop stage with a rotating balcony panel and a hand crank. The next scene appears while the actors are still finishing their closing pose, making one character vanish mid-gesture.' },\n          { title: 'Freeze or Change the Stop', text: 'A player suggests asking the actors to freeze longer. Jesse worries that the scene will feel stiff. The panel has one crank and a stop; its timing can change without adding a new control.' },\n          { title: 'Move the Crank Stop', text: 'Jesse shifts the stop so the panel waits until the closing pose is complete. The first rehearsal puts the stop too far along and leaves the actors staring at the wall. They bring it back until the panel begins only after the final gesture.' },\n          { title: 'The Scene Has Its Ending', text: 'The actors complete the pose, then the panel turns and reveals the next scene. Jesse keeps the simple crank and lets timing protect the performers’ last moment.' },\n        ],\n        approaches: [\n          { label: 'Test the rotating panel at Café Continental', callback: 'You helped Jesse delay the next scene until the pose was complete.' },\n          { label: 'Look around Praça da Independência for the final gesture', callback: 'Your observation helped place the stop after the actors’ last movement.' },\n          { label: 'Tell Jesse when the panel should turn', callback: 'Jesse moved the crank stop to preserve the scene’s ending.' },\n        ],\n        dilemma: { prompt: 'How can Jesse let the actors finish without adding another control?', answers: ['Move the crank stop so the panel waits through the closing pose.', 'Tell the actors to freeze longer while the panel keeps turning.', 'Remove the stop and let the next scene appear whenever it can.'], correct: 0, explanation: 'Changing the stop gives the existing crank a cue that follows the actors’ final gesture.' },\n        closing: 'The final pose lands, the audience gets a breath, and only then does the balcony turn. Jesse keeps the new timing so the panel serves the scene rather than overtaking it.',\n        keepsake: { name: 'Delayed Balcony Stop', description: 'A crank stop positioned after the actors’ closing gesture.' },\n      },\n      missions: {\n        daily: [\n          { label: 'Turn the tray at the handoff', purpose: 'Use the practical activity to face the handle toward the waiting player.', task: 'practical', count: 1 },\n          { label: 'Trace the narrow relay course', purpose: 'Visit the discovery anchor and locate the marker before the tray turn.', task: 'discovery-visit', count: 1 },\n          { label: 'Rehearse the panel cue', purpose: 'Invite two game regulars to compare the scene before and after the crank stop moves.', task: 'people', count: 2 },\n        ],\n        weekly: [\n          { label: 'Practice three tray passes', purpose: 'Repeat the discovery activity three times, turning only after the marker clears.', task: 'discovery', count: 3 },\n          { label: 'Watch the final stage pose', purpose: 'Visit the practical anchor and notice how the panel waits through the closing gesture.', task: 'practical-visit', count: 1 },\n          { label: 'Test the panel timing', purpose: 'Use the practical activity twice to check that the panel begins after the last gesture.', task: 'practical', count: 2 },\n        ],
+      },
+    },
+    {
+      cityId: 'minsk',
+      city: {
+        title: 'The Stone in the Outside Notch', desire: 'competence',
+        chapters: [
+          { title: 'A Balance with Three Pieces', text: 'At Палацава-паркавы комплекс Чапскіх, Sage sets a fictional balance puzzle with a fixed base and three marked stones. Adding the third stone makes the first one slide off its mark, so players keep resetting the board.' },\n          { title: 'Move the Base Stone', text: 'A player suggests widening the base. Sage wants to keep its outline because the outside notch is part of the challenge. They can move the marked stone, but only to one of the board’s existing notches.' },\n          { title: 'Shift to the Edge', text: 'Sage moves the base stone to the outside notch. The other two stones now fit, but the arrangement tilts when the largest piece sits nearest the center. They test the order and settle the largest on the far side, where the base remains steady.' },\n          { title: 'All Three Stay in Play', text: 'The stones remain on the fixed base without covering their marks. Sage leaves the outside notch visible as a hint, not an automatic answer. Players can still try arrangements, but now the board has room for all three pieces.' },\n        ],\n        approaches: [\n          { label: 'Balance all three stones at Палацава-паркавы комплекс Чапскіх', callback: 'You helped Sage move the base stone where all three pieces fit.' },\n          { label: 'Look around the Stones Museum and compare the notches', callback: 'Your observation helped reveal why the outside mark mattered.' },\n          { label: 'Tell Sage which stone should move first', callback: 'Sage shifted the base piece to the edge before arranging the rest.' },\n        ],\n        dilemma: { prompt: 'How can Sage keep the fixed base and all three stones in play?', answers: ['Shift the base stone to the outside notch, then place the larger piece at the far side.', 'Remove the third piece and keep the other two on their original marks.', 'Widen the base and cover the notch so it cannot guide the puzzle.'], correct: 0, explanation: 'The outside notch creates space for the third stone, and the far-side placement keeps the base steady.' },\n        closing: 'All three marked stones settle on the same base. Sage leaves the board ready for another arrangement, with the outer notch easy to see and free to test.',\n        keepsake: { name: 'Outside-Notch Stone', description: 'The marked base piece shifted to make room for the full balance puzzle.' },\n      },\n      country: {\n        title: 'The Curtain After the Crossing', desire: 'autonomy',
+        chapters: [
+          { title: 'A Hidden Entrance', text: 'At Палацава-паркавы комплекс Чапскіх, Sage arranges a fictional stage curtain and a performer’s entrance. The curtain slides over the doorway just before the performer crosses, hiding the entrance cue and making the character seem to appear from nowhere.' },\n          { title: 'Earlier or Later', text: 'A player asks to move the curtain sooner, but that hides the doorway for longer. Sage wants to keep the same curtain and one opening; the movement should follow the performer, not anticipate them.' },\n          { title: 'Cross Before Closing', text: 'Sage changes the sequence so the performer crosses first and the curtain moves only after they pass. The first rehearsal leaves the curtain waiting too long, so they connect its movement to the performer’s last step.' },\n          { title: 'An Entrance the Audience Can Read', text: 'The character crosses in view, then the curtain closes behind them. The scene keeps one opening and the same prop, but the order gives the entrance a clear beginning and end.' },\n        ],\n        approaches: [\n          { label: 'Time the curtain after the entrance', callback: 'You helped Sage keep the doorway visible through the crossing.' },\n          { label: 'Look around Stones Museum for the stage sequence', callback: 'Your observation helped identify the performer’s last step.' },\n          { label: 'Tell Sage when the curtain should move', callback: 'Sage delayed the curtain until the performer crossed.' },\n        ],\n        dilemma: { prompt: 'How can Sage keep the same curtain and make the entrance visible?', answers: ['Move the curtain before the performer reaches the doorway.', 'Let the performer cross first, then slide the curtain behind them.', 'Remove the curtain from the scene.'], correct: 1, explanation: 'Moving the curtain after the crossing preserves the prop and lets the audience see the entrance.' },\n        closing: 'The performer crosses the doorway, the curtain follows, and the audience sees the whole entrance. Sage keeps the same small stage and gives the character room to arrive.',\n        keepsake: { name: 'After-Crossing Cue', description: 'A stage sequence that moves the curtain after the performer passes.' },\n      },\n      missions: {\n        daily: [\n          { label: 'Fit all three stones', purpose: 'Use the practical activity to test the outside notch and balance the full set.', task: 'practical', count: 1 },\n          { label: 'Inspect the curtain sequence', purpose: 'Visit the discovery anchor and notice whether the performer crosses before the curtain moves.', task: 'discovery-visit', count: 1 },\n          { label: 'Compare two stage timings', purpose: 'Invite two game regulars to decide which sequence makes the entrance visible.', task: 'people', count: 2 },\n        ],\n        weekly: [\n          { label: 'Try three stone arrangements', purpose: 'Repeat the discovery activity three times, keeping all pieces on the fixed base.', task: 'discovery', count: 3 },\n          { label: 'Follow the doorway cue', purpose: 'Visit the practical anchor and track the performer’s last step before the curtain.', task: 'practical-visit', count: 1 },\n          { label: 'Rehearse the crossing', purpose: 'Use the practical activity twice to keep the doorway visible through the entrance.', task: 'practical', count: 2 },\n        ],
+      },
+    },
+    {
+      cityId: 'oslo',
+      city: {
+        title: 'The White Shape with an Edge', desire: 'curiosity',
+        chapters: [
+          { title: 'A Layered Puzzle', text: 'At Sverre Enevolds plass, Corin places a white token among pale shapes in a fictional layered-color puzzle. The token disappears against the field, and players cannot tell whether they have found it or merely guessed.' },\n          { title: 'Add Color or Reveal Shape', text: 'Corin could paint the token, but the puzzle’s set is meant to use the same pieces throughout. A brighter background would make the other tokens harder to compare. They decide to change the white token’s outline instead.' },\n          { title: 'A Cut Edge', text: 'Corin adds a small notch to one edge of the token. It now reads as a distinct shape against the pale field, but the notch is too shallow to see from the side. They turn the token so its cut edge faces the player before each round.' },\n          { title: 'Found by Its Form', text: 'The player spots the white token without needing a new color. Corin keeps the layered puzzle and uses the edge as its clue, showing that a shape can stand out without a brighter surface.' },\n        ],\n        approaches: [\n          { label: 'Find the white token at Sverre Enevolds plass', callback: 'You noticed the cut edge that distinguishes the pale shape.' },\n          { label: 'Look around Nansenparken and compare the token outlines', callback: 'Your observation helped Corin make the notch face the player.' },\n          { label: 'Tell Corin which edge should show', callback: 'Corin turned the token so its cut edge became the clue.' },\n        ],\n        dilemma: { prompt: 'How can Corin make the white token visible without changing the colors?', answers: ['Give it a distinct cut edge and turn that edge toward the player.', 'Paint the token a bright color and remove the pale field.', 'Keep its outline hidden and let the player guess.'], correct: 0, explanation: 'The cut edge changes the token’s silhouette while preserving the puzzle’s color set.' },\n        closing: 'The white token appears by its notched outline. Corin keeps the color layer intact and lets the player discover the shape clue.',\n        keepsake: { name: 'Notched White Token', description: 'A pale puzzle piece with a cut edge that remains visible against its field.' },\n      },\n      country: {\n        title: 'The Lever That Took Two Steps', desire: 'competence',
+        chapters: [
+          { title: 'A Three-Step Toy', text: 'At Nansenparken, Corin tests a fictional toy that advances along a three-step track when its lever is pushed. The first push moves it two places, skipping the middle step. Corin wants one push to make one move.' },\n          { title: 'Shorten the Push or Reset', text: 'A player suggests pushing more gently, but that depends on who holds the lever. Corin would rather the toy itself return to a clear starting position before the next push. The track and lever should remain unchanged.' },\n          { title: 'A Return Stop', text: 'Corin adds a small return stop so the lever resets fully before another push. The first stop catches before the lever reaches its start, and the next push still jumps twice. Corin shifts it until the lever comes back to the same mark each time.' },\n          { title: 'One Push, One Step', text: 'The toy reaches each mark in sequence, pausing at the middle before the last step. Corin keeps the full track visible so the next player can compare the lever’s reset with the toy’s movement.' },\n        ],\n        approaches: [\n          { label: 'Advance the toy one step at Nansenparken', callback: 'You helped Corin give the lever a complete reset between pushes.' },\n          { label: 'Look around Sverre Enevolds plass for the middle stop', callback: 'Your observation helped identify where the skipped step belongs.' },\n          { label: 'Tell Corin when the lever is ready again', callback: 'Corin moved the return stop so every push begins at the same mark.' },\n        ],\n        dilemma: { prompt: 'How can Corin make the toy advance one step per push?', answers: ['Push more gently and hope every player uses the same force.', 'Add a return stop that resets the lever fully before the next push.', 'Remove the middle mark from the track.'], correct: 1, explanation: 'The full reset gives each push the same starting point and prevents the double advance.' },\n        closing: 'The lever returns to its mark and the toy moves exactly one step. Corin leaves the middle stop in the sequence, now reachable without a skipped turn.' },\n        keepsake: { name: 'Return-Stop Lever', description: 'A lever reset to the same mark before each one-step advance.' },\n      },\n      missions: {\n        daily: [\n          { label: 'Spot the white token', purpose: 'Use the practical activity to find the cut edge without changing the color set.', task: 'practical', count: 1 },\n          { label: 'Trace the three-step track', purpose: 'Visit the discovery anchor and notice where the toy used to skip its middle stop.', task: 'discovery-visit', count: 1 },\n          { label: 'Compare the lever resets', purpose: 'Invite two game regulars to check that one push now advances one step.', task: 'people', count: 2 },\n        ],\n        weekly: [\n          { label: 'Find three pale shapes', purpose: 'Repeat the discovery activity three times, using the edge instead of color as a clue.', task: 'discovery', count: 3 },\n          { label: 'Inspect the return stop', purpose: 'Visit the practical anchor and see where the lever resets before the next move.', task: 'practical-visit', count: 1 },\n          { label: 'Test the middle step', purpose: 'Use the practical activity twice to check that the toy pauses at its center mark.', task: 'practical', count: 2 },\n        ],
+      },
     },
   ],
 }

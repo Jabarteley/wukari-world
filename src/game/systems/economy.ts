@@ -65,6 +65,8 @@ import { lagosTime, lagosDayStart, LAGOS_OFFSET_MS, WEEKDAYS } from '../clock.ts
 import { conditionsKit } from '../conditions/slot.ts';
 import { addMoodlet, canAfford, canCredit, credit, debit, removeMoodlet } from '../api.ts';
 import { houseFor as cityHouseFor } from '../cities/housingRuntime.ts';
+import { cachedCityContent } from '../cities/registry.ts';
+import { levelOf, scaleNaira } from '../price-levels.ts';
 import type { ActionMap } from '../../types/actions.ts';
 import type { DepositTerm, LoanTerms, RentEntry } from '../../types/content.ts';
 import type { Deposit, DepositTermId, EconomyState, HouseId, LifeContext, LifeState } from '../../types/life.ts';
@@ -355,6 +357,13 @@ const play = PLAYS ? {
 export default {
   id: 'economy',
   stateKeys: ['economy'],
+  // Real price levels (docs/PRICE-LEVELS.md): a city's own content is scaled when it loads; the shared shop catalogues (furniture, groceries, cars) are scaled here.
+  modifiers: {
+    'shop.price'(value, state, _data, ctx) {
+      const level = levelOf(cachedCityContent(cityOf(state, ctx)));
+      return level === 1 || !finite(value) ? value : scaleNaira(value, level);
+    },
+  },
   sanitize(input, state, ctx) {
     const saved = isRecord(input.economy) ? input.economy : {};
     const rent = isRecord(saved.rent) ? saved.rent : {};

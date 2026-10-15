@@ -65,6 +65,7 @@ test('reaction permission is separate from the accessible message actions used i
   assert.ok(!readOnly.includes('bubble-more'))
   const picker = await render('/src/app/features/messages/EmojiPicker.vue', {})
   assert.match(picker, /aria-label="Search emoji"/)
+  assert.match(picker, /data-chat="stickers-tab"/, 'the sticker pack is a tab of the picker (its sets are fetched when it is opened)')
   assert.ok((picker.match(/<button[^>]*aria-label="[^"]*"[^>]*>[^<]+<\/button>/g) ?? []).length > 50, 'a grid of emoji buttons')
 })
 

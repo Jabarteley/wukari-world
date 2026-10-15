@@ -16,6 +16,10 @@ export interface HeardLine {
   /** Where they stand in scene units (the listener's own position comes from the avatar events), when known. */
   x?: number
   z?: number
+  /** How far they are from the listener, when the page knows it without positions in scene units (a line from the room's voice circle). Overrides x/z for the volume. */
+  distance?: number
+  /** Spoken in the device's own voice wherever the speaker is, only quieter with distance (an AI character heard through room voice, Phase 15). */
+  speakable?: boolean
   /** Their screen position, -1 (left) .. 1 (right), when a bubble knows it. */
   screenX?: number
   /** The city's country id, for the choice of an accent when the device speaks. */

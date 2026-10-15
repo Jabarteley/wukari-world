@@ -13,6 +13,8 @@ import DashboardView from './DashboardView.vue'
 import PlayersView from './PlayersView.vue'
 import AnnounceView from './AnnounceView.vue'
 import WorldView from './WorldView.vue'
+import PrayersView from './PrayersView.vue'
+import ResidentsView from './ResidentsView.vue'
 import ModerationView from './ModerationView.vue'
 import AuditView from './AuditView.vue'
 import './admin.css'
@@ -119,6 +121,8 @@ const blurSoon = (): void => { setTimeout(() => { open.value = false }, 150) }
         <PlayersView v-else-if="ui.route.view === 'players'" :player="ui.route.player" :tab="ui.route.tab" @open="go('players', $event)" @back="go('players')" @tab="go('players', ui.route.player, $event)" />
         <AnnounceView v-else-if="ui.route.view === 'announce'" />
         <WorldView v-else-if="ui.route.view === 'world'" />
+        <PrayersView v-else-if="ui.route.view === 'prayers'" />
+        <ResidentsView v-else-if="ui.route.view === 'residents'" />
         <ModerationView v-else-if="ui.route.view === 'moderation'" @player="go('players', $event)" />
         <AuditView v-else-if="ui.route.view === 'audit'" @player="go('players', $event)" />
       </main>

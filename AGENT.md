@@ -5,24 +5,16 @@ continue. The full brief is in [docs/agent-plans/world-alive/](docs/agent-plans/
 STATUS.md (what is live, the log, the questions for the owner), then PHASES.md. Repository-wide coordination is in
 [AGENTS.md](AGENTS.md). When everything below is done, empty the "In flight" and "Still to do" sections and say so in STATUS.md.
 
-Last updated: 15 October 2026 (release 9 live: `ac94fca0`).
+Last updated: 15 October 2026 (everything released: `1bb55dc5`).
 
 ## In flight
 
-| Work | Branch | Where it stopped | Next step |
-| --- | --- | --- | --- |
-| Phase 14: prayers and acts | `claude/alive-p14-prayers` | Being built (from `claude/world-alive`) | Review, merge, CI, release. |
-| Phase 19, the rest: city projects, gift packets, stickers, home-city pin, life stages | `claude/alive-p19b` | Being built | Review, merge, CI, release. |
-| Phase 13b: up to thirty residents (setting `residentCount` stays 1 until the owner has read Remi's day) | `claude/alive-p13b-residents` | Being built | Review, merge, CI, release. |
-| Phase 18: real price levels (World Bank data) | `claude/alive-p18-prices` | Being built | Review, merge, CI, release. |
+Nothing. Every phase of docs/agent-plans/world-alive/PHASES.md was built and released by 15 October 2026 (release 13, `1bb55dc5`).
 
-## Still to do (in order)
+## Still to do
 
-1. Phase 13c: ideas and needs, the residents' assembly, the president and the Sunday letter to the owner (after 13b).
-2. Phase 15: calls with agents (push-to-talk; measure both speech-to-text ways on Nigerian, Ghanaian, Kenyan and British English
-   and Pidgin, and record words-right and delay).
-3. Phase 20: agents' own relationships and world events (weddings: Phase 6's wedding share card is ready for them).
-4. Not for an agent to start: local payments, paid cosmetics, the creator programme, anything with ads or spend.
+Nothing for an agent to start on its own. What is open needs the owner first: see "Questions for the owner" in
+[docs/agent-plans/world-alive/STATUS.md](docs/agent-plans/world-alive/STATUS.md). If you are given new work, add it here.
 
 ## How the work is done (learned the hard way)
 

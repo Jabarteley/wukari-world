@@ -29,9 +29,9 @@ export function worldFigures(catalogue: readonly Pick<CityCatalogueEntry, 'open'
 const whole = (value: number | null | undefined): number => (typeof value === 'number' && Number.isFinite(value) && value > 0 ? Math.floor(value) : 0)
 const plural = (n: number, one: string, many: string): string => (n === 1 ? one : many)
 
-/** The line in the pill: "128 in Allworld now · 60 cities, 21 countries". No count until the page has one; it is never 0. */
+/** The line in the pill: "128 in Allworld now · 60 cities, 21 countries and territories". No count until the page has one; it is never 0. */
 export function liveLine(online: number | null, figures: { cities: number; countries: number }): string {
-  const world = `${figures.cities} ${plural(figures.cities, 'city', 'cities')}, ${figures.countries} ${plural(figures.countries, 'country', 'countries')}`
+  const world = `${figures.cities} ${plural(figures.cities, 'city', 'cities')}, ${figures.countries} ${plural(figures.countries, 'country or territory', 'countries and territories')}`
   const here = whole(online)
   return here > 0 ? `${here.toLocaleString('en-US')} in Allworld now · ${world}` : world
 }

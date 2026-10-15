@@ -76,6 +76,7 @@ import { DREAMS, TRAITS } from '../../src/game/content/traits.ts';
 import { presenceOf, describeRoom } from './presence.ts';
 import { screenText } from '../moderation/text.ts';
 import { peerTransferId } from '../economy/effects.ts';
+import { pickSome, randomFrom, splitSpray } from './spray.ts';
 import { VISIT, VISIT_MS } from '../../src/game/visit.ts';
 import type { VisitHow } from '../../src/game/visit.ts';
 import { invitesFor, noteLinkUse, removeFromLink } from './visit-book.ts';
@@ -1085,6 +1086,54 @@ function buildService(ctx: RouteContext) {
     push.push([to, { type: 'transfer', from: pub(s, id), amount, credited }], [to, { type: 'social-sync' }]);
     notify(s, to, 'transfer', `${p.name} sent you ${naira(amount)}.`, { from: id, amount }, push);
     return yes('sent', { amount, to: pub(s, to), credited, creditedCity: creditCity, balance: sent.state.cash });
+  }
+  /**
+   * A spray packet (server/social/spray.ts), inside the caller's ctx.once. One charge for the whole packet through `transfer-out` (so it is one gift against the
+   * daily count and amount, and only money earned from work), then a share to each chosen friend in the group exactly as performTransfer credits one. A member who is
+   * not a friend, has blocked or been blocked, has no life, is at their daily receive limit or has gifts waiting is simply skipped. Agents may receive; one that is
+   * played by an AI never sends. A refusal changes nothing.
+   */
+  function performSpray(db: Db, session: SessionRecord, s: SocialCollection, p: SocialPlayerRecord, id: string, push: PushList, key: string, cityId: CityId, amount: number, cid: string) {
+    const L = TRANSFER_LIMITS, t = now();
+    const conv = memberConv(s, id, key);
+    if (!conv || conv.kind !== 'group') return no('not_a_member', 'You are not in that group.');
+    if (speaksAsAi(s, id)) return no('agents_cannot_spray', 'Agent-played characters can receive a packet but do not send one.');
+    if (!ctx.allow(`social:transfer:${id}`, 5)) return no('rate_limited', 'Too many transfers in a minute. Wait, then try again.');
+    if (amount < L.min) return no('amount_too_small', `The smallest packet is ${naira(L.min)}.`);
+    if (amount > L.maxPerTransfer) return no('amount_too_large', `The largest packet is ${naira(L.maxPerTransfer)}.`);
+    const day = lagosTime(t).day;
+    const eligible: { id: string; name: string; city: CityId; room: number }[] = [];
+    for (const member of conv.members) {
+      if (member === id) continue;
+      const { target, refusal } = other(s, id, member);
+      if (refusal || !areFriends(s, id, member) || t - friendsSince(s.players, id, member) < L.minFriendshipMs) continue;
+      if (target.recv.day !== day) target.recv = { day, amount: 0 };
+      const theirs = ctx.core.sessionByPublicId(db, member), creditCity = theirs && theirs.expiresAt > t ? lifeCity(theirs, cityId) : null;
+      const room = L.dailyReceive - target.recv.amount;
+      if (!creditCity || room < L.min || (s.pending[member]?.length ?? 0) >= LIMITS.pending) continue;
+      eligible.push({ id: member, name: target.name, city: creditCity, room });
+    }
+    if (!eligible.length) return no('nobody_to_spray', 'None of the friends in this group can receive a gift right now.');
+    const rand = randomFrom(ctx.randomId());
+    const chosen = pickSome(eligible, Math.min(eligible.length, Math.floor(amount / L.min)), rand);
+    const shares = splitSpray(amount, chosen.map((member) => member.room), L.min, rand);
+    if (!shares) return no('amount_too_small', `Give at least ${naira(L.min)} for each friend you spray.`);
+    const spent = shares.reduce((a, b) => a + b, 0), transferId = peerTransferId(id, cid);
+    const sent = act(session, cityId, 'transfer-out', { to: chosen[0]!.id, name: 'your group', amount: spent, transferId }, `social|spray|${id}|${cid}`);
+    if (!sent.ok) return no(sent.code, sent.reason!);
+    const got: string[] = [];
+    chosen.forEach((member, index) => {
+      const share = shares[index]!, target = s.players[member.id]!;
+      target.recv.amount += share;
+      noteThanks(p, target, id, member.id, t);
+      const credited = owe(s, db, member.id, member.city, { op: 'transfer-in', from: id, name: p.name, amount: share, transferId }, { keep: true });
+      push.push([member.id, { type: 'transfer', from: pub(s, id), amount: share, credited }], [member.id, { type: 'social-sync' }]);
+      notify(s, member.id, 'transfer', `${p.name} sprayed you ${naira(share)} in “${conv.name ?? 'a group'}”.`, { from: id, amount: share }, push);
+      got.push(`${member.name} ${naira(share)}`);
+    });
+    const line = append(s, conv, null, `${p.name} sprayed ${naira(spent)} on ${got.join(', ')}. 🎉`.slice(0, LIMITS.body), null, true);
+    fanOut(s, conv, line, push, null);
+    return yes('sprayed', { amount: spent, shares: chosen.length, conv: conv.id, balance: sent.state.cash });
   }
   /** The thanks-and-gifts record of `target` as `viewer` may read it: the two counts to anyone who can see the card, the last few (who, which way, when) only to the player themselves and their friends. Nothing when there are no gifts. */
   function thanksView(s: SocialCollection, viewer: string, target: string, friend: boolean): { thanks?: ThanksView } {
@@ -2502,6 +2551,19 @@ function buildService(ctx: RouteContext) {
       const { s, p, id } = enter(db, session);
       const push: PushList = [];
       const outcome = ctx.once(db, session, { id: cid, kind: 'transfer', fingerprint: [to, amount, cityId] }, () => performTransfer(db, session, s, p, id, push, to, cityId, amount, cid as string));
+      return outcome.ok && !repeated(outcome) ? { ...outcome, push } : outcome;
+    },
+    /**
+     * Spray a packet of game money among the friends in a group chat (performSpray). One packet at most per request: exactly once per `clientId`.
+     * body: { conv, amount, cityId, clientId }
+     */
+    spray(db: Db, session: SessionRecord, body: SocialBody) {
+      const key = convId(body.conv), cityId = city(body.cityId), cid = body.clientId, amount = body.amount;
+      ctx.onceId(cid);
+      if (typeof amount !== 'number' || !Number.isSafeInteger(amount) || amount <= 0) throw bad('invalid_amount');
+      const { s, p, id } = enter(db, session);
+      const push: PushList = [];
+      const outcome = ctx.once(db, session, { id: cid, kind: 'spray', fingerprint: [key, amount, cityId] }, () => performSpray(db, session, s, p, id, push, key, cityId, amount, cid as string));
       return outcome.ok && !repeated(outcome) ? { ...outcome, push } : outcome;
     },
     /**

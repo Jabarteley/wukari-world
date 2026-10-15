@@ -37,7 +37,24 @@ export interface AgentMemoryCard {
 export interface AgentMemoryView { remembering: boolean; adult: boolean; partnerAt: number; agents: AgentMemoryCard[] }
 type MemoryError = WriteError | 'invalid_agent' | 'invalid_flag' | 'invalid_fact' | 'adults_only' | 'not_close_enough' | 'has_bae'
 
+/** Calls with house agents (server/house/call-routes.ts, docs/CALLS.md "Calls with AI characters"). */
+export interface AgentCallConfig {
+  ok: true; enabled: boolean
+  stt: { default: 'browser' | 'gateway'; gateway: boolean; model: string }
+  minutes: { player: number; left: number; total: number }
+  maxRecordSeconds: number; breakMinutes: number
+  cast: { id: string; name: string; role: string; city: string }[]
+}
+export interface AgentCallStarted { ok: true; name: string; ai: true; voiceSeed: number; voice: 'pidgin' | 'plain'; call?: string; leftSeconds?: number; stt?: { default: 'browser' | 'gateway'; gateway: boolean }; breakMinutes?: number; over?: 'player' | 'total'; text?: string }
+export interface AgentCallTurn { ok: true; said: string; text: string; voiceSeed: number; leftSeconds: number; over?: 'player' | 'total'; breakText?: string; help?: boolean }
+type CallError = WriteError | 'calls_off' | 'invalid_agent' | 'invalid_call' | 'invalid_text' | 'invalid_audio' | 'audio_too_big' | 'call_ended' | 'transcription_off' | 'transcription_resting' | 'transcription_failed'
+
 export interface AgentsHttpRoutes {
+  'GET /api/agents/call/config': { response: Ok<AgentCallConfig>; errors: ReadError }
+  'POST /api/agents/call/start': { body: { agent: string; csrf: string }; response: Ok<AgentCallStarted>; errors: CallError }
+  'POST /api/agents/call/transcribe': { body: { call: string; audio: string; mediaType: string; csrf: string }; response: Ok<{ ok: true; text?: string; over?: 'player' | 'total' }>; errors: CallError }
+  'POST /api/agents/call/turn': { body: { call: string; text: string; csrf: string }; response: Ok<AgentCallTurn>; errors: CallError }
+  'POST /api/agents/call/end': { body: { call: string; csrf: string }; response: Ok<{ ok: true; leftSeconds: number }>; errors: CallError }
   'GET /api/agents/memory': { response: Ok<AgentMemoryView>; errors: ReadError }
   'POST /api/agents/memory/forget': { body: { agent?: string; fact?: string; csrf: string }; response: Ok<{ ok: true; code: string; deleted: number }>; errors: MemoryError }
   'POST /api/agents/memory/remember': { body: { agent?: string; on: boolean; csrf: string }; response: Done; errors: MemoryError }

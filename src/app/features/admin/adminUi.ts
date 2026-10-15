@@ -2,12 +2,14 @@
 // did (with Undo for the changes that can be reversed), the route (which screen, which player) and the saved searches. Plain reactive state.
 import { reactive } from 'vue'
 
-export type ViewId = 'dashboard' | 'players' | 'announce' | 'world' | 'moderation' | 'audit'
+export type ViewId = 'dashboard' | 'players' | 'announce' | 'world' | 'prayers' | 'residents' | 'moderation' | 'audit'
 export const VIEWS: readonly { id: ViewId; label: string; short: string; key: string; title: string }[] = [
   { id: 'dashboard', label: 'Dashboard', short: 'Home', key: 'd', title: 'Dashboard' },
   { id: 'players', label: 'Players', short: 'Players', key: 'p', title: 'Players' },
   { id: 'announce', label: 'Announcements', short: 'News', key: 'a', title: 'Announcements' },
   { id: 'world', label: 'World tools', short: 'World', key: 'w', title: 'World tools' },
+  { id: 'prayers', label: 'Prayers', short: 'Pray', key: 'y', title: 'Prayers and acts' },
+  { id: 'residents', label: 'Residents', short: 'Folk', key: 'r', title: 'The residents\' voice' },
   { id: 'moderation', label: 'Moderation', short: 'Mod', key: 'm', title: 'Moderation queue' },
   { id: 'audit', label: 'Audit log', short: 'Audit', key: 'l', title: 'Audit log' },
 ]

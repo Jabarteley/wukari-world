@@ -512,6 +512,65 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     else if (viaModel) { const safe = worked.written || say.fallback(spec, seed); if (await speak(agent, safe)) count().written += 1; }
   }
 
+  /**
+   * A line said to this agent ON A CALL (call-routes.ts): the same brain as a line in the venue, answered as text to the caller instead of into the room (the agent need not be
+   * standing anywhere). Rules first, then a paid model for what a written line cannot give, then the same safety as a venue reply: cleanReply and agentWords (always as to a person
+   * who may be a minor: no flirting on a call). Haggling and tasks stay in the venue: on the phone an offer is answered with the list price and an invitation to the shop. Null for an id
+   * that is not a house agent.
+   */
+  async function answerCall(agentId: string, from: { id: string; name: string }, body: string): Promise<{ text: string; viaModel: boolean; name: string; city: string } | null> {
+    const info = agentInfo(agentId), spec = info ? castOf(info.city).find((entry) => `${ID_PREFIX}${info.city}.${entry.key}` === agentId) : undefined;
+    if (!info || !spec) return null;
+    const agent = agents.get(agentId) ?? build(info.city, spec, settings().discount);
+    if (!agent) return null;
+    const t = ctx.now(), s = settings(), seed = `${agentId}|${from.id}|${t}`;
+    const said = body.slice(0, 200);
+    const intent = intentOf(said, spec.role, false);
+    count().wakes += 1;
+    let written = say.fallback(spec, seed), useModel = true, claimsQuery: string | null = null;
+    const item = matchItem(said, agent.items);
+    if (intent === 'greet') written = say.greet(spec, from.name.slice(0, 24), seed);
+    else if (intent === 'bye') written = say.bye(spec, seed);
+    else if (intent === 'mission') written = say.taskNone(spec, seed);
+    else if (intent === 'hours') written = say.hoursLine(spec, isOpen(spec.hours, t));
+    else if (intent === 'prices' || intent === 'offer' || intent === 'pressure') {
+      written = spec.role !== 'seller' ? say.notSeller(spec, seed) : item ? say.priceLine(spec, item.label, item.list) : say.pricesLine(spec, agent.items);
+      useModel = false;
+    } else if (intent === 'directions') written = '';
+    else if (intent === 'tonight') { written = ''; claimsQuery = ''; }
+    else claimsQuery = said.slice(0, 80);
+    if (intent === 'greet' || intent === 'bye' || intent === 'hours') useModel = false;
+    const mem = s.memory ? await bondTouch(agent, from.id, memory.gainFor(said, intent), t) : null;
+    if (mem && !useModel && intent === 'greet' && (mem.facts.length > 0 || mem.partner)) useModel = true;
+    const cityName = cityRules(agent.city)?.name ?? agent.city;
+    const around = places(agent.city, t);
+    const claims = claimsQuery === null ? [] : await gistLines(agent.city, claimsQuery, claimsQuery === '');
+    let text = written;
+    if (!text && intent === 'directions') text = say.directionsLine(spec, matchVenue(said, around), around.slice(0, 4).map((place) => place.name));
+    if (!text && intent === 'tonight') text = say.tonight(spec, claims, seed);
+    let viaModel = false;
+    if (useModel && s.model) {
+      const hoursWords = `${formatHour(spec.hours.open)} to ${formatHour(spec.hours.close)}`;
+      const messages = promptFor({ spec, cityName, list: agent.items, verdict: null, gist: claims, hours: hoursWords, intent,
+        places: intent === 'directions' ? around.slice(0, 12).map((place) => `${place.name} in ${place.district} (${place.status})`) : [],
+        ...(mem && mem.facts.length ? { remembered: mem.facts } : {}), ...(mem && (mem.standing.points > 0 || mem.partner) ? { closeness: mem.standing.label } : {}), ...(mem?.partner ? { partner: true } : {}) }, from.name.slice(0, 24), said);
+      try {
+        const answer = await ask({ purpose: 'agent-talk', messages, maxTokens: MODEL_TOKENS, playerId: personKey(from.id), carriesPlayerWords: true, timeoutMs: 8000 });
+        if (answer.ok) {
+          const allowed = allowedNumbers(agent.items.map((entry) => entry.list), spec);
+          for (const place of around) for (const digits of place.status.match(/\d+/g) ?? []) allowed.add(digits);
+          for (const line of claims) for (const digits of line.match(/\d+/g) ?? []) allowed.add(digits);
+          const clean = cleanReply(answer.text, { allowed, verdict: null, role: spec.role });
+          if (clean !== null && agentWords(clean, { toMinor: true }).ok) { text = clean; viaModel = true; }
+        }
+      } catch { /* the written line stands */ }
+    }
+    if (!text) text = written || say.fallback(spec, seed);
+    if (!agentWords(text, { toMinor: true }).ok) { count().blocked += 1; text = say.fallback(spec, seed); }
+    if (viaModel) count().model += 1; else count().written += 1;
+    return { text, viaModel, name: spec.name, city: info.city };
+  }
+
   function onLine(event: { room: string; group: string | null; from: { id: string; name: string; agent?: boolean }; body: string; seq?: number }): void {
     try {
       if (!agents.size || event.from.agent === true || event.from.id.startsWith(ID_PREFIX)) return;
@@ -551,6 +610,8 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     conversations: (): number => convos.size,
     /** Is this the id of an agent of the cast? (the routes of memory-routes.ts ask) */
     knows: (id: string): boolean => agentInfo(id) !== null,
+    /** A line said to an agent on a call: its answer as text (call-routes.ts). */
+    answerCall,
     /** Test hook: the same call the 'venue-line' event makes. */
     line: onLine,
     present: (): number => [...agents.values()].filter((agent) => agent.at !== null).length,

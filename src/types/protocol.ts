@@ -440,6 +440,22 @@ export interface ChatFrame {
   /** A stable number for the speaker (the same every time for the same player) from which a client picks one voice. Only on lines with a `speaker`. */
   voiceSeed?: number
 }
+/**
+ * An AI character's line as speakable text, for the people in the place's VOICE circle only (the same line also goes to everyone as a `chat` frame). Each listener's phone
+ * speaks it with its own voice for `voiceSeed`, near or far by `x`/`z` like a person's voice; no audio crosses the network. AI characters never receive room voice.
+ */
+export interface VoiceTextFrame {
+  type: 'voice-text'
+  /** The id of the `chat` frame it belongs to, so a page that shows both speaks the line once. */
+  id: string
+  from: PublicSession
+  body: string
+  at: number
+  voiceSeed: number
+  /** Where the speaker stands in the room, for the volume. */
+  x: number
+  z: number
+}
 export interface SignalRelayFrame {
   type: 'signal'
   /** Public id of the sender. */
@@ -488,7 +504,7 @@ export interface ErrorFrame {
   to?: string
   clientId?: string
 }
-export type RoomServerFrame = PresenceFrame | PresenceDeltaFrame | GroupsListFrame | GroupNoticeFrame | ChatFrame | SignalRelayFrame | ErrorFrame
+export type RoomServerFrame = PresenceFrame | PresenceDeltaFrame | GroupsListFrame | GroupNoticeFrame | ChatFrame | VoiceTextFrame | SignalRelayFrame | ErrorFrame
 
 /** Close codes the hosts use: 1008 rate limit / expired session, 1011 server error. */
 export type SocketCloseCode = 1008 | 1011
@@ -614,6 +630,7 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/social/romance/answer',
   'POST /api/social/romance/public',
   'POST /api/social/transfers',
+  'POST /api/social/spray',
   'POST /api/social/money-requests',
   'POST /api/social/money-requests/answer',
   'GET /api/social/ping',
@@ -640,6 +657,8 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/civic/pulse',
   'GET /api/civic/gov',
   'POST /api/civic/gov/run',
+  'POST /api/civic/works/give',
+  'POST /api/civic/works/order',
   'POST /api/civic/gov/vote',
   'POST /api/civic/gov/announce',
   'GET /api/civic/neighbours',
@@ -688,6 +707,10 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/admin/announcements/:id/cancel',
   'GET /api/admin/settings',
   'POST /api/admin/settings',
+  'GET /api/admin/prayers',
+  'POST /api/admin/prayers/act',
+  'GET /api/admin/residents',
+  'POST /api/admin/residents/reply',
   'GET /api/admin/festivals',
   'POST /api/admin/festivals',
   'POST /api/admin/notice',
@@ -714,6 +737,11 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/world/festivals',
   'GET /api/world/feed',
   'GET /api/world/gist',
+  'GET /api/world/pray',
+  'POST /api/world/pray',
+  'GET /api/world/works',
+  'GET /api/world/birthday',
+  'POST /api/world/birthday',
   'GET /api/world/city',
   'GET /api/world/lga/:id',
   'GET /api/world/lga/:id/estates',
@@ -841,6 +869,7 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/agents/mcp', 'GET /api/agents/mcp', 'DELETE /api/agents/mcp', 'GET /api/agents', 'POST /api/agents/keys', 'POST /api/agents/keys/:id/revoke', 'GET /api/agents/keys/:id/audit',
   'POST /api/agents/characters/:id/remove', 'GET /api/agents/board', 'GET /api/mod/agents', 'POST /api/mod/agents/switch',
   'POST /api/agents/claim', 'GET /api/agents/claim/:token', 'POST /api/agents/keys/:id/rename', 'POST /api/agents/characters/:id/takeover', 'GET /api/agents/league', 'GET /api/agents/services', 'POST /api/mod/agents/settings',
+  'GET /api/agents/call/config', 'POST /api/agents/call/start', 'POST /api/agents/call/transcribe', 'POST /api/agents/call/turn', 'POST /api/agents/call/end',
   'GET /api/agents/memory', 'POST /api/agents/memory/forget', 'POST /api/agents/memory/remember', 'POST /api/agents/memory/flirt', 'POST /api/agents/memory/partner',
   'POST /api/trust/phone/complete',
   'POST /api/trust/dojah/webhook',
@@ -870,7 +899,7 @@ export const WORKER_CLIENT_FRAME_TYPES: readonly (ClientFrameType | HeartbeatAck
 
 /** `type` of every frame the Node server sends (server/server.ts, server/ws/*.js, server/social/service.ts, server/growth/tables.ts). */
 export const SERVER_FRAME_TYPES = [
-  'presence', 'presence-delta', 'groups', 'group', 'chat', 'signal', 'error',
+  'presence', 'presence-delta', 'groups', 'group', 'chat', 'voice-text', 'signal', 'error',
   'dm-sent', 'dm-failed', 'dm-read-ok', 'people', 'friend-result', 'invite-result',
   'dm', 'social-update', 'social-sync', 'friend-request', 'friend-accepted', 'people-presence', 'people-changed',
   'people-interaction', 'invite-knock', 'invite-answer', 'invite-house', 'transfer',

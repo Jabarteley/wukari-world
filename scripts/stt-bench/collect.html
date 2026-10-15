@@ -1,0 +1,94 @@
+<!doctype html>
+<!-- Collect labelled recordings for scripts/stt-bench.ts. Open this file in the browser you want to measure (Chrome on an Android phone, Safari on an iPhone), on a phone on mobile data
+     for the real conditions. A volunteer picks their accent group, reads each sentence aloud while holding the button, and the page saves, on the volunteer's own device, three files:
+        <group>-<nn>.wav            16 kHz mono recording (what the game's own call screen would send)
+        <group>-<nn>.txt            the sentence they were asked to read
+        <group>-<nn>.browser.json   what this browser's own recognition heard of the same words, and the delay after the button was released
+     Nothing is uploaded: there is no network call in this page. The files are for the owner's measurement and are NEVER committed (see README.md). -->
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Allworld speech to text: record samples</title>
+<style>
+  body { font: 16px/1.4 system-ui, sans-serif; max-width: 34rem; margin: 1rem auto; padding: 0 1rem; }
+  button, select { font: inherit; padding: .6rem 1rem; } #talk { width: 100%; min-height: 4.5rem; font-size: 1.2rem; touch-action: none; user-select: none; -webkit-user-select: none; }
+  #prompt { font-size: 1.4rem; margin: 1rem 0; } .small { font-size: .85rem; color: #555; } pre { white-space: pre-wrap; background: #f3f3f3; padding: .5rem; }
+</style>
+<h1>Record samples</h1>
+<p class="small">Each recording stays on this device. The page makes three small files per sentence and saves them to your Downloads. Nothing is sent anywhere. Read each sentence naturally, as you would speak to a friend.</p>
+<label><input type="checkbox" id="consent"> I agree my voice is recorded for this test, kept by the person running it, and never published.</label>
+<p><label>My way of speaking
+  <select id="group">
+    <option value="ng">Nigerian English</option><option value="gh">Ghanaian English</option><option value="ke">Kenyan English</option>
+    <option value="gb">British English</option><option value="pidgin">Nigerian Pidgin</option>
+  </select></label></p>
+<p id="prompt">Tick the box, then hold the button and read the sentence.</p>
+<button id="talk" disabled>Hold to talk</button>
+<p><button id="redo" disabled>Record this one again</button> <button id="next" disabled>Save and next sentence</button></p>
+<p class="small" id="count"></p>
+<pre id="heard">Nothing yet.</pre>
+<script>
+const PROMPTS = {
+  english: [
+    'What time does the shop open tomorrow?', 'How much is the red cloth?', 'Where is the library?', 'Can you tell me what is happening in the Square tonight?',
+    'I would like two bottles of water, please.', 'Is the market open on Sunday?', 'My name is Ada and I live near the park.', 'The bus to the island leaves at half past nine.',
+    'Please tell me the way to the football pitch.', 'How much is one thousand five hundred naira in dollars?', 'I am looking for a tailor who can make a dress.', 'Thank you very much, see you later.',
+    'Is there a quiz tonight at the library?', 'Can I pay with my card or only with cash?', 'The rain stopped but the road is still wet.', 'Please say that again, a little slower.',
+    'Which one is cheaper, the blue shirt or the green one?', 'I want to send a message to my friend.', 'Do you know a good place to eat jollof rice?', 'Today is a good day for a walk by the lagoon.',
+  ],
+  pidgin: [
+    'Wetin dey happen for the Square tonight?', 'How much be the red cloth?', 'Abeg, where the library dey?', 'I wan buy two bottle of water.', 'The market dey open for Sunday?',
+    'My name na Ada, I dey stay near the park.', 'The bus wey dey go island go leave by half past nine.', 'Abeg show me the road to the football pitch.', 'I dey find tailor wey fit sew dress.',
+    'Thank you well well, I go see you later.', 'Quiz dey tonight for the library?', 'I fit pay with card or na only cash?', 'Rain don stop but the road still wet.', 'Abeg talk am again, small small.',
+    'Which one cheap pass, the blue shirt or the green one?', 'I wan send message to my padi.', 'You sabi better place to chop jollof rice?', 'Today na better day to waka for the lagoon.', 'No vex, I no hear wetin you talk.', 'Make we meet for the Square by six.',
+  ],
+};
+const $ = (id) => document.getElementById(id);
+const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let number = 0, taken = null, stream = null, recorder = null, chunks = [], recognition = null, finalText = '', interim = '', released = 0, ended = null;
+const prompts = () => (($('group').value === 'pidgin') ? PROMPTS.pidgin : PROMPTS.english);
+const sentence = () => prompts()[number % prompts().length];
+function show() { $('prompt').textContent = sentence(); $('count').textContent = `${number} saved. ${Recognition ? 'This browser has its own recognition, so it is measured too.' : 'This browser has no recognition of its own: only the recording is saved.'}`; }
+$('consent').onchange = () => { $('talk').disabled = !$('consent').checked; if ($('consent').checked) show(); };
+$('group').onchange = () => { number = 0; show(); };
+async function begin() {
+  if (!$('consent').checked || taken) return;
+  taken = null; finalText = ''; interim = ''; chunks = []; ended = null;
+  stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } });
+  recorder = new MediaRecorder(stream); recorder.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); }; recorder.start();
+  if (Recognition) {
+    recognition = new Recognition(); recognition.lang = $('group').value === 'gb' ? 'en-GB' : $('group').value === 'gh' ? 'en-GH' : $('group').value === 'ke' ? 'en-KE' : 'en-NG';
+    recognition.interimResults = true; recognition.continuous = false;
+    recognition.onresult = (e) => { interim = ''; for (let i = e.resultIndex; i < e.results.length; i++) { const t = e.results[i][0].transcript; if (e.results[i].isFinal) { finalText += t + ' '; if (!ended) ended = performance.now(); } else interim += t; } };
+    recognition.onend = () => { if (!ended) ended = performance.now(); };
+    recognition.start();
+  }
+}
+async function finish() {
+  if (!recorder || recorder.state === 'inactive') return;
+  released = performance.now();
+  const stopped = new Promise((r) => { recorder.onstop = r; });
+  recorder.stop(); if (recognition) { try { recognition.stop(); } catch {} }
+  await stopped; stream.getTracks().forEach((t) => t.stop());
+  await new Promise((r) => setTimeout(r, Recognition ? 3500 : 0)); // wait for the final result, at most this long
+  const context = new AudioContext();
+  const decoded = await context.decodeAudioData(await new Blob(chunks).arrayBuffer()); context.close();
+  const mono = decoded.getChannelData(0), ratio = decoded.sampleRate / 16000, out = new Float32Array(Math.floor(mono.length / ratio));
+  for (let i = 0; i < out.length; i++) { let s = 0, a = Math.floor(i * ratio), b = Math.max(a + 1, Math.floor((i + 1) * ratio)); for (let j = a; j < b; j++) s += mono[j]; out[i] = s / (b - a); }
+  const bytes = new Uint8Array(44 + out.length * 2), v = new DataView(bytes.buffer), w = (at, t) => { for (let i = 0; i < t.length; i++) bytes[at + i] = t.charCodeAt(i); };
+  w(0, 'RIFF'); v.setUint32(4, 36 + out.length * 2, true); w(8, 'WAVE'); w(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, 16000, true); v.setUint32(28, 32000, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, out.length * 2, true);
+  for (let i = 0; i < out.length; i++) { const s = Math.max(-1, Math.min(1, out[i])); v.setInt16(44 + i * 2, s < 0 ? s * 0x8000 : s * 0x7fff, true); }
+  taken = { wav: new Blob([bytes], { type: 'audio/wav' }), browser: Recognition ? { hypothesis: (finalText + interim).trim(), ms: ended ? Math.max(0, Math.round(ended - released)) : null } : null, seconds: out.length / 16000 };
+  $('heard').textContent = `Recorded ${taken.seconds.toFixed(1)} s.\n` + (taken.browser ? `Your browser heard: "${taken.browser.hypothesis}" after ${taken.browser.ms ?? '?'} ms.` : 'No browser recognition here.');
+  $('redo').disabled = false; $('next').disabled = false;
+}
+const save = (name, blob) => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); };
+$('talk').addEventListener('pointerdown', (e) => { e.preventDefault(); begin().catch((x) => { $('heard').textContent = 'The microphone could not be used: ' + x.message; }); });
+for (const type of ['pointerup', 'pointercancel']) $('talk').addEventListener(type, () => { finish(); });
+$('redo').onclick = () => { taken = null; $('heard').textContent = 'Nothing yet.'; $('redo').disabled = true; $('next').disabled = true; };
+$('next').onclick = () => {
+  if (!taken) return;
+  const id = `${$('group').value}-${String(number + 1).padStart(3, '0')}`;
+  save(`${id}.wav`, taken.wav); save(`${id}.txt`, new Blob([sentence() + '\n'], { type: 'text/plain' }));
+  if (taken.browser) save(`${id}.browser.json`, new Blob([JSON.stringify(taken.browser)], { type: 'application/json' }));
+  number++; taken = null; $('heard').textContent = 'Saved.'; $('redo').disabled = true; $('next').disabled = true; show();
+};
+</script>

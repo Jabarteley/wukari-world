@@ -1,0 +1,26 @@
+{
+  "source": "4f2810f01894b334a3b175800a6b03d67aee2595",
+  "ci": 38807517712,
+  "release": 38808741258,
+  "providerVersion": "313b52fd-a899-4f46-abda-a2cefac288d8",
+  "liveHealthVerified": true,
+  "continuityIdentities": 2,
+  "existingClientUpdateNotice": true,
+  "newClientVerified": true,
+  "erasedPublicIds": [
+    "bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56",
+    "453a0f63-5b90-4e7b-b730-4ea9ff54b70d",
+    "6cea4961-b7fc-4bb7-a6db-a28e9327014f"
+  ],
+  "eachPreviewOneGuest": true,
+  "eachCompletionReceipt": true,
+  "publicProfiles": [
+    404,
+    404,
+    404
+  ],
+  "targetHomesAndResidentsAbsent": true,
+  "unrelatedHousesAndFounderPreserved": true,
+  "fullSuite": "explicitly approved documented exceptions; not a full pass",
+  "physicalInstalledPwa": "not tested"
+}

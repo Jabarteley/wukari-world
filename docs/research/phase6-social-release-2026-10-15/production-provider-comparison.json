@@ -1,0 +1,159 @@
+{
+  "before": {
+    "at": "2026-10-15T15:32:43.867Z",
+    "deploymentId": "1570e1c9-322d-4f7c-aeb9-ab799dc55ff3",
+    "versionId": "b56d132a-28fb-42d1-adc9-083243ba7ebd",
+    "bindings": [
+      {
+        "name": "ACCOUNTS_FIREBASE_API_KEY",
+        "type": "secret_text"
+      },
+      {
+        "name": "ACCOUNTS_FIREBASE_PROJECT_ID",
+        "type": "secret_text"
+      },
+      {
+        "name": "ACCOUNTS_GOOGLE_CLIENT_ID",
+        "type": "secret_text"
+      },
+      {
+        "name": "AI_GATEWAY_API_KEY",
+        "type": "secret_text"
+      },
+      {
+        "name": "ASSETS",
+        "type": "assets"
+      },
+      {
+        "name": "BUILD_ID",
+        "type": "plain_text",
+        "valueHash": "3da712c22126c784cc343619c93dce390081b9c511105911212985ee841469f3"
+      },
+      {
+        "name": "EMAIL_FROM_ADDRESS",
+        "type": "secret_text"
+      },
+      {
+        "name": "EMAIL_FROM_NAME",
+        "type": "secret_text"
+      },
+      {
+        "name": "JOINALLWORLD",
+        "type": "durable_object_namespace",
+        "namespaceId": "6b84e715f6c444f69971a0b6cde7868b"
+      },
+      {
+        "name": "MODERATOR_TOKEN",
+        "type": "secret_text"
+      },
+      {
+        "name": "OPENROUTER_API_KEY",
+        "type": "secret_text"
+      },
+      {
+        "name": "PUBLIC_ORIGIN",
+        "type": "secret_text"
+      },
+      {
+        "name": "TURN_API_TOKEN",
+        "type": "secret_text"
+      },
+      {
+        "name": "TURN_KEY_ID",
+        "type": "secret_text"
+      },
+      {
+        "name": "TURN_TEST_PUBLIC_IDS",
+        "type": "secret_text"
+      },
+      {
+        "name": "ZEPTOMAIL_AUTH",
+        "type": "secret_text"
+      }
+    ],
+    "expectedSource": "9321b79e44a21e520cc3ff5814aff3143d15820c",
+    "evidenceScope": "Provider history sorted by created_on; before is reconstructed latest predecessor before notice; after matches protected-run version."
+  },
+  "after": {
+    "at": "2026-10-15T15:32:49.067Z",
+    "deploymentId": "e3e83bfd-e780-40cd-b713-55e309219a68",
+    "versionId": "886e3605-fa73-41d4-82c9-045e7103c608",
+    "bindings": [
+      {
+        "name": "ACCOUNTS_FIREBASE_API_KEY",
+        "type": "secret_text"
+      },
+      {
+        "name": "ACCOUNTS_FIREBASE_PROJECT_ID",
+        "type": "secret_text"
+      },
+      {
+        "name": "ACCOUNTS_GOOGLE_CLIENT_ID",
+        "type": "secret_text"
+      },
+      {
+        "name": "AI_GATEWAY_API_KEY",
+        "type": "secret_text"
+      },
+      {
+        "name": "ASSETS",
+        "type": "assets"
+      },
+      {
+        "name": "BUILD_ID",
+        "type": "plain_text",
+        "valueHash": "e45ac1d96e699087fd447f3a9e8a06d3125a7c96b04e7b6eb97c182607217a66"
+      },
+      {
+        "name": "EMAIL_FROM_ADDRESS",
+        "type": "secret_text"
+      },
+      {
+        "name": "EMAIL_FROM_NAME",
+        "type": "secret_text"
+      },
+      {
+        "name": "JOINALLWORLD",
+        "type": "durable_object_namespace",
+        "namespaceId": "6b84e715f6c444f69971a0b6cde7868b"
+      },
+      {
+        "name": "MODERATOR_TOKEN",
+        "type": "secret_text"
+      },
+      {
+        "name": "OPENROUTER_API_KEY",
+        "type": "secret_text"
+      },
+      {
+        "name": "PUBLIC_ORIGIN",
+        "type": "secret_text"
+      },
+      {
+        "name": "TURN_API_TOKEN",
+        "type": "secret_text"
+      },
+      {
+        "name": "TURN_KEY_ID",
+        "type": "secret_text"
+      },
+      {
+        "name": "TURN_TEST_PUBLIC_IDS",
+        "type": "secret_text"
+      },
+      {
+        "name": "ZEPTOMAIL_AUTH",
+        "type": "secret_text"
+      }
+    ],
+    "expectedSource": "8affbb212333edd61954e5c6ed32e9c30682fe51",
+    "evidenceScope": "Provider history sorted by created_on; before is reconstructed latest predecessor before notice; after matches protected-run version."
+  },
+  "checks": {
+    "nonBuildBindingsUnchanged": true,
+    "newVersion": true,
+    "newDeployment": true,
+    "beforeFullBuildIdMatchesReviewedSource": true,
+    "afterFullBuildIdMatchesReviewedSource": true
+  }
+}

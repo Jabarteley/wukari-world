@@ -1,0 +1,25 @@
+SELECT s.public_id,c.key AS city,json_extract(c.value,'$.state.estate') AS estate,json_extract(c.value,'$.state.location') AS location,json_extract(c.value,'$.state.cash') AS cash FROM sessions s,json_each(s.value,'$.cities') c WHERE s.public_id IN ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','453a0f63-5b90-4e7b-b730-4ea9ff54b70d','6cea4961-b7fc-4bb7-a6db-a28e9327014f');
+
+public_id
+city
+estate
+location
+cash
+1
+453a0f63-5b90-4e7b-b730-4ea9ff54b70d
+lagos
+{"city":"lagos","lga":"lagos-mainland","lgaAt":null,"lgaConfirmed":false,"lgaVia":"default","plot":null,"old":null,"tier":"starter","style":{"shape":0,"wall":0,"roof":0,"door":0,"windows":0,"fence":0,"yard":0,"sign":0},"upgrade":null,"living":"rent","ground":{"week":null,"arrears":0},"away":{},"nudged":false,"home":"lagos","homeAt":null}
+park
+5000
+2
+6cea4961-b7fc-4bb7-a6db-a28e9327014f
+lome
+{"city":"lome","lga":null,"lgaAt":null,"lgaConfirmed":false,"lgaVia":"default","plot":null,"old":null,"tier":"starter","style":{"shape":0,"wall":0,"roof":0,"door":0,"windows":0,"fence":0,"yard":0,"sign":0},"upgrade":null,"living":"own","ground":{"week":null,"arrears":0},"away":{"lagos":{"lga":"lagos-island","lgaAt":1792080420264,"lgaConfirmed":true,"lgaVia":"manual","plot":{"lga":"lagos-island","estate":0,"plot":8},"old":null,"tier":"starter","style":{"shape":0,"wall":0,"roof":0,"door":0,"windows":0,"fence":0,"yard":0,"sign":0},"upgrade":null,"living":"own","ground":{"week":null,"arrears":0},"house":"yaba"}},"nudged":false,"home":"lagos","homeAt":null}
+lome-recreation
+69750
+3
+bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56
+tokyo
+{"city":"tokyo","lga":"centre","lgaAt":1792077427893,"lgaConfirmed":true,"lgaVia":"manual","plot":{"lga":"centre","estate":0,"plot":0},"old":null,"tier":"starter","style":{"shape":0,"wall":0,"roof":0,"door":0,"windows":0,"fence":0,"yard":0,"sign":0},"upgrade":null,"living":"own","ground":{"week":null,"arrears":0},"away":{},"nudged":false,"home":"tokyo","homeAt":null}
+home
+76000

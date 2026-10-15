@@ -26,6 +26,14 @@ The admin dashboard shows places taken and left (`registerAdminStat`). To revers
 
 Credited through the rules engine by the server-only action `wallet.bonus`: one ledger line, "Launch bonus: one of the first 10,000 players", so cash always equals what the life started with plus its ledger. It is a faucet in the economy checks. It is **not** earned from work: it unlocks no gifting and no buying from players. The ride-home debt takes no share of it (only the whole-debt rule of `src/game/relief.ts` can clear a debt that cash comfortably covers).
 
+## The amount by starting city
+
+`LAUNCH_BONUS_AMOUNT` is what is advertised ("₦1,000,000 in the game", shown in the visitor's own currency), and it is the **least** anyone is paid. When the
+money is paid, a life that started in a city outside Nigeria with a price level above 1 ([PRICE-LEVELS.md](PRICE-LEVELS.md), `onboarding.level`) is paid
+the amount times that level, so the bonus buys about as much in London as in Lagos; a life that started in a cheaper city, and every Nigerian
+start, is paid exactly the advertised amount, so the words stay true. The ledger line is the same; the marker's `amount` and the answer of
+`POST /api/account/bonus` are what was actually paid (a held bonus shows the advertised amount until it is paid). Test: `server/bonus.test.ts`.
+
 ## One transaction
 
 Account, not already claimed, counter below the places, counter + 1, credit the account's current character, write the marker `{ at, amount, n, held?, told? }`. The store serialises transactions on both hosts, so two devices at once, a replay, and the last place racing the one after it come out exactly right.

@@ -223,7 +223,7 @@ test('open versus coming soon is derived from the additive city catalogue', () =
   assert.equal(isOpenCityId('johannesburg'), false, 'country admission does not open an unregistered city');
   assert.equal(cityAccess('johannesburg', context), 'soon');
   for (const route of plannedRoutes('lagos')) assert.ok(MORE_REGIONS.includes(world.byId.get(route.to.id)!.name), route.to.id);
-  assert.equal(regionStatus('country', 'fr'), 'open', 'Paris opens France'); assert.equal(regionStatus('country', 'cn'), 'soon'); assert.equal(regionStatus('country', 'aq'), null); assert.equal(regionEntry('country', 'ng').level, 'nigeria');
+  assert.equal(regionStatus('country', 'fr'), 'open', 'Paris opens France'); assert.equal(regionStatus('country', 'cn'), 'open', 'Shanghai opens China'); assert.equal(regionStatus('country', 'aq'), 'open', 'Villa Las Estrellas opens Antarctica'); assert.equal(regionEntry('country', 'ng').level, 'nigeria');
   assert.equal(regionInfo({ kind: 'country', id: 'ng' }, { ...context, feature: africa.byId.get('ng') }).action!.kind, 'zoom');
   const ghana = regionInfo({ kind: 'country', id: 'gh' }, { ...context, feature: africa.byId.get('gh') });
   assert.equal(ghana.planned, null, 'the opened Ghana route is no longer advertised as planned');

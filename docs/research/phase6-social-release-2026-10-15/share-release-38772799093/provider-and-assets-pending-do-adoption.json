@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-15T17:09:24.222331+00:00",
+  "sourceSha": "6695f00c6779fbfcb69bd21aa8b152d5430a0dca",
+  "deploymentId": "37742927-5c98-4cf7-a6f2-374908420ed5",
+  "versionId": "e6d0bf60-350c-4096-8e7e-29e67d1fe2ce",
+  "providerFullBuildIdMatches": true,
+  "nonBuildBindingsUnchanged": true,
+  "namespace": "6b84e715f6c444f69971a0b6cde7868b",
+  "shareAsset": {
+    "url": "https://joinallworld.com/assets/PublicProfile-118d584f.js",
+    "bytes": 8379,
+    "sha256": "aeca60206d9cb63abe12cb07c0fac67b946cd505c8dbd41197108b6c065ec54c",
+    "expectedVisibleCopyLabels": true
+  },
+  "passportAssetReferencesShare": true,
+  "healthObserved": {
+    "ok": true,
+    "build": "joinallworld-69c3ae44e0c10518cc160ea8c05",
+    "relay": true,
+    "companionAi": true,
+    "serverTime": 1792084090696,
+    "transport": "cloudflare",
+    "buildId": "joinallworld-69c3ae44e0c10518cc160ea8c05"
+  },
+  "scope": "Provider100percent and served client assets verified. DO health still reports previous69c3. Actual production interactive Share/recovery pending Chrome extension update. No SQL/cleanup performed."
+}

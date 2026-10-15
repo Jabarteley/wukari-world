@@ -1,0 +1,11 @@
+PASS operation counter exists
+PASS load invalidates operations
+PASS close invalidates operation
+PASS new check gets unique token
+PASS check continuation validates token
+PASS copy captures token
+PASS copy continuation validates token
+PASS unmount invalidates generation and operation
+PASS copy remains bounded
+PASS manual fallback remains visible
+RESULT 10/10

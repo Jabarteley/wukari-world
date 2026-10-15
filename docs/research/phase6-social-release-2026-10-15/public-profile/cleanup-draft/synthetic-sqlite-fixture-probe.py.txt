@@ -1,0 +1,200 @@
+from __future__ import annotations
+import hashlib
+import json
+import sqlite3
+from pathlib import Path
+
+ROOT = Path.cwd()
+DRAFT = ROOT / 'docs/research/phase6-social-release-2026-10-15/public-profile/cleanup-draft'
+PROD = {
+    'bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56': '11111111-1111-4111-8111-111111111111',
+    '453a0f63-5b90-4e7b-b730-4ea9ff54b70d': '22222222-2222-4222-8222-222222222222',
+    '6cea4961-b7fc-4bb7-a6db-a28e9327014f': '33333333-3333-4333-8333-333333333333',
+    '0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481': '44444444-4444-4444-8444-444444444444',
+    'ffe8762f22': 'abc123def4',
+    'Zz Test Phase6 Tokyo R2': 'Synthetic R2',
+    'Zz Test Phase6 Tokyo': 'Synthetic Tokyo',
+    'Zz Test Phase6 Smoke': 'Synthetic Smoke',
+    'bfcb8ef0': '11111111',
+}
+BLOCK = "SELECT CASE WHEN 0=1 THEN 1 ELSE 0 END;"
+BYPASS = "SELECT 1;"
+ABORT = "\n-- Rehearsal-only final statement. The only acceptable transaction result is the named CHECK failure.\nINSERT INTO qa_phase6_cleanup3_20261015_dry_abort(ok) VALUES(0);\n"
+T, S, R, F = PROD['bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56'], PROD['453a0f63-5b90-4e7b-b730-4ea9ff54b70d'], PROD['6cea4961-b7fc-4bb7-a6db-a28e9327014f'], PROD['0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481']
+CODE = PROD['ffe8762f22']
+NAMES = {T: 'Synthetic Tokyo', S: 'Synthetic Smoke', R: 'Synthetic R2'}
+CANARY = 'UNRELATED_CANARY_KEEP'
+PREFIX = 'qa_phase6_cleanup3_20261015_'
+
+SCHEMA = '''
+CREATE TABLE account_devices (secret TEXT PRIMARY KEY, account_id TEXT NOT NULL, expires_at INTEGER NOT NULL, value TEXT NOT NULL);
+CREATE TABLE accounts (id TEXT PRIMARY KEY, public_id TEXT, value TEXT NOT NULL);
+CREATE TABLE action_receipts (sender TEXT NOT NULL, action_id TEXT NOT NULL, action_at INTEGER NOT NULL, value TEXT NOT NULL, PRIMARY KEY(sender,action_id));
+CREATE TABLE app_schema (singleton INTEGER PRIMARY KEY CHECK(singleton=1), version INTEGER NOT NULL);
+CREATE TABLE archived_lives (public_id TEXT PRIMARY KEY, value TEXT NOT NULL);
+CREATE TABLE collection_parts (name TEXT NOT NULL, part INTEGER NOT NULL, value TEXT NOT NULL, PRIMARY KEY(name,part));
+CREATE TABLE collections (name TEXT PRIMARY KEY, value TEXT NOT NULL);
+CREATE TABLE entries (coll TEXT NOT NULL, map TEXT NOT NULL, key TEXT NOT NULL, ord INTEGER NOT NULL, ix INTEGER, tx TEXT, jx TEXT, value TEXT NOT NULL, PRIMARY KEY(coll,map,key)) WITHOUT ROWID;
+CREATE TABLE main_store_authority (singleton INTEGER PRIMARY KEY CHECK(singleton=1), epoch INTEGER NOT NULL, writable INTEGER NOT NULL CHECK(writable IN (0,1)), retired_from_epoch INTEGER, wallet_effect_watermark INTEGER);
+CREATE TABLE once_receipts (sender TEXT NOT NULL, id TEXT NOT NULL, at INTEGER NOT NULL, kind TEXT NOT NULL, value TEXT NOT NULL, PRIMARY KEY(sender,id));
+CREATE TABLE sessions (secret TEXT PRIMARY KEY, public_id TEXT UNIQUE NOT NULL, expires_at INTEGER NOT NULL, value TEXT NOT NULL);
+CREATE TABLE store_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+CREATE TABLE wallet_effects (seq INTEGER PRIMARY KEY AUTOINCREMENT, public_id TEXT NOT NULL, city_id TEXT NOT NULL, operation_id TEXT, ordinal INTEGER NOT NULL, at INTEGER NOT NULL, amount INTEGER NOT NULL, balance_after INTEGER NOT NULL, reason TEXT NOT NULL, transfer_id TEXT);
+CREATE TABLE world_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+CREATE TABLE world_shards (seq INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, text TEXT NOT NULL);
+'''
+
+def compact(value: object) -> str:
+    return json.dumps(value, separators=(',', ':'), ensure_ascii=False)
+
+def transformed(name: str) -> str:
+    text = (DRAFT / name).read_text()
+    for old, new in PROD.items():
+        text = text.replace(old, new)
+    count = text.count(BLOCK)
+    assert count == 1, (name, 'share blocker count', count)
+    return text.replace(BLOCK, BYPASS)
+
+def fixture() -> sqlite3.Connection:
+    db = sqlite3.connect(':memory:')
+    db.executescript(SCHEMA)
+    db.execute('INSERT INTO app_schema VALUES(1,2)')
+    db.execute('INSERT INTO main_store_authority VALUES(1,3,1,NULL,NULL)')
+    for key, value in [('layout','shadow'),('synced:social','synthetic-social'),('synced:civic','synthetic-civic'),('synced:growth','synthetic-growth'),('synced:street','synthetic-street')]:
+        db.execute('INSERT INTO store_meta(key,value) VALUES(?,?)',(key,value))
+
+    dm_t = {'kind':'dm','members':[F,T],'seq':1,'messages':[{'auto':1,'text':'Synthetic welcome'}]}
+    dm_r = {'kind':'dm','members':[F,R],'seq':1,'messages':[{'auto':1,'text':'Synthetic welcome'}]}
+    social_t = {'name':'Synthetic Tokyo','seen':10,'marker':'target-social-t'}
+    social_r = {'name':'Synthetic R2','seen':20,'marker':'target-social-r'}
+    social = {'players':{F:{'name':'Synthetic Founder','marker':CANARY},T:social_t,R:social_r},'convs':{f'dm.{F}.{T}':dm_t,f'dm.{F}.{R}':dm_r},'houses':{},'pending':{},'canary':CANARY}
+    civic_t = {'name':'Synthetic Tokyo','lastSeen':10,'marker':'target-civic-t'}
+    civic_r = {'name':'Synthetic R2','lastSeen':20,'marker':'target-civic-r'}
+    civic = {'cities':{'tokyo':{'residents':{T:civic_t}},'lagos':{'residents':{R:civic_r}}},'canary':CANARY}
+    growth_t = {'seen':10,'devices':[],'ref':None,'invited':{},'counted':0,'owed':[],'shares':{'day':1,'n':0},'marker':'target-growth-t'}
+    growth_r = {'seen':20,'devices':[],'ref':None,'invited':{},'counted':0,'owed':[],'shares':{'day':1,'n':1},'marker':'target-growth-r'}
+    share = {'cityId':'lagos','by':R,'kind':'story','at':123456,'facts':{'name':'Synthetic R2'},'opened':0,'joined':0}
+    metrics = {'lives':{R:{'n':1}},'cities':{'tokyo':{'lives':{T:{'n':1}}},'lagos':{'lives':{R:{'n':1}}},'lome':{'lives':{R:{'n':1}}}},'globalCounter':77,'canary':CANARY}
+    growth = {'players':{T:growth_t,R:growth_r},'shares':{CODE:share},'metrics':metrics,'tables':{},'canary':CANARY}
+    root_growth = {'players':{'$keyed':1},'shares':{'$keyed':1},'metrics':metrics,'tables':{},'canary':CANARY}
+    collections = {'social':social,'civic':civic,'growth':growth,'root:growth':root_growth}
+    for name, value in collections.items():
+        db.execute('INSERT INTO collections(name,value) VALUES(?,?)',(name,compact(value)))
+
+    rows = [
+      ('civic','cities/tokyo/residents',T,civic_t),('growth','players',T,growth_t),('social','convs',f'dm.{F}.{T}',dm_t),('social','players',T,social_t),
+      ('civic','cities/lagos/residents',R,civic_r),('growth','players',R,growth_r),('growth','shares',CODE,share),('social','convs',f'dm.{F}.{R}',dm_r),('social','players',R,social_r),
+      ('social','players','55555555-5555-4555-8555-555555555555',{'name':'Unrelated','marker':CANARY}),
+    ]
+    for ordinal,(coll,map_name,key,value) in enumerate(rows,1):
+        db.execute('INSERT INTO entries(coll,map,key,ord,ix,tx,jx,value) VALUES(?,?,?,?,?,?,?,?)',(coll,map_name,key,ordinal,None,None,None,compact(value)))
+
+    sessions = {
+      T:{'publicId':T,'name':NAMES[T],'cities':{'tokyo':{'state':{'estate':{'city':'tokyo','lga':'centre','plot':{'estate':0,'plot':0},'living':'own'}}}}},
+      S:{'publicId':S,'name':NAMES[S],'cities':{'lagos':{'state':{'estate':{'city':'lagos','lga':'lagos-mainland','plot':None,'living':'rent'}}}}},
+      R:{'publicId':R,'name':NAMES[R],'cities':{'lome':{'state':{'estate':{'city':'lome','lga':None,'plot':None,'living':'own','away':{'lagos':{'lga':'lagos-island','plot':{'estate':0,'plot':8}}}}}}}},
+      '55555555-5555-4555-8555-555555555555':{'publicId':'55555555-5555-4555-8555-555555555555','name':'Unrelated','cities':{},'marker':CANARY},
+    }
+    for i,(pid,value) in enumerate(sessions.items(),1):
+        db.execute('INSERT INTO sessions(secret,public_id,expires_at,value) VALUES(?,?,?,?)',(f'synthetic-secret-{i:02d}',pid,999999,compact(value)))
+    for pid,total in [(T,5),(S,1),(R,25)]:
+        for n in range(total):
+            db.execute('INSERT INTO action_receipts(sender,action_id,action_at,value) VALUES(?,?,?,?)',(pid,f'action-{n:02d}',100+n,compact({'synthetic':True,'n':n})))
+    db.execute('INSERT INTO action_receipts(sender,action_id,action_at,value) VALUES(?,?,?,?)',('55555555-5555-4555-8555-555555555555','unrelated',1,compact({'marker':CANARY})))
+    for pid,total in [(T,1),(R,3)]:
+        for n in range(total):
+            db.execute('INSERT INTO wallet_effects(public_id,city_id,operation_id,ordinal,at,amount,balance_after,reason,transfer_id) VALUES(?,?,?,?,?,?,?,?,?)',(pid,'synthetic-city',f'op-{pid[:4]}-{n}',n,200+n,10,100+n,'synthetic audit',None))
+    db.execute('INSERT INTO wallet_effects(public_id,city_id,operation_id,ordinal,at,amount,balance_after,reason,transfer_id) VALUES(?,?,?,?,?,?,?,?,?)',('55555555-5555-4555-8555-555555555555','synthetic-city','unrelated-op',0,1,1,1,CANARY,None))
+    db.execute('INSERT INTO world_shards(name,text) VALUES(?,?)',('tokyo.centre',compact(['r',T,NAMES[T],1,0,'own'])+'\n'+compact(['h',0,0,T,0,0])+'\n'))
+    db.execute('INSERT INTO world_shards(name,text) VALUES(?,?)',('lagos.lagos-island',compact(['r',R,NAMES[R],1,0,'own'])+'\n'+compact(['h',0,8,R,0,0])+'\n'))
+    db.execute('INSERT INTO world_shards(name,text) VALUES(?,?)',('canary.unit',compact(['r','55555555-5555-4555-8555-555555555555','Unrelated',1,0,'own'])+'\n'))
+    db.execute('INSERT INTO world_meta(key,value) VALUES(?,?)',('summary',compact({'synthetic':True,'marker':CANARY})))
+    db.commit()
+    return db
+
+def snapshot(db: sqlite3.Connection) -> dict[str, object]:
+    targets=(T,S,R)
+    q='('+','.join('?' for _ in targets)+')'
+    return {
+      'epoch':db.execute('SELECT epoch FROM main_store_authority WHERE singleton=1').fetchone()[0],
+      'sessions':db.execute(f'SELECT count(*) FROM sessions WHERE public_id IN {q}',targets).fetchone()[0],
+      'actions':db.execute(f'SELECT count(*) FROM action_receipts WHERE sender IN {q}',targets).fetchone()[0],
+      'wallets':db.execute(f'SELECT count(*) FROM wallet_effects WHERE public_id IN {q}',targets).fetchone()[0],
+      'helpers':db.execute("SELECT count(*) FROM sqlite_master WHERE type='table' AND name GLOB ?",(PREFIX+'*',)).fetchone()[0],
+      'collections':dict(db.execute("SELECT name,value FROM collections WHERE name IN ('social','civic','growth','root:growth')")),
+      'entries':db.execute('SELECT coll,map,key,ord,ix,tx,jx,value FROM entries ORDER BY coll,map,key').fetchall(),
+      'world':db.execute('SELECT seq,name,text FROM world_shards ORDER BY seq').fetchall(),
+      'world_meta':db.execute('SELECT key,value FROM world_meta ORDER BY key').fetchall(),
+      'unrelated_session':db.execute("SELECT value FROM sessions WHERE public_id='55555555-5555-4555-8555-555555555555'").fetchone()[0],
+      'unrelated_action':db.execute("SELECT value FROM action_receipts WHERE sender='55555555-5555-4555-8555-555555555555'").fetchone()[0],
+      'unrelated_wallet':db.execute("SELECT reason FROM wallet_effects WHERE public_id='55555555-5555-4555-8555-555555555555'").fetchone()[0],
+    }
+
+def execute_atomic(db: sqlite3.Connection, sql: str, expect_error: bool) -> str | None:
+    try:
+        db.executescript('BEGIN IMMEDIATE;\n'+sql+'\nCOMMIT;')
+    except sqlite3.Error as error:
+        db.rollback()
+        if not expect_error:
+            raise
+        return str(error)
+    if expect_error:
+        raise AssertionError('rehearsal unexpectedly committed')
+    return None
+
+def scalar(db: sqlite3.Connection, sql: str, params: tuple[object,...]=()) -> object:
+    return db.execute(sql,params).fetchone()[0]
+
+def main() -> None:
+    assert sqlite3.sqlite_version_info >= (3,38,0), sqlite3.sqlite_version
+    final = transformed('cleanup-final.sql.txt')
+    rehearsal = transformed('cleanup-rehearsal.sql.txt')
+    assert rehearsal == final + ABORT
+
+    rehearsal_db=fixture(); before=snapshot(rehearsal_db)
+    error=execute_atomic(rehearsal_db,rehearsal,True)
+    after=snapshot(rehearsal_db)
+    assert 'dry_run_completed' in (error or ''), error
+    assert after == before
+    assert after['helpers']==0 and after['epoch']==3 and after['sessions']==3 and after['actions']==31 and after['wallets']==4
+
+    final_db=fixture(); final_before=snapshot(final_db); old_world=final_before['world']; old_meta=final_before['world_meta']
+    execute_atomic(final_db,final,False)
+    assert scalar(final_db,'SELECT epoch FROM main_store_authority WHERE singleton=1')==4
+    assert scalar(final_db,'SELECT count(*) FROM sessions WHERE public_id IN (?,?,?)',(T,S,R))==0
+    assert scalar(final_db,'SELECT count(*) FROM action_receipts WHERE sender IN (?,?,?)',(T,S,R))==0
+    assert scalar(final_db,'SELECT count(*) FROM wallet_effects WHERE public_id IN (?,?,?)',(T,S,R))==4
+    assert scalar(final_db,"SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='session'")==3
+    assert scalar(final_db,"SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='collection'")==4
+    assert scalar(final_db,"SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='entry'")==9
+    assert scalar(final_db,"SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='action'")==31
+    assert scalar(final_db,"SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='wallet'")==4
+    assert scalar(final_db,"SELECT count(*) FROM qa_phase6_cleanup3_20261015_receipt")==1
+    for seq,name,text in old_world:
+        assert final_db.execute('SELECT text FROM world_shards WHERE seq=? AND name=?',(seq,name)).fetchone()==(text,)
+    assert final_db.execute('SELECT key,value FROM world_meta ORDER BY key').fetchall()==old_meta
+    assert scalar(final_db,"SELECT count(*) FROM world_shards WHERE name IN ('tokyo.centre','lagos.lagos-island')")==4
+    target_blob=''.join(value for _,value in final_db.execute("SELECT name,value FROM collections WHERE name IN ('social','civic','growth','root:growth')"))
+    assert all(pid not in target_blob for pid in (T,S,R))
+    assert CANARY in target_blob
+    assert scalar(final_db,"SELECT count(*) FROM entries WHERE instr(key,?)>0 OR instr(value,?)>0",(T,T))==0
+    assert scalar(final_db,"SELECT count(*) FROM entries WHERE instr(key,?)>0 OR instr(value,?)>0",(R,R))==0
+    assert scalar(final_db,"SELECT count(*) FROM entries WHERE key='55555555-5555-4555-8555-555555555555'")==1
+    assert scalar(final_db,"SELECT count(*) FROM sessions WHERE public_id='55555555-5555-4555-8555-555555555555'")==1
+    assert scalar(final_db,"SELECT count(*) FROM action_receipts WHERE sender='55555555-5555-4555-8555-555555555555'")==1
+    assert scalar(final_db,"SELECT count(*) FROM wallet_effects WHERE public_id='55555555-5555-4555-8555-555555555555'")==1
+    print(f'SQLite {sqlite3.sqlite_version}')
+    print('transformation: 9 synthetic constant substitutions; 1 intentional share-block bypass; 0 other SQL changes')
+    print('rehearsal: PASS named dry_run_completed rollback')
+    print('rollback: PASS helpers=0 epoch=3 sessions=3 actions=31 wallets=4 exact snapshot unchanged')
+    print('final: PASS epoch=4 target sessions/actions absent wallets=4 receipt=1')
+    print('backups: PASS sessions=3 collections=4 entries=9 actions=31 wallets=4')
+    print('WORLD: PASS old rows byte-identical, two append rows, meta byte-identical')
+    print('unrelated canaries: PASS collection, entry, session, action, wallet preserved')
+    print('production draft: unchanged and still intentionally blocked')
+    print('checks: 8/8')
+    print('executed-final-sha256: '+hashlib.sha256(final.encode()).hexdigest())
+    print('executed-rehearsal-sha256: '+hashlib.sha256(rehearsal.encode()).hexdigest())
+
+if __name__ == '__main__':
+    main()

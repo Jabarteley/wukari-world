@@ -1,23 +1,41 @@
 # Phase 6 public profiles and production release
 
-## Current work
+## Current work — Share deployed; browser verification and cleanup held
 
-- Owner: /root, chat01a13bea-138b-7b91-ac44-c49bc3d836ec.
-- Model: primary integration; Luna bounded content audit; Astra consequential profile/privacy design and browser acceptance; implementation assigned after contract review.
-- Status: explicit bounded release/QA cleanup exception APPROVED by the user. Implementation pinned8affbb21; protected main/release and hosted proof now in progress. Full corpora remain non-green as documented; never relabel them passed.
-- Canonical checkout: /Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld; branch codex/retention-main-sync; base5181c91a8274f0616b5cb6740971598fd97814ad.
-- Preserved unrelated file: docs/research/unique-local-content-2026-10-15/ui-world-entry-375.png. Primary Desktop checkout is untouched.
-- Scope: unique/nonrepetitive authored content audit and necessary corrections; public human/agent achievement/history profiles accessible from map and shareable links; agent-play compatibility; production release and real non-Lagos mission/story/journey proof.
-- Current ownership: source frozen at8affbb212333edd61954e5c6ed32e9c30682fe51 after currentmain9321b79e and first-person83d2b768. Parent owns integration/release evidence/index/this record. Sol and Luna source units handed back; only their own evidence/records may change. Astra retains browser and consequential operation review; no other records edited by parent.
-- Parallel lanes: Luna final current-main resident/agent/host checks complete174/174; Sol stable temporary row attribution complete; Astra prepares safe exact-ID disposable QA cleanup. First-person source/fixture/browser matrix handed off; no competing release from that lane. Other computer release38752088180 independently deliversmain9321b79e; never interfere or deploy concurrently.
-- Live health observed at start: joinallworld-201b9bdac9f8ee9412ff9837897; no new release yet.
-- Known release concerns: existing Worker raw-size and idle comeback failures documented in Nigeria validation. Reproduce current source and diagnose before release; never raise budgets or weaken gates. New public projection requires explicit identity/visibility/redaction review.
-- Product contract: public profile shows earned accomplishments and explicit human/agent identity, with existing visibility rules. Private life state, credentials, agent memory and hidden locations must not leak. Sharing a link must not silently change visibility.
-- Existing data/rewards: preserve old keepsakes, collections, pending mission claims, stable IDs, trusted origins and human-only cadence rules.
-- Running resource: parent preview5176/session13362 uses existing retention-phase-zero .data; real saves preserved. Final local permanent-agent socket89571 stopped gracefully after accepted map proof. Astra completed local browser acceptance and released its tabs. First-person4412 stopped by owner. No other services stopped.
-- Acceptance: content audit findings resolved or honestly bounded; map→public profile→share→open profile works for visible human/agent; hidden/nonexistent/private data rejection; local/CI/build/download/Worker gates; exact main release and production health readback; actual non-Lagos mission claim, story/collection completion and reload; portable records/evidence.
-- Next: finish current8aff two-build/download/typecheck and exact CI38752624193, final clean-source package/marker/Worker cap; publish documentation checkpoint to integration branch. Then present concrete policy-exception decision for inherited test failures/timeouts and named disposable QA procedure. No main push, production actor or deployment until the stricter rule is satisfied or explicitly waived. No new tracked tests; affected existing assertions are authorized.
-- Usage/cost: unknown. Former usage stop was explicitly revoked by the user.
+Parent `/root` owns integration, release and the shared index in chat `01a13bea-138b-7b91-ac44-c49bc3d836ec`. Checkout: `/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld`, branch `codex/retention-main-sync`. Astra owns interactive browser work and consequential cleanup review. Sol owns the offline cleanup diagnostic. Housing and full-suite repair successors are excluded.
+
+| Unit | Verified state | Remaining work |
+|---|---|---|
+| Production release | Source `6695f00c6779fbfcb69bd21aa8b152d5430a0dca`; protected run `38772799093` succeeded. Provider deployment `37742927-5c98-4cf7-a6f2-374908420ed5`, version `e6d0bf60-350c-4096-8e7e-29e67d1fe2ce` at 100%. Full BUILD_ID, actual DO health, namespace and non-build bindings verified. | Interactive production Share and ordinary-account recovery checks. |
+| Beyond-Lagos gameplay | Both Lomé stories and keepsakes, city 2/2, Togo 1/1, mission Collected, Wayfinder, reload and privacy passed. Anonymous API after this deployment preserves five history entries and counts 1 badge / 2 stories / 0 projects / 2 collections. | This is one exercised destination, not exhaustive production gameplay across 284 destinations. Original Tokyo continuity is unavailable because its Incognito window was closed. |
+| Share correction | Local 320/375 focus, selection, Copy and hide/reopen passed; parent inspected the 375 capture. Served `PublicProfile-118d584f.js` is 8,379 bytes and is referenced by served `PassportApp-5436a265.js`. | Actual production interaction waits for Chrome control. No clipboard payload was read. |
+| QA cleanup | Read-only inventory and corrected offline SQL source review completed. | Missing share/referral and composite-reference inventory, exact bound guards, provider rollback rehearsal, timed cleanup and restart/readback. No production SQL has run. |
+
+[Live provider/HTTP evidence](../research/phase6-social-release-2026-10-15/share-release-38772799093/live-http-provider.json) records the asset hash, exact source, provider allocation, preserved earned records and observed adoption timing. Provider deployment began at 17:04:29.891939 UTC; the last old DO health was observed at 17:08:10.696, and new health was first confirmed at 17:10:01.541. Exact cutover time is unknown. The `immediate` flag was used, but immediate adoption was not observed. The upstream [Cloudflare report](https://github.com/cloudflare/workers-sdk/issues/16235) describes a similar delay; it does not prove our cause. Do not promise a two-minute outage. The fixed 300-second hold is not an outage SLA.
+
+User explicitly approved this bounded Share release and its same-source cleanup restart with the documented inherited full-suite exceptions. CI `38770852474` passed policy, five-project typecheck, build, download budgets and smoke. The current-source compatibility run passed 174/174; existing social checks passed 20/20 and the disposable compiled-SFC diagnostic passed 1/1. Protected fast Worker checks passed. Full source and Worker suites were skipped, not green.
+
+### Current external blocker
+
+The browser tool reports: Please update the ChatGPT extension in Google Chrome to the latest version to continue. User was asked to update while preserving the existing Incognito and normal tabs; reply is pending. Native accessibility can inspect Chrome/tab inventory, but reliable SQL control is not restored. Earlier checks independently identified the ordinary `kromate` account as Connected with progress saved and the authenticated Cloudflare operator. R2 had already been left on static public HTML. Do not restart Chrome, touch unrelated YouTube, or create another guest.
+
+### Frozen cleanup targets
+
+| Actor | Exact UUID | Action receipts | Retained wallet audit | Owned home |
+|---|---|---:|---:|---|
+| Original Tokyo | `bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56` | 5 | 1 | Tokyo centre 0/0 |
+| Smoke | `453a0f63-5b90-4e7b-b730-4ea9ff54b70d` | 1 | 0 | None; rent |
+| R2 | `6cea4961-b7fc-4bb7-a6db-a28e9327014f` | 25 | 3 | Lagos Island 0/8; current life in Lomé |
+
+The user approved exactly these three disposable guests and their cleanup. No fourth identity is allowed. Actual inventory found schema 2, shadow layout, epoch 3, writable 1, null retirement/wallet watermark and no fragments. Each target has one session and no account, linked device, archive or once receipt.
+
+The [offline SQL package](../research/phase6-social-release-2026-10-15/public-profile/cleanup-draft/README.md) is intentionally blocked. Corrected final hash: `5865c0fb71d3e219e676875ef7d56713ca472d02d67875f305d04ab4832b224f`; rehearsal: `b39857d59c1b3393dae3cd9aa0207d8a393cce727e062b3e712c173f318d4580`. It checks all nine legacy/entry mirrors, growth-root parity, private backup-based device links, exact identity paths, two automated founder DMs, append-only WORLD cleanup and the guarded epoch 3 to 4 transition. Share `ffe8762f22` dependencies and supplemental reference counts remain unobserved. Preserve immutable wallet audit, unrelated players, founder data, aggregate counters and old WORLD bytes. The representative offline SQLite diagnostic passed 8/8 on SQLite 3.53.4 after one fixture-only correction. Parent inspected its archived source and output. It substituted synthetic constants and bypassed only the intentional share gate inside the fixture clone; production drafts remain unchanged and blocked. This cannot replace the actual provider rehearsal.
+
+No production DDL, backup, rehearsal, deletion, epoch fence or cleanup restart has occurred. Before any fence, restore browser control, verify current live Share and ordinary authenticated recovery, obtain the missing count-only inventory, bind exact guards, and complete the named `dry_run_completed` rollback rehearsal with independent readback and duration. Then use a fresh protected current-source window with at least 120 seconds remaining. Verify the single receipt, changed-marker restart, ordinary account and named WORLD reads afterward. Recheck current production and main before dispatch; never roll newer live code back to this source or `8affbb21`.
+
+Deployment lock was released normally after the verified code deployment while the external browser blocker persists. Reacquire it and recheck the current runtime before cleanup. External world-alive freeze acknowledgment is unconfirmed. Preserve unrelated untracked `unique-local-content-2026-10-15/ui-world-entry-375.png`, all real/local saves and other owners' previews. No payment, signup, external invitation, credential output, budget increase or new tracked test file is authorized by this unit.
+
+## Earlier implementation checkpoints — historical
 
 | Unit | Implementation/evidence | Release state | Next action |
 |---|---|---|---|
@@ -156,3 +174,119 @@ Full release decision, strict incorporated rule, non-green oldcorpora,19first-bo
 Direct human answered the concrete release question: “Approve bounded release and QA cleanup”. Approved implementation pin8affbb21, documented inherited-test/full-suite-timeout exception, named Phase6 production-verification workflow with at most two disposable new actors, normal update notice and exact-ID/test-home cleanup. This overrides only the stated all-green gate for this bounded release; all package/security/budget/namespace/continuity safeguards remain. First-person owner notified; its separate legacy-test repairs must remain isolated from this approved source and it must not deploy concurrently.
 
 Other computer release38752088180 is completed successfully, currentorigin/main remains9321b79e. Parent now acquires shared release lock, pushes documentation successor (implementation unchanged) to main, waits exact mainCI, and dispatches protectedworkflow with source_sha8affbb212333edd61954e5c6ed32e9c30682fe51. No docs/main advance while deployment policy checks are in flight. Astra receives isolated Tokyo-baseline/actual-live verification and later two-ID cleanup; no third actor and no restored historical test identities.
+
+## Chrome handoff and provider baseline — 2026-10-15 15:11 UTC
+
+User explicitly answered Chrome is ready for the isolated QA window. Astra browser owner resumed fresh native isolation; no guest creation receipt yet. Main ba33bf73 still matches origin/main; CI38755204835 success confirmed. Read-only provider baseline at15:10:27Z: deployment c1d64b96-1a3f-4d00-86a0-0142b406f676, version e449ddca-6f1f-4c01-b0b0-e079b12a51d3, unchanged JOINALLWORLD namespace6b84e715f6c444f69971a0b6cde7868b. Protected account variable is production-environment scoped; corrected read-only helper succeeds, secret values never output. Private metadata in /private/tmp/allworld-phase6-provider-before-private.json; sanitized baseline /private/tmp/allworld-phase6-provider-before-summary.json. Release lock remains ours. Next: wait actual Tokyo baseline then dispatch approved8aff; do not advance main during protected run.
+
+## Isolation recheck after human handoff
+
+Astra fresh native shortcut returned but no incognito indicator was observed; subsequent File-menu action again rejected with Chrome state-changed error. No QA actor (0/2), production SQL or deployment. User now asked concrete manual Incognito welcome-screen setup. Do not count shortcut return as isolation or navigate a real-account window. Release remains authorized and ready after actual baseline; no additional permission requested.
+
+## Browser setup handoff — release lock freed
+
+No response yet to the concrete manual Incognito setup request. Parent released codex-phase6 deployment lock normally while awaiting external browser setup; no deployment/notice/SQL or QA creation occurred. Current public health still9321b79e. Before continuation reacquire lock, fresh-check main/source/policy and production baseline, then resume exact approved8aff workflow only after isolated Tokyo continuity baseline. Do not treat approval as a completed release.
+
+## Manual Incognito accepted — 2026-10-15 15:16 UTC
+
+Direct user supplied Incognito screenshot and confirmed ready. Astra fresh native AX explicitly identified Google Chrome(Incognito), welcome loaded, exact tab460561052. Normal creator is in progress for sole Zz Test Phase6 Tokyo; no creation receipt yet. Parent reacquired codex-phase6 release lock. Provider baseline rechecked15:16:37Z unchanged versione449ddca/deploymentc1d64b96/namespace. Mainba33 remains approved documentation-only descendant of8aff, CI38755204835 success. Next actualUUID/baseline receipt then normal notice/protected release.
+
+## First disposable actor created normally
+
+Astra normalUI created Zz Test Phase6 Tokyo, UUIDbfcb8ef0-4d00-4d8e-b665-bb8b11d45e56, account:false, Starterhouse/Tokyo, wallet9078, Goal1/10, connected/progresssaved. No mission/story attempted. Actorcount1/2; onlyfutureLagos smoke guestmayconsume2nd allowance. Normalnavigation/reload baseline inprogress; parent invoked authorized2minute update notice, receiptpending. NoSQL/deploy.
+
+## Protected release dispatched — run38759139768
+
+Normalnotice accepted200 at15:18:00UTC, minutes2, until15:20:00UTC. Protected workflow38759139768 dispatched onmainba33 with source8affbb212333edd61954e5c6ed32e9c30682fe51/deploytrue/fullchecksfalse/publishstagingfalse/defaultcleanupwindowfalse. Packaging/checks begin while Astra finishes sameTokyo actor reload checkpoint; baseline must complete before actualdeployment, cancelrun if a continuityfailure emerges. Lunaownsread-only durable runreceipt capture; parentownsrelease, AstraownsUI. Freeze main/policy now. NoSQLcleanup yet.
+
+## Tokyo before-release continuity accepted
+
+Before deployment, Astra reports normalreload restored sameTokyo guestbfcb8ef0-4d00-4d8e-b665-bb8b11d45e56/accountfalse/name, StarterhouseTokyo, displayed9078(canonicalcash76000), Goal1/10 andconnectedsaved. Earnedachievements/stories/projects/missionclaims empty. Freestarterplottokyoestate0/plot0/centre, legacyhomeOwnedfalse. ActualUI evidence public-profile/production-tokyo-before-reload.jpg and production-tokyo-before.json. SameIncognitotab460561052 heldfornewbuild. Protectedrun38759139768 packaging; noSQLmutation.
+
+## Production source adopted; provider history selection correction
+
+Protectedrun38759139768 SUCCESS, actualpublichealth8aff at15:31UTC. CLIversion886e3605-fa73-41d4-82c9-045e7103c608 matches corrected latestproviderhistory/deploymente3e83bfd-e780-40cd-b713-55e309219a68. Initial metadatahelper incorrectly selected list[0] (oldest returned history), so earlier e449ddca/6676d91b values were historical versions, NOT sampled activeversionproof. Corrected timestampdescending selection and reconstructed predecessor before15:18UTC from history: b56d132a-28fb-42d1-adc9-083243ba7ebd/deployment1570e1c9-322d-4f7c-aeb9-ab799dc55ff3. NonBUILD bindingdescriptors/plaintexthashes and namespace unchanged. Secretvalues are opaque and not compared. Sanitizedproduction-provider-comparison.json records actualhistory; no competingdeployment inferred.
+
+Approved secondandfinalQAguest created: Zz Test Phase6 Smoke, UUID453a0f63-5b90-4e7b-b730-4ea9ff54b70d, Lagos. HelperpublicUUIDlogged immediately. Health/headers/assets/session/life/worldpulse/WebSocket/Weavedictionary/harmlessspot+duplicate checks pass; citychunk sweep ongoing. Totalactors2/2, no retrycreation.
+
+Astra attempted postrelease Tokyo samewindow: recordedtab no longerexposed. Onefreshglobalinventory finds onlyChromeprovider1, nojoinallworldtabs; nativefrontGmail doesnotproveallIncognitowindowsclosed. UseraskedrestoreexactexistingTokyoIncognito; no newactor or SQLsessionsecretextraction. PostreleaseTokyogameplay pending.
+
+## Independent live anonymous profile checks
+
+At15:36:16UTC actualHTTPGET of bothapprovedQAUUIDs returned200/human/zeroearnedcounts+emptyhistory; bothpublicHTMLpages200/rendercorrectname/no-store/noindex,nofollow. Evidenceproduction-public-profile-http.json. NoUI/earned/share/privacy/reloadacceptance inferred. Tokyooriginalsessionrestorationquestionremainspending. Lagos284citychunksweepcontinues, no thirdactor.
+
+Asset-onlynextbatchqueue: Mapo sourcef2111691d2ad0ed5da1a502c87fb0a90033db264 in /Users/anthonyakpan/Documents/Codex/2026-10-15/task-2/asset-source, near5846tri/2753184B/far1938tri/2446396B, reportedoriginalPBR/geometry withattributedresearchphotos. Hold foractualIbadanheadroom/independentart/game/controller/traversal/deviceacceptance andpubliclicensepolicy. No currentruntime/main/deployadoption.
+
+## Production smoke passed; interactive continuation awaits user
+
+SMOKE_CITIES=lagos helper finishedexit0:12checks,1985requests,365.3seconds,1910cityassetfiles/all284opencities. Smoke log archived production-smoke.txt; actualnormalAPI/socket/Weave/spotduplicatechecks passed. OnlytwoapprovedguestIDscreated. No productionSQL, backups, deletions, epochchangeorcleanuprestart performed. ActualTokyoafterreleasegameplay/profile/FPacceptance remains unavailable untiluserrestoresexactIncognitocontext. Userquestionpending; do notcalltaskcomplete.
+
+Originmainadvanced8acc576d withothercomputerrelease15money/homepin/bonus/legacy/testwork afterourdeployment. Evidence sync may containthisupstreamsource butproductionremains8aff; do notclaim8accreviewed/tested/deployed bythislane. Futurecleanupmustrechecklivecode/schema/epoch andchoosereviewedcurrent-source restart, neverrollback newerproductionto8aff. Release lock willbefreednormallywhenyieldingblockedmanualbrowserhandoff; QAUUIDsremainownedpendingcleanup.
+
+## Published handoff — 2026-10-15T15:41:45.617288+00:00
+
+Evidence synced to main38781faba0ec6ad549d2ae0ed054c821b9acf6e9, preserving upstream8acc576d source; own delta from8acc is documentation/evidence only. Newupstreamruntime was not deployed or qualified bythislane. Parent releasedcodex-phase6deploylocknormally aftersmoke; noSQL/backups/epoch/deletions. UseroriginalIncognitorestorationanswerpending. HousingChromeleaseexplicitlyreleasedforboundedlocalhostverification, musthandoffbeforeourresume. Source8aff remainslive; no taskcompletionclaimed. Next executable step: userrestoreoriginalTokyocontext, freshbrowserownership/source/health/lockcheck, actualmission/story/journey/profile/FPacceptance, then reviewedexacttwoIDcleanup/restart usingcurrentapprovedruntime.
+
+## User confirms original Incognito window closed
+
+Direct human answered originalwindowwasclosed. Nooriginalcontinuityproofcanbeinvented; closingonewindowdoesnotaloneproveallIncognitocookiesended, so Astramaymakeoneboundednormalresumecheck afterhousingreturnsChromelease. NoSQLcredentialread oridentityimpersonation. Parentaskedexplicitconditionalmax2→3approvalforoneTokyo replacementguestandcleanupallthreeonlyifnormalresumefails; responsepending, no3rdcreationauthorized. Currenthealth8aff remainslive, lockfree. Existing2guestUUIDsandcleanupscopeunchangeduntiluseranswer.
+
+## Normal guest recovery unavailable; no third player created
+
+HousingreturnedChromeleaseafteritsboundedlocalQA. Astra freshglobalinventory+one nativeNewIncognitosucceeded; AXexplicitIncognito, exactnewtab460561078. Navigated onlyGEThttps://joinallworld.com/api/session. Renderedbody {"error":"device_session_required"}; source maps this to401, actualnetworkstatus not independently captured. This freshIncognitocontext doesnot haveoriginalguestcookie. NoPOST/creator/newactor, total2/2. Evidence public-profile/production-original-guest-recovery-unavailable.jpg. Conditionalreplacement+three-IDcleanupapprovalquestionstillpending. Tabpreservedready; browseroperatoridle, noSQL. Next executable step onlyafterdirectapproval: createone replacementTokyoguest(normalUI), recordnewUUIDimmediately, actualproductionmission/story/journey/profile/FPchecks, exactthree-IDinventory/backups/rehearsal/current-sourcecleanupwindow. Ifapprovaldeclined, retainlimit anddocumentunfinishedacceptance.
+
+## Explicit replacement and three-player cleanup approved
+
+Directhumanresponse: "Approve one replacement and three-player cleanup" to the concrete conditionalmax2→3question. Normaloriginalguestcookierecoveryhasfailed. Scope nowpermits exactlyoneadditionalnormalTokyoQAguest, uniqueZz Test Phase6 Tokyo R2, UUIDnotyetbound; totalmaximum3, no fourthcreation. CleanupincludesonlyactualnewR2UUIDplusoriginalTokyobfcb8ef0-4d00-4d8e-b665-bb8b11d45e56 andLagosSmoke453a0f63-5b90-4e7b-b730-4ea9ff54b70d, withsameprivatebackup/fullforcedrollback/exactguards/current-sourcefixedwindowcontrols. OriginalbeforeaftercontinuitycanneverbeclaimedfromR2; R2normalreloadproofisnewsessiononly. Astraresumedsolebrowseroperator inpreservedverifiedIncognitotab460561078. NoSQLcleanupornewdeployyet.
+
+## Deployed-source Tokyo route clarification
+
+Luna prepared source-only route from8aff in /private/tmp/allworld-phase6-tokyo-live-walkthrough.md. Correctauthoredcollectionrequirements: Tokyocity2/2tales, Japancountry1/1countrytale(onlysupportedJapanesecityTokyo). EarlierblanketTokyo/Japan2/2expectationmayreferlegacycollections andmustnotbeimposedontheauthoredcountrycollection. Astramustrecordactualnamedcollections/countsafterlegitimateplay. Walkthroughsourceproofisnotlivecompletionevidence. Parentreacquiredcodex-phase6deploylock, currentpublichealth8aff/main69c3.
+
+## Third and final guest recorded
+
+Astra created exactlyoneR2normalUIguest: 6cea4961-b7fc-4bb7-a6db-a28e9327014f / Zz Test Phase6 Tokyo R2. Total3/3; nofurthercreation. Creatortrace unexpectedly movedfromSpirit/Home labeltoLagosgameplay(balance5000) beforeexplicitTokyoselection/Startsubmission; causeunknown. Keepthissameguest anduselegitimateguestinitial-city/travelUI; noGETcityteleport/adminfunds/newidentity. Lunainspectspinned8affnormaltravelcontractwhileAstraobservesactualUI. CleanupfrozenUUIDset is originalTokyobfcb8ef0-4d00-4d8e-b665-bb8b11d45e56, LagosSmoke453a0f63-5b90-4e7b-b730-4ea9ff54b70d, R26cea4961-b7fc-4bb7-a6db-a28e9327014f. R2actualcity/plots mustbeinventoriedafternormalplay.
+
+## Legitimate QA destination adaptation within same R2 identity
+
+Pinnedsource/UI confirmR2guestcityalreadyLagos; existingguestsettlecannotchangeinitialcity, Tokyoflight900000, no sameUUIDrestart and launchbonusrequiresaccount(signupexcluded). Avoidfourthcreation/adminfunds/bypass. OriginaluserobjectiveisbeyondLagos/worldcountryprogression; parentdirectssameR2normalLagossettlethenLomé/Togo actualUIflight39000/13s IFsettledcashsuffices. This is changedQAdestination, notTokyo/Japanproof. Lomé/Togo expectedauthoredcity2tales/country1tale toverifyactualUI. Ifordinaryfundsinsufficient, affordableIbadanbus3500fallback, documentcountryprogressscope. LunapreparespinnedLoméroute; Astraownsallactualgameactions. Cleanupstillonlysamefrozen3UUIDs andactualallownedplots/sharedrefs.
+
+## Hosted first-person milestone on existing R2
+
+AstraactualMoremenutoggle enteredfirstperson; normaldownwardscenedragvisiblyrenderedownblueclothedtorso/legs/hands. Evidencepublic-profile/production-r2-first-person-body.jpg. Thirdpersonrestorationverifiedactivecamera labelandcontrols. Narrowmatrix/reloadstillpending; no physicaldeviceproof. SameR2nowonstableLagosHomechoosingLagosIsland, actualnormalsettlementfundsnext; nofourthguest or forcedcash.
+
+## R2 legitimate settlement funds
+
+SameR2settlednormallyLagosIsland; actualwallet76000, displayednormalLAPOloan60000 included. Loméfare39000isaffordablewithoutmanufacturedfunds/accounts. AstrareportedsemanticMoreclickopeningInviteShare(noexternalshare), suspectsviewport/zoom-coordinate mismatch; causeunproven. Correctdocumentedviewport/inputmapping beforefurtheractions. Wayfinder3nonhomeplaces giveslegitimatebadgepathalongsideLoméstoryroute, nootherplayerrelationshipsrequired. NoSQLornewdeploy.
+
+## First actual foreign story and public earned record
+
+Astra completed Cold, Mild, Bold, Sweet through normal Jesse Say hello actions and authored choices; permanent Four-course order tab and Lomé 1/2 are visible. Parent independently read anonymous production GET /api/profiles/6cea4961-b7fc-4bb7-a6db-a28e9327014f at16:16:25UTC:200, kindhuman, stories1, historyplace-lome-city-story/titlecorrect, onlyallowedprofilekeys. Evidenceproduction-r2-earned-profile-progress.json. No assertionofremainingmission/countrycollection/privacy/reload/cleanupcompletion.
+
+## Source adoption and lock timeline correction
+
+Currentpublichealth is69c3ae44, providerce38ecb4-5ca8-4fe6-819d-d9b7cf42a019, deploymentbbfd6870-12c1-40ed-9152-bf811610743f. Otherownerprotectedrelease38762867412 succeeded, providercreated15:54:14UTC/terminal15:54:18. Ourcurrentlockownerrecord says16:56Lagos(15:56UTC), AFTER thatdeployment. ThereforethereisNOdemonstratedoverlappinglockviolation; previousinferenceiswithdrawn. Firsthealthobservationduringadoptionstill8aff, precisebrowserclient/servertransitionunbound. Rootdiffconfirmspublicprofile/progression/store/episodes/missions/packager/guard/workflowpathsunchanged8aff→69c3. Newmoney/homepin/legacycodeisalreadydeployedbyotherowner; neverrestart8affover69.
+
+ActualR2Lomé2/2,Togo1/1, localmissionCollected,Wayfinder,public1badge/2stories/2collections,hide–relist,reload,CSS320 andFP→TP passed. ShareCheckingpersists, soSolownsboundedPublicProfile.vue fallbackfix; no newserver/test/schema scope. Astra keptR2onstaticpublicHTML, gamewriterstopped,cookiepreserved. Ordinaryaccount/operatorcontextnotexposed; useraskedopenexistingnormalChromeaccounttabforREADONLYrecovery, notcreation/signup/actions. NoSQLorfence.
+
+## Share source correction and live view milestone
+
+Documentation checkpoint c5726f6a was pushed to main after merging status-only72bd8ac0. Sol released component ownership with SHA25640591d84732c0da18ea0670af5c4b751d86ba566749c56f101dc635588a22fd5. Parent source review accepts the bounded explicit URL/copy state, privacy revalidation, panel-operation token and unmount invalidation. This is a client-only correction; existing public server/API/agent contracts are unchanged. Temporary async execution evidence, actual local UI and protected successor build remain pending. Parent started the established17-file current-source compatibility run through the heavy lease, log /tmp/allworld-phase6-share-current-compatibility.txt.
+
+Astra live matrix on69c3 passed CSS390x844 and320x844 menu On/Off labels without horizontal overflow, landscape844x390 labels, saved first-person reload, and own body visible at390 by ordinary down-look. Third person restored and viewport reset. The landscape body image contains a passing NPC and is not own-body proof. Existing real account kromate/Connected and authenticated Cloudflare operator are independently available; R2 Incognito retained. Read-only inventory follows; no SQL mutation or cleanup fence has occurred.
+
+## Approved Share successor ready for protected dispatch
+
+User explicitly replied Approve bounded Share release to exact reviewed6695f00c and its same-source cleanup restart with documented inherited exhaustive-suite exceptions. This supersedes the8aff-only exception for this bounded client correction; it does not turn inherited failures/skips into passes. CI38770852474 is terminalsuccess: policy25, typecheckfiveprojects, build/downloadbudgets, smoke17. Actual local320/375Share/select/copy/reopen accepted; no clipboardcontentsread. Latest main6695 unchanged. Standardnotice200 at16:51:41UTC for2minutes, until16:53:41UTC. Protected dispatch follows that waiting period. First successor run changescodeonly, cleanup_windowfalse; no productionSQL yet. Later cleanuprestart remains conditional on exactscript review/fullnamed-abortrehearsal and a fresh timedwindow.
+
+## Protected Share release dispatched; browser update barrier
+
+After the2minute notice period, parent dispatched protected run38772799093 at16:53:53UTC from main6695f00c with deploytrue/full_checksfalse/publish_stagingfalse/cleanup_windowfalse. This is the code-only Share release, NOT the cleanuprestart. Main/policy frozen while it runs. Luna owns bounded read-only workflow evidence capture; parent owns actual health/provider adoption.
+
+Actual read-only inventory: schema2/layoutshadow, authorityepoch3/writable1/nullretirement/nullwalletwatermark, allcollection_parts0. Sessions1perapprovedUUID, archives/accounts/devices/once0. Actions5/1/25 and walletaudit1/0/3 for originalTokyo/Smoke/R2. Exactly two latest ownedhomes:Tokyo centre0/0,R2 LagosIsland0/8; Smoke rent/nohome. Two founder DMs are exact2member/seq1/oneauto/no realreply. Preserve founder's record, immutablewalletaudit4, aggregate metrics and all oldWORLDhistory. Sol owns offline exactcleanup SQLdraft; Astra/parentmustreview before anyDDL/rehearsal/mutation.
+
+Chrome tool now requires update of ChatGPT extension; a single nativeAXread proves native app access and ownedtabinventory, not reliableSQLcontrol. User asked to update while preserving existingnormal/R2/operator tabs. No cleanupwindow while this barrier persists. Allproductionbackup/rehearsal/delete/fence/restart stages remain unexecuted. R2 had already been stopped on staticpublicHTML; final localstaticnavigation acknowledgment was ambiguous duringextensionerror. Do not claim renewedbrowsercontextinspection.
+
+## Verified deployment and external-block handoff
+
+Protected Share release38772799093 and live provider/HTTP acceptance completed on6695f00c. The actual running DO health is new, non-build bindings/namespace match69c3, served Share asset is exact118d584f, and five normally earned Lomé/Togo records remain. Production interactive Share/recovery and all cleanup execution stages remain open for the Chrome ChatGPT extension update. Parent inspected the corrected offline SQL and representative rollback/commit probe; no production SQL ran. The deployment lock was released normally. No new source or deployment is scheduled while awaiting browser restoration. Reacquire/revalidate before continuation; approvals remain exact three actors/current reviewed source, not permission to roll back a newer release.

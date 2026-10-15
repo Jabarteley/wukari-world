@@ -1,0 +1,5 @@
+Build, check and seal new game	Assemble and seal fixed new-worker package	2026-10-15T17:03:32.4649397Z ^[[36;1mecho "archive-sha=$(sha256sum "$RUNNER_TEMP/joinallworld-package.tar" | cut -d ' ' -f 1)" >> "$GITHUB_OUTPUT"^[[0m
+Build, check and seal new game	Assemble and seal fixed new-worker package	2026-10-15T17:03:34.2382533Z {"packageDigest":"3cd233acad6ece56598672542a4ccdbea78dd27e1b10ff8bade239c417c39ba9","manifest":"manifest.json","files":8503,"bytes":286935417,"cityPayloads":284,"dictionaryPayloads":1,"largestFileBytes":4905869}
+Build, check and seal new game	Upload sealed new-worker artifact	2026-10-15T17:03:44.4101242Z SHA256 digest of uploaded artifact zip is 100453cffd85b71edf0476ae57964d780d9948fc2cb10f794411154ff9952c90
+Build, check and seal new game	Upload sealed new-worker artifact	2026-10-15T17:03:44.8591818Z Artifact joinallworld-package has been successfully uploaded! Final size is 72843251 bytes. Artifact ID is 11992477953
+Build, check and seal new game	Complete job	2026-10-15T17:03:45.4346978Z Set output 'archive-sha'

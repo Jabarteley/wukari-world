@@ -1,0 +1,49 @@
+WITH targets(id) AS (VALUES ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56'),('453a0f63-5b90-4e7b-b730-4ea9ff54b70d'),('6cea4961-b7fc-4bb7-a6db-a28e9327014f')) SELECT t.id, (SELECT json_object('name',json_extract(value,'$.name'),'embedded_id',json_extract(value,'$.publicId'),'account_type',json_type(value,'$.account')) FROM sessions WHERE public_id=t.id) AS identity, (SELECT count(*) FROM sessions WHERE public_id=t.id) AS sessions, (SELECT count(*) FROM archived_lives WHERE public_id=t.id) AS archives, (SELECT count(*) FROM accounts WHERE public_id=t.id OR instr(value,t.id)>0) AS accounts, (SELECT count(*) FROM account_devices d JOIN sessions s ON d.secret=s.secret WHERE s.public_id=t.id) AS linked_devices, (SELECT count(*) FROM action_receipts WHERE sender=t.id) AS actions, (SELECT count(*) FROM once_receipts WHERE sender=t.id) AS once_receipts, (SELECT count(*) FROM wallet_effects WHERE public_id=t.id) AS wallet_audit, (SELECT json_object('epoch',epoch,'writable',writable,'retired',retired_from_epoch,'watermark',wallet_effect_watermark) FROM main_store_authority WHERE singleton=1) AS authority, (SELECT version FROM app_schema WHERE singleton=1) AS schema_version FROM targets t;
+
+id
+identity
+sessions
+archives
+accounts
+linked_devices
+actions
+once_receipts
+wallet_audit
+authority
+schema_version
+1
+bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56
+{"name":"Zz Test Phase6 Tokyo","embedded_id":"bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56","account_type":null}
+1
+0
+0
+0
+5
+0
+1
+{"epoch":3,"writable":1,"retired":null,"watermark":null}
+2
+2
+453a0f63-5b90-4e7b-b730-4ea9ff54b70d
+{"name":"Zz Test Phase6 Smoke","embedded_id":"453a0f63-5b90-4e7b-b730-4ea9ff54b70d","account_type":null}
+1
+0
+0
+0
+1
+0
+0
+{"epoch":3,"writable":1,"retired":null,"watermark":null}
+2
+3
+6cea4961-b7fc-4bb7-a6db-a28e9327014f
+{"name":"Zz Test Phase6 Tokyo R2","embedded_id":"6cea4961-b7fc-4bb7-a6db-a28e9327014f","account_type":null}
+1
+0
+0
+0
+25
+0
+3
+{"epoch":3,"writable":1,"retired":null,"watermark":null}
+2

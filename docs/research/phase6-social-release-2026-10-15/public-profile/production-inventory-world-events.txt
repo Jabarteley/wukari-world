@@ -1,0 +1,29 @@
+WITH logs AS (SELECT n.name,(SELECT group_concat(text,'') FROM (SELECT text FROM world_shards WHERE name=n.name ORDER BY seq)) AS text FROM (SELECT DISTINCT name FROM world_shards WHERE name IN ('tokyo.centre','lagos.lagos-island')) n), events AS (SELECT l.name,j.key AS ord,j.value AS event,json_extract(j.value,'$[0]') AS kind FROM logs l,json_each('['||replace(trim(l.text,char(10)),char(10),',')||']') j) SELECT name,ord,event FROM events WHERE (kind IN ('r','x') AND json_extract(event,'$[1]') IN ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','453a0f63-5b90-4e7b-b730-4ea9ff54b70d','6cea4961-b7fc-4bb7-a6db-a28e9327014f')) OR (kind IN ('h','q','a','z','k') AND json_extract(event,'$[3]') IN ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','453a0f63-5b90-4e7b-b730-4ea9ff54b70d','6cea4961-b7fc-4bb7-a6db-a28e9327014f')) OR (kind IN ('h','f') AND json_extract(event,'$[1]')=0 AND ((name='tokyo.centre' AND json_extract(event,'$[2]')=0) OR (name='lagos.lagos-island' AND json_extract(event,'$[2]')=8))) ORDER BY name,ord;
+
+name
+ord
+event
+1
+lagos.lagos-island
+37
+["r","6cea4961-b7fc-4bb7-a6db-a28e9327014f","Zz Test Phase6 Tokyo R2",20741,0,"own"]
+2
+lagos.lagos-island
+38
+["h",0,8,"6cea4961-b7fc-4bb7-a6db-a28e9327014f",0,0]
+3
+tokyo.centre
+1
+["h",0,0,"703966b8-1807-4735-b5e8-233bf9e94fc6",0,0]
+4
+tokyo.centre
+2
+["f",0,0]
+5
+tokyo.centre
+4
+["r","bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56","Zz Test Phase6 Tokyo",20741,0,"own"]
+6
+tokyo.centre
+5
+["h",0,0,"bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56",0,0]

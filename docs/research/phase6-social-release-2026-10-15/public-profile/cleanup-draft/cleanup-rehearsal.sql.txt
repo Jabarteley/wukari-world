@@ -1,0 +1,480 @@
+-- REVIEW DRAFT ONLY. DO NOT EXECUTE.
+-- Exact scope: the three user-approved disposable Phase 6 guests below.
+-- Required operator mode: Cloudflare Data Studio "Run all in transaction".
+-- This file intentionally contains no BEGIN/COMMIT because the provider owns the transaction.
+-- Source qualification: 6695f00c6779fbfcb69bd21aa8b152d5430a0dca.
+
+CREATE TABLE qa_phase6_cleanup3_20261015_gate (
+  seq INTEGER PRIMARY KEY AUTOINCREMENT,
+  ok INTEGER NOT NULL CHECK(ok=1)
+);
+CREATE TABLE qa_phase6_cleanup3_20261015_targets (
+  id TEXT PRIMARY KEY,
+  name TEXT UNIQUE NOT NULL,
+  actions INTEGER NOT NULL,
+  wallet_rows INTEGER NOT NULL
+) WITHOUT ROWID;
+CREATE TABLE qa_phase6_cleanup3_20261015_expected_paths (
+  id TEXT NOT NULL,
+  coll TEXT NOT NULL,
+  path TEXT NOT NULL,
+  PRIMARY KEY(id,coll,path)
+) WITHOUT ROWID;
+CREATE TABLE qa_phase6_cleanup3_20261015_expected_entries (
+  coll TEXT NOT NULL,
+  map TEXT NOT NULL,
+  key TEXT NOT NULL,
+  PRIMARY KEY(coll,map,key)
+) WITHOUT ROWID;
+CREATE TABLE qa_phase6_cleanup3_20261015_world_events (
+  shard TEXT NOT NULL,
+  ordinal INTEGER NOT NULL,
+  kind TEXT NOT NULL,
+  id TEXT,
+  estate INTEGER,
+  plot INTEGER,
+  PRIMARY KEY(shard,ordinal)
+) WITHOUT ROWID;
+CREATE TABLE qa_phase6_cleanup3_20261015_backup (
+  kind TEXT NOT NULL,
+  key TEXT NOT NULL,
+  ordinal INTEGER NOT NULL,
+  value TEXT NOT NULL,
+  PRIMARY KEY(kind,key,ordinal)
+) WITHOUT ROWID;
+CREATE TABLE qa_phase6_cleanup3_20261015_receipt (
+  singleton INTEGER PRIMARY KEY CHECK(singleton=1),
+  operation_id TEXT UNIQUE NOT NULL,
+  committed_at TEXT NOT NULL,
+  source_sha TEXT NOT NULL,
+  from_epoch INTEGER NOT NULL,
+  to_epoch INTEGER NOT NULL
+);
+CREATE TABLE qa_phase6_cleanup3_20261015_dry_abort (
+  ok INTEGER NOT NULL,
+  CONSTRAINT dry_run_completed CHECK(ok=1)
+);
+
+-- Bare CREATE makes any reused or partly completed prefix fail before mutation.
+-- Empty helper rows are still asserted before this operation is populated.
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_gate) OR
+  EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_targets) OR
+  EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_expected_paths) OR
+  EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_expected_entries) OR
+  EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_world_events) OR
+  EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_backup) OR
+  EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_receipt) OR
+  EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_dry_abort)
+THEN 0 ELSE 1 END;
+
+INSERT INTO qa_phase6_cleanup3_20261015_targets(id,name,actions,wallet_rows) VALUES
+  ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','Zz Test Phase6 Tokyo',5,1),
+  ('453a0f63-5b90-4e7b-b730-4ea9ff54b70d','Zz Test Phase6 Smoke',1,0),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f','Zz Test Phase6 Tokyo R2',25,3);
+
+INSERT INTO qa_phase6_cleanup3_20261015_expected_paths(id,coll,path) VALUES
+  ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','civic','$.cities.tokyo.residents."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"'),
+  ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','social','$.players."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"'),
+  ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','social','$.convs."dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56".members[1]'),
+  ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','growth','$.players."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"'),
+  ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','growth','$.metrics.cities.tokyo.lives."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"'),
+  ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','root:growth','$.metrics.cities.tokyo.lives."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f','civic','$.cities.lagos.residents."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f','social','$.players."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f','social','$.convs."dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.6cea4961-b7fc-4bb7-a6db-a28e9327014f".members[1]'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f','growth','$.players."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f','growth','$.shares.ffe8762f22.by'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f','growth','$.metrics.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f','growth','$.metrics.cities.lagos.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f','growth','$.metrics.cities.lome.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f','root:growth','$.metrics.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f','root:growth','$.metrics.cities.lagos.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f','root:growth','$.metrics.cities.lome.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"');
+
+INSERT INTO qa_phase6_cleanup3_20261015_expected_entries(coll,map,key) VALUES
+  ('civic','cities/tokyo/residents','bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56'),
+  ('growth','players','bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56'),
+  ('social','convs','dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56'),
+  ('social','players','bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56'),
+  ('civic','cities/lagos/residents','6cea4961-b7fc-4bb7-a6db-a28e9327014f'),
+  ('growth','players','6cea4961-b7fc-4bb7-a6db-a28e9327014f'),
+  ('growth','shares','ffe8762f22'),
+  ('social','convs','dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.6cea4961-b7fc-4bb7-a6db-a28e9327014f'),
+  ('social','players','6cea4961-b7fc-4bb7-a6db-a28e9327014f');
+
+-- Shadow layout is safe to prune only when every exact entry mirror equals its legacy leaf.
+-- The path is derived from the source map name and a JSON-quoted key, so dotted DM keys stay one key.
+WITH mirrors AS (
+  SELECT x.coll,x.map,x.key,c.value AS legacy,e.value AS entry,
+    '$.'||replace(x.map,'/','.')||'.'||json_quote(x.key) AS path
+  FROM qa_phase6_cleanup3_20261015_expected_entries x
+  LEFT JOIN collections c ON c.name=x.coll
+  LEFT JOIN entries e ON e.coll=x.coll AND e.map=x.map AND e.key=x.key
+)
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  (SELECT count(*) FROM mirrors)<>9 OR
+  EXISTS(
+    SELECT 1 FROM mirrors
+    WHERE legacy IS NULL OR entry IS NULL
+      OR json_type(legacy,path)<>'object' OR json_type(entry,'$')<>'object'
+      OR json(json_extract(legacy,path)) IS NOT json(entry)
+  )
+THEN 0 ELSE 1 END;
+
+-- Metrics live in the unkeyed root. Shadow's complete growth row and root:growth must agree;
+-- divergence is rejected rather than repaired or hidden by symmetric deletion.
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  json_type((SELECT value FROM collections WHERE name='growth'),'$.metrics') IS NOT 'object' OR
+  json_type((SELECT value FROM collections WHERE name='root:growth'),'$.metrics') IS NOT 'object' OR
+  json(json_extract((SELECT value FROM collections WHERE name='growth'),'$.metrics')) IS NOT
+    json(json_extract((SELECT value FROM collections WHERE name='root:growth'),'$.metrics'))
+THEN 0 ELSE 1 END;
+
+-- INTENTIONAL FAIL-CLOSED BLOCKER: the UUID inventory proved only shares.ffe8762f22.by.
+-- Before this can become executable, bind and review the stored opened/joined values and prove
+-- no other growth player has ref.code='ffe8762f22', ref.by=R2, or an invited dependency on R2.
+-- Removing this always-failing gate without that evidence is outside this draft's contract.
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN 0=1 THEN 1 ELSE 0 END;
+
+-- Frozen schema, layout and authority. All fragments must still be absent.
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  (SELECT count(*) FROM qa_phase6_cleanup3_20261015_targets)<>3 OR
+  (SELECT version FROM app_schema WHERE singleton=1) IS NOT 2 OR
+  (SELECT value FROM store_meta WHERE key='layout') IS NOT 'shadow' OR
+  (SELECT count(*) FROM store_meta WHERE key IN ('synced:social','synced:civic','synced:growth','synced:street'))<>4 OR
+  (SELECT count(*) FROM collection_parts)<>0 OR
+  NOT EXISTS(SELECT 1 FROM main_store_authority WHERE singleton=1 AND epoch=3 AND writable=1 AND retired_from_epoch IS NULL AND wallet_effect_watermark IS NULL) OR
+  (SELECT count(*) FROM collections WHERE name IN ('social','civic','growth','root:growth'))<>4 OR
+  EXISTS(SELECT 1 FROM collections WHERE name IN ('social','civic','growth','root:growth') AND (json_valid(value)<>1 OR json_type(value)<>'object')) OR
+  EXISTS(SELECT 1 FROM collections c,qa_phase6_cleanup3_20261015_targets t WHERE instr(c.value,t.id)>0 AND json_valid(c.value)<>1)
+THEN 0 ELSE 1 END;
+
+-- Every target remains one exact guest, with no archive, account or device link.
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN EXISTS(
+  SELECT 1 FROM qa_phase6_cleanup3_20261015_targets t
+  WHERE (SELECT count(*) FROM sessions s WHERE s.public_id=t.id AND json_extract(s.value,'$.publicId')=t.id AND json_extract(s.value,'$.name')=t.name AND json_type(s.value,'$.account') IS NULL)<>1
+     OR (SELECT count(*) FROM archived_lives a WHERE a.public_id=t.id)<>0
+     OR (SELECT count(*) FROM accounts a WHERE a.public_id=t.id OR instr(a.value,t.id)>0)<>0
+     OR (SELECT count(*) FROM account_devices d JOIN sessions s ON s.secret=d.secret WHERE s.public_id=t.id)<>0
+     OR (SELECT count(*) FROM action_receipts a WHERE a.sender=t.id)<>t.actions
+     OR (SELECT count(*) FROM once_receipts o WHERE o.sender=t.id)<>0
+     OR (SELECT count(*) FROM wallet_effects w WHERE w.public_id=t.id)<>t.wallet_rows
+) THEN 0 ELSE 1 END;
+
+-- The three session lives and their housing facts are exactly the inventoried states.
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  (SELECT count(*) FROM sessions s,json_each(s.value,'$.cities') c WHERE s.public_id IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets))<>3 OR
+  NOT EXISTS(SELECT 1 FROM sessions s,json_each(s.value,'$.cities') c WHERE s.public_id='bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56' AND c.key='tokyo' AND json_extract(c.value,'$.state.estate.city')='tokyo' AND json_extract(c.value,'$.state.estate.lga')='centre' AND json_extract(c.value,'$.state.estate.plot.estate')=0 AND json_extract(c.value,'$.state.estate.plot.plot')=0) OR
+  NOT EXISTS(SELECT 1 FROM sessions s,json_each(s.value,'$.cities') c WHERE s.public_id='453a0f63-5b90-4e7b-b730-4ea9ff54b70d' AND c.key='lagos' AND json_extract(c.value,'$.state.estate.city')='lagos' AND json_extract(c.value,'$.state.estate.lga')='lagos-mainland' AND json_type(c.value,'$.state.estate.plot')='null' AND json_extract(c.value,'$.state.estate.living')='rent') OR
+  NOT EXISTS(SELECT 1 FROM sessions s,json_each(s.value,'$.cities') c WHERE s.public_id='6cea4961-b7fc-4bb7-a6db-a28e9327014f' AND c.key='lome' AND json_extract(c.value,'$.state.estate.city')='lome' AND json_type(c.value,'$.state.estate.plot')='null' AND json_extract(c.value,'$.state.estate.away.lagos.lga')='lagos-island' AND json_extract(c.value,'$.state.estate.away.lagos.plot.estate')=0 AND json_extract(c.value,'$.state.estate.away.lagos.plot.plot')=8)
+THEN 0 ELSE 1 END;
+
+-- Exact source-owned JSON paths: no target reference may be added, removed or moved.
+WITH actual(id,coll,path) AS (
+  SELECT t.id,c.name,'$collection-name'
+  FROM qa_phase6_cleanup3_20261015_targets t,collections c
+  WHERE instr(c.name,t.id)>0
+  UNION ALL
+  SELECT t.id,c.name,j.fullkey
+  FROM qa_phase6_cleanup3_20261015_targets t,collections c,json_tree(CASE WHEN json_valid(c.value) THEN c.value ELSE '{}' END) j
+  WHERE j.key=t.id OR (j.type='text' AND j.value=t.id)
+)
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  EXISTS(SELECT id,coll,path FROM actual EXCEPT SELECT id,coll,path FROM qa_phase6_cleanup3_20261015_expected_paths) OR
+  EXISTS(SELECT id,coll,path FROM qa_phase6_cleanup3_20261015_expected_paths EXCEPT SELECT id,coll,path FROM actual)
+THEN 0 ELSE 1 END;
+
+-- Exact entry mirrors: nine rows and no fragmented entry value.
+WITH actual(coll,map,key) AS (
+  SELECT DISTINCT e.coll,e.map,e.key
+  FROM entries e,qa_phase6_cleanup3_20261015_targets t
+  WHERE instr(e.key,t.id)>0 OR instr(e.value,t.id)>0 OR instr(COALESCE(e.jx,''),t.id)>0
+)
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  EXISTS(SELECT coll,map,key FROM actual EXCEPT SELECT coll,map,key FROM qa_phase6_cleanup3_20261015_expected_entries) OR
+  EXISTS(SELECT coll,map,key FROM qa_phase6_cleanup3_20261015_expected_entries EXCEPT SELECT coll,map,key FROM actual) OR
+  EXISTS(SELECT 1 FROM collection_parts p JOIN qa_phase6_cleanup3_20261015_expected_entries e ON p.name='entry:'||e.coll||char(0)||e.map||char(0)||e.key)
+THEN 0 ELSE 1 END;
+
+-- Both counterpart DMs are single automated welcomes. The founder player is never a target.
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  '0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481' IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets) OR
+  EXISTS(
+    SELECT 1 FROM entries e
+    WHERE e.coll='social' AND e.map='convs' AND e.key IN (
+      'dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56',
+      'dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.6cea4961-b7fc-4bb7-a6db-a28e9327014f'
+    ) AND (
+      json_extract(e.value,'$.kind') IS NOT 'dm' OR json_extract(e.value,'$.seq') IS NOT 1 OR
+      json_array_length(e.value,'$.members') IS NOT 2 OR json_array_length(e.value,'$.messages') IS NOT 1 OR
+      json_extract(e.value,'$.members[0]') IS NOT '0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481' OR
+      json_extract(e.value,'$.members[1]') IS NOT CASE WHEN instr(e.key,'bfcb8ef0')>0 THEN 'bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56' ELSE '6cea4961-b7fc-4bb7-a6db-a28e9327014f' END OR
+      (SELECT count(*) FROM json_each(e.value,'$.messages') m WHERE json_extract(m.value,'$.auto') IS NOT 1)<>0
+    )
+  ) OR
+  (SELECT count(*) FROM entries WHERE coll='social' AND map='convs' AND key IN (
+    'dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56',
+    'dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.6cea4961-b7fc-4bb7-a6db-a28e9327014f'))<>2
+THEN 0 ELSE 1 END;
+
+-- Reconstruct both complete WORLD shards; historical bytes remain append-only.
+WITH shard_text(name,text) AS (
+  SELECT n.name,(SELECT group_concat(text,'') FROM (SELECT text FROM world_shards WHERE name=n.name ORDER BY seq))
+  FROM (SELECT DISTINCT name FROM world_shards) n
+), found(id,name) AS (
+  SELECT t.id,s.name FROM qa_phase6_cleanup3_20261015_targets t,shard_text s WHERE instr(s.text,t.id)>0
+), expected(id,name) AS (
+  VALUES
+    ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56','tokyo.centre'),
+    ('6cea4961-b7fc-4bb7-a6db-a28e9327014f','lagos.lagos-island')
+)
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  EXISTS(SELECT id,name FROM found EXCEPT SELECT id,name FROM expected) OR
+  EXISTS(SELECT id,name FROM expected EXCEPT SELECT id,name FROM found)
+THEN 0 ELSE 1 END;
+
+INSERT INTO qa_phase6_cleanup3_20261015_world_events(shard,ordinal,kind,id,estate,plot)
+SELECT logs.name,CAST(j.key AS INTEGER),json_extract(j.value,'$[0]'),
+  CASE WHEN json_extract(j.value,'$[0]') IN ('r','x') THEN json_extract(j.value,'$[1]') WHEN json_extract(j.value,'$[0]') IN ('h','q','a') THEN json_extract(j.value,'$[3]') END,
+  CASE WHEN json_extract(j.value,'$[0]') IN ('h','f','q','a','k','z') THEN json_extract(j.value,'$[1]') END,
+  CASE WHEN json_extract(j.value,'$[0]') IN ('h','f','q','a','k','z') THEN json_extract(j.value,'$[2]') END
+FROM (
+  SELECT n.name,(SELECT group_concat(text,'') FROM (SELECT text FROM world_shards WHERE name=n.name ORDER BY seq)) AS text
+  FROM (SELECT 'tokyo.centre' AS name UNION ALL SELECT 'lagos.lagos-island') n
+) logs,
+json_each('['||replace(rtrim(logs.text,char(10)),char(10),',')||']') j;
+
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  (SELECT count(*) FROM qa_phase6_cleanup3_20261015_world_events WHERE id IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets))<>4 OR
+  EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_world_events WHERE id IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets) AND kind NOT IN ('r','h')) OR
+  EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_world_events WHERE kind IN ('q','a') AND id IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets)) OR
+  NOT EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_world_events e WHERE e.shard='tokyo.centre' AND e.kind='r' AND e.id='bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56' AND e.ordinal=(SELECT max(z.ordinal) FROM qa_phase6_cleanup3_20261015_world_events z WHERE z.shard=e.shard AND z.id=e.id AND z.kind IN ('r','x'))) OR
+  NOT EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_world_events e WHERE e.shard='tokyo.centre' AND e.kind='h' AND e.estate=0 AND e.plot=0 AND e.id='bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56' AND e.ordinal=(SELECT max(z.ordinal) FROM qa_phase6_cleanup3_20261015_world_events z WHERE z.shard=e.shard AND z.estate=0 AND z.plot=0 AND z.kind IN ('h','f'))) OR
+  NOT EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_world_events e WHERE e.shard='lagos.lagos-island' AND e.kind='r' AND e.id='6cea4961-b7fc-4bb7-a6db-a28e9327014f' AND e.ordinal=(SELECT max(z.ordinal) FROM qa_phase6_cleanup3_20261015_world_events z WHERE z.shard=e.shard AND z.id=e.id AND z.kind IN ('r','x'))) OR
+  NOT EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_world_events e WHERE e.shard='lagos.lagos-island' AND e.kind='h' AND e.estate=0 AND e.plot=8 AND e.id='6cea4961-b7fc-4bb7-a6db-a28e9327014f' AND e.ordinal=(SELECT max(z.ordinal) FROM qa_phase6_cleanup3_20261015_world_events z WHERE z.shard=e.shard AND z.estate=0 AND z.plot=8 AND z.kind IN ('h','f')))
+THEN 0 ELSE 1 END;
+
+-- Private, server-side originals. No later readback selects backup.value.
+INSERT INTO qa_phase6_cleanup3_20261015_backup(kind,key,ordinal,value)
+SELECT 'authority','1',0,json_object('epoch',epoch,'writable',writable,'retired_from_epoch',retired_from_epoch,'wallet_effect_watermark',wallet_effect_watermark)
+FROM main_store_authority WHERE singleton=1;
+INSERT INTO qa_phase6_cleanup3_20261015_backup(kind,key,ordinal,value)
+SELECT 'session',json_array(public_id),0,json_object('secret',secret,'public_id',public_id,'expires_at',expires_at,'value',value)
+FROM sessions WHERE public_id IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets);
+INSERT INTO qa_phase6_cleanup3_20261015_backup(kind,key,ordinal,value)
+SELECT 'collection',json_array(name),0,value FROM collections WHERE name IN ('social','civic','growth','root:growth');
+INSERT INTO qa_phase6_cleanup3_20261015_backup(kind,key,ordinal,value)
+SELECT 'entry',json_array(coll,map,key),0,json_object('coll',coll,'map',map,'key',key,'ord',ord,'ix',ix,'tx',tx,'jx',jx,'value',value)
+FROM entries e WHERE EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_expected_entries x WHERE x.coll=e.coll AND x.map=e.map AND x.key=e.key);
+INSERT INTO qa_phase6_cleanup3_20261015_backup(kind,key,ordinal,value)
+SELECT 'action',json_array(sender,action_id),0,json_object('sender',sender,'action_id',action_id,'action_at',action_at,'value',value)
+FROM action_receipts WHERE sender IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets);
+INSERT INTO qa_phase6_cleanup3_20261015_backup(kind,key,ordinal,value)
+SELECT 'wallet',json_array(public_id,seq),0,json_object('seq',seq,'public_id',public_id,'city_id',city_id,'operation_id',operation_id,'ordinal',ordinal,'at',at,'amount',amount,'balance_after',balance_after,'reason',reason,'transfer_id',transfer_id)
+FROM wallet_effects WHERE public_id IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets);
+INSERT INTO qa_phase6_cleanup3_20261015_backup(kind,key,ordinal,value)
+SELECT 'world',json_array(name,seq),0,json_object('seq',seq,'name',name,'text',text) FROM world_shards WHERE name IN ('tokyo.centre','lagos.lagos-island');
+INSERT INTO qa_phase6_cleanup3_20261015_backup(kind,key,ordinal,value)
+SELECT 'world_meta',json_array(key),0,value FROM world_meta WHERE key='summary';
+INSERT INTO qa_phase6_cleanup3_20261015_backup(kind,key,ordinal,value)
+SELECT 'store_meta',json_array(key),0,value FROM store_meta WHERE key IN ('layout','synced:social','synced:civic','synced:growth','synced:street');
+
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  (SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='authority')<>1 OR
+  (SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='session')<>3 OR
+  (SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='collection')<>4 OR
+  (SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='entry')<>9 OR
+  (SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='action')<>31 OR
+  (SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='wallet')<>4 OR
+  (SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='world')<>(SELECT count(*) FROM world_shards WHERE name IN ('tokyo.centre','lagos.lagos-island')) OR
+  (SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='world_meta')<>(SELECT count(*) FROM world_meta WHERE key='summary') OR
+  (SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='store_meta')<>5
+THEN 0 ELSE 1 END;
+
+-- Exact owned leaves only. Aggregate counters and every other player's data remain.
+UPDATE collections SET value=json_remove(value,
+  '$.players."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"',
+  '$.players."6cea4961-b7fc-4bb7-a6db-a28e9327014f"',
+  '$.convs."dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"',
+  '$.convs."dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.6cea4961-b7fc-4bb7-a6db-a28e9327014f"'
+) WHERE name='social';
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok) SELECT CASE WHEN changes()=1 THEN 1 ELSE 0 END;
+
+UPDATE collections SET value=json_remove(value,
+  '$.cities.tokyo.residents."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"',
+  '$.cities.lagos.residents."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'
+) WHERE name='civic';
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok) SELECT CASE WHEN changes()=1 THEN 1 ELSE 0 END;
+
+UPDATE collections SET value=json_remove(value,
+  '$.players."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"',
+  '$.metrics.cities.tokyo.lives."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"',
+  '$.players."6cea4961-b7fc-4bb7-a6db-a28e9327014f"',
+  '$.shares.ffe8762f22',
+  '$.metrics.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"',
+  '$.metrics.cities.lagos.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"',
+  '$.metrics.cities.lome.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'
+) WHERE name='growth';
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok) SELECT CASE WHEN changes()=1 THEN 1 ELSE 0 END;
+
+UPDATE collections SET value=json_remove(value,
+  '$.metrics.cities.tokyo.lives."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"',
+  '$.metrics.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"',
+  '$.metrics.cities.lagos.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"',
+  '$.metrics.cities.lome.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'
+) WHERE name='root:growth';
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok) SELECT CASE WHEN changes()=1 THEN 1 ELSE 0 END;
+
+DELETE FROM entries WHERE EXISTS(
+  SELECT 1 FROM qa_phase6_cleanup3_20261015_expected_entries x
+  WHERE x.coll=entries.coll AND x.map=entries.map AND x.key=entries.key
+);
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok) SELECT CASE WHEN changes()=9 THEN 1 ELSE 0 END;
+
+DELETE FROM action_receipts WHERE sender IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets);
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok) SELECT CASE WHEN changes()=31 THEN 1 ELSE 0 END;
+DELETE FROM sessions WHERE public_id IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets);
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok) SELECT CASE WHEN changes()=3 THEN 1 ELSE 0 END;
+
+-- Source registry.moveOut order: free the still-owned house, then remove the resident.
+INSERT INTO world_shards(name,text) VALUES
+  ('tokyo.centre','["f",0,0]'||char(10)||'["x","bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"]'||char(10)),
+  ('lagos.lagos-island','["f",0,8]'||char(10)||'["x","6cea4961-b7fc-4bb7-a6db-a28e9327014f"]'||char(10));
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok) SELECT CASE WHEN changes()=2 THEN 1 ELSE 0 END;
+
+-- Fail closed after mutation: exact private identity and owned references are absent.
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  EXISTS(SELECT 1 FROM sessions WHERE public_id IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets)) OR
+  EXISTS(SELECT 1 FROM archived_lives WHERE public_id IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets)) OR
+  EXISTS(SELECT 1 FROM accounts a,qa_phase6_cleanup3_20261015_targets t WHERE a.public_id=t.id OR instr(a.value,t.id)>0) OR
+  EXISTS(SELECT 1 FROM action_receipts WHERE sender IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets)) OR
+  EXISTS(SELECT 1 FROM once_receipts WHERE sender IN (SELECT id FROM qa_phase6_cleanup3_20261015_targets)) OR
+  EXISTS(SELECT 1 FROM entries e,qa_phase6_cleanup3_20261015_targets t WHERE instr(e.key,t.id)>0 OR instr(e.value,t.id)>0 OR instr(COALESCE(e.jx,''),t.id)>0) OR
+  EXISTS(SELECT 1 FROM collections c,qa_phase6_cleanup3_20261015_targets t WHERE instr(c.name,t.id)>0 OR instr(c.value,t.id)>0) OR
+  EXISTS(SELECT 1 FROM collection_parts) OR
+  EXISTS(SELECT 1 FROM qa_phase6_cleanup3_20261015_targets t WHERE (SELECT count(*) FROM wallet_effects w WHERE w.public_id=t.id)<>t.wallet_rows) OR
+  EXISTS(
+    SELECT 1 FROM qa_phase6_cleanup3_20261015_backup b
+    JOIN account_devices d ON d.secret=json_extract(b.value,'$.secret')
+    WHERE b.kind='session'
+  )
+THEN 0 ELSE 1 END;
+
+-- The unaffected founder record and migration metadata equal their in-transaction originals.
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  json_extract((SELECT value FROM collections WHERE name='social'),'$.players."0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481"') IS NOT
+    json_extract((SELECT value FROM qa_phase6_cleanup3_20261015_backup WHERE kind='collection' AND key=json_array('social')),'$.players."0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481"') OR
+  EXISTS(SELECT 1 FROM store_meta m WHERE m.key IN ('layout','synced:social','synced:civic','synced:growth','synced:street') AND m.value IS NOT (SELECT b.value FROM qa_phase6_cleanup3_20261015_backup b WHERE b.kind='store_meta' AND b.key=json_array(m.key))) OR
+  EXISTS(SELECT 1 FROM collections WHERE name IN ('social','civic','growth','root:growth') AND (json_valid(value)<>1 OR json_type(value)<>'object'))
+THEN 0 ELSE 1 END;
+
+-- The unkeyed metrics roots remain exact mirrors after removing the same approved life leaves.
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  json(json_extract((SELECT value FROM collections WHERE name='growth'),'$.metrics')) IS NOT
+    json(json_extract((SELECT value FROM collections WHERE name='root:growth'),'$.metrics'))
+THEN 0 ELSE 1 END;
+
+-- Each touched collection is exactly its backed-up value minus the approved leaves.
+-- This preserves aggregate counters, the founder record and every unrelated player byte.
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  (SELECT value FROM collections WHERE name='social') IS NOT json_remove(
+    (SELECT value FROM qa_phase6_cleanup3_20261015_backup WHERE kind='collection' AND key=json_array('social')),
+    '$.players."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"',
+    '$.players."6cea4961-b7fc-4bb7-a6db-a28e9327014f"',
+    '$.convs."dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"',
+    '$.convs."dm.0bc9cf90-3cbf-4eb9-8134-ec4e20e9c481.6cea4961-b7fc-4bb7-a6db-a28e9327014f"'
+  ) OR
+  (SELECT value FROM collections WHERE name='civic') IS NOT json_remove(
+    (SELECT value FROM qa_phase6_cleanup3_20261015_backup WHERE kind='collection' AND key=json_array('civic')),
+    '$.cities.tokyo.residents."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"',
+    '$.cities.lagos.residents."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'
+  ) OR
+  (SELECT value FROM collections WHERE name='growth') IS NOT json_remove(
+    (SELECT value FROM qa_phase6_cleanup3_20261015_backup WHERE kind='collection' AND key=json_array('growth')),
+    '$.players."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"',
+    '$.metrics.cities.tokyo.lives."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"',
+    '$.players."6cea4961-b7fc-4bb7-a6db-a28e9327014f"',
+    '$.shares.ffe8762f22',
+    '$.metrics.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"',
+    '$.metrics.cities.lagos.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"',
+    '$.metrics.cities.lome.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'
+  ) OR
+  (SELECT value FROM collections WHERE name='root:growth') IS NOT json_remove(
+    (SELECT value FROM qa_phase6_cleanup3_20261015_backup WHERE kind='collection' AND key=json_array('root:growth')),
+    '$.metrics.cities.tokyo.lives."bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56"',
+    '$.metrics.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"',
+    '$.metrics.cities.lagos.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"',
+    '$.metrics.cities.lome.lives."6cea4961-b7fc-4bb7-a6db-a28e9327014f"'
+  )
+THEN 0 ELSE 1 END;
+
+-- The append changed only two new WORLD rows; every backed-up row and summary remains byte-identical.
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  (SELECT count(*) FROM world_shards WHERE name IN ('tokyo.centre','lagos.lagos-island')) <>
+    (SELECT count(*)+2 FROM qa_phase6_cleanup3_20261015_backup WHERE kind='world') OR
+  EXISTS(
+    SELECT 1 FROM qa_phase6_cleanup3_20261015_backup b
+    WHERE b.kind='world' AND NOT EXISTS(
+      SELECT 1 FROM world_shards w
+      WHERE w.seq=json_extract(b.value,'$.seq')
+        AND w.name=json_extract(b.value,'$.name')
+        AND w.text=json_extract(b.value,'$.text')
+    )
+  ) OR
+  EXISTS(
+    SELECT 1 FROM world_meta m
+    WHERE m.key='summary' AND m.value IS NOT (
+      SELECT b.value FROM qa_phase6_cleanup3_20261015_backup b WHERE b.kind='world_meta' AND b.key=json_array('summary')
+    )
+  ) OR
+  (SELECT count(*) FROM world_meta WHERE key='summary') <>
+    (SELECT count(*) FROM qa_phase6_cleanup3_20261015_backup WHERE kind='world_meta')
+THEN 0 ELSE 1 END;
+
+-- Reparse append-only WORLD after the two f/x appends. Old bytes stay; latest state must be absent.
+WITH logs(name,text) AS (
+  SELECT n.name,(SELECT group_concat(text,'') FROM (SELECT text FROM world_shards WHERE name=n.name ORDER BY seq))
+  FROM (SELECT 'tokyo.centre' AS name UNION ALL SELECT 'lagos.lagos-island') n
+), events AS (
+  SELECT logs.name,CAST(j.key AS INTEGER) AS ordinal,json_extract(j.value,'$[0]') AS kind,j.value AS event
+  FROM logs,json_each('['||replace(rtrim(logs.text,char(10)),char(10),',')||']') j
+)
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok)
+SELECT CASE WHEN
+  NOT EXISTS(SELECT 1 FROM events e WHERE e.name='tokyo.centre' AND e.kind='x' AND json_extract(e.event,'$[1]')='bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56' AND e.ordinal=(SELECT max(z.ordinal) FROM events z WHERE z.name=e.name AND z.kind IN ('r','x') AND json_extract(z.event,'$[1]')='bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56')) OR
+  NOT EXISTS(SELECT 1 FROM events e WHERE e.name='tokyo.centre' AND e.kind='f' AND json_extract(e.event,'$[1]')=0 AND json_extract(e.event,'$[2]')=0 AND e.ordinal=(SELECT max(z.ordinal) FROM events z WHERE z.name=e.name AND z.kind IN ('h','f') AND json_extract(z.event,'$[1]')=0 AND json_extract(z.event,'$[2]')=0)) OR
+  NOT EXISTS(SELECT 1 FROM events e WHERE e.name='lagos.lagos-island' AND e.kind='x' AND json_extract(e.event,'$[1]')='6cea4961-b7fc-4bb7-a6db-a28e9327014f' AND e.ordinal=(SELECT max(z.ordinal) FROM events z WHERE z.name=e.name AND z.kind IN ('r','x') AND json_extract(z.event,'$[1]')='6cea4961-b7fc-4bb7-a6db-a28e9327014f')) OR
+  NOT EXISTS(SELECT 1 FROM events e WHERE e.name='lagos.lagos-island' AND e.kind='f' AND json_extract(e.event,'$[1]')=0 AND json_extract(e.event,'$[2]')=8 AND e.ordinal=(SELECT max(z.ordinal) FROM events z WHERE z.name=e.name AND z.kind IN ('h','f') AND json_extract(z.event,'$[1]')=0 AND json_extract(z.event,'$[2]')=8))
+THEN 0 ELSE 1 END;
+
+-- Fence every old in-memory writer only after the cleanup and all postconditions hold.
+UPDATE main_store_authority
+SET epoch=4
+WHERE singleton=1 AND epoch=3 AND writable=1 AND retired_from_epoch IS NULL AND wallet_effect_watermark IS NULL;
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok) SELECT CASE WHEN changes()=1 THEN 1 ELSE 0 END;
+
+INSERT INTO qa_phase6_cleanup3_20261015_receipt(singleton,operation_id,committed_at,source_sha,from_epoch,to_epoch)
+VALUES(1,'phase6-three-disposable-guests-20261015',strftime('%Y-%m-%dT%H:%M:%fZ','now'),'6695f00c6779fbfcb69bd21aa8b152d5430a0dca',3,4);
+INSERT INTO qa_phase6_cleanup3_20261015_gate(ok) SELECT CASE WHEN changes()=1 THEN 1 ELSE 0 END;
+
+-- Rehearsal-only final statement. The only acceptable transaction result is the named CHECK failure.
+INSERT INTO qa_phase6_cleanup3_20261015_dry_abort(ok) VALUES(0);

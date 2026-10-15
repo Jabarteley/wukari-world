@@ -1,0 +1,67 @@
+-- READ-ONLY, NON-SECRET readback after the named dry_run_completed rehearsal abort.
+-- Every returned count/flag must match the frozen pre-rehearsal state.
+SELECT 'helper_tables_absent' AS check_name,
+  count(*)=0 AS ok,count(*) AS actual
+FROM sqlite_master
+WHERE type='table' AND name GLOB 'qa_phase6_cleanup3_20261015_*';
+
+SELECT 'authority_unchanged' AS check_name,
+  count(*)=1 AS ok,count(*) AS actual
+FROM main_store_authority
+WHERE singleton=1 AND epoch=3 AND writable=1
+  AND retired_from_epoch IS NULL AND wallet_effect_watermark IS NULL;
+
+WITH targets(id) AS (VALUES
+  ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56'),
+  ('453a0f63-5b90-4e7b-b730-4ea9ff54b70d'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f')
+), counts AS (
+  SELECT
+    (SELECT count(*) FROM sessions WHERE public_id IN (SELECT id FROM targets)) AS sessions,
+    (SELECT count(*) FROM archived_lives WHERE public_id IN (SELECT id FROM targets)) AS archives,
+    (SELECT count(*) FROM accounts a,targets t WHERE a.public_id=t.id OR instr(a.value,t.id)>0) AS accounts,
+    (SELECT count(*) FROM account_devices d JOIN sessions s ON s.secret=d.secret WHERE s.public_id IN (SELECT id FROM targets)) AS devices,
+    (SELECT count(*) FROM action_receipts WHERE sender IN (SELECT id FROM targets)) AS actions,
+    (SELECT count(*) FROM once_receipts WHERE sender IN (SELECT id FROM targets)) AS once_rows,
+    (SELECT count(*) FROM wallet_effects WHERE public_id IN (SELECT id FROM targets)) AS wallet_rows,
+    (SELECT count(*) FROM collection_parts) AS parts
+)
+SELECT 'target_rows_unchanged' AS check_name,
+  sessions=3 AND archives=0 AND accounts=0 AND devices=0 AND actions=31 AND once_rows=0 AND wallet_rows=4 AND parts=0 AS ok,
+  json_object('sessions',sessions,'archives',archives,'accounts',accounts,'devices',devices,'actions',actions,'once',once_rows,'wallet_audit',wallet_rows,'collection_parts',parts) AS actual
+FROM counts;
+
+WITH targets(id) AS (VALUES
+  ('bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56'),
+  ('453a0f63-5b90-4e7b-b730-4ea9ff54b70d'),
+  ('6cea4961-b7fc-4bb7-a6db-a28e9327014f')
+), counts AS (
+  SELECT
+    (SELECT count(*) FROM (
+      SELECT t.id,c.name,'$collection-name' AS path FROM targets t,collections c WHERE instr(c.name,t.id)>0
+      UNION ALL
+      SELECT t.id,c.name,j.fullkey FROM targets t,collections c,json_tree(CASE WHEN json_valid(c.value) THEN c.value ELSE '{}' END) j WHERE j.key=t.id OR (j.type='text' AND j.value=t.id)
+    )) AS paths,
+    (SELECT count(DISTINCT e.coll||char(0)||e.map||char(0)||e.key) FROM entries e,targets t WHERE instr(e.key,t.id)>0 OR instr(e.value,t.id)>0 OR instr(COALESCE(e.jx,''),t.id)>0) AS entries
+)
+SELECT 'owned_references_unchanged' AS check_name,
+  paths=17 AND entries=9 AS ok,json_object('collection_paths',paths,'entry_rows',entries) AS actual
+FROM counts;
+
+WITH logs(name,text) AS (
+  SELECT n.name,(SELECT group_concat(text,'') FROM (SELECT text FROM world_shards WHERE name=n.name ORDER BY seq))
+  FROM (SELECT 'tokyo.centre' AS name UNION ALL SELECT 'lagos.lagos-island') n
+), events AS (
+  SELECT logs.name,CAST(j.key AS INTEGER) AS ordinal,json_extract(j.value,'$[0]') AS kind,j.value AS event
+  FROM logs,json_each('['||replace(rtrim(logs.text,char(10)),char(10),',')||']') j
+), flags AS (
+  SELECT
+    EXISTS(SELECT 1 FROM events e WHERE e.name='tokyo.centre' AND e.kind='r' AND json_extract(e.event,'$[1]')='bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56' AND e.ordinal=(SELECT max(z.ordinal) FROM events z WHERE z.name=e.name AND z.kind IN ('r','x') AND json_extract(z.event,'$[1]')='bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56')) AS tokyo_resident,
+    EXISTS(SELECT 1 FROM events e WHERE e.name='tokyo.centre' AND e.kind='h' AND json_extract(e.event,'$[1]')=0 AND json_extract(e.event,'$[2]')=0 AND json_extract(e.event,'$[3]')='bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56' AND e.ordinal=(SELECT max(z.ordinal) FROM events z WHERE z.name=e.name AND z.kind IN ('h','f') AND json_extract(z.event,'$[1]')=0 AND json_extract(z.event,'$[2]')=0)) AS tokyo_house,
+    EXISTS(SELECT 1 FROM events e WHERE e.name='lagos.lagos-island' AND e.kind='r' AND json_extract(e.event,'$[1]')='6cea4961-b7fc-4bb7-a6db-a28e9327014f' AND e.ordinal=(SELECT max(z.ordinal) FROM events z WHERE z.name=e.name AND z.kind IN ('r','x') AND json_extract(z.event,'$[1]')='6cea4961-b7fc-4bb7-a6db-a28e9327014f')) AS lagos_resident,
+    EXISTS(SELECT 1 FROM events e WHERE e.name='lagos.lagos-island' AND e.kind='h' AND json_extract(e.event,'$[1]')=0 AND json_extract(e.event,'$[2]')=8 AND json_extract(e.event,'$[3]')='6cea4961-b7fc-4bb7-a6db-a28e9327014f' AND e.ordinal=(SELECT max(z.ordinal) FROM events z WHERE z.name=e.name AND z.kind IN ('h','f') AND json_extract(z.event,'$[1]')=0 AND json_extract(z.event,'$[2]')=8)) AS lagos_house
+)
+SELECT 'world_unchanged' AS check_name,
+  tokyo_resident AND tokyo_house AND lagos_resident AND lagos_house AS ok,
+  json_object('tokyo_resident',tokyo_resident,'tokyo_house',tokyo_house,'lagos_resident',lagos_resident,'lagos_house',lagos_house) AS actual
+FROM flags;

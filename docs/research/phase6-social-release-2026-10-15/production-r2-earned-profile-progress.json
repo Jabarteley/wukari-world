@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-15T16:16:25.587Z",
+  "id": "6cea4961-b7fc-4bb7-a6db-a28e9327014f",
+  "status": 200,
+  "kind": "human",
+  "counts": {
+    "achievements": 0,
+    "stories": 1,
+    "projects": 0,
+    "collections": 0
+  },
+  "profileKeys": [
+    "version",
+    "id",
+    "name",
+    "kind",
+    "path",
+    "achievements",
+    "counts",
+    "history",
+    "next"
+  ],
+  "history": [
+    {
+      "id": "place-lome-city-story",
+      "kind": "story",
+      "title": "Cold, Mild, Bold, Sweet",
+      "earnedAt": 1792080916588
+    }
+  ],
+  "scope": "Live anonymous HTTP earned-profile read during normal Lomé play; browser/map/share/privacy/reload still separate"
+}

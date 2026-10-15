@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-15T15:36:16.962Z",
+  "scope": "Anonymous HTTP checks of only the two approved synthetic profiles; no earned-profile/UI/share/privacy/reload proof",
+  "rows": [
+    {
+      "id": "bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56",
+      "apiStatus": 200,
+      "kind": "human",
+      "counts": {
+        "achievements": 0,
+        "stories": 0,
+        "projects": 0,
+        "collections": 0
+      },
+      "historyRows": 0,
+      "pageStatus": 200,
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow",
+      "htmlRobots": true,
+      "nameRendered": true
+    },
+    {
+      "id": "453a0f63-5b90-4e7b-b730-4ea9ff54b70d",
+      "apiStatus": 200,
+      "kind": "human",
+      "counts": {
+        "achievements": 0,
+        "stories": 0,
+        "projects": 0,
+        "collections": 0
+      },
+      "historyRows": 0,
+      "pageStatus": 200,
+      "cacheControl": "no-store",
+      "robots": "noindex, nofollow",
+      "htmlRobots": true,
+      "nameRendered": true
+    }
+  ]
+}

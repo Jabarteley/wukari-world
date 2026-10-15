@@ -56,3 +56,9 @@ check:fast75 passes5projecttypecheck/build/284citydownload/17smoke. Focused54exi
 Only active lanes: Sol03quality and Sol04quality (disjoint batch files/records). Old03Luna held after repeated plot collision,04oldheld;05–08held. Both active Sol workers submit matrices first. Latest usage91%used/9%remaining; interrupt all at95%used, no continued work beyond cap. Costs unknown.
 
 Focused54existingcases pass. Actual Nairobi city keepsake survives browser reload; screenshot ui-nairobi-earned.png.
+
+## Released main integrated
+
+Merged origin/mainac94fca0 cleanly after local75-citycommit8273254b. This brings the other computer’s released agent missions, memory, residents and startup improvements.111focused existing mission/agent/desk/errand/resident/creator cases pass together. Local combinedcheckfast stopped at typecheck because an unregistered batch03 draft used invalid desire discovery twice; owner notified. The accepted75-city checkpoint passed prior to this merge.
+
+Fresh localhost creator draft verifies Nairobi breadcrumbKenya and concise home copy; screenshotui-nairobi-country.png, stopped before Play. Encountered and corrected1districts grammar and invisible exact-story-spot disabled reason: EpisodeCard now prints the actual disabling reason, including guidance to use Go there. BrowserNairobi token survived reload.

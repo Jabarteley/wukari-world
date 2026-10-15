@@ -161,7 +161,7 @@ onBeforeUnmount(city.cancel)
 
     <template v-if="here">
 
-      <label class="cr-field">Or choose from the {{ lgas.length }} {{ unit }}s of {{ cityLabel }}
+      <label class="cr-field">Or choose from the {{ lgas.length }} {{ unit }}{{ lgas.length === 1 ? '' : 's' }} of {{ cityLabel }}
         <input v-model="query" type="search" name="area-search" placeholder="Search by name" enterkeyhint="search" autocomplete="off" data-key="area:search">
       </label>
       <div v-for="group in groups" :key="group.zone" class="cr-lgas" :class="{ 'is-capped': capped }">

@@ -28,7 +28,7 @@ function optionReason(option: EpisodeOptionView): string {
   if (props.row.cityId !== game.view.value.cityId) return `Return to ${props.row.cityName} to continue.`
   if (pending.value) return 'Another story choice is being saved.'
   if (!option.enabled) return option.reason ?? 'Complete the required activity first.'
-  if (game.state.value.location !== props.row.next.venue || game.state.value.spot !== props.row.next.spot) return 'Go to the next place before choosing.'
+  if (game.state.value.location !== props.row.next.venue || game.state.value.spot !== props.row.next.spot) return 'Use Go there to reach the story’s exact spot before choosing.'
   return ''
 }
 function prerequisite(option: EpisodeOptionView): void {
@@ -81,7 +81,7 @@ async function choose(option: EpisodeOptionView): Promise<void> {
 
     <section v-if="row.options.length" class="episode-options" aria-label="Story choices">
       <div v-for="option in row.options" :key="option.id" class="episode-option">
-        <div class="episode-option-copy"><b>{{ option.label }}</b><small>{{ option.description }}</small><em v-if="option.reason && option.reason !== option.description">{{ option.reason }}</em></div>
+        <div class="episode-option-copy"><b>{{ option.label }}</b><small>{{ option.description }}</small><em v-if="optionReason(option) && optionReason(option) !== option.description">{{ optionReason(option) }}</em></div>
         <div class="episode-option-actions">
           <BaseButton v-if="option.next" small :disabled="Boolean(disconnected)" :reason="disconnected" @click="prerequisite(option)">{{ option.next.label }}</BaseButton>
           <BaseButton small :variant="option.enabled ? 'primary' : 'default'" :disabled="Boolean(optionReason(option))" :reason="optionReason(option)" @click="choose(option)">{{ pending === option.id ? 'Saving…' : 'Choose' }}</BaseButton>

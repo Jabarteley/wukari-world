@@ -1,5 +1,5 @@
 {
-  "expectedSourceGitSHA": "ac94fca06702c1c86dd37fc3b714babc41ad7bfd",
+  "expectedSourceGitSHA": "bf696dd7dd4a74ad4a3d01fd74ab0823ec1538b6",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
@@ -14,9 +14,9 @@
     "boundaryKey": "cc",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38670193219,
-      "sourceSha": "faf09399d70b1b03cdfa8a4163b40036651e83ca",
-      "sourceArtifact": "city-bootstrap-cc-faf09399d70b1b03cdfa8a4163b40036651e83ca",
+      "sourceRunId": 38704415307,
+      "sourceSha": "70352999766d2aeb8dcea7a1324217f4760089c6",
+      "sourceArtifact": "city-bootstrap-cc-70352999766d2aeb8dcea7a1324217f4760089c6",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -265,7 +265,7 @@
           "way/1291009296"
         ],
         "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
-        "boundsPolicySha256": "d969197ecc36a7d7b594f934ab1ca0e8e28103c83f32720e42de3e5fc384425f",
+        "boundsPolicySha256": "c387871a4fc76c4170f5fdf4101ee6cf3aabbc77b7435e1e97e6e757dc7343e8",
         "bounds": {
           "policy": {
             "playKm": 12,
@@ -366,9 +366,9 @@
       },
       "sourceJob": {
         "city": "west-island",
-        "sourceRunId": 38670193219,
-        "sourceArtifact": "city-bootstrap-cc-faf09399d70b1b03cdfa8a4163b40036651e83ca",
-        "sourceSha": "faf09399d70b1b03cdfa8a4163b40036651e83ca",
+        "sourceRunId": 38704415307,
+        "sourceArtifact": "city-bootstrap-cc-70352999766d2aeb8dcea7a1324217f4760089c6",
+        "sourceSha": "70352999766d2aeb8dcea7a1324217f4760089c6",
         "datasetSha256": "b93db5ebb8059ff619c2f1d652a9270b1573cf845574645397e0bfce2260f030",
         "adapterSha256": "7070833de523d4d6f3ac8dd0d0922aea42ee74ed1003f229b435eb93531c6de4",
         "extractSha256": {

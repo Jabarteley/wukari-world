@@ -47,6 +47,8 @@ import { isCityId } from '../../src/game/cities/registry.ts';
 import { characterCity } from '../character.ts';
 import { watchLives } from '../life-service.ts';
 import { socialService } from '../social/service.ts';
+import { actorErasurePending } from '../player-erasure-state.ts';
+import { erasureIds } from '../economy/privacy.ts';
 import { samePlot } from './street.ts';
 import type { WorldStreetHouse, WorldStreetResponse } from '../../src/types/world.ts';
 import * as registry from './registry.ts';
@@ -98,10 +100,11 @@ function buildWorld(ctx: RouteContext) {
   const boot = String(ctx.randomId?.() ?? '0').slice(0, 8);
   const sigs = new Map<string, string>(), known = new Map<string, { lga: string }>(), running = new Map<string, Promise<{ lga: string; estate: number; plot: number } | null>>(), dirty = new Set<string>();   // keyed `${publicId}:${cityId}`
   const hidden = new Set<string>();
+  const erasing = new Set<string>();
   const sockets = new Map<string, number>();           // public id → open sockets
   const onlineIn = new Map<string, Set<string>>();          // shard name → Set<public id>
   const summaries = new Map<string, Summary>();         // shard name → { residents, houses, rev, occ, bytes, stale, seeded }
-  let version = 0, metaDirty = false, metaWriting = false;
+  let version = 0, metaDirty = false, metaWriting: Promise<void> | null = null;
   const log = (line: string): void => (ctx.core?.log ?? console.error)(line);
   const today = () => lagosTime(ctx.now()).day;
 
@@ -139,6 +142,7 @@ function buildWorld(ctx: RouteContext) {
     await prepareStoredCityContent(ctx, await ctx.store.read(db => ctx.core.sessionByPublicId(db, publicId)), [cityId]);
     const key = `${publicId}:${cityId}`;
     const snap = await ctx.store.read((db) => {
+      if (erasing.has(publicId) || actorErasurePending(db, publicId)) return null;
       const session = ctx.core.sessionByPublicId(db, publicId);
       const state = session && session.expiresAt > ctx.now() ? session.cities?.[cityId]?.state : null;
       if (!session || !state?.estate) return null;
@@ -195,7 +199,7 @@ function buildWorld(ctx: RouteContext) {
   /** One sync at a time per player; a change noticed meanwhile runs one more afterwards. */
   function sync(publicId: string, cityId: CityId): Promise<{ lga: string; estate: number; plot: number } | null> {
     const key = `${publicId}:${cityId}`;
-    if (!shards || !isCityId(cityId)) return Promise.resolve(null);
+    if (!shards || !isCityId(cityId) || erasing.has(publicId)) return Promise.resolve(null);
     const current = running.get(key);
     if (current) { dirty.add(key); return current; }
     const work = syncNow(publicId, cityId).catch((error) => { sigs.delete(key); if ((error as { code?: unknown } | null)?.code !== 'storage_unavailable') log(`World sync failed: ${String((error as { message?: unknown } | null)?.message ?? error).split('\n')[0]}`); return null; })
@@ -233,20 +237,26 @@ function buildWorld(ctx: RouteContext) {
   watchLives(onLife);
 
   /** Write the small summary file when something changed (called on the host's heartbeat and at shutdown). */
-  async function saveMeta(): Promise<void> {
-    if (!shards || !metaDirty || metaWriting) return;
-    metaWriting = true; metaDirty = false;
-    try {
+  async function saveMeta(strict = false): Promise<void> {
+    if (!shards) return;
+    if (metaWriting) { try { await metaWriting; } catch { /* A strict caller retries below. */ } }
+    if (!metaDirty) return;
+    metaDirty = false;
+    const work = (async () => {
       const out: Record<string, { residents: number; houses: number; rev: number; occ: string; bytes: number }> = {};
       for (const [name, summary] of summaries) if (!summary.seeded) out[name] = { residents: summary.residents, houses: summary.houses, rev: summary.rev, occ: occOf(name), bytes: await shards.size(name) };
       await shards.writeMeta(out);
-    } catch (error) { metaDirty = true; log(`World summary could not be written: ${(error as { message?: unknown } | null)?.message}`); } finally { metaWriting = false; }
+    })();
+    metaWriting = work;
+    try { await work; }
+    catch (error) { metaDirty = true; if (strict) throw error; log(`World summary could not be written: ${(error as { message?: unknown } | null)?.message}`); }
+    finally { if (metaWriting === work) metaWriting = null; }
   }
   async function loadMeta(): Promise<void> {
     if (!shards) return;
     const saved = await shards.readMeta();
     for (const [name, value] of Object.entries((saved || {}) as Record<string, unknown>)) {
-      if (!/^[a-z-]+\.[a-z-]+$/.test(name) || !hasOcc(value)) continue;
+      if (!/^[a-z0-9-]+\.[a-z0-9-]+$/.test(name) || !hasOcc(value)) continue;
       // A shard file that is not the size the summary was written for changed after it (a crash): count it again when asked.
       summaries.set(name, { residents: Number(value.residents) || 0, houses: Number(value.houses) || 0, rev: Number(value.rev) || 0, occ: value.occ, stale: (await shards.size(name)) !== value.bytes });
     }
@@ -266,6 +276,42 @@ function buildWorld(ctx: RouteContext) {
   const service = {
     enabled: Boolean(shards),
     sync,
+    /** Main erasure is committed first; land writers must be drained before this call. Retry from the durable job after failure. */
+    async eraseActors(publicIds: readonly string[], shardNames: readonly string[]): Promise<void> {
+      const ids = erasureIds(publicIds);
+      if (!ids.size) return;
+      if (!shards && shardNames.length) throw ctx.fail(503, 'world_unavailable');
+      for (const id of ids) erasing.add(id);
+      try {
+        const gone = await ctx.store.read(db => [...ids].every(id => !ctx.core.sessionByPublicId(db, id)));
+        if (!gone) throw ctx.fail(409, 'erasure_actor_live');
+        await Promise.all([...running].filter(([key]) => ids.has(key.slice(0, key.indexOf(':')))).map(([, value]) => value));
+        for (const key of [...dirty]) if (ids.has(key.slice(0, key.indexOf(':')))) dirty.delete(key);
+        if (shards) {
+          const names = new Set([...shardNames, ...summaries.keys(), ...await shards.names()]);
+          for (const name of names) {
+            if (!/^[a-z0-9-]+\.[a-z0-9-]+$/.test(name)) throw ctx.fail(400, 'invalid_erasure_shard');
+            if (!(await shards.references(name, [...ids]))) continue;
+            const changed = await shards.transact(name, state => {
+              const records = [...ids].flatMap(id => registry.eraseActor(state, id));
+              return { records, result: records.length > 0 };
+            });
+            // An already-vacated shard can still contain the actor's historical log records.
+            await shards.compact(name);
+            if (changed || summaries.has(name)) { summaries.delete(name); touch(name); }
+            for (const id of ids) setOnline(id, name, false);
+          }
+          metaDirty = true;
+          await saveMeta(true);
+        }
+        for (const id of ids) {
+          hidden.delete(id); sockets.delete(id);
+          for (const key of [...known.keys()]) if (key.startsWith(`${id}:`)) known.delete(key);
+          for (const key of [...sigs.keys()]) if (key.startsWith(`${id}:`)) sigs.delete(key);
+        }
+        version += 1;
+      } finally { for (const id of ids) erasing.delete(id); }
+    },
     async ownsPlot(city: CityId, plot: import('../../src/types/life.ts').PlotAddress, owner: string): Promise<boolean> {
       if (!shards) return false;
       return shards.read(shardOf(city, plot.lga), state => state.houses.get(plot.estate)?.get(plot.plot)?.o === owner);

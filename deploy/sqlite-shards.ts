@@ -18,6 +18,7 @@ import { cutAt } from './sqlite-store.ts';
 export const SHARD_CHUNK = 400000;
 
 export interface ShardBackend {
+  names(): Promise<string[]>
   read(name: string): Promise<string>
   append(name: string, text: string): Promise<void>
   replace(name: string, text: string): Promise<void>
@@ -35,6 +36,7 @@ export function sqliteShardBackend(storage: SqliteStorage, { chunk = SHARD_CHUNK
   // A row never ends half way through a character outside the basic plane (two units of a JavaScript string): half a character cannot be stored.
   const insert = (name: string, text: string): void => { for (let start = 0, end = 0; start < text.length; start = end) { end = cutAt(text, start, chunk); sql.exec('INSERT INTO world_shards(name,text) VALUES(?,?)', name, text.slice(start, end)); } };
   return {
+    async names() { return sql.exec<{ name: string }>('SELECT DISTINCT name FROM world_shards').toArray().map(row => row.name); },
     async read(name: string) { return sql.exec<{ text: string }>('SELECT text FROM world_shards WHERE name = ? ORDER BY seq', name).toArray().map(row => row.text).join(''); },
     async append(name: string, text: string) { storage.transactionSync(() => { beforeWrite(); insert(name, text); }); await barrier(); },
     async replace(name: string, text: string) { storage.transactionSync(() => { beforeWrite(); sql.exec('DELETE FROM world_shards WHERE name = ?', name); insert(name, text); }); await barrier(); },

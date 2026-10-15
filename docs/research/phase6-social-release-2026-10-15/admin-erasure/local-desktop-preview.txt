@@ -1,0 +1,206 @@
+- generic "You":
+- button "Whot · Bench under the trees. Walk up to sit, watch or invite a friend": Whot · Bench under the trees
+- button "Ayo · Ayo board under the trees. Walk up to sit, watch or invite a friend": Ayo · Ayo board under the trees
+- button "Penalties · Kickabout corner. Walk up to sit, watch or invite a friend": Penalties · Kickabout corner
+- button "Chess · Chess under the trees. Walk up to sit, watch or invite a friend": Chess · Chess under the trees
+- group "Camera":
+  - button "Zoom in": +
+  - button "Zoom out": −
+  - button "Reset the camera view":
+- paragraph:
+  - generic: Allworld
+- region "Player status":
+  - 'button "2 online in Allworld: 1 person · 1 AI agent, 2 here. 2 visits in total. Open who is online."':
+    - generic: 2 online
+    - generic: · 2 here
+    - generic: · 2 visits
+  - 'button "Your account: Fixture founder"':
+    - generic: F
+    - generic: Fixture founder
+  - generic: Thu 15 · 7:25 pm
+  - text: Fine
+  - status "Connected · progress saved":
+    - generic: Saved
+  - button "Sound is on. Mute":
+    - generic: Sound on
+  - button "Invite your friends":
+    - generic: Invite
+  - button "Wallet ₦1,005,000. Open the bank and your transactions": ₦1,005,000
+- complementary "Needs, goal and more":
+  - group "Your needs":
+    - generic "Hunger":
+      - meter "Hunger"
+    - generic "Energy":
+      - meter "Energy"
+    - generic "Fun":
+      - meter "Fun"
+    - generic "Social":
+      - meter "Social"
+    - generic "Hygiene":
+      - meter "Hygiene"
+    - generic "Bladder":
+      - meter "Bladder"
+  - 'button "More: weather, messages, city and help"':
+  - 'button "Clean screen: hide the panels and show only the scene"':
+  - 'button "Next step: Create your character. Choose your look, personality, dream and home"':
+    - strong: Create your character
+    - generic: Choose your look, personality, dream and home
+  - 'button "Weather: Dry. Open the Health app."':
+    - generic: Dry
+  - button "Daily gem hunt, 0 of 3 found today":
+    - strong: Daily gem hunt
+    - generic: 0 found · next prize ₦3,000
+    - generic: "You: 0/3 today · 2 online"
+  - button "Whot, Ayo, Penalties, Chess table here Sit down, or invite a friend to play":
+    - strong: Whot, Ayo, Penalties, Chess table here
+    - generic: Sit down, or invite a friend to play
+  - 'button "Politics: this week''s election"':
+    - strong: Politics
+    - generic: Polls are open · they close in 2d 4h
+    - generic: Cast your vote, one tap
+  - button "Messages No new messages":
+    - strong: Messages
+    - generic: No new messages
+- region "Current venue":
+  - 'button "Open your character: profile, needs, goals and skills"':
+  - heading "Freedom Park · Lagos Island" [level=1]:
+    - text: Freedom Park · Lagos Island
+  - paragraph: A poet is testing the microphone
+  - button "Open community chat":
+  - button "Open map":
+  - button "Show activities":
+  - button "Amphitheatre" [pressed]:
+    - text: Amphitheatre
+  - button "Art gallery":
+    - text: Art gallery
+  - button "Under the trees":
+    - text: Under the trees
+  - button "Drinks kiosk":
+    - text: Drinks kiosk
+  - button "People":
+    - text: People
+  - button "Community desk":
+    - text: Community desk
+  - button "Square":
+    - text: Square
+- navigation "Main navigation":
+  - button "Home":
+    - generic: Home
+  - button "Buy" [disabled]:
+    - generic: Buy
+  - button "Map":
+    - generic: Map
+  - button "Phone":
+    - generic: Phone
+- dialog "Phone":
+  - button "Close the phone":
+    - generic: Close
+  - group "Phone":
+    - banner:
+      - button "Notifications. Nigerian time 19:25": 19:25
+      - img "Connected to the game server"
+      - generic: 4G
+      - 'img "Battery: your character’s Energy is 50%"'
+      - generic: 50%
+    - region "Admin":
+      - button "Back to the home screen":
+      - heading "Admin" [level=2]
+      - button "Make the phone wider":
+    - button "Home screen"
+  - status: +₦1,000,000
+  - status
+  - application "Admin":
+    - complementary "Admin sections":
+      - generic: Allworld admin
+      - navigation:
+        - button "Dashboard":
+          - text: Dashboard
+          - generic: g d
+        - button "Players":
+          - text: Players
+          - generic: g p
+        - button "Announcements":
+          - text: Announcements
+          - generic: g a
+        - button "World tools":
+          - text: World tools
+          - generic: g w
+        - button "Prayers":
+          - text: Prayers
+          - generic: g y
+        - button "Residents":
+          - text: Residents
+          - generic: g r
+        - button "Moderation":
+          - text: Moderation
+          - generic: g m
+        - button "Audit log":
+          - text: Audit log
+          - generic: g l
+      - generic: Fixture founder · root
+      - button "Close admin"
+    - banner:
+      - navigation "Breadcrumb":
+        - button "Admin"
+        - generic: ›
+        - button "Players"
+        - generic: ›
+        - generic: Local erasure UI fixture
+      - heading "Player" [level=1]
+      - generic: Find a player by name or id
+      - combobox "Find a player by name or id"
+      - button "What just happened": Log
+      - button "Keyboard shortcuts": "?"
+    - main:
+      - region "Player":
+        - heading "Local erasure UI fixture" [level=2]
+        - paragraph:
+          - code: 19bdccc5-8864-4b65-895c-ae8e5d6b82a3
+          - button "Copy id"
+          - text: · guest · no city
+        - group "Quick actions":
+          - button "Credit ₦"
+          - button "Message"
+          - button "Mute"
+          - button "Ban"
+        - region "Permanent player erasure":
+          - heading "Erase player permanently" [level=3]
+          - paragraph: Remove Local erasure UI fixture from Allworld, including their profile, progress and map homes. This cannot be undone.
+          - text: Reason
+          - textbox "Reason": Disposable local erasure acceptance fixture
+          - paragraph: Removes Allworld accounts, characters, progress, profiles and map homes. Anonymous shared financial history and a security receipt remain. External sign-in provider accounts and historical backups are not deleted by this action.
+          - list:
+            - text: Local erasure UI fixture · guest
+            - code: 19bdccc5-8864-4b65-895c-ae8e5d6b82a3
+          - text: Type
+          - code: ERASE 19bdccc5-8864-4b65-895c-ae8e5d6b82a3
+          - text: to confirm
+          - textbox "Type ERASE 19bdccc5-8864-4b65-895c-ae8e5d6b82a3 to confirm"
+          - button "Permanently erase" [disabled]
+          - button "Cancel"
+        - tablist "Player sections":
+          - tab "Overview" [selected]
+          - tab "Money"
+          - tab "Social"
+          - tab "Places"
+          - tab "Sessions"
+          - tab "Sanctions"
+          - tab "Notes"
+          - tab "History"
+          - tab "As the player sees it"
+        - tabpanel "Overview":
+          - heading "Profile" [level=3]
+          - paragraph:
+            - generic: Kind
+            - generic: guest
+          - paragraph:
+            - generic: Friends / invited
+            - generic: 0 / 0
+          - paragraph:
+            - generic: Stalls
+            - generic: none
+          - paragraph:
+            - generic: Open reports
+            - generic: "0"
+    - status
+- button "Lumo, your guide. Open chat":

@@ -27,6 +27,7 @@ function again(): void { page.value = 0; selected.clear(); void search() }
 watch([filter, city, size, sort, dir], again)
 watch(q, () => { clearTimeout(wait); wait = setTimeout(() => { rememberSearch(q.value); again() }, 350) })
 onMounted(search)
+watch(() => props.player, (next, previous) => { if (!next && previous) { selected.clear(); void search() } })
 onBeforeUnmount(() => clearTimeout(wait))
 const sorter = (key: string): void => { if (sort.value === key) dir.value = dir.value === 'desc' ? 'asc' : 'desc'; else { sort.value = key; dir.value = key === 'name' ? 'asc' : 'desc' } }
 const aria = (key: string): 'ascending' | 'descending' | 'none' => (sort.value === key ? (dir.value === 'asc' ? 'ascending' : 'descending') : 'none')

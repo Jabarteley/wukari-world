@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile, rename } from 'node:fs/promises';
 import { join } from 'node:path';
 import { storageError } from './protocol.ts';
 import { drainWalletEffects, type StoredWalletEffect } from './economy/effects.ts';
+import { erasureIds, eraseWalletActors } from './economy/privacy.ts';
 import type { NodeStoreStats, StoreStats } from '../src/types/support.ts';
 import type { Db, SessionRecord, Store, StoreHelpers, StoreLayoutTools, TransactOptions } from './types.ts';
 import { KEYED_SPECS, Layer, isKeyedCollection, parseLayout } from './keyed.ts';
@@ -235,7 +236,18 @@ export async function createStore<D extends object = Db>(dataDir: string, { lazy
       return part;
     }
     const keyedExists = (name: KeyedName): boolean => !removed.has(name) && (keyed[name]?.created === true || isRecord(base[name]));
+    const erasedActors = new Set<string>();
     const helpers: StoreHelpers = Object.freeze({
+      collectionNames: () => Object.keys(db),
+      eraseActorStorage(publicIds: readonly string[]): void {
+        for (const id of erasureIds(publicIds)) erasedActors.add(id);
+        for (const key of helpers.scanSessions(record => erasedActors.has(record.publicId))) {
+          const session = (db as unknown as Db).sessions[key];
+          if (session) { session.actions = {}; session.once = {}; }
+        }
+        const journal = (db as unknown as Db).walletEffects;
+        if (journal) eraseWalletActors(journal, erasedActors);
+      },
       /** Keys of sessions whose record satisfies `predicate`. Records are shown as stored: do not change them. */
       scanSessions(predicate: (record: SessionRecord, key: string) => boolean): string[] {
         scanned = true;
@@ -336,7 +348,7 @@ export async function createStore<D extends object = Db>(dataDir: string, { lazy
       const existing = parts.has('walletEffects') ? parts.get('walletEffects') : base['walletEffects'];
       if (existing !== undefined && !Array.isArray(existing)) throw new Error('Invalid wallet effect journal');
       const journal: StoredWalletEffect[] = existing === undefined ? [] : structuredClone(existing) as StoredWalletEffect[];
-      journal.push(...effects); parts.set('walletEffects', journal); return true;
+      journal.push(...effects); if (erasedActors.size) eraseWalletActors(journal, erasedActors); parts.set('walletEffects', journal); return true;
     }
     /**
      * What this view has looked at, as names like 'sessions/<key>' or 'social' — or null when it

@@ -10,7 +10,7 @@
  *
  * `io` ({ readFile, appendFile, writeFile, rename, stat }) replaces the file calls in tests.
  */
-import { mkdir, readFile, appendFile, writeFile, rename, stat } from 'node:fs/promises';
+import { mkdir, readFile, appendFile, writeFile, rename, stat, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createShardStoreOn } from './shard-core.ts';
 import type { ShardOptions, ShardStoreOn } from './shard-core.ts';
@@ -29,6 +29,7 @@ export async function createShardStore<S extends object, R extends readonly unkn
   await mkdir(dir, { recursive: true });
   const fileOf = (name: string): string => join(dir, `${name}.log`);
   const store = createShardStoreOn({
+    async names() { return (await readdir(dir)).filter(name => /^[a-z0-9-]+\.[a-z0-9-]+\.log$/.test(name)).map(name => name.slice(0, -4)); },
     async read(name: string) { try { return await fs.readFile(fileOf(name), 'utf8'); } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; return ''; } },
     append: (name: string, text: string) => fs.appendFile(fileOf(name), text, { mode: 0o600 }),
     async replace(name: string, text: string) { const file = fileOf(name); await fs.writeFile(`${file}.tmp`, text, { mode: 0o600 }); await fs.rename(`${file}.tmp`, file); },

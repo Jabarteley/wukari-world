@@ -53,6 +53,7 @@ function buildRegistry(ctx: RouteContext) {
   const open = (id: string): WsConnection[] => [...(sockets.get(id) || [])].filter((ws) => ws.readyState === OPEN && !(ws.expiresAt <= ctx.now()));
   const live = (id: string): WsConnection[] => open(id).filter((ws) => ctx.core?.unresponsive?.(ws) !== true);
   return {
+    forget(id: string): void { sockets.delete(id); lastSeen.delete(id); },
     open(ws: WsConnection): void {
       const id = ws.session?.id;
       if (!id) return;

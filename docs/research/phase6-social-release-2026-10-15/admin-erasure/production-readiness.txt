@@ -1,0 +1,13 @@
+{
+  "host": "https://joinallworld.com",
+  "existingRootSessionVerified": true,
+  "qaTargetsPresent": [
+    "bfcb8ef0-4d00-4d8e-b665-bb8b11d45e56",
+    "453a0f63-5b90-4e7b-b730-4ea9ff54b70d",
+    "6cea4961-b7fc-4bb7-a6db-a28e9327014f"
+  ],
+  "qaTargetsAreGuestsAndNotAdmins": true,
+  "unrelatedFounderVerified": true,
+  "productionMutation": false,
+  "note": "Detailed private account readback retained outside the repository; public evidence records checks only."
+}

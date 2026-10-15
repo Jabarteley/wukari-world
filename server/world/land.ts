@@ -8,6 +8,8 @@ import { PLOTS_PER_ESTATE } from '../../src/game/content/world.ts';
 import { prepareStoredCityContent } from '../request-city-content.ts';
 import { isRecord } from '../../src/game/util.ts';
 import { worldOf } from './service.ts';
+import { actorErasurePending } from '../player-erasure-state.ts';
+import { erasureIds } from '../economy/privacy.ts';
 import { readPlot, samePlot } from './street.ts';
 import * as registry from './registry.ts';
 import type { RegistryRecord, RegistryState } from './registry.ts';
@@ -43,10 +45,14 @@ function buildLand(ctx: RouteContext) {
   const shards = ctx.shards as ShardStoreOn<RegistryState, RegistryRecord> | undefined;
   const world = worldOf(ctx), queues = new Map<string, Promise<void>>();
   const recoveryOwners = new Set<string>();
+  const erasing = new Set<string>();
   let recoverySeeded = false, draining: Promise<void> | null = null;
   const ready = () => { if (!shards || !world.enabled) throw ctx.fail(503, 'world_unavailable'); return shards; };
   function serial<T>(owner: string, task: () => Promise<T>): Promise<T> {
-    const before = queues.get(owner) ?? Promise.resolve(), run = before.then(task), tail = run.then(() => {}, () => {});
+    const before = queues.get(owner) ?? Promise.resolve(), run = before.then(async () => {
+      if (erasing.has(owner) || await ctx.store.read(db => actorErasurePending(db, owner))) throw ctx.fail(409, 'player_erasing');
+      return task();
+    }), tail = run.then(() => {}, () => {});
     queues.set(owner, tail);
     void tail.then(() => { if (queues.get(owner) === tail) queues.delete(owner); });
     return run;
@@ -195,6 +201,13 @@ function buildLand(ctx: RouteContext) {
     }
   }
   const service = {
+    /** Stop late reservations before the world registry is erased; the main transaction already removed the journal and session. */
+    async eraseActors(publicIds: readonly string[]): Promise<void> {
+      const ids = erasureIds(publicIds);
+      for (const id of ids) erasing.add(id);
+      try { await Promise.all([...ids].map(id => queues.get(id))); for (const id of ids) recoveryOwners.delete(id); }
+      finally { for (const id of ids) erasing.delete(id); }
+    },
     async view(request: RouteRequest, city: CityId) {
       const owner = await ctx.store.read((db) => request.requireSession(db).publicId);
       return serial(owner, async () => { ready(); await reconcileNow(owner); await world.sync(owner, city); return viewNow(request, city); });

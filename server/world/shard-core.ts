@@ -53,6 +53,7 @@ import { storageError } from '../protocol.ts';
 const encoder = new TextEncoder();
 /** Where a shard's log is kept (see THE BACKEND above). */
 export interface ShardBackend {
+  names?(): Promise<string[]>
   read(name: string): Promise<string>
   append(name: string, text: string): Promise<unknown>
   replace(name: string, text: string): Promise<unknown>
@@ -74,6 +75,8 @@ export interface ShardOptions<S extends object, R extends readonly unknown[]> {
 export interface ShardStats { loads: number; recordsRead: number; appends: number; records: number; bytes: number; compactions: number; failures: number; evictions: number; torn: number; open: number }
 /** What createShardStoreOn() returns. */
 export interface ShardStoreOn<S extends object, R extends readonly unknown[]> {
+  names(): Promise<string[]>
+  references(name: string, values: readonly string[]): Promise<boolean>
   transact<T>(name: string, fn: (state: S) => { records?: R[]; result: T } | Promise<{ records?: R[]; result: T }>): Promise<T>
   read<T>(name: string, fn: (state: S) => T): Promise<T>
   peek(name: string): S | null
@@ -228,11 +231,22 @@ export function createShardStoreOn<S extends object, R extends readonly unknown[
 
   return {
     transact, read,
+    names: async () => [...new Set([...shards.keys(), ...await backend.names?.() ?? []])],
+    references: async (name, values) => { const text = await backend.read(name); return values.some(value => text.includes(JSON.stringify(value))); },
     peek(name: string): S | null { const shard = shards.get(name); return shard && !(shard instanceof Promise) && !shard.broken ? shard.state : null; },
     /** Bytes of the shard's file as this process knows it (0 when it has never been opened here and does not exist). */
     async size(name: string): Promise<number> { const shard = shards.get(name); if (shard && !(shard instanceof Promise)) return shard.bytes; try { return await backend.size(name); } catch { return 0; } },
     /** Rewrite one shard's file from its state now (used by the load generator to report the compact size). */
-    async compact(name: string): Promise<number> { const shard = await open(name); await shard.queue; if (shard.flushing) await shard.flushing; await compact(name, shard); return shard.bytes; },
+    async compact(name: string): Promise<number> {
+      const shard = await open(name);
+      const work = shard.queue.then(async () => {
+        while (shard.flushing || shard.pending.length) await (shard.flushing || flush(name, shard));
+        if (shard.broken) throw storageError(new Error('Shard append failed before compaction'));
+        await compact(name, shard); return shard.bytes;
+      });
+      shard.queue = work.then(() => {}, () => {});
+      return work;
+    },
     open: () => [...shards.keys()],
     /** One small JSON file beside the shards (the city summary). Derived data: losing it costs a re-count, nothing else. */
     async readMeta(): Promise<unknown> { try { return (await backend.readMeta()) ?? null; } catch { return null; } },

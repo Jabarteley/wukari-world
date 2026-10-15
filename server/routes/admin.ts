@@ -68,6 +68,7 @@ import { sanctionsOf } from '../admin/sanctions.ts';
 import { settingsOf } from '../admin/settings.ts';
 import { festivalsOf } from '../admin/festivals.ts';
 import { statsService } from '../admin/stats.ts';
+import { erasureService } from '../admin/erasure.ts';
 import { prayersOf } from '../prayers/service.ts';
 import { voiceService, REPLY_MAX } from '../residents/voice.ts';
 import { ACT_KINDS, LIMITS as PRAYER_LIMITS, NOTICE as PRAYER_NOTICE, SKIES } from '../prayers/model.ts';
@@ -89,6 +90,7 @@ export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
   const players = playersService(ctx), actions = actionsService(ctx), stats = statsService(ctx), announce = announceOf(ctx), settings = settingsOf(ctx), sanctions = sanctionsOf(ctx), festivals = festivalsOf(ctx);
   const world = worldService(ctx), moderation = moderationService(ctx), social = socialService(ctx), outreach = outreachService(ctx), shops = businessService(ctx), notice = noticeOf(ctx);
   const trust = trustService(ctx), prayers = prayersOf(ctx), voice = voiceService(ctx);
+  const erasure = erasureService(ctx, () => stats.invalidate());
   linkFeatures(ctx);
   // The history of the dashboard: one small row per day, sampled by the heartbeat (server/admin/history.ts).
   const history = recorder(ctx, (db) => {
@@ -181,6 +183,18 @@ export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
       return found;
     }),
 
+    'POST /api/admin/players/:id/erase': async (request) => {
+      await enter(request, { write: true });
+      return { body: await erasure.erase(request, publicId(request.params.id)), headers: NO_STORE };
+    },
+    'GET /api/admin/erasure/:id': async (request) => {
+      await enter(request);
+      return { body: await erasure.status(request), headers: NO_STORE };
+    },
+    'POST /api/admin/erasure/:id/retry': async (request) => {
+      await enter(request, { write: true });
+      return { body: await erasure.retry(request), headers: NO_STORE };
+    },
     'POST /api/admin/players/:id/act': async (request) => {
       const admin = await enter(request, { write: true });
       const body = await request.json(), id = publicId(request.params.id);

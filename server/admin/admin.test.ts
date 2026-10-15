@@ -7,6 +7,11 @@ import type { FixtureOptions } from '../test-fixture.ts';
 import { claimsFor, fakeProvider, makeKey, signToken } from '../accounts/test-tokens.ts';
 import { csrfOf } from '../routes/auth.ts';
 import { emailHash } from '../social/founder.ts';
+import { createSqliteStore } from '../../deploy/sqlite-store.ts';
+import { testStorage } from '../testing/sqliteStorage.ts';
+import { planErasure } from './erasure-data.ts';
+import type { Admin } from './gate.ts';
+import type { RouteContext, SessionRecord, SocialCollection } from '../types.ts';
 
 const PROJECT = 'allworld-test-project';
 const ACCOUNTS = { ACCOUNTS_FIREBASE_PROJECT_ID: PROJECT, ACCOUNTS_FIREBASE_API_KEY: 'test-web-api-key-0000000000000000000000' };
@@ -325,4 +330,119 @@ test('reads write nothing, players can be found by name, id and address hash, an
   assert.equal(dash.accounts.accounts, 2); assert.equal(typeof dash.asOf, 'number');
   const economy = (await a.admin('/api/admin/economy?fresh=1', founder.cookie)).body as { faucets: { category: string }[]; cashInCirculation: number };
   assert.ok(economy.cashInCirculation > 0);
+});
+
+
+test('permanent erasure: root preview, exact confirmation, retry, map removal and unrelated player preservation', async t => {
+  const a = await admins(t);
+  const founder = await a.account(FOUNDER_ADDRESS, 'Founder');
+  const second = await a.account(OTHER_ADMIN_ADDRESS, 'Moderator');
+  const target = await a.ready('Disposable guest'), other = await a.ready('Keep this player');
+  const path = `/api/admin/players/${target.id}/erase`;
+  const clientId = a.f.id(), reason = 'Remove disposable QA character';
+  assert.equal((await a.admin(path, second.cookie, { reason })).status, 403);
+  assert.equal((await a.admin(`/api/admin/players/${founder.id}/erase`, founder.cookie, { reason })).status, 403);
+  await a.f.server.world.seedResident('lagos', 'ikeja', { id: target.id, name: target.name, day: 0, hidden: false, home: 'own', style: 0 });
+  await a.f.server.world.seedResident('lagos', 'ikeja', { id: other.id, name: other.name, day: 0, hidden: false, home: 'own', style: 0 });
+  const houseConv = `h.${other.id}`;
+  await a.f.server.store.transact(db => {
+    const player = (name: string, convs: Record<string, { read: number }>, visiting: string | null) => ({ name, first: 1, seen: 1, friends: {}, in: {}, out: {}, blocked: {}, convs,
+      updates: [], reports: [], baeIn: {}, bae: null, visiting, recv: { day: 0, amount: 0 }, chats: { day: 0, count: 0 } });
+    db.social = {
+      players: { [target.id]: player(target.name, { [houseConv]: { read: 0 } }, other.id), [other.id]: player(other.name, { [houseConv]: { read: 0 } }, null) },
+      convs: { [houseConv]: { id: houseConv, kind: 'house', owner: other.id, members: [other.id, target.id], seq: 2, created: 1,
+        messages: [{ seq: 1, from: target.id, body: 'A visitor line', at: 1 }, { seq: 2, from: other.id, body: 'The host reply', at: 2, re: { seq: 1, from: target.id, text: 'A visitor line' } }] } },
+      houses: { [other.id]: { knocks: {}, guests: { [target.id]: { since: 1, expires: a.f.now() + 60000, cityId: 'lagos' } } } }, pending: {}, reports: [], seq: 2,
+    } as SocialCollection;
+  });
+  const beforeOther = await a.f.server.store.read(db => JSON.stringify(Object.values(db.sessions).find(s => s.publicId === other.id)));
+  const preview = await a.admin(path, founder.cookie, { clientId, reason });
+  assert.equal(preview.body.code, 'confirmation_required');
+  assert.deepEqual((preview.body.characters as { id: string }[]).map(x => x.id), [target.id]);
+  assert.equal((await a.admin(`/api/admin/players/${target.id}`, founder.cookie)).status, 200, 'preview does not remove the player');
+  const intent = { clientId, reason, confirm: preview.body.token, plan: preview.body.plan, typed: `ERASE ${target.id}` };
+  assert.equal((await a.admin(path, founder.cookie, { ...intent, typed: 'ERASE' })).status, 409);
+  const result = await a.admin(path, founder.cookie, intent);
+  assert.equal(result.status, 200);
+  assert.equal(result.body.code, 'player_erased', JSON.stringify(result.body));
+  assert.equal((await a.admin(`/api/admin/players/${target.id}`, founder.cookie)).status, 404);
+  const houses = await a.f.server.world.houses('lagos', 'ikeja', 0, 0, null);
+  assert.ok(!houses.houses.some(h => h.id === target.id));
+  assert.ok(houses.houses.some(h => h.id === other.id));
+  assert.equal(await a.f.server.store.read(db => JSON.stringify(Object.values(db.sessions).find(s => s.publicId === other.id))), beforeOther);
+  const retry = await a.admin(path, founder.cookie, intent);
+  assert.equal(retry.body.code, 'player_erased');
+  assert.equal(retry.body.jobId, result.body.jobId);
+  assert.equal((await a.admin(path, founder.cookie, { ...intent, reason: 'Different operation' })).status, 409);
+  assert.equal((await a.admin(`/api/admin/erasure/${result.body.jobId}`, second.cookie)).status, 403);
+  await a.f.server.store.read(db => {
+    assert.ok(!Object.values(db.sessions).some(s => s.publicId === target.id));
+    assert.deepEqual(db.social?.convs[houseConv]?.members, [other.id], 'another player\'s house conversation remains theirs');
+    assert.deepEqual(db.social?.convs[houseConv]?.messages.map(message => ({ from: message.from, body: message.body, re: message.re })),
+      [{ from: other.id, body: 'The host reply', re: undefined }], 'only the erased visitor\'s authored line and reply identity are removed');
+    const jobs = db.playerErasure as { jobs: Record<string, { state: string; actors: string[] }> };
+    assert.equal(Object.values(jobs.jobs)[0]?.state, 'complete');
+    assert.deepEqual(Object.values(jobs.jobs)[0]?.actors, []);
+  });
+});
+
+test('SQLite erasure preflight rejects an actor UUID embedded in an unknown custom collection and preserves the target', async t => {
+  const backing = testStorage();
+  t.after(() => backing.close());
+  const store = createSqliteStore(backing.storage);
+  const publicId = '11111111-1111-4111-8111-111111111111';
+  const session: SessionRecord = { secret: 'target-session', publicId, name: 'Retained target', expiresAt: 999999, cities: {}, actions: {} };
+  await store.transact(db => {
+    db.sessions[session.secret] = session;
+    db.uncontractedOwner = { [`receipt|${publicId}|external`]: { retained: true } };
+  });
+  const ctx = { fail: (status: number, code: string) => Object.assign(new Error(code), { status, code }) } as RouteContext;
+  const admin = { root: true, publicId: '22222222-2222-4222-8222-222222222222', accountId: 'founder-account' } as Admin;
+  await assert.rejects(store.read(db => planErasure(ctx, db, admin, publicId)), (error: unknown) => {
+    assert.equal((error as { status?: number }).status, 409);
+    assert.equal((error as { code?: string }).code, 'erasure_ownership_unsupported');
+    return true;
+  });
+  await store.read(db => {
+    assert.equal(db.sessions[session.secret]?.publicId, publicId);
+    assert.deepEqual(db.uncontractedOwner, { [`receipt|${publicId}|external`]: { retained: true } });
+  });
+  const row = backing.db.prepare('SELECT value FROM collections WHERE name = ?').get('uncontractedOwner') as { value: string } | undefined;
+  assert.ok(row?.value.includes(publicId), 'the refused SQLite transaction preserves the custom ownership row');
+});
+
+
+test('account erasure includes owned agent characters and retries a durable map-cleanup failure', async t => {
+  const a = await admins(t);
+  const founder = await a.account(FOUNDER_ADDRESS, 'Founder');
+  const owner = await a.account('erase.owner@example.com', 'Remove account');
+  const agent = await a.ready('Owned agent');
+  await a.f.server.store.transact(db => {
+    const accountId = Object.values(db.accounts ?? {}).find(row => row.publicId === owner.id)!.id;
+    const actor = Object.values(db.sessions).find(row => row.publicId === agent.id)!;
+    actor.agent = { char: true, owner: accountId };
+    db.agents = { keys: {}, owners: { [accountId]: { chars: [agent.id], keys: [] } }, chars: { [agent.id]: { account: accountId, name: agent.name, slug: 'owned-agent' } }, names: { 'owned-agent': agent.id } };
+  });
+  const path = `/api/admin/players/${owner.id}/erase`, clientId = a.f.id(), reason = 'Disposable account cleanup';
+  const preview = await a.admin(path, founder.cookie, { clientId, reason });
+  assert.equal(preview.body.code, 'confirmation_required', JSON.stringify(preview.body));
+  assert.deepEqual((preview.body.characters as { id: string }[]).map(x => x.id).sort(), [owner.id, agent.id].sort());
+  const original = a.f.server.world.eraseActors;
+  a.f.server.world.eraseActors = async () => { throw new Error('injected map write failure'); };
+  const intent = { clientId, reason, confirm: preview.body.token, plan: preview.body.plan, typed: `ERASE ${owner.id}` };
+  const first = await a.admin(path, founder.cookie, intent);
+  assert.equal(first.body.code, 'erasure_pending');
+  await a.f.flush();
+  await a.f.server.store.read(db => {
+    assert.ok(!Object.values(db.accounts ?? {}).some(row => row.publicId === owner.id));
+    assert.ok(!Object.values(db.sessions).some(row => row.publicId === owner.id || row.publicId === agent.id));
+    assert.ok(Object.values(db.accounts ?? {}).some(row => row.publicId === founder.id));
+    const pending = db.playerErasure as { jobs: Record<string, { state: string }> };
+    assert.equal(pending.jobs[String(first.body.jobId)]?.state, 'pending');
+  });
+  a.f.server.world.eraseActors = original;
+  const retry = await a.admin(`/api/admin/erasure/${first.body.jobId}/retry`, founder.cookie, {});
+  assert.equal(retry.body.code, 'player_erased');
+  assert.equal(retry.body.count, 2);
+  assert.equal((await a.admin(path, founder.cookie, intent)).body.jobId, first.body.jobId);
 });

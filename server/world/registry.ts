@@ -229,6 +229,15 @@ export function moveOut(state: RegistryState, id: string): { records: RegistryRe
   return { records, plot };
 }
 
+/** After the actor and purchase journal are erased and their writers drained. Matches ownership, never guessed plot coordinates. */
+export function eraseActor(state: RegistryState, id: string): RegistryRecord[] {
+  const records: RegistryRecord[] = [];
+  for (const claim of landOf(state, id)) if (claim.owner === id) records.push(['z', claim.estate, claim.plot, claim.token]);
+  for (const [estate, plots] of state.houses) for (const [plot, house] of plots) if (house.o === id) records.push(['f', estate, plot]);
+  if (state.residents.has(id)) records.push(['x', id]);
+  return records;
+}
+
 /** At most three purchased extensions and one unfinished reservation. */
 export function landOf(state: RegistryState, owner: string): (LandClaim & PlotSpot)[] {
   const found: (LandClaim & PlotSpot)[] = [];

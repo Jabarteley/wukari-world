@@ -8,6 +8,7 @@ import { PLAYER_ACTIONS, absolute, bodyOf, formWhy, naira, relative, typedWord }
 import type { ActionDef } from './adminModel.ts'
 import { perform } from './playerActions.ts'
 import { toast, ui } from './adminUi.ts'
+import ErasePlayer from './ErasePlayer.vue'
 
 const props = defineProps<{ id: string; tab: string | null }>()
 const emit = defineEmits<{ back: []; tab: [tab: string]; open: [id: string] }>()
@@ -27,8 +28,9 @@ interface Detail {
 }
 const TABS = [['overview', 'Overview'], ['money', 'Money'], ['social', 'Social'], ['places', 'Places'], ['sessions', 'Sessions'], ['sanctions', 'Sanctions'], ['notes', 'Notes'], ['history', 'History'], ['view', 'As the player sees it']] as const
 const tab = computed(() => TABS.find((item) => item[0] === props.tab)?.[0] ?? 'overview')
-const d = ref<Detail | null>(null), error = ref(''), loading = ref(true)
+const d = ref<Detail | null>(null), error = ref(''), loading = ref(true), eraseOpen = ref(false)
 async function load(): Promise<void> {
+  if (eraseOpen.value) return
   const reply = await api.get<Detail>(`/api/admin/players/${props.id}`)
   loading.value = false
   if (reply.ok) { d.value = reply.data; error.value = ''; ui.crumb = reply.data.profile.name } else error.value = reply.error.reason
@@ -104,6 +106,7 @@ const ledger = computed(() => (d.value?.ledger ?? []).filter((line) => (kind.val
       </form>
       <p v-if="result && !result.ok" class="adm-error" role="alert">{{ result.text }}</p>
 
+      <ErasePlayer v-if="admin.me?.level === 'root' && !d.protected" :id="props.id" :name="d.profile.name" @active="eraseOpen = $event" @erased="emit('back')" />
       <div class="adm-tablist" role="tablist" aria-label="Player sections">
         <button v-for="[id, label] in TABS" :id="`adm-tab-${id}`" :key="id" type="button" role="tab" :aria-selected="tab === id" :tabindex="tab === id ? 0 : -1" @click="emit('tab', id)">{{ label }}</button>
       </div>

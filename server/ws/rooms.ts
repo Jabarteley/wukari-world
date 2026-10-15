@@ -225,6 +225,22 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
   interface Line { seq: number; at: number; from: { id: string; name: string; agent?: true }; body: string }
   const lineBooks = new Map<string, { seq: number; lines: Line[] }>(); // `${room}#${group}` → the recent public lines of that group
   const LINES_KEPT = 60;
+  ctx.on?.('players-erased', ({ ids: values }) => {
+    const ids = new Set(values);
+    for (const id of ids) {
+      for (const ws of [...inRooms.get(id) ?? []]) leave(ws);
+      dropVirtual(id); friendsCache.delete(id); chatAt.delete(id); recent.delete(id); seeking.delete(id);
+      for (const moves of pendingMoves.values()) moves.moves.delete(id);
+    }
+    for (const [key] of chatHistory) if (ids.has(key.slice(0, key.indexOf(':')))) chatHistory.delete(key);
+    for (const [key, book] of lineBooks) {
+      book.lines = book.lines.filter(line => !ids.has(line.from.id));
+      if (!book.lines.length || [...ids].some(id => key.includes(`:home:${id}`))) lineBooks.delete(key);
+    }
+    for (const [id, cached] of friendsCache) if ([...ids].some(gone => cached.set.has(gone))) friendsCache.delete(id);
+    for (const [id, wish] of seeking) if (ids.has(wish.friend)) seeking.delete(id);
+    for (const [room] of hostGone) if (ids.has(homeOwner(room) ?? '')) hostGone.delete(room);
+  });
   function pushLine(room: string, group: string | null, line: Omit<Line, 'seq'>): number {
     const key = group ? gkey(room, group) : room;
     const book = lineBooks.get(key) ?? { seq: 0, lines: [] };
@@ -294,6 +310,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
         }
       }
       if (!words.ok) return { ok: false as const, code: words.code, reason: words.reason };
+      if (virtuals.get(from.id) !== v) return { ok: false as const, code: 'not_present', reason: 'This character has left the place.' };
       const chat: ChatFrame = { type: 'chat', id: core.newId(), ...(clientId ? { clientId } : {}), from: { id: from.id, name: from.name, ...from.mark }, body: text, at: now(), speaker: 'agent', voiceSeed: voiceSeedOf(from.id) };
       chatAt.set(from.id, now());
       sendAll([...audience(room, v.group)].filter(peer => !hidden(from.id, peer.session.id)), chat);

@@ -925,6 +925,8 @@ export interface Collections {
 
 /** Host-only extras on the view a transaction sees. Feature modules must not rely on them. */
 export interface StoreHelpers {
+  /** Logical top-level collections visible in this draft, including lazy Worker collections. */
+  collectionNames?(): string[]
   /** Keys of sessions whose record satisfies `predicate`, without copying every record. */
   scanSessions(predicate: (record: SessionRecord, key: string) => boolean): string[]
   sessionKeyByPublicId(publicId: string): string | undefined
@@ -934,6 +936,8 @@ export interface StoreHelpers {
   onceCounts?(liveSince: number, lightKinds: readonly string[]): { money: number; light: number }
   /** Indexed Worker read; Node falls back to its append-only walletEffects array. */
   walletEffectsPage?(publicId: string, after: number, limit: number): (StoredWalletEffect & { seq: number })[]
+  /** Transaction-local erasure: purge actor receipts, anonymize wallet history and both sides' transfer references. */
+  eraseActorStorage?(publicIds: readonly string[]): void
 }
 /** What `fn(db)` receives: private copies; nothing reaches the document unless the transaction returns. */
 export type Db = Database & { readonly $store?: StoreHelpers }
@@ -1212,6 +1216,8 @@ export interface ServerConfig {
 
 /** In-process events between server modules; nothing is sent to a client by raising one. */
 export interface ServerEvents {
+  /** After committed player erasure: discard presence and ephemeral chat copies. */
+  'players-erased': { ids: string[] }
   /** rooms.js: a person wrote a line in a public venue where an AI character stands (house agents wake on it, server/house/runner.ts). Raised after the game's own AI answers. */
   'venue-line': { room: string; group: string | null; from: { id: string; name: string; agent?: boolean }; body: string; /** The line's number in the place's book, so a reply can be addressed to it. */ seq?: number }
   /** rooms.js: a room's membership or a member's name changed. `cause` is who joined, left or was renamed. */

@@ -1,0 +1,445 @@
+- generic "You":
+- button "Ayo · Ayo board under the trees. Walk up to sit, watch or invite a friend": Ayo · Ayo board under the trees
+- group "Camera":
+  - button "Zoom in": +
+  - button "Zoom out": −
+  - button "Reset the camera view":
+- region "Player status":
+  - 'button "2 online in Allworld: 1 person · 1 AI agent, 2 here. 2 visits in total. Open who is online."':
+    - text: "2"
+    - generic: online
+    - generic: · 2 here
+    - generic: · 2 visits
+  - 'button "Your account: Fixture founder"':
+    - generic: F
+    - generic: Fixture founder
+  - button "Time Thu 15 · 7:26 pm, mood Fine, Saved. Show details":
+    - generic: 7:26 pm
+  - button "Invite your friends":
+    - generic: Invite
+  - button "Wallet ₦1,005,000. Open the bank and your transactions": ₦1,005,000
+- complementary "Needs, goal and more":
+  - group "Your needs":
+    - generic "Hunger":
+      - meter "Hunger"
+    - generic "Energy":
+      - meter "Energy"
+    - generic "Fun":
+      - meter "Fun"
+    - generic "Social":
+      - meter "Social"
+    - generic "Hygiene":
+      - meter "Hygiene"
+    - generic "Bladder":
+      - meter "Bladder"
+  - 'button "More: weather, messages, city and help"':
+  - 'button "Clean screen: hide the panels and show only the scene"':
+  - 'button "Next step: Create your character. Choose your look, personality, dream and home"':
+    - strong: Create your character
+    - generic: Choose your look, personality, dream and home
+- region "Current venue":
+  - 'button "Open your character: profile, needs, goals and skills"':
+  - heading "Freedom Park · Lagos Island" [level=1]:
+    - text: Freedom Park · Lagos Island
+  - button "Open community chat":
+  - button "Open map":
+  - button "Show activities":
+  - button "Amphitheatre" [pressed]:
+    - text: Amphitheatre
+  - button "Art gallery":
+    - text: Art gallery
+  - button "Under the trees":
+    - text: Under the trees
+  - button "Drinks kiosk":
+    - text: Drinks kiosk
+  - button "People":
+    - text: People
+  - button "Community desk":
+    - text: Community desk
+  - button "Square":
+    - text: Square
+- navigation "Main navigation":
+  - button "Home":
+    - generic: Home
+  - button "Buy" [disabled]:
+    - generic: Buy
+  - button "Map":
+    - generic: Map
+  - button "Phone":
+    - generic: Phone
+- dialog "Phone":
+  - group "Phone":
+    - region "Admin":
+      - button "Back to the home screen":
+      - heading "Admin" [level=2]
+      - button "Close the phone":
+  - status: +₦1,000,000
+  - status
+  - application "Admin":
+    - banner:
+      - navigation "Breadcrumb":
+        - button "Admin"
+        - generic: ›
+        - generic: Players
+      - heading "Players" [level=1]
+      - generic: Find a player by name or id
+      - combobox "Find a player by name or id"
+      - button "What just happened" [expanded] [active]:
+        - text: Log
+        - generic: "1"
+      - button "Keyboard shortcuts": "?"
+      - button "Close admin": Close
+    - main:
+      - region "Players":
+        - group "Saved filters":
+          - button "Everyone" [pressed]
+          - button "New today"
+          - button "Online"
+          - button "Signed up"
+          - button "Guests"
+          - button "Broke"
+          - button "Banned"
+          - button "Reported"
+        - text: Name, public id, or address hash
+        - combobox "Name, public id, or address hash"
+        - text: City
+        - combobox "City":
+          - option "Any" [selected]
+          - option "lagos"
+          - option "ibadan"
+          - option "abuja"
+          - option "port-harcourt"
+          - option "abeokuta"
+          - option "ota"
+          - option "ijebu-ode"
+          - option "sagamu"
+          - option "kano"
+          - option "enugu"
+          - option "benin-city"
+          - option "calabar"
+          - option "uyo"
+          - option "umuahia"
+          - option "owerri"
+          - option "yenagoa"
+          - option "awka"
+          - option "kaduna"
+          - option "maiduguri"
+          - option "gombe"
+          - option "yola"
+          - option "ilorin"
+          - option "minna"
+          - option "osogbo"
+          - option "damaturu"
+          - option "jalingo"
+          - option "akure"
+          - option "ado-ekiti"
+          - option "asaba"
+          - option "lokoja"
+          - option "jos"
+          - option "lafia"
+          - option "katsina"
+          - option "sokoto"
+          - option "birnin-kebbi"
+          - option "gusau"
+          - option "dutse"
+          - option "bauchi"
+          - option "makurdi"
+          - option "abakaliki"
+          - option "accra"
+          - option "algiers"
+          - option "lome"
+          - option "nairobi"
+          - option "yaounde"
+          - option "abidjan"
+          - option "addis-ababa"
+          - option "cape-town"
+          - option "cotonou"
+          - option "dakar"
+          - option "cairo"
+          - option "rabat"
+          - option "kigali"
+          - option "kampala"
+          - option "lusaka"
+          - option "gaborone"
+          - option "harare"
+          - option "luanda"
+          - option "maputo"
+          - option "windhoek"
+          - option "bamako"
+          - option "lilongwe"
+          - option "maseru"
+          - option "ouagadougou"
+          - option "tripoli"
+          - option "brazzaville"
+          - option "dar-es-salaam"
+          - option "libreville"
+          - option "mbabane"
+          - option "tunis"
+          - option "antananarivo"
+          - option "bujumbura"
+          - option "ndjamena"
+          - option "kinshasa"
+          - option "apia"
+          - option "bogota"
+          - option "buenos-aires"
+          - option "dubai"
+          - option "mexico-city"
+          - option "santiago"
+          - option "suva"
+          - option "lima"
+          - option "auckland"
+          - option "dublin"
+          - option "rome"
+          - option "wellington"
+          - option "asmara"
+          - option "bangui"
+          - option "bissau"
+          - option "conakry"
+          - option "djibouti"
+          - option "khartoum"
+          - option "malabo"
+          - option "mogadishu"
+          - option "monrovia"
+          - option "moroni"
+          - option "niamey"
+          - option "nouakchott"
+          - option "port-louis"
+          - option "praia"
+          - option "sao-tome"
+          - option "victoria"
+          - option "amman"
+          - option "ashgabat"
+          - option "asuncion"
+          - option "baku"
+          - option "beirut"
+          - option "belgrade"
+          - option "bishkek"
+          - option "bratislava"
+          - option "bsb"
+          - option "bucharest"
+          - option "budapest"
+          - option "caracas"
+          - option "chisinau"
+          - option "colombo"
+          - option "dili"
+          - option "doha"
+          - option "dushanbe"
+          - option "georgetown"
+          - option "guatemala-city"
+          - option "havana"
+          - option "honiara"
+          - option "kathmandu"
+          - option "koror"
+          - option "kuala-lumpur"
+          - option "kuwait-city"
+          - option "la-paz"
+          - option "larnaca"
+          - option "ljubljana"
+          - option "luxembourg"
+          - option "majuro"
+          - option "managua"
+          - option "manama"
+          - option "minsk"
+          - option "montevideo"
+          - option "muscat"
+          - option "nukualofa"
+          - option "phnom-penh"
+          - option "podgorica"
+          - option "port-au-prince"
+          - option "quito"
+          - option "reykjavik"
+          - option "riga"
+          - option "riyadh"
+          - option "san-jose"
+          - option "san-salvador"
+          - option "santo-domingo"
+          - option "sarajevo"
+          - option "skopje"
+          - option "sofia"
+          - option "tallinn"
+          - option "tarawa"
+          - option "tashkent"
+          - option "tbilisi"
+          - option "tegucigalpa"
+          - option "tirana"
+          - option "ulaanbaatar"
+          - option "valletta"
+          - option "vientiane"
+          - option "vilnius"
+          - option "yerevan"
+          - option "zagreb"
+          - option "freetown"
+          - option "juba"
+          - option "serekunda"
+          - option "almaty"
+          - option "bangkok"
+          - option "belize-city"
+          - option "copenhagen"
+          - option "damascus"
+          - option "dhaka"
+          - option "kabul"
+          - option "kingston"
+          - option "lisbon"
+          - option "nassau"
+          - option "panama-city"
+          - option "paramaribo"
+          - option "port-vila"
+          - option "prague"
+          - option "sanaa"
+          - option "vienna"
+          - option "yangon"
+          - option "andorra-la-vella"
+          - option "basseterre"
+          - option "brasilia"
+          - option "bridgetown"
+          - option "castries"
+          - option "delhi"
+          - option "kingstown"
+          - option "lahore"
+          - option "london"
+          - option "madrid"
+          - option "port-moresby"
+          - option "port-of-spain"
+          - option "roseau"
+          - option "sao-paulo"
+          - option "st-georges"
+          - option "thimphu"
+          - option "tokyo"
+          - option "vaduz"
+          - option "warsaw"
+          - option "amsterdam"
+          - option "athens"
+          - option "baghdad"
+          - option "berlin"
+          - option "brussels"
+          - option "istanbul"
+          - option "moscow"
+          - option "pyongyang"
+          - option "tehran"
+          - option "zurich"
+          - option "ho-chi-minh-city"
+          - option "manila"
+          - option "new-york"
+          - option "oslo"
+          - option "sydney"
+          - option "tel-aviv-yafo"
+          - option "kyiv"
+          - option "male"
+          - option "palikir"
+          - option "ramallah"
+          - option "singapore"
+          - option "st-johns"
+          - option "toronto"
+          - option "yaren"
+          - option "jakarta"
+          - option "san-marino"
+          - option "seoul"
+          - option "helsinki"
+          - option "monaco"
+          - option "stockholm"
+          - option "paris"
+          - option "funafuti"
+          - option "shanghai"
+          - option "vatican-city"
+          - option "cockburn-town"
+          - option "douglas"
+          - option "garapan"
+          - option "george-town"
+          - option "gustavia"
+          - option "kyrenia"
+          - option "laayoune"
+          - option "macau"
+          - option "mariehamn"
+          - option "noumea"
+          - option "pago-pago"
+          - option "papeete"
+          - option "philipsburg"
+          - option "pristina"
+          - option "st-peter-port"
+          - option "stanley"
+          - option "taipei"
+          - option "the-valley"
+          - option "torshavn"
+          - option "willemstad"
+          - option "alofi"
+          - option "avarua"
+          - option "charlotte-amalie"
+          - option "flying-fish-cove"
+          - option "hagatna"
+          - option "hamilton"
+          - option "hargeisa"
+          - option "hong-kong"
+          - option "kingston-nf"
+          - option "marigot"
+          - option "nuuk"
+          - option "oranjestad"
+          - option "road-town"
+          - option "san-juan"
+          - option "brades"
+          - option "villa-las-estrellas"
+          - option "jamestown"
+          - option "mata-utu"
+          - option "st-helier"
+          - option "adamstown"
+          - option "cove"
+          - option "grytviken"
+          - option "port-aux-francais"
+          - option "saint-pierre"
+          - option "siachen"
+          - option "west-island"
+          - option "ashmore"
+          - option "chagos"
+        - text: Rows
+        - combobox "Rows":
+          - option "15" [selected]
+          - option "40"
+          - option "100"
+        - table:
+          - rowgroup:
+            - row "Choose every player on this page Name Kind City Cash Seen ▼ Joined Flags":
+              - columnheader "Choose every player on this page":
+                - checkbox "Choose every player on this page"
+              - columnheader "Name":
+                - button "Name"
+              - columnheader "Kind"
+              - columnheader "City"
+              - columnheader "Cash":
+                - button "Cash"
+              - columnheader "Seen ▼":
+                - button "Seen ▼"
+              - columnheader "Joined":
+                - button "Joined"
+              - columnheader "Flags"
+          - rowgroup:
+            - row "Choose Fixture founder Fixture founder admin account lagos ₦1,005,000 just now 2 min ago":
+              - cell "Choose Fixture founder":
+                - checkbox "Choose Fixture founder"
+              - cell "Fixture founder admin":
+                - text: Fixture founder
+                - generic: admin
+              - cell "account"
+              - cell "lagos"
+              - cell "₦1,005,000"
+              - cell "just now"
+              - cell "2 min ago"
+              - cell
+        - generic: 1 found · page 1 of 1 · 1 sessions read
+        - button "Previous" [disabled]
+        - button "Next" [disabled]
+    - navigation "Admin sections":
+      - button "Home"
+      - button "Players"
+      - button "News"
+      - button "World"
+      - button "Pray"
+      - button "Folk"
+      - button "Mod"
+      - button "Audit"
+    - status
+    - complementary "What just happened":
+      - generic: What just happened
+      - button "Close this list": ×
+      - list:
+        - generic: Erased 1 character from Allworld and the map.
+        - generic: just now · 15 Oct 19:26
+- button "Lumo, your guide. Open chat":

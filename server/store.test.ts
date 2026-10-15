@@ -336,3 +336,23 @@ test('the write budget paces whole-file rewrites without delaying a lone write',
   assert.equal(store.stats().writes - before, 1, 'twenty commits waited out the pause together and shared one write');
   assert.ok(Date.now() - started >= 100, 'the second write was held back by the budget');
 });
+
+test('Node erasure keeps paired anonymous financial amounts and rolls back failed drafts', async t => {
+  const { store } = await temp(t);
+  const actor = 'erase-me', transfer = `peer|${actor}|request`;
+  await store.transact(db => {
+    db.sessions.a = session(actor);
+    db.walletEffects = [
+      { publicId: actor, cityId: 'lagos', operationId: 'one', ordinal: 0, at: 1, amount: -3, balanceAfter: 7, reason: 'Gift', transferId: transfer },
+      { publicId: 'other', cityId: 'lagos', operationId: 'two', ordinal: 0, at: 1, amount: 3, balanceAfter: 13, reason: 'Gift from target', transferId: transfer },
+    ];
+  });
+  const before = await store.read(db => JSON.stringify(db.walletEffects));
+  await assert.rejects(store.transact(db => { db.$store.eraseActorStorage!([actor]); throw Error('abort erasure'); }), /abort erasure/);
+  assert.equal(await store.read(db => JSON.stringify(db.walletEffects)), before);
+  await store.transact(db => { db.$store.eraseActorStorage!([actor]); remove(db.sessions, 'a'); });
+  const after = await store.read(db => db.walletEffects) as {publicId:string;transferId:string;amount:number;operationId:string|null}[];
+  assert.equal(after[0]!.publicId, ''); assert.equal(after[0]!.operationId, null);
+  assert.match(after[0]!.transferId, /^erased\|/); assert.equal(after[0]!.transferId, after[1]!.transferId);
+  assert.deepEqual(after.map(row => row.amount), [-3, 3]); assert.equal(after[1]!.publicId, 'other');
+});

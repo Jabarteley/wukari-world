@@ -27,6 +27,9 @@ export interface AdminHttpRoutes {
   'POST /api/admin/players/bulk': Post<{ clientId: string; ids: string[]; action: 'message' | 'credit'; text?: string; amount?: number; reason?: string; confirm?: string }, AdminJson>
   'GET /api/admin/players': Get<PlayersPage>
   'GET /api/admin/players/:id': Get<AdminJson>
+  'POST /api/admin/players/:id/erase': Post<{ clientId: string; reason: string; confirm?: string; typed?: string; plan?: string }, AdminJson>
+  'GET /api/admin/erasure/:id': Get<AdminJson>
+  'POST /api/admin/erasure/:id/retry': Post<{ clientId: string }, AdminJson>
   'POST /api/admin/players/:id/act': Post<{ clientId: string; action: string; reason?: string; confirm?: string; [param: string]: unknown }, ActionDone | ConfirmNeeded>
   'POST /api/admin/world/grant': Post<{ clientId: string; audience: 'online' | 'city'; city?: string; amount: number; reason: string; preview?: boolean; confirm?: string }, AdminJson>
   'GET /api/admin/announcements': Get<AdminJson>

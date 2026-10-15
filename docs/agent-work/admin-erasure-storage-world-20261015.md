@@ -1,0 +1,27 @@
+# Admin erasure storage and world work
+
+- Owner: erase_architecture subagent; consequential architecture and bounded implementation, no browser/deployment.
+- Model/effort: inherited; cost and token usage unavailable.
+- Status: ready for parent integration; focused storage/world checks passed.
+- Checkout: `/Users/anthonyakpan/.codex/worktrees/retention-main-sync/JoinAllworld`, base `8e128a50`.
+- Owned paths: `server/types.ts`, `server/store.ts`, `deploy/sqlite-store.ts`, `deploy/sqlite-shards.ts`, `server/world/{service,registry,land,shard-core,shards}.ts`, `server/economy/privacy.ts`, `server/player-erasure-state.ts`, `server/social/{service,presence}.ts`, `server/ws/rooms.ts`, existing `server/{store,world}.test.ts`, `deploy/sqlite-store.test.ts`, this record.
+- Dependencies: root owns admin routes/UI/job coordinator; domain worker owns erasure coverage. Job contract: `db.playerErasure.jobs` values have `actors: string[]`, `shards: string[]`, `state: 'pending' | 'complete'`. Pending jobs prevent world/land resurrection; completed jobs discard identifying manifests.
+- Goal: transactional receipt purge and anonymous financial history, idempotent map/log erasure with world/land concurrency drainage and cache refresh.
+- Boundaries: no production mutations, no external identity-provider deletion, no claim to wipe provider backups. Existing unrelated dirty source/docs preserved.
+- Resources: none.
+- Acceptance: focused tests cover rollback, unrelated actor preservation, orphan receipts, paired financial transfer integrity, registry reservations and no sync resurrection; parent integrates typecheck/release checks.
+- Implemented: transaction-local `eraseActorStorage`, land drain/barrier, world manifest inventory/current and historic erasure/strict metadata update, serial forced compaction, social/presence/venue cache invalidation. Receipt removal includes orphan action/once rows and optional Worker chat receipts. Wallet actors/operation/reasons become anonymous; shared transfer IDs are replaced on both sides with the same opaque random reference, preserving financial amounts and sequence.
+- Evidence: `node --experimental-strip-types --test --test-concurrency=1 deploy/sqlite-store.test.ts server/store.test.ts server/world.test.ts` passed **59/59**, zero failures/skips (host-local `/tmp/erasure-storage-world-final.txt`). Includes injected erasure rollback, Node/Worker paired transfers, unrelated actor preservation, pending-world refusal, unsettled land cleanup, repeated erase and concurrent forced compaction. `git diff --check` passed.
+- Verification limitation: direct `tsc -p tsconfig/server.json` exhausted the default 4GB heap; this was the wrong unsupported invocation (repository uses data stubs). Parent owns supported `npm run typecheck --serial` and integrated UI/release gates.
+- Parent contract: persist pending job and remove sessions/land journals in the main transaction; then close sockets, `social.forgetRuntime`, `agentService.leavePlace`, reload sanctions/moderation, drain `land.eraseActors`, invoke `world.eraseActors`, finish media revocations, strip actor manifests only after all succeed. Missing world/media adapters must remain pending.
+- Review follow-up: added explicit logical collection inventory to Node/SQLite StoreHelpers after finding Worker top-level Proxy enumeration omitted custom domains; regression covers persisted/current-draft/layered names and draft removal. Aligned shard checks to digits in canonical city/LGA tokens. Reviewed and resolved cross-account archive ownership and other-host house-conversation collateral deletion via domain owner. Root/domain own integrated SQLite preflight regression.
+- Next: parent runs supported typecheck and integration checks, reviews exact diff, and owns deployment/browser acceptance. No production action occurred in this lane.
+
+## Local browser acceptance
+
+- 2026-10-15: sole browser lane used isolated Chrome tab460561222 against local proxy4326/backend4325, fake founder only. `/admin` rendered game; entered the real in-game Admin screen via Alt+Shift+A. `/adminshell.html` returned404, so dedicated-host shell routing was not accepted.
+- Passed desktop preview for exact disposable fixture `19bdccc5-8864-4b65-895c-ae8e5d6b82a3`: one guest scope, retained financial/security/backups/provider disclosure, final button disabled before confirmation. Cancel returned intact target profile.
+- Passed responsive emulation390×844: disclosures, wrapped UUID and controls accessible. Partial text `ERASE 19bdccc5` disabled final action; exact full text enabled. This is desktop emulation, not physical-device acceptance.
+- Erased only the authorized disposable LOCAL fixture via UI. Returned list had one founder row instead of two; activity receipt read `Erased 1 character from Allworld and the map.` No production mutation. Viewport reset.
+- Evidence: `docs/research/phase6-social-release-2026-10-15/admin-erasure/local-desktop-preview.jpg`, `local-desktop-preview.txt`, `local-mobile-confirm-guard.jpg`, `local-mobile-erased-list.jpg`, `local-erased-result.txt`, `local-erased-receipt-desktop.jpg`.
+- Production readiness: current Chrome inventory had no Allworld production tabs (prior139/078/152 absent). `https://admin.joinallworld.com` DNS failed. Did not open main gameplay host to avoid creating a new guest without established session. Parent notified; needs existing production tab/safe entry.

@@ -3,7 +3,7 @@ await Promise.all(['lagos', 'ibadan'].map(preloadCityContent));
 // OWNER: world — the registry of local governments: plots, the directory, the shard store, and the one-character migration.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, rm, readFile, writeFile, mkdir, appendFile } from 'node:fs/promises';
+import { mkdtemp, rm, readFile, writeFile, mkdir, appendFile, rename } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { once } from 'node:events';
@@ -298,4 +298,61 @@ test('one character: a life that arrives in another city is filed under it, a se
   const gone = await get(f, '/api/life?city=lagos', ada);
   assert.deepEqual([gone.status, gone.error], [409, 'city_moved']);
   assert.equal((await get<{ state: LifeState }>(f, '/api/life?city=ibadan', ada)).state.cash, 4242);
+});
+
+test('erasure removes a home and historical shard logs without touching another resident', async t => {
+  const f = await fixture(t), gone = randomUUID(), kept = randomUUID(), world = f.server.world;
+  await world.seedResident('lagos', 'lagos-island', { id: gone, name: 'Erasure Resident', day: 1, hidden: false, home: 'own', style: 1 });
+  await world.seedResident('lagos', 'lagos-island', { id: kept, name: 'Kept Resident', day: 1, hidden: false, home: 'own', style: 2 });
+  const before = await world.people('lagos', 'lagos-island', { viewerId: null });
+  await f.server.store.transact(db => { db.playerErasure = { jobs: { operation: { actors: [gone], shards: ['lagos.lagos-island'], state: 'pending' } } }; });
+  await world.eraseActors([gone], ['lagos.lagos-island']);
+  const after = await world.people('lagos', 'lagos-island', { viewerId: null });
+  assert.deepEqual(after.items, before.items.filter(item => item.id !== gone));
+  const text = await readFile(join(f.dir, 'world', 'lagos.lagos-island.log'), 'utf8');
+  assert.equal(text.includes(gone), false); assert.equal(text.includes(kept), true);
+  await world.sync(gone, 'lagos'); await world.eraseActors([gone], ['lagos.lagos-island']);
+  assert.deepEqual((await world.people('lagos', 'lagos-island', { viewerId: null })).items, after.items);
+});
+
+test('registry erasure frees unsettled reservations only for the erased actor', () => {
+  const state = registry.empty('lagos.lagos-island');
+  for (const id of ['gone', 'kept']) for (const record of registry.settleIn(state, { id, name: id, day: 1, hidden: false, home: 'own', style: 1 }).records) registry.reduce(state, record);
+  const plot = registry.plotOf(state, 'gone')!;
+  registry.reduce(state, ['q', plot.estate, 10, 'gone', plot.plot, 'token', 'request', 100, 1]);
+  assert.equal(registry.moveOut(state, 'gone').records.length, 0);
+  for (const record of registry.eraseActor(state, 'gone')) registry.reduce(state, record);
+  assert.equal(state.residents.has('gone'), false); assert.equal(registry.landOf(state, 'gone').length, 0);
+  assert.equal(state.residents.has('kept'), true); assert.ok(registry.plotOf(state, 'kept'));
+});
+
+test('pending erasure fences world sync and refuses live actor cleanup before deletion commits', async t => {
+  const f = await fixture(t), player = await f.device('Pending Erasure');
+  await choose(f, player); await life(f, player); await f.server.world.idle();
+  await f.server.store.transact(db => {
+    db.playerErasure = { jobs: { operation: { state: 'pending', actors: [player.id], shards: [] } } };
+    const key = db.$store!.sessionKeyByPublicId(player.id)!;
+    db.sessions[key]!.name = 'Should Not Reach Registry';
+  });
+  assert.equal(await f.server.world.sync(player.id, 'lagos'), null);
+  await assert.rejects(f.server.world.eraseActors([player.id], ['lagos.lagos-mainland']), { code: 'erasure_actor_live' });
+  await f.server.store.transact(db => { delete db.sessions[db.$store!.sessionKeyByPublicId(player.id)!]; });
+  await f.server.world.eraseActors([player.id], ['lagos.lagos-mainland']);
+  assert.equal((await f.server.world.people('lagos', 'lagos-mainland', { viewerId: null })).items.some(item => item.id === player.id), false);
+});
+
+test('forced shard compaction serializes a concurrent unrelated resident write', async t => {
+  const dir = await mkdtemp(join(tmpdir(), 'jaw-erasure-compact-'));
+  t.after(() => rm(dir, { recursive: true, force: true }));
+  let release!: () => void, started!: () => void;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  const entered = new Promise<void>(resolve => { started = resolve; });
+  const store = await createShardStore(dir, { ...shardOptions, io: { rename: async (...args) => { started(); await gate; return rename(...args); } } });
+  const put = (id: string) => store.transact('lagos.ikeja', state => ({ records: registry.settleIn(state, { id, name: id, day: 1, hidden: false, home: 'own', style: 1 }).records, result: undefined }));
+  await put('first');
+  const compact = store.compact('lagos.ikeja'); await entered;
+  const concurrent = put('second'); release(); await Promise.all([compact, concurrent]);
+  const reopened = await createShardStore(dir, shardOptions);
+  assert.deepEqual(await reopened.read('lagos.ikeja', state => [...state.residents.keys()].sort()), ['first', 'second']);
+  await store.close(); await reopened.close();
 });

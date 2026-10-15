@@ -56,6 +56,7 @@ import { drainWalletEffects } from '../server/economy/effects.ts';
 import { assertMainStoreWritable, mainStoreAuthority, migrateSqliteSchema, retireMainStore } from './sqlite-schema.ts';
 import type { SqlBinding, SqliteStorage } from './cf-types.ts';
 import type { AccountDeviceRecord, AccountRecord, ActionReceipt, Db, OnceReceipt, SessionRecord, StoreHelpers, TransactOptions } from '../server/types.ts';
+import { anonymousTransfers, erasureIds } from '../server/economy/privacy.ts';
 import type { CityId } from '../src/types/protocol.ts';
 import type { SqliteStore } from './host-seam.ts';
 import { Layer, KEYED_SPECS, assembleText, isKeyedCollection, matches, parseLayout, projectionOf, specOf, splitText } from '../server/keyed.ts';
@@ -669,7 +670,18 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
       }
       return collections.get(key);
     }
+    const erasedActors = new Set<string>();
     const helpers: StoreHelpers = {
+      collectionNames: () => {
+        const names = new Set(Object.keys(base));
+        const logical = (name: string): string => name.startsWith('root:') ? name.slice(5) : name;
+        for (const row of sql.exec<{ name: string }>('SELECT name FROM collections UNION SELECT coll AS name FROM entries').toArray()) names.add(logical(row.name));
+        for (const key of held.collections.keys()) names.add(logical(key));
+        for (const [key, value] of collections) { if (value === undefined) names.delete(key); else names.add(key); }
+        for (const key of layer.names()) { if (layer.known(key)) names.add(key); else names.delete(key); }
+        return [...names].sort();
+      },
+      eraseActorStorage: publicIds => { for (const id of erasureIds(publicIds)) erasedActors.add(id); },
       // What this transaction has already read, changed, added or removed is scanned as the draft holds it.
       scanSessions: predicate => {
         const keys: string[] = [], seen = new Set<string>();
@@ -759,7 +771,7 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
     /** Write what this transaction changed. `lazy`: hold it in memory instead, when all of it may be held (answers 0: nothing was written). */
     function commit(lazy: boolean): number {
       beforeCommit?.();
-      const effects = drainWalletEffects(observedSessions), monetary = effects.length > 0;
+      const effects = drainWalletEffects(observedSessions), monetary = effects.length > 0 || erasedActors.size > 0;
       // Each session's text, without its receipts. Receipts a route put on a session it has just made (plain objects) join the tables too.
       const texts = new Map<string, string>();
       for (const [key, session] of sessions) {
@@ -825,6 +837,23 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
           sql.exec('INSERT INTO wallet_effects(public_id,city_id,operation_id,ordinal,at,amount,balance_after,reason,transfer_id) VALUES(?,?,?,?,?,?,?,?,?)',
             effect.publicId, effect.cityId, effect.operationId, effect.ordinal, effect.at, effect.amount, effect.balanceAfter, effect.reason, effect.transferId ?? null);
           wrote += 1;
+        }
+        if (erasedActors.size) {
+          const linked: { publicId: string; transferId: string }[] = [];
+          const chatReceipts = sql.exec<{ name: string }>("SELECT name FROM sqlite_master WHERE type='table' AND name='chat_receipts'").toArray().length > 0;
+          for (const id of erasedActors) {
+            for (const row of sql.exec<{ public_id: string; transfer_id: string }>('SELECT public_id,transfer_id FROM wallet_effects WHERE public_id=? AND transfer_id IS NOT NULL', id).toArray()) linked.push({ publicId: row.public_id, transferId: row.transfer_id });
+            for (const row of sql.exec<{ public_id: string; transfer_id: string }>('SELECT public_id,transfer_id FROM wallet_effects WHERE transfer_id LIKE ?', `peer|${id}|%`).toArray()) linked.push({ publicId: row.public_id, transferId: row.transfer_id });
+            sql.exec('DELETE FROM action_receipts WHERE sender=?', id);
+            sql.exec('DELETE FROM once_receipts WHERE sender=?', id);
+            if (chatReceipts) sql.exec('DELETE FROM chat_receipts WHERE sender=? OR room LIKE ?', id, `%:home:${id}`);
+            sql.exec("UPDATE wallet_effects SET public_id='', operation_id=NULL, reason='Erased player transaction' WHERE public_id=?", id);
+            wrote += 3;
+          }
+          for (const [before, after] of anonymousTransfers(linked, erasedActors)) {
+            sql.exec("UPDATE wallet_effects SET transfer_id=?, reason='Erased player transaction' WHERE transfer_id=?", after, before);
+            wrote += 1;
+          }
         }
       });
       // What this transaction held of a session or a collection is what is stored now: nothing of theirs is left to write.

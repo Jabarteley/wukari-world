@@ -444,3 +444,57 @@ test('SQLite: counting or listing the sessions reads their keys and no record â€
  assert.deepEqual(await loose.read(d=>Object.values(d.sessions).map(item=>(item as SessionRecord).publicId).sort().slice(0,3)),['public-1','public-10','public-11']);
  assert.deepEqual(await loose.read(d=>Object.entries(d.sessions).filter(([key])=>key==='new').map(([,item])=>(item as SessionRecord).secret)),['new']);
 });
+
+test('SQLite erasure purges orphan receipts atomically and anonymizes both financial transfer sides', async t => {
+  const f = fixture(t), actor = 'erasure-target', transfer = `peer|${actor}|1:request`;
+  f.db.exec('CREATE TABLE chat_receipts(sender TEXT, room TEXT, value TEXT)');
+  f.db.prepare('INSERT INTO chat_receipts(sender,room,value) VALUES(?,?,?)').run(actor, 'lagos:park', '{}');
+  f.db.prepare('INSERT INTO chat_receipts(sender,room,value) VALUES(?,?,?)').run('other', `lagos:home:${actor}`, '{}');
+  f.db.prepare('INSERT INTO chat_receipts(sender,room,value) VALUES(?,?,?)').run('other', 'lagos:park', '{}');
+  f.db.prepare('INSERT INTO action_receipts(sender,action_id,action_at,value) VALUES(?,?,?,?)').run(actor, 'a', 1, '{}');
+  f.db.prepare('INSERT INTO once_receipts(sender,id,at,kind,value) VALUES(?,?,?,?,?)').run(actor, 'o', 1, 'gift', '{}');
+  const wallet = f.db.prepare('INSERT INTO wallet_effects(public_id,city_id,operation_id,ordinal,at,amount,balance_after,reason,transfer_id) VALUES(?,?,?,?,?,?,?,?,?)');
+  wallet.run(actor, 'lagos', 'target-operation', 0, 1, -5, 15, 'Paid Recipient', transfer);
+  wallet.run('other', 'lagos', 'other-operation', 0, 1, 5, 25, 'Gift from Erasure Target', transfer);
+  wallet.run('unrelated', 'lagos', 'untouched', 0, 1, 2, 12, 'Wage', null);
+  const erase = (db: Draft) => (db as unknown as Db).$store!.eraseActorStorage!([actor]);
+  f.db.exec("CREATE TRIGGER erasure_fail BEFORE UPDATE ON wallet_effects BEGIN SELECT RAISE(ABORT,'erase rollback'); END");
+  await assert.rejects(f.store.transact(erase), error => codedError(error).code === 'storage_unavailable');
+  assert.equal(count(f.db, 'SELECT COUNT(*) AS n FROM action_receipts'), 1);
+  assert.equal(count(f.db, 'SELECT COUNT(*) AS n FROM once_receipts'), 1);
+  assert.equal(count(f.db, 'SELECT COUNT(*) AS n FROM chat_receipts'), 3);
+  assert.equal((f.db.prepare('SELECT public_id FROM wallet_effects WHERE seq=1').get() as {public_id:string}).public_id, actor);
+  f.db.exec('DROP TRIGGER erasure_fail');
+  await f.store.transact(erase);
+  assert.equal(count(f.db, 'SELECT COUNT(*) AS n FROM action_receipts'), 0);
+  assert.equal(count(f.db, 'SELECT COUNT(*) AS n FROM once_receipts'), 0);
+  assert.equal(count(f.db, 'SELECT COUNT(*) AS n FROM chat_receipts'), 1);
+  const rows = f.db.prepare('SELECT * FROM wallet_effects ORDER BY seq').all() as {public_id:string;operation_id:string|null;transfer_id:string|null;amount:number;reason:string}[];
+  assert.equal(rows[0]!.public_id, ''); assert.equal(rows[0]!.operation_id, null);
+  assert.match(rows[0]!.transfer_id!, /^erased\|/); assert.equal(rows[0]!.transfer_id, rows[1]!.transfer_id);
+  assert.equal(rows[1]!.public_id, 'other'); assert.equal(rows[1]!.operation_id, 'other-operation');
+  assert.deepEqual(rows.map(row => row.amount), [-5, 5, 2]);
+  assert.equal(rows[2]!.reason, 'Wage'); assert.equal(JSON.stringify(rows).includes(actor), false);
+  await f.store.transact(erase);
+  assert.deepEqual(f.db.prepare('SELECT * FROM wallet_effects ORDER BY seq').all(), rows, 'safe repeated purge');
+});
+
+
+test('SQLite collection inventory includes persisted, layered and current-draft domains', async t => {
+  const f = fixture(t);
+  const names = (draft: Draft) => (draft as unknown as Db).$store!.collectionNames!();
+  await f.store.transact(db => { db['customIdentity'] = { actor: 'erasure-target' }; });
+  assert.ok((await f.store.read(names)).includes('customIdentity'));
+  await f.store.transact(db => {
+    db['draftIdentity'] = { actor: 'another' };
+    assert.ok(names(db).includes('draftIdentity'));
+    db['customIdentity'] = undefined;
+    assert.ok(!names(db).includes('customIdentity'));
+  });
+  const layered = open(f.storage, { layout: 'entries' });
+  await layered.transact(db => { db['social'] = { players: { target: { name: 'Target' } }, convs: {} }; });
+  const listed = await layered.read(names);
+  assert.ok(listed.includes('social'));
+  assert.ok(listed.includes('draftIdentity'));
+  assert.ok(!listed.some(name => name.startsWith('root:')));
+});

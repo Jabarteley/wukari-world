@@ -1145,6 +1145,12 @@ function buildService(ctx: RouteContext) {
   const service = {
     LIMITS,
     presence,
+    forgetRuntime(actorIds: readonly string[]): void {
+      const ids = new Set(actorIds);
+      for (const id of ids) { blockIndex.delete(id); presence.forget(id); }
+      for (const [id, blockedIds] of blockIndex) { for (const gone of ids) blockedIds.delete(gone); if (!blockedIds.size) blockIndex.delete(id); }
+      ctx.emit('players-erased', { ids: [...ids] });
+    },
     /** For server/social/ping.ts: the same registration, lookups and notice every method here uses. */
     kit: { enter, other, notify, pub, areFriends, whereabouts, founderId, col, admit, endVisit, housePush, pruneHouse, houseView, hostAtHome, blockedEither, doorFor, ordinary, append, fanOut, syncHouseConv },
     /**

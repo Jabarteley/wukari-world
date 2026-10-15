@@ -59,3 +59,7 @@ Hosted CI38787644803 is terminal SUCCESS on exact4ab427e7. Concrete user excepti
 ## Yield handoff
 
 Code candidate4ab427e7 and evidence/docs0e459604 are on origin/codex/admin-player-erasure. Main was not changed; no deployment or production erasure. User release-exception question remains pending. codex-phase6 lock released normally; housing owner explicitly received lane return and its coordination hold is lifted. On resume, fetch/recheck main and live health before reacquiring; never overwrite a newer housing release with this older candidate. Browser production GET-only tab460561228 preserved; local synthetic servers stopped. Unrelated untracked ui-world-entry-375.png remains untouched.
+
+## Settings fixture ownership handoff
+
+Housing owner requested the accepted stale Settings fixture correction after its exact ab8f qualification reproduced9!==6. Root freshly inspected4ab427e7 and released only src/app/features/panelsA.test.ts's count9 plus three explicit camera comfort label assertions. No other source, admin code, packaging change or release exception was handed over. Housing owns applying/revalidating that isolated hunk in its current lane. Future admin integration must preserve the adopted correction.

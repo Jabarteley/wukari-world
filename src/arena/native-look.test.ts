@@ -25,6 +25,11 @@ test('a seat without a look gets a varied default, the same one every time', () 
   const looks = new Set(['Bot 1', 'Bot 2', 'Ada', 'Bola', 'Chidi', 'Dayo'].map((n, i) => JSON.stringify(packNativeLook(defaultNativeLook(n, i % 2)))))
   assert.ok(looks.size >= 4)
   assert.ok(unpackNativeLook(packNativeLook(defaultNativeLook('x', 0))))
+  // Only the world's crowd pieces: a default never needs a file the phone has not already got.
+  for (const name of ['a', 'b', 'c', 'd', 'e']) {
+    const look = defaultNativeLook(name, 1, 'male')
+    assert.deepEqual([look.body, look.hair, look.garments, look.shoes], ['male', 'short01', ['female-casual-01'], 'shoes01'])
+  }
 })
 test('the real fighters need memory, cores and WebGL 2', () => {
   assert.equal(nativeFightersAllowed({ webgl2: true }), true)

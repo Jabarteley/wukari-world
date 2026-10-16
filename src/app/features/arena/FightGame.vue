@@ -155,11 +155,18 @@ function insets(): Insets {
 }
 /** A turn of the phone: the layout settles a moment after the event on some browsers, so measure now and again after it. */
 function turned(): void { size(); setTimeout(size, 250) }
+/** Who is in the ring, for the 3D view: one list per roster change (the view compares it by identity). */
+let looksOf: unknown = null, looks: { name: string; nat?: ArenaNative | undefined; mine: boolean }[] = []
+function seatLooks(): typeof looks {
+  const st = room.state.value
+  if (st !== looksOf) { looksOf = st; looks = st ? st.seats.map((seat, i) => ({ name: seat.name, nat: seat.nat, mine: i === st.you })) : [] }
+  return looks
+}
 async function start3d(): Promise<void> {
   if (!gl.value) return
   try {
     const { createFightView } = await import('../../../arena/fight-3d.ts')
-    const made = await createFightView(gl.value, { reduced, seats: () => room.state.value?.seats ?? [] })
+    const made = await createFightView(gl.value, { reduced, seats: seatLooks })
     if (!made) return
     if (!gl.value) { made.dispose(); return }
     view3d = made; has3d.value = made.ready(); size()

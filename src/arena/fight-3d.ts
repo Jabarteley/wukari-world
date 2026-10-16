@@ -85,20 +85,31 @@ export const fovFor = (aspect: number): number => (aspect < 1 ? 60 : 40)
  */
 export interface Insets { top: number; bottom: number; left: number; right: number }
 export const NO_INSETS: Insets = Object.freeze({ top: 0, bottom: 0, left: 0, right: 0 })
-/** A standing fighter and the room a jump needs, metres above the canvas, and a body's width either side of the pair. */
-const FIT_HEIGHT = 2.9, FIT_SIDE = 0.9
+/** A standing fighter and the room a jump needs, metres above the canvas, and half a body (and a glove) either side of the pair. */
+const FIT_HEIGHT = 2.9, FIT_SIDE = 0.47
+/** The widest the lens opens to keep the camera inside the ropes: a tall phone, a wide one. */
+const MAX_FOV_TALL = 80, MAX_FOV_WIDE = 58
 /**
  * How to frame the pair, pure: the field of view, the camera's distance (metres) for a gap between the fighters, and `shift`, the
  * px to slide the picture down so the fighters centre in the free band (between the HUD and the pad) instead of the whole canvas.
- * Both fighters and their reach fit the free width, and a standing fighter plus a jump fits the free height; in portrait the
- * camera may go further back for a wide gap (a fighter is then small, but whole), in landscape it stops at the ring's far side.
+ * Both fighters and their reach fit the free width, and a standing fighter plus a jump fits the free height. The camera stays inside
+ * the ropes while it can: a wide pair opens the lens first (up to MAX_FOV_*), and only a pair too wide for that pulls back past the
+ * ropes (the camera then rises over them, see cameraHeight); in portrait it may go far back, in landscape it stops at the far wall.
  */
 export function framing(gap: number, width: number, height: number, inset: Insets = NO_INSETS): { fov: number; dist: number; shift: number } {
-  const aspect = width / Math.max(1, height), fov = fovFor(aspect), tan2 = 2 * Math.tan((fov * Math.PI) / 360)
-  const bandH = Math.max(60, height - inset.top - inset.bottom), freeW = Math.max(120, width - inset.left - inset.right)
-  const needV = (FIT_HEIGHT * height) / (bandH * tan2), needH = ((gap + 2 * FIT_SIDE) * height) / (freeW * tan2)
-  const dist = Math.min(aspect < 1 ? 30 : 17, Math.max(3.6, needV, needH))
-  return { fov, dist, shift: Math.round(inset.top + bandH / 2 - height / 2) }
+  const aspect = width / Math.max(1, height), tall = aspect < 1, base = fovFor(aspect)
+  const bandH = Math.max(60, height - inset.top - inset.bottom), freeW = Math.max(120, width - 2 * Math.max(inset.left, inset.right))
+  const need = (fov: number): number => {
+    const tan2 = 2 * Math.tan((fov * Math.PI) / 360)
+    return Math.max(3.6, (FIT_HEIGHT * height) / (bandH * tan2), ((gap + 2 * FIT_SIDE) * height) / (freeW * tan2))
+  }
+  const inside = ROPE_Z - 0.85, cap = tall ? 30 : 17, widest = tall ? MAX_FOV_TALL : MAX_FOV_WIDE
+  let fov = base, dist = need(base)
+  if (dist > inside) {
+    fov = widest; dist = need(widest)
+    for (let f = base + 1; f < widest; f++) if (need(f) <= inside) { fov = f; dist = need(f); break }
+  }
+  return { fov, dist: Math.min(cap, dist), shift: Math.round(inset.top + bandH / 2 - height / 2) }
 }
 /** The ring's ropes are 8.25 m from its centre and the top rope 2.25 m up: a camera further out rises to look over it. */
 export const ROPE_Z = 8.25, ROPE_TOP = CANVAS_Y + 1.25
@@ -117,7 +128,7 @@ interface Body {
 }
 
 /** What the view needs to know about a seat to dress it: the name (a default look is made from it) and the public native look, if any. */
-export interface SeatLook { name: string; nat?: ArenaNative | undefined }
+export interface SeatLook { name: string; nat?: ArenaNative | undefined; /** This seat is the player's own (their pieces are on the phone already). */ mine?: boolean }
 
 export interface FightView {
   /** Both fighters are in the ring (the 2D view draws everything until then). */
@@ -195,20 +206,30 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
   // Each seat's native fighter is made when its look is known and made again when the look changes.
   const wanted: string[] = ['', ''], generation = [0, 0]
   let disposed = false, seatsSeen: readonly SeatLook[] | null = null
-  function wantNative(seat: number, look: SeatLook | undefined): void {
-    const appearance = (look?.nat ? unpackNativeLook(look.nat) : null) ?? defaultNativeLook(look?.name ?? '', seat)
+  const real: boolean[] = [false, false]
+  /** Dress one seat and put it in the ring. Another person's own look may need files this phone has not got: their fighter starts in the world's crowd pieces (already here) and swaps when theirs arrives. */
+  function build(seat: number, appearance: ReturnType<typeof defaultNativeLook>, mine: number, final: boolean): Promise<void> {
+    return (async () => {
+      const fighter: NativeFighter = await spawnNativeFighter(appearance)
+      if (disposed || mode !== 'native' || generation[seat] !== mine || (!final && real[seat])) { fighter.dispose(); return }
+      const body = makeBody(fighter.group, fighter.model, clipsFor((clipsModel as NonNullable<typeof clipsModel>).animations, appearance.body, fighter.bones), seat, () => fighter.dispose())
+      bodies[seat]?.dispose(); bodies[seat] = body
+      if (final) real[seat] = true
+    })()
+  }
+  function wantNative(seat: number, look: SeatLook | undefined, other: SeatLook | undefined): void {
+    const otherBody = other?.nat ? unpackNativeLook(other.nat)?.body : undefined
+    const given = look?.nat ? unpackNativeLook(look.nat) : null
+    const fallback = defaultNativeLook(look?.name ?? '', seat, otherBody)
+    const appearance = given ?? fallback
     const key = JSON.stringify(appearance)
     if (wanted[seat] === key) return
     wanted[seat] = key
+    real[seat] = false
     const mine = ++generation[seat]!
-    void (async () => {
-      try {
-        const fighter: NativeFighter = await spawnNativeFighter(appearance)
-        if (disposed || mode !== 'native' || generation[seat] !== mine) { fighter.dispose(); return }
-        const body = makeBody(fighter.group, fighter.model, clipsFor((clipsModel as NonNullable<typeof clipsModel>).animations, appearance.body, fighter.bones), seat, () => fighter.dispose())
-        bodies[seat]?.dispose(); bodies[seat] = body
-      } catch (error) { if (!disposed && mode === 'native' && generation[seat] === mine) { why = String((error as Error)?.message ?? error).slice(0, 120); void kayKit() } }
-    })()
+    const fail = (error: unknown): void => { if (!disposed && mode === 'native' && generation[seat] === mine) { why = String((error as Error)?.message ?? error).slice(0, 120); void kayKit() } }
+    if (given && !look?.mine && !bodies[seat]) void build(seat, fallback, mine, false).catch(() => undefined)
+    void build(seat, appearance, mine, true).catch(fail)
   }
   if (!native) void kayKit()
 
@@ -263,7 +284,7 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
       // Who is sitting where: dress each seat from its public look when the roster changes (the real characters), or give up on them.
       const seats = opts.seats?.() ?? null
       if (mode === 'native' && clipsModel) {
-        if (seats !== seatsSeen || !seats) { seatsSeen = seats; if (!startedAt) startedAt = now; for (const seat of [0, 1]) wantNative(seat, seats?.[seat]) }
+        if (seats !== seatsSeen || !seats) { seatsSeen = seats; if (!startedAt) startedAt = now; for (const seat of [0, 1]) wantNative(seat, seats?.[seat], seats?.[1 - seat]) }
         if (startedAt && bodies.some((x) => !x) && now - startedAt > ((globalThis as { allworldFightNativeWaitMs?: number }).allworldFightNativeWaitMs ?? NATIVE_WAIT_MS)) { why = 'waited too long'; void kayKit() }
       }
       bodies.forEach((body, seat) => {
@@ -311,7 +332,9 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
       // The camera: between the two, closer as they close in; on a knock-out it turns slowly round the one who went down.
       const x0 = toWorld(snaps[0][0], 0).x, x1 = toWorld(snaps[1][0], 0).x, gap = Math.abs(x1 - x0)
       // The fighters are framed in the part the HUD and thumbs leave free (framing, resize), centred on their middle height.
-      let tx = (x0 + x1) / 2, ty = CANVAS_Y + 1.2, dist = framing(gap, sizeW, sizeH, inset).dist, yaw = 0, drop = 0
+      const frame = framing(gap, sizeW, sizeH, inset)
+      let tx = (x0 + x1) / 2, ty = CANVAS_Y + 1.2, dist = frame.dist, yaw = 0, drop = 0
+      if (Math.abs(camera.fov - frame.fov) > 0.05) { camera.fov = frame.fov; camera.updateProjectionMatrix() }
       const loser = b.f[0][5] <= 0 ? 0 : b.f[1][5] <= 0 ? 1 : -1
       if ((b.p === PHASE.ko || over) && loser >= 0 && !opts.reduced) {
         if (koSince < 0) koSince = now

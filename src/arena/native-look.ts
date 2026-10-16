@@ -60,27 +60,28 @@ export function cleanNativeLook(value: unknown): ArenaNative | undefined {
   return a ? packNativeLook(a) : undefined
 }
 
-const DEFAULTS: readonly Pick<NativeAppearanceV2, 'body' | 'hair' | 'garments' | 'shoes' | 'complexion'>[] = [
-  { body: 'male', hair: 'short01', garments: ['male-worksuit-01'], shoes: 'shoes02', complexion: 'deep' },
-  { body: 'female', hair: 'braid01', garments: ['female-sport-01'], shoes: 'shoes01', complexion: 'medium' },
-  { body: 'male', hair: 'afro01', garments: ['female-casual-02'], shoes: 'shoes03', complexion: 'deep' },
-  { body: 'female', hair: 'ponytail01', garments: ['female-casual-01'], shoes: 'shoes02', complexion: 'light' },
-  { body: 'male', hair: 'short02', garments: ['formal-suit-01'], shoes: 'shoes01', complexion: 'medium' },
-  { body: 'female', hair: 'short02', garments: ['female-sport-01'], shoes: 'shoes03', complexion: 'deep' },
-]
+// The world's own crowd is dressed from these pieces (NATIVE_CROWD_DEFAULTS in the character module), so they are on the phone already:
+// a seat without a look of its own (the computer, an older client) gets them, varied by colour, height and a few sliders, and never costs a download.
 const SKINS = ['#7a4a2c', '#96603c', '#5e3620', '#b0764c', '#3f2416', '#c98e62']
-const UPPERS = ['#e8553d', '#2f80ed', '#e8a643', '#4cae6a', '#8a5bd0', '#e9e4d8']
-const HAIRS = ['#15110f', '#2a211d', '#3d2a1e']
+const UPPERS = ['#e8553d', '#2f80ed', '#e8a643', '#4cae6a', '#8a5bd0', '#e9e4d8', '#c0392b', '#16a085']
+const LOWERS = ['#27314f', '#3b2a2a', '#2d3a2f', '#4a4a52']
+const HAIRS = ['#15110f', '#2a211d', '#3d2a1e', '#5b3a24']
 const hash = (text: string): number => { let h = 2166136261; for (const ch of text) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619) } return h >>> 0 }
 
-/** A varied look for a seat that has none (the computer, or an older client): the same name and seat always give the same fighter. */
-export function defaultNativeLook(name: string, seat: number): NativeAppearanceV2 {
-  const h = hash(`${name}:${seat}`), d = DEFAULTS[(h + seat) % DEFAULTS.length] as (typeof DEFAULTS)[number]
-  const skin = SKINS[(h >>> 3) % SKINS.length] as string, upper = UPPERS[(h >>> 7) % UPPERS.length] as string
+/**
+ * A varied look for a seat that has none: the same name and seat always give the same fighter. `body` is the other fighter's body when
+ * known (its files are on the phone for sure); otherwise one of the two crowd bodies. Only the crowd's pieces are used.
+ */
+export function defaultNativeLook(name: string, seat: number, body?: NativeAppearanceV2['body']): NativeAppearanceV2 {
+  const h = hash(`${name}:${seat}`)
+  const pick = <T,>(list: readonly T[], shift: number): T => list[(h >>> shift) % list.length] as T
+  const slider = (shift: number, span: number): number => Math.round((((h >>> shift) % 1000) / 1000 - 0.5) * span * 100) / 100
   return normalizeNativeRecipe({
     schema: 'allworld-character', version: 2,
-    appearance: { version: 2, ...d, eyeColor: 'brown', height: 1 + (((h >>> 11) % 9) - 4) * 0.01, features: { muscle: 0.3 },
-      colors: { skin, hair: HAIRS[(h >>> 13) % HAIRS.length], upper, lower: '#27314f', shoes: '#ffffff' } },
+    appearance: { version: 2, body: body ?? (h & 1 ? 'male' : 'female'), hair: 'short01', garments: ['female-casual-01'], shoes: 'shoes01', eyeColor: 'brown', complexion: 'deep',
+      height: 1 + (((h >>> 11) % 9) - 4) * 0.01,
+      features: { muscle: 0.2 + slider(2, 0.5), weight: slider(5, 0.5), 'nose-width': slider(8, 0.4), 'chin-width': slider(14, 0.4), 'face-width': slider(17, 0.3) },
+      colors: { skin: pick(SKINS, 3), hair: pick(HAIRS, 13), upper: pick(UPPERS, 7), lower: pick(LOWERS, 9), shoes: '#ffffff' } },
   }).appearance
 }
 

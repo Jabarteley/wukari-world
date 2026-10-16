@@ -161,13 +161,14 @@ def locomotion(T, duty, front, back, lift, lean, drop, bob, swing, elbow, heel_o
 WALK = dict(T=0.85, duty=0.58, front=0.30, back=0.34, lift=0.07, lean=4, drop=0.04, bob=0.015, swing=0.07, elbow=0.0, heel_off=22, twist=5, head_pitch=6)
 JOG = dict(T=0.70, duty=0.46, front=0.28, back=0.50, lift=0.20, lean=9, drop=0.075, bob=0.03, swing=0.17, elbow=0.05, heel_off=32, twist=8, head_pitch=9)
 SPRINT = dict(T=0.47, duty=0.36, front=0.30, back=0.66, lift=0.30, lean=15, drop=0.12, bob=0.045, swing=0.24, elbow=0.09, heel_off=42, twist=11, head_pitch=10)
-RUN_SPEED = {k: (v['front'] + v['back']) / (v['duty'] * v['T']) for k, v in (('walk', WALK), ('jog', JOG), ('sprint', SPRINT))}
+DRIBBLE = dict(T=0.62, duty=0.42, front=0.30, back=0.56)
+RUN_SPEED = {k: (v['front'] + v['back']) / (v['duty'] * v['T']) for k, v in (('walk', WALK), ('jog', JOG), ('sprint', SPRINT), ('dribble', DRIBBLE))}
 
 
 def dribble():
     """A jog with the ball: shorter strides, the chest a little more upright, the head down at the ball, a touch from each foot's toe."""
-    T = 0.70
-    base = locomotion(T, 0.46, 0.26, 0.40, 0.14, 11, 0.08, 0.025, 0.12, 0.02, 30, 6, 16)
+    T = 0.62
+    base = locomotion(T, 0.42, 0.30, 0.56, 0.16, 11, 0.09, 0.025, 0.13, 0.02, 30, 6, 16)
     fn0 = base[2]
 
     def fn(t):

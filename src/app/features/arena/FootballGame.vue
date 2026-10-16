@@ -19,8 +19,8 @@ import { createFootballSound } from '../../../arena/football-sound.ts'
 import type { FootballSnap } from '../../../arena/football.ts'
 import { KITS, VIEW_H, VIEW_W, drawFootball, drawFootballHud, drawShootout2D, makePitch, newFx, screenToWorld, spawnEvents, stickRotation } from '../../../arena/football-draw.ts'
 import type { HudExtras, Look, Meta } from '../../../arena/football-draw.ts'
-import type { FootballView, Insets } from '../../../arena/football-3d.ts'
-import type { ArenaLook } from '../../../types/arena.ts'
+import type { FootballView, Insets, SeatLook } from '../../../arena/football-3d.ts'
+import type { ArenaLook, ArenaNative } from '../../../types/arena.ts'
 import { FOOTBALL_PAD } from '../../../arena/input/pad.ts'
 import { usePad } from '../../../arena/input/usePad.ts'
 
@@ -44,11 +44,16 @@ const ownLook = (): ArenaLook | undefined => {
 const hex = (group: 'skin' | 'hairColours', id: string | undefined, fallback: string): string => APPEARANCE[group].find((swatch) => swatch.id === id)?.hex ?? fallback
 const FALLBACK_LOOKS: Look[] = [{ skin: '#8a5a3c', hair: '#1c1c1c' }, { skin: '#a8714b', hair: '#2b1b12' }, { skin: '#6b432b', hair: '#1c1c1c' }, { skin: '#c18a5e', hair: '#111111' }]
 
+/** The player's own native character, public part, as the world dresses it. The modules that make it are reached by a dynamic import (startup shares them), so the room opens once it is known. */
+let ownNat: ArenaNative | undefined
+const ownNative = (): ArenaNative | undefined => ownNat
+const ownRaw = game.state.value.onboarding?.look as unknown as Record<string, unknown> | undefined
+const natReady = import('../../../arena/native-own.ts').then(async (m) => { ownNat = await m.packOwnLook(ownRaw) }).catch(() => undefined)
 const sound = createFootballSound()
 const pending: { k: number; snap: FootballSnap }[] = []
 const fx = newFx()
 const room = useArenaRoom<FootballSnap>({
-  game: 'football', intent: props.intent, hz: 20, look: ownLook, toast: (text, kind) => game.toast(text, kind), close: () => emit('close'),
+  game: 'football', intent: props.intent, hz: 20, look: ownLook, nat: ownNative, ready: natReady, toast: (text, kind) => game.toast(text, kind), close: () => emit('close'),
   onMatch: () => { pending.length = 0 },
   onSnap: (k, snap) => { if (snap.e.length) pending.push({ k, snap }) },
 })
@@ -182,11 +187,18 @@ function insets(): Insets {
 }
 /** A turn of the phone: the layout settles a moment after the event on some browsers, so measure now and again after it. */
 function turned(): void { size(); setTimeout(size, 250) }
+/** Who is on the pitch, for the 3D view: one list per roster change (the view compares it by identity). */
+let looksOf: unknown = null, looks: SeatLook[] = []
+function seatLooks(): SeatLook[] {
+  const st = room.state.value
+  if (st !== looksOf) { looksOf = st; looks = st ? st.seats.map((seat, i) => ({ name: seat.name, nat: seat.nat, mine: i === st.you })) : [] }
+  return looks
+}
 async function start3d(): Promise<void> {
   if (!gl.value) return
   try {
     const { createFootballView } = await import('../../../arena/football-3d.ts')
-    const made = await createFootballView(gl.value, { reduced })
+    const made = await createFootballView(gl.value, { reduced, seats: seatLooks })
     if (!made) return
     if (!gl.value) { made.dispose(); return }
     view3d = made; has3d.value = true; size()
@@ -299,6 +311,10 @@ function frame(now: number): void {
     view3d.draw(snapA, snapB, t, { you, own: meta.own ?? null, now })
     ctx.setTransform(hudRatio, 0, 0, hudRatio, 0, 0)
     ctx.clearRect(0, 0, width, height)
+    // The stands' crowd is busy and bright: a dark band behind the top bar keeps the score and the names readable.
+    const band = portrait.value ? 78 : 66, shade = ctx.createLinearGradient(0, 0, 0, band)
+    shade.addColorStop(0, 'rgba(6, 10, 22, 0.9)'); shade.addColorStop(0.6, 'rgba(6, 10, 22, 0.62)'); shade.addColorStop(1, 'rgba(6, 10, 22, 0)')
+    ctx.fillStyle = shade; ctx.fillRect(0, 0, width, band)
     hud.labels = view3d.labels; hud.replay = view3d.replaying
     drawFootballHud(ctx, width, height, snapB, meta, fx, hud)
     fx.shake = 0

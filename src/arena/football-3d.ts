@@ -23,6 +23,10 @@ import type { RatioState } from './three/kit.ts'
 import { ASSET_VERSIONS } from './asset-versions.generated.ts'
 import { EV, GOAL_DEPTH, GOAL_Y1, GOAL_Y2, H, PEN_D, PHASE, SO_STAGE, W, flightProgress, shotHeight } from './football.ts'
 import type { FootballSnap, FootballerSnap, ShootSnap } from './football.ts'
+import { defaultNativeLook, unpackNativeLook } from './native-look.ts'
+import type { ArenaNative } from '../types/arena.ts'
+import { ActionMix, FOOTBALLER_HEIGHT, KIT, NATIVE_HEIGHT, NATIVE_WAIT_MS, TIMES, clipsFor, kitLook, nativeAllowedHere, spawnNativeFighter, trianglesOf, warmNative, withinBudget } from './football-native.ts'
+import type { NativeFighter } from './fight-native.ts'
 
 /** A model's URL with its content version (asset-versions.generated.ts): /assets/ is cached for a year, so a changed file needs a new URL. */
 const versioned = (path: string): string => `${path}?v=${ASSET_VERSIONS[path] ?? 'x'}`
@@ -32,11 +36,14 @@ export const FOOTBALL_ASSETS = Object.freeze({
   ball: versioned('/assets/packs/allworld-arenas/ball.glb'),
   /** team 0 (green), team 1 (yellow), the goalkeepers (purple) */
   players: [versioned('/assets/packs/kenney-blocky-characters/player-1.glb'), versioned('/assets/packs/kenney-blocky-characters/player-2.glb'), versioned('/assets/packs/kenney-blocky-characters/player-3.glb')] as const,
+  /** our own football clips for the players' own (native) characters */
+  clips: versioned('/assets/packs/allworld-arenas/native-football-clips.glb'),
 })
 /** Fetch and parse the Football models ahead of the screen (the Games hub does this when it opens and when the browser is idle). */
 export function preloadFootball(): Promise<unknown> {
   const a = FOOTBALL_ASSETS
-  return Promise.all([a.pitch, a.goal, a.ball, ...a.players].map((url) => loadGlb(url)))
+  const own = nativeAllowedHere() ? [loadGlb(a.clips), warmNative()] : []
+  return Promise.all([...[a.pitch, a.goal, a.ball, ...a.players].map((url) => loadGlb(url)), ...own])
 }
 
 // ---- units ---------------------------------------------------------------------------------------------------
@@ -174,6 +181,19 @@ export function penaltyCam(team: number, across: number, aspect: number, fov: nu
   const toGoal = Math.max(PEN_D * UX + 8.5, across / 2 / Math.max(0.1, tanH)) // from the camera to the goal line: at least eight metres behind the spot
   return { pos: [goalX - s * toGoal, 3.0, -s * 1.7], look: [goalX, 0.7, 0] }
 }
+/** The most the end-on camera slides back towards your own goal to keep its mouth out from under the thumbs, metres. */
+export const GOAL_CLEAR_MAX = 6
+/**
+ * The smallest slide `d` in [0, max] for which `y(d)` (where something sits on the screen, px from the top, falling as `d` grows) is
+ * no lower than `limit`: 0 when it is clear already, `max` when even that is not enough. Pure.
+ */
+export function clearShift(y: (d: number) => number, limit: number, max = GOAL_CLEAR_MAX): number {
+  if (y(0) <= limit) return 0
+  if (y(max) > limit) return max
+  let lo = 0, hi = max
+  for (let i = 0; i < 12; i++) { const mid = (lo + hi) / 2; if (y(mid) > limit) lo = mid; else hi = mid }
+  return hi
+}
 /** The roll (radians about the keeper's forward axis) of a diving keeper, `u` 0..1 through his dive; the sign is for the camera's right. */
 export const diveRoll = (dive: number, u: number): number => -dive * 1.15 * Math.min(1, Math.max(0, u))
 
@@ -196,14 +216,24 @@ export interface FootballView {
   project(x: number, y: number, up?: number): { x: number; y: number }
   /** The camera now. */
   mode(): CamMode | 'penalty'
-  stats(): ReturnType<FrameStats['read']> & { /** the pixel ratio now drawn at */ ratio: number; /** where the camera, its look point and the ball are (metres), for measuring */ cam: number[]; look: number[]; ball: number[]; /** the keepers' lean or dive, radians */ keepers: number[] }
+  stats(): ReturnType<FrameStats['read']> & { /** the pixel ratio now drawn at */ ratio: number; /** where the camera, its look point and the ball are (metres), for measuring */ cam: number[]; look: number[]; ball: number[]; /** the keepers' lean or dive, radians */ keepers: number[]; native: number; perActor: number; nativeWhy: string }
   dispose(): void
 }
 
 interface Body {
   holder: THREE.Group; tilt: THREE.Group; mixer: THREE.AnimationMixer; actions: Map<string, THREE.AnimationAction>; current: Clip | null
   yaw: number; roll: number; lx: number; lz: number; speed: number; kickUntil: number; cheerUntil: number; keeper: boolean; team: number
+  /** the blocky player (hidden while the player's own character is drawn) */ root: THREE.Object3D
+  /** the player's own character, once it has arrived */ nat: NativeSlot | null
 }
+/** One player's own character in the scene: the actor, the blender that drives its clips, and what it is in the middle of. */
+interface NativeSlot { fighter: NativeFighter; mix: ActionMix; slide: boolean; landAt: number; kickUntil: number }
+/** What the view needs to know about a seat to dress it: the name (a default look is made from it) and the public native look, if any. */
+export interface SeatLook { name: string; nat?: ArenaNative | undefined; /** This seat is the player's own (their pieces are on the phone already). */ mine?: boolean }
+/** How far (metres) a keeper's dive goes in the clip's time: the body is at full length when he has moved this far. */
+export const DIVE_M = 2.2
+/** The dive clip's lengths: the body going over (played by how far the keeper has gone), then the landing (played in time). */
+export const DIVE_LEN = 1.2
 const CAP_CHARS = 6, CAP_RINGS = 8
 /** The goal's replay: it starts this long after the ball went in, shows this much of the play before it at this speed, then the scorer's celebration. */
 export const REPLAY_AFTER = 0.5, REPLAY_BACK = 1.0, REPLAY_PAST = 0.15, REPLAY_SPEED = 0.62
@@ -213,13 +243,17 @@ export const REPLAY_FOR = (REPLAY_BACK + REPLAY_PAST) / REPLAY_SPEED
 const HIST = 160, STRIDE = 20
 
 /** Make the 3D view on `canvas`, or null when WebGL or the models are not available (the screen keeps its 2D view). */
-export async function createFootballView(canvas: HTMLCanvasElement, opts: { reduced: boolean }): Promise<FootballView | null> {
+export async function createFootballView(canvas: HTMLCanvasElement, opts: { reduced: boolean; seats?: () => readonly SeatLook[] }): Promise<FootballView | null> {
   const renderer = makeRenderer(canvas)
   if (!renderer) return null
   let models: Awaited<ReturnType<typeof loadGlb>>[]
   try { models = await Promise.all([FOOTBALL_ASSETS.pitch, FOOTBALL_ASSETS.goal, FOOTBALL_ASSETS.ball, ...FOOTBALL_ASSETS.players].map((url) => loadGlb(url))) }
   catch { renderer.dispose(); return null }
   const [pitchModel, goalModel, ballModel, ...playerModels] = models as [typeof models[0], typeof models[0], typeof models[0], ...typeof models]
+  // The players' own characters (our clips for them) come on top of the blocky players, which stay as the stand-in and the fallback.
+  let clipsModel: Awaited<ReturnType<typeof loadGlb>> | null = null
+  let native = nativeAllowedHere(), nativeWhy = native ? '' : 'this phone'
+  if (native) { try { clipsModel = await loadGlb(FOOTBALL_ASSETS.clips) } catch { native = false; nativeWhy = 'no clips' } }
 
   const scene = new THREE.Scene()
   scene.background = skyTexture()
@@ -284,7 +318,7 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
       if (ONCE.has(clip.name as Clip)) { action.setLoop(THREE.LoopOnce, 1); action.clampWhenFinished = true }
       actions.set(clip.name, action)
     }
-    bodies.push({ holder, tilt, mixer, actions, current: null, yaw: 0, roll: 0, lx: NaN, lz: NaN, speed: 0, kickUntil: 0, cheerUntil: 0, keeper, team })
+    bodies.push({ holder, tilt, mixer, actions, current: null, yaw: 0, roll: 0, lx: NaN, lz: NaN, speed: 0, kickUntil: 0, cheerUntil: 0, keeper, team, root, nat: null })
   }
 
   // Blob shadows and team rings: one instanced draw each.
@@ -348,7 +382,7 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
     body.current = clip
   }
 
-  const proj = new THREE.Vector3()
+  const proj = new THREE.Vector3(), probe = new THREE.PerspectiveCamera()
   const toScreen = (x: number, y: number, z: number): { x: number; y: number } => {
     proj.set(x, y, z).project(camera)
     return { x: (proj.x + 1) / 2 * sizeW, y: (1 - proj.y) / 2 * sizeH }
@@ -358,7 +392,7 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
   const ident = new THREE.Quaternion()
 
   /** A goalkeeper: stands in his goal facing the pitch, leans with his sideways steps, and in a shoot-out dives to his side. */
-  function keeperTick(body: Body, w: { x: number; z: number }, so: ShootSnap | undefined, dt: number, conceded: boolean): void {
+  function keeperTick(body: Body, w: { x: number; z: number }, so: ShootSnap | undefined, dt: number, conceded: boolean, now: number): void {
     const team = body.team
     body.holder.position.set(w.x, 0, w.z)
     const target = yawFor(team === 0 ? 0 : 12) // team 0's keeper is at the -x end and looks along +x
@@ -367,6 +401,12 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
     const vz = Number.isNaN(body.lx) || dt <= 0 ? 0 : (w.z - body.lz) / dt
     body.speed += (vz - body.speed) * (1 - Math.exp(-10 * dt))
     body.lx = w.x; body.lz = w.z
+    if (body.nat) {
+      // The keepers are drawn as the players' own characters in a shoot-out only: two actors on the screen at most, which is what the triangle budget allows.
+      const own = !!so
+      body.nat.fighter.group.visible = own; body.root.visible = !own
+      if (own) { body.tilt.rotation.set(0, 0, 0); body.tilt.position.y = 0; nativeKeeper(body, w, so, conceded, now, dt); return }
+    }
     let want = Math.max(-0.3, Math.min(0.3, body.speed * 0.09 * (team === 0 ? 1 : -1))), lift = 0
     if (so && so.s >= SO_STAGE.fly && team === 1 - so.t && so.k[2] !== 0) {
       // This keeper is being shot at and has named a dive: he goes over as far as the server has moved him, and stays down till the next kick.
@@ -410,6 +450,89 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
     bodies.forEach((body) => { body.holder.visible = false })
   }
 
+  // ---- the players' own characters ------------------------------------------------------------------------------------
+  // Each body slot is dressed from its seat's public look (the keepers and seats without one get a default made from the world's own
+  // pieces, which are on the phone already), in its team's shirt, and swapped in for the blocky player when it is ready. If one actor
+  // would cost so many triangles that the screen passes NATIVE_TRIANGLES_MAX, or the files are slow to come, the blocky players stay.
+  const wanted: string[] = bodies.map(() => ''), generation: number[] = bodies.map(() => 0)
+  let seatsSeen: readonly SeatLook[] | null = null, startedAt = 0, disposed = false, fieldN = 2, perActor = 0, keepersAsked = false
+  function dropNative(why: string): void {
+    native = false; nativeWhy = why
+    for (const body of bodies) { if (body.nat) { body.nat.fighter.dispose(); body.nat = null } body.root.visible = true; body.tilt.rotation.set(0, 0, 0); body.tilt.position.y = 0 }
+    generation.forEach((_, i) => { generation[i] = (generation[i] as number) + 1 })
+  }
+  async function buildSlot(i: number, appearance: ReturnType<typeof defaultNativeLook>, mine: number): Promise<void> {
+    const fighter = await spawnNativeFighter(appearance)
+    if (disposed || !native || generation[i] !== mine) { fighter.dispose(); return }
+    perActor = Math.max(perActor, trianglesOf(fighter.group))
+    if (!withinBudget(perActor, fieldN)) { fighter.dispose(); dropNative(`over budget: ${perActor} triangles an actor`); return }
+    fighter.group.scale.setScalar(PLAYER_HEIGHT / NATIVE_HEIGHT)
+    const body = bodies[i] as Body
+    const clips = clipsFor((clipsModel as NonNullable<typeof clipsModel>).animations, appearance.body, fighter.bones)
+    const mix = new ActionMix(new THREE.AnimationMixer(fighter.model), clips)
+    if (body.nat) body.nat.fighter.dispose()
+    body.tilt.add(fighter.group)
+    if (body.keeper) fighter.group.visible = false; else body.root.visible = false // a keeper is drawn as his own character in a shoot-out only (see keeperTick)
+    body.nat = { fighter, mix, slide: false, landAt: 0, kickUntil: 0 }
+    if (body.keeper) mix.start({ clip: 'keeper-ready', loop: true, rate: 1 })
+    try { (renderer as THREE.WebGLRenderer).compile(scene, camera) } catch { /* it compiles on the next frame instead */ }
+  }
+  function wantNative(seats: readonly SeatLook[] | null): void {
+    const known = seats?.find((x) => x.nat && unpackNativeLook(x.nat))
+    const bodyOf = known ? unpackNativeLook(known.nat)?.body : undefined
+    bodies.forEach((body, i) => {
+      if (body.keeper ? keepersAsked : i < fieldN) {
+        const seat = body.keeper ? undefined : seats?.[i]
+        const given = seat?.nat ? unpackNativeLook(seat.nat) : null
+        const base = given ?? defaultNativeLook(body.keeper ? `Keeper ${body.team}` : seat?.name ?? `Player ${i}`, i, bodyOf)
+        const look = kitLook(base, body.team, body.keeper)
+        const key = JSON.stringify(look)
+        if (wanted[i] === key) return
+        wanted[i] = key
+        const mine = ++(generation[i] as number)
+        void buildSlot(i, look, mine).catch((error) => { if (!disposed && native && generation[i] === mine) dropNative(String((error as Error)?.message ?? error).slice(0, 120)) })
+      }
+    })
+  }
+  /** Which clip the player is in, from what the snapshot says (the rules' slide is a standing tackle here). */
+  function nativeField(body: Body, f: FootballerSnap, speed: number, cheer: boolean, sad: boolean, carrying: boolean, now: number, dt: number): void {
+    const nat = body.nat as NativeSlot, mix = nat.mix
+    const slide = (f[3] & 1) !== 0, stun = (f[3] & 2) !== 0, charge = (f[3] >> 2) & 7
+    if (slide) { if (!nat.slide) mix.start({ clip: 'tackle', loop: false, rate: 1.5 }, 0, true) }
+    else if (stun) mix.start({ clip: 'stumble', loop: false, rate: 1 }, 0)
+    else if (now < nat.kickUntil) { /* the strike plays out */ }
+    else if (cheer) mix.start({ clip: 'celebrate', loop: true, rate: 1 })
+    else if (sad) mix.start({ clip: 'dejected', loop: true, rate: 1 })
+    else if (charge > 0 && speed < 1.3) {
+      // the shoot button is held: the leg goes back and waits there for the strike
+      mix.start({ clip: 'kick', loop: false, rate: 1.4 }, 0)
+      if (mix.stateTime >= TIMES.kickWind) { mix.stateTime = TIMES.kickWind; mix.hold = true }
+    } else mix.start(null)
+    nat.slide = slide
+    mix.fadeIn = slide ? 22 : 14
+    mix.update(dt, speed, carrying)
+  }
+  /** The keeper: ready, or in a shoot-out over and down as far as the server has moved him, or catching, or hanging his head. */
+  function nativeKeeper(body: Body, w: { x: number; z: number }, so: ShootSnap | undefined, conceded: boolean, now: number, dt: number): void {
+    const nat = body.nat as NativeSlot, mix = nat.mix
+    const diving = !!so && so.s >= SO_STAGE.fly && body.team === 1 - so.t && so.k[2] !== 0
+    if (diving && so) {
+      const clip = so.k[2] > 0 ? 'keeper-dive-left' : 'keeper-dive-right' // the shooter's right is the keeper's left
+      mix.fadeIn = 22
+      mix.start({ clip, loop: false, rate: 0 }, 0)
+      mix.hold = true
+      let want = Math.min(1, Math.abs(w.z) / DIVE_M) * TIMES.diveGo
+      if (so.s >= SO_STAGE.result) { if (!nat.landAt) nat.landAt = now; want = Math.min(DIVE_LEN, TIMES.diveGo + (now - nat.landAt) / 1000) }
+      mix.stateTime += (want - mix.stateTime) * (1 - Math.exp(-30 * dt))
+    } else {
+      nat.landAt = 0
+      mix.fadeIn = now < nat.kickUntil ? 16 : 6
+      if (now < nat.kickUntil) { /* a catch plays out */ } else if (conceded) mix.start({ clip: 'dejected', loop: true, rate: 1 })
+      else mix.start({ clip: 'keeper-ready', loop: true, rate: 1 })
+    }
+    mix.update(dt, 0, false)
+  }
+
   const view: FootballView = {
     labels,
     replaying: false,
@@ -423,6 +546,14 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
       const so = b.o, pens = b.p === PHASE.pens && !!so
       if (b.p !== lastPhase) { lastPhase = b.p; phaseSince = now; if (b.p === PHASE.goal) scorer = b.s ? b.s[1] : -1 }
       const sincePhase = (now - phaseSince) / 1000
+      // The players' own characters: dress each body from its seat when the roster is known, and give up on them if they are slow to come.
+      fieldN = Math.min(4, Math.max(2, b.f.length))
+      if (native && clipsModel) {
+        const seats = opts.seats?.() ?? null
+        if (seats === null || seats.length > 0) { if (!startedAt || seats !== seatsSeen) { seatsSeen = seats; if (!startedAt) startedAt = now; wantNative(seats) } }
+        if (!keepersAsked && fieldN > 0 && bodies.slice(0, fieldN).every((x) => x.nat)) { keepersAsked = true; wantNative(seatsSeen) }
+        if (startedAt && bodies.some((x, i) => !x.keeper && i < fieldN && !x.nat) && now - startedAt > ((globalThis as { allworldFootballNativeWaitMs?: number }).allworldFootballNativeWaitMs ?? NATIVE_WAIT_MS)) dropNative('waited too long')
+      }
 
       // Where everyone is, drawn: the snapshots mixed, your own player from your own input.
       const fs: FootballerSnap[] = b.f.map((fb, p) => {
@@ -465,7 +596,7 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
         if (body.keeper) {
           const wk = toWorld(body.team === 0 ? 24 : W - 24, ks[body.team as 0 | 1])
           body.holder.visible = true
-          keeperTick(body, wk, pens ? so : (b.p === PHASE.over && so ? so : undefined), dt * sim, scoring >= 0 && scoring !== body.team)
+          keeperTick(body, wk, pens ? so : (b.p === PHASE.over && so ? so : undefined), dt * sim, scoring >= 0 && scoring !== body.team, now)
           return
         }
         const f = fs[i]
@@ -483,13 +614,18 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
         const sliding = (f[3] & 1) !== 0
         const cheer = (scoring >= 0 && (i & 1) === scoring && (i === scorer || sincePhase > 0.6)) || (winner >= 0 && (i & 1) === winner) || now < body.cheerUntil
         const sad = (scoring >= 0 && (i & 1) !== scoring) || (winner >= 0 && (i & 1) !== winner)
-        const clip = clipFor(f, body.speed, { kicking: now < body.kickUntil, cheer, sad })
-        play(body, clip, false, (clip === 'run' || clip === 'walk' ? runScale(body.speed) : 1) * sim)
-        body.mixer.update(dt)
-        // A slide tackle lays the body back, feet first.
-        body.roll += ((sliding ? -1.2 : 0) - body.roll) * (1 - Math.exp(-18 * dt))
-        body.tilt.rotation.set(body.roll, 0, 0)
-        body.tilt.position.y = sliding ? 0.3 : 0
+        if (body.nat) {
+          nativeField(body, f, body.speed, cheer, sad, b.b[2] === i + 1, now, dt * sim)
+          body.tilt.rotation.set(0, 0, 0); body.tilt.position.y = 0
+        } else {
+          const clip = clipFor(f, body.speed, { kicking: now < body.kickUntil, cheer, sad })
+          play(body, clip, false, (clip === 'run' || clip === 'walk' ? runScale(body.speed) : 1) * sim)
+          body.mixer.update(dt)
+          // A slide tackle lays the body back, feet first.
+          body.roll += ((sliding ? -1.2 : 0) - body.roll) * (1 - Math.exp(-18 * dt))
+          body.tilt.rotation.set(body.roll, 0, 0)
+          body.tilt.position.y = sliding ? 0.3 : 0
+        }
         labels.push({ x: 0, y: 0, p: i, carrier: b.b[2] === i + 1, you: meta.you === i, scale: 0 })
       })
 
@@ -561,6 +697,19 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
         const mine = meta.you !== null ? fs[meta.you] : undefined, me = mine ? toWorld(mine[0], mine[1]) : null
         target = openPlay(mode, viewTeam, { x: ballX, z: ballZ }, { x: Math.max(-9, Math.min(9, ballVx)), z: Math.max(-9, Math.min(9, ballVz)) }, dist, half, me)
       }
+      // End-on in open play, the near goal's mouth would sit under the thumb pad: slide the picture back towards it, up the screen, until the goal line is above the thumbs.
+      if (mode === 'end' && shot === 'end-' + viewTeam && !pens) {
+        const sg = sgn(viewTeam), limit = sizeH - inset.bottom - 4
+        probe.copy(camera, false); probe.fov = fov
+        const goalY = (d: number): number => {
+          probe.position.set(target.pos[0] - sg * d, target.pos[1], target.pos[2]); probe.up.set(0, 1, 0)
+          probe.lookAt(target.look[0] - sg * d, target.look[1], target.look[2]); probe.updateMatrixWorld(true); probe.updateProjectionMatrix()
+          proj.set(-sg * (PITCH_L / 2 + 0.3), 0, 0).project(probe)
+          return (1 - proj.y) / 2 * sizeH
+        }
+        const d = clearShift(goalY, limit)
+        target.pos[0] -= sg * d; target.look[0] -= sg * d
+      }
       // A new kind of shot cuts a little faster than a follow; the same kind eases.
       if (shot !== lastShot) { lastShot = shot; cutAt = now }
       if (now - cutAt < 600) ease = Math.max(ease, 1 - Math.pow(0.0001, dt))
@@ -588,7 +737,12 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
         if (code === EV.kick) {
           const o = snap.o, who = o && snap.p === PHASE.pens ? o.p[0] : nearestPlayer(snap.f, x, y)
           const body = who >= 0 ? bodies[who] : undefined
-          if (body && !body.keeper) { body.kickUntil = now + 380; play(body, 'kick', true, 1, 0.12) }
+          if (body?.nat && !body.keeper) {
+            const nat = body.nat, kind = extra ? 'kick' : 'pass', hit = extra ? TIMES.kickHit : TIMES.passHit
+            if (nat.mix.state?.clip === kind && nat.mix.hold) nat.mix.hold = false // the wind-up the shoot button was holding goes on through the ball
+            else nat.mix.start({ clip: kind, loop: false, rate: 1 }, hit - 0.05, true)
+            nat.kickUntil = now + Math.max(0, nat.mix.duration(kind) - nat.mix.stateTime) * 1000
+          } else if (body && !body.keeper) { body.kickUntil = now + 380; play(body, 'kick', true, 1, 0.12) }
           shake.kick(extra ? 0.05 : 0.015)
           hopUntil = now + 520; hopPeak = extra ? 0.6 : 0.2
           burst(w.x, 0.1, w.z, extra ? 8 : 4, 1.4, [0xffffff, 0xcfe8c4], 0.6)
@@ -605,6 +759,8 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
           shake.kick(0.15); burst(w.x, 0.9, w.z, 6, 2.5, [0xffffff], 1)
         } else if (code === EV.save) {
           shake.kick(0.1); burst(w.x, 0.8, w.z, 6, 2, [0x7dd3fc], 1)
+          const keeper = bodies[4 + (extra & 1)]
+          if (keeper?.nat && !(snap.o && snap.o.k[2] !== 0)) { keeper.nat.mix.start({ clip: 'keeper-catch', loop: false, rate: 1 }, 0, true); keeper.nat.kickUntil = now + keeper.nat.mix.duration('keeper-catch') * 1000 }
         } else if (code === EV.miss) {
           shake.kick(0.04)
         }
@@ -621,8 +777,8 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
     },
     project: (x, y, up = 0) => { const w = toWorld(x, y); return toScreen(w.x, up, w.z) },
     mode: () => camMode,
-    stats: () => ({ ...stats.read(renderer), ratio: ladder[rung.level] as number, cam: [camPos.x, camPos.y, camPos.z].map((v) => Math.round(v * 10) / 10), look: [look.x, look.y, look.z].map((v) => Math.round(v * 10) / 10), ball: [ballX, ballLift, ballZ].map((v) => Math.round(v * 10) / 10), keepers: [bodies[4], bodies[5]].map((k) => Math.round(((k as Body).roll) * 100) / 100) }),
-    dispose() { disposeScene(scene); bitGeo.dispose(); bitMat.dispose(); shadows.geometry.dispose(); rings.geometry.dispose(); renderer.dispose() },
+    stats: () => ({ ...stats.read(renderer), ratio: ladder[rung.level] as number, cam: [camPos.x, camPos.y, camPos.z].map((v) => Math.round(v * 10) / 10), look: [look.x, look.y, look.z].map((v) => Math.round(v * 10) / 10), ball: [ballX, ballLift, ballZ].map((v) => Math.round(v * 10) / 10), keepers: [bodies[4], bodies[5]].map((k) => Math.round(((k as Body).roll) * 100) / 100), /** how many bodies are the players' own characters, the triangles of one, and why not */ native: bodies.filter((x) => x.nat).length, perActor, nativeWhy }),
+    dispose() { disposed = true; for (const body of bodies) { body.nat?.fighter.dispose(); body.nat = null } disposeScene(scene); bitGeo.dispose(); bitMat.dispose(); shadows.geometry.dispose(); rings.geometry.dispose(); renderer.dispose() },
   }
   return view
 }

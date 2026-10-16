@@ -7,7 +7,7 @@
 import { CARTRIDGE_CONTRACT, defineCartridge } from './cartridge.ts'
 import type { Cartridge } from './cartridge.ts'
 
-/** Fight, Race and Football draw in 3D with these (src/arena/fight-3d.ts, race-3d.ts, football-3d.ts; manifests in scripts/assets/manifests/). Fight's real characters are the world's own files, not listed here. */
+/** Fight, Race and Football draw in 3D with these (src/arena/fight-3d.ts, race-3d.ts, football-3d.ts; manifests in scripts/assets/manifests/). Fight's and Football's real characters are the world's own files, not listed here. */
 const KAYKIT = 'https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0'
 const PACKS = 'public/assets/packs/'
 const FIGHT_ASSETS = [
@@ -22,6 +22,7 @@ const FOOTBALL_ASSETS = [
   { path: 'public/assets/packs/allworld-arenas/pitch.glb', licence: 'ours', source: 'Allworld (scripts/assets/blender/pitch.py)' },
   { path: 'public/assets/packs/allworld-arenas/goal.glb', licence: 'ours', source: 'Allworld (scripts/assets/blender/goal.py)' },
   { path: 'public/assets/packs/allworld-arenas/ball.glb', licence: 'ours', source: 'Allworld (scripts/assets/blender/ball.py)' },
+  { path: 'public/assets/packs/allworld-arenas/native-football-clips.glb', licence: 'ours', source: 'Allworld (scripts/assets/blender/native-football-clips.py)' },
   { path: 'public/assets/packs/kenney-blocky-characters/player-1.glb', licence: 'CC0', source: KENNEY_PEOPLE, author: 'Kenney' },
   { path: 'public/assets/packs/kenney-blocky-characters/player-2.glb', licence: 'CC0', source: KENNEY_PEOPLE, author: 'Kenney' },
   { path: 'public/assets/packs/kenney-blocky-characters/player-3.glb', licence: 'CC0', source: KENNEY_PEOPLE, author: 'Kenney' },

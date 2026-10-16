@@ -89,11 +89,11 @@
       "licenceId": "AGPL-3.0-or-later",
       "source": "Allworld",
       "author": "Allworld",
-      "bytes": 393592,
+      "bytes": 393428,
       "triangles": 0,
       "game": "football",
       "kind": "prop",
-      "sourceSha256": "15a7b215cccad65a5fa17797672e720252e1334be52690f025fae838b4bcb99b",
+      "sourceSha256": "e361982bee79f9dd7276e5f66fe42cfc6c4634836f311dba7c96540d9028ba69",
       "note": "Football clips for the native 53-joint characters (idle, walk, jog, sprint, dribble, kick, pass, tackle, stumble, celebrate, dejected, keeper ready, dives and catch), keyframed from code; animations only, no mesh.",
       "made": "scripts/assets/blender/native-football-clips.py",
       "prepared": true

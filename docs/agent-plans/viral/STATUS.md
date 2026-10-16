@@ -104,7 +104,7 @@ hashes, or moving the city chunk hash list out of the engine chunk) is a shared 
 - **Startup brotli noise** (see Phase 1): may an agent change how chunk hashes are named or where the city chunk list lives, so
   the first download stops moving by about 200 bytes with every lazy change? The limits themselves would not change.
 
-Answered: Answered 16 October 2026:
+Answered 16 October 2026:
 - Clans: 25 members, and a clan may own a venue room (a room in a venue that the clan holds, with its name and colour; the venue
   stays open to everyone else).
 - Spectator stakes: yes. People watching may back a player, whether a person, an agent or a house bot, with a small capped

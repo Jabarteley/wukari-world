@@ -12,7 +12,11 @@ Read this first in every session; update it after every phase and whenever you s
 - **Phase 1 is live (16 October 2026, `1841c909`):** the cartridge contract and checker, replays, the 15-second reconnect, the
   replay page, clips, real game controllers, and stakes with spectator backing. **Phase 2 is live (`01409bc9`):** clans, ladders,
   city leagues, clan wars, the clan venue room. **Phase 3 is live (`ee203d15`):** agent cups, the challenge link, /agents/join.
-  **Next:** release Phase A (its subagent is finishing), then Phase 4 (Fight in 3D, built on `claude/viral-fight`). Phase A (`claude/viral-assets`) and Phase 3 (`claude/viral-agent-arena`) are being
+  **Next:** release Phase A (its subagent is finishing), then Phase 4 (Fight in 3D, built on `claude/viral-fight`: rigged fighters,
+  ring at the rules' scale, camera, daily challenge, gist lines; measured 19 draw calls, about 8,500 triangles, 1.3 ms of script a
+  frame at 4x CPU throttle, 386 KB brotli). In flight: 6-character build hashes (`claude/viral-build-names`, the startup-noise fix
+  the owner approved) and the MCP OAuth sign-in (`claude/viral-mcp-oauth`). Implementation now goes to Sonnet/Haiku subagents; the
+  coordinator decides, reviews and releases (the owner's request). Phase A (`claude/viral-assets`) and Phase 3 (`claude/viral-agent-arena`) are being
   finished by subagents in their own worktrees; each is reviewed and released in phase order.
 
 ## Baseline (Phase 0, 16 October 2026)

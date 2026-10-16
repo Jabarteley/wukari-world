@@ -9,9 +9,10 @@ Read this first in every session; update it after every phase and whenever you s
   the branches below; each ends with a "Work in progress" commit holding whatever was uncommitted. Continue them; do not start over.
 - **Live site when this was written:** `main` at or after `c2419edb` (16 October), with every "world alive" phase live
   (docs/agent-plans/world-alive/STATUS.md).
-- **Phase 1 is partly live (16 October 2026, `45723a6e`):** the cartridge contract and checker, replays, the 15-second reconnect,
-  the replay page, clips and real game controllers. **Next step:** Phase 1c (arena stakes and spectator backing, built and tested on
-  `claude/viral-cartridge`, not yet released), then Phase 2. Phase A runs alongside on `claude/viral-assets` (a subagent).
+- **Phase 1 is live (16 October 2026, `1841c909`):** the cartridge contract and checker, replays, the 15-second reconnect, the
+  replay page, clips, real game controllers, and stakes with spectator backing. **Now:** Phase 2 (clans) is built and tested on
+  `claude/viral-clans`, in CI before release. Phase A (`claude/viral-assets`) and Phase 3 (`claude/viral-agent-arena`) are being
+  finished by subagents in their own worktrees; each is reviewed and released in phase order.
 
 ## Baseline (Phase 0, 16 October 2026)
 
@@ -43,8 +44,8 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | Phase | State | Live commit | Notes |
 | --- | --- | --- | --- |
 | 0 Baseline | done | `228443371` (main) | nothing to release; live was `c2419edb` |
-| 1 Cartridge standard, replays, reconnect, clips | 1a+1b live; 1c (stakes) next | `45723a6e` | see "Phase 1" below |
-| 2 Clans, ladders, city leagues | started, stopped | | branch `claude/viral-clans` |
+| 1 Cartridge standard, replays, reconnect, clips | live | `1841c909` | see "Phase 1" below; real-pad check open |
+| 2 Clans, ladders, city leagues | built, in CI | | branch `claude/viral-clans`, see "Phase 2" |
 | 3 Agent arena | started, stopped | | branch `claude/viral-agent-arena` |
 | A Asset pipeline | started, stopped | | branch `claude/viral-assets` |
 | 4 Polish Fight | not started | | |
@@ -73,7 +74,7 @@ Review each branch before building on it: typecheck, run its tests, read its dif
   rumble, "Controller connected"; a pad sends exactly the touch input. Checked in a browser with a simulated pad (walk, punch,
   rumble, panel). **Not yet checked on a real pad over Bluetooth on Android Chrome**: this machine has none attached.
 
-**Built, not released (1c, on `claude/viral-cartridge`):** stakes in game naira for two people in a room (the host picks one of
+**Live at `1841c909` (1c, release run 38856598829, CI 38855730828, live smoke PASS):** stakes in game naira for two people in a room (the host picks one of
 the table stakes; never with a computer seat) and spectator backing (₦100 or ₦500 on a seat, once a match, open until ten seconds
 in; the winner's backers share the prize; a draw or a one-sided pot refunds), through the table stakes' life action, gift rule,
 18+ rule and shared day limits; a pot record `arenapots` paid exactly once; refunded when a room closes or after a restart; an
@@ -85,6 +86,19 @@ compresses differently each time. On `main` the margin was 121 bytes. Phase 1 ke
 build entry had reordered the engine chunk; it now enters through one dynamic import), but the remaining margin is hash noise:
 expect any agent's release to fail STARTUP_BROTLI by chance now and then. A fix that does not raise the limit (for example shorter
 hashes, or moving the city chunk hash list out of the engine chunk) is a shared decision, so it is listed under questions.
+
+## Phase 2 (16 October 2026)
+
+Built on `claude/viral-clans` (the earlier agent's rules and server kept after review; finished and tested): clans of 25 (admin
+setting) with leader, two deputies, six-letter codes and the invite link `/?table=clan-<code>` (kept across the quick start; link
+preview "Join my clan on Allworld"), kick with a day's ban, the clan chat (a group the clan owns), and **the clan's venue room**
+(10 or more people; members are seated together in one of the venue's groups, which shows the clan's name and colour; the venue
+stays open). Ladders (+30/-12, floors, best 10 a day, three games a pair a day, 28-day seasons with a soft reset, weekly groups),
+boards in the order friends, city, weekly group, clan, country, everyone (under 4 KB gzipped, tested), city leagues by the
+home-city pin with the winner in the gist, and weekly clan wars on the top 80% with a prize claimed once. The Clans screen is a
+section of the Games app (lazy). Review found and fixed: a clan war always settled as a draw (points read after they were
+removed), a test-clock gap in the league, and an untyped route module. Tests: 5 against a real server plus the pure ones. Checked
+in a 390x844 browser: start, share, open the invite as a new player, preview, join, ladders.
 
 ## The owner's decisions (16 October 2026)
 
@@ -114,12 +128,16 @@ Answered 16 October 2026:
 
 ## Failing on `main` before us
 
+- 16 October: `server/social.test.ts` "who-is-here carries each player's server-held look…" fails on untouched `main` (it expects
+  `look_saved`; the native character work changed looks). Not ours.
+
 See docs/agent-plans/world-alive/STATUS.md, "Failing on `main` before us": eleven tests left failing for the owner's judgement
 (market scene anchors, ambient crowd size, two Abuja scenes, sedan geometry hashes, the country count, one remote homeward route).
 Not yours to fix.
 
 ## Log
 
+- 2026-10-16: Phase 1 complete and live at `1841c909` (1c: stakes and backing). Phase 2 built and in CI.
 - 2026-10-16: Phase 1a+1b live at `45723a6e` (contract, checker, replays, reconnect, replay page, clips, controllers).
 - 2026-10-16: Phase 0 baseline recorded (main `228443371`, live `c2419edb`, typecheck clean, Blender 5.2.2 installed).
 - 2026-10-16: plan, research and answers written; four phases started and stopped mid-way (branches above). Nothing released.

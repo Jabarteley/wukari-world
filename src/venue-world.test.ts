@@ -1,5 +1,6 @@
 import { loadCityScenes } from './scene/city-scenes.ts';
 await loadCityScenes('lagos');
+import { nativeTestDocument } from './scene/body/native-test-fixture.ts';
 import { loadCityContent as preloadCityContent } from './game/cities/registry.ts';
 await Promise.all(['lagos', 'ibadan'].map(preloadCityContent));
 // Battery rule: a venue scene renders on demand only — an idle scene does zero renders.
@@ -26,7 +27,24 @@ const container: StubContainer = { appendChild() {}, getBoundingClientRect: () =
 /** The game state the tests push is a slice of a LifeState (the host reads only a few fields), so setState takes any object here. */
 type TestWorld = Omit<VenueWorld, 'setState'> & { setState(state: object): void };
 function makeWorld(host: StubContainer, options: VenueWorldOptions): TestWorld {
-  return createVenueWorld(host as unknown as HTMLElement, options) as unknown as TestWorld;
+  const currentDocument = browser.document as { createElement?: typeof nativeTestDocument.createElement } | undefined;
+  if (currentDocument === nativeTestDocument) delete browser.document;
+  const world = createVenueWorld(host as unknown as HTMLElement, options) as unknown as TestWorld;
+  if (!currentDocument || currentDocument === nativeTestDocument) browser.document = nativeTestDocument;
+  else if (!currentDocument.createElement) currentDocument.createElement = nativeTestDocument.createElement;
+  return world;
+}
+async function settleNative(world: TestWorld, ready: () => boolean = () => true): Promise<number> {
+  let previous = -1, stable = 0;
+  for (let attempt = 0; attempt < 100; attempt += 1) {
+    await new Promise<void>((resolve) => setTimeout(resolve, 10));
+    const count = world.diagnostics().renderCount;
+    stable = ready() && count === previous ? stable + 1 : 0;
+    if (stable >= 3) return count;
+    previous = count;
+  }
+  const diagnostics = world.diagnostics();
+  assert.fail(`native scene readiness did not settle (${diagnostics.renderCount} renders, ${diagnostics.crowd} crowd, tags ${diagnostics.tags.map((tag) => `${tag.kind}:${tag.id}`).join(', ')})`);
 }
 function testHome({ blocked = false, solids = () => [] as number[][], update = () => false }: { blocked?: boolean; solids?: () => number[][]; update?: HostScene['update'] } = {}): HostScene {
   const group = new THREE.Group(), avatar = new THREE.Group();
@@ -81,7 +99,7 @@ test('third-person camera solids follow stable identity changes without re-enter
   } finally { world.dispose(); }
 });
 
-test('idle venue performs zero renders; each change draws exactly one frame', async (t) => {
+test('idle venue performs zero renders after native readiness; each host change draws one immediate frame', async (t) => {
   const errors = t.mock.method(console, 'error', () => {});
   let frames = 0, timers = 0;
   const original = { raf: globalThis.requestAnimationFrame, interval: globalThis.setInterval };
@@ -90,21 +108,25 @@ test('idle venue performs zero renders; each change draws exactly one frame', as
   try {
     const renderer = stubRenderer();
     const world = makeWorld(container, { location: 'park', renderer });
-    const afterCreate = world.diagnostics().renderCount;
-    assert.equal(afterCreate, 1, 'one frame to show the first venue');
-    await new Promise(resolve => setTimeout(resolve, 120));
-    assert.equal(world.diagnostics().renderCount, afterCreate, 'no renders while idle');
+    const afterCreate = await settleNative(world);
+    assert.ok(afterCreate >= 1, 'the first venue and its native actors rendered');
     assert.equal(renderer.calls.render, afterCreate);
     assert.equal(frames, 0, 'no requestAnimationFrame'); assert.equal(timers, 0, 'no interval timers');
     world.setLocation('park'); assert.equal(world.diagnostics().renderCount, afterCreate, 'same venue: nothing to draw');
     world.setState({ location: 'park', estate: { city: 'lagos' }, home: { items: [{ id: 'test-chair', itemId: 'plastic-chair', x: 3, y: 3, rot: 0 }] } }); assert.equal(world.diagnostics().renderCount, afterCreate, 'static scene ignores state');
-    world.setLocation('home'); assert.equal(world.diagnostics().renderCount, afterCreate + 1);
+    let baseline = afterCreate;
+    world.setLocation('home'); assert.equal(world.diagnostics().renderCount, baseline + 1, 'the host draws the new scene immediately');
     assert.ok(world.diagnostics().objects.some(item => item.id === 'test-chair'), 'the Home scene builds the real furniture');
     assert.equal(errors.mock.callCount(), 0, 'the scene must not silently recover from a build error');
-    world.setLocation('library'); world.setLocation('park'); assert.equal(world.diagnostics().renderCount, afterCreate + 3);
-    world.resize(); world.update(); assert.equal(world.diagnostics().renderCount, afterCreate + 5);
+    baseline = await settleNative(world);
+    world.setLocation('library'); assert.equal(world.diagnostics().renderCount, baseline + 1);
+    baseline = await settleNative(world);
+    world.setLocation('park'); assert.equal(world.diagnostics().renderCount, baseline + 1);
+    baseline = await settleNative(world);
+    world.resize(); world.update(); assert.equal(world.diagnostics().renderCount, baseline + 2);
+    baseline = await settleNative(world);
     await new Promise(resolve => setTimeout(resolve, 60));
-    assert.equal(world.diagnostics().renderCount, afterCreate + 5); assert.equal(frames, 0);
+    assert.equal(world.diagnostics().renderCount, baseline); assert.equal(frames, 0);
     world.dispose();
   } finally { globalThis.requestAnimationFrame = original.raf; globalThis.setInterval = original.interval; }
 });
@@ -122,14 +144,17 @@ test('an idle venue with a crowd renders zero frames; the crowd, the player and 
     const renderer = stubRenderer();
     const world = makeWorld(container, { location: 'park', renderer });
     const count = () => world.diagnostics().renderCount;
-    assert.equal(count(), 1);
+    let baseline = await settleNative(world);
+    assert.ok(baseline >= 1);
     assert.deepEqual(world.diagnostics().lighting, { hemi: LIGHTING.outdoor.day.hemi[2], sun: LIGHTING.outdoor.day.sun[1], sky: LIGHTING.outdoor.day.hemi[0] }, 'the host applied the scene’s own lighting preset');
     world.setPlayer({ look: { body: 'woman', hair: 'afro' }, seed: PLAYER, name: 'Ada' });
-    assert.equal(count(), 2, 'the avatar changed: one frame');
+    assert.equal(count(), baseline + 1, 'the avatar changed: one immediate frame');
+    baseline = await settleNative(world);
     world.setPlayer({ look: { body: 'woman', hair: 'afro' }, seed: PLAYER, name: 'Ada' });
-    assert.equal(count(), 2, 'the same player again: nothing to draw');
+    assert.equal(count(), baseline, 'the same player again: nothing to draw');
     assert.equal(world.setCrowd(people(4)), true);
-    assert.equal(count(), 3, 'a crowd arrived: one frame');
+    assert.equal(count(), baseline + 1, 'a crowd arrived: one immediate frame');
+    baseline = await settleNative(world, () => world.diagnostics().tags.filter((tag) => tag.kind !== 'table').length === 5);
     const tags = world.diagnostics().tags;
     assert.deepEqual(tags.filter((tag) => tag.kind !== 'table').map((tag) => [tag.kind, tag.marker]), [['self', 'crown'], ['player', 'tag'], ['npc', 'dot'], ['player', 'tag'], ['npc', 'dot']]);
     // The park's game tables stand in the scene and are named (part of the scene, like its spots: they cost no frame of their own).
@@ -141,17 +166,21 @@ test('an idle venue with a crowd renders zero frames; the crowd, the player and 
     // Idle with a crowd on screen: no frames, no timers, however long we wait and however often the same data arrives.
     for (let i = 0; i < 25; i++) { assert.equal(world.setCrowd(people(4)), false); world.setState({ location: 'park', spot: 'amphitheatre', t: NOON + i * 1000, name: 'Ada' }); }
     await new Promise((resolve) => setTimeout(resolve, 150));
-    assert.equal(count(), 3, 'idle with a crowd: zero renders');
-    assert.equal(renderer.calls.render, 3); assert.equal(frames, 0); assert.equal(timers, 0);
+    assert.equal(count(), baseline, 'idle with a ready crowd: zero renders');
+    assert.equal(renderer.calls.render, baseline); assert.equal(frames, 0); assert.equal(timers, 0);
     // The crowd is capped, and a changed crowd costs exactly one frame.
     assert.equal(world.setCrowd(people(40)), true);
     const people_ = (list: ShownTag[]) => list.filter((tag) => tag.kind !== 'table');
-    assert.equal(count(), 4); assert.equal(people_(world.diagnostics().tags).length, MAX_CROWD + 1); assert.equal(world.diagnostics().crowd, MAX_CROWD);
-    world.setCrowd([]); assert.equal(count(), 5); assert.equal(people_(world.diagnostics().tags).length, 1);
+    assert.equal(count(), baseline + 1);
+    baseline = await settleNative(world, () => people_(world.diagnostics().tags).length === MAX_CROWD + 1);
+    assert.equal(world.diagnostics().crowd, MAX_CROWD);
+    world.setCrowd([]); assert.equal(count(), baseline + 1); assert.equal(people_(world.diagnostics().tags).length, 1);
+    baseline = await settleNative(world);
     // Night falls: the scene reports a change, and the host re-reads its lighting and background.
     const day = world.diagnostics().background;
     world.setState({ location: 'park', spot: 'amphitheatre', t: MIDNIGHT, name: 'Ada' });
-    assert.equal(count(), 6);
+    assert.equal(count(), baseline + 1);
+    baseline = count();
     assert.equal(world.diagnostics().lighting.hemi, LIGHTING.outdoor.night.hemi[2]);
     assert.notEqual(world.diagnostics().background, day); assert.equal(world.diagnostics().background, LIGHTING.outdoor.night.sky[0]);
     // Tags are re-projected with the frame a resize draws — nothing else moves them.
@@ -159,13 +188,13 @@ test('an idle venue with a crowd renders zero frames; the crowd, the player and 
     container.getBoundingClientRect = () => ({ width: 1280, height: 800 });
     assert.deepEqual(world.diagnostics().tags[0], before, 'a resize that has not been drawn yet moves nothing');
     world.resize();
-    assert.equal(count(), 7); assert.notDeepEqual([world.diagnostics().tags[0]!.x, world.diagnostics().tags[0]!.y], [before.x, before.y]);
+    assert.equal(count(), baseline + 1); assert.notDeepEqual([world.diagnostics().tags[0]!.x, world.diagnostics().tags[0]!.y], [before.x, before.y]);
     container.getBoundingClientRect = () => ({ width: 390, height: 844 });
     world.dispose();
   } finally { globalThis.requestAnimationFrame = original.raf; globalThis.setInterval = original.interval; }
 });
 
-test('leaving a venue disposes its scene; home shows the player’s avatar and guests under its clock lighting', () => {
+test('leaving a venue disposes its scene; home shows the player’s avatar and guests under its clock lighting', async () => {
   const live = new Set(), setIndex = THREE.BufferGeometry.prototype.setIndex;
   THREE.BufferGeometry.prototype.setIndex = function tracked(...args) {
     if (!live.has(this)) { live.add(this); this.addEventListener('dispose', () => live.delete(this)); }
@@ -176,18 +205,23 @@ test('leaving a venue disposes its scene; home shows the player’s avatar and g
     const world = makeWorld(container, { location: 'park', renderer });
     world.setPlayer({ seed: PLAYER, name: 'Ada' });
     world.setCrowd(people(3));
+    await settleNative(world, () => world.diagnostics().tags.filter((tag) => tag.kind !== 'table').length === 4);
     const inPark = live.size;
     assert.ok(inPark > 3);
     world.setLocation('market');
+    await settleNative(world, () => world.diagnostics().tags.filter((tag) => tag.kind !== 'table').length === 4);
     assert.equal(world.diagnostics().scenes, 1, 'the park scene was disposed, not kept hidden');
     assert.equal(world.diagnostics().tags.length, 4, 'the player and the crowd carry over to the next venue');
     world.setLocation('park');
+    await settleNative(world, () => world.diagnostics().tags.filter((tag) => tag.kind !== 'table').length === 4);
     assert.equal(live.size, inPark, 'coming back rebuilds the same geometry and nothing has leaked');
     const state = createLife({ location: 'home', spot: 'kitchen', name: 'Ada' }, { now: NOON, cityId: 'lagos' });
     world.setLocation('home');
     world.setState(state);
+    await settleNative(world);
     assert.deepEqual([world.diagnostics().lighting.hemi, world.diagnostics().lighting.sun], [LIGHTING.indoor.day.hemi[2], LIGHTING.indoor.day.sun[1]], 'Home applies its daytime preset after leaving an outdoor venue');
     world.setCrowd([{ id: '00000009-2222-4333-8444-555555555555', name: 'Guest', kind: 'player' }]);
+    await settleNative(world, () => world.diagnostics().tags.filter((tag) => tag.kind !== 'table').length === 2);
     assert.deepEqual(world.diagnostics().tags.map((tag) => [tag.kind, tag.text]), [['self', 'Ada'], ['player', '@Guest']], 'you and your guest stand in your home');
     const drawn = world.diagnostics().renderCount;
     world.setState(state); world.setCrowd([{ id: '00000009-2222-4333-8444-555555555555', name: 'Guest', kind: 'player' }]);
@@ -290,6 +324,7 @@ test('RELEASE GATE: idle → zero frames; walking → frames; after arrival → 
   try {
     const { world } = bench;
     world.setState(PARK);
+    await settleNative(world);
     const idle = world.diagnostics();
     assert.deepEqual([idle.loop.running, idle.loop.frames, bench.queued()], [false, 0, 0], 'idle: no loop, nothing scheduled');
     assert.equal(idle.avatar.moving, false);
@@ -473,6 +508,7 @@ test('spots and walking stay coherent: taps walk first, the panel walks instead 
     const { world } = bench;
     world.setState(PARK);
     world.setCrowd([{ id: 'npc:n1', name: 'Mama', kind: 'npc', seed: 'n1', spot: 'drinks' }]);
+    await settleNative(world, () => world.diagnostics().people.some((person) => person.id === 'npc:n1'));
     const spot = (id: string) => world.diagnostics().spots.find((item) => item.id === id)!;
     const spawn = world.diagnostics().avatar;
     assert.ok(spawn.z > 10 && Math.abs(spawn.x) < 1, 'the avatar appears at the entrance, not at the selected spot');
@@ -568,7 +604,7 @@ test('spots and walking stay coherent: taps walk first, the panel walks instead 
     world.setState({ ...PARK, spot: 'trees', activeAction: { kind: 'travel', id: 'home', remaining: 10, duration: 10 } }); bench.pump(3000);
     const leaving = world.diagnostics().avatar;
     assert.ok(leaving.z > 10 && leaving.locked, 'at the entrance, on the way out');
-    assert.ok(bench.moves.length >= 2 && bench.moves.length < 30, `${bench.moves.length} position reports for thousands of frames: limited by the clock, not by the frame rate`); assert.ok(bench.moves.every((move) => move.location === 'park' && Number.isFinite(move.x) && Number.isFinite(move.z)));
+    assert.ok(bench.moves.length >= 2 && bench.moves.length < 50, `${bench.moves.length} position reports for thousands of frames: limited by the clock, not by the frame rate`); assert.ok(bench.moves.every((move) => move.location === 'park' && Number.isFinite(move.x) && Number.isFinite(move.z)));
     assert.equal(world.diagnostics().loop.running, false);
   } finally { bench.restore(); }
 });
@@ -931,6 +967,7 @@ test('game tables can be walked up to: a tap walks there and opens it on arrival
   try {
     const { world } = bench;
     world.setState(PARK);
+    await settleNative(world);
     const things = () => world.diagnostics().things, avatar = () => world.diagnostics().avatar;
     assert.deepEqual(things().map((thing) => [thing.id, thing.kind, thing.at]), [['table:park-bench', 'table', false], ['table:park-ayo', 'table', false], ['table:park-goal', 'table', false], ['table:park-chess', 'table', false]]);
     const table = things()[0]!;

@@ -95,7 +95,7 @@ export async function encrypt(payload: string | Uint8Array<ArrayBuffer>, subscri
   if (plain.length > 3993) throw new Error('A push payload must fit one record');
   const uaPublic = b64u.decode(subscription.p256dh), auth = b64u.decode(subscription.auth);
   const salt = fixed ? b64u.decode(fixed.salt) : globalThis.crypto.getRandomValues(new Uint8Array(16));
-  let asPublic: Uint8Array<ArrayBuffer>, asPrivate: webcrypto.CryptoKey;
+  let asPublic: Uint8Array<ArrayBuffer>, asPrivate: CryptoKey;
   if (fixed) {
     asPublic = b64u.decode(fixed.publicKey);
     asPrivate = await subtle().importKey('jwk', jwkOf(asPublic, fixed.privateKey), { name: 'ECDH', namedCurve: 'P-256' }, false, ['deriveBits']);

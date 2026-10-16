@@ -56,15 +56,12 @@
  * The camera and canvas are learned from the renderer at draw time (onBeforeRender), so taps
  * are resolved with the exact camera the host used.
  *
- * SKINNED BODY (src/scene/body/; on for everyone, capability fallback only — see body/gate.ts)
- *   On a device bodyAllowed() accepts and a WebGL2 renderer, the room's first frame starts loading one skinned body
- *   (src/scene/body/skinned.ts). Until it is in, and for good if anything fails, the procedural figure stays. Once in,
- *   it stands in for the player's own figure: idle at rest, the walk/jog clip at the host's stride phase, and on a
+ * CANONICAL BODY (src/scene/body/skinned.ts)
+ *   The host preloads the shared templates before constructing this room. Its visible body exists before the first
+ *   frame: idle at rest, the walk/jog clip at the host's stride phase, and on a
  *   furniture activity it takes the furniture: sits on a chair or sofa, lies on a bed or mat (sleep, stay in bed, nap),
  *   soaks in the tub, washes at a bucket or shower (sit-enter / lie-down play when the avatar walked there; sit-exit /
- *   get-up play where it lay). It asks for its first frame with 'jaw:home-frame'; those clips run through `easing` /
- *   stepCrowd / settleCrowd. Without WebGL2 (and in
- *   Node tests) `body` stays null and the body module is never imported.
+ *   get-up play where it lay). The clips run through `easing` / stepCrowd / settleCrowd.
  */
 import { FURNITURE as CATALOGUE, KINDS as KIND_TABLE, HOME_ACTIVITIES, PORTED_ACTIVITY_KIND } from '../game/content/furniture.ts';
 import { homeMementos } from '../game/mementos.ts';
@@ -73,11 +70,11 @@ import { ACHIEVEMENTS } from '../game/content/achievements.ts';
 import type { AchievementId } from '../types/achievements.ts';
 import { RECIPES } from '../game/content/food.ts';
 import { createBatch, sceneMaterials, releaseObjects } from './build.ts';
-import { drawAvatar, buildAvatar, POSES } from './characters.ts';
+import { POSES } from './characters.ts';
 import type { Pose } from './characters.ts';
-import { playerOptions, rigOf } from './avatar-rig.ts';
+import { buildCanonicalCrowd } from './body/canonical-crowd.ts';
 import { createWalkGrid } from './movement.ts';
-import { bodyAllowed, drawsWebGL2, importBody } from './body/gate.ts';
+import { createBody } from './body/skinned.ts';
 import { lightingFor, timeOfDay } from './lighting.ts';
 import { createObjectSequence } from './smart-objects/sequence.ts';
 import { createUseProps } from './smart-objects/props.ts';
@@ -126,8 +123,6 @@ export interface HomeRest { spot: string | null; x: number; y: number; z: number
 export interface HomePick { id: string | null; cell: { x: number; y: number } | null; x: number; z: number; rect: [number, number, number, number] | null }
 type Wall = 'back' | 'left';
 type Solid = [number, number, number, number, number, number];
-/** A figure built by characters.ts (one prebuilt per pose). */
-type Figure = ReturnType<typeof buildAvatar>;
 /** A guest the host let in, as setCrowd keeps it. */
 interface Guest { id: unknown; name: unknown; kind: unknown; look: unknown; seed: unknown }
 const FURNITURE = CATALOGUE as unknown as Readonly<Record<string, FurnitureDefinition | undefined>>;
@@ -160,7 +155,7 @@ export function seatOf(shape: string, W: number, D: number): { top: number; z: n
 /** Skinned body only: a spot on a piece (pelvis over x, z on a top at `top`, facing ry), and an activity's pose there. */
 type Spot = ObjectAction['use'];
 interface Rest { pose: BodyPose; at?: Spot; id?: string; table?: ObjectAction['table']; surface?: ObjectAction['surface'] }
-/** Skinned body only: the clip pose for each procedural pose. 'sit' needs a seat (else idle). */
+/** The clip pose for each scene pose. 'sit' needs a seat (else idle). */
 const BODY_POSE: Record<Pose, BodyPose> = { stand: 'idle', sit: 'sit', walk: 'walk', jog: 'jog', wave: 'interact', work: 'interact', dance: 'dance', relax: 'idle' };
 /** The shared room colours (Lagos): a city's content may give its own `homePalette`. */
 export const ROOM_PALETTE: HomePalette = Object.freeze({ back: '#d7ccb0', left: '#c3cbb6', floor: Object.freeze(['#d9cdb4', '#bfae8f'] as const) });
@@ -413,19 +408,18 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   let level = 0, shownFloor = 0, restFloor = 0, lastAt = { x: NaN, z: NaN };
   let ui: HomeUi = { selected: null, ghost: null, buy: false };
   let who: { look: unknown; seed: string; name: string; pose: Pose | null } = { look: undefined, seed: 'you', name: 'You', pose: null }, guests: Guest[] = [], guestTags: HomeTag[] = [], selfTag: HomeTag | null = null, guestKey = '', restKey = '', dressKey = '';
-  const actorMeshes: THREE.Mesh[] = [], markMeshes: THREE.Mesh[] = [], roomMeshes: THREE.Mesh[] = [], furnitureMeshes: THREE.Mesh[] = [], itemMeshes: THREE.Mesh[] = [];
+  const markMeshes: THREE.Mesh[] = [], roomMeshes: THREE.Mesh[] = [], furnitureMeshes: THREE.Mesh[] = [], itemMeshes: THREE.Mesh[] = [];
   let visualLayer: 'canonical' | 'housing' = 'canonical';
   let navigationProjection: ((base: WalkGrid, floor: number) => WalkGrid) | null = null;
   // The player's own figure: a group moved by its transform, with one prebuilt figure per pose.
+  let guestBatch: ReturnType<typeof buildCanonicalCrowd> | null = null;
   const avatar = new THREE.Group();
   avatar.name = 'avatar';
   people.add(avatar);
-  const figures = new Map<Pose, Figure>();
-  let sleepingFigure: Figure | null = null, presentedBody: SkinnedBody | null = null, presentation = 'everyday';
-  let shownFigure: Figure | null = null, shownPose: Pose = 'stand', driven = false, walkGrid: WalkGrid | null = null, grids: WalkGrid[] = [], gridKey = '', restAt: HomeRest | null = null, goalMark: THREE.Mesh | null = null;
-  // The skinned body (see the header): asked for on an allowed device; null until it loads, and for good without one.
-  const wantsBody = bodyAllowed();
-  let body: SkinnedBody | null = null, bodyLoading = false, bodyFailed = false, gone = false, seatAt: Rest | null = null, sat: Spot | undefined;
+  let presentedBody: SkinnedBody | null = null, presentation = 'everyday';
+  let shownPose: Pose = 'stand', driven = false, walkGrid: WalkGrid | null = null, grids: WalkGrid[] = [], gridKey = '', restAt: HomeRest | null = null, goalMark: THREE.Mesh | null = null;
+  // Preloaded before scene construction; null only during disposal or a body-shape replacement.
+  let body: SkinnedBody | null = null, gone = false, seatAt: Rest | null = null, sat: Spot | undefined;
   const floorAt = { x: 0, y: 0.03, z: 0, ry: 0 }, headAt = new THREE.Vector3();
   let hinge: ReturnType<typeof createHingedHomeDoor> | null = null, doorDone: (() => void) | null = null, doorVisual = false;
   const doorGrip = new THREE.Vector3(), doorRelease = { x: 0, z: 0 };
@@ -537,7 +531,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     const W = plot.w * tile, D = plot.d * tile, x0 = -ROOM / 2, z0 = -ROOM / 2;
     // The plinth is drawn whatever floor is in view: it reports the camera and canvas the host draws with, so taps can be resolved.
     const plinth = kit.box(x0 + W / 2, -0.21, z0 + D / 2, W + 0.5, 0.4, D + 0.5, '#6f6253', room);
-    plinth.onBeforeRender = (renderer, scene, cam) => { camera = cam; undrawn = false; attach(renderer.domElement); if (wantsBody) startBody(renderer); };
+    plinth.onBeforeRender = (renderer, scene, cam) => { camera = cam; undrawn = false; attach(renderer.domElement); };
     const b = createBatch(THREE);
     // This home's look, the same every time: walls leaning to one of a few harmonious tints, paint and curtains to match, and a floor by tier
     // (ceramic tiles in a single room, speckled terrazzo in a flat, wood planks in the big houses; wet rooms keep their tiles).
@@ -680,39 +674,22 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     applyParts();
   }
 
-  // ---- the skinned body (capability-gated) ---------------------------------------------------
-  /** After the room's first frame: fetch the body module and the body, once. Any failure keeps the procedural figure. */
-  function startBody(renderer: THREE.WebGLRenderer) {
-    if (body || bodyLoading || bodyFailed || gone) return;
-    if (!drawsWebGL2(renderer)) { bodyFailed = true; return; }
-    bodyLoading = true;
+  // ---- the canonical skinned body -------------------------------------------------------------
+  /** Construct the shared skinned body after canonical preload, before the room is shown. */
+  function startBody() {
+    if (body || gone) return;
     const look = who.look ?? lastState?.onboarding?.look ?? null, seed = who.seed;
-    setTimeout(() => {
-      importBody().then((module) => module.loadBody(kit, look, seed, tile * AVATAR_SCALE)).then((loaded) => {
-        bodyLoading = false;
-        if (gone) { loaded.dispose(); return; }
-        // The look changed while it loaded: recolour, or (the other body) start again on the next frame.
-        if (!loaded.wear(who.look ?? lastState?.onboarding?.look ?? null, who.seed)) { loaded.dispose(); globalThis.window?.dispatchEvent?.(new CustomEvent('jaw:home-frame')); return; }
-        body = loaded;
-        body.fit(tile * AVATAR_SCALE);
-        buildRoom();
-        people.add(body.object);
-        avatar.visible = false;
-        poseBody(shownPose, false);
-        syncPresentation();
-        // The host draws on request only: ask for the frame that shows it.
-        globalThis.window?.dispatchEvent?.(new CustomEvent('jaw:home-frame'));
-      }).catch((error: unknown) => {
-        bodyLoading = false; bodyFailed = true;
-        console.warn('Skinned body unavailable; keeping the drawn avatar:', error);
-      });
-    }, 0);
+    body = createBody(kit, look, seed, tile * AVATAR_SCALE);
+    buildRoom();
+    people.add(body.object);
+    avatar.visible = false;
+    poseBody(shownPose, false);
+    syncPresentation();
   }
-  /** Back to the procedural figure (a look that needs the other body file loads it again on the next frame). */
+  /** Release the old body before constructing a different body shape or disposing the room. */
   function dropBody() {
     body?.dispose();
     body = null;
-    avatar.visible = true;
   }
   /** Record the current floor destination, including while the rendered body rests on furniture. */
   function placeBody() {
@@ -748,7 +725,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     if (at.kind === 'seat') body?.sitOn(at.x, at.top, at.z, at.ry);
     else body?.workOn(at.x, at.y, at.z, at.ry);
   }
-  /** Pose the body like the procedural figure: on its furniture for a home activity that has some, else where the avatar is. */
+  /** Place the body on its furniture during a home activity, or at its walking position. */
   function poseBody(pose: Pose, animate: boolean) {
     if (!body) return;
     const next = pose === 'work' && seatAt ? seatAt.pose : pose === 'sit' && !seatAt ? 'idle' : BODY_POSE[pose];
@@ -937,33 +914,11 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     const floor = target ? floorOf(target) : 0, tileAt = nearestFree(plan, floor, centre.x, centre.y, taken)[0] || door;
     return { x: tileAt.x, y: tileAt.y, floor, ry: Math.atan2(centre.x - tileAt.x, centre.y - tileAt.y) || 0 };
   }
-  function figure(pose: Pose) {
-    let entry = figures.get(pose);
-    if (!entry) {
-      const state = lastState;
-      // The player's own figure is seen close up: the best detail characters.js offers a scene (avatar-rig.js).
-      entry = buildAvatar(kit, who.look ?? state?.onboarding?.look ?? null, { pose, seed: who.seed, scale: tile * AVATAR_SCALE, marker: 'crown', ...playerOptions(pose) });
-      entry.visible = false;
-      avatar.add(entry);
-      figures.set(pose, entry);
-    }
-    return entry;
-  }
   function show(pose: Pose) {
-    // A fallback has a real sitting figure; on a bed or tub it sits rather than claiming a lying/bathing clip.
-    const sleeping = pose === 'work' && seatAt?.pose === 'lie';
-    if (sleeping && !sleepingFigure) {
-      sleepingFigure = buildAvatar(kit, who.look ?? lastState?.onboarding?.look ?? null, { pose: 'sit', sleeping: true, seed: who.seed, scale: tile * AVATAR_SCALE, marker: 'crown', ...playerOptions('sit') });
-      sleepingFigure.visible = false; avatar.add(sleepingFigure);
-    }
-    const next = sleeping && sleepingFigure ? sleepingFigure : figure(pose === 'work' && seatAt?.at?.kind === 'seat' ? 'sit' : pose);
+    const changed = pose !== shownPose;
     shownPose = pose;
-    if (next === shownFigure) { placeFigure(); return false; }
-    if (shownFigure) shownFigure.visible = false;
-    next.visible = true;
-    shownFigure = next;
     placeFigure();
-    return true;
+    return changed;
   }
   function placeFigure() {
     const at = shownPose === 'work' || shownPose === 'sit' ? seatAt?.at : undefined;
@@ -973,13 +928,6 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     } else { avatar.position.set(floorAt.x, floorAt.y, floorAt.z); avatar.rotation.y = floorAt.ry; }
     markAvatar();
   }
-  function clearFigures() {
-    sleepingFigure?.userData.dispose(); sleepingFigure = null;
-    for (const entry of figures.values()) entry.userData.dispose();
-    figures.clear();
-    shownFigure = null;
-  }
-
   /**
    * Which floor the avatar is on, from where it is. Over a flight it changes floor past the middle
    * (with a little slack, so it does not flicker); a jump rather than a step (put at the door, or
@@ -1027,11 +975,11 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     sequence.arrived(Math.abs(turn) < 0.04);
   }
   function markAvatar() {
-    const head = body?.object.getObjectByName('Head');
+    const head = body?.object.getObjectByName('head');
     if (head && body) {
       body.object.updateWorldMatrix(true, true);
       head.getWorldPosition(headAt); group.worldToLocal(headAt); headAt.y += 0.32 * body.scale;
-    } else headAt.set(avatar.position.x, avatar.position.y + (shownFigure?.userData.top ?? 2.95 * tile * AVATAR_SCALE), avatar.position.z);
+    } else headAt.set(avatar.position.x, avatar.position.y + 2.95 * tile * AVATAR_SCALE, avatar.position.z);
     if (selfTag) { selfTag.position.x = headAt.x; selfTag.position.y = headAt.y; selfTag.position.z = headAt.z; }
     else selfTag = { id: 'self', name: who.name, kind: 'self', text: who.name, marker: 'crown', colour: '#ffd34d', position: { x: headAt.x, y: headAt.y, z: headAt.z } };
   }
@@ -1100,8 +1048,8 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     refreshGrid(state);
     const dress = JSON.stringify([tile, who.look ?? state?.onboarding?.look ?? null, who.seed]);
     if (dress !== dressKey) {
-      dressKey = dress; clearFigures(); if (!rigOf(figure('stand'))) figure('walk'); if (driven) { show(shownPose); moveAvatar(floorAt.x, floorAt.y, floorAt.z, floorAt.ry); } changed = true;
-      if (body) { if (body.wear(who.look ?? state?.onboarding?.look ?? null, who.seed)) { body.fit(tile * AVATAR_SCALE); buildRoom(); } else dropBody(); }
+      dressKey = dress; if (driven) { show(shownPose); moveAvatar(floorAt.x, floorAt.y, floorAt.z, floorAt.ry); } changed = true;
+      if (body) { if (body.wear(who.look ?? state?.onboarding?.look ?? null, who.seed)) { body.fit(tile * AVATAR_SCALE); buildRoom(); } else { dropBody(); startBody(); } }
     }
     restFloor = mine.floor;
     const seat = seatFor(state, mine);
@@ -1128,22 +1076,22 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     const guestsNow = JSON.stringify([grid, plot.w, mine, guests]);
     if (guestsNow === guestKey) return changed;
     guestKey = guestsNow;
-    releaseObjects(actorMeshes);
+    guestBatch?.dispose(); guestBatch = null;
     if (mine.floor === 0) taken.add(`0:${mine.x},${mine.y}`);
     const scale = tile * AVATAR_SCALE;
-    const batch = createBatch(THREE);
     guestTags = [];
     // Guests wait on the free tiles nearest the door.
     const spare = nearestFree(plan, 0, 0, doorSlot(grid), taken);
-    const placed = guests.slice(0, Math.min(MAX_GUESTS_SHOWN, spare.length)).map((guest, index) => ({ ...guest, x: along(spare[index]!.x), y: 0.03, z: along(spare[index]!.y), ry: Math.PI / 2, scale }));
-    for (const [index, person] of placed.entries()) {
-      const drawn = drawAvatar(batch, person.look ?? null, { x: person.x, y: person.y, z: person.z, ry: person.ry, pose: 'stand', seed: person.seed ?? person.id, scale, marker: person.kind === 'npc' ? 'npc' : 'player' });
-      const name = String(person.name ?? '');
-      guestTags.push({ id: String(person.id ?? `guest-${index}`), name, kind: person.kind === 'npc' ? 'npc' : 'player', text: person.kind === 'npc' ? name : `@${name}`, marker: person.kind === 'npc' ? 'dot' : 'tag',
-        colour: person.kind === 'npc' ? '#58d68a' : '#6fb4ff', position: { x: person.x, y: drawn.top, z: person.z } });
-    }
-    const builtBatch = batch.build(sceneMaterials(kit));
-    for (const mesh of builtBatch.meshes) { mesh.name = `home-people-${mesh.name}`; people.add(mesh); actorMeshes.push(mesh); }
+    const placed = guests.slice(0, Math.min(MAX_GUESTS_SHOWN, spare.length)).map((guest, index) => ({ id: String(guest.id ?? `guest-${index}`), name: String(guest.name ?? ''), kind: guest.kind === 'npc' ? 'npc' as const : 'player' as const, look: guest.look, seed: guest.seed ?? guest.id, x: along(spare[index]!.x), y: 0.03, z: along(spare[index]!.y), ry: Math.PI / 2, scale }));
+    guestBatch = buildCanonicalCrowd(kit, placed);
+    people.add(guestBatch.group);
+    const pendingGuests = guestBatch;
+    const syncGuestTags = () => {
+      if (guestBatch !== pendingGuests) return;
+      guestTags = pendingGuests.tags.map((tag) => ({ ...tag, colour: tag.colour ?? '#6fb4ff' }));
+      kit.requestRender?.();
+    };
+    void Promise.resolve(pendingGuests.group.userData.ready).then(syncGuestTags, () => {});
     return true;
   }
 
@@ -1238,7 +1186,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   globalThis.window?.addEventListener?.('jaw:mode', onMode);
 
   grid = HOUSES[DEFAULT_HOUSE].grid; tile = ROOM / grid; plot = plotOf(grid); plan = planOf(plot);
-  buildRoom();
+  startBody();
 
   return {
     group,
@@ -1305,6 +1253,8 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       return sequence.presented?.pose;
     },
     get bodyShown() { return body !== null; },
+    cycleDistance(jog:boolean){return body?.cycleDistance(jog);},
+    stepCharacter(dt:number){return body?.easing||sequence.easing||doorDone?false:body?.step(dt)??false;},
     stepCrowd(dt: number) {
       const more = Boolean(body?.step(dt)), using = sequence.step(dt), door = hinge?.step(dt) ?? false;
       if (body?.contactSolvable && !sequence.presented && !doorDone) body.solveFeet(contact => contactHeightAt(contact.x, contact.z, contact.y));
@@ -1392,7 +1342,6 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       move: moveAvatar,
       pose: (name: string) => {
         if (doorDone) { if (name === 'stand') return false; cancelDoor(); }
-        rigOf(figures.get('stand'))?.rest();
         const pose = (POSES as readonly string[]).includes(name) ? name as Pose : name.startsWith('stairs') ? 'walk' : 'stand';
         if (pose === 'work' && sequence.action) {
           arriveObject();
@@ -1404,7 +1353,6 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
         if (body) { poseBody(pose, true); return true; }
         return shown;
       },
-      // With a rigged figure the limbs swing with `phase`; without one the two figures alternate (avatar-rig.js).
       gait(step: boolean, phase = 0, jog = false, animate = false) {
         if (doorVisual) cancelDoor();
         if (sequence.easing || sequence.phase === 'rest') { sequence.interrupt(); useProps.hide(); }
@@ -1418,8 +1366,8 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
           if (!sequence.presented && !doorDone) body.solveFeet(contact => contactHeightAt(contact.x, contact.z, contact.y));
         }
         syncPresentation();
-        const rig = rigOf(figures.get('stand')); const changed = rig ? (rig.stride(phase, 1, jog), show('stand')) : show(step ? 'walk' : 'stand');
-        markAvatar(); return changed;
+        show(step ? jog ? 'jog' : 'walk' : 'stand');
+        markAvatar(); return true;
       },
       /** The height of the floor under (x, z): the floor the avatar is on, or part-way up a flight of stairs. */
       heightAt(x: number, z: number) {
@@ -1451,13 +1399,12 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       doorDone = null; hinge?.dispose(); hinge = null;
       useProps.dispose();
       sequence.dispose();
-      releaseObjects(actorMeshes);
+      guestBatch?.dispose(); guestBatch = null;
       releaseObjects(markMeshes);
       releaseObjects(roomMeshes);
       releaseObjects(itemMeshes);
       releaseObjects(furnitureMeshes);
       goalMark = null;
-      clearFigures();
       gone = true;
       dropBody();
       globalThis.window?.removeEventListener?.('jaw:home-ui', onUi);

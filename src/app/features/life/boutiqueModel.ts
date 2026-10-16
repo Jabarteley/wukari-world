@@ -1,33 +1,29 @@
 // What the Boutique decides: which look the preview shows, and what each item offers. Pure, so it
 // is tested without a browser. Rules and prices are the engine's (systems/onboarding.js,
 // content/traits.js BOUTIQUE_PRICES — original beta prices).
-import type { AccessoryId, LifeState, Look } from '../../../types/life.ts'
+import type { LifeState } from '../../../types/life.ts'
 import type { BoutiqueItem, OnboardingView } from '../../../types/view.ts'
-import { chooseAvatarWearable, keepAvatarAccessoryChoice } from '../../../game/wardrobe/look.ts'
 import type { AvatarLook } from '../../../game/wardrobe/look.ts'
-import { isAvatarWearableId } from '../../../game/wardrobe/rules.ts'
-import { wearableCards } from '../../../game/wardrobe/view.ts'
-import { lifeLevel } from '../../../game/price-levels.ts'
-export { wearableCards }
-export { removeAvatarWearable } from '../../../game/wardrobe/look.ts'
+import { nativeRecipeForLook, normalizeNativeRecipe } from '../../../character/native-recipe.ts'
 
 /** Complete the startup projection when Boutique opens; catalogue rules stay in this lazy module. */
 export function withWearableBoutique(base: OnboardingView, state: Pick<LifeState, 'onboarding' | 'cash'>): OnboardingView {
-  return { ...base, boutique: [
-    ...base.boutique.filter(item => item.kind !== 'wearables'),
-    ...wearableCards(state.onboarding, state.cash, base.guest ? 'Settle in first.' : 'Finish creating your character first.', lifeLevel(state)),
-  ] }
+  void state
+  return base
 }
 
 export type BoutiqueChoice = Omit<BoutiqueItem, 'kind'> & { kind: BoutiqueItem['kind'] | 'wearables' }
-export const SECTIONS: readonly (readonly [BoutiqueChoice['kind'], string])[] = [['hair', 'Hairstyles'], ['outfit', 'Outfits'], ['wearables', 'Layered clothing'], ['fabric', 'Fabrics'], ['accessories', 'Accessories']]
+export const SECTIONS: readonly (readonly [BoutiqueChoice['kind'], string])[] = [['native-hair', 'Hairstyles'], ['native-garment', 'Outfits'], ['native-shoes', 'Shoes']]
 
 export interface Trying { kind: string; id: string }
 
 /** `look` wearing `item`: a style replaces the one worn; an accessory is added (and replaces one in the same slot). */
-export function wearing(look: AvatarLook, item: Pick<BoutiqueChoice, 'kind' | 'id'>, withAccessory: (look: Look, id: AccessoryId) => AccessoryId[]): AvatarLook {
-  if (item.kind === 'wearables') return isAvatarWearableId(item.id) && !look.wearables?.includes(item.id) ? chooseAvatarWearable(look, item.id) : look
-  return item.kind === 'accessories' ? keepAvatarAccessoryChoice({ ...look, accessories: withAccessory(look, item.id as AccessoryId) }, item.id) : { ...look, [item.kind]: item.id }
+export function wearing(look: AvatarLook, item: Pick<BoutiqueChoice, 'kind' | 'id'>): AvatarLook {
+  const recipe = nativeRecipeForLook(look, 'boutique-preview')
+  const appearance = item.kind === 'native-hair' ? { ...recipe.appearance, hair: item.id }
+    : item.kind === 'native-garment' ? { ...recipe.appearance, garments: [item.id] }
+      : item.kind === 'native-shoes' ? { ...recipe.appearance, shoes: item.id } : recipe.appearance
+  return { ...look, native: normalizeNativeRecipe({ ...recipe, appearance }) }
 }
 
 /** The item being tried on, while it is still on offer for this body and not already worn. */
@@ -46,7 +42,6 @@ export type ItemControl =
 /** What an item's one control is, and the reason it is disabled ('' when it can be pressed). `offline` is already worded for this app. */
 export function itemControl(item: BoutiqueChoice, input: { offline: string; done: boolean }): ItemControl {
   const unfinished = input.done ? '' : 'Finish creating your character first.'
-  if (item.wearing && (item.kind === 'accessories' || item.kind === 'wearables')) return { kind: 'take-off', why: input.offline || unfinished }
   if (item.wearing) return { kind: 'worn' }
   if (item.owned) return { kind: 'wear', why: input.offline || unfinished }
   return { kind: 'buy', why: input.offline || item.blocked || '' }
@@ -58,13 +53,4 @@ export function itemNote(item: Pick<BoutiqueItem, 'wearing' | 'owned' | 'price'>
 }
 
 /** Distinguish independently wearable layers from base outfit styles and wrist accessories. */
-export function itemLabel(item: Pick<BoutiqueItem, 'kind' | 'id' | 'label'>): string {
-  if (item.kind === 'outfit' && (item.id === 'kaftan' || item.id === 'agbada')) return `${item.label} outfit`
-  if (item.kind === 'wearables') {
-    if (item.id === 'kaftan' || item.id === 'agbada') return `${item.label} overlayer`
-    if (item.id === 'beads') return 'Bead necklace'
-    if (item.id === 'wristwatch') return 'Gold wristwatch'
-  }
-  if (item.kind === 'accessories' && item.id === 'beads') return 'Bead bracelet'
-  return item.label
-}
+export const itemLabel = (item: Pick<BoutiqueItem, 'label'>): string => item.label

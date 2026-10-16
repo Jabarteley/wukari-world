@@ -1,0 +1,35 @@
+{
+  "scope": "Native scene/stand-in visibility across appearance updates, readiness, movement and detach/reattach; image stubs, no browser proof",
+  "rows": [
+    {
+      "body": "female",
+      "visiblePlayers": 1,
+      "ready": true,
+      "cost": {
+        "triangles": 34646,
+        "meshes": 11,
+        "drawCalls": 13
+      }
+    },
+    {
+      "body": "male",
+      "visiblePlayers": 1,
+      "ready": true,
+      "cost": {
+        "triangles": 34648,
+        "meshes": 11,
+        "drawCalls": 20
+      }
+    },
+    {
+      "body": "female",
+      "visiblePlayers": 1,
+      "ready": true,
+      "cost": {
+        "triangles": 34646,
+        "meshes": 11,
+        "drawCalls": 20
+      }
+    }
+  ]
+}

@@ -10,7 +10,7 @@
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
 import type { FootprintShapes, WalkGrid } from '../movement.ts';
-import { SCENE_DRAW_CALLS, SCENE_TRIANGLES } from '../../budgets.ts';
+import { SCENE_CHARACTER_TRIANGLES, SCENE_DRAW_CALLS, SCENE_TRIANGLES } from '../../budgets.ts';
 import type * as Layers from './layer.ts';
 import type { AmbientLayer, AmbientPerson, AmbientTag, Resident } from './layer.ts';
 import type { Ident, Stage } from './plan.ts';
@@ -22,7 +22,12 @@ import type { Ident, Stage } from './plan.ts';
 let loaded: typeof Layers | null = null;
 let loading: Promise<void> | null = null;
 export function loadAmbient(): Promise<void> {
-  loading ||= import('./layer.ts').then((module) => { loaded = module; });
+  loading ||= Promise.all([import('./layer.ts'), import('../body/skinned.ts')])
+    .then(async ([module, bodies]) => {
+      await Promise.all([bodies.preloadCanonicalBodies(), bodies.preloadCanonicalBodies(['male', 'female'], 'lod')]);
+      loaded = module;
+    })
+    .catch((error: unknown) => { loading = null; throw error; });
   return loading;
 }
 
@@ -41,8 +46,10 @@ export interface HubEnv {
   offMarkers(x: number, z: number): boolean
   heightAt(x: number, z: number): number
   avatar(): { x: number; z: number }
+  /** Authored people already reserve their standing or seated positions. */
+  fixed?(): readonly { x: number; z: number }[]
   /** What the scene draws now: triangles and draw calls. */
-  spent(): { triangles: number; drawCalls: number }
+  spent(): { triangles: number; characterTriangles?: number; drawCalls: number }
   live(): boolean
   /** The ambient tags (a spoken line) changed. */
   changed(): void
@@ -91,15 +98,24 @@ export function createAmbientHub(env: HubEnv): AmbientHub {
     if (!loaded) {
       // Not here yet: ask for it, and build when it comes (if the scene is still asking for the same place).
       const asked = config
-      void loadAmbient().then(() => { if (config === asked && !layer && env.live()) { build(); if (layer) env.ready() } }, () => undefined)
+      void loadAmbient().then(() => { if (config === asked && !layer && env.live()) { build(); if (layer) env.ready() } }, (error: unknown) => {
+        console.error('Canonical ambient bodies could not load:', error);
+      })
       return
     }
-    const base = env.spent()
     fixed.length = 0
+    fixed.push(...(env.fixed?.() ?? []))
     for (const resident of residents) fixed.push({ x: resident.x, z: resident.z })
     layer = loaded.createAmbientLayer({
       kit: env.kit, parent: env.parent, stage: stage(), ident: config, heightAt: env.heightAt, avatar: env.avatar, changed: env.changed, ...(env.clock ? { clock: env.clock } : {}),
-      room: () => ({ triangles: SCENE_TRIANGLES.value - base.triangles - MARGIN_TRIANGLES, meshes: SCENE_DRAW_CALLS.value - base.drawCalls - MARGIN_CALLS }),
+      room: () => {
+        const base = env.spent()
+        return {
+          triangles: Math.max(0, Math.min(SCENE_TRIANGLES.value - base.triangles,
+            SCENE_CHARACTER_TRIANGLES.value - (base.characterTriangles ?? base.triangles)) - MARGIN_TRIANGLES),
+          meshes: Math.max(0, SCENE_DRAW_CALLS.value - base.drawCalls - MARGIN_CALLS),
+        }
+      },
     })
     if (residents.length) layer.setResidents(residents)
   }
@@ -117,6 +133,7 @@ export function createAmbientHub(env: HubEnv): AmbientHub {
     setResidents(list) {
       residents = list
       fixed.length = 0
+      fixed.push(...(env.fixed?.() ?? []))
       for (const resident of residents) fixed.push({ x: resident.x, z: resident.z })
       return layer ? layer.setResidents(list) : []
     },

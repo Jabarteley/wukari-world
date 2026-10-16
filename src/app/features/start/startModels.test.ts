@@ -11,6 +11,7 @@ import {
 import { LOOK_REFUSED, PLAY_HELD, held, isCalm, planPlay, problemOf, quickStartRequired, networkLimitText, networkLimitWait, showsLinkNote, shownError, worldFullText, worldFullWait } from './quickStartModel.ts'
 import { nicknameOf, sessionRequired } from './sessionModel.ts'
 import { PRESETS, presetLook, starterLook } from './startBoundary.ts'
+import { NATIVE_CHARACTER_CATALOG, nativeRecipeForLook, normalizeNativeRecipe } from '../../../character/native-recipe.ts'
 
 const base: Look = { body: 'woman', hair: 'braids', outfit: 'owambe', fabric: 'ankara', skin: 'skin-4', hairColor: 'black', outfitColor: 'gold', bottomsColor: 'violet' }
 const sequence = (...values: number[]) => { let at = 0; return () => values[at++ % values.length] ?? 0 }
@@ -151,18 +152,29 @@ test('a guest starts on the second card; a life that was never a guest starts on
   assert.equal(firstStep(false), 0)
 })
 
-test('the look kept on the device is used only while every part of it is still a valid free choice, and only for its owner', () => {
+test('the look kept on the device preserves the complete native recipe only for its owner', () => {
   const storage = memory()
-  keepLook('s1:lagos', base, storage)
-  assert.deepEqual(storedLook('s1:lagos', storage), { ...base, accessories: [], face: 'oval', expression: 'smile' })
+  const migrated = nativeRecipeForLook(base, 'device-draft')
+  const features = Object.fromEntries(NATIVE_CHARACTER_CATALOG.features.map((feature, index) => [feature.id, index % 2 ? feature.min / 2 : feature.max / 2]))
+  const native = normalizeNativeRecipe({ ...migrated, appearance: { ...migrated.appearance, body: 'female', hair: 'ponytail01', garments: ['female-elegant-01'], shoes: 'shoes03', eyeColor: 'grey', complexion: 'light', height: .91, features,
+    colors: { skin: '#d19a73', hair: '#3b2118', upper: '#abcdef', lower: '#123456', shoes: '#654321' }, handPose: 'peace' }, emotion: 'concerned', emotionStrength: .42 })
+  const complete: Look = { ...base, native }
+  keepLook('s1:lagos', complete, storage)
+  const restored = storedLook('s1:lagos', storage)
+  assert.deepEqual(restored?.native, native, 'the native recipe survives storage without a legacy projection')
+  assert.equal(Object.keys(restored!.native!.appearance.features).length, 35)
   assert.equal(storedLook('s2:lagos', storage), null, 'another life\'s draft')
-  keepLook('s1:lagos', { ...base, hair: 'twists' }, storage)
-  assert.equal(storedLook('s1:lagos', storage), null, 'a Boutique style is not a free choice')
-  keepLook('s1:lagos', { ...base, accessories: ['glasses', 'sunglasses'] }, storage)
-  assert.equal(storedLook('s1:lagos', storage), null, 'two in one slot, and one only the Boutique sells')
+  const wrongVersion = structuredClone(complete) as Look
+  wrongVersion.native!.version = 1 as 2
+  keepLook('s1:lagos', wrongVersion, storage)
+  assert.equal(storedLook('s1:lagos', storage), null, 'a recipe from another schema version is not silently normalized')
+  const missingControl = structuredClone(complete)
+  delete missingControl.native!.appearance.features['nose-width']
+  keepLook('s1:lagos', missingControl, storage)
+  assert.equal(storedLook('s1:lagos', storage), null, 'every native face and body control must be present')
   storage.data.set(DRAFT_KEY, '{not json')
   assert.equal(storedLook('s1:lagos', storage), null)
-  keepLook('s1:lagos', base, storage)
+  keepLook('s1:lagos', complete, storage)
   keepLook('s1:lagos', null, storage)
   assert.equal(storage.data.has(DRAFT_KEY), false, 'moving on forgets it')
   assert.equal(storedLook('x', null), null, 'no storage: nothing kept')

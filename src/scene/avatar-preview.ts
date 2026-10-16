@@ -1,6 +1,6 @@
 /**
  * OWNER: character
- * The 3D character preview: one high-detail avatar (src/scene/characters.ts) on a ground disc,
+ * The 3D character preview: one canonical skinned avatar on a ground disc,
  * on its own small WebGL canvas. Used wherever a look is edited (character creation, Sim →
  * Profile, the Boutique) through src/ui/panels/look-ui.js, which loads this file — and with it
  * Three.js — only when a preview is first shown.
@@ -27,24 +27,20 @@
  * of them run: the final state is drawn once. diagnostics().renderCount proves it
  * (src/scene/avatar-preview.test.ts).
  *
- * SKINNED BODY: once a world scene has fetched the skinned body (scene/body/gate.ts; never before the game is ready, so
- * character creation at first run adds no bytes), the preview shows that body in the look instead of the drawn
- * figure — the figure seen here is the figure walked about. Without WebGL2, on a device the gate refuses, or if it fails,
- * the drawn figure stays.
+ * CANONICAL BODY: the preview waits for the shared body and clip assets, then displays only the skinned character.
+ * Load failures are shown with an explicit retry action; there is no alternate character renderer.
  *
  * ONE CONTEXT: creating a preview disposes the previous one, so at most one preview WebGL
- * context is alive (previewStats.live). A lost context stops drawing and calls onLost, so the
- * caller can show its 2D figure; if no WebGL context can be made at all, createAvatarPreview
- * throws PreviewUnavailable before Three.js is asked for one.
+ * context is alive (previewStats.live). A lost context stops drawing and displays a stage error.
+ * The 2D illustration is hidden while this preview owns it. If WebGL cannot be created, the stage
+ * shows an error before PreviewUnavailable is thrown.
  */
 import type * as THREE from 'three';
 import { createKit } from './kit.ts';
-import { avatarProportions } from '../types/avatar.ts';
-import { buildAvatar, normalizeLook } from './characters.ts';
-import type { AvatarGroup } from './characters.ts';
-import type { ThreeModule } from './types.ts';
+import { nativeRecipeForLook } from '../character/native-recipe.ts';
 import { lazyEnvironment, renderTier } from './look.ts';
-import { bodyAllowed, bodyImports, drawsWebGL2, importBody } from './body/gate.ts';
+import { normalizeLook } from './characters.ts';
+import type { ThreeModule } from './types.ts';
 import type { SkinnedBody } from './body/skinned.ts';
 
 export const ANIMATION_LIMIT_MS = 600;
@@ -103,6 +99,43 @@ const FOV = 26, START_YAW = -0.42, DRAG_SPEED = 0.011, KEY_STEP = Math.PI / 12, 
 const clamp = (value: number, low: number, high: number): number => Math.max(low, Math.min(high, value));
 const ease = (t: number): number => 1 - (1 - t) ** 3;
 let current: AvatarPreview | null = null;
+
+function hideIllustrations(host: HTMLElement | null | undefined): void {
+  host?.querySelectorAll<HTMLElement>('.look-avatar').forEach((element) => { element.hidden = true; element.style.display = 'none'; });
+}
+
+function showStageMessage(host: HTMLElement | null | undefined, message: string, retry?: () => void): HTMLElement | null {
+  if (!host) return null;
+  let panel = host.querySelector<HTMLElement>('[data-character-preview-status]');
+  if (!panel) {
+    panel = document.createElement('div');
+    panel.dataset.characterPreviewStatus = '';
+    Object.assign(panel.style, {
+      position: 'absolute', inset: '12px', zIndex: '3', display: 'grid', placeContent: 'center', justifyItems: 'center',
+      gap: '10px', padding: '16px', borderRadius: '12px', color: '#fff', background: 'rgba(18, 25, 32, .88)',
+      textAlign: 'center', font: '600 14px/1.45 system-ui, sans-serif',
+    });
+    if (globalThis.getComputedStyle?.(host).position === 'static') host.style.position = 'relative';
+    host.append(panel);
+  }
+  panel.replaceChildren();
+  panel.setAttribute('role', retry ? 'alert' : 'status');
+  const text = document.createElement('span'); text.textContent = message; panel.append(text);
+  if (retry) {
+    const button = document.createElement('button'); button.type = 'button'; button.textContent = 'Retry character load';
+    button.addEventListener('click', retry, { once: true });
+    Object.assign(button.style, { padding: '8px 14px', borderRadius: '8px', border: '1px solid #d6dedf', background: '#fff', color: '#18212a', font: 'inherit', cursor: 'pointer' });
+    panel.append(button);
+  }
+  panel.hidden = false;
+  panel.style.display = 'grid';
+  return panel;
+}
+
+function clearStageMessage(host: HTMLElement | null | undefined): void {
+  const panel = host?.querySelector<HTMLElement>('[data-character-preview-status]');
+  if (panel) { panel.hidden = true; panel.style.display = 'none'; }
+}
 
 /** Key, fill and rim lights for a character on a pale backdrop. Returns the lights it added. */
 export function lightStage(THREE: ThreeModule, scene: THREE.Scene): THREE.Light[] {
@@ -173,11 +206,16 @@ function makeRenderer(THREE: ThreeModule): THREE.WebGLRenderer {
  *            renderer, raf, caf, now (injected by tests) }
  */
 export function createAvatarPreview(host: HTMLElement | null | undefined, options: PreviewOptions = {}): AvatarPreview {
+  hideIllustrations(host);
   current?.dispose();
   const kit = createKit();
   const { THREE } = kit;
   let renderer: THREE.WebGLRenderer;
-  try { renderer = options.renderer || makeRenderer(THREE); } catch (error) { kit.dispose(); throw error; }
+  try { renderer = options.renderer || makeRenderer(THREE); } catch (error) {
+    kit.dispose();
+    showStageMessage(host, 'The character preview could not start. Check WebGL support and retry.', () => globalThis.location?.reload());
+    throw error;
+  }
   // The next step of a running animation: a one-shot timer (tests inject a hand-cranked one).
   const raf = options.raf || ((fn: () => void) => globalThis.setTimeout(fn, FRAME_MS) as unknown as number);
   const caf = options.caf || ((id: number) => globalThis.clearTimeout(id));
@@ -206,13 +244,18 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
   const turntable = new THREE.Group();
   scene.add(ground.group, turntable);
 
-  let avatar: AvatarGroup | null = null, lookKey = '', renderCount = 0, frames = 0, disposed = false, lost = false, lastMs = 0;
+  let lookKey = '', renderCount = 0, frames = 0, disposed = false, lost = false, lastMs = 0;
   const asFocus = (value: unknown): PreviewFocus => (value === 'head' || value === 'outfit' ? value : 'body');
   let inset = Math.max(0, options.inset ?? 0), yaw = START_YAW, focus: PreviewFocus = asFocus(options.focus), shown: PreviewFrame = { ...FRAMES[focus] };
   let size = { width: 0, height: 0 }, frameId = 0;
   const tweens = new Map<string, Tween>(); // name → { start, duration, step(t, dt) → false to stop early, last }
-  let previewProportions = avatarProportions(undefined);
-  let body: SkinnedBody | null = null, bodyLook: unknown = null, bodyLoading = false, bodyFailed = !bodyAllowed();
+  let previewProportions = {height:1,width:1};
+  let activeHost = host;
+  let body: SkinnedBody | null = null, bodyLook: unknown = null, lookGeneration = 0;
+  let bodyModule: typeof import('./body/skinned.ts') | null = null;
+  let bodyModulePromise: Promise<typeof import('./body/skinned.ts')> | null = null;
+
+  let dressTask: Promise<void> = Promise.resolve();
 
   const targetFrame = (next: PreviewFocus): PreviewFrame => next === 'head' && body ? SKINNED_HEAD_FRAME : FRAMES[next];
   function moveFrame(to: PreviewFrame): void {
@@ -223,29 +266,35 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
     });
   }
 
-  /** Wear the look on the skinned body (see the header), fetching it once the world already has; else keep the drawn figure. */
-  function dress(look: unknown) {
+  /** Preview the same dressed body and action rig used throughout the world. */
+  function dress(look: unknown, generation: number): void {
     bodyLook = look;
-    previewProportions = avatarProportions(normalizeLook(look, 'preview').appearance);
-    if (body && !body.wear(look, 'preview')) { body.dispose(); body = null; }
-    if (body) { if (avatar) avatar.visible = false; return; }
-    if (bodyLoading || bodyFailed || !bodyImports.count) return;
-    if (!drawsWebGL2(renderer)) { bodyFailed = true; return; }
-    bodyLoading = true;
-    importBody().then((module) => module.loadBody(kit, look, 'preview', 1)).then((loaded) => {
-      bodyLoading = false;
-      if (disposed) { loaded.dispose(); return; }
-      if (!loaded.wear(bodyLook, 'preview')) { loaded.dispose(); dress(bodyLook); return; }
+    previewProportions = {height:nativeRecipeForLook(look,'preview').appearance.height,width:1};
+    // Serialize swaps so a rapidly edited preview owns only one rig.
+    dressTask = dressTask.then(async () => {
+      if (disposed || generation !== lookGeneration) return;
+      if (body && body.wear(look, 'preview')) {
+        body.place(0, 0, 0, 0);
+        clearStageMessage(activeHost);
+        render();
+        return;
+      }
+      body?.dispose(); body = null;
+      showStageMessage(activeHost, 'Loading the shared character model and animation assets…');
+      render();
+      bodyModulePromise ??= import('./body/skinned.ts').then((module) => { bodyModule = module; return module; });
+      const loaded = await (await bodyModulePromise).loadBody(kit, look, 'preview', 1);
+      if (disposed || generation !== lookGeneration) { loaded.dispose(); return; }
       body = loaded;
       turntable.add(body.object);
       body.place(0, 0, 0, 0);
-      if (avatar) avatar.visible = false;
+      clearStageMessage(activeHost);
       if (focus === 'head') moveFrame(targetFrame(focus)); else render();
     }).catch((error: unknown) => {
-      bodyLoading = false; bodyFailed = true;
-      if (disposed) return;
-      if (focus === 'head' && (shown.y !== FRAMES.head.y || shown.height !== FRAMES.head.height || shown.width !== FRAMES.head.width)) moveFrame(FRAMES.head); else render();
-      console.warn('Skinned body unavailable; keeping the drawn figure:', error);
+      if (disposed || generation !== lookGeneration) return;
+      if (!bodyModule) bodyModulePromise = null;
+      const detail = error instanceof Error ? error.message : String(error);
+      showStageMessage(activeHost, `The shared character assets could not load. ${detail}`, () => dress(bodyLook, lookGeneration));
     });
   }
 
@@ -253,7 +302,10 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
     // The subject sits in the top part of the view; the inset below it is left empty (the ground's front edge and a stage's buttons).
     const reserved = clamp(inset / Math.max(1, size.height), 0, 0.45);
     const height = shown.height / (1 - reserved);
-    frameCamera(camera, { y: (shown.y + shown.height / 2 - height / 2) * previewProportions.height, height: height * previewProportions.height, width: shown.width * previewProportions.height * previewProportions.width }, size.width / Math.max(1, size.height) || 1);
+    // Keep a shared body ruler: refitting to every height edit hides its effect.
+    const framingScale = focus === 'head' ? 1 : 1.15;
+    const centreScale = focus === 'head' ? previewProportions.height : framingScale;
+    frameCamera(camera, { y: (shown.y + shown.height / 2 - height / 2) * centreScale, height: height * framingScale, width: shown.width * framingScale }, size.width / Math.max(1, size.height) || 1);
   }
   function render() {
     if (disposed || lost || !size.width || !size.height) return;
@@ -305,12 +357,16 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
     if (disposed) return false;
     const key = JSON.stringify(look ?? null);
     if (key === lookKey) return false;
+    const previousRecipe = nativeRecipeForLook(bodyLook, 'preview');
+    const nextRecipe = nativeRecipeForLook(look, 'preview');
+    const heightOnly = previousRecipe.appearance.height !== nextRecipe.appearance.height
+      && JSON.stringify({ ...previousRecipe, appearance: { ...previousRecipe.appearance, height: 1 } })
+        === JSON.stringify({ ...nextRecipe, appearance: { ...nextRecipe.appearance, height: 1 } });
     lookKey = key;
-    avatar?.userData.dispose();
-    avatar = buildAvatar(kit, look, { detail: 'high', pose: 'relax', seed: 'preview' });
-    turntable.add(avatar);
-    dress(look);
-    if (react && !reduced) {
+    const generation = ++lookGeneration;
+    dress(look, generation);
+    if (heightOnly) { stop('react'); turntable.userData.swing = 0; turntable.position.y = 0; }
+    if (react && !reduced && !heightOnly) {
       // A small turn and settle, so a change is felt as well as seen.
       animate('react', 420, (t: number) => { turntable.userData.swing = Math.sin(t * Math.PI) * (1 - t) * 0.55; turntable.position.y = Math.sin(t * Math.PI) * 0.035; });
     } else render();
@@ -389,13 +445,20 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
     event.preventDefault?.();
     lost = true; tweens.clear();
     if (frameId) { caf(frameId); frameId = 0; }
+    showStageMessage(activeHost, 'The character preview lost its WebGL context. Retry when the browser is ready.', () => {
+      const extension = renderer.getContext().getExtension('WEBGL_lose_context') as { restoreContext?: () => void } | null;
+      if (extension?.restoreContext) extension.restoreContext(); else globalThis.location?.reload();
+    });
     options.onLost?.();
   });
-  on('webglcontextrestored', () => { lost = false; render(); });
+  on('webglcontextrestored', () => { lost = false; clearStageMessage(activeHost); render(); });
 
   const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(() => resize()) : null;
   function attach(target: HTMLElement | null | undefined): void {
     if (disposed || !target) return;
+    if (activeHost !== target) activeHost?.querySelector<HTMLElement>('[data-character-preview-status]')?.remove();
+    activeHost = target;
+    hideIllustrations(target);
     if (canvas.parentElement !== target) target.appendChild(canvas);
     observer?.disconnect();
     observer?.observe(target);
@@ -405,18 +468,19 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
   const api: AvatarPreview = {
     canvas, setLook, setFocus, setInset, rotate, turnBy, resize, attach,
     setLabel(text: unknown) { canvas.setAttribute?.('aria-label', String(text ?? '')); },
-    diagnostics: () => ({ renderCount, frames, animating: tweens.size > 0 || frameId !== 0, live: previewStats.live, lost, disposed, triangles: avatar?.userData.triangles ?? 0, yaw, focus, lastRenderMs: Math.round(lastMs * 10) / 10 }),
+    diagnostics: () => ({ renderCount, frames, animating: tweens.size > 0 || frameId !== 0, live: previewStats.live, lost, disposed, triangles: renderer.info.render.triangles, yaw, focus, lastRenderMs: Math.round(lastMs * 10) / 10 }),
     dispose() {
       if (disposed) return;
       disposed = true;
+      lookGeneration += 1;
       if (current === api) current = null;
       tweens.clear();
       if (frameId) { caf(frameId); frameId = 0; }
       observer?.disconnect();
       for (const [type, fn, opts] of listeners) canvas.removeEventListener?.(type, fn, opts);
       listeners.length = 0;
-      avatar = null;
       body?.dispose(); body = null;
+      activeHost?.querySelector<HTMLElement>('[data-character-preview-status]')?.remove();
       ground.dispose();
       kit.dispose(); // the avatar's geometry and the shared materials
       renderer.dispose();

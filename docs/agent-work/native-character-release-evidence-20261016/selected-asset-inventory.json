@@ -1,0 +1,778 @@
+{
+  "scope": "Exact catalogue resource accounting; excludes JS, decoder bytes and HTTP overhead. Not a browser or phone timing test.",
+  "totals": {
+    "raw": 48387978,
+    "gzip": 39824074,
+    "brotli": 37317883
+  },
+  "defaults": [
+    {
+      "body": "female",
+      "urls": [
+        "/character-lab/models/final-pass-20261015/catalog.json",
+        "/character-lab/models/candidates/iteration2-upper-palm.glb",
+        "/character-lab/models/candidates/motion-iteration2-upper-palm.json",
+        "/character-lab/models/round4/female/base.glb",
+        "/character-lab/models/round2/female/hair/short01.glb",
+        "/character-lab/models/round4/female/garments/female-casual-01.glb",
+        "/character-lab/models/round2/female/shoes/shoes01.glb",
+        "/character-lab/models/eyes/brown.jpg"
+      ],
+      "totals": {
+        "raw": 7213494,
+        "gzip": 4910085,
+        "brotli": 4048407
+      }
+    },
+    {
+      "body": "male",
+      "urls": [
+        "/character-lab/models/final-pass-20261015/catalog.json",
+        "/character-lab/models/candidates/iteration2-upper-palm.glb",
+        "/character-lab/models/candidates/motion-iteration2-upper-palm.json",
+        "/character-lab/models/round4/male/base.glb",
+        "/character-lab/models/round2/male/hair/short01.glb",
+        "/character-lab/models/round4/male/garments/female-casual-01.glb",
+        "/character-lab/models/round2/male/shoes/shoes01.glb",
+        "/character-lab/models/eyes/brown.jpg"
+      ],
+      "totals": {
+        "raw": 8039714,
+        "gzip": 5694542,
+        "brotli": 4835731
+      }
+    }
+  ],
+  "conflicts": [],
+  "errors": [],
+  "extras": [],
+  "checks": [
+    {
+      "budget": "NATIVE_BODY_BROTLI",
+      "url": "/character-lab/models/round4/female/base.glb",
+      "measured": 855476,
+      "limit": 1700000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/female/hair/short01.glb",
+      "measured": 410931,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/female/hair/short02.glb",
+      "measured": 347694,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/female/hair/bob01.glb",
+      "measured": 451725,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/female/hair/afro01.glb",
+      "measured": 469949,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/female/hair/braid01.glb",
+      "measured": 470356,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/female/hair/ponytail01.glb",
+      "measured": 544428,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round4/female/garments/female-casual-01.glb",
+      "measured": 1794002,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round4/female/garments/female-casual-02.glb",
+      "measured": 1792668,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round12/female/garments/female-elegant-01.glb",
+      "measured": 1861732,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round4/female/garments/female-sport-01.glb",
+      "measured": 1017907,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round4/female/garments/male-worksuit-01.glb",
+      "measured": 2464368,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round4/female/garments/formal-suit-01.glb",
+      "measured": 1336527,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round12/female/garments/fitted-skirt-01.glb",
+      "measured": 2535833,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/female/shoes/shoes01.glb",
+      "measured": 741768,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/female/shoes/shoes02.glb",
+      "measured": 473272,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/female/shoes/shoes03.glb",
+      "measured": 205604,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_BODY_BROTLI",
+      "url": "/character-lab/models/round4/male/base.glb",
+      "measured": 1647480,
+      "limit": 1700000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/male/hair/short01.glb",
+      "measured": 410171,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/male/hair/short02.glb",
+      "measured": 347193,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/male/hair/bob01.glb",
+      "measured": 450398,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/male/hair/afro01.glb",
+      "measured": 468575,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/male/hair/braid01.glb",
+      "measured": 469608,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/male/hair/ponytail01.glb",
+      "measured": 542903,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round4/male/garments/female-casual-01.glb",
+      "measured": 1790019,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round4/male/garments/female-casual-02.glb",
+      "measured": 1790847,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round12/male/garments/female-elegant-01.glb",
+      "measured": 1870156,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round4/male/garments/female-sport-01.glb",
+      "measured": 1015292,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round4/male/garments/male-worksuit-01.glb",
+      "measured": 2449123,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round4/male/garments/formal-suit-01.glb",
+      "measured": 1329978,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round12/male/garments/fitted-skirt-01.glb",
+      "measured": 2537185,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/male/shoes/shoes01.glb",
+      "measured": 741831,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/male/shoes/shoes02.glb",
+      "measured": 473708,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_ITEM_BROTLI",
+      "url": "/character-lab/models/round2/male/shoes/shoes03.glb",
+      "measured": 205915,
+      "limit": 2600000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_MOTION_BROTLI",
+      "measured": 208207,
+      "limit": 210000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_DEFAULT_CHARACTER_BROTLI",
+      "body": "female",
+      "measured": 4048407,
+      "limit": 5000000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_DEFAULT_CHARACTER_BROTLI",
+      "body": "male",
+      "measured": 4835731,
+      "limit": 5000000,
+      "pass": true
+    },
+    {
+      "budget": "NATIVE_CATALOGUE_BROTLI",
+      "measured": 37317883,
+      "limit": 38000000,
+      "pass": true
+    }
+  ],
+  "rows": [
+    {
+      "url": "/character-lab/models/final-pass-20261015/catalog.json",
+      "kinds": [
+        "catalog"
+      ],
+      "sha256": "cecee35dffe7aedb036409a580977fed82bbcca1b71c514c039f0b73c12ec563",
+      "raw": 565423,
+      "gzip": 95397,
+      "brotli": 13421
+    },
+    {
+      "url": "/character-lab/models/candidates/iteration2-upper-palm.glb",
+      "kinds": [
+        "motion"
+      ],
+      "sha256": "337549dff096fee3a539fa661d6941875778834a8a024a6ff21237d5908d7cba",
+      "raw": 652660,
+      "gzip": 280241,
+      "brotli": 204547
+    },
+    {
+      "url": "/character-lab/models/candidates/motion-iteration2-upper-palm.json",
+      "kinds": [
+        "motion"
+      ],
+      "sha256": "af3d9fb954f33cdf287e81ca7f338055b9a370f9cb99ab88f292ae0921e7df37",
+      "raw": 16608,
+      "gzip": 4316,
+      "brotli": 3660
+    },
+    {
+      "url": "/character-lab/models/round4/female/base.glb",
+      "kinds": [
+        "body"
+      ],
+      "sha256": "1c56eb28beb94d1ec8e120ef32bda97f4f173b22b8d01d9da596db619d5a562c",
+      "raw": 2632124,
+      "gzip": 1487889,
+      "brotli": 855476
+    },
+    {
+      "url": "/character-lab/models/skin-medium.jpg",
+      "kinds": [
+        "complexion"
+      ],
+      "sha256": "1ef34386d339d0eebb336448500dc34a5b65e2b0c3f43b6446bec215cd0803f9",
+      "raw": 139145,
+      "gzip": 137737,
+      "brotli": 137055
+    },
+    {
+      "url": "/character-lab/models/skin-light.jpg",
+      "kinds": [
+        "complexion"
+      ],
+      "sha256": "7e46471fd23ddec862eb99b7c7a1a474bee6d7bac8bee214b56ca06c15799b9b",
+      "raw": 138313,
+      "gzip": 137614,
+      "brotli": 136986
+    },
+    {
+      "url": "/character-lab/models/round2/female/hair/short01.glb",
+      "kinds": [
+        "hair"
+      ],
+      "sha256": "34dff85c656a6d96dabe10fe47b5982f109b5bb7e14cb16c57e54193815aeb2c",
+      "raw": 545056,
+      "gzip": 428361,
+      "brotli": 410931
+    },
+    {
+      "url": "/character-lab/models/round2/female/hair/short02.glb",
+      "kinds": [
+        "hair"
+      ],
+      "sha256": "2dd190d5c212ff5794084ef209ff738d8b4adfd2f2051d9d026dd5dae8f20a89",
+      "raw": 423264,
+      "gzip": 360368,
+      "brotli": 347694
+    },
+    {
+      "url": "/character-lab/models/round2/female/hair/bob01.glb",
+      "kinds": [
+        "hair"
+      ],
+      "sha256": "cfb13d5dc9c23b403c5649e1cc450770c4e986b15687e89f9f8afe9780b94039",
+      "raw": 588188,
+      "gzip": 468330,
+      "brotli": 451725
+    },
+    {
+      "url": "/character-lab/models/round2/female/hair/afro01.glb",
+      "kinds": [
+        "hair"
+      ],
+      "sha256": "c7ed79cc917d50668871b96cdba2b357701bcebc8595ee05e515fb06f57aa664",
+      "raw": 592472,
+      "gzip": 488292,
+      "brotli": 469949
+    },
+    {
+      "url": "/character-lab/models/round2/female/hair/braid01.glb",
+      "kinds": [
+        "hair"
+      ],
+      "sha256": "1d275267d71dff14d3a826947aee1a88dd048aa9e1fac7080f66ec21a032dee6",
+      "raw": 615632,
+      "gzip": 496040,
+      "brotli": 470356
+    },
+    {
+      "url": "/character-lab/models/round2/female/hair/ponytail01.glb",
+      "kinds": [
+        "hair"
+      ],
+      "sha256": "85c450dec0508c7b5fef3b7ea17285ec4549ea283fe75e6abadf0e24b39c27ec",
+      "raw": 682084,
+      "gzip": 564719,
+      "brotli": 544428
+    },
+    {
+      "url": "/character-lab/models/round4/female/garments/female-casual-01.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "1c54d93e1a0d8f26281164920f9b7c924c9f92d0cb2d77ae630f1477fbe1105e",
+      "raw": 1978712,
+      "gzip": 1836163,
+      "brotli": 1794002
+    },
+    {
+      "url": "/character-lab/models/round4/female/garments/female-casual-02.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "71e8754825349436c1cfb7d7ac439a72ecb09452516635e8e0ffc8b091d7fc15",
+      "raw": 2035900,
+      "gzip": 1848745,
+      "brotli": 1792668
+    },
+    {
+      "url": "/character-lab/models/round12/female/garments/female-elegant-01.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "ce698da5045fc54c9fde09047142c8492da85875c706a3e2a106bfdf2df4d9d7",
+      "raw": 2720644,
+      "gzip": 1924156,
+      "brotli": 1861732
+    },
+    {
+      "url": "/character-lab/models/round4/female/garments/female-sport-01.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "4585afb1ee8f50828f3fa49bea2b06aa28d4691b08e5c31bb38616be89b46b7b",
+      "raw": 1170080,
+      "gzip": 1050765,
+      "brotli": 1017907
+    },
+    {
+      "url": "/character-lab/models/round4/female/garments/male-worksuit-01.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "d7fcbb8814411a92c532d1f205d7dd22b01b379004113a605aaf3b89319471ff",
+      "raw": 2746684,
+      "gzip": 2538690,
+      "brotli": 2464368
+    },
+    {
+      "url": "/character-lab/models/round4/female/garments/formal-suit-01.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "4d06db9427a3b8a21022e6e7c24545934471596413dee16aac0f6afb37bcaee3",
+      "raw": 1741552,
+      "gzip": 1437412,
+      "brotli": 1336527
+    },
+    {
+      "url": "/character-lab/models/round12/female/garments/fitted-skirt-01.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "ab879ecedfeffb3380d0a22cf47c8c0748db1e0f3ff94243eb0f8b193a114f21",
+      "raw": 2713188,
+      "gzip": 2569492,
+      "brotli": 2535833
+    },
+    {
+      "url": "/character-lab/models/round2/female/shoes/shoes01.glb",
+      "kinds": [
+        "shoes"
+      ],
+      "sha256": "83a932085712b05e96dadc7076c3c3f539ad3237990a5a7025067e64d502bb66",
+      "raw": 796832,
+      "gzip": 752930,
+      "brotli": 741768
+    },
+    {
+      "url": "/character-lab/models/round2/female/shoes/shoes02.glb",
+      "kinds": [
+        "shoes"
+      ],
+      "sha256": "b9679812ba486371f815845fac7da4ba531a1096ff77117d0bb4896564daf68a",
+      "raw": 529552,
+      "gzip": 483301,
+      "brotli": 473272
+    },
+    {
+      "url": "/character-lab/models/round2/female/shoes/shoes03.glb",
+      "kinds": [
+        "shoes"
+      ],
+      "sha256": "9d051b51ae853d20a55859d1ef6d92b4e9d3ec71372a7dfa49e021c99f25df84",
+      "raw": 264148,
+      "gzip": 217253,
+      "brotli": 205604
+    },
+    {
+      "url": "/character-lab/models/round4/male/base.glb",
+      "kinds": [
+        "body"
+      ],
+      "sha256": "42456b825e124bbf7562e6abd10968a519c267ecec443ee3a96b153d67e84eb0",
+      "raw": 3460568,
+      "gzip": 2277552,
+      "brotli": 1647480
+    },
+    {
+      "url": "/character-lab/models/round2/male/textures/skin-medium.jpg",
+      "kinds": [
+        "complexion"
+      ],
+      "sha256": "fd481e142fc435f6eac19f68ba068aa0ba0e85e2fe26aedc1d0a845ebe97e654",
+      "raw": 190203,
+      "gzip": 186832,
+      "brotli": 185559
+    },
+    {
+      "url": "/character-lab/models/round2/male/textures/skin-light.jpg",
+      "kinds": [
+        "complexion"
+      ],
+      "sha256": "dcedc9a25c0fe40d8a95cb773e1ec08fa6aaf1efe8d8ed7db3f39b09715daf8a",
+      "raw": 190666,
+      "gzip": 187299,
+      "brotli": 186092
+    },
+    {
+      "url": "/character-lab/models/round2/male/hair/short01.glb",
+      "kinds": [
+        "hair"
+      ],
+      "sha256": "20b617bd4e1e1ff7e2f21b29342c7326ce3aac6142fa6719eec56d8661dab7d5",
+      "raw": 545376,
+      "gzip": 426793,
+      "brotli": 410171
+    },
+    {
+      "url": "/character-lab/models/round2/male/hair/short02.glb",
+      "kinds": [
+        "hair"
+      ],
+      "sha256": "9b97ad7586c69eb145422f2301fc1b370ea299d6e8f128d0ac157887909d7c0c",
+      "raw": 423580,
+      "gzip": 359164,
+      "brotli": 347193
+    },
+    {
+      "url": "/character-lab/models/round2/male/hair/bob01.glb",
+      "kinds": [
+        "hair"
+      ],
+      "sha256": "ddc1c2e4e54865998a7638fe96fca23de04b233a42121bbf10e1afe06f241b86",
+      "raw": 589080,
+      "gzip": 465793,
+      "brotli": 450398
+    },
+    {
+      "url": "/character-lab/models/round2/male/hair/afro01.glb",
+      "kinds": [
+        "hair"
+      ],
+      "sha256": "75fefaa0729d9cc1b0c886fd86cc13dfa359c5101f190e6446e15b51aef016f6",
+      "raw": 592792,
+      "gzip": 486338,
+      "brotli": 468575
+    },
+    {
+      "url": "/character-lab/models/round2/male/hair/braid01.glb",
+      "kinds": [
+        "hair"
+      ],
+      "sha256": "bd76fb675d5dd87091aca14bafa6da02d34d78aa3b52c886356c6fae915e6578",
+      "raw": 616072,
+      "gzip": 495033,
+      "brotli": 469608
+    },
+    {
+      "url": "/character-lab/models/round2/male/hair/ponytail01.glb",
+      "kinds": [
+        "hair"
+      ],
+      "sha256": "466357d580f15487f867c36e6386b39ee627aaad6ad151bc1dab96c80eb654ca",
+      "raw": 682268,
+      "gzip": 562969,
+      "brotli": 542903
+    },
+    {
+      "url": "/character-lab/models/round4/male/garments/female-casual-01.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "f1d2a89e1834f0894fb4a4a2b6ec368eff4a6f0ec03b843a2a1bbcf516492a36",
+      "raw": 1975852,
+      "gzip": 1832409,
+      "brotli": 1790019
+    },
+    {
+      "url": "/character-lab/models/round4/male/garments/female-casual-02.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "fca459df121a6fd54b5b67e139328c4ae1e804c42aeeeba4d5882b4b0743a677",
+      "raw": 2033592,
+      "gzip": 1845881,
+      "brotli": 1790847
+    },
+    {
+      "url": "/character-lab/models/round12/male/garments/female-elegant-01.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "cb1cfa017a27cb1c08a1d21d86b056861e7e13751b45fbd39d04c0819a42e740",
+      "raw": 2725880,
+      "gzip": 1934567,
+      "brotli": 1870156
+    },
+    {
+      "url": "/character-lab/models/round4/male/garments/female-sport-01.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "29fdd0633c65b9037216cee366e4941bfb90960a9d0ea40efb5aa9919d8f6a48",
+      "raw": 1168916,
+      "gzip": 1048221,
+      "brotli": 1015292
+    },
+    {
+      "url": "/character-lab/models/round4/male/garments/male-worksuit-01.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "c47a43948975b3e16b16f20027684b9a75af8d26afbcfc8c1f6bba53bf4030a4",
+      "raw": 2730260,
+      "gzip": 2523665,
+      "brotli": 2449123
+    },
+    {
+      "url": "/character-lab/models/round4/male/garments/formal-suit-01.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "41788e3e2a61860de6060ad3ce432252f7358f7168b530a91a8f52cf095a9063",
+      "raw": 1728608,
+      "gzip": 1422647,
+      "brotli": 1329978
+    },
+    {
+      "url": "/character-lab/models/round12/male/garments/fitted-skirt-01.glb",
+      "kinds": [
+        "garments"
+      ],
+      "sha256": "6fd75e6b70aab8337c983dab5391f2ef22d37a319b9bb7548bd3c4313dc89c14",
+      "raw": 2711260,
+      "gzip": 2569940,
+      "brotli": 2537185
+    },
+    {
+      "url": "/character-lab/models/round2/male/shoes/shoes01.glb",
+      "kinds": [
+        "shoes"
+      ],
+      "sha256": "e0f53ef35bc2a006473577ccf894537eac5f282e7df1a11c6b9597ae1b4a5ba8",
+      "raw": 797148,
+      "gzip": 753046,
+      "brotli": 741831
+    },
+    {
+      "url": "/character-lab/models/round2/male/shoes/shoes02.glb",
+      "kinds": [
+        "shoes"
+      ],
+      "sha256": "1959d355e630f1f2e55473d45465d187158361a911561b020b927f3011b1dcdb",
+      "raw": 529916,
+      "gzip": 483571,
+      "brotli": 473708
+    },
+    {
+      "url": "/character-lab/models/round2/male/shoes/shoes03.glb",
+      "kinds": [
+        "shoes"
+      ],
+      "sha256": "dadfe26f170f4078ddb63fab71e42bf1d9c4fe11fb2adad5708cc499294866ec",
+      "raw": 264412,
+      "gzip": 217313,
+      "brotli": 205915
+    },
+    {
+      "url": "/character-lab/models/eyes/brown.jpg",
+      "kinds": [
+        "eyes"
+      ],
+      "sha256": "e235cd9266c5dd69f31714e95c80385397a2c4a33ef34cbda978e872acfd0e33",
+      "raw": 26079,
+      "gzip": 24788,
+      "brotli": 24602
+    },
+    {
+      "url": "/character-lab/models/eyes/brown-light.jpg",
+      "kinds": [
+        "eyes"
+      ],
+      "sha256": "b643c46b283f7c58ce39b7240f38a25624ea3cc3bb701c5bcbcf7f1ea6f2093f",
+      "raw": 30888,
+      "gzip": 29603,
+      "brotli": 29414
+    },
+    {
+      "url": "/character-lab/models/eyes/blue.jpg",
+      "kinds": [
+        "eyes"
+      ],
+      "sha256": "346b09e6ab6469211941daebd93a12e5a2ef18572ae07a6db6028e803b2b5606",
+      "raw": 29614,
+      "gzip": 28318,
+      "brotli": 28143
+    },
+    {
+      "url": "/character-lab/models/eyes/green.jpg",
+      "kinds": [
+        "eyes"
+      ],
+      "sha256": "699fc412af3b0174f7aa5778b41b24ee65e1187110884e5cf722a842598a6623",
+      "raw": 28243,
+      "gzip": 26965,
+      "brotli": 26792
+    },
+    {
+      "url": "/character-lab/models/eyes/grey.jpg",
+      "kinds": [
+        "eyes"
+      ],
+      "sha256": "09b0edd8db54894678de4051200c163c9b88ff8db575e78c0d330fa7d9107613",
+      "raw": 28444,
+      "gzip": 27156,
+      "brotli": 26990
+    }
+  ],
+  "pass": true
+}

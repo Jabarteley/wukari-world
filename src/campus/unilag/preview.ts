@@ -10,6 +10,7 @@ import { buildShuttle } from './shuttle-scene.ts';
 import { CAMPUS_NPCS } from './content.ts';
 import { BUILDINGS, ZONES, ROADS, ANCHORS, ENTRANCE } from './layout.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
+import { preloadCanonicalBodies } from '../../scene/body/skinned.ts';
 import type { Kit } from '../../scene/kit.ts';
 import type { MotionLoop } from '../../scene/motion-loop.ts';
 import type { Walker } from './host.ts';
@@ -19,6 +20,29 @@ interface ShuttleView { group: Group; dispose(): void }
 const finite = (value: unknown): value is number => Number.isFinite(value);
 
 const $=<T extends HTMLElement = HTMLElement>(id: string): T=>document.getElementById(id) as T;
+async function waitForCanonicalBodies(): Promise<void> {
+  const status = $('status');
+  for (;;) {
+    try {
+      await Promise.all([
+        preloadCanonicalBodies(),
+        preloadCanonicalBodies([], 'lod'),
+      ]);
+      status.removeAttribute('role');
+      status.textContent = 'Canonical character ready. Preparing campus…';
+      return;
+    } catch (error) {
+      const detail = error instanceof Error ? error.message : String(error);
+      status.setAttribute('role', 'alert');
+      status.replaceChildren(document.createTextNode(`Character assets failed to load. ${detail} `));
+      const retry = document.createElement('button');
+      retry.type = 'button'; retry.textContent = 'Retry character load';
+      status.append(retry);
+      await new Promise<void>((resolve) => retry.addEventListener('click', () => resolve(), { once: true }));
+    }
+  }
+}
+await waitForCanonicalBodies();
 const renderer=new THREE.WebGLRenderer({canvas:$<HTMLCanvasElement>('world'),antialias:true,alpha:false});
 renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;

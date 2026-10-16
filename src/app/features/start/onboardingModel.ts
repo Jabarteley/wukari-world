@@ -8,6 +8,7 @@ import { hairOptions, outfitOptions, slotOf, starterWardrobe } from './lookModel
 import { avatarLookFields } from '../../../game/wardrobe/look.ts'
 import { money } from '../../ui/format.ts'
 import { cityUnit } from '../../../game/cities/terminology.ts'
+import { nativeRecipeForLook, validateNativeRecipe } from '../../../character/native-recipe.ts'
 
 export const DRAFT_KEY = 'joinallworld-look-draft'
 /** The index of the Home card: the last of ONBOARDING_STEPS. */
@@ -39,12 +40,15 @@ export function storedLook(key: string, storage: Storage | null = deviceStorage(
       && has('skin', look.skin) && has('hairColours', look.hairColor) && has('outfitColours', look.outfitColor) && has('outfitColours', look.bottomsColor)
       && extras.length <= APPEARANCE.accessoryLimit && extras.every((id) => (free.accessories as string[]).includes(id)) && slots.size === extras.length
     if (!valid) return null
+    const checkedNative = look.native === undefined ? null : validateNativeRecipe(look.native)
+    if (checkedNative && !checkedNative.ok) return null
     return {
       ...avatarLookFields(look),
       body: look.body, hair: look.hair as Look['hair'], outfit: look.outfit as Look['outfit'], fabric: look.fabric as Look['fabric'], skin: look.skin as Look['skin'],
       hairColor: look.hairColor as Look['hairColor'], outfitColor: look.outfitColor as Look['outfitColor'], bottomsColor: look.bottomsColor as Look['bottomsColor'],
       accessories: [...extras], face: (APPEARANCE.faces as string[]).includes(look.face as string) ? look.face as Look['face'] : APPEARANCE.faces[0] as Look['face'],
       expression: (APPEARANCE.expressions as string[]).includes(look.expression as string) ? look.expression as Look['expression'] : APPEARANCE.expressions[0] as Look['expression'],
+      native: checkedNative?.ok ? checkedNative.recipe : nativeRecipeForLook(look, `${key}:draft`),
     }
   } catch { return null }
 }

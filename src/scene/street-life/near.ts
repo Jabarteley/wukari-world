@@ -1,48 +1,41 @@
 /**
  * OWNER: scenes
- * Street life, the NEAR CROWD (zoom phase 5c). Pure: no Three.js, no DOM (forcedNear reads what it is given). The far crowd (./plan.ts,
- * ./crowd.ts) is cut-outs: two triangles a person, which read well from mid range out. The few people nearest the camera are drawn
- * instead with the game's own skinned body (src/scene/body/skinned.ts, the body the player wears), at a level of detail of about 2,430
- * of its 9,002 triangles (scripts/body/build-lod.ts), dressed by the wardrobe (hair, cuts, bags, head wraps) from the avatar's own look
- * options. This module decides, as plain functions:
+ * Street life, the NEAR CROWD (zoom phase 5c). Pure: no Three.js, no DOM (forcedNear reads what it is given). The far crowd uses native
+ * snapshots from the same recipe. At most one person nearest the camera is replaced with the game's full native skinned body
+ * (src/scene/body/skinned.ts, the body the player wears), only after its actual render cost fits the host's remaining room. This module
+ * decides, as plain functions:
  *
  *   - WHO gets it (nearCrowdFor): only where the far crowd is drawn (its gate: a 'full' ambient tier, WebGL2, the dive's device tier not
  *     'cut'), with NEAR_CAPS by the street's tier; `?nearcrowd=off` (or localStorage 'aw.nearcrowd') turns it off, `=on` forces it;
  *   - WHICH people (selectNear): the nearest to the camera, inside NEAR_RADIUS.enter, kept until they pass NEAR_RADIUS.leave (the gap is
  *     the hysteresis: nobody flickers between a body and a cut-out at the edge), never one dissolving at a lane's end, never one behind
  *     the camera, at most the cap (members first, so a full set does not churn);
- *   - HOW they look (nearDress): a look in the avatar's own terms (body, skin, hair, outfit, fabric, colours, accessories, wearables,
- *     height and build), taken from the cut-out's colours so the hand-over keeps the person, plus what is in their hand (a cup or a phone);
- *   - WHAT they do (nearAction): walk at the stride their pace gives, stand (the idle clip, each at their own point in it), sip a coffee,
- *     look at a phone; and GLANCE: a head turn toward the player when close and in front of them (glanceYaw, easeGlance);
+ *   - HOW they look (nearDress): a complete native recipe from the bounded two-body crowd pool, with the far person's height and colours;
+ *   - WHAT they do (nearAction): walk by the native body's measured cycle distance or stand, plus a glance toward a nearby player;
  *   - CHILDREN (childrenAllowed, CHILD_*): crowd.ts plans a few children, each walking beside a parent on the parent's schedule, only
  *     where the place allows them (CHILD_CONTEXTS: the home street, markets, parks, walks and hubs). Bars, clubs, casinos, lounges and
- *     every other kind are never on that list. A child is a smaller, slimmer body with a larger head, in everyday clothes, carrying
- *     nothing but perhaps a school bag; never a cup or a phone.
+ *     every other kind are never on that list. Children use the same native surface with uniform scale; no bone is reshaped at runtime.
  *
  * Every choice is a function of the street's seed and the person's index, so every device dresses the same person the same way.
  */
 import { makeRng } from '../../game/util.ts';
-import { avatarProportions } from '../../types/avatar.ts';
-import { OUTFITS } from './crowd.ts';
+import { nativeRecipeForLook, normalizeNativeRecipe } from '../../character/native-recipe.ts';
+import type { NativeCharacterRecipeV2 } from '../../character/native-recipe.ts';
 import type { Person, PersonPose } from './crowd.ts';
 import type { Forced, StreetTier } from './plan.ts';
 
 // ---- the gate and the caps -------------------------------------------------------------------------------------------------------
 
 /**
- * What the near crowd may draw at most, per street tier: people, triangles (the bodies at their level of detail plus what they wear) and
- * draw calls (a body and its wardrobe are two; the cups and phones one each). A budget of its own on top of the scene's (like the dive's
- * aerial city), because it exists only on devices that passed the far crowd's gate, and the adaptive caps shrink it with the far crowd.
+ * Historic street ceilings retained for compatibility and reporting. Live native admission additionally clamps people to one and asks
+ * the host for actual remaining scene room; neither of these ceilings is raised.
  */
 export const NEAR_CAPS: Readonly<Record<StreetTier, { people: number; triangles: number; drawCalls: number }>> = Object.freeze({
   full: { people: 12, triangles: 72_000, drawCalls: 28 },
   lite: { people: 6, triangles: 36_000, drawCalls: 14 },
 });
-/** Never more near people than this, whatever asks. */
-export const NEAR_HARD_CAP = 20;
-/** Draw calls the props take (one instanced mesh of cups, one of phones), and a body's own (its mesh and its wardrobe layer). */
-export const PROP_CALLS = 2, BODY_CALLS = 2;
+/** A live native body is deliberately exceptional; the native far snapshots retain the rest of the population. */
+export const NEAR_HARD_CAP = 1;
 
 /** `?nearcrowd=on|off`, else localStorage 'aw.nearcrowd'. */
 export function forcedNear(search = '', stored: string | null = null): Forced {
@@ -142,8 +135,8 @@ export function childrenAllowed(context: string | null | undefined): boolean {
   return typeof context === 'string' && CHILD_CONTEXTS.has(context) && !ADULT_CONTEXTS.has(context);
 }
 export { ADULT_HEIGHT, CHILD_HEIGHT, CHILD_SHARE } from './crowd.ts';
-/** A child's head against the body (the bone's scale): children's heads are larger for their height. */
-export const CHILD_HEAD = 1.12;
+/** Compatibility value only. Native child actors retain their authored proportions and are scaled uniformly. */
+export const CHILD_HEAD = 1;
 
 // ---- how they look ---------------------------------------------------------------------------------------------------------------
 
@@ -162,107 +155,57 @@ export interface NearLook {
   expression: string
   face: string
   appearance: { height: 'short' | 'average' | 'tall'; build: 'slim' | 'average' | 'broad'; ageAppearance: 'adult' | 'mature' | 'elder' }
+  /** The sole rendered identity; compatibility fields above do not select scene assets. */
+  native: NativeCharacterRecipeV2
 }
-export type Prop = 'cup' | 'phone' | null;
 export interface NearDress {
   look: NearLook
   /** The seed the body takes (blinks, the expression's motion). */
   seed: string
-  prop: Prop
-  /** With a phone: on a call (held up by the face) rather than reading it. */
-  call: boolean
   child: boolean
   /** The scene scale to fit the body at (skinned.ts fitScale): it then stands as tall as the cut-out it replaces. */
   scale: number
   /** Seconds into the idle clip this person stands at (each their own, so a group never sways in step). */
   idle: number
 }
-
-const HAIR = {
-  woman: ['braids', 'braids', 'braids', 'afro', 'bun', 'ponytail', 'locs', 'cornrows', 'twists', 'bantuknots', 'lowcut', 'long'],
-  man: ['lowcut', 'lowcut', 'fade', 'fade', 'bald', 'curls', 'afro', 'locs', 'cornrows', 'twists', 'braids', 'classic'],
-  // Children keep close-fitting styles: a full afro on a child's larger head reads as a helmet.
-  girl: ['braids', 'bantuknots', 'cornrows', 'ponytail', 'twists'],
-  boy: ['lowcut', 'fade', 'curls', 'lowcut'],
-} as const;
-/** Black, soft black, dark brown and brown mostly; a little auburn. */
-const HAIR_COLOURS = ['#1c1917', '#1c1917', '#2b2320', '#2b2320', '#3d2a1f', '#5a3a26', '#8a3b22'] as const;
-const GREY = '#9c9893';
-/** What each of the far crowd's outfits (crowd.ts OUTFITS) is in the wardrobe's cuts. */
-const CUTS: Readonly<Record<string, { woman: readonly string[]; man: readonly string[] }>> = {
-  office: { woman: ['office'], man: ['office'] },
-  casual: { woman: ['casual'], man: ['casual', 'hoodie', 'chill'] },
-  print: { woman: ['owambe', 'gown'], man: ['kaftan', 'agbada'] },
-  sport: { woman: ['jersey'], man: ['jersey'] },
-  smart: { woman: ['gown', 'office'], man: ['office'] },
-  coat: { woman: ['office', 'casual'], man: ['office'] },
-  summer: { woman: ['casual', 'gown'], man: ['casual', 'chill'] },
-};
-const PRINTS = ['ankara', 'adire', 'asooke'] as const;
-/** Scene units of the avatar the body is fitted to (skinned.ts fitScale: 2.45 × the scene scale). */
+/** Scene units of a native actor at recipe height 1 and scene scale 1. */
 export const AVATAR_UNITS = 2.45;
-/** The share of adults who carry a coffee (not those who look at phones). */
-export const CUP_SHARE = 0.18;
 
 /** How the near crowd dresses the person at `index` of a street's planned crowd (seeded by the street and the index). */
 export function nearDress(person: Person, index: number, seed: string): NearDress {
-  const next = makeRng(`street-life|near|${seed}|${index}`);
-  const pick = <T>(list: readonly T[]): T => list[Math.floor(next() * list.length) % list.length] as T;
+  const stableSeed = `street-life|near|${seed}|${index}`;
+  const next = makeRng(stableSeed);
   const child = person.child === true;
-  const woman = child ? next() < 0.5 : person.skirt || next() < 0.35;
-  const kind = OUTFITS[person.outfit]?.name ?? 'casual';
-  const wrapped = !child && person.style === 1, grey = !child && person.style === 2;
-  const accessories: string[] = [], wearables: string[] = [];
-  let hair: string = pick(child ? (woman ? HAIR.girl : HAIR.boy) : woman ? HAIR.woman : HAIR.man);
-  let outfit: string, fabric = 'plain';
-  if (child) {
-    outfit = pick(woman ? ['casual', 'jersey', 'gown'] : ['casual', 'jersey', 'hoodie']);
-    if (next() < 0.3) wearables.push('school-uniform');
-    if (person.bag === 2 || next() < 0.25) accessories.push('backpack');
-  } else {
-    const cuts = CUTS[kind] ?? CUTS.casual!;
-    outfit = pick(woman ? cuts.woman : cuts.man);
-    if (kind === 'print' || (outfit === 'gown' && next() < 0.5)) fabric = pick(PRINTS);
-    if (person.bag === 2) accessories.push('backpack'); else if (person.bag === 1 || person.bag === 3) accessories.push('handbag');
-    const extra = next();
-    if (extra < 0.1) accessories.push('glasses'); else if (extra < 0.18) accessories.push('sunglasses'); else if (extra < 0.4) accessories.push('watch');
-    if (woman && next() < 0.3) accessories.push('earrings');
-    if (wrapped) {
-      if (woman) { const wrap = next(); if (wrap < 0.45) hair = 'gele'; else wearables.push(wrap < 0.75 ? 'hijab-wrap' : 'hijab-drape'); }
-      else if (next() < 0.35) wearables.push('turban'); else accessories.unshift('cap');
-    }
-  }
+  const base = nativeRecipeForLook({}, stableSeed);
+  const nativeHeight = Math.max(.85, Math.min(1.15, person.height / AVATAR_UNITS));
+  const native = normalizeNativeRecipe({ ...base, appearance: { ...base.appearance, height: nativeHeight,
+    colors: { ...base.appearance.colors, skin: person.skin, upper: person.jacket ?? person.shirt, lower: person.legs } } });
+  const woman = native.appearance.body === 'female';
   const heightClass: NearLook['appearance']['height'] = child ? 'average' : person.height < 2.45 ? 'short' : person.height > 2.72 ? 'tall' : 'average';
   const build: NearLook['appearance']['build'] = child ? 'slim' : person.width < 0.95 ? 'slim' : person.width > 1.12 ? 'broad' : 'average';
-  const ageAppearance: NearLook['appearance']['ageAppearance'] = grey ? 'elder' : !child && next() < 0.12 ? 'mature' : 'adult';
+  const ageAppearance: NearLook['appearance']['ageAppearance'] = !child && next() < 0.12 ? 'mature' : 'adult';
   const appearance = { height: heightClass, build, ageAppearance };
   const look: NearLook = {
-    body: woman ? 'woman' : 'man', skin: person.skin, hair, hairColor: grey ? GREY : pick(HAIR_COLOURS), outfit, fabric,
-    // A jacket is the top people see; trousers or a skirt keep the cut-out's colour, so the hand-over keeps the person.
-    outfitColor: person.jacket ?? person.shirt, bottomsColor: person.legs,
-    accessories, ...(wearables.length ? { wearables } : {}), expression: next() < 0.4 ? 'smile' : 'neutral', face: pick(['oval', 'round', 'long']), appearance,
+    body: woman ? 'woman' : 'man', skin: person.skin, hair: 'low-cut', hairColor: native.appearance.colors.hair,
+    outfit: 'casual', fabric: 'plain', outfitColor: native.appearance.colors.upper, bottomsColor: native.appearance.colors.lower,
+    accessories: [], expression: native.emotion === 'happy' ? 'smile' : 'neutral', face: 'oval', appearance, native,
   };
-  const prop: Prop = child ? null : person.phone ? 'phone' : next() < CUP_SHARE ? 'cup' : null;
-  // The body's own height factor (short 0.94, tall 1.06) is taken out, so the body stands exactly as tall as the cut-out.
-  const scale = person.height / (AVATAR_UNITS * avatarProportions(appearance).height);
-  return { look, seed: `${seed}|near|${index}`, prop, call: prop === 'phone' && next() < 0.35, child, scale, idle: next() * 8 };
+  // The native recipe owns relative height; this uniform scene scale makes its authored surface meet the far snapshot height.
+  const scale = person.height / (AVATAR_UNITS * native.appearance.height);
+  return { look, seed: stableSeed, child, scale, idle: next() * 8 };
 }
 
 // ---- what they do ----------------------------------------------------------------------------------------------------------------
 
-/** One full walk cycle (two steps) is this share of a body's height: the player's own (src/scene/movement.ts gaitPhase: 1.83 / 2.45). */
+/** Legacy diagnostic ratio; live phase uses SkinnedBody.cycleDistance(). */
 export const WALK_CYCLE = 1.83 / 2.45;
 export type NearAction =
-  | { kind: 'walk'; phase: number }
-  | { kind: 'stand'; seconds: number }
-  | { kind: 'drink'; seconds: number }
-  | { kind: 'phone'; call: boolean };
+  | { kind: 'walk'; travelled: number }
+  | { kind: 'stand'; seconds: number };
 
 /** What a near person does at this moment (seconds: wall clock), from the far crowd's pose (crowd.ts personAt). */
-export function nearAction(person: Person, pose: PersonPose, dress: NearDress, seconds: number): NearAction {
-  if (pose.mode === 0) return { kind: 'walk', phase: (2 * Math.PI * (pose.travelled ?? 0)) / (WALK_CYCLE * person.height) };
-  if (pose.mode === 2 && dress.prop === 'phone') return { kind: 'phone', call: dress.call };
-  if (dress.prop === 'cup') return { kind: 'drink', seconds: seconds + dress.idle };
+export function nearAction(_person: Person, pose: PersonPose, dress: NearDress, seconds: number): NearAction {
+  if (pose.mode === 0) return { kind: 'walk', travelled: pose.travelled ?? 0 };
   return { kind: 'stand', seconds: seconds + dress.idle };
 }
 

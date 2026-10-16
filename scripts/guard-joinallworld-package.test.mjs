@@ -222,3 +222,18 @@ test('open dev mode guard: a release package whose Worker carries the open-mode 
   writeFileSync(join(f.root, 'worker.js'), f.markWorker('export default {fetch(){return new Response("/* allworld-open-dev-node-only */")}}')); f.seal();
   assert.throws(() => checkPackage(f.root, sha, false), /Open dev mode code in the release package/);
 });
+
+test('native release permits only named metadata and licence notices', t => {
+  const f = fixture(t);
+  const dir = join(f.root, 'assets/character-lab/models/final-pass-20261015');
+  mkdirSync(dir, { recursive: true });
+  const catalog = join(dir, 'catalog.json');
+  writeFileSync(catalog, '{"version":1}');
+  writeFileSync(join(f.root, 'assets/character-lab/THIRD_PARTY_NOTICES.md'), '# Attribution');
+  f.seal(); assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
+  writeFileSync(catalog, '{bad'); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Invalid native metadata/);
+  writeFileSync(catalog, '{}');
+  writeFileSync(join(dir, 'credentials.json'), '{}'); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Unexpected package file/);
+});

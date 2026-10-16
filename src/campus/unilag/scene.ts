@@ -2,7 +2,9 @@ import type { Group, Mesh } from 'three';
 import type { Look } from '../../types/life.ts';
 import type { Kit } from '../../scene/kit.ts';
 import { kitResources } from '../../scene/build.ts';
-import { buildAvatar, poseAvatar, normalizeLook } from '../../scene/characters.ts';
+import { createBody } from '../../scene/body/skinned.ts';
+import type { BodyPose } from '../../scene/body/skinned.ts';
+import { buildCanonicalCrowd } from '../../scene/body/canonical-crowd.ts';
 import type { Pose } from '../../scene/characters.ts';
 import { lagosTime } from '../../game/clock.ts';
 import { ANCHORS, ENTRANCE } from './layout.ts';
@@ -72,6 +74,8 @@ export interface UnilagScene {
   setPosition(x: number, z: number): boolean;
   setSpot(id: string): boolean;
   setPlayer(input?: PlayerInput): boolean;
+  cycleDistance(jog: boolean): number;
+  stepCharacter(dt: number): boolean;
   setCrowd(people: CrowdInput[] | null | undefined): CampusTag[];
   tags(): CampusTag[];
   stats(): CampusSceneStats;
@@ -85,12 +89,13 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
   group.name = 'UNILAG Akoka · mapped campus';
   const navigation = createCampusWalk();
   const mapped = createMappedGeometry(kit); group.add(mapped.group);
-  let player = buildAvatar(kit, { body: 'woman', outfit: 'casual', outfitColor: 'gold', skin: 'skin-5' }, { detail: 'low', rig: true, scale: .60, seed: 'campus-visitor' });
-  group.add(player);
+  let player = createBody(kit, { body: 'woman', outfit: 'casual', outfitColor: 'gold', skin: 'skin-5' }, 'campus-visitor', .60);
+  player.show('idle', false);
+  group.add(player.object);
   let time = venue.scene?.time || 'day', disposed = false, playerKey = '';
   let crowd: CrowdPerson[] = [];
   const peopleGroup = new THREE.Group(); peopleGroup.name='Campus stationary peers'; group.add(peopleGroup);
-  const peopleCache = new Map<string, { key: string; body: ReturnType<typeof buildAvatar> }>();
+  let peopleBatch: ReturnType<typeof buildCanonicalCrowd> | null = null;
   const position: PlayerPosition = { ...ENTRANCE };
   const grid: CampusGridView = {
     bounds: [...CAMPUS_MAP.bounds],
@@ -105,15 +110,15 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
   function setPosition(x:number,z:number):boolean {
     const zone=navigation.zoneAt(x,z);
     if(disposed||!zone||!grid.free(x,z))return false;
-    position.x=x;position.z=z;position.zone=zone.id;player.position.set(x,0,z);mapped.update(x,z);return true;
+    position.x=x;position.z=z;position.zone=zone.id;player.place(x,0,z,position.ry);mapped.update(x,z);return true;
   }
-  function clearPeople(){for(const peer of peopleCache.values())peer.body.userData.dispose();peopleCache.clear();peopleGroup.clear();}
+  function clearPeople(){peopleBatch?.dispose();peopleBatch=null;peopleGroup.clear();}
   const walk:AvatarWalk={
-    entrance:[ENTRANCE.x,ENTRANCE.z,ENTRANCE.ry],open:true,avatar:player,raised:[],scale:.60,
+    entrance:[ENTRANCE.x,ENTRANCE.z,ENTRANCE.ry],open:true,avatar:player.object,raised:[],scale:.60,
     get centre(){return [position.x,1,position.z];},get grid(){return grid;},
     solids:CAMPUS_MAP.buildings.map(b=>{const [x0,z0,x1,z1]=boundsOf(b.ring);return [x0,0,z0,x1,b.osm.id===653186158?43:b.height,z1];}),
-    move(x,y,z,ry){if(setPosition(x,z)){player.rotation.y=ry;position.ry=ry;}},drive(){},rest(){poseAvatar(player,{pose:'stand'});},
-    gait(step,phase,jog=false){poseAvatar(player,{pose:jog?'jog':'walk',stride:phase/(Math.PI*2)});},pose(name){poseAvatar(player,{pose:name as Pose});},heightAt:()=>0,
+    move(x,y,z,ry){if(setPosition(x,z)){position.y=y;position.ry=ry;player.place(x,y,z,ry);}},drive(){},rest(){player.show('idle',false);},
+    gait(step,phase,jog=false){player.stride(phase,jog,0,false);},pose(name){const pose:BodyPose=name==='sit'?'sit':name==='walk'?'walk':name==='jog'?'jog':name==='dance'?'dance':name==='wave'||name==='work'?'interact':'idle';player.show(pose,false);},heightAt:()=>0,
     near:at=>mark(nearMarker,at),goal:(x,z)=>mark(goalMarker,Number.isFinite(x)&&Number.isFinite(z)?{x:x!,z:z!}:null),
     spots:()=>Object.values(ANCHORS).map(a=>({...a,approach:null,steps:[]})),people:()=>crowd.map(p=>({...p,top:2.3})),
   };
@@ -125,21 +130,19 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
     setTime(value){if(!['day','dusk','night'].includes(value)||value===time)return false;time=value;return true;},
     lighting(){return {hemi:[scene.background,'#677457',time==='night'?.8:1.6],sun:[time==='night'?'#96b5da':'#fff0d2',time==='night'?.65:2.4,[80,140,50]]};},
     setPosition,setSpot(id){const a=ANCHORS[id];return !!a&&setPosition(a.x,a.z);},
-    setPlayer({look,seed='campus-visitor',pose='stand'}:PlayerInput={}){const key=JSON.stringify([look,seed]);if(look&&key!==playerKey){playerKey=key;player.userData.dispose();player=buildAvatar(kit,look,{detail:'low',rig:true,scale:.60,seed});group.add(player);player.position.set(position.x,0,position.z);walk.avatar=player;}poseAvatar(player,{pose});return true;},
+    setPlayer({look,seed='campus-visitor',pose='stand'}:PlayerInput={}){const key=JSON.stringify([look,seed]);if(look&&key!==playerKey){playerKey=key;player.dispose();player=createBody(kit,look,seed,.60);group.add(player.object);player.place(position.x,position.y,position.z,position.ry);walk.avatar=player.object;}walk.pose(pose);return true;},
+    cycleDistance(jog){return player.cycleDistance(jog);},
+    stepCharacter(dt){return player.step(dt);},
     setCrowd(people){
       crowd=(people??[]).slice(0,CAMPUS_BUDGET.crowd).flatMap(p=>{const anchor=p.spot?ANCHORS[p.spot]:undefined;const at=typeof p.x==='number'&&typeof p.z==='number'?{x:p.x,z:p.z}:anchor?grid.nearest(anchor.x+2,anchor.z+2):null;return at&&grid.free(at.x,at.z)?[{id:String(p.id),name:String(p.name??''),kind:crowdKindOf(p),x:at.x,z:at.z,look:p.look}]:[];});
-      const present=new Set(crowd.map(person=>person.id));
-      for(const[id,peer]of peopleCache)if(!present.has(id)){peer.body.userData.dispose();peopleCache.delete(id);}
-      for(const person of crowd){
-        const look=normalizeLook(person.look,person.id),key=JSON.stringify(look);let peer=peopleCache.get(person.id);
-        if(!peer||peer.key!==key){peer?.body.userData.dispose();const body=buildAvatar(kit,look,{detail:'low',rig:false,scale:.60,seed:person.id});peer={key,body};peopleCache.set(person.id,peer);peopleGroup.add(body);}
-        peer.body.position.set(person.x,0,person.z);
-      }
+      clearPeople();
+      peopleBatch=buildCanonicalCrowd(kit,crowd.map(person=>({id:person.id,name:person.name,kind:person.kind,x:person.x,z:person.z,look:person.look,seed:person.id,scale:.60})));
+      peopleGroup.add(peopleBatch.group);
       return scene.tags();
     },
     tags(){return Object.entries(ANCHORS).filter(([,a])=>Math.hypot(a.x-position.x,a.z-position.z)<220).map(([id,a])=>({id,name:a.label,kind:'landmark',position:{x:a.x,y:3.5,z:a.z}})).concat(crowd.map(p=>({id:p.id,name:p.name,kind:p.kind,position:{x:p.x,y:2.3,z:p.z}})));},
     stats(){return {...measureScene(group),zone:position.zone,resident:mapped.resident,rebuilds:mapped.rebuilds};},
-    dispose(){if(disposed)return;disposed=true;registry.delete(scene.dispose);mapped.dispose();clearPeople();player.userData.dispose();markerGeometry.dispose();group.removeFromParent();group.clear();},
+    dispose(){if(disposed)return;disposed=true;registry.delete(scene.dispose);mapped.dispose();clearPeople();player.dispose();markerGeometry.dispose();group.removeFromParent();group.clear();},
   };
   const registry=kitResources(kit).disposers;registry.add(scene.dispose);
   const start=grid.nearest(ENTRANCE.x,ENTRANCE.z);if(start)setPosition(start.x,start.z);

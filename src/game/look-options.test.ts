@@ -9,8 +9,9 @@ import { makeContext } from './util.ts';
 import { checkLook } from './systems/onboarding.ts';
 import { APPEARANCE, BOUTIQUE_PRICES, ACCESSORY_BASICS, DEFAULT_LOOK } from './content/traits.ts';
 import type { ActionBody, ActionResult, ActionType } from '../types/actions.ts';
-import type { AccessoryId, LifeContext, LifeState, Look } from '../types/life.ts';
-import { LOOK_OPTIONS, ACCESSORY_SLOTS, normalizeLook } from '../scene/characters.ts';
+import type { LifeContext, LifeState, Look } from '../types/life.ts';
+import { LOOK_OPTIONS, ACCESSORY_SLOTS } from '../scene/characters.ts';
+import { NATIVE_BOUTIQUE_PRICES, NATIVE_CHARACTER_CATALOG, NATIVE_STARTER_ITEMS, nativeRecipeForLook, normalizeNativeRecipe } from '../character/native-recipe.ts';
 
 const START = Date.UTC(2026, 0, 5, 8);
 let tick = 0;
@@ -23,6 +24,11 @@ const why = (result: { ok: boolean; reason?: string }): string => result.reason 
 /** Narrows a lookup that must have found something. */
 function need<T>(value: T | null | undefined, what = 'expected a value'): T { assert.ok(value, what); return value; }
 const LOOK: Look = { body: 'man', hair: 'afro', outfit: 'hoodie', fabric: 'ankara', skin: 'skin-6', hairColor: 'auburn', outfitColor: 'teal', bottomsColor: 'cream' };
+const NATIVE_FEATURES = Object.fromEntries(NATIVE_CHARACTER_CATALOG.features.map((feature, index) => [feature.id, index % 2 ? feature.min * .75 : feature.max * .75]));
+const NATIVE_RECIPE = normalizeNativeRecipe({ ...nativeRecipeForLook(LOOK, 'native-contract'), appearance: { ...nativeRecipeForLook(LOOK, 'native-contract').appearance,
+  body: 'male', hair: 'braid01', garments: ['formal-suit-01'], shoes: 'shoes03', eyeColor: 'green', complexion: 'medium', height: 1.09, features: NATIVE_FEATURES,
+  colors: { skin: '#6f402c', hair: '#271b16', upper: '#a1b2c3', lower: '#304050', shoes: '#607080' }, handPose: 'point' }, emotion: 'surprised', emotionStrength: .63 });
+const NATIVE_LOOK: Look = { ...LOOK, native: NATIVE_RECIPE };
 
 function started(look: Look = LOOK, house = 'yaba'): LifeState {
   let state = createLife(null, at());
@@ -65,121 +71,115 @@ test('the beta options are add-only, priced, labelled and known to the scene', (
   }
 });
 
-test('a look without the optional fields is the eight fields it always was; with them, only what is set is stored', () => {
-  assert.deepEqual(checkLook(LOOK).look, LOOK);
-  assert.deepEqual(checkLook({ ...LOOK, accessories: [], face: 'oval', expression: 'smile' }).look, LOOK, 'defaults are not stored');
-  assert.deepEqual(checkLook({ ...LOOK, accessories: null, face: null }).look, LOOK);
-  assert.deepEqual(checkLook({ ...LOOK, accessories: ['glasses', 'cap'], face: 'round', expression: 'grin' }).look, { ...LOOK, accessories: ['glasses', 'cap'], face: 'round', expression: 'grin' });
-  assert.deepEqual(checkLook(DEFAULT_LOOK).look, DEFAULT_LOOK);
-  const badLooks: [Record<string, unknown>, RegExp][] = [
-    [{ accessories: 'glasses' }, /must be a list/], [{ accessories: ['monocle'] }, /from the list: Glasses, Sunglasses/], [{ accessories: [7] }, /from the list/],
-    [{ accessories: ['constructor'] }, /from the list/], [{ accessories: ['glasses', 'glasses'] }, /Glasses is listed twice/],
-    [{ accessories: ['glasses', 'sunglasses'] }, /Glasses and Sunglasses cannot be worn together/], [{ accessories: ['cap', 'fila'] }, /cannot be worn together/],
-    [{ accessories: ['glasses', 'cap', 'earrings', 'chain', 'watch', 'beads'] }, /at most 5 accessories/],
-    [{ face: 'heart' }, /face shape: Oval, Round, Long/], [{ expression: 7 }, /expression: Smile, Calm, Grin/],
+test('the native recipe round-trips all 35 controls and malformed recipes are refused', () => {
+  const checked = need(checkLook(JSON.parse(JSON.stringify(NATIVE_LOOK))).look);
+  assert.deepEqual(checked.native, NATIVE_RECIPE);
+  assert.equal(Object.keys(need(checked.native).appearance.features).length, 35);
+  for (const feature of NATIVE_CHARACTER_CATALOG.features) assert.equal(checked.native!.appearance.features[feature.id], NATIVE_FEATURES[feature.id], feature.id);
+
+  const invalid: [string, (look: Look) => void, RegExp][] = [
+    ['version', (look) => { look.native!.version = 1 as 2 }, /version 2/],
+    ['garment', (look) => { look.native!.appearance.garments = ['not-a-garment' as never] }, /supported native outfit/],
+    ['range', (look) => { look.native!.appearance.features['nose-width'] = 2 }, /Nose width/],
+    ['missing control', (look) => { delete look.native!.appearance.features['nose-width'] }, /every supported native face and body control/],
+    ['colour', (look) => { look.native!.appearance.colors.skin = '#fff' }, /five native colours/],
   ];
-  for (const [bad, pattern] of badLooks) {
-    const result = checkLook({ ...LOOK, ...bad });
-    assert.equal(result.look, undefined, JSON.stringify(bad)); assert.match(result.reason ?? '', pattern);
+  for (const [label, change, pattern] of invalid) {
+    const look = structuredClone(NATIVE_LOOK); change(look);
+    const result = checkLook(look);
+    assert.equal(result.look, undefined, label); assert.match(result.reason ?? '', pattern);
   }
-  assert.equal(need(need(checkLook({ ...LOOK, accessories: ['glasses', 'cap', 'earrings', 'chain', 'watch'] }).look).accessories).length, 5);
-  assert.equal(checkLook({ ...LOOK, body: 'woman', hair: 'afro', outfit: 'agbada' }).look, undefined, 'the agbada is not offered for the woman body');
-  assert.equal(checkLook({ ...LOOK, hair: 'bantu-knots' }).look, undefined);
+  assert.deepEqual(checkLook(LOOK).look?.native, nativeRecipeForLook(LOOK, JSON.stringify(LOOK)), 'a legacy save receives one deterministic native recipe');
+  assert.equal(checkLook({ ...LOOK, accessories: ['glasses', 'sunglasses'] }).look, undefined, 'legacy hostile fields remain validated during migration');
 });
 
-test('character creation offers the free starters, refuses what the Boutique sells, and shuffles only what a new Sim may wear', () => {
+test('character creation accepts a complete native recipe and every shuffle remains a complete supported recipe', () => {
   const state = createLife(null, at());
-  const sold: [Record<string, unknown>, string][] = [[{ hair: 'twists' }, 'Twists'], [{ outfit: 'agbada' }, 'Agbada'], [{ outfit: 'kaftan' }, 'Kaftan'], [{ accessories: ['sunglasses'] }, 'Sunglasses'], [{ accessories: ['glasses', 'backpack'] }, 'Backpack']];
-  for (const [extra, name] of sold) {
-    const refused = act(state, 'onboarding.look', { look: { ...LOOK, ...extra } });
-    assert.equal(refused.code, 'invalid_look'); assert.match(why(refused), new RegExp(`${name} is sold in the Boutique`));
-  }
-  assert.equal(state.onboarding.step, 0);
+  assert.equal(act(state, 'onboarding.look', { look: NATIVE_LOOK }).code, 'look_saved');
+  assert.deepEqual(state.onboarding.look.native, NATIVE_RECIPE, 'creation keeps exact full-catalog native selections');
+  assert.equal(state.onboarding.step, 1);
+  const malformed = structuredClone(NATIVE_LOOK);
+  malformed.native!.appearance.height = 1.5;
+  const refused = act(createLife(null, at()), 'onboarding.look', { look: malformed });
+  assert.equal(refused.code, 'invalid_look'); assert.match(why(refused), /height from 0.85 to 1.15/);
+
   for (let i = 0; i < 300; i++) {
     const trial = createLife(null, at());
     act(trial, 'onboarding.look', { shuffle: true }, at(START, `shuffle-${i}`));
     const look = trial.onboarding.look;
-    assert.ok(!APPEARANCE.boutiqueOnly.hair.includes(look.hair) && !APPEARANCE.boutiqueOnly.outfit.includes(look.outfit), JSON.stringify(look));
-    assert.equal(look.accessories, undefined);
+    const native = need(look.native);
+    assert.equal(Object.keys(native.appearance.features).length, 35);
+    assert.ok(NATIVE_CHARACTER_CATALOG.bodies.some((item) => item.id === native.appearance.body));
+    assert.ok(NATIVE_CHARACTER_CATALOG.hair.some((item) => item.id === native.appearance.hair));
+    assert.ok(NATIVE_CHARACTER_CATALOG.garments.some((item) => item.id === native.appearance.garments[0]));
+    assert.ok(NATIVE_CHARACTER_CATALOG.shoes.some((item) => item.id === native.appearance.shoes));
     assert.equal(act(trial, 'onboarding.look', { look }).code, 'look_saved', 'a shuffled look can always be saved');
   }
-  const free = { ...LOOK, hair: 'fade', outfit: 'jersey', accessories: ['glasses', 'cap', 'watch'], face: 'long' };
-  assert.equal(act(state, 'onboarding.look', { look: free }).code, 'look_saved');
-  assert.deepEqual(state.onboarding.look, free);
-  assert.deepEqual(state.onboarding.wardrobe, { hair: ['low-cut'], outfit: ['casual'], fabric: ['plain'] }, 'nothing but the basics is owned before moving in');
+  assert.deepEqual(state.onboarding.wardrobe, { hair: ['low-cut'], outfit: ['casual'], fabric: ['plain'], native: [...NATIVE_STARTER_ITEMS] }, 'creation starts with only the bounded native starter set');
 });
 
-test('lives saved before these options, and damaged saves, load unchanged or tidied — never reset', () => {
-  const old = started();
-  assert.deepEqual(old.onboarding.look, LOOK);
-  assert.deepEqual(Object.keys(old.onboarding.wardrobe), ['hair', 'outfit', 'fabric'], 'a wardrobe with no bought accessories has no accessories list');
-  assert.deepEqual(createLife(structuredClone(old), at()), old, 'reloading changes nothing');
-  assert.deepEqual(viewLife(old, at()).onboarding.wardrobe.accessories, ACCESSORY_BASICS, 'the free accessories are owned by everyone');
-  assert.deepEqual(viewLife(old, at()).onboarding.look, LOOK);
-  const legacy = createLife({ cash: 4321, name: 'Old Timer' }, at());
-  assert.deepEqual(legacy.onboarding.look, DEFAULT_LOOK);
-  assert.equal(act(legacy, 'onboarding.set-look', { look: { ...DEFAULT_LOOK, accessories: ['glasses'], expression: 'grin' } }).code, 'look_saved', 'a legacy life may wear the free accessories');
+test('native recipes and ownership survive save reload while invalid native data is refused without resetting progress', () => {
+  const saved = started(NATIVE_LOOK);
+  const reloaded = createLife(structuredClone(saved), at());
+  assert.deepEqual(reloaded, saved, 'the complete recipe and settled life survive a reload unchanged');
+  assert.deepEqual(reloaded.onboarding.look.native, NATIVE_RECIPE);
+  assert.equal(Object.keys(reloaded.onboarding.look.native!.appearance.features).length, 35);
+  assert.ok(NATIVE_STARTER_ITEMS.every((id) => reloaded.onboarding.wardrobe.native?.includes(id)));
+  for (const id of ['braid01', 'formal-suit-01', 'shoes03']) assert.ok(reloaded.onboarding.wardrobe.native?.includes(id), `${id} remains owned`);
 
-  const damaged = structuredClone(old);
-  // A damaged save holds ids and types the types forbid: that is the point of the test.
-  damaged.onboarding.look = { ...LOOK, accessories: ['glasses', 'monocle', 'sunglasses', 7, 'chain', 'chain'], face: 'heart', expression: 'grin' } as unknown as Look;
-  damaged.onboarding.wardrobe.accessories = ['chain', 'wig', 'glasses', 'chain', {}] as unknown as AccessoryId[];
+  const legacy = started(LOOK);
+  assert.deepEqual(legacy.onboarding.look.native, nativeRecipeForLook(LOOK, JSON.stringify(LOOK)), 'an old look is upgraded deterministically');
+  assert.deepEqual(createLife(structuredClone(legacy), at()).onboarding.look.native, legacy.onboarding.look.native, 'the upgrade is persisted rather than reseeded');
+
+  const damaged = structuredClone(saved);
+  damaged.cash = 4321; damaged.name = 'Still Here';
+  delete damaged.onboarding.look.native!.appearance.features['nose-width'];
   const loaded = createLife(damaged, at());
-  assert.deepEqual(loaded.onboarding.look, { ...LOOK, accessories: ['glasses', 'chain'], expression: 'grin' }, 'the look survives; what is unknown or clashes is dropped');
-  assert.deepEqual(loaded.onboarding.wardrobe.accessories, ['chain']);
-  for (const junk of ['text', 7, { length: 3 }]) {
-    const state = structuredClone(old); state.onboarding.look = { ...LOOK, accessories: junk } as unknown as Look; state.onboarding.wardrobe.accessories = junk as unknown as AccessoryId[];
-    assert.deepEqual(createLife(state, at()).onboarding, old.onboarding);
-  }
-  assert.deepEqual(normalizeLook(LOOK, 'x').accessories, [], 'a recorded look without accessories wears none in a scene');
+  assert.equal(loaded.cash, 4321); assert.equal(loaded.name, 'Still Here'); assert.equal(loaded.onboarding.done, true);
+  assert.equal(loaded.onboarding.look.native, undefined, 'an incomplete recipe never reaches a consumer');
+  assert.deepEqual(loaded.onboarding.look, DEFAULT_LOOK, 'only the damaged look returns to the safe saved default');
 });
 
-test('the Boutique sells accessories and the new styles; ownership persists and every refusal says why', () => {
-  const state = started();
-  const cash = state.cash, shop = () => viewLife(state, at()).onboarding.boutique, item = (id: string) => need(shop().find((entry) => entry.id === id));
-  assert.deepEqual(shop().filter((entry) => entry.kind === 'accessories').map((entry) => entry.id), APPEARANCE.accessories.map((entry) => entry.id));
-  assert.deepEqual([item('glasses').owned, item('glasses').price, item('chain').owned, item('chain').price, item('chain').slot], [true, 0, false, 6000, 'neck']);
-  assert.ok(shop().some((entry) => entry.kind === 'outfit' && entry.id === 'agbada') && !shop().some((entry) => entry.id === 'gown'), 'styles for the current body only');
+test('an owned native hairstyle survives the Profile action payload and save reload', () => {
+  const state = started(NATIVE_LOOK);
+  assert.equal(state.onboarding.look.native?.appearance.hair, 'braid01');
+  assert.ok(state.onboarding.wardrobe.native?.includes('short01'), 'the starter hairstyle is owned');
+  const current = need(state.onboarding.look.native);
+  const short = normalizeNativeRecipe({ ...current, appearance: { ...current.appearance, hair: 'short01' } });
+  const payload = JSON.parse(JSON.stringify({ look: { ...state.onboarding.look, native: short } })) as { look: Look };
+  assert.equal(payload.look.native?.appearance.hair, 'short01', 'the browser JSON boundary keeps the chosen hairstyle');
+  assert.equal(act(state, 'onboarding.set-look', payload).code, 'look_saved');
+  assert.equal(state.onboarding.look.native?.appearance.hair, 'short01', 'the action stores the chosen hairstyle');
+  assert.equal(createLife(structuredClone(state), at()).onboarding.look.native?.appearance.hair, 'short01', 'save sanitation keeps it');
+});
 
-  const unowned = act(state, 'onboarding.set-look', { look: { ...LOOK, accessories: ['glasses', 'chain'] } });
-  assert.equal(unowned.code, 'not_owned'); assert.match(why(unowned), /do not own the Chain yet.*Boutique for ₦6,000/);
-  assert.equal(act(state, 'onboarding.set-look', { look: { ...LOOK, accessories: ['glasses', 'watch'] } }).code, 'look_saved', 'the free accessories can be worn without buying');
-  assert.equal(act(state, 'onboarding.set-look', { look: { ...LOOK, accessories: ['watch', 'glasses'] } }).code, 'unchanged', 'the order does not matter');
+test('the Boutique lists only native goods and purchases charge, equip, persist and explain refusals', () => {
+  const state = started(NATIVE_LOOK);
+  const shop = () => viewLife(state, at()).onboarding.boutique;
+  const item = (kind: string, id: string) => need(shop().find((entry) => entry.kind === kind && entry.id === id));
+  assert.deepEqual([...new Set(shop().map((entry) => entry.kind))].sort(), ['native-garment', 'native-hair', 'native-shoes']);
+  assert.equal(shop().length, NATIVE_CHARACTER_CATALOG.hair.length + NATIVE_CHARACTER_CATALOG.garments.length + NATIVE_CHARACTER_CATALOG.shoes.length);
+  assert.deepEqual([item('native-shoes', 'shoes01').owned, item('native-shoes', 'shoes01').price], [true, 0], 'native starters are owned and never charged');
+  assert.equal(item('native-shoes', 'shoes02').owned, false);
 
-  const chain = act(state, 'onboarding.boutique-buy', { kind: 'accessories', id: 'chain' });
-  assert.equal(chain.code, 'bought'); assert.equal(state.cash, cash - 6000);
-  assert.deepEqual([need(state.ledger.at(-1)).amount, need(state.ledger.at(-1)).reason], [-6000, 'Boutique: Chain accessory']);
-  assert.deepEqual(state.onboarding.look.accessories, ['glasses', 'watch', 'chain'], 'bought and put on');
-  assert.deepEqual(state.onboarding.wardrobe.accessories, ['chain']);
-  assert.deepEqual([item('chain').owned, item('chain').wearing], [true, true]);
-  assert.equal(act(state, 'onboarding.boutique-buy', { kind: 'accessories', id: 'chain' }).code, 'already_owned');
-  assert.equal(act(state, 'onboarding.boutique-buy', { kind: 'accessories', id: 'glasses' }).code, 'already_owned', 'a free starter is never sold');
-  assert.equal(act(state, 'onboarding.boutique-buy', { kind: 'accessories', id: 'sunglasses' }).code, 'bought');
-  assert.deepEqual(state.onboarding.look.accessories, ['watch', 'chain', 'sunglasses'], 'sunglasses take the place of the glasses');
-  for (const payload of [{ kind: 'accessories', id: 'monocle' }, { kind: 'accessories', id: 'constructor' }, { kind: 'accessories' }]) assert.equal(act(state, 'onboarding.boutique-buy', payload).code, 'invalid_item');
+  const before = state.cash, price = NATIVE_BOUTIQUE_PRICES['native-shoes'].shoes02!;
+  const bought = act(state, 'onboarding.boutique-buy', { kind: 'native-shoes', id: 'shoes02' });
+  assert.equal(bought.code, 'bought'); assert.equal(state.cash, before - price);
+  assert.deepEqual([need(state.ledger.at(-1)).amount, need(state.ledger.at(-1)).reason], [-price, 'Boutique: Shoes 02']);
+  assert.equal(state.onboarding.look.native?.appearance.shoes, 'shoes02', 'a purchase is equipped in the authoritative recipe');
+  assert.ok(state.onboarding.wardrobe.native?.includes('shoes02'));
+  assert.deepEqual([item('native-shoes', 'shoes02').owned, item('native-shoes', 'shoes02').wearing], [true, true]);
+  const again = act(state, 'onboarding.boutique-buy', { kind: 'native-shoes', id: 'shoes02' });
+  assert.equal(again.code, 'already_owned'); assert.match(why(again), /already own Shoes 02/);
 
-  // Taking everything off stores a plain look again; what was bought stays owned.
-  assert.equal(act(state, 'onboarding.set-look', { look: { ...LOOK, accessories: [] } }).code, 'look_saved');
-  assert.deepEqual(state.onboarding.look, LOOK);
-  assert.equal(act(state, 'onboarding.set-look', { look: { ...LOOK, accessories: ['sunglasses', 'chain'] } }).code, 'look_saved');
-
-  state.cash = 100000;
-  const agbada = act(state, 'onboarding.boutique-buy', { kind: 'outfit', id: 'agbada' });
-  assert.equal(agbada.code, 'bought'); assert.equal(state.cash, 75000); assert.equal(state.onboarding.look.outfit, 'agbada');
-  assert.equal(act(state, 'onboarding.boutique-buy', { kind: 'outfit', id: 'gown' }).code, 'wrong_body');
-  assert.equal(act(state, 'onboarding.boutique-buy', { kind: 'hair', id: 'twists' }).code, 'bought');
-  assert.equal(act(state, 'onboarding.boutique-buy', { kind: 'accessories', id: 'fila' }).code, 'bought');
   state.cash = 10;
-  const dear = act(state, 'onboarding.boutique-buy', { kind: 'accessories', id: 'handbag' });
-  assert.equal(dear.code, 'insufficient_funds'); assert.match(why(dear), /Handbag costs ₦7,000; you have ₦10/);
-  assert.match(need(item('handbag').blocked), /Costs ₦7,000/);
-  // At the limit the oldest gives way.
-  state.cash = 100000;
-  for (const id of ['beads', 'backpack']) assert.equal(act(state, 'onboarding.boutique-buy', { kind: 'accessories', id }).code, 'bought');
-  assert.deepEqual(state.onboarding.look.accessories, ['sunglasses', 'chain', 'fila', 'beads', 'backpack'], 'five are worn');
-  assert.equal(act(state, 'onboarding.boutique-buy', { kind: 'accessories', id: 'handbag' }).code, 'bought');
-  assert.deepEqual(state.onboarding.look.accessories, ['sunglasses', 'chain', 'fila', 'beads', 'handbag'], 'the handbag replaces the backpack');
-  assert.equal(act(state, 'onboarding.set-look', { look: { ...state.onboarding.look, accessories: ['sunglasses', 'chain', 'fila', 'beads', 'backpack', 'watch'] } }).code, 'invalid_look');
-  assert.deepEqual(createLife(structuredClone(state), at()), state, 'everything bought and worn survives a reload');
-  assert.deepEqual(state.onboarding.wardrobe.accessories, ['chain', 'sunglasses', 'fila', 'beads', 'backpack', 'handbag']);
+  const dear = act(state, 'onboarding.boutique-buy', { kind: 'native-garment', id: 'female-elegant-01' });
+  assert.equal(dear.code, 'insufficient_funds'); assert.match(why(dear), /Blouse and skirt costs ₦8,000; you have ₦10/);
+  assert.match(need(item('native-garment', 'female-elegant-01').blocked), /Costs ₦8,000/);
+  for (const payload of [{ kind: 'native-hair', id: 'constructor' }, { kind: 'native-garment' }, { kind: 'native-shoes', id: 'shoe99' }]) {
+    assert.equal(act(state, 'onboarding.boutique-buy', payload).code, 'invalid_item');
+  }
+  const reloaded = createLife(structuredClone(state), at());
+  assert.ok(reloaded.onboarding.wardrobe.native?.includes('shoes02'), 'purchased ownership survives reload');
+  assert.equal(reloaded.onboarding.look.native?.appearance.shoes, 'shoes02', 'the equipped native item survives reload');
 });

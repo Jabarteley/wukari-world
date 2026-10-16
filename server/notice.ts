@@ -37,7 +37,7 @@ const KEY = /^[A-Za-z0-9_-]{43}$/;
 /** What is signed. */
 export const noticeText = (kind: string, minutes: number, issuedAt: number, nonce: string): string => `allworld-notice-v1\n${kind}\n${minutes}\n${issuedAt}\n${nonce}`;
 
-export function fromBase64Url(text: string): Uint8Array {
+export function fromBase64Url(text: string): Uint8Array<ArrayBuffer> {
   const plain = text.replace(/-/g, '+').replace(/_/g, '/');
   const binary = atob(plain + '='.repeat((4 - (plain.length % 4)) % 4));
   return Uint8Array.from(binary, (char) => char.charCodeAt(0));

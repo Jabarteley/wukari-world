@@ -1,0 +1,118 @@
+{
+  "scope": "Real native assets with image stubs; geometry/budget/lifecycle only, not rendered browser acceptance",
+  "notifications": 28,
+  "rows": [
+    {
+      "phase": 0,
+      "visible": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cost": {
+        "triangles": 10167,
+        "meshes": 28,
+        "drawCalls": 28
+      }
+    },
+    {
+      "phase": 1,
+      "visible": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cost": {
+        "triangles": 10167,
+        "meshes": 28,
+        "drawCalls": 28
+      }
+    },
+    {
+      "phase": 2,
+      "visible": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cost": {
+        "triangles": 10404,
+        "meshes": 28,
+        "drawCalls": 28
+      }
+    },
+    {
+      "phase": 3,
+      "visible": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cost": {
+        "triangles": 11198,
+        "meshes": 28,
+        "drawCalls": 28
+      }
+    },
+    {
+      "phase": 4,
+      "visible": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cost": {
+        "triangles": 10407,
+        "meshes": 28,
+        "drawCalls": 28
+      }
+    },
+    {
+      "phase": 5,
+      "visible": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cost": {
+        "triangles": 10211,
+        "meshes": 28,
+        "drawCalls": 28
+      }
+    },
+    {
+      "phase": 6,
+      "visible": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cost": {
+        "triangles": 10415,
+        "meshes": 28,
+        "drawCalls": 28
+      }
+    },
+    {
+      "phase": 7,
+      "visible": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cost": {
+        "triangles": 11317,
+        "meshes": 28,
+        "drawCalls": 28
+      }
+    }
+  ]
+}

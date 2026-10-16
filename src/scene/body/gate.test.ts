@@ -1,6 +1,7 @@
+import './native-test-fixture.ts';
 import { loadCityContent as preloadCityContent } from '../../game/cities/registry.ts';
 await preloadCityContent('lagos');
-// The skinned body's capability gate (gate.ts): no flag; without WebGL2 the home scene never reaches the body module.
+// Capability hints may reduce optional scenery; the native character remains the scene body on every device.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -27,16 +28,16 @@ test('drawsWebGL2: false without a WebGL2 context', () => {
   assert.equal(drawsWebGL2({ getContext: () => ({}) }), false);
 });
 
-test('the home scene imports only the gate; the body module is a dynamic import in gate.ts alone', () => {
+test('the home scene uses the native body directly and has no device-selected character path', () => {
   const strip = (code: string) => code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
   const home = strip(readFileSync(new URL('../home-scene.ts', import.meta.url), 'utf8'));
   const fromBody = [...home.matchAll(/^\s*import\s+(type\s+)?[^'";]*?from\s+['"](\.\/body\/[^'"]+)['"]/gm)].map((match) => `${match[1] ? 'type ' : ''}${match[2]}`);
-  assert.deepEqual(fromBody.sort(), ['./body/gate.ts', 'type ./body/skinned.ts']);
+  assert.deepEqual(fromBody.sort(), ['./body/canonical-crowd.ts', './body/skinned.ts', 'type ./body/skinned.ts']);
   assert.doesNotMatch(home, /import\(/, 'no dynamic import in the scene itself');
   const gate = strip(readFileSync(new URL('./gate.ts', import.meta.url), 'utf8'));
   assert.doesNotMatch(gate, /^\s*import\s/m, 'gate.ts has no static imports');
   assert.doesNotMatch(gate, /location|search|URLSearchParams|localStorage/, 'no switch: nothing a page address or setting can turn off');
-  assert.equal((gate.match(/(?<!typeof )import\(/g) ?? []).length, 1, 'one way in: importBody()');
+  assert.equal((gate.match(/(?<!typeof )import\(/g) ?? []).length, 1, 'the optional compatibility helper stays isolated');
 });
 
 /** Build the home room, update it and draw "frames" (the floor's onBeforeRender) the way the host would. */
@@ -51,15 +52,15 @@ function drawHome(renderer: { domElement: { addEventListener(): void }; getConte
 }
 const renderer = { domElement: { addEventListener() {} }, getContext: () => ({}) };
 
-test('no WebGL2: drawing the home room never imports the body module, and the avatar is the drawn one', async () => {
+test('a renderer without WebGL2 still receives the native home character', async () => {
   const before = bodyImports.count;
   const { home, kit } = drawHome(renderer);
   await new Promise((resolve) => setTimeout(resolve, 5));
   assert.equal(bodyImports.count, before);
-  assert.equal(home.walk.avatar.visible, true);
+  assert.equal(home.walk.avatar.visible, false, 'the hidden scene placeholder is replaced by the native body');
   assert.equal(home.easing, false);
   assert.equal(home.stepCrowd(1 / 60), false);
-  assert.equal(home.group.getObjectByName('skinned-body'), undefined);
+  assert.ok(home.group.getObjectByName('native-character'));
   home.dispose(); kit.dispose();
 });
 

@@ -73,8 +73,14 @@ export function checkPackage(root, sourceSha, publish) {
         const progressionAsset = /^assets\/assets\/progression\/(?:episodes-\d+|journeys|missions)\.([a-f0-9]{64})\.json$/.exec(rel);
         // The two reduced-detail body files of the near crowd (src/scene/body/files.ts): the only binary that is not a glTF.
         const bodyLod = /^assets\/assets\/base-body-(?:male|female)-lod-[0-9a-f]{8}\.bin$/.test(rel) && stat.size > 0 && stat.size < 1024 * 1024;
-        if (!['worker.js', 'wrangler.json', 'manifest.json'].includes(rel) && !cityAsset && !progressionAsset && !bodyLod && !/^assets\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/.test(rel)) throw Error('Unexpected package file');
+        const nativeJson = ['assets/character-lab/models/final-pass-20261015/catalog.json', 'assets/character-lab/models/candidates/motion-iteration2-upper-palm.json'].includes(rel);
+        const nativeNotice = ['assets/character-lab/THIRD_PARTY_NOTICES.md', 'assets/character-lab/FINAL-PASS-LICENSE-NOTE.md'].includes(rel);
+        if (!nativeJson && !nativeNotice && !['worker.js', 'wrangler.json', 'manifest.json'].includes(rel) && !cityAsset && !progressionAsset && !bodyLod && !/^assets\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/.test(rel)) throw Error('Unexpected package file');
         const bytes = readFileSync(full);
+        if (nativeJson) {
+          if (bytes.length > 1024 * 1024) throw Error('Native metadata too large');
+          try { JSON.parse(bytes.toString('utf8')); } catch { throw Error('Invalid native metadata'); }
+        }
         if (cityAsset && cityAsset[1] !== hash(bytes)) throw Error('City content filename hash mismatch');
         if (progressionAsset && progressionAsset[1] !== hash(bytes)) throw Error('Progression content filename hash mismatch');
         if (rel.endsWith('.glb') && !isGlb(bytes)) throw Error('Invalid model file');

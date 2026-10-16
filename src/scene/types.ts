@@ -270,7 +270,11 @@ export interface SceneWalk {
   near(spot: { x: number; y: number; z: number } | null | undefined): boolean
   goal(x?: number, z?: number): boolean
 }
-export interface SceneStats { triangles: number; meshes: number; drawCalls: number; lights: number; geometries: number }
+export interface SceneStats {
+  triangles: number; meshes: number; drawCalls: number; lights: number; geometries: number;
+  sceneryTriangles: number; sceneryMeshes: number; sceneryDrawCalls: number;
+  characterTriangles: number; characterMeshes: number; characterDrawCalls: number;
+}
 /** What a scene builder returns (every member is optional for the host). */
 export interface SceneEntry {
   group: THREE.Group
@@ -305,6 +309,10 @@ export interface SceneEntry {
   /** Called when a spoken line comes or goes (false) and when the people have arrived after the scene asked for them (true). */
   onAmbient?: ((ready: boolean) => void) | null
   readonly easing: boolean
+  /** Distance covered by one native walk or jog cycle in scene units. */
+  cycleDistance?(jog: boolean): number | undefined
+  /** Advance the local character inside the host's existing frame loop. */
+  stepCharacter?(dt: number): boolean
   stepCrowd(dt: number): boolean
   settleCrowd(): void
   /** The camera is at (x, z): hide whichever wall it has gone behind. True when a wall was shown or hidden. */

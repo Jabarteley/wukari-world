@@ -774,7 +774,7 @@ export interface StartHomeCard extends StartHomeDefinition {
 }
 
 export interface BoutiqueItem {
-  kind: WardrobeKind | 'accessories' | 'wearables'
+  kind: WardrobeKind | 'accessories' | 'wearables' | 'native-hair' | 'native-garment' | 'native-shoes'
   id: string
   /** Accessories only: where it is worn. */
   slot?: AccessorySlot
@@ -811,7 +811,7 @@ export interface OnboardingView {
   /** The rented starting homes (not offered by the game's own settle-in screens any more). */
   homes: StartHomeCard[]
   /** `accessories` is always present here and lists EVERY accessory owned, the free basics included (unlike the state's). */
-  wardrobe: Required<Pick<Wardrobe, 'hair' | 'outfit' | 'fabric' | 'accessories'>> & Pick<Wardrobe, 'wearables'>
+  wardrobe: Required<Pick<Wardrobe, 'hair' | 'outfit' | 'fabric' | 'accessories'>> & Pick<Wardrobe, 'wearables' | 'native'>
   /** Every style the current body can wear, then every accessory. */
   boutique: BoutiqueItem[]
   /** The five-word mood scale (MOODS) — a different scale from `view.needs.mood.label`. */

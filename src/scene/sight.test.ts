@@ -1,3 +1,4 @@
+import './body/canonical-fixture.test.ts';
 import { loadCityContent as preloadCityContent } from '../game/cities/registry.ts';
 await preloadCityContent('lagos');
 // Keeping the avatar in sight, walking round people, stepping up where the steps are, and the

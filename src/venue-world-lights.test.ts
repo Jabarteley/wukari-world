@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
+import './scene/body/native-test-fixture.ts';
 import { loadCityScenes } from './scene/city-scenes.ts';
 import { createHostLights, createVenueWorld, HOST_LIGHTING } from './venue-world.ts';
 

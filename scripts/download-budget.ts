@@ -19,6 +19,7 @@
 //
 // Budgets with no artifact yet (base body, clip pack, wardrobe items, street tiles) are listed as "not measured": the file name
 // patterns in ASSET_PATTERNS are the convention to change when the asset layout is decided.
+import { spawnSync } from 'node:child_process'
 import { brotliCompressSync, constants, gzipSync } from 'node:zlib'
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
@@ -214,11 +215,18 @@ function main(): number {
   const dist = readDist(dir)
   const results = checks(dist)
   const groups = lazyGroups(dist, startupFiles(dist, 'lagos') ?? firstPaintFiles(dist))
-  if (args.includes('--json')) console.log(JSON.stringify({ checks: results, lazyGroups: groups }, null, 2))
-  else console.log(formatReport(dist, results, groups, args.includes('--all') ? Infinity : args.includes('--top') ? Number(args[args.indexOf('--top') + 1]) || 30 : 30))
+  const native = spawnSync(process.execPath, ['--experimental-strip-types', resolve(root, 'scripts/native-character-assets.mjs'), root, '', dir], { encoding: 'utf8' })
+  let nativeAssets: unknown
+  try { nativeAssets = JSON.parse(native.stdout) } catch { nativeAssets = { pass: false, error: 'Native asset inventory did not return a valid report' } }
+  if (args.includes('--json')) console.log(JSON.stringify({ checks: results, lazyGroups: groups, nativeAssets }, null, 2))
+  else {
+    console.log(formatReport(dist, results, groups, args.includes('--all') ? Infinity : args.includes('--top') ? Number(args[args.indexOf('--top') + 1]) || 30 : 30))
+    console.log(JSON.stringify(nativeAssets, null, 2))
+  }
   const over = results.filter((item) => item.status === 'over')
   if (over.length) console.error(`\n${over.length} budget(s) exceeded: ${over.map((item) => item.budget).join(', ')}`)
-  return over.length ? 1 : 0
+  if (native.stderr) console.error(native.stderr.trim())
+  return over.length || native.status !== 0 ? 1 : 0
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) process.exitCode = main()

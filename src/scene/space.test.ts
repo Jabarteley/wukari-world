@@ -1,3 +1,4 @@
+import './body/canonical-fixture.test.ts';
 import { loadCityContent as preloadCityContent } from '../game/cities/registry.ts';
 await preloadCityContent('lagos');
 // Personal space and gaze: the pure rules (src/scene/space.ts), the head turn (avatar-rig.ts) and what a built scene does with them.

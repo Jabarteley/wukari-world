@@ -35,40 +35,35 @@ export function describeBudget(budget: Budget): string {
 
 // ---- Venue and home scenes (src/scene) -------------------------------------------------------------------------------------------
 
+/** Existing housing shell ceiling retained independently of the approved native character budget. */
 export const SCENE_CROWD_TRIANGLES: Budget = {
   value: 15000, unit: 'triangles', limit: 'max', status: 'current',
-  enforcedIn: 'src/scene/scenes.test.ts, scenes-rivers/fct/kano.test.ts',
-  why: 'A venue and its full crowd stay cheap enough for a mid-range phone at 60 fps.',
+  enforcedIn: 'src/housing-studio/production.ts', why: 'Preserve the shipped housing shell ceiling.',
 }
-export const PLAYER_FIGURE_TRIANGLES: Budget = {
-  value: 2000, unit: 'triangles', limit: 'max', status: 'current',
-  enforcedIn: 'src/scene/scenes.test.ts (inside SCENE_TRIANGLES)',
-  why: "The player's own figure is drawn once at medium detail (up to about 2,700 triangles) on top of the crowd.",
+export const SCENE_SCENERY_TRIANGLES: Budget = {
+  value: 15000, unit: 'triangles', limit: 'max', status: 'current',
+  enforcedIn: 'src/scene scene and ambient tests, src/game/cities/allCities.test.ts',
+  why: 'Scenery retains a separate 15,000-triangle allowance within the approved native scene ceiling.',
+}
+export const SCENE_CHARACTER_TRIANGLES: Budget = {
+  value: 72000, unit: 'triangles', limit: 'max', status: 'current',
+  enforcedIn: 'src/scene scene and ambient tests, src/game/cities/allCities.test.ts',
+  why: 'Native character allowance approved on 16 October 2026. Admission uses actual geometry cost; this is not measured physical-phone performance.',
 }
 export const SCENE_TRIANGLES: Budget = {
-  value: 15000 + 2000, unit: 'triangles', limit: 'max', status: 'current',
-  enforcedIn: 'src/scene/scenes.test.ts, scenes-rivers/fct/kano.test.ts, parametric-venue.test.ts, src/game/cities/allCities.test.ts',
-  why: 'The crowd budget plus the player figure: everything one venue scene draws.',
+  value: SCENE_SCENERY_TRIANGLES.value + SCENE_CHARACTER_TRIANGLES.value, unit: 'triangles', limit: 'max', status: 'current',
+  enforcedIn: 'src/scene scene and ambient tests, src/game/cities/allCities.test.ts',
+  why: 'Approved native replacement ceiling: 15,000 scenery plus 72,000 character triangles. Whole-host draw calls remain separately capped.',
 }
 export const SCENE_DRAW_CALLS: Budget = {
   value: 60, unit: 'draw calls', limit: 'max', status: 'current',
   enforcedIn: 'src/scene tests, src/game/cities/allCities.test.ts',
-  why: 'Draw calls, not triangles, are what a phone GPU pays for: a scene is batched into a few meshes plus the crowd and the player.',
+  why: 'Draw submission remains capped at sixty; both triangle cost and CPU/GPU timing still matter.',
 }
-export const SCENE_MESHES: Budget = {
-  value: 15, unit: 'meshes', limit: 'max', status: 'current',
-  enforcedIn: 'src/scene/scenes.test.ts',
-  why: 'Static layers (3), sky, crowd (2), the player rig (8 with its crown), the spot ring and two walking marks.',
-}
-export const SCENE_MESHES_WITH_WALLS: Budget = {
-  value: 21, unit: 'meshes', limit: 'max', status: 'current',
-  enforcedIn: 'src/scene/scenes.test.ts',
-  why: "A room's two walls are parts of their own (3 layers each) so the scene can hide the wall the camera is behind.",
-}
-export const SCENE_MESHES_NO_CROWD: Budget = {
+export const SCENE_SCENERY_MESHES: Budget = {
   value: 13, unit: 'meshes', limit: 'max', status: 'current',
   enforcedIn: 'src/scene/scenes.test.ts',
-  why: 'The same scene with the crowd cleared: the crowd meshes are the difference.',
+  why: 'Merged scenery, independent room walls, sky and walking markers. Character cost is constrained by the shared draw-call limit.',
 }
 export const SCENE_LIGHTS: Budget = {
   value: 4, unit: 'lights', limit: 'max', status: 'current',
@@ -76,12 +71,32 @@ export const SCENE_LIGHTS: Budget = {
   why: 'Every point light is paid for on every fragment.',
 }
 
-// ---- Avatar detail levels (src/scene/characters.ts) ------------------------------------------------------------------------------
+// Native runtime admission and archived conversion limits are intentionally separate.
+// CPU/GPU frame timing is measured separately in the game.
+/** Native lab actor, with original53-bone surface and authored fitted equipment. The native scene exception was approved on 16 October 2026. */
+export const NATIVE_FULL_BODY_TRIANGLES: Budget = {
+  value: 34000,
+  unit: 'triangles', limit:'max', status:'provisional', enforcedIn:'src/scene/character-lab/native-body.ts and measured scene admission',
+  why: 'Original native53 lab actor with fitted catalogue clothing; provisional per-actor ceiling, actual scene admission still uses measured cost.',
+};
+/** Retired canonical23 asset guard, retained for archived conversion fixtures only. */
+export const CANONICAL_FULL_BODY_TRIANGLES: Budget = {
+  value: 9000, unit: 'triangles', limit: 'max', status: 'current',
+  enforcedIn: 'src/scene/body/body-assets.test.ts',
+  why: 'Maximum measured dressed full body is 8,594 triangles, including the most expensive supported accessories.',
+}
+export const CANONICAL_LOD_BODY_TRIANGLES: Budget = {
+  value: 3300, unit: 'triangles', limit: 'max', status: 'current',
+  enforcedIn: 'src/scene/body/body-assets.test.ts',
+  why: 'Maximum measured dressed crowd body is 3,123 triangles; it preserves the same character design and rig.',
+}
+
+// ---- Historical studio-reference avatar detail levels (src/scene/characters.ts) ------------------------------------------------------------------------------
 
 export const AVATAR_LOW_TRIANGLES: Budget = {
   value: 600, unit: 'triangles', limit: 'max', status: 'current',
   enforcedIn: 'src/scene/characters.ts (LOW_BUDGET), src/scene/avatar-preview.test.ts',
-  why: 'Crowds and venue and home scenes draw many figures: low detail holds whatever is worn.',
+  why: 'Historical procedural reference geometry only; production crowds use measured native53 snapshots.',
 }
 export const AVATAR_MEDIUM_TRIANGLES_MIN: Budget = {
   value: 1500, unit: 'triangles', limit: 'min', status: 'current',
@@ -229,7 +244,8 @@ export const PHONE_SCENE_DRAW_CALLS: Budget = {
 }
 
 export const BUDGETS = {
-  SCENE_CROWD_TRIANGLES, PLAYER_FIGURE_TRIANGLES, SCENE_TRIANGLES, SCENE_DRAW_CALLS, SCENE_MESHES, SCENE_MESHES_WITH_WALLS, SCENE_MESHES_NO_CROWD, SCENE_LIGHTS,
+  SCENE_SCENERY_TRIANGLES, SCENE_CHARACTER_TRIANGLES, SCENE_TRIANGLES, SCENE_DRAW_CALLS, SCENE_SCENERY_MESHES, SCENE_LIGHTS,
+  NATIVE_FULL_BODY_TRIANGLES, CANONICAL_FULL_BODY_TRIANGLES, CANONICAL_LOD_BODY_TRIANGLES,
   AVATAR_LOW_TRIANGLES, AVATAR_MEDIUM_TRIANGLES_MIN, AVATAR_MEDIUM_TRIANGLES, AVATAR_HIGH_TRIANGLES_MIN, AVATAR_HIGH_TRIANGLES,
   CITY_TRIANGLES, CITY_DRAW_CALLS, AERIAL_DIVE_TRIANGLES, AERIAL_DIVE_DRAW_CALLS, HOUSES_DETAIL_TRIANGLES, HOUSES_MAX_DETAILED, HOUSES_DRAW_CALLS,
   STARTUP_RAW, STARTUP_GZIP, LOADING_RAW, LOADING_GZIP, SCENE_HOST_RAW, SCENE_HOST_GZIP,

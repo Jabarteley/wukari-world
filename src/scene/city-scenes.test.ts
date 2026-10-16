@@ -1,3 +1,4 @@
+import './body/canonical-fixture.test.ts';
 import { loadCityContent, playableCityIds, DEFAULT_CITY_ID } from '../game/cities/registry.ts';
 await Promise.all(playableCityIds().map(loadCityContent));
 // Each city's own scenes are a download of their own: the scene host awaits the default city's own download, refuses
@@ -106,7 +107,9 @@ test('the adapter draws nothing for a city whose scenes are on their way, says s
   assert.equal(world.awaiting, null);
   assert.equal(container.classes.has('scenes-loading'), false);
   assert.deepEqual(hosts, ['venue']);
-  assert.deepEqual(seen.map((state) => state.status), ['loading', 'ready']);
+  assert.equal(seen[0]?.status, 'loading');
+  assert.equal(seen.at(-1)?.status, 'ready', 'the host is reported ready only after its character assets arrive');
+  assert.equal(seen.some((state) => state.status === 'failed'), false);
   const shown = world.diagnostics() as { location?: string; scenes?: number };
   assert.equal(shown.location, 'national-mosque');
   assert.ok(cityScenesReady('abuja') && !cityScenesReady('kano'), 'only the city that was asked for was fetched');
@@ -157,7 +160,9 @@ test('arriving in another city: the old city leaves the screen, the new one is b
   const gate = new Promise<void>((done) => { release = done; });
   const ready = new Set<string>([DEFAULT_CITY_ID]);
   const { world, hosts } = adapter({ location: 'park', scenesReady: (cityId) => ready.has(cityId), loadScenes: async (cityId) => { await gate; await loadCityScenes(cityId); ready.add(cityId); } });
-  assert.equal(world.host, 'venue', 'the default city is built at once');
+  assert.equal(world.host, null, 'the default city waits for canonical character readiness');
+  await settle();
+  assert.equal(world.host, 'venue');
   world.setState({ location: 'park', estate: { city: DEFAULT_CITY_ID } });
   // The trip ended in Ibadan, at the campus court.
   world.setState({ location: 'ui-campus', estate: { city: 'ibadan' } });
@@ -191,12 +196,13 @@ test('leaving for a city that is ready while another was awaited builds at once,
   const { world, hosts, seen } = adapter({ location: 'itoku-market', cityId: 'abeokuta', scenesReady: (cityId) => ready.has(cityId), loadScenes: async (cityId) => { await gate; await loadCityScenes(cityId); ready.add(cityId); } });
   assert.equal(world.awaiting, 'abeokuta');
   world.setState({ location: 'park', estate: { city: DEFAULT_CITY_ID } });
+  await settle();
   assert.equal(world.host, 'venue');
   assert.equal(world.awaiting, null);
   release();
   await settle();
   assert.deepEqual(hosts, ['venue'], 'no second host for the city that was left');
-  assert.equal(seen.some((state) => state.status === 'ready'), false, 'nobody is told about a city that is no longer awaited');
+  assert.equal(seen.some((state) => state.city === 'abeokuta' && state.status === 'ready'), false, 'nobody is told that the abandoned city is ready');
   assert.equal((world.diagnostics() as { location?: string }).location, 'park');
   world.dispose();
 });

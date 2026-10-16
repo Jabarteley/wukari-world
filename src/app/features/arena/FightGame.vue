@@ -2,7 +2,7 @@
 // Fight: a 1v1 brawler played live against a friend (a private room, joined by a link), against the computer, or watched.
 // The server judges everything (src/arena/fight.ts, server/growth/arena.ts); this screen sends what the player is pressing, and
 // draws the snapshots it gets back on a 2D canvas, smoothed between ticks (src/arena/interp.ts). It is a lazy chunk of the Games app.
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import BaseButton from '../../ui/BaseButton.vue'
 import { APPEARANCE } from '../../../game/content/traits.ts'
@@ -16,7 +16,7 @@ import ArenaStage from './ArenaStage.vue'
 import { BTN, PHASE, packInput } from '../../../arena/fight.ts'
 import type { FighterSnap, FightSnap } from '../../../arena/fight.ts'
 import { drawFight, drawFightHud, newFx, spawnHits } from '../../../arena/fight-draw.ts'
-import type { FightView } from '../../../arena/fight-3d.ts'
+import type { FightView, Insets } from '../../../arena/fight-3d.ts'
 import type { FighterColors } from '../../../arena/fight-draw.ts'
 import { Timeline } from '../../../arena/interp.ts'
 import type { ArenaLook } from '../../../types/arena.ts'
@@ -34,6 +34,7 @@ const gl = ref<HTMLCanvasElement | null>(null)
 let view3d: FightView | null = null
 const has3d = ref(false)
 const box = ref<HTMLElement | null>(null)
+const padEl = ref<HTMLElement | null>(null), leftEl = ref<HTMLElement | null>(null), rightEl = ref<HTMLElement | null>(null)
 
 const ownLook = (): ArenaLook | undefined => {
   const look = game.state.value.onboarding?.look as { skin?: string; hairColor?: string; outfitColor?: string; bottomsColor?: string } | undefined
@@ -126,13 +127,30 @@ function size(): void {
   // The holder fills the free height (ArenaStage); the arena takes all of it in landscape and a tall-enough slice in portrait.
   width = Math.max(200, holder.clientWidth)
   height = Math.max(120, holder.clientHeight)
-  const ratio = Math.min(window.devicePixelRatio || 1, 1.75)
+  // The HUD canvas only draws bars and text over the 3D view: a lower ratio there saves a cheap phone a big canvas to composite.
+  const ratio = Math.min(window.devicePixelRatio || 1, view3d ? 1.5 : 1.75)
   el.width = Math.round(width * ratio); el.height = Math.round(height * ratio)
   el.style.width = width + 'px'; el.style.height = height + 'px'
   el.getContext('2d')?.setTransform(ratio, 0, 0, ratio, 0, 0)
   if (gl.value) { gl.value.style.width = width + 'px'; gl.value.style.height = height + 'px' }
-  view3d?.resize(width, height)
+  view3d?.resize(width, height, insets())
 }
+/**
+ * What covers the arena, for the 3D camera: the HUD bars on top; in portrait the thumb pad along the bottom, in landscape the two
+ * thumb clusters over the bottom corners (the fighters are fitted between them, where nothing is).
+ */
+function insets(): Insets {
+  const holder = box.value
+  const top = Math.round(Math.min(108, height * 0.32))
+  if (!holder) return { top, bottom: 0, left: 0, right: 0 }
+  const at = holder.getBoundingClientRect(), pad = padEl.value?.getBoundingClientRect()
+  if (!pad || !pad.height) return { top, bottom: 10, left: 0, right: 0 }
+  if (window.innerHeight > window.innerWidth) return { top, bottom: Math.max(10, Math.round(at.bottom - pad.top) + 8), left: 0, right: 0 }
+  const left = leftEl.value?.getBoundingClientRect(), right = rightEl.value?.getBoundingClientRect()
+  return { top, bottom: 10, left: left ? Math.max(0, Math.round(left.right - at.left) + 10) : 0, right: right ? Math.max(0, Math.round(at.right - right.left) + 10) : 0 }
+}
+/** A turn of the phone: the layout settles a moment after the event on some browsers, so measure now and again after it. */
+function turned(): void { size(); setTimeout(size, 250) }
 async function start3d(): Promise<void> {
   if (!gl.value) return
   try {
@@ -201,10 +219,12 @@ function frame(now: number): void {
 
 function leave(): void { room.leave() }
 const status = room.status
+// The pad appears when the match starts and goes when it ends: the camera frames the fighters in what is left over.
+watch([status, seated], () => { void nextTick(size) })
 
 onMounted(() => {
   size()
-  window.addEventListener('resize', size)
+  window.addEventListener('resize', size); window.addEventListener('orientationchange', turned)
   if (typeof ResizeObserver === 'function' && box.value) { watcher = new ResizeObserver(size); watcher.observe(box.value) }
   window.addEventListener('keydown', onDown); window.addEventListener('keyup', onUp)
   document.addEventListener('visibilitychange', onHide)
@@ -214,7 +234,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   cancelAnimationFrame(raf)
   view3d?.dispose(); view3d = null
-  window.removeEventListener('resize', size); watcher?.disconnect()
+  window.removeEventListener('resize', size); window.removeEventListener('orientationchange', turned); watcher?.disconnect()
   window.removeEventListener('keydown', onDown); window.removeEventListener('keyup', onUp)
   document.removeEventListener('visibilitychange', onHide)
   sound.close()
@@ -229,12 +249,12 @@ onBeforeUnmount(() => {
       <div class="fg-play arena-fill">
         <div ref="box" class="fg-stage"><canvas ref="gl" class="fg-gl" :class="{ on: has3d }" aria-hidden="true" /><canvas ref="canvas" class="fg-hud" aria-label="Fight arena" role="img" /></div>
         <p v-if="note" class="fg-note" role="status">{{ note }}</p>
-        <section v-if="status === 'playing' && seated" class="fg-pad" aria-label="Controls" data-testid="fight-pad">
-          <div class="fg-left">
+        <section v-if="status === 'playing' && seated" ref="padEl" class="fg-pad" aria-label="Controls" data-testid="fight-pad">
+          <div ref="leftEl" class="fg-left">
             <button type="button" class="fg-btn mv" aria-label="Move left" :class="{ on: down & BTN.left }" @pointerdown.prevent="hold(BTN.left, true)" @pointerup.prevent="hold(BTN.left, false)" @pointercancel="hold(BTN.left, false)" @pointerleave="hold(BTN.left, false)">&#9664;</button>
             <button type="button" class="fg-btn mv" aria-label="Move right" :class="{ on: down & BTN.right }" @pointerdown.prevent="hold(BTN.right, true)" @pointerup.prevent="hold(BTN.right, false)" @pointercancel="hold(BTN.right, false)" @pointerleave="hold(BTN.right, false)">&#9654;</button>
           </div>
-          <div class="fg-right">
+          <div ref="rightEl" class="fg-right">
             <button type="button" class="fg-btn act punch" aria-label="Punch" @pointerdown.prevent="tap(BTN.punch)">Punch</button>
             <button type="button" class="fg-btn act kick" aria-label="Kick" @pointerdown.prevent="tap(BTN.kick)">Kick</button>
             <button type="button" class="fg-btn act block" aria-label="Block" :class="{ on: down & BTN.block }" @pointerdown.prevent="hold(BTN.block, true)" @pointerup.prevent="hold(BTN.block, false)" @pointercancel="hold(BTN.block, false)" @pointerleave="hold(BTN.block, false)">Block</button>

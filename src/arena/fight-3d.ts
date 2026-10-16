@@ -9,16 +9,24 @@
  *
  * ASSETS (manifests in scripts/assets/manifests/, licences in Help): two CC0 KayKit fighters with their clips, and our own ring from
  * scripts/assets/blender/ring.py. About 0.5 MB in all, about 7,300 triangles, under 20 draw calls, one light, no shadow map.
- * A lazy chunk: the Fight screen fetches it when it opens, and draws the 2D view until it is ready (or for ever, without WebGL).
+ * A lazy chunk: the Games hub warms it (preloadFight) and the Fight screen fetches it when it opens, and draws the 2D view until it is ready (or for ever, without WebGL).
  */
-import { THREE, Shake, FrameStats, blobShadow, cloneSkinned, disposeScene, lambertise, loadGlb, makeRenderer } from './three/kit.ts'
+import { THREE, Shake, FrameStats, MEDIAN_FRAMES, blobShadow, cloneSkinned, disposeScene, lambertise, loadGlb, makeRenderer, nextLevel, ratioLadder } from './three/kit.ts'
+import type { RatioState } from './three/kit.ts'
+import { ASSET_VERSIONS } from './asset-versions.generated.ts'
 import { ACT, ARENA_W, BODY_H, HZ, MOVES, PHASE } from './fight.ts'
 import type { FighterSnap, FightSnap } from './fight.ts'
 
+/** A model's URL with its content version (asset-versions.generated.ts): /assets/ is cached for a year, so a changed file needs a new URL. */
+const versioned = (path: string): string => `${path}?v=${ASSET_VERSIONS[path] ?? 'x'}`
 export const FIGHT_ASSETS = Object.freeze({
-  fighters: ['/assets/packs/kaykit-adventurers/fighter-1.glb', '/assets/packs/kaykit-adventurers/fighter-2.glb'] as const,
-  ring: '/assets/packs/allworld-fight/ring-wide.glb',
+  fighters: [versioned('/assets/packs/kaykit-adventurers/fighter-1.glb'), versioned('/assets/packs/kaykit-adventurers/fighter-2.glb')] as const,
+  ring: versioned('/assets/packs/allworld-fight/ring-wide.glb'),
 })
+/** Fetch and parse the Fight models ahead of the screen (the Games hub does this when it opens and when the browser is idle). */
+export function preloadFight(): Promise<unknown> {
+  return Promise.all([...FIGHT_ASSETS.fighters, FIGHT_ASSETS.ring].map((url) => loadGlb(url)))
+}
 /** Metres per rules unit: a fighter's 105-unit body is 1.8 m tall. */
 export const UNIT = 1.8 / BODY_H
 /** The canvas is this high above the floor (scripts/assets/blender/ring.py). */
@@ -52,13 +60,28 @@ export const attackScale = (clipSeconds: number, act: number): number => {
   const move = MOVES[act as 1 | 2]
   return move ? clipSeconds / (move.total / HZ) : 1
 }
-/** Camera distance for a gap between the fighters (metres) and the screen's shape: they stay in frame on a tall phone too. */
 /** The camera's vertical field of view for a screen shape: wider on a tall phone, so two fighters fit across it. */
 export const fovFor = (aspect: number): number => (aspect < 1 ? 60 : 40)
-/** Camera distance that keeps both fighters and a body's width either side in frame, for a gap (metres) and a screen shape. */
-export function cameraDistance(gap: number, aspect: number): number {
-  const half = (fovFor(aspect) * Math.PI) / 360, across = Math.atan(Math.tan(half) * Math.max(0.3, aspect))
-  return Math.min(17, Math.max(3.6, (gap / 2 + 1.1) / Math.tan(across)))
+/**
+ * What covers the canvas, in px: the HUD bars at the top, the thumb pad at the bottom (portrait), and the thumb clusters at the sides
+ * (landscape: they sit over the bottom corners, so the fighters are fitted between them). The camera frames the fighters in what is left.
+ */
+export interface Insets { top: number; bottom: number; left: number; right: number }
+export const NO_INSETS: Insets = Object.freeze({ top: 0, bottom: 0, left: 0, right: 0 })
+/** A standing fighter and the room a jump needs, metres above the canvas, and a body's width either side of the pair. */
+const FIT_HEIGHT = 2.9, FIT_SIDE = 0.9
+/**
+ * How to frame the pair, pure: the field of view, the camera's distance (metres) for a gap between the fighters, and `shift`, the
+ * px to slide the picture down so the fighters centre in the free band (between the HUD and the pad) instead of the whole canvas.
+ * Both fighters and their reach fit the free width, and a standing fighter plus a jump fits the free height; in portrait the
+ * camera may go further back for a wide gap (a fighter is then small, but whole), in landscape it stops at the ring's far side.
+ */
+export function framing(gap: number, width: number, height: number, inset: Insets = NO_INSETS): { fov: number; dist: number; shift: number } {
+  const aspect = width / Math.max(1, height), fov = fovFor(aspect), tan2 = 2 * Math.tan((fov * Math.PI) / 360)
+  const bandH = Math.max(60, height - inset.top - inset.bottom), freeW = Math.max(120, width - inset.left - inset.right)
+  const needV = (FIT_HEIGHT * height) / (bandH * tan2), needH = ((gap + 2 * FIT_SIDE) * height) / (freeW * tan2)
+  const dist = Math.min(aspect < 1 ? 30 : 17, Math.max(3.6, needV, needH))
+  return { fov, dist, shift: Math.round(inset.top + bandH / 2 - height / 2) }
 }
 /** The ring's ropes are 8.25 m from its centre and the top rope 2.25 m up: a camera further out rises to look over it. */
 export const ROPE_Z = 8.25, ROPE_TOP = CANVAS_Y + 1.25
@@ -81,8 +104,9 @@ export interface FightView {
   draw(a: FightSnap, b: FightSnap, t: number, meta: { own: FighterSnap | null; you: number | null; winner: number; now: number }): void
   /** This tick's hits (a snapshot's `e`): sparks and camera shake. */
   hits(events: readonly number[][]): void
-  resize(width: number, height: number): void
-  stats(): ReturnType<FrameStats['read']>
+  /** The canvas size in px and what covers it (HUD, thumbs): the pair is framed in the rest, at once. */
+  resize(width: number, height: number, insets?: Insets): void
+  stats(): ReturnType<FrameStats['read']> & { /** the pixel ratio now drawn at */ ratio: number }
   dispose(): void
 }
 
@@ -138,7 +162,15 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
   const shake = new Shake(opts.reduced), shakeOffset = new THREE.Vector3()
   const look = new THREE.Vector3(0, CANVAS_Y + 0.95, 0), camPos = new THREE.Vector3(0, CANVAS_Y + 1.6, 7)
   const stats = new FrameStats()
-  let last = 0, aspect = 1, koSince = -1
+  let last = 0, koSince = -1, sizeW = 300, sizeH = 300, inset: Insets = NO_INSETS, snapCamera = true
+  // Adaptive resolution: the pixel ratio steps down while frames run long and back up when they run easy (kit.ts nextLevel).
+  const ladder = ratioLadder(globalThis.devicePixelRatio || 1)
+  let rung: RatioState = { level: 0, calmMs: 0 }
+  const recent: number[] = []
+  const setRung = (next: RatioState): void => {
+    if (next.level !== rung.level) { renderer.setPixelRatio(ladder[next.level] as number); renderer.setSize(sizeW, sizeH, false); recent.length = 0 }
+    rung = next
+  }
 
   function play(body: Body, clip: Clip, now: number, restart: boolean, scale = 1): void {
     const next = body.actions.get(clip) ?? body.actions.get('idle')
@@ -157,7 +189,9 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
     draw(a, b, t, meta) {
       const began = performance.now()
       const now = meta.now, dt = last ? Math.min(0.1, (now - last) / 1000) : 1 / 60
+      const frameMs = last ? now - last : 0
       last = now; stats.tick(now)
+      if (frameMs > 0 && frameMs < 250) { recent.push(frameMs); if (recent.length > MEDIAN_FRAMES) recent.shift(); setRung(nextLevel(rung, ladder.length, recent)) }
       const snaps: [FighterSnap, FighterSnap] = [0, 1].map((seat) => {
         const fa = a.f[seat as 0 | 1], fb = b.f[seat as 0 | 1]
         const mixd: FighterSnap = [fa[0] + (fb[0] - fa[0]) * t, fa[1] + (fb[1] - fa[1]) * t, fb[2], fb[3], fb[4], fb[5], fb[6]]
@@ -201,8 +235,8 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
       sparkGeo.attributes.position!.needsUpdate = true
       // The camera: between the two, closer as they close in; on a knock-out it turns slowly round the one who went down.
       const x0 = toWorld(snaps[0][0], 0).x, x1 = toWorld(snaps[1][0], 0).x, gap = Math.abs(x1 - x0)
-      // On a tall phone the thumbs cover the bottom: the camera looks lower, so the fighters stand above them.
-      let tx = (x0 + x1) / 2, ty = CANVAS_Y + (aspect < 1 ? 0.15 : 0.95), dist = cameraDistance(gap, aspect), yaw = 0, drop = 0
+      // The fighters are framed in the part the HUD and thumbs leave free (framing, resize), centred on their middle height.
+      let tx = (x0 + x1) / 2, ty = CANVAS_Y + 1.2, dist = framing(gap, sizeW, sizeH, inset).dist, yaw = 0, drop = 0
       const loser = b.f[0][5] <= 0 ? 0 : b.f[1][5] <= 0 ? 1 : -1
       if ((b.p === PHASE.ko || over) && loser >= 0 && !opts.reduced) {
         if (koSince < 0) koSince = now
@@ -210,6 +244,7 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
         tx += ((loser ? x1 : x0) - tx) * ease; ty -= 0.45 * ease; dist = Math.min(dist * (1 - 0.32 * ease), ROPE_Z - 0.6 + (dist - ROPE_Z + 0.6) * (1 - ease)); yaw = 0.55 * ease * (loser ? -1 : 1); drop = 0.6 * ease
       } else if (b.p !== PHASE.ko && !over) koSince = -1
       const ease = 1 - Math.pow(0.001, dt)
+      if (snapCamera) { look.set(tx, ty, 0); snapCamera = false; camPos.set(look.x, cameraHeight(dist, look.y), dist) } // a new shape: frame at once
       look.x += (tx - look.x) * ease; look.y += (ty - look.y) * ease
       const want = new THREE.Vector3(look.x + Math.sin(yaw) * dist, cameraHeight(dist, look.y) - drop, Math.cos(yaw) * dist)
       camPos.lerp(want, ease)
@@ -233,12 +268,16 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
         sparkMat.color.set(blocked ? 0x9ad0ff : 0xffd36a)
       }
     },
-    resize(width, height) {
-      aspect = width / Math.max(1, height)
+    resize(width, height, insets = NO_INSETS) {
+      sizeW = width; sizeH = height; inset = insets
       renderer.setSize(width, height, false)
-      camera.aspect = aspect; camera.fov = fovFor(aspect); camera.updateProjectionMatrix()
+      const f = framing(0, width, height, insets)
+      camera.aspect = width / Math.max(1, height); camera.fov = f.fov
+      camera.setViewOffset(width, height, 0, -f.shift, width, height) // slides the picture so the pair centres in the free band
+      camera.updateProjectionMatrix()
+      snapCamera = true
     },
-    stats: () => stats.read(renderer),
+    stats: () => ({ ...stats.read(renderer), ratio: ladder[rung.level] as number }),
     dispose() { disposeScene(scene); sparkGeo.dispose(); sparkMat.dispose(); renderer.dispose() },
   }
 }

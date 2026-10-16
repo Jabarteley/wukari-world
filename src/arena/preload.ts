@@ -1,0 +1,25 @@
+/**
+ * OWNER: games (real-time)
+ * WARMING A GAME AHEAD OF TIME: the Games hub calls `warmFight()` when it opens and again when the browser is idle, so the Fight
+ * screen's 3D pieces (its chunk, three.js and the three GLBs) are already fetched and parsed when the player taps Fight.
+ * Nothing here is in the first download: the hub is a lazy chunk (the player has pressed Play to get to it) and the import below is
+ * dynamic. A Save-Data connection or a 2G / slow-2G one is left alone: there the Fight screen fetches on demand, drawing 2D first.
+ */
+export interface Link { saveData?: boolean; effectiveType?: string }
+
+/** Whether the connection allows fetching ahead of need, pure. An unknown connection (no Network Information API) is allowed. */
+export const mayWarm = (link: Link | null | undefined): boolean => !link || (!link.saveData && link.effectiveType !== '2g' && link.effectiveType !== 'slow-2g')
+
+let started: Promise<unknown> | null = null
+/** Fetch the Fight 3D view and its models once a visit. Resolves quietly; never throws. */
+export function warmFight(link: Link | null | undefined = (globalThis.navigator as { connection?: Link } | undefined)?.connection): Promise<unknown> {
+  if (!mayWarm(link)) return Promise.resolve()
+  started ??= import('./fight-3d.ts').then((m) => m.preloadFight()).catch(() => { started = null })
+  return started
+}
+
+type Idle = (run: () => void, options?: { timeout: number }) => unknown
+/** Run `job` when the browser is idle (requestIdleCallback), or after a short wait where there is none. */
+export function whenIdle(job: () => void, ric: Idle | undefined = (globalThis as { requestIdleCallback?: Idle }).requestIdleCallback?.bind(globalThis), wait: (run: () => void, ms: number) => unknown = setTimeout): void {
+  if (ric) ric(job, { timeout: 4000 }); else wait(job, 1500)
+}

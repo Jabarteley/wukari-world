@@ -23,6 +23,7 @@ import { existsSync, mkdtempSync, readdirSync, readFileSync, rmdirSync, rmSync, 
 import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { writeVersions } from './versions.ts'
 import { glbJson, imageSize, measure, parseGltf, rebuild, trianglesOf, viewBytes, wrapRoot, writeGlb } from './glb.ts'
 import type { Doc, Json } from './glb.ts'
 import { CAPS, MAX_TEXTURE_PX, packPath } from './pack-types.ts'
@@ -221,7 +222,9 @@ function cli(): void {
     const want = JSON.parse(readFileSync(join(repo, 'scripts', 'assets', 'wants', `${name}.json`), 'utf8')) as WantList
     const dir = join(repo, 'public', 'assets', 'packs', name)
     if (!existsSync(dir)) throw new Error(`${dir} does not exist; run fetch-pack.ts first`)
-    for (const r of preparePack(dir, join(repo, 'scripts', 'assets', 'manifests', `${name}.json`), want, { encode, pack, dry: args.includes('--dry') })) {
+    const reports = preparePack(dir, join(repo, 'scripts', 'assets', 'manifests', `${name}.json`), want, { encode, pack, dry: args.includes('--dry') })
+    if (!args.includes('--dry')) writeVersions()
+    for (const r of reports) {
       console.log(`${r.game.padEnd(8)} ${r.kind.padEnd(9)} ${r.as.padEnd(28)} ${String(r.triangles).padStart(5)} tris  ${String(r.bytesBefore).padStart(8)} -> ${String(r.bytesAfter).padStart(7)} B  ${r.size ? `${r.size.join(' x ')} m` : ''}`)
     }
   } catch (error) {

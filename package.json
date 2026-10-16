@@ -46,7 +46,7 @@
     "predev": "npm run -s preflight",
     "predev:open": "npm run -s preflight",
     "prestart:open": "npm run -s preflight",
-    "prebuild": "npm run -s preflight && npm run -s cities:catalogue -- --check && npm run -s cities:land:check && npm run -s progression:check && npm run -s progression:assets -- --check && npm run -s campus:navigation -- --check",
+    "prebuild": "npm run -s preflight && npm run -s cities:catalogue -- --check && npm run -s cities:land:check && npm run -s progression:check && npm run -s progression:assets -- --check && npm run -s campus:navigation -- --check && node --experimental-strip-types scripts/assets/versions.ts --check",
     "pretypecheck": "npm run -s preflight",
     "pretest": "npm run -s preflight && npm run -s cities:land:check && npm run -s cities:assets && npm run -s words:assets && npm run -s progression:assets && npm run -s campus:navigation -- --check",
     "prestart": "npm run -s preflight",
@@ -99,6 +99,7 @@
     "progression:check": "node --experimental-strip-types scripts/city/build-progression-content.ts --check",
     "progression:assets": "node --experimental-strip-types scripts/city/build-progression-assets.ts --out dist/assets/progression --typescript src/game/progression/assets.generated.ts",
     "campus:navigation": "node --experimental-strip-types scripts/campus/build-navigation-data.ts",
+    "assets:versions": "node --experimental-strip-types scripts/assets/versions.ts",
     "assets:budget": "node --experimental-strip-types scripts/assets/budget.ts",
     "assets:credits": "node --experimental-strip-types scripts/assets/credits.ts"
   },

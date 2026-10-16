@@ -5,7 +5,7 @@
  *
  * BUDGET (RESEARCH.md): under 60,000-100,000 triangles and 60 draw calls a screen, 1K textures, one light, no shadow maps (a blob
  * under each body instead), a pixel ratio of at most 1.5, and Lambert materials (the packs' baked atlases keep their look).
- * `stats()` says what a frame cost, so a throttled profile can be measured and recorded (STATUS.md).
+ * `ratioLadder`/`nextLevel` keep a slow phone smooth by drawing fewer pixels; `stats()` says what a frame cost, so a throttled profile can be measured and recorded (STATUS.md).
  */
 import * as THREE from 'three'
 import type { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
@@ -13,11 +13,40 @@ import type { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 export { THREE }
 export const MAX_PIXEL_RATIO = 1.5
 
+/** The pixel ratios a game steps down through when its frames run long (the first is the most it ever draws at). */
+export const RATIO_STEPS: readonly number[] = Object.freeze([1.5, 1.25, 1, 0.85])
+/** A median frame time over this many ms steps the ratio down; under CALM_MS for CALM_FOR_MS it steps back up one. */
+export const SLOW_MS = 22, CALM_MS = 14, CALM_FOR_MS = 5000, MEDIAN_FRAMES = 60
+
+/** The ratios for a screen of this device pixel ratio, best first: it starts at min(device ratio, 1.5) and steps down from there. */
+export function ratioLadder(device: number): number[] {
+  const start = Math.min(MAX_PIXEL_RATIO, Math.max(0.5, device || 1))
+  return [start, ...RATIO_STEPS.filter((r) => r < start)]
+}
+
+const median = (list: readonly number[]): number => { const t = [...list].sort((a, b) => a - b); return t[Math.floor(t.length / 2)] ?? 0 }
+export interface RatioState { /** Index into the ladder: 0 is the sharpest. */ level: number; /** How long the medians have been calm, ms. */ calmMs: number }
+/**
+ * The next level, pure. `recent` is the latest frame times in ms (the last MEDIAN_FRAMES are judged; fewer than that change nothing).
+ * A median over SLOW_MS steps down one level at once; a median under CALM_MS for CALM_FOR_MS steps back up one; never past the ends.
+ * The caller starts counting frames afresh after a change, so the new level is judged on its own frames.
+ */
+export function nextLevel(state: RatioState, levels: number, recent: readonly number[]): RatioState {
+  if (recent.length < MEDIAN_FRAMES) return state
+  const m = median(recent.slice(-MEDIAN_FRAMES)), last = recent[recent.length - 1] ?? 0
+  if (m > SLOW_MS) return { level: Math.min(levels - 1, state.level + 1), calmMs: 0 }
+  if (m >= CALM_MS) return { level: state.level, calmMs: 0 }
+  const calmMs = state.calmMs + last
+  return calmMs >= CALM_FOR_MS ? { level: Math.max(0, state.level - 1), calmMs: 0 } : { level: state.level, calmMs }
+}
+
 /** A WebGL renderer for a game canvas, or null when the browser has no WebGL (the screen falls back to its 2D view). */
 export function makeRenderer(canvas: HTMLCanvasElement): THREE.WebGLRenderer | null {
   try {
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: (globalThis.devicePixelRatio ?? 1) < 2, alpha: false, powerPreference: 'high-performance', stencil: false })
-    renderer.setPixelRatio(Math.min(MAX_PIXEL_RATIO, globalThis.devicePixelRatio || 1))
+    const start = ratioLadder(globalThis.devicePixelRatio || 1)[0] as number
+    // Smoothing edges costs a cheap phone's fill rate: only a sharp screen that starts above 1 gets it.
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: start > 1 && (globalThis.devicePixelRatio ?? 1) < 2, alpha: false, powerPreference: 'high-performance', stencil: false })
+    renderer.setPixelRatio(start)
     renderer.outputColorSpace = THREE.SRGBColorSpace
     renderer.toneMapping = THREE.ACESFilmicToneMapping
     renderer.toneMappingExposure = 1.05

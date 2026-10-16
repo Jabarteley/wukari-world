@@ -13,7 +13,9 @@ Nothing. The owner's decisions of 15 and 16 October are live (releases 14 and 15
 
 ## Still to do
 
-Nothing for an agent to start on its own. Eleven tests are left failing on purpose because they need the owner's judgement
+A new programme is planned but not started: [docs/agent-plans/viral/PLAN.md](docs/agent-plans/viral/PLAN.md) (games within
+the game, clans and city leagues, the agent arena, clips and videos). It waits on the owner's research (PROMPTS.md) and answers
+(viral/STATUS.md). Nothing else for an agent to start on its own. Eleven tests are left failing on purpose because they need the owner's judgement
 (market scene anchors, ambient crowd size, two Abuja scenes, sedan geometry hashes, the country count, one remote homeward
 route): see "Failing on `main` before us" in [docs/agent-plans/world-alive/STATUS.md](docs/agent-plans/world-alive/STATUS.md).
 If you are given new work, add it here.

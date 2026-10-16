@@ -1,56 +1,14 @@
 {
   "pack": "kenney-blocky-characters",
-  "source": "Kenney (Blocky Characters)",
+  "name": "Blocky Characters",
   "kind": "kenney",
   "page": "https://kenney.nl/assets/blocky-characters",
-  "licence": "CC0-1.0",
-  "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "author": "Kenney",
+  "licenceId": "CC0-1.0",
   "want": [
     {
-      "from": "Models/GLB format/character-a.glb",
-      "as": "fighter-a.glb",
-      "game": "fight",
-      "kind": "character",
-      "clips": {
-        "idle": "idle",
-        "walk": "walk",
-        "sprint": "run",
-        "attack-melee-right": "punch-right",
-        "attack-melee-left": "punch-left",
-        "attack-kick-right": "kick-right",
-        "attack-kick-left": "kick-left",
-        "holding-both": "guard",
-        "die": "down"
-      },
-      "fit": {
-        "axis": "y",
-        "metres": 1.8
-      }
-    },
-    {
-      "from": "Models/GLB format/character-b.glb",
-      "as": "fighter-b.glb",
-      "game": "fight",
-      "kind": "character",
-      "clips": {
-        "idle": "idle",
-        "walk": "walk",
-        "sprint": "run",
-        "attack-melee-right": "punch-right",
-        "attack-melee-left": "punch-left",
-        "attack-kick-right": "kick-right",
-        "attack-kick-left": "kick-left",
-        "holding-both": "guard",
-        "die": "down"
-      },
-      "fit": {
-        "axis": "y",
-        "metres": 1.8
-      }
-    },
-    {
       "from": "Models/GLB format/character-c.glb",
-      "as": "player-c.glb",
+      "as": "player-1.glb",
       "game": "football",
       "kind": "character",
       "clips": {
@@ -60,7 +18,8 @@
         "attack-kick-right": "kick",
         "emote-yes": "celebrate",
         "emote-no": "dejected",
-        "die": "down"
+        "die": "down",
+        "pick-up": "pick-up"
       },
       "fit": {
         "axis": "y",
@@ -69,7 +28,7 @@
     },
     {
       "from": "Models/GLB format/character-d.glb",
-      "as": "player-d.glb",
+      "as": "player-2.glb",
       "game": "football",
       "kind": "character",
       "clips": {
@@ -79,7 +38,8 @@
         "attack-kick-right": "kick",
         "emote-yes": "celebrate",
         "emote-no": "dejected",
-        "die": "down"
+        "die": "down",
+        "pick-up": "pick-up"
       },
       "fit": {
         "axis": "y",
@@ -88,7 +48,7 @@
     },
     {
       "from": "Models/GLB format/character-e.glb",
-      "as": "player-e.glb",
+      "as": "player-3.glb",
       "game": "football",
       "kind": "character",
       "clips": {
@@ -98,7 +58,8 @@
         "attack-kick-right": "kick",
         "emote-yes": "celebrate",
         "emote-no": "dejected",
-        "die": "down"
+        "die": "down",
+        "pick-up": "pick-up"
       },
       "fit": {
         "axis": "y",
@@ -107,7 +68,7 @@
     },
     {
       "from": "Models/GLB format/character-f.glb",
-      "as": "player-f.glb",
+      "as": "player-4.glb",
       "game": "football",
       "kind": "character",
       "clips": {
@@ -117,7 +78,8 @@
         "attack-kick-right": "kick",
         "emote-yes": "celebrate",
         "emote-no": "dejected",
-        "die": "down"
+        "die": "down",
+        "pick-up": "pick-up"
       },
       "fit": {
         "axis": "y",

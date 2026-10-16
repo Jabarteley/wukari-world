@@ -1,0 +1,103 @@
+{
+  "pack": "kaykit-adventurers",
+  "name": "Adventurers Character Pack 1.0",
+  "kind": "github",
+  "page": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0",
+  "author": "KayKit",
+  "licenceId": "CC0-1.0",
+  "repo": "KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0",
+  "ref": "672074b73ba276876a19e8816ecdc5241817ab47",
+  "licenceFile": "LICENSE.txt",
+  "licenceLines": [
+    [
+      2,
+      2
+    ],
+    [
+      9,
+      12
+    ]
+  ],
+  "want": [
+    {
+      "from": "addons/kaykit_character_pack_adventures/Characters/gltf/Barbarian.glb",
+      "as": "fighter-1.glb",
+      "game": "fight",
+      "kind": "character",
+      "keepMeshes": [
+        "Barbarian_Body",
+        "Barbarian_Head",
+        "Barbarian_ArmLeft",
+        "Barbarian_ArmRight",
+        "Barbarian_LegLeft",
+        "Barbarian_LegRight"
+      ],
+      "clips": {
+        "Unarmed_Idle": "idle",
+        "Walking_A": "walk",
+        "Walking_Backwards": "walk-back",
+        "Running_A": "run",
+        "Unarmed_Melee_Attack_Punch_A": "punch",
+        "Unarmed_Melee_Attack_Punch_B": "punch-2",
+        "Unarmed_Melee_Attack_Kick": "kick",
+        "Block": "block",
+        "Blocking": "blocking",
+        "Block_Hit": "block-hit",
+        "Hit_A": "hit",
+        "Hit_B": "hit-2",
+        "Dodge_Backward": "dodge-back",
+        "Death_A": "down",
+        "Cheer": "cheer"
+      },
+      "simplify": {
+        "ratio": 0.66,
+        "error": 0.02
+      },
+      "fit": {
+        "axis": "y",
+        "metres": 1.8
+      },
+      "note": "Weapons, hat and cape left out; simplified to the character cap."
+    },
+    {
+      "from": "addons/kaykit_character_pack_adventures/Characters/gltf/Rogue.glb",
+      "as": "fighter-2.glb",
+      "game": "fight",
+      "kind": "character",
+      "keepMeshes": [
+        "Rogue_Body",
+        "Rogue_Head",
+        "Rogue_ArmLeft",
+        "Rogue_ArmRight",
+        "Rogue_LegLeft",
+        "Rogue_LegRight"
+      ],
+      "clips": {
+        "Unarmed_Idle": "idle",
+        "Walking_A": "walk",
+        "Walking_Backwards": "walk-back",
+        "Running_A": "run",
+        "Unarmed_Melee_Attack_Punch_A": "punch",
+        "Unarmed_Melee_Attack_Punch_B": "punch-2",
+        "Unarmed_Melee_Attack_Kick": "kick",
+        "Block": "block",
+        "Blocking": "blocking",
+        "Block_Hit": "block-hit",
+        "Hit_A": "hit",
+        "Hit_B": "hit-2",
+        "Dodge_Backward": "dodge-back",
+        "Death_A": "down",
+        "Cheer": "cheer"
+      },
+      "simplify": {
+        "ratio": 0.62,
+        "error": 0.02
+      },
+      "fit": {
+        "axis": "y",
+        "metres": 1.8
+      },
+      "note": "Weapons and cape left out; simplified to the character cap."
+    }
+  ]
+}

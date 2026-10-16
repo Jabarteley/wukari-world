@@ -1,10 +1,10 @@
 {
   "pack": "kenney-racing-kit",
-  "source": "Kenney (Racing Kit)",
+  "name": "Racing Kit",
   "kind": "kenney",
   "page": "https://kenney.nl/assets/racing-kit",
-  "licence": "CC0-1.0",
-  "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "author": "Kenney",
+  "licenceId": "CC0-1.0",
   "want": [
     {
       "from": "Models/GLTF format/raceCarRed.glb",
@@ -38,56 +38,56 @@
       "from": "Models/GLTF format/roadStart.glb",
       "as": "roadStart.glb",
       "game": "race",
-      "kind": "set",
+      "kind": "prop",
       "scale": 3
     },
     {
       "from": "Models/GLTF format/roadStraightLong.glb",
       "as": "roadStraightLong.glb",
       "game": "race",
-      "kind": "set",
+      "kind": "prop",
       "scale": 3
     },
     {
       "from": "Models/GLTF format/roadStraight.glb",
       "as": "roadStraight.glb",
       "game": "race",
-      "kind": "set",
+      "kind": "prop",
       "scale": 3
     },
     {
       "from": "Models/GLTF format/roadCornerLarge.glb",
       "as": "roadCornerLarge.glb",
       "game": "race",
-      "kind": "set",
+      "kind": "prop",
       "scale": 3
     },
     {
       "from": "Models/GLTF format/roadCornerLarger.glb",
       "as": "roadCornerLarger.glb",
       "game": "race",
-      "kind": "set",
+      "kind": "prop",
       "scale": 3
     },
     {
       "from": "Models/GLTF format/roadCurved.glb",
       "as": "roadCurved.glb",
       "game": "race",
-      "kind": "set",
+      "kind": "prop",
       "scale": 3
     },
     {
       "from": "Models/GLTF format/roadCornerSmall.glb",
       "as": "roadCornerSmall.glb",
       "game": "race",
-      "kind": "set",
+      "kind": "prop",
       "scale": 3
     },
     {
       "from": "Models/GLTF format/roadPitStraight.glb",
       "as": "roadPitStraight.glb",
       "game": "race",
-      "kind": "set",
+      "kind": "prop",
       "scale": 3
     },
     {
@@ -178,21 +178,21 @@
       "from": "Models/GLTF format/grandStand.glb",
       "as": "grandStand.glb",
       "game": "race",
-      "kind": "set",
+      "kind": "prop",
       "scale": 3
     },
     {
       "from": "Models/GLTF format/grandStandCovered.glb",
       "as": "grandStandCovered.glb",
       "game": "race",
-      "kind": "set",
+      "kind": "prop",
       "scale": 3
     },
     {
       "from": "Models/GLTF format/pitsGarage.glb",
       "as": "pitsGarage.glb",
       "game": "race",
-      "kind": "set",
+      "kind": "prop",
       "scale": 3
     }
   ]

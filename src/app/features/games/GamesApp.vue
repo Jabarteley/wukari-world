@@ -74,8 +74,8 @@ onMounted(() => {
   void loadDaily()
   // Opened from inside the game: its address (/games) is shown so it can be copied, and Back closes it.
   void import('../paths/arrive.ts').then(({ enterGames }) => { enterGames() })
-  // Warm the Fight 3D pieces so the screen opens at once (src/arena/preload.ts: never on Save-Data or 2G); again when the browser is idle, in case the first try failed.
-  void import('../../../arena/preload.ts').then(({ warmFight, whenIdle }) => { void warmFight(); whenIdle(() => { void warmFight() }) })
+  // Warm the Fight and Race 3D pieces so the screen opens at once (src/arena/preload.ts: never on Save-Data or 2G); again when the browser is idle, in case the first try failed.
+  void import('../../../arena/preload.ts').then(({ warmFight, warmRace, whenIdle }) => { void warmFight(); void warmRace(); whenIdle(() => { void warmFight(); void warmRace() }) })
 })
 // Opened for one game ({ game: 'oro' | 'chess' | 'weave' } or, from an address, { play: 'oro' }): Oro opens on today's word, the others are brought into view.
 const wanted = (): string => { const p = props.params as { game?: unknown; play?: unknown } | null | undefined; const game = p?.game ?? p?.play; return typeof game === 'string' ? game : '' }

@@ -119,6 +119,7 @@ onMounted(() => { void growth.load(); void loadOlderLives() })
 
 <template>
   <div class="settings-app">
+    <OAuthApproval v-if="oauthWaiting" @done="oauthWaiting = false" />
     <h3 class="ui-section">Phone wallpaper</h3>
     <div class="settings-walls" role="group" aria-label="Phone wallpaper">
       <button v-for="item in WALLPAPERS" :key="item.id" type="button" class="settings-wall" :class="`wall-${item.id}`" :aria-pressed="item.id === wall" :aria-label="`${item.label} wallpaper`" @click="pickWall(item.id)"><span>{{ item.label }}</span></button>
@@ -161,7 +162,6 @@ onMounted(() => { void growth.load(); void loadOlderLives() })
       <p v-if="switchError" role="alert">{{ switchError }}</p>
       <button v-if="switchError" type="button" :disabled="loadingOlder || !game.client.online" @click="loadOlderLives">Retry</button>
     </section>
-    <OAuthApproval v-if="oauthWaiting" @done="oauthWaiting = false" />
     <h3 class="ui-section" data-section="account">This device</h3>
     <div class="ui-rows">
       <div class="ui-row"><span class="ui-row-icon" aria-hidden="true"><GameIcon inline name="id" /></span><span class="ui-row-body"><b>{{ game.state.value.name }}</b><small><template v-if="view.session">Player code #{{ view.session.id.slice(0, 6) }} · </template>{{ device }}</small></span></div>

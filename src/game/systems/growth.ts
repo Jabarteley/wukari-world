@@ -104,7 +104,7 @@ const whole = (value: unknown): value is number => safeCount(value) && value > 0
 /** The body of 'tables.server' (exported for tests). */
 export const tablesOp: TypedActionHandler<'tables.server'> = (state, payload, ctx) => {
   const op = payload?.op, amount = payload?.amount, label = cleanText(payload?.label, 40, 'a table game');
-  if (op !== 'stake' && op !== 'pot' && op !== 'refund') return fail(state, 'invalid_operation', 'That table operation does not exist.');
+  if (op !== 'stake' && op !== 'pot' && op !== 'refund' && op !== 'prize') return fail(state, 'invalid_operation', 'That table operation does not exist.');
   if (!whole(amount)) return fail(state, 'invalid_amount', 'That amount is not a whole number of naira.');
   const book = state.growth.tables;
   if (op === 'stake') {
@@ -117,6 +117,11 @@ export const tablesOp: TypedActionHandler<'tables.server'> = (state, payload, ct
   }
   if (!canCredit(state, amount)) return fail(state, 'balance_limit', 'Your saved balance has reached its supported limit.');
   // A refund is the stake itself; a pot holds the winner's own stake too, and that part is no longer at risk. Neither is "worked for".
+  // A tournament prize (server/tournaments/): game naira the server checked against the week's ceiling. It is no stake, no pot and not worked for.
+  if (op === 'prize') {
+    credit(state, amount, `Agent tournament prize: ${label}`, ctx);
+    return ok(state, 'won');
+  }
   const own = op === 'refund' ? amount : Math.min(amount, safeCount(payload?.stake) ? payload.stake : 0);
   credit(state, amount, op === 'pot' ? `Won the pot: ${label}` : `Table stake returned: ${label}`, ctx);
   book.staked = Math.max(0, book.staked - own);

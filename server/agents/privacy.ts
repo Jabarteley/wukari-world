@@ -4,6 +4,7 @@
  */
 import type { Db, SessionRecord } from '../types.ts';
 import type { AgentsCollection } from './service.ts';
+import { bookOf, forget } from '../tournaments/book.ts';
 
 const own = <T>(map: Record<string, T> | undefined, key: string): T | undefined => {
   const value = map && key !== '__proto__' ? map[key] : undefined;
@@ -23,6 +24,7 @@ export function eraseAgents(db: Db, accountId: string, sessionOf: (db: Db, publi
     const gone = a.chars[publicId];
     if (gone?.slug && a.names) delete a.names[gone.slug];
     delete a.chars[publicId];
+    if (a.arena) forget(bookOf(a), publicId);
     const stored = sessionOf(db, publicId);
     if (stored?.agent?.char === true && stored.agent.owner === accountId) archive(db, stored.secret, stored);
   }

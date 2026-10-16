@@ -419,7 +419,7 @@ export interface ActionMap extends CampusActionMap, StoryActionMap, AchievementA
 }
 
 /** The operations 'tables.server' accepts (systems/growth.ts). */
-export type TablesServerOp = 'stake' | 'pot' | 'refund'
+export type TablesServerOp = 'stake' | 'pot' | 'refund' | 'prize'
 /** Why the life's half of a stake was refused. */
 export type TablesBlockCode = 'invalid_operation' | 'invalid_amount' | 'balance_limit' | StakeCode
 
@@ -563,7 +563,7 @@ export const AGENT_MISSION_OPS = ['give', 'talk', 'hand', 'bring', 'sale'] as co
 export const BUSINESS_SERVER_OPS = ['open', 'spend', 'collect', 'refund', 'buy', 'bag-add', 'bag-take', 'bag-return'] as const satisfies readonly BusinessServerOp[]
 
 /** The operations 'tables.server' accepts (systems/growth.ts). */
-export const TABLES_SERVER_OPS = ['stake', 'pot', 'refund'] as const satisfies readonly TablesServerOp[]
+export const TABLES_SERVER_OPS = ['stake', 'pot', 'refund', 'prize'] as const satisfies readonly TablesServerOp[]
 
 /** The operations 'market.server' accepts (systems/market.ts). */
 export const MARKET_SERVER_OPS = ['deposit', 'withdraw'] as const satisfies readonly MarketServerOp[]

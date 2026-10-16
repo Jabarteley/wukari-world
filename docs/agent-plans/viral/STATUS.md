@@ -126,6 +126,15 @@ frame times are not a phone's): 19 draw calls, about 8,500 triangles, 1.3-1.6 ms
 skeleton, as the KayKit fighters are stylised), the hall lamps showing behind the portrait top bar, the pair a little off centre in
 portrait, clips rendered from the 3D view. Not verified: a real phone's frame rate, a real Bluetooth pad.
 
+## Phase 4b (16 October 2026, branch `claude/viral-fight-real`)
+
+Fight draws each person as their own native character (the world's CC0 MakeHuman body, hair, outfit and shoes) animated with fight
+clips made here in Blender from `scripts/assets/blender/native-fight-clips.py` (jab, cross, rear-leg kick, block, block-hit, two hit
+reactions, knock-down, cheer, guard idle, shuffling walks; solved per frame with two-bone limb solvers, nothing captured or copied). A
+seat carries an optional `nat` (short public native look, validated by the server); the computer and seats without one get a varied
+default look from their name. A phone with under 3 GB memory or under 4 cores, WebGL 1, or a native load that takes over 8 s from when
+the seats are known uses the KayKit fighters as before. The hall lamps are hidden in portrait. Details in the branch's final report.
+
 ## Phase 3 (16 October 2026)
 
 **Live at `ee203d15`** (release 38868544013, CI 38867051851, live smoke PASS; /agents/join and /agents/league answer). Finished by a

@@ -122,7 +122,8 @@ Measured 16 October 2026 (brotli at quality 11, as the budget counts it):
 Per game: **fight 191,363**, **race 59,202**, **football 65,378** bytes brotli, each against 1,500,000. Each pack folder also
 holds its source's `LICENSE.txt` (not counted).
 
-- **Fight:** `fighter-1.glb` and `fighter-2.glb` (KayKit's Barbarian and Rogue without weapons, hat or cape, simplified by gltfpack
+- **Fight, the real characters:** `native-fight-clips.glb` (ours, animations only, 24 clips: 12 for each body, 310 KB) with the world's own character files, which are not part of the pack.
+- **Fight, the stylised fallback:** `fighter-1.glb` and `fighter-2.glb` (KayKit's Barbarian and Rogue without weapons, hat or cape, simplified by gltfpack
   to the cap; one rig of 41 joints each) with 15 clips: `idle`, `walk`, `walk-back`, `run`, `punch`, `punch-2`, `kick`, `block`,
   `blocking`, `block-hit`, `hit`, `hit-2`, `dodge-back`, `down`, `cheer`. `ring.glb`: the ring on a 14 m concrete floor.
 - **Race:** four cars (`raceCarRed`, `Green`, `Orange`, `White`; separate `body` and four wheel nodes, `wheelFrontLeft` and so
@@ -155,7 +156,18 @@ blender --background --factory-startup --python scripts/assets/blender/goal.py -
   the triangles and export it as `<name>-lod1.glb`, listed as its own item.
 - **Export:** glTF binary, +Y up, transforms applied, no cameras, lights or extras, textures as PNG (prepare.ts makes them WebP and
   compresses the file; the exporter's own Draco is not used, because the game decodes meshopt).
-- **Animation:** our scripts make no animated assets yet; the animated ones come from KayKit with named clips. An animated asset of
+- **Animation, ours:** `native-fight-clips.py` keys the Fight clips for the native 53-joint characters (the world's CC0 MakeHuman
+  bodies), with no mesh in the file: `<clip>.male` and `<clip>.female` (the two bodies share bone names but not rest poses, so each is
+  solved for its own). Each frame is solved from a few plain numbers (pelvis, hips, chest, head, where each wrist and foot is) with
+  two-bone solvers for arms and legs (elbows and knees bend one way, planted feet stay planted) and written as bone rotations for the
+  body's rest pose; nothing is captured or copied from anywhere. Clips: `idle`, `walk-forward`, `walk-back`, `jab`, `cross`, `kick`,
+  `block`, `block-hit`, `hit`, `hit-2`, `down`, `cheer`; strikes are 0.35 s and 0.55 s, the rules' move lengths (`fight.ts` MOVES).
+  `blender ... native-fight-clips.py -- --out clips.glb --preview body.glb [--preview-body female] [--only jab] [--check]` also writes a
+  body with the clips for `preview.py --clip jab.male --frames 0,0.3,0.6,0.9` (one picture per frame, camera fixed on the whole motion).
+  gltfpack resamples the clips to 30 frames a second. Fight (`src/arena/fight-native.ts`) plays them with an AnimationMixer on the
+  native actor's skeleton; the native system's own motion is never run for these actors. An animated asset made by hand should be
+  rigged with Rigify (bundled with Blender) and keep one action per clip named as the game calls it (`idle`,
+  `walk`, `run`, `punch`, `kick`, `block`, `hit`, `celebrate`), exported with `export_animation_mode='ACTIONS'`; the other animated assets come from KayKit with named clips. An animated asset of
   our own should be rigged with Rigify (bundled with Blender) and keep one action per clip named as the game calls it (`idle`,
   `walk`, `run`, `punch`, `kick`, `block`, `hit`, `celebrate`), exported with `export_animation_mode='ACTIONS'`.
 - **Sources:** no `.blend` is committed: the scripts are the source, and they build the same bytes every time (checked on 16

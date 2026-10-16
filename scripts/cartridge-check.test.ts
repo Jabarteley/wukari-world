@@ -9,6 +9,8 @@ import { spawnSync } from 'node:child_process'
 import { checkCartridges, checkDir, checkRules, cartridgeFiles, diskSource, measureCartridge } from './cartridge-check.ts'
 import { fileURLToPath } from 'node:url'
 import type { Source } from './cartridge-check.ts'
+// The sample cartridge's own tests (determinism, exact replay, bad input) run with these: `npm test` has no glob for examples/.
+import '../examples/cartridge-sample/rules.test.ts'
 import { CARTRIDGES } from '../src/arena/cartridges.ts'
 import { CARTRIDGE_CONTRACT, defineCartridge } from '../src/arena/cartridge.ts'
 import type { Cartridge, CartridgeAsset } from '../src/arena/cartridge.ts'

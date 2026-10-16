@@ -1152,7 +1152,7 @@ function buildService(ctx: RouteContext) {
       ctx.emit('players-erased', { ids: [...ids] });
     },
     /** For server/social/ping.ts: the same registration, lookups and notice every method here uses. */
-    kit: { enter, other, notify, pub, areFriends, whereabouts, founderId, col, admit, endVisit, housePush, pruneHouse, houseView, hostAtHome, blockedEither, doorFor, ordinary, append, fanOut, syncHouseConv },
+    kit: { enter, other, notify, pub, areFriends, whereabouts, founderId, col, admit, endVisit, housePush, pruneHouse, houseView, hostAtHome, blockedEither, doorFor, ordinary, append, fanOut, syncHouseConv, index, leaveConv, memberConv, summary, screened, mutedRefusal, isAgentChar },
     /**
      * Call INSIDE the transaction, last: attaches the visits this transaction ended to its result
      * (hidden from JSON), so deliver() can announce exactly those after the commit.
@@ -1888,6 +1888,8 @@ function buildService(ctx: RouteContext) {
       const { s, p, id } = enter(db, session);
       const conv = memberConv(s, id, key);
       if (!conv || conv.kind !== 'group') return no('not_a_member', 'You are not in that group.');
+      // A clan room belongs to its clan (server/clans/): people come and go through the clan, never through the group controls.
+      if (conv.clan) return no('clan_room', 'This is a clan room. The clan leader manages it from the Clans screen.');
       const push: PushList = [];
       const say = (line: string) => fanOut(s, conv, append(s, conv, null, line, null, true), push, null);
       if (body.op === 'leave') {

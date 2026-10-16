@@ -11,7 +11,8 @@ Read this first in every session; update it after every phase and whenever you s
   (docs/agent-plans/world-alive/STATUS.md).
 - **Phase 1 is live (16 October 2026, `1841c909`):** the cartridge contract and checker, replays, the 15-second reconnect, the
   replay page, clips, real game controllers, and stakes with spectator backing. **Phase 2 is live (`01409bc9`):** clans, ladders,
-  city leagues, clan wars, the clan venue room. **Next:** Phase 4 (polish Fight) once Phase A's packs are reviewed. Phase A (`claude/viral-assets`) and Phase 3 (`claude/viral-agent-arena`) are being
+  city leagues, clan wars, the clan venue room. **Phase 3 is live (`ee203d15`):** agent cups, the challenge link, /agents/join.
+  **Next:** release Phase A (its subagent is finishing), then Phase 4 (Fight in 3D, built on `claude/viral-fight`). Phase A (`claude/viral-assets`) and Phase 3 (`claude/viral-agent-arena`) are being
   finished by subagents in their own worktrees; each is reviewed and released in phase order.
 
 ## Baseline (Phase 0, 16 October 2026)
@@ -46,7 +47,7 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | 0 Baseline | done | `228443371` (main) | nothing to release; live was `c2419edb` |
 | 1 Cartridge standard, replays, reconnect, clips | live | `1841c909` | see "Phase 1" below; real-pad check open |
 | 2 Clans, ladders, city leagues | live | `01409bc9` | see "Phase 2" |
-| 3 Agent arena | started, stopped | | branch `claude/viral-agent-arena` |
+| 3 Agent arena | live | `ee203d15` | see "Phase 3" |
 | A Asset pipeline | started, stopped | | branch `claude/viral-assets` |
 | 4 Polish Fight | not started | | |
 | 5 Polish Race | not started | | |
@@ -106,6 +107,19 @@ section of the Games app (lazy). Review found and fixed: a clan war always settl
 removed), a test-clock gap in the league, and an untyped route module. Tests: 5 against a real server plus the pure ones. Checked
 in a 390x844 browser: start, share, open the invite as a new player, preview, join, ladders.
 
+## Phase 3 (16 October 2026)
+
+**Live at `ee203d15`** (release 38868544013, CI 38867051851, live smoke PASS; /agents/join and /agents/league answer). Finished by a
+subagent on `claude/viral-agent-arena` from the earlier agent's work, reviewed before release. Weekly agent cups in games (agents'
+keys play arena and table seats, knockout or round robin by rating, server-owned clocks) and in life (richest stall from takings
+by people only, most friends, most missions, office), Monday to Sunday Lagos time, settled on the heartbeat; prizes through the
+server-only bonus line (₦2,000 / ₦1,000 / ₦500, at most ₦4,000 a character a week, only with four different people entered); the
+owner's badge and card; standings and "agents playing now" with watch links on the Agent league page; the challenge link (a game or
+a 7-day life contest) to a card with both names and AI marks; `/agents/join` with each assistant's exact steps from the owner's own
+key (Claude, ChatGPT, Gemini CLI, Cursor and VS Code deep links), a `.mcpb` bundle and a starter prompt. Agent rooms are watch-only,
+never staked or backed, and stay off people's ladders. `docs/AGENT-ARENA.md` lists what cannot be prevented. Not verified: the
+bundle and deep links installed in the real apps (tests decode them).
+
 ## The owner's decisions (16 October 2026)
 
 1. Polish all three games: Fight, Race and Football.
@@ -123,6 +137,11 @@ in a 390x844 browser: start, share, open the invite as a new player, preview, jo
 
 - **Startup brotli noise** (see Phase 1): may an agent change how chunk hashes are named or where the city chunk list lives, so
   the first download stops moving by about 200 bytes with every lazy change? The limits themselves would not change.
+
+- **Agent cups prizes** (Phase 3): are ₦2,000 / ₦1,000 / ₦500, at most ₦4,000 a character a week, only with four different
+  people entered, right?
+- **Web assistants and OAuth** (Phase 3): ChatGPT and Claude on the web can only connect where their form takes a bearer key. Should
+  the MCP endpoint get an OAuth sign-in? (It would mean accepting the assistants' connector terms, which is the owner's.)
 
 Answered 16 October 2026:
 - Clans: 25 members, and a clan may own a venue room (a room in a venue that the clan holds, with its name and colour; the venue
@@ -143,6 +162,7 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: Phase 3 live at `ee203d15` (agent cups, challenge link, join page).
 - 2026-10-16: Phase 2 live at `01409bc9` (with the Worker build minifying local names to stay within its guard).
 - 2026-10-16: Phase 1 complete and live at `1841c909` (1c: stakes and backing). Phase 2 built and in CI.
 - 2026-10-16: Phase 1a+1b live at `45723a6e` (contract, checker, replays, reconnect, replay page, clips, controllers).

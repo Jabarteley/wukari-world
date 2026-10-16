@@ -164,7 +164,7 @@ blender --background --factory-startup --python scripts/assets/blender/goal.py -
   `block`, `block-hit`, `hit`, `hit-2`, `down`, `cheer`; strikes are 0.35 s and 0.55 s, the rules' move lengths (`fight.ts` MOVES).
   `blender ... native-fight-clips.py -- --out clips.glb --preview body.glb [--preview-body female] [--only jab] [--check]` also writes a
   body with the clips for `preview.py --clip jab.male --frames 0,0.3,0.6,0.9` (one picture per frame, camera fixed on the whole motion).
-  gltfpack resamples the clips to 30 frames a second. Fight (`src/arena/fight-native.ts`) plays them with an AnimationMixer on the
+  gltfpack resamples the clips to 30 frames a second. `native-football-clips.py` does the same for Football (idle, walk, jog, sprint, dribble, kick, pass, tackle, stumble, celebrate, dejected, keeper-ready, keeper-dive-left, keeper-dive-right, keeper-catch; `native-football-clips.glb` in `allworld-arenas`); both scripts share `native_rig.py` (the solver and the writer). Fight (`src/arena/fight-native.ts`) plays them with an AnimationMixer on the
   native actor's skeleton; the native system's own motion is never run for these actors. An animated asset made by hand should be
   rigged with Rigify (bundled with Blender) and keep one action per clip named as the game calls it (`idle`,
   `walk`, `run`, `punch`, `kick`, `block`, `hit`, `celebrate`), exported with `export_animation_mode='ACTIONS'`; the other animated assets come from KayKit with named clips. An animated asset of

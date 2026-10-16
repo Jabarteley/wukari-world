@@ -55,7 +55,7 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | A Asset pipeline | live | `c254d4327` | packs for all three games, credits in Help, Blender scripts |
 | 4 Polish Fight | 4a live (3D) | `40e1e614` | 4b next: realistic fighters, portrait tidy-ups |
 | 5 Polish Race | live (3D) | `f87981e1` | realistic cars later; see "Phase 5" |
-| 6 Polish Football | built, in CI (branch `claude/viral-football`) | | 3D, penalty shoot-out, `rev` 2; see "Phase 6" |
+| 6 Polish Football | live (6a); 6b realistic footballers on `claude/viral-football-real` | | 3D, penalty shoot-out, `rev` 2; see "Phase 6" and "Phase 6b" |
 | 7 Videos (Nigeria first) | skipped | | the owner's decision, 16 October 2026 |
 | 8 Open the standard | not started | | owner decides when |
 | 9 Weekly city episode | not started | | |
@@ -248,6 +248,34 @@ bundle and deep links installed in the real apps (tests decode them).
   390x844, 360x740, 844x390 and 667x375; `cmp-*` the other camera on each screen.
 - **Not verified:** a real phone (GPU, thermal, Safari), a real pad over Bluetooth in a shoot-out, a two-person live match in a
   shoot-out, the 3D view after a lost WebGL context, and the numbers in the table on a throttled profile that is not software GL.
+
+## Phase 6b: realistic footballers (16 October 2026, branch `claude/viral-football-real`)
+
+- **What a player gets.** Each footballer is the person's own native character (the world's CC0 MakeHuman body, hair, face and shoes) in
+  the team's shirt (green or yellow; shorts white or dark), animated by football clips made here in Blender
+  (`scripts/assets/blender/native-football-clips.py`, sharing the solver and writer with the Fight clips in `native_rig.py`; the Fight
+  clips file is byte for byte the same after the move). Seats carry the optional `nat` look as in Fight; the computer and seats without
+  one get a varied default from pieces the world already loaded. Rings and name tags stay. Same fallbacks as Fight (under 3 GB memory,
+  under 4 cores, no WebGL 2, files slow past 8 s, a failed spawn): the Kenney players as before, which also stand in until the own
+  characters arrive.
+- **Clips** (`public/assets/packs/allworld-arenas/native-football-clips.glb`, 393 KB, 2 x 15 clips, 60 Hz keys resampled by the pack
+  step): idle 1.6 s loop, walk 0.85 s, jog 0.70 s, sprint 0.47 s, dribble 0.62 s (cycles, treadmill feet for 1.3, 2.4, 5.7 and 3.3 m/s),
+  kick 0.85 s (wind-up held at 0.30 s while the shoot button is charged, contact 0.38 s), pass 0.60 s (0.18, 0.24), tackle 0.70 s (a
+  standing poke, no slide), stumble 0.9 s, celebrate 1.5 s loop (arms-out run then a jump), dejected 2.0 s loop, keeper-ready 1.1 s
+  loop, keeper-dive-left and -right 1.2 s (the first 0.5 s is scrubbed by how far the server has moved the keeper, the rest is the
+  landing played in time), keeper-catch 1.0 s. The view blends idle, walk, jog, sprint and dribble by speed on one shared stride phase
+  (`football-native.ts`, `ActionMix`), one state clip over it.
+- **Budget.** A native actor of the world's body costs about 28,000 to 30,000 triangles, so only 1v1 fits: two own characters on the
+  field (about 67,500 triangles a frame in open play, 43 draw calls); in a shoot-out the shooter and the keeper he faces are the own
+  characters (about 64,000, 31 calls; the other keeper is hidden), and the keepers are blocky in open play. A match whose screen would pass
+  90,000 triangles (2v2: four actors) uses the Kenney players for the whole match (53 calls, 10,490 triangles).
+- **Framing.** Tall phone: the end-on camera slides back towards your own goal, up to 6 m, until the near goal line is above the thumb pad
+  (`clearShift`). Wide phone: a dark gradient band behind the top bar so the score reads over the crowd.
+- **Measured** (headless Chromium, software GL, CPU throttle 4x via CDP; script cost per frame median, p95): 390x844 open play 2.9 ms,
+  4.1 ms; 844x390 3.2 ms, 10.5 ms (software GL stalls); shoot-out 390x844 3.0 ms, 4.3 ms. Cartridge: football 337,927 bytes brotli of
+  1,500,000. STARTUP_RAW 613,952 (unchanged), STARTUP_GZIP 222,423, STARTUP_BROTLI 195,320, SCENE_HOST_RAW 188,818, LOADING_RAW 90,568.
+- **Not verified:** a real phone (GPU, thermal, Safari), two people in a live shoot-out, 2v2 with own characters (falls back by the
+  budget), the keeper's sideways steps in open play (he glides in the ready pose), the 3D view after a lost WebGL context.
 
 ## The owner's decisions (16 October 2026)
 

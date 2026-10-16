@@ -105,10 +105,14 @@ const asOf = computed(() => (dash.value ? `as of ${absolute(dash.value.asOf)}, $
       </div>
 
       <div v-if="hist?.returns" class="adm-card adm-scroll">
-        <h3>Coming back: by friends and by where they came from</h3>
+        <h3>Coming back: by friends, clan, agents and by where they came from</h3>
         <table class="adm-table"><thead><tr><th>Group</th><th>Day 1</th><th>Day 7</th><th>Day 30</th></tr></thead><tbody>
           <tr><td>Made a friend early</td><td>{{ returnCell(hist.returns.byFriend.yes.d1) }}</td><td>{{ returnCell(hist.returns.byFriend.yes.d7) }}</td><td>{{ returnCell(hist.returns.byFriend.yes.d30) }}</td></tr>
           <tr><td>No friend yet</td><td>{{ returnCell(hist.returns.byFriend.no.d1) }}</td><td>{{ returnCell(hist.returns.byFriend.no.d7) }}</td><td>{{ returnCell(hist.returns.byFriend.no.d30) }}</td></tr>
+          <tr v-if="hist.returns.byClan"><td>Joined a clan early</td><td>{{ returnCell(hist.returns.byClan.yes.d1) }}</td><td>{{ returnCell(hist.returns.byClan.yes.d7) }}</td><td>{{ returnCell(hist.returns.byClan.yes.d30) }}</td></tr>
+          <tr v-if="hist.returns.byClan"><td>No clan yet</td><td>{{ returnCell(hist.returns.byClan.no.d1) }}</td><td>{{ returnCell(hist.returns.byClan.no.d7) }}</td><td>{{ returnCell(hist.returns.byClan.no.d30) }}</td></tr>
+          <tr v-if="hist.returns.byAgent"><td>Talked to an agent early</td><td>{{ returnCell(hist.returns.byAgent.yes.d1) }}</td><td>{{ returnCell(hist.returns.byAgent.yes.d7) }}</td><td>{{ returnCell(hist.returns.byAgent.yes.d30) }}</td></tr>
+          <tr v-if="hist.returns.byAgent"><td>No agent chat yet</td><td>{{ returnCell(hist.returns.byAgent.no.d1) }}</td><td>{{ returnCell(hist.returns.byAgent.no.d7) }}</td><td>{{ returnCell(hist.returns.byAgent.no.d30) }}</td></tr>
           <tr v-for="row in hist.returns.bySource" :key="sourceLabel(row)"><td>{{ sourceLabel(row) }}</td><td>{{ returnCell(row.d1) }}</td><td>{{ returnCell(row.d7) }}</td><td>{{ returnCell(row.d30) }}</td></tr>
         </tbody></table>
         <p class="adm-sub">{{ hist.returns.note }}</p>

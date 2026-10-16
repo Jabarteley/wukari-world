@@ -15,6 +15,7 @@ import type { ConsentView, GrowthMetricsResponse, HelloResult, ShareFacts } from
 import type { ActionType, LifeState } from '../src/types/index.ts';
 import type { SessionResponse } from '../src/types/protocol.ts';
 import type { GrowthCollection } from './types.ts';
+import { KEEP, noteAgent, noteClan, noteFriend, prune, report, touch } from './growth/metrics.ts';
 
 type Dict = Record<string, unknown>;
 interface Who { cookie: string; id: string }
@@ -389,4 +390,24 @@ test('a share says where the sharer really lives: the local government of their 
   // And the old Neighbours directory files an owner under "In their own house", never under a district they do not rent in.
   const { houseOf } = await import('./civic/residents.ts');
   assert.deepEqual([houseOf(partial<LifeState>({ estate: { living: 'own' }, property: { house: 'yaba' } })), houseOf(partial<LifeState>({ estate: { living: 'rent' }, property: { house: 'yaba' } })), houseOf(partial<LifeState>({ property: { house: 'lekki' } }))], ['own', 'yaba', 'lekki']);
+});
+
+test('day-7 return by clan and by agent chat: yes and no cohorts, early only, minors counted like everyone, no player id in the report', () => {
+  const DAY = 86400000, t0 = 1_800_000_000_000 + 12 * 3600000;
+  const life = (since: number): LifeState => ({ civic: { since }, estate: { city: 'lagos' } } as unknown as LifeState);
+  const g: GrowthCollection = { salt: 's', players: {}, shares: {}, metrics: {}, tables: {}, sweptAt: 0 };
+  // a: clan + agent, comes back. b: clan only, does not. c: agent only (minor, same rules), comes back. d: neither, does not. e: clan on day 5 (too late), comes back.
+  for (const id of ['a', 'b', 'c', 'd', 'e']) touch(g, t0, id, life(t0));
+  noteClan(g, t0, 'a'); noteClan(g, t0 + DAY, 'b'); noteClan(g, t0 + 5 * DAY, 'e'); noteClan(g, t0, 'not-followed');
+  noteAgent(g, t0, 'a'); noteAgent(g, t0 + DAY, 'c'); noteAgent(g, t0 + 6 * DAY, 'd');
+  for (const id of ['a', 'c', 'e']) touch(g, t0 + 7 * DAY, id, life(t0), t0);
+  prune(g, t0 + 9 * DAY);
+  const r = report(g, t0 + 9 * DAY).returns;
+  assert.deepEqual([r.byClan.yes.d7, r.byClan.no.d7], [{ lives: 2, returned: 1, rate: 50 }, { lives: 3, returned: 2, rate: 66.7 }]);
+  assert.deepEqual([r.byAgent.yes.d7, r.byAgent.no.d7], [{ lives: 2, returned: 2, rate: 100 }, { lives: 3, returned: 1, rate: 33.3 }]);
+  assert.equal(r.byAgent.yes.d30.rate, null, 'too early to say, never 0');
+  prune(g, t0 + 9 * DAY + 2 * 3600000);
+  assert.deepEqual(report(g, t0 + 9 * DAY + 2 * 3600000).returns, r, 'counted once');
+  assert.equal(JSON.stringify(r).includes('"a"'), false);
+  assert.ok(KEEP.window > 0);
 });

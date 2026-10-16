@@ -34,7 +34,7 @@ export const percent = (part: number, whole: number): number => (whole > 0 ? Mat
 /** The return split the history answer carries (server/growth/metrics.ts returnSplit), as the dashboard reads it. */
 export interface ReturnCellRow { lives: number; returned: number; rate: number | null }
 export interface ReturnRowRead { d1: ReturnCellRow; d7: ReturnCellRow; d30: ReturnCellRow }
-export interface ReturnsRead { bySource: (ReturnRowRead & { source: string; medium: string; campaign: string })[]; byFriend: { yes: ReturnRowRead; no: ReturnRowRead }; note: string }
+export interface ReturnsRead { bySource: (ReturnRowRead & { source: string; medium: string; campaign: string })[]; byFriend: { yes: ReturnRowRead; no: ReturnRowRead }; byClan?: { yes: ReturnRowRead; no: ReturnRowRead }; byAgent?: { yes: ReturnRowRead; no: ReturnRowRead }; note: string }
 /** One cell: "42% (12 of 29)", or "too early" when no life is old enough yet. */
 export const returnCell = (cell: ReturnCellRow): string => (cell.rate === null ? 'too early' : `${cell.rate}% (${cell.returned} of ${cell.lives})`)
 /** "tiktok / paid / test1": a campaign as the owner wrote it. */

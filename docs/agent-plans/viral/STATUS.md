@@ -321,3 +321,15 @@ Not yours to fix.
 - 2026-10-16: Phase 1a+1b live at `45723a6e` (contract, checker, replays, reconnect, replay page, clips, controllers).
 - 2026-10-16: Phase 0 baseline recorded (main `228443371`, live `c2419edb`, typecheck clean, Blender 5.2.2 installed).
 - 2026-10-16: plan, research and answers written; four phases started and stopped mid-way (branches above). Nothing released.
+
+## Phase 10: measure and iterate (branch `claude/viral-measure`)
+
+Built: the admin "Coming back" table now splits day 1, 7 and 30 return by source, friend, clan and talked-to-an-agent (docs/ADMIN.md).
+
+### Weekly note (copy this each week; fill the numbers from the live dashboard, never from memory)
+
+- **Week of:** to fill
+- **What shipped this week:** to fill
+- **Day-7 return, overall / by source / has a friend / has a clan / talked to an agent (yes vs no, cohort size each):** to fill from the live dashboard
+- **What the number did since last week:** to fill
+- **Keep or revert, and why:** to fill

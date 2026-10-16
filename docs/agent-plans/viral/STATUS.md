@@ -124,6 +124,45 @@ key (Claude, ChatGPT, Gemini CLI, Cursor and VS Code deep links), a `.mcpb` bund
 never staked or backed, and stay off people's ladders. `docs/AGENT-ARENA.md` lists what cannot be prevented. Not verified: the
 bundle and deep links installed in the real apps (tests decode them).
 
+## Phase 5: Race in 3D (16 October 2026, branch `claude/viral-race`, not released)
+
+- **What a player gets.** Race is drawn in 3D from behind their own car (a viewer follows the leader or the car they tap), on the three
+  tracks: the Kenney race cars (red, orange, green, white, one a seat) with wheels that roll with the speed and front wheels that steer, a
+  body that leans out of bends and dives under braking, tyre smoke on slides, a flame on a boost, sparks and a camera shake on a bump, a
+  road with kerbs on the outside of bends, a chequered start line and boost pads, barriers and fences along both edges, a grandstand and pit
+  garages by the start, palms and sand (Lekki, Ikoyi) or a lagoon, a deck and piers, lamps and stalled danfos and okadas (Third Mainland).
+  The countdown pulls in from behind, the camera widens with speed, and when the car being followed crosses the line a low angle by the
+  line holds for 2.6 s. The HUD (place, lap, time, speed in km/h, minimap, names, FINISHED, 3-2-1, GO) is the existing one over the 3D
+  view. Without WebGL, or if the models fail, the old 2D view draws everything. Controllers, keys and touch are untouched.
+- **Rules: unchanged, `rev` stays 1.** `race.ts`, the snapshot and the tracks are as they were; all the feel (roll, pitch, steering
+  angle, spin, smoke, camera) is read from the snapshot in the browser. Units: 0.1 m a rules unit (a car is 40 units, 4 m long; the road
+  18 m between kerbs; a lap about 450-520 m; the quickest cars about 65 km/h).
+- **Files.** `src/arena/race-3d.ts` (lazy chunk), `race-3d-geo.ts` (pure: road ribbon, placements, wheel and lean maths, camera poses),
+  `race-units.ts`, `race-3d.test.ts` (23 tests); `race-draw.ts` gains `drawRaceHud`; `RaceGame.vue` (3D canvas under the HUD canvas,
+  insets, resize, `orientationchange` then again 250 ms later); `preload.ts` `warmRace()` (Games hub open and idle, same skips);
+  `cartridges.ts` (race: `lazy: ['race-3d', 'meshopt_decoder.module', 'native-body']` and twelve CC0 Kenney assets).
+- **Measured** (headless Chromium with a software GL: frame times are not a phone's, the script cost is what the numbers say; CPU
+  throttle 4x via CDP, four cars, 16 s of driving):
+
+  | Screen | script / frame (median, p95) | draw calls | triangles |
+  | --- | --- | ---: | ---: |
+  | 390 x 844 | 1.3 ms, 1.9 ms | 39 | 24,400 |
+  | 360 x 740 | 1.3 ms, 1.9 ms | 39 | 24,400 |
+  | 844 x 390 | 1.4 ms, 2.2 ms | 41 | 24,200 |
+  | 667 x 375 | 1.3 ms, 2.0 ms | 39 | 24,200 |
+  | Third Mainland (lobby view, 4 cars) | 0.5 ms (not throttled) | 43 | 28,400 |
+
+  Two cars: 25-28 calls, about 21,400 triangles. Barriers, fences, trees and lamps are drawn only 40 m behind to 170 m ahead of the car
+  (all of them were 42,000 triangles). Race cartridge: 257,088 bytes brotli (217,649 of chunks, 39,439 of models) of 1,500,000.
+- **Checks.** Typecheck clean; `src/arena/*.test.ts` and the others in the arena command pass (172); `npm run cartridge:check` ok;
+  CI run 38890821282 (merged with `origin/main` and `origin/claude/viral-fight`) green: STARTUP_RAW 613,952 (the branch it started from:
+  614,449, so it did not grow; a game is not in the first download), STARTUP_GZIP 222,444, STARTUP_BROTLI 195,390 of 195,600,
+  SCENE_HOST_RAW 188,818, LOADING_RAW 90,568, all ok.
+- **Not verified.** A real phone (frame rate, heat, touch feel on the two thumbs, a real pad over Bluetooth); a four-person live race
+  over the network; the Third Mainland track during a race (only its lobby view and camera poses were looked at: the 2-seat practice
+  starts on Lekki); Ikoyi by eye; the sound; reduced-motion mode; the photo finish for a viewer; the deck platform at the start of the
+  bridge from the chase camera. Screenshots are in the coordinator's scratch folder, not the repository.
+
 ## The owner's decisions (16 October 2026)
 
 1. Polish all three games: Fight, Race and Football.

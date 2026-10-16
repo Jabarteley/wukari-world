@@ -233,8 +233,7 @@ bundle and deep links installed in the real apps (tests decode them).
   same as `aa00c1087`, the branch it started from), STARTUP_GZIP 222,445, STARTUP_BROTLI 195,230, LOADING_RAW 90,568, SCENE_HOST_RAW 188,818.
 - **Found on the way.** The blocky players ship unlit and without normals (black under a light): the view computes normals. The goal's
   net texture has no `alphaMode`, so its clear cells drew black: the view blends it. The pitch's own marked spot is at 6 m, so the
-  shoot-out's spot is 135 units, not the 92 the 2D pitch drew (now both at 135). `rollBall`'s keeper is the same one a shoot-out moves
-  (fixed in testing: it first moved the shooter's own keeper).
+  shoot-out's spot is 135 units, not the 92 the 2D pitch drew (now both at 135).
 - **Screenshots** (`/Users/anthonyakpan/work/tmp/football-shots/`, not in the repository): `f<W>x<H>-run|kick|later.png` open play,
   `-goal-200|800|1300|2000|2800.png` a goal (live, replay twice, celebration), `-pens<N>-set|aim|fly|dive|result.png` a shoot-out, for
   390x844, 360x740, 844x390 and 667x375; `cmp-*` the other camera on each screen.

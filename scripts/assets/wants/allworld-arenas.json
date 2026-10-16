@@ -10,6 +10,7 @@
     { "blender": { "script": "pitch" }, "as": "pitch.glb", "game": "football", "kind": "prop", "note": "40 x 20 m five-a-side pitch with 2 m run-off and boards." },
     { "blender": { "script": "goal" }, "as": "goal.glb", "game": "football", "kind": "prop", "note": "Five-a-side goal, 3 x 2 m." },
     { "blender": { "script": "goal", "args": ["--width", "7.32", "--height", "2.44", "--depth", "2"] }, "as": "goal-full.glb", "game": "football", "kind": "prop", "note": "Full-size goal, 7.32 x 2.44 m, for the penalty duel." },
-    { "blender": { "script": "ball" }, "as": "ball.glb", "game": "football", "kind": "prop", "note": "22 cm ball, vertex colours." }
+    { "blender": { "script": "ball" }, "as": "ball.glb", "game": "football", "kind": "prop", "note": "22 cm ball, vertex colours." },
+    { "blender": { "script": "native-football-clips" }, "as": "native-football-clips.glb", "game": "football", "kind": "prop", "note": "Football clips for the native 53-joint characters (idle, walk, jog, sprint, dribble, kick, pass, tackle, stumble, celebrate, dejected, keeper ready, dives and catch), keyframed from code; animations only, no mesh." }
   ]
 }

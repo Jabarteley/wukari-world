@@ -52,10 +52,12 @@ function colors(seat: number): FighterColors {
 }
 const dist = (a: string, b: string): number => { const n = (h: string): number[] => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) || 0); const x = n(a), y = n(b); return Math.hypot((x[0] ?? 0) - (y[0] ?? 0), (x[1] ?? 0) - (y[1] ?? 0), (x[2] ?? 0) - (y[2] ?? 0)) }
 
+const ownRaw = game.state.value.onboarding?.look as unknown as Record<string, unknown> | undefined
+const natReady = import('../../../arena/native-own.ts').then(async (m) => { ownNat = await m.packOwnLook(ownRaw) }).catch(() => undefined)
 const pendingHits: { k: number; snap: FightSnap }[] = []
 const fx = newFx()
 const room = useArenaRoom<FightSnap>({
-  game: 'fight', intent: props.intent, hz: 20, look: ownLook, nat: ownNative, toast: (text, kind) => game.toast(text, kind), close: () => emit('close'),
+  game: 'fight', intent: props.intent, hz: 20, look: ownLook, nat: ownNative, ready: natReady, toast: (text, kind) => game.toast(text, kind), close: () => emit('close'),
   onMatch: () => { pendingHits.length = 0; predictor.reset(); fx.ko = 0 },
   onSnap: (k, snap, acks) => {
     if (snap.e.length) pendingHits.push({ k, snap })
@@ -65,8 +67,7 @@ const room = useArenaRoom<FightSnap>({
 })
 const predictor = new FightPredictor()
 const sound = createFightSound()
-const look = game.state.value.onboarding?.look as unknown as Record<string, unknown> | undefined
-void import('../../../arena/native-own.ts').then(async (m) => { ownNat = await m.packOwnLook(look) }).catch(() => undefined).finally(() => room.mount())
+room.mount()
 const state = room.state, note = room.note, conn = room.conn, gone = room.gone, timeline = room.timeline
 
 // ---- input --------------------------------------------------------------------------------------------

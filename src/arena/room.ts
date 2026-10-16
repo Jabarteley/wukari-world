@@ -29,6 +29,8 @@ export interface ArenaRoomOptions<Snap> {
   look?: () => ArenaLook | undefined
   /** The player's own native character, public part (src/arena/native-look.ts); optional. */
   nat?: () => ArenaNative | undefined
+  /** Create or join waits for this (the look above is being made); a failure does not stop it. */
+  ready?: Promise<unknown>
   /** Called for each snapshot as it arrives (after it is in the timeline). */
   onSnap?: (k: number, snap: Snap, acks?: number[]) => void
   /** A new match began (rematch, or the first): reset effects. The timeline is already cleared. */
@@ -74,8 +76,11 @@ export function useArenaRoom<Snap>(opts: ArenaRoomOptions<Snap>) {
 
   client = createArenaClient({
     open() {
-      if (room) client.send('arena-join', { room, look: opts.look?.(), nat: opts.nat?.() })
-      else if (!created) { created = true; client.send('arena-create', { game: opts.game, practice: opts.intent.kind === 'practice', ...(opts.intent.seats ? { seats: opts.intent.seats } : {}), look: opts.look?.(), nat: opts.nat?.(), ...(opts.options ? { options: opts.options } : {}) }) }
+      const go = (): void => {
+        if (room) client.send('arena-join', { room, look: opts.look?.(), nat: opts.nat?.() })
+        else if (!created) { created = true; client.send('arena-create', { game: opts.game, practice: opts.intent.kind === 'practice', ...(opts.intent.seats ? { seats: opts.intent.seats } : {}), look: opts.look?.(), nat: opts.nat?.(), ...(opts.options ? { options: opts.options } : {}) }) }
+      }
+      if (opts.ready) void opts.ready.then(go, go); else go()
     },
     state(frame) {
       room = frame.room

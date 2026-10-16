@@ -49,6 +49,8 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 6. Clans of 25 that may own a venue room; spectators may back a player (person, agent or bot) with a capped game-money stake.
 7. The games must be realistic and polished like finished commercial games (within the phone and size budgets), and every game
    must work with a real game controller through the Gamepad API (PHASES.md, "The standard for every game").
+8. The agent may install Blender and make our own realistic assets with it, for the world and for the mini games, from committed
+   scripts, within the budgets (PHASES.md, "Making our own assets with Blender").
 
 ## Questions for the owner
 

@@ -192,13 +192,16 @@ test('POST /mcp: the operator switch ends agent access on the Worker, and back',
 test('sign-in for web assistants on the Worker: the discovery documents, the 401 challenge, registration, the code flow with PKCE, and the token on /mcp', { timeout: 240_000 }, async (t) => {
   const h = await host(t)
   const ada = await h.owner('Ada1', 'Ada')
+  // No PUBLIC_ORIGIN is set in this fixture, so the documents name the host the request arrived at (as the preview pages do).
   const resource = await (await h.page('/.well-known/oauth-protected-resource/mcp')).json() as Json
-  assert.deepEqual([resource.resource, resource.authorization_servers], [`${ORIGIN}/mcp`, [ORIGIN]])
+  const issuer = String((resource.authorization_servers as string[])[0])
+  assert.match(issuer, /^http:\/\/127\.0\.0\.1:\d+$/)
+  assert.equal(resource.resource, `${issuer}/mcp`)
   const server = await (await h.page('/.well-known/oauth-authorization-server')).json() as Json
-  assert.deepEqual([server.issuer, server.token_endpoint, server.code_challenge_methods_supported], [ORIGIN, `${ORIGIN}/api/agents/oauth/token`, ['S256']])
+  assert.deepEqual([server.issuer, server.token_endpoint, server.code_challenge_methods_supported], [issuer, `${issuer}/api/agents/oauth/token`, ['S256']])
   const none = await h.dispatch('/mcp', { method: 'POST', headers: { 'content-type': 'application/json', 'cf-connecting-ip': h.ip() }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'initialize', params: {} }) })
   assert.equal(none.status, 401)
-  assert.match(none.headers.get('www-authenticate') ?? '', new RegExp(`resource_metadata="${ORIGIN}/.well-known/oauth-protected-resource/mcp"`))
+  assert.ok((none.headers.get('www-authenticate') ?? '').includes(`resource_metadata="${issuer}/.well-known/oauth-protected-resource/mcp"`))
   await none.arrayBuffer()
   const redirect = 'https://claude.ai/api/mcp/auth_callback'
   const registered = await h.dispatch('/api/agents/oauth/register', { method: 'POST', headers: { 'content-type': 'application/json', 'cf-connecting-ip': h.ip() }, body: JSON.stringify({ client_name: 'Claude', redirect_uris: [redirect] }) })

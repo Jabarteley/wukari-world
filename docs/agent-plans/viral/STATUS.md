@@ -56,7 +56,7 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | 4 Polish Fight | 4a live (3D) | `40e1e614` | 4b next: realistic fighters, portrait tidy-ups |
 | 5 Polish Race | live (3D) | `f87981e1` | realistic cars later; see "Phase 5" |
 | 6 Polish Football | built, in CI (branch `claude/viral-football`) | | 3D, penalty shoot-out, `rev` 2; see "Phase 6" |
-| 7 Videos (Nigeria first) | not started | | |
+| 7 Videos (Nigeria first) | skipped | | the owner's decision, 16 October 2026 |
 | 8 Open the standard | not started | | owner decides when |
 | 9 Weekly city episode | not started | | |
 | 10 Measure and iterate | not started | | |
@@ -287,6 +287,7 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: the owner skipped Phase 7 (videos); the work in progress was discarded, nothing was posted or committed.
 - 2026-10-16: Phase 6 (Football in 3D, penalties, `rev` 2) built on `claude/viral-football`; in CI.
 - 2026-10-16: Phase 5 live at `f87981e1` (Race in 3D). Phase 4b (realistic fighters) and Phase 6 (Football) being built.
 - 2026-10-16: Phase 4a live at `40e1e614` (Fight in 3D). Race (Phase 5) built and in CI; Football (Phase 6) being built.

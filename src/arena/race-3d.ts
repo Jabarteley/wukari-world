@@ -19,7 +19,7 @@ import { ASSET_VERSIONS } from './asset-versions.generated.ts'
 import { newCar } from './race.ts'
 import { buildTrack, nearestIndex, pointAt, ROAD_HALF } from './race-track.ts'
 import type { Track, TrackId } from './race-track.ts'
-import { UNIT, BODY_UNITS } from './race-units.ts'
+import { UNIT, BODY_UNITS, metresPerSecond } from './race-units.ts'
 import {
   BARRIER_LAT, DECK_DROP_M, NO_INSETS, PALETTES, alongX, bandShift, boxMesh, buildRoad, chasePose, facingZ, hash, lean, lineAlong, motionOf, obstaclePlaces,
   orbitPose, photoFinishPose, scatter, smoking, spinStep, startArea, steerAngle,
@@ -190,7 +190,7 @@ function enrich(colors: THREE.BufferAttribute): void {
 interface CarRig {
   root: THREE.Group; lean: THREE.Group; wheels: { node: THREE.Group; radius: number; front: boolean; spin: number }[]; shadow: THREE.Mesh
   // motion state, from the drawn poses
-  x: number; y: number; a: number; speed: number; slide: number; yawRate: number; steer: number; roll: number; pitch: number; lastSpeed: number; hit: boolean; boost: boolean; seen: boolean; fin: boolean
+  x: number; y: number; a: number; dir: 1 | -1; speed: number; slide: number; yawRate: number; steer: number; roll: number; pitch: number; lastSpeed: number; hit: boolean; boost: boolean; seen: boolean; fin: boolean
 }
 
 /** The little vehicles on the Mainland bridge, built from boxes: a yellow danfo with its black stripe, an okada with its rider. */
@@ -320,7 +320,7 @@ export async function createRaceView(canvas: HTMLCanvasElement, opts: { reduced:
     })
     const shadow = blobShadow(2.6, 0.5); shadow.position.y = 0.045; scene.add(shadow); scene.add(root)
     root.visible = false; shadow.visible = false
-    return { root, lean: tilt, wheels, shadow, x: 0, y: 0, a: 0, speed: 0, slide: 0, yawRate: 0, steer: 0, roll: 0, pitch: 0, lastSpeed: 0, hit: false, boost: false, seen: false, fin: false }
+    return { root, lean: tilt, wheels, shadow, x: 0, y: 0, a: 0, dir: 1, speed: 0, slide: 0, yawRate: 0, steer: 0, roll: 0, pitch: 0, lastSpeed: 0, hit: false, boost: false, seen: false, fin: false }
   })
   // Brake lights: eight small boxes, one draw; they go bright while braking (per-instance colour).
   const lampBox = new THREE.BoxGeometry(0.34, 0.16, 0.08)
@@ -441,7 +441,10 @@ export async function createRaceView(canvas: HTMLCanvasElement, opts: { reduced:
     const m = motionOf({ x: rig.x, y: rig.y, a: rig.a }, c, dt)
     const k = 1 - Math.exp(-dt / 0.09)
     // Reversing: the rules' speed is unsigned here, so the sign comes from the way the car moved against its heading.
-    rig.speed += (m.speed - rig.speed) * k; rig.slide += (m.slide - rig.slide) * k; rig.yawRate += (m.yawRate - rig.yawRate) * k
+    // The size of the speed is the rules' own (steady); the drawn motion only says which way: forwards or reversing.
+    if (Math.abs(m.speed) > 0.6) rig.dir = m.speed < 0 ? -1 : 1
+    const speed = rig.dir * metresPerSecond(c.v)
+    rig.speed += (speed - rig.speed) * k; rig.slide += (m.slide - rig.slide) * k; rig.yawRate += (m.yawRate - rig.yawRate) * k
     const accel = dt > 0 ? (rig.speed - rig.lastSpeed) / dt : 0
     rig.lastSpeed = rig.speed
     rig.x = c.x; rig.y = c.y; rig.a = c.a
@@ -462,7 +465,7 @@ export async function createRaceView(canvas: HTMLCanvasElement, opts: { reduced:
     const yaw = facingZ(c.a), sinY = Math.sin(yaw), cosY = Math.cos(yaw)
     const rear = (lx: number): [number, number] => [c.x * UNIT + lx * cosY - 1.3 * sinY, c.y * UNIT - lx * sinY - 1.3 * cosY]
     if (!opts.reduced && smoking({ speed: rig.speed, slide: rig.slide, yawRate: rig.yawRate }, (c.fl & FLAG_BRAKE) !== 0)) {
-      for (const lx of [-0.8, 0.8]) { const [px, pz] = rear(lx); puffs.emit(px, 0.25, pz, (Math.random() - 0.5) * 0.8, 0.5 + Math.random() * 0.5, (Math.random() - 0.5) * 0.8, 0.9, 0.9, 2.2, 0xe6e6e6, 0.5) }
+      for (const lx of [-0.8, 0.8]) { const [px, pz] = rear(lx); puffs.emit(px, 0.25, pz, (Math.random() - 0.5) * 0.8, 0.5 + Math.random() * 0.5, (Math.random() - 0.5) * 0.8, 0.9, 0.7, 2.0, 0xe6e6e6, 0.36) }
     }
     if (!opts.reduced && (c.fl & FLAG_OFF) && Math.abs(rig.speed) > 3 && Math.random() < 0.7) { const [px, pz] = rear((Math.random() - 0.5) * 1.6); puffs.emit(px, 0.2, pz, (Math.random() - 0.5) * 1.2, 0.8, (Math.random() - 0.5) * 1.2, 0.8, 0.8, 1.8, 0xb59a6a, 0.45) }
     const boost = (c.fl & FLAG_BOOST) !== 0
@@ -513,10 +516,10 @@ export async function createRaceView(canvas: HTMLCanvasElement, opts: { reduced:
         if (!target.fin) photoSince = -1
         wasFin = target.fin
         if (photoSince >= 0) {
-          const e = now - photoSince, weight = Math.min(easeStep(e / 260), easeStep((PHOTO_MS - e) / 600))
+          const e = now - photoSince, weight = Math.min(easeStep(e / 380), easeStep((PHOTO_MS - e) / 600))
           if (e > PHOTO_MS) photoSince = -2
           else {
-            const shot = photoFinishPose(track, tx, tz)
+            const shot = photoFinishPose(track, tx, tz, aspect)
             pose = { pos: pose.pos.map((v, i) => v + ((shot.pos[i] as number) - v) * weight) as Pose3['pos'], look: pose.look.map((v, i) => v + ((shot.look[i] as number) - v) * weight) as Pose3['look'], fov: pose.fov + (shot.fov - pose.fov) * weight }
           }
         }

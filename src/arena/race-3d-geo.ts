@@ -262,15 +262,15 @@ export const fovFor = (aspect: number, speed: number): number => (aspect < 1 ? 6
  */
 export function chasePose(x: number, z: number, a: number, speed: number, aspect: number, intro = 0): Pose3 {
   const portrait = aspect < 1, v = Math.max(0, speed)
-  const dist = (portrait ? 8.8 : 6.6) + v * 0.1 + intro * 3, height = (portrait ? 5.0 : 2.7) + v * 0.025 + intro * 1.2, ahead = (portrait ? 10 : 6) + v * 0.3
+  const dist = (portrait ? 9 : 6.6) + v * 0.1 + intro * 3, height = (portrait ? 5.6 : 2.7) + v * 0.025 + intro * 1.2, ahead = (portrait ? 8 : 6) + v * 0.3
   const c = Math.cos(a), s = Math.sin(a)
   return { pos: [x - c * dist, height, z - s * dist], look: [x + c * ahead, 0.7, z + s * ahead], fov: fovFor(aspect, v) }
 }
 
-/** The low angle by the finish line (the photo finish): a metre above the road, beside the line a little way on, looking at the car. */
-export function photoFinishPose(track: Track, carX: number, carZ: number): Pose3 {
+/** The low angle by the finish line (the photo finish): a metre above the road, beside the line a little way on, looking at the car; wider on a tall phone, where a side-on car would fill the width. */
+export function photoFinishPose(track: Track, carX: number, carZ: number, aspect = 1): Pose3 {
   const p = pointAt(track, 50, ROAD_HALF + 55)
-  return { pos: [p.x * UNIT, 1.0, p.y * UNIT], look: [carX, 0.6, carZ], fov: 42 }
+  return { pos: [p.x * UNIT, 1.0, p.y * UNIT], look: [carX, 0.6, carZ], fov: aspect < 1 ? 62 : 42 }
 }
 
 /** The lobby's slow orbit round the cars on the grid: `t` seconds. */

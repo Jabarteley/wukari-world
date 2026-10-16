@@ -222,6 +222,7 @@ test('the picture slides to the middle of what the HUD and the thumbs leave', ()
 test('the photo finish is low and beside the line, looking at the car; the lobby orbit stays round the grid', () => {
   const t = buildTrack('lekki'), shot = photoFinishPose(t, 30, 10)
   assert.ok(shot.pos[1] < 1.5 && shot.pos[1] > 0.3 && shot.fov < 50)
+  assert.ok(photoFinishPose(t, 30, 10, 0.46).fov > shot.fov, 'wider on a tall phone')
   assert.deepEqual(shot.look.slice(0, 1), [30])
   const line = pointAt(t, 0, 0)
   assert.ok(Math.hypot(shot.pos[0] - line.x * UNIT, shot.pos[2] - line.y * UNIT) > 8 && Math.hypot(shot.pos[0] - line.x * UNIT, shot.pos[2] - line.y * UNIT) < 20, 'a few metres from the road')

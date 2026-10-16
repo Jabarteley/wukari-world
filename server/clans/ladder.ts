@@ -78,8 +78,8 @@ export function ladderService(ctx: RouteContext) {
 
   // ---- clan wars -------------------------------------------------------------------------------------------------------------------
   /** Points of each counted member (an AI-played one is not counted; a quiet member is 0). */
-  function warPoints(c: ClansCollection, clan: ClanRecord): [string, number][] {
-    return clan.members.filter((id) => !c.players[id]?.ai).map((id): [string, number] => [id, Math.max(0, clan.wk?.s[id] ?? 0)]);
+  function warPoints(c: ClansCollection, clan: ClanRecord, s: Readonly<Record<string, number>> | undefined = clan.wk?.s): [string, number][] {
+    return clan.members.filter((id) => !c.players[id]?.ai).map((id): [string, number] => [id, Math.max(0, s?.[id] ?? 0)]);
   }
   /** Settle a clan's war from an earlier week (and its opponent's, at once). */
   function settleWar(c: ClansCollection, clan: ClanRecord, week: number): void {
@@ -88,16 +88,18 @@ export function ladderService(ctx: RouteContext) {
     delete clan.wk;
     const opp = wk.vs ? c.clans[wk.vs] : undefined;
     if (!opp || !opp.wk || opp.wk.n !== wk.n || opp.wk.vs !== clan.id) return;
-    const mine = warScore(warPoints(c, clan).map((p) => p[1])).score, theirs = warScore(warPoints(c, opp).map((p) => p[1])).score;
+    // The week's points are read from the records just taken off the clans (`wk`, `owk`), never from the clans themselves.
+    const owk = opp.wk, pointsOf = (of: ClanRecord): [string, number][] => warPoints(c, of, of === clan ? wk.s : owk.s);
+    const mine = warScore(pointsOf(clan).map((p) => p[1])).score, theirs = warScore(pointsOf(opp).map((p) => p[1])).score;
     const outcome = outcomeOf(mine, theirs), [a, b] = ratings(clan.rating, opp.rating, outcome);
     const eligible = (of: ClanRecord, won: boolean): { ids: string[]; amount: number } | undefined => {
       const amount = prizeFor(won ? outcomeOf(1, 0) : 'draw');
       if (!won || amount <= 0) return undefined;
-      const sorted = warPoints(c, of).sort((x, y) => y[1] - x[1]).slice(0, warScore(warPoints(c, of).map((p) => p[1])).used);
+      const sorted = pointsOf(of).sort((x, y) => y[1] - x[1]).slice(0, warScore(pointsOf(of).map((p) => p[1])).used);
       return { ids: sorted.filter((p) => p[1] > 0).map((p) => p[0]), amount };
     };
     const drawn = outcome === 'draw';
-    const prize = (of: ClanRecord, won: boolean) => { const p = drawn ? { ids: warPoints(c, of).filter((x) => x[1] > 0).map((x) => x[0]), amount: WAR.prizeDraw } : eligible(of, won); return p && p.ids.length ? { prize: p } : {}; };
+    const prize = (of: ClanRecord, won: boolean) => { const p = drawn ? { ids: pointsOf(of).filter((x) => x[1] > 0).map((x) => x[0]), amount: WAR.prizeDraw } : eligible(of, won); return p && p.ids.length ? { prize: p } : {}; };
     clan.rating = a; opp.rating = b; delete opp.wk;
     clan.last = { n: wk.n, vs: opp.id, vsName: opp.name, mine, theirs, outcome, ...prize(clan, outcome === 'win') };
     opp.last = { n: wk.n, vs: clan.id, vsName: clan.name, mine: theirs, theirs: mine, outcome: outcome === 'win' ? 'loss' : outcome === 'loss' ? 'win' : 'draw', ...prize(opp, outcome === 'loss') };

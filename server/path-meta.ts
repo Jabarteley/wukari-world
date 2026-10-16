@@ -102,6 +102,8 @@ const setMeta = (html: string, key: string, value: string): string =>
 export function roomMeta(pathname: string, search: string): PathMeta | null {
   if (pathname !== '/' && pathname !== '') return null;
   const code = /[?&]table=([a-z0-9-]{1,40})(?:[&#]|$)/.exec(search)?.[1];
+  // A clan invite (src/app/features/games/clansModel.ts): the preview names no clan (the page is not read from the store), only what it is.
+  if (code && /^clan-[a-hjkmnp-z]{6}$/.test(code)) return { title: `Join my clan on ${BRAND}`, description: `Play Fight, Race and Football with your clan and climb your city's ladder. ${TAIL}`, canonical: null, index: false };
   const game = code ? arenaGame(gameOfRoom(code)) : null;
   if (!game) return null;
   return { title: `Join my ${game.label} match on ${BRAND}`, description: `A friend is waiting for you in a live ${game.label} match. Tap to play, or to watch if it is full. ${TAIL}`, canonical: null, index: false };

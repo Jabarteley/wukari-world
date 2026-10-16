@@ -17,7 +17,7 @@ export interface ClanBoard { k: string; t: string; n: number; r: (number | strin
 type E = HostErrorCode | JsonBodyErrorCode | 'rate_limited' | 'device_session_required'
 
 export interface ClansHttpRoutes {
-  'GET /api/clans/me': { response: ClanAnswer<{ clan: ClanView | null; colours: { id: string; name: string; hex: string }[]; cap: number; homeCity: string; canCreate: boolean }>; errors: E }
+  'GET /api/clans/me': { response: ClanAnswer<{ clan: ClanView | null; colours: { id: string; name: string; hex: string }[]; cap: number; homeCity: string; homeCityName: string; canCreate: boolean }>; errors: E }
   'GET /api/clans/preview': { query: { code: string }; response: ClanAnswer<{ clan: ClanView }>; errors: E | 'invalid_code' }
   'POST /api/clans/create': { body: { name: string; colour: string; city?: string; clientId: string }; response: ClanAnswer<{ clan: ClanView }>; errors: E | 'invalid_clan_name' | 'invalid_colour' | 'invalid_city' }
   'POST /api/clans/join': { body: { code: string }; response: ClanAnswer<{ clan: ClanView }>; errors: E | 'invalid_code' }

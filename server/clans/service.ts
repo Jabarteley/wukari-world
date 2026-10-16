@@ -100,7 +100,7 @@ function build(ctx: RouteContext) {
       const { s, id } = kit.enter(db, session); void s;
       const c = clansOf(ctx, db), clan = myClan(c, id);
       if (clan) checkWar(c, clan);
-      return yes('mine', { clan: clan ? view(db, c, clan, id) : null, colours: COLOURS, cap: ladder.clanCap(), homeCity: homeOf(session), canCreate: !isAgent(session) });
+      return yes('mine', { clan: clan ? view(db, c, clan, id) : null, colours: COLOURS, cap: ladder.clanCap(), homeCity: homeOf(session), homeCityName: cityName(homeOf(session)), canCreate: !isAgent(session) });
     },
     /** What a code is, before joining: public facts only. */
     preview(db: Db, code: unknown) {

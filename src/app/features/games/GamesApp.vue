@@ -26,6 +26,7 @@ import { useTables } from '../tables/useTables.ts'
 
 const props = defineProps<{ params?: unknown }>()
 const OroGame = defineAsyncComponent(() => import('./OroGame.vue'))
+const ClansScreen = defineAsyncComponent(() => import('./ClansScreen.vue'))
 const { game, shell, goTo } = useApp()
 const tables = useTables()
 const growth = useGrowth()
@@ -34,7 +35,9 @@ const why = computed(() => linkWords(view.value)?.why ?? '')
 const asked = (props.params && typeof props.params === 'object' ? (props.params as { play?: unknown }).play : null) === 'oro'
 // An invite link (/?table=g-<game>-xxxxxx) opens this app with { room }: straight into that game's screen.
 const roomParam = (): string => { const r = (props.params as { room?: unknown } | null | undefined)?.room; return typeof r === 'string' && gameOfRoom(r) ? r : '' }
-const screen = ref<'hub' | 'daily' | 'practice' | 'live'>(roomParam() ? 'live' : asked ? 'daily' : 'hub')
+// A clan invite (/?table=clan-xxxxxx, the landing) opens this app with { clan }: the Clans screen with that clan found.
+const clanParam = (): string => { const c = (props.params as { clan?: unknown } | null | undefined)?.clan; return typeof c === 'string' && /^[A-Z]{6}$/.test(c) ? c : '' }
+const screen = ref<'hub' | 'daily' | 'practice' | 'live' | 'clans'>(roomParam() ? 'live' : clanParam() ? 'clans' : asked ? 'daily' : 'hub')
 // The live game on screen: its catalog entry, the intent it opens with (create, practice or join a room), and a key that remounts it.
 const live = shallowRef<{ entry: ArenaCatalogEntry; intent: ArenaIntent } | null>(null)
 const liveKey = ref(0)
@@ -67,7 +70,7 @@ onMounted(() => {
 })
 // Opened for one game ({ game: 'oro' | 'chess' | 'weave' } or, from an address, { play: 'oro' }): Oro opens on today's word, the others are brought into view.
 const wanted = (): string => { const p = props.params as { game?: unknown; play?: unknown } | null | undefined; const game = p?.game ?? p?.play; return typeof game === 'string' ? game : '' }
-watch(() => props.params, () => { if (roomParam()) void openRoom(roomParam()); else if (wanted() === 'oro') screen.value = 'daily' }, { immediate: true })
+watch(() => props.params, () => { if (roomParam()) void openRoom(roomParam()); else if (clanParam()) screen.value = 'clans'; else if (wanted() === 'oro') screen.value = 'daily' }, { immediate: true })
 useSection(() => (wanted() === 'chess' || wanted() === 'weave' ? { section: wanted() } : null))
 function back(): void { screen.value = 'hub'; void loadToday() }
 function onState(next: OroView): void { today.value = next }
@@ -100,6 +103,10 @@ const dailyCta = computed(() => (today.value?.status === 'playing' || !today.val
       <div><h3 :id="'gm-live-' + g.id"><span aria-hidden="true">{{ g.icon }}</span> {{ g.title }}</h3><p>{{ g.blurb }} <small>{{ playersLine(g) }}</small></p></div>
       <BaseButton variant="primary" @click="openLive(g, { kind: 'create' })">Play with a friend</BaseButton>
       <div class="gm-live-row"><select v-if="g.practice && g.max > g.min" v-model.number="practiceSeats[g.id]" class="gm-seats" :aria-label="g.title + ' practice players'"><option v-for="n in g.max - g.min + 1" :key="n" :value="g.min + n - 1">{{ g.min + n - 1 }} players</option></select><BaseButton v-if="g.practice" @click="openLive(g, { kind: 'practice', seats: practiceSeats[g.id] ?? g.min })">Practice vs bot</BaseButton><BaseButton @click="watchHint">Watch</BaseButton></div>
+    </section>
+    <section class="gm-live gm-clans" data-section="clans" aria-labelledby="gm-clans">
+      <div><h3 id="gm-clans"><span aria-hidden="true">&#x1F6E1;</span> Clans and ladders</h3><p>Play with up to 25 friends under one name and colour. Climb your city’s ladder, win the week for your city.</p></div>
+      <BaseButton variant="primary" @click="screen = 'clans'">Open clans</BaseButton>
     </section>
     <div class="gm-code"><input ref="codeBox" v-model="code" placeholder="Paste a game link or code" aria-label="Game link or code" @keydown.enter="joinByCode"><BaseButton @click="joinByCode">Join / Watch</BaseButton></div>
     <SectionTitle>Play your way</SectionTitle>
@@ -134,6 +141,9 @@ const dailyCta = computed(() => (today.value?.status === 'playing' || !today.val
     <BaseButton block @click="share('/games', 'Play chess, today’s word and more on Allworld:')">Share Games</BaseButton>
     <p class="gm-note">A win against a real player is paid by the game; games against the computer and Oro pay nothing, but they count for your missions.</p>
   </div>
+  <div v-else-if="screen === 'clans'" class="gm">
+    <ClansScreen :code="clanParam() || undefined" @back="screen = 'hub'" />
+  </div>
   <div v-else-if="screen === 'live' && live && liveScreen" class="gm">
     <component :is="liveScreen" :key="liveKey" :intent="live.intent" @close="screen = 'hub'" />
   </div>
@@ -158,6 +168,7 @@ const dailyCta = computed(() => (today.value?.status === 'playing' || !today.val
 .gm-daily-links { grid-column: 1 / -1; display: flex; gap: 12px; justify-content: space-between; border-top: 1px solid #bdd9c9; padding-top: 4px; }
 .gm-daily-links button, .gm-share { border: 0; background: none; min-height: 44px; padding: 6px 0; font: 600 13px var(--font); color: #22543d; text-align: left; cursor: pointer; }
 .gm-live { display: grid; gap: 10px; padding: 14px; border-radius: 16px; }
+.gm-clans { background: #3a2c55; color: #fff; }
 .gm-live h3 { margin: 0 0 2px; font-size: 24px; letter-spacing: -.025em; }
 .gm-live p { margin: 0; font-size: 13px; opacity: .85; } .gm-live small { opacity: .8; }
 .gm-seats { padding: 8px; border-radius: 8px; border: 0; font: 14px var(--font); }

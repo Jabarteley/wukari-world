@@ -146,7 +146,7 @@ const onHide = (): void => {
 }
 
 // ---- drawing ---------------------------------------------------------------------------------------------
-let raf = 0, lastFrame = 0, width = 0, height = 0, seenPhase = -1
+let raf = 0, lastFrame = 0, width = 0, height = 0, seenPhase = -1, seenStage = -1
 let pitch: HTMLCanvasElement | null = null
 const reduced = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches
 const PREVIEW: FootballSnap = { p: PHASE.play, c: 0, t: 120, q: 0, g: [0, 0], b: [W / 2, H / 2, 0], f: [[W * 0.3, H / 2, 0, 0], [W * 0.7, H / 2, 12, 0]], k: [H / 2, H / 2], e: [] }
@@ -262,6 +262,9 @@ function frame(now: number): void {
     if (b.p === PHASE.over) sound.whistle(true)
     seenPhase = b.p
   }
+  // A shoot-out: the whistle for each kick.
+  const stage = b.p === PHASE.pens && b.o ? b.o.s : -1
+  if (stage !== seenStage) { if (stage === SO_STAGE.aim) sound.whistle(); seenStage = stage }
   const you = st?.you ?? null
   const latest = room.latest
   const meta = metaFor()

@@ -411,8 +411,16 @@ export function drawFootballHud(ctx: CanvasRenderingContext2D, width: number, he
         ctx.beginPath(); ctx.moveTo(0, -4); ctx.lineTo(-8 * k, -17 * k); ctx.lineTo(8 * k, -17 * k); ctx.closePath(); ctx.stroke(); ctx.fill()
         ctx.lineWidth = 3.5; ctx.strokeStyle = 'rgba(8,20,13,0.85)'
       }
-      if (name) { ctx.font = `800 ${Math.round(11 * k + 1)}px system-ui, sans-serif`; const ly = -(l.carrier ? 25 : 10) * k; ctx.strokeText(name, 0, ly); ctx.fillStyle = l.you ? '#ffe14d' : '#ffffff'; ctx.fillText(name, 0, ly) }
-      else if (l.you) { ctx.font = `800 ${Math.round(11 * k + 1)}px system-ui, sans-serif`; ctx.strokeText('YOU', 0, -10 * k); ctx.fillStyle = '#ffe14d'; ctx.fillText('YOU', 0, -10 * k) }
+      const tag = name || (l.you ? 'YOU' : '')
+      if (tag) {
+        // A pill in the team's colour, so a side is told apart by its tags as well as by its shirts and rings.
+        const kit = meta.kits[l.p & 1] as Kit, size = Math.round(11 * k + 1), ly = -(l.carrier ? 27 : 12) * k
+        ctx.font = `800 ${size}px system-ui, sans-serif`
+        const pw = ctx.measureText(tag).width + 14, ph = size + 6
+        ctx.fillStyle = kit.shirt; ctx.globalAlpha = 0.92; ctx.beginPath(); ctx.roundRect(-pw / 2, ly - ph / 2, pw, ph, ph / 2); ctx.fill()
+        ctx.globalAlpha = 1; ctx.lineWidth = 2; ctx.strokeStyle = l.you ? '#ffe14d' : 'rgba(8,20,13,0.7)'; ctx.stroke()
+        ctx.fillStyle = kit.trim; ctx.fillText(tag, 0, ly + 0.5)
+      }
       if (charge > 0) {
         ctx.strokeStyle = charge > 5 ? '#ff4d2e' : charge > 2 ? '#ffb020' : '#ffffff'; ctx.lineWidth = 4
         ctx.beginPath(); ctx.arc(0, l.scale * 0.5 + 6, 14 * k, -Math.PI / 2, -Math.PI / 2 + (charge / 7) * Math.PI * 2); ctx.stroke()

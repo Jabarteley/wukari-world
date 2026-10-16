@@ -390,6 +390,17 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
     return null
   }
 
+  // Compile every shader and upload every texture now (everything is shown for the one call), so the first frames the player sees do not stall.
+  {
+    bodies.forEach((body) => { body.holder.visible = true })
+    camera.position.set(0, 12, 14); camera.lookAt(0, 0, 0); camera.updateMatrixWorld(true)
+    try {
+      renderer.compile(scene, camera)
+      scene.traverse((node) => { const m = (node as THREE.Mesh).material as THREE.MeshLambertMaterial | undefined; if (m?.map) renderer.initTexture(m.map) })
+    } catch { /* it compiles on the first frame instead */ }
+    bodies.forEach((body) => { body.holder.visible = false })
+  }
+
   const view: FootballView = {
     labels,
     replaying: false,
@@ -516,7 +527,8 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
       bitGeo.attributes.position!.needsUpdate = true
 
       // The camera: what shot this is, where it stands and how fast it follows.
-      const mode = modeFor(sizeW, sizeH), fr = framing(1, sizeW, sizeH, inset)
+      // `allworldFootballCamera` is for comparing the two cameras on one screen (screenshots); a player never sets it.
+      const mode = (globalThis as { allworldFootballCamera?: CamMode }).allworldFootballCamera ?? modeFor(sizeW, sizeH), fr = framing(1, sizeW, sizeH, inset)
       let target: CamTarget, ease = 1 - Math.pow(0.002, dt), shot: string, fov = fr.fov
       if (pens && so) {
         shot = 'penalty-' + so.t

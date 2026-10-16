@@ -18,7 +18,8 @@ import type { CarSnap, RaceSnap } from './race.ts'
 import { buildTrack, TRACK_IDS } from './race-track.ts'
 import { Confetti, defaultLook, drawRace, Skids } from './race-draw.ts'
 import type { Camera, DrawCar, HudInfo } from './race-draw.ts'
-import { KITS, drawFootball, makePitch, newFx as newBallFx, spawnEvents, VIEW_H, VIEW_W } from './football-draw.ts'
+import { KITS, drawFootball, drawFootballHud, drawShootout2D, makePitch, newFx as newBallFx, spawnEvents, VIEW_H, VIEW_W } from './football-draw.ts'
+import { PHASE as FOOT_PHASE } from './football.ts'
 import type { Look, Meta } from './football-draw.ts'
 import type { FootballSnap } from './football.ts'
 
@@ -76,7 +77,12 @@ function footballView(log: ReplayLog): ReplayView {
       while (fed < upto && fed < s.length - 1) { fed += 1; const ev = s[fed] as FootballSnap; if (ev.e.length) spawnEvents(fx, ev, false) }
       pitch ??= makePitch(Math.round(VIEW_W * 1.15), Math.round(VIEW_H * 1.15), 1.15)
       const meta: Meta = { names, kits: KITS, looks, you: null, reduced: false, teamNames: [team(0), team(1)], portrait: h >= w }
-      drawFootball(ctx, w, h, pitch, pick.a, pick.b, pick.t, meta, fx, 1)
+      if (pick.b.p === FOOT_PHASE.pens && pick.b.o) {
+        // A penalty shoot-out: the goal seen from behind the shooter, with its own scoreboard row.
+        ctx.setTransform(1, 0, 0, 1, 0, 0)
+        drawShootout2D(ctx, w, h, pick.a, pick.b, pick.t, meta, { top: Math.round(h * 0.2), bottom: Math.round(h * 0.12) })
+        drawFootballHud(ctx, w, h, pick.b, meta, fx, { hudTop: Math.round(h * 0.12) })
+      } else drawFootball(ctx, w, h, pitch, pick.a, pick.b, pick.t, meta, fx, 1)
       // The score, which the live screen shows in its page bar.
       const b = pick.b
       ctx.setTransform(1, 0, 0, 1, 0, 0)

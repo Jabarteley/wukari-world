@@ -35,7 +35,7 @@ export interface ArenaLeaveFrame { type: 'arena-leave'; room: string }
 export type ArenaClientFrame = ArenaCreateFrame | ArenaJoinFrame | ArenaWatchFrame | ArenaStartFrame | ArenaOptionsFrame | ArenaInputFrame | ArenaAgainFrame | ArenaLeaveFrame
 
 export type ArenaStatus = 'lobby' | 'playing' | 'over' | 'closed'
-export interface ArenaSeat { name: string; bot: boolean; id?: string; away?: true; look?: ArenaLook }
+export interface ArenaSeat { name: string; bot: boolean; id?: string; /** An AI agent plays this seat: the mark is always shown. */ ai?: true; /** The connection is down; the seat's bot steers until it is back or the 15-second window ends. */ away?: true; look?: ArenaLook }
 /** `places`: per seat, 1 = first; present only when the game ranks every seat (a race). */
 export interface ArenaResult { text: string; winners: number[]; draw: boolean; reason: string; scores: number[]; places?: number[] }
 export interface ArenaStateFrame {
@@ -65,6 +65,8 @@ export interface ArenaStateFrame {
   snap: unknown
   /** Match number in this room (1, 2, … for rematches). */
   match: number
+  /** Once the match is over: the id of its replay (GET /api/arena/replay/:id), when one was kept. */
+  replay?: string
 }
 /** `k` is the server tick (rises by one per tick; a tick that changed nothing is not sent). */
 export interface ArenaSnapFrame { type: 'arena-snap'; room: string; k: number; s: unknown; /** per seat: the newest input counter the tick consumed; absent until anyone sent a counter. */ a?: number[] }

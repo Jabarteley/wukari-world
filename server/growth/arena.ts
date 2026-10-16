@@ -25,6 +25,11 @@ import { arenaGame } from '../../src/arena/registry.ts';
 import { cleanArenaOptions } from '../../src/arena/rules.ts';
 import { ROOM_CODE } from '../../src/arena/code.ts';
 import type { RealtimeRules } from '../../src/arena/rules.ts';
+import { ReplayRecorder } from '../../src/arena/replay.ts';
+import type { ReplayLog } from '../../src/arena/replay.ts';
+import { CARTRIDGE_LIMITS } from '../../src/arena/cartridge.ts';
+import { cartridgeOf } from '../../src/arena/cartridges.ts';
+import { ReplayShelf } from './arena-replays.ts';
 import type { ArenaLook, ArenaResult, ArenaSeat, ArenaStateFrame, ArenaStatus } from '../../src/types/arena.ts';
 import type { TableOptionValue } from '../../src/types/growth.ts';
 import type { IncomingFrame, RouteContext, WsConnection } from '../types.ts';
@@ -32,8 +37,11 @@ import type { IncomingFrame, RouteContext, WsConnection } from '../types.ts';
 /** Limits and timings. A test may change them; nothing else should. `speed` multiplies the tick rate (tests only). */
 export const TUNING = {
   speed: 1, maxRooms: 300, maxWatchers: 20, createsPerMinute: 8, inputBurst: 30, inputPerSecond: 24,
-  awayForfeitMs: 12000, awaySeatMs: 30000, emptyMs: 60000, lobbyMs: 15 * 60000, overMs: 10 * 60000, sweepMs: 2000, maxCatchUp: 4,
+  awayForfeitMs: 15000, awaySeatMs: 30000, emptyMs: 60000, lobbyMs: 15 * 60000, overMs: 10 * 60000, sweepMs: 2000, maxCatchUp: 4,
+  /** Replays kept (src/arena/replay.ts): per game, per room, bytes of JSON each, how long, and the entries one log may grow to before it is dropped. */
+  replayPerGame: 40, replayPerRoom: 5, replayBytes: CARTRIDGE_LIMITS.replayBytes, replayTtlMs: 24 * 3600000, replayEntries: 4000,
 };
+const markOf = (ws: WsConnection, now: number): boolean => ws.session.agent === true && (ws.session.agentUntil === undefined || ws.session.agentUntil > now);
 const ALPHABET = 'abcdefghjkmnpqrstuvwxyz23456789';
 const refuse = (code: string, reason: string) => Object.assign(new Error(code), { reason });
 const isRecord = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -41,6 +49,8 @@ const clock = (): number => (typeof performance !== 'undefined' ? performance.no
 
 interface Seat {
   id: string; name: string; bot: boolean; look?: ArenaLook
+  /** An AI agent plays this seat (the public mark), as at the last time a connection of this person was attached. */
+  ai?: boolean
   /** When the last connection of this person went (clock ms), or 0 while connected. */
   away: number
   left: boolean
@@ -71,6 +81,10 @@ interface Room {
   snap: unknown
   emptySince: number
   since: number
+  /** The log being recorded for the match in play, or null (not playing, or it grew past its bound). */
+  rec: ReplayRecorder | null
+  /** The shelf id of the finished match's replay. */
+  replayId: string | null
 }
 
 const services = new WeakMap<object, ReturnType<typeof buildService>>();
@@ -104,6 +118,11 @@ function newCode(game: string, taken: (code: string) => boolean): string {
   throw refuse('arena_busy', 'Too many games are on. Try again in a minute.');
 }
 
+function newReplayId(): string {
+  const bytes = crypto.getRandomValues(new Uint8Array(10));
+  return 'r-' + [...bytes].map((b) => ALPHABET[b % ALPHABET.length]).join('');
+}
+
 function lookOf(value: unknown): ArenaLook | undefined {
   if (!Array.isArray(value) || value.length !== 4) return undefined;
   return value.every((id) => typeof id === 'string' && /^[a-z0-9-]{1,24}$/.test(id)) ? value as ArenaLook : undefined;
@@ -113,6 +132,7 @@ function buildService(ctx: RouteContext) {
   const rooms = new Map<string, Room>();
   const at = new Map<WsConnection, Room>();
   let sweeper: ReturnType<typeof setInterval> | null = null;
+  const shelf = new ReplayShelf(() => ({ perGame: TUNING.replayPerGame, perRoom: TUNING.replayPerRoom, bytes: TUNING.replayBytes, ttlMs: TUNING.replayTtlMs }));
 
   const seatOf = (room: Room, id: string): number => room.seats.findIndex((seat) => !seat.bot && !seat.left && seat.id === id);
   const connected = (room: Room, id: string): boolean => [...room.sockets].some((ws) => ws.session.id === id && ctx.core.isOpen(ws));
@@ -129,12 +149,13 @@ function buildService(ctx: RouteContext) {
     return {
       type: 'arena-state', room: room.code, game: room.rules.id, label: room.rules.label, status: room.status, hz: room.rules.hz,
       you: seat >= 0 ? seat : null, host: room.host === id,
-      seats: room.seats.map((s): ArenaSeat => ({ name: s.name, bot: s.bot, ...(s.bot ? {} : { id: s.id }), ...(s.away > 0 && !s.left ? { away: true as const } : {}), ...(s.look ? { look: s.look } : {}) })),
+      seats: room.seats.map((s): ArenaSeat => ({ name: s.name, bot: s.bot, ...(s.bot ? {} : { id: s.id }), ...(s.ai ? { ai: true as const } : {}), ...(s.away > 0 && !s.left ? { away: true as const } : {}), ...(s.look ? { look: s.look } : {}) })),
       max: room.rules.seats.max, min: room.rules.seats.min, watchers, options: room.options,
       optionList: Object.entries(room.rules.options as Record<string, { label: string; values: readonly TableOptionValue[]; names?: readonly string[] }>).map(([name, spec]) => ({ name, label: spec.label, values: [...spec.values], names: spec.names ? [...spec.names] : spec.values.map(String), value: room.options[name] as TableOptionValue })),
       again: room.seats.map((s) => s.again), practice: room.practice,
       result: room.result ? { text: room.result.text, winners: room.result.winners, draw: room.result.draw, reason: room.result.reason, scores: room.result.scores, ...(room.result.places ? { places: room.result.places } : {}) } : null,
       snap: room.status === 'lobby' ? null : room.snap, match: room.match,
+      ...(room.status === 'over' && room.replayId ? { replay: room.replayId } : {}),
     };
   }
   function announce(room: Room): void { for (const ws of room.sockets) send(ws, stateFor(room, ws)); }
@@ -145,7 +166,11 @@ function buildService(ctx: RouteContext) {
     if (old && old !== room) exit(ws);
     room.sockets.add(ws); at.set(ws, room); room.emptySince = 0;
     const seat = room.seats[seatOf(room, ws.session.id)];
-    if (seat) seat.away = 0;
+    if (seat) {
+      // Back within the window: the person takes the seat back from the bot, starting from a neutral hand (the client re-sends what is held).
+      if (seat.away > 0 && room.status === 'playing') seat.input = room.rules.idle();
+      seat.away = 0; seat.ai = markOf(ws, ctx.now());
+    }
     ensureSweeper();
   }
   /** The socket stops being part of its room; the person's seat stays (a reconnect resumes it) unless they asked to leave. */
@@ -169,7 +194,7 @@ function buildService(ctx: RouteContext) {
   function takeSeat(room: Room, ws: WsConnection, look: ArenaLook | undefined): boolean {
     const reuse = room.seats.findIndex((s) => s.left);
     if (reuse < 0 && room.seats.length >= room.rules.seats.max) return false;
-    const seat: Seat = { id: ws.session.id, name: ws.session.name, bot: false, ...(look ? { look } : {}), away: 0, left: false, input: room.rules.idle(), again: false, tokens: TUNING.inputBurst, refilled: clock(), lastN: 0, ackN: 0 };
+    const seat: Seat = { id: ws.session.id, name: ws.session.name, bot: false, ai: markOf(ws, ctx.now()), ...(look ? { look } : {}), away: 0, left: false, input: room.rules.idle(), again: false, tokens: TUNING.inputBurst, refilled: clock(), lastN: 0, ackN: 0 };
     if (reuse >= 0) room.seats[reuse] = seat; else room.seats.push(seat);
     return true;
   }
@@ -179,6 +204,7 @@ function buildService(ctx: RouteContext) {
     if (room.status === 'playing') {
       // The leaver is in the result: keep the place, marked, until the next game.
       seat.left = true; seat.away = 0;
+      room.rec?.forfeit(index);
       room.state = room.rules.forfeit(room.state, index);
       finishIfOver(room);
     } else if (room.status === 'over') {
@@ -206,7 +232,9 @@ function buildService(ctx: RouteContext) {
     const seed = ctx.randomId();
     room.rng = makeRng(seed);
     room.state = room.rules.start(room.seats.length, room.rng, cleanArenaOptions(room.rules, room.options));
-    room.status = 'playing'; room.result = null; room.match += 1; room.tick = 0;
+    room.status = 'playing'; room.result = null; room.match += 1; room.tick = 0; room.replayId = null;
+    const optionsNow = cleanArenaOptions(room.rules, room.options);
+    room.rec = new ReplayRecorder({ game: room.rules.id, rev: cartridgeOf(room.rules.id)?.rev ?? 1, hz: room.rules.hz, seed: String(seed), options: optionsNow, seats: room.seats.map((s) => ({ name: s.name, bot: s.bot, ...(s.ai ? { ai: true as const } : {}), ...(s.look ? { look: s.look } : {}) })) }, JSON.stringify(room.rules.idle()));
     for (const seat of room.seats) { seat.input = room.rules.idle(); seat.again = false; seat.tokens = TUNING.inputBurst; seat.refilled = clock(); }
     room.snap = room.rules.snapshot(room.state);
     room.lastText = JSON.stringify(room.snap); room.lastSentTick = 0; room.since = clock();
@@ -234,14 +262,18 @@ function buildService(ctx: RouteContext) {
   }
   function runTick(room: Room): void {
     const rules = room.rules;
+    // A person whose connection is down is NOT idle and NOT forfeited: the seat's bot steers until they are back or the window ends.
+    const steered = room.seats.map((seat) => !seat.bot && !seat.left && seat.away > 0);
     const inputs = room.seats.map((seat, index) => {
-      if (seat.bot) return rules.bot(room.state, index, room.rng);
+      if (seat.bot || steered[index]) return rules.bot(room.state, index, room.rng);
       if (seat.left) return rules.idle();
       const given = seat.input;
       seat.ackN = seat.lastN;
       if (rules.settle) seat.input = rules.settle(given);
       return given;
     });
+    room.rec?.tick(inputs, steered);
+    if (room.rec && room.rec.size > TUNING.replayEntries) room.rec = null;
     room.state = rules.step(room.state, inputs, room.rng);
     room.tick += 1;
     room.snap = rules.snapshot(room.state);
@@ -264,6 +296,12 @@ function buildService(ctx: RouteContext) {
     const ranked = resultPlaces(outcome, room.seats.length);
     room.result = { text: withNames(outcome.text, names), winners: outcome.winners, draw: outcome.draw, reason: outcome.reason, scores: outcome.scores, ...(ranked ? { places: ranked } : {}), names };
     room.snap = room.rules.snapshot(room.state);
+    if (room.rec) {
+      const log = room.rec.finish({ ...outcome, text: outcome.text }, room.snap, names);
+      room.rec = null;
+      const id = newReplayId();
+      if (shelf.put(id, room.code, log, ctx.now())) room.replayId = id;
+    }
     for (const seat of room.seats) seat.again = false;
     sendAll(room, { type: 'arena-snap', room: room.code, k: room.tick, s: room.snap });
     announce(room);
@@ -314,7 +352,7 @@ function buildService(ctx: RouteContext) {
     const practice = message.practice === true;
     const code = newCode(rules.id, (c) => rooms.has(c));
     const options = cleanArenaOptions(rules, message.options);
-    const room: Room = { code, rules, host: ws.session.id, practice, status: 'lobby', seats: [], options, sockets: new Set(), state: null, rng: Math.random, match: 0, result: null, tick: 0, nextAt: 0, timer: null, lastText: '', lastSentTick: 0, snap: null, emptySince: 0, since: clock() };
+    const room: Room = { code, rules, host: ws.session.id, practice, status: 'lobby', seats: [], options, sockets: new Set(), state: null, rng: Math.random, match: 0, result: null, tick: 0, nextAt: 0, timer: null, lastText: '', lastSentTick: 0, snap: null, emptySince: 0, since: clock(), rec: null, replayId: null };
     rooms.set(code, room);
     takeSeat(room, ws, lookOf(message.look));
     attach(room, ws);
@@ -391,6 +429,10 @@ function buildService(ctx: RouteContext) {
     again: async (ws: WsConnection, message: IncomingFrame) => { again(ws, message); },
     leave: async (ws: WsConnection, message: IncomingFrame) => { leave(ws, message); },
     drop: (ws: WsConnection) => { detach(ws); },
+    /** The public view of a finished match's replay, or null (unknown, or expired). */
+    replay: (id: string): { id: string; at: number; clip: string | null; log: ReplayLog } | null => shelf.view(id, ctx.now()),
+    /** The operator says a clip of this replay can be fetched at `url` (a path on this site or an https address to an mp4). */
+    setClip: (id: string, url: string): boolean => shelf.setClip(id, url, ctx.now()),
     /** For tests and the operator: how many rooms are open, and (for a code) a room's status. */
     stats: () => ({ rooms: rooms.size, sockets: at.size, status: (code: string) => rooms.get(code)?.status ?? null, humans: (code: string) => { const room = rooms.get(code); return room ? humans(room) : 0; } }),
   };

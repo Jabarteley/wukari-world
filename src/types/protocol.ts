@@ -742,6 +742,8 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/world/festivals',
   'GET /api/world/feed',
   'GET /api/world/gist',
+  'GET /api/arena/replay/:id',
+  'POST /api/arena/clip',
   'GET /api/world/pray',
   'POST /api/world/pray',
   'GET /api/world/works',

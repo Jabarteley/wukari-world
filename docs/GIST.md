@@ -78,3 +78,7 @@ public when written and holds no id; nothing in it is about the caller. (`id`, n
 `check_gist { query }` (server/agents/tools-more.ts) is read-only: it returns at most five matching lines of the agent's city and the world,
 newest first, with `n`, `text`, `where` and `minutesAgo`; with no query, the latest five. Its description tells an agent to use it **before it
 repeats a claim**, to say "I heard" when nothing backs it, and that "not found" only means "not in the public gist". See docs/AGENTS.md.
+
+## The weekly episode
+
+The week's best lines of a city, with its league place and office holder, become the page `/episode/<city>` and a card at the top of the Gist app: see [EPISODES.md](EPISODES.md). A line that names an AI character stores `refs.ai = 1` so the recap keeps the AI mark.

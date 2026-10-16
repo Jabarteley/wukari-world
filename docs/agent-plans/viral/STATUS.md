@@ -53,7 +53,7 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | 2 Clans, ladders, city leagues | live | `01409bc9` | see "Phase 2" |
 | 3 Agent arena | live | `ee203d15` | see "Phase 3" |
 | A Asset pipeline | live | `c254d4327` | packs for all three games, credits in Help, Blender scripts |
-| 4 Polish Fight | 4a live (3D) | `40e1e614` | 4b next: realistic fighters, portrait tidy-ups |
+| 4 Polish Fight | live (3D, realistic fighters) | `f0f38db3` | see "Phase 4" |
 | 5 Polish Race | live (3D) | `f87981e1` | realistic cars later; see "Phase 5" |
 | 6 Polish Football | live (6a); 6b realistic footballers on `claude/viral-football-real` | | 3D, penalty shoot-out, `rev` 2; see "Phase 6" and "Phase 6b" |
 | 7 Videos (Nigeria first) | skipped | | the owner's decision, 16 October 2026 |
@@ -324,6 +324,11 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: Phase 4b live at `f0f38db3` (release 38921497112, smoke PASS): each fighter is the player's own native character, moved
+  by fight clips we built in Blender (scripts/assets/blender/native-fight-clips.py; 24 clips, 310 KB); bots use only character pieces
+  the world already loaded; the camera keeps them large and inside the ropes; startup unchanged. Checked live at 390x844 and 844x390:
+  about 55,000 triangles, 20-21 calls, under 1 ms of script a frame, no page errors. Fallback to the KayKit fighters on phones with
+  little memory or few cores, without WebGL2, or when the characters are slow. Not verified: a real phone, a two-person match.
 - 2026-10-16: Phase 6a live at `d95ee616` (Football in 3D, penalty shoot-out; release 38911085638, smoke PASS, checked live at
   390x844 and 844x390: 41 calls, about 10,300 triangles, no page errors). For 6b: realistic players, the near goal partly under the
   portrait joystick, the crowd behind the landscape score bar. Live-testing note: the coordinator's live checks made about seven guest

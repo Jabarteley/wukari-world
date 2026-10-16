@@ -1,0 +1,90 @@
+{
+  "pack": "kenney-blocky-characters",
+  "name": "Blocky Characters",
+  "kind": "kenney",
+  "page": "https://kenney.nl/assets/blocky-characters",
+  "author": "Kenney",
+  "licenceId": "CC0-1.0",
+  "want": [
+    {
+      "from": "Models/GLB format/character-c.glb",
+      "as": "player-1.glb",
+      "game": "football",
+      "kind": "character",
+      "clips": {
+        "idle": "idle",
+        "walk": "walk",
+        "sprint": "run",
+        "attack-kick-right": "kick",
+        "emote-yes": "celebrate",
+        "emote-no": "dejected",
+        "die": "down",
+        "pick-up": "pick-up"
+      },
+      "fit": {
+        "axis": "y",
+        "metres": 1.8
+      }
+    },
+    {
+      "from": "Models/GLB format/character-d.glb",
+      "as": "player-2.glb",
+      "game": "football",
+      "kind": "character",
+      "clips": {
+        "idle": "idle",
+        "walk": "walk",
+        "sprint": "run",
+        "attack-kick-right": "kick",
+        "emote-yes": "celebrate",
+        "emote-no": "dejected",
+        "die": "down",
+        "pick-up": "pick-up"
+      },
+      "fit": {
+        "axis": "y",
+        "metres": 1.8
+      }
+    },
+    {
+      "from": "Models/GLB format/character-e.glb",
+      "as": "player-3.glb",
+      "game": "football",
+      "kind": "character",
+      "clips": {
+        "idle": "idle",
+        "walk": "walk",
+        "sprint": "run",
+        "attack-kick-right": "kick",
+        "emote-yes": "celebrate",
+        "emote-no": "dejected",
+        "die": "down",
+        "pick-up": "pick-up"
+      },
+      "fit": {
+        "axis": "y",
+        "metres": 1.8
+      }
+    },
+    {
+      "from": "Models/GLB format/character-f.glb",
+      "as": "player-4.glb",
+      "game": "football",
+      "kind": "character",
+      "clips": {
+        "idle": "idle",
+        "walk": "walk",
+        "sprint": "run",
+        "attack-kick-right": "kick",
+        "emote-yes": "celebrate",
+        "emote-no": "dejected",
+        "die": "down",
+        "pick-up": "pick-up"
+      },
+      "fit": {
+        "axis": "y",
+        "metres": 1.8
+      }
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "pack": "kenney-racing-kit",
+  "name": "Racing Kit",
+  "kind": "kenney",
+  "page": "https://kenney.nl/assets/racing-kit",
+  "author": "Kenney",
+  "licenceId": "CC0-1.0",
+  "want": [
+    {
+      "from": "Models/GLTF format/raceCarRed.glb",
+      "as": "raceCarRed.glb",
+      "game": "race",
+      "kind": "vehicle",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/raceCarGreen.glb",
+      "as": "raceCarGreen.glb",
+      "game": "race",
+      "kind": "vehicle",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/raceCarOrange.glb",
+      "as": "raceCarOrange.glb",
+      "game": "race",
+      "kind": "vehicle",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/raceCarWhite.glb",
+      "as": "raceCarWhite.glb",
+      "game": "race",
+      "kind": "vehicle",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/roadStart.glb",
+      "as": "roadStart.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/roadStraightLong.glb",
+      "as": "roadStraightLong.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/roadStraight.glb",
+      "as": "roadStraight.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/roadCornerLarge.glb",
+      "as": "roadCornerLarge.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/roadCornerLarger.glb",
+      "as": "roadCornerLarger.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/roadCurved.glb",
+      "as": "roadCurved.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/roadCornerSmall.glb",
+      "as": "roadCornerSmall.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/roadPitStraight.glb",
+      "as": "roadPitStraight.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/barrierRed.glb",
+      "as": "barrierRed.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/barrierWhite.glb",
+      "as": "barrierWhite.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/barrierWall.glb",
+      "as": "barrierWall.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/fenceStraight.glb",
+      "as": "fenceStraight.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/pylon.glb",
+      "as": "pylon.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/flagCheckers.glb",
+      "as": "flagCheckers.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/treeSmall.glb",
+      "as": "treeSmall.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/treeLarge.glb",
+      "as": "treeLarge.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/grass.glb",
+      "as": "grass.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/lightPostModern.glb",
+      "as": "lightPostModern.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/tent.glb",
+      "as": "tent.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/roadStartPositions.glb",
+      "as": "roadStartPositions.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/grandStand.glb",
+      "as": "grandStand.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/grandStandCovered.glb",
+      "as": "grandStandCovered.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    },
+    {
+      "from": "Models/GLTF format/pitsGarage.glb",
+      "as": "pitsGarage.glb",
+      "game": "race",
+      "kind": "prop",
+      "scale": 3
+    }
+  ]
+}

@@ -1,12 +1,16 @@
 <script setup lang="ts">
 // How to play: the Help app in the phone, and the help sheet (the ? key) outside it.
-import { computed } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { shortcutRows } from '../../../ui/keys-text.ts'
 import BaseButton from '../../ui/BaseButton.vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import { openWorld } from '../tour/tourWorld.ts'
 import { feedCredits } from '../world/feedCredits.ts'
+
+/** Game art credits: the component and its data load only when asked for (src/app/features/help/AssetCredits.vue). */
+const AssetCredits = defineAsyncComponent(() => import('./AssetCredits.vue'))
+const showArt = ref(false)
 
 const { game, shell } = useApp()
 const country = computed(() => openWorld(game.cityId.value).country)
@@ -45,7 +49,9 @@ function showShortcuts(): void { window.dispatchEvent(new CustomEvent('jaw:short
       <a :href="feedCredits.weatherUrl" target="_blank" rel="noopener noreferrer">{{ feedCredits.weather }}</a>
       <template v-if="feedCredits.rates && feedCredits.ratesUrl"> · <a :href="feedCredits.ratesUrl" target="_blank" rel="noopener noreferrer">{{ feedCredits.rates }}</a></template>
       · <a href="https://data.worldbank.org/indicator/PA.NUS.PPP" target="_blank" rel="noopener noreferrer">Price levels from the World Bank (CC BY 4.0)</a>
+      · <button type="button" class="help-art" :aria-expanded="showArt" @click="showArt = !showArt">Game art credits</button>
     </p>
+    <AssetCredits v-if="showArt" class="help-credits" />
   </div>
 </template>
 
@@ -53,4 +59,5 @@ function showShortcuts(): void { window.dispatchEvent(new CustomEvent('jaw:short
 .help-actions { display: grid; gap: 8px; margin: 0 0 16px; }
 .help-credits { margin: 14px 0 0; font-size: 11px; opacity: 0.7; text-align: center; }
 .help-credits a { color: inherit; }
+.help-art { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; cursor: pointer; }
 </style>

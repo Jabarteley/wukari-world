@@ -4,12 +4,25 @@
 import type { LifeState } from '../../../types/life.ts'
 import type { BoutiqueItem, OnboardingView } from '../../../types/view.ts'
 import type { AvatarLook } from '../../../game/wardrobe/look.ts'
-import { nativeRecipeForLook, normalizeNativeRecipe } from '../../../character/native-recipe.ts'
+import { NATIVE_BOUTIQUE_PRICES, NATIVE_STARTER_ITEMS, nativeRecipeForLook, normalizeNativeRecipe } from '../../../character/native-recipe.ts'
+import type { NativeWardrobeKind } from '../../../character/native-recipe.ts'
+import { NATIVE_CHARACTER_CATALOG } from '../../../character/native-catalog.ts'
+import { naira } from '../../../game/util.ts'
 
 /** Complete the startup projection when Boutique opens; catalogue rules stay in this lazy module. */
 export function withWearableBoutique(base: OnboardingView, state: Pick<LifeState, 'onboarding' | 'cash'>): OnboardingView {
-  void state
-  return base
+  if (base.boutique.length) return base
+  const ownedIds = new Set([...NATIVE_STARTER_ITEMS, ...(state.onboarding.wardrobe.native ?? [])])
+  const current = nativeRecipeForLook(base.look, 'boutique-view').appearance
+  const notYet = base.guest ? 'Settle in first.' : 'Finish creating your character first.'
+  const nativeItems = (kind: NativeWardrobeKind) => kind === 'native-hair' ? NATIVE_CHARACTER_CATALOG.hair : kind === 'native-garment' ? NATIVE_CHARACTER_CATALOG.garments : NATIVE_CHARACTER_CATALOG.shoes
+  const boutique = (['native-hair', 'native-garment', 'native-shoes'] as const).flatMap((kind) => nativeItems(kind).map((item): BoutiqueItem => {
+    const owned = ownedIds.has(item.id), price = NATIVE_BOUTIQUE_PRICES[kind][item.id]!
+    const wearing = kind === 'native-hair' ? current.hair === item.id : kind === 'native-garment' ? current.garments.some((id) => id === item.id) : current.shoes === item.id
+    const blocked = !base.done ? notYet : owned ? null : state.cash < price ? `Costs ${naira(price)}; you have ${naira(state.cash)}.` : null
+    return { kind, id: item.id, label: item.label, price, owned, wearing, blocked }
+  }))
+  return { ...base, boutique }
 }
 
 export type BoutiqueChoice = Omit<BoutiqueItem, 'kind'> & { kind: BoutiqueItem['kind'] | 'wearables' }

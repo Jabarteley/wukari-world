@@ -11,7 +11,9 @@ import { APPEARANCE, BOUTIQUE_PRICES, ACCESSORY_BASICS, DEFAULT_LOOK } from './c
 import type { ActionBody, ActionResult, ActionType } from '../types/actions.ts';
 import type { LifeContext, LifeState, Look } from '../types/life.ts';
 import { LOOK_OPTIONS, ACCESSORY_SLOTS } from '../scene/characters.ts';
-import { NATIVE_BOUTIQUE_PRICES, NATIVE_CHARACTER_CATALOG, NATIVE_STARTER_ITEMS, nativeRecipeForLook, normalizeNativeRecipe } from '../character/native-recipe.ts';
+import { NATIVE_BOUTIQUE_PRICES, NATIVE_STARTER_ITEMS, nativeRecipeForLook, normalizeNativeRecipe } from '../character/native-recipe.ts';
+import { NATIVE_CHARACTER_CATALOG } from '../character/native-catalog.ts';
+import { withWearableBoutique } from '../app/features/life/boutiqueModel.ts';
 
 const START = Date.UTC(2026, 0, 5, 8);
 let tick = 0;
@@ -79,6 +81,7 @@ test('the native recipe round-trips all 35 controls and malformed recipes are re
 
   const invalid: [string, (look: Look) => void, RegExp][] = [
     ['version', (look) => { look.native!.version = 1 as 2 }, /version 2/],
+    ['body type', (look) => { look.native!.appearance.body = ['male'] as never }, /supported native body/],
     ['garment', (look) => { look.native!.appearance.garments = ['not-a-garment' as never] }, /supported native outfit/],
     ['range', (look) => { look.native!.appearance.features['nose-width'] = 2 }, /Nose width/],
     ['missing control', (look) => { delete look.native!.appearance.features['nose-width'] }, /every supported native face and body control/],
@@ -182,4 +185,12 @@ test('the Boutique lists only native goods and purchases charge, equip, persist 
   const reloaded = createLife(structuredClone(state), at());
   assert.ok(reloaded.onboarding.wardrobe.native?.includes('shoes02'), 'purchased ownership survives reload');
   assert.equal(reloaded.onboarding.look.native?.appearance.shoes, 'shoes02', 'the equipped native item survives reload');
+});
+
+test('the lazy browser Boutique projection matches the authoritative server projection', () => {
+  const state = started(NATIVE_LOOK);
+  state.cash = 4321;
+  const server = viewLife(state, at()).onboarding;
+  const browser = withWearableBoutique({ ...server, boutique: [] }, state);
+  assert.deepEqual(browser.boutique, server.boutique);
 });

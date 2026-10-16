@@ -6,16 +6,16 @@
 - **Owner:** `/root/unified_consumer_audit`
 - **Model / effort:** GPT-6 / high
 - **Thread:** child of `/root`
-- **UTC updated:** `2026-10-16T10:45:00Z`
+- **UTC updated:** `2026-10-16T11:49:00Z`
 - **Status:** `complete`
-- **Work state:** `server-webcrypto-type-follow-up-frozen`
+- **Work state:** `startup-native-catalog-split-frozen`
 
 ## Goal and boundaries
 
 - **Goal:** identify current-main character integration deltas, then selectively transfer the approved native recipe, persistence, creator/profile/Boutique and quick-start contract onto the release checkout without overwriting newer product work.
-- **In scope:** completed read-only consumer audit, native schema/UI merge and native near-street migration/tests; current bounded follow-up owns the stale body startup, stand-in, home, venue and avatar-preview regression fixtures, the `near.ts` header correction, and type-only Web Crypto fixes in the four named server files.
-- **Out of scope:** scene/runtime/map/campus/driving/package/lock/vite changes, assets/docs other than this record, builds, servers, browser use, pushing, committing and deployment.
-- **Owned paths for this follow-up:** `src/scene/body/{gate,stand-in,startup-gate}.test.ts`, `src/scene/avatar-preview.test.ts`, the narrow home/venue test fixtures selected after source inspection, header comments only in `src/scene/street-life/near.ts`, and type-only fixes in `server/admin/confirm.ts`, `server/commerce/service.ts`, `server/growth/webpush.ts`, `server/notice.ts`. Astra retains all runtime behavior files.
+- **In scope:** completed consumer/UI/schema/near-street/fixture work; current bounded follow-up splits the labelled native catalogue from the eager recipe core, preserves strict validation/migration, and makes the server and lazy Boutique projections equivalent.
+- **Out of scope:** scene/runtime/map/campus/driving/package/lock changes, model/assets/budget changes, builds, servers, browser use, pushing, committing and deployment.
+- **Owned paths for this follow-up:** `src/character/native-recipe.ts`, new `src/character/native-catalog.ts`, `src/game/systems/onboarding.ts`, `src/app/features/life/boutiqueModel.ts`, native catalogue imports in creator/Profile/quick-start and narrow parity tests, plus only the `native-catalog.ts` condition in `vite.config.ts`. Root checker files and Astra runtime files remain untouched.
 - **Exclusive coordination path:** `docs/agent-work/unified-consumer-release-audit-20261016.md`.
 - **Input contract:** release checkout `/Users/anthonyakpan/Desktop/JoinAllworld-native-character-release` at `c7f3f0203c2297123e37e705f86177715f29de13`; comparison base `22366a53`.
 - **Output contract:** audit handoff plus a source-preserving UI/schema native contract merge with exact conflict decisions and focused checks.
@@ -82,6 +82,26 @@
   - `node --experimental-strip-types --test --test-concurrency=1 --test-name-pattern="leaving a venue disposes|spots and walking stay coherent" src/venue-world.test.ts` — spots/walking pass; pre-fix Home failure retained the exact root-cause evidence.
 - The test-only fake canvas emits repeated Three.js `Unable to serialize Texture` warnings while native static crowds are cloned. They did not fail targeted cases, but their volume filled the first tool pipe and contributed to the inconclusive full-run receipt. No production behavior or asset is affected.
 
+### Startup native-catalogue audit
+
+- The complete labelled `NATIVE_CHARACTER_CATALOG` block in `src/character/native-recipe.ts` is 5,433 source bytes and 2,017 gzip bytes by itself. That closely matches CI's startup excess of 5,295 raw / 1,879 gzip, and `src/game/systems/onboarding.ts` imports it into the eager `engine` chunk.
+- A manual chunk rule alone cannot fix the budget: onboarding's synchronous import would keep the new chunk in the startup closure and add another request/header.
+- Safe split: keep recipe types, compact allowed-ID arrays, 35 feature id/min/max tuples, normalization, validation, legacy migration, default recipe/crowd pool, starter IDs and price maps in `native-recipe.ts`. Move human labels plus body/appearance presets into a side-effect-free `native-catalog.ts`; lazy creator/Profile/Boutique modules import that catalogue.
+- Use the existing `PLAYS` boundary in onboarding. Server actions retain strict validation/migration and labelled purchase messages. The browser reader keeps compact saved-native validation and legacy migration during `sanitize`, but its eager `view` returns no computed native Boutique rows. `src/app/features/life/boutiqueModel.ts::withWearableBoutique` is already a documented lazy projection seam and should construct the rows from the full catalogue, current recipe, ownership, cash and completion state when Boutique opens.
+- Mark only the new pure catalogue module as side-effect-free in Vite's existing `moduleSideEffects` predicate so Rollup can remove the server-only labelled import after `PLAYS=false` folding. Do not assign it a manual chunk; its actual lazy creator/Profile/Boutique readers should determine placement.
+- Closure checks: server and browser normalization/validation parity for all 35 features and invalid IDs; browser sanitize of a legacy look still materializes one complete native recipe; server and lazy browser Boutique projections deep-equal for owned/wearing/price/blocked; startup files contain none of the feature/preset label strings; unchanged startup caps pass.
+
+### Startup native-catalogue split
+
+- Extracted all native human labels and editor presets to the new pure `src/character/native-catalog.ts`. The eager recipe core now exposes compact ordered ID lists plus the exact 35 feature id/range contract; normalization, strict validation, complete legacy migration, defaults, prices and deterministic crowd recipes remain synchronous and region-independent.
+- `onboarding.ts` now sanitizes native wardrobe ownership against compact ID lists. Its labelled purchase actions and authoritative Boutique rows retain the full catalogue under the existing `PLAYS` server branch; the browser view emits an empty startup projection while still running strict saved-recipe validation and legacy migration.
+- `withWearableBoutique` now fills that empty projection only when the lazy Boutique opens. A focused parity test deep-compares every server and lazy row, including label, price, ownership, worn state and insufficient-cash reason.
+- Creator, Profile/Look editor, quick-start and catalogue-aware tests import the lazy catalogue directly. The eager recipe core has no import or label/preset string from `native-catalog.ts`; the sole Vite change marks exactly that pure module side-effect-free. No manual chunk, cap, checker, package, model or asset changed.
+- Verification: direct Node imports of recipe, catalogue, lazy Boutique model and onboarding passed. `node --experimental-strip-types --test --test-concurrency=1 src/quick-start/model.test.ts src/app/features/start/startModels.test.ts src/game/look-options.test.ts` passed 40/40, including the new projection parity case. Focused `git diff --check` and source-closure greps passed. The eager recipe source is 16,273 bytes / 4,810 standalone gzip versus the prior staged 18,788 bytes / 5,569 gzip; this source comparison is diagnostic only, and CI remains authoritative for emitted startup budgets.
+- Follow-up tightened the readonly-browser boundary: an absent native recipe is materialized only by a playing host; browser sanitation retains every validated legacy compatibility field and still strictly validates a present native recipe. Browser wardrobe sanitation reads a present checked recipe directly, while playing hosts retain deterministic migration. All other onboarding migration calls are confined to `PLAYS` branches or action-only helpers.
+- Added an exact readonly-browser fixture with no native recipe. It proves the legacy look stays byte-shape equivalent apart from the intentionally absent recipe and that the lazy renderer/editor produces the same deterministic recipe as the server. The same fixture now uses an actually offered native shoe instead of the retired wearable projection assumption. The focused browser-profile case passed 1/1 for 18 lives; `/tmp/native-browser-legacy-profile.log`.
+- Restored strict membership semantics for scalar native IDs (`typeof selected === 'string'` before membership) and added an array-valued body hostile-input assertion. The final focused suite remains 40/40; `/tmp/native-catalog-split-tests.log`.
+
 ### Current native near-street unit
 
 - Replaced the removed `createCrowdBodies` dependency with `importBody().loadBody(..., { detail: 'full' })`.
@@ -115,3 +135,6 @@
 | `2026-10-16T00:58:18Z` | complete | Rewrote the two retired near-street suites around the native one-actor contract and froze this unit. | 13/13 focused tests; focused diff-check pass | Astra/root integrate and run release-level gates |
 | `2026-10-16T10:20Z` | complete | Adapted the bounded scene fixtures to shipped native assets, fixed the eight assigned Web Crypto type diagnostics and proved the Home async-tag root cause/fix. | Client typecheck pass; preview 12/12; Home targeted 1/1; full redirected slice incomplete after an idle test process | Integration owner may commit and let CI run the full suite |
 | `2026-10-16T10:45Z` | complete | Replaced the cross-project `CryptoKey` annotation with the key parameter type of the active runtime `subtle().deriveBits` API, so Node and DOM projects each resolve their own compatible key type. | Minimal Node Web Crypto type probe pass; exact client typecheck pass; full server compiler exceeded the local 4 GB heap before diagnostics | Root/Astra rerun CI server typecheck |
+| `2026-10-16T11:05Z` | complete | Traced the startup regression to the labelled native catalogue imported by eager onboarding and specified the existing `PLAYS` plus lazy Boutique projection split. | Catalogue block measures 5,433 raw / 2,017 gzip versus CI excess 5,295 / 1,879 | Integration owner applies the split; caps stay unchanged |
+| `2026-10-16T11:34Z` | complete | Split labelled catalogue/presets from the compact eager recipe core, PLAYS-gated server projection and implemented the lazy browser Boutique projection without weakening saved recipe checks. | Direct imports pass; focused 40/40 including server/lazy parity; diff/closure checks pass | Astra reviews and CI measures unchanged startup caps |
+| `2026-10-16T11:49Z` | complete | Deferred absent-recipe legacy migration from the readonly browser while preserving strict saved-native checks and exact lazy/server equivalence; restored strict scalar-ID validation. | Focused 40/40; readonly browser legacy fixture 1/1 across 18 lives | Freeze source for Astra browser review and CI |

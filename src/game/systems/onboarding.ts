@@ -127,8 +127,9 @@ import { venueFor } from '../cities/runtime.ts';
 import { housesFor } from '../cities/housingRuntime.ts';
 import { cachedCityContent } from '../cities/registry.ts';
 import { LEVEL_MAX, LEVEL_MIN, levelOf, lifeLevel, scaleNaira } from '../price-levels.ts';
-import { NATIVE_BOUTIQUE_PRICES, NATIVE_CHARACTER_CATALOG, NATIVE_STARTER_ITEMS, nativeRecipeForLook, validateNativeRecipe } from '../../character/native-recipe.ts';
+import { NATIVE_BOUTIQUE_PRICES, NATIVE_GARMENT_IDS, NATIVE_HAIR_IDS, NATIVE_SHOES_IDS, NATIVE_STARTER_ITEMS, nativeRecipeForLook, validateNativeRecipe } from '../../character/native-recipe.ts';
 import type { NativeWardrobeKind } from '../../character/native-recipe.ts';
+import { NATIVE_CHARACTER_CATALOG } from '../../character/native-catalog.ts';
 
 /** An accessory of the catalogue: its id and the slot it is worn in. */
 type AccessoryEntry = Appearance['accessories'][number];
@@ -279,7 +280,7 @@ export function checkLook(value: unknown, { starter = false }: { starter?: boole
     const checked = validateNativeRecipe(value.native);
     if (!checked.ok) return { reason: checked.reason };
     look.native = checked.recipe;
-  } else {
+  } else if (PLAYS) {
     // Old saves are upgraded once. The stable serialized legacy look is the seed; city/region never participates.
     look.native = nativeRecipeForLook(value, JSON.stringify(look));
   }
@@ -323,18 +324,19 @@ function wardrobeOf(saved: unknown, look: Look | null | undefined): Wardrobe {
   const layers: unknown[] = [...(isRecord(saved) && Array.isArray(saved.wearables) ? saved.wearables.slice(0, AVATAR_WEARABLE_IDS.length) : []), ...(look?.wearables ?? [])];
   const purchased = [...new Set(layers.filter(isAvatarWearableId).filter(id => !AVATAR_STARTER_WEARABLES.includes(id)))];
   if (purchased.length) wardrobe.wearables = purchased;
-  const native = look ? nativeRecipeForLook(look, 'wardrobe').appearance : null;
+  const native = look ? (PLAYS ? nativeRecipeForLook(look, 'wardrobe').appearance : look.native?.appearance ?? null) : null;
   const nativeSaved = isRecord(saved) && Array.isArray(saved.native) ? saved.native.filter((id): id is string => typeof id === 'string') : [];
   wardrobe.native = [...new Set([...NATIVE_STARTER_ITEMS, ...nativeSaved, ...(native ? [native.hair, native.garments[0]!, native.shoes] : [])])]
-    .filter((id) => NATIVE_CHARACTER_CATALOG.hair.some((item) => item.id === id) || NATIVE_CHARACTER_CATALOG.garments.some((item) => item.id === id) || NATIVE_CHARACTER_CATALOG.shoes.some((item) => item.id === id));
+    .filter((id) => hasNativeId(NATIVE_HAIR_IDS, id) || hasNativeId(NATIVE_GARMENT_IDS, id) || hasNativeId(NATIVE_SHOES_IDS, id));
   // Every id was kept only if the Boutique sells it for that kind, so the lists hold ids of their own kind.
   return wardrobe as Wardrobe;
 }
 /** Every accessory the Sim owns: the free ones and the ones bought. */
 const ownedAccessories = (o: OnboardingState): AccessoryId[] => [...ACCESSORY_BASICS, ...(o.wardrobe.accessories ?? [])];
 const ownedWearables = (o: OnboardingState): AvatarWearableId[] => [...AVATAR_STARTER_WEARABLES, ...(o.wardrobe.wearables ?? [])];
+const hasNativeId = (ids: readonly string[], id: string): boolean => ids.includes(id);
 const nativeOwned = (o: OnboardingState): string[] => [...new Set([...NATIVE_STARTER_ITEMS, ...(o.wardrobe.native ?? [])])];
-const nativeItems = (kind: NativeWardrobeKind) => kind === 'native-hair' ? NATIVE_CHARACTER_CATALOG.hair : kind === 'native-garment' ? NATIVE_CHARACTER_CATALOG.garments : NATIVE_CHARACTER_CATALOG.shoes;
+const nativeCatalogItems = (kind: NativeWardrobeKind) => kind === 'native-hair' ? NATIVE_CHARACTER_CATALOG.hair : kind === 'native-garment' ? NATIVE_CHARACTER_CATALOG.garments : NATIVE_CHARACTER_CATALOG.shoes;
 /** `list` with `id` put on: it replaces whatever shares its slot, and the oldest gives way at the limit. */
 function wearAccessory(worn: AccessoryId[] | undefined, id: string): AccessoryId[] {
   const item = ACCESSORIES.get(id)!; // a Boutique accessory is a catalogue accessory
@@ -555,7 +557,7 @@ const actions = {
     if (blocked) return blocked;
     const o = state.onboarding, kind = payload?.kind, id = payload?.id;
     if ((kind === 'native-hair' || kind === 'native-garment' || kind === 'native-shoes') && typeof id === 'string') {
-      const nativeKind = kind as NativeWardrobeKind, item = nativeItems(nativeKind).find((entry) => entry.id === id), price = NATIVE_BOUTIQUE_PRICES[nativeKind][id];
+      const nativeKind = kind as NativeWardrobeKind, item = nativeCatalogItems(nativeKind).find((entry) => entry.id === id), price = NATIVE_BOUTIQUE_PRICES[nativeKind][id];
       if (!item || price === undefined) return fail(state, 'invalid_item', 'Choose a native hairstyle, outfit or pair of shoes from the Boutique list.');
       if (nativeOwned(o).includes(id)) return fail(state, 'already_owned', `You already own ${item.label}. Put it on in your Profile.`);
       if (!canAfford(state, price)) return fail(state, 'insufficient_funds', `${item.label} costs ${naira(price)}; you have ${naira(state.cash)}.`);
@@ -720,12 +722,12 @@ export default {
         return { ...home, startCash: outcome && !locked ? scaleNaira(outcome.startCash[home.id]!, level) : null, locked }; // not locked: homeLock found the start cash
       }),
       wardrobe: { hair: [...o.wardrobe.hair], outfit: [...o.wardrobe.outfit], fabric: [...o.wardrobe.fabric], accessories: ownedAccessories(o), wearables: ownedWearables(o), native: nativeOwned(o) },
-      boutique: (['native-hair', 'native-garment', 'native-shoes'] as const).flatMap((kind) => nativeItems(kind).map((item): BoutiqueItem => {
+      boutique: PLAYS ? (['native-hair', 'native-garment', 'native-shoes'] as const).flatMap((kind) => nativeCatalogItems(kind).map((item): BoutiqueItem => {
         const owned = nativeOwned(o).includes(item.id), price = NATIVE_BOUTIQUE_PRICES[kind][item.id]!, current = nativeRecipeForLook(o.look, 'boutique-view').appearance;
         const wearing = kind === 'native-hair' ? current.hair === item.id : kind === 'native-garment' ? current.garments.some((id) => id === item.id) : current.shoes === item.id;
         const blocked = !o.done ? notYet : owned ? null : !canAfford(state, price) ? `Costs ${naira(price)}; you have ${naira(state.cash)}.` : null;
         return { kind, id: item.id, label: item.label, price, owned, wearing, blocked };
-      })),
+      })) : [],
       mood: { word: word.word, tone: word.tone, icon: word.icon, score: mood.score },
       feelings: feelingsOf(state).map((feeling) => ({ ...feeling, line: FEELING_LINES[feeling.id] ?? '' })),
     };

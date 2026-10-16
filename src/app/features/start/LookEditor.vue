@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import '../../../ui/panels/look-ui.css'
 import { computed } from 'vue'
-import { NATIVE_CHARACTER_CATALOG, nativeRecipeForLook, normalizeNativeRecipe } from '../../../character/native-recipe.ts'
+import { nativeRecipeForLook, normalizeNativeRecipe } from '../../../character/native-recipe.ts'
+import { NATIVE_CHARACTER_CATALOG } from '../../../character/native-catalog.ts'
 import type { NativeAppearanceV2, NativeCharacterRecipeV2, NativeColorField } from '../../../character/native-recipe.ts'
 import type { AvatarLook } from '../../../game/wardrobe/look.ts'
 import type { Owned } from './lookModel.ts'

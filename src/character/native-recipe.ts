@@ -33,45 +33,30 @@ export interface NativeCharacterRecipeV2 {
   emotionStrength: number
 }
 
-const options = <Id extends string>(entries: readonly (readonly [Id, string])[]): readonly NativeOption<Id>[] => Object.freeze(entries.map(([id, label]) => Object.freeze({ id, label })))
+export const NATIVE_BODY_IDS = Object.freeze(['female', 'male'] as const)
+export const NATIVE_HAIR_IDS = Object.freeze(['none', 'short01', 'short02', 'bob01', 'afro01', 'braid01', 'ponytail01'] as const)
+export const NATIVE_GARMENT_IDS = Object.freeze(['female-casual-01', 'female-casual-02', 'female-elegant-01', 'female-sport-01', 'male-worksuit-01', 'formal-suit-01', 'fitted-skirt-01'] as const)
+export const NATIVE_SHOES_IDS = Object.freeze(['shoes01', 'shoes02', 'shoes03'] as const)
+export const NATIVE_EYE_COLOR_IDS = Object.freeze(['brown', 'brown-light', 'blue', 'green', 'grey'] as const)
+export const NATIVE_COMPLEXION_IDS = Object.freeze(['deep', 'medium', 'light'] as const)
+export const NATIVE_HAND_POSE_IDS = Object.freeze(['relaxed', 'open', 'fist', 'point', 'peace'] as const)
+export const NATIVE_EMOTION_IDS = Object.freeze(['neutral', 'happy', 'sad', 'angry', 'surprised', 'relaxed', 'concerned'] as const)
 
-const FACE_FEATURES: readonly NativeFeatureDescriptor[] = [
-  ['nose-width', 'Nose width', -1, 1], ['nose-depth', 'Nose depth', -.8, .8], ['nose-height', 'Nose height', -.8, .8],
-  ['nose-tip', 'Nose tip', -.7, .7], ['nostril-width', 'Nostril width', -.8, .8], ['chin-width', 'Chin width', -.8, .8],
-  ['chin-height', 'Chin height', -.7, .7], ['chin-prognathism', 'Chin projection', -.7, .7], ['chin-prominence', 'Chin prominence', -.7, .7],
-  ['mouth-width', 'Mouth width', -.7, .7], ['mouth-height', 'Mouth height', -.65, .65], ['upper-lip-volume', 'Upper lip volume', -.8, .8],
-  ['lower-lip-volume', 'Lower lip volume', -.8, .8], ['brow-height', 'Brow height', -.65, .65], ['brow-angle', 'Brow angle', -.65, .65],
-  ['eye-aperture', 'Eye aperture', -.35, .45], ['eye-width', 'Eye width', -.25, .25], ['eye-slant', 'Eye corner tilt', -.35, .35],
-  ['inner-eye-fold', 'Inner eye fold', -.45, .45], ['eye-fold-angle', 'Upper eye fold angle', -.35, .35], ['face-width', 'Face width', -.3, .3],
-  ['jaw-width', 'Jaw width', -.35, .35], ['cheekbones', 'Cheekbone prominence', -.4, .4], ['cheek-volume', 'Cheek volume', -.4, .4],
-  ['east-asian-head', 'East Asian head shape', 0, 1],
-].map(([id, label, min, max]) => Object.freeze({ id: String(id), label: String(label), group: 'face' as const, min: Number(min), max: Number(max) }))
-
-const BODY_FEATURES: readonly NativeFeatureDescriptor[] = ([
-  ['muscle', 'Muscle mass'], ['weight', 'Body weight'], ['shoulder-width', 'Shoulder width'], ['upper-back-chest', 'Upper back and chest'],
-  ['upper-arm-size', 'Upper arm size'], ['bust-size', 'Chest / bust size'], ['waist', 'Waist circumference'], ['hips', 'Hip circumference'],
-  ['buttock-volume', 'Buttock volume'], ['thigh-size', 'Thigh size'],
-] as const).map(([id, label]) => Object.freeze({ id, label, group: 'body' as const, min: -1, max: 1 }))
-
-export const NATIVE_CHARACTER_CATALOG = Object.freeze({
-  schemaVersion: 2 as const,
-  bodies: options<NativeBodyId>([['female', 'Female'], ['male', 'Male']]),
-  hair: options<NativeHairId>([['none', 'No added hair / close scalp'], ['short01', 'Short 01'], ['short02', 'Short 02'], ['bob01', 'Bob 01'], ['afro01', 'Afro 01'], ['braid01', 'Braid 01'], ['ponytail01', 'Ponytail 01']]),
-  garments: options<NativeGarmentId>([['female-casual-01', 'Casual suit 01'], ['female-casual-02', 'Casual suit 02'], ['female-elegant-01', 'Blouse and skirt'], ['female-sport-01', 'Sportsuit 01'], ['male-worksuit-01', 'Worksuit 01'], ['formal-suit-01', 'Formal suit with tie'], ['fitted-skirt-01', 'Cropped top and skirt']]),
-  shoes: options<NativeShoesId>([['shoes01', 'Shoes 01'], ['shoes02', 'Shoes 02'], ['shoes03', 'Shoes 03']]),
-  eyeColors: options<NativeEyeColorId>([['brown', 'Dark brown'], ['brown-light', 'Light brown'], ['blue', 'Blue'], ['green', 'Green'], ['grey', 'Grey']]),
-  complexions: options<NativeComplexionId>([['deep', 'Deep'], ['medium', 'Medium'], ['light', 'Light']]),
-  handPoses: options<NativeHandPoseId>([['relaxed', 'Relaxed'], ['open', 'Open'], ['fist', 'Fist'], ['point', 'Point'], ['peace', 'Peace']]),
-  emotions: options<NativeEmotionId>([['neutral', 'Neutral'], ['happy', 'Happy'], ['sad', 'Sad'], ['angry', 'Angry'], ['surprised', 'Surprised'], ['relaxed', 'Relaxed'], ['concerned', 'Concerned']]),
-  features: Object.freeze([...FACE_FEATURES, ...BODY_FEATURES]),
-  bodyPresets: Object.freeze([
-    { id: 'neutral', label: 'Base proportions', features: {} },
-    { id: 'gym', label: 'Muscular build', features: { muscle: 1, 'shoulder-width': .7, 'upper-back-chest': .65, 'upper-arm-size': .7, weight: .15, 'thigh-size': .35, waist: -.25 } },
-    { id: 'fuller-bust-small-waist', label: 'Fuller chest, smaller waist', features: { 'bust-size': .85, waist: -.55, weight: -.15, hips: .1 } },
-    { id: 'fuller-hips-thighs', label: 'Fuller hips and thighs', features: { 'buttock-volume': .8, 'thigh-size': .7, hips: .6, waist: -.35 } },
-  ] satisfies readonly { id: string; label: string; features: Readonly<Partial<Record<string, number>>> }[]),
-  appearancePresets: Object.freeze([{ id: 'east-asian-starting-point', label: 'East Asian starting point', features: { 'east-asian-head': 1 } }] satisfies readonly { id: string; label: string; features: Readonly<Partial<Record<string, number>>> }[]),
-})
+export type NativeFeatureLimit = readonly [id: string, group: 'face' | 'body', min: number, max: number]
+export const NATIVE_FEATURE_LIMITS: readonly NativeFeatureLimit[] = Object.freeze([
+  ['nose-width', 'face', -1, 1], ['nose-depth', 'face', -.8, .8], ['nose-height', 'face', -.8, .8],
+  ['nose-tip', 'face', -.7, .7], ['nostril-width', 'face', -.8, .8], ['chin-width', 'face', -.8, .8],
+  ['chin-height', 'face', -.7, .7], ['chin-prognathism', 'face', -.7, .7], ['chin-prominence', 'face', -.7, .7],
+  ['mouth-width', 'face', -.7, .7], ['mouth-height', 'face', -.65, .65], ['upper-lip-volume', 'face', -.8, .8],
+  ['lower-lip-volume', 'face', -.8, .8], ['brow-height', 'face', -.65, .65], ['brow-angle', 'face', -.65, .65],
+  ['eye-aperture', 'face', -.35, .45], ['eye-width', 'face', -.25, .25], ['eye-slant', 'face', -.35, .35],
+  ['inner-eye-fold', 'face', -.45, .45], ['eye-fold-angle', 'face', -.35, .35], ['face-width', 'face', -.3, .3],
+  ['jaw-width', 'face', -.35, .35], ['cheekbones', 'face', -.4, .4], ['cheek-volume', 'face', -.4, .4],
+  ['east-asian-head', 'face', 0, 1], ['muscle', 'body', -1, 1], ['weight', 'body', -1, 1],
+  ['shoulder-width', 'body', -1, 1], ['upper-back-chest', 'body', -1, 1], ['upper-arm-size', 'body', -1, 1],
+  ['bust-size', 'body', -1, 1], ['waist', 'body', -1, 1], ['hips', 'body', -1, 1],
+  ['buttock-volume', 'body', -1, 1], ['thigh-size', 'body', -1, 1],
+] as const)
 
 const record = (value: unknown): Record<string, unknown> => value && typeof value === 'object' && !Array.isArray(value) ? value as Record<string, unknown> : {}
 const clamp = (value: unknown, min: number, max: number, fallback: number): number => {
@@ -79,9 +64,9 @@ const clamp = (value: unknown, min: number, max: number, fallback: number): numb
   return Number.isFinite(number) ? Math.min(max, Math.max(min, number)) : fallback
 }
 const hex = (value: unknown, fallback = '#ffffff'): string => typeof value === 'string' && /^#[0-9a-f]{6}$/i.test(value) ? value.toLowerCase() : fallback
-const choose = <Id extends string>(list: readonly NativeOption<Id>[], value: unknown, fallback: Id): Id => list.some((item) => item.id === value) ? value as Id : fallback
+const choose = <Id extends string>(list: readonly Id[], value: unknown, fallback: Id): Id => list.includes(value as Id) ? value as Id : fallback
 
-const emptyFeatures = (): Record<string, number> => Object.fromEntries(NATIVE_CHARACTER_CATALOG.features.map((feature) => [feature.id, 0]))
+const emptyFeatures = (): Record<string, number> => Object.fromEntries(NATIVE_FEATURE_LIMITS.map(([id]) => [id, 0]))
 
 export const DEFAULT_NATIVE_RECIPE: Readonly<NativeCharacterRecipeV2> = Object.freeze({
   schema: 'allworld-character', version: 2,
@@ -109,23 +94,23 @@ export const NATIVE_BOUTIQUE_PRICES: Readonly<Record<NativeWardrobeKind, Readonl
 /** Canonicalize partial or untrusted recipe input to the complete native v2 shape. */
 export function normalizeNativeRecipe(value: unknown): NativeCharacterRecipeV2 {
   const outer = record(value), appearance = record(outer.appearance), featuresIn = record(appearance.features), colorsIn = record(appearance.colors)
-  const features = Object.fromEntries(NATIVE_CHARACTER_CATALOG.features.map((feature) => [feature.id, clamp(featuresIn[feature.id], feature.min, feature.max, 0)]))
-  const garments = Array.isArray(appearance.garments) ? [...new Set(appearance.garments)].filter((id): id is NativeGarmentId => NATIVE_CHARACTER_CATALOG.garments.some((item) => item.id === id)).slice(0, 1) : []
+  const features = Object.fromEntries(NATIVE_FEATURE_LIMITS.map(([id, , min, max]) => [id, clamp(featuresIn[id], min, max, 0)]))
+  const garments = Array.isArray(appearance.garments) ? [...new Set(appearance.garments)].filter((id): id is NativeGarmentId => NATIVE_GARMENT_IDS.includes(id as NativeGarmentId)).slice(0, 1) : []
   return {
     schema: 'allworld-character', version: 2,
     appearance: {
       version: 2,
-      body: choose(NATIVE_CHARACTER_CATALOG.bodies, appearance.body, 'female'),
-      hair: choose(NATIVE_CHARACTER_CATALOG.hair, appearance.hair, 'short01'),
+      body: choose(NATIVE_BODY_IDS, appearance.body, 'female'),
+      hair: choose(NATIVE_HAIR_IDS, appearance.hair, 'short01'),
       garments: garments.length ? garments : ['female-casual-01'],
-      shoes: choose(NATIVE_CHARACTER_CATALOG.shoes, appearance.shoes, 'shoes01'),
-      eyeColor: choose(NATIVE_CHARACTER_CATALOG.eyeColors, appearance.eyeColor, 'brown'),
-      complexion: choose(NATIVE_CHARACTER_CATALOG.complexions, appearance.complexion, 'deep'),
+      shoes: choose(NATIVE_SHOES_IDS, appearance.shoes, 'shoes01'),
+      eyeColor: choose(NATIVE_EYE_COLOR_IDS, appearance.eyeColor, 'brown'),
+      complexion: choose(NATIVE_COMPLEXION_IDS, appearance.complexion, 'deep'),
       height: clamp(appearance.height, .85, 1.15, 1), features,
       colors: { skin: hex(colorsIn.skin), hair: hex(colorsIn.hair), upper: hex(colorsIn.upper), lower: hex(colorsIn.lower), shoes: hex(colorsIn.shoes) },
-      handPose: choose(NATIVE_CHARACTER_CATALOG.handPoses, appearance.handPose, 'relaxed'),
+      handPose: choose(NATIVE_HAND_POSE_IDS, appearance.handPose, 'relaxed'),
     },
-    emotion: choose(NATIVE_CHARACTER_CATALOG.emotions, outer.emotion, 'neutral'),
+    emotion: choose(NATIVE_EMOTION_IDS, outer.emotion, 'neutral'),
     emotionStrength: clamp(outer.emotionStrength, 0, 1, .7),
   }
 }
@@ -136,20 +121,20 @@ export type NativeRecipeValidation = { ok: true; recipe: NativeCharacterRecipeV2
 export function validateNativeRecipe(value: unknown): NativeRecipeValidation {
   const outer = record(value), appearance = record(outer.appearance), features = record(appearance.features), colors = record(appearance.colors)
   if (outer.schema !== 'allworld-character' || outer.version !== 2 || appearance.version !== 2) return { ok: false, reason: 'Use an Allworld character recipe, version 2.' }
-  const membership: [readonly NativeOption[], unknown, string][] = [
-    [NATIVE_CHARACTER_CATALOG.bodies, appearance.body, 'body'], [NATIVE_CHARACTER_CATALOG.hair, appearance.hair, 'hair'],
-    [NATIVE_CHARACTER_CATALOG.shoes, appearance.shoes, 'shoes'], [NATIVE_CHARACTER_CATALOG.eyeColors, appearance.eyeColor, 'eye colour'],
-    [NATIVE_CHARACTER_CATALOG.complexions, appearance.complexion, 'complexion'], [NATIVE_CHARACTER_CATALOG.handPoses, appearance.handPose, 'hand pose'],
-    [NATIVE_CHARACTER_CATALOG.emotions, outer.emotion, 'emotion'],
+  const membership: [readonly string[], unknown, string][] = [
+    [NATIVE_BODY_IDS, appearance.body, 'body'], [NATIVE_HAIR_IDS, appearance.hair, 'hair'],
+    [NATIVE_SHOES_IDS, appearance.shoes, 'shoes'], [NATIVE_EYE_COLOR_IDS, appearance.eyeColor, 'eye colour'],
+    [NATIVE_COMPLEXION_IDS, appearance.complexion, 'complexion'], [NATIVE_HAND_POSE_IDS, appearance.handPose, 'hand pose'],
+    [NATIVE_EMOTION_IDS, outer.emotion, 'emotion'],
   ]
-  for (const [list, selected, label] of membership) if (!list.some((item) => item.id === selected)) return { ok: false, reason: `Choose a supported native ${label}.` }
+  for (const [list, selected, label] of membership) if (typeof selected !== 'string' || !list.includes(selected)) return { ok: false, reason: `Choose a supported native ${label}.` }
   const garments = Array.isArray(appearance.garments) ? appearance.garments : []
-  if (garments.length !== 1 || !NATIVE_CHARACTER_CATALOG.garments.some((item) => item.id === garments[0])) return { ok: false, reason: 'Choose one supported native outfit.' }
+  if (garments.length !== 1 || !NATIVE_GARMENT_IDS.includes(garments[0] as NativeGarmentId)) return { ok: false, reason: 'Choose one supported native outfit.' }
   if (typeof appearance.height !== 'number' || !Number.isFinite(appearance.height) || appearance.height < .85 || appearance.height > 1.15) return { ok: false, reason: 'Choose a height from 0.85 to 1.15.' }
   if (typeof outer.emotionStrength !== 'number' || !Number.isFinite(outer.emotionStrength) || outer.emotionStrength < 0 || outer.emotionStrength > 1) return { ok: false, reason: 'Choose an emotion strength from 0 to 1.' }
-  const expectedFeatures = new Set(NATIVE_CHARACTER_CATALOG.features.map((item) => item.id))
+  const expectedFeatures = new Set(NATIVE_FEATURE_LIMITS.map(([id]) => id))
   if (Object.keys(features).length !== expectedFeatures.size || Object.keys(features).some((id) => !expectedFeatures.has(id))) return { ok: false, reason: 'Keep every supported native face and body control in the recipe.' }
-  for (const feature of NATIVE_CHARACTER_CATALOG.features) if (typeof features[feature.id] !== 'number' || !Number.isFinite(features[feature.id]) || Number(features[feature.id]) < feature.min || Number(features[feature.id]) > feature.max) return { ok: false, reason: `Choose ${feature.label} from ${feature.min} to ${feature.max}.` }
+  for (const [id, , min, max] of NATIVE_FEATURE_LIMITS) if (typeof features[id] !== 'number' || !Number.isFinite(features[id]) || Number(features[id]) < min || Number(features[id]) > max) return { ok: false, reason: `Choose ${(id[0] ?? '').toUpperCase()}${id.slice(1).replaceAll('-', ' ')} from ${min} to ${max}.` }
   const colorKeys: NativeColorField[] = ['skin', 'hair', 'upper', 'lower', 'shoes']
   if (Object.keys(colors).length !== colorKeys.length || colorKeys.some((key) => !/^#[0-9a-f]{6}$/i.test(String(colors[key] ?? '')))) return { ok: false, reason: 'Choose five native colours as six-digit hex values.' }
   return { ok: true, recipe: normalizeNativeRecipe(value) }
@@ -160,7 +145,7 @@ function hash(value: unknown): number {
   for (const char of String(value ?? 'allworld-character')) { result ^= char.charCodeAt(0); result = Math.imul(result, 16777619) }
   return result >>> 0
 }
-const seeded = <Id extends string>(list: readonly NativeOption<Id>[], seed: unknown, part: string): Id => list[hash(`${String(seed)}:${part}`) % list.length]!.id
+const seeded = <Id extends string>(list: readonly Id[], seed: unknown, part: string): Id => list[hash(`${String(seed)}:${part}`) % list.length]!
 
 const SKIN: Record<string, string> = { 'skin-1': '#e0ac7e', 'skin-2': '#c98e62', 'skin-3': '#b0764c', 'skin-4': '#96603c', 'skin-5': '#7a4a2c', 'skin-6': '#5e3620', 'skin-7': '#3f2416' }
 const HAIR_COLOR: Record<string, string> = { black: '#15110f', 'soft-black': '#2a211d', 'dark-brown': '#3d2a1e', brown: '#5b3a24', auburn: '#8a3b22', blonde: '#d9b45f', purple: '#7b4bb0' }
@@ -172,7 +157,7 @@ export function nativeRecipeForLook(look: unknown, seed: unknown = 'joinallworld
   const source = record(look)
   if (source.native !== undefined) return normalizeNativeRecipe(source.native)
   if (source.schema === 'allworld-character') return normalizeNativeRecipe(source)
-  const body: NativeBodyId = source.body === 'man' || source.body === 'male' ? 'male' : source.body === 'woman' || source.body === 'female' ? 'female' : seeded(NATIVE_CHARACTER_CATALOG.bodies, seed, 'body')
+  const body: NativeBodyId = source.body === 'man' || source.body === 'male' ? 'male' : source.body === 'woman' || source.body === 'female' ? 'female' : seeded(NATIVE_BODY_IDS, seed, 'body')
   const crowdDefault = NATIVE_CROWD_DEFAULTS[body]
   const unrecorded = !Object.keys(source).length
   const seededColor = (values: readonly string[], part: string): string => values[hash(`${String(seed)}:${part}`) % values.length]!

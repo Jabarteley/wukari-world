@@ -21,8 +21,8 @@ export function resolveItem(catalog, item, body, category) {
   const variant = item ? body.variants?.[category]?.[item.id] : undefined;
   return { ...item, ...(fitted && typeof fitted === 'object' ? fitted : {}), ...(typeof variant === 'string' ? { url: variant } : variant ?? {}) };
 }
-/** @param {string} root @param {string} [assetRoot] */
-export async function inventory(root, assetRoot = resolve(root, 'public')) {
+/** @param {string} root @param {string} [assetRoot] @param {(url:string,sha256:string) => Sizes | undefined} [measured] */
+export async function inventory(root, assetRoot = resolve(root, 'public'), measured) {
   const publicRoot = resolve(assetRoot);
   const profilePath = resolve(root, 'src/scene/character-lab/runtime/selected-profile.mjs');
   const { profile } = await import(pathToFileURL(profilePath).href);
@@ -61,7 +61,9 @@ export async function inventory(root, assetRoot = resolve(root, 'public')) {
   for (const entry of resources.values()) {
     try {
       const file = fileFor(entry.url), bytes = await readFile(file);
-      rows.push({ url: entry.url, kinds: [...entry.kinds], sha256: createHash('sha256').update(bytes).digest('hex'), raw: bytes.length, gzip: gzipSync(bytes).length, brotli: brotliCompressSync(bytes).length });
+      const sha256 = createHash('sha256').update(bytes).digest('hex');
+      const sizes = measured?.(entry.url, sha256) ?? {raw:bytes.length,gzip:gzipSync(bytes).length,brotli:brotliCompressSync(bytes).length};
+      rows.push({ url: entry.url, kinds: [...entry.kinds], sha256, ...sizes });
     } catch (error) { errors.push({ url: entry.url, error: error instanceof Error ? error.message : String(error) }); }
   }
   /** @param {Sizes[]} selected */

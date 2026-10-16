@@ -13,7 +13,8 @@ import { checkLook } from '../game/systems/onboarding.ts';
 import { validateName } from '../../server/protocol.ts';
 import { makeRng } from '../game/util.ts';
 import { createLife, dispatch, advanceLife } from '../life.ts';
-import { NATIVE_CHARACTER_CATALOG, normalizeNativeRecipe } from '../character/native-recipe.ts';
+import { normalizeNativeRecipe } from '../character/native-recipe.ts';
+import { NATIVE_CHARACTER_CATALOG } from '../character/native-catalog.ts';
 
 const ID = '36f5f5a1-493e-474f-b23c-3a2e503ada54';
 /** A banner that must have been made. */

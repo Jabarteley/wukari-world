@@ -7,9 +7,11 @@ import { ASSET_VERSIONS } from './asset-versions.generated.ts'
 import { RACE_ASSETS, PHOTO_MS } from './race-3d.ts'
 import {
   BARRIER_LAT, KERB_RED, PALETTES, SHOULDER_HALF, alongX, bandShift, boxMesh, buildRoad, chasePose, facingZ, fovFor, followSeat, lean, lineAlong, linear, motionOf, orbitPose,
+  FAR_FROM_M, NEAR_AGAIN_M, WORLD_SEAT_PAINT, WORLD_WAIT_MS, farCar, worldCarsAllowed,
   outsideSign, photoFinishPose, roadDistance, scatter, smoking, spinStep, startArea, steerAngle, windowOf, WHEEL_BASE_M, MAX_STEER,
 } from './race-3d-geo.ts'
 import type { Insets } from './race-3d-geo.ts'
+import { GLB_VARIANTS } from '../models/vehicles/glb-parts.ts'
 import { buildTrack, nearestIndex, pointAt, project, ROAD_HALF, TRACK_IDS, WALL_HALF } from './race-track.ts'
 import { BODY_UNITS, CAR_LENGTH_M, kmh, metresPerSecond, UNIT } from './race-units.ts'
 
@@ -249,4 +251,27 @@ test('every model the view loads has a content version and is listed in the cart
   }
   for (const a of race.manifest.assets) assert.equal(a.licence, 'CC0')
   assert.ok(race.manifest.lazy?.includes('race-3d'))
+})
+
+// ---- the world's own cars ---------------------------------------------------------------------------------------------------------
+
+test('each seat drives a different saloon colour the world ships', () => {
+  assert.equal(WORLD_SEAT_PAINT.length, 4)
+  assert.equal(new Set(WORLD_SEAT_PAINT).size, 4, 'one colour a seat, all different')
+  for (const paint of WORLD_SEAT_PAINT) assert.ok(GLB_VARIANTS.saloon.includes(paint), `saloon "${paint}" exists`)
+})
+test('the world\'s cars wait a few seconds, never more than five, before the Kenney cars take over', () => {
+  assert.ok(WORLD_WAIT_MS >= 2000 && WORLD_WAIT_MS <= 5000)
+})
+test('a phone reporting under 3 GB of memory keeps the Kenney cars; unknown memory is allowed', () => {
+  assert.equal(worldCarsAllowed(2), false); assert.equal(worldCarsAllowed(1), false)
+  assert.equal(worldCarsAllowed(3), true); assert.equal(worldCarsAllowed(8), true); assert.equal(worldCarsAllowed(undefined), true)
+})
+test('a car turns to its far model beyond 30 m and back inside 24 m, with no flicker between; the followed car is never far', () => {
+  assert.ok(NEAR_AGAIN_M < FAR_FROM_M)
+  assert.equal(farCar(10, false, false), false)
+  assert.equal(farCar(FAR_FROM_M + 1, false, false), true)
+  assert.equal(farCar(27, false, false), false); assert.equal(farCar(27, true, false), true, 'between the limits it stays as it was')
+  assert.equal(farCar(NEAR_AGAIN_M - 1, true, false), false)
+  assert.equal(farCar(500, false, true), false)
 })

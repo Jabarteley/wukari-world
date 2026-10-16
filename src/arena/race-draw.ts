@@ -18,8 +18,8 @@ export interface HudInfo { /** '' while ranked, else 'DNF' or 'Left': shown inst
 /** Cars are drawn this much bigger than their physical circle so they read on a phone. */
 export const CAR_SCALE = 1.7
 const KINDS: CarKind[] = ['danfo', 'saloon', 'keke', 'coupe']
-// The four Kenney race cars of the 3D view (race-3d.ts): red, orange, green, white.
-const BODIES = ['#e5483b', '#f29a2e', '#3aa564', '#eeeeee']
+// The four cars of the 3D view (race-3d.ts, the world's saloons): red, blue, green, white.
+const BODIES = ['#e5483b', '#2f6fd0', '#3aa564', '#eeeeee']
 /** Default look of a seat: a danfo, a saloon, a keke and a coupe in the 2D view, each in the colour of its 3D car so the field reads at a glance. */
 export const defaultLook = (seat: number, accent?: string): CarLook => ({ kind: KINDS[seat % 4] as CarKind, body: BODIES[seat % 4] as string, accent: accent ?? '#ffffff' })
 

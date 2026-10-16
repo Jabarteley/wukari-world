@@ -3,12 +3,15 @@
  * RACE IN 3D: the same server-judged race (./race.ts) drawn with three.js on the phone, seen from behind your own car (or the leader's, for a
  * viewer). The road is one ribbon mesh built from the track's points (./race-3d-geo.ts buildRoad: asphalt, kerbs on the outside of bends,
  * the start line, boost pads), barriers and fences stand along both edges, a grandstand and pit garages by the start, trees and lamps beside
- * it, and a lagoon under the bridge. Cars are the CC0 Kenney race cars: their parts are baked into one body mesh and four wheels each, the
- * wheels roll with the car's speed and the front pair steer, and the body rolls and dives with the turning and braking. Slides raise tyre
+ * it, and a lagoon under the bridge. Cars are the world's own authored saloons (src/models/vehicles, red, blue, green and white, one a seat,
+ * the lighter "-far" file for a car that is far from the camera), reached through the world's vehicle module by a dynamic import, their wheels
+ * (separate nodes in the file) rolling with the car's speed and the front pair steering. Where those models are not wanted (a phone with
+ * little memory) or do not arrive within a few seconds, the CC0 Kenney race cars are baked into one body mesh and four wheels each instead.
+ * Either way the body rolls and dives with the turning and braking. Slides raise tyre
  * smoke, a bump throws sparks and shakes the camera, and the finish is a short low angle by the line. HUD and banners are drawn over it by
  * ./race-draw.ts (drawRaceHud), so both views read the same.
  *
- * SIZE (docs/CARTRIDGES.md "3D on a phone"): about 0.1 MB of models (8 files), roughly 30,000 triangles and under 50 draw calls on the
+ * SIZE (docs/CARTRIDGES.md "3D on a phone"): about 0.4 MB of models, roughly 40,000 triangles and under 50 draw calls on the
  * busiest track, one hemisphere light and one directional light, no shadow map (a blob under each car), Lambert materials, instanced
  * barriers. A lazy chunk: the Games hub warms it (preloadRace) and the Race screen fetches it when it opens, and draws the 2D view until
  * it is ready (or for ever, without WebGL).
@@ -25,6 +28,8 @@ import {
   orbitPose, photoFinishPose, scatter, smoking, spinStep, startArea, steerAngle,
 } from './race-3d-geo.ts'
 import type { Insets, Place, Pose3, RoadMesh } from './race-3d-geo.ts'
+import { worldCarsAllowed, farCar, WORLD_SEAT_PAINT, WORLD_WAIT_MS } from './race-3d-geo.ts'
+import type { GlbTemplate, GlbVehicle } from '../models/vehicles/glb.ts'
 
 export type { Insets } from './race-3d-geo.ts'
 export { NO_INSETS } from './race-3d-geo.ts'
@@ -44,9 +49,31 @@ export const RACE_ASSETS = Object.freeze({
   lamp: versioned(`${KIT}lightPostModern.glb`),
   flag: versioned(`${KIT}flagCheckers.glb`),
 })
-const ALL_ASSETS: readonly string[] = [...RACE_ASSETS.cars, RACE_ASSETS.barrier, RACE_ASSETS.fence, RACE_ASSETS.stand, RACE_ASSETS.garage, RACE_ASSETS.tree, RACE_ASSETS.treeSmall, RACE_ASSETS.lamp, RACE_ASSETS.flag]
-/** Fetch and parse the Race models ahead of the screen (the Games hub does this when it opens and when the browser is idle). */
-export function preloadRace(): Promise<unknown> { return Promise.all(ALL_ASSETS.map((url) => loadGlb(url))) }
+const SCENERY_ASSETS: readonly string[] = [RACE_ASSETS.barrier, RACE_ASSETS.fence, RACE_ASSETS.stand, RACE_ASSETS.garage, RACE_ASSETS.tree, RACE_ASSETS.treeSmall, RACE_ASSETS.lamp, RACE_ASSETS.flag]
+
+// The world's own vehicle module (glb.ts, the glTF loader and the meshopt decoder with it) is reached only by this dynamic import, so no startup chunk gains an importer.
+const worldModule = () => import('../models/vehicles/glb.ts')
+type World = Awaited<ReturnType<typeof worldModule>>
+/** The four saloons' near files, loaded and parsed. */
+interface WorldCars { glb: World; near: GlbTemplate[] }
+let worldCars: Promise<WorldCars | null> | null = null
+/** The world's saloons for the four seats, once a visit; null (never a throw) when this phone should not have them or a file would not load. */
+function loadWorldCars(): Promise<WorldCars | null> {
+  const nav = (globalThis.navigator ?? {}) as { deviceMemory?: number }
+  if (!worldCarsAllowed(nav.deviceMemory)) return Promise.resolve(null)
+  worldCars ??= worldModule().then(async (glb) => {
+    const near = await Promise.all(WORLD_SEAT_PAINT.map((variant) => glb.loadGlbVehicle({ kind: 'saloon', variant, lod: 'near' })))
+    return near.every((t): t is GlbTemplate => t !== null) ? { glb, near } : null
+  }).catch(() => null).then((found) => { if (!found) worldCars = null; return found })
+  return worldCars
+}
+/** Fetch and parse the Race models ahead of the screen (the Games hub does this when it opens and when the browser is idle): the world's cars, or the Kenney ones where those are not used. */
+export async function preloadRace(): Promise<unknown> {
+  const scenery = Promise.all(SCENERY_ASSETS.map((url) => loadGlb(url)))
+  const world = await loadWorldCars()
+  if (!world) await Promise.all(RACE_ASSETS.cars.map((url) => loadGlb(url)))
+  return scenery
+}
 
 type Gltf = Awaited<ReturnType<typeof loadGlb>>
 
@@ -187,8 +214,11 @@ function enrich(colors: THREE.BufferAttribute): void {
   }
 }
 
+interface RigWheel { node: THREE.Object3D; radius: number; front: boolean; spin: number; /** The node's own turn in the file (the world's cars); null for a Kenney wheel, which is a bare group. */ base: THREE.Quaternion | null }
 interface CarRig {
-  root: THREE.Group; lean: THREE.Group; wheels: { node: THREE.Group; radius: number; front: boolean; spin: number }[]; shadow: THREE.Mesh
+  root: THREE.Group; lean: THREE.Group; wheels: RigWheel[]; shadow: THREE.Mesh
+  /** The world's cars: the full model and the lighter far one (null until it has arrived), and where the tail lamps sit (metres, the car's frame). */
+  full: THREE.Object3D | null; far: THREE.Object3D | null; isFar: boolean; tail: [number, number, number][]
   // motion state, from the drawn poses
   x: number; y: number; a: number; dir: 1 | -1; speed: number; slide: number; yawRate: number; steer: number; roll: number; pitch: number; lastSpeed: number; hit: boolean; boost: boolean; seen: boolean; fin: boolean
 }
@@ -291,9 +321,16 @@ export const PHOTO_MS = 2600
 export async function createRaceView(canvas: HTMLCanvasElement, opts: { reduced: boolean }): Promise<RaceView | null> {
   const renderer = makeRenderer(canvas)
   if (!renderer) return null
-  let models: Gltf[]
-  try { models = await Promise.all(ALL_ASSETS.map((url) => loadGlb(url))) } catch { renderer.dispose(); return null }
-  const [car0, car1, car2, car3, barrierM, fenceM, standM, garageM, treeM, treeSmallM, lampM, flagM] = models as [Gltf, Gltf, Gltf, Gltf, Gltf, Gltf, Gltf, Gltf, Gltf, Gltf, Gltf, Gltf]
+  // The world's cars, if this phone should have them and they arrive within a few seconds; else the Kenney ones, fetched now.
+  let waited: ReturnType<typeof setTimeout> | undefined
+  const real = await Promise.race([loadWorldCars(), new Promise<null>((done) => { waited = setTimeout(() => done(null), WORLD_WAIT_MS) })])
+  clearTimeout(waited)
+  let models: Gltf[], kenney: Gltf[] = []
+  try {
+    const [scenery, cars] = await Promise.all([Promise.all(SCENERY_ASSETS.map((url) => loadGlb(url))), real ? Promise.resolve([] as Gltf[]) : Promise.all(RACE_ASSETS.cars.map((url) => loadGlb(url)))])
+    models = scenery; kenney = cars
+  } catch { renderer.dispose(); return null }
+  const [barrierM, fenceM, standM, garageM, treeM, treeSmallM, lampM, flagM] = models as [Gltf, Gltf, Gltf, Gltf, Gltf, Gltf, Gltf, Gltf]
 
   const scene = new THREE.Scene()
   scene.background = skyTexture()
@@ -304,24 +341,62 @@ export async function createRaceView(canvas: HTMLCanvasElement, opts: { reduced:
   sun.position.set(-30, 50, 20); scene.add(sun)
 
   // Models that do not depend on the track are baked once.
-  const carModels = [car0, car1, car2, car3].map(carOf)
+  const carModels = kenney.map(carOf)
   const props = { barrier: propOf(barrierM), fence: propOf(fenceM), stand: propOf(standM), garage: propOf(garageM), tree: propOf(treeM), treeSmall: propOf(treeSmallM), lamp: propOf(lampM), flag: propOf(flagM) }
   const carMat = new THREE.MeshLambertMaterial({ vertexColors: true })
+  let disposed = false
 
   // The cars: four rigs, shown as the race needs them.
-  const rigs: CarRig[] = carModels.map((model) => {
+  const ownMaterials = new Map<THREE.Material, THREE.Material>(), worldVehicles: GlbVehicle[] = []
+  /** The scene's own Lambert twin of a world material (the world's templates stay as they are), the same texture and colour. */
+  const twin = (m: THREE.Material): THREE.Material => {
+    let found = ownMaterials.get(m)
+    if (!found) { const std = m as THREE.MeshStandardMaterial; found = new THREE.MeshLambertMaterial({ map: std.map ?? null, color: std.color ? std.color.clone() : new THREE.Color(0xffffff), side: std.side, transparent: std.transparent, alphaTest: std.alphaTest }); ownMaterials.set(m, found) }
+    return found
+  }
+  const tidy = (vehicle: GlbVehicle): THREE.Object3D => {
+    vehicle.object3D.traverse((node) => { const mesh = node as THREE.Mesh; if (mesh.isMesh && node.name !== 'lights' && !Array.isArray(mesh.material)) mesh.material = twin(mesh.material) })
+    worldVehicles.push(vehicle)
+    return vehicle.object3D
+  }
+  const finishRig = (root: THREE.Group, tilt: THREE.Group, wheels: RigWheel[], extra: Partial<CarRig>): CarRig => {
+    const shadow = blobShadow(2.6, 0.5); shadow.position.y = 0.045; scene.add(shadow); scene.add(root)
+    root.visible = false; shadow.visible = false
+    return { root, lean: tilt, wheels, shadow, full: null, far: null, isFar: false, tail: [[-0.62, 0.78, -1.99], [0.62, 0.78, -1.99]], x: 0, y: 0, a: 0, dir: 1, speed: 0, slide: 0, yawRate: 0, steer: 0, roll: 0, pitch: 0, lastSpeed: 0, hit: false, boost: false, seen: false, fin: false, ...extra }
+  }
+  const rigs: CarRig[] = real ? real.near.map((template) => {
+    const root = new THREE.Group(), tilt = new THREE.Group(); root.add(tilt)
+    const vehicle = real.glb.instantiate(template), fit = new THREE.Group()
+    const scale = (BODY_UNITS * UNIT) / Math.max(0.5, new THREE.Box3().setFromObject(template.scene).getSize(new THREE.Vector3()).z)
+    fit.scale.setScalar(scale); fit.add(tidy(vehicle)); tilt.add(fit)
+    vehicle.object3D.updateMatrixWorld(true)
+    const wheels: RigWheel[] = vehicle.wheels.map((node) => ({ node, radius: vehicle.wheelRadius * scale, front: node.name.startsWith('wheel_f'), spin: 0, base: node.quaternion.clone() }))
+    const tail: [number, number, number][] = []
+    vehicle.object3D.traverse((node) => { if (node.name.startsWith('light_tail_')) { const at = vehicle.object3D.worldToLocal(node.getWorldPosition(new THREE.Vector3())); tail.push([at.x * scale, at.y * scale, at.z * scale]) } })
+    return finishRig(root, tilt, wheels, { full: fit, ...(tail.length === 2 ? { tail } : {}) })
+  }) : carModels.map((model) => {
     const root = new THREE.Group(), tilt = new THREE.Group(); root.add(tilt)
     for (const part of model.body) { const mesh = new THREE.Mesh(part.geometry, carMat); mesh.frustumCulled = false; tilt.add(mesh) }
-    const wheels = model.wheels.map((w) => {
+    const wheels = model.wheels.map((w): RigWheel => {
       const node = new THREE.Group(); node.rotation.order = 'YXZ'; node.position.copy(w.at)
       for (const part of w.parts) { const mesh = new THREE.Mesh(part.geometry, carMat); mesh.frustumCulled = false; node.add(mesh) }
       tilt.add(node)
-      return { node, radius: w.radius, front: w.front, spin: 0 }
+      return { node, radius: w.radius, front: w.front, spin: 0, base: null }
     })
-    const shadow = blobShadow(2.6, 0.5); shadow.position.y = 0.045; scene.add(shadow); scene.add(root)
-    root.visible = false; shadow.visible = false
-    return { root, lean: tilt, wheels, shadow, x: 0, y: 0, a: 0, dir: 1, speed: 0, slide: 0, yawRate: 0, steer: 0, roll: 0, pitch: 0, lastSpeed: 0, hit: false, boost: false, seen: false, fin: false }
+    return finishRig(root, tilt, wheels, {})
   })
+  // The lighter far models arrive after the screen is up (a few files of about 30 KB); until then every car is drawn full.
+  if (real) {
+    void Promise.all(WORLD_SEAT_PAINT.map((variant) => real.glb.loadGlbVehicle({ kind: 'saloon', variant, lod: 'far' }))).then((far) => {
+      if (disposed) return
+      far.forEach((template, seat) => {
+        const rig = rigs[seat], near = rig?.full
+        if (!template || !rig || !near) return
+        const copy = real.glb.instantiate(template), fit = new THREE.Group()
+        fit.scale.copy(near.scale); fit.add(tidy(copy)); fit.visible = false; rig.lean.add(fit); rig.far = fit
+      })
+    }).catch(() => undefined)
+  }
   // Brake lights: eight small boxes, one draw; they go bright while braking (per-instance colour).
   const lampBox = new THREE.BoxGeometry(0.34, 0.16, 0.08)
   const lamps = new THREE.InstancedMesh(lampBox, new THREE.MeshBasicMaterial({ fog: false }), 8)
@@ -415,16 +490,15 @@ export async function createRaceView(canvas: HTMLCanvasElement, opts: { reduced:
   let last = 0, lastFocus = -1, wasFin = false, photoSince = -1, focusSeen = -2, speedS = 0, camA = 0, introS = 1, fovS = 60, camReady = false
   const posNow = new THREE.Vector3(), lookNow = new THREE.Vector3(), tmp = new THREE.Vector3()
   const m4 = new THREE.Matrix4(), q4 = new THREE.Quaternion(), p3 = new THREE.Vector3(), s3 = new THREE.Vector3(1, 1, 1), up = new THREE.Vector3(0, 1, 0)
-  const lampColour = new THREE.Color()
+  const lampColour = new THREE.Color(), spinQ = new THREE.Quaternion(), across = new THREE.Vector3(1, 0, 0)
 
   function placeLamps(cars: readonly ViewCar[]): void {
     let n = 0
     cars.forEach((c, seat) => {
       const rig = rigs[seat]; if (!rig || !rig.root.visible) return
       const yaw = facingZ(c.a)
-      for (const side of [-1, 1]) {
-        const lz = -BODY_UNITS * UNIT * 0.5 + 0.02, lx = side * 0.62
-        p3.set(c.x * UNIT + lx * Math.cos(yaw) + lz * Math.sin(yaw), 0.78, c.y * UNIT - lx * Math.sin(yaw) + lz * Math.cos(yaw))
+      for (const [lx, ly, lz] of rig.tail) {
+        p3.set(c.x * UNIT + lx * Math.cos(yaw) + lz * Math.sin(yaw), ly, c.y * UNIT - lx * Math.sin(yaw) + lz * Math.cos(yaw))
         q4.setFromAxisAngle(up, yaw)
         lamps.setMatrixAt(n, m4.compose(p3, q4, s3))
         lamps.setColorAt(n, lampColour.setHex((c.fl & FLAG_BRAKE) ? 0xff3a2a : 0x5a0c0c))
@@ -457,7 +531,14 @@ export async function createRaceView(canvas: HTMLCanvasElement, opts: { reduced:
     rig.shadow.position.set(c.x * UNIT, 0.045, c.y * UNIT); rig.shadow.rotation.z = -facingZ(c.a)
     for (const wheel of rig.wheels) {
       wheel.spin = spinStep(wheel.spin, rig.speed, dt, wheel.radius)
-      wheel.node.rotation.set(wheel.spin, wheel.front ? -rig.steer : 0, 0)
+      // The world's wheels turn about the car's own axes whatever the node's own turn in the file is: steer, then roll, then the node's own.
+      if (wheel.base) wheel.node.quaternion.setFromAxisAngle(up, wheel.front ? -rig.steer : 0).multiply(spinQ.setFromAxisAngle(across, wheel.spin)).multiply(wheel.base)
+      else wheel.node.rotation.set(wheel.spin, wheel.front ? -rig.steer : 0, 0)
+    }
+    // The world's cars: a car far from the camera is drawn with its lighter model.
+    if (rig.far && rig.full) {
+      const far = farCar(Math.hypot(c.x * UNIT - camera.position.x, c.y * UNIT - camera.position.z), rig.isFar, seat === focusSeen)
+      if (far !== rig.isFar) { rig.isFar = far; rig.far.visible = far; rig.full.visible = !far }
     }
     // A car just put back on the road blinks.
     rig.root.visible = !(c.fl & FLAG_SPAWN) || Math.floor(now / 90) % 2 === 0
@@ -553,6 +634,9 @@ export async function createRaceView(canvas: HTMLCanvasElement, opts: { reduced:
       for (const g of worldGeometries) g.dispose()
       for (const m of worldMaterials) m.dispose()
       for (const rig of rigs) { rig.shadow.geometry.dispose(); (rig.shadow.material as THREE.Material).dispose() }
+      disposed = true
+      for (const v of worldVehicles) v.dispose()
+      for (const m of ownMaterials.values()) m.dispose()
       puffs.dispose(); lamps.geometry.dispose(); (lamps.material as THREE.Material).dispose(); carMat.dispose()
       renderer.dispose()
     },

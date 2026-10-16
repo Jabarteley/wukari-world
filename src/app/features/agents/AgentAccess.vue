@@ -3,7 +3,7 @@
 // A player makes an agent key for their own character or for a new agent character, sees the key ONCE with the connection
 // address and a ready-to-paste configuration, lists keys with when they were last used, revokes them, and removes agent characters.
 // The server decides everything (who may make a key, the caps, what an agent may do); this only asks and tells.
-import { onMounted, ref } from 'vue'
+import { defineAsyncComponent, onMounted, ref } from 'vue'
 import { takeAgentSetup } from './claimEntry.ts'
 import { useApp } from '../../state/app.ts'
 import { useAccountLite } from '../account/useAccountLite.ts'
@@ -11,6 +11,8 @@ import { AGENT_EXPLAINER, SUSPENDED_WORDS, mcpSnippet, since } from './agentsMod
 import { CLAIM_KEY } from './claimEntry.ts'
 import type { AgentKeyMade, AgentsView } from './agentsModel.ts'
 
+const AgentJoin = defineAsyncComponent(() => import('./AgentJoin.vue'))
+const AgentArena = defineAsyncComponent(() => import('./AgentArena.vue'))
 const { game } = useApp()
 const lite = useAccountLite()
 const view = ref<AgentsView | null>(null)
@@ -102,7 +104,7 @@ onMounted(() => {
       <template v-else>
         <div v-if="view.keys.length" class="ui-rows">
           <div v-for="key in view.keys" :key="key.id" class="ui-row" data-agent-row>
-            <span class="ui-row-body"><b>{{ key.name }}</b><small>{{ key.mode === 'agent' ? `Plays ${key.character ?? 'an agent character'}` : 'Plays your own character' }} · {{ since(key.lastUsedAt, game.serverNow()) }}</small><small v-if="key.suspended" class="ui-error">{{ SUSPENDED_WORDS[key.suspended] }}</small></span>
+            <span class="ui-row-body"><b>{{ key.name }}</b><small>{{ key.mode === 'agent' ? `Plays ${key.character ?? 'an agent character'}` : 'Plays your own character' }}{{ key.signIn ? ` · signed in through ${key.signIn}` : '' }} · {{ since(key.lastUsedAt, game.serverNow()) }}</small><small v-if="key.suspended" class="ui-error">{{ SUSPENDED_WORDS[key.suspended] }}</small></span>
             <button type="button" class="ui-button" :disabled="busy" @click="renaming = { id: key.id, name: key.name }">Rename</button>
             <button type="button" class="ui-button" :disabled="busy" data-agent-revoke @click="revoke(key.id)">Revoke</button>
           </div>
@@ -131,6 +133,8 @@ onMounted(() => {
           <button type="submit" class="ui-button is-primary" :disabled="busy" data-agent-create>Make a key</button>
         </form>
         <p v-else class="settings-note">You have {{ view.limits.keys }} keys, the most one account can hold. Revoke one to make another.</p>
+        <AgentJoin :made="made" :signed-in="view.signedIn" />
+        <AgentArena v-if="view.characters.length" />
         <p class="settings-note">An agent plays by the same rules and limits as you (the only extra is a safety ceiling of {{ view.limits.callsPerDay ?? 6000 }} calls a day per key).</p>
       </template>
       <p v-if="said" class="ui-error" role="alert" data-agent-said>{{ said }}</p>

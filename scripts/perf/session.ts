@@ -117,7 +117,7 @@ function hottest(profile: Profile): string[] {
     return (sources.get(name)!.split('\n')[f.lineNumber] ?? '').slice(f.columnNumber, f.columnNumber + 110).replace(/\s+/g, ' ');
   };
   return [...places.values()].filter((entry) => !['(idle)', '(program)'].includes(entry.frame.functionName)).sort((a, c) => c.ms - a.ms).slice(0, 14)
-    .map((entry) => `${round(entry.ms)} ms  ${entry.frame.functionName || '(anonymous)'}  ${(entry.frame.url.split('/').pop() ?? '').replace(/-[0-9a-f]{8}\.js$/, '.js')}  ${code(entry.frame)}`);
+    .map((entry) => `${round(entry.ms)} ms  ${entry.frame.functionName || '(anonymous)'}  ${(entry.frame.url.split('/').pop() ?? '').replace(/-[0-9a-f]{7}\.js$/, '.js')}  ${code(entry.frame)}`);
 }
 async function measure(b: Browser, screen: string, what: string, body: () => Promise<void>): Promise<Row> {
   const before = await metrics(b);
@@ -287,7 +287,7 @@ try {
     await holding(b, at);
     if (at === 1) await b.screenshot(join(out, `${label}-round1.png`)).catch(() => undefined);
   }
-  const chunks = await b.eval<{ name: string; kB: number; ms: number }[]>(`performance.getEntriesByType('resource').filter((e) => /\\.js(\\?|$)/.test(e.name)).map((e) => ({ name: e.name.split('/').pop().replace(/-[0-9a-f]{8}\\.js$/, '.js'), kB: Math.round((e.decodedBodySize || 0) / 1024), ms: Math.round(e.duration) })).sort((a, c) => c.kB - a.kB).slice(0, 14)`);
+  const chunks = await b.eval<{ name: string; kB: number; ms: number }[]>(`performance.getEntriesByType('resource').filter((e) => /\\.js(\\?|$)/.test(e.name)).map((e) => ({ name: e.name.split('/').pop().replace(/-[0-9a-f]{7}\\.js$/, '.js'), kB: Math.round((e.decodedBodySize || 0) / 1024), ms: Math.round(e.duration) })).sort((a, c) => c.kB - a.kB).slice(0, 14)`);
   const report = { label, when: new Date().toISOString(), renderer, load, rows, opens, held, chunks, notes, consoleErrors: b.consoleErrors.slice(0, 12) };
   writeFileSync(join(out, `${label}.json`), JSON.stringify(report, null, 2));
   const lines = [`### ${label}: first load on the phone profile`, '', `First paint ${load.firstPaintMs} ms · entry page ready ${load.readyMs} ms · blocking time ${load.blockingMs} ms (longest task ${load.longestTask} ms) · ${load.requests} requests, ${load.kilobytes} kB (${load.scriptKilobytes} kB script)`, '',

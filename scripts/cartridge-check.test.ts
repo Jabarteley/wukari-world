@@ -16,13 +16,13 @@ const entry = (assets: CartridgeAsset[] = [], cap?: number): Cartridge => define
 const source = (files: Record<string, Uint8Array> = {}, notice = ''): Source => ({ root: '.', read: (p) => files[p] ?? null, notice })
 // A build: the page, its entry chunk, the cartridge chunk importing a shared chunk (already in the first download) and a lazy one of its own.
 const build = (extra: Record<string, Uint8Array> = {}): Dist => new Map<string, Uint8Array>(Object.entries({
-  'index.html': enc('<script type="module" src="/assets/app-aaaaaaaa.js"></script>'),
-  'assets/app-aaaaaaaa.js': enc('import"./engine-bbbbbbbb.js";'),
-  'assets/engine-bbbbbbbb.js': noise(5000),
-  'assets/FightGame-cccccccc.js': enc('import{x}from"./engine-bbbbbbbb.js";import"./fight-dddddddd.js";'),
-  'assets/FightGame-cccccccc.css': enc('.a{color:red}'),
-  'assets/fight-dddddddd.js': noise(3000),
-  'assets/other-eeeeeeee.js': noise(9000),
+  'index.html': enc('<script type="module" src="/assets/app-aaaaaaa.js"></script>'),
+  'assets/app-aaaaaaa.js': enc('import"./engine-bbbbbbb.js";'),
+  'assets/engine-bbbbbbb.js': noise(5000),
+  'assets/FightGame-ccccccc.js': enc('import{x}from"./engine-bbbbbbb.js";import"./fight-ddddddd.js";'),
+  'assets/FightGame-ccccccc.css': enc('.a{color:red}'),
+  'assets/fight-ddddddd.js': noise(3000),
+  'assets/other-eeeeeee.js': noise(9000),
   ...extra,
 }))
 
@@ -32,9 +32,9 @@ test('the real manifests are valid and have no missing files', () => {
 
 test('a cartridge counts its own lazy chunks and stylesheet, not the first download and not other chunks', () => {
   const files = cartridgeFiles(build(), 'FightGame')!.sort()
-  assert.deepEqual(files, ['assets/FightGame-cccccccc.css', 'assets/FightGame-cccccccc.js', 'assets/fight-dddddddd.js'])
+  assert.deepEqual(files, ['assets/FightGame-ccccccc.css', 'assets/FightGame-ccccccc.js', 'assets/fight-ddddddd.js'])
   assert.equal(cartridgeFiles(build(), 'Nothing'), null)
-  assert.equal(cartridgeFiles(build({ 'assets/FightGame-ffffffff.js': enc('x') }), 'FightGame'), null, 'two entry chunks are ambiguous')
+  assert.equal(cartridgeFiles(build({ 'assets/FightGame-fffffff.js': enc('x') }), 'FightGame'), null, 'two entry chunks are ambiguous')
 })
 
 test('a cartridge over its cap is a problem; under it is ok', () => {

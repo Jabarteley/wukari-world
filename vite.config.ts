@@ -235,7 +235,7 @@ function lazyCityLoaders(): Plugin {
     generateBundle() {
       for (const [referenceId, cityId] of emitted) {
         const fileName = this.getFileName(referenceId);
-        if (fileName !== `assets/city-${cityId}-rules-${fileName.slice(-11, -3)}.js` || !/^[0-9a-f]{8}$/.test(fileName.slice(-11, -3))) throw new Error(`City rules chunk ${fileName} is not named assets/city-${cityId}-rules-<8 hex>.js, which the startup loader rebuilds`);
+        if (fileName !== `assets/city-${cityId}-rules-${fileName.slice(-10, -3)}.js` || !/^[0-9a-f]{7}$/.test(fileName.slice(-10, -3))) throw new Error(`City rules chunk ${fileName} is not named assets/city-${cityId}-rules-<7 hex>.js, which the startup loader rebuilds`);
       }
     },
   };
@@ -273,7 +273,7 @@ export default defineConfig({
     terserOptions: { maxWorkers: 1, compress: { passes: 3 }, format: { comments: false } },
     modulePreload: { polyfill: false },
     sourcemap: wantMaps ? 'hidden' : false,
-    rollupOptions: { treeshake: { moduleSideEffects: (id) => !id.endsWith('/src/scene/home-scene.ts') && !/\/src\/game\/wardrobe\/(catalogue|rules|look|view|prices)\.ts$/.test(id) && !id.endsWith('/src/game/table-stakes.ts') && !id.endsWith('/src/character/native-catalog.ts') && !id.endsWith('/src/character/native-migration.ts') }, input: { app: 'index.html', adminshell: 'adminshell.html', replay: 'replay.html' }, output: { hashCharacters: 'hex', onlyExplicitManualChunks: true, manualChunks(id) {
+    rollupOptions: { treeshake: { moduleSideEffects: (id) => !id.endsWith('/src/scene/home-scene.ts') && !/\/src\/game\/wardrobe\/(catalogue|rules|look|view|prices)\.ts$/.test(id) && !id.endsWith('/src/game/table-stakes.ts') && !id.endsWith('/src/character/native-catalog.ts') && !id.endsWith('/src/character/native-migration.ts') }, input: { app: 'index.html', adminshell: 'adminshell.html', replay: 'replay.html' }, output: { hashCharacters: 'hex', chunkFileNames: 'assets/[name]-[hash:7].js', entryFileNames: 'assets/[name]-[hash:7].js', assetFileNames: 'assets/[name]-[hash:7][extname]', onlyExplicitManualChunks: true, manualChunks(id) {
     if (id === CITY_INDEX_ID) return 'city-index'
     if (/\/src\/game\/wardrobe\//.test(id)) return undefined
     // The stake rules are read by the server and by the Tables app only (the browser's growth system leaves 'tables.server' out): leave them to the import graph, never the engine.

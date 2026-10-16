@@ -9,7 +9,7 @@ import { APPEARANCE } from '../../../game/content/traits.ts'
 import { InputPipe } from '../../../arena/client.ts'
 import { FightPredictor } from '../../../arena/fight-predict.ts'
 import { createFightSound } from '../../../arena/fight-sound.ts'
-import { useArenaRoom } from '../../../arena/room.ts'
+import { useArenaRoom, aiName } from '../../../arena/room.ts'
 import type { ArenaScreenProps } from '../../../arena/catalog.ts'
 import ArenaRoomPanels from './ArenaRoomPanels.vue'
 import ArenaStage from './ArenaStage.vue'
@@ -166,7 +166,7 @@ function frame(now: number): void {
   const result = st?.result
   const winner = st?.status === 'over' && result ? (result.draw ? 2 : (result.winners[0] ?? -1)) : -1
   drawFight(ctx, width, height, a, b, pick?.t ?? 0, {
-    names: [st?.seats[0]?.name ?? 'You', st?.seats[1]?.name ?? 'Waiting…'], colors: [c0, c1], you, rounds: Number(st?.options.rounds ?? 3), reduced, time: now, winner, own,
+    names: [aiName(st?.seats[0]) ?? 'You', aiName(st?.seats[1]) ?? 'Waiting…'], colors: [c0, c1], you, rounds: Number(st?.options.rounds ?? 3), reduced, time: now, winner, own,
     hudTop: 52, ground: groundPx(),
   }, fx, dt)
 }

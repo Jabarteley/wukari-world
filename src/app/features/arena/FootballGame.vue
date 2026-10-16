@@ -180,7 +180,7 @@ function metaFor(): Meta {
     const seat = seats[p]
     const l = seat?.look
     looks.push(l ? { skin: hex('skin', l[0], FALLBACK_LOOKS[p % 4]!.skin), hair: hex('hairColours', l[1], FALLBACK_LOOKS[p % 4]!.hair) } : FALLBACK_LOOKS[p % 4]!)
-    names.push(seat && !seat.bot ? seat.name.slice(0, 9) : '')
+    names.push(seat && !seat.bot ? (seat.ai ? `${seat.name.slice(0, 6)} AI` : seat.name.slice(0, 9)) : '')
   }
   const team = (t: number): string => { const n = seats.filter((s, i) => i % 2 === t && !s.bot).map((s) => s.name.slice(0, 9)); return n.length ? (n.length > 1 ? n[0] + ' +' + (n.length - 1) : n[0]) as string : (t ? 'Computer' : 'Home') }
   return { names, kits: KITS, looks, you: st?.you ?? null, reduced, teamNames: [team(0), team(1)], portrait: portrait.value, overview: !live.value }

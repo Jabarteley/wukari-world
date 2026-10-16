@@ -199,14 +199,14 @@ async function main(): Promise<void> {
     const seen = new Set<string>();
     const noteNames = (text: string): void => { for (const found of text.matchAll(/\bcity-[\w-]+\.js/g)) seen.add(found[0]); };
     // The page's scripts do not name each city's chunks: an ordered city index (id and name) and an equally long, equally ordered table
-    // of the 8-hex content hashes of the rules files let the loader build `city-<id>-rules-<hash>.js` at run time. The startup holds
+    // of the 7-hex content hashes of the rules files let the loader build `city-<id>-rules-<hash>.js` at run time. The startup holds
     // those tables for Nigeria's cities only; the whole index is the lazy `city-index-<hash>.js` chunk the startup names (an older build
     // held it all in startup). Read both tables from that chunk, rebuild the names the browser would ask for, and treat them as referenced.
     const source = scripts.join('\n');
-    const indexChunk = /\bcity-index-[0-9a-f]{8}\.js\b/.exec(source)?.[0];
+    const indexChunk = /\bcity-index-[0-9a-f]{7}\.js\b/.exec(source)?.[0];
     const indexSource = indexChunk ? await (async () => { const chunk = await get(`/assets/${indexChunk}`); if (chunk.status !== 200) fail(`/assets/${indexChunk} answered ${chunk.status}`); fetched += 1; return chunk.text(); })() : source;
     const indexIds = [...(/\[(?:\["[a-z0-9-]+","[^"\]]*"\],?){10,}\]/.exec(indexSource)?.[0] ?? '').matchAll(/\["([a-z0-9-]+)","/g)].map((found) => found[1] as string);
-    const hashes = [...(/\[(?:"[0-9a-f]{8}",?){10,}\]/.exec(indexSource)?.[0] ?? '').matchAll(/"([0-9a-f]{8})"/g)].map((found) => found[1] as string);
+    const hashes = [...(/\[(?:"[0-9a-f]{7}",?){10,}\]/.exec(indexSource)?.[0] ?? '').matchAll(/"([0-9a-f]{7})"/g)].map((found) => found[1] as string);
     if (!indexIds.length || indexIds.length !== hashes.length) fail(`the ${indexChunk ?? "page's"} city index has ${indexIds.length} rows but its rules table ${hashes.length}`);
     if (indexIds.length < cities.length) fail(`the ${indexChunk ?? "page's"} city index has ${indexIds.length} rows for ${cities.length} playable cities`);
     noteNames(source);

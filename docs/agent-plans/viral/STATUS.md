@@ -10,8 +10,13 @@ Read this first in every session; update it after every phase and whenever you s
 - **Live site when this was written:** `main` at or after `c2419edb` (16 October), with every "world alive" phase live
   (docs/agent-plans/world-alive/STATUS.md).
 - **Phase 1 is live (16 October 2026, `1841c909`):** the cartridge contract and checker, replays, the 15-second reconnect, the
-  replay page, clips, real game controllers, and stakes with spectator backing. **Now:** Phase 2 (clans) is built and tested on
-  `claude/viral-clans`, in CI before release. Phase A (`claude/viral-assets`) and Phase 3 (`claude/viral-agent-arena`) are being
+  replay page, clips, real game controllers, and stakes with spectator backing. **Phase 2 is live (`01409bc9`):** clans, ladders,
+  city leagues, clan wars, the clan venue room. **Phase 3 is live (`ee203d15`):** agent cups, the challenge link, /agents/join.
+  **Next:** release Phase A (its subagent is finishing), then Phase 4 (Fight in 3D, built on `claude/viral-fight`: rigged fighters,
+  ring at the rules' scale, camera, daily challenge, gist lines; measured 19 draw calls, about 8,500 triangles, 1.3 ms of script a
+  frame at 4x CPU throttle, 386 KB brotli). In flight: 6-character build hashes (`claude/viral-build-names`, the startup-noise fix
+  the owner approved) and the MCP OAuth sign-in (`claude/viral-mcp-oauth`). Implementation now goes to Sonnet/Haiku subagents; the
+  coordinator decides, reviews and releases (the owner's request). Phase A (`claude/viral-assets`) and Phase 3 (`claude/viral-agent-arena`) are being
   finished by subagents in their own worktrees; each is reviewed and released in phase order.
 
 ## Baseline (Phase 0, 16 October 2026)
@@ -45,8 +50,8 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | --- | --- | --- | --- |
 | 0 Baseline | done | `228443371` (main) | nothing to release; live was `c2419edb` |
 | 1 Cartridge standard, replays, reconnect, clips | live | `1841c909` | see "Phase 1" below; real-pad check open |
-| 2 Clans, ladders, city leagues | built, in CI | | branch `claude/viral-clans`, see "Phase 2" |
-| 3 Agent arena | started, stopped | | branch `claude/viral-agent-arena` |
+| 2 Clans, ladders, city leagues | live | `01409bc9` | see "Phase 2" |
+| 3 Agent arena | live | `ee203d15` | see "Phase 3" |
 | A Asset pipeline | started, stopped | | branch `claude/viral-assets` |
 | 4 Polish Fight | not started | | |
 | 5 Polish Race | not started | | |
@@ -89,6 +94,12 @@ hashes, or moving the city chunk hash list out of the engine chunk) is a shared 
 
 ## Phase 2 (16 October 2026)
 
+**Live at `01409bc9`** (release 38863942924, CI 38862832625, live smoke PASS, the Clans screen checked on the live site at 390x844).
+The first release attempt (`d8b14c8d`) was refused by the package guard: the Worker bundle passed its 3,500,000-byte limit
+(3,516,320). Fixed by building the Worker with minified local names (`scripts/package-joinallworld.mjs`; the edge tests build it the
+same way): 2,758,057 bytes, Worker import 106 ms under Miniflare, local Worker smoke PASS. No limit was raised. Small follow-up:
+the league tab shows the raw week number ("Week 2963"); it will say "This week".
+
 Built on `claude/viral-clans` (the earlier agent's rules and server kept after review; finished and tested): clans of 25 (admin
 setting) with leader, two deputies, six-letter codes and the invite link `/?table=clan-<code>` (kept across the quick start; link
 preview "Join my clan on Allworld"), kick with a day's ban, the clan chat (a group the clan owns), and **the clan's venue room**
@@ -99,6 +110,19 @@ home-city pin with the winner in the gist, and weekly clan wars on the top 80% w
 section of the Games app (lazy). Review found and fixed: a clan war always settled as a draw (points read after they were
 removed), a test-clock gap in the league, and an untyped route module. Tests: 5 against a real server plus the pure ones. Checked
 in a 390x844 browser: start, share, open the invite as a new player, preview, join, ladders.
+
+## Phase 3 (16 October 2026)
+
+**Live at `ee203d15`** (release 38868544013, CI 38867051851, live smoke PASS; /agents/join and /agents/league answer). Finished by a
+subagent on `claude/viral-agent-arena` from the earlier agent's work, reviewed before release. Weekly agent cups in games (agents'
+keys play arena and table seats, knockout or round robin by rating, server-owned clocks) and in life (richest stall from takings
+by people only, most friends, most missions, office), Monday to Sunday Lagos time, settled on the heartbeat; prizes through the
+server-only bonus line (₦2,000 / ₦1,000 / ₦500, at most ₦4,000 a character a week, only with four different people entered); the
+owner's badge and card; standings and "agents playing now" with watch links on the Agent league page; the challenge link (a game or
+a 7-day life contest) to a card with both names and AI marks; `/agents/join` with each assistant's exact steps from the owner's own
+key (Claude, ChatGPT, Gemini CLI, Cursor and VS Code deep links), a `.mcpb` bundle and a starter prompt. Agent rooms are watch-only,
+never staked or backed, and stay off people's ladders. `docs/AGENT-ARENA.md` lists what cannot be prevented. Not verified: the
+bundle and deep links installed in the real apps (tests decode them).
 
 ## The owner's decisions (16 October 2026)
 
@@ -113,10 +137,20 @@ in a 390x844 browser: start, share, open the invite as a new player, preview, jo
 8. The agent may install Blender and make our own realistic assets with it, for the world and for the mini games, from committed
    scripts, within the budgets (PHASES.md, "Making our own assets with Blender").
 
+9. (16 October, evening) **Every game must be oriented properly on a phone and must not lag.** Portrait and landscape both framed
+   well (the controls never cover the play, the full-screen button turns the phone to landscape where it can), and smooth on a
+   cheap phone: downloading and caching ahead of time is allowed (prefetch a game's chunks and models when the Games app opens or
+   the phone is idle; the browser and service worker caches keep them), and the renderer lowers its resolution by itself when frames
+   run slow.
+
 ## Questions for the owner
 
-- **Startup brotli noise** (see Phase 1): may an agent change how chunk hashes are named or where the city chunk list lives, so
-  the first download stops moving by about 200 bytes with every lazy change? The limits themselves would not change.
+None open. Answered 16 October 2026 (evening):
+- **Startup brotli noise:** yes, an agent may change how build files are named (or where the chunk lists live) so the first download
+  stops moving with every lazy change; the limits in src/budgets.ts stay as they are.
+- **Agent cup prizes:** yes: ₦2,000 / ₦1,000 / ₦500, at most ₦4,000 a character a week, only when four different people entered.
+- **OAuth for web assistants:** yes: the MCP endpoint gets an OAuth sign-in so ChatGPT and Claude on the web can connect; the owner
+  accepts the connector terms.
 
 Answered 16 October 2026:
 - Clans: 25 members, and a clan may own a venue room (a room in a venue that the clan holds, with its name and colour; the venue
@@ -137,6 +171,10 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: the owner asked that every game be oriented properly on a phone and never laggy; prefetching and caching allowed.
+- 2026-10-16: the owner answered: build-file naming may change, the cup prizes stand, OAuth for web assistants yes.
+- 2026-10-16: Phase 3 live at `ee203d15` (agent cups, challenge link, join page).
+- 2026-10-16: Phase 2 live at `01409bc9` (with the Worker build minifying local names to stay within its guard).
 - 2026-10-16: Phase 1 complete and live at `1841c909` (1c: stakes and backing). Phase 2 built and in CI.
 - 2026-10-16: Phase 1a+1b live at `45723a6e` (contract, checker, replays, reconnect, replay page, clips, controllers).
 - 2026-10-16: Phase 0 baseline recorded (main `228443371`, live `c2419edb`, typecheck clean, Blender 5.2.2 installed).

@@ -47,7 +47,7 @@ export interface ChatRefusal { seq: number; text: string }
 /** The player's group of a public venue: how many are with them, in the venue, in how many groups; `header` is the line the lists lead with. */
 export interface GroupView { here: number; total: number; groups: number; cap: number; header: string }
 /** One group in "See other groups": a stranger is only a count, a friend is named. */
-export interface GroupChoice { id: string; no: number; size: number; open: boolean; mine: boolean; friends: string[] }
+export interface GroupChoice { id: string; no: number; size: number; open: boolean; mine: boolean; friends: string[]; clan?: { name: string; hex: string } }
 export interface GroupList { groups: GroupChoice[]; more: number; total: number }
 /** A friend the player could not be placed with: the panel offers one tap to join their group. */
 export interface ApartFriend { id: string; name: string; waiting: boolean }

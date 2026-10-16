@@ -406,6 +406,8 @@ function buildService(ctx: RouteContext) {
     }
     for (const seat of room.seats) seat.again = false;
     sendAll(room, { type: 'arena-snap', room: room.code, k: room.tick, s: room.snap });
+    // The ladders and city leagues listen (server/clans/, src/clans/results.ts): a finished game is told once, with the seats and who won.
+    if (!room.practice) ctx.emit?.('game-result', { match: `${room.code}.${room.match}`, game: room.rules.id, at: ctx.now(), seats: room.seats.map((seat) => ({ id: seat.id, bot: seat.bot })), winners: outcome.winners, draw: outcome.draw, ...(ranked ? { places: ranked } : {}) });
     announce(room);
     if (room.driven) { room.driven.queue = []; try { room.driven.onOver?.(room.replayId) } catch { /* the tournament keeps its own result */ } }
   }

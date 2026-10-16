@@ -624,6 +624,8 @@ function buildService(ctx: RouteContext) {
           if (mine && people.length) mine.offers = { match: match.id, people };
         }
         count(g, t, table.cityId, humans.length > 1 ? 'table.human' : 'table.bot');
+        // The ladders and city leagues (server/clans/): one result per match between at least two people, recorded with this one.
+        if (humans.length > 1) ctx.checks?.gameResult?.(db, { match: match.id, game, at: t, seats: humans.map(({ seat, index }) => ({ id: seat.id, score: outcome.draw ? 0.5 : outcome.winners.includes(index) ? 1 : 0 })) });
       });
       owned.delete(match.id);
     } catch (error) {

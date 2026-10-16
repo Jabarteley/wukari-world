@@ -108,6 +108,8 @@ import { VOICE_RADIUS } from '../protocol.ts';
 import { ROOM_CHAT_QUIET_MS, ROOM_FRIEND_NEAR, ROOM_GROUP_LIST, ROOM_GROUP_MAX, ROOM_GROUP_MIN, ROOM_GROUP_OVERFLOW, ROOM_GROUP_TARGET, ROOM_MOVE_FLUSH_MS, groupNotice } from '../../src/game/roomGroups.ts';
 import type { RoomGroupLimits } from '../../src/game/roomGroups.ts';
 import { newVenue, place, planMerge, seat, unseat } from './groups.ts';
+import { clanVenueOf } from '../clans/venue.ts';
+import type { VenueHold } from '../clans/venue.ts';
 import type { Venue } from './groups.ts';
 import { presenceAudience } from '../social/founder.ts';
 import { watchLives } from '../life-service.ts';
@@ -183,6 +185,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
   // ---- groups (in memory only: nothing here is stored, and a host that lost its memory rebuilds it from the sockets) ----
   const limits: RoomGroupLimits = { target: ctx.config.roomGroupTarget ?? ROOM_GROUP_TARGET, max: ctx.config.roomGroupMax ?? ROOM_GROUP_MAX, min: ctx.config.roomGroupMin ?? ROOM_GROUP_MIN };
   const venues = new Map<string, Venue>(); // public venue room key → its groups
+  const clanHolds = new Map<string, VenueHold & { at: number }>(); // `${room}|${clan}` → the clan whose members are seated together there (memory only)
   const groupSockets = new Map<string, Set<WsConnection>>(); // `${room}#${group}` → the sockets in that group
   const friendsCache = new Map<string, { at: number; set: ReadonlySet<string> }>(); // player → mutual friends, read when they joined
   const FRIENDS_FRESH_MS = 60000;
@@ -824,7 +827,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       const hostId = rawHostId === undefined ? null : String(rawHostId).toLowerCase();
       const guestOf = hostId !== null && hostId !== ws.session.id ? hostId : null; // the host whose Home room a guest is joining
       const visiting = guestOf !== null;
-      const { until, look, friends, follow, open, room, streetPlot, streetReturn } = await store.transact(db => {
+      const { until, look, friends, follow, open, room, streetPlot, streetReturn, hold } = await store.transact(db => {
         const session = core.sessionOf(ws, db);
         if (!session || session.expiresAt <= now()) throw Error('device_session_required');
         // A guest's own life is the one they play (a visit is a room, not a journey): in the host's city too, they need no life of theirs there.
@@ -840,6 +843,9 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
         // WHO THEY BELONG WITH, for a public venue's group: their mutual friends, and whoever they came to be with (a friend named in
         // `with`, or the friend whose ping they just joined). Read here, with the admission, so the group is chosen from what is stored.
         const friends = new Set(venueId === 'home' ? [] : presenceAudience(db.social?.players, session.publicId));
+        // A clan's venue room (server/clans/venue.ts): in the venue the clan holds, its members are seated together like friends.
+        const hold = venueId === 'home' ? null : clanVenueOf(db, session.publicId, cityId, venueId);
+        if (hold) for (const member of hold.members) if (member !== session.publicId) friends.add(member);
         let follow: string | null = null;
         if (venueId !== 'home') {
           follow = typeof message.with === 'string' && friends.has(message.with) ? message.with : null;
@@ -853,7 +859,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
         const room = venueRoomKey(cityId, venueId, guestOf ?? session.publicId, state.estate.plot);
         const journey = db.street?.journeys?.[session.publicId], plot = state.estate.plot;
         const streetReturn = journey?.kind === 'estate' && journey.city === cityId && plot && journey.anchor.lga === plot.lga && journey.anchor.estate === plot.estate && journey.anchor.plot === plot.plot ? journey.estatePosition : undefined;
-        return { until: guestOf !== null ? guestUntil(db, session.publicId, guestOf, cityId) : canOccupyVenue(state, venueId) ? Infinity : 0, look, friends, follow, room, open: guestOf !== null && openWhileOut(db, guestOf), streetPlot: plot, streetReturn };
+        return { until: guestOf !== null ? guestUntil(db, session.publicId, guestOf, cityId) : canOccupyVenue(state, venueId) ? Infinity : 0, look, friends, follow, room, open: guestOf !== null && openWhileOut(db, guestOf), streetPlot: plot, streetReturn, hold };
       // ADMISSION FOLLOWS WHAT IS IN THE FILE. The check can read a permission that is applied in
       // memory but not yet written (a host's "let them in", an arrival). `waitForObserved` holds the
       // join until those changes are in the file and rejects it ('storage_unavailable') if their
@@ -869,6 +875,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       if (venueId === 'neighbourhood' && streetPlot) { streetGate.seed(ws.session.id, room, streetPlot, now(), streetReturn); ws.streetGateProof = streetGate.snapshot(ws.session.id); }
       ws.deltas = message.deltas === true;
       if (grouped(room)) friendsCache.set(ws.session.id, { at: now(), set: friends });
+      if (hold && grouped(room)) clanHolds.set(`${room}|${hold.clan}`, { ...hold, at: now() });
       const { apart } = enter(ws, room, { friends, follow });
       ws.stale = false; ws.guestUntil = visiting ? Math.min(now() + GUEST_RECHECK_MS, until) : 0;
       if (deltaOf(ws)) snapshot(ws);
@@ -925,7 +932,10 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
         const home = venue.where.get(friend), name = nameOf(friend, room);
         if (home !== undefined && name !== null && !hidden(me, friend)) named.set(home, [...(named.get(home) ?? []), { id: friend, name }]);
       }
-      const all: GroupSummary[] = [...venue.groups.values()].map(group => ({ id: group.id, no: group.no, size: group.players.size, open: group.players.size < limits.max, mine: group.id === ws.group, friends: (named.get(group.id) ?? []).slice(0, 5) }));
+      // A group where two or more members of a clan that holds a room here stand carries the clan's name and colour.
+      const holds = [...clanHolds.entries()].filter(([key, h]) => key.startsWith(`${room}|`) && now() - h.at < 6 * 3600000).map(([, h]) => h);
+      const clanOf = (group: { players: Set<string> }): { name: string; hex: string } | null => { for (const h of holds) if (h.members.filter((m) => group.players.has(m)).length >= 2) return { name: h.name, hex: h.hex }; return null; };
+      const all: GroupSummary[] = [...venue.groups.values()].map(group => { const clan = clanOf(group); return { id: group.id, no: group.no, size: group.players.size, open: group.players.size < limits.max, mine: group.id === ws.group, friends: (named.get(group.id) ?? []).slice(0, 5), ...(clan ? { clan } : {}) }; });
       all.sort((a, b) => Number(b.mine) - Number(a.mine) || b.friends.length - a.friends.length || b.size - a.size || a.no - b.no);
       send(ws, { type: 'groups', here: venue.groups.get(ws.group)?.players.size ?? 1, total: venue.where.size, groups: all.slice(0, ROOM_GROUP_LIST), more: Math.max(0, all.length - ROOM_GROUP_LIST) });
     }),

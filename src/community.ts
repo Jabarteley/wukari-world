@@ -75,7 +75,7 @@ type Incoming =
   | { type: 'presence'; members?: RoomMember[]; counts?: GroupCounts; delta?: boolean }
   | { type: 'presence-delta'; joined?: RoomMember[]; left?: string[]; moved?: { id: string; x: number; z: number }[]; voice?: { id: string; enabled: boolean; muted?: boolean }[]; counts?: GroupCounts }
   | { type: 'group'; event?: string; here?: number; text?: string; friend?: { id: string; name: string } }
-  | { type: 'groups'; total?: number; more?: number; groups?: { id: string; no: number; size: number; open: boolean; mine: boolean; friends?: { id: string; name: string }[] }[] }
+  | { type: 'groups'; total?: number; more?: number; groups?: { id: string; no: number; size: number; open: boolean; mine: boolean; friends?: { id: string; name: string }[]; clan?: { name: string; hex: string } }[] }
   | { type: 'chat'; id: string; clientId?: string; from?: PublicSession; body: string; speaker?: 'agent'; voiceSeed?: number }
   | { type: 'voice-text'; id: string; from?: PublicSession; body: string; voiceSeed?: number; x?: number; z?: number }
   | { type: 'signal'; from: string; data?: unknown }
@@ -485,7 +485,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
       return
     }
     if (message.type === 'groups') {
-      groupList = { total: Number(message.total ?? 0), more: Number(message.more ?? 0), groups: (message.groups ?? []).map((group) => ({ id: group.id, no: group.no, size: group.size, open: group.open, mine: group.mine, friends: (group.friends ?? []).map((friend) => friend.name) })) }
+      groupList = { total: Number(message.total ?? 0), more: Number(message.more ?? 0), groups: (message.groups ?? []).map((group) => ({ id: group.id, no: group.no, size: group.size, open: group.open, mine: group.mine, friends: (group.friends ?? []).map((friend) => friend.name), ...(group.clan && typeof group.clan.name === 'string' ? { clan: { name: group.clan.name, hex: /^#[0-9a-f]{6}$/i.test(group.clan.hex) ? group.clan.hex : '#888888' } } : {}) })) }
       emit()
       return
     }

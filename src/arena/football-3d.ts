@@ -394,6 +394,8 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
   /** A goalkeeper: stands in his goal facing the pitch, leans with his sideways steps, and in a shoot-out dives to his side. */
   function keeperTick(body: Body, w: { x: number; z: number }, so: ShootSnap | undefined, dt: number, conceded: boolean, now: number): void {
     const team = body.team
+    // In a shoot-out only the keeper who is shot at is on the pitch (the other end is out of the picture, and not drawn).
+    body.holder.visible = !(so && so.w < 0 && team === so.t)
     body.holder.position.set(w.x, 0, w.z)
     const target = yawFor(team === 0 ? 0 : 12) // team 0's keeper is at the -x end and looks along +x
     body.yaw = Number.isNaN(body.lx) ? target : turnTo(body.yaw, target, 1 - Math.exp(-10 * dt))

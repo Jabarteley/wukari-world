@@ -54,7 +54,7 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | 3 Agent arena | live | `ee203d15` | see "Phase 3" |
 | A Asset pipeline | live | `c254d4327` | packs for all three games, credits in Help, Blender scripts |
 | 4 Polish Fight | 4a live (3D) | `40e1e614` | 4b next: realistic fighters, portrait tidy-ups |
-| 5 Polish Race | not started | | |
+| 5 Polish Race | live (3D) | `f87981e1` | realistic cars later; see "Phase 5" |
 | 6 Polish Football | not started | | |
 | 7 Videos (Nigeria first) | not started | | |
 | 8 Open the standard | not started | | owner decides when |
@@ -148,7 +148,7 @@ key (Claude, ChatGPT, Gemini CLI, Cursor and VS Code deep links), a `.mcpb` bund
 never staked or backed, and stay off people's ladders. `docs/AGENT-ARENA.md` lists what cannot be prevented. Not verified: the
 bundle and deep links installed in the real apps (tests decode them).
 
-## Phase 5: Race in 3D (16 October 2026, branch `claude/viral-race`, not released)
+## Phase 5: Race in 3D (16 October 2026, live at `f87981e1`: release 38893610686, smoke PASS, checked live at 390x844 and 844x390, 28 calls, about 22,000 triangles, no page errors)
 
 - **What a player gets.** Race is drawn in 3D from behind their own car (a viewer follows the leader or the car they tap), on the three
   tracks: the Kenney race cars (red, orange, green, white, one a seat) with wheels that roll with the speed and front wheels that steer, a
@@ -234,6 +234,7 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: Phase 5 live at `f87981e1` (Race in 3D). Phase 4b (realistic fighters) and Phase 6 (Football) being built.
 - 2026-10-16: Phase 4a live at `40e1e614` (Fight in 3D). Race (Phase 5) built and in CI; Football (Phase 6) being built.
 - 2026-10-16: live in order: the MCP OAuth sign-in for web assistants (`9e8b5b3b`; discovery documents and the 401 challenge
   checked live), 7-character build hashes (`80768f46`; first-download brotli 195,569 to about 195,300, so chance overages stop),

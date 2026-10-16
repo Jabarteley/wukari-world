@@ -12,7 +12,11 @@ Read this first in every session; update it after every phase and whenever you s
 - **Phase 1 is live (16 October 2026, `1841c909`):** the cartridge contract and checker, replays, the 15-second reconnect, the
   replay page, clips, real game controllers, and stakes with spectator backing. **Phase 2 is live (`01409bc9`):** clans, ladders,
   city leagues, clan wars, the clan venue room. **Phase 3 is live (`ee203d15`):** agent cups, the challenge link, /agents/join.
-  **Next:** release Phase A (its subagent is finishing), then Phase 4 (Fight in 3D, built on `claude/viral-fight`). Phase A (`claude/viral-assets`) and Phase 3 (`claude/viral-agent-arena`) are being
+  **Next:** release Phase A (its subagent is finishing), then Phase 4 (Fight in 3D, built on `claude/viral-fight`: rigged fighters,
+  ring at the rules' scale, camera, daily challenge, gist lines; measured 19 draw calls, about 8,500 triangles, 1.3 ms of script a
+  frame at 4x CPU throttle, 386 KB brotli). In flight: 6-character build hashes (`claude/viral-build-names`, the startup-noise fix
+  the owner approved) and the MCP OAuth sign-in (`claude/viral-mcp-oauth`). Implementation now goes to Sonnet/Haiku subagents; the
+  coordinator decides, reviews and releases (the owner's request). Phase A (`claude/viral-assets`) and Phase 3 (`claude/viral-agent-arena`) are being
   finished by subagents in their own worktrees; each is reviewed and released in phase order.
 
 ## Baseline (Phase 0, 16 October 2026)
@@ -133,6 +137,12 @@ bundle and deep links installed in the real apps (tests decode them).
 8. The agent may install Blender and make our own realistic assets with it, for the world and for the mini games, from committed
    scripts, within the budgets (PHASES.md, "Making our own assets with Blender").
 
+9. (16 October, evening) **Every game must be oriented properly on a phone and must not lag.** Portrait and landscape both framed
+   well (the controls never cover the play, the full-screen button turns the phone to landscape where it can), and smooth on a
+   cheap phone: downloading and caching ahead of time is allowed (prefetch a game's chunks and models when the Games app opens or
+   the phone is idle; the browser and service worker caches keep them), and the renderer lowers its resolution by itself when frames
+   run slow.
+
 ## Questions for the owner
 
 None open. Answered 16 October 2026 (evening):
@@ -161,6 +171,7 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: the owner asked that every game be oriented properly on a phone and never laggy; prefetching and caching allowed.
 - 2026-10-16: the owner answered: build-file naming may change, the cup prizes stand, OAuth for web assistants yes.
 - 2026-10-16: Phase 3 live at `ee203d15` (agent cups, challenge link, join page).
 - 2026-10-16: Phase 2 live at `01409bc9` (with the Worker build minifying local names to stay within its guard).

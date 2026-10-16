@@ -52,9 +52,9 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | 1 Cartridge standard, replays, reconnect, clips | live | `1841c909` | see "Phase 1" below; real-pad check open |
 | 2 Clans, ladders, city leagues | live | `01409bc9` | see "Phase 2" |
 | 3 Agent arena | live | `ee203d15` | see "Phase 3" |
-| A Asset pipeline | started, stopped | | branch `claude/viral-assets` |
-| 4 Polish Fight | not started | | |
-| 5 Polish Race | not started | | |
+| A Asset pipeline | live | `c254d4327` | packs for all three games, credits in Help, Blender scripts |
+| 4 Polish Fight | 4a live (3D) | `40e1e614` | 4b next: realistic fighters, portrait tidy-ups |
+| 5 Polish Race | live (3D) | `f87981e1` | realistic cars later; see "Phase 5" |
 | 6 Polish Football | not started | | |
 | 7 Videos (Nigeria first) | not started | | |
 | 8 Open the standard | not started | | owner decides when |
@@ -111,6 +111,21 @@ section of the Games app (lazy). Review found and fixed: a clan war always settl
 removed), a test-clock gap in the league, and an untyped route module. Tests: 5 against a real server plus the pure ones. Checked
 in a 390x844 browser: start, share, open the invite as a new player, preview, join, ladders.
 
+## Phase 4 (16 October 2026)
+
+**4a live at `40e1e614`** (release 38890948167, CI green, smoke PASS; a practice fight checked on the live site at 390x844 and
+844x390, the versioned models loading, no page errors). Fight is drawn in 3D: two CC0 KayKit fighters whose punch, kick, block, hit,
+knock-down and cheer clips are timed to the server's moves; our own Blender ring at the rules' scale (1.8 m fighters, a 16.5 m ring);
+a dark hall; a camera framing the pair clear of the HUD and the thumbs in portrait and landscape (re-framed on rotate), shaking on
+hits and turning round a knock-out; sparks; the 2D view as the fallback. The renderer lowers its resolution when frames run slow and
+earns it back at a steady 60 Hz; the 3D pieces are fetched when the Games app opens or the phone is idle (not on Save-Data or 2G),
+and every model link carries a content version so updates reach players despite the year-long cache. A daily challenge against the
+computer with a streak; matches between people become a gist line in the winner's city. Measured (headless Chromium, software GL:
+frame times are not a phone's): 19 draw calls, about 8,500 triangles, 1.3-1.6 ms of script a frame at 4x CPU throttle; the cartridge
+388 KB brotli of 1.5 MB. **4b, next:** realistic fighters (the players' own characters with fight clips we make in Blender for their
+skeleton, as the KayKit fighters are stylised), the hall lamps showing behind the portrait top bar, the pair a little off centre in
+portrait, clips rendered from the 3D view. Not verified: a real phone's frame rate, a real Bluetooth pad.
+
 ## Phase 3 (16 October 2026)
 
 **Live at `ee203d15`** (release 38868544013, CI 38867051851, live smoke PASS; /agents/join and /agents/league answer). Finished by a
@@ -123,6 +138,45 @@ a 7-day life contest) to a card with both names and AI marks; `/agents/join` wit
 key (Claude, ChatGPT, Gemini CLI, Cursor and VS Code deep links), a `.mcpb` bundle and a starter prompt. Agent rooms are watch-only,
 never staked or backed, and stay off people's ladders. `docs/AGENT-ARENA.md` lists what cannot be prevented. Not verified: the
 bundle and deep links installed in the real apps (tests decode them).
+
+## Phase 5: Race in 3D (16 October 2026, live at `f87981e1`: release 38893610686, smoke PASS, checked live at 390x844 and 844x390, 28 calls, about 22,000 triangles, no page errors)
+
+- **What a player gets.** Race is drawn in 3D from behind their own car (a viewer follows the leader or the car they tap), on the three
+  tracks: the Kenney race cars (red, orange, green, white, one a seat) with wheels that roll with the speed and front wheels that steer, a
+  body that leans out of bends and dives under braking, tyre smoke on slides, a flame on a boost, sparks and a camera shake on a bump, a
+  road with kerbs on the outside of bends, a chequered start line and boost pads, barriers and fences along both edges, a grandstand and pit
+  garages by the start, palms and sand (Lekki, Ikoyi) or a lagoon, a deck and piers, lamps and stalled danfos and okadas (Third Mainland).
+  The countdown pulls in from behind, the camera widens with speed, and when the car being followed crosses the line a low angle by the
+  line holds for 2.6 s. The HUD (place, lap, time, speed in km/h, minimap, names, FINISHED, 3-2-1, GO) is the existing one over the 3D
+  view. Without WebGL, or if the models fail, the old 2D view draws everything. Controllers, keys and touch are untouched.
+- **Rules: unchanged, `rev` stays 1.** `race.ts`, the snapshot and the tracks are as they were; all the feel (roll, pitch, steering
+  angle, spin, smoke, camera) is read from the snapshot in the browser. Units: 0.1 m a rules unit (a car is 40 units, 4 m long; the road
+  18 m between kerbs; a lap about 450-520 m; the quickest cars about 65 km/h).
+- **Files.** `src/arena/race-3d.ts` (lazy chunk), `race-3d-geo.ts` (pure: road ribbon, placements, wheel and lean maths, camera poses),
+  `race-units.ts`, `race-3d.test.ts` (23 tests); `race-draw.ts` gains `drawRaceHud`; `RaceGame.vue` (3D canvas under the HUD canvas,
+  insets, resize, `orientationchange` then again 250 ms later); `preload.ts` `warmRace()` (Games hub open and idle, same skips);
+  `cartridges.ts` (race: `lazy: ['race-3d', 'meshopt_decoder.module', 'native-body']` and twelve CC0 Kenney assets).
+- **Measured** (headless Chromium with a software GL: frame times are not a phone's, the script cost is what the numbers say; CPU
+  throttle 4x via CDP, four cars, 16 s of driving):
+
+  | Screen | script / frame (median, p95) | draw calls | triangles |
+  | --- | --- | ---: | ---: |
+  | 390 x 844 | 1.3 ms, 1.9 ms | 39 | 24,400 |
+  | 360 x 740 | 1.3 ms, 1.9 ms | 39 | 24,400 |
+  | 844 x 390 | 1.4 ms, 2.2 ms | 41 | 24,200 |
+  | 667 x 375 | 1.3 ms, 2.0 ms | 39 | 24,200 |
+  | Third Mainland (lobby view, 4 cars) | 0.5 ms (not throttled) | 43 | 28,400 |
+
+  Two cars: 25-28 calls, about 21,400 triangles. Barriers, fences, trees and lamps are drawn only 40 m behind to 170 m ahead of the car
+  (all of them were 42,000 triangles). Race cartridge: 257,088 bytes brotli (217,649 of chunks, 39,439 of models) of 1,500,000.
+- **Checks.** Typecheck clean; `src/arena/*.test.ts` and the others in the arena command pass (172); `npm run cartridge:check` ok;
+  CI run 38890821282 (merged with `origin/main` and `origin/claude/viral-fight`) green: STARTUP_RAW 613,952 (the branch it started from:
+  614,449, so it did not grow; a game is not in the first download), STARTUP_GZIP 222,444, STARTUP_BROTLI 195,390 of 195,600,
+  SCENE_HOST_RAW 188,818, LOADING_RAW 90,568, all ok.
+- **Not verified.** A real phone (frame rate, heat, touch feel on the two thumbs, a real pad over Bluetooth); a four-person live race
+  over the network; the Third Mainland track during a race (only its lobby view and camera poses were looked at: the 2-seat practice
+  starts on Lekki); Ikoyi by eye; the sound; reduced-motion mode; the photo finish for a viewer; the deck platform at the start of the
+  bridge from the chase camera. Screenshots are in the coordinator's scratch folder, not the repository.
 
 ## The owner's decisions (16 October 2026)
 
@@ -171,6 +225,11 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: Phase 5 live at `f87981e1` (Race in 3D). Phase 4b (realistic fighters) and Phase 6 (Football) being built.
+- 2026-10-16: Phase 4a live at `40e1e614` (Fight in 3D). Race (Phase 5) built and in CI; Football (Phase 6) being built.
+- 2026-10-16: live in order: the MCP OAuth sign-in for web assistants (`9e8b5b3b`; discovery documents and the 401 challenge
+  checked live), 7-character build hashes (`80768f46`; first-download brotli 195,569 to about 195,300, so chance overages stop),
+  Phase A asset packs (`c254d4327`). Smoke PASS after each.
 - 2026-10-16: the owner asked that every game be oriented properly on a phone and never laggy; prefetching and caching allowed.
 - 2026-10-16: the owner answered: build-file naming may change, the cup prizes stand, OAuth for web assistants yes.
 - 2026-10-16: Phase 3 live at `ee203d15` (agent cups, challenge link, join page).

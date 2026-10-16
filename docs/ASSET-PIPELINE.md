@@ -127,7 +127,7 @@ holds its source's `LICENSE.txt` (not counted).
   `blocking`, `block-hit`, `hit`, `hit-2`, `dodge-back`, `down`, `cheer`. `ring.glb`: the ring on a 14 m concrete floor.
 - **Race:** four cars (`raceCarRed`, `Green`, `Orange`, `White`; separate `body` and four wheel nodes, `wheelFrontLeft` and so
   on, for steering and spin), nine road pieces (start, start grid, two straights, three corners, a curve, a pit lane), barriers, a wall, a
-  fence, pylons, a chequered flag, light posts, trees, grass, a tent, two grandstands and a pit garage.
+  fence, pylons, a chequered flag, light posts, trees, grass, a tent, two grandstands and a pit garage. The Race screen (`src/arena/race-3d.ts`) loads twelve of them: the four cars, the barrier wall, the fence, a grandstand, the pit garage, two trees, a light post and the chequered flag (about 0.1 MB in all); the road itself is built from the track in code.
 - **Football:** `pitch.glb`, `goal.glb` (five-a-side), `goal-full.glb` (full size, for a penalty duel), `ball.glb`, the goals'
   shared net texture, and `player-1.glb` to `player-4.glb` (clips `idle`, `walk`, `run`, `kick`, `celebrate`, `dejected`, `down`,
   `pick-up`). No goalkeeper dive clip exists in these packs: Football rolls the whole body to the side instead (`diveRoll` in `football-3d.ts`). The players carry no normals, so the view computes them. `goal-full.glb` is not used (the five-a-side goal, scaled to the rules' own 5.2 m mouth, reads better on a phone); the pitch's marked spot at 6 m is the shoot-out's spot.

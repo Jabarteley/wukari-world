@@ -4,7 +4,7 @@
 // snapshots on a 2D canvas (src/arena/race-draw.ts), interpolates the other cars (src/arena/interp.ts) and lightly predicts the
 // player's own. A viewer without a seat gets the broadcast view: whole-track minimap, a live leaderboard with gaps, and a
 // follow-the-leader camera. A lazy chunk of the Games app.
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import BaseButton from '../../ui/BaseButton.vue'
 import { APPEARANCE } from '../../../game/content/traits.ts'
@@ -16,7 +16,8 @@ import ArenaStage from './ArenaStage.vue'
 import { drive, headingFrom256, hudPlace, INPUT, lapOf, standings } from '../../../arena/race.ts'
 import type { Car, CarSnap, RaceSnap } from '../../../arena/race.ts'
 import { buildTrack, nearestIndex, TRACK_IDS, WORLD_H, WORLD_W } from '../../../arena/race-track.ts'
-import { Confetti, defaultLook, drawRace, Skids } from '../../../arena/race-draw.ts'
+import { Confetti, defaultLook, drawRace, drawRaceHud, Skids } from '../../../arena/race-draw.ts'
+import type { Insets, RaceView } from '../../../arena/race-3d.ts'
 import { createRaceSound } from '../../../arena/race-sound.ts'
 import type { Camera, DrawCar, HudInfo } from '../../../arena/race-draw.ts'
 import type { ArenaLook } from '../../../types/arena.ts'
@@ -29,7 +30,13 @@ const { game } = useApp()
 const HZ = 20
 
 const canvas = ref<HTMLCanvasElement | null>(null)
+// The 3D view (src/arena/race-3d.ts, its own lazy chunk with three.js) draws under the 2D canvas, which then draws only the HUD.
+// Until it is ready, and wherever WebGL or the models are missing, the 2D view draws everything.
+const gl = ref<HTMLCanvasElement | null>(null)
+let view3d: RaceView | null = null
+const has3d = ref(false)
 const box = ref<HTMLElement | null>(null)
+const padEl = ref<HTMLElement | null>(null), leftEl = ref<HTMLElement | null>(null), rightEl = ref<HTMLElement | null>(null)
 
 const ownLook = (): ArenaLook | undefined => {
   const look = game.state.value.onboarding?.look as { skin?: string; hairColor?: string; outfitColor?: string; bottomsColor?: string } | undefined
@@ -109,10 +116,40 @@ function size(): void {
   const el = canvas.value, holder = box.value
   if (!el || !holder) return
   width = Math.max(200, holder.clientWidth); height = Math.max(120, holder.clientHeight)
-  const ratio = Math.min(window.devicePixelRatio || 1, 1.75)
+  // The HUD canvas only draws bars and text over the 3D view: a lower ratio there saves a cheap phone a big canvas to composite.
+  const ratio = Math.min(window.devicePixelRatio || 1, view3d ? 1.5 : 1.75)
   el.width = Math.round(width * ratio); el.height = Math.round(height * ratio)
   el.style.width = width + 'px'; el.style.height = height + 'px'
   el.getContext('2d')?.setTransform(ratio, 0, 0, ratio, 0, 0)
+  if (gl.value) { gl.value.style.width = width + 'px'; gl.value.style.height = height + 'px' }
+  view3d?.resize(width, height, insets())
+}
+/**
+ * What covers the stage, for the 3D camera: the HUD (place, lap, time at the left, the minimap at the right) on top; in landscape the two
+ * thumb clusters over the bottom corners, so the car and the road ahead are framed between them. In portrait the thumbs are below the stage.
+ */
+function insets(): Insets {
+  const holder = box.value, portrait = window.innerHeight > window.innerWidth
+  const top = portrait ? Math.round(Math.min(150, height * 0.3)) : Math.round(Math.min(64, height * 0.18))
+  if (!holder) return { top, bottom: 0, left: 0, right: 0 }
+  const at = holder.getBoundingClientRect(), pad = padEl.value?.getBoundingClientRect()
+  if (!pad || !pad.height || portrait) return { top, bottom: 10, left: 0, right: 0 }
+  const left = leftEl.value?.getBoundingClientRect(), right = rightEl.value?.getBoundingClientRect()
+  return { top, bottom: 10, left: left ? Math.max(0, Math.round(left.right - at.left) + 10) : 0, right: right ? Math.max(0, Math.round(at.right - right.left) + 10) : 0 }
+}
+/** A turn of the phone: the layout settles a moment after the event on some browsers, so measure now and again after it. */
+function turned(): void { size(); setTimeout(size, 250) }
+async function start3d(): Promise<void> {
+  if (!gl.value) return
+  try {
+    const { createRaceView } = await import('../../../arena/race-3d.ts')
+    const made = await createRaceView(gl.value, { reduced })
+    if (!made) return
+    if (!gl.value) { made.dispose(); return }
+    view3d = made; has3d.value = true; size()
+    // For measurement on a throttled phone profile (STATUS.md): frame times, draw calls and triangles.
+    ;(globalThis as { allworldRaceStats?: () => unknown }).allworldRaceStats = () => made.stats()
+  } catch { /* the 2D view goes on */ }
 }
 let watcher: ResizeObserver | null = null
 const lerp = (a: number, b: number, t: number): number => a + (b - a) * t
@@ -146,6 +183,7 @@ function frame(now: number): void {
   const a = pick?.a ?? room.latest, b = pick?.b ?? room.latest
   const track = buildTrack(trackId.value)
   if (!a || !b) {
+    if (view3d) { view3d.setTrack(trackId.value); view3d.draw({ cars: [], focus: 0, you: null, now, phase: 0, count: 0 }); ctx.clearRect(0, 0, width, height); return }
     // lobby: the whole track as a preview
     ctx.fillStyle = '#10382a'; ctx.fillRect(0, 0, width, height)
     drawRace(ctx, width, height, { trackId: trackId.value, cars: [], cam: { x: WORLD_W / 2, y: WORLD_H / 2, zoom: Math.min(width / (WORLD_W * 0.98), height / (WORLD_H * 0.98)) }, you: null, follow: -1, hud: null, spectator: false, phase: now, reduced, mini: false })
@@ -207,7 +245,12 @@ function frame(now: number): void {
     if (fin && !fxSeen.fin) { sound.finish(); confetti.burst(width); pad.rumble(0.5, 260) }
     fxSeen.hit = hit; fxSeen.boost = boost; fxSeen.fin = fin
   }
-  drawRace(ctx, width, height, { trackId: trackId.value, cars, cam, you, follow: target, hud, spectator: you == null, phase: now, reduced, skids, confetti, dtMs: dt })
+  if (view3d) {
+    view3d.setTrack(trackId.value)
+    view3d.draw({ cars, focus: target, you, now, phase: b.p, count: b.p === 0 ? b.c : 0 })
+    ctx.clearRect(0, 0, width, height)
+    drawRaceHud(ctx, width, height, { trackId: trackId.value, cars, screen: view3d.screen, you, follow: target, hud, spectator: you == null, confetti, dtMs: dt })
+  } else drawRace(ctx, width, height, { trackId: trackId.value, cars, cam, you, follow: target, hud, spectator: you == null, phase: now, reduced, skids, confetti, dtMs: dt })
   if (now - lastBoard > 200) { lastBoard = now; board.value = buildBoard(b) }
 }
 
@@ -232,17 +275,22 @@ const podium = computed(() => {
   return { top, rest: fin.slice(3).map((seat, i) => row(seat, i + 4)), dnf: order.filter((seat) => !(snap.r[seat] as CarSnap)[5]).map((seat) => row(seat, 0)) }
 })
 
+// The pad appears when the match starts and goes when it ends: the camera frames the car in what is left over.
+watch([status, seated], () => { void nextTick(size) })
+
 onMounted(() => {
   size()
-  window.addEventListener('resize', size)
+  window.addEventListener('resize', size); window.addEventListener('orientationchange', turned)
   if (typeof ResizeObserver === 'function' && box.value) { watcher = new ResizeObserver(size); watcher.observe(box.value) }
   window.addEventListener('keydown', onDown); window.addEventListener('keyup', onUp)
   document.addEventListener('visibilitychange', onHide)
   raf = requestAnimationFrame(frame)
+  void start3d()
 })
 onBeforeUnmount(() => {
   cancelAnimationFrame(raf); sound.close()
-  window.removeEventListener('resize', size); watcher?.disconnect()
+  view3d?.dispose(); view3d = null
+  window.removeEventListener('resize', size); window.removeEventListener('orientationchange', turned); watcher?.disconnect()
   window.removeEventListener('keydown', onDown); window.removeEventListener('keyup', onUp)
   document.removeEventListener('visibilitychange', onHide)
 })
@@ -254,14 +302,14 @@ onBeforeUnmount(() => {
     <div v-if="gone" class="rg-card"><p>{{ note || 'That game is not on any more.' }}</p><BaseButton variant="primary" @click="leave">Back to games</BaseButton></div>
     <template v-else>
       <div class="rg-play arena-fill">
-      <div ref="box" class="rg-stage"><canvas ref="canvas" aria-label="Race track" role="img" /></div>
+      <div ref="box" class="rg-stage" :class="{ fill: has3d && playing && seated }"><canvas ref="gl" class="rg-gl" :class="{ on: has3d }" aria-hidden="true" /><canvas ref="canvas" class="rg-hud" aria-label="Race track" role="img" /></div>
       <p v-if="note" class="rg-note" role="status">{{ note }}</p>
-      <section v-if="status === 'playing' && seated" class="rg-pad" aria-label="Controls" data-testid="race-pad">
-        <div class="rg-steer">
+      <section v-if="status === 'playing' && seated" ref="padEl" class="rg-pad" aria-label="Controls" data-testid="race-pad">
+        <div ref="leftEl" class="rg-steer">
           <button type="button" class="rg-btn mv" aria-label="Steer left" :class="{ on: down & INPUT.left }" @pointerdown="press(INPUT.left, true)($event)" @pointerup="press(INPUT.left, false)($event)" @pointercancel="press(INPUT.left, false)($event)" @pointerleave="press(INPUT.left, false)($event)">&#9664;</button>
           <button type="button" class="rg-btn mv" aria-label="Steer right" :class="{ on: down & INPUT.right }" @pointerdown="press(INPUT.right, true)($event)" @pointerup="press(INPUT.right, false)($event)" @pointercancel="press(INPUT.right, false)($event)" @pointerleave="press(INPUT.right, false)($event)">&#9654;</button>
         </div>
-        <div class="rg-pedals">
+        <div ref="rightEl" class="rg-pedals">
           <button type="button" class="rg-btn brake" aria-label="Brake" :class="{ on: down & INPUT.brake }" @pointerdown="press(INPUT.brake, true)($event)" @pointerup="press(INPUT.brake, false)($event)" @pointercancel="press(INPUT.brake, false)($event)" @pointerleave="press(INPUT.brake, false)($event)">Brake</button>
           <button type="button" class="rg-btn gas" aria-label="Gas" :class="{ on: down & INPUT.gas }" @pointerdown="press(INPUT.gas, true)($event)" @pointerup="press(INPUT.gas, false)($event)" @pointercancel="press(INPUT.gas, false)($event)" @pointerleave="press(INPUT.gas, false)($event)">Gas</button>
           <button type="button" class="rg-auto" :class="{ on: autoGas }" :aria-pressed="autoGas" aria-label="Auto gas" @click="toggleAuto">Auto gas {{ autoGas ? 'on' : 'off' }}</button>
@@ -307,7 +355,9 @@ onBeforeUnmount(() => {
 .rg-play { position: relative; flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: 6px; }
 .rg-stage { position: relative; flex: 1 1 auto; min-height: 150px; background: #10382a; border-radius: 12px; overflow: hidden; }
 .rg-stage canvas { position: absolute; left: 0; top: 0; display: block; touch-action: none; }
-@media (orientation: portrait) { .rg-stage { max-height: min(112vw, 58vh); } }
+.rg-gl { visibility: hidden; } .rg-gl.on { visibility: visible; }
+/* The 2D view keeps a squarish stage; the 3D one takes all the height there is while you drive, and the thumbs sit below it. */
+@media (orientation: portrait) { .rg-stage:not(.fill) { max-height: min(112vw, 58vh); } }
 .rg-card { display: grid; gap: 10px; padding: 14px; background: #f3efe8; border-radius: 14px; }
 .rg-card p { margin: 0; font-size: 14px; }
 .rg-note { margin: 0; color: #a33; font-size: 13px; }

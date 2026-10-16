@@ -6,6 +6,7 @@
  */
 import { buildTrack, KERB_HALF, pointAt, ROAD_HALF, WALL_HALF, WORLD_H, WORLD_W } from './race-track.ts'
 import type { Track, TrackId } from './race-track.ts'
+import { kmh } from './race-units.ts'
 
 export type CarKind = 'danfo' | 'saloon' | 'keke' | 'coupe'
 export interface CarLook { kind: CarKind; body: string; accent: string }
@@ -17,8 +18,9 @@ export interface HudInfo { /** '' while ranked, else 'DNF' or 'Left': shown inst
 /** Cars are drawn this much bigger than their physical circle so they read on a phone. */
 export const CAR_SCALE = 1.7
 const KINDS: CarKind[] = ['danfo', 'saloon', 'keke', 'coupe']
-const BODIES = ['#f6c500', '#e8553d', '#2fa56b', '#2f80ed']
-/** Default look of a seat: a danfo, a saloon, a keke and a coupe, each in its own colour so the field reads at a glance. */
+// The four Kenney race cars of the 3D view (race-3d.ts): red, orange, green, white.
+const BODIES = ['#e5483b', '#f29a2e', '#3aa564', '#eeeeee']
+/** Default look of a seat: a danfo, a saloon, a keke and a coupe in the 2D view, each in the colour of its 3D car so the field reads at a glance. */
 export const defaultLook = (seat: number, accent?: string): CarLook => ({ kind: KINDS[seat % 4] as CarKind, body: BODIES[seat % 4] as string, accent: accent ?? '#ffffff' })
 
 interface Scenery { x: number; y: number; r: number; k: number }
@@ -300,28 +302,32 @@ export interface DrawRaceOpts {
   mini?: boolean
 }
 
-/** Draw one frame at CSS size w x h (the context is already scaled for the pixel ratio). */
-export function drawRace(ctx: CanvasRenderingContext2D, w: number, h: number, o: DrawRaceOpts): void {
-  const zoom = o.cam.zoom
-  ctx.save()
-  ctx.translate(w / 2, h / 2); ctx.scale(zoom, zoom); ctx.translate(-o.cam.x, -o.cam.y)
-  const view = { x0: o.cam.x - w / 2 / zoom, y0: o.cam.y - h / 2 / zoom, x1: o.cam.x + w / 2 / zoom, y1: o.cam.y + h / 2 / zoom }
-  drawWorld(ctx, o.trackId, view, o.reduced ? 0 : o.phase)
-  o.skids?.draw(ctx, view)
-  // far cars first so the one being followed is on top
-  const order = o.cars.map((_, i) => i).sort((a, b) => (a === o.follow ? 1 : 0) - (b === o.follow ? 1 : 0))
-  for (const i of order) { const c = o.cars[i] as DrawCar; drawCar(ctx, c.x, c.y, c.a, c, o.phase, i === o.you) }
-  ctx.restore()
+/** The HUD drawn over either view: names above the cars, the minimap, place / lap / time / speed, the confetti, FINISHED, the countdown and GO. */
+export interface DrawHudOpts {
+  trackId: TrackId
+  cars: readonly DrawCar[]
+  /** Where each car is on the canvas (CSS px), or null when it is out of view: the 2D view works these out from its camera, the 3D one from its own. */
+  screen: readonly ({ x: number; y: number } | null)[]
+  you: number | null
+  follow: number
+  hud: HudInfo | null
+  spectator: boolean
+  confetti?: Confetti
+  dtMs?: number
+  /** false: no minimap (the lobby preview). */
+  mini?: boolean
+}
+export function drawRaceHud(ctx: CanvasRenderingContext2D, w: number, h: number, o: DrawHudOpts): void {
   // names of the others, in screen space
   ctx.font = '700 10px system-ui'; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic'; ctx.globalAlpha = 0.6
   o.cars.forEach((c, i) => {
     if (i === o.you) return
-    const sx = w / 2 + (c.x - o.cam.x) * zoom, sy = h / 2 + (c.y - o.cam.y) * zoom
-    if (sx < -20 || sx > w + 20 || sy < -20 || sy > h + 20) return
+    const at = o.screen[i]
+    if (!at || at.x < -20 || at.x > w + 20 || at.y < -20 || at.y > h + 20) return
     const label = (c.place ? c.place + '. ' : '') + c.name
     const tw = ctx.measureText(label).width + 8
-    ctx.fillStyle = 'rgba(8,12,24,.55)'; roundRect(ctx, sx - tw / 2, sy - 52, tw, 14, 7); ctx.fill()
-    ctx.fillStyle = '#fff'; ctx.fillText(label, sx, sy - 42)
+    ctx.fillStyle = 'rgba(8,12,24,.55)'; roundRect(ctx, at.x - tw / 2, at.y - 10, tw, 14, 7); ctx.fill()
+    ctx.fillStyle = '#fff'; ctx.fillText(label, at.x, at.y)
   })
   ctx.globalAlpha = 1
   const mw = o.spectator ? Math.min(150, w * 0.4) : Math.min(104, w * 0.28)
@@ -332,13 +338,14 @@ export function drawRace(ctx: CanvasRenderingContext2D, w: number, h: number, o:
   if (hud) {
     ctx.save(); ctx.translate(0, TOP)
     ctx.textAlign = 'left'
-    ctx.fillStyle = 'rgba(8,12,24,.62)'; roundRect(ctx, 8, 8, 112, 64, 10); ctx.fill()
+    ctx.fillStyle = 'rgba(8,12,24,.62)'; roundRect(ctx, 8, 8, 112, 82, 10); ctx.fill()
     ctx.fillStyle = '#fff'
     if (hud.you && hud.dnf) { ctx.font = '800 26px system-ui'; ctx.fillStyle = '#ff9d8a'; ctx.fillText(hud.dnf, 16, 36); ctx.fillStyle = '#fff' }
     else if (hud.you) { ctx.font = '800 26px system-ui'; ctx.fillText(ordinal(hud.place), 16, 36); ctx.font = '600 11px system-ui'; ctx.fillStyle = '#c9d2ea'; ctx.fillText('of ' + hud.of, 70, 36) }
     else { ctx.font = '800 17px system-ui'; ctx.fillText('LIVE', 16, 31) }
     ctx.fillStyle = '#fff'; ctx.font = '700 13px system-ui'; ctx.fillText('Lap ' + hud.lap + '/' + hud.laps, 16, 52)
     ctx.font = '600 12px ui-monospace, monospace'; ctx.fillStyle = '#c9d2ea'; ctx.fillText(hud.time, 16, 66)
+    ctx.font = '700 12px ui-monospace, monospace'; ctx.fillStyle = '#ffd34d'; ctx.fillText(kmh(Math.abs(hud.speed)) + ' km/h', 16, 82)
     ctx.restore()
   }
   o.confetti?.draw(ctx, h, o.dtMs ?? 16)
@@ -360,4 +367,20 @@ export function drawRace(ctx: CanvasRenderingContext2D, w: number, h: number, o:
     ctx.strokeText('GO!', w / 2, h / 2); ctx.fillText('GO!', w / 2, h / 2)
     ctx.textBaseline = 'alphabetic'
   }
+}
+
+/** Draw one frame at CSS size w x h (the context is already scaled for the pixel ratio). */
+export function drawRace(ctx: CanvasRenderingContext2D, w: number, h: number, o: DrawRaceOpts): void {
+  const zoom = o.cam.zoom
+  ctx.save()
+  ctx.translate(w / 2, h / 2); ctx.scale(zoom, zoom); ctx.translate(-o.cam.x, -o.cam.y)
+  const view = { x0: o.cam.x - w / 2 / zoom, y0: o.cam.y - h / 2 / zoom, x1: o.cam.x + w / 2 / zoom, y1: o.cam.y + h / 2 / zoom }
+  drawWorld(ctx, o.trackId, view, o.reduced ? 0 : o.phase)
+  o.skids?.draw(ctx, view)
+  // far cars first so the one being followed is on top
+  const order = o.cars.map((_, i) => i).sort((a, b) => (a === o.follow ? 1 : 0) - (b === o.follow ? 1 : 0))
+  for (const i of order) { const c = o.cars[i] as DrawCar; drawCar(ctx, c.x, c.y, c.a, c, o.phase, i === o.you) }
+  ctx.restore()
+  const screen = o.cars.map((c) => ({ x: w / 2 + (c.x - o.cam.x) * zoom, y: h / 2 + (c.y - o.cam.y) * zoom - 42 }))
+  drawRaceHud(ctx, w, h, { trackId: o.trackId, cars: o.cars, screen, you: o.you, follow: o.follow, hud: o.hud, spectator: o.spectator, confetti: o.confetti, dtMs: o.dtMs, mini: o.mini })
 }

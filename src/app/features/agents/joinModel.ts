@@ -67,23 +67,24 @@ export function joinGuide({ url, key }: { url: string; key: string | null | unde
     : { cursor: null, vscode: null }
   const config: JoinPaste = { label: 'Configuration', text: mcpSnippet(url, secret) }
   const guides: JoinGuide[] = [
-    { id: 'claude', name: 'Claude', title: 'Claude (desktop app or Claude Code)',
+    { id: 'claude', name: 'Claude', title: 'Claude (web, desktop app or Claude Code)',
       steps: [
-        'Claude desktop app: download the desktop bundle below and open it (or in Claude, Settings, Extensions, install it from the file). Paste your key when it asks.',
-        'Claude Code: run the command below in a terminal.',
+        'Claude on the web or in the desktop app: open Settings, then Connectors, add a custom connector, name it Allworld and paste the MCP URL below.',
+        'Claude opens Allworld and asks you to sign in to Allworld and approve. No key to paste. You can end it any time in Allworld, Settings, AI agents.',
+        'Or, for the desktop app with a key: download the desktop bundle below and open it, and paste your key when it asks. Claude Code (terminal): run the command below.',
         'Then start a chat and ask: "Look at my life in Allworld."',
-        'Claude on the web adds custom connectors with a sign-in Allworld does not offer yet, so use the desktop app or Claude Code.',
       ],
-      paste: [{ label: 'Claude Code (terminal)', text: `claude mcp add --transport http allworld ${shellWord(url)} --header ${shellWord(header)}` }, { label: 'Address', text: url }, { label: 'Header', text: header }],
+      paste: [{ label: 'MCP URL', text: url }, { label: 'Claude Code (terminal, with a key)', text: `claude mcp add --transport http allworld ${shellWord(url)} --header ${shellWord(header)}` }, { label: 'Header (with a key)', text: header }],
       link: null, bundle: true, note: 'The desktop bundle has no key in it. It asks for your key when you install it.' },
     { id: 'chatgpt', name: 'ChatGPT', title: 'ChatGPT',
       steps: [
         'Open ChatGPT, then Settings, then Connectors (on some plans, turn on Developer mode first), and create a custom connector.',
-        'Name it Allworld and paste the address below as the MCP server URL.',
-        'For authentication choose the option that sends a key or bearer token, and paste your key. If the form offers only OAuth or no authentication, ChatGPT cannot use a key yet: use another assistant on this page.',
+        'Name it Allworld and paste the MCP URL below as the MCP server URL. For authentication choose OAuth.',
+        'ChatGPT sends you to Allworld: sign in to Allworld and approve. No key to paste. You can end it any time in Allworld, Settings, AI agents.',
+        'If your form only takes a key or bearer token instead, make a key in Settings, AI agents and paste it.',
         'ChatGPT asks you to confirm each action that changes something. Leave that on.',
       ],
-      paste: [{ label: 'MCP server URL', text: url }, { label: 'Key (bearer token)', text: secret }],
+      paste: [{ label: 'MCP URL', text: url }, { label: 'Key (only if the form asks for a bearer token)', text: secret }],
       link: null, bundle: false, note: 'No link can add a connector to ChatGPT for you. You add it in Settings yourself.' },
     { id: 'gemini', name: 'Gemini', title: 'Gemini (command line)',
       steps: [

@@ -25,6 +25,9 @@ const VisitDoor = defineAsyncComponent(() => import('../visit/VisitDoor.vue'))
 // What AI characters remember about the person, with see / delete / turn off (lazy: its own chunk).
 const AgentMemory = defineAsyncComponent(() => import('../agents/AgentMemory.vue'))
 import AccountSettings from '../account/AccountSettings.vue'
+// A web assistant (ChatGPT, Claude) asking to play for the person: shown only while this tab holds its sign-in request (features/agents/oauthEntry.ts).
+const OAuthApproval = defineAsyncComponent(() => import('../agents/OAuthApproval.vue'))
+const oauthWaiting = ref((() => { try { return sessionStorage.getItem('jaw:oauth-request') !== null } catch { return false } })())
 import ResidenceCard from '../locate/ResidenceCard.vue'
 import { useAccount } from '../account/useAccount.ts'
 import { COACH_KEY, coachHints } from '../hud/coachModel.ts'
@@ -158,6 +161,7 @@ onMounted(() => { void growth.load(); void loadOlderLives() })
       <p v-if="switchError" role="alert">{{ switchError }}</p>
       <button v-if="switchError" type="button" :disabled="loadingOlder || !game.client.online" @click="loadOlderLives">Retry</button>
     </section>
+    <OAuthApproval v-if="oauthWaiting" @done="oauthWaiting = false" />
     <h3 class="ui-section" data-section="account">This device</h3>
     <div class="ui-rows">
       <div class="ui-row"><span class="ui-row-icon" aria-hidden="true"><GameIcon inline name="id" /></span><span class="ui-row-body"><b>{{ game.state.value.name }}</b><small><template v-if="view.session">Player code #{{ view.session.id.slice(0, 6) }} · </template>{{ device }}</small></span></div>

@@ -5,18 +5,25 @@ continue. The full brief is in [docs/agent-plans/world-alive/](docs/agent-plans/
 STATUS.md (what is live, the log, the questions for the owner), then PHASES.md. Repository-wide coordination is in
 [AGENTS.md](AGENTS.md). When everything below is done, empty the "In flight" and "Still to do" sections and say so in STATUS.md.
 
-Last updated: 16 October 2026 (nothing in flight).
+Last updated: 16 October 2026 (viral programme, wave 1).
 
 ## In flight
 
-Nothing. The owner's decisions of 15 and 16 October are live (releases 14 and 15) and main's tests were repaired (release 16).
+The "making Allworld spread" programme (docs/agent-plans/viral/PLAN.md; progress in viral/STATUS.md). Wave 1, started 16 October 2026:
+
+| Work | Branch | Where it stopped | Next step |
+| --- | --- | --- | --- |
+| Step 1: cartridge standard, manifest check in CI, replay logs, 15 s reconnect, clip renderer, Share clip | `claude/viral-cartridge` | Being built | Review, merge, CI, release. |
+| Step 4: clans, ladders (friends/city/cohort first, floors, soft seasons), city leagues, clan wars | `claude/viral-clans` | Being built | Review, merge, CI, release. |
+| Step 5: agent tournaments (games and life categories), challenge link, `/agents/join`, agents playing now | `claude/viral-agent-arena` | Being built | Review, merge, CI, release. |
+| Assets: fetch CC0 packs with manifests, cleanup/convert, per-game want lists within 1.5 MB, credits | `claude/viral-assets` | Being built | Review, merge, join its manifest format with step 1's checker. |
+
+Wave 2 (after step 1 lands): polish Fight, Race and Football (all three, the owner's choice), the video pipeline (replay → 9:16 MP4,
+Nigeria first on TikTok and WhatsApp status), then opening the standard to outside builders and the weekly city episode.
 
 ## Still to do
 
-Nothing for an agent to start on its own. Eleven tests are left failing on purpose because they need the owner's judgement
-(market scene anchors, ambient crowd size, two Abuja scenes, sedan geometry hashes, the country count, one remote homeward
-route): see "Failing on `main` before us" in [docs/agent-plans/world-alive/STATUS.md](docs/agent-plans/world-alive/STATUS.md).
-If you are given new work, add it here.
+See viral/STATUS.md. Nothing else for an agent to start on its own.
 
 ## How the work is done (learned the hard way)
 

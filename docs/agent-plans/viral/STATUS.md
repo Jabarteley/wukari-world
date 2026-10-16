@@ -55,9 +55,9 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | A Asset pipeline | live | `c254d4327` | packs for all three games, credits in Help, Blender scripts |
 | 4 Polish Fight | live (3D, realistic fighters) | `f0f38db3` | see "Phase 4" |
 | 5 Polish Race | live (3D, the world's own saloons) | `24a18e6a` | see "Phase 5" and the log |
-| 6 Polish Football | live (3D, penalties); 6b realistic footballers on `claude/viral-football-real` | `d95ee616` | see "Phase 6" and "Phase 6b" |
+| 6 Polish Football | live (3D, penalties, realistic players) | `cc2bd2e2` | every player a native body in every mode; see "Phase 6" and "Phase 6b" |
 | 7 Videos (Nigeria first) | skipped | | the owner's decision, 16 October 2026 |
-| 8 Open the standard | open and announced | `cdd1a9f0` (announcement in the next release) | docs/CARTRIDGES.md guide and review rules, examples/cartridge-sample (Tug), `cartridge:check -- --dir`, .github/PULL_REQUEST_TEMPLATE/cartridge.md; announcing is the owner's |
+| 8 Open the standard | open and announced | `0db68eff` | guide and review rules in docs/CARTRIDGES.md, sample Tug, `cartridge:check -- --dir`, PR template; announced in the README, the Games hub card and pinned issue #25; the in-game banner (admin) is the owner's |
 | 9 Weekly city episode | live | `f9e6b85a` | `/episode/<city>`, card in the Gist; docs/EPISODES.md |
 | 10 Measure and iterate | live (dashboard); weekly notes ongoing | `b64d5023` | day-7 return split by source, friend, clan, talked to an agent; see "Phase 10" |
 
@@ -369,6 +369,11 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: Phase 6b live at `cc2bd2e2` (release 38949667732, smoke PASS). Checked live at 390x844 and 844x390: 4 native
+  players, 45 calls, about 55,000 triangles, no page errors. One cold run fell back to the blocky players ("waited too long"), which is
+  the designed fallback. Phase 8 announcement live at `0db68eff` (release 38946922087, smoke PASS). Every phase is now done or
+  skipped; open for the owner: the in-game banner text, real phone / Bluetooth pad / two-person checks, and the first Phase 10
+  weekly note on 2026-10-23.
 - 2026-10-16: the owner opened the cartridge standard. Announced in the README, the Games hub ("Make your own game") and a pinned
   issue on kromate/joinallworld.
 - 2026-10-16: Phase 8 released (not announced): the builder's guide and eleven review rules in docs/CARTRIDGES.md, a sample

@@ -32,8 +32,8 @@ async function share(): Promise<void> {
 
 <template>
   <section v-if="episode" class="episode-card" data-episode="card" :aria-label="episode.headline">
-    <h3>{{ episode.current ? `This week in ${episode.cityName}` : episode.headline }}</h3>
-    <p v-if="!episode.lines.length" class="social-note" data-episode="quiet">A quiet week in {{ episode.cityName }}. Nothing the city could see has happened yet.</p>
+    <h3>{{ episode.headline }}</h3>
+    <p v-if="!episode.lines.length" class="social-note" data-episode="quiet">Nothing the city could see has happened yet.</p>
     <ul v-else class="episode-lines" data-episode="lines">
       <li v-for="line in episode.lines" :key="line.text">{{ line.text }}<span v-if="line.ai" class="episode-ai">AI</span></li>
     </ul>

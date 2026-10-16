@@ -8,6 +8,7 @@
  */
 import { lagosDayStart, lagosTime } from '../../src/game/clock.ts';
 import { cityRules } from '../../src/game/cities/index.ts';
+import { cityCatalogueEntry } from '../../src/game/cities/registry.ts';
 import { rankCities } from '../../src/clans/league.ts';
 import { peekClans } from '../clans/data.ts';
 import { page, peekRecords } from '../records/store.ts';
@@ -85,15 +86,17 @@ export function buildEpisode(input: EpisodeInput): EpisodeView {
   };
 }
 
+/** A city's name from the catalogue every host loads at start, else from its loaded rules, else its id. */
+export const nameOf = (id: string): string => { try { return cityCatalogueEntry(id)?.name ?? cityRules(id)?.name ?? id; } catch { return cityRules(id)?.name ?? id; } };
 const record = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value);
 
 /** Gather the facts for one city and week from a read of the database. Reads only. */
 export function readEpisode(ctx: Pick<RouteContext, 'now' | 'checks'>, db: Db, city: string, week: number): EpisodeView {
-  const cityName = cityRules(city)?.name ?? city;
+  const cityName = nameOf(city);
   const items = peekGist(db).cities[city] ?? [];
   const lw = peekClans(db)?.league?.[`w${week}`];
   const names: Record<string, string> = {};
-  for (const id of Object.keys(lw?.cities ?? {})) names[id] = cityRules(id)?.name ?? id;
+  for (const id of Object.keys(lw?.cities ?? {})) names[id] = nameOf(id);
   const league = lw?.cities ? { cities: Object.fromEntries(Object.entries(lw.cities).flatMap(([id, m]) => (m?.all ? [[id, m.all as readonly [number, number]] as const] : []))), won: lw.won?.all ?? null, names } : null;
   return buildEpisode({ city, cityName, week, now: ctx.now(), items, league, office: officeOf(ctx, db, city, weekStart(week) + WEEK_MS) });
 }

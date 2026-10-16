@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-16T03:14:23.941Z",
+  "build": "joinallworld-051efef0d1b4ca8f696e48cb568",
+  "scope": "GET session/life existing synthetic actors only; identity and cash projection; no receipt replay or new identity",
+  "actors": [
+    {
+      "index": 0,
+      "sessionStatus": 200,
+      "lifeStatus": 200,
+      "identityMatches": true,
+      "cashMatchesPrior": true,
+      "stateHash": "c087f9c903464d8cda3c81cdab31756fb736727f23cbe9bbafb6934c852467f2"
+    },
+    {
+      "index": 1,
+      "sessionStatus": 200,
+      "lifeStatus": 200,
+      "identityMatches": true,
+      "cashMatchesPrior": true,
+      "stateHash": "c2a155344d1be338af88cdc51b15d0fc93af6c8c06fcea7e7e22613569e9e48c"
+    }
+  ]
+}

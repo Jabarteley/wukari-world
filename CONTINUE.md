@@ -1,6 +1,8 @@
 # Native character release continuation
 
-Updated 16 October 2026. Production deployment is authorized. Do not report it complete without the protected workflow receipt, live build check and browser verification.
+Updated 16 October 2026. **Deployed and live:** runtime source `051efef0d1b4ca8f696e48cb568d4523f3beeb0b`, protected release [38842913386](https://github.com/kromate/joinallworld/actions/runs/38842913386), trusted policy `228443371`. Live health reports `joinallworld-051efef0d1b4ca8f696e48cb568`. Production: https://joinallworld.com/ .
+
+Production home→outside reentry and keyboard walking/turning/stopping show one native crowned player without a stationary duplicate. A native street pedestrian was observed walking with intact limbs/clothing. Production Airport also passes: the native office player moves/turns/stops, seated/standing/counter NPCs remain intact, and one crowned player is visible without a duplicate. No recent browser errors were observed. Existing two synthetic actors retain identical identities and balances after release. Sanitized before/after/comparison receipts are in the evidence directory; private credentials are outside the repository.
 
 ## Checkouts and running services
 
@@ -14,7 +16,7 @@ Updated 16 October 2026. Production deployment is authorized. Do not report it c
 
 Read `docs/AGENT-COORDINATION.md` and the current records before editing. Astra `/root/unified_character_owner` owns integration, browser verification, CI and production release. Sol `/root/unified_consumer_audit` owns the bounded native recipe/catalogue/migration loading split. Root owns asset accounting/notices and read-only production continuity.
 
-Current candidate commits: b6fee270f native replacement;4b1b29ece type/fixture repairs;a7ee6975b startup catalogue split. Follow-on physical migration module split is being finished; obtain final SHA from Git, not this note. Remote main advanced through92c9f8ffa with four documentation-only commits. Merge current origin/main and test the combined revision before release.
+Runtime changes were assembled on current main and passed CI. Physical native migration/catalogue splitting fixed startup size without changing strict recipe validation or server/lazy-client migration parity. Latest deployed source is the exact full-CI-green revision above. Newer upstream documentation and trusted package-policy fixes were preserved on main. Inspect Git for current branch/HEAD rather than treating this note as a lock.
 
 ## User decisions
 
@@ -43,25 +45,37 @@ Evidence directory: `docs/agent-work/native-character-release-evidence-20261016/
 - Full client and CI typecheck passed after explicit typed-array/Web Crypto repairs. A broad local scene test slice stalled after keyboard cases; it remains incomplete, not green.
 - Fresh candidate campus/driving rendered movement checks, physical-phone performance, recording and exhaustive action/cloth acceptance remain unverified. Some source skirt clipping remains; do not claim all movement/cloth defects fixed.
 
-## CI and remaining release gate
+## Final verification
 
-CI38835016230 built successfully but found type errors and startup overage. CI38837264732 passed build/full typecheck but startup remained over2928raw/1039gzip/1118Brotli. First-paint/scene-host/native asset limits passed. No cap increase is authorized for startup.
+- Exact source main CI [38841897554](https://github.com/kromate/joinallworld/actions/runs/38841897554) fully passed. Prior combined runtime CI [38839594272](https://github.com/kromate/joinallworld/actions/runs/38839594272) also passed.
+- Startup:614449raw/222873gzip/195479Brotli against unchanged615000/223000/195600 caps. Scene host188888raw/70897gzip passes. Native inventory46resources passed; retired-body artifact rejection passed.
+-53 focused native integration tests and4actual-asset probes pass; protected Worker5/5 and source smoke17/17 pass. Guard27/27 includes a sealed fixture containing all selected actual native assets, identity tampering, unknown models, malformed models and oversize rejection.
+- The native GLB packaging allowance is only for exact reviewed paths+SHA256+rawlength from the trusted source receipt, within the existing5MiB overall file cap. Other models retain2MiB. Exactly two metadata JSON and two licence Markdown paths are allowed. No blanket extension exception.
+- Read-only production catalogue GET200 exactly matches selected source bytes. Live API health reports the deployed source with relay/companionAi true. Two existing synthetic actors passed GET session/life identity+cash continuity with identical before/after hashes. No new accounts or replayed actions.
 
-The remaining repair physically separates legacy conversion/prices from the eager native recipe validation module. Keep strict saved-recipe validation eager; renderer/editor conversion stays deterministic and lazy. Catalogue labels/presets and Boutique rows are lazy with server/client parity. A source size estimate does not prove emitted startup size.
+Two protected attempts stopped before deployment on stale preset fixtures and the historical2MiB model guard. Those were repaired with literal supported-preset test data and the reviewed native-specific guard. The final release above passed all gates. Do not describe the stopped attempts as deployments.
 
-Download accounting now reuses measurements only after SHA256 matches freshly read asset bytes. Independent native inventory CLI still compresses normally. Failed startup checks exit before optional catalogue compression and clearly label inventory not run. No skipped inventory may be reported as passing.
+Download accounting reuses compression measurements only after SHA256 matches freshly read bytes. Independent native inventory CLI still compresses normally. Startup failures exit before optional compression with inventory explicitly not run. The release build+size timeout is15minutes based on measured~10.5minutes; byte limits are unchanged.
 
-Next executable steps:
-1. Finish/review the finite migration split, run focused parity checks and stage exact owned source.
-2. Commit, merge latest origin/main, push release branch and dispatch CI on the exact combined SHA.
-3. Require green startup/first-paint/host/native asset checks, retired-body artifact rejection and focused native tests.
-4. Integrate reviewed tested source into main, respecting concurrent work. Dispatch protected release on current main with exact source SHA.
-5. Verify live health/build, repeat read-only continuity for existing test actors and inspect production native appearance, movement, transitions and duplicate prevention. Then update this file and work records with exact receipts.
+## Running and checking the local candidate
 
-Builds run in CI, not locally. Commands:
+The already-running isolated preview is `http://127.0.0.1:5174/`. To launch later from this checkout when authorized:
 ```sh
-gh workflow run CI -R kromate/joinallworld --ref codex/native-character-release-20261016 -f full_checks=false
-gh workflow run joinallworld-release.yml -R kromate/joinallworld --ref main -f source_sha=<exact40hex> -f deploy=true -f publish_staging=false
+npm ci --ignore-scripts --no-audit --no-fund
+npm run dev -- --port 5174
 ```
 
-Production baseline before release: health `joinallworld-c2419edbd4edac17602aa9199ce`, relay/companionAi true. Existing two synthetic actors passed read-only GET session/life identity+cash continuity. Sanitized evidence is `production-continuity-before.json`; private credential receipt remains outside the repository. Helper `/tmp/native-release-continuity.mjs` reuses it without logging credentials, creating identities or replaying actions. Post-release comparison is still pending.
+Native numerical probe commands:
+```sh
+node --experimental-strip-types docs/agent-work/native-character-release-evidence-20261016/native-height-probe.mjs
+node --experimental-strip-types docs/agent-work/native-character-release-evidence-20261016/neighbourhood-player-ownership-probe.mjs
+node --experimental-strip-types docs/agent-work/native-character-release-evidence-20261016/native-scenes-probe.mjs
+node --experimental-strip-types docs/agent-work/native-character-release-evidence-20261016/native-street-probe.mjs
+```
+These probes write numerical JSON receipts. Preserve prior evidence when rerunning. Use the exact locked dependencies, preserve other running previews and read the current coordination records before new source work.
+
+## Remaining limitations and next work
+
+Production home/street/Airport browser acceptance is complete and recorded. Physical-phone performance, fresh candidate campus/driving rendered movement, short recording, exhaustive action/cloth checks and the stalled broad local scene slice remain unverified. Some source skirt clipping is known; no further skirt iteration was requested. Do not claim every animation/cloth condition is flawless or that desktop/touch emulation proves phone performance.
+
+No further runtime changes or redeployment are needed for this completed startup/native replacement release unless production verification finds a new defect. Preserve all unrelated work, private credentials, namespace/bindings and archived lab/baseline assets.

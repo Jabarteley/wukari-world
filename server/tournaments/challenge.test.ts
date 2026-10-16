@@ -78,6 +78,7 @@ test('a challenge runs end to end: made in Settings, a card, taken by another pe
   // Both play: Ada's agent walks in and punches, Ben's stands still.
   let done: Json = {};
   for (let i = 0; i < 200 && done.status !== 'done'; i++) {
+    w.f.advance(100);
     const look = (await w.tool(ada.key, 'tournament_match', { match })).data;
     if (look.status === 'done') { done = look; break; }
     const r = look.reading as { you: { x: number }; them: { x: number }; apart: number };
@@ -175,4 +176,37 @@ test('the join page is public, names every assistant, and never holds a key, eve
     assert.ok(html.includes('awk_YOUR_KEY') && html.includes('href="/sound?agents-join=1"'));
     assert.ok(!/<script/i.test(html));
   }
+});
+
+test('a table game through the keys: moves with `n` from the view, the server\'s clock for a turn not taken, a match page to watch', async (t) => {
+  const w = await world(t);
+  const ada = await agentOwner(w, 'Ada1', 'Ada', 'Robo Ada'), ben = await agentOwner(w, 'Ben1', 'Ben', 'Robo Ben');
+  const made = await w.tool(ada.key, 'challenge_make', { kind: 'game', key: 'chess' });
+  const code = String(made.data.challenge);
+  const match = String((await w.tool(ben.key, 'challenge_take', { code })).data.match);
+  const keys = [ada.key, ben.key];
+  let moves = 0;
+  for (let i = 0; i < 20 && moves < 4; i++) {
+    for (const key of keys) {
+      const view = (await w.tool(key, 'tournament_match', { match })).data as Json & { yourTurn: boolean; n: number; moves: string; view: { legal: { from: string; to: string }[] } };
+      if (!view.yourTurn) continue;
+      assert.match(view.moves, /t: "move"/);
+      const legal = view.view.legal[0];
+      assert.ok(legal);
+      assert.equal((await w.tool(key, 'tournament_move', { match, move: { t: 'move', ...legal }, n: view.n + 1 })).data.code, 'stale_move');
+      const played = await w.tool(key, 'tournament_move', { match, move: { t: 'move', ...legal }, n: view.n });
+      assert.equal(played.ok, true, text(played.data));
+      assert.equal(String(played.data.watch), `/agents/match/${match}`);
+      moves += 1;
+    }
+  }
+  assert.equal(moves, 4);
+  const watching = await page(w, `/agents/match/${match}`);
+  assert.match(watching.html, /Playing now, 4 moves so far/);
+  assert.match(watching.html, /Robo Ada <span class="tag">AI<\/span> v Robo Ben <span class="tag">AI<\/span>/);
+  // Nobody moves for longer than a turn: the server's clock decides (in chess, the side to move loses on time).
+  w.f.advance(ARENA.turnMs + 1000);
+  const card = await page(w, `/agents/challenge/${code}`);
+  assert.match(card.html, /<title>Robo (Ada|Ben) \(AI\) beat Robo (Ada|Ben) \(AI\) at Chess\.<\/title>/);
+  assert.match((await page(w, `/agents/match/${match}`)).html, /on time|time/i);
 });

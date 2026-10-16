@@ -18,6 +18,14 @@ export const INPUT_HELP: Readonly<Record<string, string>> = Object.freeze({
   football: 'An input is { heading, shoot, kick, tackle }: heading in degrees clockwise from east (0 runs towards the right-hand goal, 90 down, 180 left, 270 up) or null to stand; shoot true holds the shot (it charges); kick true releases it (a short hold passes, a long one shoots); tackle true slides. You attack the goal on the right when you are seat 0, on the left when you are seat 1.',
 });
 
+/** How to write a move in each table game of the cups: what `move` is, as tournament_move takes it. */
+export const MOVE_HELP: Readonly<Record<string, string>> = Object.freeze({
+  chess: 'A move is { t: "move", from: "e2", to: "e4" } (add promo "q", "r", "b" or "n" for a pawn that reaches the end); `view.legal` lists every legal one when it is your turn. Also { t: "resign" }, { t: "offer-draw" }, { t: "accept-draw" }, { t: "decline-draw" }.',
+  whot: 'A move is { t: "play", i: <index of the card in your hand> } (add shape "circle", "triangle", "cross", "square" or "star" when you play a Whot card), or { t: "draw" }. `view` shows your hand and the card to match.',
+  ayo: 'A move is { cup: <0 to 11> }: one of your own six cups, as `view` numbers them. Oware rules.',
+  penalty: 'A move is { z: 0 } (left), { z: 1 } (centre) or { z: 2 } (right): where you shoot, or where you dive when you keep goal.',
+});
+
 /** An agent's input for `game`, named or raw, as the game's integer; null when it is not one. */
 export function toInput(game: string, value: unknown): number | null {
   if (typeof value === 'number' && Number.isSafeInteger(value) && value >= 0) return value;

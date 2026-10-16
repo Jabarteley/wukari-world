@@ -39,6 +39,8 @@ async function agentOwner(w: World, subject: string, name: string, agent: string
 async function fight(w: World, match: string, hitter: string, idler: string): Promise<Json> {
   let view: Json = {};
   for (let i = 0; i < 200; i++) {
+    // A tenth of a second of the fake clock a window, so the agents' shared call rate (AGENT_RATE) refills as it would.
+    w.f.advance(100);
     const look = await w.tool(hitter, 'tournament_match', { match });
     assert.equal(look.ok, true, text(look.data));
     view = look.data;
@@ -47,7 +49,7 @@ async function fight(w: World, match: string, hitter: string, idler: string): Pr
     const towards = reading.them.x > reading.you.x ? 'right' : 'left';
     const plan = reading.apart > 70 ? [[towards], [towards, 'punch'], [towards], [towards, 'punch']] : [['punch'], [], ['punch'], []];
     const sent = await w.tool(hitter, 'tournament_move', { match, plan });
-    assert.equal(sent.ok, true, text(sent.data));
+    assert.equal(sent.ok, true, text(sent.rpc));
     const idle = await w.tool(idler, 'tournament_move', { match, plan: [] });
     if (!idle.ok && idle.data.code === 'match_over') continue;
     assert.equal(idle.ok, true, text(idle.data));
@@ -201,4 +203,47 @@ test('a life cup is measured from the game\'s records: missions collected after 
   assert.equal(book.badges[ben.id]?.[0]?.label, 'Most missions done cup');
   const page = await (await fetch(`${w.f.base}/agents/cup/w${week}-life-missions`)).text();
   assert.match(page, /Robo Ben \(AI\) won the Most missions done cup for agents/);
+});
+
+test('seven agents play a knockout seeded by rating, and the weekly ceiling caps what one character is paid', async (t) => {
+  const w = await world(t);
+  const names = ['Ada', 'Ben', 'Cyra', 'Dele', 'Efe', 'Femi', 'Gbenga'];
+  const all = [];
+  for (const name of names) all.push(await agentOwner(w, `${name}1`, name, `Robo ${name}`));
+  const week = toNextWeek(w, 0, 1);
+  for (const a of all) assert.equal((await w.tool(a.key, 'tournament_enter', { cup: 'fight' })).ok, true);
+  // The last to enter has the best rating in the game: it is the top seed.
+  const top = all[6]!.id;
+  await w.change((db) => { const growth = (db.growth ??= {} as never) as unknown as { tables?: { ratings?: Record<string, Record<string, { rating: number }>> } }; const tables = growth.tables ??= {}; (tables.ratings ??= {})[top] = { fight: { rating: 1600 } }; });
+  toDay(w, week, 2, 0);
+  const keyOf = new Map(all.map((a) => [`Robo ${a.owner.subject.slice(0, -1)}`, a.key]));
+  for (let round = 0; round < 3; round++) {
+    await w.tool(all[0]!.key, 'tournament_cups');
+    const cup = (await bookOf(w)).cups[`w${week}-fight`];
+    if (round === 0) { assert.equal(cup?.format, 'bracket'); assert.equal(cup?.rounds?.length, 3); assert.deepEqual(cup?.rounds?.[0]?.byes, [top], 'the best rated is the top seed and has the bye'); }
+    const open = Object.values((await bookOf(w)).matches).filter((m) => m.status !== 'done' && m.ref === `w${week}-fight`);
+    assert.equal(open.length, [3, 2, 1][round], `round ${round + 1}`);
+    // In every match the first seat fights and the second stands still.
+    for (const m of open) await fight(w, m.id, keyOf.get(m.names[0])!, keyOf.get(m.names[1])!);
+    const next = (await bookOf(w)).cups[`w${week}-fight`]?.rounds?.[round + 1];
+    if (next) w.f.advance(Math.max(0, next.start - w.f.now()) + 60000);
+  }
+  const final = Object.values((await bookOf(w)).matches).find((m) => m.ref === `w${week}-fight` && m.round === 2);
+  assert.ok(final?.result);
+  const champion = final.names[final.result.winner ?? 0];
+  // Before the week is settled, the champion is owed another prize of the same week (as from a second cup): the ceiling holds the total.
+  const id = all.find((a) => `Robo ${a.owner.subject.slice(0, -1)}` === champion)!.id;
+  await w.change((db) => { const book = (db as Record<string, unknown>)[COLLECTION] as ArenaBook; book.prizes['other-cup:1'] = { id: 'other-cup:1', char: id, amount: 3000, label: 'Another cup', week, paid: false, at: w.f.now() }; });
+  const cashBefore = await w.stored((db) => Object.values(db.sessions).find((s) => s.publicId === id)?.cities?.lagos?.state?.cash ?? 0);
+  toDay(w, week, 6, 0);
+  w.f.advance(1000);
+  await w.tool(all[0]!.key, 'tournament_cups');
+  const book = await bookOf(w), cup = book.cups[`w${week}-fight`];
+  assert.equal(cup?.status, 'settled');
+  assert.equal(cup?.results?.[0]?.name, champion);
+  assert.deepEqual(cup?.results?.slice(0, 3).map((r) => r.prize), ARENA.prizes);
+  const mine = Object.values(book.prizes).filter((p) => p.char === id);
+  assert.ok(mine.every((p) => p.paid));
+  assert.equal(mine.reduce((sum, p) => sum + p.amount, 0), ARENA.weeklyPrizeCeiling, 'never more than the ceiling in a week');
+  assert.equal(await w.stored((db) => Object.values(db.sessions).find((s) => s.publicId === id)?.cities?.lagos?.state?.cash), cashBefore + ARENA.weeklyPrizeCeiling);
 });

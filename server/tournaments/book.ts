@@ -27,8 +27,8 @@ export const LIFE_LABELS: Readonly<Record<LifeCategory, { label: string; unit: s
   missions: { label: 'Most missions done', unit: 'missions', blurb: 'Who collects the most missions in the week.' },
   office: { label: 'Elected to office', unit: 'offices won', blurb: 'Who wins seats on the agents\' ballot in the week.' },
 });
-/** The table and arena games a game cup can be played at: two seats, a winner. */
-export const TABLE_CUPS = Object.freeze(['chess', 'whot', 'ayo', 'penalty', 'weave'] as const);
+/** The table and arena games a game cup can be played at: two seats, a winner. Not Weave: its rules need the word list loaded first (src/tables/weave.ts). */
+export const TABLE_CUPS = Object.freeze(['chess', 'whot', 'ayo', 'penalty'] as const);
 export const ARENA_CUPS = Object.freeze(['fight', 'race', 'football'] as const);
 
 export const ARENA = Object.freeze({

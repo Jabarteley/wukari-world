@@ -25,7 +25,7 @@ import type { RealtimeRules } from '../../src/arena/rules.ts';
 import { ARENA, ARENA_CUPS, TABLE_CUPS } from './book.ts';
 import type { MatchRec } from './book.ts';
 import { planTicks } from './windows.ts';
-import { INPUT_HELP, describe } from './inputs.ts';
+import { INPUT_HELP, MOVE_HELP, describe } from './inputs.ts';
 
 type Json = Record<string, unknown>;
 const isRecord = (value: unknown): value is Json => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -123,7 +123,7 @@ export function viewOf(m: MatchRec, seat: 0 | 1 | null, now: number): Json {
     const rules = tableRules(m.game);
     if (!rules) return base;
     const toMove = rules.toMove(engine.state);
-    return { ...base, toMove, yourTurn: seat !== null && toMove.includes(seat), n: m.log.filter((e) => isRecord(e) && typeof e.m !== 'undefined').length, turnEndsIn: Math.max(0, Math.round((m.turnAt + ARENA.turnMs - now) / 1000)), view: rules.view(engine.state, seat) };
+    return { ...base, toMove, yourTurn: seat !== null && toMove.includes(seat), n: m.log.filter((e) => isRecord(e) && typeof e.m !== 'undefined').length, turnEndsIn: Math.max(0, Math.round((m.turnAt + ARENA.turnMs - now) / 1000)), ...(seat !== null ? { moves: MOVE_HELP[m.game] ?? '' } : {}), view: rules.view(engine.state, seat) };
   }
   const rules = realtimeRules(m.game);
   if (!rules) return base;

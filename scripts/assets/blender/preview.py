@@ -1,11 +1,12 @@
 """Render a .glb to a PNG for a look before it is kept (docs/ASSET-PIPELINE.md). Not part of any build.
 
     blender --background --factory-startup --python scripts/assets/blender/preview.py -- --glb in.glb --png out.png
-        [--clip punch --frame 0.4] [--yaw 35] [--pitch 25] [--size 640]
+        [--clip punch --frame 0.4] [--frames 0,0.2,0.4,0.6,0.8,1] [--yaw 35] [--pitch 25] [--size 640]
 
 Imports the file with Blender's own glTF importer (an uncompressed file: run prepare.ts with --no-meshopt into a scratch folder
 first, or pass the fetched file), frames its bounds from a three-quarter view under one sun, and renders with EEVEE. With --clip,
-the named animation is posed at --frame (0..1 of its length) first.
+the named animation is posed at --frame (0..1 of its length) first. With --frames (a comma list) one picture is drawn for each, named
+<png without .png>-<n>.png, and the camera frames the whole motion, so the pictures can be set side by side.
 """
 import argparse
 import math
@@ -22,6 +23,7 @@ def main():
     p.add_argument('--png', required=True)
     p.add_argument('--clip')
     p.add_argument('--frame', type=float, default=0.5)
+    p.add_argument('--frames', default='')
     p.add_argument('--yaw', type=float, default=35.0)
     p.add_argument('--pitch', type=float, default=25.0)
     p.add_argument('--size', type=int, default=640)
@@ -42,17 +44,24 @@ def main():
                 o.animation_data_create().action = action
                 if o.name in slots:
                     o.animation_data.action_slot = slots[o.name]
-        scene.frame_set(int(round(start + (end - start) * a.frame)))
+        first = start + (end - start) * (float(a.frames.split(',')[0]) if a.frames else a.frame)
+        scene.frame_set(int(round(first)))
     bpy.context.view_layer.update()
     lo = Vector((math.inf,) * 3)
     hi = Vector((-math.inf,) * 3)
-    for o in scene.objects:
-        if o.type != 'MESH':
-            continue
-        for corner in o.bound_box:
-            w = o.matrix_world @ Vector(corner)
-            lo = Vector(map(min, lo, w))
-            hi = Vector(map(max, hi, w))
+    shots = [float(x) for x in a.frames.split(',')] if a.frames else [a.frame]
+    for shot in (shots if a.clip and a.frames else [shots[0]]):
+        if a.clip:
+            scene.frame_set(int(round(start + (end - start) * shot)))
+        depsgraph = bpy.context.evaluated_depsgraph_get()
+        for o in scene.objects:
+            if o.type != 'MESH':
+                continue
+            ev = o.evaluated_get(depsgraph)
+            for corner in ev.bound_box:
+                w = ev.matrix_world @ Vector(corner)
+                lo = Vector(map(min, lo, w))
+                hi = Vector(map(max, hi, w))
     centre = (lo + hi) / 2
     radius = max((hi - lo).length / 2, 0.1)
     yaw, pitch = math.radians(a.yaw), math.radians(a.pitch)
@@ -78,8 +87,17 @@ def main():
     scene.world = world
     scene.render.engine = 'BLENDER_EEVEE' if 'BLENDER_EEVEE' in {e.identifier for e in scene.render.bl_rna.properties['engine'].enum_items} else 'BLENDER_EEVEE_NEXT'
     scene.render.resolution_x = scene.render.resolution_y = a.size
-    scene.render.filepath = a.png
-    bpy.ops.render.render(write_still=True)
+    if not (a.clip and a.frames):
+        if a.clip:
+            scene.frame_set(int(round(start + (end - start) * a.frame)))
+        scene.render.filepath = a.png
+        bpy.ops.render.render(write_still=True)
+        return
+    stem = a.png[:-4] if a.png.endswith('.png') else a.png
+    for i, shot in enumerate(shots):
+        scene.frame_set(int(round(start + (end - start) * shot)))
+        scene.render.filepath = f'{stem}-{i}.png'
+        bpy.ops.render.render(write_still=True)
 
 
 main()

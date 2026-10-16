@@ -54,12 +54,12 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | 3 Agent arena | live | `ee203d15` | see "Phase 3" |
 | A Asset pipeline | live | `c254d4327` | packs for all three games, credits in Help, Blender scripts |
 | 4 Polish Fight | live (3D, realistic fighters) | `f0f38db3` | see "Phase 4" |
-| 5 Polish Race | live (3D) | `f87981e1` | realistic cars later; see "Phase 5" |
-| 6 Polish Football | built, in CI (branch `claude/viral-football`) | | 3D, penalty shoot-out, `rev` 2; see "Phase 6" |
+| 5 Polish Race | live (3D, the world's own saloons) | `24a18e6a` | see "Phase 5" and the log |
+| 6 Polish Football | live (3D, penalties) | `d95ee616` | 6b (realistic players) in rework on `claude/viral-football-real`; see the log |
 | 7 Videos (Nigeria first) | skipped | | the owner's decision, 16 October 2026 |
-| 8 Open the standard | not started | | owner decides when |
-| 9 Weekly city episode | not started | | |
-| 10 Measure and iterate | not started | | |
+| 8 Open the standard | being built (`claude/viral-cartridge-open`) | | guide, sample, review rules, submission path; announcing is the owner's |
+| 9 Weekly city episode | live | `f9e6b85a` | `/episode/<city>`, card in the Gist; docs/EPISODES.md |
+| 10 Measure and iterate | live (dashboard); weekly notes ongoing | this release | day-7 return split by source, friend, clan, talked to an agent; see "Phase 10" |
 
 ## Phase 1 (16 October 2026)
 
@@ -296,6 +296,19 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: Phase 10 dashboard released: the admin "Coming back" table splits day-1/7/30 return by clan and by talking to an
+  AI character (any message, voice note or picture), next to source and friend. Lives that began before this count as "no", so the
+  first weeks understate "yes". First weekly note due one week after release (2026-10-23), from the live dashboard.
+- 2026-10-16: Phase 5b live at `24a18e6a` (release 38933571069, smoke PASS; checked live at 390x844 and 844x390: the world's saloons
+  load, no page errors). Live-check note: the saved test player now opens on "Make this life yours"; the check closes it first.
+- 2026-10-16: Phase 9 live at `f9e6b85a` (release 38931314939, smoke PASS; `/episode/lagos` answers 200 with real lines). The
+  weekly episode is built from the gist ledger, which keeps 14 days, so older weeks mostly read as quiet; accepted rather than a new
+  collection. No separate "last week" gist line (the league already announces its winner).
+- 2026-10-16: Phase 5b (Race draws the world's own saloons, red, blue, green, white; a lighter far model past 30 m; the Kenney cars
+  stay as the fallback on phones under 3 GB or if the world's cars are not there within 4 s). Measured: 32 calls, about 27,500
+  triangles with four cars; startup unchanged. Not verified: a real phone, four people racing.
+- 2026-10-16: Phase 6b reviewed and sent back: blocky keepers next to realistic outfield players, and a blocky 2v2, are below the
+  standard; reworking with the world's lighter native bodies for keepers, far players and 2v2.
 - 2026-10-16: Phase 4b live at `f0f38db3` (release 38921497112, smoke PASS): each fighter is the player's own native character, moved
   by fight clips we built in Blender (scripts/assets/blender/native-fight-clips.py; 24 clips, 310 KB); bots use only character pieces
   the world already loaded; the camera keeps them large and inside the ropes; startup unchanged. Checked live at 390x844 and 844x390:
@@ -321,3 +334,15 @@ Not yours to fix.
 - 2026-10-16: Phase 1a+1b live at `45723a6e` (contract, checker, replays, reconnect, replay page, clips, controllers).
 - 2026-10-16: Phase 0 baseline recorded (main `228443371`, live `c2419edb`, typecheck clean, Blender 5.2.2 installed).
 - 2026-10-16: plan, research and answers written; four phases started and stopped mid-way (branches above). Nothing released.
+
+## Phase 10: measure and iterate (branch `claude/viral-measure`)
+
+Built: the admin "Coming back" table now splits day 1, 7 and 30 return by source, friend, clan and talked-to-an-agent (docs/ADMIN.md).
+
+### Weekly note (copy this each week; fill the numbers from the live dashboard, never from memory)
+
+- **Week of:** to fill
+- **What shipped this week:** to fill
+- **Day-7 return, overall / by source / has a friend / has a clan / talked to an agent (yes vs no, cohort size each):** to fill from the live dashboard
+- **What the number did since last week:** to fill
+- **Keep or revert, and why:** to fill

@@ -16,7 +16,8 @@ export const MAX_PIXEL_RATIO = 1.5
 /** The pixel ratios a game steps down through when its frames run long (the first is the most it ever draws at). */
 export const RATIO_STEPS: readonly number[] = Object.freeze([1.5, 1.25, 1, 0.85])
 /** A median frame time over this many ms steps the ratio down; under CALM_MS for CALM_FOR_MS it steps back up one. */
-export const SLOW_MS = 22, CALM_MS = 14, CALM_FOR_MS = 5000, MEDIAN_FRAMES = 60
+// CALM_MS is just above a 60 Hz frame (16.7 ms): a phone keeping up with its screen for 5 s earns its resolution back.
+export const SLOW_MS = 22, CALM_MS = 18, CALM_FOR_MS = 5000, MEDIAN_FRAMES = 60
 /** A phone that is far too slow (a median over this in the last QUICK_FRAMES) steps down without waiting for a full minute of frames. */
 export const QUICK_FRAMES = 15, QUICK_MS = 66
 

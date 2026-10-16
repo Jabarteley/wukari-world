@@ -97,6 +97,25 @@ The viral unit: the last ten seconds of a match (the finish, the knock-out, the 
   `--fps 60`, `--all` for the whole match. An operator can record where a rendered clip lives with `POST /api/arena/clip`
   (`{ id, url }`, bearer token); the replay then carries `clip`.
 
+## Controllers
+
+Every cartridge gets real game controllers through the browser's Gamepad API, from one shared module (`src/arena/input/`):
+
+- **Equal terms.** A pad sends exactly what the touch controls send. Each screen hands its own touch functions to `usePad`
+  (Fight and Race: the stick or d-pad holds left/right, with a little hysteresis; Football: the stick sets the same heading as the
+  touch joystick), so the server sees one kind of input and replays stay exact. The stick has a radial dead zone (22% by default).
+- **The standard mapping** (`src/arena/input/pad.ts`): left stick or d-pad to move or steer, face buttons for the game's actions,
+  triggers for gas and brake, Start for the controller panel. Fight: X punch, B or Y kick, A jump, LB, RB or LT block (held).
+  Race: RT or A gas, LT or B brake. Football: A or RT shoot or pass (hold to power up), B or X tackle.
+- **The Controller button** in every game's top bar (shown where the browser has the Gamepad API) opens the panel: the buttons for
+  each action, **Change** (press the button you want; one button does one thing), the dead zone, rumble on or off, and back to
+  the standard buttons. Kept on the device (`aw-pad-v1`). "Controller connected" is said once when a pad appears.
+- **Rumble** where the browser allows it (the pad's vibration actuator): hits and the knock-out, bumps and the finish, goals.
+- A live match cannot be paused: the server keeps time for everyone.
+- A new cartridge declares its `PadControls` (actions with default buttons, and whether the stick moves) in `pad.ts`, calls
+  `usePad(controls, handlers)` with its touch functions and passes the result to `ArenaStage` as `:pad`.
+- Tests: `src/arena/input/pad.test.ts` drives fake pads (mapping, dead zone, d-pad, edges, remap, repaired settings).
+
 ## Tests
 
 `node --experimental-strip-types --test src/arena/*.test.ts server/arena.test.ts server/arena-replay.test.ts server/growth/arena-replays.test.ts scripts/cartridge-check.test.ts scripts/clip.test.ts`
@@ -105,4 +124,5 @@ The viral unit: the last ten seconds of a match (the finish, the knock-out, the 
 - `src/arena/replay.test.ts`: recorded matches of all three games replay exactly, with bot-steered stretches and forfeits.
 - `server/arena-replay.test.ts`: real server and sockets: the public replay route, and the 15-second window (bot steers, the person
   takes back control, a forfeit only after the window).
+- `src/arena/input/pad.test.ts`: controllers with fake pads.
 - `src/arena/clip.test.ts`, `scripts/clip.test.ts`: captions (AI mark, no betting words), the recorded format, frames and FFmpeg.

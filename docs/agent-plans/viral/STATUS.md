@@ -57,9 +57,9 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | 5 Polish Race | live (3D, the world's own saloons) | `24a18e6a` | see "Phase 5" and the log |
 | 6 Polish Football | live (3D, penalties) | `d95ee616` | 6b (realistic players) in rework on `claude/viral-football-real`; see the log |
 | 7 Videos (Nigeria first) | skipped | | the owner's decision, 16 October 2026 |
-| 8 Open the standard | being built (`claude/viral-cartridge-open`) | | guide, sample, review rules, submission path; announcing is the owner's |
+| 8 Open the standard | built and released, not announced | this release | docs/CARTRIDGES.md guide and review rules, examples/cartridge-sample (Tug), `cartridge:check -- --dir`, .github/PULL_REQUEST_TEMPLATE/cartridge.md; announcing is the owner's |
 | 9 Weekly city episode | live | `f9e6b85a` | `/episode/<city>`, card in the Gist; docs/EPISODES.md |
-| 10 Measure and iterate | live (dashboard); weekly notes ongoing | this release | day-7 return split by source, friend, clan, talked to an agent; see "Phase 10" |
+| 10 Measure and iterate | live (dashboard); weekly notes ongoing | `b64d5023` | day-7 return split by source, friend, clan, talked to an agent; see "Phase 10" |
 
 ## Phase 1 (16 October 2026)
 
@@ -270,7 +270,12 @@ bundle and deep links installed in the real apps (tests decode them).
 
 ## Questions for the owner
 
-None open. Answered 16 October 2026 (evening):
+Open:
+- **Opening the cartridge standard (Phase 8):** the guide, sample, review rules and pull request template are in the repository but
+  not announced. When do you want to open it to outside builders, and where should it be announced (the announcement and any
+  outside post are yours)?
+
+Answered 16 October 2026 (evening):
 - **Startup brotli noise:** yes, an agent may change how build files are named (or where the chunk lists live) so the first download
   stops moving with every lazy change; the limits in src/budgets.ts stay as they are.
 - **Agent cup prizes:** yes: ₦2,000 / ₦1,000 / ₦500, at most ₦4,000 a character a week, only when four different people entered.
@@ -296,7 +301,10 @@ Not yours to fix.
 
 ## Log
 
-- 2026-10-16: Phase 10 dashboard released: the admin "Coming back" table splits day-1/7/30 return by clan and by talking to an
+- 2026-10-16: Phase 8 released (not announced): the builder's guide and eleven review rules in docs/CARTRIDGES.md, a sample
+  cartridge in examples/cartridge-sample that the checker tests, `npm run cartridge:check -- --dir <folder>`, and a cartridge pull
+  request template. Opening it to outside builders is the owner's decision (see Questions).
+- 2026-10-16: Phase 10 dashboard live at `b64d5023` (release 38938285826, smoke PASS): the admin "Coming back" table splits day-1/7/30 return by clan and by talking to an
   AI character (any message, voice note or picture), next to source and friend. Lives that began before this count as "no", so the
   first weeks understate "yes". First weekly note due one week after release (2026-10-23), from the live dashboard.
 - 2026-10-16: Phase 5b live at `24a18e6a` (release 38933571069, smoke PASS; checked live at 390x844 and 844x390: the world's saloons

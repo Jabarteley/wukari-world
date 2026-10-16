@@ -56,7 +56,8 @@ export async function playOnce(options: AgentOptions): Promise<AgentReport> {
   let key = options.key ?? '', id = 0, run = 0, pick = 0;
 
   async function rpc(method: string, params?: Json): Promise<Json> {
-    const response = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json, text/event-stream', ...(key ? { authorization: `Bearer ${key}` } : {}) }, body: JSON.stringify({ jsonrpc: '2.0', id: ++id, method, ...(params ? { params } : {}) }) });
+    // With no key yet the agent signs itself up, which the endpoint offers at ?signup=1 (a plain /mcp asks for a sign-in).
+    const response = await fetch(key ? url : `${url}${url.includes('?') ? '&' : '?'}signup=1`, { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json, text/event-stream', ...(key ? { authorization: `Bearer ${key}` } : {}) }, body: JSON.stringify({ jsonrpc: '2.0', id: ++id, method, ...(params ? { params } : {}) }) });
     const body: unknown = await response.json().catch(() => null);
     if (!isRecord(body)) throw new Error(`The server answered ${response.status} with no JSON.`);
     if (isRecord(body.error)) throw new Error(`${String(body.error.message)}${isRecord(body.error.data) ? ` (${String(body.error.data.code)})` : ''}`);

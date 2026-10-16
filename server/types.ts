@@ -1016,7 +1016,8 @@ export interface RouteRequest {
   /** Rejects 415 / 413 / 400. The body may be at most `limit` bytes (default 8 KiB). */
   json(limit?: number): Promise<Record<string, unknown>>
   /** Exact bounded bytes for provider signature verification; never attached to telemetry. */
-  rawBody?(limit: number): Promise<Uint8Array<ArrayBuffer>>
+  /** The body's bytes, at most `limit`. `kind` 'json' (the default) wants application/json; 'form' wants application/x-www-form-urlencoded (the OAuth endpoints). */
+  rawBody?(limit: number, kind?: 'json' | 'form'): Promise<Uint8Array<ArrayBuffer>>
   header?(name: string): string | null
   session(db: Db, options?: { renew?: boolean }): SessionRecord | undefined
   /** Throws 401 device_session_required. */
@@ -1042,7 +1043,7 @@ export interface RouteResult {
   status?: number
   /** JSON object; the host adds `serverTime` (and `storage: 'failing'`) to a success. */
   body?: object
-  /** Only Set-Cookie, Cache-Control and Retry-After are kept. */
+  /** Only Set-Cookie, Cache-Control, Retry-After and WWW-Authenticate are kept. */
   headers?: Record<string, string | string[]>
   /** Re-issue the sliding session cookie. */
   renew?: boolean

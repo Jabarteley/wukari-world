@@ -201,7 +201,7 @@ test('the eager JavaScript does not grow and contains only the loading screen an
   const sizes = names.map((name) => { const bytes = readFileSync(join(dist, name)); return { name, raw: bytes.length, gzip: gzipSync(bytes).length } })
   const total = sizes.reduce((sum, item) => ({ raw: sum.raw + item.raw, gzip: sum.gzip + item.gzip }), { raw: 0, gzip: 0 })
   t.diagnostic(sizes.map((item) => `${item.name} ${item.raw} raw ${item.gzip} gzip`).join('; ') + `; total ${total.raw} raw ${total.gzip} gzip`)
-  const kinds = names.map((name) => name.replace(/^assets\//, '').replace(/-[\w-]{8}\.js$/, '')).sort()
+  const kinds = names.map((name) => name.replace(/^assets\//, '').replace(/-[\w-]{7}\.js$/, '')).sort()
   assert.deepEqual(kinds.filter((kind) => kind !== 'preload-helper'), ['app', 'vue'], 'the first download contains no game engine or city content')
   assert.ok(total.raw <= LOADING_BUDGET.raw, `eager JavaScript is ${total.raw} bytes (budget ${LOADING_BUDGET.raw})`)
   assert.ok(total.gzip <= LOADING_BUDGET.gzip, `eager JavaScript is ${total.gzip} bytes gzipped (budget ${LOADING_BUDGET.gzip})`)
@@ -220,7 +220,7 @@ test('automatic game startup, including one selected city, stays within the orig
   const network = all.filter(name => /^city-network-[\w-]+\.js$/.test(name))
   assert.equal(network.length, 1, 'the world city network (catalogue rows, land components, routes) is one lazy chunk')
   const networkCode = readFileSync(join(dist, 'assets', network[0] ?? ''), 'utf8')
-  const cityIndex = all.filter(name => /^city-index-[0-9a-f]{8}\.js$/.test(name))
+  const cityIndex = all.filter(name => /^city-index-[0-9a-f]{7}\.js$/.test(name))
   assert.equal(cityIndex.length, 1, 'the whole city index (every open city\'s id, name and rules hash) is one lazy chunk')
   const indexCode = readFileSync(join(dist, 'assets', cityIndex[0] ?? ''), 'utf8')
   const catalogueRows = readFileSync(join(root, 'src/game/cities/catalogue.generated.ts'), 'utf8').split('\n').filter((line) => /^  \["/.test(line)).map((line) => JSON.parse(line.trim().replace(/,$/, '')) as [string, string, string, string, number, number, 0 | 1])
@@ -231,10 +231,10 @@ test('automatic game startup, including one selected city, stays within the orig
     assert.equal(found.length, 1, label)
     return found[0] ?? ''
   }
-  const homewardRules = one(/^homeward-rules-[\w-]{8}\.js$/, 'recovery reader and planner have one conditional chunk')
-  const panelBodies = one(/^panelBodies-[\w-]{8}\.js$/, 'unopened app body loaders have one conditional chunk')
-  const onlinePill = one(/^online-pill-[\w-]{8}\.js$/, 'the online pill, its poll and its wording are one chunk, fetched with the top bar')
-  const idlePreload = one(/^idlePreload-[\w-]{8}\.js$/, 'the idle preloader is one chunk, fetched once the scene is up')
+  const homewardRules = one(/^homeward-rules-[\w-]{7}\.js$/, 'recovery reader and planner have one conditional chunk')
+  const panelBodies = one(/^panelBodies-[\w-]{7}\.js$/, 'unopened app body loaders have one conditional chunk')
+  const onlinePill = one(/^online-pill-[\w-]{7}\.js$/, 'the online pill, its poll and its wording are one chunk, fetched with the top bar')
+  const idlePreload = one(/^idlePreload-[\w-]{7}\.js$/, 'the idle preloader is one chunk, fetched once the scene is up')
   const measure = (names: readonly string[]) => names.reduce((sum, name) => {
     const bytes = readFileSync(join(dist, name))
     return { raw: sum.raw + bytes.length, gzip: sum.gzip + gzipSync(bytes).length }
@@ -262,7 +262,7 @@ test('automatic game startup, including one selected city, stays within the orig
     const indexTuple = arrayLiteralAt(indexCode, indexStart)
     // The rules loader keeps only the content hash of city-<id>-rules-<hash>.js (the importer rebuilds the name from the index) and
     // names the export only when it is not `city`.
-    const hash = new RegExp(`^city-${escaped}-rules-([0-9a-f]{8})\\.js$`).exec(rules)?.[1]
+    const hash = new RegExp(`^city-${escaped}-rules-([0-9a-f]{7})\\.js$`).exec(rules)?.[1]
     assert.ok(hash, `${id}'s rules chunk is named city-${id}-rules-<hash>.js`)
     const loaderTuple = JSON.stringify(hash)
     assert.equal(commonCode.includes(`${loaderTuple},`) || commonCode.includes(`${loaderTuple}]`), startupRow, `${id}'s rules hash is ${startupRow ? '' : 'not '}a loader row of the built startup`)

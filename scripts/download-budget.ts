@@ -99,7 +99,7 @@ export function firstPaintFiles(dist: Dist): Set<string> {
 export function cityIds(dist: Dist): string[] {
   const count = new Map<string, { rules: number; content: number }>()
   for (const name of dist.keys()) {
-    const match = /^assets\/city-([a-z0-9]+(?:-[a-z0-9]+)*)-(rules|content)-[\w-]{8}\.js$/.exec(name)
+    const match = /^assets\/city-([a-z0-9]+(?:-[a-z0-9]+)*)-(rules|content)-[\w-]{7}\.js$/.exec(name)
     if (!match) continue
     const row = count.get(match[1] as string) ?? { rules: 0, content: 0 }
     row[match[2] as 'rules' | 'content'] += 1
@@ -114,7 +114,7 @@ export function startupFiles(dist: Dist, city: string): Set<string> | null {
     const found = [...dist.keys()].filter((name) => pattern.test(name))
     return found.length === 1 ? found[0] as string : null
   }
-  const parts = [only(/^assets\/startApp-[\w-]{8}\.js$/), only(new RegExp(`^assets/city-${city}-rules-[\\w-]{8}\\.js$`)), only(new RegExp(`^assets/city-${city}-content-[\\w-]{8}\\.js$`))]
+  const parts = [only(/^assets\/startApp-[\w-]{7}\.js$/), only(new RegExp(`^assets/city-${city}-rules-[\\w-]{7}\\.js$`)), only(new RegExp(`^assets/city-${city}-content-[\\w-]{7}\\.js$`))]
   if (parts.some((part) => part === null)) return null
   return closure(dist, [...pageAssets(text(dist, 'index.html')), ...(parts as string[])]).add('index.html')
 }
@@ -126,7 +126,7 @@ export function measure(dist: Dist, files: Iterable<string>, only?: RegExp): Siz
 /** `assets/city-kano-scenes-AbCd1234.js` -> `city-kano-scenes`, with the city folded away: `city-*-scenes`. Other files group by extension. */
 export function groupOf(name: string): string {
   const base = name.replace(/^assets\//, '')
-  const unhashed = base.replace(/-[\w-]{8}(\.[a-z0-9]+)$/i, '$1')
+  const unhashed = base.replace(/-[\w-]{7}(\.[a-z0-9]+)$/i, '$1')
   const city = /^city-(?!routes\b)(?!content-builder\b).+?-(rules|content|map|scenes(?:-[ab])?)\.js$/.exec(unhashed)
   if (/\.js$/.test(unhashed)) return city ? `city-*-${city[1]}` : unhashed.replace(/\.js$/, '')
   return `*${unhashed.includes('.') ? unhashed.slice(unhashed.lastIndexOf('.')) : ''} files`
@@ -176,7 +176,7 @@ export function checks(dist: Dist, city = 'lagos'): Check[] {
     const top = largest(key, pick)
     add(budget, top ? top.value : null, top ? `largest over ${startups.length} cities (${top.id})` : 'no startup chunks in this build')
   }
-  const hosts = [...dist.keys()].filter((name) => /^assets\/world-adapter-[\w-]{8}\.js$/.test(name))
+  const hosts = [...dist.keys()].filter((name) => /^assets\/world-adapter-[\w-]{7}\.js$/.test(name))
   const host = hosts.length === 1 ? measure(dist, hosts) : null
   add('SCENE_HOST_RAW', host?.raw ?? null, 'shared scene chunk (world-adapter)')
   add('SCENE_HOST_GZIP', host?.gzip ?? null, 'shared scene chunk (world-adapter)')

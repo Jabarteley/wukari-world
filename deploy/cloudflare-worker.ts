@@ -81,7 +81,7 @@ import { readTelemetryConfig } from '../server/telemetry/config.ts';
 import { appHeaders, apiHeaders, pageHeaders, inlineScriptHashes, telemetryOrigins, factsOfUrl } from '../server/security-headers.ts';
 import telemetryRoutes from '../server/telemetry/routes.ts';
 import { capacityConfig, type CapacityConfig, envReader, outboundFetch, sessionArchiver, lifeAuthority, lifeAnnouncer, routeHeaders, pageFor, cleanOrigin, cleanHost, absolutePreviewImage, validOperatorToken, bearerToken, accountsConfig, founderEmailHash, sessionCookie, isStrictOrigin, presentedSession, mayBind, addressBucket } from '../server/host-context.ts';
-import { MCP_PATH, MCP_ROUTE } from '../server/agents/mcp.ts';
+import { openRouteOf } from '../server/agents/oauth-routes.ts';
 import { SESSION_TTL_MS, ACTION_WINDOW_MS, UUID_PATTERN, protocolError, publicSession, isSameOrigin, renewSession, renewResolved, sessionOfCookie, collection, canOccupyVenue, STUN_ONLY_CONFIG, validateVoiceConfig, SOCKET_BUSY_CODE } from '../server/protocol.ts';
 import type { CityId, HeartbeatFrame, ServerFrame, SocketErrorCode } from '../src/types/protocol.ts';
 import type { AccountDeviceRecord, Db, HttpError, ImageStore, VoiceStore, IncomingFrame, PageHandler, RouteContext, RouteResult, RouteTable, ServerEvents, SessionRecord, ShardStore, WsDispatch } from '../server/types.ts';
@@ -123,8 +123,8 @@ const digest = async (value: string): Promise<string> => [...new Uint8Array(awai
 /** Compare two digests of equal length without stopping at the first difference. */
 function sameDigest(a: unknown, b: unknown): boolean { if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false; let diff = 0; for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i); return diff === 0; }
 const firstLine = (error: unknown): string => { try { return String((error as { message?: unknown } | null | undefined)?.message ?? error).split('\n')[0]?.slice(0, 300) ?? ''; } catch { return 'unprintable error'; } };
-async function rawBodyOf(request: Request, limit: number): Promise<Uint8Array<ArrayBuffer>> {
-  if (!request.headers.get('content-type')?.startsWith('application/json')) throw protocolError(415, 'json_required');
+async function rawBodyOf(request: Request, limit: number, kind: 'json' | 'form' = 'json'): Promise<Uint8Array<ArrayBuffer>> {
+  if (!request.headers.get('content-type')?.startsWith(kind === 'form' ? 'application/x-www-form-urlencoded' : 'application/json')) throw protocolError(415, kind === 'form' ? 'form_required' : 'json_required');
   const reader = request.body?.getReader();
   if (!reader) throw protocolError(400, 'invalid_json');
   let size = 0;
@@ -190,7 +190,7 @@ async function respond(request: Request, env: WorkerEnv): Promise<Response> {
   if (adminKind === null && /^\/adminshell(\.html)?$/.test(url.pathname)) return json(404, { error: 'not_found' });
   if (adminKind === 'shell') return adminShell(request, env, url);
   // The MCP endpoint (server/agents/mcp.ts): a bearer key, no cookie and no page origin; the object serves it as the agents route.
-  if (url.pathname === MCP_PATH) return state().fetch(request);
+  if (openRouteOf(url.pathname) !== null) return state().fetch(request);
   if (url.pathname.startsWith('/api/') || url.pathname === '/socket') {
     // Operator routes authenticate with a bearer token in a header, which a browser never attaches by itself, so
     // they are not tied to the page's origin. Every other route keeps the origin check.
@@ -690,9 +690,9 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
   override async fetch(raw: Request): Promise<Response> {
     await this.ready;
     const url = new URL(raw.url);
-    if (!url.pathname.startsWith('/api/') && url.pathname !== '/socket' && url.pathname !== MCP_PATH) return this.page(raw, url);
-    const mcp = url.pathname === MCP_PATH;
-    if (mcp) url.pathname = MCP_ROUTE;
+    if (!url.pathname.startsWith('/api/') && url.pathname !== '/socket' && openRouteOf(url.pathname) === null) return this.page(raw, url);
+    const opened = openRouteOf(url.pathname), mcp = opened !== null;
+    if (opened !== null) url.pathname = opened;
     this.meter.from('http (before routing)');
     let at: { key: string; request: WorkerRequest; began: number } | undefined;
     try {
@@ -708,7 +708,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
       const request: WorkerRequest = { method: raw.method, path: url.pathname, query: url.searchParams, ip, secret, cookie: secret, binding: mayBind(presentedSession(raw.headers.get('cookie')), true), params: {}, raw,
         strictOrigin: isStrictOrigin(raw.headers.get('origin'), url.host, raw.headers.get('sec-fetch-site'), overHttps(url)),
         moderator: () => moderator, json: (limit?: number) => bodyOf(raw, limit).then(body => (request.body = body)),
-        rawBody: (limit: number) => rawBodyOf(raw, limit), header: (name: string) => raw.headers.get(name),
+        rawBody: (limit: number, kind?: 'json' | 'form') => rawBodyOf(raw, limit, kind), header: (name: string) => raw.headers.get(name),
         session: (db, options = {}) => { const s = this.session(request, db, options.renew); if (s) request.publicId = s.publicId; return s; },
         requireSession: (db, options = {}) => { const s = request.session(db, options); if (!s) throw protocolError(401, 'device_session_required'); return s; } };
       if (url.pathname === '/socket') return await this.upgrade(raw, request);

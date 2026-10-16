@@ -4,7 +4,10 @@
  *
  *   initialize, notifications/initialized, ping, tools/list, tools/call.
  *
- * Authentication is a bearer AGENT KEY in the Authorization header, on every request. CORS is closed on purpose: agents are servers and
+ * Authentication is a bearer AGENT KEY in the Authorization header, on every request: a key made in Settings, or the access token of a sign-in
+ * (server/agents/oauth.ts), which is a key with an end date. A request with no token, or with one that is not valid, is answered 401 with a
+ * WWW-Authenticate header that points at the protected resource metadata (MCP authorization, 2026-07-28): that is how ChatGPT and Claude
+ * find the sign-in. An agent that signs itself up with no key at all asks at /mcp?signup=1 instead. CORS is closed on purpose: agents are servers and
  * command-line programs, not web pages, so a request that carries an Origin header (a browser) is refused and no Access-Control header is
  * ever sent. The host maps /mcp to the route registered here (server/server.ts, deploy/cloudflare-worker.ts).
  */
@@ -20,6 +23,7 @@ import { characterCity } from '../character.ts';
 import { agentWords, isBlockedLine, textsIn } from '../moderation/agent-words.ts';
 import type { RouteHandler } from '../types.ts';
 import { bindSessionOrigin } from '../execution-origin.ts';
+import { challenge, originOf } from './oauth-rules.ts';
 
 export const MCP_PATH = '/mcp';
 export const MCP_ROUTE = '/api/agents/mcp';
@@ -193,10 +197,14 @@ export function mcpRoutes(ctx: RouteContext, svc: AgentService): Record<RouteKey
   return {
     'POST /api/agents/mcp': async (request) => {
       const bare = (status: number, body: object, headers?: Record<string, string>) => ({ status, body, bare: true as const, ...(headers ? { headers } : {}) });
+      const where = originOf(ctx.config.publicOrigin, request.header?.('host') ?? null);
       try {
         if (request.header?.('origin')) throw refusal(ctx, 403, 'origin_rejected', 'Agent access is not for web pages. Connect from a program, not a browser.');
-        // NO KEY AT ALL: only the two sign-up tools (see signup.ts). A header that is present but is not a key is an error, not a sign-up.
-        if (!request.header?.('authorization')) return await publicRequest(request, bare);
+        // NO TOKEN AT ALL: the sign-in challenge. An agent that signs itself up (the two tools of signup.ts) asks at /mcp?signup=1, with no header.
+        if (!request.header?.('authorization')) {
+          if (request.query.get('signup') === '1') return await publicRequest(request, bare);
+          return bare(401, fault(null, -32001, 'Sign in to use this server: connect it as a connector and approve the sign-in, or send an agent key as "Authorization: Bearer awk_…". An agent with no key signs itself up at /mcp?signup=1.', { code: 'authorization_required' }), { 'WWW-Authenticate': challenge(where) });
+        }
         const secret = bearerKey(request.header?.('authorization'));
         if (!secret) throw refusal(ctx, 401, 'invalid_key', 'Send your agent key as "Authorization: Bearer awk_…". Make one in Settings, AI agents.');
         const hash = hashOfKey(secret);
@@ -223,6 +231,8 @@ export function mcpRoutes(ctx: RouteContext, svc: AgentService): Record<RouteKey
         const found = refused(error);
         if (!found) throw error;
         const retry = isRecord(error) && typeof error.retryAfter === 'number' ? { 'Retry-After': String(Math.ceil(error.retryAfter)) } : undefined;
+        // A token that is not valid, or has ended, is told where to sign in again (RFC 6750 section 3, RFC 9728 section 5.1).
+        if (found.status === 401) return bare(401, fault(null, -32001, found.reason, { code: found.code }), { 'WWW-Authenticate': challenge(where, { error: 'invalid_token', description: found.code === 'token_expired' ? 'The access token has expired' : 'The access token is not valid' }) });
         return bare(found.status === 400 || found.status === 413 ? 400 : found.status, fault(null, -32001, found.reason, { code: found.code }), retry);
       }
     },

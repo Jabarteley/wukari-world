@@ -25,6 +25,9 @@ const VisitDoor = defineAsyncComponent(() => import('../visit/VisitDoor.vue'))
 // What AI characters remember about the person, with see / delete / turn off (lazy: its own chunk).
 const AgentMemory = defineAsyncComponent(() => import('../agents/AgentMemory.vue'))
 import AccountSettings from '../account/AccountSettings.vue'
+// A web assistant (ChatGPT, Claude) asking to play for the person: shown only while this tab holds its sign-in request (features/agents/oauthEntry.ts).
+const OAuthApproval = defineAsyncComponent(() => import('../agents/OAuthApproval.vue'))
+const oauthWaiting = ref((() => { try { return sessionStorage.getItem('jaw:oauth-request') !== null } catch { return false } })())
 import ResidenceCard from '../locate/ResidenceCard.vue'
 import { useAccount } from '../account/useAccount.ts'
 import { COACH_KEY, coachHints } from '../hud/coachModel.ts'
@@ -116,6 +119,7 @@ onMounted(() => { void growth.load(); void loadOlderLives() })
 
 <template>
   <div class="settings-app">
+    <OAuthApproval v-if="oauthWaiting" @done="oauthWaiting = false" />
     <h3 class="ui-section">Phone wallpaper</h3>
     <div class="settings-walls" role="group" aria-label="Phone wallpaper">
       <button v-for="item in WALLPAPERS" :key="item.id" type="button" class="settings-wall" :class="`wall-${item.id}`" :aria-pressed="item.id === wall" :aria-label="`${item.label} wallpaper`" @click="pickWall(item.id)"><span>{{ item.label }}</span></button>

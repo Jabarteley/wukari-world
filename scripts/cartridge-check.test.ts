@@ -2,7 +2,8 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { randomBytes } from 'node:crypto'
-import { checkCartridges, cartridgeFiles, measureCartridge } from './cartridge-check.ts'
+import { checkCartridges, cartridgeFiles, diskSource, measureCartridge } from './cartridge-check.ts'
+import { fileURLToPath } from 'node:url'
 import type { Source } from './cartridge-check.ts'
 import { CARTRIDGES } from '../src/arena/cartridges.ts'
 import { CARTRIDGE_CONTRACT, defineCartridge } from '../src/arena/cartridge.ts'
@@ -26,8 +27,15 @@ const build = (extra: Record<string, Uint8Array> = {}): Dist => new Map<string, 
   ...extra,
 }))
 
-test('the real manifests are valid and have no missing files', () => {
-  assert.deepEqual(checkCartridges(CARTRIDGES, source(), null).problems, [])
+test('the real manifests are valid and every listed asset is in the repository', () => {
+  assert.deepEqual(checkCartridges(CARTRIDGES, diskSource(fileURLToPath(new URL('..', import.meta.url))), null).problems, [])
+})
+
+test('the chunks a screen loads later (a 3D view, three.js) count against the cap with what they import', () => {
+  const dist = build({ 'assets/view3d-11111111.js': enc('import"./three-22222222.js";'), 'assets/three-22222222.js': noise(4000) })
+  const files = cartridgeFiles(dist, 'FightGame', ['view3d'])!.sort()
+  assert.ok(files.includes('assets/view3d-11111111.js') && files.includes('assets/three-22222222.js') && !files.includes('assets/engine-bbbbbbbb.js'))
+  assert.equal(cartridgeFiles(dist, 'FightGame', ['missing']), null, 'a lazy chunk that is not there is a stale manifest')
 })
 
 test('a cartridge counts its own lazy chunks and stylesheet, not the first download and not other chunks', () => {
@@ -63,6 +71,6 @@ test('a CC BY asset needs its credit line in NOTICE.md; a missing licence or a s
   assert.match(checkCartridges([entry([asset])], source(files, 'nothing here'), null).problems.join(), /NOTICE\.md/)
   assert.deepEqual(checkCartridges([entry([asset])], source(files, `- ${credit}`), null).problems, [])
   assert.match(checkCartridges([entry([{ ...asset, licence: undefined as never }])], source(files), null).problems.join(), /licence/)
-  assert.match(checkCartridges([entry()], source(), new Map([['index.html', enc('')]])).problems.join(), /manifest.entry is stale/)
+  assert.match(checkCartridges([entry()], source(), new Map([['index.html', enc('')]])).problems.join(), /is stale/)
   assert.match(checkCartridges([entry(), entry()], source(), null).problems.join(), /listed twice/)
 })

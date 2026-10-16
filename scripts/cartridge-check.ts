@@ -30,9 +30,10 @@ const stemOf = (name: string): string => name.replace(/^assets\//, '').replace(/
 export interface Measured { files: string[]; chunkBrotli: number; assetBrotli: number; total: number }
 
 /** The lazy chunks a cartridge's entry pulls in that are not in the first download, with their stylesheets, in `dist`; null when the entry chunk is not (exactly once) there. */
-export function cartridgeFiles(dist: Dist, entry: string): string[] | null {
+export function cartridgeFiles(dist: Dist, entry: string, lazy: readonly string[] = []): string[] | null {
   const roots = [...dist.keys()].filter((name) => stemOf(name) === entry && name.endsWith('.js'))
   if (roots.length !== 1) return null
+  for (const stem of lazy) { const found = [...dist.keys()].filter((name) => stemOf(name) === stem && name.endsWith('.js')); if (found.length !== 1) return null; roots.push(found[0] as string) }
   const loaded = startupFiles(dist, 'lagos') ?? firstPaintFiles(dist)
   const js = [...closure(dist, roots)].filter((name) => !loaded.has(name))
   const stems = new Set(js.map(stemOf))
@@ -41,7 +42,7 @@ export function cartridgeFiles(dist: Dist, entry: string): string[] | null {
 }
 
 export function measureCartridge(dist: Dist, source: Source, c: Cartridge): Measured | null {
-  const files = cartridgeFiles(dist, c.manifest.entry)
+  const files = cartridgeFiles(dist, c.manifest.entry, c.manifest.lazy ?? [])
   if (!files) return null
   const chunkBrotli = files.reduce((sum, name) => sum + sizeOf(dist.get(name) as Uint8Array).brotli, 0)
   const assetBrotli = c.manifest.assets.reduce((sum, a) => {
@@ -67,7 +68,7 @@ export function checkCartridges(cartridges: readonly Cartridge[], source: Source
     if (!dist) continue
     const cap = c.manifest.cap ?? DEFAULT_CAP_BROTLI
     const m = measureCartridge(dist, source, c)
-    if (!m) { say(`no single lazy chunk named ${c.manifest.entry} in the build (manifest.entry is stale)`); continue }
+    if (!m) { say(`no single lazy chunk named ${[c.manifest.entry, ...(c.manifest.lazy ?? [])].join(' or ')} in the build (manifest.entry or lazy is stale)`); continue }
     const over = m.total > cap
     lines.push(`${over ? 'OVER' : 'ok  '} ${c.id.padEnd(10)} ${String(m.total).padStart(8)} / ${cap} brotli  (${m.files.length} chunk files ${m.chunkBrotli}, ${c.manifest.assets.length} assets ${m.assetBrotli})`)
     if (over) say(`weighs ${m.total} bytes brotli, over its cap of ${cap}`)

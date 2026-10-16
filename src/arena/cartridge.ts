@@ -38,6 +38,11 @@ export interface CartridgeAsset {
 export interface CartridgeManifest {
   /** The stem of the screen's lazy chunk in dist/assets (`FightGame` for `FightGame-1a2b3c4d.js`). */
   entry: string
+  /**
+   * Chunks the screen loads later by dynamic import (a 3D view, three.js, a loader), by stem: counted against the cap with what they
+   * import, beyond the first download. The entry's own static imports are counted without being listed.
+   */
+  lazy?: readonly string[]
   /** Brotli cap for the lazy chunks the entry pulls in (beyond the first download) plus the listed assets. Default DEFAULT_CAP_BROTLI. */
   cap?: number
   /** Every file the cartridge loads that is not code. Empty when everything is drawn and played by code. */
@@ -128,6 +133,7 @@ export function validateCartridge(c: Cartridge): string[] {
   for (const w of c.writes) if (!WRITES.includes(w)) bad.push(`unknown write ${w}`)
   if (c.reads.includes('stake') && !c.reads.includes('identity')) bad.push('a staked game must read identity')
   if (!STEM.test(c.manifest.entry)) bad.push('manifest.entry must be the chunk stem, like FightGame')
+  for (const stem of c.manifest.lazy ?? []) if (!/^[A-Za-z][A-Za-z0-9._-]{1,60}$/.test(stem)) bad.push(`manifest.lazy ${stem} must be a chunk stem`)
   const cap = c.manifest.cap ?? DEFAULT_CAP_BROTLI
   if (!Number.isSafeInteger(cap) || cap < 1 || cap > DEFAULT_CAP_BROTLI) bad.push(`manifest.cap must be 1..${DEFAULT_CAP_BROTLI} (a bigger cartridge needs the owner)`)
   const seen = new Set<string>()

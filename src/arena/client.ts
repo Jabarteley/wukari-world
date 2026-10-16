@@ -16,7 +16,7 @@ import { reconnectDelay, STABLE_CONNECTION_MS } from '../reconnect.ts'
 import type { ArenaServerFrame, ArenaStateFrame } from '../types/arena.ts'
 
 /** The refusals of stakes and backing (src/arena/stakes.ts, the table stakes' own codes): said to the player like the room's own. */
-const STAKE_CODES = new Set(['invalid_stake', 'adults_only', 'work_first', 'stake_exceeds_work', 'insufficient_funds', 'player_day_cap', 'pair_day_cap', 'stake_refused', 'not_ready', 'invalid_seat', 'already_backed', 'backers_full', 'backing_closed'])
+const STAKE_CODES = new Set(['adults_only', 'already_backed', 'backers_full', 'backing_closed', 'insufficient_funds', 'invalid_seat', 'invalid_stake', 'not_ready', 'pair_day_cap', 'player_day_cap', 'stake_exceeds_work', 'stake_refused', 'work_first'])
 
 export type ArenaConnection = 'connecting' | 'open' | 'closed'
 export interface ArenaListener {

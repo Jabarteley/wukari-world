@@ -18,8 +18,23 @@
  * grows to full at 16 ticks (0.8 s), aimed with an assist at the corner away from the keeper when roughly facing the goal.
  * TACKLE. A 8-tick slide with 36-tick cooldown; it wins the ball from a carrier it touches (the victim is stunned), and the
  * slider is stunned briefly afterwards, so a miss is punished.
- * MATCH. `seconds` of play; level at the whistle: ending 1 = golden goal (next goal wins, max 60 s extra, then a draw), 2 = a draw.
- * After a goal: celebration, then a kick-off from the centre spot.
+ * MATCH. `seconds` of play; level at the whistle: ending 1 = golden goal (next goal wins, max 60 s extra, then a draw), 2 = a draw,
+ * 3 = a penalty shoot-out. After a goal: celebration, then a kick-off from the centre spot.
+ *
+ * SHOOT-OUT (ending 3, phase `pens`). Five kicks each, one team then the other (who goes first is drawn from the match's own random
+ * numbers); it stops as soon as one side cannot be caught. Level after five each: sudden death, one more each a round, until a round
+ * splits them; level after ten each is a draw. In a 2v2 the shooters take turns within their team. One kick has four stages:
+ * SET (a short wait, everyone placed), AIM (the shooter's seat steers with its heading and charges with the shoot button, kicks on
+ * release; no kick in ten seconds and the kick is taken as it stands), FLIGHT (a few ticks the ball takes to reach the goal), RESULT
+ * (the ball settles, then the next kick). The shot: the heading sets the angle (15-degree steps, at most 60 degrees either side of
+ * straight at goal) and the ball is aimed at the goal line from the spot (PEN_D units away) so a 30-degree shot lands 53 units
+ * from the middle (the corner) and a 45-degree one outside the post. The charge is the pace and the height: it grows to full at 16
+ * ticks and held on to 22 ticks the ball goes over the bar. A full charge also swings the ball out by up to a fifth, so a full-power
+ * corner shot clips the post. The keeper is the OTHER team's first seat (seat 0 or 1): its heading names a dive (left, middle, right of
+ * the shooter's camera). The dive it names when the ball is struck is early and full length; a keeper who is still in the middle
+ * then may name one up to SO_LOCK ticks later: a late dive, three quarters as far. A dive covers shots from 14 units off the middle
+ * out to its reach (78 - 42 x power); a keeper who stays covers 18 units either side unless the shot is hit at full power (and more
+ * for a soft one). Only the shoot-out's own score counts (the match goals stay level).
  */
 import { ArenaInputError, cleanArenaOptions } from './rules.ts'
 import type { Outcome, RealtimeRules } from './rules.ts'
@@ -37,9 +52,16 @@ const POST_R = 4
 export const BTN = Object.freeze({ chg: 32, kick: 64, tackle: 128 })
 export const DIR_MASK = 31
 const EDGE = BTN.kick | BTN.tackle
-export const PHASE = Object.freeze({ kickoff: 0, play: 1, goal: 2, over: 3 })
-/** Event codes in a snapshot: [code, x, y, extra]. */
-export const EV = Object.freeze({ goal: 1, kick: 2, tackle: 3, save: 4, post: 5 })
+export const PHASE = Object.freeze({ kickoff: 0, play: 1, goal: 2, over: 3, pens: 4 })
+/** Event codes in a snapshot: [code, x, y, extra]. In a shoot-out `goal` carries the scoring team, `save` the keeper's team and `miss` 1 for wide, 2 for over the bar. */
+export const EV = Object.freeze({ goal: 1, kick: 2, tackle: 3, save: 4, post: 5, miss: 6 })
+/** The shoot-out: kicks each before sudden death, the cap on kicks each, the spot's distance from the goal line, the ticks of each stage. */
+export const SO_FIRST = 5, SO_CAP = 10, PEN_D = 92
+export const SO_SET = 30, SO_AIM = 200, SO_RESULT = 40, SO_LOCK = 5, SO_OVER_AT = 22
+/** What a kick came to. */
+export const SO_OUT = Object.freeze({ pending: 0, goal: 1, saved: 2, wide: 3, over: 4, post: 5 })
+/** Stages of one kick. */
+export const SO_STAGE = Object.freeze({ set: 0, aim: 1, fly: 2, result: 3 })
 
 export const SPEED = 6, CARRY = 0.9, CHARGING = 0.72
 export const PICK = 27, CARRY_AT = 27, LOSE_AT = 42
@@ -58,7 +80,7 @@ export function dirCode(dx: number, dy: number, dead = 0): number {
 }
 export const dirVector = (code: number): [number, number] => (code >= 1 && code <= 24 ? [DX[code - 1] as number, DY[code - 1] as number] : [0, 0])
 
-/** `ending`: 1 = golden goal, 2 = draw (numbers because the shared lobby panel sends option values as numbers). */
+/** `ending`: 1 = golden goal, 2 = draw, 3 = penalty shoot-out (numbers because the shared lobby panel sends option values as numbers). */
 export type FootballOptions = { seconds: number; ending: number; side: number }
 export interface Footballer {
   x: number; y: number; vx: number; vy: number
@@ -90,6 +112,30 @@ export interface FootballState {
   /** team that kicks off */ kickTeam: number
   left: number
   ev: number[][]
+  /** the shoot-out, once there is one */ so: Shootout | null
+}
+/** The shoot-out as the rules hold it (see the header). Lateral units are + to the right of the shooter's camera. */
+export interface Shootout {
+  /** team shooting now */ team: number
+  stage: number
+  /** ticks in this stage */ st: number
+  taken: [number, number]
+  score: [number, number]
+  /** per team, per kick: 1 scored, 2 not */ marks: [number[], number[]]
+  /** player taking the kick, and the one steering the keeper */ shooter: number
+  keeper: number
+  /** the shot, set when struck: lateral aim at the line, charge ticks */ aim: number
+  chg: number
+  /** dive named at the strike, and the final one; late = named after the strike */ dive0: number
+  dive: number
+  late: boolean
+  /** ticks of flight so far, its normal length, and the tick the slow-motion starts (0 = none) */ fly: number
+  len: number
+  slow: number
+  /** what the kick came to, once it is judged */ out: number
+  /** the keeper's end y when it is judged */ keepY: number
+  /** the computer's choices for this kick (drawn when it is set up) */ pick: { ang: number; chg: number; dive: number; late: number }
+  /** 0 / 1 won, 2 a draw, -1 still going */ win: number
 }
 export interface FootballInput { h: number; e: number }
 /** x, y, facing, status (1 sliding, 2 stunned, 4..28 charge level << 2, 32 tackle cooling) */
@@ -105,6 +151,19 @@ export interface FootballSnap {
   /** keepers' y */ k: [number, number]
   /** events this tick, and (in a goal phase) who scored: [team, player] in `s` */ e: number[][]
   s?: [number, number]
+  /** the shoot-out, from its first tick on */ o?: ShootSnap
+}
+export interface ShootSnap {
+  /** stage (SO_STAGE) */ s: number
+  /** team shooting */ t: number
+  /** shooter and keeper player numbers */ p: [number, number]
+  /** shoot-out score */ g: [number, number]
+  /** kicks so far per team: 1 scored, 2 not */ m: [number[], number[]]
+  /** seconds left to take the kick (aim stage) */ c: number
+  /** this kick: lateral aim at the line (0 until struck), charge 0..100 (live while charging), dive -1/0/1 (once struck), flight tick, flight length, slow-motion start tick (0 none) */
+  k: [number, number, number, number, number, number]
+  /** result of the kick (SO_OUT; 0 until it is over) */ r: number
+  /** 0 or 1 won, 2 drawn, -1 going */ w: number
 }
 
 const clamp = (v: number, lo: number, hi: number): number => Math.max(lo, Math.min(hi, v))
@@ -136,7 +195,7 @@ function start(seats: number, _rng: () => number, options: FootballOptions): Foo
   const opts = { ...options, side: per }
   const s: FootballState = {
     options: opts, tick: 0, phase: PHASE.kickoff, pt: 0, plen: KICKOFF_FIRST, seatsN: seats, clock: opts.seconds * HZ, ot: false, otTicks: 0,
-    goals: [0, 0], pl: [], ball: { x: W / 2, y: H / 2, vx: 0, vy: 0, o: -1 }, ky: [H / 2, H / 2], last: -1, scoredBy: -1, scorer: -1, kickTeam: 0, left: -1, ev: [],
+    goals: [0, 0], pl: [], ball: { x: W / 2, y: H / 2, vx: 0, vy: 0, o: -1 }, ky: [H / 2, H / 2], last: -1, scoredBy: -1, scorer: -1, kickTeam: 0, left: -1, ev: [], so: null,
   }
   for (let p = 0; p < per * 2; p++) s.pl.push({ x: 0, y: 0, vx: 0, vy: 0, d: 0, chg: 0, slide: 0, cd: 0, stun: 0, touch: 0 })
   placeKickoff(s, 0)
@@ -347,6 +406,11 @@ function moveKeepers(s: FootballState): void {
   }
 }
 
+/** The whistle, or the golden goal's end: the match is over, or (ending 3, level) goes to penalties. */
+function fullTime(s: FootballState, rng: () => number): void {
+  if (s.options.ending === 3 && s.goals[0] === s.goals[1]) startShootout(s, rng); else finish(s)
+}
+
 function playTick(s: FootballState, inputs: readonly FootballInput[], rng: () => number): void {
   for (let p = 0; p < s.pl.length; p++) control(s, p, inputFor(s, inputs, p, rng), rng)
   movePlayers(s)
@@ -362,7 +426,7 @@ function playTick(s: FootballState, inputs: readonly FootballInput[], rng: () =>
     s.clock -= 1
     if (s.clock <= 0) {
       s.clock = 0
-      if (s.goals[0] !== s.goals[1] || s.options.ending !== 1) finish(s)
+      if (s.goals[0] !== s.goals[1] || s.options.ending !== 1) fullTime(s, rng)
       else { s.ot = true; s.otTicks = 0 }
     }
   }
@@ -387,14 +451,192 @@ function step(s: FootballState, inputs: readonly FootballInput[], rng: () => num
     if (s.pt >= s.plen) { s.phase = PHASE.play; s.pt = 0 }
   } else if (s.phase === PHASE.play) {
     playTick(s, inputs, rng)
+  } else if (s.phase === PHASE.pens) {
+    shootTick(s, inputs, rng)
   } else if (s.phase === PHASE.goal) {
     rollBall(s, rng, true)
     if (s.pt >= s.plen) {
-      if (s.ot || s.clock <= 0) finish(s)
+      if (s.ot) finish(s)
+      else if (s.clock <= 0) fullTime(s, rng)
       else { placeKickoff(s, 1 - s.scoredBy); s.phase = PHASE.kickoff; s.pt = 0; s.plen = KICKOFF_AFTER }
     }
   }
   return s
+}
+
+// ---- the shoot-out -------------------------------------------------------------------------------------------
+
+const sgnOf = (team: number): number => (team === 0 ? 1 : -1)
+/** Where the penalty spot is for a team shooting at its goal, and where the ball stops short of the line. */
+export const spotX = (team: number): number => goalX(team) - sgnOf(team) * PEN_D
+/** The shot's aim at the goal line (units from the middle, + to the right of the shooter's camera) for the way the shooter faces. */
+export function aimOf(team: number, d: number): number {
+  const sg = sgnOf(team), ang = Math.atan2((DY[d] as number) * sg, (DX[d] as number) * sg)
+  return Math.round(PEN_D * Math.tan(clamp(ang, -Math.PI / 3, Math.PI / 3))) + 0 // + 0: never -0
+}
+/** The dive a keeper's heading names: -1 left, 0 stay, 1 right, as the shooter's camera sees it. */
+export function diveOf(shootingTeam: number, heading: number): number {
+  if (heading < 1 || heading > 24) return 0
+  const lat = (DY[heading - 1] as number) * sgnOf(shootingTeam)
+  return lat > 0.5 ? 1 : lat < -0.5 ? -1 : 0
+}
+/** Charge as a 0..1 power. */
+export const powerOf = (chg: number): number => Math.min(1, chg / CHARGE_FULL)
+/** Where the ball really goes at the line: a full-power shot swings out by up to a fifth. */
+export const swungAim = (aim: number, chg: number): number => Math.round(aim * (1 + 0.2 * clamp((powerOf(chg) - 0.75) / 0.25, 0, 1)))
+/** What a kick comes to, pure (the header says why). `late` = the dive was named after the strike. */
+export function judgeKick(aim: number, chg: number, dive: number, late: boolean): number {
+  if (chg >= SO_OVER_AT) return SO_OUT.over
+  const q = powerOf(chg), eff = swungAim(aim, chg), a = Math.abs(eff)
+  if (a > 70) return SO_OUT.wide
+  if (a > 62) return SO_OUT.post
+  if (dive === 0) return q < 0.9 && a <= 18 + 24 * Math.max(0, 0.4 - q) / 0.4 ? SO_OUT.saved : SO_OUT.goal
+  return Math.sign(eff) === dive && a >= 14 && a <= (78 - 42 * q) * (late ? 0.6 : 1) ? SO_OUT.saved : SO_OUT.goal
+}
+/** The ticks a kick's ball is in the air: a hard one is quicker. */
+export const flightLen = (chg: number): number => 16 - Math.round(7 * powerOf(chg))
+/** 0 or 1 when that team has won the shoot-out, 2 for a draw at the cap, -1 while it goes on. Pure. */
+export function soWinner(score: readonly number[], taken: readonly number[]): number {
+  const a = score[0] as number, b = score[1] as number, na = taken[0] as number, nb = taken[1] as number
+  const block = na < SO_FIRST || nb < SO_FIRST ? SO_FIRST : na === nb ? (a === b ? na + 1 : na) : Math.max(na, nb)
+  const ra = Math.max(0, block - na), rb = Math.max(0, block - nb)
+  if (a > b + rb) return 0
+  if (b > a + ra) return 1
+  if (na >= SO_CAP && nb >= SO_CAP && a === b) return 2
+  return -1
+}
+/** How far through its flight (0..1) the ball is at flight tick `ft`: slow-motion halves its pace from tick `slow` on. */
+export const flightProgress = (ft: number, len: number, slow: number): number => Math.min(1, (slow > 0 && ft > slow ? slow + (ft - slow) / 2 : ft) / Math.max(1, len))
+const flightTotal = (so: Shootout): number => (so.slow > 0 ? so.slow + 2 * (so.len - so.slow) : so.len)
+
+function startShootout(s: FootballState, rng: () => number): void {
+  s.phase = PHASE.pens; s.pt = 0; s.plen = 0
+  s.so = {
+    team: rng() < 0.5 ? 0 : 1, stage: SO_STAGE.set, st: 0, taken: [0, 0], score: [0, 0], marks: [[], []], shooter: 0, keeper: 0, aim: 0, chg: 0, dive0: 0, dive: 0, late: false,
+    fly: 0, len: 0, slow: 0, out: 0, keepY: H / 2, pick: { ang: 0, chg: 8, dive: 0, late: 0 }, win: -1,
+  }
+  setupKick(s, rng)
+}
+
+function setupKick(s: FootballState, rng: () => number): void {
+  const so = s.so as Shootout, team = so.team, per = s.pl.length >> 1
+  so.shooter = team + 2 * (so.taken[team as 0 | 1] % per); so.keeper = 1 - team
+  so.stage = SO_STAGE.set; so.st = 0; so.aim = 0; so.chg = 0; so.dive0 = 0; so.dive = 0; so.late = false
+  so.fly = 0; so.len = 0; so.slow = 0; so.out = 0; so.keepY = H / 2
+  const ang = Math.floor(rng() * 5) - 2, chg = 6 + Math.floor(rng() * 8), r = rng(), late = rng() < 0.4 ? 1 : 0
+  so.pick = { ang, chg, dive: r < 0.35 ? -1 : r < 0.7 ? 1 : 0, late }
+  s.pl.forEach((pl, p) => {
+    pl.vx = 0; pl.vy = 0; pl.chg = 0; pl.slide = 0; pl.cd = 0; pl.stun = 0; pl.touch = 0
+    pl.d = teamOf(p) === 0 ? 0 : 12
+    if (p === so.shooter) { pl.x = spotX(team) - sgnOf(team) * 26; pl.y = H / 2; pl.d = team === 0 ? 0 : 12 }
+    else { pl.x = W / 2 + (teamOf(p) ? 36 : -36); pl.y = H / 2 + (p >> 1 ? 44 : -44) }
+  })
+  Object.assign(s.ball, { x: spotX(team), y: H / 2, vx: 0, vy: 0, o: -1 })
+  s.ky = [H / 2, H / 2]; s.last = -1
+}
+
+/** The kick is taken: the shot is fixed here; an early dive is judged now, a late one when its time is up. */
+function strike(s: FootballState, keeperIn: FootballInput): void {
+  const so = s.so as Shootout, shooter = s.pl[so.shooter] as Footballer
+  so.chg = shooter.chg; shooter.chg = 0
+  so.aim = aimOf(so.team, shooter.d)
+  so.len = flightLen(so.chg)
+  so.dive0 = diveOf(so.team, keeperIn.h & DIR_MASK); so.dive = so.dive0; so.late = false
+  so.stage = SO_STAGE.fly; so.st = 0; so.fly = 0
+  s.last = so.shooter
+  s.ev.push([EV.kick, Math.round(spotX(so.team)), H / 2, 1])
+  if (so.dive0 !== 0) judge(s)
+}
+function judge(s: FootballState): void {
+  const so = s.so as Shootout
+  so.out = judgeKick(so.aim, so.chg, so.dive, so.late)
+  // The keeper ends where the ball is when he saves it, and short of it when it beats him.
+  const eff = swungAim(so.aim, so.chg)
+  const lat = so.out === SO_OUT.saved ? eff : so.dive * (so.late ? 30 : 46)
+  so.keepY = H / 2 + lat * sgnOf(so.team)
+  // The slow-motion: the kick that settles the shoot-out is played at half pace over its last ticks.
+  const score: [number, number] = [so.score[0], so.score[1]], taken: [number, number] = [so.taken[0], so.taken[1]]
+  if (so.out === SO_OUT.goal) score[so.team as 0 | 1] += 1
+  taken[so.team as 0 | 1] += 1
+  so.slow = soWinner(score, taken) >= 0 ? Math.max(SO_LOCK, so.len - 4) : 0
+}
+
+function shootTick(s: FootballState, inputs: readonly FootballInput[], rng: () => number): void {
+  const so = s.so as Shootout, sg = sgnOf(so.team), b = s.ball
+  const input = (p: number): FootballInput => inputFor(s, inputs, p, rng)
+  so.st += 1
+  if (so.stage === SO_STAGE.set) {
+    if (so.st >= SO_SET) { so.stage = SO_STAGE.aim; so.st = 0 }
+  } else if (so.stage === SO_STAGE.aim) {
+    const shooter = s.pl[so.shooter] as Footballer, inp = input(so.shooter), heading = inp.h & DIR_MASK
+    if (heading >= 1 && heading <= 24) shooter.d = heading - 1
+    if (inp.h & BTN.chg) shooter.chg = Math.min(shooter.chg + 1, 40)
+    if ((inp.e & BTN.kick) || so.st >= SO_AIM) strike(s, input(so.keeper))
+  } else if (so.stage === SO_STAGE.fly) {
+    so.fly += 1
+    if (so.fly === SO_LOCK && so.dive0 === 0) {
+      so.dive = diveOf(so.team, input(so.keeper).h & DIR_MASK); so.late = so.dive !== 0
+      judge(s)
+    }
+    // The ball goes from the spot to just short of the line along the aimed line; the keeper goes where he is going.
+    const p = flightProgress(so.fly, so.len, so.slow), eff = swungAim(so.aim, so.chg)
+    b.x = spotX(so.team) + sg * (PEN_D - 10) * p; b.y = H / 2 + eff * sg * p
+    if (so.out !== SO_OUT.pending) {
+      const start = so.dive0 !== 0 ? 0 : SO_LOCK, u = clamp((so.fly - start) / Math.max(1, so.len * 0.85 - start), 0, 1)
+      s.ky[1 - so.keeper] = H / 2 + (so.keepY - H / 2) * (1 - (1 - u) * (1 - u))
+    }
+    if (so.fly >= flightTotal(so)) arrive(s)
+  } else {
+    // The ball settles in the net, off the keeper's hands or beside the goal.
+    b.x += b.vx; b.y += b.vy; b.vx *= 0.88; b.vy *= 0.88
+    const net = so.out === SO_OUT.goal, lo = net ? -GOAL_DEPTH + BR : BR, hi = net ? W + GOAL_DEPTH - BR : W - BR
+    b.x = clamp(b.x, lo, hi); b.y = net ? clamp(b.y, GOAL_Y1 + BR, GOAL_Y2 - BR) : clamp(b.y, BR, H - BR)
+    if (so.st >= SO_RESULT) {
+      if (so.win >= 0) finish(s)
+      else { so.team = 1 - so.team; setupKick(s, rng) }
+    }
+  }
+}
+
+/** The ball reaches the goal: the kick is scored, saved or missed, and who has won is worked out. */
+function arrive(s: FootballState): void {
+  const so = s.so as Shootout, b = s.ball, sg = sgnOf(so.team), team = so.team as 0 | 1
+  so.stage = SO_STAGE.result; so.st = 0
+  const x = Math.round(b.x), y = Math.round(b.y), side = so.aim >= 0 ? 1 : -1
+  if (so.out === SO_OUT.goal) { so.score[team] += 1; b.vx = sg * 6; b.vy = side * sg * 0.5; s.ev.push([EV.goal, x, y, team]) }
+  else if (so.out === SO_OUT.saved) { b.vx = -sg * 5; b.vy = side * sg * 3; s.ev.push([EV.save, x, y, 1 - team]) }
+  else if (so.out === SO_OUT.post) { b.vx = -sg * 4; b.vy = side * sg * 4; s.ev.push([EV.post, x, y, 0]) }
+  else { b.vx = sg * 3; b.vy = side * sg * 2; s.ev.push([EV.miss, x, y, so.out === SO_OUT.over ? 2 : 1]) }
+  so.marks[team].push(so.out === SO_OUT.goal ? 1 : 2)
+  so.taken[team] += 1
+  so.win = soWinner(so.score, so.taken)
+}
+
+/** The computer's part in a shoot-out: shoot at one of five angles and a charge it drew for the kick, or dive as it drew (a late one peeks at the ball). */
+function soAi(s: FootballState, p: number): FootballInput {
+  const so = s.so
+  if (!so) return IDLE
+  const sg = sgnOf(so.team)
+  if (p === so.shooter && so.stage === SO_STAGE.aim && so.st >= 6) {
+    const a = so.pick.ang * (Math.PI / 12), h = dirCode(sg * Math.cos(a), sg * Math.sin(a))
+    return (s.pl[p] as Footballer).chg >= so.pick.chg ? { h, e: BTN.kick } : { h: h | BTN.chg, e: 0 }
+  }
+  if (p === so.keeper) {
+    const head = (c: number): number => (c === 0 ? 0 : dirCode(0, c * sg))
+    if (!so.pick.late && ((so.stage === SO_STAGE.aim && so.st >= 8) || so.stage === SO_STAGE.fly)) return { h: head(so.pick.dive), e: 0 }
+    if (so.pick.late && so.stage === SO_STAGE.fly && so.fly >= 3) return { h: head(Math.abs(so.aim) >= 20 ? Math.sign(so.aim) : 0), e: 0 }
+  }
+  return IDLE
+}
+
+function soSnap(s: FootballState): ShootSnap {
+  const so = s.so as Shootout, shooter = s.pl[so.shooter] as Footballer, struck = so.stage >= SO_STAGE.fly
+  return {
+    s: so.stage, t: so.team, p: [so.shooter, so.keeper], g: [so.score[0], so.score[1]], m: [so.marks[0].slice(), so.marks[1].slice()],
+    c: so.stage === SO_STAGE.aim ? Math.ceil((SO_AIM - so.st) / HZ) : so.stage === SO_STAGE.set ? Math.ceil((SO_SET - so.st) / HZ) : 0,
+    k: [struck ? so.aim : 0, struck ? so.chg : shooter.chg, struck ? so.dive : 0, struck ? so.fly : 0, struck ? so.len : 0, struck ? so.slow : 0],
+    r: so.stage === SO_STAGE.result ? so.out : 0, w: so.win,
+  }
 }
 
 // ---- the computer --------------------------------------------------------------------------------------------
@@ -402,6 +644,7 @@ function step(s: FootballState, inputs: readonly FootballInput[], rng: () => num
 const IDLE: FootballInput = { h: 0, e: 0 }
 /** The computer's play for player `p`: used for the practice opponent and for any player without a human behind him. Stateless apart from the player's own `chg`. */
 function ai(s: FootballState, p: number, rng: () => number): FootballInput {
+  if (s.phase === PHASE.pens) return soAi(s, p)
   if (s.phase !== PHASE.play) return IDLE
   const me = s.pl[p] as Footballer, b = s.ball, team = teamOf(p)
   if (me.stun > 0 || me.slide > 0) return IDLE
@@ -463,6 +706,12 @@ function outcome(s: FootballState): Outcome | null {
   const line = s.goals[0] + '-' + s.goals[1]
   if (s.left >= 0) return { winners: seatTeam(1 - teamOf(s.left)), draw: false, reason: 'forfeit', text: '{' + s.left + '} left the match. ' + names(1 - teamOf(s.left)) + ' win.', scores }
   if (s.phase !== PHASE.over) return null
+  const so = s.so
+  if (so && so.win >= 0 && so.win < 2) {
+    const w = so.win, hi = Math.max(...so.score), lo = Math.min(...so.score)
+    return { winners: seatTeam(w), draw: false, reason: 'penalties', text: names(w) + (seatTeam(w).length > 1 ? ' win ' : ' wins ') + 'on penalties, ' + hi + '-' + lo + ' after a ' + line + ' draw.', scores }
+  }
+  if (so && so.win === 2) return { winners: [], draw: true, reason: 'draw', text: 'A ' + line + ' draw, and still level at ' + so.score[0] + '-' + so.score[1] + ' after ' + SO_CAP + ' penalties each.', scores }
   if (s.goals[0] === s.goals[1]) return { winners: [], draw: true, reason: 'draw', text: 'Full time: a ' + line + ' draw between ' + names(0) + ' and ' + names(1) + '.', scores }
   const w = s.goals[0] > s.goals[1] ? 0 : 1
   return { winners: seatTeam(w), draw: false, reason: s.ot ? 'golden' : 'time', text: names(w) + (seatTeam(w).length > 1 ? ' win ' : ' wins ') + Math.max(...s.goals) + '-' + Math.min(...s.goals) + (s.ot ? ' with a golden goal.' : '.'), scores }
@@ -476,6 +725,7 @@ function snapshot(s: FootballState): FootballSnap {
     k: [Math.round(s.ky[0]), Math.round(s.ky[1])], e: s.ev.map((e) => e.slice()),
   }
   if (s.phase === PHASE.goal || s.phase === PHASE.over) snap.s = [s.scoredBy, s.scorer]
+  if (s.so) snap.o = soSnap(s)
   return snap
 }
 
@@ -488,7 +738,7 @@ const rules: RealtimeRules<FootballState, FootballInput, FootballSnap> = {
   seats: { min: 2, max: 4 },
   options: {
     seconds: { label: 'Match length', values: [60, 120, 180], default: 120, names: ['1 minute', '2 minutes', '3 minutes'] },
-    ending: { label: 'If level', values: [1, 2], default: 1, names: ['Golden goal', 'Draw'] },
+    ending: { label: 'If level', values: [1, 2, 3], default: 1, names: ['Golden goal', 'Draw', 'Penalties'] },
     side: { label: 'Players a side', values: [1, 2], default: 1, names: ['1 v 1', '2 v 2 (with computer team-mates)'] },
   },
   start: (seats, rng, options) => start(seats, rng, cleanArenaOptions(rules, options)),

@@ -9,10 +9,10 @@ import type { ReplayLog } from './replay.ts'
 import { CLIP_SECONDS, FPS, aspectSize, clipWindow, frameCount, pickAt } from './replay-frames.ts'
 
 /** Play a match the way the room host does, recording as it goes; `steer` makes seat 1 bot-steered between two ticks. */
-function record(game: string, seed: string, humans: number, script: (tick: number, seat: number) => unknown, steer?: [number, number]) {
+function record(game: string, seed: string, humans: number, script: (tick: number, seat: number) => unknown, steer?: [number, number], extra: Record<string, number> = {}) {
   const rules = ARENA_GAMES[game]!
   const seats = Array.from({ length: Math.max(rules.seats.min, humans) }, (_, i) => ({ name: i < humans ? `P${i}` : `Bot ${i}`, bot: i >= humans }))
-  const rng = makeRng(seed), options: Record<string, number> = game === 'football' ? { seconds: 60, ending: 2 } : game === 'race' ? { laps: 1 } : { rounds: 1, seconds: 30 }
+  const rng = makeRng(seed), options: Record<string, number> = { ...(game === 'football' ? { seconds: 60, ending: 2 } : game === 'race' ? { laps: 1 } : { rounds: 1, seconds: 30 }), ...extra }
   const state = rules.start(seats.length, rng, options)
   const rec = new ReplayRecorder({ game, rev: 1, hz: rules.hz, seed, options, seats }, JSON.stringify(rules.idle()))
   const snaps: unknown[] = [rules.snapshot(state)]
@@ -71,6 +71,22 @@ test('race and football (which draw random numbers inside step) replay exactly t
     assert.equal(out.verified, true, `${game}: ${out.problem}`)
     assert.deepEqual([out.start, ...out.snaps], snaps, game)
   }
+})
+
+test('a football match that goes to a penalty shoot-out replays exactly too', () => {
+  // Two computer-played sides, until one of the seeds ends level and goes to penalties.
+  let found = 0
+  for (const seed of ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12']) {
+    const { log, snaps } = record('football', seed, 0, () => undefined, undefined, { ending: 3 })
+    if (!snaps.some((s) => (s as { p: number }).p === 4)) continue
+    found += 1
+    const out = replayMatch(ARENA_GAMES.football!, log)
+    assert.equal(out.verified, true, `${seed}: ${out.problem}`)
+    assert.deepEqual([out.start, ...out.snaps], snaps, seed)
+    assert.ok((snaps[snaps.length - 1] as { o?: { w: number } }).o!.w >= 0, 'the shoot-out was played to its end')
+    if (found === 2) break
+  }
+  assert.ok(found >= 1, 'a seed that goes to penalties')
 })
 
 test('a changed rules revision or a tampered log is not verified; garbage is not a log', () => {

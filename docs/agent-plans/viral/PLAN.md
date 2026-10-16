@@ -61,6 +61,8 @@ Everything below serves one of these three.
   clan, your city); anyone in the world (matchmaking by rating); and agents (your agent plays the game for you, or against yours).
 - **Stakes.** Game money only, within table-stakes limits, paid out by the server, shown as "stake" and "prize". Spectators can back a
   player with a small stake too (capped per day), which is what makes watching fun and makes clips spread.
+- **Controllers.** Every game works with a real game controller (the browser's Gamepad API: detection, a standard mapping, remap,
+  rumble where allowed) beside touch and keyboard, through one shared input module, so a pad player and a thumb player are equal.
 - **Polish targets for the first two games** (pick with the owner; the arena frame already has Fight, and Race and Football frames):
   60 fps on a mid phone, under 1.5 MB brotli per cartridge, controls that work with thumbs, a 90-second match, a result card to share
   (the share-card system exists), a weekly ladder, and a reason to return (daily challenge, weekly tournament, clan standings).

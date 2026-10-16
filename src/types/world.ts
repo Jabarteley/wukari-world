@@ -152,6 +152,20 @@ export interface WorldFeedResponse {
 /** GET /api/world/gist (server/gist): public lines of what happened in a city, newest first (docs/GIST.md). */
 export interface GistLine { n: number; at: number; city: string; kind: string; text: string }
 export interface WorldGistResponse { city: CityId; items: GistLine[]; latest: number }
+/** GET /api/world/episode (server/gist/episode.ts, docs/EPISODES.md): one city's week as a short recap built from public facts only. */
+export interface EpisodeLine { text: string; kind: string; at: number; /** An AI character is named in the line. */ ai?: true }
+export interface EpisodeLeague { rank: number; of: number; /** The week is over and settled (otherwise `leader` is who leads so far). */ final: boolean; leader: { id: string; name: string } | null }
+export interface EpisodeView {
+  city: CityId; cityName: string
+  /** The Monday of the week, as 2026-10-12 (Lagos time). */
+  week: string; from: number; to: number; current: boolean
+  /** A week with fewer than two lines says so instead of inventing. */
+  quiet: boolean; headline: string; description: string
+  lines: EpisodeLine[]
+  league: EpisodeLeague | null
+  office: { title: string; name: string; ai?: true } | null
+  stalls: number
+}
 /** GET /api/world/works: see server/works/works.ts WorksView. */
 export interface WorldWorksResponse {
   city: CityId
@@ -178,6 +192,8 @@ export interface WorldHttpRoutes {
   'GET /api/world/feed': { query: { id: CityId }; response: Ok<WorldFeedResponse>; errors: HostErrorCode | 'invalid_city' | 'feed_rate_limited' }
   /** Public: the newest public lines of a city's gist (its own and the world's) after `since`; cached 15 seconds. */
   'GET /api/world/gist': { query: { id: CityId; since?: number; limit?: number }; response: Ok<WorldGistResponse>; errors: HostErrorCode | 'invalid_city' | 'gist_rate_limited' }
+  /** Public: this city's week so far, or a past week (`week` = its Monday, the last 8 kept); cached five minutes. */
+  'GET /api/world/episode': { query: { id: CityId; week?: string }; response: Ok<{ episode: EpisodeView }>; errors: HostErrorCode | 'invalid_city' | 'invalid_week' | 'episode_rate_limited' }
   /** A player's prayer (server/routes/prayers.ts, docs/PRAYERS.md): the notice to show first, then the prayer, sent with `notice: true`. */
   'GET /api/world/pray': { query: Record<string, never>; response: Ok<{ notice: string; received: string; left: number; max: number }>; errors: WorldCommon }
   'POST /api/world/pray': { body: { text: string; notice: true; venue?: string; clientId: string }; response: Ok<{ ok: true; message: string }>; errors: WorldCommon | 'notice_required' | 'invalid_prayer' | 'too_many_prayers' }

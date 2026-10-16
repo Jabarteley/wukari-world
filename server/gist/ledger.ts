@@ -71,6 +71,12 @@ const clean = (text: string, max: number): string => text.replace(/[\u0000-\u001
 const upFirst = (text: string): string => (text ? text[0]!.toUpperCase() + text.slice(1) : text);
 const cityName = (id: string): string => (id === WORLD ? 'Allworld' : cityRules(id)?.name ?? id);
 
+/** Whether a stored character is one an AI agent plays (the agents' own list). */
+export const isAiCharacter = (db: Db, id: string): boolean => {
+  const agents = (db as unknown as Record<string, unknown>).agents, chars = record(agents) ? agents.chars : null;
+  return record(chars) && record(chars[id]);
+};
+
 const emptyCursor = (): GistCursor => ({ records: -1, busy: {}, square: 0, events: {} });
 export const emptyGist = (): GistCollection => ({ v: 1, seq: 0, cursor: emptyCursor(), cities: {} });
 
@@ -167,6 +173,8 @@ function buildService(ctx: RouteContext) {
     if (!text || /\{\d\}/.test(text) || (!entry.publicAmount && MONEY.test(text))) return null;
     const refs: GistRefs = {};
     for (const [key, value] of Object.entries(entry.refs ?? {}).slice(0, 4)) if (typeof value === 'number' || typeof value === 'string') refs[clean(key, 12)] = typeof value === 'string' ? clean(value, 60) : value;
+    // An AI character in the line keeps its AI mark where the line is retold (the weekly episode): a small flag, never an id.
+    if (people.some((person) => isAiCharacter(db, person.id))) refs.ai = 1;
     const gist = gistOf(ctx, db), now = ctx.now();
     const list = gist.cities[entry.city] ?? (gist.cities[entry.city] = []);
     if (refs.key !== undefined && list.some((item) => item.refs?.key === refs.key)) return null;

@@ -20,8 +20,6 @@ import type { FightView, Insets } from '../../../arena/fight-3d.ts'
 import type { FighterColors } from '../../../arena/fight-draw.ts'
 import { Timeline } from '../../../arena/interp.ts'
 import type { ArenaLook, ArenaNative } from '../../../types/arena.ts'
-import { nativeRecipeForLook } from '../../../character/native-migration.ts'
-import { packNativeLook } from '../../../arena/native-look.ts'
 import { FIGHT_PAD } from '../../../arena/input/pad.ts'
 import { axisDir, usePad } from '../../../arena/input/usePad.ts'
 
@@ -42,10 +40,9 @@ const ownLook = (): ArenaLook | undefined => {
   const look = game.state.value.onboarding?.look as { skin?: string; hairColor?: string; outfitColor?: string; bottomsColor?: string } | undefined
   return look?.skin && look.hairColor && look.outfitColor && look.bottomsColor ? [look.skin, look.hairColor, look.outfitColor, look.bottomsColor] : undefined
 }
-/** The player's own native character, public part, as the world dresses it (their saved look, or the one made from their name). */
-const ownNative = (): ArenaNative | undefined => {
-  try { const look = game.state.value.onboarding?.look as unknown as Record<string, unknown> | undefined; return packNativeLook(nativeRecipeForLook(look, look?.seed ?? look?.id ?? 'joinallworld').appearance) } catch { return undefined }
-}
+/** The player's own native character, public part, as the world dresses it. The modules that make it are reached by a dynamic import (startup shares them), so the room opens once it is known. */
+let ownNat: ArenaNative | undefined
+const ownNative = (): ArenaNative | undefined => ownNat
 const hex = (group: 'skin' | 'hairColours' | 'outfitColours', id: string | undefined, fallback: string): string => APPEARANCE[group].find((swatch) => swatch.id === id)?.hex ?? fallback
 function colors(seat: number): FighterColors {
   const look = room.state.value?.seats[seat]?.look
@@ -68,7 +65,8 @@ const room = useArenaRoom<FightSnap>({
 })
 const predictor = new FightPredictor()
 const sound = createFightSound()
-room.mount()
+const look = game.state.value.onboarding?.look as unknown as Record<string, unknown> | undefined
+void import('../../../arena/native-own.ts').then(async (m) => { ownNat = await m.packOwnLook(look) }).catch(() => undefined).finally(() => room.mount())
 const state = room.state, note = room.note, conn = room.conn, gone = room.gone, timeline = room.timeline
 
 // ---- input --------------------------------------------------------------------------------------------

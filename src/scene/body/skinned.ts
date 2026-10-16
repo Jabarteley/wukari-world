@@ -71,4 +71,4 @@ export interface SkinnedBody {
   dispose(): void;
 }
 
-export { createNativeBody as createBody, loadNativeBody as loadBody, preloadNativeBodies as preloadCanonicalBodies, preloadLooks } from '../character-lab/native-body.ts';
+export { createNativeBody as createBody, loadNativeBody as loadBody, preloadNativeBodies as preloadCanonicalBodies, preloadLooks, nativeSystem, recipeForLook } from '../character-lab/native-body.ts';

@@ -6,7 +6,6 @@
  * native-body.ts, which the world already loads, so a player who has been in the world has most of these files cached.
  */
 import { THREE, lambertise } from './three/kit.ts'
-import { nativeSystem } from '../scene/character-lab/native-body.ts'
 import type { NativeAppearanceV2 } from '../character/native-recipe.ts'
 
 /** The Blender script's clip names, as the 3D view calls them. */
@@ -49,6 +48,8 @@ export function clipsFor(animations: readonly THREE.AnimationClip[], body: strin
 }
 
 let serial = 0
+/** The native runtime, by a dynamic import: the world's own chunk (native-body), which the first download shares modules with, gains no new importer. */
+const nativeSystem = async () => (await import('../scene/body/skinned.ts')).nativeSystem()
 /** Warm the shared native system (its catalogue and motion files). */
 export async function warmNative(): Promise<void> { await nativeSystem() }
 

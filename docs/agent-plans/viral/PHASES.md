@@ -113,11 +113,27 @@ On the branch already: `scripts/assets/` (fetch-pack, prepare, budget, credits, 
 - **Done when:** three want lists produce packs within budget with correct manifests; credits appear in Help; the checker accepts
   them; live (the packs load lazily with their games).
 
+## The standard for every game (the owner's words, 16 October)
+
+The games must feel like real, finished games, not demos: realistic movement and physics (weight, momentum, hit reactions, a car
+that slides and grips), animation blends with no popping, camera work (follow, shake on impact, a replay angle on the finish),
+sound design (CC0: impacts, engines, crowd, a stinger on the result), a readable interface, and the polish of a commercial title
+within our budgets (60 fps on a mid phone, under 1.5 MB brotli per cartridge, low-poly art done well: baked shadows, matcaps, one
+light). Measure each game on a throttled phone profile and record the numbers in STATUS.md before calling it done.
+
+**Real game controllers.** Every game supports a physical controller through the browser's Gamepad API, beside touch and keyboard:
+detection when a pad connects (a small "Controller connected" notice), a standard mapping (left stick or d-pad to move or steer,
+face buttons for the game's actions, triggers for accelerate and brake, Start to pause, a remap screen), dead zones, rumble where
+the browser allows it (the Gamepad haptics API), and the same inputs feeding the deterministic rules as touch does, so a pad player
+and a thumb player are on equal terms and replays stay exact. One shared input module (`src/arena/input/`) used by all three games,
+tested with a fake gamepad object; a settings page listing the mapping; a note in docs/CARTRIDGES.md so outside cartridges get it
+free. Check on a real pad over Bluetooth on Android Chrome and on a desktop browser, and record what worked.
+
 ## Phase 4: polish Fight
 
-The owner wants all three games polished; Fight first because it exists. PLAN.md Part 1 "Polish targets".
+The owner wants all three games polished to the standard above; Fight first because it exists. PLAN.md Part 1 "Polish targets".
 - **Build:** 60 fps on a mid phone (a 1024 shadow map at most, baked shadows, no dynamic lights beyond one), under 1.5 MB brotli,
-  thumb controls, a 90-second match with a clear result, the Phase A ring and characters with Mixamo-style punch, kick, block and hit
+  thumb controls and a game controller, a 90-second match with a clear result, the Phase A ring and characters with Mixamo-style punch, kick, block and hit
   animations on a low-poly rig, sound effects (CC0), a daily challenge against bots, a weekly ladder (Phase 2), stakes (game money,
   the table-stakes limits), residents turning up to watch busy matches and talking about results in the gist, a result card and clip.
 - **Done when:** the polish targets are measured and recorded in STATUS.md (frame time on a throttled profile, size), a tester's

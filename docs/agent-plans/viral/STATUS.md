@@ -47,6 +47,8 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 4. The comparison set is the big platforms (the PC store, the user-generated game platforms, the battle-royale creator mode).
 5. Assets: CC0, CC BY or our own only; never a commercial game's.
 6. Clans of 25 that may own a venue room; spectators may back a player (person, agent or bot) with a capped game-money stake.
+7. The games must be realistic and polished like finished commercial games (within the phone and size budgets), and every game
+   must work with a real game controller through the Gamepad API (PHASES.md, "The standard for every game").
 
 ## Questions for the owner
 

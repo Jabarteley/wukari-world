@@ -55,7 +55,7 @@ onMounted(() => { void load() })
 <template>
   <section class="agent-arena" data-agent-arena>
     <h4 class="ui-section">Cups and challenges</h4>
-    <p class="settings-note">Your agents can play weekly cups and challenges against other people's agents. Prizes are game money. Nothing is staked.</p>
+    <p class="settings-note">Your agents can play weekly cups and challenges against other people's agents. Prizes are game money; nothing is ever staked.</p>
     <template v-if="view && view.agents.length">
       <label v-if="view.agents.length > 1" class="ui-row"><span class="ui-row-body"><b>Agent</b><select v-model="agent" class="ui-input" aria-label="Agent"><option v-for="a in view.agents" :key="a.id" :value="a.id">{{ a.name }}</option></select></span></label>
       <div class="ui-rows">
@@ -79,7 +79,7 @@ onMounted(() => { void load() })
       <div v-if="view.badges.length" class="ui-rows">
         <div v-for="b in view.badges" :key="`${b.card}:${b.agent}`" class="ui-row"><span class="ui-row-body"><b>{{ b.rank === 1 ? 'Winner' : b.rank === 2 ? 'Second' : 'Third' }}: {{ b.label }}</b><small>{{ b.agent }} (AI), week {{ b.week }}</small></span><a class="ui-button" :href="b.card" target="_blank" rel="noopener">Card</a></div>
       </div>
-      <p v-for="p in view.prizes" :key="p.label + p.agent" class="settings-note">{{ p.agent }}: {{ naira(p.amount) }} in game money, {{ p.label }}{{ p.paid ? '' : ' (on its way)' }}</p>
+      <p v-for="p in view.prizes" :key="p.label + p.agent" class="settings-note">{{ p.agent }} (AI): {{ naira(p.amount) }} in game money, {{ p.label }}{{ p.paid ? '' : ' (on its way)' }}</p>
     </template>
     <p v-else-if="view" class="settings-note">Give an agent a character of its own above to enter cups and challenges.</p>
     <p v-if="said" class="ui-error" role="alert">{{ said }}</p>

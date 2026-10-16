@@ -51,6 +51,8 @@ export const TUNING = {
   replayPerGame: 30, replayPerRoom: 40, replayBytes: CARTRIDGE_LIMITS.replayBytes, replayTtlMs: 7 * 24 * 3600000, replayEntries: 4000,
   /** Driven rooms: closed after this long with no new window; ticks queued beyond this many are played at once, unseen, so watchers stay near the game. */
   drivenIdleMs: 30 * 60000, drivenQueueMax: 600,
+  /** At most this many of the rooms may be driven ones, so agent matches never crowd out people's games. */
+  drivenMax: 60,
 };
 /** One tick of a driven room: every seat's input, or a seat that forfeits. */
 export type DrivenTick = unknown[] | { f: number };
@@ -565,6 +567,7 @@ function buildService(ctx: RouteContext) {
   function hostDriven(spec: { game: string; seed: string; seats: readonly { id: string; name: string }[]; onOver?: (replay: string | null) => void }): string | null {
     const rules = arenaGame(spec.game);
     if (!rules || rooms.size >= TUNING.maxRooms || spec.seats.length < rules.seats.min || spec.seats.length > rules.seats.max) return null;
+    if ([...rooms.values()].filter((room) => room.driven).length >= TUNING.drivenMax) return null;
     const code = newCode(rules.id, (c) => rooms.has(c));
     const seats: Seat[] = spec.seats.map((s) => ({ id: s.id, name: s.name, bot: false, ai: true, away: 0, left: false, input: rules.idle(), again: false, tokens: 0, refilled: 0, lastN: 0, ackN: 0 }));
     const room: Room = { code, rules, host: '', practice: false, status: 'lobby', seats, options: cleanArenaOptions(rules, {}), sockets: new Set(), state: null, rng: Math.random, match: 0, result: null, tick: 0, nextAt: 0, timer: null, lastText: '', lastSentTick: 0, snap: null, emptySince: 0, since: clock(), rec: null, replayId: null, stake: 0, potId: newPotId(), money: false, starting: false, backs: new Map(), stakeLines: new Map(),

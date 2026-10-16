@@ -9,7 +9,7 @@ import { useApp } from '../../state/app.ts'
 import BaseButton from '../../ui/BaseButton.vue'
 import { APPEARANCE } from '../../../game/content/traits.ts'
 import { InputPipe } from '../../../arena/client.ts'
-import { useArenaRoom } from '../../../arena/room.ts'
+import { useArenaRoom, aiName } from '../../../arena/room.ts'
 import type { ArenaScreenProps } from '../../../arena/catalog.ts'
 import ArenaRoomPanels from './ArenaRoomPanels.vue'
 import ArenaStage from './ArenaStage.vue'
@@ -129,7 +129,7 @@ function buildBoard(snap: RaceSnap): Row[] {
   return order.map((seat, index) => {
     const c = snap.r[seat] as CarSnap
     const gap = c[6] & 4 ? 'left' : c[5] ? timeText(c[5]) : snap.p === 2 ? 'DNF' : index === 0 || !leader ? (snap.p === 0 ? '' : 'leader') : '+' + (Math.max(0, leader[4] - c[4]) / 150).toFixed(1) + 's'
-    return { seat, place: index + 1, name: st?.seats[seat]?.name ?? 'Racer ' + (seat + 1), color: defaultLook(seat).body, lap: Math.min(laps.value, Math.max(1, lapOf(c[4], L) + 1)), gap, fin: c[5] > 0, you: seat === st?.you }
+    return { seat, place: index + 1, name: aiName(st?.seats[seat]) ?? 'Racer ' + (seat + 1), color: defaultLook(seat).body, lap: Math.min(laps.value, Math.max(1, lapOf(c[4], L) + 1)), gap, fin: c[5] > 0, you: seat === st?.you }
   })
 }
 
@@ -157,7 +157,7 @@ function frame(now: number): void {
   const cars: DrawCar[] = b.r.map((cb, i) => {
     const ca = (a.r[i] ?? cb) as CarSnap
     const look = defaultLook(i, accentOf(i))
-    return { x: lerp(ca[0], cb[0], t), y: lerp(ca[1], cb[1], t), a: lerpAngle(headingFrom256(ca[2]), headingFrom256(cb[2]), t), v: Math.abs(cb[3] / 4), fl: cb[6], name: st.seats[i]?.name ?? 'Racer', look, place: order.indexOf(i) + 1, fin: cb[5] > 0 }
+    return { x: lerp(ca[0], cb[0], t), y: lerp(ca[1], cb[1], t), a: lerpAngle(headingFrom256(ca[2]), headingFrom256(cb[2]), t), v: Math.abs(cb[3] / 4), fl: cb[6], name: aiName(st.seats[i]) ?? 'Racer', look, place: order.indexOf(i) + 1, fin: cb[5] > 0 }
   })
   // Own car: the newest snapshot, run forward by the age of the packet plus a little for the trip back, then eased into place.
   if (you != null && own && own.p === 1 && cars[you]) {
@@ -225,7 +225,7 @@ const podium = computed(() => {
   const order = standings(snap.r.map((c) => c[4]), snap.r.map((c) => c[5]), snap.r.map((c) => (c[6] & 4) !== 0))
   const row = (seat: number, place: number) => {
     const c = snap.r[seat] as CarSnap
-    return { seat, place, name: st.seats[seat]?.name ?? 'Racer', time: c[5] ? timeText(c[5]) : (c[6] & 4) ? 'left' : 'DNF', color: defaultLook(seat).body, you: seat === st.you }
+    return { seat, place, name: aiName(st.seats[seat]) ?? 'Racer', time: c[5] ? timeText(c[5]) : (c[6] & 4) ? 'left' : 'DNF', color: defaultLook(seat).body, you: seat === st.you }
   }
   const fin = order.filter((seat) => (snap.r[seat] as CarSnap)[5] > 0)
   const top = [fin[1], fin[0], fin[2]].map((seat, i) => (seat == null ? null : row(seat, i === 1 ? 1 : i === 0 ? 2 : 3))).filter((x) => x != null)

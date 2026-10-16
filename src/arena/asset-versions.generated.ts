@@ -3,7 +3,7 @@ export const ASSET_VERSIONS: Readonly<Record<string, string>> = Object.freeze({
   '/assets/packs/allworld-arenas/ball.glb': '967bbc4df2',
   '/assets/packs/allworld-arenas/goal-full.glb': '9d68963851',
   '/assets/packs/allworld-arenas/goal.glb': '789dbf3466',
-  '/assets/packs/allworld-arenas/native-football-clips.glb': 'f22663531b',
+  '/assets/packs/allworld-arenas/native-football-clips.glb': 'd46aeb244e',
   '/assets/packs/allworld-arenas/pitch.glb': '403fca1804',
   '/assets/packs/allworld-arenas/ring.glb': '7e2882e106',
   '/assets/packs/allworld-fight/native-fight-clips.glb': 'e2e27f5ca2',

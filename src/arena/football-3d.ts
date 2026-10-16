@@ -25,7 +25,8 @@ import { EV, GOAL_DEPTH, GOAL_Y1, GOAL_Y2, H, PEN_D, PHASE, SO_STAGE, W, flightP
 import type { FootballSnap, FootballerSnap, ShootSnap } from './football.ts'
 import { defaultNativeLook, unpackNativeLook } from './native-look.ts'
 import type { ArenaNative } from '../types/arena.ts'
-import { ActionMix, FOOTBALLER_HEIGHT, KIT, NATIVE_HEIGHT, NATIVE_WAIT_MS, TIMES, clipsFor, kitLook, nativeAllowedHere, spawnNativeFighter, trianglesOf, warmNative, withinBudget } from './football-native.ts'
+import { ActionMix, KIT, NATIVE_HEIGHT, NATIVE_WAIT_MS, SHUFFLE_SPEED, TIMES, clipsFor, kitLook, lightenActor, nativeAllowedHere, spawnNativeFighter, warmNative, withinBudget } from './football-native.ts'
+import type { Detail } from './football-native.ts'
 import type { NativeFighter } from './fight-native.ts'
 
 /** A model's URL with its content version (asset-versions.generated.ts): /assets/ is cached for a year, so a changed file needs a new URL. */
@@ -182,7 +183,7 @@ export function penaltyCam(team: number, across: number, aspect: number, fov: nu
   return { pos: [goalX - s * toGoal, 3.0, -s * 1.7], look: [goalX, 0.7, 0] }
 }
 /** The most the end-on camera slides back towards your own goal to keep its mouth out from under the thumbs, metres. */
-export const GOAL_CLEAR_MAX = 6
+export const GOAL_CLEAR_MAX = 12
 /**
  * The smallest slide `d` in [0, max] for which `y(d)` (where something sits on the screen, px from the top, falling as `d` grows) is
  * no lower than `limit`: 0 when it is clear already, `max` when even that is not enough. Pure.
@@ -216,7 +217,7 @@ export interface FootballView {
   project(x: number, y: number, up?: number): { x: number; y: number }
   /** The camera now. */
   mode(): CamMode | 'penalty'
-  stats(): ReturnType<FrameStats['read']> & { /** the pixel ratio now drawn at */ ratio: number; /** where the camera, its look point and the ball are (metres), for measuring */ cam: number[]; look: number[]; ball: number[]; /** the keepers' lean or dive, radians */ keepers: number[]; native: number; perActor: number; nativeWhy: string }
+  stats(): ReturnType<FrameStats['read']> & { /** the pixel ratio now drawn at */ ratio: number; /** where the camera, its look point and the ball are (metres), for measuring */ cam: number[]; look: number[]; ball: number[]; /** the keepers' lean or dive, radians */ keepers: number[]; native: number; perActor: number; perLod: number; nativeWhy: string }
   dispose(): void
 }
 
@@ -227,7 +228,7 @@ interface Body {
   /** the player's own character, once it has arrived */ nat: NativeSlot | null
 }
 /** One player's own character in the scene: the actor, the blender that drives its clips, and what it is in the middle of. */
-interface NativeSlot { fighter: NativeFighter; mix: ActionMix; slide: boolean; landAt: number; kickUntil: number }
+interface NativeSlot { fighter: NativeFighter; mix: ActionMix; detail: Detail; level: 'full' | 'lod'; slide: boolean; landAt: number; kickUntil: number }
 /** What the view needs to know about a seat to dress it: the name (a default look is made from it) and the public native look, if any. */
 export interface SeatLook { name: string; nat?: ArenaNative | undefined; /** This seat is the player's own (their pieces are on the phone already). */ mine?: boolean }
 /** How far (metres) a keeper's dive goes in the clip's time: the body is at full length when he has moved this far. */
@@ -403,12 +404,7 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
     const vz = Number.isNaN(body.lx) || dt <= 0 ? 0 : (w.z - body.lz) / dt
     body.speed += (vz - body.speed) * (1 - Math.exp(-10 * dt))
     body.lx = w.x; body.lz = w.z
-    if (body.nat) {
-      // The keepers are drawn as the players' own characters in a shoot-out only: two actors on the screen at most, which is what the triangle budget allows.
-      const own = !!so
-      body.nat.fighter.group.visible = own; body.root.visible = !own
-      if (own) { body.tilt.rotation.set(0, 0, 0); body.tilt.position.y = 0; nativeKeeper(body, w, so, conceded, now, dt); return }
-    }
+    if (body.nat) { body.tilt.rotation.set(0, 0, 0); body.tilt.position.y = 0; nativeKeeper(body, w, so, conceded, now, dt, body.speed * (team === 0 ? 1 : -1)); return }
     let want = Math.max(-0.3, Math.min(0.3, body.speed * 0.09 * (team === 0 ? 1 : -1))), lift = 0
     if (so && so.s >= SO_STAGE.fly && team === 1 - so.t && so.k[2] !== 0) {
       // This keeper is being shot at and has named a dive: he goes over as far as the server has moved him, and stays down till the next kick.
@@ -457,25 +453,29 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
   // pieces, which are on the phone already), in its team's shirt, and swapped in for the blocky player when it is ready. If one actor
   // would cost so many triangles that the screen passes NATIVE_TRIANGLES_MAX, or the files are slow to come, the blocky players stay.
   const wanted: string[] = bodies.map(() => ''), generation: number[] = bodies.map(() => 0)
-  let seatsSeen: readonly SeatLook[] | null = null, startedAt = 0, disposed = false, fieldN = 2, perActor = 0, keepersAsked = false
+  let seatsSeen: readonly SeatLook[] | null = null, startedAt = 0, disposed = false, fieldN = 2, perActor = 0, perLod = 0, keepersAsked = false
+  const freeNative = (nat: NativeSlot): void => { nat.detail.dispose(); nat.fighter.dispose() }
   function dropNative(why: string): void {
     native = false; nativeWhy = why
-    for (const body of bodies) { if (body.nat) { body.nat.fighter.dispose(); body.nat = null } body.root.visible = true; body.tilt.rotation.set(0, 0, 0); body.tilt.position.y = 0 }
+    for (const body of bodies) { if (body.nat) { freeNative(body.nat); body.nat = null } body.root.visible = true; body.tilt.rotation.set(0, 0, 0); body.tilt.position.y = 0 }
     generation.forEach((_, i) => { generation[i] = (generation[i] as number) + 1 })
   }
   async function buildSlot(i: number, appearance: ReturnType<typeof defaultNativeLook>, mine: number): Promise<void> {
     const fighter = await spawnNativeFighter(appearance)
     if (disposed || !native || generation[i] !== mine) { fighter.dispose(); return }
-    perActor = Math.max(perActor, trianglesOf(fighter.group))
-    if (!withinBudget(perActor, fieldN)) { fighter.dispose(); dropNative(`over budget: ${perActor} triangles an actor`); return }
+    const detail = await lightenActor(fighter.group)
+    if (disposed || !native || generation[i] !== mine) { detail.dispose(); fighter.dispose(); return }
+    perActor = Math.max(perActor, detail.full); perLod = Math.max(perLod, detail.lod)
+    // The worst screens: open play with your own player in full and every other actor light; a shoot-out with the shooter and the keeper he faces in full.
+    if (!withinBudget(perActor, perLod, 1, fieldN + 1) || !withinBudget(perActor, perLod, 2, 0)) { detail.dispose(); fighter.dispose(); dropNative(`over budget: ${perActor} triangles an actor, ${perLod} light`); return }
     fighter.group.scale.setScalar(PLAYER_HEIGHT / NATIVE_HEIGHT)
     const body = bodies[i] as Body
     const clips = clipsFor((clipsModel as NonNullable<typeof clipsModel>).animations, appearance.body, fighter.bones)
     const mix = new ActionMix(new THREE.AnimationMixer(fighter.model), clips)
-    if (body.nat) body.nat.fighter.dispose()
-    body.tilt.add(fighter.group)
-    if (body.keeper) fighter.group.visible = false; else body.root.visible = false // a keeper is drawn as his own character in a shoot-out only (see keeperTick)
-    body.nat = { fighter, mix, slide: false, landAt: 0, kickUntil: 0 }
+    if (body.nat) freeNative(body.nat)
+    body.tilt.add(fighter.group); body.root.visible = false
+    detail.set('lod')
+    body.nat = { fighter, mix, detail, level: 'lod', slide: false, landAt: 0, kickUntil: 0 }
     if (body.keeper) mix.start({ clip: 'keeper-ready', loop: true, rate: 1 })
     try { (renderer as THREE.WebGLRenderer).compile(scene, camera) } catch { /* it compiles on the next frame instead */ }
   }
@@ -496,6 +496,7 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
       }
     })
   }
+  const setLevel = (body: Body, level: 'full' | 'lod'): void => { const nat = body.nat; if (nat && nat.level !== level) { nat.level = level; nat.detail.set(level) } }
   /** Which clip the player is in, from what the snapshot says (the rules' slide is a standing tackle here). */
   function nativeField(body: Body, f: FootballerSnap, speed: number, cheer: boolean, sad: boolean, carrying: boolean, now: number, dt: number): void {
     const nat = body.nat as NativeSlot, mix = nat.mix
@@ -515,7 +516,7 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
     mix.update(dt, speed, carrying)
   }
   /** The keeper: ready, or in a shoot-out over and down as far as the server has moved him, or catching, or hanging his head. */
-  function nativeKeeper(body: Body, w: { x: number; z: number }, so: ShootSnap | undefined, conceded: boolean, now: number, dt: number): void {
+  function nativeKeeper(body: Body, w: { x: number; z: number }, so: ShootSnap | undefined, conceded: boolean, now: number, dt: number, side: number): void {
     const nat = body.nat as NativeSlot, mix = nat.mix
     const diving = !!so && so.s >= SO_STAGE.fly && body.team === 1 - so.t && so.k[2] !== 0
     if (diving && so) {
@@ -530,6 +531,7 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
       nat.landAt = 0
       mix.fadeIn = now < nat.kickUntil ? 16 : 6
       if (now < nat.kickUntil) { /* a catch plays out */ } else if (conceded) mix.start({ clip: 'dejected', loop: true, rate: 1 })
+      else if (Math.abs(side) > 0.4) mix.start({ clip: side > 0 ? 'keeper-shuffle-right' : 'keeper-shuffle-left', loop: true, rate: Math.min(2.4, Math.abs(side) / SHUFFLE_SPEED) }) // the keeper's own right is +side
       else mix.start({ clip: 'keeper-ready', loop: true, rate: 1 })
     }
     mix.update(dt, 0, false)
@@ -598,6 +600,7 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
         if (body.keeper) {
           const wk = toWorld(body.team === 0 ? 24 : W - 24, ks[body.team as 0 | 1])
           body.holder.visible = true
+          if (body.nat) setLevel(body, pens && !!so && body.team === 1 - so.t ? 'full' : 'lod')
           keeperTick(body, wk, pens ? so : (b.p === PHASE.over && so ? so : undefined), dt * sim, scoring >= 0 && scoring !== body.team, now)
           return
         }
@@ -617,6 +620,7 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
         const cheer = (scoring >= 0 && (i & 1) === scoring && (i === scorer || sincePhase > 0.6)) || (winner >= 0 && (i & 1) === winner) || now < body.cheerUntil
         const sad = (scoring >= 0 && (i & 1) !== scoring) || (winner >= 0 && (i & 1) !== winner)
         if (body.nat) {
+          setLevel(body, (meta.you === i || (pens && !!so && i === so.p[0])) ? 'full' : 'lod')
           nativeField(body, f, body.speed, cheer, sad, b.b[2] === i + 1, now, dt * sim)
           body.tilt.rotation.set(0, 0, 0); body.tilt.position.y = 0
         } else {
@@ -703,13 +707,15 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
       if (mode === 'end' && shot === 'end-' + viewTeam && !pens) {
         const sg = sgn(viewTeam), limit = sizeH - inset.bottom - 4
         probe.copy(camera, false); probe.fov = fov
-        const goalY = (d: number): number => {
+        const screenY = (d: number, x: number, z: number): number => {
           probe.position.set(target.pos[0] - sg * d, target.pos[1], target.pos[2]); probe.up.set(0, 1, 0)
           probe.lookAt(target.look[0] - sg * d, target.look[1], target.look[2]); probe.updateMatrixWorld(true); probe.updateProjectionMatrix()
-          proj.set(-sg * (PITCH_L / 2 + 0.3), 0, 0).project(probe)
+          proj.set(x, 0, z).project(probe)
           return (1 - proj.y) / 2 * sizeH
         }
-        const d = clearShift(goalY, limit)
+        // ...but never so far that the ball leaves the top fifth of the free band.
+        const top = inset.top + (limit - inset.top) * 0.2
+        const d = Math.min(clearShift((k) => screenY(k, -sg * (PITCH_L / 2 + 0.3), 0), limit), clearShift((k) => screenY(k, ballX, ballZ), top))
         target.pos[0] -= sg * d; target.look[0] -= sg * d
       }
       // A new kind of shot cuts a little faster than a follow; the same kind eases.
@@ -779,8 +785,8 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
     },
     project: (x, y, up = 0) => { const w = toWorld(x, y); return toScreen(w.x, up, w.z) },
     mode: () => camMode,
-    stats: () => ({ ...stats.read(renderer), ratio: ladder[rung.level] as number, cam: [camPos.x, camPos.y, camPos.z].map((v) => Math.round(v * 10) / 10), look: [look.x, look.y, look.z].map((v) => Math.round(v * 10) / 10), ball: [ballX, ballLift, ballZ].map((v) => Math.round(v * 10) / 10), keepers: [bodies[4], bodies[5]].map((k) => Math.round(((k as Body).roll) * 100) / 100), /** how many bodies are the players' own characters, the triangles of one, and why not */ native: bodies.filter((x) => x.nat).length, perActor, nativeWhy }),
-    dispose() { disposed = true; for (const body of bodies) { body.nat?.fighter.dispose(); body.nat = null } disposeScene(scene); bitGeo.dispose(); bitMat.dispose(); shadows.geometry.dispose(); rings.geometry.dispose(); renderer.dispose() },
+    stats: () => ({ ...stats.read(renderer), ratio: ladder[rung.level] as number, cam: [camPos.x, camPos.y, camPos.z].map((v) => Math.round(v * 10) / 10), look: [look.x, look.y, look.z].map((v) => Math.round(v * 10) / 10), ball: [ballX, ballLift, ballZ].map((v) => Math.round(v * 10) / 10), keepers: [bodies[4], bodies[5]].map((k) => Math.round(((k as Body).roll) * 100) / 100), /** how many bodies are the players' own characters, the triangles of one, and why not */ native: bodies.filter((x) => x.nat).length, perActor, perLod, nativeWhy }),
+    dispose() { disposed = true; for (const body of bodies) { if (body.nat) freeNative(body.nat); body.nat = null } disposeScene(scene); bitGeo.dispose(); bitMat.dispose(); shadows.geometry.dispose(); rings.geometry.dispose(); renderer.dispose() },
   }
   return view
 }

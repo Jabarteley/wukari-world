@@ -265,17 +265,20 @@ bundle and deep links installed in the real apps (tests decode them).
   loop, keeper-dive-left and -right 1.2 s (the first 0.5 s is scrubbed by how far the server has moved the keeper, the rest is the
   landing played in time), keeper-catch 1.0 s. The view blends idle, walk, jog, sprint and dribble by speed on one shared stride phase
   (`football-native.ts`, `ActionMix`), one state clip over it.
-- **Budget.** A native actor of the world's body costs about 28,000 to 30,000 triangles, so only 1v1 fits: two own characters on the
-  field (about 67,500 triangles a frame in open play, 43 draw calls); in a shoot-out the shooter and the keeper he faces are the own
-  characters (about 64,000, 31 calls; the other keeper is hidden), and the keepers are blocky in open play. A match whose screen would pass
-  90,000 triangles (2v2: four actors) uses the Kenney players for the whole match (53 calls, 10,490 triangles).
-- **Framing.** Tall phone: the end-on camera slides back towards your own goal, up to 6 m, until the near goal line is above the thumb pad
+- **Budget and level of detail.** A full native actor of the world's body is about 29,000 to 33,000 triangles and the world has no animated
+  light body, so each actor gets a second index over the same vertices, skeleton and skin weights, simplified with the simplifier the
+  world ships (`lightenActor`, about 7,000 triangles, every clip plays on it). Your own player, and in a shoot-out the shooter and the
+  keeper he faces, are drawn in full; everyone else is light. Every person is a native character in every mode (1v1, 2v2, shoot-out,
+  keepers included); the blocky players remain only as the fallback and the stand-in. If one full actor plus the other actors light, or two
+  full ones, would pass 90,000 triangles with the scene, the match falls back. The keeper side-steps (`keeper-shuffle-left/right`, played at
+  his sideways speed) instead of gliding.
+- **Framing.** Tall phone: the end-on camera slides back towards your own goal, up to 12 m (never past the point where the ball leaves the top fifth of the free band), until the near goal line is above the thumb pad
   (`clearShift`). Wide phone: a dark gradient band behind the top bar so the score reads over the crowd.
-- **Measured** (headless Chromium, software GL, CPU throttle 4x via CDP; script cost per frame median, p95): 390x844 open play 2.9 ms,
-  4.1 ms; 844x390 3.2 ms, 10.5 ms (software GL stalls); shoot-out 390x844 3.0 ms, 4.3 ms. Cartridge: football 337,927 bytes brotli of
-  1,500,000. STARTUP_RAW 613,952 (unchanged), STARTUP_GZIP 222,423, STARTUP_BROTLI 195,320, SCENE_HOST_RAW 188,818, LOADING_RAW 90,568.
-- **Not verified:** a real phone (GPU, thermal, Safari), two people in a live shoot-out, 2v2 with own characters (falls back by the
-  budget), the keeper's sideways steps in open play (he glides in the ready pose), the 3D view after a lost WebGL context.
+- **Measured** (headless Chromium, software GL, CPU throttle 4x; script ms a frame median/p95, draw calls, triangles): 1v1 open 390x844
+  3.6/4.6, 45, 57,344; 844x390 3.7/22.4 (software GL stalls), 45, 57,344; 2v2 open 390x844 4.3/5.2, 59, 68,588; 844x390 4.2/21.9, 59,
+  68,588; shoot-out 1v1 390x844 2.6/3.3, 31, 63,938; 844x390 3.3/5.0, 31, 65,256; 2v2 390x844 2.8/3.9, 31, 67,368; 844x390 3.3/5.2, 31,
+  66,110. Screenshots `r390*`, `r844*` in the screenshots folder. Sizes in CI's run for the final commit.
+- **Not verified:** a real phone (GPU, thermal, Safari), two people in a live shoot-out, the keeper's side-step on screen in a live match, the 3D view after a lost WebGL context.
 
 ## The owner's decisions (16 October 2026)
 

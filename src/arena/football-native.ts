@@ -33,7 +33,7 @@ export const FOOTBALLER_HEIGHT = 1.75
 
 /** Every clip of the clips file, by the name the script gives it. */
 export const CLIP_LIST = ['idle', 'walk', 'jog', 'sprint', 'dribble', 'kick', 'pass', 'tackle', 'stumble', 'celebrate', 'dejected',
-  'keeper-ready', 'keeper-dive-left', 'keeper-dive-right', 'keeper-catch'] as const
+  'keeper-ready', 'keeper-dive-left', 'keeper-dive-right', 'keeper-catch', 'keeper-shuffle-left', 'keeper-shuffle-right'] as const
 export type NativeClip = typeof CLIP_LIST[number]
 
 /** When things happen in the clips, seconds (the script's KICK_WIND, KICK_HIT, PASS_WIND, PASS_HIT, DIVE_GO). */
@@ -44,6 +44,8 @@ export const TIMES = Object.freeze({ kickWind: 0.30, kickHit: 0.38, passWind: 0.
  */
 export const STRIDE: Readonly<Record<'walk' | 'jog' | 'sprint' | 'dribble', number>> = Object.freeze({ walk: 1.30 * 0.85, jog: 2.42 * 0.70, sprint: 5.67 * 0.47, dribble: 3.30 * 0.62 })
 export type Loco = keyof typeof STRIDE | 'idle'
+/** The keeper's side-step cycle is for this sideways speed, metres a second (the script prints it). */
+export const SHUFFLE_SPEED = 1.75
 /** The speeds (metres a second) at which a clip is the whole picture; between two of them the two blend. */
 const ANCHORS: readonly [Loco, number][] = [['idle', 0], ['walk', 1.3], ['jog', 2.8], ['sprint', 5.0]]
 
@@ -101,8 +103,73 @@ export function trianglesOf(root: THREE.Object3D): number {
   })
   return Math.round(n)
 }
-/** Whether `actors` native actors of about `each` triangles fit the screen's budget (with the pitch, stands and the blocky keepers: about 15,000). */
-export const withinBudget = (each: number, actors: number): boolean => each * actors + 15_000 <= NATIVE_TRIANGLES_MAX
+/** What the pitch, stands, ball and goals cost, triangles. */
+export const SCENE_TRIANGLES = 11_000
+/** Whether `fullN` full-detail actors of `full` triangles and `lodN` light ones of `lod` triangles fit the screen's budget. */
+export const withinBudget = (full: number, lod: number, fullN: number, lodN: number): boolean => full * fullN + lod * lodN + SCENE_TRIANGLES <= NATIVE_TRIANGLES_MAX
+
+/** How much of a body's triangles the light version keeps (the world has no animated light body: this one is made from the full one). */
+export const LOD_RATIO = 0.22
+export interface Detail { /** triangles of the full and of the light version */ full: number; lod: number; set(detail: 'full' | 'lod'): void; dispose(): void }
+const lodCache = new WeakMap<THREE.BufferGeometry, THREE.BufferGeometry>()
+/**
+ * Give an actor a second, lighter set of triangles over the same vertices, skeleton and skin weights (so every clip plays on it), made
+ * with the simplifier the world already ships. `set` switches each skinned mesh between the two; the vertex buffers are shared, only the
+ * index differs. Eyes and other plain meshes are left alone (they are tiny).
+ */
+export async function lightenActor(root: THREE.Object3D, ratio = LOD_RATIO): Promise<Detail> {
+  const { MeshoptSimplifier } = await import('meshoptimizer')
+  MeshoptSimplifier.useExperimentalFeatures = true
+  await MeshoptSimplifier.ready
+  const meshes: { mesh: THREE.SkinnedMesh; full: THREE.BufferGeometry; lod: THREE.BufferGeometry }[] = []
+  let full = 0, lod = 0
+  root.traverse((node) => {
+    const mesh = node as THREE.SkinnedMesh
+    if (!mesh.isSkinnedMesh) return
+    const source = mesh.geometry, index = source.index, position = source.attributes.position
+    if (!index || !position) return
+    let light = lodCache.get(source)
+    if (!light) { light = simplified(MeshoptSimplifier, source, ratio); lodCache.set(source, light) }
+    meshes.push({ mesh, full: source, lod: light })
+    full += index.count / 3; lod += (light.index?.count ?? index.count) / 3
+  })
+  const eyes = trianglesOf(root) - full
+  return {
+    full: Math.round(full + eyes), lod: Math.round(lod + eyes),
+    set(detail) { for (const m of meshes) m.mesh.geometry = detail === 'lod' ? m.lod : m.full },
+    dispose() { for (const m of meshes) { m.mesh.geometry = m.full; lodCache.delete(m.full) } },
+  }
+}
+type Simplifier = (typeof import('meshoptimizer'))['MeshoptSimplifier']
+/** A copy of `source` that shares its vertices but has a simplified index (borders and texture seams kept by weighting the normals, texture coordinates and skin weights). */
+function simplified(simplifier: Simplifier, source: THREE.BufferGeometry, ratio: number): THREE.BufferGeometry {
+  const position = source.attributes.position as THREE.BufferAttribute, count = position.count, index = source.index as THREE.BufferAttribute
+  const pos = new Float32Array(count * 3)
+  for (let i = 0; i < count; i++) { pos[i * 3] = position.getX(i); pos[i * 3 + 1] = position.getY(i); pos[i * 3 + 2] = position.getZ(i) }
+  const parts: { name: string; weight: number }[] = [{ name: 'normal', weight: 0.05 }, { name: 'uv', weight: 0.02 }, { name: 'skinWeight', weight: 0.04 }]
+  const used = parts.filter((p) => source.getAttribute(p.name))
+  const comps: { attr: THREE.BufferAttribute; c: number; w: number }[] = []
+  for (const p of used) { const attr = source.getAttribute(p.name) as THREE.BufferAttribute; for (let c = 0; c < attr.itemSize; c++) comps.push({ attr, c, w: p.weight }) }
+  const values = new Float32Array(count * Math.max(1, comps.length))
+  for (let i = 0; i < count; i++) for (let k = 0; k < comps.length; k++) values[i * comps.length + k] = (comps[k] as typeof comps[0]).attr.getComponent(i, (comps[k] as typeof comps[0]).c)
+  const groups = source.groups.length ? source.groups : [{ start: 0, count: index.count, materialIndex: 0 }]
+  const out: number[] = [], newGroups: { start: number; count: number; materialIndex: number }[] = []
+  const scale = simplifier.getScale(pos, 3)
+  for (const g of groups) {
+    const part = new Uint32Array(g.count)
+    for (let i = 0; i < g.count; i++) part[i] = index.getX(g.start + i)
+    const target = Math.max(3, Math.floor(part.length * ratio / 3) * 3)
+    const [result] = simplifier.simplifyWithAttributes(part, pos, 3, values, Math.max(1, comps.length), comps.map((x) => x.w), null, target, scale * 0.03, ['Sparse', 'ErrorAbsolute'])
+    newGroups.push({ start: out.length, count: result.length, materialIndex: g.materialIndex ?? 0 })
+    for (const v of result) out.push(v)
+  }
+  const light = new THREE.BufferGeometry()
+  for (const [name, attr] of Object.entries(source.attributes)) light.setAttribute(name, attr)
+  light.setIndex(new THREE.BufferAttribute(count <= 0xffff ? new Uint16Array(out) : new Uint32Array(out), 1))
+  if (source.groups.length) for (const g of newGroups) light.addGroup(g.start, g.count, g.materialIndex)
+  light.boundingSphere = source.boundingSphere?.clone() ?? null
+  return light
+}
 
 /** The state clips: played over the locomotion until they end (or the game drops them). */
 export interface StateSpec { clip: NativeClip; loop: boolean; rate: number }

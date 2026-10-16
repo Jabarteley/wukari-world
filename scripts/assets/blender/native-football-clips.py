@@ -16,7 +16,7 @@ is made to be scrubbed: its first half is the body going over, from standing to 
 moved; its second half is the landing, played in time.
 
 Clips: idle, walk, jog, sprint, dribble, kick, pass, tackle, stumble, celebrate, dejected, keeper-ready, keeper-dive-left,
-keeper-dive-right (the keeper's own left and right), keeper-catch.
+keeper-dive-right (the keeper's own left and right), keeper-catch, keeper-shuffle-left, keeper-shuffle-right (a side-step).
 """
 import math
 import os
@@ -339,6 +339,37 @@ def keeper_ready(t):
               foot_l=planted(0.27, -BALL_Y - 0.02, D(8), D(10) + D(6) * up, 0.012 * up), foot_r=planted(-0.27, -BALL_Y - 0.02, D(-8), D(10) + D(6) * up, 0.012 * up))
 
 
+# The keeper's side-step (towards his left, +X): both feet stay wide and low and go in turn, the lead foot reaching out, the other
+# following; a treadmill cycle for SHUFFLE_SPEED metres a second sideways.
+SHUFFLE = dict(T=0.46, duty=0.62, span=0.50, lift=0.07)
+SHUFFLE_SPEED = SHUFFLE['span'] / (SHUFFLE['duty'] * SHUFFLE['T'])
+
+
+def keeper_shuffle(direction):
+    T, duty, span, lift = SHUFFLE['T'], SHUFFLE['duty'], SHUFFLE['span'], SHUFFLE['lift']
+
+    def foot_x(q, lo, hi):
+        """Sideways place of a foot at cycle q: on the ground it slides from `hi` (towards the way he goes) to `lo`; in the air it comes back."""
+        if q < duty:
+            return hi - (hi - lo) * (q / duty), 0.0
+        w = (q - duty) / (1 - duty)
+        return lo + (hi - lo) * (0.5 - 0.5 * math.cos(math.pi * w)), lift * math.sin(math.pi * w)
+
+    def fn(t):
+        ph = (t / T) % 1.0
+        xl, zl = foot_x(ph, 0.12, 0.62)
+        xr, zr = foot_x((ph + 0.5) % 1.0, -0.62, -0.12)
+        dip = 0.5 + 0.5 * math.cos(2 * TAU * (ph - duty / 2))
+        sway = math.sin(TAU * ph)
+        return P_(KEEPER_READY,
+                  pel=((0.015 * sway, 0.03, -0.20 - 0.025 * dip), (D(2) * sway, D(14), D(1.5) * sway)),
+                  hand_l=hand('c', (0.36 + 0.02 * sway, -0.30, 0.08 + 0.02 * sway)), hand_r=hand('c', (-0.36 + 0.02 * sway, -0.30, 0.08 - 0.02 * sway)),
+                  foot_l=planted(xl, -BALL_Y - 0.02, D(8), D(10), zl), foot_r=planted(xr, -BALL_Y - 0.02, D(-8), D(10), zr))
+    if direction > 0:
+        return T, True, fn
+    return T, True, lambda t: mirror(fn(t))
+
+
 # The dive towards the keeper's left (+X): the first DIVE_GO seconds are the body going over (from the stand to full length, to be
 # scrubbed by how far the keeper has moved), the rest is the landing and lying there, played in time.
 DIVE_GO, DIVE_LEN = 0.50, 1.20
@@ -397,12 +428,13 @@ CLIPS = {
     'keeper-ready': (1.1, True, keeper_ready),
     'keeper-dive-left': keeper_dive(1), 'keeper-dive-right': keeper_dive(-1),
     'keeper-catch': keeper_catch(),
+    'keeper-shuffle-left': keeper_shuffle(1), 'keeper-shuffle-right': keeper_shuffle(-1),
 }
 
 
 def main():
     a = c.args(options)
-    print('run speeds (m/s): ' + ', '.join(f'{k} {v:.2f}' for k, v in RUN_SPEED.items()), file=sys.stderr)
+    print('run speeds (m/s): ' + ', '.join(f'{k} {v:.2f}' for k, v in RUN_SPEED.items()) + f', shuffle {SHUFFLE_SPEED:.2f}', file=sys.stderr)
     build_all(CLIPS, a)
 
 

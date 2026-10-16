@@ -46,8 +46,9 @@ test('the clips of one body come out under their own names, with a second skelet
 test('the wind-up comes before the strike in both kicks', () => {
   assert.ok(TIMES.kickWind < TIMES.kickHit && TIMES.passWind < TIMES.passHit && TIMES.kickHit - TIMES.kickWind < 0.15)
 })
-test('the budget: two actors of the world\'s own bodies fit the screen, three do not, and a lighter one would', () => {
-  assert.ok(withinBudget(30_000, 2)); assert.ok(!withinBudget(30_000, 3)); assert.ok(!withinBudget(30_000, 4)); assert.ok(withinBudget(15_000, 4))
+test('the budget: one full actor with five light ones fits, six full ones do not', () => {
+  assert.ok(withinBudget(30_000, 8_000, 1, 5)); assert.ok(withinBudget(30_000, 8_000, 2, 0))
+  assert.ok(!withinBudget(30_000, 30_000, 1, 5)); assert.ok(!withinBudget(30_000, 8_000, 3, 3))
 })
 test('the action mix keeps its weights summing to 1 and plays a state clip over the locomotion', () => {
   const root = new THREE.Object3D(); root.name = 'root'

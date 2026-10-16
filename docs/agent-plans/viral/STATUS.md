@@ -9,8 +9,9 @@ Read this first in every session; update it after every phase and whenever you s
   the branches below; each ends with a "Work in progress" commit holding whatever was uncommitted. Continue them; do not start over.
 - **Live site when this was written:** `main` at or after `c2419edb` (16 October), with every "world alive" phase live
   (docs/agent-plans/world-alive/STATUS.md).
-- **Phase 0 done (16 October 2026):** baseline below. **Next step:** Phase 1 (finish `claude/viral-cartridge`), with Phase A
-  (`claude/viral-assets`) alongside.
+- **Phase 1 is partly live (16 October 2026, `45723a6e`):** the cartridge contract and checker, replays, the 15-second reconnect,
+  the replay page, clips and real game controllers. **Next step:** Phase 1c (arena stakes and spectator backing, built and tested on
+  `claude/viral-cartridge`, not yet released), then Phase 2. Phase A runs alongside on `claude/viral-assets` (a subagent).
 
 ## Baseline (Phase 0, 16 October 2026)
 
@@ -42,7 +43,7 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | Phase | State | Live commit | Notes |
 | --- | --- | --- | --- |
 | 0 Baseline | done | `228443371` (main) | nothing to release; live was `c2419edb` |
-| 1 Cartridge standard, replays, reconnect, clips | started, stopped | | branch `claude/viral-cartridge` |
+| 1 Cartridge standard, replays, reconnect, clips | 1a+1b live; 1c (stakes) next | `45723a6e` | see "Phase 1" below |
 | 2 Clans, ladders, city leagues | started, stopped | | branch `claude/viral-clans` |
 | 3 Agent arena | started, stopped | | branch `claude/viral-agent-arena` |
 | A Asset pipeline | started, stopped | | branch `claude/viral-assets` |
@@ -53,6 +54,37 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | 8 Open the standard | not started | | owner decides when |
 | 9 Weekly city episode | not started | | |
 | 10 Measure and iterate | not started | | |
+
+## Phase 1 (16 October 2026)
+
+**Live at `45723a6e`** (release run 38852370809; CI 38851333064; live smoke PASS; checked on joinallworld.com at 390x844):
+- **Cartridge contract v1** (`src/arena/cartridge.ts`, registry `cartridges.ts`, guide `docs/CARTRIDGES.md`); the three games
+  conform unchanged. `npm run cartridge:check` runs in CI after the build: fight 20.8 KB, race 25.5 KB, football 24.5 KB brotli
+  against a 1.5 MB cap each; it fails on a missing licence, a CC BY line missing from NOTICE.md, or an oversized cartridge.
+- **Replays**: each finished match's inputs (2-6 KB) kept for 7 days, 30 per game, in a bounded collection `arenareplays`
+  (erased with a player); `GET /api/arena/replay/:id`; replays of all three games reproduce their snapshots exactly (tests).
+- **Reconnect**: a dropped seat is steered by its bot for 15 seconds, then forfeits; the person takes it back on return.
+- **Replay page** `/replay?replay=<id>` (its own small entry, nothing in the first download) with caption bands and the AI mark,
+  and a stepping mode (`&frame=N`) for clips.
+- **Clips**: "Make a clip" on every result card records the last ten seconds on the phone (MP4 or WebM, about 1.5 MB) and shares
+  it with the words and replay link; checked on the live site. `npm run clip -- --replay <id>` renders 1080x1920 and a
+  720x1280 copy held under 2 MB (needs FFmpeg and playwright-core; measured locally: 8 s per clip, 0.6-1.5 MB small copies).
+- **Game controllers** (`src/arena/input/`): standard mapping, dead zone, d-pad, remap panel (the Controller button or Start),
+  rumble, "Controller connected"; a pad sends exactly the touch input. Checked in a browser with a simulated pad (walk, punch,
+  rumble, panel). **Not yet checked on a real pad over Bluetooth on Android Chrome**: this machine has none attached.
+
+**Built, not released (1c, on `claude/viral-cartridge`):** stakes in game naira for two people in a room (the host picks one of
+the table stakes; never with a computer seat) and spectator backing (₦100 or ₦500 on a seat, once a match, open until ten seconds
+in; the winner's backers share the prize; a draw or a one-sided pot refunds), through the table stakes' life action, gift rule,
+18+ rule and shared day limits; a pot record `arenapots` paid exactly once; refunded when a room closes or after a restart; an
+erasure waits for it. Five tests against a real server pass.
+
+**Finding for the owner (not blocking):** the startup download's brotli size moves by up to about 200 bytes with ANY change to a
+lazy chunk, because the startup files list the 8-hex-digit hashes of lazy chunks (the city chunks among them) and random hex
+compresses differently each time. On `main` the margin was 121 bytes. Phase 1 kept startup's own modules byte for byte (a second
+build entry had reordered the engine chunk; it now enters through one dynamic import), but the remaining margin is hash noise:
+expect any agent's release to fail STARTUP_BROTLI by chance now and then. A fix that does not raise the limit (for example shorter
+hashes, or moving the city chunk hash list out of the engine chunk) is a shared decision, so it is listed under questions.
 
 ## The owner's decisions (16 October 2026)
 
@@ -69,7 +101,10 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 
 ## Questions for the owner
 
-None open. Answered 16 October 2026:
+- **Startup brotli noise** (see Phase 1): may an agent change how chunk hashes are named or where the city chunk list lives, so
+  the first download stops moving by about 200 bytes with every lazy change? The limits themselves would not change.
+
+Answered 16 October 2026:
 - Clans: 25 members, and a clan may own a venue room (a room in a venue that the clan holds, with its name and colour; the venue
   stays open to everyone else).
 - Spectator stakes: yes. People watching may back a player, whether a person, an agent or a house bot, with a small capped
@@ -85,5 +120,6 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: Phase 1a+1b live at `45723a6e` (contract, checker, replays, reconnect, replay page, clips, controllers).
 - 2026-10-16: Phase 0 baseline recorded (main `228443371`, live `c2419edb`, typecheck clean, Blender 5.2.2 installed).
 - 2026-10-16: plan, research and answers written; four phases started and stopped mid-way (branches above). Nothing released.

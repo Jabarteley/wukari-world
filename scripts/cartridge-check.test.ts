@@ -32,9 +32,9 @@ test('the real manifests are valid and every listed asset is in the repository',
 })
 
 test('the chunks a screen loads later (a 3D view, three.js) count against the cap with what they import', () => {
-  const dist = build({ 'assets/view3d-11111111.js': enc('import"./three-22222222.js";'), 'assets/three-22222222.js': noise(4000) })
+  const dist = build({ 'assets/view3d-1111111.js': enc('import"./three-2222222.js";'), 'assets/three-2222222.js': noise(4000) })
   const files = cartridgeFiles(dist, 'FightGame', ['view3d'])!.sort()
-  assert.ok(files.includes('assets/view3d-11111111.js') && files.includes('assets/three-22222222.js') && !files.includes('assets/engine-bbbbbbbb.js'))
+  assert.ok(files.includes('assets/view3d-1111111.js') && files.includes('assets/three-2222222.js') && !files.some((f) => f.startsWith('assets/engine-')))
   assert.equal(cartridgeFiles(dist, 'FightGame', ['missing']), null, 'a lazy chunk that is not there is a stale manifest')
 })
 

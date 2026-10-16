@@ -16,6 +16,18 @@ export const ASSET_CREDITS: unknown = {
       ]
     },
     {
+      "name": "The Fight arena, made for Allworld",
+      "author": "Allworld",
+      "page": "https://github.com/kromate/joinallworld/tree/main/scripts/assets/blender",
+      "licence": "ours",
+      "licenceId": "AGPL-3.0-or-later",
+      "licenceUrl": "https://www.gnu.org/licenses/agpl-3.0.html",
+      "files": 1,
+      "games": [
+        "fight"
+      ]
+    },
+    {
       "name": "Adventurers Character Pack 1.0",
       "author": "KayKit",
       "page": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0",

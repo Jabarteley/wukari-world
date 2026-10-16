@@ -5,12 +5,17 @@
 //   node --experimental-strip-types scripts/cartridge-check.ts               check ./dist as well as the manifests
 //   node --experimental-strip-types scripts/cartridge-check.ts --no-dist     manifests and files only (no build needed)
 //   node --experimental-strip-types scripts/cartridge-check.ts --dist path   another build output
+//   node --experimental-strip-types scripts/cartridge-check.ts --dir examples/cartridge-sample
+//       a cartridge folder that is not registered (a submission, the sample): its cartridge.ts (the entry) and rules.ts (the rules) and
+//       the files it lists, with credits read from <dir>/NOTICE.md. No build is needed, so no size is measured; CI measures it once registered.
 //
 // Exits 1 when anything is wrong. Run after `npm run build`, like size:download (CI's build job, and `npm run check:fast`).
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { CARTRIDGES } from '../src/arena/cartridges.ts'
+import { makeRng } from '../src/game/util.ts'
+import type { RealtimeRules } from '../src/arena/rules.ts'
 import { DEFAULT_CAP_BROTLI, validateCartridge } from '../src/arena/cartridge.ts'
 import type { Cartridge } from '../src/arena/cartridge.ts'
 import { closure, firstPaintFiles, readDist, sizeOf, startupFiles } from './download-budget.ts'
@@ -76,9 +81,67 @@ export function checkCartridges(cartridges: readonly Cartridge[], source: Source
   return { problems, lines }
 }
 
-function main(): number {
+/** What is wrong with a cartridge's rules against its entry (docs/CARTRIDGES.md, "The contract"); empty when fine. Plays a short match with the bots twice. */
+export function checkRules(c: Cartridge, rules: RealtimeRules<any, any, any>): string[] {
+  const bad: string[] = []
+  const say = (text: string): void => { bad.push(`${c.id}: ${text}`) }
+  if (rules.id !== c.id) say(`rules.id is "${rules.id}", the entry says "${c.id}"`)
+  if (rules.label !== c.name) say(`rules.label "${rules.label}" is not the entry's name "${c.name}"`)
+  if (!Number.isInteger(rules.hz) || rules.hz < 1 || rules.hz > 30) say('hz must be a whole number 1..30')
+  if (!(rules.seats.min >= 1 && rules.seats.max >= rules.seats.min)) say('seats must be { min, max } with 1 <= min <= max')
+  for (const name of ['start', 'parseInput', 'idle', 'step', 'outcome', 'snapshot', 'bot', 'forfeit'] as const) if (typeof rules[name] !== 'function') say(`rules.${name} is missing`)
+  if (bad.length) return bad
+  try {
+    rules.parseInput({ nonsense: 'x'.repeat(5000) })
+    say('parseInput accepted junk: it must throw ArenaInputError for anything it does not understand')
+  } catch { /* refused, as it must be */ }
+  for (const seats of new Set([rules.seats.min, rules.seats.max])) {
+    const run = (): string[] => {
+      const rng = makeRng(`check-${c.id}`), state = rules.start(seats, rng, defaultOptions(rules))
+      const snaps: string[] = []
+      for (let tick = 0; tick < rules.hz * 120 && rules.outcome(state) === null; tick++) {
+        const inputs = Array.from({ length: seats }, (_, seat) => rules.bot(state, seat, rng))
+        rules.step(state, inputs, rng)
+        snaps.push(JSON.stringify(rules.snapshot(state)))
+      }
+      return snaps
+    }
+    const a = run(), b = run()
+    if (a.join('|') !== b.join('|')) say(`${seats} seats: two runs from one seed differ: the rules are not deterministic`)
+    if (Math.max(0, ...a.map((s) => s.length)) >= 400) say(`${seats} seats: a snapshot is over about 300 bytes`)
+    if (!a.length) say(`${seats} seats: nothing was played`)
+  }
+  return bad
+}
+const defaultOptions = (rules: RealtimeRules<any, any, any>): Record<string, unknown> => Object.fromEntries(Object.entries(rules.options).map(([name, spec]) => [name, (spec as { default: unknown }).default]))
+
+/** Check a folder that is not in the registry: its entry, its rules and its files. */
+export async function checkDir(root: string, dir: string): Promise<{ problems: string[]; lines: string[] }> {
+  const abs = resolve(root, dir)
+  const missing = ['cartridge.ts', 'rules.ts'].filter((f) => !existsSync(join(abs, f)))
+  if (missing.length) return { problems: [`${dir}: missing ${missing.join(' and ')}`], lines: [] }
+  const entry = (await import(pathToFileURL(join(abs, 'cartridge.ts')).href)) as { cartridge?: Cartridge }
+  const rules = ((await import(pathToFileURL(join(abs, 'rules.ts')).href)) as { default?: RealtimeRules<any, any, any> }).default
+  const cartridge = entry.cartridge
+  if (!cartridge) return { problems: [`${dir}/cartridge.ts must export \`cartridge\` (defineCartridge(...))`], lines: [] }
+  if (!rules) return { problems: [`${dir}/rules.ts must default-export the RealtimeRules`], lines: [] }
+  const source: Source = { ...diskSource(root), notice: existsSync(join(abs, 'NOTICE.md')) ? readFileSync(join(abs, 'NOTICE.md'), 'utf8') : '' }
+  const clash = CARTRIDGES.some((c) => c.id === cartridge.id) ? [`${cartridge.id}: the id is already a cartridge of the game`] : []
+  const found = [...checkCartridges([cartridge], source, null).problems, ...clash, ...checkRules(cartridge, rules)]
+  return { problems: found, lines: [`${found.length ? 'FAIL' : 'ok  '} ${cartridge.id.padEnd(10)} manifest, ${cartridge.manifest.assets.length} assets and rules (no build: size is measured once it is registered)`] }
+}
+
+async function main(): Promise<number> {
   const args = process.argv.slice(2)
   const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
+  if (args.includes('--dir')) {
+    const dir = args[args.indexOf('--dir') + 1]
+    if (!dir || dir.startsWith('--')) { console.error('--dir needs a folder, like examples/cartridge-sample'); return 2 }
+    const { problems, lines } = await checkDir(root, dir)
+    for (const line of lines) console.log(line)
+    for (const problem of problems) console.error(`PROBLEM ${problem}`)
+    return problems.length ? 1 : 0
+  }
   const dir = resolve(root, args.includes('--dist') ? args[args.indexOf('--dist') + 1] ?? 'dist' : 'dist')
   const wantDist = !args.includes('--no-dist')
   if (wantDist && !existsSync(join(dir, 'index.html'))) { console.error(`No build at ${dir}: run \`npm run build\` first, or use --no-dist.`); return 2 }
@@ -89,4 +152,4 @@ function main(): number {
   return problems.length ? 1 : 0
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) process.exitCode = main()
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) process.exitCode = await main()

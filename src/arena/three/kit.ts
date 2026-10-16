@@ -17,6 +17,8 @@ export const MAX_PIXEL_RATIO = 1.5
 export const RATIO_STEPS: readonly number[] = Object.freeze([1.5, 1.25, 1, 0.85])
 /** A median frame time over this many ms steps the ratio down; under CALM_MS for CALM_FOR_MS it steps back up one. */
 export const SLOW_MS = 22, CALM_MS = 14, CALM_FOR_MS = 5000, MEDIAN_FRAMES = 60
+/** A phone that is far too slow (a median over this in the last QUICK_FRAMES) steps down without waiting for a full minute of frames. */
+export const QUICK_FRAMES = 15, QUICK_MS = 66
 
 /** The ratios for a screen of this device pixel ratio, best first: it starts at min(device ratio, 1.5) and steps down from there. */
 export function ratioLadder(device: number): number[] {
@@ -28,10 +30,11 @@ const median = (list: readonly number[]): number => { const t = [...list].sort((
 export interface RatioState { /** Index into the ladder: 0 is the sharpest. */ level: number; /** How long the medians have been calm, ms. */ calmMs: number }
 /**
  * The next level, pure. `recent` is the latest frame times in ms (the last MEDIAN_FRAMES are judged; fewer than that change nothing).
- * A median over SLOW_MS steps down one level at once; a median under CALM_MS for CALM_FOR_MS steps back up one; never past the ends.
+ * A median over SLOW_MS steps down one level at once (over QUICK_MS in just QUICK_FRAMES frames too); a median under CALM_MS for CALM_FOR_MS steps back up one; never past the ends.
  * The caller starts counting frames afresh after a change, so the new level is judged on its own frames.
  */
 export function nextLevel(state: RatioState, levels: number, recent: readonly number[]): RatioState {
+  if (recent.length >= QUICK_FRAMES && median(recent.slice(-QUICK_FRAMES)) > QUICK_MS) return { level: Math.min(levels - 1, state.level + 1), calmMs: 0 }
   if (recent.length < MEDIAN_FRAMES) return state
   const m = median(recent.slice(-MEDIAN_FRAMES)), last = recent[recent.length - 1] ?? 0
   if (m > SLOW_MS) return { level: Math.min(levels - 1, state.level + 1), calmMs: 0 }

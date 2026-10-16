@@ -13,6 +13,10 @@ test('the ladder starts at min(device ratio, 1.5) and steps down', () => {
 test('too few frames change nothing', () => {
   const s = { level: 1, calmMs: 100 }
   assert.deepEqual(nextLevel(s, 4, frames(40, MEDIAN_FRAMES - 1)), s)
+  assert.deepEqual(nextLevel(s, 4, frames(90, 5)), s)
+})
+test('a very slow phone steps down after 15 frames, not 60', () => {
+  assert.deepEqual(nextLevel({ level: 0, calmMs: 0 }, 4, frames(120, 15)), { level: 1, calmMs: 0 })
 })
 test('a median over 22 ms steps down one level, and stops at the last', () => {
   assert.deepEqual(nextLevel({ level: 0, calmMs: 0 }, 4, frames(30)), { level: 1, calmMs: 0 })

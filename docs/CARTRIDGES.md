@@ -146,3 +146,10 @@ Every cartridge gets real game controllers through the browser's Gamepad API, fr
 - `src/arena/input/pad.test.ts`: controllers with fake pads.
 - `src/arena/stakes.test.ts`, `server/arena-stakes.test.ts`: stakes and backing, pure and against a real server.
 - `src/arena/clip.test.ts`, `scripts/clip.test.ts`: captions (AI mark, no betting words), the recorded format, frames and FFmpeg.
+
+## 3D on a phone (Fight today)
+
+- **Orientation.** The 3D view frames the pair in what the HUD and thumbs leave free (`framing` in `src/arena/fight-3d.ts`): portrait keeps them between the top bars and the pad, landscape between the two thumb clusters. `FightGame.vue` measures those from the page and re-frames at once on a resize, a turn of the phone or when the pad appears.
+- **Smooth.** `src/arena/three/kit.ts` starts at a pixel ratio of min(device, 1.5) and `nextLevel` steps it down (1.5, 1.25, 1, 0.85) when the median of 60 frames is over 22 ms, and up one after 5 s of medians under 14 ms. Antialiasing is off at a ratio of 1 or less. A 60 Hz screen never has a median under 14 ms, so it steps down but does not step back up.
+- **Ahead of time.** The Games hub calls `warmFight()` (`src/arena/preload.ts`) when it opens and when the browser is idle: it imports `fight-3d.ts` and loads its GLBs. Never on Save-Data or 2G, and never in the first download (the import is dynamic).
+- **Caching that updates.** `/assets/` is immutable for a year and the packs keep their names, so every model URL carries `?v=<10 hex of the file's sha256>` from `src/arena/asset-versions.generated.ts`. `npm run assets:versions` rewrites it (the pack preparer does too); the prebuild and `scripts/assets/versions.test.ts` fail when it is stale.

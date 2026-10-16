@@ -22,7 +22,7 @@ interface MiniflareInstance {
   dispatchFetch(url: string, init?: RequestInit & { headers?: Record<string, string> }): Promise<MiniflareResponse>
 }
 interface MiniflareTooling { Miniflare: new (options: Record<string, unknown>) => MiniflareInstance; convertV4MiniflareOptions(options: Record<string, unknown>): Record<string, unknown> }
-interface BundleOptions { entryPoints: string[]; outfile: string; bundle: boolean; format: string; platform: string; external: string[]; minifyWhitespace: boolean; minifySyntax: boolean }
+interface BundleOptions { entryPoints: string[]; outfile: string; bundle: boolean; format: string; platform: string; external: string[]; minifyWhitespace: boolean; minifySyntax: boolean; minifyIdentifiers?: boolean }
 const require = createRequire(resolve(process.env['JOINALLWORLD_TOOLS'] || 'deploy/tooling', 'package.json'));
 const { Miniflare, convertV4MiniflareOptions } = require('miniflare') as MiniflareTooling;
 const { build } = require('esbuild') as { build(options: BundleOptions): Promise<unknown> };
@@ -31,7 +31,7 @@ const { build } = require('esbuild') as { build(options: BundleOptions): Promise
 test('on the Worker every admin route refuses a guest, a request without a session and a cross-site page', async (t) => {
   const folder = await mkdtemp(join(tmpdir(), 'joinallworld-admin-'));
   const bundle = join(folder, 'worker.mjs');
-  await build({ entryPoints: [new URL('./cloudflare-worker.ts', import.meta.url).pathname], outfile: bundle, bundle: true, format: 'esm', platform: 'neutral', external: ['cloudflare:workers'], minifyWhitespace: true, minifySyntax: true });
+  await build({ entryPoints: [new URL('./cloudflare-worker.ts', import.meta.url).pathname], outfile: bundle, bundle: true, format: 'esm', platform: 'neutral', external: ['cloudflare:workers'], minifyWhitespace: true, minifySyntax: true, minifyIdentifiers: true });
   const options = { name: 'joinallworld-admin', script: await readFile(bundle, 'utf8'), modules: true, compatibilityDate: '2026-10-01', durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } }, durableObjectsPersist: join(folder, 'storage'), bindings: { ...layoutBindings(), BUILD_ID: 'local-admin' }, assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } } };
   const mf = new Miniflare({ ...convertV4MiniflareOptions(options), resourcePersistencePath: join(folder, 'storage'), handleStructuredLogs: () => {} });
   t.after(async () => { await mf.dispose(); await rm(folder, { recursive: true, force: true }); });
@@ -60,7 +60,7 @@ test('on the Worker every admin route refuses a guest, a request without a sessi
 test('on the Worker root preview and typed confirmation permanently erase one account and replay safely', { timeout: 120_000 }, async (t) => {
   const folder = await mkdtemp(join(tmpdir(), 'joinallworld-admin-erase-'));
   const bundle = join(folder, 'worker.mjs');
-  await build({ entryPoints: [new URL('./cloudflare-worker.ts', import.meta.url).pathname], outfile: bundle, bundle: true, format: 'esm', platform: 'neutral', external: ['cloudflare:workers'], minifyWhitespace: true, minifySyntax: true });
+  await build({ entryPoints: [new URL('./cloudflare-worker.ts', import.meta.url).pathname], outfile: bundle, bundle: true, format: 'esm', platform: 'neutral', external: ['cloudflare:workers'], minifyWhitespace: true, minifySyntax: true, minifyIdentifiers: true });
   const key = await makeKey('admin-erasure-edge-key');
   const project = 'admin-erasure-edge-project';
   const founderEmail = 'founder.edge@example.com';

@@ -44,7 +44,7 @@ const ownLook = (): ArenaLook | undefined => {
 }
 /** The player's own native character, public part, as the world dresses it (their saved look, or the one made from their name). */
 const ownNative = (): ArenaNative | undefined => {
-  try { const look = game.state.value.onboarding?.look as Record<string, unknown> | undefined; return packNativeLook(nativeRecipeForLook(look, look?.seed ?? look?.id ?? 'joinallworld').appearance) } catch { return undefined }
+  try { const look = game.state.value.onboarding?.look as unknown as Record<string, unknown> | undefined; return packNativeLook(nativeRecipeForLook(look, look?.seed ?? look?.id ?? 'joinallworld').appearance) } catch { return undefined }
 }
 const hex = (group: 'skin' | 'hairColours' | 'outfitColours', id: string | undefined, fallback: string): string => APPEARANCE[group].find((swatch) => swatch.id === id)?.hex ?? fallback
 function colors(seat: number): FighterColors {

@@ -18,6 +18,7 @@ import { ACT, ARENA_W, BODY_H, HZ, MOVES, PHASE } from './fight.ts'
 import type { FighterSnap, FightSnap } from './fight.ts'
 import { defaultNativeLook, nativeFightersAllowed, unpackNativeLook } from './native-look.ts'
 import type { ArenaNative } from '../types/arena.ts'
+import { clipsFor, spawnNativeFighter, warmNative } from './fight-native.ts'
 import type { NativeFighter } from './fight-native.ts'
 
 /** A model's URL with its content version (asset-versions.generated.ts): /assets/ is cached for a year, so a changed file needs a new URL. */
@@ -36,7 +37,7 @@ export function nativeAllowedHere(): boolean {
 }
 /** Fetch and parse the Fight models ahead of the screen (the Games hub does this when it opens and when the browser is idle). */
 export function preloadFight(): Promise<unknown> {
-  if (nativeAllowedHere()) return Promise.all([loadGlb(FIGHT_ASSETS.ring), loadGlb(FIGHT_ASSETS.clips), import('./fight-native.ts').then((m) => m.warmNative())])
+  if (nativeAllowedHere()) return Promise.all([loadGlb(FIGHT_ASSETS.ring), loadGlb(FIGHT_ASSETS.clips), warmNative()])
   return Promise.all([...FIGHT_ASSETS.fighters, FIGHT_ASSETS.ring].map((url) => loadGlb(url)))
 }
 /** A few seconds to get the real characters; after that the stylised fighters are used (`globalThis.allworldFightNativeWaitMs` overrides it, for measuring on a slow dev machine). */
@@ -176,7 +177,7 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
   let mode: 'native' | 'kaykit' = native ? 'native' : 'kaykit', why = native ? '' : 'this phone'
   let startedAt = 0 // when the seats were first known: the real characters get NATIVE_WAIT_MS from then
   async function kayKit(): Promise<void> {
-    mode = 'kaykit'; generation[0]++; generation[1]++
+    mode = 'kaykit'; generation[0] = (generation[0] ?? 0) + 1; generation[1] = (generation[1] ?? 0) + 1
     try {
       const models = await Promise.all(FIGHT_ASSETS.fighters.map((url) => loadGlb(url)))
       if (disposed) return
@@ -202,7 +203,6 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
     const mine = ++generation[seat]!
     void (async () => {
       try {
-        const { spawnNativeFighter, clipsFor } = await import('./fight-native.ts')
         const fighter: NativeFighter = await spawnNativeFighter(appearance)
         if (disposed || mode !== 'native' || generation[seat] !== mine) { fighter.dispose(); return }
         const body = makeBody(fighter.group, fighter.model, clipsFor((clipsModel as NonNullable<typeof clipsModel>).animations, appearance.body, fighter.bones), seat, () => fighter.dispose())

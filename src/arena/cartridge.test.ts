@@ -44,7 +44,7 @@ test('the rules honour the contract: idle and parseInput, a bot for every seat, 
       assert.deepEqual(a, b, `${c.id} is deterministic`)
       assert.ok(Math.max(...a.map((s) => s.length)) < 400, `${c.id} snapshot stays small`)
     }
-    assert.throws(() => rules.parseInput({ nonsense: 'x'.repeat(5000) }), undefined, c.id)
+    assert.throws(() => rules.parseInput({ nonsense: 'x'.repeat(5000) }), Error, c.id)
     assert.equal(cartridgeOf(c.id), c)
   }
 })

@@ -10,7 +10,7 @@ import type { Cartridge } from './cartridge.ts'
 /** Fight, Race and Football draw and play everything by code: no asset files. */
 const MODES = { alone: 'live', friends: 'live', community: 'planned', matchmaking: 'planned', agents: 'planned' } as const
 const READS = ['identity', 'friends', 'city'] as const
-const WRITES = ['replay'] as const
+const WRITES = ['result', 'replay'] as const
 
 export const CARTRIDGES: readonly Cartridge[] = Object.freeze([
   defineCartridge({ contract: CARTRIDGE_CONTRACT, id: 'fight', name: 'Fight', blurb: 'Real-time 1v1 brawl. Punch, kick, block. Best of 3.', rev: 1,

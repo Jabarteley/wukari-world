@@ -76,3 +76,19 @@ export type ArenaServerFrame = ArenaStateFrame | ArenaSnapFrame
 export type ArenaErrorCode =
   | 'arena_unknown' | 'arena_game' | 'arena_busy' | 'arena_rate' | 'arena_full' | 'arena_not_host' | 'arena_not_seated'
   | 'arena_need_players' | 'arena_started' | 'arena_closed' | 'invalid_arena'
+
+/** The public replay of a finished match (server/routes/arena.ts). `log` is a ReplayLog (src/arena/replay.ts): public names and the AI mark only. */
+export interface ArenaReplayView { id: string; at: number; clip: string | null; log: unknown }
+export interface ArenaHttpRoutes {
+  'GET /api/arena/replay/:id': {
+    params: { id: string }
+    query: { meta?: '1' }
+    response: { serverTime?: number } & (ArenaReplayView | { id: string; game: string; clip: string | null })
+    errors: 'replay_rate_limited' | 'replay_unknown'
+  }
+  'POST /api/arena/clip': {
+    body: { id: string; url: string }
+    response: { ok: true }
+    errors: 'operator_only' | 'invalid_clip' | 'replay_unknown'
+  }
+}

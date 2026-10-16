@@ -8,7 +8,8 @@
  * invitation. In a room:
  *   lobby    people arrive by the code; the first is the host. Full seats start the game by themselves; the host may
  *            start against the computer (`practice` rooms start at once).
- *   playing  ticks. A seat that has no connection for TUNING.awayForfeitMs forfeits.
+ *   playing  ticks. A seat whose connection drops is steered by the game's bot (never left idle) for up to TUNING.awayForfeitMs
+ *            (15 s, for prepaid networks that drop for seconds); the person takes it back when they return, or it forfeits after.
  *   over     the result stays; every person seated may ask for a rematch (it starts when all asked). Seats of people
  *            who left are freed for the next arrival.
  * Anyone with the code who finds no free seat (or asks to) WATCHES: same snapshots, no input, at most TUNING.maxWatchers.
@@ -17,7 +18,7 @@
  * TUNING.maxRooms rooms; a seat's inputs are a token bucket (TUNING.inputBurst, TUNING.inputPerSecond; the surplus is dropped without a
  * word); a room with nobody connected closes after TUNING.emptyMs; a lobby after TUNING.lobbyMs; a finished room after TUNING.overMs.
  * Nothing is stored: a restart ends every room (the host keeps the Worker awake by its own timers while rooms exist,
- * see ctx.core.hibernates). Nothing is paid or rated in this phase.
+ * see ctx.core.hibernates). A finished match's replay log is kept on a small shelf (./arena-replays.ts) for its replay and clip links.
  */
 import { makeRng } from '../../src/game/util.ts';
 import { withNames } from '../../src/tables/rules.ts';
@@ -29,7 +30,7 @@ import { ReplayRecorder } from '../../src/arena/replay.ts';
 import type { ReplayLog } from '../../src/arena/replay.ts';
 import { CARTRIDGE_LIMITS } from '../../src/arena/cartridge.ts';
 import { cartridgeOf } from '../../src/arena/cartridges.ts';
-import { ReplayShelf } from './arena-replays.ts';
+import { replayShelf } from './arena-replays.ts';
 import type { ArenaLook, ArenaResult, ArenaSeat, ArenaStateFrame, ArenaStatus } from '../../src/types/arena.ts';
 import type { TableOptionValue } from '../../src/types/growth.ts';
 import type { IncomingFrame, RouteContext, WsConnection } from '../types.ts';
@@ -38,8 +39,8 @@ import type { IncomingFrame, RouteContext, WsConnection } from '../types.ts';
 export const TUNING = {
   speed: 1, maxRooms: 300, maxWatchers: 20, createsPerMinute: 8, inputBurst: 30, inputPerSecond: 24,
   awayForfeitMs: 15000, awaySeatMs: 30000, emptyMs: 60000, lobbyMs: 15 * 60000, overMs: 10 * 60000, sweepMs: 2000, maxCatchUp: 4,
-  /** Replays kept (src/arena/replay.ts): per game, per room, bytes of JSON each, how long, and the entries one log may grow to before it is dropped. */
-  replayPerGame: 40, replayPerRoom: 5, replayBytes: CARTRIDGE_LIMITS.replayBytes, replayTtlMs: 24 * 3600000, replayEntries: 4000,
+  /** Replays kept (src/arena/replay.ts, server/growth/arena-replays.ts): per game, per room a day, bytes of JSON each, how long, and the entries one log may grow to before it is dropped. */
+  replayPerGame: 30, replayPerRoom: 40, replayBytes: CARTRIDGE_LIMITS.replayBytes, replayTtlMs: 7 * 24 * 3600000, replayEntries: 4000,
 };
 const markOf = (ws: WsConnection, now: number): boolean => ws.session.agent === true && (ws.session.agentUntil === undefined || ws.session.agentUntil > now);
 const ALPHABET = 'abcdefghjkmnpqrstuvwxyz23456789';
@@ -132,7 +133,7 @@ function buildService(ctx: RouteContext) {
   const rooms = new Map<string, Room>();
   const at = new Map<WsConnection, Room>();
   let sweeper: ReturnType<typeof setInterval> | null = null;
-  const shelf = new ReplayShelf(() => ({ perGame: TUNING.replayPerGame, perRoom: TUNING.replayPerRoom, bytes: TUNING.replayBytes, ttlMs: TUNING.replayTtlMs }));
+  const shelf = replayShelf(ctx, () => ({ perGame: TUNING.replayPerGame, perRoom: TUNING.replayPerRoom, bytes: TUNING.replayBytes, ttlMs: TUNING.replayTtlMs }));
 
   const seatOf = (room: Room, id: string): number => room.seats.findIndex((seat) => !seat.bot && !seat.left && seat.id === id);
   const connected = (room: Room, id: string): boolean => [...room.sockets].some((ws) => ws.session.id === id && ctx.core.isOpen(ws));
@@ -300,7 +301,7 @@ function buildService(ctx: RouteContext) {
       const log = room.rec.finish({ ...outcome, text: outcome.text }, room.snap, names);
       room.rec = null;
       const id = newReplayId();
-      if (shelf.put(id, room.code, log, ctx.now())) room.replayId = id;
+      if (shelf.put(id, room.code, room.seats.filter((s) => !s.bot).map((s) => s.id), log, ctx.now())) room.replayId = id;
     }
     for (const seat of room.seats) seat.again = false;
     sendAll(room, { type: 'arena-snap', room: room.code, k: room.tick, s: room.snap });
@@ -430,9 +431,9 @@ function buildService(ctx: RouteContext) {
     leave: async (ws: WsConnection, message: IncomingFrame) => { leave(ws, message); },
     drop: (ws: WsConnection) => { detach(ws); },
     /** The public view of a finished match's replay, or null (unknown, or expired). */
-    replay: (id: string): { id: string; at: number; clip: string | null; log: ReplayLog } | null => shelf.view(id, ctx.now()),
+    replay: (id: string): Promise<{ id: string; at: number; clip: string | null; log: ReplayLog } | null> => shelf.view(id, ctx.now()),
     /** The operator says a clip of this replay can be fetched at `url` (a path on this site or an https address to an mp4). */
-    setClip: (id: string, url: string): boolean => shelf.setClip(id, url, ctx.now()),
+    setClip: (id: string, url: string): Promise<boolean> => shelf.setClip(id, url, ctx.now()),
     /** For tests and the operator: how many rooms are open, and (for a code) a room's status. */
     stats: () => ({ rooms: rooms.size, sockets: at.size, status: (code: string) => rooms.get(code)?.status ?? null, humans: (code: string) => { const room = rooms.get(code); return room ? humans(room) : 0; } }),
   };

@@ -64,8 +64,8 @@ export class ReplayRecorder {
   tick(inputs: readonly unknown[], steered: readonly boolean[]): void {
     for (let seat = 0; seat < this.head.seats.length; seat++) {
       if (this.head.seats[seat]?.bot) continue
-      if (steered[seat]) { if (this.open[seat] < 0) this.open[seat] = this.ticks; continue }
-      if (this.open[seat] >= 0) { this.s.push([seat, this.open[seat] as number, this.ticks]); this.open[seat] = -1 }
+      if (steered[seat]) { if ((this.open[seat] ?? -1) < 0) this.open[seat] = this.ticks; continue }
+      if ((this.open[seat] ?? -1) >= 0) { this.s.push([seat, this.open[seat] as number, this.ticks]); this.open[seat] = -1 }
       const text = JSON.stringify(inputs[seat])
       if (text !== this.last[seat]) { this.last[seat] = text; this.i.push([this.ticks, seat, inputs[seat]]) }
     }
@@ -105,23 +105,26 @@ export function parseReplay(raw: unknown): ReplayLog | null {
  */
 export function replayMatch(rules: RealtimeRules<any, any, any>, log: ReplayLog, rev: number = log.rev): Replayed {
   const rng = makeRng(log.seed)
-  const state = rules.start(log.seats.length, rng, cleanArenaOptions(rules, log.options))
+  // `step` and `forfeit` may mutate or return a new state (the contract allows both), so the returned value is always kept.
+  let state = rules.start(log.seats.length, rng, cleanArenaOptions(rules, log.options))
   const start = rules.snapshot(state)
   const held = log.seats.map(() => rules.idle() as unknown)
+  // A seat that left for good plays `idle()` from then on, as the host gives it.
+  const gone = log.seats.map(() => false)
   const snaps: unknown[] = []
   const steered = (seat: number, tick: number): boolean => log.s.some(([who, from, to]) => who === seat && tick >= from && tick < to)
   let nextInput = 0
   const inputs = [...log.i].sort((a, b) => a[0] - b[0])
   let outcome: unknown = null
   for (let tick = 0; tick < log.ticks; tick++) {
-    for (const [after, seat] of log.f) if (after === tick) rules.forfeit(state, seat)
+    for (const [after, seat] of log.f) if (after === tick) { state = rules.forfeit(state, seat); gone[seat] = true }
     while (nextInput < inputs.length && (inputs[nextInput] as [number, number, unknown])[0] <= tick) { const [, seat, input] = inputs[nextInput++] as [number, number, unknown]; held[seat] = input }
-    const given = log.seats.map((seat, index) => (seat.bot || steered(index, tick) ? rules.bot(state, index, rng) : held[index]))
-    rules.step(state, given, rng)
+    const given = log.seats.map((seat, index) => (seat.bot || steered(index, tick) ? rules.bot(state, index, rng) : gone[index] ? rules.idle() : held[index]))
+    state = rules.step(state, given, rng)
     snaps.push(rules.snapshot(state))
     outcome = rules.outcome(state)
   }
-  for (const [after, seat] of log.f) if (after >= log.ticks) { rules.forfeit(state, seat); snaps.push(rules.snapshot(state)); outcome = rules.outcome(state) }
+  for (const [after, seat] of log.f) if (after >= log.ticks) { state = rules.forfeit(state, seat); gone[seat] = true; snaps.push(rules.snapshot(state)); outcome = rules.outcome(state) }
   const last = snaps.length ? snaps[snaps.length - 1] : start
   const same = JSON.stringify(last) === JSON.stringify(log.end)
   const problem = rev !== log.rev ? 'This replay was made by older rules.' : !same ? 'The replay no longer matches the recorded match.' : outcome ? '' : 'The replay ended before the match did.'

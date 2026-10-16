@@ -20,7 +20,7 @@ export default function arenaRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
     'GET /api/arena/replay/:id': async (request) => {
       if (!ctx.allow(`arena:replay:${addressBucket(request.ip)}`, 60, 60000)) throw Object.assign(ctx.fail(429, 'replay_rate_limited'), { reason: 'You are doing that too quickly. Wait a minute and try again.' });
       const id = request.params.id ?? '';
-      const found = ID.test(id) ? arena.replay(id) : null;
+      const found = ID.test(id) ? await arena.replay(id) : null;
       if (!found) throw Object.assign(ctx.fail(404, 'replay_unknown'), { reason: 'That replay is not on any more.' });
       const headers = { 'Cache-Control': 'public, max-age=60' };
       if (request.query.get('meta') === '1') return { body: { id: found.id, game: found.log.game, clip: found.clip }, headers };
@@ -31,7 +31,7 @@ export default function arenaRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
       const body = await request.json() as { id?: unknown; url?: unknown };
       const url = clipAddress(body.url);
       if (typeof body.id !== 'string' || !ID.test(body.id) || !url) throw ctx.fail(400, 'invalid_clip');
-      if (!arena.setClip(body.id, url)) throw ctx.fail(404, 'replay_unknown');
+      if (!(await arena.setClip(body.id, url))) throw ctx.fail(404, 'replay_unknown');
       return { body: { ok: true } };
     },
   };

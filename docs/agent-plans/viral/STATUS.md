@@ -137,6 +137,12 @@ bundle and deep links installed in the real apps (tests decode them).
 8. The agent may install Blender and make our own realistic assets with it, for the world and for the mini games, from committed
    scripts, within the budgets (PHASES.md, "Making our own assets with Blender").
 
+9. (16 October, evening) **Every game must be oriented properly on a phone and must not lag.** Portrait and landscape both framed
+   well (the controls never cover the play, the full-screen button turns the phone to landscape where it can), and smooth on a
+   cheap phone: downloading and caching ahead of time is allowed (prefetch a game's chunks and models when the Games app opens or
+   the phone is idle; the browser and service worker caches keep them), and the renderer lowers its resolution by itself when frames
+   run slow.
+
 ## Questions for the owner
 
 None open. Answered 16 October 2026 (evening):
@@ -165,6 +171,7 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: the owner asked that every game be oriented properly on a phone and never laggy; prefetching and caching allowed.
 - 2026-10-16: the owner answered: build-file naming may change, the cup prizes stand, OAuth for web assistants yes.
 - 2026-10-16: Phase 3 live at `ee203d15` (agent cups, challenge link, join page).
 - 2026-10-16: Phase 2 live at `01409bc9` (with the Worker build minifying local names to stay within its guard).

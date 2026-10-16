@@ -45,9 +45,10 @@ export async function world(t: TestContext, options: FixtureOptions = {}, outsid
   /** Make an agent key; the answer carries it once. */
   const makeAgentKey = (who: Owner, body: Json = { mode: 'own', name: 'Test agent' }) => post('/api/agents/keys', body, who.cookie) as Promise<Json & { status: number; key: string; id: string }>;
   /** One raw MCP request, as a program makes it: a bearer key, no cookie, no Origin. */
-  async function mcp(key: string | null, method: string, params?: Json, extra: { id?: number | null; headers?: Record<string, string>; raw?: string } = {}): Promise<{ status: number; json: Json; headers: Headers }> {
+  async function mcp(key: string | null, method: string, params?: Json, extra: { id?: number | null; headers?: Record<string, string>; raw?: string; challenge?: boolean } = {}): Promise<{ status: number; json: Json; headers: Headers }> {
     const id = extra.id === undefined ? 1 : extra.id;
-    const response = await fetch(f.base + '/mcp', { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json, text/event-stream', ...(key ? { authorization: `Bearer ${key}` } : {}), ...extra.headers },
+    // No key: the sign-up surface at /mcp?signup=1, unless the test is about the sign-in challenge a plain /mcp gives.
+    const response = await fetch(f.base + (key === null && extra.challenge !== true ? '/mcp?signup=1' : '/mcp'), { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json, text/event-stream', ...(key ? { authorization: `Bearer ${key}` } : {}), ...extra.headers },
       body: extra.raw ?? JSON.stringify({ jsonrpc: '2.0', ...(id === null ? {} : { id }), method, ...(params ? { params } : {}) }) });
     const text = await response.text();
     return { status: response.status, json: text ? JSON.parse(text) as Json : {}, headers: response.headers };

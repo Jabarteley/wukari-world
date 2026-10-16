@@ -319,7 +319,7 @@ export async function runCapacity(settings: Settings, log: (line: string) => voi
     const started = performance.now();
     requests += 1;
     try {
-      const response = await fetch(`${host.base}/mcp`, { method: 'POST', signal: AbortSignal.timeout(40000),
+      const response = await fetch(`${host.base}/mcp${agent ? '' : '?signup=1'}`, { method: 'POST', signal: AbortSignal.timeout(40000),
         headers: { 'content-type': 'application/json', accept: 'application/json, text/event-stream', 'x-forwarded-for': address, 'cf-connecting-ip': address, ...(agent ? { authorization: `Bearer ${agent.key}` } : {}) },
         body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name, arguments: args } }) });
       const json = await response.json() as { result?: { isError?: boolean; structuredContent?: Record<string, unknown> }; error?: { message?: string } };

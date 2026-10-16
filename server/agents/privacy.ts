@@ -4,6 +4,7 @@
  */
 import type { Db, SessionRecord } from '../types.ts';
 import type { AgentsCollection } from './service.ts';
+import type { OAuthCollection } from './oauth.ts';
 import { forgetArena, peekBook } from '../tournaments/book.ts';
 import { ownerKeyOf } from '../tournaments/life.ts';
 
@@ -16,8 +17,18 @@ const collectionOf = (db: Db): AgentsCollection | null => {
   return found !== null && typeof found === 'object' && 'keys' in found && 'owners' in found && 'chars' in found ? found as AgentsCollection : null;
 };
 
+/** The sign-in codes and refresh tokens of these accounts end with them (server/agents/oauth.ts). Registered assistants name no person and stay. */
+export function forgetOAuth(db: Db, accounts: ReadonlySet<string>): void {
+  const found: unknown = db.oauth;
+  if (found === null || typeof found !== 'object') return;
+  const o = found as Partial<OAuthCollection>;
+  for (const [hash, record] of Object.entries(o.codes ?? {})) if (accounts.has(record.account)) delete o.codes?.[hash];
+  for (const [hash, record] of Object.entries(o.refresh ?? {})) if (accounts.has(record.account)) delete o.refresh?.[hash];
+}
+
 /** End every key of the account and put its agent characters in the archive (a lived life is never destroyed). `bySession` finds a character's session. */
 export function eraseAgents(db: Db, accountId: string, sessionOf: (db: Db, publicId: string) => SessionRecord | undefined, archive: (db: Db, secret: string, session: SessionRecord) => void): void {
+  forgetOAuth(db, new Set([accountId]));
   const a = collectionOf(db), owner = a ? own(a.owners, accountId) : undefined;
   if (!a || !owner) return;
   for (const hash of owner.keys) delete a.keys[hash];
@@ -39,7 +50,7 @@ export function exportAgents(db: Db, accountId: string) {
   const a = collectionOf(db), owner = a ? own(a.owners, accountId) : undefined;
   if (!a || !owner) return null;
   return {
-    keys: owner.keys.flatMap((hash) => { const key = own(a.keys, hash); return key ? [{ name: key.name, mode: key.mode, createdAt: key.createdAt, lastUsedAt: key.lastUsedAt, calls: key.calls, suspended: key.suspended?.reason ?? null }] : []; }),
+    keys: owner.keys.flatMap((hash) => { const key = own(a.keys, hash); return key ? [{ name: key.name, mode: key.mode, createdAt: key.createdAt, lastUsedAt: key.lastUsedAt, calls: key.calls, suspended: key.suspended?.reason ?? null, ...(key.oauth ? { signIn: key.oauth.app } : {}) }] : []; }),
     characters: owner.chars.flatMap((id) => { const found = own(a.chars, id); return found ? [{ id, name: found.name, city: found.city, createdAt: found.createdAt }] : []; }),
   };
 }

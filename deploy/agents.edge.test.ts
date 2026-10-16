@@ -79,7 +79,7 @@ async function host(t: TestContext) {
   }
   const makeAgentKey = async (who: Person, body: Json): Promise<Json & { status: number; key: string }> => { const r = await browser('/api/agents/keys', { ...body, csrf: await csrf(who.cookie) }, who.cookie); return { ...(await r.json() as Json), status: r.status } as Json & { status: number; key: string } }
   const mcp = async (bearer: string | null, method: string, params?: Json, headers: Record<string, string> = {}): Promise<{ status: number; json: Json; headers: Headers }> => {
-    const response = await dispatch('/mcp', { method: 'POST', headers: { 'content-type': 'application/json', 'cf-connecting-ip': ip(), ...(bearer ? { authorization: `Bearer ${bearer}` } : {}), ...headers }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, ...(params ? { params } : {}) }) })
+    const response = await dispatch(bearer ? '/mcp' : '/mcp?signup=1', { method: 'POST', headers: { 'content-type': 'application/json', 'cf-connecting-ip': ip(), ...(bearer ? { authorization: `Bearer ${bearer}` } : {}), ...headers }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, ...(params ? { params } : {}) }) })
     const text = await response.text()
     return { status: response.status, json: text ? JSON.parse(text) as Json : {}, headers: response.headers }
   }
@@ -95,7 +95,7 @@ async function host(t: TestContext) {
     return { ok: data.ok === true, data, key: String(data.key ?? ''), claim: String(data.claimToken ?? '') }
   }
   const page = (path: string): Promise<Response> => dispatch(path, { headers: { 'cf-connecting-ip': ip() } })
-  return { start, browser, csrf, owner, makeAgentKey, mcp, tool, storage, operator, signup, page }
+  return { start, browser, csrf, owner, makeAgentKey, mcp, tool, storage, operator, signup, page, dispatch, ip }
 }
 
 test('POST /mcp through the Durable Object: a key plays the player\'s own character, is stored only as a hash, closed to browsers, and survives a restart', { timeout: 240_000 }, async (t) => {
@@ -187,4 +187,36 @@ test('POST /mcp: the operator switch ends agent access on the Worker, and back',
   assert.deepEqual([overview.off, overview.keys], [true, 1])
   assert.equal((await switchTo(false)).status, 200)
   assert.equal((await h.tool(made.key, 'get_my_life')).ok, true)
+})
+
+test('sign-in for web assistants on the Worker: the discovery documents, the 401 challenge, registration, the code flow with PKCE, and the token on /mcp', { timeout: 240_000 }, async (t) => {
+  const h = await host(t)
+  const ada = await h.owner('Ada1', 'Ada')
+  const resource = await (await h.page('/.well-known/oauth-protected-resource/mcp')).json() as Json
+  assert.deepEqual([resource.resource, resource.authorization_servers], [`${ORIGIN}/mcp`, [ORIGIN]])
+  const server = await (await h.page('/.well-known/oauth-authorization-server')).json() as Json
+  assert.deepEqual([server.issuer, server.token_endpoint, server.code_challenge_methods_supported], [ORIGIN, `${ORIGIN}/api/agents/oauth/token`, ['S256']])
+  const none = await h.dispatch('/mcp', { method: 'POST', headers: { 'content-type': 'application/json', 'cf-connecting-ip': h.ip() }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'initialize', params: {} }) })
+  assert.equal(none.status, 401)
+  assert.match(none.headers.get('www-authenticate') ?? '', new RegExp(`resource_metadata="${ORIGIN}/.well-known/oauth-protected-resource/mcp"`))
+  await none.arrayBuffer()
+  const redirect = 'https://claude.ai/api/mcp/auth_callback'
+  const registered = await h.dispatch('/api/agents/oauth/register', { method: 'POST', headers: { 'content-type': 'application/json', 'cf-connecting-ip': h.ip() }, body: JSON.stringify({ client_name: 'Claude', redirect_uris: [redirect] }) })
+  assert.equal(registered.status, 201)
+  const client = String(((await registered.json()) as Json).client_id)
+  const verifier = 'edge-verifier-'.padEnd(64, 'abcdefghijklmnopqrstuvwxyz0123456789')
+  const challenge = Buffer.from(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier))).toString('base64url')
+  const request = new URLSearchParams({ response_type: 'code', client_id: client, redirect_uri: redirect, code_challenge: challenge, code_challenge_method: 'S256', state: 's1' }).toString()
+  const decided = await h.browser('/api/agents/oauth/authorize', { request, approve: true, mode: 'own', csrf: await h.csrf(ada.cookie) }, ada.cookie)
+  assert.equal(decided.status, 200)
+  const code = new URL(String(((await decided.json()) as Json).redirect)).searchParams.get('code') ?? ''
+  const traded = await h.dispatch('/api/agents/oauth/token', { method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded', 'cf-connecting-ip': h.ip() }, body: new URLSearchParams({ grant_type: 'authorization_code', client_id: client, code, code_verifier: verifier, redirect_uri: redirect }).toString() })
+  assert.equal(traded.status, 200)
+  const tokens = await traded.json() as Json
+  assert.equal((await h.tool(String(tokens.access_token), 'get_my_life')).ok, true, 'the access token plays like a key')
+  const again = await h.dispatch('/api/agents/oauth/token', { method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded', 'cf-connecting-ip': h.ip() }, body: new URLSearchParams({ grant_type: 'authorization_code', client_id: client, code, code_verifier: verifier }).toString() })
+  assert.equal(again.status, 400)
+  await again.arrayBuffer()
+  const stored = await readStoredCollection((query, ...args) => h.storage().then((db) => db.exec(query, ...args)), 'oauth') ?? ''
+  assert.ok(String(stored).length > 10 && !String(stored).includes(code), 'a code is stored only as its digest')
 })

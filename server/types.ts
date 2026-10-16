@@ -403,6 +403,8 @@ export interface ConversationRecord {
   messagePins?: { revision: number; entries: { seq: number; by: string; at: number }[] }
   /** Stable identity of this incarnation, especially when a house id is reused. */
   pinScope?: string
+  /** Groups: the clan (server/clans/) that owns this room. Its people change only through the clan; absent on every other group. */
+  clan?: string
   /** Groups: the room its members furnish together (server/social/places.ts). Absent until somebody changes it or makes its link. */
   room?: GroupRoomRecord
 }
@@ -1157,6 +1159,8 @@ export interface ContextChecks {
   agentRoom?: AgentRoom
   /** Social: forget the agent marks of a player (an agent character taken over by its owner). */
   agentClear?: (db: Db, publicId: string) => void
+  /** Clans (server/clans/): a finished game's result, for the ladders. Call inside the transaction that records the result; it never throws. */
+  gameResult?: (db: Db, result: import('../src/clans/results.ts').GameResult) => void
   /** Agents: a player was reported; enough reports about a character an agent plays suspend its keys. */
   agentReported?: (db: Db, aboutId: string) => void
 }
@@ -1216,6 +1220,8 @@ export interface ServerConfig {
 
 /** In-process events between server modules; nothing is sent to a client by raising one. */
 export interface ServerEvents {
+  /** arena: a match between people (or agents) finished, not a practice one; the ladders listen (server/routes/clans.ts). */
+  'game-result': import('../src/clans/results.ts').ArenaFinished
   /** After committed player erasure: discard presence and ephemeral chat copies. */
   'players-erased': { ids: string[] }
   /** rooms.js: a person wrote a line in a public venue where an AI character stands (house agents wake on it, server/house/runner.ts). Raised after the game's own AI answers. */

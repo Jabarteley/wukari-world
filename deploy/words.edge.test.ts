@@ -17,7 +17,7 @@ import { layoutBindings } from '../server/testing/sqliteStorage.ts';
 
 interface MiniflareInstance { ready: Promise<URL>; dispose(): Promise<void>; dispatchFetch(url: string): Promise<Response> }
 interface MiniflareTooling { Miniflare: new (options: Record<string, unknown>) => MiniflareInstance; convertV4MiniflareOptions(options: Record<string, unknown>): Record<string, unknown> }
-interface BundleOptions { entryPoints: string[]; outfile: string; bundle: boolean; format: string; platform: string; external?: string[]; alias?: Record<string, string>; minifyWhitespace?: boolean; minifySyntax?: boolean }
+interface BundleOptions { entryPoints: string[]; outfile: string; bundle: boolean; format: string; platform: string; external?: string[]; alias?: Record<string, string>; minifyWhitespace?: boolean; minifySyntax?: boolean; minifyIdentifiers?: boolean }
 const require = createRequire(resolve(process.env['JOINALLWORLD_TOOLS'] || 'deploy/tooling', 'package.json'));
 const { Miniflare, convertV4MiniflareOptions } = require('miniflare') as MiniflareTooling;
 const { build } = require('esbuild') as { build(options: BundleOptions): Promise<unknown> };
@@ -32,8 +32,8 @@ async function bundles() {
   await writeFile(stub, 'export class DurableObject { constructor(state, env) { this.ctx = state; this.env = env } }\n');
   const files = { worker: join(folder, 'worker.mjs'), real: join(folder, 'real.mjs'), dictionary: join(folder, 'dictionary.mjs'), weave: join(folder, 'weave.mjs') };
   // Size the same artifact as scripts/package-joinallworld.mjs; keep the stricter existing file cap.
-  await build({ entryPoints: [here('./cloudflare-worker.js')], outfile: files.real, bundle: true, minifyWhitespace: true, minifySyntax: true, format: 'esm', platform: 'neutral', external: ['cloudflare:workers'] });
-  await build({ entryPoints: [here('./cloudflare-worker.js')], outfile: files.worker, bundle: true, minifyWhitespace: true, minifySyntax: true, format: 'esm', platform: 'neutral', alias: { 'cloudflare:workers': stub } });
+  await build({ entryPoints: [here('./cloudflare-worker.js')], outfile: files.real, bundle: true, minifyWhitespace: true, minifySyntax: true, minifyIdentifiers: true, format: 'esm', platform: 'neutral', external: ['cloudflare:workers'] });
+  await build({ entryPoints: [here('./cloudflare-worker.js')], outfile: files.worker, bundle: true, minifyWhitespace: true, minifySyntax: true, minifyIdentifiers: true, format: 'esm', platform: 'neutral', alias: { 'cloudflare:workers': stub } });
   await build({ entryPoints: [here('../src/words/dict.ts')], outfile: files.dictionary, bundle: true, format: 'esm', platform: 'neutral', alias: { '#word-dictionary': here('../src/words/dictionary-source.ts') } });
   await build({ entryPoints: [here('../src/tables/weave.ts')], outfile: files.weave, bundle: true, format: 'esm', platform: 'neutral', alias: { '#word-dictionary': here('../src/words/dictionary-source.ts') } });
   return { folder, files };

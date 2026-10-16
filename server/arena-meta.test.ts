@@ -13,6 +13,13 @@ test('an invite link names the game and is not indexed', () => {
   assert.match(page, /noindex/);
 });
 
+test('a clan invite says what it is, and is not indexed', () => {
+  const page = withPathMeta(html, '/', 'https://play.example', '?table=clan-ekqmns');
+  assert.match(page, /<title>Join my clan on Allworld<\/title>/);
+  assert.match(page, /noindex/);
+  assert.equal(roomMeta('/', '?table=clan-ekqmnO'), null);
+});
+
 test('anything that is not a known game room keeps the default head', () => {
   for (const search of ['', '?table=buka-corner', '?table=g-nope-k7m2qp', '?table=g-fight-AAAAAA', '?x=1']) assert.equal(roomMeta('/', search), null, search);
   assert.equal(roomMeta('/games', '?table=g-fight-k7m2qp'), null);

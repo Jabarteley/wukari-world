@@ -191,7 +191,7 @@ onBeforeUnmount(() => { viewport?.removeEventListener('resize', lift); viewport?
             <template v-else>
               <ul class="community-group-list" aria-label="Groups in this place" data-group-list>
                 <li v-for="group in s.groupList.groups" :key="group.id">
-                  <span>Group {{ group.no }}{{ group.mine ? ' (yours)' : '' }} · {{ group.size }} {{ group.size === 1 ? 'person' : 'people' }}<template v-if="group.friends.length"> · {{ group.friends.join(', ') }}</template></span>
+                  <span><b v-if="group.clan" class="community-clan" :style="{ borderColor: group.clan.hex }">{{ group.clan.name }}</b> Group {{ group.no }}{{ group.mine ? ' (yours)' : '' }} · {{ group.size }} {{ group.size === 1 ? 'person' : 'people' }}<template v-if="group.friends.length"> · {{ group.friends.join(', ') }}</template></span>
                   <button v-if="!group.mine" type="button" :disabled="!group.open" :data-group-join="group.id" @click="control()?.joinGroup(group.id)">{{ group.open ? 'Join' : 'Full' }}</button>
                 </li>
               </ul>
@@ -279,6 +279,7 @@ onBeforeUnmount(() => { viewport?.removeEventListener('resize', lift); viewport?
 </template>
 
 <style scoped>
+.community-clan { padding: 0 6px; margin-right: 4px; border-left: 4px solid; font-weight: 700; }
 /* A game character's line: tinted, with a dashed rule down its left edge, besides the NPC badge before its name. A real player's line is plain. */
 .community-messages li.is-npc { background: var(--c-fill, #eef1ef); border-left: 3px dashed var(--c-faint, #6b737c); }
 /* A shared link: underlined like a link, but a button, so it can only open the "leaving Allworld" sheet. */

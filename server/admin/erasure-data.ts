@@ -9,6 +9,7 @@
  * This module names every shared structure it changes. It never recursively deletes arbitrary
  * values: an unknown collection that still contains one of the actors fails preflight instead.
  */
+import { forgetClanPlayers } from '../clans/forget.ts'
 import { clearPlayerFamily } from '../social/family.ts'
 import { eraseLivingWorldProgress } from '../living-world/privacy.ts'
 import { eraseRealValue } from '../real-value/privacy.ts'
@@ -18,6 +19,8 @@ import { eraseShowcase } from '../showcase/privacy.ts'
 import { erasePerson } from '../house/memory.ts'
 import { eraseWalletActors } from '../economy/privacy.ts'
 import { peekRecords } from '../records/store.ts'
+import { forgetReplayPlayers } from '../growth/arena-replays.ts'
+import { idsWithMoney } from '../growth/arena-stakes.ts'
 import { standing } from './gate.ts'
 import { sha256Hex } from '../../src/game/util.ts'
 import type { Admin } from './gate.ts'
@@ -205,6 +208,10 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
   for (const pot of Object.values(db.growth?.tables?.pots ?? {})) if (pot?.seats?.some((seat) => actors.has(seat.id))) {
     fail(ctx, 409, 'erasure_financial_state_active', 'This player has money in an unsettled table game. Settle or refund the game before erasing the player.')
   }
+  const staked = idsWithMoney(db)
+  if ([...actors].some((id) => staked.has(id))) {
+    fail(ctx, 409, 'erasure_financial_state_active', 'This player has money in an unsettled arena match. Let it finish, or wait for the stakes to come back, before erasing the player.')
+  }
   if (db.social) for (const [recipient, effects] of Object.entries(db.social.pending)) {
     if (!Array.isArray(effects)) continue
     for (const effect of effects) if (effect?.keep === true && (actors.has(recipient) || containsIdentity(effect, actors))) {
@@ -217,8 +224,8 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
   // its erasure rule instead of relying on a recursive delete.
   const known = new Set([
     'version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'visits', 'commerce', 'business', 'market', 'legacy',
-    'trust', 'trustChecks', 'street', 'realValue', 'showcase', 'politics', 'campus', 'accounts', 'accountDevices', 'accountLog', 'walletEffects', 'livingWorld',
-    'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', '$store',
+    'trust', 'trustChecks', 'street', 'realValue', 'showcase', 'politics', 'campus', 'accounts', 'accountDevices', 'accountLog', 'walletEffects', 'livingWorld', 'clans',
+    'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', '$store',
   ])
   const collectionNames = (db.$store as (typeof db.$store & { collectionNames?: () => readonly string[] }) | undefined)?.collectionNames?.() ?? []
   const names = new Set([...Object.keys(db), ...collectionNames])
@@ -600,6 +607,7 @@ function scrubAdminCollections(db: Db, ids: ReadonlySet<string>, accounts: Reado
 }
 
 function scrubMisc(db: Db, ids: ReadonlySet<string>): void {
+  forgetReplayPlayers(db, ids)
   if (db.street) for (const id of ids) delete db.street.journeys[id]
   if (db.campus?.election) {
     const election = db.campus.election
@@ -708,6 +716,7 @@ export function eraseData(ctx: RouteContext, db: Db, plan: ErasurePlan): Erasure
   scrubCivic(db, ids)
   scrubPolitics(db, ids)
   scrubBusiness(db, ids)
+  forgetClanPlayers(db, ids)
   scrubTrustAndSupport(db, ids, accounts)
   scrubAdminCollections(db, ids, accounts)
   scrubMisc(db, ids)

@@ -67,6 +67,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run build
       - run: npm run size:download
+      - run: npm run cartridge:check
       - name: Refuse retired character assets in the production bundle
         run: |
           node --input-type=module -e "import {readdirSync} from 'node:fs'; const files=readdirSync('dist',{recursive:true}); const retired=files.filter(p=>/(?:base-body-|mpfb-body-|mpfb-lod-|canonical-crowd-body)/.test(p)); if(retired.length) throw Error('Retired character assets emitted: '+retired.join(', ')); console.log('Production bundle contains no retired character body assets');"
@@ -268,6 +269,9 @@ jobs:
         run: npm run build
       - if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: npm run size:download
+      - name: Cartridge manifests and caps
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: npm run cartridge:check
 
   # These complete suites have their own clocks: a preceding compiler/budget failure remains
   # failed, while it cannot consume the time needed for the independent Node/Worker evidence.

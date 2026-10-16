@@ -20,6 +20,8 @@ export default function arenaSocket(ctx: RouteContext): WsHandlers {
       'arena-input': (ws, message) => { arena.input(ws, message); },
       'arena-again': async (ws, message) => { await arena.again(ws, message); },
       'arena-leave': async (ws, message) => { await arena.leave(ws, message); },
+      'arena-stake': async (ws, message) => { await arena.stake(ws, message); },
+      'arena-back': async (ws, message) => { await arena.back(ws, message); },
     },
   };
 }

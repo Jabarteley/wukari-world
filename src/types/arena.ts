@@ -32,10 +32,14 @@ export interface ArenaOptionsFrame { type: 'arena-options'; room: string; option
 export interface ArenaInputFrame { type: 'arena-input'; room: string; i: unknown; n?: number }
 export interface ArenaAgainFrame { type: 'arena-again'; room: string }
 export interface ArenaLeaveFrame { type: 'arena-leave'; room: string }
-export type ArenaClientFrame = ArenaCreateFrame | ArenaJoinFrame | ArenaWatchFrame | ArenaStartFrame | ArenaOptionsFrame | ArenaInputFrame | ArenaAgainFrame | ArenaLeaveFrame
+/** The host sets what each of two players puts in (lobby; 0 plays free). */
+export interface ArenaStakeFrame { type: 'arena-stake'; room: string; amount: number }
+/** Someone watching backs a seat with a small stake (src/arena/stakes.ts). */
+export interface ArenaBackFrame { type: 'arena-back'; room: string; seat: number; amount: number }
+export type ArenaClientFrame = ArenaStakeFrame | ArenaBackFrame | ArenaCreateFrame | ArenaJoinFrame | ArenaWatchFrame | ArenaStartFrame | ArenaOptionsFrame | ArenaInputFrame | ArenaAgainFrame | ArenaLeaveFrame
 
 export type ArenaStatus = 'lobby' | 'playing' | 'over' | 'closed'
-export interface ArenaSeat { name: string; bot: boolean; id?: string; away?: true; look?: ArenaLook }
+export interface ArenaSeat { name: string; bot: boolean; id?: string; /** An AI agent plays this seat: the mark is always shown. */ ai?: true; /** The connection is down; the seat's bot steers until it is back or the 15-second window ends. */ away?: true; look?: ArenaLook }
 /** `places`: per seat, 1 = first; present only when the game ranks every seat (a race). */
 export interface ArenaResult { text: string; winners: number[]; draw: boolean; reason: string; scores: number[]; places?: number[] }
 export interface ArenaStateFrame {
@@ -65,6 +69,10 @@ export interface ArenaStateFrame {
   snap: unknown
   /** Match number in this room (1, 2, … for rematches). */
   match: number
+  /** Once the match is over: the id of its replay (GET /api/arena/replay/:id), when one was kept. */
+  replay?: string
+  /** Stakes (game naira only; absent in a practice room): the players' stake, whether this viewer may back a seat, what they backed, and their sentence once it settled. */
+  stakes?: { amount: number; line: string; note: string; free?: string; back: boolean; backed?: { seat: number; amount: number; line: string }; result?: string }
 }
 /** `k` is the server tick (rises by one per tick; a tick that changed nothing is not sent). */
 export interface ArenaSnapFrame { type: 'arena-snap'; room: string; k: number; s: unknown; /** per seat: the newest input counter the tick consumed; absent until anyone sent a counter. */ a?: number[] }
@@ -74,3 +82,19 @@ export type ArenaServerFrame = ArenaStateFrame | ArenaSnapFrame
 export type ArenaErrorCode =
   | 'arena_unknown' | 'arena_game' | 'arena_busy' | 'arena_rate' | 'arena_full' | 'arena_not_host' | 'arena_not_seated'
   | 'arena_need_players' | 'arena_started' | 'arena_closed' | 'invalid_arena'
+
+/** The public replay of a finished match (server/routes/arena.ts). `log` is a ReplayLog (src/arena/replay.ts): public names and the AI mark only. */
+export interface ArenaReplayView { id: string; at: number; clip: string | null; log: unknown }
+export interface ArenaHttpRoutes {
+  'GET /api/arena/replay/:id': {
+    params: { id: string }
+    query: { meta?: '1' }
+    response: { serverTime?: number } & (ArenaReplayView | { id: string; game: string; clip: string | null })
+    errors: 'replay_rate_limited' | 'replay_unknown'
+  }
+  'POST /api/arena/clip': {
+    body: { id: string; url: string }
+    response: { ok: true }
+    errors: 'operator_only' | 'invalid_clip' | 'replay_unknown'
+  }
+}

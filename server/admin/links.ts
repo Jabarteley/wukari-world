@@ -15,6 +15,7 @@ import { linkPrayers } from '../prayers/link.ts';
 import { callService } from '../social/calls.ts';
 import { pictureSettings } from '../social/images.ts';
 import { linkBonus } from '../bonus/service.ts';
+import { linkClans } from '../clans/link.ts';
 import { registerAdminSetting } from './settings.ts';
 import { registerAdminStat, registerAdminTool } from './tools.ts';
 import { politicsOverview } from './politics.ts';
@@ -57,6 +58,7 @@ export function linkFeatures(ctx: RouteContext): void {
   linked.add(ctx);
   const env = (name: string): string => (typeof ctx.env === 'function' ? ctx.env(name) : '');
   linkBonus(ctx);
+  linkClans(ctx);
   linkModels(ctx);
   linkHouse(ctx);
   linkAgentCalls(ctx);

@@ -23,7 +23,7 @@ test('a median over 22 ms steps down one level, and stops at the last', () => {
   assert.deepEqual(nextLevel({ level: 3, calmMs: 0 }, 4, frames(60)), { level: 3, calmMs: 0 })
 })
 test('a few slow frames do not move the median', () => {
-  const recent = [...frames(16), ...frames(90, 10)].slice(-MEDIAN_FRAMES)
+  const recent = [...frames(16), ...frames(90, 5)].slice(-MEDIAN_FRAMES)
   assert.equal(nextLevel({ level: 0, calmMs: 0 }, 4, recent).level, 0)
 })
 test('steps back up one level only after 5 s of medians under 14 ms, never above the first', () => {

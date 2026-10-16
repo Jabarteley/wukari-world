@@ -55,7 +55,7 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | A Asset pipeline | live | `c254d4327` | packs for all three games, credits in Help, Blender scripts |
 | 4 Polish Fight | 4a live (3D) | `40e1e614` | 4b next: realistic fighters, portrait tidy-ups |
 | 5 Polish Race | live (3D) | `f87981e1` | realistic cars later; see "Phase 5" |
-| 6 Polish Football | not started | | |
+| 6 Polish Football | built, in CI (branch `claude/viral-football`) | | 3D, penalty shoot-out, `rev` 2; see "Phase 6" |
 | 7 Videos (Nigeria first) | not started | | |
 | 8 Open the standard | not started | | owner decides when |
 | 9 Weekly city episode | not started | | |
@@ -178,6 +178,69 @@ bundle and deep links installed in the real apps (tests decode them).
   starts on Lekki); Ikoyi by eye; the sound; reduced-motion mode; the photo finish for a viewer; the deck platform at the start of the
   bridge from the chase camera. Screenshots are in the coordinator's scratch folder, not the repository.
 
+## Phase 6: Football in 3D and a penalty shoot-out (16 October 2026, branch `claude/viral-football`, not yet released)
+
+- **What a player gets.** Football is drawn in 3D: our own pitch, goals and ball (40 x 20 m, the rules' field mapped onto it), Kenney's
+  blocky players (green side, yellow side, purple keepers) running, kicking, sliding, falling, cheering and hanging their heads from
+  what each snapshot says, a ball that rolls, spins and hops, nets that give on a goal, stands with a crowd that jumps, floodlights, a
+  ring in the team's colour under each player and a team-coloured name tag over him. A goal shows a low replay from behind the goal
+  line (the last second of the play at 0.62 speed, from frames the view kept) and then the scorer's celebration. **Camera:** a tall
+  phone sees the pitch end-on from behind its own goal, high, looking up the pitch (it keeps the pitch's length along the tall screen,
+  clear of the thumb pad, and your side attacks "up" as in the 2D view); a wide one sees it from the side, your side attacking to the
+  right. Chosen by screenshots (`cmp-side-390x844-*.png` against `f390x844-*.png`: from the side the whole pitch is a thin band in the
+  middle of a tall screen with the players half the size). **Penalties:** a level match with `ending` 3 goes to a shoot-out, seen from
+  behind the shooter with the keeper facing; the kick that decides it runs in slow motion for its last ticks (the server stretches the
+  flight, the camera creeps in). The old 2D view draws everything (the shoot-out too, as a goal seen from behind) without WebGL.
+- **The shoot-out, as built** (`football.ts`, header and tests). Phase `pens`. Five kicks each, alternating, the team to go first drawn from
+  the match's own random numbers; it ends as soon as one side cannot be caught (3-0 after three each). Level after five each: sudden
+  death, a round at a time, ended by the first round that splits them; level after ten each is a draw. In a 2v2 a team's shooters take
+  turns. A kick: SET 1.5 s, AIM up to 10 s (then it is taken as it stands), FLIGHT 9-16 ticks, RESULT 2 s. The shooter steers with the
+  existing heading (15-degree steps, at most 60 degrees either side of straight on: 0, 15, 30 degrees land 0, 25, 53 units from the
+  middle, 45 is outside the 70-unit post) and charges with the existing shoot button, kicking on release. The charge is pace and
+  height: full at 16 ticks, over the bar from 22; a full charge swings the ball out a fifth, so a full-power corner clips the post.
+  The keeper is the other team's first seat: its heading names left, middle or right (as the shooter's camera sees them). A dive named
+  at the strike is early and full length; a keeper still in the middle may name one up to 5 ticks later, a late dive, 60% as far. A dive
+  covers shots from 14 units off the middle out to 78 - 42 x power; a keeper who stays covers 18 units either side unless the shot
+  is full power (more for a soft one). So: a well-placed corner beats a wrong dive and, above about half power, a right one; a middle
+  shot beats a dive; hard beats a keeper who stays in the middle; a late dive saves only soft, near shots. All decided in `step`
+  from aim, power and dive; no random number is drawn except for who goes first and the computer's own choices for each kick. Events:
+  `kick`, `goal`, `save`, `post` and the new `miss` (1 wide, 2 over). The snapshot has `o` (stage, team, shooter and keeper, score,
+  marks, seconds, the kick, its result, the winner). `rev` 2. Input is unchanged: the same integer, the shared pad module, the same
+  `InputPipe`; on the keys a diagonal means 30 degrees in a shoot-out.
+- **Tests.** `football.test.ts` (37): the options, the judging table (corner vs wrong dive, middle vs dive, power, over, wide, post,
+  late dive), a scripted kick and its events, the keeper moving in the goal shot at, the aim time-out, slow-motion flight, `soWinner`
+  for every case, a whole shoot-out won early, sudden death both ways, the ten-each cap, 2v2 turns, the computer shooting and keeping
+  (and deterministic tick for tick), forfeit; endings 1 and 2 as before. `replay.test.ts` replays a football match that goes to
+  penalties exactly. `football-3d.test.ts` (15): units, versioned URLs, clip choice, facing, camera framing (the ball inside the free band
+  in both orientations for both teams, projected), the shoot-out camera fitting the goal, the replay's timing, the stick's turn.
+- **Files.** `src/arena/football-3d.ts` (lazy chunk), `football-draw.ts` (`drawFootballHud`, `drawShootout2D`, `stickRotation`),
+  `football.ts` (shoot-out), `FootballGame.vue` (3D canvas under the HUD canvas, insets, resize, `orientationchange` then again 250 ms
+  later), `preload.ts` `warmFootball()`, `cartridges.ts` (`rev` 2, `lazy: ['football-3d', 'meshopt_decoder.module', 'native-body']`, six
+  assets: our pitch, goal, ball; CC0 Kenney players 1-3), `replay-view.ts` (a shoot-out in a replay), `football-sound.ts` (`miss`).
+- **Measured** (headless Chromium with a software GL: frame times are not a phone's, the script cost per frame is what the numbers
+  say; production build, CPU throttle 4x via CDP, 14 s of running and shooting):
+
+  | Screen | script / frame (median, p95) | draw calls | triangles |
+  | --- | --- | ---: | ---: |
+  | 390 x 844 | 1.6 ms, 2.5 ms | 41 | 10,346 |
+  | 360 x 740 | 1.6 ms, 2.4 ms | 41 | 10,346 |
+  | 844 x 390 | 1.8 ms (p95 is the software GL stalling) | 41 | 10,346 |
+  | 667 x 375 | 1.7 ms, 2.5 ms | 41 | 10,346 |
+  | 390 x 844, 2v2 (six bodies) | 1.9 ms, 2.8 ms | 53 | 10,490 |
+
+  Shaders and textures are compiled and uploaded before the first frame. Cartridge: **football 271,299 bytes brotli** (17 chunk
+  files 219,444, shared with the other two games' three.js, and six assets 51,855) of 1,500,000. Sizes: STARTUP_RAW 613,952 (the
+  same as `aa00c1087`, the branch it started from), STARTUP_GZIP 222,445, STARTUP_BROTLI 195,230, LOADING_RAW 90,568, SCENE_HOST_RAW 188,818.
+- **Found on the way.** The blocky players ship unlit and without normals (black under a light): the view computes normals. The goal's
+  net texture has no `alphaMode`, so its clear cells drew black: the view blends it. The pitch's own marked spot is at 6 m, so the
+  shoot-out's spot is 135 units, not the 92 the 2D pitch drew (now both at 135). `rollBall`'s keeper is the same one a shoot-out moves
+  (fixed in testing: it first moved the shooter's own keeper).
+- **Screenshots** (`/Users/anthonyakpan/work/tmp/football-shots/`, not in the repository): `f<W>x<H>-run|kick|later.png` open play,
+  `-goal-200|800|1300|2000|2800.png` a goal (live, replay twice, celebration), `-pens<N>-set|aim|fly|dive|result.png` a shoot-out, for
+  390x844, 360x740, 844x390 and 667x375; `cmp-*` the other camera on each screen.
+- **Not verified:** a real phone (GPU, thermal, Safari), a real pad over Bluetooth in a shoot-out, a two-person live match in a
+  shoot-out, the 3D view after a lost WebGL context, and the numbers in the table on a throttled profile that is not software GL.
+
 ## The owner's decisions (16 October 2026)
 
 1. Polish all three games: Fight, Race and Football.
@@ -225,6 +288,7 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: Phase 6 (Football in 3D, penalties, `rev` 2) built on `claude/viral-football`; in CI.
 - 2026-10-16: Phase 5 live at `f87981e1` (Race in 3D). Phase 4b (realistic fighters) and Phase 6 (Football) being built.
 - 2026-10-16: Phase 4a live at `40e1e614` (Fight in 3D). Race (Phase 5) built and in CI; Football (Phase 6) being built.
 - 2026-10-16: live in order: the MCP OAuth sign-in for web assistants (`9e8b5b3b`; discovery documents and the 401 challenge

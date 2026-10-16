@@ -1,0 +1,54 @@
+{
+  "attributionRequired": [
+    {
+      "attribution": "\"Boxing Ring - Free Model By Zaw Imagineering\" by Zaw Imagineering, CC BY 3.0, via Poly Pizza (https://poly.pizza/m/52-2oyc8wzE)",
+      "licence": "CC-BY-3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "url": "https://poly.pizza/m/52-2oyc8wzE",
+      "files": [
+        "assets/packs/polypizza-allworld/boxing-ring.glb"
+      ]
+    },
+    {
+      "attribution": "\"Soccer ball - Free Model By Poly by Google\" by Poly by Google, CC BY 3.0, via Poly Pizza (https://poly.pizza/m/fnDmeCySRhV)",
+      "licence": "CC-BY-3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "url": "https://poly.pizza/m/fnDmeCySRhV",
+      "files": [
+        "assets/packs/polypizza-allworld/football-ball.glb"
+      ]
+    },
+    {
+      "attribution": "\"Soccer Field - Free Model By Mark Steelman\" by Mark Steelman, CC BY 3.0, via Poly Pizza (https://poly.pizza/m/8yoy_wgAlof)",
+      "licence": "CC-BY-3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "url": "https://poly.pizza/m/8yoy_wgAlof",
+      "files": [
+        "assets/packs/polypizza-allworld/football-pitch.glb"
+      ]
+    },
+    {
+      "attribution": "\"Soccer goal - Free Model By Poly by Google\" by Poly by Google, CC BY 3.0, via Poly Pizza (https://poly.pizza/m/7t4hmicGHV4)",
+      "licence": "CC-BY-3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "url": "https://poly.pizza/m/7t4hmicGHV4",
+      "files": [
+        "assets/packs/polypizza-allworld/football-goal.glb"
+      ]
+    }
+  ],
+  "cc0": [
+    {
+      "source": "Kenney (Blocky Characters)",
+      "url": "https://kenney.nl/assets/blocky-characters",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "files": 7
+    },
+    {
+      "source": "Kenney (Racing Kit)",
+      "url": "https://kenney.nl/assets/racing-kit",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "files": 28
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "pack": "kenney-blocky-characters",
+  "page": "https://kenney.nl/assets/blocky-characters",
+  "fetched": "2026-10-16",
+  "assets": [
+    {
+      "path": "assets/packs/kenney-blocky-characters/LICENSE.txt",
+      "source": "Kenney (Blocky Characters)",
+      "url": "https://kenney.nl/assets/blocky-characters",
+      "licence": "CC0-1.0",
+      "bytes": 706,
+      "kind": "raw",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "path": "assets/packs/kenney-blocky-characters/fighter-a.glb",
+      "source": "Kenney (Blocky Characters)",
+      "url": "https://kenney.nl/assets/blocky-characters",
+      "licence": "CC0-1.0",
+      "bytes": 32716,
+      "game": "fight",
+      "kind": "character",
+      "sourcePath": "Models/GLB format/character-a.glb",
+      "sourceSha256": "8ee5dae167ec589863f6bba222467eb90ace8be357a4c5abfcab289290181616",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "triangles": 72,
+      "prepared": true
+    },
+    {
+      "path": "assets/packs/kenney-blocky-characters/fighter-b.glb",
+      "source": "Kenney (Blocky Characters)",
+      "url": "https://kenney.nl/assets/blocky-characters",
+      "licence": "CC0-1.0",
+      "bytes": 29412,
+      "game": "fight",
+      "kind": "character",
+      "sourcePath": "Models/GLB format/character-b.glb",
+      "sourceSha256": "30ed390a741a1b285f587544819aa8a02c8f7f270e552ed742eb84785034f62a",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "triangles": 72,
+      "prepared": true
+    },
+    {
+      "path": "assets/packs/kenney-blocky-characters/player-c.glb",
+      "source": "Kenney (Blocky Characters)",
+      "url": "https://kenney.nl/assets/blocky-characters",
+      "licence": "CC0-1.0",
+      "bytes": 26056,
+      "game": "football",
+      "kind": "character",
+      "sourcePath": "Models/GLB format/character-c.glb",
+      "sourceSha256": "ad2425ba0da5d9adff791b949bd62389ddcb09963ff89265930eab0d6484398c",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "triangles": 72,
+      "prepared": true
+    },
+    {
+      "path": "assets/packs/kenney-blocky-characters/player-d.glb",
+      "source": "Kenney (Blocky Characters)",
+      "url": "https://kenney.nl/assets/blocky-characters",
+      "licence": "CC0-1.0",
+      "bytes": 28464,
+      "game": "football",
+      "kind": "character",
+      "sourcePath": "Models/GLB format/character-d.glb",
+      "sourceSha256": "bd7cbf0d45e58f6809e3249a84502ce629ac53bfa13bc39fb0a83d171faf84bf",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "triangles": 72,
+      "prepared": true
+    },
+    {
+      "path": "assets/packs/kenney-blocky-characters/player-e.glb",
+      "source": "Kenney (Blocky Characters)",
+      "url": "https://kenney.nl/assets/blocky-characters",
+      "licence": "CC0-1.0",
+      "bytes": 26432,
+      "game": "football",
+      "kind": "character",
+      "sourcePath": "Models/GLB format/character-e.glb",
+      "sourceSha256": "9a12684981bc7763aebeceaffed82abfcc458d27b1ed3e169b92bebcc4870675",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "triangles": 72,
+      "prepared": true
+    },
+    {
+      "path": "assets/packs/kenney-blocky-characters/player-f.glb",
+      "source": "Kenney (Blocky Characters)",
+      "url": "https://kenney.nl/assets/blocky-characters",
+      "licence": "CC0-1.0",
+      "bytes": 26036,
+      "game": "football",
+      "kind": "character",
+      "sourcePath": "Models/GLB format/character-f.glb",
+      "sourceSha256": "04223c1c6cdce5da6fe9c9729a24e1aa9c765dec93af952379112f7da24a828a",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "triangles": 72,
+      "prepared": true
+    }
+  ]
+}

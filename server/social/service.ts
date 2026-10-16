@@ -1834,7 +1834,7 @@ function buildService(ctx: RouteContext) {
         p.voiceCount = { day, count: (p.voiceCount?.day === day ? p.voiceCount.count : 0) + 1 };
       }
       const pinsChanged = reconcilePins(s, conv);
-      if (toAi) noteAgent(growthOf(ctx, db), now(), id);
+      if (!aiVoice && askedOf !== null && isAgentChar(s, askedOf)) noteAgent(growthOf(ctx, db), now(), id);
       const stored = append(s, conv, id, message, cid, false, { ...(intercept ? { noAi: true as const } : {}), ...(forwarded ? { forwarded: true as const } : {}), ...(men.length ? { men } : {}), ...(quoted ? { re: quoted } : {}), ...(picture ? { img: picture.ref } : {}), ...(voice ? { voice, voiceHash: voice.hash } : {}) });
       const push: PushList = [];
       fanOut(s, conv, stored, push, null);

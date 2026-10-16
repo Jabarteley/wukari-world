@@ -1,0 +1,220 @@
+Browser tab: 460561438, Title: "Allworld: a digital world you can live in", URL: "http://127.0.0.1:5174/?diagnostics".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
++		89 text {
+  "adapter": "venue",
+  "view": "third",
+  "renderCount": 1443,
+  "loop": {
+    "running": true,
+    "frames": 1429
+  },
+  "avatar": {
+    "x": 1.44,
+    "z": 5.84,
+    "y": 0,
+    "facing": 2.104,
+    "phase": 9.3452,
+    "moving": false,
+    "mode": "idle",
+    "blocked": false,
+    "locked": false,
+    "near": null
+  },
+  "walls": {
+    "back": true,
+    "left": true
+  },
+  "perch": false,
+  "hover": null,
+  "easing": false,
+  "solids": 11,
+  "camera": {
+    "yaw": 0.533,
+    "pitch": 0.575,
+    "zoom": 1,
+    "distance": 22,
+    "asked": 22,
+    "whole": 35.14,
+    "held": 1,
+    "pan": [
+      0,
+      0
+    ],
+    "holding": 0,
+    "ghost": 0,
+    "x": 10.67,
+    "y": 13.41,
+    "z": 21.08,
+    "limits": {
+      "pitch": [
+        0.1,
+        1.501
+      ],
+      "zoom": [
+        0.454,
+        3.548
+      ],
+      "azimuth": null
+    }
+  },
+  "spots": [
+    {
+      "id": "rope",
+      "x": -7.2,
+      "z": -7.4,
+      "px": 1678,
+      "py": 265,
+      "selected": true
+    },
+    {
+      "id": "floor",
+      "x": 1.6,
+      "z": 2.2,
+      "px": 1839,
+      "py": 583,
+      "selected": false
+    },
+    {
+      "id": "vip",
+      "x": 6.2,
+      "z": 5.8,
+      "px": 2040,
+      "py": 821,
+      "selected": false
+    },
+    {
+      "id": "bar",
+      "x": -6.2,
+      "z": 1.2,
+      "px": 1468,
+      "py": 435,
+      "selected": false
+    },
+    {
+      "id": "work",
+      "x": 1.6,
+      "z": -4.8,
+      "px": 2015,
+      "py": 404,
+      "selected": false
+    },
+    {
+      "id": "people",
+      "x": 5.2,
+      "z": -3.6,
+      "px": 2191,
+      "py": 481,
+      "selected": false
+    }
+  ],
+  "things": [],
+  "people": [
+    {
+      "id": "npc:dj-kay",
+      "kind": "npc",
+      "x": 3.6886141758935227,
+      "z": -4.8281342859538015,
+      "px": 2137,
+      "py": 368
+    },
+    {
+      "id": "npc:simi-vip",
+      "kind": "npc",
+      "x": -7.499716818872172,
+      "z": -9.276211562826843,
+      "px": 1711,
+      "py": 183
+    }
+  ],
+  "objects": [],
+  "characterModels": [
+    {
+      "name": "native-decorative-extras",
+      "foundation": "native53",
+      "detail": "undefined"
+    },
+    {
+      "name": "native-character",
+      "foundation": "native53",
+      "detail": "full"
+    },
+    {
+      "name": "canonical-ambient-motion",
+      "foundation": "native53",
+      "detail": "full"
+    },
+    {
+      "name": "native-static-avatar",
+      "foundation": "native53",
+      "detail": "lod"
+    },
+    {
+      "name": "ambient-far",
+      "foundation": "native53",
+      "detail": "lod"
+    },
+    {
+      "name": "canonical-crowd",
+      "foundation": "native53",
+      "detail": "undefined"
+    }
+  ],
+  "drawCalls": 49,
+  "triangles": 71261,
+  "geometries": 118,
+  "textures": 58,
+  "location": "quilox",
+  "background": "#1e1833",
+  "scenes": 1,
+  "crowd": 2,
+  "lighting": {
+    "hemi": 1,
+    "sun": 0.55,
+    "sky": "#a08cdc"
+  },
+  "tier": "high",
+  "matte": false,
+  "pixelRatio": 1,
+  "shadowMap": 2048,
+  "avatarPx": 156,
+  "tags": [
+    {
+      "id": "self",
+      "kind": "self",
+      "text": "Jolly Aisha",
+      "name": "Jolly Aisha",
+      "marker": "crown",
+      "colour": "#ffd34d",
+      "x": 1711,
+      "y": 504,
+      "visible": true
+    },
+    {
+      "id": "npc:dj-kay",
+      "kind": "npc",
+      "text": "DJ Kay",
+      "name": "DJ Kay",
+      "marker": "dot",
+      "colour": "#58d68a",
+      "x": 2148,
+      "y": 297,
+      "visible": true
+    },
+    {
+      "id": "npc:simi-vip",
+      "kind": "npc",
+      "text": "Simi",
+      "name": "Simi",
+      "marker": "dot",
+      "colour": "#58d68a",
+      "x": 1711,
+      "y": 125,
+      "visible": true
+    }
+  ],
+  "map": "not loaded yet",
+  "visibility": "visible",
+  "shell": "vue",
+  "lazyPanelsWaiting": []
+}
+The focused UI element is 84 button Read renderer diagnostics

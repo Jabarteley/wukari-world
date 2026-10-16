@@ -9,7 +9,7 @@
  */
 import type * as THREE from 'three';
 import { GLOW, GLASS } from './build.ts';
-import { drawAvatar } from './characters.ts';
+import { recordCanonicalExtra } from './body/static-extras.ts';
 import type { DrawOptions, DrawnAvatar, Pose } from './characters.ts';
 import type { Kit } from './kit.ts';
 import type { Batch, BatchOptions, Colour, Vec3 } from './types.ts';
@@ -471,7 +471,8 @@ export interface Landmark { key: string; match: RegExp; x: number; z: number; ry
 export const landmark = (key: string, match: RegExp, x: number, z: number, ry = 0, more?: Record<string, unknown>): Landmark => ({ key, match, x, z, ry, ...more });
 
 /** A background character baked into the static scene (staff, regulars). Looks come from the seed. */
-export const extra = (b: Batch, seed: unknown, x: number, z: number, ry = 0, pose: Pose = 'stand', more?: DrawOptions & { look?: unknown }): DrawnAvatar => drawAvatar(b, more?.look ?? null, { seed, x, z, ry, pose, ...more });
+export const extra = (b: Batch, seed: unknown, x: number, z: number, ry = 0, pose: Pose = 'stand', more?: DrawOptions & { look?: unknown }): DrawnAvatar =>
+  recordCanonicalExtra(b, more?.look ?? null, { seed, x, z, ry, pose, ...more });
 
 // ---------------------------------------------------------------------------------------------
 // Block lettering: text is drawn from a 3×5 cell font as flat panels — no canvas, no textures.

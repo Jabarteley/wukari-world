@@ -1,5 +1,6 @@
 import type { FamilyCommand, FamilyFailure, FamilyView } from './family.ts'
 import type { AvatarLookExtensions } from './avatar.ts';
+import type { NativeCharacterRecipeV2 } from '../character/native-recipe.ts';
 import type { VoiceNoteView } from './voice-note.ts'
 /**
  * Social wire shapes: everything `/api/social/*` returns and accepts, the social frames on
@@ -63,6 +64,8 @@ export interface LookIds extends AvatarLookExtensions {
   /** Only for a face / an expression other than the default. */
   face?: string
   expression?: string
+  /** Complete native53 appearance revalidated from the server-held life. */
+  native?: NativeCharacterRecipeV2
 }
 
 export type ConversationKind = 'dm' | 'group' | 'house'

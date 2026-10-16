@@ -29,6 +29,7 @@ import type { WorldStreetResponse } from '../../types/world.ts';
 import type { VisitHomeProjection } from '../../types/visit.ts';
 import { createVenueHost as createVenueWorld } from '../../venue-world.ts';
 import type { VenueWorldOptions } from '../../venue-world.ts';
+import type { RenderBenchmark } from '../../scene/render-benchmark.ts';
 import type { CampusHost, CampusHostOptions, HostPerson, HostPlayer, HostState, WalkResult } from './host.ts';
 import { cityScenesReady, loadCityScenes } from '../../scene/city-scenes.ts';
 import { createLazyLoader } from '../../lazy-load.ts';
@@ -81,6 +82,7 @@ interface WorldHost {
   walkHomeDoor?(): boolean;
   position?(): unknown;
   diagnostics(): object;
+  benchmark?(): Promise<RenderBenchmark>;
   dispose(): void;
 }
 
@@ -133,6 +135,29 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
     neighbourhoodPending = import('../../scene/neighbourhood-scene.ts').then((module) => { neighbourhoodBuilder = module.buildNeighbourhoodScene; }).finally(() => { neighbourhoodPending = null; });
     return neighbourhoodPending;
   }
+  let fullReady = false, lodReady = false, fullPending: Promise<void> | null = null, lodPending: Promise<void> | null = null;
+  function loadFullBodies(): Promise<void> {
+    if (fullReady) return Promise.resolve();
+    if (fullPending) return fullPending;
+    fullPending = Promise.all([import('../../scene/body/skinned.ts'), import('../../scene/body/stand-in.ts')])
+      .then(([module]) => module.preloadCanonicalBodies())
+      .then(() => { fullReady = true; }).finally(() => { fullPending = null; });
+    return fullPending;
+  }
+  function loadLodBodies(): Promise<void> {
+    if (lodReady) return Promise.resolve();
+    if (lodPending) return lodPending;
+    lodPending = import('../../scene/body/skinned.ts')
+      .then((module) => module.preloadCanonicalBodies([], 'lod'))
+      .then(() => { lodReady = true; }).finally(() => { lodPending = null; });
+    return lodPending;
+  }
+  function loadBodies(withCrowd: boolean): Promise<void> {
+    return Promise.all([loadFullBodies(), ...(withCrowd ? [loadLodBodies()] : [])]).then(async () => {
+      const { preloadLooks } = await import('../../scene/body/skinned.ts');
+      await preloadLooks([...(player ? [{ look: player.look, seed: player.seed }] : []), ...(withCrowd ? crowd.map(person => ({ look: person.look, seed: person.id })) : [])]);
+    });
+  }
 
   let status: HTMLElement | null = null;
 
@@ -169,7 +194,9 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
     if (!loader) {
       loader = createLazyLoader<true>(async (): Promise<true> => { await loadScenes(city); return true; }, { ...lazy, onState(next) {
         if (disposed || awaited !== city) return;
-        try { onScenes?.({ ...next, city }); } catch { /* a listener must not break loading */ }
+        if (next.status !== 'ready') {
+          try { onScenes?.({ ...next, city }); } catch { /* a listener must not break loading */ }
+        }
         // Here now — at the first attempt or a later one: build what was waiting for it.
         if (next.status === 'ready') { try { build(currentLocation); } catch (error) { console.error('The scene could not be started:', error); onError?.(error); } }
       } });
@@ -178,6 +205,30 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
     return loader;
   }
   function useVenueHost(id: string): void { kind = 'venue'; hostCity = cityNow(); host = createVenueWorld(container, { ...options, visitHome, buildHome: homeBuilder, buildNeighbourhood: neighbourhoodBuilder, cityId: hostCity, location: visitHome ? 'home' : id }); replay(); }
+  function awaitVenueBody(id: string, mine: number): void {
+    const failed = (error: unknown) => {
+      if (mine !== token || disposed) return;
+      host?.dispose(); host = null; kind = null; hostCity = null;
+      awaited = null;
+      container.classList?.remove('scenes-loading');
+      onScenes?.({ status: 'failed', city: cityNow(), attempt: 1, attempts: 1, retryInMs: null, error: String(error) });
+      onError?.(error);
+    };
+    const open = () => {
+      try {
+        useVenueHost(id);
+        onScenes?.({ status: 'ready', city: cityNow(), attempt: 1, attempts: 1, retryInMs: null, error: null });
+      } catch (error) { failed(error); }
+    };
+    // A new appearance may need assets even when the base bodies are already warm.
+    awaited = cityNow(); container.classList?.add('scenes-loading');
+    onScenes?.({ status: 'loading', city: cityNow(), attempt: 1, attempts: 1, retryInMs: null, error: null });
+    void loadBodies(true).then(() => {
+      if (mine !== token || disposed) return;
+      awaited = null; container.classList?.remove('scenes-loading');
+      open();
+    }, failed);
+  }
   function build(id: string): void {
     host?.dispose(); host = null; kind = null; hostCity = null; clearStatus();
     const mine = ++token;
@@ -185,7 +236,8 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
     if (id === 'city-street' && !visitHome) {
       awaited = cityNow(); container.classList?.add('scenes-loading');
       onScenes?.({ status: 'loading', city: cityNow(), attempt: 1, attempts: 1, retryInMs: null, error: null });
-      void loadStreet().then(({ createStreetHost }) => {
+      void loadStreet().then(async ({ createStreetHost }) => {
+        await loadBodies(false);
         if (mine !== token || disposed) return;
         kind = 'street'; hostCity = cityNow();
         const next = createStreetHost(container, { renderer: options.renderer, now, onJourneyChanged: onStreetJourney });
@@ -217,7 +269,7 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
     }
     if (visitHome || !campus(id)) {
       const city = cityNow();
-      if (scenesReady(city)) { useVenueHost(id); return; }
+      if (scenesReady(city)) { awaitVenueBody(id, mine); return; }
       awaited = city;
       container.classList?.add('scenes-loading');
       void scenesOf(city).load();
@@ -226,7 +278,8 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
     awaited = cityNow();
     showStatus('loading');
     onScenes?.({ status: 'loading', city: cityNow(), attempt: 1, attempts: 1, retryInMs: null, error: null });
-    loadCampus().then(({ createCampusHost }) => {
+    loadCampus().then(async ({ createCampusHost }) => {
+      await loadBodies(true);
       if (mine !== token || disposed) return;
       host = createCampusHost(container, { onTag: options.onTag, onMove: options.onMove, onSpot: commitSpot, now, renderer: options.renderer });
       kind = 'campus'; hostCity = cityNow(); awaited = null; clearStatus(); replay();
@@ -247,6 +300,7 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
     /** Which host is drawing: 'venue', 'campus', or null while the campus is on its way. */
     get host() { return kind; },
     diagnostics() { return { adapter: kind, ...host?.diagnostics() }; },
+    benchmark() { return host?.benchmark?.() ?? null; },
     setInsets(next: Insets) { insets = { ...next }; return host?.setInsets(next); },
     setLocation(id: string) {
       if (id === currentLocation) return false;
@@ -258,10 +312,10 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
     },
     /** A trip has set off: have the place it goes to ready (the campus: its code; any other venue: its scene). */
     prepare(id: string) {
-      if (id === 'home') { void loadHome().catch(() => {}); return true; }
-      if (id === 'neighbourhood') { void loadNeighbourhood().catch(() => {}); return true; }
+      if (id === 'home') { void Promise.all([loadHome(), loadBodies(true)]).catch(() => {}); return true; }
+      if (id === 'neighbourhood') { void Promise.all([loadNeighbourhood(), loadBodies(true)]).catch(() => {}); return true; }
       if (id === 'city-street') { void loadStreet().catch(() => {}); return true; }
-      if (campus(id)) { void loadCampus().catch(() => {}); return true; }
+      if (campus(id)) { void Promise.all([loadCampus(), loadBodies(true)]).catch(() => {}); return true; }
       return kind === 'venue' ? host!.prepare?.(id) === true : false;
     },
     setState(next: AdapterState | null) {
@@ -282,7 +336,7 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
       host?.setState(displayState(next));
     },
     /** The scenes of the city being waited for: try again now (after 'failed' this also starts a new round of automatic attempts). */
-    retryScenes() { if (campus(currentLocation) || currentLocation === 'city-street' || ((visitHome || currentLocation === 'home') && !homeBuilder) || (currentLocation === 'neighbourhood' && !neighbourhoodBuilder)) { build(currentLocation); return true; } if (!awaited) return false; void scenesOf(awaited).load(); return true; },
+    retryScenes() { if (!host || campus(currentLocation) || currentLocation === 'city-street' || ((visitHome || currentLocation === 'home') && !homeBuilder) || (currentLocation === 'neighbourhood' && !neighbourhoodBuilder)) { build(currentLocation); return true; } if (!awaited) return false; void scenesOf(awaited).load(); return true; },
     /** The city whose scenes are being waited for, or null. */
     get awaiting() { return awaited; },
     setPlayer(next: HostPlayer) { player = { ...next }; return host?.setPlayer(next); },

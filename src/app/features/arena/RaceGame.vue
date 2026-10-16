@@ -20,6 +20,8 @@ import { Confetti, defaultLook, drawRace, Skids } from '../../../arena/race-draw
 import { createRaceSound } from '../../../arena/race-sound.ts'
 import type { Camera, DrawCar, HudInfo } from '../../../arena/race-draw.ts'
 import type { ArenaLook } from '../../../types/arena.ts'
+import { RACE_PAD } from '../../../arena/input/pad.ts'
+import { axisDir, usePad } from '../../../arena/input/usePad.ts'
 
 const props = defineProps<ArenaScreenProps>()
 const emit = defineEmits<{ close: [] }>()
@@ -70,6 +72,18 @@ const pipe = new InputPipe({ now: () => performance.now(), send: (held) => { roo
 const autoGas = ref(typeof localStorage !== 'undefined' && localStorage.getItem('aw-race-autogas') === '1')
 const eff = (): number => heldBits | (autoGas.value && !(heldBits & INPUT.brake) ? INPUT.gas : 0)
 function hold(bit: number, on: boolean): void { heldBits = on ? heldBits | bit : heldBits & ~bit; down.value = heldBits; pipe.hold(eff()); sound.unlock() }
+// A game controller holds the same buttons as the thumbs (src/arena/input/): the stick or d-pad steers, triggers or A/B for gas and brake.
+let stickDir: -1 | 0 | 1 = 0
+const pad = usePad(RACE_PAD, {
+  action(id, on) { hold(id === 'gas' ? INPUT.gas : INPUT.brake, on) },
+  stick(x) {
+    const dir = axisDir(x, stickDir, 0.35, 0.25)
+    if (dir === stickDir) return
+    if (stickDir) hold(stickDir < 0 ? INPUT.left : INPUT.right, false)
+    if (dir) hold(dir < 0 ? INPUT.left : INPUT.right, true)
+    stickDir = dir
+  },
+}, (text) => game.toast(text, 'good'))
 function toggleAuto(): void { autoGas.value = !autoGas.value; try { localStorage.setItem('aw-race-autogas', autoGas.value ? '1' : '0') } catch { /* private mode */ } pipe.hold(eff()); sound.unlock() }
 const KEYS: Record<string, number> = { ArrowLeft: INPUT.left, a: INPUT.left, ArrowRight: INPUT.right, d: INPUT.right, ArrowUp: INPUT.gas, w: INPUT.gas, ArrowDown: INPUT.brake, s: INPUT.brake }
 function key(event: KeyboardEvent, on: boolean): void {
@@ -184,13 +198,13 @@ function frame(now: number): void {
   const mine = you != null ? b.r[you] : undefined
   sound.engine(tc.v / 9, you != null && (eff() & INPUT.gas) !== 0, b.p === 1 && !(fc[5] > 0), you != null ? 1 : 0.5)
   if (b.p === 0 && b.c !== fxSeen.count) { fxSeen.count = b.c; if (b.c > 0) sound.beep(false) }
-  if (b.p === 1 && fxSeen.count !== -1) { fxSeen.count = -1; sound.beep(true) }
+  if (b.p === 1 && fxSeen.count !== -1) { fxSeen.count = -1; sound.beep(true); if (you != null) pad.rumble(0.3, 90) }
   if (you == null && !anyFin && b.r.some((c) => c[5] > 0)) { anyFin = true; confetti.burst(width); sound.finish() }
   if (mine) {
     const hit = (mine[6] & 2) !== 0, boost = (mine[6] & 16) !== 0, fin = mine[5] > 0
-    if (hit && !fxSeen.hit) sound.bump()
+    if (hit && !fxSeen.hit) { sound.bump(); pad.rumble(0.75, 180) }
     if (boost && !fxSeen.boost) sound.boost()
-    if (fin && !fxSeen.fin) { sound.finish(); confetti.burst(width) }
+    if (fin && !fxSeen.fin) { sound.finish(); confetti.burst(width); pad.rumble(0.5, 260) }
     fxSeen.hit = hit; fxSeen.boost = boost; fxSeen.fin = fin
   }
   drawRace(ctx, width, height, { trackId: trackId.value, cars, cam, you, follow: target, hud, spectator: you == null, phase: now, reduced, skids, confetti, dtMs: dt })
@@ -235,7 +249,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <ArenaStage title="Race" :play="status === 'playing'" :chip="conn === 'open' ? (state?.practice ? 'Practice' : playing ? (seated ? 'Live' : 'Watching') : status) : 'Connecting…'" :off="conn !== 'open'" @leave="leave">
+  <ArenaStage title="Race" :pad="pad" :play="status === 'playing'" :chip="conn === 'open' ? (state?.practice ? 'Practice' : playing ? (seated ? 'Live' : 'Watching') : status) : 'Connecting…'" :off="conn !== 'open'" @leave="leave">
   <div class="rg" data-testid="race">
     <div v-if="gone" class="rg-card"><p>{{ note || 'That game is not on any more.' }}</p><BaseButton variant="primary" @click="leave">Back to games</BaseButton></div>
     <template v-else>

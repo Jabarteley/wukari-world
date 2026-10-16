@@ -3,7 +3,7 @@ import type { Group, WebGLRenderer } from 'three';
 import { createKit } from '../../scene/kit.ts';
 import { createMotionLoop } from '../../scene/motion-loop.ts';
 import type { MotionLoop } from '../../scene/motion-loop.ts';
-import { createPositionReporter, createWalker, gaitPhase, WALK_SPEED, JOG_SPEED } from '../../scene/movement.ts';
+import { createPositionReporter, createWalker, WALK_SPEED, JOG_SPEED } from '../../scene/movement.ts';
 import { buildUnilag, crowdKindOf } from './scene.ts';
 import type { CampusTag, CrowdInput, CrowdPerson, PlayerInput, Point } from './scene.ts';
 import { shuttlePose } from './shuttle.ts';
@@ -315,14 +315,17 @@ export function createCampusHost(container: HTMLElement, {
     walker.input(canWalk() ? right : 0, canWalk() ? forward : 0, keys.has('jog'));
     const fromX = walker.x, fromZ = walker.z;
     const moving = walker.step(dt, yaw, reduced());
-    phase += gaitPhase(Math.hypot(walker.x - fromX, walker.z - fromZ), .60, walker.jogging, false);
+    const travelled = Math.hypot(walker.x - fromX, walker.z - fromZ);
+    const cycle = campus.cycleDistance(walker.jogging);
+    if (cycle > 0) phase = (phase + travelled * Math.PI * 2 / cycle) % (Math.PI * 2);
     campus.walk.move(walker.x, 0, walker.z, walker.ry);
     if (walker.moving) { campus.walk.gait(true, phase, walker.jogging); report.report(walker.x, walker.z, now()); }
     else campus.walk.rest();
+    const bodyMoving = campus.stepCharacter(dt);
     if (wasMoving && !walker.moving) report.rest(walker.x, walker.z, now());
     wasMoving = walker.moving;
     draw();
-    return moving || walker.hasInput;
+    return moving || bodyMoving || walker.hasInput;
   }
   const loop: MotionLoop = createMotionLoop(tick, {
     onHidden() { keys.clear(); walker.input(0, 0); },

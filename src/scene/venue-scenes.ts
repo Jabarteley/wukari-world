@@ -65,11 +65,12 @@
  *   coordinates the host reports for the local avatar) stands exactly there. Nobody the scene
  *   places itself stands on a spot marker or on the ground in front of one (clearOfSpots), so a
  *   marker is never hidden behind a figure in the scene's own view.
- *   stats()                     { triangles, meshes, drawCalls, lights, geometries }
+ *   stats()                     total triangles/meshes/draw calls, each split into scenery and canonical characters
  *   dispose()                   free everything and detach from the parent (the host calls it on
  *                               a location change and when it is disposed itself)
  */
 import type * as THREE from 'three';
+import { SCENE_CHARACTER_TRIANGLES, SCENE_DRAW_CALLS, SCENE_TRIANGLES } from '../budgets.ts';
 import { createBatch, kitResources, releaseObjects, GLOW } from './build.ts';
 import type { Releasable } from './build.ts';
 import type { Kit } from './kit.ts';
@@ -79,8 +80,13 @@ import type {
   Anchor, Batch, Colour, CrowdPerson, Landmark, SceneOptions, Lighting, RaisedShape, SceneBuilder, SceneCamera, SceneContext, SceneDef, SceneEntrance, SceneEntry,
   SceneLayout, SceneMaterials, ScenePerson, SceneRest, SceneSpot, SceneState, SceneTag, SceneThing, SceneVenue, SceneWalk, PlayerOptions, ThreeModule, TimeOfDay, Vec3, WalkSpot,
 } from './types.ts';
-import { buildAvatar, drawCrowd } from './characters.ts';
-import { playerOptions, rigOf, lookAvatar } from './avatar-rig.ts';
+import { buildCanonicalCrowd, createCanonicalStaticAvatar } from './body/canonical-crowd.ts';
+import { createBody } from './body/skinned.ts';
+import { normalizeLook } from './characters.ts';
+import type { BodyPose, SkinnedBody } from './body/skinned.ts';
+import { measureRenderCost } from './body/render-cost.ts';
+import { assertNoPendingCanonicalExtras, buildCanonicalExtras } from './body/static-extras.ts';
+import { rigOf, lookAvatar } from './avatar-rig.ts';
 import { createWalkGrid, footprintRecorder, turnTowards } from './movement.ts';
 import { FIGURE_GAP, gapFor, tieOf, newGaze, stepGaze, watch, gazing } from './space.ts';
 import type { GazeState } from './space.ts';
@@ -360,6 +366,7 @@ const PEER_EASE: [number, number] = [0.16, 0.42], PEER_JUMP = 7, PEER_PACE = 6;
 
 /** One other player's figure: a standing and a walking pose, eased between reported positions. */
 interface Peer {
+  nativeBody?: SkinnedBody;
   id: string; lookKey: string; look: unknown; seed: unknown; group: THREE.Group; shown: AvatarGroup | null;
   x: number; z: number; y: number; ry: number; fromX: number; fromZ: number; toX: number; toZ: number;
   t: number; span: number; stride: number; top: number; tag: SceneTag; at: ScenePerson; stand: AvatarGroup; walk: AvatarGroup;
@@ -447,7 +454,9 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   const runtime = def.runtime;
   runtime?.createHost.validate(runtime.reservation);
   let runtimeBudget = { triangles: 17000, drawCalls: 60 };
-  const staticObjects: Releasable[] = [], actorObjects: Releasable[] = [], markObjects: Releasable[] = [];
+  const staticObjects: Releasable[] = [], markObjects: Releasable[] = [];
+  let actorBatch: ReturnType<typeof buildCanonicalCrowd> | null = null;
+  let staticExtras: ReturnType<typeof buildCanonicalExtras> | null = null;
   let staticTriangles = 0, actorTriangles = 0, crowdTags: SceneTag[] = [], selfTag: SceneTag | null = null, sky: THREE.Mesh | null = null;
   // Other players who report where they stand: one figure each, eased to every new position.
   const peers = new Map<string, Peer>();
@@ -460,6 +469,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   const avatar = new THREE.Group();
   avatar.name = 'avatar';
   const figures = new Map<string, AvatarGroup>();
+  let nativePlayer: SkinnedBody | null = null;
   let shownFigure: AvatarGroup | null = null, standFigure: AvatarGroup | null = null, strideFigure: AvatarGroup | null = null, driven = false;
   let walking = false, stopLeft = 0, strideAt = 0, strideJog = false; // the player's rig between strides (stepPlayerLife)
   const marks: Record<'ring' | 'near' | 'goal', THREE.Mesh | null> = { ring: null, near: null, goal: null };
@@ -469,27 +479,24 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   let ambientChanged: ((ready: boolean) => void) | null = null;
   const ambient = createAmbientHub({
     kit, parent: group, grid: () => grid, shapes: () => footprints, entrance: () => (entrance ? [entrance.x, entrance.z] as const : null), open: () => walkSpec().open, offMarkers: (x, z) => offMarkers(x, z),
-    heightAt: (x, z) => walk.heightAt(x, z), avatar: () => ({ x: avatar.position.x, z: avatar.position.z }), spent: () => spentWithoutAmbient(), live: () => live, changed: () => ambientChanged?.(false), ready: () => { batchKey = null; buildActors(); ambientChanged?.(true); },
+    heightAt: (x, z) => walk.heightAt(x, z), avatar: () => ({ x: avatar.position.x, z: avatar.position.z }), fixed: () => staticExtras?.group.userData.occupiedPositions ?? [], spent: () => spentWithoutAmbient(), live: () => live, changed: () => ambientChanged?.(false), ready: () => { batchKey = null; buildActors(); ambientChanged?.(true); },
   });
+
+  let refreshingCharacters = false;
+  group.userData.refreshCharacterCosts = () => {
+    if (!live || refreshingCharacters) return;
+    refreshingCharacters = true;
+    try { refreshCrowdTags(); staticExtras?.group.userData.rebudget?.(); ambient.rebudget(); } finally { refreshingCharacters = false; }
+  };
 
   /** What the scene draws now without its background people: triangles and draw calls (a solid mesh is drawn twice, once for the sun's shadow). */
   function spentWithoutAmbient() {
-    const people = group.getObjectByName('ambient');
-    let triangles = 0, drawCalls = 0;
-    group.traverseVisible((child) => {
-      if (!(child as THREE.Mesh).isMesh) return;
-      for (let up: THREE.Object3D | null = child; up; up = up.parent) if (up === people) return;
-      if (runtime) {
-        if (fallbackObjects.includes(child)) return;
-        for (let up: THREE.Object3D | null = child; up; up = up.parent) if (up === runtimeOwner?.placement?.root) return;
-      }
-      triangles += triangleCount(child as THREE.Mesh); drawCalls += meshDrawCalls(child as THREE.Mesh);
-    });
-    // The ambient hub snapshots its base allowance when it attaches. Reserve the imported
-    // layer before decoding so a cheap temporary fallback never grants that room to crowds.
-    if (runtime) { triangles += runtime.reservation.triangles + 17000 - runtimeBudget.triangles; drawCalls += runtime.reservation.drawCalls + 60 - runtimeBudget.drawCalls; }
-    return { triangles, drawCalls };
+    const exclusions = new Set<THREE.Object3D>([...(group.getObjectByName('ambient') ? [group.getObjectByName('ambient')!] : []), ...(runtime ? fallbackObjects : []), ...(runtimeOwner?.placement?.root ? [runtimeOwner.placement.root] : [])]);
+    const { scenery, characters } = measureRenderCost(group, node => exclusions.has(node));
+    if (runtime) { scenery.triangles += runtime.reservation.triangles + 17000 - runtimeBudget.triangles; scenery.drawCalls += runtime.reservation.drawCalls; }
+    return { triangles: scenery.triangles + characters.triangles, characterTriangles: characters.triangles, drawCalls: scenery.drawCalls + characters.drawCalls };
   }
+
   function drawStatic() {
     let recorder = footprintRecorder(createBatch(THREE));
     let batch = recorder.batch;
@@ -680,15 +687,19 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   }
   /** One figure per pose, built the first time the pose is needed and kept until the look changes. */
   function figure(pose: string, seat?: number): AvatarGroup {
-    const key = `${pose}:${seat ?? ''}`;
-    let entry = figures.get(key);
-    if (!entry) {
-      // The player's own figure is seen close up: the best detail characters.js offers a scene (avatar-rig.js).
-      entry = buildAvatar(kit, view.look, { pose: pose as Pose, seat, seed: view.seed, marker: 'crown', ...playerOptions(pose as Pose) });
-      entry.visible = false;
-      avatar.add(entry);
-      figures.set(key, entry);
+    let entry=figures.get('native-player');
+    if(!entry){
+      nativePlayer=createBody(kit,view.look,view.seed,1);
+      const body=nativePlayer;
+      entry=body.object as AvatarGroup;
+      Object.assign(entry.userData,{look:normalizeLook(view.look,view.seed),top:entry.userData.top??2.6,dispose:()=>body.dispose(),
+        jawRig:{stride:(phase:number,amount=1,jog=false)=>{if(amount>0)body.stride(phase,jog);else body.show('idle');},rest:()=>body.show('idle')},
+      });
+      entry.visible=false;avatar.add(entry);figures.set('native-player',entry);
     }
+    const mapped:BodyPose=pose==='stand'||pose==='relax'?'idle':pose==='work'||pose==='wave'?'interact':pose as BodyPose;
+    nativePlayer!.show(mapped);
+    if(mapped==='sit')nativePlayer!.sitOn(0,seat??.6,0,0);else nativePlayer!.place(0,0,0,0);
     return entry;
   }
   function show(pose: string, seat?: number) { return showFigure(figure(pose, seat)); }
@@ -702,26 +713,11 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   }
   function clearFigures() {
     for (const entry of figures.values()) entry.userData.dispose();
-    figures.clear();
-    shownFigure = null; standFigure = null; strideFigure = null; walking = false; stopLeft = 0;
+    figures.clear();nativePlayer=null;
+    shownFigure = null; standFigure = null; strideFigure = null;
   }
   /** The two figures of the walk cycle, built ahead so that a step only switches which one is visible. */
-  /**
-   * The player's figure between strides, on frames the host draws anyway (nothing here asks for one): a walk eases back to standing
-   * (STOP_EASE), and a standing figure breathes and shifts its weight by the clock (so any frame rate looks the same). True while
-   * the stop is still easing.
-   */
-  function stepPlayerLife(dt: number): boolean {
-    const rig = rigOf(standFigure);
-    if (!live || !rig || !driven || shownFigure !== standFigure) { stopLeft = 0; return false; }
-    const seconds = (globalThis.performance?.now() ?? 0) / 1000;
-    if (stopLeft > 0) {
-      stopLeft = Math.max(0, stopLeft - dt);
-      if (stopLeft > 0) rig.fade?.(strideAt, stopLeft / STOP_EASE, strideJog); else rig.rest();
-    } else if (!walking) rig.idle?.(seconds);
-    return stopLeft > 0;
-  }
-  function prebuild() { standFigure = figure('stand'); strideFigure = rigOf(standFigure) ? null : figure('walk'); }
+  function prebuild() { standFigure = figure('stand'); strideFigure = null; }
   /** Move the avatar (transform only) and its name tag. */
   function moveAvatar(x: number, y: number, z: number, ry: number) {
     avatar.position.set(x, y, z);
@@ -762,12 +758,13 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   }
   /** One of a peer's two figures (standing, walking): both are built when the player first appears, so easing builds nothing. */
   function peerFigure(peer: Peer, pose: 'stand' | 'walk') {
-    const figure = buildAvatar(kit, peer.look, { pose, seed: peer.seed, marker: 'player' });
+    const figure = createCanonicalStaticAvatar(kit, peer.look, { pose, seed: peer.seed, detail: 'lod' });
     figure.visible = false;
     peer.group.add(figure);
     return figure;
   }
   function showPeer(peer: Peer, walking: boolean) {
+    if(peer.nativeBody){if(walking)peer.nativeBody.stride(peer.stride,false);else peer.nativeBody.show('idle');return;}
     const next = walking ? peer.walk : peer.stand;
     if (peer.shown === next) return;
     if (peer.shown) peer.shown.visible = false;
@@ -783,7 +780,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     peer.at.x = peer.x; peer.at.z = peer.z; peer.at.top = peer.y + peer.top;
   }
   function dropPeer(peer: Peer) {
-    peer.stand.userData.dispose(); peer.walk.userData.dispose();
+    peer.nativeBody?.dispose();peer.stand.userData.dispose(); peer.walk.userData.dispose();
     peer.group.parent?.remove(peer.group);
     peers.delete(peer.id);
   }
@@ -827,15 +824,24 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     for (const peer of peers.values()) {
       if (peer.t >= 1) { if (stepGlance(peer, dt)) more = true; continue; }
       resetGlance(peer);
+      if(!peer.nativeBody&&![...peers.values()].some(item=>item.nativeBody)){
+        const cost=measureRenderCost(group),triangles=cost.scenery.triangles+cost.characters.triangles,draws=cost.scenery.drawCalls+cost.characters.drawCalls;
+        if(cost.characters.triangles+34000<=SCENE_CHARACTER_TRIANGLES.value&&triangles+34000<=SCENE_TRIANGLES.value&&draws+10<=SCENE_DRAW_CALLS.value){
+          peer.nativeBody=createBody(kit,peer.look,peer.seed,1);peer.nativeBody.place(0,0,0,0);peer.group.add(peer.nativeBody.object);
+          peer.stand.visible=false;peer.walk.visible=false;peer.shown=null;
+        }
+      }
+      const oldX=peer.x,oldZ=peer.z;
       peer.t = Math.min(1, peer.t + dt / peer.span);
       const dx = peer.toX - peer.fromX, dz = peer.toZ - peer.fromZ;
       peer.x = peer.fromX + dx * peer.t; peer.z = peer.fromZ + dz * peer.t;
       const turn = turnTowards(peer.ry, Math.atan2(dx, dz));
       peer.ry += Math.sign(turn) * Math.min(Math.abs(turn), 14 * dt);
       if (peer.ry > Math.PI) peer.ry -= Math.PI * 2; else if (peer.ry < -Math.PI) peer.ry += Math.PI * 2;
-      peer.stride += dt * 6.5;
-      if (peer.t < 1) { showPeer(peer, Math.floor(peer.stride) % 2 === 0); more = true; } else showPeer(peer, false);
+      peer.stride += peer.nativeBody?Math.PI*2*Math.hypot(peer.x-oldX,peer.z-oldZ)/peer.nativeBody.cycleDistance(false):dt*6.5;
+      if (peer.t < 1) { showPeer(peer, peer.nativeBody ? true : Math.floor(peer.stride) % 2 === 0); more = true; } else showPeer(peer, false);
       placePeer(peer);
+      peer.nativeBody?.step(dt);
     }
     easing = more;
     return more;
@@ -876,20 +882,16 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     const key = JSON.stringify(merged);
     if (key !== batchKey) {
       batchKey = key;
-      releaseObjects(actorObjects);
-      const batch = createBatch(THREE);
-      mergedTags = drawCrowd(batch, merged);
-      const built = batch.build(shared.materials);
-      actorTriangles = built.triangles;
-      for (const mesh of built.meshes) { mesh.name = `actors-${mesh.name}`; group.add(mesh); actorObjects.push(mesh); }
+      actorBatch?.dispose();
+      actorBatch = buildCanonicalCrowd(kit, merged);
+      mergedTags = actorBatch.tags;
+      actorTriangles = actorBatch.triangles;
+      group.add(actorBatch.group);
     }
     const kept = new Set();
     for (const person of placed) if (person.live) kept.add(syncPeer(person as LivePerson).id);
     for (const peer of [...peers.values()]) if (!kept.has(peer.id)) dropPeer(peer);
-    // Tags and tap targets in the order the crowd was given.
-    let next = 0;
-    crowdTags = placed.map((person) => (person.live ? peers.get(String(person.id))!.tag : drawnHere.has(String(person.id)) ? ambient.residentTag(String(person.id), String(person.name ?? '')) : mergedTags[next++])).filter((tag): tag is SceneTag => Boolean(tag));
-    peopleList = crowdTags.map((tag) => peers.get(tag.id)?.tag === tag ? peers.get(tag.id)!.at : { id: tag.id, kind: tag.kind, x: tag.position.x, z: tag.position.z, top: tag.position.y });
+    refreshCrowdTags();
     if (runtime && placed.length) {
       const cost = runtimeHostCost(true);
       // Network people are independently supplied by the host, outside the ambient planner.
@@ -903,6 +905,16 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     ambient.rebudget();
     guardRuntimeBudget();
   }
+  function refreshCrowdTags() {
+    // Native crowd capture is asynchronous. Resolve tags again on readiness instead of
+    // keeping the empty array seen when the batch was first requested.
+    const mergedById = new Map(mergedTags.map(tag => [tag.id, tag]));
+    crowdTags = placeCrowd(view.crowd).map(person => {
+      const id = String(person.id);
+      return person.live ? peers.get(id)?.tag : ambient.residentTag(id, String(person.name ?? '')) ?? mergedById.get(id);
+    }).filter((tag): tag is SceneTag => Boolean(tag));
+    peopleList = crowdTags.map(tag => peers.get(tag.id)?.tag === tag ? peers.get(tag.id)!.at : { id: tag.id, kind: tag.kind, x: tag.position.x, z: tag.position.z, top: tag.position.y });
+  }
   function applyLighting() {
     const preset = lit();
     shared.materials.glow.color.setScalar(preset.glow);
@@ -914,8 +926,10 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     const materials = Array.isArray(mesh.material) ? mesh.geometry.groups.map(part => mesh.material instanceof Array ? mesh.material[part.materialIndex ?? 0] : undefined) : [mesh.material];
     return materials.reduce((sum, material) => sum + (material ? (material.transparent && material.side === THREE.DoubleSide && !material.forceSinglePass ? 2 : 1) + (mesh.castShadow ? 1 : 0) : 0), 0);
   }
+  // Native characters have their own72k allocation. Imported scenery keeps the existing17k allowance;
+  // the shared60draw allowance deducts character calls, and scene stats still count both categories.
   function runtimeHostCost(excludeRuntime = false) {
-    return runtime!.createHost.measure(kit, group, fallbackObjects, excludeRuntime ? runtimeOwner?.placement?.root : null);
+    return measureRenderCost(group, node => fallbackObjects.includes(node) || (excludeRuntime && node === runtimeOwner?.placement?.root)).scenery;
   }
   function guardRuntimeBudget() { runtimeOwner?.guard(); }
   function selectRuntime(x: number, z: number) { runtimeOwner?.selectAt(x, z); }
@@ -924,7 +938,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     const generation = ++runtimeGeneration;
     void runtime.createHost(kit, group, {
       current: () => generation === runtimeGeneration && live && !disposed,
-      cost: runtimeHostCost, budget: () => runtimeBudget, readmit: () => buildActors(),
+      cost: runtimeHostCost, budget: () => ({ triangles: runtimeBudget.triangles, drawCalls: Math.max(0, runtimeBudget.drawCalls - measureRenderCost(group).characters.drawCalls) }), readmit: () => buildActors(),
       request: runtime.request, bounds: runtime.bounds,
       fallback: fallbackObjects, heights: runtime.support.map(surface => surface.y),
       index: contactSurfaceIndex, fallbackContact: () => fallbackContactTop,
@@ -939,8 +953,17 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   }
   function realise() {
     if (live || disposed) return;
-    const built = drawStatic().build(shared.materials);
-    staticTriangles = built.triangles;
+    const staticBatch = drawStatic();
+    const built = staticBatch.build(shared.materials);
+    staticExtras = buildCanonicalExtras(kit, staticBatch, { room: () => {
+      const { scenery, characters } = measureRenderCost(group, staticExtras?.group);
+      return {
+        triangles: Math.max(0, Math.min(SCENE_CHARACTER_TRIANGLES.value - characters.triangles, SCENE_TRIANGLES.value - scenery.triangles - characters.triangles) - 800),
+        drawCalls: Math.max(0, SCENE_DRAW_CALLS.value - scenery.drawCalls - characters.drawCalls - 4),
+      };
+    } });
+    assertNoPendingCanonicalExtras(staticBatch);
+    staticTriangles = built.triangles + staticExtras.triangles;
     const deckHeights = (layout?.raised || []).flatMap((shape) =>
       (shape.rect || shape.disc) && Number.isFinite(shape.y) ? [shape.y!] : [],
     );
@@ -953,6 +976,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
       fallbackBuilt = null;
     }
     for (const object of [...built.meshes, ...built.lights]) { group.add(object); staticObjects.push(object); const part = object.userData.part as keyof typeof wallParts | undefined; if (part && wallParts[part]) wallParts[part].push(object); }
+    group.add(staticExtras.group);
     sky = skyDome(kit, shared.materials);
     if (sceneCamera.bounds) sky.scale.setScalar(600 / 170);
     group.add(sky);
@@ -977,7 +1001,8 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     easing = false; batchKey = null; peopleList = []; mergedTags = [];
     wallParts.wallBack.length = 0; wallParts.wallLeft.length = 0;
     releaseObjects(staticObjects);
-    releaseObjects(actorObjects);
+    staticExtras?.dispose(); staticExtras = null;
+    actorBatch?.dispose(); actorBatch = null;
     releaseObjects(markObjects);
     ambient.release();
     marks.ring = null; marks.near = null; marks.goal = null;
@@ -995,7 +1020,13 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     if (driven && pose) { const [name, seat] = pose.split(':'); show(name!, seat === '' ? undefined : Number(seat)); if (selfTag) selfTag.position.y = avatar.position.y + shownFigure!.userData.top; }
   }
 
-  const triangleCount = (object: THREE.Mesh) => (object.geometry?.index?.count ?? object.geometry?.attributes.position?.count ?? 0) / 3 * ((object as THREE.InstancedMesh).isInstancedMesh ? (object as THREE.InstancedMesh).count : 1);
+  const triangleCount = (object: THREE.Mesh) => {
+    const geometry = object.geometry;
+    const available = geometry?.index?.count ?? geometry?.getAttribute('position')?.count ?? 0;
+    const start = Math.max(0, Math.floor(geometry?.drawRange.start ?? 0));
+    const active = Math.max(0, Math.min(available - start, geometry?.drawRange.count ?? Infinity));
+    return Math.floor(active / 3) * ((object as THREE.InstancedMesh).isInstancedMesh ? (object as THREE.InstancedMesh).count : 1);
+  };
   /**
    * WALKING (driven by the host, src/venue-world.ts). Until the host calls walk.drive(true) the scene
    * stands the avatar at its spot by itself, exactly as before; once driven it only reports where
@@ -1173,6 +1204,8 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     /** True while another player's figure is on its way to a newly reported position. */
     get easing() { return easing; },
     stepCrowd, settleCrowd,
+    cycleDistance(jog:boolean){return nativePlayer?.cycleDistance(jog);},
+    stepCharacter(dt:number){return nativePlayer?.step(dt)??false;},
     /**
      * The background people of this place (src/scene/ambient): who is here, by the hour and the sky, is decided from the place and the time alone,
      * so everyone in it sees the same people. null switches them off. True when the scene changed and wants a frame.
@@ -1183,7 +1216,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
       return changed;
     },
     /** One step of the people (their own window of frames: src/scene/ambient/layer.ts). True while the window is open. */
-    stepAmbient(dt: number) { const changed = stepPlayerLife(dt) || (ambient.layer?.step(dt) ?? false); guardRuntimeBudget(); return changed; },
+    stepAmbient(dt: number) { const changed = ambient.layer?.step(dt) ?? false; guardRuntimeBudget(); return changed; },
     /** Open the window: the host draws frames for a few seconds so the people can be seen walking. False when there is nobody to see. */
     wakeAmbient() { return ambient.layer?.wake() ?? false; },
     /** Place the people as they are and stand them still (reduced motion, no frame loop). */
@@ -1214,14 +1247,16 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     get walls() { return footprints?.walls ? { back: wallParts.wallBack.every((mesh) => mesh.visible), left: wallParts.wallLeft.every((mesh) => mesh.visible) } : null; },
     tags: () => (selfTag ? [selfTag, ...crowdTags, ...ambient.tags()] : [...crowdTags, ...ambient.tags()]),
     stats() {
-      const meshes: THREE.Mesh[] = [];
-      group.traverseVisible((child) => { if ((child as THREE.Mesh).isMesh) meshes.push(child as THREE.Mesh); });
+      const { scenery, characters } = measureRenderCost(group);
+      if (!live) { scenery.triangles = 0; characters.triangles = 0; }
       return {
-        triangles: live ? meshes.reduce((sum, mesh) => sum + triangleCount(mesh), 0) : 0,
-        meshes: meshes.length,
-        drawCalls: meshes.reduce((sum, mesh) => sum + meshDrawCalls(mesh), 0),
+        triangles: scenery.triangles + characters.triangles,
+        meshes: scenery.meshes + characters.meshes,
+        drawCalls: scenery.drawCalls + characters.drawCalls,
         lights: group.children.filter((child) => (child as THREE.Light).isLight).length,
-        geometries: meshes.length,
+        geometries: scenery.meshes + characters.meshes,
+        sceneryTriangles: scenery.triangles, sceneryMeshes: scenery.meshes, sceneryDrawCalls: scenery.drawCalls,
+        characterTriangles: characters.triangles, characterMeshes: characters.meshes, characterDrawCalls: characters.drawCalls,
       };
     },
     setHostBudget(budget: { triangles: number; drawCalls: number }) {

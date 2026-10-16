@@ -2,22 +2,21 @@
  * The skinned body standing in for the player's own figure in a venue scene (the home room has its own: the
  * "SKINNED BODY" section of home-scene.ts). The venue host (src/venue-world.ts) owns it and hands it what it already
  * hands the scene's walk: move(x, y, z, ry), pose(name, seat), gait(phase, jog, y). The scene itself is not touched: its
- * procedural figure is only hidden while the body is in, and shown again the moment the body goes.
+ * canonical static figure is hidden while the animated body is in.
  *
- * Same rules as at home (gate.ts): fetched after a scene's first frame, only on a device bodyAllowed() accepts with a
- * WebGL2 renderer; any failure keeps the procedural figure for the rest of the session. No frames of its own: a pose
+ * The shared body templates are preloaded before scene construction. No frames of its own: a pose
  * is a still frame, walking samples the host's stride phase (the stairs clips while the floor height climbs or drops
  * under the stride). Pose transitions and the short locomotion blends are stepped only by the host's existing motion
  * loop while `easing` is true.
  */
-import { bodyAllowed, drawsWebGL2, importBody } from './gate.ts';
+import { createBody } from './skinned.ts';
 import type { BodyPose, SkinnedBody } from './skinned.ts';
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
 
-/** The scene's procedural poses (characters.ts) as body poses. */
+/** The scene's pose names as body poses. */
 export const BODY_POSE: Readonly<Record<string, BodyPose>> = Object.freeze({ stand: 'idle', relax: 'idle', sit: 'sit', walk: 'walk', jog: 'jog', wave: 'interact', work: 'interact', dance: 'dance' });
-/** The procedural figure's seat height when a sitting pose gives none (drawAvatar's default), in avatar units. */
+/** Default seat height in avatar units. */
 const SEAT = 0.6;
 /** Rise over run under the stride that counts as a stair or ramp (a ramp shallower than this walks). */
 export const CLIMB = 0.3;
@@ -70,7 +69,7 @@ export interface StandIn {
   /** The scene the player is in now; null where the body does not stand in (the home room, the map). A new scene is
    *  come into through its door: the next standing pose plays the door clip (when the host animates). */
   attach(scene: StandInScene | null): void;
-  /** After a frame was drawn: start fetching the body, once. */
+  /** Mount the preloaded body. */
   start(renderer: { getContext?: () => unknown } | null | undefined): void;
   wear(look: unknown, seed: unknown): void;
   move(x: number, y: number, z: number, ry: number): void;
@@ -82,6 +81,7 @@ export interface StandIn {
   /** One walking frame at the stride phase; `y` the floor height under the walker (the stairs clips on a slope). */
   gait(phase: number, jog: boolean, y?: number, animate?: boolean): void;
   step(dt: number): boolean;
+  cycleDistance(jog:boolean):number|undefined;
   settle(): void;
   dispose(): void;
 }
@@ -89,12 +89,12 @@ export interface StandIn {
 type BodyLoader = (kit: Kit, look: unknown, seed: unknown, sceneScale: number) => Promise<SkinnedBody>;
 
 /**
- * onReady: the body came in (or went) on its own, between frames — draw one. allowed: the device check (tests pass
- * false or a fake device; the default reads navigator).
+ * onReady asks the host for one frame after a body changes. The optional loader is used by existing callers
+ * that need an asynchronous body source; normal scenes use the preloaded sync template.
  */
-export function createStandIn(kit: Kit, onReady: () => void, allowed: boolean = bodyAllowed(), load?: BodyLoader): StandIn {
+export function createStandIn(kit: Kit, onReady: () => void, load?: BodyLoader): StandIn {
   const headAt = new kit.THREE.Vector3();
-  let body: SkinnedBody | null = null, loading = false, failed = !allowed, gone = false, scene: StandInScene | null = null;
+  let body: SkinnedBody | null = null, loading = false, failed = false, gone = false, scene: StandInScene | null = null;
   let look: unknown = null, seed: unknown = null, posed: BodyPose = 'idle', seat = SEAT, at = { x: 0, y: 0, z: 0, ry: 0 };
   let standingDestination: typeof at | null = null;
   // Came into a scene and not yet posed there; the last walking frame (floor height, position) and the slope since.
@@ -136,7 +136,7 @@ export function createStandIn(kit: Kit, onReady: () => void, allowed: boolean = 
     get object() { return body?.object ?? null; },
     get shown() { return Boolean(body && scene && body.object.parent === scene.group); },
     tagPosition() {
-      const head = body?.object.getObjectByName('Head');
+      const head = body?.object.getObjectByName('head');
       if (!body || !scene || !head) return null;
       body.object.updateWorldMatrix(true, true);
       head.getWorldPosition(headAt); scene.group.worldToLocal(headAt); headAt.y += 0.32 * body.scale;
@@ -152,29 +152,27 @@ export function createStandIn(kit: Kit, onReady: () => void, allowed: boolean = 
       was = null; climb = 0;
       mount();
     },
-    start(renderer) {
+    start(_renderer) {
       if (body || loading || failed || gone || !scene) return;
-      if (!drawsWebGL2(renderer)) { failed = true; return; }
+      if (!load) {
+        body = createBody(kit, look, seed, scene.scale);
+        mount(); onReady();
+        return;
+      }
       loading = true;
-      setTimeout(() => {
-        const request = load ? load(kit, look, seed, scene?.scale ?? 1) : importBody().then((module) => module.loadBody(kit, look, seed, scene?.scale ?? 1));
-        request.then((loaded) => {
-          loading = false;
-          if (gone) { loaded.dispose(); return; }
-          // The look changed while it loaded: recolour, or (the other body file) fetch again after the next frame.
-          if (!loaded.wear(look, seed)) { loaded.dispose(); onReady(); return; }
-          body = loaded;
-          mount();
-          onReady();
-        }).catch((error: unknown) => {
-          loading = false; failed = true;
-          console.warn('Skinned body unavailable; keeping the drawn avatar:', error);
-        });
-      }, 0);
+      load(kit, look, seed, scene.scale).then((loaded) => {
+        loading = false;
+        if (gone) { loaded.dispose(); return; }
+        if (!loaded.wear(look, seed)) { loaded.dispose(); onReady(); return; }
+        body = loaded; mount(); onReady();
+      }).catch((error: unknown) => { loading = false; failed = true; console.error('Canonical body could not load:', error); });
     },
     wear(nextLook, nextSeed) {
       look = nextLook; seed = nextSeed;
-      if (body && !body.wear(look, seed)) { drop(); onReady(); }
+      if (body && !body.wear(look, seed)) {
+        const next = createBody(kit, look, seed, scene?.scale ?? 1);
+        body.dispose(); body = next; mount(); onReady();
+      }
     },
     move(x, y, z, ry) { at = { x, y, z, ry }; put(); },
     standingAt(x, y, z, ry) { standingDestination = { x, y, z, ry }; put(); },
@@ -201,6 +199,7 @@ export function createStandIn(kit: Kit, onReady: () => void, allowed: boolean = 
       if (body) { body.stride(phase, jog, Math.abs(climb) >= CLIMB ? climb : 0, animate); put(); solveContacts(); }
     },
     step(dt) { const more = body?.step(dt) ?? false; put(); if (!more) solveContacts(); else if (body?.contactSolvable) solveContacts(); return more && Boolean(scene); },
+    cycleDistance(jog){return body?.cycleDistance(jog);},
     settle() { body?.settle(); put(); solveContacts(); },
     dispose() { gone = true; clearStandingDestination(); drop(); scene = null; },
   };

@@ -1,0 +1,101 @@
+- generic "You":
+- button "Sule, NPC, a game character, not a real player":
+  - generic: NPC
+- group "Camera":
+  - button "Zoom in": +
+  - button "Zoom out": −
+  - button "Reset the camera view":
+- paragraph:
+  - generic: Allworld
+- region "Player status":
+  - 'button "8 online in Allworld: 1 person · 7 AI agents, 1 here. 475 visits in total. Open who is online."':
+    - generic: 8 online
+    - generic: · 1 here
+    - generic: · 475 visits
+  - 'button "Your account: kromate"':
+    - generic: K
+    - generic: kromate
+  - generic: Fri 16 · 4:16 am
+  - text: Miserable
+  - status "Connected · progress saved":
+    - generic: Saved
+  - button "Sound is muted. Unmute" [pressed]:
+    - generic: Muted
+  - button "Invite your friends":
+    - generic: Invite
+  - button "Wallet ₦96,441,540. Open the bank and your transactions": ₦96m
+- complementary "Needs, goal and more":
+  - group "Your needs":
+    - generic "Hunger":
+      - meter "Hunger"
+    - generic "Energy":
+      - meter "Energy"
+    - generic "Fun":
+      - meter "Fun"
+    - generic "Social":
+      - meter "Social"
+    - generic "Hygiene":
+      - meter "Hygiene"
+    - generic "Bladder":
+      - meter "Bladder"
+  - 'button "More: weather, messages, city and help. 1 waiting"':
+    - generic: "1"
+  - 'button "Clean screen: hide the panels and show only the scene"':
+  - button "Iya Agbo by the road Tap to answer":
+    - generic: Iya Agbo by the road
+    - generic: Tap to answer
+  - button "Very sick · see a doctor. Go to the nearest clinic.":
+    - generic: Very sick · see a doctor
+  - 'button "Current goal: Visit the buka. Open Map → Amala Shitta"':
+    - strong: Visit the buka
+    - generic: Open Map → Amala Shitta
+    - emphasis:
+      - text: Goal 8/10 · +₦1,500 +1
+  - 'button "Weather: Cloudy. Open the Health app."':
+    - generic: Cloudy
+  - button "Daily gem hunt, 0 of 3 found today":
+    - strong: Daily gem hunt
+    - generic: 16 found · next prize ₦3,000
+    - generic: "You: 0/3 today · 1 online"
+  - 'button "Politics: this week''s election"':
+    - strong: Politics
+    - generic: Polls are open · they close in 43h 44m
+    - generic: Cast your vote, one tap
+  - button "Messages 6 updates":
+    - strong: Messages
+    - generic: 6 updates
+- region "Current venue":
+  - 'button "Open your character: profile, needs, goals and skills"':
+  - heading "Airport · Ikeja" [level=1]:
+    - text: Airport · Ikeja
+  - paragraph: The departures board just flipped a whole row
+  - button "Open community chat":
+  - button "Open map":
+  - button "Show activities":
+  - button "Departures hall" [pressed]:
+    - text: Departures hall
+  - button "Arrivals":
+    - text: Arrivals
+  - button "Viewing deck":
+    - text: Viewing deck
+  - button "Food court":
+    - text: Food court
+  - button "Travel desk":
+    - text: Travel desk
+  - button "People":
+    - text: People
+  - button "Square":
+    - text: Square
+- navigation "Main navigation":
+  - button "Home":
+    - generic: Home
+  - button "Buy" [disabled]:
+    - generic: Buy
+  - button "Map":
+    - generic: Map
+  - button "Phone":
+    - generic: Phone
+- status: Now showing the district
+- status
+- status: Something new is waiting in More
+- button "Lumo, your guide. Open chat":

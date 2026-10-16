@@ -16,12 +16,16 @@ import { AVATAR_WEARABLES } from '../../../game/wardrobe/catalogue.ts'
 import { avatarLookFields, keepAvatarAccessoryChoice } from '../../../game/wardrobe/look.ts'
 import type { AvatarLook } from '../../../game/wardrobe/look.ts'
 import type { PreviewFocus } from '../../../scene/avatar-preview.ts'
+import { normalizeNativeRecipe } from '../../../character/native-recipe.ts'
+import { nativeRecipeForLook } from '../../../character/native-migration.ts'
+import { NATIVE_CHARACTER_CATALOG } from '../../../character/native-catalog.ts'
+import type { NativeCharacterRecipeV2 } from '../../../character/native-recipe.ts'
 
 export type SwatchGroup = 'skin' | 'hairColours' | 'outfitColours'
 /** The look fields an option button can set. */
 export type LookField = 'body' | 'hair' | 'outfit' | 'fabric' | 'skin' | 'hairColor' | 'outfitColor' | 'bottomsColor' | 'face' | 'expression' | 'accessories'
 /** What a Sim may wear: the shape of a wardrobe (the editor locks what is not in it). */
-export type Owned = Required<Pick<Wardrobe, 'hair' | 'outfit' | 'fabric' | 'accessories'>> & { wearables?: AvatarWearableId[] }
+export type Owned = Required<Pick<Wardrobe, 'hair' | 'outfit' | 'fabric' | 'accessories'>> & { wearables?: AvatarWearableId[]; native?: string[] }
 
 const hexOf = (group: SwatchGroup, id: string | undefined): string => APPEARANCE[group].find((swatch) => swatch.id === id)?.hex ?? '#888888'
 export const lookLabel = (id: string): string => APPEARANCE.labels[id] ?? id
@@ -50,6 +54,7 @@ export function starterWardrobe(): Owned {
     fabric: [...APPEARANCE.fabrics],
     accessories: free('accessories', APPEARANCE.accessories.map((item) => item.id)) as Owned['accessories'],
     wearables: [...AVATAR_STARTER_WEARABLES],
+    native: [...NATIVE_CHARACTER_CATALOG.hair, ...NATIVE_CHARACTER_CATALOG.garments, ...NATIVE_CHARACTER_CATALOG.shoes].map((item) => item.id),
   }
 }
 
@@ -133,6 +138,9 @@ export function chooseLook(look: AvatarLook, group: string, value: string, owned
 
 /** "Woman · Braids · Owambe · Ankara · Glasses" */
 export function lookSummary(look: AvatarLook): string {
+  const native = nativeRecipeForLook(look, 'summary')
+  const label = (id: string): string => [...NATIVE_CHARACTER_CATALOG.bodies, ...NATIVE_CHARACTER_CATALOG.hair, ...NATIVE_CHARACTER_CATALOG.garments, ...NATIVE_CHARACTER_CATALOG.shoes].find((item) => item.id === id)?.label ?? id
+  if (look.native) return [label(native.appearance.body), label(native.appearance.hair), label(native.appearance.garments[0]!), label(native.appearance.shoes)].join(' · ')
   const layers = avatarLookFields(look).wearables ?? []
   const head = layers.find(id => AVATAR_WEARABLES[id].slot === 'head')
   const outfit = layers.find(id => AVATAR_WEARABLES[id].slot === 'full')
@@ -143,15 +151,21 @@ export function lookSummary(look: AvatarLook): string {
 }
 /** The preview's text alternative: everything the picture shows, in words. */
 export function lookAlt(look: AvatarLook, name = 'Your character'): string {
+  if (look.native) {
+    const native = nativeRecipeForLook(look, 'alt'), appearance = native.appearance
+    const label = (id: string): string => [...NATIVE_CHARACTER_CATALOG.bodies, ...NATIVE_CHARACTER_CATALOG.hair, ...NATIVE_CHARACTER_CATALOG.garments, ...NATIVE_CHARACTER_CATALOG.shoes, ...NATIVE_CHARACTER_CATALOG.eyeColors].find((item) => item.id === id)?.label ?? id
+    return `${name}: ${label(appearance.body)}, ${label(appearance.hair).toLowerCase()}, ${label(appearance.garments[0]!).toLowerCase()}, ${label(appearance.shoes).toLowerCase()}, ${label(appearance.eyeColor).toLowerCase()} eyes.`
+  }
   const wearing = worn(look)
   return `${name}: ${titled(look.body)}, ${swatchLabel('skin', look.skin).toLowerCase()} skin, ${titled(look.hair).toLowerCase()} hairstyle in ${swatchLabel('hairColours', look.hairColor).toLowerCase()}, ${titled(look.outfit).toLowerCase()} outfit in ${titled(look.fabric).toLowerCase()} ${swatchLabel('outfitColours', look.outfitColor).toLowerCase()}, ${swatchLabel('outfitColours', look.bottomsColor).toLowerCase()} bottoms${wearing.length ? `, wearing ${wearing.map((id) => titled(id).toLowerCase()).join(', ')}` : ''}${look.wearables?.length ? `, layered with ${avatarLookFields(look).wearables?.map(id => AVATAR_WEARABLES[id].label).join(', ')}` : ''}${look.appearance ? `, ${look.appearance.height} height, ${look.appearance.build} build, ${look.appearance.ageAppearance} appearance` : ''}.`
 }
 /** The look as the scene code takes it: style ids as they are, colours as hex values. */
-export interface SceneLook extends AvatarLookExtensions { body: string; hair: string; outfit: string; fabric: string; accessories: string[]; face: string; expression: string; skin: string; hairColor: string; outfitColor: string; bottomsColor: string }
+export interface SceneLook extends AvatarLookExtensions { body: string; hair: string; outfit: string; fabric: string; accessories: string[]; face: string; expression: string; skin: string; hairColor: string; outfitColor: string; bottomsColor: string; native: NativeCharacterRecipeV2 }
 export const sceneLook = (look: AvatarLook): SceneLook => ({
   ...avatarLookFields(look),
   body: look.body, hair: look.hair, outfit: look.outfit, fabric: look.fabric, accessories: [...worn(look)], face: look.face ?? APPEARANCE.faces[0] ?? 'oval', expression: look.expression ?? APPEARANCE.expressions[0] ?? 'smile',
   skin: hexOf('skin', look.skin), hairColor: hexOf('hairColours', look.hairColor), outfitColor: hexOf('outfitColours', look.outfitColor), bottomsColor: hexOf('outfitColours', look.bottomsColor),
+  native: nativeRecipeForLook(look, JSON.stringify([look.body, look.hair, look.outfit, look.skin])),
 })
 
 /**
@@ -168,17 +182,21 @@ export function randomLook(random: () => number = Math.random): Look {
     accessories: [], face: pick(APPEARANCE.faces) as Look['face'], expression: pick(APPEARANCE.expressions) as Look['expression'],
   }
   for (let count = Math.floor(random() * 3); count > 0; count--) look = { ...look, accessories: withAccessory(look, pick(free.accessories)) }
-  return look
+  const base = nativeRecipeForLook(look, Math.floor(random() * 0x100000000))
+  return { ...look, accessories: [], wearables: undefined, appearance: undefined, native: normalizeNativeRecipe({ ...base, appearance: { ...base.appearance,
+    body: body === 'man' ? 'male' : 'female', hair: pick(NATIVE_CHARACTER_CATALOG.hair).id,
+    garments: [pick(NATIVE_CHARACTER_CATALOG.garments).id], shoes: pick(NATIVE_CHARACTER_CATALOG.shoes).id, eyeColor: pick(NATIVE_CHARACTER_CATALOG.eyeColors).id,
+  } }) }
 }
 
 /** The same look, whatever order the accessories are in and whether or not the optional fields are spelled out. */
 const canonical = (look: AvatarLook): string => JSON.stringify([look.body, look.hair, look.outfit, look.fabric, look.skin, look.hairColor, look.outfitColor, look.bottomsColor,
   [...worn(look)].sort(), look.face ?? APPEARANCE.faces[0], look.expression ?? APPEARANCE.expressions[0],
-  [...(avatarLookFields(look).wearables ?? [])].sort(), normalizeAvatarAppearance(look.appearance)])
+  [...(avatarLookFields(look).wearables ?? [])].sort(), normalizeAvatarAppearance(look.appearance), nativeRecipeForLook(look, 'compare')])
 export const sameLook = (a: Look, b: Look): boolean => canonical(a) === canonical(b)
 
 // ---- the flat figure ------------------------------------------------------------------------
-/** One element of the flat figure's SVG: drawn by AvatarFigure.vue, never as markup. */
+/** One element of the avatar preview's saved-look projection. */
 export interface Shape { tag: 'path' | 'circle' | 'rect' | 'ellipse'; attrs: Record<string, string | number> }
 const path = (d: string, fill: string, extra: Record<string, string | number> = {}): Shape => ({ tag: 'path', attrs: { d, fill, ...extra } })
 const circle = (cx: number, cy: number, r: number, fill: string, extra: Record<string, string | number> = {}): Shape => ({ tag: 'circle', attrs: { cx, cy, r, fill, ...extra } })

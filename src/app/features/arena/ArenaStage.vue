@@ -13,10 +13,12 @@
 //   </ArenaStage>
 //
 // Inside, a `.arena-fill` element grows to the free height (use it for the canvas holder).
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import { getSound, setSound } from '../../../audio/settings.ts'
+import type { ScreenPad } from '../../../arena/input/usePad.ts'
 
-defineProps<{ title: string; chip?: string; off?: boolean; /** The game is on and the player is in it: the arena fills the whole screen and the bar fades. */ play?: boolean }>()
+const ArenaPadPanel = defineAsyncComponent(() => import('./ArenaPadPanel.vue'))
+const props = defineProps<{ title: string; chip?: string; off?: boolean; /** The game is on and the player is in it: the arena fills the whole screen and the bar fades. */ play?: boolean; /** The screen's controller (usePad): the Controller button and panel. */ pad?: ScreenPad }>()
 const emit = defineEmits<{ leave: [] }>()
 
 const canFull = typeof document !== 'undefined' && typeof document.documentElement.requestFullscreen === 'function'
@@ -65,10 +67,12 @@ onBeforeUnmount(() => {
         <span v-if="chip" class="as-chip" :class="{ off }">{{ chip }}</span>
         <span class="as-mid"><slot name="bar" /></span>
         <button type="button" class="as-ico" :aria-label="soundOn ? 'Mute sound' : 'Turn sound on'" @click="toggleSound"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" stroke="none" /><template v-if="soundOn"><path d="M16 9a4 4 0 0 1 0 6" /><path d="M18.5 6.5a8 8 0 0 1 0 11" /></template><template v-else><path d="M16 9l5 6M21 9l-5 6" /></template></svg></button>
+        <button v-if="props.pad?.supported" type="button" class="as-ico" :class="{ on: !!props.pad.connected.value }" :aria-label="props.pad.connected.value ? `Controller: ${props.pad.connected.value}` : 'Controller'" data-testid="arena-pad" @click="props.pad.panel.value = !props.pad.panel.value"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12a4 4 0 0 1 4 4v1a3 3 0 0 1-5.4 1.8L15 13H9l-1.6 1.8A3 3 0 0 1 2 13v-1a4 4 0 0 1 4-4z" /><path d="M7 11v2M6 12h2" /><circle cx="16" cy="11" r=".6" fill="currentColor" /><circle cx="18" cy="13" r=".6" fill="currentColor" /></svg></button>
         <button v-if="canFull" type="button" class="as-ico" :aria-label="full ? 'Exit full screen' : 'Full screen'" data-testid="arena-full" @click="toggleFull"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path v-if="!full" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" /><path v-else d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5" /></svg></button>
       </header>
       <p v-if="hint" class="as-hint" role="status">Rotate your phone sideways for a bigger arena.</p>
       <div class="as-body" :class="{ 'is-play': play }"><slot /></div>
+      <div v-if="props.pad?.panel.value" class="as-pad"><ArenaPadPanel :controls="props.pad.controls" @close="props.pad.panel.value = false" @changed="props.pad.reload()" /></div>
     </dialog>
   </Teleport>
 </template>
@@ -91,6 +95,8 @@ html.arena-open, html.arena-open body { overflow: hidden; }
 .as-ico { display: grid; place-items: center; width: 44px; padding: 0; }
 .as-chip { font-size: 12px; padding: 5px 10px; border-radius: 99px; font-weight: 650; text-transform: capitalize; white-space: nowrap; }
 .as-chip.off { background: rgba(138, 75, 10, .8); }
+.as-ico.on { box-shadow: 0 0 0 2px #7ee2a8; }
+.as-pad { position: absolute; z-index: 7; inset: auto 8px calc(env(safe-area-inset-bottom) + 8px) 8px; max-height: calc(100% - 70px); overflow-y: auto; color: var(--c-ink, #1a1d24); max-width: 520px; margin: 0 auto; }
 .as-mid { flex: 1; min-width: 0; display: flex; justify-content: center; pointer-events: none; }
 .as-mid > :deep(*) { pointer-events: auto; background: rgba(8, 12, 28, .55); border-radius: 16px; padding: 2px 12px; }
 .as-mid :deep(*) { color: #fff !important; text-shadow: 0 1px 2px rgba(0, 0, 0, .6); }

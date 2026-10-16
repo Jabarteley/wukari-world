@@ -1,4 +1,5 @@
 import type { AvatarLookExtensions, AvatarWearableId } from './avatar.ts';
+import type { NativeCharacterRecipeV2 } from '../character/native-recipe.ts';
 /**
  * The saved state of one life, as built by `createLife()` in src/life.ts.
  *
@@ -679,6 +680,8 @@ export interface Look extends AvatarLookExtensions {
   face?: Exclude<FaceId, 'oval'>
   /** The key exists only for an expression other than the default 'smile'. */
   expression?: Exclude<ExpressionId, 'smile'>
+  /** Complete native53 appearance. Once present, this is the authoritative rendered character. */
+  native?: NativeCharacterRecipeV2
 }
 
 /** Owned styles: the basics, the look chosen at creation, and boutique purchases. */
@@ -690,6 +693,8 @@ export interface Wardrobe {
   fabric: FabricId[]
   /** BOUGHT accessories only (the free ACCESSORY_BASICS are not listed); the key exists only once there is one. */
   accessories?: AccessoryId[]
+  /** Native hair, one-piece garment and shoe ids owned by this life. */
+  native?: string[]
 }
 
 /** 'guest': made by the quick start and not moved in yet. 'settled': every other life (see THE STAGED MODEL in onboarding.js). */

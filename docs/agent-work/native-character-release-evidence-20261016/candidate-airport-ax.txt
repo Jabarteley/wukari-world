@@ -1,0 +1,437 @@
+Browser tab: 460561438, Title: "Allworld: a digital world you can live in", URL: "http://127.0.0.1:5174/?diagnostics".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 417
++				422 container You
++		423 text {
+  "adapter": "venue",
+  "view": "third",
+  "renderCount": 1706,
+  "loop": {
+    "running": true,
+    "frames": 1697
+  },
+  "avatar": {
+    "x": 0.01,
+    "z": 6.68,
+    "y": 0,
+    "facing": 2.104,
+    "phase": 7.9296,
+    "moving": false,
+    "mode": "idle",
+    "blocked": false,
+    "locked": false,
+    "near": null
+  },
+  "walls": {
+    "back": true,
+    "left": true
+  },
+  "perch": false,
+  "hover": null,
+  "easing": false,
+  "solids": 23,
+  "camera": {
+    "yaw": 0.533,
+    "pitch": 0.575,
+    "zoom": 1,
+    "distance": 22,
+    "asked": 22,
+    "whole": 35.14,
+    "held": 1,
+    "pan": [
+      0,
+      0
+    ],
+    "holding": 0,
+    "ghost": 0,
+    "x": 9.4,
+    "y": 13.41,
+    "z": 21.83,
+    "limits": {
+      "pitch": [
+        0.1,
+        1.501
+      ],
+      "zoom": [
+        0.454,
+        3.548
+      ],
+      "azimuth": null
+    }
+  },
+  "spots": [
+    {
+      "id": "departures",
+      "x": -5.6,
+      "z": -3.4,
+      "px": 1715,
+      "py": 383,
+      "selected": true
+    },
+    {
+      "id": "arrivals",
+      "x": 8.6,
+      "z": -3.2,
+      "px": 2491,
+      "py": 581,
+      "selected": false
+    },
+    {
+      "id": "deck",
+      "x": 4,
+      "z": -8.2,
+      "px": 2279,
+      "py": 400,
+      "selected": false
+    },
+    {
+      "id": "lounge",
+      "x": -8.9,
+      "z": 4.4,
+      "px": 1310,
+      "py": 509,
+      "selected": false
+    },
+    {
+      "id": "desk",
+      "x": 8.6,
+      "z": 6.1,
+      "px": 2354,
+      "py": 942,
+      "selected": false
+    },
+    {
+      "id": "people",
+      "x": 1.2,
+      "z": 4.6,
+      "px": 1840,
+      "py": 690,
+      "selected": false
+    }
+  ],
+  "things": [],
+  "people": [],
+  "objects": [],
+  "characterModels": [
+    {
+      "name": "native-decorative-extras",
+      "foundation": "native53",
+      "detail": "undefined"
+    },
+    {
+      "name": "canonical-crowd",
+      "foundation": "native53",
+      "detail": "lod"
+    },
+    {
+      "name": "native-static-avatar",
+      "foundation": "native53",
+      "detail": "lod"
+    },
+    {
+      "name": "ambient-far",
+      "foundation": "native53",
+      "detail": "lod"
+    },
+    {
+      "name": "canonical-crowd",
+      "foundation": "native53",
+      "detail": "undefined"
+    },
+    {
+      "name": "native-character",
+      "foundation": "native53",
+      "detail": "full"
+    }
+  ],
+  "drawCalls": 53,
+  "triangles": 62102,
+  "geometries": 123,
+  "textures": 53,
+  "location": "airport",
+  "background": "#232e4a",
+  "scenes": 1,
+  "crowd": 0,
+  "lighting": {
+    "hemi": 1.5,
+    "sun": 1.1,
+    "sky": "#f2dcbc"
+  },
+  "tier": "high",
+  "matte": false,
+  "pixelRatio": 1,
+  "shadowMap": 2048,
+  "avatarPx": 156,
+  "tags": [
+    {
+      "id": "self",
+      "kind": "self",
+      "text": "Jolly Aisha",
+      "name": "Jolly Aisha",
+      "marker": "crown",
+      "colour": "#ffd34d",
+      "x": 1696,
+      "y": 540,
+      "visible": true
+    },
+    {
+      "id": "bark:ambient|lagos|airport|q|1991236|call|0",
+      "kind": "bark",
+      "text": "I spent two hours in traffic. Two hours!",
+      "name": "",
+      "marker": "tag",
+      "colour": "#ffffff",
+      "x": 2297,
+      "y": 475,
+      "visible": true
+    }
+  ],
+  "map": {
+    "kind": "3d",
+    "renderCount": 657,
+    "frames": 657,
+    "loop": false,
+    "time": "night",
+    "reducedMotion": false,
+    "lost": false,
+    "triangles": 83784,
+    "calls": 34,
+    "cityTriangles": 104677,
+    "overlayTriangles": 0,
+    "counts": {
+      "houses": 460,
+      "towers": 158,
+      "trees": 330,
+      "palms": 80,
+      "vehicles": 38,
+      "shadows": 973
+    },
+    "houses": {
+      "level": "far",
+      "far": 10,
+      "pads": 0,
+      "detail": 0,
+      "estates": 0,
+      "calls": 1,
+      "cached": 0
+    },
+    "pixels": 9.313847877387031,
+    "view": {
+      "x": -77.18753107639938,
+      "z": -186.2543173716612,
+      "yaw": 0,
+      "pitch": 0.92,
+      "distance": 227.56571984857723
+    },
+    "dive": false,
+    "aerial": null,
+    "frameMs": {
+      "median": 1.5,
+      "max": 5.700000047683716
+    },
+    "frameGapMs": {
+      "median": 16.700000047683716,
+      "max": 924.7999999523163
+    },
+    "trip": null,
+    "selected": null,
+    "layers": {
+      "billboards": false,
+      "sea": false,
+      "neighbours": false,
+      "gov": false,
+      "moving": false,
+      "lgas": true,
+      "homes": true
+    },
+    "people": [],
+    "labels": [
+      {
+        "id": "airport",
+        "text": "Airport",
+        "note": "You are here",
+        "hidden": false,
+        "compact": false
+      },
+      {
+        "id": "shrine",
+        "text": "Afrika Shrine",
+        "note": "",
+        "hidden": false,
+        "compact": true
+      },
+      {
+        "id": "home",
+        "text": "Home",
+        "note": "",
+        "hidden": false,
+        "compact": false
+      },
+      {
+        "id": "amala-shitta",
+        "text": "Amala Shitta",
+        "note": "",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "radio",
+        "text": "Naija Radio",
+        "note": "",
+        "hidden": false,
+        "compact": false
+      },
+      {
+        "id": "viewing-centre",
+        "text": "Viewing Centre",
+        "note": "opens 10AM",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "cchub",
+        "text": "CcHub",
+        "note": "opens 8AM",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "salon",
+        "text": "Mama Bisi’s Salon",
+        "note": "opens 8AM",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "market",
+        "text": "Market",
+        "note": "opens 6AM",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "church",
+        "text": "Church",
+        "note": "opens 6AM",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "mosque",
+        "text": "Mosque",
+        "note": "opens 5AM",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "office",
+        "text": "Office",
+        "note": "opens 7AM",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "hospital",
+        "text": "General Hospital",
+        "note": "",
+        "hidden": false,
+        "compact": false
+      },
+      {
+        "id": "unilag",
+        "text": "University of Lagos",
+        "note": "",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "police",
+        "text": "Police Station",
+        "note": "",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "state-house",
+        "text": "Lagos State House",
+        "note": "opens 9AM",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "polling-unit",
+        "text": "Polling Unit",
+        "note": "opens 8AM",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "park",
+        "text": "Freedom Park",
+        "note": "",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "i-fitness",
+        "text": "i-Fitness",
+        "note": "opens 5AM",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "quilox",
+        "text": "Quilox",
+        "note": "",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "library",
+        "text": "The Library",
+        "note": "",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "rooftop",
+        "text": "Ivory Rooftop",
+        "note": "opens 12PM",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "palms",
+        "text": "The Palms",
+        "note": "opens 9AM",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "beach",
+        "text": "Beach",
+        "note": "",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "canopy-walk",
+        "text": "Canopy Walk",
+        "note": "opens 7AM",
+        "hidden": true,
+        "compact": false
+      },
+      {
+        "id": "refinery",
+        "text": "Refinery",
+        "note": "opens 6AM",
+        "hidden": true,
+        "compact": false
+      }
+    ]
+  },
+  "visibility": "visible",
+  "shell": "vue",
+  "lazyPanelsWaiting": []
+}
+The focused UI element is 85 button Read renderer diagnostics

@@ -4,14 +4,13 @@
 // canvas is moved into it and updated (one frame only when something changed — the preview never
 // loops). When the last stage has gone, the renderer, geometry, materials and context are
 // disposed. The module and Three.js are fetched with a dynamic import the first time a stage is
-// shown, so neither is part of the first download. Until it arrives the stage shows a still
-// silhouette; if WebGL is not available, or the context is lost, it shows the flat figure and
-// nothing is reported as an error.
+// shown, so neither is part of the first download. A stage reports loading and can offer an
+// explicit retry if the module, WebGL context, or canonical character assets fail.
 import type { AvatarPreview, PreviewFocus } from '../../../scene/avatar-preview.ts'
 import { markSpun } from './lookState.ts'
 import type { SceneLook } from './lookModel.ts'
 
-export type StageMode = 'loading' | '3d' | '2d'
+export type StageMode = 'loading' | '3d' | 'error'
 /** What the preview needs of one stage. */
 export interface StageHandle {
   host: HTMLElement
@@ -25,7 +24,6 @@ type AvatarModule = typeof import('../../../scene/avatar-preview.ts')
 let scene3d: AvatarModule | null = null
 let loading: Promise<AvatarModule> | null = null
 let preview: AvatarPreview | null = null
-let unavailable = false
 let wanted: PreviewRequest | null = null
 let lastShown = ''
 const stages = new Set<StageHandle>()
@@ -53,8 +51,6 @@ function show(): void {
       preview = scene3d.createAvatarPreview(stage.host, {
         look, focus, label, inset,
         onSpin: markSpun,
-        // The context was lost: every stage shows the flat figure; the next stage to appear tries again.
-        onLost() { releaseLookPreview(); for (const other of stages) other.setMode('2d') },
       })
     } else {
       preview.attach(stage.host)
@@ -65,11 +61,10 @@ function show(): void {
     }
     stage.setMode('3d')
   } catch (error) {
-    // No WebGL (or it failed to start): keep the flat figure and do not try again this session.
+    // Keep the stage in an explicit error state. Its retry action repeats this request.
     releaseLookPreview()
-    unavailable = true
-    stage.setMode('2d')
-    if (!scene3d || !(error instanceof scene3d.PreviewUnavailable)) console.warn('The 3D preview is not available; showing the 2D figure.', error)
+    stage.setMode('error')
+    console.warn('The canonical character preview could not start.', error)
   }
 }
 
@@ -80,16 +75,15 @@ function show(): void {
 export function showLookPreview(request: PreviewRequest): void {
   stages.add(request.stage)
   wanted = request
-  if (unavailable) { request.stage.setMode('2d'); return }
   if (scene3d) { show(); return }
   loading ??= import('../../../scene/avatar-preview.ts')
   loading.then((module) => { scene3d = module; if (wanted?.stage.connected()) show() },
-    () => { loading = null; if (wanted?.stage.connected()) wanted.stage.setMode('2d') })
+    (error) => { loading = null; if (wanted?.stage.connected()) wanted.stage.setMode('error'); console.warn('The canonical character preview module could not load.', error) })
 }
 
 /** Fetch the preview code now, without showing anything (see warmLanding.ts). A failed fetch is forgotten, so showing a stage tries again. */
 export function warmLookPreview(): Promise<void> {
-  if (scene3d || unavailable) return Promise.resolve()
+  if (scene3d) return Promise.resolve()
   const pending = loading ??= import('../../../scene/avatar-preview.ts')
   pending.catch(() => { if (loading === pending) loading = null })
   return pending.then(() => undefined, () => undefined)

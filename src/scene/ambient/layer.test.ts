@@ -1,3 +1,4 @@
+import { assertNativeSceneBudget } from '../body/native-test-fixture.ts';
 import { loadCityContent as preloadCityContent } from '../../game/cities/registry.ts';
 await preloadCityContent('lagos');
 // The background people of a venue scene, built: inside the scene budget in every kind of place, off unless asked for, frame-bounded, and gone when
@@ -5,7 +6,6 @@ await preloadCityContent('lagos');
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
-import { SCENE_TRIANGLES, SCENE_DRAW_CALLS } from '../../budgets.ts';
 import { createKit } from '../kit.ts';
 import { loadAllCityScenes } from '../city-scenes.ts';
 import { MAX_CROWD, SCENES } from '../venue-scenes.ts';
@@ -46,7 +46,7 @@ test('a scene with no ambient config is what it was: no people, no layer, nothin
   entry.dispose(); kit.dispose()
 })
 
-test('every venue kind with its busiest crowd, plus every regular and player, stays inside 17,000 triangles and 60 draw calls', () => {
+test('every venue kind keeps its full canonical population inside the composition and draw budgets', () => {
   const report: string[] = []
   const kit = createKit()
   let populated = 0
@@ -58,8 +58,7 @@ test('every venue kind with its busiest crowd, plus every regular and player, st
       assert.equal(entry.setAmbient!(ident(kind)), true)
       const stats = entry.stats(), here = count(entry)
       report.push(`${kind}@${when === TEN ? 10 : 22}: ${stats.triangles} tri, ${stats.drawCalls} calls, ${here} people`)
-      assert.ok(stats.triangles < SCENE_TRIANGLES.value, `${kind} triangles ${stats.triangles}`)
-      assert.ok(stats.drawCalls <= SCENE_DRAW_CALLS.value, `${kind} draw calls ${stats.drawCalls}`)
+      assertNativeSceneBudget(stats, `${kind}@${when === TEN ? 10 : 22}`)
       assert.ok(here <= MAX_FIGURES + MAX_RESIDENTS, `${kind} people ${here}`)
       if (here > 0) populated++
       // everyone on a track is in the scene's tags only when speaking; every regular still has her tag
@@ -88,7 +87,7 @@ test('a market with a few regulars holds a real crowd at ten, inside the budget,
   // a quarter of an hour in the people have all had time to come in; and the same in the quiet hour
   const busy = run(TEN + 300_000), quiet = run(TEN_PM + 300_000)
   assert.ok(busy.here >= 9, `a busy market: ${busy.here} people ${JSON.stringify(busy)}`)
-  assert.ok(busy.stats.triangles < SCENE_TRIANGLES.value && busy.stats.drawCalls <= SCENE_DRAW_CALLS.value, JSON.stringify(busy.stats))
+  assertNativeSceneBudget(busy.stats, 'market with three regulars at 10:00')
   assert.ok(quiet.here < busy.here / 2, `${quiet.here} at ten at night against ${busy.here}`)
   console.log('market with three regulars at 10:00:', JSON.stringify(busy), 'at 22:00:', JSON.stringify(quiet))
   kit.dispose()

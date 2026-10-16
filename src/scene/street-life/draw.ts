@@ -1,36 +1,12 @@
-/**
- * OWNER: scenes
- * Street life, drawn (the plan, the gate and the caps are ./plan.ts). Fetched only on a device that passed the gate, after the scene's
- * first frame: never part of the first download or of the shared scene chunk.
- *
- *   crowd    ONE InstancedMesh of camera-facing quads (two triangles a person). Each instance's matrix carries where the person stands and
- *            how tall and wide they are; the shader turns the quad to the camera about the vertical and cuts a person out of it (head,
- *            hair or wrap, shirt and arms, trousers or a skirt, shoes) in that person's colours, the legs and arms swinging with the stride.
- *            Lit by the scene's own lights (Lambert) and fogged like the rest. No shadow: one draw call.
- *            Phase 3b (crowd.ts): bodies vary in width, outfits, open jackets and bags (per-instance attributes of the same mesh: the
- *            attachments cost no draw call), a bob at each step, stops at shop windows, groups standing with phones, and people who
- *            cross the road only while the lights stop the traffic.
- *   traffic  ONE InstancedMesh of a car of five boxes (wheels, body, cabin and glass, a livery stripe, a taxi's roof sign): a per-instance
- *            paint and trim in the city's livery (livery.ts), and a matrix that stretches it into a bus, a truck or a keke. One draw call.
- *            Phase 5b (traffic.ts): roads both ways on the country's side, okadas and bicycles by the country's flavour (the cabin
- *            becomes an upright rider), slowing at crossings and queueing at the lights.
- *   guard    given the scene's walkable bounds, a person or vehicle (both ends) whose place falls outside them is not drawn at all
- *            (zoom phase 5b: nothing street life adds may stand outside the scene's floor).
- *
- *   near     zoom phase 5c (near.ts, near-draw.ts, a chunk of its own fetched only when near.ts nearCrowdFor says yes): the people
- *            nearest the camera are drawn with the game's skinned body instead, dressed from the avatar's look options; their cut-outs
- *            collapse to nothing while they are bodies (with hysteresis: near.ts NEAR_RADIUS). Children walk with a parent where the
- *            place allows them (options.context, near.ts childrenAllowed); a child's cut-out has a larger head.
- *
- * It asks for no frames of its own: step() is called by whoever owns the frame loop, inside their window (the battery rule). Given the
- * frame's gap, step() also feeds the adaptive caps (adaptive.ts): a mean frame over 24 ms across 60 frames draws fewer people and
- * vehicles (and, in the same share, near bodies). `?streetperf=1` shows the measured frame time and the counts.
- */
+/** Street routes and traffic retain their authored behavior. People use only native53 source snapshots,
+ * with an optional native live actor nearby. Actual geometry and draw costs admit a bounded visible subset;
+ * pending appearances hold the last ready native pose and never substitute procedural people.
+ * The host owns all frame scheduling. */
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
 import { CAR_LENGTH, PERSON_TRIANGLES as PERSON_TRIS, VEHICLE_KINDS, VEHICLE_TRIANGLES as CAR_TRIS, planTraffic } from './plan.ts';
 import type { Lane, Road } from './plan.ts';
-import { BAG_TONES, personAt, planPeople } from './crowd.ts';
+import { personAt, planPeople } from './crowd.ts';
 import { createGiveWay, flavourTraffic, giveWayFrame, planSchedule, vehiclePose } from './traffic.ts';
 import { AVATAR_RADIUS, bodyRadius, giveWay, insideFigure } from './spacing.ts';
 import type { Figure, Obstacle } from './spacing.ts';
@@ -44,6 +20,9 @@ import { childrenAllowed, nearCap, nearCrowdFor, pageNear } from './near.ts';
 import type { Eye, NearChoice } from './near.ts';
 import type { NearCrowd, NearCrowdOptions } from './near-draw.ts';
 import type { StreetTier } from './plan.ts';
+import { createNativeStreetPeople } from './native-people.ts';
+import { measureRenderCost, totalRenderCost } from '../body/render-cost.ts';
+import { SCENE_CHARACTER_TRIANGLES, SCENE_TRIANGLES, SCENE_DRAW_CALLS } from '../../budgets.ts';
 
 export interface StreetLifeOptions {
   parent: THREE.Object3D
@@ -111,163 +90,13 @@ export interface StreetLife {
   dispose(): void
 }
 
-const CROWD_PARS_VERTEX = /* glsl */`
-attribute vec4 aGait;
-attribute vec3 aShirt;
-attribute vec3 aLegs;
-attribute vec4 aSkin;
-attribute vec4 aKit;
-uniform vec3 uCam;
-varying vec2 vBody;
-varying vec4 vGait;
-varying vec3 vShirt;
-varying vec3 vLegs;
-varying vec4 vSkin;
-varying vec4 vKit;
-`;
-// Replaces <defaultnormal_vertex>: the quad's centre, size and turn to the camera, and a normal that leans up so the sun lights the crowd as it does the ground.
-const CROWD_NORMAL = /* glsl */`
-vec3 sCentre = instanceMatrix[3].xyz;
-float sWide = length(instanceMatrix[0].xyz);
-float sTall = length(instanceMatrix[1].xyz);
-vec2 sTo = uCam.xz - sCentre.xz;
-float sLen = length(sTo);
-vec2 sDir = sLen > 0.0001 ? sTo / sLen : vec2(0.0, 1.0);
-vec3 sRight = vec3(sDir.y, 0.0, -sDir.x);
-vec3 transformedNormal = normalize(normalMatrix * normalize(vec3(sDir.x, 0.9, sDir.y)));
-// The quad is half as wide as tall times the body's width, so the body (drawn in heights) widens with it.
-vBody = vec2(position.x * 0.5, position.y);
-vGait = vec4(aGait.x * 6.2831853, dot(vec2(sRight.x, sRight.z), vec2(sin(aGait.y), cos(aGait.y))), aGait.z, aGait.w);
-vShirt = aShirt; vLegs = aLegs; vSkin = aSkin; vKit = aKit;
-`;
-const CROWD_PROJECT = /* glsl */`
-transformed = sCentre + sRight * (position.x * sWide) + vec3(0.0, position.y * sTall, 0.0);
-vec4 mvPosition = modelViewMatrix * vec4(transformed, 1.0);
-gl_Position = projectionMatrix * mvPosition;
-`;
-const CROWD_PARS_FRAGMENT = /* glsl */`
-varying vec2 vBody;
-varying vec4 vGait;
-varying vec3 vShirt;
-varying vec3 vLegs;
-varying vec4 vSkin;
-varying vec4 vKit;
-uniform vec3 uBags[4];
-float sBox(vec2 p, vec2 c, vec2 h) { vec2 d = abs(p - c) - h; return max(d.x, d.y); }
-float sSeg(vec2 p, vec2 a, vec2 b, float r) { vec2 pa = p - a, ba = b - a; float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0); return length(pa - ba * h) - r; }
-`;
-// Replaces <color_fragment>. The body is drawn in heights (0 at the feet, 1 at the top of the head) and cut out of the quad.
-const CROWD_COLOUR = /* glsl */`
-vec2 p = vBody;
-float sw = sin(vGait.x), across = vGait.y, facing = 1.0 - abs(across);
-float mode = vGait.w, kit = floor(vKit.w + 0.5);
-float bag = mod(kit, 4.0), coated = mod(floor(kit / 4.0), 2.0);
-vec3 bagColour = uBags[int(mod(floor(kit / 8.0), 4.0))];
-float stride = 0.085 * sw * across;
-float legA = sSeg(p, vec2(-0.042, 0.47), vec2(-0.045 + stride, 0.035 + 0.03 * facing * max(sw, 0.0)), 0.034);
-float legB = sSeg(p, vec2(0.042, 0.47), vec2(0.045 - stride, 0.035 + 0.03 * facing * max(-sw, 0.0)), 0.034);
-float legs = min(legA, legB);
-// The packed values arrive through a varying: rounded, since perspective interpolation can leave 4.0 a hair under (speckled skirts).
-float packed = floor(vSkin.w + 0.5);
-// A child (8 in the packed value): a larger head for the height, set a little lower.
-float young = step(7.5, packed);
-packed = mod(packed, 8.0);
-float skirt = packed >= 4.0 ? sBox(p, vec2(0.0, 0.38), vec2(0.07 + (0.5 - p.y) * 0.22, 0.13)) : 1.0;
-float torso = sBox(p, vec2(0.0, 0.665), vec2(0.082 + (p.y - 0.5) * 0.13, 0.17));
-float coat = coated > 0.5 ? sBox(p, vec2(0.0, 0.64), vec2(0.093 + (p.y - 0.5) * 0.1, 0.195)) : 1.0;
-float swing = -0.065 * sw * across;
-vec2 handA = vec2(-0.135 + swing, 0.5), handB = vec2(0.135 - swing, 0.5);
-float armA = sSeg(p, vec2(-0.118, 0.8), handA, 0.029);
-float armB = sSeg(p, vec2(0.118, 0.8), handB, 0.029);
-// Looking at a phone: the right forearm comes up to the face, the phone in the hand.
-if (mode > 1.5) { handB = vec2(0.045, 0.83); armB = min(sSeg(p, vec2(0.118, 0.8), vec2(0.13, 0.66), 0.029), sSeg(p, vec2(0.13, 0.66), handB, 0.027)); }
-float hands = min(length(p - handA), length(p - handB)) - 0.031;
-float phone = mode > 1.5 ? sBox(p, handB + vec2(-0.012, 0.012), vec2(0.016, 0.026)) : 1.0;
-float neck = sBox(p, vec2(0.0, 0.85), vec2(0.026, 0.035));
-float head = length((p - vec2(0.0, 0.915 - 0.012 * young)) * vec2(1.0, 0.86)) - 0.066 * (1.0 + 0.3 * young);
-// Bags: a shoulder bag on its strap, a backpack (its straps from the front, the pack itself side-on), a tote in the left hand.
-float bags = 1.0;
-if (bag > 0.5 && bag < 1.5) bags = min(sSeg(p, vec2(-0.07, 0.82), vec2(0.115, 0.52), 0.008), sBox(p, vec2(0.13, 0.48), vec2(0.045, 0.05)));
-else if (bag > 1.5 && bag < 2.5) bags = min(min(sSeg(p, vec2(-0.055, 0.82), vec2(-0.06, 0.6), 0.011), sSeg(p, vec2(0.055, 0.82), vec2(0.06, 0.6), 0.011)) + (1.0 - facing),
-  sBox(p, vec2(-across * 0.13, 0.68), vec2(0.042 * abs(across) + 0.0001, 0.095)));
-else if (bag > 2.5) bags = min(sBox(p, handA + vec2(0.0, -0.065), vec2(0.048, 0.055)), sSeg(p, handA + vec2(-0.03, -0.01), handA + vec2(0.03, -0.01), 0.006));
-float body = min(min(min(legs, skirt), min(min(torso, coat), min(armA, armB))), min(min(min(hands, neck), min(head, phone)), bags));
-if (body > 0.0) discard;
-// At a lane's ends a person dissolves in or out (a screen-door pattern: still one opaque pass, no sorting).
-if (vGait.z < 0.999 && fract(52.9829189 * fract(dot(gl_FragCoord.xy, vec2(0.06711056, 0.00583715)))) > vGait.z) discard;
-vec3 sColour = vLegs;
-if (torso <= 0.0 || armA <= 0.0 || armB <= 0.0) sColour = vShirt;
-// An open jacket: over the arms and the sides of the body, the shirt showing down the middle from the front.
-if ((coat <= 0.0 || armA <= 0.0 || armB <= 0.0) && coated > 0.5 && !(abs(p.x) < 0.024 * facing && p.y > 0.52 && p.y < 0.82)) sColour = vKit.rgb;
-if (skirt <= 0.0 && p.y < 0.5) sColour = vLegs;
-if (hands <= 0.0 || neck <= 0.0 || head <= 0.0) sColour = vSkin.rgb;
-float style = mod(packed, 4.0);
-if (head <= 0.0 && p.y > 0.925 - (style > 0.5 && style < 1.5 ? 0.012 : 0.0)) sColour = style > 1.5 ? vec3(0.62, 0.6, 0.57) : style > 0.5 ? vShirt * 0.85 : vec3(0.07, 0.06, 0.055);
-if (p.y < 0.04 && legs <= 0.0) sColour = vec3(0.09, 0.08, 0.075);
-if (bags <= 0.0) sColour = bagColour;
-if (phone <= 0.0) sColour = vec3(0.06, 0.07, 0.08);
-diffuseColor.rgb *= sColour;
-`;
-
 /** A colour as linear RGB, the way the renderer wants vertex data. */
 function linear(kit: Kit, colour: string): [number, number, number] {
   const c = new kit.THREE.Color(colour);
   return [c.r, c.g, c.b];
 }
 
-function crowdMesh(kit: Kit, people: readonly Person[]): { mesh: THREE.InstancedMesh; gait: THREE.InstancedBufferAttribute; eye(): Eye | null } {
-  const { THREE } = kit, n = people.length;
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute([-0.5, 0, 0, 0.5, 0, 0, 0.5, 1, 0, -0.5, 1, 0], 3));
-  geometry.setAttribute('normal', new THREE.Float32BufferAttribute([0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1], 3));
-  geometry.setIndex([0, 1, 2, 0, 2, 3]);
-  const shirt = new Float32Array(n * 3), legs = new Float32Array(n * 3), skin = new Float32Array(n * 4), kitData = new Float32Array(n * 4), gaitData = new Float32Array(n * 4);
-  people.forEach((person, i) => {
-    shirt.set(linear(kit, person.shirt), i * 3);
-    legs.set(linear(kit, person.legs), i * 3);
-    skin.set([...linear(kit, person.skin), person.style + (person.skirt ? 4 : 0) + (person.child ? 8 : 0)], i * 4);
-    // The attachments: the jacket's colour, and packed in w the bag (0–3), whether there is a jacket (4) and the bag's tone (8 × 0–3).
-    kitData.set([...(person.jacket ? linear(kit, person.jacket) : [0, 0, 0]), person.bag + (person.jacket ? 4 : 0) + 8 * person.bagTone], i * 4);
-  });
-  geometry.setAttribute('aShirt', new THREE.InstancedBufferAttribute(shirt, 3));
-  geometry.setAttribute('aLegs', new THREE.InstancedBufferAttribute(legs, 3));
-  geometry.setAttribute('aSkin', new THREE.InstancedBufferAttribute(skin, 4));
-  geometry.setAttribute('aKit', new THREE.InstancedBufferAttribute(kitData, 4));
-  const gait = new THREE.InstancedBufferAttribute(gaitData, 4);
-  gait.setUsage(THREE.DynamicDrawUsage);
-  geometry.setAttribute('aGait', gait);
-  const material = new THREE.MeshLambertMaterial({ color: '#ffffff', side: THREE.DoubleSide });
-  const uCam = { value: new THREE.Vector3(0, 10, 20) }, uBags = { value: BAG_TONES.map((tone) => new THREE.Color(tone)) };
-  material.onBeforeCompile = (shader) => {
-    shader.uniforms.uCam = uCam;
-    shader.uniforms.uBags = uBags;
-    shader.vertexShader = shader.vertexShader
-      .replace('#include <common>', `#include <common>\n${CROWD_PARS_VERTEX}`)
-      .replace('#include <defaultnormal_vertex>', CROWD_NORMAL)
-      .replace('#include <project_vertex>', CROWD_PROJECT);
-    shader.fragmentShader = shader.fragmentShader
-      .replace('#include <common>', `#include <common>\n${CROWD_PARS_FRAGMENT}`)
-      .replace('#include <color_fragment>', `#include <color_fragment>\n${CROWD_COLOUR}`);
-  };
-  material.customProgramCacheKey = () => 'street-crowd-3';
-  const mesh = new THREE.InstancedMesh(geometry, material, Math.max(1, n));
-  mesh.count = n;
-  mesh.name = 'street-crowd';
-  mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-  // The shader places every quad itself, so the mesh's own bounds mean nothing: it is never culled (it spans the street anyway).
-  mesh.frustumCulled = false;
-  mesh.castShadow = false; mesh.receiveShadow = false;
-  const camera = new THREE.Vector3(), ahead = new THREE.Vector3();
-  // The camera in the street's coordinates, and which way it looks along the ground (the near crowd picks who is nearest to it).
-  const eye: Eye = { x: 0, z: 0 };
-  let seen = false;
-  mesh.onBeforeRender = (_renderer, _scene, view) => {
-    camera.setFromMatrixPosition(view.matrixWorld); uCam.value.copy(mesh.worldToLocal(camera));
-    ahead.set(0, 0, -1).transformDirection(view.matrixWorld).add(camera); mesh.worldToLocal(ahead);
-    eye.x = uCam.value.x; eye.z = uCam.value.z; eye.fx = ahead.x - uCam.value.x; eye.fz = ahead.z - uCam.value.z; seen = true;
-  };
-  return { mesh, gait, eye: () => (seen ? eye : null) };
-}
+
 
 /**
  * The five boxes of a car, along +z, its wheels on the ground. Vertex colour is a shade; `aPart` says what takes it: 0 the paint (the
@@ -382,9 +211,9 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
   let lastSeconds = NaN;
   const world: PeopleWorld = { lanes: options.lanes, crossings, signal };
   const people = planPeople(options.seed, world, options.crowd, { children: childrenAllowed(options.context) });
-  const crowd = people.length ? crowdMesh(kit, people) : null;
+  const crowd = people.length ? createNativeStreetPeople(kit, people, options.seed, () => { if (!disposed) { step(last.at,last.player); options.ready?.(); } }) : null;
   const traffic = vehicles.length ? trafficMesh(kit, vehicles) : null;
-  if (crowd) group.add(crowd.mesh);
+  if (crowd) group.add(crowd.group);
   if (traffic) group.add(traffic);
   // The final guard: a place outside the walkable bounds is drawn as nothing (a zero matrix: no pixels).
   // A venue's walkable floor (plan.ts walkableFloor) narrows it further: off the floor is drawn as nothing too.
@@ -405,11 +234,16 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
   // Giving way keeps people on the near bodies' floor where there is one, else inside the final guard.
   const yieldFloor = bodyFloor ?? inside;
 
+  function remaining(): {triangles:number;drawCalls:number} {
+    let root: THREE.Object3D=group;while(root.parent)root=root.parent;
+    const cost=measureRenderCost(root,group), trafficCost=traffic?totalRenderCost(traffic):{triangles:0,drawCalls:0};
+    return {triangles:Math.max(0,Math.min(SCENE_CHARACTER_TRIANGLES.value-cost.characters.triangles,SCENE_TRIANGLES.value-cost.characters.triangles-cost.scenery.triangles-trafficCost.triangles)),drawCalls:Math.max(0,SCENE_DRAW_CALLS.value-cost.characters.drawCalls-cost.scenery.drawCalls-trafficCost.drawCalls)};
+  }
+
   function setCaps(caps: Caps): void {
     if (disposed) return;
     shownPeople = Math.max(0, Math.min(people.length, Math.floor(caps.crowd)));
     shownVehicles = Math.max(0, Math.min(vehicles.length, Math.floor(caps.vehicles)));
-    if (crowd) crowd.mesh.count = shownPeople;
     if (traffic) traffic.count = shownVehicles;
     if (near && nearChoice) near.setCap(nearCap(nearChoice, shownPeople, people.length));
   }
@@ -428,7 +262,6 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
     const obstacles: Obstacle[] = [...(player ? [{ x: player.x, z: player.z }] : []), ...(options.others?.() ?? [])].filter((o) => Number.isFinite(o.x) && Number.isFinite(o.z));
     figures.length = 0;
     if (crowd) {
-      const gait = crowd.gait.array as Float32Array;
       for (let i = 0; i < people.length; i++) {
         if (i >= shownPeople) { poses[i] = null; continue; }
         const pose = personAt(people[i]!, world, seconds);
@@ -437,20 +270,14 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
         heights[i] = heightAt(spot.x, spot.z);
       }
       // Who is a body this frame: their cut-outs collapse to nothing (zero size: no pixels), everyone else is drawn as before.
-      const bodies = near ? near.update({ poses, heights, count: shownPeople, eye: crowd.eye() ?? (player ? { x: player.x, z: player.z } : null), player: player ?? null, obstacles, seconds, dt: dt ?? 0 }) : null;
+      const bodies = near ? near.update({ poses, heights, count: shownPeople, eye: player ? { x: player.x, z: player.z } : null, player: player ?? null, obstacles, seconds, dt: dt ?? 0 }) : null;
+      const room=remaining();
+      const farVisible=crowd.update(poses,heights,bodies,player??null,{triangles:Math.max(0,room.triangles-(near?.triangles??0)),drawCalls:Math.max(0,room.drawCalls-(near?.drawCalls??0))},inside);
       for (let i = 0; i < shownPeople; i++) {
-        // Off the floor or outside the bounds (the final guard): nothing. A body this frame: its cut-out collapses to nothing.
-        const person = people[i]!, pose = poses[i]!, shown = inside(pose.x, pose.z);
-        position.set(pose.x, heights[i]! + pose.lift, pose.z);
-        scale.set(person.height * 0.5 * person.width, person.height, 1);
-        crowd.mesh.setMatrixAt(i, shown && !bodies?.has(i) ? matrix.compose(position, still, scale) : nothing);
-        gait[i * 4] = pose.phase; gait[i * 4 + 1] = pose.ry; gait[i * 4 + 2] = shown ? pose.fade : 0; gait[i * 4 + 3] = pose.mode;
-        // The player's walker keeps clear of whoever stands near it, where they are drawn (a body's own spot, else the cut-out's).
-        const here = bodies?.has(i) ? near?.spot(i) ?? pose : pose;
-        if (shown && player && Math.hypot(here.x - player.x, here.z - player.z) < FIGURE_RADIUS) figures.push({ x: here.x, z: here.z, r: radii[i]! + AVATAR_RADIUS });
+        const pose=poses[i];if(!pose||(!bodies?.has(i)&&!farVisible.has(i)))continue;
+        const here=bodies?.has(i)?near?.spot(i)??pose:pose;
+        if(player&&Math.hypot(here.x-player.x,here.z-player.z)<FIGURE_RADIUS)figures.push({x:here.x,z:here.z,r:radii[i]!+AVATAR_RADIUS});
       }
-      crowd.mesh.instanceMatrix.needsUpdate = true;
-      crowd.gait.needsUpdate = true;
     }
     if (traffic) {
       const halfOf = (i: number): number => 0.9 * (VEHICLE_KINDS[vehicles[i]!.kind].wide ?? 1) * narrow;
@@ -475,7 +302,7 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
   if (nearChoice) {
     void import('./near-draw.ts').then((module) => {
       if (disposed || near) return;
-      near = module.createNearCrowd(kit, { parent: group, seed: options.seed, people, choice: nearChoice, walkable: bodyFloor, changed: () => { if (disposed) return; step(last.at, last.player); options.ready?.(); }, ...(options.bodies ? { make: options.bodies } : {}) });
+      near = module.createNearCrowd(kit, { parent: group, seed: options.seed, people, choice: nearChoice, walkable: bodyFloor, room: remaining, changed: () => { if (disposed) return; step(last.at, last.player); options.ready?.(); }, ...(options.bodies ? { make: options.bodies } : {}) });
       near.setCap(nearCap(nearChoice, shownPeople, people.length));
       step(last.at, last.player);
     }).catch(() => undefined);
@@ -485,16 +312,17 @@ export function createStreetLife(kit: Kit, options: StreetLifeOptions): StreetLi
     group, step, setCaps, signal, schedule, figures,
     blocks: (x, z, player) => !disposed && insideFigure(x, z, player, figures),
     near: () => (near && nearChoice ? { tier: nearChoice.tier, cap: near.cap, people: near.shown, bodies: near.bodies, triangles: near.triangles, drawCalls: near.drawCalls, failed: near.failed } : null),
-    get people() { return shownPeople; },
+    get people() { return (crowd?.shown ?? 0) + (near?.shown ?? 0); },
     get vehicles() { return shownVehicles; },
-    get triangles() { return disposed ? 0 : shownPeople * PERSON_TRIS + shownVehicles * CAR_TRIS; },
-    get drawCalls() { return disposed ? 0 : (crowd && shownPeople ? 1 : 0) + (traffic && shownVehicles ? 1 : 0); },
+    get triangles() { return disposed ? 0 : totalRenderCost(group).triangles; },
+    get drawCalls() { return disposed ? 0 : totalRenderCost(group).drawCalls; },
     dispose() {
       if (disposed) return;
       disposed = true;
       readout?.dispose();
       near?.dispose(); near = null;
-      for (const mesh of [crowd?.mesh, traffic]) {
+      crowd?.dispose();
+      for (const mesh of [traffic]) {
         if (!mesh) continue;
         mesh.geometry.dispose();
         (mesh.material as THREE.Material).dispose();

@@ -192,7 +192,7 @@ async function start3d(): Promise<void> {
     view3d = made; has3d.value = true; size()
     // For measurement on a throttled phone profile (STATUS.md): frame times, draw calls and triangles.
     ;(globalThis as { allworldFootballStats?: () => unknown }).allworldFootballStats = () => ({ ...made.stats(), phase: room.latest?.p, shootout: room.latest?.o, you: state.value?.you, mode: made.mode() })
-  } catch { /* the 2D view goes on */ }
+  } catch (error) { console.warn('Football 3D view not started; the 2D view goes on.', error) }
 }
 const live = computed(() => status.value === 'playing' && seated.value)
 // The pad appears when the match starts and goes when it ends, and a shoot-out changes what is on the top: the camera frames the play in what is left.

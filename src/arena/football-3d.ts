@@ -239,7 +239,16 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
   for (const team of [0, 1]) {
     const goal = goalModel.scene.clone(true)
     lambertise(goal)
-    goal.traverse((n) => { if (n.name === 'goal-net') nets.push(n) })
+    goal.traverse((n) => {
+      if (n.name !== 'goal-net') return
+      nets.push(n)
+      // The net's texture is cords on a clear ground, but the model does not say it has alpha (alphaMode), so its clear cells would draw black: blend it.
+      n.traverse((part) => {
+        const mesh = part as THREE.Mesh
+        if (!mesh.isMesh) return
+        for (const m of ([] as THREE.Material[]).concat(mesh.material)) { m.alphaTest = 0.02; m.transparent = true; m.depthWrite = false; m.needsUpdate = true }
+      })
+    })
     const box = new THREE.Box3().setFromObject(goal), size = box.getSize(new THREE.Vector3()), c = box.getCenter(new THREE.Vector3())
     // glTF: the goal line runs along x with the net behind it at -z; the pivot is the middle of the line on the grass.
     goal.position.set(-c.x, -box.min.y, -box.max.z)

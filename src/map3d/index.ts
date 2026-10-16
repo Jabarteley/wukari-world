@@ -29,6 +29,7 @@ import '../city-map.css';
 import './map3d.css';
 import { hasCityPack, loadCityPack } from './regions.ts';
 import { createMap3D, detailOf, webglAvailable } from './map3d.ts';
+import { preloadCanonicalBodies, preloadLooks } from '../scene/body/skinned.ts';
 import { createMap2D } from './map2d.ts';
 import { createWorldData } from './world-data.ts';
 
@@ -173,20 +174,45 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
     const want3d = !simple && !brokenGl && hasCityPack(cityId) && webglAvailable();
     let next: MapImpl | null = null, nextKind: CityViewKind = '2d';
     if (want3d) {
+      const characterLoading = document.createElement('p');
+      characterLoading.className = 'cmap-error'; characterLoading.setAttribute('role', 'status');
+      characterLoading.textContent = 'Loading your character…'; container.appendChild(characterLoading);
       try {
-        // The trip vehicles come from the model library, fetched with the city pack (never in the first download). If they fail to load the map keeps its own batch-drawn vehicles.
-        const [pack, models] = await Promise.all([loadCityPack(cityId), import('../models/integration/scene-models.ts').catch(() => null)]);
-        await models?.loadGlbSource(); // the authored vehicle models' own lazy chunk: registered before the first trip; false (procedural vehicles stay) if it cannot be had
-        const vehicleBuilder = models?.buildTravelVehicle ?? null;
-        const travelVehicle = vehicleBuilder as unknown as TravelVehicleBuilder | null; // trust boundary: the model library is JavaScript
-        if (ticket !== mounting) return;
-        impl?.destroy(); impl = null;
-        next = createMap3D(container, { pack: pack!, cityId, world, travelVehicle, trafficModels: models ? models.loadTrafficModels() : null, ...(ladder ? { ladder } : {}), ...callbacks, onTripDue, deepLink, onContextLost: () => { brokenGl = true; onNotice('The 3D map stopped on this device. Showing the simple map instead.'); void mount(); } });
-        nextKind = '3d';
-        void models?.warmGlbVehicles(); // the authored vehicle models arrive after the first frame; until then (and if they never do) the procedural ones are drawn
+        await preloadCanonicalBodies();
+        const appearance = player && typeof player === 'object' ? player as { look?: unknown; seed?: unknown } : {};
+        await preloadLooks([{ look: appearance.look, seed: appearance.seed }]);
       } catch (error) {
-        console.error('The 3D map could not start; using the simple map:', error);
-        brokenGl = true; next = null;
+        if (ticket !== mounting) return;
+        console.error('The map character could not be downloaded:', error);
+        impl?.destroy(); impl = null;
+        const message = document.createElement('section'); message.className = 'cmap-error';
+        const title = document.createElement('h2'); title.textContent = 'Character unavailable';
+        const detail = document.createElement('p'); detail.textContent = 'Your character could not be downloaded. Retry to open the 3D map.';
+        const retry = document.createElement('button'); retry.type = 'button'; retry.textContent = 'Retry character';
+        retry.addEventListener('click', () => { retry.disabled = true; void mount(); });
+        message.append(title, detail, retry); container.appendChild(message);
+        next = { setState() {}, resize() {}, destroy() { message.remove(); }, diagnostics: () => ({ unavailable: true, reason: 'character-assets' }) };
+        nextKind = 'unavailable';
+      } finally {
+        characterLoading.remove();
+      }
+      if (ticket !== mounting) return;
+      if (!next) {
+        try {
+          // The trip vehicles come from the model library, fetched with the city pack (never in the first download). If they fail to load the map keeps its own batch-drawn vehicles.
+          const [pack, models] = await Promise.all([loadCityPack(cityId), import('../models/integration/scene-models.ts').catch(() => null)]);
+          await models?.loadGlbSource(); // the authored vehicle models' own lazy chunk: registered before the first trip; false (procedural vehicles stay) if it cannot be had
+          const vehicleBuilder = models?.buildTravelVehicle ?? null;
+          const travelVehicle = vehicleBuilder as unknown as TravelVehicleBuilder | null; // trust boundary: the model library is JavaScript
+          if (ticket !== mounting) return;
+          impl?.destroy(); impl = null;
+          next = createMap3D(container, { pack: pack!, cityId, world, travelVehicle, trafficModels: models ? models.loadTrafficModels() : null, ...(ladder ? { ladder } : {}), ...callbacks, onTripDue, deepLink, onContextLost: () => { brokenGl = true; onNotice('The 3D map stopped on this device. Showing the simple map instead.'); void mount(); } });
+          nextKind = '3d';
+          void models?.warmGlbVehicles(); // the authored vehicle models arrive after the first frame; until then (and if they never do) the procedural ones are drawn
+        } catch (error) {
+          console.error('The 3D map could not start; using the simple map:', error);
+          brokenGl = true; next = null;
+        }
       }
     }
     if (!next) {

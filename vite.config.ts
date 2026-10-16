@@ -273,7 +273,7 @@ export default defineConfig({
     terserOptions: { maxWorkers: 1, compress: { passes: 3 }, format: { comments: false } },
     modulePreload: { polyfill: false },
     sourcemap: wantMaps ? 'hidden' : false,
-    rollupOptions: { treeshake: { moduleSideEffects: (id) => !id.endsWith('/src/scene/home-scene.ts') && !/\/src\/game\/wardrobe\/(catalogue|rules|look|view|prices)\.ts$/.test(id) && !id.endsWith('/src/game/table-stakes.ts') }, input: { app: 'index.html', adminshell: 'adminshell.html' }, output: { hashCharacters: 'hex', onlyExplicitManualChunks: true, manualChunks(id) {
+    rollupOptions: { treeshake: { moduleSideEffects: (id) => !id.endsWith('/src/scene/home-scene.ts') && !/\/src\/game\/wardrobe\/(catalogue|rules|look|view|prices)\.ts$/.test(id) && !id.endsWith('/src/game/table-stakes.ts') && !id.endsWith('/src/character/native-catalog.ts') && !id.endsWith('/src/character/native-migration.ts') }, input: { app: 'index.html', adminshell: 'adminshell.html' }, output: { hashCharacters: 'hex', onlyExplicitManualChunks: true, manualChunks(id) {
     if (id === CITY_INDEX_ID) return 'city-index'
     if (/\/src\/game\/wardrobe\//.test(id)) return undefined
     // The stake rules are read by the server and by the Tables app only (the browser's growth system leaves 'tables.server' out): leave them to the import graph, never the engine.
@@ -329,7 +329,7 @@ export default defineConfig({
     // The campus rules are fetched when a life uses the campus (src/game/campus-gate.ts), not with the first page.
     if (/\/src\/campus\/unilag\/(student|games|shuttle|curriculum|walk|layout|register)\.ts$/.test(id)) return 'campus-rules'
     // Plain typed-array code shared by the campus rules and the scenes (never part of the first page): the walk grid included.
-    if (/\/src\/scene\/(movement|build|walk-grid)\.ts$/.test(id)) return 'scene-core'
+    if (/\/src\/scene\/(movement|build|walk-grid|avatar-rig|space|lighting)\.ts$/.test(id)) return 'scene-core'
     // The NPC mark's word and spoken text (the scene tags and the badge both read them): the scene is on screen before any panel, so it rides in the chunk the scene already loads instead of adding a file to the first download's list. The badge itself is a panel's, fetched with the first panel that shows a person.
     if (/\/src\/ui\/npc-mark\.ts$/.test(id)) return 'scene-core'
     // Only the share sheet reads this (src/ui/share.ts, fetched on demand).

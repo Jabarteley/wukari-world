@@ -1,5 +1,6 @@
 // The character preview draws on demand only: nothing while idle, one frame per input event,
 // a bounded ease after a drag, and it frees everything — including its WebGL context — on dispose.
+import './body/native-test-fixture.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -8,6 +9,7 @@ import { createAvatarPreview, previewStats, frameCamera, ANIMATION_LIMIT_MS, Pre
 import type { PreviewOptions } from './avatar-preview.ts';
 import { createBatch } from './build.ts';
 import { AVATAR_LOW_TRIANGLES, AVATAR_MEDIUM_TRIANGLES_MIN, AVATAR_MEDIUM_TRIANGLES, AVATAR_HIGH_TRIANGLES_MIN, AVATAR_HIGH_TRIANGLES } from '../budgets.ts';
+import { NATIVE_FULL_BODY_TRIANGLES } from '../budgets.ts';
 import { LOOK_OPTIONS, DETAILS, POSES, PARTS, ACCESSORY_SLOTS, drawAvatar, buildAvatar, poseAvatar, normalizeLook } from './characters.ts';
 import type { DetailLevel, DrawOptions, Pose } from './characters.ts';
 import { createKit } from './kit.ts';
@@ -15,7 +17,23 @@ import type { Kit } from './kit.ts';
 import type { Colour, SceneMaterials } from './types.ts';
 
 /** The browser pieces the preview touches, as plain stubs (cast to the DOM types where they are handed over). */
-interface FakeHost { clientWidth: number; clientHeight: number; appended: number; appendChild(node: { parentElement: unknown }): void }
+interface FakeHost {
+  clientWidth: number; clientHeight: number; appended: number; style: Record<string, string>;
+  appendChild(node: { parentElement: unknown }): void;
+  append(node: FakeElement): void;
+  querySelectorAll(selector: string): FakeElement[];
+  querySelector(selector: string): FakeElement | null;
+}
+interface FakeElement {
+  dataset: Record<string, string>; style: Record<string, string>; hidden: boolean; parentElement: unknown;
+  textContent: string; type?: string; width?: number; height?: number;
+  setAttribute(name: string, value: string): void;
+  append(child: FakeElement): void;
+  replaceChildren(): void;
+  addEventListener(type: string, listener: () => void): void;
+  getContext?(type: string): unknown;
+  remove(): void;
+}
 interface FakeCanvas {
   style: Record<string, string>; dataset: Record<string, string>; attributes: Record<string, string>;
   parentElement: unknown; removed: boolean;
@@ -36,7 +54,30 @@ const NO_MATERIALS = { solid: null, glow: null, glass: null } as unknown as Scen
 
 function fakeCanvas() {
   const handlers = new Map<string, (event: unknown) => void>();
-  const host: FakeHost = { clientWidth: 520, clientHeight: 256, appended: 0, appendChild(node) { node.parentElement = host; host.appended += 1; } };
+  let status: FakeElement | null = null;
+  const host: FakeHost = {
+    clientWidth: 520, clientHeight: 256, appended: 0, style: {},
+    appendChild(node) { node.parentElement = host; host.appended += 1; },
+    append(node) { node.parentElement = host; status = node; },
+    querySelectorAll: () => [],
+    querySelector: () => status,
+  };
+  scope.document = { createElement: (tag: string) => {
+    const element: FakeElement = {
+      dataset: {}, style: {}, hidden: false, parentElement: null, textContent: '',
+      setAttribute() {}, append(child) { child.parentElement = element; element.textContent += child.textContent; }, replaceChildren() { element.textContent = ''; }, addEventListener() {},
+      remove() { element.parentElement = null; if (status === element) status = null; },
+    };
+    if (tag === 'canvas') {
+      element.width = 1; element.height = 1;
+      element.getContext = () => ({
+        drawImage() {},
+        getImageData: () => ({ data: new Uint8ClampedArray([128, 128, 128, 255]) }),
+        putImageData() {},
+      });
+    }
+    return element;
+  } };
   const canvas: FakeCanvas = {
     style: {}, dataset: {}, attributes: {}, parentElement: null, removed: false,
     classList: { add() {} },
@@ -52,7 +93,17 @@ function fakeCanvas() {
 }
 function stubRenderer(canvas: FakeCanvas) {
   const calls: RendererCalls = { render: 0, dispose: 0, contextLoss: 0, size: [] };
-  return { calls, domElement: canvas, setPixelRatio() {}, setClearColor() {}, setSize(w: number, h: number) { calls.size.push([w, h]); }, render() { calls.render += 1; }, dispose() { calls.dispose += 1; }, forceContextLoss() { calls.contextLoss += 1; } };
+  const info = { render: { triangles: 0 } };
+  return { calls, info, domElement: canvas, setPixelRatio() {}, setClearColor() {}, setSize(w: number, h: number) { calls.size.push([w, h]); },
+    render(scene: THREE.Scene) {
+      calls.render += 1;
+      info.render.triangles = 0;
+      scene.traverseVisible((object) => {
+        if (!(object instanceof THREE.Mesh)) return;
+        const geometry = object.geometry;
+        info.render.triangles += Math.floor(Math.min(geometry.index?.count ?? geometry.getAttribute('position')?.count ?? 0, geometry.drawRange.count) / 3);
+      });
+    }, dispose() { calls.dispose += 1; }, forceContextLoss() { calls.contextLoss += 1; } };
 }
 /** A hand-cranked clock: scheduled steps run only when step() is called. */
 function fakeClock() {
@@ -72,6 +123,11 @@ function make(more: PreviewOptions = {}) {
   const preview = createAvatarPreview(host as unknown as HTMLElement, { look: LOOK, renderer: renderer as unknown as THREE.WebGLRenderer, raf: clock.raf, caf: clock.caf, now: clock.now, reducedMotion: false, ...more });
   return { preview, canvas, host, renderer, clock };
 }
+async function waitForNativePreview(preview: ReturnType<typeof make>['preview'], host?: FakeHost): Promise<void> {
+  for (let i = 0; i < 100 && preview.diagnostics().triangles < 1000; i++) await new Promise<void>((resolve) => setTimeout(resolve, 5));
+  const diagnostics = preview.diagnostics(), status = host?.querySelector('[data-character-preview-status]')?.textContent ?? '';
+  assert.ok(diagnostics.triangles >= 1000, `the shipped native body became visible (${diagnostics.triangles} triangles; ${status || 'no status'})`);
+}
 
 test('an idle preview renders nothing; each change costs exactly one frame', async () => {
   let frames = 0, timers = 0;
@@ -81,23 +137,25 @@ test('an idle preview renders nothing; each change costs exactly one frame', asy
   scope[INTERVAL] = (...args: unknown[]) => { timers += 1; return original.interval(...args); };
   try {
     const { preview, canvas, host, renderer, clock } = make();
+    await waitForNativePreview(preview, host);
     const count = () => preview.diagnostics().renderCount;
-    assert.equal(count(), 1, 'one frame to show the Sim');
-    assert.ok(preview.diagnostics().triangles > 10000, 'the preview uses the high-detail avatar');
+    const first = count();
+    assert.ok(first >= 2, 'the preview draws again when the shipped body finishes loading');
+    assert.ok(preview.diagnostics().triangles <= NATIVE_FULL_BODY_TRIANGLES.value + 256, 'the full native body and preview ground fit their bounded budget');
     await new Promise((resolve) => original.timeout(resolve as () => void, 120));
-    assert.equal(count(), 1, 'idle: zero renders');
-    assert.equal(renderer.calls.render, 1);
+    assert.equal(count(), first, 'idle: zero renders');
+    assert.equal(renderer.calls.render, first);
     assert.equal(clock.pending(), 0, 'nothing is scheduled while idle');
     assert.equal(frames, 0, 'no frame callbacks'); assert.equal(timers, 0, 'no interval timers');
     assert.equal(preview.diagnostics().animating, false);
-    assert.equal(preview.setLook({ ...LOOK }), false, 'the same look again: nothing to draw'); assert.equal(count(), 1);
-    assert.equal(preview.resize(), false, 'same size: nothing to draw'); assert.equal(count(), 1);
-    assert.equal(preview.setFocus('body'), false); assert.equal(count(), 1);
-    assert.equal(preview.setLook({ ...LOOK, hair: 'afro' }), true); assert.equal(count(), 2, 'a new look: one frame');
-    host.clientWidth = 390; assert.equal(preview.resize(), true); assert.equal(count(), 3, 'a new size: one frame');
+    assert.equal(preview.setLook({ ...LOOK }), false, 'the same look again: nothing to draw'); assert.equal(count(), first);
+    assert.equal(preview.resize(), false, 'same size: nothing to draw'); assert.equal(count(), first);
+    assert.equal(preview.setFocus('body'), false); assert.equal(count(), first);
+    assert.equal(preview.setLook({ ...LOOK, hair: 'afro' }), true); assert.equal(count(), first + 1, 'the changed look draws once');
+    host.clientWidth = 390; assert.equal(preview.resize(), true); assert.equal(count(), first + 2, 'a new size: one frame');
     assert.deepEqual(renderer.calls.size.at(-1), [390, 256]);
     canvas.fire('keydown', { key: 'ArrowRight' }); canvas.fire('keydown', { key: 'ArrowLeft' }); canvas.fire('keydown', { key: 'a' });
-    assert.equal(count(), 5, 'one frame per arrow key; other keys draw nothing');
+    assert.equal(count(), first + 4, 'one frame per arrow key; other keys draw nothing');
     assert.equal(clock.pending(), 0);
     preview.dispose();
   } finally { scope[FRAME] = original.raf; scope[INTERVAL] = original.interval; }
@@ -197,10 +255,11 @@ test('a lost context stops drawing and tells the caller; without WebGL the previ
   assert.equal(preview.diagnostics().renderCount, count + 1, 'one frame when it comes back');
   preview.dispose();
 
-  const before = previewStats.live, real = scope.document, errors: unknown[][] = [], realError = console.error;
-  scope.document = { createElement: () => ({ getContext: () => null }) };
+  const unsupportedHost = fakeCanvas().host;
+  const before = previewStats.live, real = scope.document as { createElement(tag: string): FakeElement }, errors: unknown[][] = [], realError = console.error;
+  scope.document = { createElement: (tag: string) => tag === 'canvas' ? { getContext: () => null } : real.createElement(tag) };
   console.error = (...args: unknown[]) => { errors.push(args); };
-  try { assert.throws(() => createAvatarPreview({} as HTMLElement, { look: LOOK }), PreviewUnavailable); }
+  try { assert.throws(() => createAvatarPreview(unsupportedHost as unknown as HTMLElement, { look: LOOK }), PreviewUnavailable); }
   finally { scope.document = real; console.error = realError; }
   assert.equal(previewStats.live, before, 'nothing is left alive');
   assert.deepEqual(errors, [], 'no error is logged');

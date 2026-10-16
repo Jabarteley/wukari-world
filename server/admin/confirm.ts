@@ -10,13 +10,13 @@ import type { RouteContext } from '../types.ts';
 export const CONFIRM_TTL_MS = 5 * 60000;
 const b64 = {
   encode(bytes: Uint8Array): string { let text = ''; for (const byte of bytes) text += String.fromCharCode(byte); return btoa(text).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); },
-  decode(text: string): Uint8Array { const plain = text.replace(/-/g, '+').replace(/_/g, '/'); return Uint8Array.from(atob(plain + '='.repeat((4 - (plain.length % 4)) % 4)), (char) => char.charCodeAt(0)); },
+  decode(text: string): Uint8Array<ArrayBuffer> { const plain = text.replace(/-/g, '+').replace(/_/g, '/'); return Uint8Array.from(atob(plain + '='.repeat((4 - (plain.length % 4)) % 4)), (char) => char.charCodeAt(0)); },
 };
 async function keyOf(ctx: RouteContext): ReturnType<typeof globalThis.crypto.subtle.importKey> {
   const stored = await ctx.keyFile('admin-confirm', () => ({ key: b64.encode(globalThis.crypto.getRandomValues(new Uint8Array(32))) }));
   return globalThis.crypto.subtle.importKey('raw', b64.decode(stored.key), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign', 'verify']);
 }
-const text = (accountId: string, action: string, target: string, params: string, expires: number): Uint8Array => new TextEncoder().encode(`allworld-admin-confirm-v1\n${accountId}\n${action}\n${target}\n${params}\n${expires}`);
+const text = (accountId: string, action: string, target: string, params: string, expires: number): Uint8Array<ArrayBuffer> => new TextEncoder().encode(`allworld-admin-confirm-v1\n${accountId}\n${action}\n${target}\n${params}\n${expires}`);
 
 export async function issueConfirm(ctx: RouteContext, accountId: string, action: string, target: string, params: string): Promise<{ token: string; expiresAt: number }> {
   const expiresAt = ctx.now() + CONFIRM_TTL_MS;

@@ -68,7 +68,17 @@ jobs:
       - run: npm run build
       - run: npm run size:download
       - run: npm run cartridge:check
+      - name: Refuse retired character assets in the production bundle
+        run: |
+          node --input-type=module -e "import {readdirSync} from 'node:fs'; const files=readdirSync('dist',{recursive:true}); const retired=files.filter(p=>/(?:base-body-|mpfb-body-|mpfb-lod-|canonical-crowd-body)/.test(p)); if(retired.length) throw Error('Retired character assets emitted: '+retired.join(', ')); console.log('Production bundle contains no retired character body assets');"
       - run: npm run test:smoke
+      - name: Native character integration regressions
+        run: |
+          node --experimental-strip-types --test --test-concurrency=1 src/quick-start/model.test.ts src/app/features/start/startModels.test.ts src/game/look-options.test.ts src/scene/street-life/near.test.ts src/scene/street-life/near-draw.test.ts
+          node --experimental-strip-types docs/agent-work/native-character-release-evidence-20261016/native-height-probe.mjs
+          node --experimental-strip-types docs/agent-work/native-character-release-evidence-20261016/neighbourhood-player-ownership-probe.mjs
+          node --experimental-strip-types docs/agent-work/native-character-release-evidence-20261016/native-scenes-probe.mjs
+          node --experimental-strip-types docs/agent-work/native-character-release-evidence-20261016/native-street-probe.mjs
 
   ui-regressions:
     if: github.event_name == 'workflow_dispatch' && inputs.ui_checks

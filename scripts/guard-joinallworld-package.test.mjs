@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, statSync, rmSync, symlinkSync, realpathSync, truncateSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, statSync, rmSync, symlinkSync, realpathSync, truncateSync, cpSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
@@ -221,4 +221,38 @@ test('open dev mode guard: a release package whose Worker carries the open-mode 
   const f = fixture(t);
   writeFileSync(join(f.root, 'worker.js'), f.markWorker('export default {fetch(){return new Response("/* allworld-open-dev-node-only */")}}')); f.seal();
   assert.throws(() => checkPackage(f.root, sha, false), /Open dev mode code in the release package/);
+});
+
+test('native release permits only named metadata and licence notices', t => {
+  const f = fixture(t);
+  const dir = join(f.root, 'assets/character-lab/models/final-pass-20261015');
+  mkdirSync(dir, { recursive: true });
+  const catalog = join(dir, 'catalog.json');
+  writeFileSync(catalog, '{"version":1}');
+  writeFileSync(join(f.root, 'assets/character-lab/THIRD_PARTY_NOTICES.md'), '# Attribution');
+  f.seal(); assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
+  writeFileSync(catalog, '{bad'); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Invalid native metadata/);
+  writeFileSync(catalog, '{}');
+  writeFileSync(join(dir, 'credentials.json'), '{}'); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Unexpected package file/);
+});
+
+test('exact selected native assets seal; identity, unknown models and size bounds fail closed', t => {
+  const f = fixture(t);
+  const source = fileURLToPath(new URL('../public/character-lab', import.meta.url));
+  cpSync(source, join(f.root, 'assets/character-lab'), { recursive: true });
+  f.seal(); assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
+  const path = join(f.root, 'assets/character-lab/models/round4/female/base.glb');
+  const bytes = readFileSync(path);
+  assert.ok(bytes.length > 2 * 1024 * 1024 && bytes.length <= 5 * 1024 * 1024);
+  writeFileSync(path, Buffer.from(bytes).fill(0, 0, 4)); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Native model identity mismatch/);
+  writeFileSync(path, bytes);
+  const unknown = join(f.root, 'assets/character-lab/unreviewed.glb');
+  writeFileSync(unknown, bytes); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Invalid model file/);
+  rmSync(unknown);
+  truncateSync(path, 5 * 1024 * 1024 + 1); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Invalid package file/);
 });

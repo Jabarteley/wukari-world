@@ -1,0 +1,263 @@
+{
+  "warning": "Geometry and readiness only; image stubs, no rendered pixels or device performance",
+  "rows": [
+    {
+      "kind": "airport",
+      "seating": {
+        "authoredReservations": 7,
+        "ambientSitters": 0
+      },
+      "stats": {
+        "triangles": 72876,
+        "meshes": 50,
+        "drawCalls": 53,
+        "lights": 2,
+        "geometries": 50,
+        "sceneryTriangles": 4172,
+        "sceneryMeshes": 9,
+        "sceneryDrawCalls": 12,
+        "characterTriangles": 68704,
+        "characterMeshes": 41,
+        "characterDrawCalls": 41
+      },
+      "notifications": 21,
+      "tags": [
+        "self",
+        "staff1",
+        "staff2"
+      ],
+      "actors": [
+        {
+          "name": "native-decorative-extras",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true,
+          "admitted": 3,
+          "requested": 7
+        },
+        {
+          "name": "canonical-crowd",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true
+        },
+        {
+          "name": "native-character",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true
+        },
+        {
+          "name": "native-static-avatar",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": false
+        },
+        {
+          "name": "native-static-avatar",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": false
+        },
+        {
+          "name": "native-static-avatar",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": false
+        },
+        {
+          "name": "native-static-avatar",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": false
+        },
+        {
+          "name": "native-static-avatar",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": false
+        },
+        {
+          "name": "native-static-avatar",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": false
+        },
+        {
+          "name": "ambient-far",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true
+        },
+        {
+          "name": "canonical-crowd",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true
+        }
+      ],
+      "errors": [],
+      "withinBudget": true
+    },
+    {
+      "kind": "club",
+      "seating": {
+        "authoredReservations": 9,
+        "ambientSitters": 0
+      },
+      "stats": {
+        "triangles": 57562,
+        "meshes": 42,
+        "drawCalls": 45,
+        "lights": 2,
+        "geometries": 42,
+        "sceneryTriangles": 3274,
+        "sceneryMeshes": 8,
+        "sceneryDrawCalls": 11,
+        "characterTriangles": 54288,
+        "characterMeshes": 34,
+        "characterDrawCalls": 34
+      },
+      "notifications": 16,
+      "tags": [
+        "self",
+        "staff1",
+        "staff2"
+      ],
+      "actors": [
+        {
+          "name": "native-decorative-extras",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true,
+          "admitted": 9,
+          "requested": 9
+        },
+        {
+          "name": "canonical-crowd",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true
+        },
+        {
+          "name": "native-character",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true
+        },
+        {
+          "name": "native-static-avatar",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": false
+        },
+        {
+          "name": "native-static-avatar",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": false
+        },
+        {
+          "name": "ambient-far",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true
+        },
+        {
+          "name": "canonical-crowd",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true
+        }
+      ],
+      "errors": [],
+      "withinBudget": true
+    },
+    {
+      "kind": "park",
+      "seating": {
+        "authoredReservations": 6,
+        "ambientSitters": 0
+      },
+      "stats": {
+        "triangles": 53882,
+        "meshes": 37,
+        "drawCalls": 38,
+        "lights": 2,
+        "geometries": 37,
+        "sceneryTriangles": 4532,
+        "sceneryMeshes": 5,
+        "sceneryDrawCalls": 6,
+        "characterTriangles": 49350,
+        "characterMeshes": 32,
+        "characterDrawCalls": 32
+      },
+      "notifications": 11,
+      "tags": [
+        "self",
+        "staff1",
+        "staff2"
+      ],
+      "actors": [
+        {
+          "name": "native-decorative-extras",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true,
+          "admitted": 6,
+          "requested": 6
+        },
+        {
+          "name": "canonical-crowd",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true
+        },
+        {
+          "name": "native-character",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true
+        },
+        {
+          "name": "native-static-avatar",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": false
+        },
+        {
+          "name": "native-static-avatar",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": false
+        },
+        {
+          "name": "native-static-avatar",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": false
+        },
+        {
+          "name": "native-static-avatar",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": false
+        },
+        {
+          "name": "ambient-far",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true
+        },
+        {
+          "name": "canonical-crowd",
+          "foundation": "native53",
+          "status": "ready",
+          "visible": true
+        }
+      ],
+      "errors": [],
+      "withinBudget": true
+    }
+  ]
+}

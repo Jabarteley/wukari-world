@@ -80,7 +80,7 @@ async function world(t: Parameters<typeof fixture>[0], options: FixtureOptions =
     const session = ((await opened.json()) as { session: { id: string; name: string } }).session;
     const who: Device = { ...session, cookie: header.split(';')[0] ?? '' };
     await get(`/api/life?city=${city}`, who);
-    assert.equal((await post('/api/action', { actionId: f.id(), cityId: city, type: 'onboarding.quick-start', payload: { look: presetLook('owambe') } }, who)).code, 'playing');
+    assert.equal((await post('/api/action', { actionId: f.id(), cityId: city, type: 'onboarding.quick-start', payload: { look: presetLook('street') } }, who)).code, 'playing');
     assert.equal((await get('/api/social/me', who)).status, 200);
     return who;
   }

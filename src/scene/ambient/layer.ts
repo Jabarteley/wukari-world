@@ -9,13 +9,8 @@
  * where they were. It never asks for a frame on its own. A scene on a weak device or with reduced motion is never woken: people are placed
  * once, standing. src/scene/ambient/layer.test.ts counts the frames.
  *
- * BUDGET. The layer is told what the scene has left of its 17,000 triangles and 60 draw calls and builds no more figures than fit: the far
- * crowd is dropped first, then walkers and sitters. Regulars are drawn here only while there is room for them.
- *
- * STREET LIFE. An open place on a device that passes the gate (src/scene/street-life/plan.ts) also gets a light crowd of cut-out people
- * in one instanced mesh, on its own walkable floor only (never outside its boundary). The gate and the drawing are chunks of their own, fetched after the layer is built
- * (never named by the shared scene chunk). Once the gate says yes, the street's triangles and draw call are set aside and the figures are
- * counted again; it moves only inside the same window, and slow frames drop it at once (the people above stay exactly as they were).
+ * Nearby people and regulars retain their planned identities. Optional distant extras fit the measured remaining
+ * scene budget; their count can fall in a busy venue without changing the character model or detail level.
  */
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
@@ -24,9 +19,12 @@ import { newGaze, stepGaze, watch, gazing } from '../space.ts';
 import type { GazeState } from '../space.ts';
 import { lookAvatar } from '../avatar-rig.ts';
 import { hash } from '../build.ts';
-import { createPlanner, poseOf } from './plan.ts';
+import { totalRenderCost } from '../body/render-cost.ts';
+import { createPlanner, poseOf, AMBIENT_STRIDE_DISTANCE } from './plan.ts';
+import { nativeWalkCycleDistance } from '../character-lab/native-body.ts';
 import type { AmbientPose, Ident, Planner, Role, Sample, Stage, Track } from './plan.ts';
-import { FIGURE_COST, makeFarFigures, makeFigure, makeMotionFigure } from './figure.ts';
+import { TIER_CAPS } from './density.ts';
+import { makeFarFigures, makeFigure, makeMotionFigure } from './figure.ts';
 import type { FarFigures, MotionFigure } from './figure.ts';
 import type { FrameGuard, StreetChoice } from '../street-life/plan.ts';
 import type { StreetLife } from '../street-life/draw.ts';
@@ -34,18 +32,14 @@ import type { StreetLife } from '../street-life/draw.ts';
 /** How long the layer keeps the frame loop awake after being woken. */
 export const WINDOW_MS = 12_000;
 /** The most background people built as figures of their own (the far crowd is on top of this). */
-export const MAX_FIGURES = 16;
-/** How many of them may be the game's own full person (the rest are lean ones): they are the ones close enough to be looked at. */
-export const MAX_FULL = 4;
+export const MAX_FIGURES = 4;
+/** How many of them may retain a live canonical rig for nearby reactions. */
+export const MAX_FULL = 1;
 /** The most regulars drawn as figures of their own (the rest stay in the scene's merged batch). */
 export const MAX_RESIDENTS = 6;
 /** The most nearby individual figures that carry GPU pose morphs at once (residents and planned people combined). */
-export const MAX_REACTIVE = 4;
-/** Draw calls a figure takes: a full one is a solid mesh drawn twice (once for the sun's shadow) and its glow; a lean one is one mesh drawn twice. */
-const FULL_CALLS = 3, LEAN_CALLS = 2;
-/** The far crowd costs about this much a person, in triangles. */
-const FAR_TRIANGLES = 60;
-/** A street-life person's triangles (street-life/plan.ts PERSON_TRIANGLES: the test holds them equal; not imported, so the gate stays a chunk of its own). */
+export const MAX_REACTIVE = 1;
+/** Legacy far-quad cost; replaced by measured native street geometry during integration. */
 export const STREET_PERSON = 2;
 
 export interface Room { triangles: number; meshes: number }
@@ -83,9 +77,10 @@ interface Entry {
   figures: Map<string, AvatarGroup>
   shown: AvatarGroup | null
   shownKey: string
+  lastStride?:number
+  nativePhase?:number
   motion: MotionFigure | null
   reactive: boolean
-  motionBlocked: boolean
   x: number; z: number; ry: number; placed: boolean
   ox: number; oz: number
   gaze: GazeState
@@ -130,8 +125,8 @@ export interface AmbientLayer {
   animateSpeech(id: string, ms?: number): boolean
   speak(id: string, text: string, ms?: number): boolean
   talk(a: string, b: string, ms?: number): boolean
-  stats(): { triangles: number; meshes: number }
-  /** How many full figures, lean figures and far figures the budget allows (tests and diagnostics). */
+  stats(): { triangles: number; meshes: number; overTriangles: number; overMeshes: number }
+  /** How many reactive, static and far figures the planner can show. */
   caps(): { full: number; lean: number; far: number }
   /** The street behind the place, when this device has it: its tier, people asked for, and what is drawn now (diagnostics). */
   street(): { tier: string; asked: number; people: number; dropped: boolean } | null
@@ -148,7 +143,7 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
   parent.add(group)
   const entries = new Map<string, Entry>()
   const barks = new Map<string, { text: string; timer: ReturnType<typeof setTimeout> }>()
-  let far: FarFigures | null = null, farKey = ''
+  let far: FarFigures | null = null, farKey = '', farPending: FarFigures | null = null, farRevision = 0
   let windowLeft = 0, frames = 0, disposed = false, current = clock()
   let fullCap = 0, leanCap = 0, farCap = 0
   let residents: Resident[] = []
@@ -156,19 +151,11 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
   let streetChoice: StreetChoice | null = null, streetAsked = 0, streetGuard: FrameGuard | null = null
   let street: StreetLife | null = null, streetDropped = false
 
-  /**
-   * What the scene has left decides how many people there can be: first the regulars (full figures), then a few full ones, then lean ones,
-   * then the far crowd. Read when the layer is made, when its regulars change and when the scene's own crowd does.
-   */
+  /** Optional extras are bounded separately from the venue's interactive residents. */
   function budget(): void {
-    const room = options.room(), own = residents.length
-    // The street's share is set aside first, so the figures never take its room.
-    const triangles = room.triangles - own * FIGURE_COST.full - streetAsked * STREET_PERSON, calls = room.meshes - own * FULL_CALLS - (streetAsked ? 1 : 0)
-    fullCap = Math.max(0, Math.min(MAX_FULL, Math.floor(triangles / FIGURE_COST.full), Math.floor(calls / FULL_CALLS)))
-    const t1 = triangles - fullCap * FIGURE_COST.full, c1 = calls - fullCap * FULL_CALLS
-    leanCap = Math.max(0, Math.min(MAX_FIGURES - fullCap, Math.floor(t1 / FIGURE_COST.lean), Math.floor(c1 / LEAN_CALLS)))
-    const t2 = t1 - leanCap * FIGURE_COST.lean, c2 = c1 - leanCap * LEAN_CALLS
-    farCap = c2 >= 2 ? Math.max(0, Math.floor(t2 / FAR_TRIANGLES)) : 0
+    fullCap = ident.tier === 'full' ? MAX_FULL : 0
+    leanCap = MAX_FIGURES - fullCap
+    farCap = TIER_CAPS[ident.tier].far
   }
 
   function enter(id: string, seed: string, role: Role, resident: boolean, lean = false, look?: unknown): Entry {
@@ -177,7 +164,7 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
     group.add(holder)
     const blinkPeriod = 4_200 + hash(`${seed}|blink-period`) % 2_400
     const entry: Entry = {
-      id, seed, look, lookKey: appearanceKey(look), role, resident, lean, holder, figures: new Map(), shown: null, shownKey: '', motion: null, reactive: false, motionBlocked: false,
+      id, seed, look, lookKey: appearanceKey(look), role, resident, lean, holder, figures: new Map(), shown: null, shownKey: '', motion: null, reactive: false,
       x: 0, z: 0, ry: 0, placed: false, ox: 0, oz: 0, gaze: newGaze(), top: 2.9, talk: null, speakingUntil: 0,
       blinkPeriod, blinkOffset: hash(`${seed}|blink-phase`) % blinkPeriod, speechPhase: (hash(`${seed}|speech-phase`) % 6_283) / 1_000,
     }
@@ -200,9 +187,13 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       entry.motion?.dispose(); entry.motion = null; entry.reactive = false
       return false
     }
-    if (entry.lean || entry.motionBlocked || pose === 'sit' || !allowPromotion) return false
+    if (entry.lean || pose === 'sit' || !allowPromotion) return false
+    const room = options.room()
+    const currentCost = totalRenderCost(group)
+    const previous = entry.shown ? totalRenderCost(entry.shown) : { triangles: 0, drawCalls: 0 }
+    // Native live rigs retain the reference mesh. Promote only when its full cost fits.
+    if (currentCost.triangles - previous.triangles + 34_000 > room.triangles || currentCost.drawCalls - previous.drawCalls + 14 > room.meshes) return false
     const motion = makeMotionFigure(kit, { seed: entry.seed, look: entry.look, pose, step, seat })
-    if (!motion) { entry.motionBlocked = true; return true }
     for (const figure of entry.figures.values()) figure.userData.dispose()
     entry.figures.clear(); entry.shown = null; entry.shownKey = ''
     motion.group.visible = false
@@ -211,6 +202,11 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
     return true
   }
   function show(entry: Entry, pose: AmbientPose, step: number, stride: number | undefined, seat: number, still: boolean): void {
+    const sourceStride=stride??(step?.75:.25);
+    if(pose==='walk') {
+      entry.nativePhase=entry.lastStride===undefined?sourceStride:(entry.nativePhase??0)+((sourceStride-entry.lastStride+1)%1)*AMBIENT_STRIDE_DISTANCE/nativeWalkCycleDistance(entry.look,entry.seed);
+      entry.lastStride=sourceStride;
+    } else entry.lastStride=undefined;
     if (pose !== 'sit' && entry.motion) {
       const reveal = entry.shown !== entry.motion.group
       if (reveal) {
@@ -224,14 +220,17 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       entry.top = entry.motion.group.userData.top ?? 2.9
       return
     }
-    const key = pose === 'walk' ? `walk${step}` : pose === 'sit' ? `sit${seat}` : pose
+    const frame=Math.floor(((entry.nativePhase??0)%1)*8)%8;
+    const key = pose === 'walk' ? `walk${frame}` : pose === 'sit' ? `sit${seat}` : pose
     if (key === entry.shownKey) return
     let figure = entry.figures.get(key)
     if (!figure) {
-      figure = makeFigure(kit, { seed: entry.seed, look: entry.look, pose, step, seat, lean: entry.lean })
+      figure = makeFigure(kit, { seed: entry.seed, look: entry.look, pose, step, stride:frame/8, seat, lean: entry.lean })
+      figure.visible=false;
       entry.holder.add(figure)
       entry.figures.set(key, figure)
     }
+    if(figure.userData.characterStatus==='loading')return;
     if (entry.shown) entry.shown.visible = false
     figure.visible = true
     entry.shown = figure; entry.shownKey = key
@@ -334,18 +333,78 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       const entry = entries.get(track.id) ?? enter(track.id, track.seed, track.role, false, lean)
       moving = put(entry, sample, at, dt, still, player, reactive.has(track.id), promotion) || moving
     }
+    admitOptionalPeople()
     return moving
   }
 
+  function admitOptionalPeople(): void {
+    const room = options.room()
+    let triangles = room.triangles - (street?.triangles ?? 0), draws = room.meshes - (street?.drawCalls ?? 0)
+    // Residents carry interactions, so they remain present. Optional passers-by use what is left.
+    for (const entry of entries.values()) if (entry.resident && entry.shown) {
+      const cost = totalRenderCost(entry.shown)
+      triangles -= cost.triangles; draws -= cost.drawCalls
+    }
+    for (const entry of entries.values()) if (!entry.resident && entry.shown) {
+      const cost = totalRenderCost(entry.shown)
+      entry.holder.visible = cost.triangles <= triangles && cost.drawCalls <= draws
+      if (entry.holder.visible) { triangles -= cost.triangles; draws -= cost.drawCalls }
+    }
+  }
+
   function farFor(at: number): void {
-    const list = farCap > 0 ? planner.far(at).slice(0, farCap) : []
-    const k = list.map((p) => p.seed).join(',')
+    const remaining = (): Room => {
+      const room = options.room()
+      let triangles = room.triangles - (street?.triangles ?? 0), meshes = room.meshes - (street?.drawCalls ?? 0)
+      for (const entry of entries.values()) if (entry.holder.visible && entry.shown) {
+        const cost = totalRenderCost(entry.shown)
+        triangles -= cost.triangles; meshes -= cost.drawCalls
+      }
+      return { triangles: Math.max(0, Math.floor(triangles)), meshes: Math.max(0, Math.floor(meshes)) }
+    }
+    const room = remaining()
+    if (far) {
+      const cost = totalRenderCost(far.group)
+      if (cost.triangles > room.triangles || cost.drawCalls > room.meshes) far.group.visible = false
+    }
+    const list = farCap > 0 && room.triangles > 0 && room.meshes > 0 ? planner.far(at).slice(0, farCap) : []
+    const k = `${list.map((p) => p.seed).join(',')}|${room.triangles}|${room.meshes}`
     if (k === farKey) return
     farKey = k
-    far?.dispose(); far = null
-    if (!list.length) return
-    far = makeFarFigures(kit, list)
-    group.add(far.group)
+    const revision = ++farRevision
+    farPending?.dispose(); farPending = null
+    if (!list.length) { far?.dispose(); far = null; return }
+    const attempt = (count: number): void => {
+      if (count <= 0 || disposed || revision !== farRevision) {
+        if (revision === farRevision) { far?.dispose(); far = null }
+        return
+      }
+      const candidate = makeFarFigures(kit, list.slice(0, count))
+      farPending = candidate
+      const admit = (): void => {
+        if (disposed || revision !== farRevision) { candidate.dispose(); return }
+        farPending = null
+        const cost = totalRenderCost(candidate.group), available = remaining()
+        if (candidate.group.userData.characterStatus === 'error') { candidate.dispose(); return }
+        if (cost.triangles <= available.triangles && cost.drawCalls <= available.meshes) {
+          far?.dispose(); far = candidate; group.add(far.group); options.changed?.()
+          return
+        }
+        candidate.dispose()
+        const remove = Math.max(1, Math.ceil((cost.triangles - available.triangles) / Math.max(1, cost.triangles / count)))
+        attempt(count - remove)
+      }
+      // Loading reservations are not geometry. Prime the same-source snapshots off-scene,
+      // then admit their measured result instead of discarding them before they can load.
+      const ready = candidate.group.userData.ready as Promise<void> | undefined
+      if (candidate.group.userData.characterStatus === 'loading' && ready) {
+        void ready.then(admit, () => {
+          candidate.dispose()
+          if (revision === farRevision) { farPending = null; options.changed?.() }
+        })
+      } else admit()
+    }
+    attempt(list.length)
   }
 
   function sync(at: number, dt: number, still: boolean): boolean {
@@ -422,14 +481,14 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       sync(clock(), 0, true)
       return residents.map((resident) => resident.id)
     },
-    rebudget() { if (disposed) return; budget(); if (windowLeft <= 0) sync(current, 0, true) },
+    rebudget() { if (disposed) return; budget(); admitOptionalPeople(); if (windowLeft <= 0) farFor(current) },
     residentTag(id, name) {
       const entry = entries.get(id)
       if (!entry?.resident) return null
       return { id, name, kind: 'npc', text: name, marker: 'dot', colour: '#58d68a', position: { x: entry.x, y: entry.holder.position.y + entry.top, z: entry.z } }
     },
     people() {
-      return [...entries.values()].map((entry) => ({ id: entry.id, role: entry.role, x: entry.x, z: entry.z, sitting: entry.shownKey.startsWith('sit') }))
+      return [...entries.values()].filter(entry => entry.holder.visible).map((entry) => ({ id: entry.id, role: entry.role, x: entry.x, z: entry.z, sitting: entry.shownKey.startsWith('sit') }))
     },
     tags() {
       const out: AmbientTag[] = []
@@ -461,12 +520,13 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
     caps: () => ({ full: fullCap, lean: leanCap, far: farCap }),
     street: () => (streetChoice ? { tier: streetChoice.tier, asked: streetAsked, people: street?.people ?? 0, dropped: streetDropped } : null),
     stats() {
-      let triangles = (far?.triangles ?? 0) + (street?.triangles ?? 0), meshes = (far ? far.group.children.length : 0) + (street?.drawCalls ?? 0)
-      for (const entry of entries.values()) if (entry.shown) { triangles += entry.shown.userData.triangles ?? 0; meshes += entry.shown.children.length }
-      return { triangles, meshes }
+      const cost = totalRenderCost(group)
+      const room = options.room()
+      return { triangles: cost.triangles, meshes: cost.meshes, overTriangles: Math.max(0, cost.triangles - room.triangles), overMeshes: Math.max(0, cost.drawCalls - room.meshes) }
     },
     dispose() {
       disposed = true
+      farRevision++; farPending?.dispose(); farPending = null
       for (const entry of [...entries.values()]) leave(entry)
       for (const bark of barks.values()) clearTimeout(bark.timer)
       barks.clear()

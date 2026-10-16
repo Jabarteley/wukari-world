@@ -3,15 +3,15 @@ import type { Object3D, WebGLRenderer } from 'three'
 import type { HostPerson, HostPlayer, HostState } from '../campus/unilag/host.ts'
 import type { StreetJourney } from './types.ts'
 import { createKit } from '../scene/kit.ts'
-import { buildAvatar, poseAvatar } from '../scene/characters.ts'
-import { createWalker, gaitPhase, WALK_SPEED, JOG_SPEED } from '../scene/movement.ts'
+import { createCanonicalStaticAvatar } from '../scene/body/canonical-crowd.ts'
+import { createWalker, WALK_SPEED, JOG_SPEED } from '../scene/movement.ts'
 import { createOrbit } from '../scene/camera-controls.ts'
 import { createMotionLoop } from '../scene/motion-loop.ts'
 import { createSceneControls } from '../scene/controls.ts'
 import '../scene/controls.css'
 import { venueLabel } from '../game/content/venues.ts'
 import { avatarProportions } from '../types/avatar.ts'
-import { bodyAllowed, drawsWebGL2 } from '../scene/body/gate.ts'
+import { createStandIn } from '../scene/body/stand-in.ts'
 import type { StandIn } from '../scene/body/stand-in.ts'
 import { tileKey, tileOf } from './frame.ts'
 import { createTileWindow } from './window.ts'
@@ -43,7 +43,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
   orbit.setBase([8, 10, 13], [0, 1, 0]); orbit.setLimits({ near: 0.45, far: 2.5 })
   let view: SceneViewExtension | null = null
   let closed = false, busy = false, location = 'city-street', initialized = false, centreKey = '', renderCount = 0, travelled = 0, lastSend = 0
-  let player: HostPlayer = {}, avatar = buildAvatar(kit, undefined, { rig: true, scale: 0.72 }), playerKey = ''
+  let player: HostPlayer = {}, avatar = createCanonicalStaticAvatar(kit, undefined, { sceneScale: 0.72 }), playerKey = ''
   let standIn: StandIn | null = null, stride = 0
   const reduced = () => globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true
   world.add(avatar)
@@ -152,9 +152,8 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
     if (closed || !initialized) return false
     const accepted = client.journey, before = { x: walker.x, z: walker.z }, ahead = accepted ? Math.hypot(walker.x - accepted.point.x, walker.z - accepted.point.z) : 0
     const moving = !busy && !entering && ahead < 2.5 && walker.step(dt, view?.azimuth ?? orbit.azimuth), distance = Math.hypot(walker.x - before.x, walker.z - before.z); travelled += distance
-    const proportions = avatarProportions(player.look?.appearance)
-    stride += gaitPhase(distance, 0.72 * proportions.height * proportions.depth, walker.jogging, standIn?.shown === true)
-    poseAvatar(avatar, { pose: distance > 0 ? walker.jogging ? 'jog' : 'walk' : 'stand', stride: (stride / (2 * Math.PI)) % 1 })
+    const nativeCycle = standIn?.cycleDistance(walker.jogging)
+    if (Number.isFinite(nativeCycle) && nativeCycle! > 0) stride += Math.PI * 2 * distance / nativeCycle!
     const local = scenery.local(walker); standIn?.move(local.x, 0, local.z, walker.ry)
     if (distance > 0) standIn?.gait(stride, walker.jogging, 0, !reduced()); else standIn?.pose('stand', undefined, !reduced())
     const bodyMoving = standIn?.step(dt) === true
@@ -172,11 +171,8 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
   renderer.domElement.addEventListener('pointerdown', pointerDown); renderer.domElement.addEventListener('pointermove', pointerMove); renderer.domElement.addEventListener('pointerup', pointerUp); renderer.domElement.addEventListener('pointercancel', pointerUp)
   function resize() { if (closed) return; const w = Math.max(1, container.clientWidth), h = Math.max(1, container.clientHeight); renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); draw() }
   const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(resize) : null; observer?.observe(container); resize()
-  if (bodyAllowed() && drawsWebGL2(renderer)) void import('../scene/body/stand-in.ts').then(module => {
-    if (closed) return
-    standIn = module.createStandIn(kit, () => { if (!closed) { draw(); loop.wake() } })
-    standIn.wear(player.look, player.seed); standIn.attach({ group: world, avatar, scale: 0.72 }); standIn.pose('stand', undefined, false); standIn.start(renderer)
-  }).catch(() => undefined)
+  standIn = createStandIn(kit, () => { if (!closed) { draw(); loop.wake() } })
+  standIn.wear(player.look, player.seed); standIn.attach({ group: world, avatar, scale: 0.72 }); standIn.pose('stand', undefined, false); standIn.start(renderer)
   const ready = (options.journey ? Promise.resolve(options.journey) : client.refresh()).then(async journey => {
     if (closed) throw Error('Street closed')
     if (journey.kind !== 'walking') throw Error('This street walk is not active. Use the map to travel.')
@@ -188,7 +184,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
     THREE, container, camera, canvas: renderer.domElement, screens: [], weakDevice: true,
     get scene() { return world; }, get bodies() { return [avatar, standIn?.object ?? null]; },
     get x() { return scenery.local(walker).x; }, get y() { return 0; }, get z() { return scenery.local(walker).z; },
-    get facing() { return walker.ry; }, get scale() { return 0.72 * avatarProportions(player.look?.appearance).height; },
+    get facing() { return walker.ry; }, get scale() { return 0.72 * (player.look?.native?.appearance.height ?? avatarProportions(player.look?.appearance).height); },
     get pose() { return 'stand'; }, get seat() { return undefined; },
     get moving() { return walker.moving; }, get phase() { return stride; },
     get enabled() { return !closed && !container.hidden && location === 'city-street'; },
@@ -203,7 +199,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
     ready, update: draw, resize,
     refresh: async () => { const journey = await client.refresh(); useJourney(journey, true) },
     setState(next: HostState | null) { busy = Boolean(next?.activeAction); if (busy) { held.clear(); walker.stop(); doorTask = null; controls?.release() } draw() },
-    setPlayer(next: HostPlayer = {}) { const value = JSON.stringify(next); if (value === playerKey) return false; playerKey = value; player = next; standIn?.attach(null); world.remove(avatar); avatar.userData.dispose(); avatar = buildAvatar(kit, player.look, { rig: true, scale: 0.72, seed: player.seed }); world.add(avatar); standIn?.wear(player.look, player.seed); standIn?.attach({ group: world, avatar, scale: 0.72 }); draw(); return true },
+    setPlayer(next: HostPlayer = {}) { const value = JSON.stringify(next); if (value === playerKey) return false; playerKey = value; player = next; standIn?.attach(null); world.remove(avatar); avatar.userData.dispose(); avatar = createCanonicalStaticAvatar(kit, player.look, { sceneScale: 0.72, seed: player.seed }); world.add(avatar); standIn?.wear(player.look, player.seed); standIn?.attach({ group: world, avatar, scale: 0.72 }); draw(); return true },
     setCrowd(_people: HostPerson[]): boolean { return false },
     setInsets(insets: { top?: number; bottom?: number }): boolean { controls?.place(insets); status.style.bottom = `${(insets.bottom ?? 0) + 12}px`; return true },
     setLocation(id: string) { location = id; if (id !== 'city-street') { walker.stop(); doorTask = null; loop.stop() } return true },

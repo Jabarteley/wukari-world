@@ -25,7 +25,7 @@ export function ownCommerce(row: CommerceRecord, address: CommerceAddress | null
 }
 export const opaque = (): string => bytesToText(crypto.getRandomValues(new Uint8Array(32)))
 function bytesToText(bytes: Uint8Array): string { return btoa(Array.from(bytes, byte => String.fromCharCode(byte)).join('')).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '') }
-function textToBytes(value: string): Uint8Array { return Uint8Array.from(atob(value.replace(/-/g, '+').replace(/_/g, '/')), char => char.charCodeAt(0)) }
+function textToBytes(value: string): Uint8Array<ArrayBuffer> { return Uint8Array.from(atob(value.replace(/-/g, '+').replace(/_/g, '/')), char => char.charCodeAt(0)) }
 export async function challenge(verifier: string): Promise<string> { return bytesToText(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier)))) }
 export function commerceSecrets(ctx: RouteContext) {
   let key: ReturnType<typeof crypto.subtle.importKey> | undefined

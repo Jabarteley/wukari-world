@@ -11,18 +11,19 @@
  * model-library vehicle with real seat anchors instead of the batch-drawn one below. Without it — the default — nothing of the
  * model library is loaded or drawn.
  *
- * The avatar module builds static poses, so walking is drawn from two frames: the walk pose and
- * its mirror image, swapped every stride. Which frame shows comes from the pose's `step`, which
+ * The native body supplies eight compact sampled stride phases,
+ * selected by distance and the saved body's calibrated cycle. Which frame shows comes from the pose's `step`, which
  * is a function of the distance covered — the walk never keeps time of its own.
  */
 import type * as THREE from 'three';
 import type { MapKit } from './city-build.ts';
 import type { TripPose } from './trip.ts';
 import { createBatch, sceneMaterials } from '../scene/build.ts';
-import { buildAvatar } from '../scene/characters.ts';
+import { createCanonicalStaticAvatar } from '../scene/body/canonical-crowd.ts';
 import type { Pose } from '../scene/characters.ts';
 import { VEHICLES } from './vehicles.ts';
 import { lookOf } from './trip.ts';
+import { nativeWalkCycleDistance } from '../scene/character-lab/native-body.ts';
 
 /** The player's saved look (a record from the server, normalised by src/scene/characters.ts) and public id. */
 export interface ActorPlayer { look?: unknown; seed?: string }
@@ -77,31 +78,35 @@ export function createActor(kit: MapKit, { travelVehicle = null, onChange }: { t
   ring.name = 'actor-ring'; ring.rotation.x = -Math.PI / 2; ring.renderOrder = 3; group.add(ring);
 
   let player: { look: unknown; seed: string } = { look: null, seed: 'you' }, playerKey = '', mode: string | null = null, asDot = false, size = 1;
-  let frames: { stand: THREE.Group; stride: THREE.Group; mirror: THREE.Group } | null = null, seated: THREE.Group | null = null, vehicle: THREE.Group | null = null, vehicleModel: TravelVehicleModel | null = null, seat = { x: 0, y: 0, z: 0 };
+  let frames: { stand: THREE.Group; walk: THREE.Group[] } | null = null, seated: THREE.Group | null = null, vehicle: THREE.Group | null = null, vehicleModel: TravelVehicleModel | null = null, seat = { x: 0, y: 0, z: 0 };
+  let shownFrame: THREE.Group | null = null, requestedFrame: THREE.Group | null = null, walkPhase = 0, lastDistance = 0;
   let vehicleTime = 'day', lamps = false, close = false, carId: string | null = null, disposed = false;
   const plain = (mesh: THREE.Object3D) => { mesh.castShadow = false; mesh.receiveShadow = false; };
 
   function buildPeople() {
-    for (const built of [frames?.stand, frames?.stride, seated]) built?.userData.dispose();
-    if (frames?.mirror) walker.remove(frames.mirror);
-    const make = (pose: Pose, riding = false): THREE.Group => {
-      const avatar = buildAvatar(kit, player.look, {
+    for (const built of [frames?.stand, ...(frames?.walk ?? []), seated]) built?.userData.dispose();
+    const make = (pose: Pose, riding = false, stride?: number): THREE.Group => {
+      const avatar = createCanonicalStaticAvatar(kit, player.look, {
         seed: player.seed,
-        pose,
+        pose, detail: 'lod',
         seat: riding && useModels ? 0 : SEAT_HEIGHT,
-        scale: riding && useModels ? SEATED_AVATAR_SCALE : 1,
-        marker: 'crown',
+        sceneScale: riding && useModels ? SEATED_AVATAR_SCALE : 1,
+        ...(stride === undefined ? {} : { stride }),
       });
-      avatar.traverse(plain);
+      avatar.visible = false;
+      void avatar.userData.ready?.then(() => {
+        if (disposed || !avatar.parent) return;
+        avatar.traverse(plain);
+        if (requestedFrame === avatar) show(avatar);
+        onChange?.();
+      });
       return avatar;
     };
-    const stand = make('stand'), stride = make('walk');
-    // The second walk frame is the first one mirrored: the same geometry, the other foot forward.
-    const mirror = new THREE.Group();
-    stride.children.forEach((child) => { const mesh = child as THREE.Mesh; mirror.add(new THREE.Mesh(mesh.geometry, mesh.material)); });
-    mirror.scale.x = -1;
-    walker.add(stand, stride, mirror);
-    frames = { stand, stride, mirror };
+    shownFrame = requestedFrame = null;
+    const stand = make('stand'), walk = Array.from({ length: 8 }, (_, index) => make('walk', false, index / 8));
+    walker.add(stand, ...walk);
+    frames = { stand, walk };
+    show(stand);
     seated = make('sit', true);
     seated.name = 'actor-passenger';
     if (vehicleModel) vehicleModel.attachPassenger(seated);
@@ -143,8 +148,11 @@ export function createActor(kit: MapKit, { travelVehicle = null, onChange }: { t
     ride.add(vehicle);
     if (seated) seated.position.set(seat.x, seat.y - SEAT_HEIGHT - 0.13, seat.z);
   }
-  function show(part: string) {
-    frames!.stand.visible = part === 'stand'; frames!.stride.visible = part === 'a'; frames!.mirror.visible = part === 'b';
+  function show(next: THREE.Group) {
+    requestedFrame = next;
+    if (next.userData.characterStatus !== 'ready' && shownFrame) return;
+    if (shownFrame) shownFrame.visible = false;
+    shownFrame = next; next.visible = true;
   }
 
   const actor = {
@@ -206,7 +214,7 @@ export function createActor(kit: MapKit, { travelVehicle = null, onChange }: { t
     stand(x: number, z: number, ry: number) {
       if (!frames) actor.setPlayer(player);
       walker.visible = !asDot; ride.visible = false; ring.visible = true; dot.visible = false;
-      show('stand');
+      show(frames!.stand); walkPhase = 0; lastDistance = 0;
       walker.position.set(x, 0, z); walker.rotation.y = ry;
       ring.position.set(x, 0.09, z);
     },
@@ -216,12 +224,15 @@ export function createActor(kit: MapKit, { travelVehicle = null, onChange }: { t
       ring.visible = false;
       if (asDot) { walker.visible = false; ride.visible = false; dot.visible = true; dot.position.set(pose.x, pose.y + 1.4, pose.z); return; }
       dot.visible = false;
+      const delta = Math.max(0, pose.distance - lastDistance);
+      if (pose.distance < lastDistance) walkPhase = 0;
+      lastDistance = pose.distance;
+      if (pose.walking) walkPhase = (walkPhase + delta / (nativeWalkCycleDistance(player.look, player.seed) * ACTOR_SCALE * size)) % 1;
       const riding = pose.phase === 'ride';
       walker.visible = !riding;
       if (!riding) {
-        show(pose.walking ? (pose.step % 2 ? 'b' : 'a') : 'stand');
-        const bob = pose.walking ? Math.abs(Math.sin((pose.distance / 0.85) * Math.PI)) * 0.14 : 0;
-        walker.position.set(pose.x, pose.y + 0.08 + bob, pose.z); walker.rotation.y = pose.ry;
+        show(pose.walking ? frames!.walk[Math.floor(walkPhase * 8) % 8]! : frames!.stand);
+        walker.position.set(pose.x, pose.y + 0.08, pose.z); walker.rotation.y = pose.ry;
       }
       ride.visible = Boolean(pose.vehicle && vehicle);
       if (ride.visible) {
@@ -241,7 +252,7 @@ export function createActor(kit: MapKit, { travelVehicle = null, onChange }: { t
       if (disposed) return;
       disposed = true;
       releaseVehicle();
-      for (const built of [frames?.stand, frames?.stride, seated]) built?.userData.dispose();
+      for (const built of [frames?.stand, ...(frames?.walk ?? []), seated]) built?.userData.dispose();
       for (const mesh of [dot, ring]) { mesh.geometry.dispose(); mesh.material.dispose(); }
       group.parent?.remove(group);
       frames = null; seated = null; vehicle = null;

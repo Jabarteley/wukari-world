@@ -11,6 +11,9 @@ import type { Draft, DraftArea } from './model.ts';
 import type { DreamId, TraitId } from '../types/life.ts';
 import { avatarLookFields } from '../game/wardrobe/look.ts';
 import { AVATAR_STARTER_WEARABLES } from '../game/wardrobe/prices.ts';
+import { normalizeNativeRecipe, validateNativeRecipe } from '../character/native-recipe.ts';
+import { nativeRecipeForLook } from '../character/native-migration.ts';
+import { NATIVE_CHARACTER_CATALOG } from '../character/native-catalog.ts';
 
 // ---- names ---------------------------------------------------------------------------------
 /** Friendly suggestions for the name field: "<mood> <name>", always 3–24 ordinary characters. */
@@ -63,40 +66,56 @@ export function starterLook(value: unknown): Look | null {
     || new Set(extras.map(slotOf)).size !== extras.length) return null;
   const avatar = avatarLookFields(value);
   if (avatar.wearables?.some(id => !AVATAR_STARTER_WEARABLES.includes(id))) return null;
+  const native = look.native === undefined ? nativeRecipeForLook(look, JSON.stringify(look)) : validateNativeRecipe(look.native);
+  if ('ok' in native && !native.ok) return null;
   return { body: look.body, hair: look.hair, outfit: look.outfit, fabric: look.fabric, skin: look.skin, hairColor: look.hairColor, outfitColor: look.outfitColor, bottomsColor: look.bottomsColor,
     ...avatar,
     // face/expression default to the list's first entry ('oval'/'smile') although Look documents the key as absent for the default; kept as the original result.
     accessories: [...extras] as AccessoryId[], face: (APPEARANCE.faces.includes(look.face as FaceId) ? look.face : APPEARANCE.faces[0]) as Look['face'],
-    expression: (APPEARANCE.expressions.includes(look.expression as ExpressionId) ? look.expression : APPEARANCE.expressions[0]) as Look['expression'] };
+    expression: (APPEARANCE.expressions.includes(look.expression as ExpressionId) ? look.expression : APPEARANCE.expressions[0]) as Look['expression'],
+    native: 'ok' in native ? native.recipe : native };
 }
 
 /** One-tap characters. Each is a complete starter look; `label` is what the button says. */
 export const PRESETS = Object.freeze([
-  { id: 'street', label: 'Street', look: { body: 'man', hair: 'fade', outfit: 'hoodie', fabric: 'plain', skin: 'skin-5', hairColor: 'black', outfitColor: 'blue', bottomsColor: 'navy' } },
-  { id: 'owambe', label: 'Owambe', look: { body: 'woman', hair: 'gele', outfit: 'owambe', fabric: 'aso-oke', skin: 'skin-4', hairColor: 'black', outfitColor: 'gold', bottomsColor: 'violet' } },
-  { id: 'office', label: 'Office', look: { body: 'woman', hair: 'bun', outfit: 'office', fabric: 'plain', skin: 'skin-3', hairColor: 'dark-brown', outfitColor: 'cream', bottomsColor: 'navy' } },
-  { id: 'sporty', label: 'Sporty', look: { body: 'man', hair: 'low-cut', outfit: 'jersey', fabric: 'plain', skin: 'skin-6', hairColor: 'black', outfitColor: 'green', bottomsColor: 'cream' } },
-  { id: 'chill', label: 'Chill', look: { body: 'woman', hair: 'braids', outfit: 'casual', fabric: 'ankara', skin: 'skin-6', hairColor: 'soft-black', outfitColor: 'orange', bottomsColor: 'teal' } },
-].map((preset) => Object.freeze({ ...preset, look: Object.freeze(preset.look) })));
+  { id: 'street', label: 'Street', look: { body: 'man', hair: 'low-cut', outfit: 'casual', fabric: 'plain', skin: 'skin-5', hairColor: 'black', outfitColor: 'blue', bottomsColor: 'navy' } },
+  { id: 'office', label: 'Office', look: { body: 'woman', hair: 'ponytail', outfit: 'office', fabric: 'plain', skin: 'skin-3', hairColor: 'dark-brown', outfitColor: 'cream', bottomsColor: 'navy' } },
+  { id: 'chill', label: 'Chill', look: { body: 'woman', hair: 'braids', outfit: 'casual', fabric: 'plain', skin: 'skin-6', hairColor: 'soft-black', outfitColor: 'orange', bottomsColor: 'teal' } },
+  { id: 'evening', label: 'Evening', look: { body: 'man', hair: 'classic', outfit: 'office', fabric: 'plain', skin: 'skin-4', hairColor: 'black', outfitColor: 'navy', bottomsColor: 'cream' } },
+].map((preset, index) => {
+  const migrated = nativeRecipeForLook(preset.look, `starter:${preset.id}`)
+  const garments = ['female-casual-02', 'formal-suit-01', 'female-casual-01', 'male-worksuit-01'] as const
+  const native = normalizeNativeRecipe({ ...migrated, appearance: { ...migrated.appearance, garments: [garments[index]!] } })
+  return Object.freeze({ ...preset, look: Object.freeze({ ...preset.look, native }) })
+}));
 export const presetLook = (id: string): Look | null => { const preset = PRESETS.find((item) => item.id === id); return preset ? starterLook(preset.look) : null; };
 
 /** A random look a new Sim may wear. */
 export function shuffleLook(random: () => number): Look {
   const body = pick(APPEARANCE.bodies, random).id;
   // Always valid by construction, so never null.
-  return starterLook({ body, hair: pick(starterStyles('hair', body), random), outfit: pick(starterStyles('outfit', body), random), fabric: pick(APPEARANCE.fabrics, random),
+  const legacy = { body, hair: pick(starterStyles('hair', body), random), outfit: pick(starterStyles('outfit', body), random), fabric: pick(APPEARANCE.fabrics, random),
     skin: pick(APPEARANCE.skin, random).id, hairColor: pick(APPEARANCE.hairColours, random).id, outfitColor: pick(APPEARANCE.outfitColours, random).id, bottomsColor: pick(APPEARANCE.outfitColours, random).id,
-    accessories: random() < 0.35 ? [pick(ACCESSORY_BASICS, random)] : [], face: pick(APPEARANCE.faces, random), expression: pick(APPEARANCE.expressions, random) }) as Look;
+    accessories: [], face: pick(APPEARANCE.faces, random), expression: pick(APPEARANCE.expressions, random) }
+  const migrated = nativeRecipeForLook(legacy, Math.floor(random() * 0x100000000))
+  const native = normalizeNativeRecipe({ ...migrated, appearance: { ...migrated.appearance,
+    body: body === 'man' ? 'male' : 'female', hair: pick(NATIVE_CHARACTER_CATALOG.hair, random).id,
+    garments: [pick(NATIVE_CHARACTER_CATALOG.garments, random).id], shoes: pick(NATIVE_CHARACTER_CATALOG.shoes, random).id,
+    eyeColor: pick(NATIVE_CHARACTER_CATALOG.eyeColors, random).id } })
+  return starterLook({ ...legacy, native }) as Look;
 }
 /** The same look with the other body: the hairstyle and outfit are kept when that body has them. */
 export function withBody(look: Look, requested: string): Look {
-  if (!APPEARANCE.bodies.some((item) => item.id === requested) || look.body === requested) return look;
-  const body = requested as BodyId; // one of the known bodies, as checked above
+  const nativeBody = requested === 'female' || requested === 'woman' ? 'female' : requested === 'male' || requested === 'man' ? 'male' : null
+  if (!nativeBody) return look
+  const body = (nativeBody === 'female' ? 'woman' : 'man') as BodyId
+  if (look.body === body && look.native?.appearance.body === nativeBody) return look
   const keep = <K extends StyleKind>(kind: K): StyleOf<K> => {
     const kept = look[kind] as StyleOf<K>;
     return starterStyles(kind, body).includes(kept) ? kept : starterStyles(kind, body)[0] as StyleOf<K>;
   };
-  return { ...look, body, hair: keep('hair'), outfit: keep('outfit') };
+  const native = nativeRecipeForLook(look, JSON.stringify(look))
+  return { ...look, body, hair: keep('hair'), outfit: keep('outfit'), native: normalizeNativeRecipe({ ...native, appearance: { ...native.appearance, body: nativeBody } }) };
 }
 
 // ---- the draft -----------------------------------------------------------------------------

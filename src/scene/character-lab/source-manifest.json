@@ -1,0 +1,329 @@
+{
+  "schema": "allworld-foreground-package",
+  "version": 1,
+  "selectedMotion": "refined",
+  "sourceCatalog": "/models/final-pass-20261015/catalog.json",
+  "generatedAt": "2026-10-15T17:45:55.192Z",
+  "files": [
+    {
+      "path": "public/character-lab/models/candidates/iteration2-upper-palm.glb",
+      "bytes": 652660,
+      "sha256": "337549dff096fee3a539fa661d6941875778834a8a024a6ff21237d5908d7cba"
+    },
+    {
+      "path": "public/character-lab/models/candidates/motion-iteration2-upper-palm.json",
+      "bytes": 16608,
+      "sha256": "af3d9fb954f33cdf287e81ca7f338055b9a370f9cb99ab88f292ae0921e7df37"
+    },
+    {
+      "path": "public/character-lab/models/final-pass-20261015/catalog.json",
+      "bytes": 565494,
+      "sha256": "26a891ee8cdce317388d6814f291b085bc9fe5c06088c91a5cac5b0a7c016c4d"
+    },
+    {
+      "path": "public/character-lab/models/round4/female/base.glb",
+      "bytes": 2632124,
+      "sha256": "1c56eb28beb94d1ec8e120ef32bda97f4f173b22b8d01d9da596db619d5a562c"
+    },
+    {
+      "path": "public/character-lab/models/round2/female/hair/short01.glb",
+      "bytes": 545056,
+      "sha256": "34dff85c656a6d96dabe10fe47b5982f109b5bb7e14cb16c57e54193815aeb2c"
+    },
+    {
+      "path": "public/character-lab/models/round2/male/hair/short01.glb",
+      "bytes": 545376,
+      "sha256": "20b617bd4e1e1ff7e2f21b29342c7326ce3aac6142fa6719eec56d8661dab7d5"
+    },
+    {
+      "path": "public/character-lab/models/round2/female/hair/short02.glb",
+      "bytes": 423264,
+      "sha256": "2dd190d5c212ff5794084ef209ff738d8b4adfd2f2051d9d026dd5dae8f20a89"
+    },
+    {
+      "path": "public/character-lab/models/round2/male/hair/short02.glb",
+      "bytes": 423580,
+      "sha256": "9b97ad7586c69eb145422f2301fc1b370ea299d6e8f128d0ac157887909d7c0c"
+    },
+    {
+      "path": "public/character-lab/models/round2/female/hair/bob01.glb",
+      "bytes": 588188,
+      "sha256": "cfb13d5dc9c23b403c5649e1cc450770c4e986b15687e89f9f8afe9780b94039"
+    },
+    {
+      "path": "public/character-lab/models/round2/male/hair/bob01.glb",
+      "bytes": 589080,
+      "sha256": "ddc1c2e4e54865998a7638fe96fca23de04b233a42121bbf10e1afe06f241b86"
+    },
+    {
+      "path": "public/character-lab/models/round2/female/hair/afro01.glb",
+      "bytes": 592472,
+      "sha256": "c7ed79cc917d50668871b96cdba2b357701bcebc8595ee05e515fb06f57aa664"
+    },
+    {
+      "path": "public/character-lab/models/round2/male/hair/afro01.glb",
+      "bytes": 592792,
+      "sha256": "75fefaa0729d9cc1b0c886fd86cc13dfa359c5101f190e6446e15b51aef016f6"
+    },
+    {
+      "path": "public/character-lab/models/round2/female/hair/braid01.glb",
+      "bytes": 615632,
+      "sha256": "1d275267d71dff14d3a826947aee1a88dd048aa9e1fac7080f66ec21a032dee6"
+    },
+    {
+      "path": "public/character-lab/models/round2/male/hair/braid01.glb",
+      "bytes": 616072,
+      "sha256": "bd76fb675d5dd87091aca14bafa6da02d34d78aa3b52c886356c6fae915e6578"
+    },
+    {
+      "path": "public/character-lab/models/round2/female/hair/ponytail01.glb",
+      "bytes": 682084,
+      "sha256": "85c450dec0508c7b5fef3b7ea17285ec4549ea283fe75e6abadf0e24b39c27ec"
+    },
+    {
+      "path": "public/character-lab/models/round2/male/hair/ponytail01.glb",
+      "bytes": 682268,
+      "sha256": "466357d580f15487f867c36e6386b39ee627aaad6ad151bc1dab96c80eb654ca"
+    },
+    {
+      "path": "public/character-lab/models/round4/female/garments/female-casual-01.glb",
+      "bytes": 1978712,
+      "sha256": "1c54d93e1a0d8f26281164920f9b7c924c9f92d0cb2d77ae630f1477fbe1105e"
+    },
+    {
+      "path": "public/character-lab/models/round4/male/garments/female-casual-01.glb",
+      "bytes": 1975852,
+      "sha256": "f1d2a89e1834f0894fb4a4a2b6ec368eff4a6f0ec03b843a2a1bbcf516492a36"
+    },
+    {
+      "path": "public/character-lab/models/round4/female/garments/female-casual-02.glb",
+      "bytes": 2035900,
+      "sha256": "71e8754825349436c1cfb7d7ac439a72ecb09452516635e8e0ffc8b091d7fc15"
+    },
+    {
+      "path": "public/character-lab/models/round4/male/garments/female-casual-02.glb",
+      "bytes": 2033592,
+      "sha256": "fca459df121a6fd54b5b67e139328c4ae1e804c42aeeeba4d5882b4b0743a677"
+    },
+    {
+      "path": "public/character-lab/models/final-pass-20261015/female/garments/female-elegant-01.glb",
+      "bytes": 534504,
+      "sha256": "2dc778f6e20a0c27bbf1195a7d69a3ff91f6255d50a61a954dbe17adc8902f95"
+    },
+    {
+      "path": "public/character-lab/models/final-pass-20261015/male/garments/female-elegant-01.glb",
+      "bytes": 523848,
+      "sha256": "ae2785ca9bbe2da99271882dd90382e64a8b1f67f8418ecb70621693c10d9d78"
+    },
+    {
+      "path": "public/character-lab/models/round4/female/garments/female-sport-01.glb",
+      "bytes": 1170080,
+      "sha256": "4585afb1ee8f50828f3fa49bea2b06aa28d4691b08e5c31bb38616be89b46b7b"
+    },
+    {
+      "path": "public/character-lab/models/round4/male/garments/female-sport-01.glb",
+      "bytes": 1168916,
+      "sha256": "29fdd0633c65b9037216cee366e4941bfb90960a9d0ea40efb5aa9919d8f6a48"
+    },
+    {
+      "path": "public/character-lab/models/round4/female/garments/male-worksuit-01.glb",
+      "bytes": 2746684,
+      "sha256": "d7fcbb8814411a92c532d1f205d7dd22b01b379004113a605aaf3b89319471ff"
+    },
+    {
+      "path": "public/character-lab/models/round4/male/garments/male-worksuit-01.glb",
+      "bytes": 2730260,
+      "sha256": "c47a43948975b3e16b16f20027684b9a75af8d26afbcfc8c1f6bba53bf4030a4"
+    },
+    {
+      "path": "public/character-lab/models/round4/female/garments/formal-suit-01.glb",
+      "bytes": 1741552,
+      "sha256": "4d06db9427a3b8a21022e6e7c24545934471596413dee16aac0f6afb37bcaee3"
+    },
+    {
+      "path": "public/character-lab/models/round4/male/garments/formal-suit-01.glb",
+      "bytes": 1728608,
+      "sha256": "41788e3e2a61860de6060ad3ce432252f7358f7168b530a91a8f52cf095a9063"
+    },
+    {
+      "path": "public/character-lab/models/final-pass-20261015/female/garments/fitted-skirt-01.glb",
+      "bytes": 424660,
+      "sha256": "0862fdee85ee1d98034a16ff32110c8c1719b1814cc82f1dae27a10f5e570991"
+    },
+    {
+      "path": "public/character-lab/models/final-pass-20261015/male/garments/fitted-skirt-01.glb",
+      "bytes": 422780,
+      "sha256": "7b8157618c46b57fd900907a7f86227fdfebb615ee919f4fee98dda3210a2834"
+    },
+    {
+      "path": "public/character-lab/models/round2/female/shoes/shoes01.glb",
+      "bytes": 796832,
+      "sha256": "83a932085712b05e96dadc7076c3c3f539ad3237990a5a7025067e64d502bb66"
+    },
+    {
+      "path": "public/character-lab/models/round2/male/shoes/shoes01.glb",
+      "bytes": 797148,
+      "sha256": "e0f53ef35bc2a006473577ccf894537eac5f282e7df1a11c6b9597ae1b4a5ba8"
+    },
+    {
+      "path": "public/character-lab/models/round2/female/shoes/shoes02.glb",
+      "bytes": 529552,
+      "sha256": "b9679812ba486371f815845fac7da4ba531a1096ff77117d0bb4896564daf68a"
+    },
+    {
+      "path": "public/character-lab/models/round2/male/shoes/shoes02.glb",
+      "bytes": 529916,
+      "sha256": "1959d355e630f1f2e55473d45465d187158361a911561b020b927f3011b1dcdb"
+    },
+    {
+      "path": "public/character-lab/models/round2/female/shoes/shoes03.glb",
+      "bytes": 264148,
+      "sha256": "9d051b51ae853d20a55859d1ef6d92b4e9d3ec71372a7dfa49e021c99f25df84"
+    },
+    {
+      "path": "public/character-lab/models/round2/male/shoes/shoes03.glb",
+      "bytes": 264412,
+      "sha256": "dadfe26f170f4078ddb63fab71e42bf1d9c4fe11fb2adad5708cc499294866ec"
+    },
+    {
+      "path": "public/character-lab/models/eyes/brown.jpg",
+      "bytes": 26079,
+      "sha256": "e235cd9266c5dd69f31714e95c80385397a2c4a33ef34cbda978e872acfd0e33"
+    },
+    {
+      "path": "public/character-lab/models/eyes/brown-light.jpg",
+      "bytes": 30888,
+      "sha256": "b643c46b283f7c58ce39b7240f38a25624ea3cc3bb701c5bcbcf7f1ea6f2093f"
+    },
+    {
+      "path": "public/character-lab/models/eyes/blue.jpg",
+      "bytes": 29614,
+      "sha256": "346b09e6ab6469211941daebd93a12e5a2ef18572ae07a6db6028e803b2b5606"
+    },
+    {
+      "path": "public/character-lab/models/eyes/green.jpg",
+      "bytes": 28243,
+      "sha256": "699fc412af3b0174f7aa5778b41b24ee65e1187110884e5cf722a842598a6623"
+    },
+    {
+      "path": "public/character-lab/models/eyes/grey.jpg",
+      "bytes": 28444,
+      "sha256": "09b0edd8db54894678de4051200c163c9b88ff8db575e78c0d330fa7d9107613"
+    },
+    {
+      "path": "public/character-lab/models/round12/female/garments/female-elegant-01.glb",
+      "bytes": 2720644,
+      "sha256": "ce698da5045fc54c9fde09047142c8492da85875c706a3e2a106bfdf2df4d9d7"
+    },
+    {
+      "path": "public/character-lab/models/round12/female/garments/fitted-skirt-01.glb",
+      "bytes": 2713188,
+      "sha256": "ab879ecedfeffb3380d0a22cf47c8c0748db1e0f3ff94243eb0f8b193a114f21"
+    },
+    {
+      "path": "public/character-lab/models/skin-medium.jpg",
+      "bytes": 139145,
+      "sha256": "1ef34386d339d0eebb336448500dc34a5b65e2b0c3f43b6446bec215cd0803f9"
+    },
+    {
+      "path": "public/character-lab/models/skin-light.jpg",
+      "bytes": 138313,
+      "sha256": "7e46471fd23ddec862eb99b7c7a1a474bee6d7bac8bee214b56ca06c15799b9b"
+    },
+    {
+      "path": "public/character-lab/models/round4/male/base.glb",
+      "bytes": 3460568,
+      "sha256": "42456b825e124bbf7562e6abd10968a519c267ecec443ee3a96b153d67e84eb0"
+    },
+    {
+      "path": "public/character-lab/models/round12/male/garments/female-elegant-01.glb",
+      "bytes": 2725880,
+      "sha256": "cb1cfa017a27cb1c08a1d21d86b056861e7e13751b45fbd39d04c0819a42e740"
+    },
+    {
+      "path": "public/character-lab/models/round12/male/garments/fitted-skirt-01.glb",
+      "bytes": 2711260,
+      "sha256": "6fd75e6b70aab8337c983dab5391f2ef22d37a319b9bb7548bd3c4313dc89c14"
+    },
+    {
+      "path": "public/character-lab/models/round2/male/textures/skin-medium.jpg",
+      "bytes": 190203,
+      "sha256": "fd481e142fc435f6eac19f68ba068aa0ba0e85e2fe26aedc1d0a845ebe97e654"
+    },
+    {
+      "path": "public/character-lab/models/round2/male/textures/skin-light.jpg",
+      "bytes": 190666,
+      "sha256": "dcedc9a25c0fe40d8a95cb773e1ec08fa6aaf1efe8d8ed7db3f39b09715daf8a"
+    },
+    {
+      "path": "runtime/characters.js",
+      "bytes": 44265,
+      "sha256": "567b50c6d6bcef1dbcda648a61472d91c83122c523dc3062857ea4a1bd5f294f"
+    },
+    {
+      "path": "runtime/foot-planting.js",
+      "bytes": 14884,
+      "sha256": "9937887bb5fcaa9819e9064fb30172879fb3bbf331c6a1131afc31f89e241d48"
+    },
+    {
+      "path": "runtime/knee-alignment.js",
+      "bytes": 8022,
+      "sha256": "3df5344ba327b93ca874d36d0ddfa6d3817abb7582bc522c7e1567d5064ab5d9"
+    },
+    {
+      "path": "runtime/rig-motion.js",
+      "bytes": 1841,
+      "sha256": "5ebe209fe4c2558dbcb765696d1b195f0c555197705cf26603b336243cac3519"
+    },
+    {
+      "path": "runtime/rig-motion-world.js",
+      "bytes": 3048,
+      "sha256": "36edd811777841b08ddfc9a78a9239954ccab08f4fa6c801ba8cb66e380219df"
+    },
+    {
+      "path": "runtime/seated-drape.js",
+      "bytes": 2143,
+      "sha256": "21083f1e1e331c9a3a37a3900dc33ffb918473b2bf90d49ecfcf0f2ff1074d7b"
+    },
+    {
+      "path": "runtime/gait-cloth.js",
+      "bytes": 1562,
+      "sha256": "2bec5bec2febe3ebbcd51d46599ceb14d13a58e71cbfd7233ea65a092ce5a5fe"
+    },
+    {
+      "path": "runtime/action-support.js",
+      "bytes": 12692,
+      "sha256": "6db97c7ece32b9a7789a20921a0db74c41dba00ab4630ea8e41ce4a63ce7db1f"
+    },
+    {
+      "path": "runtime/seated-contact.js",
+      "bytes": 4941,
+      "sha256": "cc2de146f3ea2ca4116c0c03e2fa101dded0367509324fa0b189fe742dad6e5f"
+    },
+    {
+      "path": "runtime/foreground-characters.mjs",
+      "bytes": 3459,
+      "sha256": "99ebae66cd55d923da8ec6655fe4ccc699342f871b36d07cdc537e3d88b1d31f"
+    },
+    {
+      "path": "runtime/look-recipe-adapter.mjs",
+      "bytes": 7310,
+      "sha256": "7f585609181daec818ac4ac3634075f62755fe2133ede83a041b587ffe896a9c"
+    },
+    {
+      "path": "runtime/selected-profile.mjs",
+      "bytes": 626,
+      "sha256": "17d388209854e6bd3190d68d4b65f300bb3c25a71ef1d1c98f52607127b84846"
+    },
+    {
+      "path": "public/character-lab/THIRD_PARTY_NOTICES.md",
+      "bytes": 15801,
+      "sha256": "708fba7c5714dcf5ccecc2efc5e7cbcabe45af8cb6592976e26f692eac7c720e"
+    },
+    {
+      "path": "public/character-lab/FINAL-PASS-LICENSE-NOTE.md",
+      "bytes": 758,
+      "sha256": "8c38880dc5277c91ef4520aa298bbcee15ff5d9e35f1cab1935953953086a25b"
+    }
+  ]
+}

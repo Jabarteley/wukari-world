@@ -25,6 +25,7 @@ export const SETTLE_SPREAD_MS = 100_000
 /** Walking pace in scene units a second. */
 export const PACE: readonly [number, number] = [1.35, 1.95]
 const STEP = 0.55
+export const AMBIENT_STRIDE_DISTANCE = STEP * 2
 
 export type Role = 'walker' | 'sitter' | 'stander' | 'talker' | 'caller'
 export type Mode = 'walk' | 'stand' | 'sit'

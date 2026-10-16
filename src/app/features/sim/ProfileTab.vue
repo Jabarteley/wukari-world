@@ -18,8 +18,7 @@ import ResidenceCard from '../locate/ResidenceCard.vue'
 import SettleNotice from '../start/SettleNotice.vue'
 import LookEditor from '../start/LookEditor.vue'
 import LookStage from '../start/LookStage.vue'
-import { chooseLook, lookSummary, sameLook } from '../start/lookModel.ts'
-import type { LookField } from '../start/lookModel.ts'
+import { lookSummary, sameLook } from '../start/lookModel.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import { saveFailure, saveState } from './profileModel.ts'
 import { draft, form, saved } from './profileState.ts'
@@ -53,10 +52,6 @@ let focusKey = ''
 /** The form was redrawn: the keyboard stays where it was. */
 function redraw(): void {
   if (focusKey) void nextTick(() => document.querySelector<HTMLElement>(`[data-profile] [data-key="${CSS.escape(focusKey)}"]`)?.focus({ preventScroll: true }))
-}
-function onChoose(field: LookField, value: string): void {
-  if (!current.value) return
-  draft.value = { ...current.value, look: chooseLook(current.value.look, field, value, view.value.onboarding.wardrobe) }
 }
 function replaceLook(look: Look): void { if (current.value) draft.value = { ...current.value, look } }
 // A saved change from elsewhere replaces the draft: the pieces draw it again.
@@ -105,8 +100,8 @@ async function submit(): Promise<void> {
       </div>
     </div>
     <h3>Appearance</h3>
-    <p class="sim-hint">Colours are free. New hairstyles, outfits and fabrics come from Phone → Boutique.</p>
-    <LookEditor :look="current.look" :owned="onboarding.wardrobe" @choose="onChoose" @replace="replaceLook" />
+    <p class="sim-hint">Detailed face, body and colours are free. Native hairstyles, fitted outfits and shoes come from Phone → Boutique.</p>
+    <LookEditor :look="current.look" :owned="onboarding.wardrobe" @replace="replaceLook" />
     <LgaCard v-if="onboarding.done && !view.estate.settle" />
     <ResidenceCard v-if="onboarding.done" />
     <p v-if="form.error" class="sim-error" role="alert">{{ form.error }}</p>

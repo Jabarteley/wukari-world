@@ -419,7 +419,7 @@ test('Cloudflare: an Ogun trip survives the object sleeping; the fare is charged
   const opened = await f.request('/api/session', { name: 'Ada', onboarding: true });
   const a = { ...(await opened.json()).session, cookie: (opened.headers.get('set-cookie') as string).split(';')[0] as string };
   const step = async (type: string, payload: object = {}, cityId = 'lagos') => (await (await f.action(a, { type, payload, cityId })).json());
-  assert.equal((await step('onboarding.quick-start', { look: (await import('../src/quick-start/look-model.ts')).presetLook('owambe') })).ok, true);
+  assert.equal((await step('onboarding.quick-start', { look: (await import('../src/quick-start/look-model.ts')).presetLook('chill') })).ok, true);
   for (const [type, payload] of [['onboarding.traits', { traits: ['smooth-talker', 'clean-pikin'] }], ['onboarding.dream', { dream: 'everybodys-padi' }], ['onboarding.lottery', {}], ['onboarding.home', { lga: 'ikeja', via: 'manual' }]] as const) assert.equal((await step(type, payload)).ok, true, type);
   const before = (await f.life(a)).cash;
   const sent = await step('estate.relocate', { to: 'ota', mode: 'road' });
@@ -726,7 +726,7 @@ async function combined(t: TestContext, overrides?: Record<string, unknown>) {
     return run(who, 'work', 'helper-shift');
   }
   /** What the landing does when Play is tapped: a session for the name, then the look, confirmed exactly once. */
-  async function play(name: string, { preset = 'owambe', joining = false, device }: { preset?: string; joining?: boolean; device?: string } = {}) {
+  async function play(name: string, { preset = 'chill', joining = false, device }: { preset?: string; joining?: boolean; device?: string } = {}) {
     const opened = await f.request('/api/session', { name, onboarding: true });
     assert.equal(opened.status, 200);
     const who = { name, cookie: (opened.headers.get('set-cookie') as string).split(';')[0] as string, id: (await opened.json()).session.id, device };

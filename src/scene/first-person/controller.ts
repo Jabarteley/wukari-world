@@ -121,7 +121,7 @@ export function createFirstPerson(source: SceneViewSource, inputAllowed: () => b
       bob: preferences.bob, reducedMotion: reduced?.matches })
     // The home object sequence moves its body independently of the navigation waypoint.
     // Follow that rendered head during seats, beds and door motion; walking keeps optional bob only.
-    const head = !context.moving && bodies[1]?.getObjectByName('Head')
+    const head = !context.moving && (bodies[1]?.getObjectByName('head') ?? bodies[1]?.getObjectByName('Head'))
     const lying = Boolean(head && bodies[1]?.userData.canonicalCharacter && (pose === 'lie' || pose === 'sleep'))
     if (head && scene) {
       head.updateWorldMatrix(true, false); head.getWorldPosition(bodyEye); scene.worldToLocal(bodyEye)

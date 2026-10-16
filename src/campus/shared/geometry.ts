@@ -48,7 +48,10 @@ export function measureScene(root: Object3D): SceneMeasure {
     meshes++;
     const g = mesh.geometry;
     geometries.add(g);
-    triangles += ((g.index?.count ?? g.attributes['position']!.count) / 3) * (flags.isInstancedMesh ? (object as InstancedMesh).count : 1);
+    const available = g.index?.count ?? g.attributes['position']?.count ?? 0;
+    const start = Math.max(0, Math.floor(g.drawRange.start));
+    const active = Math.max(0, Math.min(available - start, g.drawRange.count));
+    triangles += Math.floor(active / 3) * (flags.isInstancedMesh ? (object as InstancedMesh).count : 1);
     drawCalls += Array.isArray(mesh.material) ? Math.max(1, g.groups.length) : 1;
   });
   return { triangles, drawCalls, meshes, geometries: geometries.size, lights };

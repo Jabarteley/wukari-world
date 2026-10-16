@@ -108,8 +108,8 @@ On the branch already: `scripts/assets/` (fetch-pack, prepare, budget, credits, 
   characters, 1,500 for props and cars, WebP textures at 1K); want lists per game within 1.5 MB brotli each (fight: a ring or street
   arena and two rigged characters with punch, kick, block and hit; race: 4–6 cars with separate wheels, track pieces, barriers, a
   grandstand; football: pitch, goals, ball, four players); credits generated from all manifests and shown in Help; a style note
-  (`docs/ASSET-PIPELINE.md`) on matching the Allworld low-poly look, and Blender MCP's honest role (automating cleanup and glTF
-  export, not generating characters). Join the manifest format with Phase 1's checker.
+  (`docs/ASSET-PIPELINE.md`) on matching the Allworld look, and the Blender pipeline below ("Making our own assets with Blender").
+  Join the manifest format with Phase 1's checker.
 - **Done when:** three want lists produce packs within budget with correct manifests; credits appear in Help; the checker accepts
   them; live (the packs load lazily with their games).
 
@@ -128,6 +128,25 @@ the browser allows it (the Gamepad haptics API), and the same inputs feeding the
 and a thumb player are on equal terms and replays stay exact. One shared input module (`src/arena/input/`) used by all three games,
 tested with a fake gamepad object; a settings page listing the mapping; a note in docs/CARTRIDGES.md so outside cartridges get it
 free. Check on a real pad over Bluetooth on Android Chrome and on a desktop browser, and record what worked.
+
+**Making our own assets with Blender (the owner's words, 16 October).** You may, and should, install Blender (free, GPL, used only
+as a tool: nothing it produces is GPL) on the machine you work on and make our own realistic assets with it, for the world itself
+(characters, clothes, buildings, danfo and okada, market stalls, furniture, props) and for the mini games (arenas, cars, tracks,
+pitches, rigged characters with animations). "Our own" assets made this way need no licence beyond the repository's and are listed
+in the manifest with source `own` and the `.blend` source committed under `assets-src/` (keep each under 10 MB; Git LFS if the repo
+already uses it, otherwise a zipped source). Drive Blender from scripts, not by hand, so an asset can be rebuilt: `blender
+--background --python scripts/assets/blender/<name>.py` builds the model, bakes lighting and ambient occlusion into textures, sets
+LODs and exports GLB (metres, Y-up, Draco or meshopt as in Phase A). Use Blender's own tools for realism within the budgets: real
+proportions and reference photos of Lagos streets, PBR materials baked to one texture atlas per asset (1K, WebP; 2K only for a
+hero asset and only when measured within budget), rigged characters with Rigify or an equivalent and animation clips (idle, walk,
+run, punch, kick, block, hit, celebrate) exported as named actions, vehicles with separate wheels and a collision shape. Prefer
+free add-ons and generators that are MIT, Apache or CC0 (procedural buildings, trees, crowd clothing); record each in
+`docs/ASSET-PIPELINE.md`. Blender MCP or any other assistant-driven Blender bridge is allowed for speed, but the committed script
+is the source of truth, not the chat. Realism never breaks the budgets: the first-download limits in `src/budgets.ts` stay, every
+cartridge stays under 1.5 MB brotli, and the triangle caps in Phase A hold (ask for a raised cap for a named hero asset in
+STATUS.md if a game needs it, and keep going with the capped version). Each made asset is checked by the Phase A budget script and
+rendered in the game on a throttled phone profile before it is kept. If Blender cannot be installed where you work, say so in
+STATUS.md and fall back to the CC0 and CC BY packs; do not stop.
 
 ## Phase 4: polish Fight
 

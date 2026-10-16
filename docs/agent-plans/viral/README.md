@@ -78,7 +78,8 @@ There is no rollback: player data lives in the Worker's Durable Object. A bad re
 or apps in code, docs or commits (data sources and asset libraries may be named where their licence requires). Commit messages say
 what changed for the player or the code.
 
-**Assets and code we take in.** Only CC0, CC BY (attribution recorded in the pack's manifest and shown in credits) or our own; code
+**Assets and code we take in.** Only CC0, CC BY (attribution recorded in the pack's manifest and shown in credits) or our own
+(made with Blender from scripts committed in the repository; see PHASES.md, "Making our own assets with Blender"); code
 only under MIT, Apache 2.0 or BSD (never GPL in the client). Never copy a commercial game's models, sounds, names or art. Every
 asset is listed in a manifest with source, licence and size; CI checks it.
 

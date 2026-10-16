@@ -1,5 +1,6 @@
 // Shapes shared by the asset scripts: the "want list" a person edits (scripts/assets/wants/<pack>.json) and the manifest the
-// scripts write next to the files (public/assets/packs/<pack>/manifest.json). docs/ASSET-PIPELINE.md explains both.
+// scripts write (scripts/assets/manifests/<pack>.json) for the files they put in public/assets/packs/<pack>/. docs/ASSET-PIPELINE.md
+// explains both. The manifest is not shipped: the release package admits no JSON there, and the game does not need it.
 //
 // A manifest asset carries the cartridge asset fields (src/arena/cartridge.ts on the cartridge branch: path, licence, source,
 // author, attribution) under the same names and meanings, so a cartridge manifest can list pack files as they are
@@ -30,6 +31,8 @@ export const MANIFEST_FORMAT = 1
 /** Where packs live, from the repository root. The page address of a file is its path without `public`. */
 export const PACKS_ROOT = 'public/assets/packs'
 export const packPath = (pack: string, file: string): string => `${PACKS_ROOT}/${pack}/${file}`
+/** Where the manifests live, from the repository root. */
+export const MANIFESTS_ROOT = 'scripts/assets/manifests'
 export const assetUrl = (path: string): string => path.replace(/^public\//, '/')
 
 /** Triangle caps (counted over everything a file's scene draws). A refusal, not a warning: pick a lighter model. */

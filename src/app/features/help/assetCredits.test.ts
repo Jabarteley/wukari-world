@@ -1,14 +1,14 @@
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
-import { join } from 'node:path'
 import { test } from 'node:test'
-import { loadCredits, readCredits } from './assetCredits.ts'
+import { ASSET_CREDITS } from './asset-credits.generated.ts'
+import { assetCredits, readCredits } from './assetCredits.ts'
 
-test('the committed credits read into rows for every pack', () => {
-  const json = JSON.parse(readFileSync(join(import.meta.dirname, '..', '..', '..', '..', 'public', 'assets', 'credits.json'), 'utf8'))
-  const { required, thanks } = readCredits(json)
-  assert.equal(thanks.length, json.packs.length)
-  assert.equal(required.length, json.attributions.length)
+test('the generated credits read into a row for every pack', () => {
+  const data = ASSET_CREDITS as { packs: unknown[]; attributions: unknown[] }
+  const { required, thanks } = assetCredits()
+  assert.equal(thanks.length, data.packs.length)
+  assert.equal(required.length, data.attributions.length)
+  assert.ok(thanks.length > 0)
   for (const row of thanks) {
     assert.match(row.title, / by /)
     assert.ok(row.url === null || row.url.startsWith('https://'))
@@ -27,13 +27,4 @@ test('CC BY lines come first; bad links and unknown licences are left out', () =
   assert.deepEqual(thanks.map((r) => r.title), ['Kit by Maker'])
   assert.equal(thanks[0]!.detail, 'In race')
   assert.deepEqual(readCredits(null), { required: [], thanks: [] })
-})
-
-test('loading asks for /assets/credits.json and fails plainly on an error answer', async () => {
-  const asked: string[] = []
-  const ok = (async (url: string) => { asked.push(url); return new Response(JSON.stringify({ packs: [], attributions: [] })) }) as unknown as typeof fetch
-  assert.deepEqual(await loadCredits(ok), { required: [], thanks: [] })
-  assert.deepEqual(asked, ['/assets/credits.json'])
-  const bad = (async () => new Response('', { status: 404 })) as unknown as typeof fetch
-  await assert.rejects(loadCredits(bad), /HTTP 404/)
 })

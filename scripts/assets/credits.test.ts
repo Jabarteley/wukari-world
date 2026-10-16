@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { test } from 'node:test'
 import { readPacks } from './budget.ts'
-import { buildCredits, noticeProblems } from './credits.ts'
+import { CREDITS_MODULE, CREDITS_TXT, buildCredits, creditsModule, noticeProblems } from './credits.ts'
 import { model, packOf } from './fixtures.test-helper.ts'
 
 const LINE = '"Stadium" by A Maker, CC BY 4.0, via a model library (https://example.org/stadium)'
@@ -38,9 +38,8 @@ test('a malformed manifest stops the credits rather than leaving a file out', ()
 })
 
 test('the committed credits are what the packs produce', () => {
-  const root = join(import.meta.dirname, '..', '..')
-  const { json, text } = buildCredits(readPacks(join(root, 'public', 'assets', 'packs')).map((p) => p.manifest))
-  assert.equal(readFileSync(join(root, 'public', 'assets', 'CREDITS.txt'), 'utf8'), text)
-  assert.equal(readFileSync(join(root, 'public', 'assets', 'credits.json'), 'utf8'), `${JSON.stringify(json, null, 2)}\n`)
-  assert.deepEqual(noticeProblems(json, readFileSync(join(root, 'NOTICE.md'), 'utf8')), [])
+  const { json, text } = buildCredits(readPacks().map((p) => p.manifest))
+  assert.equal(readFileSync(CREDITS_TXT, 'utf8'), text, 'run scripts/assets/credits.ts')
+  assert.equal(readFileSync(CREDITS_MODULE, 'utf8'), creditsModule(json), 'run scripts/assets/credits.ts')
+  assert.deepEqual(noticeProblems(json, readFileSync(join(import.meta.dirname, '..', '..', 'NOTICE.md'), 'utf8')), [])
 })

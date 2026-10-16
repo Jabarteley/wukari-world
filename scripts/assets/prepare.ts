@@ -4,7 +4,7 @@
 //   node --experimental-strip-types scripts/assets/prepare.ts --file in.glb --out out.glb --kind vehicle [--fit y:1.4] [--z-up]
 //
 // For each model the want list names (scripts/assets/wants/<pack>.json), in place, recording the new size, triangle count and
-// the SHA-256 of the fetched bytes in the pack's manifest.json:
+// the SHA-256 of the fetched bytes in the pack's manifest (scripts/assets/manifests/<pack>.json):
 //   1. reads glTF/GLB, keeps one scene and drops everything it does not reach: meshes the list does not keep (`keepMeshes`),
 //      animations it does not name (`clips`, renamed to the game's names), unused materials and textures;
 //   2. scales to metres (`scale`, or `fit` one bounding axis to N metres) and turns Z-up models upright (glTF is Y-up);
@@ -138,11 +138,10 @@ export interface PrepareReport { as: string; game: Game; kind: string; triangles
 
 /**
  * Prepare every model the want list names inside `packDir` (files already fetched by fetch-pack.ts), writing the result over the
- * fetched file, adding any shared atlas, and updating manifest.json. Throws on the first refusal BEFORE writing anything, so a bad
+ * fetched file, adding any shared atlas, and updating the manifest at `manifestPath`. Throws on the first refusal BEFORE writing anything, so a bad
  * list never leaves a half-prepared pack. A model already prepared is left alone (preparing twice would scale it twice).
  */
-export function preparePack(packDir: string, want: WantList, options: { encode?: TextureEncoder; pack?: Packer; dry?: boolean } = {}): PrepareReport[] {
-  const manifestPath = join(packDir, 'manifest.json')
+export function preparePack(packDir: string, manifestPath: string, want: WantList, options: { encode?: TextureEncoder; pack?: Packer; dry?: boolean } = {}): PrepareReport[] {
   const manifest = JSON.parse(readFileSync(manifestPath, 'utf8')) as Manifest
   const entryOf = (file: string): ManifestAsset | undefined => manifest.assets.find((a) => a.path === packPath(want.pack, file))
   const items = want.want.filter((w) => !entryOf(w.as)?.prepared)
@@ -222,7 +221,7 @@ function cli(): void {
     const want = JSON.parse(readFileSync(join(repo, 'scripts', 'assets', 'wants', `${name}.json`), 'utf8')) as WantList
     const dir = join(repo, 'public', 'assets', 'packs', name)
     if (!existsSync(dir)) throw new Error(`${dir} does not exist; run fetch-pack.ts first`)
-    for (const r of preparePack(dir, want, { encode, pack, dry: args.includes('--dry') })) {
+    for (const r of preparePack(dir, join(repo, 'scripts', 'assets', 'manifests', `${name}.json`), want, { encode, pack, dry: args.includes('--dry') })) {
       console.log(`${r.game.padEnd(8)} ${r.kind.padEnd(9)} ${r.as.padEnd(28)} ${String(r.triangles).padStart(5)} tris  ${String(r.bytesBefore).padStart(8)} -> ${String(r.bytesAfter).padStart(7)} B  ${r.size ? `${r.size.join(' x ')} m` : ''}`)
     }
   } catch (error) {

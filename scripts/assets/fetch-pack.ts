@@ -4,8 +4,8 @@
 //   node --experimental-strip-types scripts/assets/fetch-pack.ts --all
 //
 // The want list is scripts/assets/wants/<pack>.json (shape in pack-types.ts). Output: public/assets/packs/<pack>/<as> for every
-// wanted file, LICENSE.txt (the source's own licence text; not for `own`), and manifest.json with, for each file, the source page,
-// licence, author, attribution text (CC BY only) and byte size. Run prepare.ts afterwards to clean, scale and compress the models.
+// wanted file, LICENSE.txt (the source's own licence text; not for `own`), and scripts/assets/manifests/<pack>.json with, for each
+// file, the source page, licence, author, attribution text (CC BY only) and byte size. Run prepare.ts afterwards to clean, scale and compress the models.
 //
 // Sources (docs/ASSET-PIPELINE.md says which were tried):
 //   kenney     kenney.nl asset page -> the zip link on the page; the page must say CC0.
@@ -38,6 +38,8 @@ export interface FetchOptions {
   fetchFn?: typeof fetch;
   /** Directory that holds the pack folders (default public/assets/packs). */
   outRoot?: string;
+  /** Directory that holds the manifests (default scripts/assets/manifests). */
+  manifestsRoot?: string;
   /** A zip already on disk (manual download); skips the download but not the licence checks. */
   archive?: Buffer;
   sleep?: (ms: number) => Promise<void>;
@@ -257,10 +259,14 @@ export async function fetchPack(want: WantList, options: FetchOptions = {}): Pro
       keepModel(item, bytes, { from: item.from });
     }
   }
+  // A fresh folder: files the list no longer wants do not linger.
+  rmSync(dir, { recursive: true, force: true });
   mkdirSync(dir, { recursive: true });
   for (const f of files) { mkdirSync(dirname(join(dir, f.name)), { recursive: true }); writeFileSync(join(dir, f.name), f.bytes); }
   const manifest: Manifest = { format: MANIFEST_FORMAT, pack: want.pack, name: want.name, kind: want.kind, page: want.page, author: want.author, licenceId: want.licenceId, fetched: (options.now ?? (() => new Date()))().toISOString().slice(0, 10), assets };
-  writeFileSync(join(dir, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
+  const manifests = options.manifestsRoot ?? join(repo, 'scripts', 'assets', 'manifests');
+  mkdirSync(manifests, { recursive: true });
+  writeFileSync(join(manifests, `${want.pack}.json`), `${JSON.stringify(manifest, null, 2)}\n`);
   return manifest;
 }
 

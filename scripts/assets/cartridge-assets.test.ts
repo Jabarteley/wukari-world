@@ -49,7 +49,7 @@ test('CC BY keeps its credit line; ours says Allworld', () => {
 })
 
 test('every game\'s files in the repository convert to entries the cartridge checker accepts', () => {
-  const manifests = readPacks(join(root, 'public', 'assets', 'packs')).map((p) => p.manifest)
+  const manifests = readPacks().map((p) => p.manifest)
   const notice = readFileSync(join(root, 'NOTICE.md'), 'utf8')
   for (const game of GAMES) {
     const entries = gameAssets(manifests, game)

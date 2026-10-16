@@ -54,14 +54,15 @@ test('a pack is prepared in place: models compressed, a texture shared within on
       { name: 'goal-big.glb', bytes: goal, kind: 'prop', game: 'football', triangles: 0, prepared: false },
     ])
     for (const [name, bytes] of p.files) writeFileSync(join(dir, name), bytes)
-    writeFileSync(join(dir, 'manifest.json'), JSON.stringify(p.manifest))
+    const manifestPath = join(dir, '..', `${dir.split('/').pop()}.json`)
+    writeFileSync(manifestPath, JSON.stringify(p.manifest))
     const want: WantList = { pack: 'kit', name: 'Kit', kind: 'kenney', page: 'https://example.org/kit', author: 'Maker', licenceId: 'CC0-1.0', want: [
       { from: 'a', as: 'goal.glb', game: 'football', kind: 'prop' },
       { from: 'b', as: 'goal-big.glb', game: 'football', kind: 'prop', scale: 2 },
     ] }
-    const report = preparePack(dir, want, { encode: encoder([]), pack: packer })
+    const report = preparePack(dir, manifestPath, want, { encode: encoder([]), pack: packer })
     assert.equal(report.length, 2)
-    const manifest = JSON.parse(readFileSync(join(dir, 'manifest.json'), 'utf8'))
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
     const atlas = manifest.assets.find((a: { kind: string }) => a.kind === 'texture')
     assert.match(atlas.path, /^public\/assets\/packs\/kit\/atlas-football-[0-9a-f]{8}\.webp$/)
     assert.equal(atlas.game, 'football')
@@ -75,7 +76,8 @@ test('a pack is prepared in place: models compressed, a texture shared within on
       assert.equal(entry.bytes, readFileSync(join(dir, name)).length)
     }
     // Preparing again leaves prepared models alone (it would scale them twice).
-    assert.deepEqual(preparePack(dir, want, { encode: encoder([]), pack: packer }), [])
+    assert.deepEqual(preparePack(dir, manifestPath, want, { encode: encoder([]), pack: packer }), [])
+    rmSync(manifestPath)
   } finally { rmSync(dir, { recursive: true, force: true }) }
 })
 
@@ -87,10 +89,10 @@ test('one bad model stops the pack before anything is written', () => {
       { name: 'big.glb', bytes: tinyGlb({ triangles: 2000 }), kind: 'prop', game: 'race', triangles: 0, prepared: false },
     ])
     for (const [name, bytes] of p.files) writeFileSync(join(dir, name), bytes)
-    writeFileSync(join(dir, 'manifest.json'), JSON.stringify(p.manifest))
+    writeFileSync(join(dir, 'kit.json'), JSON.stringify(p.manifest))
     const before = readFileSync(join(dir, 'ok.glb'))
     const want: WantList = { pack: 'kit', name: 'Kit', kind: 'kenney', page: 'https://example.org/kit', author: 'Maker', licenceId: 'CC0-1.0', want: [{ as: 'ok.glb', game: 'race', kind: 'prop' }, { as: 'big.glb', game: 'race', kind: 'prop' }] }
-    assert.throws(() => preparePack(dir, want, { pack: packer }), OverCapError)
+    assert.throws(() => preparePack(dir, join(dir, 'kit.json'), want, { pack: packer }), OverCapError)
     assert.ok(readFileSync(join(dir, 'ok.glb')).equals(before))
   } finally { rmSync(dir, { recursive: true, force: true }) }
 })

@@ -1,5 +1,4 @@
 import assert from 'node:assert/strict'
-import { join } from 'node:path'
 import { test } from 'node:test'
 import { checkBudget, readPacks } from './budget.ts'
 import { fakePng, model, packOf, tinyGlb } from './fixtures.test-helper.ts'
@@ -43,7 +42,7 @@ test('missing, resized, unlisted, unprepared and temporary files all fail', () =
   p.files.set('stray.bin', Buffer.from('x'))
   p.manifest.assets[1]!.bytes += 1
   const { problems } = checkBudget([p])
-  for (const re of [/a\.glb is listed but missing/, /b\.glb: manifest says \d+ bytes/, /b\.glb is not prepared/, /tex\.png is a fetched texture/, /stray\.bin is in the folder but not in manifest\.json/]) {
+  for (const re of [/a\.glb is listed but missing/, /b\.glb: manifest says \d+ bytes/, /b\.glb is not prepared/, /tex\.png is a fetched texture/, /stray\.bin is in the folder but not in its manifest/]) {
     assert.ok(problems.some((x) => re.test(x)), `${re} in\n${problems.join('\n')}`)
   }
 })
@@ -57,6 +56,15 @@ test('the brotli size per game is summed over every pack and held to the budget'
   assert.ok(both.brotliBytes > one.brotliBytes)
   const tight = checkBudget(packs, one.brotliBytes)
   assert.ok(tight.problems.some((p) => /football: \d+ bytes brotli, over the \d+ budget/.test(p)))
+})
+
+test('files the release package would refuse fail here first', () => {
+  const p = packOf('kit', [model('a.glb', 'race', 'prop', 1)])
+  p.files.set('notes.json', Buffer.from('{}'))
+  p.files.set('my model.glb', Buffer.from('x'))
+  const { problems } = checkBudget([p])
+  assert.ok(problems.some((x) => /notes\.json: the release package admits only/.test(x)))
+  assert.ok(problems.some((x) => /my model\.glb: the release package admits only/.test(x)))
 })
 
 test('licence texts never count against a game', () => {
@@ -80,7 +88,7 @@ test('manifest problems: licences outside CC0, CC BY and ours, CC BY without a c
 })
 
 test('the packs in the repository are within every cap and budget', () => {
-  const packs = readPacks(join(import.meta.dirname, '..', '..', 'public', 'assets', 'packs'))
+  const packs = readPacks()
   assert.ok(packs.length >= 4)
   const report = checkBudget(packs)
   assert.deepEqual(report.problems, [])

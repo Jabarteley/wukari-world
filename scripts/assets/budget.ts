@@ -3,11 +3,13 @@
 //   node --experimental-strip-types scripts/assets/budget.ts [--json]
 //
 // Fails (exit 1) and says why when any of these is wrong:
-//   - a manifest is malformed (pack-types.ts manifestProblems), lists a file that is missing or of another size, or a file in the
-//     pack folder is not listed;
+//   - a manifest (scripts/assets/manifests/<pack>.json) is malformed (pack-types.ts manifestProblems), lists a file that is missing
+//     or of another size, or a file in the pack folder is not listed, or a pack folder has no manifest;
 //   - a model is unprepared, or draws more triangles than the cap for its kind (CAPS: 3,000 a character, 1,500 a prop or car),
 //     or its manifest triangle count is not what the file draws;
 //   - a texture (embedded or a shared file) is over 1024 px on a side;
+//   - a file the release package would refuse (scripts/guard-joinallworld-package.mjs): only .glb, .png, .jpg, .jpeg, .webp and
+//     .txt with plain names, and a .glb of at most 2 MB;
 //   - the brotli (quality 11) size of every file tagged with a game, summed over all packs, is over 1.5 MB (the cartridge cap,
 //     DEFAULT_CAP_BROTLI in the cartridge contract). Licence texts and untagged files do not count.
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
@@ -29,6 +31,9 @@ export interface GameSize { game: Game; files: number; rawBytes: number; brotliB
 export interface BudgetReport { problems: string[]; games: GameSize[] }
 
 const isModel = (kind: string): kind is ModelKind => Object.hasOwn(CAPS, kind)
+/** What the release package admits under assets/ (scripts/guard-joinallworld-package.mjs), narrowed to what a pack holds. */
+const SHIPPABLE = /^(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.(?:glb|png|jpg|jpeg|webp|txt)$/
+const MAX_GLB_BYTES = 2 * 1024 * 1024
 
 /** Every problem across the packs, and the brotli size per game. Pure. */
 export function checkBudget(packs: readonly PackFiles[], budget = GAME_BUDGET_BYTES): BudgetReport {
@@ -75,7 +80,11 @@ export function checkBudget(packs: readonly PackFiles[], budget = GAME_BUDGET_BY
         t.brotli += brotliSize(bytes)
       }
     }
-    for (const name of files.keys()) if (name !== 'manifest.json' && !listed.has(name)) say(`${name} is in the folder but not in manifest.json`)
+    for (const [name, bytes] of files) {
+      if (!listed.has(name)) say(`${name} is in the folder but not in its manifest`)
+      if (!SHIPPABLE.test(name)) say(`${name}: the release package admits only .glb, .png, .jpg, .webp and .txt files with plain names`)
+      if (name.endsWith('.glb') && bytes.length > MAX_GLB_BYTES) say(`${name}: ${bytes.length} bytes, over the release package's 2 MB for a model`)
+    }
   }
   const games = GAMES.map((game) => {
     const t = totals.get(game)!
@@ -98,18 +107,23 @@ function filesUnder(dir: string): Map<string, Buffer> {
   return out
 }
 
-/** Every pack folder under `packsDir` with its manifest and files. A folder without manifest.json is an error. */
-export function readPacks(packsDir: string): PackFiles[] {
-  if (!existsSync(packsDir)) return []
-  return readdirSync(packsDir, { withFileTypes: true }).filter((d) => d.isDirectory()).sort((a, b) => a.name.localeCompare(b.name)).map((d) => {
-    const dir = join(packsDir, d.name)
-    if (!existsSync(join(dir, 'manifest.json'))) throw new Error(`${d.name}: no manifest.json`)
-    return { pack: d.name, manifest: JSON.parse(readFileSync(join(dir, 'manifest.json'), 'utf8')) as Manifest, files: filesUnder(dir) }
+export const PACKS_DIR = join(repo, 'public', 'assets', 'packs')
+export const MANIFESTS_DIR = join(repo, 'scripts', 'assets', 'manifests')
+
+/** Every pack: its manifest (`<manifestsDir>/<pack>.json`) and the files of its folder. A folder without a manifest, or a manifest without a folder, is an error. */
+export function readPacks(packsDir = PACKS_DIR, manifestsDir = MANIFESTS_DIR): PackFiles[] {
+  const folders = existsSync(packsDir) ? readdirSync(packsDir, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name) : []
+  const manifests = existsSync(manifestsDir) ? readdirSync(manifestsDir).filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5)) : []
+  for (const f of folders) if (!manifests.includes(f)) throw new Error(`public/assets/packs/${f} has no manifest in scripts/assets/manifests/`)
+  return manifests.sort().map((pack) => {
+    const dir = join(packsDir, pack)
+    if (!folders.includes(pack)) throw new Error(`scripts/assets/manifests/${pack}.json has no folder public/assets/packs/${pack}`)
+    return { pack, manifest: JSON.parse(readFileSync(join(manifestsDir, `${pack}.json`), 'utf8')) as Manifest, files: filesUnder(dir) }
   })
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
-  const packs = readPacks(join(repo, 'public', 'assets', 'packs'))
+  const packs = readPacks()
   const report = checkBudget(packs)
   if (process.argv.includes('--json')) console.log(JSON.stringify(report, null, 2))
   else {

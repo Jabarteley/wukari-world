@@ -1,6 +1,7 @@
-// The game-art credits the Help sheet shows (docs/ASSET-PIPELINE.md): read from /assets/credits.json, which
-// scripts/assets/credits.ts writes from the asset packs' manifests. Fetched only when a player opens the credits, never in the
-// first download. Anything unreadable is left out rather than shown half-formed; links must be https.
+// The game-art credits the Help sheet shows (docs/ASSET-PIPELINE.md), from asset-credits.generated.ts, which
+// scripts/assets/credits.ts writes from the asset packs' manifests. Only AssetCredits.vue imports this, and Help loads that only
+// when a player opens the credits: never in the first download. Anything unreadable is left out; links must be https.
+import { ASSET_CREDITS } from './asset-credits.generated.ts'
 
 export interface CreditRow { title: string; detail: string; url: string | null; licence: string; licenceUrl: string | null }
 export interface Credits { required: CreditRow[]; thanks: CreditRow[] }
@@ -33,8 +34,4 @@ export function readCredits(value: unknown): Credits {
   return { required, thanks }
 }
 
-export async function loadCredits(fetchFn: typeof fetch = fetch): Promise<Credits> {
-  const res = await fetchFn('/assets/credits.json', { cache: 'no-cache' })
-  if (!res.ok) throw new Error(`credits: HTTP ${res.status}`)
-  return readCredits(await res.json())
-}
+export const assetCredits = (): Credits => readCredits(ASSET_CREDITS)

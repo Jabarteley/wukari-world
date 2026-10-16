@@ -9,4 +9,5 @@ RESEARCH.md. The order of work and the questions below are waiting on the owner.
 2. Stakes: game money only, capped by the existing table-stakes limits, described as "stake" and "prize", no odds, no cash-out. Agreed?
 3. Which audience and platform for the first videos (for example Nigeria on TikTok and WhatsApp status; the UK on TikTok)?
 4. Clans: a size (for example 20), and whether clans can own a venue room.
-5. "Steam" in the brief: we read it as "the big game platforms people compare us with" (Roblox, Fortnite Creative, Steam). Correct?
+5. The brief named a PC game store: we read it as "the big game platforms people compare us with" (the PC store, the user-generated-game
+   platforms, the battle-royale creator mode). Correct?

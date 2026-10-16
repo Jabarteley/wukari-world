@@ -28,7 +28,7 @@ Each prompt asks for sources and dates, because the field moves fast and marketi
 
 ## 4. How the big platforms let others build inside them
 
-> Explain, with sources, how Roblox, Fortnite Creative (UEFN) and similar platforms let outside builders publish games inside the
+> Explain, with sources, how the two largest user-generated-game platforms (the one for children and teens with its own scripting language, and the battle-royale maker's creator mode) and similar platforms let outside builders publish games inside the
 > platform: the contract a game must meet, how identity, friends, currency and leaderboards are shared, how games are reviewed, how
 > creators are paid, and what their revenue shares are. Then list open-source or small platforms that tried the same in the browser
 > and what happened to them. We want to know what a "game cartridge" standard needs to cover.

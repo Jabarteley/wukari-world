@@ -54,12 +54,12 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | 3 Agent arena | live | `ee203d15` | see "Phase 3" |
 | A Asset pipeline | live | `c254d4327` | packs for all three games, credits in Help, Blender scripts |
 | 4 Polish Fight | live (3D, realistic fighters) | `f0f38db3` | see "Phase 4" |
-| 5 Polish Race | live (3D) | `f87981e1` | realistic cars later; see "Phase 5" |
-| 6 Polish Football | live (6a); 6b realistic footballers on `claude/viral-football-real` | | 3D, penalty shoot-out, `rev` 2; see "Phase 6" and "Phase 6b" |
+| 5 Polish Race | live (3D, the world's own saloons) | 5b releasing | see "Phase 5" and the log |
+| 6 Polish Football | live (3D, penalties); 6b realistic footballers on `claude/viral-football-real` | `d95ee616` | see "Phase 6" and "Phase 6b" |
 | 7 Videos (Nigeria first) | skipped | | the owner's decision, 16 October 2026 |
-| 8 Open the standard | not started | | owner decides when |
-| 9 Weekly city episode | not started | | |
-| 10 Measure and iterate | not started | | |
+| 8 Open the standard | being built (`claude/viral-cartridge-open`) | | guide, sample, review rules, submission path; announcing is the owner's |
+| 9 Weekly city episode | live | `f9e6b85a` | `/episode/<city>`, card in the Gist; docs/EPISODES.md |
+| 10 Measure and iterate | being built (`claude/viral-measure`) | | day-7 return split by clan and by talking to an agent |
 
 ## Phase 1 (16 October 2026)
 
@@ -327,6 +327,14 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: Phase 9 live at `f9e6b85a` (release 38931314939, smoke PASS; `/episode/lagos` answers 200 with real lines). The
+  weekly episode is built from the gist ledger, which keeps 14 days, so older weeks mostly read as quiet; accepted rather than a new
+  collection. No separate "last week" gist line (the league already announces its winner).
+- 2026-10-16: Phase 5b (Race draws the world's own saloons, red, blue, green, white; a lighter far model past 30 m; the Kenney cars
+  stay as the fallback on phones under 3 GB or if the world's cars are not there within 4 s). Measured: 32 calls, about 27,500
+  triangles with four cars; startup unchanged. Not verified: a real phone, four people racing.
+- 2026-10-16: Phase 6b reviewed and sent back: blocky keepers next to realistic outfield players, and a blocky 2v2, are below the
+  standard; reworking with the world's lighter native bodies for keepers, far players and 2v2.
 - 2026-10-16: Phase 4b live at `f0f38db3` (release 38921497112, smoke PASS): each fighter is the player's own native character, moved
   by fight clips we built in Blender (scripts/assets/blender/native-fight-clips.py; 24 clips, 310 KB); bots use only character pieces
   the world already loaded; the camera keeps them large and inside the ropes; startup unchanged. Checked live at 390x844 and 844x390:

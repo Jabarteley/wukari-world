@@ -281,3 +281,19 @@ export function orbitPose(track: Track, t: number): Pose3 {
 
 /** The seat a viewer without a car follows: the chosen one, else the leader. */
 export const followSeat = (chosen: number, cars: number, leader: number): number => (chosen >= 0 && chosen < cars ? chosen : leader)
+
+// ---- the world's own cars ------------------------------------------------------------------------------------------------------
+
+/** The saloon paint (a variant of src/models/vehicles) each seat drives: red, blue, green, and the plain file, which is white. One a seat, all different. */
+export const WORLD_SEAT_PAINT: readonly string[] = Object.freeze(['red', 'blue', 'green', ''])
+/** How long the screen waits for the world's cars before it draws the Kenney ones instead, ms. */
+export const WORLD_WAIT_MS = 4000
+/** Whether the world's cars are wanted here: not on a phone that reports under 3 GB of memory (the rule the Fight view follows); unknown memory is allowed. */
+export const worldCarsAllowed = (deviceMemory: number | undefined): boolean => deviceMemory === undefined || deviceMemory >= 3
+/** A car further than this from the camera is drawn with its lighter "-far" model (one mesh, wheels baked in), and back to the full one inside the near distance. */
+export const FAR_FROM_M = 30, NEAR_AGAIN_M = 24
+/** Whether a car at `distance` metres from the camera should be drawn with the far model, with a gap between the two limits so it does not flicker; the followed car never is. */
+export function farCar(distance: number, wasFar: boolean, followed: boolean): boolean {
+  if (followed) return false
+  return wasFar ? distance > NEAR_AGAIN_M : distance > FAR_FROM_M
+}

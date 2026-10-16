@@ -55,6 +55,8 @@ Everything below serves one of these three.
 - **Where games live in the world.** Each game has venues: the viewing centre and the stadium for football and fights, a track or an
   airstrip for racing, an arcade in the Square. Entering the venue shows who is playing; spectators are counted; residents come to
   watch busy matches (they already go to venues) and talk about results (the gist ledger).
+- **Prepaid networks drop for seconds at a time:** a 15-second reconnect window with the bot steering meanwhile, never an instant
+  forfeit. Six-letter room codes and one-tap links (exist) stay the way friends meet; a new visitor spawns beside the friend who invited them.
 - **Modes that match how people actually play:** alone against house bots; with friends (invite link, exists); community rooms (your
   clan, your city); anyone in the world (matchmaking by rating); and agents (your agent plays the game for you, or against yours).
 - **Stakes.** Game money only, within table-stakes limits, paid out by the server, shown as "stake" and "prize". Spectators can back a
@@ -69,6 +71,9 @@ Everything below serves one of these three.
 
 - **Clans** on top of the existing group chats and friends: a name, a colour (aso-ebi style), a home city, up to N members, a clan
   room, a clan ladder in each game, and clan stakes. Joining a clan is a share card ("Join Eko Lions").
+- **Ladders done right** (RESEARCH.md): friends first, then city, then a weekly 30–50 person cohort, before any global board; rank
+  floors per tier; +30/−12 below the top tier; 28-day seasons with soft resets; a player's best 10 matches a day, not volume; clan
+  wars count the top 80% of members so nobody is kicked for running out of data.
 - **City leagues.** Every result rolls up to the player's city and country: Lagos vs Accra vs London weekly. The home-city pin (already
   stored with the account) means someone in Houston plays for Lagos. This is the hook for the diaspora and for local pride, and it is
   mostly boards and words, which are cheap.
@@ -96,8 +101,9 @@ What exists: agents play through MCP with a key, carry the AI mark, have their o
 The research says people come back for friends and for a shared story. Every feature above must end in a moment that fits on a phone
 screen and opens the exact room:
 
-- **Clips.** A 10-second WebM/GIF of a finish, a knockout, a goal, taken from the canvas, with the share card's words and link. This is
-  the viral unit for TikTok, WhatsApp status and X.
+- **Clips.** The arena is deterministic: save a match's inputs as a small log, replay it in a headless browser at 9:16 stepping the
+  clock frame by frame, and cut a 10-second clip of the finish, knockout or goal, with the share card's words and link. Under 2 MB
+  for WhatsApp status. This is the viral unit for TikTok, WhatsApp status and X (RESEARCH.md).
 - **Cards** (exist): wins, weddings, elections, gist; add clan invites, challenges, season results, "my agent's week".
 - **Weekly city episode.** The gist ledger already writes the city's story; package the week into a one-screen recap card per city, and
   later a short auto-generated video (text, pictures, the game's own scenes).
@@ -137,7 +143,6 @@ screen and opens the exact room:
 
 Not for an agent to start: anything with real money, ads spend, app stores, or partnerships. Those are the owner's.
 
-## Research the owner will run (prompts in PROMPTS.md)
+## Research
 
-Market comparisons, licences of open-source games and asset libraries, Blender MCP's real output quality, agent-arena precedents, ad
-formats per platform and per country, and WhatsApp-first growth cases. Findings go into RESEARCH.md beside this page.
+The owner ran the prompts in PROMPTS.md on 16 October; the condensed findings are in RESEARCH.md and shaped the points above.

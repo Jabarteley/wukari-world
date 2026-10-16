@@ -7,8 +7,8 @@
  * VIEW. World units (./football.ts, pitch 900 x 540) plus a margin: OX for the goals, TOP/BOTTOM for stands. Everything scales
  * from the canvas width, so one drawing serves a 320 px phone and a desktop.
  */
-import { EV, GOAL_DEPTH, GOAL_Y1, GOAL_Y2, H, PHASE, PR, W } from './football.ts'
-import type { FootballSnap, FootballerSnap } from './football.ts'
+import { EV, GOAL_DEPTH, GOAL_Y1, GOAL_Y2, H, PEN_D, PHASE, PR, SO_OUT, SO_STAGE, W, flightProgress, shotHeight, swungAim } from './football.ts'
+import type { FootballSnap, FootballerSnap, ShootSnap } from './football.ts'
 import { lerp } from './interp.ts'
 
 /** Players and ball are drawn a little larger than the rules' sizes so they read on a phone. */
@@ -105,10 +105,10 @@ export function makePitch(width: number, height: number, scale: number): HTMLCan
   c.fillStyle = '#fff'; c.beginPath(); c.arc(W / 2, H / 2, 4, 0, Math.PI * 2); c.fill()
   for (const side of [0, 1]) {
     const x0 = side ? W : 0, dir = side ? -1 : 1
-    c.strokeRect(side ? W - 130 : 0, H / 2 - 135, 130, 270)
+    c.strokeRect(side ? W - PEN_D - 20 : 0, H / 2 - 135, PEN_D + 20, 270)
     c.strokeRect(side ? W - 48 : 0, GOAL_Y1 - 22, 48, GOAL_Y2 - GOAL_Y1 + 44)
-    c.beginPath(); c.arc(x0 + dir * 92, H / 2, 3, 0, Math.PI * 2); c.fill()
-    c.beginPath(); c.arc(x0 + dir * 130, H / 2, 46, side ? Math.PI * 0.62 : -Math.PI * 0.38, side ? Math.PI * 1.38 : Math.PI * 0.38); c.stroke()
+    c.beginPath(); c.arc(x0 + dir * PEN_D, H / 2, 3, 0, Math.PI * 2); c.fill()
+    c.beginPath(); c.arc(x0 + dir * (PEN_D + 20), H / 2, 46, side ? Math.PI * 0.62 : -Math.PI * 0.38, side ? Math.PI * 1.38 : Math.PI * 0.38); c.stroke()
     // net behind the line
     const nx = side ? W : -GOAL_DEPTH
     c.fillStyle = 'rgba(255,255,255,0.14)'; c.fillRect(nx, GOAL_Y1, GOAL_DEPTH, GOAL_Y2 - GOAL_Y1)
@@ -136,6 +136,10 @@ export const viewRotation = (you: number | null, portrait: boolean): number => {
   const team = you === null ? 0 : you & 1
   return portrait ? (team === 0 ? -Math.PI / 2 : Math.PI / 2) : (team === 0 ? 0 : Math.PI)
 }
+/** In a shoot-out the view looks from behind the shooter at the goal, whoever you are: the shooter's team attacks up the screen. */
+export const penaltyRotation = (shootingTeam: number): number => (shootingTeam === 0 ? -Math.PI / 2 : Math.PI / 2)
+/** The turn that maps the player's screen directions to pitch directions now: your view of open play, or a shoot-out's. */
+export const stickRotation = (you: number | null, portrait: boolean, snap: FootballSnap | null): number => (snap && snap.p === PHASE.pens && snap.o ? penaltyRotation(snap.o.t) : viewRotation(you, portrait))
 /** A heading on the screen (joystick, arrows) as the vector in pitch coordinates. */
 export const screenToWorld = (vx: number, vy: number, rot: number): [number, number] => [vx * Math.cos(rot) + vy * Math.sin(rot), -vx * Math.sin(rot) + vy * Math.cos(rot)]
 
@@ -331,26 +335,192 @@ export function drawFootball(ctx: CanvasRenderingContext2D, width: number, heigh
     ctx.restore()
   }
 
-  // banners
-  const big = (text: string, sub: string, color: string, pulse: number, at = 0.47): void => {
-    ctx.save()
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-    ctx.fillStyle = 'rgba(0,0,0,0.42)'; ctx.fillRect(0, height * (at - 0.09), width, height * 0.24)
-    const size = Math.max(22, Math.min(width * 0.2, height * 0.2) * pulse)
-    ctx.font = `900 ${size}px system-ui, sans-serif`; ctx.lineWidth = Math.max(3, size / 9); ctx.strokeStyle = '#0b1f14'; ctx.strokeText(text, width / 2, height * at)
-    ctx.fillStyle = color; ctx.fillText(text, width / 2, height * at)
-    ctx.font = `800 ${Math.max(12, Math.min(width * 0.05, 22))}px system-ui, sans-serif`; ctx.fillStyle = '#ffffff'; ctx.fillText(sub, width / 2, height * (at + 0.09))
-    ctx.restore()
+  drawFootballHud(ctx, width, height, b, meta, fx)
+}
+
+export interface HudLabel { x: number; y: number; p: number; carrier: boolean; you: boolean; scale: number }
+export interface HudExtras {
+  /** the 3D view's players on screen (names, number, the carrier's arrow, the charge ring) */ labels?: HudLabel[]
+  /** the top of the free space, px: bars and rows start under it */ hudTop?: number
+  /** where your shot would go, px (shoot-out, when you are the shooter), and whether it is inside the posts */ aim?: { x: number; y: number; inside: boolean } | null
+  /** the dive you have named (-1 left, 1 right, 0 stay) when you are the keeper in a shoot-out; null otherwise */ dive?: number | null
+  /** the 3D view is showing the goal again */ replay?: boolean
+}
+
+const shoutBox = (ctx: CanvasRenderingContext2D, width: number, height: number, text: string, sub: string, color: string, pulse: number, at = 0.47): void => {
+  ctx.save()
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
+  ctx.fillStyle = 'rgba(0,0,0,0.42)'; ctx.fillRect(0, height * (at - 0.09), width, height * 0.24)
+  const size = Math.max(22, Math.min(width * 0.2, height * 0.2) * pulse)
+  ctx.font = `900 ${size}px system-ui, sans-serif`; ctx.lineWidth = Math.max(3, size / 9); ctx.strokeStyle = '#0b1f14'; ctx.strokeText(text, width / 2, height * at)
+  ctx.fillStyle = color; ctx.fillText(text, width / 2, height * at)
+  ctx.font = `800 ${Math.max(12, Math.min(width * 0.05, 22))}px system-ui, sans-serif`; ctx.fillStyle = '#ffffff'; ctx.fillText(sub, width / 2, height * (at + 0.09))
+  ctx.restore()
+}
+const caption = (ctx: CanvasRenderingContext2D, width: number, text: string, y: number): void => {
+  ctx.save(); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
+  ctx.font = '800 15px system-ui, sans-serif'; ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(8,20,13,0.9)'; ctx.strokeText(text, width / 2, y); ctx.fillStyle = '#ffffff'; ctx.fillText(text, width / 2, y)
+  ctx.restore()
+}
+const OUT_WORDS: Record<number, [string, string, string]> = {
+  [SO_OUT.goal]: ['GOAL!', 'It is in', '#7dff9b'], [SO_OUT.saved]: ['SAVED!', 'What a stop', '#7dd3fc'], [SO_OUT.wide]: ['WIDE!', 'Just off target', '#ffb4a8'],
+  [SO_OUT.over]: ['OVER!', 'Too hard', '#ffb4a8'], [SO_OUT.post]: ['POST!', 'So close', '#ffe14d'],
+}
+
+/**
+ * The scoreboard row of a shoot-out: for each team its kit colour, its kicks so far (a dot each: green for a goal, red for a miss,
+ * a ring for one to come; five to begin with, more in sudden death) and its score.
+ */
+export function drawShootRow(ctx: CanvasRenderingContext2D, width: number, top: number, o: ShootSnap, meta: { teamNames: [string, string]; kits: [Kit, Kit] }): void {
+  const dots = Math.max(5, o.m[0].length + (o.m[0].length < 10 ? 1 : 0), o.m[1].length + (o.m[1].length < 10 ? 1 : 0)), gap = 17
+  const rowW = 78 + dots * gap + 30, w = Math.min(width - 16, rowW), x0 = (width - w) / 2
+  ctx.save()
+  ctx.fillStyle = 'rgba(8,24,15,0.7)'; ctx.beginPath(); ctx.roundRect(x0, top, w, 52, 12); ctx.fill()
+  ;[0, 1].forEach((team) => {
+    const y = top + 14 + team * 24, marks = o.m[team] as number[]
+    ctx.fillStyle = (meta.kits[team] as Kit).shirt; ctx.beginPath(); ctx.roundRect(x0 + 8, y - 8, 6, 16, 3); ctx.fill()
+    ctx.font = (o.t === team && o.s !== SO_STAGE.result ? '900' : '700') + ' 12px system-ui, sans-serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'
+    ctx.fillStyle = '#ffffff'; ctx.fillText((meta.teamNames[team as 0 | 1]).slice(0, 8), x0 + 20, y)
+    for (let i = 0; i < dots; i++) {
+      const cx = x0 + 78 + i * gap + 6, m = marks[i]
+      ctx.beginPath(); ctx.arc(cx, y, 5.5, 0, Math.PI * 2)
+      if (m === 1) { ctx.fillStyle = '#41d37a'; ctx.fill() }
+      else if (m === 2) { ctx.fillStyle = '#ef6a5b'; ctx.fill() }
+      else { ctx.strokeStyle = o.t === team && i === marks.length && o.w < 0 ? '#ffe14d' : 'rgba(255,255,255,0.45)'; ctx.lineWidth = 2; ctx.stroke() }
+    }
+    ctx.textAlign = 'right'; ctx.font = '900 15px system-ui, sans-serif'; ctx.fillStyle = '#ffffff'; ctx.fillText(String(o.g[team]), x0 + w - 8, y)
+  })
+  ctx.restore()
+}
+
+/**
+ * Everything the 2D canvas draws over the match, whichever view drew the pitch: the banners (GOAL, the kick-off count, full time),
+ * the shoot-out's row, its instructions and its results, and (with the 3D view) the names, the carrier's arrow and the charge ring.
+ */
+export function drawFootballHud(ctx: CanvasRenderingContext2D, width: number, height: number, b: FootballSnap, meta: Meta, fx: Fx, extra: HudExtras = {}): void {
+  const you = meta.you, top = extra.hudTop ?? 52
+  if (extra.labels) {
+    for (const l of extra.labels) {
+      const f = b.f[l.p]
+      if (!f) continue
+      const name = meta.names[l.p] ?? '', charge = (f[3] >> 2) & 7, k = Math.max(0.7, Math.min(1.25, l.scale / 90))
+      ctx.save(); ctx.translate(l.x, l.y); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
+      ctx.lineWidth = 3.5; ctx.strokeStyle = 'rgba(8,20,13,0.85)'
+      if (l.carrier) {
+        ctx.fillStyle = (meta.kits[l.p & 1] as Kit).shirt; ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 2.5
+        ctx.beginPath(); ctx.moveTo(0, -4); ctx.lineTo(-8 * k, -17 * k); ctx.lineTo(8 * k, -17 * k); ctx.closePath(); ctx.stroke(); ctx.fill()
+        ctx.lineWidth = 3.5; ctx.strokeStyle = 'rgba(8,20,13,0.85)'
+      }
+      const tag = name || (l.you ? 'YOU' : '')
+      if (tag) {
+        // A pill in the team's colour, so a side is told apart by its tags as well as by its shirts and rings.
+        const kit = meta.kits[l.p & 1] as Kit, size = Math.round(11 * k + 1), ly = -(l.carrier ? 27 : 12) * k
+        ctx.font = `800 ${size}px system-ui, sans-serif`
+        const pw = ctx.measureText(tag).width + 14, ph = size + 6
+        ctx.fillStyle = kit.shirt; ctx.globalAlpha = 0.92; ctx.beginPath(); ctx.roundRect(-pw / 2, ly - ph / 2, pw, ph, ph / 2); ctx.fill()
+        ctx.globalAlpha = 1; ctx.lineWidth = 2; ctx.strokeStyle = l.you ? '#ffe14d' : 'rgba(8,20,13,0.7)'; ctx.stroke()
+        ctx.fillStyle = kit.trim; ctx.fillText(tag, 0, ly + 0.5)
+      }
+      if (charge > 0) {
+        ctx.strokeStyle = charge > 5 ? '#ff4d2e' : charge > 2 ? '#ffb020' : '#ffffff'; ctx.lineWidth = 4
+        ctx.beginPath(); ctx.arc(0, l.scale * 0.5 + 6, 14 * k, -Math.PI / 2, -Math.PI / 2 + (charge / 7) * Math.PI * 2); ctx.stroke()
+      }
+      ctx.restore()
+    }
   }
-  const you = meta.you
-  if (b.p === PHASE.goal) {
+  const o = b.o
+  if (b.p === PHASE.goal && extra.replay) {
+    ctx.save(); ctx.font = '900 14px system-ui, sans-serif'; ctx.textBaseline = 'middle'; ctx.textAlign = 'left'
+    ctx.fillStyle = 'rgba(8,24,15,0.72)'; ctx.beginPath(); ctx.roundRect(14, top + 12, 96, 30, 15); ctx.fill()
+    ctx.fillStyle = Math.floor(performance.now() / 500) % 2 ? '#ff5a4a' : '#ffb4a8'; ctx.beginPath(); ctx.arc(32, top + 27, 6, 0, Math.PI * 2); ctx.fill()
+    ctx.fillStyle = '#ffffff'; ctx.fillText('REPLAY', 46, top + 28)
+    ctx.restore()
+  } else if (b.p === PHASE.goal) {
     const team = b.s?.[0] ?? 0, who = b.s ? (b.s[1] ?? -1) : -1
     const scorer = who >= 0 ? (meta.names[who] ?? '') : ''
-    big('GOAL!', `${scorer ? scorer + ' scores!' : (meta.teamNames[team] ?? '') + ' score!'}  ${b.g[0]}-${b.g[1]}`, (meta.kits[team] ?? meta.kits[0]).shirt === '#f3c20f' ? '#ffe14d' : '#7dff9b', meta.reduced ? 1 : 1 + Math.sin(performance.now() / 110) * 0.06)
+    shoutBox(ctx, width, height, 'GOAL!', `${scorer ? scorer + ' scores!' : (meta.teamNames[team] ?? '') + ' score!'}  ${b.g[0]}-${b.g[1]}`, (meta.kits[team] ?? meta.kits[0]).shirt === '#f3c20f' ? '#ffe14d' : '#7dff9b', meta.reduced ? 1 : 1 + Math.sin(performance.now() / 110) * 0.06, extra.labels ? (width > height ? 0.36 : 0.2) : 0.47)
     if (fx.flash > 0.02 && !meta.reduced) { ctx.fillStyle = `rgba(255,255,255,${fx.flash * 0.35})`; ctx.fillRect(0, 0, width, height); fx.flash *= 0.88 }
   } else if (b.p === PHASE.kickoff && b.c > 0) {
-    big(String(b.c), you !== null ? 'Get ready. Kick-off!' : 'Kick-off', '#ffffff', 1, 0.8)
+    shoutBox(ctx, width, height, String(b.c), you !== null ? 'Get ready. Kick-off!' : 'Kick-off', '#ffffff', 1, 0.8)
+  } else if (o && (b.p === PHASE.pens || b.p === PHASE.over)) {
+    drawShootRow(ctx, width, top + 4, o, meta)
+    const mine = you !== null && (you & 1) === o.t, shooterYou = you !== null && you === o.p[0], keeperYou = you !== null && you === o.p[1]
+    const first = o.m[0].length + o.m[1].length === 0
+    if (b.p === PHASE.over) {
+      const w = o.w
+      shoutBox(ctx, width, height, w === 2 ? 'DRAW' : 'FULL TIME', w >= 0 && w < 2 ? `${meta.teamNames[w]} win on penalties ${Math.max(...o.g)}-${Math.min(...o.g)}` : `${meta.teamNames[0]} ${b.g[0]} - ${b.g[1]} ${meta.teamNames[1]}`, '#ffe14d', 0.8, 0.45)
+    } else if (o.s === SO_STAGE.set) {
+      if (first) shoutBox(ctx, width, height, 'PENALTIES', `${meta.teamNames[o.t]} shoot first`, '#ffffff', 0.7, 0.3)
+      else caption(ctx, width, `${meta.teamNames[o.t]} to shoot`, top + 74)
+    } else if (o.s === SO_STAGE.aim) {
+      caption(ctx, width, shooterYou ? 'Aim, hold to charge, let go' : keeperYou ? 'Pick a side to dive' : mine ? 'Your side shoots' : 'Waiting for the kick', top + 74)
+      if (shooterYou && extra.aim) {
+        ctx.save(); ctx.lineWidth = 3.5; ctx.strokeStyle = extra.aim.inside ? '#ffffff' : '#ff6b5e'; ctx.fillStyle = extra.aim.inside ? 'rgba(255,255,255,0.18)' : 'rgba(255,107,94,0.2)'
+        ctx.beginPath(); ctx.arc(extra.aim.x, extra.aim.y, 15, 0, Math.PI * 2); ctx.fill(); ctx.stroke()
+        ctx.beginPath(); ctx.moveTo(extra.aim.x - 22, extra.aim.y); ctx.lineTo(extra.aim.x - 8, extra.aim.y); ctx.moveTo(extra.aim.x + 8, extra.aim.y); ctx.lineTo(extra.aim.x + 22, extra.aim.y); ctx.stroke()
+        ctx.restore()
+      }
+    } else if (o.s === SO_STAGE.result) {
+      const w = OUT_WORDS[o.r]
+      if (w) shoutBox(ctx, width, height, w[0], w[1], w[2], meta.reduced ? 1 : 1 + Math.sin(performance.now() / 120) * 0.05, 0.3)
+    }
+    if (keeperYou && (o.s === SO_STAGE.aim || o.s === SO_STAGE.fly) && extra.dive !== null && extra.dive !== undefined) {
+      const d = extra.dive
+      ctx.save(); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = '900 34px system-ui, sans-serif'; ctx.lineWidth = 5; ctx.strokeStyle = 'rgba(8,20,13,0.9)'
+      for (const side of [-1, 0, 1]) {
+        const x = width / 2 + side * Math.min(110, width * 0.28), glyph = side < 0 ? '\u25C0' : side > 0 ? '\u25B6' : '\u25A0'
+        ctx.globalAlpha = d === side ? 1 : 0.28; ctx.strokeText(glyph, x, top + 108); ctx.fillStyle = d === side ? '#ffe14d' : '#ffffff'; ctx.fillText(glyph, x, top + 108)
+      }
+      ctx.restore()
+    }
   } else if (b.p === PHASE.over) {
-    big(b.g[0] === b.g[1] ? 'DRAW' : 'FULL TIME', `${meta.teamNames[0]} ${b.g[0]} - ${b.g[1]} ${meta.teamNames[1]}`, '#ffe14d', 0.8)
+    shoutBox(ctx, width, height, b.g[0] === b.g[1] ? 'DRAW' : 'FULL TIME', `${meta.teamNames[0]} ${b.g[0]} - ${b.g[1]} ${meta.teamNames[1]}`, '#ffe14d', 0.8)
   }
+}
+
+/**
+ * The 2D view of a shoot-out (used when there is no 3D view): the goal seen face on from behind the shooter, with the keeper in it,
+ * the ball flying at it, and the shooter's back at the bottom. Right of the screen is right of the shooter, as in the 3D view.
+ */
+/** Draw in CSS px: the caller has set the canvas transform for its pixel ratio. */
+export function drawShootout2D(ctx: CanvasRenderingContext2D, width: number, height: number, a: FootballSnap, b: FootballSnap, t: number, meta: Meta, extra: { top: number; bottom: number }): { aim: (lateral: number) => { x: number; y: number }; goalHalf: number } | null {
+  const o = b.o
+  const sky = ctx.createLinearGradient(0, 0, 0, height); sky.addColorStop(0, '#0d1530'); sky.addColorStop(0.42, '#2a3d5e'); sky.addColorStop(0.43, '#2f8f46'); sky.addColorStop(1, '#1f6a34')
+  ctx.fillStyle = sky; ctx.fillRect(0, 0, width, height)
+  if (!o) return null
+  const team = o.t, sg = team === 0 ? 1 : -1
+  const free = Math.max(120, height - extra.top - extra.bottom), cy = extra.top + free * 0.42
+  const gw = Math.min(width * 0.78, free * 1.3), gh = gw * 0.34, gx = width / 2, half = gw / 2, per = half / 70 // px per lateral unit
+  const gy = cy - gh / 2
+  // goal: posts, bar, net
+  ctx.fillStyle = 'rgba(255,255,255,0.12)'; ctx.fillRect(gx - half, gy, gw, gh)
+  ctx.strokeStyle = 'rgba(255,255,255,0.35)'; ctx.lineWidth = 1
+  for (let i = 0; i <= 14; i++) { ctx.beginPath(); ctx.moveTo(gx - half + (gw / 14) * i, gy); ctx.lineTo(gx - half + (gw / 14) * i, gy + gh); ctx.stroke() }
+  for (let i = 0; i <= 5; i++) { ctx.beginPath(); ctx.moveTo(gx - half, gy + (gh / 5) * i); ctx.lineTo(gx + half, gy + (gh / 5) * i); ctx.stroke() }
+  ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 6; ctx.lineCap = 'round'
+  ctx.beginPath(); ctx.moveTo(gx - half, gy + gh); ctx.lineTo(gx - half, gy); ctx.lineTo(gx + half, gy); ctx.lineTo(gx + half, gy + gh); ctx.stroke()
+  ctx.fillStyle = 'rgba(255,255,255,0.6)'; ctx.fillRect(0, gy + gh, width, 3)
+  const lateral = (units: number): number => gx + units * per
+  // keeper
+  const kt = (1 - team) as 0 | 1, ky = (a.k[kt] + (b.k[kt] - a.k[kt]) * t - H / 2) * sg
+  const kx = lateral(ky), kh = gh * 0.74, dive = o.s >= SO_STAGE.fly ? o.k[2] : 0
+  ctx.save(); ctx.translate(kx, gy + gh); ctx.rotate(dive * Math.min(1, Math.abs(ky) / 40) * 1.1)
+  ctx.fillStyle = '#a77fe3'; ctx.fillRect(-kh * 0.17, -kh * 0.62, kh * 0.34, kh * 0.45)
+  ctx.strokeStyle = '#a77fe3'; ctx.lineWidth = kh * 0.1; ctx.beginPath(); ctx.moveTo(-kh * 0.2, -kh * 0.5); ctx.lineTo(-kh * 0.42, -kh * 0.82); ctx.moveTo(kh * 0.2, -kh * 0.5); ctx.lineTo(kh * 0.42, -kh * 0.82); ctx.moveTo(-kh * 0.08, -kh * 0.17); ctx.lineTo(-kh * 0.1, 0); ctx.moveTo(kh * 0.08, -kh * 0.17); ctx.lineTo(kh * 0.1, 0); ctx.stroke()
+  ctx.fillStyle = '#f0c9a0'; ctx.beginPath(); ctx.arc(0, -kh * 0.72, kh * 0.12, 0, Math.PI * 2); ctx.fill()
+  ctx.restore()
+  // the ball: on the spot until struck, then towards the goal
+  const spotY = Math.min(height - extra.bottom - 40, cy + free * 0.42)
+  const p = o.s === SO_STAGE.fly ? flightProgress(o.k[3], o.k[4], o.k[5]) : o.s === SO_STAGE.result ? 1 : 0
+  const lat = o.s >= SO_STAGE.fly ? swungAim(o.k[0], o.k[1]) : 0
+  const bxp = gx + (lateral(lat) - gx) * p, up = shotHeight(p, o.k[1]) * (gh / 2.0)
+  const byp = spotY + (gy + gh - spotY) * p - up, br = (16 - 9 * p)
+  ctx.fillStyle = 'rgba(0,0,0,0.3)'; ctx.beginPath(); ctx.ellipse(bxp, spotY + (gy + gh - spotY) * p + 2, br, br * 0.35, 0, 0, Math.PI * 2); ctx.fill()
+  ctx.fillStyle = '#ffffff'; ctx.strokeStyle = '#111'; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.arc(bxp, byp, br, 0, Math.PI * 2); ctx.fill(); ctx.stroke()
+  // the shooter's back
+  const kit = meta.kits[team] as Kit
+  const sx = gx - 52, sy = spotY + 6
+  ctx.fillStyle = kit.shorts; ctx.fillRect(sx - 12, sy + 8, 24, 20); ctx.fillStyle = kit.shirt; ctx.fillRect(sx - 15, sy - 26, 30, 36)
+  ctx.fillStyle = (meta.looks[o.p[0]] ?? { skin: '#8a5a3c' }).skin; ctx.beginPath(); ctx.arc(sx, sy - 36, 11, 0, Math.PI * 2); ctx.fill()
+  return { aim: (l: number) => ({ x: lateral(l), y: gy + gh * 0.5 }), goalHalf: half }
 }

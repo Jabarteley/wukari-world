@@ -131,7 +131,7 @@ holds its source's `LICENSE.txt` (not counted).
   fence, pylons, a chequered flag, light posts, trees, grass, a tent, two grandstands and a pit garage. The Race screen (`src/arena/race-3d.ts`) loads twelve of them: the four cars, the barrier wall, the fence, a grandstand, the pit garage, two trees, a light post and the chequered flag (about 0.1 MB in all); the road itself is built from the track in code.
 - **Football:** `pitch.glb`, `goal.glb` (five-a-side), `goal-full.glb` (full size, for a penalty duel), `ball.glb`, the goals'
   shared net texture, and `player-1.glb` to `player-4.glb` (clips `idle`, `walk`, `run`, `kick`, `celebrate`, `dejected`, `down`,
-  `pick-up`). No goalkeeper dive clip exists in these packs; Phase 6 needs one (KayKit's `Dodge_*` clips or our own).
+  `pick-up`). No goalkeeper dive clip exists in these packs: Football rolls the whole body to the side instead (`diveRoll` in `football-3d.ts`). The players carry no normals, so the view computes them. `goal-full.glb` is not used (the five-a-side goal, scaled to the rules' own 5.2 m mouth, reads better on a phone); the pitch's marked spot at 6 m is the shoot-out's spot.
 
 Each model was rendered with `preview.py` before it was kept (the fighters in each clip). Nothing has yet been measured in the
 game on a throttled phone; the game phases do that when they load the packs.

@@ -1,61 +1,82 @@
-// Licence summary for every asset pack: public/assets/CREDITS.txt (people-readable) and public/assets/credits.json (for a
-// Help sheet to show later). Built only from the packs' manifest.json files, so it cannot drift from what ships.
-//   CC BY entries: the attribution text, once each, with the files it covers (the licence REQUIRES showing these).
-//   CC0 entries: listed by source, with the page the licence was read from. CC0 needs no credit; we credit anyway.
+// The credits for every asset pack: public/assets/CREDITS.txt (to read) and public/assets/credits.json (shown in the game's Help,
+// fetched only when a player opens the credits). Built only from the packs' manifest.json files, so it cannot drift from what ships.
+//   CC BY: each attribution line once, with the files it covers. The licence REQUIRES showing these, and each line must also be
+//          written in NOTICE.md (the same rule the cartridge checker applies).
+//   CC0:   each pack by name, author and page. CC0 needs no credit; we credit anyway.
+//   ours:  each pack made for Allworld, with the scripts that build it.
 //
-//   node --experimental-strip-types scripts/assets/credits.ts [--check]     (--check fails if the files on disk are out of date)
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { readManifests } from './budget.ts';
-import { manifestProblems, type Licence, type Manifest } from './pack-types.ts';
+//   node --experimental-strip-types scripts/assets/credits.ts [--check]     (--check fails if the files are out of date or NOTICE.md lacks a line)
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { dirname, join, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { readPacks } from './budget.ts'
+import { LICENCE_URLS, manifestProblems } from './pack-types.ts'
+import type { AssetLicence, Game, LicenceId, Manifest } from './pack-types.ts'
 
-const repo = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
+const repo = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..')
 
-export interface CreditsJson {
-  attributionRequired: { attribution: string; licence: Licence; licenceUrl: string; url: string; files: string[] }[];
-  cc0: { source: string; url: string; licenceUrl: string; files: number }[];
-}
+export interface CreditPack { name: string; author: string; page: string; licence: AssetLicence; licenceId: LicenceId; licenceUrl: string; files: number; games: Game[] }
+export interface CreditLine { attribution: string; licenceId: LicenceId; licenceUrl: string; source: string; files: string[] }
+export interface CreditsJson { packs: CreditPack[]; attributions: CreditLine[] }
 
-const LICENCE_URL: Record<string, string> = { 'CC0-1.0': 'https://creativecommons.org/publicdomain/zero/1.0/', 'CC-BY-3.0': 'https://creativecommons.org/licenses/by/3.0/', 'CC-BY-4.0': 'https://creativecommons.org/licenses/by/4.0/' };
+const LICENCE_WORDS: Record<LicenceId, string> = { 'CC0-1.0': 'CC0 1.0', 'CC-BY-3.0': 'CC BY 3.0', 'CC-BY-4.0': 'CC BY 4.0', 'AGPL-3.0-or-later': 'AGPL-3.0-or-later, with the rest of Allworld' }
 
-export function buildCredits(manifests: Manifest[]): { json: CreditsJson; text: string } {
-  const by = new Map<string, CreditsJson['attributionRequired'][number]>();
-  const zero = new Map<string, CreditsJson['cc0'][number]>();
+export function buildCredits(manifests: readonly Manifest[]): { json: CreditsJson; text: string } {
+  const packs: CreditPack[] = []
+  const lines = new Map<string, CreditLine>()
   for (const m of manifests) {
-    const problems = manifestProblems(m, m.pack);
-    if (problems.length) throw new Error(`${m.pack}: ${problems.join('; ')}`);
-    for (const a of m.assets) {
-      if (a.temporary) continue;
-      if (a.licence === 'CC0-1.0') {
-        const key = `${a.source}|${m.page}`;
-        const row = zero.get(key) ?? { source: a.source, url: m.page, licenceUrl: LICENCE_URL['CC0-1.0']!, files: 0 };
-        row.files++; zero.set(key, row);
-      } else {
-        const row = by.get(a.attribution!) ?? { attribution: a.attribution!, licence: a.licence, licenceUrl: a.licenceUrl ?? LICENCE_URL[a.licence]!, url: a.url, files: [] };
-        row.files.push(a.path); by.set(a.attribution!, row);
-      }
+    const problems = manifestProblems(m, m.pack)
+    if (problems.length) throw new Error(`${m.pack}: ${problems.join('; ')}`)
+    const shipped = m.assets.filter((a) => !a.temporary && a.kind !== 'licence')
+    const games = [...new Set(shipped.flatMap((a) => (a.game ? [a.game] : [])))].sort()
+    packs.push({ name: m.name, author: m.author, page: m.page, licence: shipped[0]?.licence ?? 'CC0', licenceId: m.licenceId, licenceUrl: LICENCE_URLS[m.licenceId], files: shipped.length, games })
+    for (const a of shipped) {
+      if (a.licence !== 'CC-BY') continue
+      const row = lines.get(a.attribution!) ?? { attribution: a.attribution!, licenceId: a.licenceId, licenceUrl: LICENCE_URLS[a.licenceId], source: a.source, files: [] }
+      row.files.push(a.path)
+      lines.set(a.attribution!, row)
     }
   }
   const json: CreditsJson = {
-    attributionRequired: [...by.values()].sort((x, y) => x.attribution.localeCompare(y.attribution)).map((r) => ({ ...r, files: r.files.sort() })),
-    cc0: [...zero.values()].sort((x, y) => x.source.localeCompare(y.source)),
-  };
-  const lines = ['Allworld asset credits', '', 'Generated by scripts/assets/credits.ts from the packs\' manifest.json files. Do not edit by hand.', ''];
-  lines.push('Made by others, credit required (Creative Commons Attribution):', '');
-  if (!json.attributionRequired.length) lines.push('  (none)');
-  for (const r of json.attributionRequired) lines.push(`  ${r.attribution}`, `    Licence: ${r.licence.replace('CC-BY-', 'CC BY ')} ${r.licenceUrl}`, `    Files: ${r.files.join(', ')}`, '');
-  lines.push('Public domain (Creative Commons Zero, no credit needed, thanks to):', '');
-  if (!json.cc0.length) lines.push('  (none)');
-  for (const r of json.cc0) lines.push(`  ${r.source}: ${r.url} (${r.files} file${r.files === 1 ? '' : 's'}, ${r.licenceUrl})`);
-  return { json, text: `${lines.join('\n')}\n` };
+    packs: packs.sort((x, y) => x.author.localeCompare(y.author) || x.name.localeCompare(y.name)),
+    attributions: [...lines.values()].sort((x, y) => x.attribution.localeCompare(y.attribution)).map((r) => ({ ...r, files: r.files.sort() })),
+  }
+  const out = ['Allworld asset credits', '', 'Generated by scripts/assets/credits.ts from public/assets/packs/*/manifest.json. Do not edit by hand.', '']
+  out.push('Credit required (Creative Commons Attribution):', '')
+  if (!json.attributions.length) out.push('  (none)', '')
+  for (const r of json.attributions) out.push(`  ${r.attribution}`, `    Licence: ${LICENCE_WORDS[r.licenceId]} ${r.licenceUrl}`, `    Files: ${r.files.join(', ')}`, '')
+  const group = (title: string, keep: (p: CreditPack) => boolean): void => {
+    const rows = json.packs.filter(keep)
+    if (!rows.length) return
+    out.push(title, '')
+    for (const p of rows) out.push(`  ${p.name} by ${p.author}: ${p.page}`, `    ${p.files} file${p.files === 1 ? '' : 's'} for ${p.games.join(', ') || 'no game yet'}; ${LICENCE_WORDS[p.licenceId]} ${p.licenceUrl}`)
+    out.push('')
+  }
+  group('Public domain (Creative Commons Zero: no credit needed, thank you):', (p) => p.licence === 'CC0')
+  group('Made for Allworld (built by the scripts named on each line):', (p) => p.licence === 'ours')
+  return { json, text: `${out.join('\n').trimEnd()}\n` }
 }
 
+/** CC BY lines that NOTICE.md does not contain, as sentences. */
+export const noticeProblems = (credits: CreditsJson, notice: string): string[] =>
+  credits.attributions.filter((r) => !notice.includes(r.attribution)).map((r) => `NOTICE.md does not contain the credit line "${r.attribution}"`)
+
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
-  const out = join(repo, 'public', 'assets');
-  const { json, text } = buildCredits(readManifests(join(out, 'packs')).map((p) => p.manifest));
-  const jsonText = `${JSON.stringify(json, null, 2)}\n`;
-  const same = existsSync(join(out, 'CREDITS.txt')) && readFileSync(join(out, 'CREDITS.txt'), 'utf8') === text && existsSync(join(out, 'credits.json')) && readFileSync(join(out, 'credits.json'), 'utf8') === jsonText;
-  if (process.argv.includes('--check')) { if (!same) { console.error('public/assets/CREDITS.txt or credits.json is out of date: run scripts/assets/credits.ts'); process.exit(1); } console.log('credits up to date'); }
-  else { mkdirSync(out, { recursive: true }); writeFileSync(join(out, 'CREDITS.txt'), text); writeFileSync(join(out, 'credits.json'), jsonText); console.log(`credits: ${json.attributionRequired.length} attributions, ${json.cc0.length} CC0 sources`); }
+  const out = join(repo, 'public', 'assets')
+  const { json, text } = buildCredits(readPacks(join(out, 'packs')).map((p) => p.manifest))
+  const jsonText = `${JSON.stringify(json, null, 2)}\n`
+  const read = (name: string): string | null => (existsSync(join(out, name)) ? readFileSync(join(out, name), 'utf8') : null)
+  const notice = noticeProblems(json, existsSync(join(repo, 'NOTICE.md')) ? readFileSync(join(repo, 'NOTICE.md'), 'utf8') : '')
+  for (const p of notice) console.error(`PROBLEM ${p}`)
+  if (process.argv.includes('--check')) {
+    const stale = read('CREDITS.txt') !== text || read('credits.json') !== jsonText
+    if (stale) console.error('PROBLEM public/assets/CREDITS.txt or credits.json is out of date: run scripts/assets/credits.ts')
+    if (stale || notice.length) process.exit(1)
+    console.log('credits up to date')
+  } else {
+    writeFileSync(join(out, 'CREDITS.txt'), text)
+    writeFileSync(join(out, 'credits.json'), jsonText)
+    console.log(`credits: ${json.packs.length} packs, ${json.attributions.length} CC BY lines`)
+    if (notice.length) process.exit(1)
+  }
 }

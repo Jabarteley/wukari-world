@@ -1,26 +1,31 @@
-// Download a named pack, keep only the files its want list names, and record every kept file in a manifest.
+// Get a named pack, keep only the files its want list names, and record every kept file in a manifest.
 //
 //   node --experimental-strip-types scripts/assets/fetch-pack.ts --pack kenney-racing-kit [--archive /path/to/pack.zip]
 //   node --experimental-strip-types scripts/assets/fetch-pack.ts --all
 //
-// The want list is scripts/assets/wants/<pack>.json (shape in pack-types.ts). Output: public/assets/packs/<pack>/<as> for
-// every wanted file, LICENSE.txt (the archive's own licence text), and manifest.json with, for each file, the source page,
-// licence, attribution text (CC BY only) and byte size. Run prepare.ts afterwards to clean, scale and compress the models.
+// The want list is scripts/assets/wants/<pack>.json (shape in pack-types.ts). Output: public/assets/packs/<pack>/<as> for every
+// wanted file, LICENSE.txt (the source's own licence text; not for `own`), and manifest.json with, for each file, the source page,
+// licence, author, attribution text (CC BY only) and byte size. Run prepare.ts afterwards to clean, scale and compress the models.
 //
-// Sources, and what works without a browser (checked October 2026):
-//   kenney     kenney.nl asset page -> direct zip link on the page. Works.
-//   itch       itch.io free "name your own price" packs (KayKit, Quaternius): the same three requests the web page makes
-//              (download_url, then file/<id>) with a cookie and the page's CSRF token. Works for free packs. If itch.io changes
-//              that flow the script stops and says to download the zip in a browser and pass it with --archive.
-//   polypizza  poly.pizza model page -> static.poly.pizza file link, licence and author read from the page.
-//   Quaternius' own site (quaternius.com) only links to Google Drive folders or itch.io; use the itch.io page.
-// The licence is checked at fetch time against the source's own words (page or licence file) and the want list's claim;
-// any mismatch stops the fetch. Only CC0-1.0 and CC-BY are accepted.
+// Sources (docs/ASSET-PIPELINE.md says which were tried):
+//   kenney     kenney.nl asset page -> the zip link on the page; the page must say CC0.
+//   github     a file in a public repository at a pinned commit (KayKit publishes its packs there); the repository's licence
+//              file must say CC0 or CC BY.
+//   itch       itch.io free "name your own price" packs (Quaternius, KayKit): the requests the web page makes (download_url,
+//              then file/<id>) with a cookie and the page's CSRF token. If itch.io changes that flow the script stops and says to
+//              download the zip in a browser and pass it with --archive.
+//   polypizza  poly.pizza model page -> the static.poly.pizza file link; licence and author are read from the page.
+//   own        built here: Blender runs scripts/assets/blender/<script>.py for each item (BLENDER names the binary).
+// The licence is checked against the source's own words (page or licence file) and the want list's claim; any mismatch stops
+// the fetch. Only CC0 and CC BY are accepted from others. Archives given with --archive are read, never unpacked or run.
+import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { dirname, join, posix, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { ALLOWED_LICENCES, PACKS_ROOT, type Licence, type Manifest, type ManifestAsset, type WantItem, type WantList } from './pack-types.ts';
+import { LICENCE_IDS, MANIFEST_FORMAT, OWN_SOURCE, packPath } from './pack-types.ts';
+import type { LicenceId, Manifest, ManifestAsset, WantItem, WantList } from './pack-types.ts';
 import { readZip } from './zip.ts';
 
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -37,6 +42,8 @@ export interface FetchOptions {
   archive?: Buffer;
   sleep?: (ms: number) => Promise<void>;
   now?: () => Date;
+  /** Builds an own item (default: runBlender). */
+  blender?: (script: string, out: string, args?: string[]) => Buffer;
 }
 
 const sha = (b: Buffer): string => createHash('sha256').update(b).digest('hex');
@@ -91,7 +98,7 @@ const unescapeJson = (s: string): string => s.replace(/\\\//g, '/');
 /** The zip link on a Kenney asset page; the page must say CC0. */
 async function kenneyArchive(s: Session, want: WantList): Promise<Buffer> {
   const page = await s.text(want.page);
-  if (!/Creative Commons CC0/i.test(page)) throw new Error(`${want.page} does not state CC0; refusing`);
+  if (want.licenceId !== 'CC0-1.0' || !/Creative Commons CC0/i.test(page)) throw new Error(`${want.page} does not state CC0; refusing`);
   const zip = /https:\/\/kenney\.nl\/media\/[^"'\s]+\.zip/.exec(page)?.[0];
   if (!zip) throw new ManualDownloadError(`No zip link on ${want.page}; download it in a browser and pass --archive <file>`);
   return s.bytes(zip);
@@ -128,55 +135,115 @@ function pickEntry(entries: ReturnType<typeof readZip>, from: string): ReturnTyp
   throw new Error(`"${from}" ${tail.length ? 'matches several files' : 'is not in the archive'}`);
 }
 
-const CC_RE: [RegExp, Licence][] = [[/creativecommons\.org\/publicdomain\/zero\/1\.0/, 'CC0-1.0'], [/creativecommons\.org\/licenses\/by\/3\.0/, 'CC-BY-3.0'], [/creativecommons\.org\/licenses\/by\/4\.0/, 'CC-BY-4.0']];
+const CC_RE: [RegExp, LicenceId][] = [[/creativecommons\.org\/publicdomain\/zero\/1\.0/, 'CC0-1.0'], [/creativecommons\.org\/licenses\/by\/3\.0/, 'CC-BY-3.0'], [/creativecommons\.org\/licenses\/by\/4\.0/, 'CC-BY-4.0']];
 
 /** Poly Pizza: the page names licence and author; the file is a static GLB link. */
-async function polyPizzaItem(s: Session, item: WantItem, want: WantList): Promise<{ bytes: Buffer; url: string; licence: Licence; attribution?: string }> {
+async function polyPizzaItem(s: Session, item: WantItem, want: WantList): Promise<{ bytes: Buffer; url: string; licenceId: LicenceId; author?: string; attribution?: string }> {
   const page = await s.text(item.page!);
   const licence = CC_RE.find(([re]) => re.test(page))?.[1];
   if (!licence) throw new Error(`${item.page}: no recognised CC licence on the page; refusing`);
-  const expected = item.licence ?? want.licence;
+  const expected = item.licenceId ?? want.licenceId;
   if (licence !== expected) throw new Error(`${item.page}: page says ${licence} but the want list says ${expected}`);
   const link = /https:\/\/static\.poly\.pizza\/[^"'\s]+\.glb/.exec(page)?.[0];
   if (!link) throw new ManualDownloadError(`${item.page}: no GLB link on the page; download it in a browser into the pack folder`);
   const author = /href="\/u\/([^"]+)"/.exec(page)?.[1];
   const title = /<meta[^>]+property="og:title"[^>]+content="([^"]+)"/.exec(page)?.[1] ?? item.as;
-  const attribution = item.attribution ?? (licence.startsWith('CC-BY') ? `"${title.replace(/ \| Poly Pizza$/, '').replace(/ - Free Model By .*$/i, '')}" by ${author ? decodeURIComponent(author) : 'unknown author'}, ${licence.replace('CC-BY-', 'CC BY ')}, via Poly Pizza (${item.page})` : undefined);
-  return { bytes: await s.bytes(link, MAX_FILE_BYTES), url: item.page!, licence, attribution };
+  const maker = item.author ?? (author ? decodeURIComponent(author) : undefined);
+  const attribution = item.attribution ?? (licence.startsWith('CC-BY') ? `"${title.replace(/ \| Poly Pizza$/, '').replace(/ - Free Model By .*$/i, '')}" by ${maker ?? 'unknown author'}, ${licence.replace('CC-BY-', 'CC BY ')}, via Poly Pizza (${item.page})` : undefined);
+  return { bytes: await s.bytes(link, MAX_FILE_BYTES), url: item.page!, licenceId: licence, author: maker, attribution };
+}
+
+/** The licence words a licence file must contain for the want list's claim to stand. */
+export function licenceTextSays(text: string, id: LicenceId): boolean {
+  if (id === 'CC0-1.0') return /Creative Commons Zero|\bCC0\b|publicdomain\/zero/i.test(text);
+  if (id === 'CC-BY-3.0') return /creativecommons\.org\/licenses\/by\/3\.0|Attribution 3\.0/i.test(text);
+  if (id === 'CC-BY-4.0') return /creativecommons\.org\/licenses\/by\/4\.0|Attribution 4\.0/i.test(text);
+  return false;
+}
+
+/** The given 1-based line ranges of a licence file, trimmed, with a line saying where the whole file is. */
+export function licenceExcerpt(full: Buffer, ranges: [number, number][]): Buffer {
+  const lines = full.toString('utf8').replace(/\r\n/g, '\n').split('\n');
+  const kept = ranges.flatMap(([a, b]) => { if (!(a >= 1 && b >= a && b <= lines.length)) throw new Error(`licence lines ${a}-${b} are not in the file`); return lines.slice(a - 1, b).map((l) => l.trim()); });
+  return Buffer.from(`${kept.join('\n').replace(/\n{3,}/g, '\n\n').trim()}\n\n(The licence lines of the pack's licence file; the whole file is with the pack at its source.)\n`);
+}
+
+/** The Blender binary: BLENDER, else `blender` on the PATH, else the usual macOS place. */
+export function blenderBinary(env: NodeJS.ProcessEnv = process.env): string {
+  if (env.BLENDER) return env.BLENDER;
+  const mac = '/Applications/Blender.app/Contents/MacOS/Blender';
+  return existsSync(mac) ? mac : 'blender';
+}
+
+/** Run scripts/assets/blender/<script>.py headless; it writes one .glb to `out`. */
+export function runBlender(script: string, out: string, args: string[] = []): Buffer {
+  if (!/^[a-z0-9-]+$/.test(script)) throw new Error(`blender script name ${script} must be lower-case letters, digits and dashes`);
+  const file = join(repo, 'scripts', 'assets', 'blender', `${script}.py`);
+  if (!existsSync(file)) throw new Error(`${file} does not exist`);
+  execFileSync(blenderBinary(), ['--background', '--factory-startup', '--python-exit-code', '1', '--python', file, '--', '--out', out, ...args], { stdio: ['ignore', 'ignore', 'inherit'] });
+  return readFileSync(out);
 }
 
 export async function fetchPack(want: WantList, options: FetchOptions = {}): Promise<Manifest> {
-  if (!(ALLOWED_LICENCES as readonly string[]).includes(want.licence)) throw new Error(`${want.pack}: licence ${want.licence} is not allowed`);
-  if (want.licence.startsWith('CC-BY') && !want.attribution && want.kind !== 'polypizza') throw new Error(`${want.pack}: CC BY needs an attribution text`);
+  if (!Object.hasOwn(LICENCE_IDS, want.licenceId)) throw new Error(`${want.pack}: licence ${want.licenceId} is not allowed`);
+  const ours = want.kind === 'own';
+  if (ours !== (want.licenceId === 'AGPL-3.0-or-later')) throw new Error(`${want.pack}: only own packs are ours, and own packs are always ours`);
+  if (want.licenceId.startsWith('CC-BY') && !want.attribution && want.kind !== 'polypizza') throw new Error(`${want.pack}: CC BY needs an attribution text`);
   const session = new Session(options.fetchFn ?? fetch, options.sleep ?? ((ms) => new Promise((r) => setTimeout(r, ms))));
-  const dir = join(options.outRoot ?? join(repo, 'public', PACKS_ROOT), want.pack);
+  const dir = join(options.outRoot ?? join(repo, 'public', 'assets', 'packs'), want.pack);
   const assets: ManifestAsset[] = [];
   const files: { name: string; bytes: Buffer }[] = [];
-  const base = (path: string): string => `${PACKS_ROOT}/${want.pack}/${path}`;
+  const base = (item?: WantItem): Pick<ManifestAsset, 'licence' | 'licenceId' | 'source' | 'author' | 'attribution'> => {
+    const licenceId = item?.licenceId ?? want.licenceId;
+    const attribution = item?.attribution ?? want.attribution;
+    return { licence: LICENCE_IDS[licenceId], licenceId, source: ours ? OWN_SOURCE : want.page, author: item?.author ?? want.author, ...(attribution ? { attribution } : {}) };
+  };
+  const keepLicence = (full: Buffer, name: string): void => {
+    const text = want.licenceLines ? licenceExcerpt(full, want.licenceLines) : full;
+    if (!licenceTextSays(text.toString('utf8'), want.licenceId)) throw new Error(`${want.pack}: ${name} does not state ${want.licenceId}; refusing`);
+    files.push({ name: 'LICENSE.txt', bytes: text });
+    assets.push({ path: packPath(want.pack, 'LICENSE.txt'), ...base(), bytes: text.length, kind: 'licence' });
+  };
+  const keepModel = (item: WantItem, bytes: Buffer, extra: Partial<ManifestAsset> = {}): void => {
+    if (bytes.length > MAX_FILE_BYTES) throw new Error(`${item.as} is ${bytes.length} bytes: too big to keep`);
+    files.push({ name: item.as, bytes });
+    assets.push({ path: packPath(want.pack, item.as), ...base(item), bytes: bytes.length, triangles: 0, game: item.game, kind: item.kind, sourceSha256: sha(bytes), ...(item.note ? { note: item.note } : {}), ...extra });
+  };
 
-  if (want.kind === 'polypizza') {
+  if (want.kind === 'own') {
+    const work = mkdtempSync(join(tmpdir(), 'aw-own-'));
+    try {
+      for (const item of want.want) {
+        if (!item.blender) throw new Error(`${want.pack}: ${item.as} needs "blender"`);
+        const bytes = (options.blender ?? runBlender)(item.blender.script, join(work, item.as), item.blender.args);
+        keepModel(item, bytes, { made: `scripts/assets/blender/${item.blender.script}.py` });
+      }
+    } finally { rmSync(work, { recursive: true, force: true }); }
+  } else if (want.kind === 'polypizza') {
     for (const item of want.want) {
       if (!item.page) throw new Error(`${want.pack}: ${item.as} needs a page`);
       const got = await polyPizzaItem(session, item, want);
-      files.push({ name: item.as, bytes: got.bytes });
-      assets.push({ path: base(item.as), source: want.source, url: got.url, licence: got.licence, ...(got.attribution ? { attribution: got.attribution } : {}), bytes: got.bytes.length, game: item.game, kind: item.kind, sourceSha256: sha(got.bytes), licenceUrl: want.licenceUrl });
+      keepModel({ ...item, licenceId: got.licenceId, author: got.author, attribution: got.attribution }, got.bytes);
+      assets[assets.length - 1]!.source = got.url;
+    }
+  } else if (want.kind === 'github') {
+    if (!want.repo || !/^[\w.-]+\/[\w.-]+$/.test(want.repo) || !want.ref || !/^[0-9a-f]{40}$/.test(want.ref)) throw new Error(`${want.pack}: github needs repo "owner/name" and a 40-hex commit in ref`);
+    const raw = (path: string): string => `https://raw.githubusercontent.com/${want.repo}/${want.ref}/${path.split('/').map(encodeURIComponent).join('/')}`;
+    keepLicence(await session.bytes(raw(want.licenceFile ?? 'LICENSE.txt'), MAX_FILE_BYTES), want.licenceFile ?? 'LICENSE.txt');
+    for (const item of want.want) {
+      if (!item.from) throw new Error(`${want.pack}: ${item.as} needs "from"`);
+      const bytes = await session.bytes(raw(item.from), MAX_FILE_BYTES);
+      if (externalUris(bytes).length) throw new Error(`${item.from} points at other files; use a .glb that holds everything`);
+      keepModel(item, bytes, { from: item.from });
     }
   } else {
     const archive = options.archive ?? (want.kind === 'kenney' ? await kenneyArchive(session, want) : await itchArchive(session, want));
     const entries = readZip(archive);
     const licenceName = want.licenceFile ?? 'License.txt';
-    const licenceText = pickEntry(entries, licenceName).read();
-    const licenceWords = licenceText.toString('utf8');
-    const ok = want.licence === 'CC0-1.0' ? /Creative Commons Zero|CC0|publicdomain\/zero/i.test(licenceWords) : /creativecommons\.org\/licenses\/by/i.test(licenceWords);
-    if (!ok) throw new Error(`${want.pack}: the archive's ${licenceName} does not state ${want.licence}; refusing`);
-    files.push({ name: 'LICENSE.txt', bytes: licenceText });
-    assets.push({ path: base('LICENSE.txt'), source: want.source, url: want.page, licence: want.licence, ...(want.attribution ? { attribution: want.attribution } : {}), bytes: licenceText.length, kind: 'raw', licenceUrl: want.licenceUrl });
+    keepLicence(pickEntry(entries, licenceName).read(), `the archive's ${licenceName}`);
     for (const item of want.want) {
       if (!item.from) throw new Error(`${want.pack}: ${item.as} needs "from"`);
-      const entry = pickEntry(entries, item.from);
-      const bytes = entry.read();
-      if (bytes.length > MAX_FILE_BYTES) throw new Error(`${item.from} is ${bytes.length} bytes: too big to keep`);
-      files.push({ name: item.as, bytes });
+      const bytes = pickEntry(entries, item.from).read();
       if (/\.(glb|gltf)$/i.test(item.as)) {
         for (const uri of externalUris(bytes)) {
           const rel = posix.normalize(decodeURIComponent(uri));
@@ -184,15 +251,15 @@ export async function fetchPack(want: WantList, options: FetchOptions = {}): Pro
           if (files.some((f) => f.name === rel)) continue;
           const dep = pickEntry(entries, posix.join(posix.dirname(item.from), rel)).read();
           files.push({ name: rel, bytes: dep });
-          assets.push({ path: base(rel), source: want.source, url: want.page, licence: item.licence ?? want.licence, ...((item.attribution ?? want.attribution) ? { attribution: item.attribution ?? want.attribution } : {}), bytes: dep.length, kind: 'raw', temporary: true, licenceUrl: want.licenceUrl });
+          assets.push({ path: packPath(want.pack, rel), ...base(item), bytes: dep.length, kind: 'texture', temporary: true });
         }
       }
-      assets.push({ path: base(item.as), source: want.source, url: want.page, licence: item.licence ?? want.licence, ...((item.attribution ?? want.attribution) ? { attribution: item.attribution ?? want.attribution } : {}), bytes: bytes.length, game: item.game, kind: item.kind, sourcePath: item.from, sourceSha256: sha(bytes), licenceUrl: want.licenceUrl });
+      keepModel(item, bytes, { from: item.from });
     }
   }
   mkdirSync(dir, { recursive: true });
   for (const f of files) { mkdirSync(dirname(join(dir, f.name)), { recursive: true }); writeFileSync(join(dir, f.name), f.bytes); }
-  const manifest: Manifest = { pack: want.pack, page: want.page, fetched: (options.now ?? (() => new Date()))().toISOString().slice(0, 10), assets };
+  const manifest: Manifest = { format: MANIFEST_FORMAT, pack: want.pack, name: want.name, kind: want.kind, page: want.page, author: want.author, licenceId: want.licenceId, fetched: (options.now ?? (() => new Date()))().toISOString().slice(0, 10), assets };
   writeFileSync(join(dir, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
   return manifest;
 }
@@ -204,12 +271,13 @@ async function cli(): Promise<void> {
   const opt = (n: string): string | undefined => { const i = args.indexOf(n); return i >= 0 ? args[i + 1] : undefined; };
   const { readdirSync } = await import('node:fs');
   const packs = args.includes('--all') ? readdirSync(join(repo, 'scripts', 'assets', 'wants')).filter((f) => f.endsWith('.json')).map((f) => f.replace(/\.json$/, '')) : [opt('--pack') ?? ''];
-  if (!packs[0]) { console.error('usage: fetch-pack.ts --pack <name> [--archive file.zip] | --all'); process.exit(1); }
+  const archivePath = opt('--archive');
+  if (!packs[0] || (archivePath && packs.length > 1)) { console.error('usage: fetch-pack.ts --pack <name> [--archive file.zip] | --all'); process.exit(1); }
+  if (archivePath && !existsSync(archivePath)) { console.error(`${archivePath} does not exist`); process.exit(1); }
   let failed = 0;
   for (const pack of packs) {
     try {
-      const archivePath = opt('--archive');
-      const m = await fetchPack(loadWant(pack), { archive: archivePath && existsSync(archivePath) ? readFileSync(archivePath) : undefined });
+      const m = await fetchPack(loadWant(pack), { archive: archivePath ? readFileSync(archivePath) : undefined });
       console.log(`${pack}: kept ${m.assets.length} files, ${m.assets.reduce((n, a) => n + a.bytes, 0)} bytes`);
     } catch (error) {
       failed++;

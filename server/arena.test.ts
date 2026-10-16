@@ -249,3 +249,14 @@ test('practice seat count: default is the game\'s minimum, `seats` raises it up 
   assert.equal((await make(cyril, { seats: 99 })).seats.length, cyril.state.max);
   assert.equal((await make(cyril, { seats: 1 })).seats.length, cyril.state.min);
 });
+
+test('a seat carries the player\'s public native look', async (t) => {
+  const h = await harness(t);
+  const [ada, bola] = [await h.peer('Ada'), await h.peer('Bola')];
+  const nat = { b: 'male', h: 'short01', g: 'male-worksuit-01', s: 'shoes01', e: 'brown', c: 'deep', t: 1, k: ['7a4a2c', '15110f', 'e8553d', '27314f', 'ffffff'], f: { muscle: 0.3 } };
+  const room = await h.create(ada, { nat });
+  await h.join(bola, room); // no look at all: an older client
+  await h.until(() => ada.state.seats.length === 2, 'both seats');
+  assert.deepEqual(ada.state.seats[0]?.nat, nat);
+  assert.equal(ada.state.seats[1]?.nat, undefined);
+});

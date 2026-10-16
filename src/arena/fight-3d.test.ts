@@ -37,5 +37,5 @@ test('the camera backs off as the pair spreads, and stays inside its limits', ()
   assert.ok(framing(30, 844, 390, LANDSCAPE.inset).dist <= 17)
 })
 test('every model URL is versioned', () => {
-  for (const url of [...FIGHT_ASSETS.fighters, FIGHT_ASSETS.ring]) assert.match(url, /\.glb\?v=[0-9a-f]{10}$/)
+  for (const url of [...FIGHT_ASSETS.fighters, FIGHT_ASSETS.ring, FIGHT_ASSETS.clips]) assert.match(url, /\.glb\?v=[0-9a-f]{10}$/)
 })

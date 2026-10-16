@@ -22,7 +22,7 @@ export const ASSET_CREDITS: unknown = {
       "licence": "ours",
       "licenceId": "AGPL-3.0-or-later",
       "licenceUrl": "https://www.gnu.org/licenses/agpl-3.0.html",
-      "files": 1,
+      "files": 2,
       "games": [
         "fight"
       ]

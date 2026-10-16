@@ -118,6 +118,10 @@ const dailyCta = computed(() => (today.value?.status === 'playing' || !today.val
       <div><h3 id="gm-clans"><span aria-hidden="true">&#x1F6E1;</span> Clans and ladders</h3><p>Play with up to 25 friends under one name and colour. Climb your city’s ladder, win the week for your city.</p></div>
       <BaseButton variant="primary" @click="screen = 'clans'">Open clans</BaseButton>
     </section>
+    <section class="gm-live gm-build" data-section="build" aria-labelledby="gm-build">
+      <div><h3 id="gm-build"><span aria-hidden="true">&#x1F6E0;</span> Make your own game</h3><p>Allworld is open source. Build a live game for everyone here: the guide, a sample game and how to send it in.</p></div>
+      <a class="gm-build-link" href="https://github.com/kromate/joinallworld/blob/main/docs/CARTRIDGES.md" target="_blank" rel="noopener">Read the guide</a>
+    </section>
     <div class="gm-code"><input ref="codeBox" v-model="code" placeholder="Paste a game link or code" aria-label="Game link or code" @keydown.enter="joinByCode"><BaseButton @click="joinByCode">Join / Watch</BaseButton></div>
     <SectionTitle>Play your way</SectionTitle>
     <div class="gm-grid">
@@ -179,6 +183,8 @@ const dailyCta = computed(() => (today.value?.status === 'playing' || !today.val
 .gm-daily-links button, .gm-share { border: 0; background: none; min-height: 44px; padding: 6px 0; font: 600 13px var(--font); color: #22543d; text-align: left; cursor: pointer; }
 .gm-live { display: grid; gap: 10px; padding: 14px; border-radius: 16px; }
 .gm-clans { background: #3a2c55; color: #fff; }
+.gm-build { background: #1f3b4d; color: #fff; }
+.gm-build-link { display: flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 10px; background: #fff; color: #1f3b4d; font: 650 14px var(--font); text-decoration: none; }
 .gm-challenge { margin: 6px 0 0; padding: 6px 10px; border-radius: 10px; background: rgba(255,255,255,.12); font-size: 13px; }
 .gm-live h3 { margin: 0 0 2px; font-size: 24px; letter-spacing: -.025em; }
 .gm-live p { margin: 0; font-size: 13px; opacity: .85; } .gm-live small { opacity: .8; }

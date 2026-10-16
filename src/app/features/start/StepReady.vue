@@ -8,7 +8,6 @@ import { cachedCityContent } from '../../../game/cities/registry.ts'
 import type { DreamId, Look, TraitId } from '../../../types/life.ts'
 import { lookSummary } from './lookModel.ts'
 import type { StepId } from './creatorModel.ts'
-import AvatarFigure from './AvatarFigure.vue'
 import GameIcon from '../../ui/GameIcon.vue'
 
 const props = defineProps<{ city?: string; name: string; look: Look; traits: readonly TraitId[]; dream: DreamId | null; area: string }>()
@@ -26,7 +25,6 @@ const rows = computed<{ step: StepId; label: string; value: string }[]>(() => [
 <template>
   <div class="cr-ready" data-cr-summary>
     <div class="cr-ready-top">
-      <AvatarFigure :look="look" :size="52" crop="head" label="" />
       <div><p class="cr-eyebrow">Here's you</p><h3 class="cr-ready-name" data-cr-name>{{ name }}</h3></div>
     </div>
     <dl class="cr-sum">

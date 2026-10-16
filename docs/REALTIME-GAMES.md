@@ -52,7 +52,7 @@ The share link is `/?table=g-xxxxxx`. It reuses the existing `table` link captur
 
 - `arena-again` from every person seated starts the next match (`match` counts up). Bots agree automatically.
 - `arena-leave` during a game forfeits (the rules' `forfeit`): the other player wins at once. The empty seat is freed for a newcomer once the game is over.
-- A seat whose last socket closed is marked `away`; it forfeits after `awayForfeitMs` (12 s) while playing and is released after 30 s otherwise. Reconnecting in time resumes the seat.
+- A seat whose last socket closed is marked `away`. While playing, the seat's bot steers it for up to `awayForfeitMs` (15 s) and the person takes it back on reconnecting; only then does it forfeit. Otherwise it is released after 30 s. See [CARTRIDGES.md](CARTRIDGES.md) for the cartridge contract, replays and clips.
 - A room with no connected socket closes after 60 s; a lobby after 15 min; a finished room after 10 min. The room closes at once when no person is left.
 
 ### Anti-abuse

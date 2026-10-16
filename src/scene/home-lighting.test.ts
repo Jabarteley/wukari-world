@@ -1,5 +1,6 @@
 import { loadCityScenes } from './city-scenes.ts';
 await loadCityScenes('lagos');
+import './body/native-test-fixture.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';

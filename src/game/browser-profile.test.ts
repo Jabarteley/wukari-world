@@ -455,11 +455,13 @@ for (const { raw, ctx } of input.lives) {
   await homewardFor(raw);
   const state = createLife(raw, ctx);
   const baseView = viewLife(state, ctx);
-  const wearablesDeferred = !baseView.onboarding.boutique.some(item => item.kind === 'wearables');
+  const catalogDeferred = baseView.onboarding.boutique.length === 0;
   // Same helper used by BoutiqueApp after opening: keep the catalogue out of startup,
   // then compare its complete projection against the full engine without dropping any expected entries.
-  const { withWearableBoutique } = await import('${url('../app/features/life/boutiqueModel.ts')}');
-  results.push({ waited: waiting !== null, refused, state, wearablesDeferred,
+  const [{ withWearableBoutique }, { nativeRecipeForLook }] = await Promise.all([
+    import('${url('../app/features/life/boutiqueModel.ts')}'), import('${url('../character/native-migration.ts')}')]);
+  results.push({ waited: waiting !== null, refused, state, catalogDeferred,
+    lazyNative: nativeRecipeForLook(state.onboarding.look, JSON.stringify(state.onboarding.look)),
     view: { ...baseView, onboarding: withWearableBoutique(baseView.onboarding, state) } });
 }
 await loadCampus();
@@ -538,14 +540,17 @@ function lives(): { name: string; raw: unknown; ctx: LifeContextInit }[] {
   settled.act({ type: 'onboarding.lottery', payload: {} });
   settled.act({ type: 'onboarding.home', payload: { house: 'yaba' } });
   keep('settled at home', settled);
-  const wearable = viewLife(settled.state, settled.ctx()).onboarding.boutique.find(item => item.kind === 'wearables' && !item.owned && item.blocked === null);
-  assert.ok(wearable, 'the fixture can buy an offered wearable through the full engine');
-  const beforeWearable = settled.state.cash;
-  settled.act({ type: 'onboarding.boutique-buy', payload: { kind: 'wearables', id: wearable.id } });
-  assert.equal(settled.state.cash, beforeWearable - wearable.price);
-  assert.ok(settled.state.onboarding.wardrobe.wearables?.some(id => id === wearable.id));
-  assert.ok(settled.state.onboarding.look.wearables?.some(id => id === wearable.id));
-  keep('settled with a bought and worn layer', settled);
+  const legacyLook = JSON.parse(JSON.stringify(settled.state)) as LifeState;
+  delete legacyLook.onboarding.look.native;
+  out.push({ name: 'settled legacy look without native recipe', raw: legacyLook, ctx: { now: legacyLook.t, cityId: 'lagos' } });
+  const nativeShoes = viewLife(settled.state, settled.ctx()).onboarding.boutique.find(item => item.kind === 'native-shoes' && item.id === 'shoes02' && !item.owned && item.blocked === null);
+  assert.ok(nativeShoes, 'the fixture can buy offered native shoes through the full engine');
+  const beforeShoes = settled.state.cash;
+  settled.act({ type: 'onboarding.boutique-buy', payload: { kind: 'native-shoes', id: nativeShoes.id } });
+  assert.equal(settled.state.cash, beforeShoes - nativeShoes.price);
+  assert.ok(settled.state.onboarding.wardrobe.native?.some(id => id === nativeShoes.id));
+  assert.equal(settled.state.onboarding.look.native?.appearance.shoes, nativeShoes.id);
+  keep('settled with bought and worn native shoes', settled);
   for (const venue of ['park', 'market', 'gym']) { settled.act({ type: 'travel', id: venue, mode: 'okada' }); settled.wait(600); }
   settled.act({ type: 'travel', id: 'park', mode: 'okada' }); settled.wait(600);
   settled.act({ type: 'spot', payload: { id: 'trees' } }); settled.act({ type: 'activity', id: 'chill' }); settled.wait(5);
@@ -650,7 +655,7 @@ test('the browser engine rebuilds and views every life as the full engine does, 
     writeFileSync(clientFile, JSON.stringify({ mode: 'client', lives: given.map(({ name, raw, ctx }) => ({ name, raw, ctx })) }));
     const clientRun = JSON.parse(probe(clientFile)) as { client: Record<string, unknown> };
     const output = JSON.parse(probe(file)) as
-      { playing: boolean; standInsLeft: boolean; results: { waited: boolean; refused: string | null; wearablesDeferred: boolean; state: unknown; view: unknown }[] };
+      { playing: boolean; standInsLeft: boolean; results: { waited: boolean; refused: string | null; catalogDeferred: boolean; lazyNative: unknown; state: unknown; view: unknown }[] };
     const campusLife = given.find((life) => life.name === 'a student at the campus');
     const savedStudent = (campusLife?.raw as { unilagStudent: { status: string; programme: string }; unilagShuttle: { rides: number }; unilagCommunity: { clubs: string[] } }) ;
     assert.deepEqual(clientRun.client, { standInAtStart: true, before: 'none', connected: true, standIn: false, status: savedStudent.unilagStudent.status, programme: savedStudent.unilagStudent.programme,
@@ -663,9 +668,20 @@ test('the browser engine rebuilds and views every life as the full engine does, 
       const result = output.results[index];
       assert.ok(result, life.name);
       const full = createLife(life.raw, life.ctx);
-      assert.deepEqual(result.state, JSON.parse(JSON.stringify(full)), `${life.name}: the rebuilt life`);
+      const browserState = result.state as LifeState, expectedState = JSON.parse(JSON.stringify(full)) as LifeState;
+      if (browserState.onboarding.look.native === undefined && expectedState.onboarding.look.native !== undefined) {
+        const expectedNative = expectedState.onboarding.look.native;
+        delete expectedState.onboarding.look.native;
+        assert.deepEqual(browserState, expectedState, `${life.name}: the read-only browser keeps the complete legacy look without eagerly rewriting it`);
+        assert.deepEqual(result.lazyNative, expectedNative, `${life.name}: the lazy renderer/editor materializes the same deterministic native recipe as the server`);
+      } else {
+        assert.deepEqual(browserState, expectedState, `${life.name}: the rebuilt life`);
+        if (expectedState.onboarding.look.native !== undefined) assert.deepEqual(result.lazyNative, expectedState.onboarding.look.native, `${life.name}: a saved native recipe stays authoritative`);
+        else assert.equal((result.lazyNative as { schema?: string }).schema, 'allworld-character', `${life.name}: an unsaved default can still be materialized lazily`);
+      }
       const fullView = JSON.parse(JSON.stringify(viewLife(full, life.ctx))) as Record<string, unknown>;
-      assert.equal(result.wearablesDeferred, true, `${life.name}: wearables remain deferred until Boutique opens`);
+      if (browserState.onboarding.look.native === undefined) delete (((fullView.onboarding as { look: LifeState['onboarding']['look'] }).look).native);
+      assert.equal(result.catalogDeferred, true, `${life.name}: the labelled native catalogue remains deferred until Boutique opens`);
       const uses = needsCampusRules(life.raw), loadedBefore = loaded;
       assert.equal(result.waited, uses && !loaded, `${life.name}: waits for the campus rules the first time a life uses the campus, and never again`);
       loaded ||= uses;

@@ -74,8 +74,9 @@ jobs:
           node scripts/check-joinallworld-source.mjs "$GITHUB_WORKSPACE/new-source" "$SOURCE_SHA"
           npm ci --ignore-scripts --no-audit --no-fund --prefix new-source
       - name: Build once and enforce download budgets
-        # The build (~2 min at 229 cities) and the brotli size report (~2 min) no longer fit 3 minutes.
-        timeout-minutes: 10
+        # The measured native-catalogue build and complete Brotli report take about 11 minutes.
+        # This is an execution allowance; all byte and rendering limits remain enforced.
+        timeout-minutes: 15
         run: |
           npm run build --prefix new-source
           npm run size:download --prefix new-source

@@ -478,6 +478,8 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
       // A hashed build file that is gone (an old tab after a deploy) is a 404, never the app page: a dynamic import of it must fail clearly.
       const inAssets = url.pathname.startsWith('/assets/');
       if (adminKind === null && path === resolve(root, ADMIN_SHELL)) throw fail(404, 'not_found'); // the game's own host does not serve the admin page
+      // The replay page (replay.html, a build entry of its own) answers at /replay, as the Worker's asset binding serves it.
+      if (adminKind === null && url.pathname === '/replay') path = resolve(root, 'replay.html');
       let found = true;
       try { if (!(await stat(path)).isFile()) found = false; } catch { found = false; }
       if (!found) {
@@ -488,15 +490,16 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
       // host when that is not set), because the crawlers of chat apps do not resolve a relative og:image.
       const isShell = adminKind === 'shell';
       const isIndex = path === resolve(root, 'index.html');
+      const isReplay = adminKind === null && path === resolve(root, 'replay.html');
       // A short address (/games, /abuja, …) gets its own title, description and link-preview tags; the page's scripts are untouched.
-      const html = isShell ? await readFile(path, 'utf8') : isIndex ? (open ? open.page : (page: string) => page)(withPathMeta(await serveIndex(req, path), url.pathname, publicOrigin(req), url.search)) : '';
-      const bytes = isIndex || isShell ? Buffer.from(html) : await readFile(path);
+      const html = isShell || isReplay ? await readFile(path, 'utf8') : isIndex ? (open ? open.page : (page: string) => page)(withPathMeta(await serveIndex(req, path), url.pathname, publicOrigin(req), url.search)) : '';
+      const bytes = isIndex || isShell || isReplay ? Buffer.from(html) : await readFile(path);
       if (res.headersSent || res.writableEnded) return;
       // The game's page carries the full set of security headers; its inline scripts are admitted by hash, from the page as served.
-      const security = isShell ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), accounts: accountsHeaderConfig, admin: true }) : isIndex ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), telemetry: telemetryHosts, avatarAssets: html.includes('name="allworld-3d-assets"'), accounts: accountsHeaderConfig, trustProviders: trustHeaderConfig(envReader(env), accountsHeaderConfig) }) : adminKind ? { 'X-Robots-Tag': 'noindex, nofollow' } : {};
+      const security = isReplay ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), accounts: accountsHeaderConfig }) : isShell ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), accounts: accountsHeaderConfig, admin: true }) : isIndex ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), telemetry: telemetryHosts, avatarAssets: html.includes('name="allworld-3d-assets"'), accounts: accountsHeaderConfig, trustProviders: trustHeaderConfig(envReader(env), accountsHeaderConfig) }) : adminKind ? { 'X-Robots-Tag': 'noindex, nofollow' } : {};
       // Immutable assets cache for a year; the page and mutable street version pointer revalidate.
       const currentStreetManifest = /^\/assets\/street\/[a-z][a-z0-9-]{0,60}\/manifest\.txt$/.test(decodeURIComponent(url.pathname));
-      const cache = currentStreetManifest ? 'no-cache' : inAssets ? 'public, max-age=31536000, immutable' : path === resolve(root, 'index.html') ? 'no-cache' : 'public, max-age=3600';
+      const cache = currentStreetManifest ? 'no-cache' : inAssets ? 'public, max-age=31536000, immutable' : path === resolve(root, 'index.html') || isReplay ? 'no-cache' : 'public, max-age=3600';
       res.writeHead(200, { 'Content-Type': mime[extname(path)] || 'application/octet-stream', 'Cache-Control': cache, 'X-Content-Type-Options': 'nosniff', ...security });
       res.end(method === 'HEAD' ? undefined : bytes);
     } catch (thrown) {

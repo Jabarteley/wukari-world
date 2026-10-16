@@ -19,6 +19,8 @@ import { drawFight, newFx, spawnHits } from '../../../arena/fight-draw.ts'
 import type { FighterColors } from '../../../arena/fight-draw.ts'
 import { Timeline } from '../../../arena/interp.ts'
 import type { ArenaLook } from '../../../types/arena.ts'
+import { FIGHT_PAD } from '../../../arena/input/pad.ts'
+import { axisDir, usePad } from '../../../arena/input/usePad.ts'
 
 const props = defineProps<ArenaScreenProps>()
 const emit = defineEmits<{ close: [] }>()
@@ -87,6 +89,21 @@ function key(event: KeyboardEvent, on: boolean): void {
   if (map.hold) hold(map.hold, on)
   if (map.tap && on && !event.repeat) tap(map.tap)
 }
+// A game controller sends exactly what the touch buttons send (src/arena/input/): the stick or d-pad holds left/right.
+let stickDir: -1 | 0 | 1 = 0
+const pad = usePad(FIGHT_PAD, {
+  action(id, on) {
+    if (id === 'block') hold(BTN.block, on)
+    else if (on) tap(id === 'punch' ? BTN.punch : id === 'kick' ? BTN.kick : BTN.jump)
+  },
+  stick(x) {
+    const dir = axisDir(x, stickDir)
+    if (dir === stickDir) return
+    if (stickDir) hold(stickDir < 0 ? BTN.left : BTN.right, false)
+    if (dir) hold(dir < 0 ? BTN.left : BTN.right, true)
+    stickDir = dir
+  },
+}, (text) => game.toast(text, 'good'))
 const onDown = (e: KeyboardEvent): void => key(e, true)
 const onUp = (e: KeyboardEvent): void => key(e, false)
 const onHide = (): void => { if (document.hidden) { heldBits = 0; down.value = 0; pipe.reset(); pipe.flush() } }
@@ -128,10 +145,10 @@ function frame(now: number): void {
   while (pendingHits.length && pick && (pendingHits[0] as { k: number }).k <= pick.tick) {
     const hit = pendingHits.shift() as { snap: FightSnap }
     spawnHits(fx, hit.snap, reduced)
-    for (const e of hit.snap.e) sound.hit(e[2] === 1, e[1] === 1)
+    for (const e of hit.snap.e) { sound.hit(e[2] === 1, e[1] === 1); if (seated.value) pad.rumble(e[2] === 1 ? 0.25 : 0.6, e[2] === 1 ? 60 : 140) }
   }
   if (b.p !== seenPhase) {
-    if (b.p === PHASE.ko) sound.ko()
+    if (b.p === PHASE.ko) { sound.ko(); if (seated.value) pad.rumble(1, 320) }
     if (b.p === PHASE.intro || (b.p === PHASE.fight && seenPhase === PHASE.intro)) sound.bell()
     seenPhase = b.p
   }
@@ -175,7 +192,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <ArenaStage title="Fight" :play="status === 'playing'" :chip="conn === 'open' ? (state?.practice ? 'Practice' : status === 'playing' ? (seated ? 'Live' : 'Watching') : status) : 'Connecting…'" :off="conn !== 'open'" @leave="leave">
+  <ArenaStage title="Fight" :pad="pad" :play="status === 'playing'" :chip="conn === 'open' ? (state?.practice ? 'Practice' : status === 'playing' ? (seated ? 'Live' : 'Watching') : status) : 'Connecting…'" :off="conn !== 'open'" @leave="leave">
     <div class="fg" data-testid="fight">
     <div v-if="gone" class="fg-card"><p>{{ note || 'That game is not on any more.' }}</p><BaseButton variant="primary" @click="leave">Back to games</BaseButton></div>
     <template v-else>

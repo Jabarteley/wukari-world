@@ -17,6 +17,8 @@ import type { FootballSnap } from '../../../arena/football.ts'
 import { KITS, VIEW_H, VIEW_W, drawFootball, makePitch, newFx, screenToWorld, spawnEvents, viewRotation } from '../../../arena/football-draw.ts'
 import type { Look, Meta } from '../../../arena/football-draw.ts'
 import type { ArenaLook } from '../../../types/arena.ts'
+import { FOOTBALL_PAD } from '../../../arena/input/pad.ts'
+import { usePad } from '../../../arena/input/usePad.ts'
 
 const props = defineProps<ArenaScreenProps>()
 const emit = defineEmits<{ close: [] }>()
@@ -97,6 +99,11 @@ function joyStop(event: PointerEvent): void {
   if (event.pointerId !== joyId) return
   joyId = -1; joyX = 0; joyY = 0; knob.value = { x: 0, y: 0 }; refresh()
 }
+// A game controller drives the same joystick heading and buttons as the thumbs (src/arena/input/); the touch stick wins while held.
+const pad = usePad(FOOTBALL_PAD, {
+  action(id, on) { if (id === 'shoot') { if (on) shootDown(); else shootUp() } else if (on) tackle() },
+  stick(x, y) { if (joyId >= 0) return; joyX = x; joyY = y; refresh() },
+}, (text) => game.toast(text, 'good'))
 const AXES: Record<string, [number, number]> = {
   ArrowLeft: [-1, 0], a: [-1, 0], ArrowRight: [1, 0], d: [1, 0], ArrowUp: [0, -1], w: [0, -1], ArrowDown: [0, 1], s: [0, 1],
 }
@@ -196,7 +203,7 @@ function frame(now: number): void {
   while (pending.length && pick && (pending[0] as { k: number }).k <= pick.tick) {
     const ev = (pending.shift() as { snap: FootballSnap }).snap
     spawnEvents(fx, ev, reduced)
-    for (const e of ev.e) { if (e[0] === EV.kick) sound.kick(e[3] === 1); else if (e[0] === EV.tackle) sound.tackle(); else if (e[0] === EV.post) sound.post(); else if (e[0] === EV.save) sound.save(); else if (e[0] === EV.goal) sound.goal() }
+    for (const e of ev.e) { if (e[0] === EV.kick) sound.kick(e[3] === 1); else if (e[0] === EV.tackle) sound.tackle(); else if (e[0] === EV.post) sound.post(); else if (e[0] === EV.save) sound.save(); else if (e[0] === EV.goal) { sound.goal(); if (seated.value) pad.rumble(1, 400) } }
   }
   if (b.p !== seenPhase) {
     if ((b.p === PHASE.play && seenPhase === PHASE.kickoff) || b.p === PHASE.kickoff) sound.whistle()
@@ -238,7 +245,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <ArenaStage title="Football" :play="live" :chip="conn === 'open' ? (state?.practice ? 'Practice' : status === 'playing' ? (seated ? 'Live' : 'Watching') : status) : 'Connecting…'" :off="conn !== 'open'" @leave="leave">
+  <ArenaStage title="Football" :pad="pad" :play="live" :chip="conn === 'open' ? (state?.practice ? 'Practice' : status === 'playing' ? (seated ? 'Live' : 'Watching') : status) : 'Connecting…'" :off="conn !== 'open'" @leave="leave">
     <template #bar>
       <span class="fb-sbar" data-testid="football-score"><b class="a">{{ sb.a }}</b><span class="fb-sc"><strong>{{ sb.ga }} - {{ sb.gb }}</strong><small>{{ sb.clock }}</small></span><b class="b">{{ sb.b }}</b></span>
     </template>

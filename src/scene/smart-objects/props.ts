@@ -54,7 +54,7 @@ export function createUseProps(kit: Kit) {
     update(action: ObjectAction, body: SkinnedBody | null) {
       if (!body && !action.surface) { object.visible = false; return; }
       const next = `${action.id}|${body?.key ?? 'fallback'}`;
-      if (next !== key) { key = next; build(action); right = body?.object.getObjectByName('hand_r'); left = body?.object.getObjectByName('hand_l'); head = body?.object.getObjectByName('Head'); }
+      if (next !== key) { key = next; build(action); right = body?.object.getObjectByName('hand_r'); left = body?.object.getObjectByName('hand_l'); head = body?.object.getObjectByName('head'); }
       const sx = body?.scaleX ?? 1, sy = body?.scale ?? 1, sz = body?.scaleZ ?? 1;
       object.visible = true;
       if (action.use.kind === 'floor') object.position.set(action.use.x, action.use.y + 0.045 * sy, action.use.z);

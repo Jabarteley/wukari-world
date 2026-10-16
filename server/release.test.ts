@@ -15,18 +15,39 @@ function files(dir: URL, prefix = ''): string[] {
 
 /** The pipeline's own asset rule (scripts/guard-joinallworld-package.mjs), applied to what public/ ships. */
 const ASSET = /^[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/;
+const NATIVE_PUBLIC_METADATA = new Set([
+  'character-lab/FINAL-PASS-LICENSE-NOTE.md',
+  'character-lab/THIRD_PARTY_NOTICES.md',
+  'character-lab/models/candidates/motion-iteration2-upper-palm.json',
+  'character-lab/models/final-pass-20261015/catalog.json',
+]);
 
 test('JavaScript is limited to the service worker, release shims and exact reviewed tooling', () => {
   const javascript = files(root).filter((file) => /\.(?:js|mjs|cjs)$/.test(file)).sort();
-  assert.deepEqual(javascript, ['deploy/cloudflare-worker.js', 'deploy/cloudflare.test.mjs', 'public/sw.js',
+  assert.deepEqual(javascript, ['deploy/cloudflare-worker.js', 'deploy/cloudflare.test.mjs',
+    'docs/agent-work/native-character-release-evidence-20261016/native-height-probe.mjs',
+    'docs/agent-work/native-character-release-evidence-20261016/native-probe.mjs',
+    'docs/agent-work/native-character-release-evidence-20261016/native-scenes-probe.mjs',
+    'docs/agent-work/native-character-release-evidence-20261016/native-street-probe.mjs',
+    'docs/agent-work/native-character-release-evidence-20261016/native-world-motion-probe.mjs',
+    'docs/agent-work/native-character-release-evidence-20261016/neighbourhood-player-ownership-probe.mjs',
+    'public/sw.js',
     'scripts/check-joinallworld-source.mjs', 'scripts/check-workflows.mjs',
     // Reviewed generated-travel gate: proves the committed land-components table matches the catalogue.
     'scripts/city/check-land-components.mjs',
     'scripts/guard-joinallworld-package.mjs', 'scripts/guard-joinallworld-package.test.mjs',
     // Bounded, typechecked browser QA with isolated synthetic fixtures and native input.
     'scripts/living-world-browser-qa.mjs',
+    'scripts/native-character-assets.mjs', 'scripts/native-character-policy.mjs',
     // This reviewed test-only native-allocation witness avoids TS-loader RSS at a 64MiB limit.
-    'scripts/package-joinallworld.mjs', 'world/tooling/index_resource_witness.mjs']);
+    'scripts/package-joinallworld.mjs',
+    'src/scene/character-lab/runtime/action-support.js', 'src/scene/character-lab/runtime/characters.js',
+    'src/scene/character-lab/runtime/foot-planting.js', 'src/scene/character-lab/runtime/foreground-characters.mjs',
+    'src/scene/character-lab/runtime/gait-cloth.js', 'src/scene/character-lab/runtime/knee-alignment.js',
+    'src/scene/character-lab/runtime/look-recipe-adapter.mjs', 'src/scene/character-lab/runtime/rig-motion-world.js',
+    'src/scene/character-lab/runtime/rig-motion.js', 'src/scene/character-lab/runtime/seated-contact.js',
+    'src/scene/character-lab/runtime/seated-drape.js', 'src/scene/character-lab/runtime/selected-profile.mjs',
+    'world/tooling/index_resource_witness.mjs']);
 });
 
 test('the two release shims only point at the TypeScript they stand for', () => {
@@ -40,7 +61,7 @@ test('the two release shims only point at the TypeScript they stand for', () => 
 test('every file in public/ is an asset the release package admits (no dot-file, no map, no manifest, no xml)', () => {
   for (const file of files(new URL('public/', root))) {
     assert.ok(!file.split('/').some((part) => part.startsWith('.')), `${file} starts with a dot`);
-    assert.ok(ASSET.test(file.split('/').at(-1) as string), `${file} is not an asset extension the package admits`);
+    assert.ok(NATIVE_PUBLIC_METADATA.has(file) || ASSET.test(file.split('/').at(-1) as string), `${file} is not an asset extension the package admits`);
   }
 });
 

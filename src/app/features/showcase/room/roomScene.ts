@@ -8,7 +8,8 @@
 import type * as THREE_TYPES from 'three'
 import { applyRendererLook, renderTier } from '../../../../scene/look.ts'
 import { createKit } from '../../../../scene/kit.ts'
-import { buildAvatar, normalizeLook } from '../../../../scene/characters.ts'
+import { normalizeLook } from '../../../../scene/characters.ts'
+import { createBody, preloadCanonicalBodies, preloadLooks } from '../../../../scene/body/skinned.ts'
 import { buildGoods, buildOffice, drawPhotoWall } from './roomBuild.ts'
 import type { Build, Fittings } from './roomBuild.ts'
 import { FONT, drawCover, drawMenuBoard, drawPanel, drawShelfLabel, roundedRect } from './roomCanvas.ts'
@@ -59,6 +60,10 @@ function canvasOf(width: number, height: number): { canvas: HTMLCanvasElement; c
 }
 
 export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData, events: RoomEvents): Promise<RoomScene> {
+  let seed = `keeper:${data.name}`
+  for (let at = 0; at < 12 && normalizeLook(undefined, seed).outfit === 'sitework'; at += 1) seed = `keeper:${data.name}:${at}`
+  await preloadCanonicalBodies()
+  await preloadLooks([{ seed }])
   const THREE = await import('three')
   const service = data.kind === 'service'
   const colours = roomColours(data.colours)
@@ -252,11 +257,11 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
   // ---- the shopkeeper (or the person at the desk), behind the counter ----
   const kit = createKit()
   // A neat figure behind the counter: the first look this shop's name gives that is not in a hard hat.
-  let seed = `keeper:${data.name}`
-  for (let at = 0; at < 12 && normalizeLook(undefined, seed).outfit === 'sitework'; at += 1) seed = `keeper:${data.name}:${at}`
-  const keeper = buildAvatar(kit, undefined, { seed, pose: 'stand', scale: 0.6, detail: 'medium', x: fittings.keeper.x, z: fittings.keeper.z, ry: 0 })
-  scene.add(keeper)
-  keeper.traverse((node) => { node.userData['pick'] = { kind: 'counter' } satisfies RoomPick; if ((node as THREE_TYPES.Mesh).isMesh) pickables.push(node) })
+  const keeper = createBody(kit, undefined, seed, 0.6)
+  keeper.place(fittings.keeper.x, 0, fittings.keeper.z, 0)
+  keeper.show('idle', false)
+  scene.add(keeper.object)
+  keeper.object.traverse((node) => { node.userData['pick'] = { kind: 'counter' } satisfies RoomPick; if ((node as THREE_TYPES.Mesh).isMesh) pickables.push(node) })
 
   // ---- the camera ----
   let portrait = false
@@ -396,6 +401,7 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
       clearCards()
       const board = fittings.pageBoard?.material as THREE_TYPES.MeshBasicMaterial | undefined
       board?.map?.dispose(); board?.dispose()
+      keeper.dispose()
       for (const item of disposables) item.dispose()
       kit.dispose()
       renderer.dispose(); renderer.forceContextLoss()

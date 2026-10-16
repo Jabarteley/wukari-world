@@ -99,9 +99,7 @@ import { createWalker, createPositionReporter, gaitPhase, WALK_SPEED, JOG_SPEED 
 import { createSceneControls } from './scene/controls.ts';
 import { buildVenueScene, DEFAULT_CAMERA, MAX_CROWD, SPOT_REACH, TABLE_REACH } from './scene/venue-scenes.ts';
 import { buildHomeScene } from './scene/home-scene.ts';
-import { bodyAllowed, drawsWebGL2 } from './scene/body/gate.ts';
-import { createRetryableStartup } from './scene/body/startup-gate.ts';
-import type { StandIn } from './scene/body/stand-in.ts';
+import { createStandIn } from './scene/body/stand-in.ts';
 import { spotsOf } from './life.ts';
 import type * as THREE from 'three';
 import type { Ident as AmbientIdent } from './scene/ambient/plan.ts';
@@ -115,6 +113,8 @@ import type { LifeState } from './types/life.ts';
 import { inputMode, readFacts } from './ui/inputMode.ts';
 import { NPC_WORD, addNpcWord, npcAria, npcTitle } from './ui/npc-mark.ts';
 
+type RenderBenchmark = import('./scene/render-benchmark.ts').RenderBenchmark;
+type RenderMeasurement = ReturnType<typeof import('./scene/render-benchmark.ts')['observeRenders']>;
 
 /** The player's avatar in every scene: their saved look, seeded by the session's public id (never the cookie). pose: set only by the host's own callers (a fixed pose). */
 export interface PlayerLook { look: unknown; seed: string; name: string; pose?: string | null }
@@ -144,6 +144,7 @@ export interface VenueDiagnostics extends SceneDiagnostics {
   things: { id: string; kind: string; label: string; x: number; z: number; px: number; py: number; at: boolean }[]
   people: { id: string; kind: string; x: number; z: number; px: number; py: number }[]
   objects: { id: string; itemId: string; x: number; z: number; px: number; py: number }[]
+  characterModels: { name: string; foundation: string; detail: string }[]
   drawCalls: number | undefined
   triangles: number | undefined
   geometries: number | undefined
@@ -231,6 +232,10 @@ export interface HostScene {
   startCrowd?(renderer: { getContext?: () => unknown }, changed: () => void): void
   readonly easing?: boolean
   readonly bodyShown?: boolean
+  /** Full distance travelled by one native walk or jog cycle, in this scene's world units. */
+  cycleDistance?(jog: boolean): number | undefined
+  /** Advance the scene-owned player body within the host's existing motion loop. */
+  stepCharacter?(dt: number): boolean
   stepCrowd?(dt: number): boolean
   settleCrowd?(): void
   /** The background people of the place (src/scene/ambient): the venue scene offers them, the home room and the others do not. */
@@ -269,6 +274,7 @@ export interface VenueWorld {
   /** The camera and the frame loop, for the end of the map's dive (src/map3d/arrive-above.ts, in the maps' own chunk); null where motion cannot be shown (reduced motion, no frame loop, no scene). */
   motion?(): { orbit: Orbit; wake(): boolean } | null
   diagnostics(): VenueDiagnostics
+  benchmark(): Promise<RenderBenchmark>
   resize(): void
   /** `top` / `bottom`: how many CSS pixels of the canvas the HUD covers; `hint`: where the HUD rows under the top bar end. */
   setInsets(next?: { top?: number; bottom?: number; hint?: number }): boolean
@@ -460,10 +466,10 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   container.appendChild(renderer.domElement);
   const camera = new THREE.PerspectiveCamera(43, 1, 0.1, 360);
   const lights = createHostLights(THREE, scene, { shadowMap: tier.shadowMap });
-  // The skinned body in place of the player's procedural figure in a venue (scene/body/stand-in.ts, fetched after the
-  // first frame on a device the gate allows; home has its own). Null until then, and for good without one.
-  let standIn: StandIn | null = null, gone = false;
-  const standInStartup = createRetryableStartup({ cooldownMs: 2_000 });
+  // The animated canonical body mounts over the scene's canonical static pose. The adapter preloads its assets.
+  let gone = false;
+  // Bodies are preloaded. Host mutations already request a draw, so mounting must not request a second one.
+  const standIn = createStandIn(kit, () => {});
   // The graded sky behind the scene and the soft ground under it (one texture, one mesh, for every venue).
   const sky = createSky(THREE), ground = createGround(THREE);
   scene.background = sky.texture;
@@ -508,7 +514,8 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   const built = new Map<string, HostScene>();
   let prepared: string | null = null;
   let current: HostScene | null = null, currentLocation: string | null = null, renderCount = 0, lastState: LifeState | null = null, size = { width: 0, height: 0 };
-  let rewardEpoch = 0;
+  let measurement: RenderMeasurement | null = null;
+  let rewardEpoch = 0, benchmarkEpoch = 0;
   let ambientFor: ((venue: string, kind: string) => AmbientIdent | null) | null = null;
   let player: Partial<PlayerLook> = {}, crowd: CrowdPerson[] = [], crowdKey = '[]', background: Colour = DEFAULT_BACKGROUND, insets = { top: 0, bottom: 0 };
   let tagSource: TagData[] = [], shownTags: ShownTag[] = [], tagNodes: TagNode[] = [], tagShape = '', tagsRead = true;
@@ -669,16 +676,21 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     walker.jogSpeed = (walk.onStairs ? WALK_SPEED : JOG_SPEED) * walk.scale;
     const more = walker.step(dt, view?.azimuth ?? orbit.azimuth, still);
     const distance = Math.hypot(walker.x - beforeX, walker.z - beforeZ);
-    const proportions = avatarProportions(lastState?.onboarding?.look.appearance);
     const jogging = walker.jogging && !walk.onStairs;
-    stride += gaitPhase(distance, walk.scale * proportions.height * proportions.depth, jogging, Boolean(current?.bodyShown || standIn?.shown));
+    const cycleSource = standIn?.shown ? standIn : current;
+    const nativeCycle = cycleSource?.cycleDistance?.(jogging);
+    const legacyProportions = avatarProportions(lastState?.onboarding?.look.appearance);
+    // Native scenes own their clip calibration, including body height and stride scale. Only older scene APIs use the
+    // historical procedural gait fallback.
+    stride += typeof cycleSource?.cycleDistance === 'function'
+      ? Number.isFinite(nativeCycle) && nativeCycle! > 0 ? Math.PI * 2 * distance / nativeCycle! : 0
+      : gaitPhase(distance, walk.scale * legacyProportions.height * legacyProportions.depth, jogging, Boolean(current?.bodyShown || standIn?.shown));
     applyAvatar();
     if (walker.moving) {
       if (!wasMoving) { clearDwell(); if (thingDwell !== null) { clearTimeout(thingDwell); thingDwell = null; } controls?.learned('walk'); }
       // Walked away from the table it stood at: coming back to it opens it again.
       if (atThing && !thingList.some((thing) => thing.id === atThing && Math.hypot(thing.x - walker.x, thing.z - walker.z) < TABLE_REACH + 0.8)) atThing = null;
       if (walker.hasInput) afterPose = null;
-      // Two prebuilt figures alternate for the stride; nothing is built while walking.
       walk.gait(still || Math.floor(stride / Math.PI) % 2 === 0, still ? 0 : stride, jogging, !still);
       standIn?.gait(still ? 0 : stride, jogging, avatarY, !still);
     } else if (wasMoving) { walk.goal(); showPose(); }
@@ -809,14 +821,19 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
 
   // ---- the motion loop: frames only while something moves ------------------------------------
   function tick(dt: number) {
+    const updateStarted = measurement ? performance.now() : undefined;
     let more = false;
     const yaw = (held.lookRight ? 1 : 0) - (held.lookLeft ? 1 : 0), pitch = (held.lookUp ? 1 : 0) - (held.lookDown ? 1 : 0);
     if (yaw || pitch) { orbit.rotate(yaw * LOOK_YAW * dt, pitch * LOOK_PITCH * dt); more = true; }
     more = advance(dt) || more;
     // Other players' figures on their way to a newly reported position.
     if (current?.easing) more = (reduced() ? (current.settleCrowd!(), false) : current.stepCrowd!(dt)) || more;
-    // The skinned body sitting down or getting up (bounded).
-    if (standIn?.easing) more = (reduced() ? (standIn.settle(), false) : standIn.step(dt)) || more;
+    // Advance whichever native player is visible exactly once in this host frame. The stand-in hides the scene-owned
+    // player while attached, so stepping both would spend CPU on an invisible duplicate.
+    if (standIn?.shown) {
+      if (reduced() && standIn.easing) standIn.settle();
+      more = standIn.step(dt) || more;
+    } else more = current?.stepCharacter?.(dt) || more;
     // The background people move while their window is open, or while a frame is being drawn anyway; the window is what ends the loop (src/scene/ambient/layer.ts).
     if (current?.stepAmbient && !reduced()) {
       if (more) current.wakeAmbient?.();
@@ -834,7 +851,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       }
     }
     orbit.apply(camera);
-    renderScene();
+    renderScene(updateStarted);
     return more;
   }
   const head = new THREE.Vector3(), eye = new THREE.Vector3();
@@ -883,7 +900,14 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   // Hidden: stop and forget held keys, and snap the finite ambient window shut. Visible again:
   // resume only a pending route or bounded actor/furniture transition.
   const loop = createMotionLoop(tick, {
-    onHidden: () => { dropInput(); current?.settleAmbient?.(); },
+    onHidden: () => {
+      dropInput(); current?.settleAmbient?.();
+      // Released keyboard/joystick input has no journey to resume when the tab returns.
+      if (walker.mode === 'keys' && !afterPose) {
+        walker.stop(); wasMoving = false;
+        walkOf()?.pose('stand'); standIn.pose('stand', undefined, false); standIn.settle();
+      }
+    },
     onVisible: () => {
       if (walker.mode === 'path' || current?.easing || standIn?.easing || afterPose) loop.wake();
       else { readTags(); renderScene(); }
@@ -1339,31 +1363,21 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     current.look(camera.position.x - offset.x, camera.position.z - offset.z);
   }
   // A scene that is not on screen (the map is in front) is not drawn: it is drawn when it is shown again (resize()).
-  function crowdReady() { if (gone) return; readTags(); if (!loop.running) renderScene(); }
-  function renderScene() {
+  kit.requestRender = () => crowdReady();
+  function crowdReady() { if (gone) return; current?.group.userData.refreshCharacterCosts?.(); readTags(); if (!loop.running) renderScene(); }
+  function renderScene(updateStarted?: number) {
     if (gone || container.hidden === true) return;
     if (!view) refreshStaticSolids();
+    standIn.start(renderer);
     view?.render();
     lookIn(); aimGhost();
     lights.aim(camera, orbit.now.x + orbit.now.px, orbit.now.y, orbit.now.z + orbit.now.pz);
     renderer.render(scene, camera); renderCount += 1; projectTags();
-    if (standIn) standIn.start(renderer); else fetchStandIn();
-    // The scene owns its own device/WebGL eligibility guard. Do not make venue NPC loading wait
-    // for the local body import: one failed or delayed player-body request must not freeze the crowd.
+    if (measurement) {
+      const at = performance.now();
+      measurement.record(at, updateStarted === undefined ? null : at - updateStarted, walker.moving);
+    }
     current?.startCrowd?.(renderer, crowdReady);
-  }
-  function fetchStandIn() {
-    standInStartup.start(bodyAllowed() && drawsWebGL2(renderer),
-      () => import('./scene/body/stand-in.ts'),
-      module => {
-        if (gone) return;
-        standIn = module.createStandIn(kit, () => { if (!loop.running) renderScene(); });
-        dressStandIn();
-        standIn.pose(restPose?.pose ?? 'stand', restPose?.seat, false);
-        standIn.move(walker.x, avatarY, walker.z, walker.ry);
-        standIn.start(renderer);
-      },
-      error => console.warn('Skinned body module unavailable; keeping the drawn avatar:', error));
   }
   function dressStandIn() {
     standIn?.wear(player.look, player.seed);
@@ -1487,6 +1501,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   function setLocation(id: string) {
     if (id === currentLocation) return;
     rewardEpoch++;
+    measurement?.cancel('Scene changed');
     loop.stop();
     if (current) {
       current.walk?.drive(false);
@@ -1537,7 +1552,9 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   function setPlayer(next: Partial<PlayerLook> = {}) {
     player = { ...next };
     const changed = current?.setPlayer?.(player);
-    standIn?.wear(player.look, player.seed);
+    // A scene may replace its avatar when the appearance changes. Rebind the
+    // visibility owner to that new object before the next frame.
+    dressStandIn();
     const moved = changed ? syncRest() : false;
     readTags();
     if ((changed || moved) && !loop.running) renderScene();
@@ -1566,7 +1583,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   setLocation(location);
   const viewSource: VenueViewSource = {
     THREE, container, camera, canvas, walker,
-    read: () => ({ current, walk: walkOf(), state: lastState, body: standIn?.object ?? null, y: avatarY, phase: stride,
+    read: () => ({ current, walk: walkOf(), state: lastState, body: standIn.object, y: avatarY, phase: stride,
       rest: restPose, mode: uiMode, locked, location: currentLocation, weakDevice: tier.name === 'phone', spots: spotList, things: thingList, tags: tagSource }),
     actions: { spot: id => requestSpot(id, true), object: id => current?.use?.(id, null),
       home: onHomeDoor && walkHomeDoor, neighbour: onNeighbourDoor && walkNeighbourDoor, street: onStreetGate && walkStreetGate, tag: onTag },
@@ -1576,6 +1593,18 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   return {
     setView(factory) { view?.dispose(); view = null; viewSource.release(); view = factory?.(viewSource) ?? null; resize(); return true; },
     update() { renderScene(); },
+    async benchmark() {
+      const request = ++benchmarkEpoch, location = currentLocation;
+      measurement?.cancel('A new measurement started');
+      const { observeRenders } = await import('./scene/render-benchmark.ts');
+      if (gone || request !== benchmarkEpoch || location !== currentLocation) throw new Error('Benchmark became stale');
+      return new Promise<RenderBenchmark>((resolve) => {
+        measurement = observeRenders(() => ({
+          location: currentLocation, visible: container.hidden !== true, width: size.width, height: size.height, pixelRatio: renderer.getPixelRatio?.() ?? 1,
+          triangles: renderer.info?.render.triangles ?? 0, drawCalls: renderer.info?.render.calls ?? 0, renderCount,
+        }), (result) => { measurement = null; resolve(result); });
+      });
+    },
     get location() { return currentLocation; },
     /**
      * Build a venue's scene ahead of time (a trip to it has just started), so arriving only has to
@@ -1611,6 +1640,13 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
         things: thingList.map((thing) => { current!.group.updateMatrixWorld(true); const at = screenOf(thing.x, thing.top * 0.5, thing.z, { x: 0, y: 0 }); return { id: thing.id, kind: thing.kind, label: thing.label, x: thing.x, z: thing.z, px: Math.round(at.x), py: Math.round(at.y), at: atThing === thing.id }; }),
         people: (walkOf()?.people() || []).map((person) => { const at = screenOf(person.x, person.top * 0.5, person.z, { x: 0, y: 0 }); return { id: person.id, kind: person.kind, x: person.x, z: person.z, px: Math.round(at.x), py: Math.round(at.y) }; }),
         objects: (current?.objects?.() || []).map((item) => { const at = screenOf(item.x, 0.35, item.z, { x: 0, y: 0 }); return { id: item.id, itemId: item.itemId, x: item.x, z: item.z, px: Math.round(at.x), py: Math.round(at.y) }; }),
+        characterModels: (() => {
+          const result: { name: string; foundation: string; detail: string }[] = [];
+          current?.group.traverseVisible(object => {
+            if (object.userData.characterFoundation) result.push({ name: object.name, foundation: String(object.userData.characterFoundation), detail: String(object.userData.characterDetail) });
+          });
+          return result;
+        })(),
         drawCalls: renderer.info?.render.calls,
         triangles: renderer.info?.render.triangles,
         geometries: renderer.info?.memory.geometries,
@@ -1680,9 +1716,10 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     /** Where the avatar stands right now, in presence units: { x, z, location } — what onMove reports while it moves. */
     position() { const k = presenceScale(); return { x: Math.round(walker.x * k * 100) / 100, z: Math.round(walker.z * k * 100) / 100, location: currentLocation }; },
     dispose() {
+      measurement?.cancel('Scene disposed');
       if (gone) return;
       view?.dispose(); view = null;
-      gone = true; reducedMotion?.removeEventListener?.('change', onReducedMotion); standInStartup.dispose(); loop.dispose(); standIn?.dispose(); clearDwell(); if (thingDwell !== null) { clearTimeout(thingDwell); thingDwell = null; }
+      gone = true; reducedMotion?.removeEventListener?.('change', onReducedMotion); loop.dispose(); standIn?.dispose(); clearDwell(); if (thingDwell !== null) { clearTimeout(thingDwell); thingDwell = null; }
       releasePointers();
       for (const [type, listener] of Object.entries(listeners)) canvas.removeEventListener?.(type, listener, { capture: type === 'click' });
       win?.removeEventListener?.('jaw:mode', onMode); win?.removeEventListener?.('jaw:reward', onReward); win?.removeEventListener?.('jaw:cheer', onCheer); win?.removeEventListener?.('jaw:key', onKey); win?.removeEventListener?.('jaw:key-up', onKeyUp); win?.removeEventListener?.('blur', dropInput);

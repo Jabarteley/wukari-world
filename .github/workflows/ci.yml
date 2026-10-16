@@ -67,6 +67,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run build
       - run: npm run size:download
+      - run: npm run cartridge:check
       - run: npm run test:smoke
 
   ui-regressions:
@@ -258,6 +259,9 @@ jobs:
         run: npm run build
       - if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: npm run size:download
+      - name: Cartridge manifests and caps
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: npm run cartridge:check
 
   # These complete suites have their own clocks: a preceding compiler/budget failure remains
   # failed, while it cannot consume the time needed for the independent Node/Worker evidence.

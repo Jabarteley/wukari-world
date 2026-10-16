@@ -135,13 +135,12 @@ bundle and deep links installed in the real apps (tests decode them).
 
 ## Questions for the owner
 
-- **Startup brotli noise** (see Phase 1): may an agent change how chunk hashes are named or where the city chunk list lives, so
-  the first download stops moving by about 200 bytes with every lazy change? The limits themselves would not change.
-
-- **Agent cups prizes** (Phase 3): are ₦2,000 / ₦1,000 / ₦500, at most ₦4,000 a character a week, only with four different
-  people entered, right?
-- **Web assistants and OAuth** (Phase 3): ChatGPT and Claude on the web can only connect where their form takes a bearer key. Should
-  the MCP endpoint get an OAuth sign-in? (It would mean accepting the assistants' connector terms, which is the owner's.)
+None open. Answered 16 October 2026 (evening):
+- **Startup brotli noise:** yes, an agent may change how build files are named (or where the chunk lists live) so the first download
+  stops moving with every lazy change; the limits in src/budgets.ts stay as they are.
+- **Agent cup prizes:** yes: ₦2,000 / ₦1,000 / ₦500, at most ₦4,000 a character a week, only when four different people entered.
+- **OAuth for web assistants:** yes: the MCP endpoint gets an OAuth sign-in so ChatGPT and Claude on the web can connect; the owner
+  accepts the connector terms.
 
 Answered 16 October 2026:
 - Clans: 25 members, and a clan may own a venue room (a room in a venue that the clan holds, with its name and colour; the venue
@@ -162,6 +161,7 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: the owner answered: build-file naming may change, the cup prizes stand, OAuth for web assistants yes.
 - 2026-10-16: Phase 3 live at `ee203d15` (agent cups, challenge link, join page).
 - 2026-10-16: Phase 2 live at `01409bc9` (with the Worker build minifying local names to stay within its guard).
 - 2026-10-16: Phase 1 complete and live at `1841c909` (1c: stakes and backing). Phase 2 built and in CI.

@@ -19,6 +19,7 @@ import { erasePerson } from '../house/memory.ts'
 import { eraseWalletActors } from '../economy/privacy.ts'
 import { peekRecords } from '../records/store.ts'
 import { forgetReplayPlayers } from '../growth/arena-replays.ts'
+import { idsWithMoney } from '../growth/arena-stakes.ts'
 import { standing } from './gate.ts'
 import { sha256Hex } from '../../src/game/util.ts'
 import type { Admin } from './gate.ts'
@@ -206,6 +207,10 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
   for (const pot of Object.values(db.growth?.tables?.pots ?? {})) if (pot?.seats?.some((seat) => actors.has(seat.id))) {
     fail(ctx, 409, 'erasure_financial_state_active', 'This player has money in an unsettled table game. Settle or refund the game before erasing the player.')
   }
+  const staked = idsWithMoney(db)
+  if ([...actors].some((id) => staked.has(id))) {
+    fail(ctx, 409, 'erasure_financial_state_active', 'This player has money in an unsettled arena match. Let it finish, or wait for the stakes to come back, before erasing the player.')
+  }
   if (db.social) for (const [recipient, effects] of Object.entries(db.social.pending)) {
     if (!Array.isArray(effects)) continue
     for (const effect of effects) if (effect?.keep === true && (actors.has(recipient) || containsIdentity(effect, actors))) {
@@ -219,7 +224,7 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
   const known = new Set([
     'version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'visits', 'commerce', 'business', 'market', 'legacy',
     'trust', 'trustChecks', 'street', 'realValue', 'showcase', 'politics', 'campus', 'accounts', 'accountDevices', 'accountLog', 'walletEffects', 'livingWorld',
-    'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', '$store',
+    'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', '$store',
   ])
   const collectionNames = (db.$store as (typeof db.$store & { collectionNames?: () => readonly string[] }) | undefined)?.collectionNames?.() ?? []
   const names = new Set([...Object.keys(db), ...collectionNames])

@@ -22,6 +22,8 @@ Same word for everyone each Lagos day, six guesses, hard mode, streaks. The answ
 No new faucet. A win against a real player in a free game is paid by the existing table rule (cap four a day, three per pair). A staked game pays no win reward (the pot is the other player's stake). Bot games and Oro pay nothing. Missions: "Win a game of chess" and "Solve today's word" (event `table.played` with `where` flags).
 
 ## Stakes
+
+The real-time games (Fight, Race, Football) can be played for the same stakes, and people watching can back a side; same rules and shared day limits: see [CARTRIDGES.md](CARTRIDGES.md#stakes-and-backing).
 Optional stakes of **game naira** on a two-player table game: a pot the winner takes, never real money (red line in [REAL-VALUE.md](REAL-VALUE.md#red-lines); the Market's rules in [MARKET.md](MARKET.md) apply to the naira). Pure rules and every sentence: `src/game/table-stakes.ts`; numbers: `TABLE_STAKES` in `src/game/content/growth.ts`; the service: `server/growth/tables.ts`; the life's side: the server-only action `tables.server` in `src/game/systems/growth.ts`. Tests: `src/game/table-stakes.test.ts`, `server/table-stakes.test.ts`.
 
 - **Which games.** Whot, Ayo, chess, penalties and Weave, between exactly two real players (a four-seat Whot or Weave table seats two once it is staked). The list is `TABLE_STAKES.games`: a game of chance is never added to it. No stakes against house bots (`table-start` with bots is refused at a staked table), none on the Phone's tables.

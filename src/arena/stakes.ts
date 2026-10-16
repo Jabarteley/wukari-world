@@ -62,6 +62,13 @@ export function settleBacks(backs: readonly Back[], winner: number | null): Back
   return backs.map((b) => ({ id: b.id, paid: paid.get(b) ?? 0, refund: false, stake: b.amount }))
 }
 
+/** What a finished match did for one of the two players who played for a stake. */
+export function playOutcome(stake: number, outcome: 'won' | 'lost' | 'refunded'): string {
+  if (outcome === 'won') return `You won the ${naira(stake * 2)} prize: your ${naira(stake)} back and ${naira(stake)} from the other player.`
+  if (outcome === 'lost') return `You lost your ${naira(stake)} stake: it went to the winner's prize.`
+  return `Your ${naira(stake)} stake came back. Nobody won or lost.`
+}
+
 /** What a finished match did for one backer, in a sentence to them. */
 export function backOutcome(p: BackPayout, seatName: string): string {
   if (p.refund) return `Your ${naira(p.stake)} came back: nobody won the prize.`

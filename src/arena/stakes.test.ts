@@ -3,7 +3,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { FORBIDDEN_WORDS } from '../game/table-stakes.ts'
 import { TABLE_STAKES } from '../game/content/growth.ts'
-import { BACK_CHOICES, PLAY_CHOICES, PLAY_MONEY, backLine, backOutcome, backingOpen, isBackStake, isPlayStake, playLine, settleBacks, stakeHolds } from './stakes.ts'
+import { BACK_CHOICES, PLAY_CHOICES, PLAY_MONEY, backLine, backOutcome, backingOpen, isBackStake, isPlayStake, playLine, playOutcome, settleBacks, stakeHolds } from './stakes.ts'
 
 test('the arena uses the table stakes exactly, and backing is small', () => {
   assert.deepEqual(PLAY_CHOICES, TABLE_STAKES.choices)
@@ -42,7 +42,7 @@ test('backing is open in the lobby and the first ten seconds only', () => {
 })
 
 test('every line says stake, prize and back, never a betting word, and never shows odds', () => {
-  const lines = [PLAY_MONEY, playLine(0), playLine(500), backLine('Ada', 100), backOutcome({ id: 'a', paid: 300, refund: false, stake: 100 }, 'Ada'), backOutcome({ id: 'a', paid: 0, refund: false, stake: 100 }, 'Ada'), backOutcome({ id: 'a', paid: 100, refund: true, stake: 100 }, 'Ada')]
+  const lines = [PLAY_MONEY, playLine(0), playLine(500), backLine('Ada', 100), backOutcome({ id: 'a', paid: 300, refund: false, stake: 100 }, 'Ada'), backOutcome({ id: 'a', paid: 0, refund: false, stake: 100 }, 'Ada'), backOutcome({ id: 'a', paid: 100, refund: true, stake: 100 }, 'Ada'), playOutcome(500, 'won'), playOutcome(500, 'lost'), playOutcome(500, 'refunded')]
   for (const line of lines) { assert.doesNotMatch(line, FORBIDDEN_WORDS, line); assert.doesNotMatch(line, /odds|\d+\s*(to|:)\s*\d+|luck|chance|tip/i, line) }
   assert.match(playLine(500), /prize/)
 })

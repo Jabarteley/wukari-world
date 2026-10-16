@@ -15,6 +15,9 @@
 import { reconnectDelay, STABLE_CONNECTION_MS } from '../reconnect.ts'
 import type { ArenaServerFrame, ArenaStateFrame } from '../types/arena.ts'
 
+/** The refusals of stakes and backing (src/arena/stakes.ts, the table stakes' own codes): said to the player like the room's own. */
+const STAKE_CODES = new Set(['invalid_stake', 'adults_only', 'work_first', 'stake_exceeds_work', 'insufficient_funds', 'player_day_cap', 'pair_day_cap', 'stake_refused', 'not_ready', 'invalid_seat', 'already_backed', 'backers_full', 'backing_closed'])
+
 export type ArenaConnection = 'connecting' | 'open' | 'closed'
 export interface ArenaListener {
   open(): void
@@ -53,7 +56,7 @@ export function createArenaClient(listener: ArenaListener): ArenaClient {
         case 'heartbeat': if (socket.readyState === 1) socket.send('{"type":"heartbeat-ack"}'); break
         case 'arena-state': listener.state(frame as unknown as ArenaStateFrame); break
         case 'arena-snap': { const f = frame as unknown as Extract<ArenaServerFrame, { type: 'arena-snap' }>; listener.snap(f.room, f.k, f.s, f.a); break }
-        case 'error': if (typeof frame.code === 'string' && /^(arena_|invalid_arena)/.test(frame.code)) listener.error(frame.code, typeof frame.reason === 'string' ? frame.reason : 'That could not be done.'); else if (frame.code === 'join_required') listener.error('arena_unavailable', 'Live games are not available on this server right now.'); else if (frame.code === 'rate_limited') listener.error('rate_limited', 'You are sending too fast. Reconnecting.'); break
+        case 'error': if (typeof frame.code === 'string' && (/^(arena_|invalid_arena)/.test(frame.code) || STAKE_CODES.has(frame.code))) listener.error(frame.code, typeof frame.reason === 'string' ? frame.reason : 'That could not be done.'); else if (frame.code === 'join_required') listener.error('arena_unavailable', 'Live games are not available on this server right now.'); else if (frame.code === 'rate_limited') listener.error('rate_limited', 'You are sending too fast. Reconnecting.'); break
         default: break
       }
     }

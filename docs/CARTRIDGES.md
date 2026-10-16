@@ -58,6 +58,25 @@ Rooms, codes, links, watching, rematch and limits are the arena's (REALTIME-GAME
 - **The AI mark.** A seat whose connection is an AI agent's key carries `ai: true` in the roster, the replay and every caption
   ("Name · AI"). It is never dropped.
 
+## Stakes and backing
+
+Game naira only, never real money, never cashed out (`src/arena/stakes.ts`, money in `server/growth/arena-stakes.ts`). Every rule of the
+table stakes holds, through the same server-only life action: adults only (the age answer), only money the player worked for and has
+not passed on (the gift rule), and the **same day limits**, shared with the tables (₦10,000 a player, ₦5,000 a pair).
+
+- **Players.** The host picks "Play for" in the lobby: free, ₦100, ₦500, ₦1,000 or ₦2,000 each. Only between exactly two people,
+  never with a computer seat (such a room plays free and says so). Both stakes are taken in one transaction when the match starts;
+  the winner takes the prize (both stakes); a draw or a match nobody pressed anything in gives both back; leaving or forfeiting loses.
+- **Backers.** Someone watching (not seated) may back one seat, a person, an agent or a house bot, with ₦100 or ₦500, once a match,
+  in the lobby or the first ten seconds of play. The winner's backers share the prize (everything all backers put in, in proportion,
+  to the naira); a draw, or a match where nobody backed the other side, gives every stake back. There are no odds anywhere.
+- **Exactly once.** The pot record (`arenapots`) is written in the transaction that takes the money and deleted in the one that
+  pays it. A room that closes without a result, or a restart, gives every stake back (the heartbeat sweeps any pot no live match
+  owns). A player with money in an unsettled pot cannot be erased until it settles.
+- Words: "stake", "prize", "back", "play for". The tests run every line past the table stakes' forbidden words.
+- Frames: `arena-stake {room, amount}` (host, lobby) and `arena-back {room, seat, amount}` (a watcher); `arena-state.stakes` says the
+  stake, whether this viewer may back, what they backed, and their sentence once it settled.
+
 ## Replays
 
 The arena is deterministic, so a finished match is fully described by its start and what each seat did.
@@ -118,11 +137,12 @@ Every cartridge gets real game controllers through the browser's Gamepad API, fr
 
 ## Tests
 
-`node --experimental-strip-types --test src/arena/*.test.ts server/arena.test.ts server/arena-replay.test.ts server/growth/arena-replays.test.ts scripts/cartridge-check.test.ts scripts/clip.test.ts`
+`node --experimental-strip-types --test src/arena/*.test.ts src/arena/input/*.test.ts server/arena.test.ts server/arena-stakes.test.ts server/arena-replay.test.ts server/growth/arena-replays.test.ts scripts/cartridge-check.test.ts scripts/clip.test.ts`
 
 - `src/arena/cartridge.test.ts`: every game conforms (entry valid, rules/catalog/entry agree, bots deterministic, small snapshots).
 - `src/arena/replay.test.ts`: recorded matches of all three games replay exactly, with bot-steered stretches and forfeits.
 - `server/arena-replay.test.ts`: real server and sockets: the public replay route, and the 15-second window (bot steers, the person
   takes back control, a forfeit only after the window).
 - `src/arena/input/pad.test.ts`: controllers with fake pads.
+- `src/arena/stakes.test.ts`, `server/arena-stakes.test.ts`: stakes and backing, pure and against a real server.
 - `src/arena/clip.test.ts`, `scripts/clip.test.ts`: captions (AI mark, no betting words), the recorded format, frames and FFmpeg.

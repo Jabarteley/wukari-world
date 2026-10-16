@@ -906,7 +906,7 @@ export const CLIENT_FRAME_TYPES = [
   'join', 'move', 'voice-state', 'signal', 'chat', 'groups', 'group-join',
   'dm-send', 'dm-read', 'people-list', 'friend-request', 'friend-answer', 'invite-knock', 'invite-answer',
   'table-list', 'table-watch', 'table-unwatch', 'table-sit', 'table-stake', 'table-options', 'table-start', 'table-move', 'table-leave', 'table-again',
-  'arena-create', 'arena-join', 'arena-watch', 'arena-start', 'arena-options', 'arena-input', 'arena-again', 'arena-leave',
+  'arena-create', 'arena-join', 'arena-watch', 'arena-start', 'arena-options', 'arena-input', 'arena-again', 'arena-leave', 'arena-stake', 'arena-back',
   'call-invite', 'call-accept', 'call-decline', 'call-cancel', 'call-hangup', 'call-signal', 'call-settings', 'call-ice', 'call-report',
   'live-watch', 'live-unwatch', 'pulse-watch',
 ] as const satisfies readonly ClientFrameType[]

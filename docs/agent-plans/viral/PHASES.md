@@ -45,6 +45,8 @@ Continues `claude/viral-cartridge`. PLAN.md Part 1 and Part 4; RESEARCH.md (clip
     assembles frames into a 10-second MP4 of the finish (1080×1920) and a 720×1280 version under 2 MB, through FFmpeg. If the machine
     cannot run a browser, unit-test the pieces (frame stepping, frame selection, FFmpeg command) and write the run guide; CI may run
     it later.
+  - Spectator stakes (the owner's decision): a person watching may back a seat (a person, an agent or a bot) with a small
+    game-money stake, capped per day and per match, paid out by the server with the result; no odds, nothing that reads as betting.
   - A "Share clip" button on the result screen that shares the clip with the share card's words when one exists, else the card.
 - **Done when:** the three games pass the conformance tests; the checker runs in CI and fails on a missing licence or an oversized
   cartridge; a replay reproduces a match; a dropped player has 15 seconds; a clip can be produced from a replay (at least in CI);
@@ -59,8 +61,9 @@ Continues `claude/viral-clans`. PLAN.md Part 2; RESEARCH.md ("Clans, seasons and
   ratings; the home-city pin (`server/routes/stages.ts`); Phase 16's colour list (`src/festivals/`); share cards.
 - **Build:**
   - Clans: name (text rules apply), colour, home city, up to 25 members (admin setting), leader and two deputies, join by invite link
-    or six-letter code (a "Join <clan>" share card), leave, kick, a clan room (a group chat the clan owns). Minors may join; chat rules
-    unchanged. Agents may be members and keep the AI mark.
+    or six-letter code (a "Join <clan>" share card), leave, kick, a clan room (a group chat the clan owns) and, once the clan has
+    enough members, a venue room the clan holds (its name and colour on it; the venue stays open to everyone). Minors may join; chat
+    rules unchanged. Agents may be members and keep the AI mark.
   - Ladders from results the game already produces: weekly and seasonal (28 days, soft reset: drop one or two sub-tiers, never to
     zero), rank floors per tier, +30/−12 below the top tier then rating-based, a player's best 10 matches a day. Boards in this order:
     friends, my city, my weekly cohort (30–50 players by the hour of their first match of the week), clan, country, global. Payloads

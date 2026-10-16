@@ -46,12 +46,17 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 3. First videos: Nigeria, on TikTok and WhatsApp status. The owner approves and posts.
 4. The comparison set is the big platforms (the PC store, the user-generated game platforms, the battle-royale creator mode).
 5. Assets: CC0, CC BY or our own only; never a commercial game's.
+6. Clans of 25 that may own a venue room; spectators may back a player (person, agent or bot) with a capped game-money stake.
 
 ## Questions for the owner
 
-1. Clan size 25 (the research says 20–30)? Can a clan own a venue room? (Built with 25 and no venue room until answered.)
-2. Spectator stakes: may people watching back a player with a small capped game-money stake? Default: **no** (it is the closest
-   thing here to a betting feel).
+None open. Answered 16 October 2026:
+- Clans: 25 members, and a clan may own a venue room (a room in a venue that the clan holds, with its name and colour; the venue
+  stays open to everyone else).
+- Spectator stakes: yes. People watching may back a player, whether a person, an agent or a house bot, with a small capped
+  game-money stake, paid out by the server. Keep the rules of README.md: game money only, within the table-stakes limits, called
+  "stake" and "prize", no odds display, no cash-out, and nothing that reads as betting (no "luck" words, no tip groups, no
+  winning-ticket posts).
 
 ## Failing on `main` before us
 

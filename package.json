@@ -64,7 +64,7 @@
     "body:build": "node --experimental-strip-types scripts/body/build-body.ts",
     "body:lod": "node --experimental-strip-types scripts/body/build-lod.ts",
     "typecheck": "node --experimental-strip-types scripts/typecheck.ts --serial",
-    "test": "node --experimental-strip-types --test --test-concurrency=1 \"src/**/*.test.js\" \"src/**/*.test.ts\" \"server/**/*.test.js\" \"server/**/*.test.ts\" \"scripts/city/*.test.ts\" \"scripts/stt-bench/*.test.ts\" \"scripts/agent-slot.test.ts\" \"scripts/typecheck.test.ts\" \"scripts/download-budget.test.ts\" \"scripts/build-dictionary-asset.test.ts\"",
+    "test": "node --experimental-strip-types --test --test-concurrency=1 \"src/**/*.test.js\" \"src/**/*.test.ts\" \"server/**/*.test.js\" \"server/**/*.test.ts\" \"scripts/city/*.test.ts\" \"scripts/stt-bench/*.test.ts\" \"scripts/agent-slot.test.ts\" \"scripts/typecheck.test.ts\" \"scripts/download-budget.test.ts\" \"scripts/build-dictionary-asset.test.ts\" \"scripts/assets/*.test.ts\"",
     "slot": "node --experimental-strip-types scripts/agent-slot.ts",
     "check:slot": "node --experimental-strip-types scripts/agent-slot.ts heavy -- npm run check",
     "test:slot": "node --experimental-strip-types scripts/agent-slot.ts heavy -- npm test",
@@ -96,7 +96,9 @@
     "progression:content": "node --experimental-strip-types scripts/city/build-progression-content.ts",
     "progression:check": "node --experimental-strip-types scripts/city/build-progression-content.ts --check",
     "progression:assets": "node --experimental-strip-types scripts/city/build-progression-assets.ts --out dist/assets/progression --typescript src/game/progression/assets.generated.ts",
-    "campus:navigation": "node --experimental-strip-types scripts/campus/build-navigation-data.ts"
+    "campus:navigation": "node --experimental-strip-types scripts/campus/build-navigation-data.ts",
+    "assets:budget": "node --experimental-strip-types scripts/assets/budget.ts",
+    "assets:credits": "node --experimental-strip-types scripts/assets/credits.ts"
   },
   "dependencies": {
     "@sentry/browser": "^11.4.0",

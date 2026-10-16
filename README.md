@@ -8,6 +8,10 @@ Play it at [joinallworld.com](https://joinallworld.com).
 
 **Status: early beta.** [What works today](docs/REFERENCE.md#what-works-today) and [what does not work yet](docs/REFERENCE.md#what-does-not-work-yet) are listed in the reference.
 
+## Build a game for Allworld
+
+The cartridge standard is open. Anyone can build a live game that every player can play on [joinallworld.com](https://joinallworld.com): two to four people (or a bot) in one match, judged by the server, with replays, clips, controllers and capped game-money stakes coming for free. Start with the guide, [docs/CARTRIDGES.md](docs/CARTRIDGES.md), copy the sample game in [examples/cartridge-sample](examples/cartridge-sample), check it with `npm run cartridge:check -- --dir <your folder>`, and send it as a pull request with the [cartridge template](.github/PULL_REQUEST_TEMPLATE/cartridge.md). Every game is reviewed against the [review rules](docs/CARTRIDGES.md#review-rules) before it goes live.
+
 ## Quick start
 
 You need [Node.js](https://nodejs.org/) 22.18 or newer (24 is recommended) and npm. Nothing else: no account, no key, no database.

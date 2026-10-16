@@ -57,7 +57,7 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | 5 Polish Race | live (3D, the world's own saloons) | `24a18e6a` | see "Phase 5" and the log |
 | 6 Polish Football | live (3D, penalties); 6b realistic footballers on `claude/viral-football-real` | `d95ee616` | see "Phase 6" and "Phase 6b" |
 | 7 Videos (Nigeria first) | skipped | | the owner's decision, 16 October 2026 |
-| 8 Open the standard | built and released, not announced | this release | docs/CARTRIDGES.md guide and review rules, examples/cartridge-sample (Tug), `cartridge:check -- --dir`, .github/PULL_REQUEST_TEMPLATE/cartridge.md; announcing is the owner's |
+| 8 Open the standard | open and announced | `cdd1a9f0` (announcement in the next release) | docs/CARTRIDGES.md guide and review rules, examples/cartridge-sample (Tug), `cartridge:check -- --dir`, .github/PULL_REQUEST_TEMPLATE/cartridge.md; announcing is the owner's |
 | 9 Weekly city episode | live | `f9e6b85a` | `/episode/<city>`, card in the Gist; docs/EPISODES.md |
 | 10 Measure and iterate | live (dashboard); weekly notes ongoing | `b64d5023` | day-7 return split by source, friend, clan, talked to an agent; see "Phase 10" |
 
@@ -331,12 +331,17 @@ bundle and deep links installed in the real apps (tests decode them).
    the phone is idle; the browser and service worker caches keep them), and the renderer lowers its resolution by itself when frames
    run slow.
 
+## Announcement text (for the in-game banner; needs an admin)
+
+> Make your own game for Allworld. The game standard is open: build a live game for everyone here, with replays and controllers
+> built in. Games hub → Make your own game.
+
 ## Questions for the owner
 
-Open:
-- **Opening the cartridge standard (Phase 8):** the guide, sample, review rules and pull request template are in the repository but
-  not announced. When do you want to open it to outside builders, and where should it be announced (the announcement and any
-  outside post are yours)?
+None open. Answered 16 October 2026 (night):
+- **Opening the cartridge standard:** open it and announce it immediately. Done the same night: a README section, a "Make your
+  own game" card in the Games hub linking to the guide, and a pinned GitHub issue. The in-game banner announcement needs an
+  admin sign-in, so its text is drafted for the owner below ("Announcement text").
 
 Answered 16 October 2026 (evening):
 - **Startup brotli noise:** yes, an agent may change how build files are named (or where the chunk lists live) so the first download
@@ -364,6 +369,8 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: the owner opened the cartridge standard. Announced in the README, the Games hub ("Make your own game") and a pinned
+  issue on kromate/joinallworld.
 - 2026-10-16: Phase 8 released (not announced): the builder's guide and eleven review rules in docs/CARTRIDGES.md, a sample
   cartridge in examples/cartridge-sample that the checker tests, `npm run cartridge:check -- --dir <folder>`, and a cartridge pull
   request template. Opening it to outside builders is the owner's decision (see Questions).

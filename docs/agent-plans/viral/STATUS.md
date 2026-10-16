@@ -266,8 +266,40 @@ bundle and deep links installed in the real apps (tests decode them).
   landing played in time), keeper-catch 1.0 s. The view blends idle, walk, jog, sprint and dribble by speed on one shared stride phase
   (`football-native.ts`, `ActionMix`), one state clip over it.
 - **Budget and level of detail.** A full native actor of the world's body is about 29,000 to 33,000 triangles and the world has no animated
-  light body, so each actor gets a second index over the same vertices, skeleton and skin weights, simplified with the simplifier the
-  world ships (`lightenActor`, about 7,000 triangles, every clip plays on it). Your own player, and in a shoot-out the shooter and the
+  light body, so each actor gets a second index over the same vertices, skeleton and skin weights, made by vertex clustering (`lightenActor`, about 6,300 to 7,300
+  triangles, every clip plays on it; the world's own simplifier would have changed the first download's chunk names). Your own player, and in a shoot-out the shooter and the
+  keeper he faces, are drawn in full; everyone else is light. Every person is a native character in every mode (1v1, 2v2, shoot-out,
+  keepers included); the blocky players remain only as the fallback and the stand-in. If one full actor plus the other actors light, or two
+  full ones, would pass 90,000 triangles with the scene, the match falls back. The keeper side-steps (`keeper-shuffle-left/right`, played at
+  his sideways speed) instead of gliding.
+- **Framing.** Tall phone: the end-on camera slides back towards your own goal, up to 12 m (never past the point where the ball leaves the top fifth of the free band), until the near goal line is above the thumb pad
+  (`clearShift`). Wide phone: a dark gradient band behind the top bar so the score reads over the crowd.
+- **Measured** (headless Chromium, software GL, CPU throttle 4x; script ms a frame median/p95, draw calls, triangles): 1v1 open 390x844
+  3.2/3.9, 45, 56,471; 844x390 4.2 (p95 is software GL stalling), 45, 57,317; 2v2 open 390x844 3.9/5.0, 59, 70,673; 844x390 4.1/18.2, 59,
+  72,965; shoot-out 1v1 390x844 2.5/3.2, 31, 63,938; 844x390 2.9/4.1, 31, 69,648; 2v2 390x844 2.6/3.3, 31, 69,648. Screenshots `r390*`, `r844*`
+  in the screenshots folder.
+- **Not verified:** a real phone (GPU, thermal, Safari), a real pad over Bluetooth in a shoot-out, a two-person live match in a
+  shoot-out, the 3D view after a lost WebGL context, and the numbers in the table on a throttled profile that is not software GL.
+
+## Phase 6b: realistic footballers (16 October 2026, branch `claude/viral-football-real`)
+
+- **What a player gets.** Each footballer is the person's own native character (the world's CC0 MakeHuman body, hair, face and shoes) in
+  the team's shirt (green or yellow; shorts white or dark), animated by football clips made here in Blender
+  (`scripts/assets/blender/native-football-clips.py`, sharing the solver and writer with the Fight clips in `native_rig.py`; the Fight
+  clips file is byte for byte the same after the move). Seats carry the optional `nat` look as in Fight; the computer and seats without
+  one get a varied default from pieces the world already loaded. Rings and name tags stay. Same fallbacks as Fight (under 3 GB memory,
+  under 4 cores, no WebGL 2, files slow past 8 s, a failed spawn): the Kenney players as before, which also stand in until the own
+  characters arrive.
+- **Clips** (`public/assets/packs/allworld-arenas/native-football-clips.glb`, 393 KB, 2 x 15 clips, 60 Hz keys resampled by the pack
+  step): idle 1.6 s loop, walk 0.85 s, jog 0.70 s, sprint 0.47 s, dribble 0.62 s (cycles, treadmill feet for 1.3, 2.4, 5.7 and 3.3 m/s),
+  kick 0.85 s (wind-up held at 0.30 s while the shoot button is charged, contact 0.38 s), pass 0.60 s (0.18, 0.24), tackle 0.70 s (a
+  standing poke, no slide), stumble 0.9 s, celebrate 1.5 s loop (arms-out run then a jump), dejected 2.0 s loop, keeper-ready 1.1 s
+  loop, keeper-dive-left and -right 1.2 s (the first 0.5 s is scrubbed by how far the server has moved the keeper, the rest is the
+  landing played in time), keeper-catch 1.0 s. The view blends idle, walk, jog, sprint and dribble by speed on one shared stride phase
+  (`football-native.ts`, `ActionMix`), one state clip over it.
+- **Budget and level of detail.** A full native actor of the world's body is about 29,000 to 33,000 triangles and the world has no animated
+  light body, so each actor gets a second index over the same vertices, skeleton and skin weights, made by vertex clustering (`lightenActor`, about 6,300 to 7,300
+  triangles, every clip plays on it; the world's own simplifier would have changed the first download's chunk names). Your own player, and in a shoot-out the shooter and the
   keeper he faces, are drawn in full; everyone else is light. Every person is a native character in every mode (1v1, 2v2, shoot-out,
   keepers included); the blocky players remain only as the fallback and the stand-in. If one full actor plus the other actors light, or two
   full ones, would pass 90,000 triangles with the scene, the match falls back. The keeper side-steps (`keeper-shuffle-left/right`, played at

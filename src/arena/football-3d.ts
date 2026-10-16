@@ -463,7 +463,7 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
   async function buildSlot(i: number, appearance: ReturnType<typeof defaultNativeLook>, mine: number): Promise<void> {
     const fighter = await spawnNativeFighter(appearance)
     if (disposed || !native || generation[i] !== mine) { fighter.dispose(); return }
-    const detail = await lightenActor(fighter.group)
+    const detail = lightenActor(fighter.group)
     if (disposed || !native || generation[i] !== mine) { detail.dispose(); fighter.dispose(); return }
     perActor = Math.max(perActor, detail.full); perLod = Math.max(perLod, detail.lod)
     // The worst screens: open play with your own player in full and every other actor light; a shoot-out with the shooter and the keeper he faces in full.
@@ -705,7 +705,7 @@ export async function createFootballView(canvas: HTMLCanvasElement, opts: { redu
       }
       // End-on in open play, the near goal's mouth would sit under the thumb pad: slide the picture back towards it, up the screen, until the goal line is above the thumbs.
       if (mode === 'end' && shot === 'end-' + viewTeam && !pens) {
-        const sg = sgn(viewTeam), limit = sizeH - inset.bottom - 4
+        const sg = sgn(viewTeam), limit = sizeH - inset.bottom - 28
         probe.copy(camera, false); probe.fov = fov
         const screenY = (d: number, x: number, z: number): number => {
           probe.position.set(target.pos[0] - sg * d, target.pos[1], target.pos[2]); probe.up.set(0, 1, 0)

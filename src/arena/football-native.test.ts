@@ -1,7 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import * as THREE from 'three'
-import { ActionMix, CLIP_LIST, KIT, STRIDE, TIMES, cadence, clipsFor, kitLook, locoWeights, withinBudget } from './football-native.ts'
+import { ActionMix, CLIP_LIST, KIT, STRIDE, TIMES, cadence, clipsFor, clusterIndex, kitLook, locoWeights, withinBudget } from './football-native.ts'
 import { defaultNativeLook } from './native-look.ts'
 import { clearShift, GOAL_CLEAR_MAX } from './football-3d.ts'
 
@@ -69,4 +69,15 @@ test('the camera slides back only as far as it needs to, and no further than its
   assert.equal(clearShift(y, 1000), 0)
   assert.ok(Math.abs(clearShift(y, 800) - 2) < 0.01)
   assert.equal(clearShift(y, 100), GOAL_CLEAR_MAX)
+})
+test('clustering keeps about the asked share of the triangles, over the same vertices', () => {
+  const n = 30, positions: number[] = [], index: number[] = []
+  for (let y = 0; y <= n; y++) for (let x = 0; x <= n; x++) positions.push(x / n, Math.sin(x / 5) * 0.1, y / n)
+  for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) { const a = y * (n + 1) + x; index.push(a, a + 1, a + n + 1, a + 1, a + n + 2, a + n + 1) }
+  const { rep } = clusterIndex(positions, index, 0.25)
+  let kept = 0
+  for (let i = 0; i < index.length; i += 3) { const a = rep[index[i] as number], b = rep[index[i + 1] as number], c = rep[index[i + 2] as number]; if (a !== b && b !== c && a !== c) kept += 1 }
+  const share = kept / (index.length / 3)
+  assert.ok(share > 0.1 && share < 0.45, `kept ${share}`)
+  for (const r of rep) assert.ok(r < positions.length / 3)
 })

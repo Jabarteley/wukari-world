@@ -113,23 +113,20 @@ export const LOD_RATIO = 0.22
 export interface Detail { /** triangles of the full and of the light version */ full: number; lod: number; set(detail: 'full' | 'lod'): void; dispose(): void }
 const lodCache = new WeakMap<THREE.BufferGeometry, THREE.BufferGeometry>()
 /**
- * Give an actor a second, lighter set of triangles over the same vertices, skeleton and skin weights (so every clip plays on it), made
- * with the simplifier the world already ships. `set` switches each skinned mesh between the two; the vertex buffers are shared, only the
- * index differs. Eyes and other plain meshes are left alone (they are tiny).
+ * Give an actor a second, lighter set of triangles over the same vertices, skeleton and skin weights (so every clip plays on it).
+ * `set` switches each skinned mesh between the two; the vertex buffers are shared, only the index differs. Eyes and other plain meshes
+ * are left alone (they are tiny).
  */
-export async function lightenActor(root: THREE.Object3D, ratio = LOD_RATIO): Promise<Detail> {
-  const { MeshoptSimplifier } = await import('meshoptimizer')
-  MeshoptSimplifier.useExperimentalFeatures = true
-  await MeshoptSimplifier.ready
+export function lightenActor(root: THREE.Object3D, ratio = LOD_RATIO): Detail {
   const meshes: { mesh: THREE.SkinnedMesh; full: THREE.BufferGeometry; lod: THREE.BufferGeometry }[] = []
   let full = 0, lod = 0
   root.traverse((node) => {
     const mesh = node as THREE.SkinnedMesh
     if (!mesh.isSkinnedMesh) return
-    const source = mesh.geometry, index = source.index, position = source.attributes.position
-    if (!index || !position) return
+    const source = mesh.geometry, index = source.index
+    if (!index || !source.attributes.position) return
     let light = lodCache.get(source)
-    if (!light) { light = simplified(MeshoptSimplifier, source, ratio); lodCache.set(source, light) }
+    if (!light) { light = lighter(source, ratio); lodCache.set(source, light) }
     meshes.push({ mesh, full: source, lod: light })
     full += index.count / 3; lod += (light.index?.count ?? index.count) / 3
   })
@@ -137,37 +134,72 @@ export async function lightenActor(root: THREE.Object3D, ratio = LOD_RATIO): Pro
   return {
     full: Math.round(full + eyes), lod: Math.round(lod + eyes),
     set(detail) { for (const m of meshes) m.mesh.geometry = detail === 'lod' ? m.lod : m.full },
-    dispose() { for (const m of meshes) { m.mesh.geometry = m.full; lodCache.delete(m.full) } },
+    dispose() { for (const m of meshes) { m.mesh.geometry = m.full; lodCache.delete(m.full); if (m.lod !== m.full) m.lod.dispose() } },
   }
 }
-type Simplifier = (typeof import('meshoptimizer'))['MeshoptSimplifier']
-/** A copy of `source` that shares its vertices but has a simplified index (borders and texture seams kept by weighting the normals, texture coordinates and skin weights). */
-function simplified(simplifier: Simplifier, source: THREE.BufferGeometry, ratio: number): THREE.BufferGeometry {
-  const position = source.attributes.position as THREE.BufferAttribute, count = position.count, index = source.index as THREE.BufferAttribute
-  const pos = new Float32Array(count * 3)
-  for (let i = 0; i < count; i++) { pos[i * 3] = position.getX(i); pos[i * 3 + 1] = position.getY(i); pos[i * 3 + 2] = position.getZ(i) }
-  const parts: { name: string; weight: number }[] = [{ name: 'normal', weight: 0.05 }, { name: 'uv', weight: 0.02 }, { name: 'skinWeight', weight: 0.04 }]
-  const used = parts.filter((p) => source.getAttribute(p.name))
-  const comps: { attr: THREE.BufferAttribute; c: number; w: number }[] = []
-  for (const p of used) { const attr = source.getAttribute(p.name) as THREE.BufferAttribute; for (let c = 0; c < attr.itemSize; c++) comps.push({ attr, c, w: p.weight }) }
-  const values = new Float32Array(count * Math.max(1, comps.length))
-  for (let i = 0; i < count; i++) for (let k = 0; k < comps.length; k++) values[i * comps.length + k] = (comps[k] as typeof comps[0]).attr.getComponent(i, (comps[k] as typeof comps[0]).c)
-  const groups = source.groups.length ? source.groups : [{ start: 0, count: index.count, materialIndex: 0 }]
-  const out: number[] = [], newGroups: { start: number; count: number; materialIndex: number }[] = []
-  const scale = simplifier.getScale(pos, 3)
+/**
+ * Vertex clustering: every vertex goes to the cell of a grid it is in, the cell's vertex nearest the cell's middle stands for all of them
+ * and the triangles that fall in on themselves go. The cell size is searched for so that about `ratio` of the triangles stay. The vertices
+ * and everything on them (skin indices and weights, texture coordinates) are untouched, so the light copy shares them with the full one.
+ */
+export function clusterIndex(positions: ArrayLike<number>, index: ArrayLike<number>, ratio: number): { rep: Uint32Array; cell: number } {
+  const n = positions.length / 3
+  let lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity]
+  for (let i = 0; i < n; i++) for (let k = 0; k < 3; k++) { const v = positions[i * 3 + k] as number; if (v < (lo[k] as number)) lo[k] = v; if (v > (hi[k] as number)) hi[k] = v }
+  const extent = Math.max(hi[0] as number - (lo[0] as number), hi[1] as number - (lo[1] as number), hi[2] as number - (lo[2] as number), 1e-6)
+  const cellsOf = (cell: number): Int32Array => {
+    const ids = new Int32Array(n), map = new Map<number, number>(), side = Math.ceil(extent / cell) + 2
+    for (let i = 0; i < n; i++) {
+      const x = Math.floor(((positions[i * 3] as number) - (lo[0] as number)) / cell), y = Math.floor(((positions[i * 3 + 1] as number) - (lo[1] as number)) / cell), z = Math.floor(((positions[i * 3 + 2] as number) - (lo[2] as number)) / cell)
+      const key = x + side * (y + side * z)
+      let id = map.get(key)
+      if (id === undefined) { id = map.size; map.set(key, id) }
+      ids[i] = id
+    }
+    return ids
+  }
+  const kept = (ids: Int32Array): number => { let t = 0; for (let i = 0; i < index.length; i += 3) { const a = ids[index[i] as number], b = ids[index[i + 1] as number], c = ids[index[i + 2] as number]; if (a !== b && b !== c && a !== c) t += 1 } return t }
+  const want = (index.length / 3) * ratio
+  let small = extent / 400, big = extent / 3, cell = big
+  for (let step = 0; step < 14; step++) { cell = Math.sqrt(small * big); if (kept(cellsOf(cell)) > want) small = cell; else big = cell }
+  cell = big
+  const ids = cellsOf(cell)
+  let cells = 0
+  for (let i = 0; i < n; i++) cells = Math.max(cells, (ids[i] as number) + 1)
+  const sum = new Float64Array(cells * 3), count = new Uint32Array(cells)
+  for (let i = 0; i < n; i++) { const c = ids[i] as number; count[c] = (count[c] as number) + 1; for (let k = 0; k < 3; k++) sum[c * 3 + k] = (sum[c * 3 + k] as number) + (positions[i * 3 + k] as number) }
+  const best = new Float64Array(cells).fill(Infinity), repOf = new Uint32Array(cells)
+  for (let i = 0; i < n; i++) {
+    const c = ids[i] as number, m = count[c] as number
+    const d = ((positions[i * 3] as number) - (sum[c * 3] as number) / m) ** 2 + ((positions[i * 3 + 1] as number) - (sum[c * 3 + 1] as number) / m) ** 2 + ((positions[i * 3 + 2] as number) - (sum[c * 3 + 2] as number) / m) ** 2
+    if (d < (best[c] as number)) { best[c] = d; repOf[c] = i }
+  }
+  const rep = new Uint32Array(n)
+  for (let i = 0; i < n; i++) rep[i] = repOf[ids[i] as number] as number
+  return { rep, cell }
+}
+/** A copy of a skinned geometry with a lighter index over the same vertices. */
+function lighter(source: THREE.BufferGeometry, ratio: number): THREE.BufferGeometry {
+  const position = source.attributes.position as THREE.BufferAttribute, index = source.index as THREE.BufferAttribute
+  const pos = new Float32Array(position.count * 3)
+  for (let i = 0; i < position.count; i++) { pos[i * 3] = position.getX(i); pos[i * 3 + 1] = position.getY(i); pos[i * 3 + 2] = position.getZ(i) }
+  const idx = new Uint32Array(index.count)
+  for (let i = 0; i < idx.length; i++) idx[i] = index.getX(i)
+  const { rep } = clusterIndex(pos, idx, ratio)
+  const groups = source.groups.length ? source.groups : [{ start: 0, count: idx.length, materialIndex: 0 }]
+  const out: number[] = [], made: { start: number; count: number; materialIndex: number }[] = []
   for (const g of groups) {
-    const part = new Uint32Array(g.count)
-    for (let i = 0; i < g.count; i++) part[i] = index.getX(g.start + i)
-    const target = Math.max(3, Math.floor(part.length * ratio / 3) * 3)
-    const [result] = simplifier.simplifyWithAttributes(part, pos, 3, values, Math.max(1, comps.length), comps.map((x) => x.w), null, target, scale * 0.03, ['Sparse', 'ErrorAbsolute'])
-    newGroups.push({ start: out.length, count: result.length, materialIndex: g.materialIndex ?? 0 })
-    for (const v of result) out.push(v)
+    const start = out.length
+    for (let i = g.start; i < g.start + g.count; i += 3) {
+      const a = rep[idx[i] as number] as number, b = rep[idx[i + 1] as number] as number, c = rep[idx[i + 2] as number] as number
+      if (a !== b && b !== c && a !== c) out.push(a, b, c)
+    }
+    made.push({ start, count: out.length - start, materialIndex: g.materialIndex ?? 0 })
   }
   const light = new THREE.BufferGeometry()
   for (const [name, attr] of Object.entries(source.attributes)) light.setAttribute(name, attr)
-  light.setIndex(new THREE.BufferAttribute(count <= 0xffff ? new Uint16Array(out) : new Uint32Array(out), 1))
-  if (source.groups.length) for (const g of newGroups) light.addGroup(g.start, g.count, g.materialIndex)
-  light.boundingSphere = source.boundingSphere?.clone() ?? null
+  light.setIndex(new THREE.BufferAttribute(position.count <= 0xffff ? new Uint16Array(out) : new Uint32Array(out), 1))
+  if (source.groups.length) for (const g of made) light.addGroup(g.start, g.count, g.materialIndex)
   return light
 }
 

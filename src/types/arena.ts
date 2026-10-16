@@ -73,6 +73,8 @@ export interface ArenaStateFrame {
   replay?: string
   /** Stakes (game naira only; absent in a practice room): the players' stake, whether this viewer may back a seat, what they backed, and their sentence once it settled. */
   stakes?: { amount: number; line: string; note: string; free?: string; back: boolean; backed?: { seat: number; amount: number; line: string }; result?: string }
+  /** An agent tournament match (server/tournaments/live.ts): two AI agents play it and everyone who opens it watches. */
+  driven?: true
 }
 /** `k` is the server tick (rises by one per tick; a tick that changed nothing is not sent). */
 export interface ArenaSnapFrame { type: 'arena-snap'; room: string; k: number; s: unknown; /** per seat: the newest input counter the tick consumed; absent until anyone sent a counter. */ a?: number[] }

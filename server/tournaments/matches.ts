@@ -1,4 +1,5 @@
 /**
+ * OWNER: agents (the agent arena, docs/AGENT-ARENA.md)
  * ONE TOURNAMENT MATCH between two agents (docs/AGENT-ARENA.md). The server owns the game: a match is its seed and its LOG, and the state
  * is always replayed from them with the game's own rules (src/tables for table games, src/arena for real-time games), so nothing an agent
  * says can change the state and a restart loses nothing.
@@ -23,6 +24,8 @@ import { cleanArenaOptions } from '../../src/arena/rules.ts';
 import type { RealtimeRules } from '../../src/arena/rules.ts';
 import { ARENA, ARENA_CUPS, TABLE_CUPS } from './book.ts';
 import type { MatchRec } from './book.ts';
+import { planTicks } from './windows.ts';
+import { INPUT_HELP, describe } from './inputs.ts';
 
 type Json = Record<string, unknown>;
 const isRecord = (value: unknown): value is Json => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -32,7 +35,7 @@ const no = (code: string, reason: string): Refusal => ({ ok: false, code, reason
 /** Options a tournament match is played with: no clocks of the game's own (the match has its own), everything else at its default. */
 const TABLE_OPTIONS: Readonly<Record<string, Record<string, unknown>>> = Object.freeze({ chess: { clock: 'untimed' } });
 const tableRules = (game: string): TableRules<any, any, any> | null => ((TABLE_CUPS as readonly string[]).includes(game) ? (GAMES as unknown as Record<string, TableRules<any, any, any>>)[game] ?? null : null);
-const realtimeRules = (game: string): RealtimeRules<any, any, any> | null => {
+export const realtimeRules = (game: string): RealtimeRules<any, any, any> | null => {
   const rules = (ARENA_CUPS as readonly string[]).includes(game) ? arenaGame(game) : null;
   return rules && rules.seats.min <= 2 && rules.seats.max >= 2 ? rules : null;
 };
@@ -51,23 +54,12 @@ interface Engine { state: any; held: unknown[]; ticks: number; rng: () => number
 const CACHE = new Map<string, { n: number; engine: Engine }>();
 const cacheKey = (m: MatchRec): string => m.id;
 
-/** One decision window of a real-time game, run exactly as the room host runs ticks (reduce, then settle after each tick). */
+/** One decision window of a real-time game: its ticks (windows.ts), stepped until the game is over. */
 function runWindow(rules: RealtimeRules<any, any, any>, engine: Engine, plans: readonly unknown[]): void {
-  const total = Math.max(1, Math.round(rules.hz * ARENA.windowSeconds));
-  const lists = plans.map((plan) => (Array.isArray(plan) ? plan.slice(0, ARENA.maxPlan) : plan === null || plan === undefined ? [] : [plan]));
-  const chunks = Math.max(1, ...lists.map((list) => list.length));
-  for (let c = 0; c < chunks && rules.outcome(engine.state) === null; c++) {
-    lists.forEach((list, seat) => {
-      if (c >= list.length) return;
-      try { const incoming = rules.parseInput(list[c]); engine.held[seat] = rules.reduce ? rules.reduce(engine.held[seat], incoming) : incoming; } catch { /* a bad input keeps what was held */ }
-    });
-    const ticks = c === chunks - 1 ? total - Math.floor(total / chunks) * (chunks - 1) : Math.floor(total / chunks);
-    for (let t = 0; t < ticks && rules.outcome(engine.state) === null; t++) {
-      const given = engine.held.slice();
-      if (rules.settle) engine.held = engine.held.map((h) => rules.settle?.(h));
-      engine.state = rules.step(engine.state, given, engine.rng);
-      engine.ticks += 1;
-    }
+  for (const inputs of planTicks(rules, engine.held, plans)) {
+    if (rules.outcome(engine.state) !== null) return;
+    engine.state = rules.step(engine.state, inputs, engine.rng);
+    engine.ticks += 1;
   }
 }
 
@@ -105,17 +97,17 @@ function outcomeOf(m: MatchRec): ReturnType<TableRules['outcome']> | null {
   const engine = replay(m);
   return m.kind === 'table' ? tableRules(m.game)?.outcome(engine.state) ?? null : realtimeRules(m.game)?.outcome(engine.state) ?? null;
 }
-function finish(m: MatchRec, winner: 0 | 1 | null, reason: string, text: string, scores: number[] = [0, 0]): void {
-  m.status = 'done'; m.pending = [null, null];
+function finish(m: MatchRec, now: number, winner: 0 | 1 | null, reason: string, text: string, scores: number[] = [0, 0]): void {
+  m.status = 'done'; m.pending = [null, null]; m.doneAt = now;
   m.result = { winner, reason, text: withNames(text, m.names), scores };
 }
 /** If the game is over, record the result. */
-function settle(m: MatchRec): void {
+function settle(m: MatchRec, now: number): void {
   if (m.status === 'done') return;
   const outcome = outcomeOf(m);
   if (!outcome) return;
   const winner = !outcome.draw && outcome.winners.length === 1 && (outcome.winners[0] === 0 || outcome.winners[0] === 1) ? outcome.winners[0] : null;
-  finish(m, winner, outcome.reason, outcome.text, outcome.scores);
+  finish(m, now, winner, outcome.reason, outcome.text, outcome.scores);
 }
 
 // ---- what the agents see -------------------------------------------------------------------------------------
@@ -135,8 +127,8 @@ export function viewOf(m: MatchRec, seat: 0 | 1 | null, now: number): Json {
   }
   const rules = realtimeRules(m.game);
   if (!rules) return base;
-  const sent = seat !== null && m.pending[seat] !== null;
-  return { ...base, hz: rules.hz, windowSeconds: ARENA.windowSeconds, window: m.log.length + 1, decisionEndsIn: Math.max(0, Math.round((m.turnAt + ARENA.windowMs - now) / 1000)), sent, snapshot: rules.snapshot(engine.state) };
+  const sent = seat !== null && m.pending[seat] !== null, snapshot = rules.snapshot(engine.state);
+  return { ...base, windowSeconds: ARENA.windowSeconds, window: m.log.length + 1, decisionEndsIn: Math.max(0, Math.round((m.turnAt + ARENA.windowMs - now) / 1000)), sent, reading: describe(m.game, snapshot, seat), inputs: INPUT_HELP[m.game] ?? '', snapshot };
 }
 
 // ---- acting --------------------------------------------------------------------------------------------------
@@ -155,16 +147,16 @@ function closeWindow(m: MatchRec, now: number): void {
   m.misses = [sent[0] ? 0 : m.misses[0] + 1, sent[1] ? 0 : m.misses[1] + 1];
   m.log.push([m.pending[0], m.pending[1]]);
   m.pending = [null, null]; m.turnAt = now;
-  settle(m);
+  settle(m, now);
   if (m.status === 'done') return;
   const missed = m.misses[0] >= ARENA.windowMisses ? 0 : m.misses[1] >= ARENA.windowMisses ? 1 : null;
-  if (missed !== null) forfeit(m, missed, 'no_answer', '{0} stopped answering.'.replace('{0}', `{${missed}}`));
-  else if (m.log.length >= ARENA.maxWindows) finish(m, null, 'time', 'The match ran out of time: a draw.');
+  if (missed !== null) forfeit(m, now, missed, 'no_answer', '{0} stopped answering.'.replace('{0}', `{${missed}}`));
+  else if (m.log.length >= ARENA.maxWindows) finish(m, now, null, 'time', 'The match ran out of time: a draw.');
 }
-function forfeit(m: MatchRec, seat: 0 | 1, reason: string, text: string): void {
+function forfeit(m: MatchRec, now: number, seat: 0 | 1, reason: string, text: string): void {
   if (m.status === 'done') return;
   m.log.push({ f: seat });
-  finish(m, seat === 0 ? 1 : 0, reason, text);
+  finish(m, now, seat === 0 ? 1 : 0, reason, text);
 }
 
 /** A table move or a real-time plan from the agent in `seat`. */
@@ -187,7 +179,7 @@ export function submit(m: MatchRec, seat: 0 | 1, input: { move?: unknown; plan?:
     CACHE.delete(cacheKey(m));
     m.log.push({ s: seat, m: move });
     if (!side) { m.turnAt = now; m.misses[seat] = 0; m.moved[seat] += 1; }
-    settle(m);
+    settle(m, now);
     return { ok: true };
   }
   const rules = realtimeRules(m.game);
@@ -205,19 +197,19 @@ export function submit(m: MatchRec, seat: 0 | 1, input: { move?: unknown; plan?:
 /** Time passing: the clock plays for a seat that did not move, a window closes, a seat that never came loses, the deadline ends the match. */
 export function advance(m: MatchRec, now: number): void {
   if (m.status === 'done') return;
-  if (now >= m.deadline) { if (m.status === 'playing') { const lone = m.seen[0] === 0 ? 0 : m.seen[1] === 0 ? 1 : null; if (lone !== null) { forfeit(m, lone, 'no_show', '{0} did not turn up.'.replace('{0}', `{${lone}}`)); return; } } finish(m, null, m.status === 'waiting' ? 'no_show' : 'deadline', m.status === 'waiting' ? 'Nobody came: a draw.' : 'The round ended before the match did: a draw.'); return; }
+  if (now >= m.deadline) { if (m.status === 'playing') { const lone = m.seen[0] === 0 ? 0 : m.seen[1] === 0 ? 1 : null; if (lone !== null) { forfeit(m, now, lone, 'no_show', '{0} did not turn up.'.replace('{0}', `{${lone}}`)); return; } } finish(m, now, null, m.status === 'waiting' ? 'no_show' : 'deadline', m.status === 'waiting' ? 'Nobody came: a draw.' : 'The round ended before the match did: a draw.'); return; }
   if (m.status !== 'playing') return;
   const late = m.seen[0] === 0 ? 0 : m.seen[1] === 0 ? 1 : null;
-  if (late !== null && now >= m.startedAt + ARENA.graceMs) { forfeit(m, late, 'no_show', '{0} did not turn up in time.'.replace('{0}', `{${late}}`)); return; }
+  if (late !== null && now >= m.startedAt + ARENA.graceMs) { forfeit(m, now, late, 'no_show', '{0} did not turn up in time.'.replace('{0}', `{${late}}`)); return; }
   if (m.kind === 'table') {
     const rules = tableRules(m.game);
     for (let guard = 0; rules && m.status === 'playing' && now >= m.turnAt + ARENA.turnMs && guard < 12; guard++) {
       const engine = replay(m), mover = rules.toMove(engine.state)[0];
-      if (mover === undefined || (mover !== 0 && mover !== 1)) { settle(m); break; }
+      if (mover === undefined || (mover !== 0 && mover !== 1)) { settle(m, now); break; }
       m.misses[mover] += 1;
-      if (m.misses[mover] >= ARENA.missesToForfeit) { forfeit(m, mover, 'no_answer', '{0} stopped answering.'.replace('{0}', `{${mover}}`)); break; }
+      if (m.misses[mover] >= ARENA.missesToForfeit) { forfeit(m, now, mover, 'no_answer', '{0} stopped answering.'.replace('{0}', `{${mover}}`)); break; }
       m.log.push({ s: mover, t: 1 }); m.turnAt += ARENA.turnMs;
-      settle(m);
+      settle(m, now);
     }
   } else {
     for (let guard = 0; m.status === 'playing' && now >= m.turnAt + ARENA.windowMs && guard < 12; guard++) closeWindow(m, m.turnAt + ARENA.windowMs);

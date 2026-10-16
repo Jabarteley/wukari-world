@@ -24,6 +24,8 @@ import { standing } from './gate.ts'
 import { sha256Hex } from '../../src/game/util.ts'
 import type { Admin } from './gate.ts'
 import type { AccountRecord, ArchivedLife, Db, RouteContext, SessionRecord, SocialCollection } from '../types.ts'
+import { forgetArena, peekBook as peekArena } from '../tournaments/book.ts'
+import { ownerKeyOf } from '../tournaments/life.ts'
 
 export type ErasureScope = 'guest' | 'agent' | 'account'
 export type ErasureCharacterKind = 'guest' | 'player' | 'agent'
@@ -224,7 +226,7 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
   const known = new Set([
     'version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'visits', 'commerce', 'business', 'market', 'legacy',
     'trust', 'trustChecks', 'street', 'realValue', 'showcase', 'politics', 'campus', 'accounts', 'accountDevices', 'accountLog', 'walletEffects', 'livingWorld',
-    'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', '$store',
+    'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', 'agentarena', '$store',
   ])
   const collectionNames = (db.$store as (typeof db.$store & { collectionNames?: () => readonly string[] }) | undefined)?.collectionNames?.() ?? []
   const names = new Set([...Object.keys(db), ...collectionNames])
@@ -605,8 +607,10 @@ function scrubAdminCollections(db: Db, ids: ReadonlySet<string>, accounts: Reado
   }
 }
 
-function scrubMisc(db: Db, ids: ReadonlySet<string>): void {
+function scrubMisc(db: Db, ids: ReadonlySet<string>, accounts: ReadonlySet<string> = new Set()): void {
   forgetReplayPlayers(db, ids)
+  const arena = peekArena(db)
+  if (arena) forgetArena(arena, ids, new Set([...accounts].map(ownerKeyOf)))
   if (db.street) for (const id of ids) delete db.street.journeys[id]
   if (db.campus?.election) {
     const election = db.campus.election
@@ -717,7 +721,7 @@ export function eraseData(ctx: RouteContext, db: Db, plan: ErasurePlan): Erasure
   scrubBusiness(db, ids)
   scrubTrustAndSupport(db, ids, accounts)
   scrubAdminCollections(db, ids, accounts)
-  scrubMisc(db, ids)
+  scrubMisc(db, ids, accounts)
   scrubAgents(db, ids, accounts)
   if (db.commerce) for (const accountId of accounts) delete db.commerce.stores[accountId]
   eraseActorStorage(db, plan.actorIds)

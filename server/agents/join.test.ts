@@ -7,7 +7,7 @@ import { ASSISTANTS } from '../../src/app/features/agents/joinModel.ts'
 test('the page names every assistant, links to make a key, and holds no key or script', () => {
   const html = joinPageHtml('https://play.example')
   for (const a of ASSISTANTS) assert.ok(html.includes(a.id === 'other' ? 'Any other assistant' : a.name), a.name)
-  assert.ok(html.includes('href="/?agents-join=1"'))
+  assert.ok(html.includes('href="/sound?agents-join=1"'))
   assert.ok(html.includes('https://play.example/mcp'))
   assert.ok(html.includes('awk_YOUR_KEY'))
   assert.ok(!/awk_[A-Za-z0-9_-]{43}/.test(html))

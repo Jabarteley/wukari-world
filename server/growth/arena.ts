@@ -19,6 +19,11 @@
  * word); a room with nobody connected closes after TUNING.emptyMs; a lobby after TUNING.lobbyMs; a finished room after TUNING.overMs.
  * Nothing is stored: a restart ends every room (the host keeps the Worker awake by its own timers while rooms exist,
  * see ctx.core.hibernates). A finished match's replay log is kept on a small shelf (./arena-replays.ts) for its replay and clip links.
+ *
+ * DRIVEN ROOMS (`hostDriven`, `feedDriven`): the room of an agent tournament match (server/tournaments/live.ts). Its seats are the two agents,
+ * held by no socket; its ticks come from the match's decision windows, already turned into one input per seat per tick, and it plays them at
+ * the game's own speed and then waits for the next window. Everyone who opens its code watches: nobody takes a seat, sends input, stakes
+ * or backs. It closes TUNING.drivenIdleMs after its last window, or TUNING.overMs after the result, like any room.
  */
 import { makeRng } from '../../src/game/util.ts';
 import { withNames } from '../../src/tables/rules.ts';
@@ -44,7 +49,11 @@ export const TUNING = {
   awayForfeitMs: 15000, awaySeatMs: 30000, emptyMs: 60000, lobbyMs: 15 * 60000, overMs: 10 * 60000, sweepMs: 2000, maxCatchUp: 4,
   /** Replays kept (src/arena/replay.ts, server/growth/arena-replays.ts): per game, per room a day, bytes of JSON each, how long, and the entries one log may grow to before it is dropped. */
   replayPerGame: 30, replayPerRoom: 40, replayBytes: CARTRIDGE_LIMITS.replayBytes, replayTtlMs: 7 * 24 * 3600000, replayEntries: 4000,
+  /** Driven rooms: closed after this long with no new window; ticks queued beyond this many are played at once, unseen, so watchers stay near the game. */
+  drivenIdleMs: 30 * 60000, drivenQueueMax: 600,
 };
+/** One tick of a driven room: every seat's input, or a seat that forfeits. */
+export type DrivenTick = unknown[] | { f: number };
 const markOf = (ws: WsConnection, now: number): boolean => ws.session.agent === true && (ws.session.agentUntil === undefined || ws.session.agentUntil > now);
 const ALPHABET = 'abcdefghjkmnpqrstuvwxyz23456789';
 const refuse = (code: string, reason: string) => Object.assign(new Error(code), { reason });
@@ -99,6 +108,8 @@ interface Room {
   /** Who backed which seat with what this match (shown back to them), and each person's sentence once a match settled. */
   backs: Map<string, { seat: number; amount: number }>
   stakeLines: Map<string, string>
+  /** A driven room (see the header): its queued ticks, when it was last fed, and what to call with the replay once it is over. */
+  driven?: { queue: DrivenTick[]; fedAt: number; onOver?: (replay: string | null) => void }
 }
 
 const services = new WeakMap<object, ReturnType<typeof buildService>>();
@@ -153,7 +164,8 @@ function buildService(ctx: RouteContext) {
   const stakes = arenaStakes(ctx);
   const shelf = replayShelf(ctx, () => ({ perGame: TUNING.replayPerGame, perRoom: TUNING.replayPerRoom, bytes: TUNING.replayBytes, ttlMs: TUNING.replayTtlMs }));
 
-  const seatOf = (room: Room, id: string): number => room.seats.findIndex((seat) => !seat.bot && !seat.left && seat.id === id);
+  // In a driven room no connection holds a seat (an agent playing its owner's own character must not be steered by the owner's phone).
+  const seatOf = (room: Room, id: string): number => (room.driven ? -1 : room.seats.findIndex((seat) => !seat.bot && !seat.left && seat.id === id));
   const connected = (room: Room, id: string): boolean => [...room.sockets].some((ws) => ws.session.id === id && ctx.core.isOpen(ws));
   const open = (ws: WsConnection): boolean => ctx.core.isOpen(ws);
   const send = (ws: WsConnection, frame: Parameters<RouteContext['send']>[1]): void => { if (open(ws)) ctx.send(ws, frame); };
@@ -175,7 +187,8 @@ function buildService(ctx: RouteContext) {
       result: room.result ? { text: room.result.text, winners: room.result.winners, draw: room.result.draw, reason: room.result.reason, scores: room.result.scores, ...(room.result.places ? { places: room.result.places } : {}) } : null,
       snap: room.status === 'lobby' ? null : room.snap, match: room.match,
       ...(room.status === 'over' && room.replayId ? { replay: room.replayId } : {}),
-      ...(room.practice ? {} : { stakes: stakeView(room, id, seat) }),
+      ...(room.practice || room.driven ? {} : { stakes: stakeView(room, id, seat) }),
+      ...(room.driven ? { driven: true as const } : {}),
     };
   }
   /** What a person in the room is told about its stakes. */
@@ -301,6 +314,8 @@ function buildService(ctx: RouteContext) {
     if (room.timer) clearTimeout(room.timer);
     room.timer = null;
     if (room.status !== 'playing') return;
+    // A driven room waits for its next window with no timer (the sweep keeps an eye on it).
+    if (room.driven && !room.driven.queue.length) return;
     room.timer = setTimeout(() => { room.timer = null; pump(room); }, Math.max(0, room.nextAt - clock()));
     room.timer.unref?.();
   }
@@ -308,12 +323,13 @@ function buildService(ctx: RouteContext) {
     if (room.status !== 'playing') return;
     let ran = 0;
     const dt = dtOf(room);
-    while (room.status === 'playing' && clock() >= room.nextAt && ran < TUNING.maxCatchUp) { runTick(room); room.nextAt += dt; ran += 1; }
+    while (room.status === 'playing' && clock() >= room.nextAt && ran < TUNING.maxCatchUp && (!room.driven || room.driven.queue.length > 0)) { runTick(room); room.nextAt += dt; ran += 1; }
     // Far behind (a stalled host): do not try to replay the lost time.
     if (clock() - room.nextAt > dt * 8) room.nextAt = clock() + dt;
     schedule(room);
   }
   function runTick(room: Room): void {
+    if (room.driven) { drivenTick(room, true); return; }
     const rules = room.rules;
     // A person whose connection is down is NOT idle and NOT forfeited: the seat's bot steers until they are back or the window ends.
     const steered = room.seats.map((seat) => !seat.bot && !seat.left && seat.away > 0);
@@ -336,6 +352,29 @@ function buildService(ctx: RouteContext) {
     if (text !== room.lastText || room.tick - room.lastSentTick >= rules.hz) {
       room.lastText = text; room.lastSentTick = room.tick;
       sendAll(room, { type: 'arena-snap', room: room.code, k: room.tick, s: room.snap, ...(acks.some((n) => n > 0) ? { a: acks } : {}) });
+    }
+    finishIfOver(room);
+  }
+  /** One queued tick of a driven room (`show`: broadcast it, as a normal tick is). */
+  function drivenTick(room: Room, show: boolean): void {
+    const next = room.driven?.queue.shift();
+    if (next === undefined) return;
+    const rules = room.rules;
+    if (!Array.isArray(next)) {
+      const seat = next.f;
+      if (seat >= 0 && seat < room.seats.length) { room.rec?.forfeit(seat); room.state = rules.forfeit(room.state, seat); }
+    } else {
+      const inputs = room.seats.map((_, index) => next[index] ?? rules.idle());
+      room.rec?.tick(inputs, room.seats.map(() => false));
+      if (room.rec && room.rec.size > TUNING.replayEntries) room.rec = null;
+      room.state = rules.step(room.state, inputs, room.rng);
+      room.tick += 1;
+    }
+    room.snap = rules.snapshot(room.state);
+    const text = JSON.stringify(room.snap);
+    if (show && (text !== room.lastText || room.tick - room.lastSentTick >= rules.hz)) {
+      room.lastText = text; room.lastSentTick = room.tick;
+      sendAll(room, { type: 'arena-snap', room: room.code, k: room.tick, s: room.snap });
     }
     finishIfOver(room);
   }
@@ -366,6 +405,7 @@ function buildService(ctx: RouteContext) {
     for (const seat of room.seats) seat.again = false;
     sendAll(room, { type: 'arena-snap', room: room.code, k: room.tick, s: room.snap });
     announce(room);
+    if (room.driven) { room.driven.queue = []; try { room.driven.onOver?.(room.replayId) } catch { /* the tournament keeps its own result */ } }
   }
 
   // ---- the sweep: absent players, empty and old rooms -------------------------------------------------
@@ -386,6 +426,10 @@ function buildService(ctx: RouteContext) {
         if (t - seat.away >= limit) { removeSeat(room, index); if (!isClosed(room)) announce(room); }
       }
       if (room.status === 'closed') continue;
+      if (room.driven) {
+        if ((room.status === 'over' && t - room.since >= TUNING.overMs) || (room.status === 'playing' && !room.driven.queue.length && t - room.driven.fedAt >= TUNING.drivenIdleMs)) close(room);
+        continue;
+      }
       if (room.emptySince > 0 && t - room.emptySince >= TUNING.emptyMs) close(room);
       else if (room.status === 'lobby' && t - room.since >= TUNING.lobbyMs) close(room);
       else if (room.status === 'over' && t - room.since >= TUNING.overMs) close(room);
@@ -421,6 +465,7 @@ function buildService(ctx: RouteContext) {
   }
   function join(ws: WsConnection, message: IncomingFrame, watchOnly = false): void {
     const room = roomOf(message);
+    if (room.driven) watchOnly = true;
     const id = ws.session.id;
     const known = seatOf(room, id) >= 0;
     if (room.practice && !known) throw refuse('arena_full', 'That is a practice game. Make your own, or ask for a link to a real game.');
@@ -450,7 +495,7 @@ function buildService(ctx: RouteContext) {
   }
   function input(ws: WsConnection, message: IncomingFrame): void {
     const room = at.get(ws);
-    if (!room || room.status !== 'playing' || message.room !== room.code) return;
+    if (!room || room.driven || room.status !== 'playing' || message.room !== room.code) return;
     const index = seatOf(room, ws.session.id), seat = room.seats[index];
     if (!seat) return;
     const t = clock();
@@ -495,6 +540,7 @@ function buildService(ctx: RouteContext) {
     const room = roomOf(message);
     if (at.get(ws) !== room) throw refuse('arena_not_watching', 'Open the match to back a player.');
     if (room.practice) throw refuse('stake_refused', 'A practice game cannot be backed.');
+    if (room.driven) throw refuse('stake_refused', 'An agent tournament match cannot be backed.');
     if (!backingOpen(room.status, room.tick, room.rules.hz)) throw refuse('backing_closed', 'Backing closes ten seconds into a match.');
     const id = ws.session.id;
     if (seatOf(room, id) >= 0) throw refuse('stake_refused', 'You are playing in this match: you cannot back a side.');
@@ -512,7 +558,44 @@ function buildService(ctx: RouteContext) {
     exit(ws);
   }
 
+  /**
+   * A driven room for an agent tournament match, playing at once: `seed` and the game's default options are the match's own, so the room
+   * replays exactly the game the match engine holds. Null when the game is unknown or too many rooms are open.
+   */
+  function hostDriven(spec: { game: string; seed: string; seats: readonly { id: string; name: string }[]; onOver?: (replay: string | null) => void }): string | null {
+    const rules = arenaGame(spec.game);
+    if (!rules || rooms.size >= TUNING.maxRooms || spec.seats.length < rules.seats.min || spec.seats.length > rules.seats.max) return null;
+    const code = newCode(rules.id, (c) => rooms.has(c));
+    const seats: Seat[] = spec.seats.map((s) => ({ id: s.id, name: s.name, bot: false, ai: true, away: 0, left: false, input: rules.idle(), again: false, tokens: 0, refilled: 0, lastN: 0, ackN: 0 }));
+    const room: Room = { code, rules, host: '', practice: false, status: 'lobby', seats, options: cleanArenaOptions(rules, {}), sockets: new Set(), state: null, rng: Math.random, match: 0, result: null, tick: 0, nextAt: 0, timer: null, lastText: '', lastSentTick: 0, snap: null, emptySince: 0, since: clock(), rec: null, replayId: null, stake: 0, potId: newPotId(), money: false, starting: false, backs: new Map(), stakeLines: new Map(),
+      driven: { queue: [], fedAt: clock(), ...(spec.onOver ? { onOver: spec.onOver } : {}) } };
+    rooms.set(code, room);
+    room.seats = seats;
+    const seed = spec.seed;
+    room.rng = makeRng(seed);
+    room.state = rules.start(seats.length, room.rng, cleanArenaOptions(rules, room.options));
+    room.status = 'playing'; room.match = 1; room.tick = 0;
+    room.rec = new ReplayRecorder({ game: rules.id, rev: cartridgeOf(rules.id)?.rev ?? 1, hz: rules.hz, seed, options: cleanArenaOptions(rules, room.options), seats: seats.map((s) => ({ name: s.name, bot: false, ai: true as const })) }, JSON.stringify(rules.idle()));
+    room.snap = rules.snapshot(room.state); room.lastText = JSON.stringify(room.snap);
+    ensureSweeper();
+    return code;
+  }
+  /** Queue ticks for a driven room. `quiet`: play them now, unseen (a room made again after a restart catches up with its match). False when the room is gone. */
+  function feedDriven(code: string, ticks: readonly DrivenTick[], quiet = false): boolean {
+    const room = rooms.get(code);
+    if (!room?.driven || room.status === 'closed') return false;
+    if (room.status !== 'playing') return true;
+    room.driven.fedAt = clock();
+    room.driven.queue.push(...ticks);
+    const behind = quiet ? room.driven.queue.length : room.driven.queue.length - TUNING.drivenQueueMax;
+    for (let i = 0; i < behind && room.status === 'playing'; i++) drivenTick(room, false);
+    if (quiet || behind > 0) { room.lastText = ''; if (room.status === 'playing') sendAll(room, { type: 'arena-snap', room: room.code, k: room.tick, s: room.snap }); announce(room); }
+    if (room.status === 'playing' && !room.timer && room.driven.queue.length) { room.nextAt = clock() + dtOf(room); schedule(room); }
+    return true;
+  }
+
   return {
+    hostDriven, feedDriven,
     create: async (ws: WsConnection, message: IncomingFrame) => { create(ws, message); },
     join: async (ws: WsConnection, message: IncomingFrame) => { join(ws, message); },
     watch: async (ws: WsConnection, message: IncomingFrame) => { join(ws, message, true); },

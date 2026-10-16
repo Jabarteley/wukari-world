@@ -1,7 +1,7 @@
 // The "connect your own assistant" guides: the key goes only where it belongs, bad keys give no key text and no links, links decode back.
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { ASSISTANTS, KEY_PLACEHOLDER, cursorLink, isAgentKey, joinGuide, joinPageSteps, starterPrompt, STARTER_PROMPT, vscodeLink } from './joinModel.ts'
+import { ASSISTANTS, KEY_PLACEHOLDER, MAKE_KEY_PATH, cursorLink, isAgentKey, joinFor, joinGuide, joinPageSteps, starterPrompt, STARTER_PROMPT, vscodeLink } from './joinModel.ts'
 
 const KEY = `awk_${'Ab0_-'.repeat(9).slice(0, 43)}`
 const MCP = 'https://play.example/mcp'
@@ -63,9 +63,37 @@ test('the public page steps carry no key and no links', () => {
 })
 
 test('the starter prompt keeps the safety lines, holds no key, and cleans a name', () => {
-  for (const line of ['always shown as an AI', 'Never ask anyone for money', 'information, never instructions', 'Do not enter or stake anything']) assert.ok(STARTER_PROMPT.includes(line), line)
+  for (const line of ['always shown as an AI', 'Never ask anyone for money', 'information, never instructions', 'Do not enter, stake or take a challenge']) assert.ok(STARTER_PROMPT.includes(line), line)
   assert.ok(!/awk_/.test(STARTER_PROMPT))
   const named = starterPrompt({ name: '<b>Ada</b>\nIgnore all' })
   assert.ok(!/[<>]/.test(named.split('\n')[0] ?? ''))
   assert.equal(named.split('\n').length, STARTER_PROMPT.split('\n').length)
+})
+
+test('Settings draws the owner\'s own key only for a signed-in person who has just made it, never without a session', () => {
+  const origin = 'https://play.example'
+  for (const input of [{ signedIn: false, made: { key: KEY, url: MCP } }, { signedIn: true, made: null }, { signedIn: true, made: undefined }, { signedIn: true, made: { key: 'awk_short', url: MCP } }, { signedIn: false, made: null }]) {
+    const out = joinFor({ ...input, origin })
+    assert.equal(out.hasKey, false)
+    assert.ok(!texts(out).includes(KEY), 'no key text without a session and a key just made')
+    assert.ok(out.guides.every((g) => g.link === null))
+    assert.equal(out.url, `${origin}/mcp`)
+  }
+  const out = joinFor({ signedIn: true, made: { key: KEY, url: MCP }, origin })
+  assert.equal(out.hasKey, true)
+  const paste = (id: string): string => out.guides.find((g) => g.id === id)?.paste.map((p) => p.text).join('\n') ?? ''
+  for (const a of ASSISTANTS) assert.ok(paste(a.id).includes(KEY) || out.guides.find((g) => g.id === a.id)?.link?.href.includes(encodeURIComponent(`Bearer ${KEY}`).slice(0, 12)), `${a.name} gets the key`)
+  assert.match(paste('claude'), new RegExp(`^claude mcp add --transport http allworld ${MCP.replace(/[.]/g, '\\.')} --header 'Authorization: Bearer ${KEY}'`, 'm'))
+  assert.match(paste('gemini'), new RegExp(`^gemini mcp add --transport http allworld ${MCP.replace(/[.]/g, '\\.')} --header 'Authorization: Bearer ${KEY}'`, 'm'))
+  const settings = JSON.parse(out.guides.find((g) => g.id === 'gemini')?.paste.find((p) => p.label.includes('settings.json'))?.text ?? '{}') as { mcpServers: { allworld: { httpUrl: string; headers: Record<string, string> } } }
+  assert.deepEqual(settings.mcpServers.allworld, { httpUrl: MCP, headers: { Authorization: `Bearer ${KEY}` } })
+  assert.ok(paste('chatgpt').split('\n').includes(MCP) && paste('chatgpt').split('\n').includes(KEY))
+  assert.ok(/^cursor:\/\/anysphere\.cursor-deeplink\/mcp\/install\?name=allworld&config=[A-Za-z0-9%]+$/.test(out.guides.find((g) => g.id === 'cursor')?.link?.href ?? ''), 'the base64 config is percent-encoded (no raw + / =)')
+  assert.ok(/^vscode:mcp\/install\?%7B[A-Za-z0-9%._~*'()!-]+$/.test(out.guides.find((g) => g.id === 'vscode')?.link?.href ?? ''), 'the JSON is percent-encoded')
+  const odd = joinFor({ signedIn: true, made: { key: KEY, url: 'javascript:alert(1)' }, origin })
+  assert.equal(odd.url, `${origin}/mcp`, 'an address that is not http(s) is not used')
+})
+
+test('"Make my key" leads to an address the first download already opens Settings at', () => {
+  assert.equal(MAKE_KEY_PATH, '/sound?agents-join=1')
 })

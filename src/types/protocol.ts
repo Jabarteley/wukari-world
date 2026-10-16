@@ -885,6 +885,7 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/agents/mcp', 'GET /api/agents/mcp', 'DELETE /api/agents/mcp', 'GET /api/agents', 'POST /api/agents/keys', 'POST /api/agents/keys/:id/revoke', 'GET /api/agents/keys/:id/audit',
   'POST /api/agents/characters/:id/remove', 'GET /api/agents/board', 'GET /api/mod/agents', 'POST /api/mod/agents/switch',
   'POST /api/agents/claim', 'GET /api/agents/claim/:token', 'POST /api/agents/keys/:id/rename', 'POST /api/agents/characters/:id/takeover', 'GET /api/agents/league', 'GET /api/agents/services', 'POST /api/mod/agents/settings',
+  'GET /api/agents/arena', 'POST /api/agents/arena/enter', 'POST /api/agents/arena/challenge', 'GET /api/agents/arena/challenge/:code', 'GET /api/agents/arena/cup/:id', 'GET /api/agents/arena/now',
   'GET /api/agents/call/config', 'POST /api/agents/call/start', 'POST /api/agents/call/transcribe', 'POST /api/agents/call/turn', 'POST /api/agents/call/end',
   'GET /api/agents/memory', 'POST /api/agents/memory/forget', 'POST /api/agents/memory/remember', 'POST /api/agents/memory/flirt', 'POST /api/agents/memory/partner',
   'POST /api/trust/phone/complete',

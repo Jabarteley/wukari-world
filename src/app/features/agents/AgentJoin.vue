@@ -3,7 +3,7 @@
 // Shows, for each popular assistant, the exact lines to paste. The key just made (shown once above) fills them in while it is on screen;
 // this file NEVER keeps a key: it is only a prop, drawn on the page, gone when the section is closed or the key is dismissed.
 import { computed, ref } from 'vue'
-import { ASSISTANTS, STARTER_PROMPT, joinGuide } from './joinModel.ts'
+import { ASSISTANTS, STARTER_PROMPT, joinFor } from './joinModel.ts'
 import type { AssistantId } from './joinModel.ts'
 import { MCPB_FILENAME } from './mcpbBundle.ts'
 import type { AgentKeyMade } from '../../../types/agents-http.ts'
@@ -12,8 +12,8 @@ const props = defineProps<{ made: AgentKeyMade | null; signedIn: boolean }>()
 const tab = ref<AssistantId>('claude')
 const copied = ref('')
 const said = ref('')
-const live = computed(() => props.signedIn && props.made !== null)
-const guides = computed(() => joinGuide({ url: props.made?.url ?? `${location.origin}/mcp`, key: live.value ? props.made?.key : null }))
+const guides = computed(() => joinFor({ signedIn: props.signedIn, made: props.made, origin: location.origin }))
+const live = computed(() => guides.value.hasKey)
 const guide = computed(() => guides.value.guides.find((item) => item.id === tab.value) ?? guides.value.guides[0])
 
 async function copy(what: string, text: string): Promise<void> {

@@ -12,6 +12,7 @@ import { CLAIM_KEY } from './claimEntry.ts'
 import type { AgentKeyMade, AgentsView } from './agentsModel.ts'
 
 const AgentJoin = defineAsyncComponent(() => import('./AgentJoin.vue'))
+const AgentArena = defineAsyncComponent(() => import('./AgentArena.vue'))
 const { game } = useApp()
 const lite = useAccountLite()
 const view = ref<AgentsView | null>(null)
@@ -133,6 +134,7 @@ onMounted(() => {
         </form>
         <p v-else class="settings-note">You have {{ view.limits.keys }} keys, the most one account can hold. Revoke one to make another.</p>
         <AgentJoin :made="made" :signed-in="view.signedIn" />
+        <AgentArena v-if="view.characters.length" />
         <p class="settings-note">An agent plays by the same rules and limits as you (the only extra is a safety ceiling of {{ view.limits.callsPerDay ?? 6000 }} calls a day per key).</p>
       </template>
       <p v-if="said" class="ui-error" role="alert" data-agent-said>{{ said }}</p>

@@ -14,6 +14,7 @@ import { AGENT_LIMITS, agentMark } from './policy.ts';
 import { AGENT_DENY, actionList, routeDenied } from './access.ts';
 import { refusal } from './service.ts';
 import { PLACE_TOOLS, placeRoom } from './tools-places.ts';
+import { ARENA_TOOLS } from './tools-arena.ts';
 import { placeOfRoom } from '../../src/places/model.ts';
 import { JT, RID, TOOLS, act, answered, bad, bestMode, brief, endsIn, inSocial, look, num, obj, placeCards, playersOf, str, who } from './tools.ts';
 import type { ToolContext, ToolDefinition, ToolOutput } from './tools.ts';
@@ -305,7 +306,7 @@ const bank: ToolDefinition = {
   },
 };
 
-export const MORE_TOOLS: readonly ToolDefinition[] = Object.freeze([list_action_types, do_action, list_api, call_api, say_here, ask_public_romance, read_here, check_gist, go_home, list_games_here, play_game_move, friends, manage_shop, bank, ...PLACE_TOOLS]);
+export const MORE_TOOLS: readonly ToolDefinition[] = Object.freeze([list_action_types, do_action, list_api, call_api, say_here, ask_public_romance, read_here, check_gist, go_home, list_games_here, play_game_move, friends, manage_shop, bank, ...PLACE_TOOLS, ...ARENA_TOOLS]);
 export const ALL_TOOLS: readonly ToolDefinition[] = Object.freeze([...TOOLS, ...MORE_TOOLS]);
 export const TOOL_NAMES: readonly string[] = ALL_TOOLS.map((tool) => tool.name);
 export type { ToolOutput };

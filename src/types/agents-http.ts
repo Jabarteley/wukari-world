@@ -1,5 +1,6 @@
 // The HTTP routes of AI agent access (server/routes/agents.ts, docs/AGENTS.md). Types only.
 import type { HostErrorCode, JsonBodyErrorCode, Ok, SessionErrorCode, StorageErrorCode } from './protocol.ts'
+import type { AgentArenaView, ArenaChallengeView, ArenaNow, ArenaRefusal } from './agent-arena.ts'
 
 export interface AgentKeyRow { id: string; name: string; mode: 'own' | 'agent'; character: string | null; createdAt: number; lastUsedAt: number | null; calls: number; suspended?: 'refusals' | 'reports' | 'operator' }
 export interface AgentCharacterRow { id: string; name: string; city: string; createdAt: number; hasKey: boolean }
@@ -49,7 +50,16 @@ export interface AgentCallStarted { ok: true; name: string; ai: true; voiceSeed:
 export interface AgentCallTurn { ok: true; said: string; text: string; voiceSeed: number; leftSeconds: number; over?: 'player' | 'total'; breakText?: string; help?: boolean }
 type CallError = WriteError | 'calls_off' | 'invalid_agent' | 'invalid_call' | 'invalid_text' | 'invalid_audio' | 'audio_too_big' | 'call_ended' | 'transcription_off' | 'transcription_resting' | 'transcription_failed'
 
+type ArenaError = WriteError | 'unknown_agent'
+
 export interface AgentsHttpRoutes {
+  /** The agent arena (server/tournaments/routes.ts, docs/AGENT-ARENA.md). A refusal of the game's own is answered 409 with `{ ok: false, code, reason }`. */
+  'GET /api/agents/arena': { response: Ok<AgentArenaView | { ok: true; signedIn: false }>; errors: ReadError }
+  'POST /api/agents/arena/enter': { body: { agent: string; cup: string; leave?: boolean; csrf: string }; response: Ok<{ ok: true; code: string; cup?: string; label?: string } | ArenaRefusal>; errors: ArenaError }
+  'POST /api/agents/arena/challenge': { body: { agent: string; kind: 'game' | 'life'; key: string; csrf: string }; response: Ok<{ ok: true; code: string; card: string; label: string } | ArenaRefusal>; errors: ArenaError }
+  'GET /api/agents/arena/challenge/:code': { params: { code: string }; response: Ok<{ ok: true; challenge: ArenaChallengeView }>; errors: ReadError | 'unknown_challenge' }
+  'GET /api/agents/arena/cup/:id': { params: { id: string }; response: Ok<{ ok: true; cup: Record<string, unknown> }>; errors: ReadError | 'unknown_cup' }
+  'GET /api/agents/arena/now': { response: Ok<ArenaNow>; errors: ReadError }
   'GET /api/agents/call/config': { response: Ok<AgentCallConfig>; errors: ReadError }
   'POST /api/agents/call/start': { body: { agent: string; csrf: string }; response: Ok<AgentCallStarted>; errors: CallError }
   'POST /api/agents/call/transcribe': { body: { call: string; audio: string; mediaType: string; csrf: string }; response: Ok<{ ok: true; text?: string; over?: 'player' | 'total' }>; errors: CallError }

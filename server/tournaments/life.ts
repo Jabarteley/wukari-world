@@ -1,108 +1,122 @@
 /**
- * LIFE CUPS: what only Allworld can measure (docs/AGENT-ARENA.md). Each figure is read from the game's own records, never from anything an
- * agent reports, and a cup counts the CHANGE since the agent entered (`base`), so every agent starts from nothing:
+ * OWNER: agents (the agent arena, docs/AGENT-ARENA.md)
+ * LIFE CUPS: what only Allworld can measure. Each figure is read from the game's own records, never from anything an agent reports, and a cup
+ * counts what happened AFTER the agent entered, so every agent starts from nothing:
  *
- *   stall      the shop's lifetime takings (business record), less sales to the owner's own other characters or to a shared device
- *   friends    new friendships since entering, each with a real, different account (see `realFriend`)
- *   missions   missions collected (the life's own lifetime count)
- *   office     seats held now on the agents' ballot, less the seats held when entering
+ *   stall      takings from PEOPLE at the agent's stall since entering, counted at the sale (noteShopSale, called by server/business/service.ts)
+ *   friends    new friendships since entering, each with a real person on a different account (realFriends)
+ *   missions   missions collected since entering (the lives' own lifetime counts, every city added up)
+ *   office     seats held on the agents' ballot now, less the seats held when entering
  *
- * RULES AGAINST GAMING (what is stopped, and what is not, are listed in docs/AGENT-ARENA.md): a friend counts once per account; the friend must
- * be signed in with an account at least a day old, not an agent character, not the owner, not on a device the owner has used; takings from the
- * owner's other characters are taken off. NOT stopped: two different people agreeing to trade at each other's stalls (the stall rules cap what
- * one buyer may spend, ₦5,000 a shop a day, ₦8,000 a day in all) or to befriend each other's agents.
+ * RULES AGAINST GAMING (what is stopped and what is not is listed in docs/AGENT-ARENA.md). A buyer or a friend counts only when it is a person:
+ * a character with an account at least a day old, not an agent character and not played by an agent key now, not the owner's own, sharing no
+ * device with the agent or its owner. A friend counts once per account. NOT stopped: two different people agreeing to buy at each other's agents'
+ * stalls (the stall rules cap one buyer at ₦5,000 a stall a day) or to befriend each other's agents.
  */
 import { sha256Hex } from '../../src/game/util.ts';
-import { businessVenue, shopAt } from '../../src/game/business-model.ts';
 import { accountOfSession } from '../admin/gate.ts';
-import { characterCity } from '../character.ts';
 import type { Db, RouteContext, SessionRecord } from '../types.ts';
 import type { AgentsCollection } from '../agents/service.ts';
-import { DAY_MS, bookOf } from './book.ts';
+import { DAY_MS, peekBook } from './book.ts';
 import type { Entrant, LifeCategory } from './book.ts';
 
 type Json = Record<string, unknown>;
+type Core = Pick<RouteContext, 'core'>;
 const isObject = (value: unknown): value is Json => value !== null && typeof value === 'object' && !Array.isArray(value);
 
 /** The one-way key of the person behind an agent: equal keys mean the same owner. */
-export const ownerKeyOf = (account: string): string => sha256Hex(`allworld-arena-owner-v1|${account}`);
+export const ownerKeyOf = (account: string): string => sha256Hex(`allworld-arena-owner-v1|${account}`).slice(0, 32);
 
 /** The owning account of a character: an agent character's owner, or the account a person's character belongs to. '' when there is none. */
-export function accountOf(ctx: Pick<RouteContext, 'core'>, db: Db, id: string): string {
+export function accountOf(ctx: Core, db: Db, id: string): string {
   const agents = db.agents as AgentsCollection | undefined;
-  const char = isObject(agents?.chars) ? agents?.chars[id] : undefined;
-  if (char?.account) return char.account;
+  const char = isObject(agents?.chars) && Object.hasOwn(agents.chars, id) ? agents.chars[id] : undefined;
+  if (char) return char.account;
   const session = ctx.core.sessionByPublicId(db, id);
   return session ? accountOfSession(db, session)?.id ?? '' : '';
 }
-/** The device hashes a character (and, for an agent, its owner's own character) has used. */
-function devicesOf(ctx: Pick<RouteContext, 'core'>, db: Db, id: string): string[] {
+/** The device hashes a character, and the character its owner plays, have used. */
+function devicesOf(ctx: Core, db: Db, id: string): string[] {
   const players = db.growth?.players, account = accountOf(ctx, db, id), owner = account ? db.accounts?.[account]?.publicId : undefined;
-  return [...(players?.[id]?.devices ?? []), ...(owner ? players?.[owner]?.devices ?? [] : [])];
+  return [...(players?.[id]?.devices ?? []), ...(owner && owner !== id ? players?.[owner]?.devices ?? [] : [])];
 }
 /** Are two characters one person's, by account or by a device? */
-export function related(ctx: Pick<RouteContext, 'core'>, db: Db, a: string, b: string): boolean {
+export function related(ctx: Core, db: Db, a: string, b: string): boolean {
   if (a === b) return true;
   const x = accountOf(ctx, db, a), y = accountOf(ctx, db, b);
   if (x && y && x === y) return true;
   const mine = new Set(devicesOf(ctx, db, a));
   return mine.size > 0 && devicesOf(ctx, db, b).some((hash) => mine.has(hash));
 }
+/** The account of `id` when it is a PERSON who may count for `agent` (see the header), else null. */
+export function personFor(ctx: Core, db: Db, agent: string, id: string, now: number): string | null {
+  const session = ctx.core.sessionByPublicId(db, id) as SessionRecord | undefined;
+  if (!session || session.agent) return null;
+  const agents = db.agents as AgentsCollection | undefined;
+  if (isObject(agents?.chars) && Object.hasOwn(agents.chars, id)) return null;
+  const account = accountOfSession(db, session);
+  if (!account || account.createdAt > now - DAY_MS || account.id === accountOf(ctx, db, agent)) return null;
+  return related(ctx, db, agent, id) ? null : account.id;
+}
 
-/** The friends an agent made since `since`, each a real different account (one per account). */
-export function realFriends(ctx: Pick<RouteContext, 'core'>, db: Db, id: string, since: number, now: number): string[] {
+/** The friends an agent made since `since`, each a real person on a different account (one per account). */
+export function realFriends(ctx: Core, db: Db, id: string, since: number, now: number): string[] {
   const players = (db.social as unknown as { players?: Record<string, { friends?: Record<string, number> } | undefined> } | undefined)?.players;
-  const mine = players?.[id]?.friends ?? {}, seen = new Set<string>(), found: string[] = [], me = accountOf(ctx, db, id);
+  const mine = players?.[id]?.friends ?? {}, seen = new Set<string>(), found: string[] = [];
   for (const [friend, at] of Object.entries(mine)) {
     if (typeof at !== 'number' || at < since) continue;
-    const session = ctx.core.sessionByPublicId(db, friend);
-    const account = session && !session.agent ? accountOfSession(db, session) : undefined;
-    if (!account || account.id === me || seen.has(account.id)) continue;
-    if (account.createdAt > now - DAY_MS) continue;
-    if (related(ctx, db, id, friend)) continue;
-    seen.add(account.id); found.push(friend);
+    const account = personFor(ctx, db, id, friend, now);
+    if (!account || seen.has(account)) continue;
+    seen.add(account); found.push(friend);
   }
   return found;
 }
 
-/** The seats a character holds now on the agents' ballot. */
+/** The seats each character holds now on the agents' ballot. */
 export type Holders = (db: Db) => Map<string, number>;
 
-/** The lifetime figure for a category, now. The cup's score is this minus the figure when the agent entered (and minus `self` for a stall). */
-export function figure(ctx: Pick<RouteContext, 'core'>, db: Db, category: LifeCategory, id: string, now: number, holders: Holders, since = 0): number {
-  switch (category) {
-    case 'stall': {
-      const shop = db.business?.shops?.[id];
-      if (!isObject(shop) || !isObject(shop.total)) return 0;
-      const at = shopAt(shop as never, now, businessVenue(shop.city, shop.venue));
-      return Math.max(0, at.total.takings);
-    }
-    case 'friends': return realFriends(ctx, db, id, since, now).length;
-    case 'missions': {
-      const session = ctx.core.sessionByPublicId(db, id) as SessionRecord | undefined;
-      const city = session ? characterCity(session) : null;
-      return Math.max(0, session && city ? session.cities?.[city]?.state?.missions?.claimed ?? 0 : 0);
-    }
-    case 'office': return holders(db).get(id) ?? 0;
-  }
+/** Missions collected in all of a character's cities. */
+function missionsOf(ctx: Core, db: Db, id: string): number {
+  const session = ctx.core.sessionByPublicId(db, id) as SessionRecord | undefined;
+  let total = 0;
+  for (const city of Object.values(session?.cities ?? {})) { const n = city?.state?.missions?.claimed; if (typeof n === 'number' && Number.isSafeInteger(n) && n > 0) total += n; }
+  return total;
 }
-/** An entrant's score in a life cup: the change since entering. Friends are counted from the entry time, so their base is 0. */
-export function scoreOf(ctx: Pick<RouteContext, 'core'>, db: Db, category: LifeCategory, entrant: Entrant, now: number, holders: Holders): number {
-  const value = figure(ctx, db, category, entrant.id, now, holders, entrant.enteredAt);
-  return Math.max(0, category === 'friends' ? value : value - entrant.base - (category === 'stall' ? entrant.self : 0));
+
+/** The figure a contest starts from (`base`): a lifetime count for missions and offices; nothing for friends and stalls, which count from the entry. */
+export function baseOf(ctx: Core, db: Db, category: LifeCategory, id: string, holders: Holders): number {
+  if (category === 'missions') return missionsOf(ctx, db, id);
+  if (category === 'office') return holders(db).get(id) ?? 0;
+  return 0;
+}
+/** An entrant's score: what happened since entering. */
+export function scoreOf(ctx: Core, db: Db, category: LifeCategory, entrant: Pick<Entrant, 'id' | 'enteredAt' | 'base' | 'people'>, now: number, holders: Holders): number {
+  switch (category) {
+    case 'stall': return Math.max(0, entrant.people);
+    case 'friends': return realFriends(ctx, db, entrant.id, entrant.enteredAt, now).length;
+    case 'missions': return Math.max(0, missionsOf(ctx, db, entrant.id) - entrant.base);
+    case 'office': return Math.max(0, (holders(db).get(entrant.id) ?? 0) - entrant.base);
+  }
 }
 
 /**
- * Called by the stall's sale code, inside its transaction, when a PLAYER bought from a stall: if the stall's owner is in a stall cup this week
- * and the buyer is one of the owner's own characters (or shares a device with them), the sale is written off against the entry.
+ * A PERSON's purchase at a stall (server/business/service.ts, inside its transaction, after the sale): when the stall's owner is in a stall cup
+ * still running, or in a stall challenge still running, and the buyer counts as a person for it, the amount is added to its takings from people.
  */
-export function noteShopSale(ctx: Pick<RouteContext, 'core'>, db: Db, owner: string, buyer: string, amount: number): void {
-  const agents = db.agents as AgentsCollection | undefined;
-  if (!agents?.arena || !Number.isSafeInteger(amount) || amount <= 0) return;
-  const book = bookOf(agents);
+export function noteShopSale(ctx: Pick<RouteContext, 'core' | 'now'>, db: Db, owner: string, buyer: string, amount: number): void {
+  const book = peekBook(db);
+  if (!book || !Number.isSafeInteger(amount) || amount <= 0) return;
+  const now = ctx.now();
+  let person: string | null | undefined;
+  const counts = (): boolean => (person === undefined ? (person = personFor(ctx, db, owner, buyer, now)) : person) !== null;
   for (const cup of Object.values(book.cups)) {
-    if (cup.status === 'settled' || cup.status === 'void' || cup.key !== 'life-stall') continue;
+    if ((cup.status !== 'open' && cup.status !== 'running') || cup.key !== 'life-stall') continue;
     const entry = cup.entrants.find((item) => item.id === owner);
-    if (entry && related(ctx, db, owner, buyer)) entry.self += amount;
+    if (entry && counts()) entry.people += amount;
+  }
+  for (const c of Object.values(book.challenges)) {
+    if (c.status !== 'playing' || c.key !== 'stall' || !c.life || !c.to || now >= c.life.end) continue;
+    const side = c.from.id === owner ? 0 : c.to.id === owner ? 1 : null;
+    if (side !== null && counts()) c.life.people[side] += amount;
   }
 }

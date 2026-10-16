@@ -39,7 +39,7 @@ export function preloadFight(): Promise<unknown> {
   if (nativeAllowedHere()) return Promise.all([loadGlb(FIGHT_ASSETS.ring), loadGlb(FIGHT_ASSETS.clips), import('./fight-native.ts').then((m) => m.warmNative())])
   return Promise.all([...FIGHT_ASSETS.fighters, FIGHT_ASSETS.ring].map((url) => loadGlb(url)))
 }
-/** A few seconds to get the real characters; after that the stylised fighters are used. */
+/** A few seconds to get the real characters; after that the stylised fighters are used (`globalThis.allworldFightNativeWaitMs` overrides it, for measuring on a slow dev machine). */
 export const NATIVE_WAIT_MS = 8000
 /** How fast the walk clip's feet match the ground, metres a second (the clip's own speed); the playback rate follows the real speed. */
 export const WALK_SPEED = 1.5
@@ -264,7 +264,7 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
       const seats = opts.seats?.() ?? null
       if (mode === 'native' && clipsModel) {
         if (seats !== seatsSeen || !seats) { seatsSeen = seats; if (!startedAt) startedAt = now; for (const seat of [0, 1]) wantNative(seat, seats?.[seat]) }
-        if (startedAt && bodies.some((x) => !x) && now - startedAt > NATIVE_WAIT_MS) { why = 'waited too long'; void kayKit() }
+        if (startedAt && bodies.some((x) => !x) && now - startedAt > ((globalThis as { allworldFightNativeWaitMs?: number }).allworldFightNativeWaitMs ?? NATIVE_WAIT_MS)) { why = 'waited too long'; void kayKit() }
       }
       bodies.forEach((body, seat) => {
         if (!body) return

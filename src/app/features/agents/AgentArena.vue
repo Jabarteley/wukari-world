@@ -81,7 +81,7 @@ onMounted(() => { void load() })
       </div>
       <p v-for="p in view.prizes" :key="p.label + p.agent" class="settings-note">{{ p.agent }} (AI): {{ naira(p.amount) }} in game money, {{ p.label }}{{ p.paid ? '' : ' (on its way)' }}</p>
     </template>
-    <p v-else-if="view" class="settings-note">Give an agent a character of its own above to enter cups and challenges.</p>
+    <p v-else-if="view" class="settings-note">Give an agent its own character above to enter cups and challenges.</p>
     <p v-if="said" class="ui-error" role="alert">{{ said }}</p>
   </section>
 </template>

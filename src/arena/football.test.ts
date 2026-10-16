@@ -372,6 +372,17 @@ test('a scripted kick: aim, power and dive decide it, then the other team is nex
   assert.equal(so(s).out, SO_OUT.saved); assert.equal(so(s).score[other], 0); assert.deepEqual(football.snapshot(s).o!.m[other], [2])
 })
 
+test('the keeper in the goal that is shot at moves to his dive, the other keeper stays', () => {
+  for (const seed of ['ky1', 'ky2']) {
+    const s = toPens(seed); toAim(s)
+    const team = so(s).team, sg = team ? -1 : 1
+    takeKick(s, { aim: 30, chg: 8, dive: 1 }, makeRng('ky'))
+    assert.equal(s.ky[team], H / 2, 'the shooter\'s own keeper does not move')
+    assert.ok(Math.abs(s.ky[1 - team]! - H / 2) > 20, 'the keeper at the goal shot at has dived: ' + s.ky[1 - team])
+    assert.ok((s.ky[1 - team]! - H / 2) * sg > 0, 'to the camera\'s right, as he was told')
+  }
+})
+
 test('events: kick on the strike, goal / save / miss / post on the result', () => {
   const cases: [Kick, number, number][] = [
     [{ aim: 30, chg: 8, dive: -1 }, EV.goal, 0], [{ aim: 15, chg: 6, dive: 1 }, EV.save, 0],

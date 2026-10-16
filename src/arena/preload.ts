@@ -1,9 +1,9 @@
 /**
  * OWNER: games (real-time)
- * WARMING A GAME AHEAD OF TIME: the Games hub calls `warmFight()` when it opens and again when the browser is idle, so the Fight
- * screen's 3D pieces (its chunk, three.js and the three GLBs) are already fetched and parsed when the player taps Fight.
+ * WARMING A GAME AHEAD OF TIME: the Games hub calls `warmFight()` and `warmFootball()` when it opens and again when the browser is idle,
+ * so the game screen's 3D pieces (its chunk, three.js and its GLBs) are already fetched and parsed when the player taps Fight or Football.
  * Nothing here is in the first download: the hub is a lazy chunk (the player has pressed Play to get to it) and the import below is
- * dynamic. A Save-Data connection or a 2G / slow-2G one is left alone: there the Fight screen fetches on demand, drawing 2D first.
+ * dynamic. A Save-Data connection or a 2G / slow-2G one is left alone: there the game screen fetches on demand, drawing 2D first.
  */
 export interface Link { saveData?: boolean; effectiveType?: string }
 
@@ -16,6 +16,14 @@ export function warmFight(link: Link | null | undefined = (globalThis.navigator 
   if (!mayWarm(link)) return Promise.resolve()
   started ??= import('./fight-3d.ts').then((m) => m.preloadFight()).catch(() => { started = null })
   return started
+}
+
+let startedFootball: Promise<unknown> | null = null
+/** Fetch the Football 3D view and its models once a visit, on the same terms as warmFight. Resolves quietly; never throws. */
+export function warmFootball(link: Link | null | undefined = (globalThis.navigator as { connection?: Link } | undefined)?.connection): Promise<unknown> {
+  if (!mayWarm(link)) return Promise.resolve()
+  startedFootball ??= import('./football-3d.ts').then((m) => m.preloadFootball()).catch(() => { startedFootball = null })
+  return startedFootball
 }
 
 type Idle = (run: () => void, options?: { timeout: number }) => unknown

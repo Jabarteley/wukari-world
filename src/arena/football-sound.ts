@@ -5,7 +5,7 @@
  */
 import { soundLevel } from '../audio/levels.ts'
 
-export interface FootballSound { unlock(): void; kick(strong: boolean): void; tackle(): void; post(): void; save(): void; whistle(long?: boolean): void; goal(): void; close(): void }
+export interface FootballSound { unlock(): void; kick(strong: boolean): void; tackle(): void; post(): void; save(): void; miss(): void; whistle(long?: boolean): void; goal(): void; close(): void }
 
 export function createFootballSound(): FootballSound {
   let ctx: AudioContext | null = null
@@ -36,6 +36,8 @@ export function createFootballSound(): FootballSound {
     tackle() { noise(160, 0.35, 700); tone(110, 60, 120, 'sine', 0.35) },
     post() { tone(1250, 900, 220, 'triangle', 0.25); tone(1870, 1400, 160, 'sine', 0.12) },
     save() { noise(80, 0.3, 1000); tone(240, 140, 90, 'square', 0.1) },
+    // A shot that goes wide or over: the crowd's groan, a falling tone with a breath of noise.
+    miss() { tone(300, 150, 520, 'sawtooth', 0.07); noise(700, 0.22, 600, 120) },
     whistle(long = false) {
       const ms = long ? 650 : 280
       tone(2800, 2900, ms, 'square', 0.1); tone(3000, 3050, ms, 'square', 0.08, 0.02)

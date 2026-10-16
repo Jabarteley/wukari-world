@@ -27,8 +27,8 @@
  * SET (a short wait, everyone placed), AIM (the shooter's seat steers with its heading and charges with the shoot button, kicks on
  * release; no kick in ten seconds and the kick is taken as it stands), FLIGHT (a few ticks the ball takes to reach the goal), RESULT
  * (the ball settles, then the next kick). The shot: the heading sets the angle (15-degree steps, at most 60 degrees either side of
- * straight at goal) and the ball is aimed at the goal line from the spot (PEN_D units away) so a 30-degree shot lands 53 units
- * from the middle (the corner) and a 45-degree one outside the post. The charge is the pace and the height: it grows to full at 16
+ * straight at goal) and the ball is aimed at the goal line as if from AIM_D (92) units away, so a 30-degree shot lands 53 units
+ * from the middle (the corner) and a 45-degree one outside the post. The spot itself is PEN_D (135, six metres) from the goal line. The charge is the pace and the height: it grows to full at 16
  * ticks and held on to 22 ticks the ball goes over the bar. A full charge also swings the ball out by up to a fifth, so a full-power
  * corner shot clips the post. The keeper is the OTHER team's first seat (seat 0 or 1): its heading names a dive (left, middle, right of
  * the shooter's camera). The dive it names when the ball is struck is early and full length; a keeper who is still in the middle
@@ -56,7 +56,7 @@ export const PHASE = Object.freeze({ kickoff: 0, play: 1, goal: 2, over: 3, pens
 /** Event codes in a snapshot: [code, x, y, extra]. In a shoot-out `goal` carries the scoring team, `save` the keeper's team and `miss` 1 for wide, 2 for over the bar. */
 export const EV = Object.freeze({ goal: 1, kick: 2, tackle: 3, save: 4, post: 5, miss: 6 })
 /** The shoot-out: kicks each before sudden death, the cap on kicks each, the spot's distance from the goal line, the ticks of each stage. */
-export const SO_FIRST = 5, SO_CAP = 10, PEN_D = 92
+export const SO_FIRST = 5, SO_CAP = 10, PEN_D = 135, AIM_D = 92
 export const SO_SET = 30, SO_AIM = 200, SO_RESULT = 40, SO_LOCK = 5, SO_OVER_AT = 22
 /** What a kick came to. */
 export const SO_OUT = Object.freeze({ pending: 0, goal: 1, saved: 2, wide: 3, over: 4, post: 5 })
@@ -408,6 +408,7 @@ function moveKeepers(s: FootballState): void {
 
 /** The whistle, or the golden goal's end: the match is over, or (ending 3, level) goes to penalties. */
 function fullTime(s: FootballState, rng: () => number): void {
+
   if (s.options.ending === 3 && s.goals[0] === s.goals[1]) startShootout(s, rng); else finish(s)
 }
 
@@ -472,7 +473,7 @@ export const spotX = (team: number): number => goalX(team) - sgnOf(team) * PEN_D
 /** The shot's aim at the goal line (units from the middle, + to the right of the shooter's camera) for the way the shooter faces. */
 export function aimOf(team: number, d: number): number {
   const sg = sgnOf(team), ang = Math.atan2((DY[d] as number) * sg, (DX[d] as number) * sg)
-  return Math.round(PEN_D * Math.tan(clamp(ang, -Math.PI / 3, Math.PI / 3))) + 0 // + 0: never -0
+  return Math.round(AIM_D * Math.tan(clamp(ang, -Math.PI / 3, Math.PI / 3))) + 0 // + 0: never -0
 }
 /** The dive a keeper's heading names: -1 left, 0 stay, 1 right, as the shooter's camera sees it. */
 export function diveOf(shootingTeam: number, heading: number): number {
@@ -507,6 +508,11 @@ export function soWinner(score: readonly number[], taken: readonly number[]): nu
 }
 /** How far through its flight (0..1) the ball is at flight tick `ft`: slow-motion halves its pace from tick `slow` on. */
 export const flightProgress = (ft: number, len: number, slow: number): number => Math.min(1, (slow > 0 && ft > slow ? slow + (ft - slow) / 2 : ft) / Math.max(1, len))
+/** How high above the ground (metres, over its rest) the shoot-out ball is at flight progress `p` for a charge in ticks: low when soft, up at the top corner when hard, over the bar when held too long. */
+export function shotHeight(p: number, chg: number): number {
+  const end = chg >= SO_OVER_AT ? 2.7 : 0.1 + 1.35 * powerOf(chg)
+  return end * (1 - (1 - p) * (1 - p)) + Math.sin(Math.PI * p) * 0.12
+}
 const flightTotal = (so: Shootout): number => (so.slow > 0 ? so.slow + 2 * (so.len - so.slow) : so.len)
 
 function startShootout(s: FootballState, rng: () => number): void {
@@ -583,7 +589,7 @@ function shootTick(s: FootballState, inputs: readonly FootballInput[], rng: () =
     b.x = spotX(so.team) + sg * (PEN_D - 10) * p; b.y = H / 2 + eff * sg * p
     if (so.out !== SO_OUT.pending) {
       const start = so.dive0 !== 0 ? 0 : SO_LOCK, u = clamp((so.fly - start) / Math.max(1, so.len * 0.85 - start), 0, 1)
-      s.ky[1 - so.keeper] = H / 2 + (so.keepY - H / 2) * (1 - (1 - u) * (1 - u))
+      s.ky[1 - so.team] = H / 2 + (so.keepY - H / 2) * (1 - (1 - u) * (1 - u))
     }
     if (so.fly >= flightTotal(so)) arrive(s)
   } else {

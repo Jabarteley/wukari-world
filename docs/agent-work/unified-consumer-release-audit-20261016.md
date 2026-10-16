@@ -6,16 +6,16 @@
 - **Owner:** `/root/unified_consumer_audit`
 - **Model / effort:** GPT-6 / high
 - **Thread:** child of `/root`
-- **UTC updated:** `2026-10-16T12:19:00Z`
+- **UTC updated:** `2026-10-16T12:39:00Z`
 - **Status:** `complete`
-- **Work state:** `startup-native-migration-physical-split-frozen`
+- **Work state:** `release-inventory-fixture-frozen`
 
 ## Goal and boundaries
 
 - **Goal:** identify current-main character integration deltas, then selectively transfer the approved native recipe, persistence, creator/profile/Boutique and quick-start contract onto the release checkout without overwriting newer product work.
 - **In scope:** completed consumer/UI/schema/near-street/fixture work; current bounded follow-up splits the labelled native catalogue from the eager recipe core, preserves strict validation/migration, and makes the server and lazy Boutique projections equivalent.
 - **Out of scope:** scene/runtime/map/campus/driving/package/lock changes, model/assets/budget changes, builds, servers, browser use, pushing, committing and deployment.
-- **Owned paths for this follow-up:** `src/character/native-recipe.ts`, `src/character/native-catalog.ts`, new `src/character/native-migration.ts`, direct `nativeRecipeForLook`/crowd-default import rewrites across existing consumers/tests, and only the `native-catalog.ts`/`native-migration.ts` side-effect conditions in `vite.config.ts`. Root checker files and Astra runtime behavior remain untouched.
+- **Owned paths for this follow-up:** only `server/release.test.ts` and this record. Runtime, package guard, assets and build source remain untouched.
 - **Exclusive coordination path:** `docs/agent-work/unified-consumer-release-audit-20261016.md`.
 - **Input contract:** release checkout `/Users/anthonyakpan/Desktop/JoinAllworld-native-character-release` at `c7f3f0203c2297123e37e705f86177715f29de13`; comparison base `22366a53`.
 - **Output contract:** audit handoff plus a source-preserving UI/schema native contract merge with exact conflict decisions and focused checks.
@@ -104,6 +104,8 @@
 - Physically extracted `nativeRecipeForLook`, the bounded crowd defaults, legacy colour/hair/outfit maps and deterministic hash/seed helpers to the new pure `src/character/native-migration.ts`. Every production and test caller now imports that module directly; `native-recipe.ts` neither exports nor re-exports migration code.
 - Moved `NATIVE_BOUTIQUE_PRICES` to the already-lazy `native-catalog.ts`, retaining `NATIVE_STARTER_ITEMS` in the eager recipe core. Added only `native-migration.ts` to the existing Vite side-effect-free predicate; no manual chunk or cap changed.
 - Physical-split verification: direct imports of recipe/migration/catalog/onboarding passed; the focused native suite passed 40/40 (`/tmp/native-migration-split-tests.log`); the exact readonly browser legacy fixture passed 1/1 across 18 lives (`/tmp/native-migration-browser-profile.log`); whole-diff check and greps confirm no migration/default/price export remains in the recipe core. Source-only diagnostic: core fell from 16,273 bytes / 4,810 standalone gzip before this split to 10,343 bytes / 3,083 gzip; CI remains authoritative for emitted startup raw/gzip/Brotli.
+- Maintained the strict release inventory fixture after CI proved startup/full asset size and the retired-asset gate pass. `server/release.test.ts` now names every reviewed native runtime, evidence probe and native asset-policy script exactly; it does not admit other JavaScript. The public-asset check admits only the same four exact native JSON/Markdown paths already enforced by `guard-joinallworld-package.mjs`, without adding JSON/Markdown as general extensions.
+- `npm run test:smoke` passed 17/17; `/tmp/native-release-smoke-inventory.log`. This checkout had no local `dist/`, so the two entry budget cases explicitly reported source-only skips; CI3 already supplied the emitted startup/full-size pass. No runtime, package guard, asset, budget or lifecycle source changed.
 
 ### Current native near-street unit
 
@@ -142,3 +144,4 @@
 | `2026-10-16T11:34Z` | complete | Split labelled catalogue/presets from the compact eager recipe core, PLAYS-gated server projection and implemented the lazy browser Boutique projection without weakening saved recipe checks. | Direct imports pass; focused 40/40 including server/lazy parity; diff/closure checks pass | Astra reviews and CI measures unchanged startup caps |
 | `2026-10-16T11:49Z` | complete | Deferred absent-recipe legacy migration from the readonly browser while preserving strict saved-native checks and exact lazy/server equivalence; restored strict scalar-ID validation. | Focused 40/40; readonly browser legacy fixture 1/1 across 18 lives | Freeze source for Astra browser review and CI |
 | `2026-10-16T12:19Z` | complete | Physically separated migration/crowd helpers and Boutique prices from the eager strict recipe core, then rewired every direct caller. | Direct imports; focused 40/40; browser legacy 1/1; diff/closure checks | Astra commits and CI measures unchanged startup caps |
+| `2026-10-16T12:39Z` | complete | Updated only the release inventory fixture for exact reviewed native JavaScript and the same four package-guard metadata paths. | Smoke 17/17; `/tmp/native-release-smoke-inventory.log` | Astra stages fixture and reruns CI smoke |

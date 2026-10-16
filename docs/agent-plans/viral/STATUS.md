@@ -287,6 +287,11 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: Phase 6a live at `d95ee616` (Football in 3D, penalty shoot-out; release 38911085638, smoke PASS, checked live at
+  390x844 and 844x390: 41 calls, about 10,300 triangles, no page errors). For 6b: realistic players, the near goal partly under the
+  portrait joystick, the crowd behind the landscape score bar. Live-testing note: the coordinator's live checks made about seven guest
+  players named "Zz Test …" (the rule is at most two); from now on every live check reuses one saved test session. The extra guests
+  are idle guests (no account); an operator may remove them with the admin erasure tool.
 - 2026-10-16: the owner skipped Phase 7 (videos); the work in progress was discarded, nothing was posted or committed.
 - 2026-10-16: Phase 6 (Football in 3D, penalties, `rev` 2) built on `claude/viral-football`; in CI.
 - 2026-10-16: Phase 5 live at `f87981e1` (Race in 3D). Phase 4b (realistic fighters) and Phase 6 (Football) being built.

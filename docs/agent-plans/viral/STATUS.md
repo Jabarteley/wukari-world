@@ -53,7 +53,7 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | 2 Clans, ladders, city leagues | live | `01409bc9` | see "Phase 2" |
 | 3 Agent arena | live | `ee203d15` | see "Phase 3" |
 | A Asset pipeline | live | `c254d4327` | packs for all three games, credits in Help, Blender scripts |
-| 4 Polish Fight | not started | | |
+| 4 Polish Fight | 4a live (3D) | `40e1e614` | 4b next: realistic fighters, portrait tidy-ups |
 | 5 Polish Race | not started | | |
 | 6 Polish Football | not started | | |
 | 7 Videos (Nigeria first) | not started | | |
@@ -110,6 +110,21 @@ home-city pin with the winner in the gist, and weekly clan wars on the top 80% w
 section of the Games app (lazy). Review found and fixed: a clan war always settled as a draw (points read after they were
 removed), a test-clock gap in the league, and an untyped route module. Tests: 5 against a real server plus the pure ones. Checked
 in a 390x844 browser: start, share, open the invite as a new player, preview, join, ladders.
+
+## Phase 4 (16 October 2026)
+
+**4a live at `40e1e614`** (release 38890948167, CI green, smoke PASS; a practice fight checked on the live site at 390x844 and
+844x390, the versioned models loading, no page errors). Fight is drawn in 3D: two CC0 KayKit fighters whose punch, kick, block, hit,
+knock-down and cheer clips are timed to the server's moves; our own Blender ring at the rules' scale (1.8 m fighters, a 16.5 m ring);
+a dark hall; a camera framing the pair clear of the HUD and the thumbs in portrait and landscape (re-framed on rotate), shaking on
+hits and turning round a knock-out; sparks; the 2D view as the fallback. The renderer lowers its resolution when frames run slow and
+earns it back at a steady 60 Hz; the 3D pieces are fetched when the Games app opens or the phone is idle (not on Save-Data or 2G),
+and every model link carries a content version so updates reach players despite the year-long cache. A daily challenge against the
+computer with a streak; matches between people become a gist line in the winner's city. Measured (headless Chromium, software GL:
+frame times are not a phone's): 19 draw calls, about 8,500 triangles, 1.3-1.6 ms of script a frame at 4x CPU throttle; the cartridge
+388 KB brotli of 1.5 MB. **4b, next:** realistic fighters (the players' own characters with fight clips we make in Blender for their
+skeleton, as the KayKit fighters are stylised), the hall lamps showing behind the portrait top bar, the pair a little off centre in
+portrait, clips rendered from the 3D view. Not verified: a real phone's frame rate, a real Bluetooth pad.
 
 ## Phase 3 (16 October 2026)
 
@@ -171,6 +186,7 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: Phase 4a live at `40e1e614` (Fight in 3D). Race (Phase 5) built and in CI; Football (Phase 6) being built.
 - 2026-10-16: live in order: the MCP OAuth sign-in for web assistants (`9e8b5b3b`; discovery documents and the 401 challenge
   checked live), 7-character build hashes (`80768f46`; first-download brotli 195,569 to about 195,300, so chance overages stop),
   Phase A asset packs (`c254d4327`). Smoke PASS after each.

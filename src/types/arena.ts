@@ -92,6 +92,7 @@ export interface ArenaHttpRoutes {
     response: { serverTime?: number } & (ArenaReplayView | { id: string; game: string; clip: string | null })
     errors: 'replay_rate_limited' | 'replay_unknown'
   }
+  'GET /api/arena/daily': { query: { game?: string }; response: { ok: true; game: string; day: number; goal: string; done: boolean; streak: number }; errors: 'invalid_game' | 'no_daily' }
   'POST /api/arena/clip': {
     body: { id: string; url: string }
     response: { ok: true }

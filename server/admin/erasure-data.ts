@@ -20,6 +20,7 @@ import { erasePerson } from '../house/memory.ts'
 import { eraseWalletActors } from '../economy/privacy.ts'
 import { peekRecords } from '../records/store.ts'
 import { forgetReplayPlayers } from '../growth/arena-replays.ts'
+import { forgetDailyPlayers } from '../growth/arena-daily.ts'
 import { idsWithMoney } from '../growth/arena-stakes.ts'
 import { standing } from './gate.ts'
 import { sha256Hex } from '../../src/game/util.ts'
@@ -225,7 +226,7 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
   const known = new Set([
     'version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'visits', 'commerce', 'business', 'market', 'legacy',
     'trust', 'trustChecks', 'street', 'realValue', 'showcase', 'politics', 'campus', 'accounts', 'accountDevices', 'accountLog', 'walletEffects', 'livingWorld', 'clans',
-    'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', '$store',
+    'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', 'arenadaily', '$store',
   ])
   const collectionNames = (db.$store as (typeof db.$store & { collectionNames?: () => readonly string[] }) | undefined)?.collectionNames?.() ?? []
   const names = new Set([...Object.keys(db), ...collectionNames])
@@ -608,6 +609,7 @@ function scrubAdminCollections(db: Db, ids: ReadonlySet<string>, accounts: Reado
 
 function scrubMisc(db: Db, ids: ReadonlySet<string>): void {
   forgetReplayPlayers(db, ids)
+  forgetDailyPlayers(db, ids)
   if (db.street) for (const id of ids) delete db.street.journeys[id]
   if (db.campus?.election) {
     const election = db.campus.election

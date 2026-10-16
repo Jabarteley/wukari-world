@@ -42,4 +42,4 @@ export function lastWarLine(last: { vsName: string; mine: number; theirs: number
   return last.outcome === 'win' ? `Last week you beat ${last.vsName}, ${score}.` : last.outcome === 'loss' ? `Last week ${last.vsName} won, ${score}.` : `Last week was a draw with ${last.vsName}, ${score}.`
 }
 /** The city league in one line for sharing. */
-export const leagueShareLine = (city: string, place: number, week: number): string => (place === 1 ? `${city} leads the Allworld city league this week (week ${week}). Play for your city:` : `${city} is number ${place} in the Allworld city league this week. Help us climb:`)
+export const leagueShareLine = (city: string, place: number, week: number): string => { void week; return place === 1 ? `${city} leads the Allworld city league this week. Play for your city:` : `${city} is number ${place} in the Allworld city league this week. Help us climb:` }

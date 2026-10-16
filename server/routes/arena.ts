@@ -6,6 +6,7 @@
  *                                        still on the shelf (server/growth/arena-replays.ts), else 404 `replay_unknown`. The log holds public
  *                                        names, the AI mark and the cosmetic look of each seat, never an id or the room code.
  *   GET  /api/arena/replay/:id?meta=1    only { id, game, clip } (a few bytes): the result screen asks this to know whether a clip exists.
+ *   GET  /api/arena/daily?game=fight     today's challenge against the computer, and (with a session) whether it is done and the streak.
  *   POST /api/arena/clip                 OPERATOR (bearer token, like /api/mod/): { id, url } says the rendered clip is at `url`.
  */
 import { addressBucket } from '../host-context.ts';
@@ -25,6 +26,14 @@ export default function arenaRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
       const headers = { 'Cache-Control': 'public, max-age=60' };
       if (request.query.get('meta') === '1') return { body: { id: found.id, game: found.log.game, clip: found.clip }, headers };
       return { body: { id: found.id, at: found.at, clip: found.clip, log: found.log }, headers };
+    },
+    'GET /api/arena/daily': async (request) => {
+      const game = request.query.get('game') ?? 'fight';
+      if (!/^[a-z]{2,16}$/.test(game)) throw ctx.fail(400, 'invalid_game');
+      const player = await ctx.store.read((db) => request.session(db)?.publicId ?? null);
+      const found = await arena.daily(game, player);
+      if (!found) throw ctx.fail(404, 'no_daily');
+      return { body: { ok: true, ...found }, headers: { 'Cache-Control': 'no-store' } };
     },
     'POST /api/arena/clip': async (request) => {
       if (!request.moderator()) throw ctx.fail(401, 'operator_only');

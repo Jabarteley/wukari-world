@@ -745,6 +745,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/world/feed',
   'GET /api/world/gist',
   'GET /api/arena/replay/:id',
+  'GET /api/arena/daily',
   'GET /api/clans/me', 'GET /api/clans/preview', 'POST /api/clans/create', 'POST /api/clans/join', 'POST /api/clans/leave', 'POST /api/clans/kick',
   'POST /api/clans/role', 'POST /api/clans/edit', 'POST /api/clans/code', 'POST /api/clans/venue', 'POST /api/clans/prize', 'GET /api/clans/boards', 'GET /api/clans/league',
   'POST /api/arena/clip',

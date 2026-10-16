@@ -32,6 +32,9 @@ import { CARTRIDGE_LIMITS } from '../../src/arena/cartridge-limits.ts';
 import { cartridgeOf } from '../../src/arena/cartridges.ts';
 import { replayShelf } from './arena-replays.ts';
 import { arenaStakes } from './arena-stakes.ts';
+import { gistService } from '../gist/ledger.ts';
+import { arenaDaily } from './arena-daily.ts';
+import { characterCity } from '../character.ts';
 import { PLAY_MONEY, backLine, backingOpen, isPlayStake, playLine, stakeHolds } from '../../src/arena/stakes.ts';
 import type { ArenaLook, ArenaResult, ArenaSeat, ArenaStateFrame, ArenaStatus } from '../../src/types/arena.ts';
 import type { TableOptionValue } from '../../src/types/growth.ts';
@@ -151,6 +154,7 @@ function buildService(ctx: RouteContext) {
   const at = new Map<WsConnection, Room>();
   let sweeper: ReturnType<typeof setInterval> | null = null;
   const stakes = arenaStakes(ctx);
+  const daily = arenaDaily(ctx);
   const shelf = replayShelf(ctx, () => ({ perGame: TUNING.replayPerGame, perRoom: TUNING.replayPerRoom, bytes: TUNING.replayBytes, ttlMs: TUNING.replayTtlMs }));
 
   const seatOf = (room: Room, id: string): number => room.seats.findIndex((seat) => !seat.bot && !seat.left && seat.id === id);
@@ -366,8 +370,36 @@ function buildService(ctx: RouteContext) {
     for (const seat of room.seats) seat.again = false;
     sendAll(room, { type: 'arena-snap', room: room.code, k: room.tick, s: room.snap });
     // The ladders and city leagues listen (server/clans/, src/clans/results.ts): a finished game is told once, with the seats and who won.
+    if (!room.practice) tellTheCity(room, outcome);
+    // The daily challenge (src/arena/daily.ts): a practice match against the computer may meet today's goal.
+    if (room.practice) room.seats.forEach((seat, index) => {
+      if (seat.bot) return;
+      const hp = (room.snap as { f?: number[][] } | null)?.f?.[index]?.[5];
+      daily.record(room.rules.id, seat.id, { won: !outcome.draw && outcome.winners.length === 1 && outcome.winners[0] === index, reason: outcome.reason, seconds: room.tick / room.rules.hz, hpLeft: typeof hp === 'number' ? hp : 0 });
+    });
     if (!room.practice) ctx.emit?.('game-result', { match: `${room.code}.${room.match}`, game: room.rules.id, at: ctx.now(), seats: room.seats.map((seat) => ({ id: seat.id, bot: seat.bot })), winners: outcome.winners, draw: outcome.draw, ...(ranked ? { places: ranked } : {}) });
     announce(room);
+  }
+
+  /**
+   * A match between people becomes a line of the winner's city gist ("Ada beat Bola at Fight", and that a crowd watched when one did).
+   * The gist names adults only (a minor or a player who has not said their age is "a resident") and never an amount; one line a pair an hour, so rematches do not fill it.
+   */
+  function tellTheCity(room: Room, outcome: { winners: number[]; draw: boolean }): void {
+    // Someone who walked away (a forfeit) still played the match.
+    const people = room.seats.filter((s) => !s.bot), winner = room.seats[outcome.winners[0] ?? -1];
+    if (outcome.draw || outcome.winners.length !== 1 || !winner || winner.bot || people.length < 2) return;
+    const losers = people.filter((s) => s !== winner);
+    const pair = [winner.id, ...losers.map((s) => s.id)].sort().join('|');
+    if (!ctx.allow(`arena:gist:${pair}`, 1, 3600000)) return;
+    const crowd = watching(room), label = room.rules.label;
+    const text = losers.length === 1 ? `{0} beat {1} at ${label}${crowd >= 3 ? ` while ${crowd} people watched` : ''}.` : `{0} won a ${label} against ${losers.length} others${crowd >= 3 ? ` while ${crowd} people watched` : ''}.`;
+    const work = ctx.store.transact((db) => {
+      const session = ctx.core.sessionByPublicId(db, winner.id), city = session ? characterCity(session) : null;
+      if (!city) return;
+      gistService(ctx).add(db, { city, kind: 'other', text, people: [{ id: winner.id, name: winner.name }, ...(losers.length === 1 ? [{ id: losers[0]!.id, name: losers[0]!.name }] : [])], refs: { key: `arena:${room.code}.${room.match}` } });
+    }, { durable: false }).catch(() => undefined);
+    ctx.waitUntil?.(work);
   }
 
   // ---- the sweep: absent players, empty and old rooms -------------------------------------------------
@@ -526,6 +558,8 @@ function buildService(ctx: RouteContext) {
     back: async (ws: WsConnection, message: IncomingFrame) => { await back(ws, message); },
     leave: async (ws: WsConnection, message: IncomingFrame) => { leave(ws, message); },
     drop: (ws: WsConnection) => { detach(ws); },
+    /** Today's challenge for a game and how this player stands (src/arena/daily.ts). */
+    daily: (game: string, player: string | null) => daily.view(game, player),
     /** The public view of a finished match's replay, or null (unknown, or expired). */
     replay: (id: string): Promise<{ id: string; at: number; clip: string | null; log: ReplayLog } | null> => shelf.view(id, ctx.now()),
     /** The operator says a clip of this replay can be fetched at `url` (a path on this site or an https address to an mp4). */

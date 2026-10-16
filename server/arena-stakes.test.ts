@@ -76,6 +76,10 @@ test('two people play for a stake: both are taken when the match starts, and the
   for (const line of [ada.state.stakes?.line, ada.state.stakes?.result, ada.state.stakes?.note]) assert.doesNotMatch(line ?? '', FORBIDDEN_WORDS);
   const lines = (await h.life(ada.who)).ledger.map((l) => l.reason).join(' | ');
   assert.match(lines, /Fight with Bola/);
+  // The city hears of it, with no amount.
+  await new Promise((r) => setTimeout(r, 300));
+  const gist = (await (await h.f.request('/api/world/gist?id=lagos')).json()) as { items: { text: string }[] };
+  assert.ok(gist.items.some((i) => /Ada beat Bola at Fight\./.test(i.text)), JSON.stringify(gist.items));
 });
 
 test('the 18+ rule and the gift allowance: a host who may not cannot set a stake; an opponent who may not stops the start and nothing moves', async (t) => {

@@ -194,7 +194,7 @@ onMounted(() => { void load() })
       <p v-if="!league" class="cl-note">Loading…</p>
       <template v-else>
         <div class="cl-card">
-          <h3>Week {{ league.week }}: cities</h3>
+          <h3>This week: cities</h3>
           <p v-if="league.lastWinner" class="cl-note">Last week: {{ league.lastWinner.name }} took it.</p>
           <ol class="cl-board">
             <li v-for="(c, i) in league.cities" :key="c.id" :class="{ me: c.mine }"><span class="cl-rank">{{ i + 1 }}</span><span /><span class="cl-name">{{ c.name }}</span><span class="cl-note">{{ c.players }}</span><span class="cl-score">{{ c.score }}</span></li>

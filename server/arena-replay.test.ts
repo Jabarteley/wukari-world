@@ -155,3 +155,10 @@ test('a player who stays away for the whole window forfeits after it, not before
   assert.equal(replayMatch(fight, log).verified, true);
   assert.equal(TUNING.awayForfeitMs === 700, true);
 });
+
+test('the daily Fight challenge: today’s goal is public, and a game without one has none', async (t) => {
+  const h = await harness(t);
+  const before = await (await h.get('/api/arena/daily?game=fight')).json() as { goal: string; done: boolean; streak: number };
+  assert.match(before.goal, /Beat the computer/); assert.equal(before.done, false);
+  assert.equal((await h.get('/api/arena/daily?game=nope')).status, 404);
+});

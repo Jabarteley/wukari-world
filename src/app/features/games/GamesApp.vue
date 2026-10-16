@@ -54,6 +54,12 @@ const openRoom = (room: string): Promise<void> => openLive(catalogEntry(gameOfRo
 function joinByCode(): void { const room = roomFromText(code.value); if (room) void openRoom(room); else game.toast('Paste the link or code your friend sent.', 'error') }
 function watchHint(): void { codeBox.value?.focus(); game.toast('Paste the link a friend sent. If the game is full you will watch.') }
 const today = ref<OroView | null>(null)
+// Today's Fight challenge against the computer (src/arena/daily.ts), shown on the Fight card.
+const fightDaily = ref<{ goal: string; done: boolean; streak: number } | null>(null)
+async function loadDaily(): Promise<void> {
+  const r = await growth.call<{ ok: boolean; goal: string; done: boolean; streak: number }>('/api/arena/daily?game=fight')
+  if (r.ok && 'goal' in r) fightDaily.value = { goal: r.goal, done: r.done, streak: r.streak }
+}
 
 async function loadToday(): Promise<void> {
   if (!view.value.connected) return
@@ -65,6 +71,7 @@ onMounted(() => {
   const kept = pendingTable()
   if (kept && !roomParam() && screen.value === 'hub' && gameOfRoom(kept)) void openRoom(kept)
   void loadToday()
+  void loadDaily()
   // Opened from inside the game: its address (/games) is shown so it can be copied, and Back closes it.
   void import('../paths/arrive.ts').then(({ enterGames }) => { enterGames() })
 })
@@ -72,7 +79,7 @@ onMounted(() => {
 const wanted = (): string => { const p = props.params as { game?: unknown; play?: unknown } | null | undefined; const game = p?.game ?? p?.play; return typeof game === 'string' ? game : '' }
 watch(() => props.params, () => { if (roomParam()) void openRoom(roomParam()); else if (clanParam()) screen.value = 'clans'; else if (wanted() === 'oro') screen.value = 'daily' }, { immediate: true })
 useSection(() => (wanted() === 'chess' || wanted() === 'weave' ? { section: wanted() } : null))
-function back(): void { screen.value = 'hub'; void loadToday() }
+function back(): void { screen.value = 'hub'; void loadToday(); void loadDaily() }
 function onState(next: OroView): void { today.value = next }
 const openTable = (table: 'phone-chess' | 'phone-weave' | 'phone-whot' | 'phone-penalty' | 'phone-ayo'): void => { shell.open('tables', { table }) }
 /** Where the Sim is, or null while it travels. */
@@ -100,7 +107,8 @@ const dailyCta = computed(() => (today.value?.status === 'playing' || !today.val
     </section>
     <SectionTitle>Play live with friends</SectionTitle>
     <section v-for="g in ARENA_CATALOG" :key="g.id" class="gm-live" :data-section="g.id" :style="g.tint ? { background: g.tint.bg, color: g.tint.fg } : undefined" :aria-labelledby="'gm-live-' + g.id">
-      <div><h3 :id="'gm-live-' + g.id"><span aria-hidden="true">{{ g.icon }}</span> {{ g.title }}</h3><p>{{ g.blurb }} <small>{{ playersLine(g) }}</small></p></div>
+      <div><h3 :id="'gm-live-' + g.id"><span aria-hidden="true">{{ g.icon }}</span> {{ g.title }}</h3><p>{{ g.blurb }} <small>{{ playersLine(g) }}</small></p>
+        <p v-if="g.id === 'fight' && fightDaily" class="gm-challenge" data-testid="fight-daily"><b>Today:</b> {{ fightDaily.goal }}. {{ fightDaily.done ? 'Done ✓' : 'Practice vs bot to try.' }}<template v-if="fightDaily.streak > 1"> · {{ fightDaily.streak }} days in a row</template></p></div>
       <BaseButton variant="primary" @click="openLive(g, { kind: 'create' })">Play with a friend</BaseButton>
       <div class="gm-live-row"><select v-if="g.practice && g.max > g.min" v-model.number="practiceSeats[g.id]" class="gm-seats" :aria-label="g.title + ' practice players'"><option v-for="n in g.max - g.min + 1" :key="n" :value="g.min + n - 1">{{ g.min + n - 1 }} players</option></select><BaseButton v-if="g.practice" @click="openLive(g, { kind: 'practice', seats: practiceSeats[g.id] ?? g.min })">Practice vs bot</BaseButton><BaseButton @click="watchHint">Watch</BaseButton></div>
     </section>
@@ -145,7 +153,7 @@ const dailyCta = computed(() => (today.value?.status === 'playing' || !today.val
     <ClansScreen :code="clanParam() || undefined" @back="screen = 'hub'" />
   </div>
   <div v-else-if="screen === 'live' && live && liveScreen" class="gm">
-    <component :is="liveScreen" :key="liveKey" :intent="live.intent" @close="screen = 'hub'" />
+    <component :is="liveScreen" :key="liveKey" :intent="live.intent" @close="back" />
   </div>
   <div v-else class="gm">
     <button class="gm-back" type="button" @click="back">‹ All games</button>
@@ -169,6 +177,7 @@ const dailyCta = computed(() => (today.value?.status === 'playing' || !today.val
 .gm-daily-links button, .gm-share { border: 0; background: none; min-height: 44px; padding: 6px 0; font: 600 13px var(--font); color: #22543d; text-align: left; cursor: pointer; }
 .gm-live { display: grid; gap: 10px; padding: 14px; border-radius: 16px; }
 .gm-clans { background: #3a2c55; color: #fff; }
+.gm-challenge { margin: 6px 0 0; padding: 6px 10px; border-radius: 10px; background: rgba(255,255,255,.12); font-size: 13px; }
 .gm-live h3 { margin: 0 0 2px; font-size: 24px; letter-spacing: -.025em; }
 .gm-live p { margin: 0; font-size: 13px; opacity: .85; } .gm-live small { opacity: .8; }
 .gm-seats { padding: 8px; border-radius: 8px; border: 0; font: 14px var(--font); }

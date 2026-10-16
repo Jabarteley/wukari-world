@@ -33,6 +33,7 @@ test('steps back up one level only after 5 s of medians under 14 ms, never above
   assert.ok(t >= CALM_FOR_MS && t <= CALM_FOR_MS + 10, `stepped at ${t} ms`)
   assert.deepEqual(nextLevel({ level: 0, calmMs: CALM_FOR_MS }, 4, frames(10)), { level: 0, calmMs: 0 })
 })
-test('a median between 14 and 22 ms holds the level and restarts the calm count', () => {
-  assert.deepEqual(nextLevel({ level: 1, calmMs: 3000 }, 4, frames(17)), { level: 1, calmMs: 0 })
+test('a median between 18 and 22 ms holds the level and restarts the calm count; a steady 60 Hz phone counts as calm', () => {
+  assert.deepEqual(nextLevel({ level: 1, calmMs: 3000 }, 4, frames(20)), { level: 1, calmMs: 0 })
+  assert.ok(nextLevel({ level: 1, calmMs: 3000 }, 4, frames(16.7)).calmMs > 3000, 'a 60 Hz frame is calm')
 })

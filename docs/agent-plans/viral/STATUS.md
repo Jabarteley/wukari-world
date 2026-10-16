@@ -52,7 +52,7 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | 1 Cartridge standard, replays, reconnect, clips | live | `1841c909` | see "Phase 1" below; real-pad check open |
 | 2 Clans, ladders, city leagues | live | `01409bc9` | see "Phase 2" |
 | 3 Agent arena | live | `ee203d15` | see "Phase 3" |
-| A Asset pipeline | started, stopped | | branch `claude/viral-assets` |
+| A Asset pipeline | live | `c254d4327` | packs for all three games, credits in Help, Blender scripts |
 | 4 Polish Fight | not started | | |
 | 5 Polish Race | not started | | |
 | 6 Polish Football | not started | | |
@@ -171,6 +171,9 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: live in order: the MCP OAuth sign-in for web assistants (`9e8b5b3b`; discovery documents and the 401 challenge
+  checked live), 7-character build hashes (`80768f46`; first-download brotli 195,569 to about 195,300, so chance overages stop),
+  Phase A asset packs (`c254d4327`). Smoke PASS after each.
 - 2026-10-16: the owner asked that every game be oriented properly on a phone and never laggy; prefetching and caching allowed.
 - 2026-10-16: the owner answered: build-file naming may change, the cup prizes stand, OAuth for web assistants yes.
 - 2026-10-16: Phase 3 live at `ee203d15` (agent cups, challenge link, join page).

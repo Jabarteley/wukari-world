@@ -43,7 +43,7 @@ import { ADMIN_HOST_ENV, ADMIN_ROBOTS, ADMIN_SHELL, adminAddress, adminHostName,
 import { withPathMeta } from './path-meta.ts';
 import { createMemoryLimiter } from './limiter.ts';
 import telemetryRoutes from './telemetry/routes.ts';
-import { MCP_PATH, MCP_ROUTE } from './agents/mcp.ts';
+import { openRouteOf } from './agents/oauth-routes.ts';
 import { ACTION_WINDOW_MS, UUID_PATTERN as uuid, protocolError as fail, publicSession, isSameOrigin, renewSession, renewResolved, sessionOfCookie, collection, canOccupyVenue, isSharedAddress, SOCKET_BUSY_CODE } from './protocol.ts';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { Duplex } from 'node:stream';
@@ -145,8 +145,8 @@ function packageVersion(): string {
 /** Whether this connection is TLS (a direct HTTPS listener) or reached through a trusted proxy that spoke HTTPS. */
 const isSecure = (req: IncomingMessage, trustProxy: boolean): boolean => ('encrypted' in req.socket && Boolean(req.socket.encrypted)) || (trustProxy && req.headers['x-forwarded-proto'] === 'https');
 const errorDetail = (error: unknown): unknown => fieldOf(error, 'code') || fieldOf(error, 'message');
-async function rawJsonBody(req: IncomingMessage, limit: number): Promise<Uint8Array<ArrayBuffer>> {
-  if (!req.headers['content-type']?.startsWith('application/json')) throw fail(415, 'json_required');
+async function rawJsonBody(req: IncomingMessage, limit: number, kind: 'json' | 'form' = 'json'): Promise<Uint8Array<ArrayBuffer>> {
+  if (!req.headers['content-type']?.startsWith(kind === 'form' ? 'application/x-www-form-urlencoded' : 'application/json')) throw fail(415, kind === 'form' ? 'form_required' : 'json_required');
   const chunks: Uint8Array[] = []; let size = 0;
   for await (const chunk of req) {
     const bytes = typeof chunk === 'string' ? new TextEncoder().encode(chunk) : chunk as Uint8Array;
@@ -371,8 +371,8 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
       const url = new URL(req.url ?? '/', 'http://localhost');
       // The MCP endpoint (server/agents/mcp.ts): /mcp is served by the agents route. Agents are programs with a bearer key, not pages, so the
       // origin check does not apply to it (the route itself refuses any request that carries an Origin header).
-      const mcp = url.pathname === MCP_PATH;
-      if (mcp) url.pathname = MCP_ROUTE;
+      const opened = openRouteOf(url.pathname), mcp = opened !== null;
+      if (opened !== null) url.pathname = opened;
       // On the admin address only a handful of paths exist; everything else is a 404 (a wrong method, a 405).
       const adminKind = onAdminHost(req) ? adminHostRoute(method, url.pathname) : null;
       if (adminKind === 'notfound') throw fail(404, 'not_found');
@@ -394,7 +394,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
           /** True only for a request carrying the operator's bearer token (never a cookie or a query value). */
           moderator: () => isModerator(req),
           json: (limit?: number) => jsonBody(req, limit).then(body => (request.body = body)),
-          rawBody: (limit: number) => rawJsonBody(req, limit),
+          rawBody: (limit: number, kind?: 'json' | 'form') => rawJsonBody(req, limit, kind),
           header: (name: string) => { const value = req.headers[name.toLowerCase()]; return typeof value === 'string' ? value : null; },
           session: (db: Db, { renew = false }: { renew?: boolean } = {}) => { const session = sessionFor(req, db, renew); if (session) { request.publicId = session.publicId; request.secret = session.secret; } return session; },
           requireSession(db: Db, options?: { renew?: boolean }) { const session = this.session(db, options); if (!session) throw fail(401, 'device_session_required'); return session; },

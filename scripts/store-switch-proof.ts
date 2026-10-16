@@ -126,7 +126,7 @@ function stamp(ask: Ask): void {
   const text = JSON.stringify(ask.body);
   if (text.includes('@now:')) ask.body = JSON.parse(text.replaceAll('@now:', `${Date.now()}:`)) as unknown;
 }
-const tool = (agent: number, name: string, input: object = {}): Ask => ({ kind: `agent: ${name}`, who: null, agent, method: 'POST', path: '/mcp', body: { jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name, arguments: input } } });
+const tool = (agent: number, name: string, input: object = {}): Ask => ({ kind: `agent: ${name}`, who: null, agent, method: 'POST', path: name === 'create_agent_account' ? '/mcp?signup=1' : '/mcp', body: { jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name, arguments: input } } });
 const refusals: Record<string, string> = {}, samples: Record<string, boolean> = {};
 async function pool<T>(items: T[], width: number, each: (item: T, index: number) => Promise<void>): Promise<void> {
   let next = 0;

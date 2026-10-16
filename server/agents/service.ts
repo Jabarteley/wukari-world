@@ -63,6 +63,11 @@ export interface AgentKey {
   reports: number
   suspended?: { at: number; reason: 'refusals' | 'reports' | 'operator' }
   audit: AuditEntry[]
+  /**
+   * Present when the key is a SIGN-IN grant (server/agents/oauth.ts): the secret is an access token that ends at `until` and is replaced when its
+   * refresh token is used. `client` is the assistant's registered id, `app` the name it gave. `pending` until the assistant has traded its code.
+   */
+  oauth?: { client: string; app: string; until: number; pending?: true }
 }
 /** What an agent call changed, written once after the call: counters, audit, the AI-played mark, the character's board line. */
 /** The figures of the agent league, read from the settled life after a call. */
@@ -201,14 +206,20 @@ export function agentService(ctx: RouteContext) {
     const account = accountOfSession(db, session);
     if (!account) return { enabled: !switchedOff(db), signedIn: false, keys: [], characters: [], limits: { keys: AGENT_LIMITS.keysPerAccount, characters: AGENT_LIMITS.charactersPerAccount } };
     const a = peek(db), owner = a ? own(a.owners, account.id) : undefined;
-    const keys = (owner?.keys ?? []).flatMap((hash) => { const key = a ? own(a.keys, hash) : undefined; return key ? [key] : []; });
+    const keys = (owner?.keys ?? []).flatMap((hash) => { const key = a ? own(a.keys, hash) : undefined; return key && !key.oauth?.pending ? [key] : []; });
     const characters = (owner?.chars ?? []).flatMap((publicId) => { const found = a ? own(a.chars, publicId) : undefined; return found ? [{ id: publicId, name: found.name, city: found.city, createdAt: found.createdAt, hasKey: keys.some((key) => key.publicId === publicId) }] : []; });
     return {
       enabled: !switchedOff(db), signedIn: true,
       keys: keys.map((key) => ({ id: key.id, name: key.name, mode: key.mode, character: key.mode === 'agent' ? characters.find((item) => item.id === key.publicId)?.name ?? null : null, createdAt: key.createdAt, lastUsedAt: key.lastUsedAt, calls: key.calls,
-        ...(key.suspended ? { suspended: key.suspended.reason } : {}) })),
+        ...(key.oauth ? { signIn: key.oauth.app } : {}), ...(key.suspended ? { suspended: key.suspended.reason } : {}) })),
       characters, limits: { keys: AGENT_LIMITS.keysPerAccount, characters: AGENT_LIMITS.charactersPerAccount },
     };
+  }
+
+  /** A sign-in grant whose code was never traded (the person approved and the assistant never came back) frees its place once the code has run out. */
+  function sweepPending(a: AgentsCollection, owner: AgentOwner): void {
+    for (const hash of owner.keys) { const key = own(a.keys, hash); if (key?.oauth?.pending && key.oauth.until <= now()) delete a.keys[hash]; }
+    owner.keys = owner.keys.filter((hash) => a.keys[hash] !== undefined);
   }
 
   /**
@@ -216,9 +227,10 @@ export function agentService(ctx: RouteContext) {
    * mode 'own': the key plays the character the account has in play. mode 'agent': it plays a NEW agent character (or an existing one of
    * this account that has no key), named `characterName`, in `city`.
    */
-  function createKey(db: Db, session: SessionRecord, input: { hash: string; mode: unknown; name: unknown; characterName?: unknown; character?: unknown; city?: unknown; builtWith?: unknown }) {
+  function createKey(db: Db, session: SessionRecord, input: { hash: string; mode: unknown; name: unknown; characterName?: unknown; character?: unknown; city?: unknown; builtWith?: unknown; oauth?: AgentKey['oauth'] }) {
     const account = accountFor(db, session);
     const a = col(db), owner = ownerOf(a, account.id);
+    sweepPending(a, owner);
     if (input.mode !== 'own' && input.mode !== 'agent') throw refusal(ctx, 400, 'invalid_mode', 'Choose "my character" or "a new agent character".');
     const mode: AgentMode = input.mode;
     if (owner.keys.length >= AGENT_LIMITS.keysPerAccount) throw refusal(ctx, 409, 'too_many_keys', `You can hold ${AGENT_LIMITS.keysPerAccount} agent keys. Revoke one first.`);
@@ -242,7 +254,7 @@ export function agentService(ctx: RouteContext) {
     }
     const id = `k${ctx.randomId().replaceAll('-', '').slice(0, 10)}`;
     const key: AgentKey = { id, account: account.id, mode, publicId, name: cleanLabel(input.name, mode === 'own' ? 'My character' : 'Agent'), scopes: ['*'], createdAt: now(), lastUsedAt: null, calls: 0,
-      day: dayOf(now()), today: 0, refusals: 0, reports: 0, audit: [] };
+      day: dayOf(now()), today: 0, refusals: 0, reports: 0, audit: [], ...(input.oauth ? { oauth: input.oauth } : {}) };
     a.keys[input.hash] = key;
     owner.keys.push(input.hash);
     return { id, name: key.name, mode, character: mode === 'agent' ? a.chars[publicId]?.name ?? null : null };
@@ -403,6 +415,8 @@ export function agentService(ctx: RouteContext) {
     if (key.suspended) throw refusal(ctx, 403, 'key_suspended', key.suspended.reason === 'refusals'
       ? 'This key was suspended because it kept trying things the game refuses. Revoke it in Settings and make a new one when the agent is fixed.'
       : key.suspended.reason === 'reports' ? 'This key was suspended after players reported the character it plays. Contact support from Settings.' : 'This key was suspended by an operator.');
+    // A sign-in token ends: the assistant asks for another with its refresh token (server/agents/oauth.ts). A code that was never traded is not a token.
+    if (key.oauth && (key.oauth.pending || key.oauth.until <= now())) throw Object.assign(refusal(ctx, 401, key.oauth.pending ? 'invalid_key' : 'token_expired', key.oauth.pending ? 'This key is not valid.' : 'This access token has expired. Use your refresh token to get a new one, or sign in again.'), { oauth: true as const });
     const account = key.unclaimed ? undefined : own(db.accounts, key.account);
     if (!key.unclaimed && !account) throw refusal(ctx, 401, 'invalid_key', 'The account behind this key is gone.');
     let session: SessionRecord | undefined;
@@ -650,6 +664,6 @@ export function agentService(ctx: RouteContext) {
   const eraseAccount = (db: Db, accountId: string): void => eraseAgents(db, accountId, (d, id) => ctx.core.sessionByPublicId(d, id), (d, secret, session) => ctx.core.archiveSession(d, secret, session));
   const isPublicId = (value: unknown): value is string => typeof value === 'string' && UUID_PATTERN.test(value);
 
-  return { col, peek, switchedOff, view, createKey, createSelf, claimStatus, claim, rename, takeOver, revoke, removeCharacter, authenticate, admit, throttle, record, presenceFor, standing, stand, leavePlace, placeEnded, servicesIn, reported, auditOf, league, profile, holders, overview, setSwitch, setSettings, eraseAccount, isPublicId };
+  return { col, peek, ownerOf, accountFor, sweepPending, switchedOff, view, createKey, createSelf, claimStatus, claim, rename, takeOver, revoke, removeCharacter, authenticate, admit, throttle, record, presenceFor, standing, stand, leavePlace, placeEnded, servicesIn, reported, auditOf, league, profile, holders, overview, setSwitch, setSettings, eraseAccount, isPublicId };
 }
 export type AgentService = ReturnType<typeof agentService>;

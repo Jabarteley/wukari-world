@@ -2,7 +2,9 @@
 import type { HostErrorCode, JsonBodyErrorCode, Ok, SessionErrorCode, StorageErrorCode } from './protocol.ts'
 import type { AgentArenaView, ArenaChallengeView, ArenaNow, ArenaRefusal } from './agent-arena.ts'
 
-export interface AgentKeyRow { id: string; name: string; mode: 'own' | 'agent'; character: string | null; createdAt: number; lastUsedAt: number | null; calls: number; suspended?: 'refusals' | 'reports' | 'operator' }
+export interface AgentKeyRow { id: string; name: string; mode: 'own' | 'agent'; character: string | null; createdAt: number; lastUsedAt: number | null; calls: number; suspended?: 'refusals' | 'reports' | 'operator'
+  /** The assistant that signed in (the sign-in of server/agents/oauth.ts) instead of being given a key by hand. */
+  signIn?: string }
 export interface AgentCharacterRow { id: string; name: string; city: string; createdAt: number; hasKey: boolean }
 export interface AgentsView {
   enabled: boolean
@@ -12,12 +14,21 @@ export interface AgentsView {
   limits: { keys: number; characters: number; callsPerDay?: number }
   cities?: string[]
 }
+/** What the approval page of a web assistant's sign-in shows (GET /api/agents/oauth/authorize). */
+export interface OAuthPreview {
+  ok: true; app: string
+  /** The host the person is sent back to once they answer, and whether it is this computer (an app in development). */
+  goesTo: string; local: boolean
+  switchedOff: boolean; signedIn: boolean; name: string | null; hasCharacter: boolean
+  characters: { id: string; name: string }[]
+}
 /** The answer that shows a new key, once. */
 export interface AgentKeyMade { id: string; name: string; mode: 'own' | 'agent'; character: string | null; key: string; url: string }
 
 type ReadError = HostErrorCode | SessionErrorCode | StorageErrorCode | 'rate_limited'
 type WriteError = ReadError | JsonBodyErrorCode | 'origin_required' | 'csrf_rejected' | 'agents_off' | 'account_required' | 'account_too_new' | 'verification_required' | 'invalid_mode' | 'invalid_name' | 'invalid_city'
   | 'too_many_keys' | 'too_many_characters' | 'no_character' | 'unknown_key' | 'unknown_character' | 'character_has_key' | 'invalid_key'
+type OAuthError = ReadError | WriteError | 'invalid_request' | 'access_denied' | 'built_with_not_allowed'
 type OperatorError = HostErrorCode | StorageErrorCode | JsonBodyErrorCode | 'not_found' | 'moderator_token_required' | 'rate_limited' | 'invalid_switch'
 type Done = Ok<{ ok: true; code: string }>
 
@@ -53,6 +64,14 @@ type CallError = WriteError | 'calls_off' | 'invalid_agent' | 'invalid_call' | '
 type ArenaError = WriteError | 'unknown_agent'
 
 export interface AgentsHttpRoutes {
+  /** Sign-in for web assistants (server/agents/oauth-routes.ts, docs/AGENTS.md). The discovery, registration, token and revocation routes answer plain OAuth JSON, not the game's `{ error }` shape. */
+  'GET /api/agents/oauth/resource': { response: Record<string, unknown>; errors: ReadError }
+  'GET /api/agents/oauth/server': { response: Record<string, unknown>; errors: ReadError }
+  'POST /api/agents/oauth/register': { body: { redirect_uris: string[]; client_name?: string; grant_types?: string[]; response_types?: string[] }; response: Record<string, unknown>; errors: ReadError | JsonBodyErrorCode }
+  'GET /api/agents/oauth/authorize': { query: { request: string }; response: Ok<OAuthPreview>; errors: ReadError | 'invalid_request' }
+  'POST /api/agents/oauth/authorize': { body: { request: string; approve: boolean; mode?: 'own' | 'agent'; character?: string; characterName?: string; city?: string; csrf: string }; response: Ok<{ ok: true; redirect: string }>; errors: OAuthError }
+  'POST /api/agents/oauth/token': { response: Record<string, unknown>; errors: ReadError }
+  'POST /api/agents/oauth/revoke': { response: Record<string, unknown>; errors: ReadError }
   /** The agent arena (server/tournaments/routes.ts, docs/AGENT-ARENA.md). A refusal of the game's own is answered 409 with `{ ok: false, code, reason }`. */
   'GET /api/agents/arena': { response: Ok<AgentArenaView | { ok: true; signedIn: false }>; errors: ReadError }
   'POST /api/agents/arena/enter': { body: { agent: string; cup: string; leave?: boolean; csrf: string }; response: Ok<{ ok: true; code: string; cup?: string; label?: string } | ArenaRefusal>; errors: ArenaError }

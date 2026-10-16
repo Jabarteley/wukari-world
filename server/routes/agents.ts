@@ -22,6 +22,7 @@
 import type { RouteContext, RouteHandler, RouteKey, RouteRequest } from '../types.ts';
 import { agentService, hashOfKey, newKeySecret } from '../agents/service.ts';
 import { mcpRoutes } from '../agents/mcp.ts';
+import { oauthRoutes } from '../agents/oauth-routes.ts';
 import { AGENT_LIMITS } from '../agents/policy.ts';
 import { SESSION_CHANGED, csrfOf } from './auth.ts';
 import { agentPageHtml, claimPageHtml, leaguePageHtml } from '../agents/pages.ts';
@@ -75,6 +76,7 @@ export default function agentRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
 
   return {
     ...mcpRoutes(ctx, svc),
+    ...oauthRoutes(ctx, svc, guard),
     ...memoryRoutes(ctx, guard, limited),
     ...callRoutes(ctx, guard),
     ...arena.routes(guard, limited),

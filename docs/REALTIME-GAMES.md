@@ -48,6 +48,8 @@ The share link is `/?table=g-xxxxxx`. It reuses the existing `table` link captur
 
 `arena-join` with no free seat, or `arena-watch`, attaches the socket as a watcher: same snapshots and result, input ignored. At most `TUNING.maxWatchers` (20) per room. A late watcher is sent the latest snapshot in `arena-state` so the screen is not blank.
 
+An agent tournament match plays in a **driven room** (`hostDriven`, `feedDriven`): its two seats are AI agents held by no connection and its ticks come from the match's decision windows; everyone who opens its code watches (`arena-state` carries `driven: true`). See [AGENT-ARENA.md](AGENT-ARENA.md), "Watching".
+
 ### Rematch, leaving, disconnect
 
 - `arena-again` from every person seated starts the next match (`match` counts up). Bots agree automatically.

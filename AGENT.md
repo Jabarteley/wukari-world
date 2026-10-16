@@ -5,25 +5,18 @@ continue. The full brief is in [docs/agent-plans/world-alive/](docs/agent-plans/
 STATUS.md (what is live, the log, the questions for the owner), then PHASES.md. Repository-wide coordination is in
 [AGENTS.md](AGENTS.md). When everything below is done, empty the "In flight" and "Still to do" sections and say so in STATUS.md.
 
-Last updated: 16 October 2026 (viral programme, wave 1).
+Last updated: 16 October 2026 (spread programme planned; its first branches stopped mid-way, to be continued).
 
 ## In flight
 
-The "making Allworld spread" programme (docs/agent-plans/viral/PLAN.md; progress in viral/STATUS.md). Wave 1, started 16 October 2026:
-
-| Work | Branch | Where it stopped | Next step |
-| --- | --- | --- | --- |
-| Step 1: cartridge standard, manifest check in CI, replay logs, 15 s reconnect, clip renderer, Share clip | `claude/viral-cartridge` | Being built | Review, merge, CI, release. |
-| Step 4: clans, ladders (friends/city/cohort first, floors, soft seasons), city leagues, clan wars | `claude/viral-clans` | Being built | Review, merge, CI, release. |
-| Step 5: agent tournaments (games and life categories), challenge link, `/agents/join`, agents playing now | `claude/viral-agent-arena` | Being built | Review, merge, CI, release. |
-| Assets: fetch CC0 packs with manifests, cleanup/convert, per-game want lists within 1.5 MB, credits | `claude/viral-assets` | Being built | Review, merge, join its manifest format with step 1's checker. |
-
-Wave 2 (after step 1 lands): polish Fight, Race and Football (all three, the owner's choice), the video pipeline (replay → 9:16 MP4,
-Nigeria first on TikTok and WhatsApp status), then opening the standard to outside builders and the weekly city episode.
+Nothing is running. The "spread" programme is planned in [docs/agent-plans/viral/](docs/agent-plans/viral/) (README.md, PLAN.md,
+RESEARCH.md, PHASES.md, STATUS.md). Four of its phases were started on 16 October 2026 and stopped mid-way; their unreviewed work is
+on `claude/viral-cartridge`, `claude/viral-clans`, `claude/viral-agent-arena` and `claude/viral-assets` (viral/STATUS.md says exactly
+where each stopped). The next agent continues those branches as viral/PHASES.md describes.
 
 ## Still to do
 
-See viral/STATUS.md. Nothing else for an agent to start on its own.
+Everything in viral/PHASES.md, starting with Phase 0. Nothing else for an agent to start on its own.
 
 ## How the work is done (learned the hard way)
 

@@ -10,8 +10,8 @@ Read this first in every session; update it after every phase and whenever you s
 - **Live site when this was written:** `main` at or after `c2419edb` (16 October), with every "world alive" phase live
   (docs/agent-plans/world-alive/STATUS.md).
 - **Phase 1 is live (16 October 2026, `1841c909`):** the cartridge contract and checker, replays, the 15-second reconnect, the
-  replay page, clips, real game controllers, and stakes with spectator backing. **Now:** Phase 2 (clans) is built and tested on
-  `claude/viral-clans`, in CI before release. Phase A (`claude/viral-assets`) and Phase 3 (`claude/viral-agent-arena`) are being
+  replay page, clips, real game controllers, and stakes with spectator backing. **Phase 2 is live (`01409bc9`):** clans, ladders,
+  city leagues, clan wars, the clan venue room. **Next:** Phase 4 (polish Fight) once Phase A's packs are reviewed. Phase A (`claude/viral-assets`) and Phase 3 (`claude/viral-agent-arena`) are being
   finished by subagents in their own worktrees; each is reviewed and released in phase order.
 
 ## Baseline (Phase 0, 16 October 2026)
@@ -45,7 +45,7 @@ Review each branch before building on it: typecheck, run its tests, read its dif
 | --- | --- | --- | --- |
 | 0 Baseline | done | `228443371` (main) | nothing to release; live was `c2419edb` |
 | 1 Cartridge standard, replays, reconnect, clips | live | `1841c909` | see "Phase 1" below; real-pad check open |
-| 2 Clans, ladders, city leagues | built, in CI | | branch `claude/viral-clans`, see "Phase 2" |
+| 2 Clans, ladders, city leagues | live | `01409bc9` | see "Phase 2" |
 | 3 Agent arena | started, stopped | | branch `claude/viral-agent-arena` |
 | A Asset pipeline | started, stopped | | branch `claude/viral-assets` |
 | 4 Polish Fight | not started | | |
@@ -88,6 +88,12 @@ expect any agent's release to fail STARTUP_BROTLI by chance now and then. A fix 
 hashes, or moving the city chunk hash list out of the engine chunk) is a shared decision, so it is listed under questions.
 
 ## Phase 2 (16 October 2026)
+
+**Live at `01409bc9`** (release 38863942924, CI 38862832625, live smoke PASS, the Clans screen checked on the live site at 390x844).
+The first release attempt (`d8b14c8d`) was refused by the package guard: the Worker bundle passed its 3,500,000-byte limit
+(3,516,320). Fixed by building the Worker with minified local names (`scripts/package-joinallworld.mjs`; the edge tests build it the
+same way): 2,758,057 bytes, Worker import 106 ms under Miniflare, local Worker smoke PASS. No limit was raised. Small follow-up:
+the league tab shows the raw week number ("Week 2963"); it will say "This week".
 
 Built on `claude/viral-clans` (the earlier agent's rules and server kept after review; finished and tested): clans of 25 (admin
 setting) with leader, two deputies, six-letter codes and the invite link `/?table=clan-<code>` (kept across the quick start; link
@@ -137,6 +143,7 @@ Not yours to fix.
 
 ## Log
 
+- 2026-10-16: Phase 2 live at `01409bc9` (with the Worker build minifying local names to stay within its guard).
 - 2026-10-16: Phase 1 complete and live at `1841c909` (1c: stakes and backing). Phase 2 built and in CI.
 - 2026-10-16: Phase 1a+1b live at `45723a6e` (contract, checker, replays, reconnect, replay page, clips, controllers).
 - 2026-10-16: Phase 0 baseline recorded (main `228443371`, live `c2419edb`, typecheck clean, Blender 5.2.2 installed).

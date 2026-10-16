@@ -25,7 +25,7 @@ export const diskSource = (root: string): Source => ({
   notice: existsSync(join(root, 'NOTICE.md')) ? readFileSync(join(root, 'NOTICE.md'), 'utf8') : '',
 })
 
-const stemOf = (name: string): string => name.replace(/^assets\//, '').replace(/-[\w-]{8}\.[a-z0-9]+$/i, '')
+const stemOf = (name: string): string => name.replace(/^assets\//, '').replace(/-[\w-]{7}\.[a-z0-9]+$/i, '')
 
 export interface Measured { files: string[]; chunkBrotli: number; assetBrotli: number; total: number }
 

@@ -97,9 +97,9 @@ function glb(jsonText) {
 }
 test('accepts the two near-crowd body files and no other .bin', t => {
   const f = fixture(t); mkdirSync(join(f.root, 'assets/assets'), { recursive: true });
-  writeFileSync(join(f.root, 'assets/assets/base-body-male-lod-aebd3566.bin'), Buffer.from([1, 2, 3])); f.seal();
+  writeFileSync(join(f.root, 'assets/assets/base-body-male-lod-aebd356.bin'), Buffer.from([1, 2, 3])); f.seal();
   assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
-  writeFileSync(join(f.root, 'assets/assets/other-lod-aebd3566.bin'), Buffer.from([1, 2, 3])); f.seal();
+  writeFileSync(join(f.root, 'assets/assets/other-lod-aebd356.bin'), Buffer.from([1, 2, 3])); f.seal();
   assert.throws(() => checkPackage(f.root, sha, false), /Unexpected package file/);
 });
 

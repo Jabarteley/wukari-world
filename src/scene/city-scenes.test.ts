@@ -254,11 +254,11 @@ test('the shared scene chunk holds no city\'s own scenes: each is a chunk of its
   assert.equal(host.length, 1, 'one shared scene chunk');
   const bytes = readFileSync(join(assets, host[0]!)), code = bytes.toString('utf8');
   const size = { raw: bytes.length, gzip: gzipSync(bytes).length };
-  const cities = names.filter((name) => /^city-[\w-]+-scenes(-[ab])?-[\w-]{8}\.js$/.test(name));
+  const cities = names.filter((name) => /^city-[\w-]+-scenes(-[ab])?-[\w-]{7}\.js$/.test(name));
   t.diagnostic(`${host[0]} ${size.raw} raw ${size.gzip} gzip; ${cities.map((name) => { const file = readFileSync(join(assets, name)); return `${name} ${file.length} raw ${gzipSync(file).length} gzip`; }).join('; ')}`);
   assert.ok(size.raw <= HOST_BUDGET.raw, `the shared scene chunk is ${size.raw} bytes (budget ${HOST_BUDGET.raw})`);
   assert.ok(size.gzip <= HOST_BUDGET.gzip, `the shared scene chunk is ${size.gzip} bytes gzipped (budget ${HOST_BUDGET.gzip})`);
-  assert.deepEqual(cities.map((name) => name.replace(/-[\w-]{8}\.js$/, '')).sort(), ['city-abuja-scenes', 'city-ibadan-scenes', 'city-kano-scenes', 'city-ogun-scenes-a', 'city-ogun-scenes-b', 'city-port-harcourt-scenes']);
+  assert.deepEqual(cities.map((name) => name.replace(/-[\w-]{7}\.js$/, '')).sort(), ['city-abuja-scenes', 'city-ibadan-scenes', 'city-kano-scenes', 'city-ogun-scenes-a', 'city-ogun-scenes-b', 'city-port-harcourt-scenes']);
   // Static imports only (`from"./x.js"`, `import"./x.js"`): the host must not pull a city's scenes in with itself.
   const eager = [...code.matchAll(/(?:\bfrom|\bimport)\s*"\.\/([^"]+\.js)"/g)].map((match) => match[1] as string);
   assert.deepEqual(eager.filter((name) => /^city-.+-scenes/.test(name) || /^venues-/.test(name)), [], 'no city scene chunk is a static import of the host');

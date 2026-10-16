@@ -28,7 +28,7 @@ import { ROOM_CODE } from '../../src/arena/code.ts';
 import type { RealtimeRules } from '../../src/arena/rules.ts';
 import { ReplayRecorder } from '../../src/arena/replay.ts';
 import type { ReplayLog } from '../../src/arena/replay.ts';
-import { CARTRIDGE_LIMITS } from '../../src/arena/cartridge.ts';
+import { CARTRIDGE_LIMITS } from '../../src/arena/cartridge-limits.ts';
 import { cartridgeOf } from '../../src/arena/cartridges.ts';
 import { replayShelf } from './arena-replays.ts';
 import type { ArenaLook, ArenaResult, ArenaSeat, ArenaStateFrame, ArenaStatus } from '../../src/types/arena.ts';

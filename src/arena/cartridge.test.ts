@@ -6,7 +6,8 @@ import { makeRng } from '../game/util.ts'
 import { ARENA_GAMES } from './registry.ts'
 import { ARENA_CATALOG } from './catalog.ts'
 import { CARTRIDGES, cartridgeOf } from './cartridges.ts'
-import { CARTRIDGE_CONTRACT, CARTRIDGE_LIMITS, DEFAULT_CAP_BROTLI, clampRewards, defineCartridge, validateCartridge } from './cartridge.ts'
+import { CARTRIDGE_CONTRACT, DEFAULT_CAP_BROTLI, defineCartridge, validateCartridge } from './cartridge.ts'
+import { CARTRIDGE_LIMITS, clampRewards } from './cartridge-limits.ts'
 import type { Cartridge } from './cartridge.ts'
 
 test('every game in the arena registry is a cartridge, and the other way round', () => {

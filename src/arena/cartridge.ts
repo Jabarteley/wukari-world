@@ -10,9 +10,9 @@
  *   2. RENDERER  a lazy client screen (./catalog.ts) plus the manifest below: every asset file with its licence, and a size cap.
  *   3. ENTRY     the registry entry: id, name, venues, modes, what it reads from the world and writes back.
  * A cartridge may READ (CartridgeRead) and WRITE (CartridgeWrite) only what its entry declares; the host hands over nothing else.
- * Nothing here runs a game: this file is types, constants and `validateCartridge`, safe to import anywhere.
+ * Nothing here runs a game: this file is types, constants and `validateCartridge`, safe to import anywhere. It imports nothing from
+ * src/game/, so the client chunks that read the registry leave the startup engine chunk exactly as it was.
  */
-import { TABLE_REWARDS, TABLE_STAKES } from '../game/content/growth.ts'
 
 /** Bump when the shape of a cartridge entry changes in a way an old cartridge cannot satisfy. */
 export const CARTRIDGE_CONTRACT = 1
@@ -109,21 +109,7 @@ export interface CartridgeReport {
   /** Naira rewards per seat. The host clamps them to CARTRIDGE_LIMITS. */
   rewards?: readonly number[]
 }
-/** The limits a report is clamped to: the table games' own (src/game/content/growth.ts), so a game never pays more than a table does. */
-// Pure, so a client chunk that reads the registry but not the limits does not make the startup engine chunk export the table limits.
-export const CARTRIDGE_LIMITS = /* @__PURE__ */ Object.freeze({
-  rewardPerWin: TABLE_REWARDS.win,
-  paidWinsPerDay: TABLE_REWARDS.paidWinsPerDay,
-  pairGamesPerDay: TABLE_REWARDS.pairGamesPerDay,
-  stakeChoices: TABLE_STAKES.choices,
-  stakePairPerDay: TABLE_STAKES.pairPerDay,
-  stakePlayerPerDay: TABLE_STAKES.playerPerDay,
-  /** The most a replay log may weigh when kept, bytes of JSON. */
-  replayBytes: 24_000,
-})
-
-/** Clamp a report's rewards to the limits: whole, never negative, never above one win's pay. */
-export const clampRewards = (rewards: readonly number[]): number[] => rewards.map((n) => (Number.isFinite(n) ? Math.max(0, Math.min(CARTRIDGE_LIMITS.rewardPerWin, Math.floor(n))) : 0))
+/** The limits a report is clamped to, and `clampRewards`, are in ./cartridge-limits.ts (server side: they read the table limits). */
 
 const ID = /^[a-z]{2,16}$/
 const STEM = /^[A-Za-z][A-Za-z0-9]{1,40}$/

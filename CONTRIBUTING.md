@@ -113,6 +113,10 @@ Each of these is one file or two, and has a test you can run in seconds.
 3. Open a pull request that says what changes and how to see it. One concern per pull request.
 4. CI runs the typecheck, the tests and the build on Node.js 22 and 24. A maintainer reviews; releases are made separately by the maintainers.
 
+## Building a game
+
+A new real-time game is a cartridge. Read [docs/CARTRIDGES.md](docs/CARTRIDGES.md), start from [examples/cartridge-sample/](examples/cartridge-sample/), check it with `npm run cartridge:check -- --dir <your folder>`, and open the pull request with the cartridge template (`?template=cartridge.md`). The review rules in the guide apply, and CI gates the manifest, the credits and the size.
+
 ## Originality
 
 - **No copied code or assets** from the older Allworld project or from any other game — no extracted scripts, models, textures, audio, icons or text.

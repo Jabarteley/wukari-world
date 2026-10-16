@@ -1,12 +1,17 @@
 # Cartridges: games inside Allworld
 
-A **cartridge** is one real-time game of the arena (Fight, Race, Football today): everything Allworld needs to host it, written
-down as a small, versioned contract. The three games are the first cartridges and conform to it without having changed how they
-play. The contract is `src/arena/cartridge.ts` (types and a validator); the registry is `src/arena/cartridges.ts`; the engine
-underneath is described in [REALTIME-GAMES.md](REALTIME-GAMES.md).
+A **cartridge** is one real-time game of the arena: everything Allworld needs to host it, written down as a small, versioned
+contract. Fight, Race and Football are the first three and conform to it. This guide is for someone who wants to build the fourth.
+The contract is `src/arena/cartridge.ts` (types and a validator); the registry is `src/arena/cartridges.ts`; the engine underneath
+is described in [REALTIME-GAMES.md](REALTIME-GAMES.md). Contract **version 1**.
 
-Status: contract **version 1**, for the games in this repository. Opening it to outside builders is a later step the owner decides
-(docs/agent-plans/viral/PHASES.md, Phase 8).
+## The short path
+
+1. Read this guide and look at the sample, [`examples/cartridge-sample/`](../examples/cartridge-sample/) (Tug: about 100 lines of rules).
+2. Fork the repository, copy the sample to a folder of your own under `examples/` and change it into your game.
+3. Run its tests and the checker (below) until both are green.
+4. Open a pull request with the "Cartridge" template ([.github/PULL_REQUEST_TEMPLATE/cartridge.md](../.github/PULL_REQUEST_TEMPLATE/cartridge.md)).
+   A maintainer reviews it against the [review rules](#review-rules) and helps wire the screen and the registry.
 
 ## What a cartridge provides
 
@@ -16,6 +21,119 @@ Status: contract **version 1**, for the games in this repository. Opening it to 
 | Screen | `src/app/features/arena/<Id>Game.vue`, listed in `src/arena/catalog.ts` | A lazy chunk (`defineAsyncComponent` / dynamic `import()`): never in the first download (`src/budgets.ts`). |
 | Replay view | `src/arena/replay-view.ts` | Draws recorded snapshots for the replay page and clips, from the same drawing module the screen uses. |
 | Entry | `src/arena/cartridges.ts` | `defineCartridge({ contract, id, name, blurb, rev, venues, modes, reads, writes, manifest })`. |
+
+## The contract in plain words
+
+**The server is the only judge.** A match is a function: `start(seats, rng, options)` makes the first state, then 20 times a second
+(`hz`, any whole number 1..30; the three games use 20) the server calls `step(state, inputs, rng)` with one input per seat, and
+`snapshot(state)` goes to every player and watcher. `outcome(state)` returns `null` until the match is over. The client may
+interpolate or predict to look smooth; it never decides anything.
+
+`RealtimeRules` (all in `src/arena/rules.ts`):
+
+| Member | What it does |
+| --- | --- |
+| `id`, `label`, `hz`, `seats {min, max}` | The id is 2-16 lower-case letters. `hz` is the tick rate. |
+| `options` | Choices the host may make in the lobby, each with its allowed values and a default. Anything else is ignored. |
+| `start(seats, rng, options)` | The first state: plain JSON, no clock, no I/O. |
+| `parseInput(raw)` | Untrusted wire input to your input type; throws `ArenaInputError` for anything malformed, and bounds its size. |
+| `idle()` | What a seat does when it sent nothing, or left. |
+| `reduce` / `settle` | Optional. Latch a tap that came and went between two ticks (`reduce`), clear the latched edges once a tick used them (`settle`). |
+| `step(state, inputs, rng)` | One tick. May change `state` and return it. Same state, inputs and random draws: same result, always. |
+| `outcome(state)` | `null` while it goes on; then `{ winners, draw, reason, text, scores }` (`places` for a race). |
+| `snapshot(state)` | What everyone sees: compact JSON (arrays, whole numbers), under about 300 bytes, sent every tick. |
+| `bot(state, seat, rng)` | The computer's input for a seat. It plays alone-mode, empty seats and a person's seat during the 15-second reconnect window. |
+| `forfeit(state, seat)` | The seat left for good. |
+
+**Determinism is the whole trick.** No `Math.random`, `Date.now`, `performance.now`, network or file access in the rules; only the `rng`
+handed to you, drawn in the same order every time (draw in `step`, never in `snapshot` or `outcome`). That is what makes replays,
+clips, rematches and the checker's own test possible. Raise `rev` in your entry whenever a change to `start`, `step` or `bot` changes
+how a match plays out.
+
+**Replays are free if you are deterministic.** The host records each person's input when it changes; `replayMatch(rules, log)`
+(`src/arena/replay.ts`) runs your rules again and says `verified` when it reaches the recorded last snapshot. Your test should
+record a match and replay it (the sample's does). A log over 24,000 bytes is not kept.
+
+**Controller input.** Touch, keyboard and a physical pad all send the same input value, so a pad player and a thumb player are on equal
+terms. Declare your `PadControls` (actions with default buttons, and whether the stick moves) in `src/arena/input/pad.ts` and call
+`usePad(controls, handlers)` from your screen with the same functions your touch controls call; see [Controllers](#controllers).
+
+**Lazy chunks.** The screen is a lazy chunk (`manifest.entry`: the stem of its file in `dist/assets`), and anything it loads later
+(a 3D view, a decoder) is listed in `manifest.lazy`. Nothing of a cartridge is ever in the first download. The cartridge's chunks
+plus its listed assets must fit its cap.
+
+## The numbers
+
+| Limit | Value | From |
+| --- | --- | --- |
+| Tick rate `hz` | 1 to 30 (20 for the three games) | `src/arena/rules.ts` |
+| Snapshot | under about 300 bytes (the checker fails at 400) | `src/arena/cartridge.test.ts`, `scripts/cartridge-check.ts` |
+| Cartridge size | 1,500,000 bytes brotli at most (`DEFAULT_CAP_BROTLI`): the lazy chunks beyond the first download plus the listed assets. A smaller `cap` may be set; a larger one is refused | `src/arena/cartridge.ts` |
+| Replay log kept | 24,000 bytes of JSON (a 90-second fight is 2-6 KB) | `CARTRIDGE_LIMITS.replayBytes` in `src/arena/cartridge-limits.ts` |
+| Reward per win | 150 game naira (`rewardPerWin`), 4 paid wins a day, 3 counted games a day against the same person; the host clamps what you report | `CARTRIDGE_LIMITS` |
+| Stake choices | free, 100, 500, 1,000 or 2,000 game naira each; at most 5,000 a day between the same two people and 10,000 a day for one player | `CARTRIDGE_LIMITS` |
+| Reconnect window | 15 seconds, then the seat forfeits | `TUNING.awayForfeitMs` |
+| First download | Never raised: startup JavaScript at most 615,000 bytes raw and 223,000 gzip; first paint 36,800 and startup 195,600 brotli | `src/budgets.ts`, `npm run size:download` |
+
+## Run it, test it, check it
+
+```
+npm ci
+node --experimental-strip-types --test examples/<your-folder>/rules.test.ts     your tests (determinism, replay, bad input)
+npm run cartridge:check -- --dir examples/<your-folder>                         the manifest, the files, the credits, the rules
+npm run typecheck                                                               strict TypeScript, like all code here
+```
+
+`--dir` needs no build. It loads `cartridge.ts` (exporting `cartridge`) and `rules.ts` (default export) from the folder and checks: the
+entry is valid; every listed asset exists, has a licence and a source; every CC BY credit line is in the folder's `NOTICE.md`; the rules'
+id and label match the entry; `hz`, seats and the members exist; `parseInput` refuses junk; two bot-played matches from one seed are
+identical; no snapshot is over the limit. The size cap is measured by the plain `npm run cartridge:check` after `npm run build` once the
+cartridge is registered, and CI runs that on every pull request.
+
+To see it in the game, run `npm run dev` and wire your rules in locally: import them in `src/arena/registry.ts`, add a card in
+`src/arena/catalog.ts` and a screen modelled on `FightGame.vue` (steps in [REALTIME-GAMES.md](REALTIME-GAMES.md#adding-a-game-racing-football)),
+and add the entry to `src/arena/cartridges.ts`. The pull request does not need this: the maintainers do the wiring with you.
+
+## Review rules
+
+A pull request that adds a cartridge is accepted only if every line holds. Each is checkable by reading the diff, and the first
+few by `npm run cartridge:check`.
+
+1. **Assets.** Every non-code file is CC0, CC BY (credited) or your own work, and listed in the manifest with `licence`, `source` and
+   (for CC BY) the exact `attribution` line. The line is written in `NOTICE.md` and shown in the game's credits (the credits are
+   generated from the pack manifests: `npm run assets:credits`, see [ASSET-PIPELINE.md](ASSET-PIPELINE.md)). No other licences (not
+   CC BY-NC, not CC BY-SA, not "free for personal use"), no ripped, traced or "inspired by" art or sound from a commercial game.
+2. **Size.** The cartridge is at most 1,500,000 bytes brotli, lazy chunks and assets together. Models stay under the budgets in
+   `src/budgets.ts`.
+3. **Rules are server-owned and deterministic.** All of the game's decisions are in `step`, `outcome` and `bot`; no client code decides a
+   result; no `Math.random`, clock or I/O in the rules; `parseInput` refuses anything malformed. Your test replays a match exactly.
+4. **AI-controlled means marked.** A seat played by an AI agent carries `ai: true` in the roster, the replay and every caption ("Name · AI").
+   A cartridge never hides it, never lets a bot present itself as a person and never gives an agent a seat the host did not.
+5. **Game money only.** No real money in or out, no odds, no cash-out, no chance-based stakes, no "bet", "gamble", "earn", "invest" or "profit"
+   words. Stakes are only what the host offers (`CARTRIDGE_LIMITS.stakeChoices`, adults only, between two real people), and they are called
+   "stake" and "prize". A cartridge reports results; it never moves money. Rewards are clamped by the host.
+6. **No real people, no other games.** No names or likenesses of real people (players, politicians, celebrities) and no names, characters,
+   logos or levels of other games or brands.
+7. **No secrets or personal data.** No keys, tokens, `.env` files, account or device ids, and no network calls from the cartridge. It reads
+   only what `reads` declares (the public name and the AI mark, never an account id).
+8. **First download untouched.** The budgets in `src/budgets.ts` are never raised for a cartridge. Everything is a lazy chunk;
+   `npm run size:download` reports the same startup size with and without your pull request.
+9. **Stored player data.** A cartridge changes what is stored about a player only by adding optional fields, so old saves load as before
+   and an older client reads a newer save. Nothing is renamed, removed or made required.
+10. **Under 18.** A cartridge treats anyone who is under 18 or has not answered the age question as a minor: no stakes, no backing, no
+    public gist line, and an agent in the room follows the under-18 rules of [AI-SAFETY.md](AI-SAFETY.md) (no flirting or romantic role).
+11. **Checks pass.** `npm run check`, `npm run cartridge:check` and your own `--dir` check are green in CI, and the tests cover the rules.
+
+## Submitting
+
+Open a pull request against `main` using the Cartridge template: `?template=cartridge.md` on the new-pull-request page
+(`https://github.com/kromate/joinallworld/compare/main...your-branch?expand=1&template=cartridge.md`). It carries the checklist above. CI
+gates it: the build job runs `npm run build`, `npm run size:download` and `npm run cartridge:check` (a broken manifest, a missing
+asset, a missing credit, a stale chunk name or a cartridge over its cap fails the run; `scripts/cartridge-check.test.ts` tests that
+each does). A maintainer reviews and decides; releases are made separately by the maintainers. Contributions are under the repository's
+licence (see [CONTRIBUTING.md](../CONTRIBUTING.md)).
+
+## The entry, the assets and the size cap
 
 ### The entry
 

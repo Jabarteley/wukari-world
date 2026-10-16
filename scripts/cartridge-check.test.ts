@@ -2,9 +2,15 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { randomBytes } from 'node:crypto'
-import { checkCartridges, cartridgeFiles, diskSource, measureCartridge } from './cartridge-check.ts'
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { spawnSync } from 'node:child_process'
+import { checkCartridges, checkDir, checkRules, cartridgeFiles, diskSource, measureCartridge } from './cartridge-check.ts'
 import { fileURLToPath } from 'node:url'
 import type { Source } from './cartridge-check.ts'
+// The sample cartridge's own tests (determinism, exact replay, bad input) run with these: `npm test` has no glob for examples/.
+import '../examples/cartridge-sample/rules.test.ts'
 import { CARTRIDGES } from '../src/arena/cartridges.ts'
 import { CARTRIDGE_CONTRACT, defineCartridge } from '../src/arena/cartridge.ts'
 import type { Cartridge, CartridgeAsset } from '../src/arena/cartridge.ts'
@@ -73,4 +79,60 @@ test('a CC BY asset needs its credit line in NOTICE.md; a missing licence or a s
   assert.match(checkCartridges([entry([{ ...asset, licence: undefined as never }])], source(files), null).problems.join(), /licence/)
   assert.match(checkCartridges([entry()], source(), new Map([['index.html', enc('')]])).problems.join(), /is stale/)
   assert.match(checkCartridges([entry(), entry()], source(), null).problems.join(), /listed twice/)
+})
+
+// ---- the sample cartridge and folders that are not registered (--dir) ----------------------------------------------------------------
+const repo = fileURLToPath(new URL('..', import.meta.url))
+const SAMPLE = 'examples/cartridge-sample'
+const at = (path: string): string => new URL(`../${path}`, import.meta.url).href
+
+test('the sample cartridge passes the checker and is not registered in the game', async () => {
+  const { problems } = await checkDir(repo, SAMPLE)
+  assert.deepEqual(problems, [])
+  assert.ok(!CARTRIDGES.some((c) => c.id === 'tug'), 'the sample must stay out of the registry')
+})
+
+/** A folder in the temp directory with a cartridge.ts that imports the sample's rules, with `entry` as its manifest. */
+function submission(entry: string, rules = `export { default } from '${at(SAMPLE + '/rules.ts')}'`): string {
+  const dir = mkdtempSync(join(tmpdir(), 'cartridge-'))
+  mkdirSync(join(dir, 'assets'))
+  writeFileSync(join(dir, 'cartridge.ts'), `import { CARTRIDGE_CONTRACT, defineCartridge } from '${at('src/arena/cartridge.ts')}'\nexport const cartridge = defineCartridge({ contract: CARTRIDGE_CONTRACT, id: 'tug', name: 'Tug', blurb: 'x', rev: 1, venues: ['arcade'], modes: { alone: 'live', friends: 'live', community: 'planned', matchmaking: 'planned', agents: 'planned' }, reads: ['identity'], writes: ['result'], manifest: { entry: 'TugGame', assets: [], ...${entry} } })\n`)
+  writeFileSync(join(dir, 'rules.ts'), rules)
+  return dir
+}
+
+test('a broken manifest in a submitted folder fails the checker, from the command line too', async () => {
+  const bad = submission(`{ assets: [{ path: 'nowhere/ghost.glb', licence: 'GPL', source: '' }, { path: '/etc/passwd', licence: 'CC0', source: 'x' }], cap: 99_000_000 }`)
+  try {
+    const found = (await checkDir(repo, bad)).problems.join('\n')
+    assert.match(found, /does not exist/); assert.match(found, /no valid licence/); assert.match(found, /has no source/); assert.match(found, /inside the repository/); assert.match(found, /manifest\.cap/)
+    const run = spawnSync(process.execPath, ['--experimental-strip-types', join(repo, 'scripts/cartridge-check.ts'), '--dir', bad], { encoding: 'utf8' })
+    assert.equal(run.status, 1); assert.match(run.stderr, /PROBLEM/)
+    assert.equal(spawnSync(process.execPath, ['--experimental-strip-types', join(repo, 'scripts/cartridge-check.ts'), '--dir', SAMPLE], { cwd: repo, encoding: 'utf8' }).status, 0)
+  } finally { rmSync(bad, { recursive: true, force: true }) }
+})
+
+test('a folder missing its rules, or a CC BY asset without its credit, is refused', async () => {
+  const dir = submission('{}')
+  try {
+    rmSync(join(dir, 'rules.ts'))
+    assert.match((await checkDir(repo, dir)).problems.join(), /missing rules\.ts/)
+    const credited = submission(`{ assets: [{ path: '${SAMPLE}/assets/rope.svg', licence: 'CC-BY', source: 'https://example.org/a', attribution: 'Rope by Ada, CC BY 4.0' }] }`)
+    try {
+      assert.match((await checkDir(repo, credited)).problems.join(), /NOTICE\.md/)
+      writeFileSync(join(credited, 'NOTICE.md'), '- Rope by Ada, CC BY 4.0\n')
+      assert.deepEqual((await checkDir(repo, credited)).problems, [])
+    } finally { rmSync(credited, { recursive: true, force: true }) }
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('rules that are not deterministic, do not refuse junk or do not match the entry are reported', async () => {
+  const sample = (await import(at(SAMPLE + '/rules.ts'))).default
+  const c = (await import(at(SAMPLE + '/cartridge.ts'))).cartridge
+  assert.deepEqual(checkRules(c, sample), [])
+  assert.match(checkRules(c, { ...sample, bot: () => (Math.random() < 0.5 ? 1 : 0) }).join(), /not deterministic/)
+  assert.match(checkRules(c, { ...sample, parseInput: (raw: unknown) => raw }).join(), /accepted junk/)
+  assert.match(checkRules(c, { ...sample, id: 'other' }).join(), /rules\.id/)
+  assert.match(checkRules(c, { ...sample, hz: 60 }).join(), /hz/)
+  assert.match(checkRules(c, { ...sample, snapshot: () => 'x'.repeat(500) }).join(), /over about 300 bytes/)
 })

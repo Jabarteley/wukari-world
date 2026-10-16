@@ -11,3 +11,5 @@
 - [ ] `npm run check` passes (typecheck, tests, build)
 - [ ] Tests added or updated for changed rules, saved data or anything keyed by an action id
 - [ ] No secrets, personal data or copied assets
+
+<!-- Adding a game? Use the cartridge template: add ?template=cartridge.md to the new pull request address. -->

@@ -39,7 +39,7 @@ interface RunResult { project: string; out: string; status: number | null; signa
 export const PROJECTS: Record<string, (file: string) => boolean> = {
   engine: (file) => !isTest(file) && isEngine(file),
   client: (file) => !isTest(file) && !isEngine(file) && (file.startsWith('src/') || file === 'env.d.ts'),
-  server: (file) => !isTest(file) && (file.startsWith('server/') || file.startsWith('scripts/') || file.startsWith('vite.config.') || file === 'deploy/local.ts'),
+  server: (file) => !isTest(file) && (file.startsWith('server/') || file.startsWith('scripts/') || file.startsWith('examples/') || file.startsWith('vite.config.') || file === 'deploy/local.ts'),
   worker: (file) => !isTest(file) && (/^deploy\/[^/]+\.ts$/.test(file) && file !== 'deploy/local.ts' || file === 'server/protocol.ts' || file === 'server/life-service.ts'),
   test: (file) => isTest(file),
 }

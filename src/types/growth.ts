@@ -419,6 +419,10 @@ export interface ReturnSplit {
   bySource: (ReturnRow & { source: string; medium: string; campaign: string })[]
   /** Made a real friend (not the founder's welcome) within the first two days, or not. */
   byFriend: { yes: ReturnRow; no: ReturnRow }
+  /** Created or joined a clan within the first two days, or not. */
+  byClan: { yes: ReturnRow; no: ReturnRow }
+  /** Sent a message to an AI character within the first two days, or not. */
+  byAgent: { yes: ReturnRow; no: ReturnRow }
   /** What "has a friend" means, and what the numbers cannot say. */
   note: string
 }

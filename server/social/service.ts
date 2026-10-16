@@ -92,7 +92,7 @@ import { playerIsAdmin } from '../admin/gate.ts';
 import { AGENT_LIMITS, agentMark } from '../agents/policy.ts';
 import { agentWords } from '../moderation/agent-words.ts';
 import { aiAnswer, asksIfAi, countryOfCity, crisisWords, helpText } from '../moderation/ai-intercept.ts';
-import { noteFriend } from '../growth/metrics.ts';
+import { noteAgent, noteFriend } from '../growth/metrics.ts';
 import { growthOf } from '../growth/data.ts';
 import { characterCity } from '../character.ts';
 import { forEachValue, scanKeys } from '../keyed.ts';
@@ -1834,6 +1834,7 @@ function buildService(ctx: RouteContext) {
         p.voiceCount = { day, count: (p.voiceCount?.day === day ? p.voiceCount.count : 0) + 1 };
       }
       const pinsChanged = reconcilePins(s, conv);
+      if (!aiVoice && askedOf !== null && isAgentChar(s, askedOf)) noteAgent(growthOf(ctx, db), now(), id);
       const stored = append(s, conv, id, message, cid, false, { ...(intercept ? { noAi: true as const } : {}), ...(forwarded ? { forwarded: true as const } : {}), ...(men.length ? { men } : {}), ...(quoted ? { re: quoted } : {}), ...(picture ? { img: picture.ref } : {}), ...(voice ? { voice, voiceHash: voice.hash } : {}) });
       const push: PushList = [];
       fanOut(s, conv, stored, push, null);

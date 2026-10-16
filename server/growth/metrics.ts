@@ -16,6 +16,9 @@
  * first real friend: noteFriend, called when a friend request is accepted; the founder's welcome friendship is not one) and `done`.
  * When a life is old enough for a return day to be settled (prune, hourly) it is counted ONCE into `split[cohortDay]`, a small
  * aggregate by arrival source and by "made a friend within the first two days", and the life then ages out as before.
+ * Two more optional day fields, same shape as `fr`: `cl` (the Lagos day the life first created or joined a clan: noteClan) and `ag` (the
+ * Lagos day it first sent a message to an AI character: noteAgent). Like `fr` they live only inside the life record, which the erasure
+ * contract already removes by player id (server/admin/erasure-data.ts), and they are split the same way ("within the first two days").
  * Nothing here is ever sent to a player. It is read only through GET /api/mod/growth/metrics,
  * with the operator token.
  *
@@ -86,7 +89,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> => value !==
 interface MetricsBook {
   days: Record<string, Record<string, number>>
   cohorts: Record<string, { size: number; r: Record<string, number> }>
-  lives: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; done?: number }>
+  lives: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; cl?: number; ag?: number; done?: number }>
 }
 function book(g: GrowthCollection, cityId: CityId = 'lagos'): MetricsBook {
   const m = g.metrics;
@@ -163,9 +166,14 @@ function sourceKey(words: unknown): string {
   return `${source}|${medium}|${campaign}`;
 }
 /** A real friend was made (a friend request was accepted): note the day on both lives that are followed. Ignored for a life not followed. */
-export function noteFriend(g: GrowthCollection, now: number, ...publicIds: string[]): void {
+export function noteFriend(g: GrowthCollection, now: number, ...publicIds: string[]): void { noteDay(g, now, 'fr', publicIds); }
+/** A life created or joined a clan: note the day, once. Ignored for a life not followed. */
+export function noteClan(g: GrowthCollection, now: number, publicId: string): void { noteDay(g, now, 'cl', [publicId]); }
+/** A life sent a message to an AI character: note the day, once. Ignored for a life not followed. */
+export function noteAgent(g: GrowthCollection, now: number, publicId: string): void { noteDay(g, now, 'ag', [publicId]); }
+function noteDay(g: GrowthCollection, now: number, field: 'fr' | 'cl' | 'ag', publicIds: string[]): void {
   const day = lagosTime(now).day;
-  for (const [, m] of cityBooks(g)) for (const id of publicIds) { const life = Object.hasOwn(m.lives, id) ? m.lives[id] : undefined; if (life && life.fr === undefined) life.fr = day; }
+  for (const [, m] of cityBooks(g)) for (const id of publicIds) { const life = Object.hasOwn(m.lives, id) ? m.lives[id] : undefined; if (life && life[field] === undefined) life[field] = day; }
 }
 /** Count every life that is old enough for a return day, once, into `split`; a life is settled for day N when it is N+1 days old (day 1: FRIEND_WITHIN_DAYS + 1). */
 function settle(g: GrowthCollection, day: number): void {
@@ -175,10 +183,10 @@ function settle(g: GrowthCollection, day: number): void {
     SPLIT_DAYS.forEach((offset, bit) => {
       if ((life.done ?? 0) & (1 << bit) || age < Math.max(offset, FRIEND_WITHIN_DAYS) + 1) return;
       life.done = (life.done ?? 0) | (1 << bit);
-      const returned = (life.ret ?? 0) & (1 << bit) ? 1 : 0, early = life.fr !== undefined && life.fr - life.first <= FRIEND_WITHIN_DAYS;
+      const returned = (life.ret ?? 0) & (1 << bit) ? 1 : 0, early = (at: number | undefined): 'yes' | 'no' => (at !== undefined && at - life.first <= FRIEND_WITHIN_DAYS ? 'yes' : 'no');
       const today = (split[life.first] ||= {});
-      for (const group of [`src:${life.src ?? 'unknown|unknown|unknown'}`, `friend:${early ? 'yes' : 'no'}`]) {
-        // Only the source groups are capped (the two friend groups are always kept): a new one past the cap is counted under other.
+      for (const group of [`src:${life.src ?? 'unknown|unknown|unknown'}`, `friend:${early(life.fr)}`, `clan:${early(life.cl)}`, `agent:${early(life.ag)}`]) {
+        // Only the source groups are capped (the six yes/no groups are always kept): a new one past the cap is counted under other.
         const key = group.startsWith('src:') && !Object.hasOwn(today, group) && Object.keys(today).length >= SPLIT_GROUPS_PER_DAY ? 'src:other|other|other' : group;
         const cell = ((today[key] ||= {})[offset] ||= [0, 0]);
         cell[0] += 1; cell[1] += returned;
@@ -247,7 +255,8 @@ export function returnSplit(g: GrowthCollection): ReturnSplit {
     return { source, medium, campaign, ...row(days) };
   }).sort((a, b) => b.d1.lives - a.d1.lives).slice(0, 40);
   return { bySource, byFriend: { yes: row(sum.get('friend:yes')), no: row(sum.get('friend:no')) },
-    note: 'A life is counted once it is old enough. "Has a friend" means a real friend made in the first two days (the founder\'s welcome does not count). Lives that started before this was counted are not in it.' };
+    byClan: { yes: row(sum.get('clan:yes')), no: row(sum.get('clan:no')) }, byAgent: { yes: row(sum.get('agent:yes')), no: row(sum.get('agent:no')) },
+    note: 'A life is counted once it is old enough. "Has a friend" means a real friend made in the first two days (the founder\'s welcome does not count). "Has a clan" means created or joined a clan in the first two days; "talked to an agent" means sent a message to an AI character in the first two days. Lives that started before this was counted are not in it.' };
 }
 const dateOf = (day: number): string => new Date(day * 86400000).toISOString().slice(0, 10);
 /** The operator's report: totals per day and the cohort table. Carries no player id. */

@@ -10,6 +10,8 @@
  */
 import { lagosTime } from '../../src/game/clock.ts';
 import { WAR } from '../../src/clans/war.ts';
+import { noteClan } from '../growth/metrics.ts';
+import { growthOf } from '../growth/data.ts';
 import { CLAN, COLOURS, cleanClanName, cleanCode, codeFrom, colourOf, joinBlock, kickBlock, nameKey, roleChange, roleOf, venueBlock, venueHoldable, withoutMember } from '../../src/clans/clan.ts';
 import { venueFor } from '../../src/game/cities/runtime.ts';
 import { socialService } from '../social/service.ts';
@@ -132,6 +134,7 @@ function build(ctx: RouteContext) {
         c.clans[clanId] = { id: clanId, name, colour: colour.id, city: city ?? homeOf(session), code, at: t, leader: id, deputies: [], members: [id], room: conv.id, rating: WAR.startRating };
         c.names[nameKey(name)] = clanId; c.codes[code] = clanId;
         const rec = playerOf(c, id, session); rec.clan = clanId; rec.joined = t;
+        noteClan(growthOf(ctx, db), t, id);
         return yes('created', { clan: clanId });
       });
       if (!out.ok) return out;
@@ -149,6 +152,7 @@ function build(ctx: RouteContext) {
       if (why) return no(why.code, why.reason);
       const conv = s.convs[clan.room];
       clan.members.push(id); rec.clan = clan.id; rec.joined = now();
+      if (!isAgent(session)) noteClan(growthOf(ctx, db), now(), id);
       if (conv) { conv.members.push(id); kit.index(s, id, conv); }
       say(s, clan, `${p.name} joined the clan.`, push);
       return yes('joined', { clan: view(db, c, clan, id), push });

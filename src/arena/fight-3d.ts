@@ -11,8 +11,7 @@
  * scripts/assets/blender/ring.py. About 0.5 MB in all, about 7,300 triangles, under 20 draw calls, one light, no shadow map.
  * A lazy chunk: the Fight screen fetches it when it opens, and draws the 2D view until it is ready (or for ever, without WebGL).
  */
-import { THREE, Shake, FrameStats, blobShadow, disposeScene, lambertise, loadGlb, makeRenderer } from './three/kit.ts'
-import { clone as cloneSkinned } from 'three/examples/jsm/utils/SkeletonUtils.js'
+import { THREE, Shake, FrameStats, blobShadow, cloneSkinned, disposeScene, lambertise, loadGlb, makeRenderer } from './three/kit.ts'
 import { ACT, ARENA_W, BODY_H, HZ, MOVES, PHASE } from './fight.ts'
 import type { FighterSnap, FightSnap } from './fight.ts'
 

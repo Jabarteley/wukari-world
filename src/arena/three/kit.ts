@@ -8,9 +8,7 @@
  * `stats()` says what a frame cost, so a throttled profile can be measured and recorded (STATUS.md).
  */
 import * as THREE from 'three'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import type { GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js'
+import type { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 export { THREE }
 export const MAX_PIXEL_RATIO = 1.5
@@ -28,14 +26,36 @@ export function makeRenderer(canvas: HTMLCanvasElement): THREE.WebGLRenderer | n
   } catch { return null }
 }
 
-let loader: GLTFLoader | null = null
+// The loader and the meshopt decoder are reached by dynamic import, as src/scene/models/gltf-source.ts does: they then stay in the chunk
+// the world's characters already load, instead of becoming a chunk of their own that the first download's preload lists would name.
+let loader: Promise<GLTFLoader> | null = null
 const cache = new Map<string, Promise<GLTF>>()
 /** A GLB, fetched once a visit (meshopt, quantised meshes and WebP textures as the packs ship them). */
 export function loadGlb(url: string): Promise<GLTF> {
-  loader ??= new GLTFLoader().setMeshoptDecoder(MeshoptDecoder)
+  loader ??= Promise.all([import('three/examples/jsm/loaders/GLTFLoader.js'), import('three/examples/jsm/libs/meshopt_decoder.module.js')]).then(([gltf, meshopt]) => new gltf.GLTFLoader().setMeshoptDecoder(meshopt.MeshoptDecoder))
   let found = cache.get(url)
-  if (!found) { found = loader.loadAsync(url); cache.set(url, found); found.catch(() => cache.delete(url)) }
+  if (!found) { found = loader.then((l) => l.loadAsync(url)); cache.set(url, found); found.catch(() => cache.delete(url)) }
   return found
+}
+
+/**
+ * A rigged model cloned with its own skeleton (what three's SkeletonUtils.clone does), written here so the game's other chunks keep
+ * their shape: importing that module from a game made it a chunk of its own, which the first download's preload lists then named.
+ */
+export function cloneSkinned(source: THREE.Object3D): THREE.Object3D {
+  const copy = source.clone(true)
+  const bonesOf = new Map<THREE.Object3D, THREE.Object3D>()
+  const walk = (a: THREE.Object3D, b: THREE.Object3D): void => { bonesOf.set(a, b); a.children.forEach((child, i) => { const twin = b.children[i]; if (twin) walk(child, twin) }) }
+  walk(source, copy)
+  copy.traverse((node) => {
+    const mesh = node as THREE.SkinnedMesh
+    if (!mesh.isSkinnedMesh) return
+    const original = [...bonesOf.entries()].find(([, b]) => b === mesh)?.[0] as THREE.SkinnedMesh | undefined
+    if (!original) return
+    const bones = original.skeleton.bones.map((bone) => bonesOf.get(bone) as THREE.Bone)
+    mesh.bind(new THREE.Skeleton(bones, original.skeleton.boneInverses), original.bindMatrix)
+  })
+  return copy
 }
 
 /** Swap every standard material for a Lambert one with the same texture and colour: cheaper per pixel, the same baked look. */

@@ -11,42 +11,42 @@ const noise = (length: number): Uint8Array => randomBytes(length)
 
 function build(extra: Record<string, Uint8Array> = {}): Dist {
   return new Map<string, Uint8Array>(Object.entries({
-    'index.html': bytes('<link rel="icon" href="/favicon.svg"><script type="module" src="/assets/app-AAAAAAAA.js"></script><link rel="modulepreload" href="/assets/vue-BBBBBBBB.js"><link rel="stylesheet" href="/assets/app-CCCCCCCC.css">'),
-    'assets/app-AAAAAAAA.js': bytes('import"./vue-BBBBBBBB.js";const l=()=>import("./startApp-DDDDDDDD.js");'),
-    'assets/vue-BBBBBBBB.js': bytes('export const v=1;'),
-    'assets/app-CCCCCCCC.css': bytes('body{margin:0}'),
-    'assets/startApp-DDDDDDDD.js': bytes('import{v}from"./vue-BBBBBBBB.js";'),
-    'assets/city-network-EEEEEEEE.js': bytes('export const r=1;'),
-    'assets/city-lagos-rules-FFFFFFFF.js': bytes('export const a=1;'),
-    'assets/city-lagos-content-GGGGGGGG.js': bytes('export const b=1;'),
-    'assets/city-kano-rules-HHHHHHHH.js': bytes('export const a=2;'),
-    'assets/city-kano-content-IIIIIIII.js': bytes('export const b=2;'),
-    'assets/city-kano-scenes-JJJJJJJJ.js': bytes('export const s=1;'),
-    'assets/city-ibadan-scenes-KKKKKKKK.js': bytes('export const s=2;'),
-    'assets/world-adapter-LLLLLLLL.js': bytes('export const w=1;'),
+    'index.html': bytes('<link rel="icon" href="/favicon.svg"><script type="module" src="/assets/app-AAAAAAA.js"></script><link rel="modulepreload" href="/assets/vue-BBBBBBB.js"><link rel="stylesheet" href="/assets/app-CCCCCCC.css">'),
+    'assets/app-AAAAAAA.js': bytes('import"./vue-BBBBBBB.js";const l=()=>import("./startApp-DDDDDDD.js");'),
+    'assets/vue-BBBBBBB.js': bytes('export const v=1;'),
+    'assets/app-CCCCCCC.css': bytes('body{margin:0}'),
+    'assets/startApp-DDDDDDD.js': bytes('import{v}from"./vue-BBBBBBB.js";'),
+    'assets/city-network-EEEEEEE.js': bytes('export const r=1;'),
+    'assets/city-lagos-rules-FFFFFFF.js': bytes('export const a=1;'),
+    'assets/city-lagos-content-GGGGGGG.js': bytes('export const b=1;'),
+    'assets/city-kano-rules-HHHHHHH.js': bytes('export const a=2;'),
+    'assets/city-kano-content-IIIIIII.js': bytes('export const b=2;'),
+    'assets/city-kano-scenes-JJJJJJJ.js': bytes('export const s=1;'),
+    'assets/city-ibadan-scenes-KKKKKKK.js': bytes('export const s=2;'),
+    'assets/world-adapter-LLLLLLL.js': bytes('export const w=1;'),
     ...Object.fromEntries(Object.entries(extra)),
   }))
 }
 
 test('static imports are followed, dynamic imports are not', () => {
-  assert.deepEqual(staticImports('import"./a-12345678.js";import{x}from"./b-12345678.js";const l=()=>import("./c-12345678.js")'), ['assets/a-12345678.js', 'assets/b-12345678.js'])
-  assert.deepEqual(pageAssets(build().get('index.html') ? Buffer.from(build().get('index.html')!).toString() : ''), ['assets/app-AAAAAAAA.js', 'assets/vue-BBBBBBBB.js', 'assets/app-CCCCCCCC.css'])
-  assert.deepEqual([...closure(build(), ['assets/startApp-DDDDDDDD.js'])].sort(), ['assets/startApp-DDDDDDDD.js', 'assets/vue-BBBBBBBB.js'])
+  assert.deepEqual(staticImports('import"./a-1234567.js";import{x}from"./b-1234567.js";const l=()=>import("./c-1234567.js")'), ['assets/a-1234567.js', 'assets/b-1234567.js'])
+  assert.deepEqual(pageAssets(build().get('index.html') ? Buffer.from(build().get('index.html')!).toString() : ''), ['assets/app-AAAAAAA.js', 'assets/vue-BBBBBBB.js', 'assets/app-CCCCCCC.css'])
+  assert.deepEqual([...closure(build(), ['assets/startApp-DDDDDDD.js'])].sort(), ['assets/startApp-DDDDDDD.js', 'assets/vue-BBBBBBB.js'])
 })
 
 test('first paint is index.html, its stylesheet and scripts, and what they import; startup adds the shell and one city', () => {
   const dist = build()
-  assert.deepEqual([...firstPaintFiles(dist)].sort(), ['assets/app-AAAAAAAA.js', 'assets/app-CCCCCCCC.css', 'assets/vue-BBBBBBBB.js', 'index.html'])
+  assert.deepEqual([...firstPaintFiles(dist)].sort(), ['assets/app-AAAAAAA.js', 'assets/app-CCCCCCC.css', 'assets/vue-BBBBBBB.js', 'index.html'])
   assert.deepEqual(cityIds(dist), ['kano', 'lagos'])
-  assert.deepEqual([...startupFiles(dist, 'kano')!].sort(), [...firstPaintFiles(dist), 'assets/startApp-DDDDDDDD.js', 'assets/city-kano-rules-HHHHHHHH.js', 'assets/city-kano-content-IIIIIIII.js'].sort())
+  assert.deepEqual([...startupFiles(dist, 'kano')!].sort(), [...firstPaintFiles(dist), 'assets/startApp-DDDDDDD.js', 'assets/city-kano-rules-HHHHHHH.js', 'assets/city-kano-content-IIIIIII.js'].sort())
   // The world network is lazy; a static import of it from the startup would bring it back into the closure.
-  const eager = build({ 'assets/startApp-DDDDDDDD.js': bytes('import{v}from"./vue-BBBBBBBB.js";import"./city-network-EEEEEEEE.js";') })
-  assert.ok(startupFiles(eager, 'kano')!.has('assets/city-network-EEEEEEEE.js'))
+  const eager = build({ 'assets/startApp-DDDDDDD.js': bytes('import{v}from"./vue-BBBBBBB.js";import"./city-network-EEEEEEE.js";') })
+  assert.ok(startupFiles(eager, 'kano')!.has('assets/city-network-EEEEEEE.js'))
   assert.equal(startupFiles(dist, 'ibadan'), null, 'a city without rules and content chunks has no startup')
 })
 
 test('chunks group by name without the hash, and cities fold into one group per kind', () => {
-  assert.deepEqual(['assets/city-kano-scenes-JJJJJJJJ.js', 'assets/city-port-harcourt-scenes-KKKKKKKK.js', 'assets/city-ogun-scenes-a-KKKKKKKK.js', 'assets/city-kano-content-IIIIIIII.js', 'assets/city-routes-EEEEEEEE.js', 'assets/world-adapter-LLLLLLLL.js', 'assets/x-1.png', 'assets/font-a1b2c3d4.woff2'].map(groupOf),
+  assert.deepEqual(['assets/city-kano-scenes-JJJJJJJ.js', 'assets/city-port-harcourt-scenes-KKKKKKK.js', 'assets/city-ogun-scenes-a-KKKKKKK.js', 'assets/city-kano-content-IIIIIII.js', 'assets/city-routes-EEEEEEE.js', 'assets/world-adapter-LLLLLLL.js', 'assets/x-1.png', 'assets/font-a1b2c3d4.woff2'].map(groupOf),
     ['city-*-scenes', 'city-*-scenes', 'city-*-scenes-a', 'city-*-content', 'city-routes', 'world-adapter', '*.png files', '*.woff2 files'])
   const groups = lazyGroups(build(), startupFiles(build(), 'lagos')!)
   assert.deepEqual(groups.map((group) => [group.group, group.files]).sort(), [['city-*-content', 1], ['city-*-rules', 1], ['city-*-scenes', 2], ['city-network', 1], ['world-adapter', 1]])
@@ -70,7 +70,7 @@ test('a small build is inside every budget it can measure; budgets with no artif
 
 test('a budget that is exceeded is reported over', () => {
   const dist = build({
-    'assets/app-AAAAAAAA.js': noise(600_000),
+    'assets/app-AAAAAAA.js': noise(600_000),
     'assets/avatar/base-body.glb': noise(300_001),
     'assets/avatar/clip-pack-1.bin': noise(120_000),
     'assets/avatar/clip-pack-2.bin': noise(120_000),

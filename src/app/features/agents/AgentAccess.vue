@@ -104,7 +104,7 @@ onMounted(() => {
       <template v-else>
         <div v-if="view.keys.length" class="ui-rows">
           <div v-for="key in view.keys" :key="key.id" class="ui-row" data-agent-row>
-            <span class="ui-row-body"><b>{{ key.name }}</b><small>{{ key.mode === 'agent' ? `Plays ${key.character ?? 'an agent character'}` : 'Plays your own character' }} · {{ since(key.lastUsedAt, game.serverNow()) }}</small><small v-if="key.suspended" class="ui-error">{{ SUSPENDED_WORDS[key.suspended] }}</small></span>
+            <span class="ui-row-body"><b>{{ key.name }}</b><small>{{ key.mode === 'agent' ? `Plays ${key.character ?? 'an agent character'}` : 'Plays your own character' }}{{ key.signIn ? ` · signed in through ${key.signIn}` : '' }} · {{ since(key.lastUsedAt, game.serverNow()) }}</small><small v-if="key.suspended" class="ui-error">{{ SUSPENDED_WORDS[key.suspended] }}</small></span>
             <button type="button" class="ui-button" :disabled="busy" @click="renaming = { id: key.id, name: key.name }">Rename</button>
             <button type="button" class="ui-button" :disabled="busy" data-agent-revoke @click="revoke(key.id)">Revoke</button>
           </div>

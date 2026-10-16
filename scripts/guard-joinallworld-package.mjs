@@ -75,7 +75,7 @@ export function checkPackage(root, sourceSha, publish) {
         const cityAsset = /^assets\/assets\/cities\/[a-z][a-z0-9-]*\.([a-f0-9]{64})\.json$/.exec(rel);
         const progressionAsset = /^assets\/assets\/progression\/(?:episodes-\d+|journeys|missions)\.([a-f0-9]{64})\.json$/.exec(rel);
         // The two reduced-detail body files of the near crowd (src/scene/body/files.ts): the only binary that is not a glTF.
-        const bodyLod = /^assets\/assets\/base-body-(?:male|female)-lod-[0-9a-f]{8}\.bin$/.test(rel) && stat.size > 0 && stat.size < 1024 * 1024;
+        const bodyLod = /^assets\/assets\/base-body-(?:male|female)-lod-[0-9a-f]{7}\.bin$/.test(rel) && stat.size > 0 && stat.size < 1024 * 1024;
         const nativeJson = ['assets/character-lab/models/final-pass-20261015/catalog.json', 'assets/character-lab/models/candidates/motion-iteration2-upper-palm.json'].includes(rel);
         const nativeNotice = ['assets/character-lab/THIRD_PARTY_NOTICES.md', 'assets/character-lab/FINAL-PASS-LICENSE-NOTE.md'].includes(rel);
         if (!nativeJson && !nativeNotice && !['worker.js', 'wrangler.json', 'manifest.json'].includes(rel) && !cityAsset && !progressionAsset && !bodyLod && !/^assets\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/.test(rel)) throw Error('Unexpected package file');

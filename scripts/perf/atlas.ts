@@ -222,7 +222,7 @@ async function profiled(b: Browser, body: () => Promise<void>): Promise<string[]
     return line.slice(node.callFrame.columnNumber, node.callFrame.columnNumber + 110).replace(/\s+/g, ' ');
   };
   return [...byPlace.values()].filter((entry) => !['(idle)', '(program)'].includes(entry.node.callFrame.functionName)).sort((a, c) => c.ms - a.ms).slice(0, 14)
-    .map((entry) => `${round(entry.ms)} ms  ${entry.node.callFrame.functionName || '(anonymous)'}  ${(entry.node.callFrame.url.split('/').pop() ?? '').replace(/-[0-9a-f]{8}\.js$/, '.js')}  ${snippet(entry.node)}`);
+    .map((entry) => `${round(entry.ms)} ms  ${entry.node.callFrame.functionName || '(anonymous)'}  ${(entry.node.callFrame.url.split('/').pop() ?? '').replace(/-[0-9a-f]{7}\.js$/, '.js')}  ${snippet(entry.node)}`);
 }
 
 async function measure(b: Browser, size: SizeRow, action: string, body: () => Promise<number>, heavy = false): Promise<ActionRow> {

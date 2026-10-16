@@ -49,7 +49,7 @@ export async function serve(options: ServiceOptions): Promise<{ calls: number; s
   let key = options.key ?? '', id = 0;
 
   async function rpc(method: string, params?: Json): Promise<Json> {
-    const response = await fetch(options.url, { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json, text/event-stream', ...(key ? { authorization: `Bearer ${key}` } : {}) }, body: JSON.stringify({ jsonrpc: '2.0', id: ++id, method, ...(params ? { params } : {}) }) });
+    const response = await fetch(key ? options.url : `${options.url}${options.url.includes('?') ? '&' : '?'}signup=1`, { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json, text/event-stream', ...(key ? { authorization: `Bearer ${key}` } : {}) }, body: JSON.stringify({ jsonrpc: '2.0', id: ++id, method, ...(params ? { params } : {}) }) });
     const body: unknown = await response.json().catch(() => null);
     if (!isRecord(body)) throw new Error(`The server answered ${response.status} with no JSON.`);
     if (isRecord(body.error)) throw new Error(String(body.error.message));

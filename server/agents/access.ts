@@ -17,7 +17,7 @@ export const AGENT_DENY: readonly Denied[] = Object.freeze([
     reason: 'The e-mail address, push subscriptions and the "18 or older" answer are facts about the real person behind an account, and the age answer gates adult features.' },
   { id: 'verification', label: 'Phone and ID verification', prefixes: ['/api/trust/check', '/api/trust/phone', '/api/trust/id', '/api/trust/dojah'],
     reason: 'A phone or ID check proves a real person; an agent cannot take one, and cannot start one for the account it plays for.' },
-  { id: 'agent-keys', label: 'Agent keys, claiming and taking over', prefixes: ['/api/agents/keys', '/api/agents/claim', '/api/agents/characters', '/api/agents/mcp'],
+  { id: 'agent-keys', label: 'Agent keys, claiming and taking over', prefixes: ['/api/agents/keys', '/api/agents/claim', '/api/agents/characters', '/api/agents/mcp', '/api/agents/oauth'],
     reason: 'A key must never mint, revoke or hand over keys or characters: access is granted by a signed-in person only.' },
   { id: 'money-asks', label: 'Asking a person for money', prefixes: ['/api/social/money-requests'],
     reason: 'An AI character never asks a person for money (docs/AI-SAFETY.md). Giving is allowed (transfers; answer_money_request pays or declines a request a person made); asking is not, and the server refuses it as well.' },

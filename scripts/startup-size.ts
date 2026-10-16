@@ -71,7 +71,7 @@ for (const [name, chunk] of [...chunks].filter(([name]) => everything || startup
   if (startup.has(name)) { raw += bytes; gzip += zipped }
   console.log(`${kB(bytes)} ${kB(zipped)}  ${name}${everything && startup.has(name) ? '  (startup)' : ''}`)
   const rendered = Object.values(chunk.modules).reduce((sum, item) => sum + item.renderedLength, 0) || 1
-  for (const [id, item] of Object.entries(chunk.modules)) if (item.renderedLength) modules.push({ name: label(id), chunk: name.replace(/^assets\//, '').replace(/-[\w-]{8}\.js$/, ''), bytes: bytes * item.renderedLength / rendered, needed: !startup.has(name) || needed.has(id) })
+  for (const [id, item] of Object.entries(chunk.modules)) if (item.renderedLength) modules.push({ name: label(id), chunk: name.replace(/^assets\//, '').replace(/-[\w-]{7}\.js$/, ''), bytes: bytes * item.renderedLength / rendered, needed: !startup.has(name) || needed.has(id) })
 }
 console.log(`${kB(raw)} ${kB(gzip)}  startup total (${raw} / ${gzip} bytes)`)
 

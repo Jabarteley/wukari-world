@@ -27,6 +27,7 @@ import { sha256Hex } from '../../src/game/util.ts'
 import type { Admin } from './gate.ts'
 import type { AccountRecord, ArchivedLife, Db, RouteContext, SessionRecord, SocialCollection } from '../types.ts'
 import { forgetArena, peekBook as peekArena } from '../tournaments/book.ts'
+import { forgetOAuth } from '../agents/privacy.ts'
 import { ownerKeyOf } from '../tournaments/life.ts'
 
 export type ErasureScope = 'guest' | 'agent' | 'account'
@@ -228,7 +229,7 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
   const known = new Set([
     'version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'visits', 'commerce', 'business', 'market', 'legacy',
     'trust', 'trustChecks', 'street', 'realValue', 'showcase', 'politics', 'campus', 'accounts', 'accountDevices', 'accountLog', 'walletEffects', 'livingWorld', 'clans',
-    'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', 'agentarena', 'arenadaily', '$store',
+    'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', 'agentarena', 'oauth', 'arenadaily', '$store',
   ])
   const collectionNames = (db.$store as (typeof db.$store & { collectionNames?: () => readonly string[] }) | undefined)?.collectionNames?.() ?? []
   const names = new Set([...Object.keys(db), ...collectionNames])
@@ -638,6 +639,7 @@ function scrubMisc(db: Db, ids: ReadonlySet<string>, accounts: ReadonlySet<strin
 }
 
 function scrubAgents(db: Db, ids: ReadonlySet<string>, accounts: ReadonlySet<string>): void {
+  forgetOAuth(db, accounts)
   const agents = map(db.agents), keys = map(agents?.keys), owners = map(agents?.owners), chars = map(agents?.chars), claims = map(agents?.claims), names = map(agents?.names)
   if (!agents || !keys || !owners || !chars) return
   for (const [hash, value] of Object.entries(keys)) {

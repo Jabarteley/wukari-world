@@ -296,7 +296,7 @@ export function lifeAuthority({ now, receipts, changed, interactiveTeachingStart
 }
 
 /** Response headers a route may set. Anything else a module returns is dropped. */
-const ROUTE_HEADERS = new Map([['set-cookie', 'Set-Cookie'], ['cache-control', 'Cache-Control'], ['retry-after', 'Retry-After']]);
+const ROUTE_HEADERS = new Map([['set-cookie', 'Set-Cookie'], ['cache-control', 'Cache-Control'], ['retry-after', 'Retry-After'], ['www-authenticate', 'WWW-Authenticate']]);
 const isStringArray = (value: unknown): value is string[] => Array.isArray(value) && value.every(item => typeof item === 'string');
 export function routeHeaders(headers: unknown): Record<string, string | string[]> {
   const kept: Record<string, string | string[]> = {};

@@ -12,6 +12,7 @@ import { isNewDevice } from './features/start/warmLanding.ts'
 export function startExtras(diagnostics: boolean): void {
   if (diagnostics) void import('./diagnostics.ts').then(({ showDiagnostics }) => { showDiagnostics() })
   if (location.search.includes('claim-agent=')) void import('./features/agents/claimEntry.ts').then(({ startClaim }) => { startClaim() })
+  if (location.search.includes('agents-join=')) void import('./features/agents/joinEntry.ts').then(({ startJoin }) => { startJoin() })
   const startPaths = (): void => { void import('./features/paths/arrive.ts').then((module) => { module.startPaths() }) }
   // The Square's address or a group room's link: kept for this tab, then the place is opened once there is a life (features/places/placeEntry.ts).
   if (location.pathname === '/square' || location.pathname === '/square/' || location.pathname.startsWith('/r/')) { void import('./features/places/placeEntry.ts').then((module) => { module.startPlaceEntry() }); return }

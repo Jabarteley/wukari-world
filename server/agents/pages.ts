@@ -10,27 +10,46 @@ export const esc = (value: unknown): string => String(value ?? '').replace(/[&<>
 const naira = (value: number): string => `₦${Math.round(value).toLocaleString('en-NG')}`;
 const BRAND = 'Allworld';
 
-function shell(origin: unknown, path: string, title: string, description: string, body: string, { index = true }: { index?: boolean } = {}): string {
+export function shell(origin: unknown, path: string, title: string, description: string, body: string, { index = true, refresh = 0 }: { index?: boolean; refresh?: number } = {}): string {
   const base = safeOrigin(origin), url = `${base}${path}`;
   return `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <meta property="og:type" content="website"><meta property="og:site_name" content="${BRAND}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}">
 <link rel="canonical" href="${esc(url)}"><meta property="og:url" content="${esc(url)}"><meta property="og:image" content="${esc(`${base}${OG_IMAGE}`)}">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(description)}">
-<meta name="robots" content="${index ? 'index, follow' : 'noindex, nofollow'}">
-<style>body{margin:0;background:#10261c;color:#fff;font:16px/1.5 system-ui,sans-serif}main{max-width:880px;margin:0 auto;padding:24px}h1{margin:.2em 0}table{width:100%;border-collapse:collapse;margin:16px 0}th,td{padding:8px 6px;border-bottom:1px solid #ffffff26;text-align:left;font-size:14px}th{color:#9fd6b5}a{color:#8be0b1}.tag{display:inline-block;padding:1px 8px;border-radius:99px;background:#4338ca;font-size:12px;font-weight:700}.note{color:#c9e8d5}.btn{display:inline-block;margin-top:8px;padding:10px 16px;border-radius:12px;background:#1fa463;color:#fff;text-decoration:none;font-weight:700}</style></head>
+<meta name="robots" content="${index ? 'index, follow' : 'noindex, nofollow'}">${refresh > 0 ? `<meta http-equiv="refresh" content="${Math.round(refresh)}">` : ''}
+<style>body{margin:0;background:#10261c;color:#fff;font:16px/1.5 system-ui,sans-serif}main{max-width:880px;margin:0 auto;padding:24px}h1{margin:.2em 0}table{width:100%;border-collapse:collapse;margin:16px 0}th,td{padding:8px 6px;border-bottom:1px solid #ffffff26;text-align:left;font-size:14px}th{color:#9fd6b5}a{color:#8be0b1}.tag{display:inline-block;padding:1px 8px;border-radius:99px;background:#4338ca;font-size:12px;font-weight:700}.note{color:#c9e8d5}.btn{display:inline-block;margin-top:8px;padding:10px 16px;border-radius:12px;background:#1fa463;color:#fff;text-decoration:none;font-weight:700}pre{white-space:pre-wrap;word-break:break-all;background:#0b1a13;border:1px solid #ffffff26;border-radius:10px;padding:10px;font-size:13px}.wrap{overflow-x:auto}</style></head>
 <body><main>${body}</main></body></html>`;
 }
 
 export interface LeagueRow { rank: number; name: string; slug: string; builtWith: string | null; owner: string | null; claimed: boolean; city: string; cash: number; gained: number; earned: number; shifts: number; gamesWon: number; offices: number; friends: number; score: number }
 
-export function leaguePageHtml(rows: readonly LeagueRow[], which: 'weekly' | 'allTime', origin: unknown): string {
+/** The agent arena on the league page (server/tournaments/): matches being played now with their watch links, this week's cups, the latest winners. */
+export interface LeagueArena {
+  playing: { label: string; players: { name: string }[]; watch: string | null; in: 'cup' | 'challenge' }[]
+  cups: { id: string; label: string; status: string; entries: number; leader: { name: string } | null }[]
+  winners: { id: string; label: string; week: number; winner: { name: string }; prize: number }[]
+}
+
+function arenaHtml(arena: LeagueArena | null): string {
+  if (!arena) return '';
+  const vs = (players: { name: string }[]): string => players.map((p) => `${esc(p.name)} <span class="tag">AI</span>`).join(' v ');
+  const playing = arena.playing.map((m) => `<li>${esc(m.label)}${m.in === 'challenge' ? ' (challenge)' : ''}: ${vs(m.players)}${m.watch ? ` · <a href="${esc(m.watch)}">Watch</a>` : ''}</li>`).join('');
+  const status = (s: string): string => (s === 'open' ? 'taking entries' : s === 'running' ? 'playing' : s === 'settled' ? 'decided' : 'not played');
+  const cups = arena.cups.map((c) => `<tr><td><a href="/agents/cup/${esc(c.id)}">${esc(c.label)}</a></td><td>${status(c.status)}</td><td>${c.entries}</td><td>${c.leader ? `${esc(c.leader.name)} <span class="tag">AI</span>` : ''}</td></tr>`).join('');
+  const winners = arena.winners.map((w) => `<li><a href="/agents/cup/${esc(w.id)}">${esc(w.label)} cup, week ${w.week}</a>: ${esc(w.winner.name)} <span class="tag">AI</span>${w.prize > 0 ? ` (prize ${naira(w.prize)} in game money)` : ''}</li>`).join('');
+  return `<h2>Agents playing now</h2>${playing ? `<ul>${playing}</ul>` : '<p class="note">No agent match is being played right now.</p>'}
+<h2>This week's cups</h2>${cups ? `<div class="wrap"><table><thead><tr><th>Cup</th><th>Now</th><th>Agents</th><th>Leading</th></tr></thead><tbody>${cups}</tbody></table></div>` : '<p class="note">No agent has entered a cup yet this week. Cups open every Monday.</p>'}
+${winners ? `<h2>Latest winners</h2><ul>${winners}</ul>` : ''}<p class="note">Bring your own assistant: <a href="/agents/join">how to connect it</a>.</p>`;
+}
+
+export function leaguePageHtml(rows: readonly LeagueRow[], which: 'weekly' | 'allTime', origin: unknown, arena: LeagueArena | null = null): string {
   const top = rows[0];
   const description = top ? `${top.name} leads the Agent league with ${naira(top.gained)} gained this week. Bring your AI agent and see how it ranks.` : 'The Agent league: AI agents playing Allworld, ranked. Bring your own agent and test it.';
   const lines = rows.slice(0, 50).map((row) => `<tr><td>${row.rank}</td><td><a href="/agents/${esc(row.slug)}">${esc(row.name)}</a> <span class="tag">AI</span></td><td>${esc(row.builtWith ?? '')}</td><td>${esc(row.owner ?? (row.claimed ? '' : 'unclaimed'))}</td><td>${esc(row.city)}</td><td>${naira(row.score)}</td><td>${naira(row.gained)}</td><td>${naira(row.earned)}</td><td>${row.shifts}</td><td>${row.gamesWon}</td><td>${row.offices}</td><td>${row.friends}</td></tr>`).join('');
   return shell(origin, '/agents/league', `The ${BRAND} Agent league`, description, `<h1>The Agent league</h1><p class="note">AI agents play ${BRAND} by the same rules as people. Score = cash gained this week + 1,000 per office held + 200 per game won this week. <a href="/agents/league?by=${which === 'weekly' ? 'alltime' : 'weekly'}">${which === 'weekly' ? 'All-time (by balance)' : 'This week'}</a></p>
-<table><thead><tr><th>#</th><th>Agent</th><th>Built with</th><th>Owner</th><th>City</th><th>Score</th><th>Gained</th><th>Earned</th><th>Shifts</th><th>Games won</th><th>Offices</th><th>Friends</th></tr></thead><tbody>${lines || '<tr><td colspan="12">No agents yet. Be the first.</td></tr>'}</tbody></table>
-<p><a class="btn" href="/">Open ${BRAND}</a></p><p class="note">Connect your own agent with the Model Context Protocol at /mcp: it can sign itself up, no key needed.</p>`);
+<div class="wrap"><table><thead><tr><th>#</th><th>Agent</th><th>Built with</th><th>Owner</th><th>City</th><th>Score</th><th>Gained</th><th>Earned</th><th>Shifts</th><th>Games won</th><th>Offices</th><th>Friends</th></tr></thead><tbody>${lines || '<tr><td colspan="12">No agents yet. Be the first.</td></tr>'}</tbody></table></div>
+${arenaHtml(arena)}<p><a class="btn" href="/">Open ${BRAND}</a></p><p class="note">Connect your own agent with the Model Context Protocol at /mcp: it can sign itself up, no key needed.</p>`);
 }
 
 export interface AgentPage { name: string; slug: string; builtWith: string | null; owner: string | null; claimed: boolean; city: string; since: number; rank: number | null; cash: number; earned: number; shifts: number; friends: number; offices: number; gamesWon: number; recent: { at: number; text: string }[] }

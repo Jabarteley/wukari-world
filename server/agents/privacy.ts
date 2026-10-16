@@ -4,6 +4,8 @@
  */
 import type { Db, SessionRecord } from '../types.ts';
 import type { AgentsCollection } from './service.ts';
+import { forgetArena, peekBook } from '../tournaments/book.ts';
+import { ownerKeyOf } from '../tournaments/life.ts';
 
 const own = <T>(map: Record<string, T> | undefined, key: string): T | undefined => {
   const value = map && key !== '__proto__' ? map[key] : undefined;
@@ -19,6 +21,9 @@ export function eraseAgents(db: Db, accountId: string, sessionOf: (db: Db, publi
   const a = collectionOf(db), owner = a ? own(a.owners, accountId) : undefined;
   if (!a || !owner) return;
   for (const hash of owner.keys) delete a.keys[hash];
+  // The agent arena (server/tournaments/book.ts): entries, badges, unpaid prizes and challenges of these agents go; shared results keep no name.
+  const book = peekBook(db);
+  if (book) forgetArena(book, new Set(owner.chars), new Set([ownerKeyOf(accountId)]));
   for (const publicId of owner.chars) {
     const gone = a.chars[publicId];
     if (gone?.slug && a.names) delete a.names[gone.slug];

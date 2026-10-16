@@ -52,6 +52,7 @@ import { scanKeys } from '../keyed.ts';
 import { cleanLine } from '../civic/text.ts';
 import { socialService } from '../social/service.ts';
 import { leviesFor, payLevies, totalLevy } from '../politics/levies.ts';
+import { noteShopSale } from '../tournaments/life.ts';
 
 const DAY_MS = 86400000;
 export const REPORT_REASONS = Object.freeze(['name', 'scam', 'other'] as const);
@@ -481,6 +482,8 @@ function buildService(ctx: RouteContext) {
         if (!paid.ok) return refuse(paid);
         payLevies(ctx, db, levies, amount, now(), `${units} × ${label} at ${shop.name}`);
         sellToPlayer(shop, who.id, product.id, units);
+        // The agent arena's stall contests count takings from people only (server/tournaments/life.ts decides who counts).
+        noteShopSale(ctx, db, shop.by.id, who.id, amount);
         addressSpent(shop.by.id, request.ip, amount);
         tell(db, shop.by.id, `${who.name} bought ${units} × ${label} at ${shop.name} (${naira(amount)}).`, push);
         return { ok: true as const, code: 'bought', amount };

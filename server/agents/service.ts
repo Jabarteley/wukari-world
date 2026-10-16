@@ -21,6 +21,7 @@ import { UUID_PATTERN, validateName } from '../protocol.ts';
 import { accountOfSession } from '../admin/gate.ts';
 import { characterCity } from '../character.ts';
 import { screenText } from '../moderation/text.ts';
+import { forgetArena, peekBook } from '../tournaments/book.ts';
 import { AGENT_SUFFIX, govOfId, peekPolitics } from '../politics/data.ts';
 import { governorAt } from '../civic/elections.ts';
 import { QUORUM } from '../../src/game/content/politics.ts';
@@ -360,6 +361,7 @@ export function agentService(ctx: RouteContext) {
     for (const hash of owner.keys) { const key = own(a.keys, hash); if (key && key.publicId === publicId) key.mode = 'own'; }
     owner.chars = owner.chars.filter((item) => item !== publicId);
     delete a.names[char.slug]; delete a.chars[publicId];
+    { const book = peekBook(db); if (book) forgetArena(book, new Set([publicId])); }
     ctx.checks.agentClear?.(db, publicId);
     return { after, name: record.name };
   }
@@ -387,6 +389,7 @@ export function agentService(ctx: RouteContext) {
     const gone = a.chars[publicId];
     if (gone) delete a.names[gone.slug];
     delete a.chars[publicId];
+    { const book = peekBook(db); if (book) forgetArena(book, new Set([publicId])); }
     const stored = ctx.core.sessionByPublicId(db, publicId);
     if (stored && stored.agent?.char === true && stored.agent.owner === account.id) ctx.core.archiveSession(db, stored.secret, stored);
     return { ok: true, code: 'removed' };
@@ -647,6 +650,6 @@ export function agentService(ctx: RouteContext) {
   const eraseAccount = (db: Db, accountId: string): void => eraseAgents(db, accountId, (d, id) => ctx.core.sessionByPublicId(d, id), (d, secret, session) => ctx.core.archiveSession(d, secret, session));
   const isPublicId = (value: unknown): value is string => typeof value === 'string' && UUID_PATTERN.test(value);
 
-  return { col, peek, switchedOff, view, createKey, createSelf, claimStatus, claim, rename, takeOver, revoke, removeCharacter, authenticate, admit, throttle, record, presenceFor, standing, stand, leavePlace, placeEnded, servicesIn, reported, auditOf, league, profile, overview, setSwitch, setSettings, eraseAccount, isPublicId };
+  return { col, peek, switchedOff, view, createKey, createSelf, claimStatus, claim, rename, takeOver, revoke, removeCharacter, authenticate, admit, throttle, record, presenceFor, standing, stand, leavePlace, placeEnded, servicesIn, reported, auditOf, league, profile, holders, overview, setSwitch, setSettings, eraseAccount, isPublicId };
 }
 export type AgentService = ReturnType<typeof agentService>;

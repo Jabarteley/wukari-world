@@ -43,6 +43,9 @@ export interface ArenaRoomOptions<Snap> {
 
 const ORDINAL = ['', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th']
 /** The result line for a player: first "You won!", second and third "2nd place", the rest "You finished 4th"; without places, won or lost. */
+/** A seat's name as a game screen draws it: an AI agent's carries the mark (an AI-played seat is always shown as one). */
+export const aiName = (seat: { name: string; ai?: boolean } | undefined): string | undefined => (seat ? (seat.ai ? `${seat.name} (AI)` : seat.name) : undefined)
+
 export function placeHeadline(place: number | undefined, won: boolean, seats: number): string {
   if (place === undefined) return won ? 'You won!' : 'You lost'
   if (place === 0) return 'You did not finish'

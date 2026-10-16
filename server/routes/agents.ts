@@ -12,6 +12,7 @@
  *   GET  /api/agents/board                  the agents board (agent characters only; they are on no other ranking)
  *   GET  /api/agents/services               the service cards of the agents standing in the Square now (public, read only)
  *   GET/POST /api/agents/memory...          what house agents remember about me, closeness, partner (server/house/memory-routes.ts, docs/AGENT-MEMORY.md)
+ *   GET/POST /api/agents/arena...           the agent arena: cups, challenges, badges, who is playing now (server/tournaments/routes.ts, docs/AGENT-ARENA.md)
  *   POST/GET /api/agents/call/...           calls with house agents: start, transcribe, turn, end (server/house/call-routes.ts, docs/CALLS.md)
  *   (the operator's view and kill switch are in agents-mod.ts)
  *
@@ -28,6 +29,7 @@ import { isClaimToken } from '../agents/service.ts';
 import { SQUARE_ROOM } from '../../src/places/model.ts';
 import { memoryRoutes } from '../house/memory-routes.ts';
 import { callRoutes } from '../house/call-routes.ts';
+import { arenaParts } from '../tournaments/routes.ts';
 
 const NO_STORE = { 'Cache-Control': 'no-store' };
 const sameText = (a: string, b: unknown): boolean => {
@@ -38,7 +40,7 @@ const sameText = (a: string, b: unknown): boolean => {
 };
 
 export default function agentRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
-  const svc = agentService(ctx);
+  const svc = agentService(ctx), arena = arenaParts(ctx);
   (ctx.checks ??= {}).agentReported = (db, aboutId) => svc.reported(db, aboutId);
   // An agent standing in a group room loses its place at once when the room's door closes on it, as a person's socket does (server/ws/rooms.ts).
   ctx.on?.('place-ended', ({ roomId, playerId }) => { svc.placeEnded(roomId, playerId).catch(() => {}); });
@@ -57,11 +59,14 @@ export default function agentRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
     if (!ctx.allow(`agents:services:${request.ip}`, 60)) throw ctx.fail(429, 'rate_limited');
     return { body: { ok: true, services: await ctx.store.read((db) => svc.servicesIn(db, SQUARE_ROOM)) }, headers: { 'Cache-Control': 'public, max-age=10' } };
   };
-  // The public pages (no script, no cookie): the league, one agent, and a claim link.
+  // The public pages (no script, no cookie): the league, one agent, a claim link, and the arena's (how to connect, cups, challenges, matches).
   ctx.pages?.set('/agents/', async ({ path, query, origin, ip }) => {
     if (!ctx.allow(`agents:page:${ip}`, 60)) return { status: 429, cache: false, html: leaguePageHtml([], 'weekly', origin) };
-    const rest = decodeURIComponent(path.slice('/agents/'.length)).replace(/\/+$/, '');
-    if (rest === 'league' || rest === '') { const league = await ctx.store.read((db) => svc.league(db, query.get('by') === 'alltime' ? 'allTime' : 'weekly')); return { status: 200, cache: false, html: leaguePageHtml(league.rows, league.which, origin) }; }
+    let rest = '';
+    try { rest = decodeURIComponent(path.slice('/agents/'.length)).replace(/\/+$/, ''); } catch { return { status: 404, cache: false, html: leaguePageHtml([], 'weekly', origin) }; }
+    if (rest === 'league' || rest === '') { const [league, arenaNow] = [await ctx.store.read((db) => svc.league(db, query.get('by') === 'alltime' ? 'allTime' : 'weekly')), await arena.arenaFor()]; return { status: 200, cache: false, html: leaguePageHtml(league.rows, league.which, origin, arenaNow) }; }
+    const arenaPage = await arena.page(rest, origin);
+    if (arenaPage) return { ...arenaPage, cache: false };
     if (rest.startsWith('claim/')) { const token = rest.slice(6); const state = isClaimToken(token) ? await ctx.store.read((db) => svc.claimStatus(db, token)) : { status: 'unknown' as const }; return { status: state.status === 'unknown' ? 404 : 200, cache: false, html: claimPageHtml(state, token, origin) }; }
     const profile = await ctx.store.read((db) => svc.profile(db, rest));
     return profile ? { status: 200, cache: false, html: agentPageHtml(profile, origin) } : { status: 404, cache: false, html: leaguePageHtml([], 'weekly', origin) };
@@ -72,6 +77,7 @@ export default function agentRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
     ...mcpRoutes(ctx, svc),
     ...memoryRoutes(ctx, guard, limited),
     ...callRoutes(ctx, guard),
+    ...arena.routes(guard, limited),
     'GET /api/agents': async (request) => ({ body: await ctx.store.read((db) => ({ ...svc.view(db, request.requireSession(db)), limits: { keys: AGENT_LIMITS.keysPerAccount, characters: AGENT_LIMITS.charactersPerAccount, callsPerDay: AGENT_LIMITS.callsPerDay }, cities: ctx.cityIds })), headers: NO_STORE }),
     'POST /api/agents/keys': async (request) => {
       const body = await request.json();

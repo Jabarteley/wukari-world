@@ -110,7 +110,8 @@ export interface CartridgeReport {
   rewards?: readonly number[]
 }
 /** The limits a report is clamped to: the table games' own (src/game/content/growth.ts), so a game never pays more than a table does. */
-export const CARTRIDGE_LIMITS = Object.freeze({
+// Pure, so a client chunk that reads the registry but not the limits does not make the startup engine chunk export the table limits.
+export const CARTRIDGE_LIMITS = /* @__PURE__ */ Object.freeze({
   rewardPerWin: TABLE_REWARDS.win,
   paidWinsPerDay: TABLE_REWARDS.paidWinsPerDay,
   pairGamesPerDay: TABLE_REWARDS.pairGamesPerDay,

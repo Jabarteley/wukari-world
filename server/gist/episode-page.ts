@@ -4,25 +4,13 @@
  * the gist (public lines only) and is escaped. A week with too little to say says so and is not indexed.
  */
 import { esc, shell } from '../agents/pages.ts';
+import { episodeFacts } from '../../src/episode/text.ts';
 import type { EpisodeView } from '../../src/types/world.ts';
 
 const monthDay = (name: string): string => new Date(`${name}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'UTC' });
 const AI = ' <span class="tag">AI</span>';
 
 export const episodePath = (episode: Pick<EpisodeView, 'city' | 'week' | 'current'>): string => (episode.current ? `/episode/${episode.city}` : `/episode/${episode.city}/${episode.week}`);
-
-/** The words under the lines: the league place, the office, the stalls. Plain, no amounts. */
-export function episodeFacts(episode: EpisodeView): string[] {
-  const facts: string[] = [];
-  const league = episode.league;
-  if (league) {
-    const place = `${league.rank}${[, 'st', 'nd', 'rd'][league.rank % 100 > 10 && league.rank % 100 < 14 ? 0 : league.rank % 10] ?? 'th'}`;
-    facts.push(`${episode.cityName} ${episode.current ? 'is' : 'was'} ${place} of ${league.of} in the city league${league.leader && league.leader.id !== episode.city ? `, behind ${league.leader.name}` : league.rank === 1 ? (league.final ? ' and took the week' : ' so far') : ''}.`);
-  }
-  if (episode.office) facts.push(`On the public record: ${episode.office.title} ${episode.office.name}${episode.office.ai ? ' (AI)' : ''}.`);
-  if (episode.stalls > 0) facts.push(`${episode.stalls} new ${episode.stalls === 1 ? 'stall' : 'stalls'} opened.`);
-  return facts;
-}
 
 export function episodePageHtml(episode: EpisodeView, origin: unknown): string {
   const title = episode.current ? episode.headline : `${episode.quiet ? 'A quiet week' : 'The week'} of ${monthDay(episode.week)} in ${episode.cityName}`;

@@ -1,21 +1,11 @@
-// Pack manifest -> cartridge asset entries (the `assets` list of a cartridge manifest, src/arena/cartridge.ts on the cartridge
-// branch): { path, licence, source, author?, attribution? }, the same names and meanings the pack manifest already uses, so the
-// conversion only chooses files and drops the pipeline's own fields. Pure: no file is read.
-//
-// The type is restated here (structurally the contract's CartridgeAsset) because the contract is not on this branch yet; once it
-// is, `import type { CartridgeAsset } from '../../src/arena/cartridge.ts'` can replace it and the compiler checks they agree.
-import type { AssetLicence, Game, Manifest } from './pack-types.ts'
+// Pack manifest -> cartridge asset entries (the `assets` list of a cartridge manifest, src/arena/cartridge.ts):
+// { path, licence, source, author?, attribution? }, the same names and meanings the pack manifest already uses, so the conversion
+// only chooses files and drops the pipeline's own fields. Pure: no file is read.
+import type { CartridgeAsset } from '../../src/arena/cartridge.ts'
+import type { Game, Manifest } from './pack-types.ts'
 
-export interface CartridgeAssetEntry {
-  /** From the repository root, e.g. public/assets/packs/allworld-arenas/ring.glb. */
-  path: string
-  licence: AssetLicence
-  /** A page address for third-party work, `Allworld` for ours. */
-  source: string
-  author?: string
-  /** CC BY only: the credit line exactly as it must appear (and as NOTICE.md must contain it). */
-  attribution?: string
-}
+/** The contract's own entry type: the compiler checks a pack manifest's fields still fit it. */
+export type CartridgeAssetEntry = CartridgeAsset
 
 export interface PickAssets {
   /** Only the files tagged with this game. */

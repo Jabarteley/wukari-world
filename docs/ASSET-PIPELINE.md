@@ -100,10 +100,12 @@ Each asset:
 | `made` | Ours: the script that builds it. |
 | `prepared`, `note` | Set by prepare; what was changed. |
 
-The first five fields are the cartridge contract's asset entry (`src/arena/cartridge.ts` on the cartridge branch), with the same
+The first five fields are the cartridge contract's asset entry (`src/arena/cartridge.ts`), with the same
 meanings. `cartridgeAssets(manifest, { game, files })` in `scripts/assets/cartridge-assets.ts` returns those entries for a game's
 files (never the licence text), and `gameAssets(manifests, game)` gathers one game's files from every pack, so a cartridge's
-`manifest.assets` can list pack files as they are. Only CC0, CC BY and ours may enter; anything else fails the manifest check.
+`manifest.assets` can list pack files as they are. Checked 16 October 2026: with every game's files listed this way in
+`src/arena/cartridges.ts` (a local edit, not committed: Phases 4 to 6 wire them in), `npm run cartridge:check -- --no-dist` accepts
+them, and the test `scripts/assets/cartridge-assets.test.ts` runs the same checker over them. Only CC0, CC BY and ours may enter; anything else fails the manifest check.
 
 ## The packs
 

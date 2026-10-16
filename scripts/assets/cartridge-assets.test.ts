@@ -1,32 +1,14 @@
 import assert from 'node:assert/strict'
-import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { test } from 'node:test'
 import { readPacks } from './budget.ts'
 import { cartridgeAssets, gameAssets } from './cartridge-assets.ts'
-import type { CartridgeAssetEntry } from './cartridge-assets.ts'
 import { fakePng, model, packOf } from './fixtures.test-helper.ts'
-import { GAMES } from './pack-types.ts'
+import type { Game } from './pack-types.ts'
+import { CARTRIDGES } from '../../src/arena/cartridges.ts'
+import { checkCartridges, diskSource } from '../cartridge-check.ts'
 
 const root = join(import.meta.dirname, '..', '..')
-
-/** The cartridge contract's rules for an asset entry (validateCartridge and scripts/cartridge-check.ts on the cartridge branch). */
-function contractProblems(entries: readonly CartridgeAssetEntry[], notice: string): string[] {
-  const bad: string[] = []
-  const seen = new Set<string>()
-  for (const a of entries) {
-    if (!a.path || a.path.startsWith('/') || a.path.includes('..')) bad.push(`${a.path} must be inside the repository`)
-    if (seen.has(a.path)) bad.push(`${a.path} listed twice`)
-    seen.add(a.path)
-    if (!['CC0', 'CC-BY', 'MIT', 'ours'].includes(a.licence)) bad.push(`${a.path} has no valid licence`)
-    if (!a.source.trim()) bad.push(`${a.path} has no source`)
-    if (a.licence === 'CC-BY' && !a.attribution?.trim()) bad.push(`${a.path} needs attribution`)
-    if (a.licence === 'CC-BY' && a.attribution && !notice.includes(a.attribution.trim())) bad.push(`${a.path}: credit line not in NOTICE.md`)
-    if (a.licence === 'ours' && a.source !== 'Allworld') bad.push(`${a.path}: ours comes from Allworld`)
-    if (!existsSync(join(root, a.path))) bad.push(`${a.path} does not exist`)
-  }
-  return bad
-}
 
 test('a pack manifest becomes cartridge entries: path from the repository root, licence, source, author', () => {
   const p = packOf('kit', [{ name: 'LICENSE.txt', bytes: Buffer.from('CC0'), kind: 'licence' }, model('car.glb', 'race', 'vehicle', 10), model('ring.glb', 'fight', 'prop', 10), { name: 'old.png', bytes: fakePng(2, 2), kind: 'texture', game: 'race', temporary: true }]).manifest
@@ -50,10 +32,10 @@ test('CC BY keeps its credit line; ours says Allworld', () => {
 
 test('every game\'s files in the repository convert to entries the cartridge checker accepts', () => {
   const manifests = readPacks().map((p) => p.manifest)
-  const notice = readFileSync(join(root, 'NOTICE.md'), 'utf8')
-  for (const game of GAMES) {
-    const entries = gameAssets(manifests, game)
-    assert.ok(entries.length > 0, `${game} has assets`)
-    assert.deepEqual(contractProblems(entries, notice), [], game)
-  }
+  const listed = CARTRIDGES.map((c) => ({ ...c, manifest: { ...c.manifest, assets: gameAssets(manifests, c.id as Game) } }))
+  for (const c of listed) assert.ok(c.manifest.assets.length > 0, `${c.id} has assets`)
+  // The cartridge checker itself (scripts/cartridge-check.ts): valid entries, files that exist, CC BY lines in NOTICE.md.
+  assert.deepEqual(checkCartridges(listed, diskSource(root), null).problems, [])
+  const broken = listed.map((c) => (c.id === 'fight' ? { ...c, manifest: { ...c.manifest, assets: [{ ...c.manifest.assets[0]!, path: 'public/assets/packs/none.glb' }] } } : c))
+  assert.ok(checkCartridges(broken, diskSource(root), null).problems.some((p) => /none\.glb does not exist/.test(p)))
 })

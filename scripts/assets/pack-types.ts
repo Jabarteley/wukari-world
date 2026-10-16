@@ -2,7 +2,7 @@
 // scripts write (scripts/assets/manifests/<pack>.json) for the files they put in public/assets/packs/<pack>/. docs/ASSET-PIPELINE.md
 // explains both. The manifest is not shipped: the release package admits no JSON there, and the game does not need it.
 //
-// A manifest asset carries the cartridge asset fields (src/arena/cartridge.ts on the cartridge branch: path, licence, source,
+// A manifest asset carries the cartridge asset fields (src/arena/cartridge.ts: path, licence, source,
 // author, attribution) under the same names and meanings, so a cartridge manifest can list pack files as they are
 // (./cartridge-assets.ts does the conversion), plus bytes, triangles and the facts the pipeline needs to rebuild a file.
 

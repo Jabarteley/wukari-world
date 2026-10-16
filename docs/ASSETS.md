@@ -2,6 +2,8 @@
 
 Assets the game ships that it did not make itself, where they came from, under what licence, and how they are rebuilt.
 
+The arena games' packs (Fight, Race, Football: KayKit, Kenney and our own Blender-made pieces) have their own pipeline, manifests and credits: [ASSET-PIPELINE.md](ASSET-PIPELINE.md).
+
 ## Skinned body (`src/scene/body/assets/`)
 
 For every player, with no switch, the player's own figure is one skinned mesh with baked clips instead of the procedural avatar (`src/scene/characters.ts`): in the home room, in every venue, and in the look preview once the world has fetched it. Other players and NPCs keep the procedural figure. The files are built into `dist/assets/` with hashed names (`base-body-male-<hash>.glb`, `base-body-female-<hash>.glb`, `clip-pack-<hash>.glb`), served as `model/gltf-binary` and cached as immutable. Nothing below is fetched before a scene's first frame, or at all on a device the fallback rules below exclude.

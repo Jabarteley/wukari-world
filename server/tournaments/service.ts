@@ -20,8 +20,8 @@ import { agentService } from '../agents/service.ts';
 import type { AgentCharacter } from '../agents/service.ts';
 import type { Db, RouteContext } from '../types.ts';
 import { ARENA, COLLECTION, CUP_ID, LIFE_CATEGORIES, LIFE_LABELS, bracketFirstRound, bracketRounds, categoryOf, cupId, cupKeys, emptyBook, isLifeKey, peekBook, prizeFor, prizeRoom, repairBook, roundRobin, tableOf, weekOf } from './book.ts';
-import type { ArenaBook, Challenge, Cup, CupResult, LifeCategory, MatchRec, Standing, Week } from './book.ts';
-import { baseOf, ownerKeyOf, related, scoreOf } from './life.ts';
+import type { ArenaBook, Challenge, Cup, CupResult, Entrant, LifeCategory, MatchRec, Standing, Week } from './book.ts';
+import { SNAPPED, baseOf, ownerKeyOf, related, scoreOf } from './life.ts';
 import { advance, kindOfGame, labelOfGame, newMatch, seatOf, submit, touch, viewOf } from './matches.ts';
 
 type Json = Record<string, unknown>;
@@ -31,7 +31,9 @@ const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 
 export const CHALLENGE_CODE = /^c-[a-z0-9]{8}$/;
 export const MATCH_ID = /^m[a-z0-9]{1,8}[a-f0-9]{5}$/;
 
-export const keyLabel = (key: string): string => { const c = categoryOf(key); return c ? LIFE_LABELS[c].label : labelOfGame(key); };
+const isCategory = (key: string): key is LifeCategory => (LIFE_CATEGORIES as readonly string[]).includes(key);
+/** What a cup key ("chess", "life-stall") or a challenge key ("chess", "stall") is called. */
+export const keyLabel = (key: string): string => { const c = categoryOf(key) ?? (isCategory(key) ? key : null); return c ? LIFE_LABELS[c].label : labelOfGame(key); };
 /** The kinds of challenge: every game a cup is played at, and every life category. */
 export const challengeKeys = (): { kind: 'game' | 'life'; key: string; label: string }[] => [
   ...cupKeys().filter((key) => !isLifeKey(key) && kindOfGame(key) !== null).map((key) => ({ kind: 'game' as const, key, label: labelOfGame(key) })),
@@ -57,6 +59,28 @@ function build(ctx: RouteContext) {
   const ratingOf = (db: Db, id: string, game: string): number => { const found = (db.growth?.tables?.ratings?.[id] as Record<string, { rating?: number }> | undefined)?.[game]?.rating; return typeof found === 'number' && Number.isFinite(found) ? found : 1200; };
   const nextId = (book: ArenaBook, prefix: string): string => `${prefix}${(++book.seq).toString(36)}${ctx.randomId().replace(/[^a-f0-9]/g, '').slice(0, 5).padEnd(5, '0')}`;
   const matchesOfCup = (book: ArenaBook, cup: Cup): MatchRec[] => (cup.rounds ?? []).flatMap((round) => round.matches.map((m) => book.matches[m]).filter((m): m is MatchRec => m !== undefined));
+  /**
+   * A life cup entrant's score at `t`, counting only what happened before the week ended. Missions and offices carry no time, so once the
+   * end is more than ARENA.snapMs behind, the score read last before the end is used (the heartbeat reads it every ARENA.snapMs while the cup runs).
+   */
+  function lifeScore(db: Db, cup: Cup, e: Entrant, category: LifeCategory, t: number): number {
+    const end = weekOf(cup.week).end;
+    if (SNAPPED.includes(category) && t - end > ARENA.snapMs && e.snap !== undefined) return e.snap;
+    return scoreOf(ctx, db, category, e, t, holders, Math.min(t, end));
+  }
+  /** Read the running life contests' scores when the last reading is ARENA.snapMs old (see lifeScore). */
+  const snapDue = (book: ArenaBook, t: number): boolean => Object.values(book.cups).some((cup) => cupSnapDue(cup, t)) || Object.values(book.challenges).some((c) => challengeSnapDue(c, t));
+  const cupSnapDue = (cup: Cup, t: number): boolean => { const cat = categoryOf(cup.key); return cat !== null && SNAPPED.includes(cat) && cup.status === 'open' && cup.entrants.length > 0 && t < weekOf(cup.week).end && t - (cup.snapAt ?? 0) >= ARENA.snapMs; };
+  const challengeSnapDue = (c: Challenge, t: number): boolean => c.status === 'playing' && c.life !== undefined && isCategory(c.key) && SNAPPED.includes(c.key) && t < c.life.end && t - (c.life.snap?.at ?? 0) >= ARENA.snapMs;
+  function snapLife(db: Db, book: ArenaBook, t: number): void {
+    for (const cup of Object.values(book.cups)) {
+      const cat = categoryOf(cup.key);
+      if (!cat || !cupSnapDue(cup, t)) continue;
+      for (const e of cup.entrants) e.snap = scoreOf(ctx, db, cat, e, t, holders);
+      cup.snapAt = t;
+    }
+    for (const c of Object.values(book.challenges)) if (c.life && challengeSnapDue(c, t)) { const scores = lifeScores(db, c, t); if (scores) c.life.snap = { at: t, scores }; }
+  }
 
   // ---- the cups --------------------------------------------------------------------------------------------------
 
@@ -79,7 +103,7 @@ function build(ctx: RouteContext) {
     if (!book || !cup) return null;
     const names = Object.fromEntries(cup.entrants.map((e) => [e.id, e.name]));
     const category = categoryOf(cup.key);
-    const scores = category && cup.status !== 'void' ? cup.entrants.map((e, index) => ({ name: e.name, score: cup.results?.find((r) => r.id === e.id)?.score ?? scoreOf(ctx, db, category, e, t, holders), index }))
+    const scores = category && cup.status !== 'void' ? cup.entrants.map((e, index) => ({ name: e.name, score: cup.results?.find((r) => r.id === e.id)?.score ?? lifeScore(db, cup, e, category, t), index }))
       .sort((a, b) => b.score - a.score || a.index - b.index).map((row, index) => ({ rank: index + 1, name: row.name, score: row.score, ai: true })) : null;
     const standings: Standing[] | null = !category && cup.format === 'roundrobin' ? cup.table ?? tableOf(cup.entrants.map((e) => e.id), names, matchesOfCup(book, cup)) : null;
     return { id: cup.id, key: cup.key, kind: cup.kind, label: keyLabel(cup.key), week: cup.week, status: cup.status, format: cup.format ?? null, unit: category ? LIFE_LABELS[category].unit : 'points',
@@ -172,7 +196,7 @@ function build(ctx: RouteContext) {
   function rankCup(db: Db, book: ArenaBook, cup: Cup, t: number): CupResult[] {
     const category = categoryOf(cup.key);
     const ranked = (rows: { id: string; name: string; score: number; index: number }[]): CupResult[] => rows.sort((a, b) => b.score - a.score || a.index - b.index).map((row, i) => ({ rank: i + 1, id: row.id, name: row.name, score: row.score, prize: 0 }));
-    if (category) return ranked(cup.entrants.map((e, index) => ({ id: e.id, name: e.name, score: scoreOf(ctx, db, category, e, t, holders), index })));
+    if (category) return ranked(cup.entrants.map((e, index) => ({ id: e.id, name: e.name, score: lifeScore(db, cup, e, category, now()), index })));
     const matches = matchesOfCup(book, cup), names = Object.fromEntries(cup.entrants.map((e) => [e.id, e.name]));
     if (cup.format === 'roundrobin') { cup.table = tableOf(cup.entrants.map((e) => e.id), names, matches); return cup.table.map((row) => ({ rank: row.rank, id: row.id, name: row.name, score: row.points, prize: 0 })); }
     // A bracket: the round an agent went out in (the winner of the last match is one further). A bye counts as going through.
@@ -259,10 +283,12 @@ function build(ctx: RouteContext) {
     }
     return { ok: true, code: c.code, match: c.match ?? null, card: `/agents/challenge/${c.code}` };
   }
+  /** A life challenge's scores at `t`, counting only its seven days (as lifeScore does for a cup). */
   function lifeScores(db: Db, c: Challenge, t: number): [number, number] | null {
     if (!c.life || !c.to) return null;
-    const cat = c.key as LifeCategory, life = c.life, at = Math.min(t, life.end);
-    const one = (id: string, i: 0 | 1): number => scoreOf(ctx, db, cat, { id, enteredAt: life.start, base: life.bases[i], people: life.people[i] }, at, holders);
+    const cat = c.key as LifeCategory, life = c.life;
+    if (SNAPPED.includes(cat) && t - life.end > ARENA.snapMs && life.snap) return [life.snap.scores[0], life.snap.scores[1]];
+    const one = (id: string, i: 0 | 1): number => scoreOf(ctx, db, cat, { id, enteredAt: life.start, base: life.bases[i], people: life.people[i] }, t, holders, Math.min(t, life.end));
     return [one(c.from.id, 0), one(c.to.id, 1)];
   }
   function syncChallenge(db: Db, book: ArenaBook, c: Challenge, t: number): void {
@@ -305,7 +331,7 @@ function build(ctx: RouteContext) {
   function due(db: Db): boolean {
     const book = peekBook(db), t = now();
     if (!book) return false;
-    if (Object.values(book.prizes).some((p) => !p.paid)) return true;
+    if (Object.values(book.prizes).some((p) => !p.paid) || snapDue(book, t)) return true;
     for (const cup of Object.values(book.cups)) {
       const w = weekOf(cup.week);
       if (cup.status === 'open' && t >= (cup.kind === 'life' ? w.end : w.entryEnd)) return true;
@@ -322,6 +348,7 @@ function build(ctx: RouteContext) {
   function sync(db: Db): string[] {
     if (!peekBook(db)) return [];
     const book = writeBook(db), t = now(), lines: { text: string; key: string }[] = [];
+    snapLife(db, book, t);
     for (const cup of Object.values(book.cups)) {
       const w = weekOf(cup.week);
       if (cup.status === 'open') {

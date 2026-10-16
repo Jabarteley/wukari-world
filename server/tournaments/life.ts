@@ -17,7 +17,7 @@ import { sha256Hex } from '../../src/game/util.ts';
 import { accountOfSession } from '../admin/gate.ts';
 import type { Db, RouteContext, SessionRecord } from '../types.ts';
 import type { AgentsCollection } from '../agents/service.ts';
-import { DAY_MS, peekBook } from './book.ts';
+import { DAY_MS, peekBook, weekOf } from './book.ts';
 import type { Entrant, LifeCategory } from './book.ts';
 
 type Json = Record<string, unknown>;
@@ -59,12 +59,12 @@ export function personFor(ctx: Core, db: Db, agent: string, id: string, now: num
   return related(ctx, db, agent, id) ? null : account.id;
 }
 
-/** The friends an agent made since `since`, each a real person on a different account (one per account). */
-export function realFriends(ctx: Core, db: Db, id: string, since: number, now: number): string[] {
+/** The friends an agent made from `since` until `until`, each a real person on a different account (one per account). */
+export function realFriends(ctx: Core, db: Db, id: string, since: number, now: number, until = now): string[] {
   const players = (db.social as unknown as { players?: Record<string, { friends?: Record<string, number> } | undefined> } | undefined)?.players;
   const mine = players?.[id]?.friends ?? {}, seen = new Set<string>(), found: string[] = [];
   for (const [friend, at] of Object.entries(mine)) {
-    if (typeof at !== 'number' || at < since) continue;
+    if (typeof at !== 'number' || at < since || at > until) continue;
     const account = personFor(ctx, db, id, friend, now);
     if (!account || seen.has(account)) continue;
     seen.add(account); found.push(friend);
@@ -89,11 +89,13 @@ export function baseOf(ctx: Core, db: Db, category: LifeCategory, id: string, ho
   if (category === 'office') return holders(db).get(id) ?? 0;
   return 0;
 }
-/** An entrant's score: what happened since entering. */
-export function scoreOf(ctx: Core, db: Db, category: LifeCategory, entrant: Pick<Entrant, 'id' | 'enteredAt' | 'base' | 'people'>, now: number, holders: Holders): number {
+/** Categories whose records carry no time, so a late settlement reads the score taken before the end instead. */
+export const SNAPPED: readonly LifeCategory[] = ['missions', 'office'];
+/** An entrant's score: what happened from entering until `until` (friends and stall takings carry their time; missions and offices are read now). */
+export function scoreOf(ctx: Core, db: Db, category: LifeCategory, entrant: Pick<Entrant, 'id' | 'enteredAt' | 'base' | 'people'>, now: number, holders: Holders, until = now): number {
   switch (category) {
     case 'stall': return Math.max(0, entrant.people);
-    case 'friends': return realFriends(ctx, db, entrant.id, entrant.enteredAt, now).length;
+    case 'friends': return realFriends(ctx, db, entrant.id, entrant.enteredAt, now, until).length;
     case 'missions': return Math.max(0, missionsOf(ctx, db, entrant.id) - entrant.base);
     case 'office': return Math.max(0, (holders(db).get(entrant.id) ?? 0) - entrant.base);
   }
@@ -110,7 +112,7 @@ export function noteShopSale(ctx: Pick<RouteContext, 'core' | 'now'>, db: Db, ow
   let person: string | null | undefined;
   const counts = (): boolean => (person === undefined ? (person = personFor(ctx, db, owner, buyer, now)) : person) !== null;
   for (const cup of Object.values(book.cups)) {
-    if ((cup.status !== 'open' && cup.status !== 'running') || cup.key !== 'life-stall') continue;
+    if ((cup.status !== 'open' && cup.status !== 'running') || cup.key !== 'life-stall' || now >= weekOf(cup.week).end) continue;
     const entry = cup.entrants.find((item) => item.id === owner);
     if (entry && counts()) entry.people += amount;
   }

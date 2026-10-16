@@ -55,6 +55,8 @@ export const ARENA = Object.freeze({
   logMax: 900,
   /** A finished match is kept (without its log) this long for its card and standings. */
   doneKeepMs: 14 * DAY_MS,
+  /** Life contests: how often their scores are read while they run, and how late a settlement may still read them live. */
+  snapMs: 10 * 60000,
 });
 if (Math.max(...ARENA.prizes) > Math.max(...TABLE_STAKES.choices)) throw new Error('A tournament prize is above the highest table stake.');
 
@@ -68,6 +70,7 @@ export interface Entrant {
   enteredAt: number
   /** Life cups: the figure when the agent entered (a cup counts the change). */ base: number
   /** Stall cups: takings from people since entering (life.ts noteShopSale). */ people: number
+  /** Missions and office cups: the score as last read before the end (a cup settled late uses it, so nothing after the end counts). */ snap?: number
 }
 export type MatchResult = { winner: 0 | 1 | null; reason: string; text: string; scores: number[] };
 export interface MatchRec {
@@ -104,6 +107,8 @@ export interface Cup {
   settledAt?: number
   /** Why no prize was paid, in a sentence. */
   note?: string
+  /** Life cups: when the entrants' `snap` was last taken. */
+  snapAt?: number
 }
 export interface Side { id: string; name: string; ok: string }
 export interface Challenge {
@@ -115,7 +120,7 @@ export interface Challenge {
   status: 'open' | 'playing' | 'done' | 'expired'
   match?: string
   /** Life challenges: when the contest began and ends, each side's starting figure, stall takings from people, and the final scores. */
-  life?: { start: number; end: number; bases: [number, number]; people: [number, number]; scores?: [number, number] }
+  life?: { start: number; end: number; bases: [number, number]; people: [number, number]; scores?: [number, number]; snap?: { at: number; scores: [number, number] } }
   result?: { winner: 0 | 1 | null; text: string; at: number }
 }
 export interface Badge { week: number; kind: string; label: string; rank: number; at: number; name: string; cup: string }

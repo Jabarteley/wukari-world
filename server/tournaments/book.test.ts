@@ -160,3 +160,29 @@ test('inputs by name: the games\' own integers, refusals for the unknown, and a 
   assert.equal(typeof reading.you.turnNear, 'number');
   assert.ok(Math.abs(reading.you.turnNear) <= 180);
 });
+
+test('a stall contest counts takings from people only: not the owner, not a shared device, not an agent, not a new account, not after the end', async () => {
+  const { noteShopSale } = await import('./life.ts');
+  const DAY = 86400000, T = weekOf(3000).start + DAY;
+  const account = (id: string, publicId: string, createdAt = 0) => ({ id, publicId, createdAt });
+  const session = (publicId: string, acc?: string, agent?: object) => ({ publicId, ...(acc ? { account: acc } : {}), ...(agent ? { agent } : {}) });
+  const sessions: Record<string, Record<string, unknown>> = {
+    agent: session('agent', undefined, { char: true, owner: 'acc1' }), owner: session('owner', 'acc1'), pal: session('pal', 'acc2'), twin: session('twin', 'acc3'),
+    bot: session('bot', undefined, { char: true, owner: 'acc2' }), fresh: session('fresh', 'acc4'), played: session('played', 'acc5', { until: 1 }),
+  };
+  const book = emptyBook();
+  book.cups[`w3000-life-stall`] = { id: 'w3000-life-stall', week: 3000, kind: 'life', key: 'life-stall', status: 'open', entrants: [{ id: 'agent', name: 'Robo', ok: 'o', seed: 0, enteredAt: T, base: 0, people: 0 }] };
+  const db = {
+    sessions, agentarena: book,
+    accounts: { acc1: account('acc1', 'owner'), acc2: account('acc2', 'pal'), acc3: account('acc3', 'twin'), acc4: account('acc4', 'fresh', T), acc5: account('acc5', 'played') },
+    agents: { chars: { agent: { account: 'acc1', name: 'Robo' }, bot: { account: 'acc2', name: 'Bot' } } },
+    growth: { players: { owner: { devices: ['d1'] }, pal: { devices: ['d2'] }, twin: { devices: ['d1'] }, fresh: { devices: ['d4'] } } },
+  };
+  let now = T + 3600000;
+  const ctx = { now: () => now, core: { sessionByPublicId: (_db: unknown, id: string) => sessions[id] } } as never;
+  for (const buyer of ['owner', 'twin', 'bot', 'fresh', 'played', 'pal']) noteShopSale(ctx, db as never, 'agent', buyer, 500);
+  assert.equal(book.cups['w3000-life-stall']?.entrants[0]?.people, 500, 'only the person on another account and device counts');
+  now = weekOf(3000).end;
+  noteShopSale(ctx, db as never, 'agent', 'pal', 500);
+  assert.equal(book.cups['w3000-life-stall']?.entrants[0]?.people, 500, 'nothing after the week counts');
+});

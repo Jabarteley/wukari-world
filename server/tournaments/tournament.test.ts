@@ -115,7 +115,7 @@ test('a game cup: four people\'s agents enter, play through their keys, and the 
   assert.equal(await w.stored((db) => Object.values(db.sessions).find((s) => s.publicId === ada.id)?.cities?.lagos?.state?.cash), after?.cash);
 
   // The owner's badge and card; the gist line; the league page.
-  const mine = await w.json('/api/agents/arena', undefined, ada.owner.cookie) as Json & { badges: Json[]; prizes: Json[] };
+  const mine = await w.json('/api/agents/arena', undefined, ada.owner.cookie) as unknown as Json & { badges: Json[]; prizes: Json[] };
   assert.equal(mine.badges[0]?.label, 'Fight cup');
   assert.equal(mine.badges[0]?.rank, 1);
   const card = await (await fetch(`${w.f.base}${String(mine.badges[0]?.card)}`)).text();
@@ -150,6 +150,11 @@ test('who may enter: an agent character claimed by a person, one for each person
   assert.equal(viaSettings.code, 'entered', text(viaSettings));
   const notMine = await w.post('/api/agents/arena/enter', { agent: ben.id, cup: 'whot' }, ada.owner.cookie);
   assert.deepEqual([notMine.status, notMine.error], [404, 'unknown_agent']);
+  // An agent character its person removes leaves the cups it is in.
+  const cy = await agentOwner(w, 'Cy1', 'Cyra', 'Robo Cy');
+  assert.equal((await w.tool(cy.key, 'tournament_enter', { cup: 'whot' })).ok, true);
+  assert.equal((await w.post(`/api/agents/characters/${cy.id}/remove`, {}, cy.owner.cookie)).code, 'removed');
+  assert.deepEqual((await bookOf(w)).cups[`w${week}-whot`]?.entrants, []);
   toDay(w, week, 2, 1);
   const late = await w.tool(ada.key, 'tournament_enter', { cup: 'whot' });
   assert.equal(late.data.code, 'entries_closed');
@@ -180,11 +185,15 @@ test('a life cup is measured from the game\'s records: missions collected after 
     (players[ada.id] ??= { friends: {} } as never).friends = { [pal.id]: at, [ada.owner.id]: at, [ben.id]: at };
     (players[ben.id] ??= { friends: {} } as never).friends = { [pal.id]: at - 30 * DAY };
   });
-  const live = await w.json(`/api/agents/arena/cup/w${week}-life-missions`) as Json & { cup: { scores: { name: string; score: number }[] } };
+  const live = await w.json(`/api/agents/arena/cup/w${week}-life-missions`) as unknown as Json & { cup: { scores: { name: string; score: number }[] } };
   assert.deepEqual(live.cup.scores.map((s) => [s.name, s.score]), [['Robo Ben', 3], ['Robo Ada', 2]], 'only what happened after entering counts');
-  const friends = await w.json(`/api/agents/arena/cup/w${week}-life-friends`) as Json & { cup: { scores: { name: string; score: number }[] } };
+  const friends = await w.json(`/api/agents/arena/cup/w${week}-life-friends`) as unknown as Json & { cup: { scores: { name: string; score: number }[] } };
   assert.deepEqual(friends.cup.scores.map((s) => [s.name, s.score]), [['Robo Ada', 1], ['Robo Ben', 0]], 'one real person; the owner, another agent and a friendship from before do not count');
+  // The last reading before the end (the heartbeat takes one every ten minutes while a life cup runs), then the end passes unattended for an hour.
+  toDay(w, week, 6, 23);
+  await w.tool(ada.key, 'tournament_cups');
   toDay(w, week, 7, 1);
+  await bump(ada.id, 10);
   await w.tool(ada.key, 'tournament_cups');
   const book = await bookOf(w);
   assert.equal(book.cups[`w${week}-life-missions`]?.status, 'settled');

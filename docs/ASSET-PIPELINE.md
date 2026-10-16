@@ -127,7 +127,7 @@ holds its source's `LICENSE.txt` (not counted).
   `blocking`, `block-hit`, `hit`, `hit-2`, `dodge-back`, `down`, `cheer`. `ring.glb`: the ring on a 14 m concrete floor.
 - **Race:** four cars (`raceCarRed`, `Green`, `Orange`, `White`; separate `body` and four wheel nodes, `wheelFrontLeft` and so
   on, for steering and spin), nine road pieces (start, start grid, two straights, three corners, a curve, a pit lane), barriers, a wall, a
-  fence, pylons, a chequered flag, light posts, trees, grass, a tent, two grandstands and a pit garage.
+  fence, pylons, a chequered flag, light posts, trees, grass, a tent, two grandstands and a pit garage. The Race screen (`src/arena/race-3d.ts`) loads twelve of them: the four cars, the barrier wall, the fence, a grandstand, the pit garage, two trees, a light post and the chequered flag (about 0.1 MB in all); the road itself is built from the track in code.
 - **Football:** `pitch.glb`, `goal.glb` (five-a-side), `goal-full.glb` (full size, for a penalty duel), `ball.glb`, the goals'
   shared net texture, and `player-1.glb` to `player-4.glb` (clips `idle`, `walk`, `run`, `kick`, `celebrate`, `dejected`, `down`,
   `pick-up`). No goalkeeper dive clip exists in these packs; Phase 6 needs one (KayKit's `Dodge_*` clips or our own).

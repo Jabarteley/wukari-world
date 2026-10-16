@@ -56,6 +56,7 @@ import type { LivingWorldJusticeRoutes } from './living-world-justice.ts'
 import type { LivingWorldAssessmentRoutes } from './living-world-assessment.ts'
 import type { PublicProfileHttpRoutes } from './public-profile.ts'
 import type { ArenaHttpRoutes } from './arena.ts'
+import type { ClansHttpRoutes } from './clans.ts'
 
 // ---- shared primitives ---------------------------------------------------------------------------
 
@@ -285,7 +286,7 @@ export interface CoreHttpRoutes {
  * telemetry endpoints are added beside them by server/server.ts: growth.ts TelemetryHttpRoutes.)
  */
 export interface HttpRoutes extends CoreHttpRoutes, SocialHttpRoutes, CivicHttpRoutes, SupportHttpRoutes, ModerationHttpRoutes, WorldHttpRoutes,
-  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes, PublicProfileHttpRoutes, ArenaHttpRoutes {
+  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes, PublicProfileHttpRoutes, ArenaHttpRoutes, ClansHttpRoutes {
   'GET /api/world/land': { query: { city: CityId }; response: Ok<LandView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'invalid_city' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' }
   'POST /api/world/land/buy': { body: LandBuyRequest; response: Ok<{ ok: boolean; code: string; duplicate?: true; pending?: true }>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | JsonBodyErrorCode | OnceErrorCode | 'invalid_city' | 'invalid_land_purchase' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' | 'land_pending' | 'not_owned_home' | 'land_price_changed' | 'land_intent_changed' }
 }
@@ -419,7 +420,7 @@ export interface PresenceDeltaFrame {
   counts?: RoomCounts
 }
 /** One group in the answer to `groups`. `friends` are the caller's friends in it (names); a stranger is only a count. */
-export interface GroupSummary { id: string; no: number; size: number; open: boolean; mine: boolean; friends: PublicSession[] }
+export interface GroupSummary { id: string; no: number; size: number; open: boolean; mine: boolean; friends: PublicSession[]; /** The clan whose room this group is (server/clans/venue.ts): its name and colour. */ clan?: { name: string; hex: string } }
 export interface GroupsListFrame { type: 'groups'; here: number; total: number; groups: GroupSummary[]; more: number }
 /** A calm line about where the player is: they were moved to another group, or could not be placed with a friend. */
 export interface GroupNoticeFrame {
@@ -744,6 +745,8 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/world/feed',
   'GET /api/world/gist',
   'GET /api/arena/replay/:id',
+  'GET /api/clans/me', 'GET /api/clans/preview', 'POST /api/clans/create', 'POST /api/clans/join', 'POST /api/clans/leave', 'POST /api/clans/kick',
+  'POST /api/clans/role', 'POST /api/clans/edit', 'POST /api/clans/code', 'POST /api/clans/venue', 'POST /api/clans/prize', 'GET /api/clans/boards', 'GET /api/clans/league',
   'POST /api/arena/clip',
   'GET /api/world/pray',
   'POST /api/world/pray',

@@ -10,7 +10,8 @@
  */
 import { lagosTime } from '../../src/game/clock.ts';
 import { WAR } from '../../src/clans/war.ts';
-import { CLAN, COLOURS, cleanClanName, cleanCode, codeFrom, colourOf, joinBlock, kickBlock, nameKey, roleChange, roleOf, withoutMember } from '../../src/clans/clan.ts';
+import { CLAN, COLOURS, cleanClanName, cleanCode, codeFrom, colourOf, joinBlock, kickBlock, nameKey, roleChange, roleOf, venueBlock, venueHoldable, withoutMember } from '../../src/clans/clan.ts';
+import { venueFor } from '../../src/game/cities/runtime.ts';
 import { socialService } from '../social/service.ts';
 import { characterCity } from '../character.ts';
 import { clansOf, peekClans } from './data.ts';
@@ -84,7 +85,8 @@ function build(ctx: RouteContext) {
     if (!member) return base;
     const wk = clan.wk && clan.wk.n === tm.week ? clan.wk : null, opp = wk?.vs ? c.clans[wk.vs] : undefined;
     const members = clan.members.map((m) => ({ id: m, name: s.players[m]?.name ?? c.players[m]?.name ?? 'Player', role: roleOf(clan, m) as string, ...(c.players[m]?.ai ? { ai: true } : {}), pts: Math.max(0, wk?.s[m] ?? 0) }));
-    return { ...base, code: clan.code, role: role as string, room: clan.room, rating: clan.rating, members, deputies: clan.deputies.length,
+    const held = clan.venue ? { city: clan.venue.city, cityName: cityName(clan.venue.city), venue: clan.venue.venue, venueName: (() => { try { return venueFor(clan.venue!.city, clan.venue!.venue)?.label ?? clan.venue!.venue; } catch { return clan.venue!.venue; } })() } : null;
+    return { ...base, code: clan.code, role: role as string, room: clan.room, rating: clan.rating, members, deputies: clan.deputies.length, venue: held, venueMin: CLAN.venueMin,
       war: wk ? { week: wk.n, vs: opp ? { name: opp.name, size: opp.members.length, colour: opp.colour } : null, mine: wk ? members.filter((x) => !x.ai).map((x) => x.pts) : [] } : null,
       last: clan.last ? { ...clan.last, prize: clan.last.prize && viewer && clan.last.prize.ids.includes(viewer) && c.players[viewer]?.prize !== clan.last.n ? clan.last.prize.amount : 0 } : null };
   }
@@ -134,7 +136,7 @@ function build(ctx: RouteContext) {
       });
       if (!out.ok) return out;
       const c = clansOf(ctx, db), clan = c.clans[out.clan];
-      return clan ? yes('created', { clan: view(db, c, clan, id), ...(out.duplicate ? { duplicate: true } : { push }) }) : no('unknown_clan', 'That clan is gone.');
+      return clan ? yes('created', { clan: view(db, c, clan, id), ...('duplicate' in out && out.duplicate ? { duplicate: true } : { push }) }) : no('unknown_clan', 'That clan is gone.');
     },
     join(db: Db, session: SessionRecord, body: Record<string, unknown>) {
       const code = cleanCode(body.code); if (!code) throw bad('invalid_code');
@@ -197,6 +199,22 @@ function build(ctx: RouteContext) {
       if (body.city !== undefined) { if (typeof body.city !== 'string' || !ctx.cityIds.some((x) => x === body.city)) throw bad('invalid_city'); clan.city = body.city; }
       say(s, clan, 'The clan details were updated.', push);
       return yes('edited', { clan: view(db, c, clan, id), push });
+    },
+    /** The leader picks the venue where the clan holds a room (or none). Once the clan has CLAN.venueMin people. */
+    venue(db: Db, session: SessionRecord, body: Record<string, unknown>) {
+      const { s, id } = kit.enter(db, session), push: PushList = [];
+      const c = clansOf(ctx, db), clan = myClan(c, id);
+      if (!clan) return no('no_clan', 'You are not in a clan.');
+      if (clan.leader !== id) return no('leader_only', 'Only the clan leader can do that.');
+      if (body.venue === null) { delete clan.venue; say(s, clan, 'The clan gave up its room.', push); return yes('venue', { clan: view(db, c, clan, id), push }); }
+      const small = venueBlock(clan.members.length); if (small) return small;
+      const city = typeof body.city === 'string' && ctx.cityIds.some((x) => x === body.city) ? body.city : null;
+      if (!city || !venueHoldable(body.venue)) throw bad('invalid_venue');
+      const place = (() => { try { return venueFor(city, body.venue); } catch { return undefined; } })();
+      if (!place) return no('unknown_venue', 'That place is not open in that city.');
+      clan.venue = { city, venue: body.venue, at: now() };
+      say(s, clan, `The clan now holds a room at ${place.label}, ${cityName(city)}. Members are seated together there.`, push);
+      return yes('venue', { clan: view(db, c, clan, id), push });
     },
     /** Replace the invite code (the old one stops working). Leader or a deputy. */
     newCode(db: Db, session: SessionRecord) {

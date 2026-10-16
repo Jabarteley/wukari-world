@@ -18,6 +18,8 @@ export interface ClanRecord {
   /** The clan room: a group conversation (social.convs) the clan owns. */
   room: string
   rating: number
+  /** The venue room the clan holds (once it has CLAN.venueMin people): its members are seated together there, under its name. */
+  venue?: { city: string; venue: string; at: number }
   kicked?: Record<string, number>
   /** This week's war: points added while a member (by player), the opponent once matched. */
   wk?: { n: number; s: Record<string, number>; vs?: string; vsName?: string }

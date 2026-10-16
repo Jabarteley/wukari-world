@@ -7,7 +7,7 @@
 import { COLOURS, colourOf } from '../festivals/party.ts';
 
 export { COLOURS, colourOf };
-export const CLAN = Object.freeze({ size: 25, sizeMin: 5, sizeMax: 50, deputies: 2, nameMin: 3, nameMax: 20, codeLength: 6, warMin: 3, kickBanMs: 24 * 3600000, createPerDay: 2, joinPerHour: 10 });
+export const CLAN = Object.freeze({ size: 25, sizeMin: 5, sizeMax: 50, deputies: 2, nameMin: 3, nameMax: 20, codeLength: 6, warMin: 3, venueMin: 10, kickBanMs: 24 * 3600000, createPerDay: 2, joinPerHour: 10 });
 /** Six letters with nothing that can be misread aloud (no I, O, L). */
 export const CODE_LETTERS = 'ABCDEFGHJKMNPQRSTUVWXYZ';
 export type ClanRole = 'leader' | 'deputy' | 'member';
@@ -28,6 +28,11 @@ export function cleanCode(value: unknown): string | null {
 }
 /** A code from random bytes (each 0..255). */
 export const codeFrom = (bytes: readonly number[]): string => Array.from({ length: CLAN.codeLength }, (_, i) => CODE_LETTERS[(bytes[i] ?? 0) % CODE_LETTERS.length]).join('');
+
+/** Venues a clan may hold a room in: a public venue of a city, never a home or the street. */
+export const venueHoldable = (venue: unknown): venue is string => typeof venue === 'string' && /^[a-z][a-z0-9-]{1,40}$/.test(venue) && venue !== 'home' && venue !== 'neighbourhood' && venue !== 'city-street'
+/** Why a clan of `size` cannot hold a venue room yet, or null. */
+export const venueBlock = (size: number): Refusal | null => (size >= CLAN.venueMin ? null : no('clan_small', `A clan holds a room in a venue once it has ${CLAN.venueMin} people.`))
 
 /** What a clan record holds that the rules need. */
 export interface ClanCore { leader: string; deputies: string[]; members: string[]; kicked?: Record<string, number> }

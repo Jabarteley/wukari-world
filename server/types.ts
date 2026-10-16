@@ -1220,6 +1220,8 @@ export interface ServerConfig {
 
 /** In-process events between server modules; nothing is sent to a client by raising one. */
 export interface ServerEvents {
+  /** arena: a match between people (or agents) finished, not a practice one; the ladders listen (server/routes/clans.ts). */
+  'game-result': import('../src/clans/results.ts').ArenaFinished
   /** After committed player erasure: discard presence and ephemeral chat copies. */
   'players-erased': { ids: string[] }
   /** rooms.js: a person wrote a line in a public venue where an AI character stands (house agents wake on it, server/house/runner.ts). Raised after the game's own AI answers. */

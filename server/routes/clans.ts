@@ -8,6 +8,7 @@
  *   POST /api/clans/join    { code }          POST /api/clans/leave      POST /api/clans/kick { id }
  *   POST /api/clans/role    { id, role: deputy | member | leader }       POST /api/clans/edit { name?, colour?, city? }
  *   POST /api/clans/code                      a new invite code (leader or deputy)
+ *   POST /api/clans/venue   { city, venue } | { venue: null }   the venue where the clan holds a room (leader; 10 or more people)
  *   POST /api/clans/prize   { cityId }        claim the last war's prize (game money)
  *   GET  /api/clans/boards?period=week|season&game=   friends, city, weekly group, clan, country, then everyone
  *   GET  /api/clans/league?game=              this week's cities and countries, and last week's winner
@@ -56,6 +57,12 @@ export default function clanRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     'POST /api/clans/kick': async (request) => { const body = await request.json(); return { body: await run(request, (db, session) => clans.kick(db, session, body)), renew: true }; },
     'POST /api/clans/role': async (request) => { const body = await request.json(); return { body: await run(request, (db, session) => clans.role(db, session, body)), renew: true }; },
     'POST /api/clans/edit': async (request) => { const body = await request.json(); return { body: await run(request, (db, session) => clans.edit(db, session, body)), renew: true }; },
+    'POST /api/clans/venue': async (request) => {
+      const body = await request.json();
+      // The venue is checked against its city's content, which is loaded on demand.
+      if (typeof body.city === 'string' && ctx.cityIds.some((x) => x === body.city)) { const held = await ctx.store.read((db) => request.requireSession(db)); await prepareStoredCityContent(ctx, held, [body.city]); }
+      return { body: await run(request, (db, session) => clans.venue(db, session, body)), renew: true };
+    },
     'POST /api/clans/code': async (request) => ({ body: await run(request, (db, session) => clans.newCode(db, session)), renew: true }),
     'POST /api/clans/prize': async (request) => {
       const body = await request.json();

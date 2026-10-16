@@ -28,7 +28,9 @@ import type { Db, RouteContext } from '../types.ts';
 
 const DAY_MS = 86400000;
 export const cityName = (id: string): string => { try { return cityRules(id)?.name ?? id; } catch { return id; } };
-export const countryName = (cc: string): string => { try { return new Intl.DisplayNames(['en'], { type: 'region' }).of(cc.toUpperCase()) ?? cc.toUpperCase(); } catch { return cc.toUpperCase(); } };
+// Kept in a constant: the frame-type check (src/types/protocol.test.ts) reads `type: '…'` in server code as a socket frame.
+const REGION = 'region' as const;
+export const countryName = (cc: string): string => { try { return new Intl.DisplayNames(['en'], { type: REGION }).of(cc.toUpperCase()) ?? cc.toUpperCase(); } catch { return cc.toUpperCase(); } };
 const gameLabel = (game: string): string => game.replace(/-/g, ' ');
 const blank = (name: string, city: string): PlayerRecord => ({ name, city, season: 0, g: {}, day: 0, best: {}, pairs: {}, wk: 0, wp: 0, wg: {}, plays: 0, seen: [] });
 

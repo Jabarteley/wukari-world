@@ -19,6 +19,8 @@
 //
 // Budgets with no artifact yet (base body, clip pack, wardrobe items, street tiles) are listed as "not measured": the file name
 // patterns in ASSET_PATTERNS are the convention to change when the asset layout is decided.
+import { createHash } from 'node:crypto'
+import { inventory } from './native-character-assets.mjs'
 import { brotliCompressSync, constants, gzipSync } from 'node:zlib'
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
@@ -206,19 +208,34 @@ export function formatReport(dist: Dist, results: readonly Check[], groups: read
   return lines.join('\n')
 }
 
-function main(): number {
+async function main(): Promise<number> {
   const args = process.argv.slice(2)
   const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
   const dir = resolve(root, args.includes('--dist') ? args[args.indexOf('--dist') + 1] ?? 'dist' : 'dist')
   if (!existsSync(join(dir, 'index.html'))) { console.error(`No build at ${dir}: run \`npm run build\` first.`); return 2 }
   const dist = readDist(dir)
   const results = checks(dist)
-  const groups = lazyGroups(dist, startupFiles(dist, 'lagos') ?? firstPaintFiles(dist))
-  if (args.includes('--json')) console.log(JSON.stringify({ checks: results, lazyGroups: groups }, null, 2))
-  else console.log(formatReport(dist, results, groups, args.includes('--all') ? Infinity : args.includes('--top') ? Number(args[args.indexOf('--top') + 1]) || 30 : 30))
   const over = results.filter((item) => item.status === 'over')
-  if (over.length) console.error(`\n${over.length} budget(s) exceeded: ${over.map((item) => item.budget).join(', ')}`)
-  return over.length ? 1 : 0
+  if (over.length) {
+    if (args.includes('--json')) console.log(JSON.stringify({ checks: results, lazyGroups: [], nativeAssets: { status: 'not run', reason: 'An earlier download budget failed' } }, null, 2))
+    else console.log(formatReport(dist, results, [], 0))
+    console.error(`\n${over.length} budget(s) exceeded: ${over.map((item) => item.budget).join(', ')}. Lazy asset inventory was not run.`)
+    return 1
+  }
+  const groups = lazyGroups(dist, startupFiles(dist, 'lagos') ?? firstPaintFiles(dist))
+  const native = await inventory(root, dir, (url, sha256) => {
+    const bytes = dist.get(url.slice(1))
+    if (!bytes || createHash('sha256').update(bytes).digest('hex') !== sha256) throw Error(`Native asset changed during measurement: ${url}`)
+    return sizeOf(bytes)
+  })
+  const nativeAssets = { pass: native.pass, resources: native.rows.length, totals: native.totals, defaults: native.defaults.map(({body, totals}) => ({body, totals})), conflicts: native.conflicts.length, errors: native.errors.length, extras: native.extras.length, overBudget: native.checks.filter(check => !check.pass).length }
+  if (args.includes('--json')) console.log(JSON.stringify({ checks: results, lazyGroups: groups, nativeAssets }, null, 2))
+  else {
+    console.log(formatReport(dist, results, groups, args.includes('--all') ? Infinity : args.includes('--top') ? Number(args[args.indexOf('--top') + 1]) || 30 : 30))
+    console.log(JSON.stringify(nativeAssets, null, 2))
+  }
+  if (native.errors.length) console.error(JSON.stringify(native.errors))
+  return !native.pass ? 1 : 0
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) process.exitCode = main()
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main().then(code => { process.exitCode = code }).catch(error => { console.error(error); process.exitCode = 1 })

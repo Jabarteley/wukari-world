@@ -1,0 +1,13 @@
+CI38838328099 source7d189ec02326b8177d8eb4a244c256b0d6013975
+2026-10-16T02:13:16.2346319Z ok   LOADING_RAW               90607  budget 92,000 raw bytes (max)  first-paint JavaScript
+2026-10-16T02:13:16.2347432Z ok   LOADING_GZIP              35283  budget 37,000 gzip bytes (max)  first-paint JavaScript
+2026-10-16T02:13:16.2349698Z ok   FIRST_PAINT_BROTLI        35466  budget 36,800 brotli bytes (max) [provisional]  5 files: index.html, stylesheet and JavaScript
+2026-10-16T02:13:16.2351710Z ok   STARTUP_RAW              614449  budget 615,000 raw bytes (max)  largest over 284 cities (lagos)
+2026-10-16T02:13:16.2389523Z ok   STARTUP_GZIP             222873  budget 223,000 gzip bytes (max)  largest over 284 cities (lagos)
+2026-10-16T02:13:16.2390893Z ok   STARTUP_BROTLI           195479  budget 195,600 brotli bytes (max) [provisional]  largest over 284 cities (lagos)
+2026-10-16T02:13:16.2392057Z ok   SCENE_HOST_RAW           188888  budget 192,000 raw bytes (max)  shared scene chunk (world-adapter)
+2026-10-16T02:13:16.2393140Z ok   SCENE_HOST_GZIP           70897  budget 71,000 gzip bytes (max)  shared scene chunk (world-adapter)
+2026-10-16T02:13:16.2394456Z n/a  BASE_BODY_BROTLI              -  budget 300,000 brotli bytes (max) [provisional]  no file matches /(^|\/)base-body[^/]*\.(glb|gltf|bin)$/
+2026-10-16T02:13:16.2395564Z n/a  CLIP_PACK_BROTLI              -  budget 200,000 brotli bytes (max) [provisional]  no file matches /(^|\/)clip-pack[^/]*\.(glb|gltf|bin|json)$/
+2026-10-16T02:13:16.2396439Z n/a  WARDROBE_ITEM_BROTLI          -  budget 60,000 brotli bytes (max) [provisional]  no file matches /(^|\/)wardrobe\/[^/]+\.(glb|gltf)$/
+2026-10-16T02:13:16.2397384Z n/a  STREET_TILE_BROTLI            -  budget 60,000 brotli bytes (max) [provisional]  no file matches /(^|\/)(street-)?tiles?\/[^/]+\.(glb|gltf|bin)$/

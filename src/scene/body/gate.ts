@@ -1,14 +1,13 @@
 /**
- * The skinned body's capability gate (E-A). Every player gets the skinned body (src/scene/body/skinned.ts) in place of
- * the procedural avatar (src/scene/characters.ts) — there is no switch. The only ways out are what the device can do:
- * no WebGL2, a low-tier device, Data Saver or 2G, or a body file that fails to fetch or parse.
+ * Capability hints for optional scenery and crowd scheduling. Canonical characters are not gated here and have no
+ * procedural or 2D renderer fallback. bodyAllowed() keeps ambient populations lighter on constrained devices and
+ * avoids optional neighbourhood scenery loading; drawsWebGL2() is used by that scenery loader.
  *
- * This file is the only part of the body the scenes import up front. It holds no Three.js and no assets: the body
- * module and its loaders are fetched by importBody(), after the scene's first frame, and only when bodyAllowed() and
- * drawsWebGL2() both say so. Anything that fails on the way leaves the procedural avatar exactly as it is.
+ * This module remains a small compatibility boundary for those hints and older diagnostics. Production character
+ * entrypoints preload src/scene/body/skinned.ts directly before synchronous createBody() calls.
  */
 
-/** What the device check reads (navigator in a browser; a plain object in tests). */
+/** What the capability hint reads (navigator in a browser; a plain object in tests). */
 export interface BodyDevice {
   connection?: { saveData?: boolean; effectiveType?: string } | undefined;
   hardwareConcurrency?: number | undefined;
@@ -16,8 +15,8 @@ export interface BodyDevice {
 }
 
 /**
- * Whether this device should fetch the body at all. No on Data Saver, on 2G, and on the low tier: two cores or fewer,
- * or 2 GB of memory or less (what the browser reports; an unreported value does not count against the device).
+ * Whether optional crowd/scenery work should use its full tier. Data Saver, 2G and low-tier devices use a lighter crowd:
+ * two cores or fewer, or 2 GB of memory or less (what the browser reports; unreported values do not count against it).
  */
 export function bodyAllowed(device: BodyDevice | null | undefined = globalThis.navigator as BodyDevice | undefined): boolean {
   if (!device) return false;
@@ -28,16 +27,16 @@ export function bodyAllowed(device: BodyDevice | null | undefined = globalThis.n
   return true;
 }
 
-/** A renderer that draws with WebGL2 (the body needs it; anything else keeps the procedural avatar). */
+/** Whether an optional neighbourhood-scene model loader can use this renderer's WebGL2 context. */
 export function drawsWebGL2(renderer: { getContext?: () => unknown } | null | undefined): boolean {
   const Context = (globalThis as { WebGL2RenderingContext?: abstract new (...args: never[]) => unknown }).WebGL2RenderingContext;
   try { return Boolean(Context && renderer?.getContext && renderer.getContext() instanceof Context); } catch { return false; }
 }
 
-/** How many times the body module has been asked for (tests: none at all without WebGL2). */
+/** Compatibility counter retained for existing diagnostics/tests; production scene loaders import the canonical module directly. */
 export const bodyImports = { count: 0 };
 
-/** Fetch the body module. The only way the game reaches it. */
+/** Compatibility lazy-import helper; production canonical body entrypoints preload the module directly. */
 export function importBody(): Promise<typeof import('./skinned.ts')> {
   bodyImports.count += 1;
   return import('./skinned.ts');

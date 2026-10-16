@@ -26,6 +26,7 @@ import type { LandPayPayload } from './land.ts'
 import type { TierId } from './politics.ts'
 import type { StakeCode } from '../game/table-stakes.ts'
 import type { CampusActionMap, CampusActivityVetoCode, GuestCampusActionType } from './campus.ts'
+import type { NativeWardrobeKind } from '../character/native-recipe.ts'
 
 // ---- shared code groups -------------------------------------------------------------------
 
@@ -302,8 +303,8 @@ export interface ActionMap extends CampusActionMap, StoryActionMap, AchievementA
   }
   /** After creation: change look using owned styles (colours are free). 'unchanged' is a success. */
   'onboarding.set-look': { payload: { look: Look }; ok: 'look_saved' | 'unchanged'; fail: 'onboarding_required' | 'invalid_look' | 'not_owned' }
-  /** Buy a style or an accessory with cash and wear it. */
-  'onboarding.boutique-buy': { payload: { kind: WardrobeKind | 'accessories' | 'wearables'; id: string }; ok: 'bought'; fail: 'onboarding_required' | 'invalid_item' | 'wrong_body' | 'already_owned' | 'insufficient_funds' }
+  /** Buy a native style with cash and wear it. Legacy kinds remain accepted for saved-client compatibility. */
+  'onboarding.boutique-buy': { payload: { kind: WardrobeKind | 'accessories' | 'wearables' | NativeWardrobeKind; id: string }; ok: 'bought'; fail: 'onboarding_required' | 'invalid_item' | 'wrong_body' | 'already_owned' | 'insufficient_funds' }
 
   // -- goals --
   'goals.buy-perk': { payload: { id: PerkId }; ok: 'perk_bought'; fail: 'invalid_perk' | 'already_owned' | 'insufficient_stars' }

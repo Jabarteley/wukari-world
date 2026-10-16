@@ -1,0 +1,533 @@
+{
+  "schema_version": 2,
+  "candidate_only": true,
+  "clips": {
+    "Idle_Breathe": {
+      "start_frame": 0,
+      "end_frame": 300,
+      "fps": 30,
+      "duration_seconds": 10,
+      "loop": true,
+      "hold_window_frames_inclusive": null,
+      "hold_window_seconds": null,
+      "nominal_speed_mps": 0,
+      "placement_height_m": 0.99,
+      "placement_reference": "floor to pelvis target at the clip's characteristic pose",
+      "prop_anchor": null,
+      "contact_windows": null,
+      "relaxed_stance": true
+    },
+    "Walk_InPlace": {
+      "start_frame": 0,
+      "end_frame": 32,
+      "fps": 30,
+      "duration_seconds": 1.0666666666666667,
+      "loop": true,
+      "hold_window_frames_inclusive": null,
+      "hold_window_seconds": null,
+      "nominal_speed_mps": 1.3190851956605911,
+      "placement_height_m": 0.92,
+      "placement_reference": "floor to pelvis target at the clip's characteristic pose",
+      "prop_anchor": null,
+      "contact_windows": {
+        "L": {
+          "contact_windows": [
+            [
+              0,
+              18
+            ]
+          ],
+          "phase_windows": [
+            [
+              0,
+              0.5625
+            ]
+          ]
+        },
+        "R": {
+          "contact_windows": [
+            [
+              0,
+              2
+            ],
+            [
+              20,
+              31
+            ]
+          ],
+          "phase_windows": [
+            [
+              0,
+              0.0625
+            ],
+            [
+              0.625,
+              0.96875
+            ]
+          ]
+        }
+      },
+      "phase_zero_event": "left heel contact with right toe-off",
+      "planting_support": {
+        "l": {
+          "start": -0.03,
+          "end": 0.59,
+          "feather": 0.05
+        },
+        "r": {
+          "start": 0.59,
+          "end": 1.09,
+          "feather": 0.05
+        },
+        "settle_after_skinning": true
+      }
+    },
+    "Run_InPlace": {
+      "start_frame": 0,
+      "end_frame": 22,
+      "fps": 30,
+      "duration_seconds": 0.7333333333333333,
+      "loop": true,
+      "hold_window_frames_inclusive": null,
+      "hold_window_seconds": null,
+      "nominal_speed_mps": 3.26374,
+      "placement_height_m": 0.95,
+      "placement_reference": "floor to pelvis target at the clip's characteristic pose",
+      "prop_anchor": null,
+      "contact_windows": {
+        "L": {
+          "contact_windows": [
+            [
+              1,
+              4
+            ],
+            [
+              7,
+              7
+            ]
+          ]
+        },
+        "R": {
+          "contact_windows": [
+            [
+              13,
+              16
+            ]
+          ]
+        }
+      }
+    },
+    "Wave": {
+      "start_frame": 0,
+      "end_frame": 96,
+      "fps": 30,
+      "duration_seconds": 3.2,
+      "loop": false,
+      "hold_window_frames_inclusive": null,
+      "hold_window_seconds": null,
+      "nominal_speed_mps": 0,
+      "placement_height_m": 0.99,
+      "placement_reference": "floor to pelvis target at the clip's characteristic pose",
+      "prop_anchor": null,
+      "contact_windows": null
+    },
+    "Talk": {
+      "start_frame": 0,
+      "end_frame": 96,
+      "fps": 30,
+      "duration_seconds": 3.2,
+      "loop": true,
+      "hold_window_frames_inclusive": null,
+      "hold_window_seconds": null,
+      "nominal_speed_mps": 0,
+      "placement_height_m": 0.99,
+      "placement_reference": "floor to pelvis target at the clip's characteristic pose",
+      "prop_anchor": null,
+      "contact_windows": null
+    },
+    "Play": {
+      "start_frame": 0,
+      "end_frame": 96,
+      "fps": 30,
+      "duration_seconds": 3.2,
+      "loop": true,
+      "hold_window_frames_inclusive": null,
+      "hold_window_seconds": null,
+      "nominal_speed_mps": 0,
+      "placement_height_m": 0.94,
+      "placement_reference": "floor to pelvis target at the clip's characteristic pose",
+      "prop_anchor": null,
+      "contact_windows": null
+    },
+    "Sit": {
+      "start_frame": 0,
+      "end_frame": 126,
+      "fps": 30,
+      "duration_seconds": 4.199999999999999,
+      "loop": false,
+      "hold_window_frames_inclusive": [
+        42,
+        62
+      ],
+      "hold_window_seconds": [
+        1.4,
+        2.066666666666667
+      ],
+      "nominal_speed_mps": 0,
+      "placement_height_m": 0.45,
+      "placement_reference": "expected prop support-surface height above character origin",
+      "prop_anchor": {
+        "type": "chair",
+        "seat_top_height_m": 0.45,
+        "recommended_back_gltf_z_m": -0.3
+      },
+      "contact_windows": null,
+      "chair_offset_gltf_z_m": -0.423,
+      "hold_time_seconds": 2.8,
+      "idle_handoff_time_seconds": 0
+    },
+    "Sleep": {
+      "start_frame": 0,
+      "end_frame": 120,
+      "fps": 30,
+      "duration_seconds": 4,
+      "loop": false,
+      "hold_window_frames_inclusive": [
+        36,
+        82
+      ],
+      "hold_window_seconds": [
+        1.2,
+        2.7333333333333334
+      ],
+      "nominal_speed_mps": 0,
+      "placement_height_m": 0.1,
+      "placement_reference": "expected prop support-surface height above character origin",
+      "prop_anchor": {
+        "type": "mat",
+        "top_height_m": 0.1
+      },
+      "contact_windows": null
+    },
+    "Hug": {
+      "start_frame": 0,
+      "end_frame": 78,
+      "fps": 30,
+      "duration_seconds": 2.6,
+      "loop": false,
+      "hold_window_frames_inclusive": null,
+      "hold_window_seconds": null,
+      "nominal_speed_mps": 0,
+      "placement_height_m": 0.99,
+      "placement_reference": "floor to pelvis target at the clip's characteristic pose",
+      "prop_anchor": null,
+      "contact_windows": null
+    },
+    "Kiss": {
+      "start_frame": 0,
+      "end_frame": 72,
+      "fps": 30,
+      "duration_seconds": 2.4,
+      "loop": false,
+      "hold_window_frames_inclusive": null,
+      "hold_window_seconds": null,
+      "nominal_speed_mps": 0,
+      "placement_height_m": 0.99,
+      "placement_reference": "floor to pelvis target at the clip's characteristic pose",
+      "prop_anchor": null,
+      "contact_windows": null
+    },
+    "StandUp": {
+      "start_frame": 0,
+      "end_frame": 102,
+      "fps": 30,
+      "duration_seconds": 3.4,
+      "loop": false,
+      "hold_window_frames_inclusive": null,
+      "hold_window_seconds": null,
+      "nominal_speed_mps": 0,
+      "placement_height_m": 0.45,
+      "placement_reference": "starts at the held Sit pose and ends at standing Idle",
+      "contact_windows": {
+        "left": [
+          [
+            0,
+            2.24
+          ],
+          [
+            2.68,
+            3.4
+          ]
+        ],
+        "right": [
+          [
+            0,
+            2.76
+          ],
+          [
+            3.2,
+            3.4
+          ]
+        ]
+      },
+      "transition_from": {
+        "clip": "Sit",
+        "time_seconds": 2.8
+      },
+      "transition_to": {
+        "clip": "Idle_Breathe",
+        "time_seconds": 0
+      },
+      "chair_offset_gltf_z_m": -0.423,
+      "step_windows": {
+        "left": [
+          [
+            2.24,
+            2.68
+          ]
+        ],
+        "right": [
+          [
+            2.76,
+            3.2
+          ]
+        ]
+      },
+      "idle_handoff_time_seconds": 0
+    }
+  },
+  "sources": {
+    "Walk_InPlace": "source-assets/candidates/cmu/round3/PROVENANCE.md",
+    "Run_InPlace": "source-assets/candidates/cmu/PROVENANCE.md",
+    "Wave": "source-assets/candidates/mesh2motion/PROVENANCE.md",
+    "remaining": "motion-report.json"
+  },
+  "limits": [
+    "Natural motion requires user approval.",
+    "CMU terms differ from the CC0 Greeting source.",
+    "Contact envelopes are calibrated for these clips, not generic terrain IK."
+  ],
+  "output": "assets/candidates/iteration2-upper-palm.glb",
+  "output_sha256": "337549dff096fee3a539fa661d6941875778834a8a024a6ff21237d5908d7cba",
+  "round3_walk_source": {
+    "file": "source-assets/candidates/cmu/round3/07_02.amc",
+    "sha256": "a6062c6c6bce037241d345ca8d802ab36a5cf003b60f759aa7b1db545219c065",
+    "official_url": "https://mocap.cs.cmu.edu/subjects/07/07_02.amc",
+    "rights": "Commercial-product inclusion permitted; direct resale of data including converted forms prohibited. Not CC0."
+  },
+  "round3_note": "CMU07_02 Walk, CMU09_01 Run, CC0 Mesh2Motion Greeting Wave. Speeds calibrated to target sole stance; neck structural basis corrected. Local review; user approval outstanding.",
+  "neck_correction": {
+    "builder": "asset-tools/round3-neck-correct.py",
+    "evidence": "evidence/round3/neck-audit.json",
+    "changes": "Only Walk and Run neck/head rotations. Transfers neck swing relative to source neutral onto MPFB anatomy while retaining head motion."
+  },
+  "round5_spine_candidate": {
+    "file": "assets/candidates/round5-spine.glb",
+    "sha256": "7f9eb223724b2bd7dd5fafbdb966e1c45ab8ca8bb76dfb3747c2a4a9c9deac04",
+    "base": "assets/candidates/round3-neck-corrected.glb",
+    "method": "Walk spine_01/spine_02/spine_03 source-neutral-relative swing on unchanged MPFB rest basis",
+    "audit": "evidence/round5/gait-spine-candidate.json",
+    "visual_approval": "pending"
+  },
+  "round5_detrend_candidate": {
+    "file": "assets/candidates/round5-spine-detrended.glb",
+    "sha256": "591b85bb92f8e3110986a5457c63da278572c5163f5f63bf3d728a7e6b2f86ab",
+    "base": "assets/candidates/round5-spine.glb",
+    "method": "Walk pelvis X linear source-trajectory detrend replacing final-20-percent lateral closure; Y/Z untouched",
+    "audit": "evidence/round5/gait-detrend.json",
+    "visual_approval": "pending"
+  },
+  "source_asset": "assets/candidates/round5-spine-detrended.glb",
+  "posture_correction": {
+    "clip": "Walk_InPlace",
+    "bone": "head",
+    "method": "minimal world-space gaze swing; sagittal pitch scaled relative to anatomical neutral while yaw and gaze-axis twist are preserved",
+    "sagittal_scale": 0.34,
+    "report": "evidence/round6/posture-candidate.json"
+  },
+  "frontal_balance": {
+    "method": "Remove constant captured upper-body frontal orientation bias in Walk and constant anatomical foot-roll bias measured during support. Preserve changing rotation, pitch, heading, translation, timing and all other channels.",
+    "biases_degrees": {
+      "Walk_InPlace": {
+        "upper": {
+          "spine_01": -2.165819915254893,
+          "spine_02": 0.702612388633908,
+          "spine_03": 4.538115213828109,
+          "clavicle_l": 6.248096675364756,
+          "clavicle_r": 6.162832117089867,
+          "neck_01": 3.651109164709621,
+          "head": 9.448201634709106
+        },
+        "feet": {
+          "foot_l": 23.634483774159577,
+          "foot_r": -18.02032350665633
+        }
+      },
+      "Run_InPlace": {
+        "upper": {},
+        "feet": {
+          "foot_l": 14.80505413545778,
+          "foot_r": -20.155289820440235
+        }
+      }
+    },
+    "review_status": "isolated candidate; browser review pending"
+  },
+  "resting_balance": {
+    "input": "assets/candidates/round6-frontal-balance.glb",
+    "input_sha256": "a4a3b641795b73fee4122e9af620170f433f2ae44f7cf8c82781bd9b7b237a70",
+    "output": "assets/candidates/round6-resting-balanced.glb",
+    "output_sha256": "40ef6c8dc5171c4afd6496167adb5178b67d8efd922ba3fbe3f7f5c8804c88b6",
+    "changed_clips": [
+      "Idle_Breathe"
+    ],
+    "rest_nodes_unchanged": true,
+    "other_animation_definitions_and_payloads_unchanged": true,
+    "duration_seconds": 10,
+    "design": "Hip-width fixed feet; pelvis height solved from leg length and mild knee flexion; low relaxed arms with inward palms; subtle periodic weight shift, breathing and head turns.",
+    "status": "direct-parent candidate; native and browser review required"
+  },
+  "seated_motion": {
+    "source": "assets/candidates/round6-standup.glb",
+    "source_sha256": "fa4f8562b066cb5afad7fabdc8d83b0e2538dab312a8595a15298118dc2def48",
+    "rise_seconds": 2.2,
+    "settle_seconds": 1.1999999999999997,
+    "steps": {
+      "l": [
+        2.24,
+        2.68
+      ],
+      "r": [
+        2.76,
+        3.2
+      ]
+    },
+    "foot_lift_m": 0.025,
+    "sit_setup_seconds": 1.1999999999999997,
+    "method": "Sit starts at relaxed Idle with outward foot setup steps before descent. Rise retains authored pelvis/upper-body motion; both clips rebake grounded legs at held contact positions. Inward setup steps end at exact relaxed Idle frame zero; support releases each stepping foot.",
+    "review_status": "isolated candidate; native trajectory and rendered review required"
+  },
+  "gesture_stance": {
+    "source": "assets/candidates/round7-seated-motion.glb",
+    "source_sha256": "156028d34a0e5e5667b58245a63e4d9f3e0e846452f1ab36dfeb7bf790d56be2",
+    "clips": [
+      "Wave",
+      "Talk"
+    ],
+    "pinned_bones": "pelvis, thigh, calf, foot, ball (rotation+translation) = Idle_Breathe frame 0",
+    "channels_replaced": {
+      "Wave": 18,
+      "Talk": 18
+    },
+    "review_status": "isolated candidate"
+  },
+  "gait_toe": {
+    "source": "assets/candidates/sonnet-gesture-stance.glb",
+    "source_sha256": "a7392fa8add8c2e5eef39038b233a92e22865f36a06e845e15953f0416b9cd84",
+    "method": "thigh_fraction 0.2 hip->ankle thigh twist + remainder calf twist about knee->ankle; knee/ankle positions unchanged",
+    "clips": {
+      "Walk_InPlace": {
+        "target_deg": 2,
+        "fraction": 1,
+        "source_planted_mean_deg": {
+          "l": -3.98,
+          "r": -19.81
+        },
+        "applied_delta_deg": {
+          "l": 7.02,
+          "r": 25.34
+        },
+        "keys": 33,
+        "swing_weight": 0.3,
+        "half_window_frames": 4
+      },
+      "Run_InPlace": {
+        "target_deg": 0,
+        "fraction": 1,
+        "source_planted_mean_deg": {
+          "l": -15.92,
+          "r": -12.45
+        },
+        "applied_delta_deg": {
+          "l": 21.49,
+          "r": 16.8
+        },
+        "keys": 23,
+        "swing_weight": 0.3,
+        "half_window_frames": 4
+      }
+    },
+    "review_status": "isolated candidate"
+  },
+  "gait_arms": {
+    "source": "assets/candidates/sonnet-gait-toe2.glb",
+    "source_sha256": "7068b49d05cf5fc14acb4dd619627fb37664ecb020b2338d8d8363ed031bbf82",
+    "method": "clavicle/upperarm/lowerarm/hand orientation delta from bind in spine_03 frame averaged with mirrored opposite arm half a cycle later",
+    "clips": {
+      "Walk_InPlace": {
+        "strength": 1,
+        "keys": 33,
+        "half_cycle_keys": 16
+      },
+      "Run_InPlace": {
+        "strength": 1,
+        "keys": 23,
+        "half_cycle_keys": 11
+      }
+    },
+    "review_status": "isolated candidate"
+  },
+  "gait_center": {
+    "source": "assets/candidates/sonnet-gait-toe2-arms.glb",
+    "source_sha256": "bd023d284f2dcb8fefbd9c4d264f4a240a8a1f6ff23ace3e831f845266564170",
+    "method": "pelvis lateral shift to centre measured stance feet under hips; two-bone re-solve keeps ankle position and foot world orientation",
+    "clips": {
+      "Walk_InPlace": {
+        "measured_stance_centre_m": {
+          "l": 0.0551,
+          "r": -0.0272
+        },
+        "pelvis_shift_world_x_m": 0.014,
+        "fraction": 1,
+        "keys": 33,
+        "max_knee_move_mm": 8.4,
+        "max_ankle_error_mm": 1.868,
+        "reach_clamped_samples": 5
+      },
+      "Run_InPlace": {
+        "measured_stance_centre_m": {
+          "l": 0.0501,
+          "r": -0.0082
+        },
+        "pelvis_shift_world_x_m": 0.016,
+        "fraction": 1,
+        "keys": 23,
+        "max_knee_move_mm": 7.97,
+        "max_ankle_error_mm": 1.362,
+        "reach_clamped_samples": 1
+      }
+    },
+    "review_status": "isolated candidate"
+  },
+  "iteration2_upper": {
+    "source": "assets/candidates/sonnet-gait-center.glb",
+    "source_sha256": "9bdfc053b10730a0f4a586f51a40c2e9794e840791b0598f70f94a01517aceda",
+    "changed_channels": [
+      "Walk_InPlace/spine_01/rotation",
+      "Walk_InPlace/spine_02/rotation",
+      "Walk_InPlace/spine_03/rotation",
+      "Walk_InPlace/neck_01/rotation",
+      "Walk_InPlace/head/rotation",
+      "Run_InPlace/lowerarm_l/rotation",
+      "Run_InPlace/lowerarm_r/rotation",
+      "Run_InPlace/hand_l/rotation",
+      "Run_InPlace/hand_r/rotation"
+    ],
+    "method": "Run elbow extension18deg floor65; actual forearm-to-middle palm direction max6deg wrist bend, palm roll carried by minimal swing. Walk2.5deg distributed forward trunk; captured counteryaw gain20% capped1.6deg; neck/head world orientation retained.",
+    "palmInwardForearmTwist": {
+      "fraction": 0.65,
+      "maxDegrees": 45
+    },
+    "status": "isolated candidate; visual review pending"
+  }
+}

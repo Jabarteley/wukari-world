@@ -37,6 +37,8 @@
  * textures, no animation loops — the host (src/venue-world.ts) draws on demand.
  */
 import type * as THREE from 'three';
+import { nativeRecipeForLook } from '../character/native-migration.ts';
+import type { NativeCharacterRecipeV2 } from '../character/native-recipe.ts';
 import { createBatch, sceneMaterials, kitResources, releaseObjects, hash, GLOW } from './build.ts';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { avatarProportions, normalizeAvatarAppearance } from '../types/avatar.ts';
@@ -75,6 +77,7 @@ export interface LookOptions {
 }
 /** A complete look: every field set, colours as '#rrggbb'. */
 export interface Look extends AvatarLookExtensions {
+  native?: NativeCharacterRecipeV2;
   body: Body;
   hair: string;
   outfit: string;
@@ -127,7 +130,7 @@ export interface DrawnAvatar { look: Look; top: number }
 /** The movable parts of a rigged avatar (each a Group pivoted at its joint). */
 export type AvatarParts = Record<PartName | 'body', THREE.Group>;
 interface Bend { geometry: THREE.BufferGeometry; start: number; position: Float32Array; normal: Float32Array; pivotY: number; angle: number; kind: 'calf' | 'fore'; side: 0 | 1 }
-export interface AvatarUserData { twist?: number; lookTorso?: number; look: Look; top: number; triangles: number; dispose: () => void; parts?: AvatarParts; bends?: Bend[] }
+export interface AvatarUserData { twist?: number; lookTorso?: number; ready?: Promise<void>; characterStatus?: string; characterError?: string; look: Look; top: number; triangles: number; dispose: () => void; parts?: AvatarParts; bends?: Bend[] }
 /** What buildAvatar returns. */
 export interface AvatarGroup extends THREE.Group { userData: AvatarUserData }
 /** An avatar built with `rig: true`: its parts are there. */
@@ -229,6 +232,7 @@ export function normalizeLook(look?: unknown, seed?: unknown): Look {
   const outfits = LOOK_OPTIONS.outfit[body], everyday = outfits.filter((id) => id !== 'sitework');
   const outfitSeed = outfits.indexOf(pick('outfit') % 9 === 0 ? 'sitework' : everyday[pick('outfit') % everyday.length]!);
   return {
+    native: nativeRecipeForLook(source, base),
     body,
     hair: pickOption(source.hair ?? source.hairstyle, LOOK_OPTIONS.hair[body], pick('hair')),
     outfit: pickOption(source.outfit, outfits, outfitSeed),
@@ -1056,12 +1060,13 @@ const HAIR_HIGH: Record<string, HairDraw> & { lowcut: HairDraw } = {
 function handHigh(b: Drawing, m: Measures, end: number, dir: number, skin: Colour): void {
   // Hands are drawn a fifth larger than the wrist would give: they carry every gesture and vanish at phone size otherwise.
   const w = m.wrist * 1.2, inwards = -dir;
-  b.ball(0, end - 0.058, 0.004, w * 0.5, 0.064, w * 0.98, skin, { seg: 12 });
+  b.ball(0, end - 0.012, 0, w * 0.82, 0.03, w * 0.96, skin, { seg: 10 });
+  b.ball(0, end - 0.062, 0.004, w * 0.62, 0.066, w * 1.06, skin, { seg: 12 });
   for (let i = 0; i < 4; i++) {
-    const z = (i - 1.5) * w * 0.47 + 0.004, long = [0.062, 0.072, 0.068, 0.054][i]!, y0 = end - 0.1;
-    rope(b, [[0, y0, z], [inwards * 0.008, y0 - long * 0.55, z], [inwards * 0.026, y0 - long, z * 0.94]], w * 0.24, w * 0.19, skin, 5);
+    const z = (i - 1.5) * w * 0.5 + 0.004, long = [0.056, 0.064, 0.06, 0.048][i]!, y0 = end - 0.104;
+    rope(b, [[0, y0, z], [inwards * 0.01, y0 - long * 0.55, z], [inwards * 0.03, y0 - long, z * 0.94]], w * 0.29, w * 0.24, skin, 5);
   }
-  rope(b, [[inwards * 0.006, end - 0.035, w * 0.8], [inwards * 0.014, end - 0.075, w * 1.28], [inwards * 0.024, end - 0.112, w * 1.32]], w * 0.3, w * 0.22, skin, 5);
+  rope(b, [[inwards * 0.008, end - 0.04, w * 0.84], [inwards * 0.018, end - 0.078, w * 1.3], [inwards * 0.028, end - 0.11, w * 1.3]], w * 0.34, w * 0.27, skin, 5);
 }
 
 /** A shoe on a foot whose ankle is at y = end; the ground is 0.08 below it and the toes point to +z. */

@@ -28,25 +28,23 @@ import { track as worldTrack, worldChanged } from '../world/worldModel.ts'
 import { useAccountEntry } from './accountEntry.ts'
 import { signupShown } from '../account/shownOnce.ts'
 import BonusLine from '../bonus/BonusLine.vue'
-import AvatarFigure from './AvatarFigure.vue'
 import CreatorStage from './CreatorStage.vue'
 import LinkAction from './LinkAction.vue'
 import PathIntro from './PathIntro.vue'
 import type { PathIntent } from '../../../paths.ts'
 import StepHome from './StepHome.vue'
 import { lgasOf } from '../../../game/content/world.ts'
-import { CITY_WORLD_FIGURES } from '../../../game/cities/catalogue.ts'
 import { cachedCityContent, isDefaultName, loadCityContent } from '../../../game/cities/registry.ts'
 import StepLook from './StepLook.vue'
 import StepReady from './StepReady.vue'
 import StepSpirit from './StepSpirit.vue'
 import StepWho from './StepWho.vue'
-import { FOCUS_CHOICES, defaultSpirit, focusForField, focusForTab, nextLabel, nextStep, previousStep, progressOf, pushHistory, settlePlan, startStep, stepBlocked, stepDef, stepsFor } from './creatorModel.ts'
+import { CITY_WORLD_FIGURES } from '../../../game/cities/catalogue.ts'
+import { FOCUS_CHOICES, defaultSpirit, focusForTab, nextLabel, nextStep, previousStep, progressOf, pushHistory, settlePlan, startStep, stepBlocked, stepDef, stepsFor } from './creatorModel.ts'
 import type { CreatorMode, StepId } from './creatorModel.ts'
 import { cr, keepsDraft, ownerOf } from './creatorState.ts'
 import type { CreatorDraft } from './creatorState.ts'
-import { chooseLook, lookAlt, lookSummary, lookUi, openLookTab, randomLook, sameLook, starterWardrobe } from './lookModel.ts'
-import type { LookField } from './lookModel.ts'
+import { lookAlt, lookSummary, lookUi, openLookTab, randomLook, sameLook, starterWardrobe } from './lookModel.ts'
 import { failureText, introFor, keepLook, storedLook, toggleTrait, triggerOf } from './onboardingModel.ts'
 import { fallbackPreset, isCalm, planPlay, problemOf, refusedNameToKeep, showsLinkNote, shownError } from './quickStartModel.ts'
 import { currentDraft, draft as quickDraftRef, qs } from './quickStartState.ts'
@@ -237,12 +235,6 @@ function shuffle(): void {
 }
 
 // ---- look --------------------------------------------------------------------------------------
-function choose(field: LookField, value: string): void {
-  tap()
-  setLook(chooseLook(d().look, field, value, wardrobe))
-  const near = focusForField(field)
-  if (near) focus.value = near
-}
 function replaceLook(look: Look): void { tap(); setLook(look); focus.value = 'body' }
 function undo(): void {
   const previousLook = cr.history[cr.history.length - 1]
@@ -382,7 +374,7 @@ onBeforeUnmount(() => {
   <div class="cr-host" :class="{ 'is-embedded': embedded, 'panel-fill': embedded }">
   <div ref="root" class="cr-root" :class="{ 'is-sheet-up': sheetUp }" :data-step="cr.step" :data-mode="mode" data-cr-root>
     <div v-if="!embedded || cr.step === 'look'" class="cr-stage-col">
-      <p class="cr-brand"><i aria-hidden="true"><GameIcon name="globe" :size="20" /></i><b>Allworld</b><span>A digital world you can live in</span></p>
+      <p class="cr-brand"><i aria-hidden="true"><GameIcon name="globe" :size="20" /></i><b>Allworld</b></p>
       <CreatorStage :look="draft.look" :name="draft.name || 'Your character'" :focus="focus" :caption="draft.name" @focus="setFocus" />
     </div>
 
@@ -420,7 +412,7 @@ onBeforeUnmount(() => {
             <p class="cr-lead">{{ lead }}</p>
             <StepWho v-if="cr.step === 'who'" :look="draft.look" :preset="presetId" :name="draft.name" :error="shown" @preset="preset" @body="body" @shuffle="shuffle" @dice="dice" @name="typed" @submit="next" />
             <PathIntro v-if="isNew && playable && cr.step === 'who' && !invited() && !waiting" class="is-quiet" :intent="null" :busy="Boolean(cr.pending) || play.sending" :pitch="campusEntry ? '' : pitch" @start="startIn" @signup="openSignUp" @login="openSignIn" />
-            <StepLook v-else-if="cr.step === 'look'" :look="draft.look" :owned="wardrobe" :can-undo="cr.history.length > 0" :can-reset="cr.origin !== null && !sameLook(cr.origin, draft.look)" @choose="choose" @replace="replaceLook" @undo="undo" @reset="reset" @shuffle="shuffle" @tab="onTab" />
+            <StepLook v-else-if="cr.step === 'look'" :look="draft.look" :owned="wardrobe" :can-undo="cr.history.length > 0" :can-reset="cr.origin !== null && !sameLook(cr.origin, draft.look)" @replace="replaceLook" @undo="undo" @reset="reset" @shuffle="shuffle" @tab="onTab" />
             <StepSpirit v-else-if="cr.step === 'spirit'" :city="cr.city ?? view.cityId" :traits="draft.traits" :dream="draft.dream" @trait="pickTrait" @dream="pickDream" @random="randomSpirit" />
             <StepHome v-else-if="cr.step === 'home'" v-model="draft.area" :choosable="isNew" @ready="homeReady = $event" />
             <StepReady v-else :city="cr.city ?? view.cityId" :name="draft.name" :look="draft.look" :traits="draft.traits" :dream="draft.dream" :area="areaName" @edit="go" />
@@ -444,8 +436,8 @@ onBeforeUnmount(() => {
               <button type="button" class="cr-btn" data-key="next" :disabled="Boolean(blocked) || Boolean(cr.pending)" @click="next">{{ nextLabel(steps, cr.step) }}</button>
             </div>
             <BonusLine v-if="account.available && !account.signedIn" />
-            <button type="button" class="cr-btn is-signup" data-key="sign-up" @click="openSignUp">Sign up free<span> — keep your character</span></button>
-            <button type="button" class="cr-link" data-key="sign-in" @click="openSignIn">I already have an account · Log in</button>
+            <button type="button" class="cr-btn is-signup" data-key="sign-up" @click="openSignUp">Sign up free<span> to keep your character</span></button>
+            <button type="button" class="cr-link" data-key="sign-in" @click="openSignIn">Already have an account? Log in</button>
           </div>
           <template v-else>
             <button v-if="playable && !last" type="button" class="cr-btn" data-qs="play" data-key="play-now" :disabled="homePending" @click="playNow(false)">{{ campusEntry ? 'Explore UNILAG' : 'Play now' }}</button>
@@ -454,9 +446,9 @@ onBeforeUnmount(() => {
             <button type="button" class="cr-btn is-primary" data-key="primary" :disabled="Boolean(blocked) || Boolean(cr.pending)" @click="next">{{ cr.pending || (last ? 'Start your life' : nextLabel(steps, cr.step)) }}</button>
           </template>
         </div>
-        <p v-if="choices" class="cr-fine">Play now needs no password or e-mail. You can sign up any time.</p>
-        <p v-if="campusEntry" class="cr-fine">Campus entry starts at Main Gate. Your life and choices stay with you.</p>
-        <p v-else-if="playable && cr.step === 'who'" class="cr-fine">No password, no e-mail. Play now and finish your character later.</p>
+        <p v-if="choices" class="cr-fine">Play now needs no password or email.</p>
+        <p v-else-if="campusEntry" class="cr-fine">Campus entry starts at Main Gate. Your choices stay with you.</p>
+        <p v-else-if="playable && cr.step === 'who'" class="cr-fine">Play now and finish your character later.</p>
         <p v-else-if="!playable && o.guest && !last" class="cr-fine">Not now keeps your game going. Your choices here are kept.</p>
       </footer>
     </section>

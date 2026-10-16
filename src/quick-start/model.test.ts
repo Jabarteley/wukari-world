@@ -13,6 +13,8 @@ import { checkLook } from '../game/systems/onboarding.ts';
 import { validateName } from '../../server/protocol.ts';
 import { makeRng } from '../game/util.ts';
 import { createLife, dispatch, advanceLife } from '../life.ts';
+import { normalizeNativeRecipe } from '../character/native-recipe.ts';
+import { NATIVE_CHARACTER_CATALOG } from '../character/native-catalog.ts';
 
 const ID = '36f5f5a1-493e-474f-b23c-3a2e503ada54';
 /** A banner that must have been made. */
@@ -51,13 +53,26 @@ test('presets and shuffles are looks the server accepts for a new Sim; anything 
   assert.deepEqual(starterLook({ ...good, face: 'square', expression: 7, extra: '<b>' }), good, 'unknown optional parts fall back; unknown keys are dropped');
 });
 
-test('the draft is rebuilt from untrusted storage and is always ready to play', () => {
+test('the draft round-trips a complete native character and rejects a malformed native recipe', () => {
   const now = 5000, random = () => 0;
   const fresh = draftFrom(null, { random, now });
   assert.deepEqual([fresh.name, fresh.landedAt, fresh.nameEdited, fresh.shuffles, fresh.preset], ['Sunny Tobi', 5000, false, 0, 'street']);
   assert.ok(checkLook(fresh.look, { starter: true }).look);
-  const kept = draftFrom({ name: ' Zee ', look: presetLook('owambe'), landedAt: 4000, nameEdited: true, shuffles: 3, preset: 'owambe' }, { random, now });
-  assert.deepEqual([kept.name, kept.landedAt, kept.nameEdited, kept.shuffles, kept.preset, kept.look.hair], ['Zee', 4000, true, 3, 'owambe', 'gele']);
+  const street = presetLook('street');
+  assert.ok(street?.native);
+  const features = Object.fromEntries(NATIVE_CHARACTER_CATALOG.features.map((feature, index) => [feature.id, feature.min + (feature.max - feature.min) * (index + 1) / (NATIVE_CHARACTER_CATALOG.features.length + 1)]));
+  const native = normalizeNativeRecipe({ ...street.native, appearance: { ...street.native.appearance, hair: 'braid01', garments: ['formal-suit-01'], shoes: 'shoes03', eyeColor: 'green', complexion: 'medium', height: 1.08, features,
+    colors: { skin: '#76452f', hair: '#241a16', upper: '#aabbcc', lower: '#223344', shoes: '#556677' }, handPose: 'point' }, emotion: 'surprised', emotionStrength: .63 });
+  const exact = { ...street, native };
+  const kept = draftFrom({ name: ' Zee ', look: JSON.parse(JSON.stringify(exact)), landedAt: 4000, nameEdited: true, shuffles: 3, preset: 'street' }, { random, now });
+  assert.deepEqual([kept.name, kept.landedAt, kept.nameEdited, kept.shuffles, kept.preset], ['Zee', 4000, true, 3, 'street']);
+  assert.deepEqual(kept.look.native, native, 'all native fields survive device JSON and draft restoration');
+  assert.equal(Object.keys(kept.look.native!.appearance.features).length, 35);
+  const malformed = structuredClone(exact) as Look;
+  delete malformed.native!.appearance.features['nose-width'];
+  const repaired = draftFrom({ name: 'Zee', look: malformed }, { random, now });
+  assert.notDeepEqual(repaired.look.native, native, 'an incomplete native recipe is dropped with the stale draft');
+  assert.ok(checkLook(repaired.look, { starter: true }).look, 'the replacement draft remains playable');
   // Hostile or stale storage: every part falls back by itself.
   const hostile = draftFrom({ name: 'x', look: { body: 'man', hair: '<script>' }, landedAt: 9e15, nameEdited: 'yes', shuffles: -1, preset: '__proto__' }, { random, now, name: 'Bola' });
   assert.deepEqual([hostile.name, hostile.landedAt, hostile.nameEdited, hostile.shuffles, hostile.preset], ['Bola', 5000, false, 0, 'street']);

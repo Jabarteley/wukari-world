@@ -1,67 +1,53 @@
 /**
  * OWNER: scenes
- * Street life, the near crowd drawn (the rules are ./near.ts). A chunk of its own, fetched by ./draw.ts only when near.ts nearCrowdFor
- * says yes; it fetches the skinned body module the same way the player's body does (src/scene/body/gate.ts importBody), so none of
- * this is in the first download or the shared scene chunk.
- *
- *   bodies   a POOL of skinned bodies (src/scene/body/skinned.ts createCrowdBodies: one parse and one texture per body file, a simplified
- *            index of about 2,430 triangles each), made one at a time and kept for the scene. A body is handed from one person to the
- *            next by re-dressing it (wear: the look's colours and the wardrobe layer), at most one re-dress a frame. A person whose body
- *            is not ready stays a cut-out, so nothing ever pops out of sight.
- *   people   each frame, near.ts nearCandidates keeps only people standing on the scene's walkable floor (a final point-in-bounds
- *            guard: no floor given, no bodies; a child and parent pass together or not at all), selectNear picks who is near, draw.ts
- *            hides their cut-outs (the instance collapses to nothing) and this
- *            puts the body where the cut-out was, facing the same way: walking at the stride their pace gives, standing (the idle clip,
- *            each at their own point in it), sipping a coffee, or looking at a phone; heads turn toward the player when close.
- *   props    ONE InstancedMesh of cups and ONE of phones, placed at the hands each frame: two draw calls for every prop there is.
- *
- * Caps: the choice's people, triangles (each body's simplified index, less what its clothes hide, plus its wardrobe layer) and draw
- * calls; the far crowd's adaptive caps shrink it (setCap). No frames of its own: update() runs inside the far crowd's step(); a body
- * that arrives between frames asks for one (changed). A body that fails to load ends the near crowd for the scene; the cut-outs stay.
+ * One live native53 street actor near the camera. The far native snapshot stays visible until the full actor is loaded,
+ * measured and admitted by both the street cap and the host's remaining scene budget.
  */
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
 import { importBody } from '../body/gate.ts';
+import { measureRenderCost } from '../body/render-cost.ts';
 import type { BodyKey } from '../body/manifest.ts';
-import { CROWD_LOD } from '../body/crowd-lod.ts';
-import type { CrowdBodies, SkinnedBody } from '../body/skinned.ts';
+import type { SkinnedBody } from '../body/skinned.ts';
 import type { Person, PersonPose } from './crowd.ts';
-import { CHILD_HEAD, PROP_CALLS, easeGlance, glanceYaw, nearAction, nearCandidates, nearDress, selectNear } from './near.ts';
+import { easeGlance, glanceYaw, nearAction, nearCandidates, nearDress, selectNear } from './near.ts';
 import type { Eye, NearAction, NearChoice, NearDress } from './near.ts';
 import { placed, spaceNear } from './spacing.ts';
 import type { Obstacle, Spot } from './spacing.ts';
 
+export interface NearCrowdRoom { triangles: number; drawCalls: number }
 export interface NearCrowdOptions {
-  /** The street-life group: the bodies and props are drawn in its coordinates. */
+  /** The street-life group: the body is drawn in its coordinates. */
   parent: THREE.Object3D
   seed: string
   people: readonly Person[]
   choice: NearChoice
-  /** The scene's walkable floor (its walk grid): only people standing on it may be bodies. None given: no bodies at all. */
+  /** The scene's walkable floor. None given: no live body. */
   walkable?: ((x: number, z: number) => boolean) | null
-  /** A body came in between frames: put everyone again at the last instant and draw one frame. */
+  /** Current room left in the whole scene, excluding this street group. */
+  room?: () => NearCrowdRoom
+  /** A body became ready between frames. */
   changed(): void
-  /** Tests: make a body without the body module. */
+  /** Tests may provide the body boundary directly. */
   make?(dress: NearDress): Promise<SkinnedBody>
 }
-/** What the far crowd's step hands over: everyone's pose and ground height this instant (index = person), how many are shown. */
+
 export interface NearFrame {
   poses: readonly (PersonPose | null)[]
   heights: ArrayLike<number>
   count: number
   eye: Eye | null
   player: { x: number; z: number } | null
-  /** Who the bodies give way to (the player, other players): fixed bodies in the spacing (spacing.ts spaceNear). */
   obstacles?: readonly Obstacle[]
   seconds: number
-  /** Seconds since the last frame; 0 when placing still (settle, reduced motion). */
+  /** The native clock advances exactly once when this is positive. */
   dt: number
 }
+
 export interface NearCrowd {
-  /** Pose the near people; returns who is drawn as a body (their cut-outs are to be hidden). */
+  /** Returns the one person, if any, whose far snapshot may be hidden. */
   update(frame: NearFrame): ReadonlySet<number>
   setCap(cap: number): void
-  /** Where a person drawn as a body stood at the last update (after spacing), if they are one. */
   spot(index: number): Spot | undefined
   readonly cap: number
   readonly shown: number
@@ -72,229 +58,189 @@ export interface NearCrowd {
   dispose(): void
 }
 
-/**
- * Stills of the 2 s drink loop (each body has its own) that hold a phone: by the chin (on a call) and in front of the belly (reading it).
- * Read off headless captures of both bodies; the woman's loop lowers the hand from about 1.0 s, the man's later.
- */
-export const PHONE_SECONDS: Readonly<Record<BodyKey, { call: number; look: number }>> = Object.freeze({ female: { call: 0.4, look: 0.9 }, male: { call: 0.5, look: 1.45 } });
-/** How far the palm is from the wrist, as a share of the person's height. */
-const PALM = 0.04;
-/** How many bodies a scene may ever make, as a multiple of its cap (a pool turned over by re-dressing; this only bounds churn). */
-const MADE_FACTOR = 3;
-/** The least time between one body coming in and the next being made (ms). */
 export const CREATE_GAP_MS = 180;
 
 interface Slot {
   body: SkinnedBody
   key: BodyKey
-  /** Who it is drawn as now, and who it is dressed as (kept while free, so the same person coming back needs no re-dress). */
   person: number | null
   dressed: number
   head: THREE.Object3D | null
   neck: THREE.Object3D | null
-  hand: THREE.Object3D | null
-  forearm: THREE.Object3D | null
   glance: number
   triangles: number
   calls: number
 }
 
+const finiteRoom = (value: unknown): number => typeof value === 'number' && Number.isFinite(value) ? Math.max(0, value) : 0;
+
 export function createNearCrowd(kit: Kit, options: NearCrowdOptions): NearCrowd {
-  const { THREE } = kit, { people, choice } = options;
-  const group = new THREE.Group();
+  const { people, choice } = options;
+  const group = new kit.THREE.Group();
   group.name = 'near-crowd';
   options.parent.add(group);
-  const slots: Slot[] = [], dresses = new Map<number, NearDress>();
-  let crowd: CrowdBodies | null = null, pending: number | null = null, made = 0, failed = false, disposed = false, cap = choice.people, rest = 0;
+
+  const dresses = new Map<number, NearDress>();
+  let slot: Slot | null = null;
+  let pending: number | null = null;
+  let failed = false, disposed = false, cap = Math.min(1, choice.people), rest = 0;
+  let drawn = new Set<number>(), spots = new Map<number, Spot>();
   const now = (): number => globalThis.performance?.now?.() ?? Date.now();
-  let drawn = new Set<number>(), short = false, spots = new Map<number, Spot>();
+
   const dressOf = (index: number): NearDress => {
     let dress = dresses.get(index);
     if (!dress) { dress = nearDress(people[index]!, index, options.seed); dresses.set(index, dress); }
     return dress;
   };
-  const keyOf = (index: number): BodyKey => (dressOf(index).look.body === 'man' ? 'male' : 'female');
+  const keyOf = (index: number): BodyKey => dressOf(index).look.native.appearance.body;
 
-  // ---- props: cups and phones, one instanced mesh each -----------------------------------------------------------------------------
-  const cupGeometry = new THREE.CylinderGeometry(0.5, 0.4, 1, 10, 1);
-  cupGeometry.translate(0, 0.5, 0);
-  const phoneGeometry = new THREE.BoxGeometry(1, 1, 1);
-  const propMaterial = kit.matte ? new THREE.MeshLambertMaterial({ color: '#ffffff' }) : new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 0.6, metalness: 0 });
-  const capacity = Math.max(1, choice.people);
-  const cups = new THREE.InstancedMesh(cupGeometry, propMaterial, capacity), phones = new THREE.InstancedMesh(phoneGeometry, propMaterial, capacity);
-  cups.name = 'near-cups'; phones.name = 'near-phones';
-  for (const mesh of [cups, phones]) { mesh.count = 0; mesh.frustumCulled = false; mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage); group.add(mesh); }
-  const cupColours = ['#f4f1ea', '#b98a5a', '#c43b2f', '#f4f1ea', '#2f5d3a'].map((hex) => new THREE.Color(hex)), phoneColour = new THREE.Color('#15171b');
-  for (let i = 0; i < capacity; i++) { cups.setColorAt(i, cupColours[i % cupColours.length]!); phones.setColorAt(i, phoneColour); }
-
-  const matrix = new THREE.Matrix4(), at = new THREE.Vector3(), toward = new THREE.Vector3(), size = new THREE.Vector3(), turn = new THREE.Quaternion();
-  const worldTurn = new THREE.Quaternion(), axis = new THREE.Vector3(), spin = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0), basis = new THREE.Matrix4();
-
-  /** Turn a bone about the world's vertical (whatever its own axes are) by `yaw`. */
+  const worldTurn = new kit.THREE.Quaternion(), axis = new kit.THREE.Vector3(), spin = new kit.THREE.Quaternion(), up = new kit.THREE.Vector3(0, 1, 0);
   function yawBone(bone: THREE.Object3D | null, yaw: number): void {
     if (!bone || !yaw) return;
     bone.getWorldQuaternion(worldTurn);
     axis.copy(up).applyQuaternion(worldTurn.invert());
     bone.quaternion.multiply(spin.setFromAxisAngle(axis, yaw));
   }
-  function cost(body: SkinnedBody): { triangles: number; calls: number } {
-    const lod = crowd?.triangles(body.key) ?? CROWD_LOD.bodies[body.key].triangles, metrics = body.wardrobe;
-    return { triangles: Math.max(0, lod - metrics.hiddenTriangles) + metrics.triangles, calls: 1 + metrics.addedDrawCalls };
+
+  function cost(body: SkinnedBody): Pick<Slot, 'triangles' | 'calls'> {
+    const measured = measureRenderCost(body.object);
+    const measuredTriangles = measured.scenery.triangles + measured.characters.triangles;
+    const measuredCalls = measured.scenery.drawCalls + measured.characters.drawCalls;
+    const reportedTriangles = finiteRoom(body.object.userData.triangles);
+    const reportedCalls = finiteRoom(body.object.userData.drawCalls);
+    return {
+      triangles: Math.max(measuredTriangles, reportedTriangles, finiteRoom(body.wardrobe.triangles)),
+      calls: Math.max(measuredCalls, reportedCalls, 1 + finiteRoom(body.wardrobe.addedDrawCalls)),
+    };
   }
-  function bones(body: SkinnedBody): Pick<Slot, 'head' | 'neck' | 'hand' | 'forearm'> {
+
+  function bones(body: SkinnedBody): Pick<Slot, 'head' | 'neck'> {
     const find = (name: string) => body.object.getObjectByName(name) ?? null;
-    return { head: find('Head'), neck: find('neck_01'), hand: find('hand_r'), forearm: find('lowerarm_r') };
+    return { head: find('head'), neck: find('neck_01') };
   }
 
   function create(index: number): void {
-    pending = index; made += 1;
+    pending = index;
     const dress = dressOf(index);
-    const request = options.make ? options.make(dress)
-      : (crowd ? Promise.resolve(crowd) : importBody().then((module) => (crowd = module.createCrowdBodies(kit)))).then((bodies) => bodies.make(dress.look, dress.seed, dress.scale));
+    const request = options.make
+      ? options.make(dress)
+      : importBody().then((module) => module.loadBody(kit, dress.look, dress.seed, dress.scale, { detail: 'full' }));
     request.then((body) => {
-      // A breather before the next body, so the work of making them is spread over frames (the frame guard watches the gaps).
-      pending = null; rest = now() + CREATE_GAP_MS;
+      pending = null;
+      rest = now() + CREATE_GAP_MS;
       if (disposed) { body.dispose(); return; }
+      body.object.visible = true;
+      const metrics = cost(body);
       body.object.visible = false;
       group.add(body.object);
-      slots.push({ body, key: body.key, person: null, dressed: index, ...bones(body), glance: 0, ...cost(body) });
+      slot = { body, key: body.key, person: null, dressed: index, ...bones(body), glance: 0, ...metrics };
       options.changed();
-      // More are wanted than there are bodies: after the breather, one more step (and frame) makes the next.
-      if (short) setTimeout(() => { if (!disposed && short) options.changed(); }, CREATE_GAP_MS + 10);
     }).catch((error: unknown) => {
-      pending = null; failed = true;
-      console.warn('Near crowd unavailable; keeping the cut-outs:', error);
+      pending = null;
+      failed = true;
+      console.warn('Near native crowd unavailable; keeping the far snapshots:', error);
       options.changed();
     });
   }
 
-  /** Re-dress a free body as `index`: the look's colours and wardrobe, and the body's fit for their height. */
-  function redress(slot: Slot, index: number): boolean {
+  function redress(current: Slot, index: number): boolean {
     const dress = dressOf(index);
-    if (!slot.body.wear(dress.look, dress.seed)) return false;
-    slot.body.fit(dress.scale);
-    slot.dressed = index;
-    Object.assign(slot, cost(slot.body));
+    if (!current.body.wear(dress.look, dress.seed)) return false;
+    current.body.fit(dress.scale);
+    current.dressed = index;
+    Object.assign(current, cost(current.body));
     return true;
   }
 
-  function pose(slot: Slot, index: number, frame: NearFrame, action: NearAction, spot: Spot): void {
-    const place = { ...frame.poses[index]!, x: spot.x, z: spot.z }, dress = dressOf(index), body = slot.body;
-    if (action.kind === 'walk') body.stride(action.phase, false, 0, false);
-    else if (action.kind === 'phone') body.sampleUse('drink', PHONE_SECONDS[slot.key][action.call ? 'call' : 'look']);
-    else body.sampleUse(action.kind === 'drink' ? 'drink' : 'idle', action.seconds);
+  function pose(current: Slot, index: number, frame: NearFrame, action: NearAction, spot: Spot): void {
+    const place = { ...frame.poses[index]!, x: spot.x, z: spot.z }, body = current.body;
+    if (action.kind === 'walk') {
+      const distance = Math.max(1e-6, body.cycleDistance(false));
+      body.stride((2 * Math.PI * action.travelled) / distance, false, 0, false);
+    } else body.show('idle');
     body.place(place.x, frame.heights[index] ?? 0, place.z, place.ry);
     if (frame.dt > 0) body.step(frame.dt);
-    if (dress.child && slot.head) slot.head.scale.setScalar(CHILD_HEAD);
+
     const target = glanceYaw({ x: place.x, z: place.z, ry: place.ry }, frame.player);
-    slot.glance = frame.dt > 0 ? easeGlance(slot.glance, target, frame.dt) : target;
-    if (Math.abs(slot.glance) > 1e-3) {
+    current.glance = frame.dt > 0 ? easeGlance(current.glance, target, frame.dt) : target;
+    if (Math.abs(current.glance) > 1e-3) {
       body.object.updateMatrixWorld(true);
-      yawBone(slot.neck, slot.glance * 0.35);
-      yawBone(slot.head, slot.glance * 0.65);
+      yawBone(current.neck, current.glance * 0.35);
+      yawBone(current.head, current.glance * 0.65);
     }
   }
 
-  function props(frame: NearFrame): void {
-    let cupCount = 0, phoneCount = 0;
-    group.updateWorldMatrix(true, false);
-    for (const slot of slots) {
-      if (slot.person === null || !slot.hand) continue;
-      const index = slot.person, dress = dressOf(index), place = frame.poses[index];
-      if (!dress.prop || !place) continue;
-      const action = nearAction(people[index]!, place, dress, frame.seconds);
-      if (dress.prop === 'phone' && action.kind !== 'phone') continue;
-      const height = people[index]!.height;
-      slot.body.object.updateMatrixWorld(true);
-      slot.hand.getWorldPosition(at); group.worldToLocal(at);
-      // The palm: on from the wrist (the hand bone) along the forearm, whatever way the bones' own axes point.
-      if (slot.forearm) { slot.forearm.getWorldPosition(toward); group.worldToLocal(toward); at.addScaledVector(toward.sub(at).normalize(), -PALM * height); }
-      if (dress.prop === 'cup') {
-        size.set(0.042 * height, 0.06 * height, 0.042 * height);
-        at.y -= 0.035 * height;
-        cups.setMatrixAt(cupCount++, matrix.compose(at, turn.identity(), size));
-      } else {
-        // The phone faces the eyes: its long side up, its screen toward the head.
-        (slot.head ?? slot.hand).getWorldPosition(toward); group.worldToLocal(toward);
-        basis.lookAt(at, toward, up);
-        size.set(0.04 * height, 0.085 * height, 0.006 * height);
-        phones.setMatrixAt(phoneCount++, matrix.compose(at, turn.setFromRotationMatrix(basis), size));
-      }
-    }
-    cups.count = cupCount; phones.count = phoneCount;
-    cups.instanceMatrix.needsUpdate = true; phones.instanceMatrix.needsUpdate = true;
+  function limits(): NearCrowdRoom {
+    const room = options.room?.();
+    if (!room) return { triangles: choice.triangles, drawCalls: choice.drawCalls };
+    return {
+      triangles: Math.min(choice.triangles, finiteRoom(room.triangles)),
+      drawCalls: Math.min(choice.drawCalls, finiteRoom(room.drawCalls)),
+    };
+  }
+
+  function clear(): void {
+    if (slot) { slot.person = null; slot.body.object.visible = false; }
+    drawn = new Set();
   }
 
   function update(frame: NearFrame): ReadonlySet<number> {
-    if (disposed || failed) return (drawn = new Set());
-    const wanted = selectNear(nearCandidates(people, frame.poses, frame.count, options.walkable), frame.eye, drawn, cap);
-    const keep = new Set(wanted);
-    // Bodies are solid: no two stand closer than spacing.ts says (they sidestep, keeping to the floor); each is placed at its own spot.
-    spots = new Map<number, Spot>();
-    const spaced = spaceNear(wanted.map((index) => placed(index, people[index]!, frame.poses[index]!)), options.walkable, frame.obstacles ?? []);
-    wanted.forEach((index, i) => spots.set(index, spaced[i]!));
-    for (const slot of slots) if (slot.person !== null && !keep.has(slot.person)) { slot.person = null; slot.body.object.visible = false; }
-    let triangles = 0, calls = PROP_CALLS, redressed = false;
-    for (const slot of slots) if (slot.person !== null) { triangles += slot.triangles; calls += slot.calls; }
-    const next = new Set<number>();
-    short = false;
-    for (const index of wanted) {
-      let slot = slots.find((s) => s.person === index);
-      if (!slot) {
-        const key = keyOf(index), free = slots.filter((s) => s.person === null && s.key === key);
-        slot = free.find((s) => s.dressed === index);
-        if (!slot && free.length && !redressed) { redressed = true; slot = free.find((s) => redress(s, index)); }
-        if (!slot) {
-          short = true;
-          if (pending === null && now() >= rest && made < MADE_FACTOR * Math.max(1, choice.people)) {
-            // A pool as large as the cap; past it, a free body of the other file makes way.
-            if (slots.length >= choice.people) {
-              const spare = slots.findIndex((s) => s.person === null && s.key !== key);
-              if (spare >= 0) { slots[spare]!.body.dispose(); slots.splice(spare, 1); create(index); }
-            } else create(index);
-          }
-          continue;
-        }
-        if (triangles + slot.triangles > choice.triangles || calls + slot.calls > choice.drawCalls) continue;
-        triangles += slot.triangles; calls += slot.calls;
-        slot.person = index; slot.glance = 0;
-      }
-      const action = nearAction(people[index]!, frame.poses[index]!, dressOf(index), frame.seconds);
-      pose(slot, index, frame, action, spots.get(index)!);
-      slot.body.object.visible = true;
-      next.add(index);
+    if (disposed || failed) { clear(); return drawn; }
+    const wanted = selectNear(nearCandidates(people, frame.poses, frame.count, options.walkable), frame.eye, drawn, cap).slice(0, 1);
+    if (!wanted.length) { clear(); spots = new Map(); return drawn; }
+    const index = wanted[0]!;
+    const spaced = spaceNear([placed(index, people[index]!, frame.poses[index]!)], options.walkable, frame.obstacles ?? []);
+    const spot = spaced[0]!;
+    spots = new Map([[index, spot]]);
+
+    if (slot?.person !== null && slot?.person !== index) clear();
+    const key = keyOf(index);
+    if (slot && slot.person === null && slot.key !== key) {
+      slot.body.dispose();
+      slot = null;
     }
-    drawn = next;
-    props(frame);
+    if (!slot) {
+      if (pending === null && now() >= rest) create(index);
+      drawn = new Set();
+      return drawn;
+    }
+    if (slot.dressed !== index && !redress(slot, index)) {
+      slot.body.dispose();
+      slot = null;
+      if (pending === null && now() >= rest) create(index);
+      drawn = new Set();
+      return drawn;
+    }
+
+    const room = limits();
+    if (slot.triangles > room.triangles || slot.calls > room.drawCalls) {
+      clear();
+      return drawn;
+    }
+
+    slot.person = index;
+    const action = nearAction(people[index]!, frame.poses[index]!, dressOf(index), frame.seconds);
+    pose(slot, index, frame, action, spot);
+    slot.body.object.visible = true;
+    drawn = new Set([index]);
     return drawn;
   }
 
   return {
     update,
-    setCap(value) { cap = Math.max(0, Math.min(choice.people, Math.floor(value))); },
-    spot: (index) => (drawn.has(index) ? spots.get(index) : undefined),
+    setCap(value) { cap = Math.max(0, Math.min(1, choice.people, Math.floor(value))); },
+    spot: (index) => drawn.has(index) ? spots.get(index) : undefined,
     get cap() { return cap; },
     get shown() { return drawn.size; },
-    get bodies() { return slots.length; },
-    get triangles() {
-      let total = 0;
-      for (const slot of slots) if (slot.person !== null) total += slot.triangles;
-      return total + (cups.count ? cups.count * 40 : 0) + (phones.count ? phones.count * 12 : 0);
-    },
-    get drawCalls() {
-      let total = (cups.count ? 1 : 0) + (phones.count ? 1 : 0);
-      for (const slot of slots) if (slot.person !== null) total += slot.calls;
-      return total;
-    },
+    get bodies() { return slot ? 1 : 0; },
+    get triangles() { return slot?.person === null || !slot ? 0 : slot.triangles; },
+    get drawCalls() { return slot?.person === null || !slot ? 0 : slot.calls; },
     get failed() { return failed; },
     dispose() {
       if (disposed) return;
       disposed = true;
-      for (const slot of slots) slot.body.dispose();
-      slots.length = 0;
-      crowd?.dispose(); crowd = null;
-      for (const mesh of [cups, phones]) mesh.dispose();
-      cupGeometry.dispose(); phoneGeometry.dispose(); propMaterial.dispose();
+      slot?.body.dispose();
+      slot = null;
       group.parent?.remove(group);
       drawn = new Set();
     },

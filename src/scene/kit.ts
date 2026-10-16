@@ -17,6 +17,8 @@ import type { Colour } from './types.ts';
 /** matte: build Lambert materials instead of Standard ones (the cheaper-scenery flag, src/scene/look.ts matteScenery(); default off). */
 export interface Kit {
   THREE: typeof THREE;
+  /** Draw once after an asynchronous character asset arrives; the host owns visibility and scheduling. */
+  requestRender?: () => void;
   matte: boolean;
   material(color: Colour, glow?: boolean): THREE.MeshLambertMaterial | THREE.MeshStandardMaterial;
   mesh(geometry: THREE.BufferGeometry, x: number, y: number, z: number, sx: number, sy: number, sz: number, color: Colour, parent: THREE.Object3D, glow?: boolean): THREE.Mesh;

@@ -13,7 +13,7 @@ export function viewContext(source: SceneViewSource): SceneViewContext {
     get bodies() { const s = read(); return [s.walk?.avatar ?? null, s.current?.playerBody ?? s.body] },
     get x() { return walker.x }, get y() { return read().y }, get z() { return walker.z },
     get facing() { return walker.ry },
-    get scale() { const s = read(); return (s.walk?.scale ?? 1) * avatarProportions(s.state?.onboarding?.look.appearance).height },
+    get scale() { const s = read(); return (s.walk?.scale ?? 1) * (s.state?.onboarding?.look.native?.appearance.height ?? avatarProportions(s.state?.onboarding?.look.appearance).height) },
     get pose() { const s = read(); return s.current?.playerPose ?? s.rest?.pose ?? 'stand' },
     get seat() { const s = read(); return s.rest?.seat === undefined ? undefined : s.rest.seat * (s.walk?.scale ?? 1) },
     get moving() { return walker.moving }, get phase() { return read().phase },

@@ -10,6 +10,9 @@ export const RELEASE_IDENTITY_VERSION = 1;
 export const RELEASE_MARKER_PREFIX = '// joinallworld-release:v1 ';
 const MAX_DECIMAL_ID = 9223372036854775807n;
 const MAX_WORKER_BYTES = 3_500_000;
+// Trusted source receipt, never read from the candidate package. The native exception is path + byte-identity scoped.
+const nativeSelection = /** @type {{files:{url:string,sha256:string,bytes:number}[]}} */ (JSON.parse(readFileSync(new URL('../docs/character-assets/selected-release-assets.json', import.meta.url), 'utf8')));
+const reviewedNativeModels = new Map(nativeSelection.files.filter(file => file.url.startsWith('/character-lab/') && file.url.endsWith('.glb')).map(file => [`assets${file.url}`, file]));
 /** @param {unknown} value @param {string} name */
 function positiveDecimal(value, name) {
   if (typeof value !== 'string' || !/^[1-9][0-9]{0,18}$/.test(value) || BigInt(value) > MAX_DECIMAL_ID) throw Error(`Invalid ${name}`);
@@ -73,11 +76,21 @@ export function checkPackage(root, sourceSha, publish) {
         const progressionAsset = /^assets\/assets\/progression\/(?:episodes-\d+|journeys|missions)\.([a-f0-9]{64})\.json$/.exec(rel);
         // The two reduced-detail body files of the near crowd (src/scene/body/files.ts): the only binary that is not a glTF.
         const bodyLod = /^assets\/assets\/base-body-(?:male|female)-lod-[0-9a-f]{8}\.bin$/.test(rel) && stat.size > 0 && stat.size < 1024 * 1024;
-        if (!['worker.js', 'wrangler.json', 'manifest.json'].includes(rel) && !cityAsset && !progressionAsset && !bodyLod && !/^assets\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/.test(rel)) throw Error('Unexpected package file');
+        const nativeJson = ['assets/character-lab/models/final-pass-20261015/catalog.json', 'assets/character-lab/models/candidates/motion-iteration2-upper-palm.json'].includes(rel);
+        const nativeNotice = ['assets/character-lab/THIRD_PARTY_NOTICES.md', 'assets/character-lab/FINAL-PASS-LICENSE-NOTE.md'].includes(rel);
+        if (!nativeJson && !nativeNotice && !['worker.js', 'wrangler.json', 'manifest.json'].includes(rel) && !cityAsset && !progressionAsset && !bodyLod && !/^assets\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/.test(rel)) throw Error('Unexpected package file');
         const bytes = readFileSync(full);
+        if (nativeJson) {
+          if (bytes.length > 1024 * 1024) throw Error('Native metadata too large');
+          try { JSON.parse(bytes.toString('utf8')); } catch { throw Error('Invalid native metadata'); }
+        }
         if (cityAsset && cityAsset[1] !== hash(bytes)) throw Error('City content filename hash mismatch');
         if (progressionAsset && progressionAsset[1] !== hash(bytes)) throw Error('Progression content filename hash mismatch');
-        if (rel.endsWith('.glb') && !isGlb(bytes)) throw Error('Invalid model file');
+        if (rel.endsWith('.glb')) {
+          const reviewed = reviewedNativeModels.get(rel);
+          if (reviewed && (reviewed.sha256 !== hash(bytes) || reviewed.bytes !== bytes.length)) throw Error('Native model identity mismatch');
+          if (!isGlb(bytes, reviewed ? 5 * 1024 * 1024 : undefined)) throw Error('Invalid model file');
+        }
         files.push({ path: rel, bytes: stat.size, sha256: hash(bytes) });
       }
     }
@@ -114,9 +127,9 @@ export function checkPackage(root, sourceSha, publish) {
 }
 // A binary glTF 2.0 file: "glTF" magic, version 2, a declared length equal to the file size, then a JSON chunk first.
 // Anything else under a .glb name (a renamed script, an HTML page, a truncated upload) is refused.
-/** @param {Uint8Array} bytes */
-export function isGlb(bytes) {
-  if (bytes.length < 20 || bytes.length > 2 * 1024 * 1024) return false;
+/** @param {Uint8Array} bytes @param {number} [maxBytes] */
+export function isGlb(bytes, maxBytes = 2 * 1024 * 1024) {
+  if (bytes.length < 20 || bytes.length > maxBytes) return false;
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   return view.getUint32(0, true) === 0x46546c67 && view.getUint32(4, true) === 2
     && view.getUint32(8, true) === bytes.length && view.getUint32(16, true) === 0x4e4f534a;

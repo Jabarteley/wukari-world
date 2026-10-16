@@ -2,8 +2,8 @@
 // The stage of the character creator: the character large, lit, and turnable. It is the one 3D preview
 // of the app (src/scene/avatar-preview.ts) drawn on demand only — a frame when the look, the view or
 // the size changes, one per pointer or key event while turning, and a short bounded ease after a drag
-// or a button — never a loop. Until the canvas has arrived the stage shows a still silhouette; when
-// WebGL is not available it shows the flat figure, large, instead.
+// or a button — never a loop. Loading and rendering failures have explicit status and retry states;
+// the stage always uses the shared canonical character.
 //
 // Controls: drag (mouse or touch) or ← / → on the focused stage to turn; Turn left, Turn right, Turn
 // around; Body / Face / Outfit for how close to look. They are real buttons over the stage, never in
@@ -13,7 +13,6 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import type { PreviewFocus } from '../../../scene/avatar-preview.ts'
 import type { Look } from '../../../types/life.ts'
 import GameIcon from '../../ui/GameIcon.vue'
-import AvatarFigure from './AvatarFigure.vue'
 import { FOCUS_CHOICES } from './creatorModel.ts'
 import { leaveLookPreview, showLookPreview, turnPreview } from './lookPreview.ts'
 import type { StageHandle, StageMode } from './lookPreview.ts'
@@ -61,7 +60,11 @@ function turn(radians: number): void { markSpun(); turnPreview(radians) }
   <div ref="stage" class="cr-stage" :data-mode="mode" :data-spun="lookUi.spun ? '' : undefined" data-cr-stage>
     <div class="cr-floor" aria-hidden="true" />
     <div ref="host" class="cr-stage-view" data-look-canvas>
-      <AvatarFigure :look="look" :size="220" :label="mode === '2d' ? alt : ''" />
+    </div>
+    <p v-if="mode === 'loading'" class="cr-preview-loading" role="status">Preparing your character…</p>
+    <div v-if="mode === 'error'" class="cr-preview-error" role="alert">
+      <p>The character preview could not load.</p>
+      <button type="button" @click="request">Retry preview</button>
     </div>
     <p v-if="caption" class="cr-caption" data-cr-caption>{{ caption }}</p>
     <div ref="tools" class="cr-stage-tools" :aria-busy="mode === 'loading' ? 'true' : undefined">
@@ -78,3 +81,10 @@ function turn(radians: number): void { markSpun(); turnPreview(radians) }
     <p v-else-if="mode === 'loading'" class="cr-hint is-loading" role="status">Getting your character ready…</p>
   </div>
 </template>
+
+<style scoped>
+.cr-preview-loading{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);padding:10px 16px;border:1px solid #cbdce4;border-radius:999px;background:#fafcfce8;color:#10323d;font-size:14px;font-weight:650;white-space:nowrap}
+.cr-preview-error{position:absolute;z-index:4;inset:20px;display:grid;place-content:center;justify-items:center;gap:10px;padding:16px;border:1px solid #cbdce4;border-radius:16px;background:#fafcfcee;color:#10323d;text-align:center}
+.cr-preview-error p{margin:0}
+.cr-preview-error button{min-height:44px;padding:8px 14px;border:1px solid #176848;border-radius:9px;background:#176848;color:#fff;font:inherit;font-weight:650;cursor:pointer}
+</style>

@@ -10,8 +10,9 @@ import { unpackStyle } from './house-style.ts';
 import type { HouseStyle, HouseTierId, LifeState } from '../types/life.ts';
 import type { WorldStreetResponse } from '../types/world.ts';
 import type { HostRest, HostScene, HostWalk, PlayerLook } from '../venue-world.ts';
-import { buildAvatar, poseAvatar } from './characters.ts';
-import type { AvatarGroup, Pose } from './characters.ts';
+import type { Pose } from './characters.ts';
+import { createBody } from './body/skinned.ts';
+import type { SkinnedBody } from './body/skinned.ts';
 import { createBatch, hash, releaseObjects, sceneMaterials } from './build.ts';
 import type { Kit } from './kit.ts';
 import { createWalkGrid } from './movement.ts';
@@ -65,7 +66,7 @@ const STREET_WINDOW_S = 12;
 
 
 interface StreetPeer {
-  id: string; name: string; lookKey: string; avatar: AvatarGroup;
+  id: string; name: string; lookKey: string; avatar: SkinnedBody;
   x: number; z: number; fromX: number; fromZ: number; targetX: number; targetZ: number;
   progress: number; duration: number; phase: number; tag: SceneTag; person: ScenePerson;
 }
@@ -76,9 +77,9 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
   let streetTime: TimeOfDay = 'day';
   const { THREE } = kit, group = new THREE.Group(), scenery = new THREE.Group();
   group.add(scenery);
-  const avatar: AvatarGroup = buildAvatar(kit, null, { rig: true, seed: 'neighbourhood-player', marker: 'crown' });
-  group.add(avatar);
-  let avatarDispose = avatar.userData.dispose;
+  let avatar = createBody(kit, null, 'neighbourhood-player', 1);
+  avatar.show('idle', false);
+  group.add(avatar.object);
   let avatarLook: unknown = null, avatarSeed = 'neighbourhood-player', playerName = '', pose: Pose = 'stand';
   let sceneryObjects: (THREE.Mesh | THREE.PointLight)[] = [], nightMeshes: THREE.Mesh[] = [];
   let street: WorldStreetResponse | null = null, streetKey = '', signature = '', anchor: number | null = null, ownTier: HouseTierId = 'starter', cityId = '';
@@ -121,7 +122,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
   // round them as round a wall. `floor` is the grid alone (where the street's own bodies may stand).
   const makeGrid = () => {
     const base = createWalkGrid({ bounds: BOUNDS, cell: 0.3, radius: 0.32, entrance: [ownX(), ENTRANCE.z, ENTRANCE.ry], block: plan.blocks });
-    return { ...base, floor: base.free, free: (x: number, z: number) => base.free(x, z) && !streetLife?.blocks(x, z, avatar.position) };
+    return { ...base, floor: base.free, free: (x: number, z: number) => base.free(x, z) && !streetLife?.blocks(x, z, avatar.object.position) };
   };
   let grid = makeGrid();
 
@@ -219,10 +220,10 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
   render();
 
   function placePeer(peer: StreetPeer): void {
-    peer.avatar.position.set(peer.x, 0, peer.z);
+    peer.avatar.place(peer.x, 0, peer.z, peer.avatar.object.rotation.y);
     peer.tag.position.x = peer.person.x = peer.x; peer.tag.position.z = peer.person.z = peer.z;
   }
-  function dropPeer(peer: StreetPeer): void { peer.avatar.userData.dispose(); peers.delete(peer.id); }
+  function dropPeer(peer: StreetPeer): void { peer.avatar.dispose(); peers.delete(peer.id); }
   function setCrowd(value: unknown): boolean {
     const incoming: { id: string; name: string; x: number; z: number; look: unknown; seed: string }[] = [];
     const seen = new Set<string>();
@@ -241,19 +242,20 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
       let peer = peers.get(person.id);
       if (peer && peer.lookKey !== lookKey) { dropPeer(peer); peer = undefined; }
       if (!peer) {
-        const body = buildAvatar(kit, person.look, { rig: true, seed: person.seed, marker: 'player' });
-        const top = body.userData.top;
+        const body = createBody(kit, person.look, person.seed, 1, { detail: 'lod', wardrobeDetail: 'ambient' });
+        body.show('idle', false);
+        const top = 2.95;
         peer = { id: person.id, name: person.name, lookKey, avatar: body, x: person.x, z: person.z, fromX: person.x, fromZ: person.z, targetX: person.x, targetZ: person.z, progress: 1, duration: 0.2, phase: 0,
           tag: { id: person.id, kind: 'player', name: person.name, text: `@${person.name}`, marker: 'tag', position: { x: person.x, y: top, z: person.z } },
           person: { id: person.id, kind: 'player', x: person.x, z: person.z, top } };
-        peers.set(person.id, peer); group.add(body); placePeer(peer);
+        peers.set(person.id, peer); group.add(body.object); placePeer(peer);
       }
       peer.name = peer.tag.name = person.name; peer.tag.text = `@${person.name}`;
       if (Math.hypot(peer.targetX - person.x, peer.targetZ - person.z) > 0.01) {
         peer.fromX = peer.x; peer.fromZ = peer.z; peer.targetX = person.x; peer.targetZ = person.z;
         const distance = Math.hypot(peer.targetX - peer.x, peer.targetZ - peer.z);
         peer.duration = Math.max(0.14, Math.min(0.35, distance / 3.92)); peer.progress = distance > 24 ? 1 : 0;
-        if (peer.progress === 1) { peer.x = person.x; peer.z = person.z; placePeer(peer); poseAvatar(peer.avatar, { pose: 'stand' }); }
+        if (peer.progress === 1) { peer.x = person.x; peer.z = person.z; placePeer(peer); peer.avatar.show('idle', false); }
       }
     }
     easing = [...peers.values()].some(peer => peer.progress < 1);
@@ -266,29 +268,32 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
       const beforeX = peer.x, beforeZ = peer.z;
       peer.progress = Math.min(1, peer.progress + step / peer.duration);
       peer.x = peer.fromX + (peer.targetX - peer.fromX) * peer.progress; peer.z = peer.fromZ + (peer.targetZ - peer.fromZ) * peer.progress;
-      peer.phase = (peer.phase + Math.hypot(peer.x - beforeX, peer.z - beforeZ) / 1.83) % 1;
-      const angle = Math.atan2(peer.targetX - peer.fromX, peer.targetZ - peer.fromZ), turn = Math.atan2(Math.sin(angle - peer.avatar.rotation.y), Math.cos(angle - peer.avatar.rotation.y));
-      peer.avatar.rotation.y += Math.sign(turn) * Math.min(Math.abs(turn), 14 * step);
-      poseAvatar(peer.avatar, { pose: peer.progress < 1 ? 'walk' : 'stand', stride: peer.phase }); placePeer(peer);
+      peer.phase = (peer.phase + Math.hypot(peer.x - beforeX, peer.z - beforeZ) / peer.avatar.cycleDistance(false)) % 1;
+      const angle = Math.atan2(peer.targetX - peer.fromX, peer.targetZ - peer.fromZ), turn = Math.atan2(Math.sin(angle - peer.avatar.object.rotation.y), Math.cos(angle - peer.avatar.object.rotation.y));
+      peer.avatar.object.rotation.y += Math.sign(turn) * Math.min(Math.abs(turn), 14 * step);
+      if (peer.progress < 1) peer.avatar.stride(peer.phase * Math.PI * 2, false, 0, true); else peer.avatar.show('idle', false);
+      placePeer(peer); peer.avatar.step(step);
     }
     easing = [...peers.values()].some(peer => peer.progress < 1);
     return easing;
   }
-  function settleCrowd(): void { for (const peer of peers.values()) { peer.x = peer.targetX; peer.z = peer.targetZ; peer.progress = 1; poseAvatar(peer.avatar, { pose: 'stand' }); placePeer(peer); } easing = false; }
+  function settleCrowd(): void { for (const peer of peers.values()) { peer.x = peer.targetX; peer.z = peer.targetZ; peer.progress = 1; peer.avatar.show('idle', false); peer.avatar.settle(); placePeer(peer); } easing = false; }
 
   const walk: HostWalk = {
     get grid() { return grid; }, get entrance() { return entrance(); }, open: true, scale: 1,
-    get centre(): [number, number, number] { return [ownX(), 0.9, -2.6]; }, get avatar() { return avatar; }, drive() {},
+    get centre(): [number, number, number] { return [ownX(), 0.9, -2.6]; }, get avatar() { return avatar.object; }, drive() {},
     rest(): HostRest { return { spot: null, ...entrance(), pose: 'stand', busy: false, leaving: false, fixed: false, approach: null, steps: [] }; },
     spots() { return []; }, things() { return []; }, people() { return [...peers.values()].map(peer => peer.person); },
     get solids() { return plan.solids; },
-    move(x, y, z, ry) { avatar.position.set(x, y, z); avatar.rotation.y = ry; },
-    pose(name = 'stand') { const next: Pose = name === 'sit' || name === 'walk' || name === 'wave' || name === 'work' || name === 'dance' || name === 'relax' || name === 'jog' ? name : 'stand'; if (pose === next) return false; pose = next; poseAvatar(avatar, { pose }); return true; },
-    gait(_step, phase = 0, jog = false) { pose = jog ? 'jog' : 'walk'; poseAvatar(avatar, { pose, stride: finite(phase) ? ((phase / (2 * Math.PI)) % 1 + 1) % 1 : 0 }); return true; },
+    move(x, y, z, ry) { avatar.place(x, y, z, ry); },
+    pose(name = 'stand') { const next: Pose = name === 'sit' || name === 'walk' || name === 'wave' || name === 'work' || name === 'dance' || name === 'relax' || name === 'jog' ? name : 'stand'; if (pose === next) return false; pose = next; avatar.show(next === 'sit' ? 'sit' : next === 'walk' ? 'walk' : next === 'jog' ? 'jog' : next === 'dance' ? 'dance' : next === 'wave' || next === 'work' ? 'interact' : 'idle', false); return true; },
+    gait(_step, phase = 0, jog = false) { pose = jog ? 'jog' : 'walk'; avatar.stride(finite(phase) ? phase : 0, jog, 0, true); return true; },
     heightAt() { return 0; }, near() { return false; }, goal() { return false; },
   };
   return {
     group, camera: CAMERA, ground: '#7f9a71', walk,
+    cycleDistance(jog:boolean){return avatar.cycleDistance(jog);},
+    stepCharacter(dt:number){return avatar.step(dt);},
     get background() { return lightingFor('outdoor', streetTime).sky[0]; },
     get sky() { return lightingFor('outdoor', streetTime).sky; },
     lighting() { return lightingFor('outdoor', streetTime); },
@@ -308,7 +313,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
       { id: 'home-door', kind: 'home-door', name: 'Go inside', text: 'Go inside', marker: 'tag', position: { x: ownX(), y: 2.6, z: HOME_DOOR.z } },
       ...neighbours().flatMap(house => house.owner ? [{ id: `door:${house.owner.id}`, kind: 'neighbour-door', name: `${house.owner.name}'s home`, text: `${house.owner.name}'s home`, marker: 'tag', position: { x: rowX(house.plot), y: 2.6, z: HOME_DOOR.z } }] : []),
       ...[...peers.values()].map(peer => peer.tag),
-      ...(playerName ? [{ id: 'self', kind: 'self', text: playerName, name: playerName, marker: 'crown', colour: '#ffd34d', position: { x: avatar.position.x, y: avatar.position.y + 3, z: avatar.position.z } }] : []),
+      ...(playerName ? [{ id: 'self', kind: 'self', text: playerName, name: playerName, marker: 'crown', colour: '#ffd34d', position: { x: avatar.object.position.x, y: avatar.object.position.y + 3, z: avatar.object.position.z } }] : []),
     ],
     setCrowd, get easing() { return easing; }, stepCrowd, settleCrowd,
     setPlayer({ look, seed, name }: Partial<PlayerLook>) {
@@ -317,10 +322,12 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
       if (seed !== undefined && seed !== avatarSeed) { avatarSeed = seed; changed = appearance = true; }
       if (name !== undefined && name !== playerName) { playerName = name; changed = true; }
       if (appearance) {
-        const next = buildAvatar(kit, avatarLook, { rig: true, seed: avatarSeed, marker: 'crown' }), parent = avatar.parent;
-        parent?.remove(avatar); avatarDispose(); avatar.clear();
-        for (const child of [...next.children]) avatar.add(child);
-        avatar.userData = next.userData; avatarDispose = next.userData.dispose; next.clear(); parent?.add(avatar);
+        const old = avatar;
+        avatar = createBody(kit, avatarLook, avatarSeed, 1);
+        avatar.object.visible = old.object.visible;
+        avatar.place(old.object.position.x, old.object.position.y, old.object.position.z, old.object.rotation.y);
+        avatar.show(pose === 'sit' ? 'sit' : pose === 'walk' ? 'walk' : pose === 'jog' ? 'jog' : pose === 'dance' ? 'dance' : pose === 'wave' || pose === 'work' ? 'interact' : 'idle', false);
+        group.add(avatar.object); old.dispose();
       }
       return changed;
     },
@@ -363,7 +370,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
             // A believable crowd for the street's length (plan.ts streetCrowd: 10 to 18, half on a lite device), not the tier's whole cap.
             country: country(), crowd: gate.streetCrowd(choice, 2 * ROW_HALF_WIDTH), vehicles: layout ? choice.vehicles : 0, narrow: streets.HOME_NARROW, bounds: BOUNDS, at: Date.now(),
             context: 'street', tier: choice.tier, ready: changed, bodyFloor: (x, z) => grid.floor(x, z), others: () => [...peers.values()].map(peer => peer.person) });
-          streetLife.step(Date.now(), avatar.position);
+          streetLife.step(Date.now(), avatar.object.position);
           streetLayout = layout; streets.noteStreet('neighbourhood', layout);
           streetWindow = STREET_WINDOW_S; changed();
         });
@@ -380,12 +387,12 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
       if (!streetLife || streetWindow <= 0) return false;
       streetWindow = Math.max(0, streetWindow - dt);
       if (!streetChoice?.forced && streetGuard?.frame(dt) === 'slow') { streetLife.dispose(); streetLife = null; streetDropped = true; streetWindow = 0; return false; }
-      streetLife.step(Date.now(), avatar.position, dt);
+      streetLife.step(Date.now(), avatar.object.position, dt);
       return streetWindow > 0;
     },
     wakeAmbient() { if (!streetLife) return false; if (streetWindow <= 0) streetGuard?.reset(); streetWindow = STREET_WINDOW_S; return true; },
-    settleAmbient() { streetWindow = 0; streetLife?.step(Date.now(), avatar.position); },
+    settleAmbient() { streetWindow = 0; streetLife?.step(Date.now(), avatar.object.position); },
     get ambientAwake() { return streetLife !== null && streetWindow > 0; },
-    dispose() { disposed = true; forget?.(streetLayout); streetLife?.dispose(); streetLife = null; dressing?.dispose(); dressing = null; for (const peer of peers.values()) dropPeer(peer); releaseObjects(sceneryObjects); layer?.dispose(); layer = null; for (const mask of masks.values()) mask?.dispose(); avatarDispose(); group.parent?.remove(group); },
+    dispose() { disposed = true; forget?.(streetLayout); streetLife?.dispose(); streetLife = null; dressing?.dispose(); dressing = null; for (const peer of peers.values()) dropPeer(peer); releaseObjects(sceneryObjects); layer?.dispose(); layer = null; for (const mask of masks.values()) mask?.dispose(); avatar.dispose(); group.parent?.remove(group); },
   } satisfies HostScene;
 }

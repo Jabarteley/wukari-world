@@ -73,7 +73,15 @@ test('the first screen: full-screen creator with the welcome, the quick characte
   assert.match(html, /<div class="cr-root" data-step="who" data-mode="new" data-cr-root>/)
   assert.ok(words.includes('Welcome to Allworld') && words.includes('A digital world you can live in'))
   assert.ok(words.includes('Step 1 of 5 · You'))
-  for (const label of ['Street', 'Owambe', 'Office', 'Sporty', 'Chill']) assert.match(html, new RegExp(`aria-label="${label} character"`))
+  const presets = [
+    'Street: Fade hair, Hoodie outfit',
+    'Owambe: Gele hair, Owambe outfit',
+    'Office: Bun hair, Office outfit',
+    'Sporty: Low cut hair, Jersey outfit',
+    'Chill: Braids hair, Casual outfit',
+  ]
+  assert.equal((html.match(/data-qs-preset=/g) ?? []).length, presets.length)
+  for (const accessibleName of presets) assert.match(html, new RegExp(`aria-label="${accessibleName}"`))
   assert.match(html, /role="group" aria-label="Body"/)
   assert.ok(words.includes('Surprise me') && words.includes('Your name'))
   assert.match(html, /<input[^>]*name="name"[^>]*minlength="3"[^>]*maxlength="24"[^>]*autocomplete="nickname"/)
@@ -255,14 +263,19 @@ test('the look editor: tabs, the open tab\'s options, locked styles say where th
   assert.match(html, /<button[^>]*role="tab"[^>]*aria-selected="true"/)
 })
 
-test('the flat figure is drawn from shapes with a text alternative, and the stage says it is loading', async () => {
+test('the canonical character stage starts loading with its controls and no alternate figure', async () => {
   const look = app.game.state.value.onboarding.look
-  const figure = await render('AvatarFigure', { look, size: 30, label: 'Ada' })
-  assert.match(figure, /<svg class="look-avatar" role="img" aria-label="Ada" viewBox="0 0 120 190" width="30" height="48">/i)
-  assert.ok((figure.match(/<(?:path|circle|rect|ellipse)\b/g) ?? []).length > 10)
   const stage = await render('LookStage', { look, variant: 'hero', name: 'Ada' })
   assert.match(stage, /class="look-stage" data-look-stage data-mode="loading"/)
+  assert.match(stage, /class="look-stage-view" data-look-canvas/)
   assert.ok(text(stage).includes('Drag to spin') && text(stage).includes('Face'))
+  assert.ok(!stage.includes('look-avatar'), 'the look stage has no alternate SVG character')
+  const creator = await render('CreatorStage', { look, name: 'Ada', focus: 'body' })
+  assert.match(creator, /class="cr-stage" data-mode="loading" data-cr-stage/)
+  assert.match(creator, /class="cr-stage-view" data-look-canvas/)
+  for (const key of ['turn-left', 'turn-around', 'turn-right']) assert.match(creator, new RegExp(`data-key="${key}"`))
+  for (const focus of ['body', 'head', 'outfit']) assert.match(creator, new RegExp(`data-focus="${focus}"`))
+  assert.ok(!creator.includes('look-avatar'), 'the creator stage has no alternate SVG character')
   const mini = await render('LookStage', { look, variant: 'mini' })
   assert.ok(!mini.includes('look-bar') && !mini.includes('Drag to spin'))
 })

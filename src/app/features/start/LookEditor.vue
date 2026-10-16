@@ -1,86 +1,115 @@
 <script setup lang="ts">
-// The look editor: a row of tabs (Body, Hair, Outfit, Colours, Extras) and the open tab's options.
-// It changes nothing itself: a tap on an option says `choose(field, value)` and the screen decides
-// (it calls chooseLook with the wardrobe it wants). With `owned` (a wardrobe) styles not owned are
-// disabled and say where to buy them.
 import '../../../ui/panels/look-ui.css'
-import AvatarFigure from './AvatarFigure.vue'
-import { computed, defineAsyncComponent, h, ref } from 'vue'
-import { APPEARANCE, BOUTIQUE_PRICES } from '../../../game/content/traits.ts'
+import { computed } from 'vue'
+import { normalizeNativeRecipe } from '../../../character/native-recipe.ts'
+import { nativeRecipeForLook } from '../../../character/native-migration.ts'
+import { NATIVE_CHARACTER_CATALOG } from '../../../character/native-catalog.ts'
+import type { NativeAppearanceV2, NativeCharacterRecipeV2, NativeColorField } from '../../../character/native-recipe.ts'
 import type { AvatarLook } from '../../../game/wardrobe/look.ts'
-import GameIcon from '../../ui/GameIcon.vue'
-import { money } from '../../ui/format.ts'
-import { SECTIONS, chosen, lookUi, openLookTab, optionsOf, swatchLabel, titled, worn } from './lookModel.ts'
-import type { ChipsGroup, LookField, Owned, SwatchGroup } from './lookModel.ts'
+import type { Owned } from './lookModel.ts'
 
-const props = withDefaults(defineProps<{
-  look: AvatarLook
-  owned?: Owned | null
-  /** Hairstyles and outfits as picture cards (the creator); the other screens keep text chips. */
-  visual?: boolean
-}>(), { owned: null, visual: false })
-const emit = defineEmits<{ choose: [field: LookField, value: string]; replace: [look: AvatarLook] }>()
-const LayerControls = defineAsyncComponent({
-  loader: () => import('./AvatarLayerControls.vue'),
-  loadingComponent: { render: () => h('p', { role: 'status' }, 'Loading appearance options…') },
-  errorComponent: { render: () => h('div', { role: 'alert' }, [
-    h('p', 'Appearance options could not load. Check your connection, then reload. Unsaved choices will be reset.'),
-    h('button', { type: 'button', class: 'ui-button', onClick: () => window.location.reload() }, 'Reload appearance options'),
-  ]) },
-  onError(_error, retry, fail, attempts) { if (attempts < 2) retry(); else fail() },
-})
-const appearanceOpen = ref(false)
-const layered = computed(() => props.owned?.wearables !== undefined || props.look.wearables !== undefined || props.look.appearance !== undefined)
-const sections = computed(() => layered.value ? [...SECTIONS, { id: 'layers', title: 'Layers', icon: 'boutique', focus: 'body', groups: [] }] : SECTIONS)
-function openTab(id: string): void { if (id === 'layers') { lookUi.section = id; lookUi.lastField = 'body'; lookUi.zoomOverride = null } else openLookTab(id) }
-function appearanceToggle(event: Event): void { appearanceOpen.value = event.target instanceof HTMLDetailsElement && event.target.open }
+const props = withDefaults(defineProps<{ look: AvatarLook; owned?: Owned | null }>(), { owned: null })
+const emit = defineEmits<{ replace: [look: AvatarLook] }>()
+const recipe = computed(() => nativeRecipeForLook(props.look, 'look-editor'))
+const faceFeatures = NATIVE_CHARACTER_CATALOG.features.filter((item) => item.group === 'face')
+const bodyFeatures = NATIVE_CHARACTER_CATALOG.features.filter((item) => item.group === 'body')
+const colorFields: readonly NativeColorField[] = ['skin', 'hair', 'upper', 'lower', 'shoes']
 
-const current = computed(() => sections.value.find((item) => item.id === lookUi.section) ?? sections.value[0])
-const carrying = computed(() => worn(props.look).length)
-
-/** Why an option cannot be chosen: where to buy it. '' when it can. */
-function lockedBecause(field: LookField, id: string): string {
-  const owns = props.owned?.[field as keyof Owned] as readonly string[] | undefined
-  if (!props.owned || !owns || owns.includes(id) || chosen(props.look, field, id)) return ''
-  const prices = BOUTIQUE_PRICES[field as 'hair' | 'outfit' | 'fabric' | 'accessories']
-  return `Boutique · ${money(prices?.[id])}`
+function replace(next: NativeCharacterRecipeV2): void {
+  emit('replace', { ...props.look, body: next.appearance.body === 'male' ? 'man' : 'woman', accessories: undefined, wearables: undefined, appearance: undefined, native: normalizeNativeRecipe(next) })
 }
-const swatches = (group: SwatchGroup) => APPEARANCE[group]
-const colourOf = (field: LookField): string => String(props.look[field as 'skin'] ?? '')
-const chips = (group: ChipsGroup): string[] => optionsOf(group.field, props.look)
-/** The look with one option tried on, drawn small as that option's picture. */
-const thumbOf = (field: LookField, id: string): AvatarLook => ({ ...props.look, [field]: id })
-const pictured = (field: LookField): boolean => props.visual && (field === 'hair' || field === 'outfit')
-const tabIndex = computed(() => Math.max(0, sections.value.findIndex((item) => item.id === current.value?.id)))
+function appearance(patch: Partial<NativeAppearanceV2>): void {
+  replace({ ...recipe.value, appearance: { ...recipe.value.appearance, ...patch } })
+}
+function feature(id: string, value: string): void {
+  appearance({ features: { ...recipe.value.appearance.features, [id]: Number(value) } })
+}
+function color(id: NativeColorField, value: string): void {
+  appearance({ colors: { ...recipe.value.appearance.colors, [id]: value } })
+}
+function preset(group: 'body' | 'face', values: Readonly<Partial<Record<string, number>>>): void {
+  const next = { ...recipe.value.appearance.features }
+  for (const item of NATIVE_CHARACTER_CATALOG.features) if (item.group === group) next[item.id] = values[item.id] ?? 0
+  appearance({ features: next })
+}
+function canUse(id: string): boolean {
+  const current = recipe.value.appearance
+  return !props.owned?.native || props.owned.native.includes(id) || current.hair === id || current.garments.some((item) => item === id) || current.shoes === id
+}
 </script>
 
 <template>
-  <div v-if="current" class="look-editor">
-    <div class="look-tabs" :style="{ '--look-tab-count': sections.length, '--look-tab-index': tabIndex }" role="tablist" aria-label="What to change">
-      <button v-for="item in sections" :id="`look-tab-${item.id}`" :key="item.id" type="button" role="tab" class="look-tab" :data-look-tab="item.id" :data-key="`tab:${item.id}`" :aria-selected="item.id === current.id" aria-controls="look-panel" @click="openTab(item.id)">
-        <span aria-hidden="true"><GameIcon :name="item.icon" inline /></span>{{ item.title }}<b v-if="item.id === 'extras' && carrying">{{ carrying }}</b>
-      </button>
-    </div>
-    <div id="look-panel" class="look-panel" role="tabpanel" :aria-labelledby="`look-tab-${current.id}`">
-      <LayerControls v-if="current.id === 'layers'" :look="look" :owned="owned?.wearables ?? []" mode="layers" @replace="emit('replace', $event)" />
-      <template v-for="group in current.groups" :key="group.field">
-        <fieldset v-if="group.kind === 'chips'" class="look-group">
-          <legend>{{ group.title }}</legend>
-          <div class="look-chips" :class="{ 'is-pictured': pictured(group.field) }">
-            <button v-for="id in chips(group)" :key="id" type="button" class="look-chip" :data-look="group.field" :data-value="id" :data-key="`${group.field}:${id}`" :aria-pressed="chosen(look, group.field, id)" :disabled="Boolean(lockedBecause(group.field, id))" :title="lockedBecause(group.field, id) || undefined" @click="emit('choose', group.field, id)"><AvatarFigure v-if="pictured(group.field)" :look="thumbOf(group.field, id)" :size="56" :crop="group.field === 'hair' ? 'head' : 'body'" label="" />{{ titled(id) }}<small v-if="lockedBecause(group.field, id)"><GameIcon name="lock" inline /> {{ lockedBecause(group.field, id) }}</small></button>
-          </div>
-        </fieldset>
-        <fieldset v-else class="look-group">
-          <legend>{{ group.title }} <b>{{ swatchLabel(group.group, colourOf(group.field)) }}</b></legend>
-          <div class="look-swatches">
-            <button v-for="swatch in swatches(group.group)" :key="swatch.id" type="button" class="look-swatch" :data-look="group.field" :data-value="swatch.id" :data-key="`${group.field}:${swatch.id}`" :aria-pressed="colourOf(group.field) === swatch.id" :aria-label="`${group.title}: ${swatch.label}`" :style="{ '--swatch': swatch.hex }" @click="emit('choose', group.field, swatch.id)"><i aria-hidden="true">{{ colourOf(group.field) === swatch.id ? '✓' : '' }}</i><span>{{ swatch.label }}</span></button>
-          </div>
-        </fieldset>
-      </template>
-      <details v-if="layered && current.id === 'body'" class="look-group" @toggle="appearanceToggle">
-        <summary>Height, build and age appearance</summary>
-        <LayerControls v-if="appearanceOpen" :look="look" :owned="owned?.wearables ?? []" mode="appearance" @replace="emit('replace', $event)" />
-      </details>
-    </div>
+  <div class="look-editor native-look-editor">
+    <fieldset class="look-group">
+      <legend>Body</legend>
+      <div class="look-chips">
+        <button v-for="item in NATIVE_CHARACTER_CATALOG.bodies" :key="item.id" type="button" class="look-chip" :aria-pressed="recipe.appearance.body === item.id" @click="appearance({ body: item.id })">{{ item.label }}</button>
+      </div>
+      <label class="native-range"><span>Height <output>{{ recipe.appearance.height.toFixed(2) }}</output></span><input type="range" min="0.85" max="1.15" step="0.01" :value="recipe.appearance.height" @input="appearance({ height: Number(($event.target as HTMLInputElement).value) })"></label>
+      <div class="look-chips">
+        <button v-for="item in NATIVE_CHARACTER_CATALOG.bodyPresets" :key="item.id" type="button" class="look-chip" @click="preset('body', item.features)">{{ item.label }}</button>
+      </div>
+    </fieldset>
+
+    <fieldset class="look-group">
+      <legend>Hair</legend>
+      <div class="look-chips"><button v-for="item in NATIVE_CHARACTER_CATALOG.hair" :key="item.id" type="button" class="look-chip" :aria-pressed="recipe.appearance.hair === item.id" :disabled="!canUse(item.id)" :title="canUse(item.id) ? undefined : 'Buy in the Boutique'" @click="appearance({ hair: item.id })">{{ item.label }}</button></div>
+    </fieldset>
+
+    <fieldset class="look-group">
+      <legend>Outfit</legend>
+      <div class="look-chips"><button v-for="item in NATIVE_CHARACTER_CATALOG.garments" :key="item.id" type="button" class="look-chip" :aria-pressed="recipe.appearance.garments[0] === item.id" :disabled="!canUse(item.id)" :title="canUse(item.id) ? undefined : 'Buy in the Boutique'" @click="appearance({ garments: [item.id] })">{{ item.label }}</button></div>
+    </fieldset>
+
+    <fieldset class="look-group">
+      <legend>Shoes</legend>
+      <div class="look-chips"><button v-for="item in NATIVE_CHARACTER_CATALOG.shoes" :key="item.id" type="button" class="look-chip" :aria-pressed="recipe.appearance.shoes === item.id" :disabled="!canUse(item.id)" :title="canUse(item.id) ? undefined : 'Buy in the Boutique'" @click="appearance({ shoes: item.id })">{{ item.label }}</button></div>
+    </fieldset>
+
+    <fieldset class="look-group native-colors">
+      <legend>Colours</legend>
+      <label v-for="id in colorFields" :key="id"><span>{{ id === 'upper' ? 'Top' : id === 'lower' ? 'Bottoms' : id }}</span><input type="color" :value="recipe.appearance.colors[id]" @input="color(id, ($event.target as HTMLInputElement).value)"><code>{{ recipe.appearance.colors[id] }}</code></label>
+    </fieldset>
+
+    <fieldset class="look-group">
+      <legend>Eyes and complexion</legend>
+      <div class="look-chips"><button v-for="item in NATIVE_CHARACTER_CATALOG.eyeColors" :key="item.id" type="button" class="look-chip" :aria-pressed="recipe.appearance.eyeColor === item.id" @click="appearance({ eyeColor: item.id })">{{ item.label }}</button></div>
+      <div class="look-chips"><button v-for="item in NATIVE_CHARACTER_CATALOG.complexions" :key="item.id" type="button" class="look-chip" :aria-pressed="recipe.appearance.complexion === item.id" @click="appearance({ complexion: item.id })">{{ item.label }}</button></div>
+    </fieldset>
+
+    <details class="look-group">
+      <summary>Detailed body controls</summary>
+      <label v-for="item in bodyFeatures" :key="item.id" class="native-range"><span>{{ item.label }} <output>{{ recipe.appearance.features[item.id]?.toFixed(2) }}</output></span><input type="range" :min="item.min" :max="item.max" step="0.05" :value="recipe.appearance.features[item.id]" @input="feature(item.id, ($event.target as HTMLInputElement).value)"></label>
+    </details>
+
+    <details class="look-group">
+      <summary>Detailed face controls</summary>
+      <div class="look-chips"><button v-for="item in NATIVE_CHARACTER_CATALOG.appearancePresets" :key="item.id" type="button" class="look-chip" @click="preset('face', item.features)">{{ item.label }}</button></div>
+      <label v-for="item in faceFeatures" :key="item.id" class="native-range"><span>{{ item.label }} <output>{{ recipe.appearance.features[item.id]?.toFixed(2) }}</output></span><input type="range" :min="item.min" :max="item.max" step="0.05" :value="recipe.appearance.features[item.id]" @input="feature(item.id, ($event.target as HTMLInputElement).value)"></label>
+    </details>
+
+    <fieldset class="look-group">
+      <legend>Hands</legend>
+      <div class="look-chips"><button v-for="item in NATIVE_CHARACTER_CATALOG.handPoses" :key="item.id" type="button" class="look-chip" :aria-pressed="recipe.appearance.handPose === item.id" @click="appearance({ handPose: item.id })">{{ item.label }}</button></div>
+    </fieldset>
+
+    <fieldset class="look-group">
+      <legend>Expression</legend>
+      <div class="look-chips"><button v-for="item in NATIVE_CHARACTER_CATALOG.emotions" :key="item.id" type="button" class="look-chip" :aria-pressed="recipe.emotion === item.id" @click="replace({ ...recipe, emotion: item.id })">{{ item.label }}</button></div>
+      <label class="native-range"><span>Strength <output>{{ Math.round(recipe.emotionStrength * 100) }}%</output></span><input type="range" min="0" max="1" step="0.05" :value="recipe.emotionStrength" @input="replace({ ...recipe, emotionStrength: Number(($event.target as HTMLInputElement).value) })"></label>
+    </fieldset>
   </div>
 </template>
+
+<style scoped>
+.native-look-editor{display:grid;gap:12px}
+.native-range{display:grid;gap:6px;margin:10px 0;color:#36515a}
+.native-range span{display:flex;justify-content:space-between;gap:12px}
+.native-range input{width:100%}
+.native-colors{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.native-colors legend{grid-column:1/-1}
+.native-colors label{display:grid;grid-template-columns:1fr 42px;align-items:center;gap:4px;text-transform:capitalize}
+.native-colors input{width:42px;height:34px;padding:1px;border:0;background:transparent}
+.native-colors code{grid-column:1/-1;color:#56717a;font-size:11px}
+details summary{cursor:pointer;font-weight:700}
+</style>

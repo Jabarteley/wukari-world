@@ -1,5 +1,5 @@
-// The venue stand-in (stand-in.ts): never fetches the body without WebGL2 or on a device the gate refuses, and never
-// hides the procedural figure until a body is actually in.
+// The venue adapter uses the preloaded native body at every device tier.
+import './native-test-fixture.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -196,32 +196,33 @@ test('contact solving follows placement on mount, settled stand, gait, and trans
 });
 
 
-test('no WebGL2: the body is never fetched and the figure stays', async () => {
+test('a renderer without WebGL2 still mounts the native body', async () => {
   const kit = createKit(), before = bodyImports.count;
   let frames = 0;
-  const standIn = createStandIn(kit, () => { frames += 1; }, true), scene = fakeScene();
+  const standIn = createStandIn(kit, () => { frames += 1; }), scene = fakeScene();
   standIn.attach(scene);
   standIn.wear({ gender: 'woman' }, 'p1');
   for (let frame = 0; frame < 3; frame++) standIn.start(noWebGL2);
   standIn.pose('sit', 0.6, true); standIn.move(1, 0, 2, 0.5); standIn.gait(1, false); standIn.gait(1.2, false, 0.4);
   await settle();
   assert.equal(bodyImports.count, before);
-  assert.equal(scene.avatar.visible, true);
-  assert.equal(standIn.shown, false);
+  assert.equal(scene.avatar.visible, false);
+  assert.equal(standIn.shown, true);
   assert.equal(standIn.easing, false);
-  assert.equal(standIn.step(1 / 60), false);
-  assert.equal(frames, 0);
+  assert.equal(standIn.step(1 / 60), false, 'the sampled native gait is already settled');
+  assert.ok(frames >= 1, 'mounting the native body requests a frame');
   standIn.dispose(); kit.dispose();
 });
 
-test('a device the gate refuses never fetches, even with a renderer that would do', async () => {
+test('a constrained device uses the same native body', async () => {
   const kit = createKit(), before = bodyImports.count;
-  const standIn = createStandIn(kit, () => {}, false), scene = fakeScene();
+  const standIn = createStandIn(kit, () => {}), scene = fakeScene();
   standIn.attach(scene);
   standIn.start(null);
   await settle();
   assert.equal(bodyImports.count, before);
-  assert.equal(scene.avatar.visible, true);
+  assert.equal(scene.avatar.visible, false);
+  assert.equal(standIn.shown, true);
   standIn.dispose(); kit.dispose();
 });
 
@@ -234,7 +235,7 @@ test('a seated exit destination survives lazy body loading and sit-exit without 
   };
   const pending = deferred<SkinnedBody>();
   const load = (_kit: typeof kit, _look: unknown, _seed: unknown, _scale: number) => pending.promise;
-  const standIn = createStandIn(kit, () => {}, true, load), firstScene = fakeScene();
+  const standIn = createStandIn(kit, () => {}, load), firstScene = fakeScene();
   const previousDescriptor = Object.getOwnPropertyDescriptor(globalThis, 'WebGL2RenderingContext');
   class TestWebGL2 {}
   Object.defineProperty(globalThis, 'WebGL2RenderingContext', { configurable: true, value: TestWebGL2 });
@@ -313,7 +314,7 @@ test('a seated exit destination survives lazy body loading and sit-exit without 
 
 test('nothing is fetched before a scene is attached (the home room and the map have none)', async () => {
   const kit = createKit(), before = bodyImports.count;
-  const standIn = createStandIn(kit, () => {}, true);
+  const standIn = createStandIn(kit, () => {});
   standIn.attach(null);
   standIn.start(noWebGL2);
   await settle();
@@ -321,14 +322,12 @@ test('nothing is fetched before a scene is attached (the home room and the map h
   standIn.dispose(); kit.dispose();
 });
 
-test('the venue host owns the stand-in; the scene modules never reach the body module', () => {
+test('the venue host and scenes use the native body without a renderer fallback', () => {
   const strip = (code: string) => code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
   const host = strip(readFileSync(new URL('../../venue-world.ts', import.meta.url), 'utf8'));
-  assert.match(host, /import\('\.\/scene\/body\/stand-in\.ts'\)/, 'the stand-in is a lazy chunk, fetched after the first frame');
-  assert.doesNotMatch(host, /^import (?!type)[^;]*'\.\/scene\/body\/(stand-in|skinned)\.ts'/m, 'never a static import in the shared scene chunk');
+  assert.match(host, /import \{ createStandIn \} from '\.\/scene\/body\/stand-in\.ts'/, 'the venue host mounts the native body before its first draw');
   const venue = strip(readFileSync(new URL('../venue-scenes.ts', import.meta.url), 'utf8'));
-  assert.doesNotMatch(venue, /body\//, 'venue-scenes.ts (the shared scene chunk) knows nothing of the body');
+  assert.match(venue, /\.\/body\/canonical-crowd\.ts/, 'venue crowds use native static snapshots');
   const standIn = strip(readFileSync(new URL('./stand-in.ts', import.meta.url), 'utf8'));
-  assert.doesNotMatch(standIn, /import\(/, 'the body module is reached through importBody() only');
-  assert.doesNotMatch(standIn, /^import (?!type)[^;]*'\.\/skinned\.ts'/m, 'skinned.ts is a type import only');
+  assert.match(standIn, /import \{ createBody \} from '\.\/skinned\.ts'/, 'the adapter mounts the ready native factory');
 });

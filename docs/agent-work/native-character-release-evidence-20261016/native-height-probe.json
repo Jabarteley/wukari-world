@@ -1,0 +1,99 @@
+{
+  "scope": "Numerical real native asset height update with image stubs, not browser visual acceptance",
+  "rows": [
+    {
+      "body": "female",
+      "sameActor": true,
+      "ratio": 1.3529411764705883,
+      "samples": [
+        {
+          "height": 0.85,
+          "renderedHeight": 1.5720650515944812,
+          "minY": -1.3219182287543673e-7
+        },
+        {
+          "height": 1.15,
+          "renderedHeight": 2.1269115403925336,
+          "minY": -1.7884776045123864e-7
+        },
+        {
+          "height": 0.88,
+          "renderedHeight": 1.6275497004742867,
+          "minY": -1.3685741667248446e-7
+        },
+        {
+          "height": 1.12,
+          "renderedHeight": 2.0714268915127287,
+          "minY": -1.7418216675975672e-7
+        },
+        {
+          "height": 0.9,
+          "renderedHeight": 1.6645394663941566,
+          "minY": -1.3996781254647562e-7
+        },
+        {
+          "height": 1.1,
+          "renderedHeight": 2.0344371255928584,
+          "minY": -1.7107177111103657e-7
+        },
+        {
+          "height": 0.85,
+          "renderedHeight": 1.5720650515944812,
+          "minY": -1.3219182287543673e-7
+        },
+        {
+          "height": 1.15,
+          "renderedHeight": 2.1269115403925336,
+          "minY": -1.7884776045123864e-7
+        }
+      ]
+    },
+    {
+      "body": "male",
+      "sameActor": true,
+      "ratio": 1.352941176470589,
+      "samples": [
+        {
+          "height": 0.85,
+          "renderedHeight": 1.576034560091262,
+          "minY": -0.002422627690761796
+        },
+        {
+          "height": 1.15,
+          "renderedHeight": 2.132282051888179,
+          "minY": -0.003277672758089608
+        },
+        {
+          "height": 0.88,
+          "renderedHeight": 1.6316593092709537,
+          "minY": -0.002508132197494735
+        },
+        {
+          "height": 1.12,
+          "renderedHeight": 2.0766573027084867,
+          "minY": -0.0031921682513570116
+        },
+        {
+          "height": 0.9,
+          "renderedHeight": 1.6687424753907483,
+          "minY": -0.002565135201983196
+        },
+        {
+          "height": 1.1,
+          "renderedHeight": 2.0395741365886924,
+          "minY": -0.003135165246868127
+        },
+        {
+          "height": 0.85,
+          "renderedHeight": 1.576034560091262,
+          "minY": -0.002422627690761796
+        },
+        {
+          "height": 1.15,
+          "renderedHeight": 2.132282051888179,
+          "minY": -0.003277672758089608
+        }
+      ]
+    }
+  ]
+}

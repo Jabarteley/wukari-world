@@ -1,9 +1,10 @@
+import { assertNativeSceneBudget } from './body/native-test-fixture.ts';
 import { loadCityContent as preloadCityContent } from '../game/cities/registry.ts';
 await preloadCityContent('lagos');
 // Scene modules: every venue kind builds headlessly, stays inside the rendering budget and
 // frees everything it made. Nothing here needs WebGL.
 import test from 'node:test';
-import { SCENE_TRIANGLES, SCENE_DRAW_CALLS, SCENE_LIGHTS, SCENE_MESHES, SCENE_MESHES_WITH_WALLS, SCENE_MESHES_NO_CROWD } from '../budgets.ts';
+import { SCENE_LIGHTS } from '../budgets.ts';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import * as THREE from 'three';
@@ -28,8 +29,6 @@ import { loadAllCityScenes } from './city-scenes.ts';
 await loadAllCityScenes();
 
 const EXPECTED_KINDS = ['park', 'buka', 'hub', 'club', 'office', 'market', 'gym', 'mall', 'beach', 'hospital', 'salon', 'rooftop', 'police', 'worship', 'radio', 'polling', 'viewing', 'shrine', 'walk', 'statehouse', 'airport', 'refinery', 'quad', 'hilltop', 'lakeside'];
-// The scene and its crowd keep to 15,000; the player's own figure is drawn at medium detail (up to ~2,700 triangles, once), on top.
-const TRIANGLE_BUDGET = SCENE_TRIANGLES.value, DRAW_CALL_BUDGET = SCENE_DRAW_CALLS.value;
 const crowd = (count = MAX_CROWD) => Array.from({ length: count }, (_, i) => ({ id: `p${i}`, name: `Player${i}`, kind: i % 3 === 2 ? 'npc' : 'player' }));
 // build() only reads the materials of meshes it makes; these tests look at geometry alone.
 // A partial game state, as the host's setState takes it in these tests.
@@ -59,20 +58,17 @@ test('each scene builds within budget with a full crowd, and disposes without le
   const report: string[] = [];
   const leaked = trackGeometries((live) => {
     const kit = createKit();
-    const kitGeometries = live.size;
     for (const kind of [...EXPECTED_KINDS, 'library', 'mosque', 'generic']) {
       const parent = new THREE.Scene();
       const entry = SCENES[kind]!(kit, venueOf(kind));
       parent.add(entry.group);
       const tags = entry.setCrowd(crowd());
       const stats = entry.stats();
+      assert.ok(stats.characterTriangles > 0 && stats.characterMeshes > 0, `${kind} uses canonical characters`);
       report.push(`${kind}: ${stats.triangles} triangles, ${stats.drawCalls} draw calls`);
       assert.ok(entry.group.isGroup && typeof entry.background === 'string' && entry.camera.landscape.length === 3 && entry.camera.portrait.length === 3, kind);
       assert.ok(stats.triangles > 1500, `${kind} has real geometry (${stats.triangles})`);
-      assert.ok(stats.triangles < TRIANGLE_BUDGET, `${kind} triangles ${stats.triangles}`);
-      // Static (≤ 3) + sky + crowd (≤ 2) + the player's own figure (a rig: one mesh per part, ≤ 8 with its crown) + the spot ring; the two walking marks add at most 2 more.
-      // A room's two walls are parts of their own (≤ 3 layers each), so that the scene can hide the wall the camera is behind.
-      assert.ok(stats.drawCalls <= DRAW_CALL_BUDGET && stats.meshes <= (entry.walls ? SCENE_MESHES_WITH_WALLS.value : SCENE_MESHES.value), `${kind} draw calls ${stats.drawCalls}, meshes ${stats.meshes}`);
+      assertNativeSceneBudget(stats, kind);
       assert.ok(stats.lights <= SCENE_LIGHTS.value, `${kind} lights ${stats.lights}`);
       assert.equal(tags.length, MAX_CROWD, kind);
       for (const mesh of (entry.group.children as THREE.Mesh[]).filter((child) => child.isMesh)) {
@@ -85,7 +81,7 @@ test('each scene builds within budget with a full crowd, and disposes without le
       assert.equal(entry.group.children.length, 0, `${kind} left objects in its group`);
       assert.equal(entry.group.parent, null, `${kind} still attached`);
       assert.equal(parent.children.length, 0, `${kind} left objects in the scene`);
-      assert.ok(live.size < before && live.size === kitGeometries, `${kind} leaked ${live.size - kitGeometries} geometries`);
+      assert.ok(live.size < before, `${kind} did not release its scene geometry; the kit retains reusable character templates`);
       entry.dispose();
     }
     kit.dispose();
@@ -100,20 +96,25 @@ test('dispose() frees a scene’s geometry, a rebuild gives the same scene, and 
     const base = live.size;
     const entry = SCENES.market!(kit, venueOf('market'));
     const shown = entry.stats();
+    const before = live.size;
     assert.ok(live.size > base);
     // Hiding is only hiding: a scene no longer watches group.visible to learn about the host.
     entry.group.visible = false;
     assert.equal(entry.group.visible, false);
     assert.ok(live.size > base, 'a hidden scene keeps its geometry until the host disposes it');
     entry.dispose();
-    assert.equal(live.size, base, 'a disposed scene holds no geometry');
+    assert.ok(live.size < before, 'disposing the scene frees its geometry while the kit retains bounded reusable character templates');
+    const cached = live.size;
     assert.equal(entry.group.children.length, 0);
     assert.equal(entry.stats().triangles, 0);
     assert.ok(entry.anchors.people, 'anchors stay readable after dispose');
     const again = SCENES.market!(kit, venueOf('market'));
     assert.deepEqual(again.stats(), shown, 'the next visit builds the same scene');
+    again.dispose();
+    assert.equal(live.size, cached, 'a second visit reuses the cached character templates without growing the kit');
+    const abandoned = SCENES.market!(kit, venueOf('market'));
     kit.dispose();
-    assert.equal(again.group.children.length, 0, 'kit.dispose() frees scenes the host never disposed');
+    assert.equal(abandoned.group.children.length, 0, 'kit.dispose() frees scenes the host never disposed');
   });
   assert.equal(leaked.size, 0);
 });
@@ -388,7 +389,7 @@ test('a scene crowd is capped, placed and tagged; the player carries the crown',
   assert.equal(entry.tags()[0]!.text, 'Kromate');
   assert.equal(entry.setPlayer({ pose: 'wave' }), true);
   assert.deepEqual(entry.setCrowd([]), []);
-  assert.equal(entry.stats().meshes <= SCENE_MESHES_NO_CROWD.value, true);
+  assertNativeSceneBudget(entry.stats(), 'viewing without crowd');
   kit.dispose();
 });
 
@@ -481,7 +482,7 @@ test('every game table stands in its venue’s scene: on free floor, reachable f
     // The tables are part of the venue's own batch: a few hundred triangles, no mesh or draw call of their own, inside the budget.
     const stats = entry.stats();
     assert.ok(stats.triangles - bareTriangles > 60 * things.length && stats.triangles - bareTriangles < 420 * things.length, `${id}: ${things.length} tables cost ${stats.triangles - bareTriangles} triangles`);
-    assert.ok(stats.triangles < TRIANGLE_BUDGET && stats.drawCalls <= DRAW_CALL_BUDGET, `${id}: ${stats.triangles} triangles, ${stats.drawCalls} draw calls`);
+    assertNativeSceneBudget(stats, id);
     // A rebuild (night falls) leaves them where they are.
     const before = things.map((thing) => [thing.x, thing.z]);
     entry.setTime('night'); entry.setTime('day');
@@ -539,8 +540,9 @@ test('every Ibadan venue builds in budget with its own scene: each spot and game
     const entry = buildVenueScene(kit, venue, 'ibadan');
     entry.setCrowd(crowd());
     const stats = entry.stats();
-    assert.ok(stats.triangles > 1500 && stats.triangles < TRIANGLE_BUDGET, `${authored.id} triangles ${stats.triangles}`);
-    assert.ok(stats.drawCalls <= DRAW_CALL_BUDGET && stats.lights <= SCENE_LIGHTS.value, `${authored.id} draw calls ${stats.drawCalls}`);
+    assert.ok(stats.triangles > 1500, `${authored.id} triangles ${stats.triangles}`);
+    assertNativeSceneBudget(stats, authored.id);
+    assert.ok(stats.lights <= SCENE_LIGHTS.value, `${authored.id} lights ${stats.lights}`);
     const { grid, entrance } = entry.walk;
     const reach = (what: string, x: number, z: number, approach?: { x: number; z: number } | null, within = 1.5) => {
       const at = grid!.nearest(approach?.x ?? x, approach?.z ?? z);
@@ -581,8 +583,9 @@ test('every Ogun venue builds in budget with its own scene: each spot and game t
       entry.setCrowd(crowd());
       const stats = entry.stats();
       report.push(`${city}/${authored.id} ${venue.scene!.kind}${variant ? `/${variant}` : ''} ${stats.triangles} ${stats.drawCalls}`);
-      assert.ok(stats.triangles > 1500 && stats.triangles < TRIANGLE_BUDGET, `${authored.id} triangles ${stats.triangles}`);
-      assert.ok(stats.drawCalls <= DRAW_CALL_BUDGET && stats.lights <= SCENE_LIGHTS.value, `${authored.id} draw calls ${stats.drawCalls}`);
+      assert.ok(stats.triangles > 1500, `${authored.id} triangles ${stats.triangles}`);
+      assertNativeSceneBudget(stats, `${city}/${authored.id}`);
+      assert.ok(stats.lights <= SCENE_LIGHTS.value, `${authored.id} lights ${stats.lights}`);
       const { grid, entrance } = entry.walk;
       const reach = (what: string, x: number, z: number, approach?: { x: number; z: number } | null, within = 1.5) => {
         const at = grid!.nearest(approach?.x ?? x, approach?.z ?? z);

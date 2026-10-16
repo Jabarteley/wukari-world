@@ -6,6 +6,28 @@
   "author": "Allworld",
   "licenceId": "AGPL-3.0-or-later",
   "want": [
-    { "blender": { "script": "ring", "args": ["--size", "16.5"] }, "as": "ring-wide.glb", "game": "fight", "kind": "prop", "note": "The Fight stage at the rules' own scale (1.8 m fighters, 15.8 m between the walls): a 16.5 m ring on a concrete floor; colour and ambient occlusion baked into one 1024 px atlas." }
+    {
+      "blender": {
+        "script": "ring",
+        "args": [
+          "--size",
+          "16.5"
+        ]
+      },
+      "as": "ring-wide.glb",
+      "game": "fight",
+      "kind": "prop",
+      "note": "The Fight stage at the rules' own scale (1.8 m fighters, 15.8 m between the walls): a 16.5 m ring on a concrete floor; colour and ambient occlusion baked into one 1024 px atlas."
+    },
+    {
+      "blender": {
+        "script": "native-fight-clips",
+        "args": []
+      },
+      "as": "native-fight-clips.glb",
+      "game": "fight",
+      "kind": "prop",
+      "note": "Fight clips for the native 53-joint characters (idle, walk, jab, cross, kick, block, hits, down, cheer), keyframed from code; animations only, no mesh."
+    }
   ]
 }

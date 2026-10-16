@@ -36,6 +36,8 @@ function getSystem(): Promise<NativeSystem> {
     seatedContactEnabled: true, groundHeight: () => 0,
   }).then(value => system = value).catch(error => { systemTask = undefined; throw error; });
 }
+/** The shared native system (catalogue, motion, asset store): the Fight screen spawns its own fighters from it, so the world's cached files are reused. */
+export function nativeSystem(): Promise<NativeSystem> { return getSystem(); }
 export async function preloadLooks(items: readonly { look?: unknown; seed?: unknown }[]): Promise<void> {
   const runtime = await getSystem();
   await Promise.all(items.map(async item => {

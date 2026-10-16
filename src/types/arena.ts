@@ -20,10 +20,12 @@ import type { TableOptionValue } from './growth.ts'
 
 /** [skin, hair colour, outfit colour, bottoms colour] ids from the player's look; cosmetic, untrusted, looked up on the client. */
 export type ArenaLook = [string, string, string, string]
+/** The public part of a player's own (native) character in short form, cosmetic and optional (src/arena/native-look.ts): body, hair, outfit, shoes, eyes, complexion, height, five hex colours without '#', the sliders that are not zero. */
+export interface ArenaNative { b: string; h: string; g: string; s: string; e: string; c: string; t: number; k: string[]; f?: Record<string, number> }
 
 /** `seats` (practice): how many seats in all, people and computer players; default the rules' minimum, at most their maximum. */
-export interface ArenaCreateFrame { type: 'arena-create'; game: string; practice?: boolean; seats?: number; options?: Record<string, TableOptionValue>; look?: ArenaLook }
-export interface ArenaJoinFrame { type: 'arena-join'; room: string; look?: ArenaLook }
+export interface ArenaCreateFrame { type: 'arena-create'; game: string; practice?: boolean; seats?: number; options?: Record<string, TableOptionValue>; look?: ArenaLook; nat?: ArenaNative }
+export interface ArenaJoinFrame { type: 'arena-join'; room: string; look?: ArenaLook; nat?: ArenaNative }
 export interface ArenaWatchFrame { type: 'arena-watch'; room: string }
 /** `bots` > 0 fills empty seats with the computer, up to `seats` in all (default the rules' minimum). */
 export interface ArenaStartFrame { type: 'arena-start'; room: string; bots?: number; seats?: number }
@@ -39,7 +41,7 @@ export interface ArenaBackFrame { type: 'arena-back'; room: string; seat: number
 export type ArenaClientFrame = ArenaStakeFrame | ArenaBackFrame | ArenaCreateFrame | ArenaJoinFrame | ArenaWatchFrame | ArenaStartFrame | ArenaOptionsFrame | ArenaInputFrame | ArenaAgainFrame | ArenaLeaveFrame
 
 export type ArenaStatus = 'lobby' | 'playing' | 'over' | 'closed'
-export interface ArenaSeat { name: string; bot: boolean; id?: string; /** An AI agent plays this seat: the mark is always shown. */ ai?: true; /** The connection is down; the seat's bot steers until it is back or the 15-second window ends. */ away?: true; look?: ArenaLook }
+export interface ArenaSeat { name: string; bot: boolean; id?: string; /** An AI agent plays this seat: the mark is always shown. */ ai?: true; /** The connection is down; the seat's bot steers until it is back or the 15-second window ends. */ away?: true; look?: ArenaLook; nat?: ArenaNative }
 /** `places`: per seat, 1 = first; present only when the game ranks every seat (a race). */
 export interface ArenaResult { text: string; winners: number[]; draw: boolean; reason: string; scores: number[]; places?: number[] }
 export interface ArenaStateFrame {

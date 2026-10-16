@@ -22,6 +22,21 @@
       "note": "The Fight stage at the rules' own scale (1.8 m fighters, 15.8 m between the walls): a 16.5 m ring on a concrete floor; colour and ambient occlusion baked into one 1024 px atlas.",
       "made": "scripts/assets/blender/ring.py",
       "prepared": true
+    },
+    {
+      "path": "public/assets/packs/allworld-fight/native-fight-clips.glb",
+      "licence": "ours",
+      "licenceId": "AGPL-3.0-or-later",
+      "source": "Allworld",
+      "author": "Allworld",
+      "bytes": 309756,
+      "triangles": 0,
+      "game": "fight",
+      "kind": "prop",
+      "sourceSha256": "176992727b1ebdbf380668639c9ae2e4dd747d1cc9b99754f723c49f4dcca84d",
+      "note": "Fight clips for the native 53-joint characters (idle, walk, jab, cross, kick, block, hits, down, cheer), keyframed from code; animations only, no mesh.",
+      "made": "scripts/assets/blender/native-fight-clips.py",
+      "prepared": true
     }
   ]
 }

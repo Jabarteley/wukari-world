@@ -41,7 +41,8 @@ import { gistService } from '../gist/ledger.ts';
 import { arenaDaily } from './arena-daily.ts';
 import { characterCity } from '../character.ts';
 import { PLAY_MONEY, backLine, backingOpen, isPlayStake, playLine, stakeHolds } from '../../src/arena/stakes.ts';
-import type { ArenaLook, ArenaResult, ArenaSeat, ArenaStateFrame, ArenaStatus } from '../../src/types/arena.ts';
+import { cleanNativeLook } from '../../src/arena/native-look.ts';
+import type { ArenaLook, ArenaNative, ArenaResult, ArenaSeat, ArenaStateFrame, ArenaStatus } from '../../src/types/arena.ts';
 import type { TableOptionValue } from '../../src/types/growth.ts';
 import type { IncomingFrame, RouteContext, WsConnection } from '../types.ts';
 import type { SocketErrorCode } from '../../src/types/protocol.ts';
@@ -66,7 +67,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> => value !==
 const clock = (): number => (typeof performance !== 'undefined' ? performance.now() : Date.now());
 
 interface Seat {
-  id: string; name: string; bot: boolean; look?: ArenaLook
+  id: string; name: string; bot: boolean; look?: ArenaLook; nat?: ArenaNative
   /** An AI agent plays this seat (the public mark), as at the last time a connection of this person was attached. */
   ai?: boolean
   /** When the last connection of this person went (clock ms), or 0 while connected. */
@@ -186,7 +187,7 @@ function buildService(ctx: RouteContext) {
     return {
       type: 'arena-state', room: room.code, game: room.rules.id, label: room.rules.label, status: room.status, hz: room.rules.hz,
       you: seat >= 0 ? seat : null, host: room.host === id,
-      seats: room.seats.map((s): ArenaSeat => ({ name: s.name, bot: s.bot, ...(s.bot ? {} : { id: s.id }), ...(s.ai ? { ai: true as const } : {}), ...(s.away > 0 && !s.left ? { away: true as const } : {}), ...(s.look ? { look: s.look } : {}) })),
+      seats: room.seats.map((s): ArenaSeat => ({ name: s.name, bot: s.bot, ...(s.bot ? {} : { id: s.id }), ...(s.ai ? { ai: true as const } : {}), ...(s.away > 0 && !s.left ? { away: true as const } : {}), ...(s.look ? { look: s.look } : {}), ...(s.nat ? { nat: s.nat } : {}) })),
       max: room.rules.seats.max, min: room.rules.seats.min, watchers, options: room.options,
       optionList: Object.entries(room.rules.options as Record<string, { label: string; values: readonly TableOptionValue[]; names?: readonly string[] }>).map(([name, spec]) => ({ name, label: spec.label, values: [...spec.values], names: spec.names ? [...spec.names] : spec.values.map(String), value: room.options[name] as TableOptionValue })),
       again: room.seats.map((s) => s.again), practice: room.practice,
@@ -241,10 +242,10 @@ function buildService(ctx: RouteContext) {
     detach(ws);
     if (index >= 0 && !connected(room, id)) { removeSeat(room, index); if (room.status !== 'closed') announce(room); }
   }
-  function takeSeat(room: Room, ws: WsConnection, look: ArenaLook | undefined): boolean {
+  function takeSeat(room: Room, ws: WsConnection, look: ArenaLook | undefined, nat?: ArenaNative): boolean {
     const reuse = room.seats.findIndex((s) => s.left);
     if (reuse < 0 && room.seats.length >= room.rules.seats.max) return false;
-    const seat: Seat = { id: ws.session.id, name: ws.session.name, bot: false, ai: markOf(ws, ctx.now()), ...(look ? { look } : {}), away: 0, left: false, input: room.rules.idle(), again: false, tokens: TUNING.inputBurst, refilled: clock(), lastN: 0, ackN: 0 };
+    const seat: Seat = { id: ws.session.id, name: ws.session.name, bot: false, ai: markOf(ws, ctx.now()), ...(look ? { look } : {}), ...(nat ? { nat } : {}), away: 0, left: false, input: room.rules.idle(), again: false, tokens: TUNING.inputBurst, refilled: clock(), lastN: 0, ackN: 0 };
     if (reuse >= 0) room.seats[reuse] = seat; else room.seats.push(seat);
     return true;
   }
@@ -496,7 +497,7 @@ function buildService(ctx: RouteContext) {
     const options = cleanArenaOptions(rules, message.options);
     const room: Room = { code, rules, host: ws.session.id, practice, status: 'lobby', seats: [], options, sockets: new Set(), state: null, rng: Math.random, match: 0, result: null, tick: 0, nextAt: 0, timer: null, lastText: '', lastSentTick: 0, snap: null, emptySince: 0, since: clock(), rec: null, replayId: null, stake: 0, potId: newPotId(), money: false, starting: false, backs: new Map(), stakeLines: new Map() };
     rooms.set(code, room);
-    takeSeat(room, ws, lookOf(message.look));
+    takeSeat(room, ws, lookOf(message.look), cleanNativeLook(message.nat));
     attach(room, ws);
     if (practice) { fillBots(room, Number(message.seats)); startMatch(room); } else announce(room);
   }
@@ -508,7 +509,7 @@ function buildService(ctx: RouteContext) {
     if (room.practice && !known) throw refuse('arena_full', 'That is a practice game. Make your own, or ask for a link to a real game.');
     if (at.get(ws) !== room && !known && watching(room) >= TUNING.maxWatchers && (watchOnly || room.seats.length >= room.rules.seats.max)) throw refuse('arena_full', 'That game is full of people watching.');
     attach(room, ws);
-    if (!known && !watchOnly && (room.status === 'lobby' || room.status === 'over') && takeSeat(room, ws, lookOf(message.look))) {
+    if (!known && !watchOnly && (room.status === 'lobby' || room.status === 'over') && takeSeat(room, ws, lookOf(message.look), cleanNativeLook(message.nat))) {
       // Over, and the table was left to one person: a new arrival sits down and the pair may ask for a rematch.
       if (room.status === 'lobby' && room.seats.length >= room.rules.seats.max) void begin(room, room.host).catch((error: Error & { reason?: string }) => { for (const other of room.sockets) send(other, { type: 'error', code: error.message as SocketErrorCode, error: error.message as SocketErrorCode, reason: error.reason ?? 'The match could not start.' }); }); else announce(room);
       return;

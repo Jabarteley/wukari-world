@@ -19,7 +19,9 @@ import { drawFight, drawFightHud, newFx, spawnHits } from '../../../arena/fight-
 import type { FightView, Insets } from '../../../arena/fight-3d.ts'
 import type { FighterColors } from '../../../arena/fight-draw.ts'
 import { Timeline } from '../../../arena/interp.ts'
-import type { ArenaLook } from '../../../types/arena.ts'
+import type { ArenaLook, ArenaNative } from '../../../types/arena.ts'
+import { nativeRecipeForLook } from '../../../character/native-migration.ts'
+import { packNativeLook } from '../../../arena/native-look.ts'
 import { FIGHT_PAD } from '../../../arena/input/pad.ts'
 import { axisDir, usePad } from '../../../arena/input/usePad.ts'
 
@@ -40,6 +42,10 @@ const ownLook = (): ArenaLook | undefined => {
   const look = game.state.value.onboarding?.look as { skin?: string; hairColor?: string; outfitColor?: string; bottomsColor?: string } | undefined
   return look?.skin && look.hairColor && look.outfitColor && look.bottomsColor ? [look.skin, look.hairColor, look.outfitColor, look.bottomsColor] : undefined
 }
+/** The player's own native character, public part, as the world dresses it (their saved look, or the one made from their name). */
+const ownNative = (): ArenaNative | undefined => {
+  try { const look = game.state.value.onboarding?.look as Record<string, unknown> | undefined; return packNativeLook(nativeRecipeForLook(look, look?.seed ?? look?.id ?? 'joinallworld').appearance) } catch { return undefined }
+}
 const hex = (group: 'skin' | 'hairColours' | 'outfitColours', id: string | undefined, fallback: string): string => APPEARANCE[group].find((swatch) => swatch.id === id)?.hex ?? fallback
 function colors(seat: number): FighterColors {
   const look = room.state.value?.seats[seat]?.look
@@ -52,7 +58,7 @@ const dist = (a: string, b: string): number => { const n = (h: string): number[]
 const pendingHits: { k: number; snap: FightSnap }[] = []
 const fx = newFx()
 const room = useArenaRoom<FightSnap>({
-  game: 'fight', intent: props.intent, hz: 20, look: ownLook, toast: (text, kind) => game.toast(text, kind), close: () => emit('close'),
+  game: 'fight', intent: props.intent, hz: 20, look: ownLook, nat: ownNative, toast: (text, kind) => game.toast(text, kind), close: () => emit('close'),
   onMatch: () => { pendingHits.length = 0; predictor.reset(); fx.ko = 0 },
   onSnap: (k, snap, acks) => {
     if (snap.e.length) pendingHits.push({ k, snap })
@@ -155,10 +161,10 @@ async function start3d(): Promise<void> {
   if (!gl.value) return
   try {
     const { createFightView } = await import('../../../arena/fight-3d.ts')
-    const made = await createFightView(gl.value, { reduced })
+    const made = await createFightView(gl.value, { reduced, seats: () => room.state.value?.seats ?? [] })
     if (!made) return
     if (!gl.value) { made.dispose(); return }
-    view3d = made; has3d.value = true; size()
+    view3d = made; has3d.value = made.ready(); size()
     // For measurement on a throttled phone profile (STATUS.md): frame times, draw calls and triangles.
     ;(globalThis as { allworldFightStats?: () => unknown }).allworldFightStats = () => made.stats()
   } catch { /* the 2D view goes on */ }
@@ -206,10 +212,14 @@ function frame(now: number): void {
   const winner = st?.status === 'over' && result ? (result.draw ? 2 : (result.winners[0] ?? -1)) : -1
   const names: [string, string] = [aiName(st?.seats[0]) ?? 'You', aiName(st?.seats[1]) ?? 'Waiting…']
   if (view3d) {
+    if (!has3d.value && view3d.ready()) { has3d.value = true; size() }
     view3d.draw(a, b, pick?.t ?? 0, { own, you, winner, now })
-    ctx.clearRect(0, 0, width, height)
-    drawFightHud(ctx, width, height, b, { names, rounds: Number(st?.options.rounds ?? 3), winner, hudTop: 52 })
-    return
+    // Until both fighters are in the ring the 2D view draws everything.
+    if (has3d.value) {
+      ctx.clearRect(0, 0, width, height)
+      drawFightHud(ctx, width, height, b, { names, rounds: Number(st?.options.rounds ?? 3), winner, hudTop: 52 })
+      return
+    }
   }
   drawFight(ctx, width, height, a, b, pick?.t ?? 0, {
     names, colors: [c0, c1], you, rounds: Number(st?.options.rounds ?? 3), reduced, time: now, winner, own,

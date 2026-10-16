@@ -15,7 +15,7 @@ import { createArenaClient } from './client.ts'
 import type { ArenaClient } from './client.ts'
 import { Timeline } from './interp.ts'
 import type { ArenaIntent } from './catalog.ts'
-import type { ArenaLook, ArenaStateFrame } from '../types/arena.ts'
+import type { ArenaLook, ArenaNative, ArenaStateFrame } from '../types/arena.ts'
 
 export interface ArenaRoomOptions<Snap> {
   /** The rules id this screen plays. */
@@ -27,6 +27,8 @@ export interface ArenaRoomOptions<Snap> {
   delayTicks?: number
   /** The player's own look, sent with create/join (cosmetic). */
   look?: () => ArenaLook | undefined
+  /** The player's own native character, public part (src/arena/native-look.ts); optional. */
+  nat?: () => ArenaNative | undefined
   /** Called for each snapshot as it arrives (after it is in the timeline). */
   onSnap?: (k: number, snap: Snap, acks?: number[]) => void
   /** A new match began (rematch, or the first): reset effects. The timeline is already cleared. */
@@ -72,8 +74,8 @@ export function useArenaRoom<Snap>(opts: ArenaRoomOptions<Snap>) {
 
   client = createArenaClient({
     open() {
-      if (room) client.send('arena-join', { room, look: opts.look?.() })
-      else if (!created) { created = true; client.send('arena-create', { game: opts.game, practice: opts.intent.kind === 'practice', ...(opts.intent.seats ? { seats: opts.intent.seats } : {}), look: opts.look?.(), ...(opts.options ? { options: opts.options } : {}) }) }
+      if (room) client.send('arena-join', { room, look: opts.look?.(), nat: opts.nat?.() })
+      else if (!created) { created = true; client.send('arena-create', { game: opts.game, practice: opts.intent.kind === 'practice', ...(opts.intent.seats ? { seats: opts.intent.seats } : {}), look: opts.look?.(), nat: opts.nat?.(), ...(opts.options ? { options: opts.options } : {}) }) }
     },
     state(frame) {
       room = frame.room

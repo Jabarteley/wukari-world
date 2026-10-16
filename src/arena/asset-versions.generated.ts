@@ -5,6 +5,7 @@ export const ASSET_VERSIONS: Readonly<Record<string, string>> = Object.freeze({
   '/assets/packs/allworld-arenas/goal.glb': '789dbf3466',
   '/assets/packs/allworld-arenas/pitch.glb': '403fca1804',
   '/assets/packs/allworld-arenas/ring.glb': '7e2882e106',
+  '/assets/packs/allworld-fight/native-fight-clips.glb': 'e2e27f5ca2',
   '/assets/packs/allworld-fight/ring-wide.glb': 'f92e8c334c',
   '/assets/packs/kaykit-adventurers/fighter-1.glb': '25406368cc',
   '/assets/packs/kaykit-adventurers/fighter-2.glb': '1dec0d529d',

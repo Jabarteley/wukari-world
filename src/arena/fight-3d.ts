@@ -16,17 +16,33 @@ import type { RatioState } from './three/kit.ts'
 import { ASSET_VERSIONS } from './asset-versions.generated.ts'
 import { ACT, ARENA_W, BODY_H, HZ, MOVES, PHASE } from './fight.ts'
 import type { FighterSnap, FightSnap } from './fight.ts'
+import { defaultNativeLook, nativeFightersAllowed, unpackNativeLook } from './native-look.ts'
+import type { ArenaNative } from '../types/arena.ts'
+import type { NativeFighter } from './fight-native.ts'
 
 /** A model's URL with its content version (asset-versions.generated.ts): /assets/ is cached for a year, so a changed file needs a new URL. */
 const versioned = (path: string): string => `${path}?v=${ASSET_VERSIONS[path] ?? 'x'}`
 export const FIGHT_ASSETS = Object.freeze({
   fighters: [versioned('/assets/packs/kaykit-adventurers/fighter-1.glb'), versioned('/assets/packs/kaykit-adventurers/fighter-2.glb')] as const,
   ring: versioned('/assets/packs/allworld-fight/ring-wide.glb'),
+  clips: versioned('/assets/packs/allworld-fight/native-fight-clips.glb'),
 })
+/** Whether this phone draws the players' own characters (enough memory and cores, WebGL 2); otherwise the stylised fighters. */
+export function nativeAllowedHere(): boolean {
+  const nav = (globalThis.navigator ?? {}) as { deviceMemory?: number; hardwareConcurrency?: number }
+  let webgl2 = false
+  try { webgl2 = !!document.createElement('canvas').getContext('webgl2') } catch { webgl2 = false }
+  return nativeFightersAllowed({ ...(nav.deviceMemory !== undefined ? { deviceMemory: nav.deviceMemory } : {}), ...(nav.hardwareConcurrency !== undefined ? { hardwareConcurrency: nav.hardwareConcurrency } : {}), webgl2 })
+}
 /** Fetch and parse the Fight models ahead of the screen (the Games hub does this when it opens and when the browser is idle). */
 export function preloadFight(): Promise<unknown> {
+  if (nativeAllowedHere()) return Promise.all([loadGlb(FIGHT_ASSETS.ring), loadGlb(FIGHT_ASSETS.clips), import('./fight-native.ts').then((m) => m.warmNative())])
   return Promise.all([...FIGHT_ASSETS.fighters, FIGHT_ASSETS.ring].map((url) => loadGlb(url)))
 }
+/** A few seconds to get the real characters; after that the stylised fighters are used. */
+export const NATIVE_WAIT_MS = 8000
+/** How fast the walk clip's feet match the ground, metres a second (the clip's own speed); the playback rate follows the real speed. */
+export const WALK_SPEED = 1.5
 /** Metres per rules unit: a fighter's 105-unit body is 1.8 m tall. */
 export const UNIT = 1.8 / BODY_H
 /** The canvas is this high above the floor (scripts/assets/blender/ring.py). */
@@ -95,29 +111,38 @@ export const cameraHeight = (dist: number, lookY: number): number => {
 }
 
 interface Body {
-  root: THREE.Object3D; mixer: THREE.AnimationMixer; actions: Map<string, THREE.AnimationAction>; current: Clip | null
+  root: THREE.Object3D; dispose: () => void; mixer: THREE.AnimationMixer; actions: Map<string, THREE.AnimationAction>; current: Clip | null
   shadow: THREE.Mesh; lastX: number; lastAct: number; lastAt: number; blockHitUntil: number; strongUntil: number; punchAlt: boolean
 }
 
+/** What the view needs to know about a seat to dress it: the name (a default look is made from it) and the public native look, if any. */
+export interface SeatLook { name: string; nat?: ArenaNative | undefined }
+
 export interface FightView {
+  /** Both fighters are in the ring (the 2D view draws everything until then). */
+  ready(): boolean
+  /** Which stylised or real fighters this view is drawing. */
+  mode(): 'native' | 'kaykit'
   /** Draw one frame. `a`/`b`/`t` are the two snapshots and how far between; `own` replaces your fighter (prediction). */
   draw(a: FightSnap, b: FightSnap, t: number, meta: { own: FighterSnap | null; you: number | null; winner: number; now: number }): void
   /** This tick's hits (a snapshot's `e`): sparks and camera shake. */
   hits(events: readonly number[][]): void
   /** The canvas size in px and what covers it (HUD, thumbs): the pair is framed in the rest, at once. */
   resize(width: number, height: number, insets?: Insets): void
-  stats(): ReturnType<FrameStats['read']> & { /** the pixel ratio now drawn at */ ratio: number }
+  stats(): ReturnType<FrameStats['read']> & { /** the pixel ratio now drawn at */ ratio: number; /** which fighters, and why the stylised ones if so */ fighters: string; why: string; clips: unknown; ready: boolean }
   dispose(): void
 }
 
 /** Make the 3D view on `canvas`, or null when WebGL or the models are not available (the screen keeps its 2D view). */
-export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced: boolean }): Promise<FightView | null> {
+export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced: boolean; seats?: () => readonly SeatLook[] }): Promise<FightView | null> {
   const renderer = makeRenderer(canvas)
   if (!renderer) return null
-  let models: Awaited<ReturnType<typeof loadGlb>>[]
-  try { models = await Promise.all([...FIGHT_ASSETS.fighters.map((url) => loadGlb(url)), loadGlb(FIGHT_ASSETS.ring)]) }
-  catch { renderer.dispose(); return null }
-  const [m0, m1, ringModel] = models as [typeof models[0], typeof models[0], typeof models[0]]
+  let ringModel: Awaited<ReturnType<typeof loadGlb>>, clipsModel: Awaited<ReturnType<typeof loadGlb>> | null = null
+  let native = nativeAllowedHere()
+  try {
+    ringModel = await loadGlb(FIGHT_ASSETS.ring)
+    if (native) { try { clipsModel = await loadGlb(FIGHT_ASSETS.clips) } catch { native = false } }
+  } catch { renderer.dispose(); return null }
 
   const scene = new THREE.Scene()
   scene.background = skyTexture()
@@ -131,24 +156,61 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
   const box = new THREE.Box3().setFromObject(ring), centre = box.getCenter(new THREE.Vector3())
   ring.position.x -= centre.x; ring.position.z -= centre.z
   scene.add(ring)
-  scene.add(hall())
+  const hallGroup = hall()
+  scene.add(hallGroup)
 
-  const bodies: Body[] = [m0, m1].map((model, seat) => {
-    const root = cloneSkinned(model.scene)
-    lambertise(root)
-    root.updateMatrixWorld(true)
-    const size = new THREE.Box3().setFromObject(root).getSize(new THREE.Vector3())
-    root.scale.setScalar(FIGHTER_HEIGHT / Math.max(0.1, size.y))
+  const bodies: (Body | null)[] = [null, null]
+  const makeBody = (root: THREE.Object3D, mixerRoot: THREE.Object3D, animations: readonly THREE.AnimationClip[], seat: number, dispose: () => void): Body => {
     const holder = new THREE.Group(); holder.add(root); scene.add(holder)
-    const mixer = new THREE.AnimationMixer(root), actions = new Map<string, THREE.AnimationAction>()
-    for (const clip of model.animations) {
+    const mixer = new THREE.AnimationMixer(mixerRoot), actions = new Map<string, THREE.AnimationAction>()
+    for (const clip of animations) {
       const action = mixer.clipAction(clip)
       if (ONCE.has(clip.name as Clip)) { action.setLoop(THREE.LoopOnce, 1); action.clampWhenFinished = true }
       actions.set(clip.name, action)
     }
     const shadow = blobShadow(0.55); shadow.position.y = CANVAS_Y + 0.012; scene.add(shadow)
-    return { root: holder, mixer, actions, current: null, shadow, lastX: seat ? 640 : 360, lastAct: ACT.none, lastAt: 0, blockHitUntil: 0, strongUntil: 0, punchAlt: false }
-  })
+    return { root: holder, mixer, actions, current: null, shadow, lastX: seat ? 640 : 360, lastAct: ACT.none, lastAt: 0, blockHitUntil: 0, strongUntil: 0, punchAlt: false,
+      dispose: () => { mixer.stopAllAction(); holder.removeFromParent(); shadow.removeFromParent(); (shadow.material as THREE.Material).dispose(); dispose() } }
+  }
+  // The stylised fighters (the fallback): two CC0 models with their own clips, fetched only when they are needed.
+  let mode: 'native' | 'kaykit' = native ? 'native' : 'kaykit', why = native ? '' : 'this phone'
+  let startedAt = 0 // when the seats were first known: the real characters get NATIVE_WAIT_MS from then
+  async function kayKit(): Promise<void> {
+    mode = 'kaykit'; generation[0]++; generation[1]++
+    try {
+      const models = await Promise.all(FIGHT_ASSETS.fighters.map((url) => loadGlb(url)))
+      if (disposed) return
+      models.forEach((model, seat) => {
+        bodies[seat]?.dispose()
+        const root = cloneSkinned(model.scene)
+        lambertise(root)
+        root.updateMatrixWorld(true)
+        const size = new THREE.Box3().setFromObject(root).getSize(new THREE.Vector3())
+        root.scale.setScalar(FIGHTER_HEIGHT / Math.max(0.1, size.y))
+        bodies[seat] = makeBody(root, root, model.animations, seat, () => undefined)
+      })
+    } catch { /* the 2D view goes on */ }
+  }
+  // Each seat's native fighter is made when its look is known and made again when the look changes.
+  const wanted: string[] = ['', ''], generation = [0, 0]
+  let disposed = false, seatsSeen: readonly SeatLook[] | null = null
+  function wantNative(seat: number, look: SeatLook | undefined): void {
+    const appearance = (look?.nat ? unpackNativeLook(look.nat) : null) ?? defaultNativeLook(look?.name ?? '', seat)
+    const key = JSON.stringify(appearance)
+    if (wanted[seat] === key) return
+    wanted[seat] = key
+    const mine = ++generation[seat]!
+    void (async () => {
+      try {
+        const { spawnNativeFighter, clipsFor } = await import('./fight-native.ts')
+        const fighter: NativeFighter = await spawnNativeFighter(appearance)
+        if (disposed || mode !== 'native' || generation[seat] !== mine) { fighter.dispose(); return }
+        const body = makeBody(fighter.group, fighter.model, clipsFor((clipsModel as NonNullable<typeof clipsModel>).animations, appearance.body, fighter.bones), seat, () => fighter.dispose())
+        bodies[seat]?.dispose(); bodies[seat] = body
+      } catch (error) { if (!disposed && mode === 'native' && generation[seat] === mine) { why = String((error as Error)?.message ?? error).slice(0, 120); void kayKit() } }
+    })()
+  }
+  if (!native) void kayKit()
 
   // Sparks: one Points object, a small pool.
   const SPARKS = 48
@@ -198,11 +260,24 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
         return meta.own && meta.you === seat ? meta.own : mixd
       }) as [FighterSnap, FighterSnap]
       const over = b.p === PHASE.over
+      // Who is sitting where: dress each seat from its public look when the roster changes (the real characters), or give up on them.
+      const seats = opts.seats?.() ?? null
+      if (mode === 'native' && clipsModel) {
+        if (seats !== seatsSeen || !seats) { seatsSeen = seats; if (!startedAt) startedAt = now; for (const seat of [0, 1]) wantNative(seat, seats?.[seat]) }
+        if (startedAt && bodies.some((x) => !x) && now - startedAt > NATIVE_WAIT_MS) { why = 'waited too long'; void kayKit() }
+      }
       bodies.forEach((body, seat) => {
+        if (!body) return
         const f = snaps[seat as 0 | 1], other = snaps[(1 - seat) as 0 | 1]
         const w = toWorld(f[0], f[1])
-        body.root.position.set(w.x, w.y, 0)
         const facing = f[2] ? 1 : -1
+        // The real fighters step into a strike so a fist or a foot reaches the other fighter's body (the rules' reach counts from the body centre).
+        const move = MOVES[f[3] as 1 | 2]
+        if (move && mode === 'native') {
+          const gap = Math.abs(toWorld(other[0], 0).x - w.x)
+          w.x += facing * Math.max(0, Math.min(0.5, gap - (f[3] === ACT.kick ? 1.3 : 1.0))) * Math.sin(Math.PI * Math.min(1, f[4] / move.total))
+        }
+        body.root.position.set(w.x, w.y, 0)
         body.root.rotation.y = facing > 0 ? Math.PI / 2 : -Math.PI / 2
         // Speed towards the other fighter, from the drawn positions (metres a second).
         const towards = Math.sign(other[0] - f[0]) || facing
@@ -215,7 +290,7 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
         body.lastAct = f[3]; body.lastAt = f[4]
         const clip = clipFor(f, speed, { blockHit: now < body.blockHitUntil, strongHit: now < body.strongUntil, won: over && meta.winner === seat, punchAlt: body.punchAlt })
         const action = body.actions.get(clip)
-        const scale = clip === 'punch' || clip === 'punch-2' || clip === 'kick' ? attackScale(action?.getClip().duration ?? 0.4, f[3]) : clip === 'walk' || clip === 'walk-back' ? Math.min(1.6, Math.max(0.7, Math.abs(speed) / 2.2)) : 1
+        const scale = clip === 'punch' || clip === 'punch-2' || clip === 'kick' ? attackScale(action?.getClip().duration ?? 0.4, f[3]) : clip === 'walk' || clip === 'walk-back' ? (mode === 'native' ? Math.min(1.7, Math.max(0.7, Math.abs(speed) / WALK_SPEED)) : Math.min(1.6, Math.max(0.7, Math.abs(speed) / 2.2))) : 1
         play(body, clip, now, startedAttack || (startedHurt && (clip === 'hit' || clip === 'hit-2')), scale)
         body.mixer.update(dt)
         // The shadow stays on the canvas and shrinks as the fighter rises.
@@ -272,13 +347,17 @@ export async function createFightView(canvas: HTMLCanvasElement, opts: { reduced
       sizeW = width; sizeH = height; inset = insets
       renderer.setSize(width, height, false)
       const f = framing(0, width, height, insets)
+      // In portrait the lamps would show as dots behind the top bar: they are only drawn in a wide view.
+      ;(hallGroup.userData.lamps as THREE.Object3D).visible = width >= height
       camera.aspect = width / Math.max(1, height); camera.fov = f.fov
       camera.setViewOffset(width, height, 0, -f.shift, width, height) // slides the picture so the pair centres in the free band
       camera.updateProjectionMatrix()
       snapCamera = true
     },
-    stats: () => ({ ...stats.read(renderer), ratio: ladder[rung.level] as number }),
-    dispose() { disposeScene(scene); sparkGeo.dispose(); sparkMat.dispose(); renderer.dispose() },
+    stats: () => ({ ...stats.read(renderer), ratio: ladder[rung.level] as number, fighters: mode, why, clips: bodies.map((x) => (x ? [x.actions.size, x.current] : null)), ready: bodies.every((x) => x !== null) }),
+    ready: () => bodies.every((x) => x !== null),
+    mode: () => mode,
+    dispose() { disposed = true; for (const x of bodies) x?.dispose(); disposeScene(scene); sparkGeo.dispose(); sparkMat.dispose(); renderer.dispose() },
   }
 }
 
@@ -308,5 +387,6 @@ function hall(): THREE.Group {
   }
   for (let k = 0; k < 18; k++) lamps.setMatrixAt(k, m.compose(p.set(-17 + k * 2, 15.5, -24), q, s.set(1, 1, 1)))
   group.add(stands, lamps)
+  group.userData.lamps = lamps
   return group
 }

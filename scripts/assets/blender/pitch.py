@@ -12,6 +12,7 @@ import sys
 
 import numpy as np
 
+sys.dont_write_bytecode = True  # no __pycache__ (it would hold this machine's paths) next to the scripts
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common as c  # noqa: E402
 

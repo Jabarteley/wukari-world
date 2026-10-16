@@ -1,4 +1,4 @@
-import './body/canonical-fixture.test.ts';
+import './body/native-test-fixture.ts';
 import { loadCityContent as preloadCityContent } from '../game/cities/registry.ts';
 await Promise.all(['lagos', 'ibadan'].map(preloadCityContent));
 // Walking and the orbit camera: the arithmetic, and the walkable description of every scene.

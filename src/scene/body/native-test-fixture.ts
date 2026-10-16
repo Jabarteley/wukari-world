@@ -1,3 +1,5 @@
+import assert from 'node:assert/strict';
+import { SCENE_CHARACTER_TRIANGLES, SCENE_DRAW_CALLS, SCENE_SCENERY_MESHES, SCENE_SCENERY_TRIANGLES, SCENE_TRIANGLES } from '../../budgets.ts';
 /** Node-only asset boundary for scene tests. It loads the shipped native files while replacing only browser image decoding. */
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -74,3 +76,15 @@ await Promise.all([
 ]);
 if (originalDocument) scope.document = originalDocument;
 else delete scope.document;
+
+/** Geometry and submission accounting for shipped native scene fixtures. */
+export function assertNativeSceneBudget(stats: import('../types.ts').SceneStats, label: string): void {
+  assert.equal(stats.sceneryTriangles + stats.characterTriangles, stats.triangles, `${label}: triangle composition`);
+  assert.equal(stats.sceneryMeshes + stats.characterMeshes, stats.meshes, `${label}: mesh composition`);
+  assert.equal(stats.sceneryDrawCalls + stats.characterDrawCalls, stats.drawCalls, `${label}: draw composition`);
+  assert.ok(stats.sceneryTriangles <= SCENE_SCENERY_TRIANGLES.value, `${label}: scenery ${stats.sceneryTriangles} triangles`);
+  assert.ok(stats.characterTriangles <= SCENE_CHARACTER_TRIANGLES.value, `${label}: characters ${stats.characterTriangles} triangles`);
+  assert.ok(stats.triangles <= SCENE_TRIANGLES.value, `${label}: total ${stats.triangles} triangles`);
+  assert.ok(stats.sceneryMeshes <= SCENE_SCENERY_MESHES.value, `${label}: scenery ${stats.sceneryMeshes} meshes`);
+  assert.ok(stats.drawCalls <= SCENE_DRAW_CALLS.value, `${label}: ${stats.drawCalls} draw calls`);
+}

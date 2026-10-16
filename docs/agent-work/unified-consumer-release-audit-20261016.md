@@ -6,9 +6,9 @@
 - **Owner:** `/root/unified_consumer_audit`
 - **Model / effort:** GPT-6 / high
 - **Thread:** child of `/root`
-- **UTC updated:** `2026-10-16T10:20:00Z`
+- **UTC updated:** `2026-10-16T10:45:00Z`
 - **Status:** `complete`
-- **Work state:** `release-regression-maintenance-frozen`
+- **Work state:** `server-webcrypto-type-follow-up-frozen`
 
 ## Goal and boundaries
 
@@ -114,3 +114,4 @@
 | `2026-10-16T02:34Z` | complete | Replaced the removed street near-body pool with one measured, room-admitted native actor and shared stable native recipe; removed unverified prop and child-bone behavior. | Direct imports and ephemeral admission/phase/clock probe pass; diff-check pass; standalone strict tsc OOM | Astra reviews caller integration and updates retired near tests |
 | `2026-10-16T00:58:18Z` | complete | Rewrote the two retired near-street suites around the native one-actor contract and froze this unit. | 13/13 focused tests; focused diff-check pass | Astra/root integrate and run release-level gates |
 | `2026-10-16T10:20Z` | complete | Adapted the bounded scene fixtures to shipped native assets, fixed the eight assigned Web Crypto type diagnostics and proved the Home async-tag root cause/fix. | Client typecheck pass; preview 12/12; Home targeted 1/1; full redirected slice incomplete after an idle test process | Integration owner may commit and let CI run the full suite |
+| `2026-10-16T10:45Z` | complete | Replaced the cross-project `CryptoKey` annotation with the key parameter type of the active runtime `subtle().deriveBits` API, so Node and DOM projects each resolve their own compatible key type. | Minimal Node Web Crypto type probe pass; exact client typecheck pass; full server compiler exceeded the local 4 GB heap before diagnostics | Root/Astra rerun CI server typecheck |

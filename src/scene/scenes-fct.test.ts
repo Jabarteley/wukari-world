@@ -1,4 +1,4 @@
-import { assertCanonicalSceneBudget } from './body/canonical-fixture.test.ts';
+import { assertNativeSceneBudget } from './body/native-test-fixture.ts';
 import { loadCityContent as preloadCityContent } from '../game/cities/registry.ts';
 await preloadCityContent('lagos');
 // Abuja's scenes: every venue of the city builds headlessly inside the rendering budget with a place for each of its
@@ -42,7 +42,7 @@ test('every Abuja venue builds in budget with its own scene: each spot and game 
     const stats = entry.stats();
     report.push(`${authored.id} ${kind}${variant ? `/${variant}` : ''} ${stats.triangles} ${stats.drawCalls}`);
     assert.ok(stats.triangles > 1500, `${authored.id} triangles ${stats.triangles}`);
-    assertCanonicalSceneBudget(stats, authored.id);
+    assertNativeSceneBudget(stats, authored.id);
     assert.ok(stats.lights <= SCENE_LIGHTS.value, `${authored.id} lights ${stats.lights}`);
     const { grid, entrance } = entry.walk;
     assert.ok(grid && entrance, `${authored.id} has a floor and an entrance`);

@@ -1,4 +1,4 @@
-import { assertCanonicalSceneBudget } from './body/canonical-fixture.test.ts';
+import { assertNativeSceneBudget } from './body/native-test-fixture.ts';
 import { loadCityContent as preloadCityContent } from '../game/cities/registry.ts';
 await preloadCityContent('lagos');
 // Port Harcourt's scenes: every venue of the city builds headlessly inside the rendering budget, with a place for each
@@ -39,7 +39,7 @@ test('every Port Harcourt venue builds in budget with its own scene: each spot a
     const stats = entry.stats();
     report.push(`${authored.id} ${venue.scene!.kind}${variant ? `/${variant}` : ''} ${stats.triangles} ${stats.drawCalls}`);
     assert.ok(stats.triangles > 1500, `${authored.id} triangles ${stats.triangles}`);
-    assertCanonicalSceneBudget(stats, authored.id);
+    assertNativeSceneBudget(stats, authored.id);
     assert.ok(stats.lights <= SCENE_LIGHTS.value, `${authored.id} lights ${stats.lights}`);
     const { grid, entrance } = entry.walk;
     const reach = (what: string, x: number, z: number, approach?: { x: number; z: number } | null, within = 1.5) => {

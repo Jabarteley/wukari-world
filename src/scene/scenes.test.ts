@@ -1,4 +1,4 @@
-import { assertCanonicalSceneBudget } from './body/canonical-fixture.test.ts';
+import { assertNativeSceneBudget } from './body/native-test-fixture.ts';
 import { loadCityContent as preloadCityContent } from '../game/cities/registry.ts';
 await preloadCityContent('lagos');
 // Scene modules: every venue kind builds headlessly, stays inside the rendering budget and
@@ -68,7 +68,7 @@ test('each scene builds within budget with a full crowd, and disposes without le
       report.push(`${kind}: ${stats.triangles} triangles, ${stats.drawCalls} draw calls`);
       assert.ok(entry.group.isGroup && typeof entry.background === 'string' && entry.camera.landscape.length === 3 && entry.camera.portrait.length === 3, kind);
       assert.ok(stats.triangles > 1500, `${kind} has real geometry (${stats.triangles})`);
-      assertCanonicalSceneBudget(stats, kind);
+      assertNativeSceneBudget(stats, kind);
       assert.ok(stats.lights <= SCENE_LIGHTS.value, `${kind} lights ${stats.lights}`);
       assert.equal(tags.length, MAX_CROWD, kind);
       for (const mesh of (entry.group.children as THREE.Mesh[]).filter((child) => child.isMesh)) {
@@ -389,7 +389,7 @@ test('a scene crowd is capped, placed and tagged; the player carries the crown',
   assert.equal(entry.tags()[0]!.text, 'Kromate');
   assert.equal(entry.setPlayer({ pose: 'wave' }), true);
   assert.deepEqual(entry.setCrowd([]), []);
-  assertCanonicalSceneBudget(entry.stats(), 'viewing without crowd');
+  assertNativeSceneBudget(entry.stats(), 'viewing without crowd');
   kit.dispose();
 });
 
@@ -482,7 +482,7 @@ test('every game table stands in its venue’s scene: on free floor, reachable f
     // The tables are part of the venue's own batch: a few hundred triangles, no mesh or draw call of their own, inside the budget.
     const stats = entry.stats();
     assert.ok(stats.triangles - bareTriangles > 60 * things.length && stats.triangles - bareTriangles < 420 * things.length, `${id}: ${things.length} tables cost ${stats.triangles - bareTriangles} triangles`);
-    assertCanonicalSceneBudget(stats, id);
+    assertNativeSceneBudget(stats, id);
     // A rebuild (night falls) leaves them where they are.
     const before = things.map((thing) => [thing.x, thing.z]);
     entry.setTime('night'); entry.setTime('day');
@@ -541,7 +541,7 @@ test('every Ibadan venue builds in budget with its own scene: each spot and game
     entry.setCrowd(crowd());
     const stats = entry.stats();
     assert.ok(stats.triangles > 1500, `${authored.id} triangles ${stats.triangles}`);
-    assertCanonicalSceneBudget(stats, authored.id);
+    assertNativeSceneBudget(stats, authored.id);
     assert.ok(stats.lights <= SCENE_LIGHTS.value, `${authored.id} lights ${stats.lights}`);
     const { grid, entrance } = entry.walk;
     const reach = (what: string, x: number, z: number, approach?: { x: number; z: number } | null, within = 1.5) => {
@@ -584,7 +584,7 @@ test('every Ogun venue builds in budget with its own scene: each spot and game t
       const stats = entry.stats();
       report.push(`${city}/${authored.id} ${venue.scene!.kind}${variant ? `/${variant}` : ''} ${stats.triangles} ${stats.drawCalls}`);
       assert.ok(stats.triangles > 1500, `${authored.id} triangles ${stats.triangles}`);
-      assertCanonicalSceneBudget(stats, `${city}/${authored.id}`);
+      assertNativeSceneBudget(stats, `${city}/${authored.id}`);
       assert.ok(stats.lights <= SCENE_LIGHTS.value, `${authored.id} lights ${stats.lights}`);
       const { grid, entrance } = entry.walk;
       const reach = (what: string, x: number, z: number, approach?: { x: number; z: number } | null, within = 1.5) => {

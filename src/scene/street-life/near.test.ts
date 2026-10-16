@@ -2,7 +2,7 @@
 // family planning, native-distance actions and glances.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { NATIVE_CROWD_DEFAULTS } from '../../character/native-recipe.ts';
+import { NATIVE_CROWD_DEFAULTS } from '../../character/native-migration.ts';
 import { NATIVE_CHARACTER_CATALOG } from '../../character/native-catalog.ts';
 import { ADULT_CONTEXTS, CHILD_CONTEXTS, GLANCE, NEAR_CAPS, NEAR_HARD_CAP, NEAR_RADIUS, AVATAR_UNITS, childrenAllowed, easeGlance, forcedNear, glanceYaw, nearAction, nearCap, nearCrowdFor, nearDress, selectNear } from './near.ts';
 import type { NearCandidate } from './near.ts';

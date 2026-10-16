@@ -37,7 +37,7 @@
  */
 import type * as THREE from 'three';
 import { createKit } from './kit.ts';
-import { nativeRecipeForLook } from '../character/native-recipe.ts';
+import { nativeRecipeForLook } from '../character/native-migration.ts';
 import { lazyEnvironment, renderTier } from './look.ts';
 import { normalizeLook } from './characters.ts';
 import type { ThreeModule } from './types.ts';

@@ -1,47 +1,67 @@
-# Native character release continuation — 16 October 2026
+# Native character release continuation
 
-## Authorization and checkout
-User requests complete native character replacement across players, NPCs, streets and onboarding, latest main integration, and production deployment after fixes. The user explicitly authorized this isolated checkout/branch and retaining skirts. No production deployment has occurred.
+Updated 16 October 2026. Production deployment is authorized. Do not report it complete without the protected workflow receipt, live build check and browser verification.
 
-Checkout: /Users/anthonyakpan/Desktop/JoinAllworld-native-character-release
-Branch: codex/native-character-release-20261016
-Base/latest fetched origin/main: c7f3f0203c2297123e37e705f86177715f29de13 (0/0 divergence before candidate commit).
-Original dirty checkout /Users/anthonyakpan/Desktop/JoinAllworld remains untouched by release merge. Original lab4428 and baseline4427 preserved. Existing game5173 runs original checkout, NOT this candidate.
+## Checkouts and running services
 
-Read docs/agent-work/native-character-release-20261016.md, native-runtime-release-owner-20261016.md, unified-consumer-release-audit-20261016.md and native-asset-compression-20261016.md before editing. Root owns release docs/assets inventory; Astra runtime/browser; Sol near regression unit complete. Check live ownership before writing.
+- Release: `/Users/anthonyakpan/Desktop/JoinAllworld-native-character-release`, branch `codex/native-character-release-20261016`.
+- Preserve the original mixed checkout `/Users/anthonyakpan/Desktop/JoinAllworld`; do not reset, stash or deploy it wholesale.
+- Original game remains on port5173. Isolated candidate uses `http://127.0.0.1:5174/`, launched with documented `npm run dev -- --port 5174`. Use exact IPv4; another app owns the IPv6 localhost alias. Do not stop it.
+- Character reference lab: `/Users/anthonyakpan/Documents/Codex/2026-10-14/task-2/allworld-character-lab`, `http://localhost.:4428/?view=third`. Baseline4427 remains preserved.
+- Reuse running services. Do not start/restart lifecycle commands absent the user's applicable authorization.
 
-## Implemented candidate
-Native53 source models and fitted clothing replace active creator/profile/Ready, venue, home/neighbourhood, campus/driving, map and street people renderers. Native v2 appearance persists35features and options. Height camera cancellation/reaction glitch fixed. Duplicate outsidehome stand-in rebind/visibility fixed. Native phase/positive clock corrections in campus/driving/map. Street far uses native compact snapshots; nearest max1 full actor admitted against actual remaining geometry/draw limits. Generic preload no longer fetches both bodies eagerly.
+## Ownership and current work
 
-No active game calls to old buildAvatar/drawAvatar remain in source audit. Non-built models.html tooling and historical source files are preserved; compiled bundle audit still required.
+Read `docs/AGENT-COORDINATION.md` and the current records before editing. Astra `/root/unified_character_owner` owns integration, browser verification, CI and production release. Sol `/root/unified_consumer_audit` owns the bounded native recipe/catalogue/migration loading split. Root owns asset accounting/notices and read-only production continuity.
 
-## Asset identity
-Exact46 resource files copied to public/character-lab. Catalog body override semantics in both original lab and game actually select round12 skirts, despite final-pass folder/item labels. Canonicalized4 conflicting pointers to those SAME selected URLs; no model or texture bytes changed. Unused Franky final-pass assets are not shipped. See docs/character-assets/selected-release-assets.json and public notices. No claim that authoring tool licences replace asset licences.
+Current candidate commits: b6fee270f native replacement;4b1b29ece type/fixture repairs;a7ee6975b startup catalogue split. Follow-on physical migration module split is being finished; obtain final SHA from Git, not this note. Remote main advanced through92c9f8ffa with four documentation-only commits. Merge current origin/main and test the combined revision before release.
 
-## Checks
-- UI/recipe focused39/39 passes on candidate.
-- Native near-street focused13/13 passes with meaningful ready/admission/identity/clock/failure cases.
-- Client compiler: no src diagnostics;8 imported server crypto errors with borrowed original node_modules. This is NOT a verified current-main baseline; use locked CI dependencies before acceptance.
-- Actual native asset probes in docs/agent-work/native-character-release-evidence-20261016: height both bodies, duplicate ownership/re-entry, airport/club/park animated native players+NPCs, street8sample budget/hidden-promoted/disposal checks PASS. Image/canvas stubs mean numerical scope only.
-- Original browser height check both bodies .85/1.15 and rapid drag passes; exact Female .88 draft restored. Original duplicate-player/browser checks pass. Those are not candidate browser proof.
+## User decisions
 
-Probe commands (from checkout, installed dependencies required):
+- Replace production players, NPCs, street people and previews with the selected native53 lab characters. No cartoon fallback or combined old/new actor.
+- User authorizes production deployment after CI passes, including the retained skirts. No further skirt iteration requested.
+- Explicit native exception:34,000 triangles/full actor;72,000 character/87,000 total scene triangles;default native assets up to5MB Brotli.60 scene draw calls and existing app startup/first-paint limits remain enforced.
+- Physical-phone performance is unverified. Desktop/touch emulation is not physical-device evidence.
+
+## Implementation and selected assets
+
+Shared native body/appearance APIs cover gameplay actors, static native crowd snapshots, street near/far people, previews, campus, driving and map actor consumers. Old renderer code/assets remain archived in source/tooling but have no active production callers. CI rejects emitted retired body assets.
+
+Fixed: height preview framing/reaction, same-actor updates, duplicate outside-home player after appearance replacement, first-person native head handling, blank Ready preview caused by two views sharing a renderer, and home visitor tags copied before native readiness. Home visitor callback guards against disposed/replaced batches.
+
+Exact46 selected public resources are under `public/character-lab`. Runtime resolver precedence selects round12 skirts. Four contradictory catalogue fallback URLs were canonicalized to the same already-selected round12 URLs; model/texture bytes were not replaced. Unselected Franky final-pass research files are not shipped. Inventory and licensing receipts: `docs/character-assets/`, public notices and `selected-asset-inventory.json` in the evidence directory.
+
+Measured defaults: female4,048,407B and male4,835,731B Brotli, excluding JS/decoder/HTTP overhead. Whole optional catalogue37,317,883B Brotli. Inventory passed zero missing files, selector conflicts, extras or exceeded approved native caps.
+
+## Accepted evidence and limitations
+
+Evidence directory: `docs/agent-work/native-character-release-evidence-20261016/`.
+
+- Candidate browser: creator/Ready, Profile body+hair+height save/reload, home/outside movement and reentry single player, native park/airport/club people and movement,390x844 layout. Park55,314tri/42draw;airport62,102tri/53draw;club71,261tri/49draw.
+- Actual-asset numerical probes pass height extremes, ownership/reentry, airport/club/park, native street8phase admission/hidden-player/disposal. Image/canvas stubs limit those probes to numerical evidence.
+-40 focused recipe/onboarding/Boutique parity checks pass; browser legacy projection check covers18 lives. Preview12/12 and retained Home visitor regression1/1 pass.
+- Full client and CI typecheck passed after explicit typed-array/Web Crypto repairs. A broad local scene test slice stalled after keyboard cases; it remains incomplete, not green.
+- Fresh candidate campus/driving rendered movement checks, physical-phone performance, recording and exhaustive action/cloth acceptance remain unverified. Some source skirt clipping remains; do not claim all movement/cloth defects fixed.
+
+## CI and remaining release gate
+
+CI38835016230 built successfully but found type errors and startup overage. CI38837264732 passed build/full typecheck but startup remained over2928raw/1039gzip/1118Brotli. First-paint/scene-host/native asset limits passed. No cap increase is authorized for startup.
+
+The remaining repair physically separates legacy conversion/prices from the eager native recipe validation module. Keep strict saved-recipe validation eager; renderer/editor conversion stays deterministic and lazy. Catalogue labels/presets and Boutique rows are lazy with server/client parity. A source size estimate does not prove emitted startup size.
+
+Download accounting now reuses measurements only after SHA256 matches freshly read asset bytes. Independent native inventory CLI still compresses normally. Failed startup checks exit before optional catalogue compression and clearly label inventory not run. No skipped inventory may be reported as passing.
+
+Next executable steps:
+1. Finish/review the finite migration split, run focused parity checks and stage exact owned source.
+2. Commit, merge latest origin/main, push release branch and dispatch CI on the exact combined SHA.
+3. Require green startup/first-paint/host/native asset checks, retired-body artifact rejection and focused native tests.
+4. Integrate reviewed tested source into main, respecting concurrent work. Dispatch protected release on current main with exact source SHA.
+5. Verify live health/build, repeat read-only continuity for existing test actors and inspect production native appearance, movement, transitions and duplicate prevention. Then update this file and work records with exact receipts.
+
+Builds run in CI, not locally. Commands:
 ```sh
-node --experimental-strip-types docs/agent-work/native-character-release-evidence-20261016/native-height-probe.mjs
-node --experimental-strip-types docs/agent-work/native-character-release-evidence-20261016/neighbourhood-player-ownership-probe.mjs
-node --experimental-strip-types docs/agent-work/native-character-release-evidence-20261016/native-scenes-probe.mjs
-node --experimental-strip-types docs/agent-work/native-character-release-evidence-20261016/native-street-probe.mjs
+gh workflow run CI -R kromate/joinallworld --ref codex/native-character-release-20261016 -f full_checks=false
+gh workflow run joinallworld-release.yml -R kromate/joinallworld --ref main -f source_sha=<exact40hex> -f deploy=true -f publish_staging=false
 ```
 
-## Required decision and release gates
-User was asked for explicit native budget exception: max34k full actor,72k character/87k total scene,60draw unchanged, first actor4–4.8MB Brotli assets plus app. Existing main total scene17k and base300k/item60k download caps cannot contain selected native models. Do NOT call candidate limits unchanged from main. User explicitly approved these native limits and requested completion of the release.
-
-Actual active46 catalogue resources total48,388,049raw /37,317,916Brotli. Defaultfemale4,048,440br, defaultmale4,835,764br excludingJS/decoder/HTTP. Other outfits must remain lazy. Losslessmeshopt does NOT solve base/item costs; textures dominate. Motion candidate can shrink204,547→179,283br withdecoder, unshipped pending review. No lossy asset substitute approved or visually accepted. See compression record.
-
-scripts/native-character-assets.mjs accounts resolvedURL closure, SHA, raw/gzip/br, defaults, conflicts/extras and existingcaps; it intentionally fails over-budget. It is not yet wired into release workflow. Public catalog canonicalization removes4conflicts/4unselected extras; rerun exactcandidate inventory after final asset policy.
-
-Next: finish native download/packaging checks without hidden omissions, install/check exactlocked dependencies or CI, test built candidate in browser (new service notstarted), complete remaining location paths (driving/campus movement, shop, park Rest mapping, detailedhome), then reviewed commit/CI/main/protected release and livecontinuity/browser verification. User deployment authorization exists; no need ask again for deployment itself. Do not claim phoneperformance or everyaction natural; physicalphone, some source skirt clipping and detailed action checks remain unverified.
-
-Follow current AGENT.md: CI builds, exact main ancestor release, protected joinallworld-release.yml, preserve same Worker/DO namespace and secrets. No stash/reset or dirtyoriginal wholesale upload. Keep firstpaint/startup limits and auth/data boundaries intact. Refresh main before publish; coordinate concurrent release owners.
-
-16October approved-release checkpoint: user approved native limits and finishing production release. Exact catalogue inventory passed46resources, no conflicts/missing/extras; female4.05MB andmale4.84MB Brotli default assets;37.32MB wholeoptionalcatalogue. Existing download6tests/packageguard26tests pass. New bounded metadata/notice allowlist retains default package security controls. Astra owns candidate127.0.0.1:5174 browser and subsequent CI/protected release, original5173 untouched. This checkpoint is not deployment acceptance.
+Production baseline before release: health `joinallworld-c2419edbd4edac17602aa9199ce`, relay/companionAi true. Existing two synthetic actors passed read-only GET session/life identity+cash continuity. Sanitized evidence is `production-continuity-before.json`; private credential receipt remains outside the repository. Helper `/tmp/native-release-continuity.mjs` reuses it without logging credentials, creating identities or replaying actions. Post-release comparison is still pending.

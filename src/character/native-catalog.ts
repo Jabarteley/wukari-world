@@ -5,6 +5,13 @@ import {
   NATIVE_SHOES_IDS,
 } from './native-recipe.ts'
 import type { NativeFeatureDescriptor, NativeOption } from './native-recipe.ts'
+import type { NativeWardrobeKind } from './native-recipe.ts'
+
+export const NATIVE_BOUTIQUE_PRICES: Readonly<Record<NativeWardrobeKind, Readonly<Record<string, number>>>> = Object.freeze({
+  'native-hair': Object.freeze({ none: 0, short01: 0, short02: 2500, bob01: 2000, afro01: 2500, braid01: 3500, ponytail01: 2000 }),
+  'native-garment': Object.freeze({ 'female-casual-01': 0, 'female-casual-02': 4000, 'female-elegant-01': 8000, 'female-sport-01': 5000, 'male-worksuit-01': 5000, 'formal-suit-01': 8000, 'fitted-skirt-01': 7000 }),
+  'native-shoes': Object.freeze({ shoes01: 0, shoes02: 1000, shoes03: 1500 }),
+})
 
 const label = <Id extends string>(ids: readonly Id[], labels: readonly string[]): readonly NativeOption<Id>[] =>
   Object.freeze(ids.map((id, index) => Object.freeze({ id, label: labels[index]! })))

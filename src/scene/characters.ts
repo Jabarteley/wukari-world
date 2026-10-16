@@ -37,7 +37,7 @@
  * textures, no animation loops — the host (src/venue-world.ts) draws on demand.
  */
 import type * as THREE from 'three';
-import { nativeRecipeForLook } from '../character/native-recipe.ts';
+import { nativeRecipeForLook } from '../character/native-migration.ts';
 import type { NativeCharacterRecipeV2 } from '../character/native-recipe.ts';
 import { createBatch, sceneMaterials, kitResources, releaseObjects, hash, GLOW } from './build.ts';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';

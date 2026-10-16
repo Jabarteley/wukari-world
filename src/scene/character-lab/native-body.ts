@@ -5,7 +5,7 @@ import type { BodyDetail, BodyPose, SkinnedBody } from '../body/skinned.ts';
 import type { BodyKey } from '../body/manifest.ts';
 import type { CharacterStyle } from '../body/style.ts';
 import type { FootContact } from '../body/foot-contact.ts';
-import { nativeRecipeForLook } from '../../character/native-recipe.ts';
+import { nativeRecipeForLook } from '../../character/native-migration.ts';
 import { createCharacterSystem } from './runtime/characters.js';
 import { profile } from './runtime/selected-profile.mjs';
 import { NATIVE_FULL_BODY_TRIANGLES } from '../../budgets.ts';

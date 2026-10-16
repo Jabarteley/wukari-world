@@ -11,7 +11,9 @@ import { APPEARANCE, BOUTIQUE_PRICES, ACCESSORY_BASICS, DEFAULT_LOOK } from './c
 import type { ActionBody, ActionResult, ActionType } from '../types/actions.ts';
 import type { LifeContext, LifeState, Look } from '../types/life.ts';
 import { LOOK_OPTIONS, ACCESSORY_SLOTS } from '../scene/characters.ts';
-import { NATIVE_BOUTIQUE_PRICES, NATIVE_STARTER_ITEMS, nativeRecipeForLook, normalizeNativeRecipe } from '../character/native-recipe.ts';
+import { NATIVE_STARTER_ITEMS, normalizeNativeRecipe } from '../character/native-recipe.ts';
+import { NATIVE_BOUTIQUE_PRICES } from '../character/native-catalog.ts';
+import { nativeRecipeForLook } from '../character/native-migration.ts';
 import { NATIVE_CHARACTER_CATALOG } from '../character/native-catalog.ts';
 import { withWearableBoutique } from '../app/features/life/boutiqueModel.ts';
 

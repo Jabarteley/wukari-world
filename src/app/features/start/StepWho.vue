@@ -2,7 +2,7 @@
 // Step 1, "Who are you?": a starting character from large cards, the body, a shuffle and a name. It
 // changes nothing itself: the creator keeps the draft and the device.
 import { computed } from 'vue'
-import { nativeRecipeForLook } from '../../../character/native-recipe.ts'
+import { nativeRecipeForLook } from '../../../character/native-migration.ts'
 import { NATIVE_CHARACTER_CATALOG } from '../../../character/native-catalog.ts'
 import type { Look } from '../../../types/life.ts'
 import GameIcon from '../../ui/GameIcon.vue'

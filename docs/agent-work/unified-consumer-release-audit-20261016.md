@@ -6,16 +6,16 @@
 - **Owner:** `/root/unified_consumer_audit`
 - **Model / effort:** GPT-6 / high
 - **Thread:** child of `/root`
-- **UTC updated:** `2026-10-16T11:49:00Z`
+- **UTC updated:** `2026-10-16T12:19:00Z`
 - **Status:** `complete`
-- **Work state:** `startup-native-catalog-split-frozen`
+- **Work state:** `startup-native-migration-physical-split-frozen`
 
 ## Goal and boundaries
 
 - **Goal:** identify current-main character integration deltas, then selectively transfer the approved native recipe, persistence, creator/profile/Boutique and quick-start contract onto the release checkout without overwriting newer product work.
 - **In scope:** completed consumer/UI/schema/near-street/fixture work; current bounded follow-up splits the labelled native catalogue from the eager recipe core, preserves strict validation/migration, and makes the server and lazy Boutique projections equivalent.
 - **Out of scope:** scene/runtime/map/campus/driving/package/lock changes, model/assets/budget changes, builds, servers, browser use, pushing, committing and deployment.
-- **Owned paths for this follow-up:** `src/character/native-recipe.ts`, new `src/character/native-catalog.ts`, `src/game/systems/onboarding.ts`, `src/app/features/life/boutiqueModel.ts`, native catalogue imports in creator/Profile/quick-start and narrow parity tests, plus only the `native-catalog.ts` condition in `vite.config.ts`. Root checker files and Astra runtime files remain untouched.
+- **Owned paths for this follow-up:** `src/character/native-recipe.ts`, `src/character/native-catalog.ts`, new `src/character/native-migration.ts`, direct `nativeRecipeForLook`/crowd-default import rewrites across existing consumers/tests, and only the `native-catalog.ts`/`native-migration.ts` side-effect conditions in `vite.config.ts`. Root checker files and Astra runtime behavior remain untouched.
 - **Exclusive coordination path:** `docs/agent-work/unified-consumer-release-audit-20261016.md`.
 - **Input contract:** release checkout `/Users/anthonyakpan/Desktop/JoinAllworld-native-character-release` at `c7f3f0203c2297123e37e705f86177715f29de13`; comparison base `22366a53`.
 - **Output contract:** audit handoff plus a source-preserving UI/schema native contract merge with exact conflict decisions and focused checks.
@@ -101,6 +101,9 @@
 - Follow-up tightened the readonly-browser boundary: an absent native recipe is materialized only by a playing host; browser sanitation retains every validated legacy compatibility field and still strictly validates a present native recipe. Browser wardrobe sanitation reads a present checked recipe directly, while playing hosts retain deterministic migration. All other onboarding migration calls are confined to `PLAYS` branches or action-only helpers.
 - Added an exact readonly-browser fixture with no native recipe. It proves the legacy look stays byte-shape equivalent apart from the intentionally absent recipe and that the lazy renderer/editor produces the same deterministic recipe as the server. The same fixture now uses an actually offered native shoe instead of the retired wearable projection assumption. The focused browser-profile case passed 1/1 for 18 lives; `/tmp/native-browser-legacy-profile.log`.
 - Restored strict membership semantics for scalar native IDs (`typeof selected === 'string'` before membership) and added an array-valued body hostile-input assertion. The final focused suite remains 40/40; `/tmp/native-catalog-split-tests.log`.
+- Physically extracted `nativeRecipeForLook`, the bounded crowd defaults, legacy colour/hair/outfit maps and deterministic hash/seed helpers to the new pure `src/character/native-migration.ts`. Every production and test caller now imports that module directly; `native-recipe.ts` neither exports nor re-exports migration code.
+- Moved `NATIVE_BOUTIQUE_PRICES` to the already-lazy `native-catalog.ts`, retaining `NATIVE_STARTER_ITEMS` in the eager recipe core. Added only `native-migration.ts` to the existing Vite side-effect-free predicate; no manual chunk or cap changed.
+- Physical-split verification: direct imports of recipe/migration/catalog/onboarding passed; the focused native suite passed 40/40 (`/tmp/native-migration-split-tests.log`); the exact readonly browser legacy fixture passed 1/1 across 18 lives (`/tmp/native-migration-browser-profile.log`); whole-diff check and greps confirm no migration/default/price export remains in the recipe core. Source-only diagnostic: core fell from 16,273 bytes / 4,810 standalone gzip before this split to 10,343 bytes / 3,083 gzip; CI remains authoritative for emitted startup raw/gzip/Brotli.
 
 ### Current native near-street unit
 
@@ -138,3 +141,4 @@
 | `2026-10-16T11:05Z` | complete | Traced the startup regression to the labelled native catalogue imported by eager onboarding and specified the existing `PLAYS` plus lazy Boutique projection split. | Catalogue block measures 5,433 raw / 2,017 gzip versus CI excess 5,295 / 1,879 | Integration owner applies the split; caps stay unchanged |
 | `2026-10-16T11:34Z` | complete | Split labelled catalogue/presets from the compact eager recipe core, PLAYS-gated server projection and implemented the lazy browser Boutique projection without weakening saved recipe checks. | Direct imports pass; focused 40/40 including server/lazy parity; diff/closure checks pass | Astra reviews and CI measures unchanged startup caps |
 | `2026-10-16T11:49Z` | complete | Deferred absent-recipe legacy migration from the readonly browser while preserving strict saved-native checks and exact lazy/server equivalence; restored strict scalar-ID validation. | Focused 40/40; readonly browser legacy fixture 1/1 across 18 lives | Freeze source for Astra browser review and CI |
+| `2026-10-16T12:19Z` | complete | Physically separated migration/crowd helpers and Boutique prices from the eager strict recipe core, then rewired every direct caller. | Direct imports; focused 40/40; browser legacy 1/1; diff/closure checks | Astra commits and CI measures unchanged startup caps |

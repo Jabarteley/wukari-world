@@ -127,7 +127,9 @@ import { venueFor } from '../cities/runtime.ts';
 import { housesFor } from '../cities/housingRuntime.ts';
 import { cachedCityContent } from '../cities/registry.ts';
 import { LEVEL_MAX, LEVEL_MIN, levelOf, lifeLevel, scaleNaira } from '../price-levels.ts';
-import { NATIVE_BOUTIQUE_PRICES, NATIVE_GARMENT_IDS, NATIVE_HAIR_IDS, NATIVE_SHOES_IDS, NATIVE_STARTER_ITEMS, nativeRecipeForLook, validateNativeRecipe } from '../../character/native-recipe.ts';
+import { NATIVE_GARMENT_IDS, NATIVE_HAIR_IDS, NATIVE_SHOES_IDS, NATIVE_STARTER_ITEMS, validateNativeRecipe } from '../../character/native-recipe.ts';
+import { NATIVE_BOUTIQUE_PRICES } from '../../character/native-catalog.ts';
+import { nativeRecipeForLook } from '../../character/native-migration.ts';
 import type { NativeWardrobeKind } from '../../character/native-recipe.ts';
 import { NATIVE_CHARACTER_CATALOG } from '../../character/native-catalog.ts';
 

@@ -11,7 +11,8 @@ import type { Draft, DraftArea } from './model.ts';
 import type { DreamId, TraitId } from '../types/life.ts';
 import { avatarLookFields } from '../game/wardrobe/look.ts';
 import { AVATAR_STARTER_WEARABLES } from '../game/wardrobe/prices.ts';
-import { nativeRecipeForLook, normalizeNativeRecipe, validateNativeRecipe } from '../character/native-recipe.ts';
+import { normalizeNativeRecipe, validateNativeRecipe } from '../character/native-recipe.ts';
+import { nativeRecipeForLook } from '../character/native-migration.ts';
 import { NATIVE_CHARACTER_CATALOG } from '../character/native-catalog.ts';
 
 // ---- names ---------------------------------------------------------------------------------

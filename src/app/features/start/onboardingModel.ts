@@ -8,7 +8,8 @@ import { hairOptions, outfitOptions, slotOf, starterWardrobe } from './lookModel
 import { avatarLookFields } from '../../../game/wardrobe/look.ts'
 import { money } from '../../ui/format.ts'
 import { cityUnit } from '../../../game/cities/terminology.ts'
-import { nativeRecipeForLook, validateNativeRecipe } from '../../../character/native-recipe.ts'
+import { validateNativeRecipe } from '../../../character/native-recipe.ts'
+import { nativeRecipeForLook } from '../../../character/native-migration.ts'
 
 export const DRAFT_KEY = 'joinallworld-look-draft'
 /** The index of the Home card: the last of ONBOARDING_STEPS. */

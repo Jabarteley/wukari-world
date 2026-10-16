@@ -19,7 +19,8 @@
  * Every choice is a function of the street's seed and the person's index, so every device dresses the same person the same way.
  */
 import { makeRng } from '../../game/util.ts';
-import { nativeRecipeForLook, normalizeNativeRecipe } from '../../character/native-recipe.ts';
+import { normalizeNativeRecipe } from '../../character/native-recipe.ts';
+import { nativeRecipeForLook } from '../../character/native-migration.ts';
 import type { NativeCharacterRecipeV2 } from '../../character/native-recipe.ts';
 import type { Person, PersonPose } from './crowd.ts';
 import type { Forced, StreetTier } from './plan.ts';

@@ -11,7 +11,8 @@ import {
 import { LOOK_REFUSED, PLAY_HELD, held, isCalm, planPlay, problemOf, quickStartRequired, networkLimitText, networkLimitWait, showsLinkNote, shownError, worldFullText, worldFullWait } from './quickStartModel.ts'
 import { nicknameOf, sessionRequired } from './sessionModel.ts'
 import { PRESETS, presetLook, starterLook } from './startBoundary.ts'
-import { nativeRecipeForLook, normalizeNativeRecipe } from '../../../character/native-recipe.ts'
+import { normalizeNativeRecipe } from '../../../character/native-recipe.ts'
+import { nativeRecipeForLook } from '../../../character/native-migration.ts'
 import { NATIVE_CHARACTER_CATALOG } from '../../../character/native-catalog.ts'
 
 const base: Look = { body: 'woman', hair: 'braids', outfit: 'owambe', fabric: 'ankara', skin: 'skin-4', hairColor: 'black', outfitColor: 'gold', bottomsColor: 'violet' }

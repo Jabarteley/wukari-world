@@ -459,7 +459,7 @@ for (const { raw, ctx } of input.lives) {
   // Same helper used by BoutiqueApp after opening: keep the catalogue out of startup,
   // then compare its complete projection against the full engine without dropping any expected entries.
   const [{ withWearableBoutique }, { nativeRecipeForLook }] = await Promise.all([
-    import('${url('../app/features/life/boutiqueModel.ts')}'), import('${url('../character/native-recipe.ts')}')]);
+    import('${url('../app/features/life/boutiqueModel.ts')}'), import('${url('../character/native-migration.ts')}')]);
   results.push({ waited: waiting !== null, refused, state, catalogDeferred,
     lazyNative: nativeRecipeForLook(state.onboarding.look, JSON.stringify(state.onboarding.look)),
     view: { ...baseView, onboarding: withWearableBoutique(baseView.onboarding, state) } });

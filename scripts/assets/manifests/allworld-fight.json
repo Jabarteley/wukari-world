@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "pack": "allworld-fight",
+  "name": "The Fight arena, made for Allworld",
+  "kind": "own",
+  "page": "https://github.com/kromate/joinallworld/tree/main/scripts/assets/blender",
+  "author": "Allworld",
+  "licenceId": "AGPL-3.0-or-later",
+  "fetched": "2026-10-16",
+  "assets": [
+    {
+      "path": "public/assets/packs/allworld-fight/ring-wide.glb",
+      "licence": "ours",
+      "licenceId": "AGPL-3.0-or-later",
+      "source": "Allworld",
+      "author": "Allworld",
+      "bytes": 28528,
+      "triangles": 620,
+      "game": "fight",
+      "kind": "prop",
+      "sourceSha256": "dab6b8b8d88eaedaa88a8b160146d1e6fa79116298231be0dbe4e4036cc00a33",
+      "note": "The Fight stage at the rules' own scale (1.8 m fighters, 15.8 m between the walls): a 16.5 m ring on a concrete floor; colour and ambient occlusion baked into one 1024 px atlas.",
+      "made": "scripts/assets/blender/ring.py",
+      "prepared": true
+    }
+  ]
+}

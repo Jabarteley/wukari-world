@@ -115,7 +115,6 @@ export function drawFight(ctx: CanvasRenderingContext2D, w: number, h: number, a
   const mid = loser !== null && zoom > 0 ? lerp((f0[0] + f1[0]) / 2, loser, zoom) : (f0[0] + f1[0]) / 2
   const camX = Math.max(0, Math.min(ARENA_W - viewW, mid - viewW / 2))
   const scale = w / viewW, ground = meta.ground ?? h * 0.84
-  const hudH = 54
   ctx.save()
   if (fx.shake > 0.3) ctx.translate((Math.random() - 0.5) * fx.shake, (Math.random() - 0.5) * fx.shake)
   skyline(ctx, w, ground, camX, scale)
@@ -157,7 +156,11 @@ export function drawFight(ctx: CanvasRenderingContext2D, w: number, h: number, a
   fx.shake *= Math.pow(0.82, dtFrames)
   fx.flash[0] = Math.max(0, fx.flash[0] - dtFrames); fx.flash[1] = Math.max(0, fx.flash[1] - dtFrames)
 
-  // HUD
+  drawFightHud(ctx, w, h, b, meta)
+}
+
+/** The bars, names, clock, round dots and banners, over whatever drew the arena (this 2D view, or the 3D one: ./fight-3d.ts). */
+export function drawFightHud(ctx: CanvasRenderingContext2D, w: number, h: number, b: FightSnap, meta: Pick<Meta, 'names' | 'rounds' | 'winner' | 'hudTop'>): void {
   // `hudTop`: room the screen keeps for its floating buttons (Leave, sound, full screen) over the top of the canvas.
   const pad = 10, half = w / 2 - 34, bh = 14, T = meta.hudTop ?? 0
   ctx.save(); ctx.translate(0, T)
@@ -176,7 +179,6 @@ export function drawFight(ctx: CanvasRenderingContext2D, w: number, h: number, a
       ctx.beginPath(); ctx.arc(x, 46, 4.5, 0, Math.PI * 2); ctx.fill()
     }
   }
-  void hudH
   ctx.restore()
   const s = Math.max(28, Math.min(52, w / 8))
   if (b.p === PHASE.intro) {

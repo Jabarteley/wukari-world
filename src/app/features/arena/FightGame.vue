@@ -15,7 +15,8 @@ import ArenaRoomPanels from './ArenaRoomPanels.vue'
 import ArenaStage from './ArenaStage.vue'
 import { BTN, PHASE, packInput } from '../../../arena/fight.ts'
 import type { FighterSnap, FightSnap } from '../../../arena/fight.ts'
-import { drawFight, newFx, spawnHits } from '../../../arena/fight-draw.ts'
+import { drawFight, drawFightHud, newFx, spawnHits } from '../../../arena/fight-draw.ts'
+import type { FightView } from '../../../arena/fight-3d.ts'
 import type { FighterColors } from '../../../arena/fight-draw.ts'
 import { Timeline } from '../../../arena/interp.ts'
 import type { ArenaLook } from '../../../types/arena.ts'
@@ -27,6 +28,11 @@ const emit = defineEmits<{ close: [] }>()
 const { game } = useApp()
 
 const canvas = ref<HTMLCanvasElement | null>(null)
+// The 3D view (src/arena/fight-3d.ts, its own lazy chunk with three.js) draws under the 2D canvas, which then draws only the HUD.
+// Until it is ready, and wherever WebGL or the models are missing, the 2D view draws everything.
+const gl = ref<HTMLCanvasElement | null>(null)
+let view3d: FightView | null = null
+const has3d = ref(false)
 const box = ref<HTMLElement | null>(null)
 
 const ownLook = (): ArenaLook | undefined => {
@@ -124,6 +130,20 @@ function size(): void {
   el.width = Math.round(width * ratio); el.height = Math.round(height * ratio)
   el.style.width = width + 'px'; el.style.height = height + 'px'
   el.getContext('2d')?.setTransform(ratio, 0, 0, ratio, 0, 0)
+  if (gl.value) { gl.value.style.width = width + 'px'; gl.value.style.height = height + 'px' }
+  view3d?.resize(width, height)
+}
+async function start3d(): Promise<void> {
+  if (!gl.value) return
+  try {
+    const { createFightView } = await import('../../../arena/fight-3d.ts')
+    const made = await createFightView(gl.value, { reduced })
+    if (!made) return
+    if (!gl.value) { made.dispose(); return }
+    view3d = made; has3d.value = true; size()
+    // For measurement on a throttled phone profile (STATUS.md): frame times, draw calls and triangles.
+    ;(globalThis as { allworldFightStats?: () => unknown }).allworldFightStats = () => made.stats()
+  } catch { /* the 2D view goes on */ }
 }
 /** The ground line: in portrait while playing the thumbs float over the bottom of the screen, so the fighters stand above them. */
 function groundPx(): number | undefined {
@@ -145,6 +165,7 @@ function frame(now: number): void {
   while (pendingHits.length && pick && (pendingHits[0] as { k: number }).k <= pick.tick) {
     const hit = pendingHits.shift() as { snap: FightSnap }
     spawnHits(fx, hit.snap, reduced)
+    view3d?.hits(hit.snap.e)
     for (const e of hit.snap.e) { sound.hit(e[2] === 1, e[1] === 1); if (seated.value) pad.rumble(e[2] === 1 ? 0.25 : 0.6, e[2] === 1 ? 60 : 140) }
   }
   if (b.p !== seenPhase) {
@@ -165,8 +186,15 @@ function frame(now: number): void {
   }
   const result = st?.result
   const winner = st?.status === 'over' && result ? (result.draw ? 2 : (result.winners[0] ?? -1)) : -1
+  const names: [string, string] = [st?.seats[0]?.name ?? 'You', st?.seats[1]?.name ?? 'Waiting…']
+  if (view3d) {
+    view3d.draw(a, b, pick?.t ?? 0, { own, you, winner, now })
+    ctx.clearRect(0, 0, width, height)
+    drawFightHud(ctx, width, height, b, { names, rounds: Number(st?.options.rounds ?? 3), winner, hudTop: 52 })
+    return
+  }
   drawFight(ctx, width, height, a, b, pick?.t ?? 0, {
-    names: [st?.seats[0]?.name ?? 'You', st?.seats[1]?.name ?? 'Waiting…'], colors: [c0, c1], you, rounds: Number(st?.options.rounds ?? 3), reduced, time: now, winner, own,
+    names, colors: [c0, c1], you, rounds: Number(st?.options.rounds ?? 3), reduced, time: now, winner, own,
     hudTop: 52, ground: groundPx(),
   }, fx, dt)
 }
@@ -181,9 +209,11 @@ onMounted(() => {
   window.addEventListener('keydown', onDown); window.addEventListener('keyup', onUp)
   document.addEventListener('visibilitychange', onHide)
   raf = requestAnimationFrame(frame)
+  void start3d()
 })
 onBeforeUnmount(() => {
   cancelAnimationFrame(raf)
+  view3d?.dispose(); view3d = null
   window.removeEventListener('resize', size); watcher?.disconnect()
   window.removeEventListener('keydown', onDown); window.removeEventListener('keyup', onUp)
   document.removeEventListener('visibilitychange', onHide)
@@ -197,7 +227,7 @@ onBeforeUnmount(() => {
     <div v-if="gone" class="fg-card"><p>{{ note || 'That game is not on any more.' }}</p><BaseButton variant="primary" @click="leave">Back to games</BaseButton></div>
     <template v-else>
       <div class="fg-play arena-fill">
-        <div ref="box" class="fg-stage"><canvas ref="canvas" aria-label="Fight arena" role="img" /></div>
+        <div ref="box" class="fg-stage"><canvas ref="gl" class="fg-gl" :class="{ on: has3d }" aria-hidden="true" /><canvas ref="canvas" class="fg-hud" aria-label="Fight arena" role="img" /></div>
         <p v-if="note" class="fg-note" role="status">{{ note }}</p>
         <section v-if="status === 'playing' && seated" class="fg-pad" aria-label="Controls" data-testid="fight-pad">
           <div class="fg-left">
@@ -224,6 +254,7 @@ onBeforeUnmount(() => {
 .fg-play { position: relative; flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: 6px; }
 .fg-stage { position: relative; flex: 1 1 auto; min-height: 150px; background: #1b2559; border-radius: 12px; overflow: hidden; }
 .fg-stage canvas { position: absolute; left: 0; top: 0; display: block; touch-action: none; }
+.fg-gl { visibility: hidden; } .fg-gl.on { visibility: visible; }
 
 .fg-card { display: grid; gap: 10px; padding: 14px; background: #f3efe8; border-radius: 14px; }
 .fg-card p { margin: 0; font-size: 14px; line-height: 1.45; }

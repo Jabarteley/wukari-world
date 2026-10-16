@@ -1,0 +1,11 @@
+{
+  "pack": "allworld-fight",
+  "name": "The Fight arena, made for Allworld",
+  "kind": "own",
+  "page": "https://github.com/kromate/joinallworld/tree/main/scripts/assets/blender",
+  "author": "Allworld",
+  "licenceId": "AGPL-3.0-or-later",
+  "want": [
+    { "blender": { "script": "ring", "args": ["--size", "16.5"] }, "as": "ring-wide.glb", "game": "fight", "kind": "prop", "note": "The Fight stage at the rules' own scale (1.8 m fighters, 15.8 m between the walls): a 16.5 m ring on a concrete floor; colour and ambient occlusion baked into one 1024 px atlas." }
+  ]
+}

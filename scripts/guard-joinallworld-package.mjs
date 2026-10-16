@@ -10,6 +10,9 @@ export const RELEASE_IDENTITY_VERSION = 1;
 export const RELEASE_MARKER_PREFIX = '// joinallworld-release:v1 ';
 const MAX_DECIMAL_ID = 9223372036854775807n;
 const MAX_WORKER_BYTES = 3_500_000;
+// Trusted source receipt, never read from the candidate package. The native exception is path + byte-identity scoped.
+const nativeSelection = /** @type {{files:{url:string,sha256:string,bytes:number}[]}} */ (JSON.parse(readFileSync(new URL('../docs/character-assets/selected-release-assets.json', import.meta.url), 'utf8')));
+const reviewedNativeModels = new Map(nativeSelection.files.filter(file => file.url.startsWith('/character-lab/') && file.url.endsWith('.glb')).map(file => [`assets${file.url}`, file]));
 /** @param {unknown} value @param {string} name */
 function positiveDecimal(value, name) {
   if (typeof value !== 'string' || !/^[1-9][0-9]{0,18}$/.test(value) || BigInt(value) > MAX_DECIMAL_ID) throw Error(`Invalid ${name}`);
@@ -83,7 +86,11 @@ export function checkPackage(root, sourceSha, publish) {
         }
         if (cityAsset && cityAsset[1] !== hash(bytes)) throw Error('City content filename hash mismatch');
         if (progressionAsset && progressionAsset[1] !== hash(bytes)) throw Error('Progression content filename hash mismatch');
-        if (rel.endsWith('.glb') && !isGlb(bytes)) throw Error('Invalid model file');
+        if (rel.endsWith('.glb')) {
+          const reviewed = reviewedNativeModels.get(rel);
+          if (reviewed && (reviewed.sha256 !== hash(bytes) || reviewed.bytes !== bytes.length)) throw Error('Native model identity mismatch');
+          if (!isGlb(bytes, reviewed ? 5 * 1024 * 1024 : undefined)) throw Error('Invalid model file');
+        }
         files.push({ path: rel, bytes: stat.size, sha256: hash(bytes) });
       }
     }
@@ -120,9 +127,9 @@ export function checkPackage(root, sourceSha, publish) {
 }
 // A binary glTF 2.0 file: "glTF" magic, version 2, a declared length equal to the file size, then a JSON chunk first.
 // Anything else under a .glb name (a renamed script, an HTML page, a truncated upload) is refused.
-/** @param {Uint8Array} bytes */
-export function isGlb(bytes) {
-  if (bytes.length < 20 || bytes.length > 2 * 1024 * 1024) return false;
+/** @param {Uint8Array} bytes @param {number} [maxBytes] */
+export function isGlb(bytes, maxBytes = 2 * 1024 * 1024) {
+  if (bytes.length < 20 || bytes.length > maxBytes) return false;
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   return view.getUint32(0, true) === 0x46546c67 && view.getUint32(4, true) === 2
     && view.getUint32(8, true) === bytes.length && view.getUint32(16, true) === 0x4e4f534a;

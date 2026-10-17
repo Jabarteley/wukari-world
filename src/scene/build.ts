@@ -57,6 +57,8 @@ const templates = new Map<string, Template>();
 const AO_KEEP_VALUES = 3_000_000;
 interface AoKnown { strength: number; pos: Float64Array[]; nor: Float64Array[]; prims: AoPrim[][]; factors: Float64Array[]; size: number }
 const aoKnown: AoKnown[] = [];
+/** prepareAo(): primitives baked between checks of the clock, and the work done before it yields. */
+const PRIM_CHUNK = 64, SLICE_MS = 4;
 const same = (a: number, b: number): boolean => a === b && (a !== 0 || 1 / a === 1 / b);
 function sameValues(kept: Float64Array, values: ArrayLike<number>): boolean {
   if (kept.length !== values.length) return false;
@@ -215,6 +217,30 @@ export function createBatch(THREE: ThreeModule): Batch {
     /** Where a local point ends up in scene space — for anchors recorded while drawing. */
     world(x, y, z) { v.set(x, y, z).applyMatrix4(stack[stack.length - 1]!); return { x: v.x, y: v.y, z: v.z }; },
     get triangles(): number { let count = 0; for (const data of Object.values(layers)) count += data.idx.length; return count / 3; },
+    /**
+     * The ambient-occlusion factors build() would compute, computed now in steps (`yield` after about SLICE_MS of work) and
+     * kept in the factor cache build() reads first. The same primitives in the same order with the same probe budget, so the
+     * factors, and the scene, are exactly those of a plain build(); only the work is spread over several tasks.
+     */
+    *prepareAo(): Generator<void, void, void> {
+      if (!ao) return;
+      const solids = Object.keys(layers).filter((key) => key === 'solid' || key.startsWith('solid@')).map((key) => layers[key]!);
+      const strength = aoStrength();
+      if (aoFactorsKnown(solids, strength)) return;
+      const factors = solids.map((d) => new Float64Array(d.col.length).fill(1));
+      const occluders = createOccluders(solids.flatMap((d) => d.prims));
+      let budget = 30000, sliceStart = performance.now();
+      for (let index = 0; index < solids.length; index++) {
+        const d = solids[index]!;
+        // A solid without primitives is baked whole (bakeVertexAO's own fallback), as build() does.
+        if (!d.prims.length) { budget -= bakeVertexAO(d.pos, d.nor, factors[index]!, d.prims, occluders, { probeBudget: budget, strength }); continue; }
+        for (let at = 0; at < d.prims.length; at += PRIM_CHUNK) {
+          budget -= bakeVertexAO(d.pos, d.nor, factors[index]!, d.prims.slice(at, at + PRIM_CHUNK), occluders, { probeBudget: budget, strength });
+          if (performance.now() - sliceStart > SLICE_MS) { yield; sliceStart = performance.now(); }
+        }
+      }
+      aoFactorsKeep(solids, strength, factors);
+    },
     /** Bake the batch into meshes. `materials` comes from sceneMaterials(kit). */
     build(materials: Record<keyof SceneMaterials, THREE.Material>): BatchResult {
       const meshes: THREE.Mesh[] = [];

@@ -59,6 +59,8 @@ export interface Batch {
   readonly triangles: number
   /** Any material may back a layer (the map passes one shared material for all three). */
   build(materials: Record<keyof SceneMaterials, THREE.Material>): BatchResult
+  /** The ambient occlusion build() would bake, computed ahead in steps and cached, so build() then only assembles meshes. */
+  prepareAo?(): Generator<void, void, void>
   /** Added by footprintRecorder (movement.ts): tells the recorder where the two walls are. */
   walls?(size: { w: number; d: number }): void
   /** Added by footprintRecorder: a place where a person can sit, in the batch's current frame. `ry` faces away from the backrest. */

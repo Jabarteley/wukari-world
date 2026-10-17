@@ -989,6 +989,9 @@ export function* buildCitySteps(kit: MapKit, pack: CityPack, network: Network, {
   yield;
   // ---- bake ------------------------------------------------------------------------------------
   count(add(raw.build(materials.ground), 'ground'));
+  // The city's own occlusion bake (about 110 ms in one task) in short steps first; build() then reads the cached factors.
+  if (b.prepareAo) yield* b.prepareAo();
+  if (homeBatch.prepareAo) yield* homeBatch.prepareAo();
   const built = b.build(shared);
   for (const mesh of built.meshes) { mesh.castShadow = false; mesh.receiveShadow = false; count(add(mesh, `city-${mesh.name}`, mesh.name === 'glass' ? 2 : 0)); }
   const windowMesh = w.build({ solid: materials.windows, glow: materials.windows, glass: materials.windows }).meshes[0];

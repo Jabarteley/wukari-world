@@ -1246,7 +1246,8 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
     if (!ui.rail) return;
     const all = rows(), needle = query.trim().toLowerCase();
     const list = needle ? all.filter((item) => item.name.toLowerCase().includes(needle) || (item.capital || '').toLowerCase().includes(needle) || (item.city?.name || '').toLowerCase().includes(needle)) : all;
-    const noun = level === NIGERIA ? 'states' : 'countries', openCount = all.filter((item) => item.status === 'open').length;
+    const noun = level === NIGERIA ? 'states' : 'countries', openCount = all.filter((item) => item.status === 'open' && item.tone !== 'locked').length;
+    const lockedCount = all.filter(item => item.tone === 'locked').length, unavailableCount = all.length - openCount - lockedCount;
     const head = ui.rail.querySelector('.atlas-search');
     if (!head) {
       railDrawn = '';
@@ -1264,7 +1265,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
     }
     railDrawn = drawn; work.listBuilds += 1;
     ui.rail.querySelector<HTMLInputElement>('[data-atlas-search]')!.placeholder = `Find in ${level === WORLD ? 'the world' : ATLAS_LEVELS[level]!.name}`;
-    ui.rail.querySelector('.atlas-count')!.textContent = needle ? `${list.length} of ${all.length} ${noun}` : `${all.length} ${noun} · ${openCount} open · the rest coming soon`;
+    ui.rail.querySelector('.atlas-count')!.textContent = needle ? `${list.length} of ${all.length} ${noun}` : `${all.length} ${noun} · ${openCount} open${lockedCount ? ` · ${lockedCount} Story locked` : ''}${unavailableCount ? ` · ${unavailableCount} not yet open` : ''}`;
     ui.rail.querySelector('.atlas-list')!.innerHTML = list.length ? list.map((item) => `<li><button type="button" class="atlas-row is-${item.tone}${same(selected, item) ? ' is-selected' : ''}" data-atlas-pick="${esc(item.kind)}:${esc(item.id)}" aria-pressed="${same(selected, item)}"><i aria-hidden="true"></i><span><b>${esc(item.name)}</b><small>${esc(item.city && item.city.name !== item.name ? item.city.name : item.capital || item.type)}</small></span><em>${esc(item.tag)}</em></button></li>`).join('')
       : `<li class="atlas-none">Nothing called “${esc(query)}” at this level. Zoom out to look wider.</li>`;
   }

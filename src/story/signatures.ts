@@ -8,10 +8,14 @@ const SPECIAL: Readonly<Record<string, StorySignatureKind>> = Object.freeze({
   abuja: 'politics',
   kano: 'haggle',
   calabar: 'festival',
+  nairobi: 'tables',
+  accra: 'business',
+  tokyo: 'arena-race',
+  paris: 'tables',
 })
 
 const FALLBACKS: readonly StorySignatureKind[] = Object.freeze([
-  'haggle', 'tables', 'arena-race', 'arena-fight', 'arena-football', 'business', 'festival', 'politics', 'clan',
+  'haggle', 'tables', 'arena-race', 'arena-fight', 'arena-football', 'business',
 ])
 
 const WORDS: Readonly<Record<StorySignatureKind, Omit<StorySignatureView, 'kind' | 'venue'>>> = Object.freeze({

@@ -31,6 +31,6 @@ export function venueChapter(cityId: string, venue: Pick<VenueDefinition, 'id' |
   if (venue.id === 'home' || venue.id === 'neighbourhood' || venue.id === 'city-street') return 0
   if (proofVenues(cityId).has(venue.id) || firstWelcomeVenue(content) === venue.id) return 0
   if (venue.category === 'work' || venue.scene.kind === 'worship' || venue.scene.kind === 'airport' || venue.scene.kind === 'hub') return 1
-  if (signatureFor(cityId, content).venue === venue.id || venue.category === 'care' || venue.category === 'fun') return 2
+  if (signatureFor(cityId, content).venue === venue.id || venue.scene.kind === 'hospital' || venue.category === 'care' || venue.category === 'fun') return 2
   return 3
 }

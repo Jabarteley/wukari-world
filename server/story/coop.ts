@@ -41,6 +41,7 @@ export interface StoryHelpBook {
   version: 1
   calls: Record<string, { day: number; count: number }>
   sessions: Record<string, StoryHelpSession>
+  bargains?: Record<string, { city: CityId; at: number; ask: number; rounds: number; deal: number | null }>
 }
 
 const no = (code: string, reason: string) => ({ ok: false as const, code, reason })
@@ -52,14 +53,15 @@ const record = (value: unknown): value is Record<string, unknown> => value !== n
 export function peekStoryHelp(db: Db): StoryHelpBook | null {
   const book = db.storyHelp
   if (book === undefined) return null
-  if (!record(book) || book.version !== 1 || !record(book.calls) || !record(book.sessions)) throw new TypeError('Story help data is unavailable; preserve it for recovery.')
+  if (!record(book) || book.version !== 1 || !record(book.calls) || !record(book.sessions) || book.bargains !== undefined && !record(book.bargains)) throw new TypeError('Story help data is unavailable; preserve it for recovery.')
   return book
 }
 
-function openBook(db: Db, now: number): StoryHelpBook {
+export function openBook(db: Db, now: number): StoryHelpBook {
   const book = peekStoryHelp(db) ?? (db.storyHelp = { version: 1, calls: {}, sessions: {} })
   for (const [id, call] of Object.entries(book.calls)) if (call.day < Math.floor(now / DAY)) delete book.calls[id]
   for (const [id, session] of Object.entries(book.sessions)) if (session.expires + DAY < now) delete book.sessions[id]
+  if (book.bargains) for (const [id, bargain] of Object.entries(book.bargains)) if (!Number.isSafeInteger(bargain.at) || bargain.at + DAY < now) delete book.bargains[id]
   return book
 }
 
@@ -67,6 +69,7 @@ export function forgetStoryHelp(db: Db, ids: ReadonlySet<string>): void {
   const book = peekStoryHelp(db)
   if (book) {
     for (const id of ids) delete book.calls[id]
+    for (const id of ids) if (book.bargains) delete book.bargains[id]
     for (const [id, session] of Object.entries(book.sessions)) if (ids.has(session.host) || ids.has(session.to)) delete book.sessions[id]
   }
   const clear = (session: Pick<SessionRecord, 'cities' | 'legacyLives'>) => {

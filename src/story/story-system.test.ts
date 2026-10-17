@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { advanceLife, createLife, dispatch, makeContext, viewLife } from '../life.ts'
 import { loadCityContent } from '../game/cities/registry.ts'
-import { missionCatalogues } from '../game/systems/missions.ts'
+import { dealMissions, missionCatalogues } from '../game/systems/missions.ts'
 import { publicArrivalVenue } from '../game/cities/runtime.ts'
 import { episodesForCity } from '../game/content/episodes.ts'
 import { emit } from '../game/registry.ts'
@@ -28,6 +28,74 @@ test('the trusted capability controls the mode action and the first switch fixes
   assert.equal(state.story.start, 'lagos')
   assert.equal(viewLife(state, context(true)).story.enabled, true)
   assert.equal(viewLife(state, context(false)).story.enabled, false)
+})
+
+test('travel projection marks Story locks for map pins, counts, cards and every travel mode', () => {
+  const state = createLife(null, context(true))
+  const free = viewLife(state, context(true)).travel
+  assert.deepEqual(free, viewLife(state, context(false)).travel)
+  dispatch(state, { type: 'story.mode', payload: { mode: 'story' } }, context(true))
+  const view = viewLife(state, context(true))
+  const locked = view.story.venues.find(row => row.locked && row.id !== state.location)
+  assert.ok(locked)
+  const destination = view.travel.destinations.find(row => row.id === locked.id)
+  assert.ok(destination)
+  assert.equal(destination.open, false)
+  assert.equal(destination.status, 'Locked')
+  assert.equal(destination.blocked?.code, 'story_locked')
+  assert.ok(destination.modes.every(row => row.blocked?.code === 'story_locked'))
+  dispatch(state, { type: 'story.mode', payload: { mode: 'free' } }, context(true))
+  assert.deepEqual(viewLife(state, context(true)).travel, free)
+})
+
+test('Story mode offers local authored missions in every untouched slot', () => {
+  const state = createLife(null, context(true))
+  dispatch(state, { type: 'story.mode', payload: { mode: 'story' } }, context(true))
+  advanceLife(state, 1, { ...context(true), now: 1_001_000 })
+  for (const scope of ['daily', 'weekly'] as const) {
+    assert.equal(state.missions[scope].length, 3)
+    assert.ok(state.missions[scope].every(row => missionCatalogues.authoredIds.has(row.id)))
+    assert.ok(dealMissions(state, scope, 5, makeContext(context(true))).every(row => missionCatalogues.authoredIds.has(row.id)))
+  }
+})
+
+test('switching mode preserves partial and claimed missions and leaves free decks unchanged', () => {
+  const state = createLife(null, context(true))
+  const generic = missionCatalogues.pools.daily.filter(def => !def.cityId)
+  const kinds = ['life', 'discovery', 'social'] as const
+  state.missions.daily = kinds.map(kind => ({ id: generic.find(def => def.kind === kind)!.id, n: 0, marks: [], claimed: false }))
+  state.missions.daily[0]!.n = 1
+  state.missions.daily[1]!.claimed = true
+  const before = structuredClone(state.missions.daily)
+  dispatch(state, { type: 'story.mode', payload: { mode: 'free' } }, context(true))
+  assert.deepEqual(state.missions.daily, before)
+  dispatch(state, { type: 'story.mode', payload: { mode: 'story' } }, context(true))
+  assert.deepEqual(state.missions.daily.slice(0, 2), before.slice(0, 2))
+  assert.ok(missionCatalogues.authoredIds.has(state.missions.daily[2]!.id))
+  const disabled = dealMissions(state, 'daily', 7, makeContext(context(false)))
+  state.story.mode = 'free'
+  assert.deepEqual(dealMissions(state, 'daily', 7, makeContext(context(true))), disabled)
+})
+
+test('claiming a retained local reward releases its untouched Story mission slot without losing receipts', () => {
+  const state = createLife(null, context(true))
+  const local = missionCatalogues.pools.daily.filter(def => def.cityId === 'lagos' && missionCatalogues.authoredIds.has(def.id))
+  const generic = missionCatalogues.pools.daily.filter(def => !def.cityId)
+  assert.equal(local.length, 3)
+  state.missions.daily = local.map(def => ({ id: generic.find(row => row.kind === def.kind)!.id, n: 0, marks: [], claimed: false }))
+  state.missions.pending = local.map(def => ({ id: def.id, rewardId: `mission:v1:lagos:daily:${state.missions.day}:${def.id}`,
+    scope: 'daily', period: state.missions.day, cityId: 'lagos', earnedAt: state.t, earnedOrigin: 'human', cash: 250 }))
+  const pending = structuredClone(state.missions.pending)
+  dispatch(state, { type: 'story.mode', payload: { mode: 'story' } }, context(true))
+  assert.deepEqual(state.missions.pending, pending)
+  for (const reward of pending) {
+    assert.equal(dispatch(state, { type: 'missions.claim', payload: { id: reward.id, rewardId: reward.rewardId } }, context(true)).code, 'claimed')
+    const next = state.missions.daily.find(row => row.id === reward.id)
+    assert.ok(next, `${reward.id}: a new slot is offered after its old reward is paid`)
+    assert.equal(next.n, 0)
+  }
+  assert.equal(state.missions.pending.length, 0)
+  assert.equal(state.missions.grants.length, pending.length)
 })
 
 test('a helper pass remains bounded in free mode and while the admin capability is off', () => {

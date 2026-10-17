@@ -153,7 +153,7 @@ test('messages: unread counts, the badge and the notification lines', () => {
   assert.deepEqual(updateLines(me.updates, notices, 500).map((line) => [line.text, line.fresh, `${line.kind}:${line.id}`]), [['New Governor', true, 'notice:gov'], ['Ada sent you ₦500', true, 'update:transfer'], ['Ada sent you ₦200', false, 'update:transfer'], ['Bola wants to be friends', true, 'update:friend-request'], ['Rent is due Saturday', false, 'notice:rent-due']])
 
   const storyHelp = '123e4567-e89b-42d3-a456-426614174000'
-  const storyUpdates = [
+  const storyUpdates: SocialOverview['updates'] = [
     { id: 4, kind: 'visit', text: 'Ada invited you to a Story challenge', at: 1100, read: false, data: { storyHelp } },
     { id: 5, kind: 'visit', text: 'Invalid challenge', at: 1090, read: false, data: { storyHelp: 'not-public' } },
   ]

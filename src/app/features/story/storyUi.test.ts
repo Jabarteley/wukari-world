@@ -89,7 +89,7 @@ test('Story invitation focus accepts only public UUIDs and signature kinds choos
 test('Venue card uses the server story reason only in Story Path', async () => {
   await setStory(true, 'story')
   const lock = app.game.view.value.story.venues.find((row) => row.locked && row.reason)
-  const destination = lock ? app.game.view.value.travel.destinations.find((row) => row.id === lock.id && !row.here && row.open && !row.blocked && row.modes.length) : null
+  const destination = lock ? app.game.view.value.travel.destinations.find((row) => row.id === lock.id && !row.here && !row.open && row.blocked?.code === 'story_locked' && row.modes.length) : null
   assert.ok(lock && destination)
   const lockedHtml = await render('/src/app/features/travel/VenueCard.vue', { item: destination })
   assert.ok(text(lockedHtml).includes(lock.reason ?? ''))

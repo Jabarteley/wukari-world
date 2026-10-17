@@ -63,7 +63,7 @@ export type ActivityBlockCode = ActivityEngineBlockCode | ActivityVetoCode
  * another city (a venue with `cities`; any other such venue would answer 'invalid_travel').
  */
 export type TravelBlockCode =
-  | 'coming_soon' | 'invalid_travel' | 'already_here' | 'travel_mode_unavailable' | 'closed' | 'insufficient_funds' | 'campus_lagos_only'
+  | 'coming_soon' | 'invalid_travel' | 'already_here' | 'travel_mode_unavailable' | 'closed' | 'insufficient_funds' | 'campus_lagos_only' | 'story_locked' | 'story_helper_active'
 
 /** Why a gift cannot be sent (social.js transferBlock). */
 export type TransferBlockCode =

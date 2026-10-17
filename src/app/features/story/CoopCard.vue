@@ -19,6 +19,7 @@ const selectedFriend = ref('')
 const selectedKind = ref<StoryHelpKind>('second-answer')
 const picked = reactive(new Map<string, number[]>())
 const retry = shallowRef<PendingWrite | null>(null)
+const challengeVenue = computed(() => game.view.value.travel.destinations.find(row => row.id === view.value?.challenge?.venue)?.label ?? 'the country tale venue')
 let focusApplied = false
 
 const sessions = computed(() => {
@@ -126,7 +127,7 @@ onMounted(load)
     <p v-if="loading && !view" role="status">Loading your help sessions…</p>
     <template v-else-if="view?.enabled">
       <section v-if="view.challenge" class="coop-call" aria-labelledby="coop-call-title">
-        <h5 id="coop-call-title">Start from {{ view.challenge.venue }}</h5>
+        <h5 id="coop-call-title">Start from {{ challengeVenue }}</h5>
         <template v-if="view.friends.length">
           <label>Friend
             <select v-model="selectedFriend" :disabled="busy || Boolean(retry)">

@@ -5,7 +5,7 @@
 - **Work ID:** `story-mode-20261017`
 - **Owner:** Story programme integration
 - **Thread:** `01a14bf1-fd6d-7de1-9770-a0c22f5d554a`
-- **UTC updated:** `2026-10-17T22:49:47Z`
+- **UTC updated:** `2026-10-17T23:16:11Z`
 - **Status:** `active`
 - **Work state:** `implementation`
 
@@ -24,10 +24,10 @@ Deliver four independently reviewed and released phases of Story Mode for `kroma
 
 ## Repository state
 
-- **Base / current commit:** `c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4`
+- **Base:** `c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4`; first pushed candidate `5e65bafdb13411beae3fc0ccb41a4df93b259b20`. New upstream `5080567b` discovered; integrate before next push.
 - **Branch:** `story/phase1-core`
 - **Initial dirty status:** clean.
-- **Resources:** no application server started. New servers must use ports above 5300. Only this programme's processes may be stopped. The clone completed successfully using a partial single-branch clone; no shared checkout changed.
+- **Resources:** task-owned QA Vite5351/API5352 using `/tmp/story-qa-server-20261017.mts`, `.data-story-qa/` (local Git exclusion), current exec45755. Existing open-dev clock persists through restart. Protected listeners untouched. Detached read-only baseline worktree `/Users/anthonyakpan/work/joinallworld-story-baseline` at the base, for comparison only.
 
 ## Acceptance tracker
 
@@ -65,7 +65,7 @@ No phase is accepted from a worker report, passing build or release receipt alon
 
 ## Release state
 
-- **Local implementation:** Story core, reversible switch, authoritative capability, map locks and lazy co-op UI implemented; focused integration tests active. No commit, PR or release yet.
+- **Local implementation:** Story core, reversible switch, authoritative capability, map locks and lazy co-op UI implemented; focused integration tests active. First candidate pushed; no PR, merge or release yet.
 - **Deployment:** authorized, not started.
 - **Gate:** all four tracker rows remain open.
 
@@ -86,3 +86,14 @@ No phase is accepted from a worker report, passing build or release receipt alon
 - First typecheck exposed new contract mismatches; corrected the client interface, Story optional field lists/readers, notification metadata and discriminated errand projection. No baseline suppressions or budgets changed.
 - No application server running yet. Phase2 asset work has completed read-only pipeline preparation; no paid factory calls or GPU usage. Factory spend US$0 so far.
 - Next executable step: complete typecheck and focused co-op positive/expiry/door checks, run all-city/scene suites, then start isolated local QA above5300 and capture320/390px journeys. Build and exact-byte proof remain on CI.
+
+## Integration checkpoint 2026-10-17T23:16:11Z
+
+- First hosted CI39077025901 built successfully but rejected three contract errors and startup bytes616442raw/223210gzip/195869Brotli, above unchanged caps615000/223000/195600. Contract errors are fixed; current full typecheck passes. Refactoring the fresh-slice stand-ins reduces duplication; exact byte acceptance awaits the next hosted build. A branch-scoped three-day bundle artifact will provide actual emitted chunks for local scene-chunk verification.
+- Focused core/co-op/client/UI78/78 and mission/map71/71 pass. Browser observations at320/390 prove real Kano city/country tales and2/2collection,5authored missions,6venue visits, reversible Free/Story switching, locked Kaduna/Katsina cards and distinct Nairobi content. No horizontal overflow observed. Switch samples227/275/286/274ms.
+- Browser-discovered repairs: hospital scenes now open at Belong; untouched generic slots redeal authored local missions in Story, preserving partial/claimed missions and old rewards; claiming retained rewards releases the local slot. Venue travel projections and2D/3D/legacy labels now show locks; world count excludes locked regions.
+- A genuine deterministic practice bargain now uses existing price negotiation rules with server authority, exact-ID retry, bounded storage and erasure. Focused unit16/16 and typecheck pass. Browser play is pending; no purchase, cash/item mutation or model calls. Arena signature links open the selected practice game, tables open the actual venue table.
+- Required full allCities/city-scenes run13/15 passed, including all284 Story ladders with no terminal city. Two remaining gates: native asynchronous character reservations were measured before geometry loaded (lagos.park446532tri); the budget test is being corrected to await real local assets with the same caps. Chunk assertion awaits actual hosted bundle files. No runtime performance source or budget changed.
+- QA server restarted after all actors paused, preserving ordinary UI-earned progress and local time. Clinic travel and authored redeal now pass in the browser. Remaining actual journey: sixth mission, Roots help in both forms, helper keepsake/return, chapter4 connected-city travel.
+- Factory scripts remain untracked future-phase work; no Blender generation or paid calls yet, aggregate factory spendUS$0. No PR, main merge or deployment has occurred.
+- Next executable step: finish browser and focused checks, commit scoped repairs, integrate current main5080567b, push and dispatch CI; repair any unchanged-cap failure before PR/release.

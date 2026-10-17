@@ -267,6 +267,7 @@ export interface ModifierMap {
    * a system can let a delivery TO the life through its own hold.
    */
   'action.block': { base: Block<ActionVetoCode> | null; data: { type: ActionType; payload: Record<string, unknown>; internal: boolean } }
+  'travel.view': { base: LifeView['travel']; data: Record<string, never> }
   /**
    * Base: the band fare (for mode 'car': fuel).
    * INCONSISTENT: registry.js:152 documents the data as `{ mode, destination }`; travel.js:113
@@ -440,5 +441,5 @@ export const UNEMITTED_LISTENED_EVENTS = ['friend.best'] as const satisfies read
 export const MODIFIER_KEYS = [
   'action.block', 'activity.block', 'activity.cost', 'activity.hidden', 'activity.reward', 'career.autoCommute',
   'career.performance', 'needs.decayRate', 'shop.price', 'skills.xpRate', 'social.gain', 'social.success',
-  'travel.duration', 'travel.fare', 'travel.modes', 'travel.needCost',
+  'travel.duration', 'travel.fare', 'travel.modes', 'travel.needCost', 'travel.view',
 ] as const satisfies readonly ModifierKey[]

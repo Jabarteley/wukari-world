@@ -66,6 +66,17 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm run build
+      - name: Preserve Story bundle evidence
+        if: startsWith(github.ref, 'refs/heads/story/')
+        uses: actions/upload-artifact@v4
+        with:
+          name: story-bundle-${{ github.sha }}
+          path: |
+            dist/assets/*.js
+            dist/assets/*.css
+            dist/.vite/manifest.json
+            dist/index.html
+          retention-days: 3
       - run: npm run size:download
       - run: npm run cartridge:check
       - name: Refuse retired character assets in the production bundle

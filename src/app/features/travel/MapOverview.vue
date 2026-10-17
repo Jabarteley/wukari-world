@@ -90,7 +90,7 @@ function pick(id: string): void {
           <button type="button" :class="[statusClass(item), { 'is-here': item.here }]" @click="pick(item.id)">
             <span aria-hidden="true"><GameIcon inline kind="venue" :id="item.id" :emoji="item.icon" /></span>
             <span class="map-list-text"><b>{{ item.label }}</b><small>{{ item.district }}<span v-if="crowd[item.id]" class="map-list-crowd" :data-crowd="item.id"> · {{ crowd[item.id] }}</span></small></span>
-            <em>{{ item.here ? 'You are here' : item.open ? 'Open' : 'Closed' }}</em>
+            <em>{{ item.here ? 'You are here' : item.status === 'Locked' ? 'Locked' : item.open ? 'Open' : 'Closed' }}</em>
           </button>
         </template>
         </LazyList>

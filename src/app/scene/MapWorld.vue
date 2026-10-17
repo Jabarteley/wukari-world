@@ -257,6 +257,7 @@ function load(): Promise<void> {
     })
     void keepFriends()
     const city = createCityView(cityBox.value, {
+      venueAccess: () => game.view.value.travel.destinations,
       cityId: game.cityId.value,
       ladder: zoom.cityPort,
       onSelectVenue: (venueId) => { shell.open('map', { destination: venueId }) },

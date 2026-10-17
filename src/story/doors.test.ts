@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { createLife, dispatch, viewLife } from '../life.ts'
+import { createLife, dispatch, makeContext, viewLife } from '../life.ts'
 import { linksFrom, loadCityContent, playableCityIds } from '../game/cities/registry.ts'
 import { publicArrivalVenue } from '../game/cities/runtime.ts'
 import { arriveInCity } from '../game/api.ts'
@@ -76,7 +76,7 @@ test('server joins cannot cross a locked city or enter a locked local venue', ()
 test('the homeward and street doors use the same Story locks', () => {
   const away = () => {
     const state = life('story')
-    arriveInCity(state, { id: 'ibadan', mode: 'road' }, context(true), publicArrivalVenue('ibadan').id)
+    arriveInCity(state, { id: 'ibadan', mode: 'road' }, makeContext(context(true)), publicArrivalVenue('ibadan').id)
     state.story.start = 'ibadan'
     state.cash = 0
     return state

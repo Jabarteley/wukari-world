@@ -31,3 +31,7 @@ test('Nigerian signature choices stay hand picked and every city receives a stab
   assert.equal(signatureKindFor('calabar'), 'festival')
   for (const seed of WORLD_STORY_SEEDS) assert.equal(signatureKindFor(seed.cityId), signatureKindFor(seed.cityId))
 })
+
+test('clinics open at Belong even when their city uses the civic category', () => {
+  assert.equal(venueChapter('kano', venue('local-clinic', 'civic', 'hospital'), null), 2)
+})

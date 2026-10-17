@@ -2,10 +2,12 @@
 import { computed, ref } from 'vue'
 import type { StoryView } from '../../../types/story.ts'
 import { useApp } from '../../state/app.ts'
+import { contentFor } from '../../../game/cities/runtime.ts'
 import BaseButton from '../../ui/BaseButton.vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import SectionTitle from '../../ui/SectionTitle.vue'
 import CoopCard from './CoopCard.vue'
+import SignatureGame from './SignatureGame.vue'
 import { setStoryHelpFocus, signaturePanelId, unlockedCityCount } from './storyUi.ts'
 
 const { game, shell } = useApp()
@@ -14,6 +16,7 @@ if (props.storyHelp !== undefined) setStoryHelpFocus(props.storyHelp)
 const story = computed(() => game.view.value.story)
 const changing = ref<StoryView['mode'] | null>(null)
 const announcement = ref('')
+const signatureOpen = ref(false)
 const connected = computed(() => game.view.value.connected)
 const unlocked = computed(() => story.value ? unlockedCityCount(story.value) : 0)
 const signatureDestination = computed(() => {
@@ -30,6 +33,7 @@ const atSignatureVenue = computed(() => Boolean(signatureDestination.value && ga
 const signatureAction = computed(() => {
   const destination = signatureDestination.value
   if (destination && !atSignatureVenue.value) return `Go to ${destination.label}`
+  if (story.value?.signature.kind === 'haggle' && destination) return signatureOpen.value ? 'Hide market bargain' : 'Start market bargain'
   return signaturePanel.value ? `Open ${signaturePanel.value.title}` : destination ? `Open ${destination.label}` : null
 })
 
@@ -55,7 +59,13 @@ async function chooseMode(mode: StoryView['mode']): Promise<void> {
 function openSignature(): void {
   const destination = signatureDestination.value
   if (destination && !atSignatureVenue.value) { shell.open('map', { destination: destination.id }); return }
-  if (signaturePanel.value) { shell.open(signaturePanel.value.id); return }
+  if (story.value?.signature.kind === 'haggle' && destination) { signatureOpen.value = !signatureOpen.value; return }
+  if (signaturePanel.value) {
+    const kind = story.value?.signature.kind
+    const table = kind === 'tables' ? contentFor(game.cityId.value).tablePlaces.find(row => row.venueId === destination?.id) : null
+    shell.open(signaturePanel.value.id, table ? { table: table.id } : kind?.startsWith('arena-') ? { game: kind.slice(6) } : {})
+    return
+  }
   if (destination) shell.open('map', { destination: destination.id })
 }
 </script>
@@ -95,6 +105,7 @@ function openSignature(): void {
       <div><small>City signature challenge</small><h4 id="story-signature-title">{{ story.signature.label }}</h4><p>{{ story.signature.description }}</p></div>
       <BaseButton v-if="signatureAction" small @click="openSignature">{{ signatureAction }}</BaseButton>
     </section>
+    <SignatureGame v-if="story.signature.kind === 'haggle' && atSignatureVenue && signatureOpen" />
 
     <details class="story-cities">
       <summary>City chapters · {{ unlocked }} of {{ story.cities.length }} open</summary>

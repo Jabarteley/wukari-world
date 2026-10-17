@@ -1,12 +1,13 @@
 import type { Block } from '../../types/content.ts'
 import type { ActionType, ActionVetoCode } from '../../types/actions.ts'
+import type { TravelView } from '../../types/view.ts'
 import type { LifeContext, LifeState, SystemDefinition, WorldCityId } from '../../types/index.ts'
 import type { StoryCityReceipts, StoryHelpKind, StoryHelpedReceipt, StoryHelperSession, StoryMode, StoryRootsReceipt, StoryState, StoryView } from '../../types/story.ts'
 import { cityName, isOpenCityId, playableCityIdsSoFar } from '../cities/registry.ts'
 import { readCityReference } from '../cities/references.ts'
 import { cachedCityContent } from '../cities/registry.ts'
 import { venueFor } from '../cities/runtime.ts'
-import { missionCatalogues } from './missions.ts'
+import { dealMissions, missionCatalogues } from './missions.ts'
 import { LEFT_OUT, PLAYS } from '../profile.ts'
 import { isRecord, fail, ok } from '../util.ts'
 import { STORY_HELP_MS, advanceStoryHelp, leaveStoryHelp, storyHelpActions } from '../../story/coop.ts'
@@ -84,8 +85,23 @@ function modeAction(state: LifeState, payload: Record<string, unknown>, ctx: Lif
   if (state.story.helper) leaveStoryHelp(state, ctx)
   state.story.mode = payload.mode
   if (payload.mode === 'story' && state.story.start === null) state.story.start = state.estate.city
+  ensureStoryMissions(state, ctx)
   state.message = payload.mode === 'story' ? 'Story mode is on. Your chapter locks are active.' : 'Free roam is on. Every open place is available.'
   return ok(state, 'mode_set')
+}
+
+function ensureStoryMissions(state: LifeState, ctx: LifeContext): void {
+  if (ctx.storyMode !== true || state.story.mode !== 'story' || state.story.helper) return
+  for (const scope of ['daily', 'weekly'] as const) {
+    const rows = state.missions[scope]
+    if (!rows.some(row => row.n === 0 && !row.claimed && !missionCatalogues.authoredIds.has(row.id))) continue
+    const kept = rows.filter(row => row.n > 0 || row.claimed).map(row => row.id)
+    const offered = dealMissions(state, scope, scope === 'daily' ? state.missions.day : state.missions.week, ctx, kept)
+    state.missions[scope] = rows.map(row => {
+      if (row.n > 0 || row.claimed || missionCatalogues.authoredIds.has(row.id)) return row
+      return offered.find(next => missionCatalogues.byId.get(next.id)?.kind === missionCatalogues.byId.get(row.id)?.kind) ?? row
+    })
+  }
 }
 
 const block = (code: 'story_locked' | 'story_helper_active', reason: string): Block<'story_locked' | 'story_helper_active'> => ({ code, reason })
@@ -124,9 +140,9 @@ function actionBlock(value: Block<ActionVetoCode> | null, state: LifeState, data
 
 const play = PLAYS ? {
   actions: { 'story.mode': modeAction, ...storyHelpActions },
-  advance(state: LifeState, _dt: number, ctx: LifeContext) { advanceStoryHelp(state, ctx) },
-  modifiers: { 'action.block': actionBlock },
+  advance(state: LifeState, _dt: number, ctx: LifeContext) { advanceStoryHelp(state, ctx); ensureStoryMissions(state, ctx) },
   on: {
+    'mission.reward.granted'(state: LifeState, _data, ctx) { ensureStoryMissions(state, ctx) },
     'mission.completed'(state: LifeState, data: { rewardId: string; cityId: WorldCityId }) {
       if (state.story.helper || !validMissionReward(data.rewardId, data.cityId)) return
       const row = state.story.cities[data.cityId] ??= { missions: [], venues: [] }
@@ -138,7 +154,20 @@ const play = PLAYS ? {
       if (!row.venues.includes(data.venue)) row.venues = [...row.venues, data.venue].slice(-MAX_VENUES)
     },
   },
-} satisfies Pick<SystemDefinition<'story'>, 'actions' | 'advance' | 'modifiers' | 'on'> : LEFT_OUT
+} satisfies Pick<SystemDefinition<'story'>, 'actions' | 'advance' | 'on'> : LEFT_OUT
+
+function travelView(view: TravelView, state: LifeState, _data: Record<string, never>, ctx: LifeContext): TravelView {
+  if (ctx.storyMode !== true || (state.story.mode !== 'story' && !state.story.helper)) return view
+  return { ...view, destinations: view.destinations.map(destination => {
+    if (destination.kind === 'soon' || destination.here) return destination
+    const helper = state.story.helper
+    const outsidePass = helper && (helper.city !== state.estate.city || (helper.kind !== 'errand' && helper.venue !== destination.id) || destination.id === 'home')
+    const locked = outsidePass ? block('story_helper_active', 'Leave the help session before exploring your own places.')
+      : venueOpen(state, state.estate.city, destination.id) ? block('story_locked', venueBlockReason(state, state.estate.city, destination.id)) : null
+    return locked ? { ...destination, open: false, status: 'Locked', blocked: locked,
+      modes: destination.modes.map(mode => ({ ...mode, blocked: locked })) } : destination
+  }) }
+}
 
 function storyView(state: LifeState, ctx: LifeContext): StoryView {
   const current = state.estate.city, chapter = chapterOf(state, current), tally = state.story.cities[current] ?? { missions: [], venues: [] }
@@ -188,5 +217,6 @@ export default {
     state.story = { version: 1, trackingSince, mode, start, cities, helped, ...(helper ? { helper } : {}) }
   },
   ...play,
+  modifiers: { ...(PLAYS ? { 'action.block': actionBlock } : {}), 'travel.view': travelView },
   view: storyView,
 } satisfies SystemDefinition<'story'>

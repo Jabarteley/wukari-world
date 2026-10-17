@@ -703,7 +703,7 @@ defineExpose({
             <div class="messages-update" :class="{ 'is-unread': line.fresh }">
               <RowMark round><GameIcon :kind="line.kind" :id="line.id" /></RowMark>
               <span class="messages-update-body"><b><GlyphText :text="line.text" /></b><small>{{ formatClock(line.at) }}{{ line.fresh ? ' · New' : '' }}</small></span>
-              <BaseButton v-if="line.storyHelp" small @click="openStoryHelp(line.storyHelp)">Open challenge</BaseButton>
+              <BaseButton v-if="'storyHelp' in line && line.storyHelp" small @click="openStoryHelp(line.storyHelp)">Open challenge</BaseButton>
               <BaseButton v-if="line.player" small @click="shell.open('person', { player: line.player })">Say hello</BaseButton>
               <span v-if="line.conv" class="bubble-actions"><BaseButton small @click="openConversation(line.conv); ui.tab = 'chats'">Open</BaseButton><BaseButton v-if="line.leave" small variant="danger" @click="leaveFromUpdate(line.conv)">Leave</BaseButton></span>
             </div>

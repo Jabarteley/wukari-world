@@ -88,6 +88,7 @@ export function goBlock(state: TravelState, view: TravelPanelView, destination: 
   }
   const blocked = destination.blocked ?? mode?.blocked
   if (blocked) {
+    if (blocked.code === 'story_locked' || blocked.code === 'story_helper_active') return { code: blocked.code, label: 'Locked', reason: blocked.reason }
     if (blocked.code === 'closed') return { code: 'closed', label: destination.status, reason: `${blocked.reason} Pick somewhere that is open now, or come back then.` }
     if (blocked.code === 'already_here') return { code: 'already_here', label: 'You are here', reason: 'You are already here.', fix: { kind: 'enter', label: 'Go inside' } }
     if (blocked.code === 'coming_soon') return { code: 'coming_soon', label: 'Coming soon', reason: `${blocked.reason} There is nothing to do there yet.` }

@@ -1,8 +1,8 @@
 import { BufferAttribute, BufferGeometry } from 'three';
 import type * as THREE from 'three';
 import { MeshoptSimplifier } from 'meshoptimizer';
+import { runNativeStaticLodJob, type NativeStaticLodJob, type NativeStaticLodJobResult } from './native-static-lod-job.ts';
 
-const ERROR_FRACTION = 0.01;
 const MISSING_VERTEX = 0xffffffff;
 
 interface Partition {
@@ -145,25 +145,6 @@ function floatPositions(position: THREE.BufferAttribute | THREE.InterleavedBuffe
   return values;
 }
 
-function scaleForPartition(positions: Float32Array, indices: Uint32Array): number {
-  const partitionPositions = new Float32Array(indices.length * 3);
-  for (let index = 0; index < indices.length; index++) {
-    const sourceVertex = indices[index];
-    if (sourceVertex === undefined) throw new Error('Native static LOD partition indices became inconsistent');
-    const sourceOffset = sourceVertex * 3;
-    const x = positions[sourceOffset];
-    const y = positions[sourceOffset + 1];
-    const z = positions[sourceOffset + 2];
-    if (x === undefined || y === undefined || z === undefined) {
-      throw new Error('Native static LOD partition positions became inconsistent');
-    }
-    partitionPositions[index * 3] = x;
-    partitionPositions[index * 3 + 1] = y;
-    partitionPositions[index * 3 + 2] = z;
-  }
-  return MeshoptSimplifier.getScale(partitionPositions, 3);
-}
-
 function simplificationAttributes(source: THREE.BufferGeometry, vertexCount: number): {
   values: Float32Array;
   stride: number;
@@ -249,66 +230,43 @@ function compactAttribute(
   return result;
 }
 
-/**
- * Simplify a posed static body or garment without touching the animated source.
- * Call preloadNativeStaticLod() before entering the synchronous capture path.
- */
-export function simplifyNativeStaticGeometry(source: THREE.BufferGeometry, ratio: number): THREE.BufferGeometry {
-  if (!ready) throw new Error('Native static LOD is not ready; await preloadNativeStaticLod() before synchronous capture');
+interface Prepared {
+  source: THREE.BufferGeometry;
+  ratio: number;
+  position: THREE.BufferAttribute | THREE.InterleavedBufferAttribute;
+  range: { start: number; count: number };
+  materialIndices: number[];
+  job: NativeStaticLodJob;
+}
+
+function prepare(source: THREE.BufferGeometry, ratio: number): Prepared {
   if (!Number.isFinite(ratio) || ratio <= 0 || ratio > 1) {
     throw new Error(`Native static LOD ratio must be finite and inside (0, 1]; received ${ratio}`);
   }
-  MeshoptSimplifier.useExperimentalFeatures = true;
-
   const position = validateStaticAttributes(source);
   const indices = sourceIndices(source, position.count);
   const range = activeRange(source, indices.length);
   const partitions = materialPartitions(source, range, indices.length);
   const positions = floatPositions(position);
   const attributes = simplificationAttributes(source, position.count);
-  const simplifiedPartitions: Array<{
-    indices: Uint32Array;
-    materialIndex: number;
-    error: number;
-    errorLimit: number;
-    target: number;
-  }> = [];
+  return {
+    source, ratio, position, range, materialIndices: partitions.map((partition) => partition.materialIndex),
+    job: {
+      positions, attributes,
+      partitions: partitions.map((partition) => ({
+        indices: indices.slice(partition.start, partition.start + partition.count),
+        target: Math.max(3, Math.floor(partition.count * ratio / 3) * 3),
+      })),
+    },
+  };
+}
 
-  for (const partition of partitions) {
-    const partitionIndices = indices.slice(partition.start, partition.start + partition.count);
-    const target = Math.max(3, Math.floor(partition.count * ratio / 3) * 3);
-    const errorLimit = scaleForPartition(positions, partitionIndices) * ERROR_FRACTION;
-    const [simplified, error] = MeshoptSimplifier.simplifyWithAttributes(
-      partitionIndices,
-      positions,
-      3,
-      attributes.values,
-      attributes.stride,
-      attributes.weights,
-      null,
-      target,
-      errorLimit,
-      attributes.protectsUvSeams
-        ? ['Sparse', 'ErrorAbsolute']
-        : ['LockBorder', 'Sparse', 'ErrorAbsolute'],
-    );
-    simplifiedPartitions.push({
-      indices: new Uint32Array(simplified),
-      materialIndex: partition.materialIndex,
-      error,
-      errorLimit,
-      target,
-    });
-  }
-
-  const totalIndices = simplifiedPartitions.reduce((sum, partition) => sum + partition.indices.length, 0);
-  const combined = new Uint32Array(totalIndices);
-  let indexOffset = 0;
-  for (const partition of simplifiedPartitions) {
-    combined.set(partition.indices, indexOffset);
-    indexOffset += partition.indices.length;
-  }
-  const [remap, resultVertexCount] = MeshoptSimplifier.compactMesh(combined);
+function finish(prepared: Prepared, done: NativeStaticLodJobResult): THREE.BufferGeometry {
+  const { source, ratio, position, range, attributes } = { ...prepared, attributes: prepared.job.attributes };
+  const simplifiedPartitions = done.partitions.map((partition, index) => ({
+    ...partition, materialIndex: prepared.materialIndices[index]!, target: prepared.job.partitions[index]!.target,
+  }));
+  const combined = done.combined, remap = done.remap, resultVertexCount = done.vertexCount;
 
   const result = new BufferGeometry();
   result.name = source.name;
@@ -348,4 +306,64 @@ export function simplifyNativeStaticGeometry(source: THREE.BufferGeometry, ratio
   };
   result.userData.nativeStaticLod = metrics;
   return result;
+}
+
+/**
+ * Simplify a posed static body or garment without touching the animated source.
+ * Call preloadNativeStaticLod() before entering the synchronous capture path.
+ */
+export function simplifyNativeStaticGeometry(source: THREE.BufferGeometry, ratio: number): THREE.BufferGeometry {
+  if (!ready) throw new Error('Native static LOD is not ready; await preloadNativeStaticLod() before synchronous capture');
+  const prepared = prepare(source, ratio);
+  return finish(prepared, runNativeStaticLodJob(prepared.job));
+}
+
+/**
+ * The same simplification with the Meshoptimizer part in a worker (./native-static-lod.worker.ts), so a long call never holds a
+ * frame. The worker runs the same code on the same numbers, so the geometry is the same. Where there is no worker (node tests),
+ * or the worker fails, it runs here as simplifyNativeStaticGeometry() does. Call preloadNativeStaticLod() first.
+ */
+export async function simplifyNativeStaticGeometryOffThread(source: THREE.BufferGeometry, ratio: number, pause?: () => Promise<void> | null): Promise<THREE.BufferGeometry> {
+  if (!ready) throw new Error('Native static LOD is not ready; await preloadNativeStaticLod() before capture');
+  const prepared = prepare(source, ratio);
+  const lane = workerLane();
+  let done: NativeStaticLodJobResult | null = null;
+  if (lane) {
+    try { done = await lane(prepared.job); workerRuns++; }
+    catch { broken = true; }
+  }
+  // Back on the main thread: wait for the caller's next slice before the rest (or the whole job, if the worker failed).
+  const wait = pause?.();
+  if (wait) await wait;
+  return finish(prepared, done ?? runNativeStaticLodJob(prepared.job));
+}
+
+let worker: Worker | null = null, broken = false, serial = 0;
+let workerRuns = 0;
+/** Diagnostics: whether simplification runs in the worker, and how many jobs it has run. */
+export function nativeStaticLodWorkerState(): { running: boolean; broken: boolean; jobs: number } { return { running: Boolean(worker), broken, jobs: workerRuns }; }
+const waiting = new Map<number, { resolve(value: NativeStaticLodJobResult): void; reject(error: unknown): void }>();
+function workerLane(): ((job: NativeStaticLodJob) => Promise<NativeStaticLodJobResult>) | null {
+  if (broken || typeof Worker !== 'function') return null;
+  if (!worker) {
+    try {
+      worker = new Worker(new URL('./native-static-lod.worker.ts', import.meta.url), { type: 'module', name: 'native-static-lod' });
+    } catch { broken = true; return null; }
+    const fail = (error: unknown): void => { broken = true; worker?.terminate(); worker = null; for (const item of waiting.values()) item.reject(error); waiting.clear(); };
+    worker.onmessage = (event: MessageEvent<{ id: number; result?: NativeStaticLodJobResult; error?: string }>) => {
+      const item = waiting.get(event.data.id);
+      if (!item) return;
+      waiting.delete(event.data.id);
+      if (event.data.result) item.resolve(event.data.result); else item.reject(new Error(event.data.error ?? 'native static LOD worker failed'));
+    };
+    worker.onerror = (event) => { event.preventDefault?.(); fail(new Error(event.message || 'native static LOD worker failed')); };
+    worker.onmessageerror = () => fail(new Error('native static LOD worker could not read a message'));
+  }
+  const lane = worker;
+  return (job) => new Promise<NativeStaticLodJobResult>((resolve, reject) => {
+    const id = ++serial;
+    waiting.set(id, { resolve, reject });
+    // Copies go to the worker: the job's arrays stay readable here for the fallback.
+    lane.postMessage({ id, job });
+  });
 }

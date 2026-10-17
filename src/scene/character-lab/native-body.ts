@@ -9,6 +9,7 @@ import { nativeRecipeForLook } from '../../character/native-migration.ts';
 import { createCharacterSystem } from './runtime/characters.js';
 import { profile } from './runtime/selected-profile.mjs';
 import { NATIVE_FULL_BODY_TRIANGLES } from '../../budgets.ts';
+import { bakeSliceSpent, nextBakeSlice } from '../body/bake-slicer.ts';
 
 // No hidden canonical actor or dimensions. This converts source metres into existing world units.
 const WORLD_UNITS_PER_METRE = 1.4;
@@ -62,7 +63,8 @@ export async function preloadNativeBodies(keys: readonly BodyKey[] = [], _detail
 const actionFor: Partial<Record<BodyPose, string>> = {
   sit:'sit', lie:'sleep', soak:'sit', interact:'talk', dance:'play', wash:'play', bucket:'play', cook:'play', cookLow:'sit', eat:'talk', drink:'talk', homeDoor:'wave',
 };
-type Options = { characterStyle?: CharacterStyle; detail?: BodyDetail; wardrobeDetail?: 'full' | 'ambient' };
+/** sliced: build the body in time slices (../body/bake-slicer.ts), for a body that is baked and never drawn itself. */
+type Options = { characterStyle?: CharacterStyle; detail?: BodyDetail; wardrobeDetail?: 'full' | 'ambient'; sliced?: boolean };
 export function createNativeBody(kit: Kit, look: unknown, seed: unknown, sceneScale: number, options: Options = {}): SkinnedBody {
   let recipe = nativeRecipeForLook(look, seed), disposed = false, actor: NativeActor | undefined;
   let scale = WORLD_UNITS_PER_METRE * sceneScale, pose: BodyPose = 'idle', phase = 0, transitioning = 0, useTime: number | null = null;
@@ -118,7 +120,17 @@ export function createNativeBody(kit: Kit, look: unknown, seed: unknown, sceneSc
   let ready: Promise<void>;
   try {
     if(!system)throw new Error('Native system pending');
-    attach(system.spawnSync(spawnOptions()));ready=Promise.resolve();
+    if(options.sliced){
+      // As below, in time slices: the loaded assets first, as spawnSync(); if one is missing, preload the look and load the rest.
+      const pause=()=>bakeSliceSpent()?nextBakeSlice():null, first=system;
+      ready=(async()=>{
+        let value:NativeActor;
+        try{value=await first.spawnSliced(spawnOptions(),pause);}
+        catch{await preloadLooks([{look,seed}]);if(disposed)return;value=await (await getSystem()).spawnSliced(spawnOptions(),pause,true);}
+        attach(value);
+      })();
+    }
+    else {attach(system.spawnSync(spawnOptions()));ready=Promise.resolve();}
   } catch {
     ready=(async()=>{await preloadLooks([{look,seed}]);if(disposed)return;attach(await (await getSystem()).spawn(spawnOptions()));})();
   }
@@ -150,7 +162,7 @@ export function createNativeBody(kit: Kit, look: unknown, seed: unknown, sceneSc
     setAmbientFace(){/* Native emotion, blinking and speech are sampled by the lab action system. */},
     staticMaterials(){
       const copies=new Map<THREE.Material,THREE.Material>();const release=actor?.retainAssets();
-      return {forMesh(mesh){const clone=(material:THREE.Material)=>{let value=copies.get(material);if(!value){value=material.clone();copies.set(material,value);}return value;};return Array.isArray(mesh.material)?mesh.material.map(clone):clone(mesh.material);},dispose(){copies.forEach(material=>material.dispose());release?.();}};
+      return {forMesh(mesh){const clone=(material:THREE.Material)=>{let value=copies.get(material);if(!value){const userData=material.userData;material.userData={};try{value=material.clone();}finally{material.userData=userData;}copies.set(material,value);}return value;};return Array.isArray(mesh.material)?mesh.material.map(clone):clone(mesh.material);},dispose(){copies.forEach(material=>material.dispose());release?.();}};
     },
     dispose(){if(disposed)return;disposed=true;removeCleanup();actor?.dispose();object.removeFromParent();},
   };

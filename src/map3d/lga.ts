@@ -63,10 +63,21 @@ export function scanRings(rings: Part, x0: number, z0: number, cell: number, wid
   for (const point of rings[0]!) { if (point[1] < minZ) minZ = point[1]; if (point[1] > maxZ) maxZ = point[1]; }
   const first = Math.max(0, Math.floor((minZ - z0) / cell)), last = Math.min(height - 1, Math.ceil((maxZ - z0) / cell));
   const hits: number[] = [];
+  // Each edge is filed under the rows it can cross (a row more on each side, so rounding cannot lose one); a row then tests only the
+  // edges filed under it, with the same crossing test as before, and the crossings are sorted, so the runs are the ones a full pass finds.
+  const rows = last - first + 1, filed: number[][] = rows > 0 ? Array.from({ length: rows }, () => []) : [];
+  rings.forEach((polygon, r) => {
+    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+      const az = polygon[i]![1], bz = polygon[j]![1], low = Math.min(az, bz), high = Math.max(az, bz);
+      const from = Math.max(first, Math.floor((low - z0) / cell - 0.5) - 1), to = Math.min(last, Math.ceil((high - z0) / cell - 0.5) + 1);
+      for (let row = from; row <= to; row++) filed[row - first]!.push(r, i);
+    }
+  });
   for (let row = first; row <= last; row++) {
-    const z = z0 + (row + 0.5) * cell;
+    const z = z0 + (row + 0.5) * cell, list = filed[row - first]!;
     hits.length = 0;
-    for (const polygon of rings) for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    for (let n = 0; n < list.length; n += 2) {
+      const polygon = rings[list[n]!]!, i = list[n + 1]!, j = i === 0 ? polygon.length - 1 : i - 1;
       const [ax, az] = polygon[i]!, [bx, bz] = polygon[j]!;
       if ((az > z) !== (bz > z)) hits.push(((bx - ax) * (z - az)) / (bz - az) + ax);
     }

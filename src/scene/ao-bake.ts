@@ -48,7 +48,7 @@ export function createOccluders(prims: readonly AoPrim[]): Occluders {
 }
 
 /** Multiply `col` (rgb per vertex) by the occlusion at each vertex. Returns how many vertices were probed. */
-export function bakeVertexAO(pos: ArrayLike<number>, nor: ArrayLike<number>, col: number[] | Float32Array, prims: readonly AoPrim[] = [], occluders?: Occluders, { groundY = 0, strength = 1, probeBudget = 30000 }: AoOptions = {}): number {
+export function bakeVertexAO(pos: ArrayLike<number>, nor: ArrayLike<number>, col: number[] | Float32Array | Float64Array, prims: readonly AoPrim[] = [], occluders?: Occluders, { groundY = 0, strength = 1, probeBudget = 30000 }: AoOptions = {}): number {
   let probed = 0;
   for (const prim of prims.length ? prims : [{ id: -1, start: 0, count: pos.length / 3, min: [0, 0, 0], max: [0, 0, 0] } as AoPrim]) {
     // Small props get less of the ground term so a pot or a sign is shaded, not blackened.

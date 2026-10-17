@@ -58,9 +58,45 @@ export function roundPolygon(points: readonly Point2[], iterations = 2): readonl
 }
 
 export function pointInPolygon(x: number, z: number, polygon: readonly Point2[]): boolean {
+  if (polygon.length >= BANDED_FROM) return bandedInside(x, z, polygon);
   let inside = false;
   for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
     const [ax, az] = polygon[i]!, [bx, bz] = polygon[j]!;
+    if ((az > z) !== (bz > z) && x < ((bx - ax) * (z - az)) / (bz - az) + ax) inside = !inside;
+  }
+  return inside;
+}
+
+/**
+ * A long ring (a district or country outline of thousands of points) is asked "is this point inside?" many thousands of times. The test only
+ * ever looks at the edges that cross the point's row (`(az > z) !== (bz > z)`), and the answer is the parity of the crossings left of the point,
+ * so the ring is sorted once into horizontal bands and a query walks only the edges of its band. The same edges are tested with the same
+ * arithmetic, so the answer is the same as the plain loop's for every point.
+ */
+const BANDED_FROM = 48;
+interface Banded { z0: number; height: number; bands: number; start: Int32Array; edge: Int32Array; xy: Float64Array }
+const banded = new WeakMap<readonly Point2[], Banded>();
+function bandsOf(polygon: readonly Point2[]): Banded {
+  const n = polygon.length, xy = new Float64Array(n * 2);
+  let lo = Infinity, hi = -Infinity;
+  for (let i = 0; i < n; i++) { const [x, z] = polygon[i]!; xy[i * 2] = x; xy[i * 2 + 1] = z; if (z < lo) lo = z; if (z > hi) hi = z; }
+  const bands = Math.max(1, Math.min(256, n >> 2)), height = (hi - lo) / bands || 1;
+  const first = (z: number) => Math.min(bands - 1, Math.max(0, Math.floor((z - lo) / height)));
+  const start = new Int32Array(bands + 1), span = (i: number): [number, number] => { const az = xy[i * 2 + 1]!, bz = xy[(i === 0 ? n - 1 : i - 1) * 2 + 1]!; return [first(Math.min(az, bz)), first(Math.max(az, bz))]; };
+  for (let i = 0; i < n; i++) { const [from, to] = span(i); for (let k = from; k <= to; k++) start[k + 1]! += 1; }
+  for (let k = 0; k < bands; k++) start[k + 1]! += start[k]!;
+  const edgeList = new Int32Array(start[bands]!), fill = start.slice(0, bands);
+  for (let i = 0; i < n; i++) { const [from, to] = span(i); for (let k = from; k <= to; k++) edgeList[fill[k]!++] = i; }
+  return { z0: lo, height, bands, start, edge: edgeList, xy };
+}
+function bandedInside(x: number, z: number, polygon: readonly Point2[]): boolean {
+  let index = banded.get(polygon);
+  if (!index) banded.set(polygon, index = bandsOf(polygon));
+  const { xy, edge, start } = index, n = polygon.length;
+  const k = Math.min(index.bands - 1, Math.max(0, Math.floor((z - index.z0) / index.height)));
+  let inside = false;
+  for (let e = start[k]!; e < start[k + 1]!; e++) {
+    const i = edge[e]!, j = i === 0 ? n - 1 : i - 1, ax = xy[i * 2]!, az = xy[i * 2 + 1]!, bx = xy[j * 2]!, bz = xy[j * 2 + 1]!;
     if ((az > z) !== (bz > z) && x < ((bx - ax) * (z - az)) / (bz - az) + ax) inside = !inside;
   }
   return inside;

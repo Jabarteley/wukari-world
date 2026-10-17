@@ -47,6 +47,54 @@ function boundsOf(shape: BatchGeometry): { lo: number[]; hi: number[]; shrink: n
   return found;
 }
 const templates = new Map<string, Template>();
+
+/**
+ * AO FACTORS AGAIN. The vertex AO of a batch depends only on the positions, normals and primitives of its solid layers and on the
+ * strength (not on the colours it multiplies). A scene built again with the same inputs (the neighbourhood, on every return) takes
+ * the factors from the last bake instead of probing again. The inputs are kept and compared number for number, so a factor is
+ * only reused for exactly the same inputs; the colours come out the same. Kept: the most recent batches, up to AO_KEEP_VALUES.
+ */
+const AO_KEEP_VALUES = 3_000_000;
+interface AoKnown { strength: number; pos: Float64Array[]; nor: Float64Array[]; prims: AoPrim[][]; factors: Float64Array[]; size: number }
+const aoKnown: AoKnown[] = [];
+const same = (a: number, b: number): boolean => a === b && (a !== 0 || 1 / a === 1 / b);
+function sameValues(kept: Float64Array, values: ArrayLike<number>): boolean {
+  if (kept.length !== values.length) return false;
+  for (let i = 0; i < kept.length; i++) if (!same(kept[i]!, values[i]!)) return false;
+  return true;
+}
+function samePrims(kept: AoPrim[], prims: readonly AoPrim[]): boolean {
+  if (kept.length !== prims.length) return false;
+  for (let i = 0; i < kept.length; i++) {
+    const a = kept[i]!, b = prims[i]!;
+    if (!same(a.id, b.id) || !same(a.start, b.start) || !same(a.count, b.count)) return false;
+    for (let k = 0; k < 3; k++) if (!same(a.min[k]!, b.min[k]!) || !same(a.max[k]!, b.max[k]!)) return false;
+  }
+  return true;
+}
+function aoFactorsKnown(solids: readonly LayerData[], strength: number): Float64Array[] | null {
+  for (let at = aoKnown.length - 1; at >= 0; at--) {
+    const known = aoKnown[at]!;
+    if (!same(known.strength, strength) || known.pos.length !== solids.length) continue;
+    if (!solids.every((d, index) => known.pos[index]!.length === d.pos.length && known.prims[index]!.length === d.prims.length)) continue;
+    if (!solids.every((d, index) => samePrims(known.prims[index]!, d.prims) && sameValues(known.pos[index]!, d.pos) && sameValues(known.nor[index]!, d.nor))) continue;
+    aoKnown.splice(at, 1); aoKnown.push(known);
+    return known.factors;
+  }
+  return null;
+}
+function aoFactorsKeep(solids: readonly LayerData[], strength: number, factors: Float64Array[]): void {
+  const known: AoKnown = {
+    strength, factors,
+    pos: solids.map((d) => Float64Array.from(d.pos)), nor: solids.map((d) => Float64Array.from(d.nor)),
+    prims: solids.map((d) => d.prims.map((p) => ({ id: p.id, start: p.start, count: p.count, min: [...p.min] as [number, number, number], max: [...p.max] as [number, number, number] }))),
+    size: solids.reduce((sum, d) => sum + d.pos.length * 3, 0),
+  };
+  if (known.size > AO_KEEP_VALUES) return;
+  aoKnown.push(known);
+  let total = aoKnown.reduce((sum, item) => sum + item.size, 0);
+  while (total > AO_KEEP_VALUES) total -= aoKnown.shift()!.size;
+}
 function template(key: string, make: () => THREE.BufferGeometry): Template {
   let entry = templates.get(key);
   if (!entry) {
@@ -173,10 +221,19 @@ export function createBatch(THREE: ThreeModule): Batch {
       let triangles = 0;
       // The three shared layers first, then each part's own meshes.
       if (ao) {
-        const solids = Object.keys(layers).filter((key) => key === 'solid' || key.startsWith('solid@'));
-        const occluders = createOccluders(solids.flatMap((key) => layers[key]!.prims));
-        let budget = 30000; const strength = aoStrength();
-        for (const key of solids) { const d = layers[key]!; budget -= bakeVertexAO(d.pos, d.nor, d.col, d.prims, occluders, { probeBudget: budget, strength }); }
+        const solids = Object.keys(layers).filter((key) => key === 'solid' || key.startsWith('solid@')).map((key) => layers[key]!);
+        const strength = aoStrength();
+        let factors = aoFactorsKnown(solids, strength);
+        if (!factors) {
+          // The bake multiplies each vertex colour by one factor; baking into ones gives exactly those factors.
+          factors = solids.map((d) => new Float64Array(d.col.length).fill(1));
+          const occluders = createOccluders(solids.flatMap((d) => d.prims));
+          let budget = 30000;
+          solids.forEach((d, index) => { budget -= bakeVertexAO(d.pos, d.nor, factors![index]!, d.prims, occluders, { probeBudget: budget, strength }); });
+          aoFactorsKeep(solids, strength, factors);
+        }
+        // col * f, the same product the bake forms in place.
+        solids.forEach((d, index) => { const col = d.col, f = factors![index]!; for (let i = 0; i < col.length; i++) col[i] = col[i]! * f[i]!; });
       }
       const keys = [...BASE, ...Object.keys(layers).filter((key) => !BASE.includes(key)).sort()];
       for (const key of keys) {

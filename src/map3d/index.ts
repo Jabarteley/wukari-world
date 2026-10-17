@@ -28,7 +28,8 @@ import type { FetchJson, WorldData } from './world-data.ts';
 import '../city-map.css';
 import './map3d.css';
 import { hasCityPack, loadCityPack } from './regions.ts';
-import { createMap3D, detailOf, webglAvailable } from './map3d.ts';
+import { createMap3D, detailOf, prebuildCity, webglAvailable } from './map3d.ts';
+import { turn } from './warm.ts';
 import { preloadCanonicalBodies, preloadLooks } from '../scene/body/skinned.ts';
 import { createMap2D } from './map2d.ts';
 import { createWorldData } from './world-data.ts';
@@ -173,6 +174,8 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
     const ticket = ++mounting;
     const want3d = !simple && !brokenGl && hasCityPack(cityId) && webglAvailable();
     let next: MapImpl | null = null, nextKind: CityViewKind = '2d';
+    // A new 3D map draws nothing until its player, state and camera are in (they go in over a few short tasks, below): the first frame it shows is the finished one.
+    let settling = true;
     if (want3d) {
       const characterLoading = document.createElement('p');
       characterLoading.className = 'cmap-error'; characterLoading.setAttribute('role', 'status');
@@ -205,8 +208,11 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
           const vehicleBuilder = models?.buildTravelVehicle ?? null;
           const travelVehicle = vehicleBuilder as unknown as TravelVehicleBuilder | null; // trust boundary: the model library is JavaScript
           if (ticket !== mounting) return;
+          // The city is built in short slices (a frame can draw between them) instead of one long task; the map takes it over finished.
+          const prebuilt = await prebuildCity(pack!, cityId, () => ticket === mounting);
+          if (!prebuilt || ticket !== mounting) { if (prebuilt) { prebuilt.city.dispose(); prebuilt.kit.dispose(); } return; }
           impl?.destroy(); impl = null;
-          next = createMap3D(container, { pack: pack!, cityId, world, travelVehicle, trafficModels: models ? models.loadTrafficModels() : null, ...(ladder ? { ladder } : {}), ...callbacks, onTripDue, deepLink, onContextLost: () => { brokenGl = true; onNotice('The 3D map stopped on this device. Showing the simple map instead.'); void mount(); } });
+          next = createMap3D(container, { prebuilt, tabHidden: () => settling || Boolean(globalThis.document?.hidden), pack: pack!, cityId, world, travelVehicle, trafficModels: models ? models.loadTrafficModels() : null, ...(ladder ? { ladder } : {}), ...callbacks, onTripDue, deepLink, onContextLost: () => { brokenGl = true; onNotice('The 3D map stopped on this device. Showing the simple map instead.'); void mount(); } });
           nextKind = '3d';
           void models?.warmGlbVehicles(); // the authored vehicle models arrive after the first frame; until then (and if they never do) the procedural ones are drawn
         } catch (error) {
@@ -244,11 +250,15 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
     impl = next; kind = nextKind; released = false;
     label();
     impl.setPlayer?.(player);
+    const stale = () => ticket !== mounting || impl !== next;
+    if (nextKind === '3d') { await turn(); if (stale()) return; }
     impl.setFriends?.(friends);
     if (state) impl.setState(state);
+    if (nextKind === '3d') { await turn(); if (stale()) return; }
     impl.setPeople?.(people, peopleClock);
     if (Object.keys(ui).length) window.dispatchEvent(new CustomEvent('jaw:map-ui', { detail: { ...ui, layout: true } }));
     if (wantedCamera) { const camera = wantedCamera; wantedCamera = null; applyCamera(camera); }
+    settling = false;
     impl.resize();
   }
   let wantedCamera: MapCamera | null = null;

@@ -193,36 +193,66 @@ class AssetStore {
 const neutralMaps = new WeakMap();
 const linearChannel = value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4;
 const srgbChannel = value => value <= .0031308 ? value * 12.92 : 1.055 * value ** (1 / 2.4) - .055;
+const LINEAR_BYTE = Float64Array.from({ length: 256 }, (_, byte) => linearChannel(byte / 255));
+// SLICES. A step that yields ['slice'] lets a sliced spawn (spawnSliced, used to bake background people) wait for the next frame
+// there. driveSync and driveAsync go straight on, so every other caller runs exactly as before.
+const SLICE = Object.freeze(['slice']);
+// A sliced recolour reads and writes its texture in bands of rows; one band holds the whole image otherwise. Every pixel gets the
+// same bytes either way: the reference samples the same pixels (every 16th of the whole image) and each output byte depends only
+// on its input byte.
+const RECOLOR_BAND_PIXELS = 1 << 17;
 function recoloredTexture(original, swatch) {
+  const steps = recolorSteps(original, swatch, false);
+  let step = steps.next();
+  while (!step.done) step = steps.next();
+  return step.value;
+}
+function* recolorSteps(original, swatch, sliced) {
   if (!original?.image) return original;
   let variants = neutralMaps.get(original);
   if (!variants) { variants = new Map(); neutralMaps.set(original, variants); }
   if (variants.has(swatch)) return variants.get(swatch);
   const canvas = document.createElement('canvas'); canvas.width = original.image.width; canvas.height = original.image.height;
   const context = canvas.getContext('2d'); context.drawImage(original.image, 0, 0);
-  const pixels = context.getImageData(0, 0, canvas.width, canvas.height), channels = [[], [], []], opaqueChannels = [[], [], []];
+  const width = canvas.width, height = canvas.height, rows = sliced ? Math.max(1, Math.floor(RECOLOR_BAND_PIXELS / Math.max(1, width))) : height;
+  const bands = [];
+  // Per-channel histograms of every 16th pixel stand in for the sorted sample lists: the median byte is the same.
   // Exclude transparent padding and near-black/white atlas background from the reference.
-  for (let i = 0; i < pixels.data.length; i += 64) {
-    const r = pixels.data[i] / 255, g = pixels.data[i + 1] / 255, b = pixels.data[i + 2] / 255;
-    const luma = .2126 * r + .7152 * g + .0722 * b;
-    if (pixels.data[i + 3] < 128 || luma < .035) continue;
-    opaqueChannels[0].push(r); opaqueChannels[1].push(g); opaqueChannels[2].push(b);
-    if (luma > .94) continue;
-    channels[0].push(r); channels[1].push(g); channels[2].push(b);
-  }
-  const reference = channels.map((samples, channel) => {
-    const values = samples.length ? samples : opaqueChannels[channel];
-    values.sort((a, b) => a - b);
-    return linearChannel(values[Math.floor(values.length * .5)] ?? .5);
-  });
-  const target = new THREE.Color(swatch).toArray();
-  for (let i = 0; i < pixels.data.length; i += 4) {
-    for (let c = 0; c < 3; c++) {
-      const detail = linearChannel(pixels.data[i + c] / 255) / Math.max(.002, reference[c]);
-      pixels.data[i + c] = Math.round(255 * srgbChannel(Math.min(1, Math.max(0, target[c] * detail))));
+  const channels = [new Uint32Array(256), new Uint32Array(256), new Uint32Array(256)], opaqueChannels = [new Uint32Array(256), new Uint32Array(256), new Uint32Array(256)];
+  let sampled = 0, opaque = 0;
+  for (let top = 0; top < height; top += rows) {
+    if (sliced) yield SLICE;
+    const pixels = context.getImageData(0, top, width, Math.min(rows, height - top)), data = pixels.data;
+    bands.push([top, pixels]);
+    // Every 16th pixel of the whole image, counted from its first pixel.
+    for (let i = ((16 - (top * width) % 16) % 16) * 4; i < data.length; i += 64) {
+      const r = data[i] / 255, g = data[i + 1] / 255, b = data[i + 2] / 255;
+      const luma = .2126 * r + .7152 * g + .0722 * b;
+      if (data[i + 3] < 128 || luma < .035) continue;
+      opaqueChannels[0][data[i]]++; opaqueChannels[1][data[i + 1]]++; opaqueChannels[2][data[i + 2]]++; opaque++;
+      if (luma > .94) continue;
+      channels[0][data[i]]++; channels[1][data[i + 1]]++; channels[2][data[i + 2]]++; sampled++;
     }
   }
-  context.putImageData(pixels, 0, 0);
+  const reference = channels.map((counts, channel) => {
+    const histogram = sampled ? counts : opaqueChannels[channel], count = sampled || opaque;
+    if (!count) return linearChannel(.5);
+    let rank = Math.floor(count * .5), byte = 0;
+    while (rank >= histogram[byte]) rank -= histogram[byte++];
+    return LINEAR_BYTE[byte];
+  });
+  // Each output byte depends only on its channel and input byte: one 256-entry table per channel, same arithmetic as per pixel.
+  const target = new THREE.Color(swatch).toArray();
+  const tables = [0, 1, 2].map(c => Uint8ClampedArray.from(LINEAR_BYTE, linear => Math.round(255 * srgbChannel(Math.min(1, Math.max(0, target[c] * (linear / Math.max(.002, reference[c]))))))));
+  const [red, green, blue] = tables;
+  for (const [top, pixels] of bands) {
+    if (sliced) yield SLICE;
+    const data = pixels.data;
+    for (let i = 0; i < data.length; i += 4) { data[i] = red[data[i]]; data[i + 1] = green[data[i + 1]]; data[i + 2] = blue[data[i + 2]]; }
+    context.putImageData(pixels, 0, top);
+  }
+  // Another body may have made the same variant while this one waited between slices: keep one texture per variant.
+  if (variants.has(swatch)) return variants.get(swatch);
   const texture = new THREE.CanvasTexture(canvas); texture.colorSpace = THREE.SRGBColorSpace;
   texture.flipY = original.flipY; texture.wrapS = original.wrapS; texture.wrapT = original.wrapT;
   texture.repeat.copy(original.repeat); texture.offset.copy(original.offset); texture.rotation = original.rotation;
@@ -316,16 +346,25 @@ export async function createCharacterSystem({ scene, catalogUrl = '/models/catal
   }
   function driveSync(iterator) {
     let step=iterator.next();
-    while(!step.done) { try { const [kind,url]=step.value;step=iterator.next(kind==='asset'?store.acquireSync(url):store.textureSync(url)); } catch(error) { step=iterator.throw(error); } }
+    while(!step.done) { if(step.value===SLICE){step=iterator.next();continue;} try { const [kind,url]=step.value;step=iterator.next(kind==='asset'?store.acquireSync(url):store.textureSync(url)); } catch(error) { step=iterator.throw(error); } }
     return step.value;
   }
   async function driveAsync(iterator) {
     let step=iterator.next();
-    while(!step.done) { try { const [kind,url]=step.value;step=iterator.next(await(kind==='asset'?store.acquire(url):store.texture(url))); } catch(error) { step=iterator.throw(error); } }
+    while(!step.done) { if(step.value===SLICE){step=iterator.next();continue;} try { const [kind,url]=step.value;step=iterator.next(await(kind==='asset'?store.acquire(url):store.texture(url))); } catch(error) { step=iterator.throw(error); } }
+    return step.value;
+  }
+  // driveSync (or, with load, driveAsync) that also waits at each slice point while pause() returns a promise.
+  async function driveSliced(iterator, pause, load) {
+    let step=iterator.next();
+    while(!step.done) {
+      if(step.value===SLICE){ const wait=pause?.(); if(wait) await wait; step=iterator.next(); continue; }
+      try { const [kind,url]=step.value;step=iterator.next(load?await(kind==='asset'?store.acquire(url):store.texture(url)):kind==='asset'?store.acquireSync(url):store.textureSync(url)); } catch(error) { step=iterator.throw(error); }
+    }
     return step.value;
   }
   const systemGroundHeight = groundHeight;
-  function* spawnSteps({ id, appearance = {}, position = [0, 0, 0], groundHeight = systemGroundHeight }) {
+  function* spawnSteps({ id, appearance = {}, position = [0, 0, 0], groundHeight = systemGroundHeight }, sliced = false) {
     if (actors.has(id)) throw new Error(`Character already exists: ${id}`);
     let look = normalizeAppearance(catalog, appearance), desiredLook = look, equipped = [], revision = 0, disposed = false;
     const bodyDescriptor = body => catalog.bodies?.find(item=>item.id===body) || catalog.base;
@@ -338,6 +377,7 @@ export async function createCharacterSystem({ scene, catalogUrl = '/models/catal
     }
     const template = yield ['asset',baseUrl];
     let {model,bones}=prepareBody(template);
+    yield SLICE;
     const root = new THREE.Group(); root.name = id; root.position.fromArray(position); root.visible = false; root.add(model); scene.add(root);
     let applySeatedMorphs = () => {}, applyGaitMorphs = () => {};
     let planting, kneeAlignment, actionSupport, seatedContact, seatedDrape, mixer, mixedPose, actions, idle, walk, run, fingerRest, strideScale=1, eyeHeight=1.71, faceOffset=new THREE.Vector3();
@@ -364,6 +404,7 @@ export async function createCharacterSystem({ scene, catalogUrl = '/models/catal
       fingerRest=new Map([...bones].filter(([name])=>/^(index|middle|ring|pinky|thumb)_/.test(name)).map(([name,bone])=>[name,bone.quaternion.clone()]));
     }
     setupRig();
+    yield SLICE;
     let rendered = true, ready = false;
     let motion = { speed: 0, gait: 'walk' }, activity = null, fading = null, actionBlend = 0, emotion = 'neutral', emotionStrength = .7, elapsed = 0;
     let locomotion = advanceLocomotionState({}, {
@@ -380,6 +421,15 @@ export async function createCharacterSystem({ scene, catalogUrl = '/models/catal
       for (const mesh of allMeshes()) { const index = mesh.morphTargetDictionary?.[name]; if (index !== undefined) mesh.morphTargetInfluences[index] = value; }
     }
     function expression(logical, value) { const key = expressionNames.get(logical.toLowerCase()) || `Expr_${logical}`; setMorph(key, value); }
+    // The textures applyLook() will recolour, made ahead in slices; applyLook() then finds them made. Same originals, same swatches.
+    function* recolorAheadSteps() {
+      for (const mesh of allMeshes()) for (const material of materialList(mesh)) {
+        const role = roleOf(material);
+        if (role === 'skin') { if (look.colors.skin !== '#ffffff') yield* recolorSteps(complexionTexture || material.userData.originalMap, look.colors.skin, true); }
+        else if (role === 'eyes' && eyeTexture) continue;
+        else if (look.colors[role] && look.colors[role] !== '#ffffff') yield* recolorSteps(material.userData.originalMap, look.colors[role], true);
+      }
+    }
     function applyLook() {
       applySeatedMorphs = bindSeatedCorrectives(allMeshes());
       applyGaitMorphs = bindGaitCorrectives(allMeshes());
@@ -407,16 +457,20 @@ export async function createCharacterSystem({ scene, catalogUrl = '/models/catal
         material.needsUpdate = true;
       }
     }
-    function bodyMask() {
+    function* bodyMaskSteps() {
       const hidden = new Set(equipped.flatMap(part => part.item.hideBodyVertices || []));
       for (const mesh of meshesIn(model).filter(mesh => mesh.userData.privateIndex)) {
+        yield SLICE;
         const attribute = mesh.geometry.getAttribute('_source_index') || mesh.geometry.getAttribute('_SOURCE_INDEX') || mesh.geometry.getAttribute('source_index');
         const original = mesh.userData.fullIndex;
         if (!attribute || !hidden.size || !original) { mesh.geometry.setIndex(original); continue; }
+        // Which vertices are hidden, once per vertex, then keep the triangles that use none of them.
+        const hiddenAt = new Uint8Array(attribute.count);
+        for (let v = 0; v < attribute.count; v++) if (hidden.has(Math.round(attribute.getX(v)))) hiddenAt[v] = 1;
         const indices = [];
         for (let i = 0; i < original.count; i += 3) {
-          const triangle = [original.getX(i), original.getX(i + 1), original.getX(i + 2)];
-          if (!triangle.some(index => hidden.has(Math.round(attribute.getX(index))))) indices.push(...triangle);
+          const a = original.getX(i), b = original.getX(i + 1), c = original.getX(i + 2);
+          if (!hiddenAt[a] && !hiddenAt[b] && !hiddenAt[c]) indices.push(a, b, c);
         }
         mesh.geometry.setIndex(indices);
       }
@@ -468,7 +522,7 @@ export async function createCharacterSystem({ scene, catalogUrl = '/models/catal
       }
     }
 
-    function* appearanceSteps(patch) {
+    function* appearanceSteps(patch, sliced = false) {
       if (disposed) return { ok: false, reason: 'Character was removed.' };
       desiredLook = normalizeAppearance(catalog, mergeLook(desiredLook, patch));
       const next = desiredLook, request = ++revision;
@@ -478,7 +532,7 @@ export async function createCharacterSystem({ scene, catalogUrl = '/models/catal
       try {
         if(!sameBody){nextBaseUrl=bodyDescriptor(next.body).url;nextBase=prepareBody(yield ['asset',nextBaseUrl]);}
         const descriptors = [catalog.hair.find(item => item.id === next.hair), ...next.garments.map(id => catalog.garments.find(item => item.id === id)), catalog.shoes.find(item => item.id === next.shoes)];
-        if (!sameEquipment) for(const item of descriptors) nextParts.push(yield* loadPart(item,next.body,nextBase?.bones||bones));
+        if (!sameEquipment) for(const item of descriptors) { nextParts.push(yield* loadPart(item,next.body,nextBase?.bones||bones)); yield SLICE; }
         const nextComplexion = next.complexion === 'deep' ? null : yield ['texture',bodyDescriptor(next.body).complexions?.[next.complexion] || `/models/skin-${next.complexion}.jpg`];
         const eyeUrl=catalog.eyeColors.find(item=>item.id===next.eyeColor)?.url;
         const nextEye=eyeUrl ? yield ['texture',eyeUrl] : null;
@@ -490,7 +544,9 @@ export async function createCharacterSystem({ scene, catalogUrl = '/models/catal
         }
         if (!sameEquipment) { releaseParts(equipped); equipped = nextParts; for (const part of equipped) root.add(part.group); }
         look = next; complexionTexture = nextComplexion; eyeTexture = nextEye;
-        bodyMask(); footwearMask(); applyLook();
+        yield* bodyMaskSteps(); yield SLICE; footwearMask();
+        if (sliced) yield* recolorAheadSteps();
+        yield SLICE; applyLook();
         if(!sameEquipment) {
           const shoes=equipped.filter(part=>catalog.shoes.some(item=>item.id===part.item.id)).flatMap(part=>meshesIn(part.group));
           planting.setFootwear(shoes);actionSupport?.setFootwear(shoes);seatedContact?.setFootwear(shoes);kneeAlignment?.reset();
@@ -694,8 +750,8 @@ export async function createCharacterSystem({ scene, catalogUrl = '/models/catal
       dispose: () => { if (disposed) return; disposed = true; revision++; cancelAction({immediate:true}); mixer.stopAllAction(); mixer.uncacheRoot(root); releaseParts(equipped); disposePrivate(model); root.removeFromParent(); store.release(baseUrl); actors.delete(id); }
     };
     actors.set(id, actor);
-    const result = yield* appearanceSteps(look); if (!result.ok) { actor.dispose(); throw new Error(result.reason); }
+    const result = yield* appearanceSteps(look, sliced); if (!result.ok) { actor.dispose(); throw new Error(result.reason); }
     return actor;
   }
-  return { catalog, clips: clips.map(clip => ({ name: clip.name, duration: clip.duration })), motionMetadata, preload, spawn: value=>driveAsync(spawnSteps(value)), spawnSync: value=>driveSync(spawnSteps(value)), update: dt => actors.forEach(actor => actor.update(dt)), stats: () => ({ actorCount: actors.size, ...store.stats() }), dispose: () => { actors.forEach(actor => actor.dispose()); store.release(animationUrl); } };
+  return { catalog, clips: clips.map(clip => ({ name: clip.name, duration: clip.duration })), motionMetadata, preload, spawn: value=>driveAsync(spawnSteps(value)), spawnSync: value=>driveSync(spawnSteps(value)), spawnSliced: (value, pause, load=false)=>driveSliced(spawnSteps(value, true), pause, load), update: dt => actors.forEach(actor => actor.update(dt)), stats: () => ({ actorCount: actors.size, ...store.stats() }), dispose: () => { actors.forEach(actor => actor.dispose()); store.release(animationUrl); } };
 }

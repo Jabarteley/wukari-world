@@ -76,6 +76,12 @@ const grids = new WeakMap<CityPack, Grid>();
  */
 function gridOf(pack: CityPack): Grid {
   if (grids.has(pack)) return grids.get(pack)!;
+  const steps = gridSteps(pack);
+  for (;;) { const step = steps.next(); if (step.done) return step.value; }
+}
+/** gridOf in steps: paused (`yield`) between the local governments and every few roads, for a caller that gives the browser a turn between them (./warm.ts). */
+export function* gridSteps(pack: CityPack): Generator<void, Grid, void> {
+  if (grids.has(pack)) return grids.get(pack)!;
   const { minX, maxX, minZ, maxZ } = pack.bounds, cell = 1 / SCALE;
   const width = Math.ceil((maxX - minX) * SCALE), height = Math.ceil((maxZ - minZ) * SCALE);
   const owner = new Uint8Array(width * height);
@@ -84,11 +90,13 @@ function gridOf(pack: CityPack): Grid {
   const lands = landOf(pack).filter((entry) => entry.kind !== 'sand');
   const land = pack.land.every((entry) => entry.exact) ? null : new Uint8Array(width * height);
   if (land) for (const entry of lands) scanRings([entry.polygon, ...(entry.holes || [])], minX, minZ, cell, width, height, paint(land, 1));
-  pack.lgas.forEach((lga, index) => { for (const part of partsOf(lga)) scanRings(part, minX, minZ, cell, width, height, (row, from, to) => { for (let i = row * width + from; i <= row * width + to; i++) if ((!land || land[i]) && !owner[i]) owner[i] = index + 1; }); });
+  for (const [index, lga] of pack.lgas.entries()) { yield; for (const part of partsOf(lga)) scanRings(part, minX, minZ, cell, width, height, (row, from, to) => { for (let i = row * width + from; i <= row * width + to; i++) if ((!land || land[i]) && !owner[i]) owner[i] = index + 1; }); }
   const clear = (x0: number, z0: number, x1: number, z1: number) => scanRings([[[x0, z0], [x1, z0], [x1, z1], [x0, z1]]], minX, minZ, cell, width, height, paint(owner, 0));
   for (const zone of pack.zones || []) clear(zone[0], zone[1], zone[2], zone[3]);
   for (const spot of [...Object.values<XZ>(pack.sites || {}), ...Object.values<XZ>(pack.homes || {})]) clear(spot.x - SITE_CLEAR, spot.z - SITE_CLEAR, spot.x + SITE_CLEAR, spot.z + SITE_CLEAR);
+  let roadsDone = 0;
   for (const road of pack.roads || []) {
+    if (++roadsDone % 40 === 0) yield;
     if (road.bridge) continue;
     const half = roadClear(pack, road.major);
     for (let i = 1; i < road.points.length; i++) {

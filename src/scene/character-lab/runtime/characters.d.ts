@@ -32,6 +32,11 @@ export interface NativeSystem {
   preload(appearances: Partial<NativeAppearanceV2>[]): Promise<()=>void>;
   spawn(options: NativeSpawn): Promise<NativeActor>;
   spawnSync(options: NativeSpawn): NativeActor;
+  /**
+   * spawnSync() (with load, spawn()) that, at each slice point, awaits pause() when it returns a promise: a body built over several
+   * frames (baking background people). Without load it fails, as spawnSync() does, when an asset is not loaded yet.
+   */
+  spawnSliced(options: NativeSpawn, pause?: () => Promise<void> | null | undefined, load?: boolean): Promise<NativeActor>;
   update(dt:number):void;
   stats():Record<string,number>;
   dispose():void;

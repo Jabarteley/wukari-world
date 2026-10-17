@@ -12,6 +12,7 @@ import '../scene/controls.css'
 import { venueLabel } from '../game/content/venues.ts'
 import { avatarProportions } from '../types/avatar.ts'
 import { createStandIn } from '../scene/body/stand-in.ts'
+import { createShaderWarmup } from '../scene/shader-warmup.ts'
 import type { StandIn } from '../scene/body/stand-in.ts'
 import { tileKey, tileOf } from './frame.ts'
 import { createTileWindow } from './window.ts'
@@ -35,6 +36,8 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
   const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 220), renderer = options.renderer ?? new THREE.WebGLRenderer({ antialias: true })
   renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 1.5)); renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.shadowMap.enabled = false
   container.appendChild(renderer.domElement)
+  // New shader programs link before the draw that first needs them (src/scene/shader-warmup.ts).
+  const warmup = createShaderWarmup(renderer)
   Object.assign(renderer.domElement.style, { display: 'block', width: '100%', height: '100%', touchAction: 'none' })
   world.add(new THREE.HemisphereLight('#e9f1ec', '#797359', 2.5))
   const sun = new THREE.DirectionalLight('#fff0d0', 2); sun.position.set(20, 45, 15); world.add(sun)
@@ -71,7 +74,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
       element.title = 'Game practice site. Rental driving is not available yet.'
       Object.assign(element.style, { position: 'absolute', borderRadius: '7px', padding: '5px 8px', background: '#fff1cb', color: '#573b17', fontSize: '12px' })
       return { view: {
-        attach(parent: Object3D) { asset.view.attach(parent); practiceLabels.appendChild(element); overlayLabels.set(key, { marker, element }); draw(); loop.wake() },
+        attach(parent: Object3D) { asset.view.attach(parent); warmup.mark(); practiceLabels.appendChild(element); overlayLabels.set(key, { marker, element }); draw(); loop.wake() },
         rebase(origin: TileCoord) { asset.view.rebase(origin) },
         dispose() { asset.view.dispose(); element.remove(); if (overlayLabels.get(key)?.element === element) overlayLabels.delete(key) },
       } }
@@ -103,7 +106,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
   function useJourney(journey: StreetJourney, restore: boolean) {
     if (closed) return
     if (!liveTiles && journey.kind === 'walking') {
-      liveTiles = createTileWindow({ city: journey.city, version: journey.version, load: async (tile, signal) => { try { return await client.tile(tile, signal) } catch (error) { if (!signal.aborted && initialTile?.key === tileKey(tile)) initialTile.reject(error); else if (!signal.aborted && tileKey(tile) === centreKey) fail(error); throw error } }, onTile(tile) { scenery.add(tile); addPracticeOverlay(tile); rebuildGrid(); if (initialTile?.key === tileKey(tile.tile)) { initialTile.resolve(); initialTile = null } status.textContent = 'Tap the road to walk. Choose a doorway to go inside.'; draw(); loop.wake() }, onEvict(tile) { overlays.onEvict(tile.tile); overlayTiles.delete(tileKey(tile.tile)); scenery.remove(tile) } })
+      liveTiles = createTileWindow({ city: journey.city, version: journey.version, load: async (tile, signal) => { try { return await client.tile(tile, signal) } catch (error) { if (!signal.aborted && initialTile?.key === tileKey(tile)) initialTile.reject(error); else if (!signal.aborted && tileKey(tile) === centreKey) fail(error); throw error } }, onTile(tile) { scenery.add(tile); warmup.mark(); addPracticeOverlay(tile); rebuildGrid(); if (initialTile?.key === tileKey(tile.tile)) { initialTile.resolve(); initialTile = null } status.textContent = 'Tap the road to walk. Choose a doorway to go inside.'; draw(); loop.wake() }, onEvict(tile) { overlays.onEvict(tile.tile); overlayTiles.delete(tileKey(tile.tile)); scenery.remove(tile) } })
     }
     applyJourney(journey, restore); if (journey.kind === 'walking') liveTiles?.setCentre(tileOf(journey.point))
   }
@@ -147,7 +150,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
       element.style.left = `${(point.x + 1) * container.clientWidth / 2}px`; element.style.top = `${(1 - point.y) * container.clientHeight / 2}px`; element.style.transform = 'translate(-50%,-100%)'
     }
   }
-  function draw() { if (closed) return; const at = scenery.local(walker); avatar.position.set(at.x, 0, at.z); avatar.rotation.y = walker.ry; standIn?.move(at.x, 0, at.z, walker.ry); orbit.follow(at.x, 1.2, at.z); orbit.apply(camera); view?.render(); renderer.render(world, camera); renderCount++; renderDoors(); renderPracticeLabels() }
+  function draw() { if (closed) return; const at = scenery.local(walker); avatar.position.set(at.x, 0, at.z); avatar.rotation.y = walker.ry; standIn?.move(at.x, 0, at.z, walker.ry); orbit.follow(at.x, 1.2, at.z); orbit.apply(camera); if (warmup.hold(world, world, camera, draw)) return; view?.render(); renderer.render(world, camera); renderCount++; renderDoors(); renderPracticeLabels() }
   const loop = createMotionLoop(dt => {
     if (closed || !initialized) return false
     const accepted = client.journey, before = { x: walker.x, z: walker.z }, ahead = accepted ? Math.hypot(walker.x - accepted.point.x, walker.z - accepted.point.z) : 0
@@ -171,7 +174,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
   renderer.domElement.addEventListener('pointerdown', pointerDown); renderer.domElement.addEventListener('pointermove', pointerMove); renderer.domElement.addEventListener('pointerup', pointerUp); renderer.domElement.addEventListener('pointercancel', pointerUp)
   function resize() { if (closed) return; const w = Math.max(1, container.clientWidth), h = Math.max(1, container.clientHeight); renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); draw() }
   const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(resize) : null; observer?.observe(container); resize()
-  standIn = createStandIn(kit, () => { if (!closed) { draw(); loop.wake() } })
+  standIn = createStandIn(kit, () => { if (!closed) { warmup.mark(); draw(); loop.wake() } })
   standIn.wear(player.look, player.seed); standIn.attach({ group: world, avatar, scale: 0.72 }); standIn.pose('stand', undefined, false); standIn.start(renderer)
   const ready = (options.journey ? Promise.resolve(options.journey) : client.refresh()).then(async journey => {
     if (closed) throw Error('Street closed')
@@ -199,7 +202,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
     ready, update: draw, resize,
     refresh: async () => { const journey = await client.refresh(); useJourney(journey, true) },
     setState(next: HostState | null) { busy = Boolean(next?.activeAction); if (busy) { held.clear(); walker.stop(); doorTask = null; controls?.release() } draw() },
-    setPlayer(next: HostPlayer = {}) { const value = JSON.stringify(next); if (value === playerKey) return false; playerKey = value; player = next; standIn?.attach(null); world.remove(avatar); avatar.userData.dispose(); avatar = createCanonicalStaticAvatar(kit, player.look, { sceneScale: 0.72, seed: player.seed }); world.add(avatar); standIn?.wear(player.look, player.seed); standIn?.attach({ group: world, avatar, scale: 0.72 }); draw(); return true },
+    setPlayer(next: HostPlayer = {}) { const value = JSON.stringify(next); if (value === playerKey) return false; playerKey = value; player = next; standIn?.attach(null); world.remove(avatar); avatar.userData.dispose(); avatar = createCanonicalStaticAvatar(kit, player.look, { sceneScale: 0.72, seed: player.seed }); world.add(avatar); warmup.mark(); standIn?.wear(player.look, player.seed); standIn?.attach({ group: world, avatar, scale: 0.72 }); draw(); return true },
     setCrowd(_people: HostPerson[]): boolean { return false },
     setInsets(insets: { top?: number; bottom?: number }): boolean { controls?.place(insets); status.style.bottom = `${(insets.bottom ?? 0) + 12}px`; return true },
     setLocation(id: string) { location = id; if (id !== 'city-street') { walker.stop(); doorTask = null; loop.stop() } return true },

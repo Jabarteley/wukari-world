@@ -112,6 +112,7 @@ import type { WalkPoint, WalkMode } from './scene/movement.ts';
 import type { LifeState } from './types/life.ts';
 import { inputMode, readFacts } from './ui/inputMode.ts';
 import { NPC_WORD, addNpcWord, npcAria, npcTitle } from './ui/npc-mark.ts';
+import { createShaderWarmup } from './scene/shader-warmup.ts';
 
 type RenderBenchmark = import('./scene/render-benchmark.ts').RenderBenchmark;
 type RenderMeasurement = ReturnType<typeof import('./scene/render-benchmark.ts')['observeRenders']>;
@@ -468,6 +469,8 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   const lights = createHostLights(THREE, scene, { shadowMap: tier.shadowMap });
   // The animated canonical body mounts over the scene's canonical static pose. The adapter preloads its assets.
   let gone = false;
+  // New shader programs link before the draw that first needs them (src/scene/shader-warmup.ts).
+  const warmup = createShaderWarmup(renderer);
   // Bodies are preloaded. Host mutations already request a draw, so mounting must not request a second one.
   const standIn = createStandIn(kit, () => {});
   // The graded sky behind the scene and the soft ground under it (one texture, one mesh, for every venue).
@@ -1364,9 +1367,10 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   }
   // A scene that is not on screen (the map is in front) is not drawn: it is drawn when it is shown again (resize()).
   kit.requestRender = () => crowdReady();
-  function crowdReady() { if (gone) return; current?.group.userData.refreshCharacterCosts?.(); readTags(); if (!loop.running) renderScene(); }
+  function crowdReady() { if (gone) return; warmup.mark(); current?.group.userData.refreshCharacterCosts?.(); readTags(); if (!loop.running) renderScene(); }
   function renderScene(updateStarted?: number) {
     if (gone || container.hidden === true) return;
+    if (current && warmup.hold(scene, scene, camera, () => { if (!gone && !loop.running) renderScene(); })) return;
     if (!view) refreshStaticSolids();
     standIn.start(renderer);
     view?.render();
@@ -1486,6 +1490,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     const shown = current;
     shown.onAmbient = (ready) => {
       if (gone || current !== shown) return;
+      warmup.mark();
       readTags();
       // The people arrived after the scene was shown: they get their window of frames like everyone who was there on arrival.
       if (ready && wakeAmbientFrames(shown)) return;
@@ -1521,6 +1526,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     enterScene();
     readTags();
     applyLook();
+    warmup.mark();
     resize();
   }
   /** Give the current scene the latest game state. Draws one frame only if the scene says it changed. */

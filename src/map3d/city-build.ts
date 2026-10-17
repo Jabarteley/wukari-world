@@ -353,7 +353,55 @@ interface TrafficItem { road: Road; at: number; speed: number; kind: 'danfo' | '
 interface Builder extends LandmarkContext { at(x: number, y: number, z: number, ry: number, draw: (g: Builder) => void): unknown }
 type MaybeInstanced = Mesh & { isInstancedMesh?: boolean; count?: number };
 
-export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venues = {}, soon = {} }: { venues?: Readonly<Record<string, CityVenue | undefined>>; soon?: object } = {}): City {
+/**
+ * Returns (x, z) => the least of (distance to a segment - its half width) over the segments; Infinity with none. The segments are filed in a grid of
+ * squares by the squares their bounding boxes overlap, and a query walks outwards ring by ring until what is left unvisited cannot be nearer, so the
+ * answer is the same minimum a pass over every segment gives, from the same distances.
+ */
+export function roadDistanceTo(segments: readonly { a: XZ; b: XZ; half: number }[]): (x: number, z: number) => number {
+  const SQUARE = 12;
+  let grid: Map<number, number[]> | null = null, widest = 0, minI = 0, maxI = 0, minJ = 0, maxJ = 0;
+  const key = (i: number, j: number) => i * 1048576 + j;
+  const build = () => {
+    grid = new Map();
+    minI = minJ = Infinity; maxI = maxJ = -Infinity;
+    segments.forEach((segment, n) => {
+      widest = Math.max(widest, segment.half);
+      const i0 = Math.floor(Math.min(segment.a.x, segment.b.x) / SQUARE), i1 = Math.floor(Math.max(segment.a.x, segment.b.x) / SQUARE);
+      const j0 = Math.floor(Math.min(segment.a.z, segment.b.z) / SQUARE), j1 = Math.floor(Math.max(segment.a.z, segment.b.z) / SQUARE);
+      minI = Math.min(minI, i0); maxI = Math.max(maxI, i1); minJ = Math.min(minJ, j0); maxJ = Math.max(maxJ, j1);
+      for (let i = i0; i <= i1; i++) for (let j = j0; j <= j1; j++) { const at = key(i, j), list = grid!.get(at); if (list) list.push(n); else grid!.set(at, [n]); }
+    });
+  };
+  const plain = (x: number, z: number) => { let best = Infinity; for (const segment of segments) { const d = segmentDistance(x, z, segment.a, segment.b) - segment.half; if (d < best) best = d; } return best; };
+  return (x, z) => {
+    if (!segments.length || !Number.isFinite(x) || !Number.isFinite(z)) return plain(x, z);
+    if (!grid) build();
+    const ci = Math.floor(x / SQUARE), cj = Math.floor(z / SQUARE), last = Math.max(Math.abs(ci - minI), Math.abs(ci - maxI), Math.abs(cj - minJ), Math.abs(cj - maxJ));
+    let best = Infinity;
+    for (let ring = 0; ring <= last; ring++) {
+      for (let i = ci - ring; i <= ci + ring; i++) for (let j = cj - ring; j <= cj + ring; j++) {
+        if (Math.max(Math.abs(i - ci), Math.abs(j - cj)) !== ring) continue;
+        const list = grid!.get(key(i, j));
+        if (list) for (const n of list) { const segment = segments[n]!, d = segmentDistance(x, z, segment.a, segment.b) - segment.half; if (d < best) best = d; }
+      }
+      if (ring * SQUARE - widest > best) break;
+    }
+    return best;
+  };
+}
+
+export function buildCity(kit: MapKit, pack: CityPack, network: Network, options: CityBuildOptions = {}): City {
+  const steps = buildCitySteps(kit, pack, network, options);
+  for (;;) { const step = steps.next(); if (step.done) return step.value; }
+}
+/** What the city is built from besides the pack: the venues' definitions, and the coming-soon table. */
+export interface CityBuildOptions { venues?: Readonly<Record<string, CityVenue | undefined>>; soon?: object }
+/**
+ * buildCity as steps: the same build, paused (`yield`) between its parts so a caller can let a frame draw in between
+ * (src/map3d/index.ts does). Driven to the end at once, it is exactly buildCity.
+ */
+export function* buildCitySteps(kit: MapKit, pack: CityPack, network: Network, { venues = {}, soon = {} }: CityBuildOptions = {}): Generator<void, City, void> {
   const { THREE } = kit;
   const shared = sceneMaterials(kit);
   const rng = mulberry(hash(`city:${pack.id}`));
@@ -374,6 +422,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   const add = <T extends Mesh>(mesh: T, name: string, order = 0): T => { mesh.name = name; mesh.renderOrder = order; mesh.matrixAutoUpdate = false; mesh.updateMatrix(); keep(mesh.geometry); group.add(mesh); return mesh; };
   const count = <T extends MaybeInstanced>(mesh: T): T => { triangles += (mesh.geometry.index!.count / 3) * (mesh.isInstancedMesh ? mesh.count! : 1); return mesh; };
 
+  yield;
   // ---- the board and the water -------------------------------------------------------------
   const { minX, maxX, minZ, maxZ } = pack.bounds;
   const seaZ = pack.bounds.sea ? pack.bounds.sea.z1 + 4 : maxZ;
@@ -401,6 +450,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
     count(add(waterways.build(waterwayMaterial), 'waterways'));
   }
 
+  yield;
   // ---- land --------------------------------------------------------------------------------
   const raw = createRaw(THREE);
   // `k` shrinks what is drawn on a road (widths, kerbs, parapets, piers) for a map in true scale; the road's length and the deck's height are the pack's.
@@ -475,6 +525,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
     raw.shape(entry.polygon, sand ? -0.12 : 0, LAND_COLOURS[entry.kind] || LAND_COLOURS.mainland, holes);
   }
 
+  yield;
   // ---- character: ground colour of old and planned areas, hills, inland water, railways ------
   const AREA_COLOURS = { old: '#bca681', planned: '#9fc17c' } as const;
   const blob = (x: number, z: number, radius: number, seed: number): [number, number][] => Array.from({ length: 22 }, (_, i) => {
@@ -503,6 +554,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
     for (const side of [-0.2, 0.2]) raw.ribbon(line, 0.08, 0.04, '#d8d4c6', side);
   }
 
+  yield;
   // ---- roads and bridges --------------------------------------------------------------------
   const b = createBatch(THREE), w = createBatch(THREE);
   const g: Builder = { b, w, at: (x, y, z, ry, draw) => b.at(x, y, z, ry, () => w.at(x, y, z, ry, () => draw(g), 0, 0, LANDMARK_SCALE), 0, 0, LANDMARK_SCALE) };
@@ -633,6 +685,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
     }
   }
 
+  yield;
   // ---- landmarks ----------------------------------------------------------------------------
   const ground = (x: number, z: number) => reliefAt(hills, x, z);
   // A railway keeps the fabric off it, and each station stands beside its line.
@@ -680,6 +733,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   const hg: Builder = { b: homeBatch, w: homeWindows, at: (x, y, z, ry, draw) => draw(hg) };
   const homeTop = drawLandmark(hg, 'home').top * LANDMARK_SCALE;
 
+  yield;
   // ---- district plates, laid on the ground or lettered on the water ---------------------------
   const plates: (PackDistrict & { box: Box4 })[] = [];
   for (const plate of pack.districts || []) {
@@ -691,6 +745,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
     plates.push({ ...plate, box: [plate.x - wide / 2 - size, plate.z - size * 1.2, plate.x + wide / 2 + size, plate.z + size * 1.2] });
   }
 
+  yield;
   // ---- what only this city has ----------------------------------------------------------------
   pack.decorate?.(b, { rng, w });
   if (pack.heritageLines?.length) {
@@ -705,6 +760,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   /** The metropolitan core: the default view, where the boats sail and the fabric is densest. The whole board when the pack names none. */
   const core = pack.core ?? { minX: minX + 8, maxX: maxX - 8, minZ: minZ + 8, maxZ: maxZ - 8 };
   const inCore = (x: number, z: number, pad = 0) => x >= core.minX - pad && x <= core.maxX + pad && z >= core.minZ - pad && z <= core.maxZ + pad;
+  yield;
   // ---- boats on the lagoon and the creek ------------------------------------------------------
   const hulls = ['#b5483f', '#2b5fa8', '#e0a23a', '#3f9a5a', '#ece2c6'];
   for (let i = 0, placed = 0; i < 400 && placed < 16; i++) {
@@ -714,8 +770,9 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
     placed += 1;
   }
 
+  yield;
   // ---- the fabric: houses, blocks, towers, trees and palms ------------------------------------
-  const roadDistance = (x: number, z: number) => { let best = Infinity; for (const segment of segments) { const d = segmentDistance(x, z, segment.a, segment.b) - segment.half; if (d < best) best = d; } return best; };
+  const roadDistance = roadDistanceTo(segments);
   // The first estate of every local government is open ground for its residents' houses.
   const fronts: CityFront[] = (pack.lgas || []).map((lga) => estateLayout(pack, lga.id)!.cells[0]!);
   const blocked = (x: number, z: number, pad: number) => fronts.some((cell) => Math.abs(x - cell.x) < cell.size / 2 + pad + 0.6 && Math.abs(z - cell.z) < cell.size / 2 + pad + 0.6) || clear.some((circle) => Math.hypot(circle.x - x, circle.z - z) < circle.r + pad)
@@ -734,12 +791,14 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   const BLOCKS = ['#d9cfbb', '#cdc2ac', '#bdc9ce', '#d9c9b6', '#c9d2c5', '#e3d8c4'], GLASSY = ['#8daab9', '#a6bbc4', '#7f9eae', '#b7c8cb', '#96b1b2', '#c9c6b8'];
   const inArea = (entry: PackFabric, x: number, z: number) => inBox(x, z, entry.box) && (!entry.circle || Math.hypot(x - entry.circle[0], z - entry.circle[1]) <= entry.circle[2]);
   const houses: HouseItem[] = [], towers: TowerItem[] = [], trees: TreeItem[] = [], palms: TreeItem[] = [];
+  let sinceYield = 0;
   for (const area of pack.fabric || []) {
     const style = STYLES[area.style];
     if (!style) continue;
     // Far suburbs are drawn lighter: the same fabric, spaced wider, so a whole state costs little more than the core.
     const gap = style.gap * (inCore((area.box[0] + area.box[2]) / 2, (area.box[1] + area.box[3]) / 2, 20) ? 1 : FAR_SPREAD);
     for (let x = area.box[0]; x <= area.box[2]; x += gap) for (let z = area.box[1]; z <= area.box[3]; z += gap) {
+      if (++sinceYield % 64 === 0) yield;
       const px = x + (rng() - 0.5) * 0.7, pz = z + (rng() - 0.5) * 0.7, roll = rng(), turn = rng() < 0.5 ? 0 : Math.PI / 2, pick = Math.floor(rng() * 6), tall = rng();
       // The first area that contains a point owns it, so overlapping areas never double up.
       if (pack.fabric.find((entry) => inArea(entry, px, pz)) !== area) continue;
@@ -836,6 +895,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   fabricLayer(instanced('street-lamps', unit((u) => { u.cyl(0, 0.4, 0, 0.03, 0.8, '#8b9096', { seg: 3, open: true }); u.box(0.1, 0.8, 0, 0.28, 0.04, 0.09, '#d9d4c0'); }), materials.instanced, lamps,
     (item, o) => { o.position.set(item.x, item.y, item.z); o.rotation.set(0, item.ry, 0); o.scale.setScalar(Math.max(0.7, k * 1.2)); }));
 
+  yield;
   // ---- flat shadows: one instanced quad beside everything that stands up -----------------------
   for (const item of fabric.houses) shadows.push({ x: item.x + 0.3 + item.sy * 0.22, z: item.z + 0.2 + item.sy * 0.16, w: item.sx + 0.5, d: item.sz + 0.5, ry: item.ry });
   for (const item of fabric.towers) shadows.push({ x: item.x + 0.3 + item.sy * 0.2, z: item.z + 0.2 + item.sy * 0.14, w: item.sx + 0.5 + item.sy * 0.12, d: item.sz + 0.5 + item.sy * 0.1, ry: item.ry });
@@ -846,6 +906,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   fabricLayer(shadowMesh);
   let fabricOn = true;
 
+  yield;
   // ---- street traffic: parked until the Moving layer is on and a frame loop is running ---------
   const lanes = network.roads.filter((road) => road.major && road.length > 20 && road.points.some((point) => inCore(point.x, point.z)));
   if (!lanes.length) lanes.push(...network.roads.filter((road) => road.major && road.length > 20));
@@ -914,6 +975,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   }
   placeTraffic(0);
 
+  yield;
   // ---- waves: a few pale dashes on open water ---------------------------------------------------
   const waveRaw = createRaw(THREE);
   for (let i = 0, placed = 0; i < 2400 && placed < 260; i++) {
@@ -924,6 +986,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   }
   const waves = count(add(waveRaw.build(materials.waves), 'waves', 1));
 
+  yield;
   // ---- bake ------------------------------------------------------------------------------------
   count(add(raw.build(materials.ground), 'ground'));
   const built = b.build(shared);
@@ -963,6 +1026,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   }
   setHome(null);
 
+  yield;
   // ---- the local governments: one flat layer of tints and boundary lines, drawn on land only ----------------
   let lgaMesh: Mesh<BufferGeometry, MeshBasicMaterial> | null = null, lgaOwn: string | null | undefined;
   if (pack.lgas?.length) {

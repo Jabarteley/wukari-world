@@ -47,16 +47,61 @@ export function soleMarkers(mesh) {
   return result;
 }
 
+// Skinned world positions without three's per-vertex applyBoneTransform. That
+// multiplies bone matrix by inverse for every influence of every vertex, and
+// the skeleton.update() before it rebuilds every bone matrix for nothing:
+// getVertexPosition reads bone.matrixWorld directly. Here each used bone's skin
+// matrix is built once per call and the morph-applied bind-space vertex is cached.
+const _skinIndex = new THREE.Vector4(), _skinWeight = new THREE.Vector4(), _tmp = V(), _m = new THREE.Matrix4(), _out = new THREE.Matrix4();
+function prepare(mesh, ids) {
+  const g = mesh.geometry, si = g.attributes.skinIndex, sw = g.attributes.skinWeight;
+  const n = ids.length, base = new Float32Array(n * 3), bone = new Uint16Array(n * 4), weight = new Float32Array(n * 4);
+  for (let k = 0; k < n; k++) {
+    const i = ids[k];
+    THREE.Mesh.prototype.getVertexPosition.call(mesh, i, _tmp);
+    _tmp.applyMatrix4(mesh.bindMatrix).toArray(base, k * 3);
+    _skinIndex.fromBufferAttribute(si, i); _skinWeight.fromBufferAttribute(sw, i);
+    _skinIndex.toArray(bone, k * 4); _skinWeight.toArray(weight, k * 4);
+  }
+  return { base, bone, weight, influences: mesh.morphTargetInfluences ? mesh.morphTargetInfluences.slice() : null, bind: mesh.bindMatrix.clone() };
+}
+function stale(mesh, prep) {
+  const a = mesh.morphTargetInfluences, b = prep.influences;
+  if (!a !== !b) return true;
+  if (a) for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return true;
+  return !mesh.bindMatrix.equals(prep.bind);
+}
+// Calls visit(index, worldVertex) for each id, in order.
+function skinnedWorld(marker, key, ids, visit) {
+  const mesh = marker.mesh, cache = marker.cache || (marker.cache = {});
+  let prep = cache[key];
+  if (!prep || stale(mesh, prep)) prep = cache[key] = prepare(mesh, ids);
+  const { base, bone, weight } = prep, bones = mesh.skeleton.bones, inv = mesh.skeleton.boneInverses;
+  const skin = new Map();
+  _out.multiplyMatrices(mesh.matrixWorld, mesh.bindMatrixInverse);
+  const e = _out.elements, v = V();
+  for (let k = 0; k < ids.length; k++) {
+    let x = 0, y = 0, z = 0;
+    for (let j = 0; j < 4; j++) {
+      const w = weight[k * 4 + j]; if (w === 0) continue;
+      const b = bone[k * 4 + j]; let m = skin.get(b);
+      if (!m) { m = new THREE.Matrix4().multiplyMatrices(bones[b].matrixWorld, inv[b]); skin.set(b, m); }
+      _tmp.set(base[k * 3], base[k * 3 + 1], base[k * 3 + 2]).applyMatrix4(m);
+      x += _tmp.x * w; y += _tmp.y * w; z += _tmp.z * w;
+    }
+    v.set(x, y, z).applyMatrix4(_out);
+    visit(ids[k], v);
+  }
+}
+
 function sample(marker) {
-  const vertex = V(), toe = V(), heel = V(); let minY=Infinity;
-  marker.mesh.skeleton?.update();
+  const toe = V(), heel = V(); let minY=Infinity;
   const {toeIds,heelIds}=marker;
-  for (const i of marker.sole) {
-    marker.mesh.getVertexPosition(i,vertex); marker.mesh.localToWorld(vertex);
+  skinnedWorld(marker, 'sole', marker.sole, (i, vertex) => {
     minY=Math.min(minY,vertex.y);
     if (toeIds.has(i)) toe.add(vertex);
     if (heelIds.has(i)) heel.add(vertex);
-  }
+  });
   return {toe:toe.multiplyScalar(1/marker.toe.length),heel:heel.multiplyScalar(1/marker.heel.length),minY};
 }
 
@@ -137,7 +182,7 @@ export function createFootPlanting({root, bones, groundHeight = (_x,_z)=>root.po
       lowerPelvis=Math.max(lowerPelvis,required);
     }
     lowerPelvis=THREE.MathUtils.clamp(lowerPelvis,0,THREE.MathUtils.lerp(.010,.035,runBlend)*scale);
-    if(lowerPelvis>0){const p=pelvis.getWorldPosition(V());p.y-=lowerPelvis;pelvis.position.copy(pelvis.parent.worldToLocal(p));root.updateMatrixWorld(true);}
+    if(lowerPelvis>0){const p=pelvis.getWorldPosition(V());p.y-=lowerPelvis;pelvis.position.copy(pelvis.parent.worldToLocal(p));pelvis.updateWorldMatrix(false,true);}
     diagnostics.pelvisLoweringM=lowerPelvis;
     for(const side of ['l','r']) {
       const marker=markers[side], state=feet[side], thigh=bones.get(`thigh_${side}`), calf=bones.get(`calf_${side}`), foot=bones.get(`foot_${side}`);
@@ -163,7 +208,6 @@ export function createFootPlanting({root, bones, groundHeight = (_x,_z)=>root.po
         reachDeficit=Math.max(0,h.distanceTo(desiredAnkle)-(h.distanceTo(k)+k.distanceTo(a)-(pole?1e-8:.001)));
       }
       solveLeg(thigh,calf,foot,desiredAnkle,pole);
-      root.updateMatrixWorld(true);
       let corrected=sample(marker);
       // Calf skin weights can tilt the sole again after the knee solve. Settle
       // that small deformation before the final contact-position correction.
@@ -188,15 +232,15 @@ export function createFootPlanting({root, bones, groundHeight = (_x,_z)=>root.po
       // the same ankle target after lowering the pelvis by only that deficit.
       if(earlyWalkWeight>.001 && weight>.98 && reachDeficit>.0005*scale && pelvis) {
         const correction=Math.min(reachDeficit,.010*scale)*earlyWalkWeight;
-        const p=pelvis.getWorldPosition(V());p.y-=correction;pelvis.position.copy(pelvis.parent.worldToLocal(p));root.updateMatrixWorld(true);
-        solveLeg(thigh,calf,foot,desiredAnkle,pole);root.updateMatrixWorld(true);corrected=sample(marker);
+        const p=pelvis.getWorldPosition(V());p.y-=correction;pelvis.position.copy(pelvis.parent.worldToLocal(p));pelvis.updateWorldMatrix(false,true);
+        solveLeg(thigh,calf,foot,desiredAnkle,pole);corrected=sample(marker);
         diagnostics.pelvisLoweringM+=correction;
       }
       // A second small solve removes skin-weight error at the material marker.
       if(weight>.98) {
         const residual=state.anchor.clone().sub(corrected[state.contact]); residual.y=groundHeight(corrected.toe.x,corrected.toe.z)+.002*scale-corrected.minY;
         residual.clampLength(0,.025*scale);
-        solveLeg(thigh,calf,foot,foot.getWorldPosition(V()).add(residual),getKneePole?.(side)); root.updateMatrixWorld(true);
+        solveLeg(thigh,calf,foot,foot.getWorldPosition(V()).add(residual),getKneePole?.(side));
       }
       const final=sample(marker); state.weight=weight;
       // Preserve heel strike, then transfer support at flat foot. Capture the
@@ -211,13 +255,12 @@ export function createFootPlanting({root, bones, groundHeight = (_x,_z)=>root.po
       if(gate>.001) for(const side of ['l','r']) {
         const marker=markers[side], thigh=bones.get(`thigh_${side}`), calf=bones.get(`calf_${side}`), foot=bones.get(`foot_${side}`);
         if(!marker||!thigh||!calf||!foot) continue;
-        const raw=sample(marker), vertex=V(); let lowest=raw.minY;
-        marker.mesh.skeleton?.update();
-        for(const i of marker.all){marker.mesh.getVertexPosition(i,vertex);marker.mesh.localToWorld(vertex);if(vertex.y<lowest)lowest=vertex.y;}
+        const raw=sample(marker); let lowest=raw.minY;
+        skinnedWorld(marker,'all',marker.all,(_i,vertex)=>{if(vertex.y<lowest)lowest=vertex.y;});
         const deficit=groundHeight(raw.toe.x,raw.toe.z)+.001*scale-lowest;
         if(deficit<=.0005*scale) continue;
         const lift=Math.min(deficit,.035*scale)*gate;
-        solveLeg(thigh,calf,foot,foot.getWorldPosition(V()).add(new THREE.Vector3(0,lift,0)),getKneePole?.(side)); root.updateMatrixWorld(true);
+        solveLeg(thigh,calf,foot,foot.getWorldPosition(V()).add(new THREE.Vector3(0,lift,0)),getKneePole?.(side));
         diagnostics.feet[side]={...(diagnostics.feet[side]||{}),clampLiftM:lift,minY:sample(marker).minY};
       }
     }

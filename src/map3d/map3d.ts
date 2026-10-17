@@ -59,7 +59,10 @@ import { COMING_SOON } from '../game/content/venues.ts';
 import { contentFor } from '../game/cities/runtime.ts';
 import { openingInfo, lagosTime } from '../game/clock.ts';
 import { buildNetwork, localTripRoute, pointInPolygon } from './roads.ts';
-import { buildCity, createRaw, LANDMARK_SCALE } from './city-build.ts';
+import { buildCity, buildCitySteps, createRaw, LANDMARK_SCALE } from './city-build.ts';
+import { turn, warmEstates } from './warm.ts';
+import type { Network } from './roads.ts';
+import type { Kit } from '../scene/kit.ts';
 import { createRig, DEFAULT_PITCH, MIN_DISTANCE, PITCH_MAX, pitchFloor } from './camera.ts';
 import { classifyTwoFinger, compassOf, createKeyTurn, isLook, tiltOf } from './camera-input.ts';
 import type { TwoFingerKind } from './camera-input.ts';
@@ -85,6 +88,7 @@ import type { MapPeople, PinLayer, PeoplePin } from './people.ts';
 import { cityUnit } from '../game/cities/terminology.ts';
 import { lightFps } from '../lightMode.ts';
 import { frameAction } from '../scene/frame-gate.ts';
+import { createShaderWarmup } from '../scene/shader-warmup.ts';
 
 /** What the map reads of a venue (src/game/content/venues.ts): its icon, filter category and opening hours. */
 interface VenueInfo { icon?: string; category?: string; hours?: OpeningHours }
@@ -122,6 +126,8 @@ type Gesture = { kind: 'pan' | 'rotate'; id: number; from: Pt; last: Pt; moved: 
 /** The renderer the map draws with: a WebGLRenderer, or a stand-in under test. */
 export type MapRenderer = THREE.WebGLRenderer
 export interface Map3DOptions {
+  /** The city built ahead in short slices by prebuildCity(); the map owns it from here (it frees it on destroy). Without it the map builds the city itself, at once. */
+  prebuilt?: PrebuiltCity | null
   pack: CityPack
   cityId?: string
   /** The model library's trip-vehicle builder (src/models/integration/scene-models.ts), or null for the batch-drawn ones. */
@@ -156,7 +162,29 @@ export const detailOf = (event: CustomEvent<unknown>): Record<string, unknown> =
   return detail && typeof detail === 'object' ? detail as Record<string, unknown> : {};
 };
 
-export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, travelVehicle = null, trafficModels = null, onSelectVenue = () => {}, onSelectGov = () => {}, onSelectNeighbour = () => {}, onSelectContext = () => {}, onTripDue = () => {}, onContextLost = () => {},
+/** What the map builds before anything else: the scene kit, the road network and the city (src/map3d/city-build.ts). */
+export interface PrebuiltCity { kit: Kit; network: Network; city: City }
+/**
+ * Build what createMap3D would build first (the road network and the city), a little at a time: estate layouts one
+ * local government per slice, then the city part by part (buildCitySteps), giving the browser a turn whenever a slice
+ * has run for `sliceMs`. The numbers are the same ones the map computes at once, so the map is the same; only the
+ * long task becomes several short ones. Resolves null (and frees what it made) when `alive()` turns false.
+ */
+export async function prebuildCity(pack: CityPack, cityId: string, alive: () => boolean = () => true, { sliceMs = 4, now = () => globalThis.performance.now(), pause = turn }: { sliceMs?: number; now?: () => number; pause?: () => Promise<void> } = {}): Promise<PrebuiltCity | null> {
+  const content = contentFor(cityId), venues = Object.fromEntries(content.venues.map((venue) => [venue.id, venue.definition]));
+  await warmEstates(pack, alive, now, pause);
+  if (!alive()) return null;
+  const kit = createKit(), network = buildNetwork(pack), steps = buildCitySteps(kit, pack, network, { venues, soon: SOON_TABLE });
+  let started = now();
+  for (;;) {
+    if (!alive()) { steps.return(undefined as never); kit.dispose(); return null; }
+    const step = steps.next();
+    if (step.done) return { kit, network, city: step.value };
+    if (now() - started >= sliceMs) { await pause(); started = now(); }
+  }
+}
+
+export function createMap3D(container: HTMLElement, { prebuilt = null, pack, cityId = pack?.id, travelVehicle = null, trafficModels = null, onSelectVenue = () => {}, onSelectGov = () => {}, onSelectNeighbour = () => {}, onSelectContext = () => {}, onTripDue = () => {}, onContextLost = () => {},
   world = null, ladder = NO_PORT, onSelectLga = () => {}, onSelectHouse = () => {}, onSelectPeople = () => {},
   renderer: providedRenderer, raf = globalThis.requestAnimationFrame?.bind(globalThis), caf = globalThis.cancelAnimationFrame?.bind(globalThis), now = () => globalThis.performance.now(),
   reducedMotion = Boolean(globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches), deepLink = null, tabHidden }: Map3DOptions) {
@@ -165,9 +193,11 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   const govVenueIds = new Set(content.venues.filter((venue) => venue.kind === 'statehouse' || venue.kind === 'polling').map((venue) => venue.id));
   const doc: Document | null = Boolean(globalThis.document?.createElement) ? globalThis.document : null;
   const pageHidden = tabHidden || (() => Boolean(doc && doc.hidden));
-  const kit = createKit(), { THREE } = kit;
+  const kit = prebuilt?.kit ?? createKit(), { THREE } = kit;
   const renderer = providedRenderer || new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.shadowMap.enabled = false;
+  // New shader programs link before the draw that first needs them (src/scene/shader-warmup.ts).
+  const warmup = createShaderWarmup(renderer);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.08;
@@ -178,8 +208,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   const camera = new THREE.PerspectiveCamera(34, 1, 1, 2000);
   const hemi = new THREE.HemisphereLight('#ffffff', '#9fb07f', 2), sun = new THREE.DirectionalLight('#fff0d2', 2.4);
   scene.add(hemi, sun);
-  const network = buildNetwork(pack);
-  const city = buildCity(kit, pack, network, { venues: venueTable, soon: SOON_TABLE });
+  const network = prebuilt?.network ?? buildNetwork(pack);
+  const city = prebuilt?.city ?? buildCity(kit, pack, network, { venues: venueTable, soon: SOON_TABLE });
   scene.add(city.group);
   const overlays = createOverlays(kit, city);
   scene.add(overlays.group);
@@ -304,6 +334,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     readBand();
     if (route && routeStep() !== routeWidth) drawRoute();
     syncWorld();
+    if (warmup.hold(scene, scene, camera, request)) return;
     renderer.render(scene, camera);
     renderCount += 1;
     placeLabels();

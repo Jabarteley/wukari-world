@@ -18,7 +18,7 @@
  */
 import { FURNITURE } from '../game/content/furniture.ts'
 import { HOUSE_STYLE, HOUSE_TIERS, STYLE_FIELDS, TIER_ORDER } from '../game/content/world.ts'
-import { checkPlacement, doorSlot, frontDoorBlocked, MAX_PLACED, normalise, plotOf, windowSlot, type Plot } from '../game/home-layout.ts'
+import { checkPlacement, doorSlot, frontDoorBlocked, normalise, plotOf, windowSlot, type Plot } from '../game/home-layout.ts'
 import { ruledPlot, planOf } from '../game/home-plan.ts'
 import type { FurnitureId, HouseStyle, HouseTierId, PlacedItem } from '../types/life.ts'
 import type { FurnitureDefinition } from '../types/content.ts'
@@ -26,6 +26,9 @@ import type { FurnitureDefinition } from '../types/content.ts'
 export const SPACE_PLAN_SCHEMA = 'allworld-space' as const
 export const SPACE_PLAN_VERSION = 1 as const
 export const SPACE_TARGETS = ['home', 'room'] as const
+/** Pieces a home holds: MAX_PLACED of src/game/home-layout.ts, written here so the page's engine chunk exports nothing new for this lazy
+ * module (plan.test.ts asserts the two are equal). */
+export const MAX_PLACED = 160
 export type SpaceTarget = (typeof SPACE_TARGETS)[number]
 
 export const SPACE_LIMITS = Object.freeze({

@@ -4,8 +4,8 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { FURNITURE } from '../game/content/furniture.ts'
 import { DEFAULT_STYLE } from '../game/content/world.ts'
-import { checkPlacement, doorSlot, MAX_PLACED } from '../game/home-layout.ts'
-import { firstJsonObject, fitSpacePlan, fittedPlan, normalizeSpacePlan, packPlan, repairSpacePlan, roomPlot, spacePlanDiff, stylePriceOf, tierPlot, validateSpacePlan, describePlot, type SpacePlanV1, type SpaceProblem } from './plan.ts'
+import { checkPlacement, doorSlot, MAX_PLACED as LAYOUT_MAX } from '../game/home-layout.ts'
+import { MAX_PLACED, firstJsonObject, fitSpacePlan, fittedPlan, normalizeSpacePlan, packPlan, repairSpacePlan, roomPlot, spacePlanDiff, stylePriceOf, tierPlot, validateSpacePlan, describePlot, type SpacePlanV1, type SpaceProblem } from './plan.ts'
 import type { PlacedItem } from '../types/life.ts'
 
 const plan = (items: SpacePlanV1['items'], extra: Partial<SpacePlanV1> = {}): SpacePlanV1 => ({ schema: 'allworld-space', version: 1, target: 'home', items, ...extra })
@@ -114,3 +114,5 @@ test('the plot description names the rooms and the stairs of a duplex', () => {
   assert.match(lines, /Stairs from floor 0/)
   assert.match(lines, /Front door on the side wall at x 0, y 10/)
 })
+
+test('the plan’s piece cap is the home’s', () => assert.equal(MAX_PLACED, LAYOUT_MAX))

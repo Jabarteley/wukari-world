@@ -17,7 +17,7 @@ import { isRecord } from './util.ts';
 import { cleanSourceWord } from './attribution.ts';
 import type { ShareFacts, ShareKind } from '../types/growth.ts';
 
-export const SHARE_KINDS: readonly ShareKind[] = Object.freeze(['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news', 'gist']);
+export const SHARE_KINDS: readonly ShareKind[] = Object.freeze(['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news', 'gist', 'space']);
 const KIND_NAMES: readonly string[] = SHARE_KINDS;
 const isKind = (value: unknown): value is ShareKind => typeof value === 'string' && KIND_NAMES.includes(value);
 export const BRAND = 'Allworld';
@@ -58,6 +58,7 @@ function previewOf(facts: unknown): { title: string; description: string } {
   const f = cleanFacts(facts), place = f.district ? `${f.district}, ${f.city}` : f.city;
   switch (f.kind) {
     case 'house': return { title: `Come to ${f.name}’s house in ${place}`, description: `Knock at the door in ${BRAND}. No sign-up: pick a name and walk in.` };
+    case 'space': return { title: `${f.name}’s place in ${place}`, description: `${f.headline ? `“${f.headline}”. ` : ''}Come and see it in ${BRAND}. No sign-up: pick a name and walk in.` };
     case 'missions': return { title: `${f.name} finished ${f.done} of ${f.total || 3} missions today`, description: `${days(f.days)} in ${f.city}${f.title ? ` · ${f.title}` : ''}. Start your own life in ${BRAND}.` };
     case 'week': return { title: `${f.name}’s week in ${f.city}`, description: `${f.stamps} of 7 days played · ${days(f.days)} in the city${f.title ? ` · ${f.title}` : ''}.` };
     case 'table': return f.tableId ? { title: `Come and play ${f.game || 'a game'} with ${f.name}`, description: `${f.name} is at a table${f.venue ? ` at ${f.venue}` : ''} in ${BRAND}. Sit down or watch. No sign-up.` }
@@ -86,6 +87,7 @@ export function shareText(facts: unknown, link = '', offer?: ShareOffer | null):
     lines.push(`${BRAND} · my week in ${f.city}`, `${SQUARE.on.repeat(f.stamps)}${SQUARE.off.repeat(7 - f.stamps)} ${f.stamps}/7 days`, `${days(f.days)} in the city${f.title ? ` · ⭐ ${f.title}` : ''}`);
   } else if (f.kind === 'table') lines.push(...(f.tableId ? [`Come and play ${f.game} with me${f.venue ? ` at ${f.venue}` : ''} 🃏`, `I am at the table in ${BRAND}. Tap to sit down.`] : [f.won ? `I just won at ${f.game} in ${BRAND} 🏆` : `I am at the ${f.game} table in ${BRAND}`, 'Come and play me.']));
   else if (f.kind === 'house') lines.push(`Come to my house in ${f.district || f.city} 🏠`, `Knock in ${BRAND}. No sign-up.`);
+  else if (f.kind === 'space') lines.push(`I designed my place in ${BRAND}${f.headline ? `: ${f.headline}` : ''} 🏠`, 'Come and see it. No sign-up.');
   else if (f.kind === 'event') lines.push(`${f.event} · ${f.venue}`, `I am going. Meet me there in ${BRAND}.`);
   else if (f.kind === 'wedding') lines.push(`${f.partner ? `${f.name} and ${f.partner} are` : `${f.name} is`} married in ${BRAND} 💍`, 'Come and celebrate with us.');
   else if (f.kind === 'election') lines.push(`${f.headline || `The election in ${f.city} is decided`} 🗳️`, `See the result in ${BRAND}.`);
@@ -115,6 +117,7 @@ export function shareCard(facts: unknown): ShareCard {
   if (f.kind === 'election') return { ...base, headline: f.headline || 'The election is decided', lines: [f.city, 'From the public record'] };
   if (f.kind === 'news' || f.kind === 'gist') return { ...base, headline: f.headline || `News from ${f.city}`, lines: [f.city, 'From the public record'] };
   if (f.kind === 'house') return { ...base, headline: 'Come to my house', lines: [f.name, place, 'Knock at the door'] };
+  if (f.kind === 'space') return { ...base, headline: f.headline || 'Come and see my place', lines: [f.name, place, 'Come and see it'] };
   if (f.kind === 'event') return { ...base, headline: f.event, lines: [f.venue, `${f.name} is going`] };
   return { ...base, headline: `Come and live in ${BRAND}`, lines: [f.name, f.district ? `Home in ${place}` : `Now in ${f.city}`, 'Make your character and come through'] };
 }

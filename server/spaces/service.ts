@@ -15,7 +15,8 @@
  *          A group room: its members only; the room's pieces become the plan's in one write (rev + 1). Room furniture is free.
  *
  * SETTINGS (admin World page, no release): spacesAi (on when the server has a model key), spacesDesignsPerHour (10).
- * STORAGE: nothing new. A home applies through the life; a room through social.convs[g.N].room (server/social/places.ts).
+ * STORAGE: a home applies through the life, a room through social.convs[g.N].room (server/social/places.ts); the applied home's
+ * title is kept for its share card (./store.ts).
  */
 import { registerAdminSetting } from '../admin/settings.ts';
 import { routerOf } from '../models/service.ts';
@@ -30,6 +31,7 @@ import { isRoomId, PLACES, starterRoomItems } from '../../src/places/model.ts';
 import { firstJsonObject, fitSpacePlan, layoutBrief, readBrief, fittedPlan, normalizeSpacePlan, oneLine, roomPlot, SPACE_LIMITS, spacePlanDiff, stylePriceOf, type SpacePlanV1, type SpaceProblem, type SpaceTarget } from '../../src/spaces/plan.ts';
 import { designMessages } from './design-prompt.ts';
 import { allowanceOf, weigh } from './weight.ts';
+import { spacesOf } from './store.ts';
 import type { Refusal } from '../models/router.ts';
 import type { ConversationRecord, Db, RouteContext, RouteRequest, SessionRecord, SocialCollection } from '../types.ts';
 import type { FurnitureId, HouseStyle, HouseTierId, LifeState, PlacedItem } from '../../src/types/life.ts';
@@ -195,7 +197,14 @@ function build(ctx: RouteContext) {
             room.rev += 1;
             return { ok: true as const, code: 'applied', placed: fit.items.length, spent: 0, problems: [...problems, ...fit.problems], rev: room.rev };
           }
-          return ctx.once(db, session, { id: body.requestId as string, kind: 'spaces.apply', fingerprint: [JSON.stringify(body.plan).length, plan.items.length] }, () => applyHome(session, plan, problems));
+          return ctx.once(db, session, { id: body.requestId as string, kind: 'spaces.apply', fingerprint: [JSON.stringify(body.plan).length, plan.items.length] }, () => {
+            const done = applyHome(session, plan, problems);
+            // The title is what a share card says: kept only when it passes the filters again (it came back from the page).
+            const homes = spacesOf(db).homes, title = plan.title && !screenText(plan.title, { contact: true }) && agentWords(plan.title).ok ? plan.title : '';
+            if (title) homes[session.publicId] = { title, at: ctx.now() };
+            else delete homes[session.publicId];
+            return done;
+          });
         });
       } catch (error) {
         if (error instanceof Undo) return error.answer;

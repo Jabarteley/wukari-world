@@ -11,6 +11,7 @@ import type { Planner } from './testing/fakeGateway.ts';
 import { FURNITURE } from '../src/game/content/furniture.ts';
 import { packPlan, type SpacePlanV1 } from '../src/spaces/plan.ts';
 import { systemPrompt } from './spaces/design-prompt.ts';
+import { eraseSpaces, homeTitleOf, spacesOf } from './spaces/store.ts';
 import type { LifeState } from '../src/types/life.ts';
 
 const KEY = 'sk-test-KEY-spaces-do-not-leak';
@@ -218,4 +219,26 @@ test('keep what I have: the pieces standing stay put and the designer only adds'
   assert.match(messages[1]!.content, /stay where they are/);
   for (const item of before.home.items) assert.ok(answer.plan!.items.some((got) => got.itemId === item.itemId && got.x === item.x && got.y === item.y), `${item.itemId} stays`);
   assert.equal(answer.plan!.items.length, before.home.items.length + 2);
+});
+
+test('share my place: the card says the applied title; a player with no designed home has nothing to share; erasure forgets it', async (t) => {
+  const { life, post, edit, f } = await harness(t, {});
+  const [ada, bola] = [await life('Ada'), await life('Bola')];
+  await edit(ada, (state) => { state.location = 'home'; state.cash = 500000; });
+  const plan = packPlan({ schema: 'allworld-space', version: 1, target: 'home', title: 'Mama Ada’s reading room', items: [{ itemId: 'bookshelf', x: 0, y: 2, rot: 0 }] });
+  assert.equal((await post(ada, '/api/spaces/apply', { target: 'home', plan, requestId: f.id() })).ok, true);
+  const shared = await post(ada, '/api/growth/share', { kind: 'space', cityId: 'lagos' }) as unknown as Answer & { share: { path: string; facts: { kind: string; headline: string } } };
+  assert.equal(shared.ok, true, JSON.stringify(shared));
+  assert.deepEqual([shared.share.facts.kind, shared.share.facts.headline], ['space', 'Mama Ada’s reading room']);
+  const page = await (await fetch(`${f.base}${shared.share.path}`)).text();
+  assert.match(page, /Ada’s place in/);
+  assert.match(page, /join=/, 'a visitor lands with the sharer, as a house card does');
+  const none = await post(bola, '/api/growth/share', { kind: 'space', cityId: 'lagos' });
+  assert.deepEqual([none.ok, none.code], [false, 'nothing_to_share']);
+  // A title that fails the filters on the way back is not kept.
+  const rude = packPlan({ schema: 'allworld-space', version: 1, target: 'home', title: 'call 08031234567 now', items: [{ itemId: 'bookshelf', x: 0, y: 2, rot: 0 }] });
+  assert.equal((await post(ada, '/api/spaces/apply', { target: 'home', plan: rude, requestId: f.id() })).ok, true);
+  assert.equal(await f.server.store.read((db) => homeTitleOf(db, ada.id)), '');
+  await f.server.store.transact((db) => { spacesOf(db).homes[ada.id] = { title: 'x', at: 1 }; assert.equal(eraseSpaces(db, [ada.id, bola.id]), 1); });
+  assert.equal(await f.server.store.read((db) => homeTitleOf(db, ada.id)), '');
 });

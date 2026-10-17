@@ -354,6 +354,7 @@ test('permanent erasure: root preview, exact confirmation, retry, map removal an
         messages: [{ seq: 1, from: target.id, body: 'A visitor line', at: 1 }, { seq: 2, from: other.id, body: 'The host reply', at: 2, re: { seq: 1, from: target.id, text: 'A visitor line' } }] } },
       houses: { [other.id]: { knocks: {}, guests: { [target.id]: { since: 1, expires: a.f.now() + 60000, cityId: 'lagos' } } } }, pending: {}, reports: [], seq: 2,
     } as SocialCollection;
+    (db as Record<string, unknown>)['spaces'] = { homes: { [target.id]: { title: 'Erased player home', at: 1 }, [other.id]: { title: 'Kept home', at: 1 } } };
   });
   const beforeOther = await a.f.server.store.read(db => JSON.stringify(Object.values(db.sessions).find(s => s.publicId === other.id)));
   const preview = await a.admin(path, founder.cookie, { clientId, reason });
@@ -380,6 +381,7 @@ test('permanent erasure: root preview, exact confirmation, retry, map removal an
     assert.deepEqual(db.social?.convs[houseConv]?.members, [other.id], 'another player\'s house conversation remains theirs');
     assert.deepEqual(db.social?.convs[houseConv]?.messages.map(message => ({ from: message.from, body: message.body, re: message.re })),
       [{ from: other.id, body: 'The host reply', re: undefined }], 'only the erased visitor\'s authored line and reply identity are removed');
+    assert.deepEqual(Object.keys((db as { spaces?: { homes: object } }).spaces?.homes ?? {}), [other.id], 'a designed home\'s title goes with its player (server/spaces/store.ts)');
     const jobs = db.playerErasure as { jobs: Record<string, { state: string; actors: string[] }> };
     assert.equal(Object.values(jobs.jobs)[0]?.state, 'complete');
     assert.deepEqual(Object.values(jobs.jobs)[0]?.actors, []);

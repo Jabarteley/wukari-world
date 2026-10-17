@@ -28,5 +28,6 @@ export function storyVenueLock(story: StoryView | undefined, venueId: string): s
 }
 
 export function unlockedCityCount(story: StoryView): number {
+  if (!story.enabled) return 0
   return story.cities.reduce((count, city) => count + Number(city.unlocked), 0)
 }

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { createLife, makeContext } from '../life.ts'
+import { createLife, makeContext, viewLife } from '../life.ts'
 import { needsProgressionRules, PROGRESSION_STAND_INS, PROGRESSION_SYSTEM_IDS } from './progression-slices.ts'
 import { loadCityContent } from './cities/registry.ts'
 
@@ -41,4 +41,14 @@ test('only exact empty progression data can bypass the authored sanitizer', () =
   Object.defineProperty(story, 'cities', { enumerable: true, get() { read = true; return {} } })
   assert.equal(needsProgressionRules({ t: 1000, story }), true)
   assert.equal(read, false, 'the boundary never invokes a saved getter')
+})
+
+test('disabled full and browser Story projections agree without changing saved receipts', () => {
+  const state = createLife(null, ctx)
+  state.story.mode = 'story'
+  state.story.start = 'lagos'
+  state.story.cities.lagos = { missions: [], venues: ['park'] }
+  const saved = structuredClone(state.story)
+  assert.deepEqual(viewLife(state, ctx).story, { enabled: false })
+  assert.deepEqual(state.story, saved)
 })

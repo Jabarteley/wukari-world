@@ -442,7 +442,7 @@ function checkView(state: LifeState, ctx: LifeContext, what: string): LifeView {
   const shown = view(state, ctx)
   assert.deepEqual(Object.keys(shown), [...VIEW_KEYS], `${what}: view keys, in registration order`)
   // `career.dilemma` exists only while a dilemma is waiting (src/game/features.ts), so it is listed but need not be present.
-  for (const [id, list] of Object.entries(VIEW_FIELD_KEYS)) assert.deepEqual(keys(shown[id as keyof typeof VIEW_FIELD_KEYS]).filter((key) => key !== 'dilemma'), sorted(list).filter((key) => key !== 'dilemma'), `${what}: keys of view.${id}`)
+  for (const [id, list] of Object.entries(VIEW_FIELD_KEYS)) assert.deepEqual(keys(shown[id as keyof typeof VIEW_FIELD_KEYS]).filter((key) => key !== 'dilemma'), id === 'story' && !shown.story.enabled ? ['enabled'] : sorted(list).filter((key) => key !== 'dilemma'), `${what}: keys of view.${id}`)
   assert.deepEqual(keys(shown.skills), sorted(SKILL_IDS), `${what}: view.skills`)
   for (const skill of Object.values(shown.skills)) assert.deepEqual(keys(skill), ['level', 'next', 'progress', 'xp'], `${what}: skill progress`)
   for (const destination of shown.travel.destinations) assert.deepEqual(keys(destination), sorted(TRAVEL_DESTINATION_KEYS), `${what}: destination ${destination.id}`)
@@ -467,7 +467,7 @@ function checkView(state: LifeState, ctx: LifeContext, what: string): LifeView {
   assert.deepEqual(keys(shown.goals.chain), ['current', 'finished', 'index', 'started', 'total'], `${what}: goal chain`)
   assert.deepEqual(keys(shown.onboarding.timing), ['bornAt', 'firstAt', 'playedAt', 'settledAt'], `${what}: onboarding timing`)
   assert.deepEqual(keys(shown.onboarding.own), ['rent', 'startCash'], `${what}: the own-house start`)
-  assert.deepEqual(keys(shown.onboarding.wardrobe), ['accessories', 'fabric', 'hair', 'outfit', 'wearables'], `${what}: view wardrobe`)
+  assert.deepEqual(keys(shown.onboarding.wardrobe), ['accessories', 'fabric', 'hair', 'native', 'outfit', 'wearables'], `${what}: view wardrobe`)
   for (const item of shown.onboarding.boutique) {
     assert.deepEqual(keys(item).filter((key) => key !== 'slot'), ['blocked', 'id', 'kind', 'label', 'owned', 'price', 'wearing'], `${what}: boutique item`)
     assert.equal('slot' in item, item.kind === 'accessories', `${what}: only an accessory has a slot`)

@@ -170,11 +170,8 @@ function travelView(view: TravelView, state: LifeState, _data: Record<string, ne
 }
 
 function storyView(state: LifeState, ctx: LifeContext): StoryView {
+  if (ctx.storyMode !== true) return { enabled: false }
   const current = state.estate.city, chapter = chapterOf(state, current), tally = state.story.cities[current] ?? { missions: [], venues: [] }
-  if (ctx.storyMode !== true) return {
-    enabled: false, mode: state.story.mode, cityId: current, start: state.story.start, chapter, chapterLabel: STORY_CHAPTERS[chapter], nextStep: '',
-    progress: { missions: tally.missions.length, venues: tally.venues.length }, signature: storySignature(current), helped: [], cities: [], venues: [],
-  }
   const content = cachedCityContent(current)
   return {
     enabled: true,

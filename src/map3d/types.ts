@@ -7,10 +7,10 @@
 
 import type { MapOrigin } from './geo/frame.ts';
 import type { MapContext } from './context.ts';
-import type { StoryView } from '../types/story.ts';
+import type { StoryProgressView } from '../types/story.ts';
 
 /** The already-derived Story view the lazy atlas needs for city access. */
-export type MapStoryView = Pick<StoryView, 'enabled' | 'mode' | 'cities'>
+export type MapStoryView = { enabled: false } | Pick<StoryProgressView, 'enabled' | 'mode' | 'cities'>
 
 // ---- Plain geometry -------------------------------------------------------------------------------------
 

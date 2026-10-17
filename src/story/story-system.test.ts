@@ -6,6 +6,7 @@ import { dealMissions, missionCatalogues } from '../game/systems/missions.ts'
 import { publicArrivalVenue } from '../game/cities/runtime.ts'
 import { episodesForCity } from '../game/content/episodes.ts'
 import { emit } from '../game/registry.ts'
+import { VIEW_FIELD_KEYS } from '../types/view.ts'
 
 await Promise.all(['lagos', 'ibadan'].map(loadCityContent))
 
@@ -36,6 +37,8 @@ test('travel projection marks Story locks for map pins, counts, cards and every 
   assert.deepEqual(free, viewLife(state, context(false)).travel)
   dispatch(state, { type: 'story.mode', payload: { mode: 'story' } }, context(true))
   const view = viewLife(state, context(true))
+  assert.ok(view.story.enabled)
+  assert.deepEqual(Object.keys(view.story).sort(), [...VIEW_FIELD_KEYS.story].sort())
   const locked = view.story.venues.find(row => row.locked && row.id !== state.location)
   assert.ok(locked)
   const destination = view.travel.destinations.find(row => row.id === locked.id)
@@ -122,7 +125,9 @@ test('an errand helper may use other public venues in the host city without open
 test('the street door applies the same Story venue gate as travel', () => {
   const state = createLife(null, context(true))
   assert.equal(dispatch(state, { type: 'story.mode', payload: { mode: 'story' } }, context(true)).ok, true)
-  const locked = viewLife(state, context(true)).story.venues.find(venue => venue.locked)
+  const story = viewLife(state, context(true)).story
+  assert.ok(story.enabled)
+  const locked = story.venues.find(venue => venue.locked)
   assert.ok(locked)
   state.location = 'city-street'
   const result = dispatch(state, { type: 'street.place', payload: { from: 'city-street', to: locked.id } }, { ...context(true), internal: true })

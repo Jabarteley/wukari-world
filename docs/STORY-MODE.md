@@ -2,7 +2,7 @@
 
 Story Mode is an optional, per-character path through the existing world. Free Roam remains the default for new and existing saves. A character can switch between `free` and `story` with `story.mode`; switching has no fee or cooldown and never discards progress.
 
-Phase 1 is protected by the server-owned `storyMode` admin setting, whose default is off. The server omits the capability when the setting is off, rejects mode changes, and returns a hidden Story view. The client does not decide whether the feature is available. This document describes the Phase 1 contract and its acceptance requirements; it does not claim that Story Mode has been enabled or released on a public server.
+Phase 1 is protected by the server-owned `storyMode` admin setting, whose default is off. The server omits the capability when the setting is off, rejects mode changes, and returns a hidden Story view. The client does not decide whether the feature is available. A disabled projection contains only `{enabled:false}`; it never needs placeholder chapter data. This document describes the Phase 1 contract and its acceptance requirements; it does not claim that Story Mode has been enabled or released on a public server.
 
 ## Saved state and compatibility
 
@@ -36,7 +36,15 @@ Existing saves need no conversion action. Sanitization imports valid retained mi
 
 The two extra mission occurrences are occurrences, not two invented definitions. A city has three authored daily and three authored weekly definitions; a later period can produce another authenticated occurrence of an authored definition with a different reward ID.
 
-Venue chapters use one shared slot function. Proof destinations and the welcome venue are chapter 0, ordinary work and transport or worship hubs open next, care, fun and the proposed city-signature venue open later, and the remaining venues open at Roots. The city-signature selection and presentation are still under review; the current code must not be read as acceptance of a launched signature game.
+Venue chapters use one shared slot function. Proof destinations and the welcome venue are chapter 0, ordinary work and transport or worship hubs open next, care and fun open at Belong, and remaining venues open at Roots. Opening every authored proof destination at chapter 0 prevents a tale from requiring a locked place.
+
+Story prioritizes authored local daily and weekly missions. On entering Story, or after claiming an older retained reward, an untouched generic slot may be replaced by its local counterpart. Partial and claimed rows, pending rewards and grant receipts are preserved. Free Roam keeps its existing dealing rules.
+
+## City signature games
+
+The six hand-picked Nigerian signatures remain stable: Lagos race, Ibadan tables, Port Harcourt business, Abuja politics, Kano bargaining and Calabar festival. Other cities receive a stable style and a real venue. The entry first takes the character to that venue, then opens its exact table, selected arena practice game, or existing feature. Nairobi opens the Uhuru Park table.
+
+Kano's Market bargain uses a server-owned practice basket and the existing negotiation rules. Offers can be refused, countered or agreed, and a round can restart. It creates a quote only; it never purchases an item or changes cash. The hidden price thresholds stay on the server. GET/POST `/api/story/signature` require the current character, enabled capability and actual signature venue, and reject helpers or active actions. In Story, bargaining opens at chapter 2. Each write uses the exact client ID for safe retries; one negotiation per player is retained, pruned and included in erasure.
 
 ## One server guard for every entrance
 
@@ -49,10 +57,10 @@ Both pure guards return immediately in Free Roam, so the existing open-world beh
 Roots help is friends-only. AI-played friends remain visibly marked. The host must be in Story Mode, at Roots, and standing at the country-tale venue. The server allows three calls per player per day, expires an offer after 30 minutes, and verifies one of three kinds:
 
 - `second-answer`: host and helper receive separate server-selected prompts, and both answers must pass.
-- `two-seat`: host and helper each play a turn in an eight-card memory table against the house; the server owns the board, turn and result.
+- `two-seat`: host and helper each play a turn in an eight-card memory table against the house; the server owns the board, turn and result. The team wins after a turn with at least two pairs and a lead over the house. Recent unmatched reveals remain selectable; permanently matched cards do not. A loss can restart within the same invitation.
 - `errand`: the server offers a qualifying authored local mission reward ID and consumes only that verified occurrence.
 
-Joining creates a temporary helper pass for the host city and challenge places. The pass is revoked on completion, expiry, ending, or feature disable, and returns the helper to the recorded place. While it exists, the universal guard prevents the helper from entering unrelated cities, venues, tales, or Homeward routes. Helper activity does not write the helper's own city mission or venue tally, and a help completion gives the host a Roots receipt while the helper receives a separate bounded keepsake receipt. The helper's own ladder and city unlocks remain unchanged.
+Joining creates a temporary helper pass for the host city and challenge places. The pass is revoked on completion, expiry, ending, or feature disable, and returns the helper to the recorded place. While it exists, the universal guard prevents the helper from entering unrelated cities, venues, tales, or Homeward routes. Helper activity does not write the helper's own city mission or venue tally, and a help completion gives the host a Roots receipt while the helper receives a separate bounded keepsake receipt. The helper's own ladder and city unlocks remain unchanged. Permanent keepsakes appear under My Story even after the short invitation disappears.
 
 Every city has a solo Roots path: eight authenticated authored mission occurrences, which is two more than the six required for Belong. A character without an available friend can therefore reach chapter 4 through local play.
 

@@ -53,6 +53,7 @@ test('Story UI is absent until the trusted view enables it', async () => {
 test('Story panel exposes reversible modes, chapter guidance, progress, and the real signature destination', async () => {
   await setStory(true, 'story')
   const story = app.game.view.value.story
+  assert.ok(story.enabled)
   const destination = story.signature.venue ? app.game.view.value.travel.destinations.find((row) => row.id === story.signature.venue) : null
   const html = await render('/src/app/features/story/StoryModePanel.vue')
   const words = text(html)
@@ -99,7 +100,9 @@ test('Story invitation focus accepts only public UUIDs and signature kinds choos
 
 test('Venue card uses the server story reason only in Story Path', async () => {
   await setStory(true, 'story')
-  const lock = app.game.view.value.story.venues.find((row) => row.locked && row.reason)
+  const story = app.game.view.value.story
+  assert.ok(story.enabled)
+  const lock = story.venues.find((row) => row.locked && row.reason)
   const destination = lock ? app.game.view.value.travel.destinations.find((row) => row.id === lock.id && !row.here && !row.open && row.blocked?.code === 'story_locked' && row.modes.length) : null
   assert.ok(lock && destination)
   const lockedHtml = await render('/src/app/features/travel/VenueCard.vue', { item: destination })

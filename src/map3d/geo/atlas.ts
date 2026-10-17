@@ -1234,7 +1234,9 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
     if (!sheet) return [];
     sameCatalogue();
     // A row says a place's name, its status and its city: none of that depends on the fares, so the rows outlive a change of selection.
-    const { held: mine, story: storyView } = context(), key = `${level}|${current}|${selectedCity ?? ''}|${mine.join()}|${storyView?.enabled}:${storyView?.mode}:${storyView?.cities.filter(city => city.unlocked).map(city => city.id).join()}|${catalogueEpoch}`;
+    const { held: mine, story: storyView } = context();
+    const storyKey = storyView?.enabled ? `${storyView.mode}:${storyView.cities.filter(city => city.unlocked).map(city => city.id).join()}` : '';
+    const key = `${level}|${current}|${selectedCity ?? ''}|${mine.join()}|${storyKey}|${catalogueEpoch}`;
     if (key !== rowsKey) {
       rowsKey = key; work.rowSets += 1;
       rowsNow = sheet.topology.features.map((feature) => regionInfo({ kind: sheet.kind, id: feature.id }, { current, held: mine, story: storyView, routes: null, cityId: selectedCity, feature })).sort(listOrder);

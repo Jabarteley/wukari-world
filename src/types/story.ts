@@ -51,8 +51,8 @@ export interface StorySignatureView {
   venue: string | null
 }
 
-export interface StoryView {
-  enabled: boolean
+export interface StoryProgressView {
+  enabled: true
   mode: StoryMode
   cityId: string
   start: string | null
@@ -65,6 +65,8 @@ export interface StoryView {
   cities: Array<{ id: string; label: string; chapter: StoryChapter; unlocked: boolean }>
   venues: Array<{ id: string; label: string; chapter: StoryChapter; locked: boolean; reason: string | null }>
 }
+
+export type StoryView = { enabled: false } | StoryProgressView
 
 export interface StoryActionMap {
   'story.mode': { payload: { mode: StoryMode }; ok: 'mode_set'; fail: 'invalid_story_mode' | 'story_disabled' }

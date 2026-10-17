@@ -7,15 +7,15 @@ import { regionInfo } from './info.ts'
 
 await loadCityLinks()
 
-const story = (mode: 'free' | 'story', enabled = true): MapStoryView => ({
-  enabled,
+const story = (mode: 'free' | 'story', enabled = true): MapStoryView => enabled ? ({
+  enabled: true,
   mode,
   cities: [
     { id: 'lagos', label: 'Lagos', chapter: 2, unlocked: true },
     { id: 'ibadan', label: 'Ibadan', chapter: 0, unlocked: false },
     { id: 'london', label: 'London', chapter: 0, unlocked: false },
   ],
-})
+}) : { enabled: false }
 
 test('real city access keeps the current city here and locks linked and remote destinations in Story mode', () => {
   const view = story('story')

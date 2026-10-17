@@ -13,11 +13,6 @@ import { plainRecord as record, ownValue as own } from './snapshot-fields.ts'
 export const PROGRESSION_SYSTEM_IDS = ['achievements', 'episodes', 'projects', 'story'] as const
 type ProgressionSystemId = typeof PROGRESSION_SYSTEM_IDS[number]
 
-const hasOnly = (value: Record<string, unknown>, keys: readonly string[]): boolean => {
-  const actual = Object.keys(value)
-  return actual.length === keys.length && actual.every(key => keys.includes(key))
-}
-
 const emptyRecord = (value: unknown): boolean => record(value) && Object.keys(value).length === 0
 const validTrackingSince = (value: unknown, now: number): value is number => typeof value === 'number'
   && Number.isSafeInteger(value) && (value > 0 ? value <= now : value === 0 && now === 0)
@@ -32,7 +27,7 @@ const FRESH = {
 function freshSlice(key: ProgressionSystemId, value: unknown, now: number): boolean {
   if (value === undefined || value === null) return true
   const fields = Object.entries(FRESH[key]())
-  return record(value) && hasOnly(value, ['trackingSince', ...fields.map(([name]) => name)])
+  return record(value) && Object.keys(value).length === fields.length + 1
     && validTrackingSince(own(value, 'trackingSince'), now) && fields.every(([name, expected]) => {
       const actual = own(value, name)
       return Array.isArray(expected) ? Array.isArray(actual) && actual.length === 0
@@ -89,9 +84,6 @@ function standIn(id: ProgressionSystemId, view: NonNullable<SystemDefinition<str
 const achievementStandIn = standIn('achievements', (state): AchievementsView => ({ trackingSince: state.achievements.trackingSince, earnedCount: 0, pinned: [], displayed: null, rows: [] }))
 const episodeStandIn = standIn('episodes', (state): EpisodesView => ({ trackingSince: state.episodes.trackingSince, mementos: [], rows: [] }))
 const projectStandIn = standIn('projects', (state): ProjectsView => ({ trackingSince: state.projects.trackingSince, mementos: [] }))
-const storyStandIn = standIn('story', (_state, ctx): StoryView => ({
-  enabled: false, mode: 'free', cityId: ctx.cityId, start: null, chapter: 0, chapterLabel: 'Arrive', nextStep: '',
-  progress: { missions: 0, venues: 0 }, signature: { kind: 'haggle', label: '', description: '', venue: null }, helped: [], cities: [], venues: [],
-}))
+const storyStandIn = standIn('story', (): StoryView => ({ enabled: false }))
 
 export const PROGRESSION_STAND_INS: SystemDefinition<string>[] = [achievementStandIn, episodeStandIn, projectStandIn, storyStandIn]

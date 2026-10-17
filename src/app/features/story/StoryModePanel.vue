@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import type { StoryView } from '../../../types/story.ts'
+import type { StoryMode } from '../../../types/story.ts'
 import { useApp } from '../../state/app.ts'
 import { contentFor } from '../../../game/cities/runtime.ts'
 import BaseButton from '../../ui/BaseButton.vue'
@@ -13,8 +13,8 @@ import { setStoryHelpFocus, signaturePanelId, unlockedCityCount } from './storyU
 const { game, shell } = useApp()
 const props = defineProps<{ storyHelp?: unknown }>()
 if (props.storyHelp !== undefined) setStoryHelpFocus(props.storyHelp)
-const story = computed(() => game.view.value.story)
-const changing = ref<StoryView['mode'] | null>(null)
+const story = computed(() => { const value = game.view.value.story; return value.enabled ? value : null })
+const changing = ref<StoryMode | null>(null)
 const announcement = ref('')
 const signatureOpen = ref(false)
 const connected = computed(() => game.view.value.connected)
@@ -37,14 +37,14 @@ const signatureAction = computed(() => {
   return signaturePanel.value ? `Open ${signaturePanel.value.title}` : destination ? `Open ${destination.label}` : null
 })
 
-function modeReason(mode: StoryView['mode']): string | null {
+function modeReason(mode: StoryMode): string | null {
   if (!connected.value) return 'Reconnect to change how you play.'
   if (changing.value) return 'Another Story setting is being saved.'
   if (story.value?.mode === mode) return `You are already playing in ${mode === 'story' ? 'Story Path' : 'Free Roam'}.`
   return null
 }
 
-async function chooseMode(mode: StoryView['mode']): Promise<void> {
+async function chooseMode(mode: StoryMode): Promise<void> {
   if (!story.value || modeReason(mode)) return
   changing.value = mode
   announcement.value = `Switching to ${mode === 'story' ? 'Story Path' : 'Free Roam'}…`

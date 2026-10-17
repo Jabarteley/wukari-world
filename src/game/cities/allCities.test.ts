@@ -30,6 +30,7 @@ import { progressionEpisodeById, progressionSnapshot } from '../progression/prov
 import { missionCatalogues } from '../systems/missions.ts'
 import { chapterOf, cityUnlocked } from '../../story/ladder.ts'
 import { localTalesJourneyId, proofVenues, venueChapter } from '../../story/slots.ts'
+import { awaitNativeSceneGeometry, installNativeGeometryEnvironment, preloadNativeGeometry } from '../../testing/nativeGeometry.test-fixture.ts'
 
 const cityIds = [...playableCityIds()]
 const root = fileURLToPath(new URL('../../../', import.meta.url))
@@ -206,9 +207,11 @@ test('open city footprints do not overlap beyond the unchanged legacy boundary s
 })
 
 test('every public venue uses a scene within the shared rendering budget', async () => {
+  const restoreNativeGeometryEnvironment = installNativeGeometryEnvironment()
   const kit = createKit()
   const crowd = Array.from({ length: MAX_CROWD }, (_, index) => ({ id: `visitor-${index}`, name: 'Visitor', kind: 'player' }))
   try {
+    await preloadNativeGeometry()
     for (const module of modules()) {
       await loadCityScenes(module.id)
       for (const venue of (await loadCityContent(module.id)).venues) {
@@ -219,13 +222,18 @@ test('every public venue uses a scene within the shared rendering budget', async
         const scene = buildVenueScene(kit, definition, module.id)
         try {
           scene.setCrowd(crowd)
+          const readiness = await awaitNativeSceneGeometry(scene, `${module.id}.${venue.id}`)
+          assert.deepEqual(readiness.errors, [], `${module.id}.${venue.id}: native geometry loads without errors`)
+          assert.equal(readiness.pendingCharacters, 0, `${module.id}.${venue.id}: native geometry is ready`)
+          assert.ok(readiness.nativeCharacters > 0, `${module.id}.${venue.id}: native character geometry exists`)
+          assert.ok(readiness.skinnedMeshes > 0, `${module.id}.${venue.id}: native player has skinned geometry`)
           const stats = scene.stats()
           assert.ok(stats.triangles <= SCENE_TRIANGLES.value, `${module.id}.${venue.id}: ${stats.triangles} triangles`)
           assert.ok(stats.drawCalls <= SCENE_DRAW_CALLS.value, `${module.id}.${venue.id}: ${stats.drawCalls} draw calls`)
         } finally { scene.dispose() }
       }
     }
-  } finally { kit.dispose() }
+  } finally { kit.dispose(); restoreNativeGeometryEnvironment() }
 })
 
 test('every playable city exposes market, table and arrival relief contracts', async () => {

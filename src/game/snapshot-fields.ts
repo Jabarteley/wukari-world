@@ -5,9 +5,9 @@ export function plainRecord(value: unknown): value is Record<string, unknown> {
   return prototype === Object.prototype || prototype === null
 }
 
-export function dataField(value: Record<string, unknown>, key: string): { value: unknown } | undefined {
+export function dataField(value: Record<string, unknown>, key: string): TypedPropertyDescriptor<unknown> | undefined {
   const descriptor = Object.getOwnPropertyDescriptor(value, key)
-  return descriptor?.enumerable && Object.hasOwn(descriptor, 'value') ? { value: descriptor.value } : undefined
+  return descriptor?.enumerable && Object.hasOwn(descriptor, 'value') ? descriptor : undefined
 }
 
 export const ownValue = (value: Record<string, unknown>, key: string): unknown => dataField(value, key)?.value

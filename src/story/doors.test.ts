@@ -64,7 +64,9 @@ test('server joins cannot cross a locked city or enter a locked local venue', ()
   assertStoryDoor(cityJoin, () => life('story'), true)
 
   const sample = life('story')
-  const locked = viewLife(sample, context(true)).story.venues.find(row => row.locked)
+  const story = viewLife(sample, context(true)).story
+  assert.ok(story.enabled)
+  const locked = story.venues.find(row => row.locked)
   assert.ok(locked)
   const venueJoin: ActionBody<'social.server'> = {
     type: 'social.server',
@@ -94,7 +96,9 @@ test('the homeward and street doors use the same Story locks', () => {
     return state
   }
   const streetSample = streetLife()
-  const locked = viewLife(streetSample, context(true)).story.venues.find(row => row.locked)
+  const story = viewLife(streetSample, context(true)).story
+  assert.ok(story.enabled)
+  const locked = story.venues.find(row => row.locked)
   assert.ok(locked)
   const street: ActionBody<'street.place'> = { type: 'street.place', payload: { from: 'city-street', to: locked.id } }
   assertStoryDoor(street, streetLife, true)

@@ -1232,6 +1232,8 @@ export const VIEW_KEYS = [
 ] as const satisfies readonly (keyof LifeView)[]
 
 /** The keys of each system's view, sorted. (`skills` is keyed by SkillId.) */
+type UnionKeys<T> = T extends unknown ? keyof T : never
+
 export const VIEW_FIELD_KEYS = {
   wallet: ['cash', 'ledger'],
   inventory: ['items'],
@@ -1281,7 +1283,7 @@ export const VIEW_FIELD_KEYS = {
   ],
   unilagCommunity: ['clubs', 'discoveries', 'eligible', 'events', 'quiz', 'tables', 'today', 'trail'],
   unilagShuttle: ['active', 'fare', 'source', 'stops'],
-} as const satisfies { readonly [K in keyof LifeView]?: readonly (keyof LifeView[K])[] }
+} as const satisfies { readonly [K in keyof LifeView]?: readonly UnionKeys<LifeView[K]>[] }
 
 /** The keys every entry of `view.travel.destinations` carries, sorted. */
 export const TRAVEL_DESTINATION_KEYS = [

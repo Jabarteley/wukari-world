@@ -18,7 +18,7 @@ import type { PlacesResult, RoomEditResult, RoomEnterResult, RoomLinkResult, Roo
 import type { VisitHomeProjection } from '../../../types/visit.ts'
 import type { CityId } from '../../../types/protocol.ts'
 
-export const places = reactive<{ square: SquareView | null; room: RoomView | null; rooms: RoomSummary[]; squareHere: number; listed: boolean; busy: string; error: string }>({ square: null, room: null, rooms: [], squareHere: 0, listed: false, busy: '', error: '' })
+export const places = reactive<{ square: SquareView | null; room: RoomView | null; rooms: RoomSummary[]; squareHere: number; listed: boolean; loading: boolean; busy: string; error: string }>({ square: null, room: null, rooms: [], squareHere: 0, listed: false, loading: false, busy: '', error: '' })
 const KEY = 'allworld-place'
 const REFRESH_MS = 5000
 let started = false, timer: ReturnType<typeof setInterval> | undefined, epoch = 0
@@ -147,9 +147,18 @@ export async function enterByLink(token: string): Promise<{ ok: true } | { ok: f
 
 /** The door of each place: how many are in the Square, and the caller's group rooms. */
 export async function loadPlaces(): Promise<void> {
-  const done = await call<Extract<PlacesResult, { ok: true }>>('/api/places')
-  if (!done.ok) { places.error = done.reason; return }
-  places.error = ''; places.squareHere = done.square.here; places.rooms = done.rooms; places.listed = true
+  if (places.loading) return
+  places.loading = true
+  try {
+    const done = await call<Extract<PlacesResult, { ok: true }>>('/api/places')
+    if (!done.ok) {
+      // This is the initial Places list request, not a player-entered place ID.
+      // Keep other server refusal text authoritative.
+      places.error = done.code === 'not_found' ? 'Places are unavailable right now. Try again shortly.' : done.reason
+      return
+    }
+    places.error = ''; places.squareHere = done.square.here; places.rooms = done.rooms; places.listed = true
+  } finally { places.loading = false }
 }
 
 // ---- building a room together -------------------------------------------------------------------------------------------

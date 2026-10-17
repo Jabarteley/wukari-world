@@ -9,6 +9,7 @@ import { VIEWS, hashOf, loadRecent, parseRoute, ui, undo } from './adminUi.ts'
 import type { ViewId } from './adminUi.ts'
 import { absolute, relative } from './adminModel.ts'
 import type { PlayersPage } from '../../../types/admin.ts'
+import BaseSheet from '../../ui/BaseSheet.vue'
 import DashboardView from './DashboardView.vue'
 import PlayersView from './PlayersView.vue'
 import AnnounceView from './AnnounceView.vue'
@@ -66,9 +67,9 @@ function searchKey(event: KeyboardEvent): void {
 let chord = 0
 function typing(event: KeyboardEvent): boolean { const t = event.target as HTMLElement | null; return Boolean(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) }
 function keys(event: KeyboardEvent): void {
-  if (event.key === 'Escape') { if (ui.help) { ui.help = false; return } if (ui.drawer) { ui.drawer = false; return } return }
-  if (event.ctrlKey || event.metaKey || event.altKey || typing(event)) return
   const take = (): void => { event.preventDefault(); event.stopImmediatePropagation() }
+  if (event.key === 'Escape') { if (ui.help) { take(); ui.help = false; return } if (ui.drawer) { take(); ui.drawer = false; return } return }
+  if (event.ctrlKey || event.metaKey || event.altKey || typing(event)) return
   if (event.key === '/') { take(); void nextTick(() => field.value?.focus()); return }
   if (event.key === '?') { take(); ui.help = !ui.help; return }
   if (event.key === 'g') { take(); chord = Date.now(); return }
@@ -138,12 +139,18 @@ const blurSoon = (): void => { setTimeout(() => { open.value = false }, 150) }
       <ol><li v-for="entry in done" :key="entry.id" :class="{ off: !entry.ok || entry.undone }"><span>{{ entry.text }}</span><small>{{ relative(entry.at, Date.now()) }} · {{ absolute(entry.at) }}{{ entry.undone ? ' · undone' : '' }}</small>
         <button v-if="entry.undo && !entry.undone && entry.ok" type="button" class="adm-btn" @click="undo(entry)">{{ entry.undo.label }}</button></li></ol>
     </aside>
-    <div v-if="ui.help" class="adm-help" role="dialog" aria-label="Keyboard shortcuts" @click.self="ui.help = false">
+    <BaseSheet :open="ui.help" label="Keyboard shortcuts" class="adm-help-sheet" @close="ui.help = false">
       <div class="adm-card"><h3>Keyboard shortcuts</h3>
         <p class="adm-line"><span>Find a player</span><kbd>/</kbd></p>
         <p v-for="item in VIEWS" :key="item.id" class="adm-line"><span>Go to {{ item.label }}</span><kbd>g then {{ item.key }}</kbd></p>
         <p class="adm-line"><span>This list</span><kbd>?</kbd></p><p class="adm-line"><span>Close a list</span><kbd>Esc</kbd></p>
         <p class="adm-sub">In a queue: j and k move, a acts on the first choice, d dismisses.</p><button class="adm-btn" @click="ui.help = false">Close</button></div>
-    </div>
+    </BaseSheet>
   </div>
 </template>
+
+<style scoped>
+.base-sheet.adm-help-sheet { box-sizing: border-box; padding: 16px; width: min(480px, calc(100% - 24px)); max-height: calc(100dvh - 32px); overflow: auto; font: inherit; color: inherit; }
+.adm-help-sheet .adm-card { width: 100%; max-width: 420px; margin: auto; }
+.adm-help-sheet .adm-card h3 { padding-right: 32px; }
+</style>

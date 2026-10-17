@@ -65,4 +65,5 @@ const next = (id: string): Promise<void> => send('order', '/api/civic/works/orde
 .city-works { margin: 12px 0; }
 .city-works h3 { font-size: 14px; margin: 0 0 4px; }
 .city-works progress { width: 100%; height: 6px; margin-top: 4px; }
+.city-works [data-works="active"] { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; }
 </style>

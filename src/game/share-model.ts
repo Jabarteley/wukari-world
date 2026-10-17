@@ -116,7 +116,7 @@ export function shareCard(facts: unknown): ShareCard {
   if (f.kind === 'news' || f.kind === 'gist') return { ...base, headline: f.headline || `News from ${f.city}`, lines: [f.city, 'From the public record'] };
   if (f.kind === 'house') return { ...base, headline: 'Come to my house', lines: [f.name, place, 'Knock at the door'] };
   if (f.kind === 'event') return { ...base, headline: f.event, lines: [f.venue, `${f.name} is going`] };
-  return { ...base, headline: `Come and live in ${BRAND}`, lines: [f.name, `Now in ${f.district || f.city}`, 'Make your character and come through'] };
+  return { ...base, headline: `Come and live in ${BRAND}`, lines: [f.name, f.district ? `Home in ${place}` : `Now in ${f.city}`, 'Make your character and come through'] };
 }
 
 const CODE = /^[a-z0-9]{8,16}$/;

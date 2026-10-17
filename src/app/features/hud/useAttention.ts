@@ -9,6 +9,7 @@ import { nextStep } from '../../../ui/attention.ts'
 import type { NextStep, Point, StepContext } from '../../../ui/attention.ts'
 import type { Attention } from '../../../ui/attention-dom.ts'
 import { isTrip } from '../venue/tripModel.ts'
+import { placeNow } from '../places/placeState.ts'
 import { useApp } from '../../state/app.ts'
 import { COACH_KEY, coachHints } from './coachModel.ts'
 import { settleWanted, tour } from '../tour/tourState.ts'
@@ -27,7 +28,7 @@ function readSeen(): Record<string, number> {
 
 export function useAttention() {
   const { game, shell } = useApp()
-  const off = computed(() => !coachHints.value || Boolean(social.me?.visiting))
+  const off = computed(() => !coachHints.value || Boolean(social.me?.visiting) || Boolean(placeNow.value))
   const step = shallowRef<NextStep | null>(null)
   let attention: Attention | null = null
   let lastClick: (Point & { at: number }) | null = null

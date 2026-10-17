@@ -428,7 +428,7 @@ onBeforeUnmount(() => {
       <h3>Saved mannequin results</h3>
       <p v-if="!results.length">No mannequin lesson has been claimed yet.</p>
       <ul v-else><li v-for="result in results" :key="result.lessonId">{{ lessonNames[result.lessonId] }} · NPC mannequin result recorded</li></ul>
-      <p>{{ reply?.starterTool ? 'Starter clippers unlocked.' : basicEarned ? 'Claim the basic result, then purchase starter clippers to unlock advanced practice.' : 'Complete and claim the free basics before advanced practice.' }}</p>
+      <p>{{ reply?.starterTool ? 'Starter clippers unlocked.' : basicEarned ? 'Basic result claimed. Buy starter clippers to unlock advanced practice.' : 'Complete and claim the free basics before advanced practice.' }}</p>
       <small>Results describe NPC mannequin practice only; they are not a credential, real appointment, or change to your player appearance.</small>
     </section>
   </main>

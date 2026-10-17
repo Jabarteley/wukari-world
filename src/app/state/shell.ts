@@ -130,6 +130,7 @@ export function createShell(game: Game, panels: readonly Panel[], hooks: ShellHo
     const open = sheet.value
     if (open?.kind === 'panel') return byId.get(open.id) ?? null
     if (open?.kind === 'sim') return byId.get(open.tab) ?? null
+    if (open) return null
     return game.mode.value !== 'venue' ? byId.get(game.mode.value) ?? null : null
   }
 

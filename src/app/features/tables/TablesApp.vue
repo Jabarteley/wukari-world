@@ -259,6 +259,8 @@ function onOption(name: string, raw: string): void {
 
 <style scoped>
 /* The existing panel's classes (src/ui/panels/tables.css and the growth screens' notes and cards), kept as they were. */
+.tb .ui-row-body > b { overflow: visible; overflow-wrap: anywhere; text-overflow: clip; white-space: normal; }
+.tb .ui-row-body > small { overflow-wrap: anywhere; white-space: normal; }
 .gr-note { font-size: 12px; line-height: 1.45; color: var(--c-muted); margin: var(--s-2) 2px; }
 .gr-swap { background: none; border: 0; color: var(--c-muted); font: inherit; font-size: 12px; text-decoration: underline; padding: 4px; cursor: pointer; }
 .tb-back { min-height: var(--tap, 44px); }

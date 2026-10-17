@@ -5,6 +5,7 @@ import { computed } from 'vue'
 import { contentFor } from '../../../game/cities/runtime.ts'
 import { useApp } from '../../state/app.ts'
 import LgaCard from '../world/LgaCard.vue'
+import BaseButton from '../../ui/BaseButton.vue'
 import GameIcon from '../../ui/GameIcon.vue'
 
 defineProps<{ params?: unknown }>()
@@ -17,7 +18,10 @@ const guide = computed(() => contentFor(game.cityId.value).thingsToDo.slice(0, 5
     <h3>{{ game.view.value.city?.name ?? 'Lagos' }}</h3>
     <p class="city-card-region">{{ game.view.value.city?.region ?? 'Lagos State' }}, Nigeria</p>
     <p class="city-card-lead">You are here. Choose somewhere to go.</p>
-    <p v-if="game.view.value.estate.settle" class="ui-note" data-city-visiting>You are visiting. Your home is in {{ game.view.value.estate.home?.name }}. <button type="button" class="ui-link" @click="shell.open('visiting')">Rest, go home or take a home here</button></p>
+    <template v-if="game.view.value.estate.settle">
+      <p class="ui-note" data-city-visiting>You are visiting. Your home is in {{ game.view.value.estate.home?.name }}.</p>
+      <BaseButton block @click="shell.open('visiting')">Rest, go home or take a home here</BaseButton>
+    </template>
     <LgaCard v-else-if="game.state.value.onboarding.done && !game.view.value.estate.placed" heading="Choose where to live" compact />
     <h4>Things to do in {{ game.view.value.city.name }}</h4>
     <ul><li v-for="place in guide" :key="place.venueId"><button type="button" @click="shell.open('map', { destination: place.venueId })">{{ place.name }}</button> <span>{{ place.line }}</span></li></ul>

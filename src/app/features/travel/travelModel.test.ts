@@ -138,7 +138,7 @@ test('the Map: filters, the overview line and the list', () => {
   assert.equal(overviewLine([open], { label: 'CcHub' }, 'Rain'), 'On the way to CcHub…')
   assert.deepEqual(['is-open', 'is-closed', 'is-soon'], [statusClass(open), statusClass(closed), statusClass(soon)])
   assert.equal(CHIP_LIMIT, 9)
-  assert.equal(venueLink('https://x.test', '/play', 'park & ride'), 'https://x.test/play?venue=park%20%26%20ride')
+  assert.equal(venueLink('https://x.test', 'lagos', 'radio'), 'https://x.test/lagos?venue=radio')
   assert.deepEqual(asMapParams({ destination: 'park' }), { destination: 'park' })
   assert.equal(asMapParams(null), null)
   assert.equal(layoutKey({ layer: 'city', destination: null, listOpen: true, layersOn: 2, tripping: false }), 'city||true|2|false')

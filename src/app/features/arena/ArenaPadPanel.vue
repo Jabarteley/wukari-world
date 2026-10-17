@@ -2,7 +2,7 @@
 // The controller panel of a game: which button does what (the standard mapping, src/arena/input/pad.ts), changing a button by
 // pressing the one you want, the stick's dead zone, rumble on or off, and back to the defaults. Opened from a game screen's
 // Controller button, or by Start on the pad. Settings stay on this device. Lazy with the game screens.
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import BaseButton from '../../ui/BaseButton.vue'
 import { bindingOf, buttonName, firstButtonDown, remap, resetBinding } from '../../../arena/input/pad.ts'
 import type { PadControls, PadLike } from '../../../arena/input/pad.ts'
@@ -14,11 +14,14 @@ const settings = ref(loadPadSettings())
 const binding = computed(() => bindingOf(props.controls, settings.value.bind[props.controls.game]))
 const pad = ref(connectedPad())
 const waiting = ref<string | null>(null)
+const root = ref<HTMLElement | null>(null)
+onMounted(() => root.value?.querySelector<HTMLButtonElement>('.pp-head button')?.focus())
 let raf = 0
 
 function save(next: typeof settings.value): void { settings.value = next; savePadSettings(next); emit('changed') }
 function listen(action: string): void {
   waiting.value = action
+  void nextTick(() => root.value?.querySelector<HTMLButtonElement>('[data-remap-cancel]')?.focus())
   cancelAnimationFrame(raf)
   // Wait until every button is up, then take the first one pressed.
   let armed = false
@@ -33,14 +36,20 @@ function listen(action: string): void {
   }
   raf = requestAnimationFrame(look)
 }
-function stopListening(): void { waiting.value = null; cancelAnimationFrame(raf) }
+function stopListening(): void {
+  waiting.value = null
+  cancelAnimationFrame(raf)
+  void nextTick(() => root.value?.querySelector<HTMLButtonElement>('.pp-head button')?.focus())
+}
+function escape(): void { if (waiting.value) stopListening(); else emit('close') }
+defineExpose({ escape })
 onBeforeUnmount(() => cancelAnimationFrame(raf))
 const names = (buttons: readonly number[]): string => (buttons.length ? buttons.map(buttonName).join(' or ') : 'Not set')
 const zonePct = computed(() => Math.round(settings.value.zone * 100))
 </script>
 
 <template>
-  <section class="pp" aria-label="Controller" data-testid="arena-pad-panel" @keydown.escape="waiting ? stopListening() : emit('close')">
+  <section ref="root" class="pp" aria-label="Controller" data-testid="arena-pad-panel" @keydown.escape.stop.prevent="escape">
     <header class="pp-head"><h3>Controller</h3><BaseButton @click="emit('close')">Done</BaseButton></header>
     <p v-if="!padSupported()" class="pp-note">This browser cannot use game controllers. Touch and the keyboard still work.</p>
     <p v-else class="pp-note" role="status">{{ pad ? `${pad} is connected.` : 'Connect a controller (Bluetooth or cable) and press any button.' }} A controller plays exactly like the touch buttons: nobody gets an edge.</p>
@@ -50,7 +59,7 @@ const zonePct = computed(() => Math.round(settings.value.zone * 100))
         <span>{{ a.label }}</span>
         <span class="pp-keys">{{ waiting === a.id ? 'Press a button…' : names(binding[a.id] ?? []) }}</span>
         <BaseButton v-if="waiting !== a.id" :disabled="!padSupported()" :aria-label="`Change the button for ${a.label}`" @click="listen(a.id)">Change</BaseButton>
-        <BaseButton v-else @click="stopListening">Cancel</BaseButton>
+        <BaseButton v-else data-remap-cancel @click="stopListening">Cancel</BaseButton>
       </li>
       <li><span>Menu</span><span class="pp-keys">Start</span></li>
     </ul>

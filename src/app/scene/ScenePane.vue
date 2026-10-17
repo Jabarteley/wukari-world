@@ -182,7 +182,7 @@ defineExpose({ layout })
 </script>
 
 <template>
-  <div id="venue-scene" ref="container"  class="life-scene" :hidden="hidden" @animationend.self="onResize">
+  <div id="venue-scene" ref="container" class="life-scene" :data-mode="game.mode.value" :hidden="hidden" @animationend.self="onResize">
     <SceneViewToggle v-if="!waiting" :host-revision="viewHostRevision" />
     <div v-if="waiting" class="scene-wait" :class="{ 'is-stuck': failed || stuck }" role="status">
       <img src="/icons/world-loader.webp" width="96" height="96" alt="" />
@@ -193,3 +193,7 @@ defineExpose({ layout })
     </div>
   </div>
 </template>
+
+<style scoped>
+#venue-scene[data-mode="buy"] :deep(.scene-hint) { display: none; }
+</style>

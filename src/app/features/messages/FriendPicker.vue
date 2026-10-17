@@ -17,8 +17,10 @@ const searching = ref(false)
 const error = ref<string | null>(null)
 const me = computed(() => social.me)
 const taken = computed(() => new Set([...props.exclude, ...props.selected.map((person) => person.id)]))
-// What is already loaded, minus the founder (who cannot be added by an ordinary player) and the people already here.
-const local = computed(() => (me.value?.friends ?? []).filter((friend) => !taken.value.has(friend.id) && (me.value?.friendsMore || friend.founder !== true) && friend.name.toLowerCase().includes(query.value.trim().toLowerCase())))
+// The founder is eligible only when their longer, paginated friend list is available.
+const eligible = computed(() => (me.value?.friends ?? []).filter((friend) => me.value?.friendsMore || friend.founder !== true))
+// The local page excludes people already here and applies the current name filter.
+const local = computed(() => eligible.value.filter((friend) => !taken.value.has(friend.id) && friend.name.toLowerCase().includes(query.value.trim().toLowerCase())))
 const list = computed(() => {
   const ids = new Set(local.value.map((friend) => friend.id))
   return [...local.value, ...found.value.filter((friend) => !ids.has(friend.id) && !taken.value.has(friend.id))]
@@ -56,7 +58,7 @@ function drop(id: string): void { emit('update:selected', props.selected.filter(
         <BaseButton small :disabled="room <= 0" :reason="room <= 0 ? `A group holds ${max} people.` : null" @click="add(friend)">Add</BaseButton>
       </li>
     </ul>
-    <p v-else-if="!searching && !error" class="picker-note">{{ query.trim() ? 'No friend has that name. Only friends can be added.' : (me?.friends.length ? 'Everyone you can add is already chosen.' : 'Groups are for friends. Add a friend first, then make a group.') }}</p>
+    <p v-else-if="!searching && !error" class="picker-note">{{ query.trim() ? 'No friend has that name. Only friends can be added.' : (eligible.length ? 'Everyone you can add is already chosen.' : 'No friends to add yet. You can add friends here later.') }}</p>
     <div v-if="list.length > page || (me?.friendsMore?.next && !query.trim())" class="picker-more">
       <BaseButton v-if="list.length > page" small @click="page += 30">Show more</BaseButton>
       <BaseButton v-else small :disabled="social.friendsLoading" @click="client.loadMoreFriends()">{{ social.friendsLoading ? 'Loading…' : 'Load more friends' }}</BaseButton>

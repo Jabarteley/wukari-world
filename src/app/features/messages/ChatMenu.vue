@@ -8,7 +8,7 @@ const emit = defineEmits<{ close: []; pins: []; 'send-money': []; 'request-money
 const box = ref<HTMLElement | null>(null)
 onMounted(() => { void nextTick(() => box.value?.querySelector<HTMLElement>('button')?.focus()) })
 function keys(event: KeyboardEvent): void {
-  if (event.key === 'Escape') { event.stopPropagation(); emit('close'); return }
+  if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); emit('close'); return }
   if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
   const items = Array.from(box.value?.querySelectorAll<HTMLElement>('button:not(:disabled)') ?? []), at = items.indexOf(document.activeElement as HTMLElement)
   event.preventDefault()

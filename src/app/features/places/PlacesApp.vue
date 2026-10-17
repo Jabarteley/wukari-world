@@ -21,7 +21,11 @@ const squareLine = computed(() => (places.squareHere > 0 ? `${places.squareHere}
 <template>
   <section class="places-app" aria-label="Places" data-place="app">
     <p v-if="offline" class="ui-note" role="status">Reconnect to step into a place.</p>
-    <p v-if="places.error" class="ui-error" role="alert">{{ places.error }}</p>
+    <div v-if="places.error" class="places-load-error" role="alert">
+      <p class="ui-error">{{ places.error }}</p>
+      <button type="button" class="ui-button" data-place="retry-load" :disabled="places.loading" @click="loadPlaces()">{{ places.loading ? 'Trying again…' : 'Try again' }}</button>
+    </div>
+    <p v-else-if="places.loading && !places.listed" class="social-note" role="status">Loading your places…</p>
 
     <h3 class="ui-section">The Square</h3>
     <div class="ui-card places-card">
@@ -53,6 +57,8 @@ const squareLine = computed(() => (places.squareHere > 0 ? `${places.squareHere}
 
 <style scoped>
 .places-app { display: grid; gap: 8px; min-width: 0; overflow-wrap: anywhere; }
+.places-load-error { display: grid; justify-items: start; gap: 6px; }
+.places-load-error p { margin: 0; }
 .places-card { display: grid; gap: 6px; }
 .places-card p { margin: 0; font-size: 14px; }
 .places-app .social-row { flex-wrap: wrap; }

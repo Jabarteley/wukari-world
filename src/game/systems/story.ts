@@ -173,7 +173,7 @@ function storyView(state: LifeState, ctx: LifeContext): StoryView {
   const current = state.estate.city, chapter = chapterOf(state, current), tally = state.story.cities[current] ?? { missions: [], venues: [] }
   if (ctx.storyMode !== true) return {
     enabled: false, mode: state.story.mode, cityId: current, start: state.story.start, chapter, chapterLabel: STORY_CHAPTERS[chapter], nextStep: '',
-    progress: { missions: tally.missions.length, venues: tally.venues.length }, signature: storySignature(current), cities: [], venues: [],
+    progress: { missions: tally.missions.length, venues: tally.venues.length }, signature: storySignature(current), helped: [], cities: [], venues: [],
   }
   const content = cachedCityContent(current)
   return {
@@ -186,6 +186,7 @@ function storyView(state: LifeState, ctx: LifeContext): StoryView {
     nextStep: nextStep(state, current),
     progress: { missions: tally.missions.length, venues: tally.venues.length },
     signature: storySignature(current),
+    helped: state.story.helped.map(receipt => ({ ...receipt, label: cityName(receipt.city) ?? receipt.city })),
     cities: playableCityIdsSoFar().map(id => ({ id, label: cityName(id) ?? id, chapter: chapterOf(state, id), unlocked: cityUnlocked(state, id) })),
     venues: (content?.venues ?? []).map(row => {
       const required = venueChapter(current, row.definition, content), locked = venueOpen(state, current, row.id) !== null

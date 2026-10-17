@@ -1274,7 +1274,7 @@ export const VIEW_FIELD_KEYS = {
   projects: ['mementos', 'trackingSince'],
   episodes: ['mementos', 'rows', 'trackingSince'],
   achievements: ['displayed', 'earnedCount', 'pinned', 'rows', 'trackingSince'],
-  story: ['chapter', 'chapterLabel', 'cities', 'cityId', 'enabled', 'mode', 'nextStep', 'progress', 'signature', 'start', 'venues'],
+  story: ['chapter', 'chapterLabel', 'cities', 'cityId', 'enabled', 'helped', 'mode', 'nextStep', 'progress', 'signature', 'start', 'venues'],
   unilagStudent: [
     'admittedDay', 'applicationCount', 'betaRules', 'campusJobs', 'courses', 'degree', 'hostel', 'lifetime', 'programme', 'records',
     'status', 'studentId', 'term',

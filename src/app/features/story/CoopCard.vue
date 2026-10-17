@@ -4,7 +4,7 @@ import type { StoryHelpKind } from '../../../types/story.ts'
 import { useApp } from '../../state/app.ts'
 import BaseButton from '../../ui/BaseButton.vue'
 import AiTag from '../social/AiTag.vue'
-import { HELP_KINDS, canPlayTable, expiryLabel, sessionPeer, turnLabel } from './coopModel.ts'
+import { HELP_KINDS, canPickTableCard, canPlayTable, expiryLabel, sessionPeer, turnLabel } from './coopModel.ts'
 import type { HelpSessionView, StoryHelpResult, StoryHelpView } from './coopModel.ts'
 import { storyHelpFocus } from './storyUi.ts'
 
@@ -90,7 +90,7 @@ function answer(session: HelpSessionView, answer: string): void {
 }
 
 function toggleCard(session: HelpSessionView, index: number): void {
-  if (!canPlayTable(session) || session.table?.cards[index] !== null || busy.value || retry.value) return
+  if (!canPickTableCard(session, index) || busy.value || retry.value) return
   const current = picked.get(session.id) ?? []
   const next = current.includes(index) ? current.filter((value) => value !== index) : current.length < 2 ? [...current, index] : current
   picked.set(session.id, next)
@@ -167,9 +167,10 @@ onMounted(load)
           <section v-if="session.status === 'active' && session.table" class="coop-table" :aria-labelledby="`table-${session.id}`">
             <h6 :id="`table-${session.id}`">Two-seat memory</h6>
             <p>Team {{ session.table.team }} · House {{ session.table.house }} · You played {{ session.table.played[session.role] }} turn{{ session.table.played[session.role] === 1 ? '' : 's' }}</p>
+            <p>Find two pairs and finish the turn ahead of the house. Both friends must play.</p>
             <p role="status">{{ turnLabel(session) }}</p>
             <div class="coop-cards" role="group" aria-label="Eight memory cards">
-              <button v-for="(card, index) in session.table.cards" :key="index" type="button" :aria-pressed="(picked.get(session.id) ?? []).includes(index)" :disabled="!canPlayTable(session) || card !== null || busy || Boolean(retry)" :aria-label="card === null ? `Card ${index + 1}` : `Card ${index + 1}, ${card}`" @click="toggleCard(session, index)">{{ card === null ? '?' : card }}</button>
+              <button v-for="(card, index) in session.table.cards" :key="index" type="button" :aria-pressed="(picked.get(session.id) ?? []).includes(index)" :disabled="!canPickTableCard(session, index) || busy || Boolean(retry)" :aria-label="card === null ? `Card ${index + 1}` : `Card ${index + 1}, ${card}`" @click="toggleCard(session, index)">{{ card === null ? '?' : card }}</button>
             </div>
             <BaseButton v-if="session.table.result === 'playing'" block :disabled="(picked.get(session.id) ?? []).length !== 2 || busy || Boolean(retry)" @click="playCards(session)">Play selected pair</BaseButton>
             <BaseButton v-else block :disabled="busy || Boolean(retry)" @click="restartTable(session)">Restart together</BaseButton>
@@ -182,6 +183,7 @@ onMounted(load)
           </section>
 
           <p v-if="session.status === 'completed'" class="coop-done">Roots challenge complete. Both players keep the result.</p>
+          <p v-if="session.status === 'completed' && session.table" class="coop-done">Memory win · Team {{ session.table.team }} · House {{ session.table.house }} · Both friends played.</p>
           <BaseButton v-if="session.status === 'offered' || session.status === 'active'" small :disabled="busy || Boolean(retry)" @click="end(session)">End this session</BaseButton>
         </article>
       </section>

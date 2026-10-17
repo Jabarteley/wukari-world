@@ -116,6 +116,11 @@ function openSignature(): void {
       </ul>
     </details>
 
+    <details v-if="story.helped.length" class="story-cities">
+      <summary>Help keepsakes · {{ story.helped.length }}</summary>
+      <ul><li v-for="receipt in story.helped" :key="receipt.id"><span><b>{{ receipt.label }} Roots keepsake</b><small>You helped a friend complete a challenge.</small></span><strong>{{ new Date(receipt.completedAt).toLocaleDateString() }}</strong></li></ul>
+    </details>
+
     <CoopCard />
   </section>
 </template>

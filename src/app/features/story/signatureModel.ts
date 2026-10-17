@@ -1,27 +1,5 @@
-export interface SignatureItemView {
-  label: string
-  list: number
-  ask: number
-  rounds: number
-  deal: number | null
-}
-
-export interface SignatureGameView {
-  ok: true
-  enabled: boolean
-  available: boolean
-  reason: string | null
-  city: string
-  venue: string | null
-  label: string
-  item: SignatureItemView | null
-  code?: 'offer_checked' | 'bargain_restarted'
-  verdict?: { kind: 'accept' | 'counter' | 'refuse' | 'final'; price: number }
-  duplicate?: true
-}
-
-export interface SignatureFailure { ok: false; code: string; reason?: string }
-export type SignatureResult = SignatureGameView | SignatureFailure
+import type { SignatureGameView } from '../../../types/story-http.ts'
+export type { SignatureItemView, SignatureGameView, SignatureFailure, SignatureResult } from '../../../types/story-http.ts'
 
 export function naira(value: number): string {
   return `₦${Math.max(0, Math.round(value)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`

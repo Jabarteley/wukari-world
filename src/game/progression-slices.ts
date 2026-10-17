@@ -8,20 +8,10 @@ import type { EpisodesView } from '../types/episodes.ts'
 import type { ProjectsView } from '../types/projects.ts'
 import type { StoryView } from '../types/story.ts'
 import type { LifeContext, LifeState, SystemDefinition } from '../types/index.ts'
+import { plainRecord as record, ownValue as own } from './snapshot-fields.ts'
 
 export const PROGRESSION_SYSTEM_IDS = ['achievements', 'episodes', 'projects', 'story'] as const
 type ProgressionSystemId = typeof PROGRESSION_SYSTEM_IDS[number]
-
-const record = (value: unknown): value is Record<string, unknown> => {
-  if (value === null || typeof value !== 'object' || Array.isArray(value)) return false
-  const prototype = Object.getPrototypeOf(value)
-  return prototype === Object.prototype || prototype === null
-}
-
-const own = (value: Record<string, unknown>, key: string): unknown => {
-  const descriptor = Object.getOwnPropertyDescriptor(value, key)
-  return descriptor?.enumerable && Object.hasOwn(descriptor, 'value') ? descriptor.value : undefined
-}
 
 const hasOnly = (value: Record<string, unknown>, keys: readonly string[]): boolean => {
   const actual = Object.keys(value)
@@ -33,15 +23,15 @@ const validTrackingSince = (value: unknown, now: number): value is number => typ
   && Number.isSafeInteger(value) && (value > 0 ? value <= now : value === 0 && now === 0)
 
 const FRESH = {
-  achievements: { version: 1, progress: {}, earned: {}, pinned: [], displayed: null },
-  episodes: { version: 1, runs: {}, mementos: {} },
-  projects: { version: 2, proofs: {}, mementos: {} },
-  story: { version: 1, mode: 'free', start: null, cities: {}, helped: [] },
-} satisfies { [K in ProgressionSystemId]: Omit<LifeState[K], 'trackingSince'> }
+  achievements: () => ({ version: 1, progress: {}, earned: {}, pinned: [], displayed: null }),
+  episodes: () => ({ version: 1, runs: {}, mementos: {} }),
+  projects: () => ({ version: 2, proofs: {}, mementos: {} }),
+  story: () => ({ version: 1, mode: 'free', start: null, cities: {}, helped: [] }),
+} satisfies { [K in ProgressionSystemId]: () => Omit<LifeState[K], 'trackingSince'> }
 
 function freshSlice(key: ProgressionSystemId, value: unknown, now: number): boolean {
   if (value === undefined || value === null) return true
-  const fields = Object.entries(FRESH[key])
+  const fields = Object.entries(FRESH[key]())
   return record(value) && hasOnly(value, ['trackingSince', ...fields.map(([name]) => name)])
     && validTrackingSince(own(value, 'trackingSince'), now) && fields.every(([name, expected]) => {
       const actual = own(value, name)
@@ -92,7 +82,7 @@ function putSlice<K extends ProgressionSystemId>(state: LifeState, key: K, value
 function standIn(id: ProgressionSystemId, view: NonNullable<SystemDefinition<string>['view']>): SystemDefinition<string> {
   return { id, stateKeys: [id], sanitize(input, state, ctx) {
     const { trackingSince } = slice(input, id, ctx, state)
-    putSlice(state, id, { ...structuredClone(FRESH[id]), trackingSince })
+    putSlice(state, id, { ...FRESH[id](), trackingSince })
   }, view }
 }
 
@@ -101,7 +91,7 @@ const episodeStandIn = standIn('episodes', (state): EpisodesView => ({ trackingS
 const projectStandIn = standIn('projects', (state): ProjectsView => ({ trackingSince: state.projects.trackingSince, mementos: [] }))
 const storyStandIn = standIn('story', (_state, ctx): StoryView => ({
   enabled: false, mode: 'free', cityId: ctx.cityId, start: null, chapter: 0, chapterLabel: 'Arrive', nextStep: '',
-  progress: { missions: 0, venues: 0 }, signature: { kind: 'haggle', label: '', description: '', venue: null }, cities: [], venues: [],
+  progress: { missions: 0, venues: 0 }, signature: { kind: 'haggle', label: '', description: '', venue: null }, helped: [], cities: [], venues: [],
 }))
 
 export const PROGRESSION_STAND_INS: SystemDefinition<string>[] = [achievementStandIn, episodeStandIn, projectStandIn, storyStandIn]

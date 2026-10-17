@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { canPlayTable, expiryLabel, takeStoryHelpQuery, turnLabel } from './coopModel.ts'
+import { canPickTableCard, canPlayTable, expiryLabel, takeStoryHelpQuery, turnLabel } from './coopModel.ts'
 import type { HelpSessionView } from './coopModel.ts'
 
 function session(overrides: Partial<HelpSessionView> = {}): HelpSessionView {
@@ -18,7 +18,7 @@ function session(overrides: Partial<HelpSessionView> = {}): HelpSessionView {
     role: 'helper',
     joined: true,
     question: null,
-    table: { cards: Array(8).fill(null), turn: 'helper', team: 0, house: 0, played: { host: 0, helper: 0 }, last: [], result: 'playing' },
+    table: { cards: Array(8).fill(null), found: [], turn: 'helper', team: 0, house: 0, played: { host: 0, helper: 0 }, last: [], result: 'playing' },
     errand: null,
     ...overrides,
   }
@@ -57,4 +57,20 @@ test('expiry copy rounds up remaining server time without going negative', () =>
   assert.equal(expiryLabel(120_001, 60_000), '2 minutes left')
   assert.equal(expiryLabel(119_999, 60_000), '1 minute left')
   assert.equal(expiryLabel(59_999, 60_000), 'Expires now')
+})
+
+
+test('revealed unmatched memory cards stay playable, while matched cards do not', () => {
+  const current = session()
+  current.table!.cards = [3, 1, 1, null, null, null, 3, null]
+  current.table!.found = [1, 2]
+  current.table!.last = [0, 6]
+  assert.equal(canPickTableCard(current, 0), true)
+  assert.equal(canPickTableCard(current, 6), true)
+  assert.equal(canPickTableCard(current, 1), false)
+  assert.equal(canPickTableCard(current, 3), true)
+  assert.equal(canPickTableCard(current, -1), false)
+  assert.equal(canPickTableCard(current, 8), false)
+  current.table!.turn = 'host'
+  assert.equal(canPickTableCard(current, 0), false)
 })

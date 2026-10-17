@@ -2,53 +2,11 @@ import type { PlayerRef } from '../../../types/protocol.ts'
 import type { StoryHelpKind } from '../../../types/story.ts'
 import { publicStoryHelpId } from '../messages/messagesModel.ts'
 
-export interface HelpQuestion {
-  prompt: string
-  options: Array<{ id: string; label: string }>
-  answered: boolean
-}
-
-export interface HelpTable {
-  cards: Array<number | null>
-  turn: 'host' | 'helper'
-  team: number
-  house: number
-  played: { host: number; helper: number }
-  last: number[]
-  result: 'playing' | 'lost'
-}
-
-export interface HelpSessionView {
-  id: string
-  host: PlayerRef
-  helper: PlayerRef
-  city: string
-  cityName: string
-  venue: string
-  label: string
-  kind: StoryHelpKind
-  status: 'offered' | 'active' | 'completed' | 'ended' | 'expired'
-  expiresAt: number
-  role: 'host' | 'helper'
-  joined: boolean
-  question: HelpQuestion | null
-  table: HelpTable | null
-  errand: { mission: string; rewardId: string | null } | null
-}
-
-export interface StoryHelpView {
-  ok: true
-  enabled: boolean
-  remainingCalls: number
-  challenge: { episodeId: string; venue: string; canCall: boolean; reason: string | null } | null
-  friends: PlayerRef[]
-  sessions: HelpSessionView[]
-}
-
-export interface StoryHelpResult { ok: boolean; code: string; reason?: string; id?: string }
+import type { HelpSessionView } from '../../../types/story-http.ts'
+export type { HelpQuestion, HelpTable, HelpSessionView, StoryHelpView, StoryHelpResult } from '../../../types/story-http.ts'
 
 export const HELP_KINDS: readonly { id: StoryHelpKind; label: string; description: string }[] = [
-  { id: 'second-answer', label: 'Second answer', description: 'Answer different questions from the same tale.' },
+  { id: 'second-answer', label: 'Second answer', description: 'Answer different questions about the same city.' },
   { id: 'two-seat', label: 'Two-seat memory', description: 'Take turns finding pairs against the house.' },
   { id: 'errand', label: 'Shared errand', description: 'Finish a verified local mission for the team.' },
 ]
@@ -73,6 +31,11 @@ export function expiryLabel(expiresAt: number, now: number): string {
 
 export function canPlayTable(session: HelpSessionView): boolean {
   return session.status === 'active' && session.table?.result === 'playing' && session.table.turn === session.role
+}
+
+export function canPickTableCard(session: HelpSessionView, index: number): boolean {
+  const table = session.table
+  return Boolean(canPlayTable(session) && table && Number.isSafeInteger(index) && index >= 0 && index < table.cards.length && !table.found.includes(index))
 }
 
 export function turnLabel(session: HelpSessionView): string {

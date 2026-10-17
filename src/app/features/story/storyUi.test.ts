@@ -73,6 +73,17 @@ test('Story panel exposes reversible modes, chapter guidance, progress, and the 
   assert.ok(text(chip).includes(story.chapterLabel) && text(chip).includes(story.nextStep))
 })
 
+test('a helper keeps the named city keepsake without advancing the city ladder', async () => {
+  const state = server.life(), before = structuredClone(state.story)
+  state.story.helped = [{ id: 'help-keepsake-1', city: 'kano', completedAt: state.t }]
+  await setStory(true, 'free')
+  const words = text(await render('/src/app/features/story/StoryModePanel.vue'))
+  assert.ok(words.includes('Help keepsakes · 1'))
+  assert.ok(words.includes('Kano Roots keepsake'))
+  assert.deepEqual(app.game.state.value.story.cities, before.cities)
+  state.story = before
+})
+
 test('Story invitation focus accepts only public UUIDs and signature kinds choose existing feature screens', async () => {
   const ui = await load<typeof import('./storyUi.ts')>('/src/app/features/story/storyUi.ts')
   const id = '123e4567-e89b-42d3-a456-426614174000'

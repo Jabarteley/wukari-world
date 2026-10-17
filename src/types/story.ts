@@ -61,6 +61,7 @@ export interface StoryView {
   nextStep: string
   progress: { missions: number; venues: number }
   signature: StorySignatureView
+  helped: Array<StoryHelpedReceipt & { label: string }>
   cities: Array<{ id: string; label: string; chapter: StoryChapter; unlocked: boolean }>
   venues: Array<{ id: string; label: string; chapter: StoryChapter; locked: boolean; reason: string | null }>
 }

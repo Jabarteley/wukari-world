@@ -171,7 +171,7 @@ export function storyCoop(ctx: RouteContext) {
       return { id: row.id, host: kit.pub(s, row.host), helper: kit.pub(s, row.to), city: row.city, cityName: cityName(row.city) ?? row.city, venue: row.venue,
         label: 'Roots challenge', kind: row.proof.kind, status: row.expires <= ctx.now() ? 'expired' as const : row.phase, expiresAt: row.expires, role, joined: row.phase !== 'offered',
         question: row.proof.kind === 'second-answer' && q ? { prompt: q.prompt, options: q.options.map(({ id, label }) => ({ id, label })), answered: row.proof[role] } : null,
-        table: table ? { cards: table.board.map((n, i) => table.found.includes(i) || table.last.includes(i) ? n : null), turn: table.turn, team: table.team, house: table.house, played: { ...table.played }, last: [...table.last], result: table.result } : null,
+        table: table ? { cards: table.board.map((n, i) => table.found.includes(i) || table.last.includes(i) ? n : null), found: [...table.found], turn: table.turn, team: table.team, house: table.house, played: { ...table.played }, last: [...table.last], result: table.result } : null,
         errand: row.proof.kind === 'errand' ? { mission: (grant ? missionCatalogues.byId.get(grant.id)?.label : null) ?? 'Finish and claim one authored local mission in this city.', rewardId: grant?.rewardId ?? null } : null }
     })
     return { ok: true as const, enabled: true, remainingCalls: Math.max(0, STORY_CALLS_PER_DAY - (calls?.day === Math.floor(ctx.now() / DAY) ? calls.count : 0)), challenge,

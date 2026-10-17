@@ -2,6 +2,7 @@
 import type { HomewardLinksFrom, HomewardIsOpen, HomewardQuote } from './cities/homewardRoute.ts'
 import type { SavedActiveAction } from '../types/registry.ts'
 import type { HomewardTicket, LifeContext, LifeState } from '../types/life.ts'
+import { plainRecord as record, ownValue as own } from './snapshot-fields.ts'
 
 interface HomewardRules {
   planHomewardRoute(from: string, to: string, links: HomewardLinksFrom, open: HomewardIsOpen): HomewardQuote | null
@@ -26,16 +27,6 @@ export function planHomeward(...args: Parameters<HomewardRules['planHomewardRout
 export function readHomewardTicket(...args: Parameters<HomewardRules['readHomewardTicket']>): HomewardTicket | null {
   if (!rules) throw new TypeError('Homeward ticket rules have not loaded; preserve the saved life for retry.')
   return rules.readHomewardTicket(...args)
-}
-
-const record = (value: unknown): value is Record<string, unknown> => {
-  if (value === null || typeof value !== 'object' || Array.isArray(value)) return false
-  const prototype = Object.getPrototypeOf(value)
-  return prototype === Object.prototype || prototype === null
-}
-const own = (value: Record<string, unknown>, key: string): unknown => {
-  const property = Object.getOwnPropertyDescriptor(value, key)
-  return property?.enumerable && Object.hasOwn(property, 'value') ? property.value : undefined
 }
 
 /** Conservative loading hints only; the installed rules still validate every field and decide eligibility. */

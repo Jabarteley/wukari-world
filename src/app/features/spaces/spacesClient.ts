@@ -28,3 +28,8 @@ export const check = (api: Fetcher, where: Where, plan: SpacePlanV1) =>
   call<Designed>(api, '/api/spaces/check', { ...where, plan: packPlan(plan) })
 export const apply = (api: Fetcher, where: Where, plan: SpacePlanV1, requestId: string) =>
   call<Applied>(api, '/api/spaces/apply', { ...where, plan: packPlan(plan), requestId })
+
+export interface HostState { kind: 'butler' | 'dj' | 'quizmaster' | 'gateman' | null; persona: string; on: boolean; name: string | null; kinds: { id: string; label: string; name: string }[] }
+export const hostRead = (api: Fetcher) => call<{ ok: true; ai: boolean; host: HostState }>(api, '/api/spaces/host')
+export const hostWrite = (api: Fetcher, body: { kind: HostState['kind']; persona?: string; on: boolean }) =>
+  call<{ ok: true; code: 'saved' | 'removed'; host: HostState }>(api, '/api/spaces/host', body)

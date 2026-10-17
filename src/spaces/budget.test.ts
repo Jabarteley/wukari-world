@@ -20,7 +20,7 @@ import { readFileSync } from 'node:fs'
 import { DEFAULT_STYLE, HOUSE_TIERS } from '../game/content/world.ts'
 import { firstJsonObject, fitSpacePlan, layoutBrief, readBrief, tierPlot, type SpacePlanV1 } from './plan.ts'
 import { planOf } from '../game/home-plan.ts'
-import { allowanceOf, weigh } from '../../server/spaces/weight.ts'
+import { allowanceOf, MODEL_TRIANGLES, weigh } from '../../server/spaces/weight.ts'
 import type { HouseTierId } from '../types/life.ts'
 
 const SCENERY_TRIANGLES = 15_000
@@ -177,4 +177,8 @@ test('every AI-designed home of the fixtures stays inside the 15k scenery cap on
   }
   assert.equal(RECIPES.length, 11, `${RECIPES.length} homes: seven recorded, four densest`)
   console.log(`AI spaces budget max conservative scenery: ${maximum.value} (${maximum.label})`)
+})
+
+test('the scene weights of server/spaces/weight.ts are the housing models\u2019 own triangle counts', () => {
+  assert.deepEqual({ ...MODEL_TRIANGLES }, Object.fromEntries(housingAssetManifest.map((asset) => [asset.id, asset.triangles])))
 })

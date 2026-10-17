@@ -5,6 +5,7 @@ import { dirname, join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import { createContext, runInContext } from 'node:vm';
 import { DATA_MODULE, splitDataModule } from './scripts/typecheck-data-stubs.ts';
+import { THREE_MODULE, shareMorphTextures } from './scripts/vite/three-shared-morphs.ts';
 
 const wantMaps = process.env.SOURCEMAPS === '1';
 const MAPS_DIR = 'dist-maps';
@@ -241,11 +242,24 @@ function lazyCityLoaders(): Plugin {
   };
 }
 
+/** One morph texture per shared body file instead of one per body (scripts/vite/three-shared-morphs.ts), in the build and in dev. */
+function threeSharedMorphs(): Plugin {
+  return { name: 'allworld:three-shared-morphs', enforce: 'pre', transform(code, id) { return THREE_MODULE.test(id.split('?')[0]!) ? { code: shareMorphTextures(code), map: null } : null; } };
+}
+const threeSharedMorphsEsbuild = {
+  name: 'allworld:three-shared-morphs',
+  setup(build: { onLoad(options: { filter: RegExp }, callback: (args: { path: string }) => { contents: string; loader: 'js' }): void }) {
+    build.onLoad({ filter: THREE_MODULE }, (args) => ({ contents: shareMorphTextures(readFileSync(args.path, 'utf8')), loader: 'js' }));
+  },
+};
+
 export default defineConfig({
   // The page is a Vue 3 + TypeScript application: index.html → src/app/main.ts (docs/MIGRATION-VUE-TS.md).
-  plugins: [browserSystems(), skipSpecValidation(), leaveOutProvenance(), cityDataAsJson(), lazyCityLoaders(), cityNetworkMode(), vue(), ...(wantMaps ? [moveMaps()] : [])],
+  plugins: [threeSharedMorphs(), browserSystems(), skipSpecValidation(), leaveOutProvenance(), cityDataAsJson(), lazyCityLoaders(), cityNetworkMode(), vue(), ...(wantMaps ? [moveMaps()] : [])],
   // Every shipped component uses Composition API; omit the unused Options API runtime.
   define: { __VUE_OPTIONS_API__: false },
+  // The development server pre-bundles three with esbuild, which the transform above does not see.
+  optimizeDeps: { esbuildOptions: { plugins: [threeSharedMorphsEsbuild] } },
   server: {
     host: '127.0.0.1', port: 5173,
     proxy: {

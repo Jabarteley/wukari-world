@@ -55,3 +55,23 @@ test('import_space into a group room needs membership', async (t) => {
   assert.equal(refused.ok, false);
   assert.equal((refused.data as { code?: string }).code, 'not_member', JSON.stringify(refused.data));
 });
+
+test('import_game: a valid lite game is stored and playable by its id; a bad one is refused with every problem; a rude name is refused', async (t) => {
+  const w = await world(t);
+  const bot = await agent(w, 'Robo Gamer');
+  const { LITE_EXAMPLES } = await import('../../src/arena/lite/examples.ts');
+  const { liteDef } = await import('../../src/arena/lite/rules.ts');
+  const def = { ...LITE_EXAMPLES[0]!.def, title: 'Robo Dodge' };
+  const made = await w.tool(bot.key, 'import_game', { def });
+  assert.equal(made.ok, true, JSON.stringify(made.data));
+  const id = (made.data as { game: { id: string } }).game.id;
+  assert.match(id, /^l[0-9a-f]{8}$/);
+  assert.equal(liteDef(id)?.title, 'Robo Dodge', 'the engine can play it at once');
+  const stored = await w.stored((db) => (db as { spaces?: { games?: Record<string, { by: string }> } }).spaces?.games?.[id]?.by);
+  assert.equal(stored, bot.id);
+  const bad = await w.tool(bot.key, 'import_game', { def: { ...def, hz: 99, controls: 'mouse' } });
+  assert.equal(bad.ok, false);
+  assert.equal((bad.data as { problems?: string[] }).problems?.length, 2, JSON.stringify(bad.data));
+  const rude = await w.tool(bot.key, 'import_game', { def: { ...def, title: 'call me on 08031234567' } });
+  assert.equal(rude.ok, false);
+});

@@ -750,7 +750,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/arena/daily',
   'GET /api/clans/me', 'GET /api/clans/preview', 'POST /api/clans/create', 'POST /api/clans/join', 'POST /api/clans/leave', 'POST /api/clans/kick',
   'POST /api/clans/role', 'POST /api/clans/edit', 'POST /api/clans/code', 'POST /api/clans/venue', 'POST /api/clans/prize', 'GET /api/clans/boards', 'GET /api/clans/league',
-  'GET /api/spaces/status', 'POST /api/spaces/design', 'POST /api/spaces/check', 'POST /api/spaces/apply', 'GET /api/spaces/host', 'POST /api/spaces/host',
+  'GET /api/spaces/status', 'POST /api/spaces/design', 'POST /api/spaces/check', 'POST /api/spaces/apply', 'GET /api/spaces/host', 'POST /api/spaces/host', 'GET /api/spaces/games', 'GET /api/spaces/game', 'POST /api/spaces/games',
   'POST /api/arena/clip',
   'GET /api/world/pray',
   'POST /api/world/pray',

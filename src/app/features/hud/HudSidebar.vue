@@ -43,18 +43,20 @@ const atHome = computed(() => game.state.value.location === 'home')
 const sceneViewChoice = computed(() => game.mode.value === 'venue' ? scene.viewChoice.value : null)
 
 const root = ref<HTMLElement | null>(null)
+const more = ref<HTMLButtonElement | null>(null)
 /** A tap anywhere outside the column closes the tray. */
 function onOutside(event: PointerEvent): void { if (ui.trayOpen && event.target instanceof Node && !root.value?.contains(event.target)) ui.trayOpen = false }
 onMounted(() => document.addEventListener('pointerdown', onOutside))
 onBeforeUnmount(() => document.removeEventListener('pointerdown', onOutside))
 function pick(id: string): void { ui.trayOpen = false; menu(id) }
+function openHelp(): void { more.value?.focus({ preventScroll: true }); shell.open('help') }
 </script>
 
 <template>
-  <aside ref="root" class="life-sidebar" aria-label="Needs, goal and more">
+  <aside ref="root" class="life-sidebar" :class="{ 'is-teaching': view.career.teaching !== null, 'is-tray-open': ui.trayOpen }" aria-label="Needs, goal and more">
     <div class="life-quick">
       <NeedsStrip v-if="!ui.clean" />
-      <button v-if="!ui.clean" class="life-round" type="button" :aria-expanded="ui.trayOpen" aria-controls="life-tray" :aria-label="`More: weather, messages, city and help${waiting ? `. ${waiting} waiting` : ''}`" title="More" @click="ui.trayOpen = !ui.trayOpen">
+      <button v-if="!ui.clean" ref="more" class="life-round" type="button" :aria-expanded="ui.trayOpen" aria-controls="life-tray" :aria-label="`More: weather, messages, city and help${waiting ? `. ${waiting} waiting` : ''}`" title="More" @click="ui.trayOpen = !ui.trayOpen">
         <GameIcon name="menu" /><b v-if="waiting" class="life-badge">{{ waiting }}</b>
       </button>
       <button class="life-round" type="button" :aria-pressed="ui.clean" aria-label="Clean screen: hide the panels and show only the scene" :title="ui.clean ? 'Show the panels again (X)' : 'Clean screen (X)'" @click="ui.clean = !ui.clean; ui.trayOpen = false">
@@ -77,7 +79,7 @@ function pick(id: string): void { ui.trayOpen = false; menu(id) }
           </template>
           <button type="button" @click="pick('city')"><span aria-hidden="true"><GameIcon name="globe" :size="19" /></span><span><b>{{ view.city?.name || 'City' }}</b><small>Switch city on the world map</small></span></button>
           <button type="button" @click="ui.trayOpen = false; community.toggle(true)"><span aria-hidden="true"><GameIcon name="community" :size="19" /></span><span><b>Community</b><small>{{ atHome ? 'Home is private — visit a venue to chat' : 'People, chat and voice at this venue' }}</small></span></button>
-          <button type="button" @click="shell.open('help')"><span aria-hidden="true"><GameIcon name="help" :size="19" /></span><span><b>How to play</b><small>Tips and keyboard shortcuts</small></span></button>
+          <button type="button" @click="openHelp"><span aria-hidden="true"><GameIcon name="help" :size="19" /></span><span><b>How to play</b><small>Tips and keyboard shortcuts</small></span></button>
           <p class="life-net" :class="{ 'is-error': view.net.error }" role="status">{{ view.net.text }}</p>
           <button v-if="link?.tone === 'off'" class="life-menu-retry" type="button" @click="pick('reconnect')">Try again</button>
         </div>
@@ -88,4 +90,5 @@ function pick(id: string): void { ui.trayOpen = false; menu(id) }
 
 <style scoped>
 .life-view-status{padding:2px 8px 4px 50px;color:var(--c-red-dark);font-size:var(--t-small);line-height:1.35}
+@media (min-width:721px) and (max-width:1239px){.life-sidebar.is-teaching :deep(.needs-strip),.life-sidebar.is-teaching .life-alerts,.life-sidebar.is-teaching .life-goal{display:none}.life-sidebar.is-teaching:not(.is-tray-open) .life-tray{display:none}.life-sidebar.is-teaching.is-tray-open .life-tray{display:grid;gap:8px;max-height:calc(100 * var(--ui-vh) - 180px);overflow-y:auto;background:var(--c-surface);padding:8px;border-radius:var(--r-lg);box-shadow:var(--e-2)}}
 </style>

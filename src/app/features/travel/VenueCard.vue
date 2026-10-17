@@ -42,7 +42,7 @@ function go(): void {
   void travel(props.item.id, mode.id)
 }
 async function share(): Promise<void> {
-  const link = venueLink(window.location.origin, window.location.pathname, props.item.id)
+  const link = venueLink(window.location.origin, game.view.value.cityId, props.item.id)
   if (await copyText(link)) game.toast('Link copied. Anyone who opens it lands on this place.', 'good')
   else game.toast(`Copy this link: ${link}`)
 }

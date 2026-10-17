@@ -85,7 +85,7 @@ function useDirectory(): LgaDirectory {
       <button class="ui-button is-quiet" type="button" @click="showOnMap"><GameIcon name="map" inline /><span>Show on the map</span></button>
       <button v-if="yours && estate.plot" class="ui-button is-quiet" type="button" @click="showMyHouse"><GameIcon name="home" inline /><span>Show my house</span></button>
     </div>
-    <LgaCard v-if="!yours" :heading="estate.placed ? 'Move here?' : 'Live here?'" compact @chosen="page.items = null" />
+    <LgaCard v-if="!yours" :heading="estate.placed ? 'Change where you live' : 'Choose where to live'" compact @chosen="page.items = null" />
     <SectionTitle>Residents</SectionTitle>
     <button class="ui-button is-block" type="button" @click="shell.open('commerce', { lga: id })">Explore shops in {{ unit.name }}</button>
     <form class="ui-stack is-tight" @submit.prevent="submitSearch">

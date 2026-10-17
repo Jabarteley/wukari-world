@@ -3,6 +3,7 @@
 const MESSAGES: Readonly<Record<string, string>> = {
   civic_rate_limited: 'You are doing that too quickly. Wait a minute and try again.',
   rate_limited: 'Too many requests from this network. Wait a minute and try again.',
+  not_found: 'That item is not available. Go back and choose another option, or try again.',
   device_session_required: 'Your device session is missing or expired. Reconnect first.',
   invalid_city: 'That city is not available.',
   body_too_large: 'That is too much text.',

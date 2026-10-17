@@ -2,6 +2,7 @@
 import '../../../ui/controls.css'
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
+import { openLogin } from '../account/accountOpen.ts'
 import type { ApiOptions } from '../../../client.ts'
 import { COMMERCE_CATEGORIES } from '../../../types/commerce.ts'
 import type { CommerceCategory, CommerceDirectory, CommerceListing, CommerceResponse } from '../../../types/commerce.ts'
@@ -163,7 +164,7 @@ onMounted(async () => {
         <GameIcon name="groceries" :size="32" />
         <h2>A little shop of your own</h2>
         <p>Sell real products from your place in Allworld. Your customers pay at checkout, and your game money stays yours to play with.</p>
-        <button v-if="result.accountEnabled" type="button" class="ui-button is-primary" @click="shell.open('account', { intent: 'sign-in', mode: 'sign-in' })">Sign in to open a store</button>
+        <button v-if="result.accountEnabled" type="button" class="ui-button is-primary" @click="openLogin(shell, 'shop')">Sign in to open a store</button>
         <p v-else class="ui-note">Store ownership needs a saved account. Sign-in is not available on this server yet.</p>
       </section>
       <section v-else-if="!address" class="commerce-start">

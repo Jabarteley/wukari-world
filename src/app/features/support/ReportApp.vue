@@ -112,7 +112,7 @@ async function send(): Promise<void> {
 .report-form textarea[aria-invalid='true'] { border-color: var(--c-red); }
 .report-fine { font-size: 12px; line-height: 1.45; color: var(--c-muted); }
 .report-send { display: grid; gap: 4px; }
-.report-send :deep(.is-primary) { background: var(--app-tint, var(--c-green-dark)); }
+.report-send :deep(.is-primary) { background: var(--c-amber-dark); }
 .report-send small { color: var(--c-red); font-size: 12px; }
 .report-good, .report-error { padding: 9px 12px; border-radius: var(--r-sm); font-size: 13px; font-weight: 600; line-height: 1.4; }
 .report-good { background: var(--c-green-soft); color: var(--c-green-dark); }

@@ -69,10 +69,10 @@ async function take(): Promise<void> {
     <div class="adm-card" style="margin-top:12px">
       <h3>Take an act</h3>
       <p v-if="current" class="adm-sub">Answering prayer {{ current.n }} from {{ current.name }}: “{{ current.text }}” <a href="#" @click.prevent="act.prayer = 0">(not for a prayer)</a></p>
-      <div class="adm-row">
+      <div class="adm-row prayer-act-fields">
         <label>Act<select v-model="act.kind"><option v-for="kind in page?.acts ?? []" :key="kind" :value="kind">{{ WORDS[kind] ?? kind }}</option></select></label>
-        <label v-if="!needs('weather', 'silence')" style="flex:1">Person (player id, or resident id)<input v-model="act.target" autocomplete="off"></label>
-        <label v-if="needs('cross')" style="flex:1">The other person<input v-model="act.other" autocomplete="off"></label>
+        <label v-if="!needs('weather', 'silence')">Person (player id, or resident id)<input v-model="act.target" autocomplete="off"></label>
+        <label v-if="needs('cross')">The other person<input v-model="act.other" autocomplete="off"></label>
         <label v-if="needs('cross')">Place (venue id)<input v-model="act.venue" autocomplete="off"></label>
         <label v-if="needs('give', 'take')">₦ game money (most {{ page?.limits.moneyMax }})<input v-model.number="act.amount" type="number" min="1"></label>
         <label v-if="needs('bless')">₦ into the till (most {{ page?.limits.blessMax }})<input v-model.number="act.amount" type="number" min="1" :max="page?.limits.blessMax"></label>
@@ -83,9 +83,9 @@ async function take(): Promise<void> {
         </template>
         <template v-if="needs('dream')">
           <label>As<select v-model="act.form"><option value="dream">a dream</option><option value="sign">a sign</option></select></label>
-          <label style="flex:1">The line, gently (most {{ page?.limits.dreamMax }})<input v-model="act.text" :maxlength="page?.limits.dreamMax ?? 140"></label>
+          <label>The line, gently (most {{ page?.limits.dreamMax }})<input v-model="act.text" :maxlength="page?.limits.dreamMax ?? 140"></label>
         </template>
-        <label style="flex:1">Reason (kept in the log)<input v-model="act.reason" maxlength="200"></label>
+        <label>Reason (kept in the log)<input v-model="act.reason" maxlength="200"></label>
       </div>
       <p class="adm-sub"><template v-if="act.kind === 'sicken'">Once a week at most, never on a minor. </template><template v-if="act.kind === 'give' || act.kind === 'take'">Game money through the wallet and the admin limits; never real money. </template>A line may appear in the gist; no names unless the person is a confirmed adult and the line is kind.</p>
       <p><button class="adm-btn primary" :disabled="busy || act.reason.trim().length < 3" @click="take">Do it</button></p>
@@ -106,3 +106,9 @@ async function take(): Promise<void> {
     </div>
   </section>
 </template>
+
+<style scoped>
+.prayer-act-fields > label { flex: 1 1 200px; min-width: 0; }
+.prayer-act-fields > label > input,
+.prayer-act-fields > label > select { box-sizing: border-box; width: 100%; min-width: 0; }
+</style>

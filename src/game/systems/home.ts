@@ -81,7 +81,7 @@ import { FURNITURE, HOME_ACTIVITIES, HOME_SPOTS, KINDS, PORTED_ACTIVITY_KIND, PO
 import { INGREDIENTS, INGREDIENT_ORDER, MAX_PACKS_PER_ORDER, RECIPES } from '../content/food.ts';
 import { homeOf } from '../content/housing.ts';
 import { defaultHouseFor, houseFor, housesFor } from '../cities/housingRuntime.ts';
-import { HOUSE_DESIGNS } from '../content/world.ts';
+import { HOUSE_DESIGNS, lgaOf } from '../content/world.ts';
 import type { Plot, WantedItem } from '../home-layout.ts';
 import { MAX_PLACED, MAX_STORED_PER_ITEM, checkPlacement, doorSlot, fitInto, frontDoorBlocked, normalise, plotOf, starterLayout, windowSlot } from '../home-layout.ts';
 
@@ -125,7 +125,10 @@ const placedOfKind = (state: LifeState, kind: string): PlacedItem[] => (state.st
 const LENT = { canAfford, debit, emit };
 const hasPlaced = (state: LifeState, itemId: string): boolean => state.home.items.some((item) => item.itemId === itemId);
 /** The district the home stands in: power cuts are by district. */
-const homeDistrict = (state: LifeState): string => (houseFor(state.estate.city, state.property?.house) ?? defaultHouseFor(state.estate.city)).district;
+const homeDistrict = (state: LifeState): string => {
+  const houseDistrict = (houseFor(state.estate.city, state.property?.house) ?? defaultHouseFor(state.estate.city)).district;
+  return state.estate.living === 'own' ? lgaOf(state.estate.city, state.estate.plot?.lga ?? state.estate.lga)?.name ?? houseDistrict : houseDistrict;
+};
 
 /** The grid at home at `now`, and what is lighting the room. */
 export function powerOf(state: LifeState, now: number): HomePower {

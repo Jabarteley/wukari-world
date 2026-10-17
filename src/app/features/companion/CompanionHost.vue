@@ -50,11 +50,11 @@ const settled = computed(() => game.connected.value && game.view.value.onboardin
 const callUp = computed(() => callStore.view.phase !== 'idle' || callStore.confirm !== null)
 const effective = computed<CompanionMode>(() => (prefs.mode === 'off' ? 'off' : coachHints.value ? prefs.mode : 'quiet'))
 const shown = computed(() => settled.value && prefs.mode !== 'off' && !callUp.value)
-// Map controls own the map's tap area. Messages and the tour remain available without the floating stage.
-// A teaching lesson (venue progress or the Jobs tab) puts its right/wrong feedback where the guide floats on phones: the guide steps aside.
+// Map and Buy controls own their tap areas. Messages and the tour remain available without the floating stage.
+// A teaching lesson (venue progress or the Jobs tab) puts its right/wrong feedback where the guide floats on constrained widths: the guide steps aside.
 const lesson = computed(() => game.view.value.career.teaching !== null)
 const viewport = ref(window.innerWidth)
-const floating = computed(() => shown.value && game.mode.value !== 'map' && !yieldsToLesson(lesson.value, viewport.value))
+const floating = computed(() => shown.value && game.mode.value !== 'map' && game.mode.value !== 'buy' && !(viewport.value <= 720 && shell.ui.trayOpen) && !tour.active && !yieldsToLesson(lesson.value, viewport.value))
 const size = ref(window.innerWidth <= 480 ? 92 : 124)
 const pos = reactive({ x: 8, y: 400 })
 const override = ref<{ x: number; y: number } | null>(null)

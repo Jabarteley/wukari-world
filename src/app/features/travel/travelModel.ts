@@ -10,11 +10,12 @@ import type { AtlasLevelId } from '../../../game/cities/atlasMetadata.ts'
 // (src/game/systems/travel.ts). The words for "why Go is off" come from the connection table
 // (src/ui/link.ts), so a trip is never refused as "offline" when the server is merely unreachable.
 import { VENUE_CATEGORIES } from '../../../game/content/venues.ts'
-import type { LifeState } from '../../../types/life.ts'
+import type { LifeState, WorldCityId } from '../../../types/life.ts'
 import type { AdsResponse, GovResponse } from '../../../types/civic.ts'
 import type { LifeView, RoadsideChoiceCard, TravelDestination, TravelModeCard } from '../../../types/view.ts'
 import type { PanelView } from '../../types/panel.ts'
 import { cap, money } from '../../ui/format.ts'
+import { pathOf } from '../../../paths.ts'
 import { linkWords } from './travelBoundary.ts'
 import type { LinkAction } from './travelBoundary.ts'
 
@@ -301,7 +302,7 @@ export const layoutKey = (parts: { layer: string; destination: string | null; li
   `${parts.layer}|${parts.destination ?? ''}|${parts.listOpen}|${parts.layersOn}|${parts.tripping}`
 
 /** The link "Copy a link to this place" puts on the clipboard. */
-export const venueLink = (origin: string, pathname: string, venueId: string): string => `${origin}${pathname}?venue=${encodeURIComponent(venueId)}`
+export const venueLink = (origin: string, cityId: WorldCityId, venueId: string): string => `${origin}${pathOf({ kind: 'city', city: cityId, page: null, venue: null })}?venue=${encodeURIComponent(venueId)}`
 
 /** The params the Map is opened with: a place, or a layer. */
 export interface MapParams { destination?: string | null; layer?: string; level?: number; city?: string }

@@ -77,6 +77,12 @@ const pipe = new InputPipe({ now: () => performance.now(), send: (held, pressed)
 const seated = room.seated
 const down = ref(0)
 function hold(bit: number, on: boolean): void { heldBits = on ? heldBits | bit : heldBits & ~bit; down.value = heldBits; pipe.hold(heldBits & (BTN.left | BTN.right | BTN.block)); predictor.hold(heldBits & (BTN.left | BTN.right | BTN.block)); sound.unlock() }
+function holdKey(event: KeyboardEvent, bit: number, on: boolean): void {
+  if (event.key !== ' ' && event.key !== 'Enter') return
+  event.preventDefault()
+  event.stopPropagation()
+  hold(bit, on)
+}
 function tap(bit: number): void {
   sound.unlock()
   if (!seated.value || state.value?.status !== 'playing' || !playing()) return
@@ -95,6 +101,7 @@ const KEYS: Record<string, { hold?: number; tap?: number }> = {
 function key(event: KeyboardEvent, on: boolean): void {
   const target = event.target as HTMLElement | null
   if (target && /^(INPUT|SELECT|TEXTAREA)$/.test(target.tagName)) return
+  if (event.key === ' ' && target?.closest('button')) return
   const map = KEYS[event.key.length === 1 ? event.key.toLowerCase() : event.key]
   if (!map) return
   event.preventDefault()
@@ -267,14 +274,14 @@ onBeforeUnmount(() => {
         <p v-if="note" class="fg-note" role="status">{{ note }}</p>
         <section v-if="status === 'playing' && seated" ref="padEl" class="fg-pad" aria-label="Controls" data-testid="fight-pad">
           <div ref="leftEl" class="fg-left">
-            <button type="button" class="fg-btn mv" aria-label="Move left" :class="{ on: down & BTN.left }" @pointerdown.prevent="hold(BTN.left, true)" @pointerup.prevent="hold(BTN.left, false)" @pointercancel="hold(BTN.left, false)" @pointerleave="hold(BTN.left, false)">&#9664;</button>
-            <button type="button" class="fg-btn mv" aria-label="Move right" :class="{ on: down & BTN.right }" @pointerdown.prevent="hold(BTN.right, true)" @pointerup.prevent="hold(BTN.right, false)" @pointercancel="hold(BTN.right, false)" @pointerleave="hold(BTN.right, false)">&#9654;</button>
+            <button type="button" class="fg-btn mv" aria-label="Move left" :class="{ on: down & BTN.left }" @pointerdown.prevent="hold(BTN.left, true)" @pointerup.prevent="hold(BTN.left, false)" @pointercancel="hold(BTN.left, false)" @pointerleave="hold(BTN.left, false)" @keydown="holdKey($event, BTN.left, true)" @keyup="holdKey($event, BTN.left, false)" @blur="hold(BTN.left, false)">&#9664;</button>
+            <button type="button" class="fg-btn mv" aria-label="Move right" :class="{ on: down & BTN.right }" @pointerdown.prevent="hold(BTN.right, true)" @pointerup.prevent="hold(BTN.right, false)" @pointercancel="hold(BTN.right, false)" @pointerleave="hold(BTN.right, false)" @keydown="holdKey($event, BTN.right, true)" @keyup="holdKey($event, BTN.right, false)" @blur="hold(BTN.right, false)">&#9654;</button>
           </div>
           <div ref="rightEl" class="fg-right">
-            <button type="button" class="fg-btn act punch" aria-label="Punch" @pointerdown.prevent="tap(BTN.punch)">Punch</button>
-            <button type="button" class="fg-btn act kick" aria-label="Kick" @pointerdown.prevent="tap(BTN.kick)">Kick</button>
-            <button type="button" class="fg-btn act block" aria-label="Block" :class="{ on: down & BTN.block }" @pointerdown.prevent="hold(BTN.block, true)" @pointerup.prevent="hold(BTN.block, false)" @pointercancel="hold(BTN.block, false)" @pointerleave="hold(BTN.block, false)">Block</button>
-            <button type="button" class="fg-btn act jump" aria-label="Jump" @pointerdown.prevent="tap(BTN.jump)">Jump</button>
+            <button type="button" class="fg-btn act punch" aria-label="Punch" @pointerdown.prevent="tap(BTN.punch)" @click="$event.detail === 0 && tap(BTN.punch)">Punch</button>
+            <button type="button" class="fg-btn act kick" aria-label="Kick" @pointerdown.prevent="tap(BTN.kick)" @click="$event.detail === 0 && tap(BTN.kick)">Kick</button>
+            <button type="button" class="fg-btn act block" aria-label="Block" :class="{ on: down & BTN.block }" @pointerdown.prevent="hold(BTN.block, true)" @pointerup.prevent="hold(BTN.block, false)" @pointercancel="hold(BTN.block, false)" @pointerleave="hold(BTN.block, false)" @keydown="holdKey($event, BTN.block, true)" @keyup="holdKey($event, BTN.block, false)" @blur="hold(BTN.block, false)">Block</button>
+            <button type="button" class="fg-btn act jump" aria-label="Jump" @pointerdown.prevent="tap(BTN.jump)" @click="$event.detail === 0 && tap(BTN.jump)">Jump</button>
           </div>
           <p class="fg-small keys">Keys: A D move · W jump · J punch · K kick · S block</p>
         </section>

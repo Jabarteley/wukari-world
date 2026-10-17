@@ -377,7 +377,8 @@ const pinCount = computed(() => pins.state.view?.items.length ?? 0)
 const pinText = computed(() => { const line = pins.state.view?.items[0]?.message; return line ? line.body.trim() || (line.image ? 'Picture' : line.voice ? 'Voice message' : 'Message') : '' })
 const listMode = ref<'all' | 'unread'>('all')
 const chatFilter = ref('')
-const chatList = computed(() => sortChats(filterChats((listMode.value === 'unread' ? onlyUnread(me.value?.conversations ?? []) : me.value?.conversations ?? []).filter((item) => ui.tab !== 'groups' || item.kind === 'group'), chatFilter.value)))
+const chatList = computed(() => sortChats(filterChats((ui.tab === 'chats' && listMode.value === 'unread' ? onlyUnread(me.value?.conversations ?? []) : me.value?.conversations ?? []).filter((item) => ui.tab !== 'groups' || item.kind === 'group'), chatFilter.value)))
+const groupCount = computed(() => me.value?.conversations.filter((item) => item.kind === 'group').length ?? 0)
 /** Friends not yet written to: a tap starts the chat, so the list is never a dead end for someone who has friends. */
 const toStart = computed(() => (ui.tab === 'chats' && listMode.value === 'all' && !chatFilter.value && me.value ? friendsToStart(me.value.friends, me.value.conversations) : []))
 function startWith(friend: { id: string; name: string }): void { setOpen(provisionalKey(friend.id)); ui.openName = friend.name }
@@ -598,20 +599,20 @@ defineExpose({
 
         <div v-if="ui.tab !== 'updates'" role="tabpanel">
           <CompanionPin />
-          <label v-if="finding" class="messages-find-label" for="message-player-search">Find a player</label>
-          <form v-if="finding" class="messages-form is-search" role="search" @submit.prevent="search">
+          <label v-if="finding && ui.tab === 'chats'" class="messages-find-label" for="message-player-search">Find a player</label>
+          <form v-if="finding && ui.tab === 'chats'" class="messages-form is-search" role="search" @submit.prevent="search">
             <input id="message-player-search" v-model="find.text" name="q" maxlength="36" placeholder="Find a player by name" aria-label="Find a player by name" autocomplete="off">
             <BaseButton small type="submit" :disabled="find.busy">Find</BaseButton>
           </form>
-          <div v-if="find.busy" class="messages-note" role="status">Searching…</div>
-          <div v-else-if="find.error" class="messages-note is-warn" role="alert">{{ find.error }}</div>
-          <ListRows v-else-if="find.results?.length" label="Players found">
+          <div v-if="ui.tab === 'chats' && find.busy" class="messages-note" role="status">Searching…</div>
+          <div v-else-if="ui.tab === 'chats' && find.error" class="messages-note is-warn" role="alert">{{ find.error }}</div>
+          <ListRows v-else-if="ui.tab === 'chats' && find.results?.length" label="Players found">
             <ListRow v-for="player in find.results" :key="player.id" :title="player.name" :sub="`Real player${player.friend ? ' · Friend' : ''} · #${player.id.slice(0, 6)}`">
               <template #icon><RowMark :name="player.name" :seed="player.id" /></template>
               <template #end><BaseButton small variant="primary" @click="messagePlayer(player)">Message</BaseButton></template>
             </ListRow>
           </ListRows>
-          <div v-else-if="find.results" class="messages-note" role="status">Nobody found with that name. Players appear here once they have opened the game.</div>
+          <div v-else-if="ui.tab === 'chats' && find.results" class="messages-note" role="status">Nobody found with that name. Players appear here once they have opened the game.</div>
 
           <SectionTitle>{{ ui.tab === 'groups' ? 'Groups' : 'Chats' }}<template #end><BaseButton v-if="!group.open" small @click="newGroup">New group</BaseButton></template></SectionTitle>
           <form v-if="group.open" class="messages-manage" @submit.prevent="createGroup">
@@ -625,13 +626,13 @@ defineExpose({
             </span>
           </form>
 
-          <input v-if="me.conversations.length > 4" v-model="chatFilter" class="messages-filter" type="search" name="chatfilter" placeholder="Search your chats" aria-label="Search your chats" autocomplete="off">
+          <input v-if="me.conversations.length > 4" v-model="chatFilter" class="messages-filter" type="search" name="chatfilter" :placeholder="ui.tab === 'groups' ? 'Search your groups' : 'Search your chats'" :aria-label="ui.tab === 'groups' ? 'Search your groups' : 'Search your chats'" autocomplete="off">
           <div v-if="ui.tab === 'chats' && (unreadTotal || listMode === 'unread')" class="messages-chips" role="group" aria-label="Show">
             <button type="button" :aria-pressed="listMode === 'all'" @click="listMode = 'all'">All</button>
             <button type="button" :aria-pressed="listMode === 'unread'" @click="listMode = 'unread'">Unread<span v-if="unreadTotal" class="messages-badge is-quiet">{{ unreadTotal }}</span></button>
           </div>
-          <ListRows v-if="chatList.length" label="Chats">
-            <LazyList :items="chatList" :item-key="(chat: Conversation) => chat.id" :has-more="Boolean(me.conversationsMore?.next) && !chatFilter" :loading="chatsMore" :row-height="60" label="chats" :key="ui.tab" :memory="ui.tab" @more="moreChats">
+          <ListRows v-if="chatList.length" :label="ui.tab === 'groups' ? 'Groups' : 'Chats'">
+            <LazyList :items="chatList" :item-key="(chat: Conversation) => chat.id" :has-more="Boolean(me.conversationsMore?.next) && !chatFilter" :loading="chatsMore" :row-height="60" :label="ui.tab === 'groups' ? 'groups' : 'chats'" :key="ui.tab" :memory="ui.tab" @more="moreChats">
             <template #row="{ item }">
             <ListRow as="button" :data-conv="item.id" :title="item.name" :unread="item.unread > 0" @click="openConversation(item.id)">
               <template #icon>
@@ -652,8 +653,10 @@ defineExpose({
             </template>
             </LazyList>
           </ListRows>
-          <BaseButton v-if="!chatList.length && me.conversationsMore?.next && !chatFilter" small :disabled="chatsMore" @click="moreChats">Load more conversations</BaseButton>
-          <p v-if="!chatList.length && me.conversations.length" class="messages-note" role="status">{{ ui.tab === 'groups' ? 'No matching groups. Create a group with your friends.' : 'No chat has that name.' }}</p>
+          <BaseButton v-if="!chatList.length && me.conversationsMore?.next && (!chatFilter || ui.tab === 'groups')" small :disabled="chatsMore" @click="moreChats">{{ chatsMore ? 'Loading more conversations…' : 'Load more conversations' }}</BaseButton>
+          <p v-if="!chatList.length && !chatsMore && !group.open && ui.tab === 'groups' && chatFilter" class="messages-note" role="status">{{ me.conversationsMore?.next ? 'No matching groups in these conversations yet. Load more to keep searching.' : 'No matching groups. Try another search or create a group.' }}</p>
+          <p v-else-if="!chatList.length && !chatsMore && !group.open && ui.tab === 'groups' && groupCount > 0" class="messages-note" role="status">No matching groups.</p>
+          <p v-else-if="!chatList.length && !chatsMore && !group.open && ui.tab === 'chats' && me.conversations.length" class="messages-note" role="status">No chat has that name.</p>
           <template v-if="toStart.length">
             <SectionTitle>{{ me.conversations.length ? 'Friends to message' : 'Start a chat with a friend' }}</SectionTitle>
             <ListRows label="Friends to message">
@@ -663,10 +666,13 @@ defineExpose({
               </ListRow>
             </ListRows>
           </template>
-          <EmptyState v-if="!me.conversations.length && !toStart.length" icon="messages" title="No chats yet" text="Tap New message to find a player, or tap someone at a venue and press Chat. You can also make a group with your friends.">
+          <EmptyState v-if="ui.tab === 'chats' && !group.open && !me.conversations.length && !toStart.length" icon="messages" title="No chats yet" text="Tap New message to find a player, or tap someone at a venue and press Chat. You can also make a group with your friends.">
             <BaseButton @click="shell.open('people')">See who is here</BaseButton>
           </EmptyState>
-          <div class="messages-fab"><BaseButton class="messages-new" variant="primary" :aria-expanded="finding" @click="toggleFind"><GameIcon name="plus" :size="18" /> {{ finding ? 'Close player search' : 'New message' }}</BaseButton></div>
+          <EmptyState v-if="ui.tab === 'groups' && !group.open && !chatFilter && !chatList.length && !chatsMore && !me.conversationsMore?.next" icon="messages" title="No groups yet" text="Create a group to start a shared conversation. You can add friends now or make it just you to begin.">
+            <BaseButton variant="primary" @click="newGroup">Create a group</BaseButton>
+          </EmptyState>
+          <div v-if="ui.tab === 'chats'" class="messages-fab"><BaseButton class="messages-new" variant="primary" :aria-expanded="finding" @click="toggleFind"><GameIcon :name="finding ? 'close' : 'plus'" :size="18" /> {{ finding ? 'Close player search' : 'New message' }}</BaseButton></div>
           <BaseButton small class="messages-settings-toggle" :aria-expanded="showSettings" @click="showSettings = !showSettings">{{ showSettings ? 'Hide chat settings' : 'Chat settings' }}</BaseButton>
           <ChatSettings v-if="showSettings" :prefs="me.prefs" />
         </div>

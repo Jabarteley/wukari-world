@@ -40,6 +40,12 @@ function loadBody(): void {
 watch(() => Boolean(sheet.value), open => { if (open) loadBody() }, { immediate: true })
 /** A panel that takes the whole screen (the character creator): no app bar, no lock note, no corner button. */
 const fullscreen = computed(() => !inPhone.value && panel.value?.fullscreen === true)
+const dialogLabel = computed(() => {
+  if (inPhone.value) return 'Phone'
+  if (sheet.value?.kind === 'help') return 'How to play'
+  if (sheet.value?.kind === 'sim') return 'Your character'
+  return panel.value?.title ?? 'Game panel'
+})
 
 function onClose(by: 'escape' | 'backdrop' | 'button'): void {
   if (lock.value) { refused(); return }
@@ -59,7 +65,7 @@ function refused(): void { const reason = lock.value?.reason; if (reason) game.t
 </script>
 
 <template>
-  <BaseSheet id="life-dialog" :open="Boolean(sheet)" :locked="Boolean(lock)" :data-phone="inPhone ? '' : undefined" :label="inPhone ? 'Phone' : fullscreen ? panel?.title : undefined" :class="{ 'is-phone': inPhone, 'is-fullscreen': fullscreen }" @close="onClose" @refused="refused">
+  <BaseSheet id="life-dialog" :open="Boolean(sheet)" :locked="Boolean(lock)" :data-phone="inPhone ? '' : undefined" :label="dialogLabel" :class="{ 'is-phone': inPhone, 'is-fullscreen': fullscreen }" @close="onClose" @refused="refused">
     <component :is="renderer" v-if="sheet && renderer" :key="scope" ref="body" :fullscreen="fullscreen" :lock-reason="lock?.reason" />
     <div v-else-if="sheet" id="life-dialog-content" class="sheet-body" :aria-busy="!failed">
       <p :role="failed ? 'alert' : 'status'">{{ failed ? 'This screen could not load. Try again when your connection is ready.' : 'Loading screen…' }}</p>

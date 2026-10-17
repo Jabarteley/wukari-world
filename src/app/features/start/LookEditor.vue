@@ -45,7 +45,7 @@ function canUse(id: string): boolean {
       <div class="look-chips">
         <button v-for="item in NATIVE_CHARACTER_CATALOG.bodies" :key="item.id" type="button" class="look-chip" :aria-pressed="recipe.appearance.body === item.id" @click="appearance({ body: item.id })">{{ item.label }}</button>
       </div>
-      <label class="native-range"><span>Height <output>{{ recipe.appearance.height.toFixed(2) }}</output></span><input type="range" min="0.85" max="1.15" step="0.01" :value="recipe.appearance.height" @input="appearance({ height: Number(($event.target as HTMLInputElement).value) })"></label>
+      <label class="native-range"><span>Height <output>{{ recipe.appearance.height.toFixed(2) }}</output></span><input type="range" aria-label="Height" min="0.85" max="1.15" step="0.01" :value="recipe.appearance.height" @input="appearance({ height: Number(($event.target as HTMLInputElement).value) })"></label>
       <div class="look-chips">
         <button v-for="item in NATIVE_CHARACTER_CATALOG.bodyPresets" :key="item.id" type="button" class="look-chip" @click="preset('body', item.features)">{{ item.label }}</button>
       </div>
@@ -79,13 +79,13 @@ function canUse(id: string): boolean {
 
     <details class="look-group">
       <summary>Detailed body controls</summary>
-      <label v-for="item in bodyFeatures" :key="item.id" class="native-range"><span>{{ item.label }} <output>{{ recipe.appearance.features[item.id]?.toFixed(2) }}</output></span><input type="range" :min="item.min" :max="item.max" step="0.05" :value="recipe.appearance.features[item.id]" @input="feature(item.id, ($event.target as HTMLInputElement).value)"></label>
+      <label v-for="item in bodyFeatures" :key="item.id" class="native-range"><span>{{ item.label }} <output>{{ recipe.appearance.features[item.id]?.toFixed(2) }}</output></span><input type="range" :aria-label="item.label" :min="item.min" :max="item.max" step="0.05" :value="recipe.appearance.features[item.id]" @input="feature(item.id, ($event.target as HTMLInputElement).value)"></label>
     </details>
 
     <details class="look-group">
       <summary>Detailed face controls</summary>
       <div class="look-chips"><button v-for="item in NATIVE_CHARACTER_CATALOG.appearancePresets" :key="item.id" type="button" class="look-chip" @click="preset('face', item.features)">{{ item.label }}</button></div>
-      <label v-for="item in faceFeatures" :key="item.id" class="native-range"><span>{{ item.label }} <output>{{ recipe.appearance.features[item.id]?.toFixed(2) }}</output></span><input type="range" :min="item.min" :max="item.max" step="0.05" :value="recipe.appearance.features[item.id]" @input="feature(item.id, ($event.target as HTMLInputElement).value)"></label>
+      <label v-for="item in faceFeatures" :key="item.id" class="native-range"><span>{{ item.label }} <output>{{ recipe.appearance.features[item.id]?.toFixed(2) }}</output></span><input type="range" :aria-label="item.label" :min="item.min" :max="item.max" step="0.05" :value="recipe.appearance.features[item.id]" @input="feature(item.id, ($event.target as HTMLInputElement).value)"></label>
     </details>
 
     <fieldset class="look-group">
@@ -96,7 +96,7 @@ function canUse(id: string): boolean {
     <fieldset class="look-group">
       <legend>Expression</legend>
       <div class="look-chips"><button v-for="item in NATIVE_CHARACTER_CATALOG.emotions" :key="item.id" type="button" class="look-chip" :aria-pressed="recipe.emotion === item.id" @click="replace({ ...recipe, emotion: item.id })">{{ item.label }}</button></div>
-      <label class="native-range"><span>Strength <output>{{ Math.round(recipe.emotionStrength * 100) }}%</output></span><input type="range" min="0" max="1" step="0.05" :value="recipe.emotionStrength" @input="replace({ ...recipe, emotionStrength: Number(($event.target as HTMLInputElement).value) })"></label>
+      <label class="native-range"><span>Strength <output>{{ Math.round(recipe.emotionStrength * 100) }}%</output></span><input type="range" aria-label="Expression strength" min="0" max="1" step="0.05" :value="recipe.emotionStrength" @input="replace({ ...recipe, emotionStrength: Number(($event.target as HTMLInputElement).value) })"></label>
     </fieldset>
   </div>
 </template>

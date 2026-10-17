@@ -9,6 +9,7 @@ import { tmpdir } from 'node:os'
 import { fileURLToPath } from 'node:url'
 import { DEFAULT_LOOK } from '../content/traits.ts'
 import { advanceLife, createLife, dispatch, viewLife } from '../../life.ts'
+import { emit } from '../registry.ts'
 import { reliefActivities } from '../relief.ts'
 import { businessVenue, isBusinessType, productCost, productLabel } from '../business-model.ts'
 import { BUSINESS_PRODUCTS } from '../content/business.ts'
@@ -16,14 +17,19 @@ import { linksFrom, playableCityIds, cityModule, loadCityContent } from './regis
 import { linksPriced } from '../systems/estate.ts'
 import { publicArrivalVenue } from './runtime.ts'
 import { assertCityModuleContract } from './cityContractTest.test.ts'
-import type { CityModule } from '../../types/content.ts'
+import type { CityModule, MissionDefinition } from '../../types/content.ts'
+import type { EpisodeDefinition, EpisodeMementoReceipt, EpisodeRun } from '../../types/episodes.ts'
 import type { ActionBody } from '../../types/actions.ts'
-import type { LifeContextInit, LifeState } from '../../types/life.ts'
+import type { LifeContext, LifeContextInit, LifeState, WorldCityId } from '../../types/life.ts'
 import { assertNoOpenCityGeometryOverlap } from '../../../scripts/city/geometry.ts'
 import { createKit } from '../../scene/kit.ts'
 import { loadCityScenes } from '../../scene/city-scenes.ts'
 import { buildVenueScene, MAX_CROWD } from '../../scene/venue-scenes.ts'
 import { sceneVenue } from '../../venue-world.ts'
+import { progressionEpisodeById, progressionSnapshot } from '../progression/provider.ts'
+import { missionCatalogues } from '../systems/missions.ts'
+import { chapterOf, cityUnlocked } from '../../story/ladder.ts'
+import { localTalesJourneyId, proofVenues, venueChapter } from '../../story/slots.ts'
 
 const cityIds = [...playableCityIds()]
 const root = fileURLToPath(new URL('../../../', import.meta.url))
@@ -90,6 +96,91 @@ test('every generated city passes its offline source and output check', () => {
 
 test('every playable city is covered by the shared city contracts', async () => {
   for (const module of modules()) await assertCityModuleContract(module)
+})
+
+const completedStoryRun = (episode: EpisodeDefinition, at: number): EpisodeRun => ({
+  id: episode.id, version: 1, chapter: 4, startedAt: at, lastSeenAt: at, choice: 'help', outcomeTags: ['local-welcome'],
+  receipts: {
+    1: { chapter: 1, completedAt: at, source: 'local-conversation', reference: episode.id, origin: 'human' },
+    2: { chapter: 2, completedAt: at, source: 'authored-challenge', reference: episode.id, origin: 'human' },
+    3: { chapter: 3, completedAt: at, source: 'authored-challenge', reference: episode.id, origin: 'human' },
+    4: { chapter: 4, completedAt: at, source: 'quiet-support', reference: episode.id, origin: 'human' },
+  },
+  observations: [], assistance: [], completedAt: at, mementoGranted: true,
+})
+
+const storyMemento = (episode: EpisodeDefinition, at: number): EpisodeMementoReceipt => ({
+  id: episode.memento.id, version: 1, episodeId: episode.id, episodeVersion: 1, grantedAt: at, origins: ['human'], rewardId: episode.memento.rewardId,
+})
+
+test('every playable city is covered by the shared city contracts: Story chapters are reachable', async (t) => {
+  const terminal: string[] = []
+  const snapshot = progressionSnapshot()
+  for (const module of modules()) {
+    const cityId = module.id as WorldCityId
+    const content = await loadCityContent(cityId)
+    const byId = new Map(content.venues.map(row => [row.id, row.definition]))
+    const home = byId.get('home')
+    assert.ok(home && venueChapter(cityId, home, content) === 0, `${cityId}: home is open at chapter 0`)
+    for (const venueId of proofVenues(cityId)) {
+      const venue = byId.get(venueId)
+      assert.ok(venue, `${cityId}.${venueId}: tale proof venue exists`)
+      assert.equal(venueChapter(cityId, venue, content), 0, `${cityId}.${venueId}: tale proof venue is open at chapter 0`)
+    }
+    const welcome = content.venues.find(row => row.kind === 'market') ?? content.venues.find(row => row.definition.category === 'food')
+    assert.ok(welcome, `${cityId}: market or food welcome venue exists`)
+    assert.equal(venueChapter(cityId, welcome.definition, content), 0, `${cityId}.${welcome.id}: welcome venue is open at chapter 0`)
+
+    const cityEpisode = progressionEpisodeById(`place-${cityId}-city-story`)
+    const countryEpisode = progressionEpisodeById(`place-${cityId}-country-story`)
+    const journeyId = localTalesJourneyId(cityId)
+    const journey = snapshot.journeys.find(row => row.id === journeyId)
+    assert.ok(cityEpisode && countryEpisode && journeyId && journey, `${cityId}: city tale, country tale and local collection exist`)
+    assert.deepEqual(new Set(journey.members.map(member => member.id)), new Set([cityEpisode.memento.id, countryEpisode.memento.id]), `${cityId}: local collection uses its two canonical tale receipts`)
+
+    const authored = [...missionCatalogues.byId.values()].filter((mission): mission is MissionDefinition => mission.cityId === cityId && missionCatalogues.authoredIds.has(mission.id))
+    assert.equal(authored.length, 6, `${cityId}: six authored local mission definitions support the base ladder`)
+    const occurrences = [...authored, authored[0]!, authored[1]!].map((mission, index) => {
+      const scope = missionCatalogues.scopeIds.daily.has(mission.id) ? 'daily' as const : 'weekly' as const
+      const period = index < authored.length ? 1 : 2
+      return { mission, scope, period, rewardId: `mission:v1:${cityId}:${scope}:${period}:${mission.id}` }
+    })
+    assert.equal(new Set(occurrences.map(row => row.rewardId)).size, 8, `${cityId}: solo Roots path has two additional authored mission occurrences`)
+
+    const visits = content.venues.filter(row => row.id !== 'home').slice(0, 6)
+    assert.equal(visits.length, 6, `${cityId}: six distinct public venues can satisfy Belong`)
+    const life = settle(module)
+    const state = life.state
+    const at = state.t
+    const ctx: LifeContext = { now: at, cityId, rng: () => 0, storyMode: true, executionOrigin: 'human' }
+    state.story.trackingSince = at
+    state.story.cities[cityId] = { missions: [], venues: [] }
+    for (const entry of [...state.missions.daily, ...state.missions.weekly]) entry.n = Number.MAX_SAFE_INTEGER
+    assert.equal(chapterOf(state, cityId), 0, `${cityId}: starts at Arrive`)
+
+    state.episodes.runs[cityEpisode.id] = completedStoryRun(cityEpisode, at)
+    assert.equal(chapterOf(state, cityId), 1, `${cityId}: first two city-tale receipts reach Settle`)
+
+    state.episodes.mementos[cityEpisode.memento.id] = storyMemento(cityEpisode, at)
+    for (const row of occurrences.slice(0, 3)) emit(state, 'mission.completed', { rewardId: row.rewardId, id: row.mission.id, scope: row.scope, period: row.period, cityId, earnedOrigin: 'human', completedAt: at }, ctx)
+    assert.equal(chapterOf(state, cityId), 2, `${cityId}: city tale and three local missions reach Belong`)
+
+    state.episodes.runs[countryEpisode.id] = completedStoryRun(countryEpisode, at)
+    state.episodes.mementos[countryEpisode.memento.id] = storyMemento(countryEpisode, at)
+    for (const row of occurrences.slice(3, 6)) emit(state, 'mission.completed', { rewardId: row.rewardId, id: row.mission.id, scope: row.scope, period: row.period, cityId, earnedOrigin: 'human', completedAt: at }, ctx)
+    for (const [index, venue] of visits.entries()) emit(state, 'travel.arrived', { venue: venue.id, from: index ? visits[index - 1]!.id : 'home', mode: 'trek' }, ctx)
+    assert.equal(chapterOf(state, cityId), 3, `${cityId}: country tale, collection, six missions and six venues reach Roots`)
+
+    for (const row of occurrences.slice(6)) emit(state, 'mission.completed', { rewardId: row.rewardId, id: row.mission.id, scope: row.scope, period: row.period, cityId, earnedOrigin: 'human', completedAt: at }, ctx)
+    assert.equal(chapterOf(state, cityId), 4, `${cityId}: two extra authored mission occurrences complete the solo path`)
+
+    state.story.mode = 'story'
+    state.story.start = cityId
+    const neighbours = [...new Set(linksFrom(cityId).filter(link => (link.status ?? 'open') === 'open').map(link => link.to))]
+    if (!neighbours.length) terminal.push(cityId)
+    else for (const neighbour of neighbours) assert.equal(cityUnlocked(state, neighbour), true, `${cityId}: completion opens connected ${neighbour}`)
+  }
+  t.diagnostic(`Story terminal cities: ${terminal.length ? terminal.join(', ') : 'none'}`)
 })
 
 test('open city footprints do not overlap beyond the unchanged legacy boundary seams', async () => {

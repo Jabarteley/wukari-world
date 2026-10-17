@@ -410,7 +410,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
     // One character on several devices: a change a player would see is announced to every socket of that character (host-context.ts lifeAnnouncer).
     const lifeSync = lifeAnnouncer((publicId, frame) => context.push(publicId, frame));
     const retention = retentionPolicy(env);
-    const { settle, act, playerAct } = lifeAuthority({ retention, now, receipts, changed: lifeSync.note, interactiveTeachingStarts: env.INTERACTIVE_TEACHING_STARTS === '1' });
+    const { settle, act, playerAct } = lifeAuthority({ retention, now, receipts, changed: lifeSync.note, interactiveTeachingStarts: env.INTERACTIVE_TEACHING_STARTS === '1', storyMode: () => context.checks.setting?.('storyMode') === true });
     const keys = new Map<string, Promise<object>>();
     const unresponsive = (ws: HostSocket): boolean => ws.pingedAt > 0 && !ws.alive && now() - ws.pingedAt >= HEARTBEAT_MS / 2;
     const open = (): HostSocket[] => [...this.held.all].filter(ws => ws.readyState === 1);

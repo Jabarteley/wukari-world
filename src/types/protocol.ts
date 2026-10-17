@@ -163,6 +163,7 @@ export interface SessionResponse extends ApiEnvelope {
 export interface LifeResponse extends ApiEnvelope {
   /** Present only when the serving trusted host enables interactive starts; never persisted in the life. */
   interactiveTeachingStarts?: true
+  storyMode?: true
   /** The server-held life, settled to `serverTime`. */
   state: LifeState
   /** The character's revision when this answer was made (see LifeChangedFrame). */
@@ -189,6 +190,7 @@ export interface ActionRequest {
 export interface ActionResponse extends ApiEnvelope {
   /** Present only when the serving trusted host enables interactive starts; never accepted from the request. */
   interactiveTeachingStarts?: true
+  storyMode?: true
   ok: boolean
   code: string
   state: LifeState

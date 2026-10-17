@@ -339,6 +339,7 @@ const inner = {
   events: ({ events: e }: LifeState) => ({ attended: e.attended, count: e.count, spray: e.spray, sprayed: e.sprayed }),
   growth: ({ growth: g }: LifeState) => ({ tables: g.tables, welcomed: g.welcomed, referrals: g.referrals }),
   stories: ({ stories: s }: LifeState) => ({ running: s.running, scenes: s.scenes, seq: s.seq }),
+  story: ({ story: s }: LifeState) => ({ version: s.version, trackingSince: s.trackingSince, mode: s.mode, start: s.start, cities: s.cities, helped: s.helped }),
   business: ({ business: b }: LifeState) => ({ opened: b.opened, sales: b.sales, spent: b.spent, buys: b.buys, bag: b.bag }),
   unilagStudent: ({ unilagStudent: u }: LifeState) => ({
     status: u.status, programme: u.programme, studentId: u.studentId, admittedDay: u.admittedDay, applicationCount: u.applicationCount, term: u.term, records: u.records,
@@ -375,11 +376,11 @@ function checkState(state: LifeState, what: string): void {
   assert.deepEqual(keys(state), sorted(LIFE_STATE_KEYS), `${what}: top-level keys`)
   for (const read of Object.values(readers)) for (const [field, value] of Object.entries(read(state))) assert.notEqual(value, undefined, `${what}: state.${field}`)
   // A field that is ABSENT until it has something to say (the ride debt, a location confirmation) is listed but need not exist.
-  const optional = ['rideDebt', 'confirmed', 'free', 'dilemmas', 'coupon', 'overflow', 'rumours', 'followUps', 'agent', 'deal', 'level']
+  const optional = ['rideDebt', 'confirmed', 'free', 'dilemmas', 'coupon', 'overflow', 'rumours', 'followUps', 'agent', 'deal', 'level', 'helper']
   for (const [slice, list] of Object.entries(SLICE_FIELD_KEYS)) {
     assert.deepEqual(keys(state[slice as keyof typeof SLICE_FIELD_KEYS]).filter((key) => !optional.includes(key)), sorted(list).filter((key) => !optional.includes(key)), `${what}: keys of state.${slice}`)
   }
-  const optionalInner: Readonly<Record<string, readonly string[] | undefined>> = { home: ['overflow'], social: ['coupon', 'free', 'rumours', 'followUps'] }
+  const optionalInner: Readonly<Record<string, readonly string[] | undefined>> = { home: ['overflow'], social: ['coupon', 'free', 'rumours', 'followUps'], story: ['helper'] }
   for (const [slice, read] of Object.entries(inner)) complete(read(state), state[slice as keyof typeof inner], `${what}: state.${slice}`, optionalInner[slice])
   assert.deepEqual(keys(state.needs), sorted(NEED_IDS), `${what}: state.needs`)
   assert.deepEqual(keys(state.decay), sorted(NEED_IDS), `${what}: state.decay`)

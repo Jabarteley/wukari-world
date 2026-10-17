@@ -12,6 +12,10 @@ const NOTICE_APPS: Readonly<Record<string, string>> = { 'rent-due': 'bank', rent
 const UPDATE_APPS: Readonly<Record<string, string>> = { family: 'family', mention: 'messages', 'group-added': 'messages', reaction: 'messages', transfer: 'statement', business: 'business', 'friend-request': 'people', 'friend-accepted': 'contacts', 'invite-knock': 'invite', 'invite-answer': 'invite', visit: 'invite', 'bae-request': 'people', 'bae-answer': 'people' }
 const UPDATES_TAB = { tab: 'updates' } as const
 export const SEEN_KEY = 'joinallworld-notices-seen'
+const PUBLIC_STORY_HELP_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+
+/** A Story invitation carries only a public UUID. The authenticated help view still decides whether it belongs to this player. */
+export const publicStoryHelpId = (value: unknown): string | null => typeof value === 'string' && PUBLIC_STORY_HELP_ID.test(value) ? value : null
 
 /** Unread messages for the badge: a muted group counts only the mentions in it. */
 export const unreadChats = (me: Pick<SocialOverview, 'conversations' | 'conversationsMore'> | null): number => (me?.conversations ?? []).reduce((sum, conv) => sum + (conv.muted ? conv.mentions ?? 0 : conv.unread), me?.conversationsMore?.unreadOlder ?? 0)
@@ -74,6 +78,8 @@ export function notificationLines(me: SocialOverview | null, input: { connected:
   for (const conv of me.conversations) if (conv.unread && conv.last && !conv.muted) lines.push({ id: `chat:${conv.id}`, at: conv.last.at || now - 3, fresh: true, app: 'messages', params: { conv: conv.id }, text: `${conv.name}: ${conv.last.body}` })
   for (const update of me.updates) {
     if (REQUEST_KINDS.includes(update.kind)) continue
+    const storyHelp = update.kind === 'visit' ? publicStoryHelpId(update.data?.storyHelp) : null
+    if (storyHelp) { lines.push({ id: `update:${update.id}`, at: update.at, fresh: !update.read, app: 'passport', params: { tab: 'story', storyHelp }, text: update.text }); continue }
     // A friend who joined through the player's link: the line opens that friend's card.
     if ((update.kind === 'invite-joined' || update.kind === 'missed-call') && update.data?.from) { lines.push({ id: `update:${update.id}`, at: update.at, fresh: !update.read, app: 'person', params: { player: update.data.from }, text: update.text }); continue }
     // A mention, a new group or a reaction opens the chat it is about.

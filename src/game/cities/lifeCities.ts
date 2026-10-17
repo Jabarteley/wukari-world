@@ -46,6 +46,8 @@ function citiesOf(raw: unknown, extra: readonly unknown[], open: (id: string) =>
   const estate = record(state.estate) ? state.estate : {}
   add(estate.city)
   add(estate.home)
+  const helper = record(state.story) && record(state.story.helper) ? state.story.helper : {}
+  if (record(helper.from)) add(helper.from.city)
   if (record(state.activeAction) && state.activeAction.kind === 'homeward' && record(state.activeAction.ticket)) {
     const ticket = state.activeAction.ticket
     addKnown(ticket.from)
@@ -114,6 +116,8 @@ export async function loadLifeCities(raw: unknown, extra: readonly unknown[] = [
     ? estate.city
     : extra.find((value): value is string => typeof value === 'string' && isCityId(value))
   if (current) await loadCityContent(current)
+  const helper = record(state.story) && record(state.story.helper) ? state.story.helper : {}
+  if (record(helper.from) && isKnownCityId(helper.from.city)) await loadCityContent(helper.from.city)
   const active = record(state.activeAction) ? state.activeAction : {}
   const ticket = record(active.ticket) ? active.ticket : {}
   if (active.kind === 'homeward' && typeof ticket.to === 'string' && isKnownCityId(ticket.to)) await loadCityContent(ticket.to)

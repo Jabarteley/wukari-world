@@ -49,7 +49,7 @@ import { cachedCityContent, loadCityContent, loadCityRoutes, loadCityMap, loadSt
  */
 import * as THREE from 'three';
 import { allCityLinks, cityCatalogue } from '../../game/cities/registry.ts';
-import type { AfricaGroupId, Box4, RegionKind, RegionStatus } from '../types.ts';
+import type { AfricaGroupId, Box4, MapStoryView, RegionKind, RegionStatus } from '../types.ts';
 import { createRig } from '../camera.ts';
 import { MAP_PIXELS, pixelRatioFor } from '../pixels.ts';
 import { NO_PORT, entryDistance } from '../zoom-ladder.ts';
@@ -59,7 +59,7 @@ import type { Edge, LadderPort } from '../zoom-ladder.ts';
 import { createFlick, isDrag, isTap } from '../../scene/gesture.ts';
 import type { RigInsets, RigView } from '../camera.ts';
 import { createTripClock } from '../trip.ts';
-import { AFRICA_GROUPS, ATLAS_LEVELS, countryAtlasLevel, sourceGeometryFrame, CONTINENTS, ZONES, cityEntry, plannedRoutes, regionEntry, stateOfCity } from '../regions.ts';
+import { AFRICA_GROUPS, ATLAS_LEVELS, countryAtlasLevel, sourceGeometryFrame, CONTINENTS, ZONES, cityAccess, cityEntry, plannedRoutes, regionEntry, stateOfCity } from '../regions.ts';
 import type { AtlasLevel, RegionInfo as RegionRecord } from '../regions.ts';
 import { EXTENT, project, relLon, unproject } from './projection.ts';
 import { decodeTopology } from './topo.ts';
@@ -131,6 +131,8 @@ export interface AtlasOptions {
   /** The cash the player has in hand, or null when it is not known: the travel card says what a fare leaves short. */
   wallet?: () => number | null;
   held?: () => string[];
+  /** Story access is already derived by the game view; the lazy atlas never loads progression rules. */
+  story?: () => MapStoryView | null;
   /** Where the zoom ladder hears of zoom the camera could not take (see ../zoom-ladder.ts). */
   ladder?: LadderPort;
   renderer?: AtlasRenderer;
@@ -285,7 +287,7 @@ const naira = (value: unknown): string => money(value)
 const ICON = (path: string): string => `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
 const GLYPH = { globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/>', rail: '<rect x="6" y="3" width="12" height="14" rx="3"/><path d="M6 10h12M8 17l-2 4m10-4 2 4M9 14h.1M15 14h.1"/>', bus: '<path d="M5 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10H5zM5 11h14M8 16v2M16 16v2"/><circle cx="8.5" cy="14" r=".6"/><circle cx="15.5" cy="14" r=".6"/>', plane: '<path d="M21 15.5 13.5 11V5.2a1.5 1.5 0 0 0-3 0V11L3 15.5V17l7.5-2.2V19l-2 1.5V22l3.5-1 3.5 1v-1.5l-2-1.5v-4.2L21 17z"/>' };
 
-export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = () => null, onFriend = () => {}, onOpenCity = () => {}, onEnterCity = () => {}, onInspectVenue = () => {}, onTravel = () => {}, credit = () => null, routes = () => null, debt = () => 0, onRepay = () => {}, onHelp = () => {}, onSettle = () => {}, wallet = () => null, held = () => [], countryDetail: providedCountryDetail,
+export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = () => null, onFriend = () => {}, onOpenCity = () => {}, onEnterCity = () => {}, onInspectVenue = () => {}, onTravel = () => {}, credit = () => null, routes = () => null, debt = () => 0, onRepay = () => {}, onHelp = () => {}, onSettle = () => {}, wallet = () => null, held = () => [], story = () => null, countryDetail: providedCountryDetail,
   renderer: providedRenderer, raf = globalThis.requestAnimationFrame?.bind(globalThis), caf = globalThis.cancelAnimationFrame?.bind(globalThis), now = () => globalThis.performance.now(),
   reducedMotion = Boolean(globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches), tabHidden, load = (levelId) => ATLAS_LEVELS.find((level) => level.id === levelId)!.data() }: AtlasOptions = {}): AtlasApi {
   const doc = typeof globalThis.document?.createElement === 'function' ? globalThis.document : null;
@@ -977,7 +979,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
     return scaleNow;
   }
   function candidates(): LabelCandidate[] {
-    const out: LabelCandidate[] = [], dn = densityFor(size.width, textScale());
+    const out: LabelCandidate[] = [], dn = densityFor(size.width, textScale()), storyView = story();
     const push = (id: string, where: { x: number; y: number; behind: boolean }, text: string, more: Partial<LabelCandidate>) => { if (!where.behind) out.push({ id, x: where.x, y: where.y, text, priority: 10, size: 11, ...more }); };
     if (level === NIGERIA && sheets[NIGERIA]) {
       const sheet = sheets[NIGERIA], close = markerDetail() === 'cities';
@@ -985,7 +987,10 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
         const entry = entryOf('state', feature.id), top = sheet.top(feature), city = entry.city ? cityEntry(entry.city) : null;
         // The whole-country view names states; close in, each open city is named, and the crowding rule below keeps only the most important names and counts the rest.
         if (close) for (const openCity of citiesIn(feature.id)) {
-          if (openCity.open) push(`city:${openCity.id}`, at(openCity.lon, openCity.lat, top + 0.02), openCity.name, { priority: openCity.id === current ? 2000 : selected?.kind === 'state' && selected.id === feature.id ? 1200 : 200, size: dn.city, compact: true, anchor: 'above', alts: ['right', 'left', 'below', 'far-above', 'far-below', 'far-right', 'far-left'], fixed: openCity.id === current, cls: `is-city is-open${openCity.id === current ? ' is-you' : ''}`, note: openCity.id === current ? 'You are here' : 'Open' });
+          if (openCity.open) {
+            const access = cityAccess(openCity.id, { current, story: storyView }), locked = access === 'locked';
+            push(`city:${openCity.id}`, at(openCity.lon, openCity.lat, top + 0.02), openCity.name, { priority: openCity.id === current ? 2000 : selected?.kind === 'state' && selected.id === feature.id ? 1200 : 200, size: dn.city, compact: true, anchor: 'above', alts: ['right', 'left', 'below', 'far-above', 'far-below', 'far-right', 'far-left'], fixed: openCity.id === current, cls: `is-city ${locked ? 'is-locked' : 'is-open'}${openCity.id === current ? ' is-you' : ''}`, note: openCity.id === current ? 'You are here' : locked ? 'Locked' : 'Open' });
+          }
         }
         if (!close || entry.status !== 'open') push(`state:${feature.id}`, at(feature.at[0], feature.at[1], top), feature.name === 'Federal Capital Territory' ? 'FCT' : feature.name, { short: feature.id === 'fct' ? 'FCT' : feature.ab, room: roomOf(feature, top) * 0.86, priority: entry.status === 'open' ? 80 : city ? 44 : 50, size: dn.other, cls: 'is-region' });
         if (close && !city) push(`cap:${feature.id}`, at(feature.cap[1], feature.cap[2], top), feature.cap[0], { priority: 22, size: 10, anchor: 'right', cls: 'is-town' });
@@ -1012,13 +1017,17 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
         push(`country:${feature.id}`, at(feature.at[0], feature.at[1], top), feature.name, { room: open ? undefined : roomOf(feature, top) * 0.9, priority: open ? 1000 : 40 + Math.min(30, (b.maxLon - b.minLon) * (b.maxLat - b.minLat) * 0.1), fixed: open, size: open ? dn.city : dn.other, compact: open, cls: open ? `is-city is-open${feature.id === (countryOf(current) === 'nigeria' ? 'ng' : countryOf(current)) ? ' is-you' : ''}` : 'is-region', note: open ? (feature.id === (countryOf(current) === 'nigeria' ? 'ng' : countryOf(current)) ? 'You are here' : 'Open') : undefined, anchor: open ? 'above' : 'centre' });
         if (Array.isArray(feature.cap) && MAJOR_CAPITALS.has(feature.cap[0])) push(`cap:${feature.id}`, at(feature.cap[1], feature.cap[2], top), feature.cap[0], { priority: feature.cap[0] === 'Abuja' ? 60 : 30, size: 10, anchor: 'right', cls: 'is-capital' });
       }
-      for (const city of continentCities()) push(`city:${city.id}`, at(city.lon, city.lat, HEIGHT.openCountry + 0.02), city.name, { priority: 1800, size: dn.city, compact: true, anchor: 'above', cls: 'is-city is-open', note: city.id === current ? 'You are here' : 'Open' });
+      for (const city of continentCities()) {
+        const access = cityAccess(city.id, { current, story: storyView }), locked = access === 'locked';
+        push(`city:${city.id}`, at(city.lon, city.lat, HEIGHT.openCountry + 0.02), city.name, { priority: 1800, size: dn.city, compact: true, anchor: 'above', cls: `is-city ${locked ? 'is-locked' : 'is-open'}${city.id === current ? ' is-you' : ''}`, note: city.id === current ? 'You are here' : locked ? 'Locked' : 'Open' });
+      }
     } else if (sheets[WORLD]) {
       for (const continent of Object.values(CONTINENTS)) push(`continent:${continent.id}`, at(relLon(continent.lon), continent.lat), continent.name, { priority: 100, size: 13, cls: 'is-continent' });
       const here = countryOf(current) === 'nigeria' ? 'ng' : countryOf(current);
       for (const country of sheets[WORLD].topology.features.filter(feature => statusOf('country', feature.id) === 'open')) {
-        const mine = country.id === here;
-        push(mine ? 'country:home' : `country:${country.id}`, at(relLon(country.at[0]), country.at[1]), country.name, { priority: mine ? 1000 : 500, fixed: true, size: dn.city, compact: true, anchor: 'above', cls: `is-city is-open${mine ? ' is-you' : ''}`, note: mine ? 'You are here' : 'Open' });
+        const mine = country.id === here, cityId = regionEntry('country', country.id).city;
+        const locked = Boolean(cityId && cityAccess(cityId, { current, story: storyView }) === 'locked');
+        push(mine ? 'country:home' : `country:${country.id}`, at(relLon(country.at[0]), country.at[1]), country.name, { priority: mine ? 1000 : 500, fixed: true, size: dn.city, compact: true, anchor: 'above', cls: `is-city ${locked ? 'is-locked' : 'is-open'}${mine ? ' is-you' : ''}`, note: mine ? 'You are here' : locked ? 'Locked' : 'Open' });
       }
       for (const route of plannedRoutes(current)) push(`hub:${route.to.id}`, at(relLon(route.to.lon), route.to.lat), route.to.name, { priority: 60, size: 10, anchor: 'right', cls: 'is-capital' });
     }
@@ -1114,11 +1123,11 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
    * What the player holds and may ride. The host works both out from the whole life, so it is asked once a turn: a list of two hundred
    * rows and the card beside it read the one answer. It is forgotten when the turn ends, and at once when the city changes.
    */
-  let contextNow: { current: string; held: string[]; routes: TripRoutes | null } | null = null;
+  let contextNow: { current: string; held: string[]; story: MapStoryView | null; routes: TripRoutes | null } | null = null;
   const forgetContext = () => { contextNow = null; };
   function context() {
     if (!contextNow) {
-      contextNow = { current, held: held() || [], routes: routes() };
+      contextNow = { current, held: held() || [], story: story(), routes: routes() };
       work.hostReads += 1;
       void Promise.resolve().then(forgetContext);
     }
@@ -1225,10 +1234,10 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
     if (!sheet) return [];
     sameCatalogue();
     // A row says a place's name, its status and its city: none of that depends on the fares, so the rows outlive a change of selection.
-    const { held: mine } = context(), key = `${level}|${current}|${selectedCity ?? ''}|${mine.join()}|${catalogueEpoch}`;
+    const { held: mine, story: storyView } = context(), key = `${level}|${current}|${selectedCity ?? ''}|${mine.join()}|${storyView?.enabled}:${storyView?.mode}:${storyView?.cities.filter(city => city.unlocked).map(city => city.id).join()}|${catalogueEpoch}`;
     if (key !== rowsKey) {
       rowsKey = key; work.rowSets += 1;
-      rowsNow = sheet.topology.features.map((feature) => regionInfo({ kind: sheet.kind, id: feature.id }, { current, held: mine, routes: null, cityId: selectedCity, feature })).sort(listOrder);
+      rowsNow = sheet.topology.features.map((feature) => regionInfo({ kind: sheet.kind, id: feature.id }, { current, held: mine, story: storyView, routes: null, cityId: selectedCity, feature })).sort(listOrder);
     }
     return rowsNow;
   }
@@ -1320,7 +1329,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
       <p class="atlas-teaser">${esc(choosing ? regionEntry('state', hit.id).teaser || info.teaser : info.teaser)}</p>
       ${hit.kind === 'country' && hit.id !== 'ng' ? '<button type="button" class="atlas-chip atlas-country-cta" data-country-open="' + esc(hit.id) + '">Geographic detail</button>' : ''}
       ${travelCard}
-      ${countryLevel(level) && selectedCity && info.city && !info.action ? `<button type="button" class="atlas-go" data-atlas-city="${esc(selectedCity)}">Enter ${esc(info.city.name)}</button>` : ''}
+      ${countryLevel(level) && selectedCity && info.city && !info.action && info.tone !== 'locked' ? `<button type="button" class="atlas-go" data-atlas-city="${esc(selectedCity)}">Enter ${esc(info.city.name)}</button>` : ''}
       ${info.action ? `<button type="button" class="atlas-go" data-atlas-action>${esc(info.action.label)}<span aria-hidden="true"> →</span></button>` : ''}
       ${more ? `<button type="button" class="atlas-more" data-atlas-expand aria-expanded="${sheetOpen}">${sheetOpen ? 'Less' : guide?.length && info.city ? `Things to do in ${esc(info.city.name)}` : info.routes.length ? 'Routes and details' : 'More'}</button>` : ''}
       ${guide?.length ? `<section class="atlas-guide"><h3>Things to do in ${esc(info.city!.name)}</h3><ul>${guide.map(place => `<li><b>${esc(place.name)}</b> · ${esc(place.line)}</li>`).join('')}</ul></section>` : ''}
@@ -1426,6 +1435,8 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
   function enterCity(id: string, { dive: diveIn = true }: { dive?: boolean } = {}) {
     countryDetailModel?.close();
     const state = stateOfCity(id), hit = state ? find({ kind: 'state', id: state }) : null, city = cityEntry(id);
+    const access = cityAccess(id, context());
+    if (access === 'locked' || access === 'soon') { if (state) select({ kind: 'state', id: state }); return; }
     // Whether it is the player's own city is decided at the tap: a dive sends the move at once, so `current` may change before the landing.
     const own = id === current, done = () => { root?.classList.remove('is-entering'); resetView = true; if (own) onOpenCity(id); else onEnterCity(id); };
     if (!hit || !city || !raf || !shown()) { done(); return; }
@@ -1791,7 +1802,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, dive = (
       request();
     },
     /** The held cities or the links may have changed. */
-    refresh() { forgetContext(); drawRail(); drawSheet(); },
+    refresh() { forgetContext(); rowsKey = ''; labelKey = ''; drawRail(); drawSheet(); request(); },
     resize, goLevel, previewTrip, selectCity, setFriends, openFriends, openCountries, closeCountries, wheelBy,
     warm() { void ensure(WORLD).then(() => ensure(AFRICA)); },
     select: (ref, options) => select(ref, options),

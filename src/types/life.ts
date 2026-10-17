@@ -1125,6 +1125,7 @@ export interface LifeState extends CoreSlice, WalletSlice, InventorySlice, Needs
   achievements: import('./achievements.ts').AchievementState
   episodes: import('./episodes.ts').EpisodeState
   projects: import('./projects.ts').ProjectsState
+  story: import('./story.ts').StoryState
 }
 
 /** System ids in registration order (systems/index.js). Sanitize, events and modifiers all run in this order. */
@@ -1132,7 +1133,7 @@ export type SystemId =
   | 'core' | 'wallet' | 'inventory' | 'needs' | 'skills' | 'career' | 'activities' | 'travel' | 'health'
   | 'economy' | 'property' | 'estate' | 'homeward' | 'home' | 'stories' | 'land' | 'street' | 'onboarding' | 'goals' | 'social' | 'civic' | 'missions' | 'events' | 'growth' | 'business'
   | 'unilagStudent' | 'unilagCommunity' | 'unilagShuttle'
-  | 'livingWorld' | 'market' | 'achievements' | 'episodes' | 'projects'
+  | 'livingWorld' | 'market' | 'achievements' | 'episodes' | 'projects' | 'story'
 
 /** The top-level keys each system owns. */
 export interface SliceBySystem {
@@ -1142,6 +1143,7 @@ export interface SliceBySystem {
   achievements: { achievements: import('./achievements.ts').AchievementState }
   episodes: { episodes: import('./episodes.ts').EpisodeState }
   projects: { projects: import('./projects.ts').ProjectsState }
+  story: { story: import('./story.ts').StoryState }
   core: CoreSlice
   wallet: WalletSlice
   inventory: InventorySlice
@@ -1207,6 +1209,8 @@ export interface LifeContext {
   trustedSave?: boolean
   /** Trusted host opt-in for creating new interactive teaching markers; absent/false keeps legacy timed shifts. */
   interactiveTeachingStarts?: boolean
+  /** Trusted host capability for the lazy Story mode rules and view. */
+  storyMode?: boolean
   /** Server-only collector for exact player-wallet mutations. */
   money?: (effect: MoneyEffect) => void
   /** Original earning time when a deferred reward changes the wallet today. Server/domain authored. */
@@ -1269,7 +1273,7 @@ export const LIFE_STATE_KEYS = [
   'achievements',
   'activeAction', 'business', 'career', 'cash', 'civic', 'completedShifts', 'decay', 'economy', 'episodes', 'estate', 'events', 'goals', 'growth',
   'health', 'home', 'homeOwned', 'inventory', 'job', 'ledger', 'ledgerDays', 'location', 'message', 'missions', 'moodlets',
-  'name', 'needs', 'onboarding', 'projects', 'property', 'skills', 'social', 'spot', 'stories', 't', 'travel', 'unilagCommunity', 'unilagShuttle',
+  'name', 'needs', 'onboarding', 'projects', 'property', 'skills', 'social', 'spot', 'stories', 'story', 't', 'travel', 'unilagCommunity', 'unilagShuttle',
   'unilagStudent', 'v',
 ] as const satisfies readonly (keyof LifeState)[]
 
@@ -1303,6 +1307,7 @@ export const SYSTEM_STATE_KEYS = {
   achievements: ['achievements'],
   episodes: ['episodes'],
   projects: ['projects'],
+  story: ['story'],
   livingWorld: [],
   market: [],
   unilagStudent: ['unilagStudent'],
@@ -1337,6 +1342,7 @@ export const SLICE_FIELD_KEYS = {
   projects: ['mementos', 'proofs', 'trackingSince', 'version'],
   episodes: ['mementos', 'runs', 'trackingSince', 'version'],
   achievements: ['displayed', 'earned', 'pinned', 'progress', 'trackingSince', 'version'],
+  story: ['cities', 'helped', 'helper', 'mode', 'start', 'trackingSince', 'version'],
   unilagStudent: ['admittedDay', 'applicationCount', 'hostel', 'lifetime', 'programme', 'records', 'status', 'studentId', 'term'],
   unilagCommunity: ['clubs', 'days', 'discoveries', 'elections', 'quiz', 'trail'],
   unilagShuttle: ['rides'],

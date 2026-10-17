@@ -18,7 +18,7 @@ import { cap, hueOf, initialOf, money, plural, signedMoney } from '../ui/format.
 import { billsDue } from './bank/bankModel.ts'
 import { billsLine, loanReasons, loanRule, rentStanding } from './bank/bankLines.ts'
 import { LINKS, cashDelta, hudNotice, linkWording, moodOf, needFlash, savedPill } from './hud/hudModel.ts'
-import { createNoticeMarks, messagesBadge, notificationLines, unreadChats, unreadUpdates, updatesCount } from './messages/messagesModel.ts'
+import { createNoticeMarks, messagesBadge, notificationLines, publicStoryHelpId, unreadChats, unreadUpdates, updatesCount } from './messages/messagesModel.ts'
 import { lastLine, partnerOf, readOnlyReason, targetOf, threadTitle, updateLines } from './messages/messagesThread.ts'
 import { DOCK, badgeText, battery, dockApps, listedApps, notificationsOf, phonePages } from './phone/phoneHomeModel.ts'
 import { createSupport, sendFailure, statusTone, textProblem } from './support/supportModel.ts'
@@ -151,6 +151,18 @@ test('messages: unread counts, the badge and the notification lines', () => {
   assert.deepEqual(lines.find((line) => line.id === 'chat:dm.ada.me')?.params, { conv: 'dm.ada.me' })
   assert.deepEqual(notificationLines(me, { connected: false, now: 1000, seen: 0 }), [])
   assert.deepEqual(updateLines(me.updates, notices, 500).map((line) => [line.text, line.fresh, `${line.kind}:${line.id}`]), [['New Governor', true, 'notice:gov'], ['Ada sent you ₦500', true, 'update:transfer'], ['Ada sent you ₦200', false, 'update:transfer'], ['Bola wants to be friends', true, 'update:friend-request'], ['Rent is due Saturday', false, 'notice:rent-due']])
+
+  const storyHelp = '123e4567-e89b-42d3-a456-426614174000'
+  const storyUpdates = [
+    { id: 4, kind: 'visit', text: 'Ada invited you to a Story challenge', at: 1100, read: false, data: { storyHelp } },
+    { id: 5, kind: 'visit', text: 'Invalid challenge', at: 1090, read: false, data: { storyHelp: 'not-public' } },
+  ]
+  const withStory = { ...me, updates: storyUpdates }
+  const storyNotes = notificationLines(withStory, { connected: true, now: 1200, seen: 0 })
+  assert.deepEqual(storyNotes.find((line) => line.id === 'update:4'), { id: 'update:4', at: 1100, fresh: true, app: 'passport', params: { tab: 'story', storyHelp }, text: storyUpdates[0]!.text })
+  assert.equal(storyNotes.find((line) => line.id === 'update:5')?.app, 'invite', 'an invalid value is never treated as a Story focus')
+  assert.deepEqual(updateLines(storyUpdates, [], 0).map((line) => [line.key, line.storyHelp]), [['u4', storyHelp], ['u5', undefined]])
+  assert.deepEqual([publicStoryHelpId(storyHelp), publicStoryHelpId('not-public'), publicStoryHelpId(12)], [storyHelp, null, null])
 })
 
 test('messages: thread wording, where a message goes, and when it cannot be written', () => {

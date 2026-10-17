@@ -26,9 +26,11 @@ import SeasonCard from './SeasonCard.vue'
 import { useRetention } from './useRetention.ts'
 
 const PublicProfile = defineAsyncComponent(() => import('../social/PublicProfile.vue'))
+const StoryModePanel = defineAsyncComponent(() => import('../story/StoryModePanel.vue'))
 
 const props = defineProps<{ params?: unknown }>()
 const askedTab = (props.params as { tab?: unknown } | null)?.tab
+const askedStoryHelp = (props.params as { storyHelp?: unknown } | null)?.storyHelp
 const tab = ref<PassportTab>(PASSPORT_TABS.some(([id]) => id === askedTab) ? askedTab as PassportTab : 'today')
 const { game, shell, goTo } = useApp()
 const view = game.view
@@ -208,6 +210,7 @@ onMounted(() => { void retention.load() })
     </section>
 
     <section v-else-if="tab === 'story'" id="passport-panel-story" role="tabpanel" aria-labelledby="passport-tab-story" tabindex="0">
+      <StoryModePanel v-if="view.story?.enabled === true" :story-help="askedStoryHelp" />
       <SectionTitle>Life chapters</SectionTitle>
       <p class="passport-detail">Original stories set around this city’s playable places. The characters and story events are fiction.</p>
       <div v-if="episodes.length" class="passport-episodes" aria-label="Life chapters">

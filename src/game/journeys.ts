@@ -24,6 +24,23 @@ const earnedAtFor = (state: LifeState, member: JourneyMemberDefinition): number 
   return member.source.kind === 'episode' ? episodeReceipt(state, member)?.grantedAt ?? null : projectReceipt(state, member)?.earnedAt ?? null
 }
 
+const journeysById = new Map(JOURNEYS.map(journey => [journey.id, journey]))
+
+/** Completion time from validated member receipts without allocating the full journey projection. */
+export function journeyCompletionAt(state: LifeState, id: string): number | null {
+  const journey = journeysById.get(id)
+  if (!journey) return null
+  let latest = 0
+  for (const member of journey.members) {
+    const earnedAt = earnedAtFor(state, member)
+    if (earnedAt === null) return null
+    latest = Math.max(latest, earnedAt)
+  }
+  return latest || null
+}
+
+export const journeyComplete = (state: LifeState, id: string): boolean => journeyCompletionAt(state, id) !== null
+
 export function journeyCollections(state: LifeState): JourneyCollectionView[] {
   const activeCountry = JOURNEYS.find(row => row.level !== 'country' && row.geography.cityId === state.estate.city)?.geography.countryId
   const hasHistory = (journey: JourneyDefinition): boolean => journey.members.some(member =>
@@ -38,8 +55,8 @@ export function journeyCollections(state: LifeState): JourneyCollectionView[] {
       const earnedAt = earnedAtFor(state, member)
       return { id: member.id, title: member.title, criterion: member.criterion, earnedAt }
     })
-    const earned = members.filter(member => member.earnedAt !== null)
-    return { id: journey.id, version: journey.version, name: journey.name, title: journey.title, geography: journey.geography, ...(journey.level ? { level: journey.level } : {}), ...(journey.placeLabel ? { placeLabel: journey.placeLabel } : {}), ...(journey.description ? { description: journey.description } : {}), members, complete: earned.length === members.length, completionAt: earned.length === members.length ? Math.max(...earned.map(member => member.earnedAt as number)) : null }
+    const completionAt = journeyCompletionAt(state, journey.id)
+    return { id: journey.id, version: journey.version, name: journey.name, title: journey.title, geography: journey.geography, ...(journey.level ? { level: journey.level } : {}), ...(journey.placeLabel ? { placeLabel: journey.placeLabel } : {}), ...(journey.description ? { description: journey.description } : {}), members, complete: completionAt !== null, completionAt }
   })
 }
 

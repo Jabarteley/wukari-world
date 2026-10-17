@@ -267,7 +267,7 @@ export default function coreRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
       // (or the request was refused) the route host re-checks the rooms against the stored life instead
       // — core.revalidate(publicId), after every API request (server.js).
       await core.validateMemberships(request.secret, city, state, publicId);
-      const teachingDisplay: Pick<LifeResponse, 'interactiveTeachingStarts'> = ctx.interactiveTeachingStarts === true ? { interactiveTeachingStarts: true } : {};
+      const teachingDisplay: Pick<LifeResponse, 'interactiveTeachingStarts' | 'storyMode'> = { ...(ctx.interactiveTeachingStarts === true ? { interactiveTeachingStarts: true } : {}), ...(ctx.checks.setting?.('storyMode') === true ? { storyMode: true } : {}) };
       return { body: { state, rev, ...teachingDisplay }, renew: true };
     },
     'POST /api/action': async (request) => {
@@ -279,7 +279,7 @@ export default function coreRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
       // A rejected or unsaved action changed nothing: the route host then re-checks the rooms against
       // the stored life (core.revalidate, server.js).
       const outcome = await executeCommand(ctx, request, body, {}, true, true);
-      return { body: ctx.interactiveTeachingStarts === true ? { ...outcome, interactiveTeachingStarts: true } : outcome, renew: true };
+      return { body: { ...outcome, ...(ctx.interactiveTeachingStarts === true ? { interactiveTeachingStarts: true } : {}), ...(ctx.checks.setting?.('storyMode') === true ? { storyMode: true } : {}) }, renew: true };
     },
   };
 }

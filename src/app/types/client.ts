@@ -106,6 +106,7 @@ export interface GameClient {
   readonly pendingAction: PendingActionIntent | null
   readonly snapshotPhase: SnapshotPhase
   readonly interactiveTeachingStarts: boolean
+  readonly storyMode: boolean
   serverNow(): number
   /** A retry key for an exactly-once write: `<server ms>:<uuid>`. One per thing the player does; reuse it on a retry. */
   newId(): string

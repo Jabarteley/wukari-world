@@ -86,6 +86,7 @@ function observedChapter(episode: EpisodeDefinition, source: EpisodeObservedProo
 }
 
 function observeProof(state: EpisodeLife, episode: EpisodeDefinition, source: EpisodeObservedProofSource, reference: string, ctx: LifeContext): void {
+  if (state.story.helper) return
   let run = state.episodes.runs[episode.id]
   if (!run) {
     if ((source !== episode.intro.proof && source !== episode.intro.alternativeProof) || !prerequisiteMet(state, episode)) return

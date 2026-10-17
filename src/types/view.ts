@@ -1217,6 +1217,7 @@ export interface LifeView {
   achievements: import('./achievements.ts').AchievementsView
   episodes: import('./episodes.ts').EpisodesView
   projects: import('./projects.ts').ProjectsView
+  story: import('./story.ts').StoryView
   unilagStudent: UnilagStudentView
   unilagCommunity: UnilagCommunityView
   unilagShuttle: UnilagShuttleView
@@ -1227,7 +1228,7 @@ export interface LifeView {
 /** The keys of `viewLife(state, ctx)`, in registration order. */
 export const VIEW_KEYS = [
   'wallet', 'inventory', 'needs', 'skills', 'career', 'activities', 'travel', 'health', 'economy', 'property', 'estate', 'home',
-  'onboarding', 'goals', 'social', 'civic', 'missions', 'events', 'growth', 'business', 'achievements', 'episodes', 'projects', 'unilagStudent', 'unilagCommunity', 'unilagShuttle',
+  'onboarding', 'goals', 'social', 'civic', 'missions', 'events', 'growth', 'business', 'achievements', 'episodes', 'projects', 'story', 'unilagStudent', 'unilagCommunity', 'unilagShuttle',
 ] as const satisfies readonly (keyof LifeView)[]
 
 /** The keys of each system's view, sorted. (`skills` is keyed by SkillId.) */
@@ -1273,6 +1274,7 @@ export const VIEW_FIELD_KEYS = {
   projects: ['mementos', 'trackingSince'],
   episodes: ['mementos', 'rows', 'trackingSince'],
   achievements: ['displayed', 'earnedCount', 'pinned', 'rows', 'trackingSince'],
+  story: ['chapter', 'chapterLabel', 'cities', 'cityId', 'enabled', 'mode', 'nextStep', 'progress', 'signature', 'start', 'venues'],
   unilagStudent: [
     'admittedDay', 'applicationCount', 'betaRules', 'campusJobs', 'courses', 'degree', 'hostel', 'lifetime', 'programme', 'records',
     'status', 'studentId', 'term',

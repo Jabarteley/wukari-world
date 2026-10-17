@@ -6,9 +6,10 @@
 import type { AchievementsView } from '../types/achievements.ts'
 import type { EpisodeState, EpisodesView } from '../types/episodes.ts'
 import type { ProjectsState, ProjectsView } from '../types/projects.ts'
+import type { StoryState, StoryView } from '../types/story.ts'
 import type { LifeContext, LifeState, SystemDefinition } from '../types/index.ts'
 
-export const PROGRESSION_SYSTEM_IDS = ['achievements', 'episodes', 'projects'] as const
+export const PROGRESSION_SYSTEM_IDS = ['achievements', 'episodes', 'projects', 'story'] as const
 type ProgressionSystemId = typeof PROGRESSION_SYSTEM_IDS[number]
 
 const record = (value: unknown): value is Record<string, unknown> => {
@@ -54,10 +55,18 @@ function freshProjectSlice(value: unknown, now: number): boolean {
     && emptyRecord(own(value, 'proofs')) && emptyRecord(own(value, 'mementos'))
 }
 
+function freshStorySlice(value: unknown, now: number): boolean {
+  if (value === undefined || value === null) return true
+  return record(value) && hasOnly(value, ['version', 'trackingSince', 'mode', 'start', 'cities', 'helped'])
+    && own(value, 'version') === 1 && validTrackingSince(own(value, 'trackingSince'), now)
+    && own(value, 'mode') === 'free' && own(value, 'start') === null && emptyRecord(own(value, 'cities')) && emptyArray(own(value, 'helped'))
+}
+
 const freshReaders = {
   achievements: freshAchievementSlice,
   episodes: freshEpisodeSlice,
   projects: freshProjectSlice,
+  story: freshStorySlice,
 } satisfies Record<ProgressionSystemId, (value: unknown, now: number) => boolean>
 
 function snapshotTime(raw: Record<string, unknown>): number | null {
@@ -128,4 +137,19 @@ const projectStandIn = {
   view(state): ProjectsView { return { trackingSince: state.projects.trackingSince, mementos: [] } },
 } satisfies SystemDefinition<'projects'>
 
-export const PROGRESSION_STAND_INS: SystemDefinition<string>[] = [achievementStandIn, episodeStandIn, projectStandIn]
+const storyStandIn = {
+  id: 'story', stateKeys: ['story'],
+  sanitize(input, state, ctx) {
+    const { trackingSince } = slice(input, 'story', ctx, state)
+    const story: StoryState = { version: 1, trackingSince, mode: 'free', start: null, cities: {}, helped: [] }
+    state.story = story
+  },
+  view(state, ctx): StoryView {
+    return {
+      enabled: false, mode: 'free', cityId: ctx.cityId, start: null, chapter: 0, chapterLabel: 'Arrive', nextStep: '',
+      progress: { missions: 0, venues: 0 }, signature: { kind: 'haggle', label: '', description: '', venue: null }, cities: [], venues: [],
+    }
+  },
+} satisfies SystemDefinition<'story'>
+
+export const PROGRESSION_STAND_INS: SystemDefinition<string>[] = [achievementStandIn, episodeStandIn, projectStandIn, storyStandIn]

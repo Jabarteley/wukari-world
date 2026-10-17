@@ -415,6 +415,7 @@ const updates = computed(() => { void tick.value; return me.value ? updatesCount
 /** The mark from before the tab was opened: what was new stays marked "New" while it is read. */
 const seenBefore = ref<number | null>(null)
 const lines = computed(() => [...updateLines(me.value?.updates ?? [], notices.value, seenBefore.value ?? noticeMarks.seen(view.value.session?.id ?? null, view.value.cityId)), ...announceLines(announceUi.items, announceUi.seen)].sort((a, b) => b.at - a.at))
+const openStoryHelp = (storyHelp: string): boolean => shell.open('passport', { tab: 'story', storyHelp })
 // Updates are drawn thirty at a time as the reader goes down (the server keeps at most fifty of its own).
 const shownLines = chunkedView(() => lines.value, 30)
 function readUpdates(): void {
@@ -702,6 +703,7 @@ defineExpose({
             <div class="messages-update" :class="{ 'is-unread': line.fresh }">
               <RowMark round><GameIcon :kind="line.kind" :id="line.id" /></RowMark>
               <span class="messages-update-body"><b><GlyphText :text="line.text" /></b><small>{{ formatClock(line.at) }}{{ line.fresh ? ' · New' : '' }}</small></span>
+              <BaseButton v-if="line.storyHelp" small @click="openStoryHelp(line.storyHelp)">Open challenge</BaseButton>
               <BaseButton v-if="line.player" small @click="shell.open('person', { player: line.player })">Say hello</BaseButton>
               <span v-if="line.conv" class="bubble-actions"><BaseButton small @click="openConversation(line.conv); ui.tab = 'chats'">Open</BaseButton><BaseButton v-if="line.leave" small variant="danger" @click="leaveFromUpdate(line.conv)">Leave</BaseButton></span>
             </div>

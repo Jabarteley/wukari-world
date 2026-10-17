@@ -27,6 +27,7 @@ import type { TierId } from './politics.ts'
 import type { StakeCode } from '../game/table-stakes.ts'
 import type { CampusActionMap, CampusActivityVetoCode, GuestCampusActionType } from './campus.ts'
 import type { NativeWardrobeKind } from '../character/native-recipe.ts'
+import { STORY_ACTION_TYPES, STORY_SERVER_ACTION_TYPES, type StoryActionMap as StoryModeActionMap } from './story.ts'
 
 // ---- shared code groups -------------------------------------------------------------------
 
@@ -154,7 +155,7 @@ export interface CivicNewsItem {
 // ---- the action table ---------------------------------------------------------------------
 
 /** The campus actions (`unilag.*` and 'campus-shuttle', registered after growth) are declared in campus.ts CampusActionMap. */
-export interface ActionMap extends CampusActionMap, StoryActionMap, AchievementActionMap, EpisodeActionMap, ProjectActionMap {
+export interface ActionMap extends CampusActionMap, StoryActionMap, StoryModeActionMap, AchievementActionMap, EpisodeActionMap, ProjectActionMap {
   'estate.land-pay': { payload: LandPayPayload; ok: 'land_paid'; fail: 'busy' | 'not_owned_home' | 'land_price_changed' | 'insufficient_funds'; serverOnly: true }
   'street.place': { payload: { from: string; to: string }; ok: 'street_placed'; fail: 'busy' | 'street_location_changed' | 'invalid_street_transition'; serverOnly: true }
   // -- core --
@@ -469,7 +470,7 @@ export type PlayerActionType = Exclude<ActionType, ServerOnlyActionType>
  * Server-only actions run through ctx.act are vetoed like a player's, except the three deliveries
  * TO a life (`InboundActionType`), which pass the hold.
  */
-export type ActionVetoCode = 'onboarding_required' | 'settle_required'
+export type ActionVetoCode = 'onboarding_required' | 'settle_required' | 'story_locked' | 'story_helper_active'
 
 /** Server-only actions that are applied even while a life is held for its look (onboarding.js INBOUND). */
 export type InboundActionType = 'social.server' | 'growth.referral' | 'growth.table-result'
@@ -482,6 +483,7 @@ export type DispatchRefusalCode<T extends ActionType = ActionType> =
   | (T extends ServerOnlyActionType ? 'server_only' : never)
   | (T extends `onboarding.${string}` | InboundActionType ? never : 'onboarding_required')
   | (T extends SettledOnlyActionType ? 'settle_required' : never)
+  | 'story_locked' | 'story_helper_active'
 
 export type ActionOkCode<T extends ActionType> = ActionMap[T]['ok']
 
@@ -542,6 +544,7 @@ export const ACTION_TYPES = [
   ...ACHIEVEMENT_ACTION_TYPES,
   ...EPISODE_ACTION_TYPES,
   'projects.server',
+  ...STORY_ACTION_TYPES,
   'living-world.server', 'market.server',
   // the campus: unilagStudent, unilagCommunity, unilagShuttle (campus.ts)
   ...CAMPUS_ACTION_TYPES,
@@ -551,7 +554,7 @@ export const ACTION_TYPES = [
 export const SERVER_ONLY_ACTIONS = [
   'estate.land-pay', 'street.place',
   'wallet.admin', 'wallet.bonus', 'needs.admin', 'activity.admin', 'estate.assign', 'estate.released', 'onboarding.arrive', 'social.server', 'civic.news', 'civic.run', 'civic.vote', 'civic.rent-ad',
-  'civic.treasury', 'civic.justice', 'civic.shoutout', 'growth.table-result', 'growth.referral', 'tables.server', 'business.server', 'projects.server', 'missions.server', 'living-world.server', 'market.server', 'unilag.election.nominate', 'unilag.election.vote',
+  'civic.treasury', 'civic.justice', 'civic.shoutout', 'growth.table-result', 'growth.referral', 'tables.server', 'business.server', 'projects.server', 'missions.server', ...STORY_SERVER_ACTION_TYPES, 'living-world.server', 'market.server', 'unilag.election.nominate', 'unilag.election.vote',
 ] as const satisfies readonly ServerOnlyActionType[]
 
 /** The server-only deliveries that pass a held life's veto (onboarding.js INBOUND). */

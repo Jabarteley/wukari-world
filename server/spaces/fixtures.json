@@ -1,0 +1,86 @@
+[
+ {
+  "target": "home",
+  "tier": "starter",
+  "prompt": "A cosy room with a reading corner and warm colours",
+  "cash": 30000,
+  "answer": "{\"title\":\"Warm cosy starter room with a simple reading corner\",\"style\":{\"wall\":5,\"roof\":1,\"door\":2,\"windows\":1},\"rooms\":[{\"room\":\"Room\",\"items\":[\"sleeping-mat\",\"plastic-chair\",\"kerosene-stove\",\"cooler-box\",\"toilet\",\"bucket-bowl\",\"basin\",\"wall-lamp\"]}]}"
+ },
+ {
+  "target": "home",
+  "tier": "bq",
+  "prompt": "Two-room house for a young couple, simple but clean, a mango tree outside",
+  "cash": 150000,
+  "answer": "{\"title\":\"Simple, clean home with a mango tree\",\"style\":{\"yard\":2},\"rooms\":[{\"room\":\"Room\",\"items\":[\"foam-bed\",\"wardrobe\",\"standing-lamp\"]},{\"room\":\"Second room\",\"items\":[\"family-sofa\",\"kerosene-stove\",\"cooler-box\",\"water-drum\"]},{\"room\":\"Bath & toilet\",\"items\":[\"toilet\",\"bucket-bowl\",\"basin\"]}]}"
+ },
+ {
+  "target": "home",
+  "tier": "bungalow",
+  "prompt": "Family bungalow: two bedrooms for the kids, big parlour, proper kitchen",
+  "cash": 600000,
+  "answer": "{\"title\":\"Bright family bungalow with cosy kids’ bedrooms\",\"style\":{},\"rooms\":[{\"room\":\"Parlour\",\"items\":[\"family-sofa\",\"leather-sofa\",\"centre-rug\",\"small-tv\"]},{\"room\":\"Bedroom\",\"items\":[\"foam-bed\",\"wardrobe\",\"lantern\"]},{\"room\":\"Second bedroom\",\"items\":[\"foam-bed\",\"wardrobe\",\"lantern\"]},{\"room\":\"Kitchen\",\"items\":[\"gas-cooker\",\"fridge\",\"water-drum\"]},{\"room\":\"Bath & toilet\",\"items\":[\"wc-suite\",\"shower-cubicle\",\"basin\"]},{\"room\":\"Dining\",\"items\":[\"plastic-chair\",\"plastic-chair\",\"plastic-chair\",\"plastic-chair\"]}]}"
+ },
+ {
+  "target": "home",
+  "tier": "duplex",
+  "prompt": "Big man duplex, everything gold, aquarium in the parlour, gym upstairs",
+  "cash": 3000000,
+  "answer": "{\"title\":\"Grand gold duplex with a lavish parlour and upstairs gym\",\"style\":{\"shape\":1,\"wall\":7,\"roof\":6,\"windows\":1,\"fence\":2,\"yard\":6,\"sign\":1},\"rooms\":[{\"room\":\"Parlour\",\"items\":[\"gold-sofa\",\"gold-sofa\",\"aquarium\",\"flat-tv\",\"centre-rug\",\"lounge-armchair\",\"wall-art\",\"standing-lamp\",\"potted-plant\"]},{\"room\":\"Dining\",\"items\":[\"family-sofa\",\"plastic-chair\",\"plastic-chair\",\"plastic-chair\",\"plastic-chair\",\"centre-rug\",\"wall-art\"]},{\"room\":\"Kitchen\",\"items\":[\"chef-range\",\"double-fridge\",\"water-drum\"]},{\"room\":\"Guest toilet\",\"items\":[\"wc-suite\",\"bucket-bowl\",\"basin\"]},{\"room\":\"Hall\",\"items\":[\"velvet-sofa\",\"bookshelf\",\"wall-art\",\"wall-lamp\",\"potted-plant\"]},{\"room\":\"Master bedroom\",\"items\":[\"king-bed\",\"wardrobe\",\"standing-lamp\",\"wall-art\"]},{\"room\":\"Bedroom\",\"items\":[\"foam-bed\",\"wardrobe\",\"standing-lamp\"]},{\"room\":\"Bath & toilet\",\"items\":[\"bathtub\",\"wc-suite\",\"basin\"]},{\"room\":\"Balcony\",\"items\":[\"lounge-armchair\",\"potted-plant\"]},{\"room\":\"Landing\",\"items\":[\"bookshelf\",\"wall-art\"]}]}"
+ },
+ {
+  "target": "home",
+  "tier": "villa",
+  "prompt": "Party villa with big sound, plenty seats and a roof terrace for dancing",
+  "cash": 5000000,
+  "answer": "{\"title\":\"A lively party villa with big sound and dancing space\",\"style\":{\"shape\":1,\"wall\":5,\"roof\":5,\"door\":1,\"windows\":1,\"fence\":2,\"yard\":6,\"sign\":1},\"rooms\":[{\"room\":\"Parlour\",\"items\":[\"gold-sofa\",\"leather-sofa\",\"leather-sofa\",\"family-sofa\",\"lounge-armchair\",\"lounge-armchair\",\"centre-rug\",\"flat-tv\",\"sound-system\",\"aquarium\",\"wall-art\",\"standing-lamp\",\"potted-plant\"]},{\"room\":\"Dining\",\"items\":[\"plastic-chair\",\"plastic-chair\",\"plastic-chair\",\"plastic-chair\",\"plastic-chair\",\"plastic-chair\",\"corner-lounge\",\"wall-lamp\"]},{\"room\":\"Kitchen\",\"items\":[\"chef-range\",\"double-fridge\",\"water-drum\",\"basin\",\"wall-lamp\"]},{\"room\":\"BQ\",\"items\":[\"spring-bed\",\"wardrobe\",\"standing-lamp\",\"plastic-chair\"]},{\"room\":\"Hall\",\"items\":[\"family-sofa\",\"lounge-armchair\",\"lounge-armchair\",\"wall-art\",\"wall-lamp\",\"potted-plant\"]},{\"room\":\"Master bedroom\",\"items\":[\"king-bed\",\"wardrobe\",\"standing-lamp\",\"standing-lamp\",\"wall-art\",\"wall-lamp\"]},{\"room\":\"Family lounge\",\"items\":[\"family-sofa\",\"family-sofa\",\"flat-tv\",\"game-console\",\"sound-system\",\"centre-rug\",\"lounge-armchair\",\"wall-lamp\"]},{\"room\":\"Bedroom\",\"items\":[\"foam-bed\",\"wardrobe\",\"standing-lamp\",\"wall-lamp\"]},{\"room\":\"Bath & toilet\",\"items\":[\"wc-suite\",\"shower-cubicle\",\"basin\",\"water-drum\"]},{\"room\":\"Balcony\",\"items\":[\"lounge-armchair\",\"lounge-armchair\",\"potted-plant\",\"wall-lamp\"]},{\"room\":\"Landing\",\"items\":[\"lounge-armchair\",\"lounge-armchair\",\"wall-art\",\"wall-lamp\"]},{\"room\":\"Roof terrace\",\"items\":[\"sound-system\",\"sound-system\",\"family-sofa\",\"family-sofa\",\"family-sofa\",\"family-sofa\",\"family-sofa\",\"family-sofa\",\"lounge-armchair\",\"lounge-armchair\",\"lounge-armchair\",\"lounge-armchair\",\"lounge-armchair\",\"lounge-armchair\",\"lounge-armchair\",\"lounge-armchair\",\"bean-bag\",\"bean-bag\",\"bean-bag\",\"bean-bag\",\"centre-rug\",\"standing-lamp\",\"standing-lamp\",\"potted-plant\",\"potted-plant\"]}]}"
+ },
+ {
+  "target": "home",
+  "tier": "starter",
+  "prompt": "I no get money o, just make am liveable abeg",
+  "cash": 8000,
+  "answer": "{\"title\":\"A simple, liveable starter room\",\"rooms\":[{\"room\":\"Room\",\"items\":[\"sleeping-mat\",\"plastic-chair\",\"bucket-bowl\",\"basin\",\"wall-lamp\"]}]}"
+ },
+ {
+  "target": "home",
+  "tier": "bq",
+  "prompt": "Quiet study house with many plants, bookshelves and a laptop desk",
+  "cash": 400000,
+  "answer": "{\"title\":\"A quiet study home filled with books and greenery\",\"style\":{\"wall\":3,\"roof\":1,\"windows\":1,\"yard\":1},\"rooms\":[{\"room\":\"Room\",\"items\":[\"spring-bed\",\"wardrobe\",\"laptop-desk\",\"bookshelf\",\"bookshelf\",\"lounge-armchair\",\"standing-lamp\",\"potted-plant\",\"potted-plant\",\"potted-plant\",\"potted-plant\",\"wall-art\"]},{\"room\":\"Second room\",\"items\":[\"kerosene-stove\",\"cooler-box\",\"water-drum\"]},{\"room\":\"Bath & toilet\",\"items\":[\"toilet\",\"bucket-bowl\",\"basin\"]}]}"
+ },
+ {
+  "target": "home",
+  "tier": "bungalow",
+  "prompt": "Music producer home: keyboard, practice mic, sound system, soft lights",
+  "cash": 800000,
+  "answer": "{\"title\":\"A cosy music producer's bungalow with a gentle glow\",\"style\":{\"wall\":3,\"roof\":2,\"windows\":1,\"yard\":1},\"rooms\":[{\"room\":\"Parlour\",\"items\":[\"family-sofa\",\"centre-rug\",\"sound-system\",\"keyboard\",\"practice-mic\",\"standing-lamp\",\"wall-lamp\",\"wall-lamp\"]},{\"room\":\"Bedroom\",\"items\":[\"foam-bed\",\"wardrobe\",\"wall-lamp\"]},{\"room\":\"Second bedroom\",\"items\":[\"foam-bed\",\"wardrobe\",\"wall-lamp\"]},{\"room\":\"Kitchen\",\"items\":[\"gas-cooker\",\"fridge\",\"water-drum\"]},{\"room\":\"Bath & toilet\",\"items\":[\"toilet\",\"shower-cubicle\",\"basin\"]},{\"room\":\"Dining\",\"items\":[\"plastic-chair\",\"plastic-chair\",\"plastic-chair\",\"plastic-chair\"]}]}"
+ },
+ {
+  "target": "room",
+  "tier": null,
+  "prompt": "Chill spot for the gang: sofas, ludo, radio, plants",
+  "cash": null,
+  "answer": "{\"title\":\"Chill gang lounge with games, music and greenery\",\"rooms\":[{\"room\":\"Room\",\"items\":[\"family-sofa\",\"velvet-sofa\",\"ludo-board\",\"radio-stool\",\"potted-plant\",\"potted-plant\"]}]}"
+ },
+ {
+  "target": "room",
+  "tier": null,
+  "prompt": "Study room for our reading group with desks and shelves",
+  "cash": null,
+  "answer": "{\"title\":\"A bright, welcoming study room for shared reading\",\"rooms\":[{\"room\":\"Room\",\"items\":[\"laptop-desk\",\"laptop-desk\",\"laptop-desk\",\"laptop-desk\",\"laptop-desk\",\"laptop-desk\",\"plastic-chair\",\"plastic-chair\",\"plastic-chair\",\"plastic-chair\",\"plastic-chair\",\"plastic-chair\",\"bookshelf\",\"bookshelf\",\"bookshelf\",\"bookshelf\",\"bookshelf\",\"bookshelf\",\"bookshelf\",\"bookshelf\",\"wall-lamp\",\"wall-lamp\",\"wall-lamp\",\"wall-lamp\",\"wall-calendar\",\"potted-plant\",\"potted-plant\",\"centre-rug\"]}]}"
+ },
+ {
+  "target": "home",
+  "tier": "duplex",
+  "prompt": "asdkjh qwe zzz 123",
+  "cash": 500000,
+  "answer": "{\"title\":\"Warm duplex with cosy rooms and local charm\",\"style\":{\"shape\":0,\"wall\":2,\"roof\":1,\"door\":1,\"windows\":1,\"fence\":1,\"yard\":1,\"sign\":1},\"rooms\":[{\"room\":\"Parlour\",\"items\":[\"family-sofa\",\"centre-rug\",\"small-tv\",\"wall-art\"]},{\"room\":\"Dining\",\"items\":[\"plastic-chair\",\"plastic-chair\",\"plastic-chair\",\"plastic-chair\"]},{\"room\":\"Kitchen\",\"items\":[\"gas-cooker\",\"cooler-box\",\"water-drum\"]},{\"room\":\"Guest toilet\",\"items\":[\"toilet\",\"bucket-bowl\",\"basin\"]},{\"room\":\"Hall\",\"items\":[\"lounge-armchair\",\"lounge-armchair\",\"wall-lamp\"]},{\"room\":\"Master bedroom\",\"items\":[\"foam-bed\",\"wardrobe\",\"standing-lamp\"]},{\"room\":\"Bedroom\",\"items\":[\"sleeping-mat\",\"wardrobe\",\"lantern\"]},{\"room\":\"Bath & toilet\",\"items\":[\"wc-suite\",\"bucket-bowl\",\"basin\"]},{\"room\":\"Balcony\",\"items\":[\"bean-bag\",\"bean-bag\",\"potted-plant\"]},{\"room\":\"Landing\",\"items\":[\"bookshelf\",\"wall-lamp\"]}]}"
+ },
+ {
+  "target": "room",
+  "tier": null,
+  "prompt": "Party room with dance floor and a sound system in the corner",
+  "cash": null,
+  "answer": "{\"title\":\"Lively party room with open space for dancing\",\"rooms\":[{\"room\":\"Room\",\"items\":[\"sound-system\",\"family-sofa\",\"family-sofa\",\"bean-bag\",\"bean-bag\",\"lounge-armchair\",\"lounge-armchair\",\"wall-fan\",\"led-strip\",\"standing-lamp\"]}]}"
+ }
+]
